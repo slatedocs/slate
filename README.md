@@ -1,10 +1,7 @@
-Slate
+CricHQ Slate
 ========
 
-[![Build Status](https://travis-ci.org/tripit/slate.png?branch=master)](https://travis-ci.org/tripit/slate) [![Dependency Status](https://gemnasium.com/tripit/slate.png)](https://gemnasium.com/tripit/slate)
-
-Slate helps you create beautiful single-page API documentation. Think of it as an intelligent, modern documentation template for your API.
-
+Documentation for CricHQ's API
 <img src="https://dl.dropboxusercontent.com/u/95847291/github%20images/slate/slate_screenshot.png" width=700 alt="Screenshot of Example Documentation created with Slate">
 
 *The example above was created with Slate. Check it out at [tripit.github.io/slate](http://tripit.github.io/slate).*
@@ -42,11 +39,10 @@ You're going to need:
 
 ### Getting Set Up
 
- 1. Fork this repository on Github.
- 2. Clone *your forked repository* (not our original one) to your hard drive with `git clone https://github.com/YOURUSERNAME/slate.git`
- 3. `cd slate`
- 4. Install all dependencies: `bundle install`
- 5. Start the test server: `bundle exec middleman server`
+ 1. Clone this repository to your local work directory
+ 2. `cd slate`
+ 3. Install all dependencies: `bundle install`
+ 4. Start the test server: `bundle exec middleman server`
 
 You can now see the docs at <http://localhost:4567>. And as you edit `source/index.md`, your server should automatically update! Whoa! That was fast!
 
@@ -57,11 +53,6 @@ Examples of Slate in the Wild
 
 * [Orchestrate.io API docs](https://docs.orchestrate.io/)
 * [ChaiOne Gameplan API docs](http://chaione.github.io/gameplanb2b/#introduction)
-
-Need Help? Found a bug?
---------------------
-
-Just [submit a issue](https://github.com/tripit/slate/issues) to the Slate Github if you need any help. And, of course, feel free to submit pull requests with bug fixes or changes.
 
 
 Special Thanks
