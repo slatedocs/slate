@@ -1,10 +1,9 @@
 ---
-title: API Reference
+title: CricHQ API Reference
 
 language_tabs:
-  - shell
   - ruby
-  - python
+  - json
 
 toc_footers:
  - <a href='#'>Sign Up for a Developer Key</a>
@@ -13,169 +12,192 @@ toc_footers:
 
 # Introduction
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+Welcome to the CricHQ API guide! You can use our API to v2 public and private API endpoints.
 
-We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+# Private API
 
-This example API documentation page was created with [Slate](http://github.com/tripit/slate). Feel free to edit it and use it as a base for your own API's documentation.
+The private api contains all requests that require some form of user authentication.
 
-# Authentication
+There are two ways to authenticate your session, either with session based authentication, or by passing in user-email and user-token values inside the headers for each request.
+  
+## Request Headers
 
-> To authorize, use this code:
+Header | Description | Required
+------ | ----------- | --------
+X-USER-EMAIL | "test@crichq.com" | ✔
+X-USER-TOKEN | BVx6vxiTr5vbt6sFbp4U | ✔
+X-APP-BUILD | 41611200
+X-APP-NAME | "CricHQ Next"
+X-APP-SPONSOR | 1
+X-APP-VERSION | "4.5.0"
+X-DEVICE-MANUFACTURER | apple
+X-DEVICE-MODEL | "iPhone Simulator"
+X-DEVICE-OS | "7.0.3"
+X-DEVICE-PLATFORM | ios
 
-```ruby
-require 'kittn'
+## Response Headers
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
+Error Code | Meaning
+---------- | -------
+400 | Bad Request -- Your request is incorrect
+401 | Unauthorized -- Your API key is wrong, or you don't have access to that request
+403 | Forbidden
+404 | Not Found -- The specified entity could not be found
+406 | Not Acceptable -- You requested a format that isn't json or message-pack
+500 | Internal Server Error -- We had a problem with our server. Try again later.
+503 | Service Unavailable -- We're temporarially offline for maintanance. Please try again later.
 
-```python
-import 'kittn'
 
-api = Kittn.authorize('meowmeowmeow')
-```
+## Authenticating with CricHQ's feed service
 
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
-```
+CricHQ implements cross service authentication via CBA (claim based authentication), using ClaimToken, a CricHQ open source gem for ruby.
 
-> Make sure to replace `meowmeowmeow` with your API key.
-
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
-
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
-
-<aside class="notice">
-You must replace `meowmeowmeow` with your personal API key.
-</aside>
-
-# Kittens
-
-## Get All Kittens
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
-
-```python
-import 'kittn'
-
-api = Kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
-
-```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
-```
-
-> The above command returns JSON structured like this:
-
-```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Isis",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
-```
-
-This endpoint retrieves all kittens.
-
+A claim token can obtained using the URL below:
 ### HTTP Request
 
-`GET http://example.com/kittens`
+`POST [crichq_environment]/v2/private/claim_token`
+
+<aside class="notice">
+  'crichq_environment' refers to production or staging.
+</aside>
+
+
+### Managing a ClaimToken
+
+Each time a request is made for a claim token it sets an internal expiration date which is encrypted. The expiration date is used across CricHQ services and you will receive a 401 response header if it has expired. It is up to the developer to maintain there user’s Claim Tokens by using an internal interval to fetch a new claim token before the current one expires.
+
+
+
+
+
+
+
+# Public API
+
+## Search for clubs
+
+> The index clubs route returns JSON structured like this:
+
+```json
+{
+  "total_pages": 8,
+  "items": [{
+    "name": "Karori Cricket Club.",
+    "level": 8,
+    "title": "Karori Cricket Club.",
+    "subtitle": "Wellington, New Zealand",
+    "id": 38826,
+    "verification_level": 149,
+    "owner_id": 34966,
+    "lock_version": 83,
+    "temporary_id": null,
+    "state": 1,
+    "entity_type": "Group",
+    "image_thumb_url": "https://s3.amazonaws.com/crichq-development-images/groups/avatars/38826/1351023463/thumb.png"
+  }, {
+    "name": "Karori",
+    "level": 8,
+    "title": "Karori",
+    "subtitle": "Wellington, New Zealand",
+    "id": 484,
+    "verification_level": 0,
+    "owner_id": 150,
+    "lock_version": 0,
+    "temporary_id": "1290027249.07",
+    "state": 1,
+    "entity_type": "Group",
+    "image_thumb_url": "/original/missing_thumb.png"
+  }]
+}
+```
+This endpoint allows you to search for visible clubs.
+
+### HTTP Request
+`GET /api/v2/public/clubs`
 
 ### Query Parameters
 
 Parameter | Default | Description
 --------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
+page | 1 | Ask for a specific page of results
+limit | 20 | Sets the number of results per page
+search[q] | "" | The query to be searched i.e. Karori
 
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
 
-## Get a Specific Kitten
+## Get a Specific Club
 
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import 'kittn'
-
-api = Kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/3"
-  -H "Authorization: meowmeowmeow"
-```
-
-> The above command returns JSON structured like this:
+> The show club route returns JSON structured like this:
 
 ```json
 {
-  "id": 2,
-  "name": "Isis",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
+  "name": "Karori Cricket Club.",
+  "level": 8,
+  "title": "Karori Cricket Club.",
+  "subtitle": "Wellington, New Zealand",
+  "id": 38826,
+  "verification_level": 149,
+  "owner_id": 34966,
+  "lock_version": 83,
+  "temporary_id": null,
+  "state": 1,
+  "entity_type": "Group",
+  "image_thumb_url": "https://s3.amazonaws.com/crichq-development-images/groups/avatars/38826/1351023463/thumb.png"
 }
 ```
 
-This endpoint retrieves a specific kitten.
-
-<aside class="warning">If you're not using an administrator API key, note that some kittens will return 403 Forbidden if they are hidden for admins only.</aside>
+This endpoint retrieves a specific club.
 
 ### HTTP Request
+`GET /api/v2/public/clubs/:id`
 
-`GET http://example.com/kittens/<ID>`
+### Query Parameters
+None
 
-### URL Parameters
+## Get a Club's Teams
 
-Parameter | Description
---------- | -----------
-ID | The ID of the cat to retrieve
+> The club teams list route returns JSON structured like this:
 
-# Errors
+```json
+{
+  "total_pages": 8,
+  "items": [{
+    "title": "1",
+    "subtitle": "Karori Cricket Club.",
+    "id": 38016,
+    "verification_level": 0,
+    "owner_id": 34966,
+    "lock_version": 0,
+    "temporary_id": null,
+    "state": 1,
+    "entity_type": "Team",
+    "image_thumb_url": "/original/missing_thumb.png",
+    "group_id": 38826,
+    "profile_feed_id": null,
+    "public_url": "http://localhost:3000/groups/38826/teams/38016-1",
+    "image_mini_url": "/original/missing_mini.png"
+  }, {
+    "title": "2",
+    "subtitle": "Karori Cricket Club.",
+    "id": 38018,
+    "verification_level": 0,
+    "owner_id": 34966,
+    "lock_version": 0,
+    "temporary_id": null,
+    "state": 1,
+    "entity_type": "Team",
+    "image_thumb_url": "/original/missing_thumb.png",
+    "group_id": 38826,
+    "profile_feed_id": null,
+    "public_url": "http://localhost:3000/groups/38826/teams/38018-2",
+    "image_mini_url": "/original/missing_mini.png"
+  }]
+}
+```
+### HTTP Request
+`GET /api/v2/public/clubs/38826/teams`
 
-The Kittn API uses the following error codes:
-
-
-Error Code | Meaning
----------- | -------
-400 | Bad Request -- Your request sucks
-401 | Unauthorized -- Your API key is wrong
-403 | Forbidden -- The kitten requested is hidden for administrators only
-404 | Not Found -- The specified kitten could not be found
-405 | Method Not Allowed -- You tried to access a kitten with an invalid method
-406 | Not Acceptable -- You requested a format that isn't json
-410 | Gone -- The kitten requested has been removed from our servers
-418 | I'm a teapot
-429 | Too Many Requests -- You're requesting too many kittens! Slown down!
-500 | Internal Server Error -- We had a problem with our server. Try again later.
-503 | Service Unavailable -- We're temporarially offline for maintanance. Please try again later.
+### Query Parameters
+Parameter | Default | Description
+--------- | ------- | -----------
+page | 1 | Ask for a specific page of results
+limit | 20 | Sets the number of results per page
