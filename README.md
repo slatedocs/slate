@@ -11,7 +11,7 @@ DevNet Slate helps you create beautiful single-page API documentation. Think of 
 Features
 ------------
 
-* **Clean, intuitive design** — with Slate, the description of your API is on the left side of your documentation, and all the code examples are on the right side. Inspired by [Stripe's](https://stripe.com/docs/api) and [Paypal's](https://developer.paypal.com/webapps/developer/docs/api/) API docs. In addition to the design you see on screen, Slate comes with a print stylesheet, so your docs look great on paper.
+* **Clean, intuitive design** — with DevNet Slate, the description of your API is on the left side of your documentation, and all the code examples are on the right side. Inspired by [Stripe's](https://stripe.com/docs/api) API docs. In addition to the design you see on screen, DevNet Slate comes with a print stylesheet, so your API docs look great on paper.
 
 * **Everything on a single page** — gone are the days where your users had to search through a million pages to find what they wanted. Slate puts the entire documentation on a single page. We haven't sacrificed linkability, though. As you scroll, your browser's hash will update to the nearest header, so it's insanely easy to link to a particular point in the documentation.
 
@@ -23,11 +23,7 @@ Features
 
 * **Automatic, smoothly scrolling table of contents** on the far left of the page. As you scroll, it displays your current position in the document. It's fast, too. We're using Slate at TripIt to build documentation for our new API, where our table of contents has over 180 entries. We've made sure that the performance remains excellent, even for larger documents.
 
-* **Let your users update your documentation for you** — by default, your Slate-generated documentation is hosted in a public Github repository. Not only does this mean you get free hosting for your docs with Github Pages, but it also makes it's simple for other developers to make pull requests to your docs if they find typos or other problems. Of course, if you don't want to, you're welcome to not use Github and host your docs elsewhere!
-
-Getting starting with Slate is super easy! Simply fork this repository, and then follow the instructions below. Or, if you'd like to check out what Slate is capable of, take a look at the [sample docs](http://tripit.github.io/slate).
-
-<!--As an example, you can check out the [TripIt API docs](http://tripit.github.io/api), which we create with Slate. You can also view the source of the [markdown file used to generate it](http://github.com/tripit/api/blob/master/source/index.md).-->
+Getting starting with Slate is super easy! Simply fork this repository, and then follow the instructions below. Or, if you'd like to check out what Slate is capable of, take a look at the [How to Document a DevNet API](http://rawgithub.com/pnerger/DevNetSlate/DevNet-Slate/build/index.html#installing-the-prerequsites)
 
 Getting Started with Slate
 ------------------------------
@@ -42,8 +38,8 @@ You're going to need:
 ### Getting Set Up
 
  1. Fork this repository on Github.
- 2. Clone *your forked repository* (not our original one) to your hard drive with `git clone https://github.com/YOURUSERNAME/slate.git`
- 3. `cd slate`
+ 2. Clone *your forked repository* (not our original one) to your hard drive with `git clone https://github.com/YOURUSERNAME/DevNetSlate.git`
+ 3. `cd DevNetSlate`
  4. Install all dependencies: `bundle install`
  5. Start the test server: `bundle exec middleman server`
 
@@ -58,6 +54,7 @@ Learn How to Create a DevNet Slate API Document
 
 Special Thanks
 --------------------
+- [Tripit Slate](https://github.com/tripit/slate)
 - [Middleman](https://github.com/middleman/middleman)
 - [jquery.tocify.js](https://github.com/gfranko/jquery.tocify.js)
 - [middleman-syntax](https://github.com/middleman/middleman-syntax)
