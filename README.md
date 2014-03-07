@@ -6,7 +6,7 @@ DevNet Slate helps you create beautiful single-page API documentation. Think of 
 
 ![Sample Screenshot of Format](https://rawgithub.com/pnerger/DevNetSlate/DevNet-Slate/source/images/DevNetSlate.png)
 
-[View the live, interactive document now!](http://rawgithub.com/pnerger/DevNetSlate/DevNet-Slate/build/index.html#installing-the-prerequsites)
+[View the live, interactive document now!](http://rawgithub.com/pnerger/DevNetSlate/DevNet-Slate/build/index.html)
 
 Features
 ------------
@@ -48,7 +48,7 @@ You can now see the docs at <http://localhost:4567>. And as you edit `source/ind
 Learn How to Create a DevNet Slate API Document
 ---------------------------------
 
-* [How to Document a DevNet API](http://rawgithub.com/pnerger/DevNetSlate/DevNet-Slate/build/index.html#installing-the-prerequsites)
+* [How to Document a DevNet API](http://rawgithub.com/pnerger/DevNetSlate/DevNet-Slate/build/index.html)
 
 
 
