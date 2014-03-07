@@ -4,6 +4,8 @@ DevNet Slate
 
 DevNet Slate helps you create beautiful single-page API documentation. Think of it as an intelligent, modern documentation template for your API. This variation is based upon the Slate work done by Tripit which in turn was inspired by the API documentation by Stripe.
 
+![Sample Screenshot of Format](https://rawgithub.com/pnerger/DevNetSlate/DevNet-Slate/source/images/DevNetSlate.png)
+
 
 Features
 ------------
