@@ -22,7 +22,7 @@ The Contact resource has the following attributes:
 }
 ```
 
-Attribute | Type | Constraints
+Attribute | Type | Description
 --- | --- | ---
 **id** | Integer | unique
 **salutation** | String | "Mr", "Ms", "Miss", "Mrs", "Dr"
@@ -32,8 +32,8 @@ Attribute | Type | Constraints
 **position** | String |
 **email** | String |
 **fax** | String |
-**phone** | [Phone JSON Object](#phone-json-object)
-**notifications** | [Notifications JSON Object](#notifications-json-object)
+**phone** | [Phone JSON Object](#contact-phone)
+**notifications** | [Notifications JSON Object](#contact-notifications)
 **links** | [Contact Relations](#contact-relations)
 **created_at** | Timestamp |
 **updated_at** | Timestamp |
@@ -51,7 +51,7 @@ Attribute | Type | Constraints
 }
 ```
 
-Attribute | Type | Constraints
+Attribute | Type | Description
 --- | --- | ---
 **mobile** | String
 **direct** | String
@@ -69,8 +69,8 @@ Attribute | Type | Constraints
 
 Attribute | Type | Description
 --- | --- | ---
-**email** | [Notification JSON Object](#notification-json-object) | optional
-**sms** | [Notification JSON Object](#notification-json-object) | optional
+**email** | [Notification JSON Object](#contact-notification) | optional
+**sms** | [Notification JSON Object](#contact-notification) | optional
 
 ### Contact Notification
 
