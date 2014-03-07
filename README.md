@@ -6,7 +6,7 @@ DevNet Slate helps you create beautiful single-page API documentation. Think of 
 
 ![Sample Screenshot of Format](https://rawgithub.com/pnerger/DevNetSlate/DevNet-Slate/source/images/DevNetSlate.png)
 
-[View the document now!](http://rawgithub.com/pnerger/DevNetSlate/DevNet-Slate/build/index.html#installing-the-prerequsites)
+[View the live, interactive document now!](http://rawgithub.com/pnerger/DevNetSlate/DevNet-Slate/build/index.html#installing-the-prerequsites)
 
 Features
 ------------
