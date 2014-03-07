@@ -1,0 +1,10 @@
+---
+title: Manage API v3 Reference
+
+language_tabs:
+  - json
+---
+
+<% Dir[File.dirname(__FILE__) + '/sections/*'].map {|f| File.basename(f, '.md') }.each do |filename| %>
+  <%= render_partial "sections/#{filename}" %>
+<% end %>
