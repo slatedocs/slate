@@ -153,8 +153,7 @@ Code samples have the following elements that are used to control their placemen
 title: Authoring a DevNet API Reference Manual
 languages:
 language_tabs:
-  - gfm: GFM
-  - shell
+  - shell: Sample
   
 toc_footers:
  - Copyright &copy; 2014 by Cisco Systems, Inc.

@@ -1,0 +1,653 @@
+
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <!-- Always force latest IE rendering engine or request Chrome Frame -->
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+
+    <!-- Use title if it's in the page YAML frontmatter -->
+    <title>Authoring a DevNet API Reference Manual</title>
+
+    <link href="stylesheets/screen.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="stylesheets/print.css" media="print" rel="stylesheet" type="text/css" />
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script src="javascripts/all.js" type="text/javascript"></script>
+
+    <script>
+      $(function() {
+        var toc = $("#toc").tocify({
+          selectors: "h1,h2",
+          extendPage: false,
+          theme: "none",
+          smoothScroll: false,
+          showEffectSpeed: 0,
+          hideEffectSpeed: 180,
+          ignoreSelector: ".toc-ignore",
+          hashGenerator: 'pretty',
+          highlightOffset: 60,
+          scrollTo: -2,
+          scrollHistory: true,
+          hashGenerator: function(text, element) {
+            return element[0].getAttribute('id');
+          }
+        }).data("toc-tocify");
+        // Hack to make already open sections to start opened,
+        // instead of displaying an ugly animation
+        setTimeout(function() {
+          toc.setOption("showEffectSpeed", 180);
+        },50);
+        setupLanguages([
+          
+            
+              
+                'shell',
+              
+            
+          
+        ]);
+      });
+    </script>
+  </head>
+
+  <body class="index">
+    <div class="tocify-wrapper">
+      <img src="images/logo.png" />
+      <div id="toc">
+      </div>
+      
+      <ul class="toc-footer">
+        
+          <li>Copyright &copy; 2014 by Cisco Systems, Inc.</li>
+        
+          <li>All Rights Reserved.</li>
+        
+      </ul>
+      
+    </div>
+    <div class="page-wrapper">
+      <div class="content">
+        <h1 id="authoring-a-devnet-api-reference-manual">Authoring a DevNet API Reference Manual</h1>
+
+<p>DevNet is Cisco&rsquo;s Developer Program aimed a helping developers gain access to Cisco Technology such that they can build cool and exciting products.  Wether a developer is an IT
+Professional working inside of a Cisco Customer&rsquo;s IT organization, a System Integrator, or a developer at an Independent Software Developer Program, Cisco DevNet is there to
+help make your professional life easier.</p>
+
+<p>Cisco has hundreds of product API&rsquo;s for developers.  We want to make it easy for you to find the API that you need to get your job done but we also want to make it easy
+for you to use the API of choice.  To do this, we are providing a standard format for the documentation of API&rsquo;s with Cisco.</p>
+
+<p>This document describes how an engineer or tech writer within Cisco would write an API reference manual for publication on DevNet.  The toolchain that we are using is based upon
+Slate, the open source tool from TripIt, which in turn was inspired by the API Reference Manual published by Stripe.  Like many developers, we love the simple, elegant, yet
+powerful way that Stripe documented their API.  In particular we loved how within the context of any given API call, you can choose a language and see sample code - we knew that
+we were not alone and thus we chose to model our own documentation on this style.</p>
+
+<p>Overtime, we have ideas on how we can update and modify this format to better suit the needs of the developer community and we are already planning those changes.  But for now,
+we have this initial version.</p>
+
+<h1 id="getting-started-with-devnet-slate">Getting Started with DevNet Slate</h1>
+
+<h2 id="installing-the-prerequsites">Installing the Prerequsites</h2>
+
+<blockquote>
+<p>What Version of Ruby is Installed?</p>
+</blockquote>
+<pre class="highlight shell"><span class="gp">$ </span>ruby -v
+
+ruby 2.0.0p247 <span class="o">(</span>2013-06-27 revision 41674<span class="o">)</span>
+
+</pre>
+<blockquote>
+<p>How to install Buldler (Shell Tab)</p>
+</blockquote>
+<pre class="highlight shell"><span class="gp">$ </span>gem install bundler
+</pre>
+<p>DevNet Slate can be installed on any system because of Ruby&rsquo;s portability.</p>
+
+<ol>
+<li>Make sure that Ruby is installed.</li>
+<li>Make sure that Bundler is installed.</li>
+</ol>
+
+<p>If you do not have Ruby installed, go to https://www.ruby-lang.org/ and get it.</p>
+
+<p><aside class="warning">
+Ruby Version 1.9.3 or newer is required for Slate, if you have Ruby installed, make sure that it is at least that verion.
+</aside></p>
+
+<h2 id="getting-set-up">Getting Set Up</h2>
+
+<blockquote>
+<p>Clone the Forked Repository</p>
+</blockquote>
+<pre class="highlight shell"><span class="nv">$git</span> clone https://github.com/YOURUSERNAME/slate.git
+</pre>
+<blockquote>
+<p>Install the Dependencies</p>
+</blockquote>
+<pre class="highlight shell"><span class="nv">$cd</span> slate
+<span class="nv">$bundle</span> install
+</pre>
+<blockquote>
+<p>Start Your Test Server</p>
+</blockquote>
+<pre class="highlight shell"><span class="nv">$bundle</span> <span class="nb">exec </span>middleman server
+<span class="o">==</span> The Middleman is loading
+<span class="o">==</span> The Middleman is standing watch at http://0.0.0.0:4567
+<span class="o">==</span> Inspect your site configuration at http://0.0.0.0:4567/__middleman/
+
+</pre>
+<ol>
+<li>Login to Github and fork this repository on Github (https://github.com/pnerger/slate)</li>
+<li>Clone <em>your forked repository</em> (not our original one) to your hard drive with <code class="prettyprint">git clone https://github.com/YOURUSERNAME/slate.git</code></li>
+<li><code class="prettyprint">cd slate</code></li>
+<li>Install all dependencies: <code class="prettyprint">bundle install</code></li>
+<li>Start the test server: <code class="prettyprint">bundle exec middleman server</code></li>
+</ol>
+
+<p>You can now see the docs using your browser at <a href="http://localhost:4567">http://localhost:4567</a>. And as you edit and save your <code class="prettyprint">source/index.md</code>, your server should automatically update! Whoa! That was fast!</p>
+
+<h3 id="what-now?">What Now?</h3>
+
+<h1 id="how-devnet-slate-works">How DevNet Slate Works</h1>
+
+<p>Cisco&rsquo;s implementation of Slate is an HTML document generator that is written and executed in Ruby.  The software reads a source-file in Github Flavored Markdown (GFM) that is
+used to generate an HTML API Reference Manual along with the accompanying Javascript and CSS files.  The Javascript and CSS files are simply included into the HTML that is generated
+from the GFM File.</p>
+
+<p>It all sounds simple, but it is a bit more complicated than that.  To get a consistent look and feel to Cisco API documentation, we want the authors of API Reference Manuals to
+use the GFM tags in a particular way such that we get a common and consistent look and feel to Cisco API documents.  It is important to achive this cross-product consistency for if a
+developer gets trained and used to on Cisco API Reference manual but now needs to use an API from another business unit, we want to leverage their experience and make the
+cross training experience simple and pleasant.</p>
+
+<h2 id="structure-of-a-devnet-slate-document">Structure of a DevNet Slate Document</h2>
+
+<p>As you look at this document, you will notice that there are a couple of feature.  First, to the left is the Table of Contents area.  Next, in the center is the Body of the
+document, and to the Right (in the dark area) are code examples.  Each of these elements have the following charateristics:</p>
+
+<h3 id="table-of-contents">Table of Contents</h3>
+
+<p>The TOC panel on the left hand side of the panel is composed of the following elements starting at the top and moving to the bottom:</p>
+
+<ul>
+<li>The Logo - this is generated from the logo held in the logo.png file held in the source directory.  We want to use this same Cisco Logo for all documents.</li>
+<li>The Table of Contents - DevNet Slate only uses the first two level of headers in the Table of Contents.  By default, on the H1 is normally displayed.  If a user selects a H1 item, the TOC will expand to display the H2 items underneath it.  H3 and below are not displayed.</li>
+<li>The TOC Footer - for this we want Cisco Copyright Information.</li>
+</ul>
+
+<h3 id="document-body">Document Body</h3>
+
+<p>The body of the document is found in the center panel and contains the main textual discription of the API.  It uses a number of different elements and features to communicate what the API
+actually does and these include:</p>
+
+<ul>
+<li>Headers - these are titles of document section of which the H1 and H2 will automatically appear in the TOC</li>
+<li>Paragraphs - these are simple paragraphs of text</li>
+<li>Bold Text</li>
+<li>Italicized Text</li>
+<li>Inline Code Text</li>
+<li>Tables</li>
+<li>Bullet Lists</li>
+<li>Number Lists</li>
+<li>Hints - These are Green Highlighted Text</li>
+<li>Warnings - These are Red Highlighted Text</li>
+<li>Notes - These are Blue Highlighted Text</li>
+<li>Links - HTML hyperlinks to external documents</li>
+</ul>
+
+<h3 id="code-samples">Code Samples</h3>
+
+<p>The key part of the DevNet Slate format for API documentation is that code samples can be viewed alongside of the API call that they illustrate.  Further sample code can be held
+simultaneously in several different programming languages (important for SOAP and REST API&rsquo;s).  Because programmers tend to only
+work in a single language at a time, the DevNet Slate format accomodates this by having the programming language as a tab on the far right panel.  Thus, the developer is able to
+choose a programming language and then use the documentation in that language without being distracted by any other language.</p>
+
+<p>Sample code are anchored to either the H1 or H2 heading that they are inserted under; that is, they are placed under the Heading and will move up or down with the main text body.
+Code samples have the following elements that are used to control their placement:</p>
+
+<ul>
+<li>Language - there is a tab for each language that is supported and specified in the header.<br></li>
+<li>Code Annotations - these are highlighted areas that are not code but used to point out a code section.</li>
+<li>Shared Code Samples - it is possible to make code that appears in all of the tabs.</li>
+</ul>
+
+<h1 id="specifying-your-gfm-headers">Specifying Your GFM Headers</h1>
+
+<blockquote>
+<p>GFM Headers for this Document</p>
+</blockquote>
+<pre class="highlight markdown"><span class="nn">---</span>
+<span class="s">title</span><span class="pi">:</span> <span class="s">Authoring a DevNet API Reference Manual</span>
+<span class="s">languages</span><span class="pi">:</span>
+<span class="s">language_tabs</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s">shell</span><span class="pi">:</span> <span class="s">Sample</span>
+
+<span class="s">toc_footers</span><span class="pi">:</span>
+ <span class="pi">-</span> <span class="s">Copyright &amp;copy; 2014 by Cisco Systems, Inc.</span>
+ <span class="pi">-</span> <span class="s">All Rights Reserved.</span>
+<span class="nn">---</span>
+</pre>
+<p>The source document that is used to generate a DevNet Slate API Reference Manual is a GFM Document.  The GFM document is a plain text document that starts with headers that
+set some items about the document and include:</p>
+
+<h2 id="setting-the-document-title">Setting the Document Title</h2>
+
+<p>This is just the name of the document and is a simple text string</p>
+
+<h2 id="turning-on-language-tabs">Turning on Language Tabs</h2>
+
+<p>There is a <em>language_tab</em> statement for each language that will be on the tab in the Sample Code section of the the document.  The <em>language_tab</em> statement is followed by
+one or more lines that contain a statement that contains two blank spaces, a dash, the name of the languge for use in encoding the document, an option &ldquo;:&rdquo;, followed by an
+optional display name for the language.</p>
+
+<p>The name of the language must be recognized by the system such that the display engine will automatically perform syntax highlighting on the code.  The engine supports
+lots of different languages but for Cisco documents, these are the standard values that we want to use:</p>
+
+<ul>
+<li>c++:C++</li>
+<li>c#:C#</li>
+<li>css:CSS</li>
+<li>html:HTML</li>
+<li>json:JSON</li>
+<li>java:Java</li>
+<li>javascript:JavaScript</li>
+<li>markdown:GFM</li>
+<li>objective-c:Objective-C</li>
+<li>perl:Perl</li>
+<li>php: PHP</li>
+<li>puppet:Puppet</li>
+<li>python:Python</li>
+<li>ruby:Ruby</li>
+<li>shell</li>
+<li>xml:XML</li>
+<li>yaml:YAML</li>
+</ul>
+
+<p><aside class="notice">
+Only list the languages that you want to have as tabs in your document.  Each time you list a language as a <em>language_tab</em>, DevNet Slate will automatically create the language
+tab regardless if that language is used in the document.
+</aside></p>
+
+<p><aside class="notice">
+Please use the language tabs as stated above such that the Tabs are consistent between API&rsquo;s.
+</aside></p>
+
+<h2 id="setting-the-copyright-statement-in-the-footers">Setting the Copyright Statement in the Footers</h2>
+
+<p>The footer statement is uses solely for the Cisco Copyright Statement.</p>
+
+<p><aside class="notice">
+Make sure that you put the proper years that the document was created and updated in the copyright statement.  These years should be either a single year or a range of years.  A
+range of years are used when the document was first published in one year but was subsequently updated in other years.
+</aside></p>
+
+<h1 id="creating-a-table-of-contents">Creating a Table of Contents</h1>
+
+<p>The Table of Contents (ToC) of a document is automatically generated from the Headers found in your GFM source document.  In GFM, headers are denoted using one or more <code class="prettyprint">#</code> characters.
+For DevNet Slate, only the first two levels of Headers will be written to the Table of Contents.  H1 Headers are found in the basic TOC while the H2 headers will pop up into the
+display when the user scrolls down to that area.</p>
+
+<h1 id="creating-the-body-of-the-api-reference">Creating the Body of the API Reference</h1>
+
+<h2 id="creating-headers">Creating Headers</h2>
+
+<blockquote>
+<p>Headings - Only H1 and H2 are shown in the TOC</p>
+</blockquote>
+<pre class="highlight markdown">
+<span class="gh"># The largest heading (an &lt;h1&gt; tag)</span>
+<span class="gu">## The second largest heading (an &lt;h2&gt; tag)</span>
+<span class="gu">### The 3rd largest heading (an &lt;h3&gt; tag)</span>
+
+</pre>
+<p>Headers are created by using one or more # characters starting in the first line of text within the GFM document. </p>
+
+<p># Level 1 Header
+    ## Level 2 Header
+    ### Level 3 Header</p>
+
+<p><aside class="notice">
+Note that only level 1 and 2 headers will appear in the table of contents.
+</aside></p>
+
+<h2 id="creating-a-paragraphs">Creating a Paragraphs</h2>
+
+<p>For normal text, just type your paragraph on a single line.</p>
+
+<p>This is some paragraph text. Exciting, no?</p>
+
+<p>Make sure the lines above below your paragraph are empty.</p>
+
+<h2 id="creating-formatted-text">Creating Formatted Text</h2>
+
+<blockquote>
+<p>Formating Text in GFM</p>
+</blockquote>
+<pre class="highlight markdown">    This text is <span class="gs">**bold**</span>, this is <span class="ge">*italic*</span>, this is an <span class="sb">`inline code block`</span>.
+</pre>
+<p>This text is <strong>bold</strong>, this is <em>italic</em>, this is an <code class="prettyprint">inline code block</code>.</p>
+
+<p><aside class="success">
+You can use those formatting rules in code annotations, tables, paragraphs, lists, wherever.
+</aside></p>
+
+<h2 id="creating-markdown-links">Creating Markdown Links</h2>
+
+<blockquote>
+<p>The Three Ways to Create GFM Links</p>
+</blockquote>
+<pre class="highlight markdown">Here's an inline link to <span class="p">[</span><span class="nv">Google</span><span class="p">](</span><span class="sx">http://www.google.com/</span><span class="p">)</span>.
+Here's a reference-style link to <span class="p">[</span><span class="nv">Google</span><span class="p">][</span><span class="ss">1</span><span class="p">]</span>.
+Here's a very readable link to <span class="p">[</span><span class="nv">Yahoo!</span><span class="p">][</span><span class="ss">yahoo</span><span class="p">]</span>.<span class="sb">
+
+
+
+</span></pre>
+<p>There are three ways to write links in GFM. Each is easier to read than the last.  The code to the right will generate the following:</p>
+
+<p>Here&rsquo;s an inline link to <a href="http://www.google.com/">Google</a>.
+Here&rsquo;s a reference-style link to <a href="http://www.google.com/">Google</a>.
+Here&rsquo;s a very readable link to <a href="http://www.yahoo.com/">Yahoo!</a>.</p>
+
+<p>The link definitions can appear anywhere in the document &ndash; before or after the place where you use them. The link definition names <a href="http://www.google.com/">1</a> and <a href="http://www.yahoo.com/">yahoo</a> can be any unique string,
+and are case-insensitive; <a href="http://www.yahoo.com/">yahoo</a> is the same as <a href="http://www.yahoo.com/">YAHOO</a>.</p>
+
+<h2 id="using-html-standard-links">Using HTML Standard Links</h2>
+
+<blockquote>
+<p>Using HTML Links in GRM</p>
+</blockquote>
+<pre class="highlight html"><span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"http://developer.cisco.com"</span> <span class="na">title=</span><span class="s">"DevNet"</span><span class="nt">&gt;</span>Cisco DevNet<span class="nt">&lt;/a&gt;</span>
+</pre>
+<p>You can also use standard HTML hyperlink syntax.  The HTML example to the right produces the text below:</p>
+
+<p><a href="http://developer.cisco.com" title="DevNet">Cisco DevNet</a></p>
+
+<h2 id="inserting-an-image">Inserting an Image</h2>
+
+<blockquote>
+<p>GFM for Inserting an Image Stored Locally</p>
+</blockquote>
+<pre class="highlight markdown"><span class="p">![</span><span class="nv">Valid XHTML</span><span class="p">](</span><span class="sx">/images/logo.png</span><span class="p">)</span>.
+</pre>
+<p><img alt="Valid XHTML" src="images/logo.png" />.</p>
+
+<p><aside class="success">
+Images essentially look just like a link except that they start with a &lsquo;!&rsquo; .
+</aside></p>
+
+<p><aside class="notice">
+Notice that this image is coming from the local image folder.  We recommend that you place your images inside the image folder within your source directory.
+</aside></p>
+
+<h2 id="creating-a-table">Creating a Table</h2>
+
+<blockquote>
+<p>GFM for Creating a Table</p>
+</blockquote>
+<pre class="highlight markdown">Table Header 1 | Table Header 2 | Table Header 3
+-------------- | -------------: | :------------:
+Row 1 col 1 | Row 1 col 2 | Row 1 col 3
+Row 2 col 1 | Row 2 col 2 | Row 2 col 3
+</pre>
+<p>Slate uses PHP Markdown Extra style tables.  The example to the right will create the table below.</p>
+
+<table><thead>
+<tr>
+<th>Table Header 1</th>
+<th style="text-align: right">Table Header 2</th>
+<th style="text-align: center">Table Header 3</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Row 1 col 1</td>
+<td style="text-align: right">Row 1 col 2</td>
+<td style="text-align: center">Row 1 col 3</td>
+</tr>
+<tr>
+<td>Row 2 col 1</td>
+<td style="text-align: right">Row 2 col 2</td>
+<td style="text-align: center">Row 2 col 3</td>
+</tr>
+</tbody></table>
+
+<p>Notice the colons in the line underneath the header line.  These are used align that columns of the table. A no colon or only a colon to the left
+will cause the column to align to the left.  A colon to the right will cause the column to align right.  And a colon to the left and the right
+will cause the column to center.</p>
+
+<p><aside class="notice"> Note that the pipes do not need to line up with each other on each line.</aside></p>
+
+<p><aside class="success"> If you don&rsquo;t like that syntax, feel free to use normal html &lt;table&gt;`s directly in your markdown.</aside></p>
+
+<h2 id="creating-numbered-lists">Creating Numbered Lists</h2>
+
+<blockquote>
+<p>GFM for Numbered Lists</p>
+</blockquote>
+<pre class="highlight markdown"><span class="p">1.</span> This
+<span class="p">2.</span> Is
+<span class="p">  3.</span> Nested
+<span class="p">  6.</span> Number
+<span class="p">  1.</span> List
+<span class="p">3.</span> An
+<span class="p">8.</span> Ordered
+<span class="p">9.</span> List
+</pre>
+<p>Numbered lists are created using the GFM markdown code to the right.  You can create nested lists, but the bullets are indented by two spaces.  The
+sample code to the right will create the list below:</p>
+
+<ol>
+<li>This</li>
+<li>Is
+
+<ol>
+<li>Nested</li>
+<li>Number</li>
+<li>List</li>
+</ol></li>
+<li>An</li>
+<li>Ordered</li>
+<li>List</li>
+</ol>
+
+<p><aside class="notice"> Notice that the order of the numbers do not make a difference.  It is just that a number is used that makes an ordered list. </aside></p>
+
+<p><aside class="notice"> Note that by indenting by two characters, you are creating an indented list and the numbering restarts and when you go back, the
+numbering resumes.</aside></p>
+
+<h2 id="creating-bulleted-lists">Creating Bulleted Lists</h2>
+
+<blockquote>
+<p>GFM for created bullet lists</p>
+</blockquote>
+<pre class="highlight markdown"><span class="p">-</span> This
+<span class="p">+</span> Is
+<span class="p">  *</span> nested
+<span class="p">  -</span> bullet
+<span class="p">*</span> A
+<span class="p">*</span> Bullet
+<span class="p">*</span> List
+</pre>
+<p>Numbered lists are created using the GFM markdown code to the right.  you can create nested lists, but the bullets are indented by two spaces.  The sample code
+to the right will create the list below:</p>
+
+<ul>
+<li>This</li>
+<li>Is</li>
+<li>A
+
+<ul>
+<li>nested</li>
+<li>bullet</li>
+</ul></li>
+<li>Bullet</li>
+<li>List</li>
+</ul>
+
+<p><aside class="notice"> Notice that bullet lists can be created using a -, a +, or an *. </aside></p>
+
+<p><aside class="notice"> Note that by indenting by two characters, you are creating an indented list.</aside></p>
+
+<h2 id="creating-special-notes-and-warnings">Creating Special Notes and Warnings</h2>
+
+<blockquote>
+<p>GFM for creating Notes and Warnings</p>
+</blockquote>
+<pre class="highlight html"><span class="nt">&lt;aside</span> <span class="na">class=</span><span class="s">"notice"</span><span class="nt">&gt;</span> This is a sample note. <span class="nt">&lt;/aside&gt;</span>
+
+<span class="nt">&lt;aside</span> <span class="na">class=</span><span class="s">"warning"</span><span class="nt">&gt;</span> This is a sample warning.<span class="nt">&lt;/aside&gt;</span>
+
+<span class="nt">&lt;aside</span> <span class="na">class=</span><span class="s">"success"</span><span class="nt">&gt;</span> This is a sample hint.<span class="nt">&lt;/aside&gt;</span>
+</pre>
+<p>You can add little highlighted warnings and notes with just a little HTML embedded in your markdown document.  The sample to the right shows the three forms.  Below you will
+see how they manifest themselves in the document.</p>
+
+<p><aside class="notice"> This is a sample note. </aside></p>
+
+<p><aside class="warning"> This is a sample warning.</aside></p>
+
+<p><aside class="success"> This is a sample hint.</aside></p>
+
+<p>Use <code class="prettyprint">class=&quot;notice&quot;</code> for blue notes, <code class="prettyprint">class=&quot;warning&quot;</code> for red warnings, and <code class="prettyprint">class=&quot;success&quot;</code> for green notes.</p>
+
+<h1 id="sample-code">Sample Code</h1>
+
+<blockquote>
+<p>Sample GFM to Denote Sample Code</p>
+</blockquote>
+<pre class="highlight markdown">    <span class="sb">```</span>python
+    // this is some python code
+    <span class="p">```</span>
+    <span class="p">```</span>ruby
+    # this is some ruby code
+    <span class="sb">```</span>
+</pre>
+<p>Code samples are an important way of communicating how to use an API.  DevNet Slate does an excellent job of handling code samples in multiple languages simultaneously through the
+use of the tabbed sample code panel on the right hand side.</p>
+
+<h2 id="inserting-a-sample-code-into-a-particular-tab">Inserting a Sample Code into a Particular Tab</h2>
+
+<p>You denote a code samples by using three left-single-quote marks followed by the name of the language.  The name of the languae is used to place the code sample into the proper tab.
+Each code samples will appear in the dark area to the right of the main text. Code samples need to appear right under the Level 1 or Level 2 headers in your markdown file to
+allow them to be anchored properly.</p>
+
+<p>The &ldquo;language tabs&rdquo; are the tabs that appear in the upper right of DevNet Slate Documents. Users browsing the docs use them to select their programming language of choice.</p>
+
+<p>In the sample GFM code to the right, the Ruby code will appear in the Ruby tab, while the Python code will appear in the Python tab. Because the DevNet Slate engine understands the
+syntax of most computer programming languages, the sample code will have its language syntax hightlighted automatically in a way that would make sense to the developer.</p>
+
+<p>But just because a language is used as sample code within a DevNet Slate document it does not mean that the tab will appear.  You tell the system which Language tabs you want to
+display by editing the <code class="prettyprint">language-tabs</code> list at the top of your GFM source document.</p>
+
+<p><aside class="success"> Sometimes it is useful to share code between multiple tabs, you can do this by placing tagging the sample code using a language that is not used as a
+tab name.  For example if you tag sample code as <code class="prettyprint">all</code> and <code class="prettyprint">all</code> is not listed in the <code class="prettyprint">language-tabs</code> then that sample code will appear in all of the tabs.</aside></p>
+
+<h2 id="creating-code-sample-annotations">Creating Code Sample Annotations</h2>
+
+<blockquote>
+<p>Code Sample Annotations</p>
+</blockquote>
+<pre class="highlight markdown"><span class="gt">&gt; This is a Code Annotation!</span>
+</pre>
+<p>It is sometimes useful to highlight or annoate a part of the sample code.  This is done with code annotations.  By placing a &gt; as the first character in your GFM line of text,
+you will create a code annotation that will appear in the area to the right, next to the code samples.</p>
+
+<p><aside class="warning"> Make sure that you have a blank line after your Code Annoation.  If you do not, the annoation will continue until there is a blank line.
+</aside></p>
+
+<h1 id="creating-your-devnet-slate-document">Creating your DevNet Slate Document</h1>
+
+<h2 id="previewing-your-docs">Previewing your Docs</h2>
+
+<blockquote>
+<p>Starting Your Test Server</p>
+</blockquote>
+<pre class="highlight shell">  <span class="nv">$bundle</span> <span class="nb">exec </span>middleman server
+  <span class="o">==</span> The Middleman is loading
+  <span class="o">==</span> The Middleman is standing watch at http://0.0.0.0:4567
+  <span class="o">==</span> Inspect your site configuration at http://0.0.0.0:4567/__middleman/
+</pre>
+<p>It is pretty easy to preview your docs using your browser.</p>
+
+<p>Start the test server using the command to the right.</p>
+
+<p>You can now see the docs using your browser by going to the URL at <a href="http://localhost:4567">http://localhost:4567</a>. As you edit and save your source GFM document at <code class="prettyprint">source/index.md</code>,
+your server should automatically update the document that you are previewing.</p>
+
+<h2 id="publishing-your-docs-to-devnet">Publishing Your Docs to DevNet</h2>
+
+<blockquote>
+<p>Creating your HTML Files</p>
+</blockquote>
+<pre class="highlight shell"><span class="nv">$rake</span> build
+<span class="nb">cd</span> /Users/pnerger/Documents/DevNetSlate
+bundle <span class="nb">exec </span>middleman build --clean
+      create  build/images/logo.png
+      create  build/images/Untitled.png
+      create  build/fonts/icomoon.svg
+      create  build/fonts/icomoon.woff
+      create  build/fonts/icomoon.ttf
+      create  build/fonts/icomoon.eot
+      create  build/javascripts/lang_selector.js
+      create  build/javascripts/all.js
+      create  build/javascripts/jquery_ui.js
+      create  build/javascripts/jquery.tocify.js
+      create  build/stylesheets/variables.css
+      create  build/stylesheets/icon-font.css
+      create  build/stylesheets/normalize.css
+      create  build/stylesheets/syntax.css
+      create  build/stylesheets/screen.css
+      create  build/stylesheets/print.css
+      create  build/index.html
+<span class="nb">cd</span> -
+
+</pre>
+<p>The <code class="prettyprint">rake build</code>. Middleman will build your website to the <code class="prettyprint">build</code> directory of your project.  You then need to share those static HTML files with the DevNet team
+for publishing.  You can do this via Box.net or Dropbox.</p>
+
+<h2 id="publishing-your-docs-to-github-pages">Publishing Your Docs to Github Pages</h2>
+
+<p>Publishing your API documentation on Github couldn&rsquo;t be more simple.</p>
+
+<ol>
+<li>Commit your changes to the markdown source: <code class="prettyprint">git commit -a -m &quot;Update index.md&quot;</code></li>
+<li>Push the <em>markdown source</em> changes to Github: <code class="prettyprint">git push</code></li>
+<li>Compile to HTML, and push the HTML to Github pages: <code class="prettyprint">rake publish</code></li>
+</ol>
+
+<p>Done! Your changes should now be live on http://yourusername.github.io/slate, and the main branch should be updated with your edited markdown. Note that if this is your first time publishing Slate, it can sometimes take ten minutes or so before your content is available online.</p>
+
+<p><aside class="warning"> When you publish a document to Github, this document becomes public and available for others to edit.  This might be what you and the Cisco Business Unit
+wants to do, but make sure that it is before you publish.
+</aside></p>
+
+<h1 id="elements-of-style-for-cisco-apis&#39;">Elements of Style for Cisco APIs&#39;</h1>
+
+<p>Now that you understand the mechanics of DevNet Slate.  Now we need to get into the specifics of how to use these tools.  Our goal is to present a common and consistent
+developer experience on DevNet and a big part of this is how we document an API.</p>
+
+<p>Below are a number examples of how we have used the DevNet Slate tools to solve problems to communicate API information.</p>
+
+<h2 id="documenting-a-json-object">Documenting a JSON Object</h2>
+
+<h2 id="documenting-an-xml-object">Documenting an XML Object</h2>
+
+<h2 id="rest-api&#39;s">REST API&rsquo;s</h2>
+
+<h2 id="language-specific-libraries-and-api&#39;s">Language Specific Libraries and API&rsquo;s</h2>
+
+      </div>
+      <div class="dark-box">
+        <div id="lang-selector">
+          
+            
+              
+                <a href="#" data-language-name="shell">Sample</a>
+              
+            
+          
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
