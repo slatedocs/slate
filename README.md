@@ -6,6 +6,7 @@ DevNet Slate helps you create beautiful single-page API documentation. Think of 
 
 ![Sample Screenshot of Format](https://rawgithub.com/pnerger/DevNetSlate/DevNet-Slate/source/images/DevNetSlate.png)
 
+[View the document now!](http://rawgithub.com/pnerger/DevNetSlate/DevNet-Slate/build/index.html#installing-the-prerequsites)
 
 Features
 ------------
@@ -48,18 +49,11 @@ You're going to need:
 
 You can now see the docs at <http://localhost:4567>. And as you edit `source/index.md`, your server should automatically update! Whoa! That was fast!
 
-Now that Slate is all set up your machine, you'll probably want to learn more about [editing Slate markdown](https://github.com/tripit/slate/wiki/Markdown-Syntax), or [how to publish your docs](https://github.com/tripit/slate/wiki/Deploying-Slate).
-
-Examples of Slate in the Wild
+Learn How to Create a DevNet Slate API Document
 ---------------------------------
 
-* [Orchestrate.io API docs](https://docs.orchestrate.io/)
-* [ChaiOne Gameplan API docs](http://chaione.github.io/gameplanb2b/#introduction)
+* [How to Document a DevNet API](http://rawgithub.com/pnerger/DevNetSlate/DevNet-Slate/build/index.html#installing-the-prerequsites)
 
-Need Help? Found a bug?
---------------------
-
-Just [submit a issue](https://github.com/tripit/slate/issues) to the Slate Github if you need any help. And, of course, feel free to submit pull requests with bug fixes or changes.
 
 
 Special Thanks
