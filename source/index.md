@@ -59,28 +59,28 @@ Ruby Version 1.9.3 or newer is required for Slate, if you have Ruby installed, m
 > Clone the Forked Repository
 
 ```shell
-$git clone https://github.com/YOURUSERNAME/slate.git
+$ git clone https://github.com/YOURUSERNAME/DevNetSlate.git
 ```
 
 > Install the Dependencies
 
 ```shell
-$cd slate
-$bundle install
+$ cd DevNetSlate
+$ bundle install
 ```
 
 > Start Your Test Server
 
 ```shell
-$bundle exec middleman server
+$ bundle exec middleman server
 == The Middleman is loading
 == The Middleman is standing watch at http://0.0.0.0:4567
 == Inspect your site configuration at http://0.0.0.0:4567/__middleman/
 
 ```
  1. Login to Github and fork this repository on Github (https://github.com/pnerger/slate)
- 2. Clone *your forked repository* (not our original one) to your hard drive with `git clone https://github.com/YOURUSERNAME/slate.git`
- 3. `cd slate`
+ 2. Clone *your forked repository* (not our original one) to your hard drive with `git clone https://github.com/{YOURUSERNAME}/DevNetSlate.git`
+ 3. `cd DevNetSlate`
  4. Install all dependencies: `bundle install`
  5. Start the test server: `bundle exec middleman server`
 
@@ -231,14 +231,12 @@ display when the user scrolls down to that area.
 ### The 3rd largest heading (an <h3> tag)
 
 ```
-Headers are created by using one or more # characters starting in the first line of text within the GFM document. 
-
-    # Level 1 Header
-    ## Level 2 Header
-    ### Level 3 Header
+Headers are created by using one or more # characters starting in the first line of text within the GFM document. The sample to the right shows GFM that will result in a
+level 1, level 2, and level 3 headers.  Only the level 1 and level 2 headers will appear in the Table of Contents.  When you create sample code, it will only anchor
+to a level 1 or level 2 header.
 
 <aside class="notice">
-Note that only level 1 and 2 headers will appear in the table of contents.
+Remember that only level 1 and 2 headers will appear in the Table of Contents.
 </aside>
 
 ## Creating a Paragraphs
@@ -254,10 +252,24 @@ Make sure the lines above below your paragraph are empty.
 > Formating Text in GFM
 
 ```markdown
-    This text is **bold**, this is *italic*, this is an `inline code block`.
+    This text is **bold**, this is *italic*, and this is an
+
+    `
+    inline code block in the main section.
+    `
+    
+    You can also use underscores to create __bold__ or _italic_.
+    
+    Finally, you can combine ***bold and italic***.
 ```
 
-    This text is **bold**, this is *italic*, this is an `inline code block`.
+    This text is **bold**, this is *italic*, and this is an
+
+    `inline code block in the main section.`
+    
+    You can also use underscores to create __bold__ or _italic_.
+    
+    Finally, you can combine ***bold and italic***.
 
 <aside class="success">
 You can use those formatting rules in code annotations, tables, paragraphs, lists, wherever.
@@ -481,10 +493,15 @@ you will create a code annotation that will appear in the area to the right, nex
 
 ## Previewing your Docs
 
-> Starting Your Test Server
+> Command to Start Your Preview Server
 
 ```shell
-  $bundle exec middleman server
+bundle exec middleman server
+```
+
+>Output:
+
+```shell
   == The Middleman is loading
   == The Middleman is standing watch at http://0.0.0.0:4567
   == Inspect your site configuration at http://0.0.0.0:4567/__middleman/
@@ -500,11 +517,15 @@ your server should automatically update the document that you are previewing.
 
 ## Publishing Your Docs to DevNet
 
-> Creating your HTML Files
+> Command to create your HTML Files
 
 ```shell
-$rake build
-cd /Users/pnerger/Documents/DevNetSlate
+rake build
+```
+> Output:
+
+```shell
+cd DevNetSlate
 bundle exec middleman build --clean
       create  build/images/logo.png
       create  build/images/Untitled.png
@@ -529,32 +550,27 @@ cd -
 The `rake build`. Middleman will build your website to the `build` directory of your project.  You then need to share those static HTML files with the DevNet team
 for publishing.  You can do this via Box.net or Dropbox.
 
-
-## Publishing Your Docs to Github Pages
-
-Publishing your API documentation on Github couldn't be more simple.
-
- 1. Commit your changes to the markdown source: `git commit -a -m "Update index.md"`
- 2. Push the *markdown source* changes to Github: `git push`
- 3. Compile to HTML, and push the HTML to Github pages: `rake publish`
-
-Done! Your changes should now be live on http://yourusername.github.io/slate, and the main branch should be updated with your edited markdown. Note that if this is your first time publishing Slate, it can sometimes take ten minutes or so before your content is available online.
-
-<aside class="warning"> When you publish a document to Github, this document becomes public and available for others to edit.  This might be what you and the Cisco Business Unit
-wants to do, but make sure that it is before you publish.
-</aside>
     
 # Elements of Style for Cisco APIs'
 
-Now that you understand the mechanics of DevNet Slate.  Now we need to get into the specifics of how to use these tools.  Our goal is to present a common and consistent
-developer experience on DevNet and a big part of this is how we document an API.
+Now that you understand the mechanics of DevNet Slate.  Now we need to get into the specifics of how to use these tools to present a common, consistent, and great
+developer experience on DevNet for your API.
 
-Below are a number examples of how we have used the DevNet Slate tools to solve problems to communicate API information.
+Before we get into the specifics, let's deal with the high-level guidelines or ground rules:
 
-## Documenting a JSON Object
+* _Keep it Simple_ - how you use English to communicate to developers is important.  One of the ways you can simplify things is to use person pronouns (e.g., you, we, us) as this approach will naturally simplify your English.
+* _Tell Them How Not What_ - It's possible to simply list all of your API calls, but this does not help the developer.  Instead, group your API end points into what they are used for.  For example, have headings that say "Starting a New Discovery Job" rather than "The Post Discovery Method".
+* _Use Examples_ - this format is designed around code samples; use it!  Try to create an example for each of your API calls.
+* _Test the Examples_ - when you use an example, make sure that it works.
+* _Use Graphics_ - a picture is worth a thousand words.  The right graphic in the right place helps you to keep things simple.
 
-## Documenting an XML Object
 
-## REST API's
+## How to Document a JSON Object
 
-## Language Specific Libraries and API's
+## How to Document an XML Object
+
+## Are REST API's enough?
+
+REST API's are great because you can call them from any language.  But is this enough?  If you scan through the many REST API's around the Internet you will discover that a best
+practice is to wrap REST API's in the developer's language of choice.  For example, you might want to create a Python, Java, and PHP libraries that provide a simple _local language_
+method to make the REST Calls without a lot of fuss or hassle.
