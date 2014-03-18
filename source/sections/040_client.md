@@ -1,14 +1,14 @@
-# Service
+# Client
 
-The Service resource has the following attributes.
+The Client resource has the following attributes.
 
-## Service JSON
+## Client JSON
 
 ```json
 {
     "id": 1,
-    "name": "dvmh-docker-01",
-    "type": "dmvh",
+    "name": "Movember Production",
+    "clientid": "movember-prod",
     "state": "active",
     "enterprise": false,
     "monitoring": true,
@@ -20,15 +20,15 @@ The Service resource has the following attributes.
 Attribute | Type | Description
 --- | --- | ---
 **id** | Integer | unique
-**name** | String | serviceid
-**type** | String | "dvmh", "pmdh" or "avmh"
+**name** | String | Name
+**clientid** | String | unique, human readable id
 **enterprise** | Boolean | enterprise service level
 **monitoring** | Boolean | CMM monitoring
-**links** | [Service Relations](#service-contact-roles)
+**links** | [Client Relations](#client-contact-roles)
 **created_at** | Timestamp |
 **updated_at** | Timestamp |
 
-### Service Contact Roles
+### Client Contact Roles
 
 ```json
 {
@@ -44,23 +44,23 @@ Attribute | Type | Description
 
 Includes all associated contact roles. It is possible, that one contact is associated via several roles.
 
-### Service Client
+### Client Services
 
 ```json
 {
     "links": {
-        "client": {
-            "href": "http://example.com/clients/5",
-            "ids": "5",
-            "type": "clients"
+        "services": {
+            "href": "http://example.com/clients/5,20,2305,2",
+            "ids": ["5", "20", "2305", "2"],
+            "type": "services"
         }
     }
 }  
 ```
 
-Links to the associated [Client](#client)
+Links to the associated [Services](#service)
 
-### Service Account
+### Client Account
 
 ```json
 {
@@ -76,25 +76,25 @@ Links to the associated [Client](#client)
 
 Links to the associated [Account](#account)
 
-## Retrieving an existing Service
+## Retrieving an existing Client
 
 ```curl
- curl http://manage.bulletproof.net/api/v3/services/:id \
+ curl http://manage.bulletproof.net/api/v3/clients/:id \
     -u mangage_test_token_askd025tiwlkaf:
 ```
 
 ```json
 {
-    "services": [
+    "clients": [
         {
-            "id": 1,
-            "name": "dvmh-docker-01",
-            "type": "dmvh",
-            "state": "active",
-            "enterprise": false,
-            "monitoring": true,
-            "created_at": 2305325,
-            "updated_at": 2305325
+          "id": 1,
+          "name": "Movember Production",
+          "clientid": "movember-prod",
+          "state": "active",
+          "enterprise": false,
+          "monitoring": true,
+          "created_at": 2305325,
+          "updated_at": 2305325
         }
     ]
 }
@@ -102,7 +102,7 @@ Links to the associated [Account](#account)
 
 #### HTTP Request
 
-``` GET /api/v3/services/:id ```
+``` GET /api/v3/clients/:id ```
 
 #### Arguments
 
@@ -114,25 +114,25 @@ Parameter | Required | Description
 
 Response 200
 
-## List all Services
+## List all Clients
 
 ```curl
-curl http://manage.bulletproof.net/api/v3/services \
+curl http://manage.bulletproof.net/api/v3/clients \
     -u mangage_test_token_askd025tiwlkaf:
 ```
 
 ```json
 {
-    "services": [
+    "clients": [
         {
             "id": 1,
-            "name": "dvmh-docker-01",
-            "type": "dmvh"
+            "name": "Movember Production",
+            "clientid": "movember-prod"
         },
         {
             "id": 2,
-            "name": "dvmh-elasticsearch-01",
-            "type": "dmvh"
+            "name": "Movember Staging",
+            "clientid": "movember-stag"
         }
     ]
 
@@ -140,7 +140,7 @@ curl http://manage.bulletproof.net/api/v3/services \
 ```
 #### HTTP Request
 
-``` GET /api/v3/services```
+``` GET /api/v3/clients```
 
 #### Arguments
 

@@ -158,7 +158,8 @@ Includes all related accounts for a contact (joined via [Contact Roles](#contact
 ## Retrieving an existing Contact
 
 ```curl
-curl http://manage.bulletproof.net/api/v3/contacts/:id
+curl http://manage.bulletproof.net/api/v3/contacts/:id \
+   -u mangage_test_token_askd025tiwlkaf:
 ```
 
 ```json
@@ -212,6 +213,12 @@ Response 200
 
 ## Update a Contact
 
+```curl
+curl http://manage.bulletproof.net/api/v3/contacts/:id \
+   -u mangage_test_token_askd025tiwlkaf: \
+   -d "contact[first_name]=Tim"
+```
+
 ```json
 {
     "first_name": "Tim"
@@ -237,6 +244,12 @@ Response 200
 
 ## Delete a Contact
 
+```curl
+curl http://manage.bulletproof.net/api/v3/contacts/:id \
+   -u mangage_test_token_askd025tiwlkaf: \
+   -X DELETE
+```
+
 #### HTTP Request
 
 ``` PATCH /api/v3/contacts/:id ```
@@ -252,6 +265,11 @@ Parameter | Type | Description
 Response 204
 
 ## List all Contacts
+
+```curl
+ curl http://manage.bulletproof.net/api/v3/contacts \
+    -u mangage_test_token_askd025tiwlkaf: \
+ ```
 
 ```json
 {
