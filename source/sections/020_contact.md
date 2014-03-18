@@ -34,7 +34,7 @@ Attribute | Type | Description
 **fax** | String |
 **phone** | [Phone JSON Object](#contact-phone)
 **notifications** | [Notifications JSON Object](#contact-notifications)
-**links** | [Contact Relations](#contact-relations)
+**links** | [Links](#contact-roles)
 **created_at** | Timestamp |
 **updated_at** | Timestamp |
 
@@ -104,6 +104,8 @@ Attribute | Type | Description
 }  
 ```
 
+Includes all associated contact roles. It is possible, that one contact is associated via several roles to a service, client or account.
+
 ### Contact Services
 
 ```json
@@ -118,7 +120,46 @@ Attribute | Type | Description
 }  
 ```
 
+Includes all related services for a contact (joined via [Contact Roles](#contact-roles))
+
+### Contact Clients
+
+```json
+{
+    "links": {
+        "clients": {
+            "href": "http://example.com/clients/5,12,17,20",
+            "ids": ["5", "12", "17", "20"],
+            "type": "clients"
+        }
+    }
+}  
+```
+
+Includes all related clients for a contact (joined via [Contact Roles](#contact-roles))
+
+### Contact Accounts
+
+```json
+{
+    "links": {
+        "accounts": {
+            "href": "http://example.com/accounts/5,12,17,20",
+            "ids": ["5", "12", "17", "20"],
+            "type": "accounts"
+        }
+    }
+}  
+```
+
+Includes all related accounts for a contact (joined via [Contact Roles](#contact-roles))
+
+
 ## Retrieving an existing Contact
+
+```curl
+curl http://manage.bulletproof.net/api/v3/contacts/:id
+```
 
 ```json
 {

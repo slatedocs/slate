@@ -1,0 +1,143 @@
+# Service
+
+The Service resource has the following attributes.
+
+## Service JSON
+
+```json
+{
+    "id": 1,
+    "name": "dvmh-docker-01",
+    "type": "dmvh",
+    "state": "active",
+    "enterprise": false,
+    "monitoring": true,
+    "created_at": 2305325,
+    "updated_at": 2305325
+}
+```
+
+Attribute | Type | Description
+--- | --- | ---
+**id** | Integer | unique
+**name** | String | serviceid
+**type** | String | "dvmh", "pmdh" or "avmh"
+**enterprise** | Boolean | enterprise service level
+**monitoring** | Boolean | CMM monitoring
+**links** | [Service Relations](#service-contact-roles)
+**created_at** | Timestamp |
+**updated_at** | Timestamp |
+
+### Service Contact Roles
+
+```json
+{
+    "links": {
+        "roles": {
+            "href": "http://example.com/roles/5,12,17,20",
+            "ids": ["5", "12", "17", "20"],
+            "type": "roles"
+        }
+    }
+}  
+```
+
+Includes all associated contact roles. It is possible, that one contact is associated via several roles.
+
+### Service Client
+
+```json
+{
+    "links": {
+        "client": {
+            "href": "http://example.com/clients/5",
+            "ids": "5",
+            "type": "clients"
+        }
+    }
+}  
+```
+
+Links to the associated [Client](#client)
+
+### Service Account
+
+```json
+{
+    "links": {
+        "account": {
+            "href": "http://example.com/accounts/5",
+            "ids": "5",
+            "type": "clients"
+        }
+    }
+}  
+```
+
+Links to the associated [Account](#account)
+
+## Retrieving an existing Service
+
+```curl
+curl http://manage.bulletproof.net/api/v3/services/:id
+```
+
+```json
+{
+    "services": [
+        {
+            "id": 1,
+            "name": "dvmh-docker-01",
+            "type": "dmvh",
+            "state": "active",
+            "enterprise": false,
+            "monitoring": true,
+            "created_at": 2305325,
+            "updated_at": 2305325
+        }
+    ]
+}
+```
+
+#### HTTP Request
+
+``` GET /api/v3/services/:id ```
+
+#### Arguments
+
+Parameter | Required | Description
+--- | --- | ---
+*id* | Integer | primary ID
+
+#### Response
+
+Response 200
+
+## List all Services
+
+```json
+{
+    "contacts": [
+        {
+            "id": 1,
+            "name": "dvmh-docker-01",
+            "type": "dmvh"
+        },
+        {
+            "id": 2,
+            "name": "dvmh-elasticsearch-01",
+            "type": "dmvh"
+        }
+    ]
+
+}
+```
+#### HTTP Request
+
+``` GET /api/v3/services```
+
+#### Arguments
+
+Parameter | Type | Description
+--- | --- | ---
+*count* | Integer | *optional*, *default* is **10** a limit on the number of objects to be returned. Count can range between 1 and 100 items.
