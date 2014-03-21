@@ -1,10 +1,9 @@
 ---
-title: API Reference
+title: St. Baldrick's Foundation API Reference
 
 language_tabs:
   - shell
   - ruby
-  - python
 
 toc_footers:
  - <a href='#'>Sign Up for a Developer Key</a>
@@ -13,9 +12,9 @@ toc_footers:
 
 # Introduction
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+Welcome to the St. Baldrick's Foundation API! You can use our API to access St. Baldrick's Foundation API endpoints, which can get, create, and update information on various events, teams, participants, fundraisers, donations, etc.
 
-We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+We have language bindings in shell and Ruby. You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
 
 This example API documentation page was created with [Slate](http://github.com/tripit/slate). Feel free to edit it and use it as a base for your own API's documentation.
 
@@ -24,28 +23,22 @@ This example API documentation page was created with [Slate](http://github.com/t
 > To authorize, use this code:
 
 ```ruby
-require 'kittn'
+require 'sbf'
 
 api = Kittn::APIClient.authorize!('meowmeowmeow')
 ```
 
-```python
-import 'kittn'
-
-api = Kittn.authorize('meowmeowmeow')
-```
-
 ```shell
 # With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
+curl "https://api.stbaldricks.org/v2"
   -H "Authorization: meowmeowmeow"
 ```
 
 > Make sure to replace `meowmeowmeow` with your API key.
 
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
+The St. Baldrick's Foundation uses API keys to allow access to the API. You can register a new SBF API key at our [developer portal](http://example.com/developers).
 
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
+SBF expects for the API key to be included in all API requests to the server in a header that looks like the following:
 
 `Authorization: meowmeowmeow`
 
@@ -53,113 +46,57 @@ Kittn expects for the API key to be included in all API requests to the server i
 You must replace `meowmeowmeow` with your personal API key.
 </aside>
 
-# Kittens
+# Participants
 
-## Get All Kittens
+## Participant Shape
+
+Participants represent an individual (represented by a Profile) that is participating at an event. The most common form of participant is a "shavee", but other types include "organizer", "lead organizer", "treasurer", "lead tresurer", "team captain", "barber", "barber coordinator", "volunteer", and "registrar".
+
+## Get Participant
 
 ```ruby
-require 'kittn'
+require 'sbf'
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
-
-```python
-import 'kittn'
-
-api = Kittn.authorize('meowmeowmeow')
-api.kittens.get()
+api = SBF::APIClient.authorize!('meowmeowmeow')
+api.participants.get
 ```
 
 ```shell
-curl "http://example.com/api/kittens"
+curl "http://api.stbaldricks.org/v2/participants"
   -H "Authorization: meowmeowmeow"
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Isis",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
+
+{
+  "id": 2,
+  "event": {"content": "event hash"},
+  "is_barber": false,
+  "is_shavee": true
+}
+
 ```
 
-This endpoint retrieves all kittens.
+This endpoint retrieves one unique participant.
 
 ### HTTP Request
 
-`GET http://example.com/kittens`
+`GET https://api.stbaldricks.org/v2/participant`
 
 ### Query Parameters
 
 Parameter | Default | Description
 --------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
+include_event | false | If set to true, the result will also include the event.
+include_profile | false | If set to true, the result will also include the profile.
+include_team | false | If set to true, the result will also include the team.
+id |  | The ID of the participant to retrieve
 
 <aside class="success">
-Remember — a happy kitten is an authenticated kitten!
+Remember — a happy user is an authenticated user!
 </aside>
-
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import 'kittn'
-
-api = Kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/3"
-  -H "Authorization: meowmeowmeow"
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 2,
-  "name": "Isis",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
-}
-```
-
-This endpoint retrieves a specific kitten.
-
-<aside class="warning">If you're not using an administrator API key, note that some kittens will return 403 Forbidden if they are hidden for admins only.</aside>
-
-### HTTP Request
-
-`GET http://example.com/kittens/<ID>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the cat to retrieve
 
 # Errors
 
