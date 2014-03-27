@@ -284,7 +284,7 @@ Response 204
             "id": 2,
             "first_name": "Steve",
             "last_name": "Jobs",
-            "emai": "steve.jobs@me.com"
+            "email": "steve.jobs@me.com"
         }
     ]
 
