@@ -190,7 +190,14 @@ curl http://manage.bulletproof.net/api/v3/contacts/:id \
                 }
             },
             "created_at": "timestamp",
-            "updated_at": "timestamp"
+            "updated_at": "timestamp",
+            "links:" {
+               "roles": {
+                    "href": "http://manage.bulletproof.net/api/v3/5,12,17,20",
+                    "ids": ["5", "12", "17", "20"],
+                    "type": "roles"
+                }
+            }
         }
     ]
 }
