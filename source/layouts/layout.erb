@@ -83,6 +83,11 @@ under the License.
     <div class="page-wrapper">
       <div class="content">
         <%= yield %>
+        <% if current_page.data.includes %>
+          <% current_page.data.includes.each do |include| %>
+            <%= partial "includes/#{include}" %>
+          <% end %>
+        <% end %>
       </div>
       <div class="dark-box">
         <div id="lang-selector">
