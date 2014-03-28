@@ -34,7 +34,7 @@ Attribute | Type | Description
 {
     "links": {
         "roles": {
-            "href": "http://example.com/roles/5,12,17,20",
+            "href": "http://manage.bulletproof.net/api/v3/roles/5,12,17,20",
             "ids": ["5", "12", "17", "20"],
             "type": "roles"
         }
@@ -50,7 +50,7 @@ Includes all associated contact roles. It is possible, that one contact is assoc
 {
     "links": {
         "services": {
-            "href": "http://example.com/clients/5,20,2305,2",
+            "href": "http://manage.bulletproof.net/api/v3/clients/5,20,2305,2",
             "ids": ["5", "20", "2305", "2"],
             "type": "services"
         }
@@ -66,7 +66,7 @@ Links to the associated [Services](#service)
 {
     "links": {
         "account": {
-            "href": "http://example.com/accounts/5",
+            "href": "http://manage.bulletproof.net/api/v3/accounts/5",
             "ids": "5",
             "type": "accounts"
         }

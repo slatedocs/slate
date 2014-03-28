@@ -96,7 +96,7 @@ Attribute | Type | Description
 {
     "links": {
         "roles": {
-            "href": "http://example.com/roles/5,12,17,20",
+            "href": "http://manage.bulletproof.net/api/v3/roles/5,12,17,20",
             "ids": ["5", "12", "17", "20"],
             "type": "roles"
         }
@@ -112,7 +112,7 @@ Includes all associated contact roles. It is possible, that one contact is assoc
 {
     "links": {
         "services": {
-            "href": "http://example.com/services/5,12,17,20",
+            "href": "http://manage.bulletproof.net/api/v3/services/5,12,17,20",
             "ids": ["5", "12", "17", "20"],
             "type": "services"
         }
@@ -128,7 +128,7 @@ Includes all related services for a contact (joined via [Contact Roles](#contact
 {
     "links": {
         "clients": {
-            "href": "http://example.com/clients/5,12,17,20",
+            "href": "http://manage.bulletproof.net/api/v3/clients/5,12,17,20",
             "ids": ["5", "12", "17", "20"],
             "type": "clients"
         }
@@ -144,7 +144,7 @@ Includes all related clients for a contact (joined via [Contact Roles](#contact-
 {
     "links": {
         "accounts": {
-            "href": "http://example.com/accounts/5,12,17,20",
+            "href": "http://manage.bulletproof.net/api/v3/accounts/5,12,17,20",
             "ids": ["5", "12", "17", "20"],
             "type": "accounts"
         }
