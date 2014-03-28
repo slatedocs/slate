@@ -81,13 +81,13 @@ Attribute | Type | Description
         "interval": 60,
         "rollup_threshold": 3
     }
-}  
+}
 ```
 
 Attribute | Type | Description
 --- | --- | ---
 **address** | String | email or phone-number
-**interval** | Integer |  
+**interval** | Integer |
 **rollup_threshold** | Integer
 
 ### Contact Roles
@@ -101,7 +101,7 @@ Attribute | Type | Description
             "type": "roles"
         }
     }
-}  
+}
 ```
 
 Includes all associated contact roles. It is possible, that one contact is associated via several roles to a service, client or account.
@@ -117,7 +117,7 @@ Includes all associated contact roles. It is possible, that one contact is assoc
             "type": "services"
         }
     }
-}  
+}
 ```
 
 Includes all related services for a contact (joined via [Contact Roles](#contact-roles))
@@ -133,7 +133,7 @@ Includes all related services for a contact (joined via [Contact Roles](#contact
             "type": "clients"
         }
     }
-}  
+}
 ```
 
 Includes all related clients for a contact (joined via [Contact Roles](#contact-roles))
@@ -149,7 +149,7 @@ Includes all related clients for a contact (joined via [Contact Roles](#contact-
             "type": "accounts"
         }
     }
-}  
+}
 ```
 
 Includes all related accounts for a contact (joined via [Contact Roles](#contact-roles))

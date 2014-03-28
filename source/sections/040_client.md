@@ -39,7 +39,7 @@ Attribute | Type | Description
             "type": "roles"
         }
     }
-}  
+}
 ```
 
 Includes all associated contact roles. It is possible, that one contact is associated via several roles.
@@ -55,7 +55,7 @@ Includes all associated contact roles. It is possible, that one contact is assoc
             "type": "services"
         }
     }
-}  
+}
 ```
 
 Links to the associated [Services](#service)
@@ -71,7 +71,7 @@ Links to the associated [Services](#service)
             "type": "accounts"
         }
     }
-}  
+}
 ```
 
 Links to the associated [Account](#account)
