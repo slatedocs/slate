@@ -16,37 +16,48 @@ includes:
 
 ---
 
-# Introduction
+# Introduction V1 APIs
 
-Welcome to the Evercam.io V1 API Documentation, currently the production default.
+Welcome to the Evercam.io V1 API Documentation, currently the production default. Within the docs, we provide examples in Curl, Python, Java, Nodejs and .Net. You can view code examples in the area to the right, and you can switch the programming language of the examples with the tabs in the top right.
 
-Within the docs, we provide examples in Curl, Python, .Net, Nodejs and Ruby.
+*For more information about Evercam.io you can visit our documentation. Documentation for the Beta APIs can be found here.*
 
-You can view code examples in the area to the right, and you can switch the programming language of the examples with the tabs in the top right.
 
-# Getting Started
+## Getting Started
 
 The Evercam.io API is based on REST: it is comprised of resources with predictable urls and utilises standard HTTP features (like HTTP Basic Authentication, Response Codes and Methods). All requests, including errors, return JSON. The API expects JSON for all POST and PUT requests.
 
-# Client Frameworks and Libraries
+
+## Client Frameworks and Libraries
 
 Evercam libraries
 
-Ruby - https://github.com/evercam/evercam-ruby
-
-Ruby on Rails - https://github.com/evercam/evercam-rails
+* Ruby - https://github.com/evercam/evercam-ruby
+* Ruby on Rails - https://github.com/evercam/evercam-rails
 
 3rd party libraries
 
-Python - https://github.com/evercam/evercam.py
-.NET - https://github.com/evercam/evercam.net
-
-Node.js - https://github.com/evercam/evercam.node
-
-Java - https://github.com/evercam/evercam.java
+* Python - https://github.com/evercam/evercam.py
+* .NET - https://github.com/evercam/evercam.net
+* Node.js - https://github.com/evercam/evercam.node
+* Java - https://github.com/evercam/evercam.java
 
 
-# Authentication
+## API Endpoint
+
+The base URI for the V1 API is -
+
+* https://api.evercam.io/v1
+
+
+## API Resources
+
+The V1 API exposes the following resources -
+
+* /users
+
+
+## Authentication
 
 > To authorize, use this code:
 
