@@ -5,8 +5,17 @@ language_tabs:
   - shell: Sample
   
 toc_footers:
+<<<<<<< HEAD
  - Copyright &copy; 2014 by Cisco Systems, Inc.
  - All Rights Reserved.
+=======
+  - <a href='#'>Sign Up for a Developer Key</a>
+  - <a href='http://github.com/tripit/slate'>Documentation Powered by Slate</a>
+
+includes:
+  - errors
+
+>>>>>>> 32e0470613dca8d3eb321ef97f47136b4f681810
 ---
 # Authoring a DevNet API Reference Manual
 
@@ -565,6 +574,7 @@ Before we get into the specifics, let's deal with the high-level guidelines or g
 * _Use Graphics_ - a picture is worth a thousand words.  The right graphic in the right place helps you to keep things simple.
 
 
+<<<<<<< HEAD
 ## How to Document a JSON Object
 
 ## How to Document an XML Object
@@ -574,3 +584,5 @@ Before we get into the specifics, let's deal with the high-level guidelines or g
 REST API's are great because you can call them from any language.  But is this enough?  If you scan through the many REST API's around the Internet you will discover that a best
 practice is to wrap REST API's in the developer's language of choice.  For example, you might want to create a Python, Java, and PHP libraries that provide a simple _local language_
 method to make the REST Calls without a lot of fuss or hassle.
+=======
+>>>>>>> 32e0470613dca8d3eb321ef97f47136b4f681810

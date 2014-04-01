@@ -48,7 +48,19 @@ You can now see the docs at <http://localhost:4567>. And as you edit `source/ind
 Learn How to Create a DevNet Slate API Document
 ---------------------------------
 
+<<<<<<< HEAD
 * [How to Document a DevNet API](http://rawgithub.com/pnerger/DevNetSlate/DevNet-Slate/build/index.html)
+=======
+* [Orchestrate.io API docs](https://docs.orchestrate.io/)
+* [ChaiOne Gameplan API docs](http://chaione.github.io/gameplanb2b/#introduction)
+* [Drcaban's Build a Quine tutorial](http://drcabana.github.io/build-a-quine/#introduction)
+* [PricePlow API docs](https://www.priceplow.com/api/documentation)
+
+(Feel free to add your site to this list in a pull request!)
+
+Need Help? Found a bug?
+--------------------
+>>>>>>> 32e0470613dca8d3eb321ef97f47136b4f681810
 
 
 

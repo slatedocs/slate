@@ -12,7 +12,12 @@ test/tmp
 test/version_tmp
 tmp
 *.DS_STORE
+<<<<<<< HEAD
 
+=======
+build/
+.cache
+>>>>>>> 32e0470613dca8d3eb321ef97f47136b4f681810
 
 # YARD artifacts
 .yardoc
