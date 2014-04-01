@@ -5,25 +5,59 @@ language_tabs:
   - shell
   - ruby
   - python
+  - .net
 
 toc_footers:
   - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='http://github.com/tripit/slate'>Documentation Powered by Slate</a>
+
 
 includes:
   - errors
 
 ---
 
-# Introduction
+# Introduction V1 APIs
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+Welcome to the Evercam.io V1 API Documentation, currently the production default. Within the docs, we provide examples in Curl, Python, Java, Nodejs and .Net. You can view code examples in the area to the right, and you can switch the programming language of the examples with the tabs in the top right.
 
-We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+*For more information about Evercam.io you can visit our documentation. Documentation for the Beta APIs can be found here.*
 
-This example API documentation page was created with [Slate](http://github.com/tripit/slate). Feel free to edit it and use it as a base for your own API's documentation.
 
-# Authentication
+## Getting Started
+
+The Evercam.io API is based on REST: it is comprised of resources with predictable urls and utilises standard HTTP features (like HTTP Basic Authentication, Response Codes and Methods). All requests, including errors, return JSON. The API expects JSON for all POST and PUT requests.
+
+
+## Client Frameworks and Libraries
+
+Evercam libraries
+
+* Ruby - https://github.com/evercam/evercam-ruby
+* Ruby on Rails - https://github.com/evercam/evercam-rails
+
+3rd party libraries
+
+* Python - https://github.com/evercam/evercam.py
+* .NET - https://github.com/evercam/evercam.net
+* Node.js - https://github.com/evercam/evercam.node
+* Java - https://github.com/evercam/evercam.java
+
+
+## API Endpoint
+
+The base URI for the V1 API is -
+
+* https://api.evercam.io/v1
+
+
+## API Resources
+
+The V1 API exposes the following resources -
+
+* /users
+
+
+## Authentication
 
 > To authorize, use this code:
 
@@ -57,26 +91,26 @@ Kittn expects for the API key to be included in all API requests to the server i
 You must replace `meowmeowmeow` with your personal API key.
 </aside>
 
-# Kittens
+# cameras
 
-## Get All Kittens
+## Get All cameras
 
 ```ruby
 require 'kittn'
 
 api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
+api.cameras.get
 ```
 
 ```python
 import 'kittn'
 
 api = Kittn.authorize('meowmeowmeow')
-api.kittens.get()
+api.cameras.get()
 ```
 
 ```shell
-curl "http://example.com/api/kittens"
+curl "http://example.com/api/cameras"
   -H "Authorization: meowmeowmeow"
 ```
 
@@ -101,41 +135,41 @@ curl "http://example.com/api/kittens"
 ]
 ```
 
-This endpoint retrieves all kittens.
+This endpoint retrieves all cameras.
 
 ### HTTP Request
 
-`GET http://example.com/kittens`
+`GET http://example.com/cameras`
 
 ### Query Parameters
 
 Parameter | Default | Description
 --------- | ------- | -----------
 include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
+available | true | If set to false, the result will include cameras that have already been adopted.
 
 <aside class="success">
-Remember — a happy kitten is an authenticated kitten!
+Remember — a happy camera is an authenticated camera!
 </aside>
 
-## Get a Specific Kitten
+## Get a Specific camera
 
 ```ruby
 require 'kittn'
 
 api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
+api.cameras.get(2)
 ```
 
 ```python
 import 'kittn'
 
 api = Kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
+api.cameras.get(2)
 ```
 
 ```shell
-curl "http://example.com/api/kittens/3"
+curl "http://example.com/api/cameras/3"
   -H "Authorization: meowmeowmeow"
 ```
 
@@ -151,13 +185,13 @@ curl "http://example.com/api/kittens/3"
 }
 ```
 
-This endpoint retrieves a specific kitten.
+This endpoint retrieves a specific camera.
 
-<aside class="warning">If you're not using an administrator API key, note that some kittens will return 403 Forbidden if they are hidden for admins only.</aside>
+<aside class="warning">If you're not using an administrator API key, note that some cameras will return 403 Forbidden if they are hidden for admins only.</aside>
 
 ### HTTP Request
 
-`GET http://example.com/kittens/<ID>`
+`GET http://example.com/cameras/<ID>`
 
 ### URL Parameters
 
