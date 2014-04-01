@@ -11,7 +11,7 @@ gem "middleman-syntax"
 gem 'middleman-gh-pages'
 
 # Live-reloading plugin
-gem "middleman-livereload", "~> 3.1.0"
+gem "middleman-livereload", "~> 3.3.0"
 
 gem 'redcarpet', '~> 3.1.1'
 
@@ -23,4 +23,6 @@ platforms :mri_18 do
   gem "ruby18_source_location"
 end
 
-gem "rake", "~> 10.1.0"
+gem "rake", "~> 10.2.0"
+
+gem 'therubyracer', :platforms => :ruby

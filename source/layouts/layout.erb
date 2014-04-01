@@ -26,7 +26,7 @@ under the License.
 
     <%= stylesheet_link_tag "screen", media: 'screen' %>
     <%= stylesheet_link_tag "print", media: 'print' %>
-    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.10.1.min.js"></script>
     <%= javascript_include_tag  "all" %>
 
     <script>
@@ -83,6 +83,11 @@ under the License.
     <div class="page-wrapper">
       <div class="content">
         <%= yield %>
+        <% if current_page.data.includes %>
+          <% current_page.data.includes.each do |include| %>
+            <%= partial "includes/#{include}" %>
+          <% end %>
+        <% end %>
       </div>
       <div class="dark-box">
         <div id="lang-selector">
