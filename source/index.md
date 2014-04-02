@@ -5,18 +5,11 @@ language_tabs:
   - shell: Sample
   
 toc_footers:
-<<<<<<< HEAD
  - Copyright &copy; 2014 by Cisco Systems, Inc.
  - All Rights Reserved.
-=======
-  - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='http://github.com/tripit/slate'>Documentation Powered by Slate</a>
 
-includes:
-  - errors
-
->>>>>>> 32e0470613dca8d3eb321ef97f47136b4f681810
 ---
+
 # Authoring a DevNet API Reference Manual
 
 DevNet is Cisco's Developer Program aimed a helping developers gain access to Cisco Technology such that they can build cool and exciting products.  Wether a developer is an IT
