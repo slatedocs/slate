@@ -44,13 +44,13 @@ html, body {
   overflow-x: hidden;
   position: fixed;
   top: 0;
-  border: solid #ddd 3px;
   left: 0;
   bottom: 0;
   width: $nav-width;
   background-color: $nav-bg;
   font-size: 13px;
   font-weight: bold;
+  border-right: solid #ddd 1px;
 
   // This is the logo at the top of the ToC
   &>img {
@@ -148,7 +148,7 @@ html, body {
 ////////////////////////////////////////////////////////////////////////////////
 
 .page-wrapper {
-  margin-left: $nav-width;
+  margin-left: $nav-width + 1; // add one to see the sidebar border
   min-width: 700px;
   position: relative;
   z-index: 10;
