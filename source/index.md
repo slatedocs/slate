@@ -263,6 +263,7 @@ Make sure the lines above below your paragraph are empty.
     You can also use underscores to create __bold__ or _italic_.
     
     Finally, you can combine ***bold and italic***.
+    
 ```
 
     This text is **bold**, this is *italic*, and this is an
@@ -275,6 +276,11 @@ Make sure the lines above below your paragraph are empty.
 
 <aside class="success">
 You can use those formatting rules in code annotations, tables, paragraphs, lists, wherever.
+</aside>
+
+<aside class="warning">
+Althought you can use the `~~` to enclose text for strikethrough in GFM, DevNet Slate does not support this
+feature.
 </aside>
 
 ## Creating Markdown Links
@@ -331,6 +337,66 @@ Images essentially look just like a link except that they start with a '!' .
 
 <aside class="notice">
 Notice that this image is coming from the local image folder.  We recommend that you place your images inside the image folder within your source directory.
+</aside>
+
+## Inserting Horizontal Rules
+
+Sometimes you just need a Horizontal Rule (line) to convey something.  GFM does this with either three or more consecutive Hyphens `-`, Asterisks `*`, or Underscores `_`.
+
+
+```markdown
+Three or more...
+
+---
+
+Hyphens
+
+***
+
+Asterisks
+
+___
+
+Underscores
+```
+Three or more...
+
+---
+
+Hyphens
+
+***
+
+Asterisks
+
+___
+
+Underscores
+
+## Using HTML in Markdown
+
+```markdown
+<dl>
+  <dt>Definition list</dt>
+  <dd>Is something people use sometimes.</dd>
+
+  <dt>Markdown in HTML</dt>
+  <dd>Does *not* work **very** well. Use HTML <em>tags</em>.</dd>
+</dl>
+```
+You can also use raw HTML in your Markdown, and it'll mostly work pretty well.
+
+<dl>
+  <dt>Definition list</dt>
+  <dd>Is something people use sometimes.</dd>
+
+  <dt>Markdown in HTML</dt>
+  <dd>Does *not* work **very** well. Use HTML <em>tags</em>.</dd>
+</dl>
+
+<aside class="warning">
+Just because you can, doesnot mean that you should.  One of the features of Markdown is that you don't have to worry about the formatting details of HTML.  Also, it provides
+a separation of content and format which you loose when you start placing HTML into your Markdown.
 </aside>
 
 ## Creating a Table
@@ -417,6 +483,7 @@ to the right will create the list below:
   - bullet
 * Bullet
 * List
+
 
 <aside class="notice"> Notice that bullet lists can be created using a -, a +, or an *. </aside>
 
