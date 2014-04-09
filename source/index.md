@@ -278,10 +278,27 @@ Make sure the lines above below your paragraph are empty.
 You can use those formatting rules in code annotations, tables, paragraphs, lists, wherever.
 </aside>
 
+## Strikethrough
+
+```markdown
+
+Strikethrough ~~SHOULD WORK~~ BUT DOES NOT
+
+A workaround is to use <del>DOES NOT WORK</del>.
+
+```
+Although GFM supports the strikethrough text attribute through the use of the double `~` or tilde character it
+does not work in DevNet Slate. As a workaround, enclose your strikethrough text in `<del> strikethrough text </del>` tags.
+
+Strikethrough ~~SHOULD WORK~~ BUT DOES NOT
+
+A workaround is to use <del>DOES NOT WORK</del>.
+
 <aside class="warning">
 Althought you can use the `~~` to enclose text for strikethrough in GFM, DevNet Slate does not support this
 feature.
 </aside>
+
 
 ## Creating Markdown Links
 
