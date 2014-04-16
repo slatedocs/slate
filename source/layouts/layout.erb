@@ -13,94 +13,64 @@ WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
 License for the specific language governing permissions and limitations
 under the License.
 %>
+<% language_tabs = current_page.data.language_tabs %>
 <!doctype html>
 <html>
   <head>
     <meta charset="utf-8">
-
-    <!-- Always force latest IE rendering engine or request Chrome Frame -->
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
-
-    <!-- Use title if it's in the page YAML frontmatter -->
     <title><%= current_page.data.title || "API Documentation" %></title>
 
-    <%= stylesheet_link_tag "screen", media: 'screen' %>
-    <%= stylesheet_link_tag "print", media: 'print' %>
-    <script src="//code.jquery.com/jquery-1.10.1.min.js"></script>
+    <%= stylesheet_link_tag :screen, media: :screen %>
+    <%= stylesheet_link_tag :print, media: :print %>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <%= javascript_include_tag  "all" %>
 
-    <script>
-      $(function() {
-        var toc = $("#toc").tocify({
-          selectors: "h1,h2",
-          extendPage: false,
-          theme: "none",
-          smoothScroll: false,
-          showEffectSpeed: 0,
-          hideEffectSpeed: 180,
-          ignoreSelector: ".toc-ignore",
-          hashGenerator: 'pretty',
-          highlightOffset: 60,
-          scrollTo: -2,
-          scrollHistory: true,
-          hashGenerator: function(text, element) {
-            return element[0].getAttribute('id');
-          }
-        }).data("toc-tocify");
-        // Hack to make already open sections to start opened,
-        // instead of displaying an ugly animation
-        setTimeout(function() {
-          toc.setOption("showEffectSpeed", 180);
-        },50);
-        setupLanguages([
-          <% if current_page.data.language_tabs %>
-            <% current_page.data.language_tabs.each do |lang| %>
-              <% if lang.is_a? Hash %>
-                '<%= lang.keys[0] %>',
-              <% else %>
-                '<%= lang %>',
-              <% end %>
-            <% end %>
-          <% end %>
-        ]);
-      });
-    </script>
+    <% if language_tabs %>
+      <script>
+        $(function() {
+          setupLanguages(<%= language_tabs.map{ |lang| lang.is_a?(Hash) ? lang.keys.first : lang }.to_json %>);
+        });
+      </script>
+    <% end %>
   </head>
 
   <body class="<%= page_classes %>">
     <div class="tocify-wrapper">
       <%= image_tag "logo.png" %>
+      <div class="search">
+        <input type="text" class="search" id="input-search">
+      </div>
       <div id="toc">
       </div>
       <% if current_page.data.toc_footers %>
-      <ul class="toc-footer">
-        <% current_page.data.toc_footers.each do |footer| %>
-          <li><%= footer %></li>
-        <% end %>
-      </ul>
+        <ul class="toc-footer">
+          <% current_page.data.toc_footers.each do |footer| %>
+            <li><%= footer %></li>
+          <% end %>
+        </ul>
       <% end %>
     </div>
     <div class="page-wrapper">
+      <div class="search-info"></div>
       <div class="content">
         <%= yield %>
-        <% if current_page.data.includes %>
-          <% current_page.data.includes.each do |include| %>
-            <%= partial "includes/#{include}" %>
-          <% end %>
+        <% current_page.data.includes && current_page.data.includes.each do |include| %>
+          <%= partial "includes/#{include}" %>
         <% end %>
       </div>
       <div class="dark-box">
-        <div id="lang-selector">
-          <% if current_page.data.language_tabs %>
-            <% current_page.data.language_tabs.each do |lang| %>
+        <% if language_tabs %>
+          <div id="lang-selector">
+            <% language_tabs.each do |lang| %>
               <% if lang.is_a? Hash %>
-                <a href="#" data-language-name="<%= lang.keys[0] %>"><%= lang.values[0] %></a>
+                <a href="#" data-language-name="<%= lang.keys.first %>"><%= lang.values.first %></a>
               <% else %>
                 <a href="#" data-language-name="<%= lang %>"><%= lang %></a>
               <% end %>
             <% end %>
-          <% end %>
-        </div>
+          </div>
+        <% end %>
       </div>
     </div>
   </body>
