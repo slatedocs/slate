@@ -100,7 +100,7 @@ body {
     margin-top: 0;
   }
 
-  h3 {
+  h3, h4, h5, h6 {
     @extend %header-font;
     font-size: 0.8em;
     margin-top: 1.5em;
