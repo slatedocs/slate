@@ -214,7 +214,7 @@ html, body {
   z-index: 30;
 
 
-  &>h1, &>h2, &>h3, &>p, &>table, &>ul, &>ol, &>aside, &>dl {
+  &>h1, &>h2, &>h3, &>h4, &>h5, &>h6, &>p, &>table, &>ul, &>ol, &>aside, &>dl {
     margin-right: $examples-width;
     padding: 0 $main-padding;
     @include box-sizing(border-box);
@@ -272,7 +272,7 @@ html, body {
     border-top: none;
   }
 
-  h3 {
+  h3, h4, h5, h6 {
     @extend %header-font;
     font-size: 12px;
     margin-top: 2.5em;
