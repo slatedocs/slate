@@ -25,4 +25,4 @@ end
 
 gem "rake", "~> 10.2.0"
 
-#gem 'therubyracer', :platforms => :ruby
+gem 'therubyracer', :platforms => :ruby

@@ -1,6 +1,9 @@
 ---
+
 title: Authoring a DevNet API Reference Manual
+
 languages:
+
 language_tabs:
   - shell: Sample
   
@@ -10,7 +13,7 @@ toc_footers:
 
 ---
 
-# Authoring a DevNet API Reference Manual
+# Authoring a DevNet API Reference Manual 
 
 DevNet is Cisco's Developer Program aimed a helping developers gain access to Cisco Technology such that they can build cool and exciting products.  Wether a developer is an IT
 Professional working inside of a Cisco Customer's IT organization, a System Integrator, or a developer at an Independent Software Developer Program, Cisco DevNet is there to
@@ -88,7 +91,6 @@ $ bundle exec middleman server
 
 You can now see the docs using your browser at <http://localhost:4567>. And as you edit and save your `source/index.md`, your server should automatically update! Whoa! That was fast!
 
-### What Now?
 
 # How DevNet Slate Works
 
