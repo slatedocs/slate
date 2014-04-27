@@ -63,7 +63,7 @@ html, body {
 
     input {
       background: $nav-bg;
-      border-width: 0 0 1px 0;
+      border-width: 1px;
       border-color: $search-box-border-color;
       padding: 6px 0 6px 20px;
       @include box-sizing(border-box);
@@ -76,7 +76,7 @@ html, body {
     &:before {
       position: absolute;
       top: 17px;
-      left: 15px;
+      left: 18px;
       color: $nav-text;
       @extend %icon-search;
     }
