@@ -1,7 +1,6 @@
 DevNet Slate
 ========
 
-
 DevNet Slate helps you create beautiful single-page API documentation. Think of it as an intelligent, modern documentation template for your API. This variation is based upon the Slate work done by Tripit which in turn was inspired by the API documentation by Stripe.
 
 ![Sample Screenshot of Format](https://rawgithub.com/pnerger/DevNetSlate/DevNet-Slate/source/images/DevNetSlate.png)
@@ -72,3 +71,11 @@ Special Thanks
 - [middleman-syntax](https://github.com/middleman/middleman-syntax)
 - [middleman-gh-pages](https://github.com/neo/middleman-gh-pages)
 - [Font Awesome](http://fortawesome.github.io/Font-Awesome/)
+
+Contributors
+--------------------
+
+Thanks to the following people who have submitted pull requests:
+
+- [@chrissrogers](https://github.com/chrissrogers)
+- [@bootstraponline](https://github.com/bootstraponline)
