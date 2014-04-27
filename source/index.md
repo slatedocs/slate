@@ -11,6 +11,7 @@ toc_footers:
  - Copyright &copy; 2014 by Cisco Systems, Inc.
  - All Rights Reserved.
 
+search: true
 ---
 
 # Authoring a DevNet API Reference Manual 

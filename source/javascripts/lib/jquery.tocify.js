@@ -1,3 +1,4 @@
+//= require ./jquery_ui
 /* jquery Tocify - v1.8.0 - 2013-09-16
 * http://www.gregfranko.com/jquery.tocify.js/
 * Copyright (c) 2013 Greg Franko; Licensed MIT
@@ -594,9 +595,7 @@
             // Reset height cache on scroll
 
             $(window).on('resize', function() {
-                console.log("resizing" + self.cachedHeights);
                 self.calculateHeights();
-                console.log("done" + self.cachedHeights);
             });
 
             // Window scroll event handler

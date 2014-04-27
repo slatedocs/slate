@@ -2,6 +2,7 @@
 @import 'normalize';
 @import 'compass';
 @import 'variables';
+@import 'icon-font';
 
 /*
 Copyright 2008-2013 Concur Technologies, Inc.
@@ -100,11 +101,42 @@ body {
     margin-top: 0;
   }
 
-  h3 {
+  h3, h4 {
     @extend %header-font;
     font-size: 0.8em;
     margin-top: 1.5em;
     margin-bottom: 0.8em;
     text-transform: uppercase;
+  }
+
+  h5, h6 {
+    text-transform: uppercase;
+  }
+
+  aside {
+    padding: 1em;
+    border: 1px solid $print-color-light;
+    border-radius: 5px;
+    margin-top: 1.5em;
+    margin-bottom: 1.5em;
+    line-height: 1.6;
+  }
+
+  aside:before {
+    vertical-align: middle;
+    padding-right: 0.5em;
+    font-size: 14px;
+  }
+
+  aside.notice:before {
+    @extend %icon-info-sign;
+  }
+
+  aside.warning:before {
+    @extend %icon-exclamation-sign;
+  }
+
+  aside.success:before {
+    @extend %icon-ok-sign;
   }
 }
