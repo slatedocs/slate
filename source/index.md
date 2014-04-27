@@ -163,6 +163,8 @@ language_tabs:
 toc_footers:
  - Copyright &copy; 2014 by Cisco Systems, Inc.
  - All Rights Reserved.
+ 
+search: true
 ---
 ```
 The source document that is used to generate a DevNet Slate API Reference Manual is a GFM Document.  The GFM document is a plain text document that starts with headers that
@@ -216,6 +218,13 @@ The footer statement is uses solely for the Cisco Copyright Statement.
 Make sure that you put the proper years that the document was created and updated in the copyright statement.  These years should be either a single year or a range of years.  A
 range of years are used when the document was first published in one year but was subsequently updated in other years.
 </aside>
+
+## Turning on Document Search
+
+DevNet Slate has the option of providing readers with a local search.  When you insert the line `search: true`
+into your header, the search option becomes enabled and a search box will appear in the Table of Contents right below the logo.
+
+When a user types in text into the search box, the Table of Contents is automatically filtered to remove sections that do not contain the search term.  Text that matches the search term will be highlighted with a yellow background.
 
 # Creating a Table of Contents
 
@@ -346,10 +355,12 @@ You can also use standard HTML hyperlink syntax.  The HTML example to the right 
 > GFM for Inserting an Image Stored Locally
 
 ```markdown
-![Valid XHTML](/images/logo.png).
+![Cisco Logo](/images/logo.png).
 ```
 
-![Valid XHTML](/images/logo.png).
+![Cisco Logo](/images/logo.png).
+
+The Markdown to the right shows how an image can be inserted, in this case, it is the Cisco Logo that is right above this.  The text inside the square brackets, `[Cisco Logo]` will become the alt text for the image in the HTML `alt=` parameter.
 
 <aside class="success">
 Images essentially look just like a link except that they start with a '!' .
@@ -645,6 +656,8 @@ for publishing.  You can do this via Box.net or Dropbox.
 Now that you understand the mechanics of DevNet Slate.  Now we need to get into the specifics of how to use these tools to present a common, consistent, and great
 developer experience on DevNet for your API.
 
+## The Basics
+
 Before we get into the specifics, let's deal with the high-level guidelines or ground rules:
 
 * _Keep it Simple_ - how you use English to communicate to developers is important.  One of the ways you can simplify things is to use person pronouns (e.g., you, we, us) as this approach will naturally simplify your English.
@@ -653,3 +666,8 @@ Before we get into the specifics, let's deal with the high-level guidelines or g
 * _Test the Examples_ - when you use an example, make sure that it works.
 * _Use Graphics_ - a picture is worth a thousand words.  The right graphic in the right place helps you to keep things simple.
 
+## Language Libraries
+
+REST (or RESTful) APIs are becoming the standard.  Developers like using REST APIs because they are simple and universal.  Because REST APIs use HTTP protocol along with JSON or XML, it is easy to call a REST API from pretty much any programming language.  As a result, there is a natural tendency for the API engineer to think that language libraries (wrappers that make the REST call in the programming language of choice) is not needed. This is a fallacy.
+
+A Programmer can call REST in a language like Python, Java, or C, with four to five lines of code.  When faced with this, the Programmer will typically write their own library of wrappers (code that encapsultes each REST end point) to make their programming more module and cleaner.  Thus, if you want your API to be simple to use, you should have the wrappers for propular libraries built.  Next, you should use the language tabs of DevNet Slate to provide the syntax for each of the propramming languages that you will be supporting.

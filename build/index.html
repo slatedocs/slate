@@ -195,6 +195,8 @@ Code samples have the following elements that are used to control their placemen
 <span class="s">toc_footers</span><span class="pi">:</span>
  <span class="pi">-</span> <span class="s">Copyright &amp;copy; 2014 by Cisco Systems, Inc.</span>
  <span class="pi">-</span> <span class="s">All Rights Reserved.</span>
+
+<span class="s">search</span><span class="pi">:</span> <span class="s">true</span>
 <span class="nn">---</span>
 </pre>
 
@@ -251,6 +253,13 @@ Please use the language tabs as stated above such that the Tabs are consistent b
 Make sure that you put the proper years that the document was created and updated in the copyright statement.  These years should be either a single year or a range of years.  A
 range of years are used when the document was first published in one year but was subsequently updated in other years.
 </aside></p>
+
+<h2 id="turning-on-document-search">Turning on Document Search</h2>
+
+<p>DevNet Slate has the option of providing readers with a local search.  When you insert the line <code class="prettyprint">search: true</code>
+into your header, the search option becomes enabled and a search box will appear in the Table of Contents right below the logo.</p>
+
+<p>When a user types in text into the search box, the Table of Contents is automatically filtered to remove sections that do not contain the search term.  Text that matches the search term will be highlighted with a yellow background.</p>
 
 <h1 id="creating-a-table-of-contents">Creating a Table of Contents</h1>
 
@@ -376,10 +385,12 @@ and are case-insensitive; <a href="http://www.yahoo.com/">yahoo</a> is the same 
 <blockquote>
 <p>GFM for Inserting an Image Stored Locally</p>
 </blockquote>
-<pre class="highlight markdown"><span class="p">![</span><span class="nv">Valid XHTML</span><span class="p">](</span><span class="sx">/images/logo.png</span><span class="p">)</span>.
+<pre class="highlight markdown"><span class="p">![</span><span class="nv">Cisco Logo</span><span class="p">](</span><span class="sx">/images/logo.png</span><span class="p">)</span>.
 </pre>
 
-<p><img alt="Valid XHTML" src="images/logo.png" />.</p>
+<p><img alt="Cisco Logo" src="images/logo.png" />.</p>
+
+<p>The Markdown to the right shows how an image can be inserted, in this case, it is the Cisco Logo that is right above this.  The text inside the square brackets, <code class="prettyprint">[Cisco Logo]</code> will become the alt text for the image in the HTML <code class="prettyprint">alt=</code> parameter.</p>
 
 <p><aside class="success">
 Images essentially look just like a link except that they start with a &lsquo;!&rsquo; .
@@ -694,6 +705,8 @@ for publishing.  You can do this via Box.net or Dropbox.</p>
 <p>Now that you understand the mechanics of DevNet Slate.  Now we need to get into the specifics of how to use these tools to present a common, consistent, and great
 developer experience on DevNet for your API.</p>
 
+<h2 id="the-basics">The Basics</h2>
+
 <p>Before we get into the specifics, let&rsquo;s deal with the high-level guidelines or ground rules:</p>
 
 <ul>
@@ -703,6 +716,12 @@ developer experience on DevNet for your API.</p>
 <li><em>Test the Examples</em> - when you use an example, make sure that it works.</li>
 <li><em>Use Graphics</em> - a picture is worth a thousand words.  The right graphic in the right place helps you to keep things simple.</li>
 </ul>
+
+<h2 id="language-libraries">Language Libraries</h2>
+
+<p>REST (or RESTful) APIs are becoming the standard.  Developers like using REST APIs because they are simple and universal.  Because REST APIs use HTTP protocol along with JSON or XML, it is easy to call a REST API from pretty much any programming language.  As a result, there is a natural tendency for the API engineer to think that language libraries (wrappers that make the REST call in the programming language of choice) is not needed. This is a fallacy.</p>
+
+<p>A Programmer can call REST in a language like Python, Java, or C, with four to five lines of code.  When faced with this, the Programmer will typically write their own library of wrappers (code that encapsultes each REST end point) to make their programming more module and cleaner.  Thus, if you want your API to be simple to use, you should have the wrappers for propular libraries built.  Next, you should use the language tabs of DevNet Slate to provide the syntax for each of the propramming languages that you will be supporting.</p>
 
       </div>
       <div class="dark-box">
