@@ -59,16 +59,16 @@ we have this initial version.</p>
 <blockquote>
 <p>What Version of Ruby is Installed?</p>
 </blockquote>
-<pre class="highlight shell"><span class="gp">$ </span>ruby -v
+<pre class="highlight markdown">$ ruby -v
 
-ruby 2.0.0p247 <span class="o">(</span>2013-06-27 revision 41674<span class="o">)</span>
+ruby 2.0.0p247 (2013-06-27 revision 41674)
 
 </pre>
 
 <blockquote>
 <p>How to install Buldler (Shell Tab)</p>
 </blockquote>
-<pre class="highlight shell"><span class="gp">$ </span>gem install bundler
+<pre class="highlight markdown">$ gem install bundler
 </pre>
 
 <p>DevNet Slate can be installed on any system because of Ruby&rsquo;s portability.</p>
@@ -84,35 +84,61 @@ ruby 2.0.0p247 <span class="o">(</span>2013-06-27 revision 41674<span class="o">
 Ruby Version 1.9.3 or newer is required for Slate, if you have Ruby installed, make sure that it is at least that verion.
 </aside></p>
 
+<h2 id="setup-options">Setup Options</h2>
+
+<p>There are two ways that you can setup DevNet Slate for creating documents on your local PC; Forking/cloning from DevNet Slate Github or downloading the DevNet Slate Zip file from Github.  Each has pros and cons:</p>
+
+<h3 id="fork-and-clone">Fork and Clone</h3>
+
+<p>When you Fork DevNet Slate on Github, Github remembers the relationship between your version of DevNet Slate and the master version.  Thus, when changes are made to DevNet Slate in the master tree, you will be able to pull these changes and include the latest fixes and changes into your personal copy of DevNet Slate.  Additionally, when you <strong>publish</strong> your document, the document will be placed into Github.</p>
+
+<p><aside class="notice">
+DevNet Slate supports either building or publishing.  When you build the document, only your local files are updated.  When you publish, the files on Github are also updated.
+</aside></p>
+
+<h3 id="installing-the-zip">Installing the Zip</h3>
+
+<p>When you download the Zip file and install DevNet Slate, like the Fork and Clone, it will create a local directory, but you are not notified of changes.  Also, when you build your HTML document, you will not be able to publish it to Github if that is what you desire.</p>
+
 <h2 id="getting-set-up">Getting Set Up</h2>
 
 <blockquote>
 <p>Clone the Forked Repository</p>
 </blockquote>
-<pre class="highlight shell"><span class="gp">$ </span>git clone https://github.com/YOURUSERNAME/DevNetSlate.git
+<pre class="highlight markdown">$ git clone https://github.com/YOURUSERNAME/DevNetSlate.git
 </pre>
 
 <blockquote>
 <p>Install the Dependencies</p>
 </blockquote>
-<pre class="highlight shell"><span class="gp">$ </span><span class="nb">cd </span>DevNetSlate
-<span class="gp">$ </span>bundle install
+<pre class="highlight markdown">$ cd DevNetSlate
+$ bundle install
 </pre>
 
 <blockquote>
 <p>Start Your Test Server</p>
 </blockquote>
-<pre class="highlight shell"><span class="gp">$ </span>bundle <span class="nb">exec </span>middleman server
-<span class="o">==</span> The Middleman is loading
-<span class="o">==</span> The Middleman is standing watch at http://0.0.0.0:4567
-<span class="o">==</span> Inspect your site configuration at http://0.0.0.0:4567/__middleman/
+<pre class="highlight markdown">$ bundle exec middleman server
+== The Middleman is loading
+== The Middleman is standing watch at http://0.0.0.0:4567
+== Inspect your site configuration at http://0.0.0.0:4567/__middleman/
 
 </pre>
 
 <ol>
-<li>Login to Github and fork this repository on Github (https://github.com/pnerger/slate)</li>
+<li>Login to Github and fork this repository on Github (https://github.com/pnerger/DevNetSlate)</li>
 <li>Clone <em>your forked repository</em> (not our original one) to your hard drive with <code class="prettyprint">git clone https://github.com/{YOURUSERNAME}/DevNetSlate.git</code></li>
 <li><code class="prettyprint">cd DevNetSlate</code></li>
+<li>Install all dependencies: <code class="prettyprint">bundle install</code></li>
+<li>Start the test server: <code class="prettyprint">bundle exec middleman server</code></li>
+</ol>
+
+<p><strong><em>OR</em></strong></p>
+
+<ol>
+<li>Login to Github and download the DevNet Slate Zip file (https://github.com/pnerger/DevNetSlate)</li>
+<li>unzip the zip file into the directory that you want to work in.</li>
+<li>cd to that directory.</li>
 <li>Install all dependencies: <code class="prettyprint">bundle install</code></li>
 <li>Start the test server: <code class="prettyprint">bundle exec middleman server</code></li>
 </ol>
@@ -328,23 +354,14 @@ You can use those formatting rules in code annotations, tables, paragraphs, list
 
 <h2 id="strikethrough">Strikethrough</h2>
 <pre class="highlight markdown">
-Strikethrough ~~SHOULD WORK~~ BUT DOES NOT
+Strikethrough allows you to show text that is ~~no longer relevant by using striketrhough~~<span class="sb">
 
-A workaround is to use <span class="nt">&lt;del&gt;</span>DOES NOT WORK<span class="nt">&lt;/del&gt;</span>.
 
-</pre>
+</span></pre>
 
-<p>Although GFM supports the strikethrough text attribute through the use of the double <code class="prettyprint">~</code> or tilde character it
-does not work in DevNet Slate. As a workaround, enclose your strikethrough text in <code class="prettyprint">&lt;del&gt; strikethrough text &lt;/del&gt;</code> tags.</p>
+<p>You can format text with a strikethrough by enclosing the text in double tildes, <code class="prettyprint">~~</code>.  The example to the right becomes:</p>
 
-<p>Strikethrough ~~SHOULD WORK~~ BUT DOES NOT</p>
-
-<p>A workaround is to use <del>DOES NOT WORK</del>.</p>
-
-<p><aside class="warning">
-Althought you can use the <code class="prettyprint">~~</code> to enclose text for strikethrough in GFM, DevNet Slate does not support this
-feature.
-</aside></p>
+<p>Strikethrough allows you to show text that is <del>no longer relevant by using striketrhough</del></p>
 
 <h2 id="creating-markdown-links">Creating Markdown Links</h2>
 
@@ -645,15 +662,15 @@ you will create a code annotation that will appear in the area to the right, nex
 <blockquote>
 <p>Command to Start Your Preview Server</p>
 </blockquote>
-<pre class="highlight shell">bundle <span class="nb">exec </span>middleman server
+<pre class="highlight markdown">bundle exec middleman server
 </pre>
 
 <blockquote>
 <p>Output:</p>
 </blockquote>
-<pre class="highlight shell">  <span class="o">==</span> The Middleman is loading
-  <span class="o">==</span> The Middleman is standing watch at http://0.0.0.0:4567
-  <span class="o">==</span> Inspect your site configuration at http://0.0.0.0:4567/__middleman/
+<pre class="highlight markdown">  == The Middleman is loading
+  == The Middleman is standing watch at http://0.0.0.0:4567
+  == Inspect your site configuration at http://0.0.0.0:4567/__middleman/
 </pre>
 
 <p>It is pretty easy to preview your docs using your browser.</p>
@@ -663,19 +680,19 @@ you will create a code annotation that will appear in the area to the right, nex
 <p>You can now see the docs using your browser by going to the URL at <a href="http://localhost:4567">http://localhost:4567</a>. As you edit and save your source GFM document at <code class="prettyprint">source/index.md</code>,
 your server should automatically update the document that you are previewing.</p>
 
-<h2 id="publishing-your-docs-to-devnet">Publishing Your Docs to DevNet</h2>
+<h2 id="building-your-docs-if-you-forked-and-cloned">Building Your Docs If You Forked and Cloned</h2>
 
 <blockquote>
 <p>Command to create your HTML Files</p>
 </blockquote>
-<pre class="highlight shell">rake build
+<pre class="highlight markdown">rake build
 </pre>
 
 <blockquote>
 <p>Output:</p>
 </blockquote>
-<pre class="highlight shell"><span class="nb">cd </span>DevNetSlate
-bundle <span class="nb">exec </span>middleman build --clean
+<pre class="highlight markdown">cd DevNetSlate
+bundle exec middleman build --clean
       create  build/images/logo.png
       create  build/images/Untitled.png
       create  build/fonts/icomoon.svg
@@ -693,12 +710,48 @@ bundle <span class="nb">exec </span>middleman build --clean
       create  build/stylesheets/screen.css
       create  build/stylesheets/print.css
       create  build/index.html
-<span class="nb">cd</span> -
+cd -
+</pre>
+
+<p>The <code class="prettyprint">rake build</code> command tells Middleman to build your website to the <code class="prettyprint">build</code> directory of your project in a way that is Github compatible.  You then need to share those static HTML files with the DevNet team
+for publishing.  You can do this via Box.net or Dropbox.</p>
+
+<h2 id="building-your-docs-if-you-installed-from-zip">Building Your Docs If You Installed From Zip</h2>
+
+<blockquote>
+<p>Command to create your HTML Files</p>
+</blockquote>
+<pre class="highlight markdown">bundle exec middleman build --clean
 
 </pre>
 
-<p>The <code class="prettyprint">rake build</code>. Middleman will build your website to the <code class="prettyprint">build</code> directory of your project.  You then need to share those static HTML files with the DevNet team
-for publishing.  You can do this via Box.net or Dropbox.</p>
+<blockquote>
+<p>Output:</p>
+</blockquote>
+<pre class="highlight markdown">      create  build/images/logo.png
+      create  build/images/Untitled.png
+      create  build/fonts/icomoon.svg
+      create  build/fonts/icomoon.woff
+      create  build/fonts/icomoon.ttf
+      create  build/fonts/icomoon.eot
+      create  build/javascripts/lang_selector.js
+      create  build/javascripts/all.js
+      create  build/javascripts/jquery_ui.js
+      create  build/javascripts/jquery.tocify.js
+      create  build/stylesheets/variables.css
+      create  build/stylesheets/icon-font.css
+      create  build/stylesheets/normalize.css
+      create  build/stylesheets/syntax.css
+      create  build/stylesheets/screen.css
+      create  build/stylesheets/print.css
+      create  build/index.html
+</pre>
+
+<p>The Middleman <em>build</em> option builds your document to the <code class="prettyprint">build</code> directory of your project.</p>
+
+<h2 id="getting-your-document-on-devnet">Getting Your Document On DevNet</h2>
+
+<p>Once you have built and tested your document using DevNet Slate, you can now get it publish it on DevNet.  You will need to raise a ticket to get your new static HTML files on DevNet for publishing.  You can do this by placing your build directory (with all subdirectories) into a zip, a Box.net folder or a Dropbox folder that you can share with the DevNet team. </p>
 
 <h1 id="elements-of-style-for-cisco-apis&#39;">Elements of Style for Cisco APIs&#39;</h1>
 
