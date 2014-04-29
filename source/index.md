@@ -37,7 +37,7 @@ we have this initial version.
 
 > What Version of Ruby is Installed?
 
-```shell
+```md
 $ ruby -v
 
 ruby 2.0.0p247 (2013-06-27 revision 41674)
@@ -45,7 +45,7 @@ ruby 2.0.0p247 (2013-06-27 revision 41674)
 ```
 > How to install Buldler (Shell Tab)
 
-```shell
+```md
 $ gem install bundler
 ```
 DevNet Slate can be installed on any system because of Ruby's portability.
@@ -59,34 +59,58 @@ If you do not have Ruby installed, go to https://www.ruby-lang.org/ and get it.
 Ruby Version 1.9.3 or newer is required for Slate, if you have Ruby installed, make sure that it is at least that verion.
 </aside>
 
+## Setup Options
+
+There are two ways that you can setup DevNet Slate for creating documents on your local PC; Forking/cloning from DevNet Slate Github or downloading the DevNet Slate Zip file from Github.  Each has pros and cons:
+
+### Fork and Clone 
+
+When you Fork DevNet Slate on Github, Github remembers the relationship between your version of DevNet Slate and the master version.  Thus, when changes are made to DevNet Slate in the master tree, you will be able to pull these changes and include the latest fixes and changes into your personal copy of DevNet Slate.  Additionally, when you __publish__ your document, the document will be placed into Github.
+
+<aside class="notice">
+DevNet Slate supports either building or publishing.  When you build the document, only your local files are updated.  When you publish, the files on Github are also updated.
+</aside>
+
+### Installing the Zip
+
+When you download the Zip file and install DevNet Slate, like the Fork and Clone, it will create a local directory, but you are not notified of changes.  Also, when you build your HTML document, you will not be able to publish it to Github if that is what you desire.
 
 ## Getting Set Up
 
 > Clone the Forked Repository
 
-```shell
+```md
 $ git clone https://github.com/YOURUSERNAME/DevNetSlate.git
 ```
 
 > Install the Dependencies
 
-```shell
+```md
 $ cd DevNetSlate
 $ bundle install
 ```
 
 > Start Your Test Server
 
-```shell
+```md
 $ bundle exec middleman server
 == The Middleman is loading
 == The Middleman is standing watch at http://0.0.0.0:4567
 == Inspect your site configuration at http://0.0.0.0:4567/__middleman/
 
 ```
- 1. Login to Github and fork this repository on Github (https://github.com/pnerger/slate)
+
+ 1. Login to Github and fork this repository on Github (https://github.com/pnerger/DevNetSlate)
  2. Clone *your forked repository* (not our original one) to your hard drive with `git clone https://github.com/{YOURUSERNAME}/DevNetSlate.git`
  3. `cd DevNetSlate`
+ 4. Install all dependencies: `bundle install`
+ 5. Start the test server: `bundle exec middleman server`
+ 
+ ___OR___
+
+ 1. Login to Github and download the DevNet Slate Zip file (https://github.com/pnerger/DevNetSlate)
+ 2. unzip the zip file into the directory that you want to work in.
+ 3. cd to that directory.
  4. Install all dependencies: `bundle install`
  5. Start the test server: `bundle exec middleman server`
 
@@ -294,22 +318,14 @@ You can use those formatting rules in code annotations, tables, paragraphs, list
 
 ```markdown
 
-Strikethrough ~~SHOULD WORK~~ BUT DOES NOT
+Strikethrough allows you to show text that is ~~no longer relevant by using striketrhough~~
 
-A workaround is to use <del>DOES NOT WORK</del>.
 
 ```
-Although GFM supports the strikethrough text attribute through the use of the double `~` or tilde character it
-does not work in DevNet Slate. As a workaround, enclose your strikethrough text in `<del> strikethrough text </del>` tags.
 
-Strikethrough ~~SHOULD WORK~~ BUT DOES NOT
+You can format text with a strikethrough by enclosing the text in double tildes, `~~`.  The example to the right becomes:
 
-A workaround is to use <del>DOES NOT WORK</del>.
-
-<aside class="warning">
-Althought you can use the `~~` to enclose text for strikethrough in GFM, DevNet Slate does not support this
-feature.
-</aside>
+Strikethrough allows you to show text that is ~~no longer relevant by using striketrhough~~
 
 
 ## Creating Markdown Links
@@ -516,7 +532,7 @@ to the right will create the list below:
 * List
 
 
-<aside class="notice"> Notice that bullet lists can be created using a -, a +, or an *. </aside>
+<aside class="notice"> Notice that bullet lists can be created using a -, a +, or an \*. </aside>
 
 <aside class="notice"> Note that by indenting by two characters, you are creating an indented list.</aside>
 
@@ -595,13 +611,13 @@ you will create a code annotation that will appear in the area to the right, nex
 
 > Command to Start Your Preview Server
 
-```shell
+```md
 bundle exec middleman server
 ```
 
 >Output:
 
-```shell
+```md
   == The Middleman is loading
   == The Middleman is standing watch at http://0.0.0.0:4567
   == Inspect your site configuration at http://0.0.0.0:4567/__middleman/
@@ -615,16 +631,16 @@ You can now see the docs using your browser by going to the URL at <http://local
 your server should automatically update the document that you are previewing.
 
 
-## Publishing Your Docs to DevNet
+## Building Your Docs If You Forked and Cloned
 
 > Command to create your HTML Files
 
-```shell
+```md
 rake build
 ```
 > Output:
 
-```shell
+```md
 cd DevNetSlate
 bundle exec middleman build --clean
       create  build/images/logo.png
@@ -645,12 +661,46 @@ bundle exec middleman build --clean
       create  build/stylesheets/print.css
       create  build/index.html
 cd -
-
 ```
-The `rake build`. Middleman will build your website to the `build` directory of your project.  You then need to share those static HTML files with the DevNet team
+
+The `rake build` command tells Middleman to build your website to the `build` directory of your project in a way that is Github compatible.  You then need to share those static HTML files with the DevNet team
 for publishing.  You can do this via Box.net or Dropbox.
 
-    
+## Building Your Docs If You Installed From Zip
+
+> Command to create your HTML Files
+
+```md
+bundle exec middleman build --clean
+
+```
+> Output:
+
+```md
+      create  build/images/logo.png
+      create  build/images/Untitled.png
+      create  build/fonts/icomoon.svg
+      create  build/fonts/icomoon.woff
+      create  build/fonts/icomoon.ttf
+      create  build/fonts/icomoon.eot
+      create  build/javascripts/lang_selector.js
+      create  build/javascripts/all.js
+      create  build/javascripts/jquery_ui.js
+      create  build/javascripts/jquery.tocify.js
+      create  build/stylesheets/variables.css
+      create  build/stylesheets/icon-font.css
+      create  build/stylesheets/normalize.css
+      create  build/stylesheets/syntax.css
+      create  build/stylesheets/screen.css
+      create  build/stylesheets/print.css
+      create  build/index.html
+```
+The Middleman _build_ option builds your document to the `build` directory of your project.
+
+## Getting Your Document On DevNet
+
+Once you have built and tested your document using DevNet Slate, you can now get it publish it on DevNet.  You will need to raise a ticket to get your new static HTML files on DevNet for publishing.  You can do this by placing your build directory (with all subdirectories) into a zip, a Box.net folder or a Dropbox folder that you can share with the DevNet team. 
+
 # Elements of Style for Cisco APIs'
 
 Now that you understand the mechanics of DevNet Slate.  Now we need to get into the specifics of how to use these tools to present a common, consistent, and great
