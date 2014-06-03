@@ -2,13 +2,10 @@
 title: API Reference
 
 language_tabs:
-  - shell
-  - ruby
   - python
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='http://github.com/tripit/slate'>Documentation Powered by Slate</a>
+  - <a href='https://www.arbiter.me/dashboard/' target='_blank'>Login to your Developer Dashboard</a>
 
 includes:
   - errors
@@ -16,153 +13,175 @@ includes:
 search: true
 ---
 
-# Introduction
+# Classes
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+Arbiter makes it easy for you to have your players betting against each other for Bitcoin in your games safely and legally. Before writing any code, get familiar with the primary classes that you will interact with when building your games.
 
-We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+## Jackpot
 
-This example API documentation page was created with [Slate](http://github.com/tripit/slate). Feel free to edit it and use it as a base for your own API's documentation.
+Arbiter `Jackpots` are similar to a pot at a poker table. Your server will request new jackpots for each competition between your players in your game. Once a jackpot has been created, your players will have to opportunity to buy-in to the jackpot. After your players have finished battling it out in your game, you tell us who won. Arbiter will release the funds in the jackpot to the winner.
 
-# Authentication
 
-> To authorize, use this code:
+## User
 
-```ruby
-require 'kittn'
+Your players' devices interact directly with our server. The first time a player's device connects with Arbiter, we create an anonymous `User` and return a unique ID for that user. This ID is what you will use to make requests on that user's behalf in the future from your server. By default, all users are playing anonymously. At any point, they can create login credentials for their account to log back in once their session expires.
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
 
-```python
-import 'kittn'
+## Wallet
 
-api = Kittn.authorize('meowmeowmeow')
-```
+Each Arbiter `User` is given an Arbiter `Wallet`. This request will occur directly between your players' device and the Arbiter server. When a player requests a wallet, Arbiter returns a deposit address to the user's device. The user can then deposit Bitcoin directly to that address using their prefered Bitcoin wallet. We suggest using Coinbase. Deposits made using Coinbase will register in the user's wallets nearly instantly.
 
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
-```
+At any point, a user can make a withdraw from their Arbiter Wallet back to any Bitcoin address. Once a user has withdrawn once, we save that address so withdraws in the future are very easy.
 
-> Make sure to replace `meowmeowmeow` with your API key.
 
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
+# Laws and Regulations
 
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
+Every developer we have talked with starts off with the same question, **"Isn't gambling online illegal in the US?"**
 
-`Authorization: meowmeowmeow`
+When we first started working on Arbiter, we noticed a few complicated and/or vague laws around defining what is or is not gambling. These laws differ state by state and are constantly evolving. The caveat that all online betting platforms for games have caught onto is, **"A game where the outcome is determined predominately by skill is not considered gambling in most states."**
 
-<aside class="notice">
-You must replace `meowmeowmeow` with your personal API key.
-</aside>
+We have built a unique piece of technology capable of defining the amount of skill involved in the outcomes of your games. We can put a number to how predominately skill is determining the outcome of your game. We follow that up with how much skill is required by each state to not be considered gambling. Before a player can ever deposit funds into an Arbiter wallet, we verify the user's local regulation does not conflict with your game's amount of skill vs chance in the outcome. **You can make your game and distribute it to your standard distribution channels. We'll make decisions based on your game's predominance rating and the local regulation of each player to get your games in front of the maximum number of players with no manual effort on your end.**
 
-# Kittens
+# Getting Started
 
-## Get All Kittens
+Before digging into the details below, spend 2 minutes reading the [Classes](/#classes) section. It will get you familiar with the core classes you will be interacting with.
 
-```ruby
-require 'kittn'
+## Configure Your Game
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
+[Create an Arbiter developer account](https://www.arbiter.me/developer-registration/) to configure your game and save  your API Key.
 
-```python
-import 'kittn'
+Configuring your game
+In your dashboard, click the 'Register new game' button in the games tab.
 
-api = Kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
+### Game Configuration Form
 
-```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
-```
+Field  | Description
+--------- | -----------
+Name | A label for your game.
+Rake amount | The percentage of each player payout you want to charge. Valid range is 0 through 99. `payout = balance - your rake % - Arbiter fee (5%)`.
 
-> The above command returns JSON structured like this:
+Once you have saved the configuration form, an API key will be generated for your game upon completing registration. Store this on your server for making authenticated calls. See TODO for more on how this key will be used.
 
-```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Isis",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
-```
+# API Reference
 
-This endpoint retrieves all kittens.
+## Response Objects
 
-### HTTP Request
-
-`GET http://example.com/kittens`
-
-### Query Parameters
-
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
 
 ```python
-import 'kittn'
 
-api = Kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/3"
-  -H "Authorization: meowmeowmeow"
-```
-
-> The above command returns JSON structured like this:
-
-```json
+# Example response from https://www.arbiter.me/api/v1/wallet/
 {
-  "id": 2,
-  "name": "Isis",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
+    "success": true,
+    "wallet": {
+        "deposit_address": "1Mdx1V81LJeyZk6yBizRny6KXxyMTXHGpw",
+        "balance": "0"
+    }
 }
 ```
 
-This endpoint retrieves a specific kitten.
+All APIs return json with the following keys:
 
-<aside class="warning">If you're not using an administrator API key, note that some kittens will return 403 Forbidden if they are hidden for admins only.</aside>
+Key | Type |  Description
+------- | ------- | -------
+success | Boolean | Whether or not the requested action was performed.
+OBJECT | dictionary | A dictionary containing the relavant object being queried or edited. This key will be the name of object type (ie: user, wallet, jackpot, etc).
+errors | array | An array of errors (if any errors occurred).
+
+## Initialize
+
+```python
+import requests
+
+r = requests.get('https://www.arbiter.me/api/v1/user/initialize')
+
+r.json()
+{
+    "success": true,
+    "user": {
+        "id": "d8b50f95c8a24f24a7c64c9d3d5dde5f",
+        "token": "3d2fcd21dcd22ae1d64b799c486a959aeee42fbb",
+        "claim_account_url": "https://www.arbiter.me/api/v1/user/40628a4750f74b7a9e1827812e7af815/f80819ef573f699c2723b0c15f1c24bf704ae8a5ef5363083434831bed36c518",
+        "is_verified": false,
+        "username": "anonymous"
+    }
+}
+```
+
+The initialize call should be made at the beginning of every user's session in your game. Arbiter creates an anonymous session with the user. The session is managed through the `token` returned in the first response.
+
+Future requests made for this user require the `token` in the request headers. Store the user.id and user.token in your database or locally on the device for future requests.
 
 ### HTTP Request
 
-`GET http://example.com/kittens/<ID>`
+`GET https://www.arbiter.me/api/v1/user/initialize`
 
-### URL Parameters
+### Returned User Object
 
-Parameter | Description
---------- | -----------
-ID | The ID of the cat to retrieve
+Key | Type | Description
+---- | ---- | ----
+id | string | Unique Arbiter ID for this user. Save this in your DB for requests involving this users
+token | string | Authentication token for this user. Save this in your DB and keep it private. This will be included in request headers in future requests to authenticate a request made on behalf of this user.
+is_verified | boolean | Whether or not this user has agreed to Arbiter's Terms of Service.
+username | string | Display name of this user. If they have not created an account using the claim_url, this will be `anonymous`
+claim_account_url | string | A unique URL for this user to claim their Arbiter Account. Once they have claimed their account, they can login to their [Player Dashboard](https://www.arbiter.me/dashboard/). They can also use their account credentials to login to an Arbiter enabled game and have access to their existing wallet created in a previous session.
+
+## Agree to Terms of Service
+
+```python
+import requests
+
+# id and token returned from the /user/initialize call
+user_id = 'd8b50f95c8a24f24a7c64c9d3d5dde5f'
+user_token = '3d2fcd21dcd22ae1d64b799c486a959aeee42fbb'
+
+# Game API Key from your developer dashboard
+api_key = 'd6416b1e9be84c53b07524e37f94499d'
+
+url = 'https://www.arbiter.me/api/v1/user/' + user_id + '/verify'
+headers = {'Authorization': 'Token ' + user_token + '::' + api_key}
+r = requests.post(url)
+
+r.json()
+{
+    success: True
+}
+```
+
+Before a user can participate in a wager, we need to confirm that the user is over 18, their local jurisdiction allows skill based betting online, and they need to agree to the [Arbiter Terms of Service](https://www.arbiter.me/terms/). Display the exact text below with a confirmation button that posts to the the confirmation API.
+
+<aside class="notice">
+    By clicking the confirmation button below, you agreeing to the [Arbiter Terms of Service](https://www.arbiter.me/terms/) and confirming that you are at least 18 years of age.
+</aside>
+
+### HTTP Request
+
+`POST https://www.arbiter.me/api/v1/user/<USER ID>/verify`
+
+### Returns
+
+Key | Type | Description
+---- | ---- | ----
+success | boolean | Whether or not the user's account was successfully verified
+
+## Query User
+## Query Wallet
+## Deposit
+## Request Jackpot
+## Place Bet
+## Report Score
+## Cash Out
+
+# Unity SDK
+
+TODO: Flush out SDK documentation
+
+## Initialize
+## Query User
+## Query Wallet
+## Deposit
+## Request Jackpot
+## Place Bet
+## Report Score
+## Query Jackpot
+## Cash Out
 
