@@ -1,14 +1,11 @@
 ---
-title: API Reference
+title: Arbiter Documentation
 
 language_tabs:
   - python
 
 toc_footers:
   - <a href='https://www.arbiter.me/dashboard/' target='_blank'>Login to your Developer Dashboard</a>
-
-includes:
-  - errors
 
 search: true
 ---
@@ -21,18 +18,15 @@ Arbiter makes it easy for you to have your players betting against each other fo
 
 Arbiter `Jackpots` are similar to a pot at a poker table. Your server will request new jackpots for each competition between your players in your game. Once a jackpot has been created, your players will have to opportunity to buy-in to the jackpot. After your players have finished battling it out in your game, you tell us who won. Arbiter will release the funds in the jackpot to the winner.
 
-
 ## User
 
 Your players' devices interact directly with our server. The first time a player's device connects with Arbiter, we create an anonymous `User` and return a unique ID for that user. This ID is what you will use to make requests on that user's behalf in the future from your server. By default, all users are playing anonymously. At any point, they can create login credentials for their account to log back in once their session expires.
-
 
 ## Wallet
 
 Each Arbiter `User` is given an Arbiter `Wallet`. This request will occur directly between your players' device and the Arbiter server. When a player requests a wallet, Arbiter returns a deposit address to the user's device. The user can then deposit Bitcoin directly to that address using their prefered Bitcoin wallet. We suggest using Coinbase. Deposits made using Coinbase will register in the user's wallets nearly instantly.
 
 At any point, a user can make a withdraw from their Arbiter Wallet back to any Bitcoin address. Once a user has withdrawn once, we save that address so withdraws in the future are very easy.
-
 
 # Laws and Regulations
 
@@ -66,9 +60,7 @@ Once you have saved the configuration form, an API key will be generated for you
 
 ## Response Objects
 
-
 ```python
-
 # Example response from https://www.arbiter.me/api/v1/wallet/
 {
     "success": true,
@@ -122,7 +114,7 @@ Key | Type | Description
 id | string | Unique Arbiter ID for this user. Save this in your DB for requests involving this users
 token | string | Authentication token for this user. Save this in your DB and keep it private. This will be included in request headers in future requests to authenticate a request made on behalf of this user.
 is_verified | boolean | Whether or not this user has agreed to Arbiter's Terms of Service.
-username | string | Display name of this user. If they have not created an account using the claim_url, this will be `anonymous`
+username | string | Display name of this user. If they have not created an account using the claim_url, this will be anonymous
 claim_account_url | string | A unique URL for this user to claim their Arbiter Account. Once they have claimed their account, they can login to their [Player Dashboard](https://www.arbiter.me/dashboard/). They can also use their account credentials to login to an Arbiter enabled game and have access to their existing wallet created in a previous session.
 
 ## Agree to Terms of Service
@@ -164,9 +156,121 @@ Key | Type | Description
 success | boolean | Whether or not the user's account was successfully verified
 
 ## Query User
+
+```python
+import requests
+
+# id and token returned from the user/initialize or user/login call
+# IMPORTANT: Keep your users' tokens private
+user_id = 'd8b50f95c8a24f24a7c64c9d3d5dde5f'
+user_token = '3d2fcd21dcd22ae1d64b799c486a959aeee42fbb'
+
+# game API Key from your developer dashboard
+api_key = 'd6416b1e9be84c53b07524e37f94499d'
+
+headers = {'Authorization': 'Token ' + user_token + '::' + api_key}
+url = 'https://www.arbiter.me/api/v1/user/' + user_id
+
+r = requests.get(url, headers=headers)
+
+r.json()
+{
+    "success": true,
+    "user": {
+        "id": "d8b50f95c8a24f24a7c64c9d3d5dde5f",
+        "is_verified": true,
+        "username": "anonymous",
+        "token": "3d2fcd21dcd22ae1d64b799c486a959aeee42fbb"
+    },
+    "wallet": {
+        "deposit_address": "1JbbREwe8Vb9DAVzB2zWtNYvKDYLyjyV3C",
+        "deposit_address_qr_code": "https://chart.googleapis.com/chart?cht=qr&chl=bitcoin%3A1JbbREwe8Vb9DAVzB2zWtNYvKDYLyjyV3C&choe=UTF-8&chs=300x300",
+        "withdraw_address": null,
+        "balance": "50",
+        "pending_balance": "623"
+    }
+}
+
+```
+
+Returns details for a user.
+
+### HTTP Request
+
+`GET https://www.arbiter.me/api/v1/user/<USER ID>`
+
+### Returns a User's details
+
+Key | Type | Description
+---- | ---- | ----
+id | string | Unique ID for this user. Save this ID with the user in your database.
+token | string | Access token used for authentication. Store this in your database with the user and keep it secret.
+is_verified | boolean | Whether or not the user has agreed to Arbiter's Terms of Service
+username | string | If the user has set their username. Defaults to `anonymous`
+
+<aside class="warning">
+    Be sure to keep your users' tokens secret. They are used for authentication and should be treated like a password.
+</aside>
+
 ## Query Wallet
+
+```python
+import requests
+
+# id and token returned from the user/initialize or user/login call
+# IMPORTANT: Keep your users' tokens private
+user_id = 'd8b50f95c8a24f24a7c64c9d3d5dde5f'
+user_token = '3d2fcd21dcd22ae1d64b799c486a959aeee42fbb'
+
+# game API Key from your developer dashboard
+api_key = 'd6416b1e9be84c53b07524e37f94499d'
+
+headers = {'Authorization': 'Token ' + user_token + '::' + api_key}
+url = 'https://www.arbiter.me/api/v1/wallet/' + user_id
+
+r = requests.get(url, headers=headers)
+
+r.json()
+{
+    "success": true,
+    "wallet": {
+        "deposit_address": "1JbbREwe8Vb9DAVzB2zWtNYvKDYLyjyV3C",
+        "deposit_address_qr_code": "https://chart.googleapis.com/chart?cht=qr&chl=bitcoin%3A1JbbREwe8Vb9DAVzB2zWtNYvKDYLyjyV3C&choe=UTF-8&chs=300x300",
+        "withdraw_address": null,
+        "balance": "50",
+        "pending_balance": "623"
+    }
+}
+```
+
+### HTTP Request
+
+`GET https://www.arbiter.me/api/v1/wallet/<USER ID>`
+
+### Returns a user's Wallet details
+
+Key | Type | Description
+---- | ---- | ----
+balance | integer | The amount of Arbiter credits this user has available to bet with.
+pending_balance | integer | The amount of Arbiter credits that are currently pending confirmation.
+deposit_address | string | Bitcoin deposit address for the user to deposit bitcoin in exchance for Arbiter credits.
+deposit_address_qr_code | url | Image URL to a QR code for depositing Bitcoin.
+withdraw_address | string | If the user has cashed out to a Bitcoin address in the past, we include this value to autopopulate their cash out form
+
+### Notes on purchasing credits with Bitcoin
+
+#### TODO
+- Bitcoin transfer times / confirmating requirements
+- Bitcoin conversion rates
+
 ## Deposit
-## Request Jackpot
+
+## Winner Take All
+
+### HTTP Request
+
+`GET https://www.arbiter.me/api/v1/winner-take-all/create`
+
 ## Place Bet
 ## Report Score
 ## Cash Out
