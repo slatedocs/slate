@@ -20,6 +20,13 @@ under the License.
   global.activateLanguage = activateLanguage;
 
   function activateLanguage(language) {
+    if (!language) return;
+
+    var hash = window.location.hash;
+    if (hash) hash = hash.replace(/^#+/, '');
+    // do not reload the page every time the language is changed
+    if (history) history.pushState({}, '', '?' + language + '#' + hash);
+
     $("#lang-selector a").removeClass('active');
     $("#lang-selector a[data-language-name='" + language + "']").addClass('active');
     for (var i=0; i < languages.length; i++) {
@@ -47,25 +54,13 @@ under the License.
       // no language selected, so use the default
       activateLanguage(languages[0]);
     }
-
-    // if we click on a language tab, reload the page with that language in the URL
-    $("#lang-selector a").bind("click", function() {
-      window.location.replace("?" + $(this).data("language-name") + window.location.hash);
-      return false;
-    });
-
   }
 
   // if we click on a language tab, activate that language
   $(function() {
     $("#lang-selector a").on("click", function() {
-      var lang = $(this).data("language-name");
-      var hash = window.location.hash;
-      if (hash) hash = hash.replace(/^#+/, '');
-      // do not reload the page every time the language is changed
-      if (history) history.pushState({}, '', '?' + lang + '#' + hash);
-
-      activateLanguage(lang);
+      var language = $(this).data("language-name");
+      activateLanguage(language);
       return false;
     });
     window.onpopstate = function(event) {
