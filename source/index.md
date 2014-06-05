@@ -39,14 +39,14 @@ The Arbiter API follows RESTful patterns, returns consistent JSON structures in 
 
 Our API uses the built in HTTP Status Code to help you track down an issue if the API is not responding with a success.
 
-Code | Description
----- | ----
-`200` OK | The requested action was successful.
-`400` Bad Request | A required parameter was missing in your request data.
-`401` Unauthorized | Missing or invalid access token in your Authorization Header.
-`402` Request Failed | All parameters were included, but at least one did not pass validation.
-`404` Not Found | Incorrect url or ID in a url.
-`500` Server Error | Something went wrong on our end. We get notified every single time you see this and are looking into what caused the problem.
+Code | Type | Description
+---- | ---- | ----
+`200` | OK | The requested action was successful.
+`400` | Bad Request | A required parameter was missing in your request data.
+`401` | Unauthorized | Missing or invalid access token in your Authorization Header.
+`402` | Request Failed | All parameters were included, but at least one did not pass validation.
+`404` | Not Found | Incorrect url or ID in a url.
+`500` | Server Error | Something went wrong on our end. We get notified every single time you see this and are looking into what caused the problem.
 
 ## HTTP Methods
 
