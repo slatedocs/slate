@@ -3,6 +3,7 @@ title: Arbiter Documentation
 
 language_tabs:
   - python
+  - csharp
 
 toc_footers:
   - <a href='https://www.arbiter.me/dashboard/' target='_blank'>Login to your Developer Dashboard</a>
@@ -12,20 +13,6 @@ search: true
 
 
 # Overview
-
-The Arbiter API is a RESTful and returns consistent JSON structures in every response. Before getting started, be sure you are familiar with the following HTTP features:
-
-### GET
-
-Requesting existing resources.
-
-[HTTP Request Methods](http://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol#Request_methods)
-
-### POST
-
-Performing resource updates and actions.
-
-[HTTP Request Methods](http://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol#Request_methods)
 
 ## Core Classes
 
@@ -42,6 +29,40 @@ Your players' devices interact directly with our server. The first time a player
 ### Wallet
 
 Each Arbiter `User` is given an Arbiter `Wallet`. This request will occur directly between your players' device and the Arbiter server. The user can then deposit to this wallet using a Credit Card, PayPal, or with Bitcoin. At any point, a user can make a withdraw from their Arbiter Wallet back to any Debit Card, PayPal account, or Bitcoin address.
+
+
+## HTTP API Best Practices
+
+The Arbiter API follows RESTful patterns, returns consistent JSON structures in every response, and relies on basic HTTP built in features. As long as you are familiar with the HTTP features below, the API should behave pretty straight forward.
+
+## HTTP Status Codes
+
+Our API uses the built in HTTP Status Code to help you track down an issue if the API is not responding with a success.
+
+Code | Description
+---- | ----
+`200` OK | The requested action was successful.
+`400` Bad Request | A required parameter was missing in your request data.
+`401` Unauthorized | Missing or invalid access token in your Authorization Header.
+`402` Request Failed | All parameters were included, but at least one did not pass validation.
+`404` Not Found | Incorrect url or ID in a url.
+`500` Server Error | Something went wrong on our end. We get notified every single time you see this and are looking into what caused the problem.
+
+## HTTP Methods
+
+Our API relies on the built in HTTP verbs `GET` and `POST` for handling object detail requests versus object creates or updates.
+
+### GET
+
+Requesting existing resources.
+
+[HTTP Request Methods](http://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol#Request_methods)
+
+### POST
+
+Performing resource updates and actions.
+
+[HTTP Request Methods](http://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol#Request_methods)
 
 ## Response Objects
 
@@ -546,11 +567,28 @@ bettors | array | The User IDs of users who have successfully placed a bet in th
 
 # Unity SDK
 
-TODO: Flush out SDK documentation
+[Download the SDK](https://github.com/andyzinsser/arbiter-ios-sdk-example)
 
 ## Initialize
+
+```csharp
+Arbiter.Initialize( GAME_API_KEY, CallbackFunction );
+```
+
+## Agree to Terms of Service
+
+```csharp
+Arbiter.VerifyUser();
+```
+
 ## Query User
+
 ## Query Wallet
+
+```csharp
+Arbiter.QueryWallet();
+```
+
 ## Deposit
 ## Request Jackpot
 ## Place Bet
