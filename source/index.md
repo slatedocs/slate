@@ -45,8 +45,6 @@ Your users' devices interact directly with our server. The first time a player's
 # Example Wallet
 'wallet': {
     'deposit_address': '1JbbREwe8Vb9DAVzB2zWtNYvKDYLyjyV3C',
-    'deposit_address_qr_code': 'https://chart.googleapis.com/chart?cht=qr&chl=bitcoin%3A1JbbREwe8Vb9DAVzB2zWtNYvKDYLyjyV3C&choe=UTF-8&chs=300x300',
-    'withdraw_address': null,
     'balance': '50',
     'pending_balance': '623'
 }
@@ -66,16 +64,16 @@ Each Arbiter `User` is given an Arbiter `Wallet`. This request will occur direct
 }
 ```
 
-An Arbiter `Tournament` is similar to a pot at a poker table. Your server will create a new `Tournament` for each betting interaction between the players in your game. Once a `Tournament` has been created, your users will be able to buy-in to the `Tournament`. After your users have finished battling it out in your game, your server will report who won. Arbiter will then charge a transacaction fee (some for us, and some for you) and then release the remaining funds in the `Tournament` to the winning user's Arbiter `Wallet`.
+Tournaments are the core class handling all the betting interactions between your players. Your server will create a new `Tournament` for each betting interaction between the players in your game. Once a `Tournament` has been created, your users will be able to buy in to the `Tournament`. After your users have finished battling it out in your game, your server will report who won. Arbiter will then charge a transacaction fee (some for us, and some for you) and then release the remaining funds in the `Tournament` to the winning user's Arbiter `Wallet`.
 
 
 ## HTTP API Best Practices
 
-The Arbiter API follows RESTful patterns, returns consistent JSON structures in every response, and relies on basic HTTP built in features. As long as you are familiar with the HTTP features below, the API should behave pretty straight forward.
+The Arbiter API follows RESTful patterns, returns consistent JSON structures in every response, and relies on built in HTTP features. As long as you are familiar with the HTTP features below, the API should behave straight forward.
 
 ## HTTP Status Codes
 
-Our API uses the built in HTTP Status Code to help you track down an issue if the API is not responding with a success.
+Our API uses HTTP status codes to help you track down an issue if the API is not working as you would expect.
 
 Code | Type | Description
 ---- | ---- | ----
@@ -141,14 +139,6 @@ All requests are authenticated using the HTTP Authorization Header
 
 [More on HTTP Headers](http://en.wikipedia.org/wiki/List_of_HTTP_header_fields)
 
-## Laws and Regulations
-
-Every developer we have talked with starts off with the same question, **'Isn't gambling online illegal in the US?'**
-
-When we first started working on Arbiter, we noticed a few complicated and/or vague laws around defining what is or is not gambling. These laws differ state by state and are constantly evolving. The caveat that all online betting platforms for games have caught onto is, **'A game where the outcome is determined predominately by skill is not considered gambling in most states.'**
-
-We have built a unique piece of technology capable of defining the amount of skill involved in the outcomes of your games. We can put a number to how predominately skill is determining the outcome of your game. We follow that up with how much skill is required by each state to not be considered gambling. Before a player can ever deposit funds into an Arbiter wallet, we verify the user's local regulation does not conflict with your game's amount of skill vs chance in the outcome. **You can make your game and distribute it to your standard distribution channels. We'll make decisions based on your game's predominance rating and the local regulation of each player to get your games in front of the maximum number of players with no manual effort on your end.**
-
 # Getting Started
 
 Before digging into the details below, spend 2 minutes reading the [Core Classes](/?python#core-classes) section. It will get you familiar with the core classes you will be interacting with.
@@ -164,11 +154,11 @@ In your dashboard, click the 'Register new game' button in the games tab.
 
 Field  | Description
 --------- | -----------
-Name | A label for your game.
-Rake amount | The percentage of each player payout you want to charge. Valid range is 0 through 99. `payout = balance - your rake % - Arbiter fee (5%)`.
-Matchmaking | Will this game use Arbiter's Matchmaking service to find similar skilled challengers when a user requests a match?
+name | A label for your game.
+rake amount | The percentage of each player payout you want to charge. Valid range is 0 through 99. `payout = balance - your rake % - Arbiter fee (5%)`.
+matchmaking | Will this game use Arbiter's Matchmaking service to find similar skilled challengers when a user requests a match?
 
-Once you have saved the configuration form, an API key will be generated for your game upon completing registration. Store this on your server for making authenticated calls. See TODO for more on how this key will be used.
+Once you have saved the configuration form, an API key will be generated for your game. Store this on your server for making authenticated calls. See <a href="#authentication">Authentication</a> for more on how to make authenticated requests.
 
 # User API
 
@@ -196,7 +186,7 @@ The initialize call should be made at the beginning of every user's session in y
 
 Future requests made for this user require the `token` in the request headers. Store the user.id and user.token in your database or locally on the device for future requests.
 
-### HTTP Request
+### Request URL
 
 `GET https://www.arbiter.me/api/v1/user/initialize`
 
@@ -240,7 +230,7 @@ Before a user can participate in a wager, we need to confirm that the user is ov
     By clicking the confirmation button below, you agreeing to the [Arbiter Terms of Service](https://www.arbiter.me/terms/) and confirming that you are at least 18 years of age.
 </aside>
 
-### HTTP Request
+### Request URL
 
 `POST https://www.arbiter.me/api/v1/user/<USER ID>/verify`
 
@@ -292,7 +282,7 @@ r.json()
 
 Returns details for a user.
 
-### HTTP Request
+### Request URL
 
 `GET https://www.arbiter.me/api/v1/user/<USER ID>`
 
@@ -344,7 +334,7 @@ r.json()
 }
 ```
 
-### HTTP Request
+### Request URL
 
 `GET https://www.arbiter.me/api/v1/wallet/<USER ID>`
 
@@ -386,34 +376,33 @@ If you don't want to deal with implementing the Deposit API, you can link the us
 
 Docuementation coming soon...
 
-# Winner Take All API
+# Tournament API
 
-Creates a new Winner Take All Jackpot. The format for a Winner Take All Jackpot is similar to a single hand of poker.
+Tournaments are the core class handling all the betting interactions between your players. All of your tournaments will follow this flow:
 
-1. Your server requests a  new Jackpot.
-2. Users buy into the Jackpot using the Add User API.
-3. Let players play your game.
-4. Report the winner of the game user the Report Score API.
-5. Arbiter will calculate the transactions fees and release the winnings
+1. Your server requests a  new `Tournament` using the <a href="#create">Create API</a>.
+2. Users buy into the `Tournament` using the <a href="#add-user">Add User API</a>.
+3. Your players play your game.
+4. Your server reports the winner of the game to the <a href="#report-score">Report Score API</a>.
+5. Arbiter will calculate the transactions fees and release the winnings.
 
-## Jackpot Create
+## Create
 
 ```python
 import requests
 
-# id and token returned from the user/initialize or user/login call
-# IMPORTANT: Keep your users' tokens private
-user_id = 'd8b50f95c8a24f24a7c64c9d3d5dde5f'
-user_token = '3d2fcd21dcd22ae1d64b799c486a959aeee42fbb'
+# Token is returned from the user/initialize or user/login call
+# IMPORTANT: Keep your users' tokens private. Treat these like passwords.
+USER_TOKEN = '3d2fcd21dcd22ae1d64b799c486a959aeee42fbb'
 
 # game API Key from your developer dashboard
-api_key = 'd6416b1e9be84c53b07524e37f94499d'
+API_KEY = 'd6416b1e9be84c53b07524e37f94499d'
 
 # Include the user_token requesting the jackpot
 headers = {
-    'Authorization': 'Token ' + user_token + '::' + api_key
+    'Authorization': 'Token ' + USER_TOKEN + '::' + API_KEY
 }
-url = 'https://www.arbiter.me/api/v1/winner-take-all/create'
+url = 'https://www.arbiter.me/api/v1/tournament/create'
 payload = {
     'buy_in': 100  # Bet size in Arbiter Credits
 }
@@ -431,177 +420,172 @@ r.json()
 }
 ```
 
-### HTTP Request
+### Request URL
 
-`POST https://www.arbiter.me/api/v1/winner-take-all/create`
+`POST https://www.arbiter.me/api/v1/tournament/create`
 
 ### Request Parameters
 
 Key | Type | Description
 --- | --- | ---
-buy_in | integer | The buy in (aka bet size) in Arbiter credits for this jackpot.
+buy_in | integer | The buy in (aka bet size or entry fee) in Arbiter credits for this tournament.
 
-### Returns the jackpot's state
+### Returns the tournament's state
 
 Key | Type | Description
 ---- | ---- | ----
-id | string | Unique identifier for this jackpot.
-buy_in | string | The buy in (aka bet size) in Arbiter credits for this jackpot.
-balance | string | The current balance of this jackpot.
-bettors | array | The User IDs of users who have successfully placed a bet in this jackpot.
+id | string | Unique identifier for this tournament.
+buy_in | string | The buy in (aka bet size) in Arbiter credits for this tournament.
+balance | string | The current balance of this tournament.
+users | array | The User IDs of users who have successfully placed a bought in to this tournament.
 
-## Jackpot Details
+## Details
 
 ```python
 import requests
 
-# id and token returned from the user/initialize or user/login call
-# IMPORTANT: Keep your users' tokens private
-user_id = 'd8b50f95c8a24f24a7c64c9d3d5dde5f'
-user_token = '3d2fcd21dcd22ae1d64b799c486a959aeee42fbb'
+# Token is returned from the user/initialize or user/login call
+USER_TOKEN = '3d2fcd21dcd22ae1d64b799c486a959aeee42fbb'
 
 # game API Key from your developer dashboard
-api_key = 'd6416b1e9be84c53b07524e37f94499d'
+API_KEY = 'd6416b1e9be84c53b07524e37f94499d'
 
-# Include the user_token requesting the jackpot
+# Include the token of the User requesting the tournament
 headers = {
-    'Authorization': 'Token ' + user_token + '::' + api_key
+    'Authorization': 'Token ' + USER_TOKEN + '::' + API_KEY
 }
-url = 'https://www.arbiter.me/api/v1/winner-take-all/<JACKPOT_ID>'
+url = 'https://www.arbiter.me/api/v1/tournemant/<TOURNAMENT_ID>'
 r = requests.post(url, headers=headers)
 
 r.json()
 {
     'success': True
-    'jackpot': {
+    'tournament': {
         'id': '7b62cac5dd164104955468ff80ee6d26'
         'buy_in': '100',
         'balance': '100',
-        'bettors': ['d8b50f95c8a24f24a7c64c9d3d5dde5f']
+        'users': ['d8b50f95c8a24f24a7c64c9d3d5dde5f']
     }
 }
 ```
 
-### HTTP Request
+### Request URL
 
-`GET https://www.arbiter.me/api/v1/winner-take-all/<JACKPOT_ID>`
+`GET https://www.arbiter.me/api/v1/tournament/<TOURNAMENT_ID>`
 
-### Returns the jackpot's state
+### Returns the tournaments's state
 
 Key | Type | Description
 ---- | ---- | ----
-id | string | Unique identifier for this jackpot.
-buy_in | string | The buy in (aka bet size) in Arbiter credits for this jackpot.
-balance | string | The current balance of this jackpot.
-bettors | array | The User IDs of users who have successfully placed a bet in this jackpot.
+id | string | Unique identifier for this tournament.
+buy_in | string | The buy in (aka bet size) in Arbiter credits for this tournament.
+balance | string | The current balance of this tournament.
+bettors | array | The User IDs of users who have successfully placed a bet in this tournament.
 
 ## Add User
 
-> Before adding a user, create a jackpot using the Jackpot Create API and save the Jackpot ID
+> Before adding a user, create a tournament using the Tournament Create API and save the tournament's ID
 
 ```python
 import requests
 
-# id and token returned from the user/initialize or user/login call
-# IMPORTANT: Keep your users' tokens private
-user_id = 'efc4654a2b9844589a8d77d09628afbf'
-user_token = '3d2fcd21dcd22ae1d64b799c486a959aeee42fbb'
+# The user's token is returned from the user/initialize or user/login call
+USER_TOKEN = '3d2fcd21dcd22ae1d64b799c486a959aeee42fbb'
 
 # game API Key from your developer dashboard
-api_key = 'd6416b1e9be84c53b07524e37f94499d'
+API_KEY = 'd6416b1e9be84c53b07524e37f94499d'
 
 # Include the user_token requesting the jackpot
 headers = {
-    'Authorization': 'Token ' + user_token + '::' + api_key
+    'Authorization': 'Token ' + USER_TOKEN + '::' + API_KEY
 }
-url = 'https://www.arbiter.me/api/v1/winner-take-all/<JACKPOT_ID>/add-user/' + user_id
+url = 'https://www.arbiter.me/api/v1/tournament/<TOURNAMENT_ID>/add-user/<USER_ID>'
 r = requests.post(url, headers=headers)
 
 r.json()
 {
     'success': True
-    'jackpot': {
+    'tournament': {
         'id': '7b62cac5dd164104955468ff80ee6d26'
         'buy_in': '100',
         'balance': '200',
-        'bettors': ['d8b50f95c8a24f24a7c64c9d3d5dde5f', 'efc4654a2b9844589a8d77d09628afbf'],
+        'users': ['d8b50f95c8a24f24a7c64c9d3d5dde5f', 'efc4654a2b9844589a8d77d09628afbf'],
     }
 }
 ```
 
-Transfers the Jackpot's buy_in amount from the specified user's wallet to the specified jackpot. If no errors occur, then the user will be added to the `bettors` array and the `jackpot.balance` will be updated.
+Transfers the tournament's buy_in amount from the specified user's wallet to the specified tournament. If no errors occur, then the user will be added to the `users` array and the `tournament.balance` will be updated.
 
-### HTTP Request
+### Request URL
 
-`POST https://www.arbiter.me/api/v1/winner-take-all/<JACKPOT_ID>/add-user/<USER_ID>`
+`POST https://www.arbiter.me/api/v1/tournament/<TOURNAMENT_ID>/add-user/<USER_ID>`
 
 ### Returns the Jackpot State
 
 Key | Type | Description
 --- | --- | ---
-id | string | Unique identifier for this jackpot.
-buy_in | string | The buy in (aka bet size) in Arbiter credits for this jackpot.
-balance | string | The current balance of this jackpot.
-bettors | array | The User IDs of users who have successfully placed a bet in this jackpot.
+id | string | Unique identifier for this tournament.
+buy_in | string | The buy in (aka bet size) in Arbiter credits for this tournament.
+balance | string | The current balance of this tournament.
+users | array | The user IDs of users who have successfully placed a bought in to this tournament.
 
 ## Report Score
 
-> Before reporting a score, create a jackpot using the Jackpot Create API add the user using the Add User API
+> Before reporting a score, create a tournament using the Tournament Create API add users to the tournament using the Add User API
 
 ```python
 import requests
 
-# id and token returned from the user/initialize or user/login call
+# User tokens are returned in the user/initialize or user/login call
 # IMPORTANT: Keep your users' tokens private
-user_id = 'efc4654a2b9844589a8d77d09628afbf'
-user_token = '3d2fcd21dcd22ae1d64b799c486a959aeee42fbb'
+USER_TOKEN = '3d2fcd21dcd22ae1d64b799c486a959aeee42fbb'
 
 # game API Key from your developer dashboard
-api_key = 'd6416b1e9be84c53b07524e37f94499d'
+API_KEY = 'd6416b1e9be84c53b07524e37f94499d'
 
-# Include the user_token requesting the jackpot
+# Include the user_token requesting the tournament
 headers = {
-    'Authorization': 'Token ' + user_token + '::' + api_key
+    'Authorization': 'Token ' + USER_TOKEN + '::' + API_KEY
 }
-url = 'https://www.arbiter.me/api/v1/winner-take-all/<JACKPOT_ID>/report-score/' + user_id
+url = 'https://www.arbiter.me/api/v1/tournament/<TOURNAMENT_ID>/report-score/<USER_ID>'
 payload={
     'score': '101'
 }
 r = requests.post(url, data=payload, headers=headers)
 
-# If all users have reported a score, the jackpot will automatically payout
+# If all users have reported a score, the tournament will automatically payout
 r.json()
 {
     'success': True
-    'jackpot': {
+    'tournament': {
         'id': '7b62cac5dd164104955468ff80ee6d26'
         'buy_in': '100',
         'balance': '0',
-        'bettors': ['d8b50f95c8a24f24a7c64c9d3d5dde5f', 'efc4654a2b9844589a8d77d09628afbf'],
+        'users': ['d8b50f95c8a24f24a7c64c9d3d5dde5f', 'efc4654a2b9844589a8d77d09628afbf'],
     }
 }
 ```
 
-Once a user has finished playing your game, report their score to Arbiter. Once all the bettors have reported their scores, Arbiter will compare the scores set the winner to the user with the highest score. Once a winner has been set, Arbiter will automatically calculate the transaction fees and pay transfer the remainder of the jackpot balance to the winning user's wallet.
+Once a user has finished playing your game, report their score to Arbiter. Once all the users have reported their scores, Arbiter will compare the scores and set the winner to the user with the highest score. Once a winner has been set, Arbiter will automatically calculate the transaction fees and transfer the remainder of the tournament balance to the winning user's Arbiter wallet.
 
-### HTTP Request
+### Request URL
 
-`POST https://www.arbiter.me/api/v1/winner-take-all/<JACKPOT_ID>/report-score/<USER_ID>`
+`POST https://www.arbiter.me/api/v1/tournament/<TOURNAMENT_ID>/report-score/<USER_ID>`
 
 ### Request Parameters
 
 Key | Type | Description
 --- | --- | ---
-score | integer | The score of the user for this jackpot.
+score | integer | The score of the user for this tournament.
 
-### Returns the Jackpot State
+### Returns the tournament's State
 
 Key | Type | Description
 --- | --- | ---
-id | string | Unique identifier for this jackpot.
-buy_in | string | The buy in (aka bet size) in Arbiter credits for this jackpot.
-balance | string | The current balance of this jackpot. If all users have reported their score, this will be 0.
-bettors | array | The User IDs of users who have successfully placed a bet in this jackpot.
+id | string | Unique identifier for this tournament.
+buy_in | string | The buy in (aka bet size) in Arbiter credits for this tournament.
+balance | string | The current balance of this tournament. If all users have reported their score, this will be 0.
+users | array | The user IDs of users who have successfully bought in to this tournament.
 
 # Unity SDK
 
