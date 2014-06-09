@@ -59,6 +59,7 @@ Examples of Slate in the Wild
 * [ChaiOne Gameplan API docs](http://chaione.github.io/gameplanb2b/#introduction)
 * [Drcaban's Build a Quine tutorial](http://drcabana.github.io/build-a-quine/#introduction)
 * [PricePlow API docs](https://www.priceplow.com/api/documentation)
+* [Emerging Threats API docs](http://apidocs.emergingthreats.net/)
 
 (Feel free to add your site to this list in a pull request!)
 

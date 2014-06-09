@@ -71,18 +71,13 @@
     if (this.value) {
       sections.hide();
       // results are sorted by score in descending order
-      var tmpResults = index.search(this.value);
-      var results = [];
-
-      // remove low score matches
-      $.each(tmpResults, function (index, item) {
-        if (item.score >= 0.0001) results.push(item);
-      });
+      var results = index.search(this.value);
 
       if (results.length) {
-        lastRef = null;
         resetHeaderLocations();
+        var lastRef;
         $.each(results, function (index, item) {
+          if (item.score <= 0.0001) return; // remove low-score results
           var itemRef = item.ref;
           $('#section-' + itemRef).show();
           // headers must be repositioned in the DOM
