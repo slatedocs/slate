@@ -18,17 +18,55 @@ search: true
 
 Arbiter has 3 core classes that you will interact with as you develop your game. Before writing any code, spend 2 minutes getting familiar with these classes.
 
-### Jackpot
-
-Arbiter `Jackpots` are similar to a pot at a poker table. Your server will create a new jackpot for each betting interaction between the players in your game. Once a jackpot has been created, your players will have to opportunity to buy-in to the jackpot. After your players have finished battling it out in your game, your server will report who won. Arbiter will then charge the transacaction fee release the remaining funds in the jackpot to the winner.
-
 ### User
 
-Your players' devices interact directly with our server. The first time a player's device connects with Arbiter, we create an anonymous `User` and return a unique ID for that user. This ID is what you will use to make requests on that user's behalf in the future from your server. By default, all users are playing anonymously. At any point, they can create login credentials for their account to log back in with those credentials using our Login API.
+```python
+# Example User
+'user': {
+    'id': 'd8b50f95c8a24f24a7c64c9d3d5dde5f',
+    'token': '3d2fcd21dcd22ae1d64b799c486a959aeee42fbb',
+    'claim_account_url': 'https://www.arbiter.me/api/v1/user/40628a4750f74b7a9e1827812e7af815/f80819ef573f699c2723b0c15f1c24bf704ae8a5ef5363083434831bed36c518',
+    'is_verified': false,
+    'username': 'anonymous'
+}
+```
+
+Your users' devices interact directly with our server. The first time a player's device connects with Arbiter, we create an anonymous `User` and return a unique ID for that user. This ID is what you will use to make requests on that user's behalf in the future from your server. By default, all users are playing anonymously. At any point, they can create login credentials for their account to log back in with those credentials using our Login API.
+
+
+<aside>
+    <strong>Who owns the user?</strong><br>
+    You still own your user. The first time a user loads your game with Arbiter installed, we return a unique ID and token for you to store in your user database. All future authentication between Arbiter and your user can be completed using this ID and token.
+</aside>
 
 ### Wallet
 
+```python
+# Example Wallet
+'wallet': {
+    'deposit_address': '1JbbREwe8Vb9DAVzB2zWtNYvKDYLyjyV3C',
+    'deposit_address_qr_code': 'https://chart.googleapis.com/chart?cht=qr&chl=bitcoin%3A1JbbREwe8Vb9DAVzB2zWtNYvKDYLyjyV3C&choe=UTF-8&chs=300x300',
+    'withdraw_address': null,
+    'balance': '50',
+    'pending_balance': '623'
+}
+```
+
 Each Arbiter `User` is given an Arbiter `Wallet`. This request will occur directly between your players' device and the Arbiter server. The user can then deposit to this wallet using a Credit Card, PayPal, or with Bitcoin. At any point, a user can make a withdraw from their Arbiter Wallet back to any Debit Card, PayPal account, or Bitcoin address.
+
+### Tournament
+
+```python
+# Example Tournament
+'tournament': {
+    'id': '7b62cac5dd164104955468ff80ee6d26'
+    'buy_in': '100',
+    'balance': '100',
+    'users': ['d8b50f95c8a24f24a7c64c9d3d5dde5f'],
+}
+```
+
+An Arbiter `Tournament` is similar to a pot at a poker table. Your server will create a new `Tournament` for each betting interaction between the players in your game. Once a `Tournament` has been created, your users will be able to buy-in to the `Tournament`. After your users have finished battling it out in your game, your server will report who won. Arbiter will then charge a transacaction fee (some for us, and some for you) and then release the remaining funds in the `Tournament` to the winning user's Arbiter `Wallet`.
 
 
 ## HTTP API Best Practices
@@ -128,6 +166,7 @@ Field  | Description
 --------- | -----------
 Name | A label for your game.
 Rake amount | The percentage of each player payout you want to charge. Valid range is 0 through 99. `payout = balance - your rake % - Arbiter fee (5%)`.
+Matchmaking | Will this game use Arbiter's Matchmaking service to find similar skilled challengers when a user requests a match?
 
 Once you have saved the configuration form, an API key will be generated for your game upon completing registration. Store this on your server for making authenticated calls. See TODO for more on how this key will be used.
 
