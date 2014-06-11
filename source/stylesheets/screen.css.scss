@@ -27,10 +27,10 @@ under the License.
 
 html, body {
   color: $main-text;
-  padding: 0;
-  margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  margin: 0;
   @extend %default-font;
   background-color: $main-bg;
   height: 100%;
@@ -151,10 +151,10 @@ html, body {
     // "Why not put the borders in the subheader?" you ask.
     // "Because then the animation isn't as smooth," I reply.
     &>li:first-child {
-      border-top: $nav-embossed-border-top;
+      
     }
     &>li:last-child {
-      border-bottom: $nav-embossed-border-bottom;
+      
       box-shadow: none; // otherwise it'll overflow out of the subheader
     }
   }
@@ -174,7 +174,7 @@ html, body {
     }
 
     li {
-      font-size: 0.8em;
+      font-size: 1em;
       line-height: 1.7;
       text-decoration: none;
     }
@@ -215,7 +215,7 @@ html, body {
     position: fixed;
     width: 100%;
     z-index: 50;
-    font-weight: bold;
+    
     background-color: $lang-select-bg;
     border-bottom: 5px solid $lang-select-active-bg;
     a {
@@ -268,7 +268,7 @@ html, body {
       padding: 0 $main-padding;
       @include box-sizing(border-box);
       display: block;
-      @include text-shadow($main-embossed-text-shadow);
+      
     }
 
     &>ul, &>ol {
@@ -282,7 +282,7 @@ html, body {
 
     h1 {
       @extend %header-font;
-      font-size: 30px;
+      font-size: 24px;
       padding-top: 0.5em;
       padding-bottom: 0.5em;
       border-bottom: 1px solid #ccc;
@@ -391,8 +391,7 @@ html, body {
 
     aside {
       padding-top: 1em;
-      padding-bottom: 1em;
-      text-shadow: 0 1px 0 lighten($aside-notice-bg, 15%);
+      padding-bottom: 1em;      
       margin-top: 1.5em;
       margin-bottom: 1.5em;
       background: $aside-notice-bg;
@@ -400,12 +399,10 @@ html, body {
 
       &.warning {
         background-color: $aside-warning-bg;
-        text-shadow: 0 1px 0 lighten($aside-warning-bg, 15%);
       }
 
       &.success {
         background-color: $aside-success-bg;
-        text-shadow: 0 1px 0 lighten($aside-success-bg, 15%);
       }
     }
 
@@ -455,8 +452,7 @@ html, body {
     float:right;
     clear:right;
 
-    @include box-sizing(border-box);
-    @include text-shadow(0px 1px 2px rgba(0,0,0,0.4));
+    @include box-sizing(border-box);    
 
     &>p { margin: 0; }
 

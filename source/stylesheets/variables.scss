@@ -33,10 +33,10 @@ $lang-select-border: #000;
 $lang-select-bg: #222;
 $lang-select-active-bg: $examples-bg; // feel free to change this to blue or something
 $lang-select-pressed-bg: #111; // color of language tab bg when mouse is pressed
-$main-bg: #eaf2f6;
-$aside-notice-bg: #8fbcd4;
-$aside-warning-bg: #c97a7e;
-$aside-success-bg: #6ac174;
+$main-bg: #ffffff;
+$aside-notice-bg: #aedfff;
+$aside-warning-bg: #ffcac5;
+$aside-success-bg: #a0ebdc;
 $search-notice-bg: #c97a7e;
 
 
@@ -65,18 +65,17 @@ $h1-margin-bottom: 21px; // padding under the largest header tags
 // FONTS
 ////////////////////
 %default-font {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 13px;
+  font-family: 'Arial', sans-serif;
+  font-size: 14px;
 }
 
 %header-font {
   @extend %default-font;
-  font-weight: bold;
 }
 
 %code-font {
   font-family: Monaco, "Courier New", monospace;
-  font-size: 12px;
+  font-size: 14px;
 }
 
 
@@ -84,9 +83,7 @@ $h1-margin-bottom: 21px; // padding under the largest header tags
 ////////////////////
 $nav-active-shadow: #000;
 $nav-footer-border-color: #666;
-$nav-embossed-border-top: 1px solid #000;
-$nav-embossed-border-bottom: 1px solid #404040;
-$main-embossed-text-shadow: 0px 1px 0px #fff;
+
 $search-box-border-color: #666;
 
 
@@ -106,3 +103,7 @@ $search-box-border-color: #666;
    -moz-hyphens: auto;
         hyphens: auto;
 }
+
+// VALIDATION STRINGS
+$email-length: - 10 to 65 characters long;
+$password-length: - 8 to 16 characters long;
