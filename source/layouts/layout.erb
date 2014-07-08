@@ -40,8 +40,11 @@ under the License.
       <%= image_tag "logo.png" %>
       <% if current_page.data.search %>
         <div class="search">
-          <input type="text" class="search" id="input-search">
-        </div>
+            <form>
+                <input type="text" class="search" required id="input-search">
+                <input type="reset" class="clear" value="X"></input>
+            </form>
+        </div>      
         <div class="search-info"></div>
       <% end %>
       <div id="toc">

@@ -66,18 +66,29 @@ html, body {
       border-color: $search-box-border-color;
       padding: 6px 0 6px 20px;
       @include box-sizing(border-box);
-      margin: 10px 15px;
+      margin: 10px 0px 10px 15px;
       width: $nav-width - 30;
       outline: none;
       color: $nav-text;
     }
 
-    &:before {
+    &>form:before {
       position: absolute;
       top: 17px;
       left: 15px;
       color: $nav-text;
       @extend %icon-search;
+    }
+     
+    .clear{
+      margin-left: -30px;
+      background: transparent;
+      border: 0;
+      width: 30px;
+      height: 30px;
+    }
+    .search:not(:valid) ~ .clear {
+      display: none;
     }
   }
 
