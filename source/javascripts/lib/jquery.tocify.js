@@ -147,6 +147,7 @@
 
             var self = this;
 
+            self.tocifyWrapper = $('.tocify-wrapper');
             self.extendPageScroll = true;
 
             // Internal array that keeps track of all TOC items (Helps to recognize if there are duplicate TOC item strings)
@@ -680,9 +681,11 @@
                             self.calculateHeights();
                         }
 
+                        var scrollTop = $(window).scrollTop();
+
                         // Determines the index of the closest anchor
                         self.cachedAnchors.each(function(idx) {
-                            if (self.cachedHeights[idx] - $(window).scrollTop() < 0) {
+                            if (self.cachedHeights[idx] - scrollTop < 0) {
                                 closestAnchorIdx = idx;
                             } else {
                                 return false;
@@ -695,7 +698,7 @@
                         elem = $('li[data-unique="' + anchorText + '"]');
 
                         // If the `highlightOnScroll` option is true and a next element is found
-                        if(self.options.highlightOnScroll && elem.length) {
+                        if(self.options.highlightOnScroll && elem.length && !elem.hasClass(self.focusClass)) {
 
                             // Removes highlighting from all of the list item's
                             self.element.find("." + self.focusClass).removeClass(self.focusClass);
@@ -703,16 +706,32 @@
                             // Highlights the corresponding list item
                             elem.addClass(self.focusClass);
 
+                            // Scroll to highlighted element's header
+                            var tocifyWrapper = self.tocifyWrapper;
+                            var scrollToElem = $(elem).closest('.tocify-header');
+
+                            var elementOffset = scrollToElem.offset().top,
+                                wrapperOffset = tocifyWrapper.offset().top;
+                            var offset = elementOffset - wrapperOffset;
+
+                            if (offset >= $(window).height()) {
+                              var scrollPosition = offset + tocifyWrapper.scrollTop();
+                              tocifyWrapper.scrollTop(scrollPosition);
+                            } else if (offset < 0) {
+                              tocifyWrapper.scrollTop(0);
+                            }
                         }
 
                         if(self.options.scrollHistory) {
 
-                            if(window.location.hash !== "#" + anchorText) {
+                            // IF STATEMENT ADDED BY ROBERT
 
-                                if(history.replaceState) { 
+                            if(window.location.hash !== "#" + anchorText && anchorText !== undefined) {
+
+                                if(history.replaceState) {
                                     history.replaceState({}, "", "#" + anchorText);
                                 // provide a fallback
-                                } else { 
+                                } else {
                                     scrollV = document.body.scrollTop;
                                     scrollH = document.body.scrollLeft;
                                     location.hash = "#" + anchorText;

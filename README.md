@@ -1,7 +1,7 @@
 DevNet Slate
 ========
 
-DevNet Slate helps you create beautiful single-page API documentation. Think of it as an intelligent, modern documentation template for your API. This variation is based upon the Slate work done by Tripit which in turn was inspired by the API documentation by Stripe.
+DevNet Slate helps you create beautiful single-page API documentation. Think of it as an intelligent, responsive documentation template for your API. This variation is based upon the Slate work done by Tripit which in turn was inspired by the API documentation by Stripe.
 
 ![Sample Screenshot of Format](https://rawgithub.com/pnerger/DevNetSlate/DevNet-Slate/source/images/DevNetSlate.png)
 
@@ -12,7 +12,7 @@ Features
 
 * **Clean, intuitive design** — with DevNet Slate, the description of your API is on the left side of your documentation, and all the code examples are on the right side. Inspired by [Stripe's](https://stripe.com/docs/api) API docs. In addition to the design you see on screen, DevNet Slate comes with a print stylesheet, so your API docs look great on paper.
 
-* **Everything on a single page** — gone are the days where your users had to search through a million pages to find what they wanted. Slate puts the entire documentation on a single page. We haven't sacrificed linkability, though. As you scroll, your browser's hash will update to the nearest header, so it's insanely easy to link to a particular point in the documentation.
+* **Everything on a single page** — gone are the days where your users had to search through a million pages to find what they wanted. Slate puts the entire documentation on a single page. We haven't sacrificed linkability, though. As you scroll, your browser's hash will update to the nearest header, so linking to a particular point in the documentation is still natural and easy.
 
 * **Slate is just Markdown** — when you write docs with Slate, you're just writing Markdown, which makes it simple to edit and understand. Everything is written in Markdown — even the code samples are just Markdown code blocks!
 
@@ -48,6 +48,18 @@ Learn How to Create a DevNet Slate API Document
 ---------------------------------
 
 * [How to Document a DevNet API](http://rawgithub.com/pnerger/DevNetSlate/DevNet-Slate/build/index.html)
+
+Contributors
+--------------------
+
+Slate was built by [Robert Lord](http://lord.io) while at [TripIt](http://tripit.com).
+
+Thanks to the following people who have submitted major pull requests:
+
+- [@chrissrogers](https://github.com/chrissrogers)
+- [@bootstraponline](https://github.com/bootstraponline)
+
+Also, thanks to [Sauce Labs](http://saucelabs.com) for helping sponsor the project.
 
 Special Thanks
 --------------------

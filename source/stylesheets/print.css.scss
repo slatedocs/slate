@@ -28,7 +28,7 @@ body {
   @extend %default-font;
 }
 
-.tocify, .toc-footer {
+.tocify, .toc-footer, .lang-selector, .search, #nav-button {
   display: none;
 }
 

@@ -1,14 +1,12 @@
 (function (global) {
 
-  var toc;
+  var closeToc = function() {
+    $(".tocify-wrapper").removeClass('open');
+    $("#nav-button").removeClass('open');
+  };
 
-  global.toc = toc;
-
-  $(toc);
-  $(animate);
-
-  function toc () {
-    toc = $("#toc").tocify({
+  var makeToc = function() {
+    global.toc = $("#toc").tocify({
       selectors: 'h1, h2',
       extendPage: false,
       theme: 'none',
@@ -17,13 +15,22 @@
       hideEffectSpeed: 180,
       ignoreSelector: '.toc-ignore',
       highlightOffset: 60,
-      scrollTo: -2,
+      scrollTo: -1,
       scrollHistory: true,
       hashGenerator: function (text, element) {
         return element.prop('id');
       }
     }).data('toc-tocify');
-  }
+
+    $("#nav-button").click(function() {
+      $(".tocify-wrapper").toggleClass('open');
+      $("#nav-button").toggleClass('open');
+      return false;
+    });
+
+    $(".page-wrapper").click(closeToc);
+    $(".tocify-item").click(closeToc);
+  };
 
   // Hack to make already open sections to start opened,
   // instead of displaying an ugly animation
@@ -32,6 +39,9 @@
       toc.setOption('showEffectSpeed', 180);
     }, 50);
   }
+
+  $(makeToc);
+  $(animate);
 
 })(window);
 

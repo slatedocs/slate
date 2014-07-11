@@ -19,13 +19,18 @@ under the License.
   <head>
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title><%= current_page.data.title || "API Documentation" %></title>
 
 
     <%= stylesheet_link_tag :screen, media: :screen %>
     <%= stylesheet_link_tag :print, media: :print %>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <%= javascript_include_tag  "all" %>
+    <% if current_page.data.search %>
+      <%= javascript_include_tag  "all" %>
+    <% else %>
+      <%= javascript_include_tag  "all_nosearch" %>
+    <% end %>
 
     <% if language_tabs %>
       <script>
@@ -37,13 +42,30 @@ under the License.
   </head>
 
   <body class="<%= page_classes %>">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <%= image_tag('navbar.png') %>
+      </span>
+    </a>
     <div class="tocify-wrapper">
       <%= image_tag "logo.png" %>
+      <% if language_tabs %>
+        <div class="lang-selector">
+          <% language_tabs.each do |lang| %>
+            <% if lang.is_a? Hash %>
+              <a href="#" data-language-name="<%= lang.keys.first %>"><%= lang.values.first %></a>
+            <% else %>
+              <a href="#" data-language-name="<%= lang %>"><%= lang %></a>
+            <% end %>
+          <% end %>
+        </div>
+      <% end %>
       <% if current_page.data.search %>
         <div class="search">
-          <input type="text" class="search" id="input-search">
+          <input type="text" class="search" id="input-search" placeholder="Search">
         </div>
-        <div class="search-info"></div>
+        <ul class="search-results"></ul>
       <% end %>
       <div id="toc">
       </div>
@@ -65,7 +87,7 @@ under the License.
       </div>
       <div class="dark-box">
         <% if language_tabs %>
-          <div id="lang-selector">
+          <div class="lang-selector">
             <% language_tabs.each do |lang| %>
               <% if lang.is_a? Hash %>
                 <a href="#" data-language-name="<%= lang.keys.first %>"><%= lang.values.first %></a>
