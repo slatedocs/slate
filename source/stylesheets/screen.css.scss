@@ -444,13 +444,14 @@ html, body {
       border-bottom: 1px solid #ccc;
     }
 
-//    tr:nth-child(odd)>td {
-//      background-color: lighten($main-bg,4.2%);
-//    }
+    tr:nth-child(odd)>td {
+      background-color: darken($main-bg,0%);
+    }
 
-//    tr:nth-child(even)>td {
-//      background-color: lighten($main-bg,2.4%);
-//    }
+    tr:nth-child(even)>td {
+      background-color: darken($main-bg,2.4%);
+    }
+      
   }
 
   dt {
@@ -555,6 +556,13 @@ html, body {
       text-decoration: none;
       border-bottom: dashed 1px #ccc;
     }
+    tr:nth-child(odd)>td {
+      background-color: lighten($code-bg,4.2%);
+    }
+
+    tr:nth-child(even)>td {
+      background-color: lighten($code-bg,2.4%);
+    }  
   }
 
   pre {
