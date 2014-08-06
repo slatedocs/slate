@@ -266,18 +266,23 @@ Make sure that you put the proper years that the document was created and update
 <h1 id='creating-a-table-of-contents'>Creating a Table of Contents</h1>
 <p>The Table of Contents (ToC) of a document is automatically generated from the Headers found in your GFM source document.  In GFM, headers are denoted using one or more <code class="prettyprint">#</code> characters. For DevNet Slate, only the first two levels of Headers will be written to the Table of Contents.  H1 Headers are found in the basic TOC while the H2 headers will pop up into the display when the user scrolls down to that area.</p>
 <h1 id='creating-the-body-of-the-api-reference'>Creating the Body of the API Reference</h1><h2 id='creating-headers'>Creating Headers</h2>
+<p>Headers are created by using one or more # characters starting in the first line of text within the GFM document. The sample to the right shows GFM that will result in a level 1, level 2, and level 3 headers.  Only the level 1 and level 2 headers will appear in the Table of Contents.  When you create sample code, it will anchor to a header.</p>
+
+<p>On the right are a list of headers in markdown and below is how they will appear in the document:</p>
+
 <blockquote>
 <p>Headings - Only H1 and H2 are shown in the TOC</p>
 </blockquote>
 <pre class="highlight markdown">
-<span class="gh"># The largest heading (an &lt;h1&gt; tag)</span>
-<span class="gu">## The second largest heading (an &lt;h2&gt; tag)</span>
-<span class="gu">### The third largest heading (an &lt;h3&gt; tag)</span>
+<span class="gh"># H1 Header</span>
+<span class="gu">## H2 Header</span>
+<span class="gu">### H3 Header</span>
+<span class="gu">#### H4 Header</span>
+<span class="gu">#### H5 Header</span>
+<span class="gu">#### H6 Header</span>
 
 </pre>
-
-<p>Headers are created by using one or more # characters starting in the first line of text within the GFM document. The sample to the right shows GFM that will result in a level 1, level 2, and level 3 headers.  Only the level 1 and level 2 headers will appear in the Table of Contents.  When you create sample code, it will only anchor to a level 1 or level 2 header.</p>
-
+<h1 id='h1-header'>H1 Header</h1><h2 id='h2-header'>H2 Header</h2><h3 id='h3-header'>H3 Header</h3><h4 id='h4-header'>H4 Header</h4><h4 id='h5-header'>H5 Header</h4><h4 id='h6-header'>H6 Header</h4>
 <p><aside class="notice">
 Remember that only level 1 and 2 headers will appear in the Table of Contents.
 </aside></p>
@@ -558,6 +563,1245 @@ to the right will create the list below:</p>
 </pre>
 
 <p>Code samples are an important way of communicating how to use an API.  DevNet Slate does an excellent job of handling code samples in multiple languages simultaneously through the use of the tabbed sample code panel on the right hand side.</p>
+<h2 id='inserting-large-code-samples'>Inserting Large Code Samples</h2>
+<blockquote>
+<p>Large Python Program</p>
+</blockquote>
+<pre class="highlight python">
+<span class="kn">import</span> <span class="nn">collections</span>
+<span class="kn">import</span> <span class="nn">itertools</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="kn">from</span> <span class="nn">bs4.dammit</span> <span class="kn">import</span> <span class="n">EntitySubstitution</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="nb">next</span>
+<span class="k">except</span> <span class="nb">NameError</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">bs4._compatibility</span> <span class="kn">import</span> <span class="n">next_function</span> <span class="k">as</span> <span class="nb">next</span>
+
+
+<span class="n">DEFAULT_OUTPUT_ENCODING</span> <span class="o">=</span> <span class="s">"utf-8"</span>
+<span class="n">PY3K</span> <span class="o">=</span> <span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">version_info</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="n">whitespace_re</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="nb">compile</span><span class="p">(</span><span class="s">"</span><span class="err">\</span><span class="s">s+"</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">_alias</span><span class="p">(</span><span class="n">attr</span><span class="p">):</span>
+    <span class="s">"""Alias one attribute name to another for backward compatibility"""</span>
+    <span class="k">def</span> <span class="nf">_get_alias</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_set_alias</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">)</span>
+
+    <span class="n">alias</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">_get_alias</span><span class="p">,</span> <span class="n">_set_alias</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">alias</span>
+
+
+<span class="k">class</span> <span class="nc">NamespacedAttribute</span><span class="p">(</span><span class="nb">unicode</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">__new__</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">prefix</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">namespace</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">name</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">obj</span> <span class="o">=</span> <span class="nb">unicode</span><span class="o">.</span><span class="n">__new__</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">prefix</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">obj</span> <span class="o">=</span> <span class="nb">unicode</span><span class="o">.</span><span class="n">__new__</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">prefix</span> <span class="o">+</span> <span class="s">":"</span> <span class="o">+</span> <span class="n">name</span><span class="p">)</span>
+        <span class="n">obj</span><span class="o">.</span><span class="n">prefix</span> <span class="o">=</span> <span class="n">prefix</span>
+        <span class="n">obj</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="n">obj</span><span class="o">.</span><span class="n">namespace</span> <span class="o">=</span> <span class="n">namespace</span>
+        <span class="k">return</span> <span class="n">obj</span>
+
+
+<span class="k">class</span> <span class="nc">PageElement</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="s">"""Contains the navigational information for some part of the page
+    (either a tag or a piece of text)"""</span>
+
+    <span class="c"># There are five possible values for the "formatter" argument passed in</span>
+    <span class="c"># to methods like encode() and prettify():</span>
+    <span class="c">#</span>
+    <span class="c"># "html" - All Unicode characters with corresponding HTML entities</span>
+    <span class="c">#   are converted to those entities on output.</span>
+    <span class="c"># "minimal" - Bare ampersands and angle brackets are converted to</span>
+    <span class="c">#   XML entities: &amp;amp; &amp;lt; &amp;gt;</span>
+    <span class="c"># None - The null formatter. Unicode characters are never</span>
+    <span class="c">#   converted to entities.  This is not recommended, but it's</span>
+    <span class="c">#   faster than "minimal".</span>
+    <span class="c"># A function - This function will be called on every string that</span>
+    <span class="c">#  needs to undergo entity substition</span>
+    <span class="n">FORMATTERS</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s">"html"</span> <span class="p">:</span> <span class="n">EntitySubstitution</span><span class="o">.</span><span class="n">substitute_html</span><span class="p">,</span>
+        <span class="s">"minimal"</span> <span class="p">:</span> <span class="n">EntitySubstitution</span><span class="o">.</span><span class="n">substitute_xml</span><span class="p">,</span>
+        <span class="bp">None</span> <span class="p">:</span> <span class="bp">None</span>
+        <span class="p">}</span>
+
+    <span class="k">def</span> <span class="nf">setup</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">previous_element</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="s">"""Sets up the initial relations between this element and
+        other elements."""</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">parent</span> <span class="o">=</span> <span class="n">parent</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">previous_element</span> <span class="o">=</span> <span class="n">previous_element</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">next_element</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">previous_sibling</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">next_sibling</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">contents</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">previous_sibling</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">contents</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">previous_sibling</span><span class="o">.</span><span class="n">next_sibling</span> <span class="o">=</span> <span class="bp">self</span>
+
+    <span class="n">nextSibling</span> <span class="o">=</span> <span class="n">_alias</span><span class="p">(</span><span class="s">"next_sibling"</span><span class="p">)</span>  <span class="c"># BS3</span>
+    <span class="n">previousSibling</span> <span class="o">=</span> <span class="n">_alias</span><span class="p">(</span><span class="s">"previous_sibling"</span><span class="p">)</span>  <span class="c"># BS3</span>
+
+    <span class="k">def</span> <span class="nf">replace_with</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">replace_with</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">replace_with</span> <span class="ow">is</span> <span class="bp">self</span><span class="p">:</span>
+            <span class="k">return</span>
+        <span class="k">if</span> <span class="n">replace_with</span> <span class="ow">is</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="nb">ValueError</span><span class="p">(</span><span class="s">"Cannot replace a Tag with its parent."</span><span class="p">)</span>
+        <span class="n">old_parent</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span>
+        <span class="n">my_index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nb">hasattr</span><span class="p">(</span><span class="n">replace_with</span><span class="p">,</span> <span class="s">'parent'</span><span class="p">)</span>
+            <span class="ow">and</span> <span class="n">replace_with</span><span class="o">.</span><span class="n">parent</span> <span class="ow">is</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="p">):</span>
+            <span class="c"># We're replacing this element with one of its siblings.</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">replace_with</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">my_index</span><span class="p">:</span>
+                <span class="c"># Furthermore, it comes before this element. That</span>
+                <span class="c"># means that when we extract it, the index of this</span>
+                <span class="c"># element will change.</span>
+                <span class="n">my_index</span> <span class="o">-=</span> <span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">extract</span><span class="p">()</span>
+        <span class="n">old_parent</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">my_index</span><span class="p">,</span> <span class="n">replace_with</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span>
+    <span class="n">replaceWith</span> <span class="o">=</span> <span class="n">replace_with</span>  <span class="c"># BS3</span>
+
+    <span class="k">def</span> <span class="nf">replace_with_children</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">my_parent</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span>
+        <span class="n">my_index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">extract</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="nb">reversed</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">contents</span><span class="p">[:]):</span>
+            <span class="n">my_parent</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">my_index</span><span class="p">,</span> <span class="n">child</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span>
+    <span class="n">replaceWithChildren</span> <span class="o">=</span> <span class="n">replace_with_children</span>  <span class="c"># BS3</span>
+
+    <span class="k">def</span> <span class="nf">extract</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="s">"""Destructively rips this element out of the tree."""</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">contents</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="bp">self</span><span class="p">)]</span>
+
+        <span class="c">#Find the two elements that would be next to each other if</span>
+        <span class="c">#this element (and any children) hadn't been parsed. Connect</span>
+        <span class="c">#the two.</span>
+        <span class="n">last_child</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_last_descendant</span><span class="p">()</span>
+        <span class="n">next_element</span> <span class="o">=</span> <span class="n">last_child</span><span class="o">.</span><span class="n">next_element</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">previous_element</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">previous_element</span><span class="o">.</span><span class="n">next_element</span> <span class="o">=</span> <span class="n">next_element</span>
+        <span class="k">if</span> <span class="n">next_element</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">next_element</span><span class="o">.</span><span class="n">previous_element</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">previous_element</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">previous_element</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="n">last_child</span><span class="o">.</span><span class="n">next_element</span> <span class="o">=</span> <span class="bp">None</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">parent</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">previous_sibling</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">previous_sibling</span><span class="o">.</span><span class="n">next_sibling</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">next_sibling</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">next_sibling</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">next_sibling</span><span class="o">.</span><span class="n">previous_sibling</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">previous_sibling</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">previous_sibling</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">next_sibling</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="k">return</span> <span class="bp">self</span>
+
+    <span class="k">def</span> <span class="nf">_last_descendant</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="s">"Finds the last element beneath this object to be parsed."</span>
+        <span class="n">last_child</span> <span class="o">=</span> <span class="bp">self</span>
+        <span class="k">while</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">last_child</span><span class="p">,</span> <span class="s">'contents'</span><span class="p">)</span> <span class="ow">and</span> <span class="n">last_child</span><span class="o">.</span><span class="n">contents</span><span class="p">:</span>
+            <span class="n">last_child</span> <span class="o">=</span> <span class="n">last_child</span><span class="o">.</span><span class="n">contents</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">last_child</span>
+    <span class="c"># BS3: Not part of the API!</span>
+    <span class="n">_lastRecursiveChild</span> <span class="o">=</span> <span class="n">_last_descendant</span>
+
+    <span class="k">def</span> <span class="nf">insert</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">position</span><span class="p">,</span> <span class="n">new_child</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">new_child</span> <span class="ow">is</span> <span class="bp">self</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="nb">ValueError</span><span class="p">(</span><span class="s">"Cannot insert a tag into itself."</span><span class="p">)</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">new_child</span><span class="p">,</span> <span class="nb">basestring</span><span class="p">)</span>
+            <span class="ow">and</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">new_child</span><span class="p">,</span> <span class="n">NavigableString</span><span class="p">)):</span>
+            <span class="n">new_child</span> <span class="o">=</span> <span class="n">NavigableString</span><span class="p">(</span><span class="n">new_child</span><span class="p">)</span>
+
+        <span class="n">position</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">position</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">contents</span><span class="p">))</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">new_child</span><span class="p">,</span> <span class="s">'parent'</span><span class="p">)</span> <span class="ow">and</span> <span class="n">new_child</span><span class="o">.</span><span class="n">parent</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="c"># We're 'inserting' an element that's already one</span>
+            <span class="c"># of this object's children.</span>
+            <span class="k">if</span> <span class="n">new_child</span><span class="o">.</span><span class="n">parent</span> <span class="ow">is</span> <span class="bp">self</span><span class="p">:</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">new_child</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">position</span><span class="p">:</span>
+                    <span class="c"># Furthermore we're moving it further down the</span>
+                    <span class="c"># list of this object's children. That means that</span>
+                    <span class="c"># when we extract this element, our target index</span>
+                    <span class="c"># will jump down one.</span>
+                    <span class="n">position</span> <span class="o">-=</span> <span class="mi">1</span>
+            <span class="n">new_child</span><span class="o">.</span><span class="n">extract</span><span class="p">()</span>
+
+        <span class="n">new_child</span><span class="o">.</span><span class="n">parent</span> <span class="o">=</span> <span class="bp">self</span>
+        <span class="n">previous_child</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="k">if</span> <span class="n">position</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">new_child</span><span class="o">.</span><span class="n">previous_sibling</span> <span class="o">=</span> <span class="bp">None</span>
+            <span class="n">new_child</span><span class="o">.</span><span class="n">previous_element</span> <span class="o">=</span> <span class="bp">self</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">previous_child</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">contents</span><span class="p">[</span><span class="n">position</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
+            <span class="n">new_child</span><span class="o">.</span><span class="n">previous_sibling</span> <span class="o">=</span> <span class="n">previous_child</span>
+            <span class="n">new_child</span><span class="o">.</span><span class="n">previous_sibling</span><span class="o">.</span><span class="n">next_sibling</span> <span class="o">=</span> <span class="n">new_child</span>
+            <span class="n">new_child</span><span class="o">.</span><span class="n">previous_element</span> <span class="o">=</span> <span class="n">previous_child</span><span class="o">.</span><span class="n">_last_descendant</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">new_child</span><span class="o">.</span><span class="n">previous_element</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">new_child</span><span class="o">.</span><span class="n">previous_element</span><span class="o">.</span><span class="n">next_element</span> <span class="o">=</span> <span class="n">new_child</span>
+
+        <span class="n">new_childs_last_element</span> <span class="o">=</span> <span class="n">new_child</span><span class="o">.</span><span class="n">_last_descendant</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="n">position</span> <span class="o">&gt;=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">contents</span><span class="p">):</span>
+            <span class="n">new_child</span><span class="o">.</span><span class="n">next_sibling</span> <span class="o">=</span> <span class="bp">None</span>
+
+            <span class="n">parent</span> <span class="o">=</span> <span class="bp">self</span>
+            <span class="n">parents_next_sibling</span> <span class="o">=</span> <span class="bp">None</span>
+            <span class="k">while</span> <span class="n">parents_next_sibling</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="n">parent</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="n">parents_next_sibling</span> <span class="o">=</span> <span class="n">parent</span><span class="o">.</span><span class="n">next_sibling</span>
+                <span class="n">parent</span> <span class="o">=</span> <span class="n">parent</span><span class="o">.</span><span class="n">parent</span>
+                <span class="k">if</span> <span class="n">parents_next_sibling</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+                    <span class="c"># We found the element that comes next in the document.</span>
+                    <span class="k">break</span>
+            <span class="k">if</span> <span class="n">parents_next_sibling</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="n">new_childs_last_element</span><span class="o">.</span><span class="n">next_element</span> <span class="o">=</span> <span class="n">parents_next_sibling</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c"># The last element of this tag is the last element in</span>
+                <span class="c"># the document.</span>
+                <span class="n">new_childs_last_element</span><span class="o">.</span><span class="n">next_element</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">next_child</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">contents</span><span class="p">[</span><span class="n">position</span><span class="p">]</span>
+            <span class="n">new_child</span><span class="o">.</span><span class="n">next_sibling</span> <span class="o">=</span> <span class="n">next_child</span>
+            <span class="k">if</span> <span class="n">new_child</span><span class="o">.</span><span class="n">next_sibling</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="n">new_child</span><span class="o">.</span><span class="n">next_sibling</span><span class="o">.</span><span class="n">previous_sibling</span> <span class="o">=</span> <span class="n">new_child</span>
+            <span class="n">new_childs_last_element</span><span class="o">.</span><span class="n">next_element</span> <span class="o">=</span> <span class="n">next_child</span>
+
+        <span class="k">if</span> <span class="n">new_childs_last_element</span><span class="o">.</span><span class="n">next_element</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">new_childs_last_element</span><span class="o">.</span><span class="n">next_element</span><span class="o">.</span><span class="n">previous_element</span> <span class="o">=</span> <span class="n">new_childs_last_element</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">contents</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">position</span><span class="p">,</span> <span class="n">new_child</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">append</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tag</span><span class="p">):</span>
+        <span class="s">"""Appends the given tag to the contents of this tag."""</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">contents</span><span class="p">),</span> <span class="n">tag</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">insert_before</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">predecessor</span><span class="p">):</span>
+        <span class="s">"""Makes the given element the immediate predecessor of this one.
+
+        The two elements will have the same parent, and the given element
+        will be immediately before this one.
+        """</span>
+        <span class="k">if</span> <span class="bp">self</span> <span class="ow">is</span> <span class="n">predecessor</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="nb">ValueError</span><span class="p">(</span><span class="s">"Can't insert an element before itself."</span><span class="p">)</span>
+        <span class="n">parent</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span>
+        <span class="k">if</span> <span class="n">parent</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="nb">ValueError</span><span class="p">(</span>
+                <span class="s">"Element has no parent, so 'before' has no meaning."</span><span class="p">)</span>
+        <span class="c"># Extract first so that the index won't be screwed up if they</span>
+        <span class="c"># are siblings.</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">predecessor</span><span class="p">,</span> <span class="n">PageElement</span><span class="p">):</span>
+            <span class="n">predecessor</span><span class="o">.</span><span class="n">extract</span><span class="p">()</span>
+        <span class="n">index</span> <span class="o">=</span> <span class="n">parent</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="n">parent</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">predecessor</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">insert_after</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">successor</span><span class="p">):</span>
+        <span class="s">"""Makes the given element the immediate successor of this one.
+
+        The two elements will have the same parent, and the given element
+        will be immediately after this one.
+        """</span>
+        <span class="k">if</span> <span class="bp">self</span> <span class="ow">is</span> <span class="n">successor</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="nb">ValueError</span><span class="p">(</span><span class="s">"Can't insert an element after itself."</span><span class="p">)</span>
+        <span class="n">parent</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span>
+        <span class="k">if</span> <span class="n">parent</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="nb">ValueError</span><span class="p">(</span>
+                <span class="s">"Element has no parent, so 'after' has no meaning."</span><span class="p">)</span>
+        <span class="c"># Extract first so that the index won't be screwed up if they</span>
+        <span class="c"># are siblings.</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">successor</span><span class="p">,</span> <span class="n">PageElement</span><span class="p">):</span>
+            <span class="n">successor</span><span class="o">.</span><span class="n">extract</span><span class="p">()</span>
+        <span class="n">index</span> <span class="o">=</span> <span class="n">parent</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="n">parent</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">index</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">successor</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">find_next</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">attrs</span><span class="o">=</span><span class="p">{},</span> <span class="n">text</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="s">"""Returns the first item that matches the given criteria and
+        appears after this Tag in the document."""</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_find_one</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">find_all_next</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">attrs</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="n">findNext</span> <span class="o">=</span> <span class="n">find_next</span>  <span class="c"># BS3</span>
+
+    <span class="k">def</span> <span class="nf">find_all_next</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">attrs</span><span class="o">=</span><span class="p">{},</span> <span class="n">text</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+                    <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="s">"""Returns all items that match the given criteria and appear
+        after this Tag in the document."""</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_find_all</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">attrs</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">limit</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">next_elements</span><span class="p">,</span>
+                             <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="n">findAllNext</span> <span class="o">=</span> <span class="n">find_all_next</span>  <span class="c"># BS3</span>
+
+    <span class="k">def</span> <span class="nf">find_next_sibling</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">attrs</span><span class="o">=</span><span class="p">{},</span> <span class="n">text</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="s">"""Returns the closest sibling to this Tag that matches the
+        given criteria and appears after this Tag in the document."""</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_find_one</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">find_next_siblings</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">attrs</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span>
+                             <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="n">findNextSibling</span> <span class="o">=</span> <span class="n">find_next_sibling</span>  <span class="c"># BS3</span>
+
+    <span class="k">def</span> <span class="nf">find_next_siblings</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">attrs</span><span class="o">=</span><span class="p">{},</span> <span class="n">text</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+                           <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="s">"""Returns the siblings of this Tag that match the given
+        criteria and appear after this Tag in the document."""</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_find_all</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">attrs</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">limit</span><span class="p">,</span>
+                              <span class="bp">self</span><span class="o">.</span><span class="n">next_siblings</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="n">findNextSiblings</span> <span class="o">=</span> <span class="n">find_next_siblings</span>   <span class="c"># BS3</span>
+    <span class="n">fetchNextSiblings</span> <span class="o">=</span> <span class="n">find_next_siblings</span>  <span class="c"># BS2</span>
+
+    <span class="k">def</span> <span class="nf">find_previous</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">attrs</span><span class="o">=</span><span class="p">{},</span> <span class="n">text</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="s">"""Returns the first item that matches the given criteria and
+        appears before this Tag in the document."""</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_find_one</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">find_all_previous</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">attrs</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="n">findPrevious</span> <span class="o">=</span> <span class="n">find_previous</span>  <span class="c"># BS3</span>
+
+    <span class="k">def</span> <span class="nf">find_all_previous</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">attrs</span><span class="o">=</span><span class="p">{},</span> <span class="n">text</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+                        <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="s">"""Returns all items that match the given criteria and appear
+        before this Tag in the document."""</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_find_all</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">attrs</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">limit</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">previous_elements</span><span class="p">,</span>
+                           <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="n">findAllPrevious</span> <span class="o">=</span> <span class="n">find_all_previous</span>  <span class="c"># BS3</span>
+    <span class="n">fetchPrevious</span> <span class="o">=</span> <span class="n">find_all_previous</span>    <span class="c"># BS2</span>
+
+    <span class="k">def</span> <span class="nf">find_previous_sibling</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">attrs</span><span class="o">=</span><span class="p">{},</span> <span class="n">text</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="s">"""Returns the closest sibling to this Tag that matches the
+        given criteria and appears before this Tag in the document."""</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_find_one</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">find_previous_siblings</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">attrs</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span>
+                             <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="n">findPreviousSibling</span> <span class="o">=</span> <span class="n">find_previous_sibling</span>  <span class="c"># BS3</span>
+
+    <span class="k">def</span> <span class="nf">find_previous_siblings</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">attrs</span><span class="o">=</span><span class="p">{},</span> <span class="n">text</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+                               <span class="n">limit</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="s">"""Returns the siblings of this Tag that match the given
+        criteria and appear before this Tag in the document."""</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_find_all</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">attrs</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">limit</span><span class="p">,</span>
+                              <span class="bp">self</span><span class="o">.</span><span class="n">previous_siblings</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="n">findPreviousSiblings</span> <span class="o">=</span> <span class="n">find_previous_siblings</span>   <span class="c"># BS3</span>
+    <span class="n">fetchPreviousSiblings</span> <span class="o">=</span> <span class="n">find_previous_siblings</span>  <span class="c"># BS2</span>
+
+    <span class="k">def</span> <span class="nf">find_parent</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">attrs</span><span class="o">=</span><span class="p">{},</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="s">"""Returns the closest parent of this Tag that matches the given
+        criteria."""</span>
+        <span class="c"># NOTE: We can't use _find_one because findParents takes a different</span>
+        <span class="c"># set of arguments.</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="n">l</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">find_parents</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">attrs</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">l</span><span class="p">:</span>
+            <span class="n">r</span> <span class="o">=</span> <span class="n">l</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">r</span>
+    <span class="n">findParent</span> <span class="o">=</span> <span class="n">find_parent</span>  <span class="c"># BS3</span>
+
+    <span class="k">def</span> <span class="nf">find_parents</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">attrs</span><span class="o">=</span><span class="p">{},</span> <span class="n">limit</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="s">"""Returns the parents of this Tag that match the given
+        criteria."""</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_find_all</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">attrs</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="n">limit</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">parents</span><span class="p">,</span>
+                             <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="n">findParents</span> <span class="o">=</span> <span class="n">find_parents</span>   <span class="c"># BS3</span>
+    <span class="n">fetchParents</span> <span class="o">=</span> <span class="n">find_parents</span>  <span class="c"># BS2</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">next</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">next_element</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">previous</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">previous_element</span>
+
+    <span class="c">#These methods do the real heavy lifting.</span>
+
+    <span class="k">def</span> <span class="nf">_find_one</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">method</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">attrs</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="n">l</span> <span class="o">=</span> <span class="n">method</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">attrs</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">l</span><span class="p">:</span>
+            <span class="n">r</span> <span class="o">=</span> <span class="n">l</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">r</span>
+
+    <span class="k">def</span> <span class="nf">_find_all</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">attrs</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">limit</span><span class="p">,</span> <span class="n">generator</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="s">"Iterates over a generator looking for things that match."</span>
+
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">SoupStrainer</span><span class="p">):</span>
+            <span class="n">strainer</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="k">elif</span> <span class="n">text</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">limit</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">attrs</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">kwargs</span><span class="p">:</span>
+            <span class="c"># Optimization to find all tags.</span>
+            <span class="k">if</span> <span class="n">name</span> <span class="ow">is</span> <span class="bp">True</span> <span class="ow">or</span> <span class="n">name</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="k">return</span> <span class="p">[</span><span class="n">element</span> <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">generator</span>
+                        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">element</span><span class="p">,</span> <span class="n">Tag</span><span class="p">)]</span>
+            <span class="c"># Optimization to find all tags with a given name.</span>
+            <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="nb">basestring</span><span class="p">):</span>
+                <span class="k">return</span> <span class="p">[</span><span class="n">element</span> <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">generator</span>
+                        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">element</span><span class="p">,</span> <span class="n">Tag</span><span class="p">)</span> <span class="ow">and</span> <span class="n">element</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="n">name</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">strainer</span> <span class="o">=</span> <span class="n">SoupStrainer</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">attrs</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c"># Build a SoupStrainer</span>
+            <span class="n">strainer</span> <span class="o">=</span> <span class="n">SoupStrainer</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">attrs</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="n">ResultSet</span><span class="p">(</span><span class="n">strainer</span><span class="p">)</span>
+        <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">i</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">generator</span><span class="p">)</span>
+            <span class="k">except</span> <span class="nb">StopIteration</span><span class="p">:</span>
+                <span class="k">break</span>
+            <span class="k">if</span> <span class="n">i</span><span class="p">:</span>
+                <span class="n">found</span> <span class="o">=</span> <span class="n">strainer</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">found</span><span class="p">:</span>
+                    <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">found</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">limit</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">results</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">limit</span><span class="p">:</span>
+                        <span class="k">break</span>
+        <span class="k">return</span> <span class="n">results</span>
+
+    <span class="c">#These generators can be used to navigate starting from both</span>
+    <span class="c">#NavigableStrings and Tags.</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">next_elements</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">next_element</span>
+        <span class="k">while</span> <span class="n">i</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">yield</span> <span class="n">i</span>
+            <span class="n">i</span> <span class="o">=</span> <span class="n">i</span><span class="o">.</span><span class="n">next_element</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">next_siblings</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">next_sibling</span>
+        <span class="k">while</span> <span class="n">i</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">yield</span> <span class="n">i</span>
+            <span class="n">i</span> <span class="o">=</span> <span class="n">i</span><span class="o">.</span><span class="n">next_sibling</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">previous_elements</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">previous_element</span>
+        <span class="k">while</span> <span class="n">i</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">yield</span> <span class="n">i</span>
+            <span class="n">i</span> <span class="o">=</span> <span class="n">i</span><span class="o">.</span><span class="n">previous_element</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">previous_siblings</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">previous_sibling</span>
+        <span class="k">while</span> <span class="n">i</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">yield</span> <span class="n">i</span>
+            <span class="n">i</span> <span class="o">=</span> <span class="n">i</span><span class="o">.</span><span class="n">previous_sibling</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">parents</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span>
+        <span class="k">while</span> <span class="n">i</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">yield</span> <span class="n">i</span>
+            <span class="n">i</span> <span class="o">=</span> <span class="n">i</span><span class="o">.</span><span class="n">parent</span>
+
+    <span class="c"># Methods for supporting CSS selectors.</span>
+
+    <span class="n">tag_name_re</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="nb">compile</span><span class="p">(</span><span class="s">'^[a-z0-9]+$'</span><span class="p">)</span>
+
+    <span class="c"># /^(\w+)\[(\w+)([=~\|\^\$\*]?)=?"?([^\]"]*)"?\]$/</span>
+    <span class="c">#   \---/  \---/\-------------/    \-------/</span>
+    <span class="c">#     |      |         |               |</span>
+    <span class="c">#     |      |         |           The value</span>
+    <span class="c">#     |      |    ~,|,^,$,* or =</span>
+    <span class="c">#     |   Attribute</span>
+    <span class="c">#    Tag</span>
+    <span class="n">attribselect_re</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="nb">compile</span><span class="p">(</span>
+        <span class="s">r'^(?P&lt;tag&gt;</span><span class="err">\</span><span class="s">w+)?</span><span class="err">\</span><span class="s">[(?P&lt;attribute&gt;</span><span class="err">\</span><span class="s">w+)(?P&lt;operator&gt;[=~</span><span class="err">\</span><span class="s">|</span><span class="err">\</span><span class="s">^</span><span class="err">\</span><span class="s">$</span><span class="err">\</span><span class="s">*]?)'</span> <span class="o">+</span>
+        <span class="s">r'=?"?(?P&lt;value&gt;[^</span><span class="err">\</span><span class="s">]"]*)"?</span><span class="err">\</span><span class="s">]$'</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_attr_value_as_string</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="s">"""Force an attribute value into a string representation.
+
+        A multi-valued attribute will be converted into a
+        space-separated stirng.
+        """</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">default</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">):</span>
+            <span class="n">value</span> <span class="o">=</span><span class="s">" "</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">value</span>
+
+    <span class="k">def</span> <span class="nf">_attribute_checker</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">operator</span><span class="p">,</span> <span class="n">attribute</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="s">''</span><span class="p">):</span>
+        <span class="s">"""Create a function that performs a CSS selector operation.
+
+        Takes an operator, attribute and optional value. Returns a
+        function that will return True for elements that match that
+        combination.
+        """</span>
+        <span class="k">if</span> <span class="n">operator</span> <span class="o">==</span> <span class="s">'='</span><span class="p">:</span>
+            <span class="c"># string representation of `attribute` is equal to `value`</span>
+            <span class="k">return</span> <span class="k">lambda</span> <span class="n">el</span><span class="p">:</span> <span class="n">el</span><span class="o">.</span><span class="n">_attr_value_as_string</span><span class="p">(</span><span class="n">attribute</span><span class="p">)</span> <span class="o">==</span> <span class="n">value</span>
+        <span class="k">elif</span> <span class="n">operator</span> <span class="o">==</span> <span class="s">'~'</span><span class="p">:</span>
+            <span class="c"># space-separated list representation of `attribute`</span>
+            <span class="c"># contains `value`</span>
+            <span class="k">def</span> <span class="nf">_includes_value</span><span class="p">(</span><span class="n">element</span><span class="p">):</span>
+                <span class="n">attribute_value</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">attribute</span><span class="p">,</span> <span class="p">[])</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">attribute_value</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+                    <span class="n">attribute_value</span> <span class="o">=</span> <span class="n">attribute_value</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+                <span class="k">return</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">attribute_value</span>
+            <span class="k">return</span> <span class="n">_includes_value</span>
+        <span class="k">elif</span> <span class="n">operator</span> <span class="o">==</span> <span class="s">'^'</span><span class="p">:</span>
+            <span class="c"># string representation of `attribute` starts with `value`</span>
+            <span class="k">return</span> <span class="k">lambda</span> <span class="n">el</span><span class="p">:</span> <span class="n">el</span><span class="o">.</span><span class="n">_attr_value_as_string</span><span class="p">(</span>
+                <span class="n">attribute</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">operator</span> <span class="o">==</span> <span class="s">'$'</span><span class="p">:</span>
+            <span class="c"># string represenation of `attribute` ends with `value`</span>
+            <span class="k">return</span> <span class="k">lambda</span> <span class="n">el</span><span class="p">:</span> <span class="n">el</span><span class="o">.</span><span class="n">_attr_value_as_string</span><span class="p">(</span>
+                <span class="n">attribute</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">operator</span> <span class="o">==</span> <span class="s">'*'</span><span class="p">:</span>
+            <span class="c"># string representation of `attribute` contains `value`</span>
+            <span class="k">return</span> <span class="k">lambda</span> <span class="n">el</span><span class="p">:</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">el</span><span class="o">.</span><span class="n">_attr_value_as_string</span><span class="p">(</span><span class="n">attribute</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">operator</span> <span class="o">==</span> <span class="s">'|'</span><span class="p">:</span>
+            <span class="c"># string representation of `attribute` is either exactly</span>
+            <span class="c"># `value` or starts with `value` and then a dash.</span>
+            <span class="k">def</span> <span class="nf">_is_or_starts_with_dash</span><span class="p">(</span><span class="n">element</span><span class="p">):</span>
+                <span class="n">attribute_value</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">_attr_value_as_string</span><span class="p">(</span><span class="n">attribute</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
+                <span class="k">return</span> <span class="p">(</span><span class="n">attribute_value</span> <span class="o">==</span> <span class="n">value</span> <span class="ow">or</span> <span class="n">attribute_value</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span>
+                        <span class="n">value</span> <span class="o">+</span> <span class="s">'-'</span><span class="p">))</span>
+            <span class="k">return</span> <span class="n">_is_or_starts_with_dash</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="k">lambda</span> <span class="n">el</span><span class="p">:</span> <span class="n">el</span><span class="o">.</span><span class="n">has_attr</span><span class="p">(</span><span class="n">attribute</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">select</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">selector</span><span class="p">):</span>
+        <span class="s">"""Perform a CSS selection operation on the current element."""</span>
+        <span class="n">tokens</span> <span class="o">=</span> <span class="n">selector</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+        <span class="n">current_context</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">token</span> <span class="ow">in</span> <span class="n">tokens</span><span class="p">:</span>
+            <span class="n">m</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">attribselect_re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">token</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">m</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="c"># Attribute selector</span>
+                <span class="n">tag</span><span class="p">,</span> <span class="n">attribute</span><span class="p">,</span> <span class="n">operator</span><span class="p">,</span> <span class="n">value</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">groups</span><span class="p">()</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">tag</span><span class="p">:</span>
+                    <span class="n">tag</span> <span class="o">=</span> <span class="bp">True</span>
+                <span class="n">checker</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_attribute_checker</span><span class="p">(</span><span class="n">operator</span><span class="p">,</span> <span class="n">attribute</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+                <span class="n">found</span> <span class="o">=</span> <span class="p">[]</span>
+                <span class="k">for</span> <span class="n">context</span> <span class="ow">in</span> <span class="n">current_context</span><span class="p">:</span>
+                    <span class="n">found</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="n">el</span> <span class="k">for</span> <span class="n">el</span> <span class="ow">in</span> <span class="n">context</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="n">tag</span><span class="p">)</span> <span class="k">if</span> <span class="n">checker</span><span class="p">(</span><span class="n">el</span><span class="p">)])</span>
+                <span class="n">current_context</span> <span class="o">=</span> <span class="n">found</span>
+                <span class="k">continue</span>
+            <span class="k">if</span> <span class="s">'#'</span> <span class="ow">in</span> <span class="n">token</span><span class="p">:</span>
+                <span class="c"># ID selector</span>
+                <span class="n">tag</span><span class="p">,</span> <span class="nb">id</span> <span class="o">=</span> <span class="n">token</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">'#'</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">tag</span> <span class="o">==</span> <span class="s">""</span><span class="p">:</span>
+                    <span class="n">tag</span> <span class="o">=</span> <span class="bp">True</span>
+                <span class="n">el</span> <span class="o">=</span> <span class="n">current_context</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">tag</span><span class="p">,</span> <span class="p">{</span><span class="s">'id'</span><span class="p">:</span> <span class="nb">id</span><span class="p">})</span>
+                <span class="k">if</span> <span class="n">el</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="p">[]</span> <span class="c"># No match</span>
+                <span class="n">current_context</span> <span class="o">=</span> <span class="p">[</span><span class="n">el</span><span class="p">]</span>
+                <span class="k">continue</span>
+            <span class="k">if</span> <span class="s">'.'</span> <span class="ow">in</span> <span class="n">token</span><span class="p">:</span>
+                <span class="c"># Class selector</span>
+                <span class="n">tag</span><span class="p">,</span> <span class="n">klass</span> <span class="o">=</span> <span class="n">token</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">'.'</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">tag</span><span class="p">:</span>
+                    <span class="n">tag</span> <span class="o">=</span> <span class="bp">True</span>
+                <span class="n">found</span> <span class="o">=</span> <span class="p">[]</span>
+                <span class="k">for</span> <span class="n">context</span> <span class="ow">in</span> <span class="n">current_context</span><span class="p">:</span>
+                    <span class="n">found</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span>
+                        <span class="n">context</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span>
+                            <span class="n">tag</span><span class="p">,</span>
+                            <span class="p">{</span><span class="s">'class'</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">attr</span><span class="p">:</span> <span class="n">attr</span> <span class="ow">and</span> <span class="n">klass</span> <span class="ow">in</span> <span class="n">attr</span><span class="o">.</span><span class="n">split</span><span class="p">()}</span>
+                            <span class="p">)</span>
+                        <span class="p">)</span>
+                <span class="n">current_context</span> <span class="o">=</span> <span class="n">found</span>
+                <span class="k">continue</span>
+            <span class="k">if</span> <span class="n">token</span> <span class="o">==</span> <span class="s">'*'</span><span class="p">:</span>
+                <span class="c"># Star selector</span>
+                <span class="n">found</span> <span class="o">=</span> <span class="p">[]</span>
+                <span class="k">for</span> <span class="n">context</span> <span class="ow">in</span> <span class="n">current_context</span><span class="p">:</span>
+                    <span class="n">found</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">findAll</span><span class="p">(</span><span class="bp">True</span><span class="p">))</span>
+                <span class="n">current_context</span> <span class="o">=</span> <span class="n">found</span>
+                <span class="k">continue</span>
+            <span class="c"># Here we should just have a regular tag</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">tag_name_re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">token</span><span class="p">):</span>
+                <span class="k">return</span> <span class="p">[]</span>
+            <span class="n">found</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">context</span> <span class="ow">in</span> <span class="n">current_context</span><span class="p">:</span>
+                <span class="n">found</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">findAll</span><span class="p">(</span><span class="n">token</span><span class="p">))</span>
+            <span class="n">current_context</span> <span class="o">=</span> <span class="n">found</span>
+        <span class="k">return</span> <span class="n">current_context</span>
+
+    <span class="c"># Old non-property versions of the generators, for backwards</span>
+    <span class="c"># compatibility with BS3.</span>
+    <span class="k">def</span> <span class="nf">nextGenerator</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">next_elements</span>
+
+    <span class="k">def</span> <span class="nf">nextSiblingGenerator</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">next_siblings</span>
+
+    <span class="k">def</span> <span class="nf">previousGenerator</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">previous_elements</span>
+
+    <span class="k">def</span> <span class="nf">previousSiblingGenerator</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">previous_siblings</span>
+
+    <span class="k">def</span> <span class="nf">parentGenerator</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">parents</span>
+
+    <span class="c"># Utility methods</span>
+    <span class="k">def</span> <span class="nf">substitute_encoding</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="n">encoding</span> <span class="o">=</span> <span class="n">encoding</span> <span class="ow">or</span> <span class="s">"utf-8"</span>
+        <span class="k">return</span> <span class="nb">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">"</span><span class="si">%</span><span class="s">SOUP-ENCODING</span><span class="si">%</span><span class="s">"</span><span class="p">,</span> <span class="n">encoding</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">NavigableString</span><span class="p">(</span><span class="nb">unicode</span><span class="p">,</span> <span class="n">PageElement</span><span class="p">):</span>
+
+    <span class="n">PREFIX</span> <span class="o">=</span> <span class="s">''</span>
+    <span class="n">SUFFIX</span> <span class="o">=</span> <span class="s">''</span>
+
+    <span class="k">def</span> <span class="nf">__new__</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="s">"""Create a new NavigableString.
+
+        When unpickling a NavigableString, this method is called with
+        the string in DEFAULT_OUTPUT_ENCODING. That encoding needs to be
+        passed in to the superclass's __new__ or the superclass won't know
+        how to handle non-ASCII characters.
+        """</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">unicode</span><span class="p">):</span>
+            <span class="k">return</span> <span class="nb">unicode</span><span class="o">.</span><span class="n">__new__</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">unicode</span><span class="o">.</span><span class="n">__new__</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">DEFAULT_OUTPUT_ENCODING</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__getnewargs__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">(</span><span class="nb">unicode</span><span class="p">(</span><span class="bp">self</span><span class="p">),)</span>
+
+    <span class="k">def</span> <span class="nf">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">):</span>
+        <span class="s">"""text.string gives you text. This is for backwards
+        compatibility for Navigable*String, but for CData* it lets you
+        get the string without the CData wrapper."""</span>
+        <span class="k">if</span> <span class="n">attr</span> <span class="o">==</span> <span class="s">'string'</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="nb">AttributeError</span><span class="p">(</span>
+                <span class="s">"'</span><span class="si">%</span><span class="s">s' object has no attribute '</span><span class="si">%</span><span class="s">s'"</span> <span class="o">%</span> <span class="p">(</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">,</span> <span class="n">attr</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">output_ready</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">formatter</span><span class="o">=</span><span class="s">"minimal"</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">callable</span><span class="p">(</span><span class="n">formatter</span><span class="p">):</span>
+            <span class="n">formatter</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">FORMATTERS</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+                <span class="n">formatter</span><span class="p">,</span> <span class="n">EntitySubstitution</span><span class="o">.</span><span class="n">substitute_xml</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">formatter</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">output</span> <span class="o">=</span> <span class="bp">self</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">output</span> <span class="o">=</span> <span class="n">formatter</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">PREFIX</span> <span class="o">+</span> <span class="n">output</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">SUFFIX</span>
+
+
+<span class="k">class</span> <span class="nc">CData</span><span class="p">(</span><span class="n">NavigableString</span><span class="p">):</span>
+
+    <span class="n">PREFIX</span> <span class="o">=</span> <span class="s">u'&lt;![CDATA['</span>
+    <span class="n">SUFFIX</span> <span class="o">=</span> <span class="s">u']]&gt;'</span>
+
+
+<span class="k">class</span> <span class="nc">ProcessingInstruction</span><span class="p">(</span><span class="n">NavigableString</span><span class="p">):</span>
+
+    <span class="n">PREFIX</span> <span class="o">=</span> <span class="s">u'&lt;?'</span>
+    <span class="n">SUFFIX</span> <span class="o">=</span> <span class="s">u'?&gt;'</span>
+
+
+<span class="k">class</span> <span class="nc">Comment</span><span class="p">(</span><span class="n">NavigableString</span><span class="p">):</span>
+
+    <span class="n">PREFIX</span> <span class="o">=</span> <span class="s">u'&lt;!--'</span>
+    <span class="n">SUFFIX</span> <span class="o">=</span> <span class="s">u'--&gt;'</span>
+
+
+<span class="k">class</span> <span class="nc">Declaration</span><span class="p">(</span><span class="n">NavigableString</span><span class="p">):</span>
+    <span class="n">PREFIX</span> <span class="o">=</span> <span class="s">u'&lt;!'</span>
+    <span class="n">SUFFIX</span> <span class="o">=</span> <span class="s">u'!&gt;'</span>
+
+
+<span class="k">class</span> <span class="nc">Doctype</span><span class="p">(</span><span class="n">NavigableString</span><span class="p">):</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">for_name_and_ids</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">pub_id</span><span class="p">,</span> <span class="n">system_id</span><span class="p">):</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="k">if</span> <span class="n">pub_id</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">value</span> <span class="o">+=</span> <span class="s">' PUBLIC "</span><span class="si">%</span><span class="s">s"'</span> <span class="o">%</span> <span class="n">pub_id</span>
+            <span class="k">if</span> <span class="n">system_id</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="n">value</span> <span class="o">+=</span> <span class="s">' "</span><span class="si">%</span><span class="s">s"'</span> <span class="o">%</span> <span class="n">system_id</span>
+        <span class="k">elif</span> <span class="n">system_id</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">value</span> <span class="o">+=</span> <span class="s">' SYSTEM "</span><span class="si">%</span><span class="s">s"'</span> <span class="o">%</span> <span class="n">system_id</span>
+
+        <span class="k">return</span> <span class="n">Doctype</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+
+    <span class="n">PREFIX</span> <span class="o">=</span> <span class="s">u'&lt;!DOCTYPE '</span>
+    <span class="n">SUFFIX</span> <span class="o">=</span> <span class="s">u'&gt;</span><span class="se">\n</span><span class="s">'</span>
+
+
+<span class="k">class</span> <span class="nc">Tag</span><span class="p">(</span><span class="n">PageElement</span><span class="p">):</span>
+
+    <span class="s">"""Represents a found HTML tag with its attributes and contents."""</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parser</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">builder</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">namespace</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+                 <span class="n">prefix</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">attrs</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">previous</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="s">"Basic constructor."</span>
+
+        <span class="k">if</span> <span class="n">parser</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">parser_class</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c"># We don't actually store the parser object: that lets extracted</span>
+            <span class="c"># chunks be garbage-collected.</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">parser_class</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">__class__</span>
+        <span class="k">if</span> <span class="n">name</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="nb">ValueError</span><span class="p">(</span><span class="s">"No value provided for new tag's name."</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">namespace</span> <span class="o">=</span> <span class="n">namespace</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">prefix</span> <span class="o">=</span> <span class="n">prefix</span>
+        <span class="k">if</span> <span class="n">attrs</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">attrs</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">attrs</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">attrs</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">builder</span><span class="o">.</span><span class="n">cdata_list_attributes</span><span class="p">:</span>
+                <span class="n">universal</span> <span class="o">=</span> <span class="n">builder</span><span class="o">.</span><span class="n">cdata_list_attributes</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'*'</span><span class="p">,</span> <span class="p">[])</span>
+                <span class="n">tag_specific</span> <span class="o">=</span> <span class="n">builder</span><span class="o">.</span><span class="n">cdata_list_attributes</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">lower</span><span class="p">(),</span> <span class="p">[])</span>
+                <span class="k">for</span> <span class="n">cdata_list_attr</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">chain</span><span class="p">(</span><span class="n">universal</span><span class="p">,</span> <span class="n">tag_specific</span><span class="p">):</span>
+                    <span class="k">if</span> <span class="n">cdata_list_attr</span> <span class="ow">in</span> <span class="n">attrs</span><span class="p">:</span>
+                        <span class="c"># Basically, we have a "class" attribute whose</span>
+                        <span class="c"># value is a whitespace-separated list of CSS</span>
+                        <span class="c"># classes. Split it into a list.</span>
+                        <span class="n">value</span> <span class="o">=</span> <span class="n">attrs</span><span class="p">[</span><span class="n">cdata_list_attr</span><span class="p">]</span>
+                        <span class="n">values</span> <span class="o">=</span> <span class="n">whitespace_re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+                        <span class="n">attrs</span><span class="p">[</span><span class="n">cdata_list_attr</span><span class="p">]</span> <span class="o">=</span> <span class="n">values</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">attrs</span> <span class="o">=</span> <span class="n">attrs</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">contents</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setup</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="n">previous</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">hidden</span> <span class="o">=</span> <span class="bp">False</span>
+
+        <span class="c"># Set up any substitutions, such as the charset in a META tag.</span>
+        <span class="k">if</span> <span class="n">builder</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">contains_substitutions</span> <span class="o">=</span> <span class="n">builder</span><span class="o">.</span><span class="n">set_up_substitutions</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">can_be_empty_element</span> <span class="o">=</span> <span class="n">builder</span><span class="o">.</span><span class="n">can_be_empty_element</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">contains_substitutions</span> <span class="o">=</span> <span class="bp">False</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">can_be_empty_element</span> <span class="o">=</span> <span class="bp">False</span>
+
+    <span class="n">parserClass</span> <span class="o">=</span> <span class="n">_alias</span><span class="p">(</span><span class="s">"parser_class"</span><span class="p">)</span>  <span class="c"># BS3</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">is_empty_element</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="s">"""Is this tag an empty-element tag? (aka a self-closing tag)
+
+        A tag that has contents is never an empty-element tag.
+
+        A tag that has no contents may or may not be an empty-element
+        tag. It depends on the builder used to create the tag. If the
+        builder has a designated list of empty-element tags, then only
+        a tag whose name shows up in that list is considered an
+        empty-element tag.
+
+        If the builder has no designated list of empty-element tags,
+        then any tag with no contents is an empty-element tag.
+        """</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">contents</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">can_be_empty_element</span>
+    <span class="n">isSelfClosing</span> <span class="o">=</span> <span class="n">is_empty_element</span>  <span class="c"># BS3</span>
+
+    <span class="k">def</span> <span class="nf">_get_string</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="s">"""Convenience property to get the single string within this tag.
+
+        :Return: If this tag has a single string child, return value
+         is that string. If this tag has no children, or more than one
+         child, return value is None. If this tag has one child tag,
+         return value is the 'string' attribute of the child tag,
+         recursively.
+        """</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">contents</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">None</span>
+        <span class="n">child</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">contents</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">child</span><span class="p">,</span> <span class="n">NavigableString</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">child</span>
+        <span class="k">return</span> <span class="n">child</span><span class="o">.</span><span class="n">string</span>
+
+    <span class="k">def</span> <span class="nf">_set_string</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">string</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>
+
+    <span class="n">string</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">_get_string</span><span class="p">,</span> <span class="n">_set_string</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_all_strings</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">strip</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+        <span class="s">"""Yield all child strings, possibly stripping them."""</span>
+        <span class="k">for</span> <span class="n">descendant</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">descendants</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">descendant</span><span class="p">,</span> <span class="n">NavigableString</span><span class="p">):</span>
+                <span class="k">continue</span>
+            <span class="k">if</span> <span class="n">strip</span><span class="p">:</span>
+                <span class="n">descendant</span> <span class="o">=</span> <span class="n">descendant</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">descendant</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="k">continue</span>
+            <span class="k">yield</span> <span class="n">descendant</span>
+    <span class="n">strings</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">_all_strings</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">stripped_strings</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">string</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_all_strings</span><span class="p">(</span><span class="bp">True</span><span class="p">):</span>
+            <span class="k">yield</span> <span class="n">string</span>
+
+    <span class="k">def</span> <span class="nf">get_text</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">separator</span><span class="o">=</span><span class="s">""</span><span class="p">,</span> <span class="n">strip</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+        <span class="s">"""
+        Get all child strings, concatenated using the given separator.
+        """</span>
+        <span class="k">return</span> <span class="n">separator</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">s</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_all_strings</span><span class="p">(</span><span class="n">strip</span><span class="p">)])</span>
+    <span class="n">getText</span> <span class="o">=</span> <span class="n">get_text</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">get_text</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">decompose</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="s">"""Recursively destroys the contents of this tree."""</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">extract</span><span class="p">()</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="bp">self</span>
+        <span class="k">while</span> <span class="n">i</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="nb">next</span> <span class="o">=</span> <span class="n">i</span><span class="o">.</span><span class="n">next_element</span>
+            <span class="n">i</span><span class="o">.</span><span class="n">__dict__</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+            <span class="n">i</span> <span class="o">=</span> <span class="nb">next</span>
+
+    <span class="k">def</span> <span class="nf">clear</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">decompose</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+        <span class="s">"""
+        Extract all children. If decompose is True, decompose instead.
+        """</span>
+        <span class="k">if</span> <span class="n">decompose</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">contents</span><span class="p">[:]:</span>
+                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">element</span><span class="p">,</span> <span class="n">Tag</span><span class="p">):</span>
+                    <span class="n">element</span><span class="o">.</span><span class="n">decompose</span><span class="p">()</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">element</span><span class="o">.</span><span class="n">extract</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">contents</span><span class="p">[:]:</span>
+                <span class="n">element</span><span class="o">.</span><span class="n">extract</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">index</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>
+        <span class="s">"""
+        Find the index of a child by identity, not value. Avoids issues with
+        tag.contents.index(element) getting the index of equal elements.
+        """</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">child</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">contents</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">child</span> <span class="ow">is</span> <span class="n">element</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">i</span>
+        <span class="k">raise</span> <span class="nb">ValueError</span><span class="p">(</span><span class="s">"Tag.index: element not in tag"</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="s">"""Returns the value of the 'key' attribute for the tag, or
+        the value given for 'default' if it doesn't have that
+        attribute."""</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">default</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">has_attr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">attrs</span>
+
+    <span class="k">def</span> <span class="nf">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__hash__</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+        <span class="s">"""tag[key] returns the value of the 'key' attribute for the tag,
+        and throws an exception if it's not there."""</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="s">"Iterating over a tag iterates over its contents."</span>
+        <span class="k">return</span> <span class="nb">iter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">contents</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="s">"The length of a tag is the length of its list of contents."</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">contents</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__contains__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">contents</span>
+
+    <span class="k">def</span> <span class="nf">__nonzero__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="s">"A tag is non-None even if it has no contents."</span>
+        <span class="k">return</span> <span class="bp">True</span>
+
+    <span class="k">def</span> <span class="nf">__setitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="s">"""Setting tag[key] sets the value of the 'key' attribute for the
+        tag."""</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+
+    <span class="k">def</span> <span class="nf">__delitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+        <span class="s">"Deleting tag[key] deletes all 'key' attributes for the tag."</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="s">"""Calling a tag like a function is the same as calling its
+        find_all() method. Eg. tag('a') returns a list of all the A tags
+        found within this tag."""</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tag</span><span class="p">):</span>
+        <span class="c">#print "Getattr %s.%s" % (self.__class__, tag)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">tag</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">3</span> <span class="ow">and</span> <span class="n">tag</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s">'Tag'</span><span class="p">):</span>
+            <span class="c"># BS3: soup.aTag -&gt; "soup.find("a")</span>
+            <span class="n">tag_name</span> <span class="o">=</span> <span class="n">tag</span><span class="p">[:</span><span class="o">-</span><span class="mi">3</span><span class="p">]</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+                <span class="s">'.</span><span class="si">%</span><span class="s">sTag is deprecated, use .find("</span><span class="si">%</span><span class="s">s") instead.'</span> <span class="o">%</span> <span class="p">(</span>
+                    <span class="n">tag_name</span><span class="p">,</span> <span class="n">tag_name</span><span class="p">))</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">tag_name</span><span class="p">)</span>
+        <span class="c"># We special case contents to avoid recursion.</span>
+        <span class="k">elif</span> <span class="ow">not</span> <span class="n">tag</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">"__"</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">tag</span><span class="o">==</span><span class="s">"contents"</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">tag</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="nb">AttributeError</span><span class="p">(</span>
+            <span class="s">"'</span><span class="si">%</span><span class="s">s' object has no attribute '</span><span class="si">%</span><span class="s">s'"</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="p">,</span> <span class="n">tag</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="s">"""Returns true iff this tag has the same name, the same attributes,
+        and the same contents (recursively) as the given tag."""</span>
+        <span class="k">if</span> <span class="bp">self</span> <span class="ow">is</span> <span class="n">other</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">True</span>
+        <span class="k">if</span> <span class="p">(</span><span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="s">'name'</span><span class="p">)</span> <span class="ow">or</span>
+            <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="s">'attrs'</span><span class="p">)</span> <span class="ow">or</span>
+            <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="s">'contents'</span><span class="p">)</span> <span class="ow">or</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">!=</span> <span class="n">other</span><span class="o">.</span><span class="n">name</span> <span class="ow">or</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">attrs</span> <span class="o">!=</span> <span class="n">other</span><span class="o">.</span><span class="n">attrs</span> <span class="ow">or</span>
+            <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">other</span><span class="p">)):</span>
+            <span class="k">return</span> <span class="bp">False</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">my_child</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">contents</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">my_child</span> <span class="o">!=</span> <span class="n">other</span><span class="o">.</span><span class="n">contents</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span>
+                <span class="k">return</span> <span class="bp">False</span>
+        <span class="k">return</span> <span class="bp">True</span>
+
+    <span class="k">def</span> <span class="nf">__ne__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="s">"""Returns true iff this tag is not identical to the other tag,
+        as defined in __eq__."""</span>
+        <span class="k">return</span> <span class="ow">not</span> <span class="bp">self</span> <span class="o">==</span> <span class="n">other</span>
+
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="n">DEFAULT_OUTPUT_ENCODING</span><span class="p">):</span>
+        <span class="s">"""Renders this tag as a string."""</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">encoding</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__unicode__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">encode</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="n">PY3K</span><span class="p">:</span>
+        <span class="n">__str__</span> <span class="o">=</span> <span class="n">__repr__</span> <span class="o">=</span> <span class="n">__unicode__</span>
+
+    <span class="k">def</span> <span class="nf">encode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="n">DEFAULT_OUTPUT_ENCODING</span><span class="p">,</span>
+               <span class="n">indent_level</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">formatter</span><span class="o">=</span><span class="s">"minimal"</span><span class="p">,</span>
+               <span class="n">errors</span><span class="o">=</span><span class="s">"xmlcharrefreplace"</span><span class="p">):</span>
+        <span class="c"># Turn the data structure into Unicode, then encode the</span>
+        <span class="c"># Unicode.</span>
+        <span class="n">u</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">indent_level</span><span class="p">,</span> <span class="n">encoding</span><span class="p">,</span> <span class="n">formatter</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">u</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">encoding</span><span class="p">,</span> <span class="n">errors</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">decode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">indent_level</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+               <span class="n">eventual_encoding</span><span class="o">=</span><span class="n">DEFAULT_OUTPUT_ENCODING</span><span class="p">,</span>
+               <span class="n">formatter</span><span class="o">=</span><span class="s">"minimal"</span><span class="p">):</span>
+        <span class="s">"""Returns a Unicode representation of this tag and its contents.
+
+        :param eventual_encoding: The tag is destined to be
+           encoded into this encoding. This method is _not_
+           responsible for performing that encoding. This information
+           is passed in so that it can be substituted in if the
+           document contains a &lt;META&gt; tag that mentions the document's
+           encoding.
+        """</span>
+        <span class="n">attrs</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">attrs</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
+                <span class="k">if</span> <span class="n">val</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+                    <span class="n">decoded</span> <span class="o">=</span> <span class="n">key</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">):</span>
+                        <span class="n">val</span> <span class="o">=</span> <span class="s">' '</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
+                    <span class="k">elif</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="nb">basestring</span><span class="p">):</span>
+                        <span class="n">val</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">contains_substitutions</span>
+                        <span class="ow">and</span> <span class="n">eventual_encoding</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span>
+                        <span class="ow">and</span> <span class="s">'</span><span class="si">%</span><span class="s">SOUP-ENCODING</span><span class="si">%</span><span class="s">'</span> <span class="ow">in</span> <span class="n">val</span><span class="p">):</span>
+                        <span class="n">val</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">substitute_encoding</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="n">eventual_encoding</span><span class="p">)</span>
+
+                    <span class="n">decoded</span> <span class="o">=</span> <span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">key</span><span class="p">)</span> <span class="o">+</span> <span class="s">'='</span>
+                               <span class="o">+</span> <span class="n">EntitySubstitution</span><span class="o">.</span><span class="n">substitute_xml</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="bp">True</span><span class="p">))</span>
+                <span class="n">attrs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">decoded</span><span class="p">)</span>
+        <span class="n">close</span> <span class="o">=</span> <span class="s">''</span>
+        <span class="n">closeTag</span> <span class="o">=</span> <span class="s">''</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_empty_element</span><span class="p">:</span>
+            <span class="n">close</span> <span class="o">=</span> <span class="s">'/'</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">closeTag</span> <span class="o">=</span> <span class="s">'&lt;/</span><span class="si">%</span><span class="s">s&gt;'</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span>
+
+        <span class="n">prefix</span> <span class="o">=</span> <span class="s">''</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">prefix</span><span class="p">:</span>
+            <span class="n">prefix</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">prefix</span> <span class="o">+</span> <span class="s">":"</span>
+
+        <span class="n">pretty_print</span> <span class="o">=</span> <span class="p">(</span><span class="n">indent_level</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">pretty_print</span><span class="p">:</span>
+            <span class="n">space</span> <span class="o">=</span> <span class="p">(</span><span class="s">' '</span> <span class="o">*</span> <span class="p">(</span><span class="n">indent_level</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
+            <span class="n">indent_contents</span> <span class="o">=</span> <span class="n">indent_level</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">space</span> <span class="o">=</span> <span class="s">''</span>
+            <span class="n">indent_contents</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="n">contents</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">decode_contents</span><span class="p">(</span>
+            <span class="n">indent_contents</span><span class="p">,</span> <span class="n">eventual_encoding</span><span class="p">,</span> <span class="n">formatter</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">hidden</span><span class="p">:</span>
+            <span class="c"># This is the 'document root' object.</span>
+            <span class="n">s</span> <span class="o">=</span> <span class="n">contents</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">s</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="n">attribute_string</span> <span class="o">=</span> <span class="s">''</span>
+            <span class="k">if</span> <span class="n">attrs</span><span class="p">:</span>
+                <span class="n">attribute_string</span> <span class="o">=</span> <span class="s">' '</span> <span class="o">+</span> <span class="s">' '</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">attrs</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">pretty_print</span><span class="p">:</span>
+                <span class="n">s</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">space</span><span class="p">)</span>
+            <span class="n">s</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s">'&lt;</span><span class="si">%</span><span class="s">s</span><span class="si">%</span><span class="s">s</span><span class="si">%</span><span class="s">s</span><span class="si">%</span><span class="s">s&gt;'</span> <span class="o">%</span> <span class="p">(</span>
+                    <span class="n">prefix</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">attribute_string</span><span class="p">,</span> <span class="n">close</span><span class="p">))</span>
+            <span class="k">if</span> <span class="n">pretty_print</span><span class="p">:</span>
+                <span class="n">s</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">)</span>
+            <span class="n">s</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">contents</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">pretty_print</span> <span class="ow">and</span> <span class="n">contents</span> <span class="ow">and</span> <span class="n">contents</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">:</span>
+                <span class="n">s</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">pretty_print</span> <span class="ow">and</span> <span class="n">closeTag</span><span class="p">:</span>
+                <span class="n">s</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">space</span><span class="p">)</span>
+            <span class="n">s</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">closeTag</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">pretty_print</span> <span class="ow">and</span> <span class="n">closeTag</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">next_sibling</span><span class="p">:</span>
+                <span class="n">s</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">)</span>
+            <span class="n">s</span> <span class="o">=</span> <span class="s">''</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">s</span>
+
+    <span class="k">def</span> <span class="nf">prettify</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">formatter</span><span class="o">=</span><span class="s">"minimal"</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">encoding</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="bp">True</span><span class="p">,</span> <span class="n">formatter</span><span class="o">=</span><span class="n">formatter</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">encoding</span><span class="p">,</span> <span class="bp">True</span><span class="p">,</span> <span class="n">formatter</span><span class="o">=</span><span class="n">formatter</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">decode_contents</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">indent_level</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+                       <span class="n">eventual_encoding</span><span class="o">=</span><span class="n">DEFAULT_OUTPUT_ENCODING</span><span class="p">,</span>
+                       <span class="n">formatter</span><span class="o">=</span><span class="s">"minimal"</span><span class="p">):</span>
+        <span class="s">"""Renders the contents of this tag as a Unicode string.
+
+        :param eventual_encoding: The tag is destined to be
+           encoded into this encoding. This method is _not_
+           responsible for performing that encoding. This information
+           is passed in so that it can be substituted in if the
+           document contains a &lt;META&gt; tag that mentions the document's
+           encoding.
+        """</span>
+        <span class="n">pretty_print</span> <span class="o">=</span> <span class="p">(</span><span class="n">indent_level</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">)</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span>
+            <span class="n">text</span> <span class="o">=</span> <span class="bp">None</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">NavigableString</span><span class="p">):</span>
+                <span class="n">text</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">output_ready</span><span class="p">(</span><span class="n">formatter</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">Tag</span><span class="p">):</span>
+                <span class="n">s</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">indent_level</span><span class="p">,</span> <span class="n">eventual_encoding</span><span class="p">,</span>
+                                  <span class="n">formatter</span><span class="p">))</span>
+            <span class="k">if</span> <span class="n">text</span> <span class="ow">and</span> <span class="n">indent_level</span><span class="p">:</span>
+                <span class="n">text</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">text</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">pretty_print</span><span class="p">:</span>
+                    <span class="n">s</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s">" "</span> <span class="o">*</span> <span class="p">(</span><span class="n">indent_level</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
+                <span class="n">s</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">pretty_print</span><span class="p">:</span>
+                    <span class="n">s</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">)</span>
+        <span class="k">return</span> <span class="s">''</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+
+    <span class="c">#Soup methods</span>
+
+    <span class="k">def</span> <span class="nf">find</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">attrs</span><span class="o">=</span><span class="p">{},</span> <span class="n">recursive</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+             <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="s">"""Return only the first child of this Tag matching the given
+        criteria."""</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="n">l</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">attrs</span><span class="p">,</span> <span class="n">recursive</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">l</span><span class="p">:</span>
+            <span class="n">r</span> <span class="o">=</span> <span class="n">l</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">r</span>
+    <span class="n">findChild</span> <span class="o">=</span> <span class="n">find</span>
+
+    <span class="k">def</span> <span class="nf">find_all</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">attrs</span><span class="o">=</span><span class="p">{},</span> <span class="n">recursive</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+                 <span class="n">limit</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="s">"""Extracts a list of Tag objects that match the given
+        criteria.  You can specify the name of the Tag and any
+        attributes you want the Tag to have.
+
+        The value of a key-value pair in the 'attrs' map can be a
+        string, a list of strings, a regular expression object, or a
+        callable that takes a string and returns whether or not the
+        string matches for some custom definition of 'matches'. The
+        same is true of the tag name."""</span>
+        <span class="n">generator</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">descendants</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">recursive</span><span class="p">:</span>
+            <span class="n">generator</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">children</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_find_all</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">attrs</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">limit</span><span class="p">,</span> <span class="n">generator</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="n">findAll</span> <span class="o">=</span> <span class="n">find_all</span>       <span class="c"># BS3</span>
+    <span class="n">findChildren</span> <span class="o">=</span> <span class="n">find_all</span>  <span class="c"># BS2</span>
+
+    <span class="c">#Generator methods</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">children</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c"># return iter() to make the purpose of the method clear</span>
+        <span class="k">return</span> <span class="nb">iter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">contents</span><span class="p">)</span>  <span class="c"># XXX This seems to be untested.</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">descendants</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">contents</span><span class="p">):</span>
+            <span class="k">return</span>
+        <span class="n">stopNode</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_last_descendant</span><span class="p">()</span><span class="o">.</span><span class="n">next_element</span>
+        <span class="n">current</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">contents</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">while</span> <span class="n">current</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">stopNode</span><span class="p">:</span>
+            <span class="k">yield</span> <span class="n">current</span>
+            <span class="n">current</span> <span class="o">=</span> <span class="n">current</span><span class="o">.</span><span class="n">next_element</span>
+
+    <span class="c"># Old names for backwards compatibility</span>
+    <span class="k">def</span> <span class="nf">childGenerator</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">children</span>
+
+    <span class="k">def</span> <span class="nf">recursiveChildGenerator</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">descendants</span>
+
+    <span class="c"># This was kind of misleading because has_key() (attributes) was</span>
+    <span class="c"># different from __in__ (contents). has_key() is gone in Python 3,</span>
+    <span class="c"># anyway.</span>
+    <span class="n">has_key</span> <span class="o">=</span> <span class="n">has_attr</span>
+
+<span class="c"># Next, a couple classes to represent queries and their results.</span>
+<span class="k">class</span> <span class="nc">SoupStrainer</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="s">"""Encapsulates a number of ways of matching a markup element (tag or
+    text)."""</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">attrs</span><span class="o">=</span><span class="p">{},</span> <span class="n">text</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">attrs</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+            <span class="c"># Treat a non-dict value for attrs as a search for the 'class'</span>
+            <span class="c"># attribute.</span>
+            <span class="n">kwargs</span><span class="p">[</span><span class="s">'class'</span><span class="p">]</span> <span class="o">=</span> <span class="n">attrs</span>
+            <span class="n">attrs</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="k">if</span> <span class="n">kwargs</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">attrs</span><span class="p">:</span>
+                <span class="n">attrs</span> <span class="o">=</span> <span class="n">attrs</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+                <span class="n">attrs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">attrs</span> <span class="o">=</span> <span class="n">kwargs</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">attrs</span> <span class="o">=</span> <span class="n">attrs</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="n">text</span>
+
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">text</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">text</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s">"</span><span class="si">%</span><span class="s">s|</span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">attrs</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">search_tag</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">markup_name</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">markup_attrs</span><span class="o">=</span><span class="p">{}):</span>
+        <span class="n">found</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="n">markup</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">markup_name</span><span class="p">,</span> <span class="n">Tag</span><span class="p">):</span>
+            <span class="n">markup</span> <span class="o">=</span> <span class="n">markup_name</span>
+            <span class="n">markup_attrs</span> <span class="o">=</span> <span class="n">markup</span>
+        <span class="n">call_function_with_tag_data</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="nb">callable</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+            <span class="ow">and</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">markup_name</span><span class="p">,</span> <span class="n">Tag</span><span class="p">))</span>
+
+        <span class="k">if</span> <span class="p">((</span><span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+            <span class="ow">or</span> <span class="n">call_function_with_tag_data</span>
+            <span class="ow">or</span> <span class="p">(</span><span class="n">markup</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_matches</span><span class="p">(</span><span class="n">markup</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">))</span>
+            <span class="ow">or</span> <span class="p">(</span><span class="ow">not</span> <span class="n">markup</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_matches</span><span class="p">(</span><span class="n">markup_name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">))):</span>
+            <span class="k">if</span> <span class="n">call_function_with_tag_data</span><span class="p">:</span>
+                <span class="n">match</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="n">markup_name</span><span class="p">,</span> <span class="n">markup_attrs</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">match</span> <span class="o">=</span> <span class="bp">True</span>
+                <span class="n">markup_attr_map</span> <span class="o">=</span> <span class="bp">None</span>
+                <span class="k">for</span> <span class="n">attr</span><span class="p">,</span> <span class="n">match_against</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
+                    <span class="k">if</span> <span class="ow">not</span> <span class="n">markup_attr_map</span><span class="p">:</span>
+                        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">markup_attrs</span><span class="p">,</span> <span class="s">'get'</span><span class="p">):</span>
+                            <span class="n">markup_attr_map</span> <span class="o">=</span> <span class="n">markup_attrs</span>
+                        <span class="k">else</span><span class="p">:</span>
+                            <span class="n">markup_attr_map</span> <span class="o">=</span> <span class="p">{}</span>
+                            <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">markup_attrs</span><span class="p">:</span>
+                                <span class="n">markup_attr_map</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">v</span>
+                    <span class="n">attr_value</span> <span class="o">=</span> <span class="n">markup_attr_map</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">attr</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_matches</span><span class="p">(</span><span class="n">attr_value</span><span class="p">,</span> <span class="n">match_against</span><span class="p">):</span>
+                        <span class="n">match</span> <span class="o">=</span> <span class="bp">False</span>
+                        <span class="k">break</span>
+            <span class="k">if</span> <span class="n">match</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">markup</span><span class="p">:</span>
+                    <span class="n">found</span> <span class="o">=</span> <span class="n">markup</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">found</span> <span class="o">=</span> <span class="n">markup_name</span>
+        <span class="k">if</span> <span class="n">found</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">text</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">text</span> <span class="o">!=</span> <span class="n">found</span><span class="o">.</span><span class="n">string</span><span class="p">:</span>
+            <span class="n">found</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="k">return</span> <span class="n">found</span>
+    <span class="n">searchTag</span> <span class="o">=</span> <span class="n">search_tag</span>
+
+    <span class="k">def</span> <span class="nf">search</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">markup</span><span class="p">):</span>
+        <span class="c"># print 'looking for %s in %s' % (self, markup)</span>
+        <span class="n">found</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="c"># If given a list of items, scan it for a text element that</span>
+        <span class="c"># matches.</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">markup</span><span class="p">,</span> <span class="s">'__iter__'</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">markup</span><span class="p">,</span> <span class="p">(</span><span class="n">Tag</span><span class="p">,</span> <span class="nb">basestring</span><span class="p">)):</span>
+            <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">markup</span><span class="p">:</span>
+                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">element</span><span class="p">,</span> <span class="n">NavigableString</span><span class="p">)</span> \
+                       <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">element</span><span class="p">):</span>
+                    <span class="n">found</span> <span class="o">=</span> <span class="n">element</span>
+                    <span class="k">break</span>
+        <span class="c"># If it's a Tag, make sure its name or attributes match.</span>
+        <span class="c"># Don't bother with Tags if we're searching for text.</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">markup</span><span class="p">,</span> <span class="n">Tag</span><span class="p">):</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">text</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">attrs</span><span class="p">:</span>
+                <span class="n">found</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">search_tag</span><span class="p">(</span><span class="n">markup</span><span class="p">)</span>
+        <span class="c"># If it's text, make sure the text matches.</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">markup</span><span class="p">,</span> <span class="n">NavigableString</span><span class="p">)</span> <span class="ow">or</span> \
+                 <span class="nb">isinstance</span><span class="p">(</span><span class="n">markup</span><span class="p">,</span> <span class="nb">basestring</span><span class="p">):</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">attrs</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_matches</span><span class="p">(</span><span class="n">markup</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">text</span><span class="p">):</span>
+                <span class="n">found</span> <span class="o">=</span> <span class="n">markup</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="nb">Exception</span><span class="p">(</span>
+                <span class="s">"I don't know how to match against a </span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="n">markup</span><span class="o">.</span><span class="n">__class__</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">found</span>
+
+    <span class="k">def</span> <span class="nf">_matches</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">markup</span><span class="p">,</span> <span class="n">match_against</span><span class="p">):</span>
+        <span class="c"># print "Matching %s against %s" % (markup, match_against)</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="bp">False</span>
+
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">markup</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">markup</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">):</span>
+            <span class="c"># This should only happen when searching, e.g. the 'class'</span>
+            <span class="c"># attribute.</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">match_against</span><span class="p">,</span> <span class="nb">basestring</span><span class="p">)</span>
+                <span class="ow">and</span> <span class="s">' '</span> <span class="ow">in</span> <span class="n">match_against</span><span class="p">):</span>
+                <span class="c"># A bit of a special case. If they try to match "foo</span>
+                <span class="c"># bar" on a multivalue attribute's value, only accept</span>
+                <span class="c"># the literal value "foo bar"</span>
+                <span class="c">#</span>
+                <span class="c"># XXX This is going to be pretty slow because we keep</span>
+                <span class="c"># splitting match_against. But it shouldn't come up</span>
+                <span class="c"># too often.</span>
+                <span class="n">result</span> <span class="o">=</span> <span class="p">(</span><span class="n">whitespace_re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">match_against</span><span class="p">)</span> <span class="o">==</span> <span class="n">markup</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">markup</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_matches</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">match_against</span><span class="p">):</span>
+                        <span class="n">result</span> <span class="o">=</span> <span class="bp">True</span>
+        <span class="k">elif</span> <span class="n">match_against</span> <span class="ow">is</span> <span class="bp">True</span><span class="p">:</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">markup</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span>
+        <span class="k">elif</span> <span class="nb">callable</span><span class="p">(</span><span class="n">match_against</span><span class="p">):</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">match_against</span><span class="p">(</span><span class="n">markup</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c">#Custom match methods take the tag as an argument, but all</span>
+            <span class="c">#other ways of matching match the tag name as a string.</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">markup</span><span class="p">,</span> <span class="n">Tag</span><span class="p">):</span>
+                <span class="n">markup</span> <span class="o">=</span> <span class="n">markup</span><span class="o">.</span><span class="n">name</span>
+            <span class="k">if</span> <span class="n">markup</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span> <span class="ow">and</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">markup</span><span class="p">,</span> <span class="nb">basestring</span><span class="p">):</span>
+                <span class="n">markup</span> <span class="o">=</span> <span class="nb">unicode</span><span class="p">(</span><span class="n">markup</span><span class="p">)</span>
+            <span class="c">#Now we know that chunk is either a string, or None.</span>
+            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">match_against</span><span class="p">,</span> <span class="s">'match'</span><span class="p">):</span>
+                <span class="c"># It's a regexp object.</span>
+                <span class="n">result</span> <span class="o">=</span> <span class="n">markup</span> <span class="ow">and</span> <span class="n">match_against</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">markup</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="p">(</span><span class="nb">hasattr</span><span class="p">(</span><span class="n">match_against</span><span class="p">,</span> <span class="s">'__iter__'</span><span class="p">)</span>
+                    <span class="ow">and</span> <span class="n">markup</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span>
+                    <span class="ow">and</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">match_against</span><span class="p">,</span> <span class="nb">basestring</span><span class="p">)):</span>
+                <span class="n">result</span> <span class="o">=</span> <span class="n">markup</span> <span class="ow">in</span> <span class="n">match_against</span>
+            <span class="k">elif</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">match_against</span><span class="p">,</span> <span class="s">'items'</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">markup</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+                    <span class="n">result</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">match_against</span><span class="o">.</span><span class="n">items</span><span class="p">())</span> <span class="o">==</span> <span class="mi">0</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">result</span> <span class="o">=</span> <span class="n">match_against</span> <span class="ow">in</span> <span class="n">markup</span>
+            <span class="k">elif</span> <span class="n">match_against</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">markup</span><span class="p">,</span> <span class="nb">basestring</span><span class="p">):</span>
+                <span class="n">match_against</span> <span class="o">=</span> <span class="n">markup</span><span class="o">.</span><span class="n">__class__</span><span class="p">(</span><span class="n">match_against</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">result</span><span class="p">:</span>
+                <span class="n">result</span> <span class="o">=</span> <span class="n">match_against</span> <span class="o">==</span> <span class="n">markup</span>
+        <span class="k">return</span> <span class="n">result</span>
+
+
+<span class="k">class</span> <span class="nc">ResultSet</span><span class="p">(</span><span class="nb">list</span><span class="p">):</span>
+    <span class="s">"""A ResultSet is just a list that keeps track of the SoupStrainer
+    that created it."""</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">source</span><span class="p">):</span>
+        <span class="nb">list</span><span class="o">.</span><span class="n">__init__</span><span class="p">([])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">source</span> <span class="o">=</span> <span class="n">source</span>
+
+</pre>
+
+<p>Sometimes you will need to insert a very large block of sample code that might be too wide or extremely deep.  DevNet Slate manages this by automatically creating vertical and horizontal scroll bars such that the sample code is preserved without taking up too much space.  The example to the right is an extremely large python program pulled from the Internet.  There is no wrapping of text, instead, your readers need to use horizontal scrolling to see the full code sample.  Also, it is very long, but a maximum height of 50 cm has been set for the display area.  If your sample code exceeds this, then DevNet Slate will also provide vertical scrolling such that the space is better managed. </p>
 <h2 id='inserting-a-sample-code-into-a-particular-tab'>Inserting a Sample Code into a Particular Tab</h2>
 <p>You denote a code samples by using three left-single-quote marks followed by the name of the language.  The name of the language is used to place the code sample into the proper tab. Each code samples will appear in the dark area to the right of the main text. Code samples need to appear right under the Level 1 or Level 2 headers in your markdown file to allow them to be anchored properly.</p>
 
