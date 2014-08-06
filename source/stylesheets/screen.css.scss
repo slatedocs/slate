@@ -445,11 +445,11 @@ html, body {
     }
 
     tr:nth-child(odd)>td {
-      background-color: darken($main-bg,0%);
+      background-color: darken($main-bg,4.8%);
     }
 
     tr:nth-child(even)>td {
-      background-color: darken($main-bg,2.4%);
+      background-color: darken($main-bg,1.2%);
     }
       
   }
