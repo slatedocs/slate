@@ -444,13 +444,13 @@ html, body {
       border-bottom: 1px solid #ccc;
     }
 
-    tr:nth-child(odd)>td {
-      background-color: lighten($main-bg,4.2%);
-    }
+//    tr:nth-child(odd)>td {
+//      background-color: lighten($main-bg,4.2%);
+//    }
 
-    tr:nth-child(even)>td {
-      background-color: lighten($main-bg,2.4%);
-    }
+//    tr:nth-child(even)>td {
+//      background-color: lighten($main-bg,2.4%);
+//    }
   }
 
   dt {
@@ -571,6 +571,7 @@ html, body {
       border-bottom: 1px solid #404040;
     }
   }
+
 }
 
 ////////////////////////////////////////////////////////////////////////////////
