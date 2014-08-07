@@ -372,7 +372,7 @@ html, body {
     margin-top: 2em;
     border-top: 1px solid #ddd;
     @include background-image(
-      linear-gradient(top, #fff, #f9f9f9)
+      linear-gradient(top, #f9f9f9, #f9f9f9)
     );
   }
 

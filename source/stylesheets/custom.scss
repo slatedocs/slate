@@ -1,8 +1,31 @@
+$blue-1: #4898E4;
+
 body {
   .tocify-wrapper {
     .logo {
       width: 140px;
       margin: auto;
+    }
+  }
+
+  a {
+    color: $blue-1;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  .tocify-item a {
+    color: white;
+  }
+  aside {
+    color: white;
+    text-shadow: none;
+
+    a {
+      color: white;
+      border-bottom: 1px solid #fff;
+      &:hover {
+        border-bottom: none;
+      }
     }
   }
 
@@ -15,7 +38,6 @@ body {
   pre { font-family: monospace; }
   .tocify-header > .tocify-item { font-family: 'museo-slab'; }
 }
-
 
 
 
