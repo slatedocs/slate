@@ -6,11 +6,14 @@ body {
     }
   }
 
+
+  // FONTS
+  font-family: 'museo-sans';
   .content {
-    h1 {
-      font-family: 'museo-slab'
-    }
+    h1 { font-family: 'museo-slab'; }
   }
+  pre { font-family: monospace; }
+  .tocify-header > .tocify-item { font-family: 'museo-slab'; }
 }
 
 
