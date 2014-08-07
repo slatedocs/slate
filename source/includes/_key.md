@@ -18,20 +18,50 @@ client.getKey(function (err, ticker) {
 ```
 
 ```php
+<?php
 client->getKey();
+?>
 ```
 
-> The above command returns JSON structured like this:
+> The above command returns an Object structured like this:
 
-```json
-{
-  "permissions": [
-    "get-account",
-    "create-buy",
-    "create-sell",
-    "cancel-order"
-  ]
-}
+```ruby
+# Hashie::Mash Object
+key.permissions.each do |permission|
+  permission
+end
+```
+
+```python
+// JSON Object (Array)
+[
+  "get-account",
+  "create-buy",
+  "create-sell",
+  "cancel-order"
+]
+```
+
+```javascript
+// JSON Object (Array)
+[
+  "get-account",
+  "create-buy",
+  "create-sell",
+  "cancel-order"
+]
+```
+
+```php
+<?php
+// Array Object
+[
+  "get-account",
+  "create-buy",
+  "create-sell",
+  "cancel-order"
+]
+?>
 ```
 
 Get all the permissions associated with this key

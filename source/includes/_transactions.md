@@ -12,11 +12,6 @@ query = {'status': 'filled'}
 client.get_transactions(body=query)
 ```
 
-```php
-$query = [ "status" => "canceled", "side" => "sell" ];
-$client->getTransactions($query);
-```
-
 ```javascript
 var query = { side: 'sell' };
 client.getTransactions(query, function (err, transactions) {
@@ -25,30 +20,93 @@ client.getTransactions(query, function (err, transactions) {
 });
 ```
 
-> The above command returns JSON structured like this:
+```php
+<?php
+$query = [ "status" => "canceled", "side" => "sell" ];
+$client->getTransactions($query);
+?>
+```
 
-```json
-{
-  "results": [
-    {
-      "transactionId": "538bdc82848a604c007ceac6",
-      "transactionType": "deposit",
-      "currency": "USD",
-      "amount": 500.98,
-      "method": "wire",
-      "status": "funded",
-      "fundingInfo": {
-        "source": "External Customer Bank"
-      },
-      "events": [
-        {
-          "eventType": "created",
-          "eventDate": "2014-05-06T13:15:30Z"
-        }
-      ]
-    }
-  ]
-}
+> The above command returns an Object structured like this:
+
+```ruby
+# Hashie::Mash Object
+transactions.each do |transaction|
+  transaction.transactionId # "538bdc82848a604c007ceac6"
+  transaction.status # "open"
+  transaction.events.each do |event|
+    event.eventType
+    event.eventDate
+  end
+end
+```
+
+```python
+[
+  {
+    "transactionId": "538bdc82848a604c007ceac6",
+    "transactionType": "deposit",
+    "currency": "USD",
+    "amount": 500.98,
+    "method": "wire",
+    "status": "funded",
+    "fundingInfo": {
+      "source": "External Customer Bank"
+    },
+    "events": [
+      {
+        "eventType": "created",
+        "eventDate": "2014-05-06T13:15:30Z"
+      }
+    ]
+  }
+]
+```
+
+```javascript
+[
+  {
+    "transactionId": "538bdc82848a604c007ceac6",
+    "transactionType": "deposit",
+    "currency": "USD",
+    "amount": 500.98,
+    "method": "wire",
+    "status": "funded",
+    "fundingInfo": {
+      "source": "External Customer Bank"
+    },
+    "events": [
+      {
+        "eventType": "created",
+        "eventDate": "2014-05-06T13:15:30Z"
+      }
+    ]
+  }
+]
+```
+
+```php
+<?php
+[
+  {
+    "transactionId": "538bdc82848a604c007ceac6",
+    "transactionType": "deposit",
+    "currency": "USD",
+    "amount": 500.98,
+    "method": "wire",
+    "status": "funded",
+    "fundingInfo": {
+      "source": "External Customer Bank"
+    },
+    "events": [
+      {
+        "eventType": "created",
+        "eventDate": "2014-05-06T13:15:30Z"
+      }
+    ]
+  }
+]
+?>
 ```
 
 This endpoint retrieves all transactions based on the given query.
@@ -59,13 +117,13 @@ This endpoint retrieves all transactions based on the given query.
 
 ### Query Parameters
 
-Name | Param | Description
---- | --- | ---
-Status | `status` | enum: `['opened', 'reopened', 'filled', 'canceled']`  
-Side | `side` | enum: `['buy', 'sell']`  
-Transaction Type | `transactionType` | enum: `['market', 'limit']`  
-Date Min | `dateMin` | format: ISO-8601, e.g. `'2014-05-06T13:15:30Z'`  
-Date Max | `dateMax` | format: ISO-8601, e.g. `'2014-05-06T13:15:30Z'`
+Param | Description
+--- | ---
+`status` | enum: `['opened', 'reopened', 'filled', 'canceled']`  
+`side` | enum: `['buy', 'sell']`  
+`transactionType` | enum: `['market', 'limit']`  
+`dateMin` | format: ISO-8601, e.g. `'2014-05-06T13:15:30Z'`  
+`dateMax` | format: ISO-8601, e.g. `'2014-05-06T13:15:30Z'`
 
 
 ## Get a single transaction
@@ -76,7 +134,7 @@ transaction_id = '538bdc82848a604c007ceac6'
 client.get_transaction_by_id(transaction_id)
 
 # For convenience, you can also get transaction by full URL
-url = 'http://localhost:9002/v1/transactions/538bdc82848a604c007ceac6'
+url = 'http://api.buttercoin.com/v1/transactions/538bdc82848a604c007ceac6'
 client.get_transaction_by_url(url)
 ```
 
@@ -86,18 +144,8 @@ transaction_id = '538bdc82848a604c007ceac6'
 client.get_transaction_by_id(transaction_id)
 
 # For convenience, you can also get transaction by full URL
-url = 'http://localhost:9002/v1/transactions/538bdc82848a604c007ceac6'
+url = 'http://api.buttercoin.com/v1/transactions/538bdc82848a604c007ceac6'
 client.get_transaction_by_url(url)
-```
-
-```php
-// Get transaction with the ID
-$transactionId = '538bdc82848a604c007ceac6';
-$client->getTransactionById($transactionId);
-
-// For convenience, you can also get transaction by full URL
-$url = 'http://localhost:9002/v1/transactions/538bdc82848a604c007ceac6';
-$client->getTransactionByUrl($url);
 ```
 
 ```javascript
@@ -109,15 +157,39 @@ client.getTransactionById(transactionId, function (err, transaction) {
 });
 
 // For convenience, you can also get transaction by full URL
-var url = 'http://localhost:9002/v1/transactions/538bdc82848a604c007ceac6';
+var url = 'http://api.buttercoin.com/v1/transactions/538bdc82848a604c007ceac6';
 client.getTransactionByUrl(url, function (err, transaction) {
   console.log("transaction err", err);
   console.log("transaction", transaction);
 });
 ```
-> The above command returns JSON structured like this:
 
-```json
+```php
+<?php
+// Get transaction with the ID
+$transactionId = '538bdc82848a604c007ceac6';
+$client->getTransactionById($transactionId);
+
+// For convenience, you can also get transaction by full URL
+$url = 'http://api.buttercoin.com/v1/transactions/538bdc82848a604c007ceac6';
+$client->getTransactionByUrl($url);
+?>
+```
+
+> The above command returns an Object structured like this:
+
+```ruby
+# Hashie::Mash Object
+transaction.transactionId # "538bdc82848a604c007ceac6"
+  transaction.status # "open"
+  transaction.events.each do |event|
+    event.eventType
+    event.eventDate
+  end
+```
+
+```python
+# Json Object
 {
   "transactionId": "538bdc82848a604c007ceac6",
   "transactionType": "deposit",
@@ -137,6 +209,51 @@ client.getTransactionByUrl(url, function (err, transaction) {
 }
 ```
 
+```javascript
+// Json Object
+{
+  "transactionId": "538bdc82848a604c007ceac6",
+  "transactionType": "deposit",
+  "currency": "USD",
+  "amount": 500.98,
+  "method": "wire",
+  "status": "funded",
+  "fundingInfo": {
+    "source": "External Customer Bank"
+  },
+  "events": [
+    {
+      "eventType": "created",
+      "eventDate": "2014-05-06T13:15:30Z"
+    }
+  ]
+}
+```
+
+```php
+<?php
+// Array Object
+[
+  "transactionId" => "538bdc82848a604c007ceac6",
+  "transactionType" => "deposit",
+  "currency" => "USD",
+  "amount" => 500.98,
+  "method" => "wire",
+  "status" => "funded",
+  "fundingInfo" => {
+    "source": "External Customer Bank"
+  },
+  "events" => [
+    [
+      "eventType" => "created",
+      "eventDate" => "2014-05-06T13:15:30Z"
+    ]
+  ]
+]
+?>
+```
+
+
 This endpoint retrieves a single transaction with the given ID.
 
 ### HTTP Request
@@ -152,41 +269,81 @@ ID | The ID of the transaction to retrieve
 ## Create a deposit
 
 ```ruby
-transaction_id = 'e3afed81-4a9c-4480-a78a-e0872408b95a'
-client.create_transaction(transaction_id)
+deposit = { 
+  :method => "wire",
+  :currency => "USD",
+  :amount => "500"
+}
+
+client.create_deposit(deposit)
 ```
 
 ```python
-transaction_id = 'e3afed81-4a9c-4480-a78a-e0872408b95a'
-client.create_transaction(transaction_id)
-```
+deposit = {
+  method: "wire",
+  currency: "USD",
+  amount: "5002"
+}
 
-```php
-$transactionId = 'e3afed81-4a9c-4480-a78a-e0872408b95a';
-$client->createTransaction($transactionId);
+client.create_deposit(deposit)
 ```
 
 ```javascript
-var transactionId = 'e3afed81-4a9c-4480-a78a-e0872408b95a';
-client.createTransaction(transactionId, function (err, msg) {
+var deposit = {
+  method: "wire",
+  currency: "USD",
+  amount: "5002"
+};
+
+client.createDeposit(deposit, function (err, msg) {
   console.log("cancel transaction err", err);
   console.log("cancel transaction", msg);
 });
 ```
 
+```php
+<?php
+$deposit = [
+  "method" => "wire",
+  "currency" => "USD",
+  "amount" => "500"
+];
+
+$client->createDeposit($deposit);
+?>
+```
+
 > A successful deposit transaction creation returns the url location of the new transaction in the response location header
 
+```ruby
+# string
+'http://api.buttercoin.com/v1/transactions/538bdc82848a604c007ceac6'
 ```
-Location: 'http://localhost:9002/v1/transactions/538bdc82848a604c007ceac6'
+
+```python
+# string
+'http://api.buttercoin.com/v1/transactions/538bdc82848a604c007ceac6'
+```
+
+```javascript
+// string
+'http://api.buttercoin.com/v1/transactions/538bdc82848a604c007ceac6'
+```
+
+```php
+<?php
+// string
+'http://api.buttercoin.com/v1/transactions/538bdc82848a604c007ceac6'
+?>
 ```
 
 Create a new deposit with the given params
 
-Name | Param | Description
---- | --- | ---
-Method | `method` | enum: `['wire']`, required `true`  
-Currency | `currency` | enum: `['USD']`, required `true`  
-Amount | `amount` | `string`, required `true`
+Param | Description
+--- | ---
+`method` | enum: `['wire']`, required `true`  
+`currency` | enum: `['USD']`, required `true`  
+`amount` | `string`, required `true`
 
 ### HTTP Request
 
@@ -195,41 +352,77 @@ Amount | `amount` | `string`, required `true`
 ## Create a withdrawal
 
 ```ruby
-transaction_id = 'e3afed81-4a9c-4480-a78a-e0872408b95a'
-client.create_transaction(transaction_id)
+withdrawal = {
+	:method => "check",
+	:currency => "USD",
+	:amount => "500"
+}
+client.create_withdrawal(withdrawal)
 ```
 
 ```python
-transaction_id = 'e3afed81-4a9c-4480-a78a-e0872408b95a'
-client.create_transaction(transaction_id)
-```
-
-```php
-$transactionId = 'e3afed81-4a9c-4480-a78a-e0872408b95a';
-$client->createTransaction($transactionId);
+withdrawal = {
+  "currency": "USD",
+  "amount": "30020.30",
+  "method": "check" 
+}
+client.create_transaction(withdrawal)
 ```
 
 ```javascript
-var transactionId = 'e3afed81-4a9c-4480-a78a-e0872408b95a';
-client.createTransaction(transactionId, function (err, msg) {
+var withdrawal = {
+  "currency": "USD",
+  "amount": "30020.30",
+  "method": "check" 
+};
+client.createWithdrawal(withdrawal, function (err, msg) {
   console.log("cancel transaction err", err);
   console.log("cancel transaction", msg);
 });
 ```
 
+```php
+<?php
+$withdrawal = [
+    "method" => "us_ach",
+    "currency" => "USD",
+    "amount" => "500"
+];
+$client->createWithdrawal($withdrawal);
+?>
+```
+
 > A successful withdrawal transaction creation returns the url location of the new transaction in the response location header
 
+```ruby
+# string
+'http://api.buttercoin.com/v1/transactions/538bdc82848a604c007ceac6'
 ```
-Location: 'http://localhost:9002/v1/transactions/538bdc82848a604c007ceac6'
+
+```python
+# string
+'http://api.buttercoin.com/v1/transactions/538bdc82848a604c007ceac6'
+```
+
+```javascript
+// string
+'http://api.buttercoin.com/v1/transactions/538bdc82848a604c007ceac6'
+```
+
+```php
+<?php
+// string
+'http://api.buttercoin.com/v1/transactions/538bdc82848a604c007ceac6'
+?>
 ```
 
 Create a new withdrawal with the given params
 
-Name | Param | Description
---- | --- | --- 
-Method | `method` | enum: `['check']`, required `true`  
-Currency | `currency` | enum: `['USD']`, required `true`  
-Amount | `amount` | `string`, required `true`
+Param | Description
+--- | --- 
+`method` | enum: `['check']`, required `true`  
+`currency` | enum: `['USD']`, required `true`  
+`amount` | `string`, required `true`
 
 ### HTTP Request
 
@@ -244,40 +437,72 @@ trxn = {
   :destination => "<bitcoin_address>"
 }
 
-client.send_bitcoins(trxn, timestamp)
+client.send_bitcoin(trxn)
 ```
 
 ```python
-transaction_id = 'e3afed81-4a9c-4480-a78a-e0872408b95a'
-client.create_transaction(transaction_id)
-```
-
-```php
-$transactionId = 'e3afed81-4a9c-4480-a78a-e0872408b95a';
-$client->createTransaction($transactionId);
+txn = {
+  "currency": "BTC",
+  "amount": "0.30", 
+  "destination": "<bitcoin_address>"
+}
+client.send_bitcoin(txn)
 ```
 
 ```javascript
-var transactionId = 'e3afed81-4a9c-4480-a78a-e0872408b95a';
-client.createTransaction(transactionId, function (err, msg) {
-  console.log("cancel transaction err", err);
-  console.log("cancel transaction", msg);
+var txn = {
+  "currency": "BTC",
+  "amount": "0.30", 
+  "destination": "<bitcoin_address>"
+};
+client.createTransaction(txn, function (err, msg) {
+  console.log("send bitcoin err", err);
+  console.log("send bitcoin", msg);
 });
+```
+
+```php
+<?php
+$trxn = {
+  "currency" => "BTC",
+  "amount" => "100.231231",
+  "destination" => "<bitcoin_address>"
+};
+$client->send_bitcoin($trxn);
+?>
 ```
 
 > A successful withdrawal transaction creation returns the url location of the new transaction in the response location header
 
+```ruby
+# string
+'http://api.buttercoin.com/v1/transactions/538bdc82848a604c007ceac6'
 ```
-Location: 'http://localhost:9002/v1/transactions/538bdc82848a604c007ceac6'
+
+```python
+# string
+'http://api.buttercoin.com/v1/transactions/538bdc82848a604c007ceac6'
+```
+
+```javascript
+// string
+'http://api.buttercoin.com/v1/transactions/538bdc82848a604c007ceac6'
+```
+
+```php
+<?php
+// string
+'http://api.buttercoin.com/v1/transactions/538bdc82848a604c007ceac6'
+?>
 ```
 
 Send bitcoins to the given address with the following params params
 
-Name | Param | Description
---- | --- | --- 
-Currency | `currency` | `['BTC']`, required `true`  
-Amount | `amount` | `string`, required `true`  
-Destination | `destination` | address to which to send currency `string`, required `true`
+Param | Description
+--- | --- 
+`currency` | `['BTC']`, required `true`  
+`amount` | `string`, required `true`  
+`destination` | address to which to send currency `string`, required `true`
 
 ### HTTP Request
 
@@ -295,11 +520,6 @@ transaction_id = 'e3afed81-4a9c-4480-a78a-e0872408b95a'
 client.cancel_transaction(transaction_id)
 ```
 
-```php
-$transactionId = 'e3afed81-4a9c-4480-a78a-e0872408b95a';
-$client->cancelTransaction($transactionId);
-```
-
 ```javascript
 var transactionId = 'e3afed81-4a9c-4480-a78a-e0872408b95a';
 client.cancelTransaction(transactionId, function (err, msg) {
@@ -307,7 +527,38 @@ client.cancelTransaction(transactionId, function (err, msg) {
   console.log("cancel transaction", msg);
 });
 ```
+
+```php
+<?php
+$transactionId = 'e3afed81-4a9c-4480-a78a-e0872408b95a';
+$client->cancelTransaction($transactionId);
+?>
+```
+
 > The above command returns an HTTP response with status code 204
+
+```ruby
+# Hashie::Mash Object
+response.status # 204
+response.message # "This operation has completed successfully"
+```
+
+```python
+// JSON Object
+{ "status": 204, message: "This operation has completed successfully" }
+```
+
+```javascript
+# JSON Object
+{ status: 204, message: "This operation has completed successfully" }
+```
+
+```php
+<?php
+// Array Object
+[ "status" => 204, "message" => "This operation has completed successfully" ]
+?>
+```
 
 Cancel a single transaction with the given ID.
 

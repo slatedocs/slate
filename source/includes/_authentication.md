@@ -22,17 +22,6 @@ client = ButtercoinClient(
 )
 ```
 
-```php
-require 'vendor/autoload.php';
-use Buttercoin\Client\ButtercoinClient;
-
-$client = ButtercoinClient::factory([
-    'publicKey' => '<public_key>',
-    'secretKey' => '<secret_key>',
-    'environment' => '<environment>' 
-]);
-```
-
 ```javascript
 var buttercoin = require('buttercoinsdk-node')
 var client = buttercoin(
@@ -41,6 +30,19 @@ var client = buttercoin(
     '<environment>',
     '<version>'
 );
+```
+
+```php
+<?php
+require 'vendor/autoload.php';
+use Buttercoin\Client\ButtercoinClient;
+
+$client = ButtercoinClient::factory([
+    'publicKey' => '<public_key>',
+    'secretKey' => '<secret_key>',
+    'environment' => '<environment>' 
+]);
+?>
 ```
 
 > The client will automatically sign your requests with the proper headers.
