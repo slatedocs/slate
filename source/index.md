@@ -1848,6 +1848,49 @@ It is sometimes useful to highlight or annotate a part of the sample code.  This
 <aside class="warning"> Make sure that you have a blank line after your Code Annotation.  If you do not, the annotation will continue until there is a blank line.
 </aside>
 
+## Fun with the Annotations
+
+When you use the chevron `>` symbol, it takes the entire line and places it into the pannel to the right. Since it does not have a language, it will appear on all of the tabs to the right.  Additionally, because it is not "code" it is not treated as pre-formatted text.  As a result of these factors, the annotation feature can be very useful for placing Markdown or even HTML into the right hand panel.
+
+### A Markdown Table
+
+>The following markdown code:
+
+```markdown
+
+> Table Header 1 | Table Header 2 | Table Header 3
+> -------------- | -------------: | :------------:
+> Row 1 col 1 | Row 1 col 2 | Row 1 col 3
+> Row 2 col 1 | Row 2 col 2 | Row 2 col 3 
+
+```
+
+> will result in the table in the right hand panel:
+
+> Table Header 1 | Table Header 2 | Table Header 3
+> -------------- | -------------: | :------------:
+> Row 1 col 1 | Row 1 col 2 | Row 1 col 3
+> Row 2 col 1 | Row 2 col 2 | Row 2 col 3 
+
+For example, I can use the `>` to place a table into the right hand panel.
+
+### An Image 
+
+>The following markdown code:
+
+```markdown
+
+> ![Cisco Logo](/images/logo.png).
+
+```
+
+> will result in the image placed into the right hand panel:
+
+> ![Cisco Logo](/images/logo.png)
+
+
+Or, I can use the `>` to place an image into the right hand panel.  I can even use the `>` to place HTML code such as a YouTube video or any other content.
+
 # Creating your DevNet Slate Document
 
 ## Previewing your Docs
@@ -1865,14 +1908,6 @@ bundle exec middleman server
   == The Middleman is standing watch at http://0.0.0.0:4567
   == Inspect your site configuration at http://0.0.0.0:4567/__middleman/
 ```
-
-It is pretty easy to preview your docs using your browser.
-
-Start the test server using the command to the right.
-
-You can now see the docs using your browser by going to the URL at <http://localhost:4567>. As you edit and save your source GFM document at `source/index.md`,
-your server should automatically update the document that you are previewing.
-
 
 ## Building Your Docs If You Forked and Cloned
 

@@ -1823,6 +1823,60 @@ to the right will create the list below:</p>
 
 <p><aside class="warning"> Make sure that you have a blank line after your Code Annotation.  If you do not, the annotation will continue until there is a blank line.
 </aside></p>
+<h2 id='fun-with-the-annotations'>Fun with the Annotations</h2>
+<p>When you use the chevron <code class="prettyprint">&gt;</code> symbol, it takes the entire line and places it into the pannel to the right. Since it does not have a language, it will appear on all of the tabs to the right.  Additionally, because it is not &ldquo;code&rdquo; it is not treated as pre-formatted text.  As a result of these factors, the annotation feature can be very useful for placing Markdown or even HTML into the right hand panel.</p>
+<h3 id='a-markdown-table'>A Markdown Table</h3>
+<blockquote>
+<p>The following markdown code:</p>
+</blockquote>
+<pre class="highlight markdown"><span class="gt">
+&gt; Table Header 1 | Table Header 2 | Table Header 3</span>
+<span class="gt">&gt; -------------- | -------------: | :------------:</span>
+<span class="gt">&gt; Row 1 col 1 | Row 1 col 2 | Row 1 col 3</span>
+<span class="gt">&gt; Row 2 col 1 | Row 2 col 2 | Row 2 col 3 </span>
+
+</pre>
+
+<blockquote>
+<p>will result in the table in the right hand panel:</p>
+
+<table><thead>
+<tr>
+<th>Table Header 1</th>
+<th style="text-align: right">Table Header 2</th>
+<th style="text-align: center">Table Header 3</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Row 1 col 1</td>
+<td style="text-align: right">Row 1 col 2</td>
+<td style="text-align: center">Row 1 col 3</td>
+</tr>
+<tr>
+<td>Row 2 col 1</td>
+<td style="text-align: right">Row 2 col 2</td>
+<td style="text-align: center">Row 2 col 3</td>
+</tr>
+</tbody></table>
+</blockquote>
+
+<p>For example, I can use the <code class="prettyprint">&gt;</code> to place a table into the right hand panel.</p>
+<h3 id='an-image'>An Image</h3>
+<blockquote>
+<p>The following markdown code:</p>
+</blockquote>
+<pre class="highlight markdown"><span class="gt">
+&gt; ![Cisco Logo](/images/logo.png).</span>
+
+</pre>
+
+<blockquote>
+<p>will result in the image placed into the right hand panel:</p>
+
+<p><img alt="Cisco Logo" src="images/logo.png" /></p>
+</blockquote>
+
+<p>Or, I can use the <code class="prettyprint">&gt;</code> to place an image into the right hand panel.  I can even use the <code class="prettyprint">&gt;</code> to place HTML code such as a YouTube video or any other content.</p>
 <h1 id='creating-your-devnet-slate-document'>Creating your DevNet Slate Document</h1><h2 id='previewing-your-docs'>Previewing your Docs</h2>
 <blockquote>
 <p>Command to Start Your Preview Server</p>
@@ -1837,13 +1891,6 @@ to the right will create the list below:</p>
   == The Middleman is standing watch at http://0.0.0.0:4567
   == Inspect your site configuration at http://0.0.0.0:4567/__middleman/
 </pre>
-
-<p>It is pretty easy to preview your docs using your browser.</p>
-
-<p>Start the test server using the command to the right.</p>
-
-<p>You can now see the docs using your browser by going to the URL at <a href="http://localhost:4567">http://localhost:4567</a>. As you edit and save your source GFM document at <code class="prettyprint">source/index.md</code>,
-your server should automatically update the document that you are previewing.</p>
 <h2 id='building-your-docs-if-you-forked-and-cloned'>Building Your Docs If You Forked and Cloned</h2>
 <blockquote>
 <p>Command to create your HTML Files</p>
