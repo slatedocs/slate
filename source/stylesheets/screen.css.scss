@@ -519,7 +519,7 @@ html, body {
     margin: -2px;
     border-radius: 4px;
     border: 1px solid #F7E633;
-    text-shadow: 1px 1px 0 #666;
+    text-shadow: none;
     @include background(linear-gradient(bottom right, #F7E633 0%, #F1D32F 100%));
   }
 }
