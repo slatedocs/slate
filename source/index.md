@@ -21,5 +21,5 @@ includes:
   - transactions
   - errors
 
-search: true
+search: false
 ---
