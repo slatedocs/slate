@@ -1848,11 +1848,11 @@ It is sometimes useful to highlight or annotate a part of the sample code.  This
 <aside class="warning"> Make sure that you have a blank line after your Code Annotation.  If you do not, the annotation will continue until there is a blank line.
 </aside>
 
-## Fun with the Annotations
+# Fun with the Right Hand Panel
 
 When you use the chevron `>` symbol, it takes the entire line and places it into the pannel to the right. Since it does not have a language, it will appear on all of the tabs to the right.  Additionally, because it is not "code" it is not treated as pre-formatted text.  As a result of these factors, the annotation feature can be very useful for placing Markdown or even HTML into the right hand panel.
 
-### A Markdown Table
+## A Markdown Table
 
 >The following markdown code:
 
@@ -1874,7 +1874,7 @@ When you use the chevron `>` symbol, it takes the entire line and places it into
 
 For example, I can use the `>` to place a table into the right hand panel.
 
-### An Image 
+## An Image 
 
 >The following markdown code:
 

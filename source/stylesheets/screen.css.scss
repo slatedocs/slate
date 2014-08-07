@@ -445,11 +445,19 @@ html, body {
     }
 
     tr:nth-child(odd)>td {
-      background-color: darken($main-bg,4.8%);
+      background-color: darken($main-bg,2%);
+      color: darken($main-bg,100%);
     }
 
     tr:nth-child(even)>td {
-      background-color: darken($main-bg,1.2%);
+      background-color: darken($main-bg,6%);
+      color: darken($main-bg,100%);
+    }
+      
+    tr:first-child {
+      background-color: darken($main-bg,100%);
+      color: $main-bg;  
+      border-bottom: 1px solid #ccc;
     }
       
   }
@@ -545,7 +553,7 @@ html, body {
     clear:right;
 
     @include box-sizing(border-box);
-    @include text-shadow(0px 1px 2px rgba(0,0,0,0.4));
+    @include text-shadow(0px 0px 0px rgba(0,0,0,0.4));
 
     @extend %right-col;
 
@@ -556,13 +564,27 @@ html, body {
       text-decoration: none;
       border-bottom: dashed 1px #ccc;
     }
+      
+    tr:last-child {
+      border-bottom: 1px solid #333;
+    }
+
     tr:nth-child(odd)>td {
-      background-color: lighten($code-bg,4.2%);
+      background-color: lighten($code-bg,2%);
+      color: lighten($code-bg,100%);
     }
 
     tr:nth-child(even)>td {
-      background-color: lighten($code-bg,2.4%);
-    }  
+      background-color: lighten($code-bg,6%);
+      color: lighten($code-bg,100%);
+    }
+      
+    tr:first-child {
+      background-color: lighten($main-bg,100%);
+      color: $code-bg;  
+      border-bottom: 1px solid #333;
+    }
+      
   }
 
   pre {
