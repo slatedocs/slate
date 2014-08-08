@@ -392,6 +392,28 @@ $client->createWithdrawal($withdrawal);
 ?>
 ```
 
+> If you have the security setting requiring confirmation for withdrawal, you will see this message requiring further action
+
+```ruby
+# Hashie::Mash
+response.status # 201
+response.message # This operation requires email confirmation
+```
+
+```python
+{ "status": 201, "message": 'This operation requires email confirmation' }
+```
+
+```javascript
+{ status: 201, message: 'Send request created, but email confirmation is required' }
+```
+
+```php
+<?php
+[ 'status' => 201, 'message' => 'Send request created, but email confirmation is required' ]
+?>
+```
+
 > A successful withdrawal transaction creation returns the url location of the new transaction in the response location header
 
 ```ruby
@@ -455,7 +477,7 @@ var txn = {
   "amount": "0.30", 
   "destination": "<bitcoin_address>"
 };
-client.createTransaction(txn, function (err, msg) {
+client.sendBitcoin(txn, function (err, msg) {
   console.log("send bitcoin err", err);
   console.log("send bitcoin", msg);
 });
@@ -468,7 +490,29 @@ $trxn = {
   "amount" => "100.231231",
   "destination" => "<bitcoin_address>"
 };
-$client->send_bitcoin($trxn);
+$client->sendBitcoin($trxn);
+?>
+```
+
+> If you have the security setting requiring confirmation for bitcoin withdrawal, you will see this message requiring further action
+
+```ruby
+# Hashie::Mash
+response.status # 201
+response.message # This operation requires email confirmation
+```
+
+```python
+{ "status": 201, "message": 'This operation requires email confirmation' }
+```
+
+```javascript
+{ status: 201, message: 'Send request created, but email confirmation is required' }
+```
+
+```php
+<?php
+[ 'status' => 201, 'message' => 'Send request created, but email confirmation is required' ]
 ?>
 ```
 

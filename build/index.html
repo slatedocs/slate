@@ -579,7 +579,7 @@ An API Key is not required to access this endpoint.
 </thead><tbody>
 <tr>
 <td><code class="prettyprint">status</code></td>
-<td>enum: <code class="prettyprint">[&#39;opened&#39;, &#39;reopened&#39;, &#39;filled&#39;, &#39;canceled&#39;]</code></td>
+<td>enum: <code class="prettyprint">[&#39;opened&#39;, &#39;partial-filled&#39;, &#39;filled&#39;, &#39;canceled&#39;]</code></td>
 </tr>
 <tr>
 <td><code class="prettyprint">side</code></td>
@@ -880,8 +880,8 @@ An API Key is not required to access this endpoint.
 <pre class="highlight python"><span class="o">//</span> <span class="n">JSON</span> <span class="n">Object</span>
 <span class="p">{</span> <span class="s">"status"</span><span class="p">:</span> <span class="mi">204</span><span class="p">,</span> <span class="n">message</span><span class="p">:</span> <span class="s">"This operation has completed successfully"</span> <span class="p">}</span>
 </pre>
-<pre class="highlight javascript"><span class="err">#</span> <span class="nx">JSON</span> <span class="nb">Object</span>
-<span class="p">{</span> <span class="na">status</span><span class="p">:</span> <span class="mi">204</span><span class="p">,</span> <span class="na">message</span><span class="p">:</span> <span class="s2">"This operation has completed successfully"</span> <span class="p">}</span>
+<pre class="highlight javascript"><span class="c1">// JSON Object
+</span><span class="p">{</span> <span class="na">status</span><span class="p">:</span> <span class="mi">204</span><span class="p">,</span> <span class="na">message</span><span class="p">:</span> <span class="s2">"This operation has completed successfully"</span> <span class="p">}</span>
 </pre>
 <pre class="highlight php"><span class="cp">&lt;?php</span>
 <span class="c1">// Array Object
@@ -1271,6 +1271,22 @@ An API Key is not required to access this endpoint.
 </pre>
 
 <blockquote>
+<p>If you have the security setting requiring confirmation for withdrawal, you will see this message requiring further action</p>
+</blockquote>
+<pre class="highlight ruby"><span class="c1"># Hashie::Mash</span>
+<span class="n">response</span><span class="p">.</span><span class="nf">status</span> <span class="c1"># 201</span>
+<span class="n">response</span><span class="p">.</span><span class="nf">message</span> <span class="c1"># This operation requires email confirmation</span>
+</pre>
+<pre class="highlight python"><span class="p">{</span> <span class="s">"status"</span><span class="p">:</span> <span class="mi">201</span><span class="p">,</span> <span class="s">"message"</span><span class="p">:</span> <span class="s">'This operation requires email confirmation'</span> <span class="p">}</span>
+</pre>
+<pre class="highlight javascript"><span class="p">{</span> <span class="na">status</span><span class="p">:</span> <span class="mi">201</span><span class="p">,</span> <span class="na">message</span><span class="p">:</span> <span class="s1">'Send request created, but email confirmation is required'</span> <span class="p">}</span>
+</pre>
+<pre class="highlight php"><span class="cp">&lt;?php</span>
+<span class="p">[</span> <span class="s1">'status'</span> <span class="o">=&gt;</span> <span class="mi">201</span><span class="p">,</span> <span class="s1">'message'</span> <span class="o">=&gt;</span> <span class="s1">'Send request created, but email confirmation is required'</span> <span class="p">]</span>
+<span class="cp">?&gt;</span>
+</pre>
+
+<blockquote>
 <p>A successful withdrawal transaction creation returns the url location of the new transaction in the response location header</p>
 </blockquote>
 <pre class="highlight ruby"><span class="c1"># string</span>
@@ -1331,7 +1347,7 @@ An API Key is not required to access this endpoint.
   <span class="s2">"amount"</span><span class="p">:</span> <span class="s2">"0.30"</span><span class="p">,</span> 
   <span class="s2">"destination"</span><span class="p">:</span> <span class="s2">"&lt;bitcoin_address&gt;"</span>
 <span class="p">};</span>
-<span class="nx">client</span><span class="p">.</span><span class="nx">createTransaction</span><span class="p">(</span><span class="nx">txn</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">msg</span><span class="p">)</span> <span class="p">{</span>
+<span class="nx">client</span><span class="p">.</span><span class="nx">sendBitcoin</span><span class="p">(</span><span class="nx">txn</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">msg</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"send bitcoin err"</span><span class="p">,</span> <span class="nx">err</span><span class="p">);</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"send bitcoin"</span><span class="p">,</span> <span class="nx">msg</span><span class="p">);</span>
 <span class="p">});</span>
@@ -1342,7 +1358,23 @@ An API Key is not required to access this endpoint.
   <span class="s2">"amount"</span> <span class="o">=&gt;</span> <span class="s2">"100.231231"</span><span class="p">,</span>
   <span class="s2">"destination"</span> <span class="o">=&gt;</span> <span class="s2">"&lt;bitcoin_address&gt;"</span>
 <span class="p">};</span>
-<span class="nv">$client</span><span class="o">-&gt;</span><span class="na">send_bitcoin</span><span class="p">(</span><span class="nv">$trxn</span><span class="p">);</span>
+<span class="nv">$client</span><span class="o">-&gt;</span><span class="na">sendBitcoin</span><span class="p">(</span><span class="nv">$trxn</span><span class="p">);</span>
+<span class="cp">?&gt;</span>
+</pre>
+
+<blockquote>
+<p>If you have the security setting requiring confirmation for bitcoin withdrawal, you will see this message requiring further action</p>
+</blockquote>
+<pre class="highlight ruby"><span class="c1"># Hashie::Mash</span>
+<span class="n">response</span><span class="p">.</span><span class="nf">status</span> <span class="c1"># 201</span>
+<span class="n">response</span><span class="p">.</span><span class="nf">message</span> <span class="c1"># This operation requires email confirmation</span>
+</pre>
+<pre class="highlight python"><span class="p">{</span> <span class="s">"status"</span><span class="p">:</span> <span class="mi">201</span><span class="p">,</span> <span class="s">"message"</span><span class="p">:</span> <span class="s">'This operation requires email confirmation'</span> <span class="p">}</span>
+</pre>
+<pre class="highlight javascript"><span class="p">{</span> <span class="na">status</span><span class="p">:</span> <span class="mi">201</span><span class="p">,</span> <span class="na">message</span><span class="p">:</span> <span class="s1">'Send request created, but email confirmation is required'</span> <span class="p">}</span>
+</pre>
+<pre class="highlight php"><span class="cp">&lt;?php</span>
+<span class="p">[</span> <span class="s1">'status'</span> <span class="o">=&gt;</span> <span class="mi">201</span><span class="p">,</span> <span class="s1">'message'</span> <span class="o">=&gt;</span> <span class="s1">'Send request created, but email confirmation is required'</span> <span class="p">]</span>
 <span class="cp">?&gt;</span>
 </pre>
 

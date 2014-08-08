@@ -115,7 +115,7 @@ This endpoint retrieves all orders based on the given query.
 
 Parameter | Description
 --- | ---
-`status` | enum: `['opened', 'reopened', 'filled', 'canceled']`  
+`status` | enum: `['opened', 'partial-filled', 'filled', 'canceled']`  
 `side` | enum: `['buy', 'sell']`  
 `orderType` | enum: `['market', 'limit']`  
 `dateMin` | format: ISO-8601, e.g. `'2014-05-06T13:15:30Z'`  
@@ -429,7 +429,7 @@ response.message # "This operation has completed successfully"
 ```
 
 ```javascript
-# JSON Object
+// JSON Object
 { status: 204, message: "This operation has completed successfully" }
 ```
 
