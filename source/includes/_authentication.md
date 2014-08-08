@@ -45,6 +45,15 @@ $client = ButtercoinClient::factory([
 ?>
 ```
 
+>If you are not using a client, Authenticated Requests should include these headers:
+
+```http
+POST /endpoint HTTP/1.1
+X-Buttercoin-Access-Key: <YOUR_API_KEY>
+X-Buttercoin-Signature: <HMAC_SIGNATURE> 
+X-Buttercoin-Date: <CURRENT_TIMESTAMP>
+```
+
 > The client will automatically sign your requests with the proper headers.
 
 The Buttercoin API provides one publicly accessible endpoint to get the current ticker price and another to view the current exchange order book. All other API calls require a valid API Access Key and secure authentication.
@@ -54,3 +63,23 @@ In order to make any secure requests, your account must be verified and enabled 
 <aside class="warning">
 You must always keep your API Keys secure to make sure no one can access your account.  If you think a key might be compromised, simply revoke your API key [here](https://api.buttercoin.com/#/api).
 </aside>
+
+*If you are building our own client for the API...*
+### Building an HMAC Signature with SHA-256
+
+1. Concatenate the timestamp, request URL and parameters into a UTF-8 String:
+2. Convert the message to Base64
+3. Sign the message using HMAC with SHA-256 and your API Secret Key
+4. Convert to Base64 once again
+
+Encode a get request like this: 
+
+`1403755197367http://api.buttercoin.com/v1/orders?status=filled&orderType=limit`
+
+Encode a post request like this: 
+
+`1403755197367http://api.buttercoin.com/v1/orders{"instrument":"BTC_USD","side":"buy","orderType":"limit","quantity":1,"price":600.01}`
+
+Still not sure?  Find code examples [here](https://github.com/buttercoin/buttercoinsdk-node/blob/master/index.js#L32), [here](https://github.com/buttercoin/buttercoinsdk-php/blob/master/src/Client/ButtercoinClient.php#L144), and [here](https://github.com/buttercoin/buttercoinsdk-ruby/blob/master/lib/buttercoin/client.rb#L91)
+
+

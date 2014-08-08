@@ -117,7 +117,7 @@ This endpoint retrieves all transactions based on the given query.
 
 ### Query Parameters
 
-Param | Description
+Parameter | Description
 --- | ---
 `status` | enum: `['opened', 'reopened', 'filled', 'canceled']`  
 `side` | enum: `['buy', 'sell']`  
@@ -181,11 +181,11 @@ $client->getTransactionByUrl($url);
 ```ruby
 # Hashie::Mash Object
 transaction.transactionId # "538bdc82848a604c007ceac6"
-  transaction.status # "open"
-  transaction.events.each do |event|
-    event.eventType
-    event.eventDate
-  end
+transaction.status # "open"
+transaction.events.each do |event|
+  event.eventType
+  event.eventDate
+end
 ```
 
 ```python
@@ -339,7 +339,7 @@ $client->createDeposit($deposit);
 
 Create a new deposit with the given params
 
-Param | Description
+Parameter | Description
 --- | ---
 `method` | enum: `['wire']`, required `true`  
 `currency` | enum: `['USD']`, required `true`  
@@ -418,7 +418,7 @@ $client->createWithdrawal($withdrawal);
 
 Create a new withdrawal with the given params
 
-Param | Description
+Parameter | Description
 --- | --- 
 `method` | enum: `['check']`, required `true`  
 `currency` | enum: `['USD']`, required `true`  
@@ -498,7 +498,7 @@ $client->send_bitcoin($trxn);
 
 Send bitcoins to the given address with the following params params
 
-Param | Description
+Parameter | Description
 --- | --- 
 `currency` | `['BTC']`, required `true`  
 `amount` | `string`, required `true`  
@@ -544,12 +544,12 @@ response.message # "This operation has completed successfully"
 ```
 
 ```python
-// JSON Object
+# JSON Object
 { "status": 204, message: "This operation has completed successfully" }
 ```
 
 ```javascript
-# JSON Object
+// JSON Object
 { status: 204, message: "This operation has completed successfully" }
 ```
 

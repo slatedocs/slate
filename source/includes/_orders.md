@@ -113,7 +113,7 @@ This endpoint retrieves all orders based on the given query.
 
 ### Query Parameters
 
-Param | Description
+Parameter | Description
 --- | ---
 `status` | enum: `['opened', 'reopened', 'filled', 'canceled']`  
 `side` | enum: `['buy', 'sell']`  
@@ -374,7 +374,7 @@ $client->createOrder($order);
 
 Create a new order with the given params
 
-Param | Description
+Parameter | Description
 --- | ---
 `instrument` | enum: `['BTC_USD, USD_BTC']`
 `side` | enum: `['buy', 'sell']`, required `true`  
@@ -382,7 +382,11 @@ Param | Description
 `price` | `string`, required `false`  
 `quantity` | `string`, required `false`
 
-TODO:  TALK ABOUT INSTRUMENTS
+### More about Instruments
+
+You can think of the instrument you specify as the first currency priced in terms of the second.  For example, for an instrument type of `BTC_USD`, you are pricing bitcoin in terms of US Dollars.  You can see code examples to the right.
+
+*Note: We do not currently support market orders for the buy side* `BTC_USD` *instrument type, meaning you cannot create a market order to buy a specific amount of bitcoin. We do, however, support a sell side market order of this type.*
 
 ## Cancel an order
 

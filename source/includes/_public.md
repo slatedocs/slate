@@ -103,12 +103,12 @@ $client->getOrderBook();
 ```ruby
 # Hashie::Mash Object examples
 
-# get the highest bid
+# get the highest bid price
 orderbook.bid.first.price # 402.87
-# get the highest ask (the worst price on the book)
-orderbook.ask.last.quantity # 1.35
+# get the quantity of the lowest ask
+orderbook.ask.first.quantity # 1.35
 
-# get all bids
+# loop through all bids
 orderbook.bid.each do |order|
   order.price
   order.quantity

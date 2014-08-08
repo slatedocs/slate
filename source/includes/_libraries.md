@@ -30,8 +30,4 @@ We've built the following officially supported API Client SDK's
 * [Ruby](https://github.com/buttercoin/buttercoinsdk-ruby) - Returns data as [Hashie::Mash](https://github.com/intridea/hashie) objects
 * [Python](https://github.com/buttercoin/buttercoinsdk-python) - Returns data in JSON format
 
-Have another suggested language for a client?  Just [let us know](https://www.buttercoin.com/#/support).
-
-<aside class="notice">
-Each SDK client formats the response slightly differently to conform with language best practices.
-</aside>
+Have another suggested language for a client?  Just [let us know](mailto:api@buttercoin.com?subject=Add%20An%20API%20Language).

@@ -9,6 +9,7 @@ language_tabs:
 
 toc_footers:
   - <a href='https://www.buttercoin.com/#/api'>Sign Up for a Developer Key</a>
+  - Need help? <a href='mailto:api@buttercoin.com?subject=API%20Question'>Email Us</a>
 
 includes:
   - introduction
