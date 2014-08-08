@@ -37,6 +37,7 @@ html, body {
   -webkit-text-size-adjust: none; /* Never autoresize text */
 }
 
+
 ////////////////////////////////////////////////////////////////////////////////
 // TABLE OF CONTENTS
 ////////////////////////////////////////////////////////////////////////////////
@@ -150,14 +151,14 @@ html, body {
       text-decoration: none;
 
       &:hover {
-        text-decoration: underline;
+        text-decoration: none;
       }
     }
   }
 
 
   .tocify-item>a, .toc-footer li {
-    padding: 0 $nav-padding 0 $nav-padding;
+    padding: 0 $nav-padding 0 -$nav-padding;
     display: block;
     overflow-x: hidden;
     white-space: nowrap;
@@ -171,6 +172,7 @@ html, body {
     list-style: none;
     margin: 0;
     padding: 0;
+    padding-left: $nav-indent;
     line-height: 28px;
   }
 
@@ -195,7 +197,7 @@ html, body {
     background-color: $nav-subitem-bg;
     font-weight: 500;
     .tocify-item>a {
-      padding-left: $nav-padding + $nav-indent;
+      // padding-left: $nav-padding + $nav-indent;
       font-size: 12px;
     }
 
@@ -404,17 +406,20 @@ html, body {
 
   h3, h4, h5, h6 {
     @extend %header-font;
-    font-size: 12px;
+    font-size: 18px;
     margin-top: 2.5em;
     margin-bottom: 0.8em;
     // text-transform: uppercase;
   }
 
 
-  h4, h5, h6 {
-    font-size: 10px;
+  h4 {
+    font-size: 16px;
+    font-style: italic;
   }
-
+    
+    
+    
   hr {
     margin: 2em 0;
     border-top: 2px solid $examples-bg;

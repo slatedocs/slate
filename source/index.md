@@ -127,7 +127,7 @@ As you look at this document, you will notice that there are a couple of feature
 The TOC panel on the left hand side of the panel is composed of the following elements starting at the top and moving to the bottom:
 
 * The Logo - this is generated from the logo held in the logo.png file held in the source directory.  We want to use this same Cisco Logo for all documents.
-* The Table of Contents - DevNet Slate only uses the first two level of headers in the Table of Contents.  By default, on the H1 is normally displayed.  If a user selects a H1 item, the TOC will expand to display the H2 items underneath it.  H3 and below are not displayed.
+* The Table of Contents - DevNet Slate only uses the first three level of headers in the Table of Contents.  By default, on the H1 is normally displayed.  If a user selects a H1 item, the TOC will expand to display the H2 items underneath it.  If the user selects a H2 item, the TOC will expand to display the H3 items underneath it.  Headers from 4 and below are not displayed.
 * The TOC Footer - for this we want Cisco Copyright Information.
 
 ### Document Body
@@ -288,7 +288,7 @@ On the right are a list of headers in markdown and below is how they will appear
 #### H6 Header
 
 <aside class="notice">
-Remember that only level 1 and 2 headers will appear in the Table of Contents.
+Remember that only level 1, 2, and 3 headers will appear in the Table of Contents.
 </aside>
 
 ## Creating a Paragraphs
