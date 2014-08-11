@@ -43,7 +43,7 @@
       <div id="toc">
       </div>
         <ul class="toc-footer">
-            <li><a href='https://www.buttercoin.com/#/api'>Sign Up for a Developer Key</a></li>
+            <li><a href='https://www.buttercoin.com/#/api'>Manage your API Developer Keys</a></li>
             <li>Need help? <a href='mailto:api@buttercoin.com?subject=API%20Question'>Email Us</a></li>
         </ul>
     </div>
@@ -68,14 +68,14 @@
 <span class="n">gem</span> <span class="s1">'buttercoin'</span><span class="p">,</span> <span class="s1">'~&gt; 0.0.1'</span>
 
 <span class="c1"># Or install RubyGems:</span>
-<span class="err">$</span> <span class="n">gem</span> <span class="n">install</span> <span class="n">buttercoin</span>
+<span class="n">gem</span> <span class="n">install</span> <span class="n">buttercoin</span>
 </pre>
-<pre class="highlight python"><span class="err">$</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">buttercoin</span>
+<pre class="highlight python"><span class="n">pip</span> <span class="n">install</span> <span class="n">buttercoin</span>
 </pre>
-<pre class="highlight javascript"><span class="nx">$</span> <span class="nx">npm</span> <span class="nx">install</span> <span class="nx">buttercoinsdk</span><span class="o">-</span><span class="nx">node</span>
+<pre class="highlight javascript"><span class="nx">npm</span> <span class="nx">install</span> <span class="nx">buttercoinsdk</span><span class="o">-</span><span class="nx">node</span>
 </pre>
 <pre class="highlight php">// Using Composer
-$ php composer.phar require buttercoin/buttercoin-sdk:~0.0.2
+php composer.phar require buttercoin/buttercoin-sdk:~0.0.2
 </pre>
 
 <p>We&rsquo;ve built the following officially supported API Client SDK&rsquo;s</p>
@@ -99,7 +99,7 @@ $ php composer.phar require buttercoin/buttercoin-sdk:~0.0.2
     <span class="ss">:public_key</span> <span class="o">=&gt;</span> <span class="s1">'&lt;public_key&gt;'</span><span class="p">,</span>
     <span class="ss">:secret_key</span> <span class="o">=&gt;</span> <span class="s1">'&lt;secret_key&gt;'</span><span class="p">,</span>
     <span class="ss">:mode</span> <span class="o">=&gt;</span> <span class="s1">'&lt;mode&gt;'</span>
-<span class="p">)</span>               
+    <span class="p">)</span>               
 </pre>
 <pre class="highlight python"><span class="kn">from</span> <span class="nn">buttercoin.client</span> <span class="kn">import</span> <span class="n">ButtercoinClient</span>
 
@@ -107,7 +107,7 @@ $ php composer.phar require buttercoin/buttercoin-sdk:~0.0.2
     <span class="n">public_key</span><span class="o">=</span><span class="s">'&lt;public_key&gt;'</span><span class="p">,</span>
     <span class="n">secret_key</span><span class="o">=</span><span class="s">'&lt;secret_key&gt;'</span><span class="p">,</span>
     <span class="n">mode</span><span class="o">=</span><span class="s">'&lt;mode&gt;'</span>
-<span class="p">)</span>
+    <span class="p">)</span>
 </pre>
 <pre class="highlight javascript"><span class="kd">var</span> <span class="nx">buttercoin</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'buttercoinsdk-node'</span><span class="p">)</span>
 <span class="kd">var</span> <span class="nx">client</span> <span class="o">=</span> <span class="nx">buttercoin</span><span class="p">(</span>
@@ -115,7 +115,7 @@ $ php composer.phar require buttercoin/buttercoin-sdk:~0.0.2
     <span class="s1">'&lt;api_secret&gt;'</span><span class="p">,</span>
     <span class="s1">'&lt;environment&gt;'</span><span class="p">,</span>
     <span class="s1">'&lt;version&gt;'</span>
-<span class="p">);</span>
+    <span class="p">);</span>
 </pre>
 <pre class="highlight php"><span class="cp">&lt;?php</span>
 <span class="k">require</span> <span class="s1">'vendor/autoload.php'</span><span class="p">;</span>
@@ -125,7 +125,7 @@ $ php composer.phar require buttercoin/buttercoin-sdk:~0.0.2
     <span class="s1">'publicKey'</span> <span class="o">=&gt;</span> <span class="s1">'&lt;public_key&gt;'</span><span class="p">,</span>
     <span class="s1">'secretKey'</span> <span class="o">=&gt;</span> <span class="s1">'&lt;secret_key&gt;'</span><span class="p">,</span>
     <span class="s1">'environment'</span> <span class="o">=&gt;</span> <span class="s1">'&lt;environment&gt;'</span> 
-<span class="p">]);</span>
+    <span class="p">]);</span>
 <span class="cp">?&gt;</span>
 </pre>
 
@@ -143,8 +143,6 @@ $ php composer.phar require buttercoin/buttercoin-sdk:~0.0.2
 </blockquote>
 
 <p>The Buttercoin API provides one publicly accessible endpoint to get the current ticker price and another to view the current exchange order book. All other API calls require a valid API Access Key and secure authentication.</p>
-
-<p>In order to make any secure requests, your account must be verified and enabled for API access. Once enabled, you will be able to create API keys and customize permissions to perform specific exchange operations.  You can create a new API key <a href="https://api.buttercoin.com/#/api">here</a>.  You must be logged in to your account to create a key.</p>
 
 <p><aside class="warning">
 You must always keep your API Keys secure to make sure no one can access your account.  If you think a key might be compromised, simply revoke your API key <a href="https://api.buttercoin.com/#/api">here</a>.
@@ -167,66 +165,9 @@ You must always keep your API Keys secure to make sure no one can access your ac
 
 <p><code class="prettyprint">1403755197367http://api.buttercoin.com/v1/orders{&quot;instrument&quot;:&quot;BTC_USD&quot;,&quot;side&quot;:&quot;buy&quot;,&quot;orderType&quot;:&quot;limit&quot;,&quot;quantity&quot;:1,&quot;price&quot;:600.01}</code></p>
 
-<p>Still not sure?  Find code examples <a href="https://github.com/buttercoin/buttercoinsdk-node/blob/master/index.js#L32">here</a>, <a href="https://github.com/buttercoin/buttercoinsdk-php/blob/master/src/Client/ButtercoinClient.php#L144">here</a>, and <a href="https://github.com/buttercoin/buttercoinsdk-ruby/blob/master/lib/buttercoin/client.rb#L91">here</a></p>
+<p>Still not sure?  Find code examples <a href="https://github.com/buttercoin/buttercoinsdk-node/blob/master/index.js#L32">here</a>, <a href="https://github.com/buttercoin/buttercoinsdk-php/blob/master/src/Client/ButtercoinClient.php#L144">here</a>, <a href="https://github.com/buttercoin/buttercoinsdk-python/blob/master/buttercoin/api.py#L101">here</a>, and <a href="https://github.com/buttercoin/buttercoinsdk-ruby/blob/master/lib/buttercoin/client.rb#L91">here</a>.</p>
 
-          <h1 id='public'>Public</h1><h2 id='get-the-ticker'>Get the ticker</h1><pre class="highlight ruby"><span class="n">client</span><span class="p">.</span><span class="nf">get_ticker</span><span class="p">()</span>
-</pre>
-<pre class="highlight python"><span class="n">client</span><span class="o">.</span><span class="n">get_ticker</span><span class="p">()</span>
-</pre>
-<pre class="highlight javascript"><span class="nx">client</span><span class="p">.</span><span class="nx">getTicker</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">ticker</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"ticker err"</span><span class="p">,</span> <span class="nx">err</span><span class="p">);</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"ticker"</span><span class="p">,</span> <span class="nx">ticker</span><span class="p">);</span>
-<span class="p">});</span>
-</pre>
-<pre class="highlight php"><span class="cp">&lt;?php</span>
-<span class="nx">client</span><span class="o">-&gt;</span><span class="na">getTicker</span><span class="p">();</span>
-<span class="cp">?&gt;</span>
-</pre>
-
-<blockquote>
-<p>The above command returns an Object structured like this:</p>
-</blockquote>
-<pre class="highlight ruby"><span class="c1"># Hashie::Mash Object</span>
-<span class="n">ticker</span><span class="p">.</span><span class="nf">ask</span> <span class="c1"># 589.67</span>
-<span class="n">ticker</span><span class="p">.</span><span class="nf">bid</span> <span class="c1"># 584.95</span>
-<span class="n">ticker</span><span class="p">.</span><span class="nf">last</span> <span class="c1"># 589.67</span>
-<span class="n">ticker</span><span class="p">.</span><span class="nf">currency</span> <span class="c1"># "USD"</span>
-</pre>
-<pre class="highlight python"><span class="c"># JSON Object</span>
-<span class="p">{</span>
-  <span class="s">"currency"</span><span class="p">:</span> <span class="s">"USD"</span><span class="p">,</span>
-  <span class="s">"last"</span><span class="p">:</span> <span class="mf">404.12</span><span class="p">,</span>
-  <span class="s">"bid"</span><span class="p">:</span> <span class="mf">403.98</span><span class="p">,</span>
-  <span class="s">"ask"</span><span class="p">:</span> <span class="mf">404.22</span>
-<span class="p">}</span>
-</pre>
-<pre class="highlight javascript"><span class="c1">// JSON Object
-</span><span class="p">{</span>
-  <span class="s2">"currency"</span><span class="p">:</span> <span class="s2">"USD"</span><span class="p">,</span>
-  <span class="s2">"last"</span><span class="p">:</span> <span class="mf">404.12</span><span class="p">,</span>
-  <span class="s2">"bid"</span><span class="p">:</span> <span class="mf">403.98</span><span class="p">,</span>
-  <span class="s2">"ask"</span><span class="p">:</span> <span class="mf">404.22</span>
-<span class="p">}</span>
-</pre>
-<pre class="highlight php"><span class="cp">&lt;?php</span>
-<span class="c1">// Array Object
-</span><span class="p">[</span>
-  <span class="s2">"currency"</span> <span class="o">=&gt;</span> <span class="nx">USD</span><span class="p">,</span>
-  <span class="s2">"last"</span> <span class="o">=&gt;</span> <span class="mf">589.67</span><span class="p">,</span>
-  <span class="s2">"bid"</span> <span class="o">=&gt;</span> <span class="mf">584.95</span><span class="p">,</span>
-  <span class="s2">"ask"</span> <span class="o">=&gt;</span> <span class="mf">589.67</span>
-<span class="p">]</span>
-<span class="cp">?&gt;</span>
-</pre>
-
-<p>Get the last trade price, current ask, and current bid</p>
-<h3 id='http-request'>HTTP Request</h1>
-<p><code class="prettyprint">GET /ticker</code></p>
-
-<p><aside class="notice">
-An API Key is not required to access this endpoint.
-</aside></p>
-<h2 id='get-the-orderbook'>Get the orderbook</h1><pre class="highlight ruby"><span class="n">client</span><span class="p">.</span><span class="nf">get_order_book</span><span class="p">()</span>
+          <h1 id='public'>Public</h1><h2 id='get-the-orderbook'>Get the orderbook</h1><pre class="highlight ruby"><span class="n">client</span><span class="p">.</span><span class="nf">get_order_book</span><span class="p">()</span>
 </pre>
 <pre class="highlight python"><span class="n">client</span><span class="o">.</span><span class="n">get_order_book</span><span class="p">()</span>
 </pre>
@@ -252,11 +193,11 @@ An API Key is not required to access this endpoint.
 
 <span class="c1"># loop through all bids</span>
 <span class="n">orderbook</span><span class="p">.</span><span class="nf">bid</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">order</span><span class="o">|</span>
-  <span class="n">order</span><span class="p">.</span><span class="nf">price</span>
-  <span class="n">order</span><span class="p">.</span><span class="nf">quantity</span>
+<span class="n">order</span><span class="p">.</span><span class="nf">price</span>
+<span class="n">order</span><span class="p">.</span><span class="nf">quantity</span>
 <span class="k">end</span>
 </pre>
-<pre class="highlight python"><span class="o">//</span> <span class="n">JSON</span> <span class="n">Object</span>
+<pre class="highlight python"><span class="c"># Dict Object</span>
 <span class="p">{</span>
   <span class="s">"bid"</span><span class="p">:</span> <span class="p">[</span>
     <span class="p">{</span>
@@ -342,10 +283,65 @@ An API Key is not required to access this endpoint.
 <p><aside class="notice">
 An API Key is not required to access this endpoint.
 </aside></p>
-
-          <h1 id='key'>Key</h1><h2 id='get-permissions'>Get permissions</h1><pre class="highlight ruby"><span class="n">client</span><span class="p">.</span><span class="nf">get_key</span><span class="p">()</span>
+<h2 id='get-the-ticker'>Get the ticker</h1><pre class="highlight python"><span class="n">client</span><span class="o">.</span><span class="n">get_ticker</span><span class="p">()</span>
 </pre>
-<pre class="highlight python"><span class="n">client</span><span class="o">.</span><span class="n">get_key</span><span class="p">()</span>
+<pre class="highlight javascript"><span class="nx">client</span><span class="p">.</span><span class="nx">getTicker</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">ticker</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"ticker err"</span><span class="p">,</span> <span class="nx">err</span><span class="p">);</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"ticker"</span><span class="p">,</span> <span class="nx">ticker</span><span class="p">);</span>
+<span class="p">});</span>
+</pre>
+<pre class="highlight php"><span class="cp">&lt;?php</span>
+<span class="nx">client</span><span class="o">-&gt;</span><span class="na">getTicker</span><span class="p">();</span>
+<span class="cp">?&gt;</span>
+</pre>
+<pre class="highlight ruby"><span class="n">client</span><span class="p">.</span><span class="nf">get_ticker</span><span class="p">()</span>
+</pre>
+
+<blockquote>
+<p>The above command returns an Object structured like this:</p>
+</blockquote>
+<pre class="highlight python"><span class="c"># Dict Object</span>
+<span class="p">{</span>
+  <span class="s">"currency"</span><span class="p">:</span> <span class="s">"USD"</span><span class="p">,</span>
+  <span class="s">"last"</span><span class="p">:</span> <span class="mf">404.12</span><span class="p">,</span>
+  <span class="s">"bid"</span><span class="p">:</span> <span class="mf">403.98</span><span class="p">,</span>
+  <span class="s">"ask"</span><span class="p">:</span> <span class="mf">404.22</span>
+<span class="p">}</span>
+</pre>
+<pre class="highlight javascript"><span class="c1">// JSON Object
+</span><span class="p">{</span>
+  <span class="s2">"currency"</span><span class="p">:</span> <span class="s2">"USD"</span><span class="p">,</span>
+  <span class="s2">"last"</span><span class="p">:</span> <span class="mf">404.12</span><span class="p">,</span>
+  <span class="s2">"bid"</span><span class="p">:</span> <span class="mf">403.98</span><span class="p">,</span>
+  <span class="s2">"ask"</span><span class="p">:</span> <span class="mf">404.22</span>
+<span class="p">}</span>
+</pre>
+<pre class="highlight php"><span class="cp">&lt;?php</span>
+<span class="c1">// Array Object
+</span><span class="p">[</span>
+  <span class="s2">"currency"</span> <span class="o">=&gt;</span> <span class="nx">USD</span><span class="p">,</span>
+  <span class="s2">"last"</span> <span class="o">=&gt;</span> <span class="mf">589.67</span><span class="p">,</span>
+  <span class="s2">"bid"</span> <span class="o">=&gt;</span> <span class="mf">584.95</span><span class="p">,</span>
+  <span class="s2">"ask"</span> <span class="o">=&gt;</span> <span class="mf">589.67</span>
+<span class="p">]</span>
+<span class="cp">?&gt;</span>
+</pre>
+<pre class="highlight ruby"><span class="c1"># Hashie::Mash Object</span>
+<span class="n">ticker</span><span class="p">.</span><span class="nf">ask</span> <span class="c1"># 589.67</span>
+<span class="n">ticker</span><span class="p">.</span><span class="nf">bid</span> <span class="c1"># 584.95</span>
+<span class="n">ticker</span><span class="p">.</span><span class="nf">last</span> <span class="c1"># 589.67</span>
+<span class="n">ticker</span><span class="p">.</span><span class="nf">currency</span> <span class="c1"># "USD"</span>
+</pre>
+
+<p>Get the last trade price, current ask, and current bid</p>
+<h3 id='http-request'>HTTP Request</h1>
+<p><code class="prettyprint">GET /ticker</code></p>
+
+<p><aside class="notice">
+An API Key is not required to access this endpoint.
+</aside></p>
+
+          <h1 id='key'>Key</h1><h2 id='get-permissions'>Get permissions</h1><pre class="highlight python"><span class="n">client</span><span class="o">.</span><span class="n">get_key</span><span class="p">()</span>
 </pre>
 <pre class="highlight javascript"><span class="nx">client</span><span class="p">.</span><span class="nx">getKey</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">ticker</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"key err"</span><span class="p">,</span> <span class="nx">err</span><span class="p">);</span>
@@ -356,16 +352,18 @@ An API Key is not required to access this endpoint.
 <span class="nx">client</span><span class="o">-&gt;</span><span class="na">getKey</span><span class="p">();</span>
 <span class="cp">?&gt;</span>
 </pre>
+<pre class="highlight ruby"><span class="n">client</span><span class="p">.</span><span class="nf">get_key</span><span class="p">()</span>
+</pre>
 
 <blockquote>
 <p>The above command returns an Object structured like this:</p>
 </blockquote>
 <pre class="highlight ruby"><span class="c1"># Hashie::Mash Object</span>
 <span class="n">key</span><span class="p">.</span><span class="nf">permissions</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">permission</span><span class="o">|</span>
-  <span class="n">permission</span>
+<span class="n">permission</span>
 <span class="k">end</span>
 </pre>
-<pre class="highlight python"><span class="o">//</span> <span class="n">JSON</span> <span class="n">Object</span> <span class="p">(</span><span class="n">Array</span><span class="p">)</span>
+<pre class="highlight python"><span class="c"># Dict Object (Array)</span>
 <span class="p">[</span>
   <span class="s">"get-account"</span><span class="p">,</span>
   <span class="s">"create-buy"</span><span class="p">,</span>
@@ -396,9 +394,7 @@ An API Key is not required to access this endpoint.
 <h3 id='http-request'>HTTP Request</h1>
 <p><code class="prettyprint">GET /key</code></p>
 
-          <h1 id='account'>Account</h1><h2 id='get-account-balances'>Get account balances</h1><pre class="highlight ruby"><span class="n">client</span><span class="p">.</span><span class="nf">get_balances</span><span class="p">()</span>
-</pre>
-<pre class="highlight python"><span class="n">client</span><span class="o">.</span><span class="n">get_balances</span><span class="p">()</span>
+          <h1 id='account'>Account</h1><h2 id='get-account-balances'>Get account balances</h1><pre class="highlight python"><span class="n">client</span><span class="o">.</span><span class="n">get_balances</span><span class="p">()</span>
 </pre>
 <pre class="highlight javascript"><span class="nx">client</span><span class="p">.</span><span class="nx">getBalances</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">ticker</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"balances err"</span><span class="p">,</span> <span class="nx">err</span><span class="p">);</span>
@@ -409,6 +405,8 @@ An API Key is not required to access this endpoint.
 <span class="nx">client</span><span class="o">-&gt;</span><span class="na">getBalances</span><span class="p">();</span>
 <span class="cp">?&gt;</span>
 </pre>
+<pre class="highlight ruby"><span class="n">client</span><span class="p">.</span><span class="nf">get_balances</span><span class="p">()</span>
+</pre>
 
 <blockquote>
 <p>The above command returns an Object structured like this:</p>
@@ -417,7 +415,7 @@ An API Key is not required to access this endpoint.
 <span class="n">balances</span><span class="o">.</span><span class="no">BTC</span> <span class="c1"># 5.44423312</span>
 <span class="n">balances</span><span class="o">.</span><span class="no">USD</span> <span class="c1"># 1413.56</span>
 </pre>
-<pre class="highlight python"><span class="c"># JSON Object</span>
+<pre class="highlight python"><span class="c"># Dict Object</span>
 <span class="p">{</span>
   <span class="s">"BTC"</span><span class="p">:</span> <span class="mf">5.44423312</span><span class="p">,</span>
   <span class="s">"USD"</span><span class="p">:</span> <span class="mf">1413.56</span>
@@ -441,9 +439,7 @@ An API Key is not required to access this endpoint.
 <p>This endpoint retrieves the account balances in all currencies held.</p>
 <h3 id='http-request'>HTTP Request</h1>
 <p><code class="prettyprint">GET /account/balances</code></p>
-<h2 id='get-deposit-address'>Get deposit address</h1><pre class="highlight ruby"><span class="n">client</span><span class="p">.</span><span class="nf">get_deposit_address</span><span class="p">()</span>
-</pre>
-<pre class="highlight python"><span class="n">client</span><span class="o">.</span><span class="n">get_deposit_address</span><span class="p">()</span>
+<h2 id='get-deposit-address'>Get deposit address</h1><pre class="highlight python"><span class="n">client</span><span class="o">.</span><span class="n">get_deposit_address</span><span class="p">()</span>
 </pre>
 <pre class="highlight javascript"><span class="nx">client</span><span class="p">.</span><span class="nx">getDepositAddress</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">address</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"address err"</span><span class="p">,</span> <span class="nx">err</span><span class="p">);</span>
@@ -453,6 +449,8 @@ An API Key is not required to access this endpoint.
 <pre class="highlight php"><span class="cp">&lt;?php</span>
 <span class="nx">client</span><span class="o">-&gt;</span><span class="na">getDepositAddress</span><span class="p">();</span>
 <span class="cp">?&gt;</span>
+</pre>
+<pre class="highlight ruby"><span class="n">client</span><span class="p">.</span><span class="nf">get_deposit_address</span><span class="p">()</span>
 </pre>
 
 <blockquote>
@@ -500,11 +498,11 @@ An API Key is not required to access this endpoint.
 </blockquote>
 <pre class="highlight ruby"><span class="c1"># Hashie::Mash Object</span>
 <span class="n">orders</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">order</span><span class="o">|</span>
-  <span class="n">order</span><span class="p">.</span><span class="nf">orderId</span>
-  <span class="n">order</span><span class="p">.</span><span class="nf">events</span>
+<span class="n">order</span><span class="p">.</span><span class="nf">orderId</span>
+<span class="n">order</span><span class="p">.</span><span class="nf">events</span>
 <span class="k">end</span>
 </pre>
-<pre class="highlight python"><span class="o">//</span> <span class="n">JSON</span> <span class="n">Array</span> <span class="n">of</span> <span class="n">Objects</span>
+<pre class="highlight python"><span class="c"># Array of Dict Objects</span>
 <span class="p">[</span>
   <span class="p">{</span>
     <span class="s">"orderId"</span><span class="p">:</span> <span class="s">"886313e1-3b8a-5372-9b90-0c9aee199e5d"</span><span class="p">,</span>
@@ -646,11 +644,11 @@ An API Key is not required to access this endpoint.
 <span class="n">order</span><span class="p">.</span><span class="nf">orderId</span> <span class="c1"># "886313e1-3b8a-5372-9b90-0c9aee199e5d"</span>
 <span class="n">order</span><span class="p">.</span><span class="nf">status</span> <span class="c1"># "open"</span>
 <span class="n">order</span><span class="p">.</span><span class="nf">events</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">event</span><span class="o">|</span>
-  <span class="n">event</span><span class="p">.</span><span class="nf">eventType</span>
-  <span class="n">event</span><span class="p">.</span><span class="nf">eventDate</span>
+<span class="n">event</span><span class="p">.</span><span class="nf">eventType</span>
+<span class="n">event</span><span class="p">.</span><span class="nf">eventDate</span>
 <span class="k">end</span>
 </pre>
-<pre class="highlight python"><span class="c"># Json Object</span>
+<pre class="highlight python"><span class="c"># Dict Object</span>
 <span class="p">{</span>
   <span class="s">"orderId"</span><span class="p">:</span> <span class="s">"886313e1-3b8a-5372-9b90-0c9aee199e5d"</span><span class="p">,</span>
   <span class="s">"side"</span><span class="p">:</span> <span class="s">"buy"</span><span class="p">,</span>
@@ -877,7 +875,7 @@ An API Key is not required to access this endpoint.
 <span class="n">response</span><span class="p">.</span><span class="nf">status</span> <span class="c1"># 204</span>
 <span class="n">response</span><span class="p">.</span><span class="nf">message</span> <span class="c1"># "This operation has completed successfully"</span>
 </pre>
-<pre class="highlight python"><span class="o">//</span> <span class="n">JSON</span> <span class="n">Object</span>
+<pre class="highlight python"><span class="c"># Dict Object</span>
 <span class="p">{</span> <span class="s">"status"</span><span class="p">:</span> <span class="mi">204</span><span class="p">,</span> <span class="n">message</span><span class="p">:</span> <span class="s">"This operation has completed successfully"</span> <span class="p">}</span>
 </pre>
 <pre class="highlight javascript"><span class="c1">// JSON Object
@@ -928,12 +926,12 @@ An API Key is not required to access this endpoint.
 </blockquote>
 <pre class="highlight ruby"><span class="c1"># Hashie::Mash Object</span>
 <span class="n">transactions</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">transaction</span><span class="o">|</span>
-  <span class="n">transaction</span><span class="p">.</span><span class="nf">transactionId</span> <span class="c1"># "538bdc82848a604c007ceac6"</span>
-  <span class="n">transaction</span><span class="p">.</span><span class="nf">status</span> <span class="c1"># "open"</span>
-  <span class="n">transaction</span><span class="p">.</span><span class="nf">events</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">event</span><span class="o">|</span>
-    <span class="n">event</span><span class="p">.</span><span class="nf">eventType</span>
-    <span class="n">event</span><span class="p">.</span><span class="nf">eventDate</span>
-  <span class="k">end</span>
+<span class="n">transaction</span><span class="p">.</span><span class="nf">transactionId</span> <span class="c1"># "538bdc82848a604c007ceac6"</span>
+<span class="n">transaction</span><span class="p">.</span><span class="nf">status</span> <span class="c1"># "open"</span>
+<span class="n">transaction</span><span class="p">.</span><span class="nf">events</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">event</span><span class="o">|</span>
+<span class="n">event</span><span class="p">.</span><span class="nf">eventType</span>
+<span class="n">event</span><span class="p">.</span><span class="nf">eventDate</span>
+<span class="k">end</span>
 <span class="k">end</span>
 </pre>
 <pre class="highlight python"><span class="p">[</span>
@@ -1078,11 +1076,11 @@ An API Key is not required to access this endpoint.
 <span class="n">transaction</span><span class="p">.</span><span class="nf">transactionId</span> <span class="c1"># "538bdc82848a604c007ceac6"</span>
 <span class="n">transaction</span><span class="p">.</span><span class="nf">status</span> <span class="c1"># "open"</span>
 <span class="n">transaction</span><span class="p">.</span><span class="nf">events</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">event</span><span class="o">|</span>
-  <span class="n">event</span><span class="p">.</span><span class="nf">eventType</span>
-  <span class="n">event</span><span class="p">.</span><span class="nf">eventDate</span>
+<span class="n">event</span><span class="p">.</span><span class="nf">eventType</span>
+<span class="n">event</span><span class="p">.</span><span class="nf">eventDate</span>
 <span class="k">end</span>
 </pre>
-<pre class="highlight python"><span class="c"># Json Object</span>
+<pre class="highlight python"><span class="c"># Dict Object</span>
 <span class="p">{</span>
   <span class="s">"transactionId"</span><span class="p">:</span> <span class="s">"538bdc82848a604c007ceac6"</span><span class="p">,</span>
   <span class="s">"transactionType"</span><span class="p">:</span> <span class="s">"deposit"</span><span class="p">,</span>
@@ -1237,9 +1235,9 @@ An API Key is not required to access this endpoint.
 <h3 id='http-request'>HTTP Request</h1>
 <p><code class="prettyprint">POST /transactions/deposit</code></p>
 <h2 id='create-a-withdrawal'>Create a withdrawal</h1><pre class="highlight ruby"><span class="n">withdrawal</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="ss">:method</span> <span class="o">=&gt;</span> <span class="s2">"check"</span><span class="p">,</span>
-    <span class="ss">:currency</span> <span class="o">=&gt;</span> <span class="s2">"USD"</span><span class="p">,</span>
-    <span class="ss">:amount</span> <span class="o">=&gt;</span> <span class="s2">"500"</span>
+  <span class="ss">:method</span> <span class="o">=&gt;</span> <span class="s2">"check"</span><span class="p">,</span>
+  <span class="ss">:currency</span> <span class="o">=&gt;</span> <span class="s2">"USD"</span><span class="p">,</span>
+  <span class="ss">:amount</span> <span class="o">=&gt;</span> <span class="s2">"500"</span>
 <span class="p">}</span>
 <span class="n">client</span><span class="p">.</span><span class="nf">create_withdrawal</span><span class="p">(</span><span class="n">withdrawal</span><span class="p">)</span>
 </pre>
@@ -1262,9 +1260,9 @@ An API Key is not required to access this endpoint.
 </pre>
 <pre class="highlight php"><span class="cp">&lt;?php</span>
 <span class="nv">$withdrawal</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="s2">"method"</span> <span class="o">=&gt;</span> <span class="s2">"us_ach"</span><span class="p">,</span>
-    <span class="s2">"currency"</span> <span class="o">=&gt;</span> <span class="s2">"USD"</span><span class="p">,</span>
-    <span class="s2">"amount"</span> <span class="o">=&gt;</span> <span class="s2">"500"</span>
+  <span class="s2">"method"</span> <span class="o">=&gt;</span> <span class="s2">"us_ach"</span><span class="p">,</span>
+  <span class="s2">"currency"</span> <span class="o">=&gt;</span> <span class="s2">"USD"</span><span class="p">,</span>
+  <span class="s2">"amount"</span> <span class="o">=&gt;</span> <span class="s2">"500"</span>
 <span class="p">];</span>
 <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">createWithdrawal</span><span class="p">(</span><span class="nv">$withdrawal</span><span class="p">);</span>
 <span class="cp">?&gt;</span>
@@ -1279,10 +1277,10 @@ An API Key is not required to access this endpoint.
 </pre>
 <pre class="highlight python"><span class="p">{</span> <span class="s">"status"</span><span class="p">:</span> <span class="mi">201</span><span class="p">,</span> <span class="s">"message"</span><span class="p">:</span> <span class="s">'This operation requires email confirmation'</span> <span class="p">}</span>
 </pre>
-<pre class="highlight javascript"><span class="p">{</span> <span class="na">status</span><span class="p">:</span> <span class="mi">201</span><span class="p">,</span> <span class="na">message</span><span class="p">:</span> <span class="s1">'Send request created, but email confirmation is required'</span> <span class="p">}</span>
+<pre class="highlight javascript"><span class="p">{</span> <span class="na">status</span><span class="p">:</span> <span class="mi">201</span><span class="p">,</span> <span class="na">message</span><span class="p">:</span> <span class="s1">'This operation requires email confirmation'</span> <span class="p">}</span>
 </pre>
 <pre class="highlight php"><span class="cp">&lt;?php</span>
-<span class="p">[</span> <span class="s1">'status'</span> <span class="o">=&gt;</span> <span class="mi">201</span><span class="p">,</span> <span class="s1">'message'</span> <span class="o">=&gt;</span> <span class="s1">'Send request created, but email confirmation is required'</span> <span class="p">]</span>
+<span class="p">[</span> <span class="s1">'status'</span> <span class="o">=&gt;</span> <span class="mi">201</span><span class="p">,</span> <span class="s1">'message'</span> <span class="o">=&gt;</span> <span class="s1">'Withdraw request created, but email confirmation is required'</span> <span class="p">]</span>
 <span class="cp">?&gt;</span>
 </pre>
 
@@ -1358,7 +1356,7 @@ An API Key is not required to access this endpoint.
   <span class="s2">"amount"</span> <span class="o">=&gt;</span> <span class="s2">"100.231231"</span><span class="p">,</span>
   <span class="s2">"destination"</span> <span class="o">=&gt;</span> <span class="s2">"&lt;bitcoin_address&gt;"</span>
 <span class="p">};</span>
-<span class="nv">$client</span><span class="o">-&gt;</span><span class="na">sendBitcoin</span><span class="p">(</span><span class="nv">$trxn</span><span class="p">);</span>
+<span class="nv">$client</span><span class="o">-&gt;</span><span class="na">sendCrypto</span><span class="p">(</span><span class="nv">$trxn</span><span class="p">);</span>
 <span class="cp">?&gt;</span>
 </pre>
 
@@ -1371,7 +1369,7 @@ An API Key is not required to access this endpoint.
 </pre>
 <pre class="highlight python"><span class="p">{</span> <span class="s">"status"</span><span class="p">:</span> <span class="mi">201</span><span class="p">,</span> <span class="s">"message"</span><span class="p">:</span> <span class="s">'This operation requires email confirmation'</span> <span class="p">}</span>
 </pre>
-<pre class="highlight javascript"><span class="p">{</span> <span class="na">status</span><span class="p">:</span> <span class="mi">201</span><span class="p">,</span> <span class="na">message</span><span class="p">:</span> <span class="s1">'Send request created, but email confirmation is required'</span> <span class="p">}</span>
+<pre class="highlight javascript"><span class="p">{</span> <span class="na">status</span><span class="p">:</span> <span class="mi">201</span><span class="p">,</span> <span class="na">message</span><span class="p">:</span> <span class="s1">'This operation requires email confirmation'</span> <span class="p">}</span>
 </pre>
 <pre class="highlight php"><span class="cp">&lt;?php</span>
 <span class="p">[</span> <span class="s1">'status'</span> <span class="o">=&gt;</span> <span class="mi">201</span><span class="p">,</span> <span class="s1">'message'</span> <span class="o">=&gt;</span> <span class="s1">'Send request created, but email confirmation is required'</span> <span class="p">]</span>
@@ -1419,7 +1417,7 @@ An API Key is not required to access this endpoint.
 </tbody></table>
 <h3 id='http-request'>HTTP Request</h1>
 <p><code class="prettyprint">POST /transactions/send</code></p>
-<h2 id='cancel-a-transaction'>Cancel a transaction</h1><pre class="highlight ruby"><span class="n">transaction_id</span> <span class="o">=</span> <span class="s1">'e3afed81-4a9c-4480-a78a-e0872408b95a'</span>
+<h2 id='cancel-a-transaction'>Cancel a transaction</h1><pre class="highlight ruby">  <span class="n">transaction_id</span> <span class="o">=</span> <span class="s1">'e3afed81-4a9c-4480-a78a-e0872408b95a'</span>
 <span class="n">client</span><span class="p">.</span><span class="nf">cancel_transaction</span><span class="p">(</span><span class="n">transaction_id</span><span class="p">)</span>
 </pre>
 <pre class="highlight python"><span class="n">transaction_id</span> <span class="o">=</span> <span class="s">'e3afed81-4a9c-4480-a78a-e0872408b95a'</span>
@@ -1448,7 +1446,7 @@ An API Key is not required to access this endpoint.
 <span class="p">{</span> <span class="s">"status"</span><span class="p">:</span> <span class="mi">204</span><span class="p">,</span> <span class="n">message</span><span class="p">:</span> <span class="s">"This operation has completed successfully"</span> <span class="p">}</span>
 </pre>
 <pre class="highlight javascript"><span class="c1">// JSON Object
-</span><span class="p">{</span> <span class="na">status</span><span class="p">:</span> <span class="mi">204</span><span class="p">,</span> <span class="na">message</span><span class="p">:</span> <span class="s2">"This operation has completed successfully"</span> <span class="p">}</span>
+</span><span class="p">{</span> <span class="na">status</span><span class="p">:</span> <span class="mi">204</span><span class="p">,</span> <span class="na">message</span><span class="p">:</span> <span class="s2">"This operation requires email confirmation"</span> <span class="p">}</span>
 </pre>
 <pre class="highlight php"><span class="cp">&lt;?php</span>
 <span class="c1">// Array Object
@@ -1478,7 +1476,7 @@ An API Key is not required to access this endpoint.
 </blockquote>
 <pre class="highlight json"><span class="p">{</span><span class="w">
   </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">400</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bad Request"</span><span class="w">
     </span><span class="p">}</span><span class="w">
@@ -1539,6 +1537,36 @@ An API Key is not required to access this endpoint.
 <td>Service Unavailable &ndash; We&rsquo;re temporarily offline for maintenance. Please try again later.</td>
 </tr>
 </tbody></table>
+
+<p>..</p>
+
+<p>..</p>
+
+<p>..</p>
+
+<p>..</p>
+
+<p>..</p>
+
+<p>..</p>
+
+<p>..</p>
+
+<p>..</p>
+
+<p>..</p>
+
+<p>..</p>
+
+<p>..</p>
+
+<p>..</p>
+
+<p>..</p>
+
+<p>..</p>
+
+<p>..</p>
 
       </div>
       <div class="dark-box">
