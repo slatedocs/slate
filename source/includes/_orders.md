@@ -5,7 +5,7 @@
 ```ruby
 query = { "status" => "opened" }
 client.get_orders(query)
-```
+  ```
 
 ```python
 query = {'status': 'filled'}
@@ -32,13 +32,13 @@ $client->getOrders($query);
 ```ruby
 # Hashie::Mash Object
 orders.each do |order|
-  order.orderId
-  order.events
+order.orderId
+order.events
 end
 ```
 
 ```python
-// JSON Array of Objects
+# Array of Dict Objects
 [
   {
     "orderId": "886313e1-3b8a-5372-9b90-0c9aee199e5d",
@@ -180,13 +180,13 @@ $client->getOrderByUrl($url);
 order.orderId # "886313e1-3b8a-5372-9b90-0c9aee199e5d"
 order.status # "open"
 order.events.each do |event|
-  event.eventType
-  event.eventDate
+event.eventType
+event.eventDate
 end
 ```
 
 ```python
-# Json Object
+# Dict Object
 {
   "orderId": "886313e1-3b8a-5372-9b90-0c9aee199e5d",
   "side": "buy",
@@ -246,7 +246,6 @@ end
 ]
 ?>
 ```
-
 
 This endpoint retrieves a single order with the given ID.
 
@@ -424,7 +423,7 @@ response.message # "This operation has completed successfully"
 ```
 
 ```python
-// JSON Object
+# Dict Object
 { "status": 204, message: "This operation has completed successfully" }
 ```
 
@@ -451,3 +450,5 @@ Cancel a single order with the given ID.
 Parameter | Description
 --------- | -----------
 ID | The ID of the order to cancel
+
+

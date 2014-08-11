@@ -7,20 +7,20 @@
 gem 'buttercoin', '~> 0.0.1'
 
 # Or install RubyGems:
-$ gem install buttercoin
+gem install buttercoin
 ```
 
 ```python
-$ pip install buttercoin
+pip install buttercoin
 ```
 
 ```javascript
-$ npm install buttercoinsdk-node
+npm install buttercoinsdk-node
 ```
 
 ```php
 // Using Composer
-$ php composer.phar require buttercoin/buttercoin-sdk:~0.0.2
+php composer.phar require buttercoin/buttercoin-sdk:~0.0.2
 ```
 
 We've built the following officially supported API Client SDK's
@@ -31,3 +31,5 @@ We've built the following officially supported API Client SDK's
 * [Python](https://github.com/buttercoin/buttercoinsdk-python) - Returns data in JSON format
 
 Have another suggested language for a client?  Just [let us know](mailto:api@buttercoin.com?subject=Add%20An%20API%20Language).
+
+

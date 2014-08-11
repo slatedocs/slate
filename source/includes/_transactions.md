@@ -32,12 +32,12 @@ $client->getTransactions($query);
 ```ruby
 # Hashie::Mash Object
 transactions.each do |transaction|
-  transaction.transactionId # "538bdc82848a604c007ceac6"
-  transaction.status # "open"
-  transaction.events.each do |event|
-    event.eventType
-    event.eventDate
-  end
+transaction.transactionId # "538bdc82848a604c007ceac6"
+transaction.status # "open"
+transaction.events.each do |event|
+event.eventType
+event.eventDate
+end
 end
 ```
 
@@ -136,7 +136,7 @@ client.get_transaction_by_id(transaction_id)
 # For convenience, you can also get transaction by full URL
 url = 'http://api.buttercoin.com/v1/transactions/538bdc82848a604c007ceac6'
 client.get_transaction_by_url(url)
-```
+  ```
 
 ```python
 # Get transaction with the ID
@@ -183,13 +183,13 @@ $client->getTransactionByUrl($url);
 transaction.transactionId # "538bdc82848a604c007ceac6"
 transaction.status # "open"
 transaction.events.each do |event|
-  event.eventType
-  event.eventDate
+event.eventType
+event.eventDate
 end
 ```
 
 ```python
-# Json Object
+# Dict Object
 {
   "transactionId": "538bdc82848a604c007ceac6",
   "transactionType": "deposit",
@@ -252,7 +252,6 @@ end
 ]
 ?>
 ```
-
 
 This endpoint retrieves a single transaction with the given ID.
 
@@ -353,9 +352,9 @@ Parameter | Description
 
 ```ruby
 withdrawal = {
-	:method => "check",
-	:currency => "USD",
-	:amount => "500"
+  :method => "check",
+  :currency => "USD",
+  :amount => "500"
 }
 client.create_withdrawal(withdrawal)
 ```
@@ -367,7 +366,7 @@ withdrawal = {
   "method": "check" 
 }
 client.create_transaction(withdrawal)
-```
+  ```
 
 ```javascript
 var withdrawal = {
@@ -384,9 +383,9 @@ client.createWithdrawal(withdrawal, function (err, msg) {
 ```php
 <?php
 $withdrawal = [
-    "method" => "us_ach",
-    "currency" => "USD",
-    "amount" => "500"
+  "method" => "us_ach",
+  "currency" => "USD",
+  "amount" => "500"
 ];
 $client->createWithdrawal($withdrawal);
 ?>
@@ -405,12 +404,12 @@ response.message # This operation requires email confirmation
 ```
 
 ```javascript
-{ status: 201, message: 'Send request created, but email confirmation is required' }
+{ status: 201, message: 'This operation requires email confirmation' }
 ```
 
 ```php
 <?php
-[ 'status' => 201, 'message' => 'Send request created, but email confirmation is required' ]
+[ 'status' => 201, 'message' => 'Withdraw request created, but email confirmation is required' ]
 ?>
 ```
 
@@ -490,7 +489,7 @@ $trxn = {
   "amount" => "100.231231",
   "destination" => "<bitcoin_address>"
 };
-$client->sendBitcoin($trxn);
+$client->sendCrypto($trxn);
 ?>
 ```
 
@@ -507,7 +506,7 @@ response.message # This operation requires email confirmation
 ```
 
 ```javascript
-{ status: 201, message: 'Send request created, but email confirmation is required' }
+{ status: 201, message: 'This operation requires email confirmation' }
 ```
 
 ```php
@@ -555,7 +554,7 @@ Parameter | Description
 ## Cancel a transaction
 
 ```ruby
-transaction_id = 'e3afed81-4a9c-4480-a78a-e0872408b95a'
+  transaction_id = 'e3afed81-4a9c-4480-a78a-e0872408b95a'
 client.cancel_transaction(transaction_id)
 ```
 
@@ -594,7 +593,7 @@ response.message # "This operation has completed successfully"
 
 ```javascript
 // JSON Object
-{ status: 204, message: "This operation has completed successfully" }
+{ status: 204, message: "This operation requires email confirmation" }
 ```
 
 ```php
@@ -615,4 +614,6 @@ Cancel a single transaction with the given ID.
 Parameter | Description
 --------- | -----------
 ID | The ID of the transaction to cancel
+
+
 

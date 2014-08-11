@@ -1,80 +1,5 @@
 # Public
 
-## Get the ticker
-
-```ruby
-client.get_ticker()
-```
-
-```python
-client.get_ticker()
-```
-
-```javascript
-client.getTicker(function (err, ticker) {
-  console.log("ticker err", err);
-  console.log("ticker", ticker);
-});
-```
-
-```php
-<?php
-client->getTicker();
-?>
-```
-
-> The above command returns an Object structured like this:
-
-```ruby
-# Hashie::Mash Object
-ticker.ask # 589.67
-ticker.bid # 584.95
-ticker.last # 589.67
-ticker.currency # "USD"
-```
-
-```python
-# JSON Object
-{
-  "currency": "USD",
-  "last": 404.12,
-  "bid": 403.98,
-  "ask": 404.22
-}
-```
-
-```javascript
-// JSON Object
-{
-  "currency": "USD",
-  "last": 404.12,
-  "bid": 403.98,
-  "ask": 404.22
-}
-```
-
-```php
-<?php
-// Array Object
-[
-  "currency" => USD,
-  "last" => 589.67,
-  "bid" => 584.95,
-  "ask" => 589.67
-]
-?>
-```
-
-Get the last trade price, current ask, and current bid
-
-### HTTP Request
-
-`GET /ticker`
-
-<aside class="notice">
-An API Key is not required to access this endpoint.
-</aside>
-
 ## Get the orderbook
 
 ```ruby
@@ -110,13 +35,13 @@ orderbook.ask.first.quantity # 1.35
 
 # loop through all bids
 orderbook.bid.each do |order|
-  order.price
-  order.quantity
+order.price
+order.quantity
 end
 ```
 
 ```python
-// JSON Object
+# Dict Object
 {
   "bid": [
     {
@@ -208,3 +133,80 @@ Get all the orders in the book on both the bid and ask sides
 <aside class="notice">
 An API Key is not required to access this endpoint.
 </aside>
+
+## Get the ticker
+
+```python
+client.get_ticker()
+```
+
+```javascript
+client.getTicker(function (err, ticker) {
+  console.log("ticker err", err);
+  console.log("ticker", ticker);
+});
+```
+
+```php
+<?php
+client->getTicker();
+?>
+```
+
+```ruby
+client.get_ticker()
+```
+
+> The above command returns an Object structured like this:
+
+```python
+# Dict Object
+{
+  "currency": "USD",
+  "last": 404.12,
+  "bid": 403.98,
+  "ask": 404.22
+}
+```
+
+```javascript
+// JSON Object
+{
+  "currency": "USD",
+  "last": 404.12,
+  "bid": 403.98,
+  "ask": 404.22
+}
+```
+
+```php
+<?php
+// Array Object
+[
+  "currency" => USD,
+  "last" => 589.67,
+  "bid" => 584.95,
+  "ask" => 589.67
+]
+?>
+```
+
+```ruby
+# Hashie::Mash Object
+ticker.ask # 589.67
+ticker.bid # 584.95
+ticker.last # 589.67
+ticker.currency # "USD"
+```
+
+Get the last trade price, current ask, and current bid
+
+### HTTP Request
+
+`GET /ticker`
+
+<aside class="notice">
+An API Key is not required to access this endpoint.
+</aside>
+
+

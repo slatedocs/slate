@@ -8,7 +8,7 @@ language_tabs:
   - php
 
 toc_footers:
-  - <a href='https://www.buttercoin.com/#/api'>Sign Up for a Developer Key</a>
+  - <a href='https://www.buttercoin.com/#/api'>Manage your API Developer Keys</a>
   - Need help? <a href='mailto:api@buttercoin.com?subject=API%20Question'>Email Us</a>
 
 includes:
@@ -24,3 +24,5 @@ includes:
 
 search: false
 ---
+
+

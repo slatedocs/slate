@@ -2,10 +2,6 @@
 
 ## Get account balances
 
-```ruby
-client.get_balances()
-```
-
 ```python
 client.get_balances()
 ```
@@ -23,6 +19,10 @@ client->getBalances();
 ?>
 ```
 
+```ruby
+client.get_balances()
+```
+
 > The above command returns an Object structured like this:
 
 ```ruby
@@ -32,7 +32,7 @@ balances.USD # 1413.56
 ```
 
 ```python
-# JSON Object
+# Dict Object
 {
   "BTC": 5.44423312,
   "USD": 1413.56
@@ -65,9 +65,7 @@ This endpoint retrieves the account balances in all currencies held.
 
 ## Get deposit address
 
-```ruby
-client.get_deposit_address()
-```
+
 
 ```python
 client.get_deposit_address()
@@ -84,6 +82,10 @@ client.getDepositAddress(function (err, address) {
 <?php
 client->getDepositAddress();
 ?>
+```
+
+```ruby
+client.get_deposit_address()
 ```
 
 > The above command returns an Object structured like this:
@@ -115,3 +117,5 @@ Get the bitcoin deposit address associated with this account
 ### HTTP Request
 
 `GET /account/depositAddress`
+
+

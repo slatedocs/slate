@@ -2,10 +2,6 @@
 
 ## Get permissions
 
-```ruby
-client.get_key()
-```
-
 ```python
 client.get_key()
 ```
@@ -23,17 +19,21 @@ client->getKey();
 ?>
 ```
 
+```ruby
+client.get_key()
+```
+
 > The above command returns an Object structured like this:
 
 ```ruby
 # Hashie::Mash Object
 key.permissions.each do |permission|
-  permission
+permission
 end
 ```
 
 ```python
-// JSON Object (Array)
+# Dict Object (Array)
 [
   "get-account",
   "create-buy",
@@ -69,3 +69,5 @@ Get all the permissions associated with this key
 ### HTTP Request
 
 `GET /key`
+
+

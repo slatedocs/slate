@@ -5,7 +5,7 @@
 ```json
 {
   "status": 400,
-  "errors": [
+    "errors": [
     {
       "message": "Bad Request"
     }
@@ -30,3 +30,42 @@ Error Code | Meaning
 503 | Service Unavailable -- We're temporarily offline for maintenance. Please try again later.
 
 
+
+
+
+
+
+
+
+
+
+
+..
+
+..
+
+..
+
+..
+
+..
+
+..
+
+..
+
+..
+
+..
+
+..
+
+..
+
+..
+
+..
+
+..
+
+..
