@@ -15,7 +15,7 @@
     <link href="stylesheets/screen.css" rel="stylesheet" type="text/css" media="screen" />
     <link href="stylesheets/print.css" rel="stylesheet" type="text/css" media="print" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-      <script src="javascripts/all_nosearch.js" type="text/javascript"></script>
+      <script src="javascripts/all.js" type="text/javascript"></script>
 
       <script>
         $(function() {
@@ -40,6 +40,10 @@
               <a href="#" data-language-name="javascript">javascript</a>
               <a href="#" data-language-name="php">php</a>
         </div>
+        <div class="search">
+          <input type="text" class="search" id="input-search" placeholder="Search">
+        </div>
+        <ul class="search-results"></ul>
       <div id="toc">
       </div>
         <ul class="toc-footer">
@@ -148,7 +152,7 @@ php composer.phar require buttercoin/buttercoin-sdk:~0.0.2
 You must always keep your API Keys secure to make sure no one can access your account.  If you think a key might be compromised, simply revoke your API key <a href="https://api.buttercoin.com/#/api">here</a>.
 </aside></p>
 
-<p><em>If you are building our own client for the API&hellip;</em></p>
+<p><em>If you are building your own client for the API&hellip;</em></p>
 <h3 id='building-an-hmac-signature-with-sha-256'>Building an HMAC Signature with SHA-256</h1>
 <ol>
 <li>Concatenate the timestamp, request URL and parameters into a UTF-8 String:</li>
@@ -1537,36 +1541,6 @@ An API Key is not required to access this endpoint.
 <td>Service Unavailable &ndash; We&rsquo;re temporarily offline for maintenance. Please try again later.</td>
 </tr>
 </tbody></table>
-
-<p>..</p>
-
-<p>..</p>
-
-<p>..</p>
-
-<p>..</p>
-
-<p>..</p>
-
-<p>..</p>
-
-<p>..</p>
-
-<p>..</p>
-
-<p>..</p>
-
-<p>..</p>
-
-<p>..</p>
-
-<p>..</p>
-
-<p>..</p>
-
-<p>..</p>
-
-<p>..</p>
 
       </div>
       <div class="dark-box">
