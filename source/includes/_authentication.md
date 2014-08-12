@@ -62,7 +62,7 @@ The Buttercoin API provides one publicly accessible endpoint to get the current 
 You must always keep your API Keys secure to make sure no one can access your account.  If you think a key might be compromised, simply revoke your API key [here](https://api.buttercoin.com/#/api).
 </aside>
 
-*If you are building our own client for the API...*
+*If you are building your own client for the API...*
 
 ### Building an HMAC Signature with SHA-256
 
