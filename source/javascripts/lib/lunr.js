@@ -1,5 +1,5 @@
 /**
- * lunr - http://lunrjs.com - A bit like Solr, but much smaller and not as bright - 0.5.2
+ * lunr - http://lunrjs.com - A bit like Solr, but much smaller and not as bright - 0.5.5
  * Copyright (C) 2014 Oliver Nightingale
  * MIT Licensed
  * @license
@@ -56,7 +56,7 @@ var lunr = function (config) {
   return idx
 }
 
-lunr.version = "0.5.2"
+lunr.version = "0.5.5"
 /*!
  * lunr.utils
  * Copyright (C) 2014 Oliver Nightingale
@@ -190,7 +190,10 @@ lunr.tokenizer = function (obj) {
   }
 
   return str
-    .split(/\s+/)
+    .split(/(?:\s+|\-)/)
+    .filter(function (token) {
+      return !!token
+    })
     .map(function (token) {
       return token.toLowerCase()
     })
@@ -1400,13 +1403,12 @@ lunr.stemmer = (function(){
       }
     }
 
-    // Step 1c
-    re = /^(.+?)y$/;
+    // Step 1c - replace suffix y or Y by i if preceded by a non-vowel which is not the first letter of the word (so cry -> cri, by -> by, say -> say)
+    re = /^(.+?[^aeiou])y$/;
     if (re.test(w)) {
       var fp = re.exec(w);
       stem = fp[1];
-      re = new RegExp(s_v);
-      if (re.test(stem)) { w = stem + "i"; }
+      w = stem + "i";
     }
 
     // Step 2

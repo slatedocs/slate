@@ -22,7 +22,7 @@ includes:
   - transactions
   - errors
 
-search: false
+search: true
 ---
 
 

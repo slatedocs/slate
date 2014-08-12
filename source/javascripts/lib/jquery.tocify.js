@@ -1,12 +1,6 @@
-//= require ./jquery_ui
-/* jquery Tocify - v1.8.0 - 2013-09-16
+/* jquery Tocify - v1.9.0 - 2013-10-01
 * http://www.gregfranko.com/jquery.tocify.js/
-* Copyright (c) 2013 Greg Franko; Licensed MIT
-* Modified lightly by Robert Lord to fix a bug I found,
-* and also so it adds ids to headers
-* also because I want height caching, since the
-* height lookup for h1s and h2s was causing serious
-* lag spikes below 30 fps */
+* Copyright (c) 2013 Greg Franko; Licensed MIT */
 
 // Immediately-Invoked Function Expression (IIFE) [Ben Alman Blog Post](http://benalman.com/news/2010/11/immediately-invoked-function-expression/) that calls another IIFE that contains all of the plugin logic.  I used this pattern so that anyone viewing this code would not have to scroll to the bottom of the page to view the local parameters that were passed to the main IIFE.
 (function(tocify) {
@@ -39,12 +33,12 @@
         itemClass = "." + itemClassName,
         extendPageClassName = "tocify-extend-page",
         extendPageClass = "." + extendPageClassName;
-
+console.log("$.widget", (typeof $.widget === 'undefined'));
     // Calling the jQueryUI Widget Factory Method
     $.widget("toc.tocify", {
 
         //Plugin version
-        version: "1.8.0",
+        version: "1.9.0",
 
         // These options will be used as defaults
         options: {
@@ -147,7 +141,6 @@
 
             var self = this;
 
-            self.tocifyWrapper = $('.tocify-wrapper');
             self.extendPageScroll = true;
 
             // Internal array that keeps track of all TOC items (Helps to recognize if there are duplicate TOC item strings)
@@ -155,10 +148,6 @@
 
             // Generates the HTML for the dynamic table of contents
             self._generateToc();
-
-            // Caches heights and anchors
-            self.cachedHeights = [],
-            self.cachedAnchors = [];
 
             // Adds CSS classes to the newly generated table of contents HTML
             self._addCSSClasses();
@@ -319,7 +308,7 @@
 
                 hash = window.location.hash.substring(1),
 
-                elem = self.element.find("li[data-unique='" + hash + "']");
+                elem = self.element.find('li[data-unique="' + hash + '"]');
 
             if(hash.length) {
 
@@ -388,10 +377,6 @@
 
             hashValue = this._generateHashValue(arr, self, index);
 
-            // ADDED BY ROBERT
-            // actually add the hash value to the element's id
-            // self.attr("id", "link-" + hashValue);
-
             // Appends a list item HTML element to the last unordered list HTML element found within the HTML element calling the plugin
             item = $("<li/>", {
 
@@ -429,15 +414,9 @@
                 hashGeneratorOption = this.options.hashGenerator;
 
             if (hashGeneratorOption === "pretty") {
-                // remove weird characters
-
 
                 // prettify the text
                 hashValue = self.text().toLowerCase().replace(/\s/g, "-");
-
-                // ADDED BY ROBERT
-                // remove weird characters
-                hashValue = hashValue.replace(/[^\x00-\x7F]/g, "");
 
                 // fix double hyphens
                 while (hashValue.indexOf("--") > -1) {
@@ -593,70 +572,69 @@
                 }
             });
 
-            // Reset height cache on scroll
-
-            $(window).on('resize', function() {
-                self.calculateHeights();
-            });
-
+            // only attach handler if needed (expensive in IE)
+            if (self.options.extendPage || self.options.highlightOnScroll || self.options.scrollHistory || self.options.showAndHideOnScroll)
+            {
             // Window scroll event handler
-            $(window).on("scroll.tocify", function() {
+                $(window).on("scroll.tocify", function() {
 
-                // Once all animations on the page are complete, this callback function will be called
-                $("html, body").promise().done(function() {
+                    // Once all animations on the page are complete, this callback function will be called
+                    $("html, body").promise().done(function() {
 
-                    // Local variables
+                        // Local variables
 
-                    // Stores how far the user has scrolled
-                    var winScrollTop = $(window).scrollTop(),
+                        // Stores how far the user has scrolled
+                        var winScrollTop = $(window).scrollTop(),
 
-                        // Stores the height of the window
-                        winHeight = $(window).height(),
+                            // Stores the height of the window
+                            winHeight = $(window).height(),
 
-                        // Stores the height of the document
-                        docHeight = $(document).height(),
+                            // Stores the height of the document
+                            docHeight = $(document).height(),
 
-                        scrollHeight = $("body")[0].scrollHeight,
+                            scrollHeight = $("body")[0].scrollHeight,
 
-                        // Instantiates a variable that will be used to hold a selected HTML element
-                        elem,
+                            // Instantiates a variable that will be used to hold a selected HTML element
+                            elem,
 
-                        lastElem,
+                            lastElem,
 
-                        lastElemOffset,
+                            lastElemOffset,
 
-                        currentElem;
+                            currentElem;
 
-                    if(self.options.extendPage) {
+                        if(self.options.extendPage) {
 
-                        // If the user has scrolled to the bottom of the page and the last toc item is not focused
-                        if((self.webkit && winScrollTop >= scrollHeight - winHeight - self.options.extendPageOffset) || (!self.webkit && winHeight + winScrollTop > docHeight - self.options.extendPageOffset)) {
+                            // If the user has scrolled to the bottom of the page and the last toc item is not focused
+                            if((self.webkit && winScrollTop >= scrollHeight - winHeight - self.options.extendPageOffset) || (!self.webkit && winHeight + winScrollTop > docHeight - self.options.extendPageOffset)) {
 
-                            if(!$(extendPageClass).length) {
+                                if(!$(extendPageClass).length) {
 
-                                lastElem = $('div[data-unique="' + $(itemClass).last().attr("data-unique") + '"]');
+                                    lastElem = $('div[data-unique="' + $(itemClass).last().attr("data-unique") + '"]');
 
-                                if(!lastElem.length) return;
+                                    if(!lastElem.length) return;
 
-                                // Gets the top offset of the page header that is linked to the last toc item
-                                lastElemOffset = lastElem.offset().top;
+                                    // Gets the top offset of the page header that is linked to the last toc item
+                                    lastElemOffset = lastElem.offset().top;
 
-                                // Appends a div to the bottom of the page and sets the height to the difference of the window scrollTop and the last element's position top offset
-                                $(self.options.context).append($("<div />", {
+                                    // Appends a div to the bottom of the page and sets the height to the difference of the window scrollTop and the last element's position top offset
+                                    $(self.options.context).append($("<div />", {
 
-                                    "class": extendPageClassName,
+                                        "class": extendPageClassName,
 
-                                    "height": Math.abs(lastElemOffset - winScrollTop) + "px",
+                                        "height": Math.abs(lastElemOffset - winScrollTop) + "px",
 
-                                    "data-unique": extendPageClassName
+                                        "data-unique": extendPageClassName
 
-                                }));
+                                    }));
 
-                                if(self.extendPageScroll) {
+                                    if(self.extendPageScroll) {
 
-                                    currentElem = self.element.find('li.active');
+                                        currentElem = self.element.find('li.active');
 
-                                    self._scrollTo($("div[data-unique=" + currentElem.attr("data-unique") + "]"));
+                                        self._scrollTo($('div[data-unique="' + currentElem.attr("data-unique") + '"]'));
+
+                                    }
 
                                 }
 
@@ -664,113 +642,72 @@
 
                         }
 
-                    }
+                        // The zero timeout ensures the following code is run after the scroll events
+                        setTimeout(function() {
 
-                    // The zero timeout ensures the following code is run after the scroll events
-                    setTimeout(function() {
+                            // _Local variables_
 
-                        // _Local variables_
+                            // Stores the distance to the closest anchor
+                            var closestAnchorDistance = null,
 
-                        // Stores the distance to the closest anchor
-                        var // Stores the index of the closest anchor
-                            closestAnchorIdx = null,
-                            anchorText;
+                                // Stores the index of the closest anchor
+                                closestAnchorIdx = null,
 
-                        // if never calculated before, calculate and cache the heights
-                        if (self.cachedHeights.length == 0) {
-                            self.calculateHeights();
-                        }
+                                // Keeps a reference to all anchors
+                                anchors = $(self.options.context).find("div[data-unique]"),
 
-                        var scrollTop = $(window).scrollTop();
+                                anchorText;
 
-                        // Determines the index of the closest anchor
-                        self.cachedAnchors.each(function(idx) {
-                            if (self.cachedHeights[idx] - scrollTop < 0) {
-                                closestAnchorIdx = idx;
-                            } else {
-                                return false;
-                            }
-                        });
-
-                        anchorText = $(self.cachedAnchors[closestAnchorIdx]).attr("data-unique");
-
-                        // Stores the list item HTML element that corresponds to the currently traversed anchor tag
-                        elem = $('li[data-unique="' + anchorText + '"]');
-
-                        // If the `highlightOnScroll` option is true and a next element is found
-                        if(self.options.highlightOnScroll && elem.length && !elem.hasClass(self.focusClass)) {
-
-                            // Removes highlighting from all of the list item's
-                            self.element.find("." + self.focusClass).removeClass(self.focusClass);
-
-                            // Highlights the corresponding list item
-                            elem.addClass(self.focusClass);
-
-                            // Scroll to highlighted element's header
-                            var tocifyWrapper = self.tocifyWrapper;
-                            var scrollToElem = $(elem).closest('.tocify-header');
-
-                            var elementOffset = scrollToElem.offset().top,
-                                wrapperOffset = tocifyWrapper.offset().top;
-                            var offset = elementOffset - wrapperOffset;
-
-                            if (offset >= $(window).height()) {
-                              var scrollPosition = offset + tocifyWrapper.scrollTop();
-                              tocifyWrapper.scrollTop(scrollPosition);
-                            } else if (offset < 0) {
-                              tocifyWrapper.scrollTop(0);
-                            }
-                        }
-
-                        if(self.options.scrollHistory) {
-
-                            // IF STATEMENT ADDED BY ROBERT
-
-                            if(window.location.hash !== "#" + anchorText && anchorText !== undefined) {
-
-                                if(history.replaceState) {
-                                    history.replaceState({}, "", "#" + anchorText);
-                                // provide a fallback
+                            // Determines the index of the closest anchor
+                            anchors.each(function(idx) {
+                                var distance = Math.abs(($(this).next().length ? $(this).next() : $(this)).offset().top - winScrollTop - self.options.highlightOffset);
+                                if (closestAnchorDistance == null || distance < closestAnchorDistance) {
+                                    closestAnchorDistance = distance;
+                                    closestAnchorIdx = idx;
                                 } else {
-                                    scrollV = document.body.scrollTop;
-                                    scrollH = document.body.scrollLeft;
-                                    location.hash = "#" + anchorText;
-                                    document.body.scrollTop = scrollV;
-                                    document.body.scrollLeft = scrollH;
+                                    return false;
                                 }
+                            });
+
+                            anchorText = $(anchors[closestAnchorIdx]).attr("data-unique");
+
+                            // Stores the list item HTML element that corresponds to the currently traversed anchor tag
+                            elem = $('li[data-unique="' + anchorText + '"]');
+
+                            // If the `highlightOnScroll` option is true and a next element is found
+                            if(self.options.highlightOnScroll && elem.length) {
+
+                                // Removes highlighting from all of the list item's
+                                self.element.find("." + self.focusClass).removeClass(self.focusClass);
+
+                                // Highlights the corresponding list item
+                                elem.addClass(self.focusClass);
 
                             }
 
-                        }
+                            if(self.options.scrollHistory) {
 
-                        // If the `showAndHideOnScroll` option is true
-                        if(self.options.showAndHideOnScroll && self.options.showAndHide) {
+                                if(window.location.hash !== "#" + anchorText) {
 
-                            self._triggerShow(elem, true);
+                                    window.location.replace("#" + anchorText);
 
-                        }
+                                }
+                            }
 
-                    }, 0);
+                            // If the `showAndHideOnScroll` option is true
+                            if(self.options.showAndHideOnScroll && self.options.showAndHide) {
+
+                                self._triggerShow(elem, true);
+
+                            }
+
+                        }, 0);
+
+                    });
 
                 });
+            }
 
-            });
-
-        },
-
-        // calculateHeights
-        // ----
-        //      ADDED BY ROBERT
-        calculateHeights: function() {
-            var self = this;
-            self.cachedHeights = [];
-            self.cachedAnchors = [];
-            var anchors = $(self.options.context).find("div[data-unique]");
-            anchors.each(function(idx) {
-                var distance = (($(this).next().length ? $(this).next() : $(this)).offset().top - self.options.highlightOffset);
-                self.cachedHeights[idx] = distance;
-            });
-            self.cachedAnchors = anchors;
         },
 
         // Show
@@ -1013,7 +950,14 @@
 
             var self = this,
                 duration = self.options.smoothScroll || 0,
-                scrollTo = self.options.scrollTo;
+                scrollTo = self.options.scrollTo,
+                currentDiv = $('div[data-unique="' + elem.attr("data-unique") + '"]');
+
+            if(!currentDiv.length) {
+
+                return self;
+
+            }
 
             // Once all animations on the page are complete, this callback function will be called
             $("html, body").promise().done(function() {
@@ -1022,7 +966,7 @@
                 $("html, body").animate({
 
                     // Sets the jQuery `scrollTop` to the top offset of the HTML div tag that matches the current list item's `data-unique` tag
-                    "scrollTop": $('div[data-unique="' + elem.attr("data-unique") + '"]').next().offset().top - ($.isFunction(scrollTo) ? scrollTo.call() : scrollTo) + "px"
+                    "scrollTop": currentDiv.offset().top - ($.isFunction(scrollTo) ? scrollTo.call() : scrollTo) + "px"
 
                 }, {
 
