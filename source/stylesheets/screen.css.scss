@@ -459,12 +459,6 @@ html, body {
       color: darken($main-bg,100%);
     }
       
-    tr:first-child {
-      background-color: darken($main-bg,100%);
-      color: $main-bg;  
-      border-bottom: 1px solid #ccc;
-    }
-      
   }
 
   dt {
@@ -582,12 +576,6 @@ html, body {
     tr:nth-child(even)>td {
       background-color: lighten($code-bg,6%);
       color: lighten($code-bg,100%);
-    }
-      
-    tr:first-child {
-      background-color: lighten($main-bg,100%);
-      color: $code-bg;  
-      border-bottom: 1px solid #333;
     }
       
   }

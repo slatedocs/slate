@@ -37,3 +37,11 @@ configure :build do
   # set :http_prefix, "/Content/images/"
 end
 
+# Define a helper to create a formated date string
+
+helpers do
+    def datestring()
+    Time.now.strftime('%B %d, %Y')
+    end
+end
+
