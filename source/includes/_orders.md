@@ -48,7 +48,7 @@ end
     "price": 600.12,
     "priceCurrency": "USD",
     "quantity": 1.234567,
-    "quantity_currency": "BTC",
+    "quantityCurrency": "BTC",
     "events": [
       {
         "eventType": "created",
@@ -70,7 +70,7 @@ end
     "price": 600.12,
     "priceCurrency": "USD",
     "quantity": 1.234567,
-    "quantity_currency": "BTC",
+    "quantityCurrency": "BTC",
     "events": [
       {
         "eventType": "created",
@@ -93,7 +93,7 @@ end
     "price" => 600.12,
     "priceCurrency" => "USD",
     "quantity" => 1.234567,
-    "quantity_currency" =>: "BTC",
+    "quantityCurrency" =>: "BTC",
     "events" => [
       [
         "eventType" => "created",
@@ -195,7 +195,7 @@ end
   "price": 600.12,
   "priceCurrency": "USD",
   "quantity": 1.234567,
-  "quantity_currency": "BTC",
+  "quantityCurrency": "BTC",
   "events": [
     {
       "eventType": "created",
@@ -215,7 +215,7 @@ end
   "price": 600.12,
   "priceCurrency": "USD",
   "quantity": 1.234567,
-  "quantity_currency": "BTC",
+  "quantityCurrency": "BTC",
   "events": [
     {
       "eventType": "created",
@@ -236,7 +236,7 @@ end
   "price" => 600.12,
   "priceCurrency" => "USD",
   "quantity" => 1.234567,
-  "quantity_currency" =>: "BTC",
+  "quantityCurrency" =>: "BTC",
   "events" => [
     [
       "eventType" => "created",

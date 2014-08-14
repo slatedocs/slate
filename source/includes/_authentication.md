@@ -59,7 +59,7 @@ X-Buttercoin-Date: <CURRENT_TIMESTAMP>
 The Buttercoin API provides one publicly accessible endpoint to get the current ticker price and another to view the current exchange order book. All other API calls require a valid API Access Key and secure authentication.
 
 <aside class="warning">
-You must always keep your API Keys secure to make sure no one can access your account.  If you think a key might be compromised, simply revoke your API key [here](https://api.buttercoin.com/#/api).
+You must always keep your API Keys secure to make sure no one can access your account.  If you think a key might be compromised, simply revoke your API key [here](https://www.buttercoin.com/#/api).
 </aside>
 
 *If you are building your own client for the API...*
