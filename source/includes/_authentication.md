@@ -73,7 +73,7 @@ You must always keep your API Keys secure to make sure no one can access your ac
 
 Encode a get request like this: 
 
-`1403755197367http://api.buttercoin.com/v1/orders?status=filled&orderType=limit`
+`1403755197367https://api.buttercoin.com/v1/orders?status=filled&orderType=limit`
 
 Encode a post request like this: 
 
