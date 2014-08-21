@@ -46,7 +46,7 @@ You must replace `poopoopoo` with your personal API key.
 ## Get All Paths
 
 ```shell
-curl "https://codeschool.com/api/v1/paths.json"
+curl "https://www.codeschool.com/api/v1/paths.json"
   -H "Authorization: OAuth poopoopoo"
 ```
 
@@ -96,7 +96,7 @@ This endpoint retrieves all Paths.
 
 ### HTTP Request
 
-`GET https://codeschool.com/api/v1/paths.json`
+`GET https://www.codeschool.com/api/v1/paths.json`
 
 ### Query Parameters
 
@@ -113,7 +113,7 @@ that each Path returned.
 ## Get All Courses
 
 ```shell
-curl "https://codeschool.com/api/v1/courses.json"
+curl "https://www.codeschool.com/api/v1/courses.json"
   -H "Authorization: OAuth poopoopoo"
 ```
 
@@ -253,7 +253,7 @@ This endpoint retrieves all Courses.
 
 ### HTTP Request
 
-`GET https://codeschool.com/api/v1/courses.json`
+`GET https://www.codeschool.com/api/v1/courses.json`
 
 ### Query Parameters
 
