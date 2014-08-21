@@ -265,5 +265,3 @@ The Path endpoint returns nested levels data, and soon will return
 nested videos for each level as well. Badger [Olivier](mailto:olivier@codeschool.com)
 if this isn't the case yet.
 </aside>
-
-
