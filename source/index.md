@@ -4,7 +4,6 @@ title: API Reference
 language_tabs:
   - shell
   - ruby
-  - python
 
 toc_footers:
   - <a href='#'>Sign Up for a Developer Key</a>
@@ -18,151 +17,253 @@ search: true
 
 # Introduction
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
-
-We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
-
-This example API documentation page was created with [Slate](http://github.com/tripit/slate). Feel free to edit it and use it as a base for your own API's documentation.
+Welcome to the Code School API. You can use our API to access Code School API endpoints for Paths, Courses, and individual Users.
 
 # Authentication
 
-> To authorize, use this code:
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
-
-```python
-import 'kittn'
-
-api = Kittn.authorize('meowmeowmeow')
-```
+> To authorize you'll need an OAuth token:
 
 ```shell
 # With shell, you can just pass the correct header with each request
 curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
+  -H "Authorization: OAuth poopoopoo"
+
 ```
 
-> Make sure to replace `meowmeowmeow` with your API key.
+> Make sure to replace `poopoopoo` with your OAuth API key.
 
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
+Code School uses API keys to allow access to the API. Email [Olivier](mailto:olivier@codeschool.com) to obtain one.
 
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
+Code School expects for the API key to be included in all API requests to the server in a header that looks like the following:
 
-`Authorization: meowmeowmeow`
+`Authorization: OAuth poopoopoo`
 
 <aside class="notice">
-You must replace `meowmeowmeow` with your personal API key.
+You must replace `poopoopoo` with your personal API key.
 </aside>
 
-# Kittens
+# Paths
 
-## Get All Kittens
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
-
-```python
-import 'kittn'
-
-api = Kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
+## Get All Paths
 
 ```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
+curl "https://codeschool.com/api/v1/paths.json"
+  -H "Authorization: OAuth poopoopoo"
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
 [
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Isis",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
+    {
+        "name": "Ruby",
+        "id": 1,
+        "course_ids": [
+            6
+        ]
+    },
+    {
+        "name": "JavaScript",
+        "id": 2,
+        "course_ids": [
+
+        ]
+    },
+    {
+        "name": "HTML/CSS",
+        "id": 3,
+        "course_ids": [
+
+        ]
+    },
+    {
+        "name": "iOS",
+        "id": 4,
+        "course_ids": [
+
+        ]
+    },
+    {
+        "name": "Electives",
+        "id": 5,
+        "course_ids": [
+
+        ]
+    }
 ]
 ```
 
-This endpoint retrieves all kittens.
+This endpoint retrieves all Paths.
 
 ### HTTP Request
 
-`GET http://example.com/kittens`
+`GET https://codeschool.com/api/v1/paths.json`
 
 ### Query Parameters
 
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
+None.
 
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
+<aside class="notice">
+The Path endpoint doesn't return nested course data. You'll need to query the Courses endpoint using the course IDs
+that each Path returned.
 </aside>
 
-## Get a Specific Kitten
 
-```ruby
-require 'kittn'
+# Courses
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import 'kittn'
-
-api = Kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
+## Get All Courses
 
 ```shell
-curl "http://example.com/api/kittens/3"
-  -H "Authorization: meowmeowmeow"
+curl "https://codeschool.com/api/v1/courses.json"
+  -H "Authorization: OAuth poopoopoo"
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
-{
-  "id": 2,
-  "name": "Isis",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
-}
+[
+    {
+        "title": "Rails Best Practices",
+        "path_id": 1,
+        "id": 2,
+        "badge_image_url": "/assets/fallback/default_course_badge.png",
+        "levels": [
+            {
+                "course_id": 2,
+                "id": 6,
+                "badge_image_url": null,
+                "videos": [
+                    {
+                        "position": 1,
+                        "files": [
+                            {
+                                "profile": "720p",
+                                "url": "http://projector.codeschool.com/asdasdas.mp4?profile=720p&site=ios&sso=abcdefg",
+                                "id": 1,
+                                "format": "mp4",
+                                "height": 720,
+                                "width": 1280
+                            }
+                        ],
+                        "embed_id": "asasdasd",
+                        "id": 1
+                    }
+                ],
+                "videos_count": 1
+            },
+            {
+                "course_id": 2,
+                "id": 7,
+                "badge_image_url": null,
+                "videos": [
+                    {
+                        "position": 1,
+                        "files": [
+                            {
+                                "profile": "720p",
+                                "url": "http://projector.codeschool.com/asdasdas.mp4?profile=720p&site=ios&sso=abcdefg",
+                                "id": 1,
+                                "format": "mp4",
+                                "height": 720,
+                                "width": 1280
+                            }
+                        ],
+                        "embed_id": "asasdasd",
+                        "id": 1
+                    }
+                ],
+                "videos_count": 1
+            },
+            {
+                "course_id": 2,
+                "id": 8,
+                "badge_image_url": null,
+                "videos": [
+                    {
+                        "position": 1,
+                        "files": [
+                            {
+                                "profile": "720p",
+                                "url": "http://projector.codeschool.com/asdasdas.mp4?profile=720p&site=ios&sso=abcdefg",
+                                "id": 1,
+                                "format": "mp4",
+                                "height": 720,
+                                "width": 1280
+                            }
+                        ],
+                        "embed_id": "asasdasd",
+                        "id": 1
+                    }
+                ],
+                "videos_count": 1
+            },
+            {
+                "course_id": 2,
+                "id": 9,
+                "badge_image_url": "/assets/fallback/default_achievement_large_badge.png",
+                "videos": [
+                    {
+                        "position": 1,
+                        "files": [
+                            {
+                                "profile": "720p",
+                                "url": "http://projector.codeschool.com/asdasdas.mp4?profile=720p&site=ios&sso=abcdefg",
+                                "id": 1,
+                                "format": "mp4",
+                                "height": 720,
+                                "width": 1280
+                            }
+                        ],
+                        "embed_id": "asasdasd",
+                        "id": 1
+                    }
+                ],
+                "videos_count": 1
+            },
+            {
+                "course_id": 2,
+                "id": 10,
+                "badge_image_url": null,
+                "videos": [
+                    {
+                        "position": 1,
+                        "files": [
+                            {
+                                "profile": "720p",
+                                "url": "http://projector.codeschool.com/asdasdas.mp4?profile=720p&site=ios&sso=abcdefg",
+                                "id": 1,
+                                "format": "mp4",
+                                "height": 720,
+                                "width": 1280
+                            }
+                        ],
+                        "embed_id": "asasdasd",
+                        "id": 1
+                    }
+                ],
+                "videos_count": 1
+            }
+        ],
+        "slides_url": "https://www.codeschool.com/api/v1/courses/rails-best-practices/slides",
+        "videos_count": 5
+    }
+]
 ```
 
-This endpoint retrieves a specific kitten.
-
-<aside class="warning">If you're not using an administrator API key, note that some kittens will return 403 Forbidden if they are hidden for admins only.</aside>
+This endpoint retrieves all Courses.
 
 ### HTTP Request
 
-`GET http://example.com/kittens/<ID>`
+`GET https://codeschool.com/api/v1/courses.json`
 
-### URL Parameters
+### Query Parameters
 
-Parameter | Description
---------- | -----------
-ID | The ID of the cat to retrieve
+None.
+
+<aside class="success">
+The Path endpoint returns nested levels data, and soon will return
+nested videos for each level as well. Badger [Olivier](mailto:olivier@codeschool.com)
+if this isn't the case yet.
+</aside>
+
 
