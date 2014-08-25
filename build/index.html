@@ -57,12 +57,20 @@
         
           <h1 id='introduction'>Introduction</h1>
 <blockquote>
-<p>API Endpoint</p>
+<p>Production Endpoint</p>
 </blockquote>
 <pre class="highlight plaintext">https://api.buttercoin.com/v1
 </pre>
 
+<blockquote>
+<p>Sandbox Endpoint</p>
+</blockquote>
+<pre class="highlight plaintext">https://sandbox.buttercoin.com/v1
+</pre>
+
 <p>Welcome to the Buttercoin API documentation. The Buttercoin API allows you to connect your application to our exchange to deposit and withdraw funds from your account and execute trades without going through the web interface.</p>
+
+<p>To learn more about the Sandbox API environment which uses testnet bitcoins, <a href="#sandbox">click here</a></p>
 
           <h1 id='libraries'>Libraries</h1>
 <blockquote>
@@ -1541,6 +1549,19 @@ An API Key is not required to access this endpoint.
 <td>Service Unavailable &ndash; We&rsquo;re temporarily offline for maintenance. Please try again later.</td>
 </tr>
 </tbody></table>
+
+          <h1 id='sandbox'>Sandbox</h1>
+<blockquote>
+<p>If you test any scenarios that involve withdrawing bitcoins from your Buttercoin account, please send them back to the following address when you&rsquo;re done:</p>
+</blockquote>
+<pre class="highlight plaintext">mzy7jia5a1xNkVKSYnTSbySks2tpPSQCiK
+</pre>
+
+<p>To help you test your more complicated workflows, we&rsquo;ve created a sandbox environment that uses testnet bitcoins and fake funds.</p>
+
+<p>Each Buttercoin SDK client includes a sandbox environment parameter that you can include.</p>
+
+<p>To use the sandbox, you will need to create a sandbox account.  If you&rsquo;d like one, <a href="mailto:api@buttercoin.com?subject=Add%20A%20Sandbox%20Account">let us know</a>.  We&rsquo;ll send you an invitation email with instructions.</p>
 
       </div>
       <div class="dark-box">
