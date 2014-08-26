@@ -22,8 +22,8 @@ curl "api_endpoint_here?key=(PROJECT_KEY|USER_KEY)"
 
 Airbrake uses API keys to allow access to the API. There are 2 flavors of the keys:
 
-- Project API key that is used to submit errors and create deploys (`PROJECT_KEY`).
-- User API key that is used to get access to the project data (`USER_KEY`).
+- Project API key (`PROJECT_KEY`) that is used to submit errors and create deploys.
+- User API key (`USER_KEY`) that is used to get access to the project data.
 
 Airbrake expects the API key to be included in all API requests to the server in a query string that looks like the following:
 
@@ -35,13 +35,29 @@ You must replace `(PROJECT_KEY|USER_KEY)` with your personal key.
 
 # V4 API
 
+## Upload source map
+
+This API uploads source map file to the Airbrake. Use it only if your source maps are not publicly accessible via HTTP.
+
+```shell
+curl -X PUT -d @app.min.map "https://airbrake.io/api/v4/projects/PROJECT_ID/sourcemap?key=PROJECT_KEY"
+```
+
+> The API returns `201 Created` status code.
+
+### HTTP Request
+
+`POST https://airbrake.io/api/v4/projects/PROJECT_ID/sourcemap?key=PROJECT_KEY`
+
+# Experimental API
+
 ## Get project activities
 
 ```shell
 curl "https://airbrake.io/api/v4/projects/PROJECT_ID/activities?key=USER_KEY"
 ```
 
-> The API returns JSON structured like this:
+> The API returns `200 OK` status code and JSON structured like this:
 
 ```json
 {
@@ -50,6 +66,7 @@ curl "https://airbrake.io/api/v4/projects/PROJECT_ID/activities?key=USER_KEY"
       "projectId": 1,
       "userId": 1,
       "userName": "Mr. Smith",
+      "userGravatarId": "8b7d4e7f9fddecc8d93d73b2c01c0549",
       "activity": "group.resolved",
       "trackableId": 1,
       "trackableType": "Group",
@@ -60,6 +77,7 @@ curl "https://airbrake.io/api/v4/projects/PROJECT_ID/activities?key=USER_KEY"
       "projectId": 1,
       "userId": 1,
       "userName": "Mr. Smith",
+      "userGravatarId": "8b7d4e7f9fddecc8d93d73b2c01c0549",
       "activity": "group.resolved",
       "trackableId": 2,
       "trackableType": "Group",
