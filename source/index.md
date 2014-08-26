@@ -15,22 +15,22 @@ search: true
 > To authorize, use this code:
 
 ```shell
-curl "api_endpoint_here?key=(API_KEY|AUTH_TOKEN)"
+curl "api_endpoint_here?key=(PROJECT_KEY|USER_KEY)"
 ```
 
-> Make sure to replace `(API_KEY|AUTH_TOKEN)` with your API key.
+> Make sure to replace `(PROJECT_KEY|USER_KEY)` with your API key.
 
 Airbrake uses API keys to allow access to the API. There are 2 flavors of the keys:
 
-- Project API key that is used to submit errors and create deploys (`API_KEY`).
-- User auth token that is used to get access to the project data (`AUTH_TOKEN`).
+- Project API key that is used to submit errors and create deploys (`PROJECT_KEY`).
+- User API key that is used to get access to the project data (`USER_KEY`).
 
 Airbrake expects the API key to be included in all API requests to the server in a query string that looks like the following:
 
-`?key=(API_KEY|AUTH_TOKEN)`
+`?key=(PROJECT_KEY|USER_KEY)`
 
 <aside class="notice">
-You must replace `(API_KEY|AUTH_TOKEN)` with your personal key.
+You must replace `(PROJECT_KEY|USER_KEY)` with your personal key.
 </aside>
 
 # V4 API
@@ -38,10 +38,10 @@ You must replace `(API_KEY|AUTH_TOKEN)` with your personal key.
 ## Get project activities
 
 ```shell
-curl "https://airbrake.io/api/v4/projects/PROJECT_ID/activities?key=AUTH_TOKEN"
+curl "https://airbrake.io/api/v4/projects/PROJECT_ID/activities?key=USER_KEY"
 ```
 
-> The above command returns JSON structured like this:
+> The API returns JSON structured like this:
 
 ```json
 {
@@ -73,7 +73,7 @@ curl "https://airbrake.io/api/v4/projects/PROJECT_ID/activities?key=AUTH_TOKEN"
 
 ### HTTP Request
 
-`GET https://airbrake.io/api/v4/projects/PROJECT_ID/activities`
+`GET https://airbrake.io/api/v4/projects/PROJECT_ID/activities?key=USER_KEY`
 
 ### Query Parameters
 
