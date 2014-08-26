@@ -54,7 +54,7 @@ curl -X PUT -d @app.min.map "https://airbrake.io/api/v4/projects/PROJECT_ID/sour
 ## Get project activities
 
 ```shell
-curl "https://airbrake.io/api/v4/projects/PROJECT_ID/activities?key=USER_KEY"
+curl "https://airbrake.io/api/experimental/projects/PROJECT_ID/activities?key=USER_KEY"
 ```
 
 > The API returns `200 OK` status code and JSON structured like this:
@@ -91,7 +91,7 @@ curl "https://airbrake.io/api/v4/projects/PROJECT_ID/activities?key=USER_KEY"
 
 ### HTTP Request
 
-`GET https://airbrake.io/api/v4/projects/PROJECT_ID/activities?key=USER_KEY`
+`GET https://airbrake.io/api/experimental/projects/PROJECT_ID/activities?key=USER_KEY`
 
 ### Query Parameters
 
