@@ -88,6 +88,16 @@ curl "https://www.codeschool.com/api/v1/user"
 }
 ```
 
+This endpoint retrieves a single User.
+
+### HTTP Request
+
+`GET https://www.codeschool.com/api/v1/user`
+
+### Query Parameters
+
+None.
+
 # Paths
 
 ## Get All Paths
@@ -422,7 +432,9 @@ This endpoint retrieves all Courses.
 
 ### Query Parameters
 
-None.
+Parameter | Default | Description
+--------- | ------- | -----------
+fake_release | false | If set to true, the result will include a fake release from yesterday and bust the cache. This is useful to test your interface for the event of a course release.
 
 <aside class="success">
 The Path endpoint returns nested levels data, and soon will return
