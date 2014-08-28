@@ -41,6 +41,53 @@ Code School expects for the API key to be included in all API requests to the se
 You must replace `poopoopoo` with your personal API key.
 </aside>
 
+# Authentication
+
+## Authenticate a user
+
+Given a user whose username is `json_vanlue` and password is `brandingmatters`.
+
+```shell
+curl "https://www.codeschool.com/api/v1/authenticate"
+  -H "Authorization: OAuth poopoopoo"
+  -d "login=json_vanlue&password=brandingmatters"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{ "auth_token": "W3To8xgVLWa44ykvL6QisB0fvoP4fDEpJmAuFgwh" }
+```
+
+This `auth_token` is an OAuth Token you can use to make queries on
+behalf of the user — for instance to the Course API in order to obtain
+course videos only accessible to paying users.
+
+# Users
+
+## Get a Single User
+
+Given an `auth_token` you obtain from using the Authentication endpoint,
+you can query the User endpoint in order to obtain data about this user.
+
+```shell
+curl "https://www.codeschool.com/api/v1/user"
+  -H "Authorization: OAuth authtokenfromauthenticationendpoint"
+```
+> The above command returns JSON structured like this:
+
+```json
+{
+  "user": {
+    "twitter_name": talonpowthesecond,
+    "name": "Talon Powlowski II",
+    "id": 4,
+    "email": "saul@oberbrunnerbosco.net",
+    "username": "Retta1"
+  }
+}
+```
+
 # Paths
 
 ## Get All Paths
