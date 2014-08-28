@@ -435,9 +435,3 @@ This endpoint retrieves all Courses.
 Parameter | Default | Description
 --------- | ------- | -----------
 fake_release | false | If set to true, the result will include a fake release from yesterday and bust the cache. This is useful to test your interface for the event of a course release.
-
-<aside class="success">
-The Path endpoint returns nested levels data, and soon will return
-nested videos for each level as well. Badger [Olivier](mailto:olivier@codeschool.com)
-if this isn't the case yet.
-</aside>
