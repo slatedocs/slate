@@ -56,10 +56,10 @@ curl "https://www.codeschool.com/api/v1/authenticate"
 > The above command returns JSON structured like this:
 
 ```json
-{ "auth_token": "W3To8xgVLWa44ykvL6QisB0fvoP4fDEpJmAuFgwh" }
+{ "token": "W3To8xgVLWa44ykvL6QisB0fvoP4fDEpJmAuFgwh" }
 ```
 
-This `auth_token` is an OAuth Token you can use to make queries on
+This `token` is an OAuth Token you can use to make queries on
 behalf of the user — for instance to the Course API in order to obtain
 course videos only accessible to paying users.
 
@@ -67,12 +67,12 @@ course videos only accessible to paying users.
 
 ## Get a Single User
 
-Given an `auth_token` you obtain from using the Authentication endpoint,
+Given a `token` you obtain from using the Authentication endpoint,
 you can query the User endpoint in order to obtain data about this user.
 
 ```shell
 curl "https://www.codeschool.com/api/v1/user"
-  -H "Authorization: OAuth authtokenfromauthenticationendpoint"
+  -H "Authorization: OAuth token_from_authentication_endpoint"
 ```
 > The above command returns JSON structured like this:
 
