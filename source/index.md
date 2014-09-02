@@ -18,14 +18,12 @@ search: true
 curl "api_endpoint_here?key=(PROJECT_KEY|USER_KEY)"
 ```
 
-> Make sure to replace `(PROJECT_KEY|USER_KEY)` with your API key.
+Airbrake uses API keys to allow access to the API. There are 2 kinds of keys:
 
-Airbrake uses API keys to allow access to the API. There are 2 flavors of the keys:
+- Project API key (`PROJECT_KEY`) that is used to submit errors and create track deploys. This key is what you configure the notifier agent in your app to use.
+- User API key (`USER_KEY`) that is used to get access to the project data through our APIs. Each user of a Project has her own key.
 
-- Project API key (`PROJECT_KEY`) that is used to submit errors and create deploys.
-- User API key (`USER_KEY`) that is used to get access to the project data.
-
-Airbrake expects the API key to be included in all API requests to the server in a query string that looks like the following:
+Airbrake expects the API key to be included in all API requests to our servers in a query string that looks like the following:
 
 `?key=(PROJECT_KEY|USER_KEY)`
 
@@ -33,31 +31,103 @@ Airbrake expects the API key to be included in all API requests to the server in
 You must replace `(PROJECT_KEY|USER_KEY)` with your personal key.
 </aside>
 
-# V4 API
+# Deploys (v4)
 
-## Upload source map
-
-This API uploads source map file to the Airbrake. Use it only if your source maps are not publicly accessible via HTTP.
+## Create deploy
 
 ```shell
-curl -X PUT -d @app.min.map "https://airbrake.io/api/v4/projects/PROJECT_ID/sourcemap?key=PROJECT_KEY"
+curl -X POST -d '{"environment":"production","username":"john","repository":"https://github.com/airbrake/airbrake","revision":"38748467ea579e7ae64f7815452307c9d05e05c5",version:"v2.0"}' "https://airbrake.io/api/v4/projects/PROJECT_ID/deploys?key=PROJECT_KEY"
 ```
-
-> The API returns `201 Created` status code.
 
 ### HTTP Request
 
-`POST https://airbrake.io/api/v4/projects/PROJECT_ID/sourcemap?key=PROJECT_KEY`
+`POST https://airbrake.io/api/v4/projects/PROJECT_ID/deploys?key=PROJECT_KEY`
 
-# Experimental API
+### POST data
+
+The API expects JSON data.
+
+Key | Example
+--- | -------
+environment | production
+username | john
+repository | https://github.com/airbrake/airbrake
+revision | 38748467ea579e7ae64f7815452307c9d05e05c5
+version | v2.0
+
+### Response
+
+The API returns `201 Created` status code on success.
+
+## List deploys
+
+```shell
+curl "https://airbrake.io/api/v4/projects/PROJECT_ID/deploys?key=USER_KEY"
+```
+
+```json
+{
+  "deploys": [
+    {
+      "environment": "production",
+      "username": "john",
+      "repository": "https://github.com/airbrake/airbrake",
+      "revision": "38748467ea579e7ae64f7815452307c9d05e05c5",
+      "version": "v2.0"
+    }
+  ],
+  "count": 1
+}
+```
+
+### HTTP Request
+
+`GET https://airbrake.io/api/v4/projects/PROJECT_ID/deploys?key=USER_KEY`
+
+### Query Parameters
+
+Parameter | Default | Description
+--------- | ------- | -----------
+page | 1 | Used to paginate deploys.
+limit | 20 | Specifies number of deploys per page.
+
+### Response
+
+The API returns `200 OK` status code on success.
+
+## Show deploy
+
+```shell
+curl "https://airbrake.io/api/v4/projects/PROJECT_ID/deploys/DEPLOY_ID?key=USER_KEY"
+```
+
+```json
+{
+  "deploy": {
+    "environment": "production",
+    "username": "john",
+    "repository": "https://github.com/airbrake/airbrake",
+    "revision": "38748467ea579e7ae64f7815452307c9d05e05c5",
+    "version": "v2.0"
+  }
+}
+```
+
+### HTTP Request
+
+`GET https://airbrake.io/api/v4/projects/PROJECT_ID/deploys/DEPLOY_ID?key=USER_KEY`
+
+### Response
+
+The API returns `200 OK` status code.
+
+# Project activities (experimental)
 
 ## Get project activities
 
 ```shell
 curl "https://airbrake.io/api/experimental/projects/PROJECT_ID/activities?key=USER_KEY"
 ```
-
-> The API returns `200 OK` status code and JSON structured like this:
 
 ```json
 {
@@ -99,3 +169,7 @@ Parameter | Default | Description
 --------- | ------- | -----------
 page | 1 | Used to paginate activities.
 limit | 20 | Specifies number of activities per page.
+
+### Response
+
+The API returns `200 OK` status code on success.
