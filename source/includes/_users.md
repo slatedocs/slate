@@ -33,7 +33,9 @@ This endpoint retrieves the current User.
 
 None.
 
-## Trigger Reset Password Email for a user
+
+
+## Reset Password for a User
 
 Given a `login` which could either be the user's `username` or the
 `email` address associated with their account.
