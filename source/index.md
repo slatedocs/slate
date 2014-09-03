@@ -74,10 +74,10 @@ including an OAuth token when making requests to the Authentication API.
 
 ### Query Parameters
 
-Parameter | Description
---------- | -----------
-login | The username or email of the user to authenticate
-password | The password of the user to authenticate
+Parameter | Required | Description
+--------- | -------- | -----------
+login     | yes      | The username or email of the user to authenticate
+password  | yes      | The password of the user to authenticate
 
 # Users
 
