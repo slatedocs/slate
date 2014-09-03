@@ -41,7 +41,7 @@ Given a `login` which could either be the user's `username` or the
 `email` address associated with their account.
 
 ```shell
-curl "https://www.codeschool.com/api/v1/users/<username>/reset_password"
+curl "https://www.codeschool.com/api/v1/users/<login>/reset_password"
   -d
   -H "Authorization: OAuth poopoopoo"
 ```
