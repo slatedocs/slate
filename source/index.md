@@ -3,7 +3,6 @@ title: API Reference
 
 language_tabs:
   - shell
-  - ruby
 
 toc_footers:
   - <a href='http://github.com/tripit/slate'>Documentation Powered by Slate</a>
@@ -62,6 +61,23 @@ curl "https://www.codeschool.com/api/v1/authenticate"
 This `token` is an OAuth Token you can use to make queries on
 behalf of the user — for instance to the Course API in order to obtain
 course videos only accessible to paying users.
+
+<aside class="notice">
+You still need to send an [`Authorization` header](#authorization)
+including an OAuth token when making requests to the Authentication API.
+</aside>
+
+
+### HTTP Request
+
+`POST https://www.codeschool.com/api/v1/authentication`
+
+### Query Parameters
+
+Parameter | Description
+--------- | -----------
+login | The username or email of the user to authenticate
+password | The password of the user to authenticate
 
 # Users
 
@@ -153,7 +169,7 @@ This endpoint retrieves all Paths.
 
 ### HTTP Request
 
-`GET https://www.codeschool.com/api/v1/paths.json`
+`GET https://www.codeschool.com/api/v1/paths`
 
 ### Query Parameters
 
@@ -428,7 +444,7 @@ This endpoint retrieves all Courses.
 
 ### HTTP Request
 
-`GET https://www.codeschool.com/api/v1/courses.json`
+`GET https://www.codeschool.com/api/v1/courses`
 
 ### Query Parameters
 
