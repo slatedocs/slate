@@ -68,6 +68,14 @@ You still need to send an [`Authorization` header](#authorization)
 including an OAuth token when making requests to the Authentication API.
 </aside>
 
+Note that a `422 — Unprocessable Entity` status code will be returned in
+the following cases:
+- no credential parameters were sent
+- the password doesn't match the login being sent
+
+The purpose is to avoid leaking existing user emails and usernames through
+the API endpoint. That said, we currently leak this information through
+JavaScript validation on the website account sign up form.
 
 ### HTTP Request
 
