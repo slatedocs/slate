@@ -66,7 +66,9 @@ This endpoint creates a User and returns it.
 Parameter | Required | Description
 --------- | ------- | -----------
 user[email] | Yes | The prospective user's email address.
-user[password] | Yes | The prospective user's password (must be longer than 6 characters).
+user[password] | Yes | The requested password (must be longer than 6 characters).
+user[username] | No | The requested username (can be already taken).
+user[name] | No | The user's full name (first and last).
 
 ## Reset Password for a User
 
