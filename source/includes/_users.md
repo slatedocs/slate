@@ -33,7 +33,40 @@ This endpoint retrieves the current User.
 
 None.
 
+## User Sign Up
 
+```shell
+curl "https://www.codeschool.com/api/v1/users"
+  -H "Authorization: OAuth poopoopoo"
+  -d "user[email]=ada@lovelace.com&[user]password=bernouli"
+```
+> The above command returns JSON structured like this:
+
+```json
+{
+  "user": {
+    "id": 47,
+    "email": "ada@lovelace.com",
+    "twitter_name": null,
+    "name": "ada@lovelace.com",
+    "username": null,
+    "token": "OAKCnKYoWP8amckAxHZ2KitlkRJQpLb0aV6YDHxI"
+  }
+}
+```
+
+This endpoint creates a User and returns it.
+
+### HTTP Request
+
+`POST https://www.codeschool.com/api/v1/users`
+
+### Query Parameters
+
+Parameter | Required | Description
+--------- | ------- | -----------
+user[email] | Yes | The prospective user's email address.
+user[password] | Yes | The prospective user's password (must be longer than 6 characters).
 
 ## Reset Password for a User
 
