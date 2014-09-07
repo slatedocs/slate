@@ -31,6 +31,187 @@ Airbrake expects the API key to be included in all API requests to our servers i
 You must replace `(PROJECT_KEY|USER_KEY)` with your personal key.
 </aside>
 
+# Projects (v3)
+
+## List projects
+
+```shell
+curl "https://airbrake.io/api/v3/projects?key=USER_KEY"
+```
+
+```json
+{
+  "projects": [
+    {
+      "id": 1,
+      "name": "Airbrake project name",
+      "deployId": 1,
+      "deployAt": "2014-09-26T17:37:33.638348Z",
+      "noticeTotalCount": 1,
+      "rejectionCount": 1,
+      "fileCount": 1,
+      "deployCount": 1,
+      "groupResolvedCount": 1,
+      "groupUnresolvedCount": 1
+    }
+  ]
+}
+```
+
+### HTTP Request
+
+`GET https://airbrake.io/api/v4/projects?key=USER_KEY`
+
+### Response
+
+The API returns `200 OK` status code on success.
+
+## Show project
+
+```shell
+curl "https://airbrake.io/api/v3/projects/PROJECT_ID?key=USER_KEY"
+```
+
+```json
+{
+  "project": {
+    "id": 1,
+    "name": "Airbrake project name",
+    "deployId": 1,
+    "deployAt": "2014-09-26T17:37:33.638348Z",
+    "noticeTotalCount": 1,
+    "rejectionCount": 1,
+    "fileCount": 1,
+    "deployCount": 1,
+    "groupResolvedCount": 1,
+    "groupUnresolvedCount": 1
+  }
+}
+```
+
+### HTTP Request
+
+`GET https://airbrake.io/api/v4/projects/PROJECT_ID?key=USER_KEY`
+
+### Response
+
+The API returns `200 OK` status code on success.
+
+# Groups (v4)
+
+## List groups
+
+```shell
+curl "https://airbrake.io/api/v4/projects/PROJECT_ID/groups?key=USER_KEY"
+```
+
+```json
+{
+  "groups": [
+    {
+      "id": 1,
+      "projectId": 1,
+      "resolved": false,
+      "errors": [
+        {
+          "type": "error type",
+          "message": "error message",
+          "backtrace": [
+            {
+              "file": "/path/to/file",
+              "function": "func_name",
+              "line": 1,
+              "column": 0
+            }
+          ]
+        }
+      ],
+      "context": {
+        "environment": "production"
+      },
+      "lastDeployId": 1,
+      "lastDeployAt": "2014-09-26T17:37:33.638348Z",
+      "lastNoticeId": "1",
+      "lastNoticeAt": "2014-09-26T17:37:33.638348Z",
+      "noticeCount": 1,
+      "noticeTotalCount": 1,
+      "createdAt": "2014-09-26T17:37:33.638348Z"
+    }
+  ]
+}
+```
+
+### HTTP Request
+
+`GET https://airbrake.io/api/v4/projects/PROJECT_ID/groups?key=USER_KEY`
+
+### Query Parameters
+
+Parameter | Default | Description
+--------- | ------- | -----------
+deploy_id | | Filters groups by deploy id.
+environment | | Filters groups by environment.
+component | | Filters groups by component.
+action | | Filters groups by action.
+archived | | When set to `true` returns archived groups.
+start_time | | Returns groups created after `start_time`.
+end_time | | Returns groups created before `ned_time`.
+page | 1 | Used to paginate groups.
+limit | 20 | Specifies number of groups per page.
+order | last_notice_id | Sorts groups by `last_notice_id`, `notice_total_count` or `created_at`.
+
+### Response
+
+The API returns `200 OK` status code on success
+
+## Show group
+
+```shell
+curl "https://airbrake.io/api/v4/projects/PROJECT_ID/groups/GROUP_ID?key=USER_KEY"
+```
+
+```json
+{
+  "groups": {
+    "id": 1,
+    "projectId": 1,
+    "resolved": false,
+    "errors": [
+      {
+        "type": "error type",
+        "message": "error message",
+        "backtrace": [
+          {
+            "file": "/path/to/file",
+            "function": "func_name",
+            "line": 1,
+            "column": 0
+          }
+        ]
+      }
+    ],
+    "context": {
+      "environment": "production"
+    },
+    "lastDeployId": 1,
+    "lastDeployAt": "2014-09-26T17:37:33.638348Z",
+    "lastNoticeId": "1",
+    "lastNoticeAt": "2014-09-26T17:37:33.638348Z",
+    "noticeCount": 1,
+    "noticeTotalCount": 1,
+    "createdAt": "2014-09-26T17:37:33.638348Z"
+  }
+}
+```
+
+### HTTP Request
+
+`GET https://airbrake.io/api/v4/projects/PROJECT_ID/groups/GROUP_ID?key=USER_KEY`
+
+### Response
+
+The API returns `200 OK` status code on success
+
 # Deploys (v4)
 
 ## Create deploy
