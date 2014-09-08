@@ -59,18 +59,22 @@
 <blockquote>
 <p>Production Endpoint</p>
 </blockquote>
-<pre class="highlight plaintext">https://api.buttercoin.com/v1
+<pre class="highlight plaintext">https://api.buttercoin.com
 </pre>
 
 <blockquote>
 <p>Sandbox Endpoint</p>
 </blockquote>
-<pre class="highlight plaintext">https://sandbox.buttercoin.com/v1
+<pre class="highlight plaintext">https://sandbox.buttercoin.com
 </pre>
 
 <p>Welcome to the Buttercoin API documentation. The Buttercoin API allows you to connect your application to our exchange to deposit and withdraw funds from your account and execute trades without going through the web interface.</p>
 
 <p>To learn more about the Sandbox API environment which uses testnet bitcoins, <a href="#sandbox">click here</a></p>
+
+<p><aside class="warning">
+Buttercoin Support will never ask you for your API key. Please report to us any emails you receive that request this information.
+</aside></p>
 
           <h1 id='libraries'>Libraries</h1>
 <blockquote>
@@ -179,7 +183,11 @@ You must always keep your API Keys secure to make sure no one can access your ac
 
 <p>Still not sure?  Find code examples <a href="https://github.com/buttercoin/buttercoinsdk-node/blob/master/index.js#L32">here</a>, <a href="https://github.com/buttercoin/buttercoinsdk-php/blob/master/src/Client/ButtercoinClient.php#L144">here</a>, <a href="https://github.com/buttercoin/buttercoinsdk-python/blob/master/buttercoin/api.py#L101">here</a>, and <a href="https://github.com/buttercoin/buttercoinsdk-ruby/blob/master/lib/buttercoin/client.rb#L91">here</a>.</p>
 
-          <h1 id='public'>Public</h1><h2 id='get-the-orderbook'>Get the orderbook</h1><pre class="highlight ruby"><span class="n">client</span><span class="p">.</span><span class="nf">get_order_book</span><span class="p">()</span>
+          <h1 id='public'>Public</h1><h2 id='get-the-orderbook'>Get the orderbook</h1>
+<blockquote>
+<p>Success Response Code: 200</p>
+</blockquote>
+<pre class="highlight ruby"><span class="n">client</span><span class="p">.</span><span class="nf">get_order_book</span><span class="p">()</span>
 </pre>
 <pre class="highlight python"><span class="n">client</span><span class="o">.</span><span class="n">get_order_book</span><span class="p">()</span>
 </pre>
@@ -290,12 +298,136 @@ You must always keep your API Keys secure to make sure no one can access your ac
 
 <p>Get all the orders in the book on both the bid and ask sides</p>
 <h3 id='http-request'>HTTP Request</h1>
-<p><code class="prettyprint">GET /orderbook</code></p>
+<p><code class="prettyprint">GET /v1/orderbook</code></p>
 
 <p><aside class="notice">
 An API Key is not required to access this endpoint.
 </aside></p>
-<h2 id='get-the-ticker'>Get the ticker</h1><pre class="highlight python"><span class="n">client</span><span class="o">.</span><span class="n">get_ticker</span><span class="p">()</span>
+<h2 id='get-trade-history'>Get trade history</h1>
+<blockquote>
+<p>Success Response Code: 200</p>
+</blockquote>
+<pre class="highlight ruby"><span class="n">client</span><span class="p">.</span><span class="nf">get_trade_history</span><span class="p">()</span>
+</pre>
+<pre class="highlight python"><span class="n">client</span><span class="o">.</span><span class="n">get_trade_history</span><span class="p">()</span>
+</pre>
+<pre class="highlight javascript"><span class="nx">client</span><span class="p">.</span><span class="nx">getTradeHistory</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">trades</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"trades err"</span><span class="p">,</span> <span class="nx">err</span><span class="p">);</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"trade history"</span><span class="p">,</span> <span class="nx">trades</span><span class="p">);</span>
+<span class="p">});</span>
+</pre>
+<pre class="highlight php"><span class="cp">&lt;?php</span>
+<span class="nv">$client</span><span class="o">-&gt;</span><span class="na">getTradeHistory</span><span class="p">();</span>
+<span class="cp">?&gt;</span>
+</pre>
+
+<blockquote>
+<p>The above command returns an Object structured like this:</p>
+</blockquote>
+<pre class="highlight ruby"><span class="c1"># Hashie::Mash Object examples</span>
+
+<span class="c1"># get the highest bid price</span>
+<span class="n">orderbook</span><span class="p">.</span><span class="nf">bid</span><span class="p">.</span><span class="nf">first</span><span class="p">.</span><span class="nf">price</span> <span class="c1"># 402.87</span>
+<span class="c1"># get the quantity of the lowest ask</span>
+<span class="n">orderbook</span><span class="p">.</span><span class="nf">ask</span><span class="p">.</span><span class="nf">first</span><span class="p">.</span><span class="nf">quantity</span> <span class="c1"># 1.35</span>
+
+<span class="c1"># loop through all bids</span>
+<span class="n">orderbook</span><span class="p">.</span><span class="nf">bid</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">order</span><span class="o">|</span>
+<span class="n">order</span><span class="p">.</span><span class="nf">price</span>
+<span class="n">order</span><span class="p">.</span><span class="nf">quantity</span>
+<span class="k">end</span>
+</pre>
+<pre class="highlight python"><span class="c"># Dict Object</span>
+<span class="p">{</span>
+  <span class="s">"bid"</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="s">"price"</span><span class="p">:</span> <span class="mf">402.87</span><span class="p">,</span>
+      <span class="s">"quantity"</span><span class="p">:</span> <span class="mf">1.3</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="s">"price"</span><span class="p">:</span> <span class="mf">404.21</span><span class="p">,</span>
+      <span class="s">"quantity"</span><span class="p">:</span> <span class="mf">1.25</span>
+    <span class="p">}</span>
+  <span class="p">],</span>
+  <span class="s">"ask"</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="s">"price"</span><span class="p">:</span> <span class="mf">423.58</span><span class="p">,</span>
+      <span class="s">"quantity"</span><span class="p">:</span> <span class="mf">1.3</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="s">"price"</span><span class="p">:</span> <span class="mf">425.25</span><span class="p">,</span>
+      <span class="s">"quantity"</span><span class="p">:</span> <span class="mf">1.35</span>
+    <span class="p">}</span>
+  <span class="p">],</span>
+  <span class="s">"price_currency"</span><span class="p">:</span> <span class="s">"USD"</span><span class="p">,</span>
+  <span class="s">"quantity_currency"</span><span class="p">:</span> <span class="s">"BTC"</span>
+<span class="p">}</span>
+</pre>
+<pre class="highlight javascript"><span class="c1">// JSON Object
+</span><span class="p">{</span>
+  <span class="s2">"bid"</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="s2">"price"</span><span class="p">:</span> <span class="mf">402.87</span><span class="p">,</span>
+      <span class="s2">"quantity"</span><span class="p">:</span> <span class="mf">1.3</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="s2">"price"</span><span class="p">:</span> <span class="mf">404.21</span><span class="p">,</span>
+      <span class="s2">"quantity"</span><span class="p">:</span> <span class="mf">1.25</span>
+    <span class="p">}</span>
+  <span class="p">],</span>
+  <span class="s2">"ask"</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="s2">"price"</span><span class="p">:</span> <span class="mf">423.58</span><span class="p">,</span>
+      <span class="s2">"quantity"</span><span class="p">:</span> <span class="mf">1.3</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="s2">"price"</span><span class="p">:</span> <span class="mf">425.25</span><span class="p">,</span>
+      <span class="s2">"quantity"</span><span class="p">:</span> <span class="mf">1.35</span>
+    <span class="p">}</span>
+  <span class="p">],</span>
+  <span class="s2">"price_currency"</span><span class="p">:</span> <span class="s2">"USD"</span><span class="p">,</span>
+  <span class="s2">"quantity_currency"</span><span class="p">:</span> <span class="s2">"BTC"</span>
+<span class="p">}</span>
+</pre>
+<pre class="highlight php"><span class="cp">&lt;?php</span>
+<span class="c1">// Array Object
+</span><span class="p">[</span>
+  <span class="s2">"bid"</span> <span class="o">=&gt;</span> <span class="p">[</span>
+    <span class="p">[</span>
+      <span class="s2">"price"</span> <span class="o">=&gt;</span> <span class="mf">402.87</span><span class="p">,</span>
+      <span class="s2">"quantity"</span> <span class="o">=&gt;</span> <span class="mf">1.3</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="s2">"price"</span> <span class="o">=&gt;</span> <span class="mf">404.21</span><span class="p">,</span>
+      <span class="s2">"quantity"</span> <span class="o">=&gt;</span> <span class="mf">1.25</span>
+    <span class="p">]</span>
+  <span class="p">],</span>
+  <span class="s2">"ask"</span> <span class="o">=&gt;</span> <span class="p">[</span>
+    <span class="p">[</span>
+      <span class="s2">"price"</span> <span class="o">=&gt;</span> <span class="mf">423.58</span><span class="p">,</span>
+      <span class="s2">"quantity"</span> <span class="o">=&gt;</span> <span class="mf">1.3</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="s2">"price"</span> <span class="o">=&gt;</span> <span class="mf">425.25</span><span class="p">,</span>
+      <span class="s2">"quantity"</span> <span class="o">=&gt;</span> <span class="mf">1.35</span>
+    <span class="p">]</span>
+  <span class="p">]</span>
+<span class="p">]</span>
+<span class="cp">?&gt;</span>
+</pre>
+
+<p>Get the last one hundred trades</p>
+<h3 id='http-request'>HTTP Request</h1>
+<p><code class="prettyprint">GET /v1/trades</code></p>
+
+<p><aside class="notice">
+An API Key is not required to access this endpoint.
+</aside></p>
+<h2 id='get-the-ticker'>Get the ticker</h1>
+<blockquote>
+<p>Success Response Code: 200</p>
+</blockquote>
+<pre class="highlight python"><span class="n">client</span><span class="o">.</span><span class="n">get_ticker</span><span class="p">()</span>
 </pre>
 <pre class="highlight javascript"><span class="nx">client</span><span class="p">.</span><span class="nx">getTicker</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">ticker</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"ticker err"</span><span class="p">,</span> <span class="nx">err</span><span class="p">);</span>
@@ -347,13 +479,17 @@ An API Key is not required to access this endpoint.
 
 <p>Get the last trade price, current ask, and current bid</p>
 <h3 id='http-request'>HTTP Request</h1>
-<p><code class="prettyprint">GET /ticker</code></p>
+<p><code class="prettyprint">GET /v1/ticker</code></p>
 
 <p><aside class="notice">
 An API Key is not required to access this endpoint.
 </aside></p>
 
-          <h1 id='key'>Key</h1><h2 id='get-permissions'>Get permissions</h1><pre class="highlight python"><span class="n">client</span><span class="o">.</span><span class="n">get_key</span><span class="p">()</span>
+          <h1 id='key'>Key</h1><h2 id='get-permissions'>Get permissions</h1>
+<blockquote>
+<p>Success Response Code: 200</p>
+</blockquote>
+<pre class="highlight python"><span class="n">client</span><span class="o">.</span><span class="n">get_key</span><span class="p">()</span>
 </pre>
 <pre class="highlight javascript"><span class="nx">client</span><span class="p">.</span><span class="nx">getKey</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">ticker</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"key err"</span><span class="p">,</span> <span class="nx">err</span><span class="p">);</span>
@@ -404,9 +540,13 @@ An API Key is not required to access this endpoint.
 
 <p>Get all the permissions associated with this key</p>
 <h3 id='http-request'>HTTP Request</h1>
-<p><code class="prettyprint">GET /key</code></p>
+<p><code class="prettyprint">GET /v1/key</code></p>
 
-          <h1 id='account'>Account</h1><h2 id='get-account-balances'>Get account balances</h1><pre class="highlight python"><span class="n">client</span><span class="o">.</span><span class="n">get_balances</span><span class="p">()</span>
+          <h1 id='account'>Account</h1><h2 id='get-account-balances'>Get account balances</h1>
+<blockquote>
+<p>Success Response Code: 200</p>
+</blockquote>
+<pre class="highlight python"><span class="n">client</span><span class="o">.</span><span class="n">get_balances</span><span class="p">()</span>
 </pre>
 <pre class="highlight javascript"><span class="nx">client</span><span class="p">.</span><span class="nx">getBalances</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">ticker</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"balances err"</span><span class="p">,</span> <span class="nx">err</span><span class="p">);</span>
@@ -450,8 +590,12 @@ An API Key is not required to access this endpoint.
 
 <p>This endpoint retrieves the account balances in all currencies held.</p>
 <h3 id='http-request'>HTTP Request</h1>
-<p><code class="prettyprint">GET /account/balances</code></p>
-<h2 id='get-deposit-address'>Get deposit address</h1><pre class="highlight python"><span class="n">client</span><span class="o">.</span><span class="n">get_deposit_address</span><span class="p">()</span>
+<p><code class="prettyprint">GET /v1/account/balances</code></p>
+<h2 id='get-deposit-address'>Get deposit address</h1>
+<blockquote>
+<p>Success Response Code: 200</p>
+</blockquote>
+<pre class="highlight python"><span class="n">client</span><span class="o">.</span><span class="n">get_deposit_address</span><span class="p">()</span>
 </pre>
 <pre class="highlight javascript"><span class="nx">client</span><span class="p">.</span><span class="nx">getDepositAddress</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">address</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"address err"</span><span class="p">,</span> <span class="nx">err</span><span class="p">);</span>
@@ -485,9 +629,13 @@ An API Key is not required to access this endpoint.
 
 <p>Get the bitcoin deposit address associated with this account </p>
 <h3 id='http-request'>HTTP Request</h1>
-<p><code class="prettyprint">GET /account/depositAddress</code></p>
+<p><code class="prettyprint">GET /v1/account/depositAddress</code></p>
 
-          <h1 id='orders'>Orders</h1><h2 id='get-all-orders'>Get all orders</h1><pre class="highlight ruby"><span class="n">query</span> <span class="o">=</span> <span class="p">{</span> <span class="s2">"status"</span> <span class="o">=&gt;</span> <span class="s2">"opened"</span> <span class="p">}</span>
+          <h1 id='orders'>Orders</h1><h2 id='get-all-orders'>Get all orders</h1>
+<blockquote>
+<p>Success Response Code: 200</p>
+</blockquote>
+<pre class="highlight ruby"><span class="n">query</span> <span class="o">=</span> <span class="p">{</span> <span class="s2">"status"</span> <span class="o">=&gt;</span> <span class="s2">"opened"</span> <span class="p">}</span>
 <span class="n">client</span><span class="p">.</span><span class="nf">get_orders</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
 </pre>
 <pre class="highlight python"><span class="n">query</span> <span class="o">=</span> <span class="p">{</span><span class="s">'status'</span><span class="p">:</span> <span class="s">'filled'</span><span class="p">}</span>
@@ -579,7 +727,7 @@ An API Key is not required to access this endpoint.
 
 <p>This endpoint retrieves all orders based on the given query.</p>
 <h3 id='http-request'>HTTP Request</h1>
-<p><code class="prettyprint">GET /orders</code></p>
+<p><code class="prettyprint">GET /v1/orders</code></p>
 <h3 id='query-parameters'>Query Parameters</h1>
 <table><thead>
 <tr>
@@ -608,7 +756,11 @@ An API Key is not required to access this endpoint.
 <td>format: ISO-8601, e.g. <code class="prettyprint">&#39;2014-05-06T13:15:30Z&#39;</code></td>
 </tr>
 </tbody></table>
-<h2 id='get-a-single-order'>Get a single order</h1><pre class="highlight ruby"><span class="c1"># Get order with the ID</span>
+<h2 id='get-a-single-order'>Get a single order</h1>
+<blockquote>
+<p>Success Response Code: 200</p>
+</blockquote>
+<pre class="highlight ruby"><span class="c1"># Get order with the ID</span>
 <span class="n">order_id</span> <span class="o">=</span> <span class="s1">'e3afed81-4a9c-4480-a78a-e0872408b95a'</span>
 <span class="n">client</span><span class="p">.</span><span class="nf">get_order_by_id</span><span class="p">(</span><span class="n">order_id</span><span class="p">)</span>
 
@@ -719,7 +871,7 @@ An API Key is not required to access this endpoint.
 
 <p>This endpoint retrieves a single order with the given ID.</p>
 <h3 id='http-request'>HTTP Request</h1>
-<p><code class="prettyprint">GET /orders/&lt;ID&gt;</code></p>
+<p><code class="prettyprint">GET /v1/orders/&lt;ID&gt;</code></p>
 <h3 id='url-parameters'>URL Parameters</h1>
 <table><thead>
 <tr>
@@ -812,7 +964,7 @@ An API Key is not required to access this endpoint.
 </pre>
 
 <blockquote>
-<p>A successful order creation returns the url location of the new order in the response location header</p>
+<p>A successful order creation returns the url location of the new order in the response location header with HTTP Response Code of 202:</p>
 </blockquote>
 <pre class="highlight ruby"><span class="c1"># string</span>
 <span class="s1">'http://api.buttercoin.com/v1/orders/3f002e80-62c6-4274-a2d7-3f191923be09'</span>
@@ -830,6 +982,8 @@ An API Key is not required to access this endpoint.
 </pre>
 
 <p>Create a new order with the given params</p>
+<h3 id='http-request'>HTTP Request</h1>
+<p><code class="prettyprint">POST /v1/orders</code></p>
 
 <table><thead>
 <tr>
@@ -901,7 +1055,7 @@ An API Key is not required to access this endpoint.
 
 <p>Cancel a single order with the given ID.</p>
 <h3 id='http-request'>HTTP Request</h1>
-<p><code class="prettyprint">DELETE /orders/&lt;ID&gt;</code></p>
+<p><code class="prettyprint">DELETE /v1/orders/&lt;ID&gt;</code></p>
 <h3 id='url-parameters'>URL Parameters</h1>
 <table><thead>
 <tr>
@@ -915,7 +1069,11 @@ An API Key is not required to access this endpoint.
 </tr>
 </tbody></table>
 
-          <h1 id='transactions'>Transactions</h1><h2 id='get-all-transactions'>Get all transactions</h1><pre class="highlight ruby"><span class="n">query</span> <span class="o">=</span> <span class="p">{</span> <span class="s2">"status"</span> <span class="o">=&gt;</span> <span class="s2">"opened"</span> <span class="p">}</span>
+          <h1 id='transactions'>Transactions</h1><h2 id='get-all-transactions'>Get all transactions</h1>
+<blockquote>
+<p>Success Response Code: 200</p>
+</blockquote>
+<pre class="highlight ruby"><span class="n">query</span> <span class="o">=</span> <span class="p">{</span> <span class="s2">"status"</span> <span class="o">=&gt;</span> <span class="s2">"opened"</span> <span class="p">}</span>
 <span class="n">client</span><span class="p">.</span><span class="nf">get_transactions</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
 </pre>
 <pre class="highlight python"><span class="n">query</span> <span class="o">=</span> <span class="p">{</span><span class="s">'status'</span><span class="p">:</span> <span class="s">'filled'</span><span class="p">}</span>
@@ -1011,7 +1169,7 @@ An API Key is not required to access this endpoint.
 
 <p>This endpoint retrieves all transactions based on the given query.</p>
 <h3 id='http-request'>HTTP Request</h1>
-<p><code class="prettyprint">GET /transactions</code></p>
+<p><code class="prettyprint">GET /v1/transactions</code></p>
 <h3 id='query-parameters'>Query Parameters</h1>
 <table><thead>
 <tr>
@@ -1040,7 +1198,11 @@ An API Key is not required to access this endpoint.
 <td>format: ISO-8601, e.g. <code class="prettyprint">&#39;2014-05-06T13:15:30Z&#39;</code></td>
 </tr>
 </tbody></table>
-<h2 id='get-a-single-transaction'>Get a single transaction</h1><pre class="highlight ruby"><span class="c1"># Get transaction with the ID</span>
+<h2 id='get-a-single-transaction'>Get a single transaction</h1>
+<blockquote>
+<p>Success Response Code: 200</p>
+</blockquote>
+<pre class="highlight ruby"><span class="c1"># Get transaction with the ID</span>
 <span class="n">transaction_id</span> <span class="o">=</span> <span class="s1">'538bdc82848a604c007ceac6'</span>
 <span class="n">client</span><span class="p">.</span><span class="nf">get_transaction_by_id</span><span class="p">(</span><span class="n">transaction_id</span><span class="p">)</span>
 
@@ -1154,7 +1316,7 @@ An API Key is not required to access this endpoint.
 
 <p>This endpoint retrieves a single transaction with the given ID.</p>
 <h3 id='http-request'>HTTP Request</h1>
-<p><code class="prettyprint">GET /transactions/&lt;ID&gt;</code></p>
+<p><code class="prettyprint">GET /v1/transactions/&lt;ID&gt;</code></p>
 <h3 id='url-parameters'>URL Parameters</h1>
 <table><thead>
 <tr>
@@ -1206,7 +1368,7 @@ An API Key is not required to access this endpoint.
 </pre>
 
 <blockquote>
-<p>A successful deposit transaction creation returns the url location of the new transaction in the response location header</p>
+<p>A successful deposit transaction creation returns the url location of the new transaction in the response location header with HTTP Response Code of 202:</p>
 </blockquote>
 <pre class="highlight ruby"><span class="c1"># string</span>
 <span class="s1">'http://api.buttercoin.com/v1/transactions/538bdc82848a604c007ceac6'</span>
@@ -1245,7 +1407,7 @@ An API Key is not required to access this endpoint.
 </tr>
 </tbody></table>
 <h3 id='http-request'>HTTP Request</h1>
-<p><code class="prettyprint">POST /transactions/deposit</code></p>
+<p><code class="prettyprint">POST /v1/transactions/deposit</code></p>
 <h2 id='create-a-withdrawal'>Create a withdrawal</h1><pre class="highlight ruby"><span class="n">withdrawal</span> <span class="o">=</span> <span class="p">{</span>
   <span class="ss">:method</span> <span class="o">=&gt;</span> <span class="s2">"check"</span><span class="p">,</span>
   <span class="ss">:currency</span> <span class="o">=&gt;</span> <span class="s2">"USD"</span><span class="p">,</span>
@@ -1281,7 +1443,7 @@ An API Key is not required to access this endpoint.
 </pre>
 
 <blockquote>
-<p>If you have the security setting requiring confirmation for withdrawal, you will see this message requiring further action</p>
+<p>If you have the security setting requiring confirmation for withdrawal, you will see this message requiring further action with HTTP Response Code of 201:</p>
 </blockquote>
 <pre class="highlight ruby"><span class="c1"># Hashie::Mash</span>
 <span class="n">response</span><span class="p">.</span><span class="nf">status</span> <span class="c1"># 201</span>
@@ -1297,7 +1459,7 @@ An API Key is not required to access this endpoint.
 </pre>
 
 <blockquote>
-<p>A successful withdrawal transaction creation returns the url location of the new transaction in the response location header</p>
+<p>A successful withdrawal transaction creation returns the url location of the new transaction in the response location header with HTTP Response Code of 202</p>
 </blockquote>
 <pre class="highlight ruby"><span class="c1"># string</span>
 <span class="s1">'http://api.buttercoin.com/v1/transactions/538bdc82848a604c007ceac6'</span>
@@ -1336,7 +1498,7 @@ An API Key is not required to access this endpoint.
 </tr>
 </tbody></table>
 <h3 id='http-request'>HTTP Request</h1>
-<p><code class="prettyprint">POST /transactions/withdraw</code></p>
+<p><code class="prettyprint">POST /v1/transactions/withdraw</code></p>
 <h2 id='send-bitcoins'>Send bitcoins</h1><pre class="highlight ruby"><span class="n">trxn</span> <span class="o">=</span> <span class="p">{</span>
   <span class="ss">:currency</span> <span class="o">=&gt;</span> <span class="s2">"BTC"</span><span class="p">,</span>
   <span class="ss">:amount</span> <span class="o">=&gt;</span> <span class="s2">"100.231231"</span><span class="p">,</span>
@@ -1373,7 +1535,7 @@ An API Key is not required to access this endpoint.
 </pre>
 
 <blockquote>
-<p>If you have the security setting requiring confirmation for bitcoin withdrawal, you will see this message requiring further action</p>
+<p>If you have the security setting requiring confirmation for bitcoin withdrawal, you will see this message requiring further action with HTTP Response Code of 201:</p>
 </blockquote>
 <pre class="highlight ruby"><span class="c1"># Hashie::Mash</span>
 <span class="n">response</span><span class="p">.</span><span class="nf">status</span> <span class="c1"># 201</span>
@@ -1389,7 +1551,7 @@ An API Key is not required to access this endpoint.
 </pre>
 
 <blockquote>
-<p>A successful withdrawal transaction creation returns the url location of the new transaction in the response location header</p>
+<p>A successful withdrawal transaction creation returns the url location of the new transaction in the response location header with HTTP Response Code of 202:</p>
 </blockquote>
 <pre class="highlight ruby"><span class="c1"># string</span>
 <span class="s1">'http://api.buttercoin.com/v1/transactions/538bdc82848a604c007ceac6'</span>
@@ -1428,8 +1590,12 @@ An API Key is not required to access this endpoint.
 </tr>
 </tbody></table>
 <h3 id='http-request'>HTTP Request</h1>
-<p><code class="prettyprint">POST /transactions/send</code></p>
-<h2 id='cancel-a-transaction'>Cancel a transaction</h1><pre class="highlight ruby">  <span class="n">transaction_id</span> <span class="o">=</span> <span class="s1">'e3afed81-4a9c-4480-a78a-e0872408b95a'</span>
+<p><code class="prettyprint">POST /v1/transactions/send</code></p>
+<h2 id='cancel-a-transaction'>Cancel a transaction</h1>
+<blockquote>
+<p>Success Response Code: 204</p>
+</blockquote>
+<pre class="highlight ruby">  <span class="n">transaction_id</span> <span class="o">=</span> <span class="s1">'e3afed81-4a9c-4480-a78a-e0872408b95a'</span>
 <span class="n">client</span><span class="p">.</span><span class="nf">cancel_transaction</span><span class="p">(</span><span class="n">transaction_id</span><span class="p">)</span>
 </pre>
 <pre class="highlight python"><span class="n">transaction_id</span> <span class="o">=</span> <span class="s">'e3afed81-4a9c-4480-a78a-e0872408b95a'</span>
@@ -1468,7 +1634,7 @@ An API Key is not required to access this endpoint.
 
 <p>Cancel a single transaction with the given ID.</p>
 <h3 id='http-request'>HTTP Request</h1>
-<p><code class="prettyprint">DELETE /transactions/&lt;ID&gt;</code></p>
+<p><code class="prettyprint">DELETE /v1/transactions/&lt;ID&gt;</code></p>
 <h3 id='url-parameters'>URL Parameters</h1>
 <table><thead>
 <tr>
@@ -1479,6 +1645,49 @@ An API Key is not required to access this endpoint.
 <tr>
 <td>ID</td>
 <td>The ID of the transaction to cancel</td>
+</tr>
+</tbody></table>
+
+          <h1 id='rate-limiting'>Rate Limiting</h1>
+<blockquote>
+<p>Rate limiting happens on a rolling basis.</p>
+</blockquote>
+
+<table><thead>
+<tr>
+<th>Period</th>
+<th>Limit</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Minute</td>
+<td>Maximum of 120 requests</td>
+</tr>
+<tr>
+<td>Day</td>
+<td>Maximum of 86,400 requests (Avg. of 1 per second)</td>
+</tr>
+</tbody></table>
+<h3 id='http-headers-and-response-codes'>HTTP Headers and Response codes</h1>
+<p>The following headers are included with every API response:</p>
+
+<table><thead>
+<tr>
+<th>Header</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">X-Rate-Limit-Limit</code></td>
+<td>The rate limit ceiling for that given request</td>
+</tr>
+<tr>
+<td><code class="prettyprint">X-Rate-Limit-Remaining</code></td>
+<td>The number of requests left for the 15 minute window</td>
+</tr>
+<tr>
+<td><code class="prettyprint">X-Rate-Limit-Reset</code></td>
+<td>The remaining window before the rate limit resets in UTC <a href="http://en.wikipedia.org/wiki/Unix_time">epoch seconds</a></td>
 </tr>
 </tbody></table>
 
