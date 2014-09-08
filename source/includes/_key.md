@@ -2,6 +2,8 @@
 
 ## Get permissions
 
+> Success Response Code: 200
+
 ```python
 client.get_key()
 ```
@@ -68,6 +70,6 @@ Get all the permissions associated with this key
 
 ### HTTP Request
 
-`GET /key`
+`GET /v1/key`
 
 

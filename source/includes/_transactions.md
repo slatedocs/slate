@@ -2,6 +2,8 @@
 
 ## Get all transactions 
 
+> Success Response Code: 200
+
 ```ruby
 query = { "status" => "opened" }
 client.get_transactions(query)
@@ -113,7 +115,7 @@ This endpoint retrieves all transactions based on the given query.
 
 ### HTTP Request
 
-`GET /transactions`
+`GET /v1/transactions`
 
 ### Query Parameters
 
@@ -127,6 +129,8 @@ Parameter | Description
 
 
 ## Get a single transaction
+
+> Success Response Code: 200
 
 ```ruby
 # Get transaction with the ID
@@ -257,7 +261,7 @@ This endpoint retrieves a single transaction with the given ID.
 
 ### HTTP Request
 
-`GET /transactions/<ID>`
+`GET /v1/transactions/<ID>`
 
 ### URL Parameters
 
@@ -312,7 +316,7 @@ $client->createDeposit($deposit);
 ?>
 ```
 
-> A successful deposit transaction creation returns the url location of the new transaction in the response location header
+> A successful deposit transaction creation returns the url location of the new transaction in the response location header with HTTP Response Code of 202:
 
 ```ruby
 # string
@@ -346,7 +350,7 @@ Parameter | Description
 
 ### HTTP Request
 
-`POST /transactions/deposit`
+`POST /v1/transactions/deposit`
 
 ## Create a withdrawal
 
@@ -391,7 +395,7 @@ $client->createWithdrawal($withdrawal);
 ?>
 ```
 
-> If you have the security setting requiring confirmation for withdrawal, you will see this message requiring further action
+> If you have the security setting requiring confirmation for withdrawal, you will see this message requiring further action with HTTP Response Code of 201:
 
 ```ruby
 # Hashie::Mash
@@ -413,7 +417,7 @@ response.message # This operation requires email confirmation
 ?>
 ```
 
-> A successful withdrawal transaction creation returns the url location of the new transaction in the response location header
+> A successful withdrawal transaction creation returns the url location of the new transaction in the response location header with HTTP Response Code of 202
 
 ```ruby
 # string
@@ -447,7 +451,7 @@ Parameter | Description
 
 ### HTTP Request
 
-`POST /transactions/withdraw`
+`POST /v1/transactions/withdraw`
 
 ## Send bitcoins
 
@@ -493,7 +497,7 @@ $client->sendCrypto($trxn);
 ?>
 ```
 
-> If you have the security setting requiring confirmation for bitcoin withdrawal, you will see this message requiring further action
+> If you have the security setting requiring confirmation for bitcoin withdrawal, you will see this message requiring further action with HTTP Response Code of 201:
 
 ```ruby
 # Hashie::Mash
@@ -515,7 +519,7 @@ response.message # This operation requires email confirmation
 ?>
 ```
 
-> A successful withdrawal transaction creation returns the url location of the new transaction in the response location header
+> A successful withdrawal transaction creation returns the url location of the new transaction in the response location header with HTTP Response Code of 202:
 
 ```ruby
 # string
@@ -549,9 +553,11 @@ Parameter | Description
 
 ### HTTP Request
 
-`POST /transactions/send`
+`POST /v1/transactions/send`
 
 ## Cancel a transaction
+
+> Success Response Code: 204
 
 ```ruby
   transaction_id = 'e3afed81-4a9c-4480-a78a-e0872408b95a'
@@ -607,7 +613,7 @@ Cancel a single transaction with the given ID.
 
 ### HTTP Request
 
-`DELETE /transactions/<ID>`
+`DELETE /v1/transactions/<ID>`
 
 ### URL Parameters
 

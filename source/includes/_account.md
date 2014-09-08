@@ -2,6 +2,8 @@
 
 ## Get account balances
 
+> Success Response Code: 200
+
 ```python
 client.get_balances()
 ```
@@ -61,11 +63,11 @@ This endpoint retrieves the account balances in all currencies held.
 
 ### HTTP Request
 
-`GET /account/balances`
+`GET /v1/account/balances`
 
 ## Get deposit address
 
-
+> Success Response Code: 200
 
 ```python
 client.get_deposit_address()
@@ -116,6 +118,6 @@ Get the bitcoin deposit address associated with this account
 
 ### HTTP Request
 
-`GET /account/depositAddress`
+`GET /v1/account/depositAddress`
 
 

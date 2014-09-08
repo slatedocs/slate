@@ -2,6 +2,8 @@
 
 ## Get all orders 
 
+> Success Response Code: 200
+
 ```ruby
 query = { "status" => "opened" }
 client.get_orders(query)
@@ -109,7 +111,7 @@ This endpoint retrieves all orders based on the given query.
 
 ### HTTP Request
 
-`GET /orders`
+`GET /v1/orders`
 
 ### Query Parameters
 
@@ -123,6 +125,8 @@ Parameter | Description
 
 
 ## Get a single order
+
+> Success Response Code: 200
 
 ```ruby
 # Get order with the ID
@@ -251,7 +255,7 @@ This endpoint retrieves a single order with the given ID.
 
 ### HTTP Request
 
-`GET /orders/<ID>`
+`GET /v1/orders/<ID>`
 
 ### URL Parameters
 
@@ -347,7 +351,7 @@ $client->createOrder($order);
 ?>
 ```
 
-> A successful order creation returns the url location of the new order in the response location header
+> A successful order creation returns the url location of the new order in the response location header with HTTP Response Code of 202:
 
 ```ruby
 # string
@@ -372,6 +376,10 @@ $client->createOrder($order);
 ```
 
 Create a new order with the given params
+
+### HTTP Request
+
+`POST /v1/orders`
 
 Parameter | Description
 --- | ---
@@ -443,7 +451,7 @@ Cancel a single order with the given ID.
 
 ### HTTP Request
 
-`DELETE /orders/<ID>`
+`DELETE /v1/orders/<ID>`
 
 ### URL Parameters
 
