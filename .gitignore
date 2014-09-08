@@ -12,8 +12,9 @@ test/tmp
 test/version_tmp
 tmp
 *.DS_STORE
-build/
 .cache
+*.swo
+*.swp
 
 # YARD artifacts
 .yardoc

@@ -4,6 +4,7 @@
 @import 'variables';
 @import 'syntax';
 @import 'icon-font';
+@import 'custom';
 
 /*
 Copyright 2008-2013 Concur Technologies, Inc.
@@ -371,7 +372,7 @@ html, body {
     margin-top: 2em;
     border-top: 1px solid #ddd;
     @include background-image(
-      linear-gradient(top, #fff, #f9f9f9)
+      linear-gradient(top, #f9f9f9, #f9f9f9)
     );
   }
 
@@ -518,7 +519,7 @@ html, body {
     margin: -2px;
     border-radius: 4px;
     border: 1px solid #F7E633;
-    text-shadow: 1px 1px 0 #666;
+    text-shadow: none;
     @include background(linear-gradient(bottom right, #F7E633 0%, #F1D32F 100%));
   }
 }

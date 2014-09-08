@@ -10,7 +10,7 @@
       selectors: 'h1, h2',
       extendPage: false,
       theme: 'none',
-      smoothScroll: false,
+      smoothScroll: true,
       showEffectSpeed: 0,
       hideEffectSpeed: 180,
       ignoreSelector: '.toc-ignore',
