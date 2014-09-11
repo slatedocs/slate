@@ -1,13 +1,5 @@
 # Changelog
 
-## Version 1.1
-
-*July 27th, 2014*
-
-**Fixes:**
-
-- Finally, a fix for the redcarpet upgrade bug
-
 ## Version 1.0
 
 *July 2, 2014*

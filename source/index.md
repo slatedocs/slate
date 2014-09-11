@@ -1,13 +1,10 @@
 ---
-title: API Reference
+title: RubiconMD API
 
 language_tabs:
   - shell
-  - ruby
-  - python
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
   - <a href='http://github.com/tripit/slate'>Documentation Powered by Slate</a>
 
 includes:
@@ -18,67 +15,63 @@ search: true
 
 # Introduction
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+<aside class="warning">
+The requests presented on this API documentation are being made to the **staging server**.
+Here is the list of the possible servers:
+</aside>
 
-We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
-
-This example API documentation page was created with [Slate](http://github.com/tripit/slate). Feel free to edit it and use it as a base for your own API's documentation.
+Server |  URL
+--------- | -----------
+**Sandbox:** | `http://demo.rubiconmd.com`
+**Production:** | `https://www.rubiconmd.com` 
 
 # Authentication
 
-> To authorize, use this code:
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
-
-```python
-import 'kittn'
-
-api = Kittn.authorize('meowmeowmeow')
-```
+> To get your access token, use this code. <br>
+> Make sure to replace `XXXXXX` and `YYYYYY` with your API information. <br>
+> Also, make sure you are introducing valid specialist credentials.
 
 ```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
+# Just a standard HTTP Request
+curl -i http://demo.rubiconmd.com/api/v1/oauth/token
+ -F grant_type="password"
+ -F email="SpecialistEmail"
+ -F password="SpecialistPassword"
+ -F client_id="XXXXXX"
+ -F client_secret="YYYYYY"
 ```
 
-> Make sure to replace `meowmeowmeow` with your API key.
+> Which will return:
 
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
+```json
+[
+  {
+    "access_token": "AAAAAA",
+    "token_type": "bearer",
+    "expires_in": 7200
+  }
+]
+```
 
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
 
-`Authorization: meowmeowmeow`
+
+RubiconMD uses keys to allow access to the API. You can ask [Michael](michael@rubiconmd.com) for a new one.
+RubiconMD uses basically OAuth2 type authentication. So once you are authorized, you will get an access token.
+
+RubiconMD API expects for the access token you will recieve to be included in all API requests to the server, being this snippet the first parameter in each petition.
+
+`?access_token="AAAAAA"`
 
 <aside class="notice">
-You must replace `meowmeowmeow` with your personal API key.
+All access_tokens expire in two hours. You will then have to ask for another one so you can keep on using the API.
 </aside>
 
-# Kittens
+# Case Referrals
 
-## Get All Kittens
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
-
-```python
-import 'kittn'
-
-api = Kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
+## Get All Case Referrals for an User
 
 ```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
+curl http://demo.rubiconmd.com/api/v1/referrals?access_token="AAAAAA"
 ```
 
 > The above command returns JSON structured like this:
@@ -86,83 +79,377 @@ curl "http://example.com/api/kittens"
 ```json
 [
   {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
+    "id": 37,
+    "state": "accepted",
+    "question": "Does this look deadly?"
   },
   {
-    "id": 2,
-    "name": "Isis",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
+    "id": 22,
+    "state": "need_pcp_reply",
+    "question": "Is this Lupus?"
   }
 ]
 ```
 
-This endpoint retrieves all kittens.
+This endpoint retrieves all the case referrals for the authenticated user.
 
 ### HTTP Request
 
-`GET http://example.com/kittens`
+`GET http://demo.rubiconmd.com/api/v1/referrals?access_token="AAAAAA"`
 
-### Query Parameters
+### Query Optional Parameters
 
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
+Parameter |  Description
+--------- | -----------
+state | Gets pending cases with a particular state.
+limit | Retrieves the specific number of cases you pass it.
 
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
+**States:** assigned, accepted, declined, awaiting_review, need_specialist_reply, need_pcp_reply, closed
 
-## Get a Specific Kitten
+**limit:** Integer number.
 
-```ruby
-require 'kittn'
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import 'kittn'
-
-api = Kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
+## Get a Specific Case Referral
 
 ```shell
-curl "http://example.com/api/kittens/3"
-  -H "Authorization: meowmeowmeow"
+curl http://demo.rubiconmd.com/api/v1/referrals/57?access_token="AAAAAA"
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
 {
-  "id": 2,
-  "name": "Isis",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
+  "id": 57,
+  "state": "accepted",
+  "question": "Is this normal?",
+  "created_at": "2014-07-15T15:33:44.220-04:00",
+  "updated_at": "2014-07-15T15:45:56.440-04:00",
+  "assigned_on": "2014-07-15T15:33:46.774-04:00",
+  "accepted_on": "2014-07-15T15:45:56.430-04:00",
+  "patient_age": 18,
+  "patient_gender": "Female",
+  "differential_diagnosis": "This is my Differential Diagnosis.",
+  "medical_history": "A long one.",
+  "medications": "None that you should know.",
+  "symptoms": "Feels bad.",
+  "labs": "Cholesterol levels are fine."
 }
 ```
 
-This endpoint retrieves a specific kitten.
+This endpoint will return the JSON data about a specific case.
 
-<aside class="warning">If you're not using an administrator API key, note that some kittens will return 403 Forbidden if they are hidden for admins only.</aside>
+<aside class="notice">
+ Make sure to replace `CASE_ID` with the actual ID of the case you want to look up.
+</aside>
+
 
 ### HTTP Request
 
-`GET http://example.com/kittens/<ID>`
+`GET http://demo.rubiconmd.com/api/v1/referrals/CASE_ID?access_token="AAAAAA"`
 
 ### URL Parameters
 
 Parameter | Description
 --------- | -----------
-ID | The ID of the cat to retrieve
+CASE_ID | The ID of the case to retrieve
+
+
+## Accept / Reject a Specific Case 
+
+```shell
+curl http://demo.rubiconmd.com/api/v1/referrals/57/reject?access_token="AAAAAA"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "id": 57,
+  "state": "declined",
+  "question": "Is this normal?",
+  "created_at": "2014-07-15T15:33:44.220-04:00",
+  "updated_at": "2014-07-15T15:45:56.440-04:00",
+  "assigned_on": "2014-07-15T15:33:46.774-04:00",
+  "accepted_on": "2014-07-15T15:45:56.430-04:00",
+  "patient_age": 18,
+  "patient_gender": "Female",
+  "differential_diagnosis": "This is my Differential Diagnosis.",
+  "medical_history": "A long one.",
+  "medications": "None that you should know.",
+  "symptoms": "Feels bad.",
+  "labs": "Cholesterol levels are fine."
+}
+```
+
+This endpoint allows you to accept or turn down a specific case.
+
+<aside class="success">
+When you accept/reject a case, a successful call will return the JSON data about the case.
+</aside>
+<aside class="warning">
+An unsuccessful call will return a **402** and an error message:
+`{"error":"This case could not be accepted at this time."}
+</aside>
+
+### HTTP Request
+
+`GET http://demo.rubiconmd.com/api/v1/rubiconmdeferrals/CASE_ID/ACTION?access_token="AAAAAA"`
+
+### URL Parameters
+
+Parameter |  Description
+--------- | -----------
+CASE_ID | The ID of the case to retrieve
+ACTION | Accepts or rejects a case.
+
+**Actions:** accept, reject
+
+# Case Responses
+
+## Get All Responses for a Specific Case
+
+```shell
+curl http://demo.rubiconmd.com/api/v1/referrals/63/responses?access_token="AAAAAA"
+```
+
+> The above command returns JSON structured like this, these are examples of both pcp and specialist responses:
+
+```json
+[
+  {
+    "id": 17,
+    "case_id": 63,
+    "user_id": 12,
+    "body": "This is where you put the specialist text response.",
+    "created_at": "2014-04-12T14:11:38.554-04:00",
+    "purpose": "specialist_opinion",
+    "need_reply": true
+  },
+  {
+  "id": 18,
+  "case_id": 63,
+  "user_id": 22,
+  "body": "This is a pcp response.",
+  "created_at": "2014-04-12T14:19:33.554-04:00",
+  "purpose": "pcp_reply",
+  "need_reply": false
+  }
+]
+```
+
+This endpoint retrieves all the responses for a specific case.
+
+### HTTP Request
+
+`GET http://demo.rubiconmd.com/api/v1/referrals/CASE_ID/responses?access_token="AAAAAA"`
+
+### URL Parameters
+
+Parameter |  Description
+--------- | -----------
+CASE_ID | The ID of the case to retrieve
+
+## Get A Specific Response from a Case
+
+```shell
+curl http://demo.rubiconmd.com/api/v1/referrals/63/responses/17?access_token="AAAAAA"
+```
+
+>The above command returns JSON like this:
+
+```json
+{  
+  "id":17,
+  "case_id":63,
+  "user_id":12,
+  "body":"This is where you put the specialist text response.",
+  "created_at":"2014-04-12T14:11:38.554-04:00",
+  "purpose":"specialist_opinion",
+  "need_reply":true
+}
+```
+
+This allows you to recieve a specific response from a specific case.
+
+### HTTP Request
+
+`GET http://demo.rubiconmd.com/api/v1/referrals/CASE_ID/responses/RESPONSE_ID?access_token="AAAAAA"`
+
+### URL Parameters
+
+Parameter |  Description
+--------- | -----------
+CASE_ID | The ID of the case to retrieve
+RESPONSE_ID | The ID of the specific response you want to get
+
+## Post a Response
+
+```shell
+curl -X POST
+  -H "Content-Type: application/json"
+  -d '{"response":{"body":"This is where you put the specialist text response.","purpose":"specialist_opinion","need_reply":"true"}}' "http://demo.rubiconmd.com/api/v1/referrals/63/responses?access_token=AAAAAA"
+```
+
+>The above command returns JSON like this:
+
+```json
+{
+  "id":17,
+  "case_id":63,
+  "user_id":12,
+  "body":"This is where you put the specialist text response.",
+  "created_at":"2014-04-12T14:11:38.554-04:00",
+  "purpose":"specialist_opinion",
+  "need_reply":true
+}
+```
+
+This allows you post a response in a specific case (as a specialist). It also returns your response.
+
+### HTTP Request
+
+`POST http://demo.rubiconmd.com/api/v1/referrals/CASE_ID/responses/ {"response": {"body": TEXT, "purpose": "specialist_opinion", "need_reply": BOOLEAN} }`
+
+### URL Parameters
+
+Parameter |  Description
+--------- | -----------
+CASE_ID | The ID of the case you want to respond to
+body | TEXT field with your response
+purpose | "specialist_opinion" , it cannot be changed
+need_reply | BOOLEAN field , depending on your need of the PCP to reply to your response
+
+<aside class="notice">
+ The app you are building should always be reporting **purpose** as "specialist_opinion".
+</aside>
+
+<!-- 
+ ##
+ ##
+ ## USER INFO
+ ##
+ ##
+-->
+
+# Users
+
+##User Information
+
+```shell
+curl http://demo.rubiconmd.com/api/v1/users/me?access_token="AAAAAA"
+```
+> The above command returns JSON structured like this:
+
+```json
+{
+   "id":12,
+   "is_specialist":true,
+   "first_name":"Franklin",
+   "last_name":"McAwesome",
+   "role":"medical_doctor",
+   "email":"awesome_specialist@rubiconmd.com",
+   "organization":"Health Medical Clinic",
+   "country":"United States",
+   "specialties":[
+      {
+         "specialty":{
+            "id":17,
+            "name":"Electrophysiology",
+            "category":"Cardiology"
+         }
+      },
+      {
+         "specialty":{
+            "id":24,
+            "name":"HIV",
+            "category":"Infectious Diseases"
+         }
+      },
+      {
+         "specialty":{
+            "id":31,
+            "name":"Hand surgery",
+            "category":"Orthopedic Surgery"
+         }
+      }
+   ]
+}
+```
+
+Want to get information about the user you just logged in? This is your endpoint.
+
+### HTTP Request
+
+`GET http://demo.rubiconmd.com/api/v1/users/me?access_token="AAAAAA"`
+
+##Creating Users
+
+```shell
+curl -X POST
+  -H "Content-Type: application/json"
+  -d '{"user":{"email": "awesome_specialist@rubiconmd.com", "first_name": "Franklin", "last_name": "McAwesome", "role": "medical_doctor"}}' "http://demo.rubiconmd.com/api/v1/users?access_token=AAAAAA"
+```
+> The above command returns JSON structured like this:
+
+```json
+{
+   "first_name":"Franklin",
+   "last_name":"McAwesome",
+   "email":"awesome_specialist@rubiconmd.com",
+   "role":"medical_doctor"
+}
+```
+
+This allows you to create a new specialist.
+
+### HTTP Request
+
+`POST http://demo.rubiconmd.com/api/v1/users/ {"user": {"email": TEXT, "first_name": TEXT, "last_name": TEXT, "role": ROLE} }`
+
+### URL Parameters 
+
+Parameter |  Description
+--------- | -----------
+email | The e-mail from the user you are creating.
+first_name | First name of the user.
+last_name | Last name of the user.
+role | User's role. It has to be one of the following so the user can be created.
+
+**Roles:** medical_doctor , physician_assistant , registered_nurse , nurse_practitioner
+
+##Registering User Devices
+
+```shell
+curl -X POST
+  -H "Content-Type: application/json"
+  -d '{"device":{"token":"thisIsTheDeviceToken"}}' "http://demo.rubiconmd.com/api/v1/user_devices?access_token=AAAAAA"
+```
+> The above command returns JSON structured like this:
+
+```json
+{
+   "user_id":"11",
+   "token":"thisIsTheDeviceToken"
+}
+```
+
+This endpoint is intended to register Apple devices so the user can receive push notifications.
+
+### HTTP Request
+
+`POST http://demo.rubiconmd.com/api/v1/user_devices/ { "device": { "token": STRING } }`
+
+### URL Parameters 
+
+Parameter |  Description
+--------- | -----------
+token | The device token you get when you register the device for push notifications.
+
+
+
+
+
+
+
+
 
