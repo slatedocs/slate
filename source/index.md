@@ -55,7 +55,7 @@ curl -i http://demo.rubiconmd.com/api/v1/oauth/token
 
 
 
-RubiconMD uses keys to allow access to the API. You can ask [Michael](michael@rubiconmd.com) for a new one.
+RubiconMD uses keys to allow access to the API. You can ask [Michael](mailto: michael@rubiconmd.com?Subject=Rubicon%20API%20Keys) for a new one.
 RubiconMD uses basically OAuth2 type authentication. So once you are authorized, you will get an access token.
 
 RubiconMD API expects for the access token you will recieve to be included in all API requests to the server, being this snippet the first parameter in each petition.
@@ -400,7 +400,7 @@ curl -X POST
 }
 ```
 
-This allows you to create a new specialist.
+This allows you to create a new provider for your organization.
 
 ### HTTP Request
 
@@ -413,9 +413,7 @@ Parameter |  Description
 email | The e-mail from the user you are creating.
 first_name | First name of the user.
 last_name | Last name of the user.
-role | User's role. It has to be one of the following so the user can be created.
-
-**Roles:** medical_doctor , physician_assistant , registered_nurse , nurse_practitioner
+role | User's role. Roles are limited to the following values: 'medical_doctor' , 'physician_assistant' , 'registered_nurse' , 'nurse_practitioner'
 
 ##Registering User Devices
 
