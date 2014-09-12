@@ -33,7 +33,7 @@ Server |  URL
 
 ```shell
 # Just a standard HTTP Request
-curl -i http://demo.rubiconmd.com/api/v1/oauth/token
+curl -i https://rubiconmd.com/api/v1/oauth/token
  -F grant_type="password"
  -F email="SpecialistEmail"
  -F password="SpecialistPassword"
@@ -71,7 +71,7 @@ All access_tokens expire in two hours. You will then have to ask for another one
 ## Get All Case Referrals for an User
 
 ```shell
-curl http://demo.rubiconmd.com/api/v1/referrals?access_token="AAAAAA"
+curl https://rubiconmd.com/api/v1/referrals?access_token="AAAAAA"
 ```
 
 > The above command returns JSON structured like this:
@@ -95,7 +95,7 @@ This endpoint retrieves all the case referrals for the authenticated user.
 
 ### HTTP Request
 
-`GET http://demo.rubiconmd.com/api/v1/referrals?access_token="AAAAAA"`
+`GET https://rubiconmd.com/api/v1/referrals?access_token="AAAAAA"`
 
 ### Query Optional Parameters
 
@@ -112,7 +112,7 @@ limit | Retrieves the specific number of cases you pass it.
 ## Get a Specific Case Referral
 
 ```shell
-curl http://demo.rubiconmd.com/api/v1/referrals/57?access_token="AAAAAA"
+curl https://rubiconmd.com/api/v1/referrals/57?access_token="AAAAAA"
 ```
 
 > The above command returns JSON structured like this:
@@ -145,7 +145,7 @@ This endpoint will return the JSON data about a specific case.
 
 ### HTTP Request
 
-`GET http://demo.rubiconmd.com/api/v1/referrals/CASE_ID?access_token="AAAAAA"`
+`GET https://rubiconmd.com/api/v1/referrals/CASE_ID?access_token="AAAAAA"`
 
 ### URL Parameters
 
@@ -157,7 +157,7 @@ CASE_ID | The ID of the case to retrieve
 ## Accept / Reject a Specific Case 
 
 ```shell
-curl http://demo.rubiconmd.com/api/v1/referrals/57/reject?access_token="AAAAAA"
+curl https://rubiconmd.com/api/v1/referrals/57/reject?access_token="AAAAAA"
 ```
 
 > The above command returns JSON structured like this:
@@ -193,7 +193,7 @@ An unsuccessful call will return a **402** and an error message:
 
 ### HTTP Request
 
-`GET http://demo.rubiconmd.com/api/v1/rubiconmdeferrals/CASE_ID/ACTION?access_token="AAAAAA"`
+`GET https://rubiconmd.com/api/v1/rubiconmdeferrals/CASE_ID/ACTION?access_token="AAAAAA"`
 
 ### URL Parameters
 
@@ -209,7 +209,7 @@ ACTION | Accepts or rejects a case.
 ## Get All Responses for a Specific Case
 
 ```shell
-curl http://demo.rubiconmd.com/api/v1/referrals/63/responses?access_token="AAAAAA"
+curl https://rubiconmd.com/api/v1/referrals/63/responses?access_token="AAAAAA"
 ```
 
 > The above command returns JSON structured like this, these are examples of both pcp and specialist responses:
@@ -241,7 +241,7 @@ This endpoint retrieves all the responses for a specific case.
 
 ### HTTP Request
 
-`GET http://demo.rubiconmd.com/api/v1/referrals/CASE_ID/responses?access_token="AAAAAA"`
+`GET https://rubiconmd.com/api/v1/referrals/CASE_ID/responses?access_token="AAAAAA"`
 
 ### URL Parameters
 
@@ -252,7 +252,7 @@ CASE_ID | The ID of the case to retrieve
 ## Get A Specific Response from a Case
 
 ```shell
-curl http://demo.rubiconmd.com/api/v1/referrals/63/responses/17?access_token="AAAAAA"
+curl https://rubiconmd.com/api/v1/referrals/63/responses/17?access_token="AAAAAA"
 ```
 
 >The above command returns JSON like this:
@@ -273,7 +273,7 @@ This allows you to recieve a specific response from a specific case.
 
 ### HTTP Request
 
-`GET http://demo.rubiconmd.com/api/v1/referrals/CASE_ID/responses/RESPONSE_ID?access_token="AAAAAA"`
+`GET https://rubiconmd.com/api/v1/referrals/CASE_ID/responses/RESPONSE_ID?access_token="AAAAAA"`
 
 ### URL Parameters
 
@@ -287,7 +287,7 @@ RESPONSE_ID | The ID of the specific response you want to get
 ```shell
 curl -X POST
   -H "Content-Type: application/json"
-  -d '{"response":{"body":"This is where you put the specialist text response.","purpose":"specialist_opinion","need_reply":"true"}}' "http://demo.rubiconmd.com/api/v1/referrals/63/responses?access_token=AAAAAA"
+  -d '{"response":{"body":"This is where you put the specialist text response.","purpose":"specialist_opinion","need_reply":"true"}}' "https://rubiconmd.com/api/v1/referrals/63/responses?access_token=AAAAAA"
 ```
 
 >The above command returns JSON like this:
@@ -308,7 +308,7 @@ This allows you post a response in a specific case (as a specialist). It also re
 
 ### HTTP Request
 
-`POST http://demo.rubiconmd.com/api/v1/referrals/CASE_ID/responses/ {"response": {"body": TEXT, "purpose": "specialist_opinion", "need_reply": BOOLEAN} }`
+`POST https://rubiconmd.com/api/v1/referrals/CASE_ID/responses/ {"response": {"body": TEXT, "purpose": "specialist_opinion", "need_reply": BOOLEAN} }`
 
 ### URL Parameters
 
@@ -336,7 +336,7 @@ need_reply | BOOLEAN field , depending on your need of the PCP to reply to your 
 ##User Information
 
 ```shell
-curl http://demo.rubiconmd.com/api/v1/users/me?access_token="AAAAAA"
+curl https://rubiconmd.com/api/v1/users/me?access_token="AAAAAA"
 ```
 > The above command returns JSON structured like this:
 
@@ -380,14 +380,14 @@ Want to get information about the user you just logged in? This is your endpoint
 
 ### HTTP Request
 
-`GET http://demo.rubiconmd.com/api/v1/users/me?access_token="AAAAAA"`
+`GET https://rubiconmd.com/api/v1/users/me?access_token="AAAAAA"`
 
 ##Creating Users
 
 ```shell
 curl -X POST
   -H "Content-Type: application/json"
-  -d '{"user":{"email": "awesome_specialist@rubiconmd.com", "first_name": "Franklin", "last_name": "McAwesome", "role": "medical_doctor"}}' "http://demo.rubiconmd.com/api/v1/users?access_token=AAAAAA"
+  -d '{"user":{"email": "awesome_specialist@rubiconmd.com", "first_name": "Franklin", "last_name": "McAwesome", "role": "medical_doctor"}}' "https://rubiconmd.com/api/v1/users?access_token=AAAAAA"
 ```
 > The above command returns JSON structured like this:
 
@@ -404,7 +404,7 @@ This allows you to create a new provider for your organization.
 
 ### HTTP Request
 
-`POST http://demo.rubiconmd.com/api/v1/users/ {"user": {"email": TEXT, "first_name": TEXT, "last_name": TEXT, "role": ROLE} }`
+`POST https://rubiconmd.com/api/v1/users/ {"user": {"email": TEXT, "first_name": TEXT, "last_name": TEXT, "role": ROLE} }`
 
 ### URL Parameters 
 
@@ -420,7 +420,7 @@ role | User's role. Roles are limited to the following values: 'medical_doctor' 
 ```shell
 curl -X POST
   -H "Content-Type: application/json"
-  -d '{"device":{"token":"thisIsTheDeviceToken"}}' "http://demo.rubiconmd.com/api/v1/user_devices?access_token=AAAAAA"
+  -d '{"device":{"token":"thisIsTheDeviceToken"}}' "https://rubiconmd.com/api/v1/user_devices?access_token=AAAAAA"
 ```
 > The above command returns JSON structured like this:
 
@@ -435,7 +435,7 @@ This endpoint is intended to register Apple devices so the user can receive push
 
 ### HTTP Request
 
-`POST http://demo.rubiconmd.com/api/v1/user_devices/ { "device": { "token": STRING } }`
+`POST https://rubiconmd.com/api/v1/user_devices/ { "device": { "token": STRING } }`
 
 ### URL Parameters 
 
