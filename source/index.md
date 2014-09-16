@@ -60,7 +60,7 @@ curl "https://airbrake.io/api/v3/projects?key=USER_KEY"
 
 ### HTTP Request
 
-`GET https://airbrake.io/api/v4/projects?key=USER_KEY`
+`GET https://airbrake.io/api/v3/projects?key=USER_KEY`
 
 ### Response
 
@@ -91,7 +91,7 @@ curl "https://airbrake.io/api/v3/projects/PROJECT_ID?key=USER_KEY"
 
 ### HTTP Request
 
-`GET https://airbrake.io/api/v4/projects/PROJECT_ID?key=USER_KEY`
+`GET https://airbrake.io/api/v3/projects/PROJECT_ID?key=USER_KEY`
 
 ### Response
 
