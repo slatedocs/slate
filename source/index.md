@@ -217,7 +217,7 @@ The API returns `200 OK` status code on success
 ## Create deploy
 
 ```shell
-curl -X POST -d '{"environment":"production","username":"john","repository":"https://github.com/airbrake/airbrake","revision":"38748467ea579e7ae64f7815452307c9d05e05c5",version:"v2.0"}' "https://airbrake.io/api/v4/projects/PROJECT_ID/deploys?key=PROJECT_KEY"
+curl -X POST -H "Content-Type: application/json" -d '{"environment":"production","username":"john","repository":"https://github.com/airbrake/airbrake","revision":"38748467ea579e7ae64f7815452307c9d05e05c5",version:"v2.0"}' "https://airbrake.io/api/v4/projects/PROJECT_ID/deploys?key=PROJECT_KEY"
 ```
 
 ### HTTP Request
@@ -354,3 +354,28 @@ limit | 20 | Specifies number of activities per page.
 ### Response
 
 The API returns `200 OK` status code on success.
+
+# iOS crash reports (v3)
+
+## Create iOS crash report
+
+```shell
+curl -X POST -H "Content-Type: application/json" -d '{"report":"REPORT_TEXT"}' "https://airbrake.io/api/v3/projects/PROJECT_ID/ios-reports?key=PROJECT_KEY"
+```
+
+### HTTP Request
+
+`POST https://airbrake.io/api/v3/projects/PROJECT_ID/ios-reports?key=PROJECT_KEY`
+
+### POST data
+
+The API expects JSON data.
+
+Key | Example
+--- | -------
+report |
+context | Same as in create notice API.
+
+### Response
+
+The API returns `201 Created` status code on success.
