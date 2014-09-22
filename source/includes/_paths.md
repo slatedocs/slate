@@ -11,41 +11,24 @@ curl "https://www.codeschool.com/api/v1/paths.json"
 
 ```json
 [
-    {
-        "name": "Ruby",
-        "id": 1,
-        "course_ids": [
-            6
-        ]
-    },
-    {
-        "name": "JavaScript",
-        "id": 2,
-        "course_ids": [
-
-        ]
-    },
-    {
-        "name": "HTML/CSS",
-        "id": 3,
-        "course_ids": [
-
-        ]
-    },
-    {
-        "name": "iOS",
-        "id": 4,
-        "course_ids": [
-
-        ]
-    },
-    {
-        "name": "Electives",
-        "id": 5,
-        "course_ids": [
-
-        ]
+  {
+    "id": 1,
+    "name": "Ruby",
+    "course_ids": [
+      1
+    ],
+    "courses_count": 1,
+    "assets": {
+      "badge_url": {
+        "svg": "https://www.codeschool.com/assets/path/badge-ruby.svg"
+      },
+      "background_color": "#b54322"
     }
+  },
+  { ... },
+  { ... },
+  { ... },
+  { ... }
 ]
 ```
 
