@@ -97,12 +97,12 @@ curl "https://airbrake.io/api/v3/projects/PROJECT_ID?key=USER_KEY"
 
 The API returns `200 OK` status code on success.
 
-# Groups (v4)
+# Groups (experimental)
 
 ## List groups
 
 ```shell
-curl "https://airbrake.io/api/v4/projects/PROJECT_ID/groups?key=USER_KEY"
+curl "https://airbrake.io/api/experimental/projects/PROJECT_ID/groups?key=USER_KEY"
 ```
 
 ```json
@@ -137,13 +137,20 @@ curl "https://airbrake.io/api/v4/projects/PROJECT_ID/groups?key=USER_KEY"
       "noticeTotalCount": 1,
       "createdAt": "2014-09-26T17:37:33.638348Z"
     }
-  ]
+  ],
+  "count": 1
 }
 ```
 
 ### HTTP Request
 
-`GET https://airbrake.io/api/v4/projects/PROJECT_ID/groups?key=USER_KEY`
+Get first page:
+
+`GET https://airbrake.io/api/experimental/projects/PROJECT_ID/groups?key=USER_KEY`
+
+Get second page:
+
+`GET https://airbrake.io/api/experimental/projects/PROJECT_ID/groups?key=USER_KEY&page=2`
 
 ### Query Parameters
 
@@ -167,12 +174,12 @@ The API returns `200 OK` status code on success
 ## Show group
 
 ```shell
-curl "https://airbrake.io/api/v4/projects/PROJECT_ID/groups/GROUP_ID?key=USER_KEY"
+curl "https://airbrake.io/api/experimental/projects/PROJECT_ID/groups/GROUP_ID?key=USER_KEY"
 ```
 
 ```json
 {
-  "groups": {
+  "group": {
     "id": 1,
     "projectId": 1,
     "resolved": false,
@@ -206,7 +213,7 @@ curl "https://airbrake.io/api/v4/projects/PROJECT_ID/groups/GROUP_ID?key=USER_KE
 
 ### HTTP Request
 
-`GET https://airbrake.io/api/v4/projects/PROJECT_ID/groups/GROUP_ID?key=USER_KEY`
+`GET https://airbrake.io/api/experimental/projects/PROJECT_ID/groups/GROUP_ID?key=USER_KEY`
 
 ### Response
 
