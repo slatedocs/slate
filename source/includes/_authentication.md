@@ -7,18 +7,33 @@ You still need to send an [`Authorization` header](#authorization)
 including an OAuth token when making requests to the Authentication API.
 </aside>
 
-Given a user whose username is `json_vanlue` and password is `brandingmatters`.
+Given a user whose username is `talonpowthesecond` and password is `lololol`.
 
 ```shell
 curl "https://www.codeschool.com/api/v1/authenticate"
   -H "Authorization: OAuth poopoopoo"
-  -d "login=json_vanlue&password=brandingmatters"
+  -d "login=talonpowthesecond&password=lololol"
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
-{ "token": "W3To8xgVLWa44ykvL6QisB0fvoP4fDEpJmAuFgwh" }
+{
+  "token": "W3To8xgVLWa44ykvL6QisB0fvoP4fDEpJmAuFgwh",
+  "user": {
+    "id": 33,
+    "email": "talonpowthesecond@example.com",
+    "twitter_name": "talonpowthesecond",
+    "name": "Talon Powlowski II",
+    "username": "talonpowthesecond",
+    "total_score": 342575,
+    "completed_levels_count": 97,
+    "watched_screencasts_count": 89,
+    "avatar": "http://gravatar.com/avatar/797569464d2fe39c169811d2d60.jpg?s=80&r=pg",
+    "token": "W3To8xgVLWa44ykvL6QisB0fvoP4fDEpJmAuFgwh",
+    "paid_courses_access": true
+  }
+}
 ```
 
 This `token` is an OAuth Token you can use to make queries on
