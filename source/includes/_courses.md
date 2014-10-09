@@ -65,6 +65,7 @@ curl "https://www.codeschool.com/api/v1/courses.json"
       { ... },
       { ....}
     ],
+    "has_level_videos": true,
     "credits": "- **Gregg Pollack** *Professors*\r\n- **Eric Allam, Nathaniel Bibler, Jacob Swanner** *Content Contributors*\r\n- **Justin Mezzell** *Designers*\r\n- **Drew Barontini, Nick Walsh** *Front-end Development*\r\n- **Eric Allam, Thomas Meeks** *Challenge Implementation*\r\n- **Less Films** *Video Production*",
     "assets": {
       "hero": {
