@@ -159,7 +159,7 @@ Includes all related accounts for a contact (joined via [Contact Roles](#contact
 
 ```curl
 curl https://manage.bulletproof.net/api/v4/contacts/:id \
-   -u mangage_test_token_askd025tiwlkaf:
+   -u email:password
 ```
 
 ```json
@@ -222,7 +222,7 @@ Response 200
 
 ```curl
 curl https://manage.bulletproof.net/api/v4/contacts/:id \
-   -u mangage_test_token_askd025tiwlkaf: \
+   -u email:password \
    -d "contact[first_name]=Tim"
 ```
 
@@ -253,7 +253,7 @@ Response 200
 
 ```curl
 curl https://manage.bulletproof.net/api/v4/contacts/:id \
-   -u mangage_test_token_askd025tiwlkaf: \
+   -u email:password \
    -X DELETE
 ```
 
@@ -275,7 +275,7 @@ Response 204
 
 ```curl
  curl https://manage.bulletproof.net/api/v4/contacts \
-    -u mangage_test_token_askd025tiwlkaf: \
+    -u email:password \
  ```
 
 ```json

@@ -80,7 +80,7 @@ Links to the associated [Account](#account)
 
 ```curl
  curl https://manage.bulletproof.net/api/v4/clients/:id \
-    -u mangage_test_token_askd025tiwlkaf:
+    -u email:password
 ```
 
 ```json
@@ -118,7 +118,7 @@ Response 200
 
 ```curl
 curl https://manage.bulletproof.net/api/v4/clients \
-    -u mangage_test_token_askd025tiwlkaf:
+    -u email:password
 ```
 
 ```json
