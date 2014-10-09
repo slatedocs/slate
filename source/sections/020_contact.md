@@ -96,7 +96,7 @@ Attribute | Type | Description
 {
     "links": {
         "roles": {
-            "href": "http://manage.bulletproof.net/api/v3/roles/5,12,17,20",
+            "href": "http://manage.bulletproof.net/api/v4/roles/5,12,17,20",
             "ids": ["5", "12", "17", "20"],
             "type": "roles"
         }
@@ -112,7 +112,7 @@ Includes all associated contact roles. It is possible, that one contact is assoc
 {
     "links": {
         "services": {
-            "href": "http://manage.bulletproof.net/api/v3/services/5,12,17,20",
+            "href": "http://manage.bulletproof.net/api/v4/services/5,12,17,20",
             "ids": ["5", "12", "17", "20"],
             "type": "services"
         }
@@ -128,7 +128,7 @@ Includes all related services for a contact (joined via [Contact Roles](#contact
 {
     "links": {
         "clients": {
-            "href": "http://manage.bulletproof.net/api/v3/clients/5,12,17,20",
+            "href": "http://manage.bulletproof.net/api/v4/clients/5,12,17,20",
             "ids": ["5", "12", "17", "20"],
             "type": "clients"
         }
@@ -144,7 +144,7 @@ Includes all related clients for a contact (joined via [Contact Roles](#contact-
 {
     "links": {
         "accounts": {
-            "href": "http://manage.bulletproof.net/api/v3/accounts/5,12,17,20",
+            "href": "http://manage.bulletproof.net/api/v4/accounts/5,12,17,20",
             "ids": ["5", "12", "17", "20"],
             "type": "accounts"
         }
@@ -158,7 +158,7 @@ Includes all related accounts for a contact (joined via [Contact Roles](#contact
 ## Retrieving an existing Contact
 
 ```curl
-curl http://manage.bulletproof.net/api/v3/contacts/:id \
+curl http://manage.bulletproof.net/api/v4/contacts/:id \
    -u mangage_test_token_askd025tiwlkaf:
 ```
 
@@ -193,7 +193,7 @@ curl http://manage.bulletproof.net/api/v3/contacts/:id \
             "updated_at": "timestamp",
             "links": {
                "roles": {
-                    "href": "http://manage.bulletproof.net/api/v3/5,12,17,20",
+                    "href": "http://manage.bulletproof.net/api/v4/5,12,17,20",
                     "ids": ["5", "12", "17", "20"],
                     "type": "roles"
                 }
@@ -205,7 +205,7 @@ curl http://manage.bulletproof.net/api/v3/contacts/:id \
 
 #### HTTP Request
 
-``` GET /api/v3/contacts/:id ```
+``` GET /api/v4/contacts/:id ```
 
 #### Arguments
 
@@ -221,7 +221,7 @@ Response 200
 ## Update a Contact
 
 ```curl
-curl http://manage.bulletproof.net/api/v3/contacts/:id \
+curl http://manage.bulletproof.net/api/v4/contacts/:id \
    -u mangage_test_token_askd025tiwlkaf: \
    -d "contact[first_name]=Tim"
 ```
@@ -237,7 +237,7 @@ To update a Contact send a JSON with updated value for one or more of the Contac
 
 #### HTTP Request
 
-``` PATCH /api/v3/contacts/:id ```
+``` PATCH /api/v4/contacts/:id ```
 
 #### Arguments
 
@@ -252,14 +252,14 @@ Response 200
 ## Delete a Contact
 
 ```curl
-curl http://manage.bulletproof.net/api/v3/contacts/:id \
+curl http://manage.bulletproof.net/api/v4/contacts/:id \
    -u mangage_test_token_askd025tiwlkaf: \
    -X DELETE
 ```
 
 #### HTTP Request
 
-``` PATCH /api/v3/contacts/:id ```
+``` PATCH /api/v4/contacts/:id ```
 
 #### Arguments
 
@@ -274,7 +274,7 @@ Response 204
 ## List all Contacts
 
 ```curl
- curl http://manage.bulletproof.net/api/v3/contacts \
+ curl http://manage.bulletproof.net/api/v4/contacts \
     -u mangage_test_token_askd025tiwlkaf: \
  ```
 
@@ -299,7 +299,7 @@ Response 204
 ```
 #### HTTP Request
 
-``` GET /api/v3/contacts```
+``` GET /api/v4/contacts```
 
 #### Arguments
 

@@ -34,7 +34,7 @@ Attribute | Type | Description
 {
     "links": {
         "roles": {
-            "href": "http://manage.bulletproof.net/api/v3/roles/5,12,17,20",
+            "href": "http://manage.bulletproof.net/api/v4/roles/5,12,17,20",
             "ids": ["5", "12", "17", "20"],
             "type": "roles"
         }
@@ -50,7 +50,7 @@ Includes all associated contact roles. It is possible, that one contact is assoc
 {
     "links": {
         "services": {
-            "href": "http://manage.bulletproof.net/api/v3/clients/5,20,2305,2",
+            "href": "http://manage.bulletproof.net/api/v4/clients/5,20,2305,2",
             "ids": ["5", "20", "2305", "2"],
             "type": "services"
         }
@@ -66,7 +66,7 @@ Links to the associated [Services](#service)
 {
     "links": {
         "account": {
-            "href": "http://manage.bulletproof.net/api/v3/accounts/5",
+            "href": "http://manage.bulletproof.net/api/v4/accounts/5",
             "ids": "5",
             "type": "accounts"
         }
@@ -79,7 +79,7 @@ Links to the associated [Account](#account)
 ## Retrieving an existing Client
 
 ```curl
- curl http://manage.bulletproof.net/api/v3/clients/:id \
+ curl http://manage.bulletproof.net/api/v4/clients/:id \
     -u mangage_test_token_askd025tiwlkaf:
 ```
 
@@ -102,7 +102,7 @@ Links to the associated [Account](#account)
 
 #### HTTP Request
 
-``` GET /api/v3/clients/:id ```
+``` GET /api/v4/clients/:id ```
 
 #### Arguments
 
@@ -117,7 +117,7 @@ Response 200
 ## List all Clients
 
 ```curl
-curl http://manage.bulletproof.net/api/v3/clients \
+curl http://manage.bulletproof.net/api/v4/clients \
     -u mangage_test_token_askd025tiwlkaf:
 ```
 
@@ -140,7 +140,7 @@ curl http://manage.bulletproof.net/api/v3/clients \
 ```
 #### HTTP Request
 
-``` GET /api/v3/clients```
+``` GET /api/v4/clients```
 
 #### Arguments
 

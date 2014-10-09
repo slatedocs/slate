@@ -2,7 +2,7 @@
 
 > https://manage.bulletproof.net/api
 
-The Manage API v3 exposes the core data types and its relations of the Bulletproof ecosystem:
+The Manage API v4 exposes the core data types and its relations of the Bulletproof ecosystem:
 
 - Contacts
 - Services
