@@ -161,11 +161,12 @@ environment | | Filters groups by environment.
 component | | Filters groups by component.
 action | | Filters groups by action.
 archived | | When set to `true` returns archived groups.
+muted | | When set to `true` returns muted groups.
 start_time | | Returns groups created after `start_time`.
 end_time | | Returns groups created before `ned_time`.
 page | 1 | Used to paginate groups.
 limit | 20 | Specifies number of groups per page.
-order | last_notice_id | Sorts groups by `last_notice_id`, `notice_total_count` or `created_at`.
+order | last_notice | Sorts groups by `last_notice`, `notice_count` or `created` fields.
 
 ### Response
 
@@ -218,6 +219,38 @@ curl "https://airbrake.io/api/experimental/projects/PROJECT_ID/groups/GROUP_ID?k
 ### Response
 
 The API returns `200 OK` status code on success
+
+## Mute group
+
+This API removes group from the default list and disables all notifications.
+
+```shell
+curl -X PUT "https://airbrake.io/api/experimental/projects/PROJECT_ID/groups/GROUP_ID/muted?key=USER_KEY"
+```
+
+### HTTP Request
+
+`PUT https://airbrake.io/api/experimental/projects/PROJECT_ID/groups/GROUP_ID/muted?key=USER_KEY`
+
+### Response
+
+The API returns `204 No Content` status code on success.
+
+## Unmute group
+
+Opposite of the mute group.
+
+```shell
+curl -X PUT "https://airbrake.io/api/experimental/projects/PROJECT_ID/groups/GROUP_ID/unmuted?key=USER_KEY"
+```
+
+### HTTP Request
+
+`PUT https://airbrake.io/api/experimental/projects/PROJECT_ID/groups/GROUP_ID/unmuted?key=USER_KEY`
+
+### Response
+
+The API returns `204 No Content` status code on success.
 
 # Deploys (v4)
 
