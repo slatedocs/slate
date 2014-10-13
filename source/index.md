@@ -419,3 +419,41 @@ context | Same as in create notice API.
 ### Response
 
 The API returns `201 Created` status code on success.
+
+# Grouping
+
+Airbrake supports 4 grouping rules: default, global, distinct and strict.
+
+## Default grouping
+
+By default errors are grouped by:
+
+- environment
+- component and action
+- error type
+- file, line and column
+
+## Global grouping
+
+Global grouping rule groups errors by:
+
+- environment
+- error type
+
+## Distinct grouping
+
+Distinct grouping rule groups errors by:
+
+- environment
+- component and action
+- error type and message
+- file, line and column
+
+## Strict grouping
+
+Strict grouping rule groups errors by:
+
+- environment
+- component and action
+- error type
+- backtrace
