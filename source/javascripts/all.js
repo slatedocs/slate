@@ -1,2 +1,2 @@
-//= require './jquery_ui'
-//= require_tree .
+//= require_tree ./lib
+//= require_tree ./app

@@ -37,6 +37,7 @@ $main-bg: #eaf2f6;
 $aside-notice-bg: #8fbcd4;
 $aside-warning-bg: #c97a7e;
 $aside-success-bg: #6ac174;
+$search-notice-bg: #c97a7e;
 
 
 // TEXT COLORS
@@ -53,12 +54,15 @@ $lang-select-pressed-text: #fff; // color of language tab text when mouse is pre
 ////////////////////
 $nav-width: 230px; // width of the navbar
 $examples-width: 50%; // portion of the screen taken up by code examples
-$logo-margin: 20px; // margin between nav items and logo
+$logo-margin: 20px; // margin between nav items and logo, ignored if search is active
 $main-padding: 28px; // padding to left and right of content & examples
 $nav-padding: 15px; // padding to left and right of navbar
+$nav-v-padding: 10px; // padding used vertically around search boxes and results
 $nav-indent: 10px; // extra padding for ToC subitems
 $code-annotation-padding: 13px; // padding inside code annotations
 $h1-margin-bottom: 21px; // padding under the largest header tags
+$tablet-width: 930px; // min width before reverting to tablet size
+$phone-width: $tablet-width - $nav-width; // min width before reverting to mobile size
 
 
 // FONTS
@@ -74,8 +78,9 @@ $h1-margin-bottom: 21px; // padding under the largest header tags
 }
 
 %code-font {
-  font-family: Monaco, "Courier New", monospace;
+  font-family: Consolas, Menlo, Monaco, "Lucida Console", "Liberation Mono", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Courier New", monospace, serif;
   font-size: 12px;
+  line-height: 1.5;
 }
 
 
@@ -83,9 +88,10 @@ $h1-margin-bottom: 21px; // padding under the largest header tags
 ////////////////////
 $nav-active-shadow: #000;
 $nav-footer-border-color: #666;
-$nav-embossed-border-top: 1px solid #000;
-$nav-embossed-border-bottom: 1px solid #404040;
+$nav-embossed-border-top: #000;
+$nav-embossed-border-bottom: #939393;
 $main-embossed-text-shadow: 0px 1px 0px #fff;
+$search-box-border-color: #666;
 
 
 ////////////////////////////////////////////////////////////////////////////////

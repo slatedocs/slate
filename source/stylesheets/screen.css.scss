@@ -33,16 +33,45 @@ html, body {
   -moz-osx-font-smoothing: grayscale;
   @extend %default-font;
   background-color: $main-bg;
+  height: 100%;
+  -webkit-text-size-adjust: none; /* Never autoresize text */
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 // TABLE OF CONTENTS
 ////////////////////////////////////////////////////////////////////////////////
 
+#toc > ul > li > a > span {
+  float: right;
+  background-color: #2484FF;
+  border-radius: 40px;
+  width: 20px;
+}
+
+@mixin embossed-bg {
+  @include background(
+    linear-gradient(top,
+                    rgba(#000, 0.2),
+                    rgba(#000, 0) 8px),
+    linear-gradient(bottom,
+                    rgba(#000, 0.2),
+                    rgba(#000, 0) 8px),
+    linear-gradient(top,
+                    rgba($nav-embossed-border-top, 1),
+                    rgba($nav-embossed-border-top, 0) 1.5px),
+    linear-gradient(bottom,
+                    rgba($nav-embossed-border-bottom, 1),
+                    rgba($nav-embossed-border-bottom, 0) 1.5px),
+    $nav-subitem-bg
+  );
+}
+
 .tocify-wrapper {
+  @include transition(left ease-in-out 0.3s);
   overflow-y: auto;
   overflow-x: hidden;
   position: fixed;
+  z-index: 30;
   top: 0;
   left: 0;
   bottom: 0;
@@ -51,16 +80,85 @@ html, body {
   font-size: 13px;
   font-weight: bold;
 
+  // language selector for mobile devices
+  .lang-selector {
+    display: none;
+    a {
+      padding-top: 0.5em;
+      padding-bottom: 0.5em;
+    }
+  }
+
   // This is the logo at the top of the ToC
   &>img {
     display: block;
-    margin-bottom: $logo-margin;
   }
+
+  &>.search {
+    position: relative;
+
+    input {
+      background: $nav-bg;
+      border-width: 0 0 1px 0;
+      border-color: $search-box-border-color;
+      padding: 6px 0 6px 20px;
+      @include box-sizing(border-box);
+      margin: $nav-v-padding $nav-padding;
+      width: $nav-width - 30;
+      outline: none;
+      color: $nav-text;
+      border-radius: 0; /* ios has a default border radius */
+    }
+
+    &:before {
+      position: absolute;
+      top: 17px;
+      left: $nav-padding;
+      color: $nav-text;
+      @extend %icon-search;
+    }
+  }
+
+  img+.tocify {
+    margin-top: $logo-margin;
+  }
+
+  .search-results {
+    margin-top: 0;
+    @include box-sizing(border-box);
+    height: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    @include transition-property(height margin);
+    @include transition-duration(180ms);
+    @include transition-timing-function(ease-in-out);
+    &.visible {
+      height: 30%;
+      margin-bottom: 1em;
+    }
+
+    @include embossed-bg;
+
+    li {
+      margin: 1em $nav-padding;
+      line-height: 1;
+    }
+
+    a {
+      color: $nav-text;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
 
   .tocify-item>a, .toc-footer li {
     padding: 0 $nav-padding 0 $nav-padding;
-    display:block;
-    overflow-x:hidden;
+    display: block;
+    overflow-x: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
   }
@@ -95,25 +193,14 @@ html, body {
     display: none; // tocify will override this when needed
     background-color: $nav-subitem-bg;
     font-weight: 500;
-    @include background-image(
-      linear-gradient(top,
-                      darken($nav-subitem-bg,2%),
-                      $nav-subitem-bg 10%,
-                      $nav-subitem-bg 90%,
-                      darken($nav-subitem-bg,2%))
-    );
     .tocify-item>a {
       padding-left: $nav-padding + $nav-indent;
       font-size: 12px;
     }
-    // These items make for a slight embossed look for the subheader.
-    // "Why not put the borders in the subheader?" you ask.
-    // "Because then the animation isn't as smooth," I reply.
-    &>li:first-child {
-      border-top: $nav-embossed-border-top;
-    }
+
+    // for embossed look:
+    @include embossed-bg;
     &>li:last-child {
-      border-bottom: $nav-embossed-border-bottom;
       box-shadow: none; // otherwise it'll overflow out of the subheader
     }
   }
@@ -141,6 +228,39 @@ html, body {
 
 }
 
+// button to show navigation on mobile devices
+#nav-button {
+  span {
+    display: block;
+    $side-pad: $main-padding / 2 - 8px;
+    padding: $side-pad $side-pad $side-pad;
+    background-color: rgba($main-bg, 0.7);
+    @include transform-origin(0, 0);
+    @include transform(rotate(-90deg) translate(-100%, 0));
+    border-radius: 0 0 0 5px;
+  }
+  padding: 0 1.5em 5em 0; // increase touch size area
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  color: #000;
+  text-decoration: none;
+  font-weight: bold;
+  opacity: 0.7;
+  line-height: 16px;
+  img {
+    height: 16px;
+    vertical-align: bottom;
+  }
+
+  @include transition(left ease-in-out 0.3s);
+
+  &:hover { opacity: 1; }
+  &.open {left: $nav-width}
+}
+
 
 ////////////////////////////////////////////////////////////////////////////////
 // PAGE LAYOUT AND CODE SAMPLE BACKGROUND
@@ -148,10 +268,10 @@ html, body {
 
 .page-wrapper {
   margin-left: $nav-width;
-  min-width: 700px;
   position: relative;
   z-index: 10;
   background-color: $main-bg;
+  min-height: 100%;
 
   padding-bottom: 1px; // prevent margin overflow
 
@@ -169,37 +289,40 @@ html, body {
     bottom: 0;
   }
 
-  #lang-selector {
+  .lang-selector {
     position: fixed;
-    width: 100%;
     z-index: 50;
-    font-weight: bold;
-    background-color: $lang-select-bg;
     border-bottom: 5px solid $lang-select-active-bg;
-    a {
-      display: block;
-      float:left;
-      color: $lang-select-text;
-      text-decoration: none;
-      padding: 0 10px;
-      line-height: 30px;
+  }
+}
 
-      &.active {
-        background-color: $lang-select-active-bg;
-        color: $lang-select-active-text;
-      }
+.lang-selector {
+  background-color: $lang-select-bg;
+  width: 100%;
+  font-weight: bold;
+  a {
+    display: block;
+    float:left;
+    color: $lang-select-text;
+    text-decoration: none;
+    padding: 0 10px;
+    line-height: 30px;
 
-      &:active {
-        background-color: $lang-select-pressed-bg;
-        color: $lang-select-pressed-text;
-      }
+    &:active {
+      background-color: $lang-select-pressed-bg;
+      color: $lang-select-pressed-text;
     }
 
-    &:after {
-      content: '';
-      clear: both;
-      display: block;
+    &.active {
+      background-color: $lang-select-active-bg;
+      color: $lang-select-active-text;
     }
+  }
+
+  &:after {
+    content: '';
+    clear: both;
+    display: block;
   }
 }
 
@@ -213,13 +336,20 @@ html, body {
   position: relative;
   z-index: 30;
 
+  &:after {
+    content: '';
+    display: block;
+    clear: both;
+  }
 
-  &>h1, &>h2, &>h3, &>p, &>table, &>ul, &>ol, &>aside, &>dl {
+  &>h1, &>h2, &>h3, &>h4, &>h5, &>h6, &>p, &>table, &>ul, &>ol, &>aside, &>dl {
     margin-right: $examples-width;
     padding: 0 $main-padding;
     @include box-sizing(border-box);
     display: block;
     @include text-shadow($main-embossed-text-shadow);
+
+    @extend %left-col;
   }
 
   &>ul, &>ol {
@@ -237,18 +367,16 @@ html, body {
     padding-top: 0.5em;
     padding-bottom: 0.5em;
     border-bottom: 1px solid #ccc;
-    margin-top: 2em;
     margin-bottom: $h1-margin-bottom;
+    margin-top: 2em;
     border-top: 1px solid #ddd;
     @include background-image(
       linear-gradient(top, #fff, #f9f9f9)
     );
   }
 
-  // The header at the very top of the page
-  // shouldn't have top margin.
-  // (the div is because of tocify)
   h1:first-child, div:first-child + h1 {
+    border-top-width: 0;
     margin-top: 0;
   }
 
@@ -272,12 +400,16 @@ html, body {
     border-top: none;
   }
 
-  h3 {
+  h3, h4, h5, h6 {
     @extend %header-font;
     font-size: 12px;
     margin-top: 2.5em;
     margin-bottom: 0.8em;
     text-transform: uppercase;
+  }
+
+  h4, h5, h6 {
+    font-size: 10px;
   }
 
   hr {
@@ -363,10 +495,6 @@ html, body {
     }
   }
 
-
-  aside.warning {
-  }
-
   aside:before {
     vertical-align: middle;
     padding-right: 0.5em;
@@ -385,8 +513,15 @@ html, body {
     @extend %icon-ok-sign;
   }
 
+  .search-highlight {
+    padding: 2px;
+    margin: -2px;
+    border-radius: 4px;
+    border: 1px solid #F7E633;
+    text-shadow: 1px 1px 0 #666;
+    @include background(linear-gradient(bottom right, #F7E633 0%, #F1D32F 100%));
+  }
 }
-
 
 ////////////////////////////////////////////////////////////////////////////////
 // CODE SAMPLE STYLES
@@ -407,6 +542,8 @@ html, body {
 
     @include box-sizing(border-box);
     @include text-shadow(0px 1px 2px rgba(0,0,0,0.4));
+
+    @extend %right-col;
 
     &>p { margin: 0; }
 
@@ -430,5 +567,61 @@ html, body {
       border-top: 1px solid #000;
       border-bottom: 1px solid #404040;
     }
+  }
+}
+
+////////////////////////////////////////////////////////////////////////////////
+// RESPONSIVE DESIGN
+////////////////////////////////////////////////////////////////////////////////
+// These are the styles for phones and tablets
+// There are also a couple styles disperesed
+
+@media (max-width: $tablet-width) {
+  .tocify-wrapper {
+    left: -$nav-width;
+
+    &.open {
+      left: 0;
+    }
+  }
+
+  .page-wrapper {
+    margin-left: 0;
+  }
+
+  #nav-button {
+    display: block;
+  }
+
+  .tocify-wrapper .tocify-item > a {
+    padding-top: 0.3em;
+    padding-bottom: 0.3em;
+  }
+}
+
+@media (max-width: $phone-width) {
+  .dark-box {
+    display: none;
+  }
+
+  %left-col {
+    margin-right: 0;
+  }
+
+  .tocify-wrapper .lang-selector {
+    display: block;
+  }
+
+  .page-wrapper .lang-selector {
+    display: none;
+  }
+
+  %right-col {
+    width: auto;
+    float: none;
+  }
+
+  %right-col + %left-col {
+    margin-top: $main-padding;
   }
 }
