@@ -66,7 +66,7 @@
 <p>Todas as mensagens serão enviadas através do protocolo HTTP. Para o ambiente de produção, as mensagens deverão ser enviadas utilizando o método <strong>POST</strong> para <a href="http://pos.stone.com.br:3989">http://pos.stone.com.br:3989</a>. O endpoint de testes será liberado e definido de acordo com cada integrador.</p>
 <h2 id='mensagens-de-autorizao'>Mensagens de Autorização</h2>
 <p>É o processo de troca de mensagens entre o estabelecimento e o adquirente onde é verificado se portador do cartão possui ou não saldo suficiente para a realização de um pagamento. A diferença entre a mensagem de autorização com captura automática e com captura posterior, está no elemento <code class="prettyprint">TxCaptr</code> que deve ser informado <code class="prettyprint">true</code> para Autorização com Captura, ou <code class="prettyprint">false</code> para Autorização com Captura posterior.</p>
-<h3 id='xml-de-requisio-comentado'>XML de requisição comentado</h3>
+<h3 id='requisio-de-autorizao'>Requisição de autorização</h3>
 <p>A mensagem de <code class="prettyprint">AcceptorAuthorisationRequest</code> é enviada pelo estabelecimento para o adquirente, para checar junto ao banco que a conta associada ao cartão possui recursos para financiar o pagamento. Este controle inclui a validação dos dados do cartão e todos os dados adicionais previstos.</p>
 <pre class="highlight xml"><span class="nt">&lt;Document</span> <span class="na">xmlns=</span><span class="s">"urn:AcceptorAuthorisationRequestV02.1"</span><span class="nt">&gt;</span>
     <span class="nt">&lt;AccptrAuthstnReq&gt;</span>
@@ -178,6 +178,130 @@
     <span class="nt">&lt;/AccptrAuthstnReq&gt;</span>
 <span class="nt">&lt;/Document&gt;</span>
 </pre>
+
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Ocorrência</th>
+<th>Tipo</th>
+<th>Descrição</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Header<code class="prettyprint">&lt;Hdr&gt;</code></td>
+<td>[1..1]</td>
+<td>Container</td>
+<td>Cabeçalho da mensagem.</td>
+</tr>
+<tr>
+<td>MessageFunction<code class="prettyprint">&lt;MsgFctn&gt;</code></td>
+<td>[1..1]</td>
+<td>CodeSet</td>
+<td>Identifica o tipo de processo em que a mensagem se propõe. Valor Fixo: <code class="prettyprint">AUTQ</code> = <code class="prettyprint">AuthorisationRequest</code>.</td>
+</tr>
+<tr>
+<td>ProtocolVersion<code class="prettyprint">&lt;PrtcolVrsn&gt;</code></td>
+<td>[1..1]</td>
+<td>Text</td>
+<td>Versão do protocolo utilizado na mensagem.</td>
+</tr>
+<tr>
+<td>AuthorisationRequest<code class="prettyprint">&lt;AuthstnReq&gt;</code></td>
+<td>[1..1]</td>
+<td>Container</td>
+<td>Dados da requisição de autorização.</td>
+</tr>
+<tr>
+<td>Environment<code class="prettyprint">&lt;Envt&gt;</code></td>
+<td>[1..1]</td>
+<td>Container</td>
+<td>Ambiente da transação.</td>
+</tr>
+<tr>
+<td>Merchant <code class="prettyprint">&lt;Mrchnt&gt;</code></td>
+<td>[1..1]</td>
+<td>Container</td>
+<td>Dados do estabelecimento.</td>
+</tr>
+<tr>
+<td>Identification<code class="prettyprint">&lt;ID&gt;</code></td>
+<td>[1..1]</td>
+<td>Container</td>
+<td>Identificação do estabelecimento comercial.</td>
+</tr>
+<tr>
+<td>Identification<code class="prettyprint">&lt;ID&gt;</code></td>
+<td>[1..1]</td>
+<td>Text</td>
+<td>Identificação do estabelecimento comercial no adquirente. Também conhecido internamente como “SaleAffiliationKey”.</td>
+</tr>
+<tr>
+<td>Poi<code class="prettyprint">&lt;POI&gt;</code></td>
+<td>[1..1]</td>
+<td>Container</td>
+<td>Dados do ponto de interação</td>
+</tr>
+<tr>
+<td>Identification<code class="prettyprint">&lt;ID&gt;</code></td>
+<td>[1..1]</td>
+<td>Container</td>
+<td>Identificação do ponto de interação</td>
+</tr>
+<tr>
+<td>Identification<code class="prettyprint">&lt;ID&gt;</code></td>
+<td>[1..1]</td>
+<td>Text</td>
+<td>Código de identificação do ponto de interação atribuído pelo estabelecimento.</td>
+</tr>
+<tr>
+<td>Capabilities<code class="prettyprint">&lt;Cpblties&gt;</code></td>
+<td>[0..1]</td>
+<td>Container</td>
+<td>Capacidades do Ponto de interação.</td>
+</tr>
+<tr>
+<td>PrintLineWidth<code class="prettyprint">&lt;PrtLineWidth&gt;</code></td>
+<td>[0..1]</td>
+<td>Text</td>
+<td>Número máximo de colunas de cada linha a ser impressa no cupom. A quantidade mínima de colunas é de 38. Se o POI enviar menos do que 38, o Host Stone não irá retornar os dados do recibo.</td>
+</tr>
+<tr>
+<td>Card<code class="prettyprint">&lt;Card&gt;</code></td>
+<td>[1..1]</td>
+<td>Container</td>
+<td>Dados do cartão utilizado na transação.</td>
+</tr>
+<tr>
+<td>PlainCardData<code class="prettyprint">&lt;PlainCardData&gt;</code></td>
+<td>[0..1]</td>
+<td>Container</td>
+<td>Dados não criptografados do cartão utilizado na transação.</td>
+</tr>
+<tr>
+<td>PAN<code class="prettyprint">&lt;PAN&gt;</code></td>
+<td>[1..1]</td>
+<td>Text</td>
+<td>Número do cartão. (Primary Account Number)</td>
+</tr>
+<tr>
+<td>ExpiryDate<code class="prettyprint">&lt;XpryDt&gt;</code></td>
+<td>[1..1]</td>
+<td>Text</td>
+<td>Data de validade do cartão no formato “yyyy-MM”.</td>
+</tr>
+<tr>
+<td>CardSequenceNumber<code class="prettyprint">&lt;CardSeqNb&gt;</code></td>
+<td>[0..1]</td>
+<td>Text</td>
+<td>Identifica um cartão dentro de um conjunto de cartões com o mesmo número (PAN) (Equivalente ao Bit 23 da ISO 8583).</td>
+</tr>
+<tr>
+<td>TrackData<code class="prettyprint">&lt;TrckData&gt;</code></td>
+<td>[0..*]</td>
+<td>Container</td>
+<td>Dados da trilha magnética do cartão.</td>
+</tr>
+</tbody></table>
 <h3 id='xml-de-resposta-comentado'>XML de resposta comentado</h3>
 <p>A mensagem <code class="prettyprint">AcceptorAuthorisationResponse</code> é enviada pelo adquirente, para retornar o resultado da validação realizada pelo emissor sobre a operação de pagamento.</p>
 <pre class="highlight xml"><span class="nt">&lt;Document</span> <span class="na">xmlns=</span><span class="s">"urn:AcceptorAuthorisationResponseV02.1"</span><span class="nt">&gt;</span>
