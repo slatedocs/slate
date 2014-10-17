@@ -8,10 +8,9 @@ The Service resource has the following attributes.
 {
     "id": 1,
     "name": "dvmh-docker-01",
-    "type": "dmvh",
-    "state": "active",
-    "enterprise": false,
+    "serviceid": "dvmh-docker-01",
     "monitoring": true,
+    "state": "active",
     "created_at": 2305325,
     "updated_at": 2305325
 }
@@ -21,12 +20,12 @@ Attribute | Type | Description
 --- | --- | ---
 **id** | Integer | unique
 **name** | String | serviceid
-**type** | String | "dvmh", "pmdh" or "avmh"
-**enterprise** | Boolean | enterprise service level
+**serviceid** | String | serviceid
 **monitoring** | Boolean | CMM monitoring
-**links** | [Service Relations](#service-contact-roles)
+**state** | String | "pending", "active", "suspended", or "decommissioned"
 **created_at** | Timestamp |
 **updated_at** | Timestamp |
+**links** | [Service Relations](#service-contact-roles)
 
 ### Service Contact Roles
 
