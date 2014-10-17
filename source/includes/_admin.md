@@ -90,10 +90,18 @@ $ curl -uuser:user "https://www.synq.ru/mserver2-dev/admin/wallets/%2B7926000000
   "data" : {
     "phone" : "+79260000006",
     "amount" : 65572.14,
-    "reset_password" : false,
     "verified" : false,
     "enabled" : true,
-    "active" : true
+    "active" : true,
+    "role" : "user",
+    "created_at" : "2014-06-01T12:43:52.876Z",
+    "in_monthly_turnover_limit" : 40000,
+    "out_monthly_turnover_limit" : 40000,
+    "in_amount_limit" : 15000,
+    "out_amount_limit" : 15000,
+    "wallet_amount_limit" : 15000,
+    "in_monthly_turnover" : 0,
+    "out_monthly_turnover" : 0
   }
 }
 ```
