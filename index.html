@@ -122,9 +122,11 @@
             <span class="nt">&lt;Cntxt&gt;</span>
                 <span class="c">&lt;!-- Informações sobre o pagamento. --&gt;</span>
                 <span class="nt">&lt;PmtCntxt&gt;</span>
-                    <span class="c">&lt;!-- Modo da entrada dos dados do cartão. --&gt;</span>
+                    <span class="c">&lt;!-- Modo da entrada dos dados do cartão.
+                         PHYS = Ecommerce ou Digitada; --&gt;</span>
                     <span class="nt">&lt;CardDataNtryMd&gt;</span>PHYS<span class="nt">&lt;/CardDataNtryMd&gt;</span>
-                    <span class="c">&lt;!-- Tipo do canal de comunicação utilizado na transação. --&gt;</span>
+                    <span class="c">&lt;!-- Tipo do canal de comunicação utilizado na transação.
+                         ECOM = Ecommerce ou Digitada --&gt;</span>
                     <span class="nt">&lt;TxChanl&gt;</span>ECOM<span class="nt">&lt;/TxChanl&gt;</span>
                 <span class="nt">&lt;/PmtCntxt&gt;</span>
             <span class="nt">&lt;/Cntxt&gt;</span>
@@ -136,8 +138,7 @@
                 <span class="c">&lt;!-- Indica se os dados da transação devem ser capturados (true)
                      ou não (false) imediatamente. --&gt;</span>
                 <span class="nt">&lt;TxCaptr&gt;</span>false<span class="nt">&lt;/TxCaptr&gt;</span>
-                <span class="c">&lt;!-- Dados de identificação da transação atribuída pelo
-                     POI (Ponto de interação). --&gt;</span>
+                <span class="c">&lt;!-- Dados de identificação da transação atribuída pelo POI. --&gt;</span>
                 <span class="nt">&lt;TxId&gt;</span>
                     <span class="c">&lt;!-- Data local e hora da transação atribuídas pelo POI. --&gt;</span>
                     <span class="nt">&lt;TxDtTm&gt;</span>2014-03-12T15:11:06<span class="nt">&lt;/TxDtTm&gt;</span>
