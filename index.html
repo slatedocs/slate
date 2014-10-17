@@ -13,7 +13,7 @@
 
       <script>
         $(function() {
-          setupLanguages(["xml","php"]);
+          setupLanguages(["xml","shell"]);
         });
       </script>
   </head>
@@ -28,8 +28,8 @@
     <div class="tocify-wrapper">
       <img src="images/logo.png" />
         <div class="lang-selector">
-              <a href="#" data-language-name="xml">xml</a>
-              <a href="#" data-language-name="php">php</a>
+              <a href="#" data-language-name="xml">XML Comentado</a>
+              <a href="#" data-language-name="shell">cURL</a>
         </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
@@ -382,7 +382,7 @@
 <td>Número do total de parcelas.</td>
 </tr>
 </tbody></table>
-<h3 id='xml-de-resposta-comentado'>XML de resposta comentado</h3>
+<h3 id='resposta-de-autorizao'>Resposta de autorização</h3>
 <p>A mensagem <code class="prettyprint">AcceptorAuthorisationResponse</code> é enviada pelo adquirente, para retornar o resultado da validação realizada pelo emissor sobre a operação de pagamento.</p>
 <pre class="highlight xml"><span class="nt">&lt;Document</span> <span class="na">xmlns=</span><span class="s">"urn:AcceptorAuthorisationResponseV02.1"</span><span class="nt">&gt;</span>
     <span class="nt">&lt;AccptrAuthstnRspn&gt;</span>
@@ -487,6 +487,142 @@
     <span class="nt">&lt;/AccptrAuthstnRspn&gt;</span>
 <span class="nt">&lt;/Document&gt;</span>
 </pre>
+
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Ocorrência</th>
+<th>Tipo</th>
+<th>Descrição</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Header<code class="prettyprint">&lt;Hdr&gt;</code></td>
+<td>[1..1]</td>
+<td>Container</td>
+<td>Cabeçalho da mensagem</td>
+</tr>
+<tr>
+<td>MessageFunction<code class="prettyprint">&lt;MsgFctn&gt;</code></td>
+<td>[1..1]</td>
+<td>CodeSet</td>
+<td>Identifica o tipo de processo em que a mensagem se propõe. Fixo: <code class="prettyprint">AUTP</code> = AuthorisationResponse.</td>
+</tr>
+<tr>
+<td>ProtocolVersion<code class="prettyprint">&lt;PrtcolVrsn&gt;</code></td>
+<td>[1..1]</td>
+<td>Text</td>
+<td>Versão do protocolo utilizado na mensagem.</td>
+</tr>
+<tr>
+<td>CreationDateTime<code class="prettyprint">&lt;CreDtTm&gt;</code></td>
+<td>[1..1]</td>
+<td>Text</td>
+<td>Data de criação da mensagem</td>
+</tr>
+<tr>
+<td>TraceDateTimeOut<code class="prettyprint">&lt;TracDtTmOut&gt;</code></td>
+<td>[1..1]</td>
+<td>DateTime</td>
+<td>Data e hora da saída da mensagem no Host Stone.</td>
+</tr>
+<tr>
+<td>AuthorisationResponse<code class="prettyprint">&lt;AuthstnRspn&gt;</code></td>
+<td>[1..1]</td>
+<td>Container</td>
+<td>Informações relacionadas à resposta da autorização.</td>
+</tr>
+<tr>
+<td>Environment<code class="prettyprint">&lt;Envt&gt;</code></td>
+<td>[1..1]</td>
+<td>Container</td>
+<td>Ambiente da transação.</td>
+</tr>
+<tr>
+<td>Merchant Identification<code class="prettyprint">&lt;MrchntId&gt;</code></td>
+<td>[1..1]</td>
+<td>Container</td>
+<td>Dados do estabelecimento.</td>
+</tr>
+<tr>
+<td>Identification<code class="prettyprint">&lt;Id&gt;</code></td>
+<td>[1..1]</td>
+<td>Text</td>
+<td>Identificação do estabelecimento comercial no adquirente. Também conhecido internamente como “SaleAffiliationKey”.</td>
+</tr>
+<tr>
+<td>POIId<code class="prettyprint">&lt;POIId&gt;</code></td>
+<td>[0..1]</td>
+<td>Container</td>
+<td>Dados do ponto de interação.</td>
+</tr>
+<tr>
+<td>Identification<code class="prettyprint">&lt;Id&gt;</code></td>
+<td>[1..1]</td>
+<td>Text</td>
+<td>Identificação do POI.</td>
+</tr>
+<tr>
+<td>Transaction<code class="prettyprint">&lt;Tx&gt;</code></td>
+<td>[1..1]</td>
+<td>Container</td>
+<td>Informações da transação.</td>
+</tr>
+<tr>
+<td>TransactionIdentification<code class="prettyprint">&lt;TxId&gt;</code></td>
+<td>[1..1]</td>
+<td>Container</td>
+<td>Dados de identificação da transação atribuída pelo POI (Ponto de interação).</td>
+</tr>
+<tr>
+<td>TransactionDateTime<code class="prettyprint">&lt;TxDtTm&gt;</code></td>
+<td>[1..1]</td>
+<td>DateTime</td>
+<td>Data local e hora da transação atribuído pelo POI (ponto de interação). Este campo será ecoado pelo adquirente.</td>
+</tr>
+<tr>
+<td>TransactionReference<code class="prettyprint">&lt;TxRef&gt;</code></td>
+<td>[1..1]</td>
+<td>Text</td>
+<td>Identificação da transação atribuída pelo POI (Ponto de interação). Este campo será ecoado pelo adquirente.</td>
+</tr>
+<tr>
+<td>RecipientTransactionIdentification<code class="prettyprint">&lt;RcptTxId&gt;</code></td>
+<td>[1..1]</td>
+<td>Text</td>
+<td>Identificação da transação definida pela Stone.</td>
+</tr>
+<tr>
+<td>TransactionDetails<code class="prettyprint">&lt;TxDtls&gt;</code></td>
+<td>[1..1]</td>
+<td>Container</td>
+<td>Detalhes da transação.</td>
+</tr>
+<tr>
+<td>Currency<code class="prettyprint">&lt;Ccy&gt;</code></td>
+<td>[1..1]</td>
+<td>CodeSet</td>
+<td>Moeda utilizada na transação em conformidade com a <a href="http://pt.wikipedia.org/wiki/ISO_4217">ISO 4217</a> - <code class="prettyprint">986</code> = Real Brasileiro.</td>
+</tr>
+<tr>
+<td>TotalAmount<code class="prettyprint">&lt;TtlAmt&gt;</code></td>
+<td>[1..1]</td>
+<td>Amount</td>
+<td>Valor total autorizado em centavos.</td>
+</tr>
+<tr>
+<td>AccountType<code class="prettyprint">&lt;AcctTp&gt;</code></td>
+<td>[0..1]</td>
+<td>CodeSet</td>
+<td>Modalidade do cartão utilizado na transação. <code class="prettyprint">CHCK</code> = Débito e <code class="prettyprint">CRDT</code> = Crédito.</td>
+</tr>
+<tr>
+<td>TransactionResponse<code class="prettyprint">&lt;TxRspn&gt;</code></td>
+<td>[1..1]</td>
+<td>Container</td>
+<td>Dados de resposta da transação.</td>
+</tr>
+</tbody></table>
 <h2 id='autorizao-com-captura'>Autorização com Captura</h2>
 <p>É o processo de autorização de uma transação onde a captura financeira é realizada no momento do pedido de autorização.</p>
 
@@ -921,8 +1057,8 @@
       </div>
       <div class="dark-box">
           <div class="lang-selector">
-                <a href="#" data-language-name="xml">xml</a>
-                <a href="#" data-language-name="php">php</a>
+                <a href="#" data-language-name="xml">XML Comentado</a>
+                <a href="#" data-language-name="shell">cURL</a>
           </div>
       </div>
     </div>
