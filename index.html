@@ -290,16 +290,106 @@
 <td>Data de validade do cartão no formato “yyyy-MM”.</td>
 </tr>
 <tr>
-<td>CardSequenceNumber<code class="prettyprint">&lt;CardSeqNb&gt;</code></td>
-<td>[0..1]</td>
-<td>Text</td>
-<td>Identifica um cartão dentro de um conjunto de cartões com o mesmo número (PAN) (Equivalente ao Bit 23 da ISO 8583).</td>
+<td>Context<code class="prettyprint">&lt;Cntxt&gt;</code></td>
+<td>[1..1]</td>
+<td>Container</td>
+<td>Informações da transação a ser realizada.</td>
 </tr>
 <tr>
-<td>TrackData<code class="prettyprint">&lt;TrckData&gt;</code></td>
-<td>[0..*]</td>
+<td>PaymentContext<code class="prettyprint">&lt;PmtCntxt&gt;</code></td>
+<td>[1..1]</td>
 <td>Container</td>
-<td>Dados da trilha magnética do cartão.</td>
+<td>Informações sobre o pagamento.</td>
+</tr>
+<tr>
+<td>CardDataEntryMode<code class="prettyprint">&lt;CardDataNtryMd&gt;</code></td>
+<td>[1..1]</td>
+<td>CodeSet</td>
+<td>Modo da entrada dos dados do cartão: <code class="prettyprint">MGST</code> = Tarja magnética; <code class="prettyprint">CICC</code> = ICC (Chip); <code class="prettyprint">PHYS</code> = Ecommerce ou Digitada;</td>
+</tr>
+<tr>
+<td>TransactionChannel<code class="prettyprint">&lt;TxChanl&gt;</code></td>
+<td>[0..1]</td>
+<td>CodeSet</td>
+<td>Tipo do canal de comunicação utilizado na transação. Obs.: Preencher esta tag apenas se <code class="prettyprint">CardDataNtryMd</code> = <code class="prettyprint">PHYS</code> ou <code class="prettyprint">ECOM</code> = <code class="prettyprint">Ecommerce ou Digitada</code></td>
+</tr>
+<tr>
+<td>Transaction<code class="prettyprint">&lt;Tx&gt;</code></td>
+<td>[1..1]</td>
+<td>Container</td>
+<td>Informações da transação.</td>
+</tr>
+<tr>
+<td>InitiatorTransactionIdentification<code class="prettyprint">&lt;InitrTxId&gt;</code></td>
+<td>[0..1]</td>
+<td>Text</td>
+<td>Identificação da transação definida pelo sistema que se comunica com o Host Stone.</td>
+</tr>
+<tr>
+<td>TransactionCapture<code class="prettyprint">&lt;TxCaptr&gt;</code></td>
+<td>[1..1]</td>
+<td>Boolean</td>
+<td>Indica se os dados da transação devem ser capturados - <code class="prettyprint">true</code> - ou não <code class="prettyprint">false</code> - imediatamente.</td>
+</tr>
+<tr>
+<td>TransactionIdentification<code class="prettyprint">&lt;TxId&gt;</code></td>
+<td>[1..1]</td>
+<td>Container</td>
+<td>Dados de identificação da transação atribuída pelo POI (Ponto de interação).</td>
+</tr>
+<tr>
+<td>TransactionDateTime<code class="prettyprint">&lt;TxDtTm&gt;</code></td>
+<td>[1..1]</td>
+<td>DateTime</td>
+<td>Data local e hora da transação atribuídas pelo POI (ponto de interação).</td>
+</tr>
+<tr>
+<td>TransactionReference<code class="prettyprint">&lt;TxRef&gt;</code></td>
+<td>[1..1]</td>
+<td>Text</td>
+<td>Identificação da transação definida pelo ponto de interação (POI, estabelecimento, lojista, etc). O formato é livre contendo no máximo 32 caracteres.</td>
+</tr>
+<tr>
+<td>TransactionDetails<code class="prettyprint">&lt;TxDtls&gt;</code></td>
+<td>[1..1]</td>
+<td>Container</td>
+<td>Detalhes da transação.</td>
+</tr>
+<tr>
+<td>Currency<code class="prettyprint">&lt;Ccy&gt;</code></td>
+<td>[1..1]</td>
+<td>CodeSet</td>
+<td>Moeda utilizada na transação em conformidade com a <a href="http://pt.wikipedia.org/wiki/ISO_4217">ISO 4217</a> - <code class="prettyprint">986</code> = Real Brasileiro.</td>
+</tr>
+<tr>
+<td>TotalAmount<code class="prettyprint">&lt;TtlAmt&gt;</code></td>
+<td>[1..1]</td>
+<td>Amount</td>
+<td>Valor total da transação em centavos.</td>
+</tr>
+<tr>
+<td>AccountType<code class="prettyprint">&lt;AcctTp&gt;</code></td>
+<td>[0..1]</td>
+<td>CodeSet</td>
+<td>Modalidade do cartão utilizado na transação. <code class="prettyprint">CHCK</code> = Débito e <code class="prettyprint">CRDT</code> = Crédito.</td>
+</tr>
+<tr>
+<td>RecurringTransaction<code class="prettyprint">&lt;RcrngTx&gt;</code></td>
+<td>[0..1]</td>
+<td>Container</td>
+<td>Os dados relativos à(s) parcela(s) ou a uma transação recorrente.</td>
+</tr>
+<tr>
+<td>InstalmentType<code class="prettyprint">&lt;InstlmtTp&gt;</code></td>
+<td>[1..1]</td>
+<td>CodeSet</td>
+<td>Tipo de parcelamento. <code class="prettyprint">NONE</code> = Nenhum e <code class="prettyprint">MCHT</code> = Lojista</td>
+</tr>
+<tr>
+<td>TotalNumberOfPayments<code class="prettyprint">&lt;TtlNbOfPmts&gt;</code></td>
+<td>[1..1]</td>
+<td>Quantity</td>
+<td>Número do total de parcelas.</td>
 </tr>
 </tbody></table>
 <h3 id='xml-de-resposta-comentado'>XML de resposta comentado</h3>
