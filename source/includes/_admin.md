@@ -1,4 +1,4 @@
-﻿# Административное API
+﻿﻿# Административное API
 
 
 ## Аутентификация
@@ -250,5 +250,21 @@ $ curl -uuser:user "https://www.synq.ru/mserver2-dev/admin/wallets/%2B7926000000
     "tick" : "2014-07-13",
     "amount" : 55572.14
   } ]
+}
+```
+
+## Удаление кошелька
+
+*Команда работает только на dev сервере.*
+
+```shell
+$ curl -u+user:user -X DELETE https://www.synq.ru/mserver2-dev/admin/wallets/+79260000006
+```
+
+```json
+{
+  "meta" : {
+    "code" : 200
+  }
 }
 ```

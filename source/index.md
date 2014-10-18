@@ -1,11 +1,8 @@
 ---
-title: API Reference
-
-
+title: mserver2 API
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='http://github.com/tripit/slate'>Documentation Powered by Slate</a>
+  - <a href='http://github.com/tripit/slate'>Powered by Slate</a>
 
 includes:
   - intro

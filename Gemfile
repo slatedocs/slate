@@ -4,6 +4,8 @@ source 'http://rubygems.org'
 
 gem "middleman", "~>3.3.0"
 
+gem "russian"
+
 # For syntax highlighting
 gem "middleman-syntax"
 

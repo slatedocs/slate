@@ -1,6 +1,8 @@
+require 'russian'
+
 module RedcarpetHeaderFix
   def header(text, level)
-    clean_id = text.downcase.gsub(/( +|\.+)/, '-').gsub(/[^a-zA-Z0-9\-_]/, '')
+    clean_id = Russian.translit(text).downcase.gsub(/( +|\.+)/, '-').gsub(/[^a-zA-Z0-9\-_]/, '')
     "<h#{level} id='#{clean_id}'>#{text}</h#{level}>"
   end
 end
