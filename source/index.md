@@ -9,6 +9,7 @@ includes:
   - wallet
   - services
   - payments
+  - cards
   - admin
 
 search: true
