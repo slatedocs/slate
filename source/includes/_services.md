@@ -149,4 +149,56 @@ $ curl -u+79261111111:password https://www.synq.ru/mserver2-dev/v1/services/grou
       } ]
     }]
     }
+
+```
+## Поиск подходящего сервиса по номеру карты или телефона
+
+### Поля
+
+* `type` - phone | card тип поиска
+* `input` - номер карты или телефона
+
+> Пример поиска по номеру карты
+ 
+```shell
+$ curl -u+79261111111:password https://www.synq.ru/mserver2-dev/v1/services/search?type=card&input=5417150970409149
+```
+
+> Пример поиска по номеру телефона
+ 
+```shell
+$ curl -u+79261111111:password https://www.synq.ru/mserver2-dev/v1/services/search?type=phone&input=9267101280
+```
+
+> Пример возвращаемых данных
+
+```json
+{
+   "meta":{
+      "code":200
+   },
+   "data":[
+      {
+         "id":1,
+         "name":"Мегафон",
+         "min":1,
+         "max":15000,
+         "verification_required":false,
+         "parameters":[
+            {
+               "code":"phoneNumber",
+               "min_length":10,
+               "max_length":10,
+               "name":"№ телефона (10 цифр)",
+               "pattern":"^9\\d{9}$",
+               "type":"numeric",
+               "pattern_description":"№ телефона (10 цифр)",
+               "items":[
+
+               ]
+            }
+         ]
+      }
+   ]
+}
 ```
