@@ -135,10 +135,34 @@ $ curl -u+79261111111:password -H 'Content-type:application/json'
 * `missing_type` - отсутствует обязательный параметр type
 * `missing_client_payment_id` - отсутствует обязательный параметр client_payment_id
 * `missing_amount` - отсутствует обязательный параметр amount
-* `invalid_amount` - неверная сумма платежа, должно быть min <= amount <= max, где min и max - минимальная и максимальная сумма для Сервиса
 * `missing_service` - отсутствует обязательный параметр service
 * `service_not_found` - запрошенный сервис не найдет
 * `missing_parameters` - не передан обязательный параметр parameters
+* `wallet_not_identified` - не идентифицироанным пользователмя запрещены P2P транзакции
+
+Привышение лимитов
+
+* `in_amount_limit` - привышен максимально возможный входящий платёж
+* `out_amount_limit` - привышен максимально возможный исходящий платёж
+* `amount_limit` - привышена максимально возможная сумма на кошельке
+* `monthly_in_turnover_limit` - превишен максимально возможный входящий месячный оборот
+* `monthly_out_turnover_limit` - превишен максимально возможный исходящий месячный оборот
+* `active_cards_limit` - превишено максимально возможное колличество активных карт
+
+> Пример ответа при пивышении лимита
+ 
+```json
+{
+   "meta":{
+      "code":422,
+      "error":"in_amount_limit",
+      "details":{
+         "limit":15000,
+         "actual":16000
+      }
+   }
+} 
+``` 
 
 ### Перевод между кошельками
 
