@@ -4,4 +4,4 @@ rvm:
 branches:
   only:
     - master
-script: bundle exec rake publish
+script: bundle exec rake publish ALLOW_DIRTY=true
