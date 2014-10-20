@@ -448,11 +448,7 @@
                 <span class="nt">&lt;AuthstnRslt&gt;</span>
                     <span class="c">&lt;!-- Dados da resposta da autorização. --&gt;</span>
                     <span class="nt">&lt;RspnToAuthstn&gt;</span>
-                        <span class="c">&lt;!-- Resposta da transação.
-                             DECL: Declined
-                             APPR: Aproved
-                             PART: PartialApproved
-                             TECH: TechinicalError --&gt;</span>
+                        <span class="c">&lt;!-- Resposta da transação. --&gt;</span>
                         <span class="nt">&lt;Rspn&gt;</span>APPR<span class="nt">&lt;/Rspn&gt;</span>
                         <span class="c">&lt;!-- Código de resposta da autorização
                              (equivalente ao campo 39 da ISO 8583 de 2003). --&gt;</span>
@@ -466,11 +462,9 @@
                 <span class="c">&lt;!-- Informações sobre as ações a serem realizadas pelo POI.
                      Neste caso, as informações a serem impressas no comprovante. --&gt;</span>
                 <span class="nt">&lt;Actn&gt;</span>
-                    <span class="c">&lt;!-- Tipo da ação a ser realizada pelo POI.
-                         PRNT = Imprimir mensagem;
-                         DISP = Exibir mensagem. -&gt;
-                    &lt;ActnTp&gt;PRNT&lt;/ActnTp&gt;
-                    &lt;!-- Mensagem a ser impressa no terminal. --&gt;</span>
+                    <span class="c">&lt;!-- Tipo da ação a ser realizada pelo POI.--&gt;</span>
+                    <span class="nt">&lt;ActnTp&gt;</span>PRNT<span class="nt">&lt;/ActnTp&gt;</span>
+                    <span class="c">&lt;!-- Mensagem a ser impressa no terminal. --&gt;</span>
                     <span class="nt">&lt;MsgToPres&gt;</span>
                         <span class="c">&lt;!-- A quem se destina a mensagem no contexto.
                              CRCP = CardholderReceipt;
@@ -622,6 +616,72 @@
 <td>Container</td>
 <td>Dados de resposta da transação.</td>
 </tr>
+<tr>
+<td>AuthorisationResult<code class="prettyprint">&lt;AuthstnRslt&gt;</code></td>
+<td>[1..1]</td>
+<td>Container</td>
+<td>Resultado da autorização.</td>
+</tr>
+<tr>
+<td>ResponseToAuthorisation<code class="prettyprint">&lt;RspnToAuthstn&gt;</code></td>
+<td>[1..1]</td>
+<td>Container</td>
+<td>Dados da resposta da autorização.</td>
+</tr>
+<tr>
+<td>Response<code class="prettyprint">&lt;Rspn&gt;</code></td>
+<td>[1..1]</td>
+<td>CodeSet</td>
+<td>Resposta da transação: <code class="prettyprint">DECL: Declined</code>, <code class="prettyprint">APPR: Aproved</code>, <code class="prettyprint">PART: PartialApproved</code> e <code class="prettyprint">TECH: TechinicalError</code>.</td>
+</tr>
+<tr>
+<td>ResponseReason<code class="prettyprint">&lt;RspnRsn&gt;</code></td>
+<td>[1..1]</td>
+<td>Text</td>
+<td>Código de resposta da autorização (equivalente ao campo 39 da ISO 8583 de 2003).</td>
+</tr>
+<tr>
+<td>AuthorisationCode<code class="prettyprint">&lt;AuthstnCd&gt;</code></td>
+<td>[0..1]</td>
+<td>Text</td>
+<td>Código de autorização retornado pelo emissor.</td>
+</tr>
+<tr>
+<td>CompletionRequired<code class="prettyprint">&lt;CmpltnReqrd&gt;</code></td>
+<td>[0..1]</td>
+<td>Boolean</td>
+<td>Indica se a mensagem precisa ser capturada posteriormente.</td>
+</tr>
+<tr>
+<td>Action<code class="prettyprint">&lt;Actn&gt;</code></td>
+<td>[0..*]</td>
+<td>Container</td>
+<td>Informações sobre as ações a serem realizadas pelo POI. Neste caso, as informações a serem impressas no comprovante.</td>
+</tr>
+<tr>
+<td>ActionType<code class="prettyprint">&lt;ActnTp&gt;</code></td>
+<td>[1..1]</td>
+<td>CodeSet</td>
+<td>Tipo da ação a ser realizada pelo POI. <code class="prettyprint">PRNT = Imprimir mensagem;</code> e <code class="prettyprint">DISP = Exibir mensagem.</code></td>
+</tr>
+<tr>
+<td>MessageToPresent<code class="prettyprint">&lt;MsgToPres&gt;</code></td>
+<td>[1..1]</td>
+<td>Container</td>
+<td>Mensagem a ser impressa no terminal.</td>
+</tr>
+<tr>
+<td>MessageDestination<code class="prettyprint">&lt;MsgDstn&gt;</code></td>
+<td>[1..1]</td>
+<td>CodeSet</td>
+<td>A quem se destina amensagem no contexto: <code class="prettyprint">CRCP = CardholderReceipt;</code> e <code class="prettyprint">MRCP = MerchantReceipt.</code></td>
+</tr>
+<tr>
+<td>MessageContent<code class="prettyprint">&lt;MsgCntt&gt;</code></td>
+<td>[1..1]</td>
+<td>Text</td>
+<td>Texto ou dados gráficos a serem impressos na tela ou em papel no terminal. A mensagem será formatada conforme o campo <code class="prettyprint">PrintLineWidth</code> da requisição.</td>
+</tr>
 </tbody></table>
 <h2 id='autorizao-com-captura'>Autorização com Captura</h2>
 <p>É o processo de autorização de uma transação onde a captura financeira é realizada no momento do pedido de autorização.</p>
@@ -698,6 +758,52 @@
     <span class="nt">&lt;/AccptrCmpltnAdvc&gt;</span>
 <span class="nt">&lt;/Document&gt;</span>
 </pre>
+
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Ocorrência</th>
+<th>Tipo</th>
+<th>Descrição</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Header<Hdr></td>
+<td>[1..1]</td>
+<td>Container</td>
+<td>Cabeçalho da mensagem.</td>
+</tr>
+<tr>
+<td>MessageFunction<MsgFctn></td>
+<td>[1..1]</td>
+<td>CodeSet</td>
+<td>Identifica o tipo de processo em que a mensagem se propõe. <code class="prettyprint">CMPV = Completion Advice</code> ou <code class="prettyprint">RVRA = ReversalAdvice</code>.</td>
+</tr>
+<tr>
+<td>CreationDateTime <CreDtTm></td>
+<td>[0..1]</td>
+<td>DateTime</td>
+<td>Data e hora de onde o arquivo ou mensagem foram criados.</td>
+</tr>
+<tr>
+<td>ProtocolVersion <PrtcolVrsn></td>
+<td>[1..1]</td>
+<td>Text</td>
+<td>Versão atual: “2.0”.</td>
+</tr>
+<tr>
+<td>CompletionAdvice <CmpltnAdvc></td>
+<td>[1..1]</td>
+<td>Container</td>
+<td>Informações relacionadas ao processo de captura ou desfazimento de uma autorização.</td>
+</tr>
+<tr>
+<td>Environment<Envt></td>
+<td>[1..1]</td>
+<td>Container</td>
+<td>Ambiente da transação.</td>
+</tr>
+</tbody></table>
 <h3 id='xml-de-resposta-de-captura-comentado'>XML de resposta de Captura comentado</h3>
 <p>A mensagem <code class="prettyprint">AcceptorCompletionAdviceResponse</code> é enviada pelo adquirente para avisar o estabelecimento sobre o reconhecimento do resultado da operação de pagamento, bem como a transferência dos dados financeiros da transação contidas no <code class="prettyprint">AcceptorCompletionAdvice</code>. Esta mensagem também é utilizada como resposta para o processo de “desfazimento de transações”.</p>
 <pre class="highlight xml"><span class="nt">&lt;Document</span> <span class="na">xmlns=</span><span class="s">"urn:AcceptorCompletionAdviceResponseV02.1"</span><span class="nt">&gt;</span>
