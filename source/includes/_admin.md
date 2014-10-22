@@ -258,7 +258,7 @@ $ curl -uuser:user "https://www.synq.ru/mserver2-dev/admin/wallets/%2B7926000000
 
 ## Удаление кошелька
 
-*Команда работает только на dev сервере.*
+<aside class="warning">Команда работает только на dev сервере</aside>
 
 ```shell
 $ curl -u+user:user -X DELETE https://www.synq.ru/mserver2-dev/admin/wallets/+79260000006
@@ -269,5 +269,41 @@ $ curl -u+user:user -X DELETE https://www.synq.ru/mserver2-dev/admin/wallets/+79
   "meta" : {
     "code" : 200
   }
+}
+```
+
+## Изменение статуса персональных данных
+
+### Параметры
+
+* `wallet` - номер телефона в международном формате
+* `statue` - `DATA_ENTERED | DATA_VERIFIED` статус персональных данных
+
+```shell
+$ curl  -H 'Content-type:application/json' -uuser:user -d '{"status": "DATA_VERIFIED"}' "https://www.synq.ru/mserver2-dev/admin/wallets/%2B79260000006/update_status" 
+```
+
+> Результат содержит `"status": "data_verified", "verified_at": "2014-10-22T10:26:12.035Z"`
+
+```json
+{
+    "meta": {
+        "code": 200
+    },
+    "data": {
+        "family_name": "Иванов",
+        "given_name": "Иван",
+        "patronymic_name": "Иванович",
+        "passport_series_number": "1122334455",
+        "passport_issued_at": "2012-12-20",
+        "itn": "330500938709",
+        "ssn": "11223344595",
+        "status": "data_verified",
+        "verified_at": "2014-10-22T10:26:12.035Z",
+        "changed_at": "2014-10-22T10:26:10.604Z",
+        "wallet": {
+            "phone": "+380935895452"
+        }
+    }
 }
 ```
