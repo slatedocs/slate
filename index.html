@@ -803,6 +803,18 @@
 <td>Container</td>
 <td>Ambiente da transação.</td>
 </tr>
+<tr>
+<td>Merchant <Mrchnt></td>
+<td>[1..1]</td>
+<td>Container</td>
+<td>Dados do estabelecimento.</td>
+</tr>
+<tr>
+<td>Identification<Id></td>
+<td>[1..1]</td>
+<td>Text</td>
+<td>Identificação do estabelecimento comercial no adquirente. Também conhecido internamente como “SaleAffiliationKey”.</td>
+</tr>
 </tbody></table>
 <h3 id='xml-de-resposta-de-captura-comentado'>XML de resposta de Captura comentado</h3>
 <p>A mensagem <code class="prettyprint">AcceptorCompletionAdviceResponse</code> é enviada pelo adquirente para avisar o estabelecimento sobre o reconhecimento do resultado da operação de pagamento, bem como a transferência dos dados financeiros da transação contidas no <code class="prettyprint">AcceptorCompletionAdvice</code>. Esta mensagem também é utilizada como resposta para o processo de “desfazimento de transações”.</p>
