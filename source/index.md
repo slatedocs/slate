@@ -166,7 +166,7 @@ start_time | | Returns groups created after `start_time`.
 end_time | | Returns groups created before `ned_time`.
 page | 1 | Used to paginate groups.
 limit | 20 | Specifies number of groups per page.
-order | last_notice | Sorts groups by `last_notice`, `notice_count` or `created` fields.
+order | last_notice | Sorts groups by `last_notice`, `notice_count`, `weight` and `created` fields.
 
 ### Response
 
