@@ -261,7 +261,7 @@ $ curl -uuser:user "https://www.synq.ru/mserver2-dev/admin/wallets/%2B7926000000
 <aside class="warning">Команда работает только на dev сервере</aside>
 
 ```shell
-$ curl -u+user:user -X DELETE https://www.synq.ru/mserver2-dev/admin/wallets/+79260000006
+$ curl -uuser:user -X DELETE https://www.synq.ru/mserver2-dev/admin/wallets/+79260000006
 ```
 
 ```json

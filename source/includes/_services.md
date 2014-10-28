@@ -149,8 +149,8 @@ $ curl -u+79261111111:password https://www.synq.ru/mserver2-dev/v1/services/grou
       } ]
     }]
     }
-```
 
+```
 ## Поиск подходящего сервиса по номеру карты или телефона
 
 ### Поля
