@@ -252,6 +252,114 @@ curl -X PUT "https://airbrake.io/api/experimental/projects/PROJECT_ID/groups/GRO
 
 The API returns `204 No Content` status code on success.
 
+## List group environments
+
+```shell
+curl "https://airbrake.io/api/experimental/projects/PROJECT_ID/group-environments?key=USER_KEY"
+```
+
+```json
+{
+  "groupEnvironments": [
+    {
+      "environment": "production",
+      "projectId": 1,
+      "groupResolvedCount": 1,
+      "groupUnresolvedCount": 1
+    }
+  ],
+  "count": 1
+}
+```
+
+### HTTP Request
+
+`GET https://airbrake.io/api/experimental/projects/PROJECT_ID/group-environments?key=USER_KEY`
+
+### Query Parameters
+
+Parameter | Default | Description
+--------- | ------- | -----------
+environment | | Searches for similar environments.
+page | 1 | Used to paginate environments.
+limit | 20 | Specifies number of environments per page.
+
+### Response
+
+The API returns `200 OK` status code on success.
+
+## List group components
+
+```shell
+curl "https://airbrake.io/api/experimental/projects/PROJECT_ID/group-components?key=USER_KEY"
+```
+
+```json
+{
+  "groupComponents": [
+    {
+      "component": "projects",
+      "projectId": 1,
+      "groupResolvedCount": 1,
+      "groupUnresolvedCount": 1
+    }
+  ],
+  "count": 1
+}
+```
+
+### HTTP Request
+
+`GET https://airbrake.io/api/experimental/projects/PROJECT_ID/group-components?key=USER_KEY`
+
+### Query Parameters
+
+Parameter | Default | Description
+--------- | ------- | -----------
+component | | Searches for similar components.
+page | 1 | Used to paginate components.
+limit | 20 | Specifies number of components per page.
+
+### Response
+
+The API returns `200 OK` status code on success.
+
+## List group actions
+
+```shell
+curl "https://airbrake.io/api/experimental/projects/PROJECT_ID/group-actions?key=USER_KEY"
+```
+
+```json
+{
+  "groupActions": [
+    {
+      "action": "show",
+      "projectId": 1,
+      "groupResolvedCount": 1,
+      "groupUnresolvedCount": 1
+    }
+  ],
+  "count": 1
+}
+```
+
+### HTTP Request
+
+`GET https://airbrake.io/api/experimental/projects/PROJECT_ID/group-actions?key=USER_KEY`
+
+### Query Parameters
+
+Parameter | Default | Description
+--------- | ------- | -----------
+action | | Searches for similar actions.
+page | 1 | Used to paginate actions.
+limit | 20 | Specifies number of actions per page.
+
+### Response
+
+The API returns `200 OK` status code on success.
+
 # Deploys (v4)
 
 ## Create deploy
