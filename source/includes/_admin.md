@@ -109,6 +109,23 @@ $ curl -uuser:user "https://www.synq.ru/mserver2-dev/admin/wallets/%2B7926000000
 }
 ```
 
+## Получения кода активации кошнлька
+
+Формат кода: `check_digit` + `6 random_numbers`, в сумме 7 знаков.
+
+```shell
+$ curl -uuser:user "https://www.synq.ru/mserver2-dev/admin/wallets/%2B12345657367/secure_code"
+```
+
+```json
+{
+  "meta" : {
+    "code" : 200
+  },
+  "data" : "2899066"
+}
+```
+
 ## Блокировка кошелька
 
 ### Параметры
