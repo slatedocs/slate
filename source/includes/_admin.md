@@ -273,6 +273,55 @@ $ curl -uuser:user "https://www.synq.ru/mserver2-dev/admin/wallets/%2B7926000000
 }
 ```
 
+## Получние списка персональных данных
+
+Информация выдаётся постранично 
+
+### Параметры постраничного запроса
+
+`page` - Номер страници начиная с 0
+`size` - Размер страници
+`sort` - Сортировка по полю, имя поля указывается в camelCase стиле, после запятой может следовать направление сортировки 
+
+```shell
+$ curl -uuser:user "https://www.synq.ru/mserver2-dev/admin/persons?page=1&size=2&sort=givenName,desc
+```
+
+```json
+{
+  "meta" : {
+    "total_elements" : 6,
+    "code" : 200
+  },
+  "data" : [ {
+    "family_name" : "Дергачёв",
+    "given_name" : "Андрей",
+    "patronymic_name" : "Петрович",
+    "passport_series_number" : "45112456789",
+    "passport_issued_at" : "2007-06-07",
+    "itn" : "526317984689",
+    "status" : "data_entered",
+    "verified_at" : "2014-10-30T11:11:52.401Z",
+    "changed_at" : "2014-09-08T15:47:10.411Z",
+    "wallet" : {
+      "phone" : "+380631345678"
+    }
+  }, {
+    "family_name" : "Арсеньев",
+    "given_name" : "Алексей",
+    "patronymic_name" : "Александрович",
+    "passport_series_number" : "2202655111",
+    "passport_issued_at" : "2012-02-02",
+    "itn" : "330500938709",
+    "status" : "data_entered",
+    "changed_at" : "2014-10-24T15:09:12.019Z",
+    "wallet" : {
+      "phone" : "+380503839987"
+    }
+  } ]
+}
+```
+
 ## Удаление кошелька
 
 <aside class="warning">Команда работает только на dev сервере</aside>
