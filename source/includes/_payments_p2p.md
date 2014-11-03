@@ -10,7 +10,7 @@
 
 ```shell
 $ curl -u+79261111111:password -H 'Content-type:application/json' 
- -d '{"type": "p2p", "client_payment_id": "071c6d23-7508-4e35-ad92-852308a47677", "amont": 100, "destination": "+79261111112", "message": "Съешь ещё этих мягких французских булок, да выпей чаю"}'   https://www.synq.ru/mserver2-dev/v1/payments
+ -d '{"type": "p2p", "client_payment_id": "071c6d23-7508-4e35-ad92-852308a47677", "amount": 100, "destination": "+79261111112", "message": "Съешь ещё этих мягких французских булок, да выпей чаю"}'   https://www.synq.ru/mserver2-dev/v1/payments
 ```
 
 ```json

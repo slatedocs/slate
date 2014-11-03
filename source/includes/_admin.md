@@ -99,8 +99,9 @@ $ curl -uuser:user "https://www.synq.ru/mserver2-dev/admin/wallets/%2B7926000000
          "in_amount_limit":15000,
          "out_amount_limit":15000,
          "wallet_amount_limit":15000,
-         "in_monthly_turnover_limit":40000,
-         "out_monthly_turnover_limit":40000,
+         "monthly_in_turnover_limit":40000,
+         "monthly_out_turnover_limit":40000,
+         "monthly_p2p_turnover_limit":40000,
          "active_cards_limit":10
       },
       "in_last_month_turnover":0,
@@ -343,10 +344,10 @@ $ curl -uuser:user -X DELETE https://www.synq.ru/mserver2-dev/admin/wallets/+792
 ### Параметры
 
 * `wallet` - номер телефона в международном формате
-* `statue` - `DATA_ENTERED | DATA_VERIFIED` статус персональных данных
+* `status` - `DATA_ENTERED | DATA_VERIFIED` статус персональных данных
 
 ```shell
-$ curl  -H 'Content-type:application/json' -uuser:user -d '{"status": "DATA_VERIFIED"}' "https://www.synq.ru/mserver2-dev/admin/wallets/%2B79260000006/update_status" 
+$ curl  -H 'Content-type:application/json' -uuser:user -d '{"status": "DATA_VERIFIED"}' "https://www.synq.ru/mserver2-dev/admin/persons/%2B79260000006/update_status" 
 ```
 
 > Результат содержит `"status": "data_verified", "verified_at": "2014-10-22T10:26:12.035Z"`
