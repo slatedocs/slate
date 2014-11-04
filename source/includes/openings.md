@@ -32,12 +32,12 @@ curl "https://api.recruiterbox.com/v1/openings" \
 
 ```json
 {
-  "openings": [
+  "objects": [
   {
     "id": 42075,
     "title": "UX - Engineer",
     "description": "UX - Engineer",
-    "location": { "city": "Bangalore", "state": "KA", "country": "India"},
+    "location": { "city": "San Jose", "state": "CA", "country": "USA"},
     "tags": ["Dev","UX"],
     "is_private": false,
     "is_archived": false,
@@ -46,7 +46,11 @@ curl "https://api.recruiterbox.com/v1/openings" \
     "created_on": 1413437038,
     "modified_on": 1413445073 
   }],
-  "meta": { "total_count":1, "limit": 20, "offset": 0}
+  "meta": { 
+    "total_count":1, 
+    "limit": 20, 
+    "offset": 0
+  }
 }
 ```
 
@@ -56,20 +60,24 @@ This endpoint retrieves all openings.
 
 `GET https://api.recruiterbox.com/v1/openings/`
 
-### Filter Query Parameters
+### Query Parameters
 
 Parameter | Description
 --------- | -------------
-tags | 
-city |
-state | 
-country |
-title | 
-description | 
-is_archived |
-is_private |
-created_on |
-modified_on |
+tags | Filter by tags
+city | Filter by city
+state | Filter by state
+country | Filter by country
+title | Filter by title
+description | Filter by description
+is_archived | Filter by archived openings
+is_private | Filter by private / public openings
+created_on__gt |  Filter by created date greater than a given timestamp
+modified_on__gt | Filter by modified date greater than a given timestamp
+created_on__lt |  Filter by created date lesser than a given timestamp
+modified_on__lt | Filter by modified date lesser than a given timestamp
+order_by | Sort by created_on, modified_on attributes. Use "-" to sort in descending order
+
 
 ## Get a specific Opening
 
@@ -83,19 +91,17 @@ curl "https://api.recruiterbox.com/v1/openings/42075"
 
 ```json
 {
-  "opening": {
-    "id": 42075,
-    "title": "UX - Engineer",
-    "description": "UX - Engineer",
-    "location": { "city": "Bangalore", "state": "KA", "country": "India"},
-    "tags": ["Dev","UX"],
-    "is_private": false,
-    "is_archived": false,
-    "application_email": "demoaccount-DMCC0203@applications.recruiterbox.com",
-    "hosted_url": "https://demoaccount.recruiterbox.com/jobs/ad3e",
-    "created_on": 1413437038,
-    "modified_on": 1413445073 
-  }
+  "id": 42075,
+  "title": "UX - Engineer",
+  "description": "UX - Engineer",
+  "location": { "city": "San Jose", "state": "CA", "country": "USA"},
+  "tags": ["Dev","UX"],
+  "is_private": false,
+  "is_archived": false,
+  "application_email": "demoaccount-DMCC0203@applications.recruiterbox.com",
+  "hosted_url": "https://demoaccount.recruiterbox.com/jobs/ad3e",
+  "created_on": 1413437038,
+  "modified_on": 1413445073 
 }
 ```
 
@@ -104,11 +110,11 @@ This endpoint retrieves a specific opening.
 
 ### HTTP Request
 
-`GET https://api.recruiterbox.com/v1/openings/<ID>`
+`GET https://api.recruiterbox.com/v1/openings/{id}`
 
 ### URL Parameters
 
 Parameter | Description
 --------- | -----------
-ID | The ID of the opening to retrieve
+id | ID of the opening to retrieve
 
