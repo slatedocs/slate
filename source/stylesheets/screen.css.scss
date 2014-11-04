@@ -92,6 +92,7 @@ html, body {
   // This is the logo at the top of the ToC
   &>img {
     display: block;
+    margin: 0 auto;
   }
 
   &>.search {
@@ -435,6 +436,15 @@ html, body {
 
     td {
       padding: 10px;
+
+      p {
+        margin: 0;
+        line-height: 1.0;
+      }
+    }
+
+    tr strong{
+      display: block;
     }
 
     tr:last-child {
