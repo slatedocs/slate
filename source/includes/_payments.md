@@ -84,6 +84,7 @@ $ curl -u+79261111111:password "https://www.synq.ru/mserver2-dev/v1/payments?pag
 ```json
 {
   "meta" : {
+    "total_elements" : 15,
     "code" : 200
   },
   "data" : [ {

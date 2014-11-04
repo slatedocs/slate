@@ -40,41 +40,40 @@
 ## Загрузка списка сервисов
 
 ```shell
-$ curl -u+79261111111:password https://www.synq.ru/mserver2-dev/v1/services
+$ curl -u+79261111111:password https://www.synq.ru/mserver2-dev/v1/services?size=1
 ```
 
 ```json
  {
-  "meta" : {
-    "code" : 200
-  },
-  "data" : [ {
-    "id" : 9,
-    "name" : "Альфа Банк",
-    "min" : 10,
-    "max" : 15000,
-    "verification_required" : true,
-    "parameters" : [ {
-      "code" : "phoneNumber",
-      "min_length" : 16,
-      "max_length" : 16,
-      "name" : "№ карты (16 цифр)",
-      "pattern" : "^\\d{16}$",
-      "type" : "numeric",
-      "pattern_description" : "№ карты (16 цифр)",
-      "items" : [ ]
-    }, {
-      "code" : "valid",
-      "min_length" : null,
-      "max_length" : null,
-      "name" : "Срок действия (вид: ГГММ)",
-      "pattern" : "^\\d{4}$",
-      "type" : "text",
-      "pattern_description" : "Срок действия (вид: ГГММ)",
-      "items" : [ ]
-    } ]
-  }]
-}
+   "meta" : {
+     "total_elements" : 23,
+     "code" : 200
+   },
+   "data" : [ {
+     "id" : 9,
+     "name" : "Альфа Банк",
+     "min" : 10,
+     "max" : 15000,
+     "verification_required" : false,
+     "parameters" : [ {
+       "code" : "phoneNumber",
+       "min_length" : 16,
+       "max_length" : 16,
+       "name" : "№ карты (16 цифр)",
+       "pattern" : "^\\d{16}$",
+       "type" : "numeric",
+       "pattern_description" : "№ карты (16 цифр)",
+       "items" : [ ]
+     }, {
+       "code" : "valid",
+       "name" : "Срок действия (вид: ГГММ)",
+       "pattern" : "^\\d{4}$",
+       "type" : "text",
+       "pattern_description" : "Срок действия (вид: ГГММ)",
+       "items" : [ ]
+     } ]
+   } ]
+ }
 ```
 
 ## Загрузка сервиса по идентификатору
@@ -111,12 +110,13 @@ $ curl -u+79261111111:password https://www.synq.ru/mserver2-dev/v1/services/1
 ## Сервисы по группам
 
 ```shell
-$ curl -u+79261111111:password https://www.synq.ru/mserver2-dev/v1/services/groups
+$ curl -u+79261111111:password https://www.synq.ru/mserver2-dev/v1/services/groups?size=1
 ```
 
 ```json
 {
   "meta" : {
+    "total_elements" : 23,
     "code" : 200
   },
   "data" : [ {
@@ -127,7 +127,7 @@ $ curl -u+79261111111:password https://www.synq.ru/mserver2-dev/v1/services/grou
       "name" : "Альфа Банк",
       "min" : 10,
       "max" : 15000,
-      "verification_required" : true,
+      "verification_required" : false,
       "parameters" : [ {
         "code" : "phoneNumber",
         "min_length" : 16,
@@ -139,17 +139,15 @@ $ curl -u+79261111111:password https://www.synq.ru/mserver2-dev/v1/services/grou
         "items" : [ ]
       }, {
         "code" : "valid",
-        "min_length" : null,
-        "max_length" : null,
         "name" : "Срок действия (вид: ГГММ)",
         "pattern" : "^\\d{4}$",
         "type" : "text",
         "pattern_description" : "Срок действия (вид: ГГММ)",
         "items" : [ ]
       } ]
-    }]
-    }
-
+    } ]
+  } ]
+}
 ```
 ## Поиск подходящего сервиса по номеру карты или телефона
 

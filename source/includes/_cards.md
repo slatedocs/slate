@@ -75,6 +75,7 @@ $ curl -u+79261111111:password -H 'Content-type:application/json' https://www.sy
 ```json
 {
   "meta" : {
+    "total_elements" : 1,
     "code" : 200
   },
   "data" : [ {

@@ -42,6 +42,7 @@ $ curl -uadmin:admin "https://www.synq.ru/mserver2-dev/admin/wallets?familyName=
 ```json
 {
   "meta" : {
+    "total_elements": 4,
     "code" : 200
   },
   "data" : [ {
@@ -199,6 +200,7 @@ $ curl -uuser:user "https://www.synq.ru/mserver2-dev/admin/wallets/%2B7926000000
 ```json
 {
   "meta" : {
+    "total_elements" : 1,
     "code" : 200
   },
   "data" : [ {
@@ -222,6 +224,9 @@ $ curl -uuser:user "https://www.synq.ru/mserver2-dev/admin/wallets/%2B7926000000
       "id" : 35,
       "code" : "tpr_out",
       "name" : "ООО ТПР (провайдер)"
+    },
+    "wallet" : {
+      "phone" : "+79260000006"
     }
   } ]
 }
