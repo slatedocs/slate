@@ -97,12 +97,12 @@ curl "https://airbrake.io/api/v3/projects/PROJECT_ID?key=USER_KEY"
 
 The API returns `200 OK` status code on success.
 
-# Groups (experimental)
+# Groups (v4)
 
 ## List groups
 
 ```shell
-curl "https://airbrake.io/api/experimental/projects/PROJECT_ID/groups?key=USER_KEY"
+curl "https://airbrake.io/api/v4/projects/PROJECT_ID/groups?key=USER_KEY"
 ```
 
 ```json
@@ -146,11 +146,11 @@ curl "https://airbrake.io/api/experimental/projects/PROJECT_ID/groups?key=USER_K
 
 Get first page:
 
-`GET https://airbrake.io/api/experimental/projects/PROJECT_ID/groups?key=USER_KEY`
+`GET https://airbrake.io/api/v4/projects/PROJECT_ID/groups?key=USER_KEY`
 
 Get second page:
 
-`GET https://airbrake.io/api/experimental/projects/PROJECT_ID/groups?key=USER_KEY&page=2`
+`GET https://airbrake.io/api/v4/projects/PROJECT_ID/groups?key=USER_KEY&page=2`
 
 ### Query Parameters
 
@@ -175,7 +175,7 @@ The API returns `200 OK` status code on success
 ## Show group
 
 ```shell
-curl "https://airbrake.io/api/experimental/projects/PROJECT_ID/groups/GROUP_ID?key=USER_KEY"
+curl "https://airbrake.io/api/v4/projects/PROJECT_ID/groups/GROUP_ID?key=USER_KEY"
 ```
 
 ```json
@@ -214,7 +214,7 @@ curl "https://airbrake.io/api/experimental/projects/PROJECT_ID/groups/GROUP_ID?k
 
 ### HTTP Request
 
-`GET https://airbrake.io/api/experimental/projects/PROJECT_ID/groups/GROUP_ID?key=USER_KEY`
+`GET https://airbrake.io/api/v4/projects/PROJECT_ID/groups/GROUP_ID?key=USER_KEY`
 
 ### Response
 
@@ -225,12 +225,12 @@ The API returns `200 OK` status code on success
 This API removes group from the default list and disables all notifications.
 
 ```shell
-curl -X PUT "https://airbrake.io/api/experimental/projects/PROJECT_ID/groups/GROUP_ID/muted?key=USER_KEY"
+curl -X PUT "https://airbrake.io/api/v4/projects/PROJECT_ID/groups/GROUP_ID/muted?key=USER_KEY"
 ```
 
 ### HTTP Request
 
-`PUT https://airbrake.io/api/experimental/projects/PROJECT_ID/groups/GROUP_ID/muted?key=USER_KEY`
+`PUT https://airbrake.io/api/v4/projects/PROJECT_ID/groups/GROUP_ID/muted?key=USER_KEY`
 
 ### Response
 
@@ -241,12 +241,12 @@ The API returns `204 No Content` status code on success.
 Opposite of the mute group.
 
 ```shell
-curl -X PUT "https://airbrake.io/api/experimental/projects/PROJECT_ID/groups/GROUP_ID/unmuted?key=USER_KEY"
+curl -X PUT "https://airbrake.io/api/v4/projects/PROJECT_ID/groups/GROUP_ID/unmuted?key=USER_KEY"
 ```
 
 ### HTTP Request
 
-`PUT https://airbrake.io/api/experimental/projects/PROJECT_ID/groups/GROUP_ID/unmuted?key=USER_KEY`
+`PUT https://airbrake.io/api/v4/projects/PROJECT_ID/groups/GROUP_ID/unmuted?key=USER_KEY`
 
 ### Response
 
@@ -255,7 +255,7 @@ The API returns `204 No Content` status code on success.
 ## List group environments
 
 ```shell
-curl "https://airbrake.io/api/experimental/projects/PROJECT_ID/group-environments?key=USER_KEY"
+curl "https://airbrake.io/api/v4/projects/PROJECT_ID/group-environments?key=USER_KEY"
 ```
 
 ```json
@@ -274,7 +274,7 @@ curl "https://airbrake.io/api/experimental/projects/PROJECT_ID/group-environment
 
 ### HTTP Request
 
-`GET https://airbrake.io/api/experimental/projects/PROJECT_ID/group-environments?key=USER_KEY`
+`GET https://airbrake.io/api/v4/projects/PROJECT_ID/group-environments?key=USER_KEY`
 
 ### Query Parameters
 
@@ -291,7 +291,7 @@ The API returns `200 OK` status code on success.
 ## List group components
 
 ```shell
-curl "https://airbrake.io/api/experimental/projects/PROJECT_ID/group-components?key=USER_KEY"
+curl "https://airbrake.io/api/v4/projects/PROJECT_ID/group-components?key=USER_KEY"
 ```
 
 ```json
@@ -310,7 +310,7 @@ curl "https://airbrake.io/api/experimental/projects/PROJECT_ID/group-components?
 
 ### HTTP Request
 
-`GET https://airbrake.io/api/experimental/projects/PROJECT_ID/group-components?key=USER_KEY`
+`GET https://airbrake.io/api/v4/projects/PROJECT_ID/group-components?key=USER_KEY`
 
 ### Query Parameters
 
@@ -327,7 +327,7 @@ The API returns `200 OK` status code on success.
 ## List group actions
 
 ```shell
-curl "https://airbrake.io/api/experimental/projects/PROJECT_ID/group-actions?key=USER_KEY"
+curl "https://airbrake.io/api/v4/projects/PROJECT_ID/group-actions?key=USER_KEY"
 ```
 
 ```json
@@ -346,7 +346,7 @@ curl "https://airbrake.io/api/experimental/projects/PROJECT_ID/group-actions?key
 
 ### HTTP Request
 
-`GET https://airbrake.io/api/experimental/projects/PROJECT_ID/group-actions?key=USER_KEY`
+`GET https://airbrake.io/api/v4/projects/PROJECT_ID/group-actions?key=USER_KEY`
 
 ### Query Parameters
 
@@ -450,12 +450,12 @@ curl "https://airbrake.io/api/v4/projects/PROJECT_ID/deploys/DEPLOY_ID?key=USER_
 
 The API returns `200 OK` status code.
 
-# Project activities (experimental)
+# Project activities (v4)
 
 ## Get project activities
 
 ```shell
-curl "https://airbrake.io/api/experimental/projects/PROJECT_ID/activities?key=USER_KEY"
+curl "https://airbrake.io/api/v4/projects/PROJECT_ID/activities?key=USER_KEY"
 ```
 
 ```json
@@ -490,7 +490,7 @@ curl "https://airbrake.io/api/experimental/projects/PROJECT_ID/activities?key=US
 
 ### HTTP Request
 
-`GET https://airbrake.io/api/experimental/projects/PROJECT_ID/activities?key=USER_KEY`
+`GET https://airbrake.io/api/v4/projects/PROJECT_ID/activities?key=USER_KEY`
 
 ### Query Parameters
 
