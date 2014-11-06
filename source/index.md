@@ -23,7 +23,7 @@ Welcome to the Recruiterbox API
 
 # Authentication
 
-Authentication is done via the API key which you can find in [Settings -> Company Settings -> API Key](https://app.recruiterbox.com/app/#settings/api-key/)
+Authentication is done via the API key which you can find in [Settings -> Advanced Settings -> API Key](https://app.recruiterbox.com/app/#settings/api-key/)
 
 Requests are authenticated using [HTTP Basic Auth](http://en.wikipedia.org/wiki/Basic_access_authentication). Provide your API key as the basic auth username. You do not need to provide a password.
 
