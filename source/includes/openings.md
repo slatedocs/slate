@@ -223,5 +223,5 @@ choices | <strong>list</strong> Choices for field, if either of type `select_one
 
 Parameter | Description
 --------- | -----------
-id | ID of the opening to retrieve
+id | ID of the opening
 
