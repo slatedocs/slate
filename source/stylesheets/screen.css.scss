@@ -187,6 +187,13 @@ html, body {
     color: $nav-active-text;
   }
 
+  // This is the hovered ToC entry
+  .tocify-hover {
+    @include box-shadow(0px 1px 0px $nav-hover-shadow);
+    background-color: $nav-hover-bg;
+    color: $nav-hover-text;
+  }
+
   // Subheaders are the submenus that slide open
   // in the table of contents.
   .tocify-subheader {
