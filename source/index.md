@@ -97,6 +97,96 @@ curl "https://airbrake.io/api/v3/projects/PROJECT_ID?key=USER_KEY"
 
 The API returns `200 OK` status code on success.
 
+# Deploys (v4)
+
+## Create deploy
+
+```shell
+curl -X POST -H "Content-Type: application/json" -d '{"environment":"production","username":"john","repository":"https://github.com/airbrake/airbrake","revision":"38748467ea579e7ae64f7815452307c9d05e05c5",version:"v2.0"}' "https://airbrake.io/api/v4/projects/PROJECT_ID/deploys?key=PROJECT_KEY"
+```
+
+### HTTP Request
+
+`POST https://airbrake.io/api/v4/projects/PROJECT_ID/deploys?key=PROJECT_KEY`
+
+### POST data
+
+The API expects JSON data.
+
+Key | Example
+--- | -------
+environment | production
+username | john
+repository | https://github.com/airbrake/airbrake
+revision | 38748467ea579e7ae64f7815452307c9d05e05c5
+version | v2.0
+
+### Response
+
+The API returns `201 Created` status code on success.
+
+## List deploys
+
+```shell
+curl "https://airbrake.io/api/v4/projects/PROJECT_ID/deploys?key=USER_KEY"
+```
+
+```json
+{
+  "deploys": [
+    {
+      "environment": "production",
+      "username": "john",
+      "repository": "https://github.com/airbrake/airbrake",
+      "revision": "38748467ea579e7ae64f7815452307c9d05e05c5",
+      "version": "v2.0"
+    }
+  ],
+  "count": 1
+}
+```
+
+### HTTP Request
+
+`GET https://airbrake.io/api/v4/projects/PROJECT_ID/deploys?key=USER_KEY`
+
+### Query Parameters
+
+Parameter | Default | Description
+--------- | ------- | -----------
+page | 1 | Used to paginate deploys.
+limit | 20 | Specifies number of deploys per page.
+
+### Response
+
+The API returns `200 OK` status code on success.
+
+## Show deploy
+
+```shell
+curl "https://airbrake.io/api/v4/projects/PROJECT_ID/deploys/DEPLOY_ID?key=USER_KEY"
+```
+
+```json
+{
+  "deploy": {
+    "environment": "production",
+    "username": "john",
+    "repository": "https://github.com/airbrake/airbrake",
+    "revision": "38748467ea579e7ae64f7815452307c9d05e05c5",
+    "version": "v2.0"
+  }
+}
+```
+
+### HTTP Request
+
+`GET https://airbrake.io/api/v4/projects/PROJECT_ID/deploys/DEPLOY_ID?key=USER_KEY`
+
+### Response
+
+The API returns `200 OK` status code.
+
 # Groups (v4)
 
 ## List groups
@@ -360,49 +450,22 @@ limit | 20 | Specifies number of actions per page.
 
 The API returns `200 OK` status code on success.
 
-# Deploys (v4)
+# Notices (v4)
 
-## Create deploy
-
-```shell
-curl -X POST -H "Content-Type: application/json" -d '{"environment":"production","username":"john","repository":"https://github.com/airbrake/airbrake","revision":"38748467ea579e7ae64f7815452307c9d05e05c5",version:"v2.0"}' "https://airbrake.io/api/v4/projects/PROJECT_ID/deploys?key=PROJECT_KEY"
-```
-
-### HTTP Request
-
-`POST https://airbrake.io/api/v4/projects/PROJECT_ID/deploys?key=PROJECT_KEY`
-
-### POST data
-
-The API expects JSON data.
-
-Key | Example
---- | -------
-environment | production
-username | john
-repository | https://github.com/airbrake/airbrake
-revision | 38748467ea579e7ae64f7815452307c9d05e05c5
-version | v2.0
-
-### Response
-
-The API returns `201 Created` status code on success.
-
-## List deploys
+## List notices
 
 ```shell
-curl "https://airbrake.io/api/v4/projects/PROJECT_ID/deploys?key=USER_KEY"
+curl "https://airbrake.io/api/v4/projects/PROJECT_ID/groups/GROUP_ID/notices?key=USER_KEY"
 ```
 
 ```json
 {
-  "deploys": [
+  "notices": [
     {
-      "environment": "production",
-      "username": "john",
-      "repository": "https://github.com/airbrake/airbrake",
-      "revision": "38748467ea579e7ae64f7815452307c9d05e05c5",
-      "version": "v2.0"
+      "id": "1272072008639432675",
+      "projectId": 1,
+      "groupId": "1272072008639432676",
+      "createdAt": "2014-10-22T03:00:00.407Z"
     }
   ],
   "count": 1
@@ -411,44 +474,62 @@ curl "https://airbrake.io/api/v4/projects/PROJECT_ID/deploys?key=USER_KEY"
 
 ### HTTP Request
 
-`GET https://airbrake.io/api/v4/projects/PROJECT_ID/deploys?key=USER_KEY`
+`GET https://airbrake.io/api/v4/projects/PROJECT_ID/groups/GROUP_ID/notices?key=USER_KEY`
 
 ### Query Parameters
 
 Parameter | Default | Description
 --------- | ------- | -----------
-page | 1 | Used to paginate deploys.
-limit | 20 | Specifies number of deploys per page.
+page | 1 | Used to paginate notices.
+limit | 20 | Specifies number of notices per page.
+version | | Filters notices by version, e.g. `version=1.0`.
 
 ### Response
 
 The API returns `200 OK` status code on success.
 
-## Show deploy
+## List versions
 
 ```shell
-curl "https://airbrake.io/api/v4/projects/PROJECT_ID/deploys/DEPLOY_ID?key=USER_KEY"
+curl "https://airbrake.io/api/v4/projects/PROJECT_ID/groups/GROUP_ID/versions?key=USER_KEY"
 ```
 
 ```json
 {
-  "deploy": {
-    "environment": "production",
-    "username": "john",
-    "repository": "https://github.com/airbrake/airbrake",
-    "revision": "38748467ea579e7ae64f7815452307c9d05e05c5",
-    "version": "v2.0"
-  }
+  "versions": [
+    {
+      "version": "1.0",
+      "groupId": "1",
+      "noticeTotalCount": 10,
+      "createdAt": "2014-09-26T17:37:33.638348Z",
+      "updatedAt": "2014-09-26T17:37:33.638348Z"
+    },
+    {
+      "version": "1.1",
+      "groupId": "1",
+      "noticeTotalCount": 20,
+      "createdAt": "2014-09-26T17:37:33.638348Z",
+      "updatedAt": "2014-09-26T17:37:33.638348Z"
+    }
+  ],
+  "count": 2
 }
 ```
 
 ### HTTP Request
 
-`GET https://airbrake.io/api/v4/projects/PROJECT_ID/deploys/DEPLOY_ID?key=USER_KEY`
+`GET https://airbrake.io/api/v4/projects/PROJECT_ID/groups/GROUP_ID/versions?key=USER_KEY`
+
+### Query Parameters
+
+Parameter | Default | Description
+--------- | ------- | -----------
+page | 1 | Used to paginate versions.
+limit | 20 | Specifies number of versions per page.
 
 ### Response
 
-The API returns `200 OK` status code.
+The API returns `200 OK` status code on success.
 
 # Project activities (v4)
 
