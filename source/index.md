@@ -18,7 +18,7 @@ search: true
 curl "api_endpoint_here?key=(PROJECT_KEY|USER_KEY)"
 ```
 
-Airbrake uses API keys to allow access to the API. There are 2 kinds of keys:
+Airbrake uses API keys to restrict access to the API. There are 2 kinds of keys:
 
 - Project API key (`PROJECT_KEY`) that is used to submit errors and create track deploys. This key is what you configure the notifier agent in your app to use.
 - User API key (`USER_KEY`) that is used to get access to the project data through our APIs. Each user of a Project has her own key.
@@ -30,6 +30,46 @@ Airbrake expects the API key to be included in all API requests to our servers i
 <aside class="notice">
 You must replace `(PROJECT_KEY|USER_KEY)` with your personal key.
 </aside>
+
+# Pagination
+
+Almost all list APIs support pagination if you need access to all items. By default only first 20 items are returned.
+
+```json
+{
+  "collectionName": [item1, item2, ..., item20],
+  "count": 12345
+}
+```
+
+### HTTP Request
+
+Get first page:
+
+`GET https://airbrake.io/api/v3/collectionName`
+
+Get second page:
+
+`GET https://airbrake.io/api/v3/collectionName?page=2`
+
+Ask for 100 items per page:
+
+`GET https://airbrake.io/api/v3/collectionName?limit=100`
+
+### Query Parameters
+
+Parameter | Default | Description
+--------- | ------- | -----------
+page | 1 | Page number.
+limit | 20 | Number of items per page.
+
+### Response
+
+Field | Example | Comment
+----- | ------- | -----------
+collectionName | `projects` | Each API has different collection name. Some APIs return multiple collections.
+count | 12345 | Total number of available items.
+page | 2 | Actual page number that backend used internally.
 
 # Projects (v3)
 
@@ -127,6 +167,8 @@ The API returns `201 Created` status code on success.
 
 ## List deploys
 
+The API returns list of project deploys. See [Pagination](#pagination) section for supported query parameters and response fields.
+
 ```shell
 curl "https://airbrake.io/api/v4/projects/PROJECT_ID/deploys?key=USER_KEY"
 ```
@@ -149,13 +191,6 @@ curl "https://airbrake.io/api/v4/projects/PROJECT_ID/deploys?key=USER_KEY"
 ### HTTP Request
 
 `GET https://airbrake.io/api/v4/projects/PROJECT_ID/deploys?key=USER_KEY`
-
-### Query Parameters
-
-Parameter | Default | Description
---------- | ------- | -----------
-page | 1 | Used to paginate deploys.
-limit | 20 | Specifies number of deploys per page.
 
 ### Response
 
@@ -190,6 +225,8 @@ The API returns `200 OK` status code.
 # Groups (v4)
 
 ## List groups
+
+The API returns list of groups. See [Pagination](#pagination) section for supported query parameters and response fields.
 
 ```shell
 curl "https://airbrake.io/api/v4/projects/PROJECT_ID/groups?key=USER_KEY"
@@ -234,13 +271,7 @@ curl "https://airbrake.io/api/v4/projects/PROJECT_ID/groups?key=USER_KEY"
 
 ### HTTP Request
 
-Get first page:
-
 `GET https://airbrake.io/api/v4/projects/PROJECT_ID/groups?key=USER_KEY`
-
-Get second page:
-
-`GET https://airbrake.io/api/v4/projects/PROJECT_ID/groups?key=USER_KEY&page=2`
 
 ### Query Parameters
 
@@ -254,8 +285,6 @@ archived | | When set to `true` returns archived groups.
 muted | | When set to `true` returns muted groups.
 start_time | | Returns groups created after `start_time`.
 end_time | | Returns groups created before `ned_time`.
-page | 1 | Used to paginate groups.
-limit | 20 | Specifies number of groups per page.
 order | last_notice | Sorts groups by `last_notice`, `notice_count`, `weight` and `created` fields.
 
 ### Response
@@ -344,6 +373,8 @@ The API returns `204 No Content` status code on success.
 
 ## List group environments
 
+The API returns list of group environments. See [Pagination](#pagination) section for supported query parameters and response fields.
+
 ```shell
 curl "https://airbrake.io/api/v4/projects/PROJECT_ID/group-environments?key=USER_KEY"
 ```
@@ -371,14 +402,14 @@ curl "https://airbrake.io/api/v4/projects/PROJECT_ID/group-environments?key=USER
 Parameter | Default | Description
 --------- | ------- | -----------
 environment | | Searches for similar environments.
-page | 1 | Used to paginate environments.
-limit | 20 | Specifies number of environments per page.
 
 ### Response
 
 The API returns `200 OK` status code on success.
 
 ## List group components
+
+The API returns list of group components. See [Pagination](#pagination) section for supported query parameters and response fields.
 
 ```shell
 curl "https://airbrake.io/api/v4/projects/PROJECT_ID/group-components?key=USER_KEY"
@@ -407,14 +438,14 @@ curl "https://airbrake.io/api/v4/projects/PROJECT_ID/group-components?key=USER_K
 Parameter | Default | Description
 --------- | ------- | -----------
 component | | Searches for similar components.
-page | 1 | Used to paginate components.
-limit | 20 | Specifies number of components per page.
 
 ### Response
 
 The API returns `200 OK` status code on success.
 
 ## List group actions
+
+The API returns list of group actions. See [Pagination](#pagination) section for supported query parameters and response fields.
 
 ```shell
 curl "https://airbrake.io/api/v4/projects/PROJECT_ID/group-actions?key=USER_KEY"
@@ -443,8 +474,6 @@ curl "https://airbrake.io/api/v4/projects/PROJECT_ID/group-actions?key=USER_KEY"
 Parameter | Default | Description
 --------- | ------- | -----------
 action | | Searches for similar actions.
-page | 1 | Used to paginate actions.
-limit | 20 | Specifies number of actions per page.
 
 ### Response
 
@@ -453,6 +482,8 @@ The API returns `200 OK` status code on success.
 # Notices (v4)
 
 ## List notices
+
+The API returns list of group notices. See [Pagination](#pagination) section for supported query parameters and response fields.
 
 ```shell
 curl "https://airbrake.io/api/v4/projects/PROJECT_ID/groups/GROUP_ID/notices?key=USER_KEY"
@@ -480,8 +511,6 @@ curl "https://airbrake.io/api/v4/projects/PROJECT_ID/groups/GROUP_ID/notices?key
 
 Parameter | Default | Description
 --------- | ------- | -----------
-page | 1 | Used to paginate notices.
-limit | 20 | Specifies number of notices per page.
 version | | Filters notices by version, e.g. `version=1.0`.
 
 ### Response
@@ -489,6 +518,8 @@ version | | Filters notices by version, e.g. `version=1.0`.
 The API returns `200 OK` status code on success.
 
 ## List versions
+
+The API returns list of notice versions. See [Pagination](#pagination) section for supported query parameters and response fields.
 
 ```shell
 curl "https://airbrake.io/api/v4/projects/PROJECT_ID/groups/GROUP_ID/versions?key=USER_KEY"
@@ -520,18 +551,13 @@ curl "https://airbrake.io/api/v4/projects/PROJECT_ID/groups/GROUP_ID/versions?ke
 
 `GET https://airbrake.io/api/v4/projects/PROJECT_ID/groups/GROUP_ID/versions?key=USER_KEY`
 
-### Query Parameters
-
-Parameter | Default | Description
---------- | ------- | -----------
-page | 1 | Used to paginate versions.
-limit | 20 | Specifies number of versions per page.
-
 ### Response
 
 The API returns `200 OK` status code on success.
 
 # Project activities (v4)
+
+The API returns list of project activities. See [Pagination](#pagination) section for supported query parameters and response fields.
 
 ## Get project activities
 
@@ -572,13 +598,6 @@ curl "https://airbrake.io/api/v4/projects/PROJECT_ID/activities?key=USER_KEY"
 ### HTTP Request
 
 `GET https://airbrake.io/api/v4/projects/PROJECT_ID/activities?key=USER_KEY`
-
-### Query Parameters
-
-Parameter | Default | Description
---------- | ------- | -----------
-page | 1 | Used to paginate activities.
-limit | 20 | Specifies number of activities per page.
 
 ### Response
 
