@@ -251,7 +251,7 @@ curl -H "Content-Type: application/json" -X POST -d '{
     { "key" : "candidate_phone", "value" : 123},
     { "key" : "resume", "value": {
       "encoded_data" : "aGVsbG8gd29ybGQ=",
-      "file_name" : "ressume.txt"
+      "file_name" : "resume.txt"
       }
     }
   ],
@@ -304,7 +304,7 @@ curl -H "Content-Type: application/json" -X POST -d '{
     { "key" : "candidate_phone", "value" : 123},
     { "key" : "resume", "value": {
       "encoded_data" : "wrong data",
-      "file_name" : "ressume.txt"
+      "file_name" : "resume.txt"
       }
     }
   ],
