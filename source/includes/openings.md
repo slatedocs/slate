@@ -275,7 +275,7 @@ id | ID of the opening
 
 ### Post data
 
-Post data is a json with a required attribute `fields` and an optional attribute `source`. `fields` is a list of candidate attributes, while `source` can be (optionally) set to the source of this candidate.
+Post data is a <a href="http://en.wikipedia.org/wiki/JSON" target="_blank">JSON</a> with a required attribute `fields` and an optional attribute `source`. `fields` is a list of candidate attributes, while `source` can be (optionally) set to the source of this candidate.
 
 Each item in `fields` has attributes `key` and `value`. The `key` can be ascertained from the [application_form GET api](#get-application-form-fields-of-a-opening) of the opening for that field. The `value` must adhere to the following constraints based on the field `type` in the [application_form GET api](#get-application-form-fields-of-a-opening)
 
@@ -289,7 +289,7 @@ select_multiple | <strong>Applicants can choose multiple options, options select
 url        | <strong>Web-link / URL</strong> eg: `{"key":"github_url", "value":"http://github.com/johndoe"}`
 email      | <strong>Email Address</strong> eg: `{"key": "email", "value": "john.doe@gmail.com"}`
 number     | <strong>Number</strong> eg: `{"key": "years_of_exp", "value": "5"}`
-file       | <strong>File should be in base64 encoded format [Know more here](http://en.wikipedia.org/wiki/Base64)</strong> eg: `{"key": "resume", "value": {"encoded_data": "aGVsbG8gd29ybGQ=", "file_name": "resume.txt" }}`
+file       | <strong>File should be in base64 encoded format <a href="http://en.wikipedia.org/wiki/Base64" target="_blank">Know more here</a></strong> eg: `{"key": "resume", "value": {"encoded_data": "aGVsbG8gd29ybGQ=", "file_name": "resume.txt" }}`
 
 ### Validation errors on Post
 
@@ -333,7 +333,7 @@ The url is not valid | -
 The email is not valid | -
 The number is not valid | -
 The date is not in valid timestamp format | -
-The file is not in base64 encoded format | The file should be encoded to base64 format. [Know more here](http://en.wikipedia.org/wiki/Base64)
+The file is not in base64 encoded format | The file should be encoded to base64 format. <a href="http://en.wikipedia.org/wiki/Base64" target="_blank">Know more here</a>
 The file_name should be specified with proper extension | A proper extension should be given for file name
 Not a valid file format. Allowed formats are ( doc, txt, html, htm, rtf, docx, odt, pdf ) | Resume should be of those allowed formats.
 Option should be a value for select_one e.g {'key':'somekey', 'value': '1'} | -
