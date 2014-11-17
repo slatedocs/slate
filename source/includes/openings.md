@@ -273,7 +273,7 @@ Parameter | Description
 --------- | -----------
 id | ID of the opening
 
-### Post data of fields
+### Post data
 
 Post data is a json with a required attribute `fields` and an optional attribute `source`. `fields` is a list of candidate attributes, while `source` can be (optionally) set to the source of this candidate.
 
