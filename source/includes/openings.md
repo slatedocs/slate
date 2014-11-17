@@ -258,7 +258,7 @@ curl -H "Content-Type: application/json" -X POST -d '{
   "source" : "new website"
   }' https://api.recruiterbox.com/v1/openings/a42f3/apply -u {api_key}:
 ```
-> The above command returns None.
+> The above command returns empty response on success with a status code 201.
 
 This endpoint lets you apply to an opening. The end result is a candidate assigned to this opening.
 
@@ -312,7 +312,7 @@ curl -H "Content-Type: application/json" -X POST -d '{
   }' https://api.recruiterbox.com/v1/openings/a42f3/apply -u {api_key}:
 ```
 
-> The above command returns JSON structured like this:
+> The above command returns JSON structured like this: (response for bad request with status code 400)
 
 ```json
   {
