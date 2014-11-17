@@ -32,13 +32,13 @@ You can see your API key, and revoke it if necessary. Be sure to keep your API k
 > Example Request
 
 ```shell
-curl https://api.recruiterbox.com/v1/openings -u {key}:
+curl https://api.recruiterbox.com/v1/openings -u {api_key}:
 
 curl uses the -u flag to pass basic auth credentials (adding a colon after your API key will prevent it from asking you for a password).
 
 ```
 
 <aside class="notice">
-You must replace `{key}` with your API key.
+You must replace `{api_key}` with your API key.
 </aside>
 
