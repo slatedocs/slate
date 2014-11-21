@@ -1,20 +1,27 @@
 # Errors
 
-<aside class="notice">This error section is stored in a separate file in `includes/_errors.md`. Slate allows you to optionally separate out your docs into many files...just save them to the `includes` folder and add them to the top of your `index.md`'s frontmatter. Files are included in the order listed.</aside>
-
-The Kittn API uses the following error codes:
-
+The NewsWhip API uses the following error codes:
 
 Error Code | Meaning
 ---------- | -------
-400 | Bad Request -- Your request sucks
-401 | Unauthorized -- Your API key is wrong
-403 | Forbidden -- The kitten requested is hidden for administrators only
-404 | Not Found -- The specified kitten could not be found
-405 | Method Not Allowed -- You tried to access a kitten with an invalid method
-406 | Not Acceptable -- You requested a format that isn't json
-410 | Gone -- The kitten requested has been removed from our servers
-418 | I'm a teapot
-429 | Too Many Requests -- You're requesting too many kittens! Slown down!
-500 | Internal Server Error -- We had a problem with our server. Try again later.
-503 | Service Unavailable -- We're temporarially offline for maintanance. Please try again later.
+400 | Bad Request -- Your request could not be parsed
+403 | Forbidden -- Your API key is not allowed to access this resource. Your API key is expired or invalid.
+429 | Too Many Requests -- Enhance your calm! or contact us for higher limits!
+500 | Internal Server Error -- We had a problem with our server. Please try again later.
+503 | Service Unavailable -- We're temporarily offline for maintenance. Please try again later.
+
+# More Information
+
+## Server-side Caching
+
+* `GET` queries are cached (per API Key) for a small amount of time. Usually about 3 minutes. Check the HTTP headers sent by our servers for an exact value.
+* `POST` queries are never cached.
+
+## Cross-Origin Resource Sharing
+
+* `GET` endpoints support 1 `Cross-origin resource sharing` per API key. Contact api@newswhip.com to set this up.
+* `POST` endpoints are server-side only.
+
+## JSONP
+
+We don't currently support JSONP.
