@@ -16,7 +16,7 @@ search: true
 
 # Overview
 
-Welcome to the NewsWhip API documentation. The NewsWhip API provides access to real time data trends, aggregate data, statistics, and social numbers for all content we track since January 1, 2014 - hundreds of millions of stories, fully categorized and ranked.
+Welcome to the NewsWhip API documentation. The NewsWhip API provides access to real time data trends, aggregate data, statistics, and social numbers for all content we have been tracking since January 1, 2014 - hundreds of millions of stories, fully categorized and ranked.
 
 The NewsWhip API is language agnostic. Any HTTP client or library can be used with this API.
 
@@ -34,7 +34,7 @@ All NewsWhip API endpoints require an API key. Your API key should be passed wit
 
 ## Getting API Access
 
-Our API is made available to Spike clients and developers who wish to work with streams of trending content in any niche. Right now, it's powering widgets on major news sites, internal dashboard, and mobile apps in Europe and North America.
+Our API is made available to NewsWhip clients and developers who wish to work with streams of trending content in any niche. Right now, it's powering widgets on major news sites, internal dashboards, and mobile apps in Europe and North America.
 
 For details on getting access, email: [api@newswhip.com](mailto:api@newswhip.com).
 
@@ -50,7 +50,7 @@ Error Code | Meaning
 
 # API Endpoints
 
-NewsWhip provides 2 different endpoints designed for different use cases, each, available at different commercial rates.
+NewsWhip provides 2 different endpoints designed for different use cases, each available at varying commercial rates.
 
 * `GET` requests: best suited for finding real-time trending articles in any niche and social network, with or without video and published in any country up to a week ago.
 * `POST` requests: best suited for very precise article filtering, real-time analytics, aggregations and reporting. These APIs slice and dice our data in any form you want.
@@ -60,7 +60,7 @@ NewsWhip provides 2 different endpoints designed for different use cases, each, 
 
 # GET Requests
 
-The real-time GET API endpoints are designed to mirror Spike's functionality. You can get all trending content in any niche or Region, ordered by any social metric.
+The real-time GET API endpoints are designed to mirror Spike's functionality. You can get all trending content in any Niche or Region, ordered by any social metric.
 
 There are 4 different endpoints:
 
@@ -225,7 +225,7 @@ search_term | Matches all stories containing `{search_term}`.
 
 # POST Requests
 
-The POST API endpoints are designed for much more flexibility and are much more powerful. With these server-side only endpoints your application gets full access to NewsWhip's database, including all content published within the last 6 months from any publisher and any supported language. Filtered, sorted and aggregated by any field you want.
+The POST API endpoints are designed for increased flexibility and are much more powerful. With these server-side only endpoints your application gets full access to NewsWhip's database, including all content published within the last 6 months from any publisher in any supported language. Filtered, sorted and aggregated by any field you want.
 
 There are 2 different endpoints:
 
