@@ -5,7 +5,7 @@ language_tabs:
   - curl
 
 toc_footers:
-  - <a href='mailto:api@newswhip.com?subject=NewsWhip%20API%20Key%20Request'>Sign Up for a Developer Key</a>
+  - <a href='#getting-api-access'>Sign Up for a Developer Key</a>
   - <p>© 2014 NewsWhip Media Ltd.</p>
 
 includes:
@@ -34,7 +34,7 @@ All NewsWhip API endpoints require an API key. Your API key should be passed wit
 
 ## Getting API Access
 
-Our API is made available to some Spike clients and developers who wish to work with streams of trending content in any niche. Right now, it's powering widgets on major news sites, internal dashboard, and mobile apps in Europe and North America.
+Our API is made available to Spike clients and developers who wish to work with streams of trending content in any niche. Right now, it's powering widgets on major news sites, internal dashboard, and mobile apps in Europe and North America.
 
 For details on getting access, email: [api@newswhip.com](mailto:api@newswhip.com).
 
