@@ -5,8 +5,8 @@ language_tabs:
   - curl
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='http://github.com/tripit/slate'>Documentation Powered by Slate</a>
+  - <a href='mailto:api@newswhip.com?subject=NewsWhip%20API%20Key%20Request'>Sign Up for a Developer Key</a>
+  - <p>© 2014 NewsWhip Media Ltd.</p>
 
 includes:
   - errors
@@ -30,7 +30,11 @@ All NewsWhip API endpoints require an API key. Your API key should be passed wit
 
 `POST /v1/articles?key=YOUR_API_KEY`
 
-To request an API key [send us an email at api@newswhip.com](mailto:api@newswhip.com). Our API plans are custom tailored to fit your business, your application and your budget. 
+## Getting API Access
+
+Our API is made available to some Spike clients and developers who wish to work with streams of trending content in any niche. Right now, it's powering widgets on major news sites, internal dashboard, and mobile apps in Europe and North America.
+
+For details on getting access, email: [api@newswhip.com](mailto:api@newswhip.com).
 
 <aside class="warning">Your API key should be treated as a password. It should be kept secret at all times.</aside>
 
@@ -87,7 +91,7 @@ To retrieve a full list of the available fields for each filter (regions, catego
 `GET /v1/local`
 
 
-## GET Content by Region
+## GET /v1/region
 
 > Get the top trending English content published in the last 24 hours
 
@@ -163,7 +167,7 @@ region | Filters articles published in that {region}. See above for available co
 category | Filters articles by `{category}`. See above for available categories. i.e. `All`, `News`, `Pre-Viral`
 time_period | Filters articles published within the last `{time_period}` hours. Valid time_periods range from 1 to 168 hours
 
-## GET Content by Publisher
+## GET /v1/publisher
 
 > Get the top trending content published in the last 24 hours by the New York Times.
 
@@ -182,7 +186,7 @@ Parameter | Description
 publisher | Any domain or subdomain. i.e. `nytimes.com`, `blog.newswhip.com`.
 time_period | Filters articles published within the last `{time_period}` hours. Valid time_periods range from 1 to 168 hours
 
-## GET Content by Local Region
+## GET /v1/local
 
 > Get the top trending content published in Seattle, in the last 12 hours.
 
@@ -194,7 +198,7 @@ curl "https://api.newswhip.com/v1/publisher/nytimes.com/12"
 
 This endpoint retrieves all articles published in `{city}` within the `{time_period}`.
 
-## GET Search
+## GET /v1/search
 
 > Get the top trending content published talking about `Tom Cruise`, in the last 24 hours.
 
@@ -287,7 +291,7 @@ curl -H "Content-Type: application/json" -X POST -d '{
 }
 ```
 
-`GET /v1/articles`
+`POST /v1/articles`
 
 This endpoint retrieves all articles matching your filters.
 
@@ -298,12 +302,12 @@ Required fields are denoted *. Filtering by category or country requires ids whi
 
 Parameter | Default | Type | Description
 --------- | ------- | ---- | -----------
-filters* | false | Array[String] | List of Lucene QueryString filters to be applied to the articles' content. See available fields for filtering below.
+filters* |  | Array[String] | List of Lucene QueryString filters to be applied to the articles' content. See available fields for filtering below.
 from | A week ago | Unix timestamp in milliseconds | Filters articles published after {from}.
 to | Now | Unix timestamp in milliseconds | Filters articles published before {to}.
 sort_by | default | String | One of the following: `default`, `fb_likes`, `fb_shares`, `fb_comments`, `fb_total`, `twitter`, `linkedin`, `fb_tw_and_li`, `nw_score`, `nw_max_score`.
 video_only | false | 
-default_field | Relevant fields only | String | Field to use by default when searching filtering by keywords like "Barack Obama" and no field is specified.
+default_field | Relevant fields | String | Field to be used when filtering by keywords (like "Barack Obama") and no fields are set in the Query String.
 size |   | Integer | Max number of articles to be returned.
 find_related | true | Boolean | Related stories will be collapsed when set.
 
@@ -320,17 +324,123 @@ categories | Number |
 publisher | 
 href | 
 
+<aside class="notice">Due to historical reasons, the queryable fields `headline` and `summary` differ in naming from their `Article` counterparts `link` and `excerpt`.</aside>
+
 ## POST /v1/stats
 
-> Get the top trending content published talking about `Tom Cruise`, in the last 24 hours.
+> Get the top English language publishers that create the best performing content on Facebook about `"3d printing"` since a week ago
 
-``` curl
-curl "https://api.newswhip.com/v1/search?q=Tom%20Cruise"
+```curl
+curl -H "Content-Type: application/json" -X POST -d '{
+    "filters": [
+        "3d printing"
+    ],
+	"language" : "en",
+	"sort_by" : "fb_total.sum",
+	"aggregate_by" : "domain"
+}' "https://api.newswhip.com/v1/stats"
 ```
 
-`GET /v1/search?q={search_term}`
+```json
+[
+    {
+        "key": "news.discovery.com",
+        "stats": {
+            "fb_total": {
+                "count": 3,
+                "min": 20.0,
+                "max": 19625.0,
+                "avg": 6558.333333333333,
+                "sum": 19675.0,
+                "sum_of_squares": 3.85141925E8,
+                "variance": 8.536890555555557E7,
+                "std_deviation": 9239.529509426093
+            },
+            "twitter": {
+                "count": 3,
+                "min": 17.0,
+                "max": 128.0,
+                "avg": 69.0,
+                "sum": 207.0,
+                "sum_of_squares": 20517.0,
+                "variance": 2078.0,
+                "std_deviation": 45.58508528016593
+            },
+            "linkedin": {
+                "count": 3,
+                "min": 0.0,
+                "max": 11.0,
+                "avg": 7.333333333333333,
+                "sum": 22.0,
+                "sum_of_squares": 242.0,
+                "variance": 26.888888888888886,
+                "std_deviation": 5.185449728701348
+            },
+            "fb_shares": {
+                "count": 3,
+                "min": 15.0,
+                "max": 1416.0,
+                "avg": 482.6666666666667,
+                "sum": 1448.0,
+                "sum_of_squares": 2005570.0,
+                "variance": 435556.2222222222,
+                "std_deviation": 659.9668341835234
+            },
+            "fb_comments": {
+                "count": 3,
+                "min": 0.0,
+                "max": 1164.0,
+                "avg": 388.6666666666667,
+                "sum": 1166.0,
+                "sum_of_squares": 1354900.0,
+                "variance": 300571.55555555556,
+                "std_deviation": 548.2440656820241
+            },
+            "fb_likes": {
+                "count": 3,
+                "min": 3.0,
+                "max": 17045.0,
+                "avg": 5687.0,
+                "sum": 17061.0,
+                "sum_of_squares": 2.90532203E8,
+                "variance": 6.4502098666666664E7,
+                "std_deviation": 8031.319858321337
+            },
+            "pinterest": {
+                "count": 3,
+                "min": 0.0,
+                "max": 1.0,
+                "avg": 0.6666666666666666,
+                "sum": 2.0,
+                "sum_of_squares": 2.0,
+                "variance": 0.22222222222222224,
+                "std_deviation": 0.4714045207910317
+            }
+        },
+        "total": 19904.0
+    }
+]
+```
 
-This endpoint retrieves all articles talking about `{search_term}`.
+`POST /v1/stats`
+
+This endpoint retrieves stats for articles matching your filters.
+
+### Parameters
+
+Stories are filtered and sorted using the following JSON encoded parameters. 
+Required fields are denoted *. Filtering by category or country requires ids which can be found at the end of this document: // TODO
+
+Parameter | Default | Type | Description
+--------- | ------- | ---- | -----------
+filters* |  | Array[String] | List of Lucene QueryString filters to be applied to the articles' content. See available fields for filtering above.
+from | A week ago | Unix timestamp in milliseconds | Filters articles published after {from}.
+to | Now | Unix timestamp in milliseconds | Filters articles published before {to}.
+sort_by* |  | String.{aggregation_name}.{stat_value} | `{aggregation_name}` is one of `fb_likes`, `fb_shares`, `fb_comments`, `fb_total`, `twitter`, `linkedin`, `pinterest` and `{stat_value}` is one of `count`, `min`, `max`, `avg`, `sum`, `sum_of_squares`, `variance`, `std_dev`.
+aggregate_by* |  | String | Groups all matched stories by any of the following: `publisher`, `domains`, `domain`, `language`, `authors`, `country`, `categories`
+video_only | false | 
+default_field | Relevant fields | String | Field to be used when filtering by keywords (like "Barack Obama") and no fields are set in the Query String.
+size |   | Integer | Max number of aggregations to be returned.
 
 # Entities
 

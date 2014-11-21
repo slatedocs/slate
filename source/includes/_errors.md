@@ -13,12 +13,12 @@ Error Code | Meaning
 
 # More Information
 
-## Server side Caching
+## Server-side Caching
 
-* `GET` queries are cached (per API Key) for a small amount of time. Usually about 3 minutes. Check the HTTP headers sent by our servers for an exact metric.
+* `GET` queries are cached (per API Key) for a small amount of time. Usually about 3 minutes. Check the HTTP headers sent by our servers for an exact value.
 * `POST` queries are never cached.
 
-## CORS support
+## Cross-Origin Resource Sharing
 
 * `GET` endpoints support 1 `Cross-origin resource sharing` per API key. Contact api@newswhip.com to set this up.
 * `POST` endpoints are server-side only.
