@@ -16,11 +16,11 @@ search: true
 
 # Overview
 
-Welcome to the NewsWhip API documentation. The NewsWhip API provides access to real time data trends, aggregate data, statistics, and social numbers for all content we track.
+Welcome to the NewsWhip API documentation. The NewsWhip API provides access to real time data trends, aggregate data, statistics, and social numbers for all content we track since January 1, 2014 - hundreds of millions of stories, fully categorized and ranked.
 
-The NewsWhip's API is language agnostic. Any HTTP client or library can be used with this API.
+The NewsWhip API is language agnostic. Any HTTP client or library can be used with this API.
 
-This documentation is open source. Feel free to send us a pull request if you've found any errors or would like to improve this document: [GitHub](http://github.com/NewsWhip/slate).
+This documentation is open source. If you've found any errors, typos or would like to improve this document, feel free to send us a pull request: [GitHub](http://github.com/NewsWhip/slate).
 
 # Authentication
 
@@ -30,17 +30,17 @@ All NewsWhip API endpoints require an API key. Your API key should be passed wit
 
 `POST /v1/articles?key=YOUR_API_KEY`
 
+<aside class="warning">Your API key should be treated as a password. It should be kept secret at all times.</aside>
+
 ## Getting API Access
 
 Our API is made available to some Spike clients and developers who wish to work with streams of trending content in any niche. Right now, it's powering widgets on major news sites, internal dashboard, and mobile apps in Europe and North America.
 
 For details on getting access, email: [api@newswhip.com](mailto:api@newswhip.com).
 
-<aside class="warning">Your API key should be treated as a password. It should be kept secret at all times.</aside>
-
 # Rate Limits
 
-Each API key is limited by default to a 100 API requests per 5 minutes. Once you exceed this limit, calls will return: 
+Each API key is limited by default to 100 API requests per 5 minutes. Once you exceed this limit, calls will return: 
 
 Error Code | Meaning
 ---------- | -------
@@ -81,13 +81,13 @@ size |  | Number of articles to be returned (including related articles).
 
 To retrieve a full list of the available fields for each filter (regions, categories, publishers), access:
 
-### All available Regions and Categories
+### Available Regions and Categories
 `GET /v1/region`
 
 ### Sample of publishers we support
 `GET /v1/publisher`
 
-### All cities and local regions we currently support
+### Available cities and local regions
 `GET /v1/local`
 
 
@@ -163,9 +163,9 @@ This endpoint retrieves all articles published in `{region}` and `{category}` wi
 
 Parameter | Description
 --------- | -----------
-region | Filters articles published in that {region}. See above for available countries. i.e. `U.S.`, `France`, `Ireland`
+region | Filters articles published in `{region}`. See above for available countries. i.e. `U.S.`, `France`, `Ireland`
 category | Filters articles by `{category}`. See above for available categories. i.e. `All`, `News`, `Pre-Viral`
-time_period | Filters articles published within the last `{time_period}` hours. Valid time_periods range from 1 to 168 hours
+time_period | Filters articles published within the last `{time_period}` hours. Valid `time_periods` range from 1 up to 168 hours
 
 ## GET /v1/publisher
 
@@ -184,7 +184,7 @@ This endpoint retrieves all articles published by `{publisher}` within the `{tim
 Parameter | Description
 --------- | -----------
 publisher | Any domain or subdomain. i.e. `nytimes.com`, `blog.newswhip.com`.
-time_period | Filters articles published within the last `{time_period}` hours. Valid time_periods range from 1 to 168 hours
+time_period | Filters articles published within the last `{time_period}` hours. Valid `time_periods` range from 1 up to 168 hours
 
 ## GET /v1/local
 
@@ -198,6 +198,13 @@ curl "https://api.newswhip.com/v1/publisher/nytimes.com/12"
 
 This endpoint retrieves all articles published in `{city}` within the `{time_period}`.
 
+### Parameters
+
+Parameter | Description
+--------- | -----------
+city | Any city or local region. See above for available local regions. i.e. `New York, NY`, `London`, `Toronto`, `Hamburg-Schleswig-Holstein`.
+time_period | Filters articles published within the last `{time_period}` hours. Valid `time_periods` range from 1 up to 168 hours
+
 ## GET /v1/search
 
 > Get the top trending content published talking about `Tom Cruise`, in the last 24 hours.
@@ -208,7 +215,7 @@ curl "https://api.newswhip.com/v1/search?q=Tom%20Cruise"
 
 `GET /v1/search?q={search_term}`
 
-This endpoint retrieves all articles talking about `{search_term}`.
+This endpoint retrieves all articles talking about `{search_term}` in the last 24 hours.
 
 ### Parameters
 
@@ -222,8 +229,8 @@ The POST API endpoints are designed for much more flexibility and are much more 
 
 There are 2 different endpoints:
 
-* `POST /v1/articles` - provides the content that match all your filters
-* `POST /v1/stats` - provides stats on the stories that match your filters
+* `POST /v1/articles` - provides content by matching it against a set of filters
+* `POST /v1/stats` - provides stats on the content matching the filters provided
 
 ## POST /v1/articles
 
@@ -293,21 +300,22 @@ curl -H "Content-Type: application/json" -X POST -d '{
 
 `POST /v1/articles`
 
-This endpoint retrieves all articles matching your filters.
+This endpoint retrieves all articles matching the filters provided.
 
 ### Parameters
 
-Stories are filtered and sorted using the following JSON encoded parameters. 
-Required fields are denoted *. Filtering by category or country requires ids which can be found at the end of this document: // TODO
+* Stories are filtered and sorted using the following `JSON` encoded parameters. 
+* Required fields are denoted *. 
+* Filtering by category or country requires ids which can be found at the end of this document: // TODO
 
 Parameter | Default | Type | Description
 --------- | ------- | ---- | -----------
-filters* |  | Array[String] | List of Lucene QueryString filters to be applied to the articles' content. See available fields for filtering below.
-from | A week ago | Unix timestamp in milliseconds | Filters articles published after {from}.
-to | Now | Unix timestamp in milliseconds | Filters articles published before {to}.
+filters* |  | Array[String] | List of Lucene QueryString filters to be applied to the articles. See available fields for filtering below.
+from | A week ago | Unix timestamp in milliseconds | Filters articles published after `{from}`.
+to | Now | Unix timestamp in milliseconds | Filters articles published before `{to}`.
 sort_by | default | String | One of the following: `default`, `fb_likes`, `fb_shares`, `fb_comments`, `fb_total`, `twitter`, `linkedin`, `fb_tw_and_li`, `nw_score`, `nw_max_score`.
 video_only | false | 
-default_field | Relevant fields | String | Field to be used when filtering by keywords (like "Barack Obama") and no fields are set in the Query String.
+default_field | Relevant fields | String | Field to be used when filtering by keywords (like `"Barack Obama"`) and no fields are used in the Query String.
 size |   | Integer | Max number of articles to be returned.
 find_related | true | Boolean | Related stories will be collapsed when set.
 
@@ -433,13 +441,13 @@ Required fields are denoted *. Filtering by category or country requires ids whi
 
 Parameter | Default | Type | Description
 --------- | ------- | ---- | -----------
-filters* |  | Array[String] | List of Lucene QueryString filters to be applied to the articles' content. See available fields for filtering above.
+filters* |  | Array[String] | List of Lucene QueryString filters to be applied to the articles. See available fields for filtering above.
 from | A week ago | Unix timestamp in milliseconds | Filters articles published after {from}.
 to | Now | Unix timestamp in milliseconds | Filters articles published before {to}.
 sort_by* |  | String.{aggregation_name}.{stat_value} | `{aggregation_name}` is one of `fb_likes`, `fb_shares`, `fb_comments`, `fb_total`, `twitter`, `linkedin`, `pinterest` and `{stat_value}` is one of `count`, `min`, `max`, `avg`, `sum`, `sum_of_squares`, `variance`, `std_dev`.
 aggregate_by* |  | String | Groups all matched stories by any of the following: `publisher`, `domains`, `domain`, `language`, `authors`, `country`, `categories`
 video_only | false | 
-default_field | Relevant fields | String | Field to be used when filtering by keywords (like "Barack Obama") and no fields are set in the Query String.
+default_field | Relevant fields | String | Field to be used when filtering by keywords (like `"Barack Obama"`) and no fields are used in the Query String.
 size |   | Integer | Max number of aggregations to be returned.
 
 # Entities
