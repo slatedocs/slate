@@ -2,7 +2,8 @@
 title: API Reference | NewsWhip
 
 language_tabs:
-  - curl
+  - shell
+  - php
 
 toc_footers:
   - <a href='#getting-api-access'>Sign Up for a Developer Key</a>
@@ -95,8 +96,19 @@ To retrieve a full list of the available fields for each filter (regions, catego
 
 > Get the top trending English content published in the last 24 hours
 
-``` curl
-curl "https://api.newswhip.com/v1/region/World/All/24"
+``` shell
+curl "https://api.newswhip.com/v1/region/World/All/24?key=YOUR_API_KEY"
+```
+
+``` php
+<?php 
+require 'vendor/autoload.php';
+use GuzzleHttp\Client;
+
+$client = new Client();
+$response = $client->get('https://api.newswhip.com/v1/region/World/All/24?key=YOUR_API_KEY', []);
+echo $response->getBody();
+?> 
 ```
 
 ```json
@@ -171,8 +183,19 @@ time_period | Filters articles published within the last `{time_period}` hours. 
 
 > Get the top trending content published in the last 24 hours by the New York Times.
 
-``` curl
-curl "https://api.newswhip.com/v1/publisher/nytimes.com/24"
+``` shell
+curl "https://api.newswhip.com/v1/publisher/nytimes.com/24?key=YOUR_API_KEY"
+```
+
+``` php
+<?php 
+require 'vendor/autoload.php';
+use GuzzleHttp\Client;
+
+$client = new Client();
+$response = $client->get('https://api.newswhip.com/v1/publisher/nytimes.com/24?key=YOUR_API_KEY', []);
+echo $response->getBody();
+?> 
 ```
 
 `GET /v1/publisher/{publisher}/{time_period}`
@@ -190,8 +213,19 @@ time_period | Filters articles published within the last `{time_period}` hours. 
 
 > Get the top trending content published in Seattle, in the last 12 hours.
 
-``` curl
-curl "https://api.newswhip.com/v1/publisher/nytimes.com/12"
+``` shell
+curl "https://api.newswhip.com/v1/local/Seattle, WA/All/12?key=YOUR_API_KEY"
+```
+
+``` php
+<?php 
+require 'vendor/autoload.php';
+use GuzzleHttp\Client;
+
+$client = new Client();
+$response = $client->get('https://api.newswhip.com/v1/local/Seattle, WA/All/12?key=YOUR_API_KEY', []);
+echo $response->getBody();
+?> 
 ```
 
 `GET /v1/local/{city}/All/{time_period}`
@@ -209,8 +243,19 @@ time_period | Filters articles published within the last `{time_period}` hours. 
 
 > Get the top trending content published talking about `Tom Cruise`, in the last 24 hours.
 
-```curl
-curl "https://api.newswhip.com/v1/search?q=Tom%20Cruise"
+``` shell
+curl "https://api.newswhip.com/v1/search?q=Tom%20Cruise?key=YOUR_API_KEY"
+```
+
+``` php
+<?php 
+require 'vendor/autoload.php';
+use GuzzleHttp\Client;
+
+$client = new Client();
+$response = $client->get('https://api.newswhip.com/v1/search?q=Tom%20Cruise?key=YOUR_API_KEY', []);
+echo $response->getBody();
+?> 
 ```
 
 `GET /v1/search?q={search_term}`
@@ -236,12 +281,29 @@ There are 2 different endpoints:
 
 > Get the top trending content published by the NYTimes.com that talk about Barack Obama since a week ago
 
-```curl
+``` shell
 curl -H "Content-Type: application/json" -X POST -d '{
     "filters": [
         "nytimes.com AND \"Barack Obama\""
     ]
-}' "https://api.newswhip.com/v1/articles"
+}' "https://api.newswhip.com/v1/articles?key=YOUR_API_KEY"
+```
+
+```php
+<?php 
+require 'vendor/autoload.php';
+use GuzzleHttp\Client;
+
+$client = new Client();
+$response = $client->post('https://api.newswhip.com/v1/articles?key=YOUR_API_KEY', [
+	'headers' => ['Content-Type' => 'application/json'],
+	'body' => '{
+		"filters": [
+			"nytimes.com AND \"Barack Obama\""
+		]
+	}']);
+echo $response->getBody();
+?> 
 ```
 
 ```json
@@ -346,7 +408,27 @@ curl -H "Content-Type: application/json" -X POST -d '{
 	"language" : "en",
 	"sort_by" : "fb_total.sum",
 	"aggregate_by" : "domain"
-}' "https://api.newswhip.com/v1/stats"
+}' "https://api.newswhip.com/v1/stats?key=YOUR_API_KEY"
+```
+
+```php
+<?php 
+require 'vendor/autoload.php';
+use GuzzleHttp\Client;
+
+$client = new Client();
+$response = $client->post('https://api.newswhip.com/v1/stats?key=YOUR_API_KEY', [
+	'headers' => ['Content-Type' => 'application/json'],
+	'body' => '{
+		"filters": [
+			"3d printing"
+		],
+		"language" : "en",
+		"sort_by" : "fb_total.sum",
+		"aggregate_by" : "domain"
+	}']);
+echo $response->getBody();
+?> 
 ```
 
 ```json
