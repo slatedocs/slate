@@ -71,9 +71,9 @@ collectionName | `projects` | Each API has different collection name. Some APIs 
 count | 12345 | Total number of available items.
 page | 2 | Actual page number that backend used internally.
 
-# Projects (v3)
+# Projects v4
 
-## List projects
+## List projects v4
 
 ```shell
 curl "https://airbrake.io/api/v3/projects?key=USER_KEY"
@@ -106,7 +106,7 @@ curl "https://airbrake.io/api/v3/projects?key=USER_KEY"
 
 The API returns `200 OK` status code on success.
 
-## Show project
+## Show project v4
 
 ```shell
 curl "https://airbrake.io/api/v3/projects/PROJECT_ID?key=USER_KEY"
@@ -137,9 +137,9 @@ curl "https://airbrake.io/api/v3/projects/PROJECT_ID?key=USER_KEY"
 
 The API returns `200 OK` status code on success.
 
-# Deploys (v4)
+# Deploys v4
 
-## Create deploy
+## Create deploy v4
 
 ```shell
 curl -X POST -H "Content-Type: application/json" -d '{"environment":"production","username":"john","repository":"https://github.com/airbrake/airbrake","revision":"38748467ea579e7ae64f7815452307c9d05e05c5",version:"v2.0"}' "https://airbrake.io/api/v4/projects/PROJECT_ID/deploys?key=PROJECT_KEY"
@@ -165,7 +165,7 @@ version | v2.0
 
 The API returns `201 Created` status code on success.
 
-## List deploys
+## List deploys v4
 
 The API returns list of project deploys. See [Pagination](#pagination) section for supported query parameters and response fields.
 
@@ -196,7 +196,7 @@ curl "https://airbrake.io/api/v4/projects/PROJECT_ID/deploys?key=USER_KEY"
 
 The API returns `200 OK` status code on success.
 
-## Show deploy
+## Show deploy v4
 
 ```shell
 curl "https://airbrake.io/api/v4/projects/PROJECT_ID/deploys/DEPLOY_ID?key=USER_KEY"
@@ -222,9 +222,9 @@ curl "https://airbrake.io/api/v4/projects/PROJECT_ID/deploys/DEPLOY_ID?key=USER_
 
 The API returns `200 OK` status code.
 
-# Groups (v4)
+# Groups v4
 
-## List groups
+## List groups v4
 
 The API returns list of groups. See [Pagination](#pagination) section for supported query parameters and response fields.
 
@@ -291,7 +291,7 @@ order | last_notice | Sorts groups by `last_notice`, `notice_count`, `weight` an
 
 The API returns `200 OK` status code on success
 
-## Show group
+## Show group v4
 
 ```shell
 curl "https://airbrake.io/api/v4/projects/PROJECT_ID/groups/GROUP_ID?key=USER_KEY"
@@ -339,7 +339,7 @@ curl "https://airbrake.io/api/v4/projects/PROJECT_ID/groups/GROUP_ID?key=USER_KE
 
 The API returns `200 OK` status code on success
 
-## Mute group
+## Mute group v4
 
 This API removes group from the default list and disables all notifications.
 
@@ -355,7 +355,7 @@ curl -X PUT "https://airbrake.io/api/v4/projects/PROJECT_ID/groups/GROUP_ID/mute
 
 The API returns `204 No Content` status code on success.
 
-## Unmute group
+## Unmute group v4
 
 Opposite of the mute group.
 
@@ -371,7 +371,7 @@ curl -X PUT "https://airbrake.io/api/v4/projects/PROJECT_ID/groups/GROUP_ID/unmu
 
 The API returns `204 No Content` status code on success.
 
-## List group environments
+## List group environments v4
 
 The API returns list of group environments. See [Pagination](#pagination) section for supported query parameters and response fields.
 
@@ -407,7 +407,7 @@ environment | | Searches for similar environments.
 
 The API returns `200 OK` status code on success.
 
-## List group components
+## List group components v4
 
 The API returns list of group components. See [Pagination](#pagination) section for supported query parameters and response fields.
 
@@ -443,7 +443,7 @@ component | | Searches for similar components.
 
 The API returns `200 OK` status code on success.
 
-## List group actions
+## List group actions v4
 
 The API returns list of group actions. See [Pagination](#pagination) section for supported query parameters and response fields.
 
@@ -479,9 +479,9 @@ action | | Searches for similar actions.
 
 The API returns `200 OK` status code on success.
 
-# Notices (v4)
+# Notices v4
 
-## List notices
+## List notices v4
 
 The API returns list of group notices. See [Pagination](#pagination) section for supported query parameters and response fields.
 
@@ -517,7 +517,7 @@ version | | Filters notices by version, e.g. `version=1.0`.
 
 The API returns `200 OK` status code on success.
 
-## Delete notice
+## Delete notice v4
 
 The API permanently deletes notice.
 
@@ -535,7 +535,7 @@ curl -X DELETE "https://airbrake.io/api/v4/projects/PROJECT_ID/groups/GROUP_ID/n
 
 The API returns `204 NO CONTENT` status code on success.
 
-## List versions
+## List versions v4
 
 The API returns list of notice versions. See [Pagination](#pagination) section for supported query parameters and response fields.
 
@@ -573,11 +573,11 @@ curl "https://airbrake.io/api/v4/projects/PROJECT_ID/groups/GROUP_ID/versions?ke
 
 The API returns `200 OK` status code on success.
 
-# Project activities (v4)
+# Project activities v4
 
 The API returns list of project activities. See [Pagination](#pagination) section for supported query parameters and response fields.
 
-## Get project activities
+## List project activities v4
 
 ```shell
 curl "https://airbrake.io/api/v4/projects/PROJECT_ID/activities?key=USER_KEY"
@@ -621,9 +621,9 @@ curl "https://airbrake.io/api/v4/projects/PROJECT_ID/activities?key=USER_KEY"
 
 The API returns `200 OK` status code on success.
 
-# iOS crash reports (v3)
+# iOS crash reports v3
 
-## Create iOS crash report
+## Create iOS crash report v3
 
 ```shell
 curl -X POST -H "Content-Type: application/json" -d '{"report":"REPORT_TEXT"}' "https://airbrake.io/api/v3/projects/PROJECT_ID/ios-reports?key=PROJECT_KEY"
