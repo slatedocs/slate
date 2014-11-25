@@ -517,6 +517,24 @@ version | | Filters notices by version, e.g. `version=1.0`.
 
 The API returns `200 OK` status code on success.
 
+## Delete notice
+
+The API permanently deletes notice.
+
+<aside class="warning">This operation can not be undone. Use it with care.</aside>
+
+```shell
+curl -X DELETE "https://airbrake.io/api/v4/projects/PROJECT_ID/groups/GROUP_ID/notices/NOTICE_ID?key=USER_KEY"
+```
+
+### HTTP Request
+
+`DELETE https://airbrake.io/api/v4/projects/PROJECT_ID/groups/GROUP_ID/notices/NOTICE_ID?key=USER_KEY`
+
+### Response
+
+The API returns `204 NO CONTENT` status code on success.
+
 ## List versions
 
 The API returns list of notice versions. See [Pagination](#pagination) section for supported query parameters and response fields.
