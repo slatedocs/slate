@@ -93,6 +93,13 @@
                         <span class="c">&lt;!-- Identificação do estabelecimento comercial no adquirente.
                              Também conhecido internamente como “SaleAffiliationKey”. --&gt;</span>
                         <span class="nt">&lt;Id&gt;</span>BFDB58AB9A8A48828C2647E18B7F1114<span class="nt">&lt;/Id&gt;</span>
+                        <span class="c">&lt;!-- O nome que aparecerá na fatura.
+                             - se a transação for mastercard, o limite é 22 caracteres;
+                             - se a transação for visa, o limite é 25 caracteres;
+                             - se for parcelado, a visa usa os 8 primeiros caracteres do
+                               nome do lojista pra passar a informação de parcelamento,
+                               sobrando 17 caracteres. --&gt;</span>
+                        <span class="nt">&lt;ShortName&gt;</span>Nome da fatura<span class="nt">&lt;/ShortName&gt;</span>
                     <span class="nt">&lt;/Id&gt;</span>
                 <span class="nt">&lt;/Mrchnt&gt;</span>
                 <span class="c">&lt;!-- Dados do ponto de interação --&gt;</span>
@@ -229,6 +236,12 @@
 <td>[1..1]</td>
 <td>Text</td>
 <td>Identificação do estabelecimento comercial no adquirente. Também conhecido internamente como “SaleAffiliationKey”.</td>
+</tr>
+<tr>
+<td>ShortName</td>
+<td>[0..1]</td>
+<td>Text</td>
+<td>O nome que aparecerá na fatura.  Se a transação for mastercard, o limite é 22 caracteres; Se a transação for visa, o limite é 25 caracteres; Se for parcelado, a visa usa os 8 primeiros caracteres do nome do lojista pra passar a informação de parcelamento, sobrando 17 caracteres.</td>
 </tr>
 <tr>
 <td>Poi<code class="prettyprint">&lt;POI&gt;</code></td>
