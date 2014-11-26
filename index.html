@@ -63,7 +63,12 @@
 
 <p>Por exemplo, para criar uma autorização, a loja deverá enviar uma mensagem <a href="#">AcceptorAuthorisationRequest</a> para o adquirente, que irá checar com o banco emissor se o cliente consumidor possui recursos para financiar o pagamento. Nessa mensagem, além dos dados de credenciamento da loja, a loja enviará os dados do dono do cartão e os dados da transação, como valor total, número de parcelas, etc.</p>
 <h1 id='mensagens'>Mensagens</h1>
-<p>Todas as mensagens serão enviadas através do protocolo HTTP. Para o ambiente de produção, as mensagens deverão ser enviadas utilizando o método <strong>POST</strong> para <a href="http://pos.stone.com.br:3989">http://pos.stone.com.br:3989</a>. O endpoint de testes será liberado e definido de acordo com cada integrador.</p>
+<p>Todas as mensagens serão enviadas através do protocolo HTTP. Todas as mensagens são enviadas utilizando o método <strong>POST</strong> para o seguinte endpoint:</p>
+
+<ul>
+<li>Para o ambiente de produção <a href="http://pos.stone.com.br">http://pos.stone.com.br</a>.</li>
+<li>Para o ambiente de testes  <a href="http://dev.stone.com.br">http://dev.stone.com.br</a>.</li>
+</ul>
 <h2 id='mensagens-de-autorizao'>Mensagens de Autorização</h2>
 <p>É o processo de troca de mensagens entre o estabelecimento e o adquirente onde é verificado se portador do cartão possui ou não saldo suficiente para a realização de um pagamento. A diferença entre a mensagem de autorização com captura automática e com captura posterior, está no elemento <code class="prettyprint">TxCaptr</code> que deve ser informado <code class="prettyprint">true</code> para Autorização com Captura, ou <code class="prettyprint">false</code> para Autorização com Captura posterior.</p>
 <h3 id='requisio-de-autorizao'>Requisição de autorização</h3>
