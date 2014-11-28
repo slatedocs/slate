@@ -368,13 +368,14 @@ This endpoint retrieves all articles matching the filters provided.
 
 * Stories are filtered and sorted using the following `JSON` encoded parameters. 
 * Required fields are denoted *. 
-* Filtering by category or country requires ids which can be found at the end of this document: // TODO
+* Filtering by category or country requires ids which can be found here: [NewsWhip API](http://www.newswhip.com/api#regions-covered)
 
 Parameter | Default | Type | Description
 --------- | ------- | ---- | -----------
-filters* |  | Array[String] | List of Lucene QueryString filters to be applied to the articles. See available fields for filtering below.
+filters* |  | Array[String] | List of [Lucene QueryString](https://lucene.apache.org/core/4_10_2/queryparser/org/apache/lucene/queryparser/classic/package-summary.html#package_description) filters to be applied to the articles. See available fields for filtering below.
 from | A week ago | Unix timestamp in milliseconds | Filters articles published after `{from}`.
 to | Now | Unix timestamp in milliseconds | Filters articles published before `{to}`.
+language | Any | Two letter ISO 639-1 language code |
 sort_by | default | String | One of the following: `default`, `fb_likes`, `fb_shares`, `fb_comments`, `fb_total`, `twitter`, `linkedin`, `fb_tw_and_li`, `nw_score`, `nw_max_score`.
 video_only | false | 
 default_field | Relevant fields | String | Field to be used when filtering by keywords (like `"Barack Obama"`) and no fields are used in the Query String.
@@ -519,13 +520,14 @@ This endpoint retrieves stats for articles matching your filters.
 ### Parameters
 
 Stories are filtered and sorted using the following JSON encoded parameters. 
-Required fields are denoted *. Filtering by category or country requires ids which can be found at the end of this document: // TODO
+Required fields are denoted *. Filtering by category or country requires ids which can be found here: [NewsWhip API](http://www.newswhip.com/api#regions-covered)
 
 Parameter | Default | Type | Description
 --------- | ------- | ---- | -----------
 filters* |  | Array[String] | List of Lucene QueryString filters to be applied to the articles. See available fields for filtering above.
 from | A week ago | Unix timestamp in milliseconds | Filters articles published after {from}.
 to | Now | Unix timestamp in milliseconds | Filters articles published before {to}.
+language | Any | Two letter ISO 639-1 language code |
 sort_by* |  | String.{aggregation_name}.{stat_value} | `{aggregation_name}` is one of `fb_likes`, `fb_shares`, `fb_comments`, `fb_total`, `twitter`, `linkedin`, `pinterest` and `{stat_value}` is one of `count`, `min`, `max`, `avg`, `sum`, `sum_of_squares`, `variance`, `std_dev`.
 aggregate_by* |  | String | Groups all matched stories by any of the following: `publisher`, `domains`, `domain`, `language`, `authors`, `country`, `categories`
 video_only | false | 
