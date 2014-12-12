@@ -55,3 +55,49 @@ Or in a header that looks like the following:
 <aside class="notice">
 You must replace `YOUR-ACCESS-TOKEN` with your API key.
 </aside>
+
+# Listing Data Types
+
+> Sample JSON Payload:
+
+```json
+[
+  {
+    "listing_id": "f76ae9ceb01cf2904fe2",
+    "name": "Instant Plumbing",
+    "address": "1944 W Coolbrook Ave",
+    "locality": "Pheonix",
+    "region": "AZ",
+    "postcode": "85023",
+    "tel": "(602) 993-3532",
+    "website": "http://mywebsite.com",
+    "longitude": "-112.10158",
+    "latitude": "33.643668",
+    "facebook_id": "568020079969282"
+  }
+]
+
+```
+
+Business listings are made up of different pieces of data. These are the excepted base record data for a business. These should be sent in the JSON payload. These are all optional except where requests require a particular parameter. You may also add in any data that is not included specifically here, label the data type appropriatly, we will accept any data you would like to send.
+
+### Data Types
+
+Data Type | Description
+--------- | -----------
+listing_id |  Your unique identifier for the listing, used for adding or deleting a record
+name | Name of the business
+address | Address of the business
+address_extended | Second address of the business if there is one
+locality | City where the business is located
+region | State in which the business is located, should be 2 character abreviation
+postalcode | Postal code where the business is located, should be a minimum 5 digits
+tel | Telephone number of the business, should be 10 digits
+website |  URL for the business, include http:// 
+email | Email address for the business
+logitude | Longitude of the business location
+latitude | Latitude of the business location
+facebook_id | The Facebook ID or the name of the page for the business
+twitter_id | Twitter username for the business, without the @ symbol
+google_plus_id | The Google Plus ID or the name used for the page of the business
+instagram_id | The Instgram ID or the username for the business
