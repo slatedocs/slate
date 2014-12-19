@@ -23,17 +23,17 @@ under the License.
 
 // BACKGROUND COLORS
 ////////////////////
-$nav-bg: #393939;
+$nav-bg: #30302F;
 $examples-bg: #393939;
 $code-bg: #292929;
 $code-annotation-bg: #1c1c1c;
-$nav-subitem-bg: #262626;
-$nav-active-bg: #2467af;
+$nav-subitem-bg: #262625;
+$nav-active-bg: #1d878d;
 $lang-select-border: #000;
 $lang-select-bg: #222;
 $lang-select-active-bg: $examples-bg; // feel free to change this to blue or something
 $lang-select-pressed-bg: #111; // color of language tab bg when mouse is pressed
-$main-bg: #eaf2f6;
+$main-bg: #fff;
 $aside-notice-bg: #8fbcd4;
 $aside-warning-bg: #c97a7e;
 $aside-success-bg: #6ac174;
@@ -42,7 +42,7 @@ $search-notice-bg: #c97a7e;
 
 // TEXT COLORS
 ////////////////////
-$main-text: #333; // main content text color
+$main-text: #000; // main content text color
 $nav-text: #fff;
 $nav-active-text: #fff;
 $lang-select-text: #fff; // color of unselected language tab text
@@ -52,8 +52,8 @@ $lang-select-pressed-text: #fff; // color of language tab text when mouse is pre
 
 // SIZES
 ////////////////////
-$nav-width: 230px; // width of the navbar
-$examples-width: 50%; // portion of the screen taken up by code examples
+$nav-width: 250px; // width of the navbar
+$examples-width: 37.5%; // portion of the screen taken up by code examples
 $logo-margin: 20px; // margin between nav items and logo, ignored if search is active
 $main-padding: 28px; // padding to left and right of content & examples
 $nav-padding: 15px; // padding to left and right of navbar
@@ -90,7 +90,7 @@ $nav-active-shadow: #000;
 $nav-footer-border-color: #666;
 $nav-embossed-border-top: #000;
 $nav-embossed-border-bottom: #939393;
-$main-embossed-text-shadow: 0px 1px 0px #fff;
+$main-embossed-text-shadow: 0px 0px 0px #fff;
 $search-box-border-color: #666;
 
 

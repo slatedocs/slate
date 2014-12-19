@@ -99,7 +99,7 @@ html, body {
 
     input {
       background: $nav-bg;
-      border-width: 0 0 1px 0;
+      border-width: 0 0 0 0;
       border-color: $search-box-border-color;
       padding: 6px 0 6px 20px;
       @include box-sizing(border-box);
@@ -364,14 +364,15 @@ html, body {
   h1 {
     @extend %header-font;
     font-size: 30px;
-    padding-top: 0.5em;
+	color: #1d878d;    
+	padding-top: 0.5em;
     padding-bottom: 0.5em;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid #e1e1e1;
     margin-bottom: $h1-margin-bottom;
     margin-top: 2em;
-    border-top: 1px solid #ddd;
+    border-top: 1px solid #e1e1e1;
     @include background-image(
-      linear-gradient(top, #fff, #f9f9f9)
+      linear-gradient(top, #fbfbfb, #fbfbfb)
     );
   }
 

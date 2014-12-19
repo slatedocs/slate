@@ -31,8 +31,10 @@ GEM
       http_parser.rb (~> 0.6.0)
     erubis (2.7.0)
     eventmachine (1.0.3)
+    eventmachine (1.0.3-x86-mingw32)
     execjs (2.2.2)
     ffi (1.9.6)
+    ffi (1.9.6-x86-mingw32)
     haml (4.0.5)
       tilt
     hike (1.2.3)
@@ -131,9 +133,11 @@ GEM
     uglifier (2.5.3)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
+    wdm (0.1.0)
 
 PLATFORMS
   ruby
+  x86-mingw32
 
 DEPENDENCIES
   middleman (~> 3.3.0)
