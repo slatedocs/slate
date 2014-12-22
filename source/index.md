@@ -24,20 +24,53 @@ search: true
 
 The IdentityMind Engine exports a REST based Web Service interface over HTTPS, using JSON to encode service request and response data.
 
-A typical Merchant / IdentityMind interaction to validate a transaction is shown below
+A typical Merchant / IdentityMind interaction to validate a transaction is shown below:
 
 
 ![](http://i.imgur.com/UwJEaJZ.png)
 
 ## Authentication
 
-placeholder
+IdentityMind uses an SSL Server certificate for the client to authenticate the service.  The merchant is authenticated using HTTP basic authentication (over HTTPS) via a merchant name and password/license key that is supplied when the merchant registers for the service. 
 
 # Payment Transaction Validation Web Service
 
 ## URL
 
-placeholder
+> Example service request:
+
+```code
+{ 
+  “amt” : 40,
+  “bc” : “Palo Alto”,
+  “bco” : “US”,
+  “bfn” : “James”,
+  “bln” : “Dinh”,
+  “bz” : “55555”,
+  “bs” : “CA”,
+  “bsn” : “123 anystreet”,
+  “dft” : “BC”,
+  “dfp” : “1872ABCD129E…”,
+  “pccn” : “4513bfe30439b317d3a504ecac74858965a89ce7”,
+  “pcct” : “411111XXXXXX1111”,
+  “tea” : “james@gmail.com”,
+  “aph” : “555555555”,
+  “ip “ : “69.181.162.146”,
+  “sc” : “Palo Alto”,
+  “sco” : “US”,
+  “sfn” : “James”,
+  “sln” : “Dinh”,
+  “sz” : “55555”,
+  “ss” : “CA”,
+  “ssn” : “123 anystreet”,
+  “tid” : “89”
+}
+```
+
+The following URL is for requesting payment transaction anti-fraud evaluation:
+
+[https://edna.identitymind.com/im/transaction
+](https://edna.identitymind.com/im/transaction)
 
 ## Arguments
 
@@ -320,25 +353,33 @@ placeholder
 			<br><br>
 			<b>Note</b>: The has must be of the full card number, not a masked or tokenized representation.
 			</td>
+			<td>Yes*</td>
+		</tr>
+		<tr>
+			<td>Number Token</td>
+			<td>pcct</td>
+			<td>A masked or tokenized version of the credit card number. IdentityMind will supply procedure to generate token.</td>
+			<td>Yes</td>
+		</tr>
+		<tr>
+			<td>Issuer Country</td>
+			<td>ric</td>
+			<td>The issuer country of the card used in the transaction. The country code is the two letter abbreviation as defined in ISO-3166-1</td>
 			<td>No</td>
 		</tr>
 		<tr>
-			<td>data</td>
-			<td>data</td>
-			<td>data</td>
-			<td>data</td>
-		</tr>
-		<tr>
-			<td>data</td>
-			<td>data</td>
-			<td>data</td>
-			<td>data</td>
-		</tr>
-		<tr>
-			<td>data</td>
-			<td>data</td>
-			<td>data</td>
-			<td>data</td>
+			<td>Card Type</td>
+			<td>pcty</td>
+			<td>Type of card:
+				<ul type="disc">
+					<li>CREDIT</li>
+					<li>DEBIT</li>
+					<li>PREPAID</li>
+					<li>UNKNOWN</li>
+				</ul>
+			Default is UNKNOWN
+			</td>
+			<td>No</td>
 		</tr>
 	</table>
 
@@ -352,28 +393,35 @@ placeholder
 			<th>Required</th>
 		</tr>
 		<tr>
-			<td>data</td>
-			<td>data</td>
-			<td>data</td>
-			<td>data</td>
+			<td>Account ID</td>
+			<td>pppi</td>
+			<td>PayPal Payer ID. It corresponds to PayPal's "PAYERID" field from the PayPal Express Checkout.</td>
+			<td>Yes*</td>
 		</tr>
 		<tr>
-			<td>data</td>
-			<td>data</td>
-			<td>data</td>
-			<td>data</td>
+			<td>Email</td>
+			<td>pppe</td>
+			<td>Email address associated with the PayPal account. It corresponds to PayPal's "EMAIL" field from the PayPal Express Checkout.</td>
+			<td>No</td>
 		</tr>
 		<tr>
-			<td>data</td>
-			<td>data</td>
-			<td>data</td>
-			<td>data</td>
+			<td>Status</td>
+			<td>ppps</td>
+			<td>Whether the user is verified or unverified. It corresponds to PayPal's "PAYERSTATUS" field from the PayPal Express Checkout.</td>
+			<td>No</td>
 		</tr>
 		<tr>
-			<td>data</td>
-			<td>data</td>
-			<td>data</td>
-			<td>data</td>
+			<td>Confirmed Address</td>
+			<td>pppc</td>
+			<td>Whether the address provided by the consumer matches the one registered with PayPal. Values are:
+				<ul type="disc">
+					<li>none</li>
+					<li>confirmed</li>
+					<li>unconfirmed</li>
+				</ul>
+			It corresponds to PayPal's "PAYMENTREQUEST n ADDRESSSTATUS" or "ADDRESSSTATUS" fields from the PayPal Express Checkout.
+			</td>
+			<td>No</td>
 		</tr>
 	</table>
 
@@ -387,28 +435,28 @@ placeholder
 			<th>Required</th>
 		</tr>
 		<tr>
-			<td>data</td>
-			<td>data</td>
-			<td>data</td>
-			<td>data</td>
+			<td>Account ID</td>
+			<td>gcbi</td>
+			<td>Google Checkout Buyer ID. It corresponds to the "buyer-id" element.</td>
+			<td>Yes*</td>
 		</tr>
 		<tr>
-			<td>data</td>
-			<td>data</td>
-			<td>data</td>
-			<td>data</td>
+			<td>Email</td>
+			<td>gcem</td>
+			<td>Email address associated to the Google Checkout Account. It corresponds to the "email" element.</td>
+			<td>No</td>
 		</tr>
 		<tr>
-			<td>data</td>
-			<td>data</td>
-			<td>data</td>
-			<td>data</td>
+			<td>Protection Eligibility</td>
+			<td>gcpe</td>
+			<td>Whether the user is eligible for Google's risk information protection. It corresponds to the "eligible-for-protection" element in the "risk-information" API. Accepted value is "true" or "false." Default is "false."</td>
+			<td>No</td>
 		</tr>
 		<tr>
-			<td>data</td>
-			<td>data</td>
-			<td>data</td>
-			<td>data</td>
+			<td>Buyer Account Age</td>
+			<td>gcba</td>
+			<td>Age associated ot the account. It corresponds to the "buyer-account-age" element in the "risk-information" API.</td>
+			<td>No</td>
 		</tr>
 	</table>
 
@@ -422,16 +470,18 @@ placeholder
 			<th>Required</th>
 		</tr>
 		<tr>
-			<td>data</td>
-			<td>data</td>
-			<td>data</td>
-			<td>data</td>
+			<td>Account ID Hash</td>
+			<td>phash</td>
+			<td>Account unique identified (hash) while obscuring actual number. This is used when IdentityMind does not natively support the payment type.
+			<br><br>
+			<b>Note</b>: This hash must be of the full account ID, not a masked or tokenized representation.</td>
+			<td>Yes*</td>
 		</tr>
 		<tr>
-			<td>data</td>
-			<td>data</td>
-			<td>data</td>
-			<td>data</td>
+			<td>Account Token</td>
+			<td>ptoken</td>
+			<td>A masked or tokenized version of the account token</td>
+			<td>No</td>
 		</tr>
 	</table>
 
@@ -445,16 +495,16 @@ placeholder
 			<th>Required</th>
 		</tr>
 		<tr>
-			<td>data</td>
-			<td>data</td>
-			<td>data</td>
-			<td>data</td>
+			<td>Bitcoin Wallet ID</td>
+			<td>pbc</td>
+			<td>Hash of the unique identifier for a Bitcoin wallet</td>
+			<td>No</td>
 		</tr>
 		<tr>
-			<td>data</td>
-			<td>data</td>
-			<td>data</td>
-			<td>data</td>
+			<td>Bitcoin Token</td>
+			<td>ptoken</td>
+			<td>A masked or tokenized version of the account token</td>
+			<td>No</td>
 		</tr>
 	</table>
 
@@ -468,16 +518,18 @@ placeholder
 			<th>Required</th>
 		</tr>
 		<tr>
-			<td>data</td>
-			<td>data</td>
-			<td>data</td>
-			<td>data</td>
+			<td>ACH Account Number</td>
+			<td>pach</td>
+			<td>Hash of the unique identifier for an ACH account
+			<br><br>
+			<b>Note</b>: This hash must be of the full account number, not a masked or tokenized representation.</td>
+			<td>No</td>
 		</tr>
 		<tr>
-			<td>data</td>
-			<td>data</td>
-			<td>data</td>
-			<td>data</td>
+			<td>Account Token</td>
+			<td>ptoken</td>
+			<td>A masked or tokenized version of the account token</td>
+			<td>No</td>
 		</tr>
 	</table>
 
@@ -491,75 +543,115 @@ placeholder
 			<th>Required</th>
 		</tr>
 		<tr>
-			<td>data</td>
-			<td>data</td>
-			<td>data</td>
-			<td>data</td>
+			<td>Amount</td>
+			<td>amt</td>
+			<td>Total amount for the transaction. Encoded as a string or a double. Both of the following are accepted:
+				<ul type="disc">
+					<li>"amt":"42.00"</li>
+					<li>"amt":42.00</li>
+				</ul>
+			</td>
+			<td>Yes</td>
 		</tr>
 		<tr>
-			<td>data</td>
-			<td>data</td>
-			<td>data</td>
-			<td>data</td>
+			<td>Virtual Good</td>
+			<td>vg</td>
+			<td>Whether the transaction is associated to a virtual good (true) as opposed to a physical good (false). The default is false.</td>
+			<td>No</td>
 		</tr>
 		<tr>
-			<td>data</td>
-			<td>data</td>
-			<td>data</td>
-			<td>data</td>
+			<td>Subscription Service</td>
+			<td>sub</td>
+			<td>Whether the transaction is associated to a subscription service. The default is false.</td>
+			<td>No</td>
 		</tr>
 		<tr>
-			<td>data</td>
-			<td>data</td>
-			<td>data</td>
-			<td>data</td>
+			<td>Currency</td>
+			<td>ccy</td>
+			<td>The ISO 4217 currency code of the transaction encoded as as tringe. Default is "USD".</td>
+			<td>No</td>
 		</tr>
 		<tr>
-			<td>data</td>
-			<td>data</td>
-			<td>data</td>
-			<td>data</td>
+			<td>Transaction ID</td>
+			<td>tid</td>
+			<td>Merchant unique identifier for the transaction. eDNA assigns an internal ID if none provided. The transaction ID must be encoded as a string (e.g. "tid":"123455"). The maximum length is 40 characters.</td>
+			<td>No</td>
 		</tr>
 		<tr>
-			<td>data</td>
-			<td>data</td>
-			<td>data</td>
-			<td>data</td>
+			<td>Transaction Time</td>
+			<td>tti</td>
+			<td>The date and time of the transaction as processed by the merchant. Expressed in UTC, either as a ISO8601 encoded string or a unix timestamp.
+				<ul type="disc">
+					<li>“tti”: “2011-01-01T13:12:16+0000”</li>
+					<li>“tti”:1293887536</li>
+					<li>“tti”:”1293887536”</li>
+				</ul>
+			</td>
+			<td>Yes</td>
 		</tr>
 		<tr>
-			<td>data</td>
-			<td>data</td>
-			<td>data</td>
-			<td>data</td>
+			<td>Merchant ID</td>
+			<td>smid</td>
+			<td>A unique identifier for the merchant for whom this transaction is being processed.
+			<br><br>
+			In addition to being an identifier used in the analysis user interface, if a custom fraud policy has been defined for a merchant with this ID, then this policy will be used in preference to the default policy.
+				<ul type="disc">
+					<li>"smid"="42"</li>
+					<li>"smid"="Acme"</li>
+				</ul>
+			<br><br>
+			<b>Note</b>: The value of the smid should not include the apostrophe symbol.
+			</td>
+			<td>No</td>
 		</tr>
 		<tr>
-			<td>data</td>
-			<td>data</td>
-			<td>data</td>
-			<td>data</td>
+			<td>Merchant Name</td>
+			<td>smna</td>
+			<td>The user-friendly name for the merchant for whom this transaction is being processed.
+			<br><br>
+			This name is displayed in the analysis user interface. If both "smid" and "smna" are present in a transaction, then the "smna" is preferentially displayed.
+				<ul type="disc">
+					<li>"smna":"Acme"</li>
+				</ul>
+			<br><br>
+			<b>Note</b>: The value of the smna should not include the apostrophe symbol.</td>
+			<td>No</td>
 		</tr>
 		<tr>
-			<td>data</td>
-			<td>data</td>
-			<td>data</td>
-			<td>data</td>
+			<td>PoS ZIP Code</td>
+			<td>pzip</td>
+			<td>The zip code of the point of sale device at which this transaction is being processed.</td>
+			<td>No</td>
 		</tr>
 		<tr>
-			<td>data</td>
-			<td>data</td>
-			<td>data</td>
-			<td>data</td>
+			<td>MOTO Indicator</td>
+			<td>moto</td>
+			<td>The MOTO/eCommerce indicator describes the type of eCommerce transaction that is taking place.
+				<ul type="disc">
+					<li>" " - (space) card present</li>
+					<li>"1" - one time mail / phone order</li>
+					<li>"2" - recurring payment</li>
+					<li>"3" - installment payment</li>
+					<li>"4" - other</li>
+					<li>"5" - 3D secure full</li>
+					<li>"6" - 3D secure merchant</li>
+					<li>"7" - eCommerce (channel encrypted)</li>
+					<li>"8" - eCommerce (non-secure)</li>
+			<br><br>
+			The default is "7" if this field is not supplied.
+			</td>
+			<td>No</td>
 		</tr>
 		<tr>
-			<td>data</td>
-			<td>data</td>
-			<td>data</td>
-			<td>data</td>
+			<td>Affiliate ID</td>
+			<td>aflid</td>
+			<td>The affiliate ID associated with this transaction. Encoded as a string.</td>
+			<td>No</td>
 		</tr>
 		<tr>
-			<td>data</td>
-			<td>data</td>
-			<td>data</td>
+			<td>Affiliate Signup Date</td>
+			<td>aflsd</td>
+			<td>The signup/affiliate creation date of the affiliate associated with this transaction. Either a ISO8601 encoded string or a UNIX timestamp.</td>
 			<td>data</td>
 		</tr>
 	</table>
@@ -574,61 +666,108 @@ placeholder
 			<th>Required</th>
 		</tr>
 		<tr>
-			<td>data</td>
-			<td>data</td>
-			<td>data</td>
-			<td>data</td>
+			<td>GW Response</td>
+			<td>auth_response</td>
+			<td>Whether the Gateway accepted ("accepted") the transaction or not ("rejected").</td>
+			<td>No</td>
 		</tr>
 		<tr>
-			<td>data</td>
-			<td>data</td>
-			<td>data</td>
-			<td>data</td>
+			<td>GW Response Error Code</td>
+			<td>error_code</td>
+			<td>The error code fields from the authorization request as expressed by the gateway</td>
+			<td>No</td>
 		</tr>
 		<tr>
-			<td>data</td>
-			<td>data</td>
-			<td>data</td>
-			<td>data</td>
+			<td>GW Response Test</td>
+			<td>auth_response_test</td>
+			<td>Auth comments from the gateway</td>
+			<td>No</td>
 		</tr>
 		<tr>
-			<td>data</td>
-			<td>data</td>
-			<td>data</td>
-			<td>data</td>
+			<td>Reason</td>
+			<td>reason</td>
+			<td>Free-form descriptive text providing addition information about the feedback</td>
+			<td>No</td>
 		</tr>
 		<tr>
-			<td>data</td>
-			<td>data</td>
-			<td>data</td>
-			<td>data</td>
+			<td>AVS</td>
+			<td>avs_result</td>
+			<td>The AVS response code from the gateway</td>
+			<td>No</td>
 		</tr>
 		<tr>
-			<td>data</td>
-			<td>data</td>
-			<td>data</td>
-			<td>data</td>
+			<td>CVV2</td>
+			<td>cvv2_result</td>
+			<td>The CVV22 response code from the gateway</td>
+			<td>No</td>
 		</tr>
 		<tr>
-			<td>data</td>
-			<td>data</td>
-			<td>data</td>
-			<td>data</td>
+			<td>Gateway Name</td>
+			<td>gateway</td>
+			<td>The name of the payment gateway used. This information is used to interpret the result/error codes. Currently, we support:
+				<ul type="disc">
+					<li>"MES" - Merchant e-Solutions</li>
+					<li>"GC" - Google Checkout</li>
+					<li>"PPP" - PayPal Pro</li>
+					<li>"PFP" - Pay Flow Pro</li>
+					<li>"CDP" - Centro de Pagos</li>
+					<li>"commerce" - CommerceGate</li>
+					<li>"DHD" - DHD Media</li>
+					<li>"IDM" - IDMPay</li>
+					<li>"SC" - Safe Charge</li>
+					<li>"AUTH" - Auth.net</li>
+					<li>"INTERAC" - Interac</li>
+					<li>"generic" - See Appendix C)</li>
+				</ul>
+			<br><br>
+			<b>Note</b>: While this field is required, backwards compatibility feedback will not be rejected if not present, but instead be interpreted as MES gateway data.
+			</td>
+			<td>Yes</td>
 		</tr>
 		<tr>
-			<td>data</td>
-			<td>data</td>
-			<td>data</td>
-			<td>data</td>
+			<td>Auth Code</td>
+			<td>auth_code</td>
+			<td>Returned authorization code</td>
+			<td>No</td>
 		</tr>
 	</table>
 
+**Only one payment instrument is required. eDNA supports credit card, PayPal, and Google Checkout.*
+
+***Inline feedback elements provide the results from the gateway call at the same time the payment transaction is being passed for anti-fraud evaluation. Inline feedback is only applicable when the anti-fraud evaluation is performed after the merchant receives the information from the gateway.*
+
+**Note**: The clear text credit card number is never sent to IdentityMind. Instead, IdentityMind uses a cryptographically secure hash to have a unique representation of each credit card. IdentityMind provides the required utilities to generate these hashes.
+
 ## Response
 
-placeholder
+> Example service response data:
 
+```code
+{ 
+  “res” : “ACCEPT”,
+  “tid” : “89”,
+  “transaction_status” : “complete”,
+  “rcd” : “1000,100,110,151,120”,
+  “frn”:”Fallthrough”,
+  “frd”:”User is trusted and no fraud rules were triggered.”
+}
+
+{
+  “transaction_status” : “error”,
+  “error_message” : “Bad data format:Failed to parse the date string provided in the data.  Please use ISO8601 format.”
+}
+```
+
+The response is a JSON encoding of the IdentityMind Service result. The most important part of the response is whether the transaction is to be accepted, denied or scheduled for manual review (dependent on the configured fraud policy). 
+
+The response includes detailed result codes and the transaction unique identifier. The keys are fully defined in Appendix A,  Result Keys and Codes.
 
 # Chargeback Notification
+
+Notify that a chargeback occurred on a transaction. Note that the transaction may be either a Payment Transaction or an Account Transfer.
+
+In the case of a chargeback on a transaction that eDNA has not previously processed then the Payment Instrument information is required.
+
 
 ## URL
 
