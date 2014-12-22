@@ -20,6 +20,8 @@ search: true
 
 # Welcome
 
+placeholder
+
 # Transaction Evaluation
 
 The IdentityMind Engine exports a REST based Web Service interface over HTTPS, using JSON to encode service request and response data.
@@ -35,7 +37,9 @@ IdentityMind uses an SSL Server certificate for the client to authenticate the s
 
 # Payment Transaction Validation Web Service
 
-## URL
+## Arguments
+
+> [This URL](https://edna.identitymind.com/im/transaction) can be used for requesting payment transaction anti-fraud evaluation.
 
 > Example service request:
 
@@ -66,17 +70,10 @@ IdentityMind uses an SSL Server certificate for the client to authenticate the s
   “tid” : “89”
 }
 ```
-
-The following URL is for requesting payment transaction anti-fraud evaluation:
-
-[https://edna.identitymind.com/im/transaction
-](https://edna.identitymind.com/im/transaction)
-
-## Arguments
-
-### Billing Name
-
 	<table>
+		<tr>
+			<th colspan=4><h3>Billing Name</h3></th>
+		</tr>
 		<tr>
 			<th>Facet</th>
 			<th>Key</th>
@@ -95,11 +92,11 @@ The following URL is for requesting payment transaction anti-fraud evaluation:
 			<td>The last name of the billing name.</td>
 			<td>No</td>
 		</tr>
-	</table>
 
-### Billing Address
 
-	<table>
+		<tr>
+			<th colspan=4><h3>Billing Address</h3></th>
+		</tr>
 		<tr>
 			<th>Facet</th>
 			<th>Key</th>
@@ -136,11 +133,11 @@ The following URL is for requesting payment transaction anti-fraud evaluation:
 			<td>ISO 3166 country code of the billing address of the transaction, encoded as a string. Default is "US"</td>
 			<td>No</td>
 		</tr>
-	</table>
 
-### Shipping Name
 
-	<table>
+		<tr>
+			<th colspan=4><h3>Shipping Name</h3></th>
+		</tr>
 		<tr>
 			<th>Facet</th>
 			<th>Key</th>
@@ -159,11 +156,11 @@ The following URL is for requesting payment transaction anti-fraud evaluation:
 			<td>The last name of the shipping name</td>
 			<td>No</td>
 		</tr>
-	</table>
 
-### Shipping Address
 
-	<table>
+		<tr>
+			<th colspan=4><h3>Shipping Address</h3></th>
+		</tr>
 		<tr>
 			<th>Facet</th>
 			<th>Key</th>
@@ -206,11 +203,11 @@ The following URL is for requesting payment transaction anti-fraud evaluation:
 			<td>ISO 3166 country code of the shipping address of the transaction, encoded as a string. Default is "US"</td>
 			<td>No</td>
 		</tr>
-	</table>
 
-### Device
 
-	<table>
+		<tr>
+			<th colspan=4><h3>Device</h3></th>
+		</tr>
 		<tr>
 			<th>Facet</th>
 			<th>Key</th>
@@ -251,11 +248,11 @@ The following URL is for requesting payment transaction anti-fraud evaluation:
 			<td>Third party service token and scheme identified. Contact IdentityMind for detailed format information.</td>
 			<td>No</td>
 		</tr>
-	</table>
 
-### Consumer Account
 
-	<table>
+		<tr>
+			<th colspan=4><h3>Consumer Account</h3></th>
+		</tr>
 		<tr>
 			<th>Facet</th>
 			<th>Key</th>
@@ -335,11 +332,11 @@ The following URL is for requesting payment transaction anti-fraud evaluation:
 			<td>The current longitude of the customer specified in decimal degrees. Encoded as a string (e.g. "clong":"-122.1419")</td>
 			<td>No</td>
 		</tr>
-	</table>
 
-### Credit Card
 
-	<table>
+		<tr>
+			<th colspan=4><h3>Credit Card</h3></th>
+		</tr>
 		<tr>
 			<th>Facet</th>
 			<th>Key</th>
@@ -381,11 +378,11 @@ The following URL is for requesting payment transaction anti-fraud evaluation:
 			</td>
 			<td>No</td>
 		</tr>
-	</table>
 
-### PayPal
 
-	<table>
+		<tr>
+			<th colspan=4><h3>PayPal</h3></th>
+		</tr>
 		<tr>
 			<th>Facet</th>
 			<th>Key</th>
@@ -423,11 +420,11 @@ The following URL is for requesting payment transaction anti-fraud evaluation:
 			</td>
 			<td>No</td>
 		</tr>
-	</table>
 
-### Google Checkout
 
-	<table>
+		<tr>
+			<th colspan=4><h3>Google Checkout</h3></th>
+		</tr>
 		<tr>
 			<th>Facet</th>
 			<th>Key</th>
@@ -458,11 +455,11 @@ The following URL is for requesting payment transaction anti-fraud evaluation:
 			<td>Age associated ot the account. It corresponds to the "buyer-account-age" element in the "risk-information" API.</td>
 			<td>No</td>
 		</tr>
-	</table>
 
-### Generic Financial Account
 
-	<table>
+		<tr>
+			<th colspan=4><h3>Generic Financial Account</h3></th>
+		</tr>
 		<tr>
 			<th>Facet</th>
 			<th>Key</th>
@@ -483,11 +480,11 @@ The following URL is for requesting payment transaction anti-fraud evaluation:
 			<td>A masked or tokenized version of the account token</td>
 			<td>No</td>
 		</tr>
-	</table>
 
-### Bitcoin
 
-	<table>
+		<tr>
+			<th colspan=4><h3>Bitcoin</h3></th>
+		</tr>
 		<tr>
 			<th>Facet</th>
 			<th>Key</th>
@@ -506,11 +503,11 @@ The following URL is for requesting payment transaction anti-fraud evaluation:
 			<td>A masked or tokenized version of the account token</td>
 			<td>No</td>
 		</tr>
-	</table>
 
-### ACH
 
-	<table>
+		<tr>
+			<th colspan=4><h3>ACH</h3></th>
+		</tr>
 		<tr>
 			<th>Facet</th>
 			<th>Key</th>
@@ -531,11 +528,11 @@ The following URL is for requesting payment transaction anti-fraud evaluation:
 			<td>A masked or tokenized version of the account token</td>
 			<td>No</td>
 		</tr>
-	</table>
 
-### Transaction
 
-	<table>
+		<tr>
+			<th colspan=4><h3>Transaction</h3></th>
+		</tr>
 		<tr>
 			<th>Facet</th>
 			<th>Key</th>
@@ -654,11 +651,11 @@ The following URL is for requesting payment transaction anti-fraud evaluation:
 			<td>The signup/affiliate creation date of the affiliate associated with this transaction. Either a ISO8601 encoded string or a UNIX timestamp.</td>
 			<td>data</td>
 		</tr>
-	</table>
 
-### Inline Feedback**
 
-	<table>
+		<tr>
+			<th colspan=4><h3>Inline Feedback***</h3></th>
+		</tr>
 		<tr>
 			<th>Facet</th>
 			<th>Key</th>

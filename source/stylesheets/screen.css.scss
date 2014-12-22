@@ -403,9 +403,9 @@ html, body {
 
   h3, h4, h5, h6 {
     @extend %header-font;
-    font-size: 12px;
-    margin-top: 2.5em;
-    margin-bottom: 0.8em;
+    font-size: 13px;  
+	margin-top: 0px;
+    margin-bottom: 0px;
     text-transform: uppercase;
   }
 
@@ -421,8 +421,8 @@ html, body {
 
   table {
     margin-bottom: 1em;
-    overflow: auto;
-    th,td {
+    overflow: auto; 
+	th,td {
       text-align: left;
       vertical-align: top;
       line-height: 1.6;
@@ -430,8 +430,9 @@ html, body {
 
     th {
       padding: 5px 10px;
-      border-bottom: 1px solid #ccc;
       vertical-align: bottom;
+	  background-color: #1d878d;
+	  color: #fff;
     }
 
     td {
@@ -439,15 +440,15 @@ html, body {
     }
 
     tr:last-child {
-      border-bottom: 1px solid #ccc;
+      border-bottom: 1px solid #fff;
     }
 
     tr:nth-child(odd)>td {
-      background-color: lighten($main-bg,4.2%);
+      background-color: #f2f2f2;
     }
 
     tr:nth-child(even)>td {
-      background-color: lighten($main-bg,2.4%);
+      background-color: #fff;
     }
   }
 
