@@ -39,12 +39,10 @@ IdentityMind uses an SSL Server certificate for the client to authenticate the s
 
 ## Arguments
 
-<aside class="notice">[This URL](https://edna.identitymind.com/im/transaction) can be used for requesting payment transaction anti-fraud evaluation.
-</aside>
-
-> Example service request:
+> [This URL](https://edna.identitymind.com/im/transaction) can be used for requesting payment transaction anti-fraud evaluation.
 
 ```code
+EXAMPLE SERVICE REQUEST
 { 
   “amt” : 40,
   “bc” : “Palo Alto”,
@@ -71,6 +69,27 @@ IdentityMind uses an SSL Server certificate for the client to authenticate the s
   “tid” : “89”
 }
 ```
+> The response is a JSON encoding of the IdentityMind Service result. The most important part of the response is whether the transaction is to be accepted, denied or scheduled for manual review (dependent on the configured fraud policy). 
+
+The response includes detailed result codes and the transaction unique identifier. The keys are fully defined in *Appendix A: Result Keys and Codes*.
+
+```code
+EXAMPLE SERVICE RESPONSE DATA
+{ 
+  “res” : “ACCEPT”,
+  “tid” : “89”,
+  “transaction_status” : “complete”,
+  “rcd” : “1000,100,110,151,120”,
+  “frn”:”Fallthrough”,
+  “frd”:”User is trusted and no fraud rules were triggered.”
+}
+
+{
+  “transaction_status” : “error”,
+  “error_message” : “Bad data format:Failed to parse the date string provided in the data.  Please use ISO8601 format.”
+}
+```
+
 	<table>
 		<tr>
 			<th colspan=4><h3>Billing Name</h3></th>
@@ -736,31 +755,6 @@ IdentityMind uses an SSL Server certificate for the client to authenticate the s
 ***Inline feedback elements provide the results from the gateway call at the same time the payment transaction is being passed for anti-fraud evaluation. Inline feedback is only applicable when the anti-fraud evaluation is performed after the merchant receives the information from the gateway.*
 
 **Note**: The clear text credit card number is never sent to IdentityMind. Instead, IdentityMind uses a cryptographically secure hash to have a unique representation of each credit card. IdentityMind provides the required utilities to generate these hashes.
-
-## Response
-
-<aside class="notice">The response is a JSON encoding of the IdentityMind Service result. The most important part of the response is whether the transaction is to be accepted, denied or scheduled for manual review (dependent on the configured fraud policy). 
-
-The response includes detailed result codes and the transaction unique identifier. The keys are fully defined in *Appendix A: Result Keys and Codes*.
-</aside>
-
-> Example service response data:
-
-```code
-{ 
-  “res” : “ACCEPT”,
-  “tid” : “89”,
-  “transaction_status” : “complete”,
-  “rcd” : “1000,100,110,151,120”,
-  “frn”:”Fallthrough”,
-  “frd”:”User is trusted and no fraud rules were triggered.”
-}
-
-{
-  “transaction_status” : “error”,
-  “error_message” : “Bad data format:Failed to parse the date string provided in the data.  Please use ISO8601 format.”
-}
-```
 
 # Chargeback Notification
 
