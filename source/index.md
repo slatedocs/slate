@@ -93,8 +93,8 @@ EXAMPLE SERVICE RESPONSE DATA
 ```
 
 	<table>
-		<tr>
-			<th colspan=4>Billing Name</th>
+		<tr bgcolor="#ffffff">
+			<th colspan=4><font color="#000>Billing Name</font></th>
 		</tr>
 		<tr>
 			<th>Facet</th>
