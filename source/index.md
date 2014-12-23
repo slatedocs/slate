@@ -634,6 +634,7 @@ IdentityMind uses an SSL Server certificate for the client to authenticate the s
 					<li>"6" - 3D secure merchant</li>
 					<li>"7" - eCommerce (channel encrypted)</li>
 					<li>"8" - eCommerce (non-secure)</li>
+				</ul>
 			<br><br>
 			The default is "7" if this field is not supplied.
 			</td>
@@ -757,7 +758,7 @@ IdentityMind uses an SSL Server certificate for the client to authenticate the s
 
 The response is a JSON encoding of the IdentityMind Service result. The most important part of the response is whether the transaction is to be accepted, denied or scheduled for manual review (dependent on the configured fraud policy). 
 
-The response includes detailed result codes and the transaction unique identifier. The keys are fully defined in Appendix A,  Result Keys and Codes.
+The response includes detailed result codes and the transaction unique identifier. The keys are fully defined in *Appendix A: Result Keys and Codes*.
 
 # Chargeback Notification
 
@@ -765,14 +766,218 @@ Notify that a chargeback occurred on a transaction. Note that the transaction ma
 
 In the case of a chargeback on a transaction that eDNA has not previously processed then the Payment Instrument information is required.
 
-
-## URL
-
-placeholder
-
 ## Arguments
 
-placeholder
+> [This URL](https://edna.identitymind.com/im/jax/chargeback/) can be used for requesting payment transaction anti-fraud evaluation.
+
+> Example service request:
+
+```code
+{
+     “amt”: 250,
+     “cbtype”: “DEBIT”,
+     “pccn”: “DNsxhwmQCWeC5gPxTOwPRZlFfx”,
+     “pcct”: “401201XXXXXX1110”,
+     “tid”: “9900040”
+}
+```
+
+	<table>
+		<tr>
+			<th colspan=4><h3>Chargeback</h3></th>
+		</tr>
+		<tr>
+			<th>Facet</th>
+			<th>Key</th>
+			<th>Description</th>
+			<th>Required</th>
+		</tr>
+		<tr>
+			<td>Amount</td>
+			<td>amt</td>
+			<td>Amount of the chargeback</td>
+			<td>Yes</td>
+		</tr>
+		<tr>
+			<td>Currency</td>
+			<td>ccy</td>
+			<td>The ISO 4217 currency code of the transaction encoded as a string. Default is "USD."</td>
+			<td>No</td>
+		</tr>
+		<tr>
+			<td>Error Code</td>
+			<td>error_code</td>
+			<td>This should be used to pass the reason code for the chargeback. For a full set of reason codes as defined by the card brands, click [here](http://www.managechargebacks.com/reasoncodes.html).</td>
+			<td>Yes</td>
+		</tr>
+		<tr>
+			<td>Reason</td>
+			<td>reason</td>
+			<td>Text describing the reason for refund/chargeback</td>
+			<td>No</td>
+		</tr>
+		<tr>
+			<td>Chargeback Type</td>
+			<td>cbtype</td>
+			<td>The type of chargeback:
+				<ul type="disc">
+					<li>DEBIT</li>
+					<li>CREDIT</li>
+					<li>REPRESENTMENT</li>
+					<li>REVERSAL</li>
+				</ul>
+			The default is "DEBIT" if not provided.
+			</td>
+			<td>No</td>
+		</tr>
+		<tr>
+			<td>Chargeback Date</td>
+			<td>cbdate</td>
+			<td>Date of the chargeback action. For example, if the cbtype is "CREDIT," then the date field should be the date that the "CREDIT" happens. The format of the value for this field is either an ISO8601 encoded string or a UNIX timestamp.</td>
+			<td>Yes</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		
+
+		<tr>
+			<th colspan=4><h3>Title</h3></th>
+		</tr>
+		<tr>
+			<th>Facet</th>
+			<th>Key</th>
+			<th>Description</th>
+			<th>Required</th>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+
+
+		<tr>
+			<th colspan=4><h3>Title</h3></th>
+		</tr>
+		<tr>
+			<th>Facet</th>
+			<th>Key</th>
+			<th>Description</th>
+			<th>Required</th>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+
+
+		<tr>
+			<th colspan=4><h3>Title</h3></th>
+		</tr>
+		<tr>
+			<th>Facet</th>
+			<th>Key</th>
+			<th>Description</th>
+			<th>Required</th>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+
+
+		<tr>
+			<th colspan=4><h3>Title</h3></th>
+		</tr>
+		<tr>
+			<th>Facet</th>
+			<th>Key</th>
+			<th>Description</th>
+			<th>Required</th>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+
+	</table>
 
 ## Response
 
