@@ -979,7 +979,7 @@ or
 			<td>Issuer Country</td>
 			<td>ric2</td>
 			<td>The issuer country of the credit card to which the chargeback amount is to be credited if it is different from the credit card where the chargeback was reported. The country code is the two letter abbreviation as defined in ISO-3166-1.</td>
-			<td></td>
+			<td>No</td>
 		</tr>
 		<tr>
 			<td>Card Type</td>
@@ -1080,14 +1080,243 @@ or
 }
 ```
 
+	<table>
+		<tr>
+			<th colspan=4><h3>Credit</h3></th>
+		</tr>
+		<tr>
+			<th>Facet</th>
+			<th>Key</th>
+			<th>Description</th>
+			<th>Required</th>
+		</tr>
+		<tr>
+			<td>Amount</td>
+			<td>amt</td>
+			<td>Amount of the credit</td>
+			<td>Yes</td>
+		</tr>
+		<tr>
+			<td>Currency</td>
+			<td>ccy</td>
+			<td>The ISO 4217 currency code of the transaction encoded as a string. Default is "USD."</td>
+			<td>No</td>
+		</tr>
+		<tr>
+			<td>Reason</td>
+			<td>reason</td>
+			<td>Text describing the reason for the credit</td>
+			<td>No</td>
+		</tr>
+		<tr>
+			<td>Credit Date</td>
+			<td>crdate</td>
+			<td>Date of the credit action. The format of the value for this field is either an ISO8601 encoded string or a UNIX timestamp.
+				<ul type="disc">
+					<li>“crdate”: “2011-01-01T13:12:16+0000”</li>
+					<li>“crdate”:1293887536</li>
+					<li>“crdate”:”1293887536”</li>
+				</ul>
+			</td>
+			<td>Yes</td>
+		</tr>
+		<tr>
+			<td>Merchant Transaction ID for the Original Auth Transaction</td>
+			<td>tid</td>
+			<td>Merchant unique identifier for the original authorization transaction. The transaction ID must be encoded as a string (e.g. "tid":"123455"). The maximum length is 40 characters.
+			</td>
+			<td>No</td>
+		</tr>
 
+
+		<tr>
+			<th colspan=4><h3>Sub Merchant</h3></th>
+		</tr>
+		<tr>
+			<th>Facet</th>
+			<th>Key</th>
+			<th>Description</th>
+			<th>Required</th>
+		</tr>
+		<tr>
+			<td>Sub Merchant ID</td>
+			<td>smid</td>
+			<td>A unique identifier for the merchant for whom this transaction is being processed.</td>
+			<td>No</td>
+		</tr>
+
+
+		<tr>
+			<th colspan=4><h3>Credit Card</h3></th>
+		</tr>
+		<tr>
+			<th>Facet</th>
+			<th>Key</th>
+			<th>Description</th>
+			<th>Required</th>
+		</tr>
+		<tr>
+			<td>Number Hash</td>
+			<td>pccn</td>
+			<td>Credit card unique identifier (hash) while obscuring actual number. IdentityMind will supply procedure to generate the hash.
+			<br><br>
+			<b>Note</b>: The hash must be of the full card number, not a masked or tokenized representation.
+			</td>
+			<td>Yes</td>
+		</tr>
+		<tr>
+			<td>Number Token</td>
+			<td>pcct</td>
+			<td>A masked or tokenized vesion of the credit card number. IdentityMind will supply procedure to generate the token.</td>
+			<td>No</td>
+		</tr>
+		<tr>
+			<td>Issuer Country</td>
+			<td>ric</td>
+			<td>The issuer country of the card used in the transaction. The country code is the two letter abbreviation as defined in ISO-3166-1</td>
+			<td>No</td>
+		</tr>
+		<tr>
+			<td>Card Type</td>
+			<td>pcty</td>
+			<td>Type of card:
+				<ul type="disc">
+					<li>CREDIT</li>
+					<li>DEBIT</li>
+					<li>PREPAID</li>
+					<li>UNKNOWN</li>
+				</ul>
+			Default is UNKNOWN</td>
+			<td>No</td>
+		</tr>
+
+
+		<tr>
+			<th colspan=4><h3>PayPal</h3></th>
+		</tr>
+		<tr>
+			<th>Facet</th>
+			<th>Key</th>
+			<th>Description</th>
+			<th>Required</th>
+		</tr>
+		<tr>
+			<td>Account ID</td>
+			<td>pppi</td>
+			<td>PayPal Payer ID. It corresponds to PayPal's "PAYERID" field from PayPal Express Checkout.</td>
+			<td>Yes</td>
+		</tr>
+		<tr>
+			<td>Email</td>
+			<td>pppe</td>
+			<td>Email address associated to the PayPal account. It corresponds to PayPal's "EMAIL" field from the PayPal Express Checkout</td>
+			<td>No</td>
+		</tr>
+
+
+		<tr>
+			<th colspan=4><h3>Google Checkout</h3></th>
+		</tr>
+		<tr>
+			<th>Facet</th>
+			<th>Key</th>
+			<th>Description</th>
+			<th>Required</th>
+		</tr>
+		<tr>
+			<td>Account ID</td>
+			<td>gcbi</td>
+			<td>Google Checkout Buyer ID. It corresponds to the "buyer-id" element.</td>
+			<td>Yes</td>
+		</tr>
+		<tr>
+			<td>Email</td>
+			<td>gcem</td>
+			<td>Email address associated to the Google Checkout account. It corresponds to the "email" element.</td>
+			<td>No</td>
+		</tr>
+
+
+		<tr>
+			<th colspan=4><h3>Generic Financial Account</h3></th>
+		</tr>
+		<tr>
+			<th>Facet</th>
+			<th>Key</th>
+			<th>Description</th>
+			<th>Required</th>
+		</tr>
+		<tr>
+			<td>Account ID Hash</td>
+			<td>phash</td>
+			<td>Account unique identifier (hash) while obscuring actual number. This is used when IdentityMind does not natively support the payment type.
+			<br><br>
+			<b>Note</b>: The hash must be of the full account number, not a masked or tokenized representation.</td>
+			<td>Yes</td>
+		</tr>
+		<tr>
+			<td>Account Token</td>
+			<td>ptoken</td>
+			<td>A masked or tokenized version of the account token</td>
+			<td>No</td>
+		</tr>
+	</table>
 
 
 # Feedback: Transaction Neutral/Refund Notification
 
 ## Arguments
 
-placeholder
+	<table>		
+		<tr>
+			<th>Facet</th>
+			<th>Key</th>
+			<th>Description</th>
+			<th>Required</th>
+		</tr>
+		<tr>
+			<td>Account Token</td>
+			<td>ptoken</td>
+			<td>A masked or tokenized version of the account token</td>
+			<td>No</td>
+		</tr>
+		<tr>
+			<td>Account Token</td>
+			<td>ptoken</td>
+			<td>A masked or tokenized version of the account token</td>
+			<td>No</td>
+		</tr>
+		<tr>
+			<td>Account Token</td>
+			<td>ptoken</td>
+			<td>A masked or tokenized version of the account token</td>
+			<td>No</td>
+		</tr>
+		<tr>
+			<td>Account Token</td>
+			<td>ptoken</td>
+			<td>A masked or tokenized version of the account token</td>
+			<td>No</td>
+		</tr>
+		<tr>
+			<td>Account Token</td>
+			<td>ptoken</td>
+			<td>A masked or tokenized version of the account token</td>
+			<td>No</td>
+		</tr>
+		<tr>
+			<td>Account Token</td>
+			<td>ptoken</td>
+			<td>A masked or tokenized version of the account token</td>
+			<td>No</td>
+		</tr>
+		<tr>
+			<td>Account Token</td>
+			<td>ptoken</td>
+			<td>A masked or tokenized version of the account token</td>
+			<td>No</td>
+		</tr>
+	</table>
 
 ## Response
 
