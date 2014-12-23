@@ -718,7 +718,7 @@ IdentityMind uses an SSL Server certificate for the client to authenticate the s
 					<li>"generic" - See Appendix C)</li>
 				</ul>
 			<br><br>
-			<b>Note</b>: While this field is required, backwards compatibility feedback will not be rejected if not present, but instead be interpreted as MES gateway data.
+			<b>Note</b>: While this field is required, backwards compatibility feedback will not be rejected if not present, but will instead be interpreted as MES gateway data.
 			</td>
 			<td>Yes</td>
 		</tr>
@@ -833,31 +833,60 @@ In the case of a chargeback on a transaction that eDNA has not previously proces
 		<tr>
 			<td>Chargeback Date</td>
 			<td>cbdate</td>
-			<td>Date of the chargeback action. For example, if the cbtype is "CREDIT," then the date field should be the date that the "CREDIT" happens. The format of the value for this field is either an ISO8601 encoded string or a UNIX timestamp.</td>
+			<td>Date of the chargeback action. For example, if the cbtype is "CREDIT," then the date field should be the date that the "CREDIT" happens. The format of the value for this field is either an ISO8601 encoded string or a UNIX timestamp.
+				<ul type="disc">
+					<li>“cbdate”: “2011-01-01T13:12:16+0000”</li>
+					<li>“cbdate”:1293887536</li>
+					<li>“cbdate”:”1293887536”</li>
+				</ul>
+			</td>
 			<td>Yes</td>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>Original Transaction Date</td>
+			<td>authdate</td>
+			<td>Date of the authorization transaction. The format of the value for this field is either an ISO8601 encoded string or a UNIX timestamp.
+				<ul type="disc">
+					<li>“authdate”: “2011-01-01T13:12:16+0000”</li>
+					<li>“authdate”:1293887536</li>
+					<li>“authdate”:”1293887536”</li>
+				</ul>
+			</td>
+			<td>No</td>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>Gateway Name</td>
+			<td>gateway</td>
+			<td>The name of the payment gateway used. This information is used to interpret the result/error codes. Currently, we support:
+				<ul type="disc">
+					<li>"MES" - Merchant e-Solutions</li>
+					<li>"GC" - Google Checkout</li>
+					<li>"PPP" - PayPal Pro</li>
+					<li>"PFP" - Pay Flow Pro</li>
+					<li>"CDP" - Centro de Pagos</li>
+					<li>"commerce" - CommerceGate</li>
+					<li>"DHD" - DHD Media</li>
+					<li>"IDM" - IDMPay</li>
+					<li>"SC" - Safe Charge</li>
+					<li>"AUTH" - Auth.net</li>
+					<li>"INTERAC" - Interac</li>
+					<li>"generic" - See Appendix C)</li>
+				</ul>
+			<br><br>
+			<b>Note</b>: While this field is required, backwards compatibility feedback will not be rejected if not present, but will instead be interpreted as MES gateway data. 
+			</td>
+			<td>Yes</td>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>Merchant Transaction ID for the Original Auth Transaction</td>
+			<td>tid</td>
+			<td>Merchant unique identifier for the original authorization transaction. The transaction ID must be encoded as a string (e.g. "tid":"123455"). The maximum length is 40 characters.</td>
+			<td>No</td>
 		</tr>
 		
 
 		<tr>
-			<th colspan=4><h3>Title</h3></th>
+			<th colspan=4><h3>Sub Merchant</h3></th>
 		</tr>
 		<tr>
 			<th>Facet</th>
@@ -866,9 +895,11 @@ In the case of a chargeback on a transaction that eDNA has not previously proces
 			<th>Required</th>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>Sub Merchant ID</td>
+			<td>smid</td>
+			<td>A unique identifier for the merchant for whom this transaction is being processed.
+			<br><br>
+			<b>Note</b>: The value of the smid should not include the apostrophe symbol.</td>
 			<td></td>
 		</tr>
 
