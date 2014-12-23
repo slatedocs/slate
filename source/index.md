@@ -905,7 +905,7 @@ In the case of a chargeback on a transaction that eDNA has not previously proces
 
 
 		<tr>
-			<th colspan=4><h3>Title</h3></th>
+			<th colspan=4><h3>Credit Card</h3></th>
 		</tr>
 		<tr>
 			<th>Facet</th>
@@ -914,10 +914,12 @@ In the case of a chargeback on a transaction that eDNA has not previously proces
 			<th>Required</th>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>Number Hash</td>
+			<td>pccn</td>
+			<td>Credit card unique identifier (hash) while obscuring actual number. IdentityMind will supply procedure to generate hash.
+			<br><br>
+			<b>Note</b>: The hash must be of the full card number, not a masked or tokenized representation.</td>
+			<td>Yes, if the provided tid does not refer to a transaction previously processed by eDNA.</td>
 		</tr>
 		<tr>
 			<td></td>
