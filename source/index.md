@@ -781,7 +781,7 @@ EXAMPLE SERVICE REQUEST
 }
 ```
 
-> The response contains either a JSON encoded message or error message.
+> The response contains a JSON encoded message or error message.
 
 ```code
 EXAMPLE SERVICE RESPONSE DATA
@@ -898,7 +898,7 @@ or
 			<td>Merchant unique identifier for the original authorization transaction. The transaction ID must be encoded as a string (e.g. "tid":"123455"). The maximum length is 40 characters.</td>
 			<td>No</td>
 		</tr>
-		
+
 
 		<tr>
 			<th colspan=4><h3>Sub Merchant</h3></th>
@@ -915,7 +915,7 @@ or
 			<td>A unique identifier for the merchant for whom this transaction is being processed.
 			<br><br>
 			<b>Note</b>: The value of the smid should not include the apostrophe symbol.</td>
-			<td></td>
+			<td>No</td>
 		</tr>
 
 
@@ -1044,20 +1044,43 @@ or
 
 # Credit Notification
 
-> Notify that a credit occurred on a transaction. 
-> 
-> **Note**: The transaction may either be a payment transaction or an account transfer. 
-> In the case of credit or blind credit on a transaction that eDNA has not previously processed, then the payment instrument information is required.
->
-> [This URL](https://edna.identitymind.com/im/transaction) can be used for PLACEHOLDER
+Notifies that a credit occurred on a transaction. 
+ 
+ **Note**: The transaction may either be a payment transaction or an account transfer. 
+
+In the case of credit or blind credit on a transaction that eDNA has not previously processed, then the payment instrument information is required.
 
 ## Arguments
 
-placeholder
+> [This URL](https://edna.identitymind.com/im/jax/credit/) can be used for PLACEHOLDER
 
-## Response
+```code
+EXAMPLE SERVICE REQUEST
 
-placeholder
+{
+     “amt”: 10.4,
+     “pccn”: “DNsxhwmQCWeC5gPxTOwPRZlFfx”,
+     “pcct”: “401201XXXXXX1110”,
+     “tid”: “988833” 
+}
+```
+
+> The response contains a JSON encoded message or error message.
+
+```code
+
+EXAMPLE SERVICE RESPONSE DATA
+
+{
+  “message”: “credit notification accepted”
+}
+or 
+{
+  “error_message”: “A JSONObject text must begin with ‘{‘ at character 1”
+}
+```
+
+
 
 
 # Feedback: Transaction Neutral/Refund Notification
