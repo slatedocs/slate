@@ -650,7 +650,7 @@ IdentityMind uses an SSL Server certificate for the client to authenticate the s
 			<td>Affiliate Signup Date</td>
 			<td>aflsd</td>
 			<td>The signup/affiliate creation date of the affiliate associated with this transaction. Either a ISO8601 encoded string or a UNIX timestamp.</td>
-			<td>data</td>
+			<td>No</td>
 		</tr>
 
 
@@ -738,6 +738,10 @@ IdentityMind uses an SSL Server certificate for the client to authenticate the s
 
 ## Response
 
+> The response is a JSON encoding of the IdentityMind Service result. The most important part of the response is whether the transaction is to be accepted, denied or scheduled for manual review (dependent on the configured fraud policy). 
+
+> The response includes detailed result codes and the transaction unique identifier. The keys are fully defined in *Appendix A: Result Keys and Codes*.
+
 > Example service response data:
 
 ```code
@@ -755,10 +759,6 @@ IdentityMind uses an SSL Server certificate for the client to authenticate the s
   “error_message” : “Bad data format:Failed to parse the date string provided in the data.  Please use ISO8601 format.”
 }
 ```
-
-The response is a JSON encoding of the IdentityMind Service result. The most important part of the response is whether the transaction is to be accepted, denied or scheduled for manual review (dependent on the configured fraud policy). 
-
-The response includes detailed result codes and the transaction unique identifier. The keys are fully defined in *Appendix A: Result Keys and Codes*.
 
 # Chargeback Notification
 
@@ -922,51 +922,67 @@ In the case of a chargeback on a transaction that eDNA has not previously proces
 			<td>Yes, if the provided tid does not refer to a transaction previously processed by eDNA.</td>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>Number Token</td>
+			<td>pcct</td>
+			<td>A masked or tokenized version of the credit card number. IdentityMind will supply procedure to generate token.</td>
+			<td>Yes, if the provided tid does not refer to a transaction previously processed by eDNA.</td>
+		</tr>
+		<tr>
+			<td>Issuer Country</td>
+			<td>ric</td>
+			<td>The issuer country of the card used in the transaction. The country code is the two letter abbreviation as defined in ISO-3166-1.</td>
+			<td>No</td>
+		</tr>
+		<tr>
+			<td>Card Type</td>
+			<td>pcty</td>
+			<td>Type of card:
+				<ul type="disc">
+					<li>CREDIT</li>
+					<li>DEBIT</li>
+					<li>PREPAID</li>
+					<li>UNKNOWN</li>
+				</ul>
+			Default is UNKNOWN</td>
+			<td>No</td>
+		</tr>
+		<tr>
+			<td>Number Hash</td>
+			<td>pccn2</td>
+			<td>Hash of the credit card to which the chargeback amount is to be credited if it is different from the credit card where the chargeback was reported.
+			<br><br>
+			<b>Note</b>: The has must be of the full card number, not a masked or tokenized representation.</td>
+			<td>No</td>
+		</tr>
+		<tr>
+			<td>Number Token</td>
+			<td>pcct2</td>
+			<td>Token of the credit card to which the chargeback amount is to be credited if it is different from the credit card where the chargeback was reported.</td>
+			<td>No</td>
+		</tr>
+		<tr>
+			<td>Issuer Country</td>
+			<td>ric2</td>
+			<td>The issuer country of the credit card to which the chargeback amount is to be credited if it is different from the credit card where the chargeback was reported. The country code is the two letter abbreviation as defined in ISO-3166-1.</td>
 			<td></td>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-		</tr>
-		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-		</tr>
-		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-		</tr>
-		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-		</tr>
-		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-		</tr>
-		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>Card Type</td>
+			<td>pcty2</td>
+			<td>The type of the credit card to which the chargeback amount is to be credited if it is different from the credit card where the chargeback was reported.
+				<ul type="disc">
+					<li>CREDIT</li>
+					<li>DEBIT</li>
+					<li>PREPAID</li>
+					<li>UNKNOWN</li>
+				</ul>
+			Default is UNKNOWN</td>
+			<td>No</td>
 		</tr>
 
 
 		<tr>
-			<th colspan=4><h3>Title</h3></th>
+			<th colspan=4><h3>PayPal</h3></th>
 		</tr>
 		<tr>
 			<th>Facet</th>
@@ -975,21 +991,21 @@ In the case of a chargeback on a transaction that eDNA has not previously proces
 			<th>Required</th>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>Account ID</td>
+			<td>pppi</td>
+			<td>PayPal Payer ID. It corresponds to PayPal's "PAYERID" field from PayPal Express Checkout.</td>
+			<td>Yes, if the provided tid does not refer to a transaction previously processed by eDNA.</td>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>Email</td>
+			<td>pppe</td>
+			<td>Email address associated to the PayPal account. It corresponds to PayPal's "EMAIL" field from PayPal Express Checkout.</td>
+			<td>No</td>
 		</tr>
 
 
 		<tr>
-			<th colspan=4><h3>Title</h3></th>
+			<th colspan=4><h3>Google Checkout</h3></th>
 		</tr>
 		<tr>
 			<th>Facet</th>
@@ -998,18 +1014,17 @@ In the case of a chargeback on a transaction that eDNA has not previously proces
 			<th>Required</th>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>Account ID</td>
+			<td>gcbi</td>
+			<td>Google Checkout Buyer ID. It corresponds to the "buyer-id" element.</td>
+			<td>Yes, if the provided tid does not refer to a transaction previously processed by eDNA.</td>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>Email</td>
+			<td>gcem</td>
+			<td>Email address associated to the Google Checkout account. It correpsonds to the "email" element.</td>
+			<td>No</td>
 		</tr>
-
 	</table>
 
 ## Response
