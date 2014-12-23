@@ -974,6 +974,72 @@
 <td>Text</td>
 <td>Identificação do estabelecimento comercial no adquirente. Também conhecido internamente como “SaleAffiliationKey”.</td>
 </tr>
+<tr>
+<td>Transaction<code class="prettyprint">&lt;Tx&gt;</code></td>
+<td>[1..1]</td>
+<td>Container</td>
+<td>Dados da transação.</td>
+</tr>
+<tr>
+<td>InitiatorTransactionIdentification<code class="prettyprint">&lt;InitrTxId&gt;</code></td>
+<td>[0..1]</td>
+<td>Text</td>
+<td>Identificação da transação definida pelo sistema que se comunica com o Host Stone.</td>
+</tr>
+<tr>
+<td>TransactionIdentification<code class="prettyprint">&lt;TxId&gt;</code></td>
+<td>[1..1]</td>
+<td>Container</td>
+<td>Dados de identificação da transação atribuída pelo POI.</td>
+</tr>
+<tr>
+<td>TransactionDateTime<code class="prettyprint">&lt;TxDtTm&gt;</code></td>
+<td>[1..1]</td>
+<td>DateTime</td>
+<td>Data local e hora da transação atribuído pelo POI. Este campo será ecoado pelo adquirente.</td>
+</tr>
+<tr>
+<td>TransactionReference<code class="prettyprint">&lt;TxRef&gt;</code></td>
+<td>[1..1]</td>
+<td>Text</td>
+<td>Identificação da transação atribuída pelo POI. Este campo será ecoado pelo adquirente.</td>
+</tr>
+<tr>
+<td>OriginalTransaction<code class="prettyprint">&lt;OrgnlTx&gt;</code></td>
+<td>[0..1]</td>
+<td>Container</td>
+<td>Identificação da transação original</td>
+</tr>
+<tr>
+<td>InitiatorTransactionIdentification<code class="prettyprint">&lt;InitrTxId&gt;</code></td>
+<td>[0..1]</td>
+<td>Text</td>
+<td>Identificação da transação definida pelo sistema que se comunica com o Host Stone. No caso de “time out”, o sistema integrador pode não possuir o identificador definido pela Stone. Neste caso, o Id definido pelo sistema integrador (NSU) deve ser enviado neste campo para reverter uma transação.</td>
+</tr>
+<tr>
+<td>RecipientTransactionIdentification<code class="prettyprint">&lt;RcptTxId&gt;</code></td>
+<td>[0..1]</td>
+<td>Text</td>
+<td>Identificação da transação definida pelo adquirente.</td>
+</tr>
+<tr>
+<td>TransactionDetails<code class="prettyprint">&lt;TxDtls&gt;</code></td>
+<td>[1..1]</td>
+<td>Container</td>
+<td>Detalhes da transação.</td>
+</tr>
+<tr>
+<td>Currency<code class="prettyprint">&lt;Ccy&gt;</code></td>
+<td>[1..1]</td>
+<td>CodeSet</td>
+<td>Moeda utilizada na transação em conformidade com a ISO 4217.</td>
+</tr>
+<tr>
+<td>TotalAmount<code class="prettyprint">&lt;TtlAmt&gt;</code></td>
+<td>[1..1]</td>
+<td>Amount</td>
+<td>Valor total da transação em centavos.</td>
+</tr>
 </tbody></table>
 <h3 id='xml-de-resposta-de-captura-comentado'>XML de resposta de Captura comentado</h3>
 <p>A mensagem <code class="prettyprint">AcceptorCompletionAdviceResponse</code> é enviada pelo adquirente para avisar o estabelecimento sobre o reconhecimento do resultado da operação de pagamento, bem como a transferência dos dados financeiros da transação contidas no <code class="prettyprint">AcceptorCompletionAdvice</code>. Esta mensagem também é utilizada como resposta para o processo de “desfazimento de transações”.</p>
@@ -1020,6 +1086,100 @@
     <span class="nt">&lt;/AccptrCmpltnAdvcRspn&gt;</span>
 <span class="nt">&lt;/Document&gt;</span>
 </pre>
+
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Ocorrência</th>
+<th>Tipo</th>
+<th>Descrição</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Header<code class="prettyprint">&lt;Hdr&gt;</code></td>
+<td>[1..1]</td>
+<td>Container</td>
+<td>Cabeçalho da mensagem.</td>
+</tr>
+<tr>
+<td>MessageFunction<code class="prettyprint">&lt;MsgFctn&gt;</code></td>
+<td>[1..1]</td>
+<td>CodeSet</td>
+<td>Identifica o tipo de processo em que a mensagem se propõe. “CMPK” = CompletionAdviceResponse ou “RVRR” = ReversalAdviceResponse.</td>
+</tr>
+<tr>
+<td>CreationDateTime<code class="prettyprint">&lt;CreDtTm&gt;</code></td>
+<td>[0..1]</td>
+<td>Text</td>
+<td>Data de criação da mensagem</td>
+</tr>
+<tr>
+<td>ProtocolVersion<code class="prettyprint">&lt;PrtcolVrsn&gt;</code></td>
+<td>[1..1]</td>
+<td>Text</td>
+<td>Versão do protocolo utilizado na mensagem.</td>
+</tr>
+<tr>
+<td>CompletionAdviceResponse<code class="prettyprint">&lt;CmpltnAdvcRspn&gt;</code></td>
+<td>[1..1]</td>
+<td>Container</td>
+<td>Informações sobre a resposta da captura ou desfazimento de uma autorização.</td>
+</tr>
+<tr>
+<td>Environment<code class="prettyprint">&lt;Envt&gt;</code></td>
+<td>[1..1]</td>
+<td>Container</td>
+<td>Ambiente da transação.</td>
+</tr>
+<tr>
+<td>Merchant Identification<code class="prettyprint">&lt;MrchntId&gt;</code></td>
+<td>[1..1]</td>
+<td>Container</td>
+<td>Dados do estabelecimento.</td>
+</tr>
+<tr>
+<td>Identification<code class="prettyprint">&lt;Id&gt;</code></td>
+<td>[1..1]</td>
+<td>Text</td>
+<td>Identificação do estabelecimento comercial no adquirente. Também conhecido como “SaleAffiliationKey”.</td>
+</tr>
+<tr>
+<td>POIId<code class="prettyprint">&lt;POIId&gt;</code></td>
+<td>[0..1]</td>
+<td>Container</td>
+<td>Dados do ponto de interação.</td>
+</tr>
+<tr>
+<td>Transaction<code class="prettyprint">&lt;Tx&gt;</code></td>
+<td>[1..1]</td>
+<td>Container</td>
+<td>Dados da transação.</td>
+</tr>
+<tr>
+<td>TransactionIdentification<code class="prettyprint">&lt;TxId&gt;</code></td>
+<td>[1..1]</td>
+<td>Container</td>
+<td>Dados da identificação da transação definida pelo POI.</td>
+</tr>
+<tr>
+<td>TransactionDateTime<code class="prettyprint">&lt;TxDtTm&gt;</code></td>
+<td>[1..1]</td>
+<td>DateTime</td>
+<td>Data e hora da transação</td>
+</tr>
+<tr>
+<td>TransactionReference<code class="prettyprint">&lt;TxRef&gt;</code></td>
+<td>[1..1]</td>
+<td>Text</td>
+<td>Identificação da transação definida pelo ponto de interação. Este campo será ecoado pelo adquirente.</td>
+</tr>
+<tr>
+<td>Response<code class="prettyprint">&lt;Rspn&gt;</code></td>
+<td>[1..1]</td>
+<td>CodeSet</td>
+<td>Resultado da transação. DECL = Declined, APPR = Approved, PART = Partial Approved, TECH = Technical Error.</td>
+</tr>
+</tbody></table>
 <h2 id='reverso'>Reversão</h2>
 <p>A reversão ou desfazimento de uma transação é realizado quando há alguma falha na transação. O prazo para a realização do desfazimento é de 5 dias e o tempo máximo de espera para de uma reposta <code class="prettyprint">AcceptorCompletionAdvice</code> é de 50 segundos.</p>
 
