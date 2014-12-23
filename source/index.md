@@ -43,6 +43,7 @@ IdentityMind uses an SSL Server certificate for the client to authenticate the s
 
 ```code
 EXAMPLE SERVICE REQUEST
+
 { 
   “amt” : 40,
   “bc” : “Palo Alto”,
@@ -69,12 +70,13 @@ EXAMPLE SERVICE REQUEST
   “tid” : “89”
 }
 ```
-> The response is a JSON encoding of the IdentityMind Service result. The most important part of the response is whether the transaction is to be accepted, denied or scheduled for manual review (dependent on the configured fraud policy). 
+> The response is a JSON encoding of the IdentityMind Service result. The most important part of the response is whether the transaction is to be accepted, denied or scheduled for manual review, which is dependent on the configured fraud policy. 
 
-The response includes detailed result codes and the transaction unique identifier. The keys are fully defined in *Appendix A: Result Keys and Codes*.
+> The response includes detailed result codes and the transaction unique identifier. The keys are fully defined in *Appendix A: Result Keys and Codes*.
 
 ```code
 EXAMPLE SERVICE RESPONSE DATA
+
 { 
   “res” : “ACCEPT”,
   “tid” : “89”,
@@ -764,18 +766,33 @@ In the case of a chargeback on a transaction that eDNA has not previously proces
 
 ## Arguments
 
-<aside class="notice">[This URL](https://edna.identitymind.com/im/jax/chargeback/) can be used for requesting payment transaction anti-fraud evaluation.
-</aside>
-
-> Example service request:
+> [This URL](https://edna.identitymind.com/im/jax/chargeback/) can be used for requesting payment transaction anti-fraud evaluation.
 
 ```code
+EXAMPLE SERVICE REQUEST
+
 {
      “amt”: 250,
      “cbtype”: “DEBIT”,
      “pccn”: “DNsxhwmQCWeC5gPxTOwPRZlFfx”,
      “pcct”: “401201XXXXXX1110”,
      “tid”: “9900040”
+}
+```
+
+> The response contains either a JSON encoded message or error message.
+
+```code
+EXAMPLE SERVICE RESPONSE DATA
+
+{
+  “message”: “credit notification accepted”
+}
+
+or 
+
+{
+  “error_message”: “A JSONObject text must begin with ‘{‘ at character 1”
 }
 ```
 
@@ -1023,11 +1040,6 @@ In the case of a chargeback on a transaction that eDNA has not previously proces
 			<td>No</td>
 		</tr>
 	</table>
-
-## Response
-
-placeholder
-
 
 # Credit Notification
 
