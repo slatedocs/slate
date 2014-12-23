@@ -39,7 +39,8 @@ IdentityMind uses an SSL Server certificate for the client to authenticate the s
 
 ## Arguments
 
-> [This URL](https://edna.identitymind.com/im/transaction) can be used for requesting payment transaction anti-fraud evaluation.
+<aside class="notice">[This URL](https://edna.identitymind.com/im/transaction) can be used for requesting payment transaction anti-fraud evaluation.
+</aside>
 
 > Example service request:
 
@@ -738,9 +739,10 @@ IdentityMind uses an SSL Server certificate for the client to authenticate the s
 
 ## Response
 
-> The response is a JSON encoding of the IdentityMind Service result. The most important part of the response is whether the transaction is to be accepted, denied or scheduled for manual review (dependent on the configured fraud policy). 
+<aside class="notice">The response is a JSON encoding of the IdentityMind Service result. The most important part of the response is whether the transaction is to be accepted, denied or scheduled for manual review (dependent on the configured fraud policy). 
 
-> The response includes detailed result codes and the transaction unique identifier. The keys are fully defined in *Appendix A: Result Keys and Codes*.
+The response includes detailed result codes and the transaction unique identifier. The keys are fully defined in *Appendix A: Result Keys and Codes*.
+</aside>
 
 > Example service response data:
 
@@ -768,7 +770,8 @@ In the case of a chargeback on a transaction that eDNA has not previously proces
 
 ## Arguments
 
-> [This URL](https://edna.identitymind.com/im/jax/chargeback/) can be used for requesting payment transaction anti-fraud evaluation.
+<aside class="notice">[This URL](https://edna.identitymind.com/im/jax/chargeback/) can be used for requesting payment transaction anti-fraud evaluation.
+</aside>
 
 > Example service request:
 
