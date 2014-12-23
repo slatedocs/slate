@@ -37,6 +37,8 @@ IdentityMind uses an SSL Server certificate for the client to authenticate the s
 
 # Payment Transaction Validation Web Service
 
+The evidence is the payment transaction data to be evaluated. It is supplied in the body of the HTTP-POST as JSON-encoded key value pairs. While all fields are not required, anti-fraud evaluation is more comprehensive when richer evidence is provided. 
+
 ## Arguments
 
 > [This URL](https://edna.identitymind.com/im/transaction) can be used for requesting payment transaction anti-fraud evaluation.
@@ -71,7 +73,7 @@ EXAMPLE SERVICE REQUEST
 }
 ```
 > The response is a JSON encoding of the IdentityMind Service result. The most important part of the response is whether the transaction is to be accepted, denied or scheduled for manual review, which is dependent on the configured fraud policy. 
-
+>
 > The response includes detailed result codes and the transaction unique identifier. The keys are fully defined in *Appendix A: Result Keys and Codes*.
 
 ```code
@@ -91,7 +93,6 @@ EXAMPLE SERVICE RESPONSE DATA
   “error_message” : “Bad data format:Failed to parse the date string provided in the data.  Please use ISO8601 format.”
 }
 ```
-
 	<table>
 		<tr>
 			<th colspan=4><h3>Billing Name</h3></th>
@@ -760,13 +761,13 @@ EXAMPLE SERVICE RESPONSE DATA
 
 # Chargeback Notification
 
-Notify that a chargeback occurred on a transaction. Note that the transaction may be either a Payment Transaction or an Account Transfer.
+Notifies that a chargeback occurred on a transaction. Note that the transaction may be either a Payment Transaction or an Account Transfer.
 
 In the case of a chargeback on a transaction that eDNA has not previously processed then the Payment Instrument information is required.
 
 ## Arguments
 
-> [This URL](https://edna.identitymind.com/im/jax/chargeback/) can be used for requesting payment transaction anti-fraud evaluation.
+> [This URL](https://edna.identitymind.com/im/jax/chargeback/) can be used for PLACEHOLDER.
 
 ```code
 EXAMPLE SERVICE REQUEST
@@ -1043,9 +1044,12 @@ or
 
 # Credit Notification
 
-## URL
-
-placeholder
+> Notify that a credit occurred on a transaction. 
+> 
+> **Note**: The transaction may either be a payment transaction or an account transfer. 
+> In the case of credit or blind credit on a transaction that eDNA has not previously processed, then the payment instrument information is required.
+>
+> [This URL](https://edna.identitymind.com/im/transaction) can be used for PLACEHOLDER
 
 ## Arguments
 
