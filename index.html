@@ -55,7 +55,7 @@
 
 <p>Se a loja virtual precisasse aceitar pagamentos através de três bandeiras de cartão de crédito diferentes, três processos de integração diferentes seriam necessários. Como o adquirente já fez esse investimento no processo de integração, o custo de integração través adquirente é muito menor para a loja, do que seria se a integração fosse feita diretamente com as bandeiras.</p>
 <h1 id='fluxo-de-comunicao'>Fluxo de comunicação</h1>
-<p>Toda a comunicação começa com o cliente consumidor, portador do cartão, optando por fazer o pagamento com um cartão aceito pela loja virtual. A loja virtual, por sua vez, envia uma mensagem para o adquirente, solicitando o processamento do pagamento. Assim como ocorre com pagamentos em maquinetas, o cliente precisará informar seus dados de autenticação e o pagamento poderá ser autorizado ou negado pelo adquirente, seja por informações incorretas, ou algum eventual problema.</p>
+<p>Toda a comunicação começa com o cliente consumidor, portador do cartão, optando por fazer o pagamento com um cartão aceito pela loja. A loja, por sua vez, envia uma mensagem para o adquirente, solicitando o processamento do pagamento. Assim como ocorre com pagamentos em maquinetas, o cliente precisará informar seus dados de autenticação e o pagamento poderá ser autorizado ou negado pelo adquirente, seja por informações incorretas, ou algum eventual problema.</p>
 
 <p><img alt="fluxo" src="images/fluxo.png" /></p>
 <h1 id='protocolo'>Protocolo</h1>
@@ -63,7 +63,7 @@
 
 <p>Por exemplo, para criar uma autorização, a loja deverá enviar uma mensagem <a href="#">AcceptorAuthorisationRequest</a> para o adquirente, que irá checar com o banco emissor se o cliente consumidor possui recursos para financiar o pagamento. Nessa mensagem, além dos dados de credenciamento da loja, a loja enviará os dados do dono do cartão e os dados da transação, como valor total, número de parcelas, etc.</p>
 <h1 id='mensagens'>Mensagens</h1>
-<p>Todas as mensagens serão enviadas através do protocolo HTTP. Todas as mensagens são enviadas utilizando o método <strong>POST</strong> para o seguinte endpoint:</p>
+<p>Todas as mensagens serão enviadas através do protocolo HTTP via TLS. Todas as mensagens são enviadas utilizando o método <strong>POST</strong> para o seguinte endpoint:</p>
 
 <ul>
 <li>Para o ambiente de produção <a href="http://pos.stone.com.br">http://pos.stone.com.br</a>.</li>
