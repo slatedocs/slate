@@ -1068,7 +1068,6 @@ EXAMPLE SERVICE REQUEST
 > The response contains a JSON encoded message or error message.
 
 ```code
-
 EXAMPLE SERVICE RESPONSE DATA
 
 {
@@ -1267,13 +1266,13 @@ or
 
 # Feedback: Transaction Neutral/Refund Notification
 
-Notifies that a refund occurred on a transaction. 
-
-**Note**: The transaction may be either a payment transaction or an account transfer.
-
 ## Arguments
 
-> All arguments are optional. They key parameter:transaction ID is part of the URL:
+> Notifies that a refund occurred on a transaction.
+
+> **Note**: The transaction may be either a payment transaction or an account transfer.
+
+> All arguments are optional. They key parameter:transaction ID is part of the URL. The "refund-ok" URL should be used when the merchant believes that the refund is legitimate. The "refund-fraud" URL should be used when the merchant believes there is fraud, but a refund is being made to avoid a later chargeback.
 
 ```code
 https://edna.identitymind.com/im/transaction/<transaction_ID>/refund-ok
@@ -1285,8 +1284,6 @@ https://edna.identitymind.com/im/transaction/<transaction_ID>/refund-partial-ok
 https://edna.identitymind.com/im/transaction/<transaction_ID>/refund-partial-fraud
 ```
  
-> The "refund-ok" URL should be used when the merchant believes that the refund is legitimate. The "refund-fraud" URL should be used when the merchant believes there is fraud, but a refund is being made to avoid a later chargeback.
-
 ```code
 EXAMPLE SERVICE REQUEST
 
@@ -1302,6 +1299,8 @@ EXAMPLE SERVICE REQUEST
 > The response contains a JSON encoded message or error message.
 
 ```code
+EXAMPLE SERVICE RESPONSE DATA
+
 {
     “message”: “Feedback accepted for REFUND_FRAUD feedback on transaction 42”
 }
@@ -1400,8 +1399,8 @@ https://edna.identitymind.com/im/transaction/<transaction_ID>/rejected-user-fail
 https://edna.identitymind.com/im/transaction/<transaction_ID>/accepted-default 
 
 https://edna.identitymind.com/im/transaction/<transaction_ID>/rejected-default
-
-
+```
+```code
 EXAMPLE SERVICE REQUEST
 
 {
@@ -1416,11 +1415,11 @@ EXAMPLE SERVICE REQUEST
 > The response contains a JSON encoded message or error message.
 
 ```code
+EXAMPLE SERVICE RESPONSE DATA
 
 {
   “message”: “Feedback accepted for ACCEPT feedback on transaction 42”
 }
-
 ```
 
 	<table>		
