@@ -1268,9 +1268,10 @@ or
 
 ## Arguments
 
-> Notifies that a refund occurred on a transaction.
+<aside class="notice">Notifies that a refund occurred on a transaction.
 
-> **Note**: The transaction may be either a payment transaction or an account transfer.
+**Note**: The transaction may be either a payment transaction or an account transfer.
+</aside>
 
 > All arguments are optional. They key parameter:transaction ID is part of the URL. The "refund-ok" URL should be used when the merchant believes that the refund is legitimate. The "refund-fraud" URL should be used when the merchant believes there is fraud, but a refund is being made to avoid a later chargeback.
 
