@@ -1074,7 +1074,9 @@ EXAMPLE SERVICE RESPONSE DATA
 {
   “message”: “credit notification accepted”
 }
+
 or 
+
 {
   “error_message”: “A JSONObject text must begin with ‘{‘ at character 1”
 }
@@ -1271,18 +1273,18 @@ Notifies that a refund occurred on a transaction.
 
 ## Arguments
 
-> All arguments are optional. They key parameter:transaction ID is part of the URL.
->
-> URLs:
-> 
->https://edna.identitymind.com/im/transaction/<transaction_ID>/refund-ok
+> All arguments are optional. They key parameter:transaction ID is part of the URL:
 
->https://edna.identitymind.com/im/transaction/<transaction_ID>/refund-fraud
+```code
+https://edna.identitymind.com/im/transaction/<transaction_ID>/refund-ok
 
->https://edna.identitymind.com/im/transaction/<transaction_ID>/refund-partial-ok
+https://edna.identitymind.com/im/transaction/<transaction_ID>/refund-fraud
 
->https://edna.identitymind.com/im/transaction/<transaction_ID>/refund-partial-fraud
-> 
+https://edna.identitymind.com/im/transaction/<transaction_ID>/refund-partial-ok
+
+https://edna.identitymind.com/im/transaction/<transaction_ID>/refund-partial-fraud
+```
+ 
 > The "refund-ok" URL should be used when the merchant believes that the refund is legitimate. The "refund-fraud" URL should be used when the merchant believes there is fraud, but a refund is being made to avoid a later chargeback.
 
 ```code
@@ -1366,16 +1368,149 @@ EXAMPLE SERVICE REQUEST
 		</tr>
 	</table>
 
-
 # Feedback: Final Payment Transaction Result
 
-## URL
+## Arguments
 
-placeholder
+> The following URLs are used to notify IdentityMind of the acceptance or rejection of the transaction previously analyzed with the given transaction ID by the merchant's payment gateway or the merchant themselves.
+> 
+> **Note**: The transaction may be a payment transaction or an account transfer.
+> 
+> All arguments are optional. They key parameter:transaction ID is part of the URL.
 
-## Response
+```code
+BANK AUTHORIZATION FEEDBACK
 
-placeholder
+https://edna.identitymind.com/im/transaction/<transaction_ID>/bank-accepted
+
+https://edna.identitymind.com/im/transaction/<transaction_ID>/bank-rejected
+
+MERCHANT FINAL RESOLUTION FEEDBACK
+
+https://edna.identitymind.com/im/transaction/<transaction_ID>/accepted
+
+https://edna.identitymind.com/im/transaction/<transaction_ID>/rejected
+
+https://edna.identitymind.com/im/transaction/<transaction_ID>/rejected-ok 
+
+https://edna.identitymind.com/im/transaction/<transaction_ID>/accepted-user-validated
+
+https://edna.identitymind.com/im/transaction/<transaction_ID>/rejected-user-failed-validation
+
+https://edna.identitymind.com/im/transaction/<transaction_ID>/accepted-default 
+
+https://edna.identitymind.com/im/transaction/<transaction_ID>/rejected-default
+
+
+EXAMPLE SERVICE REQUEST
+
+{
+  “auth_code”: “T1627H”,
+  “auth_response_text”: “Decline”,
+  “avs_result”: “Y”,
+  “error_code”: “05”
+}
+
+```
+
+> The response contains a JSON encoded message or error message.
+
+```code
+
+{
+  “message”: “Feedback accepted for ACCEPT feedback on transaction 42”
+}
+
+```
+
+	<table>		
+		<tr>
+			<th>Facet</th>
+			<th>Key</th>
+			<th>Description</th>
+			<th>Required</th>
+		</tr>
+		<tr>
+			<td>GW Response</td>
+			<td>auth_response</td>
+			<td>Whether the gateway accepted or rejected the transaction</td>
+			<td>No</td>
+		</tr>
+		<tr>
+			<td>GW Response Error Code</td>
+			<td>error_code</td>
+			<td>The error code fields from the authorization request as expressed by the gateway</td>
+			<td>No</td>
+		</tr>
+		<tr>
+			<td>GW Response Test</td>
+			<td>auth_response_text</td>
+			<td>Auth comments from the gateway</td>
+			<td>No</td>
+		</tr>
+		<tr>
+			<td>Reason</td>
+			<td>reason</td>
+			<td>Free-form descriptive text providing additional information about the feedback</td>
+			<td>No</td>
+		</tr>
+		<tr>
+			<td>AVS</td>
+			<td>avs_result</td>
+			<td>The AVS response code from the gateway</td>
+			<td>No</td>
+		</tr>
+		<tr>
+			<td>CVV2</td>
+			<td>cvv2_result</td>
+			<td>The CVV2 response code from the gateway</td>
+			<td>No</td>
+		</tr>
+		<tr>
+			<td>Gateway Name</td>
+			<td>gateway</td>
+			<td>The name of the payment gateway used. This information is used to interpret the result/error codes. Currently, we support:
+				<ul type="disc">
+					<li>"MES" - Merchant e-Solutions</li>
+					<li>"GC" - Google Checkout</li>
+					<li>"PPP" - PayPal Pro</li>
+					<li>"PFP" - Pay Flow Pro</li>
+					<li>"CDP" - Centro de Pagos</li>
+					<li>"commerce" - CommerceGate</li>
+					<li>"DHD" - DHD Media</li>
+					<li>"IDM" - IDMPay</li>
+					<li>"SC" - Safe Charge</li>
+					<li>"AUTH" - Auth.net</li>
+					<li>"INTERAC" - Interac</li>
+					<li>"generic" - See Appendix C)</li>
+				</ul>
+			<br><br>
+			<b>Note</b>: While this field is required, backwards compatibility feedback will not be rejected if not present, but will instead be interpreted as MES gateway data. </td>
+			<td>No</td>
+		</tr>
+		<tr>
+			<td>Auth Code</td>
+			<td>auth_code</td>
+			<td>Returned authorization code</td>
+			<td>No</td>
+		</tr>
+		<tr>
+			<td>Bank Status</td>
+			<td>bank_status</td>
+			<td>The status of the transaction at the gateway/bank:
+				<ul type="disc">
+					<li>"a" - auth_only</li>
+					<li>"c" - captured</li>
+					<li>"d" - declined</li>
+					<li>"v" - void</li>
+					<li>"r" - refund</li>
+					<li>"b" - chargeback</li>
+					<li>"u" - unknown</li>
+				</ul>
+			Default is "u"</td>
+			<td>No</td>
+		</tr>
+	</table>
 
 
 # Account Transfer Validation Web Service (Transaction Monitoring)
