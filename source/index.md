@@ -1320,7 +1320,7 @@ EXAMPLE SERVICE RESPONSE DATA
 		</tr>
 		<tr>
 			<td>Authorization Response</td>
-			<td>auth_response/td>
+			<td>auth_response</td>
 			<td>Response code from the gateway</td>
 			<td>No</td>
 		</tr>
