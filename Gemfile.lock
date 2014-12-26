@@ -104,7 +104,7 @@ GEM
     rb-fsevent (0.9.4)
     rb-inotify (0.9.5)
       ffi (>= 0.5.0)
-    redcarpet (3.1.2)
+    redcarpet (3.2.2)
     ref (1.0.5)
     rouge (1.7.2)
     ruby18_source_location (0.2)
@@ -145,7 +145,7 @@ DEPENDENCIES
   middleman-livereload (~> 3.3.0)
   middleman-syntax
   rake (~> 10.3.0)
-  redcarpet
+  redcarpet (~> 3.2.2)
   ruby18_source_location
   therubyracer
   wdm (~> 0.1.0)
