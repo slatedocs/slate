@@ -1584,7 +1584,7 @@ EXAMPLE SERVICE RESPONSE DATA
 
 	<table>
 		<tr>
-			<th colspan=4><h3>Title</h3></th>
+			<th colspan=4><h3>User Account</h3></th>
 		</tr>
 		<tr>
 			<th>Facet</th>
@@ -1593,57 +1593,64 @@ EXAMPLE SERVICE RESPONSE DATA
 			<th>Required</th>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>Account Name</td>
+			<td>man</td>
+			<td>Free form unique identifier for this account at this merchant</td>
+			<td>No</td>
+		</tr>
+		<tr>
+			<td>User Email Address</td>
+			<td>tea</td>
+			<td>Email address of record. An email address that the merchant is comfortable using to validate access to the account.</td>
+			<td>No</td>
+		</tr>
+		<tr>
+			<td>Social Authentication</td>
+			<td>soc</td>
+			<td>Indicates that the provided email address is associated with a social networking site, and is used for Oauth authentication. The following values are recommended:
+				<ul type:"disc">
+					<li>google</li>
+					<li>facebook</li>
+					<li>twitter</li>
+					<li>yahoo</li>
+				</ul>
+			</td>
+			<td>No</td>
+		</tr>
+		<tr>
+			<td>Home Phone</td>
+			<td>ph</td>
+			<td>Home phone on record. A landline phone number that the merchant is comfortable using to validate access to the account.</td>
+			<td>No</td>
+		</tr>
+		<tr>
+			<td>Mobile Phone</td>
+			<td>pm</td>
+			<td>Mobile phone on record. A mobile phone number that the merchant is comfortable using to validate access to the account.</td>
+			<td>No</td>
+		</tr>
+		<tr>
+			<td>High Value Account</td>
+			<td>hiv</td>
+			<td>The account is high value</td>
+			<td>No</td>
+		</tr>
+		<tr>
+			<td>User Location - Latitude</td>
+			<td>clat</td>
+			<td>The current latitude of the customer specified in decimal degrees. Encoded as a string (e.g. “clat”:“37.4419”)</td>
 			<td></td>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-		</tr>
-		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-		</tr>
-		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-		</tr>
-		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-		</tr>
-		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-		</tr>
-		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-		</tr>
-		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>User Location - Longitude</td>
+			<td>clong</td>
+			<td>The current longitude of the customer specified in decimal degrees. Encoded as a string (e.g. “clong”:“-122.1419”)</td>
+			<td>No</td>
 		</tr>
 
 
 		<tr>
-			<th colspan=4><h3>Title</h3></th>
+			<th colspan=4><h3>Billing Address</h3></th>
 		</tr>
 		<tr>
 			<th>Facet</th>
@@ -1652,22 +1659,22 @@ EXAMPLE SERVICE RESPONSE DATA
 			<th>Required</th>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>Billing First Name</td>
+			<td>bfn</td>
+			<td>First name associated with the payment/funding account</td>
+			<td>No</td>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>Billing Last Name</td>
+			<td>bln</td>
+			<td>Last name associated with the payment/funding account</td>
+			<td>No</td>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>Billing Street Address</td>
+			<td>bsn</td>
+			<td>Street address associated with the payment/funding account</td>
+			<td>No</td>
 		</tr>
 		<tr>
 			<td></td>
