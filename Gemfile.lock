@@ -145,7 +145,7 @@ DEPENDENCIES
   middleman-livereload (~> 3.3.0)
   middleman-syntax
   rake (~> 10.3.0)
-  redcarpet (~> 3.1.1)
+  redcarpet
   ruby18_source_location
   therubyracer
   wdm (~> 0.1.0)
