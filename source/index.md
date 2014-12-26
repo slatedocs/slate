@@ -1512,7 +1512,7 @@ EXAMPLE SERVICE RESPONSE DATA
 	</table>
 
 
-# Account Transfer Validation Web Service (Transaction Monitoring)
+# Transaction Monitoring: Account Transfer Validation Web Service
 
 ## Arguments
 
@@ -1967,7 +1967,7 @@ EXAMPLE SERVICE RESPONSE DATA
 		</tr>
 	</table>
 
-# Merchant Application Validation Web Service
+# KYC - Merchant: Merchant Application Validation Web Service
 
 ## Reseller Only Feature: How to associate a merchant with its owners
 
@@ -1986,7 +1986,7 @@ placeholder
 placeholder
 
 
-# Consumer Application Validation Web Service (KYC)
+# KYC - Consumer: Consumer Application Validation Web Service
 
 ## URL
 
