@@ -1677,33 +1677,33 @@ EXAMPLE SERVICE RESPONSE DATA
 			<td>No</td>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>Billing City</td>
+			<td>bc</td>
+			<td>City associated with the payment/funding account</td>
+			<td>No</td>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>Billing State</td>
+			<td>bs</td>
+			<td>State associated with the payment/funding account</td>
+			<td>No</td>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>Billing Zip / Postal Code</td>
+			<td>bz</td>
+			<td>Zip code associated with the payment/funding account</td>
+			<td>No</td>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>Billing Country</td>
+			<td>bco</td>
+			<td>Country associated with the payment/funding account</td>
+			<td>No</td>
 		</tr>
 
 
 		<tr>
-			<th colspan=4><h3>Title</h3></th>
+			<th colspan=4><h3>Device</h3></th>
 		</tr>
 		<tr>
 			<th>Facet</th>
@@ -1712,15 +1712,15 @@ EXAMPLE SERVICE RESPONSE DATA
 			<th>Required</th>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>Client IP</td>
+			<td>ip</td>
+			<td>The IP address of the client as observed by the merchant.</td>
+			<td>No</td>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>Device Fingerprint</td>
+			<td>dfp</td>
+			<td>Device fingerprint blob. The interpretation of this blob is specified by the value of the "dft" attribute.</td>
 			<td></td>
 		</tr>
 		<tr>
