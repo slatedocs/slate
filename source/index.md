@@ -2766,7 +2766,6 @@ EXAMPLE SERVICE RESPONSE DATA
 
 ```
 
-
 	<table>
 		<tr>
 			<th colspan=2><h3>JSON Request Encoding</h3></th>
@@ -2825,17 +2824,71 @@ EXAMPLE SERVICE RESPONSE DATA
 
 # Feedback: Final Application Result
 
-## URL
+## Arguments
 
-placeholder
+> The following URLs are used to notify IdentityMind of the acceptance or rejection of an application by the merchant.
 
-## Example Service Request
+```code
+https://edna.identitymind.com/im/account/consumer/<application_ID>/accepted (POST)
 
-placeholder
+https://edna.identitymind.com/im/account/consumer/<application_ID>/rejected (POST)
 
-## Response
+https://edna.identitymind.com/im/account/merchant/<application_ID>/accepted (POST)
 
-placeholder
+https://edna.identitymind.com/im/account/merchant/<application_ID>/rejected (POST)
+```
+> All arguments are optional, although a JSON object must be provided.
+
+```code
+EXAMPLE SERVICE REQUEST
+
+{
+  “reason”: “0”,
+  “description”: “I like this application”,
+	  “validate”: true
+}
+
+or
+
+{}
+```
+> The response contains a JSON encoded message or error message.
+
+```code
+{
+  “message”: “Accepted application”
+}
+```
+	<table>
+		<tr>
+			<th>Facet</th>
+			<th>Key</th>
+			<th>Description</th>
+			<th>Required</th>
+		</tr>
+		<tr>
+			<td>Reason</td>
+			<td>reason</td>
+			<td>Free form code. Up to 4 characters</td>
+			<td>No</td>
+		</tr>
+		<tr>
+			<td>Description</td>
+			<td>description</td>
+			<td>Free form descriptive text providing additional information about the feedback. Up to 255 characters</td>
+			<td>No</td>
+		</tr>
+		<tr>
+			<td>User Validation</td>
+			<td>validate</td>
+			<td>Whether the user defined in the application should be validated. Encoded as a boolean.
+			<br><br>
+			For a rejected application, the property is interpreted as whether to mark the applicant as having failed validation.
+			<br><br>
+			Defaults to false</td>
+			<td></td>
+		</tr>
+	</table>
 
 
 # Login Annotation Web Service
