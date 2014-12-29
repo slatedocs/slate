@@ -95,7 +95,7 @@ postalcode | Postal code where the business is located, should be a minimum 5 di
 tel | Telephone number of the business, should be 10 digits
 website |  URL for the business, include http:// 
 email | Email address for the business
-logitude | Longitude of the business location
+longitude | Longitude of the business location
 latitude | Latitude of the business location
 facebook_id | The Facebook ID or the name of the page for the business
 twitter_id | Twitter username for the business, without the @ symbol

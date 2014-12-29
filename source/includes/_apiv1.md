@@ -240,7 +240,7 @@ This endpoint is used to put updated data for an existing business listing into 
 
 ### HTTP Request
 
-`POST http://api.mojopages.com/api/v1/listing/:LISTING_ID`
+`PUT http://api.mojopages.com/api/v1/listing/:LISTING_ID`
 
 ### Query Parameters
 
