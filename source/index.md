@@ -1989,9 +1989,9 @@ Each owner will be evaluated with the Consumer Application Web Service.  In the 
 
 ## Arguments
 
-```code
 > The following URLs are used for merchant application validation:
 
+```code
 Validate a merchant application:
 
 https://edna.identitymind.com/im/account/merchant (POST)
@@ -2058,7 +2058,7 @@ EXAMPLE SERVICE RESPONSE DATA
 ```
 	<table>
 		<tr>
-			<th colspan=4><h3>Title</h3></th>
+			<th colspan=4><h3>Application</h3></th>
 		</tr>
 		<tr>
 			<th>Facet</th>
@@ -2067,15 +2067,15 @@ EXAMPLE SERVICE RESPONSE DATA
 			<th>Required</th>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>ID</td>
+			<td>tid</td>
+			<td>Unique application identifier. The system will assign one if not provided. It is recommended to pass one if needed to be correlatedf to client's backend system. The tid must be encoded as a string (e.g. "tid":"123455"). The maximum length is 40 characters. The tid is used to combine the multiple stages of an application.</td>
+			<td>No</td>
 		</tr>
 
 
 		<tr>
-			<th colspan=4><h3>Title</h3></th>
+			<th colspan=4><h3>Company</h3></th>
 		</tr>
 		<tr>
 			<th>Facet</th>
@@ -2084,135 +2084,149 @@ EXAMPLE SERVICE RESPONSE DATA
 			<th>Required</th>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>Account Merchant Name</td>
+			<td>amn</td>
+			<td>Legal name of the company</td>
+			<td>Yes</td>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>Doing Business As</td>
+			<td>dba</td>
+			<td>DBA</td>
+			<td>No</td>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>Account Tax ID</td>
+			<td>ataxid</td>
+			<td>The merchant's tax ID</td>
+			<td>Yes, unless SSN is provided</td>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>Account SSN</td>
+			<td>assn</td>
+			<td>The merchant's social security number</td>
+			<td>Yes, unless tax ID is provided</td>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>GIIN</td>
+			<td>giin</td>
+			<td>The merchant's Guild Intermediary Identification Number. GIIN is a 19 character number that uniquely identifies an entity as having registered with the IRS for purposes of FATCA</td>
+			<td>No</td>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>Business Type</td>
+			<td>businesstype</td>
+			<td>Possible values are:
+				<ul type="disc">
+					<li>corporation - Corporation</li>
+					<li>llc - LLC</li>
+					<li>partnership - Partnership</li>
+					<li>individual - Individual/Sole Proprietorship</li>
+					<li>nonprofit - Nonprofit</li>
+					<li>foreigncorp - Foreign corporation</li>
+				</ul>
+			</td>
+			<td>No/td>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>Account Contact First Name</td>
+			<td>afn</td>
+			<td>The first name of the contact person for the business</td>
+			<td>No</td>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>Account Contact Last Name</td>
+			<td>aln</td>
+			<td>The last name of hte contact person for the business</td>
+			<td>No</td>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>Account Merchant Phone</td>
+			<td>aph</td>
+			<td>The merchant's business phone number</td>
+			<td>No</td>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>Account Street Address</td>
+			<td>asn</td>
+			<td>The merchant's street address</td>
+			<td>No</td>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>Account City</td>
+			<td>ac</td>
+			<td>The merchant's city</td>
+			<td>No</td>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>Account State</td>
+			<td>as</td>
+			<td>The merchant's state</td>
+			<td>No</td>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>Account Zip/Postal Code</td>
+			<td>az</td>
+			<td>The merchant's zip code</td>
+			<td>No</td>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>Account Country</td>
+			<td>aco</td>
+			<td>The merchant's country</td>
+			<td>No</td>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>MCC</td>
+			<td>mcc</td>
+			<td>Merchant Category Code</td>
+			<td>No</td>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>Token</td>
+			<td>pcct</td>
+			<td>Credit card number</td>
+			<td>Yes, if pccn is provided</td>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>Bank Account Type</td>
+			<td>bankaccounttype</td>
+			<td>Valid values are:
+				<ul type="disc">
+					<li>checking</li>
+					<li>saving</li>
+				</ul>
+			</td>
+			<td>No</td>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>Credit Card</td>
+			<td>ccaccept</td>
+			<td>Boolean</td>
+			<td>No</td>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>PayPal</td>
+			<td>ppaccept</td>
+			<td>Boolean</td>
+			<td>No</td>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>ACH</td>
+			<td>achaccept</td>
+			<td>Boolean</td>
+			<td>No</td>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>Bitcoin</td>
+			<td>bitcoinaccept</td>
+			<td>Boolean</td>
+			<td>No</td>
 		</tr>
 
 
 		<tr>
-			<th colspan=4><h3>Title</h3></th>
+			<th colspan=4><h3>Transaction</h3></th>
 		</tr>
 		<tr>
 			<th>Facet</th>
@@ -2221,21 +2235,26 @@ EXAMPLE SERVICE RESPONSE DATA
 			<th>Required</th>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>Transaction Time</td>
+			<td>tti</td>
+			<td>The date and time of the transaction as processed by the merchant. Expressed in UTC, encoded as a UNIX timestamp.
+				<ul type="disc">
+					<li>"tti":129887536</li>
+					<li>"tti":"129887536"</li>
+				</ul>
+			If not supplied, eDNA will assign the time at which it receives the transaction.</td>
+			<td>No</td>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>Application Stage</td>
+			<td>stage</td>
+			<td>Stage of the application being processed. An integer between 1 and 5. If not provided, defaults to 1</td>
+			<td>No</td>
 		</tr>
 
 
 		<tr>
-			<th colspan=4><h3>Title</h3></th>
+			<th colspan=4><h3>Group</h3></th>
 		</tr>
 		<tr>
 			<th>Facet</th>
@@ -2244,10 +2263,10 @@ EXAMPLE SERVICE RESPONSE DATA
 			<th>Required</th>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>IDM Merchant Aggregation</td>
+			<td>merchantgroup</td>
+			<td>Aggregation that defines KYC configuration and monitoring thresholds</td>
+			<td>No</td>
 		</tr>
 	</table>
 
