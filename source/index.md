@@ -2273,18 +2273,358 @@ EXAMPLE SERVICE RESPONSE DATA
 
 # KYC - Consumer: Consumer Application Validation Web Service
 
-## URL
-
-placeholder
-
 ## Arguments
 
-placeholder
+>The following URLs are used for consumer application validation:
 
-## Response
+```code
+Validate a consumer application:
 
-placeholder
+https://edna.identitymind.com/im/account/creation (POST)
 
+Retrieve the current state of a consumer application:
+
+https://edna.identitymind.com/im/account/creation/<tid> (GET)
+```
+
+>The evidence is the application data to be evaluated. It is supplied in the body of the HTTP-POST as JSON-encoded key value pairs. While all fields are not required, validation evaluation is more comprehensive when richer evidence is provided. 
+
+> The response is a JSON encoding of the IdentityMind Service result.   
+The response includes detailed result codes and the transaction unique identifier. The keys are fully defined in Appendix A.
+
+```code
+EXAMPLE SERVICE RESPONSE DATA
+
+{
+    "mtid": "consumerUIWalkthrough",
+    "state": "A",
+    "merchantApplicationResponse": {
+        "erd": "Unknown User",
+        "frd": "No fraud rules triggered.",
+        "frn": "Account Fallthrough",
+        "rcd": "50005,202,111,101,121,131,10000",
+        "res": "ACCEPT",
+        "tid": "consumerUIWalkthrough",
+        "ufs": 1414122024000,
+        "umrs": 1414122024000,
+        "upr": "UNKNOWN",
+        "usc": 0,
+        "user": "UNKNOWN"
+    },
+    “parentMerchant”:”eDNABlackListFail”,
+    "ednaScoreCard": {
+        "tr": [
+                  {
+                "testCategory": "Identity",
+                "testDescription": "Checks whether the address is risky: prisons, warehouses, hospitals, universities, etc.\nIt fails if the address is high risk.",
+                "testId": "id:7",
+                "testName": "IDology ExpectID: Warm Address",
+                "testPass": true
+            },
+            {
+                "testCategory": "Device",
+                "testDescription": "Checks whether the device is currently using an anonymous proxy.  It fails when an anonymous proxy is being used.",
+                "testDetails": "The device is not currently using an anonymous proxy",
+                "testId": "bc:1",
+                "testName": "BlueCava: Using Anonymous Proxy",
+                "testPass": true
+            },
+            {
+                "testCategory": "eDNA",
+                "testDescription": "Checks the number of applications for a particular funding payment instrument.\nIt fails when the number of applications is higher than the configured threshold.",
+                "testDetails": "0",
+                "testId": "ed:5",
+                "testName": "Payment Instrument Application Count",
+                "testPass": true
+            },
+        ]
+    },
+}
+```
+
+	<table>
+		<tr>
+			<th colspan=4><h3>Title</h3></th>
+		</tr>
+		<tr>
+			<th>Facet</th>
+			<th>Key</th>
+			<th>Description</th>
+			<th>Required</th>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+
+
+		<tr>
+			<th colspan=4><h3>Title</h3></th>
+		</tr>
+		<tr>
+			<th>Facet</th>
+			<th>Key</th>
+			<th>Description</th>
+			<th>Required</th>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+
+
+		<tr>
+			<th colspan=4><h3>Title</h3></th>
+		</tr>
+		<tr>
+			<th>Facet</th>
+			<th>Key</th>
+			<th>Description</th>
+			<th>Required</th>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+
+
+		<tr>
+			<th colspan=4><h3>Title</h3></th>
+		</tr>
+		<tr>
+			<th>Facet</th>
+			<th>Key</th>
+			<th>Description</th>
+			<th>Required</th>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+
+
+		<tr>
+			<th colspan=4><h3>Title</h3></th>
+		</tr>
+		<tr>
+			<th>Facet</th>
+			<th>Key</th>
+			<th>Description</th>
+			<th>Required</th>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+	</table>
 
 # Quiz Response (IDAnalytics)
 
