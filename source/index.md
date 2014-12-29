@@ -3297,6 +3297,8 @@ EXAMPLE SERVICE RESPONSE DATA
 		</tr>
 	</table>
 
+### Out of Wallet Questions Encoding
+
 ```code
 EXAMPLE
 
@@ -3351,9 +3353,6 @@ EXAMPLE
 ```
 	<table>
 		<tr>
-			<th colspan=2><h3>Out of Wallet Questions Encoding</h3></th>
-		</tr>
-		<tr>
 			<th>Key</th>
 			<th>Description</th>
 		</tr>
@@ -3374,6 +3373,8 @@ EXAMPLE
 			<td>JSON Array of strings that represent the set of possible multiple choice answers</td>
 		</tr>
 	</table>
+
+### eDNA Score Card Encoding
 
 ```code
 EXAMPLE
@@ -3481,11 +3482,8 @@ EXAMPLE
 ```
 	<table>
 		<tr>
-			<th colspan=3><h3>eDNA Score Card Encoding</h3></th>
-		</tr>
-		<tr>
 			<th>Key</th>
-			<th>Description</th>
+			<th colspan=2>Description</th>
 		</tr>
 		<tr>
 			<td rowspan=8>tr</td>
