@@ -189,3 +189,22 @@ Error Code | Meaning
 			<td></td>
 		</tr>
 	</table>
+
+
+	<table>
+		<tr>
+			<th colspan=4><h3>Title</h3></th>
+		</tr>
+		<tr>
+			<th>Name</th>
+			<th>Key</th>
+			<th>Example</th>
+			<th>Description</th>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+	</table>

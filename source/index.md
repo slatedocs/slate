@@ -3059,17 +3059,295 @@ EXAMPLE SERVICE RESPONSE DATA
 
 ## Result Key Names
 
-### Payment Transaction
+	<table>
+		<tr>
+			<th colspan=4><h3>Title</h3></th>
+		</tr>
+		<tr>
+			<th>Name</th>
+			<th>Key</th>
+			<th>Example</th>
+			<th>Description</th>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
 
-placeholder
 
-### Account Transfer / Login Validation Transaction
+		<tr>
+			<th colspan=4><h3>Account Transfer / Login Validation Transaction</h3></th>
+		</tr>
+		<tr>
+			<th>Name</th>
+			<th>Key</th>
+			<th>Example</th>
+			<th>Description</th>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
 
-placeholder
 
-### Merchant/Customer Application Transaction
+		<tr>
+			<th colspan=4><h3>Merchant / Consumer Application Transaction</h3></th>
+		</tr>
+		<tr>
+			<th>Name</th>
+			<th>Key</th>
+			<th>Example</th>
+			<th>Description</th>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+	</table>
 
-placeholder
+	<table>
+		<tr>
+			<th colspan=2><h3>Out of Wallet Questions Encoding</h3></th>
+		</tr>
+		<tr>
+			<th>Key</th>
+			<th>Description</th>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+		</tr>
+	</table>
+
+	<table>
+		<tr>
+			<th colspan=2><h3>eDNA Score Card Encoding</h3></th>
+		</tr>
+		<tr>
+			<th>Key</th>
+			<th>Description</th>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+		</tr>
+	</table>
 
 
 ## Result Codes
@@ -3211,19 +3489,36 @@ Code | Meaning
 
 ## Payment Fraud Rule Codes
 
-placeholder
+This section documents the result codes related to payment transaction fraud policy processing.  In the table below codes such as 104X represent the codes 1041-1045 where the first three digits indicate the fraud rule and the last digit represents the reputation of the User that triggered that rule as follows
+
+1.	Trusted
+2.	Recognized
+3.	Unknown
+4.	Suspicious
+5.	Bad
+
+Thus, the code 1042 indicates that the rule “TRANSACTION REJECTED BY BANK” triggered for a Recognized User.
+
+NOTE: Rules are updated regularly. The following table may not represent the most current set. Please refer to the UI Rule Editor view (in the web user interface) for up-to-date rules. The code for each rule is accessible through the UI.
+
 
 ## Account Validation Rule Codes
 
-placeholder
+This section documents the result codes related to account validation policy processing.
+
+NOTE: Rules are updated regularly. The following table may not represent the most current set. Please refer to the UI Rule Editor section (in the web user interface) for up-to-date rules. The code for each rule is accessible through the UI.
+
 
 ## Automated Review Policy Rule Codes
 
-placeholder
+This section documents the result codes related to Automated Review Policy processing.
+
+NOTE: Rules are updated regularly. The following table may not represent the most current set. Please refer to the UI Automated Review Policy section (in the web user interface) for up-to-date rules. The code for each rule is accessible through the UI.
+
 
 ## Consumer/Merchant Application Security Tests
 
-placeholder
+This section documents the security tests returned for Consumer or Merchant Applications. 
 
 
 # Appendix B: Additional Reseller Fields
