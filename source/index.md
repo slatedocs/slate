@@ -1639,7 +1639,7 @@ EXAMPLE SERVICE RESPONSE DATA
 			<td>User Location - Latitude</td>
 			<td>clat</td>
 			<td>The current latitude of the customer specified in decimal degrees. Encoded as a string (e.g. “clat”:“37.4419”)</td>
-			<td></td>
+			<td>No</td>
 		</tr>
 		<tr>
 			<td>User Location - Longitude</td>
@@ -1975,11 +1975,273 @@ EXAMPLE SERVICE RESPONSE DATA
 			<td>ISO 3166 country code of the recipient address of the transaction, encoded as a string. Default is "US"</td>
 			<td>No</td>
 		</tr>
+	</table>
+
+# KYC - Merchant: Merchant Application Validation Web Service
+
+## Reseller Only Feature: How to associate a merchant with its owners
+
+Each merchant can be associated with one or more owners.  The merchant will be evaluated with the Merchant Application Web Service.  One can provide an application ID (tid in the Request API), or extract this ID from the Response.
+
+Each owner will be evaluated with the Consumer Application Web Service.  In the Consumer Application request, the merchantAid must be set to the value of the application ID of the Merchant Application.  This will link the merchant to all of its owners. 
+
+![](http://i.imgur.com/TSTKfQg.png)
+
+## Arguments
+
+```code
+The following URLs are used for merchant application validation:
+
+Validate a merchant application:
+
+https://edna.identitymind.com/im/account/merchant (POST)
+
+
+Retrieve the current state of a merchant application:
+
+https://edna.identitymind.com/im/account/merchant/<tid> (GET)
+```
+
+>The evidence is the application data to be evaluated. It is supplied in the body of the HTTP-POST as JSON-encoded key value pairs. While all fields are not required, validation evaluation is more comprehensive when richer evidence is provided. 
+
+> The response is a JSON encoding of the IdentityMind Service result.   
+The response includes detailed result codes and the transaction unique identifier. The keys are fully defined in Appendix A.
+Parameters that are not defined here but appearing in the Request API will be categorized as custom data and can be displayed on the UI as proprietary information for the merchant.
+
+```code
+EXAMPLE SERVICE RESPONSE DATA
+
+{
+    "mtid": "eDNABlackListFail",
+    "state": "R",
+    “merchantAPIName”:“joseshoe”,
+    “ownerApplicationIds”:[
+        	“consumerapp001”,
+        	“consumerapp002”,
+	        “consumerapp003”
+    ]
+
+    "merchantApplicationResponse": {
+        "erd": "Bad User",
+        "frd": "1414110157324_accountname in black list.  Added from a test player file",
+        "frn": "Account Black List",
+        "rcd": "50003,202,111,101,132,10020",
+        "res": "DENY",
+        "tid": "eDNABlackListFail",
+        "ufs": 1414110157000,
+        "umrs": 1414110157000,
+        "upr": "UNKNOWN",
+        "usc": 0,
+        "user": "BAD"
+    },
+    "ednaScoreCard": {
+        "tr": [
+            {
+                "testCategory": "eDNA",
+                "testDescription": "Informational -- It displays the number of payment instruments associated with the applicant's device.",
+                "testId": "ed:14",
+                "testName": "Device Payment Count",
+                "testResult": "0"
+            },
+            {
+                "testCategory": "Device",
+                "testDescription": "Checks whether the device is currently using an anonymous proxy.  It fails when an anonymous proxy is being used.",
+                "testDetails": "The device is not currently using an anonymous proxy",
+                "testId": "bc:1",
+                "testName": "BlueCava: Using Anonymous Proxy",
+                "testPass": true
+            },
+        ]
+    },
+} 
+
+```
+	<table>
+		<tr>
+			<th colspan=4><h3>Title</h3></th>
+		</tr>
+		<tr>
+			<th>Facet</th>
+			<th>Key</th>
+			<th>Description</th>
+			<th>Required</th>
+		</tr>
 		<tr>
 			<td></td>
 			<td></td>
 			<td></td>
 			<td></td>
+		</tr>
+
+
+		<tr>
+			<th colspan=4><h3>Title</h3></th>
+		</tr>
+		<tr>
+			<th>Facet</th>
+			<th>Key</th>
+			<th>Description</th>
+			<th>Required</th>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+
+
+		<tr>
+			<th colspan=4><h3>Title</h3></th>
+		</tr>
+		<tr>
+			<th>Facet</th>
+			<th>Key</th>
+			<th>Description</th>
+			<th>Required</th>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+
+
+		<tr>
+			<th colspan=4><h3>Title</h3></th>
+		</tr>
+		<tr>
+			<th>Facet</th>
+			<th>Key</th>
+			<th>Description</th>
+			<th>Required</th>
 		</tr>
 		<tr>
 			<td></td>
@@ -1988,24 +2250,6 @@ EXAMPLE SERVICE RESPONSE DATA
 			<td></td>
 		</tr>
 	</table>
-
-# KYC - Merchant: Merchant Application Validation Web Service
-
-## Reseller Only Feature: How to associate a merchant with its owners
-
-placeholder
-
-## URL
-
-placeholder
-
-## Arguments
-
-placeholder
-
-## Response
-
-placeholder
 
 
 # KYC - Consumer: Consumer Application Validation Web Service
