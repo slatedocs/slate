@@ -672,7 +672,7 @@ EXAMPLE SERVICE RESPONSE DATA
 		<tr>
 			<td>Affiliate Signup Date</td>
 			<td>aflsd</td>
-			<td>The signup/affiliate creation date of the affiliate associated with this transaction. Either a ISO8601 encoded string or a UNIX timestamp.</td>
+			<td>The affiliate signup/creation date associated with this transaction. Either an ISO8601 encoded string or UNIX timestamp.</td>
 			<td>No</td>
 		</tr>
 
@@ -2344,7 +2344,7 @@ EXAMPLE SERVICE RESPONSE DATA
 
 	<table>
 		<tr>
-			<th colspan=4><h3>Title</h3></th>
+			<th colspan=4><h3>User</h3></th>
 		</tr>
 		<tr>
 			<th>Facet</th>
@@ -2353,87 +2353,94 @@ EXAMPLE SERVICE RESPONSE DATA
 			<th>Required</th>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>First Name</td>
+			<td>bfn</td>
+			<td>The first name of the individual opening the account</td>
+			<td>No</td>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>Last Name</td>
+			<td>bln</td>
+			<td>The last name of the individual opening the account</td>
+			<td>No</td>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>Account Name</td>
+			<td>man</td>
+			<td>Free form unique identifier for this account at this merchant</td>
+			<td>Yes</td>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>User Email Address</td>
+			<td>tea</td>
+			<td>Email address on record. An email address that the merchant is comfortable using to validate access to the account.</td>
+			<td>No</td>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>Social Authentication</td>
+			<td>soc</td>
+			<td>Indicates that the provided email address is associated with a social networking site; in particular, that it is used for Oauth authentication. The content of the field is merchant defined, but the following values are recommended:
+				<ul type="disc">
+					<li>google</li>
+					<li>facebook</li>
+					<li>twitter</li>
+					<li>yahoo</li>
+				</ul>
+			</td>
+			<td>No</td>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>Date of Birth</td>
+			<td>dob</td>
+			<td>The date of birth of the individual opening the account. Format is ISO8601 (e.g. 1984-01-21).</td>
+			<td>No</td>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>Phone</td>
+			<td>phn</td>
+			<td>Customer's primary phone number</td>
+			<td>No</td>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>Mobile Phone</td>
+			<td>pm</td>
+			<td>Cstomer's mobile phone number</td>
+			<td>No</td>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>User Location - Latitude</td>
+			<td>clat</td>
+			<td>The current latitude of the customer, specified in decimal degrees. Encoded as a string (e.g. "clat":"37.4419").</td>
+			<td>No</td>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>User Location - Longitude</td>
+			<td>clong</td>
+			<td>The current longitude of the customer, specified in decimal degrees. Encoded as a string (e.g. "clong":"-122.1419").</td>
+			<td>No</td>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>Document Verification Front Side Scan Data</td>
+			<td>scanData</td>
+			<td>If using Jumio NetVerify Perform, the document front side image data, Base64 encoded. If provided, this will override the configured "Jumio client integration." 5MB maximum size</td>
+			<td>No</td>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>Document Verification Back Side Image Data</td>
+			<td>backsideImageData</td>
+			<td>If using Jumio NetVerify Perform, the document back side image data, Base64 encoded. 5MB maximum size</td>
+			<td>No</td>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>Document Verification Face Data</td>
+			<td>faceImageData</td>
+			<td>If using Jumio NetVerify Perform with face match enabled, the face image file, Base64 encoded. 5MB maximum size</td>
+			<td>No</td>
 		</tr>
 
 
 		<tr>
-			<th colspan=4><h3>Title</h3></th>
+			<th colspan=4><h3>Device</h3></th>
 		</tr>
 		<tr>
 			<th>Facet</th>
@@ -2442,27 +2449,31 @@ EXAMPLE SERVICE RESPONSE DATA
 			<th>Required</th>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>Client IP</td>
+			<td>ip</td>
+			<td>The IP address of the client as observed by the merchant</td>
+			<td>No</td>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>Device Fingerprint</td>
+			<td>dfp</td>
+			<td>Device fingerprint blob. The interpretation of this blob is specified by the value of the "dft" attribute</td>
+			<td>No</td>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>Device Fingerprint Type</td>
+			<td>dft</td>
+			<td>Device fingerprint type. Specifies the technology that was used to generate the blob.
+				<ul type"disc">
+					<li>BC - BlueCava</li>
+				</ul>
+			Default is BC</td>
+			<td>No</td>
 		</tr>
 
 
 		<tr>
-			<th colspan=4><h3>Title</h3></th>
+			<th colspan=4><h3>Payment/Funding Account</h3></th>
 		</tr>
 		<tr>
 			<th>Facet</th>
@@ -2471,75 +2482,75 @@ EXAMPLE SERVICE RESPONSE DATA
 			<th>Required</th>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>Card Number Hash</td>
+			<td>pccn</td>
+			<td>Credit/debit card unique identifier (hash) while obscuring actual number. IdentityMind will supply procedure to generate hash.
+			<br><br>
+			<b>Note</b>: The hash must be of the full card number, not a masked or tokenized representation.</td>
+			<td>No</td>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>Card Number Token</td>
+			<td>pcct</td>
+			<td>A masked or tokenized version of the credit card number</td>
+			<td>No</td>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>Account ID Hash</td>
+			<td>phash</td>
+			<td>Account unique identifier (hash) while obscuring actual number. This is used when IdentityMind does not natively support the payment type.
+			<br><br>
+			<b>Note</b>: The hash must be of the full account ID, not a masked or tokenized representation.</td>
+			<td>No</td>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>Bitcoin Wallet ID</td>
+			<td>pbc</td>
+			<td>Hash of the unique identifier for a Bitcoin wallet</td>
+			<td>No</td>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>ACH Account Number</td>
+			<td>pach</td>
+			<td>Hash of the unique identifier for an ACH account
+			<br><br>
+			<b>Note</b>: The hash must be of the full account number, not a masked or tokenized representation.</td>
+			<td>No</td>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>Billing Street Address</td>
+			<td>bsn</td>
+			<td>Payment street address</td>
+			<td>No</td>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>Billing City</td>
+			<td>bc</td>
+			<td>Payment city</td>
+			<td>No</td>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>Billing State</td>
+			<td>bs</td>
+			<td>Payment state</td>
+			<td>No</td>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>Billing Zip/Postal Code</td>
+			<td>bz</td>
+			<td>Payment zip code</td>
+			<td>No</td>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-		</tr>
-		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>Billing Country</td>
+			<td>bco</td>
+			<td>Payment country</td>
+			<td>No</td>
 		</tr>
 
 
 		<tr>
-			<th colspan=4><h3>Title</h3></th>
+			<th colspan=4><h3>Transaction</h3></th>
 		</tr>
 		<tr>
 			<th>Facet</th>
@@ -2548,45 +2559,50 @@ EXAMPLE SERVICE RESPONSE DATA
 			<th>Required</th>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>Transaction Time</td>
+			<td>tti</td>
+			<td>The date and time of the transaction as processed by the merchant. Expressed in UTC, encoded as a UNIX timestamp.
+				<ul type="disc">
+					<li>“tti”:129887536</li>
+					<li>“tti”:“129887536”</li>
+				</ul>
+			If not supplied, eDNA will assign the time at which it receives the transaction.</td>
+			<td>No</td>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>Transaction Identifier</td>
+			<td>tid</td>
+			<td>Unique identifier for the application. eDNA assigns an internal ID if none is provided. The tid must be encoded as a string (e.g. "tid":"123455"). The maxiumum length is 40 characters. The tid is used to combine the multiple stages of an application.</td>
+			<td>No</td>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>Application Stage</td>
+			<td>stage</td>
+			<td>Stage of application being processed. An integer between 1 and 5. If not provided, defaults to 1</td>
+			<td>No</td>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>Affiliate ID</td>
+			<td>aflid</td>
+			<td>The affiliate ID associated with this transaction. Encoded as a string.</td>
+			<td>No</td>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>Affiliate Signup Date</td>
+			<td>aflsd</td>
+			<td>The signup/creation date of the affiliate associated with this transaction. Either an ISO8601 encoded string or a UNIX timestamp.</td>
+			<td>No</td>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>Memo</td>
+			<td>memo</td>
+			<td>Free form text memo field</td>
+			<td>No</td>
 		</tr>
 
 
 		<tr>
-			<th colspan=4><h3>Title</h3></th>
+			<th colspan=4><h3>Merchant</h3></th>
 		</tr>
 		<tr>
 			<th>Facet</th>
@@ -2595,34 +2611,28 @@ EXAMPLE SERVICE RESPONSE DATA
 			<th>Required</th>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>Merchant</td>
+			<td>merchantAid</td>
+			<td>If this consumer is linked to a merchant (business) as one of the owners of the business, this parameter should match the exact application ID of the merchant (see tid in the Merchant Application API below)</td>
+			<td>No</td>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>Personal Guarantee</td>
+			<td>personalguarantee</td>
+			<td>Boolean</td>
+			<td>No</td>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>Percentage of Owner</td>
+			<td>ownership</td>
+			<td>The percentage of ownership</td>
+			<td>No</td>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-		</tr>
-		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>Title</td>
+			<td>title</td>
+			<td>Title of the owner</td>
+			<td>No</td>
 		</tr>
 	</table>
 
