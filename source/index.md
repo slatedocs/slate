@@ -2893,18 +2893,167 @@ or
 
 # Login Annotation Web Service
 
-## URL
-
-placeholder
-
 ## Arguments
 
-placeholder
+> The following URLs are used for account login transactions:
 
-## Response
+```code
+Annotate a user's transactions with login data:
 
-placeholder
+https://edna.identitymind.com/im/account/login (POST)
+```
 
+> The evidence is the login transaction data to be added to the entities transaction record. It is supplied in the body of the HTTP-POST as JSON-encoded key value pairs. While all fields are not required, validation evaluation is more comprehensive when richer evidence is provided.
+
+```code
+EXAMPLE SERVICE REQUEST
+
+https://edna.identitymind.com/im/account/login   
+
+{ 
+  “man” : “jdinh”,
+  “soc” : “facebook”
+  “tea” : “james@gmail.com”,
+  “dft” : “BC”,
+  “dfp” : “1872ABCD129E…”,
+  “ip “ : “69.181.162.146”,
+  “tid” : “89”
+}
+```
+
+> The response is a JSON encoding of the IdentityMind service result. The response incldes detailed result codes and transaction unique identifier. The keys are fully defined in Appendix A: Result Keys and Codes.
+
+```code
+EXAMPLE SERVICE RESPONSE DATA
+
+{ 
+  “res” : “ACCEPT”,
+  “erd” : “Validated User”,
+  “tid” : “89”,
+  “rcd” : “1000,100,110,151,120”,
+  “frn” : ”Fallthrough”,
+  “usc” : 43,
+  “ufs” : 1372101668000,
+  “umrs” : 1371231456000,
+  “frd”:”User is trusted and no fraud rules were triggered.”
+}
+```
+
+	<table>
+		<tr>
+			<th colspan=4><h3>User Account</h3></th>
+		</tr>
+		<tr>
+			<th>Facet</th>
+			<th>Key</th>
+			<th>Description</th>
+			<th>Required</th>
+		</tr>
+		<tr>
+			<td>Account Name</td>
+			<td>man</td>
+			<td>Free form unique identifier for this account at this merchant</td>
+			<td>No</td>
+		</tr>
+		<tr>
+			<td>User Email Address</td>
+			<td>tea</td>
+			<td>Email address on record. An email address that the merchant is comfortable using to validate access to the account.</td>
+			<td>No</td>
+		</tr>
+		<tr>
+			<td>Social Authentication</td>
+			<td>soc</td>
+			<td>Indicates that the provided email address is associated with a social networking site; in particular, that it is used for Oauth authentication. The content of the field is merchant defined, but the following values are recommended:
+				<ul type="disc">
+					<li>google</li>
+					<li>facebook</li>
+					<li>twitter</li>
+					<li>yahoo</li>
+				</ul>
+			</td>
+			<td>No</td>
+		</tr>
+		<tr>
+			<td>User Location - Latitude</td>
+			<td>clat</td>
+			<td>The current latitude of the customer, specified in decimal degrees. Encoded as a string (e.g. “clat”:“37.4419”).</td>
+			<td>No</td>
+		</tr>
+		<tr>
+			<td>User Location - Longitude</td>
+			<td>clong</td>
+			<td>The current longitude of the customer, specified in decimal degrees. Encoded as a string (e.g. “clong”:“-122.1419”).</td>
+			<td>No</td>
+		</tr>
+
+
+		<tr>
+			<th colspan=4><h3>Device</h3></th>
+		</tr>
+		<tr>
+			<th>Facet</th>
+			<th>Key</th>
+			<th>Description</th>
+			<th>Required</th>
+		</tr>
+		<tr>
+			<td>Client IP</td>
+			<td>ip</td>
+			<td>The IP address of the client as observed by the merchant</td>
+			<td>No</td>
+		</tr>
+		<tr>
+			<td>Device Fingerprint</td>
+			<td>dfp</td>
+			<td>Device fingerprint blob. The interpretation of this blob is specified by the value of hte "dft" attribute.</td>
+			<td>No</td>
+		</tr>
+		<tr>
+			<td>Device Fingerprint Type</td>
+			<td>dft</td>
+			<td>Device fingerprint type. Specifies the technology that was used to generate the blob.
+				<ul type="disc">
+					<li>BC - BlueCava</li>
+				</ul>
+			Default is BC
+			</td>
+			<td>No</td>
+		</tr>
+		<tr>
+			<td>Device Token and Scheme</td>
+			<td>dts</td>
+			<td>Third party device token and scheme identifier. Contact IdentityMind for detailed format information.</td>
+			<td></td>
+		</tr>
+
+
+		<tr>
+			<th colspan=4><h3>Txn</h3></th>
+		</tr>
+		<tr>
+			<th>Facet</th>
+			<th>Key</th>
+			<th>Description</th>
+			<th>Required</th>
+		</tr>
+		<tr>
+			<td>Login Time</td>
+			<td>tti</td>
+			<td>The date and time of the transaction as processed by the merchant. Expressed in UTC, encoded as a UNIX timestamp.
+				<ul type="disc">
+					<li>“tti”:129887536</li>
+					<li>“tti”:“129887536”</li>
+				</ul></td>
+			<td>No</td>
+		</tr>
+		<tr>
+			<td>Login Identifier</td>
+			<td>tid</td>
+			<td>Merchant unique identifier for the transaction. eDNA assigns an internal ID if none is provided. The transaction ID must be encoded as a string (e.g. "tid":"123455"). The maximum length is 40 characters.</td>
+			<td>No</td>
+		</tr>
+	</table>
 
 # Appendix A: Result Keys and Codes
 
