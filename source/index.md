@@ -1990,7 +1990,7 @@ Each owner will be evaluated with the Consumer Application Web Service.  In the 
 ## Arguments
 
 ```code
-The following URLs are used for merchant application validation:
+> The following URLs are used for merchant application validation:
 
 Validate a merchant application:
 
