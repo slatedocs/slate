@@ -3297,6 +3297,58 @@ EXAMPLE SERVICE RESPONSE DATA
 		</tr>
 	</table>
 
+```code
+EXAMPLE
+
+{
+   “questions”:[
+      {
+         “questionId”:0,
+         ”questionText”:”With which of these cities have you been associated?”,
+         ”choices”:[
+            “KERRVILLE”,
+            ”HOUSTON”,
+            ”SAN ANTONIO”,
+            ”SAN DIEGO”,
+            ”None of the above”
+         ]
+      },
+      {
+         “questionId”:1,
+         ”questionText”:”Which person has shared a previous address with you?”,
+         ”choices”:[
+            “DICK”,
+            ”TOM”,
+            ”HARRY”,
+            ”BOB”,
+            ”None of the above”
+         ]
+      },
+      {
+         “questionId”:2,
+         ”questionText”:”What is SANDRA's birthday who shares your current or a recent address?”,
+         ”choices”:[
+            “October 1964”,
+            ”February 1965”,
+            ”August 1966”,
+            ”August 1946”,
+            ”None of the above”
+         ]
+      },
+      {
+         “questionId”:3,
+         ”questionText”:”In what county is 1313 MOCKINGBIRD LN?”,
+         ”choices”:[
+            “MUNSTER”,
+            ”HOWELL”,
+            ”TRANSYLVANIA”,
+            ”COOK”,
+            ”None of the above”
+         ]
+      }
+   ]
+}
+```
 	<table>
 		<tr>
 			<th colspan=2><h3>Out of Wallet Questions Encoding</h3></th>
@@ -3306,46 +3358,150 @@ EXAMPLE SERVICE RESPONSE DATA
 			<th>Description</th>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
+			<td>questions</td>
+			<td>JSON Array of JSON encoded question objects</td>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
+			<td>questionId</td>
+			<td>Integer itentifier for this question</td>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
+			<td>questionText</td>
+			<td>Text of the question that is to be asked of the consumer</td>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
+			<td>choices</td>
+			<td>JSON Array of strings that represent the set of possible multiple choice answers</td>
 		</tr>
 	</table>
 
+```code
+EXAMPLE
+
+{
+ "ednaScoreCard": {
+        "tr": [
+           {
+                "testCategory": "Identity",
+                "testDescription": "Waiting for applicant to respond with code",
+                "testName": "Phone Ownership: Correct Code Provided",
+                "testId": "po:1",
+                "waitingForData": true
+            },
+            {
+                "testCategory": "eDNA",
+                "testDescription": "Checks the number of applications for a particular billing address.\nIt fails when the number of applications associated to the billing address is higher than the configured threshold",
+                "testDetails": "0",
+                "testName": "User Account Billing Address Count",
+                "testId": "ed:25",
+                "testPass": true
+            },
+            {
+                "testCategory": "eDNA",
+                "testDescription": "It verifies that the application's user account hasn't been previously evaluated and failed validation. \nIt fails when the user account previously has failed validation.",
+                "testName": "Account Failed Validation",
+                "testId": "ed:20",
+                "testPass": true
+            },
+            {
+                "testCategory": "eDNA",
+                "testDescription": "Informational -- It displays the number of devices associated with the application's user account.",
+                "testName": "User Account Device Count",
+                “testId”: “ed:23”,
+                “testResult”: “0”
+            },
+            {
+                “testCategory”: “eDNA”,
+                “testDescription”: “Checks whether any application parameter is in the wacth list.\nIt fails when any parameter is on the watch list.”,
+                “testName”: “Watch List”,
+                “testId”: “ed:2”,
+                “testPass”: true
+            },
+            {
+                “testCategory”: “eDNA”,
+                “testDescription”: “Checks the number of applications for a particular user account.\nIt fails when the number of applications is higher than the configured threshold.”,
+                “testDetails”: “0”,
+                “testName”: “User Account Application Count”,
+                “testId”: “ed:21”,
+                “testPass”: true
+            },
+            {
+                “testCategory”: “eDNA”,
+                “testDescription”: “Informational – It displays the first time the system has seen the user account”,
+                “testName”: “User Account First Seen”,
+                “testId”: “ed:26”,
+                “testResult”: “Wed May 21 00:36:32 UTC 2014”
+            },
+            {
+                “testCategory”: “eDNA”,
+                “testDescription”: “Checks the payment reputation associated with the application’s user account.\nIt fails when the reputation is \”bad\”.”,
+                “testDetails”: “User Account reputation is UNKNOWN”,
+                “testName”: “User Account Reputation”,
+                “testId”: “ed:19”,
+                “testPass”: true
+            },
+            {
+                “testCategory”: “eDNA”,
+                “testDescription”: “Informational – It displays the number of payment instruments associated with the application’s user account.”,
+                “testName”: “User Account Payment Count”,
+                “testId”: “ed:22”,
+                “testResult”: “0”
+            },
+            {
+                “testCategory”: “eDNA”,
+                “testDescription”: “It evaluates the merchant application against the rules as configured in the account policy. It fails when the policy result is either DENY or MANUAL REVIEW.”,
+                “testDetails”: “Result = ACCEPT; Rule Name = Account Fallthrough; Rule Description = No fraud rules triggered.”,
+                “testName”: “eDNA Merchant Application Transaction”,
+                “testId”: “ed:0”,
+                “testPass”: true
+            },
+            {
+                “testCategory”: “eDNA”,
+                “testDescription”: “Checks whether any application parameter is in the black list.\nIt fails when any parameter is on the black list.”,
+                “testName”: “Black List”,
+                “testId”: “ed:1”,
+                “testPass”: true
+            },
+            {
+                “testCategory”: “eDNA”,
+                “testDescription”: “Checks the chargeback count associated with an application’s parameter. \nIt fails when the chargeback count for a particular parameter is higher than the configured threshold.”,
+                “testName”: “Chargeback Count”,
+                “testId”: “ed:3”,
+                “testPass”: true
+            },
+            {
+                “testCategory”: “eDNA”,
+                “testDescription”: “Informational – It displays the number of shipping addresses associated with the application’s user account.”,
+                “testName”: “User Account Shipping Address Count”,
+                “testId”: “ed:24”,
+                “testResult”: “0”
+            }
+        ]
+    }, 
+```
 	<table>
 		<tr>
-			<th colspan=2><h3>eDNA Score Card Encoding</h3></th>
+			<th colspan=3><h3>eDNA Score Card Encoding</h3></th>
 		</tr>
 		<tr>
 			<th>Key</th>
 			<th>Description</th>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
+			<td rowspan=8>tr</td>
+			<td colspan=2>JSON Array of JSON encoded security test results</td>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
+			<td>data</td>
+			<td>data</td>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
+			<td>data</td>
+			<td>data</td>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
+			<td>data</td>
+			<td>data</td>
 		</tr>
 	</table>
 
@@ -3489,13 +3645,13 @@ Code | Meaning
 
 ## Payment Fraud Rule Codes
 
-This section documents the result codes related to payment transaction fraud policy processing.  In the table below codes such as 104X represent the codes 1041-1045 where the first three digits indicate the fraud rule and the last digit represents the reputation of the User that triggered that rule as follows
+This section documents the result codes related to payment transaction fraud policy processing.  In the table below codes such as 104X represent the codes 1041-1045 where the first three digits indicate the fraud rule and the last digit represents the reputation of the User that triggered that rule as follows:
 
-1.	Trusted
-2.	Recognized
-3.	Unknown
-4.	Suspicious
-5.	Bad
+	1.	Trusted
+	2.	Recognized
+	3.	Unknown
+	4.	Suspicious
+	5.	Bad
 
 Thus, the code 1042 indicates that the rule “TRANSACTION REJECTED BY BANK” triggered for a Recognized User.
 
