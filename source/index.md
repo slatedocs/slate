@@ -1721,24 +1721,28 @@ EXAMPLE SERVICE RESPONSE DATA
 			<td>Device Fingerprint</td>
 			<td>dfp</td>
 			<td>Device fingerprint blob. The interpretation of this blob is specified by the value of the "dft" attribute.</td>
-			<td></td>
+			<td>No</td>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>Device Fingerprint Type</td>
+			<td>dft</td>
+			<td>Device fingerprint type. Specifies the technology that was used to generate the blob.
+				<ul type="disc">
+					<li>BC - BlueCava</li>
+				</ul>
+			Default is BC</td>
+			<td>No</td>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>Device Token and Scheme</td>
+			<td>dts</td>
+			<td>Third party device token and scheme identifier. Contact IdentityMind for detailed format information.</td>
+			<td>No</td>
 		</tr>
 
 
 		<tr>
-			<th colspan=4><h3>Title</h3></th>
+			<th colspan=4><h3>Payment</h3></th>
 		</tr>
 		<tr>
 			<th>Facet</th>
@@ -1747,45 +1751,51 @@ EXAMPLE SERVICE RESPONSE DATA
 			<th>Required</th>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>Card Number Hash</td>
+			<td>pccn</td>
+			<td>Credit/debit card unique identifier (hash) while obscuring actual number. IdentityMind will supply procedure to generate hash.
+			<br><br>
+			<b>Note</b>: The hash must be of the full card number, not a masked or tokenized representation.</td>
+			<td>No</td>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>Card Number Token</td>
+			<td>pcct</td>
+			<td>A masked or tokenized version of the credit card number</td>
+			<td>No</td>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>Account ID Hash</td>
+			<td>phash</td>
+			<td>Acount unique identifier (hash) while obscuring actual number. This is used when IdentityMind does not natively support the payment type.
+			<br><br>
+			<b>Note</b>: The hash must be of the full account number, not a masked or tokenized representation.</td>
+			<td>No</td>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>Bitcoin Wallet ID</td>
+			<td>pbc</td>
+			<td>Hash of the unique identifier for a Bitcoin wallet</td>
+			<td>No</td>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>ACH Account Number</td>
+			<td>pach</td>
+			<td>Hash of the unique identifier for an ACH account.
+			<br><br>
+			<b>Note</b>: The hash must be of the full card number, not a masked or tokenized representation.</td>
+			<td>No</td>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>Account Token</td>
+			<td>ptoken</td>
+			<td>A masked or tokenized version of the account token. This attribute is used in conjunction with "phash," "pbc," and "pach."</td>
+			<td>No</td>
 		</tr>
 
 
 		<tr>
-			<th colspan=4><h3>Title</h3></th>
+			<th colspan=4><h3>Txn</h3></th>
 		</tr>
 		<tr>
 			<th>Facet</th>
@@ -1794,45 +1804,44 @@ EXAMPLE SERVICE RESPONSE DATA
 			<th>Required</th>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>Transcation Time</td>
+			<td>tti</td>
+			<td>The date and time of the transaction as processed by the merchant. Expressed in UTC encoded as a UNIX timestamp.
+				<ul type="disc">
+					<li>“tti”:1293887536</li>
+					<li>“tti”:”1293887536”</li>
+				</ul>
+			</td>
+			<td>No</td>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>Transaction Identifier</td>
+			<td>tid</td>
+			<td>Merchant unique identifier for the transaction. eDNA assigns an internal ID if none provided. The transqaction ID must be encoded as a string (e.g. "tid":"123455"). The maximum length is 40 characters.</td>
+			<td>No</td>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>Affiliate ID</td>
+			<td>aflid</td>
+			<td>The affiliate ID associatec with this transaction. Encoded as a string</td>
+			<td>No</td>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>Affiliate Signup Date</td>
+			<td>aflsd</td>
+			<td>The affiliate signup/creation date associated with this transaction. Either an ISO8601 encoded string or UNIX timestamp.</td>
+			<td>No</td>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-		</tr>
-		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>Memo</td>
+			<td>memo</td>
+			<td>Free form text memo field</td>
+			<td>No</td>
 		</tr>
 
 
 		<tr>
-			<th colspan=4><h3>Title</h3></th>
+			<th colspan=4><h3>Transfer Destination</h3></th>
 		</tr>
 		<tr>
 			<th>Facet</th>
@@ -1841,124 +1850,130 @@ EXAMPLE SERVICE RESPONSE DATA
 			<th>Required</th>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>Destination Account Name</td>
+			<td>dman</td>
+			<td>Free form unique identifier for the destination account at this merchant</td>
+			<td>No</td>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>Destination Email Address</td>
+			<td>demail</td>
+			<td>Email address associated with the destination account</td>
+			<td>No</td>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>Destination Phone Number</td>
+			<td>dph</td>
+			<td>Phone number associated with the destination account</td>
+			<td>No</td>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>Transfer Amount</td>
+			<td>amt</td>
+			<td>If this transaction is a transfer, the amount being transferred.</td>
+			<td>No</td>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>Transfer Currency</td>
+			<td>ccy</td>
+			<td>If this transaction is a transfer, the currency of the "amt" field being transferred.</td>
+			<td>No</td>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>Destination Card Hash</td>
+			<td>dpccn</td>
+			<td>Unique identifier (hash) of the destination credit card while obscuring the actual number. IdentityMind will supply procedure to generate hash.
+			<br><br>
+			<b>Note</b>: The hash must be of the full card number, not a masked or tokenized representation.</td>
+			<td>No</td>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>Destination Card Token</td>
+			<td>dpcct</td>
+			<td>A masked or tokenized version of the credit card number. IdentityMind will supply procedure to generate token.</td>
+			<td>No</td>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>Destination PayPal Payer ID</td>
+			<td>dpppi</td>
+			<td>Destination PayPal Payer ID</td>
+			<td>No</td>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>Destination PayPal Payer Email</td>
+			<td>dpppe</td>
+			<td>Destination PayPal Payer email</td>
+			<td>No</td>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>Destination Bitcoin Wallet</td>
+			<td>dpbc</td>
+			<td>Hash of the unique identifier for the destination Bitcoin wallet ID</td>
+			<td>No</td>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>Destination ACH</td>
+			<td>dpach</td>
+			<td>Hash of the unique identifier of the destination ACH account
+			<br><br>
+			<b>Note</b>: The hash must be of the full card number, not a masked or tokenized representation.</td>
+			<td>No</td>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>Destination Payment Hash</td>
+			<td>dphash</td>
+			<td>Unique identifier (hash) of the destination payment instrument while obscuring actual number. This is used when IdentityMind does not natively support the payment type.
+			<br><br>
+			<b>Note</b>: The hash must be of the full account number, not a masked or tokenized representation.</td>
+			<td>No</td>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>Destination Payment Token</td>
+			<td>dptoken</td>
+			<td>A masked or tokenized version of tyhe destination payment instrument number. IdentityMind will supply procedure to generate token. This field is used in conjunction with "dpbc," "dpach," and "dptoken."</td>
+			<td>No</td>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>First Name</td>
+			<td>sfn</td>
+			<td>The first name of the recipient</td>
+			<td>No</td>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>Last Name</td>
+			<td>sln</td>
+			<td>THe last name of the recipient</td>
+			<td>No</td>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>Street</td>
+			<td>ssn</td>
+			<td>The recipient street address (e.g. "123 Main St")</td>
+			<td>No</td>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>City</td>
+			<td>sc</td>
+			<td>The recipient city</td>
+			<td>No</td>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>State</td>
+			<td>ss</td>
+			<td>The recipient state</td>
+			<td>No</td>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>Zip</td>
+			<td>sz</td>
+			<td>The recipient zip code</td>
+			<td>No</td>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>Country</td>
+			<td>sco</td>
+			<td>ISO 3166 country code of the recipient address of the transaction, encoded as a string. Default is "US"</td>
+			<td>No</td>
 		</tr>
 		<tr>
 			<td></td>
