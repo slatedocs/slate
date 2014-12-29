@@ -727,9 +727,7 @@
     <span class="nt">&lt;AccptrCmpltnAdvc&gt;</span>
         <span class="c">&lt;!-- Cabeçalho da mensagem. --&gt;</span>
         <span class="nt">&lt;Hdr&gt;</span>
-            <span class="c">&lt;!-- Identifica o tipo de processo em que a mensagem se propõe.
-                 CMPV = Completion Advice
-                 RVRA = ReversalAdvice. --&gt;</span>
+            <span class="c">&lt;!-- Identifica o tipo de processo em que a mensagem se propõe. --&gt;</span>
             <span class="nt">&lt;MsgFctn&gt;</span>CMPV<span class="nt">&lt;/MsgFctn&gt;</span>
             <span class="c">&lt;!-- Versão do protocolo utilizado na mensagem. --&gt;</span>
             <span class="nt">&lt;PrtcolVrsn&gt;</span>2.0<span class="nt">&lt;/PrtcolVrsn&gt;</span>
@@ -740,8 +738,7 @@
             <span class="nt">&lt;Envt&gt;</span>
                 <span class="c">&lt;!-- Dados do estabelecimento. --&gt;</span>
                 <span class="nt">&lt;Mrchnt&gt;</span>
-                    <span class="c">&lt;!-- Identificação do estabelecimento comercial no adquirente.
-                         Também conhecido internamente como “SaleAffiliationKey”. --&gt;</span>
+                    <span class="c">&lt;!-- Identificação do estabelecimento comercial no adquirente. --&gt;</span>
                     <span class="nt">&lt;Id&gt;</span>00000000000000000000000000000321<span class="nt">&lt;/Id&gt;</span>
                 <span class="nt">&lt;/Mrchnt&gt;</span>
             <span class="nt">&lt;/Envt&gt;</span>
@@ -752,11 +749,319 @@
                 <span class="nt">&lt;InitrTxId&gt;</span>123123123<span class="nt">&lt;/InitrTxId&gt;</span>
                 <span class="c">&lt;!-- Dados de identificação da transação atribuída pelo POI. --&gt;</span>
                 <span class="nt">&lt;TxId&gt;</span>
-                    <span class="c">&lt;!-- Data local e hora da transação atribuído pelo POI (ponto de
-                         interação). Este campo será ecoado pelo adquirente. --&gt;</span>
+                    <span class="c">&lt;!-- Data local e hora da transação atribuído pelo POI. --&gt;</span>
                     <span class="nt">&lt;TxDtTm&gt;</span>2014-06-11T17:15:44<span class="nt">&lt;/TxDtTm&gt;</span>
-                    <span class="c">&lt;!-- Identificação da transação atribuída pelo POI (Ponto de
-                         interação). Este campo será ecoado pelo adquirente. --&gt;</span>
+                    <span class="c">&lt;!-- Identificação da transação atribuída pelo POI. --&gt;</span>
+                    <span class="nt">&lt;TxRef&gt;</span>1111<span class="nt">&lt;/TxRef&gt;</span>
+                <span class="nt">&lt;/TxId&gt;</span>
+                <span class="c">&lt;!-- Identificação da transação original --&gt;</span>
+                <span class="nt">&lt;OrgnlTx&gt;</span>
+                    <span class="c">&lt;!-- Identificação da transação definida pelo adquirente. --&gt;</span>
+                    <span class="nt">&lt;RcptTxId&gt;</span>9CDF257AQKR<span class="nt">&lt;/RcptTxId&gt;</span>
+                <span class="nt">&lt;/OrgnlTx&gt;</span>
+                <span class="c">&lt;!-- Detalhes da transação. --&gt;</span>
+                <span class="nt">&lt;TxDtls&gt;</span>
+                    <span class="c">&lt;!-- Moeda utilizada na transação em conformidade com a ISO 4217. --&gt;</span>
+                    <span class="nt">&lt;Ccy&gt;</span>986<span class="nt">&lt;/Ccy&gt;</span>
+                    <span class="c">&lt;!-- Valor total da transação em centavos. --&gt;</span>
+                    <span class="nt">&lt;TtlAmt&gt;</span>100<span class="nt">&lt;/TtlAmt&gt;</span>
+                <span class="nt">&lt;/TxDtls&gt;</span>
+            <span class="nt">&lt;/Tx&gt;</span>
+        <span class="nt">&lt;/CmpltnAdvc&gt;</span>
+    <span class="nt">&lt;/AccptrCmpltnAdvc&gt;</span>
+<span class="nt">&lt;/Document&gt;</span>
+</pre>
+
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Ocorrência</th>
+<th>Tipo</th>
+<th>Descrição</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Header<Hdr></td>
+<td>[1..1]</td>
+<td>Container</td>
+<td>Cabeçalho da mensagem.</td>
+</tr>
+<tr>
+<td>MessageFunction<MsgFctn></td>
+<td>[1..1]</td>
+<td>CodeSet</td>
+<td>Identifica o tipo de processo em que a mensagem se propõe. <code class="prettyprint">CMPV = Completion Advice</code> ou <code class="prettyprint">RVRA = ReversalAdvice</code>.</td>
+</tr>
+<tr>
+<td>ProtocolVersion <PrtcolVrsn></td>
+<td>[1..1]</td>
+<td>Text</td>
+<td>Versão atual: “2.0”.</td>
+</tr>
+<tr>
+<td>CompletionAdvice <CmpltnAdvc></td>
+<td>[1..1]</td>
+<td>Container</td>
+<td>Informações relacionadas ao processo de captura ou desfazimento de uma autorização.</td>
+</tr>
+<tr>
+<td>Environment<Envt></td>
+<td>[1..1]</td>
+<td>Container</td>
+<td>Ambiente da transação.</td>
+</tr>
+<tr>
+<td>Merchant <Mrchnt></td>
+<td>[1..1]</td>
+<td>Container</td>
+<td>Dados do estabelecimento.</td>
+</tr>
+<tr>
+<td>Identification<Id></td>
+<td>[1..1]</td>
+<td>Text</td>
+<td>Identificação do estabelecimento comercial no adquirente. Também conhecido internamente como “SaleAffiliationKey”.</td>
+</tr>
+<tr>
+<td>Transaction<code class="prettyprint">&lt;Tx&gt;</code></td>
+<td>[1..1]</td>
+<td>Container</td>
+<td>Dados da transação.</td>
+</tr>
+<tr>
+<td>InitiatorTransactionIdentification<code class="prettyprint">&lt;InitrTxId&gt;</code></td>
+<td>[0..1]</td>
+<td>Text</td>
+<td>Identificação da transação definida pelo sistema que se comunica com o Host Stone.</td>
+</tr>
+<tr>
+<td>TransactionIdentification<code class="prettyprint">&lt;TxId&gt;</code></td>
+<td>[1..1]</td>
+<td>Container</td>
+<td>Dados de identificação da transação atribuída pelo POI.</td>
+</tr>
+<tr>
+<td>TransactionDateTime<code class="prettyprint">&lt;TxDtTm&gt;</code></td>
+<td>[1..1]</td>
+<td>DateTime</td>
+<td>Data local e hora da transação atribuído pelo POI. Este campo será ecoado pelo adquirente.</td>
+</tr>
+<tr>
+<td>TransactionReference<code class="prettyprint">&lt;TxRef&gt;</code></td>
+<td>[1..1]</td>
+<td>Text</td>
+<td>Identificação da transação atribuída pelo POI. Este campo será ecoado pelo adquirente.</td>
+</tr>
+<tr>
+<td>OriginalTransaction<code class="prettyprint">&lt;OrgnlTx&gt;</code></td>
+<td>[0..1]</td>
+<td>Container</td>
+<td>Identificação da transação original</td>
+</tr>
+<tr>
+<td>RecipientTransactionIdentification<code class="prettyprint">&lt;RcptTxId&gt;</code></td>
+<td>[0..1]</td>
+<td>Text</td>
+<td>Identificação da transação definida pelo adquirente.</td>
+</tr>
+<tr>
+<td>TransactionDetails<code class="prettyprint">&lt;TxDtls&gt;</code></td>
+<td>[1..1]</td>
+<td>Container</td>
+<td>Detalhes da transação.</td>
+</tr>
+<tr>
+<td>Currency<code class="prettyprint">&lt;Ccy&gt;</code></td>
+<td>[1..1]</td>
+<td>CodeSet</td>
+<td>Moeda utilizada na transação em conformidade com a ISO 4217.</td>
+</tr>
+<tr>
+<td>TotalAmount<code class="prettyprint">&lt;TtlAmt&gt;</code></td>
+<td>[1..1]</td>
+<td>Amount</td>
+<td>Valor total da transação em centavos.</td>
+</tr>
+</tbody></table>
+<h3 id='xml-de-resposta-de-captura-comentado'>XML de resposta de Captura comentado</h3>
+<p>A mensagem <code class="prettyprint">AcceptorCompletionAdviceResponse</code> é enviada pelo adquirente para avisar o estabelecimento sobre o reconhecimento do resultado da operação de pagamento, bem como a transferência dos dados financeiros da transação contidas no <code class="prettyprint">AcceptorCompletionAdvice</code>. Esta mensagem também é utilizada como resposta para o processo de “desfazimento de transações”.</p>
+<pre class="highlight xml"><span class="nt">&lt;Document</span> <span class="na">xmlns=</span><span class="s">"urn:AcceptorCompletionAdviceResponseV02.1"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;AccptrCmpltnAdvcRspn&gt;</span>
+        <span class="c">&lt;!-- Cabeçalho da mensagem. --&gt;</span>
+        <span class="nt">&lt;Hdr&gt;</span>
+            <span class="c">&lt;!-- Identifica o tipo de processo em que a mensagem se propõe.
+                 CMPK = CompletionAdviceResponse ou
+                 RVRR = ReversalAdviceResponse. --&gt;</span>
+            <span class="nt">&lt;MsgFctn&gt;</span>CMPK<span class="nt">&lt;/MsgFctn&gt;</span>
+            <span class="c">&lt;!-- Versão do protocolo utilizado na mensagem. --&gt;</span>
+            <span class="nt">&lt;PrtcolVrsn&gt;</span>2.0<span class="nt">&lt;/PrtcolVrsn&gt;</span>
+        <span class="nt">&lt;/Hdr&gt;</span>
+        <span class="c">&lt;!-- Informações sobre a resposta da captura ou desfazimento de uma autorização. --&gt;</span>
+        <span class="nt">&lt;CmpltnAdvcRspn&gt;</span>
+            <span class="c">&lt;!-- Ambiente da transação. --&gt;</span>
+            <span class="nt">&lt;Envt&gt;</span>
+                <span class="c">&lt;!-- Dados do estabelecimento. --&gt;</span>
+                <span class="nt">&lt;Mrchnt&gt;</span>
+                    <span class="c">&lt;!-- Identificação do estabelecimento comercial no adquirente.
+                         Também conhecido internamente como “SaleAffiliationKey”. --&gt;</span>
+                    <span class="nt">&lt;Id&gt;</span>BFDB58AB9A8A48828C2647E18B7F1114<span class="nt">&lt;/Id&gt;</span>
+                <span class="nt">&lt;/Mrchnt&gt;</span>
+            <span class="nt">&lt;/Envt&gt;</span>
+            <span class="c">&lt;!-- Dados da transação. --&gt;</span>
+            <span class="nt">&lt;Tx&gt;</span>
+                <span class="c">&lt;!-- Dados da identificação da transação definida pelo POI. --&gt;</span>
+                <span class="nt">&lt;TxId&gt;</span>
+                    <span class="c">&lt;!-- Data e hora da transação --&gt;</span>
+                    <span class="nt">&lt;TxDtTm&gt;</span>2014-03-12T15:17:59<span class="nt">&lt;/TxDtTm&gt;</span>
+                    <span class="c">&lt;!-- Identificação da transação definida pelo ponto de interação (POI,
+                         estabelecimento, lojista, etc). Este campo será ecoado pelo adquirente. --&gt;</span>
+                    <span class="nt">&lt;TxRef&gt;</span>7ca686eb242b4c0482c58961f5d3aac7<span class="nt">&lt;/TxRef&gt;</span>
+                <span class="nt">&lt;/TxId&gt;</span>
+                <span class="c">&lt;!-- Resultado da transação.
+                     DECL = Declined,
+                     APPR = Approved,
+                     PART = Partial Approved,
+                     TECH = Technical Error. --&gt;</span>
+                <span class="nt">&lt;Rspn&gt;</span>APPR<span class="nt">&lt;/Rspn&gt;</span>
+            <span class="nt">&lt;/Tx&gt;</span>
+        <span class="nt">&lt;/CmpltnAdvcRspn&gt;</span>
+    <span class="nt">&lt;/AccptrCmpltnAdvcRspn&gt;</span>
+<span class="nt">&lt;/Document&gt;</span>
+</pre>
+
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Ocorrência</th>
+<th>Tipo</th>
+<th>Descrição</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Header<code class="prettyprint">&lt;Hdr&gt;</code></td>
+<td>[1..1]</td>
+<td>Container</td>
+<td>Cabeçalho da mensagem.</td>
+</tr>
+<tr>
+<td>MessageFunction<code class="prettyprint">&lt;MsgFctn&gt;</code></td>
+<td>[1..1]</td>
+<td>CodeSet</td>
+<td>Identifica o tipo de processo em que a mensagem se propõe. “CMPK” = CompletionAdviceResponse ou “RVRR” = ReversalAdviceResponse.</td>
+</tr>
+<tr>
+<td>CreationDateTime<code class="prettyprint">&lt;CreDtTm&gt;</code></td>
+<td>[0..1]</td>
+<td>Text</td>
+<td>Data de criação da mensagem</td>
+</tr>
+<tr>
+<td>ProtocolVersion<code class="prettyprint">&lt;PrtcolVrsn&gt;</code></td>
+<td>[1..1]</td>
+<td>Text</td>
+<td>Versão do protocolo utilizado na mensagem.</td>
+</tr>
+<tr>
+<td>CompletionAdviceResponse<code class="prettyprint">&lt;CmpltnAdvcRspn&gt;</code></td>
+<td>[1..1]</td>
+<td>Container</td>
+<td>Informações sobre a resposta da captura ou desfazimento de uma autorização.</td>
+</tr>
+<tr>
+<td>Environment<code class="prettyprint">&lt;Envt&gt;</code></td>
+<td>[1..1]</td>
+<td>Container</td>
+<td>Ambiente da transação.</td>
+</tr>
+<tr>
+<td>Merchant Identification<code class="prettyprint">&lt;MrchntId&gt;</code></td>
+<td>[1..1]</td>
+<td>Container</td>
+<td>Dados do estabelecimento.</td>
+</tr>
+<tr>
+<td>Identification<code class="prettyprint">&lt;Id&gt;</code></td>
+<td>[1..1]</td>
+<td>Text</td>
+<td>Identificação do estabelecimento comercial no adquirente. Também conhecido como “SaleAffiliationKey”.</td>
+</tr>
+<tr>
+<td>POIId<code class="prettyprint">&lt;POIId&gt;</code></td>
+<td>[0..1]</td>
+<td>Container</td>
+<td>Dados do ponto de interação.</td>
+</tr>
+<tr>
+<td>Transaction<code class="prettyprint">&lt;Tx&gt;</code></td>
+<td>[1..1]</td>
+<td>Container</td>
+<td>Dados da transação.</td>
+</tr>
+<tr>
+<td>TransactionIdentification<code class="prettyprint">&lt;TxId&gt;</code></td>
+<td>[1..1]</td>
+<td>Container</td>
+<td>Dados da identificação da transação definida pelo POI.</td>
+</tr>
+<tr>
+<td>TransactionDateTime<code class="prettyprint">&lt;TxDtTm&gt;</code></td>
+<td>[1..1]</td>
+<td>DateTime</td>
+<td>Data e hora da transação</td>
+</tr>
+<tr>
+<td>TransactionReference<code class="prettyprint">&lt;TxRef&gt;</code></td>
+<td>[1..1]</td>
+<td>Text</td>
+<td>Identificação da transação definida pelo ponto de interação. Este campo será ecoado pelo adquirente.</td>
+</tr>
+<tr>
+<td>Response<code class="prettyprint">&lt;Rspn&gt;</code></td>
+<td>[1..1]</td>
+<td>CodeSet</td>
+<td>Resultado da transação. DECL = Declined, APPR = Approved, PART = Partial Approved, TECH = Technical Error.</td>
+</tr>
+</tbody></table>
+<h2 id='reverso'>Reversão</h2>
+<p>A reversão ou desfazimento de uma transação é realizado quando há alguma falha na transação. O prazo para a realização do desfazimento é de 5 dias e o tempo máximo de espera para de uma reposta <code class="prettyprint">AcceptorCompletionAdvice</code> é de 50 segundos.</p>
+
+<p><img alt="reversão" src="images/reversao.png" /></p>
+
+<ol>
+<li>Uma <code class="prettyprint">AcceptorAuthorisationRequest</code> é enviada pelo estabelecimento para o adquirente solicitando autorização.</li>
+<li>Uma <code class="prettyprint">AcceptorAuthorisationResponse</code> é devolvida pelo adquirente informando ao estabelecimento sobre o êxito do pedido, uma vez que o adquirente tenha autorizado a transação.</li>
+<li>No caso de falha no estabelecimento, uma <code class="prettyprint">AcceptorCompletionAdvice</code> é então enviada para o adquirente para desfazer a transação.</li>
+<li>O adquirente envia de volta uma <code class="prettyprint">AcceptorCompletionAdviceResponse</code> reconhecendo o desfazimento.</li>
+</ol>
+<h3 id='xml-de-requisio-de-desfazimento-comentado'>XML de requisição de Desfazimento comentado</h3><pre class="highlight xml"><span class="nt">&lt;Document</span> <span class="na">xmlns=</span><span class="s">"urn:AcceptorCompletionAdviceV02.1"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;AccptrCmpltnAdvc&gt;</span>
+        <span class="c">&lt;!-- Cabeçalho da mensagem. --&gt;</span>
+        <span class="nt">&lt;Hdr&gt;</span>
+            <span class="c">&lt;!-- Identifica o tipo de processo em que a mensagem se propõe. --&gt;</span>
+            <span class="nt">&lt;MsgFctn&gt;</span>RVRA<span class="nt">&lt;/MsgFctn&gt;</span>
+            <span class="c">&lt;!-- Versão do protocolo utilizado na mensagem. --&gt;</span>
+            <span class="nt">&lt;PrtcolVrsn&gt;</span>2.0<span class="nt">&lt;/PrtcolVrsn&gt;</span>
+        <span class="nt">&lt;/Hdr&gt;</span>
+        <span class="c">&lt;!-- Informações relacionadas ao processo de captura ou desfazimento de uma autorização. --&gt;</span>
+        <span class="nt">&lt;CmpltnAdvc&gt;</span>
+            <span class="c">&lt;!-- Ambiente da transação. --&gt;</span>
+            <span class="nt">&lt;Envt&gt;</span>
+                <span class="c">&lt;!-- Dados do estabelecimento. --&gt;</span>
+                <span class="nt">&lt;Mrchnt&gt;</span>
+                    <span class="c">&lt;!-- Container contendo o identificador do lojista. --&gt;</span>
+                    <span class="nt">&lt;Id&gt;</span>
+                        <span class="c">&lt;!-- Identificação do estabelecimento comercial no adquirente. --&gt;</span>
+                        <span class="nt">&lt;Id&gt;</span>00000000000000000000000000000321<span class="nt">&lt;/Id&gt;</span>
+                    <span class="nt">&lt;/Id&gt;</span>
+                <span class="nt">&lt;/Mrchnt&gt;</span>
+            <span class="nt">&lt;/Envt&gt;</span>
+            <span class="c">&lt;!-- Dados da transação. --&gt;</span>
+            <span class="nt">&lt;Tx&gt;</span>
+                <span class="c">&lt;!-- Dados de identificação da transação atribuída pelo POI --&gt;</span>
+                <span class="nt">&lt;TxId&gt;</span>
+                    <span class="c">&lt;!-- Data local e hora da transação atribuído pelo POI. --&gt;</span>
+                    <span class="nt">&lt;TxDtTm&gt;</span>2014-06-11T17:15:44<span class="nt">&lt;/TxDtTm&gt;</span>
+                    <span class="c">&lt;!-- Identificação da transação atribuída pelo POI. --&gt;</span>
                     <span class="nt">&lt;TxRef&gt;</span>1111<span class="nt">&lt;/TxRef&gt;</span>
                 <span class="nt">&lt;/TxId&gt;</span>
                 <span class="c">&lt;!-- Identificação da transação original --&gt;</span>
@@ -833,116 +1138,61 @@
 <td>Text</td>
 <td>Identificação do estabelecimento comercial no adquirente. Também conhecido internamente como “SaleAffiliationKey”.</td>
 </tr>
+<tr>
+<td>Transaction<code class="prettyprint">&lt;Tx&gt;</code></td>
+<td>[1..1]</td>
+<td>Container</td>
+<td>Dados da transação.</td>
+</tr>
+<tr>
+<td>TransactionIdentification<code class="prettyprint">&lt;TxId&gt;</code></td>
+<td>[1..1]</td>
+<td>Container</td>
+<td>Dados de identificação da transação atribuída pelo POI.</td>
+</tr>
+<tr>
+<td>TransactionDateTime<code class="prettyprint">&lt;TxDtTm&gt;</code></td>
+<td>[1..1]</td>
+<td>DateTime</td>
+<td>Data local e hora da transação atribuído pelo POI. Este campo será ecoado pelo adquirente.</td>
+</tr>
+<tr>
+<td>TransactionReference<code class="prettyprint">&lt;TxRef&gt;</code></td>
+<td>[1..1]</td>
+<td>Text</td>
+<td>Identificação da transação atribuída pelo POI. Este campo será ecoado pelo adquirente.</td>
+</tr>
+<tr>
+<td>OriginalTransaction<code class="prettyprint">&lt;OrgnlTx&gt;</code></td>
+<td>[0..1]</td>
+<td>Container</td>
+<td>Identificação da transação original</td>
+</tr>
+<tr>
+<td>RecipientTransactionIdentification<code class="prettyprint">&lt;RcptTxId&gt;</code></td>
+<td>[0..1]</td>
+<td>Text</td>
+<td>Identificação da transação definida pelo adquirente.</td>
+</tr>
+<tr>
+<td>TransactionDetails<code class="prettyprint">&lt;TxDtls&gt;</code></td>
+<td>[1..1]</td>
+<td>Container</td>
+<td>Detalhes da transação.</td>
+</tr>
+<tr>
+<td>Currency<code class="prettyprint">&lt;Ccy&gt;</code></td>
+<td>[1..1]</td>
+<td>CodeSet</td>
+<td>Moeda utilizada na transação em conformidade com a ISO 4217.</td>
+</tr>
+<tr>
+<td>TotalAmount<code class="prettyprint">&lt;TtlAmt&gt;</code></td>
+<td>[1..1]</td>
+<td>Amount</td>
+<td>Valor total da transação em centavos.</td>
+</tr>
 </tbody></table>
-<h3 id='xml-de-resposta-de-captura-comentado'>XML de resposta de Captura comentado</h3>
-<p>A mensagem <code class="prettyprint">AcceptorCompletionAdviceResponse</code> é enviada pelo adquirente para avisar o estabelecimento sobre o reconhecimento do resultado da operação de pagamento, bem como a transferência dos dados financeiros da transação contidas no <code class="prettyprint">AcceptorCompletionAdvice</code>. Esta mensagem também é utilizada como resposta para o processo de “desfazimento de transações”.</p>
-<pre class="highlight xml"><span class="nt">&lt;Document</span> <span class="na">xmlns=</span><span class="s">"urn:AcceptorCompletionAdviceResponseV02.1"</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;AccptrCmpltnAdvcRspn&gt;</span>
-        <span class="c">&lt;!-- Cabeçalho da mensagem. --&gt;</span>
-        <span class="nt">&lt;Hdr&gt;</span>
-            <span class="c">&lt;!-- Identifica o tipo de processo em que a mensagem se propõe.
-                 CMPK = CompletionAdviceResponse ou
-                 RVRR = ReversalAdviceResponse. --&gt;</span>
-            <span class="nt">&lt;MsgFctn&gt;</span>CMPK<span class="nt">&lt;/MsgFctn&gt;</span>
-            <span class="c">&lt;!-- Versão do protocolo utilizado na mensagem. --&gt;</span>
-            <span class="nt">&lt;PrtcolVrsn&gt;</span>2.0<span class="nt">&lt;/PrtcolVrsn&gt;</span>
-        <span class="nt">&lt;/Hdr&gt;</span>
-        <span class="c">&lt;!-- Informações sobre a resposta da captura ou desfazimento de uma autorização. --&gt;</span>
-        <span class="nt">&lt;CmpltnAdvcRspn&gt;</span>
-            <span class="c">&lt;!-- Ambiente da transação. --&gt;</span>
-            <span class="nt">&lt;Envt&gt;</span>
-                <span class="c">&lt;!-- Dados do estabelecimento. --&gt;</span>
-                <span class="nt">&lt;Mrchnt&gt;</span>
-                    <span class="c">&lt;!-- Identificação do estabelecimento comercial no adquirente.
-                         Também conhecido internamente como “SaleAffiliationKey”. --&gt;</span>
-                    <span class="nt">&lt;Id&gt;</span>BFDB58AB9A8A48828C2647E18B7F1114<span class="nt">&lt;/Id&gt;</span>
-                <span class="nt">&lt;/Mrchnt&gt;</span>
-            <span class="nt">&lt;/Envt&gt;</span>
-            <span class="c">&lt;!-- Dados da transação. --&gt;</span>
-            <span class="nt">&lt;Tx&gt;</span>
-                <span class="c">&lt;!-- Dados da identificação da transação definida pelo POI. --&gt;</span>
-                <span class="nt">&lt;TxId&gt;</span>
-                    <span class="c">&lt;!-- Data e hora da transação --&gt;</span>
-                    <span class="nt">&lt;TxDtTm&gt;</span>2014-03-12T15:17:59<span class="nt">&lt;/TxDtTm&gt;</span>
-                    <span class="c">&lt;!-- Identificação da transação definida pelo ponto de interação (POI,
-                         estabelecimento, lojista, etc). Este campo será ecoado pelo adquirente. --&gt;</span>
-                    <span class="nt">&lt;TxRef&gt;</span>7ca686eb242b4c0482c58961f5d3aac7<span class="nt">&lt;/TxRef&gt;</span>
-                <span class="nt">&lt;/TxId&gt;</span>
-                <span class="c">&lt;!-- Resultado da transação.
-                     DECL = Declined,
-                     APPR = Approved,
-                     PART = Partial Approved,
-                     TECH = Technical Error. --&gt;</span>
-                <span class="nt">&lt;Rspn&gt;</span>APPR<span class="nt">&lt;/Rspn&gt;</span>
-            <span class="nt">&lt;/Tx&gt;</span>
-        <span class="nt">&lt;/CmpltnAdvcRspn&gt;</span>
-    <span class="nt">&lt;/AccptrCmpltnAdvcRspn&gt;</span>
-<span class="nt">&lt;/Document&gt;</span>
-</pre>
-<h2 id='reverso'>Reversão</h2>
-<p>A reversão ou desfazimento de uma transação é realizado quando há alguma falha na transação. O prazo para a realização do desfazimento é de 5 dias e o tempo máximo de espera para de uma reposta <code class="prettyprint">AcceptorCompletionAdvice</code> é de 50 segundos.</p>
-
-<p><img alt="reversão" src="images/reversao.png" /></p>
-
-<ol>
-<li>Uma <code class="prettyprint">AcceptorAuthorisationRequest</code> é enviada pelo estabelecimento para o adquirente solicitando autorização.</li>
-<li>Uma <code class="prettyprint">AcceptorAuthorisationResponse</code> é devolvida pelo adquirente informando ao estabelecimento sobre o êxito do pedido, uma vez que o adquirente tenha autorizado a transação.</li>
-<li>No caso de falha no estabelecimento, uma <code class="prettyprint">AcceptorCompletionAdvice</code> é então enviada para o adquirente para desfazer a transação.</li>
-<li>O adquirente envia de volta uma <code class="prettyprint">AcceptorCompletionAdviceResponse</code> reconhecendo o desfazimento.</li>
-</ol>
-<h3 id='xml-de-requisio-de-desfazimento-comentado'>XML de requisição de Desfazimento comentado</h3><pre class="highlight xml"><span class="nt">&lt;Document</span> <span class="na">xmlns=</span><span class="s">"urn:AcceptorCompletionAdviceV02.1"</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;AccptrCmpltnAdvc&gt;</span>
-        <span class="c">&lt;!-- Cabeçalho da mensagem. --&gt;</span>
-        <span class="nt">&lt;Hdr&gt;</span>
-            <span class="c">&lt;!-- Identifica o tipo de processo em que a mensagem se propõe.
-            CMPK = CompletionAdviceResponse ou
-            RVRR = ReversalAdviceResponse. --&gt;</span>
-            <span class="nt">&lt;MsgFctn&gt;</span>RVRA<span class="nt">&lt;/MsgFctn&gt;</span>
-            <span class="c">&lt;!-- Versão do protocolo utilizado na mensagem. --&gt;</span>
-            <span class="nt">&lt;PrtcolVrsn&gt;</span>2.0<span class="nt">&lt;/PrtcolVrsn&gt;</span>
-        <span class="nt">&lt;/Hdr&gt;</span>
-        <span class="c">&lt;!-- Informações relacionadas ao processo de captura ou desfazimento de uma autorização. --&gt;</span>
-        <span class="nt">&lt;CmpltnAdvc&gt;</span>
-            <span class="c">&lt;!-- Ambiente da transação. --&gt;</span>
-            <span class="nt">&lt;Envt&gt;</span>
-                <span class="c">&lt;!-- Dados do estabelecimento. --&gt;</span>
-                <span class="nt">&lt;Mrchnt&gt;</span>
-                    <span class="c">&lt;!-- Container contendo o identificador do lojista. --&gt;</span>
-                    <span class="nt">&lt;Id&gt;</span>
-                        <span class="c">&lt;!-- Identificação do estabelecimento comercial no adquirente.
-                             Também conhecido internamente como “SaleAffiliationKey”. --&gt;</span>
-                        <span class="nt">&lt;Id&gt;</span>00000000000000000000000000000321<span class="nt">&lt;/Id&gt;</span>
-                    <span class="nt">&lt;/Id&gt;</span>
-                <span class="nt">&lt;/Mrchnt&gt;</span>
-            <span class="nt">&lt;/Envt&gt;</span>
-            <span class="c">&lt;!-- Dados da transação. --&gt;</span>
-            <span class="nt">&lt;Tx&gt;</span>
-                <span class="c">&lt;!-- Dados de identificação da transação atribuída pelo POI --&gt;</span>
-                <span class="nt">&lt;TxId&gt;</span>
-                    <span class="c">&lt;!-- Data local e hora da transação atribuído pelo POI.
-                         Este campo será ecoado pelo adquirente. --&gt;</span>
-                    <span class="nt">&lt;TxDtTm&gt;</span>2014-06-11T17:15:44<span class="nt">&lt;/TxDtTm&gt;</span>
-                    <span class="c">&lt;!-- Identificação da transação atribuída pelo POI.
-                         Este campo será ecoado pelo adquirente. --&gt;</span>
-                    <span class="nt">&lt;TxRef&gt;</span>1111<span class="nt">&lt;/TxRef&gt;</span>
-                <span class="nt">&lt;/TxId&gt;</span>
-                <span class="c">&lt;!-- Identificação da transação original --&gt;</span>
-                <span class="nt">&lt;OrgnlTx&gt;</span>
-                    <span class="c">&lt;!-- Identificação da transação definida pelo adquirente. --&gt;</span>
-                    <span class="nt">&lt;RcptTxId&gt;</span>9CDF257AQKR<span class="nt">&lt;/RcptTxId&gt;</span>
-                <span class="nt">&lt;/OrgnlTx&gt;</span>
-                <span class="c">&lt;!-- Detalhes da transação. --&gt;</span>
-                <span class="nt">&lt;TxDtls&gt;</span>
-                    <span class="c">&lt;!-- Moeda utilizada na transação em conformidade com a ISO 4217. --&gt;</span>
-                    <span class="nt">&lt;Ccy&gt;</span>986<span class="nt">&lt;/Ccy&gt;</span>
-                    <span class="c">&lt;!-- Valor total da transação em centavos. --&gt;</span>
-                    <span class="nt">&lt;TtlAmt&gt;</span>100<span class="nt">&lt;/TtlAmt&gt;</span>
-                <span class="nt">&lt;/TxDtls&gt;</span>
-            <span class="nt">&lt;/Tx&gt;</span>
-        <span class="nt">&lt;/CmpltnAdvc&gt;</span>
-    <span class="nt">&lt;/AccptrCmpltnAdvc&gt;</span>
-<span class="nt">&lt;/Document&gt;</span>
-</pre>
 <h3 id='xml-de-resposta-de-desfazimento-comentado'>XML de resposta de Desfazimento comentado</h3>
 <p>A mensagem <code class="prettyprint">AcceptorCompletionAdviceResponse</code> é enviada pelo adquirente para avisar o estabelecimento sobre o reconhecimento do resultado da operação de pagamento, bem como a transferência dos dados financeiros da transação contidas no AcceptorCompletionAdvice. Esta mensagem também é utilizada como resposta para o processo de “desfazimento de transações”.</p>
 <pre class="highlight xml"><span class="nt">&lt;Document</span> <span class="na">xmlns=</span><span class="s">"urn:AcceptorCompletionAdviceResponseV02.1"</span><span class="nt">&gt;</span>
@@ -988,16 +1238,125 @@
     <span class="nt">&lt;/AccptrCmpltnAdvcRspn&gt;</span>
 <span class="nt">&lt;/Document&gt;</span>
 </pre>
+
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Ocorrência</th>
+<th>Tipo</th>
+<th>Descrição</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Header<code class="prettyprint">&lt;Hdr&gt;</code></td>
+<td>[1..1]</td>
+<td>Container</td>
+<td>Cabeçalho da mensagem.</td>
+</tr>
+<tr>
+<td>MessageFunction<code class="prettyprint">&lt;MsgFctn&gt;</code></td>
+<td>[1..1]</td>
+<td>CodeSet</td>
+<td>Identifica o tipo de processo em que a mensagem se propõe. “CMPK” = CompletionAdviceResponse ou “RVRR” = ReversalAdviceResponse.</td>
+</tr>
+<tr>
+<td>CreationDateTime<code class="prettyprint">&lt;CreDtTm&gt;</code></td>
+<td>[0..1]</td>
+<td>Text</td>
+<td>Data de criação da mensagem</td>
+</tr>
+<tr>
+<td>ProtocolVersion<code class="prettyprint">&lt;PrtcolVrsn&gt;</code></td>
+<td>[1..1]</td>
+<td>Text</td>
+<td>Versão do protocolo utilizado na mensagem.</td>
+</tr>
+<tr>
+<td>CompletionAdviceResponse<code class="prettyprint">&lt;CmpltnAdvcRspn&gt;</code></td>
+<td>[1..1]</td>
+<td>Container</td>
+<td>Informações sobre a resposta da captura ou desfazimento de uma autorização.</td>
+</tr>
+<tr>
+<td>Environment<code class="prettyprint">&lt;Envt&gt;</code></td>
+<td>[1..1]</td>
+<td>Container</td>
+<td>Ambiente da transação.</td>
+</tr>
+<tr>
+<td>Merchant Identification<code class="prettyprint">&lt;MrchntId&gt;</code></td>
+<td>[1..1]</td>
+<td>Container</td>
+<td>Dados do estabelecimento.</td>
+</tr>
+<tr>
+<td>Identification<code class="prettyprint">&lt;Id&gt;</code></td>
+<td>[1..1]</td>
+<td>Text</td>
+<td>Identificação do estabelecimento comercial no adquirente. Também conhecido como “SaleAffiliationKey”.</td>
+</tr>
+<tr>
+<td>POIId<code class="prettyprint">&lt;POIId&gt;</code></td>
+<td>[0..1]</td>
+<td>Container</td>
+<td>Dados do ponto de interação.</td>
+</tr>
+<tr>
+<td>Transaction<code class="prettyprint">&lt;Tx&gt;</code></td>
+<td>[1..1]</td>
+<td>Container</td>
+<td>Dados da transação.</td>
+</tr>
+<tr>
+<td>TransactionIdentification<code class="prettyprint">&lt;TxId&gt;</code></td>
+<td>[1..1]</td>
+<td>Container</td>
+<td>Dados da identificação da transação definida pelo POI.</td>
+</tr>
+<tr>
+<td>TransactionDateTime<code class="prettyprint">&lt;TxDtTm&gt;</code></td>
+<td>[1..1]</td>
+<td>DateTime</td>
+<td>Data e hora da transação</td>
+</tr>
+<tr>
+<td>TransactionReference<code class="prettyprint">&lt;TxRef&gt;</code></td>
+<td>[1..1]</td>
+<td>Text</td>
+<td>Identificação da transação definida pelo ponto de interação. Este campo será ecoado pelo adquirente.</td>
+</tr>
+<tr>
+<td>Response<code class="prettyprint">&lt;Rspn&gt;</code></td>
+<td>[1..1]</td>
+<td>CodeSet</td>
+<td>Resultado da transação. DECL = Declined, APPR = Approved, PART = Partial Approved, TECH = Technical Error.</td>
+</tr>
+</tbody></table>
 <h2 id='cancelamento'>Cancelamento</h2>
 <p>O cancelamento é o serviço que permite que um estabelecimento cancele uma transação concluída com êxito. É por vezes chamado de “desfazimento manual”. O prazo para é 180 dias para o cancelamento.</p>
+
+<p><img alt="cancelamento" src="images/cancelamento-com-captura.png" /></p>
+
+<ol>
+<li>O estabelecimento envia uma <code class="prettyprint">AcceptorAuthorisationRequest</code> para o adquirente para realizar um pedido de autorização</li>
+<li>Uma <code class="prettyprint">AcceptorAuthorisationResponse</code> é enviada pelo adquirente confirmando e aprovando o pedido de autorização</li>
+<li>Uma <code class="prettyprint">AcceptorCompletionAdvice</code> é utilizada para informar ao adquirente sobre a captura da transação</li>
+<li>O adquirente envia uma <code class="prettyprint">AcceptorCompletionAdviceResponse</code> reconhecendo o pedido de cancelamento por parte do estabelecimento;</li>
+</ol>
+
+<p>Nesta transação o estabelecimento não necessita de nenhum pedido de cancelamento prévio pois supomos que ele já possui as informações de que o cancelamento pode realmente ser realizado.</p>
+
+<ol>
+<li>Por sua vez, o estabelecimento envia uma <code class="prettyprint">AcceptorCancellationAdvice</code> para informar ao adquirente que a transação autorizada previamente deve ser cancelada</li>
+<li>O adquirente envia uma <code class="prettyprint">AcceptorCancellationAdviceResponse</code> reconhecendo o cancelamento, e realiza os ajustes necessários.</li>
+</ol>
 <h3 id='xml-de-requisio-de-cancelamento-comentado'>XML de requisição de Cancelamento comentado</h3>
 <p>A mensagem <code class="prettyprint">AcceptorCancellationRequest</code> é utilizada para realizar um pedido de cancelamento de uma transação autorizada. Se faz necessária uma mensagem de <code class="prettyprint">AcceptorCancellationAdvice</code> para que o cancelamento seja confirmado caso o valor da tag <code class="prettyprint">TransactionCapture&lt;TxCaptr&gt;</code> seja <code class="prettyprint">false</code> .</p>
 <pre class="highlight xml"><span class="nt">&lt;Document</span> <span class="na">xmlns=</span><span class="s">"urn:AcceptorCancellationRequestV02.1"</span><span class="nt">&gt;</span>
     <span class="nt">&lt;AccptrCxlReq&gt;</span>
         <span class="c">&lt;!-- Cabeçalho da mensagem --&gt;</span>
         <span class="nt">&lt;Hdr&gt;</span>
-            <span class="c">&lt;!-- Identifica o tipo de processo em que a mensagem se propõe.
-                 CCAQ = Cancellation Request. --&gt;</span>
+            <span class="c">&lt;!-- Identifica o tipo de processo em que a mensagem se propõe. --&gt;</span>
             <span class="nt">&lt;MsgFctn&gt;</span>CCAQ<span class="nt">&lt;/MsgFctn&gt;</span>
             <span class="c">&lt;!-- Versão do protocolo utilizado na mensagem. --&gt;</span>
             <span class="nt">&lt;PrtcolVrsn&gt;</span>2.0<span class="nt">&lt;/PrtcolVrsn&gt;</span>
@@ -1010,8 +1369,7 @@
                 <span class="nt">&lt;Mrchnt&gt;</span>
                     <span class="c">&lt;!-- Identificação do estabelecimento comercial. --&gt;</span>
                     <span class="nt">&lt;Id&gt;</span>
-                        <span class="c">&lt;!-- Identificação do estabelecimento comercial no adquirente.
-                             Também conhecido internamente como “SaleAffiliationKey”. --&gt;</span>
+                        <span class="c">&lt;!-- Identificação do estabelecimento comercial no adquirente. --&gt;</span>
                         <span class="nt">&lt;Id&gt;</span>BFDB58AB9A8A48828C2647E18B7F1114<span class="nt">&lt;/Id&gt;</span>
                     <span class="nt">&lt;/Id&gt;</span>
                 <span class="nt">&lt;/Mrchnt&gt;</span>
@@ -1019,16 +1377,13 @@
                 <span class="nt">&lt;POI&gt;</span>
                     <span class="c">&lt;!-- Identificação do ponto de interação --&gt;</span>
                     <span class="nt">&lt;Id&gt;</span>
-                        <span class="c">&lt;!-- Código de identificação do ponto de interação atribuído
-                             pelo estabelecimento. --&gt;</span>
+                        <span class="c">&lt;!-- Código de identificação do POI atribuído pelo estabelecimento. --&gt;</span>
                         <span class="nt">&lt;Id&gt;</span>2FB4C89A<span class="nt">&lt;/Id&gt;</span>
                     <span class="nt">&lt;/Id&gt;</span>
                     <span class="c">&lt;!-- Capacidades do Ponto de interação. --&gt;</span>
                     <span class="nt">&lt;Cpblties&gt;</span>
                         <span class="c">&lt;!-- Número máximo de colunas de cada linha a ser impressa no cupom.
-                             A quantidade mínima de colunas é de 38.
-                             Se o POI enviar menos do que38, o Host Stone não irá retornar
-                             os dados do recibo. --&gt;</span>
+                             A quantidade mínima de colunas é de 38. --&gt;</span>
                         <span class="nt">&lt;PrtLineWidth&gt;</span>50<span class="nt">&lt;/PrtLineWidth&gt;</span>
                     <span class="nt">&lt;/Cpblties&gt;</span>
                 <span class="nt">&lt;/POI&gt;</span>
@@ -1066,6 +1421,160 @@
     <span class="nt">&lt;/AccptrCxlReq&gt;</span>
 <span class="nt">&lt;/Document&gt;</span>
 </pre>
+
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Ocorrência</th>
+<th>Tipo</th>
+<th>Descrição</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Header<code class="prettyprint">&lt;Hdr&gt;</code></td>
+<td>[1..1]</td>
+<td>Container</td>
+<td>Cabeçalho da mensagem</td>
+</tr>
+<tr>
+<td>MessageFunction<code class="prettyprint">&lt;MsgFctn&gt;</code></td>
+<td>[1..1]</td>
+<td>CodeSet</td>
+<td>Identifica o tipo de processo em que a mensagem se propõe. Fixo: “CCAQ” = Cancellation Request.</td>
+</tr>
+<tr>
+<td>ProtocolVersion<code class="prettyprint">&lt;PrtcolVrsn&gt;</code></td>
+<td>[1..1]</td>
+<td>Text</td>
+<td>Versão do protocolo utilizado na mensagem.</td>
+</tr>
+<tr>
+<td>CancellationRequest<code class="prettyprint">&lt;CxlReq&gt;</code></td>
+<td>[1..1]</td>
+<td>Container</td>
+<td>Informações relacionadas à requisição de cancelamento.</td>
+</tr>
+<tr>
+<td>Environment<code class="prettyprint">&lt;Envt&gt;</code></td>
+<td>[1..1]</td>
+<td>Container</td>
+<td>Ambiente da transação.</td>
+</tr>
+<tr>
+<td>Merchant<code class="prettyprint">&lt;Mrchnt&gt;</code></td>
+<td>[1..1]</td>
+<td>Container</td>
+<td>Dados do estabelecimento.</td>
+</tr>
+<tr>
+<td>Identification<code class="prettyprint">&lt;Id&gt;</code></td>
+<td>[1..1]</td>
+<td>Container</td>
+<td>Identificação do estabelecimento comercial.</td>
+</tr>
+<tr>
+<td>Identification<code class="prettyprint">&lt;Id&gt;</code></td>
+<td>[1..1]</td>
+<td>Text</td>
+<td>Identificação do estabelecimento comercial no adquirente. Também conhecido como “SaleAffiliationKey”.</td>
+</tr>
+<tr>
+<td>Poi<code class="prettyprint">&lt;POI&gt;</code></td>
+<td>[1..1]</td>
+<td>Container</td>
+<td>Dados do Ponto de Interação.</td>
+</tr>
+<tr>
+<td>Identification<code class="prettyprint">&lt;Id&gt;</code></td>
+<td>[1..1]</td>
+<td>Container</td>
+<td>Identificação do ponto de interação</td>
+</tr>
+<tr>
+<td>Identification<code class="prettyprint">&lt;Id&gt;</code></td>
+<td>[1..1]</td>
+<td>Text</td>
+<td>Código de identificação do ponto de interação atribuído pelo estabelecimento.</td>
+</tr>
+<tr>
+<td>Capabilities</td>
+<td>[0..1]</td>
+<td>Container</td>
+<td>Capacidades do Ponto de interação.</td>
+</tr>
+<tr>
+<td>PrintLineWidth<code class="prettyprint">&lt;PrtLineWidth&gt;</code></td>
+<td>[0..1]</td>
+<td>Text</td>
+<td>Número máximo de colunas de cada linha a ser impressa no cupom. A quantidade mínima de colunas é de 38. Se o POI enviar menos do que 38, o Host Stone não irá retornar os dados do recibo.</td>
+</tr>
+<tr>
+<td>Transaction<code class="prettyprint">&lt;Tx&gt;</code></td>
+<td>[1..1]</td>
+<td>Container</td>
+<td>Dados da transação.</td>
+</tr>
+<tr>
+<td>TransactionCapture<code class="prettyprint">&lt;TxCaptr&gt;</code></td>
+<td>[1..1]</td>
+<td>Bool</td>
+<td>Indica se os dados da transação devem ser capturados <code class="prettyprint">true</code> ou não <code class="prettyprint">false</code> imediatamente.</td>
+</tr>
+<tr>
+<td>TransactionIdentification<code class="prettyprint">&lt;TxId&gt;</code></td>
+<td>[1..1]</td>
+<td>Container</td>
+<td>Identificação da transação atribuída pelo POI (Ponto de interação).</td>
+</tr>
+<tr>
+<td>TransactionDateTime<code class="prettyprint">&lt;TxDtTm&gt;</code></td>
+<td>[1..1]</td>
+<td>DateTime</td>
+<td>Data e hora local da transação definidas pelo ponto de interação.</td>
+</tr>
+<tr>
+<td>TransactionReference<code class="prettyprint">&lt;TxRef&gt;</code></td>
+<td>[1..1]</td>
+<td>Text</td>
+<td>Identificação da transação definida pelo ponto de interação. O formato é livre contendo no máximo 32 caracteres.</td>
+</tr>
+<tr>
+<td>TransactionDetails<code class="prettyprint">&lt;TxDtls&gt;</code></td>
+<td>[1..1]</td>
+<td>Container</td>
+<td>Detalhes da transação</td>
+</tr>
+<tr>
+<td>Currency<code class="prettyprint">&lt;Ccy&gt;</code></td>
+<td>[1..1]</td>
+<td>CodeSet</td>
+<td>Moeda utilizada na transação em conformidade com a ISO 4217.</td>
+</tr>
+<tr>
+<td>TotalAmount<code class="prettyprint">&lt;TtlAmt&gt;</code></td>
+<td>[1..1]</td>
+<td>Amount</td>
+<td>Valor total da transação em centavos</td>
+</tr>
+<tr>
+<td>OriginalTransaction<code class="prettyprint">&lt;OrgnlTx&gt;</code></td>
+<td>[1..1]</td>
+<td>Container</td>
+<td>Dados da transação original</td>
+</tr>
+<tr>
+<td>InitiatorTransactionIdentification<code class="prettyprint">&lt;InitrTxId&gt;</code></td>
+<td>[0..1]</td>
+<td>Text</td>
+<td>Identificação da transação definida pelo sistema que se comunica com o Host Stone.</td>
+</tr>
+<tr>
+<td>RecipientTransactionIdentification<code class="prettyprint">&lt;RcptTxId&gt;</code></td>
+<td>[1..1]</td>
+<td>Text</td>
+<td>Identificação da transação definida pelo adquirente.</td>
+</tr>
+</tbody></table>
 <h3 id='xml-de-resposta-de-cancelamento-comentado'>XML de resposta de Cancelamento comentado</h3>
 <p>A mensagem AcceptorCancellationResponse é respondida pelo adquirente com as informações sobre a requisição de cancelamento <code class="prettyprint">AcceptorCancellationRequest</code>. Importante informar que os dados do recibo de cancelamento são enviados somente nesta mensagem.</p>
 <pre class="highlight xml"><span class="nt">&lt;Document</span> <span class="na">xmlns=</span><span class="s">"urn:AcceptorCancellationResponseV02.1"</span><span class="nt">&gt;</span>
@@ -1151,40 +1660,190 @@
     <span class="nt">&lt;/AccptrCxlRspn&gt;</span>
 <span class="nt">&lt;/Document&gt;</span>
 </pre>
-<h2 id='cancelamento-com-captura'>Cancelamento com Captura</h2>
-<p><img alt="cancelamento com captura" src="images/cancelamento-com-captura.png" /></p>
 
-<ol>
-<li>O estabelecimento envia uma <code class="prettyprint">AcceptorAuthorisationRequest</code> para o adquirente para realizar um pedido de autorização</li>
-<li>Uma <code class="prettyprint">AcceptorAuthorisationResponse</code> é enviada pelo adquirente confirmando e aprovando o pedido de autorização</li>
-<li>Uma <code class="prettyprint">AcceptorCompletionAdvice</code> é utilizada para informar ao adquirente sobre a captura da transação</li>
-<li>O adquirente envia uma <code class="prettyprint">AcceptorCompletionAdviceResponse</code> reconhecendo o pedido de cancelamento por parte do estabelecimento;</li>
-</ol>
-
-<p>Nesta transação o estabelecimento não necessita de nenhum pedido de cancelamento prévio pois supomos que ele já possui as informações de que o cancelamento pode realmente ser realizado.</p>
-
-<ol>
-<li>Por sua vez, o estabelecimento envia uma <code class="prettyprint">AcceptorCancellationAdvice</code> para informar ao adquirente que a transação autorizada previamente deve ser cancelada</li>
-<li>O adquirente envia uma <code class="prettyprint">AcceptorCancellationAdviceResponse</code> reconhecendo o cancelamento, e realiza os ajustes necessários.</li>
-</ol>
-<h2 id='cancelamento-com-captura-posterior'>Cancelamento com Captura posterior</h2>
-<p><img alt="cancelamento com captura posterior" src="images/cancelamento-com-captura-posterior.png" /></p>
-
-<ol>
-<li>O estabelecimento envia uma <code class="prettyprint">AcceptorAuthorisationRequest</code> para o adquirente para realizar um pedido de autorização</li>
-<li>Uma <code class="prettyprint">AcceptorAuthorisationResponse</code> é enviada pelo adquirente confirmando e aprovando o pedido de autorização</li>
-<li>Uma <code class="prettyprint">AcceptorCompletionAdvice</code> é utilizada para informar ao adquirente sobre a captura da transação</li>
-<li>O adquirente envia uma <code class="prettyprint">AcceptorCompletionAdviceResponse</code> reconhecendo o pedido de captura da transação por parte do estabelecimento.</li>
-</ol>
-
-<p>Neste momento, por algum motivo o estabelecimento precisa cancelar a transação. Para isso ele deve seguir o fluxo a seguir:</p>
-
-<ol>
-<li>O estabelecimento envia uma <code class="prettyprint">AcceptorCancellationRequest</code> para saber se o cancelamento pode ou não ser realizado. <strong>O adquirente pode ou não permitir este cancelamento</strong>. A tag <code class="prettyprint">&lt;TxCaptr&gt;</code> deve possuir o valor <code class="prettyprint">false</code></li>
-<li>O adquirente envia uma <code class="prettyprint">AcceptorCancellationResponse</code> informando que o cancelamento pode ser realizado</li>
-<li>Uma vez que o estabelecimento considere que o cancelamento deve ser efetivado, ele deve enviar uma mensagem <code class="prettyprint">AcceptorCancellationAdvice</code> para que seja realizada a captura deste cancelamento</li>
-<li>O adquirente envia <code class="prettyprint">AcceptorCancellationAdviceResponse</code> efetivando o cancelamento.</li>
-</ol>
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Ocorrência</th>
+<th>Tipo</th>
+<th>Descrição</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Header<code class="prettyprint">&lt;Hdr&gt;</code></td>
+<td>[1..1]</td>
+<td>Container</td>
+<td>Cabeçalho da mensagem</td>
+</tr>
+<tr>
+<td>MessageFunction<code class="prettyprint">&lt;MsgFctn&gt;</code></td>
+<td>[1..1]</td>
+<td>CodeSet</td>
+<td>Identifica o tipo de processo em que a mensagem se propõe. Fixo: “CCAP” = Cancellation Response.</td>
+</tr>
+<tr>
+<td>ProtocolVersion<code class="prettyprint">&lt;PrtcolVrsn&gt;</code></td>
+<td>[1..1]</td>
+<td>Text</td>
+<td>Versão do protocolo utilizado na mensagem.</td>
+</tr>
+<tr>
+<td>CreationDateTime<code class="prettyprint">&lt;CreDtTm&gt;</code></td>
+<td>[0..1]</td>
+<td>Text</td>
+<td>Data de criação da mensagem</td>
+</tr>
+<tr>
+<td>CancellationResponse<code class="prettyprint">&lt;CxlRspn&gt;</code></td>
+<td>[1..1]</td>
+<td>Container</td>
+<td>Informações relacionadas à resposta de cancelamento.</td>
+</tr>
+<tr>
+<td>Environment<code class="prettyprint">&lt;Envt&gt;</code></td>
+<td>[1..1]</td>
+<td>Container</td>
+<td>Ambiente da transação.</td>
+</tr>
+<tr>
+<td>Merchant Identification<code class="prettyprint">&lt;MrchntId&gt;</code></td>
+<td>[0..1]</td>
+<td>Container</td>
+<td>Dados do estabelecimento.</td>
+</tr>
+<tr>
+<td>Identification<code class="prettyprint">&lt;Id&gt;</code></td>
+<td>[1..1]</td>
+<td>Text</td>
+<td>Identificação do estabelecimento comercial no adquirente. Também conhecido internamente como “SaleAffiliationKey”.</td>
+</tr>
+<tr>
+<td>POIId<code class="prettyprint">&lt;POIId&gt;</code></td>
+<td>[0..1]</td>
+<td>Container</td>
+<td>Dados do ponto de interação</td>
+</tr>
+<tr>
+<td>Identification<code class="prettyprint">&lt;Id&gt;</code></td>
+<td>[1..1]</td>
+<td>Text</td>
+<td>Código de identificação do ponto de interação atribuído pelo estabelecimento (Campo ecoado).</td>
+</tr>
+<tr>
+<td>Transaction<code class="prettyprint">&lt;Tx&gt;</code></td>
+<td>[1..1]</td>
+<td>Container</td>
+<td>Dados da transação.</td>
+</tr>
+<tr>
+<td>TransactionCapture<code class="prettyprint">&lt;TxCaptr&gt;</code></td>
+<td>[1..1]</td>
+<td>Bool</td>
+<td>Indica se os dados da transação devem ser capturados <code class="prettyprint">true</code> ou não <code class="prettyprint">false</code> imediatamente.</td>
+</tr>
+<tr>
+<td>TransactionIdentification<code class="prettyprint">&lt;TxId&gt;</code></td>
+<td>[1..1]</td>
+<td>Container</td>
+<td>Identificação da transação atribuída pelo POI.</td>
+</tr>
+<tr>
+<td>TransactionDateTime<code class="prettyprint">&lt;TxDtTm&gt;</code></td>
+<td>[1..1]</td>
+<td>DateTime</td>
+<td>Data e hora local da transação definidas pelo ponto de interação.</td>
+</tr>
+<tr>
+<td>TransactionReference<code class="prettyprint">&lt;TxRef&gt;</code></td>
+<td>[1..1]</td>
+<td>Text</td>
+<td>Identificação da transação definida pelo ponto de interação. Este campo será ecoado pelo adquirente.</td>
+</tr>
+<tr>
+<td>TransactionDetails<code class="prettyprint">&lt;TxDtls&gt;</code></td>
+<td>[1..1]</td>
+<td>Container</td>
+<td>Detalhes da transação</td>
+</tr>
+<tr>
+<td>Currency<code class="prettyprint">&lt;Ccy&gt;</code></td>
+<td>[1..1]</td>
+<td>CodeSet</td>
+<td>Moeda utilizada na transação em conformidade com a ISO 4217.</td>
+</tr>
+<tr>
+<td>TotalAmount<code class="prettyprint">&lt;TtlAmt&gt;</code></td>
+<td>[1..1]</td>
+<td>Amount</td>
+<td>Valor total da transação em centavos.</td>
+</tr>
+<tr>
+<td>TransactionResponse<code class="prettyprint">&lt;TxRspn&gt;</code></td>
+<td>[1..1]</td>
+<td>Container</td>
+<td>Dados de resposta da transação.</td>
+</tr>
+<tr>
+<td>AuthorisationResult<code class="prettyprint">&lt;AuthstnRslt&gt;</code></td>
+<td>[1..1]</td>
+<td>Container</td>
+<td>Informações sobre o resultado da autorização a ser cancelada.</td>
+</tr>
+<tr>
+<td>ResponseToAuthorisation<code class="prettyprint">&lt;RspnToAuthstn&gt;</code></td>
+<td>[1..1]</td>
+<td>Container</td>
+<td>Dados de resposta da autorização a ser cancelada.</td>
+</tr>
+<tr>
+<td>Response<code class="prettyprint">&lt;Rspn&gt;</code></td>
+<td>[1..1]</td>
+<td>CodeSet</td>
+<td>Resposta da transação. DECL: Declined; APPR: Aproved; PART: PartialApproved; TECH: TechinicalError;</td>
+</tr>
+<tr>
+<td>ResponseReason<code class="prettyprint">&lt;RspnRsn&gt;</code></td>
+<td>[0..1]</td>
+<td>Text</td>
+<td>Código de resposta da autorização.</td>
+</tr>
+<tr>
+<td>CompletionRequired<code class="prettyprint">&lt;CmpltnReqrd&gt;</code></td>
+<td>[0..1]</td>
+<td>Bool</td>
+<td>Indica se a mensagem precisa ser capturada posteriormente.</td>
+</tr>
+<tr>
+<td>Action<code class="prettyprint">&lt;Actn&gt;</code></td>
+<td>[0..*]</td>
+<td>Container</td>
+<td>Informações sobre as ações a serem realizadas pelo POI. Neste caso, as informações a serem impressas no comprovante.</td>
+</tr>
+<tr>
+<td>ActionType<code class="prettyprint">&lt;ActnTp&gt;</code></td>
+<td>[1..1]</td>
+<td>CodeSet</td>
+<td>Tipo da ação a ser realizada pelo POI. PRNT = Imprimir mensagem;</td>
+</tr>
+<tr>
+<td>MessageToPresent<code class="prettyprint">&lt;MsgToPres&gt;</code></td>
+<td>[1..1]</td>
+<td>Container</td>
+<td>Mensagem a ser impressa no terminal.</td>
+</tr>
+<tr>
+<td>MessageDestination<code class="prettyprint">&lt;MsgDstn&gt;</code></td>
+<td>[1..1]</td>
+<td>CodeSet</td>
+<td>A quem se destina a mensagem no contexto. Fixo: CRCP = CardholderReceipt; MRCP = MerchantReceipt.</td>
+</tr>
+<tr>
+<td>MessageContent<code class="prettyprint">&lt;MsgCntt&gt;</code></td>
+<td>[1..1]</td>
+<td>Text</td>
+<td>Texto ou dados gráficos a serem impressos na tela ou em papel no terminal. A mensagem será formatada conforme o campo <code class="prettyprint">PrintLineWidth</code> da requisição.</td>
+</tr>
+</tbody></table>
 <h1 id='cdigos-de-exemplo-de-integrao'>Códigos de Exemplo de integração</h1>
 <p>Os códigos de exemplo abaixo, ilustram a troca de mensagens, com requisição e resposta, para Autorização com Captura automática, Autoricação com Captura posterior, Captura, Reversão de transações e Cancelamento. Os códigos estão disponíveis no Github Stone e podem ser acessados através dos links externos abaixo.</p>
 
