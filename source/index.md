@@ -18,18 +18,52 @@ search: true
 curl "api_endpoint_here?key=(PROJECT_KEY|USER_KEY)"
 ```
 
-Airbrake uses API keys to restrict access to the API. There are 2 kinds of keys:
+Airbrake uses API keys to restrict access to the API. There are several kinds of keys:
 
-- Project API key (`PROJECT_KEY`) that is used to submit errors and create track deploys. This key is what you configure the notifier agent in your app to use.
-- User API key (`USER_KEY`) that is used to get access to the project data through our APIs. Each user of a Project has her own key.
+- Project API key (`PROJECT_KEY`) that is used to submit errors and track deploys. This key is what you configure the notifier agent in your app to use.
+- User API key (`USER_KEY`) is used to get access to the project data through Airbrake APIs. Each user of a project has her own key.
+- User token (`USER_TOKEN`) that is identical to `USER_KEY`, but is valid for less than 24 hours.
 
 Airbrake expects the API key to be included in all API requests to our servers in a query string that looks like the following:
 
-`?key=(PROJECT_KEY|USER_KEY)`
+`?key=(PROJECT_KEY|USER_KEY|USER_TOKEN)`
 
 <aside class="notice">
 You must replace `(PROJECT_KEY|USER_KEY)` with your personal key.
 </aside>
+
+## Create user token v4
+
+```shell
+curl -d "email=EMAIL&password=PASSWORD" "https://airbrake.io/api/v4/sessions"
+```
+
+```json
+{
+  "token": "B20koMUuNDO0sep9rIzqomiQHkp4z7YpiN0P2Jmo0p9gElQsJ1z3qQYM23hTtVYY="
+}
+```
+
+### HTTP Request
+
+`POST https://airbrake.io/api/v4/sessions`
+
+### POST data
+
+The API expects URL-encoded data.
+
+Key | Example
+--- | -------
+email | User email, e.g. john@airbrake.com.
+Password | User password, e.g. qwerty.
+
+### Response
+
+The API returns `200 OK` status code on success and JSON data.
+
+Field | Comment
+----- | -------
+token | User token that can be passed to the API instead of `USER_KEY`.
 
 # Pagination
 
