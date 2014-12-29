@@ -2638,17 +2638,103 @@ EXAMPLE SERVICE RESPONSE DATA
 
 # Quiz Response (IDAnalytics)
 
-## URL
+> The following URLs are used to return a customer’s response to a set of out of wallet questions returned either by a merchant or consumer application respectively.
 
-placeholder
+```code
+https://edna.identitymind.com/im/account/merchant/<appid>/quizresponse (POST)
+
+https://edna.identitymind.com/im/account/consumer/<appid>/quizresponse (POST)
+```
+> The body of the request contains an encoding of the customer’s answers to the quiz questions. The encoding is in JSON as described below. The answers are processed and the response used to update the IDAnalytics CertainID Security Test and the Application state.
+
+> The response to this request is an Application Response containing the newly updated application.
+Note that the response may, depending on the response from ID Analytics and your configuration within the eDNA platform, contain a further set of “challenge” questions that should once again be passed back to the consumer for answers.
+
+```code
+EXAMPLE SERVICE REQUEST DATA
+
+https://edna.identitymind.com/im/account/merchant/743567/quizresponse
+
+{
+   "answers":[
+      {
+         "questionId":"0",
+         "choice":"KERRVILLE"
+      },
+      {
+         "questionId":"1",
+         "choice":"DICK"
+      },
+      {
+         "questionId":"2",
+         "choice":" None of the above "
+      },
+      {
+         "questionId":"3",
+         "choice":"MUNSTER"
+      }
+   ]
+}
+```
+	
+	<table>
+		<tr>
+			<th colspan=2><h3>JSON Answers Encoding</h3></th>
+		</tr>
+		<tr>
+			<th>Key</th>
+			<th>Description</th>
+		</tr>
+		<tr>
+			<td>answers</td>
+			<td>JSON Array of JSON encoded answer objects</td>
+		</tr>
+		<tr>
+			<td>questionId</td>
+			<td>Integer identifier for this question. This value maps to the question within the question data.</td>
+		</tr>
+		<tr>
+			<td>choice</td>
+			<td>Text of the answer that was selected by the consumer</td>
+		</tr>
+	</table>
 
 
 # Quiz Response (Phone Validation)
 
-## URL
+> The following URLs are used to return a customer’s response to a phone validation request:
 
-placeholder
+```code
+https://edna.identitymind.com/im/account/merchant/<appid>/quizresponse (POST)
 
+https://edna.identitymind.com/im/account/consumer/<appid>/quizresponse (POST)
+```
+> The body of the request contains an encoding of the customer’s code response. The encoding is in JSON as described below. The answers are processed and the response used to update the Phone Ownership Security Test and the Application state. The response to this request is an Application Response containing the newly updated application.
+
+```code
+EXAMPLE SERVICE REQUEST DATA
+
+https://edna.identitymind.com/im/account/merchant/743567/quizresponse
+
+
+{
+   "smsCode":”1234”
+}
+```
+
+	<table>
+		<tr>
+			<th colspan=2><h3>JSON Answers Encoding</h3></th>
+		</tr>
+		<tr>
+			<th>Key</th>
+			<th>Description</th>
+		</tr>
+		<tr>
+			<td>smsCode</td>
+			<td>The response code provided by the consumer. Encoded as a string</td>
+		</tr>
+	</table>
 
 # Document Validation Request
 
