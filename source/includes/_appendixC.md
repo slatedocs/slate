@@ -7,7 +7,7 @@ This appendix defines the values to be used for feedback properties for the gene
 
 	<table>
 		<tr>
-			<th colspan=4><h3>"gateway" property</h3></th>
+			<th colspan=4>"gateway" property</th>
 		</tr>
 		<tr>
 			<th>Value</th>
@@ -18,7 +18,7 @@ This appendix defines the values to be used for feedback properties for the gene
 			<td></td>
 		</tr>
 		<tr>
-			<th colspan=4><h3>"auth_response" property</h3></th>
+			<th colspan=4>"auth_response" property</th>
 		</tr>
 		<tr>
 			<th>Value</th>
@@ -33,7 +33,7 @@ This appendix defines the values to be used for feedback properties for the gene
 			<td>The transaction was rejected by the gateway</td>
 		</tr>
 		<tr>
-			<th colspan=4><h3>"avs_result" property</h3></th>
+			<th colspan=4>"avs_result" property</th>
 		</tr>
 		<tr>
 			<th>Value</th>
@@ -56,7 +56,7 @@ This appendix defines the values to be used for feedback properties for the gene
 			<td>AVS unavailable</td>
 		</tr>
 		<tr>
-			<th colspan=4><h3>"cvv2_result" property</h3></th>
+			<th colspan=4>"cvv2_result" property</th>
 		</tr>
 		<tr>
 			<th>Value</th>
@@ -71,7 +71,7 @@ This appendix defines the values to be used for feedback properties for the gene
 			<td>CVV mismatch</td>
 		</tr>
 		<tr>
-			<th colspan=4><h3>"error_code" property in bank-accepted and bank-rejected feedback</h3></th>
+			<th colspan=4>"error_code" property in bank-accepted and bank-rejected feedback</th>
 		</tr>
 		<tr>
 			<th>Value</th>
@@ -128,7 +128,7 @@ This appendix defines the values to be used for feedback properties for the gene
 			<td>Other - An uncategorized code.</td>
 		</tr>
 		<tr>
-			<th colspan=4><h3>"error_code" property in chargeback feedback</h3></th>
+			<th colspan=4>"error_code" property in chargeback feedback</th>
 		</tr>
 		<tr>
 			<th>Value</th>

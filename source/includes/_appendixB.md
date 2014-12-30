@@ -6,7 +6,7 @@ The following additional fields are available to resellers of the IdentityMind e
 
 	<table>
 		<tr>
-			<th colspan=4><h3>Transaction</h3></th>
+			<th colspan=4>Transaction</th>
 		</tr>
 		<tr>
 			<th>Facet</th>

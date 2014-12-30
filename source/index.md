@@ -101,7 +101,7 @@ EXAMPLE SERVICE RESPONSE DATA
 
 	<table>
 		<tr>
-			<th colspan=4><h3>Billing Name</h3></th>
+			<th colspan=4>Billing Name</th>
 		</tr>
 		<tr>
 			<th>Facet</th>
@@ -124,7 +124,7 @@ EXAMPLE SERVICE RESPONSE DATA
 
 
 		<tr>
-			<th colspan=4><h3>Billing Address</h3></th>
+			<th colspan=4>Billing Address</th>
 		</tr>
 		<tr>
 			<th>Facet</th>
@@ -165,7 +165,7 @@ EXAMPLE SERVICE RESPONSE DATA
 
 
 		<tr>
-			<th colspan=4><h3>Shipping Name</h3></th>
+			<th colspan=4>Shipping Name</th>
 		</tr>
 		<tr>
 			<th>Facet</th>
@@ -188,7 +188,7 @@ EXAMPLE SERVICE RESPONSE DATA
 
 
 		<tr>
-			<th colspan=4><h3>Shipping Address</h3></th>
+			<th colspan=4>Shipping Address</th>
 		</tr>
 		<tr>
 			<th>Facet</th>
@@ -235,7 +235,7 @@ EXAMPLE SERVICE RESPONSE DATA
 
 
 		<tr>
-			<th colspan=4><h3>Device</h3></th>
+			<th colspan=4>Device</th>
 		</tr>
 		<tr>
 			<th>Facet</th>
@@ -280,7 +280,7 @@ EXAMPLE SERVICE RESPONSE DATA
 
 
 		<tr>
-			<th colspan=4><h3>Consumer Account</h3></th>
+			<th colspan=4>Consumer Account</th>
 		</tr>
 		<tr>
 			<th>Facet</th>
@@ -364,7 +364,7 @@ EXAMPLE SERVICE RESPONSE DATA
 
 
 		<tr>
-			<th colspan=4><h3>Credit Card</h3></th>
+			<th colspan=4>Credit Card</th>
 		</tr>
 		<tr>
 			<th>Facet</th>
@@ -410,7 +410,7 @@ EXAMPLE SERVICE RESPONSE DATA
 
 
 		<tr>
-			<th colspan=4><h3>PayPal</h3></th>
+			<th colspan=4>PayPal</th>
 		</tr>
 		<tr>
 			<th>Facet</th>
@@ -452,7 +452,7 @@ EXAMPLE SERVICE RESPONSE DATA
 
 
 		<tr>
-			<th colspan=4><h3>Google Checkout</h3></th>
+			<th colspan=4>Google Checkout</th>
 		</tr>
 		<tr>
 			<th>Facet</th>
@@ -487,7 +487,7 @@ EXAMPLE SERVICE RESPONSE DATA
 
 
 		<tr>
-			<th colspan=4><h3>Generic Financial Account</h3></th>
+			<th colspan=4>Generic Financial Account</th>
 		</tr>
 		<tr>
 			<th>Facet</th>
@@ -512,7 +512,7 @@ EXAMPLE SERVICE RESPONSE DATA
 
 
 		<tr>
-			<th colspan=4><h3>Bitcoin</h3></th>
+			<th colspan=4>Bitcoin</th>
 		</tr>
 		<tr>
 			<th>Facet</th>
@@ -535,7 +535,7 @@ EXAMPLE SERVICE RESPONSE DATA
 
 
 		<tr>
-			<th colspan=4><h3>ACH</h3></th>
+			<th colspan=4>ACH</th>
 		</tr>
 		<tr>
 			<th>Facet</th>
@@ -560,7 +560,7 @@ EXAMPLE SERVICE RESPONSE DATA
 
 
 		<tr>
-			<th colspan=4><h3>Transaction</h3></th>
+			<th colspan=4>Transaction</th>
 		</tr>
 		<tr>
 			<th>Facet</th>
@@ -684,7 +684,7 @@ EXAMPLE SERVICE RESPONSE DATA
 
 
 		<tr>
-			<th colspan=4><h3>Inline Feedback***</h3></th>
+			<th colspan=4>Inline Feedback***</th>
 		</tr>
 		<tr>
 			<th>Facet</th>
@@ -805,7 +805,7 @@ or
 
 	<table>
 		<tr>
-			<th colspan=4><h3>Chargeback</h3></th>
+			<th colspan=4>Chargeback</th>
 		</tr>
 		<tr>
 			<th>Facet</th>
@@ -907,7 +907,7 @@ or
 
 
 		<tr>
-			<th colspan=4><h3>Sub Merchant</h3></th>
+			<th colspan=4>Sub Merchant</th>
 		</tr>
 		<tr>
 			<th>Facet</th>
@@ -926,7 +926,7 @@ or
 
 
 		<tr>
-			<th colspan=4><h3>Credit Card</h3></th>
+			<th colspan=4>Credit Card</th>
 		</tr>
 		<tr>
 			<th>Facet</th>
@@ -1003,7 +1003,7 @@ or
 
 
 		<tr>
-			<th colspan=4><h3>PayPal</h3></th>
+			<th colspan=4>PayPal</th>
 		</tr>
 		<tr>
 			<th>Facet</th>
@@ -1026,7 +1026,7 @@ or
 
 
 		<tr>
-			<th colspan=4><h3>Google Checkout</h3></th>
+			<th colspan=4>Google Checkout</th>
 		</tr>
 		<tr>
 			<th>Facet</th>
@@ -1089,7 +1089,7 @@ or
 
 	<table>
 		<tr>
-			<th colspan=4><h3>Credit</h3></th>
+			<th colspan=4>Credit</th>
 		</tr>
 		<tr>
 			<th>Facet</th>
@@ -1137,7 +1137,7 @@ or
 
 
 		<tr>
-			<th colspan=4><h3>Sub Merchant</h3></th>
+			<th colspan=4>Sub Merchant</th>
 		</tr>
 		<tr>
 			<th>Facet</th>
@@ -1154,7 +1154,7 @@ or
 
 
 		<tr>
-			<th colspan=4><h3>Credit Card</h3></th>
+			<th colspan=4>Credit Card</th>
 		</tr>
 		<tr>
 			<th>Facet</th>
@@ -1199,7 +1199,7 @@ or
 
 
 		<tr>
-			<th colspan=4><h3>PayPal</h3></th>
+			<th colspan=4>PayPal</th>
 		</tr>
 		<tr>
 			<th>Facet</th>
@@ -1222,7 +1222,7 @@ or
 
 
 		<tr>
-			<th colspan=4><h3>Google Checkout</h3></th>
+			<th colspan=4>Google Checkout</th>
 		</tr>
 		<tr>
 			<th>Facet</th>
@@ -1245,7 +1245,7 @@ or
 
 
 		<tr>
-			<th colspan=4><h3>Generic Financial Account</h3></th>
+			<th colspan=4>Generic Financial Account</th>
 		</tr>
 		<tr>
 			<th>Facet</th>
@@ -1594,7 +1594,7 @@ EXAMPLE SERVICE RESPONSE DATA
 
 	<table>
 		<tr>
-			<th colspan=4><h3>User Account</h3></th>
+			<th colspan=4>User Account</th>
 		</tr>
 		<tr>
 			<th>Facet</th>
@@ -1660,7 +1660,7 @@ EXAMPLE SERVICE RESPONSE DATA
 
 
 		<tr>
-			<th colspan=4><h3>Billing Address</h3></th>
+			<th colspan=4>Billing Address</th>
 		</tr>
 		<tr>
 			<th>Facet</th>
@@ -1713,7 +1713,7 @@ EXAMPLE SERVICE RESPONSE DATA
 
 
 		<tr>
-			<th colspan=4><h3>Device</h3></th>
+			<th colspan=4>Device</th>
 		</tr>
 		<tr>
 			<th>Facet</th>
@@ -1752,7 +1752,7 @@ EXAMPLE SERVICE RESPONSE DATA
 
 
 		<tr>
-			<th colspan=4><h3>Payment</h3></th>
+			<th colspan=4>Payment</th>
 		</tr>
 		<tr>
 			<th>Facet</th>
@@ -1805,7 +1805,7 @@ EXAMPLE SERVICE RESPONSE DATA
 
 
 		<tr>
-			<th colspan=4><h3>Txn</h3></th>
+			<th colspan=4>Txn</th>
 		</tr>
 		<tr>
 			<th>Facet</th>
@@ -1851,7 +1851,7 @@ EXAMPLE SERVICE RESPONSE DATA
 
 
 		<tr>
-			<th colspan=4><h3>Transfer Destination</h3></th>
+			<th colspan=4>Transfer Destination</th>
 		</tr>
 		<tr>
 			<th>Facet</th>
@@ -2068,7 +2068,7 @@ EXAMPLE SERVICE RESPONSE DATA
 
 	<table>
 		<tr>
-			<th colspan=4><h3>Application</h3></th>
+			<th colspan=4>Application</th>
 		</tr>
 		<tr>
 			<th>Facet</th>
@@ -2085,7 +2085,7 @@ EXAMPLE SERVICE RESPONSE DATA
 
 
 		<tr>
-			<th colspan=4><h3>Company</h3></th>
+			<th colspan=4>Company</th>
 		</tr>
 		<tr>
 			<th>Facet</th>
@@ -2236,7 +2236,7 @@ EXAMPLE SERVICE RESPONSE DATA
 
 
 		<tr>
-			<th colspan=4><h3>Transaction</h3></th>
+			<th colspan=4>Transaction</th>
 		</tr>
 		<tr>
 			<th>Facet</th>
@@ -2264,7 +2264,7 @@ EXAMPLE SERVICE RESPONSE DATA
 
 
 		<tr>
-			<th colspan=4><h3>Group</h3></th>
+			<th colspan=4>Group</th>
 		</tr>
 		<tr>
 			<th>Facet</th>
@@ -2354,7 +2354,7 @@ EXAMPLE SERVICE RESPONSE DATA
 
 	<table>
 		<tr>
-			<th colspan=4><h3>User</h3></th>
+			<th colspan=4>User</th>
 		</tr>
 		<tr>
 			<th>Facet</th>
@@ -2450,7 +2450,7 @@ EXAMPLE SERVICE RESPONSE DATA
 
 
 		<tr>
-			<th colspan=4><h3>Device</h3></th>
+			<th colspan=4>Device</th>
 		</tr>
 		<tr>
 			<th>Facet</th>
@@ -2483,7 +2483,7 @@ EXAMPLE SERVICE RESPONSE DATA
 
 
 		<tr>
-			<th colspan=4><h3>Payment/Funding Account</h3></th>
+			<th colspan=4>Payment/Funding Account</th>
 		</tr>
 		<tr>
 			<th>Facet</th>
@@ -2560,7 +2560,7 @@ EXAMPLE SERVICE RESPONSE DATA
 
 
 		<tr>
-			<th colspan=4><h3>Transaction</h3></th>
+			<th colspan=4>Transaction</th>
 		</tr>
 		<tr>
 			<th>Facet</th>
@@ -2612,7 +2612,7 @@ EXAMPLE SERVICE RESPONSE DATA
 
 
 		<tr>
-			<th colspan=4><h3>Merchant</h3></th>
+			<th colspan=4>Merchant</th>
 		</tr>
 		<tr>
 			<th>Facet</th>
@@ -2690,7 +2690,7 @@ https://edna.identitymind.com/im/account/merchant/743567/quizresponse
 	
 	<table>
 		<tr>
-			<th colspan=2><h3>JSON Answers Encoding</h3></th>
+			<th colspan=2>JSON Answers Encoding</th>
 		</tr>
 		<tr>
 			<th>Key</th>
@@ -2736,7 +2736,7 @@ https://edna.identitymind.com/im/account/merchant/743567/quizresponse
 
 	<table>
 		<tr>
-			<th colspan=2><h3>JSON Answers Encoding</h3></th>
+			<th colspan=2>JSON Answers Encoding</th>
 		</tr>
 		<tr>
 			<th>Key</th>
@@ -2779,7 +2779,7 @@ EXAMPLE SERVICE RESPONSE DATA
 
 	<table>
 		<tr>
-			<th colspan=2><h3>JSON Request Encoding</h3></th>
+			<th colspan=2>JSON Request Encoding</th>
 		</tr>
 		<tr>
 			<th>Key</th>
@@ -2821,7 +2821,7 @@ EXAMPLE SERVICE RESPONSE DATA
 	</table>	
 	<table>
 		<tr>
-			<th colspan=2><h3>JSON Response Encoding</h3></th>
+			<th colspan=2>JSON Response Encoding</th>
 		</tr>
 		<tr>
 			<th>Key</th>
@@ -2955,7 +2955,7 @@ EXAMPLE SERVICE RESPONSE DATA
 
 	<table>
 		<tr>
-			<th colspan=4><h3>User Account</h3></th>
+			<th colspan=4>User Account</th>
 		</tr>
 		<tr>
 			<th>Facet</th>
@@ -3003,7 +3003,7 @@ EXAMPLE SERVICE RESPONSE DATA
 
 
 		<tr>
-			<th colspan=4><h3>Device</h3></th>
+			<th colspan=4>Device</th>
 		</tr>
 		<tr>
 			<th>Facet</th>
@@ -3043,7 +3043,7 @@ EXAMPLE SERVICE RESPONSE DATA
 
 
 		<tr>
-			<th colspan=4><h3>Txn</h3></th>
+			<th colspan=4>Txn</th>
 		</tr>
 		<tr>
 			<th>Facet</th>

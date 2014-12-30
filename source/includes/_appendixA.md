@@ -4,7 +4,7 @@
 
 	<table>
 		<tr>
-			<th colspan=4><h3>Payment Transaction</h3></th>
+			<th colspan=4>Payment Transaction</th>
 		</tr>
 		<tr>
 			<th>Name</th>
@@ -121,7 +121,7 @@
 
 
 		<tr>
-			<th colspan=4><h3>Account Transfer / Login Validation Transaction</h3></th>
+			<th colspan=4>Account Transfer / Login Validation Transaction</th>
 		</tr>
 		<tr>
 			<th>Name</th>
@@ -221,7 +221,7 @@
 
 
 		<tr>
-			<th colspan=4><h3>Merchant / Consumer Application Transaction</h3></th>
+			<th colspan=4>Merchant / Consumer Application Transaction</th>
 		</tr>
 		<tr>
 			<th>Name</th>
