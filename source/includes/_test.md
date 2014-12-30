@@ -169,3 +169,144 @@ Error Code | Meaning
 429 | Too Many Requests -- You're requesting too many kittens! Slown down!
 500 | Internal Server Error -- We had a problem with our server. Try again later.
 503 | Service Unavailable -- We're temporarially offline for maintanance. Please try again later.
+
+# Appendix A: Result Keys and Codes
+
+## Result Key Names
+
+	<table>
+		<tr>
+			<th colspan=2>Payment Transaction</th>
+		</tr>
+		<tr>
+			<th>Name</th>
+			<td>Transaction ID</td>
+		</tr>
+		<tr>
+			<th>Key</th>
+			<td>tid</td>
+		</tr>
+		<tr>
+			<th>Example</th>
+			<td>4223</td>
+		</tr>
+		<tr>
+			<th>Description</th>
+			<td>The transaction to which this response pertains. If a tid was supplied on the request, then this will be that value. Otherwise, it will be an IdentityMind generated identifier.</td>
+		</tr>
+		<tr>
+			<th>Name</th>
+			<td>Transaction Status</td>
+		</tr>
+		<tr>
+			<th>Key</th>
+			<td>transaction_status</td>
+		</tr>
+		<tr>
+			<th>Example</th>
+			<td>complete</td>
+		</tr>
+		<tr>
+			<th>Description</th>
+			<td>The current state of processing the transaction:
+				<ul type="disc">
+					<li>complete</li>
+					<li>error</li>
+				</ul></td>
+		</tr>
+	</table>
+	
+
+	<table>
+		</tr>
+		<tr>
+			<td>Result</td>
+			<td>res</td>
+			<td>accept</td>
+			<td>The result of the transaction by IdentityMind:
+				<ul type="disc">
+					<li>ERROR</li>
+					<li>ACCEPT</li>
+					<li>DENY</li>
+					<li>MANUAL_REVIEW</li>
+				</ul></td>
+		</tr>
+		<tr>
+			<td>Result Codes</td>
+			<td>rcd</td>
+			<td>1000,100,110,120,150,523</td>
+			<td>A comma-separated list of result codes representing a more detailed explanation of the result. The actual result codes are defined in the next subsection.</td>
+		</tr>
+		<tr>
+			<td>Error Message</td>
+			<td>error_message</td>
+			<td>Bad data format:Failed to parse the date string provided in the data. Please use ISO8601 format.</td>
+			<td>A textual description of an error that occured while processing the transaction.</td>
+		</tr>
+		<tr>
+			<td>Fraud Rule Name</td>
+			<td>frn</td>
+			<td>Fallthrough</td>
+			<td>The short name of the fraud rule that triggered for this transaction.
+			<br><br>
+			<b>Note</b>: A fraud rule will be triggered for all transactions, including those that have result ACCEPT</td>
+		</tr>
+		<tr>
+			<td>Fraud Rule Description</td>
+			<td>frd</td>
+			<td>User is trusted and no fraud rules were triggered.</td>
+			<td>A longer description of the fraud rule that triggered.</td>
+		</tr>
+		<tr>
+			<td>Domestic Card</td>
+			<td>rfb</td>
+			<td>true</td>
+			<td>True if the credit card used in the transaction is domestic.
+				<ul type="disc">
+					<li>True</li>
+					<li>False<li>
+				</ul></td>
+		</tr>
+		<tr>
+			<td>Card Issuer Country</td>
+			<td>ric</td>
+			<td>US</td>
+			<td>The issuer country of the card used in the transaction. The country code is the two letter abbreviation as defined in ISO-3166-1</td>
+		</tr>
+		<tr>
+			<td>User Description</td>
+			<td>erd</td>
+			<td>Existing Trusted User</td>
+			<td>A textual description of the reputation of the user associated with the transaction.</td>
+		</tr>
+		<tr>
+			<td>Alert Severity</td>
+			<td>ras</td>
+			<td>HIGH</td>
+			<td>If an alert was generated, the severity of the alert.
+				<ul type="disc">
+					<li>CRITICAL</li>
+					<li>HIGH</li>
+					<li>MEDIUM</li>
+					<li>WARNING</li>
+					<li>INFO</li></td>
+		</tr>
+		<tr>
+			<td>Alert Message</td>
+			<td>ram</td>
+			<td>Card is issued by a foreign bank.</td>
+			<td>If an alert was generated, the message associated with the alert.</td>
+		</tr>
+		<tr>
+			<td>Automated Review Policy Rule ID</td>
+			<td>arpid</td>
+			<td>20005</td>
+			<td>The Automated Review Policy rule, if any, that accepted the transaction.</td>
+		</tr>
+		<tr>
+			<td>Automated Review Policy Rule Description</td>
+			<td>arpd</td>
+			<td>Parameters of the transaction are associated with a history of good transactions</td>
+			<td>A textual description of the Automated Review Policy rule, if any, that accepted the transaction.</td>
+		</tr>
+	</table>

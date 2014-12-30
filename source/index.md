@@ -14,6 +14,7 @@ includes:
   - appendixC
   - appendixD
   - appendixE
+  - test
 
 search: true
 ---
