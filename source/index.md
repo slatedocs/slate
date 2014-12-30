@@ -8,12 +8,7 @@ language_tabs:
 toc_footers:
   - IdentityMind Global
 
-includes:	
-  - appendixA
-  - appendixB
-  - appendixC
-  - appendixD
-  - appendixE
+
 
 search: true
 ---
