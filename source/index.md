@@ -4288,13 +4288,17 @@ String body = jsonRequest.toString(2);
 For PHP, the sample code is in imclientSDK/samplecode/php/ednaTransaction.php:
 
 	$arr = array();
-	/* replace the 2nd parameter below with the actual card number */
+
+/* replace the 2nd parameter below with the actual card number */
+
 	$arr[CREDIT_CARD_NUMBER] = identitymind_hashCCN("4012012301230123");
+
 	$arr[CREDIT_CARD_TOKEN] = identitymind_tokenCCN("4012012301230123");
+
 	…
-	/*
- 	  Turn the array into a JSON string to be used as the body of the POST
-	*/
+
+/* Turn the array into a JSON string to be used as the body of the POST */
+
 	$data = json_encode($arr);
 ```
 
@@ -4333,15 +4337,78 @@ The credit card number token should be included in the JSON string of the reques
 
 ## Including Bank Account Hash and Token in Transaction Request
 
-placeholder
+```java
+For Java, the sample code is in imclientSDK/samplecode/java/REST/ACHTransactionViaREST.java:
+
+JSONObject jsonRequest = new JSONObject();
+
+// bank account hash and token
+
+BankAccountUtils.addBankAccountData(json, "321076479", "74600015199010"); 
+	
+…
+	
+// the json string generated below will include the token, and hash generated from the actual number
+	
+String body = jsonRequest.toString(2);
+```
+
+```php
+For PHP, the sample code is in imclientSDK/samplecode/php/achEdnaTransaction.php:
+
+	$arr = array();
+
+/* replace the 2nd parameter below with the actual card number */
+
+$arr[BANK_ACCOUNT_NUMBER] = identitymind_hashBankRoutingAccount("321076479", "74600015199010");
+
+$arr[BANK_ACCOUNT_TOKEN] = identitymind_bankRoutingAccountToken("321076479", "74600015199010");
+
+	…
+
+/* Turn the array into a JSON string to be used as the body of the POST */
+
+	$data = json_encode($arr);
+```
+
+Similar to the mechanism for sending credit card information, IdentityMind Transaction API accepts: 
+
+1.	Bank account number hash
+2.	Bank account number token 
+
+IdentityMind provides a client SDK for Java and PHP. If you use these languages, you can use the SDK to include the information in your request to the API. The SDK contains sample code on how to do that.
+
+If you use other languages, please see “Bank Account Number Hash” below.
+
+**Note**: The hash must be of the full account number, not a masked or tokenized representation.
 
 ### Bank Account Number Hash
 
-placeholder
+To generate the bank account number hash, you use the salt provided by IdentityMind, to generate a SHA-1 hash for the non masked account number, and convert the byte array of the hash to Hexadecimal string. The hash should be included in the JSON string of the request in the field “pach”.
+
+Say you have a function sha1(String s) that takes a string s and return the sha1 hash of the string in hex:
+
+- for a US bank account number concatenate the salt and the routing number and account number and pass that to the function to get account number hash
+- for an international IBAN account number concatenate the salt and full IBAN account number and pass that to the function to get account number hash
+- 
+**Note**: All spaces and dashes should be removed from the account number prior to hashing.
+
+Please contact IdentityMind to get the salt. 
+
+For example, the salted bank account number hash for 321076479 74600015199010 is 3f57733f34b677294fed96efd440b8d9e7728fa5 and the hash for SN12K00100152000025690007542 is dd91898995dfef188eca122c5e0dd92f3aa34550
+
+The account number hash should be included in the JSON string of the request to IdentityMind Transaction API in the field “pach."
+
 
 ### Bank Account Number Token
 
-placeholder
+For the bank account number token we recommend: 
+- for a US bank account number the first 6 digits of the routing number, followed by XXXXXXXX and the last 4 digits of the account number
+- for an international IBAN account number the first 6 digits of the account, followed by XXXXXXXX and the last 4 digits of the account number
+
+For example, the token for 321076479 74600015199010 is 321076XXXXXXXX9010 and the hash for SN12K00100152000025690007542 is SN12K0XXXXXXXX7542
+
+The bank account number token should be included in the JSON string of the request to IdentityMind Transaction API in the field “ptoken." 
 
 
 # Appendix E: Change History
@@ -4349,16 +4416,36 @@ placeholder
 
 ## 1.18
 
-placeholder
+- Updated Merchant and Consumer Application Validation Web Services to support multiple owners for a merchant.  We also added extra fields as required by our clients.
+- Added additional security tests
+
 
 ## 1.17.1
 
-placeholder
+- Added Account Validation Rule 11010
+- Switched from Experian 192 CheckID to Experian ProveID
+	- Added “Unsupported Country” security test to Experian
+
 
 ## 1.17
 
-placeholder
+- Document the Quiz Response (Phone Ownership)
+- Add Auth.net and Interac as supported gateways
+- Document application accepted and rejected API
+- Added bank_status property to the Merchant Accept/Reject Feedback API
+- Corrected format of the “ufs” and “umrs” fields
+- Add API call to get the current state of a consumer or merchant application
+- Clarify that a payment hash must be of the original non-masked account number
+- Documented memo field in Transfer and KYC transaction data
+
 
 ## 1.16.2
 
-placeholder
+- Added support for Jumio Netverify Multi Document
+- Added additional KYC request attributes to support Jumio NetVerify
+	- Face match in NetVerify Perform
+	- Backside Image in NetVerity Perform
+- Add security tests
+	- IdentityMind Sanctions Screening
+	- Jumio NetVerify Multi Document
+
