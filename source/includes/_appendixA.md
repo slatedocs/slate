@@ -248,8 +248,7 @@
 		</tr>
 		<tr>
 			<td>eDNA Account Transaction Response</td>
-			<td>merchantApplicationResponse</td>
-			<td></td>
+			<td colspan=2>merchantApplicationResponse</td>
 			<td>The response to the eDNA account transaction that was executed for this application. It is encoded as a JSON object, the attributes of which are described in the Account Transfer / Login Validation section above. This property is not present when a GET is performed on a consumer/merchant application.</td>
 		</tr>
 		<tr>

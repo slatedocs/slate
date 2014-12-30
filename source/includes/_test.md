@@ -233,7 +233,7 @@ Error Code | Meaning
 		</tr>
 		<tr>
 			<th>Description</th>
-			<td>he result of the transaction by IdentityMind:
+			<td>The result of the transaction by IdentityMind:
 				<ul type="disc">
 					<li>ERROR</li>
 					<li>ACCEPT</li>
