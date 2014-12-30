@@ -13,7 +13,6 @@ toc_footers:
   - placeholder
 
 includes:	
-  - errors
   - appendixA
   - appendixB
   - appendixC
