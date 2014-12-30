@@ -4,10 +4,9 @@ The gateway property of feedback lets IdentityMind know the gateway that process
 
 This appendix defines the values to be used for feedback properties for the generic gateway.
 
-
 	<table>
 		<tr>
-			<th colspan=4>"gateway" property</th>
+			<th colspan=2>"gateway" property</th>
 		</tr>
 		<tr>
 			<th>Value</th>
@@ -15,10 +14,10 @@ This appendix defines the values to be used for feedback properties for the gene
 		</tr>
 		<tr>
 			<td>generic</td>
-			<td></td>
+			<td>-</td>
 		</tr>
 		<tr>
-			<th colspan=4>"auth_response" property</th>
+			<th colspan=2>"auth_response" property</th>
 		</tr>
 		<tr>
 			<th>Value</th>
@@ -33,7 +32,7 @@ This appendix defines the values to be used for feedback properties for the gene
 			<td>The transaction was rejected by the gateway</td>
 		</tr>
 		<tr>
-			<th colspan=4>"avs_result" property</th>
+			<th colspan=2>"avs_result" property</th>
 		</tr>
 		<tr>
 			<th>Value</th>
@@ -56,7 +55,7 @@ This appendix defines the values to be used for feedback properties for the gene
 			<td>AVS unavailable</td>
 		</tr>
 		<tr>
-			<th colspan=4>"cvv2_result" property</th>
+			<th colspan=2>"cvv2_result" property</th>
 		</tr>
 		<tr>
 			<th>Value</th>
@@ -71,7 +70,7 @@ This appendix defines the values to be used for feedback properties for the gene
 			<td>CVV mismatch</td>
 		</tr>
 		<tr>
-			<th colspan=4>"error_code" property in bank-accepted and bank-rejected feedback</th>
+			<th colspan=2>"error_code" property in bank-accepted and bank-rejected feedback</th>
 		</tr>
 		<tr>
 			<th>Value</th>
@@ -128,7 +127,7 @@ This appendix defines the values to be used for feedback properties for the gene
 			<td>Other - An uncategorized code.</td>
 		</tr>
 		<tr>
-			<th colspan=4>"error_code" property in chargeback feedback</th>
+			<th colspan=2>"error_code" property in chargeback feedback</th>
 		</tr>
 		<tr>
 			<th>Value</th>
