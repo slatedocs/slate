@@ -112,7 +112,8 @@ This appendix defines the values to be used for feedback properties for the gene
 					<li>Expired Card</li>
 					<li>Invalid Card Number</li>
 					<li>Invalid PIN</li>
-				</ul></td>
+				</ul>
+			</td>
 		</tr>
 		<tr>
 			<td>8</td>
@@ -150,6 +151,6 @@ This appendix defines the values to be used for feedback properties for the gene
 			<td>Other</td
 	</table>
 
-In addition to the above generic codes, the standard chargeback codes as defined by the card brands are supported.  Please reference http://www.managechargebacks.com/reasoncodes.html for the complete set.
+In addition to the above generic codes, the standard chargeback codes as defined by the card brands are supported. Please reference http://www.managechargebacks.com/reasoncodes.html for the complete set.
 
 Please contact IdentityMind support if you have questions with how to categorize a specific error code.
