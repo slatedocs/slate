@@ -2130,7 +2130,7 @@ EXAMPLE SERVICE RESPONSE DATA
 					<li>foreigncorp - Foreign corporation</li>
 				</ul>
 			</td>
-			<td>No/td>
+			<td>No</td>
 		</tr>
 		<tr>
 			<td>Account Contact First Name</td>
