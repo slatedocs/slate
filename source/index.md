@@ -10,6 +10,8 @@ toc_footers:
 
 includes:	
   - appendixA
+  - appendixB
+
 
 search: true
 ---
