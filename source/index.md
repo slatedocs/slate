@@ -3,14 +3,10 @@ title: eDNA API Reference
 
 language_tabs:
   - java
-  - javascript
   - php
-  - python
-  - ruby
-  - shell
 
 toc_footers:
-  - placeholder
+  - IdentityMind Global
 
 includes:	
   - appendixA
