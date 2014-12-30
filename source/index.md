@@ -4,7 +4,7 @@ title: eDNA API Reference
 language_tabs:
   - java
   - javascript
-  - PHP
+  - php
   - python
   - ruby
   - shell
@@ -4284,7 +4284,7 @@ CreditCardUtils.addCreditCardData(jsonRequest, "4012012301230123");
 String body = jsonRequest.toString(2);
 ```
 
-```PHP
+```php
 For PHP, the sample code is in imclientSDK/samplecode/php/ednaTransaction.php:
 
 	$arr = array();
@@ -4296,7 +4296,6 @@ For PHP, the sample code is in imclientSDK/samplecode/php/ednaTransaction.php:
  	  Turn the array into a JSON string to be used as the body of the POST
 	*/
 	$data = json_encode($arr);
-
 ```
 
 IdentityMind Transaction API does not accept actual credit card number. It accepts the following information about the credit card number used in the transaction: 
