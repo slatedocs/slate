@@ -420,7 +420,9 @@ html, body {
   }
 
   table {
-    margin-bottom: 1em;
+    border: 1px solid #f2f2f2;
+	width: $examples-width;
+	margin-bottom: 1em;
     overflow: auto; 
 	th,td {
       text-align: left;
@@ -440,7 +442,7 @@ html, body {
     }
 
     tr:last-child {
-      border-bottom: 1px solid #f2f2f2;
+      border-bottom: 0px solid #f2f2f2;
     }
 
     tr:nth-child(odd)>td {
