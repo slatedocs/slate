@@ -3541,8 +3541,8 @@ EXAMPLE
 			<th colspan=2>Description</th>
 		</tr>
 		<tr>
-			<td rowspan=9>tr</td>
-			<td colspan=2>JSON Array of JSON encoded security test results</td>
+			<td>tr</td>
+			<td>JSON Array of JSON encoded security test results</td>
 		</tr>
 		<tr>
 			<td>testCategory</td>
@@ -3724,15 +3724,15 @@ Code | Meaning
 
 This section documents the result codes related to payment transaction fraud policy processing.  In the table below codes such as 104X represent the codes 1041-1045 where the first three digits indicate the fraud rule and the last digit represents the reputation of the User that triggered that rule as follows:
 
-	1.	Trusted
-	2.	Recognized
-	3.	Unknown
-	4.	Suspicious
-	5.	Bad
+1.	Trusted
+2.	Recognized
+3.	Unknown
+4.	Suspicious
+5.	Bad
 
 Thus, the code 1042 indicates that the rule “TRANSACTION REJECTED BY BANK” triggered for a Recognized User.
 
-NOTE: Rules are updated regularly. The following table may not represent the most current set. Please refer to the UI Rule Editor view (in the web user interface) for up-to-date rules. The code for each rule is accessible through the UI.
+**Note**: Rules are updated regularly. The following table may not represent the most current set. Please refer to the UI Rule Editor view (in the web user interface) for up-to-date rules. The code for each rule is accessible through the UI.
 
 CODE | MEANING
 -----|--------
@@ -3873,7 +3873,7 @@ CODE | MEANING
 
 This section documents the result codes related to account validation policy processing.
 
-NOTE: Rules are updated regularly. The following table may not represent the most current set. Please refer to the UI Rule Editor section (in the web user interface) for up-to-date rules. The code for each rule is accessible through the UI.
+**Note**: Rules are updated regularly. The following table may not represent the most current set. Please refer to the UI Rule Editor section (in the web user interface) for up-to-date rules. The code for each rule is accessible through the UI.
 
 CODE |	MEANING
 -----|-------
@@ -3935,7 +3935,7 @@ CODE |	MEANING
 
 This section documents the result codes related to Automated Review Policy processing.
 
-NOTE: Rules are updated regularly. The following table may not represent the most current set. Please refer to the UI Automated Review Policy section (in the web user interface) for up-to-date rules. The code for each rule is accessible through the UI.
+**Note**: Rules are updated regularly. The following table may not represent the most current set. Please refer to the UI Automated Review Policy section (in the web user interface) for up-to-date rules. The code for each rule is accessible through the UI.
 
 CODE |	MEANING
 -----|--------
