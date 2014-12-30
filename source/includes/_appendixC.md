@@ -5,6 +5,7 @@ The gateway property of feedback lets IdentityMind know the gateway that process
 This appendix defines the values to be used for feedback properties for the generic gateway.
 
 	<table>
+
 		<tr>
 			<th colspan=2>"gateway" property</th>
 		</tr>
@@ -31,6 +32,8 @@ This appendix defines the values to be used for feedback properties for the gene
 			<td>rejected</td>
 			<td>The transaction was rejected by the gateway</td>
 		</tr>
+
+
 		<tr>
 			<th colspan=2>"avs_result" property</th>
 		</tr>
@@ -54,6 +57,8 @@ This appendix defines the values to be used for feedback properties for the gene
 			<td>U</td>
 			<td>AVS unavailable</td>
 		</tr>
+
+
 		<tr>
 			<th colspan=2>"cvv2_result" property</th>
 		</tr>
@@ -69,6 +74,8 @@ This appendix defines the values to be used for feedback properties for the gene
 			<td>N</td>
 			<td>CVV mismatch</td>
 		</tr>
+
+
 		<tr>
 			<th colspan=2>"error_code" property in bank-accepted and bank-rejected feedback</th>
 		</tr>
@@ -127,6 +134,8 @@ This appendix defines the values to be used for feedback properties for the gene
 			<td>10</td>
 			<td>Other - An uncategorized code.</td>
 		</tr>
+
+
 		<tr>
 			<th colspan=2>"error_code" property in chargeback feedback</th>
 		</tr>
@@ -148,7 +157,7 @@ This appendix defines the values to be used for feedback properties for the gene
 		</tr>
 		<tr>
 			<td>CB4</td>
-			<td>Other</td
+			<td>Other</td>
 	</table>
 
 In addition to the above generic codes, the standard chargeback codes as defined by the card brands are supported. Please reference http://www.managechargebacks.com/reasoncodes.html for the complete set.

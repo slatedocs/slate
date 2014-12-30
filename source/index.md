@@ -11,6 +11,7 @@ toc_footers:
 includes:	
   - appendixA
   - appendixB
+  - appendixC
   - appendixD
   - appendixE
 
