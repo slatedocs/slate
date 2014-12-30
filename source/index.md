@@ -4219,7 +4219,8 @@ This appendix defines the values to be used for feedback properties for the gene
 					<li>No Such Issuer</li>
 					<li>Expired Card</li>
 					<li>Invalid Card Number</li>
-					<li>Invalid PIN</li></td>
+					<li>Invalid PIN</li>
+				</ul></td>
 		</tr>
 		<tr>
 			<td>8</td>
