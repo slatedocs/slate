@@ -12,8 +12,7 @@ includes:
   - appendixA
   - appendixB
   - appendixC
-  - appendixD
-  - appendixE
+
 
 search: true
 ---
