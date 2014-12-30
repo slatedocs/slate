@@ -12,6 +12,9 @@ language_tabs:
 toc_footers:
   - placeholder
 
+includes:
+  - errors
+
 search: true
 ---
 
@@ -4110,6 +4113,7 @@ The gateway property of feedback lets IdentityMind know the gateway that process
 
 This appendix defines the values to be used for feedback properties for the generic gateway.
 
+
 	<table>
 		<tr>
 			<th colspan=4><h3>"gateway" property</h3></th>
@@ -4282,6 +4286,7 @@ CreditCardUtils.addCreditCardData(jsonRequest, "4012012301230123");
 String body = jsonRequest.toString(2);
 ```
 
+
 ```php
 For PHP, the sample code is in imclientSDK/samplecode/php/ednaTransaction.php:
 
@@ -4350,6 +4355,7 @@ BankAccountUtils.addBankAccountData(json, "321076479", "74600015199010");
 	
 String body = jsonRequest.toString(2);
 ```
+
 
 ```php
 For PHP, the sample code is in imclientSDK/samplecode/php/achEdnaTransaction.php:
