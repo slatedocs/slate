@@ -4083,49 +4083,254 @@ tc:6|	TIN Verification: Address Match
 
 ## Transaction Validation Web Service
 
-placeholder
+The following additional fields are available to resellers of the IdentityMind eDNA service:
+
+	<table>
+		<tr>
+			<th colspan=4><h3>Transaction</h3></th>
+		</tr>
+		<tr>
+			<th>Facet</th>
+			<th>Key</th>
+			<th>Description</th>
+			<th>Required</th>
+		</tr>
+		<tr>
+			<td>Merchant ID</td>
+			<td>m</td>
+			<td>The EDNA API username of the merchant to whom the transaction is to be associated.  This field is used when the reseller’s credentials are used to authenticate the service call, but the transaction is to be associated with a Merchant that is being accessing the EDNA service via the reseller’s system.
+			<br><br>  
+			<b>Note:</b> that a Merchant account must be created in the EDNA system prior to providing this field.
+			</td>
+			<td>No</td>
+		</tr>
+	</table>
 
 
 # Appendix C: Generic Gateway Codes
 
-## "gateway" property
+The gateway property of feedback lets IdentityMind know the gateway that processed the transaction, and how to interpret the response codes. IdentityMind supports many gateways natively, and adds new gateway support as requested by merchants. If a merchant would prefer to perform their own mapping from their gateway’s codes, the following generic gateway definition is provided. 
 
-placeholder
+This appendix defines the values to be used for feedback properties for the generic gateway.
 
-## "auth_response" property
+	<table>
+		<tr>
+			<th colspan=4><h3>"gateway" property</h3></th>
+		</tr>
+		<tr>
+			<th>Value</th>
+			<th>Description</th>
+		</tr>
+		<tr>
+			<td>generic</td>
+			<td></td>
+		</tr>
+		<tr>
+			<th colspan=4><h3>"auth_response" property</h3></th>
+		</tr>
+		<tr>
+			<th>Value</th>
+			<th>Description</th>
+		</tr>
+		<tr>
+			<td>accepted</td>
+			<td>The transaction was approved by the gateway</td>
+		</tr>
+		<tr>
+			<td>rejected</td>
+			<td>The transaction was rejected by the gateway</td>
+		</tr>
+		<tr>
+			<th colspan=4><h3>"avs_result" property</h3></th>
+		</tr>
+		<tr>
+			<th>Value</th>
+			<th>Description</th>
+		</tr>
+		<tr>
+			<td>Y</td>
+			<td>AVS match</td>
+		</tr>
+		<tr>
+			<td>N</td>
+			<td>AVS mismatch</td>
+		</tr>
+		<tr>
+			<td>P</td>
+			<td>AVS partial match</td>
+		</tr>
+		<tr>
+			<td>U</td>
+			<td>AVS unavailable</td>
+		</tr>
+		<tr>
+			<th colspan=4><h3>"cvv2_result" property</h3></th>
+		</tr>
+		<tr>
+			<th>Value</th>
+			<th>Description</th>
+		</tr>
+		<tr>
+			<td>Y</td>
+			<td>CVV match</td>
+		</tr>
+		<tr>
+			<td>N</td>
+			<td>CVV mismatch</td>
+		</tr>
+		<tr>
+			<th colspan=4><h3>"error_code" property in bank-accepted and bank-rejected feedback</h3></th>
+		</tr>
+		<tr>
+			<th>Value</th>
+			<th>Description</th>
+		</tr>
+		<tr>
+			<td>0</td>
+			<td>Approved</td>
+		</tr>
+		<tr>
+			<td>1</td>
+			<td>Insufficient funds</td>
+		</tr>
+		<tr>
+			<td>2</td>
+			<td>AVS mismatch</td>
+		</tr>
+		<tr>
+			<td>3</td>
+			<td>CVV mismatch</td>
+		</tr>
+		<tr>
+			<td>4</td>
+			<td>Card verification</td>
+		</tr>
+		<tr>
+			<td>5</td>
+			<td>System error</td>
+		</tr>
+		<tr>
+			<td>6</td>
+			<td>Cancelled card</td>
+		</tr>
+		<tr>
+			<td>7</td>
+			<td>Likely user input error. In IdentityMind's experience, the majority of bank declines are due to the consumer accidentally entering erroneous payment information. This error code is specifically handled within eDNA to reduce teh level of false positives from, for example, velocity based fraud rules. Examples of decline reasons that should be catagorized as Likely User Input Error are:
+				<ul type="disc">
+					<li>No Such Issuer</li>
+					<li>Expired Card</li>
+					<li>Invalid Card Number</li>
+					<li>Invalid PIN</li></td>
+		</tr>
+		<tr>
+			<td>8</td>
+			<td>Fraud. For example, the card has responded with a code meaning "pickup card / stolen." Only use this error code if the gateway is explicit that this is a fraudulent card.</td>
+		</tr>
+		<tr>
+			<td>9</td>
+			<td>Gateway Fraud Filter - The gateway has decline the transaction due to its internal fraud filters</td>
+		</tr>
+		<tr>
+			<td>10</td>
+			<td>Other - An uncategorized code.</td>
+		</tr>
+		<tr>
+			<th colspan=4><h3>"error_code" property in chargeback feedback</h3></th>
+		</tr>
+		<tr>
+			<th>Value</th>
+			<th>Description</th>
+		</tr>
+		<tr>
+			<td>CB1</td>
+			<td>Fraud</td>
+		</tr>
+		<tr>
+			<td>CB2</td>
+			<td>Merchant Error</td>
+		</tr>
+		<tr>
+			<td>CB3</td>
+			<td>Suspected Friendly Fraud</td>
+		</tr>
+		<tr>
+			<td>CB4</td>
+			<td>Other</td
+	</table>
 
-placeholder
+In addition to the above generic codes, the standard chargeback codes as defined by the card brands are supported.  Please reference http://www.managechargebacks.com/reasoncodes.html for the complete set.
 
-## "avs_result" property
-
-placeholder
-
-## "cvv2_result" property
-
-placeholder
-
-## "error_code" property in bank-accepted and bank-rejected feedback
-
-placeholder
-
-## "error_code" property in chargeback feedback
-
-placeholder
-
+Please contact IdentityMind support if you have questions with how to categorize a specific error code.
 
 # Appendix D: Payment Instrument Hashing
 
 ## Including Credit number Hash and Token in Transaction Report
 
-placeholder
+```java
+For Java, the sample code is in imclientSDK/samplecode/java/REST/TransactionViaREST.java:
+
+JSONObject jsonRequest = new JSONObject();
+
+// credit card token and hash
+
+// replace the 2nd parameter below with the actual card number
+
+CreditCardUtils.addCreditCardData(jsonRequest, "4012012301230123"); 
+
+…
+
+// the json string generated below will include the token, and hashes generated from the actual number
+
+String body = jsonRequest.toString(2);
+```
+
+```PHP
+For PHP, the sample code is in imclientSDK/samplecode/php/ednaTransaction.php:
+
+	$arr = array();
+	/* replace the 2nd parameter below with the actual card number */
+	$arr[CREDIT_CARD_NUMBER] = identitymind_hashCCN("4012012301230123");
+	$arr[CREDIT_CARD_TOKEN] = identitymind_tokenCCN("4012012301230123");
+	…
+	/*
+ 	  Turn the array into a JSON string to be used as the body of the POST
+	*/
+	$data = json_encode($arr);
+
+```
+
+IdentityMind Transaction API does not accept actual credit card number. It accepts the following information about the credit card number used in the transaction: 
+
+1.	Credit card number hash
+2.	Credit card number token 
+
+IdentityMind provides a client SDK for Java and PHP. If you use these languages, you can use the SDK to include the information in your request to the API. The SDK contains sample code on how to do that.
+
+**Note**: The hash must be of the full card number, not a masked or tokenized representation.
+If you use other languages, please see below “Credit Card Number Hash”.
+
 
 ### Credit Card Number Hash
 
-placeholder
+To generate the credit card number hash, you use the salt provided by IdentityMind, to generate a SHA-1 hash for the non-masked credit card number, and convert the byte array of the hash to Hexadecimal string. The hash should be included in the JSON string of the request in the field pccn. 
+
+Say you have a function sha1(String s) that takes a string s and return the sha1 hash of the string in hex, you would concatenate the salt and the credit card number and pass that to the function to get credit card number hash.   Note that all non-numeric characters should be removed from the card number prior to hashing.
+
+Please contact IdentityMind to get the salt. 
+
+For example, the salted credit card number hash for 4012012301230123 is 32c1950468af7489efb48c911f9550092ebf34c5
+
+The credit card number hash should be included in the JSON string of the request to IdentityMind Transaction API in the field “pccn”. 
+
+**Note**:  The hash must be of the full card number, not a masked or tokenized representation.
+
 
 ### Credit Card Number Token
 
-placeholder
+The credit card number token is the first 6 digits of the actual card number followed by XXXXXX followed by the last 4 digits of the actual card number. For example, the credit card number token for card number 4012012301230123 is 401201XXXXXX0123. 
+
+The credit card number token should be included in the JSON string of the request to IdentityMind Transaction API in the field “pcct”. 
+
 
 ## Including Bank Account Hash and Token in Transaction Request
 
