@@ -174,10 +174,9 @@ Error Code | Meaning
 
 ## Result Key Names
 
+### Payment Transaction
+
 	<table>
-		<tr>
-			<th colspan=2>Payment Transaction</th>
-		</tr>
 		<tr>
 			<th>Name</th>
 			<td>Transaction ID</td>
