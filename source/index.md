@@ -6,7 +6,7 @@ language_tabs:
   - php
 
 toc_footers:
-  - IdentityMind Global
+  - IdentityMind Global eDNA API Reference v1.0
 
 includes:	
   - appendixA
@@ -20,9 +20,7 @@ search: true
 
 # Welcome
 
-placeholder
-
-# Transaction Evaluation
+## Transaction Evaluation
 
 The IdentityMind Engine exports a REST based Web Service interface over HTTPS, using JSON to encode service request and response data.
 
@@ -769,7 +767,7 @@ In the case of a chargeback on a transaction that eDNA has not previously proces
 
 ## Arguments
 
-> [This URL](https://edna.identitymind.com/im/jax/chargeback/) can be used for PLACEHOLDER.
+> [This URL](https://edna.identitymind.com/im/jax/chargeback/) can be used for requesting chargeback notification evaluation.
 
 ```code
 EXAMPLE SERVICE REQUEST
@@ -1048,13 +1046,13 @@ or
 
 Notifies that a credit occurred on a transaction. 
  
- **Note**: The transaction may either be a payment transaction or an account transfer. 
+**Note**: The transaction may either be a payment transaction or an account transfer. 
 
 In the case of credit or blind credit on a transaction that eDNA has not previously processed, then the payment instrument information is required.
 
 ## Arguments
 
-> [This URL](https://edna.identitymind.com/im/jax/credit/) can be used for PLACEHOLDER
+> [This URL](https://edna.identitymind.com/im/jax/credit/) can be used for credit notification evaluation.
 
 ```code
 EXAMPLE SERVICE REQUEST
