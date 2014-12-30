@@ -4389,7 +4389,7 @@ Say you have a function sha1(String s) that takes a string s and return the sha1
 
 - for a US bank account number concatenate the salt and the routing number and account number and pass that to the function to get account number hash
 - for an international IBAN account number concatenate the salt and full IBAN account number and pass that to the function to get account number hash
-- 
+
 **Note**: All spaces and dashes should be removed from the account number prior to hashing.
 
 Please contact IdentityMind to get the salt. 
