@@ -12,8 +12,6 @@ language_tabs:
 toc_footers:
   - placeholder
 
-includes:
-
 search: true
 ---
 
@@ -4448,4 +4446,3 @@ The bank account number token should be included in the JSON string of the reque
 - Add security tests
 	- IdentityMind Sanctions Screening
 	- Jumio NetVerify Multi Document
-
