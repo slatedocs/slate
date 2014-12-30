@@ -12,9 +12,6 @@ language_tabs:
 toc_footers:
   - placeholder
 
-includes:
-  - errors
-
 search: true
 ---
 
