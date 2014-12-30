@@ -193,6 +193,9 @@ Error Code | Meaning
 			<th>Description</th>
 			<td>The transaction to which this response pertains. If a tid was supplied on the request, then this will be that value. Otherwise, it will be an IdentityMind generated identifier.</td>
 		</tr>
+	</table>
+	
+	<table>
 		<tr>
 			<th>Name</th>
 			<td>Transaction Status</td>
@@ -214,15 +217,23 @@ Error Code | Meaning
 				</ul></td>
 		</tr>
 	</table>
-	
 
 	<table>
+		<tr>
+			<th>Name</th>
+			<td>Result</td>
 		</tr>
 		<tr>
-			<td>Result</td>
+			<th>Key</th>
 			<td>res</td>
-			<td>accept</td>
-			<td>The result of the transaction by IdentityMind:
+		</tr>
+		<tr>
+			<th>Example</th>
+			<td>ACCEPT</td>
+		</tr>
+		<tr>
+			<th>Description</th>
+			<td>he result of the transaction by IdentityMind:
 				<ul type="disc">
 					<li>ERROR</li>
 					<li>ACCEPT</li>
@@ -230,58 +241,162 @@ Error Code | Meaning
 					<li>MANUAL_REVIEW</li>
 				</ul></td>
 		</tr>
+	</table>
+
+	<table>
 		<tr>
+			<th>Name</th>
 			<td>Result Codes</td>
+		</tr>
+		<tr>
+			<th>Key</th>
 			<td>rcd</td>
+		</tr>
+		<tr>
+			<th>Example</th>
 			<td>1000,100,110,120,150,523</td>
+		</tr>
+		<tr>
+			<th>Description</th>
 			<td>A comma-separated list of result codes representing a more detailed explanation of the result. The actual result codes are defined in the next subsection.</td>
 		</tr>
+	</table>
+
+	<table>
 		<tr>
+			<th>Name</th>
 			<td>Error Message</td>
-			<td>error_message</td>
-			<td>Bad data format:Failed to parse the date string provided in the data. Please use ISO8601 format.</td>
-			<td>A textual description of an error that occured while processing the transaction.</td>
 		</tr>
 		<tr>
+			<th>Key</th>
+			<td>error_message</td>
+		</tr>
+		<tr>
+			<th>Example</th>
+			<td>Bad data format:Failed to parse the date string provided in the data. Please use ISO8601 format.</td>
+		</tr>
+		<tr>
+			<th>Description</th>
+			<td>A textual description of an error that occured while processing the transaction.</td>
+		</tr>
+	</table>
+
+	<table>
+		<tr>
+			<th>Name</th>
 			<td>Fraud Rule Name</td>
+		</tr>
+		<tr>
+			<th>Key</th>
 			<td>frn</td>
+		</tr>
+		<tr>
+			<th>Example</th>
 			<td>Fallthrough</td>
+		</tr>
+		<tr>
+			<th>Description</th>
 			<td>The short name of the fraud rule that triggered for this transaction.
 			<br><br>
 			<b>Note</b>: A fraud rule will be triggered for all transactions, including those that have result ACCEPT</td>
 		</tr>
+	</table>
+
+	<table>
 		<tr>
+			<th>Name</th>
 			<td>Fraud Rule Description</td>
-			<td>frd</td>
-			<td>User is trusted and no fraud rules were triggered.</td>
-			<td>A longer description of the fraud rule that triggered.</td>
 		</tr>
 		<tr>
+			<th>Key</th>
+			<td>frd</td>
+		</tr>
+		<tr>
+			<th>Example</th>
+			<td>User is trusted and no fraud rules were triggered.</td>
+		</tr>
+		<tr>
+			<th>Description</th>
+			<td>A longer description of the fraud rule that triggered.</td>
+		</tr>
+	</table>
+
+	<table>
+		<tr>
+			<th>Name</th>
 			<td>Domestic Card</td>
+		</tr>
+		<tr>
+			<th>Key</th>
 			<td>rfb</td>
+		</tr>
+		<tr>
+			<th>Example</th>
 			<td>true</td>
+		</tr>
+		<tr>
+			<th>Description</th>
 			<td>True if the credit card used in the transaction is domestic.
 				<ul type="disc">
 					<li>True</li>
 					<li>False<li>
 				</ul></td>
 		</tr>
+	</table>
+
+	<table>
 		<tr>
+			<th>Name</th>
 			<td>Card Issuer Country</td>
+		</tr>
+		<tr>
+			<th>Key</th>
 			<td>ric</td>
+		</tr>
+		<tr>
+			<th>Example</th>
 			<td>US</td>
+		</tr>
+		<tr>
+			<th>Description</th>
 			<td>The issuer country of the card used in the transaction. The country code is the two letter abbreviation as defined in ISO-3166-1</td>
 		</tr>
+	</table>
+
+	<table>
 		<tr>
+			<th>Name</th>
 			<td>User Description</td>
-			<td>erd</td>
-			<td>Existing Trusted User</td>
-			<td>A textual description of the reputation of the user associated with the transaction.</td>
 		</tr>
 		<tr>
+			<th>Key</th>
+			<td>erd</td>
+		</tr>
+		<tr>
+			<th>Example</th>
+			<td>Existing Trusted User</td>
+		</tr>
+		<tr>
+			<th>Description</th>
+			<td>A textual description of the reputation of the user associated with the transaction.</td>
+		</tr>
+	</table>
+
+	<table>
+		<tr>
+			<th>Name</th>
 			<td>Alert Severity</td>
+		</tr>
+		<tr>
+			<th>Key</th>
 			<td>ras</td>
+		</tr>
+		<tr>
+			<th>Example</th>
 			<td>HIGH</td>
+		</tr>
+		<tr>
+			<th>Description</th>
 			<td>If an alert was generated, the severity of the alert.
 				<ul type="disc">
 					<li>CRITICAL</li>
@@ -290,22 +405,82 @@ Error Code | Meaning
 					<li>WARNING</li>
 					<li>INFO</li></td>
 		</tr>
+	</table>
+
+	<table>
 		<tr>
+			<th>Name</th>
 			<td>Alert Message</td>
+		</tr>
+		<tr>
+			<th>Key</th>
 			<td>ram</td>
+		</tr>
+		<tr>
+			<th>Example</th>
 			<td>Card is issued by a foreign bank.</td>
+		</tr>
+		<tr>
+			<th>Description</th>
 			<td>If an alert was generated, the message associated with the alert.</td>
 		</tr>
+	</table>
+
+	<table>
 		<tr>
+			<th>Name</th>
 			<td>Automated Review Policy Rule ID</td>
-			<td>arpid</td>
-			<td>20005</td>
-			<td>The Automated Review Policy rule, if any, that accepted the transaction.</td>
 		</tr>
 		<tr>
+			<th>Key</th>
+			<td>arpid</td>
+		</tr>
+		<tr>
+			<th>Example</th>
+			<td>20005</td>
+		</tr>
+		<tr>
+			<th>Description</th>
+			<td>The Automated Review Policy rule, if any, that accepted the transaction.</td>
+		</tr>
+	</table>
+
+	<table>
+		<tr>
+			<th>Name</th>
 			<td>Automated Review Policy Rule Description</td>
+		</tr>
+		<tr>
+			<th>Key</th>
 			<td>arpd</td>
+		</tr>
+		<tr>
+			<th>Example</th>
 			<td>Parameters of the transaction are associated with a history of good transactions</td>
+		</tr>
+		<tr>
+			<th>Description</th>
 			<td>A textual description of the Automated Review Policy rule, if any, that accepted the transaction.</td>
 		</tr>
 	</table>
+
+	<table>
+		<tr>
+			<th>Name</th>
+			<td>data</td>
+		</tr>
+		<tr>
+			<th>Key</th>
+			<td>data</td>
+		</tr>
+		<tr>
+			<th>Example</th>
+			<td>data</td>
+		</tr>
+		<tr>
+			<th>Description</th>
+			<td>data</td>
+		</tr>
+	</table>
+
+### Account Transfer / Login Validation Transaction
