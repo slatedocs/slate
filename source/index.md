@@ -6,7 +6,7 @@ language_tabs:
   - php
 
 toc_footers:
-  - IdentityMind Global eDNA API Reference v1.0
+  - eDNA API Reference v1.0
 
 includes:	
   - appendixA
@@ -18,7 +18,7 @@ includes:
 search: true
 ---
 
-# Welcome
+# eDNA API Reference
 
 ## Transaction Evaluation
 
