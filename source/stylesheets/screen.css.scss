@@ -440,6 +440,11 @@ html, body {
       padding: 10px;
     }
 
+	tr {
+	  border-left: 1px solid #f2f2f2;
+	  border-right: 1px solid #f2f2f2;
+	}
+
     tr:last-child {
       border-bottom: 0px solid #f2f2f2;
     }
@@ -450,8 +455,6 @@ html, body {
 
     tr:nth-child(even)>td {
       background-color: #fff;
-	  border-left: 1px solid #f2f2f2;
-	  border-right: 1px solid #f2f2f2;	
     }
   }
 
