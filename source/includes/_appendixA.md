@@ -295,7 +295,7 @@
 		</tr>
 	</table>
 
-### Out of Wallet Questions Encoding
+## Out of Wallet Questions Encoding
 
 ```code
 EXAMPLE
@@ -372,7 +372,7 @@ EXAMPLE
 		</tr>
 	</table>
 
-### eDNA Score Card Encoding
+## eDNA Score Card Encoding
 
 ```code
 EXAMPLE
