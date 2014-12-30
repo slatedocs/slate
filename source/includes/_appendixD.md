@@ -20,7 +20,6 @@ CreditCardUtils.addCreditCardData(jsonRequest, "4012012301230123");
 String body = jsonRequest.toString(2);
 ```
 
-
 ```php
 For PHP, the sample code is in imclientSDK/samplecode/php/ednaTransaction.php:
 
@@ -89,7 +88,6 @@ BankAccountUtils.addBankAccountData(json, "321076479", "74600015199010");
 	
 String body = jsonRequest.toString(2);
 ```
-
 
 ```php
 For PHP, the sample code is in imclientSDK/samplecode/php/achEdnaTransaction.php:

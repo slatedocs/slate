@@ -76,6 +76,7 @@ EXAMPLE SERVICE REQUEST
   “tid” : “89”
 }
 ```
+
 > The response is a JSON encoding of the IdentityMind Service result. The most important part of the response is whether the transaction is to be accepted, denied, or scheduled for manual review, which is dependent on the configured fraud policy. 
 >
 > The response includes detailed result codes and the transaction unique identifier. The keys are fully defined in *Appendix A: Result Keys and Codes*.
@@ -97,6 +98,7 @@ EXAMPLE SERVICE RESPONSE DATA
   “error_message” : “Bad data format:Failed to parse the date string provided in the data.  Please use ISO8601 format.”
 }
 ```
+
 	<table>
 		<tr>
 			<th colspan=4><h3>Billing Name</h3></th>
@@ -1300,6 +1302,7 @@ EXAMPLE SERVICE REQUEST
     “tid”: “42”
 }
 ```
+
 > The response contains a JSON encoded message or error message.
 
 ```code
@@ -1309,6 +1312,7 @@ EXAMPLE SERVICE RESPONSE DATA
     “message”: “Feedback accepted for REFUND_FRAUD feedback on transaction 42”
 }
 ```
+
 	<table>		
 		<tr>
 			<th>Facet</th>
@@ -1404,6 +1408,7 @@ https://edna.identitymind.com/im/transaction/<transaction_ID>/accepted-default
 
 https://edna.identitymind.com/im/transaction/<transaction_ID>/rejected-default
 ```
+
 ```code
 EXAMPLE SERVICE REQUEST
 
@@ -1413,7 +1418,6 @@ EXAMPLE SERVICE REQUEST
   “avs_result”: “Y”,
   “error_code”: “05”
 }
-
 ```
 
 > The response contains a JSON encoded message or error message.
@@ -1533,6 +1537,7 @@ https://edna.identitymind.com/im/account/transfer (POST)
 Validate an external transfer (withdrawal) from an account:
 https://edna.identitymind.com/im/account/transferout (POST)
 ```
+
 > The evidence is the account transfer transaction data to be evaluated. It is supplied in the body of the HTTP-POST as JSON-encoded key value pairs. While all fields are not required, validation evaluation is more comprehensive when richer evidence is provided. 
 
 ```code
@@ -1562,6 +1567,7 @@ https://edna.identitymind.com/im/account/transfer
   “dptoken”  : “517074XXXXXX000e”,
 }
 ```
+
 > The response is a JSON encoding of the IdentityMind Service result. The most important part of the response is whether the transaction is to be accepted, denied, or scheduled for manual review, which is dependent on the configured validation policy. The response includes detailed result codes and the transaction unique identifier. The keys are fully defined in Appendix A: Result Keys and Codes.
 
 ```code
@@ -2058,8 +2064,8 @@ EXAMPLE SERVICE RESPONSE DATA
         ]
     },
 } 
-
 ```
+
 	<table>
 		<tr>
 			<th colspan=4><h3>Application</h3></th>
@@ -2649,6 +2655,7 @@ https://edna.identitymind.com/im/account/merchant/<appid>/quizresponse (POST)
 
 https://edna.identitymind.com/im/account/consumer/<appid>/quizresponse (POST)
 ```
+
 > The body of the request contains an encoding of the customer’s answers to the quiz questions. The encoding is in JSON as described below. The answers are processed and the response used to update the IDAnalytics CertainID Security Test and the Application state.
 
 > The response to this request is an Application Response containing the newly updated application.
@@ -2713,6 +2720,7 @@ https://edna.identitymind.com/im/account/merchant/<appid>/quizresponse (POST)
 
 https://edna.identitymind.com/im/account/consumer/<appid>/quizresponse (POST)
 ```
+
 > The body of the request contains an encoding of the customer’s code response. The encoding is in JSON as described below. The answers are processed and the response used to update the Phone Ownership Security Test and the Application state. The response to this request is an Application Response containing the newly updated application.
 
 ```code
@@ -2767,7 +2775,6 @@ EXAMPLE SERVICE RESPONSE DATA
 {
     "authorizationToken”:”f9d32f46-8f11-4b7c-b146-6d7a95aa765f”
 }
-
 ```
 
 	<table>
@@ -2841,6 +2848,7 @@ https://edna.identitymind.com/im/account/merchant/<application_ID>/accepted (POS
 
 https://edna.identitymind.com/im/account/merchant/<application_ID>/rejected (POST)
 ```
+
 > All arguments are optional, although a JSON object must be provided.
 
 ```code
@@ -2856,6 +2864,7 @@ or
 
 {}
 ```
+
 > The response contains a JSON encoded message or error message.
 
 ```code
@@ -2863,6 +2872,7 @@ or
   “message”: “Accepted application”
 }
 ```
+
 	<table>
 		<tr>
 			<th>Facet</th>

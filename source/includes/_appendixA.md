@@ -478,6 +478,7 @@ EXAMPLE
         ]
     }, 
 ```
+
 	<table>
 		<tr>
 			<th>Key</th>
@@ -811,7 +812,6 @@ CODE | MEANING
 259X|	COUNTRY MISMATCH AND WATCHLIST
 
 
-
 ## Account Validation Rule Codes
 
 This section documents the result codes related to account validation policy processing.
@@ -873,7 +873,6 @@ CODE |	MEANING
 11010|	USING DISPOSABLE EMAIL ADDRESS
 
 
-
 ## Automated Review Policy Rule Codes
 
 This section documents the result codes related to Automated Review Policy processing.
@@ -888,7 +887,6 @@ CODE |	MEANING
 20008|	TRANSACTION AMOUNT IS BELOW THRESHOLD FOR REVIEW
 20009|	COUNTRY MISMATCH OVERRIDE
 20010|	ACCEPT MOTO=2 (REBILL) TRANSACTIONS
-
 
 
 ## Consumer/Merchant Application Security Tests
