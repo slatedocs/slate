@@ -6,7 +6,7 @@ language_tabs:
   - php
 
 toc_footers:
-  - eDNA API Reference v1.0.1
+  - eDNA API Reference v1.0.2
 
 includes:	
   - appendixA
