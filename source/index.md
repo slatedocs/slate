@@ -253,7 +253,7 @@ EXAMPLE SERVICE RESPONSE DATA
 		<tr>
 			<td>Device Fingerprint Type</td>
 			<td>dft</td>
-			<td>Device fingerprint type. Specifies the technology that was used to genereate the blob.
+			<td>Device fingerprint type. Specifies the technology that was used to generate the blob.
 				<ul type="disc">
 					<li>BC - BlueCava</li>
 				</ul> 
@@ -589,7 +589,7 @@ EXAMPLE SERVICE RESPONSE DATA
 		<tr>
 			<td>Currency</td>
 			<td>ccy</td>
-			<td>The ISO 4217 currency code of the transaction encoded as as tringe. Default is "USD".</td>
+			<td>The ISO 4217 currency code of the transaction encoded as a string. Default is "USD".</td>
 			<td>No</td>
 		</tr>
 		<tr>
@@ -1038,7 +1038,7 @@ or
 		<tr>
 			<td>Email</td>
 			<td>gcem</td>
-			<td>Email address associated to the Google Checkout account. It correpsonds to the "email" element.</td>
+			<td>Email address associated to the Google Checkout account. It corresponds to the "email" element.</td>
 			<td>No</td>
 		</tr>
 	</table>
@@ -1169,7 +1169,7 @@ or
 		<tr>
 			<td>Number Token</td>
 			<td>pcct</td>
-			<td>A masked or tokenized vesion of the credit card number. IdentityMind will supply procedure to generate the token.</td>
+			<td>A masked or tokenized version of the credit card number. IdentityMind will supply procedure to generate the token.</td>
 			<td>No</td>
 		</tr>
 		<tr>
@@ -1330,7 +1330,7 @@ EXAMPLE SERVICE RESPONSE DATA
 		<tr>
 			<td>Authorization Response Description</td>
 			<td>auth_response_text</td>
-			<td>Text descripting response code</td>
+			<td>Text describing response code</td>
 			<td>No</td>
 		</tr>
 		<tr>
@@ -1822,13 +1822,13 @@ EXAMPLE SERVICE RESPONSE DATA
 		<tr>
 			<td>Transaction Identifier</td>
 			<td>tid</td>
-			<td>Merchant unique identifier for the transaction. eDNA assigns an internal ID if none provided. The transqaction ID must be encoded as a string (e.g. "tid":"123455"). The maximum length is 40 characters.</td>
+			<td>Merchant unique identifier for the transaction. eDNA assigns an internal ID if none provided. The transaction ID must be encoded as a string (e.g. "tid":"123455"). The maximum length is 40 characters.</td>
 			<td>No</td>
 		</tr>
 		<tr>
 			<td>Affiliate ID</td>
 			<td>aflid</td>
-			<td>The affiliate ID associatec with this transaction. Encoded as a string</td>
+			<td>The affiliate ID associated with this transaction. Encoded as a string</td>
 			<td>No</td>
 		</tr>
 		<tr>
@@ -1935,7 +1935,7 @@ EXAMPLE SERVICE RESPONSE DATA
 		<tr>
 			<td>Destination Payment Token</td>
 			<td>dptoken</td>
-			<td>A masked or tokenized version of tyhe destination payment instrument number. IdentityMind will supply procedure to generate token. This field is used in conjunction with "dpbc," "dpach," and "dptoken."</td>
+			<td>A masked or tokenized version of the destination payment instrument number. IdentityMind will supply procedure to generate token. This field is used in conjunction with "dpbc," "dpach," and "dptoken."</td>
 			<td>No</td>
 		</tr>
 		<tr>
@@ -2074,7 +2074,7 @@ EXAMPLE SERVICE RESPONSE DATA
 		<tr>
 			<td>ID</td>
 			<td>tid</td>
-			<td>Unique application identifier. The system will assign one if not provided. It is recommended to pass one if needed to be correlatedf to client's backend system. The tid must be encoded as a string (e.g. "tid":"123455"). The maximum length is 40 characters. The tid is used to combine the multiple stages of an application.</td>
+			<td>Unique application identifier. The system will assign one if not provided. It is recommended to pass one if needed to be correlated to client's backend system. The tid must be encoded as a string (e.g. "tid":"123455"). The maximum length is 40 characters. The tid is used to combine the multiple stages of an application.</td>
 			<td>No</td>
 		</tr>
 
@@ -2577,7 +2577,7 @@ EXAMPLE SERVICE RESPONSE DATA
 		<tr>
 			<td>Transaction Identifier</td>
 			<td>tid</td>
-			<td>Unique identifier for the application. eDNA assigns an internal ID if none is provided. The tid must be encoded as a string (e.g. "tid":"123455"). The maxiumum length is 40 characters. The tid is used to combine the multiple stages of an application.</td>
+			<td>Unique identifier for the application. eDNA assigns an internal ID if none is provided. The tid must be encoded as a string (e.g. "tid":"123455"). The maximum length is 40 characters. The tid is used to combine the multiple stages of an application.</td>
 			<td>No</td>
 		</tr>
 		<tr>
@@ -2930,7 +2930,7 @@ https://edna.identitymind.com/im/account/login
 }
 ```
 
-> The response is a JSON encoding of the IdentityMind service result. The response incldes detailed result codes and transaction unique identifier. The keys are fully defined in Appendix A: Result Keys and Codes.
+> The response is a JSON encoding of the IdentityMind service result. The response includes detailed result codes and transaction unique identifier. The keys are fully defined in Appendix A: Result Keys and Codes.
 
 ```code
 EXAMPLE SERVICE RESPONSE DATA

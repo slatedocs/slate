@@ -50,7 +50,7 @@
 			<td>Error Message</td>
 			<td>error_message</td>
 			<td>Bad data format:Failed to parse the date string provided in the data. Please use ISO8601 format.</td>
-			<td>A textual description of an error that occured while processing the transaction.</td>
+			<td>A textual description of an error that occurred while processing the transaction.</td>
 		</tr>
 		<tr>
 			<td>Fraud Rule Name</td>
@@ -198,7 +198,7 @@
 			<td>Error Message</td>
 			<td>error_message</td>
 			<td>Bad data format:Failed to parse the date string provided in the data.  Please use ISO8601 format.</td>
-			<td>A textual description of an error that occured while processing the transaction.</td>
+			<td>A textual description of an error that occurred while processing the transaction.</td>
 		</tr>
 		<tr>
 			<td>Alert Severity</td>
@@ -261,13 +261,13 @@
 			<td>Error Message</td>
 			<td>error_message</td>
 			<td>Bad data format:Failed to parse the date string provided in the data.  Please use ISO8601 format.</td>
-			<td>A textual description of an error that occured while processing the transaction.</td>
+			<td>A textual description of an error that occurred while processing the transaction.</td>
 		</tr>
 		<tr>
 			<td>Out of Wallet / KYC Questions</td>
 			<td>oowQuestions</td>
 			<td></td>
-			<td>The set of questions, if any, provided by IDAnalytics. The encoding is JSON, described below. The property is not present when a GET is perfomed on a consumer/merchant application.</td>
+			<td>The set of questions, if any, provided by IDAnalytics. The encoding is JSON, described below. The property is not present when a GET is performed on a consumer/merchant application.</td>
 		</tr>
 		<tr>
 			<td>SMS Verification Sent</td>
@@ -359,7 +359,7 @@ EXAMPLE
 		</tr>
 		<tr>
 			<td>questionId</td>
-			<td>Integer itentifier for this question</td>
+			<td>Integer identifier for this question</td>
 		</tr>
 		<tr>
 			<td>questionText</td>
@@ -410,7 +410,7 @@ EXAMPLE
             },
             {
                 “testCategory”: “eDNA”,
-                “testDescription”: “Checks whether any application parameter is in the wacth list.\nIt fails when any parameter is on the watch list.”,
+                “testDescription”: “Checks whether any application parameter is in the watch list.\nIt fails when any parameter is on the watch list.”,
                 “testName”: “Watch List”,
                 “testId”: “ed:2”,
                 “testPass”: true

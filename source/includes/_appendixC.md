@@ -113,7 +113,7 @@ This appendix defines the values to be used for feedback properties for the gene
 		</tr>
 		<tr>
 			<td>7</td>
-			<td>Likely user input error. In IdentityMind's experience, the majority of bank declines are due to the consumer accidentally entering erroneous payment information. This error code is specifically handled within eDNA to reduce teh level of false positives from, for example, velocity based fraud rules. Examples of decline reasons that should be catagorized as Likely User Input Error are:
+			<td>Likely user input error. In IdentityMind's experience, the majority of bank declines are due to the consumer accidentally entering erroneous payment information. This error code is specifically handled within eDNA to reduce teh level of false positives from, for example, velocity based fraud rules. Examples of decline reasons that should be categorized as Likely User Input Error are:
 				<ul type="disc">
 					<li>No Such Issuer</li>
 					<li>Expired Card</li>
