@@ -16,6 +16,8 @@ includes:
   - appendixE
 
 search: true
+
+<link rel="icon" href="http://www.identitymindglobal.com/wp-content/uploads/2013/05/Favicon.png" type="image/png">
 ---
 
 # eDNA API Reference
