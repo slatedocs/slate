@@ -1,4 +1,3 @@
-<link rel="icon" href="http://www.identitymindglobal.com/wp-content/uploads/2013/05/Favicon.png" type="image/png">
 ---
 title: eDNA API Reference
 
@@ -3064,3 +3063,5 @@ EXAMPLE SERVICE RESPONSE DATA
 			<td>No</td>
 		</tr>
 	</table>
+
+<link rel="icon" href="http://www.identitymindglobal.com/wp-content/uploads/2013/05/Favicon.png" type="image/png">
