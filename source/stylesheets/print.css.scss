@@ -57,7 +57,8 @@ body {
   }
 
   table {
-    border: 1px solid $print-color;
+    border-radius: 10px;
+	border: 1px solid $print-color;
     tr {
       border-bottom: 1px solid $print-color;
     }
