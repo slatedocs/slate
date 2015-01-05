@@ -25,7 +25,7 @@ search: true
 
 The IdentityMind Engine exports a REST based Web Service interface over HTTPS, using JSON to encode service request and response data.
 
-A typical Merchant / IdentityMind interaction to validate a transaction is shown below:
+A typical merchant / IdentityMind interaction to validate a transaction is shown below:
 
 ![](http://i.imgur.com/4o540Tw.png)
 
