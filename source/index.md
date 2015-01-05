@@ -199,7 +199,7 @@ EXAMPLE SERVICE RESPONSE DATA
 		<tr>
 			<td>Street</td>
 			<td>ssn</td>
-			<td>The shipping street address (e.g. "123 Main Street").</td>
+			<td>The shipping street address (e.g. "123 Main Street"). Maximum length is 100 characters.</td>
 			<td>No</td>
 		</tr>
 		<tr>
@@ -285,7 +285,7 @@ EXAMPLE SERVICE RESPONSE DATA
 		<tr>
 			<td>Transaction Email Address</td>
 			<td>tea</td>
-			<td>Email of the user account</td>
+			<td>Email of the user account. Maximum length is 60 characters.</td>
 			<td>No</td>
 		</tr>
 		<tr>
@@ -297,7 +297,7 @@ EXAMPLE SERVICE RESPONSE DATA
 					<li>google</li>
 					<li>twitter</li>
 					<li>yahoo</li>
-				</ul>
+				Maximum length is 60 characters.</ul>
 			</td>
 			<td>No</td>
 		</tr>
@@ -316,7 +316,7 @@ EXAMPLE SERVICE RESPONSE DATA
 		<tr>
 			<td>Account Name</td>
 			<td>man</td>
-			<td>Consumer account identifier. This identifier must uniquely identify the account at the merchant.</td>
+			<td>Consumer account identifier. This identifier must uniquely identify the account at the merchant. Maximum length is 60 characters.</td>
 			<td>No</td>
 		</tr>
 		<tr>
@@ -334,13 +334,13 @@ EXAMPLE SERVICE RESPONSE DATA
 		<tr>
 			<td>Account Home Phone</td>
 			<td>ph</td>
-			<td>Registered home phone number associated to the account</td>
+			<td>Registered home phone number associated to the account. Maximum length is 60 characters.</td>
 			<td>No</td>
 		</tr>
 		<tr>
 			<td>Account Mobile Phone</td>
 			<td>pm</td>
-			<td>Registered mobile phone number associated to the account</td>
+			<td>Registered mobile phone number associated to the account. Maximum length is 60 characters.</td>
 			<td>No</td>
 		</tr>
 		<tr>
@@ -371,20 +371,20 @@ EXAMPLE SERVICE RESPONSE DATA
 			<td>pccn</td>
 			<td>Credit Card unique identifier (hash) while obscuring actual number. IdentityMind will supply procedure to generate hash.
 			<br><br>
-			<b>Note</b>: The has must be of the full card number, not a masked or tokenized representation.
+			<b>Note</b>: The has must be of the full card number, not a masked or tokenized representation. Maximum length is 128 characters.
 			</td>
 			<td>Yes*</td>
 		</tr>
 		<tr>
 			<td>Number Token</td>
 			<td>pcct</td>
-			<td>A masked or tokenized version of the credit card number. IdentityMind will supply procedure to generate token.</td>
+			<td>A masked or tokenized version of the credit card number. IdentityMind will supply procedure to generate token. Maximum length is 64 characters.</td>
 			<td>Yes</td>
 		</tr>
 		<tr>
 			<td>Issuer Country</td>
 			<td>ric</td>
-			<td>The issuer country of the card used in the transaction. The country code is the two letter abbreviation as defined in ISO-3166-1</td>
+			<td>The issuer country of the card used in the transaction. The country code is the two letter abbreviation as defined in ISO-3166-1. Maximum length is two characters.</td>
 			<td>No</td>
 		</tr>
 		<tr>
@@ -494,13 +494,13 @@ EXAMPLE SERVICE RESPONSE DATA
 			<td>phash</td>
 			<td>Account unique identified (hash) while obscuring actual number. This is used when IdentityMind does not natively support the payment type.
 			<br><br>
-			<b>Note</b>: This hash must be of the full account ID, not a masked or tokenized representation.</td>
+			<b>Note</b>: This hash must be of the full account ID, not a masked or tokenized representation. Maximum length is 128 characters.</td>
 			<td>Yes*</td>
 		</tr>
 		<tr>
 			<td>Account Token</td>
 			<td>ptoken</td>
-			<td>A masked or tokenized version of the account token</td>
+			<td>A masked or tokenized version of the account token. Maximum length is 64 characters.</td>
 			<td>No</td>
 		</tr>
 
@@ -517,13 +517,13 @@ EXAMPLE SERVICE RESPONSE DATA
 		<tr>
 			<td>Bitcoin Wallet ID</td>
 			<td>pbc</td>
-			<td>Hash of the unique identifier for a Bitcoin wallet</td>
+			<td>Hash of the unique identifier for a Bitcoin wallet. Maximum length is 128 characters.</td>
 			<td>No</td>
 		</tr>
 		<tr>
 			<td>Bitcoin Token</td>
 			<td>ptoken</td>
-			<td>A masked or tokenized version of the account token</td>
+			<td>A masked or tokenized version of the account token. Maximum length is 64 characters.</td>
 			<td>No</td>
 		</tr>
 
@@ -542,13 +542,13 @@ EXAMPLE SERVICE RESPONSE DATA
 			<td>pach</td>
 			<td>Hash of the unique identifier for an ACH account
 			<br><br>
-			<b>Note</b>: This hash must be of the full account number, not a masked or tokenized representation.</td>
+			<b>Note</b>: This hash must be of the full account number, not a masked or tokenized representation. Maximum length is 128 characters.</td>
 			<td>No</td>
 		</tr>
 		<tr>
 			<td>Account Token</td>
 			<td>ptoken</td>
-			<td>A masked or tokenized version of the account token</td>
+			<td>A masked or tokenized version of the account token. Maximum length is 64 characters.</td>
 			<td>No</td>
 		</tr>
 
@@ -588,7 +588,7 @@ EXAMPLE SERVICE RESPONSE DATA
 		<tr>
 			<td>Currency</td>
 			<td>ccy</td>
-			<td>The ISO 4217 currency code of the transaction encoded as a string. Default is "USD".</td>
+			<td>The ISO 4217 currency code of the transaction encoded as a string. Default is "USD." Maximum length is three characters.</td>
 			<td>No</td>
 		</tr>
 		<tr>
@@ -618,7 +618,7 @@ EXAMPLE SERVICE RESPONSE DATA
 				<ul type="disc">
 					<li>"smid"="42"</li>
 					<li>"smid"="Acme"</li>
-				</ul>
+				Maximum length is 255 characters.</ul>
 			<br><br>
 			<b>Note</b>: The value of the smid should not include the apostrophe symbol.
 			</td>
@@ -666,7 +666,7 @@ EXAMPLE SERVICE RESPONSE DATA
 		<tr>
 			<td>Affiliate ID</td>
 			<td>aflid</td>
-			<td>The affiliate ID associated with this transaction. Encoded as a string.</td>
+			<td>The affiliate ID associated with this transaction. Encoded as a string. Maximum length is 100 characters.</td>
 			<td>No</td>
 		</tr>
 		<tr>
@@ -816,7 +816,7 @@ or
 		<tr>
 			<td>Currency</td>
 			<td>ccy</td>
-			<td>The ISO 4217 currency code of the transaction encoded as a string. Default is "USD."</td>
+			<td>The ISO 4217 currency code of the transaction encoded as a string. Default is "USD." Maximum length is three characters.</td>
 			<td>No</td>
 		</tr>
 		<tr>
@@ -914,7 +914,7 @@ or
 			<td>smid</td>
 			<td>A unique identifier for the merchant for whom this transaction is being processed.
 			<br><br>
-			<b>Note</b>: The value of the smid should not include the apostrophe symbol.</td>
+			<b>Note</b>: The value of the smid should not include the apostrophe symbol. Maximum length is 255 characters.</td>
 			<td>No</td>
 		</tr>
 
@@ -933,19 +933,19 @@ or
 			<td>pccn</td>
 			<td>Credit card unique identifier (hash) while obscuring actual number. IdentityMind will supply procedure to generate hash.
 			<br><br>
-			<b>Note</b>: The hash must be of the full card number, not a masked or tokenized representation.</td>
+			<b>Note</b>: The hash must be of the full card number, not a masked or tokenized representation. Maximum length is 128 characters.</td>
 			<td>Yes, if the provided tid does not refer to a transaction previously processed by eDNA.</td>
 		</tr>
 		<tr>
 			<td>Number Token</td>
 			<td>pcct</td>
-			<td>A masked or tokenized version of the credit card number. IdentityMind will supply procedure to generate token.</td>
+			<td>A masked or tokenized version of the credit card number. IdentityMind will supply procedure to generate token. Maximum length is 64 characters.</td>
 			<td>Yes, if the provided tid does not refer to a transaction previously processed by eDNA.</td>
 		</tr>
 		<tr>
 			<td>Issuer Country</td>
 			<td>ric</td>
-			<td>The issuer country of the card used in the transaction. The country code is the two letter abbreviation as defined in ISO-3166-1.</td>
+			<td>The issuer country of the card used in the transaction. The country code is the two letter abbreviation as defined in ISO-3166-1. Maximum length is two characters.</td>
 			<td>No</td>
 		</tr>
 		<tr>
@@ -966,19 +966,19 @@ or
 			<td>pccn2</td>
 			<td>Hash of the credit card to which the chargeback amount is to be credited if it is different from the credit card where the chargeback was reported.
 			<br><br>
-			<b>Note</b>: The has must be of the full card number, not a masked or tokenized representation.</td>
+			<b>Note</b>: The has must be of the full card number, not a masked or tokenized representation. Maximum length is 128 characters.</td>
 			<td>No</td>
 		</tr>
 		<tr>
 			<td>Number Token</td>
 			<td>pcct2</td>
-			<td>Token of the credit card to which the chargeback amount is to be credited if it is different from the credit card where the chargeback was reported.</td>
+			<td>Token of the credit card to which the chargeback amount is to be credited if it is different from the credit card where the chargeback was reported. Maximum length is 64 characters.</td>
 			<td>No</td>
 		</tr>
 		<tr>
 			<td>Issuer Country</td>
 			<td>ric2</td>
-			<td>The issuer country of the credit card to which the chargeback amount is to be credited if it is different from the credit card where the chargeback was reported. The country code is the two letter abbreviation as defined in ISO-3166-1.</td>
+			<td>The issuer country of the credit card to which the chargeback amount is to be credited if it is different from the credit card where the chargeback was reported. The country code is the two letter abbreviation as defined in ISO-3166-1. Maximum length is two characters.</td>
 			<td>No</td>
 		</tr>
 		<tr>
@@ -1100,7 +1100,7 @@ or
 		<tr>
 			<td>Currency</td>
 			<td>ccy</td>
-			<td>The ISO 4217 currency code of the transaction encoded as a string. Default is "USD."</td>
+			<td>The ISO 4217 currency code of the transaction encoded as a string. Default is "USD." Maximum length is three characters.</td>
 			<td>No</td>
 		</tr>
 		<tr>
@@ -1142,7 +1142,7 @@ or
 		<tr>
 			<td>Sub Merchant ID</td>
 			<td>smid</td>
-			<td>A unique identifier for the merchant for whom this transaction is being processed.</td>
+			<td>A unique identifier for the merchant for whom this transaction is being processed. Maximum length is 255 characters.</td>
 			<td>No</td>
 		</tr>
 
@@ -1161,20 +1161,20 @@ or
 			<td>pccn</td>
 			<td>Credit card unique identifier (hash) while obscuring actual number. IdentityMind will supply procedure to generate the hash.
 			<br><br>
-			<b>Note</b>: The hash must be of the full card number, not a masked or tokenized representation.
+			<b>Note</b>: The hash must be of the full card number, not a masked or tokenized representation. Maximum length is 128 characters.
 			</td>
 			<td>Yes</td>
 		</tr>
 		<tr>
 			<td>Number Token</td>
 			<td>pcct</td>
-			<td>A masked or tokenized version of the credit card number. IdentityMind will supply procedure to generate the token.</td>
+			<td>A masked or tokenized version of the credit card number. IdentityMind will supply procedure to generate the token. Maximum length is 64 characters.</td>
 			<td>No</td>
 		</tr>
 		<tr>
 			<td>Issuer Country</td>
 			<td>ric</td>
-			<td>The issuer country of the card used in the transaction. The country code is the two letter abbreviation as defined in ISO-3166-1</td>
+			<td>The issuer country of the card used in the transaction. The country code is the two letter abbreviation as defined in ISO-3166-1. Maximum length is two characters.</td>
 			<td>No</td>
 		</tr>
 		<tr>
@@ -1252,13 +1252,13 @@ or
 			<td>phash</td>
 			<td>Account unique identifier (hash) while obscuring actual number. This is used when IdentityMind does not natively support the payment type.
 			<br><br>
-			<b>Note</b>: The hash must be of the full account number, not a masked or tokenized representation.</td>
+			<b>Note</b>: The hash must be of the full account number, not a masked or tokenized representation. Maximum length is 128 characters.</td>
 			<td>Yes</td>
 		</tr>
 		<tr>
 			<td>Account Token</td>
 			<td>ptoken</td>
-			<td>A masked or tokenized version of the account token</td>
+			<td>A masked or tokenized version of the account token. Maximum length is 64 characters.</td>
 			<td>No</td>
 		</tr>
 	</table>
@@ -1364,7 +1364,7 @@ EXAMPLE SERVICE RESPONSE DATA
 		<tr>
 			<td>Transaction ID</td>
 			<td>tid</td>
-			<td>Transaction ID</td>
+			<td>Transaction ID. Maximum length is 40 characters.</td>
 			<td>No</td>
 		</tr>
 	</table>
@@ -1599,13 +1599,13 @@ EXAMPLE SERVICE RESPONSE DATA
 		<tr>
 			<td>Account Name</td>
 			<td>man</td>
-			<td>Free form unique identifier for this account at this merchant</td>
+			<td>Free form unique identifier for this account at this merchant. Maximum length is 60 characters.</td>
 			<td>No</td>
 		</tr>
 		<tr>
 			<td>User Email Address</td>
 			<td>tea</td>
-			<td>Email address of record. An email address that the merchant is comfortable using to validate access to the account.</td>
+			<td>Email address of record. An email address that the merchant is comfortable using to validate access to the account. Maximum length is 60 characters.</td>
 			<td>No</td>
 		</tr>
 		<tr>
@@ -1617,20 +1617,20 @@ EXAMPLE SERVICE RESPONSE DATA
 					<li>facebook</li>
 					<li>twitter</li>
 					<li>yahoo</li>
-				</ul>
+				Maximum length is 60 characters.</ul>
 			</td>
 			<td>No</td>
 		</tr>
 		<tr>
 			<td>Home Phone</td>
 			<td>ph</td>
-			<td>Home phone on record. A landline phone number that the merchant is comfortable using to validate access to the account.</td>
+			<td>Home phone on record. A landline phone number that the merchant is comfortable using to validate access to the account. Maximum length is 60 characters.</td>
 			<td>No</td>
 		</tr>
 		<tr>
 			<td>Mobile Phone</td>
 			<td>pm</td>
-			<td>Mobile phone on record. A mobile phone number that the merchant is comfortable using to validate access to the account.</td>
+			<td>Mobile phone on record. A mobile phone number that the merchant is comfortable using to validate access to the account. Maximum length is 60 characters.</td>
 			<td>No</td>
 		</tr>
 		<tr>
@@ -1759,13 +1759,13 @@ EXAMPLE SERVICE RESPONSE DATA
 			<td>pccn</td>
 			<td>Credit/debit card unique identifier (hash) while obscuring actual number. IdentityMind will supply procedure to generate hash.
 			<br><br>
-			<b>Note</b>: The hash must be of the full card number, not a masked or tokenized representation.</td>
+			<b>Note</b>: The hash must be of the full card number, not a masked or tokenized representation. Maximum length is 128 characters.</td>
 			<td>No</td>
 		</tr>
 		<tr>
 			<td>Card Number Token</td>
 			<td>pcct</td>
-			<td>A masked or tokenized version of the credit card number</td>
+			<td>A masked or tokenized version of the credit card number. Maximum length is 64 characters.</td>
 			<td>No</td>
 		</tr>
 		<tr>
@@ -1773,13 +1773,13 @@ EXAMPLE SERVICE RESPONSE DATA
 			<td>phash</td>
 			<td>Acount unique identifier (hash) while obscuring actual number. This is used when IdentityMind does not natively support the payment type.
 			<br><br>
-			<b>Note</b>: The hash must be of the full account number, not a masked or tokenized representation.</td>
+			<b>Note</b>: The hash must be of the full account number, not a masked or tokenized representation. Maximum length is 128 characters.</td>
 			<td>No</td>
 		</tr>
 		<tr>
 			<td>Bitcoin Wallet ID</td>
 			<td>pbc</td>
-			<td>Hash of the unique identifier for a Bitcoin wallet</td>
+			<td>Hash of the unique identifier for a Bitcoin wallet. Maximum length is 128 characters.</td>
 			<td>No</td>
 		</tr>
 		<tr>
@@ -1787,13 +1787,13 @@ EXAMPLE SERVICE RESPONSE DATA
 			<td>pach</td>
 			<td>Hash of the unique identifier for an ACH account.
 			<br><br>
-			<b>Note</b>: The hash must be of the full card number, not a masked or tokenized representation.</td>
+			<b>Note</b>: The hash must be of the full card number, not a masked or tokenized representation. Maximum length is 128 characters.</td>
 			<td>No</td>
 		</tr>
 		<tr>
 			<td>Account Token</td>
 			<td>ptoken</td>
-			<td>A masked or tokenized version of the account token. This attribute is used in conjunction with "phash," "pbc," and "pach."</td>
+			<td>A masked or tokenized version of the account token. This attribute is used in conjunction with "phash," "pbc," and "pach." Maximum length is 64 characters.</td>
 			<td>No</td>
 		</tr>
 
@@ -1827,7 +1827,7 @@ EXAMPLE SERVICE RESPONSE DATA
 		<tr>
 			<td>Affiliate ID</td>
 			<td>aflid</td>
-			<td>The affiliate ID associated with this transaction. Encoded as a string</td>
+			<td>The affiliate ID associated with this transaction. Encoded as a string. Maximum length is 100 characters.</td>
 			<td>No</td>
 		</tr>
 		<tr>
@@ -1880,7 +1880,7 @@ EXAMPLE SERVICE RESPONSE DATA
 		<tr>
 			<td>Transfer Currency</td>
 			<td>ccy</td>
-			<td>If this transaction is a transfer, the currency of the "amt" field being transferred.</td>
+			<td>If this transaction is a transfer, the currency of the "amt" field being transferred. Maximum length is three characters.</td>
 			<td>No</td>
 		</tr>
 		<tr>
@@ -1952,31 +1952,31 @@ EXAMPLE SERVICE RESPONSE DATA
 		<tr>
 			<td>Street</td>
 			<td>ssn</td>
-			<td>The recipient street address (e.g. "123 Main St")</td>
+			<td>The recipient street address (e.g. "123 Main St"). Maximum length is 100 characters.</td>
 			<td>No</td>
 		</tr>
 		<tr>
 			<td>City</td>
 			<td>sc</td>
-			<td>The recipient city</td>
+			<td>The recipient city. Data truncates to 30 characters.</td>
 			<td>No</td>
 		</tr>
 		<tr>
 			<td>State</td>
 			<td>ss</td>
-			<td>The recipient state</td>
+			<td>The recipient state. Maximum length is 30 characters.</td>
 			<td>No</td>
 		</tr>
 		<tr>
 			<td>Zip</td>
 			<td>sz</td>
-			<td>The recipient zip code</td>
+			<td>The recipient zip code. Maximum length is 20 characters.</td>
 			<td>No</td>
 		</tr>
 		<tr>
 			<td>Country</td>
 			<td>sco</td>
-			<td>ISO 3166 country code of the recipient address of the transaction, encoded as a string. Default is "US"</td>
+			<td>ISO 3166 country code of the recipient address of the transaction, encoded as a string. Default is "US." Maximum length is three characters.</td>
 			<td>No</td>
 		</tr>
 	</table>
@@ -2073,7 +2073,7 @@ EXAMPLE SERVICE RESPONSE DATA
 		<tr>
 			<td>ID</td>
 			<td>tid</td>
-			<td>Unique application identifier. The system will assign one if not provided. It is recommended to pass one if needed to be correlated to client's backend system. The tid must be encoded as a string (e.g. "tid":"123455"). Maximum length is 40 characters. The tid is used to combine the multiple stages of an application.</td>
+			<td>Unique application identifier. The system will assign one if not provided. It is recommended to pass one if needed to be correlated to client's backend system. The tid must be encoded as a string (e.g. "tid":"123455"). The tid is used to combine the multiple stages of an application. Maximum length is 40 characters.</td>
 			<td>No</td>
 		</tr>
 
@@ -2189,7 +2189,7 @@ EXAMPLE SERVICE RESPONSE DATA
 		<tr>
 			<td>Token</td>
 			<td>pcct</td>
-			<td>Credit card number</td>
+			<td>Credit card number. Maximum length is 64 characters.</td>
 			<td>Yes, if pccn is provided</td>
 		</tr>
 		<tr>
@@ -2371,13 +2371,13 @@ EXAMPLE SERVICE RESPONSE DATA
 		<tr>
 			<td>Account Name</td>
 			<td>man</td>
-			<td>Free form unique identifier for this account at this merchant</td>
+			<td>Free form unique identifier for this account at this merchant. Maximum length is 60 characters.</td>
 			<td>Yes</td>
 		</tr>
 		<tr>
 			<td>User Email Address</td>
 			<td>tea</td>
-			<td>Email address on record. An email address that the merchant is comfortable using to validate access to the account.</td>
+			<td>Email address on record. An email address that the merchant is comfortable using to validate access to the account. Maximum length is 60 characters.</td>
 			<td>No</td>
 		</tr>
 		<tr>
@@ -2389,7 +2389,7 @@ EXAMPLE SERVICE RESPONSE DATA
 					<li>facebook</li>
 					<li>twitter</li>
 					<li>yahoo</li>
-				</ul>
+				Maximum length is 60 characters.</ul>
 			</td>
 			<td>No</td>
 		</tr>
@@ -2402,13 +2402,13 @@ EXAMPLE SERVICE RESPONSE DATA
 		<tr>
 			<td>Phone</td>
 			<td>phn</td>
-			<td>Customer's primary phone number</td>
+			<td>Customer's primary phone number. Maximum length is 60 characters.</td>
 			<td>No</td>
 		</tr>
 		<tr>
 			<td>Mobile Phone</td>
 			<td>pm</td>
-			<td>Cstomer's mobile phone number</td>
+			<td>Cstomer's mobile phone number. Maximum length is 60 characters.</td>
 			<td>No</td>
 		</tr>
 		<tr>
@@ -2490,13 +2490,13 @@ EXAMPLE SERVICE RESPONSE DATA
 			<td>pccn</td>
 			<td>Credit/debit card unique identifier (hash) while obscuring actual number. IdentityMind will supply procedure to generate hash.
 			<br><br>
-			<b>Note</b>: The hash must be of the full card number, not a masked or tokenized representation.</td>
+			<b>Note</b>: The hash must be of the full card number, not a masked or tokenized representation. Maximum length is 128 characters.</td>
 			<td>No</td>
 		</tr>
 		<tr>
 			<td>Card Number Token</td>
 			<td>pcct</td>
-			<td>A masked or tokenized version of the credit card number</td>
+			<td>A masked or tokenized version of the credit card number. Maximum length is 64 characters.</td>
 			<td>No</td>
 		</tr>
 		<tr>
@@ -2504,13 +2504,13 @@ EXAMPLE SERVICE RESPONSE DATA
 			<td>phash</td>
 			<td>Account unique identifier (hash) while obscuring actual number. This is used when IdentityMind does not natively support the payment type.
 			<br><br>
-			<b>Note</b>: The hash must be of the full account ID, not a masked or tokenized representation.</td>
+			<b>Note</b>: The hash must be of the full account ID, not a masked or tokenized representation. Maximum length is 128 characters.</td>
 			<td>No</td>
 		</tr>
 		<tr>
 			<td>Bitcoin Wallet ID</td>
 			<td>pbc</td>
-			<td>Hash of the unique identifier for a Bitcoin wallet</td>
+			<td>Hash of the unique identifier for a Bitcoin wallet. Maximum length is 128 characters.</td>
 			<td>No</td>
 		</tr>
 		<tr>
@@ -2518,7 +2518,7 @@ EXAMPLE SERVICE RESPONSE DATA
 			<td>pach</td>
 			<td>Hash of the unique identifier for an ACH account
 			<br><br>
-			<b>Note</b>: The hash must be of the full account number, not a masked or tokenized representation.</td>
+			<b>Note</b>: The hash must be of the full account number, not a masked or tokenized representation. Maximum length is 128 characters.</td>
 			<td>No</td>
 		</tr>
 		<tr>
@@ -2576,7 +2576,7 @@ EXAMPLE SERVICE RESPONSE DATA
 		<tr>
 			<td>Transaction Identifier</td>
 			<td>tid</td>
-			<td>Unique identifier for the application. eDNA assigns an internal ID if none is provided. The tid must be encoded as a string (e.g. "tid":"123455"). Maximum length is 40 characters. The tid is used to combine the multiple stages of an application.</td>
+			<td>Unique identifier for the application. eDNA assigns an internal ID if none is provided. The tid must be encoded as a string (e.g. "tid":"123455"). The tid is used to combine the multiple stages of an application. Maximum length is 40 characters.</td>
 			<td>No</td>
 		</tr>
 		<tr>
@@ -2588,7 +2588,7 @@ EXAMPLE SERVICE RESPONSE DATA
 		<tr>
 			<td>Affiliate ID</td>
 			<td>aflid</td>
-			<td>The affiliate ID associated with this transaction. Encoded as a string.</td>
+			<td>The affiliate ID associated with this transaction. Encoded as a string. Maximum length is 100 characters.</td>
 			<td>No</td>
 		</tr>
 		<tr>
@@ -2960,13 +2960,13 @@ EXAMPLE SERVICE RESPONSE DATA
 		<tr>
 			<td>Account Name</td>
 			<td>man</td>
-			<td>Free form unique identifier for this account at this merchant</td>
+			<td>Free form unique identifier for this account at this merchant. Maximum length is 60 characters.</td>
 			<td>No</td>
 		</tr>
 		<tr>
 			<td>User Email Address</td>
 			<td>tea</td>
-			<td>Email address on record. An email address that the merchant is comfortable using to validate access to the account.</td>
+			<td>Email address on record. An email address that the merchant is comfortable using to validate access to the account. Maximum length is 60 characters.</td>
 			<td>No</td>
 		</tr>
 		<tr>
@@ -2978,7 +2978,7 @@ EXAMPLE SERVICE RESPONSE DATA
 					<li>facebook</li>
 					<li>twitter</li>
 					<li>yahoo</li>
-				</ul>
+				Maximum length is 60 characters.</ul>
 			</td>
 			<td>No</td>
 		</tr>
