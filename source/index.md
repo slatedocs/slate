@@ -1995,7 +1995,7 @@ Each merchant can be associated with one or more owners.  The merchant will be e
 
 Each owner will be evaluated with the Consumer Application Web Service.  In the Consumer Application request, the merchantAid must be set to the value of the application ID of the Merchant Application.  This will link the merchant to all of its owners. 
 
-![](http://i.imgur.com/7sDnCcr.png)
+![](http://i.imgur.com/rO16Xdb.png)
 
 ## Arguments
 
