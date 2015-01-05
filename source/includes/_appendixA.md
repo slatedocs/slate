@@ -73,7 +73,7 @@
 			<td>True if the credit card used in the transaction is domestic.
 				<ul type="disc">
 					<li>True</li>
-					<li>False<li>
+					<li>False</li>
 				</ul></td>
 		</tr>
 		<tr>
