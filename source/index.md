@@ -106,13 +106,13 @@ EXAMPLE SERVICE RESPONSE DATA
 		<tr>
 			<td>First Name</td>
 			<td>bfn</td>
-			<td>The first name of the billing name.</td>
+			<td>The first name of the billing name. Maximum length is 30 characters.</td>
 			<td>No</td>
 		</tr>
 		<tr>
 			<td>Last Name</td>
 			<td>bln</td>
-			<td>The last name of the billing name.</td>
+			<td>The last name of the billing name. Maximum length is 50 characters.</td>
 			<td>No</td>
 		</tr>
 
@@ -129,31 +129,31 @@ EXAMPLE SERVICE RESPONSE DATA
 		<tr>
 			<td>Street</td>
 			<td>bsn</td>
-			<td>The billing street address, (e.g. "123 Main Street")</td>
+			<td>The billing street address, (e.g. "123 Main Street"). Maximum length is 100 characters.</td>
 			<td>No</td>
 		</tr>
 		<tr>
 			<td>City</td>
 			<td>bc</td>
-			<td>The billing city</td>
+			<td>The billing city. Data truncates to 30 characters.</td>
 			<td>No</td>
 		</tr>
 		<tr>
 			<td>State</td>
 			<td>bs</td>
-			<td>The billing state</td>
+			<td>The billing state. Maximum length is 30 characters.</td>
 			<td>No</td>
 		</tr>
 		<tr>
 			<td>Zip</td>
 			<td>bz</td>
-			<td>The billing zip code</td>
+			<td>The billing zip code. Maximum length is 20 characters.</td>
 			<td>No</td>
 		</tr>
 		<tr>
 			<td>Country</td>
 			<td>bco</td>
-			<td>ISO 3166 country code of the billing address of the transaction, encoded as a string. Default is "US"</td>
+			<td>ISO 3166 country code of the billing address of the transaction, encoded as a string. Default is "US." Maximum length is three characters.</td>
 			<td>No</td>
 		</tr>
 
@@ -170,13 +170,13 @@ EXAMPLE SERVICE RESPONSE DATA
 		<tr>
 			<td>First Name</td>
 			<td>sfn</td>
-			<td>The first name of the shipping name</td>
+			<td>The first name of the shipping name. Maximum length is 30 characters.</td>
 			<td>No</td>
 		</tr>
 		<tr>
 			<td>Last Name</td>
 			<td>sln</td>
-			<td>The last name of the shipping name</td>
+			<td>The last name of the shipping name. Maximum length is 50 characters.</td>
 			<td>No</td>
 		</tr>
 
@@ -193,37 +193,37 @@ EXAMPLE SERVICE RESPONSE DATA
 		<tr>
 			<td>Company</td>
 			<td>scomp</td>
-			<td>The name of the company that is being shipped to, if any (e.g. "IdentityMind")</td>
+			<td>The name of the company that is being shipped to, if any (e.g. "IdentityMind"). </td>
 			<td>No</td>
 		</tr>
 		<tr>
 			<td>Street</td>
 			<td>ssn</td>
-			<td>The shipping street address (e.g. "123 Main Street")</td>
+			<td>The shipping street address (e.g. "123 Main Street").</td>
 			<td>No</td>
 		</tr>
 		<tr>
 			<td>City</td>
 			<td>sc</td>
-			<td>The shipping city</td>
+			<td>The shipping city. Data truncates to 30 characters.</td>
 			<td>No</td>
 		</tr>
 		<tr>
 			<td>State</td>
 			<td>ss</td>
-			<td>The shipping state</td>
+			<td>The shipping state. Maximum length is 30 characters.</td>
 			<td>No</td>
 		</tr>
 		<tr>
 			<td>Zip</td>
 			<td>sz</td>
-			<td>The shipping zip code</td>
+			<td>The shipping zip code. Maximum length is 20 characters.</td>
 			<td>No</td>
 		</tr>
 		<tr>
 			<td>Country</td>
 			<td>sco</td>
-			<td>ISO 3166 country code of the shipping address of the transaction, encoded as a string. Default is "US"</td>
+			<td>ISO 3166 country code of the shipping address of the transaction, encoded as a string. Default is "US." Maximum length is three characters.</td>
 			<td>No</td>
 		</tr>
 
@@ -240,7 +240,7 @@ EXAMPLE SERVICE RESPONSE DATA
 		<tr>
 			<td>Received IP Address</td>
 			<td>ip</td>
-			<td>The IP address of the consumer as seen by the merchant</td>
+			<td>The IP address of the consumer as seen by the merchant. Maximum length is 40 characters.</td>
 			<td>No</td>
 		</tr>
 		<tr>
@@ -594,7 +594,7 @@ EXAMPLE SERVICE RESPONSE DATA
 		<tr>
 			<td>Transaction ID</td>
 			<td>tid</td>
-			<td>Merchant unique identifier for the transaction. eDNA assigns an internal ID if none provided. The transaction ID must be encoded as a string (e.g. "tid":"123455"). The maximum length is 40 characters.</td>
+			<td>Merchant unique identifier for the transaction. eDNA assigns an internal ID if none provided. The transaction ID must be encoded as a string (e.g. "tid":"123455"). Maximum length is 40 characters.</td>
 			<td>No</td>
 		</tr>
 		<tr>
@@ -895,7 +895,7 @@ or
 		<tr>
 			<td>Merchant Transaction ID for the Original Auth Transaction</td>
 			<td>tid</td>
-			<td>Merchant unique identifier for the original authorization transaction. The transaction ID must be encoded as a string (e.g. "tid":"123455"). The maximum length is 40 characters.</td>
+			<td>Merchant unique identifier for the original authorization transaction. The transaction ID must be encoded as a string (e.g. "tid":"123455"). Maximum length is 40 characters.</td>
 			<td>No</td>
 		</tr>
 
@@ -1124,7 +1124,7 @@ or
 		<tr>
 			<td>Merchant Transaction ID for the Original Auth Transaction</td>
 			<td>tid</td>
-			<td>Merchant unique identifier for the original authorization transaction. The transaction ID must be encoded as a string (e.g. "tid":"123455"). The maximum length is 40 characters.
+			<td>Merchant unique identifier for the original authorization transaction. The transaction ID must be encoded as a string (e.g. "tid":"123455"). Maximum length is 40 characters.
 			</td>
 			<td>No</td>
 		</tr>
@@ -1665,43 +1665,43 @@ EXAMPLE SERVICE RESPONSE DATA
 		<tr>
 			<td>Billing First Name</td>
 			<td>bfn</td>
-			<td>First name associated with the payment/funding account</td>
+			<td>First name associated with the payment/funding account. Maximum length is 30 characters.</td>
 			<td>No</td>
 		</tr>
 		<tr>
 			<td>Billing Last Name</td>
 			<td>bln</td>
-			<td>Last name associated with the payment/funding account</td>
+			<td>Last name associated with the payment/funding account. Maximum length is 50 characters.</td>
 			<td>No</td>
 		</tr>
 		<tr>
 			<td>Billing Street Address</td>
 			<td>bsn</td>
-			<td>Street address associated with the payment/funding account</td>
+			<td>Street address associated with the payment/funding account. Maximum length is 100 characters.</td>
 			<td>No</td>
 		</tr>
 		<tr>
 			<td>Billing City</td>
 			<td>bc</td>
-			<td>City associated with the payment/funding account</td>
+			<td>City associated with the payment/funding account. Data truncates to 30 characters.</td>
 			<td>No</td>
 		</tr>
 		<tr>
 			<td>Billing State</td>
 			<td>bs</td>
-			<td>State associated with the payment/funding account</td>
+			<td>State associated with the payment/funding account Maximum length is 30 characters.</td>
 			<td>No</td>
 		</tr>
 		<tr>
 			<td>Billing Zip / Postal Code</td>
 			<td>bz</td>
-			<td>Zip code associated with the payment/funding account</td>
+			<td>Zip code associated with the payment/funding account. Maximum length is 20 characters.</td>
 			<td>No</td>
 		</tr>
 		<tr>
 			<td>Billing Country</td>
 			<td>bco</td>
-			<td>Country associated with the payment/funding account</td>
+			<td>Country associated with the payment/funding account. Maximum length is three characters.</td>
 			<td>No</td>
 		</tr>
 
@@ -1821,7 +1821,7 @@ EXAMPLE SERVICE RESPONSE DATA
 		<tr>
 			<td>Transaction Identifier</td>
 			<td>tid</td>
-			<td>Merchant unique identifier for the transaction. eDNA assigns an internal ID if none provided. The transaction ID must be encoded as a string (e.g. "tid":"123455"). The maximum length is 40 characters.</td>
+			<td>Merchant unique identifier for the transaction. eDNA assigns an internal ID if none provided. The transaction ID must be encoded as a string (e.g. "tid":"123455"). Maximum length is 40 characters.</td>
 			<td>No</td>
 		</tr>
 		<tr>
@@ -1940,13 +1940,13 @@ EXAMPLE SERVICE RESPONSE DATA
 		<tr>
 			<td>First Name</td>
 			<td>sfn</td>
-			<td>The first name of the recipient</td>
+			<td>The first name of the recipient. Maximum length is 30 characters.</td>
 			<td>No</td>
 		</tr>
 		<tr>
 			<td>Last Name</td>
 			<td>sln</td>
-			<td>THe last name of the recipient</td>
+			<td>THe last name of the recipient. Maximum length is 50 characters.</td>
 			<td>No</td>
 		</tr>
 		<tr>
@@ -2073,7 +2073,7 @@ EXAMPLE SERVICE RESPONSE DATA
 		<tr>
 			<td>ID</td>
 			<td>tid</td>
-			<td>Unique application identifier. The system will assign one if not provided. It is recommended to pass one if needed to be correlated to client's backend system. The tid must be encoded as a string (e.g. "tid":"123455"). The maximum length is 40 characters. The tid is used to combine the multiple stages of an application.</td>
+			<td>Unique application identifier. The system will assign one if not provided. It is recommended to pass one if needed to be correlated to client's backend system. The tid must be encoded as a string (e.g. "tid":"123455"). Maximum length is 40 characters. The tid is used to combine the multiple stages of an application.</td>
 			<td>No</td>
 		</tr>
 
@@ -2359,13 +2359,13 @@ EXAMPLE SERVICE RESPONSE DATA
 		<tr>
 			<td>First Name</td>
 			<td>bfn</td>
-			<td>The first name of the individual opening the account</td>
+			<td>The first name of the individual opening the account. Maximum length is 30 characters.</td>
 			<td>No</td>
 		</tr>
 		<tr>
 			<td>Last Name</td>
 			<td>bln</td>
-			<td>The last name of the individual opening the account</td>
+			<td>The last name of the individual opening the account. Maximum length is 50 characters.</td>
 			<td>No</td>
 		</tr>
 		<tr>
@@ -2524,31 +2524,31 @@ EXAMPLE SERVICE RESPONSE DATA
 		<tr>
 			<td>Billing Street Address</td>
 			<td>bsn</td>
-			<td>Payment street address</td>
+			<td>Payment street address. Maximum length is 100 characters.</td>
 			<td>No</td>
 		</tr>
 		<tr>
 			<td>Billing City</td>
 			<td>bc</td>
-			<td>Payment city</td>
+			<td>Payment city. Data truncates to 30 characters.</td>
 			<td>No</td>
 		</tr>
 		<tr>
 			<td>Billing State</td>
 			<td>bs</td>
-			<td>Payment state</td>
+			<td>Payment state Maximum length is 30 characters.</td>
 			<td>No</td>
 		</tr>
 		<tr>
 			<td>Billing Zip/Postal Code</td>
 			<td>bz</td>
-			<td>Payment zip code</td>
+			<td>Payment zip code. Maximum length is 20 characters.</td>
 			<td>No</td>
 		</tr>
 		<tr>
 			<td>Billing Country</td>
 			<td>bco</td>
-			<td>Payment country</td>
+			<td>Payment country. Maximum length is three characters.</td>
 			<td>No</td>
 		</tr>
 
@@ -2576,7 +2576,7 @@ EXAMPLE SERVICE RESPONSE DATA
 		<tr>
 			<td>Transaction Identifier</td>
 			<td>tid</td>
-			<td>Unique identifier for the application. eDNA assigns an internal ID if none is provided. The tid must be encoded as a string (e.g. "tid":"123455"). The maximum length is 40 characters. The tid is used to combine the multiple stages of an application.</td>
+			<td>Unique identifier for the application. eDNA assigns an internal ID if none is provided. The tid must be encoded as a string (e.g. "tid":"123455"). Maximum length is 40 characters. The tid is used to combine the multiple stages of an application.</td>
 			<td>No</td>
 		</tr>
 		<tr>
@@ -3058,7 +3058,7 @@ EXAMPLE SERVICE RESPONSE DATA
 		<tr>
 			<td>Login Identifier</td>
 			<td>tid</td>
-			<td>Merchant unique identifier for the transaction. eDNA assigns an internal ID if none is provided. The transaction ID must be encoded as a string (e.g. "tid":"123455"). The maximum length is 40 characters.</td>
+			<td>Merchant unique identifier for the transaction. eDNA assigns an internal ID if none is provided. The transaction ID must be encoded as a string (e.g. "tid":"123455"). Maximum length is 40 characters.</td>
 			<td>No</td>
 		</tr>
 	</table>
