@@ -39,9 +39,11 @@ The evidence is the payment transaction data to be evaluated. It is supplied in 
 
 ## Arguments
 
-> [This URL](https://edna.identitymind.com/im/transaction) can be used for requesting payment transaction anti-fraud evaluation.
+> The following URL can be used for requesting payment transaction anti-fraud evaluation:
 
 ```code
+https://edna.identitymind.com/im/transaction
+
 EXAMPLE SERVICE REQUEST
 
 { 
@@ -767,9 +769,11 @@ In the case of a chargeback on a transaction that eDNA has not previously proces
 
 ## Arguments
 
-> [This URL](https://edna.identitymind.com/im/jax/chargeback/) can be used for requesting chargeback notification evaluation.
+> The following can be used for requesting chargeback notification evaluation.
 
 ```code
+https://edna.identitymind.com/im/jax/chargeback/
+
 EXAMPLE SERVICE REQUEST
 
 {
@@ -822,7 +826,7 @@ or
 		<tr>
 			<td>Error Code</td>
 			<td>error_code</td>
-			<td>This should be used to pass the reason code for the chargeback. For a full set of reason codes as defined by the card brands, click [here](http://www.managechargebacks.com/reasoncodes.html).</td>
+			<td>This should be used to pass the reason code for the chargeback. For a full set of reason codes as defined by the card brands, click [here](https://www.merchantconnect.com/CWRWeb/pdf/chargeback_reason_codes.pdf).</td>
 			<td>Yes</td>
 		</tr>
 		<tr>
@@ -1052,9 +1056,11 @@ In the case of credit or blind credit on a transaction that eDNA has not previou
 
 ## Arguments
 
-> [This URL](https://edna.identitymind.com/im/jax/credit/) can be used for credit notification evaluation.
+> The following URL can be used for credit notification evaluation.
 
 ```code
+https://edna.identitymind.com/im/jax/credit/
+
 EXAMPLE SERVICE REQUEST
 
 {
