@@ -78,7 +78,7 @@ html, body {
   width: $nav-width;
   background-color: $nav-bg;
   font-size: 13px;
-  font-weight: bold;
+  font-weight: normal;
 
   // language selector for mobile devices
   .lang-selector {
@@ -247,7 +247,7 @@ html, body {
   z-index: 100;
   color: #000;
   text-decoration: none;
-  font-weight: bold;
+  font-weight: normal;
   opacity: 0.7;
   line-height: 16px;
   img {
@@ -299,7 +299,7 @@ html, body {
 .lang-selector {
   background-color: $lang-select-bg;
   width: 100%;
-  font-weight: bold;
+  font-weight: normal;
   a {
     display: block;
     float:left;
@@ -460,7 +460,7 @@ html, body {
   }
 
   dt {
-    font-weight: bold;
+    font-weight: normal;
   }
 
   dd {
