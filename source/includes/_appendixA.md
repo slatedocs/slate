@@ -677,7 +677,7 @@ Thus, the code 1042 indicates that the rule “TRANSACTION REJECTED BY BANK” t
 
 **Note**: Rules are updated regularly. The following table may not represent the most current set. Please refer to the UI Rule Editor view (in the web user interface) for up-to-date rules. The code for each rule is accessible through the UI.
 
-CODE | MEANING
+Code | Meaning
 -----|--------
 1000|	NO FRAUD RULE TRIGGERED, USER IS TRUSTED
 1001|	NO FRAUD RULE TRIGGERED, USER IS RECOGNIZED
@@ -817,7 +817,7 @@ This section documents the result codes related to account validation policy pro
 
 **Note**: Rules are updated regularly. The following table may not represent the most current set. Please refer to the UI Rule Editor section (in the web user interface) for up-to-date rules. The code for each rule is accessible through the UI.
 
-CODE |	MEANING
+Code |	Meaning
 -----|-------
 10000|	NO FRAUD RULE TRIGGERED
 10010|	USER FAILED VALIDATION
@@ -878,7 +878,7 @@ This section documents the result codes related to Automated Review Policy proce
 
 **Note**: Rules are updated regularly. The following table may not represent the most current set. Please refer to the UI Automated Review Policy section (in the web user interface) for up-to-date rules. The code for each rule is accessible through the UI.
 
-CODE |	MEANING
+Code |	Meaning
 -----|--------
 20005|	ACCEPT TRANSACTION FROM A USER THAT HAS A GOOD HISTORY
 20006|	ACCEPT PREPAID CARD
@@ -892,7 +892,7 @@ CODE |	MEANING
 
 This section documents the security tests returned for Consumer or Merchant Applications.
 
-TEST ID | SECURITY TEST NAME
+Test ID | Security Test Name
 -------|-----------------	
 19:1|	Experian
 19:2|	Experian ProveID: Name and Address Match
