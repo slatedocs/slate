@@ -39,11 +39,11 @@ The evidence is the payment transaction data to be evaluated. It is supplied in 
 
 ## Arguments
 
-> The following URL can be used for requesting payment transaction anti-fraud evaluation:
+The following URL can be used for requesting payment transaction anti-fraud evaluation:
+
+[https://edna.identitymind.com/im/transaction](https://edna.identitymind.com/im/transaction)
 
 ```code
-https://edna.identitymind.com/im/transaction
-
 EXAMPLE SERVICE REQUEST
 
 { 
@@ -687,11 +687,11 @@ In the case of a chargeback on a transaction that eDNA has not previously proces
 
 ## Arguments
 
-> The following URL can be used for requesting chargeback notification evaluation:
+The following URL can be used for requesting chargeback notification evaluation:
+
+[https://edna.identitymind.com/im/jax/chargeback/](https://edna.identitymind.com/im/jax/chargeback/)
 
 ```code
-https://edna.identitymind.com/im/jax/chargeback/
-
 EXAMPLE SERVICE REQUEST
 
 {
@@ -721,42 +721,36 @@ or
 
 	<table>
 		<tr>
-			<th colspan=4>Chargeback</th>
+			<th colspan=3>Chargeback</th>
 		</tr>
 		<tr>
-			<th>Facet</th>
 			<th>Key</th>
 			<th>Description</th>
 			<th>Required</th>
 		</tr>
 		<tr>
-			<td>Amount</td>
 			<td>amt</td>
 			<td>Amount of the chargeback</td>
 			<td>Yes</td>
 		</tr>
 		<tr>
-			<td>Currency</td>
 			<td>ccy</td>
 			<td>The ISO 4217 currency code of the transaction encoded as a string. Default is "USD." Maximum length is three characters.</td>
 			<td>No</td>
 		</tr>
 		<tr>
-			<td>Error Code</td>
 			<td>error_code</td>
 			<td>This should be used to pass the reason code for the chargeback. For a full set of reason codes as defined by the card brands, click [here](https://www.merchantconnect.com/CWRWeb/pdf/chargeback_reason_codes.pdf).</td>
 			<td>Yes</td>
 		</tr>
 		<tr>
-			<td>Reason</td>
 			<td>reason</td>
 			<td>Text describing the reason for refund/chargeback</td>
 			<td>No</td>
 		</tr>
 		<tr>
-			<td>Chargeback Type</td>
 			<td>cbtype</td>
-			<td>The type of chargeback:
+			<td>The chargeback type:
 				<ul type="disc">
 					<li>DEBIT</li>
 					<li>CREDIT</li>
@@ -768,7 +762,6 @@ or
 			<td>No</td>
 		</tr>
 		<tr>
-			<td>Chargeback Date</td>
 			<td>cbdate</td>
 			<td>Date of the chargeback action. For example, if the cbtype is "CREDIT," then the date field should be the date that the "CREDIT" happens. The format of the value for this field is either an ISO8601 encoded string or a UNIX timestamp.
 				<ul type="disc">
@@ -780,9 +773,8 @@ or
 			<td>Yes</td>
 		</tr>
 		<tr>
-			<td>Original Transaction Date</td>
 			<td>authdate</td>
-			<td>Date of the authorization transaction. The format of the value for this field is either an ISO8601 encoded string or a UNIX timestamp.
+			<td>Date of the original authorization transaction. The format of the value for this field is either an ISO8601 encoded string or a UNIX timestamp.
 				<ul type="disc">
 					<li>“authdate”: “2011-01-01T13:12:16+0000”</li>
 					<li>“authdate”:1293887536</li>
@@ -792,7 +784,6 @@ or
 			<td>No</td>
 		</tr>
 		<tr>
-			<td>Gateway Name</td>
 			<td>gateway</td>
 			<td>The name of the payment gateway used. This information is used to interpret the result/error codes. Currently, we support:
 				<ul type="disc">
@@ -815,7 +806,6 @@ or
 			<td>Yes</td>
 		</tr>
 		<tr>
-			<td>Merchant Transaction ID for the Original Auth Transaction</td>
 			<td>tid</td>
 			<td>Merchant unique identifier for the original authorization transaction. The transaction ID must be encoded as a string (e.g. "tid":"123455"). Maximum length is 40 characters.</td>
 			<td>No</td>
@@ -823,16 +813,14 @@ or
 
 
 		<tr>
-			<th colspan=4>Sub Merchant</th>
+			<th colspan=3>Sub Merchant</th>
 		</tr>
 		<tr>
-			<th>Facet</th>
 			<th>Key</th>
 			<th>Description</th>
 			<th>Required</th>
 		</tr>
 		<tr>
-			<td>Sub Merchant ID</td>
 			<td>smid</td>
 			<td>A unique identifier for the merchant for whom this transaction is being processed.
 			<br><br>
@@ -842,16 +830,14 @@ or
 
 
 		<tr>
-			<th colspan=4>Credit Card</th>
+			<th colspan=3>Credit Card</th>
 		</tr>
 		<tr>
-			<th>Facet</th>
 			<th>Key</th>
 			<th>Description</th>
 			<th>Required</th>
 		</tr>
 		<tr>
-			<td>Number Hash</td>
 			<td>pccn</td>
 			<td>Credit card unique identifier (hash) while obscuring actual number. IdentityMind will supply procedure to generate hash.
 			<br><br>
@@ -859,21 +845,18 @@ or
 			<td>Yes, if the provided tid does not refer to a transaction previously processed by eDNA.</td>
 		</tr>
 		<tr>
-			<td>Number Token</td>
 			<td>pcct</td>
 			<td>A masked or tokenized version of the credit card number. IdentityMind will supply procedure to generate token. Maximum length is 64 characters.</td>
 			<td>Yes, if the provided tid does not refer to a transaction previously processed by eDNA.</td>
 		</tr>
 		<tr>
-			<td>Issuer Country</td>
 			<td>ric</td>
 			<td>The issuer country of the card used in the transaction. The country code is the two letter abbreviation as defined in ISO-3166-1. Maximum length is two characters.</td>
 			<td>No</td>
 		</tr>
 		<tr>
-			<td>Card Type</td>
 			<td>pcty</td>
-			<td>Type of card:
+			<td>The card type. Values are:
 				<ul type="disc">
 					<li>CREDIT</li>
 					<li>DEBIT</li>
@@ -884,7 +867,6 @@ or
 			<td>No</td>
 		</tr>
 		<tr>
-			<td>Number Hash</td>
 			<td>pccn2</td>
 			<td>Hash of the credit card to which the chargeback amount is to be credited if it is different from the credit card where the chargeback was reported.
 			<br><br>
@@ -892,19 +874,16 @@ or
 			<td>No</td>
 		</tr>
 		<tr>
-			<td>Number Token</td>
 			<td>pcct2</td>
 			<td>Token of the credit card to which the chargeback amount is to be credited if it is different from the credit card where the chargeback was reported. Maximum length is 64 characters.</td>
 			<td>No</td>
 		</tr>
 		<tr>
-			<td>Issuer Country</td>
 			<td>ric2</td>
 			<td>The issuer country of the credit card to which the chargeback amount is to be credited if it is different from the credit card where the chargeback was reported. The country code is the two letter abbreviation as defined in ISO-3166-1. Maximum length is two characters.</td>
 			<td>No</td>
 		</tr>
 		<tr>
-			<td>Card Type</td>
 			<td>pcty2</td>
 			<td>The type of the credit card to which the chargeback amount is to be credited if it is different from the credit card where the chargeback was reported.
 				<ul type="disc">
@@ -919,22 +898,19 @@ or
 
 
 		<tr>
-			<th colspan=4>PayPal</th>
+			<th colspan=3>PayPal</th>
 		</tr>
 		<tr>
-			<th>Facet</th>
 			<th>Key</th>
 			<th>Description</th>
 			<th>Required</th>
 		</tr>
 		<tr>
-			<td>Account ID</td>
 			<td>pppi</td>
 			<td>PayPal Payer ID. It corresponds to PayPal's "PAYERID" field from PayPal Express Checkout.</td>
 			<td>Yes, if the provided tid does not refer to a transaction previously processed by eDNA.</td>
 		</tr>
 		<tr>
-			<td>Email</td>
 			<td>pppe</td>
 			<td>Email address associated to the PayPal account. It corresponds to PayPal's "EMAIL" field from PayPal Express Checkout.</td>
 			<td>No</td>
@@ -942,22 +918,19 @@ or
 
 
 		<tr>
-			<th colspan=4>Google Checkout</th>
+			<th colspan=3>Google Checkout</th>
 		</tr>
 		<tr>
-			<th>Facet</th>
 			<th>Key</th>
 			<th>Description</th>
 			<th>Required</th>
 		</tr>
 		<tr>
-			<td>Account ID</td>
 			<td>gcbi</td>
 			<td>Google Checkout Buyer ID. It corresponds to the "buyer-id" element.</td>
 			<td>Yes, if the provided tid does not refer to a transaction previously processed by eDNA.</td>
 		</tr>
 		<tr>
-			<td>Email</td>
 			<td>gcem</td>
 			<td>Email address associated to the Google Checkout account. It corresponds to the "email" element.</td>
 			<td>No</td>
@@ -974,11 +947,11 @@ In the case of credit or blind credit on a transaction that eDNA has not previou
 
 ## Arguments
 
-> The following URL can be used for credit notification evaluation:
+The following URL can be used for credit notification evaluation:
+
+[https://edna.identitymind.com/im/jax/credit/](https://edna.identitymind.com/im/jax/credit/)
 
 ```code
-https://edna.identitymind.com/im/jax/credit/
-
 EXAMPLE SERVICE REQUEST
 
 {
@@ -1007,34 +980,29 @@ or
 
 	<table>
 		<tr>
-			<th colspan=4>Credit</th>
+			<th colspan=3>Credit</th>
 		</tr>
 		<tr>
-			<th>Facet</th>
 			<th>Key</th>
 			<th>Description</th>
 			<th>Required</th>
 		</tr>
 		<tr>
-			<td>Amount</td>
 			<td>amt</td>
 			<td>Amount of the credit</td>
 			<td>Yes</td>
 		</tr>
 		<tr>
-			<td>Currency</td>
 			<td>ccy</td>
 			<td>The ISO 4217 currency code of the transaction encoded as a string. Default is "USD." Maximum length is three characters.</td>
 			<td>No</td>
 		</tr>
 		<tr>
-			<td>Reason</td>
 			<td>reason</td>
 			<td>Text describing the reason for the credit</td>
 			<td>No</td>
 		</tr>
 		<tr>
-			<td>Credit Date</td>
 			<td>crdate</td>
 			<td>Date of the credit action. The format of the value for this field is either an ISO8601 encoded string or a UNIX timestamp.
 				<ul type="disc">
@@ -1046,7 +1014,6 @@ or
 			<td>Yes</td>
 		</tr>
 		<tr>
-			<td>Merchant Transaction ID for the Original Auth Transaction</td>
 			<td>tid</td>
 			<td>Merchant unique identifier for the original authorization transaction. The transaction ID must be encoded as a string (e.g. "tid":"123455"). Maximum length is 40 characters.
 			</td>
@@ -1055,16 +1022,14 @@ or
 
 
 		<tr>
-			<th colspan=4>Sub Merchant</th>
+			<th colspan=3>Sub Merchant</th>
 		</tr>
 		<tr>
-			<th>Facet</th>
 			<th>Key</th>
 			<th>Description</th>
 			<th>Required</th>
 		</tr>
 		<tr>
-			<td>Sub Merchant ID</td>
 			<td>smid</td>
 			<td>A unique identifier for the merchant for whom this transaction is being processed. Maximum length is 255 characters.</td>
 			<td>No</td>
@@ -1072,16 +1037,14 @@ or
 
 
 		<tr>
-			<th colspan=4>Credit Card</th>
+			<th colspan=3>Credit Card</th>
 		</tr>
 		<tr>
-			<th>Facet</th>
 			<th>Key</th>
 			<th>Description</th>
 			<th>Required</th>
 		</tr>
 		<tr>
-			<td>Number Hash</td>
 			<td>pccn</td>
 			<td>Credit card unique identifier (hash) while obscuring actual number. IdentityMind will supply procedure to generate the hash.
 			<br><br>
@@ -1090,21 +1053,18 @@ or
 			<td>Yes</td>
 		</tr>
 		<tr>
-			<td>Number Token</td>
 			<td>pcct</td>
 			<td>A masked or tokenized version of the credit card number. IdentityMind will supply procedure to generate the token. Maximum length is 64 characters.</td>
 			<td>No</td>
 		</tr>
 		<tr>
-			<td>Issuer Country</td>
 			<td>ric</td>
 			<td>The issuer country of the card used in the transaction. The country code is the two letter abbreviation as defined in ISO-3166-1. Maximum length is two characters.</td>
 			<td>No</td>
 		</tr>
 		<tr>
-			<td>Card Type</td>
 			<td>pcty</td>
-			<td>Type of card:
+			<td>The card type. Values are:
 				<ul type="disc">
 					<li>CREDIT</li>
 					<li>DEBIT</li>
@@ -1117,22 +1077,19 @@ or
 
 
 		<tr>
-			<th colspan=4>PayPal</th>
+			<th colspan=3>PayPal</th>
 		</tr>
 		<tr>
-			<th>Facet</th>
 			<th>Key</th>
 			<th>Description</th>
 			<th>Required</th>
 		</tr>
 		<tr>
-			<td>Account ID</td>
 			<td>pppi</td>
 			<td>PayPal Payer ID. It corresponds to PayPal's "PAYERID" field from PayPal Express Checkout.</td>
 			<td>Yes</td>
 		</tr>
 		<tr>
-			<td>Email</td>
 			<td>pppe</td>
 			<td>Email address associated to the PayPal account. It corresponds to PayPal's "EMAIL" field from the PayPal Express Checkout</td>
 			<td>No</td>
@@ -1140,22 +1097,19 @@ or
 
 
 		<tr>
-			<th colspan=4>Google Checkout</th>
+			<th colspan=3>Google Checkout</th>
 		</tr>
 		<tr>
-			<th>Facet</th>
 			<th>Key</th>
 			<th>Description</th>
 			<th>Required</th>
 		</tr>
 		<tr>
-			<td>Account ID</td>
 			<td>gcbi</td>
 			<td>Google Checkout Buyer ID. It corresponds to the "buyer-id" element.</td>
 			<td>Yes</td>
 		</tr>
 		<tr>
-			<td>Email</td>
 			<td>gcem</td>
 			<td>Email address associated to the Google Checkout account. It corresponds to the "email" element.</td>
 			<td>No</td>
@@ -1163,16 +1117,14 @@ or
 
 
 		<tr>
-			<th colspan=4>Generic Financial Account</th>
+			<th colspan=3>Generic Financial Account</th>
 		</tr>
 		<tr>
-			<th>Facet</th>
 			<th>Key</th>
 			<th>Description</th>
 			<th>Required</th>
 		</tr>
 		<tr>
-			<td>Account ID Hash</td>
 			<td>phash</td>
 			<td>Account unique identifier (hash) while obscuring actual number. This is used when IdentityMind does not natively support the payment type.
 			<br><br>
@@ -1180,7 +1132,6 @@ or
 			<td>Yes</td>
 		</tr>
 		<tr>
-			<td>Account Token</td>
 			<td>ptoken</td>
 			<td>A masked or tokenized version of the account token. Maximum length is 64 characters.</td>
 			<td>No</td>
@@ -1196,17 +1147,15 @@ Notifies that a refund occurred on a transaction. All arguments are optional.
 
 ## Arguments
 
-> The transaction ID is part of the URL. The "refund-ok" URL should be used when the merchant believes that the refund is legitimate. The "refund-fraud" URL should be used when the merchant believes there is fraud, but a refund is being made to avoid a later chargeback.
+The transaction ID is part of the URL. The "refund-ok" URL should be used when the merchant believes that the refund is legitimate. The "refund-fraud" URL should be used when the merchant believes there is fraud, but a refund is being made to avoid a later chargeback.
 
-```code
-https://edna.identitymind.com/im/transaction/<transaction_ID>/refund-ok
+[https://edna.identitymind.com/im/transaction/<transaction_ID>/refund-ok](https://edna.identitymind.com/im/transaction/<transaction_ID>/refund-ok)
 
-https://edna.identitymind.com/im/transaction/<transaction_ID>/refund-fraud
+[https://edna.identitymind.com/im/transaction/<transaction_ID>/refund-fraud](https://edna.identitymind.com/im/transaction/<transaction_ID>/refund-fraud)
 
-https://edna.identitymind.com/im/transaction/<transaction_ID>/refund-partial-ok
+[https://edna.identitymind.com/im/transaction/<transaction_ID>/refund-partial-ok](https://edna.identitymind.com/im/transaction/<transaction_ID>/refund-partial-ok)
 
-https://edna.identitymind.com/im/transaction/<transaction_ID>/refund-partial-fraud
-```
+[https://edna.identitymind.com/im/transaction/<transaction_ID>/refund-partial-fraud](https://edna.identitymind.com/im/transaction/<transaction_ID>/refund-partial-fraud)
  
 ```code
 EXAMPLE SERVICE REQUEST
@@ -1233,43 +1182,36 @@ EXAMPLE SERVICE RESPONSE DATA
 
 	<table>		
 		<tr>
-			<th>Facet</th>
 			<th>Key</th>
 			<th>Description</th>
 			<th>Required</th>
 		</tr>
 		<tr>
-			<td>Amount</td>
 			<td>amt</td>
 			<td>Amount of the refund/chargeback</td>
 			<td>No</td>
 		</tr>
 		<tr>
-			<td>Authorization Response</td>
 			<td>auth_response</td>
 			<td>Response code from the gateway</td>
 			<td>No</td>
 		</tr>
 		<tr>
-			<td>Authorization Response Description</td>
 			<td>auth_response_text</td>
 			<td>Text describing response code</td>
 			<td>No</td>
 		</tr>
 		<tr>
-			<td>Error Code</td>
 			<td>error_code</td>
 			<td>Error code from the gateway, if any</td>
 			<td>No</td>
 		</tr>
 		<tr>
-			<td>Reason</td>
 			<td>reason</td>
 			<td>Text describing reason for refund/chargeback</td>
 			<td>No</td>
 		</tr>
 		<tr>
-			<td>Bank Status</td>
 			<td>bank_status</td>
 			<td>The status of the transaction at the gateway/bank:
 				<ul type="disc">
@@ -1286,7 +1228,6 @@ EXAMPLE SERVICE RESPONSE DATA
 			<td>No</td>
 		</tr>
 		<tr>
-			<td>Transaction ID</td>
 			<td>tid</td>
 			<td>Transaction ID. Maximum length is 40 characters.</td>
 			<td>No</td>
