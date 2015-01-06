@@ -73,9 +73,7 @@ EXAMPLE SERVICE REQUEST
 }
 ```
 
-> The response is a JSON encoding of the IdentityMind Service result. The most important part of the response is whether the transaction is to be accepted, denied, or scheduled for manual review, which is dependent on the configured fraud policy. 
->
-> The response includes detailed result codes and the transaction unique identifier. The keys are fully defined in *Appendix A: Result Keys and Codes*.
+> The response is a JSON encoding of the IdentityMind Service result:
 
 ```code
 EXAMPLE SERVICE RESPONSE DATA
@@ -94,6 +92,8 @@ EXAMPLE SERVICE RESPONSE DATA
   “error_message” : “Bad data format:Failed to parse the date string provided in the data.  Please use ISO8601 format.”
 }
 ```
+
+> The response includes detailed result codes and the transaction unique identifier. The most important part of the response is whether the transaction is to be accepted, denied, or scheduled for manual review, which is dependent on the configured fraud policy. The keys are fully defined in *Appendix A: Result Keys and Codes*.
 
 	<table>
 		<tr>
@@ -769,7 +769,7 @@ In the case of a chargeback on a transaction that eDNA has not previously proces
 
 ## Arguments
 
-> The following can be used for requesting chargeback notification evaluation.
+> The following URL can be used for requesting chargeback notification evaluation:
 
 ```code
 https://edna.identitymind.com/im/jax/chargeback/
@@ -785,7 +785,7 @@ EXAMPLE SERVICE REQUEST
 }
 ```
 
-> The response contains a JSON encoded message or error message.
+> The response contains a JSON encoded message or error message:
 
 ```code
 EXAMPLE SERVICE RESPONSE DATA
@@ -1056,7 +1056,7 @@ In the case of credit or blind credit on a transaction that eDNA has not previou
 
 ## Arguments
 
-> The following URL can be used for credit notification evaluation.
+> The following URL can be used for credit notification evaluation:
 
 ```code
 https://edna.identitymind.com/im/jax/credit/
@@ -1071,7 +1071,7 @@ EXAMPLE SERVICE REQUEST
 }
 ```
 
-> The response contains a JSON encoded message or error message.
+> The response contains a JSON encoded message or error message:
 
 ```code
 EXAMPLE SERVICE RESPONSE DATA
@@ -1278,7 +1278,7 @@ Notifies that a refund occurred on a transaction.
 
 ## Arguments
 
-> All arguments are optional. They key parameter:transaction ID is part of the URL. The "refund-ok" URL should be used when the merchant believes that the refund is legitimate. The "refund-fraud" URL should be used when the merchant believes there is fraud, but a refund is being made to avoid a later chargeback.
+> All arguments are optional. The transaction ID is part of the URL. The "refund-ok" URL should be used when the merchant believes that the refund is legitimate. The "refund-fraud" URL should be used when the merchant believes there is fraud, but a refund is being made to avoid a later chargeback.
 
 ```code
 https://edna.identitymind.com/im/transaction/<transaction_ID>/refund-ok
@@ -1303,7 +1303,7 @@ EXAMPLE SERVICE REQUEST
 }
 ```
 
-> The response contains a JSON encoded message or error message.
+> The response contains a JSON encoded message or error message:
 
 ```code
 EXAMPLE SERVICE RESPONSE DATA
@@ -1379,11 +1379,7 @@ EXAMPLE SERVICE RESPONSE DATA
 
 ## Arguments
 
-> The following URLs are used to notify IdentityMind of the acceptance or rejection of the transaction previously analyzed with the given transaction ID by the merchant's payment gateway or the merchant themselves.
-> 
-> **Note**: The transaction may be a payment transaction or an account transfer.
-> 
-> All arguments are optional. They key parameter:transaction ID is part of the URL.
+> The following URLs are used to notify IdentityMind of the acceptance or rejection of the transaction that was previously analyzed with the given transaction ID by the merchant's payment gateway or the merchant themselves. All arguments are optional. The transaction ID is part of the URL.
 
 ```code
 BANK AUTHORIZATION FEEDBACK
@@ -1408,6 +1404,7 @@ https://edna.identitymind.com/im/transaction/<transaction_ID>/accepted-default
 
 https://edna.identitymind.com/im/transaction/<transaction_ID>/rejected-default
 ```
+> **Note**: The transaction may be a payment transaction or an account transfer.
 
 ```code
 EXAMPLE SERVICE REQUEST
@@ -1420,7 +1417,7 @@ EXAMPLE SERVICE REQUEST
 }
 ```
 
-> The response contains a JSON encoded message or error message.
+> The response contains a JSON encoded message or error message:
 
 ```code
 EXAMPLE SERVICE RESPONSE DATA
@@ -1522,6 +1519,8 @@ EXAMPLE SERVICE RESPONSE DATA
 
 # Transaction Monitoring: Account Transfer Validation Web Service
 
+The evidence is the account transfer transaction data to be evaluated. It is supplied in the body of the HTTP-POST as JSON-encoded key value pairs. While all fields are not required, validation evaluation is more comprehensive when richer evidence is provided. 
+
 ## Arguments
 
 > The following URLs are used for account transaction validation:
@@ -1536,11 +1535,6 @@ https://edna.identitymind.com/im/account/transfer (POST)
 
 Validate an external transfer (withdrawal) from an account:
 https://edna.identitymind.com/im/account/transferout (POST)
-```
-
-> The evidence is the account transfer transaction data to be evaluated. It is supplied in the body of the HTTP-POST as JSON-encoded key value pairs. While all fields are not required, validation evaluation is more comprehensive when richer evidence is provided. 
-
-```code
 
 EXAMPLE SERVICE REQUEST
 
@@ -1568,7 +1562,7 @@ https://edna.identitymind.com/im/account/transfer
 }
 ```
 
-> The response is a JSON encoding of the IdentityMind Service result. The most important part of the response is whether the transaction is to be accepted, denied, or scheduled for manual review, which is dependent on the configured validation policy. The response includes detailed result codes and the transaction unique identifier. The keys are fully defined in Appendix A: Result Keys and Codes.
+> The response is a JSON encoding of the IdentityMind Service result:
 
 ```code
 
@@ -1591,6 +1585,7 @@ EXAMPLE SERVICE RESPONSE DATA
   “error_message” : “Bad data format:Failed to parse the date string provided in the data.  Please use ISO8601 format.”
 }
 ```
+> The response includes detailed result codes and the transaction unique identifier. The most important part of the response is whether the transaction is to be accepted, denied, or scheduled for manual review, which is dependent on the configured validation policy. The keys are fully defined in *Appendix A: Result Keys and Codes*.
 
 	<table>
 		<tr>
@@ -1989,6 +1984,8 @@ EXAMPLE SERVICE RESPONSE DATA
 
 # KYC - Merchant: Merchant Application Validation Web Service
 
+The evidence is the application data to be evaluated. It is supplied in the body of the HTTP-POST as JSON-encoded key value pairs. While all fields are not required, validation evaluation is more comprehensive when richer evidence is provided. 
+
 ## Reseller Only Feature: How to associate a merchant with its owners
 
 Each merchant can be associated with one or more owners.  The merchant will be evaluated with the Merchant Application Web Service.  One can provide an application ID (tid in the Request API), or extract this ID from the Response.
@@ -2011,12 +2008,7 @@ Retrieve the current state of a merchant application:
 
 https://edna.identitymind.com/im/account/merchant/<tid> (GET)
 ```
-
->The evidence is the application data to be evaluated. It is supplied in the body of the HTTP-POST as JSON-encoded key value pairs. While all fields are not required, validation evaluation is more comprehensive when richer evidence is provided. 
-
-> The response is a JSON encoding of the IdentityMind Service result.   
-The response includes detailed result codes and the transaction unique identifier. The keys are fully defined in Appendix A.
-Parameters that are not defined here but appearing in the Request API will be categorized as custom data and can be displayed on the UI as proprietary information for the merchant.
+> The response is a JSON encoding of the IdentityMind Service result:
 
 ```code
 EXAMPLE SERVICE RESPONSE DATA
@@ -2065,6 +2057,8 @@ EXAMPLE SERVICE RESPONSE DATA
     },
 } 
 ```
+
+> The response includes detailed result codes and the transaction unique identifier. The keys are fully defined in *Appendix A: Result Keys and Codes*. Parameters that are not defined here but appearing in the Request API will be categorized as custom data and can be displayed on the UI as proprietary information for the merchant.
 
 	<table>
 		<tr>
@@ -2283,6 +2277,8 @@ EXAMPLE SERVICE RESPONSE DATA
 
 # KYC - Consumer: Consumer Application Validation Web Service
 
+The evidence is the application data to be evaluated. It is supplied in the body of the HTTP-POST as JSON-encoded key value pairs. While all fields are not required, validation evaluation is more comprehensive when richer evidence is provided. 
+
 ## Arguments
 
 >The following URLs are used for consumer application validation:
@@ -2296,11 +2292,7 @@ Retrieve the current state of a consumer application:
 
 https://edna.identitymind.com/im/account/creation/<tid> (GET)
 ```
-
->The evidence is the application data to be evaluated. It is supplied in the body of the HTTP-POST as JSON-encoded key value pairs. While all fields are not required, validation evaluation is more comprehensive when richer evidence is provided. 
-
-> The response is a JSON encoding of the IdentityMind Service result.   
-The response includes detailed result codes and the transaction unique identifier. The keys are fully defined in Appendix A.
+> The response is a JSON encoding of the IdentityMind Service result:   
 
 ```code
 EXAMPLE SERVICE RESPONSE DATA
@@ -2351,6 +2343,7 @@ EXAMPLE SERVICE RESPONSE DATA
     },
 }
 ```
+> The response includes detailed result codes and the transaction unique identifier. The keys are fully defined in *Appendix A: Result Keys and Codes*.
 
 	<table>
 		<tr>
@@ -2648,7 +2641,10 @@ EXAMPLE SERVICE RESPONSE DATA
 
 # Quiz Response (IDAnalytics)
 
-> The following URLs are used to return a customer’s response to a set of out of wallet questions returned either by a merchant or consumer application respectively.
+The response to this request is an application response containing the newly updated application.
+Note that the response may, depending on the response from ID Analytics and your configuration within the eDNA platform, contain a further set of “challenge” questions that should once again be passed back to the consumer for answers.
+
+> The following URLs are used to return a customer’s response to a set of out of wallet questions returned either by a merchant or consumer application respectively:
 
 ```code
 https://edna.identitymind.com/im/account/merchant/<appid>/quizresponse (POST)
@@ -2656,10 +2652,7 @@ https://edna.identitymind.com/im/account/merchant/<appid>/quizresponse (POST)
 https://edna.identitymind.com/im/account/consumer/<appid>/quizresponse (POST)
 ```
 
-> The body of the request contains an encoding of the customer’s answers to the quiz questions. The encoding is in JSON as described below. The answers are processed and the response used to update the IDAnalytics CertainID Security Test and the Application state.
-
-> The response to this request is an Application Response containing the newly updated application.
-Note that the response may, depending on the response from ID Analytics and your configuration within the eDNA platform, contain a further set of “challenge” questions that should once again be passed back to the consumer for answers.
+> The body of the request contains an encoding of the customer’s answers to the quiz questions. The encoding is in JSON as shown below. The answers are processed and the response used to update the IDAnalytics CertainID Security Test and the Application state.
 
 ```code
 EXAMPLE SERVICE REQUEST DATA
@@ -2713,6 +2706,8 @@ https://edna.identitymind.com/im/account/merchant/743567/quizresponse
 
 # Quiz Response (Phone Validation)
 
+The response to this request is an application response containing the newly updated application.
+
 > The following URLs are used to return a customer’s response to a phone validation request:
 
 ```code
@@ -2721,7 +2716,7 @@ https://edna.identitymind.com/im/account/merchant/<appid>/quizresponse (POST)
 https://edna.identitymind.com/im/account/consumer/<appid>/quizresponse (POST)
 ```
 
-> The body of the request contains an encoding of the customer’s code response. The encoding is in JSON as described below. The answers are processed and the response used to update the Phone Ownership Security Test and the Application state. The response to this request is an Application Response containing the newly updated application.
+> The body of the request contains an encoding of the customer’s code response. The encoding is in JSON as shown below. The answers are processed and the response is used to update the Phone Ownership Security Test and the Application state.
 
 ```code
 EXAMPLE SERVICE REQUEST DATA
@@ -2750,17 +2745,15 @@ https://edna.identitymind.com/im/account/merchant/743567/quizresponse
 
 # Document Validation Request
 
+The body of the POST contains JSON encoding of the document type that is to be uploaded. The request will return an error if Jumio NetVerify has not been configured with eDNA.
+
 > The following URLs are used to initiate a Jumio Netverify Multi Document transaction for a Consumer or Merchant application:
 
 ```code
 https://edna.identitymind.com/im/account/merchant/<appid>/document  (POST)
 
 https://edna.identitymind.com/im/account/consumer/<appid>/document  (POST)
-```
 
-> The body of the POST contains JSON encoding of the document type that is to be uploaded. The request will return an error if Jumio NetVerify has not been configured with eDNA.
-
-```code
 EXAMPLE SERVICE REQUEST DATA
 
 https://edna.identitymind.com/im/account/consumer/743567/document 
@@ -2835,6 +2828,8 @@ EXAMPLE SERVICE RESPONSE DATA
 
 # Feedback: Final Application Result
 
+All arguments are optional, although a JSON object must be provided.
+
 ## Arguments
 
 > The following URLs are used to notify IdentityMind of the acceptance or rejection of an application by the merchant.
@@ -2847,11 +2842,8 @@ https://edna.identitymind.com/im/account/consumer/<application_ID>/rejected (POS
 https://edna.identitymind.com/im/account/merchant/<application_ID>/accepted (POST)
 
 https://edna.identitymind.com/im/account/merchant/<application_ID>/rejected (POST)
-```
 
-> All arguments are optional, although a JSON object must be provided.
 
-```code
 EXAMPLE SERVICE REQUEST
 
 {
@@ -2907,6 +2899,8 @@ or
 
 # Login Annotation Web Service
 
+The evidence is the login transaction data to be added to the entities transaction record. It is supplied in the body of the HTTP-POST as JSON-encoded key value pairs. While all fields are not required, validation evaluation is more comprehensive when richer evidence is provided.
+
 ## Arguments
 
 > The following URLs are used for account login transactions:
@@ -2915,11 +2909,8 @@ or
 Annotate a user's transactions with login data:
 
 https://edna.identitymind.com/im/account/login (POST)
-```
 
-> The evidence is the login transaction data to be added to the entities transaction record. It is supplied in the body of the HTTP-POST as JSON-encoded key value pairs. While all fields are not required, validation evaluation is more comprehensive when richer evidence is provided.
 
-```code
 EXAMPLE SERVICE REQUEST
 
 https://edna.identitymind.com/im/account/login   
@@ -2935,7 +2926,7 @@ https://edna.identitymind.com/im/account/login
 }
 ```
 
-> The response is a JSON encoding of the IdentityMind service result. The response includes detailed result codes and transaction unique identifier. The keys are fully defined in Appendix A: Result Keys and Codes.
+> The response is a JSON encoding of the IdentityMind service result. The response includes detailed result codes and transaction unique identifier. The keys are fully defined in *Appendix A: Result Keys and Codes*.
 
 ```code
 EXAMPLE SERVICE RESPONSE DATA
