@@ -2724,7 +2724,6 @@ EXAMPLE SERVICE RESPONSE DATA
 			<td>No</td>
 		</tr>
 		<tr>
-			<td>Device Token and Scheme</td>
 			<td>dts</td>
 			<td>Third party service device token and scheme identifier. Contact IdentityMind for detailed format information.</td>
 			<td>No</td>
