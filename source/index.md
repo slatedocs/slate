@@ -1272,13 +1272,13 @@ or
 
 # Feedback: Transaction Neutral/Refund Notification
 
-Notifies that a refund occurred on a transaction.
+Notifies that a refund occurred on a transaction. All arguments are optional. 
 
 **Note**: The transaction may be either a payment transaction or an account transfer.
 
 ## Arguments
 
-> All arguments are optional. The transaction ID is part of the URL. The "refund-ok" URL should be used when the merchant believes that the refund is legitimate. The "refund-fraud" URL should be used when the merchant believes there is fraud, but a refund is being made to avoid a later chargeback.
+> The transaction ID is part of the URL. The "refund-ok" URL should be used when the merchant believes that the refund is legitimate. The "refund-fraud" URL should be used when the merchant believes there is fraud, but a refund is being made to avoid a later chargeback.
 
 ```code
 https://edna.identitymind.com/im/transaction/<transaction_ID>/refund-ok
@@ -2680,7 +2680,7 @@ https://edna.identitymind.com/im/account/merchant/743567/quizresponse
    ]
 }
 ```
-	
+	<br><br>
 	<table>
 		<tr>
 			<th colspan=2>JSON Answers Encoding</th>
@@ -2728,7 +2728,7 @@ https://edna.identitymind.com/im/account/merchant/743567/quizresponse
    "smsCode":”1234”
 }
 ```
-
+	<br><br>
 	<table>
 		<tr>
 			<th colspan=2>JSON Answers Encoding</th>
@@ -2769,7 +2769,7 @@ EXAMPLE SERVICE RESPONSE DATA
     "authorizationToken”:”f9d32f46-8f11-4b7c-b146-6d7a95aa765f”
 }
 ```
-
+	<br><br>
 	<table>
 		<tr>
 			<th colspan=2>JSON Request Encoding</th>
