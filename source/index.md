@@ -1435,6 +1435,7 @@ EXAMPLE SERVICE RESPONSE DATA
 ```
 > The response includes detailed result codes and the transaction unique identifier. The most important part of the response is whether the transaction is to be accepted, denied, or scheduled for manual review, which is dependent on the configured validation policy. The keys are fully defined in *Appendix A: Result Keys and Codes*.
 
+	<br>
 	<table>
 		<tr>
 			<th colspan=3>User Account</th>
@@ -1849,18 +1850,17 @@ EXAMPLE SERVICE RESPONSE DATA
 
 > The response includes detailed result codes and the transaction unique identifier. The keys are fully defined in *Appendix A: Result Keys and Codes*. Parameters that are not defined here but appearing in the Request API will be categorized as custom data and can be displayed on the UI as proprietary information for the merchant.
 
+	<br>
 	<table>
 		<tr>
-			<th colspan=4>Application</th>
+			<th colspan=3>Application</th>
 		</tr>
 		<tr>
-			<th>Facet</th>
 			<th>Key</th>
 			<th>Description</th>
 			<th>Required</th>
 		</tr>
 		<tr>
-			<td>ID</td>
 			<td>tid</td>
 			<td>Unique application identifier. The system will assign one if not provided. It is recommended to pass one if needed to be correlated to client's backend system. The tid must be encoded as a string (e.g. "tid":"123455"). The tid is used to combine the multiple stages of an application. Maximum length is 40 characters.</td>
 			<td>No</td>
@@ -1868,48 +1868,41 @@ EXAMPLE SERVICE RESPONSE DATA
 
 
 		<tr>
-			<th colspan=4>Company</th>
+			<th colspan=3>Company</th>
 		</tr>
 		<tr>
-			<th>Facet</th>
 			<th>Key</th>
 			<th>Description</th>
 			<th>Required</th>
 		</tr>
 		<tr>
-			<td>Account Merchant Name</td>
 			<td>amn</td>
 			<td>Legal name of the company</td>
 			<td>Yes</td>
 		</tr>
 		<tr>
-			<td>Doing Business As</td>
 			<td>dba</td>
-			<td>DBA</td>
+			<td>Doing business as</td>
 			<td>No</td>
 		</tr>
 		<tr>
-			<td>Account Tax ID</td>
 			<td>ataxid</td>
 			<td>The merchant's tax ID</td>
 			<td>Yes, unless SSN is provided</td>
 		</tr>
 		<tr>
-			<td>Account SSN</td>
 			<td>assn</td>
 			<td>The merchant's social security number</td>
 			<td>Yes, unless tax ID is provided</td>
 		</tr>
 		<tr>
-			<td>GIIN</td>
 			<td>giin</td>
 			<td>The merchant's Guild Intermediary Identification Number. GIIN is a 19 character number that uniquely identifies an entity as having registered with the IRS for purposes of FATCA</td>
 			<td>No</td>
 		</tr>
 		<tr>
-			<td>Business Type</td>
 			<td>businesstype</td>
-			<td>Possible values are:
+			<td>Business type. Possible values are:
 				<ul type="disc">
 					<li>corporation - Corporation</li>
 					<li>llc - LLC</li>
@@ -1922,69 +1915,58 @@ EXAMPLE SERVICE RESPONSE DATA
 			<td>No</td>
 		</tr>
 		<tr>
-			<td>Account Contact First Name</td>
 			<td>afn</td>
 			<td>The first name of the contact person for the business</td>
 			<td>No</td>
 		</tr>
 		<tr>
-			<td>Account Contact Last Name</td>
 			<td>aln</td>
-			<td>The last name of hte contact person for the business</td>
+			<td>The last name of the contact person for the business</td>
 			<td>No</td>
 		</tr>
 		<tr>
-			<td>Account Merchant Phone</td>
 			<td>aph</td>
 			<td>The merchant's business phone number</td>
 			<td>No</td>
 		</tr>
 		<tr>
-			<td>Account Street Address</td>
 			<td>asn</td>
 			<td>The merchant's street address</td>
 			<td>No</td>
 		</tr>
 		<tr>
-			<td>Account City</td>
 			<td>ac</td>
 			<td>The merchant's city</td>
 			<td>No</td>
 		</tr>
 		<tr>
-			<td>Account State</td>
 			<td>as</td>
 			<td>The merchant's state</td>
 			<td>No</td>
 		</tr>
 		<tr>
-			<td>Account Zip/Postal Code</td>
 			<td>az</td>
 			<td>The merchant's zip code</td>
 			<td>No</td>
 		</tr>
 		<tr>
-			<td>Account Country</td>
 			<td>aco</td>
 			<td>The merchant's country</td>
 			<td>No</td>
 		</tr>
 		<tr>
-			<td>MCC</td>
 			<td>mcc</td>
 			<td>Merchant Category Code</td>
 			<td>No</td>
 		</tr>
 		<tr>
-			<td>Token</td>
 			<td>pcct</td>
 			<td>Credit card number. Maximum length is 64 characters.</td>
 			<td>Yes, if pccn is provided</td>
 		</tr>
 		<tr>
-			<td>Bank Account Type</td>
 			<td>bankaccounttype</td>
-			<td>Valid values are:
+			<td>Bank account type. Valid values are:
 				<ul type="disc">
 					<li>checking</li>
 					<li>saving</li>
@@ -1993,42 +1975,36 @@ EXAMPLE SERVICE RESPONSE DATA
 			<td>No</td>
 		</tr>
 		<tr>
-			<td>Credit Card</td>
 			<td>ccaccept</td>
-			<td>Boolean</td>
+			<td>Credit card. Boolean</td>
 			<td>No</td>
 		</tr>
 		<tr>
-			<td>PayPal</td>
 			<td>ppaccept</td>
-			<td>Boolean</td>
+			<td>PayPal. Boolean</td>
 			<td>No</td>
 		</tr>
 		<tr>
-			<td>ACH</td>
 			<td>achaccept</td>
-			<td>Boolean</td>
+			<td>ACH. Boolean</td>
 			<td>No</td>
 		</tr>
 		<tr>
-			<td>Bitcoin</td>
 			<td>bitcoinaccept</td>
-			<td>Boolean</td>
+			<td>Bitcoin. Boolean</td>
 			<td>No</td>
 		</tr>
 
 
 		<tr>
-			<th colspan=4>Transaction</th>
+			<th colspan=3>Transaction</th>
 		</tr>
 		<tr>
-			<th>Facet</th>
 			<th>Key</th>
 			<th>Description</th>
 			<th>Required</th>
 		</tr>
 		<tr>
-			<td>Transaction Time</td>
 			<td>tti</td>
 			<td>The date and time of the transaction as processed by the merchant. Expressed in UTC, encoded as a UNIX timestamp.
 				<ul type="disc">
@@ -2039,7 +2015,6 @@ EXAMPLE SERVICE RESPONSE DATA
 			<td>No</td>
 		</tr>
 		<tr>
-			<td>Application Stage</td>
 			<td>stage</td>
 			<td>Stage of the application being processed. An integer between 1 and 5. If not provided, defaults to 1</td>
 			<td>No</td>
@@ -2047,18 +2022,16 @@ EXAMPLE SERVICE RESPONSE DATA
 
 
 		<tr>
-			<th colspan=4>Group</th>
+			<th colspan=3>Group</th>
 		</tr>
 		<tr>
-			<th>Facet</th>
 			<th>Key</th>
 			<th>Description</th>
 			<th>Required</th>
 		</tr>
 		<tr>
-			<td>IDM Merchant Aggregation</td>
 			<td>merchantgroup</td>
-			<td>Aggregation that defines KYC configuration and monitoring thresholds</td>
+			<td>IDM merchant aggregation that defines KYC configuration and monitoring thresholds</td>
 			<td>No</td>
 		</tr>
 	</table>
@@ -2070,20 +2043,17 @@ The evidence is the application data to be evaluated. It is supplied in the body
 
 ## Arguments
 
->The following URLs are used for consumer application validation:
+The following URLs are used for consumer application validation:
+
+Validate a consumer application:<br>
+[https://edna.identitymind.com/im/account/creation](https://edna.identitymind.com/im/account/creation) (POST)
+
+Retrieve the current state of a consumer application:<br>
+[https://edna.identitymind.com/im/account/creation/<tid>](https://edna.identitymind.com/im/account/creation/<tid>) (GET)
 
 ```code
-Validate a consumer application:
-
-https://edna.identitymind.com/im/account/creation (POST)
-
-Retrieve the current state of a consumer application:
-
-https://edna.identitymind.com/im/account/creation/<tid> (GET)
-```
 > The response is a JSON encoding of the IdentityMind Service result:   
 
-```code
 EXAMPLE SERVICE RESPONSE DATA
 
 {
@@ -2134,42 +2104,37 @@ EXAMPLE SERVICE RESPONSE DATA
 ```
 > The response includes detailed result codes and the transaction unique identifier. The keys are fully defined in *Appendix A: Result Keys and Codes*.
 
+	<br>
 	<table>
 		<tr>
-			<th colspan=4>User</th>
+			<th colspan=3>User</th>
 		</tr>
 		<tr>
-			<th>Facet</th>
 			<th>Key</th>
 			<th>Description</th>
 			<th>Required</th>
 		</tr>
 		<tr>
-			<td>First Name</td>
 			<td>bfn</td>
 			<td>The first name of the individual opening the account. Maximum length is 30 characters.</td>
 			<td>No</td>
 		</tr>
 		<tr>
-			<td>Last Name</td>
 			<td>bln</td>
 			<td>The last name of the individual opening the account. Maximum length is 50 characters.</td>
 			<td>No</td>
 		</tr>
 		<tr>
-			<td>Account Name</td>
 			<td>man</td>
 			<td>Free form unique identifier for this account at this merchant. Maximum length is 60 characters.</td>
 			<td>Yes</td>
 		</tr>
 		<tr>
-			<td>User Email Address</td>
 			<td>tea</td>
 			<td>Email address on record. An email address that the merchant is comfortable using to validate access to the account. Maximum length is 60 characters.</td>
 			<td>No</td>
 		</tr>
 		<tr>
-			<td>Social Authentication</td>
 			<td>soc</td>
 			<td>Indicates that the provided email address is associated with a social networking site; in particular, that it is used for Oauth authentication. The content of the field is merchant defined, but the following values are recommended:
 				<ul type="disc">
@@ -2182,49 +2147,41 @@ EXAMPLE SERVICE RESPONSE DATA
 			<td>No</td>
 		</tr>
 		<tr>
-			<td>Date of Birth</td>
 			<td>dob</td>
 			<td>The date of birth of the individual opening the account. Format is ISO8601 (e.g. 1984-01-21).</td>
 			<td>No</td>
 		</tr>
 		<tr>
-			<td>Phone</td>
 			<td>phn</td>
 			<td>Customer's primary phone number. Maximum length is 60 characters.</td>
 			<td>No</td>
 		</tr>
 		<tr>
-			<td>Mobile Phone</td>
 			<td>pm</td>
 			<td>Cstomer's mobile phone number. Maximum length is 60 characters.</td>
 			<td>No</td>
 		</tr>
 		<tr>
-			<td>User Location - Latitude</td>
 			<td>clat</td>
 			<td>The current latitude of the customer, specified in decimal degrees. Encoded as a string (e.g. "clat":"37.4419").</td>
 			<td>No</td>
 		</tr>
 		<tr>
-			<td>User Location - Longitude</td>
 			<td>clong</td>
 			<td>The current longitude of the customer, specified in decimal degrees. Encoded as a string (e.g. "clong":"-122.1419").</td>
 			<td>No</td>
 		</tr>
 		<tr>
-			<td>Document Verification Front Side Scan Data</td>
 			<td>scanData</td>
 			<td>If using Jumio NetVerify Perform, the document front side image data, Base64 encoded. If provided, this will override the configured "Jumio client integration." 5MB maximum size</td>
 			<td>No</td>
 		</tr>
 		<tr>
-			<td>Document Verification Back Side Image Data</td>
 			<td>backsideImageData</td>
 			<td>If using Jumio NetVerify Perform, the document back side image data, Base64 encoded. 5MB maximum size</td>
 			<td>No</td>
 		</tr>
 		<tr>
-			<td>Document Verification Face Data</td>
 			<td>faceImageData</td>
 			<td>If using Jumio NetVerify Perform with face match enabled, the face image file, Base64 encoded. 5MB maximum size</td>
 			<td>No</td>
@@ -2232,28 +2189,24 @@ EXAMPLE SERVICE RESPONSE DATA
 
 
 		<tr>
-			<th colspan=4>Device</th>
+			<th colspan=3>Device</th>
 		</tr>
 		<tr>
-			<th>Facet</th>
 			<th>Key</th>
 			<th>Description</th>
 			<th>Required</th>
 		</tr>
 		<tr>
-			<td>Client IP</td>
 			<td>ip</td>
 			<td>The IP address of the client as observed by the merchant</td>
 			<td>No</td>
 		</tr>
 		<tr>
-			<td>Device Fingerprint</td>
 			<td>dfp</td>
 			<td>Device fingerprint blob. The interpretation of this blob is specified by the value of the "dft" attribute</td>
 			<td>No</td>
 		</tr>
 		<tr>
-			<td>Device Fingerprint Type</td>
 			<td>dft</td>
 			<td>Device fingerprint type. Specifies the technology that was used to generate the blob.
 				<ul type"disc">
@@ -2265,16 +2218,14 @@ EXAMPLE SERVICE RESPONSE DATA
 
 
 		<tr>
-			<th colspan=4>Payment/Funding Account</th>
+			<th colspan=3>Payment/Funding Account</th>
 		</tr>
 		<tr>
-			<th>Facet</th>
 			<th>Key</th>
 			<th>Description</th>
 			<th>Required</th>
 		</tr>
 		<tr>
-			<td>Card Number Hash</td>
 			<td>pccn</td>
 			<td>Credit/debit card unique identifier (hash) while obscuring actual number. IdentityMind will supply procedure to generate hash.
 			<br><br>
@@ -2282,13 +2233,11 @@ EXAMPLE SERVICE RESPONSE DATA
 			<td>No</td>
 		</tr>
 		<tr>
-			<td>Card Number Token</td>
 			<td>pcct</td>
 			<td>A masked or tokenized version of the credit card number. Maximum length is 64 characters.</td>
 			<td>No</td>
 		</tr>
 		<tr>
-			<td>Account ID Hash</td>
 			<td>phash</td>
 			<td>Account unique identifier (hash) while obscuring actual number. This is used when IdentityMind does not natively support the payment type.
 			<br><br>
@@ -2296,13 +2245,11 @@ EXAMPLE SERVICE RESPONSE DATA
 			<td>No</td>
 		</tr>
 		<tr>
-			<td>Bitcoin Wallet ID</td>
 			<td>pbc</td>
 			<td>Hash of the unique identifier for a Bitcoin wallet. Maximum length is 128 characters.</td>
 			<td>No</td>
 		</tr>
 		<tr>
-			<td>ACH Account Number</td>
 			<td>pach</td>
 			<td>Hash of the unique identifier for an ACH account
 			<br><br>
@@ -2310,31 +2257,26 @@ EXAMPLE SERVICE RESPONSE DATA
 			<td>No</td>
 		</tr>
 		<tr>
-			<td>Billing Street Address</td>
 			<td>bsn</td>
 			<td>Payment street address. Maximum length is 100 characters.</td>
 			<td>No</td>
 		</tr>
 		<tr>
-			<td>Billing City</td>
 			<td>bc</td>
 			<td>Payment city. Data truncates to 30 characters.</td>
 			<td>No</td>
 		</tr>
 		<tr>
-			<td>Billing State</td>
 			<td>bs</td>
 			<td>Payment state Maximum length is 30 characters.</td>
 			<td>No</td>
 		</tr>
 		<tr>
-			<td>Billing Zip/Postal Code</td>
 			<td>bz</td>
 			<td>Payment zip code. Maximum length is 20 characters.</td>
 			<td>No</td>
 		</tr>
 		<tr>
-			<td>Billing Country</td>
 			<td>bco</td>
 			<td>Payment country. Maximum length is three characters.</td>
 			<td>No</td>
@@ -2342,16 +2284,14 @@ EXAMPLE SERVICE RESPONSE DATA
 
 
 		<tr>
-			<th colspan=4>Transaction</th>
+			<th colspan=3>Transaction</th>
 		</tr>
 		<tr>
-			<th>Facet</th>
 			<th>Key</th>
 			<th>Description</th>
 			<th>Required</th>
 		</tr>
 		<tr>
-			<td>Transaction Time</td>
 			<td>tti</td>
 			<td>The date and time of the transaction as processed by the merchant. Expressed in UTC, encoded as a UNIX timestamp.
 				<ul type="disc">
@@ -2362,31 +2302,26 @@ EXAMPLE SERVICE RESPONSE DATA
 			<td>No</td>
 		</tr>
 		<tr>
-			<td>Transaction Identifier</td>
 			<td>tid</td>
 			<td>Unique identifier for the application. eDNA assigns an internal ID if none is provided. The tid must be encoded as a string (e.g. "tid":"123455"). The tid is used to combine the multiple stages of an application. Maximum length is 40 characters.</td>
 			<td>No</td>
 		</tr>
 		<tr>
-			<td>Application Stage</td>
 			<td>stage</td>
 			<td>Stage of application being processed. An integer between 1 and 5. If not provided, defaults to 1</td>
 			<td>No</td>
 		</tr>
 		<tr>
-			<td>Affiliate ID</td>
 			<td>aflid</td>
 			<td>The affiliate ID associated with this transaction. Encoded as a string. Maximum length is 100 characters.</td>
 			<td>No</td>
 		</tr>
 		<tr>
-			<td>Affiliate Signup Date</td>
 			<td>aflsd</td>
 			<td>The signup/creation date of the affiliate associated with this transaction. Either an ISO8601 encoded string or a UNIX timestamp.</td>
 			<td>No</td>
 		</tr>
 		<tr>
-			<td>Memo</td>
 			<td>memo</td>
 			<td>Free form text memo field</td>
 			<td>No</td>
@@ -2394,34 +2329,29 @@ EXAMPLE SERVICE RESPONSE DATA
 
 
 		<tr>
-			<th colspan=4>Merchant</th>
+			<th colspan=3>Merchant</th>
 		</tr>
 		<tr>
-			<th>Facet</th>
 			<th>Key</th>
 			<th>Description</th>
 			<th>Required</th>
 		</tr>
 		<tr>
-			<td>Merchant</td>
 			<td>merchantAid</td>
 			<td>If this consumer is linked to a merchant (business) as one of the owners of the business, this parameter should match the exact application ID of the merchant (see tid in the Merchant Application API below)</td>
 			<td>No</td>
 		</tr>
 		<tr>
-			<td>Personal Guarantee</td>
 			<td>personalguarantee</td>
-			<td>Boolean</td>
+			<td>Personal guarantee. Boolean</td>
 			<td>No</td>
 		</tr>
 		<tr>
-			<td>Percentage of Owner</td>
 			<td>ownership</td>
 			<td>The percentage of ownership</td>
 			<td>No</td>
 		</tr>
 		<tr>
-			<td>Title</td>
 			<td>title</td>
 			<td>Title of the owner</td>
 			<td>No</td>
@@ -2433,13 +2363,11 @@ EXAMPLE SERVICE RESPONSE DATA
 The response to this request is an application response containing the newly updated application.
 Note that the response may, depending on the response from ID Analytics and your configuration within the eDNA platform, contain a further set of “challenge” questions that should once again be passed back to the consumer for answers.
 
-> The following URLs are used to return a customer’s response to a set of out of wallet questions returned either by a merchant or consumer application respectively:
+The following URLs are used to return a customer’s response to a set of out of wallet questions returned either by a merchant or consumer application respectively:
 
-```code
-https://edna.identitymind.com/im/account/merchant/<appid>/quizresponse (POST)
+[https://edna.identitymind.com/im/account/merchant/<appid>/quizresponse](https://edna.identitymind.com/im/account/merchant/<appid>/quizresponse) (POST)
 
-https://edna.identitymind.com/im/account/consumer/<appid>/quizresponse (POST)
-```
+[https://edna.identitymind.com/im/account/consumer/<appid>/quizresponse](https://edna.identitymind.com/im/account/consumer/<appid>/quizresponse) (POST)
 
 > The body of the request contains an encoding of the customer’s answers to the quiz questions. The encoding is in JSON as shown below. The answers are processed and the response used to update the IDAnalytics CertainID Security Test and the Application state.
 
@@ -2497,13 +2425,11 @@ https://edna.identitymind.com/im/account/merchant/743567/quizresponse
 
 The response to this request is an application response containing the newly updated application.
 
-> The following URLs are used to return a customer’s response to a phone validation request:
+The following URLs are used to return a customer’s response to a phone validation request:
 
-```code
-https://edna.identitymind.com/im/account/merchant/<appid>/quizresponse (POST)
+[https://edna.identitymind.com/im/account/merchant/<appid>/quizresponse](https://edna.identitymind.com/im/account/merchant/<appid>/quizresponse) (POST)
 
-https://edna.identitymind.com/im/account/consumer/<appid>/quizresponse (POST)
-```
+[https://edna.identitymind.com/im/account/consumer/<appid>/quizresponse](https://edna.identitymind.com/im/account/consumer/<appid>/quizresponse) (POST)
 
 > The body of the request contains an encoding of the customer’s code response. The encoding is in JSON as shown below. The answers are processed and the response is used to update the Phone Ownership Security Test and the Application state.
 
@@ -2536,13 +2462,13 @@ https://edna.identitymind.com/im/account/merchant/743567/quizresponse
 
 The body of the POST contains JSON encoding of the document type that is to be uploaded. The request will return an error if Jumio NetVerify has not been configured with eDNA.
 
-> The following URLs are used to initiate a Jumio Netverify Multi Document transaction for a Consumer or Merchant application:
+The following URLs are used to initiate a Jumio Netverify Multi Document transaction for a Consumer or Merchant application:
+
+[https://edna.identitymind.com/im/account/merchant/<appid>/document](https://edna.identitymind.com/im/account/merchant/<appid>/document)  (POST)
+
+[https://edna.identitymind.com/im/account/consumer/<appid>/document](https://edna.identitymind.com/im/account/consumer/<appid>/document)  (POST)
 
 ```code
-https://edna.identitymind.com/im/account/merchant/<appid>/document  (POST)
-
-https://edna.identitymind.com/im/account/consumer/<appid>/document  (POST)
-
 EXAMPLE SERVICE REQUEST DATA
 
 https://edna.identitymind.com/im/account/consumer/743567/document 
@@ -2621,18 +2547,17 @@ All arguments are optional, although a JSON object must be provided.
 
 ## Arguments
 
-> The following URLs are used to notify IdentityMind of the acceptance or rejection of an application by the merchant.
+The following URLs are used to notify IdentityMind of the acceptance or rejection of an application by the merchant:
+
+[https://edna.identitymind.com/im/account/consumer/<application_ID>/accepted](https://edna.identitymind.com/im/account/consumer/<application_ID>/accepted) (POST)
+
+[https://edna.identitymind.com/im/account/consumer/<application_ID>/rejected](https://edna.identitymind.com/im/account/consumer/<application_ID>/rejected) (POST)
+
+[https://edna.identitymind.com/im/account/merchant/<application_ID>/accepted](https://edna.identitymind.com/im/account/merchant/<application_ID>/accepted) (POST)
+
+[https://edna.identitymind.com/im/account/merchant/<application_ID>/rejected](https://edna.identitymind.com/im/account/merchant/<application_ID>/rejected) (POST)
 
 ```code
-https://edna.identitymind.com/im/account/consumer/<application_ID>/accepted (POST)
-
-https://edna.identitymind.com/im/account/consumer/<application_ID>/rejected (POST)
-
-https://edna.identitymind.com/im/account/merchant/<application_ID>/accepted (POST)
-
-https://edna.identitymind.com/im/account/merchant/<application_ID>/rejected (POST)
-
-
 EXAMPLE SERVICE REQUEST
 
 {
@@ -2653,35 +2578,31 @@ or
   “message”: “Accepted application”
 }
 ```
-
+	<br>
 	<table>
 		<tr>
-			<th>Facet</th>
 			<th>Key</th>
 			<th>Description</th>
 			<th>Required</th>
 		</tr>
 		<tr>
-			<td>Reason</td>
 			<td>reason</td>
 			<td>Free form code. Up to 4 characters</td>
 			<td>No</td>
 		</tr>
 		<tr>
-			<td>Description</td>
 			<td>description</td>
 			<td>Free form descriptive text providing additional information about the feedback. Up to 255 characters</td>
 			<td>No</td>
 		</tr>
 		<tr>
-			<td>User Validation</td>
 			<td>validate</td>
 			<td>Whether the user defined in the application should be validated. Encoded as a boolean.
 			<br><br>
 			For a rejected application, the property is interpreted as whether to mark the applicant as having failed validation.
 			<br><br>
 			Defaults to false</td>
-			<td></td>
+			<td>No</td>
 		</tr>
 	</table>
 
@@ -2692,14 +2613,12 @@ The evidence is the login transaction data to be added to the entities transacti
 
 ## Arguments
 
-> The following URLs are used for account login transactions:
+The following URLs are used for account login transactions:
+
+Annotate a user's transactions with login data:<br>
+[https://edna.identitymind.com/im/account/login](https://edna.identitymind.com/im/account/login) (POST)
 
 ```code
-Annotate a user's transactions with login data:
-
-https://edna.identitymind.com/im/account/login (POST)
-
-
 EXAMPLE SERVICE REQUEST
 
 https://edna.identitymind.com/im/account/login   
@@ -2732,31 +2651,27 @@ EXAMPLE SERVICE RESPONSE DATA
   “frd”:”User is trusted and no fraud rules were triggered.”
 }
 ```
-
+	<br>
 	<table>
 		<tr>
-			<th colspan=4>User Account</th>
+			<th colspan=3>User Account</th>
 		</tr>
 		<tr>
-			<th>Facet</th>
 			<th>Key</th>
 			<th>Description</th>
 			<th>Required</th>
 		</tr>
 		<tr>
-			<td>Account Name</td>
 			<td>man</td>
-			<td>Free form unique identifier for this account at this merchant. Maximum length is 60 characters.</td>
+			<td>Free form unique identifier for the account at this merchant. Maximum length is 60 characters.</td>
 			<td>No</td>
 		</tr>
 		<tr>
-			<td>User Email Address</td>
 			<td>tea</td>
 			<td>Email address on record. An email address that the merchant is comfortable using to validate access to the account. Maximum length is 60 characters.</td>
 			<td>No</td>
 		</tr>
 		<tr>
-			<td>Social Authentication</td>
 			<td>soc</td>
 			<td>Indicates that the provided email address is associated with a social networking site; in particular, that it is used for Oauth authentication. The content of the field is merchant defined, but the following values are recommended:
 				<ul type="disc">
@@ -2769,13 +2684,11 @@ EXAMPLE SERVICE RESPONSE DATA
 			<td>No</td>
 		</tr>
 		<tr>
-			<td>User Location - Latitude</td>
 			<td>clat</td>
 			<td>The current latitude of the customer, specified in decimal degrees. Encoded as a string (e.g. “clat”:“37.4419”).</td>
 			<td>No</td>
 		</tr>
 		<tr>
-			<td>User Location - Longitude</td>
 			<td>clong</td>
 			<td>The current longitude of the customer, specified in decimal degrees. Encoded as a string (e.g. “clong”:“-122.1419”).</td>
 			<td>No</td>
@@ -2783,28 +2696,24 @@ EXAMPLE SERVICE RESPONSE DATA
 
 
 		<tr>
-			<th colspan=4>Device</th>
+			<th colspan=3>Device</th>
 		</tr>
 		<tr>
-			<th>Facet</th>
 			<th>Key</th>
 			<th>Description</th>
 			<th>Required</th>
 		</tr>
 		<tr>
-			<td>Client IP</td>
 			<td>ip</td>
 			<td>The IP address of the client as observed by the merchant</td>
 			<td>No</td>
 		</tr>
 		<tr>
-			<td>Device Fingerprint</td>
 			<td>dfp</td>
 			<td>Device fingerprint blob. The interpretation of this blob is specified by the value of hte "dft" attribute.</td>
 			<td>No</td>
 		</tr>
 		<tr>
-			<td>Device Fingerprint Type</td>
 			<td>dft</td>
 			<td>Device fingerprint type. Specifies the technology that was used to generate the blob.
 				<ul type="disc">
@@ -2817,22 +2726,20 @@ EXAMPLE SERVICE RESPONSE DATA
 		<tr>
 			<td>Device Token and Scheme</td>
 			<td>dts</td>
-			<td>Third party device token and scheme identifier. Contact IdentityMind for detailed format information.</td>
-			<td></td>
+			<td>Third party service device token and scheme identifier. Contact IdentityMind for detailed format information.</td>
+			<td>No</td>
 		</tr>
 
 
 		<tr>
-			<th colspan=4>Txn</th>
+			<th colspan=3>Txn</th>
 		</tr>
 		<tr>
-			<th>Facet</th>
 			<th>Key</th>
 			<th>Description</th>
 			<th>Required</th>
 		</tr>
 		<tr>
-			<td>Login Time</td>
 			<td>tti</td>
 			<td>The date and time of the transaction as processed by the merchant. Expressed in UTC, encoded as a UNIX timestamp.
 				<ul type="disc">
@@ -2842,7 +2749,6 @@ EXAMPLE SERVICE RESPONSE DATA
 			<td>No</td>
 		</tr>
 		<tr>
-			<td>Login Identifier</td>
 			<td>tid</td>
 			<td>Merchant unique identifier for the transaction. eDNA assigns an internal ID if none is provided. The transaction ID must be encoded as a string (e.g. "tid":"123455"). Maximum length is 40 characters.</td>
 			<td>No</td>
