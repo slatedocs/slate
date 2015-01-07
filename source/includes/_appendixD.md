@@ -49,7 +49,7 @@ IdentityMind provides a client SDK for Java and PHP. If you use these languages,
 If you use other languages, please see below “Credit Card Number Hash”.
 
 
-### Credit Card Number Hash
+#### Credit Card Number Hash
 
 To generate the credit card number hash, you use the salt provided by IdentityMind, to generate a SHA-1 hash for the non-masked credit card number, and convert the byte array of the hash to Hexadecimal string. The hash should be included in the JSON string of the request in the field pccn. 
 
@@ -64,7 +64,7 @@ The credit card number hash should be included in the JSON string of the request
 **Note**:  The hash must be of the full card number, not a masked or tokenized representation.
 
 
-### Credit Card Number Token
+#### Credit Card Number Token
 
 The credit card number token is the first 6 digits of the actual card number followed by XXXXXX followed by the last 4 digits of the actual card number. For example, the credit card number token for card number 4012012301230123 is 401201XXXXXX0123. 
 
@@ -118,7 +118,7 @@ If you use other languages, please see “Bank Account Number Hash” below.
 
 **Note**: The hash must be of the full account number, not a masked or tokenized representation.
 
-### Bank Account Number Hash
+#### Bank Account Number Hash
 
 To generate the bank account number hash, you use the salt provided by IdentityMind, to generate a SHA-1 hash for the non masked account number, and convert the byte array of the hash to Hexadecimal string. The hash should be included in the JSON string of the request in the field “pach”.
 
@@ -136,7 +136,7 @@ For example, the salted bank account number hash for 321076479 74600015199010 is
 The account number hash should be included in the JSON string of the request to IdentityMind Transaction API in the field “pach."
 
 
-### Bank Account Number Token
+#### Bank Account Number Token
 
 For the bank account number token we recommend: 
 - for a US bank account number the first 6 digits of the routing number, followed by XXXXXXXX and the last 4 digits of the account number
