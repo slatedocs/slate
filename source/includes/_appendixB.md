@@ -6,16 +6,14 @@ The following additional fields are available to resellers of the IdentityMind e
 
 	<table>
 		<tr>
-			<th colspan=4>Transaction</th>
+			<th colspan=3>Transaction</th>
 		</tr>
 		<tr>
-			<th>Facet</th>
 			<th>Key</th>
 			<th>Description</th>
 			<th>Required</th>
 		</tr>
 		<tr>
-			<td>Merchant ID</td>
 			<td>m</td>
 			<td>The EDNA API username of the merchant to whom the transaction is to be associated.  This field is used when the reseller’s credentials are used to authenticate the service call, but the transaction is to be associated with a Merchant that is being accessing the EDNA service via the reseller’s system.
 			<br><br>  
