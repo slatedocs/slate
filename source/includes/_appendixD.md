@@ -1,6 +1,6 @@
 # Appendix D: Payment Instrument Hashing
 
-## Including Credit number Hash and Token in Transaction Report
+## Including Credit Number Hash and Token in Transaction Report
 
 ```java
 For Java, the sample code is in imclientSDK/samplecode/java/REST/TransactionViaREST.java:
