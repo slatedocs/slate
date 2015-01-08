@@ -660,7 +660,7 @@ EXAMPLE SERVICE RESPONSE DATA
 					<li>"SC" - Safe Charge</li>
 					<li>"AUTH" - Auth.net</li>
 					<li>"INTERAC" - Interac</li>
-					<li>"generic" - See Appendix C)</li>
+					<li>"generic" - See <i>Appendix C: Generic Gateway Codes</i></li>
 				</ul>
 			<br><br>
 			<b>Note</b>: While this field is required, backwards compatibility feedback will not be rejected if not present, but will instead be interpreted as MES gateway data.
