@@ -44,7 +44,7 @@
 		<tr>
 			<td>error_message</td>
 			<td>A textual description of an error that occurred while processing the transaction.</td>
-			<td>Bad data format:Failed to parse the date string provided in the data. Please use ISO8601 format.</td>
+			<td>Bad data format:Failed to parse the date string provided in the data. Please use ISO 8601 format.</td>
 		</tr>
 		<tr>
 			<td>frn</td>
@@ -175,7 +175,7 @@
 		<tr>
 			<td>error_message</td>
 			<td>A textual description of an error that occurred while processing the transaction.</td>
-			<td>Bad data format:Failed to parse the date string provided in the data.  Please use ISO8601 format.</td>
+			<td>Bad data format:Failed to parse the date string provided in the data.  Please use ISO 8601 format.</td>
 		</tr>
 		<tr>
 			<td>ras</td>
@@ -234,7 +234,7 @@
 		<tr>
 			<td>error_message</td>
 			<td>A textual description of an error that occurred while processing the transaction.</td>
-			<td>Bad data format:Failed to parse the date string provided in the data.  Please use ISO8601 format.</td>
+			<td>Bad data format:Failed to parse the date string provided in the data.  Please use ISO 8601 format.</td>
 		</tr>
 		<tr>
 			<td>oowQuestions</td>

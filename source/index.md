@@ -89,7 +89,7 @@ EXAMPLE SERVICE RESPONSE DATA
 
 {
   “transaction_status” : “error”,
-  “error_message” : “Bad data format:Failed to parse the date string provided in the data.  Please use ISO8601 format.”
+  “error_message” : “Bad data format:Failed to parse the date string provided in the data.  Please use ISO 8601 format.”
 }
 ```
 
@@ -278,7 +278,7 @@ EXAMPLE SERVICE RESPONSE DATA
 		</tr>
 		<tr>
 			<td>acd</td>
-			<td>The account creation date. Either an ISO8601 encoded string or a UNIX timestamp.
+			<td>The account creation date. Either an ISO 8601 encoded string or a UNIX timestamp.
 				<ul type="disc">
 					<li>"acd": "2011-01-01T13:12:16+0000"</li>
 					<li>"acd":1293887536</li>
@@ -536,7 +536,7 @@ EXAMPLE SERVICE RESPONSE DATA
 		</tr>
 		<tr>
 			<td>tti</td>
-			<td>The date and time of the transaction as processed by the merchant. Expressed in UTC, either as a ISO8601 encoded string or a unix timestamp.
+			<td>The date and time of the transaction as processed by the merchant. Expressed in UTC, either as a ISO 8601 encoded string or a unix timestamp.
 				<ul type="disc">
 					<li>“tti”: “2011-01-01T13:12:16+0000”</li>
 					<li>“tti”:1293887536</li>
@@ -602,7 +602,7 @@ EXAMPLE SERVICE RESPONSE DATA
 		</tr>
 		<tr>
 			<td>aflsd</td>
-			<td>The affiliate signup/creation date associated with this transaction. Either an ISO8601 encoded string or UNIX timestamp.</td>
+			<td>The affiliate signup/creation date associated with this transaction. Either an ISO 8601 encoded string or UNIX timestamp.</td>
 			<td>No</td>
 		</tr>
 
@@ -764,7 +764,7 @@ or
 		</tr>
 		<tr>
 			<td>cbdate</td>
-			<td>Date of the chargeback action. For example, if the cbtype is "CREDIT," then the date field should be the date that the "CREDIT" happens. The format of the value for this field is either an ISO8601 encoded string or a UNIX timestamp.
+			<td>Date of the chargeback action. For example, if the cbtype is "CREDIT," then the date field should be the date that the "CREDIT" happens. The format of the value for this field is either an ISO 8601 encoded string or a UNIX timestamp.
 				<ul type="disc">
 					<li>“cbdate”: “2011-01-01T13:12:16+0000”</li>
 					<li>“cbdate”:1293887536</li>
@@ -775,7 +775,7 @@ or
 		</tr>
 		<tr>
 			<td>authdate</td>
-			<td>Date of the original authorization transaction. The format of the value for this field is either an ISO8601 encoded string or a UNIX timestamp.
+			<td>Date of the original authorization transaction. The format of the value for this field is either an ISO 8601 encoded string or a UNIX timestamp.
 				<ul type="disc">
 					<li>“authdate”: “2011-01-01T13:12:16+0000”</li>
 					<li>“authdate”:1293887536</li>
@@ -1005,7 +1005,7 @@ or
 		</tr>
 		<tr>
 			<td>crdate</td>
-			<td>Date of the credit action. The format of the value for this field is either an ISO8601 encoded string or a UNIX timestamp.
+			<td>Date of the credit action. The format of the value for this field is either an ISO 8601 encoded string or a UNIX timestamp.
 				<ul type="disc">
 					<li>“crdate”: “2011-01-01T13:12:16+0000”</li>
 					<li>“crdate”:1293887536</li>
@@ -1430,7 +1430,7 @@ EXAMPLE SERVICE RESPONSE DATA
 
 {
   “res” : “ERROR”,
-  “error_message” : “Bad data format:Failed to parse the date string provided in the data.  Please use ISO8601 format.”
+  “error_message” : “Bad data format:Failed to parse the date string provided in the data.  Please use ISO 8601 format.”
 }
 ```
 > The response includes detailed result codes and the transaction unique identifier. The most important part of the response is whether the transaction is to be accepted, denied, or scheduled for manual review, which is dependent on the configured validation policy. The keys are fully defined in *Appendix A: Result Keys and Codes*.
@@ -1649,7 +1649,7 @@ EXAMPLE SERVICE RESPONSE DATA
 		</tr>
 		<tr>
 			<td>aflsd</td>
-			<td>The affiliate signup/creation date associated with this transaction. Either an ISO8601 encoded string or UNIX timestamp.</td>
+			<td>The affiliate signup/creation date associated with this transaction. Either an ISO 8601 encoded string or UNIX timestamp.</td>
 			<td>No</td>
 		</tr>
 		<tr>
@@ -2148,7 +2148,7 @@ EXAMPLE SERVICE RESPONSE DATA
 		</tr>
 		<tr>
 			<td>dob</td>
-			<td>The date of birth of the individual opening the account. Format is ISO8601 (e.g. 1984-01-21).</td>
+			<td>The date of birth of the individual opening the account. Format is ISO 8601 (e.g. 1984-01-21).</td>
 			<td>No</td>
 		</tr>
 		<tr>
@@ -2318,7 +2318,7 @@ EXAMPLE SERVICE RESPONSE DATA
 		</tr>
 		<tr>
 			<td>aflsd</td>
-			<td>The signup/creation date of the affiliate associated with this transaction. Either an ISO8601 encoded string or a UNIX timestamp.</td>
+			<td>The signup/creation date of the affiliate associated with this transaction. Either an ISO 8601 encoded string or a UNIX timestamp.</td>
 			<td>No</td>
 		</tr>
 		<tr>
