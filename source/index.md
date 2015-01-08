@@ -662,7 +662,7 @@ EXAMPLE SERVICE RESPONSE DATA
 					<li>"INTERAC" - Interac</li>
 					<li>"generic" - See <i>Appendix C: Generic Gateway Codes</i></li>
 				</ul>
-			<br><br>
+			<br>
 			<b>Note</b>: While this field is required, backwards compatibility feedback will not be rejected if not present, but will instead be interpreted as MES gateway data.
 			</td>
 			<td>Yes</td>
@@ -801,7 +801,7 @@ or
 					<li>"INTERAC" - Interac</li>
 					<li>"generic" - See <i>Appendix C: Generic Gateway Codes</i></li>
 				</ul>
-			<br><br>
+			<br>
 			<b>Note</b>: While this field is required, backwards compatibility feedback will not be rejected if not present, but will instead be interpreted as MES gateway data. 
 			</td>
 			<td>Yes</td>
@@ -1339,7 +1339,7 @@ EXAMPLE SERVICE RESPONSE DATA
 					<li>"INTERAC" - Interac</li>
 					<li>"generic" - See <i>Appendix C: Generic Gateway Codes</i></li>
 				</ul>
-			<br><br>
+			<br>
 			<b>Note</b>: While this field is required, backwards compatibility feedback will not be rejected if not present, but will instead be interpreted as MES gateway data. </td>
 			<td>No</td>
 		</tr>
