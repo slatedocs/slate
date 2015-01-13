@@ -14,7 +14,7 @@ curl "https://www.codeschool.com/api/v1/user"
 ```json
 {
   "user": {
-    "twitter_name": talonpowthesecond,
+    "twitter_name": "talonpowthesecond",
     "name": "Talon Powlowski II",
     "id": 4,
     "email": "saul@oberbrunnerbosco.net",
