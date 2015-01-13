@@ -21,15 +21,15 @@ curl "api_endpoint_here?key=(PROJECT_KEY|USER_KEY)"
 Airbrake uses API keys to restrict access to the API. There are several kinds of keys:
 
 - Project API key (`PROJECT_KEY`) that is used to submit errors and track deploys. This key is what you configure the notifier agent in your app to use.
-- User API key (`USER_KEY`) is used to get access to the project data through Airbrake APIs. Each user of a project has her own key.
-- User token (`USER_TOKEN`) that is identical to `USER_KEY`, but is valid for less than 24 hours.
+- User API key (`USER_KEY`) is used to access to the project data through Airbrake APIs. Each user of a project has their own key.
+- User token (`USER_TOKEN`) that is identical to `USER_KEY`, but is valid for limited time.
 
 Airbrake expects the API key to be included in all API requests to our servers in a query string that looks like the following:
 
 `?key=(PROJECT_KEY|USER_KEY|USER_TOKEN)`
 
 <aside class="notice">
-You must replace `(PROJECT_KEY|USER_KEY)` with your personal key.
+You must replace `(PROJECT_KEY|USER_KEY|USER_TOKEN)` with your personal key.
 </aside>
 
 ## Create user token v4
