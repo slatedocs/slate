@@ -122,7 +122,7 @@ EXAMPLE SERVICE RESPONSE DATA
 
 
 		<tr>
-			<th colspan=3>TXN</th>
+			<th colspan=3>Transaction</th>
 		</tr>
 		<tr>
 			<th>Key</th>

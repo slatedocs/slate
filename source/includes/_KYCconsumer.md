@@ -7,10 +7,10 @@ The evidence is the application data to be evaluated. It is supplied in the body
 The following URLs are used for consumer application validation:
 
 Validate a consumer application:<br>
-[https://edna.identitymind.com/im/account/creation](https://edna.identitymind.com/im/account/creation) (POST)
+`POST https://edna.identitymind.com/im/account/creation`
 
 Retrieve the current state of a consumer application:<br>
-[https://edna.identitymind.com/im/account/creation/<tid>](https://edna.identitymind.com/im/account/creation/<tid>) (GET)
+`GET https://edna.identitymind.com/im/account/creation/<tid>`
 
 ```code
 > The response is a JSON encoding of the IdentityMind Service result:   
@@ -99,17 +99,18 @@ EXAMPLE SERVICE RESPONSE DATA
 			<td>soc</td>
 			<td>Indicates that the provided email address is associated with a social networking site; in particular, that it is used for Oauth authentication. The content of the field is merchant defined, but the following values are recommended:
 				<ul type="disc">
-					<li>google</li>
-					<li>facebook</li>
-					<li>twitter</li>
-					<li>yahoo</li>
-				Maximum length is 60 characters.</ul>
+					<li><code>facebook</code></li>
+					<li><code>google</code></li>
+					<li><code>twitter</code></li>
+					<li><code>yahoo</code></li>
+				</ul>
+			Maximum length is 60 characters.
 			</td>
 			<td>No</td>
 		</tr>
 		<tr>
 			<td>dob</td>
-			<td>The date of birth of the individual opening the account. Format is ISO 8601 (e.g. 1984-01-21).</td>
+			<td>The date of birth of the individual opening the account. Format is ISO 8601 (e.g. <code>1984-01-21</code>).</td>
 			<td>No</td>
 		</tr>
 		<tr>
@@ -124,12 +125,12 @@ EXAMPLE SERVICE RESPONSE DATA
 		</tr>
 		<tr>
 			<td>clat</td>
-			<td>The current latitude of the customer, specified in decimal degrees. Encoded as a string (e.g. "clat":"37.4419").</td>
+			<td>The current latitude of the customer, specified in decimal degrees. Encoded as a string (e.g. <code>"clat":"37.4419"</code>).</td>
 			<td>No</td>
 		</tr>
 		<tr>
 			<td>clong</td>
-			<td>The current longitude of the customer, specified in decimal degrees. Encoded as a string (e.g. "clong":"-122.1419").</td>
+			<td>The current longitude of the customer, specified in decimal degrees. Encoded as a string (e.g. <code>"clong":"-122.1419"</code>).</td>
 			<td>No</td>
 		</tr>
 		<tr>
@@ -164,16 +165,16 @@ EXAMPLE SERVICE RESPONSE DATA
 		</tr>
 		<tr>
 			<td>dfp</td>
-			<td>Device fingerprint blob. The interpretation of this blob is specified by the value of the "dft" attribute</td>
+			<td>Device fingerprint blob. The interpretation of this blob is specified by the value of the <code>dft</code> attribute</td>
 			<td>No</td>
 		</tr>
 		<tr>
 			<td>dft</td>
 			<td>Device fingerprint type. Specifies the technology that was used to generate the blob.
 				<ul type"disc">
-					<li>BC - BlueCava</li>
+					<li><code>BC</code> - BlueCava</li>
 				</ul>
-			Default is BC</td>
+			Default is <code>BC</code></td>
 			<td>No</td>
 		</tr>
 
@@ -256,15 +257,15 @@ EXAMPLE SERVICE RESPONSE DATA
 			<td>tti</td>
 			<td>The date and time of the transaction as processed by the merchant. Expressed in UTC, encoded as a UNIX timestamp.
 				<ul type="disc">
-					<li>“tti”:129887536</li>
-					<li>“tti”:“129887536”</li>
+					<li><code>“tti”:129887536</code></li>
+					<li><code>“tti”:“129887536”</code></li>
 				</ul>
 			If not supplied, eDNA will assign the time at which it receives the transaction.</td>
 			<td>No</td>
 		</tr>
 		<tr>
 			<td>tid</td>
-			<td>Unique identifier for the application. eDNA assigns an internal ID if none is provided. The tid must be encoded as a string (e.g. "tid":"123455"). The tid is used to combine the multiple stages of an application. Maximum length is 40 characters.</td>
+			<td>Unique identifier for the application. eDNA assigns an internal ID if none is provided. The tid must be encoded as a string (e.g. <code>"tid":"123455"</code>). The tid is used to combine the multiple stages of an application. Maximum length is 40 characters.</td>
 			<td>No</td>
 		</tr>
 		<tr>
@@ -299,7 +300,7 @@ EXAMPLE SERVICE RESPONSE DATA
 		</tr>
 		<tr>
 			<td>merchantAid</td>
-			<td>If this consumer is linked to a merchant (business) as one of the owners of the business, this parameter should match the exact application ID of the merchant (see tid in the Merchant Application API below)</td>
+			<td>If this consumer is linked to a merchant (business) as one of the owners of the business, this parameter should match the exact application ID of the merchant</td>
 			<td>No</td>
 		</tr>
 		<tr>

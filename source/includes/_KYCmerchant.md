@@ -15,11 +15,11 @@ Each owner will be evaluated with the Consumer Application Web Service.  In the 
 The following URLs are used for merchant application validation:
 
 Validate a merchant application:<br>
-[https://edna.identitymind.com/im/account/merchant](https://edna.identitymind.com/im/account/merchant) (POST)
+`POST https://edna.identitymind.com/im/account/merchant`
 
 
 Retrieve the current state of a merchant application:<br>
-[https://edna.identitymind.com/im/account/merchant/<tid>](https://edna.identitymind.com/im/account/merchant/<tid>) (GET)
+`GET https://edna.identitymind.com/im/account/merchant/<tid>`
 
 > The response is a JSON encoding of the IdentityMind Service result:
 
@@ -85,7 +85,7 @@ EXAMPLE SERVICE RESPONSE DATA
 		</tr>
 		<tr>
 			<td>tid</td>
-			<td>Unique application identifier. The system will assign one if not provided. It is recommended to pass one if needed to be correlated to client's backend system. The tid must be encoded as a string (e.g. "tid":"123455"). The tid is used to combine the multiple stages of an application. Maximum length is 40 characters.</td>
+			<td>Unique application identifier. The system will assign one if not provided. It is recommended to pass one if needed to be correlated to client's backend system. The tid must be encoded as a string (e.g. <code>"tid":"123455"</code>). The tid is used to combine the multiple stages of an application. Maximum length is 40 characters.</td>
 			<td>No</td>
 		</tr>
 
@@ -127,12 +127,12 @@ EXAMPLE SERVICE RESPONSE DATA
 			<td>businesstype</td>
 			<td>Business type. Possible values are:
 				<ul type="disc">
-					<li>corporation - Corporation</li>
-					<li>llc - LLC</li>
-					<li>partnership - Partnership</li>
-					<li>individual - Individual/Sole Proprietorship</li>
-					<li>nonprofit - Nonprofit</li>
-					<li>foreigncorp - Foreign corporation</li>
+					<li><code>corporation</code> - Corporation</li>
+					<li><code>llc</code> - LLC</li>
+					<li><code>partnership</code> - Partnership</li>
+					<li><code>individual</code> - Individual/Sole Proprietorship</li>
+					<li><code>nonprofit</code> - Nonprofit</li>
+					<li><code>foreigncorp</code> - Foreign corporation</li>
 				</ul>
 			</td>
 			<td>No</td>
@@ -191,8 +191,8 @@ EXAMPLE SERVICE RESPONSE DATA
 			<td>bankaccounttype</td>
 			<td>Bank account type. Valid values are:
 				<ul type="disc">
-					<li>checking</li>
-					<li>saving</li>
+					<li><code>checking</code></li>
+					<li><code>saving</code></li>
 				</ul>
 			</td>
 			<td>No</td>
@@ -231,8 +231,8 @@ EXAMPLE SERVICE RESPONSE DATA
 			<td>tti</td>
 			<td>The date and time of the transaction as processed by the merchant. Expressed in UTC, encoded as a UNIX timestamp.
 				<ul type="disc">
-					<li>"tti":129887536</li>
-					<li>"tti":"129887536"</li>
+					<li><code>"tti":129887536</code></li>
+					<li><code>"tti":"129887536"</code></li>
 				</ul>
 			If not supplied, eDNA will assign the time at which it receives the transaction.</td>
 			<td>No</td>
