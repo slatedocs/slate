@@ -6,25 +6,25 @@ The following URLs are used to notify IdentityMind of the acceptance or rejectio
 
 ### Bank Authorization Feedback
 
-[https://edna.identitymind.com/im/transaction/<transaction_ID>/bank-accepted](https://edna.identitymind.com/im/transaction/<transaction_ID>/bank-accepted)
+`POST https://edna.identitymind.com/im/transaction/<transaction_ID>/bank-accepted`
 
-[https://edna.identitymind.com/im/transaction/<transaction_ID>/bank-rejected](https://edna.identitymind.com/im/transaction/<transaction_ID>/bank-rejected)
+`POST https://edna.identitymind.com/im/transaction/<transaction_ID>/bank-rejected`
 
 ### Merchant Final Resolution Feedback
 
-[https://edna.identitymind.com/im/transaction/<transaction_ID>/accepted](https://edna.identitymind.com/im/transaction/<transaction_ID>/accepted)
+`POST https://edna.identitymind.com/im/transaction/<transaction_ID>/accepted`
 
-[https://edna.identitymind.com/im/transaction/<transaction_ID>/rejected](https://edna.identitymind.com/im/transaction/<transaction_ID>/rejected)
+`POST https://edna.identitymind.com/im/transaction/<transaction_ID>/rejected`
 
-[https://edna.identitymind.com/im/transaction/<transaction_ID>/rejected-ok](https://edna.identitymind.com/im/transaction/<transaction_ID>/rejected-ok) 
+`POST https://edna.identitymind.com/im/transaction/<transaction_ID>/rejected-ok`
 
-[https://edna.identitymind.com/im/transaction/<transaction_ID>/accepted-user-validated](https://edna.identitymind.com/im/transaction/<transaction_ID>/accepted-user-validated)
+`POST https://edna.identitymind.com/im/transaction/<transaction_ID>/accepted-user-validated`
 
-[https://edna.identitymind.com/im/transaction/<transaction_ID>/rejected-user-failed-validation](https://edna.identitymind.com/im/transaction/<transaction_ID>/rejected-user-failed-validation)
+`POST https://edna.identitymind.com/im/transaction/<transaction_ID>/rejected-user-failed-validation`
 
-[https://edna.identitymind.com/im/transaction/<transaction_ID>/accepted-default](https://edna.identitymind.com/im/transaction/<transaction_ID>/accepted-default) 
+`POST https://edna.identitymind.com/im/transaction/<transaction_ID>/accepted-default`
 
-[https://edna.identitymind.com/im/transaction/<transaction_ID>/rejected-default](https://edna.identitymind.com/im/transaction/<transaction_ID>/rejected-default)
+`POST https://edna.identitymind.com/im/transaction/<transaction_ID>/rejected-default`
 
 **Note**: The transaction may be a payment transaction or an account transfer.
 
@@ -89,18 +89,18 @@ EXAMPLE SERVICE RESPONSE DATA
 			<td>gateway</td>
 			<td>The name of the payment gateway used. This information is used to interpret the result/error codes. Currently, we support:
 				<ul type="disc">
-					<li>"MES" - Merchant e-Solutions</li>
-					<li>"GC" - Google Checkout</li>
-					<li>"PPP" - PayPal Pro</li>
-					<li>"PFP" - Pay Flow Pro</li>
-					<li>"CDP" - Centro de Pagos</li>
-					<li>"commerce" - CommerceGate</li>
-					<li>"DHD" - DHD Media</li>
-					<li>"IDM" - IDMPay</li>
-					<li>"SC" - Safe Charge</li>
-					<li>"AUTH" - Auth.net</li>
-					<li>"INTERAC" - Interac</li>
-					<li>"generic" - See <i>Appendix C: Generic Gateway Codes</i></li>
+					<li><code>MES</code> - Merchant e-Solutions</li>
+					<li><code>GC</code> - Google Checkout</li>
+					<li><code>PPP</code> - PayPal Pro</li>
+					<li><code>PFP</code> - Pay Flow Pro</li>
+					<li><code>CDP</code> - Centro de Pagos</li>
+					<li><code>commerce</code> - CommerceGate</li>
+					<li><code>DHD</code> - DHD Media</li>
+					<li><code>IDM</code> - IDMPay</li>
+					<li><code>SC</code> - Safe Charge</li>
+					<li><code>AUTH</code> - Auth.net</li>
+					<li><code>INTERAC</code> - Interac</li>
+					<li><code>generic</code> - See <i>Appendix C: Generic Gateway Codes</i></li>
 				</ul>
 			<b>Note</b>: While this field is required, backwards compatibility feedback will not be rejected if not present, but will instead be interpreted as MES gateway data. </td>
 			<td>No</td>
@@ -114,15 +114,15 @@ EXAMPLE SERVICE RESPONSE DATA
 			<td>bank_status</td>
 			<td>The status of the transaction at the gateway/bank:
 				<ul type="disc">
-					<li>"a" - auth_only</li>
-					<li>"c" - captured</li>
-					<li>"d" - declined</li>
-					<li>"v" - void</li>
-					<li>"r" - refund</li>
-					<li>"b" - chargeback</li>
-					<li>"u" - unknown</li>
+					<li><code>a</code> - auth_only</li>
+					<li><code>c</code> - captured</li>
+					<li><code>d</code> - declined</li>
+					<li><code>v<c/ode> - void</li>
+					<li><code>r</code> - refund</li>
+					<li><code>b</code> - chargeback</li>
+					<li><code>u</code> - unknown</li>
 				</ul>
-			Default is "u"</td>
+			Default is <code>u</code>
 			<td>No</td>
 		</tr>
 	</table>

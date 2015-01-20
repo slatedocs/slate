@@ -8,14 +8,14 @@ Notifies that a refund occurred on a transaction. All arguments are optional.
 
 The transaction ID is part of the URL. The "refund-ok" URL should be used when the merchant believes that the refund is legitimate. The "refund-fraud" URL should be used when the merchant believes there is fraud, but a refund is being made to avoid a later chargeback.
 
-[https://edna.identitymind.com/im/transaction/<transaction_ID>/refund-ok](https://edna.identitymind.com/im/transaction/<transaction_ID>/refund-ok)
+`POST https://edna.identitymind.com/im/transaction/<transaction_ID>/refund-ok`
 
-[https://edna.identitymind.com/im/transaction/<transaction_ID>/refund-fraud](https://edna.identitymind.com/im/transaction/<transaction_ID>/refund-fraud)
+`POST https://edna.identitymind.com/im/transaction/<transaction_ID>/refund-fraud`
 
-[https://edna.identitymind.com/im/transaction/<transaction_ID>/refund-partial-ok](https://edna.identitymind.com/im/transaction/<transaction_ID>/refund-partial-ok)
+`POST https://edna.identitymind.com/im/transaction/<transaction_ID>/refund-partial-ok`
 
-[https://edna.identitymind.com/im/transaction/<transaction_ID>/refund-partial-fraud](https://edna.identitymind.com/im/transaction/<transaction_ID>/refund-partial-fraud)
- 
+`POST https://edna.identitymind.com/im/transaction/<transaction_ID>/refund-partial-fraud`
+
 ```code
 EXAMPLE SERVICE REQUEST
 
@@ -74,15 +74,15 @@ EXAMPLE SERVICE RESPONSE DATA
 			<td>bank_status</td>
 			<td>The status of the transaction at the gateway/bank:
 				<ul type="disc">
-					<li>"a" - auth_only</li>
-					<li>"c" - captured</li>
-					<li>"d" - declined</li>
-					<li>"v" - void</li>
-					<li>"r" - refund</li>
-					<li>"b" - chargeback</li>
-					<li>"u" - unknown</li>
+					<li><code>a</code> - auth_only</li>
+					<li><code>c</code> - captured</li>
+					<li><code>d</code> - declined</li>
+					<li><code>v<c/ode> - void</li>
+					<li><code>r</code> - refund</li>
+					<li><code>b</code> - chargeback</li>
+					<li><code>u</code> - unknown</li>
 				</ul>
-			Default is "u"
+			Default is <code>u</code>
 			</td>
 			<td>No</td>
 		</tr>
