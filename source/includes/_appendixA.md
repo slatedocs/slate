@@ -116,7 +116,7 @@
 		<tr>
 			<td>user</td>
 			<td>eDNA User Result:
-				<ul type="disk>
+				<ul type="disc">
 					<li><code>TRUSTED</code></li>
 					<li><code>UNKNOWN</code></li>
 					<li><code>BAD</code></li>
