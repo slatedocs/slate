@@ -1,4 +1,4 @@
-# Quiz Response (IDAnalytics)
+# Out of Wallet Questions (IDAnalytics)
 
 The response to this request is an application response containing the newly updated application.
 Note that the response may, depending on the response from ID Analytics and your configuration within the eDNA platform, contain a further set of “challenge” questions that should once again be passed back to the consumer for answers.

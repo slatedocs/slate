@@ -17,8 +17,8 @@ includes:
   - TransactionMonitoring
   - KYCmerchant
   - KYCconsumer
-  - QuizResponseIDAnalytics
-  - QuizResponsePhoneValidation
+  - OutofWalletQuestions
+  - PhoneOwnershipValidation
   - DocumentValidationRequest
   - FeedbackFinalApplicationResult
   - LoginAnnotationWebService

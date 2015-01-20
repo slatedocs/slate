@@ -1,8 +1,8 @@
-# Document Validation Request
+# Document Validation Request (Jumio NetVerify)
 
 The body of the POST contains JSON encoding of the document type that is to be uploaded. The request will return an error if Jumio NetVerify has not been configured with eDNA.
 
-The following URLs are used to initiate a Jumio Netverify Multi Document transaction for a Consumer or Merchant application:
+The following URLs are used to initiate a Jumio NetVerify Multi Document transaction for a Consumer or Merchant application:
 
 `POST https://edna.identitymind.com/im/account/merchant/<appid>/document`
 
