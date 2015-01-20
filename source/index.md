@@ -9,19 +9,11 @@ toc_footers:
   - eDNA API Reference Beta v1.0.7
 
 includes:	
-  - PaymentTransactionValidation
-  - ChargebackNotification
-  - CreditNotification
-  - FeedbackTransactionNeutralRefundNotification
-  - FeedbackFinalPaymentTransaction
   - TransactionMonitoring
-  - KYCmerchant
   - KYCconsumer
   - QuizResponseIDAnalytics
   - QuizResponsePhoneValidation
-  - DocumentValidationRequest
   - FeedbackFinalApplicationResult
-  - LoginAnnotationWebService
   - appendixA
   - appendixB
   - appendixC
