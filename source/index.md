@@ -14,6 +14,7 @@ includes:
   - CreditNotification
   - FeedbackTransactionNeutralRefundNotification
   - FeedbackFinalPaymentTransaction
+  - LoginAnnotationWebService
   - appendixA
   - appendixB
   - appendixC
