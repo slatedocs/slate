@@ -6,7 +6,7 @@ The evidence is the payment transaction data to be evaluated. It is supplied in 
 
 The following URL can be used for requesting payment transaction anti-fraud evaluation:
 
-[https://edna.identitymind.com/im/transaction](https://edna.identitymind.com/im/transaction)
+`POST https://edna.identitymind.com/im/transaction`
 
 ```code
 EXAMPLE SERVICE REQUEST

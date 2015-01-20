@@ -10,7 +10,7 @@ In the case of credit or blind credit on a transaction that eDNA has not previou
 
 The following URL can be used for credit notification evaluation:
 
-[https://edna.identitymind.com/im/jax/credit/](https://edna.identitymind.com/im/jax/credit/)
+`POST https://edna.identitymind.com/im/jax/credit/`
 
 ```code
 EXAMPLE SERVICE REQUEST

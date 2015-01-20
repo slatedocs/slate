@@ -8,7 +8,7 @@ In the case of a chargeback on a transaction that eDNA has not previously proces
 
 The following URL can be used for requesting chargeback notification evaluation:
 
-[https://edna.identitymind.com/im/jax/chargeback/](https://edna.identitymind.com/im/jax/chargeback/)
+`POST https://edna.identitymind.com/im/jax/chargeback/`
 
 ```code
 EXAMPLE SERVICE REQUEST
