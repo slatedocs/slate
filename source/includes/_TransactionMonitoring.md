@@ -7,13 +7,13 @@ The evidence is the account transfer transaction data to be evaluated. It is sup
 The following URLs are used for account transaction validation:
 
 Validate an external transfer (deposit) into an account:<br>
-[https://edna.identitymind.com/im/account/transferin](https://edna.identitymind.com/im/account/transferin) (POST)
+`POST https://edna.identitymind.com/im/account/transferin`
 
 Validate an internal transfer between accounts:<br>
-[https://edna.identitymind.com/im/account/transfer](https://edna.identitymind.com/im/account/transfer) (POST)
+`POST https://edna.identitymind.com/im/account/transfer`
 
 Validate an external transfer (withdrawal) from an account:<br>
-[https://edna.identitymind.com/im/account/transferout](https://edna.identitymind.com/im/account/transferout) (POST)
+`POST https://edna.identitymind.com/im/account/transferout`
 
 ```code
 EXAMPLE SERVICE REQUEST
@@ -90,13 +90,13 @@ EXAMPLE SERVICE RESPONSE DATA
 		<tr>
 			<td>soc</td>
 			<td>Indicates that the provided email address is associated with a social networking site, and is used for Oauth authentication. The following values are recommended:
-				<ul type:"disc">
-					<li>google</li>
-					<li>facebook</li>
-					<li>twitter</li>
-					<li>yahoo</li>
-				Maximum length is 60 characters.</ul>
-			</td>
+				<ul type="disc">
+					<li><code>facebook</code></li>
+					<li><code>google</code></li>
+					<li><code>twitter</code></li>
+					<li><code>yahoo</code></li>
+				</ul>
+			Maximum length is 60 characters.
 			<td>No</td>
 		</tr>
 		<tr>
@@ -116,12 +116,12 @@ EXAMPLE SERVICE RESPONSE DATA
 		</tr>
 		<tr>
 			<td>clat</td>
-			<td>The current latitude of the customer, specified in decimal degrees. Encoded as a string (e.g. “clat”:“37.4419”)</td>
+			<td>The current latitude of the customer, specified in decimal degrees. Encoded as a string (e.g. <code>“clat”:“37.4419”</code>)</td>
 			<td>No</td>
 		</tr>
 		<tr>
 			<td>clong</td>
-			<td>The current longitude of the customer, specified in decimal degrees. Encoded as a string (e.g. “clong”:“-122.1419”)</td>
+			<td>The current longitude of the customer, specified in decimal degrees. Encoded as a string (e.g. <code>“clong”:“-122.1419”</code>)</td>
 			<td>No</td>
 		</tr>
 
@@ -186,16 +186,16 @@ EXAMPLE SERVICE RESPONSE DATA
 		</tr>
 		<tr>
 			<td>dfp</td>
-			<td>Device fingerprint blob. The interpretation of this blob is specified by the value of the "dft" attribute.</td>
+			<td>Device fingerprint blob. The interpretation of this blob is specified by the value of the <code>dft</code> attribute.</td>
 			<td>No</td>
 		</tr>
 		<tr>
 			<td>dft</td>
 			<td>Device fingerprint type. Specifies the technology that was used to generate the blob.
 				<ul type="disc">
-					<li>BC - BlueCava</li>
+					<li><code>BC</code> - BlueCava</li>
 				</ul>
-			Default is BC</td>
+			Default is <code>BC</code></td>
 			<td>No</td>
 		</tr>
 		<tr>
@@ -246,7 +246,7 @@ EXAMPLE SERVICE RESPONSE DATA
 		</tr>
 		<tr>
 			<td>ptoken</td>
-			<td>A masked or tokenized version of the account token. This attribute is used in conjunction with "phash," "pbc," and "pach." Maximum length is 64 characters.</td>
+			<td>A masked or tokenized version of the account token. This attribute is used in conjunction with <code>phash</code>, <code>pbc</code>, and <code>pach</code>. Maximum length is 64 characters.</td>
 			<td>No</td>
 		</tr>
 
@@ -263,15 +263,15 @@ EXAMPLE SERVICE RESPONSE DATA
 			<td>tti</td>
 			<td>The date and time of the transaction as processed by the merchant. Expressed in UTC encoded as a UNIX timestamp.
 				<ul type="disc">
-					<li>“tti”:1293887536</li>
-					<li>“tti”:”1293887536”</li>
+					<li><code>“tti”:1293887536</code></li>
+					<li><code>“tti”:”1293887536”</code></li>
 				</ul>
 			</td>
 			<td>No</td>
 		</tr>
 		<tr>
 			<td>tid</td>
-			<td>Merchant unique identifier for the transaction. eDNA assigns an internal ID if none provided. The transaction ID must be encoded as a string (e.g. "tid":"123455"). Maximum length is 40 characters.</td>
+			<td>Merchant unique identifier for the transaction. eDNA assigns an internal ID if none provided. The transaction ID must be encoded as a string (e.g. <code>"tid":"123455"</code>). Maximum length is 40 characters.</td>
 			<td>No</td>
 		</tr>
 		<tr>
@@ -321,7 +321,7 @@ EXAMPLE SERVICE RESPONSE DATA
 		</tr>
 		<tr>
 			<td>ccy</td>
-			<td>If this transaction is a transfer, the currency of the "amt" field being transferred. Maximum length is three characters.</td>
+			<td>If this transaction is a transfer, the currency of the <code>amt</code> field being transferred. Maximum length is three characters.</td>
 			<td>No</td>
 		</tr>
 		<tr>
@@ -367,7 +367,7 @@ EXAMPLE SERVICE RESPONSE DATA
 		</tr>
 		<tr>
 			<td>dptoken</td>
-			<td>A masked or tokenized version of the destination payment instrument number. IdentityMind will supply procedure to generate token. This field is used in conjunction with "dpbc," "dpach," and "dptoken."</td>
+			<td>A masked or tokenized version of the destination payment instrument number. IdentityMind will supply procedure to generate token. This field is used in conjunction with <code>dpbc</code>, <code>dpach</code>, and <code>dptoken</code>.</td>
 			<td>No</td>
 		</tr>
 		<tr>
@@ -402,7 +402,7 @@ EXAMPLE SERVICE RESPONSE DATA
 		</tr>
 		<tr>
 			<td>sco</td>
-			<td>ISO 3166 country code of the recipient address of the transaction, encoded as a string. Default is "US." Maximum length is three characters.</td>
+			<td>ISO 3166 country code of the recipient address of the transaction, encoded as a string. Default is <code>US</code>. Maximum length is three characters.</td>
 			<td>No</td>
 		</tr>
 	</table>
