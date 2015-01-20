@@ -5,9 +5,9 @@ Note that the response may, depending on the response from ID Analytics and your
 
 The following URLs are used to return a customer’s response to a set of out of wallet questions returned either by a merchant or consumer application respectively:
 
-[https://edna.identitymind.com/im/account/merchant/<appid>/quizresponse](https://edna.identitymind.com/im/account/merchant/<appid>/quizresponse) (POST)
+`POST https://edna.identitymind.com/im/account/merchant/<appid>/quizresponse`
 
-[https://edna.identitymind.com/im/account/consumer/<appid>/quizresponse](https://edna.identitymind.com/im/account/consumer/<appid>/quizresponse) (POST)
+`POST https://edna.identitymind.com/im/account/consumer/<appid>/quizresponse`
 
 > The body of the request contains an encoding of the customer’s answers to the quiz questions. The encoding is in JSON as shown below. The answers are processed and the response used to update the IDAnalytics CertainID Security Test and the Application state.
 
@@ -47,15 +47,15 @@ https://edna.identitymind.com/im/account/merchant/743567/quizresponse
 			<th>Description</th>
 		</tr>
 		<tr>
-			<td>answers</td>
+			<td><code>answers</code></td>
 			<td>JSON Array of JSON encoded answer objects</td>
 		</tr>
 		<tr>
-			<td>questionId</td>
+			<td><code>questionId</code></td>
 			<td>Integer identifier for this question. This value maps to the question within the question data.</td>
 		</tr>
 		<tr>
-			<td>choice</td>
+			<td><code>choice</code></td>
 			<td>Text of the answer that was selected by the consumer</td>
 		</tr>
 	</table>
