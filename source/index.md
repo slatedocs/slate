@@ -14,6 +14,13 @@ includes:
   - CreditNotification
   - FeedbackTransactionNeutralRefundNotification
   - FeedbackFinalPaymentTransaction
+  - TransactionMonitoring
+  - KYCmerchant
+  - KYCconsumer
+  - QuizResponseIDAnalytics
+  - QuizResponsePhoneValidation
+  - DocumentValidationRequest
+  - FeedbackFinalApplicationResult
   - LoginAnnotationWebService
   - appendixA
   - appendixB
