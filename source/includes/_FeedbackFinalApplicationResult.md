@@ -6,13 +6,13 @@ All arguments are optional, although a JSON object must be provided.
 
 The following URLs are used to notify IdentityMind of the acceptance or rejection of an application by the merchant:
 
-[https://edna.identitymind.com/im/account/consumer/<application_ID>/accepted](https://edna.identitymind.com/im/account/consumer/<application_ID>/accepted) (POST)
+`POST https://edna.identitymind.com/im/account/consumer/<application_ID>/accepted`
 
-[https://edna.identitymind.com/im/account/consumer/<application_ID>/rejected](https://edna.identitymind.com/im/account/consumer/<application_ID>/rejected) (POST)
+`POST https://edna.identitymind.com/im/account/consumer/<application_ID>/rejected`
 
-[https://edna.identitymind.com/im/account/merchant/<application_ID>/accepted](https://edna.identitymind.com/im/account/merchant/<application_ID>/accepted) (POST)
+`POST https://edna.identitymind.com/im/account/merchant/<application_ID>/accepted`
 
-[https://edna.identitymind.com/im/account/merchant/<application_ID>/rejected](https://edna.identitymind.com/im/account/merchant/<application_ID>/rejected) (POST)
+`POST https://edna.identitymind.com/im/account/merchant/<application_ID>/rejected`
 
 ```code
 EXAMPLE SERVICE REQUEST
@@ -58,7 +58,7 @@ or
 			<br><br>
 			For a rejected application, the property is interpreted as whether to mark the applicant as having failed validation.
 			<br><br>
-			Defaults to false</td>
+			Defaults to <code>false</code></td>
 			<td>No</td>
 		</tr>
 	</table>

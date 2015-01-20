@@ -7,7 +7,7 @@ The evidence is the login transaction data to be added to the entities transacti
 The following URLs are used for account login transactions:
 
 Annotate a user's transactions with login data:<br>
-[https://edna.identitymind.com/im/account/login](https://edna.identitymind.com/im/account/login) (POST)
+`POST https://edna.identitymind.com/im/account/login](https://edna.identitymind.com/im/account/login`
 
 ```code
 EXAMPLE SERVICE REQUEST
@@ -66,22 +66,23 @@ EXAMPLE SERVICE RESPONSE DATA
 			<td>soc</td>
 			<td>Indicates that the provided email address is associated with a social networking site; in particular, that it is used for Oauth authentication. The content of the field is merchant defined, but the following values are recommended:
 				<ul type="disc">
-					<li>google</li>
-					<li>facebook</li>
-					<li>twitter</li>
-					<li>yahoo</li>
-				Maximum length is 60 characters.</ul>
+					<li><code>facebook</code></li>
+					<li><code>google</code></li>
+					<li><code>twitter</code></li>
+					<li><code>yahoo</code></li>
+				</ul>
+			Maximum length is 60 characters.
 			</td>
 			<td>No</td>
 		</tr>
 		<tr>
 			<td>clat</td>
-			<td>The current latitude of the customer, specified in decimal degrees. Encoded as a string (e.g. “clat”:“37.4419”).</td>
+			<td>The current latitude of the customer, specified in decimal degrees. Encoded as a string (e.g. <code>“clat”:“37.4419”</code>).</td>
 			<td>No</td>
 		</tr>
 		<tr>
 			<td>clong</td>
-			<td>The current longitude of the customer, specified in decimal degrees. Encoded as a string (e.g. “clong”:“-122.1419”).</td>
+			<td>The current longitude of the customer, specified in decimal degrees. Encoded as a string (e.g. <code>“clong”:“-122.1419”</code>).</td>
 			<td>No</td>
 		</tr>
 
@@ -101,16 +102,16 @@ EXAMPLE SERVICE RESPONSE DATA
 		</tr>
 		<tr>
 			<td>dfp</td>
-			<td>Device fingerprint blob. The interpretation of this blob is specified by the value of hte "dft" attribute.</td>
+			<td>Device fingerprint blob. The interpretation of this blob is specified by the value of the <code>dft</code> attribute.</td>
 			<td>No</td>
 		</tr>
 		<tr>
 			<td>dft</td>
 			<td>Device fingerprint type. Specifies the technology that was used to generate the blob.
 				<ul type="disc">
-					<li>BC - BlueCava</li>
+					<li><code>BC</code> - BlueCava</li>
 				</ul>
-			Default is BC
+			Default is <code>BC</code>
 			</td>
 			<td>No</td>
 		</tr>
@@ -133,14 +134,14 @@ EXAMPLE SERVICE RESPONSE DATA
 			<td>tti</td>
 			<td>The date and time of the transaction as processed by the merchant. Expressed in UTC, encoded as a UNIX timestamp.
 				<ul type="disc">
-					<li>“tti”:129887536</li>
-					<li>“tti”:“129887536”</li>
+					<li><code>“tti”:129887536</code></li>
+					<li><code>“tti”:“129887536”</code></li>
 				</ul></td>
 			<td>No</td>
 		</tr>
 		<tr>
 			<td>tid</td>
-			<td>Merchant unique identifier for the transaction. eDNA assigns an internal ID if none is provided. The transaction ID must be encoded as a string (e.g. "tid":"123455"). Maximum length is 40 characters.</td>
+			<td>Merchant unique identifier for the transaction. eDNA assigns an internal ID if none is provided. The transaction ID must be encoded as a string (e.g. <code>"tid":"123455"</code>). Maximum length is 40 characters.</td>
 			<td>No</td>
 		</tr>
 	</table>

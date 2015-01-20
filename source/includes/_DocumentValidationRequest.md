@@ -4,9 +4,9 @@ The body of the POST contains JSON encoding of the document type that is to be u
 
 The following URLs are used to initiate a Jumio Netverify Multi Document transaction for a Consumer or Merchant application:
 
-[https://edna.identitymind.com/im/account/merchant/<appid>/document](https://edna.identitymind.com/im/account/merchant/<appid>/document)  (POST)
+`POST https://edna.identitymind.com/im/account/merchant/<appid>/document`
 
-[https://edna.identitymind.com/im/account/consumer/<appid>/document](https://edna.identitymind.com/im/account/consumer/<appid>/document)  (POST)
+`POST https://edna.identitymind.com/im/account/consumer/<appid>/document`
 
 ```code
 EXAMPLE SERVICE REQUEST DATA
@@ -37,31 +37,31 @@ EXAMPLE SERVICE RESPONSE DATA
 			<td>documentTypeCode</td>
 			<td>One of the following document type codes:
 				<ul type="disc">
-					<li>BS - Bank statement</li>
-					<li>CC - Credit card</li>
-					<li>IC - Insurance card</li>
-					<li>UB - Utility bill</li>
-					<li>CAAP - Cash advance application</li>
-					<li>CRC - Corporate resolution certificate</li>
-					<li>CCS - Credit card statement</li>
-					<li>LAG - Lease agreement</li>
-					<li>LOAP - Loan application</li>
-					<li>MOAP - Mortgage application</li>
-					<li>TR - Tax return</li>
-					<li>VT - Vehicle title</li>
-					<li>VC - Voided check</li>
-					<li>STUC - Student card</li>
-					<li>HCC - Healthcare card</li>
-					<li>CB - Council bill</li>
-					<li>SENC - Seniors card</li>
-					<li>MEDC - Medicare card</li>
-					<li>BC - Birth certificate</li>
-					<li>USSS - US social security card</li>
-					<li>WWCC - Working with children check</li>
-					<li>SS - Superannuation statement</li>
-					<li>TAC - Trade associated card</li>
-					<li>SEL - School enrollment letter</li>
-					<li>PB - Phone bill</li>
+					<li><code>BS</code> - Bank statement</li>
+					<li><code>CC</code> - Credit card</li>
+					<li><code>IC</code> - Insurance card</li>
+					<li><code>UB</code> - Utility bill</li>
+					<li><code>CAAP</code> - Cash advance application</li>
+					<li><code>CRC</code> - Corporate resolution certificate</li>
+					<li><code>CCS</code> - Credit card statement</li>
+					<li><code>LAG</code> - Lease agreement</li>
+					<li><code>LOAP</code> - Loan application</li>
+					<li><code>MOAP</code> - Mortgage application</li>
+					<li><code>TR</code> - Tax return</li>
+					<li><code>VT</code> - Vehicle title</li>
+					<li><code>VC</code> - Voided check</li>
+					<li><code>STUC</code> - Student card</li>
+					<li><code>HCC</code> - Healthcare card</li>
+					<li><code>CB</code> - Council bill</li>
+					<li><code>SENC</code> - Seniors card</li>
+					<li><code>MEDC</code> - Medicare card</li>
+					<li><code>BC</code> - Birth certificate</li>
+					<li><code>USSS</code> - US social security card</li>
+					<li><code>WWCC</code> - Working with children check</li>
+					<li><code>SS</code> - Superannuation statement</li>
+					<li><code>TAC</code> - Trade associated card</li>
+					<li><code>SEL</code> - School enrollment letter</li>
+					<li><code>PB</code> - Phone bill</li>
 				</ul>
 			This key is required and is encoded as a string.
 			</td>
