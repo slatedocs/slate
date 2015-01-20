@@ -16,10 +16,12 @@ includes:
   - FeedbackFinalPaymentTransaction
   - TransactionMonitoring
   - KYCmerchant
+  - KYCconsumer
   - OutofWalletQuestions
   - PhoneOwnershipValidation
   - DocumentValidationRequest
   - FeedbackFinalApplicationResult
+  - LoginAnnotationWebService
   - appendixA
   - appendixB
   - appendixC
