@@ -1,4 +1,4 @@
-# KYC - Merchant: Merchant Application Validation Web Service
+# KYC: Merchant Application Validation Web Service
 
 The evidence is the application data to be evaluated. It is supplied in the body of the HTTP-POST as JSON-encoded key value pairs. While all fields are not required, validation evaluation is more comprehensive when richer evidence is provided. 
 
