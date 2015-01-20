@@ -131,7 +131,7 @@
 		<tr>
 			<td>rcd</td>
 			<td>The complete set of result codes for this transaction. Includes:
-				<ul type="disk>
+				<ul type="disc">
 					<li>UAI reputation</li>
 					<li>Device reputation</li>
 					<li>Funding payment reputation</li>
@@ -151,7 +151,7 @@
 					<li><code>DENY</code></li>
 					<li><code>MANUAL_REVIEW</code></li>
 				</ul></td>
-			<td>ACCEPT</td>
+			<td><code>ACCEPT</code></td>
 		</tr>
 		<tr>
 			<td>ufs</td>
