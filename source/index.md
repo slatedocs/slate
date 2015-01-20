@@ -15,7 +15,7 @@ includes:
   - FeedbackTransactionNeutralRefundNotification
   - FeedbackFinalPaymentTransaction
   - TransactionMonitoring
-  - KYCconsumer
+  - KYCmerchant
   - QuizResponseIDAnalytics
   - QuizResponsePhoneValidation
   - FeedbackFinalApplicationResult
