@@ -112,7 +112,7 @@ EXAMPLE SERVICE RESPONSE DATA
 		</tr>
 		<tr>
 			<td>bco</td>
-			<td>ISO 3166 country code of the billing address of the transaction, encoded as a string. Default is "US." Maximum length is three characters.</td>
+			<td>ISO 3166 country code of the billing address of the transaction, encoded as a string. Default is <code>US</code>. Maximum length is three characters.</td>
 			<td>No</td>
 		</tr>
 
@@ -172,7 +172,7 @@ EXAMPLE SERVICE RESPONSE DATA
 		</tr>
 		<tr>
 			<td>sco</td>
-			<td>ISO 3166 country code of the shipping address of the transaction, encoded as a string. Default is "US." Maximum length is three characters.</td>
+			<td>ISO 3166 country code of the shipping address of the transaction, encoded as a string. Default is <code>US</code>. Maximum length is three characters.</td>
 			<td>No</td>
 		</tr>
 
@@ -201,12 +201,12 @@ EXAMPLE SERVICE RESPONSE DATA
 				<ul type="disc">
 					<li><code>BC</code> - BlueCava</li>
 				</ul> 
-			Default is "BC"</td>
+			Default is <code>BC</code></td>
 			<td>data</td>
 		</tr>
 		<tr>
 			<td>blg</td>
-			<td>The configured language of the browser. Typically available in the HTTP_ACCEPT_LANGUAGE header. Values are defined in ISO-639-1.</td>
+			<td>The configured language of the browser. Typically available in the <code>HTTP_ACCEPT_LANGUAGE</code> header. Values are defined in ISO-639-1.</td>
 			<td>No</td>
 		</tr>
 		<tr>
@@ -237,7 +237,8 @@ EXAMPLE SERVICE RESPONSE DATA
 					<li><code>google</code></li>
 					<li><code>twitter</code></li>
 					<li><code>yahoo</code></li>
-				Maximum length is 60 characters.</ul>
+				</ul>
+			Maximum length is 60 characters.
 			</td>
 			<td>No</td>
 		</tr>
@@ -324,7 +325,7 @@ EXAMPLE SERVICE RESPONSE DATA
 					<li><code>PREPAID</code></li>
 					<li><code>UNKNOWN</code></li>
 				</ul>
-			Default is UNKNOWN
+			Default is <code>UNKNOWN</code>
 			</td>
 			<td>No</td>
 		</tr>
@@ -486,12 +487,12 @@ EXAMPLE SERVICE RESPONSE DATA
 		</tr>
 		<tr>
 			<td>sub</td>
-			<td>Whether the transaction is associated to a subscription service. The default is false.</td>
+			<td>Whether the transaction is associated to a subscription service. The default is <code>false</code>.</td>
 			<td>No</td>
 		</tr>
 		<tr>
 			<td>ccy</td>
-			<td>The ISO 4217 currency code of the transaction encoded as a string. Default is "USD." Maximum length is three characters.</td>
+			<td>The ISO 4217 currency code of the transaction encoded as a string. Default is <code>USD</code>. Maximum length is three characters.</td>
 			<td>No</td>
 		</tr>
 		<tr>
@@ -519,7 +520,7 @@ EXAMPLE SERVICE RESPONSE DATA
 					<li><code>"smid"="42"</code></li>
 					<li><code>"smid"="Acme"</code></li>
 			</ul>
-			<br>Maximum length is 255 characters.
+			<br>Maximum length is 255 characters.<br>
 			<b>Note</b>: The value of the smid should not include the apostrophe symbol.
 			</td>
 			<td>No</td>
@@ -530,7 +531,7 @@ EXAMPLE SERVICE RESPONSE DATA
 			<br><br>
 			This name is displayed in the analysis user interface. If both "smid" and "smna" are present in a transaction, then the "smna" is preferentially displayed.
 				<ul type="disc">
-					<li>"smna":"Acme"</li>
+					<li><code>"smna":"Acme"</code></li>
 				</ul>
 			<br><br>
 			<b>Note</b>: The value of the smna should not include the apostrophe symbol.</td>
@@ -545,18 +546,18 @@ EXAMPLE SERVICE RESPONSE DATA
 			<td>moto</td>
 			<td>The MOTO/eCommerce indicator describes the type of eCommerce transaction that is taking place.
 				<ul type="disc">
-					<li>" " - (space) card present</li>
-					<li>"1" - one time mail / phone order</li>
-					<li>"2" - recurring payment</li>
-					<li>"3" - installment payment</li>
-					<li>"4" - other</li>
-					<li>"5" - 3D secure full</li>
-					<li>"6" - 3D secure merchant</li>
-					<li>"7" - eCommerce (channel encrypted)</li>
-					<li>"8" - eCommerce (non-secure)</li>
+					<li><code> </code> - (space) card present</li>
+					<li><code>1</code> - one time mail / phone order</li>
+					<li><code>2</code> - recurring payment</li>
+					<li><code>3</code> - installment payment</li>
+					<li><code>4</code> - other</li>
+					<li><code>5</code> - 3D secure full</li>
+					<li><code>6</code> - 3D secure merchant</li>
+					<li><code>7</code> - eCommerce (channel encrypted)</li>
+					<li><code>8</code> - eCommerce (non-secure)</li>
 				</ul>
 			<br><br>
-			The default is "7" if this field is not supplied.
+			The default is <code>7</code> if this field is not supplied.
 			</td>
 			<td>No</td>
 		</tr>
@@ -614,18 +615,18 @@ EXAMPLE SERVICE RESPONSE DATA
 			<td>gateway</td>
 			<td>The name of the payment gateway used. This information is used to interpret the result/error codes. Currently, we support:
 				<ul type="disc">
-					<li>"MES" - Merchant e-Solutions</li>
-					<li>"GC" - Google Checkout</li>
-					<li>"PPP" - PayPal Pro</li>
-					<li>"PFP" - Pay Flow Pro</li>
-					<li>"CDP" - Centro de Pagos</li>
-					<li>"commerce" - CommerceGate</li>
-					<li>"DHD" - DHD Media</li>
-					<li>"IDM" - IDMPay</li>
-					<li>"SC" - Safe Charge</li>
-					<li>"AUTH" - Auth.net</li>
-					<li>"INTERAC" - Interac</li>
-					<li>"generic" - See <i>Appendix C: Generic Gateway Codes</i></li>
+					<li><code>MES</code> - Merchant e-Solutions</li>
+					<li><code>GC</code> - Google Checkout</li>
+					<li><code>PPP</code> - PayPal Pro</li>
+					<li><code>PFP</code> - Pay Flow Pro</li>
+					<li><code>CDP</code> - Centro de Pagos</li>
+					<li><code>commerce</code> - CommerceGate</li>
+					<li><code>DHD</code> - DHD Media</li>
+					<li><code>IDM</code> - IDMPay</li>
+					<li><code>SC</code> - Safe Charge</li>
+					<li><code>AUTH</code> - Auth.net</li>
+					<li><code>INTERAC</code> - Interac</li>
+					<li><code>generic</code> - See <i>Appendix C: Generic Gateway Codes</i></li>
 				</ul>
 			<b>Note</b>: While this field is required, backwards compatibility feedback will not be rejected if not present, but will instead be interpreted as MES gateway data.
 			</td>
