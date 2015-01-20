@@ -14,94 +14,94 @@
 		<tr>
 			<td>tid</td>
 			<td>The transaction ID to which this response pertains. If a tid was supplied on the request, then this will be that value. Otherwise, it will be an IdentityMind generated identifier.</td>
-			<td>4223</td>
+			<td><code>4223</code></td>
 		</tr>
 		<tr>
 			<td>transaction_status</td>
 			<td>The current state of processing the transaction:
 				<ul type="disc">
-					<li>complete</li>
-					<li>error</li>
+					<li><code>complete</code></li>
+					<li><code>error</code></li>
 				</ul></td>
-			<td>complete</td>
+			<td><code>complete</code></td>
 		</tr>
 		<tr>
 			<td>res</td>
 			<td>The result of the transaction by IdentityMind:
 				<ul type="disc">
-					<li>ERROR</li>
-					<li>ACCEPT</li>
-					<li>DENY</li>
-					<li>MANUAL_REVIEW</li>
+					<li><code>ERROR</code></li>
+					<li><code>ACCEPT</code></li>
+					<li><code>DENY</code></li>
+					<li><code>MANUAL_REVIEW</code></li>
 				</ul></td>
-			<td>accept</td>
+			<td><code>accept</code></td>
 		</tr>
 		<tr>
 			<td>rcd</td>
 			<td>A comma-separated list of result codes representing a more detailed explanation of the result. The actual result codes are defined in the next subsection.</td>
-			<td>1000,100,110,120,150,523</td>
+			<td><code>1000,100,110,120,150,523</code></td>
 		</tr>
 		<tr>
 			<td>error_message</td>
 			<td>A textual description of an error that occurred while processing the transaction.</td>
-			<td>Bad data format:Failed to parse the date string provided in the data. Please use ISO 8601 format.</td>
+			<td><code>Bad data format:Failed to parse the date string provided in the data. Please use ISO 8601 format.</code></td>
 		</tr>
 		<tr>
 			<td>frn</td>
 			<td>The short name of the fraud rule that triggered for this transaction.
 			<br><br>
-			<b>Note</b>: A fraud rule will be triggered for all transactions, including those that have result ACCEPT</td>
-			<td>Fallthrough</td>
+			<b>Note</b>: A fraud rule will be triggered for all transactions, including those that have result <code>ACCEPT</code></td>
+			<td><code>Fallthrough</code></td>
 		</tr>
 		<tr>
 			<td>frd</td>
 			<td>A longer description of the fraud rule that triggered.</td>
-			<td>User is trusted and no fraud rules were triggered.</td>
+			<td><code>User is trusted and no fraud rules were triggered.</code></td>
 		</tr>
 		<tr>
 			<td>rfb</td>
 			<td>Checks if the credit card used in the transaction is domestic.
 				<ul type="disc">
-					<li>True</li>
-					<li>False</li>
+					<li><code>true</code></li>
+					<li><code>false</code></li>
 				</ul></td>
-			<td>true</td>
+			<td><code>true</code></td>
 		</tr>
 		<tr>
 			<td>ric</td>
 			<td>The issuer country of the card used in the transaction. The country code is the two letter abbreviation as defined in ISO-3166-1</td>
-			<td>US</td>
+			<td><code>US</code></td>
 		</tr>
 		<tr>
 			<td>erd</td>
 			<td>A textual description of the reputation of the user associated with the transaction.</td>
-			<td>Existing Trusted User</td>
+			<td><code>Existing Trusted User</code></td>
 		</tr>
 		<tr>
 			<td>ras</td>
 			<td>If an alert was generated, the severity of the alert.
 				<ul type="disc">
-					<li>CRITICAL</li>
-					<li>HIGH</li>
-					<li>MEDIUM</li>
-					<li>WARNING</li>
-					<li>INFO</li></td>
-			<td>HIGH</td>
+					<li><code>CRITICAL</code></li>
+					<li><code>HIGH</code></li>
+					<li><code>MEDIUM</code></li>
+					<li><code>WARNING</code></li>
+					<li><code>INFO</code></li></td>
+			<td><code>HIGH</code></td>
 		</tr>
 		<tr>
 			<td>ram</td>
 			<td>If an alert was generated, the message associated with the alert.</td>
-			<td>Card is issued by a foreign bank.</td>
+			<td><code>Card is issued by a foreign bank.</code></td>
 		</tr>
 		<tr>
 			<td>arpid</td>
 			<td>The Automated Review Policy Rule ID, if any, that accepted the transaction.</td>
-			<td>20005</td>
+			<td><code>20005</code></td>
 		</tr>
 		<tr>
 			<td>arpd</td>
 			<td>A textual description of the Automated Review Policy rule, if any, that accepted the transaction.</td>
-			<td>Parameters of the transaction are associated with a history of good transactions</td>
+			<td><code>Parameters of the transaction are associated with a history of good transactions</code></td>
 		</tr>
 
 
@@ -117,16 +117,16 @@
 			<td>user</td>
 			<td>eDNA User Result:
 				<ul type="disk>
-					<li>TRUSTED</li>
-					<li>UNKNOWN</li>
-					<li>BAD</li>
+					<li><code>TRUSTED</code></li>
+					<li><code>UNKNOWN</code></li>
+					<li><code>BAD</code></li>
 			</ul></td>
-			<td>TRUSTED</td>
+			<td><code>TRUSTED</code></td>
 		</tr>
 		<tr>
 			<td>erd</td>
 			<td>Textual explanation of the eDNA user result</td>
-			<td>Validated User</td>
+			<td><code>Validated User</code></td>
 		</tr>
 		<tr>
 			<td>rcd</td>
@@ -138,61 +138,62 @@
 					<li>User reputation</li>
 					<li>eDNA rule number</li>
 					<li>Account validation rule number</li>
-					<li>User verification state</li></td>
-			<td>10001,50005,202,111,101,131</td>
+					<li>User verification state</li>
+			</ul></td>
+			<td><code>10001,50005,202,111,101,131</code></td>
 		</tr>
 		<tr>
 			<td>res</td>
 			<td>Account policy result:
 				<ul type="disc">
-					<li>ERROR</li>
-					<li>ACCEPT</li>
-					<li>DENY</li>
-					<li>MANUAL_REVIEW</li>
+					<li><code>ERROR</code></li>
+					<li><code>ACCEPT</code></li>
+					<li><code>DENY</code></li>
+					<li><code>MANUAL_REVIEW</code></li>
 				</ul></td>
 			<td>ACCEPT</td>
 		</tr>
 		<tr>
 			<td>ufs</td>
 			<td>The first time that this user was seen (globally) by eDNA. Encoded in Java timestamp format, milliseconds since the epoch.</td>
-			<td>1372101668000</td>
+			<td><code>1372101668000</code></td>
 		</tr>
 		<tr>
 			<td>umrs</td>
 			<td>The most recent time that this user was seen (globally) by eDNA. Encoded in Java timestamp format, milliseconds since the epoch.</td>
-			<td>1372101668000</td>
+			<td><code>1372101668000</code></td>
 		</tr>
 		<tr>
 			<td>usc</td>
 			<td>The number of times this user has been seen (globally) by eDNA</td>
-			<td>42</td>
+			<td><code>42</code></td>
 		</tr>
 		<tr>
 			<td>tid</td>
 			<td>The transaction ID provided on the request, or a unique identifier generated by IdentityMind if none was originally provided.</td>
-			<td>4224</td>
+			<td><code>4224</code></td>
 		</tr>
 		<tr>
 			<td>error_message</td>
 			<td>A textual description of an error that occurred while processing the transaction.</td>
-			<td>Bad data format:Failed to parse the date string provided in the data.  Please use ISO 8601 format.</td>
+			<td><code>Bad data format:Failed to parse the date string provided in the data.  Please use ISO 8601 format.</code></td>
 		</tr>
 		<tr>
 			<td>ras</td>
 			<td>If an alert was generated, the severity of the alert.
 				<ul type="disc">
-					<li>CRITICAL</li>
-					<li>HIGH</li>
-					<li>MEDIUM</li>
-					<li>WARNING</li>
-					<li>INFO</li>
+					<li><code>CRITICAL</code></li>
+					<li><code>HIGH</code></li>
+					<li><code>MEDIUM</code></li>
+					<li><code>WARNING</code></li>
+					<li><code>INFO</code></li>
 				</ul></td>
-			<td>HIGH</td>
+			<td><code>HIGH</code></td>
 		</tr>
 		<tr>
 			<td>ram</td>
 			<td>If an alert was generated, the message associated with the alert.</td>
-			<td>Card is issued by a foreign bank.</td>
+			<td><code>Card is issued by a foreign bank.</code></td>
 		</tr>
 
 
@@ -208,18 +209,18 @@
 			<td>state</td>
 			<td>The current state of the application:
 				<ul type="disc">
-					<li>A - Accepted</li>
-					<li>R - Review</li>
-					<li>D - Denied</li>
-					<li>E - Error</li>
-					<li>C - Closed</li>
+					<li><code>A</code> - Accepted</li>
+					<li><code>R</code> - Review</li>
+					<li><code>D</code> - Denied</li>
+					<li><code>E</code> - Error</li>
+					<li><code>C</code> - Closed</li>
 				</ul></td>
-			<td>R</td>
+			<td><code>R</code></td>
 		</tr>
 		<tr>
 			<td>mtid</td>
 			<td>The transaction ID provided on the request, or a unique identifier generated by IdentityMind if none was originally provided.</td>
-			<td>4224</td>
+			<td><code>4224</code></td>
 		</tr>
 		<tr>
 			<td>merchantApplicationResponse</td>
@@ -234,7 +235,7 @@
 		<tr>
 			<td>error_message</td>
 			<td>A textual description of an error that occurred while processing the transaction.</td>
-			<td>Bad data format:Failed to parse the date string provided in the data.  Please use ISO 8601 format.</td>
+			<td><code>Bad data format:Failed to parse the date string provided in the data.  Please use ISO 8601 format.</code></td>
 		</tr>
 		<tr>
 			<td>oowQuestions</td>
@@ -244,21 +245,21 @@
 		<tr>
 			<td>smsVerification</td>
 			<td>The phone number, if any, to which an SMS verification code has been sent. This property is not present when a GET is performed on a consumer/merchant application.</td>
-			<td>3105551212</td>
+			<td><code>3105551212</code></td>
 		</tr>
 		<tr>
 			<td>merchantAPIName</td>
 			<td>This is the API name that identifies newly created merchants</td>
-			<td>Joseshoe</td>
+			<td><code>Joseshoe</code></td>
 		</tr>
 		<tr>
 			<td>ownerApplicationIds</td>
 			<td>The application IDs of the owners for this merchant.</td>
-			<td>[<br>
-				“consumerapp001”,<br>
-				“consumerapp002”,<br>
-				“consumerapp003”<br>
-				]
+			<td><code>[
+				“consumerapp001”,
+				“consumerapp002”,
+				“consumerapp003”
+				]</code>
 			</td>
 		</tr>
 	</table>
@@ -460,10 +461,10 @@ EXAMPLE
 			<td>testCategory</td>
 			<td>
 				<ul type="disc">
-					<li>eDNA</li>
-					<li>Identity</li>
-					<li>Device</li>
-					<li>Merchant</li>
+					<li><code>eDNA</code></li>
+					<li><code>Identity</code></li>
+					<li><code>Device</code></li>
+					<li><code>Merchant</code></li>
 			</td>
 		</tr>
 		<tr>
