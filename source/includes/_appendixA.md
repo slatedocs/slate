@@ -255,10 +255,10 @@
 		<tr>
 			<td>ownerApplicationIds</td>
 			<td>The application IDs of the owners for this merchant.</td>
-			<td><code>[
+			<td><code>[<br>
 				“consumerapp001”,
 				“consumerapp002”,
-				“consumerapp003”
+				“consumerapp003”<br>
 				]</code>
 			</td>
 		</tr>
