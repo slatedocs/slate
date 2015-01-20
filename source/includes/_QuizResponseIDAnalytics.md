@@ -47,15 +47,15 @@ https://edna.identitymind.com/im/account/merchant/743567/quizresponse
 			<th>Description</th>
 		</tr>
 		<tr>
-			<td><code>answers</code></td>
+			<td>answers</td>
 			<td>JSON Array of JSON encoded answer objects</td>
 		</tr>
 		<tr>
-			<td><code>questionId</code></td>
+			<td>questionId</td>
 			<td>Integer identifier for this question. This value maps to the question within the question data.</td>
 		</tr>
 		<tr>
-			<td><code>choice</code></td>
+			<td>choice</td>
 			<td>Text of the answer that was selected by the consumer</td>
 		</tr>
 	</table>

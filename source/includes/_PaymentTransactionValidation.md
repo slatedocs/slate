@@ -199,7 +199,7 @@ EXAMPLE SERVICE RESPONSE DATA
 			<td>dft</td>
 			<td>Device fingerprint type. Specifies the technology that was used to generate the blob.
 				<ul type="disc">
-					<li>BC - BlueCava</li>
+					<li><code>BC</code> - BlueCava</li>
 				</ul> 
 			Default is "BC"</td>
 			<td>data</td>
@@ -233,10 +233,10 @@ EXAMPLE SERVICE RESPONSE DATA
 			<td>soc</td>
 			<td>Indicates that the provided email address is associated with a social networking site, used for OAuth authentication. The content of the field is merchant defined, but the following values are recommended: 
 				<ul type="disc">
-					<li>facebook</li>
-					<li>google</li>
-					<li>twitter</li>
-					<li>yahoo</li>
+					<li><code>facebook</code></li>
+					<li><code>google</code></li>
+					<li><code>twitter</code></li>
+					<li><code>yahoo</code></li>
 				Maximum length is 60 characters.</ul>
 			</td>
 			<td>No</td>
@@ -245,9 +245,9 @@ EXAMPLE SERVICE RESPONSE DATA
 			<td>acd</td>
 			<td>The account creation date. Either an ISO 8601 encoded string or a UNIX timestamp.
 				<ul type="disc">
-					<li>"acd": "2011-01-01T13:12:16+0000"</li>
-					<li>"acd":1293887536</li>
-					<li>"acd":"1293887536"</li>
+					<li><code>"acd": "2011-01-01T13:12:16+0000"</code></li>
+					<li><code>"acd":1293887536</code></li>
+					<li><code>"acd":"1293887536"</code></li>
 				</ul>
 			</td>
 			<td>No</td>
@@ -279,12 +279,12 @@ EXAMPLE SERVICE RESPONSE DATA
 		</tr>
 		<tr>
 			<td>clat</td>
-			<td>The current latitude of the customer, specified in decimal degrees. Encoded as a string (e.g. "clat":"37.4419")</td>
+			<td>The current latitude of the customer, specified in decimal degrees. Encoded as a string (e.g. <code>"clat":"37.4419"</code>)</td>
 			<td>No</td>
 		</tr>
 		<tr>
 			<td>clong</td>
-			<td>The current longitude of the customer, specified in decimal degrees. Encoded as a string (e.g. "clong":"-122.1419")</td>
+			<td>The current longitude of the customer, specified in decimal degrees. Encoded as a string (e.g. <code>"clong":"-122.1419"</code>)</td>
 			<td>No</td>
 		</tr>
 
@@ -319,10 +319,10 @@ EXAMPLE SERVICE RESPONSE DATA
 			<td>pcty</td>
 			<td>The card type. Values are:
 				<ul type="disc">
-					<li>CREDIT</li>
-					<li>DEBIT</li>
-					<li>PREPAID</li>
-					<li>UNKNOWN</li>
+					<li><code>CREDIT</code></li>
+					<li><code>DEBIT</code></li>
+					<li><code>PREPAID</code></li>
+					<li><code>UNKNOWN</code></li>
 				</ul>
 			Default is UNKNOWN
 			</td>
@@ -340,28 +340,28 @@ EXAMPLE SERVICE RESPONSE DATA
 		</tr>
 		<tr>
 			<td>pppi</td>
-			<td>PayPal Payer ID. It corresponds to PayPal's "PAYERID" field from the PayPal Express Checkout.</td>
+			<td>PayPal Payer ID. It corresponds to PayPal's <code>PAYERID</code> field from the PayPal Express Checkout.</td>
 			<td>Yes*</td>
 		</tr>
 		<tr>
 			<td>pppe</td>
-			<td>Email address associated with the PayPal account. It corresponds to PayPal's "EMAIL" field from the PayPal Express Checkout.</td>
+			<td>Email address associated with the PayPal account. It corresponds to PayPal's <code>EMAIL</code> field from the PayPal Express Checkout.</td>
 			<td>No</td>
 		</tr>
 		<tr>
 			<td>ppps</td>
-			<td>Whether the user is verified or unverified. It corresponds to PayPal's "PAYERSTATUS" field from the PayPal Express Checkout.</td>
+			<td>Whether the user is verified or unverified. It corresponds to PayPal's <code>PAYERSTATUS</code> field from the PayPal Express Checkout.</td>
 			<td>No</td>
 		</tr>
 		<tr>
 			<td>pppc</td>
 			<td>Whether the address provided by the consumer matches the one registered with PayPal. Values are:
 				<ul type="disc">
-					<li>none</li>
-					<li>confirmed</li>
-					<li>unconfirmed</li>
+					<li><code>none</code></li>
+					<li><code>confirmed</code></li>
+					<li><code>unconfirmed</code></li>
 				</ul>
-			It corresponds to PayPal's "PAYMENTREQUEST n ADDRESSSTATUS" or "ADDRESSSTATUS" fields from the PayPal Express Checkout.
+			It corresponds to PayPal's <code>PAYMENTREQUEST n ADDRESSSTATUS</code> or <code>ADDRESSSTATUS</code> fields from the PayPal Express Checkout.
 			</td>
 			<td>No</td>
 		</tr>
@@ -377,22 +377,22 @@ EXAMPLE SERVICE RESPONSE DATA
 		</tr>
 		<tr>
 			<td>gcbi</td>
-			<td>Google Checkout Buyer ID. It corresponds to the "buyer-id" element.</td>
+			<td>Google Checkout Buyer ID. It corresponds to the <code>buyer-id</code> element.</td>
 			<td>Yes*</td>
 		</tr>
 		<tr>
 			<td>gcem</td>
-			<td>Email address associated to the Google Checkout Account. It corresponds to the "email" element.</td>
+			<td>Email address associated to the Google Checkout Account. It corresponds to the <code>email</code> element.</td>
 			<td>No</td>
 		</tr>
 		<tr>
 			<td>gcpe</td>
-			<td>Whether the user is eligible for Google's risk information protection. It corresponds to the "eligible-for-protection" element in the "risk-information" API. Accepted value is "true" or "false." Default is "false."</td>
+			<td>Whether the user is eligible for Google's risk information protection. It corresponds to the <code>eligible-for-protection</code>" element in the <code>risk-information</code> API. Accepted value is <code>true</code> or <code>false</code>. Default is <code>false</code>.</td>
 			<td>No</td>
 		</tr>
 		<tr>
 			<td>gcba</td>
-			<td>Age associated ot the account. It corresponds to the "buyer-account-age" element in the "risk-information" API.</td>
+			<td>Age associated ot the account. It corresponds to the <code>buyer-account-age</code> element in the <code>risk-information</code> API.</td>
 			<td>No</td>
 		</tr>
 
@@ -473,15 +473,15 @@ EXAMPLE SERVICE RESPONSE DATA
 			<td>amt</td>
 			<td>Total amount for the transaction. Encoded as a string or a double. Both of the following are accepted:
 				<ul type="disc">
-					<li>"amt":"42.00"</li>
-					<li>"amt":42.00</li>
+					<li><code>"amt":"42.00"</code></li>
+					<li><code>"amt":42.00</code></li>
 				</ul>
 			</td>
 			<td>Yes</td>
 		</tr>
 		<tr>
 			<td>vg</td>
-			<td>Whether the transaction is associated to a virtual good (true) as opposed to a physical good (false). The default is false.</td>
+			<td>Whether the transaction is associated to a virtual good (<code>true</code>) as opposed to a physical good (<code>false</code>). The default is <code>false</code>.</td>
 			<td>No</td>
 		</tr>
 		<tr>
@@ -496,16 +496,16 @@ EXAMPLE SERVICE RESPONSE DATA
 		</tr>
 		<tr>
 			<td>tid</td>
-			<td>Merchant unique identifier for the transaction. eDNA assigns an internal ID if none provided. The transaction ID must be encoded as a string (e.g. "tid":"123455"). Maximum length is 40 characters.</td>
+			<td>Merchant unique identifier for the transaction. eDNA assigns an internal ID if none provided. The transaction ID must be encoded as a string (e.g. <code>"tid":"123455"</code>). Maximum length is 40 characters.</td>
 			<td>No</td>
 		</tr>
 		<tr>
 			<td>tti</td>
 			<td>The date and time of the transaction as processed by the merchant. Expressed in UTC, either as a ISO 8601 encoded string or a unix timestamp.
 				<ul type="disc">
-					<li>“tti”: “2011-01-01T13:12:16+0000”</li>
-					<li>“tti”:1293887536</li>
-					<li>“tti”:”1293887536”</li>
+					<li><code>“tti”: “2011-01-01T13:12:16+0000”</code></li>
+					<li><code>“tti”:1293887536</code></li>
+					<li><code>“tti”:”1293887536”</code></li>
 				</ul>
 			</td>
 			<td>Yes</td>
@@ -516,10 +516,10 @@ EXAMPLE SERVICE RESPONSE DATA
 			<br><br>
 			In addition to being an identifier used in the analysis user interface, if a custom fraud policy has been defined for a merchant with this ID, then this policy will be used in preference to the default policy.
 				<ul type="disc">
-					<li>"smid"="42"</li>
-					<li>"smid"="Acme"</li>
-				Maximum length is 255 characters.</ul>
-			<br><br>
+					<li><code>"smid"="42"</code></li>
+					<li><code>"smid"="Acme"</code></li>
+			</ul>
+			<br>Maximum length is 255 characters.
 			<b>Note</b>: The value of the smid should not include the apostrophe symbol.
 			</td>
 			<td>No</td>
