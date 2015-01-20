@@ -77,7 +77,7 @@ EXAMPLE SERVICE RESPONSE DATA
 					<li><code>a</code> - auth_only</li>
 					<li><code>c</code> - captured</li>
 					<li><code>d</code> - declined</li>
-					<li><code>v<c/ode> - void</li>
+					<li><code>v</code> - void</li>
 					<li><code>r</code> - refund</li>
 					<li><code>b</code> - chargeback</li>
 					<li><code>u</code> - unknown</li>

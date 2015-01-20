@@ -102,7 +102,7 @@ EXAMPLE SERVICE RESPONSE DATA
 					<li><code>INTERAC</code> - Interac</li>
 					<li><code>generic</code> - See <i>Appendix C: Generic Gateway Codes</i></li>
 				</ul>
-			<b>Note</b>: While this field is required, backwards compatibility feedback will not be rejected if not present, but will instead be interpreted as MES gateway data. </td>
+			<b>Note</b>: While this field is required, backwards compatibility feedback will not be rejected if not present, but will instead be interpreted as MES gateway data.</td>
 			<td>No</td>
 		</tr>
 		<tr>
@@ -117,7 +117,7 @@ EXAMPLE SERVICE RESPONSE DATA
 					<li><code>a</code> - auth_only</li>
 					<li><code>c</code> - captured</li>
 					<li><code>d</code> - declined</li>
-					<li><code>v<c/ode> - void</li>
+					<li><code>v</code> - void</li>
 					<li><code>r</code> - refund</li>
 					<li><code>b</code> - chargeback</li>
 					<li><code>u</code> - unknown</li>
