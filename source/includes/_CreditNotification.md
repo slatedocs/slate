@@ -55,7 +55,7 @@ or
 		</tr>
 		<tr>
 			<td>ccy</td>
-			<td>The ISO 4217 currency code of the transaction encoded as a string. Default is "USD." Maximum length is three characters.</td>
+			<td>The ISO 4217 currency code of the transaction encoded as a string. Default is <code>USD</code>. Maximum length is three characters.</td>
 			<td>No</td>
 		</tr>
 		<tr>
@@ -67,16 +67,16 @@ or
 			<td>crdate</td>
 			<td>Date of the credit action. The format of the value for this field is either an ISO 8601 encoded string or a UNIX timestamp.
 				<ul type="disc">
-					<li>“crdate”: “2011-01-01T13:12:16+0000”</li>
-					<li>“crdate”:1293887536</li>
-					<li>“crdate”:”1293887536”</li>
+					<li><code>“crdate”: “2011-01-01T13:12:16+0000”</code></li>
+					<li><code>“crdate”:1293887536</code></li>
+					<li><code>“crdate”:”1293887536”</code></li>
 				</ul>
 			</td>
 			<td>Yes</td>
 		</tr>
 		<tr>
 			<td>tid</td>
-			<td>Merchant unique identifier for the original authorization transaction. The transaction ID must be encoded as a string (e.g. "tid":"123455"). Maximum length is 40 characters.
+			<td>Merchant unique identifier for the original authorization transaction. The transaction ID must be encoded as a string (e.g. <code>"tid":"123455"</code>). Maximum length is 40 characters.
 			</td>
 			<td>No</td>
 		</tr>
@@ -127,12 +127,12 @@ or
 			<td>pcty</td>
 			<td>The card type. Values are:
 				<ul type="disc">
-					<li>CREDIT</li>
-					<li>DEBIT</li>
-					<li>PREPAID</li>
-					<li>UNKNOWN</li>
+					<li><code>CREDIT</code></li>
+					<li><code>DEBIT</code></li>
+					<li><code>PREPAID</code></li>
+					<li><code>UNKNOWN</code></li>
 				</ul>
-			Default is UNKNOWN</td>
+			Default is <code>UNKNOWN</code></td>
 			<td>No</td>
 		</tr>
 
@@ -147,12 +147,12 @@ or
 		</tr>
 		<tr>
 			<td>pppi</td>
-			<td>PayPal Payer ID. It corresponds to PayPal's "PAYERID" field from PayPal Express Checkout.</td>
+			<td>PayPal Payer ID. It corresponds to PayPal's <code>PAYERID</code> field from PayPal Express Checkout.</td>
 			<td>Yes</td>
 		</tr>
 		<tr>
 			<td>pppe</td>
-			<td>Email address associated to the PayPal account. It corresponds to PayPal's "EMAIL" field from the PayPal Express Checkout</td>
+			<td>Email address associated to the PayPal account. It corresponds to PayPal's <code>EMAIL</code> field from the PayPal Express Checkout</td>
 			<td>No</td>
 		</tr>
 
@@ -167,12 +167,12 @@ or
 		</tr>
 		<tr>
 			<td>gcbi</td>
-			<td>Google Checkout Buyer ID. It corresponds to the "buyer-id" element.</td>
+			<td>Google Checkout Buyer ID. It corresponds to the <code>buyer-id</code> element.</td>
 			<td>Yes</td>
 		</tr>
 		<tr>
 			<td>gcem</td>
-			<td>Email address associated to the Google Checkout account. It corresponds to the "email" element.</td>
+			<td>Email address associated to the Google Checkout account. It corresponds to the <code>email</code> element.</td>
 			<td>No</td>
 		</tr>
 
