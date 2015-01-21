@@ -4,7 +4,7 @@ Notifies that a refund occurred on a transaction. All arguments are optional.
 
 **Note**: The transaction may be either a payment transaction or an account transfer.
 
-## Arguments
+### Arguments
 
 The transaction ID is part of the URL. The "refund-ok" URL should be used when the merchant believes that the refund is legitimate. The "refund-fraud" URL should be used when the merchant believes there is fraud, but a refund is being made to avoid a later chargeback.
 

@@ -1,6 +1,6 @@
 # Feedback: Final Payment Transaction Result
 
-## Arguments
+### Arguments
 
 The following URLs are used to notify IdentityMind of the acceptance or rejection of the transaction that was previously analyzed with the given transaction ID by the merchant's payment gateway or the merchant themselves. All arguments are optional. The transaction ID is part of the URL.
 

@@ -6,6 +6,7 @@ language_tabs:
   - php
 
 toc_footers:
+  - <a href='http://www.identitymindglobal.com/'>IdentityMind Global</a>
   - eDNA API Reference Beta v1.0.7
 
 includes:	
@@ -34,7 +35,7 @@ search: true
 
 # eDNA API Reference
 
-## Transaction Evaluation
+### Transaction Evaluation
 
 The IdentityMind Engine exports a REST based Web Service interface over HTTPS, using JSON to encode service request and response data.
 
@@ -42,7 +43,7 @@ A typical merchant / IdentityMind interaction to validate a transaction is shown
 
 ![](http://i.imgur.com/4o540Tw.png)
 
-## Authentication
+### Authentication
 
 IdentityMind uses an SSL Server certificate for the client to authenticate the service.  The merchant is authenticated using HTTP basic authentication (over HTTPS) via a merchant name and password/license key that is supplied when the merchant registers for the service. 
 

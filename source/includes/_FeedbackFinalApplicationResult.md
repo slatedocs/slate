@@ -2,7 +2,7 @@
 
 All arguments are optional, although a JSON object must be provided.
 
-## Arguments
+### Arguments
 
 The following URLs are used to notify IdentityMind of the acceptance or rejection of an application by the merchant:
 

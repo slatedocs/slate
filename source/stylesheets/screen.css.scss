@@ -278,7 +278,7 @@ html, body {
   // The dark box is what gives the code samples their dark background.
   // It sits essentially under the actual content block, which has a
   // transparent background.
-  // I know, it's hackish, but it's the simplist way to make the left
+  // I know, it's hackish, but it's the simplest way to make the left
   // half of the content always this background color.
   .dark-box {
     width: $examples-width;
@@ -363,16 +363,16 @@ html, body {
 
   h1 {
     @extend %header-font;
-    font-size: 30px;
+    font-size: 28px;
 	color: #1d878d;    
-	padding-top: 0.5em;
+	padding-top: 1em;
     padding-bottom: 0.5em;
-    border-bottom: 1px solid #e1e1e1;
-    margin-bottom: $h1-margin-bottom;
+    border-bottom: 0px solid #e1e1e1;
+    margin-bottom: 0.5em;
     margin-top: 2em;
     border-top: 1px solid #e1e1e1;
     @include background-image(
-      linear-gradient(top, #fbfbfb, #fbfbfb)
+      linear-gradient(top, #fff, #fff)
     );
   }
 
@@ -401,13 +401,18 @@ html, body {
     border-top: none;
   }
 
+  h1 + h3, h1 + div + h3 {
+    margin-top: $h1-margin-bottom * -1;
+    border-top: none;
+  }
+
   h3, h4, h5, h6 {
     @extend %header-font;
-    font-size: 16px;  
+    font-size: 20px;  
 	margin-top: 0px;
     margin-bottom: 0px;
-    padding-top: 1.2em;
-    padding-bottom: 1.2em;
+    padding-top: 1em;
+    padding-bottom: 1em;
   }
 
   h4, h5, h6 {
@@ -442,16 +447,16 @@ html, body {
     }
 
 	tr {
-	  border-left: 1px solid #f2f2f2;
-	  border-right: 1px solid #f2f2f2;
+	  border-left: 1px solid #f7f7f7;
+	  border-right: 1px solid #f7f7f7;
 	}
 
     tr:last-child {
-      border-bottom: 1px solid #f2f2f2;
+      border-bottom: 1px solid #f7f7f7;
     }
 
     tr:nth-child(odd)>td {
-      background-color: #f2f2f2;
+      background-color: #f7f7f7;
     }
 
     tr:nth-child(even)>td {

@@ -23,19 +23,23 @@ String body = jsonRequest.toString(2);
 ```php
 For PHP, the sample code is in imclientSDK/samplecode/php/ednaTransaction.php:
 
-	$arr = array();
+$arr = array();
 
-/* replace the 2nd parameter below with the actual card number */
+/* 
+replace the 2nd parameter below with the actual card number
+*/
 
-	$arr[CREDIT_CARD_NUMBER] = identitymind_hashCCN("4012012301230123");
+$arr[CREDIT_CARD_NUMBER] = identitymind_hashCCN("4012012301230123");
 
-	$arr[CREDIT_CARD_TOKEN] = identitymind_tokenCCN("4012012301230123");
+$arr[CREDIT_CARD_TOKEN] = identitymind_tokenCCN("4012012301230123");
 
-	…
+…
 
-/* Turn the array into a JSON string to be used as the body of the POST */
+/* 
+Turn the array into a JSON string to be used as the body of the POST
+*/
 
-	$data = json_encode($arr);
+$data = json_encode($arr);
 ```
 
 IdentityMind Transaction API does not accept actual credit card number. It accepts the following information about the credit card number used in the transaction: 
@@ -49,7 +53,7 @@ IdentityMind provides a client SDK for Java and PHP. If you use these languages,
 If you use other languages, please see below “Credit Card Number Hash”.
 
 
-#### Credit Card Number Hash
+### Credit Card Number Hash
 
 To generate the credit card number hash, you use the salt provided by IdentityMind, to generate a SHA-1 hash for the non-masked credit card number, and convert the byte array of the hash to Hexadecimal string. The hash should be included in the JSON string of the request in the field pccn. 
 
@@ -64,7 +68,7 @@ The credit card number hash should be included in the JSON string of the request
 **Note**:  The hash must be of the full card number, not a masked or tokenized representation.
 
 
-#### Credit Card Number Token
+### Credit Card Number Token
 
 The credit card number token is the first 6 digits of the actual card number followed by XXXXXX followed by the last 4 digits of the actual card number. For example, the credit card number token for card number 4012012301230123 is 401201XXXXXX0123. 
 
