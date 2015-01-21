@@ -4,7 +4,7 @@ Notifies that a credit occurred on a transaction.
 
 In the case of credit or blind credit on a transaction that eDNA has not previously processed, then the payment instrument information is required.
 
-The following URL can be used for credit notification evaluation:
+The following URL can be used for credit notification evaluation:  
 `POST https://edna.identitymind.com/im/jax/credit/`
  
 **Note**: The transaction may either be a payment transaction or an account transfer. 

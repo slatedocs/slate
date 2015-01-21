@@ -6,13 +6,13 @@ The evidence is the account transfer transaction data to be evaluated. It is sup
 
 The following URLs are used for account transaction validation:
 
-Validate an external transfer (deposit) into an account:<br>
+Validate an external transfer (deposit) into an account:  
 `POST https://edna.identitymind.com/im/account/transferin`
 
-Validate an internal transfer between accounts:<br>
+Validate an internal transfer between accounts:  
 `POST https://edna.identitymind.com/im/account/transfer`
 
-Validate an external transfer (withdrawal) from an account:<br>
+Validate an external transfer (withdrawal) from an account:  
 `POST https://edna.identitymind.com/im/account/transferout`
 
 ```code

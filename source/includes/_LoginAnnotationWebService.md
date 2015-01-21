@@ -4,7 +4,7 @@ The evidence is the login transaction data to be added to the entities transacti
 
 The following URLs are used for account login transactions:
 
-Annotate a user's transactions with login data:<br>
+Annotate a user's transactions with login data:  
 `POST https://edna.identitymind.com/im/account/login`
 
 ### Arguments

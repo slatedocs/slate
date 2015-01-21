@@ -2,7 +2,7 @@
 
 The evidence is the payment transaction data to be evaluated. It is supplied in the body of the HTTP-POST as JSON-encoded key value pairs. While all fields are not required, anti-fraud evaluation is more comprehensive when richer evidence is provided. 
 
-The following URL can be used for requesting payment transaction anti-fraud evaluation:
+The following URL can be used for requesting payment transaction anti-fraud evaluation:  
 `POST https://edna.identitymind.com/im/transaction`
 
 ### Arguments
