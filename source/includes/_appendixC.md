@@ -21,10 +21,6 @@ This appendix defines the values to be used for feedback properties for the gene
 			<th colspan=2>"auth_response" property</th>
 		</tr>
 		<tr>
-			<th>Value</th>
-			<th>Description</th>
-		</tr>
-		<tr>
 			<td>accepted</td>
 			<td>The transaction was approved by the gateway</td>
 		</tr>

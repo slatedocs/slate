@@ -4,11 +4,10 @@ Notifies that a chargeback occurred on a transaction. Note that the transaction 
 
 In the case of a chargeback on a transaction that eDNA has not previously processed then the Payment Instrument information is required.
 
-### Arguments
-
 The following URL can be used for requesting chargeback notification evaluation:
-
 `POST https://edna.identitymind.com/im/jax/chargeback/`
+
+### Arguments
 
 ```code
 EXAMPLE SERVICE REQUEST

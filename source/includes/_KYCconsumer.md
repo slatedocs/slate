@@ -1,8 +1,6 @@
 # KYC: Consumer Application Validation Web Service
 
-The evidence is the application data to be evaluated. It is supplied in the body of the HTTP-POST as JSON-encoded key value pairs. While all fields are not required, validation evaluation is more comprehensive when richer evidence is provided. 
-
-### Arguments
+The evidence is the application data to be evaluated. It is supplied in the body of the HTTP-POST as JSON-encoded key value pairs. While all fields are not required, validation evaluation is more comprehensive when richer evidence is provided.
 
 The following URLs are used for consumer application validation:
 
@@ -11,6 +9,8 @@ Validate a consumer application:<br>
 
 Retrieve the current state of a consumer application:<br>
 `GET https://edna.identitymind.com/im/account/creation/<tid>`
+
+### Arguments
 
 ```code
 > The response is a JSON encoding of the IdentityMind Service result:   

@@ -4,13 +4,13 @@
 
 The following URLs are used to notify IdentityMind of the acceptance or rejection of the transaction that was previously analyzed with the given transaction ID by the merchant's payment gateway or the merchant themselves. All arguments are optional. The transaction ID is part of the URL.
 
-### Bank Authorization Feedback
+#### Bank Authorization Feedback
 
 `POST https://edna.identitymind.com/im/transaction/<transaction_ID>/bank-accepted`
 
 `POST https://edna.identitymind.com/im/transaction/<transaction_ID>/bank-rejected`
 
-### Merchant Final Resolution Feedback
+#### Merchant Final Resolution Feedback
 
 `POST https://edna.identitymind.com/im/transaction/<transaction_ID>/accepted`
 

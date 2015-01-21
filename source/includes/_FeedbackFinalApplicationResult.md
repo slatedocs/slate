@@ -2,8 +2,6 @@
 
 All arguments are optional, although a JSON object must be provided.
 
-### Arguments
-
 The following URLs are used to notify IdentityMind of the acceptance or rejection of an application by the merchant:
 
 `POST https://edna.identitymind.com/im/account/consumer/<application_ID>/accepted`
@@ -13,6 +11,8 @@ The following URLs are used to notify IdentityMind of the acceptance or rejectio
 `POST https://edna.identitymind.com/im/account/merchant/<application_ID>/accepted`
 
 `POST https://edna.identitymind.com/im/account/merchant/<application_ID>/rejected`
+
+### Arguments
 
 ```code
 EXAMPLE SERVICE REQUEST

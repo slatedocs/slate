@@ -2,6 +2,15 @@
 
 The evidence is the application data to be evaluated. It is supplied in the body of the HTTP-POST as JSON-encoded key value pairs. While all fields are not required, validation evaluation is more comprehensive when richer evidence is provided. 
 
+The following URLs are used for merchant application validation:
+
+Validate a merchant application:<br>
+`POST https://edna.identitymind.com/im/account/merchant`
+
+
+Retrieve the current state of a merchant application:<br>
+`GET https://edna.identitymind.com/im/account/merchant/<tid>`
+
 ### How to associate a merchant with its owners
 
 Each merchant can be associated with one or more owners.  The merchant will be evaluated with the Merchant Application Web Service.  One can provide an application ID (tid in the Request API), or extract this ID from the Response.
@@ -11,15 +20,6 @@ Each owner will be evaluated with the Consumer Application Web Service.  In the 
 ![](http://i.imgur.com/rO16Xdb.png)
 
 ### Arguments
-
-The following URLs are used for merchant application validation:
-
-Validate a merchant application:<br>
-`POST https://edna.identitymind.com/im/account/merchant`
-
-
-Retrieve the current state of a merchant application:<br>
-`GET https://edna.identitymind.com/im/account/merchant/<tid>`
 
 > The response is a JSON encoding of the IdentityMind Service result:
 
