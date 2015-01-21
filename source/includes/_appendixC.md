@@ -38,10 +38,6 @@ This appendix defines the values to be used for feedback properties for the gene
 			<th colspan=2>"avs_result" property</th>
 		</tr>
 		<tr>
-			<th>Value</th>
-			<th>Description</th>
-		</tr>
-		<tr>
 			<td>Y</td>
 			<td>AVS match</td>
 		</tr>
@@ -63,10 +59,6 @@ This appendix defines the values to be used for feedback properties for the gene
 			<th colspan=2>"cvv2_result" property</th>
 		</tr>
 		<tr>
-			<th>Value</th>
-			<th>Description</th>
-		</tr>
-		<tr>
 			<td>Y</td>
 			<td>CVV match</td>
 		</tr>
@@ -78,10 +70,6 @@ This appendix defines the values to be used for feedback properties for the gene
 
 		<tr>
 			<th colspan=2>"error_code" property in bank-accepted and bank-rejected feedback</th>
-		</tr>
-		<tr>
-			<th>Value</th>
-			<th>Description</th>
 		</tr>
 		<tr>
 			<td>0</td>
@@ -138,10 +126,6 @@ This appendix defines the values to be used for feedback properties for the gene
 
 		<tr>
 			<th colspan=2>"error_code" property in chargeback feedback</th>
-		</tr>
-		<tr>
-			<th>Value</th>
-			<th>Description</th>
 		</tr>
 		<tr>
 			<td>CB1</td>

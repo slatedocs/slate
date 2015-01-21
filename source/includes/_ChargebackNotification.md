@@ -134,11 +134,6 @@ or
 			<th colspan=3>Sub Merchant</th>
 		</tr>
 		<tr>
-			<th>Key</th>
-			<th>Description</th>
-			<th>Required</th>
-		</tr>
-		<tr>
 			<td>smid</td>
 			<td>A unique identifier for the merchant for whom this transaction is being processed.
 			<br><br>
@@ -149,11 +144,6 @@ or
 
 		<tr>
 			<th colspan=3>Credit Card</th>
-		</tr>
-		<tr>
-			<th>Key</th>
-			<th>Description</th>
-			<th>Required</th>
 		</tr>
 		<tr>
 			<td>pccn</td>
@@ -219,11 +209,6 @@ or
 			<th colspan=3>PayPal</th>
 		</tr>
 		<tr>
-			<th>Key</th>
-			<th>Description</th>
-			<th>Required</th>
-		</tr>
-		<tr>
 			<td>pppi</td>
 			<td>PayPal Payer ID. It corresponds to PayPal's <code>PAYERID</code> field from PayPal Express Checkout.</td>
 			<td>Yes, if the provided tid does not refer to a transaction previously processed by eDNA.</td>
@@ -237,11 +222,6 @@ or
 
 		<tr>
 			<th colspan=3>Google Checkout</th>
-		</tr>
-		<tr>
-			<th>Key</th>
-			<th>Description</th>
-			<th>Required</th>
 		</tr>
 		<tr>
 			<td>gcbi</td>

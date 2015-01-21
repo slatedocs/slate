@@ -94,11 +94,6 @@ EXAMPLE SERVICE RESPONSE DATA
 			<th colspan=3>Company</th>
 		</tr>
 		<tr>
-			<th>Key</th>
-			<th>Description</th>
-			<th>Required</th>
-		</tr>
-		<tr>
 			<td>amn</td>
 			<td>Legal name of the company</td>
 			<td>Yes</td>
@@ -223,11 +218,6 @@ EXAMPLE SERVICE RESPONSE DATA
 			<th colspan=3>Transaction</th>
 		</tr>
 		<tr>
-			<th>Key</th>
-			<th>Description</th>
-			<th>Required</th>
-		</tr>
-		<tr>
 			<td>tti</td>
 			<td>The date and time of the transaction as processed by the merchant. Expressed in UTC, encoded as a UNIX timestamp.
 				<ul type="disc">
@@ -246,11 +236,6 @@ EXAMPLE SERVICE RESPONSE DATA
 
 		<tr>
 			<th colspan=3>Group</th>
-		</tr>
-		<tr>
-			<th>Key</th>
-			<th>Description</th>
-			<th>Required</th>
 		</tr>
 		<tr>
 			<td>merchantgroup</td>

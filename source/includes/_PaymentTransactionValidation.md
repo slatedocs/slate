@@ -86,11 +86,6 @@ EXAMPLE SERVICE RESPONSE DATA
 			<th colspan=3>Billing Address</th>
 		</tr>
 		<tr>
-			<th>Key</th>
-			<th>Description</th>
-			<th>Required</th>
-		</tr>
-		<tr>
 			<td>bsn</td>
 			<td>The billing street address, (e.g. "123 Main Street"). Maximum length is 100 characters.</td>
 			<td>No</td>
@@ -121,11 +116,6 @@ EXAMPLE SERVICE RESPONSE DATA
 			<th colspan=3>Shipping Name</th>
 		</tr>
 		<tr>
-			<th>Key</th>
-			<th>Description</th>
-			<th>Required</th>
-		</tr>
-		<tr>
 			<td>sfn</td>
 			<td>The first name of the shipping name. Maximum length is 30 characters.</td>
 			<td>No</td>
@@ -139,11 +129,6 @@ EXAMPLE SERVICE RESPONSE DATA
 
 		<tr>
 			<th colspan=3>Shipping Address</th>
-		</tr>
-		<tr>
-			<th>Key</th>
-			<th>Description</th>
-			<th>Required</th>
 		</tr>
 		<tr>
 			<td>scomp</td>
@@ -181,11 +166,6 @@ EXAMPLE SERVICE RESPONSE DATA
 			<th colspan=3>Device</th>
 		</tr>
 		<tr>
-			<th>Key</th>
-			<th>Description</th>
-			<th>Required</th>
-		</tr>
-		<tr>
 			<td>ip</td>
 			<td>The IP address of the consumer as seen by the merchant. Maximum length is 40 characters.</td>
 			<td>No</td>
@@ -218,11 +198,6 @@ EXAMPLE SERVICE RESPONSE DATA
 
 		<tr>
 			<th colspan=3>Consumer Account</th>
-		</tr>
-		<tr>
-			<th>Key</th>
-			<th>Description</th>
-			<th>Required</th>
 		</tr>
 		<tr>
 			<td>tea</td>
@@ -294,11 +269,6 @@ EXAMPLE SERVICE RESPONSE DATA
 			<th colspan=3>Credit Card</th>
 		</tr>
 		<tr>
-			<th>Key</th>
-			<th>Description</th>
-			<th>Required</th>
-		</tr>
-		<tr>
 			<td>pccn</td>
 			<td>Credit Card unique identifier (hash) while obscuring actual number. IdentityMind will supply procedure to generate hash.
 			<br><br>
@@ -335,11 +305,6 @@ EXAMPLE SERVICE RESPONSE DATA
 			<th colspan=3>PayPal</th>
 		</tr>
 		<tr>
-			<th>Key</th>
-			<th>Description</th>
-			<th>Required</th>
-		</tr>
-		<tr>
 			<td>pppi</td>
 			<td>PayPal Payer ID. It corresponds to PayPal's <code>PAYERID</code> field from the PayPal Express Checkout.</td>
 			<td>Yes*</td>
@@ -372,11 +337,6 @@ EXAMPLE SERVICE RESPONSE DATA
 			<th colspan=3>Google Checkout</th>
 		</tr>
 		<tr>
-			<th>Key</th>
-			<th>Description</th>
-			<th>Required</th>
-		</tr>
-		<tr>
 			<td>gcbi</td>
 			<td>Google Checkout Buyer ID. It corresponds to the <code>buyer-id</code> element.</td>
 			<td>Yes*</td>
@@ -402,11 +362,6 @@ EXAMPLE SERVICE RESPONSE DATA
 			<th colspan=3>Generic Financial Account</th>
 		</tr>
 		<tr>
-			<th>Key</th>
-			<th>Description</th>
-			<th>Required</th>
-		</tr>
-		<tr>
 			<td>phash</td>
 			<td>Account unique ID (hash) while obscuring actual number. This is used when IdentityMind does not natively support the payment type.
 			<br><br>
@@ -424,11 +379,6 @@ EXAMPLE SERVICE RESPONSE DATA
 			<th colspan=3>Bitcoin</th>
 		</tr>
 		<tr>
-			<th>Key</th>
-			<th>Description</th>
-			<th>Required</th>
-		</tr>
-		<tr>
 			<td>pbc</td>
 			<td>Bitcoin wallet unique ID (hash). Maximum length is 128 characters.</td>
 			<td>No</td>
@@ -442,11 +392,6 @@ EXAMPLE SERVICE RESPONSE DATA
 
 		<tr>
 			<th colspan=3>ACH</th>
-		</tr>
-		<tr>
-			<th>Key</th>
-			<th>Description</th>
-			<th>Required</th>
 		</tr>
 		<tr>
 			<td>pach</td>
@@ -464,11 +409,6 @@ EXAMPLE SERVICE RESPONSE DATA
 
 		<tr>
 			<th colspan=3>Transaction</th>
-		</tr>
-		<tr>
-			<th>Key</th>
-			<th>Description</th>
-			<th>Required</th>
 		</tr>
 		<tr>
 			<td>amt</td>
@@ -575,11 +515,6 @@ EXAMPLE SERVICE RESPONSE DATA
 
 		<tr>
 			<th colspan=3>Inline Feedback***</th>
-		</tr>
-		<tr>
-			<th>Key</th>
-			<th>Description</th>
-			<th>Required</th>
 		</tr>
 		<tr>
 			<td>auth_response</td>

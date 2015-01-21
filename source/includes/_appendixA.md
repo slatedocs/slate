@@ -109,11 +109,6 @@
 			<th colspan=3>Account Transfer / Login Validation Transaction</th>
 		</tr>
 		<tr>
-			<th>Key</th>
-			<th>Description</th>
-			<th>Example</th>
-		</tr>
-		<tr>
 			<td>user</td>
 			<td>eDNA User Result:
 				<ul type="disc">
@@ -199,11 +194,6 @@
 
 		<tr>
 			<th colspan=3>Merchant / Consumer Application Transaction</th>
-		</tr>
-		<tr>
-			<th>Key</th>
-			<th>Description</th>
-			<th>Example</th>
 		</tr>
 		<tr>
 			<td>state</td>

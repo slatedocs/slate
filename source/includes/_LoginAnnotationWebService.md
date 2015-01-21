@@ -91,11 +91,6 @@ EXAMPLE SERVICE RESPONSE DATA
 			<th colspan=3>Device</th>
 		</tr>
 		<tr>
-			<th>Key</th>
-			<th>Description</th>
-			<th>Required</th>
-		</tr>
-		<tr>
 			<td>ip</td>
 			<td>The IP address of the client as observed by the merchant</td>
 			<td>No</td>
@@ -124,11 +119,6 @@ EXAMPLE SERVICE RESPONSE DATA
 
 		<tr>
 			<th colspan=3>Transaction</th>
-		</tr>
-		<tr>
-			<th>Key</th>
-			<th>Description</th>
-			<th>Required</th>
 		</tr>
 		<tr>
 			<td>tti</td>
