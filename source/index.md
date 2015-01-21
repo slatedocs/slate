@@ -104,7 +104,6 @@ Parameter | Default | Description
 per_page | 25 | A positive Integer that specifies the number of records per page, max is 100.
 page | 1 | A positive Integer that specifies the page you want.
 
-
 # Stories
 
 ## Querying stories
@@ -164,6 +163,15 @@ curl --get https://api.contently.com/v1/stories \
       {
         "name": "Attribute name",
         "value": "Attribute value"
+      }
+    ],
+    "assets": [
+      {
+        "id": 1,
+        "url": "https://s3.amazonaws.com/path_to_file",
+        "name": "filename.png",
+        "created_at": 1421771582,
+        "updated_at": 1421771582
       }
     ]
   }
@@ -230,6 +238,8 @@ type | Yes | | A String specifying the date attribute of a story that you want t
 
 ### Valid date fields
 
+<aside class="notice">All date / time fields are in [unix time](http://en.wikipedia.org/wiki/Unix_time)  - an Integer representing seconds since midnight Jan 1, 1970</aside>
+
 Field name | Description
 ---- | ----
 due_at | The date the first version of the story is due.
@@ -238,6 +248,7 @@ published_at | The date the story was actually published or marked published.
 completed_at | The date the story was completed.
 created_at | The date the story was created.
 last_modified_at | The last time this story was edited (includes things like changing the title or brief, but also actions like marking published).
+
 
 ## Story details
 
@@ -266,7 +277,9 @@ curl -X PUT https://api.contently.com/v1/stories/:id/mark_published \
 
 > If you are using cURL, you must also specify the Content-Length in the header (any value will do).
 
-Updates the specified story, changing its status to 'published' and adding an item to the story's audit log (visible on the Contently Platform) documenting the change. Returns the story object if the update succeeded or an error message otherwise.
+**If you are integrating the Contently API with your CMS, it is vital that you notify the Contently platform that a story has been published. This allows us to display the published_to_url on the platform and provide analytics data for the story.**
+
+This endpoint updates the specified story, changing its status to 'published' and adding an item to the story's audit log (visible on the Contently platform) documenting the change. It enables analytics tracking and makes sure that published data on the platform is always up to date. It returns the story object if the update succeeded or an error message otherwise.
 
 If a story is already 'published', you must include the **published_at** date in the request if you wish to override the existing date.
 
