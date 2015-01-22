@@ -16,11 +16,7 @@ includes:
   - KYCconsumer
   - FeedbackFinalApplicationResult
   - LoginAnnotation
-  - appendixA
-  - appendixB
-  - appendixC
-  - appendixD
-  - appendixE
+  - appendices
 
 search: true
 
