@@ -16,9 +16,7 @@ Validate an external transfer (withdrawal) from an account:
 `POST https://edna.identitymind.com/im/account/transferout`
 
 ```code
-EXAMPLE SERVICE REQUEST
-
-https://edna.identitymind.com/im/account/transfer   
+EXAMPLE SERVICE REQUEST  
 
 { 
   “man” : “jdinh”,

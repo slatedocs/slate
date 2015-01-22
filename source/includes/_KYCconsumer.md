@@ -12,8 +12,9 @@ Retrieve the current state of a consumer application:<br>
 
 #### Arguments
 
-```code
-> The response is a JSON encoding of the IdentityMind Service result:   
+> The response is a JSON encoding of the IdentityMind Service result:
+
+```code  
 
 EXAMPLE SERVICE RESPONSE DATA
 
