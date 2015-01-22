@@ -1,6 +1,6 @@
 # Appendix A: Result Keys and Codes
 
-## Result Key Names
+### Result Key Names
 
 	<table>
 		<tr>
@@ -254,7 +254,7 @@
 		</tr>
 	</table>
 
-## Out of Wallet Questions Encoding
+### Out of Wallet Questions Encoding
 
 ```code
 EXAMPLE
@@ -331,7 +331,7 @@ EXAMPLE
 		</tr>
 	</table>
 
-## eDNA Score Card Encoding
+### eDNA Score Card Encoding
 
 ```code
 EXAMPLE
@@ -486,7 +486,7 @@ EXAMPLE
 	</table>
 
 
-## Result Codes
+### Result Codes
 
 Code | Meaning
 -----|---------
@@ -623,7 +623,7 @@ Code | Meaning
 50011 |	Recent History of Account and Destination Payment
 
 
-## Payment Fraud Rule Codes
+### Payment Fraud Rule Codes
 
 This section documents the result codes related to payment transaction fraud policy processing.  In the table below codes such as 104X represent the codes 1041-1045 where the first three digits indicate the fraud rule and the last digit represents the reputation of the User that triggered that rule as follows:
 
@@ -771,7 +771,7 @@ Code | Meaning
 259X|	COUNTRY MISMATCH AND WATCHLIST
 
 
-## Account Validation Rule Codes
+### Account Validation Rule Codes
 
 This section documents the result codes related to account validation policy processing.
 
@@ -832,7 +832,7 @@ Code |	Meaning
 11010|	USING DISPOSABLE EMAIL ADDRESS
 
 
-## Automated Review Policy Rule Codes
+### Automated Review Policy Rule Codes
 
 This section documents the result codes related to Automated Review Policy processing.
 
@@ -848,7 +848,7 @@ Code |	Meaning
 20010|	ACCEPT MOTO=2 (REBILL) TRANSACTIONS
 
 
-## Consumer/Merchant Application Security Tests
+### Consumer/Merchant Application Security Tests
 
 This section documents the security tests returned for Consumer or Merchant Applications.
 

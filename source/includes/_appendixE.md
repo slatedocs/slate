@@ -1,20 +1,20 @@
 # Appendix E: Change History
 
 
-## 1.18
+### 1.18
 
 - Updated Merchant and Consumer Application Validation Web Services to support multiple owners for a merchant.  We also added extra fields as required by our clients.
 - Added additional security tests
 
 
-## 1.17.1
+### 1.17.1
 
 - Added Account Validation Rule 11010
 - Switched from Experian 192 CheckID to Experian ProveID
 	- Added “Unsupported Country” security test to Experian
 
 
-## 1.17
+### 1.17
 
 - Document the Quiz Response (Phone Ownership)
 - Add Auth.net and Interac as supported gateways
@@ -26,7 +26,7 @@
 - Documented memo field in Transfer and KYC transaction data
 
 
-## 1.16.2
+### 1.16.2
 
 - Added support for Jumio Netverify Multi Document
 - Added additional KYC request attributes to support Jumio NetVerify

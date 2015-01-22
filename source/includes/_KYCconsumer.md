@@ -10,7 +10,7 @@ Validate a consumer application:<br>
 Retrieve the current state of a consumer application:<br>
 `GET https://edna.identitymind.com/im/account/creation/<tid>`
 
-### Arguments
+#### Arguments
 
 ```code
 > The response is a JSON encoding of the IdentityMind Service result:   
@@ -300,7 +300,7 @@ EXAMPLE SERVICE RESPONSE DATA
 		</tr>
 	</table>
 
-# Out of Wallet Questions (IDAnalytics)
+## Out of Wallet Questions (IDAnalytics)
 
 The response to this request is an application response containing the newly updated application.
 Note that the response may, depending on the response from ID Analytics and your configuration within the eDNA platform, contain a further set of “challenge” questions that should once again be passed back to the consumer for answers.
@@ -362,7 +362,7 @@ https://edna.identitymind.com/im/account/merchant/743567/quizresponse
 		</tr>
 	</table>
 
-# Phone Ownership Validation (Twilio)
+## Phone Ownership Validation (Twilio)
 
 The response to this request is an application response containing the newly updated application.
 
@@ -399,7 +399,7 @@ https://edna.identitymind.com/im/account/merchant/743567/quizresponse
 		</tr>
 	</table>
 
-# Document Validation Request (Jumio NetVerify)
+## Document Validation Request (Jumio NetVerify)
 
 The body of the POST contains JSON encoding of the document type that is to be uploaded. The request will return an error if Jumio NetVerify has not been configured with eDNA.
 

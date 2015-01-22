@@ -11,7 +11,7 @@ Validate a merchant application:<br>
 Retrieve the current state of a merchant application:<br>
 `GET https://edna.identitymind.com/im/account/merchant/<tid>`
 
-### How to associate a merchant with its owners
+#### How to associate a merchant with its owners
 
 Each merchant can be associated with one or more owners.  The merchant will be evaluated with the Merchant Application Web Service.  One can provide an application ID (tid in the Request API), or extract this ID from the Response.
 
@@ -19,7 +19,7 @@ Each owner will be evaluated with the Consumer Application Web Service.  In the 
 
 ![](http://i.imgur.com/rO16Xdb.png)
 
-### Arguments
+#### Arguments
 
 > The response is a JSON encoding of the IdentityMind Service result:
 

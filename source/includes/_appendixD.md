@@ -1,6 +1,6 @@
 # Appendix D: Payment Instrument Hashing
 
-## Including Credit Number Hash and Token in Transaction Report
+### Including Credit Number Hash and Token in Transaction Report
 
 ```java
 For Java, the sample code is in imclientSDK/samplecode/java/REST/TransactionViaREST.java:
@@ -75,7 +75,7 @@ The credit card number token is the first 6 digits of the actual card number fol
 The credit card number token should be included in the JSON string of the request to IdentityMind Transaction API in the field “pcct”. 
 
 
-## Including Bank Account Hash and Token in Transaction Request
+### Including Bank Account Hash and Token in Transaction Request
 
 ```java
 For Java, the sample code is in imclientSDK/samplecode/java/REST/ACHTransactionViaREST.java:

@@ -1,6 +1,6 @@
 # Appendix B: Additional Reseller Fields
 
-## Transaction Validation Web Service
+### Transaction Validation Web Service
 
 The following additional fields are available to resellers of the IdentityMind eDNA service:
 

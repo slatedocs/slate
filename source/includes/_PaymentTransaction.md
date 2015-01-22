@@ -5,7 +5,7 @@ The evidence is the payment transaction data to be evaluated. It is supplied in 
 The following URL can be used for requesting payment transaction anti-fraud evaluation:  
 `POST https://edna.identitymind.com/im/transaction`
 
-### Arguments
+#### Arguments
 
 ```code
 EXAMPLE SERVICE REQUEST
@@ -579,7 +579,7 @@ EXAMPLE SERVICE RESPONSE DATA
 
 **Note**: The clear text credit card number is never sent to IdentityMind. Instead, IdentityMind uses a cryptographically secure hash to have a unique representation of each credit card. IdentityMind provides the required utilities to generate these hashes.
 
-# Chargeback Notification
+## Chargeback Notification
 
 Notifies that a chargeback occurred on a transaction. Note that the transaction may be either a Payment Transaction or an Account Transfer.
 
@@ -588,7 +588,7 @@ In the case of a chargeback on a transaction that eDNA has not previously proces
 The following URL can be used for requesting chargeback notification evaluation:  
 `POST https://edna.identitymind.com/im/jax/chargeback/`
 
-### Arguments
+#### Arguments
 
 ```code
 EXAMPLE SERVICE REQUEST
@@ -815,7 +815,7 @@ or
 		</tr>
 	</table>
 
-# Credit Notification
+## Credit Notification
 
 Notifies that a credit occurred on a transaction.
 
@@ -826,7 +826,7 @@ The following URL can be used for credit notification evaluation:
  
 **Note**: The transaction may either be a payment transaction or an account transfer. 
 
-### Arguments
+#### Arguments
 
 ```code
 EXAMPLE SERVICE REQUEST
@@ -990,7 +990,7 @@ or
 		</tr>
 	</table>
 
-# Transaction Neutral/Refund Notification
+## Transaction Neutral/Refund Notification
 
 Notifies that a refund occurred on a transaction. All arguments are optional.
 
@@ -1006,7 +1006,7 @@ The transaction ID is part of the URL. The "refund-ok" URL should be used when t
 
 **Note**: The transaction may be either a payment transaction or an account transfer.
 
-### Arguments
+#### Arguments
 
 ```code
 EXAMPLE SERVICE REQUEST
@@ -1085,19 +1085,19 @@ EXAMPLE SERVICE RESPONSE DATA
 		</tr>
 	</table>
 
-# Final Payment Transaction Result
+## Final Payment Transaction Result
 
-### Arguments
+#### Arguments
 
 The following URLs are used to notify IdentityMind of the acceptance or rejection of the transaction that was previously analyzed with the given transaction ID by the merchant's payment gateway or the merchant themselves. All arguments are optional. The transaction ID is part of the URL.
 
-#### Bank Authorization Feedback
+##### Bank Authorization Feedback
 
 `POST https://edna.identitymind.com/im/transaction/<transaction_ID>/bank-accepted`
 
 `POST https://edna.identitymind.com/im/transaction/<transaction_ID>/bank-rejected`
 
-#### Merchant Final Resolution Feedback
+##### Merchant Final Resolution Feedback
 
 `POST https://edna.identitymind.com/im/transaction/<transaction_ID>/accepted`
 
