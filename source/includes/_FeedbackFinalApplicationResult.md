@@ -12,7 +12,7 @@ The following URLs are used to notify IdentityMind of the acceptance or rejectio
 
 `POST https://edna.identitymind.com/im/account/merchant/<application_ID>/rejected`
 
-### Arguments
+#### Arguments
 
 ```code
 EXAMPLE SERVICE REQUEST
