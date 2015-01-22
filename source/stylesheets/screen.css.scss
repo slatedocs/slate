@@ -435,8 +435,12 @@ html, body {
     padding-bottom: 1em;
   }
 
-  h4, h5, h6 {
+  h4 {
     font-size: 20px;
+  }
+
+  h5, h6 {
+    font-size: 16px;
   }
 
   hr {

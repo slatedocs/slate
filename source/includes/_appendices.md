@@ -2,7 +2,7 @@
 
 ## Appendix A: Result Keys and Codes
 
-### Result Key Names
+#### Result Key Names
 
 	<table>
 		<tr>
@@ -256,10 +256,10 @@
 		</tr>
 	</table>
 
-### Out of Wallet Questions Encoding
+#### Out of Wallet Questions Encoding
 
 ```code
-EXAMPLE
+OUT OF WALLET QUESTIONS EXAMPLE
 
 {
    “questions”:[
@@ -333,10 +333,10 @@ EXAMPLE
 		</tr>
 	</table>
 
-### eDNA Score Card Encoding
+#### eDNA Score Card Encoding
 
 ```code
-EXAMPLE
+eDNA SCORE CARD EXAMPLE
 
 {
  "ednaScoreCard": {
@@ -488,7 +488,7 @@ EXAMPLE
 	</table>
 
 
-### Result Codes
+#### Result Codes
 
 Code | Meaning
 -----|---------
@@ -625,7 +625,7 @@ Code | Meaning
 50011 |	Recent History of Account and Destination Payment
 
 
-### Payment Fraud Rule Codes
+#### Payment Fraud Rule Codes
 
 This section documents the result codes related to payment transaction fraud policy processing.  In the table below codes such as 104X represent the codes 1041-1045 where the first three digits indicate the fraud rule and the last digit represents the reputation of the User that triggered that rule as follows:
 
@@ -773,7 +773,7 @@ Code | Meaning
 259X|	COUNTRY MISMATCH AND WATCHLIST
 
 
-### Account Validation Rule Codes
+#### Account Validation Rule Codes
 
 This section documents the result codes related to account validation policy processing.
 
@@ -834,7 +834,7 @@ Code |	Meaning
 11010|	USING DISPOSABLE EMAIL ADDRESS
 
 
-### Automated Review Policy Rule Codes
+#### Automated Review Policy Rule Codes
 
 This section documents the result codes related to Automated Review Policy processing.
 
@@ -850,7 +850,7 @@ Code |	Meaning
 20010|	ACCEPT MOTO=2 (REBILL) TRANSACTIONS
 
 
-### Consumer/Merchant Application Security Tests
+#### Consumer/Merchant Application Security Tests
 
 This section documents the security tests returned for Consumer or Merchant Applications.
 
@@ -981,7 +981,7 @@ tc:6|	TIN Verification: Address Match
 
 ## Appendix B: Additional Reseller Fields
 
-### Transaction Validation Web Service
+#### Transaction Validation Web Service
 
 The following additional fields are available to resellers of the IdentityMind eDNA service:
 
@@ -1152,7 +1152,7 @@ Please contact IdentityMind support if you have questions with how to categorize
 
 ## Appendix D: Payment Instrument Hashing
 
-### Including Credit Number Hash and Token in Transaction Report
+#### Including Credit Number Hash and Token in Transaction Report
 
 ```java
 For Java, the sample code is in imclientSDK/samplecode/java/REST/TransactionViaREST.java:
@@ -1205,7 +1205,7 @@ IdentityMind provides a client SDK for Java and PHP. If you use these languages,
 If you use other languages, please see below “Credit Card Number Hash”.
 
 
-#### Credit Card Number Hash
+##### Credit Card Number Hash
 
 To generate the credit card number hash, you use the salt provided by IdentityMind, to generate a SHA-1 hash for the non-masked credit card number, and convert the byte array of the hash to Hexadecimal string. The hash should be included in the JSON string of the request in the field pccn. 
 
@@ -1220,14 +1220,14 @@ The credit card number hash should be included in the JSON string of the request
 **Note**:  The hash must be of the full card number, not a masked or tokenized representation.
 
 
-#### Credit Card Number Token
+##### Credit Card Number Token
 
 The credit card number token is the first 6 digits of the actual card number followed by XXXXXX followed by the last 4 digits of the actual card number. For example, the credit card number token for card number 4012012301230123 is 401201XXXXXX0123. 
 
 The credit card number token should be included in the JSON string of the request to IdentityMind Transaction API in the field “pcct”. 
 
 
-### Including Bank Account Hash and Token in Transaction Request
+#### Including Bank Account Hash and Token in Transaction Request
 
 ```java
 For Java, the sample code is in imclientSDK/samplecode/java/REST/ACHTransactionViaREST.java:
@@ -1274,7 +1274,7 @@ If you use other languages, please see “Bank Account Number Hash” below.
 
 **Note**: The hash must be of the full account number, not a masked or tokenized representation.
 
-#### Bank Account Number Hash
+##### Bank Account Number Hash
 
 To generate the bank account number hash, you use the salt provided by IdentityMind, to generate a SHA-1 hash for the non masked account number, and convert the byte array of the hash to Hexadecimal string. The hash should be included in the JSON string of the request in the field “pach”.
 
@@ -1292,7 +1292,7 @@ For example, the salted bank account number hash for 321076479 74600015199010 is
 The account number hash should be included in the JSON string of the request to IdentityMind Transaction API in the field “pach."
 
 
-#### Bank Account Number Token
+##### Bank Account Number Token
 
 For the bank account number token we recommend: 
 - for a US bank account number the first 6 digits of the routing number, followed by XXXXXXXX and the last 4 digits of the account number
@@ -1305,20 +1305,20 @@ The bank account number token should be included in the JSON string of the reque
 ## Appendix E: Change History
 
 
-### 1.18
+#### 1.18
 
 - Updated Merchant and Consumer Application Validation Web Services to support multiple owners for a merchant.  We also added extra fields as required by our clients.
 - Added additional security tests
 
 
-### 1.17.1
+#### 1.17.1
 
 - Added Account Validation Rule 11010
 - Switched from Experian 192 CheckID to Experian ProveID
 	- Added “Unsupported Country” security test to Experian
 
 
-### 1.17
+#### 1.17
 
 - Document the Quiz Response (Phone Ownership)
 - Add Auth.net and Interac as supported gateways
@@ -1330,7 +1330,7 @@ The bank account number token should be included in the JSON string of the reque
 - Documented memo field in Transfer and KYC transaction data
 
 
-### 1.16.2
+#### 1.16.2
 
 - Added support for Jumio Netverify Multi Document
 - Added additional KYC request attributes to support Jumio NetVerify

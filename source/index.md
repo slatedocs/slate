@@ -14,7 +14,7 @@ includes:
   - TransactionMonitoring
   - KYCmerchant
   - KYCconsumer
-  - FeedbackFinalApplicationResult
+  - FinalApplicationResult
   - LoginAnnotation
   - appendices
 

@@ -1,4 +1,4 @@
-# Feedback: Final Application Result
+# Final Application Result
 
 All arguments are optional, although a JSON object must be provided.
 
