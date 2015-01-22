@@ -383,6 +383,26 @@ html, body {
 
   h2 {
     @extend %header-font;
+    font-size: 28px;
+	color: #1d878d;    
+	padding-top: 1em;
+    padding-bottom: 0.5em;
+    border-bottom: 0px solid #e1e1e1;
+    margin-bottom: 0.5em;
+    margin-top: 2em;
+    border-top: 1px solid #e1e1e1;
+    @include background-image(
+      linear-gradient(top, #fff, #fff)
+    );
+  }
+
+  h2:first-child, div:first-child + h2 {
+    border-top-width: 0;
+    margin-top: 0;
+  }
+
+  h3 {
+    @extend %header-font;
     font-size: 22px;
     margin-top: 2em;
     margin-bottom: 0;
@@ -406,7 +426,7 @@ html, body {
     border-top: none;
   }
 
-  h3, h4, h5, h6 {
+  h4, h5, h6 {
     @extend %header-font;
     font-size: 20px;  
 	margin-top: 0px;
