@@ -4,6 +4,7 @@
 @import 'variables';
 @import 'syntax';
 @import 'icon-font';
+@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
 
 /*
 Copyright 2008-2013 Concur Technologies, Inc.
@@ -190,13 +191,25 @@ html, body {
   // Subheaders are the submenus that slide open
   // in the table of contents.
   .tocify-subheader {
-    display: none; // tocify will override this when needed
+    //display: none; // tocify will override this when needed
     background-color: $nav-subitem-bg;
     font-weight: 500;
     .tocify-item>a {
       padding-left: $nav-padding + $nav-indent;
-      font-size: 12px;
+      font-size: 14px;
     }
+ 
+    .tocify-subheader {
+      display: none; // tocify will override this when needed
+      background-color: $nav-subitem-bg;
+      font-weight: 500;
+        .tocify-item>a {
+          padding-left: $nav-padding + $nav-indent*2;
+          font-size: 12px;
+        }
+    } 
+
+
 
     // for embossed look:
     @include embossed-bg;

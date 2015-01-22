@@ -437,7 +437,7 @@
 
                 // ADDED BY ROBERT
                 // remove weird characters
-                hashValue = hashValue.replace(/[^\x00-\x7F]/g, "");
+                //hashValue = hashValue.replace(/[^\x00-\x7F]/g, "");
 
                 // fix double hyphens
                 while (hashValue.indexOf("--") > -1) {
