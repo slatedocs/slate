@@ -1,4 +1,4 @@
-# Login Annotation Web Service
+# Login Annotation
 
 The evidence is the login transaction data to be added to the entities transaction record. It is supplied in the body of the HTTP-POST as JSON-encoded key value pairs. While all fields are not required, validation evaluation is more comprehensive when richer evidence is provided.
 

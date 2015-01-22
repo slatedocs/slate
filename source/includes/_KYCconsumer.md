@@ -1,4 +1,4 @@
-# KYC: Consumer Application Validation Web Service
+# KYC: Consumer Application
 
 The evidence is the application data to be evaluated. It is supplied in the body of the HTTP-POST as JSON-encoded key value pairs. While all fields are not required, validation evaluation is more comprehensive when richer evidence is provided.
 
@@ -297,5 +297,187 @@ EXAMPLE SERVICE RESPONSE DATA
 			<td>title</td>
 			<td>Title of the owner</td>
 			<td>No</td>
+		</tr>
+	</table>
+
+# Out of Wallet Questions (IDAnalytics)
+
+The response to this request is an application response containing the newly updated application.
+Note that the response may, depending on the response from ID Analytics and your configuration within the eDNA platform, contain a further set of “challenge” questions that should once again be passed back to the consumer for answers.
+
+The following URLs are used to return a customer’s response to a set of out of wallet questions returned either by a merchant or consumer application respectively:
+
+`POST https://edna.identitymind.com/im/account/merchant/<appid>/quizresponse`
+
+`POST https://edna.identitymind.com/im/account/consumer/<appid>/quizresponse`
+
+> The body of the request contains an encoding of the customer’s answers to the quiz questions. The encoding is in JSON as shown below. The answers are processed and the response used to update the IDAnalytics CertainID Security Test and the Application state.
+
+```code
+EXAMPLE SERVICE REQUEST DATA
+
+https://edna.identitymind.com/im/account/merchant/743567/quizresponse
+
+{
+   "answers":[
+      {
+         "questionId":"0",
+         "choice":"KERRVILLE"
+      },
+      {
+         "questionId":"1",
+         "choice":"DICK"
+      },
+      {
+         "questionId":"2",
+         "choice":" None of the above "
+      },
+      {
+         "questionId":"3",
+         "choice":"MUNSTER"
+      }
+   ]
+}
+```
+	<br>
+	<table>
+		<tr>
+			<th colspan=2>JSON Answers Encoding</th>
+		</tr>
+		<tr>
+			<th>Key</th>
+			<th>Description</th>
+		</tr>
+		<tr>
+			<td>answers</td>
+			<td>JSON Array of JSON encoded answer objects</td>
+		</tr>
+		<tr>
+			<td>questionId</td>
+			<td>Integer identifier for this question. This value maps to the question within the question data.</td>
+		</tr>
+		<tr>
+			<td>choice</td>
+			<td>Text of the answer that was selected by the consumer</td>
+		</tr>
+	</table>
+
+# Phone Ownership Validation (Twilio)
+
+The response to this request is an application response containing the newly updated application.
+
+The following URLs are used to return a customer’s response to a phone validation request:
+
+`POST https://edna.identitymind.com/im/account/merchant/<appid>/quizresponse`
+
+`POST https://edna.identitymind.com/im/account/consumer/<appid>/quizresponse`
+
+> The body of the request contains an encoding of the customer’s code response. The encoding is in JSON as shown below. The answers are processed and the response is used to update the Phone Ownership Security Test and the Application state.
+
+```code
+EXAMPLE SERVICE REQUEST DATA
+
+https://edna.identitymind.com/im/account/merchant/743567/quizresponse
+
+
+{
+   "smsCode":”1234”
+}
+```
+	<br>
+	<table>
+		<tr>
+			<th colspan=2>JSON Answers Encoding</th>
+		</tr>
+		<tr>
+			<th>Key</th>
+			<th>Description</th>
+		</tr>
+		<tr>
+			<td>smsCode</td>
+			<td>The response code provided by the consumer. Encoded as a string</td>
+		</tr>
+	</table>
+
+# Document Validation Request (Jumio NetVerify)
+
+The body of the POST contains JSON encoding of the document type that is to be uploaded. The request will return an error if Jumio NetVerify has not been configured with eDNA.
+
+The following URLs are used to initiate a Jumio NetVerify Multi Document transaction for a Consumer or Merchant application:
+
+`POST https://edna.identitymind.com/im/account/merchant/<appid>/document`
+
+`POST https://edna.identitymind.com/im/account/consumer/<appid>/document`
+
+```code
+EXAMPLE SERVICE REQUEST DATA
+
+https://edna.identitymind.com/im/account/consumer/743567/document 
+
+{
+   "documentTypeCode”:”CC”
+}
+
+
+EXAMPLE SERVICE RESPONSE DATA
+
+{
+    "authorizationToken”:”f9d32f46-8f11-4b7c-b146-6d7a95aa765f”
+}
+```
+	<br>
+	<table>
+		<tr>
+			<th colspan=2>JSON Request Encoding</th>
+		</tr>
+		<tr>
+			<th>Key</th>
+			<th>Description</th>
+		</tr>
+		<tr>
+			<td>documentTypeCode</td>
+			<td>One of the following document type codes:
+				<ul type="disc">
+					<li><code>BS</code> - Bank statement</li>
+					<li><code>CC</code> - Credit card</li>
+					<li><code>IC</code> - Insurance card</li>
+					<li><code>UB</code> - Utility bill</li>
+					<li><code>CAAP</code> - Cash advance application</li>
+					<li><code>CRC</code> - Corporate resolution certificate</li>
+					<li><code>CCS</code> - Credit card statement</li>
+					<li><code>LAG</code> - Lease agreement</li>
+					<li><code>LOAP</code> - Loan application</li>
+					<li><code>MOAP</code> - Mortgage application</li>
+					<li><code>TR</code> - Tax return</li>
+					<li><code>VT</code> - Vehicle title</li>
+					<li><code>VC</code> - Voided check</li>
+					<li><code>STUC</code> - Student card</li>
+					<li><code>HCC</code> - Healthcare card</li>
+					<li><code>CB</code> - Council bill</li>
+					<li><code>SENC</code> - Seniors card</li>
+					<li><code>MEDC</code> - Medicare card</li>
+					<li><code>BC</code> - Birth certificate</li>
+					<li><code>USSS</code> - US social security card</li>
+					<li><code>WWCC</code> - Working with children check</li>
+					<li><code>SS</code> - Superannuation statement</li>
+					<li><code>TAC</code> - Trade associated card</li>
+					<li><code>SEL</code> - School enrollment letter</li>
+					<li><code>PB</code> - Phone bill</li>
+				</ul>
+			This key is required and is encoded as a string.
+			</td>
+		</tr>
+	</table>	
+	<table>
+		<tr>
+			<th colspan=2>JSON Response Encoding</th>
+		</tr>
+		<tr>
+			<th>Key</th>
+			<th>Description</th>
+		</tr>
+		<tr>
+			<td>authorizationToken</td>
+			<td>The token that is to be provided to the Jumio NetVerify client widget</td>
 		</tr>
 	</table>
