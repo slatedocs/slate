@@ -366,7 +366,7 @@ html, body {
   }
 
   &>ul, &>ol {
-    padding-left: $main-padding + 15px;
+    padding-left: $main-padding + 25px;
   }
 
   // the div is the tocify hidden div for placeholding stuff
@@ -376,7 +376,7 @@ html, body {
 
   h1 {
     @extend %header-font;
-    font-size: 30px;
+    font-size: 40px;
     padding-top: 0.5em;
     padding-bottom: 0.5em;
     border-bottom: 1px solid #ccc;
@@ -395,7 +395,7 @@ html, body {
 
   h2 {
     @extend %header-font;
-    font-size: 20px;
+    font-size: 40px;
     margin-top: 4em;
     margin-bottom: 0;
     border-top: 1px solid #ccc;
@@ -413,17 +413,42 @@ html, body {
     border-top: none;
   }
 
-  h3, h4, h5, h6 {
+  h3 {
     @extend %header-font;
-    font-size: 12px;
+    font-size: 30px;
+    margin-top: 2.5em;
+    margin-bottom: 0.8em; 
+    border-bottom: solid;
+  }
+  h4{
+    @extend %header-font;
+    font-size: 25px;
     margin-top: 2.5em;
     margin-bottom: 0.8em;
     text-transform: uppercase;
+    border-bottom: groove;
+  }
+  h5 {
+    @extend %header-font;
+    font-size: 20px;
+    margin-top: 2.5em;
+    margin-bottom: 0.8em;
+    text-transform: uppercase;
+    border-bottom: 1px groove;
+  }
+  h6 {
+    @extend %header-font;
+    font-size: 18px;
+    margin-top: 2.5em;
+    margin-bottom: 0.8em;
+    text-transform: uppercase;
+    border-bottom: 1px groove;
   }
 
-  h4, h5, h6 {
-    font-size: 10px;
-  }
+
+//  h4, h5, h6 {
+//    font-size: 10px;
+//  }
 
   hr {
     margin: 2em 0;
