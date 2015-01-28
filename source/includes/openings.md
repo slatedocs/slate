@@ -19,6 +19,8 @@ application_email | <strong>string</strong>
 hosted_url | <strong>string</strong>
 created_on | <strong>timestamp</strong>
 modified_on | <strong>timestamp</strong>
+allows_remote | <strong>boolean</strong>
+position_type | <strong>choice(`contract`, `full_time`, `part_time`) </strong>
 
 ## List of all Openings
 
@@ -47,7 +49,9 @@ curl https://api.recruiterbox.com/v1/openings \
         "application_email": "demoaccount-DMCC0203@app.recruiterbox.com",
         "hosted_url": "https://demoaccount.recruiterbox.com/jobs/ad3e",
         "created_on": 1413437038,
-        "modified_on": 1413445073
+        "modified_on": 1413445073,
+        "allows_remote": true,
+        "position_type": "contract"
       }
     ],
     "meta": {
@@ -81,7 +85,8 @@ modified_on__gt | Filter by modified date greater than a given timestamp
 created_on__lt |  Filter by created date lesser than a given timestamp
 modified_on__lt | Filter by modified date lesser than a given timestamp
 order_by | Sort by created_on, modified_on attributes. Use "-" to sort in descending order
-
+allows_remote | Filter by remote working allowed/ not allowed
+position_type | Filter by one of the position_type `contract, full_time, part_time`
 
 ## Get a specific Opening
 
@@ -104,7 +109,9 @@ curl https://api.recruiterbox.com/v1/openings/a42f3 \
   "application_email": "demoaccount-DMCC0203@app.recruiterbox.com",
   "hosted_url": "https://demoaccount.recruiterbox.com/jobs/ad3e",
   "created_on": 1413437038,
-  "modified_on": 1413445073
+  "modified_on": 1413445073,
+  "allows_remote": true,
+  "position_type": "full_time"
 }
 ```
 
@@ -340,4 +347,3 @@ Option should be a value for select_one e.g {'key':'somekey', 'value': '1'} | -
 Options should be in a list for select_multiple e.g {'key':'somekey', 'value': ['1', '2']} | -
 No option selected | No option was selected for a required select field
 {field} is not a valid option | {field} was not one of the choices listed in select_one / select_multiple.
-
