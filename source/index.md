@@ -88,8 +88,10 @@ The following pagination information is included in the response header:
 Header key | Description
 --------- | ------- | -----------
 X-Page | An Integer illustrating the current page number.
-X-Per-Page |  An Integer that specifies the page you want.
-X-Total |  An Integer specifying the total number of records that matched your request.
+X-Per-Page | An Integer that specifies the page you want.
+X-Offset | An Integer specifying the offset specified in the request.
+X-Total | An Integer specifying the total number of records that matched your request.
+Link | A string containing links to the next, previous, last and first pages.
 
 #### Link header
 
@@ -103,6 +105,7 @@ Parameter | Default | Description
 --------- | ------- | -----------
 per_page | 25 | A positive Integer that specifies the number of records per page, max is 100.
 page | 1 | A positive Integer that specifies the page you want.
+offset | 0 | A positive Integer that specifies the number of records after which you want your results to start.
 
 # Stories
 
@@ -249,7 +252,6 @@ completed_at | The date the story was completed.
 created_at | The date the story was created.
 last_modified_at | The last time this story was edited (includes things like changing the title or brief, but also actions like marking published).
 
-
 ## Story details
 
 ```shell
@@ -259,9 +261,91 @@ curl --get https://api.contently.com/v1/stories/:id \
    -H "Contently-Api-Key: <API_KEY>"
 ```
 
-Returns fields for the specified story (see JSON structure of a story above).
+Returns fields for the specified story.
 
 <aside class="notice">Note that the story must be either 'completed' or 'published', otherwise a 404 will be returned.</aside>
+
+### Story JSON
+
+```json
+{
+  "id": 1,
+  "title": "Example story",
+  "published_to_url": "http://example.com",
+  "publication":{
+    "id": 1,
+    "name": "Example publication"
+  },
+  "creator":{
+    "id": 1,
+    "first_name": "Rando",
+    "last_name": "Calrissian",
+    "email": "rando@example.com"
+  },
+  "contributors":[
+  {
+    "id": 1,
+    "first_name": "Rando",
+    "last_name": "Calrissian",
+    "email": "rando@example.com"
+  }
+  ],
+  "story_fields": [
+    {
+      "id": 1,
+      "name": "Twitter",
+      "content": "<p>HTML content</p>"
+    }
+  ],
+  "due_at": 1421771582,
+  "publish_at": 1421771582,
+  "created_at": 1421771582,
+  "published_at": 1421771582,
+  "last_modified_at": 1421771582,
+  "completed_at": 1421771582,
+  "content": "<p>HTML body of story</p>",
+  "brief": "Story description text",
+  "status": "completed",
+  "url": "https://contently.com/stories/1",
+  "story_attributes": [
+    {
+      "name": "Attribute name",
+      "value": "Attribute value"
+    }
+  ],
+  "assets": [
+    {
+      "id": 1,
+      "url": "https://s3.amazonaws.com/path_to_file",
+      "name": "filename.png",
+      "created_at": 1421771582,
+      "updated_at": 1421771582
+    }
+  ]
+}
+```
+
+Field name | Type | Description
+---- | ---- | ----
+id | Integer | The unique identifier for the story.
+status | String | The current status of the story.
+title | String | The story title.
+brief | String | A description of the story and it's requirements.
+content | String (HTML) | The raw HTML of the story.
+url | String | A link to the story on the Contently platform.
+pubilshed_to_url | String | The URL where the story is published.
+due_at | Unix datetime | The date the first version of the story was due.
+publish_at | Unix datetime | The date the story is planned to be published.
+published_at | Unix datetime | The date the story was actually published or marked published.
+completed_at | Unix datetime | The date the story was completed.
+created_at | Unix datetime | The date the story was created.
+last_modified_at | Unix datetime | The last time this story was edited (includes things like changing the title or brief, but also actions like marking published).
+contributors | Array of Objs. | An array of the Contently users who worked on the story.
+creator | Obj. | The user who created the story.
+publication | Obj. | The publication includes the ID and name of the story's associated publication.
+assets | Array of Objs. | An array of images embedded in the story content.
+story_fields | Array of Objs. | An array of the story's associate story fields and their content (These are freeform and extensions of stories, things like excerpts and tweets).
+story_attributes | Array of Objs. | An array of name / value pairs that are configured at a publication level and assigned to stories by users to categorize and desribe them.
 
 ## Marking stories published
 
@@ -282,6 +366,8 @@ curl -X PUT https://api.contently.com/v1/stories/:id/mark_published \
 This endpoint updates the specified story, changing its status to 'published' and adding an item to the story's audit log (visible on the Contently platform) documenting the change. It enables analytics tracking and makes sure that published data on the platform is always up to date. It returns the story object if the update succeeded or an error message otherwise.
 
 If a story is already 'published', you must include the **published_at** date in the request if you wish to override the existing date.
+
+The **publish_at** date is the planned publish date that is specified in the Contently platform, this value is useful for automating publishing.
 
 <aside class="notice">Note that attemping to mark published a story that is not currently 'completed' or 'published' will result in a 403 error.</aside>
 
