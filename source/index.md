@@ -80,15 +80,15 @@ Almost all list APIs support pagination if you need access to all items. By defa
 
 Get first page:
 
-`GET https://airbrake.io/api/v3/collectionName`
+`GET https://airbrake.io/api/v4/collectionName`
 
 Get second page:
 
-`GET https://airbrake.io/api/v3/collectionName?page=2`
+`GET https://airbrake.io/api/v4/collectionName?page=2`
 
 Ask for 100 items per page:
 
-`GET https://airbrake.io/api/v3/collectionName?limit=100`
+`GET https://airbrake.io/api/v4/collectionName?limit=100`
 
 ### Query Parameters
 
@@ -104,6 +104,44 @@ Field | Example | Comment
 collectionName | `projects` | Each API has different collection name. Some APIs return multiple collections.
 count | 12345 | Total number of available items.
 page | 2 | Actual page number that backend used internally.
+
+# Cursor pagination
+
+Some list APIs use cursor-based pagination, that only allows to fetch next and previous page.
+
+```json
+{
+  "collectionName": [item1, item2, ..., item20],
+  "start": "START_CURSOR",
+  "end": "END_CURSOR"
+}
+```
+
+### HTTP Request
+
+Get next page:
+
+`GET https://airbrake.io/api/v4/collectionName?start=END_CURSOR`
+
+Get previous page:
+
+`GET https://airbrake.io/api/v4/collectionName?end=START_CURSOR`
+
+### Query Parameters
+
+Parameter | Default | Description
+--------- | ------- | -----------
+start |  | Starting position within a result set from which to retrieve results. Used to retrieve next page.
+end |  | Ending position within a result set from which to retrieve results. Used to retrieve previous page.
+limit | 20 | Number of items per page.
+
+### Response
+
+Field | Example | Comment
+----- | ------- | -----------
+collectionName | `projects` | Each API has different collection name. Some APIs return multiple collections.
+start | abcdefg | Position of the first element in the result set.
+end | abcdefg | Position of the last element in the result set.
 
 # Projects v4
 
@@ -323,7 +361,7 @@ order | last_notice | Sorts groups by `last_notice`, `notice_count`, `weight` an
 
 ### Response
 
-The API returns `200 OK` status code on success
+The API returns `200 OK` status code on success.
 
 ## Show group v4
 
@@ -371,7 +409,7 @@ curl "https://airbrake.io/api/v4/projects/PROJECT_ID/groups/GROUP_ID?key=USER_KE
 
 ### Response
 
-The API returns `200 OK` status code on success
+The API returns `200 OK` status code on success.
 
 ## Mute group v4
 
@@ -508,6 +546,59 @@ curl "https://airbrake.io/api/v4/projects/PROJECT_ID/group-actions?key=USER_KEY"
 Parameter | Default | Description
 --------- | ------- | -----------
 action | | Searches for similar actions.
+
+### Response
+
+The API returns `200 OK` status code on success.
+
+## List groups across all projects v4
+
+The API returns list of groups across all projects. See [Cursor pagination](#cursor-pagination) section for supported query parameters and response fields.
+
+```shell
+curl "https://airbrake.io/api/v4/groups?key=USER_KEY"
+```
+
+```json
+{
+  "groups": [
+    {
+      "id": 1,
+      "projectId": 1,
+      "resolved": false,
+      "errors": [
+        {
+          "type": "error type",
+          "message": "error message",
+          "backtrace": [
+            {
+              "file": "/path/to/file",
+              "function": "func_name",
+              "line": 1,
+              "column": 0
+            }
+          ]
+        }
+      ],
+      "context": {
+        "environment": "production"
+      },
+      "lastDeployId": 1,
+      "lastDeployAt": "2014-09-26T17:37:33.638348Z",
+      "lastNoticeId": "1",
+      "lastNoticeAt": "2014-09-26T17:37:33.638348Z",
+      "noticeCount": 1,
+      "noticeTotalCount": 1,
+      "createdAt": "2014-09-26T17:37:33.638348Z"
+    }
+  ],
+  "start": "abcdefg"
+}
+```
+
+### HTTP Request
+
+`GET https://airbrake.io/api/v4/groups?key=USER_KEY`
 
 ### Response
 
