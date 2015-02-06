@@ -5,7 +5,7 @@
 > Request example
 
 ```shell
-curl "http://api.mojopages.com/api/v1/status"
+curl "https://api.mojopages.com/api/v1/status"
   -H "Authorization: Token token="YOUR-ACCESS-TOKEN""
 ```
 
@@ -26,7 +26,7 @@ Check the status of the inserted businesses and the current total businesses mat
 
 ### HTTP Request
 
-`GET http://api.mojopages.com/api/v1/status`
+`GET https://api.mojopages.com/api/v1/status`
 
 ### Query Parameters
 
@@ -41,7 +41,7 @@ access_token | true | Access token used to authenticate
 > Request example
 
 ```shell
-curl "http://api.mojopages.com/api/v1/listings"
+curl "https://api.mojopages.com/api/v1/listings"
   -H "Authorization: Token token="YOUR-ACCESS-TOKEN""
 ```
 
@@ -72,7 +72,7 @@ This endpoint retrieves all your existing business listings.
 
 ### HTTP Request
 
-`GET http://api.mojopages.com/api/v1/listings`
+`GET https://api.mojopages.com/api/v1/listings`
 
 ### Query Parameters
 
@@ -87,7 +87,7 @@ access_token | true | Access token used to authenticate
 > Request example
 
 ```shell
-curl "http://api.mojopages.com/api/v1/listing/7d373c1da40cbfc3f165"
+curl "https://api.mojopages.com/api/v1/listing/7d373c1da40cbfc3f165"
   -H "Authorization: Token token="YOUR-ACCESS-TOKEN""
 ```
 
@@ -118,7 +118,7 @@ This endpoint retrieves a specific business listings.
 
 ### HTTP Request
 
-`GET http://api.mojopages.com/api/v1/listing/:LISTING_ID`
+`GET https://api.mojopages.com/api/v1/listing/:LISTING_ID`
 
 ### Query Parameters
 
@@ -137,7 +137,7 @@ You must replace `:LISTING_ID` with your business listing id.
 > Request example
 
 ```shell
-curl "http://api.mojopages.com/api/v1/listing/693acfb0-a323-44c5-8aa1-75baf9f99f3a/factual"
+curl "https://api.mojopages.com/api/v1/listing/693acfb0-a323-44c5-8aa1-75baf9f99f3a/factual"
   -H "Authorization: Token token="YOUR-ACCESS-TOKEN""
 ```
 
@@ -159,7 +159,7 @@ This endpoint retrieves a specific business listings by the Factual ID.
 
 ### HTTP Request
 
-`GET http://api.mojopages.com/api/v1/listing/:FACTUAL_LISTING_ID/factual`
+`GET https://api.mojopages.com/api/v1/listing/:FACTUAL_LISTING_ID/factual`
 
 ### Query Parameters
 
@@ -178,9 +178,10 @@ You must replace `:FACTUAL_LISTING_ID` with the business listings Factual id.
 > Request example
 
 ```shell
-curl "http://api.mojopages.com/api/v1/listing/7d373c1da40cbfc3f165"
+curl "https://www.mojopages.com/api/v1/listing/7d373c1da40cbfc3f165"
   -H "Authorization: Token token="YOUR-ACCESS-TOKEN""
-  -X POST -d  {"mojo_id": 201702, "name": "Piety Hill Cottages", "address": "523 Sacramento St", "tel": (555) 555-5555, "locality": "Nevada City", "region": "CA"}
+  -H "Content-Type: application/json"
+  -X POST -d '{"mojo_id": 201702, "name": "Piety Hill Cottages", "address": "523 Sacramento St", "tel": "(555) 555-5555", "locality": "Nevada City", "region": "CA"}'
 
 ```
 
@@ -199,7 +200,7 @@ This endpoint is used to post a new business listings to MojoPages.
 
 ### HTTP Request
 
-`POST http://api.mojopages.com/api/v1/listing/:LISTING_ID`
+`POST https://api.mojopages.com/api/v1/listing/:LISTING_ID`
 
 ### Query Parameters
 
@@ -219,9 +220,10 @@ You must replace `:LISTING_ID` with your business listings id.
 > Request example
 
 ```shell
-curl "http://api.mojopages.com/api/v1/listing/7d373c1da40cbfc3f165"
+curl "https://api.mojopages.com/api/v1/listing/7d373c1da40cbfc3f165"
   -H "Authorization: Token token="YOUR-ACCESS-TOKEN""
-  -X PUT -d  {"address": "523 Sacramento Streeet", "tel": (800) 555-5555,}
+  -H "Content-Type: application/json"
+  -X PUT -d '{"address": "523 Sacramento Streeet", "tel": "(800) 555-5555"}'
 
 ```
 
@@ -240,7 +242,7 @@ This endpoint is used to put updated data for an existing business listing into 
 
 ### HTTP Request
 
-`PUT http://api.mojopages.com/api/v1/listing/:LISTING_ID`
+`PUT https://api.mojopages.com/api/v1/listing/:LISTING_ID`
 
 ### Query Parameters
 
@@ -259,7 +261,7 @@ You must replace `:LISTING_ID` with your business listings id.
 > Request example
 
 ```shell
-curl "http://api.mojopages.com/api/v1/listing/7d373c1da40cbfc3f165"
+curl "https://api.mojopages.com/api/v1/listing/7d373c1da40cbfc3f165"
   -H "Authorization: Token token="YOUR-ACCESS-TOKEN""
 
 ```
@@ -279,7 +281,7 @@ This endpoint is used to delete an existing business listing from MojoPages.
 
 ### HTTP Request
 
-`DELETE http://api.mojopages.com/api/v1/listing/:LISTING_ID`
+`DELETE https://api.mojopages.com/api/v1/listing/:LISTING_ID`
 
 ### Query Parameters
 

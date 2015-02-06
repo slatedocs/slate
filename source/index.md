@@ -19,11 +19,11 @@ search: true
 
 # Introduction
 
-Welcome to the MojoPages API documentation! MojoPages is a local business search application which uses social media to provide relavant and interesting results. The API is RESTful and enables adding, updating or delete business listing data on [MojoPages.com](http://mojopages.com) and it's properties. The API also allows you to check the status and map your business data to our database as well as retrieve all your business listings within our system. 
+Welcome to the MojoPages API documentation! MojoPages is a local business search application which uses social media to provide relavant and interesting results. The API is RESTful and enables adding, updating or delete business listing data on [MojoPages.com](http://mojopages.com) and it's properties. The API also allows you to check the status and map your business data to our database as well as retrieve all your business listings within our system.
 
-Sample code is currently available as cURL in the dark area to the right. Requests and responses are all in JSON. 
+Sample code is currently available as cURL in the dark area to the right. Requests and responses are all in JSON.
 
-The API base url is: **http://api.mojopages.com/api/v1/**
+The API base url is: **https://api.mojopages.com/api/v1/**
 
 The API is versioned, the current version is 1. This is designated in the url path with /v1
 
@@ -36,7 +36,7 @@ If you have any question please visit [our support pages](http://help.mojopages.
 
 ```shell
 # With shell, you can just pass the correct header with each request
-curl http://api.mojopages.com/api/v1/status 
+curl https://api.mojopages.com/api/v1/status
   -H "Authorization: Token token='YOUR-ACCESS-TOKEN'"
 ```
 
@@ -93,7 +93,7 @@ locality | City where the business is located
 region | State in which the business is located, should be 2 character abreviation
 postalcode | Postal code where the business is located, should be a minimum 5 digits
 tel | Telephone number of the business, should be 10 digits
-website |  URL for the business, include http:// 
+website |  URL for the business, include http://
 email | Email address for the business
 longitude | Longitude of the business location
 latitude | Latitude of the business location
