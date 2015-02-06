@@ -307,8 +307,9 @@ html, body {
     text-decoration: none;
     padding: 0 10px;
     line-height: 30px;
+    outline: 0;
 
-    &:active {
+    &:active, &:focus {
       background-color: $lang-select-pressed-bg;
       color: $lang-select-pressed-text;
     }

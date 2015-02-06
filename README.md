@@ -37,6 +37,7 @@ Getting Started with Slate
 
 You're going to need:
 
+ - **Linux or OS X** — Windows may work, but is unsupported.
  - **Ruby, version 1.9.3 or newer**
  - **Bundler** — If Ruby is already installed, but the `bundle` command doesn't work, just run `gem install bundler` in a terminal.
 
@@ -65,6 +66,8 @@ Examples of Slate in the Wild
 * [Appium docs](http://appium.io/slate/en/master)
 * [Golazon Developer](http://developer.golazon.com)
 * [Dwolla API docs](https://docs.dwolla.com/)
+* [RozpisyZapasu API docs](http://www.rozpisyzapasu.cz/dev/api/)
+* [Codestar Framework Docs](http://codestarframework.com/documentation/)
 
 (Feel free to add your site to this list in a pull request!)
 
