@@ -178,7 +178,7 @@ You must replace `:FACTUAL_LISTING_ID` with the business listings Factual id.
 > Request example
 
 ```shell
-curl "https://www.mojopages.com/api/v1/listing/7d373c1da40cbfc3f165"
+curl "https://api.mojopages.com/api/v1/listing/7d373c1da40cbfc3f165"
   -H "Authorization: Token token="YOUR-ACCESS-TOKEN""
   -H "Content-Type: application/json"
   -X POST -d '{"mojo_id": 201702, "name": "Piety Hill Cottages", "address": "523 Sacramento St", "tel": "(555) 555-5555", "locality": "Nevada City", "region": "CA"}'
