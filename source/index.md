@@ -165,7 +165,7 @@ curl --get https://api.contently.com/v1/stories \
     "story_attributes": [
       {
         "name": "Attribute name",
-        "value": "Attribute value"
+        "values": ["Attribute value 1", "Attribute value 2"]
       }
     ],
     "assets": [
@@ -310,7 +310,7 @@ Returns fields for the specified story.
   "story_attributes": [
     {
       "name": "Attribute name",
-      "value": "Attribute value"
+      "values": ["Attribute value 1", "Attribute value 2"]
     }
   ],
   "assets": [
@@ -345,7 +345,7 @@ creator | Obj. | The user who created the story.
 publication | Obj. | The publication includes the ID and name of the story's associated publication.
 assets | Array of Objs. | An array of images embedded in the story content.
 story_fields | Array of Objs. | An array of the story's associate story fields and their content (These are freeform and extensions of stories, things like excerpts and tweets).
-story_attributes | Array of Objs. | An array of name / value pairs that are configured at a publication level and assigned to stories by users to categorize and desribe them.
+story_attributes | Array of Objs. | Each story attribute has a name (String) and an array of values (Also Strings). These are configured at a publication level and assigned to stories by users to categorize and desribe them.
 
 ## Marking stories published
 
