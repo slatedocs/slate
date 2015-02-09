@@ -48,7 +48,7 @@ under the License.
       </span>
     </a>
     <div class="tocify-wrapper">
-      <%= image_tag "logo.png" %>
+      <a href="#"> <%= image_tag "logo.png" %></a>
       <% if language_tabs %>
         <div class="lang-selector">
           <% language_tabs.each do |lang| %>
@@ -74,14 +74,14 @@ under the License.
             <li><%= footer %></li>
           <% end %>
         </ul>
-      <% end %>
+      <% end %>+-
     </div>
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
         <%= yield %>
         <% current_page.data.includes && current_page.data.includes.each do |include| %>
-          <%= partial "includes/#{include}" %>
+          <%= partial "#{include}" %>
         <% end %>
       </div>
       <div class="dark-box">
