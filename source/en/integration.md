@@ -66,12 +66,12 @@ The PallyCon Service must be set up in the following squence.
 <aside class="notice">You must have a site ID before setting up the PallyCon Service. You can manage site IDs in CP Admin. 
 You can set up only one PallyCon Service for one site ID. You may not set up multiple PallyCon Services with one site ID. </aside>
 
-**STEP1:** Select Packager to prepare for packaging. 
-**STEP2:** Develop the Content ID Issue Page and register the URL in CP Admin. 
-**STEP3:** Package the source contents. 
-**STEP4:** Upload the packaged DRM contents to the donwload server. 
-**STEP5:** Develop the Content Usage Rights Info Page and register the URL in CP Admin. 
-**STEP6:** Develop the Service Site for linking with the player. 
+**STEP1:** Select Packager to prepare for packaging.  
+**STEP2:** Develop the Content ID Issue Page and register the URL in CP Admin.  
+**STEP3:** Package the source contents.  
+**STEP4:** Upload the packaged DRM contents to the donwload server.  
+**STEP5:** Develop the Content Usage Rights Info Page and register the URL in CP Admin.  
+**STEP6:** Develop the Service Site for linking with the player.  
 **STEP7:** Start the service. 
 
 PallyCon Service provides the Guide documents for the setting up procedure. 

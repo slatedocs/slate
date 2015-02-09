@@ -75,12 +75,12 @@ PallyCon Service는 아래의 순서대로 진행하면서 구축합니다.
 <aside class="notice">PallyCon Service를 구축하기 위해서 반드시 Site ID가 있어야만 합니다. Site ID는 CP Admin에서 관리할 수 있습니다. 
 Site ID하나 당 하나의 PallyCon Service를 구축 할 수 있으나, 하나의 Site ID로 여러 PallyCon Service를 구축할 수 없습니다. </aside>
 
-**STEP1:** Packager를 선택하여 Packaging 준비를 합니다. 
-**STEP2:** CID(Content ID) 발급 페이지(Content ID Issue Page)를 개발하고, URL을 CP Admin에 등록합니다. 
-**STEP3:** 원본 콘텐츠를 Packaging합니다. 
-**STEP4:** Packaging된 DRM 콘텐츠를 다운로드 서버에 업로드 합니다. 
-**STEP5:** 콘텐츠 사용 권한 정보 페이지(Content Usage Rights Info Page)를 개발하고, URL을 CP Admin에 등록합니다. 
-**STEP6:** Client가 연동할 Service Site를 개발합니다. 
+**STEP1:** Packager를 선택하여 Packaging 준비를 합니다.  
+**STEP2:** CID(Content ID) 발급 페이지(Content ID Issue Page)를 개발하고, URL을 CP Admin에 등록합니다.  
+**STEP3:** 원본 콘텐츠를 Packaging합니다.  
+**STEP4:** Packaging된 DRM 콘텐츠를 다운로드 서버에 업로드 합니다.  
+**STEP5:** 콘텐츠 사용 권한 정보 페이지(Content Usage Rights Info Page)를 개발하고, URL을 CP Admin에 등록합니다.  
+**STEP6:** Client가 연동할 Service Site를 개발합니다.  
 **STEP7:** 서비스를 시작합니다. 
 
 PallyCon Service에서는 구축에 필요한 가이드 문서를 제공합니다. 
@@ -2572,5 +2572,4 @@ _Bookmark 삭제_
 |:----|:-----|
 |2014.12.12|PallyCon PC Web Player 연동 가이드 제작|
 
-
-![footer](footer.png)
+ 
