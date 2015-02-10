@@ -1,7 +1,32 @@
 ---
-title: PallyCon Books home
+title: PallyCon Books 
+
+includes:  
+  - en/welcome
+  - en/quickstart
+  - en/integration
+  - en/rest
+
+toc_footers: 
+  - <a href='/ko'>▶ IN KOREAN</a> 
+  - <a href='http://www.pallycon.com'>▶ PALLYCON HOME</a> 
  
-toc_footers:
-  - <a href='/en'>lang ☞ english</a>
-  - <a href='/ko'>lang ☞ korean</a>
 ---
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
