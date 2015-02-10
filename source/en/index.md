@@ -1,5 +1,5 @@
 ---
-title: PallyCon Books 
+title: Pallycon Docs 
 
 includes:  
   - en/welcome
