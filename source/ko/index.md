@@ -8,7 +8,8 @@ includes:
   - ko/rest
   
 toc_footers: 
-  - <a href='http://www.pallycon.com'>PallyCon Home</a> 
+  - <a href='/slate/en'>영어로 읽기</a> 
+  - <a href='http://www.pallycon.com'>PALLYCON HOME</a> 
  
 ---
 
