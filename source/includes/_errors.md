@@ -25,3 +25,14 @@ Error Code | Meaning
 ## JSONP
 
 We don't currently support JSONP.
+
+# Changelog
+
+### Version 1.0.1 (2015-02-11)
+
+- Added a new `sort_by` method: `created_at` to sort by most recent first
+- The filtering field `country` is deprecated, use `country_code` instead
+
+### Version 1.0.0 (2014-11-21)
+
+- First public version

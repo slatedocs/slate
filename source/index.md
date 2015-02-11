@@ -7,7 +7,7 @@ language_tabs:
 
 toc_footers:
   - <a href='#getting-api-access'>Sign Up for a Developer Key</a>
-  - <p>© 2014 NewsWhip Media Ltd.</p>
+  - <p>© 2015 NewsWhip Media Ltd.</p>
 
 includes:
   - errors
@@ -376,7 +376,7 @@ filters* |  | Array[String] | List of [Lucene QueryString](https://lucene.apache
 from | A week ago | Unix timestamp in milliseconds | Filters articles published after `{from}`.
 to | Now | Unix timestamp in milliseconds | Filters articles published before `{to}`.
 language | Any | Two letter ISO 639-1 language code |
-sort_by | default | String | One of the following: `default`, `fb_likes`, `fb_shares`, `fb_comments`, `fb_total`, `twitter`, `linkedin`, `fb_tw_and_li`, `nw_score`, `nw_max_score`.
+sort_by | default | String | One of the following: `default`, `fb_likes`, `fb_shares`, `fb_comments`, `fb_total`, `twitter`, `linkedin`, `fb_tw_and_li`, `nw_score`, `nw_max_score`, `created_at`.
 video_only | false | 
 default_field | Relevant fields | String | Field to be used when filtering by keywords (like `"Barack Obama"`) and no fields are used in the Query String.
 size |   | Integer | Max number of articles to be returned.
@@ -389,7 +389,8 @@ Field | Type
 headline |  |
 summary |  |
 authors |  |
-country | Number |
+<del>country</del> | Number. Deprecated: use country_code instead |
+country_code | Two letter ISO 3166 country code |
 language | Two letter ISO 639-1 language code |
 categories | Number |
 publisher | 
@@ -563,3 +564,5 @@ Field | Description
 --------- | -----------
 id |  NewsWhip's unique id for this Topic
 name |  English name for this topic
+
+
