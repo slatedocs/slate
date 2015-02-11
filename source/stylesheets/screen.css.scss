@@ -307,8 +307,9 @@ html, body {
     text-decoration: none;
     padding: 0 10px;
     line-height: 30px;
+    outline: 0;
 
-    &:active {
+    &:active, &:focus {
       background-color: $lang-select-pressed-bg;
       color: $lang-select-pressed-text;
     }
@@ -483,7 +484,7 @@ html, body {
   aside {
     padding-top: 1em;
     padding-bottom: 1em;
-    text-shadow: 0 1px 0 lighten($aside-notice-bg, 15%);
+    @include text-shadow(0 1px 0 lighten($aside-notice-bg, 15%));
     margin-top: 1.5em;
     margin-bottom: 1.5em;
     background: $aside-notice-bg;
@@ -491,12 +492,12 @@ html, body {
 
     &.warning {
       background-color: $aside-warning-bg;
-      text-shadow: 0 1px 0 lighten($aside-warning-bg, 15%);
+      @include text-shadow(0 1px 0 lighten($aside-warning-bg, 15%));
     }
 
     &.success {
       background-color: $aside-success-bg;
-      text-shadow: 0 1px 0 lighten($aside-success-bg, 15%);
+      @include text-shadow(0 1px 0 lighten($aside-success-bg, 15%));
     }
   }
 
@@ -523,7 +524,7 @@ html, body {
     margin: -2px;
     border-radius: 4px;
     border: 1px solid #F7E633;
-    text-shadow: 1px 1px 0 #666;
+    @include text-shadow(1px 1px 0 #666);
     @include background(linear-gradient(bottom right, #F7E633 0%, #F1D32F 100%));
   }
 }
