@@ -30,8 +30,10 @@ We don't currently support JSONP.
 
 ### Version 1.0.1 (2015-02-11)
 
-- Added a new `sort_by` method: `created_at` to sort by most recent first
+- Added a new `sort_by` method: `created_at` to sort by most recent
 - The filtering field `country` is deprecated, use `country_code` instead
+- In Entities, Article. The field `country_code` replaces `country`. The contents of `country` will be set to 'World'
+
 
 ### Version 1.0.0 (2014-11-21)
 

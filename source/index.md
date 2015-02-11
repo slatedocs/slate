@@ -121,7 +121,7 @@ echo $response->getBody();
             "source": {
                 "publisher": "wired.com",
                 "link": "http://wired.com",
-                "country": "U.S."
+				"country_code": "us"
             },
             "nw_score": 378.6359090122582,
             "max_nw_score": 378.6359090122582,
@@ -316,7 +316,7 @@ echo $response->getBody();
             "source": {
                 "publisher": "nytimes.com",
                 "link": "http://nytimes.com",
-                "country": "U.S."
+				"country_code": "us"
             },
             "nw_score": 0,
             "max_nw_score": 778.9965224360006,
@@ -546,7 +546,8 @@ headline |
 excerpt |  summary for the story
 source.publisher |  domain of source publication
 source.link |  website of source publication
-source.country |  country of source publication
+<del>source.country</del> |  deprecated
+source.country_code | country of source publication
 nw_score | NewsWhip's current social speed for the story
 fb_data | An object describing total and recent Facebook interactions
 tw_data | An object describing total and recent Twitter interactions
