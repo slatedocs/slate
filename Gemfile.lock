@@ -104,7 +104,7 @@ GEM
       ffi (>= 0.5.0)
     redcarpet (3.2.2)
     ref (1.0.5)
-    rouge (1.7.2)
+    rouge (1.8.0)
     ruby18_source_location (0.2)
     sass (3.4.9)
     sprockets (2.12.3)
@@ -142,7 +142,7 @@ DEPENDENCIES
   middleman-syntax
   rake (~> 10.4.0)
   redcarpet (~> 3.2.1)
-  rouge (= 1.7.2)
+  rouge (~> 1.8.0)
   ruby18_source_location
   therubyracer
   wdm (~> 0.1.0)
