@@ -1,14 +1,14 @@
 ---
-title: API Reference
+title: Tether API Reference
 
 language_tabs:
-  - shell
   - ruby
   - python
+  - php
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='http://github.com/tripit/slate'>Documentation Powered by Slate</a>
+  - <a href='https://tether.to/'>Tether homepage</a>
+  - <a href='https://tether.to/settings'>Generate API Key</a>
 
 includes:
   - errors
@@ -18,67 +18,84 @@ search: true
 
 # Introduction
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+Welcome to the Tether API!
 
-We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+We have libraries in Ruby, PHP and Python. You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
 
-This example API documentation page was created with [Slate](http://github.com/tripit/slate). Feel free to edit it and use it as a base for your own API's documentation.
+- [Tether API Ruby client](https://github.com/WebLogicNow/tether-api-client-ruby/)
+- [Tether API PHP client](https://github.com/WebLogicNow/tether-api-client-php/)
+- [Tether API Python client](https://github.com/WebLogicNow/tether-api-client-python/)
 
 # Authentication
 
 > To authorize, use this code:
 
 ```ruby
-require 'kittn'
+# TODO
+```
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
+```php
+# TODO
 ```
 
 ```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
+# TODO
 ```
 
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
-```
+> Make sure to replace `TetherAPIKey` with your API key and `TetherAPISecret` with your API secret.
 
-> Make sure to replace `meowmeowmeow` with your API key.
+Tether uses HMAC authentication. Each request should be signed with a secret that you can see when creating a new API key.
+You can create a Tether API key and Tether API secret key on [Tether Settings](https://tether.to/settings) page. 
+Tether expects for the signature to be included in all API requests to the server in a standard HTTP Authorization header that has the following form:
 
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
+`Authorization: APIAuth TetherAPIKey:Signature`
 
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
+For request authentication, the TetherAPIKey element identifies the secret key that was used to compute the signature and, also, the user making the request.
+The Authorization header is computed as following:
 
-`Authorization: meowmeowmeow`
-
-<aside class="notice">
-You must replace `meowmeowmeow` with your personal API key.
+<aside>
+  Authorization = "APIAuth" + " " + TetherAPIKey + ":" + Signature;<br><br>
+  
+  Signature = Base64( HMAC-SHA1( TetherAPISecret, StringToSign ) );<br><br>
+  
+  StringToSign = Content-Type + "," +	Content-MD5 + "," +	URI + "," + Timestamp;
 </aside>
 
-# Kittens
+The Signature is the Base64 encoded RFC 2104 HMAC-SHA1 of selected parts from the request, and so the Signature part of the Authorization header will vary from request to request. 
+If the request signature calculated by the Tether API matches the Signature included in the Authorization header, the request will be processed under the identity of 
+the user to whom the key was issued. Otherwise you will get `401 Unauthorized` error as a response.
 
-## Get All Kittens
+# Permissions
+
+Each API key can have one or more permissions:
+
+<table>
+<tr><th>Permission</th><th>Rights</th></tr>
+<tr><td>read_balances</td><td>GET /balances</td></tr>
+<tr><td>read_transactions</td><td>GET /transactions<br>GET /transaction/:id</td></tr>
+<tr><td>create_transaction</td><td>POST /transactions</td></tr>
+<tr><td>read_exchange_orders</td><td>GET /exchange_orders<br>GET /exchange_orders/:id</td></tr>
+<tr><td>create_exchange_order</td><td>POST /exchange_orders</td></tr>
+<tr><td>read_exchange_rates</td><td>GET /exchange_rates</td></tr>
+</table>
+
+If the API key does not have a required permission you will get `403 Forbidden` error as a response.
+
+
+# Balances
+
+## Get wallet balances
 
 ```ruby
-require 'kittn'
+# TODO
+```
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
+```php
+# TODO
 ```
 
 ```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
-
-```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
+# TODO
 ```
 
 > The above command returns JSON structured like this:
@@ -86,83 +103,19 @@ curl "http://example.com/api/kittens"
 ```json
 [
   {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Isis",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
+    "TODO": "TODO"
   }
 ]
 ```
 
-This endpoint retrieves all kittens.
+This endpoint retrieves all balances.
 
 ### HTTP Request
 
-`GET http://example.com/kittens`
+`GET /balances`
 
-### Query Parameters
+### Parameters
 
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
+None.
 
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/3"
-  -H "Authorization: meowmeowmeow"
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 2,
-  "name": "Isis",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
-}
-```
-
-This endpoint retrieves a specific kitten.
-
-<aside class="warning">If you're not using an administrator API key, note that some kittens will return 403 Forbidden if they are hidden for admins only.</aside>
-
-### HTTP Request
-
-`GET http://example.com/kittens/<ID>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the cat to retrieve
 
