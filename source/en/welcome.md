@@ -11,16 +11,17 @@ PallyCon service consists with cloud-based DRM license server, PallyCon Player f
 ## Guides
 You can integrate PallyCon service with your content service site using the below guide documents.
 
-**[Quick Start Guide](#quick-start-guide) Provides test codes, samples and setup guide for a quick trial of PallyCon service.** 
+**[Quick Start Guide](#quickstart-guide) Provides test codes, samples and setup guide for a quick trial of PallyCon service.** 
 
-**[Intergration Guides](#intergration-overview) Explains overall flow and how-to of the service integration.** 
+**[Integration Guides](#integration-overview) Explains overall flow and how-to of the service integration.** 
 
-- You must [intergrate packager](#packaging-guide) to your CMS(Content Management System). And learn how to [issue license](#license-issue-guide) with usage rights when end-user plays DRM content. 
+- You must [integrate packager](#packaging-guide) to your CMS(Content Management System). And learn how to [issue license](#license-issue-guide) with usage rights when end-user plays DRM content. 
 
-- You can intergrate [Pallycon Mobile Player](#mobile-player-guide) with your mobile content service site.
+- You can integrate [Pallycon Mobile Player](#mobile-player-integration) and [Pallycon PC Player](#pc-player-integration) with your content service site.
 
 - Also You can manage your Pallycon service via [ReST API](#rest-api-guide)  
 
+If you want to develop your own service application for customization, [PallyCon Client SDK](#sdk-guide)s can be provided by separated contract. The below guide explain how to use the SDKs for each platform. For more details please check the API reference included in the SDK after signing contract.
 
 ## Downloads
 For Quick Start, please download the below sample and refer to Quick Start Guide page.

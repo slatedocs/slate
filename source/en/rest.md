@@ -381,15 +381,10 @@ _license_count, use_device_count, user_count, pc_count, ios_count, android_count
 
 
 
-## Revision History 
+**Revision History**
+
 This table describes the revisions of the REST API Guide.
 
 |Date| Detail|
 |:----|:-----|
 |2014.08.27|REST API Guide was created|
-
-
-
-![footer](footer.png)
-
-

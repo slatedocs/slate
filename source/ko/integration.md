@@ -85,7 +85,7 @@ Site ID하나 당 하나의 PallyCon Service를 구축 할 수 있으나, 하나
 
 PallyCon Service에서는 구축에 필요한 가이드 문서를 제공합니다. 
  
-#### Packaging Guide
+#### Packaging Overview
 
 **STEP1 ~ STEP4**에 대한 가이드 문서입니다. 이 가이드 문서에서는 Packaging 하는 방법과 CID 발급 페이지 개발에 필요한 정보, 주의사항에 대하여 설명합니다. 
 
@@ -93,7 +93,7 @@ PallyCon Service에서는 구축에 필요한 가이드 문서를 제공합니�
 ![overview_packagingguide](Overview_PackagingGuide.png)
 
  
-#### License Issue Guide
+#### License Issue Overview
 
 **STEP5**에 대한 가이드 문서입니다. 이 가이드 문서에서는 DRM 콘텐츠를 사용하기 위해 필요한 License와 License 생성, 발급, 콘텐츠 사용 권한 정보 페이지 개발에 필요한 정보 및 주의사항에 대하여 설명합니다. 
 
@@ -102,7 +102,7 @@ PallyCon Service에서는 구축에 필요한 가이드 문서를 제공합니�
 ![overview_licenseissueguide](Overview_LicenseIssueGuide.png)
 
  
-#### Web Working Guide, Mobile Working Guide 
+#### Web/Mobile Working Overview
 
 **STEP6**에 대한 가이드 문서입니다. 이 가이드 문서는 PallyCon Service에서 제공하는 Web Player와 Mobile Player를 사용하기 위해 필요한 연동 작업들에 대하여 설명합니다. 
 
@@ -113,7 +113,8 @@ PallyCon Service에서는 구축에 필요한 가이드 문서를 제공합니�
 
 
 
-### Revision History 
+**Revision History** 
+
 이 테이블은 Overview 가이드의 수정사항에 대해 설명한 것입니다.
 
 |Date| Detail|
@@ -747,7 +748,8 @@ _CID_
 
 
 
-### Revision History 
+**Revision History** 
+
 이 테이블은 PallyCon Packaging 가이드의 수정사항에 대해 설명한 것입니다.
 
 |Date| Detail|
@@ -1092,7 +1094,7 @@ Order ID는 사용자가 재생하고자 하는 콘텐츠의 주문 정보입니
 
 
 
-### Revision History 
+**Revision History** 
 
 이 테이블은 License Issue 가이드의 수정사항에 대해 설명한 것입니다.
 
@@ -2050,7 +2052,8 @@ _message_
 
 
 
-### Revision History 
+**Revision History** 
+
 이 테이블은 PallyCon Player 연동 가이드의 수정사항에 대해 설명한 것입니다.
 
 |Date| Detail|
@@ -2565,7 +2568,8 @@ _Bookmark 삭제_
 
 
 
-### Revision History 
+**Revision History** 
+
 이 테이블은 PallyCon Player 연동 가이드의 수정사항에 대해 설명한 것입니다.
 
 |Date| Detail|

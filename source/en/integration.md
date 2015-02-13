@@ -1,7 +1,7 @@
 Integration Guide
 =================
 
-## Integraion Overview
+## Integration Overview
 
 
 ### About PallyCon Service
@@ -77,7 +77,7 @@ You can set up only one PallyCon Service for one site ID. You may not set up mul
 PallyCon Service provides the Guide documents for the setting up procedure. 
 
 
-#### Packaging Guide
+#### Packaging Overview
 
 This guide is for **STEP1 ~ STEP4**. This guide document describes the packaging method, the CID issue page development procedure, and cautions. 
 
@@ -86,7 +86,7 @@ This guide is for **STEP1 ~ STEP4**. This guide document describes the packaging
 ![overview_packagingguide](Overview_PackagingGuide.png)
 
 
-#### License Issue Guide
+#### License Issue Overview
 
 This guide is for **STEP5**. This guide document provides information and cautions about the license required for using DRM contents, the creation and issuance of license, and the development of the content usage information page. 
 
@@ -95,7 +95,7 @@ This guide is for **STEP5**. This guide document provides information and cautio
 
 
 
-#### Web Working Guide, Mobile Working Guide 
+#### Web/Mobile Working Overview
 
 This guide is for **STEP6**. This guide document explains the interconnection tasks required for using Web Player and Mobile Player provided by PallyCon Service. 
 
@@ -104,7 +104,8 @@ This guide is for **STEP6**. This guide document explains the interconnection ta
 
 
 
-### Revision History 
+**Revision History** 
+
 This table describes the revisions of the Overview Guide.
 
 |Date| Detail|
@@ -765,7 +766,8 @@ _CID_
 
 
 
-### Revision History 
+**Revision History** 
+
 This table describes the revisions of the PallyCon Packaging Guide.
 
 |Date| Detail|
@@ -1112,7 +1114,8 @@ In actual service, the same contents may be classified into different categories
 
 
 
-### Revision History 
+**Revision History** 
+
 This table describes the revisions of the License Issue Guide.
 
 |Date| Detail|
@@ -1173,7 +1176,7 @@ This table describes the revisions of the License Issue Guide.
 
 
 
-## Moblie Player Integration
+## Mobile Player Integration
 
 ### Introduction
 This guide has been written to help you set the interaction between **PallyCon Player** and **Service Site** (web server or web page operated by the vendor to interact with the functions provided by PallyCon Player). 
@@ -1938,7 +1941,8 @@ You can reset the logs by touching the **‘Refresh’** button at top right.
 
 
 
-### Revision History 
+**Revision History** 
+
 This table describes the revisions of the PallyCon Player Interconnection Guide.
 
 |Date| Detail|
@@ -2453,7 +2457,8 @@ _Delete Bookmark_
 
 
 
-### Revision History
+**Revision History**
+
 This table describes the revisions of the Pallycon Player Interconnection Guide.
 
 |Date| Detail|

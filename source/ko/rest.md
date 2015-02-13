@@ -332,7 +332,8 @@ _license_count, use_device_count, user_count, pc_count, ios_count, android_count
 
 
 
-## Revision History 
+**Revision History**
+
 이 테이블은 REST API 가이드의 수정사항에 대해 설명한 것입니다.
 
 |Date| Detail|
@@ -341,5 +342,3 @@ _license_count, use_device_count, user_count, pc_count, ios_count, android_count
 |2014.09.21|Method에 DELETE 추가 및 Standards의 Device에 등록해제 추가|
 |2014.12.15|Method에 DELETE 삭제 및 Standards의 Device에 등록해제 삭제| 
 
-
-![footer](footer.png)

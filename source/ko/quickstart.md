@@ -195,7 +195,8 @@ Mobile Web sample 페이지에서 Download 버튼을 터치하면 PallyCon Mobil
 <aside class="success">Starter로 시작하면, 100개까지의 License는 무료로 발급받아 사용할 수 있습니다. 그 이상의 License는 받을 수 없으며, 유료로 전환해야 그 이상의 License를 발급받을 수 있습니다. </aside>  
 
 
-## Revision History 
+**Revision History**
+
 이 테이블은 Quick 가이드의 수정사항에 대해 설명한 것입니다.
 
 |Date| Detail|

@@ -92,14 +92,14 @@ Set the information for using DRM-applied contents.
 |**Count System**    |Y      |Empty          |Empty          |Value greater than 0   | 
 |**Period System**   |Y    |Date before PD_END |Date after PD_START  |Empty      |
 |**Period System+Count System**  |Y    |Date before PD_END |Date after PD_START    |Value greater than 0   |
-|**No Limit**    |N    |Empty          |Empty          |Empty      |
-|---------------|----|
+|**No Limit**    |N    |Empty          |Empty          |Empty      | 
 Date: GMT (YYYY-MM-DDThh:mm:ss)
 
 
 ##### content_list configration
 
 Set the information required for playing and downloading DRM contents. 
+
 - **sSite_ID:** The site ID that has been issued in the PallyCon Admin page.
 - **sSite_Url:** Current server IP and domain
 - **sContent_Url1:** File name of the first content in the list
@@ -177,7 +177,8 @@ On the PallyConCPAdmin page, you can see information about the licenses that wer
  
 
 
-## Revision History 
+**Revision History**
+
 This table describes the revisions of the Quick Guide.
 
 |Date| Detail|
