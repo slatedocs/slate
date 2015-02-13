@@ -28,10 +28,13 @@ We have libraries in Ruby, PHP and Python. You can view code examples in the dar
 
 # Authentication
 
-> To authorize, use this code:
+> To initialize authorized client, use this code:
 
 ```ruby
-# TODO
+  require 'tether';
+  client = Tether::Client.new('TetherAPIKey', 'TetherAPISecret')
+  
+  # Ruby client returns [Hashie::Mash](https://github.com/intridea/hashie) object on API requests.
 ```
 
 ```php
@@ -87,7 +90,7 @@ If the API key does not have a required permission you will get `403 Forbidden` 
 ## Get wallet balances
 
 ```ruby
-# TODO
+result = client.balances
 ```
 
 ```php
@@ -98,17 +101,13 @@ If the API key does not have a required permission you will get `403 Forbidden` 
 # TODO
 ```
 
-> The above command returns JSON structured like this:
+> The JSON in raw API response looks like this:
 
 ```json
-[
-  {
-    "TODO": "TODO"
-  }
-]
+{"balances":[{"currency":"BTC","confirmed":"22.04085912","pending":"0.0"},{"currency":"THR","confirmed":"5.56923451","pending":"0.0"}]}
 ```
 
-This endpoint retrieves all balances.
+This endpoint retrieves all balances of the account.
 
 ### HTTP Request
 
