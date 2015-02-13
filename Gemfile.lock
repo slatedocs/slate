@@ -78,6 +78,7 @@ GEM
       rouge (~> 1.0)
     minitest (5.6.1)
     multi_json (1.11.0)
+    nokogiri (1.5.6)
     padrino-helpers (0.12.5)
       i18n (~> 0.6, >= 0.6.7)
       padrino-support (= 0.12.5)
@@ -127,6 +128,7 @@ DEPENDENCIES
   middleman (~> 3.3.10)
   middleman-gh-pages (~> 0.0.3)
   middleman-syntax (~> 2.0.0)
+  nokogiri
   rake (~> 10.4.2)
   redcarpet (~> 3.2.2)
   rouge (~> 1.9.0)
