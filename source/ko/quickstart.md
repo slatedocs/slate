@@ -196,7 +196,6 @@ Mobile Web sample 페이지에서 Download 버튼을 터치하면 PallyCon Mobil
 
 
 **Revision History**
-
 이 테이블은 Quick 가이드의 수정사항에 대해 설명한 것입니다.
 
 |Date| Detail|
