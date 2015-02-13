@@ -64,16 +64,22 @@ You must replace `YOUR-ACCESS-TOKEN` with your API key.
 [
   {
     "listing_id": "f76ae9ceb01cf2904fe2",
-    "name": "Instant Plumbing",
-    "address": "1944 W Coolbrook Ave",
+    "mojo_id": "11079728",
+    "mojo_url": "https://www.mojopages.com/biz/instant-phones-phoenix-az/11079728",
+    "name": "Instant Phones",
+    "address": "2415 E Thomas Rd",
     "locality": "Pheonix",
     "region": "AZ",
-    "postcode": "85023",
-    "tel": "(602) 993-3532",
-    "website": "http://mywebsite.com",
+    "postcode": "85016",
+    "tel": "(602) 224-9582",
+    "website": "http://www.mycricket.com/",
     "longitude": "-112.10158",
     "latitude": "33.643668",
-    "facebook_id": "568020079969282"
+    "facebook_id": "111664078919577",
+    "twitter_id": "cricketnation",
+    "google_plus_id": NULL,
+    "instagram_id": "cricketnation",
+    "updated_at": "2014-11-27T11:35:27.364Z"
   }
 ]
 
@@ -86,6 +92,8 @@ Business listings are made up of different pieces of data. These are the excepte
 Data Type | Description
 --------- | -----------
 listing_id |  Your unique identifier for the listing, used for adding or deleting a record
+mojo_id | Associated MojoPages ID for listing
+mojo_url | URL for MojoPages listing
 name | Name of the business
 address | Address of the business
 address_extended | Second address of the business if there is one
@@ -100,4 +108,5 @@ latitude | Latitude of the business location
 facebook_id | The Facebook ID or the name of the page for the business
 twitter_id | Twitter username for the business, without the @ symbol
 google_plus_id | The Google Plus ID or the name used for the page of the business
-instagram_id | The Instgram ID or the username for the business
+instagram_id | The Instgram ID or the username for the business listing
+updated_at | When the listing was last updated

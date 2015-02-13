@@ -36,7 +36,78 @@ access_token | true | Access token used to authenticate
 
 
 
-## Get Listings
+
+## Get Categories in JSON
+
+> Request example
+
+```shell
+curl "https://api.mojopages.com/api/v1/categories"
+  -H "Authorization: Token token="YOUR-ACCESS-TOKEN""
+```
+
+> The above command returns JSON structured like this:
+
+```json
+[
+  {
+    "category_id": 2,
+    "parent_category_id": 1,
+    "category_level": 1,
+    "title": "Automotive",
+    "naic_code": null,
+    "sic_code": null
+  }
+]
+```
+
+Check the status of the inserted businesses and the current total businesses matched.
+
+### HTTP Request
+
+`GET https://api.mojopages.com/api/v1/categies`
+
+### Query Parameters
+
+Parameter | Required | Description
+--------- | ------- | -----------
+access_token | true | Access token used to authenticate
+
+
+
+
+## Get Categories in CSV
+
+> Request example
+
+```shell
+curl "https://api.mojopages.com/api/v1/categories/csv"
+  -H "Authorization: Token token="YOUR-ACCESS-TOKEN""
+```
+
+> The above command returns CSV structured like this:
+
+```csv
+category_id, parent_category_id, category_level, title, naic_code, sic_code
+2,1,1,Automotive,,
+```
+
+Check the status of the inserted businesses and the current total businesses matched.
+
+### HTTP Request
+
+`GET https://api.mojopages.com/api/v1/categies/csv`
+
+### Query Parameters
+
+Parameter | Required | Description
+--------- | ------- | -----------
+access_token | true | Access token used to authenticate
+
+
+
+
+## Get Listings in JSON
 
 > Request example
 
@@ -51,18 +122,21 @@ curl "https://api.mojopages.com/api/v1/listings"
 [
   {
     "listing_id": "f76ae9ceb01cf2904fe2",
-    "mojo_id": 123456,
-    "name": "Instant Plumbing",
-    "address": "1944 W Coolbrook Ave",
-    "address_extended": null,
-    "locality": null,
+    "mojo_id": "11079728",
+    "mojo_url": "https://www.mojopages.com/biz/instant-phones-phoenix-az/11079728",
+    "name": "Instant Phones",
+    "address": "2415 E Thomas Rd",
+    "locality": "Pheonix",
     "region": "AZ",
-    "postcode": "85023",
-    "tel": "(602) 993-3532",
-    "website": null,
+    "postcode": "85016",
+    "tel": "(602) 224-9582",
+    "website": "http://www.mycricket.com/",
     "longitude": "-112.10158",
     "latitude": "33.643668",
-    "facebook_id": "568020079969282",
+    "facebook_id": "111664078919577",
+    "twitter_id": "cricketnation",
+    "google_plus_id": NULL,
+    "instagram_id": "cricketnation",
     "updated_at": "2014-11-27T11:35:27.364Z"
   }
 ]
@@ -82,6 +156,40 @@ access_token | true | Access token used to authenticate
 
 
 
+
+## Get Listings in CSV
+
+> Request example
+
+```shell
+curl "https://api.mojopages.com/api/v1/listings/csv"
+  -H "Authorization: Token token="YOUR-ACCESS-TOKEN""
+```
+
+> The above command returns CSV structured like this:
+
+```csv
+listing_id, mojo_id, mojo_url, name, address, locality, region, postcode, tel, website, longitude, latitude, facebook_id, twitter_id, google_plus_id, instagram_id, updated_at
+f76ae9ceb01cf2904fe2,11079728,https://www.mojopages.com/biz/instant-phones-phoenix-az/11079728,Instant Phones,2415 E Thomas Rd,Pheonix,AZ,85016,(602) 224-9582,http://www.mycricket.com/,-112.10158,33.643668,111664078919577,cricketnation,,cricketnation,2014-11-27T11:35:27.364Z
+```
+
+This endpoint retrieves all your existing business listings.
+
+### HTTP Request
+
+`GET https://api.mojopages.com/api/v1/listings/csv`
+
+### Query Parameters
+
+Parameter | Required | Description
+--------- | ------- | -----------
+access_token | true | Access token used to authenticate
+
+
+
+
+
+
 ## Get a Listing
 
 > Request example
@@ -96,20 +204,23 @@ curl "https://api.mojopages.com/api/v1/listing/7d373c1da40cbfc3f165"
 ```json
 [
   {
-    "listing_id": "7d373c1da40cbfc3f165",
-    "mojo_id": 1234567,
-    "name": "Carol's Proper Protocol",
-    "address": "1129 E Cambria Ln N",
-    "address_extended": null,
-    "locality": null,
-    "region": "IL",
-    "postcode": "60148",
-    "tel": "(630) 740-2439",
-    "website": "http://carolsproperprotocol.com/",
-    "longitude": "-87.989643",
-    "latitude": "41.870809",
-    "facebook_id": null,
-    "updated_at": "2014-11-27T11:07:24.075Z"
+    "listing_id": "f76ae9ceb01cf2904fe2",
+    "mojo_id": "11079728",
+    "mojo_url": "https://www.mojopages.com/biz/instant-phones-phoenix-az/11079728",
+    "name": "Instant Phones",
+    "address": "2415 E Thomas Rd",
+    "locality": "Pheonix",
+    "region": "AZ",
+    "postcode": "85016",
+    "tel": "(602) 224-9582",
+    "website": "http://www.mycricket.com/",
+    "longitude": "-112.10158",
+    "latitude": "33.643668",
+    "facebook_id": "111664078919577",
+    "twitter_id": "cricketnation",
+    "google_plus_id": NULL,
+    "instagram_id": "cricketnation",
+    "updated_at": "2014-11-27T11:35:27.364Z"
   }
 ]
 ```
@@ -146,11 +257,12 @@ curl "https://api.mojopages.com/api/v1/listing/693acfb0-a323-44c5-8aa1-75baf9f99
 ```json
 [
   {
-    "mojo_id": 201702,
-    "name": "Piety Hill Cottages",
-    "address": "523 Sacramento St",
-    "locality": "Nevada City",
-    "region": "CA"
+    "mojo_id": "11079728",
+    "mojo_url": "https://www.mojopages.com/biz/instant-phones-phoenix-az/11079728",
+    "name": "Instant Phones",
+    "address": "2415 E Thomas Rd",
+    "locality": "Pheonix",
+    "region": "AZ"
   }
 ]
 ```
