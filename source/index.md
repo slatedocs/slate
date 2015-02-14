@@ -157,7 +157,7 @@ curl "https://airbrake.io/api/v3/projects?key=USER_KEY"
     {
       "id": 1,
       "name": "Airbrake project name",
-      "deployId": 1,
+      "deployId": "1",
       "deployAt": "2014-09-26T17:37:33.638348Z",
       "noticeTotalCount": 1,
       "rejectionCount": 1,
@@ -189,7 +189,7 @@ curl "https://airbrake.io/api/v3/projects/PROJECT_ID?key=USER_KEY"
   "project": {
     "id": 1,
     "name": "Airbrake project name",
-    "deployId": 1,
+    "deployId": "1",
     "deployAt": "2014-09-26T17:37:33.638348Z",
     "noticeTotalCount": 1,
     "rejectionCount": 1,
@@ -328,7 +328,7 @@ curl "https://airbrake.io/api/v4/projects/PROJECT_ID/groups?key=USER_KEY"
       "context": {
         "environment": "production"
       },
-      "lastDeployId": 1,
+      "lastDeployId": "1",
       "lastDeployAt": "2014-09-26T17:37:33.638348Z",
       "lastNoticeId": "1",
       "lastNoticeAt": "2014-09-26T17:37:33.638348Z",
@@ -392,7 +392,7 @@ curl "https://airbrake.io/api/v4/projects/PROJECT_ID/groups/GROUP_ID?key=USER_KE
     "context": {
       "environment": "production"
     },
-    "lastDeployId": 1,
+    "lastDeployId": "1",
     "lastDeployAt": "2014-09-26T17:37:33.638348Z",
     "lastNoticeId": "1",
     "lastNoticeAt": "2014-09-26T17:37:33.638348Z",
@@ -448,26 +448,26 @@ The API returns `204 No Content` status code on success.
 The API returns list of group environments. See [Pagination](#pagination) section for supported query parameters and response fields.
 
 ```shell
-curl "https://airbrake.io/api/v4/projects/PROJECT_ID/group-environments?key=USER_KEY"
+curl "https://airbrake.io/api/v4/projects/PROJECT_ID/environments?key=USER_KEY"
 ```
 
 ```json
 {
-  "groupEnvironments": [
+  "environments": [
     {
       "environment": "production",
       "projectId": 1,
-      "groupResolvedCount": 1,
-      "groupUnresolvedCount": 1
+      "noticeTotalCount": 1
     }
   ],
-  "count": 1
+  "count": 1,
+  "page": 1
 }
 ```
 
 ### HTTP Request
 
-`GET https://airbrake.io/api/v4/projects/PROJECT_ID/group-environments?key=USER_KEY`
+`GET https://airbrake.io/api/v4/projects/PROJECT_ID/environments?key=USER_KEY`
 
 ### Query Parameters
 
@@ -484,26 +484,26 @@ The API returns `200 OK` status code on success.
 The API returns list of group components. See [Pagination](#pagination) section for supported query parameters and response fields.
 
 ```shell
-curl "https://airbrake.io/api/v4/projects/PROJECT_ID/group-components?key=USER_KEY"
+curl "https://airbrake.io/api/v4/projects/PROJECT_ID/components?key=USER_KEY"
 ```
 
 ```json
 {
-  "groupComponents": [
+  "components": [
     {
       "component": "projects",
       "projectId": 1,
-      "groupResolvedCount": 1,
-      "groupUnresolvedCount": 1
+      "noticeTotalCount": 1
     }
   ],
-  "count": 1
+  "count": 1,
+  "page": 1
 }
 ```
 
 ### HTTP Request
 
-`GET https://airbrake.io/api/v4/projects/PROJECT_ID/group-components?key=USER_KEY`
+`GET https://airbrake.io/api/v4/projects/PROJECT_ID/components?key=USER_KEY`
 
 ### Query Parameters
 
@@ -520,26 +520,26 @@ The API returns `200 OK` status code on success.
 The API returns list of group actions. See [Pagination](#pagination) section for supported query parameters and response fields.
 
 ```shell
-curl "https://airbrake.io/api/v4/projects/PROJECT_ID/group-actions?key=USER_KEY"
+curl "https://airbrake.io/api/v4/projects/PROJECT_ID/actions?key=USER_KEY"
 ```
 
 ```json
 {
-  "groupActions": [
+  "actions": [
     {
       "action": "show",
       "projectId": 1,
-      "groupResolvedCount": 1,
-      "groupUnresolvedCount": 1
+      "noticeTotalCount": 1
     }
   ],
-  "count": 1
+  "count": 1,
+  "page": 1
 }
 ```
 
 ### HTTP Request
 
-`GET https://airbrake.io/api/v4/projects/PROJECT_ID/group-actions?key=USER_KEY`
+`GET https://airbrake.io/api/v4/projects/PROJECT_ID/actions?key=USER_KEY`
 
 ### Query Parameters
 
@@ -583,7 +583,7 @@ curl "https://airbrake.io/api/v4/groups?key=USER_KEY"
       "context": {
         "environment": "production"
       },
-      "lastDeployId": 1,
+      "lastDeployId": "1",
       "lastDeployAt": "2014-09-26T17:37:33.638348Z",
       "lastNoticeId": "1",
       "lastNoticeAt": "2014-09-26T17:37:33.638348Z",
@@ -592,7 +592,7 @@ curl "https://airbrake.io/api/v4/groups?key=USER_KEY"
       "createdAt": "2014-09-26T17:37:33.638348Z"
     }
   ],
-  "start": "abcdefg"
+  "end": "d312cff95ca275d7d4"
 }
 ```
 
