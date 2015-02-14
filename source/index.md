@@ -660,6 +660,22 @@ curl -X DELETE "https://airbrake.io/api/v4/projects/PROJECT_ID/groups/GROUP_ID/n
 
 The API returns `204 NO CONTENT` status code on success.
 
+## Show notice source v4
+
+The API shows original notice source.
+
+```shell
+curl "https://airbrake.io/api/v4/projects/PROJECT_ID/notice-sources/NOTICE_ID?key=USER_KEY"
+```
+
+### HTTP Request
+
+`GET https://airbrake.io/api/v4/projects/PROJECT_ID/notice-sources/NOTICE_ID?key=USER_KEY`
+
+### Response
+
+The API returns `200 OK` status code on success.
+
 ## List versions v4
 
 The API returns list of notice versions. See [Pagination](#pagination) section for supported query parameters and response fields.
