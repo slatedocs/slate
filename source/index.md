@@ -18,7 +18,8 @@ includes:
   - authentication
   - methods
   - methods/payments
-  - errors
+  - methods/collections
+  - methods/webhooks
 
 search: true
 ---

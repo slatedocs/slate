@@ -410,7 +410,20 @@ html, body {
     border-top: none;
   }
 
-  h3, h4, h5, h6 {
+  h3 {
+    @extend %header-font;
+    font-size: 15px;
+    margin-top: 3em;
+    margin-bottom: 0;
+    border-top: 1px solid #ccc;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    @include background-image(
+      linear-gradient(top, rgba(#fff,0.4), rgba(#fff, 0))
+    );
+  }
+  
+  h4, h5, h6 {
     @extend %header-font;
     font-size: 12px;
     margin-top: 2.5em;
