@@ -19,7 +19,7 @@ You can integrate PallyCon service with your content service site using the belo
 
 - You can integrate [Pallycon Mobile Player](#mobile-player-integration) and [Pallycon PC Player](#pc-player-integration) with your content service site.
 
-- Also You can manage your Pallycon service via [ReST API](#rest-api-guide)  
+Also You can manage your Pallycon service via [ReST API](#rest-api-guide)
 
 If you want to develop your own service application for customization, [PallyCon Client SDK](#sdk-guide)s can be provided by separated contract. The below guide explain how to use the SDKs for each platform. For more details please check the API reference included in the SDK after signing contract.
 
