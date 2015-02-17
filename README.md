@@ -2,7 +2,7 @@ Pallycon Docs 요약
 =================
 
 ## MD 파일
-- `ko`와 `en` 두 폴더를 생성해서 각 언어로 작성한 MD파일을 넣었습니다.
+- `source/ko`와 `source/en` 두 폴더를 생성해서 각 언어로 작성한 MD파일을 넣었습니다.
 - "docs.pallycon.com/ko"로 접속하면 `ko/index.md`에 해당하는 컨텐츠를 읽습니다.
 - index.md의 `includes:` 영역에서는 이 언어로 된 가이드문서들을 차례대로 명시합니다.
 - index.md의 `toc-fotters:` 영역에서는 추가할 링크들을 명시합니다.
@@ -16,12 +16,12 @@ Pallycon Docs 요약
 
 ## 커스터마이징 이력
 - 한글 url 포함
- - `javascripts/lib/jquery.tocify.js` 440번째 줄 주석처리
- - `slate/lib/redcarpet_header_fix.rb` 3번째 줄에 정규식 추가 `gsub(/[^a-zA-Z0-9가-힣\-_]/, '')`
+ - `source/javascripts/lib/jquery.tocify.js` 440번째 줄 주석처리
+ - `lib/redcarpet_header_fix.rb` 3번째 줄에 정규식 추가 `gsub(/[^a-zA-Z0-9가-힣\-_]/, '')`
 
 - TOC 헤더 조정
- - `javascripts/app/toc.js` 10번째 줄에 h3 추가 : **h3까지 TOC에 노출**
- - `stylesheets/screen.css.scss` 192번째 줄부터 : 최초 display 여부, 레벨별 들여쓰기 추가
+ - `source/javascripts/app/toc.js` 10번째 줄에 h3 추가 : **h3까지 TOC에 노출**
+ - `source/stylesheets/screen.css.scss` 192번째 줄부터 : 최초 display 여부, 레벨별 들여쓰기 추가
  - 관련 가이드 : https://github.com/tripit/slate/wiki/Deeper-Nesting
 
 
