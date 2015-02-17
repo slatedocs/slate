@@ -55,8 +55,12 @@ Beyonic_Payment::create(array(
 import beyonic
 beyonic.api_version = 'v1'
 
-...
-# Please check back soon for python examples.
+beyonic.Payment.create(phonenumber='+256773712831',
+                       amount='1200', 
+                       currency='UGX',
+                       description='Per diem',
+                       callback_url='https://my.website/payments/callback'
+                       )
 ```
 
 > Example JSON Response:
