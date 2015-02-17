@@ -153,8 +153,8 @@ $payment = Beyonic_Payment::get(2314);
 import beyonic
 beyonic.api_version = 'v1'
 
-...
-# Please check back soon for python examples.
+payment = beyonic.Payment.get(2314)
+
 ```
 
 To retrieve a single payment object, provide the payment id and a payment object will be returned.
@@ -191,8 +191,8 @@ $payments = Beyonic_Payment::getAll();
 import beyonic
 beyonic.api_version = 'v1'
 
-...
-# Please check back soon for python examples.
+payments = beyonic.Payment.list()
+
 ```
 
 > List Payments JSON Response:
