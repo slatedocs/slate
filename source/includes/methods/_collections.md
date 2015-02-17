@@ -34,8 +34,8 @@ $collection = Beyonic_Collection::get(23);
 import beyonic
 beyonic.api_version = 'v1'
 
-...
-# Please check back soon for python examples.
+collection = beyonic.Collection.get(23)
+
 ```
 
 To retrieve a single collection object, provide the collection id and a collection object will be returned.
@@ -72,8 +72,8 @@ $collection = Beyonic_Collection::getAll();
 import beyonic
 beyonic.api_version = 'v1'
 
-...
-# Please check back soon for python examples.
+collection = beyonic.Collection.list()
+
 ```
 
 > Response Object List
@@ -129,8 +129,10 @@ $collection = Beyonic_Collection::getAll(
 import beyonic
 beyonic.api_version = 'v1'
 
-...
-# Please check back soon for python examples.
+collection = beyonic.Collection.list(phonenumber='+256772712893',
+                                     remote_transaction_id='SS12312')
+
+
 ```
 
 > Response Object From Search
