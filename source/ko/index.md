@@ -14,6 +14,7 @@ toc_footers:
   - <a href='http://help.netsync.co.kr' target="_blank">▶ HELPDESK</a> 
   - <a href='http://www.pallycon.com' target="_blank">▶ PALLYCON HOME</a>
  
+search: true 
 ---
 
 

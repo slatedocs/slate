@@ -6,6 +6,7 @@ Pallycon Docs 요약
 - "docs.pallycon.com/ko"로 접속하면 `ko/index.md`에 해당하는 컨텐츠를 읽습니다.
 - index.md의 `includes:` 영역에서는 이 언어로 된 가이드문서들을 차례대로 명시합니다.
 - index.md의 `toc-fotters:` 영역에서는 추가할 링크들을 명시합니다.
+- index.md의 `search:` 값을 `true`로 설정하면, 검색기능이 추가됩니다. (영단어에 대한 검색만 가능하고, 검색결과가 신통치는 않습니다. `lunr.js`의 기능을 사용합니다.)
 - 코드블럭(\```)은 오른쪽 영역에 나타납니다.
 - 강조가 필요할 때는 aside 태그를 활용합니다. notice, success, warning이 가능합니다.  
 관련 가이드 : https://github.com/tripit/slate/wiki/Markdown-Syntax#notes-and-warnings
