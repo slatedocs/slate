@@ -68,8 +68,10 @@ Beyonic_Webhook::create(array(
 import beyonic
 beyonic.api_version = 'v1'
 
-...
-# Please check back soon for python examples.
+hook = beyonic.Webhook.create(event='payment.status.changed',
+							  target='https://my.callback.url/'
+							  )
+
 ```
 
 To create a new webhook, make a POST to the endpoint above, with the attributes below.
@@ -112,8 +114,8 @@ $hook = Beyonic_Webhook::get(23);
 import beyonic
 beyonic.api_version = 'v1'
 
-...
-# Please check back soon for python examples.
+hook = beyonic.Webhook.get(23)
+
 ```
 
 To retrieve a single webhook object, provide the webhook id and a webhook object will be returned.
@@ -150,8 +152,8 @@ $hooks = Beyonic_Webhook::getAll();
 import beyonic
 beyonic.api_version = 'v1'
 
-...
-# Please check back soon for python examples.
+hooks = beyonic.Webhook.list()
+
 ```
 
 To retrieve a list of all webhooks, make a GET request to the webhooks endpoint. This will return a list of webhooks objects.
@@ -191,8 +193,10 @@ $hook->save();
 import beyonic
 beyonic.api_version = 'v1'
 
-...
-# Please check back soon for python examples.
+hook = beyonic.Webhook.get(1)
+hook.target = 'https://my.callback.url/'
+hook.save()
+
 ```
 
 To update a webhook, make a PUT request to the specific webhook’s endpoint, identified by its Id.
@@ -225,8 +229,8 @@ Beyonic_Webhook::delete( 11 );
 import beyonic
 beyonic.api_version = 'v1'
 
-...
-# Please check back soon for python examples.
+beyonic.Webhook.delete(11)
+
 ```
 
 To delete a webhook, make a DELETE request to the specific webhook’s endpoint, identified by its Id.
