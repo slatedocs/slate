@@ -26,6 +26,8 @@ search: true
 
 # Introduction
 
+> Scroll down for examples.
+
 The Beyonic API is [REST](http://en.wikipedia.org/wiki/Representational_state_transfer) based. We provide libraries for several languages, including PHP, Java, Ruby and Python. You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
 
 All responses shall be returned using [JSON](http://www.json.org/), however, if you are using the language libraries, the JSON responses will be converted into native, language specific objects.
