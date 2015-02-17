@@ -8,7 +8,7 @@ language_tabs:
   - python: PYTHON
 
 toc_footers:
-  - <a href='http://support.beyonic.com'>Beyonic Support</a>
+  - <a href='http://support.beyonic.com'>Beyonic Support & User Guides</a>
   - <a href='http://beyonic.com'>Beyonic.com</a>
   - <a href='mailto:support@beyonic.com?subject="Error in your docs!"'>Found an error?</a>
 
