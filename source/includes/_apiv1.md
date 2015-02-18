@@ -82,7 +82,7 @@ access_token | true | Access token used to authenticate
 
 ```shell
 curl "https://api.mojopages.com/api/v1/categories/csv"
-  -H "Authorization: Token token="YOUR-ACCESS-TOKEN""
+  -H "Authorization: Token token="YOUR-ACCESS-TOKEN"" >> Categories.csv
 ```
 
 > The above command returns CSV structured like this:
@@ -163,7 +163,7 @@ access_token | true | Access token used to authenticate
 
 ```shell
 curl "https://api.mojopages.com/api/v1/listings/csv"
-  -H "Authorization: Token token="YOUR-ACCESS-TOKEN""
+  -H "Authorization: Token token="YOUR-ACCESS-TOKEN"" >> Listings.csv
 ```
 
 > The above command returns CSV structured like this:
