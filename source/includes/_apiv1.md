@@ -84,7 +84,7 @@ address | false | Address of the business
 address_extended | false | Second address of the business if there is one
 locality | false | City where the business is located
 region | false | State in which the business is located, should be 2 character abreviation
-postalcode | false | Postal code where the business is located, should be a minimum 5 digits
+postcode | false | Postal code where the business is located, should be a minimum 5 digits
 tel | false | Telephone number of the business, should be 10 digits
 website | false | URL for the business, include http://
 longitude | false | Longitude of the business location
@@ -143,7 +143,7 @@ address | false | Address of the business
 address_extended | false | Second address of the business if there is one
 locality | false | City where the business is located
 region | false | State in which the business is located, should be 2 character abreviation
-postalcode | false | Postal code where the business is located, should be a minimum 5 digits
+postcode | false | Postal code where the business is located, should be a minimum 5 digits
 tel | false | Telephone number of the business, should be 10 digits
 website | false | URL for the business, include http://
 longitude | false | Longitude of the business location

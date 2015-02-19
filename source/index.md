@@ -99,7 +99,7 @@ address | Address of the business
 address_extended | Second address of the business if there is one
 locality | City where the business is located
 region | State in which the business is located, should be 2 character abreviation
-postalcode | Postal code where the business is located, should be a minimum 5 digits
+postcode | Postal code where the business is located, should be a minimum 5 digits
 tel | Telephone number of the business, should be 10 digits
 website |  URL for the business, include http://
 email | Email address for the business
