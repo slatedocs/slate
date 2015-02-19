@@ -62,10 +62,6 @@ curl "https://api.mojopages.com/api/v1/listings/search?name=Instant+Phones&local
     "website": "http://www.mycricket.com/",
     "longitude": "-112.10158",
     "latitude": "33.643668",
-    "facebook_id": "111664078919577",
-    "twitter_id": "cricketnation",
-    "google_plus_id": NULL,
-    "instagram_id": "cricketnation",
     "updated_at": "2014-11-27T11:35:27.364Z"
   }
 ]
@@ -125,10 +121,6 @@ curl "https://api.mojopages.com/api/v1/listings/search"
     "website": "http://www.mycricket.com/",
     "longitude": "-112.10158",
     "latitude": "33.643668",
-    "facebook_id": "111664078919577",
-    "twitter_id": "cricketnation",
-    "google_plus_id": NULL,
-    "instagram_id": "cricketnation",
     "updated_at": "2014-11-27T11:35:27.364Z"
   }
 ]
