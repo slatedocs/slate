@@ -130,7 +130,7 @@ This endpoint retrieves all your existing business listings.
 
 ### HTTP Request
 
-`GET https://api.mojopages.com/api/v1/listings/search`
+`POST https://api.mojopages.com/api/v1/listings/search`
 
 ### Query Parameters
 
