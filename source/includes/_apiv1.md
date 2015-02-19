@@ -37,12 +37,12 @@ access_token | true | Access token used to authenticate
 
 
 
-## Get Categories in JSON
+## Get a Search for Listings in JSON
 
 > Request example
 
 ```shell
-curl "https://api.mojopages.com/api/v1/categories"
+curl "https://api.mojopages.com/api/v1/listings/search?name=Instant+Phones&locality=Pheonix&region=AZ"
   -H "Authorization: Token token="YOUR-ACCESS-TOKEN""
 ```
 
@@ -51,58 +51,111 @@ curl "https://api.mojopages.com/api/v1/categories"
 ```json
 [
   {
-    "category_id": 2,
-    "parent_category_id": 1,
-    "category_level": 1,
-    "title": "Automotive",
-    "naic_code": null,
-    "sic_code": null
+    "mojo_id": "11079728",
+    "mojo_url": "https://www.mojopages.com/biz/instant-phones-phoenix-az/11079728",
+    "name": "Instant Phones",
+    "address": "2415 E Thomas Rd",
+    "locality": "Pheonix",
+    "region": "AZ",
+    "postcode": "85016",
+    "tel": "(602) 224-9582",
+    "website": "http://www.mycricket.com/",
+    "longitude": "-112.10158",
+    "latitude": "33.643668",
+    "facebook_id": "111664078919577",
+    "twitter_id": "cricketnation",
+    "google_plus_id": NULL,
+    "instagram_id": "cricketnation",
+    "updated_at": "2014-11-27T11:35:27.364Z"
   }
 ]
 ```
 
-Check the status of the inserted businesses and the current total businesses matched.
+This endpoint retrieves all your existing business listings.
 
 ### HTTP Request
 
-`GET https://api.mojopages.com/api/v1/categies`
+`GET https://api.mojopages.com/api/v1/listings/search`
 
 ### Query Parameters
 
 Parameter | Required | Description
 --------- | ------- | -----------
 access_token | true | Access token used to authenticate
+results | false | Number of results to return (default returns one listing)
+name | false | Name of the business
+address | false | Address of the business
+address_extended | false | Second address of the business if there is one
+locality | false | City where the business is located
+region | false | State in which the business is located, should be 2 character abreviation
+postalcode | false | Postal code where the business is located, should be a minimum 5 digits
+tel | false | Telephone number of the business, should be 10 digits
+website | false | URL for the business, include http://
+longitude | false | Longitude of the business location
+latitude | false | Latitude of the business location
 
 
 
 
-## Get Categories in CSV
+
+## Post a Search for Listings in JSON
 
 > Request example
 
 ```shell
-curl "https://api.mojopages.com/api/v1/categories/csv"
-  -H "Authorization: Token token="YOUR-ACCESS-TOKEN"" >> Categories.csv
+curl "https://api.mojopages.com/api/v1/listings/search"
+  -H "Authorization: Token token="YOUR-ACCESS-TOKEN""
+  -H "Content-Type: application/json"
+  -X POST -d '{"name": "Instant Phones", "locality": "Pheonix", "region": "AZ"}'
 ```
 
-> The above command returns CSV structured like this:
+> The above command returns JSON structured like this:
 
-```csv
-category_id, parent_category_id, category_level, title, naic_code, sic_code
-2,1,1,Automotive,,
+```json
+[
+  {
+    "mojo_id": "11079728",
+    "mojo_url": "https://www.mojopages.com/biz/instant-phones-phoenix-az/11079728",
+    "name": "Instant Phones",
+    "address": "2415 E Thomas Rd",
+    "locality": "Pheonix",
+    "region": "AZ",
+    "postcode": "85016",
+    "tel": "(602) 224-9582",
+    "website": "http://www.mycricket.com/",
+    "longitude": "-112.10158",
+    "latitude": "33.643668",
+    "facebook_id": "111664078919577",
+    "twitter_id": "cricketnation",
+    "google_plus_id": NULL,
+    "instagram_id": "cricketnation",
+    "updated_at": "2014-11-27T11:35:27.364Z"
+  }
+]
 ```
 
-Check the status of the inserted businesses and the current total businesses matched.
+This endpoint retrieves all your existing business listings.
 
 ### HTTP Request
 
-`GET https://api.mojopages.com/api/v1/categies/csv`
+`GET https://api.mojopages.com/api/v1/listings/search`
 
 ### Query Parameters
 
 Parameter | Required | Description
 --------- | ------- | -----------
 access_token | true | Access token used to authenticate
+results | false | Number of results to return (default returns one listing)
+name | false | Name of the business
+address | false | Address of the business
+address_extended | false | Second address of the business if there is one
+locality | false | City where the business is located
+region | false | State in which the business is located, should be 2 character abreviation
+postalcode | false | Postal code where the business is located, should be a minimum 5 digits
+tel | false | Telephone number of the business, should be 10 digits
+website | false | URL for the business, include http://
+longitude | false | Longitude of the business location
+latitude | false | Latitude of the business location
 
 
 
@@ -405,3 +458,73 @@ access_token | true | Access token used to authenticate
 <aside class="notice">
 You must replace `:LISTING_ID` with your business listings id.
 </aside>
+
+
+
+
+## Get Categories in JSON
+
+> Request example
+
+```shell
+curl "https://api.mojopages.com/api/v1/categories"
+  -H "Authorization: Token token="YOUR-ACCESS-TOKEN""
+```
+
+> The above command returns JSON structured like this:
+
+```json
+[
+  {
+    "category_id": 2,
+    "parent_category_id": 1,
+    "category_level": 1,
+    "title": "Automotive",
+    "naic_code": null,
+    "sic_code": null
+  }
+]
+```
+
+Check the status of the inserted businesses and the current total businesses matched.
+
+### HTTP Request
+
+`GET https://api.mojopages.com/api/v1/categies`
+
+### Query Parameters
+
+Parameter | Required | Description
+--------- | ------- | -----------
+access_token | true | Access token used to authenticate
+
+
+
+
+## Get Categories in CSV
+
+> Request example
+
+```shell
+curl "https://api.mojopages.com/api/v1/categories/csv"
+  -H "Authorization: Token token="YOUR-ACCESS-TOKEN"" >> Categories.csv
+```
+
+> The above command returns CSV structured like this:
+
+```csv
+category_id, parent_category_id, category_level, title, naic_code, sic_code
+2,1,1,Automotive,,
+```
+
+Check the status of the inserted businesses and the current total businesses matched.
+
+### HTTP Request
+
+`GET https://api.mojopages.com/api/v1/categies/csv`
+
+### Query Parameters
+
+Parameter | Required | Description
+--------- | ------- | -----------
+access_token | true | Access token used to authenticate
