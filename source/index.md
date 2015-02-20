@@ -1,5 +1,5 @@
 ---
-title: Contently API Reference
+title: Stories API Reference
 
 language_tabs:
   - shell
@@ -13,7 +13,7 @@ search: true
 
 # Introduction
 
-Welcome to the Contently API. You can use our API to access your publication's stories and to mark things as published.
+Welcome to the Stories API. You can use our API to access your publication's stories and to mark things as published.
 
 The current version of the API is v1. When backwards-incompatible changes are made to the API, we will bump the version number in the request path.
 
@@ -34,7 +34,7 @@ curl --get https://api.contently.com/v1/stories \
 
 > Make sure to replace `<API_KEY>` with your API key.
 
-You authenticate with the Contently API by specifying your publication's API key in the request header. The API key should be kept secret.
+You authenticate with the Stories API by specifying your publication's API key in the request header. The API key should be kept secret.
 
 To change or reset your API key reach out to your account manager.
 
@@ -361,7 +361,7 @@ curl -X PUT https://api.contently.com/v1/stories/:id/mark_published \
 
 > If you are using cURL, you must also specify the Content-Length in the header (any value will do).
 
-**If you are integrating the Contently API with your CMS, it is vital that you notify the Contently platform that a story has been published. This allows us to display the published_to_url on the platform and provide analytics data for the story.**
+**If you are integrating the Stories API with your CMS, it is vital that you notify the Contently platform that a story has been published. This allows us to display the published_to_url on the platform and provide analytics data for the story.**
 
 This endpoint updates the specified story, changing its status to 'published' and adding an item to the story's audit log (visible on the Contently platform) documenting the change. It enables analytics tracking and makes sure that published data on the platform is always up to date. It returns the story object if the update succeeded or an error message otherwise.
 
