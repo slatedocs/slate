@@ -42,6 +42,7 @@ activate :s3_sync do |s3_sync|
   s3_sync.bucket                     = 'docs.contently.com'
   s3_sync.region                     = 'us-east-1'
   s3_sync.delete                     = false # We delete stray files by default.
+  s3_sync.prefix                     = 'api'
   # s3_sync.after_build                = false # We do not chain after the build step by default.
   # s3_sync.prefer_gzip                = true
   # s3_sync.path_style                 = true
