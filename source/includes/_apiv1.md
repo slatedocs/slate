@@ -6,20 +6,21 @@
 
 ```shell
 curl "https://api.mojopages.com/api/v1/status"
-  -H "Authorization: Token token="YOUR-ACCESS-TOKEN""
+  -H "Authorization: Token token='YOUR-ACCESS-TOKEN'"
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
-[
-  {
-    "api_status": "published",
-    "partner": "Company Name",
-    "total_listings": 12000,
-    "matched_listings": 600
-  }
-]
+{
+  "response": {
+    "status": 200
+  },
+  "api_status": "published",
+  "partner": "Company Name",
+  "total_listings": 12000,
+  "matched_listings": 600
+}
 ```
 
 Check the status of the inserted businesses and the current total businesses matched.
@@ -43,28 +44,33 @@ access_token | true | Access token used to authenticate
 
 ```shell
 curl "https://api.mojopages.com/api/v1/listings/search?name=Instant+Phones&locality=Pheonix&region=AZ"
-  -H "Authorization: Token token="YOUR-ACCESS-TOKEN""
+  -H "Authorization: Token token='YOUR-ACCESS-TOKEN'"
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
-[
-  {
-    "mojo_id": "11079728",
-    "mojo_url": "https://www.mojopages.com/biz/instant-phones-phoenix-az/11079728",
-    "name": "Instant Phones",
-    "address": "2415 E Thomas Rd",
-    "locality": "Pheonix",
-    "region": "AZ",
-    "postcode": "85016",
-    "tel": "(602) 224-9582",
-    "website": "http://www.mycricket.com/",
-    "longitude": "-112.10158",
-    "latitude": "33.643668",
-    "updated_at": "2014-11-27T11:35:27.364Z"
-  }
-]
+{
+  "response": {
+    "status": 200
+  },
+  "listings": [
+    {
+      "mojo_id": "11079728",
+      "mojo_url": "https://www.mojopages.com/biz/instant-phones-phoenix-az/11079728",
+      "name": "Instant Phones",
+      "address": "2415 E Thomas Rd",
+      "locality": "Pheonix",
+      "region": "AZ",
+      "postcode": "85016",
+      "tel": "(602) 224-9582",
+      "website": "http://www.mycricket.com/",
+      "longitude": "-112.10158",
+      "latitude": "33.643668",
+      "updated_at": "2014-11-27T11:35:27.364Z"
+    }
+  ]
+}
 ```
 
 This endpoint retrieves all your existing business listings.
@@ -93,98 +99,45 @@ latitude | false | Latitude of the business location
 
 
 
-
-## Post a Search for Listings in JSON
-
-> Request example
-
-```shell
-curl "https://api.mojopages.com/api/v1/listings/search"
-  -H "Authorization: Token token="YOUR-ACCESS-TOKEN""
-  -H "Content-Type: application/json"
-  -X POST -d '{"name": "Instant Phones", "locality": "Pheonix", "region": "AZ"}'
-```
-
-> The above command returns JSON structured like this:
-
-```json
-[
-  {
-    "mojo_id": "11079728",
-    "mojo_url": "https://www.mojopages.com/biz/instant-phones-phoenix-az/11079728",
-    "name": "Instant Phones",
-    "address": "2415 E Thomas Rd",
-    "locality": "Pheonix",
-    "region": "AZ",
-    "postcode": "85016",
-    "tel": "(602) 224-9582",
-    "website": "http://www.mycricket.com/",
-    "longitude": "-112.10158",
-    "latitude": "33.643668",
-    "updated_at": "2014-11-27T11:35:27.364Z"
-  }
-]
-```
-
-This endpoint retrieves all your existing business listings.
-
-### HTTP Request
-
-`POST https://api.mojopages.com/api/v1/listings/search`
-
-### Query Parameters
-
-Parameter | Required | Description
---------- | ------- | -----------
-access_token | true | Access token used to authenticate
-results | false | Number of results to return (default returns one listing)
-name | false | Name of the business
-address | false | Address of the business
-address_extended | false | Second address of the business if there is one
-locality | false | City where the business is located
-region | false | State in which the business is located, should be 2 character abreviation
-postcode | false | Postal code where the business is located, should be a minimum 5 digits
-tel | false | Telephone number of the business, should be 10 digits
-website | false | URL for the business, include http://
-longitude | false | Longitude of the business location
-latitude | false | Latitude of the business location
-
-
-
-
 ## Get Listings in JSON
 
 > Request example
 
 ```shell
 curl "https://api.mojopages.com/api/v1/listings"
-  -H "Authorization: Token token="YOUR-ACCESS-TOKEN""
+  -H 'Authorization: Token token="YOUR-ACCESS-TOKEN"'
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
-[
-  {
-    "listing_id": "f76ae9ceb01cf2904fe2",
-    "mojo_id": "11079728",
-    "mojo_url": "https://www.mojopages.com/biz/instant-phones-phoenix-az/11079728",
-    "name": "Instant Phones",
-    "address": "2415 E Thomas Rd",
-    "locality": "Pheonix",
-    "region": "AZ",
-    "postcode": "85016",
-    "tel": "(602) 224-9582",
-    "website": "http://www.mycricket.com/",
-    "longitude": "-112.10158",
-    "latitude": "33.643668",
-    "facebook_id": "111664078919577",
-    "twitter_id": "cricketnation",
-    "google_plus_id": NULL,
-    "instagram_id": "cricketnation",
-    "updated_at": "2014-11-27T11:35:27.364Z"
-  }
-]
+{
+  "response": {
+    "status": 200
+  },
+  "listings": [
+    {
+      "listing_id": "f76ae9ceb01cf2904fe2",
+      "mojo_id": "11079728",
+      "mojo_url": "https://www.mojopages.com/biz/instant-phones-phoenix-az/11079728",
+      "name": "Instant Phones",
+      "address": "2415 E Thomas Rd",
+      "locality": "Pheonix",
+      "region": "AZ",
+      "postcode": "85016",
+      "tel": "(602) 224-9582",
+      "website": "http://www.mycricket.com/",
+      "longitude": "-112.10158",
+      "latitude": "33.643668",
+      "facebook_id": "111664078919577",
+      "twitter_id": "cricketnation",
+      "google_plus_id": null,
+      "instagram_id": "cricketnation",
+      "updated_at": "2014-11-27T11:35:27.364Z"
+    }
+  ]
+}
+
 ```
 
 This endpoint retrieves all your existing business listings.
@@ -208,7 +161,7 @@ access_token | true | Access token used to authenticate
 
 ```shell
 curl "https://api.mojopages.com/api/v1/listings/csv"
-  -H "Authorization: Token token="YOUR-ACCESS-TOKEN"" >> Listings.csv
+  -H "Authorization: Token token='YOUR-ACCESS-TOKEN'" >> Listings.csv
 ```
 
 > The above command returns CSV structured like this:
@@ -241,14 +194,17 @@ access_token | true | Access token used to authenticate
 
 ```shell
 curl "https://api.mojopages.com/api/v1/listing/7d373c1da40cbfc3f165"
-  -H "Authorization: Token token="YOUR-ACCESS-TOKEN""
+  -H "Authorization: Token token='YOUR-ACCESS-TOKEN'"
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
-[
-  {
+{
+  "response": {
+    "status": 200
+  },
+  "listing": {
     "listing_id": "f76ae9ceb01cf2904fe2",
     "mojo_id": "11079728",
     "mojo_url": "https://www.mojopages.com/biz/instant-phones-phoenix-az/11079728",
@@ -263,11 +219,11 @@ curl "https://api.mojopages.com/api/v1/listing/7d373c1da40cbfc3f165"
     "latitude": "33.643668",
     "facebook_id": "111664078919577",
     "twitter_id": "cricketnation",
-    "google_plus_id": NULL,
+    "google_plus_id": null,
     "instagram_id": "cricketnation",
     "updated_at": "2014-11-27T11:35:27.364Z"
   }
-]
+}
 ```
 
 This endpoint retrieves a specific business listings.
@@ -294,14 +250,17 @@ You must replace `:LISTING_ID` with your business listing id.
 
 ```shell
 curl "https://api.mojopages.com/api/v1/listing/693acfb0-a323-44c5-8aa1-75baf9f99f3a/factual"
-  -H "Authorization: Token token="YOUR-ACCESS-TOKEN""
+  -H "Authorization: Token token='YOUR-ACCESS-TOKEN'"
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
-[
-  {
+{
+  "response": {
+    "status": 200
+  },
+  "listing": {
     "mojo_id": "11079728",
     "mojo_url": "https://www.mojopages.com/biz/instant-phones-phoenix-az/11079728",
     "name": "Instant Phones",
@@ -309,7 +268,7 @@ curl "https://api.mojopages.com/api/v1/listing/693acfb0-a323-44c5-8aa1-75baf9f99
     "locality": "Pheonix",
     "region": "AZ"
   }
-]
+}
 ```
 
 This endpoint retrieves a specific business listings by the Factual ID.
@@ -336,7 +295,7 @@ You must replace `:FACTUAL_LISTING_ID` with the business listings Factual id.
 
 ```shell
 curl "https://api.mojopages.com/api/v1/listing/7d373c1da40cbfc3f165"
-  -H "Authorization: Token token="YOUR-ACCESS-TOKEN""
+  -H "Authorization: Token token='YOUR-ACCESS-TOKEN'"
   -H "Content-Type: application/json"
   -X POST -d '{"mojo_id": 201702, "name": "Piety Hill Cottages", "address": "523 Sacramento St", "tel": "(555) 555-5555", "locality": "Nevada City", "region": "CA"}'
 
@@ -345,12 +304,12 @@ curl "https://api.mojopages.com/api/v1/listing/7d373c1da40cbfc3f165"
 > The above command returns JSON structured like this:
 
 ```json
-[
-  {
-    "status": 200,
-    "message": "success"
-  }
-]
+{
+  "response": {
+    "status": 200
+  },
+  "success": true
+}
 ```
 
 This endpoint is used to post a new business listings to MojoPages.
@@ -378,7 +337,7 @@ You must replace `:LISTING_ID` with your business listings id.
 
 ```shell
 curl "https://api.mojopages.com/api/v1/listing/7d373c1da40cbfc3f165"
-  -H "Authorization: Token token="YOUR-ACCESS-TOKEN""
+  -H "Authorization: Token token='YOUR-ACCESS-TOKEN'"
   -H "Content-Type: application/json"
   -X PUT -d '{"address": "523 Sacramento Streeet", "tel": "(800) 555-5555"}'
 
@@ -387,12 +346,12 @@ curl "https://api.mojopages.com/api/v1/listing/7d373c1da40cbfc3f165"
 > The above command returns JSON structured like this:
 
 ```json
-[
-  {
-    "status": 200,
-    "message": "success"
-  }
-]
+{
+  "response": {
+    "status": 200
+  },
+  "success": true
+}
 ```
 
 This endpoint is used to put updated data for an existing business listing into MojoPages.
@@ -419,19 +378,19 @@ You must replace `:LISTING_ID` with your business listings id.
 
 ```shell
 curl "https://api.mojopages.com/api/v1/listing/7d373c1da40cbfc3f165"
-  -H "Authorization: Token token="YOUR-ACCESS-TOKEN""
+  -H "Authorization: Token token='YOUR-ACCESS-TOKEN'"
 
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
-[
-  {
-    "status": 200,
-    "message": "success"
-  }
-]
+{
+  "response": {
+    "status": 200
+  },
+  "success": true
+}
 ```
 
 This endpoint is used to delete an existing business listing from MojoPages.
@@ -460,29 +419,34 @@ You must replace `:LISTING_ID` with your business listings id.
 
 ```shell
 curl "https://api.mojopages.com/api/v1/categories"
-  -H "Authorization: Token token="YOUR-ACCESS-TOKEN""
+  -H "Authorization: Token token='YOUR-ACCESS-TOKEN'"
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
-[
-  {
-    "category_id": 2,
-    "parent_category_id": 1,
-    "category_level": 1,
-    "title": "Automotive",
-    "naic_code": null,
-    "sic_code": null
-  }
-]
+{
+  "response": {
+    "status": 200
+  },
+  "categories": [
+    {
+      "category_id": 2,
+      "parent_category_id": 1,
+      "category_level": 1,
+      "title": "Automotive",
+      "naic_code": null,
+      "sic_code": null
+    }
+  ]
+}
 ```
 
 Check the status of the inserted businesses and the current total businesses matched.
 
 ### HTTP Request
 
-`GET https://api.mojopages.com/api/v1/categies`
+`GET https://api.mojopages.com/api/v1/categories`
 
 ### Query Parameters
 
@@ -499,7 +463,7 @@ access_token | true | Access token used to authenticate
 
 ```shell
 curl "https://api.mojopages.com/api/v1/categories/csv"
-  -H "Authorization: Token token="YOUR-ACCESS-TOKEN"" >> Categories.csv
+  -H "Authorization: Token token='YOUR-ACCESS-TOKEN'" >> Categories.csv
 ```
 
 > The above command returns CSV structured like this:
@@ -513,7 +477,7 @@ Check the status of the inserted businesses and the current total businesses mat
 
 ### HTTP Request
 
-`GET https://api.mojopages.com/api/v1/categies/csv`
+`GET https://api.mojopages.com/api/v1/categories/csv`
 
 ### Query Parameters
 
