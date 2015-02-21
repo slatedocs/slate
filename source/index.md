@@ -109,9 +109,43 @@ result = client.balances
 
 This endpoint retrieves all balances of the account.
 
+
 ### HTTP Request
 
 `GET /balances`
+
+### Parameters
+
+None.
+
+
+# Exchange rates
+
+## Get exchange rates
+
+```ruby
+result = client.exchange_rates
+```
+
+```php
+# TODO
+```
+
+```python
+# TODO
+```
+
+> The JSON in raw API response looks like this:
+
+```json
+{"exchange_rates":[{"source_currency":"BTC","target_currency":"US+","exchange_rate":"246.5"},{"source_currency":"US+","target_currency":"BTC","exchange_rate":"0.0040568"}]}
+```
+
+This endpoint retrieves all exchange rates on Tether.
+
+### HTTP Request
+
+`GET /exchange_rates`
 
 ### Parameters
 
