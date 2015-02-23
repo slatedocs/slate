@@ -11,9 +11,9 @@ PallyCon service consists with cloud-based DRM license server, PallyCon Player f
 ## Guides
 You can integrate PallyCon service with your content service site using the below guide documents.
 
-**[Quick Start Guide](#quickstart-guide) Provides test codes, samples and setup guide for a quick trial of PallyCon service.** 
+**[Quick Start Guide](#quickstart-guide) provides test codes, samples and setup guide for a quick trial of PallyCon service.** 
 
-**[Integration Guides](#integration-overview) Explains overall flow and how-to of the service integration.** 
+**[Integration Guides](#integration-overview) explains overall flow and how-to of the service integration.** 
 
 - You must [integrate packager](#packaging-guide) to your CMS(Content Management System). And learn how to [issue license](#license-issue-guide) with usage rights when end-user plays DRM content. 
 
