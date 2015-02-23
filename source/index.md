@@ -50,7 +50,7 @@ The MojoPages API expects for the API key to be included in all API requests to 
 
 Or in a header that looks like the following:
 
-`Authorization: Token token="YOUR-ACCESS-TOKEN"`
+`Authorization: Token token=YOUR-ACCESS-TOKEN`
 
 <aside class="notice">
 You must replace `YOUR-ACCESS-TOKEN` with your API key.

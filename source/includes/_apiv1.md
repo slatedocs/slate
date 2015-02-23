@@ -105,7 +105,7 @@ latitude | false | Latitude of the business location
 
 ```shell
 curl "https://api.mojopages.com/api/v1/listings"
-  -H 'Authorization: Token token="YOUR-ACCESS-TOKEN"'
+  -H 'Authorization: Token token=YOUR-ACCESS-TOKEN'
 ```
 
 > The above command returns JSON structured like this:
