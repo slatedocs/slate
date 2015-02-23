@@ -484,3 +484,91 @@ Check the status of the inserted businesses and the current total businesses mat
 Parameter | Required | Description
 --------- | ------- | -----------
 access_token | true | Access token used to authenticate
+
+
+
+
+## Post Suppress a Listing
+
+> Request example
+
+```shell
+curl "https://api.mojopages.com/api/v1/listing/11079728/suppress/4279039"
+  -H "Authorization: Token token=YOUR-ACCESS-TOKEN"
+  -X POST
+
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "response": {
+    "status": 200
+  },
+  "success": true
+}
+```
+
+This endpoint is used to redirect or suppress business listings to MojoPages.
+
+### HTTP Request
+
+`POST https://api.mojopages.com/api/v1/listing/:MOJO_ID/suppress/:DESTINATION_MOJO_ID`
+
+### Query Parameters
+
+Parameter | Required | Description
+--------- | ------- | -----------
+access_token | true | Access token used to authenticate
+:MOJO_ID| true | Our Mojo ID for the specific business listing being redirected from
+:DESTINATION_MOJO_ID| true | Our Mojo ID for the new business listing being redirected to
+
+
+<aside class="notice">
+You must replace `:MOJO_ID` with your duplicate business Mojo id and `:DESTINATION_MOJO_ID` for the business you wish to redirect to.
+</aside>
+
+
+
+
+
+## Post Unsuppress a Listing
+
+> Request example
+
+```shell
+curl "https://api.mojopages.com/api/v1/listing/11079728/unsuppress"
+  -H "Authorization: Token token=YOUR-ACCESS-TOKEN"
+  -X POST
+
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "response": {
+    "status": 200
+  },
+  "success": true
+}
+```
+
+This endpoint is used to remove a redirect or suppression for a business listings to MojoPages. You need to be the one who originally suppressed the listing in order to unsupress it.
+
+### HTTP Request
+
+`POST https://api.mojopages.com/api/v1/listing/:MOJO_ID/unsuppress`
+
+### Query Parameters
+
+Parameter | Required | Description
+--------- | ------- | -----------
+access_token | true | Access token used to authenticate
+:MOJO_ID| true | Our Mojo ID for the specific business listing that needs to no longer be redirected
+
+
+<aside class="notice">
+You must replace `:MOJO_ID` with your non duplicate business Mojo id.
+</aside>
