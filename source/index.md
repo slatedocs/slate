@@ -37,7 +37,7 @@ If you have any question please visit [our support pages](http://help.mojopages.
 ```shell
 # With shell, you can just pass the correct header with each request
 curl https://api.mojopages.com/api/v1/status
-  -H "Authorization: Token token='YOUR-ACCESS-TOKEN'"
+  -H "Authorization: Token token=YOUR-ACCESS-TOKEN"
 ```
 
 > Make sure to replace `YOUR-ACCESS-TOKEN` with your API access key.

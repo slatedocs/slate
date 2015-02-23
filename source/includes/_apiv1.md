@@ -6,7 +6,7 @@
 
 ```shell
 curl "https://api.mojopages.com/api/v1/status"
-  -H "Authorization: Token token='YOUR-ACCESS-TOKEN'"
+  -H "Authorization: Token token=YOUR-ACCESS-TOKEN"
 ```
 
 > The above command returns JSON structured like this:
@@ -44,7 +44,7 @@ access_token | true | Access token used to authenticate
 
 ```shell
 curl "https://api.mojopages.com/api/v1/listings/search?name=Instant+Phones&locality=Pheonix&region=AZ"
-  -H "Authorization: Token token='YOUR-ACCESS-TOKEN'"
+  -H "Authorization: Token token=YOUR-ACCESS-TOKEN"
 ```
 
 > The above command returns JSON structured like this:
@@ -161,7 +161,7 @@ access_token | true | Access token used to authenticate
 
 ```shell
 curl "https://api.mojopages.com/api/v1/listings/csv"
-  -H "Authorization: Token token='YOUR-ACCESS-TOKEN'" >> Listings.csv
+  -H "Authorization: Token token=YOUR-ACCESS-TOKEN" >> Listings.csv
 ```
 
 > The above command returns CSV structured like this:
@@ -194,7 +194,7 @@ access_token | true | Access token used to authenticate
 
 ```shell
 curl "https://api.mojopages.com/api/v1/listing/7d373c1da40cbfc3f165"
-  -H "Authorization: Token token='YOUR-ACCESS-TOKEN'"
+  -H "Authorization: Token token=YOUR-ACCESS-TOKEN"
 ```
 
 > The above command returns JSON structured like this:
@@ -250,7 +250,7 @@ You must replace `:LISTING_ID` with your business listing id.
 
 ```shell
 curl "https://api.mojopages.com/api/v1/listing/693acfb0-a323-44c5-8aa1-75baf9f99f3a/factual"
-  -H "Authorization: Token token='YOUR-ACCESS-TOKEN'"
+  -H "Authorization: Token token=YOUR-ACCESS-TOKEN"
 ```
 
 > The above command returns JSON structured like this:
@@ -295,7 +295,7 @@ You must replace `:FACTUAL_LISTING_ID` with the business listings Factual id.
 
 ```shell
 curl "https://api.mojopages.com/api/v1/listing/7d373c1da40cbfc3f165"
-  -H "Authorization: Token token='YOUR-ACCESS-TOKEN'"
+  -H "Authorization: Token token=YOUR-ACCESS-TOKEN"
   -H "Content-Type: application/json"
   -X POST -d '{"mojo_id": 201702, "name": "Piety Hill Cottages", "address": "523 Sacramento St", "tel": "(555) 555-5555", "locality": "Nevada City", "region": "CA"}'
 
@@ -337,7 +337,7 @@ You must replace `:LISTING_ID` with your business listings id.
 
 ```shell
 curl "https://api.mojopages.com/api/v1/listing/7d373c1da40cbfc3f165"
-  -H "Authorization: Token token='YOUR-ACCESS-TOKEN'"
+  -H "Authorization: Token token=YOUR-ACCESS-TOKEN"
   -H "Content-Type: application/json"
   -X PUT -d '{"address": "523 Sacramento Streeet", "tel": "(800) 555-5555"}'
 
@@ -378,7 +378,7 @@ You must replace `:LISTING_ID` with your business listings id.
 
 ```shell
 curl "https://api.mojopages.com/api/v1/listing/7d373c1da40cbfc3f165"
-  -H "Authorization: Token token='YOUR-ACCESS-TOKEN'"
+  -H "Authorization: Token token=YOUR-ACCESS-TOKEN"
 
 ```
 
@@ -419,7 +419,7 @@ You must replace `:LISTING_ID` with your business listings id.
 
 ```shell
 curl "https://api.mojopages.com/api/v1/categories"
-  -H "Authorization: Token token='YOUR-ACCESS-TOKEN'"
+  -H "Authorization: Token token=YOUR-ACCESS-TOKEN"
 ```
 
 > The above command returns JSON structured like this:
@@ -463,7 +463,7 @@ access_token | true | Access token used to authenticate
 
 ```shell
 curl "https://api.mojopages.com/api/v1/categories/csv"
-  -H "Authorization: Token token='YOUR-ACCESS-TOKEN'" >> Categories.csv
+  -H "Authorization: Token token=YOUR-ACCESS-TOKEN" >> Categories.csv
 ```
 
 > The above command returns CSV structured like this:
