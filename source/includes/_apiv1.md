@@ -490,7 +490,14 @@ access_token | true | Access token used to authenticate
 
 ## Post Suppress a Listing
 
-> Request example
+> Request examples
+
+```shell
+curl "https://api.mojopages.com/api/v1/listing/11079728/suppress"
+  -H "Authorization: Token token=YOUR-ACCESS-TOKEN"
+  -X POST
+
+```
 
 ```shell
 curl "https://api.mojopages.com/api/v1/listing/11079728/suppress/4279039"
@@ -510,9 +517,11 @@ curl "https://api.mojopages.com/api/v1/listing/11079728/suppress/4279039"
 }
 ```
 
-This endpoint is used to to suppress a duplicate or invalid listings on MojoPages. If a listing is SUPPRESSed, we will remove the listing from our site's search results. If a redirect is setup it will be 301 permenant redirection.
+This endpoint is used to to suppress a duplicate or invalid listings on MojoPages. If a listing is SUPPRESSed, we will remove the listing from our site's search results. If a CANONICALLISTING_MOJO_ID is included in the path then a redirect is setup with 301 permenant redirection to the correct listing.
 
 ### HTTP Request
+
+`POST https://api.mojopages.com/api/v1/listing/:MOJO_ID/suppress`
 
 `POST https://api.mojopages.com/api/v1/listing/:MOJO_ID/suppress/:CANONICALLISTING_MOJO_ID`
 
@@ -522,11 +531,11 @@ Parameter | Required | Description
 --------- | ------- | -----------
 access_token | true | Access token used to authenticate
 :MOJO_ID| true | Our Mojo ID for the specific business listing being redirected from
-:CANONICALLISTING_MOJO_ID| true | The Mojo ID for the destination business listing being redirected to
+:CANONICALLISTING_MOJO_ID| false | The Mojo ID for the destination business listing being redirected to
 
 
 <aside class="notice">
-You must replace `:MOJO_ID` with your duplicate business Mojo ID and `:CANONICALLISTING_MOJO_ID` for the Mojo ID of the business you wish to redirect to.
+You must replace `:MOJO_ID` with your duplicate business Mojo ID. You can also replace `:CANONICALLISTING_MOJO_ID` for the Mojo ID of the business you wish to redirect to.
 </aside>
 
 
