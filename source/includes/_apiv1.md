@@ -73,7 +73,7 @@ curl "https://api.mojopages.com/api/v1/listings/search?name=Instant+Phones&local
 }
 ```
 
-This endpoint retrieves all your existing business listings.
+This endpoint allows you to search the MojoPages database like you would do on the site but with more specific attributes like Name, Address, Latitude, Longitude and Phone number.
 
 ### HTTP Request
 
@@ -510,11 +510,11 @@ curl "https://api.mojopages.com/api/v1/listing/11079728/suppress/4279039"
 }
 ```
 
-This endpoint is used to redirect or suppress business listings to MojoPages.
+This endpoint is used to to suppress a duplicate or invalid listings on MojoPages. If a listing is SUPPRESSed, we will remove the listing from our site's search results. If a redirect is setup it will be 301 permenant redirection.
 
 ### HTTP Request
 
-`POST https://api.mojopages.com/api/v1/listing/:MOJO_ID/suppress/:DESTINATION_MOJO_ID`
+`POST https://api.mojopages.com/api/v1/listing/:MOJO_ID/suppress/:CANONICALLISTING_MOJO_ID`
 
 ### Query Parameters
 
@@ -522,11 +522,11 @@ Parameter | Required | Description
 --------- | ------- | -----------
 access_token | true | Access token used to authenticate
 :MOJO_ID| true | Our Mojo ID for the specific business listing being redirected from
-:DESTINATION_MOJO_ID| true | Our Mojo ID for the new business listing being redirected to
+:CANONICALLISTING_MOJO_ID| true | The Mojo ID for the destination business listing being redirected to
 
 
 <aside class="notice">
-You must replace `:MOJO_ID` with your duplicate business Mojo id and `:DESTINATION_MOJO_ID` for the business you wish to redirect to.
+You must replace `:MOJO_ID` with your duplicate business Mojo ID and `:CANONICALLISTING_MOJO_ID` for the Mojo ID of the business you wish to redirect to.
 </aside>
 
 
