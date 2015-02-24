@@ -530,7 +530,7 @@ This endpoint is used to to suppress a duplicate or invalid listings on MojoPage
 Parameter | Required | Description
 --------- | ------- | -----------
 access_token | true | Access token used to authenticate
-reason | false | You're Reason for wanting to suppress the listing
+reason | false | Your Reason for wanting to suppress the listing
 :MOJO_ID| true | Our Mojo ID for the specific business listing being redirected from
 :CANONICALLISTING_MOJO_ID| false | The Mojo ID for the destination business listing being redirected to
 
