@@ -493,14 +493,14 @@ access_token | true | Access token used to authenticate
 > Request examples
 
 ```shell
-curl "https://api.mojopages.com/api/v1/listing/11079728/suppress"
+curl "https://api.mojopages.com/api/v1/listing/11079728/suppress?reason=closed"
   -H "Authorization: Token token=YOUR-ACCESS-TOKEN"
   -X POST
 
 ```
 
 ```shell
-curl "https://api.mojopages.com/api/v1/listing/11079728/suppress/4279039"
+curl "https://api.mojopages.com/api/v1/listing/11079728/suppress/4279039?reason=duplicate"
   -H "Authorization: Token token=YOUR-ACCESS-TOKEN"
   -X POST
 
@@ -530,6 +530,7 @@ This endpoint is used to to suppress a duplicate or invalid listings on MojoPage
 Parameter | Required | Description
 --------- | ------- | -----------
 access_token | true | Access token used to authenticate
+reason | false | You're Reason for wanting to suppress the listing
 :MOJO_ID| true | Our Mojo ID for the specific business listing being redirected from
 :CANONICALLISTING_MOJO_ID| false | The Mojo ID for the destination business listing being redirected to
 
