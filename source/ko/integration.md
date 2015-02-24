@@ -459,7 +459,7 @@ _Algorithm_
 _Key, Initial vector_
 
 - Key: 32 byte  (PallyCon CP Admin 페이지에서 확인 가능)
-- Initial vector: 16 byte  (고정값: **1234567890abcdef**)
+- Initial vector: 16 byte  (고정값: **0123456789abcdef**)
 
 _Padding_
 
@@ -1018,7 +1018,7 @@ _Algorithm_
 _Key, Initial vector_
 
 - Key: 32 byte  (PallyCon CP Admin 페이지에서 확인 가능)
-- Initial vector: 16 byte  (고정값: **1234567890abcdef**)
+- Initial vector: 16 byte  (고정값: **0123456789abcdef**)
 
 
 _Padding_
@@ -1326,7 +1326,7 @@ _Algorithm_
 _Key, Initial vector_
 
 - Key: 32 byte  (CP Admin 페이지에서 서비스 사이트 별 확인 가능)
-- Initial vector: 16 byte  (고정값: **123456890abcdef**)
+- Initial vector: 16 byte  (고정값: **0123456789abcdef**)
  
 
 _Padding_
@@ -1412,7 +1412,7 @@ PallyCon Player의 상태가 **‘다운로드’, ‘재생’, ‘기기 등�
 
 **AES 256 암/복호화 Key, IV(Initial vector):**
     
-- 웹 서버와 연동하는 데이터(Protocol I/Protocol II)의 AES256 암/복호화를 위한 Key는 INKA와 계약할 때 발급받습니다. 이 것은 ‘site_id’에 매칭되는 값으로 전달되기 때문에 반드시 계약할 때 전달받은 site_id와 AES256 Key를 사용해야만 합니다. (AES256 Key와 함께 사용되는 Initial Vector는 16 byte의 고정값으로 '**1234567890abcdef**' 입니다.)  
+- 웹 서버와 연동하는 데이터(Protocol I/Protocol II)의 AES256 암/복호화를 위한 Key는 INKA와 계약할 때 발급받습니다. 이 것은 ‘site_id’에 매칭되는 값으로 전달되기 때문에 반드시 계약할 때 전달받은 site_id와 AES256 Key를 사용해야만 합니다. (AES256 Key와 함께 사용되는 Initial Vector는 16 byte의 고정값으로 '**0123456789abcdef**' 입니다.)  
 - 업체 인증을 통해 전달받은 업체명과 Key, IV는 기기의 DB에 저장됩니다.  
 - INKA의 RI Cloud 서버와의 통신은 [PKI](http://en.wikipedia.org/wiki/Public_key_infrastructure)를 이용하기 때문에 통신과 DB에서 사용되는 데이터는 강력하게 보호받습니다. 
 
@@ -2201,7 +2201,7 @@ _Algorithm_
 _Key, Initial vector_
 
 - Key: 32 byte  (CP Admin 페이지에서 서비스 사이트 별 확인 가능)
-- Initial vector: 16 byte  (고정값: **123456890abcdef**)
+- Initial vector: 16 byte  (고정값: **0123456789abcdef**)
  
 
 _Padding_

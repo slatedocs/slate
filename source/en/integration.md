@@ -471,7 +471,7 @@ _Algorithm_
 _Key, Initial vector_
 
 - Key: 32 byte  (This can be checked in PallyCon CP Admin Page.)
-- Initial vector: 16 byte (a fixed value:  **1234567890abcdef**)
+- Initial vector: 16 byte (a fixed value:  **0123456789abcdef**)
 
 
 _Padding_
@@ -1029,7 +1029,7 @@ _Algorithm_
 _Key, Initial vector_
 
 : - Key: 32 byte  (This can be checked in PallyCon CP Admin pageCloud-Admin)
-- Initial vector: 16 byte (a fixed value: **1234567890abcdef**)  
+- Initial vector: 16 byte (a fixed value: **0123456789abcdef**)  
 
 
 _Padding_
@@ -1366,7 +1366,7 @@ _Algorithm_
 _Key, Initial vector_
 
 : - Key: 32 byte  (The key for each service site can be checked in the PallyCon CP Admin Page)
-- Initial vector: 16 byte  (a fixed value: **1234567890abcdef**)
+- Initial vector: 16 byte  (a fixed value: **0123456789abcdef**)
 
 
 _Padding_
@@ -1444,7 +1444,7 @@ Access to URL Scheme is blocked if the status of PallyCon Player is **‘Downloa
 
 **AES 256 encryption/decryption Key, IV(Initial vector):**
 
-- You receive the key for AES256 encryption/decryption of the data for interconnecting with the Web server when contracting with INKA. Because this value is matched to 'site_id', you must use the site_id, AES256 Key that you received at the time of contract.  (The Initial Vector used together with the AES256 Key is a fixed value of 16 bytes, which is '**1234567890abcdef**'.)  
+- You receive the key for AES256 encryption/decryption of the data for interconnecting with the Web server when contracting with INKA. Because this value is matched to 'site_id', you must use the site_id, AES256 Key that you received at the time of contract.  (The Initial Vector used together with the AES256 Key is a fixed value of 16 bytes, which is '**0123456789abcdef**'.)  
 - The vendor name, key and IV received through vendor authentication are saved in the DB.  
 - Because the communication with the RI Cloud server of INKA uses [PKI](http://en.wikipedia.org/wiki/Public_key_infrastructure), the data used in the communication and DB are strongly protected. 
 
@@ -2100,7 +2100,7 @@ _Algorithm_
 _Key, Initial vector_
 
 - Key: 32 bytes (Can be checked for each service site on the Cloud Admin page)
-- Initial vector: 16 byte  (Fixed value: **123456890abcdef**)
+- Initial vector: 16 byte  (Fixed value: **0123456789abcdef**)
 
 _Padding_
 
