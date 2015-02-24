@@ -85,7 +85,7 @@ PallyCon Service에서 제공하는 샘플파일을 이용하여 간단하게 �
 **config.jsp 파일의 수정은 PC / Mobile에 공통으로 영향을 주는 값들에 대한 수정입니다.** 
 
 ##### aes256 configration (_aes key config_)  
-key를 PallyCon CP Admin에서 확인이 가능한  Site Key 로 변경하여 세팅합니다. **AES256 암호화 및 복호화에 Site Key와 함께 사용되는 Initial Vector는 고정값으로 사용됩니다. (Initial Vector: _1234567890abcdef_)**
+key를 PallyCon CP Admin에서 확인이 가능한  Site Key 로 변경하여 세팅합니다. **AES256 암호화 및 복호화에 Site Key와 함께 사용되는 Initial Vector는 고정값으로 사용됩니다. (Initial Vector: _0123456789abcdef_)**
 
 
 ##### Content Usage Info Page (_gateway config_)  
