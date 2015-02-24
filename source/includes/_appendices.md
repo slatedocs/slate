@@ -856,7 +856,7 @@ This section documents the security tests returned for Consumer or Merchant Appl
 
 Test ID | Security Test Name
 -------|-----------------	
-19:1|	Experian
+19:1|	Experian ProveID
 19:2|	Experian ProveID: Name and Address Match
 19:3|	Experian ProveID: High Risk Address Check
 19:4|	Experian ProveID: Deceased
@@ -897,7 +897,7 @@ ed:27|	Billing Address Reputation
 ed:28|	Billing country on acceptable list
 ed:29|	Email First Seen
 ed:30|	User Validated
-ed:31|	Acceptable State
+ed:31|	Billing state on acceptable list
 ed:3|	Chargeback Count
 ed:4|	Payment Reputation
 ed:5|	Payment Instrument Application Count
@@ -911,13 +911,13 @@ ep:3|	Experian BusinessIQ Premier Profile: Active Business
 ep:4|	Experian BusinessIQ Premier Profile: Intelliscore Plus Score
 ev:1|	NeuStar/TargusInfo Email: Unsupported Country
 ev:3|	Neustar/TargusInfo Email Confidence
-ia:1|	IDAnalytics 
-ia:2|	IDAnalytics IDScore
+ia:1|	IDAnalytics IDScore
+ia:2|	IDScore
 ia:3|	IDAnalytics IDScore: OFAC Check
 ia:4|	IDAnalytics IDScore: Higher Risk
 ia:5|	IDAnalytics IDScore: Inactive Credit
 ia:6|	IDAnalytics IDScore: Unsupported Country
-id:0|	Idology 
+id:0|	Idology ExpectID
 id:1|	Idology ExpectID: Public Records Match
 id:2|	Idology ExpectID: SSN Valid
 id:3|	Idology ExpectID: SSN Match
@@ -933,7 +933,7 @@ iq:2|	IDAnalytics CertainID: Unsupported Country
 mh:0|	MATCH 
 mh:1|	MATCH: Terminated Merchant
 mh:2|	MATCH: Terminated Merchant for Fraudulent Reason
-mm:0|	MaxMind MinFraud
+mm:0|	MaxMind
 mm:1|	MaxMind MinFraud: IP Bad Proxy
 mm:2|	MaxMind MinFraud: IP Proxy
 mm:3|	MaxMind MinFraud: IP Risk Score

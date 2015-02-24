@@ -85,7 +85,7 @@ EXAMPLE SERVICE RESPONSE DATA
 		</tr>
 		<tr>
 			<td>tid</td>
-			<td>Unique application identifier. The system will assign one if not provided. It is recommended to pass one if needed to be correlated to client's backend system. The tid must be encoded as a string (e.g. <code>"tid":"123455"</code>). The tid is used to combine the multiple stages of an application. Maximum length is 40 characters.</td>
+			<td>Unique application identifier. The system will assign one if not provided. It is recommended to pass one if needed to be correlated to client's backend system. The tid must be encoded as a string (e.g. <code>"tid":"123455"</code>). The tid is used to combine the multiple stages of an application. Maximum length is 32 characters.</td>
 			<td>No</td>
 		</tr>
 
@@ -95,7 +95,7 @@ EXAMPLE SERVICE RESPONSE DATA
 		</tr>
 		<tr>
 			<td>amn</td>
-			<td>Legal name of the company</td>
+			<td>Legal name of the company. Maximum length is 128 characters.</td>
 			<td>Yes</td>
 		</tr>
 		<tr>
