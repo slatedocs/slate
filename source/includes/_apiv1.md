@@ -36,75 +36,24 @@ Parameter | Required | Description
 access_token | true | Access token used to authenticate
 
 
+### Status Types
 
-
-## Get a Search for Listings in JSON
-
-> Request example
-
-```shell
-curl "https://api.mojopages.com/api/v1/listings/search?name=Instant+Phones&locality=Pheonix&region=AZ"
-  -H "Authorization: Token token=YOUR-ACCESS-TOKEN"
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "response": {
-    "status": 200
-  },
-  "listings": [
-    {
-      "mojo_id": "11079728",
-      "mojo_url": "https://www.mojopages.com/biz/instant-phones-phoenix-az/11079728",
-      "name": "Instant Phones",
-      "address": "2415 E Thomas Rd",
-      "locality": "Pheonix",
-      "region": "AZ",
-      "postcode": "85016",
-      "tel": "(602) 224-9582",
-      "website": "http://www.mycricket.com/",
-      "longitude": "-112.10158",
-      "latitude": "33.643668",
-      "updated_at": "2014-11-27T11:35:27.364Z"
-    }
-  ]
-}
-```
-
-This endpoint allows you to search the MojoPages database like you would do on the site but with more specific attributes like Name, Address, Latitude, Longitude and Phone number.
-
-### HTTP Request
-
-`GET https://api.mojopages.com/api/v1/listings/search`
-
-### Query Parameters
-
-Parameter | Required | Description
---------- | ------- | -----------
-access_token | true | Access token used to authenticate
-results | false | Number of results to return (default returns one listing)
-name | false | Name of the business
-address | false | Address of the business
-address_extended | false | Second address of the business if there is one
-locality | false | City where the business is located
-region | false | State in which the business is located, should be 2 character abreviation
-postcode | false | Postal code where the business is located, should be a minimum 5 digits
-tel | false | Telephone number of the business, should be 10 digits
-website | false | URL for the business, include http://
-longitude | false | Longitude of the business location
-latitude | false | Latitude of the business location
+Status Type | Description
+--------- | -----------
+api_status | Tells you development status of api from alpha to beta to finally published
+partner | Your Partner company name
+total_listings | Total number of listings we or you have imported through our Partner endpoints
+matched_listings | Total number of your listings that we've matched to ours
 
 
 
 
-## Get Listings in JSON
+## Get Partner Listings in JSON
 
 > Request example
 
 ```shell
-curl "https://api.mojopages.com/api/v1/listings"
+curl "https://api.mojopages.com/api/v1/partner/listings"
   -H 'Authorization: Token token=YOUR-ACCESS-TOKEN'
 ```
 
@@ -144,7 +93,7 @@ This endpoint retrieves all your existing business listings.
 
 ### HTTP Request
 
-`GET https://api.mojopages.com/api/v1/listings`
+`GET https://api.mojopages.com/api/v1/partner/listings`
 
 ### Query Parameters
 
@@ -155,12 +104,12 @@ access_token | true | Access token used to authenticate
 
 
 
-## Get Listings in CSV
+## Get Partner Listings in CSV
 
 > Request example
 
 ```shell
-curl "https://api.mojopages.com/api/v1/listings/csv"
+curl "https://api.mojopages.com/api/v1/partner/listings/csv"
   -H "Authorization: Token token=YOUR-ACCESS-TOKEN" >> Listings.csv
 ```
 
@@ -175,7 +124,7 @@ This endpoint retrieves all your existing business listings.
 
 ### HTTP Request
 
-`GET https://api.mojopages.com/api/v1/listings/csv`
+`GET https://api.mojopages.com/api/v1/partner/listings/csv`
 
 ### Query Parameters
 
@@ -188,12 +137,12 @@ access_token | true | Access token used to authenticate
 
 
 
-## Get a Listing
+## Get a Partner Listing
 
 > Request example
 
 ```shell
-curl "https://api.mojopages.com/api/v1/listing/7d373c1da40cbfc3f165"
+curl "https://api.mojopages.com/api/v1/partner/listing/7d373c1da40cbfc3f165"
   -H "Authorization: Token token=YOUR-ACCESS-TOKEN"
 ```
 
@@ -230,7 +179,7 @@ This endpoint retrieves a specific business listings.
 
 ### HTTP Request
 
-`GET https://api.mojopages.com/api/v1/listing/:LISTING_ID`
+`GET https://api.mojopages.com/api/v1/partner/listing/:LISTING_ID`
 
 ### Query Parameters
 
@@ -244,57 +193,14 @@ You must replace `:LISTING_ID` with your business listing id.
 </aside>
 
 
-## Get Listing by Factual ID
+
+
+## Post a New Partner Listing
 
 > Request example
 
 ```shell
-curl "https://api.mojopages.com/api/v1/listing/693acfb0-a323-44c5-8aa1-75baf9f99f3a/factual"
-  -H "Authorization: Token token=YOUR-ACCESS-TOKEN"
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "response": {
-    "status": 200
-  },
-  "listing": {
-    "mojo_id": "11079728",
-    "mojo_url": "https://www.mojopages.com/biz/instant-phones-phoenix-az/11079728",
-    "name": "Instant Phones",
-    "address": "2415 E Thomas Rd",
-    "locality": "Pheonix",
-    "region": "AZ"
-  }
-}
-```
-
-This endpoint retrieves a specific business listings by the Factual ID.
-
-### HTTP Request
-
-`GET https://api.mojopages.com/api/v1/listing/:FACTUAL_LISTING_ID/factual`
-
-### Query Parameters
-
-Parameter | Required | Description
---------- | ------- | -----------
-access_token | true | Access token used to authenticate
-:FACTUAL_LISTING_ID| true | Factual ID for the specific business listing
-
-<aside class="notice">
-You must replace `:FACTUAL_LISTING_ID` with the business listings Factual id.
-</aside>
-
-
-## Post a New Listing
-
-> Request example
-
-```shell
-curl "https://api.mojopages.com/api/v1/listing/7d373c1da40cbfc3f165"
+curl "https://api.mojopages.com/api/v1/partner/listing/7d373c1da40cbfc3f165"
   -H "Authorization: Token token=YOUR-ACCESS-TOKEN"
   -H "Content-Type: application/json"
   -X POST -d '{"mojo_id": 201702, "name": "Piety Hill Cottages", "address": "523 Sacramento St", "tel": "(555) 555-5555", "locality": "Nevada City", "region": "CA"}'
@@ -316,7 +222,7 @@ This endpoint is used to post a new business listings to MojoPages.
 
 ### HTTP Request
 
-`POST https://api.mojopages.com/api/v1/listing/:LISTING_ID`
+`POST https://api.mojopages.com/api/v1/partner/listing/:LISTING_ID`
 
 ### Query Parameters
 
@@ -331,12 +237,12 @@ You must replace `:LISTING_ID` with your business listings id.
 </aside>
 
 
-## Update a Listing
+## Update a Partner Listing
 
 > Request example
 
 ```shell
-curl "https://api.mojopages.com/api/v1/listing/7d373c1da40cbfc3f165"
+curl "https://api.mojopages.com/api/v1/partner/listing/7d373c1da40cbfc3f165"
   -H "Authorization: Token token=YOUR-ACCESS-TOKEN"
   -H "Content-Type: application/json"
   -X PUT -d '{"address": "523 Sacramento Streeet", "tel": "(800) 555-5555"}'
@@ -358,7 +264,7 @@ This endpoint is used to put updated data for an existing business listing into 
 
 ### HTTP Request
 
-`PUT https://api.mojopages.com/api/v1/listing/:LISTING_ID`
+`PUT https://api.mojopages.com/api/v1/partner/listing/:LISTING_ID`
 
 ### Query Parameters
 
@@ -372,12 +278,12 @@ You must replace `:LISTING_ID` with your business listings id.
 </aside>
 
 
-## Delete a Listing
+## Delete a Partner Listing
 
 > Request example
 
 ```shell
-curl "https://api.mojopages.com/api/v1/listing/7d373c1da40cbfc3f165"
+curl "https://api.mojopages.com/api/v1/partner/listing/7d373c1da40cbfc3f165"
   -H "Authorization: Token token=YOUR-ACCESS-TOKEN"
 
 ```
@@ -397,7 +303,7 @@ This endpoint is used to delete an existing business listing from MojoPages.
 
 ### HTTP Request
 
-`DELETE https://api.mojopages.com/api/v1/listing/:LISTING_ID`
+`DELETE https://api.mojopages.com/api/v1/partner/listing/:LISTING_ID`
 
 ### Query Parameters
 
@@ -409,6 +315,7 @@ access_token | true | Access token used to authenticate
 <aside class="notice">
 You must replace `:LISTING_ID` with your business listings id.
 </aside>
+
 
 
 
@@ -484,6 +391,170 @@ Check the status of the inserted businesses and the current total businesses mat
 Parameter | Required | Description
 --------- | ------- | -----------
 access_token | true | Access token used to authenticate
+
+
+
+
+
+## Get a Search for Listings in JSON
+
+> Request example
+
+```shell
+curl "https://api.mojopages.com/api/v1/listings/search?name=Instant+Phones&locality=Pheonix&region=AZ"
+  -H "Authorization: Token token=YOUR-ACCESS-TOKEN"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "response": {
+    "status": 200
+  },
+  "listings": [
+    {
+      "mojo_id": "11079728",
+      "mojo_url": "https://www.mojopages.com/biz/instant-phones-phoenix-az/11079728",
+      "name": "Instant Phones",
+      "address": "2415 E Thomas Rd",
+      "locality": "Pheonix",
+      "region": "AZ",
+      "postcode": "85016",
+      "tel": "(602) 224-9582",
+      "website": "http://www.mycricket.com/",
+      "longitude": "-112.10158",
+      "latitude": "33.643668",
+      "updated_at": "2014-11-27T11:35:27.364Z"
+    }
+  ]
+}
+```
+
+This endpoint allows you to search the MojoPages database like you would do on the site but with more specific attributes like Name, Address, Latitude, Longitude and Phone number.
+
+### HTTP Request
+
+`GET https://api.mojopages.com/api/v1/listings/search`
+
+### Query Parameters
+
+Parameter | Required | Description
+--------- | ------- | -----------
+access_token | true | Access token used to authenticate
+results | false | Number of results to return (default returns one listing)
+name | false | Name of the business
+address | false | Address of the business
+address_extended | false | Second address of the business if there is one
+locality | false | City where the business is located
+region | false | State in which the business is located, should be 2 character abreviation
+postcode | false | Postal code where the business is located, should be a minimum 5 digits
+tel | false | Telephone number of the business, should be 10 digits
+website | false | URL for the business, include http://
+longitude | false | Longitude of the business location
+latitude | false | Latitude of the business location
+
+
+
+## Get a Listing
+
+> Request example
+
+```shell
+curl "https://api.mojopages.com/api/v1/listing/11079728"
+  -H "Authorization: Token token=YOUR-ACCESS-TOKEN"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "response": {
+    "status": 200
+  },
+  "listing": {
+    "mojo_id": "11079728",
+    "mojo_url": "https://www.mojopages.com/biz/instant-phones-phoenix-az/11079728",
+    "name": "Instant Phones",
+    "address": "2415 E Thomas Rd",
+    "locality": "Pheonix",
+    "region": "AZ",
+    "postcode": "85016",
+    "tel": "(602) 224-9582",
+    "website": "http://www.mycricket.com/",
+    "longitude": "-112.10158",
+    "latitude": "33.643668",
+    "facebook_id": "111664078919577",
+    "twitter_id": "cricketnation",
+    "google_plus_id": null,
+    "instagram_id": "cricketnation",
+    "updated_at": "2014-11-27T11:35:27.364Z"
+  }
+}
+```
+
+This endpoint retrieves a specific business listings.
+
+### HTTP Request
+
+`GET https://api.mojopages.com/api/v1/listing/:MOJO_ID`
+
+### Query Parameters
+
+Parameter | Required | Description
+--------- | ------- | -----------
+access_token | true | Access token used to authenticate
+:MOJO_ID| true | Your ID for the specific business listing
+
+<aside class="notice">
+You must replace `:MOJO_ID` with your business listing id.
+</aside>
+
+
+
+## Get a Listing by Factual ID
+
+> Request example
+
+```shell
+curl "https://api.mojopages.com/api/v1/listing/693acfb0-a323-44c5-8aa1-75baf9f99f3a/factual"
+  -H "Authorization: Token token=YOUR-ACCESS-TOKEN"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "response": {
+    "status": 200
+  },
+  "listing": {
+    "mojo_id": "11079728",
+    "mojo_url": "https://www.mojopages.com/biz/instant-phones-phoenix-az/11079728",
+    "name": "Instant Phones",
+    "address": "2415 E Thomas Rd",
+    "locality": "Pheonix",
+    "region": "AZ"
+  }
+}
+```
+
+This endpoint retrieves a specific business listings by the Factual ID.
+
+### HTTP Request
+
+`GET https://api.mojopages.com/api/v1/listing/:FACTUAL_LISTING_ID/factual`
+
+### Query Parameters
+
+Parameter | Required | Description
+--------- | ------- | -----------
+access_token | true | Access token used to authenticate
+:FACTUAL_LISTING_ID| true | Factual ID for the specific business listing
+
+<aside class="notice">
+You must replace `:FACTUAL_LISTING_ID` with the business listings Factual id.
+</aside>
 
 
 
@@ -581,4 +652,91 @@ access_token | true | Access token used to authenticate
 
 <aside class="notice">
 You must replace `:MOJO_ID` with your non duplicate business Mojo id.
+</aside>
+
+
+
+## Post Claim a Listing
+
+> Request examples
+
+```shell
+curl "https://api.mojopages.com/api/v1/listing/11079728/claim/7d373c1da40cbfc3f165"
+  -H "Authorization: Token token=YOUR-ACCESS-TOKEN"
+  -X POST
+
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "response": {
+    "status": 200
+  },
+  "success": true
+}
+```
+
+This endpoint is used to to claim and associate a partner listing to a listing on MojoPages. You will receive an error message if the listing is already claimed
+
+### HTTP Request
+
+`POST https://api.mojopages.com/api/v1/listing/:MOJO_ID/claim/:LISTING_ID`
+
+### Query Parameters
+
+Parameter | Required | Description
+--------- | ------- | -----------
+access_token | true | Access token used to authenticate
+:MOJO_ID| true | Mojo ID for the specific business listing shown on MojoPages
+:LISTING_ID| True | Partner Listing ID that needs to be associated to Mojo ID
+
+
+<aside class="notice">
+You must replace `:MOJO_ID` with the relevant MojoPages ID and replace `:LISTING_ID` for the Partner Listing ID of the business you imported.
+</aside>
+
+
+
+
+
+## Post Unclaim a Listing
+
+> Request example
+
+```shell
+curl "https://api.mojopages.com/api/v1/listing/11079728/unclaim"
+  -H "Authorization: Token token=YOUR-ACCESS-TOKEN"
+  -X POST
+
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "response": {
+    "status": 200
+  },
+  "success": true
+}
+```
+
+This endpoint is used to to unclaim a partner listing from a listing on MojoPages. You will receive an error message if you were not the one to originally claim the listing.
+
+### HTTP Request
+
+`POST https://api.mojopages.com/api/v1/listing/:MOJO_ID/unclaim`
+
+### Query Parameters
+
+Parameter | Required | Description
+--------- | ------- | -----------
+access_token | true | Access token used to authenticate
+:MOJO_ID| true | Mojo ID for the specific business listing shown on MojoPages
+
+
+<aside class="notice">
+You must replace `:MOJO_ID` with the relevant MojoPages ID.
 </aside>
