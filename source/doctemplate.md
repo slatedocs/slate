@@ -1,11 +1,11 @@
-##<App Name>
+## App Name 
 
-####<Introduction> 
+#### Introduction 
 What is this app?
 
 What are it's core features / purposes
 
-####<Getting started>
+#### Getting started 
 
 <intended Audience>
 
