@@ -1,4 +1,6 @@
-## Agent App Structure
+#### Creating an App
+
+###Agent App Structure
 
 You can create an application for the agent by following the steps below. 
 
@@ -96,7 +98,7 @@ These categories are described below.
 }
 ````
 
-#### 1. Descriptive Info
+### 1. Descriptive Info
 This contains identification information for your app.
 
 ##### Sample
@@ -117,7 +119,7 @@ enabled | Boolean | Preferred | Whether the app is enabled or not
 provider | string | Preferred | Your organization's name
 
 
-#### 2. Logger Info
+### 2. Logger Info
 
 These properties determine the log filename and amount of detail that would be recorded to the log file. 
 
@@ -139,7 +141,7 @@ version | string | Yes	   | The version number for the application
 
 
 
-####3. App Settings
+###3. App Settings
 
 Your app can have settings by declaring them within the settings object. These settings can then be used throughout your application's code. These values will take the highest precedence in the processing of settings. The precedence rules are:
 
@@ -161,7 +163,7 @@ value | string, function, Boolean, number, object | Yes	   | The value of your s
 
 
 
-####4. Extensions
+###4. Extensions
 Your application may use one or more extensions. Extensions can provide potential configuration components or actual runtime components. Extensions are a good way to design resuable components that can be shared and reused across projects. 
 
 
@@ -172,7 +174,7 @@ extensions: [ file: {}]
 
 Extensions are loaded in the order in which they are specified. 
 
-####5. Services
+###5. Services
 Your app can contain a service. A service is an object that represents a concrete extension of the API.
 
 #####Sample
@@ -196,7 +198,7 @@ this.logger | A reference to the context's logger
 this.publish | a handle to publish a message to the context
 
 
-####6. Sources
+###6. Sources
 A source is an object that sources external events. By creating a source, you can bind events to listeners and start functions and pipelines once the events have been emitted.
 
 #####Sample

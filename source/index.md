@@ -13,7 +13,6 @@ includes:
   - bodhiagent/gettingstarted
   - bodhiagent/envsetup
   - bodhiagent/howto
-  - bodhiagent/AgentApps/index
   - bodhiagent/AgentApps/createingagentapps
   - bodhiagent/AgentApps/extensions
   - bodhiagent/agentconsole
