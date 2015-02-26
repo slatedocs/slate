@@ -7,15 +7,11 @@ Bodhi.Type is available to all users to view and interact with their data on a s
 
 #### Getting started
 
-Bodhi.Type is currently available as an OS X download LINKTK.
+Bodhi.Type is currently available in beta as an OS X [download](https://drive.google.com/file/d/0Bz2KGejeubT9alF5NGNlYzRvZEE/view) .
 
 #### Intended Audience
 
 Bodhi.Type is intended to be a complement to the existing Bodhi CLI. 
-
-#### Env Setup
-
-TK
 
 #### Steps / tutorial to install (or Using the app)
 
