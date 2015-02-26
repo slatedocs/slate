@@ -82,6 +82,7 @@ curl "https://api.mojopages.com/api/v1/partner/listings"
       "twitter_id": "cricketnation",
       "google_plus_id": null,
       "instagram_id": "cricketnation",
+      "status": "AVAILABLE",
       "updated_at": "2014-11-27T11:35:27.364Z"
     }
   ]
@@ -170,6 +171,7 @@ curl "https://api.mojopages.com/api/v1/partner/listing/7d373c1da40cbfc3f165"
     "twitter_id": "cricketnation",
     "google_plus_id": null,
     "instagram_id": "cricketnation",
+    "status": "AVAILABLE",
     "updated_at": "2014-11-27T11:35:27.364Z"
   }
 }
@@ -231,10 +233,33 @@ Parameter | Required | Description
 access_token | true | Access token used to authenticate
 :LISTING_ID| true | Your ID for the specific business listing
 
-
 <aside class="notice">
 You must replace `:LISTING_ID` with your business listings id.
 </aside>
+
+### Available JSON Listing Values
+
+Listing Value | required | Description
+--------- | ----------- | -----------
+listing_id | true | Your unique identifier for the listing, used for adding or deleting a record
+mojo_id | false | Associated MojoPages ID for listing
+name | true | Name of the business
+address | true | Address of the business
+address_extended | false | Second address of the business if there is one
+locality | true | City where the business is located
+region | true | State in which the business is located, should be 2 character abreviation
+postcode | true | Postal code where the business is located, should be a minimum 5 digits
+tel | false | Telephone number of the business, should be 10 digits
+fax | false | Fax number of the business, should be 10 digits
+website | false | URL for the business, include http://
+email | false | Email address for the business
+longitude | false | Longitude of the business location
+latitude | false | Latitude of the business location
+facebook_id | false | The Facebook ID or the name of the page for the business
+twitter_id | false | Twitter username for the business, without the @ symbol
+google_plus_id | false | The Google Plus ID or the name used for the page of the business
+instagram_id | false | The Instgram ID or the username for the business listing
+
 
 
 ## Update a Partner Listing
@@ -276,6 +301,30 @@ access_token | true | Access token used to authenticate
 <aside class="notice">
 You must replace `:LISTING_ID` with your business listings id.
 </aside>
+
+### Available JSON Listing Values
+
+Listing Value | required | Description
+--------- | ----------- | -----------
+listing_id | true | Your unique identifier for the listing, used for adding or deleting a record
+mojo_id | false | Associated MojoPages ID for listing
+name | true | Name of the business
+address | true | Address of the business
+address_extended | false | Second address of the business if there is one
+locality | true | City where the business is located
+region | true | State in which the business is located, should be 2 character abreviation
+postcode | true | Postal code where the business is located, should be a minimum 5 digits
+tel | false | Telephone number of the business, should be 10 digits
+fax | false | Fax number of the business, should be 10 digits
+website | false | URL for the business, include http://
+email | false | Email address for the business
+longitude | false | Longitude of the business location
+latitude | false | Latitude of the business location
+facebook_id | false | The Facebook ID or the name of the page for the business
+twitter_id | false | Twitter username for the business, without the @ symbol
+google_plus_id | false | The Google Plus ID or the name used for the page of the business
+instagram_id | false | The Instgram ID or the username for the business listing
+
 
 
 ## Delete a Partner Listing
@@ -425,6 +474,7 @@ curl "https://api.mojopages.com/api/v1/listings/search?name=Instant+Phones&local
       "website": "http://www.mycricket.com/",
       "longitude": "-112.10158",
       "latitude": "33.643668",
+      "status": "AVAILABLE",
       "updated_at": "2014-11-27T11:35:27.364Z"
     }
   ]
@@ -488,6 +538,7 @@ curl "https://api.mojopages.com/api/v1/listing/11079728"
     "twitter_id": "cricketnation",
     "google_plus_id": null,
     "instagram_id": "cricketnation",
+    "status": "AVAILABLE",
     "updated_at": "2014-11-27T11:35:27.364Z"
   }
 }

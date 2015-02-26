@@ -79,6 +79,7 @@ You must replace `YOUR-ACCESS-TOKEN` with your API key.
     "twitter_id": "cricketnation",
     "google_plus_id": NULL,
     "instagram_id": "cricketnation",
+    "status": "AVAILABLE",
     "updated_at": "2014-11-27T11:35:27.364Z"
   }
 ]
@@ -109,4 +110,5 @@ facebook_id | The Facebook ID or the name of the page for the business
 twitter_id | Twitter username for the business, without the @ symbol
 google_plus_id | The Google Plus ID or the name used for the page of the business
 instagram_id | The Instgram ID or the username for the business listing
+status | Statuses of SUPPRESSED, CLAIMED or AVAILABLE can be given for listing
 updated_at | When the listing was last updated
