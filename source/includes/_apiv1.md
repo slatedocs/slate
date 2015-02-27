@@ -234,7 +234,7 @@ Parameter | Required | Description
 --------- | ------- | -----------
 access_token | true | Access token used to authenticate
 :LISTING_ID| true | Your ID for the specific business listing
-mapped | false | Will automatically match the partner listing to a mojo_id when true
+match | false | Will automatically match the partner listing to a mojo_id when true
 
 <aside class="notice">
 You must replace `:LISTING_ID` with your business listings id.
@@ -311,7 +311,7 @@ You must replace `:LISTING_ID` with your business listings id.
 Listing Value | required | Description
 --------- | ----------- | -----------
 listing_id | true | Your unique identifier for the listing, used for adding or deleting a record
-mapped | false | Associated MojoPages ID for listing will match automatically if you include it
+mojo_id | false | Associated MojoPages ID for listing will match automatically if you include it
 name | true | Name of the business
 address | true | Address of the business
 address_extended | false | Second address of the business if there is one
