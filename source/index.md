@@ -40,6 +40,7 @@ includes:
   - bodhimobile/MobileAPI/launch
   - bodhimobile/MobileAPI/mainMenu
   - bodhimobile/MobileAPI/messaging
+  - bodhimobile/MobileAPI/notifications
   - bodhimobile/MobileAPI/printing
   - bodhimobile/MobileAPI/shakeDetector
   - bodhimobile/MobileAPI/webview
