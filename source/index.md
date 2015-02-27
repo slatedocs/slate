@@ -25,6 +25,7 @@ includes:
   - bodhimobile/MobileAPI/kernelPromise
   - bodhimobile/MobileAPI/kernelEvents
   - bodhimobile/MobileAPI/kernelErrors
+  - bodhimobile/MobileAPI/accelerometer
   - bodhimobile/MobileAPI/appStorage
   - bodhimobile/MobileAPI/archiving
   - bodhimobile/MobileAPI/authentication
