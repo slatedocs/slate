@@ -409,7 +409,7 @@ html, body {
 
   h2 {
     @extend %header-font;
-    font-size: 20px;
+    font-size: 22px;
     margin-top: 4em;
     margin-bottom: 0;
     border-top: 1px solid #ccc;
@@ -439,11 +439,11 @@ html, body {
   }
 
   h4 {
-    font-size: 16px;
+    font-size: 18px;
   }
 
   h5, h6 {
-    font-size: 10px;
+    font-size: 14px;
     text-transform: uppercase;
   }
 
