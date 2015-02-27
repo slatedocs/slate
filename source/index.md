@@ -33,7 +33,7 @@ includes:
   - bodhimobile/MobileAPI/device
   - bodhimobile/MobileAPI/deviceOrientation
   - bodhimobile/MobileAPI/geofencing
-  
+  - bodhimobile/MobileAPI/geolocation
 
   - bodhicloud/gettingstarted
   - bodhicloud/apitutorial/0-getting-started/tutorial
