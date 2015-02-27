@@ -142,7 +142,7 @@ Object with key-value. Supported keys:
 
     * `key`
 
-A String value. Chooses document from [App Storage](appStorage.html) with key
+A String value. Chooses document from [App Storage](#app-storage-module) with key
 
     * `outputType`
 

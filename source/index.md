@@ -37,6 +37,7 @@ includes:
   - bodhimobile/MobileAPI/geofencing
   - bodhimobile/MobileAPI/geolocation
   - bodhimobile/MobileAPI/launch
+  - bodhimobile/MobileAPI/messaging
   - bodhimobile/MobileAPI/printing
   - bodhimobile/MobileAPI/shakeDetector
   - bodhimobile/MobileAPI/webview
