@@ -397,8 +397,9 @@ html, body {
     margin-bottom: $h1-margin-bottom;
     margin-top: 2em;
     border-top: 1px solid #ddd;
+    background-color: #F9A11D;
     @include background-image(
-      linear-gradient(top, #fff, #F9A11D)
+      linear-gradient(top, rgba(#fff,0.4), rgba(#fff, 0))
     );
   }
 
