@@ -55,9 +55,9 @@ var options = {
     username: "test_user",  
     password: "password"};  
 authentication.login( options, function(info) {  
-    alert("User (" \+ info.username + ") authenticated.");  
+    alert("User (" + info.username + ") authenticated.");  
 }, function (error) {  
-    alert("Login failed! code: " \+ error.code + "\nmessage: " \+ error.message);  
+    alert("Login failed! code: " + error.code + "\nmessage: " + error.message);  
 });
 ```
 
@@ -108,7 +108,7 @@ Error Callback. Called when function return error.
 authentication.logout( function(info) {  
     alert("Finished.");  
 }, function (error) {  
-    alert("Logout failed! code: " \+ error.code + "\nmessage: " \+ error.message);  
+    alert("Logout failed! code: " + error.code + "\nmessage: " + error.message);  
 });
 ```
 
@@ -138,10 +138,10 @@ Error Callback. Called when function return error.
 
 ```javascript
 authentication.getCredentialsInfo( function(info) {  
-    alert("Last username = " \+ info.username + "\n"+  
-         "Last remember" \+ info.remember);  
+    alert("Last username = " + info.username + "\n"+  
+         "Last remember" + info.remember);  
 }, function (error) {  
-    alert("Failed! code: " \+ error.code + "\nmessage: " \+ error.message);  
+    alert("Failed! code: " + error.code + "\nmessage: " + error.message);  
 });
 ```
 
@@ -161,6 +161,7 @@ Success callback. Called when function finished without errors
 Callback parameter is object which contains:
 
     * `username` \- Username which was used in last login. (String)
+    
     * `remember` \- Last used remember flag state. (Boolean)
 
   * `errorCallback` optional
