@@ -4,6 +4,7 @@ Changes to the API and documentation are below.
 
 Date | Changes
 --------- | -----------
+2/27/2015 | Added match parameter in Post and Update Partner Listings to automatically match your listing
 2/26/2015 | Added status to returned json, updated available JSON listing values
 2/24/2015 | Added Claim and Unclaim a listing endpoints, reorganized partner api end points to avoid confusion.
 2/23/2015 | Added Suppress and Unsuppress a listing endpoints, corrected errors to api docs

@@ -82,7 +82,8 @@ curl "https://api.mojopages.com/api/v1/partner/listings"
       "twitter_id": "cricketnation",
       "google_plus_id": null,
       "instagram_id": "cricketnation",
-      "status": "AVAILABLE",
+      "matched": true,
+      "claimed": true,
       "updated_at": "2014-11-27T11:35:27.364Z"
     }
   ]
@@ -171,7 +172,8 @@ curl "https://api.mojopages.com/api/v1/partner/listing/7d373c1da40cbfc3f165"
     "twitter_id": "cricketnation",
     "google_plus_id": null,
     "instagram_id": "cricketnation",
-    "status": "AVAILABLE",
+    "matched": true,
+    "claimed": true,
     "updated_at": "2014-11-27T11:35:27.364Z"
   }
 }
@@ -232,6 +234,7 @@ Parameter | Required | Description
 --------- | ------- | -----------
 access_token | true | Access token used to authenticate
 :LISTING_ID| true | Your ID for the specific business listing
+mapped | false | Will automatically match the partner listing to a mojo_id when true
 
 <aside class="notice">
 You must replace `:LISTING_ID` with your business listings id.
@@ -242,7 +245,7 @@ You must replace `:LISTING_ID` with your business listings id.
 Listing Value | required | Description
 --------- | ----------- | -----------
 listing_id | true | Your unique identifier for the listing, used for adding or deleting a record
-mojo_id | false | Associated MojoPages ID for listing
+mojo_id | false | Associated MojoPages ID for listing will match automatically if you include it
 name | true | Name of the business
 address | true | Address of the business
 address_extended | false | Second address of the business if there is one
@@ -297,6 +300,7 @@ Parameter | Required | Description
 --------- | ------- | -----------
 access_token | true | Access token used to authenticate
 :LISTING_ID| true | Your ID for the specific business listing being updated
+match | false | Will automatically match the partner listing to a mojo_id when true
 
 <aside class="notice">
 You must replace `:LISTING_ID` with your business listings id.
@@ -307,7 +311,7 @@ You must replace `:LISTING_ID` with your business listings id.
 Listing Value | required | Description
 --------- | ----------- | -----------
 listing_id | true | Your unique identifier for the listing, used for adding or deleting a record
-mojo_id | false | Associated MojoPages ID for listing
+mapped | false | Associated MojoPages ID for listing will match automatically if you include it
 name | true | Name of the business
 address | true | Address of the business
 address_extended | false | Second address of the business if there is one
