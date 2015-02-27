@@ -31,6 +31,7 @@ includes:
   - bodhimobile/MobileAPI/authentication
   - bodhimobile/MobileAPI/barcode
   - bodhimobile/MobileAPI/battery
+  - bodhimobile/MobileAPI/camera
   - bodhimobile/MobileAPI/compass
   - bodhimobile/MobileAPI/device
   - bodhimobile/MobileAPI/deviceOrientation
