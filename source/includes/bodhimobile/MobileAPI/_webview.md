@@ -1,30 +1,25 @@
----
-title: "Web View"
-posted: 2014-01-30
-post: true
----
-
-
-# Web View Module Reference
-
-## Overview
+## Web View Module
 
 This module contains methods for working with webview screens.
 
-## Tasks
+### Tasks
 
   * `present` function
   * `dismiss` function
   * `open` function
   * `close` function
 
-## Functions
+### Functions
 
-### present
+#### present
+
+```javascript
+webview.present( "http://www.google.com" );
+```
 
 `webview.present( url )`
 
-#### Discussion
+##### Discussion
 
 Shows new screen with webview over currently visible.  
 Current screen in this case continues working.
@@ -32,81 +27,70 @@ Current screen in this case continues working.
 Opened page must contains functionality for closing using dismiss method
 because iOS don't have hardware back button.
 
-#### Arguments
+##### Arguments
 
-  * _url_required
+  * `url` required
 
 A String Value. Url of page which will be opened.
 
-#### Return Value
+##### Return Value
 
-  * _[RBCPromise](kernel_promise.html) object_
+  * [RBCPromise](#kernel-promise) object
 
-#### Sample
+#### dismiss
 
-`webview.present( "http://www.google.com" );`  
-
-### dismiss
+```javascript
+webview.dismiss( );
+```
 
 `webview.dismiss( )`
 
-#### Discussion
+##### Discussion
 
 Closes current page if it was opened with present method or from local
 notification about iBeacons.
 
-#### Return Value
+##### Return Value
 
-  * _[RBCPromise](kernel_promise.html) object_
+  * [RBCPromise](#kernel-promise) object
 
-#### Sample
+#### open
 
-`webview.dismiss( );`  
-
-### open
+```javascript
+webview.open( "http://www.google.com" );
+```
 
 `webview.open( url )`
 
-#### Discussion
+##### Discussion
 
 Push new screen with webview after currently visible.
 
 Opened page must contains functionality for closing using close method because
 iOS don't have hardware back button.
 
-#### Arguments
+##### Arguments
 
-  * _url_required
+  * `url` required
 
 A String Value. Url of page which will be opened.
 
-#### Return Value
+##### Return Value
 
-  * _[RBCPromise](kernel_promise.html) object_
+  * [RBCPromise](#kernel-promise) object
 
-#### Sample
+#### close
 
-`webview.open( "http://www.google.com" );`  
-
-### close
+```javascript
+webview.close( );
+```
 
 `webview.close( )`
 
-#### Discussion
+##### Discussion
 
 Closes current page if it was opened with open method.
 
-#### Return Value
+##### Return Value
 
-  * _[RBCPromise](kernel_promise.html) object_
-
-#### Sample
-
-`webview.close( );`  
-
-  * [Index](../index.html)
-
-* * *
-
-(C) 2014 Red Book Connect. All rights reserved. (Last updated: 2014-06-20)
-
+  * [RBCPromise](#kernel-promise) object

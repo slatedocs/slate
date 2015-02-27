@@ -37,6 +37,7 @@ includes:
   - bodhimobile/MobileAPI/geofencing
   - bodhimobile/MobileAPI/geolocation
   - bodhimobile/MobileAPI/shakeDetector
+  - bodhimobile/MobileAPI/webview
 
   - bodhicloud/gettingstarted
   - bodhicloud/apitutorial/0-getting-started/tutorial
