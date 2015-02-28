@@ -1,23 +1,25 @@
-##Bodhi.Type
+## Tooling
 
-####Introduction
+#### Bodhi.Type
+
+##### Introduction
 Bodhi.Type is a user interface developed by the Bodhi team to allow customers to view their current data types on the cloud. The tool also allows for users to build new types and extend existing types using a user friendly interface that reads and writes to and from the Bodhi Cloud.
 
 Bodhi.Type is available to all users to view and interact with their data on a specific namespace
 
-#### Getting started
+##### Getting started
 
 Bodhi.Type is currently available in beta as an OS X [download](https://drive.google.com/file/d/0Bz2KGejeubT9alF5NGNlYzRvZEE/view) .
 
-#### Intended Audience
+##### Intended Audience
 
 Bodhi.Type is intended to be a complement to the existing Bodhi CLI. 
 
-#### Steps / tutorial to install (or Using the app)
+##### Steps / tutorial to install (or Using the app)
 
 Download the Bodhi.Type application. Double click on the Bodhi.Type icon to launch the app, or drag into the Applications folder to make the app available via the Launchpad.
 
-#### Using this software
+##### Using this software
 
 Follow screen prompts to Authenticate via the Preferences menu on the top of your screen. Once authenticated, you should have access to all of the types in your namespace via the left side navigation bar. 
 
@@ -52,6 +54,6 @@ Newly created types should be instantly accessibly via the side navigation bar. 
 
 ![Type Deletion](../../images/Bodhi.Type_7.png)
 
-#### Future Releases
+##### Future Releases
 
 Future releases should add Windows support, as well as additional options for type creation and modification.

@@ -1,2 +1,1 @@
-Type Mechanics
----------
+####Type Mechanics Tutorial

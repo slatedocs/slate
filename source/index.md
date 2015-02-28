@@ -47,6 +47,8 @@ includes:
 
   - bodhicloud/gettingstarted
   - bodhicloud/apitutorial/0-getting-started/tutorial
+  - bodhicloud/apitutorial/1-api-mechanics/tutorial
+  - bodhicloud/apitutorial/2-type-mechanics/tutorial
   - bodhicloud/apitools
   - bodhicloud/bodhiapi
   - bodhicloud/envsetup

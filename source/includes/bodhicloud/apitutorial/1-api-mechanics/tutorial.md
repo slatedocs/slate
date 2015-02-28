@@ -1,38 +1,37 @@
-Overview
-========
+#### API Mechanics Tutorial
 
-###Scope 
+##### Overview
 
 In this tutorial you will explore the basics of the bodhi api using the command line tool.
 
-###Intended Audience
+**Intended Audience**
 
 This tutorial is designed for a new developer looking to understand how to interact with data. The tutorial assumes the developer has valid credentials for a namespace, the bodhi command line tool, and has set up their environment.
 
-Resource Commands
-------------
+##### How To
+
+**Resource Commands**
 
 All resource commands take the following structure:
-
 ````
 > bodhi <action> [options] resources/:resource-name/[:id][?:query]
 ````
-###Actions
+Actions
 
-2. get
-1. count
+1. get
+2. count
 3. post
 4. put
-4. put
-5. delete
+5. put
+6. delete
 
-###Resource URL's
+**Resource URL's::**
 
 All resource URL's should start with `resources` and should take care not to prefix with the '/' character. The '/' character causes the cli to interpret the partial URL as absolute and will remove the namespace attributed.
 
 A resource collection is referred to by `resources/:resource`. A resource instance is referred to by `resources/:resource/:id`.
 
-##Views
+Views
 
 Each command has a default that it presents on response from the service. These views can be overwritten when the CLI is invoked using the the `--view` option. The table below shows the default view bindings for each action.
 
@@ -45,21 +44,18 @@ id       |                    | print the id of the newly created object
 entity   | get                | print the content returned by the server
 all      |                    | print status, headers, and content
 
-##Options
+Options
 
 Below are a list of useful options when interacting with resources
 
 option     |  description
-----       | ------------
---file     | file containing resource instance
+----       | --file     | file containing resource instance
 --data     | describe the resource instance inline
 --color    | print the response object with syntax highlighting
 --flat     | print the response object without line breaks or indention
 
-Reading Resources
-------------
-
-### Reading a collection of Resources
+**Reading Resources**  
+Reading a collection of Resources
 
 Our first query will attempt to extract all the resources in a given collection using the get action.
 
@@ -67,7 +63,7 @@ Our first query will attempt to extract all the resources in a given collection 
 > bodhi get resources/MyResource
 ````
 
-### Counting Resources
+Counting Resources
 
 ````
 > bodhi get resources/MyResource/count
@@ -81,21 +77,20 @@ The CLI exposes a shorthand for this command using the count action.
 { count: INTEGER }
 ````
 
-### Fetch a Resource by ID
+Fetch a Resource by ID
 
 ````
 > bodhi get resources/MyResource/:id
 ````
 
-### Fetch by unique Attribute
+Fetch by unique Attribute
 
 ````
 > bodhi get resources/MyResource/:id?where={\"name\":\"My-Name\"}
 ````
 
 
-Creating Resources
-------------
+**Creating Resources**
 
 Look inside the file resource.json to see the resource description.
 
@@ -129,12 +124,11 @@ If you supply the `--view id` option then you will only see the new resource's i
 ````
 Note there are a number of new system attributes that have been added to the resource. Those attributes are read only from an application perspective and are managed on your behalf by the system.
 
-###Updating Resources
-------------
+** Updating Resources**
 
 The system supports two forms of update - replace and patch. When updating a resource it is not necessary to specify any of the system attributes (those that start with the prefix `sys_`). Those attributes will be ignored by the API and will be updated by the service.
 
-###Replacing the Resource
+ Replacing the Resource
 
 A complete update is performed using a PUT. If the command succeeds then the newly specified resource will be assigned to the resource's id. A resource's attributes may be created, changed, or deleted using this action.
 
@@ -170,10 +164,9 @@ If you then access the record you will see the last modified time stamp has been
 ````
 
 
-Deleting Resources
-------------
+**Deleting Resources**
 
-###Delete a Resource
+Delete a Resource
 
 Most of the time we will delete a resource by id. In this case we use a relative resource uri with an id at the end of the path. 
 
@@ -184,7 +177,7 @@ Success 204 No Content
 
 If an resource matching that id exists then you will receive an HTTP 204. If no resource with the specified id exists then the API will return a 404 Not Found status.
 
-###Delete the entire Collection
+Delete the entire Collection
 
 If you want to delete all resources in a particular collection the use the following command. 
 
