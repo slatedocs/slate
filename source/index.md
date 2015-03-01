@@ -22,6 +22,7 @@ includes:
   
   - bodhimobile/MobileAPI/index
   - bodhimobile/gettingstarted
+  - bodhimobile/apptools
   - bodhimobile/MobileAPI/kernelPromise
   - bodhimobile/MobileAPI/kernelEvents
   - bodhimobile/MobileAPI/kernelErrors
