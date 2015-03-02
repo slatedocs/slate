@@ -53,6 +53,8 @@ includes:
   - bodhimobile/MobileAPI/mainMenu
   - bodhimobile/MobileAPI/messaging
   - bodhimobile/MobileAPI/navigationBar
+  - bodhimobile/MobileAPI/ndef
+  - bodhimobile/MobileAPI/nfc
   - bodhimobile/MobileAPI/notifications
   - bodhimobile/MobileAPI/printing
   - bodhimobile/MobileAPI/pushnotifications
