@@ -36,6 +36,7 @@ includes:
   - bodhimobile/MobileAPI/calendar
   - bodhimobile/MobileAPI/camera
   - bodhimobile/MobileAPI/compass
+  - bodhimobile/MobileAPI/contacts
   - bodhimobile/MobileAPI/cryptography
   - bodhimobile/MobileAPI/device
   - bodhimobile/MobileAPI/deviceOrientation
