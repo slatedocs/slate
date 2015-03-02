@@ -29,6 +29,8 @@ includes:
   - bodhimobile/MobileAPI/accelerometer
   - bodhimobile/MobileAPI/appStorage
   - bodhimobile/MobileAPI/archiving
+  - bodhimobile/MobileAPI/audioItem
+  - bodhimobile/MobileAPI/audio
   - bodhimobile/MobileAPI/authentication
   - bodhimobile/MobileAPI/barcode
   - bodhimobile/MobileAPI/battery
