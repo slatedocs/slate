@@ -39,6 +39,7 @@ includes:
   - bodhimobile/MobileAPI/deviceOrientation
   - bodhimobile/MobileAPI/geofencing
   - bodhimobile/MobileAPI/geolocation
+  - bodhimobile/MobileAPI/globalization
   - bodhimobile/MobileAPI/launch
   - bodhimobile/MobileAPI/mainMenu
   - bodhimobile/MobileAPI/messaging
