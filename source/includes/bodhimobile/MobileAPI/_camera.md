@@ -619,7 +619,6 @@ Error Callback. Called when function return error.
 #### cleanup
 
 ```javascript
-var options = {  
 camera.cleanup( function(info) {  
     alert("All media was deleted");  
 }, function (error) {  

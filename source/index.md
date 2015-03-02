@@ -41,6 +41,7 @@ includes:
   - bodhimobile/MobileAPI/geofencing
   - bodhimobile/MobileAPI/geolocation
   - bodhimobile/MobileAPI/globalization
+  - bodhimobile/MobileAPI/iBeacon
   - bodhimobile/MobileAPI/launch
   - bodhimobile/MobileAPI/localnotifications
   - bodhimobile/MobileAPI/mainMenu
