@@ -41,6 +41,7 @@ includes:
   - bodhimobile/MobileAPI/geolocation
   - bodhimobile/MobileAPI/globalization
   - bodhimobile/MobileAPI/launch
+  - bodhimobile/MobileAPI/localnotifications
   - bodhimobile/MobileAPI/mainMenu
   - bodhimobile/MobileAPI/messaging
   - bodhimobile/MobileAPI/navigationBar
