@@ -8,7 +8,7 @@ language_tabs:
 
 toc_footers:
   - <a href='https://tether.to/'>Tether homepage</a>
-  - <a href='https://tether.to/settings'>Generate API Key</a>
+  - <a href='https://wallet.tether.to/settings'>Generate API Key</a>
 
 includes:
   - errors
@@ -48,7 +48,7 @@ We have libraries in Ruby, PHP and Python. You can view code examples in the dar
 > Make sure to replace `TetherAPIKey` with your API key and `TetherAPISecret` with your API secret.
 
 Tether uses HMAC authentication. Each request should be signed with a secret that you can see when creating a new API key.
-You can create a Tether API key and Tether API secret key on [Tether Settings](https://tether.to/settings) page. 
+You can create a Tether API key and Tether API secret key on [Tether Settings](https://wallet.tether.to/settings) page. 
 Tether expects for the signature to be included in all API requests to the server in a standard HTTP Authorization header that has the following form:
 
 `Authorization: APIAuth TetherAPIKey:Signature`
