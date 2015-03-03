@@ -80,7 +80,7 @@ You must replace `YOUR-ACCESS-TOKEN` with your API key.
     "google_plus_id": NULL,
     "instagram_id": "cricketnation",
     "status": "AVAILABLE",
-    "matched": false,
+    "mapped": false,
     "claimed": false,
     "updated_at": "2014-11-27T11:35:27.364Z"
   }
@@ -95,7 +95,7 @@ Business listings are made up of different pieces of data. These are the excepte
 Data Type | Description
 --------- | -----------
 listing_id |  Your unique identifier for the listing, used for adding or deleting a record
-mojo_id | false | Associated MojoPages ID for listing will match automatically if you include it
+mojo_id | false | Associated MojoPages ID for listing will map automatically if you include it
 mojo_url | URL for MojoPages listing
 name | Name of the business
 address | Address of the business
@@ -114,6 +114,6 @@ twitter_id | Twitter username for the business, without the @ symbol
 google_plus_id | The Google Plus ID or the name used for the page of the business
 instagram_id | The Instgram ID or the username for the business listing
 status | Statuses of SUPPRESSED, CLAIMED or AVAILABLE can be given for listing
-matched | True or False on whether or not the partner listing is matched
+mapped | True or False on whether or not the partner listing is mapped
 claimed | True or False on whether or not the partner has claimed a listing
 updated_at | When the listing was last updated

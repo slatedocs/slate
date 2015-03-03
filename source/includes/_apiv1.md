@@ -19,11 +19,11 @@ curl "https://api.mojopages.com/api/v1/status"
   "api_status": "published",
   "partner": "Company Name",
   "total_listings": 12000,
-  "matched_listings": 600
+  "mapped_listings": 600
 }
 ```
 
-Check the status of the inserted businesses and the current total businesses matched.
+Check the status of the inserted businesses and the current total businesses mapped.
 
 ### HTTP Request
 
@@ -43,7 +43,7 @@ Status Type | Description
 api_status | Tells you development status of api from alpha to beta to finally published
 partner | Your Partner company name
 total_listings | Total number of listings we or you have imported through our Partner endpoints
-matched_listings | Total number of your listings that we've matched to ours
+mapped_listings | Total number of your listings that we've mapped to ours
 
 
 
@@ -82,7 +82,7 @@ curl "https://api.mojopages.com/api/v1/partner/listings"
       "twitter_id": "cricketnation",
       "google_plus_id": null,
       "instagram_id": "cricketnation",
-      "matched": true,
+      "mapped": true,
       "claimed": true,
       "updated_at": "2014-11-27T11:35:27.364Z"
     }
@@ -172,7 +172,7 @@ curl "https://api.mojopages.com/api/v1/partner/listing/7d373c1da40cbfc3f165"
     "twitter_id": "cricketnation",
     "google_plus_id": null,
     "instagram_id": "cricketnation",
-    "matched": true,
+    "mapped": true,
     "claimed": true,
     "updated_at": "2014-11-27T11:35:27.364Z"
   }
@@ -234,7 +234,7 @@ Parameter | Required | Description
 --------- | ------- | -----------
 access_token | true | Access token used to authenticate
 :LISTING_ID| true | Your ID for the specific business listing
-match | false | Will automatically match the partner listing to a mojo_id when true
+map | false | Will automatically map the partner listing to a mojo_id when true
 
 <aside class="notice">
 You must replace `:LISTING_ID` with your business listings id.
@@ -245,7 +245,8 @@ You must replace `:LISTING_ID` with your business listings id.
 Listing Value | required | Description
 --------- | ----------- | -----------
 listing_id | true | Your unique identifier for the listing, used for adding or deleting a record
-mojo_id | false | Associated MojoPages ID for listing will match automatically if you include it
+mojo_id | false | Associated MojoPages ID for listing will map automatically if you include it
+omit_address | false| Boolean for omitting the address from the listing (default: false)
 name | true | Name of the business
 address | true | Address of the business
 address_extended | false | Second address of the business if there is one
@@ -300,7 +301,7 @@ Parameter | Required | Description
 --------- | ------- | -----------
 access_token | true | Access token used to authenticate
 :LISTING_ID| true | Your ID for the specific business listing being updated
-match | false | Will automatically match the partner listing to a mojo_id when true
+map | false | Will automatically map the partner listing to a mojo_id when true
 
 <aside class="notice">
 You must replace `:LISTING_ID` with your business listings id.
@@ -311,7 +312,8 @@ You must replace `:LISTING_ID` with your business listings id.
 Listing Value | required | Description
 --------- | ----------- | -----------
 listing_id | true | Your unique identifier for the listing, used for adding or deleting a record
-mojo_id | false | Associated MojoPages ID for listing will match automatically if you include it
+mojo_id | false | Associated MojoPages ID for listing will map automatically if you include it
+omit_address | false| Boolean for omitting the address from the listing (default: false)
 name | true | Name of the business
 address | true | Address of the business
 address_extended | false | Second address of the business if there is one
@@ -402,7 +404,7 @@ curl "https://api.mojopages.com/api/v1/categories"
 }
 ```
 
-Check the status of the inserted businesses and the current total businesses matched.
+Check the status of the inserted businesses and the current total businesses mapped.
 
 ### HTTP Request
 
@@ -433,7 +435,7 @@ category_id, parent_category_id, category_level, title, naic_code, sic_code
 2,1,1,Automotive,,
 ```
 
-Check the status of the inserted businesses and the current total businesses matched.
+Check the status of the inserted businesses and the current total businesses mapped.
 
 ### HTTP Request
 
