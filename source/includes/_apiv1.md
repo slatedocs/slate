@@ -84,6 +84,7 @@ curl "https://api.mojopages.com/api/v1/partner/listings"
       "instagram_id": "cricketnation",
       "mapped": true,
       "claimed": true,
+      "omit_address": false,
       "updated_at": "2014-11-27T11:35:27.364Z"
     }
   ]
@@ -118,8 +119,8 @@ curl "https://api.mojopages.com/api/v1/partner/listings/csv"
 > The above command returns CSV structured like this:
 
 ```csv
-listing_id, mojo_id, mojo_url, name, address, locality, region, postcode, tel, website, longitude, latitude, facebook_id, twitter_id, google_plus_id, instagram_id, updated_at
-f76ae9ceb01cf2904fe2,11079728,https://www.mojopages.com/biz/instant-phones-phoenix-az/11079728,Instant Phones,2415 E Thomas Rd,Pheonix,AZ,85016,(602) 224-9582,http://www.mycricket.com/,-112.10158,33.643668,111664078919577,cricketnation,,cricketnation,2014-11-27T11:35:27.364Z
+listing_id, mojo_id, mojo_url, name, address, locality, region, postcode, tel, website, longitude, latitude, facebook_id, twitter_id, google_plus_id, instagram_id, mapped, claimed, omit_address, updated_at
+f76ae9ceb01cf2904fe2, 11079728, https://www.mojopages.com/biz/instant-phones-phoenix-az/11079728, Instant Phones, 2415 E Thomas Rd, Pheonix, AZ, 85016, (602) 224-9582, http://www.mycricket.com/, -112.10158,33.643668, 111664078919577, cricketnation, , cricketnation, false, false, false, 2014-11-27T11:35:27.364Z
 ```
 
 This endpoint retrieves all your existing business listings.
@@ -174,6 +175,7 @@ curl "https://api.mojopages.com/api/v1/partner/listing/7d373c1da40cbfc3f165"
     "instagram_id": "cricketnation",
     "mapped": true,
     "claimed": true,
+    "omit_address": false,
     "updated_at": "2014-11-27T11:35:27.364Z"
   }
 }
@@ -246,7 +248,6 @@ Listing Value | required | Description
 --------- | ----------- | -----------
 listing_id | true | Your unique identifier for the listing, used for adding or deleting a record
 mojo_id | false | Associated MojoPages ID for listing will map automatically if you include it
-omit_address | false| Boolean for omitting the address from the listing (default: false)
 name | true | Name of the business
 address | true | Address of the business
 address_extended | false | Second address of the business if there is one
@@ -263,7 +264,7 @@ facebook_id | false | The Facebook ID or the name of the page for the business
 twitter_id | false | Twitter username for the business, without the @ symbol
 google_plus_id | false | The Google Plus ID or the name used for the page of the business
 instagram_id | false | The Instgram ID or the username for the business listing
-
+omit_address | false| Boolean for omitting the address from the listing (default: false)
 
 
 ## Update a Partner Listing
@@ -313,7 +314,6 @@ Listing Value | required | Description
 --------- | ----------- | -----------
 listing_id | true | Your unique identifier for the listing, used for adding or deleting a record
 mojo_id | false | Associated MojoPages ID for listing will map automatically if you include it
-omit_address | false| Boolean for omitting the address from the listing (default: false)
 name | true | Name of the business
 address | true | Address of the business
 address_extended | false | Second address of the business if there is one
@@ -330,7 +330,7 @@ facebook_id | false | The Facebook ID or the name of the page for the business
 twitter_id | false | Twitter username for the business, without the @ symbol
 google_plus_id | false | The Google Plus ID or the name used for the page of the business
 instagram_id | false | The Instgram ID or the username for the business listing
-
+omit_address | false| Boolean for omitting the address from the listing (default: false)
 
 
 ## Delete a Partner Listing
@@ -481,6 +481,7 @@ curl "https://api.mojopages.com/api/v1/listings/search?name=Instant+Phones&local
       "longitude": "-112.10158",
       "latitude": "33.643668",
       "status": "AVAILABLE",
+      "omit_address": false,
       "updated_at": "2014-11-27T11:35:27.364Z"
     }
   ]
@@ -545,6 +546,7 @@ curl "https://api.mojopages.com/api/v1/listing/11079728"
     "google_plus_id": null,
     "instagram_id": "cricketnation",
     "status": "AVAILABLE",
+    "omit_address": false,
     "updated_at": "2014-11-27T11:35:27.364Z"
   }
 }

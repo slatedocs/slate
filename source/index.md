@@ -82,6 +82,7 @@ You must replace `YOUR-ACCESS-TOKEN` with your API key.
     "status": "AVAILABLE",
     "mapped": false,
     "claimed": false,
+    "omit_address": false,
     "updated_at": "2014-11-27T11:35:27.364Z"
   }
 ]
@@ -116,4 +117,5 @@ instagram_id | The Instgram ID or the username for the business listing
 status | Statuses of SUPPRESSED, CLAIMED or AVAILABLE can be given for listing
 mapped | True or False on whether or not the partner listing is mapped
 claimed | True or False on whether or not the partner has claimed a listing
+omit_address | false| Boolean for omitting the address from the listing (default: false)
 updated_at | When the listing was last updated
