@@ -10,6 +10,14 @@ toc_footers:
 includes:
 
   - gettingstarted
+  - bodhicloud/gettingstarted
+  - bodhicloud/apitutorial/0-getting-started/tutorial
+  - bodhicloud/apitutorial/1-api-mechanics/tutorial
+  - bodhicloud/apitutorial/2-type-mechanics/tutorial
+  - bodhicloud/apitools
+  - bodhicloud/bodhiapi
+  - bodhicloud/envsetup
+
   - bodhiagent/gettingstarted
   - bodhiagent/envsetup
   - bodhiagent/howto
@@ -22,7 +30,10 @@ includes:
   
   - bodhimobile/MobileAPI/index
   - bodhimobile/gettingstarted
+  - bodhimobile/envsetup
+  - bodhimobile/howto
   - bodhimobile/apptools
+  - bodhimobile/mobileapi
   - bodhimobile/MobileAPI/kernelPromise
   - bodhimobile/MobileAPI/kernelEvents
   - bodhimobile/MobileAPI/kernelErrors
@@ -61,12 +72,5 @@ includes:
   - bodhimobile/MobileAPI/shakeDetector
   - bodhimobile/MobileAPI/webview
 
-  - bodhicloud/gettingstarted
-  - bodhicloud/apitutorial/0-getting-started/tutorial
-  - bodhicloud/apitutorial/1-api-mechanics/tutorial
-  - bodhicloud/apitutorial/2-type-mechanics/tutorial
-  - bodhicloud/apitools
-  - bodhicloud/bodhiapi
-  - bodhicloud/envsetup
 search: true
 ---

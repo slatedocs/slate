@@ -1,4 +1,4 @@
-## Kernel Promise
+###### Kernel Promise
 
 Virtually all functions in modules return instance of RBCPromise object.  
 With it you can easy add success and finished callbacks for the function.
