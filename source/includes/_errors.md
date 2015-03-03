@@ -28,6 +28,10 @@ We don't currently support JSONP.
 
 # Changelog
 
+### Version 1.0.2 (2015-03-03)
+
+- Added `has_video` field to Article entity
+
 ### Version 1.0.1 (2015-02-11)
 
 - Added a new `sort_by` method: `created_at` to sort by most recent

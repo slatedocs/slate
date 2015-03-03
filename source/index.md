@@ -558,6 +558,7 @@ publication_timestamp |  Timestamp representing when the article was published
 image_link |  Where available, link to the source's featured image
 relatedStories |  List of `Article` related to this story
 topics | List of `Topic`
+has_video | set to `true` when the story has an embedded video
 
 ## Topic
 
