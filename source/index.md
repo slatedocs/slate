@@ -23,9 +23,9 @@ includes:
   - bodhiagent/howto
   - bodhiagent/AgentApps/createingagentapps
   - bodhiagent/AgentApps/extensions
+  - bodhiagent/agenttools
   - bodhiagent/agentconsole
   - bodhiagent/agentcli
-  - bodhiagent/agenttools
   - bodhiagent/querying
   
   - bodhimobile/MobileAPI/index
