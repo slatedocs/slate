@@ -12,7 +12,7 @@ _Note: Agent Console works best in Google Chrome or Mozilla Firefox._
 
 Upon entering the console for the first time, you should see a registration token pop up. This six-digit registration code needs to be entered into your Bodhi Mobile App to connect your Agent to your Bodhi Mobile App and to the Bodhi Cloud. Once you've successfully entered the token into the Bodhi Mobile App, the window will display a "SUCCESS" message and close. 
 
-__Important__: If the window pops up and you don't see a token, wait 10 seconds and refresh your browser. If the window doesn't pop up, click on the Registration Code link in the left navigation bar to open the window.
+__Important__: If the window pops up and you don't see a token, wait 10 seconds and refresh your browser. If the window doesn't pop up, click on the Registration Code link (see circle #1)in the left navigation bar to open the window.
 
 
 ![image](http://redbookconnect.github.io/docs/console/registrationcode.png)
@@ -22,9 +22,9 @@ _The registration code should be entered in your Bodhi Mobile App._
 ### Dashboard
 The Dashboard displays Agent software updates, your installed Agent Apps, and Customer Support information. 
 
-Note that clicking the three lines next to the Bodhi Agent icon will enable you to minimize or expand the navigation bar.
+Note that clicking the three lines next to the Bodhi Agent icon (see circle #1) will enable you to minimize or expand the navigation bar.
 
-In the top right corner, you can see the Agent's connection status to the Internet (either Online or Offline).
+In the top right corner, you can see the Agent's connection status to the Internet (either Online or Offline, see circle #2).
 
 ![image](http://redbookconnect.github.io/docs/console/dashboard.png)
 _Screenshot: Agent Console Dashboard Page_
