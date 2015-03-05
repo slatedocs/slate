@@ -307,7 +307,11 @@ html, body {
     text-decoration: none;
     padding: 0 10px;
     line-height: 30px;
+<<<<<<< HEAD
 	outline: 0;
+=======
+    outline: 0;
+>>>>>>> upstream/master
 
     &:active, &:focus {
       background-color: $lang-select-pressed-bg;

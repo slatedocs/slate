@@ -1,5 +1,3 @@
-require './lib/redcarpet_header_fix'
-
 set :css_dir, 'stylesheets'
 
 set :js_dir, 'javascripts'
