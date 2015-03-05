@@ -159,7 +159,7 @@ Step 11: Register the Agent with a Mobile Device
 * A Registration Code will be displayed which is used to register the POS with the Mobile Device.
 
 ![alt text](/images/agent_active_01.png?raw=true "figure 22")  
-figure 23  
+figure 22  
 
 **Note:**  If the registration dialog is dismissed before registration
 * Select the Registration Code Menu item on the left to redisplay it
