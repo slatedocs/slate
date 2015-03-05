@@ -376,3 +376,6 @@ Parameter | Required | Default | Description | Valid values
 published_to_url | No | | A String indicating the URL where the story was published | A valid URL beginning with 'http://' or 'https://'
 published_at | No | The time the request is made (if the story has not already been published) | Unix timestamp indicating the time the story was pubilshed | Any valid date
 
+## Webhook
+
+To make publishing stories easier, we provide a webhook that will push stories to you as they are completed (in the format specified above). Our webhook will submit a POST request to the URL you specifiy so that you don't have to poll for newly completed stories. Speak with your account manager to configure the webhook for your publication.
