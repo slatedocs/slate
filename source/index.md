@@ -24,7 +24,6 @@ includes:
   - bodhiagent/AgentApps/createingagentapps
   - bodhiagent/AgentApps/extensions
   - bodhiagent/agenttools
-  - bodhiagent/agentconsole
   - bodhiagent/agentcli
   - bodhiagent/querying
   

@@ -1,5 +1,5 @@
-Agent Console
-========
+##Agent Console
+
 
 The Agent Console is the application that users can use to manage their Agent's functionality and settings. The following sections describe how to use the Agent Console.
 
