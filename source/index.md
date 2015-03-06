@@ -1,5 +1,5 @@
 ---
-title: API Reference
+title: viagogo API v2
 
 language_tabs:
   - shell
