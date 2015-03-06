@@ -22,9 +22,6 @@ EXAMPLE SERVICE REQUEST
   "tid" : "89"
 }
 ```
-
-> The response is a JSON encoding of the IdentityMind service result. The response includes detailed result codes and transaction unique identifier. The keys are fully defined in *Appendix A: Result Keys and Codes*.
-
 ```code
 EXAMPLE SERVICE RESPONSE DATA
 ```
@@ -41,6 +38,7 @@ EXAMPLE SERVICE RESPONSE DATA
   "frd":"User is trusted and no fraud rules were triggered."
 }
 ```
+> The response includes detailed result codes and transaction unique identifier. The keys are fully defined in *Appendix A: Result Keys and Codes*.
 	<br>
 	<table>
 		<tr>

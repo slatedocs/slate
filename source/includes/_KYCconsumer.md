@@ -11,9 +11,6 @@ Retrieve the current state of a consumer application:<br>
 `GET https://edna.identitymind.com/im/account/creation/<tid>`
 
 #### Arguments
-
-> The response is a JSON encoding of the IdentityMind Service result:
-
 ```code
 EXAMPLE SERVICE RESPONSE DATA
 ```
@@ -312,7 +309,7 @@ The following URLs are used to return a customer’s response to a set of out of
 
 `POST https://edna.identitymind.com/im/account/consumer/<appid>/quizresponse`
 
-> The body of the request contains an encoding of the customer’s answers to the quiz questions. The encoding is in JSON as shown below. The answers are processed and the response used to update the IDAnalytics CertainID Security Test and the Application state.
+> The body of the request contains an encoding of the customer’s answers to the quiz questions. The answers are processed and the response used to update the IDAnalytics CertainID Security Test and the Application state.
 
 ```code
 EXAMPLE SERVICE RESPONSE DATA
@@ -372,7 +369,7 @@ The following URLs are used to return a customer’s response to a phone validat
 
 `POST https://edna.identitymind.com/im/account/consumer/<appid>/quizresponse`
 
-> The body of the request contains an encoding of the customer’s code response. The encoding is in JSON as shown below. The answers are processed and the response is used to update the Phone Ownership Security Test and the Application state.
+> The body of the request contains an encoding of the customer’s code response. The answers are processed and the response is used to update the Phone Ownership Security Test and the Application state.
 
 ```code
 EXAMPLE SERVICE RESPONSE DATA
