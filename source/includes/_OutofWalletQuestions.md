@@ -1,7 +1,7 @@
 # Out of Wallet Questions (IDAnalytics)
 
 The response to this request is an application response containing the newly updated application.
-Note that the response may, depending on the response from ID Analytics and your configuration within the eDNA platform, contain a further set of “challenge” questions that should once again be passed back to the consumer for answers.
+Note that the response may, depending on the response from ID Analytics and your configuration within the eDNA platform, contain a further set of "challenge" questions that should once again be passed back to the consumer for answers.
 
 The following URLs are used to return a customer’s response to a set of out of wallet questions returned either by a merchant or consumer application respectively:
 

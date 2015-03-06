@@ -248,9 +248,9 @@
 			<td>ownerApplicationIds</td>
 			<td>The application IDs of the owners for this merchant.</td>
 			<td><code>[<br>
-				“consumerapp001”,
-				“consumerapp002”,
-				“consumerapp003”<br>
+				"consumerapp001",
+				"consumerapp002",
+				"consumerapp003"<br>
 				]</code>
 			</td>
 		</tr>
@@ -262,49 +262,49 @@
 OUT OF WALLET QUESTIONS EXAMPLE
 
 {
-   “questions”:[
+   "questions":[
       {
-         “questionId”:0,
-         ”questionText”:”With which of these cities have you been associated?”,
-         ”choices”:[
-            “KERRVILLE”,
-            ”HOUSTON”,
-            ”SAN ANTONIO”,
-            ”SAN DIEGO”,
-            ”None of the above”
+         "questionId":0,
+         "questionText":"With which of these cities have you been associated?",
+         "choices":[
+            "KERRVILLE",
+            "HOUSTON",
+            "SAN ANTONIO",
+            "SAN DIEGO",
+            "None of the above"
          ]
       },
       {
-         “questionId”:1,
-         ”questionText”:”Which person has shared a previous address with you?”,
-         ”choices”:[
-            “DICK”,
-            ”TOM”,
-            ”HARRY”,
-            ”BOB”,
-            ”None of the above”
+         "questionId":1,
+         "questionText":"Which person has shared a previous address with you?",
+         "choices":[
+            "DICK",
+            "TOM",
+            "HARRY",
+            "BOB",
+            "None of the above"
          ]
       },
       {
-         “questionId”:2,
-         ”questionText”:”What is SANDRA's birthday who shares your current or a recent address?”,
-         ”choices”:[
-            “October 1964”,
-            ”February 1965”,
-            ”August 1966”,
-            ”August 1946”,
-            ”None of the above”
+         "questionId":2,
+         "questionText":"What is SANDRA's birthday who shares your current or a recent address?",
+         "choices":[
+            "October 1964",
+            "February 1965",
+            "August 1966",
+            "August 1946",
+            "None of the above"
          ]
       },
       {
-         “questionId”:3,
-         ”questionText”:”In what county is 1313 MOCKINGBIRD LN?”,
-         ”choices”:[
-            “MUNSTER”,
-            ”HOWELL”,
-            ”TRANSYLVANIA”,
-            ”COOK”,
-            ”None of the above”
+         "questionId":3,
+         "questionText":"In what county is 1313 MOCKINGBIRD LN?",
+         "choices":[
+            "MUNSTER",
+            "HOWELL",
+            "TRANSYLVANIA",
+            "COOK",
+            "None of the above"
          ]
       }
    ]
@@ -367,74 +367,74 @@ eDNA SCORE CARD EXAMPLE
                 "testCategory": "eDNA",
                 "testDescription": "Informational -- It displays the number of devices associated with the application's user account.",
                 "testName": "User Account Device Count",
-                “testId”: “ed:23”,
-                “testResult”: “0”
+                "testId": "ed:23",
+                "testResult": "0"
             },
             {
-                “testCategory”: “eDNA”,
-                “testDescription”: “Checks whether any application parameter is in the watch list.\nIt fails when any parameter is on the watch list.”,
-                “testName”: “Watch List”,
-                “testId”: “ed:2”,
-                “testPass”: true
+                "testCategory": "eDNA",
+                "testDescription": "Checks whether any application parameter is in the watch list.\nIt fails when any parameter is on the watch list.",
+                "testName": "Watch List",
+                "testId": "ed:2",
+                "testPass": true
             },
             {
-                “testCategory”: “eDNA”,
-                “testDescription”: “Checks the number of applications for a particular user account.\nIt fails when the number of applications is higher than the configured threshold.”,
-                “testDetails”: “0”,
-                “testName”: “User Account Application Count”,
-                “testId”: “ed:21”,
-                “testPass”: true
+                "testCategory": "eDNA",
+                "testDescription": "Checks the number of applications for a particular user account.\nIt fails when the number of applications is higher than the configured threshold.",
+                "testDetails": "0",
+                "testName": "User Account Application Count",
+                "testId": "ed:21",
+                "testPass": true
             },
             {
-                “testCategory”: “eDNA”,
-                “testDescription”: “Informational – It displays the first time the system has seen the user account”,
-                “testName”: “User Account First Seen”,
-                “testId”: “ed:26”,
-                “testResult”: “Wed May 21 00:36:32 UTC 2014”
+                "testCategory": "eDNA",
+                "testDescription": "Informational – It displays the first time the system has seen the user account",
+                "testName": "User Account First Seen",
+                "testId": "ed:26",
+                "testResult": "Wed May 21 00:36:32 UTC 2014"
             },
             {
-                “testCategory”: “eDNA”,
-                “testDescription”: “Checks the payment reputation associated with the application’s user account.\nIt fails when the reputation is \”bad\”.”,
-                “testDetails”: “User Account reputation is UNKNOWN”,
-                “testName”: “User Account Reputation”,
-                “testId”: “ed:19”,
-                “testPass”: true
+                "testCategory": "eDNA",
+                "testDescription": "Checks the payment reputation associated with the application’s user account.\nIt fails when the reputation is \"bad\".",
+                "testDetails": "User Account reputation is UNKNOWN",
+                "testName": "User Account Reputation",
+                "testId": "ed:19",
+                "testPass": true
             },
             {
-                “testCategory”: “eDNA”,
-                “testDescription”: “Informational – It displays the number of payment instruments associated with the application’s user account.”,
-                “testName”: “User Account Payment Count”,
-                “testId”: “ed:22”,
-                “testResult”: “0”
+                "testCategory": "eDNA",
+                "testDescription": "Informational – It displays the number of payment instruments associated with the application’s user account.",
+                "testName": "User Account Payment Count",
+                "testId": "ed:22",
+                "testResult": "0"
             },
             {
-                “testCategory”: “eDNA”,
-                “testDescription”: “It evaluates the merchant application against the rules as configured in the account policy. It fails when the policy result is either DENY or MANUAL REVIEW.”,
-                “testDetails”: “Result = ACCEPT; Rule Name = Account Fallthrough; Rule Description = No fraud rules triggered.”,
-                “testName”: “eDNA Merchant Application Transaction”,
-                “testId”: “ed:0”,
-                “testPass”: true
+                "testCategory": "eDNA",
+                "testDescription": "It evaluates the merchant application against the rules as configured in the account policy. It fails when the policy result is either DENY or MANUAL REVIEW.",
+                "testDetails": "Result = ACCEPT; Rule Name = Account Fallthrough; Rule Description = No fraud rules triggered.",
+                "testName": "eDNA Merchant Application Transaction",
+                "testId": "ed:0",
+                "testPass": true
             },
             {
-                “testCategory”: “eDNA”,
-                “testDescription”: “Checks whether any application parameter is in the black list.\nIt fails when any parameter is on the black list.”,
-                “testName”: “Black List”,
-                “testId”: “ed:1”,
-                “testPass”: true
+                "testCategory": "eDNA",
+                "testDescription": "Checks whether any application parameter is in the black list.\nIt fails when any parameter is on the black list.",
+                "testName": "Black List",
+                "testId": "ed:1",
+                "testPass": true
             },
             {
-                “testCategory”: “eDNA”,
-                “testDescription”: “Checks the chargeback count associated with an application’s parameter. \nIt fails when the chargeback count for a particular parameter is higher than the configured threshold.”,
-                “testName”: “Chargeback Count”,
-                “testId”: “ed:3”,
-                “testPass”: true
+                "testCategory": "eDNA",
+                "testDescription": "Checks the chargeback count associated with an application’s parameter. \nIt fails when the chargeback count for a particular parameter is higher than the configured threshold.",
+                "testName": "Chargeback Count",
+                "testId": "ed:3",
+                "testPass": true
             },
             {
-                “testCategory”: “eDNA”,
-                “testDescription”: “Informational – It displays the number of shipping addresses associated with the application’s user account.”,
-                “testName”: “User Account Shipping Address Count”,
-                “testId”: “ed:24”,
-                “testResult”: “0”
+                "testCategory": "eDNA",
+                "testDescription": "Informational – It displays the number of shipping addresses associated with the application’s user account.",
+                "testName": "User Account Shipping Address Count",
+                "testId": "ed:24",
+                "testResult": "0"
             }
         ]
     }, 
@@ -635,7 +635,7 @@ This section documents the result codes related to payment transaction fraud pol
 4.	Suspicious
 5.	Bad
 
-Thus, the code 1042 indicates that the rule “TRANSACTION REJECTED BY BANK” triggered for a Recognized User.
+Thus, the code 1042 indicates that the rule "TRANSACTION REJECTED BY BANK" triggered for a Recognized User.
 
 **Note**: Rules are updated regularly. The following table may not represent the most current set. Please refer to the UI Rule Editor view (in the web user interface) for up-to-date rules. The code for each rule is accessible through the UI.
 
@@ -1202,7 +1202,7 @@ IdentityMind Transaction API does not accept actual credit card number. It accep
 IdentityMind provides a client SDK for Java and PHP. If you use these languages, you can use the SDK to include the information in your request to the API. The SDK contains sample code on how to do that.
 
 **Note**: The hash must be of the full card number, not a masked or tokenized representation.
-If you use other languages, please see below “Credit Card Number Hash”.
+If you use other languages, please see below "Credit Card Number Hash".
 
 
 ##### Credit Card Number Hash
@@ -1215,7 +1215,7 @@ Please contact IdentityMind to get the salt.
 
 For example, the salted credit card number hash for 4012012301230123 is 32c1950468af7489efb48c911f9550092ebf34c5
 
-The credit card number hash should be included in the JSON string of the request to IdentityMind Transaction API in the field “pccn”. 
+The credit card number hash should be included in the JSON string of the request to IdentityMind Transaction API in the field "pccn". 
 
 **Note**:  The hash must be of the full card number, not a masked or tokenized representation.
 
@@ -1224,7 +1224,7 @@ The credit card number hash should be included in the JSON string of the request
 
 The credit card number token is the first 6 digits of the actual card number followed by XXXXXX followed by the last 4 digits of the actual card number. For example, the credit card number token for card number 4012012301230123 is 401201XXXXXX0123. 
 
-The credit card number token should be included in the JSON string of the request to IdentityMind Transaction API in the field “pcct”. 
+The credit card number token should be included in the JSON string of the request to IdentityMind Transaction API in the field "pcct". 
 
 
 #### Including Bank Account Hash and Token in Transaction Request
@@ -1270,13 +1270,13 @@ Similar to the mechanism for sending credit card information, IdentityMind Trans
 
 IdentityMind provides a client SDK for Java and PHP. If you use these languages, you can use the SDK to include the information in your request to the API. The SDK contains sample code on how to do that.
 
-If you use other languages, please see “Bank Account Number Hash” below.
+If you use other languages, please see "Bank Account Number Hash" below.
 
 **Note**: The hash must be of the full account number, not a masked or tokenized representation.
 
 ##### Bank Account Number Hash
 
-To generate the bank account number hash, you use the salt provided by IdentityMind, to generate a SHA-1 hash for the non masked account number, and convert the byte array of the hash to Hexadecimal string. The hash should be included in the JSON string of the request in the field “pach”.
+To generate the bank account number hash, you use the salt provided by IdentityMind, to generate a SHA-1 hash for the non masked account number, and convert the byte array of the hash to Hexadecimal string. The hash should be included in the JSON string of the request in the field "pach".
 
 Say you have a function sha1(String s) that takes a string s and return the sha1 hash of the string in hex:
 
@@ -1289,7 +1289,7 @@ Please contact IdentityMind to get the salt.
 
 For example, the salted bank account number hash for 321076479 74600015199010 is 3f57733f34b677294fed96efd440b8d9e7728fa5 and the hash for SN12K00100152000025690007542 is dd91898995dfef188eca122c5e0dd92f3aa34550
 
-The account number hash should be included in the JSON string of the request to IdentityMind Transaction API in the field “pach."
+The account number hash should be included in the JSON string of the request to IdentityMind Transaction API in the field "pach."
 
 
 ##### Bank Account Number Token
@@ -1300,7 +1300,7 @@ For the bank account number token we recommend:
 
 For example, the token for 321076479 74600015199010 is 321076XXXXXXXX9010 and the hash for SN12K00100152000025690007542 is SN12K0XXXXXXXX7542
 
-The bank account number token should be included in the JSON string of the request to IdentityMind Transaction API in the field “ptoken."
+The bank account number token should be included in the JSON string of the request to IdentityMind Transaction API in the field "ptoken."
 
 ## Appendix E: Change History
 
@@ -1315,7 +1315,7 @@ The bank account number token should be included in the JSON string of the reque
 
 - Added Account Validation Rule 11010
 - Switched from Experian 192 CheckID to Experian ProveID
-	- Added “Unsupported Country” security test to Experian
+	- Added "Unsupported Country" security test to Experian
 
 
 #### 1.17
@@ -1324,7 +1324,7 @@ The bank account number token should be included in the JSON string of the reque
 - Add Auth.net and Interac as supported gateways
 - Document application accepted and rejected API
 - Added bank_status property to the Merchant Accept/Reject Feedback API
-- Corrected format of the “ufs” and “umrs” fields
+- Corrected format of the "ufs" and "umrs" fields
 - Add API call to get the current state of a consumer or merchant application
 - Clarify that a payment hash must be of the original non-masked account number
 - Documented memo field in Transfer and KYC transaction data

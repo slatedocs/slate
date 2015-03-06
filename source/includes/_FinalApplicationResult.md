@@ -18,9 +18,9 @@ The following URLs are used to notify IdentityMind of the acceptance or rejectio
 EXAMPLE SERVICE REQUEST
 
 {
-  “reason”: “0”,
-  “description”: “I like this application”,
-	  “validate”: true
+  "reason": "0",
+  "description": "I like this application",
+	  "validate": true
 }
 
 or
@@ -32,7 +32,7 @@ or
 
 ```code
 {
-  “message”: “Accepted application”
+  "message": "Accepted application"
 }
 ```
 	<br>

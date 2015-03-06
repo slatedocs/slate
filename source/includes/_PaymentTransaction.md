@@ -11,30 +11,31 @@ The following URL can be used for requesting payment transaction anti-fraud eval
 EXAMPLE SERVICE REQUEST
 
 { 
-  “amt”: 40,
-  “bc”: “Palo Alto”,
-  “bco”: “US”,
-  “bfn”: “James”,
-  “bln”: “Dinh”,
-  “bz”: “55555”,
-  “bs”: “CA”,
-  “bsn”: “123 anystreet”,
-  “dft”: “BC”,
-  “dfp”: “1872ABCD129E…”,
-  “pccn”: “4513bfe30439b317d3a504ecac74858965a89ce7”,
-  “pcct”: “411111XXXXXX1111”,
-  “tea”: “james@gmail.com”,
-  “aph”: “555555555”,
-  “ip“: “69.181.162.146”,
-  “sc”: “Palo Alto”,
-  “sco”: “US”,
-  “sfn”: “James”,
-  “sln”: “Dinh”,
-  “sz”: “55555”,
-  “ss”: “CA”,
-  “ssn”: “123 anystreet”,
-  “tid”: “89”
+  	"amt" : 40,
+  	"bc" : "Palo Alto",
+  	"bco" : "US",
+ 	"bfn" : "James",
+ 	"bln" : "Dinh",
+	"bz" : "55555",
+  	"bs" : "CA",
+  	"bsn" : "123 anystreet",
+  	"dft" : "BC",
+  	"dfp" : "1872ABCD129E…",
+  	"pccn" : "4513bfe30439b317d3a504ecac74858965a89ce7",
+  	"pcct" : "411111XXXXXX1111",
+  	"tea" : "james@gmail.com",
+  	"aph" : "555555555",
+  	"ip" : "69.181.162.146",
+  	"sc" : "Palo Alto",
+  	"sco" : "US",
+  	"sfn" : "James",
+	"sln" : "Dinh",
+  	"sz" : "55555",
+  	"ss" : "CA",
+  	"ssn" : "123 anystreet",
+  	"tid" : "89"
 }
+
 ```
 
 > The response is a JSON encoding of the IdentityMind Service result:
@@ -43,17 +44,17 @@ EXAMPLE SERVICE REQUEST
 EXAMPLE SERVICE RESPONSE DATA
 
 { 
-  “res” : “ACCEPT”,
-  “tid” : “89”,
-  “transaction_status” : “complete”,
-  “rcd” : “1000,100,110,151,120”,
-  “frn”:”Fallthrough”,
-  “frd”:”User is trusted and no fraud rules were triggered.”
+  "res" : "ACCEPT",
+  "tid" : "89",
+  "transaction_status" : "complete",
+  "rcd" : "1000,100,110,151,120",
+  "frn":"Fallthrough",
+  "frd":"User is trusted and no fraud rules were triggered."
 }
 
 {
-  “transaction_status” : “error”,
-  “error_message” : “Bad data format:Failed to parse the date string provided in the data.  Please use ISO 8601 format.”
+  "transaction_status" : "error",
+  "error_message" : "Bad data format:Failed to parse the date string provided in the data.  Please use ISO 8601 format."
 }
 ```
 
@@ -443,9 +444,9 @@ EXAMPLE SERVICE RESPONSE DATA
 			<td>tti</td>
 			<td>The date and time of the transaction as processed by the merchant. Expressed in UTC, either as a ISO 8601 encoded string or a unix timestamp.
 				<ul type="disc">
-					<li><code>“tti”: “2011-01-01T13:12:16+0000”</code></li>
-					<li><code>“tti”:1293887536</code></li>
-					<li><code>“tti”:”1293887536”</code></li>
+					<li><code>"tti": "2011-01-01T13:12:16+0000"</code></li>
+					<li><code>"tti":1293887536</code></li>
+					<li><code>"tti":"1293887536"</code></li>
 				</ul>
 			</td>
 			<td>Yes</td>
@@ -594,11 +595,11 @@ The following URL can be used for requesting chargeback notification evaluation:
 EXAMPLE SERVICE REQUEST
 
 {
-     “amt”: 250,
-     “cbtype”: “DEBIT”,
-     “pccn”: “DNsxhwmQCWeC5gPxTOwPRZlFfx”,
-     “pcct”: “401201XXXXXX1110”,
-     “tid”: “9900040”
+     "amt": 250,
+     "cbtype": "DEBIT",
+     "pccn": "DNsxhwmQCWeC5gPxTOwPRZlFfx",
+     "pcct": "401201XXXXXX1110",
+     "tid": "9900040"
 }
 ```
 
@@ -608,13 +609,13 @@ EXAMPLE SERVICE REQUEST
 EXAMPLE SERVICE RESPONSE DATA
 
 {
-  “message”: “credit notification accepted”
+  "message": "credit notification accepted"
 }
 
 or 
 
 {
-  “error_message”: “A JSONObject text must begin with ‘{‘ at character 1”
+  "error_message": "A JSONObject text must begin with ‘{‘ at character 1"
 }
 ```
 	<br>
@@ -664,9 +665,9 @@ or
 			<td>cbdate</td>
 			<td>Date of the chargeback action. For example, if the cbtype is <code>CREDIT</code>, then the date field should be the date that the <code>CREDIT</code> happens. The format of the value for this field is either an ISO 8601 encoded string or a UNIX timestamp.
 				<ul type="disc">
-					<li><code>“cbdate”: “2011-01-01T13:12:16+0000”</code></li>
-					<li><code>“cbdate”:1293887536</code></li>
-					<li><code>“cbdate”:”1293887536”</code></li>
+					<li><code>"cbdate": "2011-01-01T13:12:16+0000"</code></li>
+					<li><code>"cbdate":1293887536</code></li>
+					<li><code>"cbdate":"1293887536"</code></li>
 				</ul>
 			</td>
 			<td>Yes</td>
@@ -675,9 +676,9 @@ or
 			<td>authdate</td>
 			<td>Date of the original authorization transaction. The format of the value for this field is either an ISO 8601 encoded string or a UNIX timestamp.
 				<ul type="disc">
-					<li><code>“authdate”: “2011-01-01T13:12:16+0000”</code></li>
-					<li><code>“authdate”:1293887536</code></li>
-					<li><code>“authdate”:”1293887536”</code></li>
+					<li><code>"authdate": "2011-01-01T13:12:16+0000"</code></li>
+					<li><code>"authdate":1293887536</code></li>
+					<li><code>"authdate":"1293887536"</code></li>
 				</ul>
 			</td>
 			<td>No</td>
@@ -832,10 +833,10 @@ The following URL can be used for credit notification evaluation:
 EXAMPLE SERVICE REQUEST
 
 {
-     “amt”: 10.4,
-     “pccn”: “DNsxhwmQCWeC5gPxTOwPRZlFfx”,
-     “pcct”: “401201XXXXXX1110”,
-     “tid”: “988833” 
+     "amt": 10.4,
+     "pccn": "DNsxhwmQCWeC5gPxTOwPRZlFfx",
+     "pcct": "401201XXXXXX1110",
+     "tid": "988833" 
 }
 ```
 
@@ -845,13 +846,13 @@ EXAMPLE SERVICE REQUEST
 EXAMPLE SERVICE RESPONSE DATA
 
 {
-  “message”: “credit notification accepted”
+  "message": "credit notification accepted"
 }
 
 or 
 
 {
-  “error_message”: “A JSONObject text must begin with ‘{‘ at character 1”
+  "error_message": "A JSONObject text must begin with ‘{‘ at character 1"
 }
 ```
 	<br>
@@ -883,9 +884,9 @@ or
 			<td>crdate</td>
 			<td>Date of the credit action. The format of the value for this field is either an ISO 8601 encoded string or a UNIX timestamp.
 				<ul type="disc">
-					<li><code>“crdate”: “2011-01-01T13:12:16+0000”</code></li>
-					<li><code>“crdate”:1293887536</code></li>
-					<li><code>“crdate”:”1293887536”</code></li>
+					<li><code>"crdate": "2011-01-01T13:12:16+0000"</code></li>
+					<li><code>"crdate":1293887536</code></li>
+					<li><code>"crdate":"1293887536"</code></li>
 				</ul>
 			</td>
 			<td>Yes</td>
@@ -1012,12 +1013,12 @@ The transaction ID is part of the URL. The "refund-ok" URL should be used when t
 EXAMPLE SERVICE REQUEST
 
 {
-    “amt”: 0.25,
-    “auth_response”: “rejected”,
-    “auth_response_text”: “Transaction already refunded”,
-    “error_code”: “206”,
-    “reason”: “Suspected friendly fraud”,
-    “tid”: “42”
+    "amt": 0.25,
+    "auth_response": "rejected",
+    "auth_response_text": "Transaction already refunded",
+    "error_code": "206",
+    "reason": "Suspected friendly fraud",
+    "tid": "42"
 }
 ```
 
@@ -1027,7 +1028,7 @@ EXAMPLE SERVICE REQUEST
 EXAMPLE SERVICE RESPONSE DATA
 
 {
-    “message”: “Feedback accepted for REFUND_FRAUD feedback on transaction 42”
+    "message": "Feedback accepted for REFUND_FRAUD feedback on transaction 42"
 }
 ```
 
@@ -1119,10 +1120,10 @@ The following URLs are used to notify IdentityMind of the acceptance or rejectio
 EXAMPLE SERVICE REQUEST
 
 {
-  “auth_code”: “T1627H”,
-  “auth_response_text”: “Decline”,
-  “avs_result”: “Y”,
-  “error_code”: “05”
+  "auth_code": "T1627H",
+  "auth_response_text": "Decline",
+  "avs_result": "Y",
+  "error_code": "05"
 }
 ```
 
@@ -1132,7 +1133,7 @@ EXAMPLE SERVICE REQUEST
 EXAMPLE SERVICE RESPONSE DATA
 
 {
-  “message”: “Feedback accepted for ACCEPT feedback on transaction 42”
+  "message": "Feedback accepted for ACCEPT feedback on transaction 42"
 }
 ```
 

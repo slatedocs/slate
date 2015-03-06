@@ -34,7 +34,7 @@ EXAMPLE SERVICE RESPONSE DATA
         "usc": 0,
         "user": "UNKNOWN"
     },
-    “parentMerchant”:”eDNABlackListFail”,
+    "parentMerchant":"eDNABlackListFail",
     "ednaScoreCard": {
         "tr": [
                   {
@@ -243,8 +243,8 @@ EXAMPLE SERVICE RESPONSE DATA
 			<td>tti</td>
 			<td>The date and time of the transaction as processed by the merchant. Expressed in UTC, encoded as a UNIX timestamp.
 				<ul type="disc">
-					<li><code>“tti”:129887536</code></li>
-					<li><code>“tti”:“129887536”</code></li>
+					<li><code>"tti":129887536</code></li>
+					<li><code>"tti":"129887536"</code></li>
 				</ul>
 			If not supplied, eDNA will assign the time at which it receives the transaction.</td>
 			<td>No</td>
@@ -304,7 +304,7 @@ EXAMPLE SERVICE RESPONSE DATA
 ## Out of Wallet Questions (IDAnalytics)
 
 The response to this request is an application response containing the newly updated application.
-Note that the response may, depending on the response from ID Analytics and your configuration within the eDNA platform, contain a further set of “challenge” questions that should once again be passed back to the consumer for answers.
+Note that the response may, depending on the response from ID Analytics and your configuration within the eDNA platform, contain a further set of "challenge" questions that should once again be passed back to the consumer for answers.
 
 The following URLs are used to return a customer’s response to a set of out of wallet questions returned either by a merchant or consumer application respectively:
 
@@ -382,7 +382,7 @@ https://edna.identitymind.com/im/account/merchant/743567/quizresponse
 
 
 {
-   "smsCode":”1234”
+   "smsCode":"1234"
 }
 ```
 	<br>
@@ -416,14 +416,14 @@ EXAMPLE SERVICE REQUEST DATA
 https://edna.identitymind.com/im/account/consumer/743567/document 
 
 {
-   "documentTypeCode”:”CC”
+   "documentTypeCode":"CC"
 }
 
 
 EXAMPLE SERVICE RESPONSE DATA
 
 {
-    "authorizationToken”:”f9d32f46-8f11-4b7c-b146-6d7a95aa765f”
+    "authorizationToken":"f9d32f46-8f11-4b7c-b146-6d7a95aa765f"
 }
 ```
 	<br>

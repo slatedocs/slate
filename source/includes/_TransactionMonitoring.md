@@ -19,24 +19,24 @@ Validate an external transfer (withdrawal) from an account:
 EXAMPLE SERVICE REQUEST  
 
 { 
-  “man” : “jdinh”,
-  “soc” : “facebook”
-  “tea” : “james@gmail.com”,
-  “bc” : “Palo Alto”,
-  “bco” : “US”,
-  “bfn” : “James”,
-  “bln” : “Dinh”,
-  “bz” : “55555”,
-  “bs” : “CA”,
-  “bsn” : “123 anystreet”,
-  “dft” : “BC”,
-  “dfp” : “1872ABCD129E…”,
-  “ip “ : “69.181.162.146”,
-  “tid” : “89”,
-  “pbc” : “792019bcc…”,
-  “ptoken”  : “356007XXXXXX000e”,
-  “dpbc” : “8ad0e8859…”,
-  “dptoken”  : “517074XXXXXX000e”,
+  "man" : "jdinh",
+  "soc" : "facebook"
+  "tea" : "james@gmail.com",
+  "bc" : "Palo Alto",
+  "bco" : "US",
+  "bfn" : "James",
+  "bln" : "Dinh",
+  "bz" : "55555",
+  "bs" : "CA",
+  "bsn" : "123 anystreet",
+  "dft" : "BC",
+  "dfp" : "1872ABCD129E…",
+  "ip " : "69.181.162.146",
+  "tid" : "89",
+  "pbc" : "792019bcc…",
+  "ptoken"  : "356007XXXXXX000e",
+  "dpbc" : "8ad0e8859…",
+  "dptoken"  : "517074XXXXXX000e",
 }
 ```
 
@@ -47,20 +47,20 @@ EXAMPLE SERVICE REQUEST
 EXAMPLE SERVICE RESPONSE DATA
 
 { 
-  “res” : “ACCEPT”,
-  “erd” : “Validated User”,
-  “tid” : “89”,
-  “rcd” : “1000,100,110,151,120”,
-  “frn” : ”Fallthrough”,
-  “usc” : 43,
+  "res" : "ACCEPT",
+  "erd" : "Validated User",
+  "tid" : "89",
+  "rcd" : "1000,100,110,151,120",
+  "frn" : "Fallthrough",
+  "usc" : 43,
   "umrs":1372723453000,
   "ufs":1372101668000,
-  “frd”:”User is trusted and no fraud rules were triggered.”
+  "frd":"User is trusted and no fraud rules were triggered."
 }
 
 {
-  “res” : “ERROR”,
-  “error_message” : “Bad data format:Failed to parse the date string provided in the data.  Please use ISO 8601 format.”
+  "res" : "ERROR",
+  "error_message" : "Bad data format:Failed to parse the date string provided in the data.  Please use ISO 8601 format."
 }
 ```
 > The response includes detailed result codes and the transaction unique identifier. The most important part of the response is whether the transaction is to be accepted, denied, or scheduled for manual review, which is dependent on the configured validation policy. The keys are fully defined in *Appendix A: Result Keys and Codes*.
@@ -114,12 +114,12 @@ EXAMPLE SERVICE RESPONSE DATA
 		</tr>
 		<tr>
 			<td>clat</td>
-			<td>The current latitude of the customer, specified in decimal degrees. Encoded as a string (e.g. <code>“clat”:“37.4419”</code>)</td>
+			<td>The current latitude of the customer, specified in decimal degrees. Encoded as a string (e.g. <code>"clat":"37.4419"</code>)</td>
 			<td>No</td>
 		</tr>
 		<tr>
 			<td>clong</td>
-			<td>The current longitude of the customer, specified in decimal degrees. Encoded as a string (e.g. <code>“clong”:“-122.1419”</code>)</td>
+			<td>The current longitude of the customer, specified in decimal degrees. Encoded as a string (e.g. <code>"clong":"-122.1419"</code>)</td>
 			<td>No</td>
 		</tr>
 
@@ -241,8 +241,8 @@ EXAMPLE SERVICE RESPONSE DATA
 			<td>tti</td>
 			<td>The date and time of the transaction as processed by the merchant. Expressed in UTC encoded as a UNIX timestamp.
 				<ul type="disc">
-					<li><code>“tti”:1293887536</code></li>
-					<li><code>“tti”:”1293887536”</code></li>
+					<li><code>"tti":1293887536</code></li>
+					<li><code>"tti":"1293887536"</code></li>
 				</ul>
 			</td>
 			<td>No</td>

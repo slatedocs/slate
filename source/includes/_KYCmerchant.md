@@ -29,11 +29,11 @@ EXAMPLE SERVICE RESPONSE DATA
 {
     "mtid": "eDNABlackListFail",
     "state": "R",
-    “merchantAPIName”:“joseshoe”,
-    “ownerApplicationIds”:[
-        	“consumerapp001”,
-        	“consumerapp002”,
-	        “consumerapp003”
+    "merchantAPIName":"joseshoe",
+    "ownerApplicationIds":[
+        	"consumerapp001",
+        	"consumerapp002",
+	        "consumerapp003"
     ]
 
     "merchantApplicationResponse": {

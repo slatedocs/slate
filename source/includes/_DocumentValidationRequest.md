@@ -14,14 +14,14 @@ EXAMPLE SERVICE REQUEST DATA
 https://edna.identitymind.com/im/account/consumer/743567/document 
 
 {
-   "documentTypeCode”:”CC”
+   "documentTypeCode":"CC"
 }
 
 
 EXAMPLE SERVICE RESPONSE DATA
 
 {
-    "authorizationToken”:”f9d32f46-8f11-4b7c-b146-6d7a95aa765f”
+    "authorizationToken":"f9d32f46-8f11-4b7c-b146-6d7a95aa765f"
 }
 ```
 	<br>

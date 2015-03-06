@@ -17,7 +17,7 @@ https://edna.identitymind.com/im/account/merchant/743567/quizresponse
 
 
 {
-   "smsCode":”1234”
+   "smsCode":"1234"
 }
 ```
 	<br>

@@ -15,13 +15,13 @@ EXAMPLE SERVICE REQUEST
 https://edna.identitymind.com/im/account/login   
 
 { 
-  “man” : “jdinh”,
-  “soc” : “facebook”
-  “tea” : “james@gmail.com”,
-  “dft” : “BC”,
-  “dfp” : “1872ABCD129E…”,
-  “ip “ : “69.181.162.146”,
-  “tid” : “89”
+  "man" : "jdinh",
+  "soc" : "facebook"
+  "tea" : "james@gmail.com",
+  "dft" : "BC",
+  "dfp" : "1872ABCD129E…",
+  "ip " : "69.181.162.146",
+  "tid" : "89"
 }
 ```
 
@@ -31,15 +31,15 @@ https://edna.identitymind.com/im/account/login
 EXAMPLE SERVICE RESPONSE DATA
 
 { 
-  “res” : “ACCEPT”,
-  “erd” : “Validated User”,
-  “tid” : “89”,
-  “rcd” : “1000,100,110,151,120”,
-  “frn” : ”Fallthrough”,
-  “usc” : 43,
-  “ufs” : 1372101668000,
-  “umrs” : 1371231456000,
-  “frd”:”User is trusted and no fraud rules were triggered.”
+  "res" : "ACCEPT",
+  "erd" : "Validated User",
+  "tid" : "89",
+  "rcd" : "1000,100,110,151,120",
+  "frn" : "Fallthrough",
+  "usc" : 43,
+  "ufs" : 1372101668000,
+  "umrs" : 1371231456000,
+  "frd":"User is trusted and no fraud rules were triggered."
 }
 ```
 	<br>
@@ -77,12 +77,12 @@ EXAMPLE SERVICE RESPONSE DATA
 		</tr>
 		<tr>
 			<td>clat</td>
-			<td>The current latitude of the customer, specified in decimal degrees. Encoded as a string (e.g. <code>“clat”:“37.4419”</code>).</td>
+			<td>The current latitude of the customer, specified in decimal degrees. Encoded as a string (e.g. <code>"clat":"37.4419"</code>).</td>
 			<td>No</td>
 		</tr>
 		<tr>
 			<td>clong</td>
-			<td>The current longitude of the customer, specified in decimal degrees. Encoded as a string (e.g. <code>“clong”:“-122.1419”</code>).</td>
+			<td>The current longitude of the customer, specified in decimal degrees. Encoded as a string (e.g. <code>"clong":"-122.1419"</code>).</td>
 			<td>No</td>
 		</tr>
 
@@ -124,8 +124,8 @@ EXAMPLE SERVICE RESPONSE DATA
 			<td>tti</td>
 			<td>The date and time of the transaction as processed by the merchant. Expressed in UTC, encoded as a UNIX timestamp.
 				<ul type="disc">
-					<li><code>“tti”:129887536</code></li>
-					<li><code>“tti”:“129887536”</code></li>
+					<li><code>"tti":129887536</code></li>
+					<li><code>"tti":"129887536"</code></li>
 				</ul></td>
 			<td>No</td>
 		</tr>
