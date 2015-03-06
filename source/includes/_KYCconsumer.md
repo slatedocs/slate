@@ -316,8 +316,6 @@ The following URLs are used to return a customer’s response to a set of out of
 
 ```code
 EXAMPLE SERVICE RESPONSE DATA
-
-https://edna.identitymind.com/im/account/merchant/743567/quizresponse
 ```
 ```json
 {
@@ -378,8 +376,6 @@ The following URLs are used to return a customer’s response to a phone validat
 
 ```code
 EXAMPLE SERVICE RESPONSE DATA
-
-https://edna.identitymind.com/im/account/merchant/743567/quizresponse
 ```
 ```json
 {
@@ -413,11 +409,8 @@ The following URLs are used to initiate a Jumio NetVerify Multi Document transac
 
 ```code
 EXAMPLE SERVICE RESPONSE DATA
-
-https://edna.identitymind.com/im/account/consumer/743567/document 
 ```
 ```json
-EXAMPLE SERVICE REQUEST DATA
 {
    "documentTypeCode":"CC"
 }

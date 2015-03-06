@@ -10,8 +10,6 @@ Annotate a user's transactions with login data:
 #### Arguments
 ```code
 EXAMPLE SERVICE REQUEST
-
-https://edna.identitymind.com/im/account/login   
 ```
 ```json
 { 
