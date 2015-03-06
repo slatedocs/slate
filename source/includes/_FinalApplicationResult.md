@@ -14,7 +14,7 @@ The following URLs are used to notify IdentityMind of the acceptance or rejectio
 
 #### Arguments
 
-```code
+```json
 EXAMPLE SERVICE REQUEST
 
 {
@@ -30,7 +30,7 @@ or
 
 > The response contains a JSON encoded message or error message.
 
-```code
+```json
 {
   "message": "Accepted application"
 }

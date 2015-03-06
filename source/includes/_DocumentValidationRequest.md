@@ -8,7 +8,7 @@ The following URLs are used to initiate a Jumio NetVerify Multi Document transac
 
 `POST https://edna.identitymind.com/im/account/consumer/<appid>/document`
 
-```code
+```json
 EXAMPLE SERVICE REQUEST DATA
 
 https://edna.identitymind.com/im/account/consumer/743567/document 

@@ -9,7 +9,7 @@ Annotate a user's transactions with login data:
 
 #### Arguments
 
-```code
+```json
 EXAMPLE SERVICE REQUEST
 
 https://edna.identitymind.com/im/account/login   
@@ -20,14 +20,14 @@ https://edna.identitymind.com/im/account/login
   "tea" : "james@gmail.com",
   "dft" : "BC",
   "dfp" : "1872ABCD129E…",
-  "ip " : "69.181.162.146",
+  "ip" : "69.181.162.146",
   "tid" : "89"
 }
 ```
 
 > The response is a JSON encoding of the IdentityMind service result. The response includes detailed result codes and transaction unique identifier. The keys are fully defined in *Appendix A: Result Keys and Codes*.
 
-```code
+```json
 EXAMPLE SERVICE RESPONSE DATA
 
 { 

@@ -10,7 +10,7 @@ The following URLs are used to return a customer’s response to a phone validat
 
 > The body of the request contains an encoding of the customer’s code response. The encoding is in JSON as shown below. The answers are processed and the response is used to update the Phone Ownership Security Test and the Application state.
 
-```code
+```json
 EXAMPLE SERVICE REQUEST DATA
 
 https://edna.identitymind.com/im/account/merchant/743567/quizresponse

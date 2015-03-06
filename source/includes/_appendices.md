@@ -258,7 +258,7 @@
 
 #### Out of Wallet Questions Encoding
 
-```code
+```json
 OUT OF WALLET QUESTIONS EXAMPLE
 
 {
@@ -335,7 +335,7 @@ OUT OF WALLET QUESTIONS EXAMPLE
 
 #### eDNA Score Card Encoding
 
-```code
+```json
 eDNA SCORE CARD EXAMPLE
 
 {

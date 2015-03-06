@@ -11,7 +11,7 @@ The following URLs are used to return a customer’s response to a set of out of
 
 > The body of the request contains an encoding of the customer’s answers to the quiz questions. The encoding is in JSON as shown below. The answers are processed and the response used to update the IDAnalytics CertainID Security Test and the Application state.
 
-```code
+```json
 EXAMPLE SERVICE REQUEST DATA
 
 https://edna.identitymind.com/im/account/merchant/743567/quizresponse
