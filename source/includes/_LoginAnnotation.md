@@ -8,6 +8,7 @@ Annotate a user's transactions with login data:
 `POST https://edna.identitymind.com/im/account/login`
 
 #### Arguments
+
 ```code
 EXAMPLE SERVICE REQUEST
 ```
@@ -39,6 +40,7 @@ EXAMPLE SERVICE RESPONSE DATA
 }
 ```
 > The response includes detailed result codes and transaction unique identifier. The keys are fully defined in *Appendix A: Result Keys and Codes*.
+
 	<br>
 	<table>
 		<tr>
