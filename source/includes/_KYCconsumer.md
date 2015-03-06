@@ -61,7 +61,7 @@ EXAMPLE SERVICE RESPONSE DATA
                 "testPass": true
             },
         ]
-    },
+    }
 }
 ```
 > The response includes detailed result codes and the transaction unique identifier. The keys are fully defined in *Appendix A: Result Keys and Codes*.

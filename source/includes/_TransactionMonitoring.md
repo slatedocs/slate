@@ -21,7 +21,7 @@ EXAMPLE SERVICE REQUEST
 ```json
 { 
   "man" : "jdinh",
-  "soc" : "facebook"
+  "soc" : "facebook",
   "tea" : "james@gmail.com",
   "bc" : "Palo Alto",
   "bco" : "US",
@@ -37,7 +37,7 @@ EXAMPLE SERVICE REQUEST
   "pbc" : "792019bcc…",
   "ptoken"  : "356007XXXXXX000e",
   "dpbc" : "8ad0e8859…",
-  "dptoken"  : "517074XXXXXX000e",
+  "dptoken"  : "517074XXXXXX000e"
 }
 ```
 ```code

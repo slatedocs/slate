@@ -20,9 +20,6 @@ Each owner will be evaluated with the Consumer Application Web Service.  In the 
 ![](http://i.imgur.com/rO16Xdb.png)
 
 #### Arguments
-
-> The response is a JSON encoding of the IdentityMind Service result:
-
 ```code
 EXAMPLE SERVICE RESPONSE DATA
 ```
@@ -35,7 +32,7 @@ EXAMPLE SERVICE RESPONSE DATA
         	"consumerapp001",
         	"consumerapp002",
 	        "consumerapp003"
-    ]
+    ],
 
     "merchantApplicationResponse": {
         "erd": "Bad User",
@@ -68,7 +65,7 @@ EXAMPLE SERVICE RESPONSE DATA
                 "testPass": true
             },
         ]
-    },
+    }
 } 
 ```
 

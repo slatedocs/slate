@@ -437,7 +437,7 @@ eDNA SCORE CARD EXAMPLE
                 "testResult": "0"
             }
         ]
-    },
+}
 ```
 
 	<table>
