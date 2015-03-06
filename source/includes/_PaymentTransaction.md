@@ -7,7 +7,7 @@ The following URL can be used for requesting payment transaction anti-fraud eval
 
 #### Arguments
 
-```code
+```json
 EXAMPLE SERVICE REQUEST
 
 { 
@@ -39,7 +39,7 @@ EXAMPLE SERVICE REQUEST
 
 > The response is a JSON encoding of the IdentityMind Service result:
 
-```code
+```json
 EXAMPLE SERVICE RESPONSE DATA
 
 { 
@@ -590,7 +590,7 @@ The following URL can be used for requesting chargeback notification evaluation:
 
 #### Arguments
 
-```code
+```json
 EXAMPLE SERVICE REQUEST
 
 {
@@ -604,7 +604,7 @@ EXAMPLE SERVICE REQUEST
 
 > The response contains a JSON encoded message or error message:
 
-```code
+```json
 EXAMPLE SERVICE RESPONSE DATA
 
 {
@@ -828,7 +828,7 @@ The following URL can be used for credit notification evaluation:
 
 #### Arguments
 
-```code
+```json
 EXAMPLE SERVICE REQUEST
 
 {
@@ -841,7 +841,7 @@ EXAMPLE SERVICE REQUEST
 
 > The response contains a JSON encoded message or error message:
 
-```code
+```json
 EXAMPLE SERVICE RESPONSE DATA
 
 {
@@ -1008,7 +1008,7 @@ The transaction ID is part of the URL. The "refund-ok" URL should be used when t
 
 #### Arguments
 
-```code
+```json
 EXAMPLE SERVICE REQUEST
 
 {
@@ -1023,7 +1023,7 @@ EXAMPLE SERVICE REQUEST
 
 > The response contains a JSON encoded message or error message:
 
-```code
+```json
 EXAMPLE SERVICE RESPONSE DATA
 
 {
@@ -1115,7 +1115,7 @@ The following URLs are used to notify IdentityMind of the acceptance or rejectio
 
 **Note**: The transaction may be a payment transaction or an account transfer.
 
-```code
+```json
 EXAMPLE SERVICE REQUEST
 
 {
@@ -1128,7 +1128,7 @@ EXAMPLE SERVICE REQUEST
 
 > The response contains a JSON encoded message or error message:
 
-```code
+```json
 EXAMPLE SERVICE RESPONSE DATA
 
 {

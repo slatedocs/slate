@@ -2,8 +2,7 @@
 title: eDNA API Reference
 
 language_tabs:
-  - java
-  - php
+  - json
 
 toc_footers:
   - <a href='http://www.identitymindglobal.com/'>IdentityMind Global</a>
