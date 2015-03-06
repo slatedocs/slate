@@ -15,9 +15,10 @@ Validate an internal transfer between accounts:
 Validate an external transfer (withdrawal) from an account:  
 `POST https://edna.identitymind.com/im/account/transferout`
 
+```code
+EXAMPLE SERVICE REQUEST
+```
 ```json
-EXAMPLE SERVICE REQUEST  
-
 { 
   "man" : "jdinh",
   "soc" : "facebook"
@@ -39,13 +40,10 @@ EXAMPLE SERVICE REQUEST
   "dptoken"  : "517074XXXXXX000e",
 }
 ```
-
-> The response is a JSON encoding of the IdentityMind Service result:
-
-```json
-
+```code
 EXAMPLE SERVICE RESPONSE DATA
-
+```
+```json
 { 
   "res" : "ACCEPT",
   "erd" : "Validated User",

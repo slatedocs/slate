@@ -23,9 +23,10 @@ Each owner will be evaluated with the Consumer Application Web Service.  In the 
 
 > The response is a JSON encoding of the IdentityMind Service result:
 
-```json
+```code
 EXAMPLE SERVICE RESPONSE DATA
-
+```
+```json
 {
     "mtid": "eDNABlackListFail",
     "state": "R",

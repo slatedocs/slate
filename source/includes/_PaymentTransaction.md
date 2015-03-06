@@ -7,9 +7,10 @@ The following URL can be used for requesting payment transaction anti-fraud eval
 
 #### Arguments
 
-```json
+```code
 EXAMPLE SERVICE REQUEST
-
+```
+```json
 { 
   	"amt" : 40,
   	"bc" : "Palo Alto",
@@ -37,12 +38,10 @@ EXAMPLE SERVICE REQUEST
 }
 
 ```
-
-> The response is a JSON encoding of the IdentityMind Service result:
-
-```json
+```code
 EXAMPLE SERVICE RESPONSE DATA
-
+```
+```json
 { 
   "res" : "ACCEPT",
   "tid" : "89",
@@ -590,10 +589,10 @@ The following URL can be used for requesting chargeback notification evaluation:
 `POST https://edna.identitymind.com/im/jax/chargeback/`
 
 #### Arguments
-
-```json
+```code
 EXAMPLE SERVICE REQUEST
-
+```
+```json
 {
      "amt": 250,
      "cbtype": "DEBIT",
@@ -602,17 +601,13 @@ EXAMPLE SERVICE REQUEST
      "tid": "9900040"
 }
 ```
-
-> The response contains a JSON encoded message or error message:
-
-```json
+```code
 EXAMPLE SERVICE RESPONSE DATA
-
+```
+```json
 {
   "message": "credit notification accepted"
 }
-
-or 
 
 {
   "error_message": "A JSONObject text must begin with ‘{‘ at character 1"
@@ -828,10 +823,10 @@ The following URL can be used for credit notification evaluation:
 **Note**: The transaction may either be a payment transaction or an account transfer. 
 
 #### Arguments
-
-```json
+```code
 EXAMPLE SERVICE REQUEST
-
+```
+```json
 {
      "amt": 10.4,
      "pccn": "DNsxhwmQCWeC5gPxTOwPRZlFfx",
@@ -839,17 +834,13 @@ EXAMPLE SERVICE REQUEST
      "tid": "988833" 
 }
 ```
-
-> The response contains a JSON encoded message or error message:
-
-```json
+```code
 EXAMPLE SERVICE RESPONSE DATA
-
+```
+```json
 {
   "message": "credit notification accepted"
 }
-
-or 
 
 {
   "error_message": "A JSONObject text must begin with ‘{‘ at character 1"
@@ -1008,10 +999,10 @@ The transaction ID is part of the URL. The "refund-ok" URL should be used when t
 **Note**: The transaction may be either a payment transaction or an account transfer.
 
 #### Arguments
-
-```json
+```code
 EXAMPLE SERVICE REQUEST
-
+```
+```json
 {
     "amt": 0.25,
     "auth_response": "rejected",
@@ -1021,12 +1012,10 @@ EXAMPLE SERVICE REQUEST
     "tid": "42"
 }
 ```
-
-> The response contains a JSON encoded message or error message:
-
-```json
+```code
 EXAMPLE SERVICE RESPONSE DATA
-
+```
+```json
 {
     "message": "Feedback accepted for REFUND_FRAUD feedback on transaction 42"
 }
@@ -1116,9 +1105,10 @@ The following URLs are used to notify IdentityMind of the acceptance or rejectio
 
 **Note**: The transaction may be a payment transaction or an account transfer.
 
-```json
+```code
 EXAMPLE SERVICE REQUEST
-
+```
+```json
 {
   "auth_code": "T1627H",
   "auth_response_text": "Decline",
@@ -1126,12 +1116,10 @@ EXAMPLE SERVICE REQUEST
   "error_code": "05"
 }
 ```
-
-> The response contains a JSON encoded message or error message:
-
-```json
+```code
 EXAMPLE SERVICE RESPONSE DATA
-
+```
+```json
 {
   "message": "Feedback accepted for ACCEPT feedback on transaction 42"
 }

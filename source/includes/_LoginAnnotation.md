@@ -8,12 +8,12 @@ Annotate a user's transactions with login data:
 `POST https://edna.identitymind.com/im/account/login`
 
 #### Arguments
-
-```json
+```code
 EXAMPLE SERVICE REQUEST
 
 https://edna.identitymind.com/im/account/login   
-
+```
+```json
 { 
   "man" : "jdinh",
   "soc" : "facebook"
@@ -27,9 +27,10 @@ https://edna.identitymind.com/im/account/login
 
 > The response is a JSON encoding of the IdentityMind service result. The response includes detailed result codes and transaction unique identifier. The keys are fully defined in *Appendix A: Result Keys and Codes*.
 
-```json
+```code
 EXAMPLE SERVICE RESPONSE DATA
-
+```
+```json
 { 
   "res" : "ACCEPT",
   "erd" : "Validated User",

@@ -2,7 +2,7 @@
 title: eDNA API Reference
 
 language_tabs:
-  - json
+  - json: JSON
 
 toc_footers:
   - <a href='http://www.identitymindglobal.com/'>IdentityMind Global</a>

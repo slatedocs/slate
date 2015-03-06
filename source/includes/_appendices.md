@@ -257,10 +257,10 @@
 	</table>
 
 #### Out of Wallet Questions Encoding
-
-```json
+```code
 OUT OF WALLET QUESTIONS EXAMPLE
-
+```
+```json
 {
    "questions":[
       {
@@ -334,10 +334,10 @@ OUT OF WALLET QUESTIONS EXAMPLE
 	</table>
 
 #### eDNA Score Card Encoding
-
-```json
+```code
 eDNA SCORE CARD EXAMPLE
-
+```
+```json
 {
  "ednaScoreCard": {
         "tr": [

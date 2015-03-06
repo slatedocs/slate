@@ -13,23 +13,24 @@ The following URLs are used to notify IdentityMind of the acceptance or rejectio
 `POST https://edna.identitymind.com/im/account/merchant/<application_ID>/rejected`
 
 #### Arguments
-
-```json
+```code
 EXAMPLE SERVICE REQUEST
-
+```
+```json
 {
   "reason": "0",
   "description": "I like this application",
 	  "validate": true
 }
-
+```
+```code
 or
 
 {}
 ```
-
-> The response contains a JSON encoded message or error message.
-
+```code
+EXAMPLE SERVICE RESPONSE DATA
+```
 ```json
 {
   "message": "Accepted application"
