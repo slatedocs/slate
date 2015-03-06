@@ -8,7 +8,10 @@ Developer can showing or hiding Navigation Bar, changing title and right navigat
   * `show` function
   * `hide` function
   * `setTitle` function
+  * `setLeftButton` function
   * `setRightButton` function
+  * `setTheme` function
+  * `navigationBar.leftButtonPressed` event
   * `navigationBar.rightButtonPressed` event
 
 ### Functions
@@ -144,6 +147,59 @@ Error Callback. Called when function return error.
 
   * [RBCPromise](#kernel-promise) object
 
+#### setLeftButton
+
+```javascript
+navigationBar.setLeftButton( {title:"Cancel"}, function(info) {  
+    alert("Button updated");  
+}, function (error) {  
+    alert("Failed! code: " + error.code + "\nmessage: " + error.message);  
+});
+```
+
+`navigationBar.setLeftButton( options, successCallback, errorCallback )`
+
+##### Discussion
+
+Sets the Navigation Bar left button.  
+Can showing loading indicator.  
+If no `options` are specified removes the left button.
+
+For Android only icon supported for left button (title and loading has no effect)
+
+##### Arguments
+
+  * `options` optional
+
+Object with key-value. Supported keys:
+
+    * `title`
+
+A String value. String with button title.
+
+    * `icon`
+
+A String value. String with url of icon.
+
+    * `loading`
+
+A Boolean value. If this flag is set to true then application will show
+loading indicator in the space of right button.
+
+  * `succesCallback` optional
+
+Success callback. Called when function finished without errors
+
+Callback parameter is always **null**.
+
+  * `errorCallback` optional
+
+Error Callback. Called when function return error.
+
+##### Return Value
+
+  * [RBCPromise](#kernel-promise) object
+
 #### setRightButton
 
 ```javascript
@@ -195,7 +251,105 @@ Error Callback. Called when function return error.
 
   * [RBCPromise](#kernel-promise) object
 
+#### setTheme
+
+```javascript
+	var options = {};
+
+    var bgColor = '#ffffff';
+
+    if (bgColor != "") {
+
+        if (bgColor.indexOf('#') == 0)
+            bgColor = bgColor.substring(1);
+
+        var bigint = parseInt(bgColor, 16);
+
+        options.color = {
+            r: ((bigint >> 16) & 255),
+            g: ((bigint >> 8) & 255),
+            b: (bigint & 255)
+        }
+
+    }
+
+    var tintColor = '#000000';
+
+    if (tintColor != "") {
+
+        if (tintColor.indexOf('#') == 0)
+            tintColor = tintColor.substring(1);
+
+        var bigint = parseInt(tintColor, 16);
+
+        options.tintColor = {
+            r: ((bigint >> 16) & 255),
+            g: ((bigint >> 8) & 255),
+            b: (bigint & 255)
+        }
+
+    }
+
+    var logoUrl = 'http://mydomain.com/logo.png';
+
+    if (logoUrl != "") {
+        options.logoUrl = logoUrl;
+    }
+
+    navigationBar.setTheme(options).fail(handleError);
+```
+
+`navigationBar.setTheme( options, successCallback, errorCallback )`
+
+##### Discussion
+
+Sets the Navigation Bar theme.  
+If no `options` are specified theme values are set to default.
+
+##### Arguments
+
+  * `options`
+
+Object with key-value. Supported keys:
+
+  * `color` optional
+
+A String value. String with background color.
+
+  * `tintColor` optional
+
+A String value. String with color for text and button icons.
+
+  * `logoUrl`  optional
+
+A String value. String with url for logo image.
+
+  * `succesCallback` optional
+
+Success callback. Called when function finished without errors
+
+Callback parameter is always **null**.
+
+  * `errorCallback` optional
+
+Error Callback. Called when function return error.
+
+##### Return Value
+
+  * [RBCPromise](#kernel-promise) object
+  
+
 ### Events
+
+#### navigationBar.leftButtonPressed
+
+##### Discussion
+
+Event received when user pressed to the left navigation bar button.
+
+##### Callback Arguments
+
+  * No arguments
 
 #### navigationBar.rightButtonPressed
 
