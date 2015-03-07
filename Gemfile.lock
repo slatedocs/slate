@@ -26,11 +26,7 @@ GEM
       sass (>= 3.3.0, < 3.5)
     compass-import-once (1.0.5)
       sass (>= 3.2, < 3.5)
-    em-websocket (0.5.1)
-      eventmachine (>= 0.12.9)
-      http_parser.rb (~> 0.6.0)
     erubis (2.7.0)
-    eventmachine (1.0.4)
     execjs (2.2.2)
     ffi (1.9.6)
     haml (4.0.6)
@@ -39,7 +35,6 @@ GEM
     hitimes (1.2.2)
     hooks (0.4.0)
       uber (~> 0.0.4)
-    http_parser.rb (0.6.0)
     i18n (0.6.11)
     json (1.8.2)
     kramdown (1.5.0)
@@ -73,10 +68,6 @@ GEM
       tilt (~> 1.4.1, < 2.0)
     middleman-gh-pages (0.0.3)
       rake (> 0.9.3)
-    middleman-livereload (3.3.4)
-      em-websocket (~> 0.5.1)
-      middleman-core (~> 3.2)
-      rack-livereload (~> 0.3.15)
     middleman-sprockets (3.4.1)
       middleman-core (>= 3.3)
       sprockets (~> 2.12.1)
@@ -94,8 +85,6 @@ GEM
     padrino-support (0.12.4)
       activesupport (>= 3.1)
     rack (1.6.0)
-    rack-livereload (0.3.15)
-      rack
     rack-test (0.6.3)
       rack (>= 1.0)
     rake (10.4.2)
@@ -137,7 +126,6 @@ PLATFORMS
 DEPENDENCIES
   middleman (~> 3.3.0)
   middleman-gh-pages
-  middleman-livereload (~> 3.3.0)
   middleman-syntax
   rake (~> 10.4.0)
   redcarpet (~> 3.2.1)

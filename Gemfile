@@ -2,7 +2,6 @@ source 'http://rubygems.org'
 
 # Middleman
 gem 'middleman', '~>3.3.0'
-gem 'middleman-livereload', '~> 3.3.0'
 gem 'middleman-gh-pages'
 gem 'middleman-syntax'
 gem 'rouge', '1.7.2'
