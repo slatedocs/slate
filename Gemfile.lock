@@ -125,7 +125,7 @@ PLATFORMS
 
 DEPENDENCIES
   middleman (~> 3.3.10)
-  middleman-gh-pages
+  middleman-gh-pages (~> 0.0.3)
   middleman-syntax
   rake (~> 10.4.0)
   redcarpet (~> 3.2.1)
