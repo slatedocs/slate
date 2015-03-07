@@ -44,22 +44,19 @@ EXAMPLE SERVICE RESPONSE DATA
 	<br>
 	<table>
 		<tr>
-			<th colspan=3>User Account</th>
+			<th colspan=2>User Account</th>
 		</tr>
 		<tr>
 			<th>Key</th>
 			<th>Description</th>
-			<th>Required</th>
 		</tr>
 		<tr>
 			<td>man</td>
-			<td>Free form unique identifier for the account at this merchant. Maximum length is 60 characters.</td>
-			<td>No</td>
+			<td>Free form unique identifier for the account at this merchant. Maximum length is 60 characters.<br><br>Optional</td>
 		</tr>
 		<tr>
 			<td>tea</td>
-			<td>Email address on record. An email address that the merchant is comfortable using to validate access to the account. Maximum length is 60 characters.</td>
-			<td>No</td>
+			<td>Email address on record. An email address that the merchant is comfortable using to validate access to the account. Maximum length is 60 characters.<br><br>Optional</td>
 		</tr>
 		<tr>
 			<td>soc</td>
@@ -70,34 +67,29 @@ EXAMPLE SERVICE RESPONSE DATA
 					<li><code>twitter</code></li>
 					<li><code>yahoo</code></li>
 				</ul>
-			Maximum length is 60 characters.
+			Maximum length is 60 characters.<br><br>Optional
 			</td>
-			<td>No</td>
 		</tr>
 		<tr>
 			<td>clat</td>
-			<td>The current latitude of the customer, specified in decimal degrees. Encoded as a string (e.g. <code>"clat":"37.4419"</code>).</td>
-			<td>No</td>
+			<td>The current latitude of the customer, specified in decimal degrees. Encoded as a string (e.g. <code>"clat":"37.4419"</code>).<br><br>Optional</td>
 		</tr>
 		<tr>
 			<td>clong</td>
-			<td>The current longitude of the customer, specified in decimal degrees. Encoded as a string (e.g. <code>"clong":"-122.1419"</code>).</td>
-			<td>No</td>
+			<td>The current longitude of the customer, specified in decimal degrees. Encoded as a string (e.g. <code>"clong":"-122.1419"</code>).<br><br>Optional</td>
 		</tr>
 
 
 		<tr>
-			<th colspan=3>Device</th>
+			<th colspan=2>Device</th>
 		</tr>
 		<tr>
 			<td>ip</td>
-			<td>The IP address of the client as observed by the merchant</td>
-			<td>No</td>
+			<td>The IP address of the client as observed by the merchant.<br><br>Optional</td>
 		</tr>
 		<tr>
 			<td>dfp</td>
-			<td>Device fingerprint blob. The interpretation of this blob is specified by the value of the <code>dft</code> attribute.</td>
-			<td>No</td>
+			<td>Device fingerprint blob. The interpretation of this blob is specified by the value of the <code>dft</code> attribute.<br><br>Optional</td>
 		</tr>
 		<tr>
 			<td>dft</td>
@@ -105,19 +97,18 @@ EXAMPLE SERVICE RESPONSE DATA
 				<ul type="disc">
 					<li><code>BC</code> - BlueCava</li>
 				</ul>
-			Default is <code>BC</code>
+			Default is <code>BC</code><br>
+			<br>Optional
 			</td>
-			<td>No</td>
 		</tr>
 		<tr>
 			<td>dts</td>
-			<td>Third party service device token and scheme identifier. Contact IdentityMind for detailed format information.</td>
-			<td>No</td>
+			<td>Third party service device token and scheme identifier. Contact IdentityMind for detailed format information.<br><br>Optional</td>
 		</tr>
 
 
 		<tr>
-			<th colspan=3>Transaction</th>
+			<th colspan=2>Transaction</th>
 		</tr>
 		<tr>
 			<td>tti</td>
@@ -125,12 +116,10 @@ EXAMPLE SERVICE RESPONSE DATA
 				<ul type="disc">
 					<li><code>"tti":129887536</code></li>
 					<li><code>"tti":"129887536"</code></li>
-				</ul></td>
-			<td>No</td>
+				</ul><br><br>Optional</td>
 		</tr>
 		<tr>
 			<td>tid</td>
-			<td>Merchant unique identifier for the transaction. eDNA assigns an internal ID if none is provided. The transaction ID must be encoded as a string (e.g. <code>"tid":"123455"</code>). Maximum length is 40 characters.</td>
-			<td>No</td>
+			<td>Merchant unique identifier for the transaction. eDNA assigns an internal ID if none is provided. The transaction ID must be encoded as a string (e.g. <code>"tid":"123455"</code>). Maximum length is 40 characters.<br><br>Optional</td>
 		</tr>
 	</table>
