@@ -10,8 +10,3 @@ gem 'redcarpet', '~> 3.2.1'
 
 gem 'rake', '~> 10.4.0'
 gem 'therubyracer', platforms: :ruby
-
-# Trash
-platforms :mri_18 do
-  gem 'ruby18_source_location'
-end
