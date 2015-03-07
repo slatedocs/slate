@@ -128,6 +128,6 @@ DEPENDENCIES
   middleman-gh-pages (~> 0.0.3)
   middleman-syntax (~> 2.0.0)
   rake (~> 10.4.0)
-  redcarpet (~> 3.2.1)
+  redcarpet (~> 3.2.2)
   rouge (~> 1.8.0)
   therubyracer
