@@ -15,7 +15,7 @@ EXAMPLE SERVICE REQUEST
 ```json
 { 
   "man" : "jdinh",
-  "soc" : "facebook"
+  "soc" : "facebook",
   "tea" : "james@gmail.com",
   "dft" : "BC",
   "dfp" : "1872ABCD129E…",
