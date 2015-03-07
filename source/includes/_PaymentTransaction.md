@@ -62,117 +62,99 @@ EXAMPLE SERVICE RESPONSE DATA
 	<br>
 	<table>
 		<tr>
-			<th colspan=3>Billing Name</th>
+			<th colspan=2>Billing Name</th>
 		</tr>
 		<tr>
 			<th>Key</th>
 			<th>Description</th>
-			<th>Required</th>
 		</tr>
 		<tr>
 			<td>bfn</td>
-			<td>The first name of the billing name. Maximum length is 30 characters.</td>
-			<td>No</td>
+			<td>The first name of the billing name. Maximum length is 30 characters.<br><br><i>Optional</i></td>
 		</tr>
 		<tr>
 			<td>bln</td>
-			<td>The last name of the billing name. Maximum length is 50 characters.</td>
-			<td>No</td>
+			<td>The last name of the billing name. Maximum length is 50 characters.<br><br><i>Optional</i></td>
 		</tr>
 
 
 		<tr>
-			<th colspan=3>Billing Address</th>
+			<th colspan=2>Billing Address</th>
 		</tr>
 		<tr>
 			<td>bsn</td>
-			<td>The billing street address, (e.g. "123 Main Street"). Maximum length is 100 characters.</td>
-			<td>No</td>
+			<td>The billing street address, (e.g. "123 Main Street"). Maximum length is 100 characters.<br><br><i>Optional</i></td>
 		</tr>
 		<tr>
 			<td>bc</td>
-			<td>The billing city. Data truncates to 30 characters.</td>
-			<td>No</td>
+			<td>The billing city. Data truncates to 30 characters.<br><br><i>Optional</i></td>
 		</tr>
 		<tr>
 			<td>bs</td>
-			<td>The billing state. Maximum length is 30 characters.</td>
-			<td>No</td>
+			<td>The billing state. Maximum length is 30 characters.<br><br><i>Optional</i></td>
 		</tr>
 		<tr>
 			<td>bz</td>
-			<td>The billing zip code. Maximum length is 20 characters.</td>
-			<td>No</td>
+			<td>The billing zip code. Maximum length is 20 characters.<br><br><i>Optional</i></td>
 		</tr>
 		<tr>
 			<td>bco</td>
-			<td>ISO 3166 country code of the billing address of the transaction, encoded as a string. Default is <code>US</code>. Maximum length is three characters.</td>
-			<td>No</td>
+			<td>ISO 3166 country code of the billing address of the transaction, encoded as a string. Default is <code>US</code>. Maximum length is three characters.<br><br><i>Optional</i></td>
 		</tr>
 
 
 		<tr>
-			<th colspan=3>Shipping Name</th>
+			<th colspan=2>Shipping Name</th>
 		</tr>
 		<tr>
 			<td>sfn</td>
-			<td>The first name of the shipping name. Maximum length is 30 characters.</td>
-			<td>No</td>
+			<td>The first name of the shipping name. Maximum length is 30 characters.<br><br><i>Optional</i></td>
 		</tr>
 		<tr>
 			<td>sln</td>
-			<td>The last name of the shipping name. Maximum length is 50 characters.</td>
-			<td>No</td>
+			<td>The last name of the shipping name. Maximum length is 50 characters.<br><br><i>Optional</i></td>
 		</tr>
 
 
 		<tr>
-			<th colspan=3>Shipping Address</th>
+			<th colspan=2>Shipping Address</th>
 		</tr>
 		<tr>
 			<td>scomp</td>
-			<td>The name of the company that is being shipped to, if any (e.g. "IdentityMind").</td>
-			<td>No</td>
+			<td>The name of the company that is being shipped to, if any (e.g. "IdentityMind").<br><br><i>Optional</i></td>
 		</tr>
 		<tr>
 			<td>ssn</td>
-			<td>The shipping street address (e.g. "123 Main Street"). Maximum length is 100 characters.</td>
-			<td>No</td>
+			<td>The shipping street address (e.g. "123 Main Street"). Maximum length is 100 characters.<br><br><i>Optional</i></td>
 		</tr>
 		<tr>
 			<td>sc</td>
-			<td>The shipping city. Data truncates to 30 characters.</td>
-			<td>No</td>
+			<td>The shipping city. Data truncates to 30 characters.<br><br><i>Optional</i></td>
 		</tr>
 		<tr>
 			<td>ss</td>
-			<td>The shipping state. Maximum length is 30 characters.</td>
-			<td>No</td>
+			<td>The shipping state. Maximum length is 30 characters.<br><br><i>Optional</i></td>
 		</tr>
 		<tr>
 			<td>sz</td>
-			<td>The shipping zip code. Maximum length is 20 characters.</td>
-			<td>No</td>
+			<td>The shipping zip code. Maximum length is 20 characters.<br><br><i>Optional</i></td>
 		</tr>
 		<tr>
 			<td>sco</td>
-			<td>ISO 3166 country code of the shipping address of the transaction, encoded as a string. Default is <code>US</code>. Maximum length is three characters.</td>
-			<td>No</td>
+			<td>ISO 3166 country code of the shipping address of the transaction, encoded as a string. Default is <code>US</code>. Maximum length is three characters.<br><br><i>Optional</i></td>
 		</tr>
 
 
 		<tr>
-			<th colspan=3>Device</th>
+			<th colspan=2>Device</th>
 		</tr>
 		<tr>
 			<td>ip</td>
-			<td>The IP address of the consumer as seen by the merchant. Maximum length is 40 characters.</td>
-			<td>No</td>
+			<td>The IP address of the consumer as seen by the merchant. Maximum length is 40 characters.<br><br><i>Optional</i></td>
 		</tr>
 		<tr>
 			<td>dfp</td>
-			<td>Device fingerprint blob. The interpretation of this blob is specified by the value of the attribute "dft"</td>
-			<td>No</td>
+			<td>Device fingerprint blob. The interpretation of this blob is specified by the value of the attribute <code>dft</code><br><br><i>Optional</i></td>
 		</tr>
 		<tr>
 			<td>dft</td>
@@ -180,28 +162,24 @@ EXAMPLE SERVICE RESPONSE DATA
 				<ul type="disc">
 					<li><code>BC</code> - BlueCava</li>
 				</ul> 
-			Default is <code>BC</code></td>
-			<td>data</td>
+			Default is <code>BC</code><br><br><i>Optional</i></td>
 		</tr>
 		<tr>
 			<td>blg</td>
-			<td>The configured language of the browser. Typically available in the <code>HTTP_ACCEPT_LANGUAGE</code> header. Values are defined in ISO-639-1.</td>
-			<td>No</td>
+			<td>The configured language of the browser. Typically available in the <code>HTTP_ACCEPT_LANGUAGE</code> header. Values are defined in ISO-639-1.<br><br><i>Optional</i></td>
 		</tr>
 		<tr>
 			<td>dts</td>
-			<td>Third party service device token and scheme ID. Contact IdentityMind for detailed format information.</td>
-			<td>No</td>
+			<td>Third party service device token and scheme ID. Contact IdentityMind for detailed format information.<br><br><i>Optional</i></td>
 		</tr>
 
 
 		<tr>
-			<th colspan=3>Consumer Account</th>
+			<th colspan=2>Consumer Account</th>
 		</tr>
 		<tr>
 			<td>tea</td>
-			<td>Email of the user account. Maximum length is 60 characters.</td>
-			<td>No</td>
+			<td>Email of the user account. Maximum length is 60 characters.<br><br><i>Optional</i></td>
 		</tr>
 		<tr>
 			<td>soc</td>
@@ -213,8 +191,7 @@ EXAMPLE SERVICE RESPONSE DATA
 					<li><code>yahoo</code></li>
 				</ul>
 			Maximum length is 60 characters.
-			</td>
-			<td>No</td>
+			<br><br><i>Optional</i></td>
 		</tr>
 		<tr>
 			<td>acd</td>
@@ -224,66 +201,55 @@ EXAMPLE SERVICE RESPONSE DATA
 					<li><code>"acd":1293887536</code></li>
 					<li><code>"acd":"1293887536"</code></li>
 				</ul>
-			</td>
-			<td>No</td>
+			<br><br><i>Optional</i></td>
 		</tr>
 		<tr>
 			<td>man</td>
-			<td>Consumer account name/identifier. This identifier must uniquely identify the account at the merchant. Maximum length is 60 characters.</td>
-			<td>No</td>
+			<td>Consumer account name/identifier. This identifier must uniquely identify the account at the merchant. Maximum length is 60 characters.<br><br><i>Optional</i></td>
 		</tr>
 		<tr>
 			<td>mem</td>
-			<td>DEPRECATED: <strike>email address associated to the consumer account</strike></td>
-			<td>No</td>
+			<td>DEPRECATED: <strike>email address associated to the consumer account</strike><br><br><i>Optional</i></td>
 		</tr>
 		<tr>
 			<td>memcd</td>
-			<td>The date the account email was last changed</td>
-			<td>No</td>
+			<td>The date the account email was last changed<br><br><i>Optional</i></td>
 		</tr>
 		<tr>
 			<td>ph</td>
-			<td>Registered home phone number associated to the account. Maximum length is 60 characters.</td>
-			<td>No</td>
+			<td>Registered home phone number associated to the account. Maximum length is 60 characters.<br><br><i>Optional</i></td>
 		</tr>
 		<tr>
 			<td>pm</td>
-			<td>Registered mobile phone number associated to the account. Maximum length is 60 characters.</td>
-			<td>No</td>
+			<td>Registered mobile phone number associated to the account. Maximum length is 60 characters.<br><br><i>Optional</i></td>
 		</tr>
 		<tr>
 			<td>clat</td>
-			<td>The current latitude of the customer, specified in decimal degrees. Encoded as a string (e.g. <code>"clat":"37.4419"</code>)</td>
-			<td>No</td>
+			<td>The current latitude of the customer, specified in decimal degrees. Encoded as a string (e.g. <code>"clat":"37.4419"</code>)<br><br><i>Optional</i></td>
 		</tr>
 		<tr>
 			<td>clong</td>
-			<td>The current longitude of the customer, specified in decimal degrees. Encoded as a string (e.g. <code>"clong":"-122.1419"</code>)</td>
-			<td>No</td>
+			<td>The current longitude of the customer, specified in decimal degrees. Encoded as a string (e.g. <code>"clong":"-122.1419"</code>)<br><br><i>Optional</i></td>
 		</tr>
 
 
 		<tr>
-			<th colspan=3>Credit Card</th>
+			<th colspan=2>Credit Card</th>
 		</tr>
 		<tr>
 			<td>pccn</td>
 			<td>Credit Card unique identifier (hash) while obscuring actual number. IdentityMind will supply procedure to generate hash.
 			<br><br>
 			<b>Note</b>: The has must be of the full card number, not a masked or tokenized representation. Maximum length is 128 characters.
-			</td>
-			<td>Yes*</td>
+			<br><br><i>Required*</i></td>
 		</tr>
 		<tr>
 			<td>pcct</td>
-			<td>A masked or tokenized version of the credit card number. IdentityMind will supply procedure to generate token. Maximum length is 64 characters.</td>
-			<td>Yes</td>
+			<td>A masked or tokenized version of the credit card number. IdentityMind will supply procedure to generate token. Maximum length is 64 characters.<br><br><i>Required*</i></td>
 		</tr>
 		<tr>
 			<td>ric</td>
-			<td>The issuer country of the card used in the transaction. The country code is the two letter abbreviation as defined in ISO-3166-1. Maximum length is two characters.</td>
-			<td>No</td>
+			<td>The issuer country of the card used in the transaction. The country code is the two letter abbreviation as defined in ISO-3166-1. Maximum length is two characters.<<br><br><i>Optional</i></td>
 		</tr>
 		<tr>
 			<td>pcty</td>
@@ -295,28 +261,24 @@ EXAMPLE SERVICE RESPONSE DATA
 					<li><code>UNKNOWN</code></li>
 				</ul>
 			Default is <code>UNKNOWN</code>
-			</td>
-			<td>No</td>
+			<br><br><i>Optional</i></td>
 		</tr>
 
 
 		<tr>
-			<th colspan=3>PayPal</th>
+			<th colspan=2>PayPal</th>
 		</tr>
 		<tr>
 			<td>pppi</td>
-			<td>PayPal Payer ID. It corresponds to PayPal's <code>PAYERID</code> field from the PayPal Express Checkout.</td>
-			<td>Yes*</td>
+			<td>PayPal Payer ID. It corresponds to PayPal's <code>PAYERID</code> field from the PayPal Express Checkout.<br><br><i>Required*</i></td>
 		</tr>
 		<tr>
 			<td>pppe</td>
-			<td>Email address associated with the PayPal account. It corresponds to PayPal's <code>EMAIL</code> field from the PayPal Express Checkout.</td>
-			<td>No</td>
+			<td>Email address associated with the PayPal account. It corresponds to PayPal's <code>EMAIL</code> field from the PayPal Express Checkout.<br><br><i>Optional</i></td>
 		</tr>
 		<tr>
 			<td>ppps</td>
-			<td>Whether the user is verified or unverified. It corresponds to PayPal's <code>PAYERSTATUS</code> field from the PayPal Express Checkout.</td>
-			<td>No</td>
+			<td>Whether the user is verified or unverified. It corresponds to PayPal's <code>PAYERSTATUS</code> field from the PayPal Express Checkout.<br><br><i>Optional</i></td>
 		</tr>
 		<tr>
 			<td>pppc</td>
@@ -327,87 +289,76 @@ EXAMPLE SERVICE RESPONSE DATA
 					<li><code>unconfirmed</code></li>
 				</ul>
 			It corresponds to PayPal's <code>PAYMENTREQUEST n ADDRESSSTATUS</code> or <code>ADDRESSSTATUS</code> fields from the PayPal Express Checkout.
-			</td>
-			<td>No</td>
+			<br><br><i>Optional</i></td>
 		</tr>
 
 
 		<tr>
-			<th colspan=3>Google Checkout</th>
+			<th colspan=2>Google Checkout</th>
 		</tr>
 		<tr>
 			<td>gcbi</td>
-			<td>Google Checkout Buyer ID. It corresponds to the <code>buyer-id</code> element.</td>
-			<td>Yes*</td>
+			<td>Google Checkout Buyer ID. It corresponds to the <code>buyer-id</code> element.<br><br><i>Required*</i></td>
 		</tr>
 		<tr>
 			<td>gcem</td>
-			<td>Email address associated to the Google Checkout Account. It corresponds to the <code>email</code> element.</td>
-			<td>No</td>
+			<td>Email address associated to the Google Checkout Account. It corresponds to the <code>email</code> element.<br><br><i>Optional</i></td>
 		</tr>
 		<tr>
 			<td>gcpe</td>
-			<td>Whether the user is eligible for Google's risk information protection. It corresponds to the <code>eligible-for-protection</code>" element in the <code>risk-information</code> API. Accepted value is <code>true</code> or <code>false</code>. Default is <code>false</code>.</td>
-			<td>No</td>
+			<td>Whether the user is eligible for Google's risk information protection. It corresponds to the <code>eligible-for-protection</code>" element in the <code>risk-information</code> API. Accepted value is <code>true</code> or <code>false</code>. Default is <code>false</code>.<br><br><i>Optional</i></td>
 		</tr>
 		<tr>
 			<td>gcba</td>
-			<td>Age associated ot the account. It corresponds to the <code>buyer-account-age</code> element in the <code>risk-information</code> API.</td>
-			<td>No</td>
+			<td>Age associated ot the account. It corresponds to the <code>buyer-account-age</code> element in the <code>risk-information</code> API.<br><br><i>Optional</i></td>
 		</tr>
 
 
 		<tr>
-			<th colspan=3>Generic Financial Account</th>
+			<th colspan=2>Generic Financial Account</th>
 		</tr>
 		<tr>
 			<td>phash</td>
 			<td>Account unique ID (hash) while obscuring actual number. This is used when IdentityMind does not natively support the payment type.
 			<br><br>
-			<b>Note</b>: This hash must be of the full account ID, not a masked or tokenized representation. Maximum length is 128 characters.</td>
-			<td>Yes*</td>
+			<b>Note</b>: This hash must be of the full account ID, not a masked or tokenized representation. Maximum length is 128 characters.<br><br><i>Required*</i></td>
 		</tr>
 		<tr>
 			<td>ptoken</td>
-			<td>A masked or tokenized version of the account token. Maximum length is 64 characters.</td>
-			<td>No</td>
+			<td>A masked or tokenized version of the account token. Maximum length is 64 characters.<br><br><i>Optional</i></td>
 		</tr>
 
 
 		<tr>
-			<th colspan=3>Bitcoin</th>
+			<th colspan=2>Bitcoin</th>
 		</tr>
 		<tr>
 			<td>pbc</td>
-			<td>Bitcoin wallet unique ID (hash). Maximum length is 128 characters.</td>
-			<td>No</td>
+			<td>Bitcoin wallet unique ID (hash). Maximum length is 128 characters.<br><br><i>Optional</i></td>
 		</tr>
 		<tr>
 			<td>ptoken</td>
-			<td>A masked or tokenized version of the account token. Maximum length is 64 characters.</td>
-			<td>No</td>
+			<td>A masked or tokenized version of the account token. Maximum length is 64 characters.<br><br><i>Optional</i></td>
 		</tr>
 
 
 		<tr>
-			<th colspan=3>ACH</th>
+			<th colspan=2>ACH</th>
 		</tr>
 		<tr>
 			<td>pach</td>
 			<td>Hash of the unique identifier for an ACH account
 			<br><br>
-			<b>Note</b>: This hash must be of the full account number, not a masked or tokenized representation. Maximum length is 128 characters.</td>
-			<td>No</td>
+			<b>Note</b>: This hash must be of the full account number, not a masked or tokenized representation. Maximum length is 128 characters.<br><br><i>Optional</i></td>
 		</tr>
 		<tr>
 			<td>ptoken</td>
-			<td>A masked or tokenized version of the account token. Maximum length is 64 characters.</td>
-			<td>No</td>
+			<td>A masked or tokenized version of the account token. Maximum length is 64 characters.<br><br><i>Optional</i></td>
 		</tr>
 
 
 		<tr>
-			<th colspan=3>Transaction</th>
+			<th colspan=2>Transaction</th>
 		</tr>
 		<tr>
 			<td>amt</td>
@@ -416,28 +367,23 @@ EXAMPLE SERVICE RESPONSE DATA
 					<li><code>"amt":"42.00"</code></li>
 					<li><code>"amt":42.00</code></li>
 				</ul>
-			</td>
-			<td>Yes</td>
+			<br><br><i>Required</i></td>
 		</tr>
 		<tr>
 			<td>vg</td>
-			<td>Whether the transaction is associated to a virtual good (<code>true</code>) as opposed to a physical good (<code>false</code>). The default is <code>false</code>.</td>
-			<td>No</td>
+			<td>Whether the transaction is associated to a virtual good (<code>true</code>) as opposed to a physical good (<code>false</code>). The default is <code>false</code>.<br><br><i>Optional</i></td>
 		</tr>
 		<tr>
 			<td>sub</td>
-			<td>Whether the transaction is associated to a subscription service. The default is <code>false</code>.</td>
-			<td>No</td>
+			<td>Whether the transaction is associated to a subscription service. The default is <code>false</code>.<br><br><i>Optional</i></td>
 		</tr>
 		<tr>
 			<td>ccy</td>
-			<td>The ISO 4217 currency code of the transaction encoded as a string. Default is <code>USD</code>. Maximum length is three characters.</td>
-			<td>No</td>
+			<td>The ISO 4217 currency code of the transaction encoded as a string. Default is <code>USD</code>. Maximum length is three characters.<br><br><i>Optional</i></td>
 		</tr>
 		<tr>
 			<td>tid</td>
-			<td>Merchant unique identifier for the transaction. eDNA assigns an internal ID if none provided. The transaction ID must be encoded as a string (e.g. <code>"tid":"123455"</code>). Maximum length is 40 characters.</td>
-			<td>No</td>
+			<td>Merchant unique identifier for the transaction. eDNA assigns an internal ID if none provided. The transaction ID must be encoded as a string (e.g. <code>"tid":"123455"</code>). Maximum length is 40 characters.<br><br><i>Optional</i></td>
 		</tr>
 		<tr>
 			<td>tti</td>
@@ -447,8 +393,7 @@ EXAMPLE SERVICE RESPONSE DATA
 					<li><code>"tti":1293887536</code></li>
 					<li><code>"tti":"1293887536"</code></li>
 				</ul>
-			</td>
-			<td>Yes</td>
+			<br><br><i>Required</i></td>
 		</tr>
 		<tr>
 			<td>smid</td>
@@ -461,8 +406,7 @@ EXAMPLE SERVICE RESPONSE DATA
 			</ul>
 			<br>Maximum length is 255 characters.<br>
 			<b>Note</b>: The value of the smid should not include the apostrophe symbol.
-			</td>
-			<td>No</td>
+			<br><br><i>Optional</i></td>
 		</tr>
 		<tr>
 			<td>smna</td>
@@ -473,13 +417,11 @@ EXAMPLE SERVICE RESPONSE DATA
 					<li><code>"smna":"Acme"</code></li>
 				</ul>
 			<br><br>
-			<b>Note</b>: The value of the smna should not include the apostrophe symbol.</td>
-			<td>No</td>
+			<b>Note</b>: The value of the smna should not include the apostrophe symbol.<br><br><i>Optional</i></td>
 		</tr>
 		<tr>
 			<td>pzip</td>
-			<td>The zip code of the point of sale device at which this transaction is being processed.</td>
-			<td>No</td>
+			<td>The zip code of the point of sale device at which this transaction is being processed.<br><br><i>Optional</i></td>
 		</tr>
 		<tr>
 			<td>moto</td>
@@ -497,53 +439,44 @@ EXAMPLE SERVICE RESPONSE DATA
 				</ul>
 			<br><br>
 			The default is <code>7</code> if this field is not supplied.
-			</td>
-			<td>No</td>
+			<br><br><i>Optional</i></td>
 		</tr>
 		<tr>
 			<td>aflid</td>
-			<td>The affiliate ID associated with this transaction. Encoded as a string. Maximum length is 100 characters.</td>
-			<td>No</td>
+			<td>The affiliate ID associated with this transaction. Encoded as a string. Maximum length is 100 characters.<br><br><i>Optional</i></td>
 		</tr>
 		<tr>
 			<td>aflsd</td>
-			<td>The affiliate signup/creation date associated with this transaction. Either an ISO 8601 encoded string or UNIX timestamp.</td>
-			<td>No</td>
+			<td>The affiliate signup/creation date associated with this transaction. Either an ISO 8601 encoded string or UNIX timestamp.<br><br><i>Optional</i></td>
 		</tr>
 
 
 		<tr>
-			<th colspan=3>Inline Feedback***</th>
+			<th colspan=2>Inline Feedback***</th>
 		</tr>
 		<tr>
 			<td>auth_response</td>
-			<td>Whether the gateway accepted or rejected the transaction.</td>
-			<td>No</td>
+			<td>Whether the gateway accepted or rejected the transaction.<br><br><i>Optional</i></td>
 		</tr>
 		<tr>
 			<td>error_code</td>
-			<td>The error code fields from the authorization request as expressed by the gateway</td>
-			<td>No</td>
+			<td>The error code fields from the authorization request as expressed by the gateway<br><br><i>Optional</i></td>
 		</tr>
 		<tr>
 			<td>auth_response_test</td>
-			<td>Auth comments from the gateway</td>
-			<td>No</td>
+			<td>Auth comments from the gateway<br><br><i>Optional</i></td>
 		</tr>
 		<tr>
 			<td>reason</td>
-			<td>Free-form descriptive text providing addition information about the feedback</td>
-			<td>No</td>
+			<td>Free-form descriptive text providing addition information about the feedback<br><br><i>Optional</i></td>
 		</tr>
 		<tr>
 			<td>avs_result</td>
-			<td>The AVS response code from the gateway</td>
-			<td>No</td>
+			<td>The AVS response code from the gateway<br><br><i>Optional</i></td>
 		</tr>
 		<tr>
 			<td>cvv2_result</td>
-			<td>The CVV22 response code from the gateway</td>
-			<td>No</td>
+			<td>The CVV22 response code from the gateway<br><br><i>Optional</i></td>
 		</tr>
 		<tr>
 			<td>gateway</td>
@@ -563,13 +496,11 @@ EXAMPLE SERVICE RESPONSE DATA
 					<li><code>generic</code> - See <i>Appendix C: Generic Gateway Codes</i></li>
 				</ul>
 			<b>Note</b>: While this field is required, backwards compatibility feedback will not be rejected if not present, but will instead be interpreted as MES gateway data.
-			</td>
-			<td>Yes</td>
+			<br><br><i>Required</i></td>
 		</tr>
 		<tr>
 			<td>auth_code</td>
-			<td>Returned authorization code</td>
-			<td>No</td>
+			<td>Returned authorization code<br><br><i>Optional</i></td>
 		</tr>
 	</table>
 
@@ -616,32 +547,27 @@ EXAMPLE SERVICE RESPONSE DATA
 	<br>
 	<table>
 		<tr>
-			<th colspan=3>Chargeback</th>
+			<th colspan=2>Chargeback</th>
 		</tr>
 		<tr>
 			<th>Key</th>
 			<th>Description</th>
-			<th>Required</th>
 		</tr>
 		<tr>
 			<td>amt</td>
-			<td>Amount of the chargeback</td>
-			<td>Yes</td>
+			<td>Amount of the chargeback<br><br><i>Required</i></td>
 		</tr>
 		<tr>
 			<td>ccy</td>
-			<td>The ISO 4217 currency code of the transaction encoded as a string. Default is <code>USD</code>. Maximum length is three characters.</td>
-			<td>No</td>
+			<td>The ISO 4217 currency code of the transaction encoded as a string. Default is <code>USD</code>. Maximum length is three characters.<br><br><i>Optional</i></td>
 		</tr>
 		<tr>
 			<td>error_code</td>
-			<td>This should be used to pass the reason code for the chargeback. For a full set of reason codes as defined by the card brands, click [here](https://www.merchantconnect.com/CWRWeb/pdf/chargeback_reason_codes.pdf).</td>
-			<td>Yes</td>
+			<td>This should be used to pass the reason code for the chargeback. For a full set of reason codes as defined by the card brands, click [here](https://www.merchantconnect.com/CWRWeb/pdf/chargeback_reason_codes.pdf).<br><br><i>Required</i></td>
 		</tr>
 		<tr>
 			<td>reason</td>
-			<td>Text describing the reason for refund/chargeback</td>
-			<td>No</td>
+			<td>Text describing the reason for refund/chargeback<br><br><i>Optional</i></td>
 		</tr>
 		<tr>
 			<td>cbtype</td>
@@ -653,8 +579,7 @@ EXAMPLE SERVICE RESPONSE DATA
 					<li><code>REVERSAL</code></li>
 				</ul>
 			The default is <code>DEBIT</code> if not provided.
-			</td>
-			<td>No</td>
+			<br><br><i>Optional</i></td>
 		</tr>
 		<tr>
 			<td>cbdate</td>
@@ -664,8 +589,7 @@ EXAMPLE SERVICE RESPONSE DATA
 					<li><code>"cbdate":1293887536</code></li>
 					<li><code>"cbdate":"1293887536"</code></li>
 				</ul>
-			</td>
-			<td>Yes</td>
+			<br><br><i>Required</i></td>
 		</tr>
 		<tr>
 			<td>authdate</td>
@@ -675,8 +599,7 @@ EXAMPLE SERVICE RESPONSE DATA
 					<li><code>"authdate":1293887536</code></li>
 					<li><code>"authdate":"1293887536"</code></li>
 				</ul>
-			</td>
-			<td>No</td>
+			<br><br><i>Optional</i></td>
 		</tr>
 		<tr>
 			<td>gateway</td>
@@ -696,25 +619,22 @@ EXAMPLE SERVICE RESPONSE DATA
 					<li><code>generic</code> - See <i>Appendix C: Generic Gateway Codes</i></li>
 				</ul>
 			<b>Note</b>: While this field is required, backwards compatibility feedback will not be rejected if not present, but will instead be interpreted as MES gateway data. 
-			</td>
-			<td>Yes</td>
+			<br><br><i>Required</i></td>
 		</tr>
 		<tr>
 			<td>tid</td>
-			<td>Merchant unique identifier for the original authorization transaction. The transaction ID must be encoded as a string (e.g. <code>"tid":"123455"</code>). Maximum length is 40 characters.</td>
-			<td>No</td>
+			<td>Merchant unique identifier for the original authorization transaction. The transaction ID must be encoded as a string (e.g. <code>"tid":"123455"</code>). Maximum length is 40 characters.<br><br><i>Optional</i></td>
 		</tr>
 
 
 		<tr>
-			<th colspan=3>Sub Merchant</th>
+			<th colspan=2>Sub Merchant</th>
 		</tr>
 		<tr>
 			<td>smid</td>
 			<td>A unique identifier for the merchant for whom this transaction is being processed.
 			<br><br>
-			<b>Note</b>: The value of the smid should not include the apostrophe symbol. Maximum length is 255 characters.</td>
-			<td>No</td>
+			<b>Note</b>: The value of the smid should not include the apostrophe symbol. Maximum length is 255 characters.<br><br><i>Optional</i></td>
 		</tr>
 
 
@@ -725,18 +645,15 @@ EXAMPLE SERVICE RESPONSE DATA
 			<td>pccn</td>
 			<td>Credit card unique identifier (hash) while obscuring actual number. IdentityMind will supply procedure to generate hash.
 			<br><br>
-			<b>Note</b>: The hash must be of the full card number, not a masked or tokenized representation. Maximum length is 128 characters.</td>
-			<td>Yes, if the provided tid does not refer to a transaction previously processed by eDNA.</td>
+			<b>Note</b>: The hash must be of the full card number, not a masked or tokenized representation. Maximum length is 128 characters.<br><br><i>Required, if hte provided tid does not refer to a transaction previously processed by eDNA.</i></td>>
 		</tr>
 		<tr>
 			<td>pcct</td>
-			<td>A masked or tokenized version of the credit card number. IdentityMind will supply procedure to generate token. Maximum length is 64 characters.</td>
-			<td>Yes, if the provided tid does not refer to a transaction previously processed by eDNA.</td>
+			<td>A masked or tokenized version of the credit card number. IdentityMind will supply procedure to generate token. Maximum length is 64 characters.<br><br><i>Required, if the provided tid does not refer to a transaction previously processed by eDNA</i></td>
 		</tr>
 		<tr>
 			<td>ric</td>
-			<td>The issuer country of the card used in the transaction. The country code is the two letter abbreviation as defined in ISO-3166-1. Maximum length is two characters.</td>
-			<td>No</td>
+			<td>The issuer country of the card used in the transaction. The country code is the two letter abbreviation as defined in ISO-3166-1. Maximum length is two characters.<br><br><i>Optional</i></td>
 		</tr>
 		<tr>
 			<td>pcty</td>
@@ -747,25 +664,21 @@ EXAMPLE SERVICE RESPONSE DATA
 					<li><code>PREPAID</code></li>
 					<li><code>UNKNOWN</code></li>
 				</ul>
-			Default is <code>UNKNOWN</code></td>
-			<td>No</td>
+			Default is <code>UNKNOWN</code><br><br><i>Optional</i></td>
 		</tr>
 		<tr>
 			<td>pccn2</td>
 			<td>Hash of the credit card to which the chargeback amount is to be credited if it is different from the credit card where the chargeback was reported.
 			<br><br>
-			<b>Note</b>: The has must be of the full card number, not a masked or tokenized representation. Maximum length is 128 characters.</td>
-			<td>No</td>
+			<b>Note</b>: The has must be of the full card number, not a masked or tokenized representation. Maximum length is 128 characters.<br><br><i>Optional</i></td>
 		</tr>
 		<tr>
 			<td>pcct2</td>
-			<td>Token of the credit card to which the chargeback amount is to be credited if it is different from the credit card where the chargeback was reported. Maximum length is 64 characters.</td>
-			<td>No</td>
+			<td>Token of the credit card to which the chargeback amount is to be credited if it is different from the credit card where the chargeback was reported. Maximum length is 64 characters.<br><br><i>Optional</i></td>
 		</tr>
 		<tr>
 			<td>ric2</td>
-			<td>The issuer country of the credit card to which the chargeback amount is to be credited if it is different from the credit card where the chargeback was reported. The country code is the two letter abbreviation as defined in ISO-3166-1. Maximum length is two characters.</td>
-			<td>No</td>
+			<td>The issuer country of the credit card to which the chargeback amount is to be credited if it is different from the credit card where the chargeback was reported. The country code is the two letter abbreviation as defined in ISO-3166-1. Maximum length is two characters.<br><br><i>Optional</i></td>
 		</tr>
 		<tr>
 			<td>pcty2</td>
@@ -776,38 +689,33 @@ EXAMPLE SERVICE RESPONSE DATA
 					<li><code>PREPAID</code></li>
 					<li><code>UNKNOWN</code></li>
 				</ul>
-			Default is <code>UNKNOWN</code></td>
-			<td>No</td>
+			Default is <code>UNKNOWN</code><br><br><i>Optional</i></td>
 		</tr>
 
 
 		<tr>
-			<th colspan=3>PayPal</th>
+			<th colspan=2>PayPal</th>
 		</tr>
 		<tr>
 			<td>pppi</td>
-			<td>PayPal Payer ID. It corresponds to PayPal's <code>PAYERID</code> field from PayPal Express Checkout.</td>
-			<td>Yes, if the provided tid does not refer to a transaction previously processed by eDNA.</td>
+			<td>PayPal Payer ID. It corresponds to PayPal's <code>PAYERID</code> field from PayPal Express Checkout.<br><br><i>Required, if the provided tid does not refer to a transaction previously processed by eDNA</i></td>
 		</tr>
 		<tr>
 			<td>pppe</td>
-			<td>Email address associated to the PayPal account. It corresponds to PayPal's <code>EMAIL</code> field from PayPal Express Checkout.</td>
-			<td>No</td>
+			<td>Email address associated to the PayPal account. It corresponds to PayPal's <code>EMAIL</code> field from PayPal Express Checkout.<br><br><i>Optional</i></td>
 		</tr>
 
 
 		<tr>
-			<th colspan=3>Google Checkout</th>
+			<th colspan=2>Google Checkout</th>
 		</tr>
 		<tr>
 			<td>gcbi</td>
-			<td>Google Checkout Buyer ID. It corresponds to the <code>buyer-id</code> element.</td>
-			<td>Yes, if the provided tid does not refer to a transaction previously processed by eDNA.</td>
+			<td>Google Checkout Buyer ID. It corresponds to the <code>buyer-id</code> element.<br><br><i>Required, if the provided tid does not refer to a transaction previously processed by eDNA</i></td>
 		</tr>
 		<tr>
 			<td>gcem</td>
-			<td>Email address associated to the Google Checkout account. It corresponds to the <code>email</code> element.</td>
-			<td>No</td>
+			<td>Email address associated to the Google Checkout account. It corresponds to the <code>email</code> element.<br><br><i>Optional</i></td>
 		</tr>
 	</table>
 
@@ -849,27 +757,23 @@ EXAMPLE SERVICE RESPONSE DATA
 	<br>
 	<table>
 		<tr>
-			<th colspan=3>Credit</th>
+			<th colspan=2>Credit</th>
 		</tr>
 		<tr>
 			<th>Key</th>
 			<th>Description</th>
-			<th>Required</th>
 		</tr>
 		<tr>
 			<td>amt</td>
-			<td>Amount of the credit</td>
-			<td>Yes</td>
+			<td>Amount of the credit<br><br><i>Required</i></td>
 		</tr>
 		<tr>
 			<td>ccy</td>
-			<td>The ISO 4217 currency code of the transaction encoded as a string. Default is <code>USD</code>. Maximum length is three characters.</td>
-			<td>No</td>
+			<td>The ISO 4217 currency code of the transaction encoded as a string. Default is <code>USD</code>. Maximum length is three characters.<br><br><i>Optional</i></td>
 		</tr>
 		<tr>
 			<td>reason</td>
-			<td>Text describing the reason for the credit</td>
-			<td>No</td>
+			<td>Text describing the reason for the credit<br><br><i>Optional</i></td>
 		</tr>
 		<tr>
 			<td>crdate</td>
@@ -879,47 +783,41 @@ EXAMPLE SERVICE RESPONSE DATA
 					<li><code>"crdate":1293887536</code></li>
 					<li><code>"crdate":"1293887536"</code></li>
 				</ul>
-			</td>
-			<td>Yes</td>
+			<br><br><i>Required</i></td>
 		</tr>
 		<tr>
 			<td>tid</td>
 			<td>Merchant unique identifier for the original authorization transaction. The transaction ID must be encoded as a string (e.g. <code>"tid":"123455"</code>). Maximum length is 40 characters.
-			</td>
-			<td>No</td>
+			<br><br><i>Optional</i></td>
 		</tr>
 
 
 		<tr>
-			<th colspan=3>Sub Merchant</th>
+			<th colspan=2>Sub Merchant</th>
 		</tr>
 		<tr>
 			<td>smid</td>
-			<td>A unique identifier for the merchant for whom this transaction is being processed. Maximum length is 255 characters.</td>
-			<td>No</td>
+			<td>A unique identifier for the merchant for whom this transaction is being processed. Maximum length is 255 characters.<br><br><i>Optional</i></td>
 		</tr>
 
 
 		<tr>
-			<th colspan=3>Credit Card</th>
+			<th colspan=2>Credit Card</th>
 		</tr>
 		<tr>
 			<td>pccn</td>
 			<td>Credit card unique identifier (hash) while obscuring actual number. IdentityMind will supply procedure to generate the hash.
 			<br><br>
 			<b>Note</b>: The hash must be of the full card number, not a masked or tokenized representation. Maximum length is 128 characters.
-			</td>
-			<td>Yes</td>
+			<br><br><i>Required</i></td>
 		</tr>
 		<tr>
 			<td>pcct</td>
-			<td>A masked or tokenized version of the credit card number. IdentityMind will supply procedure to generate the token. Maximum length is 64 characters.</td>
-			<td>No</td>
+			<td>A masked or tokenized version of the credit card number. IdentityMind will supply procedure to generate the token. Maximum length is 64 characters.<br><br><i>Optional</i></td>
 		</tr>
 		<tr>
 			<td>ric</td>
-			<td>The issuer country of the card used in the transaction. The country code is the two letter abbreviation as defined in ISO-3166-1. Maximum length is two characters.</td>
-			<td>No</td>
+			<td>The issuer country of the card used in the transaction. The country code is the two letter abbreviation as defined in ISO-3166-1. Maximum length is two characters.<br><br><i>Optional</i></td>
 		</tr>
 		<tr>
 			<td>pcty</td>
@@ -930,23 +828,20 @@ EXAMPLE SERVICE RESPONSE DATA
 					<li><code>PREPAID</code></li>
 					<li><code>UNKNOWN</code></li>
 				</ul>
-			Default is <code>UNKNOWN</code></td>
-			<td>No</td>
+			Default is <code>UNKNOWN</code><br><br><i>Optional</i></td>
 		</tr>
 
 
 		<tr>
-			<th colspan=3>PayPal</th>
+			<th colspan=2>PayPal</th>
 		</tr>
 		<tr>
 			<td>pppi</td>
-			<td>PayPal Payer ID. It corresponds to PayPal's <code>PAYERID</code> field from PayPal Express Checkout.</td>
-			<td>Yes</td>
+			<td>PayPal Payer ID. It corresponds to PayPal's <code>PAYERID</code> field from PayPal Express Checkout.<br><br><i>Required</i></td>
 		</tr>
 		<tr>
 			<td>pppe</td>
-			<td>Email address associated to the PayPal account. It corresponds to PayPal's <code>EMAIL</code> field from the PayPal Express Checkout</td>
-			<td>No</td>
+			<td>Email address associated to the PayPal account. It corresponds to PayPal's <code>EMAIL</code> field from the PayPal Express Checkout<br><br><i>Optional</i></td>
 		</tr>
 
 
@@ -955,13 +850,11 @@ EXAMPLE SERVICE RESPONSE DATA
 		</tr>
 		<tr>
 			<td>gcbi</td>
-			<td>Google Checkout Buyer ID. It corresponds to the <code>buyer-id</code> element.</td>
-			<td>Yes</td>
+			<td>Google Checkout Buyer ID. It corresponds to the <code>buyer-id</code> element.<br><br><i>Required</i></td>
 		</tr>
 		<tr>
 			<td>gcem</td>
-			<td>Email address associated to the Google Checkout account. It corresponds to the <code>email</code> element.</td>
-			<td>No</td>
+			<td>Email address associated to the Google Checkout account. It corresponds to the <code>email</code> element.<br><br><i>Optional</i></td>
 		</tr>
 
 
@@ -972,13 +865,11 @@ EXAMPLE SERVICE RESPONSE DATA
 			<td>phash</td>
 			<td>Account unique identifier (hash) while obscuring actual number. This is used when IdentityMind does not natively support the payment type.
 			<br><br>
-			<b>Note</b>: The hash must be of the full account number, not a masked or tokenized representation. Maximum length is 128 characters.</td>
-			<td>Yes</td>
+			<b>Note</b>: The hash must be of the full account number, not a masked or tokenized representation. Maximum length is 128 characters.<br><br><i>Required</i></td>
 		</tr>
 		<tr>
 			<td>ptoken</td>
-			<td>A masked or tokenized version of the account token. Maximum length is 64 characters.</td>
-			<td>No</td>
+			<td>A masked or tokenized version of the account token. Maximum length is 64 characters<br><br><i>Optional</i></td>
 		</tr>
 	</table>
 
@@ -1025,32 +916,26 @@ EXAMPLE SERVICE RESPONSE DATA
 		<tr>
 			<th>Key</th>
 			<th>Description</th>
-			<th>Required</th>
 		</tr>
 		<tr>
 			<td>amt</td>
-			<td>Amount of the refund/chargeback</td>
-			<td>No</td>
+			<td>Amount of the refund/chargeback<br><br><i>Optional</i></td>
 		</tr>
 		<tr>
 			<td>auth_response</td>
-			<td>Response code from the gateway</td>
-			<td>No</td>
+			<td>Response code from the gateway<br><br><i>Optional</i></td>
 		</tr>
 		<tr>
 			<td>auth_response_text</td>
-			<td>Text describing response code</td>
-			<td>No</td>
+			<td>Text describing response code<br><br><i>Optional</i></td>
 		</tr>
 		<tr>
 			<td>error_code</td>
-			<td>Error code from the gateway, if any</td>
-			<td>No</td>
+			<td>Error code from the gateway, if an<br><br><i>Optional</i></td>
 		</tr>
 		<tr>
 			<td>reason</td>
-			<td>Text describing reason for refund/chargeback</td>
-			<td>No</td>
+			<td>Text describing reason for refund/chargeback<br><br><i>Optional</i></td>
 		</tr>
 		<tr>
 			<td>bank_status</td>
@@ -1065,13 +950,11 @@ EXAMPLE SERVICE RESPONSE DATA
 					<li><code>u</code> - unknown</li>
 				</ul>
 			Default is <code>u</code>
-			</td>
-			<td>No</td>
+			<br><br><i>Optional</i></td>
 		</tr>
 		<tr>
 			<td>tid</td>
-			<td>Transaction ID. Maximum length is 40 characters.</td>
-			<td>No</td>
+			<td>Transaction ID. Maximum length is 40 characters.<<br><br><i>Optional</i></td>
 		</tr>
 	</table>
 
@@ -1129,37 +1012,30 @@ EXAMPLE SERVICE RESPONSE DATA
 		<tr>
 			<th>Key</th>
 			<th>Description</th>
-			<th>Required</th>
 		</tr>
 		<tr>
 			<td>auth_response</td>
-			<td>Whether the gateway accepted or rejected the transaction</td>
-			<td>No</td>
+			<td>Whether the gateway accepted or rejected the transaction<br><br><i>Optional</i></td>
 		</tr>
 		<tr>
 			<td>error_code</td>
-			<td>The error code fields from the authorization request as expressed by the gateway</td>
-			<td>No</td>
+			<td>The error code fields from the authorization request as expressed by the gateway<br><br><i>Optional</i></td>
 		</tr>
 		<tr>
 			<td>auth_response_text</td>
-			<td>Auth comments from the gateway</td>
-			<td>No</td>
+			<td>Auth comments from the gateway<br><br><i>Optional</i></td>
 		</tr>
 		<tr>
 			<td>reason</td>
-			<td>Free-form descriptive text providing additional information about the feedback</td>
-			<td>No</td>
+			<td>Free-form descriptive text providing additional information about the feedback<br><br><i>Optional</i></td>
 		</tr>
 		<tr>
 			<td>avs_result</td>
-			<td>The AVS response code from the gateway</td>
-			<td>No</td>
+			<td>The AVS response code from the gateway<br><br><i>Optional</i></td>
 		</tr>
 		<tr>
 			<td>cvv2_result</td>
-			<td>The CVV2 response code from the gateway</td>
-			<td>No</td>
+			<td>The CVV2 response code from the gateway<br><br><i>Optional</i></td>
 		</tr>
 		<tr>
 			<td>gateway</td>
@@ -1178,13 +1054,11 @@ EXAMPLE SERVICE RESPONSE DATA
 					<li><code>INTERAC</code> - Interac</li>
 					<li><code>generic</code> - See <i>Appendix C: Generic Gateway Codes</i></li>
 				</ul>
-			<b>Note</b>: While this field is required, backwards compatibility feedback will not be rejected if not present, but will instead be interpreted as MES gateway data.</td>
-			<td>No</td>
+			<b>Note</b>: While this field is required, backwards compatibility feedback will not be rejected if not present, but will instead be interpreted as MES gateway data.<br><br><i>Optional</i></td>
 		</tr>
 		<tr>
 			<td>auth_code</td>
-			<td>Returned authorization code</td>
-			<td>No</td>
+			<td>Returned authorization code<br><br><i>Optional</i></td>
 		</tr>
 		<tr>
 			<td>bank_status</td>
@@ -1198,7 +1072,6 @@ EXAMPLE SERVICE RESPONSE DATA
 					<li><code>b</code> - chargeback</li>
 					<li><code>u</code> - unknown</li>
 				</ul>
-			Default is <code>u</code>
-			<td>No</td>
+			Default is <code>u</code><br><br><i>Optional</i></td>
 		</tr>
 	</table>
