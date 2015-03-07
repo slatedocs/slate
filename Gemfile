@@ -12,7 +12,6 @@ gem 'rake', '~> 10.4.0'
 gem 'therubyracer', platforms: :ruby
 
 # Trash
-gem 'wdm', '~> 0.1.0', :platforms => [:mswin, :mingw]
 platforms :mri_18 do
   gem 'ruby18_source_location'
 end

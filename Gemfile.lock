@@ -145,4 +145,3 @@ DEPENDENCIES
   rouge (= 1.7.2)
   ruby18_source_location
   therubyracer
-  wdm (~> 0.1.0)
