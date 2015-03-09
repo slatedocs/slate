@@ -1,4 +1,5 @@
 (function (global) {
+  'use strict';
 
   var $global = $(global);
   var content, darkBox, searchResults;

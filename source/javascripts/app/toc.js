@@ -1,4 +1,5 @@
 (function (global) {
+  'use strict';
 
   var closeToc = function() {
     $(".tocify-wrapper").removeClass('open');
