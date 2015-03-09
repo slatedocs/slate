@@ -66,17 +66,15 @@ EXAMPLE SERVICE RESPONSE DATA
 	<br>
 	<table>
 		<tr>
-			<th colspan=3>User Account</th>
+			<th colspan=2>User Account</th>
 		</tr>
 		<tr>
 			<th>Key</th>
 			<th>Description</th>
-			<th>Required</th>
 		</tr>
 		<tr>
 			<td>man</td>
-			<td>Free form unique identifier for the account at this merchant. Maximum length is 60 characters.</td>
-			<td>No</td>
+			<td>Free form unique identifier for the account at this merchant. Maximum length is 60 characters.<br><br><i>Optional</i></td>
 		</tr>
 		<tr>
 			<td>tea</td>
