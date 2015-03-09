@@ -13,7 +13,7 @@ includes:
   - TransactionMonitoring
   - KYCmerchant
   - KYCconsumer
-  - FinalApplicationResult
+  - KYCFinalApplicationResult
   - LoginAnnotation
   - appendices
 
