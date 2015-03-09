@@ -1,0 +1,137 @@
+# Introduction
+
+> **API Endpoint:** `https://api.viagogo.net`
+
+The official viagogo API v2 connects your website or application with the world's largest ticket marketplace. All API access is over HTTPS, and accessed from the `api.viagogo.net` domain. Request and response payloads are formatted as `application/hal+json`, which is basically just plain old JSON with hyperlinks (see [HAL](#hypertext-application-language)).
+
+[OAuth2](http://oauth.net/2/) is used for all authentication. All API requests must be authenticated or you will receive a `401 Unauthorized` error response (see [Authentication](#authentication)).
+
+
+## Root Endpoint
+
+<%= curl('GET', 'https://api.viagogo.net/v2') %>
+
+```csharp
+var api = new ViagogoClient("clientId", "clientSecret", "MyAwesomeApp");
+var root = await api.Root.GetAsync();
+```
+
+<%= json(:root) %>
+
+The viagogo API v2 is an explorable API that uses hyperlinks to guide applications between resources. You can issue a `GET` request to the root endpoint of the API to get the root resource that links to all other API resources.
+
+### HTTP Request
+
+`GET https://api.viagogo.net/v2`
+
+## Hypertext Application Language
+
+The API uses [Hypertext Application Language (HAL)](http://stateless.co/hal_specification.html) to hyperlink between resources. HAL is a simple format that provides a set of conventions for expressing hyperlinks in JSON - it's basically just plain old JSON with hyperlinks! All viagogo API resources are represented using the `application/hal+json` Content-Type.
+
+One of the main advantages of using a media-type that supports hyperlinks is that the API responses are able to better describe the current state of a resource by using links to represent the possible actions available on that resource. This should reduce (or hopefully remove) the need for your applications to implement logic for managing the various states of a resource.
+
+
+## HTTP Methods
+
+Where possible, API v2 strives to use appropriate [HTTP methods](http://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html) for each action.
+
+| **Method** | **Description** |
+| ---------- | --------------- |
+| `GET` | Used for retrieving resources. |
+| `POST` | Used for creating resources. |
+| `PATCH` | Used for updating resources with partial JSON data. |
+| `PUT` | Used for replacing resources |
+| `DELETE` | Used for deleting resources. |
+
+
+## HTTP Status Codes
+
+API v2 attempts to return appropriate [HTTP status codes](http://en.wikipedia.org/wiki/List_of_HTTP_status_codes) for every request.
+
+| **Code** | **Description** |
+| -------- | --------------- |
+| `200 OK` | Success! |
+| `201 Created` | The request succeeded and resulted in a new resource being created. The Location header of the response contains the URI of the new resource. |
+| `202 Accepted` | The request has been accepted for processing, but processing has not been completed. |
+| `204 No Content` | The request succeeded but the server is not returning any content. This is the response for most DELETE requests. |
+| `400 Bad Request` | The request was invalid or cannot be otherwise served. An accompanying error message will explain further. |
+| `401 Unauthorized` | Authentication credentials were missing or incorrect. |
+| `403 Forbidden` | The request is understood, but it has been refused or access is not allowed. An accompanying error message will explain why. |
+| `404 Not Found` | The URI requested is invalid or the resource requested, such as an event, does not exist. |
+| `405 Method Not Allowed` | A request was made of a resource using a request method not supported by that resource. |
+| `409 Conflict` | The request could not be processed because of a conflict change in the request, such as an edit conflict in the case of multiple updates. |
+| `429 Too Many Requests` | The client sent too many requests in a given amount of time and has been rate-limited. |
+| `500 Internal Server Error` | Something is broken. Please email [support](#) so that the viagogo team can investigate. |
+
+
+## Error Responses
+
+<%= json(:validation_error, 'An error might look like this:') %>
+
+When the viagogo API returns error messages, it includes a specific error code and possibly a localized error message that can be displayed to a user.
+
+### Error Codes
+
+| **Code** | **Status Code** | **Description** |
+| -------- | --------------- | --------------- |
+| `https_required` | `400` | The request is not using an SSL connection. |
+| `user_agent_required` | `400` | The request does not include a valid User-Agent header. |
+| `invalid_request_body` | `400` | This request does not include a valid JSON body. |
+| `insufficient_scope` | `403` | The access token used in the request does not have the scope required to access this resource. |
+| `validation_failed` | `400` | The request data is not valid. `errors` will contain an object with a localized message that describes the validation error for each property of the data. |
+| `invalid_purchase_action` | `403` | The request is attempting perform an operation on a purchase that does not currently support that action. |
+| `purchase_not_allowed` | `403` | The request is attempting to purchase tickets that cannot be purchased. |
+| `listing_conflict` | `409` | The request is attempting to purchase tickets that have been modified or are no longer available. |
+| `purchase_still_processing` | `500` | There was an error while purchasing the tickets but we are still processing the order. |
+| `invalid_delete` | `403` | The request is attempting to delete a resource that cannot be deleted. |
+| `internal_server_error` | `500` | Something is broken. Please contact [support](#) |
+
+
+## Pagination
+
+Requests that return multiple results will be paginated to 100 items by default. You can use the `page` parameter to specify which page of data to retrieve. You can use `page_size` parameter to set custom page sizes on the API responses. API responses return pre-built pagination links with rels `first`, `prev`, `next` and `last` and client applications are encouraged to follow these links for pagination.
+
+`GET https://api.viagogo.net/v2/addresses?page=1&page_size=30`
+
+Note that page numbering is 1-based and that omitting the `page` parameter will return the first page.
+
+### Sorting
+
+Paginated results can be sorted according to one of more criteria using the `sort` param. Clients can specify sort criteria as a comma-separated list of the names of fields that should be used to sort. The default sort order is ascending but a *-* prefix on any sort field specifies a descending sort order.
+
+`GET https://api.viagogo.net/v2/categories/1124/events?sort=start_date,-ticket_price`
+
+The example request above sorts results by `start_date` ascending and then by `ticket_price` descending.
+
+
+## User Agent Header
+
+<%= json(:user_agent_error, %(Invalid `User-Agent` header:)) %>
+
+All API requests **must** include a valid `User-Agent` header. Requests with no `User-Agent` header will be rejected. If you provide an invalid `User-Agent` header, you will receive a `403 Forbidden` response.
+
+
+## Accept-Language Header
+
+The `Accept-Language` header can be used to determine the language of the API response content (e.g. event names and error messages). Content will be returned in English if no `Accept-Language` header is provided, or viagogo does not currently support the requested language codes.
+
+`Accept-Language: da, en-gb;q=0.8, en;q=0.7`
+
+In the example header above, the request is specifying "I prefer Danish, but will accept British English and other types of English." See more information about the [Accept-Language header](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.4).
+
+
+## Accept-Currency Header
+
+The `Accept-Currency` header can be used to determine the currency of responses that include monetary values. For example, [Listing](/browse/listings/) resources have a `ticket_display_price` property that gives the price-per-ticket in the currency requested by the application. The value of the `Accept-Currency` header should be a three-letter currency code as defined by [ISO 4217](http://en.wikipedia.org/wiki/ISO_4217).
+
+`Accept-Currency: eur`
+
+In the example above, the request is specifying that it would like to receive monetary values in Euros where possible.
+
+## VGG-Country Header
+
+Applications can include the `VGG-Country` header to change the geography-context of requests. Each domain of the viagogo website is referred to as a _geography_ that has its own category-structure and language, currency and content defaults. The value of the `VGG-Country` header should be a two-letter country code as defined by [ISO 3166](http://en.wikipedia.org/wiki/ISO_3166-1). If an application does not provide a `VGG-Country` header then the API will default to the _US_ geography (www.viagogo.com).
+
+`VGG-Country: FR`
+
+In the example above, the application is specifying that it would like make requests in the French geography (as if the client were using the www.viagogo.fr website).
