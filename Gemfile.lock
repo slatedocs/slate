@@ -43,7 +43,7 @@ GEM
     http_parser.rb (0.6.0)
     i18n (0.6.11)
     json (1.8.2)
-    kramdown (1.5.0)
+    kramdown (1.6.0)
     libv8 (3.16.14.7)
     listen (2.8.5)
       celluloid (>= 0.15.2)
@@ -103,9 +103,8 @@ GEM
     rb-fsevent (0.9.4)
     rb-inotify (0.9.5)
       ffi (>= 0.5.0)
-    redcarpet (3.2.2)
     ref (1.0.5)
-    rouge (1.7.2)
+    rouge (1.8.0)
     ruby18_source_location (0.2)
     sass (3.4.9)
     sprockets (2.12.3)
@@ -132,6 +131,7 @@ GEM
     uglifier (2.7.0)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
+    wdm (0.1.0)
 
 PLATFORMS
   ruby
@@ -139,12 +139,13 @@ PLATFORMS
 
 DEPENDENCIES
   json (~> 1.8.2)
+  kramdown (~> 1.6.0)
   middleman (~> 3.3.0)
   middleman-gh-pages
   middleman-livereload (~> 3.3.0)
   middleman-syntax
   rake (~> 10.4.0)
-  redcarpet (~> 3.2.1)
-  rouge (= 1.7.2)
+  rouge (~> 1.8.0)
   ruby18_source_location
   therubyracer
+  wdm

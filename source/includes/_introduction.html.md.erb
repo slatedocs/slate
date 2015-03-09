@@ -11,10 +11,10 @@ The official viagogo API v2 connects your website or application with the world'
 
 <%= curl('GET', 'https://api.viagogo.net/v2') %>
 
-```csharp
+~~~ csharp
 var api = new ViagogoClient("clientId", "clientSecret", "MyAwesomeApp");
 var root = await api.Root.GetAsync();
-```
+~~~
 
 <%= json(:root) %>
 

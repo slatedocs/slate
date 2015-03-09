@@ -9,7 +9,7 @@ module ResourceHelpers
   end
 
   def write_json(resource, text)
-    "> #{text}\n\n" << "```json\n#{JSON.pretty_generate(resource)}\n```"
+    "> #{text}\n\n" << "~~~ json\n#{JSON.pretty_generate(resource)}\n~~~"
   end
 
   def get_resource(key)

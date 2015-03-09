@@ -1,0 +1,101 @@
+# Authentication
+
+The viagogo API uses [OAuth2](http://oauth.net/2/) for all authentication. OAuth2 is a protocol that lets external applications access public viagogo resources and private viagogo user details without getting their password.
+
+All developers need to [register their application](#) before getting started. Registered applications are assigned a unique Client ID and Client Secret that are required for authentication.
+
+<aside class="notice">
+  <strong>Tokens are passwords.</strong>
+  <p>Keep in mind that your application's Client ID and Client Secret and all access tokens should be considered as sensitive as passwords and should not be shared.</p>
+</aside>
+
+<aside class="notice">
+  <strong>SSL absolutely required</strong>
+  <p>OAuth2 is only secure if it is used over SSL so all requests to authentication and API endpoints must use HTTPs.</p>
+</aside>
+
+
+## Getting Access Tokens
+
+In order to make authenticated requests to the viagogo API, your application must first obtain an OAuth access token. The way you obtain an access token depends on your use case.
+
+| **If you...** | **Use...** |
+| ------------- | ---------- |
+| Want to access public data like categories, events and listings... | [Client Credentials Grant](/getting-started/authentication#client-credentials-grant) |
+
+
+## Client Credentials Grant
+
+Applications can use the client credentials grant to get an access token that will provide access to public, non-user-specific data (events, listings, etc).
+
+~~~ shell
+curl -X POST "https://www.viagogo.co.uk/secure/oauth2/token"
+  -u "clientId:clientSecret" --basic
+  -H "Content-Type: application/x-www-form-urlencoded"
+  -d "grant_type=client_credentials"
+~~~
+
+~~~ csharp
+var api = new ViagogoClient("clientId", "clientSecret", "MyAwesomeApp");
+var token = await api.OAuth2.GetClientCredentialsAccessTokenAsync();
+~~~
+
+### 1. Create a Basic Authorization header
+
+* URL encode your application's client id and client secret according to [RFC 1738](http://www.ietf.org/rfc/rfc1738.txt)
+* Concatenate the encoded client id, a colon character “:” and the encoded consumer secret into a single string
+* Base64 encode the string from the previous step
+
+<%= json(:client_credentials_token) %>
+
+### 2. Obtain an access token
+
+* The value calculated in [Step 1](#create-a-basic-authorization-header) must be exchanged for an access token:
+
+### HTTP Request
+
+`POST https://www.viagogo.co.uk/secure/oauth2/token`
+
+### Headers
+
+| **Name** | **Value** |
+| -------- | --------- |
+| `Authorization` | Basic {value from step 1} |
+| `Content-Type` | `application/x-www-form-urlencoded` |
+
+### Parameters
+
+| **Name** | **Type** | **Description** |
+| -------- | -------- | --------------- |
+| `grant_type` | `string` | *Required*. Value should be `client_credentials` |
+| `scope` | `string` | Space-delimited string of the [scopes](#scopes) you would like. |
+
+
+## Authenticating API requests with Access Tokens
+
+<%= curl('GET', 'https://api.viagogo.net/v2/search?query=lady%20gaga') %>
+
+~~~ csharp
+var tokenStore = new InMemoryOAuth2TokenStore();
+await tokenStore.SetTokenAsync(token);
+var api = new ViagogoClient("clientId",
+                            "clientSecret",
+                            new ProductHeaderValue("MyAwesomeApp", "1.0"),
+                            GogoKit.Configuration.Configuration.Default,
+                            tokenStore);
+var genres = await api.Search.GetAllAsync("lady gaga");
+~~~
+
+Access tokens should be included in a `Bearer` authorization header when making API requests.
+
+
+## Scopes
+
+Scopes allow your applications to specify exactly what type of access is needed.
+
+| **Name** | **Description** |
+| -------- | --------------- |
+| `(no scope)` | Grants read-only access to public information like events, listings. |
+| `read:user` | Grants read access to the user’s account information, addresses, payment methods and purchases. |
+| `write:user` | Grants write access to the user’s account information, addresses and payment methods. |
+| `write:purchases` | Grants write access to the user's purchases. This allows user's to use your application to purchase listings. |

@@ -5,7 +5,7 @@ gem 'middleman-gh-pages'                # for generating Github pages
 gem "middleman-livereload", "~> 3.3.0"  # for live-reloading 
 gem "middleman-syntax"                  # for syntax highlighting
 gem "rouge", "1.7.2"                    # for syntax highlighting
-gem 'redcarpet', '~> 3.2.1'             # for advanced markdown
+gem 'kramdown', '~> 1.6.0'              # for advanced markdown
 gem 'json', '~> 1.8.2'                  # for parsing JSON
 gem "rake", "~> 10.4.0"                 # for build and deployment tasks
 gem 'wdm' if Gem.win_platform?          # for faster file watcher updates on Windows
