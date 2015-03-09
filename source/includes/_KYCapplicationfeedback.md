@@ -1,4 +1,4 @@
-# KYC: Final Application Result
+# KYC: Application Feedback
 
 All arguments are optional, although a JSON object must be provided.
 

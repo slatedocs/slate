@@ -7,7 +7,7 @@ The following URLs are used for account login transactions:
 Annotate a user's transactions with login data:  
 `POST https://edna.identitymind.com/im/account/login`
 
-#### Arguments
+##### Arguments
 
 ```code
 EXAMPLE SERVICE REQUEST
@@ -41,85 +41,217 @@ EXAMPLE SERVICE RESPONSE DATA
 ```
 > The response includes detailed result codes and transaction unique identifier. The keys are fully defined in *Appendix A: Result Keys and Codes*.
 
-	<br>
 	<table>
-		<tr>
-			<th colspan=2>User Account</th>
-		</tr>
 		<tr>
 			<th>Key</th>
 			<th>Description</th>
 		</tr>
 		<tr>
-			<td>man</td>
-			<td>Free form unique identifier for the account at this merchant. Maximum length is 60 characters.<br><br><i>Optional</i></td>
+			<td>dob</td>
+			<td>Description</td>
 		</tr>
 		<tr>
-			<td>tea</td>
-			<td>Email address on record. An email address that the merchant is comfortable using to validate access to the account. Maximum length is 60 characters.<br><br><i>Optional</i></td>
+			<td>assn</td>
+			<td>Description</td>
 		</tr>
 		<tr>
-			<td>soc</td>
-			<td>Indicates that the provided email address is associated with a social networking site; in particular, that it is used for Oauth authentication. The content of the field is merchant defined, but the following values are recommended:
-				<ul type="disc">
-					<li><code>facebook</code></li>
-					<li><code>google</code></li>
-					<li><code>twitter</code></li>
-					<li><code>yahoo</code></li>
-				</ul>
-			Maximum length is 60 characters.<br><br><i>Optional</i>
-			</td>
+			<td>assnl4</td>
+			<td>Description</td>
 		</tr>
 		<tr>
-			<td>clat</td>
-			<td>The current latitude of the customer, specified in decimal degrees. Encoded as a string (e.g. <code>"clat":"37.4419"</code>).<br><br><i>Optional</i></td>
+			<td>stage</td>
+			<td>Description</td>
 		</tr>
 		<tr>
-			<td>clong</td>
-			<td>The current longitude of the customer, specified in decimal degrees. Encoded as a string (e.g. <code>"clong":"-122.1419"</code>).<br><br><i>Optional</i></td>
-		</tr>
-
-
-		<tr>
-			<th colspan=2>Device</th>
+			<td>scanData</td>
+			<td>Description</td>
 		</tr>
 		<tr>
-			<td>ip</td>
-			<td>The IP address of the client as observed by the merchant.<br><br><i>Optional</i></td>
+			<td>faceImageData</td>
+			<td>Description</td>
 		</tr>
 		<tr>
-			<td>dfp</td>
-			<td>Device fingerprint blob. The interpretation of this blob is specified by the value of the <code>dft</code> attribute.<br><br><i>Optional</i></td>
+			<td>backsideImageData</td>
+			<td>Description</td>
 		</tr>
 		<tr>
-			<td>dft</td>
-			<td>Device fingerprint type. Specifies the technology that was used to generate the blob.
-				<ul type="disc">
-					<li><code>BC</code> - BlueCava</li>
-				</ul>
-			Default is <code>BC</code><br>
-			<br><i>Optional</i>
-			</td>
+			<td>merchantAid</td>
+			<td>Description</td>
 		</tr>
 		<tr>
-			<td>dts</td>
-			<td>Third party service device token and scheme identifier. Contact IdentityMind for detailed format information.<br><br><i>Optional</i></td>
-		</tr>
-
-
-		<tr>
-			<th colspan=2>Transaction</th>
+			<td>personalguarantee</td>
+			<td>Description</td>
 		</tr>
 		<tr>
-			<td>tti</td>
-			<td>The date and time of the transaction as processed by the merchant. Expressed in UTC, encoded as a UNIX timestamp.
-				<ul type="disc">
-					<li><code>"tti":129887536</code></li>
-					<li><code>"tti":"129887536"</code></li>
-				</ul><br><i>Optional</i></td>
+			<td>ownership</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>m</td>
+			<td>Description</td>
 		</tr>
 		<tr>
 			<td>tid</td>
-			<td>Merchant unique identifier for the transaction. eDNA assigns an internal ID if none is provided. The transaction ID must be encoded as a string (e.g. <code>"tid":"123455"</code>). Maximum length is 40 characters.<br><br><i>Optional</i></td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>pcty</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>phash</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>ptoken</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>pccn</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>pcct</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>man</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>tea</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>soc</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>ip</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>dfp</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>dft</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>tti</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>bfn</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>bln</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>profile</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>smna</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>smid</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>bsn</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>bco</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>bz</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>bc</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>bs</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>sfn</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>sln</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>ssn</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>sco</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>sz</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>sc</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>ss</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>aflid</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>aflsd</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>blg</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>clat</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>clong</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>phn</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>pm</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>pw</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>pach</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>pbc</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>memo</td>
+			<td>Description</td>
 		</tr>
 	</table>
