@@ -234,11 +234,11 @@ Retrieve the current state of a merchant application:<br>
 		</tr>
 		<tr>
 			<td>smna<br><font color=#446CB3>string</font>, optional</td>
-			<td>Deprecated<br><br>The user-friendly name for the merchant for whom this transaction is being processed.</td>
+			<td><font color=#D91E18>Deprecated</font><br><br>The user-friendly name for the merchant for whom this transaction is being processed.</td>
 		</tr>
 		<tr>
 			<td>smid<br><font color=#446CB3>string</font>, optional</td>
-			<td>Deprecated<br><br>A unique identifier for the merchant for whom this transaction is being processed. </td>
+			<td><font color=#D91E18>Deprecated</font><br><br>A unique identifier for the merchant for whom this transaction is being processed. </td>
 		</tr>
 		<tr>
 			<td>bsn<br><font color=#446CB3>string</font>, optional</td>
@@ -384,13 +384,13 @@ EXAMPLE SERVICE RESPONSE DATA
         ]
     }
 } 
-```
 
+```
 > The response includes detailed result codes and the transaction unique identifier. Parameters that are not defined here but appearing in the Request API will be categorized as custom data and can be displayed on the UI as proprietary information for the merchant.
 
 	<table>
 		<tr>
-			<th colspan=2>Application Reponse Data</th>
+			<th colspan=2>Application Response Data</th>
 		</tr>
 		<tr>
 			<th>Parameter</th>
@@ -655,11 +655,6 @@ EXAMPLE SERVICE RESPONSE DATA
 
 ## Quiz Response
 
-The response to this request is an application response containing the newly updated application.
-Note that the response may, depending on the response from ID Analytics and your configuration within the eDNA platform, contain a further set of "challenge" questions that should once again be passed back to the consumer for answers.
-
-`POST https://edna.identitymind.com/im/account/merchant/<transaction_id>/quizresponse`
-
 > The body of the request contains an encoding of the customer’s answers to the quiz questions. The answers are processed and the response used to update the IDAnalytics CertainID Security Test and the Application state.
 
 ```code
@@ -687,6 +682,10 @@ EXAMPLE SERVICE RESPONSE DATA
    ]
 }
 ```
+The response to this request is an application response containing the newly updated application.
+Note that the response may, depending on the response from ID Analytics and your configuration within the eDNA platform, contain a further set of "challenge" questions that should once again be passed back to the consumer for answers.
+
+`POST https://edna.identitymind.com/im/account/merchant/<transaction_id>/quizresponse`
 
 	<table>
 		<tr>

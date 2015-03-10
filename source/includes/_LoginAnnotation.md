@@ -33,212 +33,56 @@ EXAMPLE SERVICE REQUEST
 			<th>Description</th>
 		</tr>
 		<tr>
-			<td>dob</td>
-			<td>Description</td>
+			<td>m<br><font color=#446CB3>string</font>, optional</td>
+			<td>Merchant Identifier. Used when a reseller is proxying requests for their merchants. Please contact IdentityMind support for further details of the usage of this field</td>
 		</tr>
 		<tr>
-			<td>assn</td>
-			<td>Description</td>
+			<td>tid<br><font color=#446CB3>string</font>, optional</td>
+			<td>Transaction Identifier. If not provided, an ID will be allocated</td>
 		</tr>
 		<tr>
-			<td>assnl4</td>
-			<td>Description</td>
+			<td>man<br><font color=#446CB3>string</font>, optional</td>
+			<td>Account name for the user</td>
 		</tr>
 		<tr>
-			<td>stage</td>
-			<td>Description</td>
+			<td>tea<br><font color=#446CB3>string</font>, optional</td>
+			<td>Email address for the user</td>
 		</tr>
 		<tr>
-			<td>scanData</td>
-			<td>Description</td>
+			<td>soc<br><font color=#446CB3>string</font>, optional</td>
+			<td>OAuth service that authenticated the user. For example, <code>google</code> or <code>facebook</code></td>
 		</tr>
 		<tr>
-			<td>faceImageData</td>
-			<td>Description</td>
+			<td>ip<br><font color=#446CB3>string</font>, optional</td>
+			<td>Customer's IP address</td>
 		</tr>
 		<tr>
-			<td>backsideImageData</td>
-			<td>Description</td>
+			<td>dfp<br><font color=#446CB3>string</font>, optional</td>
+			<td>Device fingerprint blob</td>
 		</tr>
 		<tr>
-			<td>merchantAid</td>
-			<td>Description</td>
+			<td>dft<br><font color=#446CB3>string</font>, optional</td>
+			<td>Device fingerprint type</td>
 		</tr>
 		<tr>
-			<td>personalguarantee</td>
-			<td>Description</td>
+			<td>tti<br><font color=#446CB3>Object</font>, optional</td>
+			<td>Transaction time in UTC. Encoded as a Unix timestamp or ISO 8601 string.</td>
 		</tr>
 		<tr>
-			<td>ownership</td>
-			<td>Description</td>
+			<td>profile<br><font color=#446CB3>string</font>, optional</td>
+			<td>The policy profile to be used to evaluate this transaction. Prior to IDMRISK 1.19, this was encoded in the <code>smna</code> and <code>smid</code> fields.</td>
 		</tr>
 		<tr>
-			<td>m</td>
-			<td>Description</td>
+			<td>clat<br><font color=#446CB3>string</font>, optional</td>
+			<td>Customer latitude</td>
 		</tr>
 		<tr>
-			<td>tid</td>
-			<td>Description</td>
+			<td>clong<br><font color=#446CB3>string</font>, optional</td>
+			<td>Customer longitude</td>
 		</tr>
 		<tr>
-			<td>pcty</td>
-			<td>Description</td>
-		</tr>
-		<tr>
-			<td>phash</td>
-			<td>Description</td>
-		</tr>
-		<tr>
-			<td>ptoken</td>
-			<td>Description</td>
-		</tr>
-		<tr>
-			<td>pccn</td>
-			<td>Description</td>
-		</tr>
-		<tr>
-			<td>pcct</td>
-			<td>Description</td>
-		</tr>
-		<tr>
-			<td>man</td>
-			<td>Description</td>
-		</tr>
-		<tr>
-			<td>tea</td>
-			<td>Description</td>
-		</tr>
-		<tr>
-			<td>soc</td>
-			<td>Description</td>
-		</tr>
-		<tr>
-			<td>ip</td>
-			<td>Description</td>
-		</tr>
-		<tr>
-			<td>dfp</td>
-			<td>Description</td>
-		</tr>
-		<tr>
-			<td>dft</td>
-			<td>Description</td>
-		</tr>
-		<tr>
-			<td>tti</td>
-			<td>Description</td>
-		</tr>
-		<tr>
-			<td>bfn</td>
-			<td>Description</td>
-		</tr>
-		<tr>
-			<td>bln</td>
-			<td>Description</td>
-		</tr>
-		<tr>
-			<td>profile</td>
-			<td>Description</td>
-		</tr>
-		<tr>
-			<td>smna</td>
-			<td>Description</td>
-		</tr>
-		<tr>
-			<td>smid</td>
-			<td>Description</td>
-		</tr>
-		<tr>
-			<td>bsn</td>
-			<td>Description</td>
-		</tr>
-		<tr>
-			<td>bco</td>
-			<td>Description</td>
-		</tr>
-		<tr>
-			<td>bz</td>
-			<td>Description</td>
-		</tr>
-		<tr>
-			<td>bc</td>
-			<td>Description</td>
-		</tr>
-		<tr>
-			<td>bs</td>
-			<td>Description</td>
-		</tr>
-		<tr>
-			<td>sfn</td>
-			<td>Description</td>
-		</tr>
-		<tr>
-			<td>sln</td>
-			<td>Description</td>
-		</tr>
-		<tr>
-			<td>ssn</td>
-			<td>Description</td>
-		</tr>
-		<tr>
-			<td>sco</td>
-			<td>Description</td>
-		</tr>
-		<tr>
-			<td>sz</td>
-			<td>Description</td>
-		</tr>
-		<tr>
-			<td>sc</td>
-			<td>Description</td>
-		</tr>
-		<tr>
-			<td>ss</td>
-			<td>Description</td>
-		</tr>
-		<tr>
-			<td>aflid</td>
-			<td>Description</td>
-		</tr>
-		<tr>
-			<td>aflsd</td>
-			<td>Description</td>
-		</tr>
-		<tr>
-			<td>blg</td>
-			<td>Description</td>
-		</tr>
-		<tr>
-			<td>clat</td>
-			<td>Description</td>
-		</tr>
-		<tr>
-			<td>clong</td>
-			<td>Description</td>
-		</tr>
-		<tr>
-			<td>phn</td>
-			<td>Description</td>
-		</tr>
-		<tr>
-			<td>pm</td>
-			<td>Description</td>
-		</tr>
-		<tr>
-			<td>pw</td>
-			<td>Description</td>
-		</tr>
-		<tr>
-			<td>pach</td>
-			<td>Description</td>
-		</tr>
-		<tr>
-			<td>pbc</td>
-			<td>Description</td>
-		</tr>
-		<tr>
-			<td>memo</td>
-			<td>Description</td>
+			<td>memo<br><font color=#446CB3>string</font>, optional</td>
+			<td>Free-form memo field for client use</td>
 		</tr>
 	</table>
 
@@ -270,150 +114,203 @@ EXAMPLE SERVICE RESPONSE DATA
 			<th>Description</th>
 		</tr>
 		<tr>
-			<td>user</td>
-			<td>Description</td>
+			<td>user<br><font color=#446CB3>EDNAPolicyResult</font>, optional</td>
+			<td>The current reputation of the user. Possible values are:
+				<ul type="disc">
+					<li><code>TRUSTED</code></li>
+					<li><code>WEAKLY_TRUSTED</code></li>
+					<li><code>UNKNOWN</code></li>
+					<li><code>SUSPICIOUS</code></li>
+					<li><code>BAD</code></li>
+				</ul></td>
 		</tr>
 		<tr>
-			<td>erd</td>
-			<td>Description</td>
+			<td>erd<br><font color=#446CB3>string</font>, optional</td>
+			<td>A description of the reason for the user's reputation</td>
 		</tr>
 		<tr>
-			<td>upr</td>
-			<td>Description</td>
+			<td>upr<br><font color=#446CB3>EDNAPolicyResult</font>, optional</td>
+			<td>The previous reputation of the user when they were last evaluated. Possible values are:
+				<ul type="disc">
+					<li><code>TRUSTED</code></li>
+					<li><code>WEAKLY_TRUSTED</code></li>
+					<li><code>UNKNOWN</code></li>
+					<li><code>SUSPICIOUS</code></li>
+					<li><code>BAD</code></li>
+				</ul></td>
 		</tr>
 		<tr>
-			<td>res</td>
-			<td>Description</td>
+			<td>res<br><font color=#446CB3>FraudPolicyResult</font>, optional</td>
+			<td>Result of policy evaluation. Combines the result of fraud and automated review evaluations. Possible values are:
+			<ul type="disc">
+					<li><code>ACCEPT</code></li>
+					<li><code>MANUAL_REVIEW</code></li>
+					<li><code>DENY</code></li>
+				</ul></td>
 		</tr>
 		<tr>
-			<td>rcd</td>
-			<td>Description</td>
+			<td>rcd<br><font color=#446CB3>string</font></td>
+			<td>The et of result codes from the evaulation of the current transaction</td>
 		</tr>
 		<tr>
-			<td>tid</td>
-			<td>Description</td>
+			<td>tid<br><font color=#446CB3>string</font></td>
+			<td>The transaction ID of the current transaction</td>
 		</tr>
 		<tr>
-			<td>frn</td>
-			<td>Description</td>
+			<td>frn<br><font color=#446CB3>string</font></td>
+			<td>The name of the fraud rule that fired</td>
 		</tr>
 		<tr>
-			<td>frp</td>
-			<td>Description</td>
+			<td>frp<br><font color=#446CB3>FraudPolicyResult</font>, optional</td>
+			<td>Result of fraud evaluation. Possible values are:
+			<ul type="disc">
+					<li><code>ACCEPT</code></li>
+					<li><code>MANUAL_REVIEW</code></li>
+					<li><code>DENY</code></li>
+				</ul></td>
 		</tr>
 		<tr>
-			<td>frd</td>
-			<td>Description</td>
+			<td>frd<br><font color=#446CB3>string</font></td>
+			<td>The description of the fraud rule that fired</td>
 		</tr>
 		<tr>
-			<td>arpr</td>
-			<td>Description</td>
+			<td>arpr<br><font color=#446CB3>string</font>, optional</td>
+			<td>Result of the automated review evaluation. Possible values are:
+			<ul type="disc">
+					<li><code>ERROR</code></li>
+					<li><code>NO_POLICY</code></li>
+					<li><code>DISABLED</code></li>
+					<li><code>FILTERED</code></li>
+					<li><code>PENDING</code></li>
+					<li><code>FAIL</code></li>
+					<li><code>INDETERMINATE</code></li>
+					<li><code>SUCCESS</code></li>
+				</ul></td>
+		</tr>
+				<tr>
+			<td>arpd<br><font color=#446CB3>string</font>, optional</td>
+			<td>The description, if any, of the automated review rule that fired</td>
 		</tr>
 		<tr>
-			<td>arpid</td>
-			<td>Description</td>
+			<td>arpid<br><font color=#446CB3>string</font>, optional</td>
+			<td>The ID, if any, of the automated review rule that fired</td>
 		</tr>
 		<tr>
-			<td>usc</td>
-			<td>Description</td>
+			<td>usc<br><font color=#446CB3>string</font>, optional</td>
+			<td>User seen count</td>
 		</tr>
 		<tr>
-			<td>ednaScoreCard</td>
-			<td>Description</td>
+			<td>ednaScoreCard<br><font color=#446CB3>ExternalizedTransactionScorecard</font></td>
+			<td>The scorecard for the current transaction</td>
 		</tr>
 		<tr>
 			<th colspan=2>Externalized Transaction Scorecard</th>
 		</tr>
 		<tr>
-			<td>ar</td>
-			<td>Description</td>
+			<td>ar<br><font color=#446CB3>AutomatedReviewEngineResult</font>, optional</td>
+			<td>The result of the automated review policy for this transaction</td>
 		</tr>
 		<tr>
-			<td>tr</td>
-			<td>Description</td>
+			<td>tr<br><font color=#446CB3>array[TestResult]</font></td>
+			<td>The security test results for this transaction</td>
 		</tr>
 		<tr>
-			<td>er</td>
-			<td>Description</td>
+			<td>er<br><font color=#446CB3>ExternalizedEvaluationResult</font></td>
+			<td>The result of the fraud policy evaluation for this transaction</td>
 		</tr>
 		<tr>
 			<th colspan=2>Automated Review Engine Result</th>
 		</tr>
 		<tr>
-			<td>result</td>
-			<td>Description</td>
+			<td>result<br><font color=#446CB3>ReviewResult</font></td>
+			<td>Result of rule. Possible values are:
+				<ul type="disc">
+					<li><code>ERROR</code></li>
+					<li><code>NO_POLICY</code></li>
+					<li><code>DISABLED</code></li>
+					<li><code>FILTERED</code></li>
+					<li><code>PENDING</code></li>
+					<li><code>FAIL</code></li>
+					<li><code>INDETERMINATE</code></li>
+					<li><code>SUCCESS</code></li>
+				</ul></td>
 		</tr>
 		<tr>
-			<td>ruleId</td>
-			<td>Description</td>
+			<td>ruleId<br><font color=#446CB3>string</font></td>
+			<td>The unique rule identifier</td>
 		</tr>
 		<tr>
-			<td>ruleName</td>
-			<td>Description</td>
+			<td>ruleName<br><font color=#446CB3>string</font></td>
+			<td>The rule name</td>
 		</tr>
 		<tr>
-			<td>ruleDescription</td>
-			<td>Description</td>
+			<td>ruleDescription<br><font color=#446CB3>string</font></td>
+			<td>The rule description</td>
 		</tr>
 		<tr>
 			<th colspan=2>Test Result</th>
 		</tr>
 		<tr>
-			<td>testId</td>
-			<td>Description</td>
+			<td>testId<br><font color=#446CB3>string</font></td>
+			<td>The unique test ID</td>
 		</tr>
 		<tr>
-			<td>testDetails</td>
-			<td>Description</td>
+			<td>testDetails<br><font color=#446CB3>string</font>, optional</td>
+			<td>Details of the evaluation of this test for the current transaction</td>
 		</tr>
 		<tr>
-			<td>testPass</td>
-			<td>Description</td>
+			<td>testPass<br><font color=#446CB3>boolean</font>, optional</td>
+			<td>If this is a proscriptive test, the result of the test for the current transaction</td>
 		</tr>
 		<tr>
-			<td>testResult</td>
-			<td>Description</td>
+			<td>testResult<br><font color=#446CB3>Object</font></td>
+			<td>If this is not a proscriptive test, the informational result of the test for the current transaction</td>
 		</tr>
 		<tr>
-			<td>waitingForData</td>
-			<td>Description</td>
+			<td>waitingForData<br><font color=#446CB3>boolean</font>, optional</td>
+			<td>If this is an interactive test, whether the test is currently waiting for customer input</td>
 		</tr>
 		<tr>
-			<td>previouslyAccepted</td>
-			<td>Description</td>
+			<td>previouslyAccepted<br><font color=#446CB3>boolean</font></td>
+			<td>If this is a KYC transaction, whether this test has been previously accepted</td>
 		</tr>
 		<tr>
 			<th colspan=2>Externalized Evaluation Result</th>
 		</tr>
 		<tr>
-			<td>firedRules</td>
-			<td>Description</td>
+			<td>firedRules<br><font color=#446CB3>List[ExternalizedRule]</font></td>
+			<td>The complete set of rules that fired for this transaction</td>
 		</tr>
 		<tr>
-			<td>reportedRule</td>
-			<td>Description</td>
+			<td>reportedRule<br><font color=#446CB3>ExternalizedRule</font></td>
+			<td>The rule that is being reported for this transaction. Other rules may have fired, see <code>firedRules</code></td>
 		</tr>
 		<tr>
 			<th colspan=2>Externalized Rule</th>
 		</tr>
 		<tr>
-			<td>name</td>
-			<td>Description</td>
+			<td>name<br><font color=#446CB3>string</font></td>
+			<td>The rule name</td>
 		</tr>
 		<tr>
-			<td>details</td>
-			<td>Description</td>
+			<td>details<br><font color=#446CB3>string</font>, optional</td>
+			<td>The rule description</td>
 		</tr>
 		<tr>
-			<td>description</td>
-			<td>Description</td>
+			<td>description<br><font color=#446CB3>string</font></td>
+			<td>Details of the evaluation of this rule for the current transaction</td>
 		</tr>
 		<tr>
-			<td>resultCode</td>
-			<td>Description</td>
+			<td>resultCode<br><font color=#446CB3>FraudPolicyResult</font></td>
+			<td>Result of rule. Possible values are:
+				<ul type="disc">
+					<li><code>ACCEPT</code></li>
+					<li><code>MANUAL_REVIEW</code></li>
+					<li><code>DENY</code></li>
+				</ul></td>
 		</tr>
 		<tr>
-			<td>ruleId</td>
-			<td>Description</td>
+			<td>ruleId<br><font color=#446CB3>integer</font></td>
+			<td>The unique rule identifier</td>
 		</tr>
 	</table>

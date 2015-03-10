@@ -202,11 +202,11 @@ EXAMPLE SERVICE REQUEST
 		</tr>
 		<tr>
 			<td>smna<br><font color=#446CB3>string</font>, optional</td>
-			<td>Deprecated<br><br>The user-friendly name for the merchant for whom this transaction is being processed.</td>
+			<td><font color=#D91E18>Deprecated</font><br><br>The user-friendly name for the merchant for whom this transaction is being processed.</td>
 		</tr>
 		<tr>
 			<td>smid<br><font color=#446CB3>string</font>, optional</td>
-			<td>Deprecated<br><br>A unique identifier for the merchant for whom this transaction is being processed. </td>
+			<td><font color=#D91E18>Deprecated</font><br><br>A unique identifier for the merchant for whom this transaction is being processed. </td>
 		</tr>
 		<tr>
 			<td>bsn<br><font color=#446CB3>string</font>, optional</td>
