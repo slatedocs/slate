@@ -2,18 +2,18 @@
 
 The evidence is the account transfer transaction data to be evaluated. It is supplied in the body of the HTTP-POST as JSON-encoded key value pairs. While all fields are not required, validation evaluation is more comprehensive when richer evidence is provided. 
 
-##### Arguments
-
 The following URLs are used for account transaction validation:
 
-Validate an external transfer (deposit) into an account:  
+Validate an external transfer (deposit) into an account:<br>
 `POST https://edna.identitymind.com/im/account/transferin`
 
-Validate an internal transfer between accounts:  
+Validate an internal transfer between accounts:<br>
 `POST https://edna.identitymind.com/im/account/transfer`
 
-Validate an external transfer (withdrawal) from an account:  
+Validate an external transfer (withdrawal) from an account:<br>
 `POST https://edna.identitymind.com/im/account/transferout`
+
+##### Arguments
 
 ```code
 EXAMPLE SERVICE REQUEST
@@ -40,32 +40,13 @@ EXAMPLE SERVICE REQUEST
   "dptoken"  : "517074XXXXXX000e"
 }
 ```
-```code
-EXAMPLE SERVICE RESPONSE DATA
-```
-```json
-{ 
-  "res" : "ACCEPT",
-  "erd" : "Validated User",
-  "tid" : "89",
-  "rcd" : "1000,100,110,151,120",
-  "frn" : "Fallthrough",
-  "usc" : 43,
-  "umrs":1372723453000,
-  "ufs":1372101668000,
-  "frd":"User is trusted and no fraud rules were triggered."
-}
-
-{
-  "res" : "ERROR",
-  "error_message" : "Bad data format:Failed to parse the date string provided in the data.  Please use ISO 8601 format."
-}
-```
-> The response includes detailed result codes and the transaction unique identifier. The most important part of the response is whether the transaction is to be accepted, denied, or scheduled for manual review, which is dependent on the configured validation policy. The keys are fully defined in *Appendix A: Result Keys and Codes*.
 
 	<table>
 		<tr>
-			<th>Key</th>
+			<th colspan=2>Account Transfer Data</th>
+		</tr>
+		<tr>
+			<th>Parameter</th>
 			<th>Description</th>
 		</tr>
 		<tr>
@@ -286,6 +267,188 @@ EXAMPLE SERVICE RESPONSE DATA
 		</tr>
 		<tr>
 			<td>memo</td>
+			<td>Description</td>
+		</tr>
+	</table>
+
+##### Response
+
+```code
+EXAMPLE SERVICE RESPONSE DATA
+```
+```json
+{ 
+  "res" : "ACCEPT",
+  "erd" : "Validated User",
+  "tid" : "89",
+  "rcd" : "1000,100,110,151,120",
+  "frn" : "Fallthrough",
+  "usc" : 43,
+  "umrs":1372723453000,
+  "ufs":1372101668000,
+  "frd":"User is trusted and no fraud rules were triggered."
+}
+
+{
+  "res" : "ERROR",
+  "error_message" : "Bad data format:Failed to parse the date string provided in the data.  Please use ISO 8601 format."
+}
+```
+> The response includes detailed result codes and the transaction unique identifier. The most important part of the response is whether the transaction is to be accepted, denied, or scheduled for manual review, which is dependent on the configured validation policy.
+
+	<table>
+		<tr>
+			<th colspan=2>Transaction Reponse Data</th>
+		</tr>
+		<tr>
+			<th>Parameter</th>
+			<th>Description</th>
+		</tr>
+		<tr>
+			<td>user</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>erd</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>upr</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>res</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>rcd</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>tid</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>frn</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>frp</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>frd</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>arpr</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>arpid</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>usc</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>ednaScoreCard</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<th colspan=2>Externalized Transaction Scorecard</th>
+		</tr>
+		<tr>
+			<td>ar</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>tr</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>er</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<th colspan=2>Automated Review Engine Result</th>
+		</tr>
+		<tr>
+			<td>result</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>ruleId</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>ruleName</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>ruleDescription</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<th colspan=2>Test Result</th>
+		</tr>
+		<tr>
+			<td>testId</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>testDetails</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>testPass</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>testResult</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>waitingForData</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>previouslyAccepted</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<th colspan=2>Externalized Evaluation Result</th>
+		</tr>
+		<tr>
+			<td>firedRules</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>reportedRule</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<th colspan=2>Externalized Rule</th>
+		</tr>
+		<tr>
+			<td>name</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>details</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>description</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>resultCode</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>ruleId</td>
 			<td>Description</td>
 		</tr>
 	</table>

@@ -2,8 +2,11 @@
 
 The evidence is the payment transaction data to be evaluated. It is supplied in the body of the HTTP-POST as JSON-encoded key value pairs. While all fields are not required, anti-fraud evaluation is more comprehensive when richer evidence is provided. 
 
-The following URL can be used for requesting payment transaction anti-fraud evaluation:  
+The following URL can be used for requesting payment transaction anti-fraud evaluation:<br>  
 `POST https://edna.identitymind.com/im/transaction`
+
+The following URL can be used to retrieve the current state of a transaction:<br>
+`GET https://edna.identitymind.com/im/transaction/<transaction_ID>`
 
 ##### Arguments
 
@@ -38,31 +41,17 @@ EXAMPLE SERVICE REQUEST
 }
 
 ```
-```code
-EXAMPLE SERVICE RESPONSE DATA
-```
-```json
-{ 
-  "res" : "ACCEPT",
-  "tid" : "89",
-  "transaction_status" : "complete",
-  "rcd" : "1000,100,110,151,120",
-  "frn":"Fallthrough",
-  "frd":"User is trusted and no fraud rules were triggered."
-}
-
-{
-  "transaction_status" : "error",
-  "error_message" : "Bad data format:Failed to parse the date string provided in the data.  Please use ISO 8601 format."
-}
-```
-
-> The response includes detailed result codes and the transaction unique identifier. The most important part of the response is whether the transaction is to be accepted, denied, or scheduled for manual review, which is dependent on the configured fraud policy. The keys are fully defined in *Appendix A: Result Keys and Codes*.
-
 	<table>
 		<tr>
-			<th>amt</th>
+			<th colspan=2>PAyment Transaction Data</th>
+		</tr>
+		<tr>
+			<th>Parameter</th>
 			<th>Description</th>
+		</tr>
+		<tr>
+			<td>amt</td>
+			<td>Description</td>
 		</tr>
 		<tr>
 			<td>ccy</td>
@@ -280,6 +269,186 @@ EXAMPLE SERVICE RESPONSE DATA
 
 **Note**: The clear text credit card number is never sent to IdentityMind. Instead, IdentityMind uses a cryptographically secure hash to have a unique representation of each credit card. IdentityMind provides the required utilities to generate these hashes.
 
+##### Response
+
+```code
+EXAMPLE SERVICE RESPONSE DATA
+```
+```json
+{ 
+  "res" : "ACCEPT",
+  "tid" : "89",
+  "transaction_status" : "complete",
+  "rcd" : "1000,100,110,151,120",
+  "frn":"Fallthrough",
+  "frd":"User is trusted and no fraud rules were triggered."
+}
+
+{
+  "transaction_status" : "error",
+  "error_message" : "Bad data format:Failed to parse the date string provided in the data.  Please use ISO 8601 format."
+}
+```
+
+> The response includes detailed result codes and the transaction unique identifier. The most important part of the response is whether the transaction is to be accepted, denied, or scheduled for manual review, which is dependent on the configured fraud policy.
+
+	<table>
+		<tr>
+			<th colspan=2>Transaction Reponse Data</th>
+		</tr>
+		<tr>
+			<th>Parameter</th>
+			<th>Description</th>
+		</tr>
+		<tr>
+			<td>user</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>erd</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>upr</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>res</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>rcd</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>tid</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>frn</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>frp</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>frd</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>arpr</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>arpid</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>usc</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>ednaScoreCard</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<th colspan=2>Externalized Transaction Scorecard</th>
+		</tr>
+		<tr>
+			<td>ar</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>tr</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>er</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<th colspan=2>Automated Review Engine Result</th>
+		</tr>
+		<tr>
+			<td>result</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>ruleId</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>ruleName</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>ruleDescription</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<th colspan=2>Test Result</th>
+		</tr>
+		<tr>
+			<td>testId</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>testDetails</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>testPass</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>testResult</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>waitingForData</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>previouslyAccepted</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<th colspan=2>Externalized Evaluation Result</th>
+		</tr>
+		<tr>
+			<td>firedRules</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>reportedRule</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<th colspan=2>Externalized Rule</th>
+		</tr>
+		<tr>
+			<td>name</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>details</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>description</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>resultCode</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>ruleId</td>
+			<td>Description</td>
+		</tr>
+	</table>
+
 ## Transaction Feedback
 
 ##### Transaction Neutral/Refund Notification
@@ -345,9 +514,12 @@ EXAMPLE SERVICE RESPONSE DATA
 }
 ```
 
-	<table>		
+	<table>
 		<tr>
-			<th>Key</th>
+			<th colspan=2>Feedback Data</th>
+		</tr>		
+		<tr>
+			<th>Parameter</th>
 			<th>Description</th>
 		</tr>
 		<tr>
@@ -416,6 +588,23 @@ EXAMPLE SERVICE RESPONSE DATA
 		</tr>
 		<tr>
 			<td>bank_status</td>
+			<td>description</td>
+		</tr>
+	</table>
+
+##### Response
+
+	<table>		
+		<tr>
+			<th>Parameter</th>
+			<th>Description</th>
+		</tr>
+		<tr>
+			<td>message</td>
+			<td>description</td>
+		</tr>
+		<tr>
+			<td>error_message</td>
 			<td>description</td>
 		</tr>
 	</table>

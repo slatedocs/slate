@@ -11,60 +11,13 @@ Retrieve the current state of a merchant application:<br>
 `GET https://edna.identitymind.com/im/account/merchant/<tid>`
 
 ##### Arguments
-```code
-EXAMPLE SERVICE RESPONSE DATA
-```
-```json
-{
-    "mtid": "eDNABlackListFail",
-    "state": "R",
-    "merchantAPIName":"joseshoe",
-    "ownerApplicationIds":[
-        	"consumerapp001",
-        	"consumerapp002",
-	        "consumerapp003"
-    ],
-
-    "merchantApplicationResponse": {
-        "erd": "Bad User",
-        "frd": "1414110157324_accountname in black list.  Added from a test player file",
-        "frn": "Account Black List",
-        "rcd": "50003,202,111,101,132,10020",
-        "res": "DENY",
-        "tid": "eDNABlackListFail",
-        "ufs": 1414110157000,
-        "umrs": 1414110157000,
-        "upr": "UNKNOWN",
-        "usc": 0,
-        "user": "BAD"
-    },
-    "ednaScoreCard": {
-        "tr": [
-            {
-                "testCategory": "eDNA",
-                "testDescription": "Informational -- It displays the number of payment instruments associated with the applicant's device.",
-                "testId": "ed:14",
-                "testName": "Device Payment Count",
-                "testResult": "0"
-            },
-            {
-                "testCategory": "Device",
-                "testDescription": "Checks whether the device is currently using an anonymous proxy.  It fails when an anonymous proxy is being used.",
-                "testDetails": "The device is not currently using an anonymous proxy",
-                "testId": "bc:1",
-                "testName": "BlueCava: Using Anonymous Proxy",
-                "testPass": true
-            },
-        ]
-    }
-} 
-```
-
-> The response includes detailed result codes and the transaction unique identifier. The keys are fully defined in *Appendix A: Result Keys and Codes*. Parameters that are not defined here but appearing in the Request API will be categorized as custom data and can be displayed on the UI as proprietary information for the merchant.
 
 	<table>
 		<tr>
-			<th>Key</th>
+			<th colspan=2>Merchant Application Request Data</th>
+		</tr>
+		<tr>
+			<th>Parameter</th>
 			<th>Description</th>
 		</tr>
 		<tr>
@@ -361,6 +314,270 @@ EXAMPLE SERVICE RESPONSE DATA
 		</tr>
 	</table>
 
+##### Response
+
+```code
+EXAMPLE SERVICE RESPONSE DATA
+```
+```json
+{
+    "mtid": "eDNABlackListFail",
+    "state": "R",
+    "merchantAPIName":"joseshoe",
+    "ownerApplicationIds":[
+        	"consumerapp001",
+        	"consumerapp002",
+	        "consumerapp003"
+    ],
+
+    "merchantApplicationResponse": {
+        "erd": "Bad User",
+        "frd": "1414110157324_accountname in black list.  Added from a test player file",
+        "frn": "Account Black List",
+        "rcd": "50003,202,111,101,132,10020",
+        "res": "DENY",
+        "tid": "eDNABlackListFail",
+        "ufs": 1414110157000,
+        "umrs": 1414110157000,
+        "upr": "UNKNOWN",
+        "usc": 0,
+        "user": "BAD"
+    },
+    "ednaScoreCard": {
+        "tr": [
+            {
+                "testCategory": "eDNA",
+                "testDescription": "Informational -- It displays the number of payment instruments associated with the applicant's device.",
+                "testId": "ed:14",
+                "testName": "Device Payment Count",
+                "testResult": "0"
+            },
+            {
+                "testCategory": "Device",
+                "testDescription": "Checks whether the device is currently using an anonymous proxy.  It fails when an anonymous proxy is being used.",
+                "testDetails": "The device is not currently using an anonymous proxy",
+                "testId": "bc:1",
+                "testName": "BlueCava: Using Anonymous Proxy",
+                "testPass": true
+            },
+        ]
+    }
+} 
+```
+
+> The response includes detailed result codes and the transaction unique identifier. Parameters that are not defined here but appearing in the Request API will be categorized as custom data and can be displayed on the UI as proprietary information for the merchant.
+
+	<table>
+		<tr>
+			<th colspan=2>Application Reponse Data</th>
+		</tr>
+		<tr>
+			<th>Parameter</th>
+			<th>Description</th>
+		</tr>
+		<tr>
+			<td>mtid</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>acVerification</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>docVerification</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>ownerApplicationIds</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>parentMerchant</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>oowQuestions</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>smsVerification</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>merchantAPIName</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>state</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>user</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>upr</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>erd</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>res</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>rcd</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>frn</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>frd</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>ednaScoreCard</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>arpd</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>arpid</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>arpr</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>frp</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>usc</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>tid</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<th colspan=2>Document Verification</th>
+		</tr>
+		<tr>
+			<td>redirectURL</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<th colspan=2>Questions Wrapper</th>
+		</tr>
+		<tr>
+			<td>questions</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<th colspan=2>Externalized Transaction Scorecard</th>
+		</tr>
+		<tr>
+			<td>ar</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>tr</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>er</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<th colspan=2>Automated Review Engine Result</th>
+		</tr>
+		<tr>
+			<td>result</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>ruleId</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>ruleName</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>ruleDescription</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<th colspan=2>Test Result</th>
+		</tr>
+		<tr>
+			<td>testId</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>testDetails</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>testPass</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>testResult</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>waitingForData</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>previouslyAccepted</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<th colspan=2>Externalized Evaluation Result</th>
+		</tr>
+		<tr>
+			<td>firedRules</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>reportedRule</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<th colspan=2>Externalized Rule</th>
+		</tr>
+		<tr>
+			<td>name</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>details</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>description</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>resultCode</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>ruleId</td>
+			<td>Description</td>
+		</tr>
+	</table>
+
 ## Quiz Response
 
 The response to this request is an application response containing the newly updated application.
@@ -398,7 +615,10 @@ EXAMPLE SERVICE RESPONSE DATA
 
 	<table>
 		<tr>
-			<th>Key</th>
+			<th colspan=2>Feedback Quiz Response Data</th>
+		</tr>
+		<tr>
+			<th>Parameter</th>
 			<th>Description</th>
 		</tr>
 		<tr>
@@ -427,7 +647,10 @@ The following URLs are used to notify IdentityMind of the acceptance or rejectio
 
 	<table>
 		<tr>
-			<th>Key</th>
+			<th colspan=2>Application Feedback Data</th>
+		</tr>
+		<tr>
+			<th>Parameter</th>
 			<th>Description</th>
 		</tr>
 		<tr>
@@ -441,5 +664,25 @@ The following URLs are used to notify IdentityMind of the acceptance or rejectio
 		<tr>
 			<td>validate</td>
 			<td>Description</td>
+		</tr>
+	</table>
+
+##### Response
+
+	<table>
+		<tr>
+			<th colspan=2>Feedback Response</th>
+		</tr>		
+		<tr>
+			<th>Parameter</th>
+			<th>Description</th>
+		</tr>
+		<tr>
+			<td>message</td>
+			<td>description</td>
+		</tr>
+		<tr>
+			<td>error_message</td>
+			<td>description</td>
 		</tr>
 	</table>

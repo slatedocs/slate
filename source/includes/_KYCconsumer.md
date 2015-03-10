@@ -5,67 +5,19 @@ The evidence is the application data to be evaluated. It is supplied in the body
 The following URLs are used for consumer application validation:
 
 Validate a consumer application:<br>
-`POST https://edna.identitymind.com/im/account/creation`
+`POST https://edna.identitymind.com/im/account/consumer`
 
 Retrieve the current state of a consumer application:<br>
-`GET https://edna.identitymind.com/im/account/creation/<tid>`
+`GET https://edna.identitymind.com/im/account/consumer/<transaction_id>`
 
 ##### Arguments
-```code
-EXAMPLE SERVICE RESPONSE DATA
-```
-```json  
-{
-    "mtid": "consumerUIWalkthrough",
-    "state": "A",
-    "merchantApplicationResponse": {
-        "erd": "Unknown User",
-        "frd": "No fraud rules triggered.",
-        "frn": "Account Fallthrough",
-        "rcd": "50005,202,111,101,121,131,10000",
-        "res": "ACCEPT",
-        "tid": "consumerUIWalkthrough",
-        "ufs": 1414122024000,
-        "umrs": 1414122024000,
-        "upr": "UNKNOWN",
-        "usc": 0,
-        "user": "UNKNOWN"
-    },
-    "parentMerchant":"eDNABlackListFail",
-    "ednaScoreCard": {
-        "tr": [
-                  {
-                "testCategory": "Identity",
-                "testDescription": "Checks whether the address is risky: prisons, warehouses, hospitals, universities, etc.\nIt fails if the address is high risk.",
-                "testId": "id:7",
-                "testName": "IDology ExpectID: Warm Address",
-                "testPass": true
-            },
-            {
-                "testCategory": "Device",
-                "testDescription": "Checks whether the device is currently using an anonymous proxy.  It fails when an anonymous proxy is being used.",
-                "testDetails": "The device is not currently using an anonymous proxy",
-                "testId": "bc:1",
-                "testName": "BlueCava: Using Anonymous Proxy",
-                "testPass": true
-            },
-            {
-                "testCategory": "eDNA",
-                "testDescription": "Checks the number of applications for a particular funding payment instrument.\nIt fails when the number of applications is higher than the configured threshold.",
-                "testDetails": "0",
-                "testId": "ed:5",
-                "testName": "Payment Instrument Application Count",
-                "testPass": true
-            },
-        ]
-    }
-}
-```
-> The response includes detailed result codes and the transaction unique identifier. The keys are fully defined in *Appendix A: Result Keys and Codes*.
 
 	<table>
 		<tr>
-			<th>Key</th>
+			<th colspan=2>Account Creation Request Data</th>
+		</tr>
+		<tr>
+			<th>Parameter</th>
 			<th>Description</th>
 		</tr>
 		<tr>
@@ -278,55 +230,267 @@ EXAMPLE SERVICE RESPONSE DATA
 		</tr>
 	</table>
 
-## Quiz Response
-
-The response to this request is an application response containing the newly updated application.
-Note that the response may, depending on the response from ID Analytics and your configuration within the eDNA platform, contain a further set of "challenge" questions that should once again be passed back to the consumer for answers.
-
-`POST https://edna.identitymind.com/im/account/consumer/<appid>/quizresponse`
-
-> The body of the request contains an encoding of the customer’s answers to the quiz questions. The answers are processed and the response used to update the IDAnalytics CertainID Security Test and the Application state.
+##### Response
 
 ```code
 EXAMPLE SERVICE RESPONSE DATA
 ```
-```json
+```json  
 {
-   "answers":[
-      {
-         "questionId":"0",
-         "choice":"KERRVILLE"
-      },
-      {
-         "questionId":"1",
-         "choice":"DICK"
-      },
-      {
-         "questionId":"2",
-         "choice":" None of the above "
-      },
-      {
-         "questionId":"3",
-         "choice":"MUNSTER"
-      }
-   ]
+    "mtid": "consumerUIWalkthrough",
+    "state": "A",
+    "merchantApplicationResponse": {
+        "erd": "Unknown User",
+        "frd": "No fraud rules triggered.",
+        "frn": "Account Fallthrough",
+        "rcd": "50005,202,111,101,121,131,10000",
+        "res": "ACCEPT",
+        "tid": "consumerUIWalkthrough",
+        "ufs": 1414122024000,
+        "umrs": 1414122024000,
+        "upr": "UNKNOWN",
+        "usc": 0,
+        "user": "UNKNOWN"
+    },
+    "parentMerchant":"eDNABlackListFail",
+    "ednaScoreCard": {
+        "tr": [
+                  {
+                "testCategory": "Identity",
+                "testDescription": "Checks whether the address is risky: prisons, warehouses, hospitals, universities, etc.\nIt fails if the address is high risk.",
+                "testId": "id:7",
+                "testName": "IDology ExpectID: Warm Address",
+                "testPass": true
+            },
+            {
+                "testCategory": "Device",
+                "testDescription": "Checks whether the device is currently using an anonymous proxy.  It fails when an anonymous proxy is being used.",
+                "testDetails": "The device is not currently using an anonymous proxy",
+                "testId": "bc:1",
+                "testName": "BlueCava: Using Anonymous Proxy",
+                "testPass": true
+            },
+            {
+                "testCategory": "eDNA",
+                "testDescription": "Checks the number of applications for a particular funding payment instrument.\nIt fails when the number of applications is higher than the configured threshold.",
+                "testDetails": "0",
+                "testId": "ed:5",
+                "testName": "Payment Instrument Application Count",
+                "testPass": true
+            },
+        ]
+    }
 }
 ```
-	<table>
+> The response includes detailed result codes and the transaction unique identifier.
+
+<table>
 		<tr>
-			<th>Key</th>
+			<th colspan=2>Application Reponse Data</th>
+		</tr>
+		<tr>
+			<th>Parameter</th>
 			<th>Description</th>
 		</tr>
 		<tr>
-			<td>answers</td>
+			<td>mtid</td>
 			<td>Description</td>
 		</tr>
 		<tr>
-			<td>smsCode</td>
+			<td>acVerification</td>
 			<td>Description</td>
 		</tr>
 		<tr>
-			<td>amount</td>
+			<td>docVerification</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>ownerApplicationIds</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>parentMerchant</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>oowQuestions</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>smsVerification</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>merchantAPIName</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>state</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>user</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>upr</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>erd</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>res</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>rcd</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>frn</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>frd</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>ednaScoreCard</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>arpd</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>arpid</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>arpr</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>frp</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>usc</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>tid</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<th colspan=2>Document Verification</th>
+		</tr>
+		<tr>
+			<td>redirectURL</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<th colspan=2>Questions Wrapper</th>
+		</tr>
+		<tr>
+			<td>questions</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<th colspan=2>Externalized Transaction Scorecard</th>
+		</tr>
+		<tr>
+			<td>ar</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>tr</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>er</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<th colspan=2>Automated Review Engine Result</th>
+		</tr>
+		<tr>
+			<td>result</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>ruleId</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>ruleName</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>ruleDescription</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<th colspan=2>Test Result</th>
+		</tr>
+		<tr>
+			<td>testId</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>testDetails</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>testPass</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>testResult</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>waitingForData</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>previouslyAccepted</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<th colspan=2>Externalized Evaluation Result</th>
+		</tr>
+		<tr>
+			<td>firedRules</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>reportedRule</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<th colspan=2>Externalized Rule</th>
+		</tr>
+		<tr>
+			<td>name</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>details</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>description</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>resultCode</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>ruleId</td>
 			<td>Description</td>
 		</tr>
 	</table>
@@ -356,7 +520,7 @@ EXAMPLE SERVICE RESPONSE DATA
 	<br>
 	<table>
 		<tr>
-			<th>Key</th>
+			<th>Parameter</th>
 			<th>Description</th>
 		</tr>
 		<tr>
@@ -394,6 +558,59 @@ EXAMPLE SERVICE RESPONSE DATA
 		</tr>
 	</table>
 
+## Quiz Response
+
+The response to this request is an application response containing the newly updated application.
+Note that the response may, depending on the response from ID Analytics and your configuration within the eDNA platform, contain a further set of "challenge" questions that should once again be passed back to the consumer for answers.
+
+`POST https://edna.identitymind.com/im/account/consumer/<appid>/quizresponse`
+
+> The body of the request contains an encoding of the customer’s answers to the quiz questions. The answers are processed and the response used to update the IDAnalytics CertainID Security Test and the Application state.
+
+```code
+EXAMPLE SERVICE RESPONSE DATA
+```
+```json
+{
+   "answers":[
+      {
+         "questionId":"0",
+         "choice":"KERRVILLE"
+      },
+      {
+         "questionId":"1",
+         "choice":"DICK"
+      },
+      {
+         "questionId":"2",
+         "choice":" None of the above "
+      },
+      {
+         "questionId":"3",
+         "choice":"MUNSTER"
+      }
+   ]
+}
+```
+	<table>
+		<tr>
+			<th>Parameter</th>
+			<th>Description</th>
+		</tr>
+		<tr>
+			<td>answers</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>smsCode</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>amount</td>
+			<td>Description</td>
+		</tr>
+	</table>
+
 ## Feedback
 
 All arguments are optional, although a JSON object must be provided.
@@ -420,5 +637,25 @@ The following URLs are used to notify IdentityMind of the acceptance or rejectio
 		<tr>
 			<td>validate</td>
 			<td>Description</td>
+		</tr>
+	</table>
+
+##### Response
+
+	<table>
+		<tr>
+			<th colspan=2>Feedback Response</th>
+		</tr>		
+		<tr>
+			<th>Parameter</th>
+			<th>Description</th>
+		</tr>
+		<tr>
+			<td>message</td>
+			<td>description</td>
+		</tr>
+		<tr>
+			<td>error_message</td>
+			<td>description</td>
 		</tr>
 	</table>
