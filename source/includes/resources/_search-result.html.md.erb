@@ -1,0 +1,29 @@
+## SearchResult
+
+A SearchResult resource represents a single result of a search.
+
+
+### Properties
+
+| **Name** | **Type** | **Description** |
+| `title` | `string` | The localized name of the result. |
+| `type` | `string` | The type of the result. Can be `Event`, `Category`, `Venue` or `MetroArea`. |
+| `type_description` | `string` | The localized text describing the type of the result. |
+
+
+### Links
+
+| **Relation** | **Method** | **Templated** | **Description** |
+| [`searchresult:category`](#searchresult-category) | `GET` | No | The category that a search result represents. |
+| [`searchresult:event`](#searchresult-event) | `GET` | No | The event that a search result represents. |
+| [`searchresult:metroarea`](#searchresult-metroarea) | `GET` | No | The metro area that a search result represents. |
+| [`searchresult:venue`](#searchresult-venue) | `GET` | No | The venue that a search result represents. |
+
+
+### Embedded
+
+| **Relation** | **Type** | **Optional** | **Description** |
+| `category` | [`Category`](#category) | Yes | The category that a search result represents. |
+| `event` | [`Event`](#event) | Yes | The event that a search result represents. |
+| `metro_area` | [`MetroArea`](#metro-area) | Yes | The metro area that a search result represents. |
+| `venue` | [`Venue`](#venue) | Yes | The venue that a search result represents. |

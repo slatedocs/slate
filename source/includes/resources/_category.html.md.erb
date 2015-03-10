@@ -1,0 +1,35 @@
+## Category
+
+A Category represents some grouping of events or other categories. Examples are "Concerts", "Rock and Pop" and "Lady Gaga".
+
+
+### Properties
+
+| **Name** | **Type** | **Description** |
+| `id` | `int` | The category identifier. |
+| `name` | `string` | The name of the category. |
+| `description_html` | `string` | The localized string containing HTML markup that describes the category. |
+| `min_ticket_price` | [`money`](#money) | The minimum ticket price of the events in this category. |
+| `min_event_date` | [`datetime`](#datetime) | The earliest start date of the events in this category. |
+| `max_event_date` | [`datetime`](#datetime) | The latest start date of the events in this category. |
+
+
+### Links
+
+| **Relation** | **Method** | **Templated** | **Description** |
+| `self` | `GET` | No | A category. |
+| [`category:image`](#category-image) | `GET` | No | The image for this category. |
+| [`category:webpage`](#category-webpage) | `GET` | No | The webpage on the viagogo website for this category. |
+| [`category:exclusivewebpage`](#category-exclusivewebpage) | `GET` | No | The exclusive webpage on the viagogo where tickets can be purchased. |
+| [`category:parent`](#category-parent) | `GET` | No | The parent of this category. |
+| [`category:children`](#category-children) | `GET` | No | The direct descendants of this category. |
+| [`category:performers`](#category-performers) | `GET` | No | The leaf descendants this category. These categories will be direct parents of events. |
+| [`category:events`](#category-events) | `GET` | No | The events in this category. |
+
+
+### Embedded
+
+| **Relation** | **Type** | **Optional** | **Description** |
+| `top_performers` | [`Categories`](#categories) | Yes | The most popular performers (leaf categories) that are children of this category. |
+| `top_children` | [`Categories`](#categories) | Yes | A preview of the categories that are direct children of this category. |
+| `top_events` | [`Events`](#events) | Yes | The most popular events in this category. |

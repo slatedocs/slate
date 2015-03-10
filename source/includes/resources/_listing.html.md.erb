@@ -1,0 +1,34 @@
+## Listing
+
+A set of tickets for sale on the viagogo marketplace.
+
+
+### Properties
+
+| **Name** | **Type** | **Description** |
+| `id` | `int` | The category identifier. |
+| `number_of_tickets` | `int` | The number of tickets available for purchase. |
+| `seating` | [`seating`](#seating) | The seating information for the ticket(s) in this listing. |
+| `pickup_available` | `boolean` | True if the tickets can be picked up at the event; otherwise , false. |
+| `download_available` | `boolean` | True if the listing has a pre-uploaded E-Ticket; otherwise, false. |
+| `ticket_price` | [`money`](#money) | The price of each ticket  in the listing in the currency that they were listed in. |
+| `estimated_ticket_price` | [`money`](#money) | The estimated price of each ticket in the currency requested by the client. |
+| `estimated_total_ticket_price` | [`money`](#money) | The estimated total price for all tickets in the currency requested by the client. |
+| `estimated_booking_fee` | [`money`](#money) | The estimated booking fee applied when the tickets are purchased, in the currency requested by the client. |
+| `estimated_shipping` | [`money`](#money) | The estimated shipping charge applied when the tickets are purchased, in the currency requested by the client. |
+| `estimated_vat` | [`money`](#money) | The estimated VAT charge applied when the tickets are purchased, in the currency requested by the client. |
+| `estimated_total_charge` | [`money`](#money) | The estimated total charge applied when the tickets are purchased, in the currency requested by the client. |
+
+
+### Links
+
+| **Relation** | **Method** | **Templated** | **Description** |
+| `self` | `GET` | No | A listing for an event. |
+| [`listing:event`](#listing-event) | `GET` | No | The event for this listing. |
+
+
+### Embedded
+
+| **Relation** | **Type** | **Optional** | **Description** |
+| `listing_notes` | [`ListingNotes`](#listing-notes) | No | The listing notes for this listing. |
+| `ticket_type` | [`TicketTypes`](#ticket-types) | No | The type of ticket(s) in this listing. |

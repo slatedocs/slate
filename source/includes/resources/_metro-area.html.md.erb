@@ -1,0 +1,18 @@
+## MetroArea
+
+A MetroArea is a metropolitan region that contains venues where events are taking place.
+
+
+### Properties
+
+| **Name** | **Type** | **Description** |
+| `id` | `int` | The metro area identifier. |
+| `name` | `string` | The name of the metro area. |
+
+
+### Links
+
+| **Relation** | **Method** | **Templated** | **Description** |
+| `self` | `GET` | No | A metro area. |
+| [`metroarea:events`](#metroarea-events) | `GET` | No | The events taking place in a metro area. |
+| [`metroarea:venues`](#metroarea-venues) | `GET` | No | The venues located in a metro area. |

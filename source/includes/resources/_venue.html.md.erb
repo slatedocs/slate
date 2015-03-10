@@ -1,0 +1,31 @@
+## Venue
+
+A venue is a location where an event takes place.
+
+
+### Properties
+
+| **Name** | **Type** | **Description** |
+| `id` | `int` | The venue identifier. |
+| `name` | `string` | The name of the venue. |
+| `address_1` | `string` | The first line of the address for the venue. |
+| `address_2` | `string` | The second line of the address for the venue. |
+| `city` | `string` | The name of the city where the venue is located. |
+| `state_province` | `string` | The name of the State or Province where the venue is located. |
+| `postal_code` | `string` | The postal code for the venue. |
+| `latitude` | `float` | The latitude for the venue. |
+| `longitude` | `float` | The longitude for the venue. |
+
+
+### Links
+
+| **Relation** | **Method** | **Templated** | **Description** |
+| `self` | `GET` | No | A venue. |
+| [`venue:events`](#venue-events) | `GET` | No | The events taking place in a venue. |
+| [`venue:metroarea`](#venue-metroarea) | `GET` | No | The metro area where a venue is located. |
+
+
+### Embedded
+
+| **Relation** | **Type** | **Optional** | **Description** |
+| `country` | [`Country`](#country) | No | The Country where the venue is located. |

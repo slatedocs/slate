@@ -1,0 +1,27 @@
+## MetroAreas
+
+The MetroAreas resource is a collection resource that contains zero or more references to a set of metro areas, and links that guide you on ways to interact with the metro areas. The collection offers a paginated view of metro areas.
+
+
+### Properties
+
+| **Name** | **Type** | **Description** |
+| `page` | `int` | The number of the current page of items. |
+| `page_size` | `int` | The number of items on each page. |
+| `total_items` | `int` | The total number of items on every page. |
+
+
+### Links
+
+| **Relation** | **Method** | **Templated** | **Description** |
+| `self` | `GET` | No | The collection of the current metro areas. |
+| `next` | `GET` | No | The next page of items in a collection. |
+| `prev` | `GET` | No | The previous page of items in a collection. |
+| `first` | `GET` | No | The first page of items in a collection. |
+| `last` | `GET` | No | The last page of items in a collection. |
+
+
+### Embedded
+
+| **Relation** | **Type** | **Optional** | **Description** |
+| `items` | [`MetroArea`](#metro-area)[] | No | An array of the current page of [`MetroArea`](#metro-area) resources. |

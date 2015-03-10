@@ -1,0 +1,33 @@
+## Event
+
+An event on the viagogo platform.
+
+
+### Properties
+
+| **Name** | **Type** | **Description** |
+| `id` | `int` | The category identifier. |
+| `name` | `string` | The name of the category. |
+| `start_date` | [`datetime`](#datetime) | The date when the event starts. |
+| `end_date` | [`datetime`](#datetime) | The date when the event ends. |
+| `min_ticket_price` | [`money`](#money) | The minimum ticket price of the listings in this event. |
+| `date_confirmed` | `boolean` | True if the event start and end date have been confirmed; Otherwise, false. |
+| `notes_html` | `string` | Localized string containing HTML markup that describes the notes for the event. |
+| `restrictions_html` | `string` | Localized string containing HTML markup that describes the purchase restrictions on the event. |
+
+
+### Links
+
+| **Relation** | **Method** | **Templated** | **Description** |
+| `self` | `GET` | No | An event. |
+| [`event:category`](#event-category) | `GET` | No | The category that contains this event. |
+| [`event:exclusivewebpage`](#event-exclusivewebpage) | `GET` | No | The exclusive viagogo website webpage for this event. |
+| [`event:listings`](#event-listings) | `GET` | No | The listings for this event. |
+| [`event:webpage`](#event-webpage) | `GET` | No | The webpage on the viagogo website for this event. |
+
+
+### Embedded
+
+| **Relation** | **Type** | **Optional** | **Description** |
+| `venue` | | [`Venue`](#venue) | No | The Venue where the event is taking place. |
+| `category` | | [`Category`](#category) | Yes | The category for this event. |
