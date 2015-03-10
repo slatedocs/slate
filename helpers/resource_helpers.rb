@@ -1,3 +1,6 @@
+#!/usr/bin/env ruby
+# encoding: utf-8
+
 require 'json'
 
 module ResourceHelpers
@@ -112,7 +115,7 @@ module ResourceHelpers
   MONEY_EURO ||= {
     "amount" => 22.62,
     "currency_code" => "EUR",
-    "display" => "â‚¬22.62"
+    "display" => '€22.62'
   }
 
   SEATING ||= {

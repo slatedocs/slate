@@ -1,3 +1,6 @@
+#!/usr/bin/env ruby
+# encoding: utf-8
+
 module RequestHelpers
   def curl(method, url)
     code = %(curl -X #{method} "#{url}"\n) <<

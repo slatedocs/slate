@@ -13,6 +13,7 @@ test/version_tmp
 tmp
 *.DS_STORE
 build/
+vendor/
 .cache
 
 # YARD artifacts
