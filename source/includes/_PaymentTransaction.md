@@ -703,7 +703,7 @@ EXAMPLE SERVICE RESPONSE DATA
 					<li><code>SC</code> - Safe Charge</li>
 					<li><code>AUTH</code> - Auth.net</li>
 					<li><code>INTERAC</code> - Interac</li>
-					<li><code>generic</code> - See <i>Appendix C: Generic Gateway Codes</i></li>
+					<li><code>generic</code></li>
 				</ul></td>
 		</tr>
 		<tr>

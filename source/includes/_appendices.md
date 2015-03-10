@@ -186,54 +186,6 @@ eDNA SCORE CARD EXAMPLE
 }
 ```
 
-	<table>
-		<tr>
-			<th>Key</th>
-			<th colspan=2>Description</th>
-		</tr>
-		<tr>
-			<td>tr</td>
-			<td>JSON Array of JSON encoded security test results</td>
-		</tr>
-		<tr>
-			<td>testCategory</td>
-			<td>
-				<ul type="disc">
-					<li><code>eDNA</code></li>
-					<li><code>Identity</code></li>
-					<li><code>Device</code></li>
-					<li><code>Merchant</code></li>
-			</td>
-		</tr>
-		<tr>
-			<td>testId</td>
-			<td>A unique string identifier for the security test</td>
-		</tr>
-		<tr>
-			<td>testName</td>
-			<td>The name of the test</td>
-		</tr>
-		<tr>
-			<td>testDescription</td>
-			<td>Description of the check that the test performs</td>
-		</tr>
-		<tr>
-			<td>testDetails</td>
-			<td>Textual details of the result of the test</td>
-		</tr>
-		<tr>
-			<td>testPass</td>
-			<td>Boolean to indicate whether the test succeeded or not. 
-			<br><br>
-			<b>Note</b>: Some tests are informational and do not have a testPass attribute. Similarly, if the waitingForData attribute is present, the testPass will be absent.</td>
-		</tr>
-		<tr>
-			<td>waitingForData</td>
-			<td>If the test is waiting for data (e.g. out of wallet questions), then this field will be present with the value of true. Otherwise, it is absent.</td>
-		</tr>
-	</table>
-
-
 #### Result Codes
 
 Code | Meaning
