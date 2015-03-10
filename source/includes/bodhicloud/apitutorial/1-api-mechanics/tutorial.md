@@ -22,7 +22,7 @@ Actions
 2. count
 3. post
 4. put
-5. put
+5. post
 6. delete
 
 **Resource URL's::**
