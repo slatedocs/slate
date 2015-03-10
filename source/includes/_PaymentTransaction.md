@@ -50,71 +50,64 @@ EXAMPLE SERVICE REQUEST
 			<th>Description</th>
 		</tr>
 		<tr>
-			<td>amt</td>
-			<td><font color=#446CB3>string</font>, optional<br><br>
-			Transaction amount</td>
+			<td>amt<br><font color=#446CB3>string</font>, optional</td>
+			<td>Transaction amount</td>
 		</tr>
 		<tr>
-			<td>ccy</td>
-			<td><font color=#446CB3>string</font>, optional<br><br>
-			Transaction currency</td>
+			<td>ccy<br><font color=#446CB3>string</font>, optional</td>
+			<td>Transaction currency</td>
 		</tr>
 		<tr>
-			<td>pppi</td>
-			<td><font color=#446CB3>string</font>, optional<br><br>
-			PayPal Payer ID</td>
+			<td>pppi<br><font color=#446CB3>string</font>, optional</td>
+			<td>PayPal Payer ID</td>
 		</tr>
 		<tr>
-			<td>pppe</td>
-			<td><font color=#446CB3>string</font>, optional<br><br>
-			PayPal Payer Email</td>
+			<td>pppe<br><font color=#446CB3>string</font>, optional</td>
+			<td>PayPal Payer Email</td>
 		</tr>
 		<tr>
-			<td>reason</td>
-			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
+			<td>reason<br><font color=#446CB3>string</font>, optional</td>
+			<td>Description</td>
 		</tr>
 		<tr>
-			<td>gateway</td>
-			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
+			<td>gateway<br><font color=#446CB3>string</font>, optional</td>
+			<td>Description</td>
 		</tr>
 		<tr>
-			<td>error_code</td>
-			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
+			<td>error_code<br><font color=#446CB3>string</font>, optional</td>
+			<td>Description</td>
 		</tr>
 		<tr>
-			<td>avs_result</td>
-			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
+			<td>avs_result<br><font color=#446CB3>string</font>, optional</td>
+			<td>Description</td>
 		</tr>
 		<tr>
-			<td>auth_code</td>
-			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
+			<td>auth_code<br><font color=#446CB3>string</font>, optional</td>
+			<td>Description</td>
 		</tr>
 		<tr>
-			<td>cvv2_result</td>
-			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
+			<td>cvv2_result<br><font color=#446CB3>string</font>, optional</td>
+			<td>Description</td>
 		</tr>
 		<tr>
-			<td>auth_response_text</td>
-			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
+			<td>auth_response_text<br><font color=#446CB3>string</font>, optional</td>
+			<td>Description</td>
 		</tr>
 		<tr>
-			<td>auth_response</td>
-			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
+			<td>auth_response<br><font color=#446CB3>string</font>, optional</td>
+			<td>Description</td>
 		</tr>
 		<tr>
-			<td>m</td>
-			<td><font color=#446CB3>string</font>, optional<br><br>
-			Merchant Identifier. Used when a reseller is proxying requests for their merchants. Please contact IdentityMind support for further details of the usage of this field</td>
+			<td>m<br><font color=#446CB3>string</font>, optional</td>
+			<td>Merchant Identifier. Used when a reseller is proxying requests for their merchants. Please contact IdentityMind support for further details of the usage of this field</td>
 		</tr>
 		<tr>
-			<td>tid</td>
-			<td><font color=#446CB3>string</font>, optional<br><br>
-			Transaction Identifier. If not provided, an ID will be allocated</td>
+			<td>tid<br><font color=#446CB3>string</font>, optional</td>
+			<td>Transaction Identifier. If not provided, an ID will be allocated</td>
 		</tr>
 		<tr>
-			<td>pcty</td>
-			<td><font color=#446CB3>string</font>, optional<br><br>
-			The card type. Values are:
+			<td>pcty<br><font color=#446CB3>string</font>, optional</td>
+			<td>The card type. Values are:
 				<ul type="disc">
 					<li><code>CREDIT</code></li>
 					<li><code>DEBIT</code></li>
@@ -124,163 +117,160 @@ EXAMPLE SERVICE REQUEST
 			Default is <code>UNKNOWN</code></td>
 		</tr>
 		<tr>
-			<td>phash</td>
-			<td><font color=#446CB3>string</font>, optional<br><br>
-			Generic payment account unique identifier (Hash). This is used when IdentityMind does not natively support the payment type. NOTE: The hash must be of the full account number, not a masked or tokenized representation.,</td>
+			<td>phash<br><font color=#446CB3>string</font>, optional</td>
+			<td>Generic payment account unique identifier (Hash). This is used when IdentityMind does not natively support the payment type. NOTE: The hash must be of the full account number, not a masked or tokenized representation.,</td>
 		</tr>
 		<tr>
-			<td>ptoken</td>
-			<td><font color=#446CB3>string</font>, optional<br><br>
-			A masked or tokenized version of the account token.</td>
+			<td>ptoken<br><font color=#446CB3>string</font>, optional</td>
+			<td>A masked or tokenized version of the account token.</td>
 		</tr>
 		<tr>
-			<td>pccn</td>
-			<td><font color=#446CB3>string</font>, optional<br><br>
-			Credit Card unique identifier (Hash). IdentityMind will supply procedure to generate hash. NOTE: The hash must be of the full card number, not a masked or tokenized representation.</td>
+			<td>pccn<br><font color=#446CB3>string</font>, optional</td>
+			<td>Credit Card unique identifier (Hash). IdentityMind will supply procedure to generate hash. NOTE: The hash must be of the full card number, not a masked or tokenized representation.</td>
 		</tr>
 		<tr>
-			<td>pcct</td>
-			<td><font color=#446CB3>string</font>, optional<br><br>A masked or tokenized version of the credit card number. IdentityMind will supply procedure to generate token.</td>
+			<td>pcct<br><font color=#446CB3>string</font>, optional</td>
+			<td>A masked or tokenized version of the credit card number. IdentityMind will supply procedure to generate token.</td>
 		</tr>
 		<tr>
-			<td>man</td>
-			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
+			<td>man<br><font color=#446CB3>string</font>, optional</td>
+			<td>Description</td>
 		</tr>
 		<tr>
-			<td>tea</td>
-			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
+			<td>tea<br><font color=#446CB3>string</font>, optional</td>
+			<td>Description</td>
 		</tr>
 		<tr>
-			<td>soc</td>
-			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
+			<td>soc<br><font color=#446CB3>string</font>, optional</td>
+			<td>Description</td>
 		</tr>
 		<tr>
-			<td>ip</td>
-			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
+			<td>ip<br><font color=#446CB3>string</font>, optional</td>
+			<td>Description</td>
 		</tr>
 		<tr>
-			<td>dfp</td>
-			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
+			<td>dfp<br><font color=#446CB3>string</font>, optional</td>
+			<td>Description</td>
 		</tr>
 		<tr>
-			<td>dft</td>
-			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
+			<td>dft<br><font color=#446CB3>string</font>, optional</td>
+			<td>Description</td>
 		</tr>
 		<tr>
-			<td>tti</td>
-			<td><font color=#446CB3>integer</font>, optional<br><br>Description</td>
+			<td>tti<br><font color=#446CB3>integer</font>, optional</td>
+			<td>Description</td>
 		</tr>
 		<tr>
-			<td>bfn</td>
-			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
+			<td>bfn<br><font color=#446CB3>string</font>, optional</td>
+			<td>Description</td>
 		</tr>
 		<tr>
-			<td>bln</td>
-			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
+			<td>bln<br><font color=#446CB3>string</font>, optional</td>
+			<td>Description</td>
 		</tr>
 		<tr>
-			<td>profile</td>
-			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
+			<td>profile<br><font color=#446CB3>string</font>, optional</td>
+			<td>Description</td>
 		</tr>
 		<tr>
-			<td>smna</td>
-			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
+			<td>smna<br><font color=#446CB3>string</font>, optional</td>
+			<td>Description</td>
 		</tr>
 		<tr>
-			<td>smid</td>
-			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
+			<td>smid<br><font color=#446CB3>string</font>, optional</td>
+			<td>Description</td>
 		</tr>
 		<tr>
-			<td>bsn</td>
-			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
+			<td>bsn<br><font color=#446CB3>string</font>, optional</td>
+			<td>Description</td>
 		</tr>
 		<tr>
-			<td>bco</td>
-			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
+			<td>bco<br><font color=#446CB3>string</font>, optional</td>
+			<td>Description</td>
 		</tr>
 		<tr>
-			<td>bz</td>
-			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
+			<td>bz<br><font color=#446CB3>string</font>, optional</td>
+			<td>Description</td>
 		</tr>
 		<tr>
-			<td>bc</td>
-			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
+			<td>bc<br><font color=#446CB3>string</font>, optional</td>
+			<td>Description</td>
 		</tr>
 		<tr>
-			<td>bs</td>
-			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
+			<td>bs<br><font color=#446CB3>string</font>, optional</td>
+			<td>Description</td>
 		</tr>
 		<tr>
-			<td>sfn</td>
-			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
+			<td>sfn<br><font color=#446CB3>string</font>, optional</td>
+			<td>Description</td>
 		</tr>
 		<tr>
-			<td>sln</td>
-			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
+			<td>sln<br><font color=#446CB3>string</font>, optional</td>
+			<td>Description</td>
 		</tr>
 		<tr>
-			<td>ssn</td>
-			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
+			<td>ssn<br><font color=#446CB3>string</font>, optional</td>
+			<td>Description</td>
 		</tr>
 		<tr>
-			<td>sco</td>
-			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
+			<td>sco<br><font color=#446CB3>string</font>, optional</td>
+			<td>Description</td>
 		</tr>
 		<tr>
-			<td>sz</td>
-			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
+			<td>sz<br><font color=#446CB3>string</font>, optional</td>
+			<td>Description</td>
 		</tr>
 		<tr>
-			<td>sc</td>
-			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
+			<td>sc<br><font color=#446CB3>string</font>, optional</td>
+			<td>Description</td>
 		</tr>
 		<tr>
-			<td>ss</td>
-			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
+			<td>ss<br><font color=#446CB3>string</font>, optional</td>
+			<td>Description</td>
 		</tr>
 		<tr>
-			<td>aflid</td>
-			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
+			<td>aflid<br><font color=#446CB3>string</font>, optional</td>
+			<td>Description</td>
 		</tr>
 		<tr>
-			<td>aflsd</td>
-			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
+			<td>aflsd<br><font color=#446CB3>string</font>, optional</td>
+			<td>Description</td>
 		</tr>
 		<tr>
-			<td>blg</td>
-			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
+			<td>blg<br><font color=#446CB3>string</font>, optional</td>
+			<td>Description</td>
 		</tr>
 		<tr>
-			<td>clat</td>
-			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
+			<td>clat<br><font color=#446CB3>string</font>, optional</td>
+			<td>Description</td>
 		</tr>
 		<tr>
-			<td>clong</td>
-			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
+			<td>clong<br><font color=#446CB3>string</font>, optional</td>
+			<td>Description</td>
 		</tr>
 		<tr>
-			<td>phn</td>
-			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
+			<td>phn<br><font color=#446CB3>string</font>, optional</td>
+			<td>Description</td>
 		</tr>
 		<tr>
-			<td>pm</td>
-			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
+			<td>pm<br><font color=#446CB3>string</font>, optional</td>
+			<td>Description</td>
 		</tr>
 		<tr>
-			<td>pw</td>
-			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
+			<td>pw<<br><font color=#446CB3>string</font>, optional/td>
+			<td>Description</td>
 		</tr>
 		<tr>
-			<td>pach</td>
-			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
+			<td>pach<br><font color=#446CB3>string</font>, optional</td>
+			<td>Description</td>
 		</tr>
 		<tr>
-			<td>pbc</td>
-			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
+			<td>pbc<br><font color=#446CB3>string</font>, optional</td>
+			<td>Description</td>
 		</tr>
 		<tr>
-			<td>memo</td>
-			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
+			<td>memo<br><font color=#446CB3>string</font>, optional</td>
+			<td>Description</td>
 		</tr>
 	</table>
 
@@ -322,8 +312,8 @@ EXAMPLE SERVICE RESPONSE DATA
 			<td><font color=#446CB3>EDNAPolicyResult</font>, optional<br><br>Description</td>
 		</tr>
 		<tr>
-			<td>erd</td>
-			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
+			<td>erd<br><font color=#446CB3>string</font>, optional</td>
+			<td>Description</td>
 		</tr>
 		<tr>
 			<td>upr</td>
@@ -354,16 +344,16 @@ EXAMPLE SERVICE RESPONSE DATA
 			<td><font color=#446CB3>string</font><br><br>Description</td>
 		</tr>
 		<tr>
-			<td>arpr</td>
-			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
+			<td>arpr<br><font color=#446CB3>string</font>, optional</td>
+			<td>Description</td>
 		</tr>
 		<tr>
-			<td>arpid</td>
-			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
+			<td>arpid<br><font color=#446CB3>string</font>, optional</td>
+			<td>Description</td>
 		</tr>
 		<tr>
-			<td>usc</td>
-			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
+			<td>usc<br><font color=#446CB3>string</font>, optional</td>
+			<td>Description</td>
 		</tr>
 		<tr>
 			<td>ednaScoreCard</td>
@@ -411,8 +401,8 @@ EXAMPLE SERVICE RESPONSE DATA
 			<td><font color=#446CB3>string</font><br><br>Description</td>
 		</tr>
 		<tr>
-			<td>testDetails</td>
-			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
+			<td>testDetails<br><font color=#446CB3>string</font>, optional</td>
+			<td>Description</td>
 		</tr>
 		<tr>
 			<td>testPass</td>
@@ -449,8 +439,8 @@ EXAMPLE SERVICE RESPONSE DATA
 			<td><font color=#446CB3>string</font><br><br>Description</td>
 		</tr>
 		<tr>
-			<td>details</td>
-			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
+			<td>details<br><font color=#446CB3>string</font>, optional</td>
+			<td>Description</td>
 		</tr>
 		<tr>
 			<td>description</td>
@@ -540,72 +530,72 @@ EXAMPLE SERVICE RESPONSE DATA
 			<th>Description</th>
 		</tr>
 		<tr>
-			<td>reason</td>
-			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
+			<td>reason<br><font color=#446CB3>string</font>, optional</td>
+			<td>Description</td>
 		</tr>
 		<tr>
-			<td>auth_response_text</td>
-			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
+			<td>auth_response_text<br><font color=#446CB3>string</font>, optional</td>
+			<td>Description</td>
 		</tr>
 		<tr>
-			<td>auth_response</td>
-			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
+			<td>auth_response<br><font color=#446CB3>string</font>, optional</td>
+			<td>Description</td>
 		</tr>
 		<tr>
-			<td>avs_result</td>
-			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
+			<td>avs_result<br><font color=#446CB3>string</font>, optional</td>
+			<td>Description</td>
 		</tr>
 		<tr>
-			<td>cvv2_result</td>
-			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
+			<td>cvv2_result<br><font color=#446CB3>string</font>, optional</td>
+			<td>Description</td>
 		</tr>
 		<tr>
-			<td>error_code</td>
-			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
+			<td>error_code<br><font color=#446CB3>string</font>, optional</td>
+			<td>Description</td>
 		</tr>
 		<tr>
-			<td>auth_code</td>
-			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
+			<td>auth_code<br><font color=#446CB3>string</font>, optional</td>
+			<td>Description</td>
 		</tr>
 		<tr>
-			<td>gateway</td>
-			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
+			<td>gateway<br><font color=#446CB3>string</font>, optional</td>
+			<td>Description</td>
 		</tr>
 		<tr>
-			<td>tid</td>
-			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
+			<td>tid<br><font color=#446CB3>string</font>, optional</td>
+			<td>Description</td>
 		</tr>
 		<tr>
-			<td>validation_status</td>
-			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
+			<td>validation_status<br><font color=#446CB3>string</font>, optional</td>
+			<td>Description</td>
 		</tr>
 		<tr>
-			<td>how_validated</td>
-			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
+			<td>how_validated<br><font color=#446CB3>string</font>, optional</td>
+			<td>Description</td>
 		</tr>
 		<tr>
-			<td>how_validated_details</td>
-			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
+			<td>how_validated_details<br><font color=#446CB3>string</font>, optional</td>
+			<td>Description</td>
 		</tr>
 		<tr>
-			<td>validation_details</td>
-			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
+			<td>validation_details<br><font color=#446CB3>string</font>, optional</td>
+			<td>Description</td>
 		</tr>
 		<tr>
-			<td>details</td>
-			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
+			<td>details<br><font color=#446CB3>string</font>, optional</td>
+			<td>Description</td>
 		</tr>
 		<tr>
-			<td>amt</td>
-			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
+			<td>amt<br><font color=#446CB3>string</font>, optional</td>
+			<td>Description</td>
 		</tr>
 		<tr>
-			<td>ccy</td>
-			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
+			<td>ccy<br><font color=#446CB3>string</font>, optional</td>
+			<td>Description</td>
 		</tr>
 		<tr>
-			<td>bank_status</td>
-			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
+			<td>bank_status<br><font color=#446CB3>string</font>, optional</td>
+			<td>Description</td>
 		</tr>
 	</table>
 
@@ -617,11 +607,11 @@ EXAMPLE SERVICE RESPONSE DATA
 			<th>Description</th>
 		</tr>
 		<tr>
-			<td>message</td>
-			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
+			<td>message<br><font color=#446CB3>string</font>, optional</td>
+			<td>Description</td>
 		</tr>
 		<tr>
-			<td>error_message</td>
-			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
+			<td>error_message<br><font color=#446CB3>string</font>, optional</td>
+			<td>Description</td>
 		</tr>
 	</table>
