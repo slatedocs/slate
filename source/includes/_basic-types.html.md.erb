@@ -1,0 +1,59 @@
+# Basic Types
+
+API responses have standard formats for most object types - dates, monetary values, etc. We've documented all possible fields and their meanings.
+
+
+## DateTime
+
+> "2015-06-08T19:00:00+01:00"
+
+A datetime represented as a string in [ISO 8601]((http://en.wikipedia.org/wiki/ISO_8601)) date format `YYYY-MM-DDTHH:MM:SSZ`.
+
+
+## Money
+
+<%= json(:money, 'Example JSON:') %>
+
+Returned for monetary values, such as ticket prices, fees charged and tax amounts.
+
+### Properties
+
+| **Name** | **Type** | **Description** |
+| `amount` | `decimal` | The decimal amount of the money. |
+| `currency_code` | `string` | The [ISO 4217](http://en.wikipedia.org/wiki/ISO_4217) currency code that the monetary value is represented in. |
+| `display` | `string` | A user-friendly string representing the monetary value. |
+
+
+## Seating
+
+<%= json(:seating, 'Example JSON:') %>
+
+Represents the seating information for a ticket(s) in a Venue.
+
+### Properties
+
+| **Name** | **Type** | **Description** |
+| `section` | `string` | The section of the ticket(s). |
+| `row` | `string` | The row of the ticket(s). |
+| `seat_from` | `string` | The first in a contiguous block of seats to which the tickets have been allocated. |
+| `seat_to` | `string` | The last in a contiguous block of seats to which the tickets have been allocated. |
+
+
+## AddressSnapshot
+
+<%= json(:address_snapshot, 'Example JSON:') %>
+
+Represents a snapshot of an Address resource at a particular point in time.
+
+### Properties
+
+| **Name** | **Type** | **Description** |
+| `full_name` | `string` | The full name of the recipient. |
+| `address_1` | `string` | The first line of the address. |
+| `address_2` | `string` | The second line of the address. |
+| `address_3` | `string` | The third line of the address. |
+| `city` | `string` | The name of the city where the address is located. |
+| `state_province` | `string` | The name of the State or Province where the address is located. |
+| `postal_code` | `string` | The postal code for the address. |
+| `country_code` | `string` | The two-letter [ISO 3166](http://en.wikipedia.org/wiki/ISO_3166) code for the country where the address is located. |
+| `country_name` | `string` | The name of the country where the address is located. |

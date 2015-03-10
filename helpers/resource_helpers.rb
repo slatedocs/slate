@@ -46,6 +46,55 @@ module ResourceHelpers
     "message" => "All requests must include a valid User-Agent header"
   }
 
+  MONEY ||= {
+    "amount" => 25.65,
+    "currency_code" => "USD",
+    "display" => "$25.65"
+  }
+
+  MONEY_FEE ||= {
+    "amount" => 5.35,
+    "currency_code" => "USD",
+    "display" => "$5.35"
+  }
+
+  MONEY_ZERO ||= {
+    "amount" => 0,
+    "currency_code" => "USD",
+    "display" => "$0.00"
+  }
+
+  MONEY_TOTAL ||= {
+    "amount" => 30,
+    "currency_code" => "USD",
+    "display" => "$30.00"
+  }
+
+  MONEY_EURO ||= {
+    "amount" => 22.62,
+    "currency_code" => "EUR",
+    "display" => "â‚¬22.62"
+  }
+
+  SEATING ||= {
+    "section" => "107",
+    "row" => "A",
+    "seat_from" => "1",
+    "seat_to" => "4"
+  }
+
+  ADDRESS_SNAPSHOT ||= {
+    "full_name" => "Joe Smith",
+    "address_1" => "Flat 16, Waterman's Quay",
+    "address_2" => "33 William Morris Way",
+    "address_3" => "Fulham",
+    "city" => "London",
+    "state_province" => "Greater London",
+    "postal_code" => "SW6 2UU",
+    "country_code" => "GB",
+    "country" => "United Kingdom"
+  }
+
   ROOT ||= {
     "_links" => {
       "self" => {
