@@ -170,7 +170,7 @@ EXAMPLE SERVICE REQUEST
 		</tr>
 		<tr>
 			<td>pccn<br><font color=#446CB3>string</font>, optional</td>
-			<td>Credit card unique identifier (hash). IdentityMind will supply procedure to generate hash.<br> 
+			<td>Credit card unique identifier (hash). IdentityMind will supply procedure to generate hash.<br><br> 
 			<b>Note</b>: The hash must be of the full card number, not a masked or tokenized representation.</td>
 		</tr>
 		<tr>
@@ -189,7 +189,7 @@ EXAMPLE SERVICE REQUEST
 		</tr>
 		<tr>
 			<td>phash<br><font color=#446CB3>string</font>, optional</td>
-			<td>Generic payment account unique identifier (hash). This is used when IdentityMind does not natively support the payment type.<br> 
+			<td>Generic payment account unique identifier (hash). This is used when IdentityMind does not natively support the payment type.<br><br> 
 			<b>Note</b>: The hash must be of the full account number, not a masked or tokenized representation.</td>
 		</tr>
 		<tr>
@@ -290,8 +290,8 @@ EXAMPLE SERVICE REQUEST
 		</tr>
 		<tr>
 			<td>pach<br><font color=#446CB3>string</font>, optional</td>
-			<td>ACH account unique identifier (hash)
-			<br><b>Note</b>: The hash must be of the full account number, not a masked or tokenized representation</td>
+			<td>ACH account unique identifier (hash)<br><br>
+			<b>Note</b>: The hash must be of the full account number, not a masked or tokenized representation</td>
 		</tr>
 		<tr>
 			<td>pbc<br><font color=#446CB3>string</font>, optional</td>
