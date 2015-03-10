@@ -6,7 +6,7 @@ The following URL can be used for requesting payment transaction anti-fraud eval
 `POST https://edna.identitymind.com/im/transaction`
 
 The following URL can be used to retrieve the current state of a transaction:<br>
-`GET https://edna.identitymind.com/im/transaction/<transaction_ID>`
+`GET https://edna.identitymind.com/im/transaction/<transaction_id>`
 
 ##### Arguments
 
@@ -43,7 +43,7 @@ EXAMPLE SERVICE REQUEST
 ```
 	<table>
 		<tr>
-			<th colspan=2>PAyment Transaction Data</th>
+			<th colspan=2>Payment Transaction Data</th>
 		</tr>
 		<tr>
 			<th>Parameter</th>
@@ -51,219 +51,236 @@ EXAMPLE SERVICE REQUEST
 		</tr>
 		<tr>
 			<td>amt</td>
-			<td>Description</td>
+			<td><font color=#446CB3>string</font>, optional<br><br>
+			Transaction amount</td>
 		</tr>
 		<tr>
 			<td>ccy</td>
-			<td>Description</td>
+			<td><font color=#446CB3>string</font>, optional<br><br>
+			Transaction currency</td>
 		</tr>
 		<tr>
 			<td>pppi</td>
-			<td>Description</td>
+			<td><font color=#446CB3>string</font>, optional<br><br>
+			PayPal Payer ID</td>
 		</tr>
 		<tr>
 			<td>pppe</td>
-			<td>Description</td>
+			<td><font color=#446CB3>string</font>, optional<br><br>
+			PayPal Payer Email</td>
 		</tr>
 		<tr>
 			<td>reason</td>
-			<td>Description</td>
+			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
 		</tr>
 		<tr>
 			<td>gateway</td>
-			<td>Description</td>
+			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
 		</tr>
 		<tr>
 			<td>error_code</td>
-			<td>Description</td>
+			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
 		</tr>
 		<tr>
 			<td>avs_result</td>
-			<td>Description</td>
+			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
 		</tr>
 		<tr>
 			<td>auth_code</td>
-			<td>Description</td>
+			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
 		</tr>
 		<tr>
 			<td>cvv2_result</td>
-			<td>Description</td>
+			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
 		</tr>
 		<tr>
 			<td>auth_response_text</td>
-			<td>Description</td>
+			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
 		</tr>
 		<tr>
 			<td>auth_response</td>
-			<td>Description</td>
+			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
 		</tr>
 		<tr>
 			<td>m</td>
-			<td>Description</td>
+			<td><font color=#446CB3>string</font>, optional<br><br>
+			Merchant Identifier. Used when a reseller is proxying requests for their merchants. Please contact IdentityMind support for further details of the usage of this field</td>
 		</tr>
 		<tr>
 			<td>tid</td>
-			<td>Description</td>
+			<td><font color=#446CB3>string</font>, optional<br><br>
+			Transaction Identifier. If not provided, an ID will be allocated</td>
 		</tr>
 		<tr>
-			<td>pctv</td>
-			<td>Description</td>
+			<td>pcty</td>
+			<td><font color=#446CB3>string</font>, optional<br><br>
+			The card type. Values are:
+				<ul type="disc">
+					<li><code>CREDIT</code></li>
+					<li><code>DEBIT</code></li>
+					<li><code>PREPAID</code></li>
+					<li><code>UNKNOWN</code></li>
+				</ul>
+			Default is <code>UNKNOWN</code></td>
 		</tr>
 		<tr>
 			<td>phash</td>
-			<td>Description</td>
+			<td><font color=#446CB3>string</font>, optional<br><br>
+			Generic payment account unique identifier (Hash). This is used when IdentityMind does not natively support the payment type. NOTE: The hash must be of the full account number, not a masked or tokenized representation.,</td>
 		</tr>
 		<tr>
 			<td>ptoken</td>
-			<td>Description</td>
+			<td><font color=#446CB3>string</font>, optional<br><br>
+			A masked or tokenized version of the account token.</td>
 		</tr>
 		<tr>
 			<td>pccn</td>
-			<td>Description</td>
+			<td><font color=#446CB3>string</font>, optional<br><br>
+			Credit Card unique identifier (Hash). IdentityMind will supply procedure to generate hash. NOTE: The hash must be of the full card number, not a masked or tokenized representation.</td>
 		</tr>
 		<tr>
 			<td>pcct</td>
-			<td>Description</td>
+			<td><font color=#446CB3>string</font>, optional<br><br>A masked or tokenized version of the credit card number. IdentityMind will supply procedure to generate token.</td>
 		</tr>
 		<tr>
 			<td>man</td>
-			<td>Description</td>
+			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
 		</tr>
 		<tr>
 			<td>tea</td>
-			<td>Description</td>
+			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
 		</tr>
 		<tr>
 			<td>soc</td>
-			<td>Description</td>
+			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
 		</tr>
 		<tr>
 			<td>ip</td>
-			<td>Description</td>
+			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
 		</tr>
 		<tr>
 			<td>dfp</td>
-			<td>Description</td>
+			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
 		</tr>
 		<tr>
 			<td>dft</td>
-			<td>Description</td>
+			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
 		</tr>
 		<tr>
 			<td>tti</td>
-			<td>Description</td>
+			<td><font color=#446CB3>integer</font>, optional<br><br>Description</td>
 		</tr>
 		<tr>
 			<td>bfn</td>
-			<td>Description</td>
+			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
 		</tr>
 		<tr>
 			<td>bln</td>
-			<td>Description</td>
+			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
 		</tr>
 		<tr>
 			<td>profile</td>
-			<td>Description</td>
+			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
 		</tr>
 		<tr>
 			<td>smna</td>
-			<td>Description</td>
+			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
 		</tr>
 		<tr>
 			<td>smid</td>
-			<td>Description</td>
+			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
 		</tr>
 		<tr>
 			<td>bsn</td>
-			<td>Description</td>
+			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
 		</tr>
 		<tr>
 			<td>bco</td>
-			<td>Description</td>
+			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
 		</tr>
 		<tr>
 			<td>bz</td>
-			<td>Description</td>
+			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
 		</tr>
 		<tr>
 			<td>bc</td>
-			<td>Description</td>
+			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
 		</tr>
 		<tr>
 			<td>bs</td>
-			<td>Description</td>
+			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
 		</tr>
 		<tr>
 			<td>sfn</td>
-			<td>Description</td>
+			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
 		</tr>
 		<tr>
 			<td>sln</td>
-			<td>Description</td>
+			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
 		</tr>
 		<tr>
 			<td>ssn</td>
-			<td>Description</td>
+			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
 		</tr>
 		<tr>
 			<td>sco</td>
-			<td>Description</td>
+			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
 		</tr>
 		<tr>
 			<td>sz</td>
-			<td>Description</td>
+			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
 		</tr>
 		<tr>
 			<td>sc</td>
-			<td>Description</td>
+			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
 		</tr>
 		<tr>
 			<td>ss</td>
-			<td>Description</td>
+			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
 		</tr>
 		<tr>
 			<td>aflid</td>
-			<td>Description</td>
+			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
 		</tr>
 		<tr>
 			<td>aflsd</td>
-			<td>Description</td>
+			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
 		</tr>
 		<tr>
 			<td>blg</td>
-			<td>Description</td>
+			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
 		</tr>
 		<tr>
 			<td>clat</td>
-			<td>Description</td>
+			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
 		</tr>
 		<tr>
 			<td>clong</td>
-			<td>Description</td>
+			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
 		</tr>
 		<tr>
 			<td>phn</td>
-			<td>Description</td>
+			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
 		</tr>
 		<tr>
 			<td>pm</td>
-			<td>Description</td>
+			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
 		</tr>
 		<tr>
 			<td>pw</td>
-			<td>Description</td>
+			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
 		</tr>
 		<tr>
 			<td>pach</td>
-			<td>Description</td>
+			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
 		</tr>
 		<tr>
 			<td>pbc</td>
-			<td>Description</td>
+			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
 		</tr>
 		<tr>
 			<td>memo</td>
-			<td>Description</td>
+			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
 		</tr>
 	</table>
 
@@ -302,150 +319,150 @@ EXAMPLE SERVICE RESPONSE DATA
 		</tr>
 		<tr>
 			<td>user</td>
-			<td>Description</td>
+			<td><font color=#446CB3>EDNAPolicyResult</font>, optional<br><br>Description</td>
 		</tr>
 		<tr>
 			<td>erd</td>
-			<td>Description</td>
+			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
 		</tr>
 		<tr>
 			<td>upr</td>
-			<td>Description</td>
+			<td><font color=#446CB3>EDNAPolicyResult</font>, optional<br><br>Description</td>
 		</tr>
 		<tr>
 			<td>res</td>
-			<td>Description</td>
+			<td><font color=#446CB3>FraudPolicyResult</font>, optional<br><br>Description</td>
 		</tr>
 		<tr>
 			<td>rcd</td>
-			<td>Description</td>
+			<td><font color=#446CB3>string</font><br><br>Description</td>
 		</tr>
 		<tr>
 			<td>tid</td>
-			<td>Description</td>
+			<td><font color=#446CB3>string</font><br><br>Description</td>
 		</tr>
 		<tr>
 			<td>frn</td>
-			<td>Description</td>
+			<td><font color=#446CB3>string</font><br><br>Description</td>
 		</tr>
 		<tr>
 			<td>frp</td>
-			<td>Description</td>
+			<td><font color=#446CB3>FraudPolicyResult</font>, optional<br><br>Description</td>
 		</tr>
 		<tr>
 			<td>frd</td>
-			<td>Description</td>
+			<td><font color=#446CB3>string</font><br><br>Description</td>
 		</tr>
 		<tr>
 			<td>arpr</td>
-			<td>Description</td>
+			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
 		</tr>
 		<tr>
 			<td>arpid</td>
-			<td>Description</td>
+			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
 		</tr>
 		<tr>
 			<td>usc</td>
-			<td>Description</td>
+			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
 		</tr>
 		<tr>
 			<td>ednaScoreCard</td>
-			<td>Description</td>
+			<td><font color=#446CB3>ExternalizedTransactionScorecard</font><br><br>Description</td>
 		</tr>
 		<tr>
 			<th colspan=2>Externalized Transaction Scorecard</th>
 		</tr>
 		<tr>
 			<td>ar</td>
-			<td>Description</td>
+			<td><font color=#446CB3>AutomatedReviewEngine</font><br><br>Description</td>
 		</tr>
 		<tr>
 			<td>tr</td>
-			<td>Description</td>
+			<td><font color=#446CB3>array[TestResult]</font><br><br>Description</td>
 		</tr>
 		<tr>
 			<td>er</td>
-			<td>Description</td>
+			<td><font color=#446CB3>ExternalizedEvaluationResult</font><br><br>Description</td>
 		</tr>
 		<tr>
 			<th colspan=2>Automated Review Engine Result</th>
 		</tr>
 		<tr>
 			<td>result</td>
-			<td>Description</td>
+			<td><font color=#446CB3>ReviewResult</font><br><br>Description</td>
 		</tr>
 		<tr>
 			<td>ruleId</td>
-			<td>Description</td>
+			<td><font color=#446CB3>string</font><br><br>Description</td>
 		</tr>
 		<tr>
 			<td>ruleName</td>
-			<td>Description</td>
+			<td><font color=#446CB3>string</font><br><br>Description</td>
 		</tr>
 		<tr>
 			<td>ruleDescription</td>
-			<td>Description</td>
+			<td><font color=#446CB3>string</font><br><br>Description</td>
 		</tr>
 		<tr>
 			<th colspan=2>Test Result</th>
 		</tr>
 		<tr>
 			<td>testId</td>
-			<td>Description</td>
+			<td><font color=#446CB3>string</font><br><br>Description</td>
 		</tr>
 		<tr>
 			<td>testDetails</td>
-			<td>Description</td>
+			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
 		</tr>
 		<tr>
 			<td>testPass</td>
-			<td>Description</td>
+			<td><font color=#446CB3>boolean</font>, optional<br><br>Description</td>
 		</tr>
 		<tr>
 			<td>testResult</td>
-			<td>Description</td>
+			<td><font color=#446CB3>Object</font><br><br>Description</td>
 		</tr>
 		<tr>
 			<td>waitingForData</td>
-			<td>Description</td>
+			<td><font color=#446CB3>boolean</font>, optional<br><br>Description</td>
 		</tr>
 		<tr>
 			<td>previouslyAccepted</td>
-			<td>Description</td>
+			<td><font color=#446CB3>boolean</font><br><br>Description</td>
 		</tr>
 		<tr>
 			<th colspan=2>Externalized Evaluation Result</th>
 		</tr>
 		<tr>
 			<td>firedRules</td>
-			<td>Description</td>
+			<td><font color=#446CB3>List[ExternalizedRule]</font><br><br>Description</td>
 		</tr>
 		<tr>
 			<td>reportedRule</td>
-			<td>Description</td>
+			<td><font color=#446CB3>ExternalizedRule</font><br><br>Description</td>
 		</tr>
 		<tr>
 			<th colspan=2>Externalized Rule</th>
 		</tr>
 		<tr>
 			<td>name</td>
-			<td>Description</td>
+			<td><font color=#446CB3>string</font><br><br>Description</td>
 		</tr>
 		<tr>
 			<td>details</td>
-			<td>Description</td>
+			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
 		</tr>
 		<tr>
 			<td>description</td>
-			<td>Description</td>
+			<td><font color=#446CB3>string</font><br><br>Description</td>
 		</tr>
 		<tr>
 			<td>resultCode</td>
-			<td>Description</td>
+			<td><font color=#446CB3>FraudPolicyResult</font><br><br>Description</td>
 		</tr>
 		<tr>
 			<td>ruleId</td>
-			<td>Description</td>
+			<td><font color=#446CB3>integer</font><br><br>Description</td>
 		</tr>
 	</table>
 
@@ -457,37 +474,37 @@ Notifies IdentityMind that a refund occurred on a transaction.
 
 The "refund-ok" URL should be used when the merchant believes that the refund is legitimate. The "refund-fraud" URL should be used when the merchant believes there is fraud, but a refund is being made to avoid a later chargeback. All arguments are optional.
 
-`POST https://edna.identitymind.com/im/transaction/<transaction_ID>/refund-ok`
+`POST https://edna.identitymind.com/im/transaction/<transaction_id>/refund-ok`
 
-`POST https://edna.identitymind.com/im/transaction/<transaction_ID>/refund-fraud`
+`POST https://edna.identitymind.com/im/transaction/<transaction_id>/refund-fraud`
 
-`POST https://edna.identitymind.com/im/transaction/<transaction_ID>/refund-partial-ok`
+`POST https://edna.identitymind.com/im/transaction/<transaction_id>/refund-partial-ok`
 
-`POST https://edna.identitymind.com/im/transaction/<transaction_ID>/refund-partial-fraud`
+`POST https://edna.identitymind.com/im/transaction/<transaction_id>/refund-partial-fraud`
 
 ##### Bank Authorization Feedback
 
 Notifies IdentityMind of the acceptance or rejection of the transaction that was previously analyzed with the given transaction ID by the merchant's payment gateway or the merchant themselves. All arguments are optional.
 
-`POST https://edna.identitymind.com/im/transaction/<transaction_ID>/bank-accepted`
+`POST https://edna.identitymind.com/im/transaction/<transaction_id>/bank-accepted`
 
-`POST https://edna.identitymind.com/im/transaction/<transaction_ID>/bank-rejected`
+`POST https://edna.identitymind.com/im/transaction/<transaction_id>/bank-rejected`
 
 ##### Merchant Final Resolution Feedback
 
-`POST https://edna.identitymind.com/im/transaction/<transaction_ID>/accepted`
+`POST https://edna.identitymind.com/im/transaction/<transaction_id>/accepted`
 
-`POST https://edna.identitymind.com/im/transaction/<transaction_ID>/rejected`
+`POST https://edna.identitymind.com/im/transaction/<transaction_id>/rejected`
 
-`POST https://edna.identitymind.com/im/transaction/<transaction_ID>/rejected-ok`
+`POST https://edna.identitymind.com/im/transaction/<transaction_id>/rejected-ok`
 
-`POST https://edna.identitymind.com/im/transaction/<transaction_ID>/accepted-user-validated`
+`POST https://edna.identitymind.com/im/transaction/<transaction_id>/accepted-user-validated`
 
-`POST https://edna.identitymind.com/im/transaction/<transaction_ID>/rejected-user-failed-validation`
+`POST https://edna.identitymind.com/im/transaction/<transaction_id>/rejected-user-failed-validation`
 
-`POST https://edna.identitymind.com/im/transaction/<transaction_ID>/accepted-default`
+`POST https://edna.identitymind.com/im/transaction/<transaction_id>/accepted-default`
 
-`POST https://edna.identitymind.com/im/transaction/<transaction_ID>/rejected-default`
+`POST https://edna.identitymind.com/im/transaction/<transaction_id>/rejected-default`
 
 **Note**: The transaction may be a payment transaction or an account transfer.
 
@@ -524,71 +541,71 @@ EXAMPLE SERVICE RESPONSE DATA
 		</tr>
 		<tr>
 			<td>reason</td>
-			<td>description</td>
+			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
 		</tr>
 		<tr>
 			<td>auth_response_text</td>
-			<td>description</td>
+			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
 		</tr>
 		<tr>
 			<td>auth_response</td>
-			<td>description</td>
+			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
 		</tr>
 		<tr>
 			<td>avs_result</td>
-			<td>description</td>
+			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
 		</tr>
 		<tr>
 			<td>cvv2_result</td>
-			<td>description</td>
+			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
 		</tr>
 		<tr>
 			<td>error_code</td>
-			<td>description</td>
+			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
 		</tr>
 		<tr>
 			<td>auth_code</td>
-			<td>description</td>
+			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
 		</tr>
 		<tr>
 			<td>gateway</td>
-			<td>description</td>
+			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
 		</tr>
 		<tr>
 			<td>tid</td>
-			<td>description</td>
+			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
 		</tr>
 		<tr>
 			<td>validation_status</td>
-			<td>description</td>
+			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
 		</tr>
 		<tr>
 			<td>how_validated</td>
-			<td>description</td>
+			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
 		</tr>
 		<tr>
 			<td>how_validated_details</td>
-			<td>description</td>
+			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
 		</tr>
 		<tr>
 			<td>validation_details</td>
-			<td>description</td>
+			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
 		</tr>
 		<tr>
 			<td>details</td>
-			<td>description</td>
+			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
 		</tr>
 		<tr>
 			<td>amt</td>
-			<td>description</td>
+			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
 		</tr>
 		<tr>
 			<td>ccy</td>
-			<td>description</td>
+			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
 		</tr>
 		<tr>
 			<td>bank_status</td>
-			<td>description</td>
+			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
 		</tr>
 	</table>
 
@@ -601,10 +618,10 @@ EXAMPLE SERVICE RESPONSE DATA
 		</tr>
 		<tr>
 			<td>message</td>
-			<td>description</td>
+			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
 		</tr>
 		<tr>
 			<td>error_message</td>
-			<td>description</td>
+			<td><font color=#446CB3>string</font>, optional<br><br>Description</td>
 		</tr>
 	</table>

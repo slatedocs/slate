@@ -499,7 +499,7 @@ EXAMPLE SERVICE RESPONSE DATA
 
 The body of the POST contains JSON encoding of the document type that is to be uploaded. The request will return an error if Jumio NetVerify has not been configured with eDNA.
 
-`POST https://edna.identitymind.com/im/account/consumer/<appid>/document`
+`POST https://edna.identitymind.com/im/account/consumer/<transaction_id>/document`
 
 ```code
 EXAMPLE SERVICE RESPONSE DATA
@@ -563,7 +563,7 @@ EXAMPLE SERVICE RESPONSE DATA
 The response to this request is an application response containing the newly updated application.
 Note that the response may, depending on the response from ID Analytics and your configuration within the eDNA platform, contain a further set of "challenge" questions that should once again be passed back to the consumer for answers.
 
-`POST https://edna.identitymind.com/im/account/consumer/<appid>/quizresponse`
+`POST https://edna.identitymind.com/im/account/consumer/<transaction_id>/quizresponse`
 
 > The body of the request contains an encoding of the customer’s answers to the quiz questions. The answers are processed and the response used to update the IDAnalytics CertainID Security Test and the Application state.
 
@@ -617,9 +617,9 @@ All arguments are optional, although a JSON object must be provided.
 
 The following URLs are used to notify IdentityMind of the acceptance or rejection of an application by the merchant:
 
-`POST https://edna.identitymind.com/im/account/consumer/<application_ID>/accepted`
+`POST https://edna.identitymind.com/im/account/consumer/<transaction_id>/accepted`
 
-`POST https://edna.identitymind.com/im/account/consumer/<application_ID>/rejected`
+`POST https://edna.identitymind.com/im/account/consumer/<transaction_id>/rejected`
 
 	<table>
 		<tr>

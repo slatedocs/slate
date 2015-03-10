@@ -2,8 +2,6 @@
 
 ## Appendix A: Result Keys and Codes
 
-#### Result Key Names
-
 #### Out of Wallet Questions Encoding
 ```code
 OUT OF WALLET QUESTIONS EXAMPLE

@@ -8,7 +8,7 @@ Validate a merchant application:<br>
 `POST https://edna.identitymind.com/im/account/merchant`
 
 Retrieve the current state of a merchant application:<br>
-`GET https://edna.identitymind.com/im/account/merchant/<tid>`
+`GET https://edna.identitymind.com/im/account/merchant/<transaction_id>`
 
 ##### Arguments
 
@@ -583,7 +583,7 @@ EXAMPLE SERVICE RESPONSE DATA
 The response to this request is an application response containing the newly updated application.
 Note that the response may, depending on the response from ID Analytics and your configuration within the eDNA platform, contain a further set of "challenge" questions that should once again be passed back to the consumer for answers.
 
-`POST https://edna.identitymind.com/im/account/merchant/<appid>/quizresponse`
+`POST https://edna.identitymind.com/im/account/merchant/<transaction_id>/quizresponse`
 
 > The body of the request contains an encoding of the customer’s answers to the quiz questions. The answers are processed and the response used to update the IDAnalytics CertainID Security Test and the Application state.
 
@@ -641,9 +641,9 @@ All arguments are optional, although a JSON object must be provided.
 
 The following URLs are used to notify IdentityMind of the acceptance or rejection of an application by the merchant:
 
-`POST https://edna.identitymind.com/im/account/merchant/<application_ID>/accepted`
+`POST https://edna.identitymind.com/im/account/merchant/<transaction_id>/accepted`
 
-`POST https://edna.identitymind.com/im/account/merchant/<application_ID>/rejected`
+`POST https://edna.identitymind.com/im/account/merchant/<transaction_id>/rejected`
 
 	<table>
 		<tr>
