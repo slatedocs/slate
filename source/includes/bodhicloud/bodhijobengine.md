@@ -51,6 +51,7 @@ exports.config = config;
 exports.run = function(job, done){
     try{
         //do stuff here
+        done();
     } catch (err) {
         console.log('Error defining job: ', config.job_name, err);
         done(err);
@@ -66,8 +67,8 @@ module.exports = {
         //agent_config property required to post to the Bodhi cloud.
     agent_config: {
         target_url: 'https://api....',  //where are you posting data to the cloud
-        namespace: 'walker', //your namespace
-        bearerToken: ';laksjdf;lkjasdf;lkjasdlf;j' //agent bearerToken for authentication
+        namespace: 'your_bodhi_namespace', //your namespace
+        bearerToken: 'laksjdflkjasdflkjasdlfj' //alpha numeric agent bearerToken for authentication
     },
     job_name: 'job-app-your_job_name', //the name of your job, must start with 'job-app-'
     time_interval: '3 seconds' //how often do you want the job to run?
@@ -92,12 +93,9 @@ your job and enable it:
 module.exports = {
 
     jobs: {
-        'job-app-engine_tester': {
-                    enabled: true
-                },
-                'job-app-your_app_name': {
-                    enabled: true
-                }
+        'job-app-your_app_name': {
+            enabled: true
+        }
     }
 };
 
