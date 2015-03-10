@@ -33,55 +33,55 @@ EXAMPLE SERVICE REQUEST
 			<th>Description</th>
 		</tr>
 		<tr>
-			<td>m<br><font color=#446CB3>string</font>, optional</td>
+			<td>m<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
 			<td>Merchant Identifier. Used when a reseller is proxying requests for their merchants. Please contact IdentityMind support for further details of the usage of this field</td>
 		</tr>
 		<tr>
-			<td>tid<br><font color=#446CB3>string</font>, optional</td>
+			<td>tid<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
 			<td>Transaction Identifier. If not provided, an ID will be allocated</td>
 		</tr>
 		<tr>
-			<td>man<br><font color=#446CB3>string</font>, optional</td>
+			<td>man<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
 			<td>Account name for the user</td>
 		</tr>
 		<tr>
-			<td>tea<br><font color=#446CB3>string</font>, optional</td>
+			<td>tea<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
 			<td>Email address for the user</td>
 		</tr>
 		<tr>
-			<td>soc<br><font color=#446CB3>string</font>, optional</td>
+			<td>soc<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
 			<td>OAuth service that authenticated the user. For example, <code>google</code> or <code>facebook</code></td>
 		</tr>
 		<tr>
-			<td>ip<br><font color=#446CB3>string</font>, optional</td>
+			<td>ip<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
 			<td>Customer's IP address</td>
 		</tr>
 		<tr>
-			<td>dfp<br><font color=#446CB3>string</font>, optional</td>
+			<td>dfp<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
 			<td>Device fingerprint blob</td>
 		</tr>
 		<tr>
-			<td>dft<br><font color=#446CB3>string</font>, optional</td>
+			<td>dft<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
 			<td>Device fingerprint type</td>
 		</tr>
 		<tr>
-			<td>tti<br><font color=#446CB3>Object</font>, optional</td>
+			<td>tti<br><font color=#446CB3>Object</font><br><font color=#BDC3C7><i>optional</i></font></td>
 			<td>Transaction time in UTC. Encoded as a Unix timestamp or ISO 8601 string.</td>
 		</tr>
 		<tr>
-			<td>profile<br><font color=#446CB3>string</font>, optional</td>
+			<td>profile<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
 			<td>The policy profile to be used to evaluate this transaction. Prior to IDMRISK 1.19, this was encoded in the <code>smna</code> and <code>smid</code> fields.</td>
 		</tr>
 		<tr>
-			<td>clat<br><font color=#446CB3>string</font>, optional</td>
+			<td>clat<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
 			<td>Customer latitude</td>
 		</tr>
 		<tr>
-			<td>clong<br><font color=#446CB3>string</font>, optional</td>
+			<td>clong<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
 			<td>Customer longitude</td>
 		</tr>
 		<tr>
-			<td>memo<br><font color=#446CB3>string</font>, optional</td>
+			<td>memo<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
 			<td>Free-form memo field for client use</td>
 		</tr>
 	</table>
@@ -114,7 +114,7 @@ EXAMPLE SERVICE RESPONSE DATA
 			<th>Description</th>
 		</tr>
 		<tr>
-			<td>user<br><font color=#446CB3>EDNAPolicyResult</font>, optional</td>
+			<td>user<br><font color=#446CB3>EDNAPolicyResult</font><br><font color=#BDC3C7><i>optional</i></font></td>
 			<td>The current reputation of the user. Possible values are:
 				<ul type="disc">
 					<li><code>TRUSTED</code></li>
@@ -125,11 +125,11 @@ EXAMPLE SERVICE RESPONSE DATA
 				</ul></td>
 		</tr>
 		<tr>
-			<td>erd<br><font color=#446CB3>string</font>, optional</td>
+			<td>erd<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
 			<td>A description of the reason for the user's reputation</td>
 		</tr>
 		<tr>
-			<td>upr<br><font color=#446CB3>EDNAPolicyResult</font>, optional</td>
+			<td>upr<br><font color=#446CB3>EDNAPolicyResult</font><br><font color=#BDC3C7><i>optional</i></font></td>
 			<td>The previous reputation of the user when they were last evaluated. Possible values are:
 				<ul type="disc">
 					<li><code>TRUSTED</code></li>
@@ -140,7 +140,7 @@ EXAMPLE SERVICE RESPONSE DATA
 				</ul></td>
 		</tr>
 		<tr>
-			<td>res<br><font color=#446CB3>FraudPolicyResult</font>, optional</td>
+			<td>res<br><font color=#446CB3>FraudPolicyResult</font><br><font color=#BDC3C7><i>optional</i></font></td>
 			<td>Result of policy evaluation. Combines the result of fraud and automated review evaluations. Possible values are:
 			<ul type="disc">
 					<li><code>ACCEPT</code></li>
@@ -161,7 +161,7 @@ EXAMPLE SERVICE RESPONSE DATA
 			<td>The name of the fraud rule that fired</td>
 		</tr>
 		<tr>
-			<td>frp<br><font color=#446CB3>FraudPolicyResult</font>, optional</td>
+			<td>frp<br><font color=#446CB3>FraudPolicyResult</font><br><font color=#BDC3C7><i>optional</i></font></td>
 			<td>Result of fraud evaluation. Possible values are:
 			<ul type="disc">
 					<li><code>ACCEPT</code></li>
@@ -174,7 +174,7 @@ EXAMPLE SERVICE RESPONSE DATA
 			<td>The description of the fraud rule that fired</td>
 		</tr>
 		<tr>
-			<td>arpr<br><font color=#446CB3>string</font>, optional</td>
+			<td>arpr<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
 			<td>Result of the automated review evaluation. Possible values are:
 			<ul type="disc">
 					<li><code>ERROR</code></li>
@@ -188,15 +188,15 @@ EXAMPLE SERVICE RESPONSE DATA
 				</ul></td>
 		</tr>
 				<tr>
-			<td>arpd<br><font color=#446CB3>string</font>, optional</td>
+			<td>arpd<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
 			<td>The description, if any, of the automated review rule that fired</td>
 		</tr>
 		<tr>
-			<td>arpid<br><font color=#446CB3>string</font>, optional</td>
+			<td>arpid<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
 			<td>The ID, if any, of the automated review rule that fired</td>
 		</tr>
 		<tr>
-			<td>usc<br><font color=#446CB3>string</font>, optional</td>
+			<td>usc<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
 			<td>User seen count</td>
 		</tr>
 		<tr>
@@ -207,7 +207,7 @@ EXAMPLE SERVICE RESPONSE DATA
 			<th colspan=2>Externalized Transaction Scorecard</th>
 		</tr>
 		<tr>
-			<td>ar<br><font color=#446CB3>AutomatedReviewEngineResult</font>, optional</td>
+			<td>ar<br><font color=#446CB3>AutomatedReviewEngineResult</font><br><font color=#BDC3C7><i>optional</i></font></td>
 			<td>The result of the automated review policy for this transaction</td>
 		</tr>
 		<tr>
@@ -255,11 +255,11 @@ EXAMPLE SERVICE RESPONSE DATA
 			<td>The unique test ID</td>
 		</tr>
 		<tr>
-			<td>testDetails<br><font color=#446CB3>string</font>, optional</td>
+			<td>testDetails<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
 			<td>Details of the evaluation of this test for the current transaction</td>
 		</tr>
 		<tr>
-			<td>testPass<br><font color=#446CB3>boolean</font>, optional</td>
+			<td>testPass<br><font color=#446CB3>boolean</font><br><font color=#BDC3C7><i>optional</i></font></td>
 			<td>If this is a proscriptive test, the result of the test for the current transaction</td>
 		</tr>
 		<tr>
@@ -267,7 +267,7 @@ EXAMPLE SERVICE RESPONSE DATA
 			<td>If this is not a proscriptive test, the informational result of the test for the current transaction</td>
 		</tr>
 		<tr>
-			<td>waitingForData<br><font color=#446CB3>boolean</font>, optional</td>
+			<td>waitingForData<br><font color=#446CB3>boolean</font><br><font color=#BDC3C7><i>optional</i></font></td>
 			<td>If this is an interactive test, whether the test is currently waiting for customer input</td>
 		</tr>
 		<tr>
@@ -293,7 +293,7 @@ EXAMPLE SERVICE RESPONSE DATA
 			<td>The rule name</td>
 		</tr>
 		<tr>
-			<td>details<br><font color=#446CB3>string</font>, optional</td>
+			<td>details<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
 			<td>The rule description</td>
 		</tr>
 		<tr>
