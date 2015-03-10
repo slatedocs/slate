@@ -257,7 +257,7 @@ EXAMPLE SERVICE REQUEST
 			<td>Description</td>
 		</tr>
 		<tr>
-			<td>pw<<br><font color=#446CB3>string</font>, optional/td>
+			<td>pw<br><font color=#446CB3>string</font>, optional</td>
 			<td>Description</td>
 		</tr>
 		<tr>
@@ -308,40 +308,40 @@ EXAMPLE SERVICE RESPONSE DATA
 			<th>Description</th>
 		</tr>
 		<tr>
-			<td>user</td>
-			<td><font color=#446CB3>EDNAPolicyResult</font>, optional<br><br>Description</td>
+			<td>user<br><font color=#446CB3>EDNAPolicyResult</font>, optional</td>
+			<td>Description</td>
 		</tr>
 		<tr>
 			<td>erd<br><font color=#446CB3>string</font>, optional</td>
 			<td>Description</td>
 		</tr>
 		<tr>
-			<td>upr</td>
-			<td><font color=#446CB3>EDNAPolicyResult</font>, optional<br><br>Description</td>
+			<td>upr<br><font color=#446CB3>EDNAPolicyResult</font>, optional</td>
+			<td>Description</td>
 		</tr>
 		<tr>
-			<td>res</td>
-			<td><font color=#446CB3>FraudPolicyResult</font>, optional<br><br>Description</td>
+			<td>res<br><font color=#446CB3>FraudPolicyResult</font>, optional</td>
+			<td>Description</td>
 		</tr>
 		<tr>
-			<td>rcd</td>
-			<td><font color=#446CB3>string</font><br><br>Description</td>
+			<td>rcd<br><font color=#446CB3>string</font></td>
+			<td>Description</td>
 		</tr>
 		<tr>
-			<td>tid</td>
-			<td><font color=#446CB3>string</font><br><br>Description</td>
+			<td>tid<br><font color=#446CB3>string</font></td>
+			<td>Description</td>
 		</tr>
 		<tr>
-			<td>frn</td>
-			<td><font color=#446CB3>string</font><br><br>Description</td>
+			<td>frn<br><font color=#446CB3>string</font></td>
+			<td>Description</td>
 		</tr>
 		<tr>
-			<td>frp</td>
-			<td><font color=#446CB3>FraudPolicyResult</font>, optional<br><br>Description</td>
+			<td>frp<br><font color=#446CB3>FraudPolicyResult</font>, optional</td>
+			<td>Description</td>
 		</tr>
 		<tr>
-			<td>frd</td>
-			<td><font color=#446CB3>string</font><br><br>Description</td>
+			<td>frd<br><font color=#446CB3>string</font></td>
+			<td>Description</td>
 		</tr>
 		<tr>
 			<td>arpr<br><font color=#446CB3>string</font>, optional</td>
@@ -356,103 +356,103 @@ EXAMPLE SERVICE RESPONSE DATA
 			<td>Description</td>
 		</tr>
 		<tr>
-			<td>ednaScoreCard</td>
-			<td><font color=#446CB3>ExternalizedTransactionScorecard</font><br><br>Description</td>
+			<td>ednaScoreCard<br><font color=#446CB3>ExternalizedTransactionScorecard</font></td>
+			<td>Description</td>
 		</tr>
 		<tr>
 			<th colspan=2>Externalized Transaction Scorecard</th>
 		</tr>
 		<tr>
-			<td>ar</td>
-			<td><font color=#446CB3>AutomatedReviewEngine</font><br><br>Description</td>
+			<td>ar<br><font color=#446CB3>AutomatedReviewEngine</font></td>
+			<td>Description</td>
 		</tr>
 		<tr>
-			<td>tr</td>
-			<td><font color=#446CB3>array[TestResult]</font><br><br>Description</td>
+			<td>tr<br><font color=#446CB3>array[TestResult]</font</td>
+			<td>>Description</td>
 		</tr>
 		<tr>
-			<td>er</td>
-			<td><font color=#446CB3>ExternalizedEvaluationResult</font><br><br>Description</td>
+			<td>er<br><font color=#446CB3>ExternalizedEvaluationResult</font></td>
+			<td>Description</td>
 		</tr>
 		<tr>
 			<th colspan=2>Automated Review Engine Result</th>
 		</tr>
 		<tr>
 			<td>result</td>
-			<td><font color=#446CB3>ReviewResult</font><br><br>Description</td>
+			<td><font color=#446CB3>ReviewResult</font>Description</td>
 		</tr>
 		<tr>
-			<td>ruleId</td>
-			<td><font color=#446CB3>string</font><br><br>Description</td>
+			<td>ruleId<br><font color=#446CB3>string</font></td>
+			<td>Description</td>
 		</tr>
 		<tr>
-			<td>ruleName</td>
-			<td><font color=#446CB3>string</font><br><br>Description</td>
+			<td>ruleName<br><font color=#446CB3>string</font></td>
+			<td>Description</td>
 		</tr>
 		<tr>
-			<td>ruleDescription</td>
-			<td><font color=#446CB3>string</font><br><br>Description</td>
+			<td>ruleDescription<br><font color=#446CB3>string</font></td>
+			<td>Description</td>
 		</tr>
 		<tr>
 			<th colspan=2>Test Result</th>
 		</tr>
 		<tr>
-			<td>testId</td>
-			<td><font color=#446CB3>string</font><br><br>Description</td>
+			<td>testId<br><font color=#446CB3>string</font></td>
+			<td>Description</td>
 		</tr>
 		<tr>
 			<td>testDetails<br><font color=#446CB3>string</font>, optional</td>
 			<td>Description</td>
 		</tr>
 		<tr>
-			<td>testPass</td>
-			<td><font color=#446CB3>boolean</font>, optional<br><br>Description</td>
+			<td>testPass<br><font color=#446CB3>boolean</font>, optional</td>
+			<td>Description</td>
 		</tr>
 		<tr>
-			<td>testResult</td>
-			<td><font color=#446CB3>Object</font><br><br>Description</td>
+			<td>testResult<br><font color=#446CB3>Object</font></td>
+			<td>Description</td>
 		</tr>
 		<tr>
-			<td>waitingForData</td>
-			<td><font color=#446CB3>boolean</font>, optional<br><br>Description</td>
+			<td>waitingForData<br><font color=#446CB3>boolean</font>, optional</td>
+			<td>Description</td>
 		</tr>
 		<tr>
-			<td>previouslyAccepted</td>
-			<td><font color=#446CB3>boolean</font><br><br>Description</td>
+			<td>previouslyAccepted<br><font color=#446CB3>boolean</font></td>
+			<td>Description</td>
 		</tr>
 		<tr>
 			<th colspan=2>Externalized Evaluation Result</th>
 		</tr>
 		<tr>
-			<td>firedRules</td>
-			<td><font color=#446CB3>List[ExternalizedRule]</font><br><br>Description</td>
+			<td>firedRules<br><font color=#446CB3>List[ExternalizedRule]</font></td>
+			<td>Description</td>
 		</tr>
 		<tr>
-			<td>reportedRule</td>
-			<td><font color=#446CB3>ExternalizedRule</font><br><br>Description</td>
+			<td>reportedRule<br><font color=#446CB3>ExternalizedRule</font></td>
+			<td>Description</td>
 		</tr>
 		<tr>
 			<th colspan=2>Externalized Rule</th>
 		</tr>
 		<tr>
-			<td>name</td>
-			<td><font color=#446CB3>string</font><br><br>Description</td>
+			<td>name<br><font color=#446CB3>string</font></td>
+			<td>Description</td>
 		</tr>
 		<tr>
 			<td>details<br><font color=#446CB3>string</font>, optional</td>
 			<td>Description</td>
 		</tr>
 		<tr>
-			<td>description</td>
-			<td><font color=#446CB3>string</font><br><br>Description</td>
+			<td>description<br><font color=#446CB3>string</font></td>
+			<td>Description</td>
 		</tr>
 		<tr>
-			<td>resultCode</td>
-			<td><font color=#446CB3>FraudPolicyResult</font><br><br>Description</td>
+			<td>resultCode<br><font color=#446CB3>FraudPolicyResult</font></td>
+			<td>Description</td>
 		</tr>
 		<tr>
-			<td>ruleId</td>
-			<td><font color=#446CB3>integer</font><br><br>Description</td>
+			<td>ruleId<br><font color=#446CB3>integer</font></td>
+			<td>Description</td>
 		</tr>
 	</table>
 
