@@ -41,7 +41,7 @@ EXAMPLE SERVICE REQUEST
 }
 ```
 
-	<table>
+<table>
 		<tr>
 			<th colspan=2>Account Transfer Data</th>
 		</tr>
@@ -308,7 +308,7 @@ EXAMPLE SERVICE RESPONSE DATA
 ```
 > The response includes detailed result codes and the transaction unique identifier. The most important part of the response is whether the transaction is to be accepted, denied, or scheduled for manual review, which is dependent on the configured validation policy.
 
-	<table>
+<table>
 		<tr>
 			<th colspan=2>Transaction Reponse Data</th>
 		</tr>

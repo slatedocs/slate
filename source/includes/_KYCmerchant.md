@@ -12,7 +12,7 @@ Retrieve the current state of a merchant application:<br>
 
 ##### Arguments
 
-	<table>
+<table>
 		<tr>
 			<th colspan=2>Merchant Application Request Data</th>
 		</tr>
@@ -388,7 +388,7 @@ EXAMPLE SERVICE RESPONSE DATA
 ```
 > The response includes detailed result codes and the transaction unique identifier. Parameters that are not defined here but appearing in the Request API will be categorized as custom data and can be displayed on the UI as proprietary information for the merchant.
 
-	<table>
+<table>
 		<tr>
 			<th colspan=2>Application Response Data</th>
 		</tr>
@@ -655,6 +655,13 @@ EXAMPLE SERVICE RESPONSE DATA
 
 ## Quiz Response
 
+The response to this request is an application response containing the newly updated application.
+Note that the response may, depending on the response from ID Analytics and your configuration within the eDNA platform, contain a further set of "challenge" questions that should once again be passed back to the consumer for answers.
+
+`POST https://edna.identitymind.com/im/account/merchant/<transaction_id>/quizresponse`
+
+##### Arguments
+
 > The body of the request contains an encoding of the customer’s answers to the quiz questions. The answers are processed and the response used to update the IDAnalytics CertainID Security Test and the Application state.
 
 ```code
@@ -682,12 +689,8 @@ EXAMPLE SERVICE RESPONSE DATA
    ]
 }
 ```
-The response to this request is an application response containing the newly updated application.
-Note that the response may, depending on the response from ID Analytics and your configuration within the eDNA platform, contain a further set of "challenge" questions that should once again be passed back to the consumer for answers.
 
-`POST https://edna.identitymind.com/im/account/merchant/<transaction_id>/quizresponse`
-
-	<table>
+<table>
 		<tr>
 			<th colspan=2>Feedback Quiz Response Data</th>
 		</tr>
@@ -719,7 +722,9 @@ The following URLs are used to notify IdentityMind of the acceptance or rejectio
 
 `POST https://edna.identitymind.com/im/account/merchant/<transaction_id>/rejected`
 
-	<table>
+##### Arguments
+
+<table>
 		<tr>
 			<th colspan=2>Application Feedback Data</th>
 		</tr>
@@ -743,7 +748,7 @@ The following URLs are used to notify IdentityMind of the acceptance or rejectio
 
 ##### Response
 
-	<table>
+<table>
 		<tr>
 			<th colspan=2>Feedback Response</th>
 		</tr>		

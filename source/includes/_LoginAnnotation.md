@@ -24,7 +24,7 @@ EXAMPLE SERVICE REQUEST
 }
 ```
 
-	<table>
+<table>
 		<tr>
 			<th colspan=2>Account Creation Request Data</th>
 		</tr>
@@ -105,7 +105,7 @@ EXAMPLE SERVICE RESPONSE DATA
 ```
 > The response includes detailed result codes and transaction unique identifier.
 
-	<table>
+<table>
 		<tr>
 			<th colspan=2>Transaction Reponse Data</th>
 		</tr>

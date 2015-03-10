@@ -41,7 +41,7 @@ EXAMPLE SERVICE REQUEST
 }
 
 ```
-	<table>
+<table>
 		<tr>
 			<th colspan=2>Payment Transaction Data</th>
 		</tr>
@@ -321,7 +321,7 @@ EXAMPLE SERVICE REQUEST
 		</tr>
 	</table>
 
-**Note**: The clear text credit card number is never sent to IdentityMind. Instead, IdentityMind uses a cryptographically secure hash to have a unique representation of each credit card. IdentityMind provides the required utilities to generate these hashes.
+<aside class="notice">The clear text credit card number is never sent to IdentityMind. Instead, IdentityMind uses a cryptographically secure hash to have a unique representation of each credit card. IdentityMind provides the required utilities to generate these hashes.</aside>
 
 ##### Response
 
@@ -343,10 +343,9 @@ EXAMPLE SERVICE RESPONSE DATA
   "error_message" : "Bad data format:Failed to parse the date string provided in the data.  Please use ISO 8601 format."
 }
 ```
-
 > The response includes detailed result codes and the transaction unique identifier. The most important part of the response is whether the transaction is to be accepted, denied, or scheduled for manual review, which is dependent on the configured fraud policy.
 
-	<table>
+<table>
 		<tr>
 			<th colspan=2>Transaction Reponse Data</th>
 		</tr>
@@ -596,7 +595,7 @@ Notifies IdentityMind of the acceptance or rejection of the transaction that was
 
 `POST https://edna.identitymind.com/im/transaction/<transaction_id>/rejected-default`
 
-**Note**: The transaction may be a payment transaction or an account transfer.
+<aside class="notice">The transaction may be a payment transaction or an account transfer.</aside>
 
 ##### Arguments
 ```code
@@ -621,7 +620,7 @@ EXAMPLE SERVICE RESPONSE DATA
 }
 ```
 
-	<table>
+<table>
 		<tr>
 			<th colspan=2>Feedback Data</th>
 		</tr>		
@@ -756,7 +755,7 @@ EXAMPLE SERVICE RESPONSE DATA
 
 ##### Response
 
-	<table>
+<table>
 		<tr>
 			<th colspan=2>Feedback Response</th>
 		</tr>	

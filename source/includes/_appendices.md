@@ -832,6 +832,20 @@ The bank account number token should be included in the JSON string of the reque
 ## Appendix E: Change History
 
 #### 1.19
+- Added 1.18 backwards compatibility mode (rule number and name changes still relevant)
+- Scorecard now included in transaction and transfer results
+- smid and smna fields replaced by profile field
+- Removed some unused fields
+- Simplified TestResult encoding
+- Changed KYC response so that it is consistent with other transaction types
+- GET method added to im/transaction
+- Google Checkout support removed
+- Removed policy inheritance
+	- Merchants do not inherit rules from global or reseller
+	- Custom profiles do not inherit rules from the default
+- KYC stage configuration is done via enabling rules for a certain stage
+	- If a rule references a third party, then that service is accessed automatically
+- Consumer and merchant application configuration subsumed into profile configuration
 
 
 #### 1.18

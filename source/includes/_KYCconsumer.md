@@ -12,7 +12,7 @@ Retrieve the current state of a consumer application:<br>
 
 ##### Arguments
 
-	<table>
+<table>
 		<tr>
 			<th colspan=2>Account Creation Request Data</th>
 		</tr>
@@ -568,6 +568,8 @@ The body of the POST contains JSON encoding of the document type that is to be u
 
 `POST https://edna.identitymind.com/im/account/consumer/<transaction_id>/document`
 
+##### Arguments
+
 ```code
 EXAMPLE SERVICE RESPONSE DATA
 ```
@@ -584,8 +586,7 @@ EXAMPLE SERVICE RESPONSE DATA
     "authorizationToken":"f9d32f46-8f11-4b7c-b146-6d7a95aa765f"
 }
 ```
-	<br>
-	<table>
+<table>
 		<tr>
 			<th colspan=2>Account KYC Jumio Document Data</th>
 		</tr>	
@@ -634,6 +635,8 @@ Note that the response may, depending on the response from ID Analytics and your
 
 `POST https://edna.identitymind.com/im/account/consumer/<transaction_id>/quizresponse`
 
+##### Arguments
+
 > The body of the request contains an encoding of the customer’s answers to the quiz questions. The answers are processed and the response used to update the IDAnalytics CertainID Security Test and the Application state.
 
 ```code
@@ -661,7 +664,7 @@ EXAMPLE SERVICE RESPONSE DATA
    ]
 }
 ```
-	<table>
+<table>
 		<tr>
 			<th colspan=2>Feedback Quiz Response Data</th>
 		</tr>
@@ -693,7 +696,9 @@ The following URLs are used to notify IdentityMind of the acceptance or rejectio
 
 `POST https://edna.identitymind.com/im/account/consumer/<transaction_id>/rejected`
 
-	<table>
+##### Arguments
+
+<table>
 		<tr>
 			<th colspan=2>Application Feedback Data</th>
 		</tr>
@@ -718,7 +723,7 @@ The following URLs are used to notify IdentityMind of the acceptance or rejectio
 
 ##### Response
 
-	<table>
+<table>
 		<tr>
 			<th colspan=2>Feedback Response</th>
 		</tr>		
