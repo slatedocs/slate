@@ -1,0 +1,18 @@
+## metroarea:venues
+
+<%= curl('GET', METRO_AREA['_links']['metroarea:venues']['href']) %>
+
+~~~ csharp
+var client = new ViagogoClient("clientId", "clientSecret", "MyAwesomeApp");
+var metroArea = await client.MetroAreas.GetAsync(<%= METRO_AREA['id'] %>);
+var venues = await client.Connection.GetAsync<PagedResource<Venue>>(metroArea.Links["metroarea:venues"]);
+~~~
+
+<%= json_paged_resource(:venue, "metroarea:venues") %>
+
+You can `GET` the href of this link to retrieve the [`Venues`](#venues) resource that contains the venues located in a metro area.
+
+
+### Response
+
+Returns the [`Venues`](#venues) resource that contains the venues located in a metro area.

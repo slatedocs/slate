@@ -1,0 +1,17 @@
+## viagogo:venues
+
+<%= curl('GET', ROOT['_links']['viagogo:venues']['href']) %>
+
+~~~ csharp
+var client = new ViagogoClient("clientId", "clientSecret", "MyAwesomeApp");
+var venues = await client.Venues.GetAllAsync();
+~~~
+
+<%= json_paged_resource(:venue, "viagogo:venues", 21727) %>
+
+You can `GET` the href of this link to retrieve the [`Venues`](#venues) resource that contains the available venues.
+
+
+### Response
+
+Returns the [`Venues`](#venues) resource that contains the available venues.

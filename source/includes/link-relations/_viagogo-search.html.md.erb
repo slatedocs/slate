@@ -1,0 +1,23 @@
+## viagogo:search
+
+<%= curl('GET', ROOT['_links']['viagogo:search']['href']) %>
+
+~~~ csharp
+var client = new ViagogoClient("clientId", "clientSecret", "MyAwesomeApp");
+var searchResults = await client.Search.GetAllAsync("One Dir");
+~~~
+
+<%= json_paged_resource(:search_result, "viagogo:search", 40, "query=One%20Dir") %>
+
+You can `GET` the href of this link to search for entities that match a given query.
+
+### Parameters
+
+| **Name**  **Type** | **Description** |
+| `query` | `string` | The query text to be used to match entities. |
+| `type` |`string` | A comma-separated string of the different types of entities to return. Can be `event`, `category`, `metro_area` or `venue`. Note: If `type` is not specified then all types of entities will be returned. |
+| `embed` | `string` | A comma-separated string of the properties that should be embedded in each [SearchResult](/resources/search-result) resource. Can be `event`, `category`, `metro_area`, `venue`, or `genre`. |
+
+### Response
+
+Returns the [SearchResults](#search-results) resource containing the results of the query.

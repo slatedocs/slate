@@ -1,0 +1,18 @@
+## listing:event
+
+<%= curl('GET', LISTING['_links']['listing:event']['href']) %>
+
+~~~ csharp
+var client = new ViagogoClient("clientId", "clientSecret", "MyAwesomeApp");
+var listing = await client.Listings.GetAsync(<%= LISTING['id'] %>);
+var @event = await client.Connection.GetAsync<Event>(listing.Links["listing:event"]);
+~~~
+
+<%= json(:event) %>
+
+You can GET the href of this link to retrieve the [`Event`](#event) resource that a listing is for.
+
+
+### Response
+
+The [`Event`](#event) resource.

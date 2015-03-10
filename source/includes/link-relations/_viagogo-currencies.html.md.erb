@@ -1,0 +1,21 @@
+## viagogo:currencies
+
+<%= curl('GET', ROOT['_links']['viagogo:currencies']['href']) %>
+
+~~~ csharp
+var client = new ViagogoClient("clientId", "clientSecret", "MyAwesomeApp");
+var currencies = await client.Currencies.GetAllAsync();
+~~~
+
+<%= json_paged_resource(:currency, "viagogo:currencies") %>
+
+You can `GET` the href of this link to retrieve the [`Currencies`](#currencies) resource that contains the available currencies.
+
+### Parameters
+
+| **Name**  **Type** | **Description** |
+| `sort` | `string` | Determines the ordering of items. A comma-separated string containing `code`, or `name`. |
+
+### Response
+
+Returns the [`Currencies`](#currencies) resource that contains the available currencies.

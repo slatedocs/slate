@@ -1,0 +1,18 @@
+## event:category
+
+<%= curl('GET', EVENT['_links']['event:category']['href']) %>
+
+~~~ csharp
+var client = new ViagogoClient("clientId", "clientSecret", "MyAwesomeApp");
+var @event = await client.Events.GetAsync(<%= EVENT['id'] %>);
+var eventCategory = await client.Connection.GetAsync<Category>(@event.Links["event:category"]);
+~~~
+
+<%= json(:category_performer) %>
+
+You can GET the href of this link to retrieve the [`Category`](#category) resource that contains an event.
+
+
+### Response
+
+The [`Category`](#category) resource.

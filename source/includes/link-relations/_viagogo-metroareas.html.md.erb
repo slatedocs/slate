@@ -1,0 +1,17 @@
+## viagogo:metroareas
+
+<%= curl('GET', ROOT['_links']['viagogo:metroareas']['href']) %>
+
+~~~ csharp
+var client = new ViagogoClient("clientId", "clientSecret", "MyAwesomeApp");
+var metroAreas = await client.MetroAreas.GetAllAsync();
+~~~
+
+<%= json_paged_resource(:metro_area, "viagogo:metroareas", 464) %>
+
+You can `GET` the href of this link to retrieve the [`MetroAreas`](#metroareas) resource that contains the available metro areas.
+
+
+### Response
+
+Returns the [`MetroAreas`](#metroareas) resource that contains the available metro areas.

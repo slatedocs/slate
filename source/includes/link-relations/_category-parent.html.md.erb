@@ -1,0 +1,18 @@
+## category:parent
+
+<%= curl('GET', CATEGORY_PERFORMER['_links']['category:parent']['href']) %>
+
+~~~ csharp
+var client = new ViagogoClient("clientId", "clientSecret", "MyAwesomeApp");
+var category = await client.Categories.GetAsync(<%= CATEGORY_PERFORMER['id'] %>);
+var parentCategory = await client.Connection.GetAsync<Category>(category.Links["category:parent"], null);
+~~~
+
+<%= json(:category) %>
+
+You can GET the href of this link to retrieve the [`Category`](#category) resource that is a parent of a category.
+
+
+### Response
+
+The parent [`Category`](#category) resource.

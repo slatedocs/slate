@@ -1,0 +1,21 @@
+## viagogo:languages
+
+<%= curl('GET', ROOT['_links']['viagogo:languages']['href']) %>
+
+~~~ csharp
+var client = new ViagogoClient("clientId", "clientSecret", "MyAwesomeApp");
+var languages = await client.Languages.GetAllAsync();
+~~~
+
+<%= json_paged_resource(:language, "viagogo:languages", 32) %>
+
+You can `GET` the href of this link to retrieve the [`Languages`](#languages) resource that contains the available languages.
+
+### Parameters
+
+| **Name**  **Type** | **Description** |
+| `sort` | `string` | Determines the ordering of items. A comma-separated string containing `code`, or `name`. |
+
+### Response
+
+Returns the [`Languages`](#languages) resource that contains the available languages.

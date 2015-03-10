@@ -1,0 +1,23 @@
+## event:listings
+
+<%= curl('GET', EVENT['_links']['event:listings']['href']) %>
+
+~~~ csharp
+var client = new ViagogoClient("clientId", "clientSecret", "MyAwesomeApp");
+var @event = await client.Listings.GetAllAsync(<%= EVENT['id'] %>);
+~~~
+
+<%= json_paged_resource(:listing, "event:listings") %>
+
+You can `GET` the href of this link to retrieve the [`Listings`](#listings) resource that contains the listings in an event.
+
+
+### Parameters
+
+| **Name**  **Type** | **Description** |
+| `sort` | `string` | Determines the ordering of items. A comma-separated string containing `id`, `name`, `ticket_price`, `seating.section`, or `number_of_tickets`. |
+| `number_of_tickets` | `int` | Filters results to only include listings that allow the specified number of tickets to be purchased. |
+
+### Response
+
+Returns the [`Listings`](#listings) resource that contains the listings in an event.

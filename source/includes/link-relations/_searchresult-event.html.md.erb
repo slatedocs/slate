@@ -1,0 +1,17 @@
+## searchresult:event
+
+<%= curl('GET', EVENT['_links']['self']['href']) %>
+
+~~~ csharp
+var client = new ViagogoClient("clientId", "clientSecret", "MyAwesomeApp");
+var @event = await client.Connection.GetAsync<Event>(searchResult.Links["searchresult:event"]);
+~~~
+
+<%= json(:event) %>
+
+You can GET the href of this link to retrieve the [`Event`](#event) resource that a search result represents.
+
+
+### Response
+
+The [`Event`](#event) resource.

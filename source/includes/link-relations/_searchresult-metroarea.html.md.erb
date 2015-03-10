@@ -1,0 +1,17 @@
+## searchresult:metroarea
+
+<%= curl('GET', METRO_AREA['_links']['self']['href']) %>
+
+~~~ csharp
+var client = new ViagogoClient("clientId", "clientSecret", "MyAwesomeApp");
+var metroArea = await client.Connection.GetAsync<MetroArea>(searchResult.Links["searchresult:metroarea"]);
+~~~
+
+<%= json(:metro_area) %>
+
+You can GET the href of this link to retrieve the [`MetroArea`](#metro-area) resource that a search result represents.
+
+
+### Response
+
+The [`MetroArea`](#metro-area) resource.

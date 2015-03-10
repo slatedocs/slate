@@ -1,0 +1,17 @@
+## searchresult:category
+
+<%= curl('GET', CATEGORY['_links']['self']['href']) %>
+
+~~~ csharp
+var client = new ViagogoClient("clientId", "clientSecret", "MyAwesomeApp");
+var category = await client.Connection.GetAsync<Category>(searchResult.Links["searchresult:category"]);
+~~~
+
+<%= json(:category_performer) %>
+
+You can GET the href of this link to retrieve the [`Category`](#category) resource that a search result represents.
+
+
+### Response
+
+The [`Category`](#category) resource.

@@ -1,0 +1,17 @@
+## searchresult:venue
+
+<%= curl('GET', VENUE['_links']['self']['href']) %>
+
+~~~ csharp
+var client = new ViagogoClient("clientId", "clientSecret", "MyAwesomeApp");
+var venue = await client.Connection.GetAsync<Venue>(searchResult.Links["searchresult:venue"]);
+~~~
+
+<%= json(:venue) %>
+
+You can GET the href of this link to retrieve the [`Venue`](#venue) resource that a search result represents.
+
+
+### Response
+
+The [`Venue`](#venue) resource.

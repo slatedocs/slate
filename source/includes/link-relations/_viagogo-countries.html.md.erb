@@ -1,0 +1,21 @@
+## viagogo:countries
+
+<%= curl('GET', ROOT['_links']['viagogo:countries']['href']) %>
+
+~~~ csharp
+var client = new ViagogoClient("clientId", "clientSecret", "MyAwesomeApp");
+var countries = await client.Countries.GetAllAsync();
+~~~
+
+<%= json_paged_resource(:country, "viagogo:countries") %>
+
+You can `GET` the href of this link to retrieve the [`Countries`](#countries) resource that contains the available countries.
+
+### Parameters
+
+| **Name**  **Type** | **Description** |
+| `sort` | `string` | Determines the ordering of items. A comma-separated string containing `code`, or `name`. |
+
+### Response
+
+Returns the [`Countries`](#countries) resource that contains the available countries.
