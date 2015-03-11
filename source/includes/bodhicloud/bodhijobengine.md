@@ -16,7 +16,7 @@ Artifactory account. To install:
 
 npm install bodhi-job-engine
 
-In your root directory, add file index.js containing one line of code:
+In your root directory, add file index.js containing one line of code ----->
 
 ````
 var engine = require('bodhi-job-engine');
@@ -43,9 +43,11 @@ No jobs found
 
 Jobs must be built in a specific format in order for Bodhi Job Engine to
 recognize and run them properly. The job should contain an index.js file
-that follows this structure ------>
+and a job-config.js file that follow this structure -->
 
 ````
+//index.js
+
 var jobconfig = require('./job-config.js');
 
 exports.config = jobconfig;
@@ -70,14 +72,10 @@ exports.run = function(job, done){
     }
 };
 
-````
 
 
+//job-config.js
 
-
-The job-config.js file should be structured like this ----->
-
-````
 module.exports = {
 
         //agent_config property required to post to the Bodhi cloud.
@@ -105,11 +103,13 @@ npm install job-app-your_job_name
 
 
 After installation, edit the node_modules/bodhi-job-engine/engine-config.js to add
-your job and enable it (or disable it if necessary) ----->
+your job and enable it (or disable it if necessary) -->
 
 
 
 ````
+//engine-config.js
+
 module.exports = {
 
     jobs: {
