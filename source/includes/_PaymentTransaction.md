@@ -1,12 +1,14 @@
 # Payment Transaction
 
-The evidence is the payment transaction data to be evaluated. It is supplied in the body of the HTTP-POST as JSON-encoded key value pairs. While all fields are not required, anti-fraud evaluation is more comprehensive when richer evidence is provided. 
+Evaluate a transaction for payment fraud.
 
 The following URL can be used for requesting payment transaction anti-fraud evaluation:<br>
 `POST https://edna.identitymind.com/im/transaction`
 
 The following URL can be used to retrieve the current state of a transaction:<br>
 `GET https://edna.identitymind.com/im/transaction/<transaction_id>`
+
+<aside class="notice">All fields are not required, but anti-fraud evaluation is more comprehensive when richer evidence is provided.</aside>
 
 ##### Arguments
 
@@ -216,7 +218,7 @@ EXAMPLE SERVICE REQUEST
 		</tr>
 		<tr>
 			<td>profile<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
-			<td>The policy profile to be used to evaluate this transaction. Prior to IDMRISK 1.19, this was encoded in the <code>smna</code> and <code>smid</code> fields.</td>
+			<td>The policy profile to be used to evaluate this transaction. Prior to IDMRisk 1.19, this was encoded in the <code>smna</code> and <code>smid</code> fields.</td>
 		</tr>
 		<tr>
 			<td>smna<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
@@ -329,19 +331,45 @@ EXAMPLE SERVICE REQUEST
 EXAMPLE SERVICE RESPONSE DATA
 ```
 ```json
-{ 
-  "res" : "ACCEPT",
-  "tid" : "89",
-  "transaction_status" : "complete",
-  "rcd" : "1000,100,110,151,120",
-  "frn":"Fallthrough",
-  "frd":"User is trusted and no fraud rules were triggered."
+{
+    "ednaScoreCard": {
+        "er": {
+            "reportedRule": {
+                "description": "",
+                "name": "",
+                "resultCode": "DENY",
+                "ruleId": 30001
+            }
+        },
+        "tr": [
+            {
+                "testId": "mm:0",
+                "testResult": "true"
+            },
+            {
+                "testDetails": "Maxmind considers the IP to be a bad proxy",
+                "testId": "mm:1",
+                "testPass": false
+            },
+           ...
+            {
+                "testId": "ed:16",
+                "testResult": "0"
+            }
+        ]
+    },
+    "erd": "Infrequent Access, over a short time period",
+    "frd": "",
+    "frn": "",
+    "frp": "DENY",
+    "rcd": "533,101,202,111,131,30001,121,151",
+    "res": "DENY",
+    "rfb": "true",
+    "ric": "US",
+    "tid": "10340003",
+    "transaction_status": "complete"
 }
 
-{
-  "transaction_status" : "error",
-  "error_message" : "Bad data format:Failed to parse the date string provided in the data.  Please use ISO 8601 format."
-}
 ```
 > The response includes detailed result codes and the transaction unique identifier. The most important part of the response is whether the transaction is to be accepted, denied, or scheduled for manual review, which is dependent on the configured fraud policy.
 
@@ -561,8 +589,6 @@ EXAMPLE SERVICE RESPONSE DATA
 
 Notifies IdentityMind that a refund occurred on a transaction.
 
-The "refund-ok" URL should be used when the merchant believes that the refund is legitimate. The "refund-fraud" URL should be used when the merchant believes there is fraud, but a refund is being made to avoid a later chargeback. All arguments are optional.
-
 `POST https://edna.identitymind.com/im/transaction/<transaction_id>/refund-ok`
 
 `POST https://edna.identitymind.com/im/transaction/<transaction_id>/refund-fraud`
@@ -571,9 +597,11 @@ The "refund-ok" URL should be used when the merchant believes that the refund is
 
 `POST https://edna.identitymind.com/im/transaction/<transaction_id>/refund-partial-fraud`
 
+<aside class="warning">The "refund-ok" URL should be used when the merchant believes that the refund is legitimate.<br>The "refund-fraud" URL should be used when the merchant believes there is fraud, but a refund is being made to avoid a later chargeback.</aside>
+
 ##### Bank Authorization Feedback
 
-Notifies IdentityMind of the acceptance or rejection of the transaction that was previously analyzed with the given transaction ID by the merchant's payment gateway or the merchant themselves. All arguments are optional.
+Notifies IdentityMind of the acceptance or rejection of the transaction that was previously analyzed with the given transaction ID by the merchant's payment gateway or the merchant themselves.
 
 `POST https://edna.identitymind.com/im/transaction/<transaction_id>/bank-accepted`
 
@@ -595,7 +623,7 @@ Notifies IdentityMind of the acceptance or rejection of the transaction that was
 
 `POST https://edna.identitymind.com/im/transaction/<transaction_id>/rejected-default`
 
-<aside class="notice">The transaction may be a payment transaction or an account transfer.</aside>
+<aside class="notice">The transaction may be a payment transaction or an account transfer. All arguments are optional.</aside>
 
 ##### Arguments
 ```code

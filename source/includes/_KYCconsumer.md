@@ -1,14 +1,16 @@
 # KYC: Consumer Application
 
-The evidence is the application data to be evaluated. It is supplied in the body of the HTTP-POST as JSON-encoded key value pairs. While all fields are not required, validation evaluation is more comprehensive when richer evidence is provided.
+Perform a customer KYC.
 
 The following URLs are used for consumer application validation:
 
-Validate a consumer application:<br>
+Evaluate a consumer application for the provided user data:<br>
 `POST https://edna.identitymind.com/im/account/consumer`
 
 Retrieve the current state of a consumer application:<br>
 `GET https://edna.identitymind.com/im/account/consumer/<transaction_id>`
+
+<aside class="notice">All fields are not required, but anti-fraud evaluation is more comprehensive when richer evidence is provided.</aside>
 
 ##### Arguments
 
@@ -138,7 +140,7 @@ Retrieve the current state of a consumer application:<br>
 		</tr>
 		<tr>
 			<td>profile<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
-			<td>The policy profile to be used to evaluate this transaction. Prior to IDMRISK 1.19, this was encoded in the <code>smna</code> and <code>smid</code> fields.</td>
+			<td>The policy profile to be used to evaluate this transaction. Prior to IDMRisk 1.19, this was encoded in the <code>smna</code> and <code>smid</code> fields.</td>
 		</tr>
 		<tr>
 			<td>smna<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
@@ -564,7 +566,7 @@ EXAMPLE SERVICE RESPONSE DATA
 
 ## Document Verification
 
-The body of the POST contains JSON encoding of the document type that is to be uploaded. The request will return an error if Jumio NetVerify has not been configured with eDNA.
+Provide a document as part of a Jumio NetVerify multi-document verification.
 
 `POST https://edna.identitymind.com/im/account/consumer/<transaction_id>/document`
 
@@ -630,10 +632,11 @@ EXAMPLE SERVICE RESPONSE DATA
 
 ## Quiz Response
 
-The response to this request is an application response containing the newly updated application.
-Note that the response may, depending on the response from ID Analytics and your configuration within the eDNA platform, contain a further set of "challenge" questions that should once again be passed back to the consumer for answers.
+Provide a quiz response on the named KYC. 
 
 `POST https://edna.identitymind.com/im/account/consumer/<transaction_id>/quizresponse`
+
+<aside class="notice">The response may, depending on the response from ID Analytics and your configuration within the eDNA platform, contain a further set of "challenge" questions that should once again be passed back to the consumer for answers.</aside>
 
 ##### Arguments
 
@@ -686,15 +689,15 @@ EXAMPLE SERVICE RESPONSE DATA
 		</tr>
 	</table>
 
-## Feedback
+## Transaction Feedback
 
-All arguments are optional, although a JSON object must be provided.
-
-The following URLs are used to notify IdentityMind of the acceptance or rejection of an application by the merchant:
+The following URLs are used to provide feedback to IdentityMind as to the acceptance or rejection of an application by the merchant:
 
 `POST https://edna.identitymind.com/im/account/consumer/<transaction_id>/accepted`
 
 `POST https://edna.identitymind.com/im/account/consumer/<transaction_id>/rejected`
+
+<aside class="notice">All arguments are optional, although a JSON object must be provided.<br>The transaction may be a KYC or transfer.</aside>
 
 ##### Arguments
 

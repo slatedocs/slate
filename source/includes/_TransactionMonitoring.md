@@ -1,6 +1,6 @@
 # Transaction Monitoring
 
-The evidence is the account transfer transaction data to be evaluated. It is supplied in the body of the HTTP-POST as JSON-encoded key value pairs. While all fields are not required, validation evaluation is more comprehensive when richer evidence is provided. 
+Evaluate a transfer between accounts, a withdrawal/transfer out from an account, or funding/deposit/transfer in to an account.
 
 The following URLs are used for account transaction validation:
 
@@ -10,8 +10,10 @@ Validate an internal transfer between accounts:<br>
 Validate an external transfer (deposit) into an account:<br>
 `POST https://edna.identitymind.com/im/account/transferin`
 
-Validate an external transfer (withdrawal) from an account:<br>
+Validate an external transfer (withdrawal) out of an account:<br>
 `POST https://edna.identitymind.com/im/account/transferout`
+
+<aside class="notice">All fields are not required, but anti-fraud evaluation is more comprehensive when richer evidence is provided.</aside>
 
 ##### Arguments
 
@@ -178,7 +180,7 @@ EXAMPLE SERVICE REQUEST
 		</tr>
 		<tr>
 			<td>profile<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
-			<td>The policy profile to be used to evaluate this transaction. Prior to IDMRISK 1.19, this was encoded in the <code>smna</code> and <code>smid</code> fields.</td>
+			<td>The policy profile to be used to evaluate this transaction. Prior to IDMRisk 1.19, this was encoded in the <code>smna</code> and <code>smid</code> fields.</td>
 		</tr>
 		<tr>
 			<td>smna<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
@@ -289,22 +291,42 @@ EXAMPLE SERVICE REQUEST
 EXAMPLE SERVICE RESPONSE DATA
 ```
 ```json
-{ 
-  "res" : "ACCEPT",
-  "erd" : "Validated User",
-  "tid" : "89",
-  "rcd" : "1000,100,110,151,120",
-  "frn" : "Fallthrough",
-  "usc" : 43,
-  "umrs":1372723453000,
-  "ufs":1372101668000,
-  "frd":"User is trusted and no fraud rules were triggered."
+{
+    "ednaScoreCard": {
+        "er": {
+            "reportedRule": {
+                "description": "",
+                "name": "",
+                "resultCode": "DENY",
+                "ruleId": 20001
+            }
+        },
+        "tr": [
+            {
+                "testId": "mm:0",
+                "testResult": "true"
+            },
+        		...
+            {
+                "testId": "ed:16",
+                "testName": "Device Shipping Address Count",
+                "testResult": "0"
+            }
+        ]
+    },
+    "erd": "Unknown User",
+    "frd": "",
+    "frn": "",
+    "rcd": "50005,202,111,101,131,20001",
+    "res": "DENY",
+    "tid": "10330022",
+    "ufs": 1423267517000,
+    "umrs": 1423267518000,
+    "upr": "UNKNOWN",
+    "usc": 0,
+    "user": "UNKNOWN"
 }
 
-{
-  "res" : "ERROR",
-  "error_message" : "Bad data format:Failed to parse the date string provided in the data.  Please use ISO 8601 format."
-}
 ```
 > The response includes detailed result codes and the transaction unique identifier. The most important part of the response is whether the transaction is to be accepted, denied, or scheduled for manual review, which is dependent on the configured validation policy.
 
