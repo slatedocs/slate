@@ -38,7 +38,7 @@ EXAMPLE SERVICE REQUEST
 		</tr>
 		<tr>
 			<td>tid<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
-			<td>Transaction Identifier. If not provided, an ID will be allocated</td>
+			<td>Transaction identifier. If not provided, an ID will be allocated</td>
 		</tr>
 		<tr>
 			<td>man<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>

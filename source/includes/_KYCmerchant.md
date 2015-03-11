@@ -162,7 +162,7 @@ Retrieve the current state of a merchant application:<br>
 		</tr>
 		<tr>
 			<td>tid<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
-			<td>Transaction Identifier. If not provided, an ID will be allocated</td>
+			<td>Transaction identifier. If not provided, an ID will be allocated</td>
 		</tr>
 		<tr>
 			<td>man<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
@@ -234,11 +234,11 @@ Retrieve the current state of a merchant application:<br>
 		</tr>
 		<tr>
 			<td>smna<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
-			<td><font color=#D91E18>Deprecated</font><br><br>The user-friendly name for the merchant for whom this transaction is being processed.</td>
+			<td><font color=#D91E18>Deprecated</font><br><br>The user-friendly name for the merchant for whom this transaction is being processed. Succeeded by the <code>profile</code> field in IDMRisk 1.19.</td>
 		</tr>
 		<tr>
 			<td>smid<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
-			<td><font color=#D91E18>Deprecated</font><br><br>A unique identifier for the merchant for whom this transaction is being processed. </td>
+			<td><font color=#D91E18>Deprecated</font><br><br>A unique identifier for the merchant for whom this transaction is being processed. Succeeded by the <code>profile</code> field in IDMRisk 1.19.</td>
 		</tr>
 		<tr>
 			<td>bsn<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
@@ -673,11 +673,11 @@ EXAMPLE SERVICE RESPONSE DATA
    "answers":[
       {
          "questionId":"0",
-         "choice":"KERRVILLE"
+         "choice":"SAN DIEGO"
       },
       {
          "questionId":"1",
-         "choice":"DICK"
+         "choice":"BOB"
       },
       {
          "questionId":"2",
@@ -701,7 +701,7 @@ EXAMPLE SERVICE RESPONSE DATA
 		</tr>
 		<tr>
 			<td>answers<br><font color=#446CB3>List[Answer]</font><br><font color=#BDC3C7><i>optional</i></font></td>
-			<td>Description</td>
+			<td>JSON array of JSON encoded answer objects</td>
 		</tr>
 		<tr>
 			<td>smsCode<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
@@ -721,10 +721,19 @@ Provide feedback to IdentityMind as to the acceptance or rejection of an applica
 
 `POST https://edna.identitymind.com/im/account/merchant/<transaction_id>/rejected`
 
-<aside class="notice">All arguments are optional, although a JSON object must be provided.<br>The transaction may be a KYC or transfer.</aside>
+<aside class="notice">All arguments are optional, although a JSON object must be provided. The transaction may be a KYC or transfer.</aside>
 
 ##### Arguments
-
+```code
+EXAMPLE SERVICE REQUEST
+```
+```json
+{
+  "reason": "0",
+  "description": "I like this application",
+  "validate": true
+}
+```
 <table>
 		<tr>
 			<th colspan=2>Application Feedback Data</th>
@@ -735,20 +744,27 @@ Provide feedback to IdentityMind as to the acceptance or rejection of an applica
 		</tr>
 		<tr>
 			<td>reason<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
-			<td>Description</td>
+			<td>Free-form code</td>
 		</tr>
 		<tr>
 			<td>description<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
-			<td>Description</td>
+			<td>Free-form descriptive text providing additional information about the feedback</td>
 		</tr>
 		<tr>
 			<td>validate<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
-			<td>Description</td>
+			<td>Whether the user defined in the application should be validated.<br><br>For a rejected application, the property is interpreted as whether to mark the applicant as having failed validation.</td>
 		</tr>
 	</table>
 
 ##### Response
-
+```code
+EXAMPLE SERVICE RESPONSE DATA
+```
+```json
+{
+  "message": "Accepted application"
+}
+```
 <table>
 		<tr>
 			<th colspan=2>Feedback Response</th>
@@ -759,10 +775,10 @@ Provide feedback to IdentityMind as to the acceptance or rejection of an applica
 		</tr>
 		<tr>
 			<td>message<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
-			<td>description</td>
+			<td>Feedback response message</td>
 		</tr>
 		<tr>
 			<td>error_message<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
-			<td>description</td>
+			<td>Feedback response error message, if any</td>
 		</tr>
 	</table>

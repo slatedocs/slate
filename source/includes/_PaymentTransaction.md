@@ -150,7 +150,7 @@ EXAMPLE SERVICE REQUEST
 		</tr>
 		<tr>
 			<td>tid<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
-			<td>Transaction Identifier. If not provided, an ID will be allocated</td>
+			<td>Transaction identifier. If not provided, an ID will be allocated</td>
 		</tr>
 		<tr>
 			<td>man<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
@@ -222,11 +222,11 @@ EXAMPLE SERVICE REQUEST
 		</tr>
 		<tr>
 			<td>smna<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
-			<td><font color=#D91E18>Deprecated</font><br><br>The user-friendly name for the merchant for whom this transaction is being processed.</td>
+			<td><font color=#D91E18>Deprecated</font><br><br>The user-friendly name for the merchant for whom this transaction is being processed. Succeeded by the <code>profile</code> field in IDMRisk 1.19.</td>
 		</tr>
 		<tr>
 			<td>smid<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
-			<td><font color=#D91E18>Deprecated</font><br><br>A unique identifier for the merchant for whom this transaction is being processed. </td>
+			<td><font color=#D91E18>Deprecated</font><br><br>A unique identifier for the merchant for whom this transaction is being processed. Succeeded by the <code>profile</code> field in IDMRisk 1.19.</td>
 		</tr>
 		<tr>
 			<td>bsn<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
@@ -601,7 +601,7 @@ Notifies IdentityMind that a refund occurred on a transaction.
 
 ##### Bank Authorization Feedback
 
-Notifies IdentityMind of the acceptance or rejection of the transaction that was previously analyzed with the given transaction ID by the merchant's payment gateway or the merchant themselves.
+Notifies IdentityMind of the acceptance or rejection of the transaction that was previously analyzed with the given transaction ID.
 
 `POST https://edna.identitymind.com/im/transaction/<transaction_id>/bank-accepted`
 
