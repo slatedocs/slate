@@ -634,11 +634,11 @@ Provide a quiz response on the named KYC.
 
 `POST https://edna.identitymind.com/im/account/consumer/<transaction_id>/quizresponse`
 
-<aside class="notice">The response may, depending on the response from ID Analytics and your configuration within the eDNA platform, contain a further set of "challenge" questions that should once again be passed back to the consumer for answers.</aside>
+<aside class="notice">The response may, depending on the response from IDAnalytics and your configuration within the eDNA platform, contain a further set of "challenge" questions that should once again be passed back to the consumer for answers.</aside>
 
 ##### Arguments
 
-> The body of the request contains an encoding of the customer’s answers to the quiz questions. The answers are processed and the response used to update the IDAnalytics CertainID Security Test and the Application state.
+> The body of the request contains an encoding of the customer’s answers to the quiz questions. The answers are processed and the response used to update the IDAnalytics CertainID Security Test and the application state.
 
 ```code
 EXAMPLE SERVICE RESPONSE DATA
@@ -664,6 +664,10 @@ EXAMPLE SERVICE RESPONSE DATA
       }
    ]
 }
+
+{
+   "smsCode":”1234”
+}
 ```
 <table>
 		<tr>
@@ -679,11 +683,11 @@ EXAMPLE SERVICE RESPONSE DATA
 		</tr>
 		<tr>
 			<td>smsCode<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
-			<td>Description</td>
+			<td>The response code provided by the consumer</td>
 		</tr>
 		<tr>
 			<td>amount<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
-			<td>Description</td>
+			<td></td>
 		</tr>
 	</table>
 
@@ -695,7 +699,7 @@ Provide feedback to IdentityMind as to the acceptance or rejection of an applica
 
 `POST https://edna.identitymind.com/im/account/consumer/<transaction_id>/rejected`
 
-<aside class="notice">All arguments are optional, although a JSON object must be provided. The transaction may be a KYC or transfer.</aside>
+<aside class="notice">All arguments are optional, although a JSON object must be provided.</aside>
 
 ##### Arguments
 ```code

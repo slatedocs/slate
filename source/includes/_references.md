@@ -1,8 +1,6 @@
 # References
 
-## Result Keys and Codes
-
-#### Quiz Response Encoding
+## Quiz Response Encoding
 ```code
 QUIZ RESPONSE ENCODING EXAMPLES
 ```
