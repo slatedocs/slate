@@ -2,15 +2,13 @@
 
 Perform a customer KYC.
 
-The following URLs are used for consumer application validation:
-
 Evaluate a consumer application for the provided user data:<br>
 `POST https://edna.identitymind.com/im/account/consumer`
 
 Retrieve the current state of a consumer application:<br>
 `GET https://edna.identitymind.com/im/account/consumer/<transaction_id>`
 
-<aside class="notice">All fields are not required, but anti-fraud evaluation is more comprehensive when richer evidence is provided.</aside>
+<aside class="notice">Not all fields are required, but anti-fraud evaluation is more comprehensive when richer evidence is provided.</aside>
 
 ##### Arguments
 

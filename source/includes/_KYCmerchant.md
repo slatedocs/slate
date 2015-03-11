@@ -2,15 +2,13 @@
 
 Perform a merchant KYC.
 
-The following URLs are used for merchant application validation:
-
 Evaluate a merchant application for the provided user data:<br>
 `POST https://edna.identitymind.com/im/account/merchant`
 
 Retrieve the current state of a merchant application:<br>
 `GET https://edna.identitymind.com/im/account/merchant/<transaction_id>`
 
-<aside class="notice">All fields are not required, but anti-fraud evaluation is more comprehensive when richer evidence is provided.</aside>
+<aside class="notice">Not all fields are required, but anti-fraud evaluation is more comprehensive when richer evidence is provided.</aside>
 
 ##### Arguments
 

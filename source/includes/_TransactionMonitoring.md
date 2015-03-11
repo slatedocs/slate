@@ -2,8 +2,6 @@
 
 Evaluate a transfer between accounts, a withdrawal/transfer out from an account, or funding/deposit/transfer in to an account.
 
-The following URLs are used for account transaction validation:
-
 Validate an internal transfer between accounts:<br>
 `POST https://edna.identitymind.com/im/account/transfer`
 
@@ -13,7 +11,7 @@ Validate an external transfer (deposit) into an account:<br>
 Validate an external transfer (withdrawal) out of an account:<br>
 `POST https://edna.identitymind.com/im/account/transferout`
 
-<aside class="notice">All fields are not required, but anti-fraud evaluation is more comprehensive when richer evidence is provided.</aside>
+<aside class="notice">Not all fields are required, but anti-fraud evaluation is more comprehensive when richer evidence is provided.</aside>
 
 ##### Arguments
 

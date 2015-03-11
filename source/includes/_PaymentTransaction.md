@@ -8,7 +8,7 @@ The following URL can be used for requesting payment transaction anti-fraud eval
 The following URL can be used to retrieve the current state of a transaction:<br>
 `GET https://edna.identitymind.com/im/transaction/<transaction_id>`
 
-<aside class="notice">All fields are not required, but anti-fraud evaluation is more comprehensive when richer evidence is provided.</aside>
+<aside class="notice">Not all fields are required, but anti-fraud evaluation is more comprehensive when richer evidence is provided.</aside>
 
 ##### Arguments
 
