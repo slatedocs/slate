@@ -1,4 +1,4 @@
-# References
+# Reference
 
 ## Quiz Response Encoding
 ```code

@@ -14,7 +14,7 @@ includes:
   - KYCmerchant
   - KYCconsumer
   - LoginAnnotation
-  - references
+  - reference
 
 search: true
 
