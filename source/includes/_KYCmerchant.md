@@ -402,19 +402,19 @@ EXAMPLE SERVICE RESPONSE DATA
 		</tr>
 		<tr>
 			<td>acVerification<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
-			<td>Description</td>
+			<td></td>
 		</tr>
 		<tr>
 			<td>docVerification<br><font color=#446CB3>DocumentVerification</font><br><font color=#BDC3C7><i>optional</i></font></td>
-			<td>Description</td>
+			<td></td>
 		</tr>
 		<tr>
 			<td>ownerApplicationIds<br><font color=#446CB3>array[string]</font><br><font color=#BDC3C7><i>optional</i></font></td>
-			<td>Description</td>
+			<td>List of owner applications associated with the merchant</td>
 		</tr>
 		<tr>
 			<td>parentMerchant<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
-			<td>Description</td>
+			<td></td>
 		</tr>
 		<tr>
 			<td>state<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
@@ -427,15 +427,15 @@ EXAMPLE SERVICE RESPONSE DATA
 		</tr>
 		<tr>
 			<td>oowQuestions<br><font color=#446CB3>QuestionsWrapper</font><br><font color=#BDC3C7><i>optional</i></font></td>
-			<td>Description</td>
+			<td></td>
 		</tr>
 		<tr>
 			<td>smsVerification<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
-			<td>Description</td>
+			<td></td>
 		</tr>
 		<tr>
 			<td>merchantAPIName<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
-			<td>Description</td>
+			<td></td>
 		</tr>
 		<tr>
 			<td>user<br><font color=#446CB3>EDNAPolicyResult</font><br><font color=#BDC3C7><i>optional</i></font></td>
@@ -474,7 +474,7 @@ EXAMPLE SERVICE RESPONSE DATA
 		</tr>
 		<tr>
 			<td>rcd<br><font color=#446CB3>string</font></td>
-			<td>The et of result codes from the evaulation of the current transaction</td>
+			<td>The set of result codes from the evaulation of the current transaction</td>
 		</tr>
 		<tr>
 			<td>tid<br><font color=#446CB3>string</font></td>
@@ -532,14 +532,14 @@ EXAMPLE SERVICE RESPONSE DATA
 		</tr>
 		<tr>
 			<td>redirectURL<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
-			<td>Description</td>
+			<td></td>
 		</tr>
 		<tr>
 			<th colspan=2>Questions Wrapper</th>
 		</tr>
 		<tr>
 			<td>questions<br><font color=#446CB3>List[QuestionsWrapper]</font><br><font color=#BDC3C7><i>optional</i></font></td>
-			<td>Description</td>
+			<td></td>
 		</tr>
 		<tr>
 			<th colspan=2>Externalized Transaction Scorecard</th>

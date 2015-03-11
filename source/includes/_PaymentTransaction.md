@@ -735,35 +735,35 @@ EXAMPLE SERVICE RESPONSE DATA
 		</tr>
 		<tr>
 			<td>tid<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
-			<td>Description</td>
+			<td>The transaction ID of the current transaction</td>
 		</tr>
 		<tr>
 			<td>validation_status<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
-			<td>Description</td>
+			<td></td>
 		</tr>
 		<tr>
 			<td>how_validated<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
-			<td>Description</td>
+			<td></td>
 		</tr>
 		<tr>
 			<td>how_validated_details<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
-			<td>Description</td>
+			<td></td>
 		</tr>
 		<tr>
 			<td>validation_details<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
-			<td>Description</td>
+			<td></td>
 		</tr>
 		<tr>
 			<td>details<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
-			<td>Description</td>
+			<td></td>
 		</tr>
 		<tr>
 			<td>amt<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
-			<td>Description</td>
+			<td></td>
 		</tr>
 		<tr>
 			<td>ccy<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
-			<td>Description</td>
+			<td></td>
 		</tr>
 		<tr>
 			<td>bank_status<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
