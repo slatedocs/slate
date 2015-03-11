@@ -666,7 +666,7 @@ EXAMPLE SERVICE RESPONSE DATA
 }
 
 {
-   "smsCode":”1234”
+   "smsCode":"1234"
 }
 ```
 <table>
