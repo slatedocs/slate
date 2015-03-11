@@ -717,7 +717,7 @@ EXAMPLE SERVICE RESPONSE DATA
 
 ## Transaction Feedback
 
-The following URLs are used to provide feedback to IdentityMind as to the acceptance or rejection of an application by the merchant:
+Provide feedback to IdentityMind as to the acceptance or rejection of an application by the merchant.
 
 `POST https://edna.identitymind.com/im/account/merchant/<transaction_id>/accepted`
 
