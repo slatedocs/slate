@@ -143,6 +143,207 @@ collectionName | `projects` | Each API has different collection name. Some APIs 
 start | abcdefg | Position of the first element in the result set.
 end | abcdefg | Position of the last element in the result set.
 
+# Error Notification v3
+
+## Create Notice v3
+
+Notifies Airbrake that a new error has occurred in your application.
+
+### POST Data
+
+The API expects JSON data.
+
+See [POST Data Fields](#post-data-fields-v3) &
+[POST Data Schema](#post-data-schema-v3).
+
+### HTTP Request
+
+`POST https://airbrake.io/api/v3/projects/PROJECT_ID/notices?key=PROJECT_KEY`
+
+```shell
+curl -X POST -H "Content-Type: application/json" -d JSON "https://airbrake.io/api/v3/projects/PROJECT_ID/notices?key=PROJECT_KEY"
+```
+
+> Example JSON for the above request:
+
+```json
+{
+  "notifier": {
+    "name": "notifier name",
+    "version": "notifier version",
+    "url": "notifier url"
+  },
+  "errors": [
+    {
+      "type": "error1",
+      "message": "message1",
+      "backtrace": [
+        {
+          "file": "backtrace file",
+          "line": 10,
+          "function": "backtrace function"
+        }
+      ]
+    },
+    {
+      "type": "error2",
+      "message": "message2",
+      "backtrace": [
+        {
+          "file": "backtrace file",
+          "line": 10,
+          "function": "backtrace function"
+        }
+      ]
+    }
+  ],
+  "context": {
+    "os": "Linux 3.5.0-21-generic #32-Ubuntu SMP Tue Dec 11 18:51:59 UTC 2012 x86_64",
+    "language": "Ruby 2.1.1",
+    "environment": "production",
+ 
+    "version": "1.1.1",
+    "url:": "http://some-site.com/example",
+    "rootDirectory": "/home/app-root-directory",
+ 
+    "userId": "12345",
+    "userName": "root",
+    "userEmail": "root@root.com"
+  },
+  "environment": {
+    "PORT": "443",
+    "CODE_NAME": "gorilla"
+  },
+  "session": {
+    "basketId": "123",
+    "userId": "456"
+  },
+  "params": {
+    "page": "3",
+    "sort": "name",
+    "direction": "asc"
+  }
+}
+```
+
+### POST Data Fields v3
+
+Field | Required | Description
+------|----------|------------
+notifier | true | An object describing the notifier client library.
+notifier/name | true | The name of the notifier client submitting the request, e.g. "airbrake-js".
+notifier/version | true | The version number of the notifier client submitting the request, e.g. "1.2.3".
+notifier/url | true | A URL at which more information can be obtained concerning the notifier client.
+errors | true | An array of objects describing the error that occurred.
+errors/{i}/type | true | The class name or type of error that occurred.
+errors/{i}/message | false | A short message describing the error that occurred.
+errors/{i}/backtrace | true | An array of objects describing each line of the error's backtrace.
+errors/{i}/backtrace/{i}/file | true | The full path of the file in this entry of the backtrace.
+errors/{i}/backtrace/{i}/line | false | The file's line number in this entry of the backtrace.
+errors/{i}/backtrace/{i}/column | false | The line's column number in this entry of the backtrace.
+errors/{i}/backtrace/{i}/function | false | When available, the function or method name in this entry of the backtrace.
+context | false | An object describing additional context for this error.
+context/environment | false | The name of the server environment in which the error occurred, e.g. "staging", "production", etc.
+context/component | false | The component or module in which the error occurred. In MVC frameworks like Rails, this should be set to the controller. Otherwise, this can be set to a route or other request category.
+context/action | false | The action in which the error occurred. If each request is routed to a controller action, this should be set here. Otherwise, this can be set to a method or other request subcategory.
+context/os | false | Details of the operating system on which the error occurred.
+context/language | false | Describe the language on which the error occurred, e.g. "Ruby 2.1.1".
+context/version | false | Describe the application version, e.g. "v1.2.3".
+context/url | false | The application's URL.
+context/userAgent | false | The requesting browser's full user-agent string.
+context/rootDirectory | false | The application's root directory path.
+context/userId | false | If applicable, the current user's ID.
+context/userName | false | If applicable, the current user's username.
+context/userEmail | false | If applicable, the current user's email address.
+environment | false | An object containing the current environment variables. Where the key is the variable name, e.g. `{ "PORT": "443", "CODE_NAME": "gorilla" }`.
+session | false | An object containing the current session variables. Where the key is the variable name, e.g. `{ "basket_total": "1234", "user_id": "123" }`.
+params | false | An object containing the request parameters. Where the key is the parameter name, e.g. `{ "page": "3", "sort": "desc" }`.
+
+### POST Data Schema v3
+
+The JSON POST data schema for the v3 notifier API.
+
+```json
+{
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "notifier": {
+      "type": "object",
+      "required": true,
+      "additionalProperties": false,
+      "properties": {
+        "name": {"type": "string", "required": true},
+        "version": {"type": "string", "required": true},
+        "url": {"type": "string", "required": true}
+      }
+    },
+    "errors": {
+      "type": "array",
+      "required": true,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "type": {"type": "string", "required": true},
+          "message": {"type": "string", "required": true},
+          "backtrace": {
+            "type": "array",
+            "required": true,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "file": {"type": "string", "required": true},
+                "function": {"type": "string", "required": true},
+                "line": {"type": "number", "required": true},
+                "column": {"type": "number", "required": true}
+              }
+            }
+          }
+        }
+      }
+    },
+    "context": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "environment": {"type": "string"},
+        "component": {"type": "string"},
+        "action": {"type": "string"},
+        "os": {"type": "string"},
+        "language": {"type": "string"},
+        "version": {"type": "string"},
+        "url": {"type": "string"},
+        "userAgent": {"type": "string"},
+        "rootDirectory": {"type": "string"},
+        "userId": {"type": "string"},
+        "userUsername": {"type": "string"},
+        "userName": {"type": "string"},
+        "userEmail": {"type": "string"}
+      }
+    },
+    "environment": {"type": "object"},
+    "session": {"type": "object"},
+    "params": {"type": "object"}
+  }
+}
+```
+
+### Response
+
+On success, the API returns a `201 Created` status with the following JSON data.
+
+Field | Comment
+----- | -------
+id | The ID of the newly created error notice. This can be used to [query the status of this error notice](#show-notice-status-v4).
+url | A URL that will take you to the error on the Airbrake dashboard.
+
+**Note**: a success response means that the data has been received and accepted
+for processing. Use the `url` or `id` in the response to query the status of an
+error. This will tell you if the error has been processed, or if it has been
+rejected for reasons including invalid JSON and rate limiting.
+
 # Projects v4
 
 ## List projects v4
