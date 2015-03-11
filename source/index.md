@@ -16,6 +16,7 @@ includes:
   - bodhicloud/apitutorial/2-type-mechanics/tutorial
   - bodhicloud/apitools
   - bodhicloud/bodhiapi
+  - bodhicloud/bodhijobengine
   - bodhicloud/envsetup
 
   - bodhiagent/gettingstarted
