@@ -25,23 +25,25 @@ var engine = require('bodhi-job-engine');
 
 Test your installation by running this command:
 
-````
 node index.js
 
-//Expected Output:
+You should see this logged in the console:
 
-//Bodhi Job Engine listening at http://....
-//View the UI in a browser at http://....
-//No jobs found
+************************************************************
+Bodhi Job Engine listening at http://0.0.0.0:3000
 
-````
+View the UI in a browser at http://0.0.0.0:3000 /job-engine-ui
+************************************************************
+
+No jobs found
+
 
 
 #### Creating a job
 
 Jobs must be built in a specific format in order for Bodhi Job Engine to
 recognize and run them properly. The job should contain an index.js file
-that follows this structure:
+that follows this structure ------>
 
 ````
 var jobconfig = require('./job-config.js');
@@ -51,12 +53,17 @@ exports.config = jobconfig;
 exports.run = function(job, done){
     try{
         //do stuff here
-        //to post data to Bodhi cloud
-        //call the conn method like this where obj is the object holding your data, and 
-        //YourType is the name of the type to post your data to:
+
+        //to post data to Bodhi cloud call the conn method. Parameters are
+        //your_object (the object holding your data), and
+        //the agent_config object (holds your authentication info), and
+        //YourType (the name of the type to post your data to):
+
         jobconfig.conn(obj, jobconfig.agent_config, 'resources/YourType');
+
         //you must call done() at the end of your code
         done();
+
     } catch (err) {
         console.log('Error defining job: ', config.job_name, err);
         done(err);
@@ -65,10 +72,14 @@ exports.run = function(job, done){
 
 ````
 
-The job-config.js file should be structured like this:
+
+
+
+The job-config.js file should be structured like this ----->
 
 ````
 module.exports = {
+
         //agent_config property required to post to the Bodhi cloud.
     agent_config: {
         target_url: 'https://your_target_url.com',  //where are you posting data to the cloud
@@ -86,13 +97,17 @@ module.exports = {
 Once your job is ready and available in Artifactory, load the job into
 the job engine in the root directory of your project using npm install:
 
-````
+
 npm install job-app-your_job_name
 
-````
+
+
+
 
 After installation, edit the node_modules/bodhi-job-engine/engine-config.js to add
-your job and enable it (or disable it if necessary):
+your job and enable it (or disable it if necessary) ----->
+
+
 
 ````
 module.exports = {
