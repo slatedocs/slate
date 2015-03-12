@@ -1,12 +1,12 @@
-## Bodhi Job Engine
+#### Bodhi Job Engine
 
-#### Introduction
+##### Introduction
 Bodhi Job Engine is a job scheduler running on node.js and MongoDB. The
 engine is designed to run scheduled cloud-to-cloud data transactions,
 e.g. requesting data from web APIs, pushing data to the Bodhi cloud,
 etc.
 
-#### Getting started
+##### Getting started
 
 Bodhi Job Engine is currently for internal Hot Schedules developers. Jobs
 are built on Node.js and are installed as rpms from Artifactory.
@@ -29,17 +29,18 @@ node index.js
 
 You should see this logged in the console:
 
-************************************************************
-Bodhi Job Engine listening at http://0.0.0.0:3000
+
+######Outcome: 
+
+"Bodhi Job Engine listening at http://0.0.0.0:3000 
 
 View the UI in a browser at http://0.0.0.0:3000 /job-engine-ui
-************************************************************
-
-No jobs found
 
 
+No jobs found"
 
-#### Creating a job
+
+##### Creating a job
 
 Jobs must be built in a specific format in order for Bodhi Job Engine to
 recognize and run them properly. The job should contain an index.js file
@@ -90,7 +91,7 @@ module.exports = {
 };
 
 ````
-####Loading a job
+#####Loading a job
 
 Once your job is ready and available in Artifactory, load the job into
 the job engine in the root directory of your project using npm install:
@@ -122,3 +123,4 @@ module.exports = {
 ````
 
 That's it. Starting the job engine should now run your job on the schedule you specified.
+
