@@ -739,31 +739,43 @@ EXAMPLE SERVICE RESPONSE DATA
 		</tr>
 		<tr>
 			<td>validation_status<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
-			<td></td>
+			<td>The current status of validation for the user. Possible values are:
+				<ul type="disc">
+					<li><code>Validated</code></li>
+					<li><code>Failed Validation</code></li>
+					<li><code>Unable to contact</code></li>
+				</ul></td>
 		</tr>
 		<tr>
 			<td>how_validated<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
-			<td></td>
+			<td>How the user was validated. Possible values are:
+				<ul type="disc">
+					<li><code>EMAIL</code></li>
+					<li><code>PHONE</code></li>
+					<li><code>MOBILE PHONE</code></li>
+					<li><code>KNOWN RELATIONSHIPS</code></li>
+					<li><code>OTHER</code></li>
+				</ul></td>
 		</tr>
 		<tr>
 			<td>how_validated_details<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
-			<td></td>
+			<td>Free-form text describing info used to validate user, if any. For example, the user's email, phone number, or mobile phone number.</td>
 		</tr>
 		<tr>
 			<td>validation_details<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
-			<td></td>
+			<td>Free-form text detailing how the user was validated</td>
 		</tr>
 		<tr>
 			<td>details<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
-			<td></td>
+			<td>Free-form text providing additional info about the action taken</td>
 		</tr>
 		<tr>
 			<td>amt<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
-			<td></td>
+			<td>Transaction amount, used to provide partial refunds</td>
 		</tr>
 		<tr>
 			<td>ccy<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
-			<td></td>
+			<td>Transaction currency</td>
 		</tr>
 		<tr>
 			<td>bank_status<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
