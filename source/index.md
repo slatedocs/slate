@@ -44,7 +44,7 @@ curl -d "email=EMAIL&password=PASSWORD" "https://airbrake.io/api/v4/sessions"
 }
 ```
 
-### HTTP Request
+### HTTP request
 
 `POST https://airbrake.io/api/v4/sessions`
 
@@ -76,7 +76,7 @@ Almost all list APIs support pagination if you need access to all items. By defa
 }
 ```
 
-### HTTP Request
+### HTTP request
 
 Get first page:
 
@@ -90,7 +90,7 @@ Ask for 100 items per page:
 
 `GET https://airbrake.io/api/v4/collectionName?limit=100`
 
-### Query Parameters
+### Query parameters
 
 Parameter | Default | Description
 --------- | ------- | -----------
@@ -117,7 +117,7 @@ Some list APIs use cursor-based pagination, that only allows to fetch next and p
 }
 ```
 
-### HTTP Request
+### HTTP request
 
 Get next page:
 
@@ -127,7 +127,7 @@ Get previous page:
 
 `GET https://airbrake.io/api/v4/collectionName?end=START_CURSOR`
 
-### Query Parameters
+### Query parameters
 
 Parameter | Default | Description
 --------- | ------- | -----------
@@ -143,20 +143,20 @@ collectionName | `projects` | Each API has different collection name. Some APIs 
 start | abcdefg | Position of the first element in the result set.
 end | abcdefg | Position of the last element in the result set.
 
-# Error Notification v3
+# Error notification v3
 
-## Create Notice v3
+## Create notice v3
 
 Notifies Airbrake that a new error has occurred in your application.
 
-### POST Data
+### POST data
 
 The API expects JSON data.
 
 See [POST Data Fields](#post-data-fields-v3) &
 [POST Data Schema](#post-data-schema-v3).
 
-### HTTP Request
+### HTTP request
 
 `POST https://airbrake.io/api/v3/projects/PROJECT_ID/notices?key=PROJECT_KEY`
 
@@ -226,7 +226,7 @@ curl -X POST -H "Content-Type: application/json" -d JSON "https://airbrake.io/ap
 }
 ```
 
-### POST Data Fields v3
+### POST data fields v3
 
 Field | Required | Description
 ------|----------|------------
@@ -259,7 +259,7 @@ environment | false | An object containing the current environment variables. Wh
 session | false | An object containing the current session variables. Where the key is the variable name, e.g. `{ "basket_total": "1234", "user_id": "123" }`.
 params | false | An object containing the request parameters. Where the key is the parameter name, e.g. `{ "page": "3", "sort": "desc" }`.
 
-### POST Data Schema v3
+### POST data schema v3
 
 The JSON POST data schema for the v3 notifier API.
 
@@ -371,7 +371,7 @@ curl "https://airbrake.io/api/v3/projects?key=USER_KEY"
 }
 ```
 
-### HTTP Request
+### HTTP request
 
 `GET https://airbrake.io/api/v3/projects?key=USER_KEY`
 
@@ -402,7 +402,7 @@ curl "https://airbrake.io/api/v3/projects/PROJECT_ID?key=USER_KEY"
 }
 ```
 
-### HTTP Request
+### HTTP request
 
 `GET https://airbrake.io/api/v3/projects/PROJECT_ID?key=USER_KEY`
 
@@ -418,7 +418,7 @@ The API returns `200 OK` status code on success.
 curl -X POST -H "Content-Type: application/json" -d '{"environment":"production","username":"john","repository":"https://github.com/airbrake/airbrake","revision":"38748467ea579e7ae64f7815452307c9d05e05c5",version:"v2.0"}' "https://airbrake.io/api/v4/projects/PROJECT_ID/deploys?key=PROJECT_KEY"
 ```
 
-### HTTP Request
+### HTTP request
 
 `POST https://airbrake.io/api/v4/projects/PROJECT_ID/deploys?key=PROJECT_KEY`
 
@@ -461,7 +461,7 @@ curl "https://airbrake.io/api/v4/projects/PROJECT_ID/deploys?key=USER_KEY"
 }
 ```
 
-### HTTP Request
+### HTTP request
 
 `GET https://airbrake.io/api/v4/projects/PROJECT_ID/deploys?key=USER_KEY`
 
@@ -487,7 +487,7 @@ curl "https://airbrake.io/api/v4/projects/PROJECT_ID/deploys/DEPLOY_ID?key=USER_
 }
 ```
 
-### HTTP Request
+### HTTP request
 
 `GET https://airbrake.io/api/v4/projects/PROJECT_ID/deploys/DEPLOY_ID?key=USER_KEY`
 
@@ -542,11 +542,11 @@ curl "https://airbrake.io/api/v4/projects/PROJECT_ID/groups?key=USER_KEY"
 }
 ```
 
-### HTTP Request
+### HTTP request
 
 `GET https://airbrake.io/api/v4/projects/PROJECT_ID/groups?key=USER_KEY`
 
-### Query Parameters
+### Query parameters
 
 Parameter | Default | Description
 --------- | ------- | -----------
@@ -604,7 +604,7 @@ curl "https://airbrake.io/api/v4/projects/PROJECT_ID/groups/GROUP_ID?key=USER_KE
 }
 ```
 
-### HTTP Request
+### HTTP request
 
 `GET https://airbrake.io/api/v4/projects/PROJECT_ID/groups/GROUP_ID?key=USER_KEY`
 
@@ -620,7 +620,7 @@ This API removes group from the default list and disables all notifications.
 curl -X PUT "https://airbrake.io/api/v4/projects/PROJECT_ID/groups/GROUP_ID/muted?key=USER_KEY"
 ```
 
-### HTTP Request
+### HTTP request
 
 `PUT https://airbrake.io/api/v4/projects/PROJECT_ID/groups/GROUP_ID/muted?key=USER_KEY`
 
@@ -636,7 +636,7 @@ Opposite of the mute group.
 curl -X PUT "https://airbrake.io/api/v4/projects/PROJECT_ID/groups/GROUP_ID/unmuted?key=USER_KEY"
 ```
 
-### HTTP Request
+### HTTP request
 
 `PUT https://airbrake.io/api/v4/projects/PROJECT_ID/groups/GROUP_ID/unmuted?key=USER_KEY`
 
@@ -666,11 +666,11 @@ curl "https://airbrake.io/api/v4/projects/PROJECT_ID/environments?key=USER_KEY"
 }
 ```
 
-### HTTP Request
+### HTTP request
 
 `GET https://airbrake.io/api/v4/projects/PROJECT_ID/environments?key=USER_KEY`
 
-### Query Parameters
+### Query parameters
 
 Parameter | Default | Description
 --------- | ------- | -----------
@@ -702,11 +702,11 @@ curl "https://airbrake.io/api/v4/projects/PROJECT_ID/components?key=USER_KEY"
 }
 ```
 
-### HTTP Request
+### HTTP request
 
 `GET https://airbrake.io/api/v4/projects/PROJECT_ID/components?key=USER_KEY`
 
-### Query Parameters
+### Query parameters
 
 Parameter | Default | Description
 --------- | ------- | -----------
@@ -738,11 +738,11 @@ curl "https://airbrake.io/api/v4/projects/PROJECT_ID/actions?key=USER_KEY"
 }
 ```
 
-### HTTP Request
+### HTTP request
 
 `GET https://airbrake.io/api/v4/projects/PROJECT_ID/actions?key=USER_KEY`
 
-### Query Parameters
+### Query parameters
 
 Parameter | Default | Description
 --------- | ------- | -----------
@@ -797,7 +797,7 @@ curl "https://airbrake.io/api/v4/groups?key=USER_KEY"
 }
 ```
 
-### HTTP Request
+### HTTP request
 
 `GET https://airbrake.io/api/v4/groups?key=USER_KEY`
 
@@ -829,11 +829,11 @@ curl "https://airbrake.io/api/v4/projects/PROJECT_ID/groups/GROUP_ID/notices?key
 }
 ```
 
-### HTTP Request
+### HTTP request
 
 `GET https://airbrake.io/api/v4/projects/PROJECT_ID/groups/GROUP_ID/notices?key=USER_KEY`
 
-### Query Parameters
+### Query parameters
 
 Parameter | Default | Description
 --------- | ------- | -----------
@@ -853,7 +853,7 @@ The API permanently deletes notice.
 curl -X DELETE "https://airbrake.io/api/v4/projects/PROJECT_ID/groups/GROUP_ID/notices/NOTICE_ID?key=USER_KEY"
 ```
 
-### HTTP Request
+### HTTP request
 
 `DELETE https://airbrake.io/api/v4/projects/PROJECT_ID/groups/GROUP_ID/notices/NOTICE_ID?key=USER_KEY`
 
@@ -899,7 +899,7 @@ The API shows original notice source data as it was received by Airbrake. It can
 curl "https://airbrake.io/api/v4/projects/PROJECT_ID/notice-sources/NOTICE_ID?key=USER_KEY"
 ```
 
-### HTTP Request
+### HTTP request
 
 `GET https://airbrake.io/api/v4/projects/PROJECT_ID/notice-sources/NOTICE_ID?key=USER_KEY`
 
@@ -937,7 +937,7 @@ curl "https://airbrake.io/api/v4/projects/PROJECT_ID/groups/GROUP_ID/versions?ke
 }
 ```
 
-### HTTP Request
+### HTTP request
 
 `GET https://airbrake.io/api/v4/projects/PROJECT_ID/groups/GROUP_ID/versions?key=USER_KEY`
 
@@ -985,7 +985,7 @@ curl "https://airbrake.io/api/v4/projects/PROJECT_ID/activities?key=USER_KEY"
 }
 ```
 
-### HTTP Request
+### HTTP request
 
 `GET https://airbrake.io/api/v4/projects/PROJECT_ID/activities?key=USER_KEY`
 
@@ -1001,7 +1001,7 @@ The API returns `200 OK` status code on success.
 curl -X POST -H "Content-Type: application/json" -d '{"report":"REPORT_TEXT"}' "https://airbrake.io/api/v3/projects/PROJECT_ID/ios-reports?key=PROJECT_KEY"
 ```
 
-### HTTP Request
+### HTTP request
 
 `POST https://airbrake.io/api/v3/projects/PROJECT_ID/ios-reports?key=PROJECT_KEY`
 
