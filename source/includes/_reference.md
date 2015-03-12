@@ -128,8 +128,8 @@ IdentityMind Transaction API does not accept actual credit card number. It accep
 
 IdentityMind provides a client SDK for Java and PHP. If you use these languages, you can use the SDK to include the information in your request to the API. The SDK contains sample code on how to do that.
 
-**Note**: The hash must be of the full card number, not a masked or tokenized representation.
-If you use other languages, please see below "Credit Card Number Hash".
+<aside class="notice">The hash must be of the full card number, not a masked or tokenized representation.
+If you use other languages, please see "Credit Card Number Hash".</aside>
 
 
 ##### Credit Card Number Hash
@@ -144,7 +144,7 @@ For example, the salted credit card number hash for 4012012301230123 is 32c19504
 
 The credit card number hash should be included in the JSON string of the request to IdentityMind Transaction API in the field "pccn". 
 
-**Note**:  The hash must be of the full card number, not a masked or tokenized representation.
+<aside class="notice">The hash must be of the full card number, not a masked or tokenized representation.</aside>
 
 
 ##### Credit Card Number Token
@@ -199,7 +199,7 @@ IdentityMind provides a client SDK for Java and PHP. If you use these languages,
 
 If you use other languages, please see "Bank Account Number Hash" below.
 
-**Note**: The hash must be of the full account number, not a masked or tokenized representation.
+<aside class="notice">The hash must be of the full account number, not a masked or tokenized representation.</aside>
 
 ##### Bank Account Number Hash
 
@@ -210,7 +210,7 @@ Say you have a function sha1(String s) that takes a string s and return the sha1
 - for a US bank account number concatenate the salt and the routing number and account number and pass that to the function to get account number hash
 - for an international IBAN account number concatenate the salt and full IBAN account number and pass that to the function to get account number hash
 
-**Note**: All spaces and dashes should be removed from the account number prior to hashing.
+<aside class="notice">All spaces and dashes should be removed from the account number prior to hashing.</aside>
 
 Please contact IdentityMind to get the salt. 
 
