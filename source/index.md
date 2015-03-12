@@ -31,9 +31,7 @@ includes:
   - bodhimobile/MobileAPI/index
   - bodhimobile/gettingstarted
   - bodhimobile/envsetup
-  - bodhimobile/howto
   - bodhimobile/apptools
-  - bodhimobile/mobileapi
 
 search: true
 ---
