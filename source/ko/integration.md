@@ -458,7 +458,7 @@ _Algorithm_
 
 _Key, Initial vector_
 
-- Key: 32 byte  (PallyCon CP Admin 페이지에서 확인 가능)
+- Key: 32 byte  (PallyCon CP Admin에서 확인 가능)
 - Initial vector: 16 byte  (고정값: **0123456789abcdef**)
 
 _Padding_
@@ -1017,7 +1017,7 @@ _Algorithm_
 
 _Key, Initial vector_
 
-- Key: 32 byte  (PallyCon CP Admin 페이지에서 확인 가능)
+- Key: 32 byte  (PallyCon CP Admin에서 확인 가능)
 - Initial vector: 16 byte  (고정값: **0123456789abcdef**)
 
 
@@ -1055,7 +1055,7 @@ License Rule은 콘텐츠 사용 권한 정보 페이지에서 설정한 값을 
 
 아래의 표는 **콘텐츠 사용 권한 정보 설정에 따라 License Rule이 어떻게 설정되는지에 대한 표**입니다. 
 
-|License Rules|LIMIT|PD_START|PD_END|COUNT|
+|License Rules|LIMIT|PD_START|PD_END|PD_COUNT|
 |-------------|-----|--------|------|-----|
 |**횟수제**		|Y	    |Empty 	  			|Empty	 				|0 보다 큰 값		| 
 |**기간제**		|Y		|PD_END보다 이전 날짜	|PD_START보다 이후 날짜 	|Empty			|
@@ -1248,7 +1248,7 @@ _JSON DATA_
 
 _SITE ID_  
 
-- 서비스 사이트 식별 ID (PallyCon CP Admin 페이지에서 확인 가능)
+- 서비스 사이트 식별 ID (PallyCon CP Admin에서 확인 가능)
 
 
 
@@ -1325,7 +1325,7 @@ _Algorithm_
 
 _Key, Initial vector_
 
-- Key: 32 byte  (CP Admin 페이지에서 서비스 사이트 별 확인 가능)
+- Key: 32 byte  (PallyCon CP Admin에서 서비스 사이트 별 확인 가능)
 - Initial vector: 16 byte  (고정값: **0123456789abcdef**)
  
 
@@ -1404,7 +1404,7 @@ PallyCon Player의 상태가 **‘다운로드’, ‘재생’, ‘기기 등�
 
 **URL Scheme으로 접근한 데이터 중 ‘site_id’를 추출하여, 업체 인증을 시작합니다.** ‘site_id’는 INKA와 계약할 때 발급받는 정보 중 하나로서, 암호화를 하지 않아도 되는 값입니다.
 
-**업체 인증은 INKA의 PallyCon Cloud 서비스 사이트와 통신하기 때문에, 개발자가 따로 개발할 필요가 없습니다.** 다만, 여기서 개발자가 알아야 하는 내용은 업체 인증이 성공하면 그 응답 데이터로 ‘site_id’에 해당하는 업체명과 URL Scheme의 ‘info’값의 데이터 암호화를 푸는데 사용되는 Key와 IV를 전달받는 다는 것입니다. 
+**업체 인증은 INKA의 PallyCon Cloud 서비스 사이트와 통신하기 때문에, 개발자가 따로 개발할 필요가 없습니다.** 다만, 여기서 개발자가 알아야 하는 내용은 업체 인증이 성공하면 그 응답 데이터로 ‘site_id’에 해당하는 업체명과 URL Scheme의 ‘info’값의 데이터 암호화를 푸는데 사용되는 Key와 IV(initial vector)를 전달받는 다는 것입니다. 
 
 
 ![Mobile_Scenario_EnterpriseCertificate](Mobile_Scenario_EnterpriseCertificate.png)
@@ -1429,7 +1429,7 @@ PallyCon Player의 상태가 **‘다운로드’, ‘재생’, ‘기기 등�
 ![Mobile_Scenario_Decryption](Mobile_Scenario_Decryption.png)
 
 
-PallyCon Cloud 서비스 사이트로부터 전달받은 AES256 Key/IV를 통해 URL Scheme의 ‘info’에 해당하는 값을 복호화합니다. 복호화에 성공하면, Download와 Streaming 재생에 필요한 모든 정보를 가지고 있는 JSON 스트링을 얻습니다. JSON 스트링에서 업체정보를 추출하여 DB에 저장합니다.
+PallyCon Cloud 서비스 사이트로부터 전달받은 AES256 Key/IV(initial vector)를 통해 URL Scheme의 ‘info’에 해당하는 값을 복호화합니다. 복호화에 성공하면, Download와 Streaming 재생에 필요한 모든 정보를 가지고 있는 JSON 스트링을 얻습니다. JSON 스트링에서 업체정보를 추출하여 DB에 저장합니다.
 
 
 
@@ -1733,7 +1733,7 @@ _mode_
 : 모든 기능에서 웹 서버와 통신은 하나의 Service manager URL을 사용합니다. Service manager URL에서 기능별 분기를 태울 수 있도록 하는 값으로 기기 등록은 'Device Register'입니다. 
 
 _site_id_
-: CP Admin 페이지에서 확인이 가능한 업체에게 발급되는 값으로 고정값입니다. 
+: PallyCon CP Admin에서 확인이 가능한 업체에게 발급되는 값으로 고정값입니다. 
 
 _user_id_
 : 기기 DB에 저장되어 있는 사용자 ID 값입니다. 
@@ -1802,7 +1802,7 @@ _mode_
 : 모든 기능에서 웹 서버와 통신은 하나의 Service manager URL을 사용합니다. Service manager URL에서 기능별 분기를 태울 수 있도록 하는 값으로 다운로드 완료는 'Download Complete'입니다. 
 
 _site_id_
-: Cloud Admin 페이지에서 확인이 가능한 업체에게 발급되는 값으로 고정값입니다. 
+: PallyCon CP Admin에서 확인이 가능한 업체에게 발급되는 값으로 고정값입니다. 
 
 _user_id_
 : 기기에 저장되어 있는 사용자 ID 값입니다. 
@@ -1849,7 +1849,7 @@ _mode_
 : 모든 기능에서 웹 서버와 통신은 하나의 Service manager URL을 사용합니다. Service manager URL에서 기능별 분기를 태울 수 있도록 하는 값으로 유효성 체크은 'Validity Check'입니다. 
 
 _site_id_
-: Cloud Admin 페이지에서 확인이 가능한 업체에게 발급되는 값으로 고정값입니다. 
+: PallyCon CP Admin에서 확인이 가능한 업체에게 발급되는 값으로 고정값입니다. 
 
 _user_id_
 : 기기에 저장되어 있는 사용자 ID 값입니다
@@ -1920,7 +1920,7 @@ _mode_
 : 모든 기능에서 웹 서버와 통신은 하나의 Service manager URL을 사용합니다. Service manager URL에서 기능별 분기를 태울 수 있도록 하는 값으로 유효성 체크은 'Validity Check'입니다. 
 
 _site_id_
-: Cloud Admin 페이지에서 확인이 가능한 업체에게 발급되는 값으로 고정값입니다. 
+: PallyCon CP Admin에서 확인이 가능한 업체에게 발급되는 값으로 고정값입니다. 
 
 _user_id_
 : 기기에 저장되어 있는 사용자 ID 값입니다
@@ -1988,7 +1988,7 @@ _mode_
 : 모든 기능에서 웹 서버와 통신은 하나의 Service manager URL을 사용합니다. Service manager URL에서 기능별 분기를 태울 수 있도록 하는 값으로 기기 등록 해제는 'Device Release'입니다. 
 
 _site_id_
-: Cloud Admin 페이지에서 확인이 가능한 업체에게 발급되는 값으로 고정값입니다. 
+: PallyCon CP Admin에서 확인이 가능한 업체에게 발급되는 값으로 고정값입니다. 
 
 _user_id_
 : 기기에 저장되어 있는 사용자 ID 값입니다
@@ -2200,7 +2200,7 @@ _Algorithm_
 
 _Key, Initial vector_
 
-- Key: 32 byte  (CP Admin 페이지에서 서비스 사이트 별 확인 가능)
+- Key: 32 byte  (PallyCon CP Admin에서 서비스 사이트 별 확인 가능)
 - Initial vector: 16 byte  (고정값: **0123456789abcdef**)
  
 
@@ -2328,7 +2328,7 @@ _[PallyCon PC Web Player가 재생할 콘텐츠와 Player 리스트에 두 개�
 ```
 
 _site_id_
-: CP Admin 페이지에서 확인 가능한 업체에게 발급되는 값으로 4 byte 고정값입니다. 빈값은 허용하지 않습니다.
+: PallyCon CP Admin에서 확인 가능한 업체에게 발급되는 값으로 4 byte 고정값입니다. 빈값은 허용하지 않습니다.
 
 _user_id_
 : Service Site에서 로그인한 사용자의 user id입니다. 빈값은 허용하지 않습니다.
