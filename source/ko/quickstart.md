@@ -81,7 +81,19 @@ PallyCon Service에서 제공하는 샘플파일을 이용하여 간단하게 �
 #### Step1: Web 페이지 복사
  sample 파일 압축 해제 후 war 파일을  tomcat manager를 통해 웹서버에 올립니다. 
 
-#### Step2: config.jsp 파일 수정
+#### Step2: bouncycastle JCE 설치
+1. www.bouncycastle.org/java.html에서 자신의 JDK 버전에 해당하는 최신 버전을 다운받아  jre/lib/ext 디렉토리에 저장합니다.
+ex) bcprov-jdk16-146.jar, $JAVA_HOME 하위 jre/lib/ext
+
+2. jre/lib/security에있는  java.security 파일 안에 선언되어 있는 값들에 다음 Number로 아래의 내용을 추가합니다.
+security.provider.8 = ........
+security.provider.9 = org.bouncycastle.jce.provider.BouncyCastleProvider 
+
+3. java.sun.com의 다운로드사이트에서 unrestricted policy 파일들을 다운 받아 jre/lib/security 디렉토리에  local_policy.jar와 US_export_policy.jar 파일을 교체합니다.
+
+4. tomcat을 재시작합니다.
+
+#### Step3: config.jsp 파일 수정
 **config.jsp 파일의 수정은 PC / Mobile에 공통으로 영향을 주는 값들에 대한 수정입니다.** 
 
 ##### aes256 configration (_aes key config_)  
@@ -116,7 +128,7 @@ DRM 컨텐츠 재생 및 다운로드시 필요한 정보를 세팅 합니다.
 
     
 
-#### Step3: PallyCon CP Admin에 URL 세팅
+#### Step4: PallyCon CP Admin에 URL 세팅
 
 PallyCon CP Admin에 Content ID Issue Page URL으로 CIDIssue.jsp의 URL 을 설정하고, Content Usage Rights Info Page URL으로 ContentUsageRightsInfo.jsp의 URL을 설정합니다. 
 
