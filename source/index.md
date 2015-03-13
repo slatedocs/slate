@@ -28,10 +28,9 @@ includes:
   - bodhiagent/agentcli
   - bodhiagent/querying
   
-  - bodhimobile/MobileAPI/index
+  - bodhimobile/overview
   - bodhimobile/gettingstarted
   - bodhimobile/envsetup
-  - bodhimobile/apptools
 
 search: true
 ---
