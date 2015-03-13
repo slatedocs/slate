@@ -10,23 +10,22 @@ toc_footers:
 includes:
 
   - gettingstarted
+  - bodhicloud/cloudoverview
   - bodhicloud/gettingstarted
   - bodhicloud/apitutorial/0-getting-started/tutorial
   - bodhicloud/apitutorial/1-api-mechanics/tutorial
   - bodhicloud/apitutorial/2-type-mechanics/tutorial
-  - bodhicloud/apitools
-  - bodhicloud/bodhiapi
-  - bodhicloud/bodhijobengine
-  - bodhicloud/envsetup
 
+
+  - bodhiagent/agentoverview
   - bodhiagent/gettingstarted
   - bodhiagent/envsetup
-  - bodhiagent/howto
-  - bodhiagent/AgentApps/createingagentapps
-  - bodhiagent/AgentApps/extensions
-  - bodhiagent/agenttools
-  - bodhiagent/agentcli
-  - bodhiagent/querying
+  - bodhiagent/Howto/installingbodhiagent
+  - bodhiagent/Howto/createingagentapps
+  - bodhiagent/Howto/extensions
+  - bodhiagent/agenttooling/agenttools
+  - bodhiagent/agenttooling/agentcli
+ 
   
   - bodhimobile/overview
   - bodhimobile/gettingstarted

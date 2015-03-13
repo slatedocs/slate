@@ -15,8 +15,3 @@ an in-store appliance and software agent.
 * Above-store apps such as inventory management, ordering systems (e.g.Macromatix), accounting) and other internet connected services  
 
 
-## Getting Started
-Bodhi Agent provide a single integration point that enables in-store and near-store data collection. Bodhi agent is allowed you to integrate with in store data above store data and near store data. 
-
-![alt text](/images/agentdiagram.png?raw=true "figure  2")  
-figure 2
