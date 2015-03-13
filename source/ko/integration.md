@@ -72,14 +72,14 @@ License를 발급 받은 Player는 DRM 콘텐츠를 원본 콘텐츠로 변환�
 
 PallyCon Service는 아래의 순서대로 진행하면서 구축합니다. 
 
-<aside class="notice">PallyCon Service를 구축하기 위해서 반드시 Site ID가 있어야만 합니다. Site ID는 CP Admin에서 관리할 수 있습니다. 
+<aside class="notice">PallyCon Service를 구축하기 위해서 반드시 Site ID가 있어야만 합니다. Site ID는 PallyCon CP Admin에서 관리할 수 있습니다. 
 Site ID하나 당 하나의 PallyCon Service를 구축 할 수 있으나, 하나의 Site ID로 여러 PallyCon Service를 구축할 수 없습니다. </aside>
 
 **STEP1:** Packager를 선택하여 Packaging 준비를 합니다.  
-**STEP2:** CID(Content ID) 발급 페이지(Content ID Issue Page)를 개발하고, URL을 CP Admin에 등록합니다.  
+**STEP2:** CID(Content ID) 발급 페이지(Content ID Issue Page)를 개발하고, URL을 PallyCon CP Admin에 등록합니다.  
 **STEP3:** 원본 콘텐츠를 Packaging합니다.  
 **STEP4:** Packaging된 DRM 콘텐츠를 다운로드 서버에 업로드 합니다.  
-**STEP5:** 콘텐츠 사용 권한 정보 페이지(Content Usage Rights Info Page)를 개발하고, URL을 CP Admin에 등록합니다.  
+**STEP5:** 콘텐츠 사용 권한 정보 페이지(Content Usage Rights Info Page)를 개발하고, URL을 PallyCon CP Admin에 등록합니다.  
 **STEP6:** Client가 연동할 Service Site를 개발합니다.  
 **STEP7:** 서비스를 시작합니다. 
 
@@ -196,7 +196,7 @@ _[CASE2: CID 발급 페이지와 연동하여 발급받는 방법을 선택 - Cl
 
 **STEP4:** 이 문서에서 제공하는 CID 발급 연동 규격에 따라 CID 발급 페이지를 개발합니다.
 
-**STEP5:** CID 발급 페이지 주소를 CP Admin의 **Content ID Issue URL**으로 등록합니다.
+**STEP5:** CID 발급 페이지 주소를 PallyCon CP Admin의 **Content ID Issue URL**으로 등록합니다.
 
 **STEP6-Cloud CLI Packager**
 :  CMS 솔루션에 CID를 입력되지 않도록 Cloud CLI Packager를 연동 개발을 합니다. 
@@ -458,7 +458,7 @@ _Algorithm_
 
 _Key, Initial vector_
 
-- Key: 32 byte  (PallyCon CP Admin 페이지에서 확인 가능)
+- Key: 32 byte  (PallyCon CP Admin에서 확인 가능)
 - Initial vector: 16 byte  (고정값: **0123456789abcdef**)
 
 _Padding_
@@ -1017,7 +1017,7 @@ _Algorithm_
 
 _Key, Initial vector_
 
-- Key: 32 byte  (PallyCon CP Admin 페이지에서 확인 가능)
+- Key: 32 byte  (PallyCon CP Admin에서 확인 가능)
 - Initial vector: 16 byte  (고정값: **0123456789abcdef**)
 
 
@@ -1055,7 +1055,7 @@ License Rule은 콘텐츠 사용 권한 정보 페이지에서 설정한 값을 
 
 아래의 표는 **콘텐츠 사용 권한 정보 설정에 따라 License Rule이 어떻게 설정되는지에 대한 표**입니다. 
 
-|License Rules|LIMIT|PD_START|PD_END|COUNT|
+|License Rules|LIMIT|PD_START|PD_END|PD_COUNT|
 |-------------|-----|--------|------|-----|
 |**횟수제**		|Y	    |Empty 	  			|Empty	 				|0 보다 큰 값		| 
 |**기간제**		|Y		|PD_END보다 이전 날짜	|PD_START보다 이후 날짜 	|Empty			|
@@ -1077,14 +1077,14 @@ License Rule은 콘텐츠 사용 권한 정보 페이지에서 설정한 값을 
 ##### Device ID
 사용자가 콘텐츠를 사용하려는 기기의 ID입니다. Device ID는 PallyCon Cloud 서비스 사이트에서 **기기 체크**를 하게 됩니다. 
 
-**기기체크**: 업체가 CP Admin에서 Site ID당 기기 대수를 설정한 대로 제어하는 기능입니다.
+**기기체크**: 업체가 PallyCon CP Admin에서 Site ID당 기기 대수를 설정한 대로 제어하는 기능입니다.
 
 PallyCon Mobile Player의 경우, PallyCon Cloud 서비스 사이트에서의 기기 체크 이외에 **기기 등록**이라는 기능을 제공하고 있습니다. 
 이 기능은 **기기 등록 해제**라는 기능과 함께 제공됩니다. 이 두가지 기능을 통해 **Mobile로 다운로드된 콘텐츠를 재생을 관리**할 수 있습니다.  
 
 PallyCon PC Player의 경우, 스트리밍 기능으로 재생이 되기 때문에 별도의 **기기등록**이 필요하지 않고, PallyCon Cloud 서비스 사이트에서의 **기기 체크**를 통해 관리될 수 있습니다. 
 
-<aside class="notice">CP Admin 에서 Mobile이나 PC, 또는 Mobile/PC  둘 다 기기 대수를 무제한으로 하고 직접 콘텐츠 사용 정보 페이지에서 기기 관리를 할 수도 있습니다.  </aside>
+<aside class="notice">PallyCon CP Admin 에서 Mobile이나 PC, 또는 Mobile/PC  둘 다 기기 대수를 무제한으로 하고 직접 콘텐츠 사용 정보 페이지에서 기기 관리를 할 수도 있습니다.  </aside>
 
 
 ##### Order ID
@@ -1193,7 +1193,7 @@ Order ID는 사용자가 재생하고자 하는 콘텐츠의 주문 정보입니
 #### 필요 조건
 
 
-PallyCon Player는 원본 동영상 파일과 NCG로 패키징된 동영상 파일을 재생하기 때문에, 먼저 **원본 동영상 콘텐츠와 Packaging된 DRM 동영상 콘텐츠가 준비되어 있어야 하고, Content Usage Rights Info Page가 CP Admin에 등록**되어 있어야 합니다. 
+PallyCon Player는 원본 동영상 파일과 NCG로 패키징된 동영상 파일을 재생하기 때문에, 먼저 **원본 동영상 콘텐츠와 Packaging된 DRM 동영상 콘텐츠가 준비되어 있어야 하고, Content Usage Rights Info Page가 PallyCon CP Admin에 등록**되어 있어야 합니다. 
 
 Quick Start 가이드(서버 연동)를 통해서 **전체적인 서비스 흐름에 대해서 알고 있어야 합니다.**
  
@@ -1248,7 +1248,7 @@ _JSON DATA_
 
 _SITE ID_  
 
-- 서비스 사이트 식별 ID (PallyCon CP Admin 페이지에서 확인 가능)
+- 서비스 사이트 식별 ID (PallyCon CP Admin에서 확인 가능)
 
 
 
@@ -1325,7 +1325,7 @@ _Algorithm_
 
 _Key, Initial vector_
 
-- Key: 32 byte  (CP Admin 페이지에서 서비스 사이트 별 확인 가능)
+- Key: 32 byte  (PallyCon CP Admin에서 서비스 사이트 별 확인 가능)
 - Initial vector: 16 byte  (고정값: **0123456789abcdef**)
  
 
@@ -1404,16 +1404,16 @@ PallyCon Player의 상태가 **‘다운로드’, ‘재생’, ‘기기 등�
 
 **URL Scheme으로 접근한 데이터 중 ‘site_id’를 추출하여, 업체 인증을 시작합니다.** ‘site_id’는 INKA와 계약할 때 발급받는 정보 중 하나로서, 암호화를 하지 않아도 되는 값입니다.
 
-**업체 인증은 INKA의 PallyCon Cloud 서비스 사이트와 통신하기 때문에, 개발자가 따로 개발할 필요가 없습니다.** 다만, 여기서 개발자가 알아야 하는 내용은 업체 인증이 성공하면 그 응답 데이터로 ‘site_id’에 해당하는 업체명과 URL Scheme의 ‘info’값의 데이터 암호화를 푸는데 사용되는 Key와 IV를 전달받는 다는 것입니다. 
+**업체 인증은 INKA의 PallyCon Cloud 서비스 사이트와 통신하기 때문에, 개발자가 따로 개발할 필요가 없습니다.** 다만, 여기서 개발자가 알아야 하는 내용은 업체 인증이 성공하면 그 응답 데이터로 ‘site_id’에 해당하는 업체명과 URL Scheme의 ‘info’값의 데이터 암호화를 푸는데 사용되는 Key와 IV(Initial Vector)를 전달받는 다는 것입니다. 
 
 
 ![Mobile_Scenario_EnterpriseCertificate](Mobile_Scenario_EnterpriseCertificate.png)
 
 
-**AES 256 암/복호화 Key, IV(Initial vector):**
+**AES 256 암/복호화 Key, IV(Initial Vector):**
     
 - 웹 서버와 연동하는 데이터(Protocol I/Protocol II)의 AES256 암/복호화를 위한 Key는 INKA와 계약할 때 발급받습니다. 이 것은 ‘site_id’에 매칭되는 값으로 전달되기 때문에 반드시 계약할 때 전달받은 site_id와 AES256 Key를 사용해야만 합니다. (AES256 Key와 함께 사용되는 Initial Vector는 16 byte의 고정값으로 '**0123456789abcdef**' 입니다.)  
-- 업체 인증을 통해 전달받은 업체명과 Key, IV는 기기의 DB에 저장됩니다.  
+- 업체 인증을 통해 전달받은 업체명과 Key, IV(Initial Vector)는 기기의 DB에 저장됩니다.  
 - INKA의 RI Cloud 서버와의 통신은 [PKI](http://en.wikipedia.org/wiki/Public_key_infrastructure)를 이용하기 때문에 통신과 DB에서 사용되는 데이터는 강력하게 보호받습니다. 
 
 
@@ -1429,7 +1429,7 @@ PallyCon Player의 상태가 **‘다운로드’, ‘재생’, ‘기기 등�
 ![Mobile_Scenario_Decryption](Mobile_Scenario_Decryption.png)
 
 
-PallyCon Cloud 서비스 사이트로부터 전달받은 AES256 Key/IV를 통해 URL Scheme의 ‘info’에 해당하는 값을 복호화합니다. 복호화에 성공하면, Download와 Streaming 재생에 필요한 모든 정보를 가지고 있는 JSON 스트링을 얻습니다. JSON 스트링에서 업체정보를 추출하여 DB에 저장합니다.
+PallyCon Cloud 서비스 사이트로부터 전달받은 AES256 Key/IV(Initial Vector)를 통해 URL Scheme의 ‘info’에 해당하는 값을 복호화합니다. 복호화에 성공하면, Download와 Streaming 재생에 필요한 모든 정보를 가지고 있는 JSON 스트링을 얻습니다. JSON 스트링에서 업체정보를 추출하여 DB에 저장합니다.
 
 
 
@@ -1733,7 +1733,7 @@ _mode_
 : 모든 기능에서 웹 서버와 통신은 하나의 Service manager URL을 사용합니다. Service manager URL에서 기능별 분기를 태울 수 있도록 하는 값으로 기기 등록은 'Device Register'입니다. 
 
 _site_id_
-: CP Admin 페이지에서 확인이 가능한 업체에게 발급되는 값으로 고정값입니다. 
+: PallyCon CP Admin에서 확인이 가능한 업체에게 발급되는 값으로 고정값입니다. 
 
 _user_id_
 : 기기 DB에 저장되어 있는 사용자 ID 값입니다. 
@@ -1802,7 +1802,7 @@ _mode_
 : 모든 기능에서 웹 서버와 통신은 하나의 Service manager URL을 사용합니다. Service manager URL에서 기능별 분기를 태울 수 있도록 하는 값으로 다운로드 완료는 'Download Complete'입니다. 
 
 _site_id_
-: Cloud Admin 페이지에서 확인이 가능한 업체에게 발급되는 값으로 고정값입니다. 
+: PallyCon CP Admin에서 확인이 가능한 업체에게 발급되는 값으로 고정값입니다. 
 
 _user_id_
 : 기기에 저장되어 있는 사용자 ID 값입니다. 
@@ -1849,7 +1849,7 @@ _mode_
 : 모든 기능에서 웹 서버와 통신은 하나의 Service manager URL을 사용합니다. Service manager URL에서 기능별 분기를 태울 수 있도록 하는 값으로 유효성 체크은 'Validity Check'입니다. 
 
 _site_id_
-: Cloud Admin 페이지에서 확인이 가능한 업체에게 발급되는 값으로 고정값입니다. 
+: PallyCon CP Admin에서 확인이 가능한 업체에게 발급되는 값으로 고정값입니다. 
 
 _user_id_
 : 기기에 저장되어 있는 사용자 ID 값입니다
@@ -1920,7 +1920,7 @@ _mode_
 : 모든 기능에서 웹 서버와 통신은 하나의 Service manager URL을 사용합니다. Service manager URL에서 기능별 분기를 태울 수 있도록 하는 값으로 유효성 체크은 'Validity Check'입니다. 
 
 _site_id_
-: Cloud Admin 페이지에서 확인이 가능한 업체에게 발급되는 값으로 고정값입니다. 
+: PallyCon CP Admin에서 확인이 가능한 업체에게 발급되는 값으로 고정값입니다. 
 
 _user_id_
 : 기기에 저장되어 있는 사용자 ID 값입니다
@@ -1988,7 +1988,7 @@ _mode_
 : 모든 기능에서 웹 서버와 통신은 하나의 Service manager URL을 사용합니다. Service manager URL에서 기능별 분기를 태울 수 있도록 하는 값으로 기기 등록 해제는 'Device Release'입니다. 
 
 _site_id_
-: Cloud Admin 페이지에서 확인이 가능한 업체에게 발급되는 값으로 고정값입니다. 
+: PallyCon CP Admin에서 확인이 가능한 업체에게 발급되는 값으로 고정값입니다. 
 
 _user_id_
 : 기기에 저장되어 있는 사용자 ID 값입니다
@@ -2149,7 +2149,7 @@ _message_
 
 PallyCon PC Web Player는 원본 콘텐츠와 NCG로 패키징된 콘텐츠를 재생하기 때문에, 각 콘텐츠들이 준비되어 있어야합니다. 
 
-DRM 콘텐츠를 재생하기 위해서는 License가 필요합니다. License를 생성하는데 필요한 콘텐츠 사용 권한 정보를 조회하기 위한 Page가 생성되어 CP Admin에 등록되어 있어야 합니다. 
+DRM 콘텐츠를 재생하기 위해서는 License가 필요합니다. License를 생성하는데 필요한 콘텐츠 사용 권한 정보를 조회하기 위한 Page가 생성되어 PallyCon CP Admin에 등록되어 있어야 합니다. 
 
 PallyCon PC Web Player와 Service Site의 웹 서버와 주고 받는 데이터를 설정할 수 있는 기술적인 이해와 적용이 필요합니다.
 
@@ -2200,7 +2200,7 @@ _Algorithm_
 
 _Key, Initial vector_
 
-- Key: 32 byte  (CP Admin 페이지에서 서비스 사이트 별 확인 가능)
+- Key: 32 byte  (PallyCon CP Admin에서 서비스 사이트 별 확인 가능)
 - Initial vector: 16 byte  (고정값: **0123456789abcdef**)
  
 
@@ -2328,7 +2328,7 @@ _[PallyCon PC Web Player가 재생할 콘텐츠와 Player 리스트에 두 개�
 ```
 
 _site_id_
-: CP Admin 페이지에서 확인 가능한 업체에게 발급되는 값으로 4 byte 고정값입니다. 빈값은 허용하지 않습니다.
+: PallyCon CP Admin에서 확인 가능한 업체에게 발급되는 값으로 4 byte 고정값입니다. 빈값은 허용하지 않습니다.
 
 _user_id_
 : Service Site에서 로그인한 사용자의 user id입니다. 빈값은 허용하지 않습니다.
