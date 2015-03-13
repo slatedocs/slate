@@ -30,6 +30,7 @@ Server |  URL
 
 ```shell
 # Just a standard HTTP Request
+  Note: Be sure to curl http: when connecting with the sandbox and https: when on production. Our examples are for accessing the Production in this regard.
 
 ## User authentication not required (app has standing permissions from user)
 curl -i https://rubiconmd.com/api/v1/oauth/token
@@ -166,7 +167,7 @@ CASE_ID | The ID of the case to retrieve
 ```shell
 curl -X POST
   -H "Content-Type: application/json"
-  -d '{"provider_case":{"question":"Victim bleeding from pores... possibly Red Death?","patient_birthdate": "2009-01-19","patient_gender": "Male","patient_first_name":"P.","patient_middle_name":"N/A","patient_last_name":"Prospero","differential_diagnosis":"If not Red Death, maybe Telltale Heart Disease?","medical_history":"Lots of partying and excessive drinking.","medications":"Amontillado","symptoms":"convulsions, bloody sweat, seeing masked illusions.","labs":"N/A"}}' "https://rubiconmd.com/api/v1/provider_casees?access_token=AAAAAA"
+  -d '{"provider_case":{"question":"Victim bleeding from pores... possibly Red Death?","patient_birthdate": "2009-01-19","patient_gender": "Male","patient_first_name":"P.","patient_middle_name":"N/A","patient_last_name":"Prospero","differential_diagnosis":"If not Red Death, maybe Telltale Heart Disease?","medical_history":"Lots of partying and excessive drinking.","medications":"Amontillado","symptoms":"convulsions, bloody sweat, seeing masked illusions.","labs":"N/A"}}' "https://rubiconmd.com/api/v1/provider_cases?access_token=AAAAAA"
 ```
 
 >A successful POST request returns a JSON response:
