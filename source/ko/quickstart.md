@@ -202,3 +202,4 @@ Mobile Web sample 페이지에서 Download 버튼을 터치하면 PallyCon Mobil
 |:----|:-----|
 |2014.08.28|Quick Guide 제작				|
 |2014.12.09|PallyCon PC Player 내용 추가	|
+|2015.3.13|JCE 내용 추가 |
