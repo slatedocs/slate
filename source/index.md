@@ -30,7 +30,7 @@ Server |  URL
 
 ```shell
 # Just a standard HTTP Request
-  Note: Be sure to curl http: when connecting with the sandbox and https: when on production. Our examples are for accessing the Production in this regard.
+  Note: Be sure to curl using http: protocol when connecting to the sandbox and https: when connecting to production. Our examples are for accessing the Production in this regard.
 
 ## User authentication not required (app has standing permissions from user)
 curl -i https://rubiconmd.com/api/v1/oauth/token
@@ -85,7 +85,7 @@ Provider Cases are created by a user that is seeking a specialist response to th
 ## Get All Provider Cases
 
 ```shell
-curl https://rubiconmd.com/api/v1/provider_cases?access_token="AAAAAA"
+curl -i https://rubiconmd.com/api/v1/provider_cases?access_token="AAAAAA"
 ```
 
 > A successful request returns the following:
@@ -121,7 +121,7 @@ limit | Retrieves the number of cases specified. (Must be an integer.)
 ## Get a Specific Provider Case
 
 ```shell
-curl https://rubiconmd.com/api/v1/provider_cases/10071849?access_token="AAAAAA"
+curl -i https://rubiconmd.com/api/v1/provider_cases/10071849?access_token="AAAAAA"
 ```
 
 > A successful request returns the following:
@@ -218,7 +218,7 @@ Case Referrals are the de-identified cases received by a specialist. Only users 
 ## Get All Case Referrals
 
 ```shell
-curl https://rubiconmd.com/api/v1/referrals?access_token="AAAAAA"
+curl -i https://rubiconmd.com/api/v1/referrals?access_token="AAAAAA"
 ```
 
 > The above command returns JSON structured like this:
@@ -259,7 +259,7 @@ limit | Retrieves the specific number of cases you pass it.
 ## Get a Specific Case Referral
 
 ```shell
-curl https://rubiconmd.com/api/v1/referrals/57?access_token="AAAAAA"
+curl -i https://rubiconmd.com/api/v1/referrals/57?access_token="AAAAAA"
 ```
 
 > The above command returns JSON structured like this:
@@ -304,7 +304,7 @@ CASE_ID | The ID of the case to retrieve
 ## Accept / Reject a Specific Case 
 
 ```shell
-curl https://rubiconmd.com/api/v1/referrals/57/reject?access_token="AAAAAA"
+curl -i https://rubiconmd.com/api/v1/referrals/57/reject?access_token="AAAAAA"
 ```
 
 > The above command returns JSON structured like this:
@@ -331,11 +331,11 @@ curl https://rubiconmd.com/api/v1/referrals/57/reject?access_token="AAAAAA"
 This endpoint allows you to accept or turn down a specific case.
 
 <aside class="success">
-When you accept/reject a case, a successful call will return the JSON data about the case.
+When a case is accepted, a successful call will return the JSON data about the case. A successful rejected case call will return: {message: "The case was successfully rejected."}
 </aside>
 <aside class="warning">
 An unsuccessful call will return a **402** and an error message:
-`{"error":"This case could not be accepted at this time."}
+{"error":"This case could not be accepted at this time."}
 </aside>
 
 ### HTTP Request
@@ -356,9 +356,9 @@ ACTION | Accepts or rejects a case.
 ## Get All Responses
 
 ```shell
-curl https://rubiconmd.com/api/v1/referrals/63/responses?access_token="AAAAAA"
+curl -i https://rubiconmd.com/api/v1/referrals/63/responses?access_token="AAAAAA"
 
-curl https://rubiconmd.com/api/v1/provider_cases/63/responses?access_token="AAAAAA"
+curl -i https://rubiconmd.com/api/v1/provider_cases/63/responses?access_token="AAAAAA"
 ```
 
 > A successful request returns an array of JSON responses:
@@ -417,9 +417,9 @@ need_reply | Boolean value dictating whether or not creator needed a reply to th
 ## Get a Specific Response
 
 ```shell
-curl https://rubiconmd.com/api/v1/referrals/63/responses/17?access_token="AAAAAA"
+curl -i https://rubiconmd.com/api/v1/referrals/63/responses/17?access_token="AAAAAA"
 
-curl https://rubiconmd.com/api/v1/provider_cases/63/responses/17?access_token="AAAAAA"
+curl -i https://rubiconmd.com/api/v1/provider_cases/63/responses/17?access_token="AAAAAA"
 ```
 
 >The above command returns JSON like this:
@@ -515,7 +515,7 @@ The server will return an "unprocessable entity" HTTP response if the purpose do
 ##User Information
 
 ```shell
-curl https://rubiconmd.com/api/v1/users/me?access_token="AAAAAA"
+curl -i https://rubiconmd.com/api/v1/users/me?access_token="AAAAAA"
 ```
 > The above command returns JSON structured like this:
 
