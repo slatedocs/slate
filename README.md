@@ -17,6 +17,7 @@ Getting Started with Slate
 
 You're going to need:
 
+ - **Linux or OS X** — Windows may work, but is unsupported.
  - **Ruby, version 1.9.3 or newer**
  - **Bundler** — If Ruby is already installed, but the `bundle` command doesn't work, just run `gem install bundler` in a terminal.
 
@@ -40,4 +41,4 @@ Some useful links
 Need Help? Found a bug?
 --------------------
 
-If it's Slate related, just [submit a issue](https://github.com/tripit/slate/issues) to the Slate Github if you need any help. And, of course, feel free to submit pull requests with bug fixes or changes.
+Just [submit a issue](https://github.com/tripit/slate/issues) to the Slate Github if you need any help. And, of course, feel free to submit pull requests with bug fixes or changes.

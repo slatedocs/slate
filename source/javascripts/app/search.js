@@ -53,7 +53,8 @@
         });
         highlight.call(this);
       } else {
-        searchResults.html('<li>No Results Found for "' + this.value + '"</li>');
+        searchResults.html('<li></li>');
+	$('.search-results li').text('No Results Found for "' + this.value + '"');
       }
     } else {
       unhighlight();
