@@ -205,10 +205,10 @@ patient_gender | Patient gender. Only acceptable values are "Female",  "Male", a
 patient_first_name | Patient first name.
 patient_middle_name | Patient middle name.
 patient_last_name | Patient last name.
-differential_diagnosis | A differential diagnosis.
-medical_history | Patient medical history.
+differential_diagnosis | Physician thoughts/plans.
+medical_history | Patient relevant prior medical history.
 medications | Patient medications.
-symptoms | Patient symtoms.
+symptoms | Patient current presentation.
 labs | Lab results.
 
 # Case Referrals
