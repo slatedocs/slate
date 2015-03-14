@@ -1,16 +1,48 @@
 # Introduction
-
-> **API Endpoint:** `https://api.viagogo.net`
-
-The official viagogo API v2 connects your website or application with the world's largest ticket marketplace. All API access is over HTTPS, and accessed from the `api.viagogo.net` domain. Request and response payloads are formatted as `application/hal+json`, which is basically just plain old JSON with hyperlinks (see [HAL](#hypertext-application-language)).
-
-[OAuth2](http://oauth.net/2/) is used for all authentication. All API requests must be authenticated or you will receive a `401 Unauthorized` error response (see [Authentication](#authentication)).
+ 
+The official viagogo API v2 connects your website or application with the world's largest ticket marketplace. Your application can use the API to search for and view events, purchase tickets for an event or list tickets on the viagogo platform.
 
 
-## Root Endpoint
+## Quick Reference
 
+> **API Root Endpoint:** `https://api.viagogo.net/v2`
+
+All API access is over HTTPS, and accessed from the `api.viagogo.net` domain. Request and response payloads are formatted as `application/hal+json`, which is basically just plain old JSON with hyperlinks (see [Media Type](#media-type)). [OAuth2](http://oauth.net/2/) is used for all authentication. All API requests must be authenticated or you will receive a `401 Unauthorized` error response (see [Authentication](#authentication)).
+
+Before accessing viagogo APIs, you need to register your application. During the beta period, API access will be available by invitation only.
+
+<aside class="notice">
+  <strong>The previous version of the API will be deprecated on November 30th 2015</strong>
+  <p>The v1 API docs are still available <a href="http://sites.google.com/site/viagogoapi">here</a>.</p>
+</aside>
+
+
+## Explorable API
+
+The viagogo API v2 is an explorable API that uses hyperlinks to guide applications between resources. As such, the media type used in API responses and the structure of this documentation is intended to encourage developers to build applications that use hyperlinks to navigate between resources instead of using hard-coded URLs.
+
+One of the main advantages of using hyperlinks is that API responses are able to better describe the current state of a resource by using links to represent the possible actions available on that resource. This should reduce (or hopefully remove) the need for your applications to implement logic for managing the various states of a resource.
+
+### Media Type
+
+The API uses [Hypertext Application Language (HAL)](http://stateless.co/hal_specification.html) to hyperlink between resources. HAL is a simple format that provides a set of conventions for expressing hyperlinks in JSON - it's basically just plain old JSON with hyperlinks!
+
+All viagogo API resources are represented using the `application/hal+json` media type. The following properties can be expected on every resource:
+
+* `_links` - a JSON object containing a set of hyperlinks to other resources
+* `_embedded` - a JSON object containing other resources embedded inside the current resource
+* The regular properties of the resource
+
+### Use Link Relations instead of URLs
+
+Link relations (the keys in the `_links` property of resources) are very important in this API. They are a part of the contract between the API and your application and we have documented the request parameters and response type that are expected when your application follows a link (see [Link Relations](#link-relations). The idea is that applications will be coded to understand the different link relations but will not care about the actual URL of the link.
+
+To get a feel for how this works, look at our [Guides](#).
+
+### Root endpoint
+ 
 <%= curl('GET', 'https://api.viagogo.net/v2') %>
-
+ 
 ~~~ csharp
 var api = new ViagogoClient("clientId", "clientSecret", "MyAwesomeApp");
 var root = await api.Root.GetAsync();
@@ -18,17 +50,9 @@ var root = await api.Root.GetAsync();
 
 <%= json(:root) %>
 
-The viagogo API v2 is an explorable API that uses hyperlinks to guide applications between resources. You can issue a `GET` request to the root endpoint of the API to get the root resource that links to all other API resources.
-
-### HTTP Request
+The only URL that your application needs to know is the root endpoint, which is like the "Home Page" of the API. You can issue a `GET` request to the root endpoint of the API to get the root resource that links to all other API resources.
 
 `GET https://api.viagogo.net/v2`
-
-## Hypertext Application Language
-
-The API uses [Hypertext Application Language (HAL)](http://stateless.co/hal_specification.html) to hyperlink between resources. HAL is a simple format that provides a set of conventions for expressing hyperlinks in JSON - it's basically just plain old JSON with hyperlinks! All viagogo API resources are represented using the `application/hal+json` Content-Type.
-
-One of the main advantages of using a media-type that supports hyperlinks is that the API responses are able to better describe the current state of a resource by using links to represent the possible actions available on that resource. This should reduce (or hopefully remove) the need for your applications to implement logic for managing the various states of a resource.
 
 
 ## HTTP Methods
