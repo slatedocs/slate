@@ -119,13 +119,37 @@ Requests that return multiple results will be paginated to 100 items by default.
 
 Note that page numbering is 1-based and that omitting the `page` parameter will return the first page.
 
-### Sorting
+
+## Sorting
 
 Paginated results can be sorted according to one of more criteria using the `sort` param. Clients can specify sort criteria as a comma-separated list of the names of fields that should be used to sort. The default sort order is ascending but a *-* prefix on any sort field specifies a descending sort order.
 
-`GET https://api.viagogo.net/v2/categories/1124/events?sort=start_date,-ticket_price`
+<%= %(`GET https://api.viagogo.net/v2/categories/#{CATEGORY["id"]}/events?sort=start_date,-ticket_price`) %>
 
 The example request above sorts results by `start_date` ascending and then by `ticket_price` descending.
+
+
+## Sparse Fieldsets
+
+<%= curl('GET', EVENT['_links']['self']['href'] + "?fields=id,name,_embedded&fields[venue]=city") %>
+
+~~~ csharp
+var api = new ViagogoClient("clientId", "clientSecret", "MyAwesomeApp");
+api.Connection.HttpConnection.SendRequestAsync(
+    new Uri(<%= EVENT['_links']['self']['href'] + "?fields=id,name,_embedded&fields[venue]=city" %>),
+    HttpMethod.Get,
+    "application/hal+json",
+    null,
+    null);
+~~~
+
+<%= json(:sparse_event) %>
+
+Your application can request for the API to return only specific fields in the response on a per-type basis by including a `fields`[TYPE] parameter. The value of the `fields` parameter must be a comma-separated list of the name(s) of the field(s) to be returned.
+
+<%= %(`GET https://api.viagogo.net/v2/events/#{SPARSE_EVENT["id"]}?fields=id,name,_embedded&fields[venue]=city`) %>
+
+The example request above includes the `id`, `name` and `_embedded` fields in the event resource and the `city` field in its embedded venue.
 
 
 ## User Agent Header

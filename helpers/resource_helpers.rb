@@ -279,21 +279,15 @@ module ResourceHelpers
   }
 
   EMBEDDED_VENUE ||= {
-    "id" => 1364,
-    "name" => "The O2 arena",
-    "city" => "London",
-    "latitude" => 51.5025,
-    "longitude" => 0.0024,
+    "id" => VENUE["id"],
+    "name" => VENUE["name"],
+    "city" => VENUE["city"],
+    "latitude" => VENUE["latitude"],
+    "longitude" => VENUE["longitude"],
     "_links" =>  {
-      "self" =>  {
-        "href" =>  "https://api.viagogo.net/v2/venues/1364",
-        "title" =>  nil,
-        "templated" =>  false
-      }
+      "self" => VENUE["_links"]["self"]
     },
-    "_embedded" => {
-      "country" =>  COUNTRY
-    }
+    "_embedded" => VENUE["_embedded"]
   }
 
   EVENT ||= {
@@ -329,6 +323,18 @@ module ResourceHelpers
     },
     "_embedded" => {
       "venue" => EMBEDDED_VENUE
+    }
+  }
+
+  SPARSE_VENUE ||= {
+    "city" => VENUE["city"]
+  }
+
+  SPARSE_EVENT ||= {
+    "id" => EVENT["id"],
+    "name" => EVENT["name"],
+    "_embedded" => {
+      "venue" => SPARSE_VENUE
     }
   }
 
