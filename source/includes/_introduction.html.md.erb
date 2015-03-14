@@ -159,7 +159,11 @@ The example request above includes the `id`, `name` and `_embedded` fields in th
 All API requests **must** include a valid `User-Agent` header. Requests with no `User-Agent` header will be rejected. If you provide an invalid `User-Agent` header, you will receive a `403 Forbidden` response.
 
 
-## Accept-Language Header
+## Localization
+
+viagogo API v2 support various request headers to return locale-specific content in responses.
+
+### Accept-Language Header
 
 The `Accept-Language` header can be used to determine the language of the API response content (e.g. event names and error messages). Content will be returned in English if no `Accept-Language` header is provided, or viagogo does not currently support the requested language codes.
 
@@ -168,7 +172,7 @@ The `Accept-Language` header can be used to determine the language of the API re
 In the example header above, the request is specifying "I prefer Danish, but will accept British English and other types of English." See more information about the [Accept-Language header](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.4).
 
 
-## Accept-Currency Header
+### Accept-Currency Header
 
 The `Accept-Currency` header can be used to determine the currency of responses that include monetary values. For example, [Listing](/browse/listings/) resources have a `ticket_display_price` property that gives the price-per-ticket in the currency requested by the application. The value of the `Accept-Currency` header should be a three-letter currency code as defined by [ISO 4217](http://en.wikipedia.org/wiki/ISO_4217).
 
@@ -176,7 +180,7 @@ The `Accept-Currency` header can be used to determine the currency of responses 
 
 In the example above, the request is specifying that it would like to receive monetary values in Euros where possible.
 
-## VGG-Country Header
+### VGG-Country Header
 
 Applications can include the `VGG-Country` header to change the geography-context of requests. Each domain of the viagogo website is referred to as a _geography_ that has its own category-structure and language, currency and content defaults. The value of the `VGG-Country` header should be a two-letter country code as defined by [ISO 3166](http://en.wikipedia.org/wiki/ISO_3166-1). If an application does not provide a `VGG-Country` header then the API will default to the _US_ geography (www.viagogo.com).
 
