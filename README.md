@@ -29,7 +29,7 @@ You're going to need:
  4. Add "gh-pages" as a local branch pointing to the remote.
  5. Publish your work with `rake publish`.
 
-You can now see the docs at <http://rubiconmd.github.io/api-documentation/#introduction>.
+You can now see the docs at <http://rubiconmd.github.io/api-documentation/>.
 
 
 Some useful links
