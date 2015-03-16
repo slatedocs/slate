@@ -1,4 +1,4 @@
-# Introduction
+# Overview
  
 The official viagogo API v2 connects your website or application with the world's largest ticket marketplace. Your application can use the API to search for and view events, purchase tickets for an event or list tickets on the viagogo platform.
 
@@ -40,11 +40,13 @@ Link relations (the keys in the `_links` property of resources) are very importa
 To get a feel for how this works, look at our [Guides](#).
 
 ### Root endpoint
- 
+
 <%= curl('GET', 'https://api.viagogo.net/v2') %>
- 
+
 ~~~ csharp
-var api = new ViagogoClient("clientId", "clientSecret", "MyAwesomeApp");
+var api = new ViagogoClient("clientId",
+                            "clientSecret",
+                            new ProductHeaderValue("MyAwesomeApp"));
 var root = await api.Root.GetAsync();
 ~~~
 

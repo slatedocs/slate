@@ -1,0 +1,44 @@
+## Getting All Events in a Genre
+
+> **1. Get the Root resource:**
+
+<%= curl('GET', 'https://api.viagogo.net/v2') %>
+
+~~~ csharp
+var api = new ViagogoClient("clientId",
+                            "clientSecret",
+                            new ProductHeaderValue("MyAwesomeApp"));
+var root = await api.Root.GetAsync();
+~~~
+
+> **2. Get the Genres:**
+
+<%= curl('GET', ROOT['_links']['viagogo:genres']['href']) %>
+
+~~~ csharp
+var genres = await api.Categories.GetAllGenresAsync();
+~~~
+
+> **3. Page through the Events in the Genre**
+
+<%= curl('GET', CATEGORY_GENRE['_links']['category:events']['href']) %>
+
+~~~ csharp
+var events = await api.Events.GetAllByCategoryAsync(genres[0].Id);
+~~~
+
+<%= json_paged_resource(:event, "category:events", 50000) %>
+
+Retrieving all of the events in a particular genre (e.g. "Concert Tickets", "Theatre Tickets") is simple if you use the hyperlinks available in API responses.
+
+### 1. Start at the Root
+
+As is the case when retrieving most data in API v2, you should start by getting the [`Root`](#root) resource to find the hyperlink to the resource you care about.
+
+### 2. Find the Genre(s) that you care about
+
+Follow the [`viagogo:genres`](#viagogogenres) link to get the genre you are interested in.
+
+### 3. Page through the Events in the Genre
+
+Follow the [`category:events`](#categoryevents) link to get the first page of events. Once we have the first page, we can follow the `next` links to retrieve all pages (see [pagination](#pagination)). Since there will be lots of events under a genre, we suggest using a large `page_size` to reduce the total number of requests your application has to make.
