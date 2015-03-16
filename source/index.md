@@ -6,7 +6,7 @@ language_tabs:
   - csharp: C#
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
+  - <a href='https://github.com/viagogo/developer.viagogo.net'>Source code</a>
   - <a href='http://github.com/tripit/slate'>Documentation Powered by Slate</a>
 
 includes:
