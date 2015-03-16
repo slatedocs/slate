@@ -189,7 +189,7 @@ Error Callback. Called when function return error.
 
 ##### Return Value
 
-  * [RBCPromise](#kernel-promise) object
+  * [BodhiMobilePromise](#kernel-promise) object
 
 #### stop
 
@@ -221,7 +221,7 @@ Error Callback. Called when function return error.
 
 ##### Return Value
 
-  * [RBCPromise](#kernel-promise) object
+  * [BodhiMobilePromise](#kernel-promise) object
 
 #### getState
 
@@ -255,7 +255,7 @@ Error Callback. Called when function return error.
 
 ##### Return Value
 
-  * [RBCPromise](#kernel-promise) object
+  * [BodhiMobilePromise](#kernel-promise) object
 
 #### startDiscovery
 
@@ -287,7 +287,7 @@ Error Callback. Called when function return error.
 
 ##### Return Value
 
-  * [RBCPromise](#kernel-promise) object
+  * [BodhiMobilePromise](#kernel-promise) object
 
 #### stopDiscovery
 
@@ -319,7 +319,7 @@ Error Callback. Called when function return error.
 
 ##### Return Value
 
-  * [RBCPromise](#kernel-promise) object
+  * [BodhiMobilePromise](#kernel-promise) object
 
 #### connect
 
@@ -360,7 +360,7 @@ Error Callback. Called when function return error.
 
 ##### Return Value
 
-  * [RBCPromise](#kernel-promise) object
+  * [BodhiMobilePromise](#kernel-promise) object
 
 #### disconnect
 
@@ -396,7 +396,7 @@ Error Callback. Called when function return error.
 
 ##### Return Value
 
-  * [RBCPromise](#kernel-promise) object
+  * [BodhiMobilePromise](#kernel-promise) object
 
 ### Events
 

@@ -296,7 +296,7 @@ Error Callback. Called when function return error.
 
 ##### Return Value
 
-  * [RBCPromise](#kernel-promise) object
+  * [BodhiMobilePromise](#kernel-promise) object
 
 #### getCalendarById
 
@@ -335,7 +335,7 @@ Error Callback. Called when function return error.
 
 ##### Return Value
 
-  * [RBCPromise](#kernel-promise) object
+  * [BodhiMobilePromise](#kernel-promise) object
 
 #### getEvents
 
@@ -386,7 +386,7 @@ Error Callback. Called when function return error.
 
 ##### Return Value
 
-  * [RBCPromise](#kernel-promise) object
+  * [BodhiMobilePromise](#kernel-promise) object
 
 #### getEventById
 
@@ -425,7 +425,7 @@ Error Callback. Called when function return error.
 
 ##### Return Value
 
-  * [RBCPromise](#kernel-promise) object
+  * [BodhiMobilePromise](#kernel-promise) object
 
 #### create
 
@@ -480,7 +480,7 @@ Error Callback. Called when function return error.
 
 ##### Return Value
 
-  * [RBCPromise](#kernel-promise) object
+  * [BodhiMobilePromise](#kernel-promise) object
 
 #### delete
 
@@ -518,4 +518,4 @@ Error Callback. Called when function return error.
 
 ##### Return Value
 
-  * [RBCPromise](#kernel-promise) object
+  * [BodhiMobilePromise](#kernel-promise) object

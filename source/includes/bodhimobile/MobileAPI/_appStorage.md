@@ -118,7 +118,7 @@ Error Callback. Called when function return error.
 
 ##### Return Value
 
-  * [RBCPromise](#kernel-promise) object
+  * [BodhiMobilePromise](#kernel-promise) object
 
 #### getAllKeys
 
@@ -169,7 +169,7 @@ Error Callback. Called when function return error.
 
 ##### Return Value
 
-  * [RBCPromise](#kernel-promise) object
+  * [BodhiMobilePromise](#kernel-promise) object
 
 #### get
 
@@ -227,7 +227,7 @@ Error Callback. Called when function return error.
 
 ##### Return Value
 
-  * [RBCPromise](#kernel-promise) object
+  * [BodhiMobilePromise](#kernel-promise) object
 
 #### delete
 
@@ -275,7 +275,7 @@ Error Callback. Called when function return error.
 
 ##### Return Value
 
-  * [RBCPromise](#kernel-promise) object
+  * [BodhiMobilePromise](#kernel-promise) object
 
 #### deleteAll
 
@@ -324,7 +324,7 @@ Error Callback. Called when function return error.
 
 ##### Return Value
 
-  * [RBCPromise](#kernel-promise) object
+  * [BodhiMobilePromise](#kernel-promise) object
 
 #### putString
 
@@ -372,7 +372,7 @@ Error Callback. Called when function return error.
 
 ##### Return Value
 
-  * [RBCPromise](#kernel-promise) object
+  * [BodhiMobilePromise](#kernel-promise) object
 
 #### getString
 
@@ -422,7 +422,7 @@ Error Callback. Called when function return error.
 
 ##### Return Value
 
-  * [RBCPromise](#kernel-promise) object
+  * [BodhiMobilePromise](#kernel-promise) object
 
 #### getStrings
 
@@ -472,7 +472,7 @@ Error Callback. Called when function return error.
 
 ##### Return Value
 
-  * [RBCPromise](#kernel-promise) object
+  * [BodhiMobilePromise](#kernel-promise) object
 
 #### putContent
 
@@ -524,7 +524,7 @@ Error Callback. Called when function return error.
 
 ##### Return Value
 
-  * [RBCPromise](#kernel-promise) object
+  * [BodhiMobilePromise](#kernel-promise) object
 
 #### loadContent
 
@@ -573,7 +573,7 @@ Error Callback. Called when function return error.
 
 ##### Return Value
 
-  * [RBCPromise](#kernel-promise) object
+  * [BodhiMobilePromise](#kernel-promise) object
 
 #### getContent
 
@@ -623,4 +623,4 @@ Error Callback. Called when function return error.
 
 ##### Return Value
 
-  * [RBCPromise](#kernel-promise) object
+  * [BodhiMobilePromise](#kernel-promise) object

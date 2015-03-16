@@ -4,41 +4,41 @@ This module allows playing and recording audio.
 
 ### Tasks
 
-  * `RBCAudioItemState` constant
-  * `RBCAudioItem` object
+  * `BodhiMobileAudioItemState` constant
+  * `BodhiMobileAudioItem` object
   * `getAudio` function
 
 ### Constants
 
-#### RBCAudioItemState
+#### BodhiMobileAudioItemState
 
 ##### Discussion
 
-This enum contains variants of [RBCAudioItem](#rbcaudioitem-class) object states.
+This enum contains variants of [BodhiMobileAudioItem](#bodhimobileaudioitem-class) object states.
 
-  * `RBCAudioItemState.STOPPED`
+  * `BodhiMobileAudioItemState.STOPPED`
 
 Audio record currently stopped.
 
-  * `RBCAudioItemState.PLAYING`
+  * `BodhiMobileAudioItemState.PLAYING`
 
 Audio record currently playing.
 
-  * `RBCAudioItemState.PAUSED`
+  * `BodhiMobileAudioItemState.PAUSED`
 
 Audio record currently paused.
 
-  * `RBCAudioItemState.RECORDED`
+  * `BodhiMobileAudioItemState.RECORDED`
 
 Audio record currently recorded.
 
 ### Objects
 
-#### RBCAudioItem
+#### BodhiMobileAudioItem
 
 ##### Discussion
 
-This object contains information about audio records and allows developer to record, play and control audio. See [RBCAudioItem Class](#rbcaudioitem-class) to get more information.
+This object contains information about audio records and allows developer to record, play and control audio. See [BodhiMobileAudioItem Class](#bodhimobileaudioitem-class) to get more information.
 
 ### Functions
 
@@ -56,7 +56,7 @@ audio.getAudio( function(info) {
 
 ##### Discussion
 
-Creates new [RBCAudioItem](#rbcaudioitem-class) object which used for all audio operations.
+Creates new [BodhiMobileAudioItem](#bodhimobileaudioitem-class) object which used for all audio operations.
 
 ##### Arguments
 
@@ -74,7 +74,7 @@ Success callback. Called when function finished without errors
 
 Callback parameter is object which contains:
 
-    * `audioItem` \- The created [RBCAudioItem](#rbcaudioitem-class) object.
+    * `audioItem` \- The created [BodhiMobileAudioItem](#bodhimobileaudioitem-class) object.
 
   * `errorCallback` optional
 
@@ -82,4 +82,4 @@ Error Callback. Called when function return error.
 
 ##### Return Value
 
-  * [RBCPromise](#kernel-promise) object
+  * [BodhiMobilePromise](#kernel-promise) object

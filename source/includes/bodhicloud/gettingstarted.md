@@ -1,8 +1,3 @@
-# Bodhi Cloud 
-
-## Overview
-The Bodhi Cloud is a set of secure APIs that are used to store your data.  
-
 ## Getting Started  
 To access the Bodhi Cloud API, you need to login with you user and password which is provided by Hot Schedules.  The API docs are available at this location: <a href="https://api.bodhi.space/apidocs/index.html">https://api.bodhi.space/apidocs/index.html</a>.  
 

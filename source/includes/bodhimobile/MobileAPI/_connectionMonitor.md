@@ -1,4 +1,4 @@
-## RBCConnectionMonitor Class
+## BodhiMobileConnectionMonitor Class
 
 This object is created by [connection.startMonitoring](#startmonitoring) method and used for checking the server availability.
 
@@ -46,7 +46,7 @@ connectionMonitor.onAvailableChanged( function(info) {
 });
 ```
 
-`RBCConnectionMonitor::onAvailableChanged( callback )`
+`BodhiMobileConnectionMonitor::onAvailableChanged( callback )`
 
 ##### Discussion
 
@@ -77,7 +77,7 @@ connectionMonitor.stop( function() {
 });
 ```
 
-`RBCConnectionMonitor::stop( successCallback, errorCallback )`
+`BodhiMobileConnectionMonitor::stop( successCallback, errorCallback )`
 
 ##### Discussion
 
@@ -97,4 +97,4 @@ Error Callback. Called when function return error.
 
 ##### Return Value
 
-  * [RBCPromise](#kernel-promise) object
+  * [BodhiMobilePromise](#kernel-promise) object

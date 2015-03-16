@@ -35,7 +35,7 @@ A String Value. Url of page which will be opened.
 
 ##### Return Value
 
-  * [RBCPromise](#kernel-promise) object
+  * [BodhiMobilePromise](#kernel-promise) object
 
 #### dismiss
 
@@ -52,7 +52,7 @@ notification about iBeacons.
 
 ##### Return Value
 
-  * [RBCPromise](#kernel-promise) object
+  * [BodhiMobilePromise](#kernel-promise) object
 
 #### open
 
@@ -77,7 +77,7 @@ A String Value. Url of page which will be opened.
 
 ##### Return Value
 
-  * [RBCPromise](#kernel-promise) object
+  * [BodhiMobilePromise](#kernel-promise) object
 
 #### close
 
@@ -93,4 +93,4 @@ Closes current page if it was opened with open method.
 
 ##### Return Value
 
-  * [RBCPromise](#kernel-promise) object
+  * [BodhiMobilePromise](#kernel-promise) object

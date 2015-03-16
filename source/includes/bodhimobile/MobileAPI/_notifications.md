@@ -44,7 +44,7 @@ The property with a Number value. Determines number of repeating "vibrate-mute" 
 
 ##### Return Value
 
-  * [RBCPromise](#kernel-promise) object
+  * [BodhiMobilePromise](#kernel-promise) object
 
 #### beep
 
@@ -60,7 +60,7 @@ The device plays a beep sound.
 
 ##### Return Value
 
-  * [RBCPromise](#kernel-promise) object
+  * [BodhiMobilePromise](#kernel-promise) object
 
 
 #### alert
@@ -106,7 +106,7 @@ Callback parameter is object and can contains keys:
 
 ##### Return Value
 
-  * [RBCPromise](#kernel-promise) object
+  * [BodhiMobilePromise](#kernel-promise) object
 
 
 #### showToast
@@ -150,4 +150,4 @@ Error Callback. Called when function return error.
 
 ##### Return Value
 
-  * [RBCPromise](#kernel-promise) object
+  * [BodhiMobilePromise](#kernel-promise) object
