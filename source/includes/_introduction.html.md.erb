@@ -152,7 +152,7 @@ Your application can request for the API to return only specific fields in the r
 The example request above includes the `id`, `name` and `_embedded` fields in the event resource and the `city` field in its embedded venue.
 
 
-## User Agent Header
+## User Agent Required
 
 <%= json(:user_agent_error, %(Invalid `User-Agent` header:)) %>
 
@@ -187,3 +187,14 @@ Applications can include the `VGG-Country` header to change the geography-contex
 `VGG-Country: FR`
 
 In the example above, the application is specifying that it would like make requests in the French geography (as if the client were using the www.viagogo.fr website).
+
+
+## HTTP Caching
+
+### Cache-Control Header
+
+Most responses return a `Cache-Control` header with a `max-age` value that indicates the number of seconds your application can cache a particular response for. You don't need to request a resource any more frequently than every `max-age` seconds.
+
+### E-Tag Header
+
+All responses return the `ETag` header. You can use the value of this header to make subsequent requests to those resources using the `If-None-Match` header. If the resource has not changed, the server will return a `304 Not Modified` response with an empty body.
