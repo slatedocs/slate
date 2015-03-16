@@ -86,7 +86,7 @@ var api = new ViagogoClient("clientId",
 var genres = await api.Search.GetAllAsync("lady gaga");
 ~~~
 
-Access tokens should be included in a `Bearer` authorization header when making API requests.
+Access tokens should be included in a `Bearer` authorization header when making API requests. The `expires_in` property in a token response represents the number of seconds before the token expires. Tokens can be re-used in multiple requests up until they expire.
 
 
 ## Scopes
