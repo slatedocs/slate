@@ -596,9 +596,9 @@ role | User's role. Roles are limited to the following values: 'medical_doctor' 
 
 # iFrame
 
-##iFrame API calls
+##iFrame URL calls
 
-In order to call our API through an iFrame, you must first obtain a user token.  It's a two-step process.
+In order to call certain pages of our site through an iFrame, you must first obtain a user token.  It's a two-step process.
 
 1. Get a user token by curling the token endpoint with the access token.
 2. Append the user token along with user info in the url.
