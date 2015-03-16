@@ -593,3 +593,58 @@ email | The e-mail from the user you are creating.
 first_name | First name of the user.
 last_name | Last name of the user.
 role | User's role. Roles are limited to the following values: 'medical_doctor' , 'physician_assistant' , 'registered_nurse' , 'nurse_practitioner'
+
+# iFrame
+
+##iFrame API calls
+
+In order to call our API through an iFrame, you must first obtain a user token.  It's a two-step process.
+
+1. Get a user token by curling the token endpoint with the access token.
+2. Append the user token along with user info in the url.
+
+<aside class="notice">
+User tokens are one-time/single use only.
+</aside>
+
+##Obtaining a user token
+
+To get a user token, curl the endpoint with the access token.
+
+```shell
+curl -i https://rubiconmd.com/api/v1/users/token?access_token="AAAAAA"
+```
+
+> A successful request will return:
+
+```json
+[
+  {
+    "user_token": "AAAAAA"
+  }
+]
+```
+
+### HTTP Request
+
+`GET https://rubiconmd.com/api/v1/users/token?access_token="AAAAAA"`
+
+##Auto-login & Display case
+
+Pass user email, user token, and case id parameters into the URL.
+
+### HTTP Request
+
+`GET https://rubiconmd.com/pcp_iframe?user_email=EMAIL&user_token=TOKEN&case_id=CASE_ID`
+
+### URL Parameters 
+
+Parameter |  Description
+--------- | -----------
+email | The e-mail of the user you are logging in.
+user_token | Single-use user token.
+case_id | The ID of the case you want to see.
+
+<aside class="notice">
+If you send the user to the iframe with an invalid token the user will be asked to login.  No errors will be raised.
+</aside>

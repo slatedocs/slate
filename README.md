@@ -31,6 +31,11 @@ You're going to need:
 
 You can now see the docs at <http://rubiconmd.github.io/api-documentation/>.
 
+### Previews
+
+To preview your changes on a localhost prior to deployment, start the test server by `bundle exec middleman server` or `middleman server`
+
+Then pull up `http://localhost:4567` on your browser. Boom!
 
 Some useful links
 ---------------------------------
