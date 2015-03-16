@@ -1,17 +1,18 @@
 How Do I Create A New Type 
-========
-### Overview 
+======
+
+##### Overview 
 The Bodhi Cloud API is extensible meaning that if you find you need to store your data in a way that the Bodhi APIs do not provide, you can create as many new types as per your requirements and needs.  Bodhi's base and systems types can also be changed and extended depending on your requirements and needs.  These are powerful features with a rich tool set to easily add or extend types for your namespace.  
 
 
-### Getting Started
+##### Getting Started
 The goal of this tutorial is to show how to use the 4 Methods/Tools that Bodhi provides to extend your namespace to store your data in ways that fit your business needs.  
 
-#### Prerequisites
+###### Prerequisites
 In order to be able to complete this tutorial for all 4 tools, you will need to be an admin user of your namespace which is provided by your Hot Schedules representative.  You  will be given your credentials (username and password) which is assigned to a particular namespace which is where you will make the changes to the Hot Schedules types.  Please login to each of the tools prior to starting the section.
 
 
-### How To Create a new type using Bodhi API Documentation
+##### How To Create a new type using Bodhi API Documentation
 The Bodhi API Documentation is a full featured interactive set of documentation that also allows the user to Create, Update, and Delete using the REST APIs for each type.  This tutorial is intended to both allow the user to get familiar with how the Bodhi API Documentation as well as the minimum requirements to create a type, view that type through the Bodhi API Documentation and finally delete that type through the Bodhi API Documentation.  
 
 1.Go to [https://api.bodhi.space/apidocs/index.html](https://api.bodhi.space/apidocs/index.html)
