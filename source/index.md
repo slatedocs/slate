@@ -15,7 +15,7 @@ includes:
   - bodhicloud/apitutorial/0-getting-started/tutorial
   - bodhicloud/apitutorial/1-api-mechanics/tutorial
   - bodhicloud/apitutorial/2-type-mechanics/tutorial
-
+  - bodhicloud/howto/CreatingTypesTutorial
 
   - bodhiagent/agentoverview
   - bodhiagent/gettingstarted

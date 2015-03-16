@@ -1,6 +1,5 @@
-How Do I Create A New Type 
-======
-
+#### How Do I Create A New Type 
+========
 ##### Overview 
 The Bodhi Cloud API is extensible meaning that if you find you need to store your data in a way that the Bodhi APIs do not provide, you can create as many new types as per your requirements and needs.  Bodhi's base and systems types can also be changed and extended depending on your requirements and needs.  These are powerful features with a rich tool set to easily add or extend types for your namespace.  
 
@@ -71,20 +70,46 @@ namespace (string)
 
 ```
 {
-  "name": "<some random string>",
-  "version": "<some random string>",
-  "properties": null,
-  "storage_name": "<some random string>",
-  "namespace": "<some random string>"
+  "name": "MyNewType",
+  "version": "0.1",
+  "properties": {
+      "store_id": {
+         "type": "String",
+         "isNotBlank": true,
+         "trim": true
+      },
+      "employment_period": {
+          "type": "DatePeriod"
+      },
+      "store_number":{
+          "type": "Integer"
+      }
+   },
+  "storage_name": "NewNewType",
+  "namespace": "<Your Namespace>"
 }
 ```
+_Note:  "isNotBlank" is a validation, "trim" is a pre-processing command (it removes white spaces around the string before inserting), "DatePeriod" is an embedded document.
+
 8.Change the Random String as follows:
 
 ```
 {
   "name": "MyNewType",
   "version": "0.1",
-  "properties": {},
+  "properties": {
+      "store_id": {
+         "type": "String",
+         "isNotBlank": true,
+         "trim": true
+      },
+      "employment_period": {
+          "type": "DatePeriod"
+      },
+      "store_number":{
+          "type": "Integer"
+      }
+   },
   "storage_name": "NewNewType",
   "namespace": "<Your Namespace>"
 }
@@ -102,13 +127,6 @@ _Creating a new type, Namespace Auto Fills_
 {
   "name": "MyNewType",
   "version": "0.1",
-  "properties": {},
-  "storage_name": "NewNewType",
-  "namespace": "<Your Namespace>"
-}
-or 
-{
-  "name": "MyNewType",
   "properties": {
       "store_id": {
          "type": "String",
@@ -117,12 +135,12 @@ or
       },
       "employment_period": {
           "type": "DatePeriod"
-       },
-      "store_number":{
-           "type": "Integer"
       },
+      "store_number":{
+          "type": "Integer"
+      }
    },
-  "storage_name": "MyNewType",
+  "storage_name": "NewNewType",
   "namespace": "<Your Namespace>"
 }
 ```
