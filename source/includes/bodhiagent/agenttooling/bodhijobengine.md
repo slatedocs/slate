@@ -57,12 +57,14 @@ exports.run = function(job, done){
     try{
         //do stuff here
 
-        //to post data to Bodhi cloud call the conn method. Parameters are
-        //your_object (the object holding your data), and
-        //the agent_config object (holds your authentication info), and
-        //YourType (the name of the type to post your data to):
+        //use the jobconfig.conn method to make requests to the Bodhi cloud server
+        jobconfig.conn(method, type, jobconfig.agent_config, data);
 
-        jobconfig.conn(obj, jobconfig.agent_config, 'resources/YourType');
+        //jobconfig.conn parameters:
+        //method: a string: 'get', 'post', 'put', 'patch', and 'delete' are supported http methods
+        //type: a string like this: 'resources/your_type_name' where your_type_name is the type you want to use
+        //jobconfig.agent_config: an object, should have these properties defined: namespace, bearerToken and target_url
+        //data: an object that contains your data in JSON format. Not required for GET/DELETE/PATCH methods
 
         //you must call done() at the end of your code
         done();
@@ -94,7 +96,9 @@ module.exports = {
 #####Loading a job
 
 Once your job is ready and available in Artifactory, load the job into
-the job engine in the root directory of your project using npm install:
+the job engine in the root directory of your project using npm install.
+Your job should be installed as a dependency for Bodhi Job Engine,
+so cd into node_modules/bodhi-job-engine/, then:
 
 
 npm install job-app-your_job_name
