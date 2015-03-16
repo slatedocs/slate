@@ -1,6 +1,6 @@
 ###### Kernel Promise
 
-Virtually all functions in modules return instance of RBCPromise object.  
+Virtually all functions in modules return instance of BodhiMobilePromise object.  
 With it you can easy add success and finished callbacks for the function.
 
 ### Tasks
@@ -24,7 +24,7 @@ someModule.someFunction().then( function(info) {
 });
 ```
 
-`RBCPromise.then( succesCallback, errorCallback )`
+`BodhiMobilePromise.then( succesCallback, errorCallback )`
 
 ###### Discussion
 
@@ -55,7 +55,7 @@ someModule.someFunction().fail( function (error) {
 });
 ```
 
-`RBCPromise.fail( errorCallback )`
+`BodhiMobilePromise.fail( errorCallback )`
 
 ##### Discussion
 
@@ -81,7 +81,7 @@ someModule.someFunction().success( function(info) {
 });
 ```
 
-`RBCPromise.success( succesCallback )`
+`BodhiMobilePromise.success( succesCallback )`
 
 ##### Discussion
 

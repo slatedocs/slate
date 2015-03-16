@@ -1,4 +1,4 @@
-## RBCAudioItem Class
+## BodhiMobileAudioItem Class
 
 This object is created by [audio.getAudio](#getaudio) method and it used for recording and playback audio.
 
@@ -45,7 +45,7 @@ var state = audioItem.state;
 
 ##### Discussion
 
-Current audio item state. See variants in [RBCAudioItemState](#rbcaudioitemstate).  
+Current audio item state. See variants in [BodhiMobileAudioItemState](#bodhimobileaudioitemstate).  
 Developer can control changes after registering **callback** in `onStateChanged` method.
 
 #### duration
@@ -83,7 +83,7 @@ audioItem.startPlaying( function() {
 });
 ```
 
-`RBCAudioItem::startPlaying( successCallback, errorCallback )`
+`BodhiMobileAudioItem::startPlaying( successCallback, errorCallback )`
 
 ##### Discussion
 
@@ -103,7 +103,7 @@ Error Callback. Called when function return error.
 
 ##### Return Value
 
-  * [RBCPromise](#kernel-promise) object
+  * [BodhiMobilePromise](#kernel-promise) object
 
 #### stopPlaying
 
@@ -116,7 +116,7 @@ audioItem.stopPlaying( function() {
 });
 ```
 
-`RBCAudioItem::stopPlaying( successCallback, errorCallback )`
+`BodhiMobileAudioItem::stopPlaying( successCallback, errorCallback )`
 
 ##### Discussion
 
@@ -136,7 +136,7 @@ Error Callback. Called when function return error.
 
 ##### Return Value
 
-  * [RBCPromise](#kernel-promise) object
+  * [BodhiMobilePromise](#kernel-promise) object
 
 #### pausePlaying
 
@@ -149,7 +149,7 @@ audioItem.pausePlaying( function() {
 });
 ```
 
-`RBCAudioItem::pausePlaying( successCallback, errorCallback )`
+`BodhiMobileAudioItem::pausePlaying( successCallback, errorCallback )`
 
 ##### Discussion
 
@@ -169,7 +169,7 @@ Error Callback. Called when function return error.
 
 ##### Return Value
 
-  * [RBCPromise](#kernel-promise) object
+  * [BodhiMobilePromise](#kernel-promise) object
 
 #### getDuration
 
@@ -182,7 +182,7 @@ audioItem.getDuration( function(info) {
 });
 ```
 
-`RBCAudioItem::getDuration( successCallback, errorCallback )`
+`BodhiMobileAudioItem::getDuration( successCallback, errorCallback )`
 
 ##### Discussion
 
@@ -204,7 +204,7 @@ Error Callback. Called when function return error.
 
 ##### Return Value
 
-  * [RBCPromise](#kernel-promise) object
+  * [BodhiMobilePromise](#kernel-promise) object
 
 #### seekTo
 
@@ -217,7 +217,7 @@ audioItem.seekTo( 1.5, function(info) {
 });
 ```
 
-`RBCAudioItem::seekTo( position, successCallback, errorCallback )`
+`BodhiMobileAudioItem::seekTo( position, successCallback, errorCallback )`
 
 ##### Discussion
 
@@ -241,7 +241,7 @@ Error Callback. Called when function return error.
 
 ##### Return Value
 
-  * [RBCPromise](#kernel-promise) object
+  * [BodhiMobilePromise](#kernel-promise) object
 
 #### startRecording
 
@@ -254,7 +254,7 @@ audioItem.startRecording( function() {
 });
 ```
 
-`RBCAudioItem::startRecording( successCallback, errorCallback )`
+`BodhiMobileAudioItem::startRecording( successCallback, errorCallback )`
 
 ##### Discussion
 
@@ -274,7 +274,7 @@ Error Callback. Called when function return error.
 
 ##### Return Value
 
-  * [RBCPromise](#kernel-promise) object
+  * [BodhiMobilePromise](#kernel-promise) object
 
 #### stopRecording
 
@@ -287,7 +287,7 @@ audioItem.stopRecording( function() {
 });
 ```
 
-`RBCAudioItem::stopRecording( successCallback, errorCallback )`
+`BodhiMobileAudioItem::stopRecording( successCallback, errorCallback )`
 
 ##### Discussion
 
@@ -307,7 +307,7 @@ Error Callback. Called when function return error.
 
 ##### Return Value
 
-  * [RBCPromise](#kernel-promise) object
+  * [BodhiMobilePromise](#kernel-promise) object
 
 #### setVolume
 
@@ -320,7 +320,7 @@ audioItem.setVolume( 0.7, function(info) {
 });
 ```
 
-`RBCAudioItem::setVolume( volume, successCallback, errorCallback )`
+`BodhiMobileAudioItem::setVolume( volume, successCallback, errorCallback )`
 
 ##### Discussion
 
@@ -344,7 +344,7 @@ Error Callback. Called when function return error.
 
 ##### Return Value
 
-  * [RBCPromise](#kernel-promise) object
+  * [BodhiMobilePromise](#kernel-promise) object
 
 #### onStateChanged
 
@@ -355,7 +355,7 @@ audioItem.onStateChanged( function(info) {
 });
 ```
 
-`RBCAudioItem::onStateChanged( callback )`
+`BodhiMobileAudioItem::onStateChanged( callback )`
 
 ##### Discussion
 
@@ -369,7 +369,7 @@ Callback. Called when state property changed.
 
 Callback parameter is object which contains:
 
-    * `state` \- [RBCAudioItemState](#rbcaudioitemstate)
+    * `state` \- [BodhiMobileAudioItemState](#bodhimobileaudioitemstate)
 
 ##### Return Value
 
@@ -384,7 +384,7 @@ audioItem.onDurationChanged( function(info) {
 });
 ```
 
-`RBCAudioItem::onDurationChanged( callback )`
+`BodhiMobileAudioItem::onDurationChanged( callback )`
 
 ##### Discussion
 
@@ -413,7 +413,7 @@ audioItem.onPositionChanged( function(info) {
 });
 ```
 
-`RBCAudioItem::onPositionChanged( callback )`
+`BodhiMobileAudioItem::onPositionChanged( callback )`
 
 ##### Discussion
 
@@ -444,7 +444,7 @@ audioItem.close( function() {
 });
 ```
 
-`RBCAudioItem::close( successCallback, errorCallback )`
+`BodhiMobileAudioItem::close( successCallback, errorCallback )`
 
 ##### Discussion
 
@@ -464,4 +464,4 @@ Error Callback. Called when function return error.
 
 ##### Return Value
 
-  * [RBCPromise](#kernel-promise) object
+  * [BodhiMobilePromise](#kernel-promise) object
