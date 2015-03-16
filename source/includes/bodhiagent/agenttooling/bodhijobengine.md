@@ -96,7 +96,9 @@ module.exports = {
 #####Loading a job
 
 Once your job is ready and available in Artifactory, load the job into
-the job engine in the root directory of your project using npm install:
+the job engine in the root directory of your project using npm install.
+Your job should be installed as a dependency for Bodhi Job Engine,
+so cd into node_modules/bodhi-job-engine/, then:
 
 
 npm install job-app-your_job_name
