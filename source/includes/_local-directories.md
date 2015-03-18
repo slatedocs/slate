@@ -1,0 +1,164 @@
+# Local Directories
+
+## Fetch Profile URL
+
+> Success (201 Created)
+
+```json
+{
+    "success": true,
+    "job-id": 318
+}
+```
+ 
+> Failure (400 Bad Request)
+
+```json
+{
+  "success": false,
+  "errors": {
+    "INVALID_BUSINESS_NAMES": "Invalid Business names specified",
+    "INVALID_COUNTRY": "Invalid  country  specified",
+    "INVALID_CITY": "Invalid  city  specified",
+    "INVALID_POSTCODE": "Invalid  postcode  specified",
+    "INVALID_LOCAL_DIRECTORY": "Invalid  local directory  specified"
+  }
+}
+```
+ 
+> Failure (405 Method Not Allowed)
+
+```json
+{
+  "success": false,
+  "errors": {
+    "INVALID_METHOD": "Invalid method specified. Only POST method is available"
+  }
+}
+```
+
+Authentication for this method is via API key only.
+
+### HTTP Request
+
+`POST https://tools.brightlocal.com/seo-tools/api/v4/ld/fetch-profile-url`
+
+### Query Parameters
+
+Parameter | Notes
+--------- | -----
+api-key | Required
+batch-id | Required
+business-names | Required. A newline (\n) separated list of possible business names to search for. For example: The Rose Pub Rose Pub The Rose.
+country | Required
+city | Required
+postcode | Required
+local-directory | See possible options in appendix below.
+telephone |
+street-address |
+
+## Fetch Profile Details (by profile URL)
+
+> Success (201 Created)
+
+```json
+{
+    "success": true,
+    "job-id": 318
+}
+```
+ 
+> Failure (400 Bad Request)
+
+```json
+{
+  "success": false,
+  "errors": {
+    "INVALID_COUNTRY": "Invalid  country  specified",
+    "INVALID_PROFILE_URL": "Profile Url is not valid"
+  }
+}
+```
+ 
+> Failure (405 Method Not Allowed)
+
+```json
+{
+  "success": false,
+  "errors": {
+    "INVALID_METHOD": "Invalid method specified. Only POST method is available"
+  }
+}
+```
+
+Authentication for this method is via API key only.
+
+### HTTP Request
+
+`POST https://tools.brightlocal.com/seo-tools/api/v4/ld/fetch-profile-details`
+
+### Query Parameters
+
+Parameter | Notes
+--------- | -----
+api-key | Required
+batch-id | Required
+profile-url | Required
+country | Required
+
+## Fetch Profile Details (by business data)
+
+> Success (201 Created)
+
+```json
+{
+    "success": true,
+    "job-id": 318
+}
+```
+ 
+> Failure (400 Bad Request)
+
+```json
+{
+  "success": false,
+  "errors": {
+    "INVALID_BUSINESS_NAMES": "Invalid Business names specified",
+    "INVALID_COUNTRY": "Invalid  country  specified",
+    "INVALID_CITY": "Invalid city  specified",
+    "INVALID_POSTCODE": "Invalid postcode  specified",
+    "INVALID_LOCAL_DIRECTORY": "Invalid local directory specified"
+  }
+}
+```
+ 
+> Failure (405 Method Not Allowed)
+
+```json
+{
+  "success": false,
+  "errors": {
+    "INVALID_METHOD": "Invalid method specified. Only POST method is available"
+  }
+}
+```
+
+This method shortcuts Fetch Profile URL and Fetch Profile Details above by carrying out both in one step. It essentially looks up the URL and then uses that to fetch the profile details.
+
+### HTTP Request
+
+`POST https://tools.brightlocal.com/seo-tools/api/v4/ld/fetch-profile-details-by-business-data`
+
+### Query Parameters
+
+Parameter | Notes
+--------- | -----
+api-key | Required
+batch-id | Required
+business-names | Required. A newline (\n) separated list of possible business names to search for. For example: The Rose Pub Rose Pub The Rose.
+country | Required
+city | Required
+postcode | Required
+local-directory | See possible options in appendix below.
+telephone |
+street-address |
