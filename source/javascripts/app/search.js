@@ -49,7 +49,8 @@
       if (results.length) {
         searchResults.empty();
         $.each(results, function (index, result) {
-          searchResults.append("<li><a href='#" + result.ref + "'>" + $('#'+result.ref).text() + "</a></li>");
+	  var escaped_ref = result.ref.replace(/[!"#$%&'()*+,.\/:;<=>?@[\\\]^`{|}~]/g, "\\$&");
+          searchResults.append("<li><a href='#" + result.ref + "'>" + $('#'+escaped_ref).text() + "</a></li>");
         });
         highlight.call(this);
       } else {
