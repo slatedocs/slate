@@ -26,12 +26,11 @@ includes:
   - bodhiagent/agenttooling/agentcli
  
   
+  - command-line/command-line-overview
+  - command-line/bodhi-cli-docs
+   
   - bodhimobile/overview
-  - bodhimobile/gettingstarted
-  
-  - bodhi-cli/bodhi-cli-overview
-  - bodhi-cli/bodhi-cli-docs
-  
+  - bodhimobile/gettingstarted 
 
 search: true
 ---
