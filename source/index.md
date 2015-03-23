@@ -29,6 +29,7 @@ includes:
   - bodhimobile/overview
   - bodhimobile/gettingstarted
   - bodhimobile/envsetup
+  - bodhimobile/Mobile Tools/bodhi-cli-docs
 
 search: true
 ---
