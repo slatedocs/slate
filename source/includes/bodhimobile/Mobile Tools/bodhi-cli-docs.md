@@ -1,9 +1,8 @@
-bodhi CLI tools
-=============
+##Bodhi CLI tools
 
 Command Line Tools for the Bodhi Cloud
 
-##Installation
+###Installation
 
 The cli tools require a nodejs runtime and are installed using the node package manager (npm).
 
@@ -20,7 +19,7 @@ One the tools are installed, verify the installation using the version command. 
   M.m.b
 ````
 
-## Getting Started
+### Getting Started
 
 2. Create a directory for your workspace and `cd` into it.
 3. `bodhi init` <br> This will create a rbc-project.json which will house all your environment info. It will
@@ -43,9 +42,9 @@ Example: <br>
 ```
 Once you do this, all commands will be used under the default environment unless you specify otherwise with the -e flag.
 
-##General Str
+###General Str
 
-###Common Usage
+#####Common Usage
 
 ````
 <rbc-tool> [options] <command> [arguments ..]
@@ -64,7 +63,7 @@ bodhi -v command -e my-environment
 bodhi command -v -e my-environment
 ````
 
-###Processing Options
+#####Processing Options
 
 The following switch are universal and have consistent semantics across the tools.
 
@@ -77,7 +76,7 @@ debug   | d     | execute the command in debug mode
 force   | f     | force the command to ignore saftey considerations
 no-color| C     | do not use color
 
-##Project Commands
+###Project Commands
 
 * pwd
 * init
@@ -408,9 +407,9 @@ License Apache-2
 Copyright 2014 Redbook Connect
 ````
 
-##Local Commands
+###Local Commands
 
-####Usage
+#####Usage
 
 #####Type Commands
 
@@ -441,11 +440,11 @@ mv-prop    |          | rename an existing property
 rm-prop    |          | remove an existing property
 gen-instance |      | generate a sample object based on the type
 
-####Type Name
+#####Type Name
 
 A typename is the just the system name for the type and not a file system name. The name SHOULD NOT include an directory information or the .json suffix when used by the commands.
 
-####Type Options
+#####Type Options
 
 option       | meaning
 -----        | ----------
@@ -455,7 +454,7 @@ immutable    | instances of this type do not support updates
 encapsulated | this type does not support normal CRUD operations
 extensible   | this type may be extended
 
-####Property Options
+#####Property Options
 
 option     | short | meaning
 -----      | ____  | ----------
@@ -466,7 +465,7 @@ unique     | u     | the property contains a unique value within a collection
 scale      | s     | how many decimal places should be kept
 default    |       | the default value of the property if not set
 
-####Short Hand Types
+#####Short Hand Types
 
 All system scalara have a special character designation to make them easier to describe. Those designators are listed below.
 
@@ -486,13 +485,13 @@ L      | Link
 
 Remote commands operate on types store on an service installation. These commands share many of the same options as the http commands.
 
-####Usage
+#####Usage
 
 ````
 > rbc-types <cmd> <type-name> [env-options]
 ````
 
-####Commands
+#####Commands
 
 command  | aliases | description
 -------  | ------- | -----------
@@ -503,21 +502,21 @@ post     | push, upload    | install a remote type on the server
 delete   | destroy | destroy the type on the system
 listp    | lp      | list the properties of a remote
 
-####Type Names
+#####Type Names
 
 The typename is the just the name and not a partial url path. The user MUST assume that `/namespace/type/` will be prepended to the name prior to sending the request. Any initial slash will be tolerated but is not required. Any additional path elements will be appended to the `namespace/types/` prior to executing the request.
 
-####Options
+#####Options
 
 All remote commands require an environment. These options behave consistently with those in the  If none is specifed then the command will use the default. If no default is set then to command will fail.
 
-##Command Details
+###Command Details
 
 ###New
 
 Create a new type locally
 
-####Signature
+#####Signature
 
 ````
 > rbc-types new <typename> --namespace <namespace> [type-options]
@@ -543,7 +542,7 @@ The name of the created model
 
 Rename an existing model.
 
-####Signature
+#####Signature
 
 ````
 > rbc-types rename <from> <to>
@@ -566,7 +565,7 @@ The 'to' name of the model
 
 Change the type's metadata
 
-####Signature
+#####Signature
 
 ````
 > rbc-types edit <typename> [type-options]
@@ -587,7 +586,7 @@ The model's name
 
 Remove the model from the local filesystem.
 
-####Signature
+#####Signature
 
 ````
 > rbc-types remove <typename>
@@ -608,7 +607,7 @@ The removed model's name
 
 Print a type to the screen
 
-####Signature
+#####Signature
 
 ````
 > rbc-types echo <typename>
@@ -629,7 +628,7 @@ The model as a JSON object
 
 Add or Replace a Property in a Type
 
-####Signature
+#####Signature
 
 ````
 > rbc-types set-prop <typename> [property-options] <propertyName>
@@ -651,7 +650,7 @@ The typename
 
 Rename an existing property
 
-####Signature
+#####Signature
 
 ````
 > rbc-types mv-prop <typename> <from> <to>
@@ -674,7 +673,7 @@ The typename modified
 
 Remove an existing property
 
-####Signature
+#####Signature
 
 ````
 > rbc-types rm-prop <typename> <propertyName>
@@ -696,7 +695,7 @@ The typename modified
 
 Generate a sample instance of the type
 
-####Signature
+#####Signature
 
 ````
 > rbc-types gen-instance <typename>
@@ -717,7 +716,7 @@ Prints a sample instance as a JSON object
 
 Download and store a copy of a type
 
-####Signature
+#####Signature
 
 ````
 > rbc-types [env-options] fetch <typename>
@@ -738,7 +737,7 @@ The typename modified
 
 Print a type stored on the server
 
-####Signature
+#####Signature
 
 ````
 > rbc-types [env-options] get <typename>
@@ -759,7 +758,7 @@ The typename modified
 
 List all the types on the server for the environment
 
-####Signature
+#####Signature
 
 ````
 > rbc-types [env-options] list
@@ -780,7 +779,7 @@ A JSON array of the current remote types for the environment
 
 Destroys a remote type
 
-####Signature
+#####Signature
 
 ````
 > rbc-types [env-options] delete <typename>
@@ -801,7 +800,7 @@ The typename deleted
 
 Posts a local type definition to the remote server
 
-####Signature
+#####Signature
 
 ````
 > rbc-types [env-options] post <typename>
@@ -824,11 +823,11 @@ app-tools
 app-tools is a command line tool, bundled with bodhi-cli, that allows app developers to quickly generate
 an app and publish it to the cloud so that it can be viewed on the mobile container.
 
-## Local Commands
+### Local Commands
 
 ### App Creation Commands
 
-#### new-app
+##### new-app
 
 Creates a new app skeleton in /apps folder based on the type of skeleton app specified. 
 
@@ -897,7 +896,7 @@ Notes:
 
 The following commands allow the user to edit/view the local profile definition. When the user publishes the app, the cloud will create a unique profile (profile name will be the same as the app name) specifically for this app. Any user with this profile will then be able to use this app.
 
-#### Profile Action Options
+##### Profile Action Options
 
 long      | meaning
 ----      | -------
@@ -908,7 +907,7 @@ insert    | insert action allowed on type
 aggregate | aggregate action allowed on type
 
 
-#### view-profile-def
+##### view-profile-def
 
 View the local app profile definition.
 
@@ -930,7 +929,7 @@ None.
 
 The local app profile definition.
 
-#### add-type-to-profile
+##### add-type-to-profile
 
 Add a type and its allowed actions to the local app profile definition. If the type already exists, it will overwrite it. Application type cannot be edited.
 
@@ -952,7 +951,7 @@ See profile action options above.
 
 The local app profile definition.
 
-#### remove-type-from-profile
+##### remove-type-from-profile
 
 Remove a type from the local app profile definition. Application type cannot be removed.
 
@@ -976,7 +975,7 @@ The local app profile definition.
 
 ### App Metadata Commands
 
-#### edit-title
+##### edit-title
 
 Edit the app title.
 
@@ -998,7 +997,7 @@ None.
 
 Message stating the title has been changed to \<title\>.
 
-#### view-title
+##### view-title
 
 View the app title.
 
@@ -1020,7 +1019,7 @@ None.
 
 The app title.
 
-#### edit-description
+##### edit-description
 
 Edit the app description.
 
@@ -1042,7 +1041,7 @@ None.
 
 Message stating description has been changed to \<description\>.
 
-#### view-description
+##### view-description
 
 View the app description.
 
@@ -1064,7 +1063,7 @@ None.
 
 The app description.
 
-#### edit-version
+##### edit-version
 
 Edit the app version.
 
@@ -1086,7 +1085,7 @@ None.
 
 Message stating the app version has been changed to \<version\>.
 
-#### view-version
+##### view-version
 
 View the app version.
 
@@ -1108,11 +1107,11 @@ None.
 
 The app version.
 
-## Remote Commands
+### Remote Commands
 
 ### App Publishing Commands
 
-#### publish-app
+##### publish-app
 
 Publishes the app to the namespace specified by the environment or to the global app store if the -g flag is specified. This command must be run in the app folder.
 
@@ -1152,7 +1151,7 @@ Message stating the app has been published, profile has been created and assigne
 
 ### App Removing Commands
 
-#### remove-app
+##### remove-app
 
 Remove app from the cloud.
 
@@ -1176,7 +1175,7 @@ Message stating the app has been successfully removed.
 
 ### Global App Instalation/Update Commands
 
-#### install-app
+##### install-app
 
 Install a global app into a custom namespace.
 
@@ -1207,7 +1206,7 @@ name        |          |    | unique name of the app for your namespace
 
 The metadata for the newly installed global app.
 
-#### update-app
+##### update-app
 
 Update an already installed global app.
 
@@ -1233,7 +1232,7 @@ The metadata for the updated global app.
 
 Get data about the deployed app from the cloud.
 
-#### list-apps
+##### list-apps
 
 This command lists all the apps that you can see in your specified environment that are currently deployed in the cloud. If the -g flag is specified, the command lists all the global apps available for you to install.
 
@@ -1263,7 +1262,7 @@ A list of apps currently in your namespace or if the -g flag is specified the ap
 
 Remote commands dealing with the profile associated with the deployed app.
 
-#### assign-profile-to-user
+##### assign-profile-to-user
 
 Assign the deployed app's profile to an existing user in the cloud.
 
