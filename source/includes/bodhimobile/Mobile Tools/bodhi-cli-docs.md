@@ -383,8 +383,8 @@ Default (uses the default environment if set)
 > bodhi cmd
 ````
 
-rbc-types
-=========
+####rbc-types
+
 
 Basic command line tool for interacting with the RBC cloud services API
 
@@ -818,8 +818,8 @@ upload, push
 The typename posted
 
 
-app-tools
-=========
+####app-tools
+
 app-tools is a command line tool, bundled with bodhi-cli, that allows app developers to quickly generate
 an app and publish it to the cloud so that it can be viewed on the mobile container.
 
