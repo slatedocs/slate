@@ -119,7 +119,7 @@ None.
 
 Platform specific directory path to the newly initialized project.
 
-##Environment Commands
+###Environment Commands
 
 ### General Command Signature
 
@@ -388,7 +388,7 @@ Default (uses the default environment if set)
 
 Basic command line tool for interacting with the RBC cloud services API
 
-##Installation & Setup
+#####Installation & Setup
 
 rbc-types is included in the bodhi as a separate executable. To verify the availability of the tool use
 
