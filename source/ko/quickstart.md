@@ -6,7 +6,7 @@ _퀵스타트 가이드_는 PallyCon Service에서 제공하는 샘플 사용법
 
 샘플은 아래의 링크에서 다운로드 받으실 수 있습니다.
 
-<i class="icon-folder-open"></i> [샘플 다운로드](http://www.pallycon.com/developer/PallyCon_QuickStartSample.zip)
+<i class="icon-folder-open"></i> [샘플 다운로드](http://www.pallycon.com/download/PallyCon_QuickStartSample.zip)
 
 
 이 샘플을 적용하면서 PallyCon Service를 적용하는데 어떤 작업이 필요하고, 어떤 형태로 서비스가 되는지에 대하여 이해하실 수 있습니다. 
@@ -103,7 +103,7 @@ key를 PallyCon CP Admin에서 확인이 가능한  Site Key 로 변경하여 �
 ##### Content Usage Info Page (_gateway config_)  
 DRM이 적용된 컨텐츠를 사용하기 위한 라이선스 정보를 설정합니다. `LIMIT`, `PD_START`, `PD_END`, `PD_COUNT` 값을 아래와 같이 설정하여 라이선스 정보을 결정합니다. **PallyCon Player(Mobile, PC)는 횟수제가 설정된 라이선스에 대한 재생 처리는 지원하지 않습니다.**
 
-|License Rules|LIMIT|PD_START|PD_END|COUNT|
+|License Rules|LIMIT|PD_START|PD_END|PD_COUNT|
 |-------------|-----|--------|------|-----|
 |**횟수제**		|Y	    |Empty 	  			|Empty	 				|0 보다 큰 값		| 
 |**기간제**		|Y		|PD_END보다 이전 날짜	|PD_START보다 이후 날짜 	|Empty			|

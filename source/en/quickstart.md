@@ -87,7 +87,7 @@ Decompress the sample file and **copy the files in the Webcontents folder to $TO
 Set the information for using DRM-applied contents.
 **PallyCon Player(Mobile, PC) does not support content playback with count-limited license.**
 
-|License Rules|LIMIT|PD_START|PD_END|COUNT|
+|License Rules|LIMIT|PD_START|PD_END|PD_COUNT|
 |-------------|-----|--------|------|-----|
 |**Count System**    |Y      |Empty          |Empty          |Value greater than 0   | 
 |**Period System**   |Y    |Date before PD_END |Date after PD_START  |Empty      |
