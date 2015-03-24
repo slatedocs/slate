@@ -28,7 +28,7 @@ The IdentityMind Engine exports a REST based Web Service interface over HTTPS, u
 
 A typical merchant / IdentityMind interaction to validate a transaction is shown below:
 
-![](http://i.imgur.com/4o540Tw.png)
+![](http://i.imgur.com/v9qj1DP.png)
 
 #### Authentication
 
