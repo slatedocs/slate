@@ -6,7 +6,7 @@ _퀵스타트 가이드_는 PallyCon Service에서 제공하는 샘플 사용법
 
 샘플은 아래의 링크에서 다운로드 받으실 수 있습니다.
 
-<i class="icon-folder-open"></i> [샘플 다운로드](http://www.pallycon.com/developer/PallyCon_QuickStartSample.zip)
+<i class="icon-folder-open"></i> [샘플 다운로드](http://www.pallycon.com/download/PallyCon_QuickStartSample.zip)
 
 
 이 샘플을 적용하면서 PallyCon Service를 적용하는데 어떤 작업이 필요하고, 어떤 형태로 서비스가 되는지에 대하여 이해하실 수 있습니다. 
