@@ -28,8 +28,8 @@ PallyCon 서비스는 클라우드 기반의 DRM 라이선스 서버와 DRM 콘�
 빠른 시작을 위해서는 아래 '퀵 스타트 샘플'을 다운로드 받고 [퀵스타트 가이드](#퀵스타트-가이드)를 따라해 주시기 바랍니다.
 콘텐츠 파일 패키징을 위한 패키져도 아래 링크에서 다운로드 가능합니다.
 
-- 퀵스타트 샘플 [다운로드](http://www.pallycon.com/developer/PallyCon_QuickStartSample.zip)
-- 패키저 [다운로드](http://www.pallycon.com/developer/PallyCon_Packager.zip)
+- 퀵스타트 샘플 [다운로드](http://www.pallycon.com/download/PallyCon_QuickStartSample.zip)
+- 패키저 [다운로드](http://www.pallycon.com/download/PallyCon_Packager.zip)
 
 
 
