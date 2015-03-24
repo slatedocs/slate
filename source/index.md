@@ -10,6 +10,7 @@ toc_footers:
 includes:
 
   - gettingstarted
+  - command-line-overview
   - bodhicloud/cloudoverview
   - bodhicloud/gettingstarted
   - bodhicloud/apitutorial/0-getting-started/tutorial
@@ -23,14 +24,16 @@ includes:
   - bodhiagent/Howto/createingagentapps
   - bodhiagent/Howto/extensions
   - bodhiagent/agenttooling/agenttools
-  - bodhiagent/agenttooling/agentcli
+  - bodhiagent/agenttooling/agent-cli2
  
   
-  - command-line/command-line-overview
+
   - command-line/bodhi-cli-docs
    
   - bodhimobile/overview
   - bodhimobile/gettingstarted 
+  - bodhimobile/Mobile Tools/mobiletoolsoverview
+  - bodhimobile/Mobile Tools/mobileappstore
 
 search: true
 ---
