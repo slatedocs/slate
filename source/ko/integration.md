@@ -155,7 +155,7 @@ DRM 서비스를 위해서는, 기존 업체가 가지고 있는 콘텐츠 관�
 
 **원본 콘텐츠를 DRM이 적용된 콘텐츠로 변환하기 위해서는 Packager가 필요**하며, PallyCon Cloud 서비스 사이트에서는 Packaging을 위하여 **Cloud Application Packager**와 **Cloud CLI Packager**를 제공하고 있습니다. 
 
-<i class="icon-folder-open"></i> [Packager 다운로드](http://www.pallycon.com/developer/PallyCon_Packager.zip)
+<i class="icon-folder-open"></i> [Packager 다운로드](http://www.pallycon.com/download/PallyCon_Packager.zip)
 
 - Cloud Application Packager : UI를 갖추고 있는 Application 형태의 Packager입니다. 이 프로그램은 Application 형태로 제공되며, 윈도우에서만 사용이 가능합니다. 
 - Cloud CLI Packager : 업체에서 가지고 있는 CMS 솔루션에 연동이 가능하도록 하기 위한 Cloud **CLI**(Commend Line Interface) Packager 이며, 윈도우와 리눅스 환경에서 사용이 가능합니다. 
