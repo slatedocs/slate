@@ -6,7 +6,7 @@ _퀵스타트 가이드_는 PallyCon Service에서 제공하는 샘플 사용법
 
 샘플은 아래의 링크에서 다운로드 받으실 수 있습니다.
 
-<i class="icon-folder-open"></i> [샘플 다운로드](http://www.pallycon.com/download/PallyCon_QuickStartSample.zip)
+<i class="icon-folder-open"></i> [샘플 다운로드](http://www.pallycon.com/developer/PallyCon_QuickStartSample.zip)
 
 
 이 샘플을 적용하면서 PallyCon Service를 적용하는데 어떤 작업이 필요하고, 어떤 형태로 서비스가 되는지에 대하여 이해하실 수 있습니다. 
@@ -14,7 +14,7 @@ _퀵스타트 가이드_는 PallyCon Service에서 제공하는 샘플 사용법
  
 ### 필요조건
 
-샘플을 구축하여 간단하게 구동하고, 서비스 조회까지 해보기 위해서는 가입 후 **서비스 사이트 신청**까지 되어야합니다. 서비스 사이트가 성공적으로 신청되면, 서비스 사이트에 해당하는 Site ID와 Site Key, Packager Key를 확인할 수 있습니다. 
+샘플을 구축하여 간단하게 구동하고, 서비스 조회까지 해보기 위해서는 가입 후 **서비스 사이트 신청**까지 되어야합니다. 서비스 사0이트가 성공적으로 신청되면, 서비스 사이트에 해당하는 Site ID와 Site Key, Packager Key를 확인할 수 있습니다. 
 
 샘플 페이지들은 .jsp로 구성되어 있습니다. 이 페이지를 수정하고, 사용하기 위해서는 Java와 Tomcat이 필요합니다. 
 Java 6 (1.6)와 Java 7 (1.7) 응용 프로그램 및 서버 환경에서 Java를 배포 지원하는 Java 런타임 환경 (JRE)를 설치해야 합니다.
@@ -81,7 +81,19 @@ PallyCon Service에서 제공하는 샘플파일을 이용하여 간단하게 �
 #### Step1: Web 페이지 복사
  sample 파일 압축 해제 후 war 파일을  tomcat manager를 통해 웹서버에 올립니다. 
 
-#### Step2: config.jsp 파일 수정
+#### Step2: bouncycastle JCE 설치
+1. www.bouncycastle.org/java.html에서 자신의 JDK 버전에 해당하는 최신 버전을 다운받아  jre/lib/ext 디렉토리에 저장합니다.
+ex) bcprov-jdk16-146.jar, $JAVA_HOME 하위 jre/lib/ext
+
+2. jre/lib/security에있는  java.security 파일 안에 선언되어 있는 값들에 다음 Number로 아래의 내용을 추가합니다.
+security.provider.8 = ........
+security.provider.9 = org.bouncycastle.jce.provider.BouncyCastleProvider 
+
+3. java.sun.com의 다운로드사이트에서 unrestricted policy 파일들을 다운 받아 jre/lib/security 디렉토리에  local_policy.jar와 US_export_policy.jar 파일을 교체합니다.
+
+4. tomcat을 재시작합니다.
+
+#### Step3: config.jsp 파일 수정
 **config.jsp 파일의 수정은 PC / Mobile에 공통으로 영향을 주는 값들에 대한 수정입니다.** 
 
 ##### aes256 configration (_aes key config_)  
@@ -116,7 +128,7 @@ DRM 컨텐츠 재생 및 다운로드시 필요한 정보를 세팅 합니다.
 
     
 
-#### Step3: PallyCon CP Admin에 URL 세팅
+#### Step4: PallyCon CP Admin에 URL 세팅
 
 PallyCon CP Admin에 Content ID Issue Page URL으로 CIDIssue.jsp의 URL 을 설정하고, Content Usage Rights Info Page URL으로 ContentUsageRightsInfo.jsp의 URL을 설정합니다. 
 
@@ -202,4 +214,3 @@ Mobile Web sample 페이지에서 Download 버튼을 터치하면 PallyCon Mobil
 |:----|:-----|
 |2014.08.28|Quick Guide 제작				|
 |2014.12.09|PallyCon PC Player 내용 추가	|
-|2015.3.13|JCE 내용 추가 |
