@@ -331,44 +331,103 @@ EXAMPLE SERVICE REQUEST
 EXAMPLE SERVICE RESPONSE DATA
 ```
 ```json
-{
-    "ednaScoreCard": {
-        "er": {
-            "reportedRule": {
-                "description": "",
-                "name": "",
-                "resultCode": "DENY",
-                "ruleId": 30001
-            }
+    {
+        "arpr": "DISABLED",
+        "ednaScoreCard": {
+            "ar": {
+                "result": "DISABLED"
+            },
+            "er": {
+                "reportedRule": {
+                    "description": "Rule2360_RULE_DESC",
+                    "details": "[Fired] ed:35(false) = false",
+                    "name": "DUPTRANSACTION",
+                    "resultCode": "MANUAL_REVIEW",
+                    "ruleId": 2360,
+                    "testResults": [
+                        {
+                            "details": "[Fired] ed:35(false) = false",
+                            "fired": true,
+                            "test": "ed:35"
+                        }
+                    ]
+                }
+            },
+            "etr": [
+                {
+                    "details": "ed:34(true) = false",
+                    "fired": false,
+                    "test": "ed:34"
+                },
+                {
+                    "details": "ed:32(true) = false",
+                    "fired": false,
+                    "test": "ed:32"
+                },
+                {
+                    "details": "ed:36(true) = false",
+                    "fired": false,
+                    "test": "ed:36"
+                },
+                {
+                    "details": "ed:1(true) = false",
+                    "fired": false,
+                    "test": "ed:1"
+                },
+                {
+                    "details": "ed:2(true) = false",
+                    "fired": false,
+                    "test": "ed:2"
+                },
+                {
+                    "details": "ed:56(true) = false",
+                    "fired": false,
+                    "test": "ed:56"
+                },
+                {
+                    "details": "[Fired] ed:35(false) = false",
+                    "fired": true,
+                    "test": "ed:35"
+                },
+                {
+                    "details": "USD",
+                    "fired": false,
+                    "test": "ed:42"
+                },
+                {
+                    "details": "USD",
+                    "fired": false,
+                    "test": "ed:42"
+                },
+                {
+                    "details": "ed:33(true) = false",
+                    "fired": false,
+                    "test": "ed:33"
+                },
+                {
+                    "details": "ed:37(true) = false",
+                    "fired": false,
+                    "test": "ed:37"
+                }
+            ],
+            "sc": [
+               {
+                    "details": "ed:37(true) = false",
+                    "fired": false,
+                    "test": "ed:37"
+                }
+            ]
         },
-        "tr": [
-            {
-                "testId": "mm:0",
-                "testResult": "true"
-            },
-            {
-                "testDetails": "Maxmind considers the IP to be a bad proxy",
-                "testId": "mm:1",
-                "testPass": false
-            },
-           ...
-            {
-                "testId": "ed:16",
-                "testResult": "0"
-            }
-        ]
-    },
-    "erd": "Infrequent Access, over a short time period",
-    "frd": "",
-    "frn": "",
-    "frp": "DENY",
-    "rcd": "533,101,202,111,131,30001,121,151",
-    "res": "DENY",
-    "rfb": "true",
-    "ric": "US",
-    "tid": "10340003",
-    "transaction_status": "complete"
-}
+        "erd": "New card, neither device nor user account information supplied",
+        "frd": "[Fired] ed:35(false) = false",
+        "frn": "DUPTRANSACTION",
+        "frp": "MANUAL_REVIEW",
+        "rcd": "190,202,2360,131,536,150,121",
+        "res": "MANUAL_REVIEW",
+        "tid": "5200016",
+        "upr": "UNKNOWN",
+        "user": "UNKNOWN"
+    }
 
 ```
 > The response includes detailed result codes and the transaction unique identifier. The most important part of the response is whether the transaction is to be accepted, denied, or scheduled for manual review, which is dependent on the configured fraud policy.
@@ -386,7 +445,6 @@ EXAMPLE SERVICE RESPONSE DATA
 			<td>The current reputation of the user. Possible values are:
 				<ul type="disc">
 					<li><code>TRUSTED</code></li>
-					<li><code>WEAKLY_TRUSTED</code></li>
 					<li><code>UNKNOWN</code></li>
 					<li><code>SUSPICIOUS</code></li>
 					<li><code>BAD</code></li>
@@ -401,7 +459,6 @@ EXAMPLE SERVICE RESPONSE DATA
 			<td>The previous reputation of the user when they were last evaluated. Possible values are:
 				<ul type="disc">
 					<li><code>TRUSTED</code></li>
-					<li><code>WEAKLY_TRUSTED</code></li>
 					<li><code>UNKNOWN</code></li>
 					<li><code>SUSPICIOUS</code></li>
 					<li><code>BAD</code></li>
@@ -609,18 +666,25 @@ Notifies IdentityMind of the acceptance or rejection of the transaction that was
 
 ##### Merchant Final Resolution Feedback
 
+Provides feedback that the transaction has been accepted after review.<br>
 `POST https://edna.identitymind.com/im/transaction/<transaction_id>/accepted`
 
+Provides feedback that the transaction has been rejected after review due to suspected fraud.<br>
 `POST https://edna.identitymind.com/im/transaction/<transaction_id>/rejected`
 
+Provides feedback that the transaction has been rejected after review.<br>
 `POST https://edna.identitymind.com/im/transaction/<transaction_id>/rejected-ok`
 
+Provides feedback that the transaction has been accepted due to user validation.<br>
 `POST https://edna.identitymind.com/im/transaction/<transaction_id>/accepted-user-validated`
 
+Provides feedback that the transaction has been been rejected due to user validation failure.<br>
 `POST https://edna.identitymind.com/im/transaction/<transaction_id>/rejected-user-failed-validation`
 
+Provides feedback that the transaction has been accepted as default.<br>
 `POST https://edna.identitymind.com/im/transaction/<transaction_id>/accepted-default`
 
+Provides feedback that the transaction has been rejected as default.<br>
 `POST https://edna.identitymind.com/im/transaction/<transaction_id>/rejected-default`
 
 <aside class="notice">The transaction may be a payment transaction or an account transfer. All arguments are optional.</aside>

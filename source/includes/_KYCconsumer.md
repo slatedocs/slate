@@ -351,7 +351,6 @@ EXAMPLE SERVICE RESPONSE DATA
 			<td>The current reputation of the user. Possible values are:
 				<ul type="disc">
 					<li><code>TRUSTED</code></li>
-					<li><code>WEAKLY_TRUSTED</code></li>
 					<li><code>UNKNOWN</code></li>
 					<li><code>SUSPICIOUS</code></li>
 					<li><code>BAD</code></li>
@@ -362,7 +361,6 @@ EXAMPLE SERVICE RESPONSE DATA
 			<td>The previous reputation of the user when they were last evaluated. Possible values are:
 				<ul type="disc">
 					<li><code>TRUSTED</code></li>
-					<li><code>WEAKLY_TRUSTED</code></li>
 					<li><code>UNKNOWN</code></li>
 					<li><code>SUSPICIOUS</code></li>
 					<li><code>BAD</code></li>
@@ -691,7 +689,7 @@ EXAMPLE SERVICE RESPONSE DATA
 		</tr>
 	</table>
 
-## Transaction Feedback
+## Application Feedback
 
 Provide feedback to IdentityMind as to the acceptance or rejection of an application by the merchant.
 
