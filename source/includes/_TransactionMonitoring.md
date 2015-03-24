@@ -432,10 +432,6 @@ EXAMPLE SERVICE RESPONSE DATA
 			<td>The result of the automated review policy for this transaction</td>
 		</tr>
 		<tr>
-			<td>tr<br><font color=#446CB3>array[TestResult]</font></td>
-			<td>The security test results for this transaction</td>
-		</tr>
-		<tr>
 			<td>er<br><font color=#446CB3>ExternalizedEvaluationResult</font></td>
 			<td>The result of the fraud policy evaluation for this transaction</td>
 		</tr>
@@ -469,33 +465,6 @@ EXAMPLE SERVICE RESPONSE DATA
 			<td>The rule description</td>
 		</tr>
 		<tr>
-			<th colspan=2>Test Result</th>
-		</tr>
-		<tr>
-			<td>testId<br><font color=#446CB3>string</font></td>
-			<td>The unique test ID</td>
-		</tr>
-		<tr>
-			<td>testDetails<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
-			<td>Details of the evaluation of this test for the current transaction</td>
-		</tr>
-		<tr>
-			<td>testPass<br><font color=#446CB3>boolean</font><br><font color=#BDC3C7><i>optional</i></font></td>
-			<td>If this is a proscriptive test, the result of the test for the current transaction</td>
-		</tr>
-		<tr>
-			<td>testResult<br><font color=#446CB3>Object</font></td>
-			<td>If this is not a proscriptive test, the informational result of the test for the current transaction</td>
-		</tr>
-		<tr>
-			<td>waitingForData<br><font color=#446CB3>boolean</font><br><font color=#BDC3C7><i>optional</i></font></td>
-			<td>If this is an interactive test, whether the test is currently waiting for customer input</td>
-		</tr>
-		<tr>
-			<td>previouslyAccepted<br><font color=#446CB3>boolean</font></td>
-			<td>If this is a KYC transaction, whether this test has been previously accepted</td>
-		</tr>
-		<tr>
 			<th colspan=2>Externalized Evaluation Result</th>
 		</tr>
 		<tr>
@@ -514,12 +483,12 @@ EXAMPLE SERVICE RESPONSE DATA
 			<td>The rule name</td>
 		</tr>
 		<tr>
-			<td>details<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
-			<td>The rule description</td>
-		</tr>
-		<tr>
 			<td>description<br><font color=#446CB3>string</font></td>
 			<td>Details of the evaluation of this rule for the current transaction</td>
+		</tr>
+		<tr>
+			<td>details<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
+			<td>The rule description</td>
 		</tr>
 		<tr>
 			<td>resultCode<br><font color=#446CB3>FraudPolicyResult</font></td>
@@ -531,7 +500,26 @@ EXAMPLE SERVICE RESPONSE DATA
 				</ul></td>
 		</tr>
 		<tr>
+			<td>testResults<br><font color=#446CB3>array[ConditionResult]</font><br><font color=#BDC3C7><i>optional</i></font></td>
+			<td>The results of the individual assertions of the rule</td>
+		</tr>
+		<tr>
 			<td>ruleId<br><font color=#446CB3>integer</font></td>
 			<td>The unique rule identifier</td>
+		</tr>
+		<tr>
+			<th colspan=2>Condition Result</th>
+		</tr>
+		<tr>
+			<td>fired<br><font color=#446CB3>boolean</font><br><font color=#BDC3C7><i>optional</i></font></td>
+			<td>Whether the condition fired or not</td>
+		</tr>
+		<tr>
+			<td>test<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
+			<td>The ID of the security test or the key of the transaction data to which the condition applied</td>
+		</tr>
+		<tr>
+			<td>details<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
+			<td>Textual result of the condition</td>
 		</tr>
 	</table>

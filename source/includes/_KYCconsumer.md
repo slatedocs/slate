@@ -326,6 +326,14 @@ EXAMPLE SERVICE RESPONSE DATA
 			<td></td>
 		</tr>
 		<tr>
+			<td>smsVerification<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>merchantAPIName<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
+			<td></td>
+		</tr>
+		<tr>
 			<td>state<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
 			<td>The current state of the KYC. Possible values are:
 				<ul type="disc">
@@ -339,14 +347,6 @@ EXAMPLE SERVICE RESPONSE DATA
 			<td></td>
 		</tr>
 		<tr>
-			<td>smsVerification<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>merchantAPIName<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
-			<td></td>
-		</tr>
-		<tr>
 			<td>user<br><font color=#446CB3>EDNAPolicyResult</font><br><font color=#BDC3C7><i>optional</i></font></td>
 			<td>The current reputation of the user. Possible values are:
 				<ul type="disc">
@@ -357,35 +357,8 @@ EXAMPLE SERVICE RESPONSE DATA
 				</ul></td>
 		</tr>
 		<tr>
-			<td>upr<br><font color=#446CB3>EDNAPolicyResult</font><br><font color=#BDC3C7><i>optional</i></font></td>
-			<td>The previous reputation of the user when they were last evaluated. Possible values are:
-				<ul type="disc">
-					<li><code>TRUSTED</code></li>
-					<li><code>UNKNOWN</code></li>
-					<li><code>SUSPICIOUS</code></li>
-					<li><code>BAD</code></li>
-				</ul></td>
-		</tr>
-		<tr>
-			<td>erd<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
-			<td>A description of the reason for the user's reputation</td>
-		</tr>		
-		<tr>
-			<td>res<br><font color=#446CB3>FraudPolicyResult</font><br><font color=#BDC3C7><i>optional</i></font></td>
-			<td>Result of policy evaluation. Combines the result of fraud and automated review evaluations. Possible values are:
-			<ul type="disc">
-					<li><code>ACCEPT</code></li>
-					<li><code>MANUAL_REVIEW</code></li>
-					<li><code>DENY</code></li>
-				</ul></td>
-		</tr>
-		<tr>
 			<td>rcd<br><font color=#446CB3>string</font></td>
 			<td>The set of result codes from the evaulation of the current transaction</td>
-		</tr>
-		<tr>
-			<td>tid<br><font color=#446CB3>string</font></td>
-			<td>The transaction ID of the current transaction</td>
 		</tr>
 		<tr>
 			<td>frn<br><font color=#446CB3>string</font></td>
@@ -398,7 +371,7 @@ EXAMPLE SERVICE RESPONSE DATA
 		<tr>
 			<td>ednaScoreCard<br><font color=#446CB3>ExternalizedTransactionScorecard</font></td>
 			<td>The scorecard for the current transaction</td>
-		</tr>		
+		</tr>	
 		<tr>
 			<td>arpd<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
 			<td>The description, if any, of the automated review rule that fired</td>
@@ -429,24 +402,51 @@ EXAMPLE SERVICE RESPONSE DATA
 					<li><code>MANUAL_REVIEW</code></li>
 					<li><code>DENY</code></li>
 				</ul></td>
+		</tr>
+		<tr>
+			<td>upr<br><font color=#446CB3>EDNAPolicyResult</font><br><font color=#BDC3C7><i>optional</i></font></td>
+			<td>The previous reputation of the user when they were last evaluated. Possible values are:
+				<ul type="disc">
+					<li><code>TRUSTED</code></li>
+					<li><code>UNKNOWN</code></li>
+					<li><code>SUSPICIOUS</code></li>
+					<li><code>BAD</code></li>
+				</ul></td>
+		</tr>
+		<tr>
+			<td>erd<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
+			<td>A description of the reason for the user's reputation</td>
+		</tr>	
+		<tr>
+			<td>res<br><font color=#446CB3>FraudPolicyResult</font><br><font color=#BDC3C7><i>optional</i></font></td>
+			<td>Result of policy evaluation. Combines the result of fraud and automated review evaluations. Possible values are:
+			<ul type="disc">
+					<li><code>ACCEPT</code></li>
+					<li><code>MANUAL_REVIEW</code></li>
+					<li><code>DENY</code></li>
+				</ul></td>
 		</tr>		
 		<tr>
 			<td>usc<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
 			<td>User seen count</td>
 		</tr>
 		<tr>
+			<td>tid<br><font color=#446CB3>string</font></td>
+			<td>The transaction ID of the current transaction</td>
+		</tr>		
+		<tr>
 			<th colspan=2>Document Verification</th>
 		</tr>
 		<tr>
 			<td>redirectURL<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
-			<td>Description</td>
+			<td></td>
 		</tr>
 		<tr>
 			<th colspan=2>Questions Wrapper</th>
 		</tr>
 		<tr>
 			<td>questions<br><font color=#446CB3>List[QuestionsWrapper]</font><br><font color=#BDC3C7><i>optional</i></font></td>
-			<td>Description</td>
+			<td></td>
 		</tr>
 		<tr>
 			<th colspan=2>Externalized Transaction Scorecard</th>
@@ -454,10 +454,6 @@ EXAMPLE SERVICE RESPONSE DATA
 		<tr>
 			<td>ar<br><font color=#446CB3>AutomatedReviewEngineResult</font><br><font color=#BDC3C7><i>optional</i></font></td>
 			<td>The result of the automated review policy for this transaction</td>
-		</tr>
-		<tr>
-			<td>tr<br><font color=#446CB3>array[TestResult]</font></td>
-			<td>The security test results for this transaction</td>
 		</tr>
 		<tr>
 			<td>er<br><font color=#446CB3>ExternalizedEvaluationResult</font></td>
@@ -493,44 +489,6 @@ EXAMPLE SERVICE RESPONSE DATA
 			<td>The rule description</td>
 		</tr>
 		<tr>
-			<th colspan=2>Test Result</th>
-		</tr>
-		<tr>
-			<td>testId<br><font color=#446CB3>string</font></td>
-			<td>The unique test ID</td>
-		</tr>
-		<tr>
-			<td>testDetails<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
-			<td>Details of the evaluation of this test for the current transaction</td>
-		</tr>
-		<tr>
-			<td>testPass<br><font color=#446CB3>boolean</font><br><font color=#BDC3C7><i>optional</i></font></td>
-			<td>If this is a proscriptive test, the result of the test for the current transaction</td>
-		</tr>
-		<tr>
-			<td>testResult<br><font color=#446CB3>Object</font></td>
-			<td>If this is not a proscriptive test, the informational result of the test for the current transaction</td>
-		</tr>
-		<tr>
-			<td>waitingForData<br><font color=#446CB3>boolean</font><br><font color=#BDC3C7><i>optional</i></font></td>
-			<td>If this is an interactive test, whether the test is currently waiting for customer input</td>
-		</tr>
-		<tr>
-			<td>previouslyAccepted<br><font color=#446CB3>boolean</font></td>
-			<td>If this is a KYC transaction, whether this test has been previously accepted</td>
-		</tr>
-		<tr>
-			<th colspan=2>Externalized Evaluation Result</th>
-		</tr>
-		<tr>
-			<td>firedRules<br><font color=#446CB3>List[ExternalizedRule]</font></td>
-			<td>The complete set of rules that fired for this transaction</td>
-		</tr>
-		<tr>
-			<td>reportedRule<br><font color=#446CB3>ExternalizedRule</font></td>
-			<td>The rule that is being reported for this transaction. Other rules may have fired, see <code>firedRules</code></td>
-		</tr>
-		<tr>
 			<th colspan=2>Externalized Rule</th>
 		</tr>
 		<tr>
@@ -555,8 +513,27 @@ EXAMPLE SERVICE RESPONSE DATA
 				</ul></td>
 		</tr>
 		<tr>
+			<td>testResults<br><font color=#446CB3>array[ConditionResult]</font><br><font color=#BDC3C7><i>optional</i></font></td>
+			<td>The results of the individual assertions of the rule</td>
+		</tr>
+		<tr>
 			<td>ruleId<br><font color=#446CB3>integer</font></td>
 			<td>The unique rule identifier</td>
+		</tr>
+		<tr>
+			<th colspan=2>Condition Result</th>
+		</tr>
+		<tr>
+			<td>fired<br><font color=#446CB3>boolean</font><br><font color=#BDC3C7><i>optional</i></font></td>
+			<td>Whether the condition fired or not</td>
+		</tr>
+		<tr>
+			<td>test<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
+			<td>The ID of the security test or the key of the transaction data to which the condition applied</td>
+		</tr>
+		<tr>
+			<td>details<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
+			<td>Textual result of the condition</td>
 		</tr>
 	</table>
 
