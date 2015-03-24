@@ -175,7 +175,7 @@ To provide a DRM service, the vendor must add the DRM contents to their Contents
 
 **You need Packager to convert source contents to DRM contents**. The PallyCon Cloud Service Site provides **Cloud Application Packager** and **Cloud CLI Packager** for packaging. 
 
-<i class="icon-folder-open"></i> [Packager Download](http://www.pallycon.com/developer/PallyCon_Packager.zip)
+<i class="icon-folder-open"></i> [Packager Download](http://www.pallycon.com/download/PallyCon_Packager.zip)
 
 - Cloud Application Packager : This packager is an application with UI. This program is provided as an application and can be used only in Windows. 
 - Cloud CLI Packager : This Cloud **CLI**(Commend Line Interface) Packager is provided for interconnection with the CMS solution of the vendor. It can be used in Windows and Linux. 
