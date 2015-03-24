@@ -27,5 +27,5 @@ If you want to develop your own service application for customization, [PallyCon
 For Quick Start, please download the below sample and refer to Quick Start Guide page.
 For CMS integration, please download 'Packager' which includes Application and CLI packager for Windows and Linux.
 
-- Quick Start Sample Project [here](http://www.pallycon.com/developer/PallyCon_QuickStartSample.zip)
-- Packager [here](http://www.pallycon.com/developer/PallyCon_Packager.zip)
+- Quick Start Sample Project [here](http://www.pallycon.com/download/PallyCon_QuickStartSample.zip)
+- Packager [here](http://www.pallycon.com/download/PallyCon_Packager.zip)
