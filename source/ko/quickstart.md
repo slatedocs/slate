@@ -103,7 +103,7 @@ key를 PallyCon CP Admin에서 확인이 가능한  Site Key 로 변경하여 �
 ##### Content Usage Info Page (_gateway config_)  
 DRM이 적용된 컨텐츠를 사용하기 위한 라이선스 정보를 설정합니다. `LIMIT`, `PD_START`, `PD_END`, `PD_COUNT` 값을 아래와 같이 설정하여 라이선스 정보을 결정합니다. **PallyCon Player(Mobile, PC)는 횟수제가 설정된 라이선스에 대한 재생 처리는 지원하지 않습니다.**
 
-|License Rules|LIMIT|PD_START|PD_END|COUNT|
+|License Rules|LIMIT|PD_START|PD_END|PD_COUNT|
 |-------------|-----|--------|------|-----|
 |**횟수제**		|Y	    |Empty 	  			|Empty	 				|0 보다 큰 값		| 
 |**기간제**		|Y		|PD_END보다 이전 날짜	|PD_START보다 이후 날짜 	|Empty			|
