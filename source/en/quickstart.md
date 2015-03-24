@@ -8,7 +8,7 @@ _Quick Guide_ is a guide about using the samples provided by PallyCon Service. Y
 
 You can download the sample at the following link.
 
-<i class="icon-folder-open"></i> [Sample Download](http://www.pallycon.com/developer/PallyCon_QuickStartSample.zip)
+<i class="icon-folder-open"></i> [Sample Download](http://www.pallycon.com/download/PallyCon_QuickStartSample.zip)
 
 
 By applying these samples, you can understand which tasks are needed for applying PallyCon Service and how the service is provided. 
@@ -184,5 +184,6 @@ This table describes the revisions of the Quick Guide.
 |Date| Detail|
 |:----|:-----|
 |2014.08.28|Quick Guide was created|
+|2014.12.09|PC Player Guide added|
 
 
