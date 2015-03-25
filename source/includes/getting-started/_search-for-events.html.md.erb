@@ -1,0 +1,56 @@
+## Search for Events
+
+> **1. Get the Root resource:**
+
+<%= curl('GET', 'https://api.viagogo.net/v2') %>
+
+~~~ csharp
+var api = new ViagogoClient("clientId",
+                            "clientSecret",
+                            new ProductHeaderValue("MyAwesomeApp"));
+var root = await api.Root.GetAsync();
+~~~
+
+> **2. Search for the Team/Artist/Tournament/etc Category:**
+
+<%= curl('GET', ROOT['_links']['viagogo:search']['href']) %>
+
+~~~ csharp
+var searchResults = await api.Search.GetAllAsync("one direction");
+~~~
+
+<%= json_paged_resource(:search_result, "viagogo:search") %>
+
+> **3. Get the Details of the Category**
+
+<%= curl('GET', SEARCH_RESULT['_links']['searchresult:category']['href']) %>
+
+~~~ csharp
+var category = await api.Categories.GetAsync(searchResults[0].Id);
+~~~
+
+> **4. Page through the Events in the Category**
+
+<%= curl('GET', CATEGORY_PERFORMER['_links']['category:events']['href']) %>
+
+~~~ csharp
+var events = await api.Events.GetAllByCategoryAsync(category.Id);
+~~~
+
+API v2 provides access to the same search features available on the viagogo website. Your application can use this search to quickly find a particular category, event, venue or metro area.
+
+### 1. Start at the Root
+
+As is the case when retrieving most data in API v2, you should start by getting the [`Root`](#root) resource to find the hyperlink to the resource you care about.
+
+### 2. Search for the Team/Artist/Tournament/etc Category
+
+Follow the [`viagogo:search`](#viagogosearch) link to query for entities you are interested in.
+
+### 3. Get the Details of the Category
+
+[`SearchResult`](#searchresult) resources only contain very basic entity information so you should follow the link on the result that will get you more information about the entity (see [`searchresult:category`](#searchresultcategory), [`searchresult:event`](#searchresultevent), [`searchresult:metroarea`](#searchresultmetroarea) and [`searchresult:venue`](#searchresultvenue))
+
+### 4. Page through the Events in the Category
+
+Follow the [`category:events`](#categoryevents) link to get the first page of events under the category. Once we have the first page, we can follow the `next` links to retrieve all pages (see [pagination](#pagination)).

@@ -15,6 +15,7 @@ includes:
   - getting-started
   - getting-started/entities
   - getting-started/get-events-in-genre
+  - getting-started/search-for-events
 
   - authentication
   - basic-types
