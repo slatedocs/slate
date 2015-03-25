@@ -527,6 +527,7 @@ html, body {
     margin-bottom: 1.5em;
     background: $aside-notice-bg;
     line-height: 1.6;
+	box-shadow: 0px 0px 10px #404040;
 
     &.warning {
       background-color: $aside-warning-bg;
