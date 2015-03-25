@@ -289,42 +289,103 @@ EXAMPLE SERVICE REQUEST
 EXAMPLE SERVICE RESPONSE DATA
 ```
 ```json
-{
-    "ednaScoreCard": {
-        "er": {
-            "reportedRule": {
-                "description": "",
-                "name": "",
-                "resultCode": "DENY",
-                "ruleId": 20001
-            }
-        },
-        "tr": [
-            {
-                "testId": "mm:0",
-                "testResult": "true"
+    {
+        "arpr": "DISABLED",
+        "ednaScoreCard": {
+            "ar": {
+                "result": "DISABLED"
             },
-        		...
-            {
-                "testId": "ed:16",
-                "testName": "Device Shipping Address Count",
-                "testResult": "0"
-            }
-        ]
-    },
-    "erd": "Unknown User",
-    "frd": "",
-    "frn": "",
-    "rcd": "50005,202,111,101,131,20001",
-    "res": "DENY",
-    "tid": "10330022",
-    "ufs": 1423267517000,
-    "umrs": 1423267518000,
-    "upr": "UNKNOWN",
-    "usc": 0,
-    "user": "UNKNOWN"
-}
-
+            "er": {
+                "reportedRule": {
+                    "description": "Rule2360_RULE_DESC",
+                    "details": "[Fired] ed:35(false) = false",
+                    "name": "DUPTRANSACTION",
+                    "resultCode": "MANUAL_REVIEW",
+                    "ruleId": 2360,
+                    "testResults": [
+                        {
+                            "details": "[Fired] ed:35(false) = false",
+                            "fired": true,
+                            "test": "ed:35"
+                        }
+                    ]
+                }
+            },
+            "etr": [
+                {
+                    "details": "ed:34(true) = false",
+                    "fired": false,
+                    "test": "ed:34"
+                },
+                {
+                    "details": "ed:32(true) = false",
+                    "fired": false,
+                    "test": "ed:32"
+                },
+                {
+                    "details": "ed:36(true) = false",
+                    "fired": false,
+                    "test": "ed:36"
+                },
+                {
+                    "details": "ed:1(true) = false",
+                    "fired": false,
+                    "test": "ed:1"
+                },
+                {
+                    "details": "ed:2(true) = false",
+                    "fired": false,
+                    "test": "ed:2"
+                },
+                {
+                    "details": "ed:56(true) = false",
+                    "fired": false,
+                    "test": "ed:56"
+                },
+                {
+                    "details": "[Fired] ed:35(false) = false",
+                    "fired": true,
+                    "test": "ed:35"
+                },
+                {
+                    "details": "USD",
+                    "fired": false,
+                    "test": "ed:42"
+                },
+                {
+                    "details": "USD",
+                    "fired": false,
+                    "test": "ed:42"
+                },
+                {
+                    "details": "ed:33(true) = false",
+                    "fired": false,
+                    "test": "ed:33"
+                },
+                {
+                    "details": "ed:37(true) = false",
+                    "fired": false,
+                    "test": "ed:37"
+                }
+            ],
+            "sc": [
+               {
+                    "details": "ed:37(true) = false",
+                    "fired": false,
+                    "test": "ed:37"
+                }
+            ]
+        },
+        "erd": "New card, neither device nor user account information supplied",
+        "frd": "[Fired] ed:35(false) = false",
+        "frn": "DUPTRANSACTION",
+        "frp": "MANUAL_REVIEW",
+        "rcd": "190,202,2360,131,536,150,121",
+        "res": "MANUAL_REVIEW",
+        "tid": "5200016",
+        "upr": "UNKNOWN",
+        "user": "UNKNOWN"
+    }
 ```
 > The response includes detailed result codes and the transaction unique identifier. The most important part of the response is whether the transaction is to be accepted, denied, or scheduled for manual review, which is dependent on the configured validation policy.
 
