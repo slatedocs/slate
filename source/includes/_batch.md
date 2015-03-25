@@ -7,7 +7,22 @@ A batch acts like a container for API requests. It allows you to group requests 
 3. Commit the batch
 4. Poll for results
 
-## Create
+## Create <span class="label label-info">Batch Method</span>
+
+> Creating a batch
+
+```php
+<?php
+use BrightLocal\Api;
+use BrightLocal\Batches\V4 as BatchApi;
+
+$api = new Api('[INSERT_API_KEY]', '[INSERT_API_SECRET]');
+$batchApi = new BatchApi($api);
+$result = $batchApi->create();
+if ($result['success']) {
+    $batchId = $result['batch-id'];
+}
+```
 
 > Success - status code 201 Created
 
@@ -53,10 +68,25 @@ Jobs within a batch can also have one of 5 states:
 
 Parameter | Notes
 --------- | -----
-api-key | Required
+api-key | <span class="label label-required">Required</span>
 stop-on-job-error | 1 or 0. default 0. If errors are found in one job the batch will be stopped and no further jobs will be processed.
 
-## Commit Batch
+## Commit Batch <span class="label label-info">Batch Method</span>
+
+> Committing a batch
+
+```php
+<?php
+use BrightLocal\Api;
+use BrightLocal\Batches\V4 as BatchApi;
+
+$batchId = 1;
+$api = new Api('[INSERT_API_KEY]', '[INSERT_API_SECRET]');
+$batchApi = new BatchApi($api);
+if ($batchApi->commit($batchId)) {
+    echo 'Committed batch successfully.' . PHP_EOL;
+}
+```
 
 > Success - status code 200 OK
 
@@ -94,10 +124,23 @@ Authentication for this method is via API key only.
 
 Parameter | Notes
 --------- | -----
-api-key | Required
-batch-id | Required
+api-key | <span class="label label-required">Required</span>
+batch-id | <span class="label label-required">Required</span>
 
-## Get Results
+## Get Results <span class="label label-info">Batch Method</span>
+
+> Getting batch results
+
+```php
+<?php
+use BrightLocal\Api;
+use BrightLocal\Batches\V4 as BatchApi;
+
+$batchId = 1;
+$api = new Api(API_KEY, API_SECRET, API_ENDPOINT);
+$batchApi = new BatchApi($api);
+print_r($batchApi->get_results($batchId));
+```
 
 > Success - status code 200 OK
 
@@ -162,10 +205,25 @@ Authentication for this method is via API key only.
 
 Parameter | Notes
 --------- | -----
-api-key | Required
-batch-id | Required
+api-key | <span class="label label-required">Required</span>
+batch-id | <span class="label label-required">Required</span>
 
-## Delete
+## Delete <span class="label label-info">Batch Method</span>
+
+> Delete a batch
+
+```php
+<?php
+use BrightLocal\Api;
+use BrightLocal\Batches\V4 as BatchApi;
+
+$batchId = 1;
+$api = new Api(API_KEY, API_SECRET, API_ENDPOINT);
+$batchApi = new BatchApi($api);
+if ($batchApi->delete($batchId)) {
+    echo 'Successfully deleted batch.' . PHP_EOL;
+}
+```
 
 > Success - status code 200 Ok
 
@@ -196,5 +254,50 @@ Authentication for this method is via API key only.
 
 Parameter | Notes
 --------- | -----
-api-key | Required
-batch-id | Required
+api-key | <span class="label label-required">Required</span>
+batch-id | <span class="label label-required">Required</span>
+
+## Stop Batch
+
+```php
+<?php
+use BrightLocal\Api;
+use BrightLocal\Batches\V4 as BatchApi;
+
+$batchId = 1;
+$api = new Api(API_KEY, API_SECRET, API_ENDPOINT);
+$batchApi = new BatchApi($api);
+if ($batchApi->stop($batchId)) {
+    echo 'Successfully stopped batch.' . PHP_EOL;
+}
+```
+
+> Success - status code 200 Ok
+
+```json
+{
+    "success": true
+}
+```
+ 
+> Failure - status code 404 Not Found
+
+```json
+{
+  "success": false,
+  "errors" : { "INVALID_BATCH_ID": "Batch ID not found" }
+}
+```
+
+Cancels a batch midway through processing. Any jobs in the batch that haven't already been processed will also be cancelled.
+
+### HTTP Request
+
+`PUT https://tools.brightlocal.com/seo-tools/api/v4/batch/stop`
+
+### Query Parameters
+
+Parameter | Notes
+--------- | -----
+api-key | <span class="label label-required">Required</span>
+batch-id | <span class="label label-required">Required</span>

@@ -1,6 +1,6 @@
 # Clients
 
-## Add Client
+## Add Client <span class="label label-info">Account Method</span>
 
 > Success (200 OK)
 
@@ -23,10 +23,10 @@ Adds a new client and associates it with your account.
 
 Parameter | Notes
 --------- | -----
-api-key | Required	
-sig | Required.	See above for how to generate signature and expires values.
-expires | Required.	See above for how to generate signature and expires values.
-company-name | Required. 50 characters max.
+api-key | <span class="label label-required">Required</span>	
+sig | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
+expires | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
+company-name | <span class="label label-required">Required</span> 50 characters max.
 contact-firstname |	20 characters max
 contact-lastname | 20 characters max
 contact-email | 50 characters max
@@ -36,19 +36,19 @@ address-2 | 50 characters max
 city | 20 characters max
 region | 20 characters max
 postcode | 20 characters max
-country | Required. ISO 3 country code.
-company-url | Required.	150 characters max
+country | <span class="label label-required">Required</span> ISO 3 country code.
+company-url | <span class="label label-required">Required</span> 150 characters max
 company-tel	| 20 characters max
 mobile-number | 20 characters max
 fax-number | 20 characters max
 start-year | 4 digit year
 brief-description | 200 characters max
 full-description | 500 characters max
-services |Newline (\n) separated list of services
-business-category-id | Required. See here for a full list of valid business codes.
-unique-reference | An arbritrary unique reference you can use to identify a client. This may correspond to a unique value used within your system and can be useful when importing or exporting data. 50 characters max.
+services | Newline (\n) separated list of services
+business-category-id | <span class="label label-required">Required</span> See here for a full list of valid business codes.
+unique-reference | An arbitrary unique reference you can use to identify a client. This may correspond to a unique value used within your system and can be useful when importing or exporting data. 50 characters max.
 
-## Update Client
+## Update Client <span class="label label-info">Account Method</span>
 
 Update an existing client. Only supply values you want to update. The rest will be left unchanged.
 
@@ -70,10 +70,10 @@ Update an existing client. Only supply values you want to update. The rest will 
 
 Parameter | Notes
 --------- | -----
-api-key | Required	
-sig | Required.	See above for how to generate signature and expires values.
-expires | Required. See above for how to generate signature and expires values.
-client-id | Required	
+api-key | <span class="label label-required">Required</span>	
+sig | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
+expires | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
+client-id | <span class="label label-required">Required</span>	
 company-name | 50 characters max
 contact-firstname | 20 characters max
 contact-lastname | 20 characters max
@@ -96,7 +96,7 @@ services | Newline (\n) separated list of services
 business-category-id | See here for a full list of valid business codes
 unique-reference | An arbitrary unique reference you can use to identify a client. This may correspond to a unique value used within your system and can be useful when importing or exporting data. 50 characters max.
 
-## Delete Client
+## Delete Client <span class="label label-info">Account Method</span>
 
 > Success (200 OK)
 
@@ -118,12 +118,12 @@ Delete an existing client. If there are reports associated with this client then
 
 Parameter | Notes
 --------- | -----
-api-key | Required	
-sig | Required. See above for how to generate signature and expires values.
-expires | Required. See above for how to generate signature and expires values.
-client-id | Required
+api-key | <span class="label label-required">Required</span>	
+sig | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
+expires | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
+client-id | <span class="label label-required">Required</span>
 
-## Get All Clients
+## Get All Clients <span class="label label-info">Account Method</span>
 
 > Success (200 OK)
 
@@ -170,11 +170,11 @@ Get a list of all clients associated with your account.
 
 Parameter | Notes
 --------- | -----
-api-key | Required	
-sig | Required.	See above for how to generate signature and expires values.
-expires | Required.	See above for how to generate signature and expires values.
+api-key | <span class="label label-required">Required</span>	
+sig | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
+expires | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
 
-## Get Client
+## Get Client <span class="label label-info">Account Method</span>
 
 > Success (200 OK)
 
@@ -237,12 +237,12 @@ Get extended details for a specific client.
 
 Parameter | Notes
 --------- | -----
-api-key | Required	
-sig | Required. See above for how to generate signature and expires values.
-expires | Required. See above for how to generate signature and expires values.
-client-id | Required
+api-key | <span class="label label-required">Required</span>	
+sig | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
+expires | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
+client-id | <span class="label label-required">Required</span>
 
-## Search Clients
+## Search Clients <span class="label label-info">Account Method</span>
 
 > Success (200 OK)
 
@@ -289,7 +289,7 @@ Search for clients matching a specified search string. The search uses a number 
 
 Parameter | Notes
 --------- | -----
-api-key | Required	
-sig | Required.	See above for how to generate signature and expires values.
-expires | Required.	See above for how to generate signature and expires values.
-q | Required
+api-key | <span class="label label-required">Required</span>	
+sig | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
+expires | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
+q | <span class="label label-required">Required</span>

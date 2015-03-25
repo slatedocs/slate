@@ -1,6 +1,6 @@
-# Local SEO Check-up Reports
+# Local SEO Check-up
 
-## Add Report
+## Add Report <span class="label label-info">Account Method</span>
 
 > Supplying Local Directory URLs (see local-directory-urls parameter)
 
@@ -64,25 +64,25 @@ Adds a new Local SEO Check-up report to your account.
 
 Parameter | Notes
 --------- | -----
-api-key | Required
-sig | Required. See authentication section above.
-expires | Required. See authentication section above.
-report-name | Required
+api-key | <span class="label label-required">Required</span>
+sig | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
+expires | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
+report-name | <span class="label label-required">Required</span>
 client-id | Associate this report with a client in your account. This ID needs to correspond to a valid client in your account.
 white-label-profile-id | Assign a white label profile to this report. The ID needs to correspond to a valid white label profile in your account.
-business-names | Required. Supply one or more busines names (max 5) as a JSON string. For example, ["Greens Restaurant","Greens"].
-website-address | Required. The address for your business website.
-address1 | Required
+business-names | <span class="label label-required">Required</span> Supply one or more busines names (max 5) as a JSON string. For example, ["Greens Restaurant","Greens"].
+website-address | <span class="label label-required">Required</span> The address for your business website.
+address1 | <span class="label label-required">Required</span>
 address2 |
 area | The neighborhood or district for the business. For example, Charleston or Fulham.
-city | Required
-state-code | Required (USA, CAN:EN and AUS)
-postcode | Required. A valid postcode or ZIP.
-telephone | Required
-country | Required. One of USA, CAN:EN, GBR or AUS.
-business-category | Required. The type of business - for example, Plumber (not Plumbing &amp; Heating Services).
-primary-business-location | Required. The primary location served by the business. Enter town name and state code - for example, Chicago, IL.
-search-terms | Required. Supply one or more search terms (max 5) as a JSON string. For example, ["restaurant san francisco","cafe san francisco"].
+city | <span class="label label-required">Required</span>
+state-code | <span class="label label-required">Required</span> (USA, CAN:EN and AUS)
+postcode | <span class="label label-required">Required</span> A valid postcode or ZIP.
+telephone | <span class="label label-required">Required</span>
+country | <span class="label label-required">Required</span> One of USA, CAN:EN, GBR or AUS.
+business-category | <span class="label label-required">Required</span> The type of business - for example, Plumber (not Plumbing &amp; Heating Services).
+primary-business-location | <span class="label label-required">Required</span> The primary location served by the business. Enter town name and state code - for example, Chicago, IL.
+search-terms | <span class="label label-required">Required</span> Supply one or more search terms (max 5) as a JSON string. For example, ["restaurant san francisco","cafe san francisco"].
 google-location | A valid google search location. Please refer to our location check method.
 bing-location | A valid bing search location. Please refer to our location check method.
 notify | One of yes or no. If set to yes we will send report alerts to all email addresses specified (see field below). If you include customer email addresses when setting up your report we'll also email them the alerts so please be sure this is what you want before adding their addresses. Default is no.
@@ -93,7 +93,7 @@ is-public | Determines whether or not to make the report available on a public U
 local-directory-urls | <p>By default we try and find local directory profile URLs and information for your business in all directories we support. If you'd like your report to only contain specific directories or already know the profile URLs for some directories you can supply them here. Please note that if you supply information for this parameter you need to give us all details of the directories you want included. If you have profile URLs for some but not others you can leave those URL fields empty and we'll do our best to find them. Generally we recommend you run your report for the first time without this setting and then use our update method to add/change URLs or remove directories if needed.</p><p>The data for this parameter needs to be supplied as a JSON string. Local directory identifiers (the keys in the example below) are documented here.</p>
 run-report | One of yes or no. Runs the report after adding. Defaults to no.
 
-## Update Report
+## Update Report <span class="label label-info">Account Method</span>
 
 > Supplying Local Directory URLs (see local-directory-urls parameter)
 
@@ -153,9 +153,9 @@ echo json_encode(array(
 
 Parameter | Notes
 --------- | -----
-api-key | Required
-sig | Required. See authentication section above.
-expires | Required. See authentication section above.
+api-key | <span class="label label-required">Required</span>
+sig | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
+expires | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
 report-id |
 report-name |
 client-id | Associate this report with a client in your account. This ID needs to correspond to a valid client in your account.
@@ -182,7 +182,7 @@ twitter-url | If known, please supply the Twitter URL for the business. If not s
 is-public | Determines whether or not to make the report available on a public URL you can give to your customers. One of yes or no. Defaults to no.
 local-directory-urls | <p>This parameter allows you update the profile URLs we have stored for your business on each local directory, to exclude a directory from subsequent report runs or include one that isn't currently present. You can also manually supply profile URLs to correct ones that are incorrect or where we haven't been able to automatically find the relevant profile URL. All changes require the report to be re-run before they take effect.</p><p>The data for this parameter needs to be supplied as a JSON string. Local directory identifiers (the keys in the example below) are documented here. Here's an example of how to generate suitable values in PHP:</p>
 
-## Get Report
+## Get Report <span class="label label-info">Account Method</span>
 
 > Success (200 OK)
 
@@ -253,12 +253,12 @@ local-directory-urls | <p>This parameter allows you update the profile URLs we h
 
 Parameter | Notes
 --------- | -----
-api-key | Required
-sig | Required
-expires | Required
-report-id | Required. The unique ID for the report in your account.
+api-key | <span class="label label-required">Required</span>
+sig | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
+expires | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
+report-id | <span class="label label-required">Required</span> The unique ID for the report in your account.
 
-## Run Report
+## Run Report <span class="label label-info">Account Method</span>
 
 > Success (200 OK)
 
@@ -299,12 +299,12 @@ report-id | Required. The unique ID for the report in your account.
 
 Parameter | Notes
 --------- | -----
-api-key | Required
-sig | Required
-expires | Required
-report-id | Required. The unique ID for the report in your account.
+api-key | <span class="label label-required">Required</span>
+sig | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
+expires | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
+report-id | <span class="label label-required">Required</span> The unique ID for the report in your account.
 
-## Delete Report
+## Delete Report <span class="label label-info">Account Method</span>
 
 > Success (200 OK)
 
@@ -344,12 +344,12 @@ report-id | Required. The unique ID for the report in your account.
 
 Parameter | Notes
 --------- | -----
-api-key | Required
-sig | Required
-expires | Required
-report-id | Required. The unique ID for the report in your account.
+api-key | <span class="label label-required">Required</span>
+sig | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
+expires | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
+report-id | <span class="label label-required">Required</span> The unique ID for the report in your account.
 
-## Search
+## Search <span class="label label-info">Account Method</span>
 
 > Success (200 OK)
 
@@ -398,7 +398,7 @@ report-id | Required. The unique ID for the report in your account.
 
 Parameter | Notes
 --------- | -----
-api-key | Required
-sig | Required
-expires | Required
+api-key | <span class="label label-required">Required</span>
+sig | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
+expires | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
 q | Supply an arbitrary search string. We search in client and report names for matches.

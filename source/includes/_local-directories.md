@@ -1,6 +1,6 @@
 # Local Directories
 
-## Fetch Profile URL
+## Fetch Profile URL <span class="label label-info">Batch Method</span>
 
 > Success (201 Created)
 
@@ -47,17 +47,17 @@ Authentication for this method is via API key only.
 
 Parameter | Notes
 --------- | -----
-api-key | Required
-batch-id | Required
-business-names | Required. A newline (\n) separated list of possible business names to search for. For example: The Rose Pub Rose Pub The Rose.
-country | Required
-city | Required
-postcode | Required
+api-key | <span class="label label-required">Required</span>
+batch-id | <span class="label label-required">Required</span>
+business-names | <span class="label label-required">Required</span> A newline (\n) separated list of possible business names to search for. For example: The Rose Pub Rose Pub The Rose.
+country | <span class="label label-required">Required</span>
+city | <span class="label label-required">Required</span>
+postcode | <span class="label label-required">Required</span>
 local-directory | See possible options in appendix below.
 telephone |
 street-address |
 
-## Fetch Profile Details (by profile URL)
+## Fetch Profile Details (by profile URL) <span class="label label-info">Batch Method</span>
 
 > Success (201 Created)
 
@@ -101,12 +101,12 @@ Authentication for this method is via API key only.
 
 Parameter | Notes
 --------- | -----
-api-key | Required
-batch-id | Required
-profile-url | Required
-country | Required
+api-key | <span class="label label-required">Required</span>
+batch-id | <span class="label label-required">Required</span>
+profile-url | <span class="label label-required">Required</span>
+country | <span class="label label-required">Required</span>
 
-## Fetch Profile Details (by business data)
+## Fetch Profile Details (by business data) <span class="label label-info">Batch Method</span>
 
 > Success (201 Created)
 
@@ -153,12 +153,12 @@ This method shortcuts Fetch Profile URL and Fetch Profile Details above by carry
 
 Parameter | Notes
 --------- | -----
-api-key | Required
-batch-id | Required
-business-names | Required. A newline (\n) separated list of possible business names to search for. For example: The Rose Pub Rose Pub The Rose.
-country | Required
-city | Required
-postcode | Required
+api-key | <span class="label label-required">Required</span>
+batch-id | <span class="label label-required">Required</span>
+business-names | <span class="label label-required">Required</span> A newline (\n) separated list of possible business names to search for. For example: The Rose Pub Rose Pub The Rose.
+country | <span class="label label-required">Required</span>
+city | <span class="label label-required">Required</span>
+postcode | <span class="label label-required">Required</span>
 local-directory | See possible options in appendix below.
 telephone |
 street-address |

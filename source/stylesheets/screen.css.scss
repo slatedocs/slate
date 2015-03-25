@@ -434,6 +434,10 @@ html, body {
       vertical-align: bottom;
     }
 
+    th:first-child, td:first-child {
+      white-space: nowrap;
+    }
+
     td {
       padding: 10px;
     }
@@ -574,6 +578,31 @@ html, body {
       border-bottom: 1px solid #404040;
     }
   }
+}
+
+.label {
+  display: inline;
+  background: #777;
+  padding: .2em .6em .3em;
+  font-size: 80%;
+  font-weight: bold;
+  line-height: 1;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: .25em;
+  text-transform: uppercase;
+}
+h2 .label {
+  font-size: 70%;
+}
+
+.label-required {
+  background: #f50;
+}
+.label-info {
+  background: #ccc;
 }
 
 ////////////////////////////////////////////////////////////////////////////////

@@ -1,6 +1,6 @@
 # ReviewFlow Reports
 
-## Add Report
+## Add Report <span class="label label-info">Account Method</span>
 
 > Example of specifying directories
 
@@ -55,19 +55,19 @@ echo json_encode(array(
 
 Parameter | Notes
 --------- | -----
-api-key | Required
-sig | Required
-expires | Required
-report-name | Required
+api-key | <span class="label label-required">Required</span>
+sig | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
+expires | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
+report-name | <span class="label label-required">Required</span>
 client-id | Associate this report with a client in your account. This ID needs to correspond to a valid client in your account.
 white-label-profile-id | Assign a white label profile to this report. The ID needs to correspond to a valid white label profile in your account.
-business-name | Required
-contact-telephone | Required
-address1 | Required
+business-name | <span class="label label-required">Required</span>
+contact-telephone | <span class="label label-required">Required</span>
+address1 | <span class="label label-required">Required</span>
 address2 |
-city | Required
-postcode | Required. A valid postcode or ZIP.
-country | Required. USA only.
+city | <span class="label label-required">Required</span>
+postcode | <span class="label label-required">Required</span> A valid postcode or ZIP.
+country | <span class="label label-required">Required</span> USA only.
 schedule | D (Daily), W (Weekly) or M (Monthly). You to purchase an add on before you can use daily reporting. Defaults to M (Monthly).
 run-on | Numeric day of week or day of month to run the report on (applicable to weekly and monthly schedules). Defaults to current day of month. If you create your report today it'll be run on the 17th of each month unless you specify otherwise.
 receive-email-alerts | One of 1 or 0. If set to 1 we will send report alerts to all email addresses specified (see field below). If you include customer email addresses when setting up your report we'll also email them the alerts so please be sure this is what you want before adding their addresses. Defaults to 0.
@@ -79,7 +79,7 @@ directories | <p>By default we try and find profile URLs and reviews in all dire
     Once added a report won't show in your control panel until all profile URLs have been found (the first stage of running the report). Once this is complete and reviews are being fetched the report will be shown.
 </aside>
 
-## Update Report
+## Update Report <span class="label label-info">Account Method</span>
 
 > Example of modifying directories
 
@@ -116,9 +116,9 @@ echo json_encode(array(
 
 Parameter | Notes
 --------- | -----
-api-key | Required
-sig | Required
-expires | Required
+api-key | <span class="label label-required">Required</span>
+sig | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
+expires | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
 report-name |
 white-label-profile-id | Assign a white label profile to this report. The ID needs to correspond to a valid white label profile in your account.
 schedule | D (Daily), W (Weekly) or M (Monthly). You to purchase an add on before you can use daily reporting. Defaults to M (Monthly).
@@ -128,7 +128,7 @@ alert-email-addresses | Supply a list of email addresses as a JSON string, e.g. 
 is-public | Determines whether or not to make the report available on a public URL you can give to your customers. One of 1 or 0. Defaults to 0.
 directories | <p>If you need to add or change a profile URL you can do so here.</p><p>The data for this parameter needs to be supplied as a JSON string. Local directory identifiers (the keys in the example below) are documented here. Here's an example of how to generate suitable values in PHP:</p>
 
-## Get Report
+## Get Report <span class="label label-info">Account Method</span>
 
 > Success (200 OK)
 
@@ -274,11 +274,11 @@ directories | <p>If you need to add or change a profile URL you can do so here.<
 
 Parameter | Notes
 --------- | -----
-api-key | Required
-sig | Required. See above for how to generate signature and expires values.
-expires | Required. See above for how to generate signature and expires values.
+api-key | <span class="label label-required">Required</span>
+sig | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
+expires | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
 
-## Delete Report
+## Delete Report <span class="label label-info">Account Method</span>
 
 > Success (200 OK)
 
@@ -318,11 +318,11 @@ expires | Required. See above for how to generate signature and expires values.
 
 Parameter | Notes
 --------- | -----
-api-key | Required
-sig | Required. See above for how to generate signature and expires values.
-expires | Required. See above for how to generate signature and expires values.
+api-key | <span class="label label-required">Required</span>
+sig | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
+expires | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
 
-## Get Reports
+## Get Reports <span class="label label-info">Account Method</span>
 
 > Success (200 OK)
 
@@ -388,12 +388,12 @@ expires | Required. See above for how to generate signature and expires values.
 
 Parameter | Notes
 --------- | -----
-api-key | Required
-sig | Required. See above for how to generate signature and expires values.
-expires | Required. See above for how to generate signature and expires values.
+api-key | <span class="label label-required">Required</span>
+sig | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
+expires | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
 client-id | Filter the list of reports returned by client ID. This ID must correspond to a valid client in your account.
 
-## Report Search
+## Report Search <span class="label label-info">Account Method</span>
 
 > Success (200 OK)
 
@@ -437,12 +437,12 @@ Search for reports in your account.
 
 Parameter | Notes
 --------- | -----
-api-key | Required
-sig | Required. See above for how to generate signature and expires values.
-expires | Required. See above for how to generate signature and expires values.
-q | Required. Supply an arbitrary search string.
+api-key | <span class="label label-required">Required</span>
+sig | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
+expires | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
+q | <span class="label label-required">Required</span> Supply an arbitrary search string.
 
-## Get Reviews
+## Get Reviews <span class="label label-info">Account Method</span>
 
 > Success (200 OK)
 
@@ -520,9 +520,9 @@ Fetch all reviews associated with a report.
 
 Parameter | Notes
 --------- | -----
-api-key | Required
-sig | Required. See above for how to generate signature and expires values.
-expires | Required. See above for how to generate signature and expires values.
+api-key | <span class="label label-required">Required</span>
+sig | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
+expires | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
 directory | Fetch reviews for a specific directory. See directory identifiers in appendix below.
 stars | Fetch reviews for a specific star rating (0-5).
 sort | By date "asc" or "desc". Default is "asc"
@@ -541,7 +541,7 @@ source | Determines where a review came from. Yahoo!, for example, can contain r
 source_link | Link to the site where the review was originally written.
 hash | Unique identifier based on directory, author and review text. This can be used when storing reviews locally to prevent duplicates.
 
-## Get Reviews Count
+## Get Reviews Count <span class="label label-info">Account Method</span>
 
 > Success (200 OK)
 
@@ -571,11 +571,11 @@ hash | Unique identifier based on directory, author and review text. This can be
 
 Parameter | Notes
 --------- | -----
-api-key | Required
-sig | Required. See above for how to generate signature and expires values.
-expires | Required. See above for how to generate signature and expires values.
+api-key | <span class="label label-required">Required</span>
+sig | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
+expires | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
 
-## Get Growth
+## Get Growth <span class="label label-info">Account Method</span>
 
 Get count and percentage of new reviews since last report run.
 
@@ -610,11 +610,11 @@ Get count and percentage of new reviews since last report run.
 
 Parameter | Notes
 --------- | -----
-api-key | Required
-sig | Required. See above for how to generate signature and expires values.
-expires | Required. See above for how to generate signature and expires values.
+api-key | <span class="label label-required">Required</span>
+sig | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
+expires | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
 
-## Get Directories
+## Get Directories <span class="label label-info">Account Method</span>
 
 > Success (200 OK)
 
@@ -759,11 +759,11 @@ Get a list of directories associated with a report. Results contain directory de
 
 Parameter | Notes
 --------- | -----
-api-key | Required
-sig | Required. See above for how to generate signature and expires values.
-expires | Required. See above for how to generate signature and expires values.
+api-key | <span class="label label-required">Required</span>
+sig | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
+expires | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
 
-## Get Directory Stats
+## Get Directory Stats <span class="label label-info">Account Method</span>
 
 Fetch stats showing average rating and review count for every directory in a given report.
 
@@ -825,11 +825,11 @@ Fetch stats showing average rating and review count for every directory in a giv
 
 Parameter | Notes
 --------- | -----
-api-key | Required
-sig | Required. See above for how to generate signature and expires values.
-expires | Required. See above for how to generate signature and expires values.
+api-key | <span class="label label-required">Required</span>
+sig | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
+expires | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
 
-## Get Star Counts
+## Get Star Counts <span class="label label-info">Account Method</span>
 
 > Success (200 OK)
 
@@ -868,6 +868,6 @@ Get count of reviews for each star rating for a given report.
 
 Parameter | Notes
 --------- | -----
-api-key | Required
-sig | Required. See above for how to generate signature and expires values.
-expires | Required. See above for how to generate signature and expires values.
+api-key | <span class="label label-required">Required</span>
+sig | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
+expires | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)

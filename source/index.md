@@ -3,10 +3,10 @@ title: API Reference
 
 language_tabs:
   - php
-  - shell
 
 toc_footers:
   - <a href="https://tools.brightlocal.com/seo-tools/admin/api">Sign Up for a Developer Key</a>
+  - <a href="http://www.brightlocal.com/">Visit BrightLocal.com</a>
 
 includes:
     - intro
@@ -21,6 +21,8 @@ includes:
     - clients
     - lsrc
     - lscu
+    - ct
+    - cb
     - rf
     - useful-tools
     - appendix

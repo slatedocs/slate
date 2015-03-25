@@ -1,6 +1,6 @@
 # Rankings
 
-## Search
+## Search <span class="label label-info">Batch Method</span>
 
 > Success (201 Created)
 
@@ -33,7 +33,7 @@
 
 This API method allows you to retrieve search ranking (and listing data) from the major search engines and their local variants, namely Google, Google Maps, Yahoo!, Yahoo! Local, Bing and Bing Maps. It works for the USA, United Kingdom, Canada and Australia. The only exception is in Australia where Yahoo! Local is not supported.
 
-This method needs to be used in conjunction with the [batch methods](#batch) described above.
+This method needs to be used in conjunction with the [batch methods](#batches) described above.
 
 ### HTTP Request
 
@@ -43,14 +43,14 @@ This method needs to be used in conjunction with the [batch methods](#batch) des
 
 Parameter | Notes
 --------- | -----
-api-key | Required
-batch-id | Required
-search-engine | Required. One of google, google-places, yahoo, yahoo-local, bing, bing-local.
-country | Required. Determines whether or not to search against .com, .ca, co.uk, .com.au search engines. One of USA, CAN:EN, CAN:FR, GBR or AUS.
-google-location | Allows you to optionally localize results by specifying your physical location. Specify a ZIP, city name or region. Only applicable to US searches. Also see [Check Location]() method.
-bing-location | Allows you to optionally localize results by specifying your physical location. See [Check Location]() method.
-search-term | Required. The search term to get ranking information for.
-urls | The URLs to get ranking information for. Encode as a JSON string, e.g. ["www.bluehillfarm.com","www.candle79.com","shabutatsu.com","marea-nyc.com","www.taorestaurant.com"] (max 10).
+api-key | <span class="label label-required">Required</span>
+batch-id | <span class="label label-required">Required</span>
+search-engine | <span class="label label-required">Required</span> One of google, google-places, yahoo, yahoo-local, bing, bing-local.
+country | <span class="label label-required">Required</span> Determines whether or not to search against .com, .ca, co.uk, .com.au search engines. One of USA, CAN:EN, CAN:FR, GBR or AUS.
+google-location | Allows you to optionally localize results by specifying your physical location. Specify a ZIP, city name or region. Only applicable to US searches. Also see [Check Location](#check-location) method.
+bing-location | Allows you to optionally localize results by specifying your physical location. See [Check Location](#check-location) method.
+search-term | <span class="label label-required">Required</span> The search term to get ranking information for.
+urls | The URLs to get ranking information for. Encode as a JSON string, e.g. \["www.bluehillfarm.com", "www.candle79.com", "shabutatsu.com", "marea-nyc.com", "www.taorestaurant.com"\] (max 10).
 business-names | A list of possible business names to search for. Encode as a JSON string, e.g. ["The Rose Pub","Rose Pub","The Rose"]. For backwards compatibility this also supports a newline (\n) separated list.
 postcode | A valid ZIP or country postal code.
 telephone | A valid telephone number.
@@ -104,7 +104,7 @@ Look up a location that's suitable for use when setting Google or Bing location 
 
 Parameter | Notes
 --------- | -----
-api-key | Required
-search-engine | Required. One of google or bing.
+api-key | <span class="label label-required">Required</span>
+search-engine | <span class="label label-required">Required</span> One of google or bing.
 country| One of USA, CAN, GBR or AUS.
 location | e.g. postcode/ZIP, city and state code

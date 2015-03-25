@@ -1,5 +1,9 @@
 # Appendix
 
+## Supported Local Directories
+
+The following tables provide details of the local directories we support for looking up profile URLs, profile details and/or reviews by country.
+
 ## Business Category IDs
 
 The following business categories and numbers are supported by our system:
