@@ -48,17 +48,17 @@ includes:
   - link-relations
   - link-relations/category-children
   - link-relations/category-events
-  - link-relations/category-exclusivewebpage
   - link-relations/category-image
   - link-relations/category-parent
   - link-relations/category-performers
   - link-relations/category-webpage
   - link-relations/event-category
-  - link-relations/event-exclusivewebpage
   - link-relations/event-listings
   - link-relations/event-localwebpage
   - link-relations/event-webpage
   - link-relations/listing-event
+  - link-relations/listing-localwebpage
+  - link-relations/listing-webpage
   - link-relations/metroarea-events
   - link-relations/metroarea-venues
   - link-relations/searchresult-category
