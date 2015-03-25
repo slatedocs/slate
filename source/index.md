@@ -56,6 +56,7 @@ includes:
   - link-relations/event-category
   - link-relations/event-exclusivewebpage
   - link-relations/event-listings
+  - link-relations/event-localwebpage
   - link-relations/event-webpage
   - link-relations/listing-event
   - link-relations/metroarea-events

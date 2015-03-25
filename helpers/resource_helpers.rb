@@ -319,6 +319,11 @@ module ResourceHelpers
         "href" => "http://www.viagogo.com/E-735139",
         "title" => nil,
         "templated" => false
+      },
+      "event:localwebpage" => {
+        "href" => "http://www.viagogo.co.uk/E-735139",
+        "title" => nil,
+        "templated" => false
       }
     },
     "_embedded" => {
