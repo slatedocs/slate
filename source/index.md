@@ -9,13 +9,16 @@ toc_footers:
 
 includes:
 
-  - gettingstarted
+  - welcometobodhi
   - command-line-overview
   - bodhicloud/cloudoverview
   - bodhicloud/gettingstarted
   - bodhicloud/apitutorial/0-getting-started/tutorial
   - bodhicloud/apitutorial/1-api-mechanics/tutorial
   - bodhicloud/apitutorial/2-type-mechanics/tutorial
+  - bodhicloud/cloudtools/Tooling
+  - bodhicloud/cloudtools/Bodhi-cli
+  - bodhicloud/cloudtools/rbc_types
 
   - bodhiagent/agentoverview
   - bodhiagent/gettingstarted
@@ -33,7 +36,7 @@ includes:
   - bodhimobile/overview
   - bodhimobile/gettingstarted 
   - bodhimobile/Mobile Tools/mobiletoolsoverview
-  - bodhimobile/Mobile Tools/mobileappstore
+  - bodhimobile/Mobile Tools/app-tools_cli
 
 search: true
 ---

@@ -1,4 +1,3 @@
-## Tooling
 
 #### Bodhi.Type
 

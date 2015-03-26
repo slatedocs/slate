@@ -1,4 +1,4 @@
-#Getting Started
+#Welcome to Bodhi
 This documentation is intended for the developer wanting to integrate into the Bodhi PaaS (Platform as a Service) and SaaS (Software as a Service) by:
 
 * Building applications to the the Bodhi Cloud APIs

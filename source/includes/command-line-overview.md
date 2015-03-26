@@ -1,4 +1,4 @@
-##Bodhi Command Line Interface (CLI) Tools
+#Getting Started with Bodhi Command Line 
 
 ### Overview
 The Bodhi product family have command line tools that allow administrators, support team members and developers to interact with the Bodhi Agent, Cloud APIs and Mobile Application tools directly.  These tools allows the user access to information about the tool itself, to make configuration changes and to interact at a more direct level to the products. 
