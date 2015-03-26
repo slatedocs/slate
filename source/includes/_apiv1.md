@@ -85,6 +85,19 @@ curl "https://api.mojopages.com/api/v1/partner/listings"
       "mapped": true,
       "claimed": true,
       "omit_address": false,
+      "hours": {
+        "sunday": [
+          [
+            "closed"
+          ]
+          ],
+        "monday": [
+          [
+            "8:00",
+            "16:00"
+          ]
+        ]
+      },
       "updated_at": "2014-11-27T11:35:27.364Z"
     }
   ]
@@ -176,6 +189,19 @@ curl "https://api.mojopages.com/api/v1/partner/listing/7d373c1da40cbfc3f165"
     "mapped": true,
     "claimed": true,
     "omit_address": false,
+    "hours": {
+      "sunday": [
+        [
+          "closed"
+        ]
+        ],
+      "monday": [
+        [
+          "8:00",
+          "16:00"
+        ]
+      ]
+    },
     "updated_at": "2014-11-27T11:35:27.364Z"
   }
 }
@@ -209,7 +235,7 @@ You must replace `:LISTING_ID` with your business listing id.
 curl "https://api.mojopages.com/api/v1/partner/listing/7d373c1da40cbfc3f165"
   -H "Authorization: Token token=YOUR-ACCESS-TOKEN"
   -H "Content-Type: application/json"
-  -X POST -d '{"mojo_id": 201702, "name": "Piety Hill Cottages", "address": "523 Sacramento St", "tel": "(555) 555-5555", "locality": "Nevada City", "region": "CA"}'
+  -X POST -d '{"mojo_id": 201702, "name": "Piety Hill Cottages", "address": "523 Sacramento St", "tel": "(555) 555-5555", "locality": "Nevada City", "region": "CA", "hours": {"sunday":[["closed"]], "monday": [["8:00","16:00"]]}}'
 
 ```
 
@@ -264,7 +290,8 @@ facebook_id | false | The Facebook ID or the name of the page for the business
 twitter_id | false | Twitter username for the business, without the @ symbol
 google_plus_id | false | The Google Plus ID or the name used for the page of the business
 instagram_id | false | The Instgram ID or the username for the business listing
-omit_address | false| Boolean for omitting the address from the listing (default: false)
+omit_address | false | Boolean for omitting the address from the listing (default: false)
+hours | false | The Hours a business is open or closed represented by a hash of multi dimensional arrays
 
 
 ## Update a Partner Listing
@@ -275,7 +302,7 @@ omit_address | false| Boolean for omitting the address from the listing (default
 curl "https://api.mojopages.com/api/v1/partner/listing/7d373c1da40cbfc3f165"
   -H "Authorization: Token token=YOUR-ACCESS-TOKEN"
   -H "Content-Type: application/json"
-  -X PUT -d '{"address": "523 Sacramento Streeet", "tel": "(800) 555-5555"}'
+  -X PUT -d '{"address": "523 Sacramento Streeet", "tel": "(800) 555-5555", "hours": {"sunday":[["closed"]], "monday": [["8:00","16:00"]]}}'
 
 ```
 
@@ -330,7 +357,8 @@ facebook_id | false | The Facebook ID or the name of the page for the business
 twitter_id | false | Twitter username for the business, without the @ symbol
 google_plus_id | false | The Google Plus ID or the name used for the page of the business
 instagram_id | false | The Instgram ID or the username for the business listing
-omit_address | false| Boolean for omitting the address from the listing (default: false)
+omit_address | false | Boolean for omitting the address from the listing (default: false)
+hours | false | The Hours a business is open or closed represented by a hash of multi dimensional arrays
 
 
 ## Delete a Partner Listing
@@ -482,6 +510,19 @@ curl "https://api.mojopages.com/api/v1/listings/search?name=Instant+Phones&local
       "latitude": "33.643668",
       "status": "AVAILABLE",
       "omit_address": false,
+      "hours": {
+        "sunday": [
+          [
+            "closed"
+          ]
+          ],
+        "monday": [
+          [
+            "8:00",
+            "16:00"
+          ]
+        ]
+      },
       "updated_at": "2014-11-27T11:35:27.364Z"
     }
   ]
@@ -547,6 +588,19 @@ curl "https://api.mojopages.com/api/v1/listing/11079728"
     "instagram_id": "cricketnation",
     "status": "AVAILABLE",
     "omit_address": false,
+    "hours": {
+      "sunday": [
+        [
+          "closed"
+        ]
+        ],
+      "monday": [
+        [
+          "8:00",
+          "16:00"
+        ]
+      ]
+    },
     "updated_at": "2014-11-27T11:35:27.364Z"
   }
 }

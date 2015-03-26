@@ -83,6 +83,19 @@ You must replace `YOUR-ACCESS-TOKEN` with your API key.
     "mapped": false,
     "claimed": false,
     "omit_address": false,
+    "hours": {
+      "sunday": [
+        [
+          "closed"
+        ]
+        ],
+      "monday": [
+        [
+          "8:00",
+          "16:00"
+        ]
+      ]
+    },
     "updated_at": "2014-11-27T11:35:27.364Z"
   }
 ]
@@ -118,4 +131,5 @@ status | Statuses of SUPPRESSED, CLAIMED or AVAILABLE can be given for listing
 mapped | True or False on whether or not the partner listing is mapped
 claimed | True or False on whether or not the partner has claimed a listing
 omit_address | Boolean for omitting the address from the listing (default: false)
+hours | The Hours a business is open or closed represented by a hash of multi dimensional arrays
 updated_at | When the listing was last updated
