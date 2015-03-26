@@ -133,3 +133,26 @@ claimed | True or False on whether or not the partner has claimed a listing
 omit_address | Boolean for omitting the address from the listing (default: false)
 hours | The Hours a business is open or closed represented by a hash of multi dimensional arrays
 updated_at | When the listing was last updated
+
+# Getting Started Workflow
+
+There are many ways and uses for the API. Here are the major typical workflows:
+
+## Add, Search and Map Listings
+1. [Post partner listings](#post-a-new-partner-listing) - First push all your listings into our database.
+2. [Search for listings](#get-a-search-for-listings-in-json) - We recommend when searching using:  Name, Address, Latitude, Longitude and Phone number.
+3. [Post a claim for the listing](/#post-claim-a-listing) - Post your listing ID and the Mojo_ID of the listing you want to claim ownership for.
+3.A. [Post a suppress listing](#post-suppress-a-listing) - If there are **duplicates** or other issues with listings in our database then supress them.
+3.B. [Update partner listing](#update-a-partner-listing) - If a listings status is already claimed then updating it with the you listing ID and Mojo_ID will map the listings and if the listing becomes unclaimed by default it will become your listing.
+4. [Get partner listings](#get-partner-listings-in-json) - Lastly this will give you all your listings and the status of those listins in our database.
+
+## Add and Automap Listings
+If you do not manually want to map your listings to the listings in or database you can leave that to us and we will automap them. This is not on by default. To do this you will want to do the following:
+1. [Post partner listings](#post-a-new-partner-listing) - First push all your listings into our database. Pass the parameter "map=true". We will do our best to map your listing to our listing.
+2. [Search for listings](#get-a-search-for-listings-in-json) - We recommend when searching using:  Name, Address, Latitude, Longitude and Phone number.
+2.A. [Post a suppress listing](#post-suppress-a-listing) - If there are **duplicates** or other issues with listings in our database then supress them.
+2.B. [Update partner listing](#update-a-partner-listing) - If a listings status is already claimed then updating it with the you listing ID and the parameter "map=true" will automap the listings and if the listing becomes unclaimed by default it will become your listing.
+3. [Get partner listings](#get-partner-listings-in-json) - Lastly this will give you all your listings and the status of those listins in our database.
+
+## Unclaim Listings
+If you no longer manage the clients listing you can [Unclaim](#post-unclaim-a-listing) a listing this will keep all updates done to the unclaim point and then remove your claim status from your account and open it back up to be claimed by other partners.
