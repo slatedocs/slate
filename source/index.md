@@ -29,8 +29,7 @@ includes:
   - bodhiagent/agenttooling/agenttools
   - bodhiagent/agenttooling/agent-cli2
  
-  
-
+ 
   - command-line/bodhi-cli-docs
    
   - bodhimobile/overview
