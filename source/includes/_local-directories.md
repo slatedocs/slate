@@ -55,7 +55,7 @@ business-names | <span class="label label-required">Required</span> A newline (\
 country | <span class="label label-required">Required</span>
 city | <span class="label label-required">Required</span>
 postcode | <span class="label label-required">Required</span>
-local-directory | See possible options in appendix below.
+local-directory | <span class="label label-required">Required</span> See possible options in appendix below.
 telephone |
 street-address |
 
@@ -165,6 +165,6 @@ business-names | <span class="label label-required">Required</span> A newline (\
 country | <span class="label label-required">Required</span>
 city | <span class="label label-required">Required</span>
 postcode | <span class="label label-required">Required</span>
-local-directory | See possible options in appendix below.
+local-directory | <span class="label label-required">Required</span> See possible options in appendix below.
 telephone |
 street-address |
