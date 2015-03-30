@@ -2,7 +2,178 @@
 
 ## Supported Local Directories
 
-The following tables provide details of the local directories we support for looking up profile URLs, profile details and/or reviews by country.
+The following tables provide details of the local directories we support for looking up profile URLs, profile details and/or reviews by country. For some directories we support all information. For others only partial.
+
+### United States (USA)
+
+Identifier|NAP|Reviews|URL|Other|Notes
+----------|---|-------|---|-----|-----
+acxiom|<span class="yes">Yes</span>|||<span class="yes">Yes</span>|
+allpages|<span class="yes">Yes</span>||||
+angies|<span class="yes">Yes</span>||||
+b2byellowpages|<span class="yes">Yes</span>||||
+bbb|<span class="yes">Yes</span>|||<span class="yes">Yes</span>|
+brownbook|<span class="yes">Yes</span>||||
+botw|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
+chamberofcommerce|<span class="yes">Yes</span>|||<span class="yes">Yes</span>|
+citysearch|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
+citysquares|<span class="yes">Yes</span>||||
+cmac|<span class="yes">Yes</span>||||
+cortera|<span class="yes">Yes</span>||||
+dexknows|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
+doctoroogle|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
+expressupdate|<span class="yes">Yes</span>|||<span class="yes">Yes</span>|
+facebook|<span class="yes">Yes</span>|||<span class="yes">Yes</span>|
+factual|<span class="yes">Yes</span>|||<span class="yes">Yes</span>|
+favecentral|<span class="yes">Yes</span>||||
+foursquare|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
+google|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
+healthgrades|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
+hotfrog|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
+insiderpages|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
+ibegin|<span class="yes">Yes</span>||||
+judysbook|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
+justdeal|<span class="yes">Yes</span>||||Incorrectly named - corresponds to JustDial
+kudzu|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
+localcom|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
+magicyellow|<span class="yes">Yes</span>||||
+manta|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>||
+mapquest|<span class="yes">Yes</span>||||
+merchantcircle|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
+mojopages|<span class="yes">Yes</span>||||
+neustarlocaleze|<span class="yes">Yes</span>|||<span class="yes">Yes</span>|
+PowerProfiles|<span class="yes">Yes</span>||||
+realself|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
+salesspider|<span class="yes">Yes</span>||||
+showmelocal|<span class="yes">Yes</span>||||
+superpages|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
+switchboard|<span class="yes">Yes</span>||||
+theusaexplorer|<span class="yes">Yes</span>||||
+whitepages|<span class="yes">Yes</span>||||
+yahoo|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
+yasabe|<span class="yes">Yes</span>||||
+YellowBook|<span class="yes">Yes</span>||||
+yellowbot|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
+Yellowee|||<span class="yes">Yes</span>||
+yellowpagecity|<span class="yes">Yes</span>||||
+yellowpages|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
+yelp|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
+ziplocal|<span class="yes">Yes</span>||||
+zocdoc|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
+
+### Great Britain (GBR)
+
+Identifier|NAP|Reviews|URL|Other|Notes
+----------|---|-------|---|-----|-----
+192|<span class="yes">Yes</span>||||
+bizwiki|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
+brownbook|<span class="yes">Yes</span>||||
+businessclassified|<span class="yes">Yes</span>||||
+CityVisitor|<span class="yes">Yes</span>||||
+cylex|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
+facebook|<span class="yes">Yes</span>|||<span class="yes">Yes</span>|
+factual|<span class="yes">Yes</span>||||
+foursquare|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
+freeindex|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
+fyple|<span class="yes">Yes</span>||||
+google|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
+hotfrog|<span class="yes">Yes</span>||||
+independent|<span class="yes">Yes</span>||||
+localdatasearch|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
+localmole||<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
+near|<span class="yes">Yes</span>||||
+manta|<span class="yes">Yes</span>||||
+misterwhat|<span class="yes">Yes</span>||||
+mylocalservices|<span class="yes">Yes</span>||||
+qype||<span class="yes">Yes</span>|||
+scoot|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
+thediscdirectory|<span class="yes">Yes</span>||||
+thesun|<span class="yes">Yes</span>||||
+thomsonlocal|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
+tipped|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
+touchlocal|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
+uk-local-search|<span class="yes">Yes</span>||||
+ukplaces|<span class="yes">Yes</span>||||
+wheresbest|<span class="yes">Yes</span>||||
+yahoo|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
+yalwa|<span class="yes">Yes</span>||||
+yell|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
+yelp|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
+
+### Australia (AUS)
+
+Identifier|NAP|Reviews|URL|Other|Notes
+----------|---|-------|---|-----|-----
+aubiz|<span class="yes">Yes</span>||||
+aussieweb|<span class="yes">Yes</span>|||<span class="yes">Yes</span>|
+australiabusinesslisting||<span class="yes">Yes</span>||<span class="yes">Yes</span>|
+australianguide|<span class="yes">Yes</span>||||
+australianplanet|<span class="yes">Yes</span>|<span class="yes">Yes</span>||<span class="yes">Yes</span>|
+bloo|<span class="yes">Yes</span>||||
+brownbookaus|<span class="yes">Yes</span>|||<span class="yes">Yes</span>|
+businesscomau|||||
+cylexaus|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
+dlook|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
+eatability|<span class="yes">Yes</span>||||
+facebook|<span class="yes">Yes</span>|||<span class="yes">Yes</span>|
+foursquare||<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
+fyple|<span class="yes">Yes</span>||||
+google||<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
+hotfrogaus|<span class="yes">Yes</span>|<span class="yes">Yes</span>||<span class="yes">Yes</span>|
+localstore|<span class="yes">Yes</span>||||
+localbd|<span class="yes">Yes</span>||||
+localbusinessguide|<span class="yes">Yes</span>|<span class="yes">Yes</span>||<span class="yes">Yes</span>|
+localcomau|<span class="yes">Yes</span>|<span class="yes">Yes</span>||<span class="yes">Yes</span>|
+nationaldirectory|<span class="yes">Yes</span>||||
+nearyouau|<span class="yes">Yes</span>||||
+manta|<span class="yes">Yes</span>||||
+reverseaustralia|<span class="yes">Yes</span>||||
+startlocal|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
+superpagesaus|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
+streetdirectory|<span class="yes">Yes</span>||||
+tuugo|<span class="yes">Yes</span>||||
+truelocal|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
+vicdir|<span class="yes">Yes</span>||||
+whereis|<span class="yes">Yes</span>||||
+whitepagesaus|<span class="yes">Yes</span>|<span class="yes">Yes</span>||<span class="yes">Yes</span>|
+womo|<span class="yes">Yes</span>||||
+wowcity|<span class="yes">Yes</span>||||
+yalwa|<span class="yes">Yes</span>||||
+yellowbook||<span class="yes">Yes</span>||<span class="yes">Yes</span>|
+yellowpagesaus|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
+yelp-aus|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
+
+### Canada (CAN)
+
+Identifier|NAP|Reviews|URL|Other|Notes
+----------|---|-------|---|-----|-----
+c411|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
+allpages|<span class="yes">Yes</span>||||
+brownbook|<span class="yes">Yes</span>|<span class="yes">Yes</span>|||
+canpages|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
+cdnpages|<span class="yes">Yes</span>||||
+cylexcan|<span class="yes">Yes</span>|<span class="yes">Yes</span>||<span class="yes">Yes</span>|
+directorycentral|<span class="yes">Yes</span>||||
+facebook|<span class="yes">Yes</span>|||<span class="yes">Yes</span>|
+factual|<span class="yes">Yes</span>||||
+foursquare|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
+goldbook|<span class="yes">Yes</span>|<span class="yes">Yes</span>||<span class="yes">Yes</span>|
+google||<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
+hotfrogcan|<span class="yes">Yes</span>|<span class="yes">Yes</span>||<span class="yes">Yes</span>|
+ibegin|<span class="yes">Yes</span>|<span class="yes">Yes</span>||<span class="yes">Yes</span>|
+nearyouca|<span class="yes">Yes</span>||||
+manta|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>||
+pagesjaunes|<span class="yes">Yes</span>||||
+profilecanada|<span class="yes">Yes</span>|<span class="yes">Yes</span>||<span class="yes">Yes</span>|
+salespider|<span class="yes">Yes</span>||||
+superpages||<span class="yes">Yes</span>||<span class="yes">Yes</span>|
+weblocal|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
+wikidomo|<span class="yes">Yes</span>||||
+yalwa|<span class="yes">Yes</span>||||
+yellowpagesca|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
+yelp-can|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
+ziplocal|<span class="yes">Yes</span>||||
+zoominfo|<span class="yes">Yes</span>||||
 
 ## Business Category IDs
 

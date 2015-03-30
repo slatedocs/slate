@@ -660,3 +660,12 @@ h2 .label {
     margin-top: $main-padding;
   }
 }
+
+.yes {
+  display: inline-block;
+  background: url(../images/tick.png) no-repeat center center;
+  min-width: 16px;
+  min-height: 16px;
+  text-indent: -9999px;
+  white-space: nowrap;
+}
