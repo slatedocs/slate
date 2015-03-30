@@ -1,6 +1,8 @@
 # ReviewFlow Reports
 
-## Add Report <span class="label label-info">Account Method</span>
+## Add Report
+
+<span class="label label-info">Account Method</span>
 
 > Example of specifying directories
 
@@ -79,7 +81,9 @@ directories | <p>By default we try and find profile URLs and reviews in all dire
     Once added a report won't show in your control panel until all profile URLs have been found (the first stage of running the report). Once this is complete and reviews are being fetched the report will be shown.
 </aside>
 
-## Update Report <span class="label label-info">Account Method</span>
+## Update Report
+
+<span class="label label-info">Account Method</span>
 
 > Example of modifying directories
 
@@ -128,7 +132,9 @@ alert-email-addresses | Supply a list of email addresses as a JSON string, e.g. 
 is-public | Determines whether or not to make the report available on a public URL you can give to your customers. One of 1 or 0. Defaults to 0.
 directories | <p>If you need to add or change a profile URL you can do so here.</p><p>The data for this parameter needs to be supplied as a JSON string. Local directory identifiers (the keys in the example below) are documented here. Here's an example of how to generate suitable values in PHP:</p>
 
-## Get Report <span class="label label-info">Account Method</span>
+## Get Report
+
+<span class="label label-info">Account Method</span>
 
 > Success (200 OK)
 
@@ -278,7 +284,9 @@ api-key | <span class="label label-required">Required</span>
 sig | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
 expires | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
 
-## Delete Report <span class="label label-info">Account Method</span>
+## Delete Report
+
+<span class="label label-info">Account Method</span>
 
 > Success (200 OK)
 
@@ -322,7 +330,9 @@ api-key | <span class="label label-required">Required</span>
 sig | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
 expires | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
 
-## Get Reports <span class="label label-info">Account Method</span>
+## Get Reports
+
+<span class="label label-info">Account Method</span>
 
 > Success (200 OK)
 
@@ -393,7 +403,9 @@ sig | <span class="label label-required">Required</span> [See above for how to g
 expires | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
 client-id | Filter the list of reports returned by client ID. This ID must correspond to a valid client in your account.
 
-## Report Search <span class="label label-info">Account Method</span>
+## Report Search
+
+<span class="label label-info">Account Method</span>
 
 > Success (200 OK)
 
@@ -442,7 +454,9 @@ sig | <span class="label label-required">Required</span> [See above for how to g
 expires | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
 q | <span class="label label-required">Required</span> Supply an arbitrary search string.
 
-## Get Reviews <span class="label label-info">Account Method</span>
+## Get Reviews
+
+<span class="label label-info">Account Method</span>
 
 > Success (200 OK)
 
@@ -541,7 +555,9 @@ source | Determines where a review came from. Yahoo!, for example, can contain r
 source_link | Link to the site where the review was originally written.
 hash | Unique identifier based on directory, author and review text. This can be used when storing reviews locally to prevent duplicates.
 
-## Get Reviews Count <span class="label label-info">Account Method</span>
+## Get Reviews Count
+
+<span class="label label-info">Account Method</span>
 
 > Success (200 OK)
 
@@ -575,7 +591,9 @@ api-key | <span class="label label-required">Required</span>
 sig | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
 expires | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
 
-## Get Growth <span class="label label-info">Account Method</span>
+## Get Growth
+
+<span class="label label-info">Account Method</span>
 
 Get count and percentage of new reviews since last report run.
 
@@ -614,7 +632,9 @@ api-key | <span class="label label-required">Required</span>
 sig | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
 expires | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
 
-## Get Directories <span class="label label-info">Account Method</span>
+## Get Directories
+
+<span class="label label-info">Account Method</span>
 
 > Success (200 OK)
 
@@ -763,7 +783,9 @@ api-key | <span class="label label-required">Required</span>
 sig | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
 expires | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
 
-## Get Directory Stats <span class="label label-info">Account Method</span>
+## Get Directory Stats
+
+<span class="label label-info">Account Method</span>
 
 Fetch stats showing average rating and review count for every directory in a given report.
 
@@ -829,7 +851,9 @@ api-key | <span class="label label-required">Required</span>
 sig | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
 expires | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
 
-## Get Star Counts <span class="label label-info">Account Method</span>
+## Get Star Counts
+
+<span class="label label-info">Account Method</span>
 
 > Success (200 OK)
 

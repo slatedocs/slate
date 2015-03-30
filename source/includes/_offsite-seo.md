@@ -1,6 +1,8 @@
 # Offsite SEO &amp; Social Profiles
 
-## Offsite SEO <span class="label label-info">Batch Method</span>
+## Offsite SEO
+
+<span class="label label-info">Batch Method</span>
 
 > Fetch offsite SEO information for a website address
 
@@ -83,7 +85,9 @@ api-key | <span class="label label-required">Required</span>
 batch-id | <span class="label label-required">Required</span>
 website-url | <span class="label label-required">Required</span> URL of the business web site. Can be specified with or without http(s).
 
-## Social Profiles <span class="label label-info">Batch Method</span>
+## Social Profiles
+
+<span class="label label-info">Batch Method</span>
 
 > Fetch details of the social profiles a business has
 

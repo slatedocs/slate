@@ -1,6 +1,8 @@
 # Reviews
 
-## Fetch Reviews (by profile URL) <span class="label label-info">Batch Method</span>
+## Fetch Reviews (by profile URL)
+
+<span class="label label-info">Batch Method</span>
 
 > Fetch reviews for 3 Google+ profile URLs
 
@@ -95,7 +97,9 @@ sort | 'rating' or 'date'. By default 'date'.
 reviews-limit | Positive number or 'all'. By default 250.
 date-from | Date Format: Y-m-d or Y-m-d H:i:s. By default not specified.
 
-## Fetch Reviews (by business data) <span class="label label-info">Batch Method</span>
+## Fetch Reviews (by business data)
+
+<span class="label label-info">Batch Method</span>
 
 > Fetch reviews for a business using business data
 

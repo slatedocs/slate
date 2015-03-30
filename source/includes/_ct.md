@@ -2,6 +2,8 @@
 
 ## Add Report
 
+<span class="label label-info">Account Method</span>
+
 > Success (200 OK)
 
 ```json
@@ -46,6 +48,8 @@ active-only | Flag to fetch only active citations. One of Yes, No. Defaults to N
 is-public | Publish reports on a white label URL. Yes or No.
 
 ## Update Report
+
+<span class="label label-info">Account Method</span>
 
 > Success (200 OK)
 
@@ -92,6 +96,8 @@ is-public | Publish reports on a white label URL. Yes or No.
 
 ## Run Report
 
+<span class="label label-info">Account Method</span>
+
 > Success (200 OK)
 
 ```json
@@ -116,6 +122,8 @@ expires | <span class="label label-required">Required</span> [See above for how 
 report-id | <span class="label label-required">Required</span>
 
 ## Delete Report
+
+<span class="label label-info">Account Method</span>
 
 > Success (200 OK)
 
@@ -143,6 +151,8 @@ expires | <span class="label label-required">Required</span> [See above for how 
 report-id | <span class="label label-required">Required</span>
 
 ## Get All Reports
+
+<span class="label label-info">Account Method</span>
 
 > Success (200 OK)
 
@@ -258,6 +268,8 @@ expires | <span class="label label-required">Required</span> [See above for how 
 client-id |
 
 ## Get Report Results
+
+<span class="label label-info">Account Method</span>
 
 > Success (200 OK)
 

@@ -1,6 +1,8 @@
 # Local Search Rank Checker
 
-## Add Report <span class="label label-info">Account Method</span>
+## Add Report
+
+<span class="label label-info">Account Method</span>
 
 > Success (200 OK)
 
@@ -48,7 +50,9 @@ notify | Yes or No. Defaults to No.
 email-addresses	| Newline (\n) separated list of email addresses
 is-public | Publish reports on a white label URL. Yes or No. Defaults to No.
 
-## Update Report <span class="label label-info">Account Method</span>
+## Update Report
+
+<span class="label label-info">Account Method</span>
 
 > Success (200 OK)
 
@@ -98,7 +102,9 @@ notify | Yes or No
 email-addresses | Newline (\n) separated list of email addresses
 is-public | Publish reports on a white label URL. Yes or No.
 
-## Delete Report <span class="label label-info">Account Method</span>
+## Delete Report
+
+<span class="label label-info">Account Method</span>
 
 > Success (200 OK)
 
@@ -125,7 +131,9 @@ sig | <span class="label label-required">Required</span> [See above for how to g
 expires | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
 campaign-id | <span class="label label-required">Required</span>
 
-## Get All Reports <span class="label label-info">Account Method</span>
+## Get All Reports
+
+<span class="label label-info">Account Method</span>
 
 > Success (200 OK)
 
@@ -174,7 +182,9 @@ sig | <span class="label label-required">Required</span> [See above for how to g
 expires | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
 client-id |
 
-## Get Report <span class="label label-info">Account Method</span>
+## Get Report
+
+<span class="label label-info">Account Method</span>
 
 > Success (200 OK)
 
@@ -271,7 +281,9 @@ sig | <span class="label label-required">Required</span> [See above for how to g
 expires | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
 campaign-id | <span class="label label-required">Required</span>	
 
-## Run Report <span class="label label-info">Account Method</span>
+## Run Report
+
+<span class="label label-info">Account Method</span>
 
 > Success (200 OK)
 
@@ -300,7 +312,9 @@ sig | <span class="label label-required">Required</span> [See above for how to g
 expires | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
 campaign-id | <span class="label label-required">Required</span>
 
-## Get Report History <span class="label label-info">Account Method</span>
+## Get Report History
+
+<span class="label label-info">Account Method</span>
 
 > Success (200 OK)
 
@@ -346,7 +360,9 @@ sig | <span class="label label-required">Required</span> [See above for how to g
 expires | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
 campaign-id | <span class="label label-required">Required</span>
 
-## Get Report Results <span class="label label-info">Account Method</span>
+## Get Report Results
+
+<span class="label label-info">Account Method</span>
 
 If no campaign history ID or previous campaign history ID are passed then the latest results for the specified report are returned.
 

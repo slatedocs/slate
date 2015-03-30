@@ -1,6 +1,8 @@
 # Clients
 
-## Add Client <span class="label label-info">Account Method</span>
+## Add Client
+
+<span class="label label-info">Account Method</span>
 
 > Success (200 OK)
 
@@ -48,7 +50,9 @@ services | Newline (\n) separated list of services
 business-category-id | <span class="label label-required">Required</span> See here for a full list of valid business codes.
 unique-reference | An arbitrary unique reference you can use to identify a client. This may correspond to a unique value used within your system and can be useful when importing or exporting data. 50 characters max.
 
-## Update Client <span class="label label-info">Account Method</span>
+## Update Client
+
+<span class="label label-info">Account Method</span>
 
 Update an existing client. Only supply values you want to update. The rest will be left unchanged.
 
@@ -96,7 +100,9 @@ services | Newline (\n) separated list of services
 business-category-id | See here for a full list of valid business codes
 unique-reference | An arbitrary unique reference you can use to identify a client. This may correspond to a unique value used within your system and can be useful when importing or exporting data. 50 characters max.
 
-## Delete Client <span class="label label-info">Account Method</span>
+## Delete Client
+
+<span class="label label-info">Account Method</span>
 
 > Success (200 OK)
 
@@ -123,7 +129,9 @@ sig | <span class="label label-required">Required</span> [See above for how to g
 expires | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
 client-id | <span class="label label-required">Required</span>
 
-## Get All Clients <span class="label label-info">Account Method</span>
+## Get All Clients
+
+<span class="label label-info">Account Method</span>
 
 > Success (200 OK)
 
@@ -174,7 +182,9 @@ api-key | <span class="label label-required">Required</span>
 sig | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
 expires | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
 
-## Get Client <span class="label label-info">Account Method</span>
+## Get Client
+
+<span class="label label-info">Account Method</span>
 
 > Success (200 OK)
 
@@ -242,7 +252,9 @@ sig | <span class="label label-required">Required</span> [See above for how to g
 expires | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
 client-id | <span class="label label-required">Required</span>
 
-## Search Clients <span class="label label-info">Account Method</span>
+## Search Clients
+
+<span class="label label-info">Account Method</span>
 
 > Success (200 OK)
 

@@ -1,6 +1,71 @@
 # Rankings
 
-## Search <span class="label label-info">Batch Method</span>
+## Search
+
+<span class="label label-info">Batch Method</span>
+
+> Fetch rankings
+
+```php
+<?php
+use BrightLocal\Api;
+use BrightLocal\Batches\V4 as BatchApi;
+
+$searches = array(
+    array(
+        'search-engine'   => 'google',
+        'country'         => 'USA',
+        'google-location' => 'New York, NY',
+        'search-term'     => 'restaurant new york',
+        'urls'            => '["le-bernardin.com"]',
+        'business-names'  => 'Le Bernardin'
+    ),
+    array(
+        'search-engine'   => 'google',
+        'country'         => 'USA',
+        'google-location' => 'New York, NY',
+        'search-term'     => 'restaurant manhattan',
+        'urls'            => '["le-bernardin.com"]',
+        'business-names'  => 'Le Bernardin'
+    ),
+    array(
+        'search-engine'   => 'google',
+        'country'         => 'USA',
+        'google-location' => 'New York, NY',
+        'search-term'     => 'restaurant 10019',
+        'urls'            => '["le-bernardin.com"]',
+        'business-names'  => 'Le Bernardin'
+    )
+);
+$api = new Api(API_KEY, API_SECRET, API_ENDPOINT);
+$batchApi = new BatchApi($api);
+$batchId = $batchApi->create();
+if ($batchId) {
+    printf('Created batch ID %d%s', $batchId, PHP_EOL);
+    foreach ($searches as $search) {
+        $result = $api->call(
+            '/v4/rankings/search',
+            array_merge(
+                $search, array('batch-id' => $batchId)
+            )
+        );
+        if ($result['success']) {
+            printf('Added job with ID %d%s', $result['job-id'], PHP_EOL);
+        }
+    }
+    if ($batchApi->commit($batchId)) {
+        echo 'Committed batch successfully.'.PHP_EOL;
+        // poll for results, in a real world example you might
+        // want to do this in a separate process (such as via an
+        // AJAX poll)
+        do {
+            $results = $batchApi->get_results($batchId);
+            sleep(10); // limit how often you poll
+        } while ($results['status'] !== 'Finished');
+        print_r($results);
+    }
+}
+```
 
 > Success (201 Created)
 

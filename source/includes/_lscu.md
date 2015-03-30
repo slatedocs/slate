@@ -1,6 +1,8 @@
 # Local SEO Check-up
 
-## Add Report <span class="label label-info">Account Method</span>
+## Add Report
+
+<span class="label label-info">Account Method</span>
 
 > Supplying Local Directory URLs (see local-directory-urls parameter)
 
@@ -93,7 +95,9 @@ is-public | Determines whether or not to make the report available on a public U
 local-directory-urls | <p>By default we try and find local directory profile URLs and information for your business in all directories we support. If you'd like your report to only contain specific directories or already know the profile URLs for some directories you can supply them here. Please note that if you supply information for this parameter you need to give us all details of the directories you want included. If you have profile URLs for some but not others you can leave those URL fields empty and we'll do our best to find them. Generally we recommend you run your report for the first time without this setting and then use our update method to add/change URLs or remove directories if needed.</p><p>The data for this parameter needs to be supplied as a JSON string. Local directory identifiers (the keys in the example below) are documented here.</p>
 run-report | One of yes or no. Runs the report after adding. Defaults to no.
 
-## Update Report <span class="label label-info">Account Method</span>
+## Update Report
+
+<span class="label label-info">Account Method</span>
 
 > Supplying Local Directory URLs (see local-directory-urls parameter)
 
@@ -182,7 +186,9 @@ twitter-url | If known, please supply the Twitter URL for the business. If not s
 is-public | Determines whether or not to make the report available on a public URL you can give to your customers. One of yes or no. Defaults to no.
 local-directory-urls | <p>This parameter allows you update the profile URLs we have stored for your business on each local directory, to exclude a directory from subsequent report runs or include one that isn't currently present. You can also manually supply profile URLs to correct ones that are incorrect or where we haven't been able to automatically find the relevant profile URL. All changes require the report to be re-run before they take effect.</p><p>The data for this parameter needs to be supplied as a JSON string. Local directory identifiers (the keys in the example below) are documented here. Here's an example of how to generate suitable values in PHP:</p>
 
-## Get Report <span class="label label-info">Account Method</span>
+## Get Report
+
+<span class="label label-info">Account Method</span>
 
 > Success (200 OK)
 
@@ -258,7 +264,9 @@ sig | <span class="label label-required">Required</span> [See above for how to g
 expires | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
 report-id | <span class="label label-required">Required</span> The unique ID for the report in your account.
 
-## Run Report <span class="label label-info">Account Method</span>
+## Run Report
+
+<span class="label label-info">Account Method</span>
 
 > Success (200 OK)
 
@@ -304,7 +312,9 @@ sig | <span class="label label-required">Required</span> [See above for how to g
 expires | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
 report-id | <span class="label label-required">Required</span> The unique ID for the report in your account.
 
-## Delete Report <span class="label label-info">Account Method</span>
+## Delete Report
+
+<span class="label label-info">Account Method</span>
 
 > Success (200 OK)
 
@@ -349,7 +359,9 @@ sig | <span class="label label-required">Required</span> [See above for how to g
 expires | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
 report-id | <span class="label label-required">Required</span> The unique ID for the report in your account.
 
-## Search <span class="label label-info">Account Method</span>
+## Search
+
+<span class="label label-info">Account Method</span>
 
 > Success (200 OK)
 

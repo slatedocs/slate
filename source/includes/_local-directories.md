@@ -1,6 +1,8 @@
 # Local Directories
 
-## Fetch Profile URL <span class="label label-info">Batch Method</span>
+## Fetch Profile URL
+
+<span class="label label-info">Batch Method</span>
 
 > Success (201 Created)
 
@@ -57,7 +59,9 @@ local-directory | See possible options in appendix below.
 telephone |
 street-address |
 
-## Fetch Profile Details (by profile URL) <span class="label label-info">Batch Method</span>
+## Fetch Profile Details (by profile URL)
+
+<span class="label label-info">Batch Method</span>
 
 > Success (201 Created)
 
@@ -106,7 +110,9 @@ batch-id | <span class="label label-required">Required</span>
 profile-url | <span class="label label-required">Required</span>
 country | <span class="label label-required">Required</span>
 
-## Fetch Profile Details (by business data) <span class="label label-info">Batch Method</span>
+## Fetch Profile Details (by business data)
+
+<span class="label label-info">Batch Method</span>
 
 > Success (201 Created)
 

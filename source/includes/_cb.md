@@ -1,6 +1,8 @@
 # Citation Burst
 
-## Create Campaign <span class="label label-info">Account Method</span>
+## Create Campaign
+
+<span class="label label-info">Account Method</span>
 
 > Validation Failure
 
@@ -101,7 +103,9 @@ old_business_name |
 old_lookup_data	| For e.g, old postcode
 is_public | Publish reports on a white label URL. Y or N.
 
-## Upload Image <span class="label label-info">Account Method</span>
+## Upload Image
+
+<span class="label label-info">Account Method</span>
 
 > Success (200 OK)
 
@@ -130,7 +134,9 @@ expires	| <span class="label label-required">Required</span> [See above for how 
 
 http://tools.brightlocal.com/seo-tools/api/v2/cb/upload/5533/logo
 
-## Get Citations <span class="label label-info">Account Method</span>
+## Get Citations
+
+<span class="label label-info">Account Method</span>
 
 > Success (200 OK)
 
@@ -169,7 +175,9 @@ sig	| <span class="label label-required">Required</span> [See above for how to g
 expires	| <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
 campaign-id	| <span class="label label-required">Required</span>
 
-## Confirm &amp; Pay <span class="label label-info">Account Method</span>
+## Confirm &amp; Pay
+
+<span class="label label-info">Account Method</span>
 
 > Success (200 OK)
 
@@ -201,7 +209,9 @@ package_id | <span class="label label-required">Required</span> CB package id wi
 autoselect | String. Possible values 'N' or 'Y'. Default 'N'.
 citations | <span class="label label-required">Required</span> JSON Array. If autoselect is 'Y' parameter becomes non-required. List of sites you require listings for.
 
-## Get Campaigns <span class="label label-info">Account Method</span>
+## Get Campaigns
+
+<span class="label label-info">Account Method</span>
 
 > Success (200 OK)
 
@@ -255,7 +265,9 @@ sig	| <span class="label label-required">Required</span> [See above for how to g
 expires	| <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
 client-id |
 
-## Get Campaign <span class="label label-info">Account Method</span>
+## Get Campaign
+
+<span class="label label-info">Account Method</span>
 
 > Success (200 OK)
 

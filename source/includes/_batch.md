@@ -7,7 +7,9 @@ A batch acts like a container for API requests. It allows you to group requests 
 3. Commit the batch
 4. Poll for results
 
-## Create <span class="label label-info">Batch Method</span>
+## Create
+
+<span class="label label-info">Batch Method</span>
 
 > Creating a batch
 
@@ -71,7 +73,9 @@ Parameter | Notes
 api-key | <span class="label label-required">Required</span>
 stop-on-job-error | 1 or 0. default 0. If errors are found in one job the batch will be stopped and no further jobs will be processed.
 
-## Commit Batch <span class="label label-info">Batch Method</span>
+## Commit Batch
+
+<span class="label label-info">Batch Method</span>
 
 > Committing a batch
 
@@ -127,7 +131,9 @@ Parameter | Notes
 api-key | <span class="label label-required">Required</span>
 batch-id | <span class="label label-required">Required</span>
 
-## Get Results <span class="label label-info">Batch Method</span>
+## Get Results
+
+<span class="label label-info">Batch Method</span>
 
 > Getting batch results
 
@@ -208,7 +214,9 @@ Parameter | Notes
 api-key | <span class="label label-required">Required</span>
 batch-id | <span class="label label-required">Required</span>
 
-## Delete <span class="label label-info">Batch Method</span>
+## Delete
+
+<span class="label label-info">Batch Method</span>
 
 > Delete a batch
 
@@ -258,6 +266,8 @@ api-key | <span class="label label-required">Required</span>
 batch-id | <span class="label label-required">Required</span>
 
 ## Stop Batch
+
+<span class="label label-info">Batch Method</span>
 
 ```php
 <?php
