@@ -1,0 +1,11 @@
+## Direct Users to the viagogo Website
+
+Your application can use links on [`Category`](#category), [`Event`](#event) and [`Listing`](#listing) resources to direct users to the viagogo website. These resources provide two types of links that you can use depending on your scenario.
+
+### User-Locale-Specific Website Links
+
+[`Category`](#category), [`Event`](#event) and [`Listing`](#listing) resources provide [`category:webpage`](#categorywebpage), [`event:webpage`](#eventwebpage) and [`listing:webpage`](#listingwebpage) links respectively. You should use these links to direct the user to a viagogo website domain that matches the user's locale.  The viagogo website domain will match the [`VGG-Country` Header](#vgg-country-header) in your request. For example, if you know that a user of your application is German, your application should be requesting event data with `VGG-Country` header set to *DE* and you can use this link to direct them to *www.viagogo.de*.
+
+### Event-Locale-Specific Website Links
+
+[`Event`](#event) and [`Listing`](#listing) resources provide [`event:webpage`](#eventwebpage) and [`listing:webpage`](#listingwebpage) links respectively. You should usse these links to direct the user to a viagogo website domain that matches the event's locale. For example, if you know that an event is in Australia you can use this link to direct your user to *www.viagogo.com/au*.
