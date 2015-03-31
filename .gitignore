@@ -1,3 +1,4 @@
+settings.sh
 *.gem
 *.rbc
 .bundle
