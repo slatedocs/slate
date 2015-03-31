@@ -1,3 +1,4 @@
+*.tar.gz
 settings.sh
 *.gem
 *.rbc
