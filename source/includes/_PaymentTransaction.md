@@ -475,7 +475,7 @@ EXAMPLE SERVICE RESPONSE DATA
 		</tr>
 		<tr>
 			<td>rcd<br><font color=#446CB3>string</font></td>
-			<td>The et of result codes from the evaulation of the current transaction</td>
+			<td>The set of result codes from the evaulation of the current transaction</td>
 		</tr>
 		<tr>
 			<td>tid<br><font color=#446CB3>string</font></td>

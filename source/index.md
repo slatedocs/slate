@@ -22,6 +22,10 @@ search: true
 
 # eDNA API Reference
 
+#### 1.19 API Preview
+
+Hello and welcome to our IdentityMind Release 1.19 API reference preview! While everything is mostly set, please keep in mind that certain aspects may be subject to change. That being said, we do not expect our API to undergo any major changes before the official 1.19 rollout.
+
 #### Transaction Evaluation
 
 The IdentityMind Engine exports a REST based Web Service interface over HTTPS, using JSON to encode service request and response data.
