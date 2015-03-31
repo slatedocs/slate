@@ -669,10 +669,10 @@ Provides feedback that the transaction has been accepted due to user validation.
 Provides feedback that the transaction has been been rejected due to user validation failure.<br>
 `POST https://edna.identitymind.com/im/transaction/<transaction_id>/rejected-user-failed-validation`
 
-Provides feedback that the transaction has been accepted as default.<br>
+Provides feedback that the transaction has been accepted by default.<br>
 `POST https://edna.identitymind.com/im/transaction/<transaction_id>/accepted-default`
 
-Provides feedback that the transaction has been rejected as default.<br>
+Provides feedback that the transaction has been rejected by default.<br>
 `POST https://edna.identitymind.com/im/transaction/<transaction_id>/rejected-default`
 
 <aside class="notice">The transaction may be a payment transaction or an account transfer. All arguments are optional.</aside>
