@@ -20,7 +20,7 @@ search: true
 
 ---
 
-# eDNA 1.19 API Reference Preview
+# eDNA 1.19 API Preview
 
 #### Welcome Note
 
