@@ -20,9 +20,9 @@ search: true
 
 ---
 
-# eDNA API Reference
+# eDNA 1.19 API Reference Preview
 
-#### 1.19 API Preview
+#### Welcome Note
 
 Hello and welcome to our IdentityMind Release 1.19 API reference preview! While everything is mostly set, please keep in mind that certain aspects may be subject to change. That being said, we do not expect our API to undergo any major changes before the official 1.19 rollout.
 
