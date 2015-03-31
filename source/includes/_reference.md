@@ -136,6 +136,202 @@ Code | Meaning
 50010 |	Good History of Account and Destination Payment
 50011 |	Recent History of Account and Destination Payment
 
+## Security Test IDs
+
+Test ID | Security Test Name
+-------|-----------------	
+19:1|	Experian ProveID
+19:2|	Experian ProveID: Name and Address Match
+19:3|	Experian ProveID: High Risk Address Check
+19:4|	Experian ProveID: Deceased
+19:5|	Experian ProveID: OFAC
+19:6|	Experian ProveID: Unsupported Country
+19:7|	Experian ProveID: Previous Address Match
+19:8|	Experian ProveID: Last Name and Address Match
+19:9|	Experian ProveID: Date of Birth Match
+19:10|	Experian ProveID: Alert
+iq:1|	IDAnalytics CertainID: Out of Wallet Questions
+iq:2|	IDAnalytics CertainID: Unsupported Country
+ia:1|	IDAnalytics IDScore
+ia:2|	IDAnalytics IDscore: IDScore
+ia:3|	IDAnalytics IDScore: OFAC Check
+ia:4|	IDAnalytics IDScore: Higher Risk
+ia:5|	IDAnalytics IDScore: Inactive Credit
+ia:6|	IDAnalytics IDScore: Unsupported Country
+id:0|	Idology ExpectID
+id:1|	Idology ExpectID: Public Records Match
+id:2|	Idology ExpectID: SSN Valid
+id:3|	Idology ExpectID: SSN Match
+id:4|	Idology ExpectID: Date of Birth Match
+id:5|	Idology ExpectID: Phone Match
+id:6|	Idology ExpectID: Address Match
+id:7|	Idology ExpectID: Warm Address
+id:8|	Idology ExpectID: Hot Address
+id:9|	Idology ExpectID: Deceased
+id:10|	IDology ExpectID: Unsupported Country
+of:1|	IDology ExpectID PA
+of:2|	IDology ExpectID PA: OFAC Check
+nv:0|   Jumio NetVerify
+nv:1|	Jumio NetVerify: Document Validity
+nv:2|	Jumio NetVerify: Document Identity Match
+nv:3|	Jumio NetVerify: Face Match
+nv:4|	Jumio NetVerify: First Name
+nv:5|	Jumio NetVerify: Last Name
+nv:6|	Jumio NetVerify: Address
+nv:7|	Jumio NetVerify: Date of Birth
+nv:8|	Jumio NetVerify: ID Expiration
+nv:9|	Jumio NetVerify: DoB Match
+nv:10|	Jumio NetVerify: State Match
+nv:11|	Jumio NetVerify: Multi Document
+nv:12|	Jumio NetVerify: Scan ID
+nv:13|	Jumio NetVerify: Unsupported Country
+cq:1|	NeuStar/TargusInfo CQR: Valid Phone
+cq:2|	NeuStar/TargusInfo CQR
+cq:3|	NeuStar/TargusInfo CQR: Unsupported Country
+ev:1|	NeuStar/TargusInfo Email: Unsupported Country
+ev:3|	Neustar/TargusInfo Email Confidence
+po:1|	Phone Ownership: Correct Code Provided
+ra:0|	RapLeaf 
+ra:1|	RapLeaf: Email History
+ra:2|	RapLeaf: Email First Seen
+ra:3|	RapLeaf: Unsupported Country
+ss:0|	Sanctions Screening
+ss:1|	Sanctions Screening: Sanction Match
+ss:2|	Sanctions Screening: Sanction List
+ss:3|	Sanctions Screening: Sanction Entry Update
+ss:4|   Sanctions Screening: IP From Crimea
+ts:1|	Telesign PhoneID: Telesign
+ts:2|	Telesign PhoneID: Telephone Number Safe
+ts:3|	Telesign PhoneID: Telephone Country
+ts:4|	Telesign PhoneID: Telephone City
+ts:5|	Telesign PhoneID: Telephone Carrier
+ts:6|	Telesign PhoneID: Telephone Contact
+av:1|   IDM Bank Account Validation: Deposit Amount
+ed:0|	Account Policy Evaluation
+ed:1|	Blacklist
+ed:2|	Watchlist
+ed:3|	Chargeback Count
+ed:4|	Payment Reputation
+ed:5|	Payment Instrument Application Count
+ed:6|	Payment User Account Count
+ed:7|	Payment Device Count
+ed:8|	Payment Shipping Address Count
+ed:9|	Payment Billing Address Count
+ed:10|	Payment First Seen
+ed:11|	Device Reputation
+ed:12|	Device Failed Validation
+ed:13|	Device Merchant Application Count
+ed:14|	Device Payment Count
+ed:15|	Device User Account Count
+ed:16|	Device Shipping Address Count
+ed:17|	Device Billing Address Count
+ed:18|	Device First Seen
+ed:19|	User Account Reputation
+ed:20|	Account Failed Validation
+ed:21|	User Account Application Count
+ed:22|	User Account Payment Count
+ed:23|	User Account Device Count
+ed:24|	User Account Shipping Address Count
+ed:25|	User Account Billing Address Count
+ed:26|	User Account Age
+ed:27|	Billing Address Reputation
+ed:28|	Billing country on acceptable list
+ed:29|	Email First Seen
+ed:30|	User Validated
+ed:31|	Billing state on acceptable list
+ed:32|  Element of Transaction on Provider Blacklist
+ed:33|  Element of Transaction on Provider Watchlist
+ed:34|  Transaction Declined By Bank
+ed:35|  Duplicate Transaction
+ed:36|  Shipping Country Blacklist
+ed:37|  Billing Country Blacklist
+ed:38|  IP Country Blacklist
+ed:39|  Shipping Country Watchlist
+ed:40|  Source Payment Type
+ed:41|  Destination Payment Type
+ed:42|  Transaction Amount
+ed:43|  Shipping Address Reputation
+ed:44|  Destination Payment Reputation
+ed:45|  Destination Account Reputation
+ed:46|  Shipping Country on Acceptable List
+ed:47|  Billing and Shipping Country Match
+ed:48|  Account Has Completed KYC
+ed:49|  Disposable Email Address
+ed:50|  Card Type
+ed:51|  Bad First Degree Relation
+ed:52|  Billing and Shipping Address Match
+ed:53|  Billing and Card Issuer Country Match
+ed:54|  IP and Card Issuer Country Match
+ed:55|  Issuer Country Count
+ed:56|  Card Issuer Country on Blacklist
+ed:57|  IP to Billing Address Distance
+ed:58|  IP to Shipping Address Distance
+ed:59|  Multiple Accounts for User
+ed:60|  Previous Rejected Transaction for User
+ed:61|  IP Country Watchlist
+ed:62|  CVV Mismatch
+ed:63|  AVS Mismatch
+ed:64|  AVS Mismatch for a Domestic Issuer
+ed:65|  Credit Count
+ed:66|  Transaction Time
+ed:67|  Corporate Payment Instrument
+ed:68|  Subscription Request
+ed:69|  Verified PayPal Account
+ed:70|  Confirmed PayPal Address
+ed:73|  PayPal Count for User
+ed:74|  Card Count for Device
+ed:75|  Card Count for User
+ed:76|  Multiple Non-Prepaid Card for Device
+ed:77|  Multiple Non-Prepaid for User
+ed:78|  Multiple Shipping Addresses for User
+ed:79|  Multiple Shipping Addresses for Device
+ed:80|  Multiple Shipping Address for Payment
+ed:81|  Multiple Payment Instruments for Shipping Address
+ed:82|  Unvalidated User
+ed:83|  IP Country Not Acceptable
+ed:84|  Billing BIN Match
+ed:500|  1 Hour Source Transaction Velocity
+ed:501|  1 Hour Destination Transaction Velocity
+ed:502|  1 Hour IP Transaction Velocity
+ed:503|  1 Hour Account Creation Velocity
+ed:504|  1 Hour IP Account creation Velocity
+ed:505|  24 Hour Source Transaction Velocity
+ed:506|  24 Hour Destination Transaction Velocity
+ed:507|  24 Hour IP Transaction Velocity
+ed:508|  24 Hour Account Creation Velocity
+ed:509|  24 Hour IP Account Creation Velocity
+ed:510|  28 Day Source Transaction Velocity
+ed:511|  28 Day Destination Transaction Velocity
+ed:512|  28 Day IP Transaction Velocity
+ed:513|  28 Day Account Creation Velocity
+ed:514|  28 Day IP Account Creation Velocity
+tc:0|	TIN Verification
+tc:1|	TIN Verification: TIN and Name Match
+tc:2|	TIN Verification: Possible Death Master File Match Found
+tc:3|	TIN Verification: EIN and Name Match
+tc:4|	TIN Verification: Lists Match
+tc:5|	TIN Verification: Unsupported Country
+tc:6|	TIN Verification: Address Match
+mh:0|	MATCH 
+mh:1|	MATCH: Terminated Merchant
+mh:2|	MATCH: Terminated Merchant for Fraudulent Reason
+ep:1|	Experian BIS
+au:0|   Augur: Using Tor Browser
+bc:0|	BlueCava 
+bc:1|	BlueCava: Using Anonymous Proxy
+bc:2|	BlueCava: Has Used Anonymous Proxy
+bc:3|	BlueCava: Using Proxy
+mm:0|	MaxMind Minfraud
+mm:1|	MaxMind MinFraud: IP Bad Proxy
+mm:2|	MaxMind MinFraud: IP Proxy
+mm:3|	MaxMind MinFraud: IP Risk Score
+mm:4|	MaxMind MinFraud: IP Country Code
+mm:5|	MaxMind MinFraud: IP ISP
+mm:6|	MaxMind MinFraud: IP City
+mm:7|	MaxMind MinFraud: IP Region / State Match
+mm:8|   MaxMind MinFraud: IP Region / Country Banned
+mm:10|  Maxmind MinFraud: Using Anonymous Proxy
+
 ## Quiz Response Encoding
 ```code
 QUIZ RESPONSE ENCODING EXAMPLES
