@@ -152,12 +152,90 @@ collection = beyonic.Collection.list(phonenumber='+256772712893',
 ]
 ```
 
-You can search for a specific payment by passing two parameters to the list() method. Both parameters are required
+You can search for a specific payment by passing two parameters to the list() method. Both parameters are required.
 
 Parameter | Required | Type | Example | Notes
 --------- | -------- | ---- | ------- | -----
 phonenumber | Yes | String | +25677271289 | The phone number that sent the payment you are searching for
-remote_transaction_id | Yes | String | SS12312 | The transaction id that the subscriber received from the telecom company when they made that payment
+remote_transaction_id | Yes | String | SS12312 | The transaction id that the subscriber received from the telecom company when they made that payment.
+
+**Response**
+
+Note that the response will be a list of collections, not a single collection.
+
+### Claiming an ummatched collection
+
+> Claim a collection:
+
+```shell
+curl https://app.beyonic.com/api/collections?phonenumber=+256772712893&remote_transaction_id=SS12312&claim=True&amount=200 -H "Authorization: Token my-authorization-token"
+```
+
+```ruby
+require 'beyonic'
+Beyonic.api_key = 'my-api-key'
+
+collection = Beyonic::Collection.list(
+  phonenumber: "+256772712893",
+  remote_transaction_id: "SS12312",
+  claim: true,
+  amount: 200
+)
+```
+
+```php
+<?php
+require_once('./lib/Beyonic.php');
+Beyonic::setApiVersion("v1");
+
+$collection = Beyonic_Collection::getAll(
+  "phonenumber" => "+256772712893",
+  "remote_transaction_id" => "SS12312",
+  "claim" => "True",
+  "amount" => "200",
+));
+?>
+```
+
+```python
+import beyonic
+beyonic.api_version = 'v1'
+
+collection = beyonic.Collection.list(phonenumber='+256772712893',
+                                     remote_transaction_id='SS12312',
+                                     claim=True,
+                                     amount='200')
+
+
+```
+
+> Response Object From Search
+
+```json
+[
+       {
+        "id": 134,
+        "phonenumber": "+256XXXXXX",
+        "remote_transaction_id": "ASDCECASF",
+        "payment_date": "2014-11-22T20:57:04Z",
+        "reference": "Test Payment",
+        "amount": 3000.000,
+        "currency": "UGX",
+        "status": "successful"
+       }
+]
+```
+
+By default, when you search for a collection, only collections that have been successfully assigned to your organization are searched. 
+
+You can add two more parameters to instruct Beyonic to also search unmatched collections, and if any of the unmatched collections match your input, they will be assigned to your organization. 
+
+Note that these parameters are **in addition** to the ones used when searching for a collection. These two additional parameters are included below:
+
+Parameter | Required | Type | Example | Notes
+----------| -------- | ---- | ------- | -----
+claim | Yes | Boolean or String | True | Instruct system to search unmatched transctions and claim them for your organization.
+amount | Yes | String, Integer or Decimal | 3000 | Do not include thousands separators. This must be included if the "claim" parameter is used. The currency is inferred from the phone number
 
 **Response**
 

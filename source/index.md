@@ -19,6 +19,7 @@ includes:
   - methods
   - methods/payments
   - methods/collections
+  - methods/collection_requests
   - methods/webhooks
 
 search: true
