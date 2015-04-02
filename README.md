@@ -40,5 +40,4 @@ Now that the initial setup, you'll probably want to learn more about [editing Sl
 Need Help? Found a bug?
 --------------------
 
-Just [submit an issue](https://github.com/Chartboost/api-docs/issues) to this repo if you need any help. And, of course, feel free to submit pull requests with bug fixes or changes.ages)
-- [Font Awesome](http://fortawesome.github.io/Font-Awesome/)
+Just [submit an issue](https://github.com/Chartboost/api-docs/issues) to this repo if you need any help. And, of course, feel free to submit pull requests with bug fixes or changes.
