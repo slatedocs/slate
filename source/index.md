@@ -7,8 +7,8 @@ language_tabs:
   - python
 
 toc_footers:
-  - <a href='#'>Sign Up for a Chartboost Account</a>
-  - <a href='#'>Visit the Chartboost Help Site</a>
+  - <a href='https://chartboost.com/signup'>Sign Up for a Chartboost Account</a>
+  - <a href='https://help.chartboost.com'>Visit the Chartboost Help Site</a>
 
 includes:
   - intro

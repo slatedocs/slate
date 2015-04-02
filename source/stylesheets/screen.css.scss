@@ -66,6 +66,12 @@ html, body {
   );
 }
 
+.logo > img {
+  display: block;
+  margin: 0 auto;
+  padding: 20px 0;
+}
+
 .tocify-wrapper {
   @include transition(left ease-in-out 0.3s);
   overflow-y: auto;
