@@ -101,7 +101,7 @@ This endpoint will receive app installs from an attribution network. Installs wi
 
 ### Authentication
 
-You will need an API token and secret to authenticate with this service. This service is currently only available for attribution networks. Please email [support](mailto:support@chartboost.com) if you are an attribution network seeking access to this service.
+You will need an API token and secret to authenticate with this service. This service is currently only available for attribution networks. Please [contact Support](https://answers.chartboost.com/hc/en-us/requests/new) if you are an attribution network seeking access to this service.
 
 To authenticate with this endpoint, you must generate a signature on each request. A string with the following template must be made, and the signature is created by taking the SHA-256 hash of the string. Note that anything contained within double curly brackets is a variable that is meant to be filled in.
 
@@ -113,7 +113,7 @@ For an example of the signature hashing, refer to the code example.
 
 ### Headers
 
-Each request must contain the following headers.
+Each request must contain the following headers:
 
 Header                 | Value
 ----                   | -----
@@ -124,17 +124,17 @@ X-Chartboost-Signature | `{{computed signature}}`
 
 ### Request Parameters
 
-Each request must use these parameters.
+Each request must use these parameters:
 
 Name          | Required | Type   | Description
 ----          | -------- | ----   | -----------
-app_id        | true     | string | Chartboost App ID
+app_id        | true     | string | Chartboost app ID
 claim         | true     | int    | 1 if Chartboost can claim the install, 0 otherwise
 gaid          | true*    | string | Google advertising identifier
-ifa           | true*    | string | Apple advertising identifier
+ifa           | true*    | string | Apple identifier for advertising
 uuid          | true*    | string | `UDID` (if iOS), `android_id` (if Android)
 organic       | false    | int    | 1 if organic install, 0 if attributed to a network
-attributed_to | false    | string | Network name that received the attribution
+attributed_to | false    | string | Name of network that received the attribution
 timestamp     | false    | int    | UNIX timestamp in seconds
 
 <aside class="notice">
@@ -142,5 +142,5 @@ timestamp     | false    | int    | UNIX timestamp in seconds
 </aside>
 
 <aside class="notice">
-The HTTP status code of the response from this endpoint will always be 200. Check the "status" key on the JSON response for the real status code.
+This endpoint's response will always be an HTTP 200 status code. Check the "status" key on the JSON response for the real status code.
 </aside>

@@ -1,4 +1,4 @@
-# Post Install Events
+# Post-Install Events
 
 ## Purchase events
 
@@ -112,7 +112,7 @@ curl 'https://live.chartboost.com/event_service/v2/iap' \
 }
 ```
 
-This endpoint receives purchase events from a particular app. The purchase events can contain receipt, pricing, and other information surrounding the purchase. The purchase events will be processed, stored, and utilized in app analytics.
+This endpoint receives purchase events from a particular app. The purchase events can contain receipt, pricing, and other information about the purchase. The purchase events will be processed, stored, and utilized in app analytics.
 
 ### HTTP Request
 
@@ -142,12 +142,12 @@ X-Chartboost-Signature | `{{computed signature}}`
 
 Name          | Required | Type   | Description
 ----          | -------- | ----   | -----------
-token         | true     | string | Post install analytics token belonging to app
-platform      | true     | string | Name of the app platform (eg. "iOS")
+token         | true     | string | Post-install analytics token belonging to app
+platform      | true     | string | Name of the app's platform (e.g. "iOS")
 identifiers   | true     | object | See identifiers parameters below
-iap           | true     | object | See in app purchase parameters below
+iap           | true     | object | See in-app purchase parameters below
 timestamp     | true     | int    | UNIX timestamp in seconds
-party         | false    | string | Name of the networking sending the request
+party         | false    | string | Name of the network sending the request
 receipt_valid | false    | bool   | Whether or not the receipt has been validated
 
 #### Identifiers
@@ -157,7 +157,7 @@ One of the following is required in the identifiers parameter.
 Name          | Required | Type   | Description
 ----          | -------- | ----   | -----------
 gaid          | false    | string | Google advertising identifier
-ifa           | false    | string | Apple advertising identifier
+ifa           | false    | string | Apple identifier for advertising
 uuid          | false    | string | `UDID` (if iOS), `android_id` (if Android)
 
 #### IAP
@@ -173,5 +173,5 @@ receipt                 | false    | string | The receipt string from the purcha
 
 
 <aside class="success">
-Remember - Each app has a unique token.
+Remember &ndash; each app has a unique token.
 </aside>
