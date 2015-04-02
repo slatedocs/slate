@@ -17,7 +17,7 @@ You're going to need:
 
 ### Getting Set Up
 
- 1. Clone this repository.`
+ 1. Clone this repository.
  2. `cd api-docs`
  3. Install all dependencies: `bundle install`
  4. Start the test server: `bundle exec middleman server`
