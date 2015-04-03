@@ -9,6 +9,7 @@ language_tabs:
 toc_footers:
   - <a href='https://chartboost.com/signup'>Sign Up for a Chartboost Account</a>
   - <a href='https://help.chartboost.com'>Visit the Chartboost Help Site</a>
+  - <span class="copyright">Chartboost 2015</span>
 
 includes:
   - intro

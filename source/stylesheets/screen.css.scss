@@ -66,10 +66,20 @@ html, body {
   );
 }
 
-.logo > img {
+.logo img {
   display: block;
   margin: 0 auto;
-  padding: 20px 0;
+  width: 80%;
+}
+
+.copyright::before {
+  content: '© ';
+}
+
+.copyright {
+  position: absolute;
+  bottom: 10px;
+  color: #939393;
 }
 
 .tocify-wrapper {
