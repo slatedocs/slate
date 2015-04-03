@@ -4,7 +4,7 @@ Welcome to the Chartboost API Docs! You can use these docs to help you access al
 
 We provide code examples where appropriate in Shell (cURL), Python, and PHP. You can view these code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs on the top right.
 
-We are in the process of creating clients for Python and PHP that will aim to remove the heavy lifting in integrating with our endpoints. In the meantime, we hope this documentation serves as a sufficient guide to integrating with our system.
+We are currently in the process of creating clients for Python and PHP that will aim to remove the heavy lifting in integrating with our endpoints. In the meantime, we hope this documentation serves as a sufficient guide to integrating with our system.
 
 
 ## How To Read These Docs
