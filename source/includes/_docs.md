@@ -381,7 +381,7 @@ jobs<span class="attribute-type">list</span> | A list of one or more [job object
 
 ```shell
 curl "https://api.kite.ly/v1.3/print/" \
-  -H "Authorization: ApiKey {{ test_api_key }}:{{ test_secret_key }}" \
+  -H "Authorization: ApiKey {{ test_api_key }}:<your_secret_key>" \
   --data '{
     "shipping_address": {
       "recipient_name": "Deon Botha",
@@ -403,6 +403,8 @@ curl "https://api.kite.ly/v1.3/print/" \
     }]
   }'
 ```
+
+> Replace `<your_secret_key>` with the one found in the [credentials](https://www.kite.ly/accounts/credentials) section of the dashboard.<br /><br />
 
 > Example Response
 
