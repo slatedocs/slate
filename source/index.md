@@ -146,7 +146,7 @@ Where possible an error response will include an `error` object that provides fu
 > Example Request
 
 ```shell
-curl "https://api.kite.ly/v1.3/order/?offset=5&limit=5" \
+curl "https://api.kite.ly/v1.3/order/?offset=30&limit=5" \
   -H "Authorization: ApiKey ba171b0d91b1418fbd04f7b12af1e37e42d2cb1e:a11253bb338de3d95dbb4febd4e1ccf11a7f5580"
 ```
 
@@ -155,9 +155,9 @@ curl "https://api.kite.ly/v1.3/order/?offset=5&limit=5" \
 ```shell 
 {
   "meta": {
-    "limit": 50,
+    "limit": 5,
 	"next": null,
-	"offset": 0,
+	"offset": 30,
 	"previous": null,
 	"total_count": 33
   },

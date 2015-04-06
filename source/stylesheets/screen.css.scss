@@ -137,8 +137,8 @@ html, body {
 
 
   .tocify-item>a, .toc-footer li {
-    padding: 0px $nav-padding 0px $nav-padding;
-    margin: 10px 0px 10px 0px;
+    padding: 5px $nav-padding 0px $nav-padding;
+    //margin: 10px 0px 10px 0px;
     display: block;
     overflow-x: hidden;
     white-space: nowrap;
@@ -460,7 +460,7 @@ html, body {
     }
 
     tr:last-child {
-      border-bottom: 1px solid #f0f4f7;
+      border-bottom: 1px solid #292E31;
     }
 
     tr:nth-child(odd)>td {
