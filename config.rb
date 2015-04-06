@@ -1,10 +1,10 @@
-set :css_dir, 'stylesheets'
+set :css_dir, 'static/docs_new/stylesheets'
 
-set :js_dir, 'javascripts'
+set :js_dir, 'static/docs_new/javascripts'
 
-set :images_dir, 'images'
+set :images_dir, 'static/docs_new/images'
 
-set :fonts_dir, 'fonts'
+set :fonts_dir, 'static/docs_new/fonts'
 
 set :markdown_engine, :redcarpet
 
