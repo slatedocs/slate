@@ -623,6 +623,10 @@ EXAMPLE SERVICE RESPONSE DATA
 			<td>The ID of the security test or the key of the transaction data to which the condition applied</td>
 		</tr>
 		<tr>
+			<td>waitingForData<br><font color=#446CB3>boolean</font><br><font color=#BDC3C7><i>optional</i></font></td>
+			<td>Indicates that the result is waiting for an asynchronous response from the customer and/or third party service.</td>
+		</tr>
+		<tr>
 			<td>details<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
 			<td>Textual result of the condition</td>
 		</tr>
