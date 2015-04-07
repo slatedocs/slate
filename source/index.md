@@ -62,6 +62,7 @@ You must replace `YOUR-ACCESS-TOKEN` with your API key.
 
 ```json
 {
+  "status": "AVAILABLE",
   "listing_id": "f76ae9ceb01cf2904fe2",
   "mojo_id": "11079728",
   "mojo_url": "https://www.mojopages.com/biz/instant-phones-phoenix-az/11079728",
@@ -78,7 +79,6 @@ You must replace `YOUR-ACCESS-TOKEN` with your API key.
   "twitter_id": "cricketnation",
   "google_plus_id": NULL,
   "instagram_id": "cricketnation",
-  "status": "AVAILABLE",
   "mapped": false,
   "claimed": false,
   "omit_address": false,
@@ -102,11 +102,21 @@ You must replace `YOUR-ACCESS-TOKEN` with your API key.
 
 Business listings are made up of different pieces of data. These are the excepted base record data for a business. These should be sent in the JSON payload. These are all optional except where requests require a particular parameter. You may also add in any data that is not included specifically here, label the data type appropriatly, we will accept any data you would like to send.
 
+### Status Types
+
+Status Type | Description
+--------- | -----------
+AVAILABLE | This listing is not currently a claimed listing, it may be successfully claimed by you.
+ACTIVE | This listing is fully activated and live on MojoPages.com.
+SUPPRESSED | The listing is suppressed, which means it should not appear in our search results or have a detail page.
+BLOCKED | The listing has an existing relationship with another partner and may not be controlled by you.
+
 ### Data Types
 
 Data Type | Description
 --------- | -----------
-listing_id |  Your unique identifier for the listing, used for adding or deleting a record
+status | Contains either AVAILABLE, ACTIVE, SUPPRESSED or BLOCKED status
+listing_id | Your unique identifier for the listing, used for adding or deleting a record
 mojo_id | Claims a Business based on mojo_id, will automap or create new listing when not included
 mojo_url | URL for MojoPages listing
 name | Name of the business
@@ -125,7 +135,6 @@ facebook_id | The Facebook ID or the name of the page for the business
 twitter_id | Twitter username for the business, without the @ symbol
 google_plus_id | The Google Plus ID or the name used for the page of the business
 instagram_id | The Instgram ID or the username for the business listing
-status | Statuses of SUPPRESSED, CLAIMED or AVAILABLE can be given for listing
 mapped | True or False on whether or not the partner listing is mapped
 claimed | True or False on whether or not the partner has claimed a listing
 omit_address | Boolean for omitting the address from the listing (default: false)

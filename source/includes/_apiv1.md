@@ -19,7 +19,8 @@ curl "https://api.mojopages.com/api/v1/status"
   "api_status": "published",
   "partner": "Company Name",
   "total_listings": 12000,
-  "mapped_listings": 600
+  "mapped_listings": 600,
+  "claimed_listings": 600
 }
 ```
 
@@ -44,7 +45,7 @@ api_status | Tells you development status of api from alpha to beta to finally p
 partner | Your Partner company name
 total_listings | Total number of listings we or you have imported through our Partner endpoints
 mapped_listings | Total number of your listings that we've mapped to ours
-
+claimed_listings | Total number of our listings that you have claimed
 
 
 
@@ -66,6 +67,7 @@ curl "https://api.mojopages.com/api/v1/partner/listings"
   },
   "listings": [
     {
+      "status": "ACTIVE",
       "listing_id": "f76ae9ceb01cf2904fe2",
       "mojo_id": "11079728",
       "mojo_url": "https://www.mojopages.com/biz/instant-phones-phoenix-az/11079728",
@@ -117,6 +119,13 @@ Parameter | Required | Description
 --------- | ------- | -----------
 access_token | true | Access token used to authenticate
 
+Status Type | Description
+--------- | -----------
+AVAILABLE | This listing is not currently a claimed listing, it may be successfully claimed by you.
+ACTIVE | This listing is fully activated and live on MojoPages.com.
+SUPPRESSED | The listing is suppressed, which means it should not appear in our search results or have a detail page.
+BLOCKED | The listing has an existing relationship with another partner and may not be controlled by you.
+
 
 
 
@@ -132,8 +141,8 @@ curl "https://api.mojopages.com/api/v1/partner/listings/csv"
 > The above command returns CSV structured like this:
 
 ```csv
-listing_id, mojo_id, mojo_url, name, address, locality, region, postcode, tel, website, longitude, latitude, facebook_id, twitter_id, google_plus_id, instagram_id, mapped, claimed, omit_address, updated_at
-f76ae9ceb01cf2904fe2, 11079728, https://www.mojopages.com/biz/instant-phones-phoenix-az/11079728, Instant Phones, 2415 E Thomas Rd, Pheonix, AZ, 85016, (602) 224-9582, http://www.mycricket.com/, -112.10158,33.643668, 111664078919577, cricketnation, , cricketnation, false, false, false, 2014-11-27T11:35:27.364Z
+status, listing_id, mojo_id, mojo_url, name, address, locality, region, postcode, tel, website, longitude, latitude, facebook_id, twitter_id, google_plus_id, instagram_id, mapped, claimed, omit_address, updated_at
+ACTIVE, f76ae9ceb01cf2904fe2, 11079728, https://www.mojopages.com/biz/instant-phones-phoenix-az/11079728, Instant Phones, 2415 E Thomas Rd, Pheonix, AZ, 85016, (602) 224-9582, http://www.mycricket.com/, -112.10158,33.643668, 111664078919577, cricketnation, , cricketnation, false, false, false, 2014-11-27T11:35:27.364Z
 ```
 
 This endpoint retrieves all your existing business listings.
@@ -148,6 +157,12 @@ Parameter | Required | Description
 --------- | ------- | -----------
 access_token | true | Access token used to authenticate
 
+Status Type | Description
+--------- | -----------
+AVAILABLE | This listing is not currently a claimed listing, it may be successfully claimed by you.
+ACTIVE | This listing is fully activated and live on MojoPages.com.
+SUPPRESSED | The listing is suppressed, which means it should not appear in our search results or have a detail page.
+BLOCKED | The listing has an existing relationship with another partner and may not be controlled by you.
 
 
 
@@ -170,6 +185,7 @@ curl "https://api.mojopages.com/api/v1/partner/listing/7d373c1da40cbfc3f165"
     "status": 200
   },
   "listing": {
+    "status": "ACTIVE",
     "listing_id": "f76ae9ceb01cf2904fe2",
     "mojo_id": "11079728",
     "mojo_url": "https://www.mojopages.com/biz/instant-phones-phoenix-az/11079728",
@@ -224,7 +240,14 @@ access_token | true | Access token used to authenticate
 You must replace `:LISTING_ID` with your business listing id.
 </aside>
 
+### Status Types
 
+Status Type | Description
+--------- | -----------
+AVAILABLE | This listing is not currently a claimed listing, it may be successfully claimed by you.
+ACTIVE | This listing is fully activated and live on MojoPages.com.
+SUPPRESSED | The listing is suppressed, which means it should not appear in our search results or have a detail page.
+BLOCKED | The listing has an existing relationship with another partner and may not be controlled by you.
 
 
 ## Post a New Partner Listing
@@ -247,6 +270,7 @@ curl "https://api.mojopages.com/api/v1/partner/listing/7d373c1da40cbfc3f165"
     "status": 200
   },
   "listing": {
+    "status": "LIVE",
     "listing_id": "7d373c1da40cbfc3f165",
     "mojo_id": "201702",
     "mojo_url": "https://www.mojopages.com/biz/piety-hill-cottages-phoenix-az/201702",
@@ -301,6 +325,14 @@ access_token | true | Access token used to authenticate
 You must replace `:LISTING_ID` with your business listings id.
 </aside>
 
+### Status Types
+
+Status Type | Description
+--------- | -----------
+LIVE | The Listing added or mapped is fully activated and live on MojoPages.com.
+REJECTED | The Listing did not pass our validation and description of the issue will be stated.
+BLOCKED | You cannot create the Listing and description of the issue will be stated.
+
 ### Available JSON Listing Values
 
 Listing Value | required | Description
@@ -347,6 +379,7 @@ curl "https://api.mojopages.com/api/v1/partner/listing/7d373c1da40cbfc3f165"
     "status": 200
   },
   "listing": {
+    "status": "LIVE",
     "listing_id": "7d373c1da40cbfc3f165",
     "mojo_id": "201702",
     "mojo_url": "https://www.mojopages.com/biz/piety-hill-cottages-phoenix-az/201702",
@@ -400,6 +433,14 @@ access_token | true | Access token used to authenticate
 <aside class="notice">
 You must replace `:LISTING_ID` with your business listings id.
 </aside>
+
+### Status Types
+
+Status Type | Description
+--------- | -----------
+LIVE | The Listing added or mapped is fully activated and live on MojoPages.com.
+REJECTED | The Listing did not pass our validation and description of the issue will be stated.
+BLOCKED | You cannot create the Listing and description of the issue will be stated.
 
 ### Available JSON Listing Values
 
@@ -563,6 +604,7 @@ curl "https://api.mojopages.com/api/v1/listings/search?name=Instant+Phones&local
   },
   "listings": [
     {
+      "status": "AVAILABLE",
       "mojo_id": "11079728",
       "mojo_url": "https://www.mojopages.com/biz/instant-phones-phoenix-az/11079728",
       "name": "Instant Phones",
@@ -618,6 +660,14 @@ website | false | URL for the business, include http://
 longitude | false | Longitude of the business location
 latitude | false | Latitude of the business location
 
+Status Type | Description
+--------- | -----------
+AVAILABLE | This listing is not currently a claimed listing, it may be successfully claimed by you.
+ACTIVE | This listing is fully activated and live on MojoPages.com.
+SUPPRESSED | The listing is suppressed, which means it should not appear in our search results or have a detail page.
+BLOCKED | The listing has an existing relationship with another partner and may not be controlled by you.
+
+
 
 
 ## Get a Listing
@@ -637,6 +687,7 @@ curl "https://api.mojopages.com/api/v1/listing/11079728"
     "status": 200
   },
   "listing": {
+    "status": "AVAILABLE",
     "mojo_id": "11079728",
     "mojo_url": "https://www.mojopages.com/biz/instant-phones-phoenix-az/11079728",
     "name": "Instant Phones",
@@ -688,6 +739,15 @@ access_token | true | Access token used to authenticate
 <aside class="notice">
 You must replace `:MOJO_ID` with your business listing id.
 </aside>
+
+Status Type | Description
+--------- | -----------
+AVAILABLE | This listing is not currently a claimed listing, it may be successfully claimed by you.
+ACTIVE | This listing is fully activated and live on MojoPages.com.
+SUPPRESSED | The listing is suppressed, which means it should not appear in our search results or have a detail page.
+BLOCKED | The listing has an existing relationship with another partner and may not be controlled by you.
+
+
 
 
 
