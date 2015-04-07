@@ -420,7 +420,7 @@ assets<span class="attribute-type">list</span> | A list of image URLs accessible
 	"postcode": "W1W 8DH",
 	"country_code": "GBR"
   },
-  "customer_email": "deon@kite.ly",
+  "customer_email": "{{ user_email }}",
   "customer_phone": "+44 (0)784297 1234",
   "user_data": {
   	"foo": "bar",
@@ -445,7 +445,7 @@ proof_of_payment<span class="attribute-type">string</span> | The proof of paymen
 shipping_address<span class="attribute-type">[address object](#the-address-object)</span> | The address to which the order will be delivered
 customer_email<span class="attribute-type">string</span> | The customer's email address. Automated order status update emails (you can brand these) can optionally be sent to this address i.e. order confirmation email, order dispatched email, etc. You can configure these in the Kite dashboard
 customer_phone<span class="attribute-type">string</span> | The customer's phone number. Certain postage companies require this to be provided e.g. FedEx
-user_data<span class="attribute-type">dictionary</span> | A dictionary containing any application or user specific meta data that you attached to the order. This is all you...
+user_data<span class="attribute-type">dictionary</span> | A dictionary containing any application or user specific meta data that you attached to the order.
 jobs<span class="attribute-type">list</span> | A list of one or more [job objects](#the-job-object) to be created and delivered to `shipping_address`
 
 ## Ordering a product
@@ -465,7 +465,7 @@ curl "https://api.kite.ly/v1.3/print/" \
 	  "postcode": "W1W 8DH",
 	  "country_code": "GBR"
     },
-    "customer_email": "deon@kite.ly",
+    "customer_email": "{{ user_email }}",
     "customer_phone": "+44 (0)784297 1234",
     "jobs": [{
       "assets": ["http://psps.s3.amazonaws.com/sdk_static/1.jpg"],
