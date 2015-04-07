@@ -61,30 +61,29 @@ You must replace `YOUR-ACCESS-TOKEN` with your API key.
 > Sample JSON Payload:
 
 ```json
-[
-  {
-    "listing_id": "f76ae9ceb01cf2904fe2",
-    "mojo_id": "11079728",
-    "mojo_url": "https://www.mojopages.com/biz/instant-phones-phoenix-az/11079728",
-    "name": "Instant Phones",
-    "address": "2415 E Thomas Rd",
-    "locality": "Pheonix",
-    "region": "AZ",
-    "postcode": "85016",
-    "tel": "(602) 224-9582",
-    "website": "http://www.mycricket.com/",
-    "longitude": "-112.10158",
-    "latitude": "33.643668",
-    "facebook_id": "111664078919577",
-    "twitter_id": "cricketnation",
-    "google_plus_id": NULL,
-    "instagram_id": "cricketnation",
-    "status": "AVAILABLE",
-    "mapped": false,
-    "claimed": false,
-    "omit_address": false,
-    "hours": {
-      "sunday": [
+{
+  "listing_id": "f76ae9ceb01cf2904fe2",
+  "mojo_id": "11079728",
+  "mojo_url": "https://www.mojopages.com/biz/instant-phones-phoenix-az/11079728",
+  "name": "Instant Phones",
+  "address": "2415 E Thomas Rd",
+  "locality": "Pheonix",
+  "region": "AZ",
+  "postcode": "85016",
+  "tel": "(602) 224-9582",
+  "website": "http://www.mycricket.com/",
+  "longitude": "-112.10158",
+  "latitude": "33.643668",
+  "facebook_id": "111664078919577",
+  "twitter_id": "cricketnation",
+  "google_plus_id": NULL,
+  "instagram_id": "cricketnation",
+  "status": "AVAILABLE",
+  "mapped": false,
+  "claimed": false,
+  "omit_address": false,
+  "hours": {
+    "sunday": [
         [
           "closed"
         ]
@@ -96,9 +95,8 @@ You must replace `YOUR-ACCESS-TOKEN` with your API key.
         ]
       ]
     },
-    "updated_at": "2014-11-27T11:35:27.364Z"
-  }
-]
+  "updated_at": "2014-11-27T11:35:27.364Z"
+}
 
 ```
 
@@ -109,7 +107,7 @@ Business listings are made up of different pieces of data. These are the excepte
 Data Type | Description
 --------- | -----------
 listing_id |  Your unique identifier for the listing, used for adding or deleting a record
-mojo_id | false | Associated MojoPages ID for listing will map automatically if you include it
+mojo_id | Claims a Business based on mojo_id, will automap or create new listing when not included
 mojo_url | URL for MojoPages listing
 name | Name of the business
 address | Address of the business
@@ -138,21 +136,9 @@ updated_at | When the listing was last updated
 
 There are many ways and uses for the API. Here are the major typical workflows:
 
-## Add, Search and Map Listings
-1. [Post partner listings](#post-a-new-partner-listing) - First push all your listings into our database.
-2. [Search for listings](#get-a-search-for-listings-in-json) - We recommend when searching using:  Name, Address, Latitude, Longitude and Phone number.
-3. [Post a claim for the listing](/#post-claim-a-listing) - Post your listing ID and the Mojo_ID of the listing you want to claim ownership for.
-3.A. [Post a suppress listing](#post-suppress-a-listing) - If there are **duplicates** or other issues with listings in our database then supress them.
-3.B. [Update partner listing](#update-a-partner-listing) - If a listings status is already claimed then updating it with the you listing ID and Mojo_ID will map the listings and if the listing becomes unclaimed by default it will become your listing.
-4. [Get partner listings](#get-partner-listings-in-json) - Lastly this will give you all your listings and the status of those listins in our database.
-
-## Add and Automap Listings
-If you do not manually want to map your listings to the listings in or database you can leave that to us and we will automap them. This is not on by default. To do this you will want to do the following:
-1. [Post partner listings](#post-a-new-partner-listing) - First push all your listings into our database. Pass the parameter "map=true". We will do our best to map your listing to our listing.
-2. [Search for listings](#get-a-search-for-listings-in-json) - We recommend when searching using:  Name, Address, Latitude, Longitude and Phone number.
+## Search and Add Listings
+1. [Search for listings](#get-a-search-for-listings-in-json) - We recommend when searching using:  Name, Address, Latitude, Longitude and Phone number.
+2. [Post partner listings](#post-a-new-partner-listing) - Push all your listings into our database with your listing ID and the Mojo_ID of the listing you want to claim ownership for.
 2.A. [Post a suppress listing](#post-suppress-a-listing) - If there are **duplicates** or other issues with listings in our database then supress them.
-2.B. [Update partner listing](#update-a-partner-listing) - If a listings status is already claimed then updating it with the you listing ID and the parameter "map=true" will automap the listings and if the listing becomes unclaimed by default it will become your listing.
+2.B. [Update partner listing](#update-a-partner-listing) - If a listings status is already claimed then updating it with the you listing ID and Mojo_ID will map the listings and if the listing becomes unclaimed by default it will become your listing.
 3. [Get partner listings](#get-partner-listings-in-json) - Lastly this will give you all your listings and the status of those listins in our database.
-
-## Unclaim Listings
-If you no longer manage the clients listing you can [Unclaim](#post-unclaim-a-listing) a listing this will keep all updates done to the unclaim point and then remove your claim status from your account and open it back up to be claimed by other partners.

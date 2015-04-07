@@ -235,7 +235,7 @@ You must replace `:LISTING_ID` with your business listing id.
 curl "https://api.mojopages.com/api/v1/partner/listing/7d373c1da40cbfc3f165"
   -H "Authorization: Token token=YOUR-ACCESS-TOKEN"
   -H "Content-Type: application/json"
-  -X POST -d '{"mojo_id": 201702, "name": "Piety Hill Cottages", "address": "523 Sacramento St", "tel": "(555) 555-5555", "locality": "Nevada City", "region": "CA", "hours": {"sunday":[["closed"]], "monday": [["8:00","16:00"]]}}'
+  -X POST -d '{"mojo_id": 201702, "name": "Piety Hill Cottages", "address": "523 Sacramento St", "tel": "(555) 555-5555", "locality": "Nevada City", "region": "CA", "postcode":"95959", "hours": {"sunday":[["closed"]], "monday": [["8:00","16:00"]]}}'
 
 ```
 
@@ -246,7 +246,41 @@ curl "https://api.mojopages.com/api/v1/partner/listing/7d373c1da40cbfc3f165"
   "response": {
     "status": 200
   },
-  "success": true
+  "listing": {
+    "listing_id": "7d373c1da40cbfc3f165",
+    "mojo_id": "201702",
+    "mojo_url": "https://www.mojopages.com/biz/piety-hill-cottages-phoenix-az/201702",
+    "name": "Piety Hill Cottages",
+    "address": "523 Sacramento St",
+    "locality": "Nevada City",
+    "region": "CA",
+    "postcode": "95959",
+    "tel": "(555) 555-5555",
+    "website": null,
+    "longitude": null,
+    "latitude": null,
+    "facebook_id": null,
+    "twitter_id": null,
+    "google_plus_id": null,
+    "instagram_id": null,
+    "mapped": true,
+    "claimed": true,
+    "omit_address": false,
+    "hours": {
+      "sunday": [
+        [
+          "closed"
+        ]
+        ],
+      "monday": [
+        [
+          "8:00",
+          "16:00"
+        ]
+      ]
+    },
+    "updated_at": "2014-11-27T11:35:27.364Z"
+  }
 }
 ```
 
@@ -262,7 +296,6 @@ Parameter | Required | Description
 --------- | ------- | -----------
 access_token | true | Access token used to authenticate
 :LISTING_ID| true | Your ID for the specific business listing
-map | false | Will automatically map the partner listing to a mojo_id when true
 
 <aside class="notice">
 You must replace `:LISTING_ID` with your business listings id.
@@ -273,7 +306,7 @@ You must replace `:LISTING_ID` with your business listings id.
 Listing Value | required | Description
 --------- | ----------- | -----------
 listing_id | true | Your unique identifier for the listing, used for adding or deleting a record
-mojo_id | false | Associated MojoPages ID for listing will map automatically if you include it
+mojo_id | false | Claims a Business based on mojo_id, will automap or create new listing when not included
 name | true | Name of the business
 address | true | Address of the business
 address_extended | false | Second address of the business if there is one
@@ -313,7 +346,41 @@ curl "https://api.mojopages.com/api/v1/partner/listing/7d373c1da40cbfc3f165"
   "response": {
     "status": 200
   },
-  "success": true
+  "listing": {
+    "listing_id": "7d373c1da40cbfc3f165",
+    "mojo_id": "201702",
+    "mojo_url": "https://www.mojopages.com/biz/piety-hill-cottages-phoenix-az/201702",
+    "name": "Piety Hill Cottages",
+    "address": "523 Sacramento St",
+    "locality": "Nevada City",
+    "region": "CA",
+    "postcode": "95959",
+    "tel": "(555) 555-5555",
+    "website": null,
+    "longitude": null,
+    "latitude": null,
+    "facebook_id": null,
+    "twitter_id": null,
+    "google_plus_id": null,
+    "instagram_id": null,
+    "mapped": true,
+    "claimed": true,
+    "omit_address": false,
+    "hours": {
+      "sunday": [
+        [
+          "closed"
+        ]
+        ],
+      "monday": [
+        [
+          "8:00",
+          "16:00"
+        ]
+      ]
+    },
+    "updated_at": "2014-11-27T11:35:27.364Z"
+  }
 }
 ```
 
@@ -329,7 +396,6 @@ Parameter | Required | Description
 --------- | ------- | -----------
 access_token | true | Access token used to authenticate
 :LISTING_ID| true | Your ID for the specific business listing being updated
-map | false | Will automatically map the partner listing to a mojo_id when true
 
 <aside class="notice">
 You must replace `:LISTING_ID` with your business listings id.
@@ -340,7 +406,7 @@ You must replace `:LISTING_ID` with your business listings id.
 Listing Value | required | Description
 --------- | ----------- | -----------
 listing_id | true | Your unique identifier for the listing, used for adding or deleting a record
-mojo_id | false | Associated MojoPages ID for listing will map automatically if you include it
+mojo_id | false | Claims a Business based on mojo_id, will automap or create new listing when not included
 name | true | Name of the business
 address | true | Address of the business
 address_extended | false | Second address of the business if there is one
@@ -765,91 +831,4 @@ access_token | true | Access token used to authenticate
 
 <aside class="notice">
 You must replace `:MOJO_ID` with your non duplicate business Mojo id.
-</aside>
-
-
-
-## Post Claim a Listing
-
-> Request examples
-
-```shell
-curl "https://api.mojopages.com/api/v1/listing/11079728/claim/7d373c1da40cbfc3f165"
-  -H "Authorization: Token token=YOUR-ACCESS-TOKEN"
-  -X POST
-
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "response": {
-    "status": 200
-  },
-  "success": true
-}
-```
-
-This endpoint is used to to claim and associate a partner listing to a listing on MojoPages. You will receive an error message if the listing is already claimed
-
-### HTTP Request
-
-`POST https://api.mojopages.com/api/v1/listing/:MOJO_ID/claim/:LISTING_ID`
-
-### Query Parameters
-
-Parameter | Required | Description
---------- | ------- | -----------
-access_token | true | Access token used to authenticate
-:MOJO_ID| true | Mojo ID for the specific business listing shown on MojoPages
-:LISTING_ID| True | Partner Listing ID that needs to be associated to Mojo ID
-
-
-<aside class="notice">
-You must replace `:MOJO_ID` with the relevant MojoPages ID and replace `:LISTING_ID` for the Partner Listing ID of the business you imported.
-</aside>
-
-
-
-
-
-## Post Unclaim a Listing
-
-> Request example
-
-```shell
-curl "https://api.mojopages.com/api/v1/listing/11079728/unclaim"
-  -H "Authorization: Token token=YOUR-ACCESS-TOKEN"
-  -X POST
-
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "response": {
-    "status": 200
-  },
-  "success": true
-}
-```
-
-This endpoint is used to to unclaim a partner listing from a listing on MojoPages. You will receive an error message if you were not the one to originally claim the listing.
-
-### HTTP Request
-
-`POST https://api.mojopages.com/api/v1/listing/:MOJO_ID/unclaim`
-
-### Query Parameters
-
-Parameter | Required | Description
---------- | ------- | -----------
-access_token | true | Access token used to authenticate
-:MOJO_ID| true | Mojo ID for the specific business listing shown on MojoPages
-
-
-<aside class="notice">
-You must replace `:MOJO_ID` with the relevant MojoPages ID.
 </aside>
