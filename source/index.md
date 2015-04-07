@@ -145,9 +145,16 @@ updated_at | When the listing was last updated
 
 There are many ways and uses for the API. Here are the major typical workflows:
 
-## Search and Add Listings
-1. [Search for listings](#get-a-search-for-listings-in-json) - We recommend when searching using:  Name, Address, Latitude, Longitude and Phone number.
-2. [Post partner listings](#post-a-new-partner-listing) - Push all your listings into our database with your listing ID and the Mojo_ID of the listing you want to claim ownership for.
-2.A. [Post a suppress listing](#post-suppress-a-listing) - If there are **duplicates** or other issues with listings in our database then supress them.
-2.B. [Update partner listing](#update-a-partner-listing) - If a listings status is already claimed then updating it with the you listing ID and Mojo_ID will map the listings and if the listing becomes unclaimed by default it will become your listing.
-3. [Get partner listings](#get-partner-listings-in-json) - Lastly this will give you all your listings and the status of those listins in our database.
+[Search for listings](#get-a-search-for-listings-in-json) - We recommend when searching using: Name, Address, Latitude, Longitude and Phone number.
+
+[Get a listing detail](#get-a-listing) - Verify the listings status and make sure that it is Available to be claimed.
+
+[Post partner listings](#post-a-new-partner-listing) - Push all your listings into our database with your listing ID and the Mojo_ID of the listing you want to claim ownership for.
+
+2.A. [Post a suppress listing](#post-suppress-a-listing) - If there are duplicates or other issues with listings in our database then supress them.
+
+2.B. [Add a partner listing](#post-a-new-partner-listing) - If you have verified there is no match to a search result, Post a partner listing without a Mojo_ID and it will be added.
+
+2.C. [Update partner listing](#update-a-partner-listing) - If you have claimed a listing and the status is active then you can update it at anytime and any parameters passed will be updated.
+
+[Get partner listings](#get-partner-listings-in-json) - Lastly this will give you all your listings and the status of those listins in our database.
