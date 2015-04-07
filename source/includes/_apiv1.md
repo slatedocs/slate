@@ -262,7 +262,7 @@ curl "https://api.mojopages.com/api/v1/partner/listing/7d373c1da40cbfc3f165"
 
 ```
 
-> The above command returns JSON structured like this:
+> The above command returns JSON structured like this if it gets claimed:
 
 ```json
 {
@@ -273,37 +273,43 @@ curl "https://api.mojopages.com/api/v1/partner/listing/7d373c1da40cbfc3f165"
     "status": "LIVE",
     "listing_id": "7d373c1da40cbfc3f165",
     "mojo_id": "201702",
-    "mojo_url": "https://www.mojopages.com/biz/piety-hill-cottages-phoenix-az/201702",
-    "name": "Piety Hill Cottages",
-    "address": "523 Sacramento St",
-    "locality": "Nevada City",
-    "region": "CA",
-    "postcode": "95959",
-    "tel": "(555) 555-5555",
-    "website": null,
-    "longitude": null,
-    "latitude": null,
-    "facebook_id": null,
-    "twitter_id": null,
-    "google_plus_id": null,
-    "instagram_id": null,
-    "mapped": true,
-    "claimed": true,
-    "omit_address": false,
-    "hours": {
-      "sunday": [
-        [
-          "closed"
-        ]
-        ],
-      "monday": [
-        [
-          "8:00",
-          "16:00"
-        ]
+    "mojo_url": "https://www.mojopages.com/biz/piety-hill-cottages-phoenix-az/201702"
+  }
+}
+```
+
+> The above command returns JSON structured like this if it's already claimed:
+
+```json
+{
+  "response": {
+    "status": 422
+  },
+  "listing": {
+    "status": "BLOCKED",
+    "listing_id": "7d373c1da40cbfc3f165",
+    "mojo_id": "201702",
+    "mojo_url": "https://www.mojopages.com/biz/piety-hill-cottages-phoenix-az/201702"
+  }
+}
+```
+
+> The above command returns JSON structured like this if it's validations are rejected:
+
+```json
+{
+  "response": {
+    "status": 422
+  },
+  "listing": {
+    "status": "REJECTED",
+    "error": {
+      "messages": [
+        {
+          "message": "Validation failed: Postcode can't be blank"
+        }
       ]
-    },
-    "updated_at": "2014-11-27T11:35:27.364Z"
+    }
   }
 }
 ```
@@ -371,7 +377,7 @@ curl "https://api.mojopages.com/api/v1/partner/listing/7d373c1da40cbfc3f165"
 
 ```
 
-> The above command returns JSON structured like this:
+> The above command returns JSON structured like this if it gets claimed:
 
 ```json
 {
@@ -382,37 +388,43 @@ curl "https://api.mojopages.com/api/v1/partner/listing/7d373c1da40cbfc3f165"
     "status": "LIVE",
     "listing_id": "7d373c1da40cbfc3f165",
     "mojo_id": "201702",
-    "mojo_url": "https://www.mojopages.com/biz/piety-hill-cottages-phoenix-az/201702",
-    "name": "Piety Hill Cottages",
-    "address": "523 Sacramento St",
-    "locality": "Nevada City",
-    "region": "CA",
-    "postcode": "95959",
-    "tel": "(555) 555-5555",
-    "website": null,
-    "longitude": null,
-    "latitude": null,
-    "facebook_id": null,
-    "twitter_id": null,
-    "google_plus_id": null,
-    "instagram_id": null,
-    "mapped": true,
-    "claimed": true,
-    "omit_address": false,
-    "hours": {
-      "sunday": [
-        [
-          "closed"
-        ]
-        ],
-      "monday": [
-        [
-          "8:00",
-          "16:00"
-        ]
+    "mojo_url": "https://www.mojopages.com/biz/piety-hill-cottages-phoenix-az/201702"
+  }
+}
+```
+
+> The above command returns JSON structured like this if it's already claimed:
+
+```json
+{
+  "response": {
+    "status": 422
+  },
+  "listing": {
+    "status": "BLOCKED",
+    "listing_id": "7d373c1da40cbfc3f165",
+    "mojo_id": "201702",
+    "mojo_url": "https://www.mojopages.com/biz/piety-hill-cottages-phoenix-az/201702"
+  }
+}
+```
+
+> The above command returns JSON structured like this if it's validations are rejected:
+
+```json
+{
+  "response": {
+    "status": 422
+  },
+  "listing": {
+    "status": "REJECTED",
+    "error": {
+      "messages": [
+        {
+          "message": "Validation failed: Postcode can't be blank"
+        }
       ]
-    },
-    "updated_at": "2014-11-27T11:35:27.364Z"
+    }
   }
 }
 ```

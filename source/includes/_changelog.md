@@ -4,6 +4,7 @@ Changes to the API and documentation are below.
 
 Date | Changes
 --------- | -----------
+4/7/2015 | Updated listing status to better reflect industry standards
 4/6/2015 | Removed Claim/Unclaim Endpoints and integrated Claim into Post/Update Partner Listing
 3/26/2015 | Added business hours to Get and Post
 3/3/2015 | Updated match to map and added omit_address value
