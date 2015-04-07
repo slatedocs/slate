@@ -36,7 +36,7 @@ curl "https://api.kite.ly/v1.3/address/search/?country_code=USA&search_term=1+In
 ```
 
 ```java
-KitePrintSDK.initialize("{{ test_api_key }}", KitePrintSDK.Environment.TEST, /*Context:*/ this);
+KitePrintSDK.initialize("{{ test_api_key }}", KitePrintSDK.Environment.TEST, getApplicationContext());
 ```
 
 {% if is_logged_in %}
@@ -56,12 +56,12 @@ To authenticate you include the HTTP `Authorization` header in your request. All
 In some scenarios it's also desirable to include your secret key in the `Authorization` header. If you're building a mobile application this is not normally needed, but if you're placing orders from your own server it usually makes sense. See [payment workflows](#payment-workflows) for more details.
 
 # Payment Workflows
-Your customers can either pay you directly when they place an order for product or we can take payment on your behalf and automatically transfer your revenue into an account of your choosing. 
+Your customers can either pay you directly when they place an order for a product or we can take payment on your behalf and automatically transfer your revenue into an account of your choosing. 
 
 ## Kite takes payment
-In this scenario we take payment from customers on your behalf. This will occur entirely within your app or website in a way that's totally branded to you, your customers don't even need to know we were involved. We then automatically transfer funds we owe you directly into a bank or a PayPal account of your choosing. You can setup the accounts into which you want us to pay you in the [billing](https://www.kite.ly/accounts/billing/) section of the dashboard.
+In this scenario we take payment from customers on your behalf. This will occur entirely within your app or website in a way that's totally branded to you, your customers don't even need to know we were involved. We then automatically transfer funds we owe you directly into a bank or a PayPal account of your choosing. You can setup the account into which you want to receive payments in the [billing](https://www.kite.ly/accounts/billing/) section of the dashboard.
 
-This is arguably the easiest approach to using the Kite platform as it means you don't need to run your own server and it's baked into several of our SDKs. 
+This is the easiest approach to using the Kite platform as it means you don't need to run your own server and it's baked into several of our SDKs. 
 
 ## You take payment
 
@@ -72,21 +72,21 @@ curl "https://api.kite.ly/v1.3/address/search/?country_code=USA&search_term=1+In
   -H "Authorization: ApiKey {{ test_api_key }}:<your_secret_key>"
 ```
 
-```java
-The Android SDK does not support this workflow as it would require you to embed your secret key in the client application
+```objective_c
+// Our iOS SDK does not support this payment workflow directly as it would require embedding your secret key into the app. Instead use our REST API
 ```
 
-```objective_c
-The iOS SDK does not support this workflow as it would require you to embed your secret key in the client application
+```java
+// Our Android SDK does not support this payment workflow directly as it would require embedding your secret key into the app. Instead use our REST API
 ```
 
 > Replace `<your_secret_key>` with the one found in the [credentials](https://www.kite.ly/accounts/credentials) section of the dashboard.
 
-In this scenario you take payment directly from your customer in any manner of your choosing. You'll need your own server infrastructure in order to take care of the payment processing, payment validation and to submit product order requests to the Kite platform. 
+In this scenario you take payment directly from your customer in any manner of your choosing. You'll need your own server infrastructure in order to take care of the payment processing, payment validation and to submit [product order requests](#ordering-a-product) to the Kite platform. 
 
 You'll need to add a card to be charged for any orders you place with Kite. This can be done in the [billing](https://www.kite.ly/accounts/billing/) section of the dashboard.
 
-Any request you make to Kite that would result in you incurring a charge (i.e. product order requests) will need to include both your API key and your secret key in the HTTP `Authorization` header. Your secret key can be found alongside your API key in the [credentials](https://www.kite.ly/accounts/credentials) section of the dashboard. 
+Any request you make to Kite that would result in you incurring a charge (i.e. [product order requests](#ordering-a-product)) will need to include both your API key and your secret key in the HTTP `Authorization` header. Your secret key can be found alongside your API key in the [credentials](https://www.kite.ly/accounts/credentials) section of the dashboard. 
 
 The presence of your secret key in charge incurring requests (i.e. product order requests) removes the need for the `proof_of_payment` argument to be provided as the card associated with your account can be charged directly.
 
@@ -142,6 +142,14 @@ curl "https://api.kite.ly/v1.3/order/?offset=30&limit=5" \
   -H "Authorization: ApiKey {{ test_api_key }}:{{ test_secret_key }}"
 ```
 
+```objective_c
+// Our iOS SDK encapsulates pagination through some high level abstractions so you don't need to worry about this
+```
+
+```java
+// Our Android SDK encapsulates pagination through some high level abstractions so you don't need to worry about this
+```
+
 > Example Paginated Response
 
 ```shell 
@@ -161,6 +169,14 @@ curl "https://api.kite.ly/v1.3/order/?offset=30&limit=5" \
 }
 ```
 
+```objective_c
+// See above comment
+```
+
+```java
+// See above comment
+```
+
 
 Several Kite API endpoints return paginated responses, for example the list orders endpoint. All paginated responses share the same common structure.
 
@@ -168,8 +184,8 @@ Several Kite API endpoints return paginated responses, for example the list orde
 
           | |
 --------- | -----------
-limit<span class="optional-argument">optional</span> | By default, you get returned a paginated set of objects (20 per page is the default), by specifying the `limit` argument you can control the number of objects returned
 offset<span class="optional-argument">optional</span> | The offset into the result set of objects returned
+limit<span class="optional-argument">optional</span> | By default, you get returned a paginated set of objects (20 per page is the default), by specifying the `limit` argument you can control the number of objects returned
 
 
 # Assets
@@ -217,6 +233,22 @@ curl "https://api.kite.ly/v1.3/asset/sign/?mime_types=image/jpeg&client_asset=tr
   -H "Authorization: ApiKey {{ test_api_key }}:"
 ```
 
+```objective_c
+#import <Kite-Print-SDK/OLAssetUploadRequest.h>
+
+OLAssetUploadRequest *req = [[OLAssetUploadRequest alloc] init];
+req.delegate = self; // assuming self conforms to OLAssetUploadRequestDelegate
+[req uploadImageAsJPEG:[UIImage imageNamed:@"photo"]];
+
+```
+
+```java
+import ly.kite.print.AssetUploadRequestListener;
+
+AssetUploadRequest req = new AssetUploadRequest();
+req.uploadAsset(new Asset(R.drawable.instagram1), getApplicationContext(), /*AssetUploadRequestListener:*/this);
+```
+
 > Example Response
 
 ```shell
@@ -233,6 +265,39 @@ curl "https://api.kite.ly/v1.3/asset/sign/?mime_types=image/jpeg&client_asset=tr
 }
 ```
 
+```objective_c
+#pragma mark OLAssetUploadRequestDelegate methods
+- (void)assetUploadRequest:(OLAssetUploadRequest *)req didSucceedWithAssets:(NSArray/*<OLAsset>*/ *)assets {
+	// Success, we're now hosting the asset for you and it has been successfully uploaded to S3
+}
+
+- (void)assetUploadRequest:(OLAssetUploadRequest *)req didFailWithError:(NSError *)error {
+	// do something sensible with the error
+}
+```
+
+```java
+// AssetUploadRequestListener implementation:
+
+@Override
+public void onUploadComplete(AssetUploadRequest req, List<Asset> assets) {
+
+}
+
+@Override
+public void onError(AssetUploadRequest req, Exception error) {
+
+}
+
+@Override
+public void onProgress(AssetUploadRequest req, int totalAssetsUploaded, 
+                       int totalAssetsToUpload,  long bytesWritten, 
+                       long totalAssetBytesWritten, long totalAssetBytesExpectedToWrite) {
+                
+}
+
+```
+
 > S3 Asset Upload Request
 
 ```shell
@@ -240,6 +305,14 @@ curl --upload-file "<path/to/local/image.jpg>" \
     -H "Content-Type:image/jpeg" \
     -H "x-amz-acl:private" \
     "<signed_request_url>"
+```
+
+```objective_c
+// Manual S3 upload is not required with the iOS SDK as it's taken care of automatically -- it's encapsulated within the OLAssetUploadRequest:upload* methods
+```
+
+```java
+// Manual S3 upload is not required with the Android SDK as it's taken care of automatically -- it's encapsulated within the AssetUploadRequest.uploadAsset methods
 ```
 
 > Replace `<path/to/local/image.jpg>` with the path to a local image to be uploaded and `<signed_request_url>` with a url found in the `signed_requests` property in the response from the previous Managed Asset Registration Request
@@ -259,7 +332,7 @@ mime_types<span class="required-argument">required</span> | A comma separated li
 client_asset<span class="optional-argument">optional</span> | A boolean indicating if this is a client/customer/user asset. This should always be `true` if the assets with specified mime types are being uploaded from a client application. Client assets are are periodically purged (a short while after a customer has received their order) and are not displayed in your dashboard
 
 ### Returns
-Returns an object with `signed_requests`, `asset_ids` & `urls` list properties. Each list has a length equal to the number of `mime_type`'s specified in the request.  The equivalent index in each list corresponds directly to the asset referred to by the mime type at the same index in the request's `mime_type` query parameter.
+Returns an object with `signed_requests`, `asset_ids` & `urls` list properties. Each list's length is the same and equal to the number of `mime_type`'s specified in the request.  The equivalent index in each list corresponds directly to the asset referred to by the mime type at the same index in the request's `mime_type` query parameter.
 
 ### Response Properties
           | |
@@ -404,13 +477,127 @@ curl "https://api.kite.ly/v1.3/print/" \
   }'
 ```
 
+```objective_c
+// See https://github.com/OceanLabs/iOS-Print-SDK#custom-user-experience for full step by step instructions
+#import <Kite-Print-SDK/OLKitePrintSDK.h>
+
+NSArray *assets = @[
+    [OLAsset assetWithURL:[NSURL URLWithString:@"http://psps.s3.amazonaws.com/sdk_static/1.jpg"]]
+];
+
+id<OLPrintJob> iPhone6Case = [OLPrintJob printJobWithTemplateId:@"i6_case" OLAssets:assets];
+id<OLPrintJob> poster = [OLPrintJob printJobWithTemplateId:@"a1_poster" OLAssets:assets];
+
+OLPrintOrder *order = [[OLPrintOrder alloc] init];
+[order addPrintJob:iPhone6Case];
+[order addPrintJob:poster];
+
+OLAddress *a    = [[OLAddress alloc] init];
+a.recipientName = @"Deon Botha";
+a.line1         = @"27-28 Eastcastle House";
+a.line2         = @"Eastcastle Street";
+a.city          = @"London";
+a.stateOrCounty = @"Greater London";
+a.zipOrPostcode = @"W1W 8DH";
+a.country       = [OLCountry countryForCode:@"GBR"];
+
+order.shippingAddress = a;
+
+OLPayPalCard *card = [[OLPayPalCard alloc] init];
+card.type = kOLPayPalCardTypeVisa;
+card.number = @"4121212121212127";
+card.expireMonth = 12;
+card.expireYear = 2020;
+card.cvv2 = @"123";
+
+[card chargeCard:printOrder.cost currencyCode:printOrder.currencyCode description:@"A Kite order!" completionHandler:^(NSString *proofOfPayment, NSError *error) {
+  // if no error occured set the OLPrintOrder proofOfPayment to the one provided and submit the order
+  order.proofOfPayment = proofOfPayment;
+  [self.printOrder submitForPrintingWithProgressHandler:nil 
+                   completionHandler:^(NSString *orderIdReceipt, NSError *error) {
+    // If there is no error then you can display a success outcome to the user
+  }];
+}];
+
+```
+
+```java
+// See https://github.com/OceanLabs/Android-Print-SDK#custom-checkout for full step by step instructions
+
+import ly.kite.address.Address;
+import ly.kite.payment.PayPalCard;
+import ly.kite.print.Asset;
+import ly.kite.print.PrintJob;
+import ly.kite.print.PrintOrder;
+
+ArrayList<Asset> assets = new ArrayList<Asset>();
+assets.add(new Asset(R.drawable.photo));
+
+PrintJob iPhone6Case = PrintJob.createPrintJob(assets, "i6_case");
+PrintJob poster = PrintJob.createPrintJob(assets, "a1_poster");
+
+PrintOrder order = new PrintOrder();
+order.addPrintJob(iPhone6Case);
+order.addPrintJob(poster);
+
+Address a = new Address();
+a.setRecipientName("Deon Botha");
+a.setLine1("Eastcastle House");
+a.setLine2("27-28 Eastcastle Street");
+a.setCity("London");
+a.setStateOrCounty("London");
+a.setZipOrPostalCode("W1W 8DH");
+a.setCountry(Country.getInstance("GBR"));
+
+order.setShippingAddress(a);
+
+PayPalCard card = new PayPalCard();
+card.setNumber("4121212121212127");
+card.setExpireMonth(12);
+card.setExpireYear(2012);
+card.setCvv2("123");
+
+card.chargeCard(PayPalCard.Environment.SANDBOX, printOrder.getCost(), PayPalCard.Currency.GBP, "A Kite order!", new PayPalCardChargeListener() {
+    @Override
+    public void onChargeSuccess(PayPalCard card, String proofOfPayment) {
+        // set the PrintOrder proofOfPayment to the one provided and submit the order
+    }
+
+    @Override
+    public void onError(PayPalCard card, Exception ex) {
+        // handle gracefully
+        order.setProofOfPayment(proofOfPayment);
+        printOrder.submitForPrinting(getApplicationContext(), /*PrintOrderSubmissionListener:*/this);
+    }
+});
+
+```
+
 > Replace `<your_secret_key>` with the one found in the [credentials](https://www.kite.ly/accounts/credentials) section of the dashboard.<br /><br />
 
 > Example Response
 
-```json
+```shell
 {
   "print_order_id": "PS96-996634811"
+}
+```
+
+```objective_c
+// See above submitForPrintingWithProgressHandler:completionHandler:
+```
+
+```java
+// PrintOrderSubmissionListener implementation
+
+@Override
+public void onSubmissionComplete(PrintOrder printOrder, String orderIdReceipt) {
+  // Print order was successfully submitted to the system, display success to the user
+}
+
+@Override
+public void onError(PrintOrder printOrder, Exception error) {
+  // Handle error gracefully
 }
 ```
 
@@ -505,9 +692,18 @@ curl "https://api.kite.ly/v1.3/address/search/?country_code=GBR&search_term=10+D
   -H "Authorization: ApiKey {{ test_api_key }}:"
 ```
 
+```objective_c
+OLCountry *usa = [OLCountry countryForCode:@"USA"];
+[OLAddress searchForAddressWithCountry:usa query:@"1 Infinite Loop" delegate:self];
+```
+
+```java
+Address.search("1 Infinite Loop", Country.getInstance("USA"), /*AddressSearchRequestListener: */ this);
+```
+
 > Example List Response
 
-```json
+```shell
 {
   "choices": [
     {
@@ -526,6 +722,43 @@ curl "https://api.kite.ly/v1.3/address/search/?country_code=GBR&search_term=10+D
 }
 ```
 
+```objective_c
+#pragma mark - OLAddressSearchRequestDelegate methods
+
+- (void)addressSearchRequest:(OLAddressSearchRequest *)req didSuceedWithMultipleOptions:(NSArray *)options {
+    // present choice of OLAddress' to the user, then
+    // perform further search if address.isSearchRequiredForFullDetails
+}
+
+- (void)addressSearchRequest:(OLAddressSearchRequest *)req didSuceedWithUniqueAddress:(OLAddress *)addr {
+    // Search resulted in one unique address
+}
+
+- (void)addressSearchRequest:(OLAddressSearchRequest *)req didFailWithError:(NSError *)error {
+    // Oops something went wrong
+}
+```
+
+```java
+// AddressSearchRequestListener implementation
+
+@Override
+public void onMultipleChoices(AddressSearchRequest req, List<Address> options) {
+  // present choice of Address' to the user, then 
+  // perform further search if address.isSearchRequiredForFullDetails() 
+}
+
+@Override
+public void onUniqueAddress(AddressSearchRequest req, Address address) {
+  // Search resulted in one unique address
+}
+
+@Override
+public void onError(AddressSearchRequest req, Exception error) {
+// Oops something went wrong
+}
+```
+
 > Example Address Search Request
 
 ```shell
@@ -533,9 +766,25 @@ curl "https://api.kite.ly/v1.3/address/search/?country_code=GBR&address_id=GBR|P
   -H "Authorization: ApiKey {{ test_api_key }}:"
 ```
 
+```objective_c
+// Fetch full details for a partial OLAddress
+
+if (address.isSearchRequiredForFullDetails) {
+	[OLAddress searchForAddress:address delegate:self];
+}
+```
+
+```java
+// Fetch full details for a partial Address
+
+if (address.isSearchRequiredForFullDetails()) {
+	Address.search(/*Address:*/address, /*AddressSearchRequestListener:*/this);
+}
+```
+
 > Example Unique Response
 
-```json
+```shell
 {
   "unique": {
     "address_line_1": "Prime Minister & First Lord of the Treasury",
@@ -550,6 +799,13 @@ curl "https://api.kite.ly/v1.3/address/search/?country_code=GBR&address_id=GBR|P
 }
 ```
 
+```objective_c
+// See above OLAddressSearchRequestDelegate implementation
+```
+
+```java
+// See above AddressSearchRequestListener implementation
+```
 
 You can perform a search on any part of the address not just the ZIP/Postal code and our smart sorting of results will order by nearest locations first. We also recognise common misspellings.
 

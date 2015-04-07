@@ -9,8 +9,8 @@ language_tabs:
   - {java: "Java"}
 
 toc_footers:
-  - <a href='#'>iOS SDK</a>
-  - <a href='#'>Android SDK</a>
+  - <a href='https://github.com/OceanLabs/iOS-Print-SDK'>iOS SDK</a>
+  - <a href='https://github.com/OceanLabs/Android-Print-SDK'>Android SDK</a>
   
 includes:
   - docs
