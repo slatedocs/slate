@@ -9,7 +9,7 @@ To send payments to a mobile subscriber, you create a new payment object. You ca
 > Example Request:
 
 ```shell
-curl https://app.beyonic.com/api/payments -H "Authorization: Token my-authorization-token" \
+curl https://app.beyonic.com/api/payments -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900" \
 -d phonenumber=+256772781923 \
 -d currency=UGX \
 -d amount=30 \
@@ -21,7 +21,7 @@ curl https://app.beyonic.com/api/payments -H "Authorization: Token my-authorizat
 
 ```ruby
 require 'beyonic'
-Beyonic.api_key = 'my-api-key'
+Beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
 payment = Beyonic::Payment.create(
     phonenumber: "+256773712831",
@@ -37,7 +37,7 @@ payment = Beyonic::Payment.create(
 ```php
 <?php
 require_once('./lib/Beyonic.php');
-Beyonic::setApiVersion("v1");
+Beyonic::setApiKey("ab594c14986612f6167a975e1c369e71edab6900");
 
 Beyonic_Payment::create(array(
   "phonenumber" => "+256773712831",
@@ -53,7 +53,7 @@ Beyonic_Payment::create(array(
 
 ```python
 import beyonic
-beyonic.api_version = 'v1'
+beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
 beyonic.Payment.create(phonenumber='+256773712831',
                        amount='1200', 
@@ -130,12 +130,12 @@ Callback URLs are used to send notifications of changes in payment status. Not a
 > Retrieve Single Payment:
 
 ```shell
-curl https://app.beyonic.com/api/payments/2314 -H "Authorization: Token my-authorization-token"
+curl https://app.beyonic.com/api/payments/2314 -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900"
 ```
 
 ```ruby
 require 'beyonic'
-Beyonic.api_key = 'my-api-key'
+Beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
 payment = Beyonic::Payment.get(2314)
 ```
@@ -143,7 +143,7 @@ payment = Beyonic::Payment.get(2314)
 ```php
 <?php
 require_once('./lib/Beyonic.php');
-Beyonic::setApiVersion("v1");
+Beyonic::setApiKey("ab594c14986612f6167a975e1c369e71edab6900");
 
 $payment = Beyonic_Payment::get(2314);
 ?>
@@ -151,7 +151,7 @@ $payment = Beyonic_Payment::get(2314);
 
 ```python
 import beyonic
-beyonic.api_version = 'v1'
+beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
 payment = beyonic.Payment.get(2314)
 
@@ -168,12 +168,12 @@ id | Yes | Integer | 2314 | The id of the payment you want to retrieve
 > List Payments:
 
 ```shell
-curl https://app.beyonic.com/api/payments -H "Authorization: Token my-authorization-token"
+curl https://app.beyonic.com/api/payments -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900"
 ```
 
 ```ruby
 require 'beyonic'
-Beyonic.api_key = 'my-api-key'
+Beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
 payments = Beyonic::Payment.list
 ```
@@ -181,7 +181,7 @@ payments = Beyonic::Payment.list
 ```php
 <?php
 require_once('./lib/Beyonic.php');
-Beyonic::setApiVersion("v1");
+Beyonic::setApiKey("ab594c14986612f6167a975e1c369e71edab6900");
 
 $payments = Beyonic_Payment::getAll();
 ?>
@@ -189,7 +189,7 @@ $payments = Beyonic_Payment::getAll();
 
 ```python
 import beyonic
-beyonic.api_version = 'v1'
+beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
 payments = beyonic.Payment.list()
 

@@ -100,12 +100,12 @@ To retrieve a list of all collections, make a GET request to the collections end
 > Search For Collections:
 
 ```shell
-curl https://app.beyonic.com/api/collections?phonenumber=+256772712893&remote_transaction_id=SS12312 -H "Authorization: Token my-authorization-token"
+curl https://app.beyonic.com/api/collections?phonenumber=+256772712893&remote_transaction_id=SS12312 -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900"
 ```
 
 ```ruby
 require 'beyonic'
-Beyonic.api_key = 'my-api-key'
+Beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
 collection = Beyonic::Collection.list(
   phonenumber: "+256772712893",
@@ -116,7 +116,7 @@ collection = Beyonic::Collection.list(
 ```php
 <?php
 require_once('./lib/Beyonic.php');
-Beyonic::setApiVersion("v1");
+Beyonic::setApiKey("ab594c14986612f6167a975e1c369e71edab6900");
 
 $collection = Beyonic_Collection::getAll(
   "phonenumber" => "+256772712893",
@@ -127,7 +127,7 @@ $collection = Beyonic_Collection::getAll(
 
 ```python
 import beyonic
-beyonic.api_version = 'v1'
+beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
 collection = beyonic.Collection.list(phonenumber='+256772712893',
                                      remote_transaction_id='SS12312')
@@ -168,12 +168,12 @@ Note that the response will be a list of collections, not a single collection.
 > Claim a collection:
 
 ```shell
-curl https://app.beyonic.com/api/collections?phonenumber=+256772712893&remote_transaction_id=SS12312&claim=True&amount=200 -H "Authorization: Token my-authorization-token"
+curl https://app.beyonic.com/api/collections?phonenumber=+256772712893&remote_transaction_id=SS12312&claim=True&amount=200 -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900"
 ```
 
 ```ruby
 require 'beyonic'
-Beyonic.api_key = 'my-api-key'
+Beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
 collection = Beyonic::Collection.list(
   phonenumber: "+256772712893",
@@ -186,7 +186,7 @@ collection = Beyonic::Collection.list(
 ```php
 <?php
 require_once('./lib/Beyonic.php');
-Beyonic::setApiVersion("v1");
+Beyonic::setApiKey("ab594c14986612f6167a975e1c369e71edab6900");
 
 $collection = Beyonic_Collection::getAll(
   "phonenumber" => "+256772712893",
@@ -199,7 +199,7 @@ $collection = Beyonic_Collection::getAll(
 
 ```python
 import beyonic
-beyonic.api_version = 'v1'
+beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
 collection = beyonic.Collection.list(phonenumber='+256772712893',
                                      remote_transaction_id='SS12312',

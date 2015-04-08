@@ -13,7 +13,7 @@ The collection requests api endpoint is https://app.beyonic.com/api/collectionre
 > Example Request:
 
 ```shell
-curl https://app.beyonic.com/api/collectionrequests -H "Authorization: Token my-authorization-token" \
+curl https://app.beyonic.com/api/collectionrequests -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900" \
 -d phonenumber=+256772781923 \
 -d currency=UGX \
 -d amount=3000
@@ -21,7 +21,7 @@ curl https://app.beyonic.com/api/collectionrequests -H "Authorization: Token my-
 
 ```ruby
 require 'beyonic'
-Beyonic.api_key = 'my-api-key'
+Beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
 payment = Beyonic::CollectionRequest.create(
     phonenumber: "+256773712831",
@@ -33,7 +33,7 @@ payment = Beyonic::CollectionRequest.create(
 ```php
 <?php
 require_once('./lib/Beyonic.php');
-Beyonic::setApiVersion("v1");
+Beyonic::setApiKey("ab594c14986612f6167a975e1c369e71edab6900");
 
 Beyonic_CollectionRequest::create(array(
   "phonenumber" => "+256773712831",
@@ -45,7 +45,7 @@ Beyonic_CollectionRequest::create(array(
 
 ```python
 import beyonic
-beyonic.api_version = 'v1'
+beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
 beyonic.CollectionRequest.create(phonenumber='+256773712831',
                        amount='1200', 
@@ -84,12 +84,12 @@ currency | Yes | String | UGX | 3 letter ISO currency code. No currency conversi
 > Retrieve Individual Collections:
 
 ```shell
-curl https://app.beyonic.com/api/collectionrequests/230 -H "Authorization: Token my-authorization-token"
+curl https://app.beyonic.com/api/collectionrequests/230 -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900"
 ```
 
 ```ruby
 require 'beyonic'
-Beyonic.api_key = 'my-api-key'
+Beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
 collection = Beyonic::CollectionRequest.get(23)
 ```
@@ -97,7 +97,7 @@ collection = Beyonic::CollectionRequest.get(23)
 ```php
 <?php
 require_once('./lib/Beyonic.php');
-Beyonic::setApiVersion("v1");
+Beyonic::setApiKey("ab594c14986612f6167a975e1c369e71edab6900");
 
 $collection = Beyonic_CollectionRequest::get(23);
 ?>
@@ -105,7 +105,7 @@ $collection = Beyonic_CollectionRequest::get(23);
 
 ```python
 import beyonic
-beyonic.api_version = 'v1'
+beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
 collection = beyonic.CollectionTRequest.get(23)
 
@@ -122,12 +122,12 @@ id | Yes | Integer | 23 | The id of the collection you want to retrieve
 > List Collection Requests:
 
 ```shell
-curl https://app.beyonic.com/api/collectionrequests -H "Authorization: Token my-authorization-token"
+curl https://app.beyonic.com/api/collectionrequests -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900"
 ```
 
 ```ruby
 require 'beyonic'
-Beyonic.api_key = 'my-api-key'
+Beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
 collection = Beyonic::CollectionRequest.list
 ```
@@ -135,7 +135,7 @@ collection = Beyonic::CollectionRequest.list
 ```php
 <?php
 require_once('./lib/Beyonic.php');
-Beyonic::setApiVersion("v1");
+Beyonic::setApiKey("ab594c14986612f6167a975e1c369e71edab6900");
 
 $collection = Beyonic_CollectionRequest::getAll();
 ?>
@@ -143,7 +143,7 @@ $collection = Beyonic_CollectionRequest::getAll();
 
 ```python
 import beyonic
-beyonic.api_version = 'v1'
+beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
 collection = beyonic.CollectionRequest.list()
 

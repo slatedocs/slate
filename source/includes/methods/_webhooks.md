@@ -37,14 +37,14 @@ The webhooks api endpoint is https://app.beyonic.com/api/webhooks
 > Example Request:
 
 ```shell
-curl http://app.beyonic.com/api/webhooks -H "Authorization: Token my-api-key" \
+curl http://app.beyonic.com/api/webhooks -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900" \
 -d "payment.status.changed" \
 -d target="https://my.callback.url/"
 ```
 
 ```ruby
 require 'beyonic'
-Beyonic.api_key = 'my-api-key'
+Beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
 hook = Beyonic::Webhook.create(
     event: "payment.status.changed",
@@ -55,7 +55,7 @@ hook = Beyonic::Webhook.create(
 ```php
 <?php
 require_once('./lib/Beyonic.php');
-Beyonic::setApiVersion("v1");
+Beyonic::setApiKey("ab594c14986612f6167a975e1c369e71edab6900");
 
 Beyonic_Webhook::create(array(
   "event" => "payment.status.changed",
@@ -66,7 +66,7 @@ Beyonic_Webhook::create(array(
 
 ```python
 import beyonic
-beyonic.api_version = 'v1'
+beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
 hook = beyonic.Webhook.create(event='payment.status.changed',
 							  target='https://my.callback.url/'
@@ -91,12 +91,12 @@ target | Yes | String | 'https://my.callback.url/"' | Must be an https URL
 > Retrieve Individual Webhooks:
 
 ```shell
-curl https://app.beyonic.com/api/webhooks/23 -H "Authorization: Token my-authorization-token"
+curl https://app.beyonic.com/api/webhooks/23 -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900"
 ```
 
 ```ruby
 require 'beyonic'
-Beyonic.api_key = 'my-api-key'
+Beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
 hook = Beyonic::Webhook.get(23)
 ```
@@ -104,7 +104,7 @@ hook = Beyonic::Webhook.get(23)
 ```php
 <?php
 require_once('./lib/Beyonic.php');
-Beyonic::setApiVersion("v1");
+Beyonic::setApiKey("ab594c14986612f6167a975e1c369e71edab6900");
 
 $hook = Beyonic_Webhook::get(23);
 ?>
@@ -112,7 +112,7 @@ $hook = Beyonic_Webhook::get(23);
 
 ```python
 import beyonic
-beyonic.api_version = 'v1'
+beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
 hook = beyonic.Webhook.get(23)
 
@@ -129,12 +129,12 @@ id | Yes | Integer | 23 | The id of the webhook you want to retrieve
 > List Webhooks:
 
 ```shell
-curl https://app.beyonic.com/api/webhooks -H "Authorization: Token my-authorization-token"
+curl https://app.beyonic.com/api/webhooks -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900"
 ```
 
 ```ruby
 require 'beyonic'
-Beyonic.api_key = 'my-api-key'
+Beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
 hooks = Beyonic::Webhook.list
 ```
@@ -142,7 +142,7 @@ hooks = Beyonic::Webhook.list
 ```php
 <?php
 require_once('./lib/Beyonic.php');
-Beyonic::setApiVersion("v1");
+Beyonic::setApiKey("ab594c14986612f6167a975e1c369e71edab6900");
 
 $hooks = Beyonic_Webhook::getAll();
 ?>
@@ -150,7 +150,7 @@ $hooks = Beyonic_Webhook::getAll();
 
 ```python
 import beyonic
-beyonic.api_version = 'v1'
+beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
 hooks = beyonic.Webhook.list()
 
@@ -163,7 +163,7 @@ To retrieve a list of all webhooks, make a GET request to the webhooks endpoint.
 > Updating a Webhook:
 
 ```shell
-ccurl http://app.beyonic.com/api/webhooks/1 -H "Authorization: Token my-api-key" \
+ccurl http://app.beyonic.com/api/webhooks/1 -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900" \
 -d event="payment.status.changed" \
 -d target="https://my.callback.url/" \
 -X PUT
@@ -171,7 +171,7 @@ ccurl http://app.beyonic.com/api/webhooks/1 -H "Authorization: Token my-api-key"
 
 ```ruby
 require 'beyonic'
-Beyonic.api_key = 'my-api-key'
+Beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
 hook = Beyonic::Webhook.get(1)
 hook.target = 'https://my.callback.url/'
@@ -181,7 +181,7 @@ hook.save()
 ```php
 <?php
 require_once('./lib/Beyonic.php');
-Beyonic::setApiVersion("v1");
+Beyonic::setApiKey("ab594c14986612f6167a975e1c369e71edab6900");
 
 $hook = Beyonic_Webhook::get(1);
 $hook->target = 'https://my.callback.url/';
@@ -191,7 +191,7 @@ $hook->save();
 
 ```python
 import beyonic
-beyonic.api_version = 'v1'
+beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
 hook = beyonic.Webhook.get(1)
 hook.target = 'https://my.callback.url/'
@@ -206,12 +206,12 @@ To update a webhook, make a PUT request to the specific webhook’s endpoint, id
 > Deleting a Webhook:
 
 ```shell
-curl http://app.beyonic.com/api/webhooks/1 -H "Authorization: Token my-api-key" -X DELETE
+curl http://app.beyonic.com/api/webhooks/1 -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900" -X DELETE
 ```
 
 ```ruby
 require 'beyonic'
-Beyonic.api_key = 'my-api-key'
+Beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
 Beyonic::Webhook.delete(1)
 ```
@@ -219,7 +219,7 @@ Beyonic::Webhook.delete(1)
 ```php
 <?php
 require_once('./lib/Beyonic.php');
-Beyonic::setApiVersion("v1");
+Beyonic::setApiKey("ab594c14986612f6167a975e1c369e71edab6900");
 
 Beyonic_Webhook::delete( 11 );
 ?>
@@ -227,7 +227,7 @@ Beyonic_Webhook::delete( 11 );
 
 ```python
 import beyonic
-beyonic.api_version = 'v1'
+beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
 beyonic.Webhook.delete(11)
 
