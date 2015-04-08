@@ -206,8 +206,6 @@ ts:3|	Telesign PhoneID: Telephone Country
 ts:4|	Telesign PhoneID: Telephone City
 ts:5|	Telesign PhoneID: Telephone Carrier
 ts:6|	Telesign PhoneID: Telephone Contact
-av:1|   IDM Bank Account Validation: Deposit Amount
-ed:0|	Account Policy Evaluation
 ed:1|	Blacklist
 ed:2|	Watchlist
 ed:3|	Chargeback Count
@@ -278,6 +276,8 @@ ed:67|  Corporate Payment Instrument
 ed:68|  Subscription Request
 ed:69|  Verified PayPal Account
 ed:70|  Confirmed PayPal Address
+ed:71|  Account Has Denied KYC
+ed:72|  Account has KYC in Manual Review
 ed:73|  PayPal Count for User
 ed:74|  Card Count for Device
 ed:75|  Card Count for User
@@ -290,6 +290,8 @@ ed:81|  Multiple Payment Instruments for Shipping Address
 ed:82|  Unvalidated User
 ed:83|  IP Country Not Acceptable
 ed:84|  Billing BIN Match
+ed:85|  Corporate Shipping Address
+ed:86|  Corporate IP Address
 ed:500|  1 Hour Source Transaction Velocity
 ed:501|  1 Hour Destination Transaction Velocity
 ed:502|  1 Hour IP Transaction Velocity
@@ -315,7 +317,6 @@ tc:6|	TIN Verification: Address Match
 mh:0|	MATCH 
 mh:1|	MATCH: Terminated Merchant
 mh:2|	MATCH: Terminated Merchant for Fraudulent Reason
-ep:1|	Experian BIS
 au:0|   Augur: Using Tor Browser
 bc:0|	BlueCava 
 bc:1|	BlueCava: Using Anonymous Proxy
