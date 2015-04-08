@@ -79,15 +79,13 @@ You must replace `YOUR-ACCESS-TOKEN` with your API key.
   "twitter_id": "cricketnation",
   "google_plus_id": NULL,
   "instagram_id": "cricketnation",
-  "mapped": false,
-  "claimed": false,
   "omit_address": false,
   "hours": {
-    "sunday": [
+      "sunday": [
         [
           "closed"
         ]
-        ],
+      ],
       "monday": [
         [
           "8:00",
@@ -95,6 +93,9 @@ You must replace `YOUR-ACCESS-TOKEN` with your API key.
         ]
       ]
     },
+  "category_ids": [
+      "467"
+    ],
   "updated_at": "2014-11-27T11:35:27.364Z"
 }
 
@@ -135,26 +136,27 @@ facebook_id | The Facebook ID or the name of the page for the business
 twitter_id | Twitter username for the business, without the @ symbol
 google_plus_id | The Google Plus ID or the name used for the page of the business
 instagram_id | The Instgram ID or the username for the business listing
-mapped | True or False on whether or not the partner listing is mapped
-claimed | True or False on whether or not the partner has claimed a listing
 omit_address | Boolean for omitting the address from the listing (default: false)
 hours | The Hours a business is open or closed represented by a hash of multi dimensional arrays
+category_ids | MojoPages Category ID's that you want business to be listed under
 updated_at | When the listing was last updated
 
 # Getting Started Workflow
 
 There are many ways and uses for the API. Here are the major typical workflows:
 
-1) [Search for listings](#get-a-search-for-listings-in-json) - We recommend when searching using: Name, Address, Latitude, Longitude and Phone number.
+1) [Find Right Category ID](#get-categories-in-json) - You'll first want to grab a list of our category ID's before getting started.
 
-2) [Get a listing detail](#get-a-listing) - Verify the listings status and make sure that it is Available to be claimed.
+2) [Search for listings](#get-a-search-for-listings-in-json) - We recommend when searching using: Name, Address, Latitude, Longitude and Phone number.
 
-3) [Post partner listings](#post-a-new-partner-listing) - Push all your listings into our database with your listing ID and the Mojo_ID of the listing you want to claim ownership for.
+3) [Get a listing detail](#get-a-listing) - Verify the listings status and make sure that it is Available to be claimed.
 
-3.A) [Post a suppress listing](#post-suppress-a-listing) - If there are duplicates or other issues with listings in our database then supress them.
+4) [Post partner listings](#post-a-new-partner-listing) - Push all your listings into our database with your listing ID and the Mojo_ID of the listing you want to claim ownership for.
 
-3.B) [Add a partner listing](#post-a-new-partner-listing) - If you have verified there is no match to a search result, Post a partner listing without a Mojo_ID and it will be added.
+4.A) [Post a suppress listing](#post-suppress-a-listing) - If there are duplicates or other issues with listings in our database then supress them.
 
-3.C) [Update partner listing](#update-a-partner-listing) - If you have claimed a listing and the status is active then you can update it at anytime and any parameters passed will be updated.
+4.B) [Add a partner listing](#post-a-new-partner-listing) - If you have verified there is no match to a search result, Post a partner listing without a Mojo_ID and it will be added.
 
-4) [Get partner listings](#get-partner-listings-in-json) - Lastly this will give you all your listings and the status of those listins in our database.
+4.C) [Update partner listing](#update-a-partner-listing) - If you have claimed a listing and the status is active then you can update it at anytime and any parameters passed will be updated.
+
+5) [Get partner listings](#get-partner-listings-in-json) - Lastly this will give you all your listings and the status of those listins in our database.
