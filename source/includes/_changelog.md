@@ -4,6 +4,7 @@ Changes to the API and documentation are below.
 
 Date | Changes
 --------- | -----------
+4/8/2015 | Added Category ID's and LatLong Validations
 4/7/2015 | Updated listing status to better reflect industry standards
 4/6/2015 | Removed Claim/Unclaim Endpoints and integrated Claim into Post/Update Partner Listing
 3/26/2015 | Added business hours to Get and Post

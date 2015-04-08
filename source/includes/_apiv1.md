@@ -84,22 +84,23 @@ curl "https://api.mojopages.com/api/v1/partner/listings"
       "twitter_id": "cricketnation",
       "google_plus_id": null,
       "instagram_id": "cricketnation",
-      "mapped": true,
-      "claimed": true,
       "omit_address": false,
       "hours": {
-        "sunday": [
-          [
-            "closed"
-          ]
+          "sunday": [
+            [
+              "closed"
+            ]
           ],
-        "monday": [
-          [
-            "8:00",
-            "16:00"
+          "monday": [
+            [
+              "8:00",
+              "16:00"
+            ]
           ]
-        ]
-      },
+        },
+      "category_ids": [
+          "467"
+        ],
       "updated_at": "2014-11-27T11:35:27.364Z"
     }
   ]
@@ -202,22 +203,23 @@ curl "https://api.mojopages.com/api/v1/partner/listing/7d373c1da40cbfc3f165"
     "twitter_id": "cricketnation",
     "google_plus_id": null,
     "instagram_id": "cricketnation",
-    "mapped": true,
-    "claimed": true,
     "omit_address": false,
     "hours": {
-      "sunday": [
-        [
-          "closed"
-        ]
+        "sunday": [
+          [
+            "closed"
+          ]
         ],
-      "monday": [
-        [
-          "8:00",
-          "16:00"
+        "monday": [
+          [
+            "8:00",
+            "16:00"
+          ]
         ]
-      ]
-    },
+      },
+    "category_ids": [
+        "467"
+      ],
     "updated_at": "2014-11-27T11:35:27.364Z"
   }
 }
@@ -250,6 +252,9 @@ SUPPRESSED | The listing is suppressed, which means it should not appear in our 
 BLOCKED | The listing has an existing relationship with another partner and may not be controlled by you.
 
 
+
+
+
 ## Post a New Partner Listing
 
 > Request example
@@ -258,7 +263,7 @@ BLOCKED | The listing has an existing relationship with another partner and may 
 curl "https://api.mojopages.com/api/v1/partner/listing/7d373c1da40cbfc3f165"
   -H "Authorization: Token token=YOUR-ACCESS-TOKEN"
   -H "Content-Type: application/json"
-  -X POST -d '{"mojo_id": 201702, "name": "Piety Hill Cottages", "address": "523 Sacramento St", "tel": "(555) 555-5555", "locality": "Nevada City", "region": "CA", "postcode":"95959", "hours": {"sunday":[["closed"]], "monday": [["8:00","16:00"]]}}'
+  -X POST -d '{"mojo_id": 201702, "name": "Piety Hill Cottages", "address": "523 Sacramento St", "tel": "(555) 555-5555", "locality": "Nevada City", "region": "CA", "postcode":"95959", "latitude": "47.288845", "longitude": "-101.0308", "hours": {"sunday":[["closed"]], "monday": [["8:00","16:00"]]}, "category_ids": [467]}'
 
 ```
 
@@ -355,14 +360,17 @@ tel | false | Telephone number of the business, should be 10 digits
 fax | false | Fax number of the business, should be 10 digits
 website | false | URL for the business, include http://
 email | false | Email address for the business
-longitude | false | Longitude of the business location
-latitude | false | Latitude of the business location
+longitude | true | Longitude of the business location
+latitude | true | Latitude of the business location
 facebook_id | false | The Facebook ID or the name of the page for the business
 twitter_id | false | Twitter username for the business, without the @ symbol
 google_plus_id | false | The Google Plus ID or the name used for the page of the business
 instagram_id | false | The Instgram ID or the username for the business listing
 omit_address | false | Boolean for omitting the address from the listing (default: false)
 hours | false | The Hours a business is open or closed represented by a hash of multi dimensional arrays
+category_ids | true | MojoPages Category ID's that you want business to be listed under array (max: 3)
+
+
 
 
 ## Update a Partner Listing
@@ -409,26 +417,6 @@ curl "https://api.mojopages.com/api/v1/partner/listing/7d373c1da40cbfc3f165"
 }
 ```
 
-> The above command returns JSON structured like this if it's validations are rejected:
-
-```json
-{
-  "response": {
-    "status": 422
-  },
-  "listing": {
-    "status": "REJECTED",
-    "error": {
-      "messages": [
-        {
-          "message": "Validation failed: Postcode can't be blank"
-        }
-      ]
-    }
-  }
-}
-```
-
 This endpoint is used to put updated data for an existing business listing into MojoPages.
 
 ### HTTP Request
@@ -456,28 +444,29 @@ BLOCKED | You cannot create the Listing and description of the issue will be sta
 
 ### Available JSON Listing Values
 
-Listing Value | required | Description
---------- | ----------- | -----------
-listing_id | true | Your unique identifier for the listing, used for adding or deleting a record
-mojo_id | false | Claims a Business based on mojo_id, will automap or create new listing when not included
-name | true | Name of the business
-address | true | Address of the business
-address_extended | false | Second address of the business if there is one
-locality | true | City where the business is located
-region | true | State in which the business is located, should be 2 character abreviation
-postcode | true | Postal code where the business is located, should be a minimum 5 digits
-tel | false | Telephone number of the business, should be 10 digits
-fax | false | Fax number of the business, should be 10 digits
-website | false | URL for the business, include http://
-email | false | Email address for the business
-longitude | false | Longitude of the business location
-latitude | false | Latitude of the business location
-facebook_id | false | The Facebook ID or the name of the page for the business
-twitter_id | false | Twitter username for the business, without the @ symbol
-google_plus_id | false | The Google Plus ID or the name used for the page of the business
-instagram_id | false | The Instgram ID or the username for the business listing
-omit_address | false | Boolean for omitting the address from the listing (default: false)
-hours | false | The Hours a business is open or closed represented by a hash of multi dimensional arrays
+Listing Value | Description
+--------- | -----------
+listing_id | Your unique identifier for the listing, used for adding or deleting a record
+mojo_id | Claims a Business based on mojo_id, will automap or create new listing when not included
+name | Name of the business
+address | Address of the business
+address_extended | Second address of the business if there is one
+locality | City where the business is located
+region | State in which the business is located, should be 2 character abreviation
+postcode | Postal code where the business is located, should be a minimum 5 digits
+tel | Telephone number of the business, should be 10 digits
+fax | Fax number of the business, should be 10 digits
+website | URL for the business, include http://
+email | Email address for the business
+longitude | Longitude of the business location
+latitude | Latitude of the business location
+facebook_id  | The Facebook ID or the name of the page for the business
+twitter_id | Twitter username for the business, without the @ symbol
+google_plus_id | The Google Plus ID or the name used for the page of the business
+instagram_id | The Instgram ID or the username for the business listing
+omit_address | Boolean for omitting the address from the listing (default: false)
+hours | The Hours a business is open or closed represented by a hash of multi dimensional arrays
+category_ids | MojoPages Category ID's that you want business to be listed under array (max: 3)
 
 
 ## Delete a Partner Listing
@@ -628,21 +617,23 @@ curl "https://api.mojopages.com/api/v1/listings/search?name=Instant+Phones&local
       "website": "http://www.mycricket.com/",
       "longitude": "-112.10158",
       "latitude": "33.643668",
-      "status": "AVAILABLE",
       "omit_address": false,
       "hours": {
-        "sunday": [
-          [
-            "closed"
-          ]
+          "sunday": [
+            [
+              "closed"
+            ]
           ],
-        "monday": [
-          [
-            "8:00",
-            "16:00"
+          "monday": [
+            [
+              "8:00",
+              "16:00"
+            ]
           ]
-        ]
-      },
+        },
+      "category_ids": [
+          "467"
+        ],
       "updated_at": "2014-11-27T11:35:27.364Z"
     }
   ]
@@ -718,18 +709,21 @@ curl "https://api.mojopages.com/api/v1/listing/11079728"
     "status": "AVAILABLE",
     "omit_address": false,
     "hours": {
-      "sunday": [
-        [
-          "closed"
-        ]
+        "sunday": [
+          [
+            "closed"
+          ]
         ],
-      "monday": [
-        [
-          "8:00",
-          "16:00"
+        "monday": [
+          [
+            "8:00",
+            "16:00"
+          ]
         ]
-      ]
-    },
+      },
+    "category_ids": [
+        "467"
+      ],
     "updated_at": "2014-11-27T11:35:27.364Z"
   }
 }

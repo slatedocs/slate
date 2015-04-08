@@ -138,7 +138,7 @@ google_plus_id | The Google Plus ID or the name used for the page of the busines
 instagram_id | The Instgram ID or the username for the business listing
 omit_address | Boolean for omitting the address from the listing (default: false)
 hours | The Hours a business is open or closed represented by a hash of multi dimensional arrays
-category_ids | MojoPages Category ID's that you want business to be listed under
+category_ids | MojoPages Category ID's that you want business to be listed under array (max: 3)
 updated_at | When the listing was last updated
 
 # Getting Started Workflow
