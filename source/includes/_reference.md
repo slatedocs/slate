@@ -261,23 +261,21 @@ ed:52|  Billing and Shipping Address Match
 ed:53|  Billing and Card Issuer Country Match
 ed:54|  IP and Card Issuer Country Match
 ed:55|  Issuer Country Count
-ed:56|  Card Issuer Country on Blacklist
-ed:57|  IP to Billing Address Distance
-ed:58|  IP to Shipping Address Distance
-ed:59|  Multiple Accounts for User
+ed:56|  Card Issuer Country on Blacklist 
+ed:59|  User Account Count
 ed:60|  Previous Rejected Transaction for User
 ed:61|  IP Country Watchlist
 ed:62|  CVV Mismatch
 ed:63|  AVS Mismatch
-ed:64|  AVS Mismatch for a Domestic Issuer
+ed:64|  Absent AVS from Domestic Bank
 ed:65|  Credit Count
 ed:66|  Transaction Time
 ed:67|  Corporate Payment Instrument
-ed:68|  Subscription Request
+ed:68|  Subscription
 ed:69|  Verified PayPal Account
 ed:70|  Confirmed PayPal Address
 ed:71|  Account Has Denied KYC
-ed:72|  Account has KYC in Manual Review
+ed:72|  Account Has KYC in Manual Review
 ed:73|  PayPal Count for User
 ed:74|  Card Count for Device
 ed:75|  Card Count for User
@@ -292,6 +290,9 @@ ed:83|  IP Country Not Acceptable
 ed:84|  Billing BIN Match
 ed:85|  Corporate Shipping Address
 ed:86|  Corporate IP Address
+ed:87|  Billing Country Watchlist
+ed:88|  Browser Language / IP Country Mismatch
+ed:89|  Card Issuer Country
 ed:500|  1 Hour Source Transaction Velocity
 ed:501|  1 Hour Destination Transaction Velocity
 ed:502|  1 Hour IP Transaction Velocity
@@ -307,6 +308,7 @@ ed:511|  28 Day Destination Transaction Velocity
 ed:512|  28 Day IP Transaction Velocity
 ed:513|  28 Day Account Creation Velocity
 ed:514|  28 Day IP Account Creation Velocity
+ed:515|  24 Hour Shipping Address Velocity
 tc:0|	TIN Verification
 tc:1|	TIN Verification: TIN and Name Match
 tc:2|	TIN Verification: Possible Death Master File Match Found
@@ -332,6 +334,8 @@ mm:6|	MaxMind MinFraud: IP City
 mm:7|	MaxMind MinFraud: IP Region / State Match
 mm:8|   MaxMind MinFraud: IP Region / Country Banned
 mm:10|  Maxmind MinFraud: Using Anonymous Proxy
+mm:11|  Maxmind MinFraud: IP to Billing Address Distance
+mm:12|  Maxmind MinFraud: IP to Shipping Address Distance
 
 ## Quiz Response Encoding
 ```code
