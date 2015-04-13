@@ -1681,8 +1681,8 @@
    */
   lunr.trimmer = function (token) {
     return token
-        .replace(/^\W+/, '')
-        .replace(/\W+$/, '')
+        .replace('/^([A-Za-z0-9_а-яА-ЯёЁ])/', '')
+        .replace('/([A-Za-z0-9_а-яА-ЯёЁ])$/', '')
   }
 
   lunr.Pipeline.registerFunction(lunr.trimmer, 'trimmer')
