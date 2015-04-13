@@ -99,15 +99,16 @@ In the rbc-project.json file you will see the thet the default evironment has be
 {
   "version": "0.7.10",
   "environments": {
-    "Testing”: {
+    "Testing": {
       "uri": "api.bodhi.space",
       "username": "Teddy",
       "password": "apple",
       "namespace": "QA_testing"
     }
-  },
-  "default": "Testing”
+  }, "default": "Testing"
+
 }
+
 ````
 #####Get the Default Environment
 
