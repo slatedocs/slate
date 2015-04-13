@@ -75,17 +75,29 @@ This document describes the process for developing a sample service using the sa
 ###  Installing Files and Modifying Contents
 
 #### Step1: Copy the Web page.
- Decompress the sample file and **copy the files in the Webcontents folder to $TOMCAT_HOME/webapp/ROOT/**. 
+ Decompress the sample file and **upload the war file to webserver using Tomcat manager. $TOMCAT_HOME/webapp/ROOT/**. 
 
 #### Step2: Install bouncycastle JCE.
+1. Download latest BouncyCastle for matching JDK version of webserver from www.bouncycastle.org/java.html. Store the jar file in jre/lib/ext directory.
+ex) bcprov-jdk16-146.jar, $JAVA_HOME jre/lib/ext
 
-##### aes256 configuration 
-Decompress the sample file and **copy the files in the Webcontents folder to $TOMCAT_HOME/webapp/ROOT/.**  
-**You must have installed bouncycastle JCE to run the StringEncrypter.class among the attached class files.**
+2. Add the below declaration in java.security file located in jre/lib/security folder.
+security.provider.8 = ........
+security.provider.9 = org.bouncycastle.jce.provider.BouncyCastleProvider 
 
-##### Content Usage Info Page 
-Set the information for using DRM-applied contents.
-**PallyCon Player(Mobile, PC) does not support content playback with count-limited license.**
+3. Download unrestricted policy files from download page of java.sun.com site. Replace local_policy.jar and US_export_policy.jar files in jre/lib/security folder.
+
+4. Restart tomcat.
+
+
+#### Step3: Edit config.jsp file
+**Editing config.jsp file can affect PC / Mobile services in common.** 
+
+##### aes256 configration (_aes key config_)  
+key should be set using Site Key which can be found in PallyCon Admin site. **Use fixed value of Initial Vecor which will be used with Site Key for encryptio and decryption (Initial Vector: _0123456789abcdef_)**
+
+##### Content Usage Info Page (_gateway config_)
+Set the information for using DRM-applied contents. Use 'LIMIT', 'PD_START', 'PD_END', 'PD_COUNT' value to set license info. **PallyCon Player(Mobile, PC) does not support content playback with count-limited license.**
 
 |License Rules|LIMIT|PD_START|PD_END|PD_COUNT|
 |-------------|-----|--------|------|-----|
@@ -105,6 +117,12 @@ Set the information required for playing and downloading DRM contents.
 - **sContent_Url1:** File name of the first content in the list
 - **sContent_Url2:** File name of the second content in the list
 - **sContent_Url3:** File name of the third content in the list
+
+Other meta data can be set by editing `sCategory_name`, `sCategory_teacher`, `Content_name1`, `Content_name2`, `Content_name3` values. 
+
+##### Set language
+`sLanguage` value is used for setting language. (KR: Korean, EN: English)
+
  
 #### Step4: Set URL in PallyCon CP Admin.
 
@@ -138,10 +156,6 @@ When packaging is completed, the source contents (MP4) are changed to DRM conten
 
  1. Store the DRM contents in `/$TOMCAT_HOME/webapp/ROOT/ServiceSite/cont`.
  2. **Change the sContent_url1, 2, and 3 values of config.jsp** using the URL information of the corresponding contents.
-
-
-
-
 
 
 ## Running  
