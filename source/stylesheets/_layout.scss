@@ -85,23 +85,23 @@ html, body {
     position: relative;
 
     input {
-      background: $nav-bg;
-      border-width: 0 0 1px 0;
-      border-color: $search-box-border-color;
-      padding: 6px 0 6px 20px;
-      @include box-sizing(border-box);
+      background: white;
+      @include radius(15px);
+      height: 30px;
+      border: none;
       margin: $nav-v-padding $nav-padding;
       width: $nav-width - 30;
       outline: none;
-      color: $nav-text;
-      border-radius: 0; /* ios has a default border radius */
+      @include box;
+      color: black;
+      padding-left: 30px;
     }
 
     &:before {
       position: absolute;
-      top: 17px;
-      left: $nav-padding;
-      color: $nav-text;
+      top: 20px;
+      padding-lefT: 25px;
+      color: black;
       @extend %icon-search;
     }
   }
