@@ -120,12 +120,18 @@ img + .tocify {
     @include bevel;
   }
   li {
-    margin: 1em $nav-padding;
+
     line-height: 1;
+    &:only-child {
+padding: 7px $nav-padding;
+font-style: italic;
+    }
   }
   a {
+    padding: 7px $nav-padding;
     color: $nav-text;
     text-decoration: none;
+    displaY: block;
     &:hover {
       text-decoration: underline;
     }
