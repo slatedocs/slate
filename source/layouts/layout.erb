@@ -45,7 +45,7 @@ under the License.
   <a href="#" id="nav-button">
   </a>
   <div class="tocify-wrapper">
-    <%= image_tag "logo.png", :class => "logo" %>
+    <div class="logo"></div>
     <% if language_tabs %>
     <div class="lang-selector">
       <% language_tabs.each do |lang| %>
@@ -74,6 +74,7 @@ under the License.
     <% end %>
   </div>
   <div class="page-wrapper">
+    <div class="logo"></div>
     <div class="dark-box"></div>
     <div class="content">
       <%= yield %>

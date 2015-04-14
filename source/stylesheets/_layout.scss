@@ -213,12 +213,12 @@ li {
   }
   &.open {
     padding-top: 0;
-    left: $nav-width - 30;
+    left: $nav-width - 35;
     color: white;
     font-size: 30px;
-      &:before {
-    content: '\2A2F';
-  }
+    &:before {
+      content: '\2A2F';
+    }
   }
 }
 
@@ -251,12 +251,13 @@ li {
 }
 
 .lang-selector {
-  font-weight: bold;
   padding: 10px;
   a {
     display: block;
     float: left;
     font-size: 12px;
+    text-transform: uppercase;
+    font-weight: 600;
     color: $lang-select-text;
     text-decoration: none;
     padding: 0 10px;
@@ -512,8 +513,31 @@ li {
     padding-bottom: 0.3em;
   }
 }
+.logo {
+  background-image: url(/images/logo.png);
+  background-repeat: no-repeat;
+  background-position: $nav-padding $nav-padding;
+  height: 100px;
+  width: 100%;
+   .tocify-wrapper & {
+    display:block;
+  }
+    .page-wrapper & {
+    display: none;
+  }
+}
 
-@media (max-width: $phone-width) {
+
+
+@include media($phone-width, max) {
+   .tocify-wrapper .logo {
+    display:none;
+  }
+    .page-wrapper .logo {
+    display: block;
+    width: 100%;
+    border-bottom: 1px solid #ccc;
+  }
   .dark-box {
     display: none;
   }
@@ -522,6 +546,19 @@ li {
   }
   .tocify-wrapper .lang-selector {
     display: block;
+    @include box;
+    padding-left: 16px;
+    padding-righT: 16px;
+    padding-top: 30px;
+    a {
+      padding-top: 0;
+      // only works if two languages.
+      widtH: 50%;
+      padding-bottom: 0;
+      @include box;
+      text-align: center;
+
+    }
   }
   .page-wrapper .lang-selector {
     display: none;
