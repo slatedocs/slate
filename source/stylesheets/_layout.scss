@@ -29,19 +29,19 @@ html, body {
 @mixin embossed-bg {
   @include background(
     linear-gradient(top,
-                    rgba(#000, 0.2),
-                    rgba(#000, 0) 8px),
+      rgba(#000, 0.2),
+      rgba(#000, 0) 8px),
     linear-gradient(bottom,
-                    rgba(#000, 0.2),
-                    rgba(#000, 0) 8px),
+      rgba(#000, 0.2),
+      rgba(#000, 0) 8px),
     linear-gradient(top,
-                    rgba($nav-embossed-border-top, 1),
-                    rgba($nav-embossed-border-top, 0) 1.5px),
+      rgba($nav-embossed-border-top, 1),
+      rgba($nav-embossed-border-top, 0) 1.5px),
     linear-gradient(bottom,
-                    rgba($nav-embossed-border-bottom, 1),
-                    rgba($nav-embossed-border-bottom, 0) 1.5px),
+      rgba($nav-embossed-border-bottom, 1),
+      rgba($nav-embossed-border-bottom, 0) 1.5px),
     $nav-subitem-bg
-  );
+    );
 }
 
 .tocify-wrapper {
@@ -55,15 +55,18 @@ html, body {
   bottom: 0;
   width: $nav-width;
   background-color: $nav-bg;
+  background-image: url("/images/background.jpg");
+  @include cover;
+  background-position: center center;
   font-size: 13px;
   font-weight: bold;
   .tocify-item {
     a {
-    color: white;
-  }
-  &.tocify-focus a {
-    color: $nav-bg;
-  }
+      color: white;
+    }
+    &.tocify-focus a {
+      color: $nav-bg;
+    }
   }
 
 
@@ -95,16 +98,16 @@ html, body {
       width: $nav-width - 30;
       outline: none;
       @include box;
-       color: $nav-active-text;
+      color: $nav-active-text;
       padding-left: 30px;
-   background-color: $nav-active-bg;
+      background-color: $nav-active-bg;
     }
 
     &:before {
       position: absolute;
       top: 10px;
       padding-left: 25px;
-       color: $nav-active-text;
+      color: $nav-active-text;
       @extend %icon-search;
     }
   }
@@ -115,29 +118,24 @@ html, body {
 
   .search-results {
     margin-top: 0;
-    @include box-sizing(border-box);
+    @include box;
     height: 0;
     overflow-y: auto;
     overflow-x: hidden;
-    @include transition-property(height margin);
-    @include transition-duration(180ms);
-    @include transition-timing-function(ease-in-out);
+    @include trans;
+    background-color: rgba(0,0,0,.3);
     &.visible {
-      height: 30%;
+      height: auto;
+      max-height: 30%;
       margin-bottom: 1em;
     }
-
-    @include embossed-bg;
-
     li {
       margin: 1em $nav-padding;
       line-height: 1;
     }
-
     a {
       color: $nav-text;
       text-decoration: none;
-
       &:hover {
         text-decoration: underline;
       }
@@ -172,7 +170,6 @@ html, body {
 
   // This is the currently selected ToC entry
   .tocify-focus {
-    @include box-shadow(0px 1px 0px $nav-active-shadow);
     background-color: $nav-active-bg;
     color: $nav-active-text;
   }
@@ -374,7 +371,7 @@ html, body {
     padding-bottom: 1.2em;
     @include background-image(
       linear-gradient(top, rgba(#fff,0.4), rgba(#fff, 0))
-    );
+      );
   }
 
   // h2s right after h1s should bump right up

@@ -16,88 +16,88 @@ under the License.
 <% language_tabs = current_page.data.language_tabs %>
 <!doctype html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title><%= current_page.data.title || "API Documentation" %></title>
- <script src="//use.typekit.net/oas6unn.js" type="text/javascript" async=""></script>
-    <%= stylesheet_link_tag :screen, media: :screen %>
-    <%= stylesheet_link_tag :print, media: :print %>
-<link rel="stylesheet" href="http://use.typekit.net/c/c7340b/1w;freight-sans-pro,2,TJC:R:i4,TJF:R:i5,TJH:R:i6,TJK:R:i7,TJB:R:n4,TJD:R:n5,TJG:R:n6,TJJ:R:n7;museo-slab,2,SLT:R:i3,QL0:R:i5,QL7:R:n1,SKB:R:n3,WH7:R:n5,VnC:R:n7/d?3bb2a6e53c9684ffdc9a99f01f5b2a6257cce8750a3309b11b7cca149915a8a96319421e1bbd921d4fc2ad161b30c3277da3664284d4bf9489fb013ad475e385ae326685f81430e0526002a74f5594722793ca3c9d258de4be07e83884f15f400f6ce0f6dff5c59de51ad4636b8dd65ccad8794dd97c854a05370c7439f4fabce94edd5bf8a98c2abcf69b1271a3fd3c4c50bc7a7f1d4d125129a3a885fa3467d62e4f7aa2ce660d8a532952bca7774912b26693828a80851c3c9238ff03a4b28af2bc58254f44cc330020ffe76383338f8bc78a757d60f5b964763f0d44bc7b288aab28bc5726f9211ebda0a6f6aecafbbc23bdbc21ce414c1a5afdc5e2b2bfcba8801362ab2b53a4f451ccdb544fff69d02d0decf764ec417bbebfb3871051fed2fc858f70ac071072b877118bf444a5f5ad01951492acdf64d3bc2afbeb2e977360107e847247af546cd9da51972a338f08b58bd9b112b3aa79cbb4d57102fca09ac45c1a60dc1c11ceb241">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <% if current_page.data.search %>
-      <%= javascript_include_tag  "all" %>
-    <% else %>
-      <%= javascript_include_tag  "all_nosearch" %>
-    <% end %>
+<head>
+  <meta charset="utf-8">
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title><%= current_page.data.title || "API Documentation" %></title>
+  <script src="//use.typekit.net/oas6unn.js"></script>
+  <script>try{Typekit.load();}catch(e){}</script>
+  <%= stylesheet_link_tag :screen, media: :screen %>
+  <%= stylesheet_link_tag :print, media: :print %>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+  <% if current_page.data.search %>
+  <%= javascript_include_tag  "all" %>
+  <% else %>
+  <%= javascript_include_tag  "all_nosearch" %>
+  <% end %>
 
+  <% if language_tabs %>
+  <script>
+  $(function() {
+    setupLanguages(<%= language_tabs.map{ |lang| lang.is_a?(Hash) ? lang.keys.first : lang }.to_json %>);
+  });
+</script>
+<% end %>
+</head>
+
+<body class="<%= page_classes %>">
+  <a href="#" id="nav-button">
+    <span>
+      NAV
+      <%= image_tag('navbar.png') %>
+    </span>
+  </a>
+  <div class="tocify-wrapper">
+    <%= image_tag "logo.png", :class => "logo" %>
     <% if language_tabs %>
-      <script>
-        $(function() {
-          setupLanguages(<%= language_tabs.map{ |lang| lang.is_a?(Hash) ? lang.keys.first : lang }.to_json %>);
-        });
-      </script>
+    <div class="lang-selector">
+      <% language_tabs.each do |lang| %>
+      <% if lang.is_a? Hash %>
+      <a href="#" data-language-name="<%= lang.keys.first %>"><%= lang.values.first %></a>
+      <% else %>
+      <a href="#" data-language-name="<%= lang %>"><%= lang %></a>
+      <% end %>
+      <% end %>
+    </div>
     <% end %>
-  </head>
-
-  <body class="<%= page_classes %>">
-    <a href="#" id="nav-button">
-      <span>
-        NAV
-        <%= image_tag('navbar.png') %>
-      </span>
-    </a>
-    <div class="tocify-wrapper">
-      <%= image_tag "logo.png", :class => "logo" %>
+    <% if current_page.data.search %>
+    <div class="search">
+      <input type="text" class="search" id="input-search" placeholder="Search">
+    </div>
+    <ul class="search-results"></ul>
+    <% end %>
+    <div id="toc">
+    </div>
+    <% if current_page.data.toc_footers %>
+    <ul class="toc-footer">
+      <% current_page.data.toc_footers.each do |footer| %>
+      <li><%= footer %></li>
+      <% end %>
+    </ul>
+    <% end %>
+  </div>
+  <div class="page-wrapper">
+    <div class="dark-box"></div>
+    <div class="content">
+      <%= yield %>
+      <% current_page.data.includes && current_page.data.includes.each do |include| %>
+      <%= partial "includes/#{include}" %>
+      <% end %>
+    </div>
+    <div class="dark-box">
       <% if language_tabs %>
-        <div class="lang-selector">
-          <% language_tabs.each do |lang| %>
-            <% if lang.is_a? Hash %>
-              <a href="#" data-language-name="<%= lang.keys.first %>"><%= lang.values.first %></a>
-            <% else %>
-              <a href="#" data-language-name="<%= lang %>"><%= lang %></a>
-            <% end %>
-          <% end %>
-        </div>
-      <% end %>
-      <% if current_page.data.search %>
-        <div class="search">
-          <input type="text" class="search" id="input-search" placeholder="Search">
-        </div>
-        <ul class="search-results"></ul>
-      <% end %>
-      <div id="toc">
-      </div>
-      <% if current_page.data.toc_footers %>
-        <ul class="toc-footer">
-          <% current_page.data.toc_footers.each do |footer| %>
-            <li><%= footer %></li>
-          <% end %>
-        </ul>
-      <% end %>
-    </div>
-    <div class="page-wrapper">
-      <div class="dark-box"></div>
-      <div class="content">
-        <%= yield %>
-        <% current_page.data.includes && current_page.data.includes.each do |include| %>
-          <%= partial "includes/#{include}" %>
+      <div class="lang-selector">
+        <% language_tabs.each do |lang| %>
+        <% if lang.is_a? Hash %>
+        <a href="#" data-language-name="<%= lang.keys.first %>"><%= lang.values.first %></a>
+        <% else %>
+        <a href="#" data-language-name="<%= lang %>"><%= lang %></a>
+        <% end %>
         <% end %>
       </div>
-      <div class="dark-box">
-        <% if language_tabs %>
-          <div class="lang-selector">
-            <% language_tabs.each do |lang| %>
-              <% if lang.is_a? Hash %>
-                <a href="#" data-language-name="<%= lang.keys.first %>"><%= lang.values.first %></a>
-              <% else %>
-                <a href="#" data-language-name="<%= lang %>"><%= lang %></a>
-              <% end %>
-            <% end %>
-          </div>
-        <% end %>
-      </div>
+      <% end %>
     </div>
-  </body>
+  </div>
+</body>
 </html>

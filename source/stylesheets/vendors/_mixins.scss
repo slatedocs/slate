@@ -8,28 +8,28 @@
     }
 
     @mixin placeholder($animate: true) {
-        &.placeholder {
-            @content;
+      &.placeholder {
+        @content;
+      }
+      &::-webkit-input-placeholder {
+        @content;
+      }
+      &:-moz-placeholder {
+        @content;
+      }
+      &::-moz-placeholder {
+        @content;
+      }
+      &:-ms-input-placeholder {
+        @content;
+      }
+      @if $animate == "true" {
+        &:focus::-webkit-input-placeholder {
+          transition: all 0.5s 0.1s ease;
+          text-indent: -50%;
+          opacity: 0;
         }
-        &::-webkit-input-placeholder {
-            @content;
-        }
-        &:-moz-placeholder {
-            @content;
-        }
-        &::-moz-placeholder {
-            @content;
-        }
-        &:-ms-input-placeholder {
-            @content;
-        }
-        @if $animate == "true" {
-            &:focus::-webkit-input-placeholder {
-                transition: all 0.5s 0.1s ease;
-                text-indent: -50%;
-                opacity: 0;
-            }
-        }
+      }
     }
 
     @mixin disable($type: link) {
@@ -199,92 +199,92 @@
     }
 
     @mixin grid($column: 6, $gutter: 20px, $border: false, $border-color: #cccccc, $collapse: true) {
-        width: 100%;
-        @include box;
-        display: table;
-        @include media(767px, max) {
-            display: block;
-        }
+      width: 100%;
+      @include box;
+      display: table;
+      @include media(767px, max) {
+        display: block;
+      }
 
-        & > .cell, & > article, & > li, & > dt, & > section, & > .column {
-            display: table-cell;
-            width: 100% / $column;
+      & > .cell, & > article, & > li, & > dt, & > section, & > .column {
+        display: table-cell;
+        width: 100% / $column;
+        padding: 0;
+        @include box;
+        &:not(:first-of-type) {
+          padding-left: $gutter / 2;
+        }
+        &:not(:last-of-type) {
+          padding-right: $gutter / 2;
+          @if $border == true {
+            border-right: solid 1px $border-color;
+          }
+        }
+        &.double, &.times2 {
+          width: 100% / $column * 2;
+        }
+        &.triple, &.times3 {
+          width: 100% / $column * 3;
+        }
+        &.times4 {
+          width: 100% / $column * 4;
+        }
+        &.times5 {
+          width: 100% / $column * 5;
+        }
+        &.times6 {
+          width: 100% / $column * 6;
+        }
+        &.times7 {
+          width: 100% / $column * 7;
+        }
+        &.times8 {
+          width: 100% / $column * 8;
+        }
+        &.times9 {
+          width: 100% / $column * 9;
+        }
+        &.times10 {
+          width: 100% / $column * 10;
+        }
+        &.times11 {
+          width: 100% / $column * 11;
+        }
+        @if $collapse == 'true' {
+          @include media(767px, max) {
+            width: 100% !important;
+            display: block;
+            float: none;
             padding: 0;
-            @include box;
             &:not(:first-of-type) {
-                padding-left: $gutter / 2;
+              padding-left: 0;
+              padding-top: $gutter / 2;
+            }
+            &:last-of-type {
+              display: block;
             }
             &:not(:last-of-type) {
-                padding-right: $gutter / 2;
-                @if $border == true {
-                    border-right: solid 1px $border-color;
-                }
+              padding-right: 0;
+              padding-bottom: $gutter / 2;
+              @if $border == true {
+                border-right: none;
+                border-bottom: solid 1px $border-color;
+              }
             }
-            &.double, &.times2 {
-                width: 100% / $column * 2;
-            }
-            &.triple, &.times3 {
-                width: 100% / $column * 3;
-            }
-            &.times4 {
-                width: 100% / $column * 4;
-            }
-            &.times5 {
-                width: 100% / $column * 5;
-            }
-            &.times6 {
-                width: 100% / $column * 6;
-            }
-            &.times7 {
-                width: 100% / $column * 7;
-            }
-            &.times8 {
-                width: 100% / $column * 8;
-            }
-            &.times9 {
-                width: 100% / $column * 9;
-            }
-            &.times10 {
-                width: 100% / $column * 10;
-            }
-            &.times11 {
-                width: 100% / $column * 11;
-            }
-            @if $collapse == 'true' {
-                @include media(767px, max) {
-                    width: 100% !important;
-                    display: block;
-                    float: none;
-                    padding: 0;
-                    &:not(:first-of-type) {
-                        padding-left: 0;
-                        padding-top: $gutter / 2;
-                    }
-                    &:last-of-type {
-                        display: block;
-                    }
-                    &:not(:last-of-type) {
-                        padding-right: 0;
-                        padding-bottom: $gutter / 2;
-                        @if $border == true {
-                            border-right: none;
-                            border-bottom: solid 1px $border-color;
-                        }
-                    }
-                }
-            }
+          }
         }
+      }
     }
 
     @mixin scroll-hint($bgcolor: black) {
-      /* from http://dabblet.com/gist/2462915 */
+      // from http://dabblet.com/gist/2462915
       overflow: auto;
       background: linear-gradient($bgcolor 30%, rgba(255, 255, 255, 0)), linear-gradient(rgba(255, 255, 255, 0), $bgcolor 90%) 0 100%, radial-gradient(50% 0, farthest-side, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0)), radial-gradient(50% 100%, farthest-side, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0)) 0 100%;
       background: linear-gradient($bgcolor 30%, rgba(255, 255, 255, 0)), linear-gradient(rgba(255, 255, 255, 0), $bgcolor 90%) 0 100%, radial-gradient(farthest-side at 50% 0, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0)), radial-gradient(farthest-side at 50% 100%, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0)) 0 100%;
       background-repeat: no-repeat;
       background-color: $bgcolor;
       background-size: 100% 40px, 100% 40px, 100% 14px, 100% 14px;
-      /* Opera doesn't support this in the shorthand */
+      // Opera doesn't support this in the shorthand
       background-attachment: local, local, scroll, scroll;
     }
 
@@ -312,10 +312,6 @@
       }
     }
 
-    /*
-    from
-    http://codepen.io/chriscoyier/blog/some-mini-sass-mixins-i-like
-    */
     @mixin coverer {
       position: absolute;
       top: 0;
@@ -369,16 +365,16 @@
       background-size: cover !important;
     }
     @mixin except($function: only, $target: mac, $parent: html) {
-        @if function == only {
-            #{$parent}.#{$target} & {
-                @content;
-            }
+      @if function == only {
+        #{$parent}.#{$target} & {
+          @content;
         }
-        @else if function == unless {
-            #{$parent}.#{$target} & {
-                @content;
-            }
+      }
+      @else if function == unless {
+        #{$parent}.#{$target} & {
+          @content;
         }
+      }
     }
     @mixin only($only: mac) {
       html.#{$only} & {
@@ -447,7 +443,7 @@
           }
         }
       }
-        @else if $device == "iphone6" {
+      @else if $device == "iphone6" {
         @if $scope == "portrait" {
           @media only screen and (max-width: 375px) {
             @content;
@@ -482,7 +478,7 @@
         }
       }
 
-        @else if $device == "iphone6plus" {
+      @else if $device == "iphone6plus" {
         @if $scope == "portrait" {
           @media only screen and (max-width: 414px) {
             @content;
