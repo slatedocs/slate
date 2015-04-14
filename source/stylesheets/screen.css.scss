@@ -6,7 +6,7 @@
 // Fonts
 $font-title: freight-sans-pro, arial, sans-serif;
 $font-text: freight-sans-pro, arial, sans-serif;
-$font-mono: "Courier New", Courier, monospace;
+$font-mono: Consolas, Menlo, Monaco, "Lucida Console", "Liberation Mono", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Courier New", monospace, serif;
 $font-icon: FontAwesome;
 
 // Gap
@@ -75,9 +75,9 @@ $phone-width: $tablet-width - $nav-width; // min width before reverting to mobil
 }
 
 %code-font {
-  font-family: Consolas, Menlo, Monaco, "Lucida Console", "Liberation Mono", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Courier New", monospace, serif;
+  font-family: $font-mono;
   font-size: 12px;
-  line-height: 1.5;
+  line-height: 1.4;
 }
 
 
@@ -106,11 +106,11 @@ $search-box-border-color: #666;
 }
 @mixin bevel($type: in) {
   @if $type == "in" {
-   border-top: 1px solid #000;
-   border-bottom: 1px solid #666;
+   border-top: 1px solid rgba(0,0,0,.8);
+   border-bottom: 1px solid rgba(255,255,255,.3);
    } @else {
-    border-bottom: 1px solid #000;
-    border-top: 1px solid #666;
+    border-bottom: 1px solid rgba(0,0,0,.8);
+    border-top: 1px solid rgba(255,255,255,.3);
   }
 
 }

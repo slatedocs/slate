@@ -81,7 +81,7 @@ html, body {
       color: $nav-active-text;
       padding-left: 30px;
       background-color: rgba($nav-active-bg,.8);
-@include bevel;
+      @include bevel;
     }
     &:before {
       position: absolute;
@@ -269,7 +269,7 @@ html, body {
      @include opacity(100);
    }
    &.active {
-     background-color: rgba(0,0,0,.4);
+     background-color: rgba(0,0,0,.6);
    }
    &:first-of-type {
     @include radius-custom(15px, 0, 0, 15px);
@@ -323,7 +323,7 @@ html, body {
     padding-bottom: 10px;
     color: $nav-bg;
     border-top: 1px solid #fff;
-   border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
   }
   h1:first-child, div:first-child + h1 {
     border-top-width: 0;
@@ -481,12 +481,12 @@ html, body {
     @extend %code-font;
   }
   blockquote {
+
     & > p {
       background-color: rgba(0,0,0,.2);
       padding: $code-annotation-padding;
       color: #ccc;
-      border-top: 1px solid #000;
-      border-bottom: 1px solid #666;
+      @include bevel;
     }
   }
 }
