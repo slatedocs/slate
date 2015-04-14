@@ -44,21 +44,27 @@ html, body {
   background-image: url("/images/background.jpg");
   @include cover;
   background-position: center center;
-  font-size: 13px;
-  font-weight: bold;
+  @extend %default-font;
   .tocify-item {
     a {
       color: white;
+      line-height: 2;
+      height: 30px;
     }
     &.tocify-focus a {
       color: $nav-bg;
+      padding-right: 0;
+      @extend %header-font;
+      text-transform: uppercase;
+      line-height: 3;
+      height: 40px;
     }
   }
   // language selector for mobile devices
   .lang-selector {
     display: none;
     a {
-      padding-top: 0.5em;
+      padding: 0.5em;
       padding-bottom: 0.5em;
     }
   }
@@ -318,12 +324,11 @@ html, body {
   }
   h1 {
     @extend %header-font;
-    font-size: 30px;
+    text-transform: uppercase;
+    font-size: 17px;
     padding-top: 10px;
-    padding-bottom: 10px;
     color: $nav-bg;
-    border-top: 1px solid #fff;
-    border-bottom: 1px solid #ccc;
+    border-top: 1px solid #ccc;
   }
   h1:first-child, div:first-child + h1 {
     border-top-width: 0;
@@ -393,7 +398,6 @@ html, body {
     margin-left: 15px;
   }
   p, li, dt, dd {
-    line-height: 1.6;
     margin-top: 0;
   }
   img {
