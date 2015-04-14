@@ -70,6 +70,7 @@ html, body {
     position: relative;
     input {
       @include radius(15px);
+
       height: 30px;
       border: none;
       margin: $nav-padding;
@@ -79,7 +80,8 @@ html, body {
       @include box;
       color: $nav-active-text;
       padding-left: 30px;
-      background-color: $nav-active-bg;
+      background-color: rgba($nav-active-bg,.8);
+@include bevel;
     }
     &:before {
       position: absolute;
@@ -104,8 +106,7 @@ html, body {
       height: auto;
       max-height: 30%;
       margin-bottom: 1em;
-      border-top: 1px solid #000;
-      border-bottom: 1px solid #666;
+      @include bevel;
     }
     li {
       margin: 1em $nav-padding;
@@ -261,27 +262,26 @@ html, body {
     padding: 0 10px;
     line-height: 30px;
     outline: 0;
-        background-color: rgba(0,0,0,.2);
-      border-top: 1px solid #000;
-      border-bottom: 1px solid #666;
-@include opacity(50);
+    background-color: rgba(0,0,0,.2);
+    @include bevel;
+    @include opacity(50);
     &.active, &:hover {
      @include opacity(100);
-    }
-    &.active {
+   }
+   &.active {
      background-color: rgba(0,0,0,.4);
-    }
-    &:first-of-type {
-      @include radius-custom(15px, 0, 0, 15px);
-      padding-left: 15px;
    }
-   &:last-of-type {
-     @include radius-custom(0, 15px, 15px, 0);
-     padding-right: 15px;
+   &:first-of-type {
+    @include radius-custom(15px, 0, 0, 15px);
+    padding-left: 15px;
+  }
+  &:last-of-type {
+   @include radius-custom(0, 15px, 15px, 0);
+   padding-right: 15px;
 
-   }
  }
- &:after {
+}
+&:after {
   content: '';
   clear: both;
   display: block;
@@ -319,9 +319,11 @@ html, body {
   h1 {
     @extend %header-font;
     font-size: 30px;
-    padding-top: 0.5em;
+    padding-top: 10px;
+    padding-bottom: 10px;
     color: $nav-bg;
-    border-top: solid 1px $nav-bg;
+    border-top: 1px solid #fff;
+   border-bottom: 1px solid #ccc;
   }
   h1:first-child, div:first-child + h1 {
     border-top-width: 0;

@@ -69,7 +69,7 @@ $phone-width: $tablet-width - $nav-width; // min width before reverting to mobil
 }
 
 %header-font {
-    font-family: $font-title;
+  font-family: $font-title;
   font-size: 13px;
   font-weight: bold;
 }
@@ -95,14 +95,24 @@ $search-box-border-color: #666;
 
 %break-words {
  -ms-word-break: break-all;
-     word-break: break-all;
+ word-break: break-all;
 
-     /* Non standard for webkit */
-     word-break: break-word;
+ /* Non standard for webkit */
+ word-break: break-word;
 
--webkit-hyphens: auto;
-   -moz-hyphens: auto;
-        hyphens: auto;
+ -webkit-hyphens: auto;
+ -moz-hyphens: auto;
+ hyphens: auto;
+}
+@mixin bevel($type: in) {
+  @if $type == "in" {
+   border-top: 1px solid #000;
+   border-bottom: 1px solid #666;
+   } @else {
+    border-bottom: 1px solid #000;
+    border-top: 1px solid #666;
+  }
+
 }
 
 // universal rules (try not to change it, and update often)
