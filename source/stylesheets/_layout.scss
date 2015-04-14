@@ -46,18 +46,17 @@ html, body {
   background-position: center center;
   @extend %default-font;
   .tocify-item {
+
     a {
       color: white;
-      line-height: 2;
       height: 30px;
     }
     &.tocify-focus a {
       color: $nav-bg;
       padding-right: 0;
+      line-heighT: 2;
       @extend %header-font;
       text-transform: uppercase;
-      line-height: 3;
-      height: 40px;
     }
   }
   // language selector for mobile devices
@@ -224,7 +223,7 @@ li {
     height: 16px;
     vertical-align: bottom;
   }
-  @include transition(left ease-in-out 0.3s);
+  @include trans;
   &:hover {
     opacity: 1;
   }
@@ -330,7 +329,7 @@ li {
   h1 {
     @extend %header-font;
     text-transform: uppercase;
-    font-size: 17px;
+    font-size: 20px;
     padding-top: 10px;
     color: $nav-bg;
     border-top: 1px solid #ccc;
@@ -466,11 +465,8 @@ li {
 
 .content {
   pre, blockquote {
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: #222;
     @include trans;
-    &:hover {
-      background-color: rgba(0, 0, 0, 0.8);
-    }
     color: #fff;
     padding: 2em $main-padding;
     margin: 0;
