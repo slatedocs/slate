@@ -4,8 +4,8 @@
 // make sure most of your rules point to that
 
 // Fonts
-$font-title: Georgia, serif;
-$font-text: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+$font-title: freight-sans-pro, arial, sans-serif;
+$font-text: Helvetica, Arial, "Lucida Grande", sans-serif;
 $font-mono: "Courier New", Courier, monospace;
 $font-icon: FontAwesome;
 
@@ -64,12 +64,13 @@ $phone-width: $tablet-width - $nav-width; // min width before reverting to mobil
 
 // FONTS
 %default-font {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: $font-text;
   font-size: 13px;
 }
 
 %header-font {
-  @extend %default-font;
+    font-family: $font-title;
+  font-size: 13px;
   font-weight: bold;
 }
 

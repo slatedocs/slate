@@ -1,5 +1,5 @@
 ---
-title: Vestorly API 
+title: Vestorly API
 
 language_tabs:
   - ruby
@@ -21,10 +21,10 @@ The Vestorly API is organized around REST. Our API is designed to have predictab
 
 # SignIn to Vestorly API
 
-After Vestorly has provided a username and password, you can login to the API using hte following commands
+After Vestorly has provided a username and password, you can login to the API using the following commands
 
 ```ruby
-	
+
 sign_in_api = VestorlyApi::SignIn.new('my@user.com', 'password')
 
 begin
@@ -116,14 +116,14 @@ p response # { code: 404, message: "Not signed in. }
 
 # Using Vestorly Embed
 
-> The Vestorly Embed provides an easy-to-use iframe that can be embed on any HTML4/5 page. 
+> The Vestorly Embed provides an easy-to-use iframe that can be embed on any HTML4/5 page.
 
-Various options can be configured through simple URL parameters. 
+Various options can be configured through simple URL parameters.
 
 The Embed itself is divided into several types:
 
-* Horizontal Carousel – the most common type in use a 1 – 4 tile row of Vestorly articles 
-with a left/right navigation. 
+* Horizontal Carousel – the most common type in use a 1 – 4 tile row of Vestorly articles
+with a left/right navigation.
 * Vertical Carousel – a vertical version of the horizontal embed
 * Basic Custom Grid – This a grid layout of 3 x 3 or 3 by X number of tile rows you wish to show vertically
 * Raw RSS feed – Any Vestorly embed can be turned into a raw RSS feed which can be injected into another system or styled as needed
@@ -235,7 +235,7 @@ curl -H "x-vestorly-auth:$auth_token" \
 ```
 
 
-# Display recomended posts 
+# Display recomended posts
 
 ```shell
 curl -H "x-vestorly-auth:$auth_token" \
