@@ -198,17 +198,8 @@ li {
 
 // button to show navigation on mobile devices
 #nav-button {
-  span {
-    display: block;
-    $side-pad: $main-padding / 2 - 8px;
-    padding: $side-pad $side-pad $side-pad;
-    background-color: rgba($main-bg, 0.7);
-    @include transform-origin(0, 0);
-    @include transform(rotate(-90deg) translate(-100%, 0));
-    border-radius: 0 0 0 5px;
-  }
-  padding: 0 1.5em 5em 0;
-  // increase touch size area
+  padding: 12px 6px;
+  font-size: 20px;
   display: none;
   position: fixed;
   top: 0;
@@ -216,19 +207,18 @@ li {
   z-index: 100;
   color: #000;
   text-decoration: none;
-  font-weight: bold;
-  opacity: 0.7;
   line-height: 16px;
-  img {
-    height: 16px;
-    vertical-align: bottom;
-  }
-  @include trans;
-  &:hover {
-    opacity: 1;
+  &:before {
+    content: "☰";
   }
   &.open {
-    left: $nav-width;
+    padding-top: 0;
+    left: $nav-width - 30;
+    color: white;
+    font-size: 30px;
+      &:before {
+    content: '\2A2F';
+  }
   }
 }
 
@@ -477,9 +467,6 @@ li {
     @extend %right-col;
     & > p {
       margin: 0;
-    }
-    & + pre, & + blockquote {
-      padding-top: 0;
     }
     a {
       color: #fff;
