@@ -478,6 +478,9 @@ li {
     & > p {
       margin: 0;
     }
+    & + pre, & + blockquote {
+      padding-top: 0;
+    }
     a {
       color: #fff;
       text-decoration: none;
