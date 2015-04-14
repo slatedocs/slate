@@ -76,7 +76,6 @@ html, body {
     position: relative;
     input {
       @include radius(15px);
-
       height: 30px;
       border: none;
       margin: $nav-padding;
@@ -86,9 +85,17 @@ html, body {
       @include box;
       color: $nav-active-text;
       padding-left: 30px;
+      @include trans;
+      @include placeholder {
+     color: $nav-active-text;
+      }
       background-color: rgba($nav-active-bg,.8);
       @include bevel;
+          &:focus, &:hover, &:active {
+      background-color: $nav-active-bg;
     }
+    }
+
     &:before {
       position: absolute;
       top: 10px;
