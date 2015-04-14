@@ -1,0 +1,509 @@
+    @mixin size($width: 5px, $height: 5px) {
+      width: $width;
+      height: $height;
+    }
+
+    @mixin square($size: 5px) {
+      @include size($size, $size);
+    }
+
+    @mixin placeholder($animate: true) {
+        &.placeholder {
+            @content;
+        }
+        &::-webkit-input-placeholder {
+            @content;
+        }
+        &:-moz-placeholder {
+            @content;
+        }
+        &::-moz-placeholder {
+            @content;
+        }
+        &:-ms-input-placeholder {
+            @content;
+        }
+        @if $animate == "true" {
+            &:focus::-webkit-input-placeholder {
+                transition: all 0.5s 0.1s ease;
+                text-indent: -50%;
+                opacity: 0;
+            }
+        }
+    }
+
+    @mixin disable($type: link) {
+      @if $type == "select" {
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+      @else if $type == "drag" {
+        -webkit-user-drag: none;
+        user-drag: none;
+      }
+      @else if $type == "link" {
+        pointer-events: none;
+        cursor: default;
+      }
+    }
+
+    @mixin filter($filter: blur, $value: 10px) {
+      -webkit-filter: $filter + unquote("(#{$value})");
+      -moz-filter: $filter + unquote("(#{$value})");
+      -ms-filter: $filter + unquote("(#{$value})");
+      -o-filter: $filter + unquote("(#{$value})");
+      filter: $filter + unquote("(#{$value})");
+    }
+
+    @mixin box($sizing: border-box) {
+      box-sizing: $sizing;
+      -moz-box-sizing: $sizing;
+      -webkit-box-sizing: $sizing;
+    }
+
+    @mixin radius($radius: 5px) {
+      -webkit-border-radius: $radius;
+      -moz-border-radius: $radius;
+      border-radius: $radius;
+    }
+
+    @mixin radius-custom($topleft: 5px, $topright: 5px, $bottomright: 5px, $bottomleft: 5px) {
+      -webkit-border-top-right-radius: $topright;
+      -webkit-border-bottom-right-radius: $bottomright;
+      -webkit-border-bottom-left-radius: $bottomleft;
+      -webkit-border-top-left-radius: $topleft;
+      -moz-border-radius-topright: $topright;
+      -moz-border-radius-bottomright: $bottomright;
+      -moz-border-radius-bottomleft: $bottomleft;
+      -moz-border-radius-topleft: $topleft;
+      border-top-right-radius: $topright;
+      border-bottom-right-radius: $bottomright;
+      border-bottom-left-radius: $bottomleft;
+      border-top-left-radius: $topleft;
+      -moz-background-clip: padding;
+      -webkit-background-clip: padding-box;
+      background-clip: padding-box;
+    }
+
+    @mixin shadow($shadow: 0 1px 3px rgba(0, 0, 0, 0.25), $mode: normal) {
+      @if $mode == text {
+        -webkit-text-shadow: $shadow;
+        -moz-text-shadow: $shadow;
+        text-shadow: $shadow;
+      }
+      @else {
+        -webkit-box-shadow: $shadow;
+        -moz-box-shadow: $shadow;
+        box-shadow: $shadow;
+      }
+    }
+
+    @mixin opacity($opacity: 40) {
+      opacity: $opacity / 100;
+      filter: "alpha(opacity=#{$opacity})";
+      -khtml-opacity: $opacity / 100;
+      -moz-opacity: $opacity / 100;
+    }
+
+    @mixin trans($prop: all, $time: 300ms, $ease: ease-out) {
+      -webkit-transition: $prop $time $ease;
+      -moz-transition: $prop $time $ease;
+      -ms-transition: $prop $time $ease;
+      -o-transition: $prop $time $ease;
+      transition: $prop $time $ease;
+    }
+
+    @mixin rotate($rotate: 0) {
+      -webkit-transform: rotate($rotate + deg);
+      -moz-transform: rotate($rotate + deg);
+      -ms-transform: rotate($rotate + deg);
+      -o-transform: rotate($rotate + deg);
+      transform: rotate($rotate + deg);
+    }
+
+    @mixin scale($scale: 1) {
+      -webkit-transform: scale($scale);
+      -moz-transform: scale($scale);
+      -ms-transform: scale($scale);
+      -o-transform: scale($scale);
+      transform: scale($scale);
+    }
+
+    @mixin skew($skew: 0) {
+      -webkit-transform: skew($skew + deg);
+      -moz-transform: skew($skew + deg);
+      -ms-transform: skew($skew + deg);
+      -o-transform: skew($skew + deg);
+      transform: skew($skew + deg);
+    }
+
+    @mixin translate($x: 0, $y: 0, $z: 0, $type: other) {
+      @if $type == 3d {
+        -webkit-transform: translate3d($x + px, $y + px, $z + px);
+        -moz-transform: translate3d($x + px, $y + px, $z + px);
+        -o-transform: translate3d($x + px, $y + px, $z + px);
+        transform: translate3d($x + px, $y + px, $z + px);
+      }
+      @else {
+        -webkit-transform: translate($x + px, $y + px);
+        -moz-transform: translate($x + px, $y + px);
+        -ms-transform: translate($x + px, $y + px);
+        -o-transform: translate($x + px, $y + px);
+        transform: translate($x + px, $y + px);
+      }
+    }
+
+    @mixin orient($orientation: landscape) {
+      @media (orientation: $orientation) {
+        @content;
+      }
+    }
+
+    @mixin devicewidth($minus: 0px) {
+      @media screen and (max-width: 1024px) {
+        width: 1024px - $minus;
+      }
+      @media screen and (max-width: 768px) {
+        width: 768px - $minus;
+      }
+      @media screen and (max-width: 568px) {
+        width: 568px - $minus;
+      }
+      @media screen and (max-width: 480px) {
+        width: 480px - $minus;
+      }
+      @media screen and (max-width: 768px) {
+        width: 768px - $minus;
+      }
+    }
+
+    @mixin gradient($from: white, $to: black, $height: 100%, $pie: "false") {
+      background-color: $to;
+      background-image: -webkit-gradient(linear, left top, left bottom, from($from), to($to));
+      background-image: -webkit-linear-gradient($from, $to);
+      background-image: -moz-linear-gradient($from, $to);
+      background-image: -o-linear-gradient($from, $to);
+      background-image: -ms-linear-gradient($from, $to);
+      background-image: linear-gradient($from, $to);
+      @if $pie == "true" {
+        // For CSS3PIE
+        -pie-background: linear-gradient(90deg, $from, $to);
+      }
+      background-repeat: repeat-x;
+      -webkit-background-size: 100% $height;
+      -moz-background-size: 100% $height;
+      -o-background-size: 100% $height;
+      background-size: 100% $height;
+    }
+
+    @mixin grid($column: 6, $gutter: 20px, $border: false, $border-color: #cccccc, $collapse: true) {
+        width: 100%;
+        @include box;
+        display: table;
+        @include media(767px, max) {
+            display: block;
+        }
+
+        & > .cell, & > article, & > li, & > dt, & > section, & > .column {
+            display: table-cell;
+            width: 100% / $column;
+            padding: 0;
+            @include box;
+            &:not(:first-of-type) {
+                padding-left: $gutter / 2;
+            }
+            &:not(:last-of-type) {
+                padding-right: $gutter / 2;
+                @if $border == true {
+                    border-right: solid 1px $border-color;
+                }
+            }
+            &.double, &.times2 {
+                width: 100% / $column * 2;
+            }
+            &.triple, &.times3 {
+                width: 100% / $column * 3;
+            }
+            &.times4 {
+                width: 100% / $column * 4;
+            }
+            &.times5 {
+                width: 100% / $column * 5;
+            }
+            &.times6 {
+                width: 100% / $column * 6;
+            }
+            &.times7 {
+                width: 100% / $column * 7;
+            }
+            &.times8 {
+                width: 100% / $column * 8;
+            }
+            &.times9 {
+                width: 100% / $column * 9;
+            }
+            &.times10 {
+                width: 100% / $column * 10;
+            }
+            &.times11 {
+                width: 100% / $column * 11;
+            }
+            @if $collapse == 'true' {
+                @include media(767px, max) {
+                    width: 100% !important;
+                    display: block;
+                    float: none;
+                    padding: 0;
+                    &:not(:first-of-type) {
+                        padding-left: 0;
+                        padding-top: $gutter / 2;
+                    }
+                    &:last-of-type {
+                        display: block;
+                    }
+                    &:not(:last-of-type) {
+                        padding-right: 0;
+                        padding-bottom: $gutter / 2;
+                        @if $border == true {
+                            border-right: none;
+                            border-bottom: solid 1px $border-color;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @mixin scroll-hint($bgcolor: black) {
+      /* from http://dabblet.com/gist/2462915 */
+      overflow: auto;
+      background: linear-gradient($bgcolor 30%, rgba(255, 255, 255, 0)), linear-gradient(rgba(255, 255, 255, 0), $bgcolor 90%) 0 100%, radial-gradient(50% 0, farthest-side, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0)), radial-gradient(50% 100%, farthest-side, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0)) 0 100%;
+      background: linear-gradient($bgcolor 30%, rgba(255, 255, 255, 0)), linear-gradient(rgba(255, 255, 255, 0), $bgcolor 90%) 0 100%, radial-gradient(farthest-side at 50% 0, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0)), radial-gradient(farthest-side at 50% 100%, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0)) 0 100%;
+      background-repeat: no-repeat;
+      background-color: $bgcolor;
+      background-size: 100% 40px, 100% 40px, 100% 14px, 100% 14px;
+      /* Opera doesn't support this in the shorthand */
+      background-attachment: local, local, scroll, scroll;
+    }
+
+    @mixin reset($type: all) {
+      @if $type == margin {
+        margin: 0px !important;
+      }
+      @else if $type == padding {
+        padding: 0px !important;
+      }
+      @else if $type == border {
+        border: none;
+      }
+      @else if $type == bg {
+        background: transparent;
+      }
+      @else if $type == list {
+        list-style: none;
+      }
+      @else {
+        margin: 0px !important;
+        padding: 0px !important;
+        border: none;
+        background: transparent;
+      }
+    }
+
+    /*
+    from
+    http://codepen.io/chriscoyier/blog/some-mini-sass-mixins-i-like
+    */
+    @mixin coverer {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    @mixin centerer {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    @mixin word-wrap {
+      word-break: break-word;
+      -webkit-hyphens: auto;
+      -moz-hyphens: auto;
+      hyphens: auto;
+    }
+
+    @mixin ellipsis {
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+
+    @mixin hide-text {
+      font: 0/0 a;
+      text-shadow: none;
+      color: transparent;
+    }
+
+    @mixin clear {
+      zoom: 1;
+      &:before,
+      &:after {
+        display: table;
+        content: "";
+      }
+      &:after {
+        clear: both;
+      }
+    }
+
+    @mixin cover {
+      -webkit-background-size: cover !important;
+      -moz-background-size: cover !important;
+      -o-background-size: cover !important;
+      background-size: cover !important;
+    }
+    @mixin except($function: only, $target: mac, $parent: html) {
+        @if function == only {
+            #{$parent}.#{$target} & {
+                @content;
+            }
+        }
+        @else if function == unless {
+            #{$parent}.#{$target} & {
+                @content;
+            }
+        }
+    }
+    @mixin only($only: mac) {
+      html.#{$only} & {
+        @content;
+      }
+    }
+
+    @mixin unless($unless: mac) {
+      html:not(.#{$unless}) & {
+        @content;
+      }
+    }
+
+    @mixin font-face($title, $file: $title, $weight: normal, $style: normal, $path: "../fonts/", $stretch: normal, $transform: normal) {
+      @font-face {
+        font-family: #{$title};
+        src: url("#{$path}#{$file}.eot");
+        src: url("#{$path}#{$file}.eot?#iefix") format("embedded-opentype"), url("#{$path}#{$file}.woff") format("woff"), url("#{$path}#{$file}.ttf") format("truetype"), url("#{$path}#{$file}.svg##{$title}") format("svg");
+        font-weight: $weight;
+        font-style: $style;
+        font-stretch: $stretch;
+        text-transform: transform;
+      }
+
+      // Chrome for Windows rendering fix: http://www.adtrak.co.uk/blog/font-face-chrome-rendering/
+      @media screen and (-webkit-min-device-pixel-ratio: 0) {
+        @font-face {
+          font-family: $title;
+          src: url("#{$path}+#{$file}.svg##{$title}") format("svg");
+        }
+      }
+    }
+
+    @mixin media($device: ipad, $scope: strict, $variation: mini) {
+      @if $device == "ipad" {
+        @if $scope == "portrait" {
+          @media only screen and (max-width: 768px) {
+            @content;
+          }
+        }
+        @else if $scope == "landscape" {
+          @media only screen and (max-width: 1024px) {
+            @content;
+          }
+        }
+        @else {
+          @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+            @content;
+          }
+        }
+      }
+      @else if $device == "iphone5" {
+        @if $scope == "portrait" {
+          @media only screen and (max-width: 320px) {
+            @content;
+          }
+        }
+        @else if $scope == "landscape" {
+          @media only screen and (max-width: 568px) {
+            @content;
+          }
+        }
+        @else {
+          @media only screen and (min-device-width: 320px) and (max-device-width: 568px) {
+            @content;
+          }
+        }
+      }
+        @else if $device == "iphone6" {
+        @if $scope == "portrait" {
+          @media only screen and (max-width: 375px) {
+            @content;
+          }
+        }
+        @else if $scope == "landscape" {
+          @media only screen and (max-width: 667px) {
+            @content;
+          }
+        }
+        @else {
+          @media only screen and (min-device-width: 375px) and (max-device-width: 667px) {
+            @content;
+          }
+        }
+      }
+      @else if $device == "iphone4" {
+        @if $scope == "portrait" {
+          @media only screen and (max-width: 320px) {
+            @content;
+          }
+        }
+        @else if $scope == "landscape" {
+          @media only screen and (max-width: 480px) {
+            @content;
+          }
+        }
+        @else {
+          @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+            @content;
+          }
+        }
+      }
+
+        @else if $device == "iphone6plus" {
+        @if $scope == "portrait" {
+          @media only screen and (max-width: 414px) {
+            @content;
+          }
+        }
+        @else if $scope == "landscape" {
+          @media only screen and (max-width: 736px) {
+            @content;
+          }
+        }
+        @else {
+          @media only screen and (min-device-width: 414px) and (max-device-width: 736px) {
+            @content;
+          }
+        }
+      }
+      @else {
+        @media screen and ($scope + -width: $device) {
+          @content;
+        }
+      }
+    }
+
+
