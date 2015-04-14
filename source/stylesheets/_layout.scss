@@ -400,9 +400,8 @@ html, body {
     max-width: 100%;
   }
   code {
-    background-color: rgba(0, 0, 0, 0.05);
+    background-color: lighten(yellow, 30%);
     padding: 3px;
-    border-radius: 3px;
     @extend %break-words;
     @extend %code-font;
   }
@@ -459,6 +458,10 @@ html, body {
 .content {
   pre, blockquote {
     background-color: rgba(0, 0, 0, 0.4);
+    @include trans;
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.8);
+    }
     color: #fff;
     padding: 2em $main-padding;
     margin: 0;
@@ -466,7 +469,6 @@ html, body {
     float: right;
     clear: right;
     @include box-sizing(border-box);
-    @include text-shadow(0px 1px 2px rgba(0, 0, 0, 0.4));
     @extend %right-col;
     & > p {
       margin: 0;
