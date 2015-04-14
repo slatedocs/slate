@@ -123,8 +123,8 @@ img + .tocify {
 
     line-height: 1;
     &:only-child {
-padding: 7px $nav-padding;
-font-style: italic;
+      padding: 7px $nav-padding;
+      font-style: italic;
     }
   }
   a {
@@ -218,7 +218,7 @@ li {
     content: "☰";
   }
   &.open {
-    padding-top: 0;
+    padding-top: 5px;
     left: $nav-width - 35;
     color: white;
     font-size: 30px;
@@ -409,6 +409,7 @@ li {
     padding: 3px;
     @extend %break-words;
     @extend %code-font;
+    font-size: 13px;
   }
   pre > code {
     background-color: transparent;
@@ -501,7 +502,7 @@ li {
 // These are the styles for phones and tablets
 // There are also a couple styles disperesed
 
-@media (max-width: $tablet-width) {
+@include media($tablet-width, max) {
   .tocify-wrapper {
     left: -$nav-width;
     &.open {
@@ -520,30 +521,36 @@ li {
   }
 }
 .logo {
-  background-image: url(/images/logo.png);
   background-repeat: no-repeat;
   background-position: $nav-padding $nav-padding;
   height: 100px;
   width: 100%;
-   .tocify-wrapper & {
+  .tocify-wrapper & {
+    background-image: url(/images/logo.png);
     display:block;
+    @include media($tablet-width, max) {
+      display:none;
+    }
   }
-    .page-wrapper & {
+  .page-wrapper & {
+    background-image: url(/images/logo_black.png);
+    background-position: 25px $nav-padding;
     display: none;
+    @include media($tablet-width, max) {
+
+     display: block;
+     width: 100%;
+     border-bottom: 1px solid #ccc;
+   }
+ }
+
+}
+@include media($tablet-width, max) {
+  .tocify-wrapper {
+    padding-top: 35px;
   }
 }
-
-
-
 @include media($phone-width, max) {
-   .tocify-wrapper .logo {
-    display:none;
-  }
-    .page-wrapper .logo {
-    display: block;
-    width: 100%;
-    border-bottom: 1px solid #ccc;
-  }
   .dark-box {
     display: none;
   }
@@ -555,7 +562,7 @@ li {
     @include box;
     padding-left: 16px;
     padding-righT: 16px;
-    padding-top: 30px;
+    padding-top: 0;
     a {
       padding-top: 0;
       // only works if two languages.

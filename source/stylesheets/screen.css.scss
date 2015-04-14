@@ -6,7 +6,7 @@
 // Fonts
 $font-title: freight-sans-pro, arial, sans-serif;
 $font-text: freight-sans-pro, arial, sans-serif;
-$font-mono: Consolas, Menlo, Monaco, "Lucida Console", "Liberation Mono", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Courier New", monospace, serif;
+$font-mono: source-code-pro;
 $font-icon: FontAwesome;
 
 // Gap
@@ -77,8 +77,9 @@ $phone-width: $tablet-width - $nav-width; // min width before reverting to mobil
 
 %code-font {
   font-family: $font-mono;
-  font-size: 15px;
-  line-height: 1.5;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 1;
 }
 
 
