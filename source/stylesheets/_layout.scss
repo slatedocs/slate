@@ -86,116 +86,115 @@ html, body {
       color: $nav-active-text;
       padding-left: 30px;
       @include trans;
+      background-color: rgba($nav-active-bg,.7);
+      @include bevel;
+      &:focus, &:hover, &:active {
+        background-color: $nav-active-bg;
+      }
       @include placeholder {
-     color: $nav-active-text;
-      }
-      background-color: rgba($nav-active-bg,.8);
-      @include bevel;
-          &:focus, &:hover, &:active {
-      background-color: $nav-active-bg;
-    }
-    }
-
-    &:before {
-      position: absolute;
-      top: 10px;
-      padding-left: 25px;
-      color: $nav-active-text;
-      @extend %icon-search;
-    }
+       color: $nav-active-text;
+     }
+   }
+   &:before {
+    position: absolute;
+    top: 8px;
+    padding-left: 25px;
+    color: $nav-active-text;
+    @extend %icon-search;
   }
-  img + .tocify {
-    margin-top: $logo-margin;
-  }
-  .search-results {
-    margin-top: 0;
-    @include box;
-    height: 0;
-    overflow-y: auto;
-    overflow-x: hidden;
-    @include trans;
-    background-color: rgba(0,0,0,.2);
-    &.visible {
-      height: auto;
-      max-height: 30%;
-      margin-bottom: 1em;
-      @include bevel;
-    }
-    li {
-      margin: 1em $nav-padding;
-      line-height: 1;
-    }
-    a {
-      color: $nav-text;
-      text-decoration: none;
-      &:hover {
-        text-decoration: underline;
-      }
-    }
-  }
-  .tocify-item > a, .toc-footer li {
-    padding: 0 $nav-padding 0 $nav-padding;
-    display: block;
-    overflow-x: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-  }
-  // The Table of Contents is composed of multiple nested
-  // unordered lists.  These styles remove the default
-  // styling of an unordered list because it is ugly.
-  ul, li {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    line-height: 28px;
+}
+img + .tocify {
+  margin-top: $logo-margin;
+}
+.search-results {
+  margin-top: 0;
+  @include box;
+  height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  @include trans;
+  background-color: rgba(0,0,0,.2);
+  &.visible {
+    height: auto;
+    max-height: 30%;
+    margin-bottom: 1em;
+    @include bevel;
   }
   li {
+    margin: 1em $nav-padding;
+    line-height: 1;
+  }
+  a {
     color: $nav-text;
-    @include transition-property("background");
-    @include transition-timing-function("linear");
-    @include transition-duration(230ms);
-  }
-  // This is the currently selected ToC entry
-  .tocify-focus {
-    background-color: $nav-active-bg;
-    color: $nav-active-text;
-  }
-  // Subheaders are the submenus that slide open
-  // in the table of contents.
-  .tocify-subheader {
-    display: none;
-    // tocify will override this when needed
-    background-color: $nav-subitem-bg;
-    font-weight: 500;
-    .tocify-item > a {
-      padding-left: $nav-padding + $nav-indent;
-      font-size: 12px;
-    }
-    // for embossed look:
-    @include embossed-bg;
-    & > li:last-child {
-      box-shadow: none;
-      // otherwise it'll overflow out of the subheader
-
-    }
-  }
-  .toc-footer {
-    padding: 1em 0;
-    margin-top: 1em;
-    border-top: 1px dashed $nav-footer-border-color;
-    li, a {
-      color: $nav-text;
-      text-decoration: none;
-    }
-    a:hover {
+    text-decoration: none;
+    &:hover {
       text-decoration: underline;
     }
-    li {
-      font-size: 0.8em;
-      line-height: 1.7;
-      text-decoration: none;
-    }
   }
+}
+.tocify-item > a, .toc-footer li {
+  padding: 0 $nav-padding 0 $nav-padding;
+  display: block;
+  overflow-x: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+// The Table of Contents is composed of multiple nested
+// unordered lists.  These styles remove the default
+// styling of an unordered list because it is ugly.
+ul, li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  line-height: 28px;
+}
+li {
+  color: $nav-text;
+  @include transition-property("background");
+  @include transition-timing-function("linear");
+  @include transition-duration(230ms);
+}
+// This is the currently selected ToC entry
+.tocify-focus {
+  background-color: $nav-active-bg;
+  color: $nav-active-text;
+}
+// Subheaders are the submenus that slide open
+// in the table of contents.
+.tocify-subheader {
+  display: none;
+  // tocify will override this when needed
+  background-color: $nav-subitem-bg;
+  font-weight: 500;
+  .tocify-item > a {
+    padding-left: $nav-padding + $nav-indent;
+    font-size: 12px;
+  }
+  // for embossed look:
+  @include embossed-bg;
+  & > li:last-child {
+    box-shadow: none;
+    // otherwise it'll overflow out of the subheader
+
+  }
+}
+.toc-footer {
+  padding: 1em 0;
+  margin-top: 1em;
+  border-top: 1px dashed $nav-footer-border-color;
+  li, a {
+    color: $nav-text;
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+  li {
+    font-size: 0.8em;
+    line-height: 1.7;
+    text-decoration: none;
+  }
+}
 }
 
 // button to show navigation on mobile devices
@@ -248,7 +247,6 @@ html, body {
   .dark-box {
     width: $examples-width;
     background-color: $examples-bg;
-    background-image: url("/images/background.jpg");
     @include cover;
     background-position: center center;
     background-attachment: fixed;
