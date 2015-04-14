@@ -57,6 +57,15 @@ html, body {
   background-color: $nav-bg;
   font-size: 13px;
   font-weight: bold;
+  .tocify-item {
+    a {
+    color: white;
+  }
+  &.tocify-focus a {
+    color: $nav-bg;
+  }
+  }
+
 
   // language selector for mobile devices
   .lang-selector {
@@ -326,7 +335,6 @@ html, body {
     padding: 0 $main-padding;
     @include box-sizing(border-box);
     display: block;
-    @include text-shadow($main-embossed-text-shadow);
 
     @extend %left-col;
   }
@@ -344,14 +352,8 @@ html, body {
     @extend %header-font;
     font-size: 30px;
     padding-top: 0.5em;
-    padding-bottom: 0.5em;
-    border-bottom: 1px solid #ccc;
-    margin-bottom: $h1-margin-bottom;
-    margin-top: 2em;
-    border-top: 1px solid #ddd;
-    @include background-image(
-      linear-gradient(top, #fff, #f9f9f9)
-    );
+    color: $nav-bg;
+    border-top: solid 1px $nav-bg;
   }
 
   h1:first-child, div:first-child + h1 {
