@@ -85,23 +85,26 @@ html, body {
     position: relative;
 
     input {
-      background: white;
+
       @include radius(15px);
       height: 30px;
       border: none;
-      margin: $nav-v-padding $nav-padding;
+
+      margin: $nav-padding;
+      margin-top: 0;
       width: $nav-width - 30;
       outline: none;
       @include box;
-      color: black;
+       color: $nav-active-text;
       padding-left: 30px;
+   background-color: $nav-active-bg;
     }
 
     &:before {
       position: absolute;
-      top: 20px;
-      padding-lefT: 25px;
-      color: black;
+      top: 10px;
+      padding-left: 25px;
+       color: $nav-active-text;
       @extend %icon-search;
     }
   }
