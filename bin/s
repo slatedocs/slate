@@ -1,0 +1,4 @@
+#!/bin/sh
+
+rvm use system
+bundle exec middleman server

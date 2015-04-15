@@ -14,8 +14,6 @@ License for the specific language governing permissions and limitations
 under the License.
 */
 
-@import 'variables';
-
 <%= Rouge::Themes::Base16::Monokai.render(:scope => '.highlight') %>
 
 .highlight .c, .highlight .cm, .highlight .c1, .highlight .cs {

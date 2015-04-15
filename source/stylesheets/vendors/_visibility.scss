@@ -1,0 +1,22 @@
+html:not(.mac) .visible-mac,
+html.mac .hidden-mac,
+html:not(.windows) .visible-windows,
+html.windows .hidden-windows,
+html:not(.linux) .visible-linux,
+html.linux .hidden-linux,
+html:not(.ios) .visible-ios,
+html.ios .hidden-ios,
+html:not(.android) .visible-android,
+html.android .hidden-android,
+html:not(.firefox) .visible-firefox,
+html.firefox .hidden-firefox,
+html:not(.chrome) .visible-chrome,
+html.chrome .hidden-chrome,
+html:not(.ie) .visible-ie,
+html.ie .hidden-ie,
+html:not(.safari) .visible-safari,
+html.safari .hidden-safari,
+html:not(.touch) .visible-touch,
+html.touch .hidden-touch, .hidden  {
+  display: none !important;
+}
