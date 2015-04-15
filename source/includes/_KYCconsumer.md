@@ -10,7 +10,7 @@ Retrieve the current state of a consumer application:<br>
 
 <aside class="notice">Not all fields are required, but anti-fraud evaluation is more comprehensive when richer evidence is provided.</aside>
 
-##### Arguments
+## Arguments
 
 <table>
 		<tr>
@@ -243,56 +243,96 @@ Retrieve the current state of a consumer application:<br>
 		</tr>
 	</table>
 
-##### Response
+## Response
 
 ```code
 EXAMPLE SERVICE RESPONSE DATA
 ```
 ```json  
 {
-    "mtid": "consumerUIWalkthrough",
-    "state": "A",
-    "merchantApplicationResponse": {
-        "erd": "Unknown User",
-        "frd": "No fraud rules triggered.",
-        "frn": "Account Fallthrough",
-        "rcd": "50005,202,111,101,121,131,10000",
-        "res": "ACCEPT",
-        "tid": "consumerUIWalkthrough",
-        "ufs": 1414122024000,
-        "umrs": 1414122024000,
-        "upr": "UNKNOWN",
-        "usc": 0,
-        "user": "UNKNOWN"
-    },
-    "parentMerchant":"eDNABlackListFail",
     "ednaScoreCard": {
-        "tr": [
-                  {
-                "testCategory": "Identity",
-                "testDescription": "Checks whether the address is risky: prisons, warehouses, hospitals, universities, etc.\nIt fails if the address is high risk.",
-                "testId": "id:7",
-                "testName": "IDology ExpectID: Warm Address",
-                "testPass": true
+        "er": {
+            "reportedRule": {
+                "description": "Fallthrough for transaction with an unknown entity. No other rules triggered.",
+                "details": "Fallthrough for transaction with an unknown entity. No other rules triggered.",
+                "name": "Unknown Fallthrough",
+                "resultCode": "ACCEPT",
+                "ruleId": 1002,
+                "testResults": []
+            }
+        },
+        "etr": [
+            {
+                "details": "ed:1(false) = true",
+                "fired": false,
+                "test": "ed:1" 
             },
             {
-                "testCategory": "Device",
-                "testDescription": "Checks whether the device is currently using an anonymous proxy.  It fails when an anonymous proxy is being used.",
-                "testDetails": "The device is not currently using an anonymous proxy",
-                "testId": "bc:1",
-                "testName": "BlueCava: Using Anonymous Proxy",
-                "testPass": true
+                "details": "true",
+                "test": "19:2" 
             },
             {
-                "testCategory": "eDNA",
-                "testDescription": "Checks the number of applications for a particular funding payment instrument.\nIt fails when the number of applications is higher than the configured threshold.",
-                "testDetails": "0",
-                "testId": "ed:5",
-                "testName": "Payment Instrument Application Count",
-                "testPass": true
+                "details": "ed:34(false) = true",
+                "fired": false,
+                "test": "ed:34" 
             },
-        ]
-    }
+            {
+                "details": "ed:36(false) = true",
+                "fired": false,
+                "test": "ed:36" 
+            },
+            {
+                "details": "true",
+                "test": "19:9" 
+            },
+            {
+                "details": "ed:38(false) = true",
+                "fired": false,
+                "test": "ed:38" 
+            },
+            {
+                "details": "ed:61(false) = true",
+                "fired": false,
+                "test": "ed:61" 
+            },
+            {
+                "details": "ed:32(false) = true",
+                "fired": false,
+                "test": "ed:32" 
+            },
+            {
+                "details": "ed:37(false) = true",
+                "fired": false,
+                "test": "ed:37" 
+            },
+            {
+                "details": "ed:2(false) = true",
+                "fired": false,
+                "test": "ed:2" 
+            },
+            {
+                "details": "ed:87(false) = true",
+                "fired": false,
+                "test": "ed:87" 
+            },
+            {
+                "details": "true",
+                "test": "19:1" 
+            }
+        ],
+        "sc": []
+    },
+    "erd": "Unknown User",
+    "frd": "Fallthrough for transaction with an unknown entity. No other rules triggered.",
+    "frn": "Unknown Fallthrough",
+    "frp": "ACCEPT",
+    "mtid": "26860023",
+    "rcd": "1002,101,202,111,131,50005,150",
+    "res": "ACCEPT",
+    "state": "A",
+    "tid": "26860023",
+    "upr": "UNKNOWN",
+    "user": "UNKNOWN" 
 }
 ```
 > The response includes detailed result codes and the transaction unique identifier.
