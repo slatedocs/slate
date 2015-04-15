@@ -10,7 +10,7 @@ Retrieve the current state of a consumer application:<br>
 
 <aside class="notice">Not all fields are required, but anti-fraud evaluation is more comprehensive when richer evidence is provided.</aside>
 
-## Arguments
+#### Arguments
 
 <table>
 		<tr>
@@ -243,7 +243,7 @@ Retrieve the current state of a consumer application:<br>
 		</tr>
 	</table>
 
-## Response
+#### Response
 
 ```code
 EXAMPLE SERVICE RESPONSE DATA
