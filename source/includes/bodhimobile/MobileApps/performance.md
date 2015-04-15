@@ -29,7 +29,36 @@ There are many good articles and books that will help you improve the performanc
 This article is not intended to cover all aspects of performance optimization but the following exercise will demonstrate the quick wins that you can accomplish by following the best practices discussed in the articles mentioned above. 
 
 
+### Example exercise
+
+The following application is a web application that we will optimize for mobile devices.
+
+![p1](../../../images/perf1.png)
+
+When we run the application we can see that the application takes 1.51 seconds to load. 
+
+Looking at the source code we can see that there are several webfonts being loaded - each is a separate request adding 60-70 ms to the load time of the application. On review we see that none of the additional fonts are used in our CSS. So we can remove those.
 
 
 
+![p1b](../../../images/perf1a.png)
+
+Note: if you do need to load several fonts, you can do this in one request instead of making multiple individual requests as follows:
+
+	<link href='http://fonts.googleapis.com/css?family=Lato:100,400|Roboto:400,100' rel='stylesheet' type='text/css'>
+
+Running the application we've saved about 120ms by not loading fonts we don't need.
+
+
+![p2](../../../images/perf2.png)
+
+The next step makes sure we load the web font before it is required in the CSS file.
+
+![p2](../../../images/perf3.png)
+
+![p2](../../../images/perf4.png)
+
+Next we can handle all those scripts. 
+
+ 
 
