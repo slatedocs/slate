@@ -10,7 +10,7 @@ Retrieve the current state of a merchant application:<br>
 
 <aside class="notice">Not all fields are required, but anti-fraud evaluation is more comprehensive when richer evidence is provided.</aside>
 
-#### Arguments
+##### Arguments
 
 <table>
 		<tr>
@@ -335,114 +335,57 @@ Retrieve the current state of a merchant application:<br>
 		</tr>
 	</table>
 
-#### Response
+
+##### Response
 
 ```code
 EXAMPLE SERVICE RESPONSE DATA
 ```
 ```json
 {
-    "ednaScoreCard": {
-        "er": {
-            "reportedRule": {
-                "description": "Fallthrough for transaction with an unknown entity. No other rules triggered.",
-                "details": "Fallthrough for transaction with an unknown entity. No other rules triggered.",
-                "name": "Unknown Fallthrough",
-                "resultCode": "ACCEPT",
-                "ruleId": 1002,
-                "testResults": []
-            }
-        },
-        "etr": [
-            {
-                "details": "ed:1(false) = true",
-                "fired": false,
-                "test": "ed:1" 
-            },
-            {
-                "details": "ed:34(false) = true",
-                "fired": false,
-                "test": "ed:34" 
-            },
-            {
-                "details": "ed:38(false) = true",
-                "fired": false,
-                "test": "ed:38" 
-            },
-            {
-                "details": "true",
-                "test": "id:6" 
-            },
-            {
-                "details": "true",
-                "test": "id:0" 
-            },
-            {
-                "details": "true",
-                "test": "id:1" 
-            },
-            {
-                "details": "ed:2(false) = true",
-                "fired": false,
-                "test": "ed:2" 
-            },
-            {
-                "details": "false",
-                "test": "id:9" 
-            },
-            {
-                "details": "ed:36(false) = true",
-                "fired": false,
-                "test": "ed:36" 
-            },
-            {
-                "details": "ed:61(false) = true",
-                "fired": false,
-                "test": "ed:61" 
-            },
-            {
-                "details": "ed:32(false) = true",
-                "fired": false,
-                "test": "ed:32" 
-            },
-            {
-                "details": "id:1(true) = false",
-                "fired": false,
-                "test": "id:1" 
-            },
-            {
-                "details": "ed:37(false) = true",
-                "fired": false,
-                "test": "ed:37" 
-            },
-            {
-                "details": "false",
-                "test": "id:8" 
-            },
-            {
-                "details": "ed:87(false) = true",
-                "fired": false,
-                "test": "ed:87" 
-            },
-            {
-                "details": "false",
-                "test": "id:7" 
-            }
-        ],
-        "sc": []
+    "mtid": "eDNABlackListFail",
+    "state": "R",
+    "merchantAPIName":"joseshoe",
+    "ownerApplicationIds":[
+        	"consumerapp001",
+        	"consumerapp002",
+	        "consumerapp003"
+    ],
+
+    "merchantApplicationResponse": {
+        "erd": "Bad User",
+        "frd": "1414110157324_accountname in black list.  Added from a test player file",
+        "frn": "Account Black List",
+        "rcd": "50003,202,111,101,132,10020",
+        "res": "DENY",
+        "tid": "eDNABlackListFail",
+        "ufs": 1414110157000,
+        "umrs": 1414110157000,
+        "upr": "UNKNOWN",
+        "usc": 0,
+        "user": "BAD"
     },
-    "erd": "Unknown User",
-    "frd": "Fallthrough for transaction with an unknown entity. No other rules triggered.",
-    "frn": "Unknown Fallthrough",
-    "frp": "ACCEPT",
-    "mtid": "mtid-5982929",
-    "rcd": "1002,101,202,111,131,50005,150",
-    "res": "ACCEPT",
-    "state": "A",
-    "tid": "mtid-5982929",
-    "upr": "UNKNOWN",
-    "user": "UNKNOWN" 
-}
+    "ednaScoreCard": {
+        "tr": [
+            {
+                "testCategory": "eDNA",
+                "testDescription": "Informational -- It displays the number of payment instruments associated with the applicant's device.",
+                "testId": "ed:14",
+                "testName": "Device Payment Count",
+                "testResult": "0"
+            },
+            {
+                "testCategory": "Device",
+                "testDescription": "Checks whether the device is currently using an anonymous proxy.  It fails when an anonymous proxy is being used.",
+                "testDetails": "The device is not currently using an anonymous proxy",
+                "testId": "bc:1",
+                "testName": "BlueCava: Using Anonymous Proxy",
+                "testPass": true
+            },
+        ]
+    }
+} 
+
 ```
 > The response includes detailed result codes and the transaction unique identifier. Parameters that are not defined here but appearing in the Request API will be categorized as custom data and can be displayed on the UI as proprietary information for the merchant.
 

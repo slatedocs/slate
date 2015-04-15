@@ -10,7 +10,7 @@ The following URL can be used to retrieve the current state of a transaction:<br
 
 <aside class="notice">Not all fields are required, but anti-fraud evaluation is more comprehensive when richer evidence is provided.</aside>
 
-#### Arguments
+##### Arguments
 
 ```code
 EXAMPLE SERVICE REQUEST
@@ -325,7 +325,7 @@ EXAMPLE SERVICE REQUEST
 
 <aside class="notice">The clear text credit card number is never sent to IdentityMind. Instead, IdentityMind uses a cryptographically secure hash to have a unique representation of each credit card. IdentityMind provides the required utilities to generate these hashes.</aside>
 
-#### Response
+##### Response
 
 ```code
 EXAMPLE SERVICE RESPONSE DATA

@@ -7,7 +7,7 @@ Annotate a user's transactions with login data:
 
 <aside class="notice">Not all fields are required, but anti-fraud evaluation is more comprehensive when richer evidence is provided.</aside>
 
-#### Arguments
+##### Arguments
 
 ```code
 EXAMPLE SERVICE REQUEST
@@ -86,7 +86,8 @@ EXAMPLE SERVICE REQUEST
 		</tr>
 	</table>
 
-#### Response
+##### Response
+
 ```code
 EXAMPLE SERVICE RESPONSE DATA
 ```
