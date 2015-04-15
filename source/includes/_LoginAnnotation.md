@@ -210,6 +210,14 @@ EXAMPLE SERVICE RESPONSE DATA
 			<td>The result of the automated review policy for this transaction</td>
 		</tr>
 		<tr>
+			<td>etr<br><font color=#446CB3>array[ConditionResult]</font><br><font color=#BDC3C7><i>optional</i></font></td>
+			<td>The evaluated test results for this transaction</td>
+		</tr>
+		<tr>
+			<td>sc<br><font color=#446CB3>array[ConditionResult]</font></td>
+			<td>The test results for this transaction</td>
+		</tr>
+		<tr>
 			<td>er<br><font color=#446CB3>ExternalizedEvaluationResult</font></td>
 			<td>The result of the fraud policy evaluation for this transaction</td>
 		</tr>
