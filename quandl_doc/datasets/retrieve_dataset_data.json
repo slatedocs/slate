@@ -1,0 +1,13 @@
+{
+  "explanation" : "### Add another header from override\n\nThis endpoint retrieves both the data and metadata of the dataset.\nPlease use this if you want both data and metadata.\n\nSee request params for more detail.",
+  "parameters" : [
+    {
+      "required": true,
+      "name": "database_code",
+      "description": "Database code (string)"
+    },
+    {
+      "description": "Randomly override another description!!!"
+    }
+  ]
+}
