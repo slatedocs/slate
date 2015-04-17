@@ -96,6 +96,11 @@ You must replace `YOUR-ACCESS-TOKEN` with your API key.
   "category_ids": [
       "467"
     ],
+  "logo_url": null,
+  "photo_urls": [],
+  "video_urls": [],
+  "offer_message": null,
+  "offer_url": null,
   "updated_at": "2014-11-27T11:35:27.364Z"
 }
 
@@ -139,6 +144,11 @@ instagram_id | The Instgram ID or the username for the business listing
 omit_address | Boolean for omitting the address from the listing (default: false)
 hours | The Hours a business is open or closed represented by a hash of multi dimensional arrays
 category_ids | MojoPages Category ID's that you want business to be listed under array (max: 3)
+logo_url | URL for the listing logo, must be a minimum of 150x150 pixels
+photo_urls | Array of URLs for the listing photos, must all be a minimum of 150x150 pixels
+video_urls | Array of URLs for the listing videos, must be either YouTube or Vimeo links
+offer_message | Special Offer or Coupon Message used as a link on the listing page
+offer_url | Special Offer or Coupon URL used as a link on the listing page
 updated_at | When the listing was last updated
 
 # Getting Started Workflow

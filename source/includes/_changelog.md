@@ -4,7 +4,8 @@ Changes to the API and documentation are below.
 
 Date | Changes
 --------- | -----------
-4/17/2015 | Corrected Post and Update from listing object to listing_status
+4/17/2015 | Added logo_url, photo_urls, video_urls, offer_message and offer_url to listings
+4/16/2015 | Corrected Post and Update from listing object to listing_status
 4/8/2015 | Added Category ID's and LatLong Validations
 4/7/2015 | Updated listing status to better reflect industry standards
 4/6/2015 | Removed Claim/Unclaim Endpoints and integrated Claim into Post/Update Partner Listing
