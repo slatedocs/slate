@@ -274,7 +274,7 @@ curl "https://api.mojopages.com/api/v1/partner/listing/7d373c1da40cbfc3f165"
   "response": {
     "status": 200
   },
-  "listing": {
+  "listing_status": {
     "status": "LIVE",
     "listing_id": "7d373c1da40cbfc3f165",
     "mojo_id": "201702",
@@ -290,7 +290,7 @@ curl "https://api.mojopages.com/api/v1/partner/listing/7d373c1da40cbfc3f165"
   "response": {
     "status": 422
   },
-  "listing": {
+  "listing_status": {
     "status": "BLOCKED",
     "listing_id": "7d373c1da40cbfc3f165",
     "mojo_id": "201702",
@@ -306,7 +306,7 @@ curl "https://api.mojopages.com/api/v1/partner/listing/7d373c1da40cbfc3f165"
   "response": {
     "status": 422
   },
-  "listing": {
+  "listing_status": {
     "status": "REJECTED",
     "error": {
       "messages": [
@@ -392,7 +392,7 @@ curl "https://api.mojopages.com/api/v1/partner/listing/7d373c1da40cbfc3f165"
   "response": {
     "status": 200
   },
-  "listing": {
+  "listing_status": {
     "status": "LIVE",
     "listing_id": "7d373c1da40cbfc3f165",
     "mojo_id": "201702",
@@ -408,7 +408,7 @@ curl "https://api.mojopages.com/api/v1/partner/listing/7d373c1da40cbfc3f165"
   "response": {
     "status": 422
   },
-  "listing": {
+  "listing_status": {
     "status": "BLOCKED",
     "listing_id": "7d373c1da40cbfc3f165",
     "mojo_id": "201702",
