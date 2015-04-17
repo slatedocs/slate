@@ -9,4 +9,4 @@ Error Code | Meaning
 404 | **Not Found** -- The resource could not be found.
 405 | **Method Not Allowed** -- You are using an invalid HTTP method for the resource.
 500 | **Internal Server Error** -- We had a problem with our server. Try again later.
-503 | **Service Unavailable** -- We're temporarially offline for maintanance. Please try again later.
+503 | **Service Unavailable** -- We're temporarily offline for maintenance. Please try again later.

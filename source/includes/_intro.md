@@ -16,11 +16,11 @@ After Chartboost receives install attribution postbacks from a third party (via 
 - Tracking URLs/macros to send Chartboost click data to your third-party via <a href="https://answers.chartboost.com/hc/en-us/articles/201220115">callbacks</a>
 - SmartBid customers will also need to use their third-party attribution service's website to create install attribution postbacks. These postbacks need to include all bootups and attributed installs (using the <code>claim=</code> parameter).
 
-## PIA (Post-Install Analytics) Overview
+## Post-Install Analytics Overview
 
-The Post-Install Analytics integration lets Chartboost customers view IAP data &ndash; like payer %, ARPU, purchase counts, ARPPU and more &ndash; in the Chartboost dashboard. They can then use this data to build custom player segments to power retargeting campaigns and optimize user acquisition efforts.
+The Post-Install Analytics (PIA) integration lets Chartboost customers view IAP data &ndash; like payer %, ARPU, purchase counts, ARPPU and more &ndash; in the Chartboost dashboard. They can then use this data to build custom player segments to power retargeting campaigns and optimize user acquisition efforts.
 
-(For additional developer-facing information about PIA, visit <a href="https://answers.chartboost.com">our Help Site</a>.)
+(For additional developer-facing information about PIA, visit <a href="https://answers.chartboost.com/hc/en-us/articles/201220265-Post-Install-Analytics-Beta-">our Help Site</a>.)
 
 ### PIA Requirements
 
@@ -42,7 +42,7 @@ While this documentation and the code examples were designed to eliminate ambigu
 
 Each service API currently has different methods of authentication. The documentation for the service will include specific instructions about how to authenticate. For all endpoints that require authentication, requests must be signed and the signature must be placed in the `X-Chartboost-Signature` header.
 
-All API requests must be made over HTTPS. Calls made via plain HTTP will redirect to HTTPS, but it a security risk regardless.
+All API requests should be made via HTTPS.
 
 
 ```php

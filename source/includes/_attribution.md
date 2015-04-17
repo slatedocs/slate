@@ -7,11 +7,11 @@
 
 const ATTRIBUTION_ENDPOINT = "https://live.chartboost.com/api/v1/install.json";
 
-const CHARTBOOST_TOKEN = "api_token";
-const CHARTBOOST_SECRET = "api_secret";
+const ATTRIBUTION_PLATFORM_TOKEN = "api_token";
+const ATTRIBUTION_PLATFORM_SECRET = "api_secret";
 
 $app_id = "54ecc0535beacdc1e1eff778";
-$app_signture = "601be68e3bb4e7eb953024eb4f2ac03376e2c2fb";
+$app_signature = "601be68e3bb4e7eb953024eb4f2ac03376e2c2fb";
 
 $gaid = "8df6c9bf-d647-4400-bc13-7ff317f046f3";
 $claim = 1;
@@ -24,12 +24,12 @@ $data = json_encode(array(
   "attributed_to" => $attributed_to
 ));
 
-$descriptor = "action:attribution\n{CHARTBOOST_SECRET}\n$app_signature\n$data";
+$descriptor = "action:attribution\n{ATTRIBUTION_PLATFORM_SECRET}\n$app_signature\n$data";
 $signature = hash("sha256", $descriptor);
 
 $headers = array(
   "Content-Type" => "application/json",
-  "X-Chartboost-Token" => CHARTBOOST_TOKEN,
+  "X-Chartboost-Token" => ATTRIBUTION_PLATFORM_TOKEN,
   "X-Chartboost-Signature" => $signature
 );
 
@@ -46,11 +46,11 @@ import requests
 
 ATTRIBUTION_ENDPOINT = 'https://live.chartboost.com/api/v1/install.json'
 
-CHARTBOOST_TOKEN = 'api_token'
-CHARTBOOST_SECRET = 'api_secret'
+ATTRIBUTION_PLATFORM_TOKEN = 'api_token'
+ATTRIBUTION_PLATFORM_SECRET = 'api_secret'
 
 app_id = '54ecc0535beacdc1e1eff778'
-app_signture = '601be68e3bb4e7eb953024eb4f2ac03376e2c2fb'
+app_signature = '601be68e3bb4e7eb953024eb4f2ac03376e2c2fb'
 
 gaid = '8df6c9bf-d647-4400-bc13-7ff317f046f3'
 claim = 1
@@ -64,12 +64,12 @@ data = json.dumps({
 })
 
 descriptor_template = 'action:attribution\n{}\n{}\n{}'
-descriptor = descriptor_template.format(CHARTBOOST_SECRET, app_signature, data)
+descriptor = descriptor_template.format(ATTRIBUTION_PLATFORM_SECRET, app_signature, data)
 signature = hashlib.sha256(descriptor).hexdigest()
 
 headers = {
   'Content-Type': 'application/json',
-  'X-Chartboost-Token': CHARTBOOST_TOKEN,
+  'X-Chartboost-Token': ATTRIBUTION_PLATFORM_TOKEN,
   'X-Chartboost-Signature': signature
 }
 
@@ -93,19 +93,23 @@ curl 'https://live.chartboost.com/api/v1/install.json' \
 }
 ```
 
-This endpoint will receive app installs from an attribution network. Installs will be processed, stored, and used in reporting.
+This endpoint will receive both attributed app installs as well as app opens/sessions from an install attribution platform. Installs will be processed, stored, and used in reporting.
 
 ### HTTP Request
 
 `POST https://live.chartboost.com/api/v1/install.json`
 
+<aside class="notice">
+This endpoint's response will always be an HTTP 200 status code. Check the "status" key on the JSON response for the real status code.
+</aside>
+
 ### Authentication
 
-You will need an API token and secret to authenticate with this service. This service is currently only available for attribution networks. Please [contact Support](https://answers.chartboost.com/hc/en-us/requests/new) if you are an attribution network seeking access to this service.
+(This service is only available for install attribution platforms. If you are representing an install attribution platform, please <a href="mailto:support.integrations@chartboost.com">contact Chartboost Support</a> for a platform-specific API token and platform-specific secret to authenticate with this service.)
 
 To authenticate with this endpoint, you must generate a signature on each request. A string with the following template must be made, and the signature is created by taking the SHA-256 hash of the string. Note that anything contained within double curly brackets is a variable that is meant to be filled in.
 
-`"action:attribution\n{{issued secret}}\n{{app signature}}\n{{json body}}"`
+Computed signature: `"action:attribution\n{{platform-specific secret}}\n{{Chartboost app signature}}\n{{json body}}"`
 
 The resulting digest from the hash function should be sent in the `X-Chartboost-Signature` header in the request.
 
@@ -132,15 +136,11 @@ app_id        | true     | string | Chartboost app ID
 claim         | true     | int    | 1 if Chartboost can claim the install, 0 otherwise
 gaid          | true*    | string | Google advertising identifier
 ifa           | true*    | string | Apple identifier for advertising
-uuid          | true*    | string | `UDID` (if iOS), `android_id` (if Android)
+uuid          | true*    | string | `UUID` (if iOS), `android_id` (if Android)
 organic       | false    | int    | 1 if organic install, 0 if attributed to a network
 attributed_to | false    | string | Name of network that received the attribution
 timestamp     | false    | int    | UNIX timestamp in seconds
 
 <aside class="notice">
 * At least one device identifier is required per request.
-</aside>
-
-<aside class="notice">
-This endpoint's response will always be an HTTP 200 status code. Check the "status" key on the JSON response for the real status code.
 </aside>

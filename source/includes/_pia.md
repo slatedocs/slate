@@ -118,12 +118,15 @@ This endpoint receives purchase events from a particular app. The purchase event
 
 `POST https://live.chartboost.com/event_service/v2/iap`
 
+<aside class="notice">
+This endpoint's response will always be an HTTP 200 status code. Check the "status" key on the JSON response for the real status code.
+</aside>
 
 ### Authentication
 
 To authenticate with this endpoint, you must generate a signature on each request. A string with the following template must be made, and the signature is created by taking the SHA-256 hash of the string. Note that anything contained within double curly brackets is a variable that is meant to be filled in.
 
-`"action:pia;app:{{app id}};token:{{app specific token}};timestamp:{{UNIX timestamp of request}};"`
+Computed Signature: `"action:pia;app:{{Chartboost app id}};token:{{Chartboost App post-install token}};timestamp:{{UNIX timestamp of request}};"`
 
 The resulting digest from the hash function should be sent in the X-Chartboost-Signature header in the request.
 
@@ -158,7 +161,7 @@ Name          | Required | Type   | Description
 ----          | -------- | ----   | -----------
 gaid          | false    | string | Google advertising identifier
 ifa           | false    | string | Apple identifier for advertising
-uuid          | false    | string | `UDID` (if iOS), `android_id` (if Android)
+uuid          | false    | string | `UUID` (if iOS), `android_id` (if Android)
 
 #### IAP
 
@@ -166,8 +169,8 @@ Name                    | Required | Type   | Description
 ----                    | -------- | ----   | -----------
 product_id              | true     | string | Unique identifier describing the purchased item
 price                   | true     | float  | Price paid for the item
-currency                | true     | string | 3 letter currency code
-localized_title         | false    | string | Name of the purchased item
+currency                | true     | string | 3-letter currency code. If currency is unavailable or all currencies are converted to USD, a static string of <code>"USD"</code> is acceptable.
+localized_title         | false    | string | Name of the purchased item. If actual purchase names are unavailable, a static string like <code>purchase</code> or <code>revenue</code> is acceptable.
 localized_description   | false    | string | Description of the purchased item
 receipt                 | false    | string | The receipt string from the purchased item
 
