@@ -1,5 +1,5 @@
-#### How to Use Bodhi Query
-========
+#### Bodhi Query
+
 ##### Overview 
 
 Bodhi Query is a REST client that helps you be more efficient while working with the Bodhi Cloud API. It allows you to easily retrieve and manipulate data within your individual namespace.
