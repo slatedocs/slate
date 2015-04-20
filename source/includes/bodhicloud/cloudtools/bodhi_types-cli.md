@@ -1,9 +1,9 @@
-bodhi-types
-=========
+####Bodhi CLI types
+
 
 Bodhi-types is a command line tool bundled with bodhi-cli, that allows developers to interact with the RBC cloud services API.
 
-##Installation & Setup
+###Installation & Setup
 
 bodhi-types is included in the bodhi as a separate executable. To verify the availability of the tool use the following commands;
 
@@ -71,11 +71,11 @@ mv-prop    |          | rename an existing property
 rm-prop    |          | remove an existing property
 gen-instance
 
-####Type Name
+#####Type Name
 
 A typename is the just the system name for the type and not a file system name. The name SHOULD NOT include an directory information or the .json suffix when used by the commands.
 
-####Type Options
+#####Type Options
 
 short | long       | meaning
 ----- |-----        | ----------
@@ -85,7 +85,7 @@ none | --immutable    | instances of this type do not support updates
 none | --encapsulated | this type does not support normal CRUD operations
 none | --extensible   | this type may be extended
 
-####Short Hand Types
+#####Short Hand Types
 
 All system scalara have a special character designation to make them easier to describe. Those designators are listed below.
 
@@ -101,7 +101,7 @@ T      | DateTime
 G      | GeoJSON
 L      | Link
 
-##Local Commands
+###Local Commands
 * new      
 * rename   
 * remove   
@@ -232,12 +232,12 @@ json object | The model as a JSON object
 
 { name: 'freddy', storage_name: 'freddy', properties: {} }
 
-####Property Commands
+#####Property Commands
 ````
 > bodhi-types <cmd> <type-name> [prop-options] <property> [property ...]
 ````
 
-####Property Options
+#####Property Options
 
 short | long   | meaning
 :-----      | :-----: | :----------
@@ -329,7 +329,7 @@ Remote commands operate on types store on an service installation. These command
 > bodhi-types <cmd> <type-name> [env-options]
 ````
 
-####Commands
+#####Commands
 
 command  | aliases | description
 -------  | ------- | -----------
@@ -340,11 +340,11 @@ post     | push, upload    | install a remote type on the server
 delete   | destroy | destroy the type on the system
      | lp      | list the properties of a remote
 
-####Type Names
+#####Type Names
 
 The typename is just the name and not a partial url path. The user MUST assume that `/namespace/type/` will be prepended to the name prior to sending the request. Any initial slash will be tolerated but is not required. Any additional path elements will be appended to the `namespace/types/` prior to executing the request.
 
-####Options
+#####Options
 
 All remote commands require an environment. These options behave consistently with those in the  If none is specifed then the command will use the default. If no default is set then the command will fail.
 
