@@ -25,10 +25,13 @@ under the License.
 
     $(".lang-selector a").removeClass('active');
     $(".lang-selector a[data-language-name='" + language + "']").addClass('active');
-    for (var i=0; i < languages.length; i++) {
-      $(".highlight." + languages[i]).parent().hide();
-    }
-    $(".highlight." + language).parent().show();
+
+    // hide everything and show selected tab
+    $(".tabs").siblings("pre").hide();
+    $(".tabs").siblings("blockquote").hide();
+    $(".tabs.tab-" + language).next("pre").show();
+    $(".tabs.tab-" + language).next("blockquote").show();
+
 
     global.toc.calculateHeights();
 

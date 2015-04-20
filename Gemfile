@@ -28,3 +28,8 @@ end
 gem "rake", "~> 10.4.0"
 
 gem 'therubyracer', :platforms => :ruby
+
+gem 'activesupport'
+gem 'pry'
+gem 'pry-byebug'
+gem 'colorize'
