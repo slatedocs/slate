@@ -1,4 +1,4 @@
-#Performance tuning your mobile app 
+#Performance tuning the app 
 
 ### Overview
 
@@ -58,7 +58,7 @@ The next step makes sure we load the web font before it is required in the CSS f
 
 ![p2](../../../images/perf4.png)
 
-Next we can handle all those scripts. 
+ 
 
  
 
