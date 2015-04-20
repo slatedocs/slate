@@ -18,7 +18,7 @@ includes:
   - bodhicloud/apitutorial/2-type-mechanics/tutorial
   - bodhicloud/cloudtools/Tooling
   - bodhicloud/cloudtools/Bodhi-cli
-  - bodhicloud/cloudtools/rbc_types
+  - bodhicloud/cloudtools/bodhi_types-cli
   - bodhicloud/cloudtools/bodhitype
   - bodhicloud/cloudtools/query
   
