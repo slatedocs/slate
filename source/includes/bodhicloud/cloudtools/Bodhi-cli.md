@@ -1,9 +1,9 @@
-Bodhi Command Line Interface Tools
-=============
+####Bodhi Command Line Interface Tools
+
 
 Command Line Tools for the Bodhi Cloud
 
-##Installation
+###Installation
 
 The Bodhi cli tools require a nodejs runtime and are installed using the node package manager (npm).
 
@@ -24,7 +24,7 @@ The command SHOULD respond with a semantic version of the tools: M is the major 
   M.m.b (e.g. 1.2.15)
 ````
 
-##Create a bodhi-cli workspace
+###Create a bodhi-cli workspace
 
 Create a directory for your bodhi-cli workspace. 
 Change directory to the new bodhi-cli workspace.
@@ -43,7 +43,7 @@ This will create a rbc-project.json which will store all your environment info. 
 > bodhi init
 /path/to/new/project/root
 ````
-##Create a new environment
+###Create a new environment
 
 This command will create a new environment
 
@@ -52,7 +52,7 @@ This command will create a new environment
 [ENVIRONMENT NAME]  
 ````
 
-##Add a new environment to the project
+###Add a new environment to the project
 Add a new environment to your rbc-project.json file. You will need to know you namespace credentials.
 
 ````
@@ -81,10 +81,10 @@ In the rbc-project.json file you will see the information that the bodhi new com
   }
 }
 ````
-####**NOTE:**
+#####**NOTE:**
 Once you do this, all commands will be used under the default environment unless you specify otherwise with the -e flag.
 
-####Set the Default Environment
+#####Set the Default Environment
 Set a default environment so that if you do not specify an environment for a command, it uses the default environment.
 
 ````
@@ -107,7 +107,7 @@ In the rbc-project.json file you will see that the default evironment has been i
   "default": "Testing”
 }
 ````
-####Get the Default Environment
+#####Get the Default Environment
 
 Check to see if we set the default environment correctly.
 
@@ -115,7 +115,7 @@ Check to see if we set the default environment correctly.
 > bodhi set-default Testing
 Testing
 ````
-##General Usage of Commands
+###General Usage of Commands
 
 ````
 > bodhi [options] <command> [arguments ..]
@@ -168,7 +168,7 @@ The following Commands groups are;
 * **Environment Detail Commands**
 * **HTTP Option Commands**
 
-##Project Commands
+###Project Commands
 
 * pwd
 * init
@@ -328,7 +328,7 @@ Response | Description
 /path/to/new/project/root | Returns the default working environment.
 Default Connection currently unspecified | the default evironment is not defined in the rbc-project.json file.
 
-##Environment Commands
+###Environment Commands
 
 ### General Command Signature
 
@@ -677,14 +677,14 @@ Response | Description
 removed the environment <env-name> | The name of the environment that was removed
 undefined | No environment name given
 
-##Environment Detail Commands
+###Environment Detail Commands
 
 ### General Command Signature
 
 ````
 > bodhi <command> <environment> [env-options] [processing-options]
 ````
-####Commands
+#####Commands
 * user
 * whereami
 * url
@@ -877,9 +877,9 @@ undefined | No environment name given
   "user": "user"
 }
 ````
-##HTTP Option Commands
+###HTTP Option Commands
 
-####Commands
+#####Commands
 * ping
 * login
 * get
