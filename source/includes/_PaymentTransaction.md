@@ -52,7 +52,7 @@ EXAMPLE SERVICE REQUEST
 			<th>Description</th>
 		</tr>
 		<tr>
-			<td>amt<br><font color=#446CB3>string</font></td>
+			<td>amt<br><font color=#446CB3>string</font><br><font color=#CF000F><i>required</i></font></td>
 			<td>Transaction amount</td>
 		</tr>
 		<tr>
