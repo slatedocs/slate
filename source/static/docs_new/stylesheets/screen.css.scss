@@ -4,7 +4,7 @@
 @import 'variables';
 @import 'syntax';
 @import 'icon-font';
-@import url(https://fonts.googleapis.com/css?family=Lato:300,400,700,900);
+//@import url(https://fonts.googleapis.com/css?family=Lato:300,400,700,900);
 
 /*
 Copyright 2008-2013 Concur Technologies, Inc.
@@ -177,7 +177,7 @@ html, body {
   .tocify-subheader {
     display: none; // tocify will override this when needed
     background-color: $nav-subitem-bg;
-    font-weight: 500;
+    
     .tocify-item>a {
       padding-left: $nav-padding + $nav-indent;
       font-size: 14px;
