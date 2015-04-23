@@ -226,7 +226,7 @@ ed:17|	Device Billing Address Count
 ed:18|	Device First Seen
 ed:19|	User Account Reputation
 ed:20|	Account Failed Validation
-ed:21|	User Account Application Count
+ed:21|	Merchant Application Count
 ed:22|	User Account Payment Count
 ed:23|	User Account Device Count
 ed:24|	User Account Shipping Address Count
@@ -253,7 +253,7 @@ ed:44|  Destination Payment Reputation
 ed:45|  Destination Account Reputation
 ed:46|  Shipping Country on Acceptable List
 ed:47|  Billing and Shipping Country Match
-ed:48|  Account Has Completed KYC
+ed:48|  KYC Application Accepted
 ed:49|  Disposable Email Address
 ed:50|  Card Type
 ed:51|  Bad First Degree Relation
@@ -265,18 +265,18 @@ ed:56|  Card Issuer Country on Blacklist
 ed:59|  User Account Count
 ed:60|  Previous Rejected Transaction for User
 ed:61|  IP Country Watchlist
-ed:62|  CVV Mismatch
-ed:63|  AVS Mismatch
-ed:64|  Absent AVS from Domestic Bank
+ed:62|  CVV Match
+ed:63|  AVS Match
+ed:64|  AVS Present for Domestic Bank
 ed:65|  Credit Count
 ed:66|  Transaction Time
 ed:67|  Corporate Payment Instrument
 ed:68|  Subscription
 ed:69|  Verified PayPal Account
 ed:70|  Confirmed PayPal Address
-ed:71|  Account Has Denied KYC
-ed:72|  Account Has KYC in Manual Review
-ed:73|  PayPal Count for User
+ed:71|  KYC Application Denied
+ed:72|  KYC Application in Manual Review
+ed:73|  User Count for PayPal
 ed:74|  Card Count for Device
 ed:75|  Card Count for User
 ed:76|  Multiple Non-Prepaid Card for Device
@@ -293,6 +293,12 @@ ed:86|  Corporate IP Address
 ed:87|  Billing Country Watchlist
 ed:88|  Browser Language / IP Country Mismatch
 ed:89|  Card Issuer Country
+ed:90|  User Phone Count
+ed:91|  Shipping Address Previously Used
+ed:92|  PayPal Count for User
+ed:93|  User's Age
+ed:94|  PayPal Count for Device
+ed:95|  Consumer Application Count
 ed:500|  1 Hour Source Transaction Velocity
 ed:501|  1 Hour Destination Transaction Velocity
 ed:502|  1 Hour IP Transaction Velocity
@@ -333,9 +339,10 @@ mm:5|	MaxMind MinFraud: IP ISP
 mm:6|	MaxMind MinFraud: IP City
 mm:7|	MaxMind MinFraud: IP Region / State Match
 mm:8|   MaxMind MinFraud: IP Region / Country Banned
-mm:10|  Maxmind MinFraud: Using Anonymous Proxy
-mm:11|  Maxmind MinFraud: IP to Billing Address Distance
-mm:12|  Maxmind MinFraud: IP to Shipping Address Distance
+mm:10|  MaxMind MinFraud: Using Anonymous Proxy
+mm:11|  MaxMind MinFraud: IP to Billing Address Distance
+mm:12|  MaxMind MinFraud: IP to Shipping Address Distance
+mm:13|  MaxMind MinFraud: Wireless ISP
 
 ## Quiz Response Encoding
 ```code
