@@ -77,7 +77,7 @@ You must replace `YOUR-ACCESS-TOKEN` with your API key.
   "latitude": "33.643668",
   "facebook_id": "111664078919577",
   "twitter_id": "cricketnation",
-  "google_plus_id": NULL,
+  "google_plus_id": null,
   "instagram_id": "cricketnation",
   "omit_address": false,
   "hours": {
