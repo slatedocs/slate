@@ -111,6 +111,10 @@ To authenticate with this endpoint, you must generate a signature on each reques
 
 Computed signature: `"action:attribution\n{{platform-specific secret}}\n{{Chartboost app signature}}\n{{json body}}"`
 
+(The Chartboost app signature is an identifier unique to each individual app in the Chartboost dashboard. Chartboost developers can find their game's app signature on the Chartboost dashboard's **App Settings** page:)
+
+<img src="https://s3.amazonaws.com/chartboost/help_assets/partners-app-sig.jpg" />
+
 The resulting digest from the hash function should be sent in the `X-Chartboost-Signature` header in the request.
 
 For an example of the signature hashing, refer to the code example.
@@ -132,7 +136,7 @@ Each request must use these parameters:
 
 Name          | Required | Type   | Description
 ----          | -------- | ----   | -----------
-app_id        | true     | string | Chartboost app ID
+app_id        | true     | string | Chartboost app ID (found in the Chartboost dashboard)
 claim         | true     | int    | 1 if Chartboost can claim the install, 0 otherwise
 gaid          | true*    | string | Google advertising identifier
 ifa           | true*    | string | Apple identifier for advertising

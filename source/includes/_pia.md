@@ -126,7 +126,11 @@ This endpoint's response will always be an HTTP 200 status code. Check the "stat
 
 To authenticate with this endpoint, you must generate a signature on each request. A string with the following template must be made, and the signature is created by taking the SHA-256 hash of the string. Note that anything contained within double curly brackets is a variable that is meant to be filled in.
 
-Computed Signature: `"action:pia;app:{{Chartboost app id}};token:{{Chartboost App post-install token}};timestamp:{{UNIX timestamp of request}};"`
+Computed Signature: `"action:pia;app:{{Chartboost app ID}};token:{{Chartboost App post-install token}};timestamp:{{UNIX timestamp of request}};"`
+
+(The Chartboost app ID is an identifier unique to each individual app in the Chartboost dashboard. Chartboost developers can find their game's app ID on the Chartboost dashboard's **App Settings** page:)
+
+<img src="https://s3.amazonaws.com/chartboost/help_assets/partners-app-id.jpg" />
 
 The resulting digest from the hash function should be sent in the X-Chartboost-Signature header in the request.
 

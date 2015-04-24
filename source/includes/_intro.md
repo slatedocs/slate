@@ -40,7 +40,7 @@ While this documentation and the code examples were designed to eliminate ambigu
 
 ## Authentication
 
-Each service API currently has different methods of authentication. The documentation for the service will include specific instructions about how to authenticate. For all endpoints that require authentication, requests must be signed and the signature must be placed in the `X-Chartboost-Signature` header.
+Each service API currently has different methods of authentication. The documentation for the service will include specific instructions about how to authenticate. For all endpoints that require authentication, requests must be signed and the computed signature must be placed in the `X-Chartboost-Signature` header.
 
 All API requests should be made via HTTPS.
 
