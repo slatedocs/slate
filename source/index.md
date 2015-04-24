@@ -101,6 +101,13 @@ You must replace `YOUR-ACCESS-TOKEN` with your API key.
   "video_urls": [],
   "offer_message": null,
   "offer_url": null,
+  "attribution_logo": {
+      "description": "Yext PowerListings",
+      "url": "http://www.yextstatic.com/cms/pl-synced/pl-synced.png",
+      "width": 143,
+      "height": 20
+    },
+  "attribution_url": "http://www.yext.com",
   "updated_at": "2014-11-27T11:35:27.364Z"
 }
 
@@ -149,6 +156,8 @@ photo_urls | Array of URLs for the listing photos, must all be a minimum of 150x
 video_urls | Array of URLs for the listing videos, must be either YouTube or Vimeo links
 offer_message | Special Offer or Coupon Message used as a link on the listing page
 offer_url | Special Offer or Coupon URL used as a link on the listing page
+attribution_logo | Partner attribution logo hash with description, width, height and a url that also supports https
+attribution_url | Partner attribution url
 updated_at | When the listing was last updated
 
 # Getting Started Workflow

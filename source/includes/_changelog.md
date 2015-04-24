@@ -4,6 +4,7 @@ Changes to the API and documentation are below.
 
 Date | Changes
 --------- | -----------
+4/24/2015 | Added partner attribution url
 4/17/2015 | Added logo_url, photo_urls, video_urls, offer_message and offer_url to listings
 4/16/2015 | Corrected Post and Update from listing object to listing_status
 4/8/2015 | Added Category ID's and LatLong Validations
