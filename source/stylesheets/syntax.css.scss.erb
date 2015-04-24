@@ -16,12 +16,38 @@ under the License.
 
 @import 'variables';
 
-<%= Rouge::Themes::Base16::Monokai.render(:scope => '.highlight') %>
 
-.highlight .c, .highlight .cm, .highlight .c1, .highlight .cs {
-  color: #909090;
+<%= Rouge::Themes::Base16.render(:scope => '.highlight') %>
+
+.highlight .n {
+  color: #353535;
+}
+
+.highlight .o, .highlight .ow {
+  color: #999696;
+}
+
+.highlight .p, .highlight .pi {
+  color: #999696;
 }
 
 .highlight, .highlight .w {
   background-color: $code-bg;
+}
+
+.highlight .no {
+  color: #22A079;
+}
+
+.content blockquote>p {
+  background-color: #FAFAFA !important;
+  border-radius: 5px !important;
+  padding: 13px !important;
+  color: #6A6A6A !important;
+  border-top: 1px solid #FFF !important;
+  border-bottom: 1px solid #C0C0C0 !important;
+}
+
+.content .search-highlight, .content pre, .content blockquote {
+  text-shadow: none !important;
 }

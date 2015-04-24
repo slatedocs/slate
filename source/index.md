@@ -7,7 +7,7 @@ language_tabs:
   - php
 
 toc_footers:
-  - <a href='https://tether.to/'>Tether homepage</a>
+  - <a href='https://wallet.tether.to/'>Tether homepage</a>
   - <a href='https://wallet.tether.to/settings'>Generate API Key</a>
 
 includes:
@@ -22,9 +22,9 @@ Welcome to the Tether API!
 
 We have libraries in Ruby, PHP and Python. You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
 
-- [Tether API Ruby client](https://github.com/WebLogicNow/tether-api-client-ruby/)
-- [Tether API PHP client](https://github.com/WebLogicNow/tether-api-client-php/)
-- [Tether API Python client](https://github.com/WebLogicNow/tether-api-client-python/)
+- [Tether API Ruby client](https://bitbucket.org/tetherto/tether-api-client-ruby)
+- [Tether API PHP client](https://bitbucket.org/tetherto/tether-api-client-php)
+- [Tether API Python client](https://bitbucket.org/tetherto/tether-api-client-python)
 
 # Authentication
 
@@ -104,7 +104,7 @@ result = client.balances
 > The JSON in raw API response looks like this:
 
 ```json
-{"balances":[{"currency":"BTC","confirmed":"22.04085912","pending":"0.0"},{"currency":"THR","confirmed":"5.56923451","pending":"0.0"}]}
+{"balances":[{"currency":"BTC","confirmed":"22.04085912","pending":"0.0"},{"currency":"USDt","confirmed":"5.56923451","pending":"0.0"}]}
 ```
 
 This endpoint retrieves all balances of the account.
@@ -138,7 +138,7 @@ result = client.exchange_rates
 > The JSON in raw API response looks like this:
 
 ```json
-{"exchange_rates":[{"source_currency":"BTC","target_currency":"US+","exchange_rate":"246.5"},{"source_currency":"US+","target_currency":"BTC","exchange_rate":"0.0040568"}]}
+{"exchange_rates":[{"source_currency":"BTC","target_currency":"USDt","exchange_rate":"246.5"},{"source_currency":"USDt","target_currency":"BTC","exchange_rate":"0.0040568"}]}
 ```
 
 This endpoint retrieves all exchange rates on Tether.
@@ -151,4 +151,242 @@ This endpoint retrieves all exchange rates on Tether.
 
 None.
 
+
+# Transactions
+
+## Get full transactions list
+
+```ruby
+result = client.transactions
+```
+
+```php
+# TODO
+```
+
+```python
+# TODO
+```
+
+> The JSON in raw API response looks like this:
+
+```json
+[{"id":331,"currency":"BTC","amount":"0.003","type":null,"status":"COMPLETED","message":null,"created_at":"2014-11-25T23:56:39Z","updated_at":"2014-11-25T23:56:39Z","remark":"You received BTC from an external account. txid: 52c90d367fac0a86057e8eb54022bbf504a1003a9b65fca444b59a1327dc7915","transaction_id":"52c90d367fac0a86057e8eb54022bbf504a1003a9b65fca444b59a1327dc7915"},{"id":432,"currency":"BTC","amount":"-0.03","type":null,"status":"COMPLETED","message":null,"created_at":"2014-11-26T00:00:51Z","updated_at":"2014-11-26T00:00:51Z","remark":"Convert 0.03 BTC to USDt. TXID: bd9c9e4f78ef39ffeba674d08673bba1f4ac91f6dbfd41e4760dfabd2ed99a9d","transaction_id":"bd9c9e4f78ef39ffeba674d08673bba1f4ac91f6dbfd41e4760dfabd2ed99a9d"},{"id":433,"currency":"USDt","amount":"0.007713","type":null,"status":"COMPLETED","message":null,"created_at":"2014-11-26T00:20:20Z","updated_at":"2014-11-26T00:20:20Z","remark":"Received 0.00771299 USDt from BTC conversion."}, {"id":512,"currency":"USDt","amount":"-143.0","type":null,"status":"COMPLETED","message":null,"created_at":"2014-12-10T16:44:53Z","updated_at":"2014-12-10T16:44:53Z","remark":"Redeem 143.0 USDt, Fee: 20, Total amount to be wired: 123.0"}]
+```
+
+This endpoint retrieves all user's transactions on Tether.
+
+### HTTP Request
+
+`GET /transactions`
+
+### Parameters
+
+None.
+
+## Get transaction by ID
+
+```ruby
+transaction_id = 12345
+result = client.get_transaction(transaction_id)
+```
+
+```php
+# TODO
+```
+
+```python
+# TODO
+```
+
+> The JSON in raw API response looks like this:
+
+```json
+{"id":12345,"currency":"BTC","amount":"0.003","type":null,"status":"COMPLETED","message":null,"created_at":"2014-11-25T23:56:39Z","updated_at":"2014-11-25T23:56:39Z","remark":"You received BTC from an external account. txid: 52c90d367fac0a86057e8eb54022bbf504a1003a9b65fca444b59a1327dc7915","transaction_id":"52c90d367fac0a86057e8eb54022bbf504a1003a9b65fca444b59a1327dc7915"}
+```
+
+This endpoint retrieves information about specific transaction.
+
+### HTTP Request
+
+`GET /transactions/:transaction_id`
+
+### Parameters
+
+Parameter | Description
+--------- | -----------
+transaction_id | ID that is returned in full transactions list and on new transaction creation
+
+
+## Create new transaction
+
+```ruby
+transaction_parameters = {
+  :currency => 'BTC',
+  :amount => 1.234,
+  :destination => 'ma@barker.me',
+  :message => 'Here is your part of booty, Ma.'
+}
+transaction = client.new_transaction(transaction_parameters)
+```
+
+```php
+# TODO
+```
+
+```python
+# TODO
+```
+
+> The JSON in raw API response looks like this:
+
+```json
+{"success":true,"id":1234,"message":"Success! Sent 1.2345 BTC to ma@barker.me","method":"email"}
+```
+
+This endpoint creates new transaction and returns its ID.
+
+### HTTP Request
+
+`POST /transactions`
+
+### Parameters
+
+Parameter | Description
+--------- | -----------
+currency | Currency of outgoing transaction
+amount | Amount to send (decimal (8,16))
+destination | Recipient: email or bitcoin address
+message | Message to include for email destinations
+
+### Return values
+
+Value | Description
+--------- | -----------
+id | Internal transaction ID
+method | 'internal', 'blockchain' or 'email'. Only blockchain transactions contain transaction_id
+transaction_id | Blockchain transaction ID
+success | boolean 
+
+
+
+
+
+# Exchange orders
+
+## Get full exchange orders list
+
+```ruby
+result = client.exchange_orders
+```
+
+```php
+# TODO
+```
+
+```python
+# TODO
+```
+
+> The JSON in raw API response looks like this:
+
+```json
+[{"id":12,"uuid":"2b9763d8-b429-4c56-b9e9-dcda1512f4a5","source_currency":"BTC","target_currency":"USDt","original_amount":"0.03","exchanged_amount":"11.121213","exchange_rate":"371.45","status":"COMPLETED","created_at":"2014-11-26T00:00:51Z","updated_at":"2014-11-26T20:10:33Z"},{"id":13,"uuid":"2b97e202-de74-4924-b0e8-995c17a0307f","source_currency":"BTC","target_currency":"USDt","original_amount":"0.013","exchanged_amount":"4.74324151","exchange_rate":"368.43","status":"COMPLETED","created_at":"2014-11-26T20:24:39Z","updated_at":"2014-12-04T20:03:48Z"},{"id":14,"uuid":"2b97e202-de74-4924-b0e8-995c17a0307f","source_currency":"USDt","target_currency":"BTC","original_amount":"4.75095451","exchanged_amount":"0.01277333","exchange_rate":"371.21","status":"COMPLETED","created_at":"2014-11-25T11:11:11Z","updated_at":"2014-12-04T20:16:45Z"}]
+```
+
+This endpoint retrieves all user's exchange orders on Tether.
+
+### HTTP Request
+
+`GET /exchange_orders`
+
+### Parameters
+
+None.
+
+## Get exchange order by ID
+
+```ruby
+exchange_order_id = 12345
+result = client.get_exchange_order(exchange_order_id)
+```
+
+```php
+# TODO
+```
+
+```python
+# TODO
+```
+
+> The JSON in raw API response looks like this:
+
+```json
+{"id":12345,"uuid":"2b9763d8-b429-4c56-b9e9-dcda1512f4a5","source_currency":"BTC","target_currency":"USDt","original_amount":"0.03","exchanged_amount":"11.121213","exchange_rate":"371.45","created_at":"2014-11-26T00:00:51Z","updated_at":"2014-11-26T20:10:33Z","status":"Completed"}
+```
+
+This endpoint retrieves information about specific exchange order.
+
+### HTTP Request
+
+`GET /exchange_orders/:exchange_order_id`
+
+### Parameters
+
+Parameter | Description
+--------- | -----------
+exchange_order_id | ID that is returned in full exchange orders list and on new exchange order creation
+
+
+## Create new exchange order
+
+```ruby
+exchange_order_parameters = {
+  :source_currency => 'BTC',
+  :target_currency => 'USDt',
+  :amount => 1.234
+}
+exchange_order = client.new_exchange_order(exchange_order_parameters)
+```
+
+```php
+# TODO
+```
+
+```python
+# TODO
+```
+
+> The JSON in raw API response looks like this:
+
+```json
+{"id":12345,"uuid":"2b9763d8-b429-4c56-b9e9-dcda1512f4a5","source_currency":"BTC","target_currency":"USDt","original_amount":"0.03","exchanged_amount":"11.121213","exchange_rate":"371.45","created_at":"2014-11-26T00:00:51Z","updated_at":"2014-11-26T20:10:33Z","status":"Pending"}
+```
+
+This endpoint creates new exchange order and returns its ID.
+
+### HTTP Request
+
+`POST /exchange_orders`
+
+### Parameters
+
+Parameter | Description
+--------- | -----------
+source_currency | Currency which should be converted
+target_currency | Currency which would be received 
+amount | Amount to convert (decimal (8,16))
+
+### Return values
+
+Value | Description
+--------- | -----------
+id | Internal exchange order ID
+uuid | Internal exchange order UUID
+source_currency | Currency which should be converted
+target_currency | Currency which would be received 
+original_amount | Amount to convert (decimal (8,16))
+exchanged_amount | Amount received from conversion (decimal (8,16))
+exchange_rate | Rate of exchange
+status | 'Pending', 'Processing' or 'Completed'
 

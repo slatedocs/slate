@@ -23,17 +23,17 @@ under the License.
 
 // BACKGROUND COLORS
 ////////////////////
-$nav-bg: #393939;
-$examples-bg: #393939;
-$code-bg: #292929;
-$code-annotation-bg: #1c1c1c;
-$nav-subitem-bg: #262626;
-$nav-active-bg: #ffc20e;
-$lang-select-border: #000;
-$lang-select-bg: #222;
+$nav-bg: #f5f5f5;
+$examples-bg: #f5f5f5;
+$code-bg: #f5f5f5;
+$code-annotation-bg: #f5f5f5;
+$nav-subitem-bg: #f5f5f5;
+$nav-active-bg: #22A079;
+$lang-select-border: #f5f5f5;
+$lang-select-bg: #e2e2e2;
 $lang-select-active-bg: $examples-bg; // feel free to change this to blue or something
-$lang-select-pressed-bg: #111; // color of language tab bg when mouse is pressed
-$main-bg: #FFFFF7;
+$lang-select-pressed-bg: #f5f5f5; // color of language tab bg when mouse is pressed
+$main-bg: #FFFFFD;
 $aside-notice-bg: #FBFCE6;
 $aside-warning-bg: #FC999E;
 $aside-success-bg: #9EE277;
@@ -43,11 +43,11 @@ $search-notice-bg: #FC999E;
 // TEXT COLORS
 ////////////////////
 $main-text: #333; // main content text color
-$nav-text: #fff;
-$nav-active-text: #fff;
-$lang-select-text: #fff; // color of unselected language tab text
-$lang-select-active-text: #fff; // color of selected language tab text
-$lang-select-pressed-text: #fff; // color of language tab text when mouse is pressed
+$nav-text: #333;
+$nav-active-text: #FFF;
+$lang-select-text: #333; // color of unselected language tab text
+$lang-select-active-text: #333; // color of selected language tab text
+$lang-select-pressed-text: #333; // color of language tab text when mouse is pressed
 
 
 // SIZES
@@ -86,7 +86,7 @@ $phone-width: $tablet-width - $nav-width; // min width before reverting to mobil
 
 // OTHER
 ////////////////////
-$nav-active-shadow: #000;
+$nav-active-shadow: #fff;
 $nav-footer-border-color: #666;
 $nav-embossed-border-top: #000;
 $nav-embossed-border-bottom: #939393;
