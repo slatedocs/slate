@@ -246,7 +246,7 @@ Retrieve the current state of a merchant application:<br>
 		</tr>
 		<tr>
 			<td>bco<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
-			<td>Billing (source) country. ISO 3166 country code of the billing address of the transaction, encoded as a string. Default is <code>US</code>.</td>
+			<td>Billing (source) country. ISO 3166 alpha-2 country code of the billing address of the transaction, encoded as a string. Default is <code>US</code>.</td>
 		</tr>
 		<tr>
 			<td>bz<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
@@ -274,7 +274,7 @@ Retrieve the current state of a merchant application:<br>
 		</tr>
 		<tr>
 			<td>sco<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
-			<td>Shipping (destination) country. ISO 3166 country code of the shipping address of the transaction, encoded as a string. Default is <code>US</code></td>
+			<td>Shipping (destination) country. ISO 3166 alpha-2 country code of the shipping address of the transaction, encoded as a string. Default is <code>US</code></td>
 		</tr>
 		<tr>
 			<td>sz<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
