@@ -312,32 +312,32 @@ Within an application's package.json file, there is a settings object which cont
 
 Use the settings JSON object to communicate the meta data about an app. See definitions below:
 
-offline=true/false
-Offlinemode controls whether the container will cache application information for offline use. If offline=true and the user launches the application, any data that was previously loaded will be available when the device is offline. This will also enable queuing of data to write to the Bodhi Cloud if the app has write permissions.
+**offline=true/false**  
+Offline controls whether the container will cache application information for offline use. If offline=true and the user launches the application, any data that was previously loaded will be available when the device is offline. This will also enable queuing of data to write to the Bodhi Cloud if the app has write permissions.
 
-single_container_app=true/false
+**single_container_app=true/false**  
 single_container_app the container know whether the app should be displayed with a menu (a collection of apps) or as a standalone single app.
 Bodhi Mobile has single_container_app = false. Bodhi Reveal has single_container_app = true
 
-hide_from_global_store=true/false
+**hide_from_global_store=true/false**  
 hide_from_global_store controls whether the app is available to the general public to see in the global app store. Apps like Settings which cannot be removed should have hide_from_global_store=true
 
-new_type_required=true/false
+**new_type_required=true/false**  
 new_type_required tells the installer of the app in the global app store if the app will run 'out of the box' or if new custom types need to be installed on the namespace.
 NOTE:: if new_type_required=true, troubleshooting_url should be required
 
-troubleshooting_url='http://tools.bodhi.space/xxxx'
+**troubleshooting_url='http://tools.bodhi.space/xxxx'**  
 The troubleshooting_url is the URL where the customer can find additional information about how to install custom types on their namespace to get an app to function correctly. This can also be used to FAQ's or any other outbound troubleshooting you would like to provide to your customers.
 
-categories { }
+**categories { }**  
 The categories array allows you to give the Bodhi app store taxonomical information about how your app relates to other applications. 
 Examples include financial, inventory, mangegement
 
-global_store_icon='/xxx/xxx.png'
+**global_store_icon='/xxx/xxx.png'**  
 The global_store_icon is the icon that the Global App Store will use for display purposes. This file should be included in the app folder that is published via app tools.
 
-screenshots{ }
-The screenshots array containers relative paths to screenshots which the Global App Store will use for display purposes. This files should be included in the app folder that is published via app tools.
+**screenshots{ }** 
+The screenshots array contains relative paths to screenshots which the Global App Store will use for display purposes. This files should be included in the app folder that is published via app tools.
 
 
 ##### Signature
