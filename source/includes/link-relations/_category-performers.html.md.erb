@@ -22,7 +22,7 @@ You can `GET` the href of this link to retrieve the [`Categories`](#categories) 
 | `embed` | `string` | A comma-separated set of properties that should be embedded in the [`Category`](#category) resources. Can be `top_performers`, `top_children` or `top_events`. |
 | `min_start_date` | [`datetime`](#datetime) | Filters results to only include categories that have events starting after the specified datetime. |
 | `max_start_date` | [`datetime`](#datetime) | Filters results to only include categories that have events starting before the specified datetime. |
-| `max_ticket_price` | [`money`](#money) | Filters results to only include categories that have events with tickets available for less than the specified amount. NOTE: This price is assumed to be in the currency code specified in the [Accept-Currency](/#accept-currency-header) |
+| `max_ticket_price` | `decimal` | Filters results to only include categories that have events with tickets available for less than the specified amount. NOTE: This price is assumed to be in the currency code specified in the [Accept-Currency](/#accept-currency-header) |
 | `only_with_events` | `boolean` | Filters results to only include categories with events. |
 | `only_with_tickets` | `boolean` | Filters results to only include categories with events that have tickets. |
 
