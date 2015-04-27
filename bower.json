@@ -12,5 +12,6 @@
     "theme"
   ],
   "license": "Apache License, Version 2.0",
-  "ignore": []
+  "ignore": [],
+  "main": "build/stylesheets/screen.css"
 }
