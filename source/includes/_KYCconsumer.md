@@ -99,7 +99,7 @@ Retrieve the current state of a consumer application:<br>
 		</tr>
 		<tr>
 			<td>tti<br><font color=#446CB3>Object</font><br><font color=#BDC3C7><i>optional</i></font></td>
-			<td>Transaction time in UTC. Encoded as a Unix timestamp or ISO 8601 string.</td>
+			<td>Transaction time in UTC. Encoded as a Unix time stamp or ISO 8601 string. Data containing milliseconds will not be accepted.</td>
 		</tr>
 		<tr>
 			<td>bfn<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
