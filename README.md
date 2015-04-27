@@ -63,7 +63,7 @@ availalable at the output of `boot2docker ip` instead of `localhost:4567`.*
 
 Now that Slate is all set up your machine, you'll probably want to learn more about [editing Slate markdown](https://github.com/tripit/slate/wiki/Markdown-Syntax), or [how to publish your docs](https://github.com/tripit/slate/wiki/Deploying-Slate).
 
-Publishing to Bower.io
+Publishing the Bower package
 --------------------
 
 ```shell
