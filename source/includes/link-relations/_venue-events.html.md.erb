@@ -22,7 +22,7 @@ You can `GET` the href of this link to retrieve the [`Events`](#events) resource
 | `max_distance` | `int` | Filters results to only include events located within the specfied number of meters from the user. |
 | `min_start_date` | [`datetime`](#datetime) | Filters results to only include events starting after the specified datetime. |
 | `max_start_date` | [`datetime`](#datetime) | Filters results to only include events starting before the specified datetime. |
-| `max_ticket_price` | [`money`](#money) | Filters results to only include events with tickets available for less than the specified amount. NOTE: This price is assumed to be in the currency code specified in the [Accept-Currency](/#accept-currency-header). |
+| `max_ticket_price` | `decimal` | Filters results to only include events with tickets available for less than the specified amount. NOTE: This price is assumed to be in the currency code specified in the [Accept-Currency](/#accept-currency-header). |
 | `time_frame` | `string` | Filters results to only include events within a given timeframe. Can be one of `Today`, `Tomorrow`, `ThisWeekend`, `ThisWeek`, `NextWeek`, `ThisMonth`, `NextMonth`. |
 | `days` | `string` | Filters results to only include events that occur on any of the specified days. Can be a comma-separated string of the following values: `Sunday`, `Monday`, `Tuesday`, `Wednesday`, `Thursday`, `Friday`, `Saturday`. |
 | `only_with_tickets` | `boolean` | Filters results to only include events that have tickets. |
