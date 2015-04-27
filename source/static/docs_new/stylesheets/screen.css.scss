@@ -177,7 +177,7 @@ html, body {
   .tocify-subheader {
     display: none; // tocify will override this when needed
     background-color: $nav-subitem-bg;
-    
+
     .tocify-item>a {
       padding-left: $nav-padding + $nav-indent;
       font-size: 14px;
