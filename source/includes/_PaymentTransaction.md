@@ -182,11 +182,11 @@ EXAMPLE SERVICE REQUEST
 		</tr>
 		<tr>
 			<td>bfn<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
-			<td>Billing first name</td>
+			<td>Billing (source) first name</td>
 		</tr>
 		<tr>
 			<td>bln<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
-			<td>Billing last name</td>
+			<td>Billing (source) last name</td>
 		</tr>
 		<tr>
 			<td>pccn<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
@@ -230,51 +230,51 @@ EXAMPLE SERVICE REQUEST
 		</tr>
 		<tr>
 			<td>bsn<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
-			<td>Billing street. Includes house number, street name, and apartment number.</td>
+			<td>Billing (source) street. Includes house number, street name, and apartment number.</td>
 		</tr>
 		<tr>
 			<td>bco<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
-			<td>Billing country. ISO 3166 country code of the billing address of the transaction, encoded as a string. Default is <code>US</code>.</td>
+			<td>Billing (source) country. ISO 3166 country code of the billing address of the transaction, encoded as a string. Default is <code>US</code>.</td>
 		</tr>
 		<tr>
 			<td>bz<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
-			<td>Billing zip / postal code</td>
+			<td>Billing (source) zip / postal code</td>
 		</tr>
 		<tr>
 			<td>bc<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
-			<td>Billing city</td>
+			<td>Billing (source) city</td>
 		</tr>
 		<tr>
 			<td>bs<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
-			<td>Billing state</td>
+			<td>Billing (source) state</td>
 		</tr>
 		<tr>
 			<td>sfn<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
-			<td>Shipping first name</td>
+			<td>Shipping (destination) first name</td>
 		</tr>
 		<tr>
 			<td>sln<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
-			<td>Shipping last name</td>
+			<td>Shipping (destination) last name</td>
 		</tr>
 		<tr>
 			<td>ssn<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
-			<td>Shipping street. Includes house number, street name, and apartment number.</td>
+			<td>Shipping (destination) street. Includes house number, street name, and apartment number.</td>
 		</tr>
 		<tr>
 			<td>sco<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
-			<td>Shipping country. ISO 3166 country code of the shipping address of the transaction, encoded as a string. Default is <code>US</code></td>
+			<td>Shipping (destination) country. ISO 3166 country code of the shipping address of the transaction, encoded as a string. Default is <code>US</code></td>
 		</tr>
 		<tr>
 			<td>sz<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
-			<td>Shipping zip / postal code</td>
+			<td>Shipping (destination) zip / postal code</td>
 		</tr>
 		<tr>
 			<td>sc<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
-			<td>Shipping city</td>
+			<td>Shipping (destination) city</td>
 		</tr>
 		<tr>
 			<td>ss<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
-			<td>Shipping state</td>
+			<td>Shipping (destination) state</td>
 		</tr>
 		<tr>
 			<td>aflid<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
