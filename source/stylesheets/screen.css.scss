@@ -79,6 +79,7 @@ html, body {
   background-color: $nav-bg;
   font-size: 13px;
   font-weight: bold;
+  border-right: 1px solid #ccc;
 
   // language selector for mobile devices
   .lang-selector {
@@ -182,7 +183,7 @@ html, body {
 
   // This is the currently selected ToC entry
   .tocify-focus {
-    @include box-shadow(0px 1px 0px $nav-active-shadow);
+    // @include box-shadow(0px 1px 0px $nav-active-shadow);
     background-color: $nav-active-bg;
     color: $nav-active-text;
   }
@@ -199,7 +200,7 @@ html, body {
     }
 
     // for embossed look:
-    @include embossed-bg;
+    // @include embossed-bg;
     &>li:last-child {
       box-shadow: none; // otherwise it'll overflow out of the subheader
     }
@@ -371,6 +372,7 @@ html, body {
     margin-bottom: $h1-margin-bottom;
     margin-top: 2em;
     border-top: 1px solid #ddd;
+    font-weight: normal;
     @include background-image(
       linear-gradient(top, #fff, #f9f9f9)
     );
@@ -388,6 +390,7 @@ html, body {
     margin-bottom: 0;
     border-top: 1px solid #ccc;
     padding-top: 1.2em;
+    font-weight: normal;
     padding-bottom: 1.2em;
     @include background-image(
       linear-gradient(top, rgba(#fff,0.4), rgba(#fff, 0))
@@ -405,6 +408,7 @@ html, body {
     @extend %header-font;
     font-size: 12px;
     margin-top: 2.5em;
+    font-weight: normal;
     margin-bottom: 0.8em;
     text-transform: uppercase;
   }

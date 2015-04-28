@@ -23,27 +23,27 @@ under the License.
 
 // BACKGROUND COLORS
 ////////////////////
-$nav-bg: #393939;
-$examples-bg: #393939;
-$code-bg: #292929;
-$code-annotation-bg: #1c1c1c;
-$nav-subitem-bg: #262626;
-$nav-active-bg: #2467af;
+$nav-bg: #fff;
+$examples-bg: #3E434B;
+$code-bg: #31363E;
+$code-annotation-bg: #252A32;
+$nav-subitem-bg: #f2f2f1;
+$nav-active-bg: #252A32;
 $lang-select-border: #000;
-$lang-select-bg: #222;
+$lang-select-bg: #252A32;
 $lang-select-active-bg: $examples-bg; // feel free to change this to blue or something
 $lang-select-pressed-bg: #111; // color of language tab bg when mouse is pressed
-$main-bg: #eaf2f6;
-$aside-notice-bg: #8fbcd4;
-$aside-warning-bg: #c97a7e;
-$aside-success-bg: #6ac174;
+$main-bg: #f2f2f1;
+$aside-notice-bg: #00ACA1;
+$aside-warning-bg: #ffd939;
+$aside-success-bg: #08c14a;
 $search-notice-bg: #c97a7e;
 
 
 // TEXT COLORS
 ////////////////////
-$main-text: #333; // main content text color
-$nav-text: #fff;
+$main-text: #000000; // main content text color
+$nav-text: #333;
 $nav-active-text: #fff;
 $lang-select-text: #fff; // color of unselected language tab text
 $lang-select-active-text: #fff; // color of selected language tab text
@@ -68,17 +68,17 @@ $phone-width: $tablet-width - $nav-width; // min width before reverting to mobil
 // FONTS
 ////////////////////
 %default-font {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Muli",  Arial, Helvetica, sans-serif;
   font-size: 13px;
 }
 
 %header-font {
-  @extend %default-font;
+  font-family: "Montserrat", Arial, Helvetica, sans-serif;
   font-weight: bold;
 }
 
 %code-font {
-  font-family: Consolas, Menlo, Monaco, "Lucida Console", "Liberation Mono", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Courier New", monospace, serif;
+  font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
   font-size: 12px;
   line-height: 1.5;
 }
@@ -87,10 +87,10 @@ $phone-width: $tablet-width - $nav-width; // min width before reverting to mobil
 // OTHER
 ////////////////////
 $nav-active-shadow: #000;
-$nav-footer-border-color: #666;
+$nav-footer-border-color: #fff;
 $nav-embossed-border-top: #000;
 $nav-embossed-border-bottom: #939393;
-$main-embossed-text-shadow: 0px 1px 0px #fff;
+$main-embossed-text-shadow: 0px 0px 0px #fff;
 $search-box-border-color: #666;
 
 
