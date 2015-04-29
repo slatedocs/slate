@@ -481,7 +481,7 @@ EXAMPLE SERVICE RESPONSE DATA
 		</tr>
 		<tr>
 			<td>redirectURL<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
-			<td></td>
+			<td>Jumio NetVerify document verification redirect URL.</td>
 		</tr>
 		<tr>
 			<th colspan=2>Questions Wrapper</th>
