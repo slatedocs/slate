@@ -600,7 +600,7 @@ Provide a document as part of a Jumio NetVerify multi-document verification.
 ##### Arguments
 
 ```code
-EXAMPLE SERVICE RESPONSE DATA
+EXAMPLE SERVICE REQUEST
 ```
 ```json
 {
