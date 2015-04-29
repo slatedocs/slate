@@ -61,6 +61,7 @@ The following Commands groups are;
 ###Local Commands
 
 new      | create   | create a new type
+----- |-----        | ----------
 rename   | move, mv | change the name of the type
 edit     | modify   | edit the type metadata
 remove   | rm       | remove a local type
@@ -69,7 +70,7 @@ view-props |          | print all non-system properties of the type
 set-prop   |          | create or replate a property
 mv-prop    |          | rename an existing property
 rm-prop    |          | remove an existing property
-gen-instance
+gen-instance |           | remove an existing property
 
 #####Type Name
 

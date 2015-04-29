@@ -42,18 +42,23 @@ Copyright 2014 Redbook Connect
 
 Local commands operate on JSON structures stored on the local filesystem.
 
-command  | aliases  | description
--------  | -------  | -----------
+option       | meaning
+-----        | ----------
+namespace    | the namespace of the type
+embedded     | this type does is not stored independently
+immutable    | instances of this type do not support updates
+encapsulated | this type does not support normal CRUD operations
+extensible   | this type may be extended
+
+
+command | aliases | description
+-------  | -------  | ------
 new      | create   | create a new type
 rename   | move, mv | change the name of the type
 edit     | modify   | edit the type metadata
 remove   | rm       | remove a local type
 view     | print    | print the local type definition
-view-props |          | print all non-system properties of the type
-set-prop   |          | create or replate a property
-mv-prop    |          | rename an existing property
-rm-prop    |          | remove an existing property
-gen-instance |      | generate a sample object based on the type
+
 
 #####Type Name
 
