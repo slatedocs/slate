@@ -52,8 +52,9 @@ You're going to need:
 Or use the included Dockerfile! (must install Docker first)
 
 ```shell
-docker build -t slate .
-docker run -d -p 4567:4567 slate
+docker-compose build
+docker-compose run slate bundle install
+docker-compose up
 ```
 
 You can now see the docs at <http://localhost:4567>. Whoa! That was fast!

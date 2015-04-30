@@ -1,6 +1,7 @@
 *.gem
 *.rbc
 .bundle
+vendor/
 .config
 coverage
 InstalledFiles

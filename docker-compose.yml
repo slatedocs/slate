@@ -1,0 +1,17 @@
+files:
+  image: "ubuntu:trusty"
+  volumes:
+    - ./vendor:/app/vendor
+
+slate:
+  build: .
+  command: bundle exec middleman server
+  volumes:
+    - .:/app
+  volumes_from:
+    - files
+  ports:
+    - "4567:4567"
+  links:
+    - files
+
