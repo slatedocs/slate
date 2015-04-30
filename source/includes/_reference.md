@@ -210,33 +210,33 @@ ed:1|	Blacklist
 ed:2|	Watchlist
 ed:3|	Chargeback Count
 ed:4|	Payment Reputation
-ed:5|	Payment Instrument Application Count
-ed:6|	Payment User Account Count
-ed:7|	Payment Device Count
-ed:8|	Payment Shipping Address Count
-ed:9|	Payment Billing Address Count
+ed:5|	Application Count for Payment Instrument
+ed:6|	User Account Count for Payment Instrument
+ed:7|	Device Count for Payment Instrument
+ed:8|	Shipping Address Count for Payment Instrument
+ed:9|	Billing Address Count for Payment Instrument
 ed:10|	Payment First Seen
 ed:11|	Device Reputation
 ed:12|	Device Failed Validation
 ed:13|	Device Merchant Application Count
-ed:14|	Device Payment Count
-ed:15|	Device User Account Count
-ed:16|	Device Shipping Address Count
-ed:17|	Device Billing Address Count
+ed:14|	Payment Instrument Count for Device
+ed:15|	User Account Count for Device
+ed:16|	Shipping Address Count for Device
+ed:17|	Billing Address Count for Device
 ed:18|	Device First Seen
 ed:19|	User Account Reputation
 ed:20|	Account Failed Validation
-ed:21|	Merchant Application Count
-ed:22|	User Account Payment Count
-ed:23|	User Account Device Count
-ed:24|	User Account Shipping Address Count
-ed:25|	User Account Billing Address Count
+ed:21|	Merchant Application Count from Merchant
+ed:22|	Payment Instrument Count for User Account
+ed:23|	Device Count for User Account
+ed:24|	Shipping Address Count for User Account
+ed:25|	Billing Address Count for User Account
 ed:26|	User Account Age
 ed:27|	Billing Address Reputation
-ed:28|	Billing country on acceptable list
+ed:28|	Billing Country on Acceptable list
 ed:29|	Email First Seen
 ed:30|	User Validated
-ed:31|	Billing state on acceptable list
+ed:31|	Billing State on Acceptable list
 ed:32|  Element of Transaction on Provider Blacklist
 ed:33|  Element of Transaction on Provider Watchlist
 ed:34|  Transaction Declined By Bank
@@ -260,9 +260,9 @@ ed:51|  Bad First Degree Relation
 ed:52|  Billing and Shipping Address Match
 ed:53|  Billing and Card Issuer Country Match
 ed:54|  IP and Card Issuer Country Match
-ed:55|  Issuer Country Count
+ed:55|  Issuer Country Count for User Account or Device
 ed:56|  Card Issuer Country on Blacklist 
-ed:59|  User Account Count
+ed:59|  User Account Count for User
 ed:60|  Previous Rejected Transaction for User
 ed:61|  IP Country Watchlist
 ed:62|  CVV Match
@@ -279,12 +279,12 @@ ed:72|  KYC Application in Manual Review
 ed:73|  User Count for PayPal
 ed:74|  Card Count for Device
 ed:75|  Card Count for User
-ed:76|  Multiple Non-Prepaid Card for Device
-ed:77|  Multiple Non-Prepaid for User
-ed:78|  Multiple Shipping Addresses for User
-ed:79|  Multiple Shipping Addresses for Device
-ed:80|  Multiple Shipping Address for Payment
-ed:81|  Multiple Payment Instruments for Shipping Address
+ed:76|  Non-Prepaid Card Count for Device
+ed:77|  Non-Prepaid Card Count for User
+ed:78|  Shipping Address Count for User
+ed:79|  Shipping Address Count for Device
+ed:80|  Shipping Address Count for Payment Instrument
+ed:81|  Payment Instrument Count for Shipping Address
 ed:82|  Unvalidated User
 ed:83|  IP Country Not Acceptable
 ed:84|  Billing BIN Match
@@ -293,12 +293,12 @@ ed:86|  Corporate IP Address
 ed:87|  Billing Country Watchlist
 ed:88|  Browser Language / IP Country Mismatch
 ed:89|  Card Issuer Country
-ed:90|  User Phone Count
+ed:90|  Phone Count for User
 ed:91|  Shipping Address Previously Used
 ed:92|  PayPal Count for User
 ed:93|  User's Age
 ed:94|  PayPal Count for Device
-ed:95|  Consumer Application Count
+ed:95|  Consumer Application Count for User
 ed:500|  1 Hour Source Transaction Velocity
 ed:501|  1 Hour Destination Transaction Velocity
 ed:502|  1 Hour IP Transaction Velocity
