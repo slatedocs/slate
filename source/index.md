@@ -6,7 +6,7 @@ language_tabs:
 
 toc_footers:
   - <a href='http://www.identitymindglobal.com/'>IdentityMind Global</a>
-  - eDNA API Reference Beta v1.1.0
+  - eDNA API Reference Beta v1.1.2
 
 includes:	
   - PaymentTransaction
@@ -20,11 +20,7 @@ search: true
 
 ---
 
-# eDNA 1.19 API Preview
-
-#### Welcome Note
-
-Hello and welcome to our IdentityMind Release 1.19 API reference preview! While everything is mostly set, please keep in mind that certain aspects may be subject to change. That being said, we do not expect our API to undergo any major changes before the official 1.19 rollout.
+# eDNA 1.19 API
 
 #### Transaction Evaluation
 
