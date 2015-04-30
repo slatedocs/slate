@@ -344,6 +344,9 @@ for processing. Use the `url` or `id` in the response to query the status of an
 error. This will tell you if the error has been processed, or if it has been
 rejected for reasons including invalid JSON and rate limiting.
 
+If the request body size exceeds **64KB**, the API will reject the notice and
+return a `413 Request Entity Too Large` status.
+
 # Projects v4
 
 ## List projects v4
