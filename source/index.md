@@ -41,7 +41,7 @@ specific trigger to fire.
 
 The fastest setup to get up and running.
 
-```go
+```swift
 import SenseSdk
 
 @UIApplicationMain
@@ -138,7 +138,12 @@ The TriggerBuilder returns either the trigger or a list of errors.
 Need sample here
 
 ## Business Place
-
+```swift
+let airportTrigger = BusinessCategoryTriggerBuilder()
+	.set(place: BusinessCategory.Airport)
+	.hasEntered()
+	.build()
+```
 The business category trigger allows you to determine whether someone is entering or leaving a business type. 
 
 The currently supported use cases are:
@@ -151,8 +156,15 @@ Restaurant | .set(place: BusinessCategory.Restaurant) | hasEntered(), hasExited(
 Mall | .set(place: BusinessCategory.Mall) | hasEntered(), hasExited()
 Gas Station | .set(place: BusinessCategory.gasStation) | hasEntered(), hasExited()
 
-## Personal Place
+**_Possible action types are hasEntered() and hasExited()._**
 
+## Personal Place
+```swift
+let homeTrigger = PersonalizedTriggerBuilder()
+	.set(place: PersonalizedPlaceType.Home)
+	.hasEntered()
+	.build()
+```
 <aside class="notice"> This type of trigger is custom built on a user by user basis and will only go live one week after a user has joined your service. 
 
 Due to the sensitivity of this data, neither developers nor us will ever see the raw data or store a users home or office location. The computation happens on the device itself and stays there to ensure your users privacy.
@@ -168,7 +180,18 @@ Home | .set(place: PersonalizedPlaceType.Home) | hasEntered(), hasExited(), fart
 Work | .set(place: PersonalizedPlaceType.Work) | hasEntered(), hasExited(), fartherThan()
 
 ## Custom Place
+```swift
+let hq = CustomPlace(latitude: 37.124, longitude: -127.456, radiusMeters: 20,
+  customIdentifier: "Sense 360 Headquarters")
 
+let lunchSpot = CustomPlace(latitude: 37.124, longitude: -127.456, radiusMeters: 35,
+  customIdentifier: "A&B Bar and Grill")
+
+let trigger = CustomPlaceTriggerBuilder()
+  .set(places: hq, lunchSpot)
+  .fartherThan(kilometers: Kilometers(1))
+  .build()
+```
 A custom place allows you to determine if someone is inside a geo-fence or a group of geofences that you build. 
 
 All custom place triggers must specify the following parameters
@@ -180,58 +203,98 @@ radiusMeters | Int | true | radius of geofence
 customIdentifier | String | true | unique name for place
 
 
-**_Possible action types are hasEntered() and hasExited()._**
-
-
 <aside class="warning"> You can have no more than [50] custom places included in a single trigger.
 Minimum radius for a CustomPlace is [20 meters]
 </aside>
 
 ## Compound Triggers
-
+```swift
+let trigger = CompoundTriggerBuilder()
+	.with(airportTrigger, and: homeTrigger)
+	.build()
+```
 You have the ability to combine triggers to create a compound trigger:
 
-In the example at the beginning of this document, you created a compound trigger by building `hasArrivedAtAirport()` & `onHundredMilesFromHome()`, and then ANDing the two when you built `atAirportAndAwayFromHome()`. This allowed you to listen for when a user was at an  airport AND 100+ kilometers from home (i.e. traveling):
+In two of the examples above, both airportTrigger and homeTrigger were defined.  By then ANDing the two, you get a trigger that listens for when a user was at an airport AND 100+ kilometers from home (i.e. traveling):
 
 
 # Recipes
+```swift
+let recipe = Recipe(name: "My Recipe", trigger: someTrigger)
+```
+The Recipe is the receptacle that encases your trigger, and various other settings.  Recipes are registered globally within your application with a call to the [SenseApi](#senseapi).  Below are the inputs that make up a Recipe:
 
-The Recipe is the receptacle that encases your triggers, callback, and various other settings.  Recipes are registered globally within your application with a call to the [SenseApi](#senseapi).  Below are the inputs that make up a Recipe:
-
-Parameter | Required 
+Parameter | Required
 --------- | ------- 
 name | true |
 [trigger](#triggers) | true 
-delegate | true | 
 [window](#window)| false 
 [frequency cap](#frequency-cap) | false 
 
-## SenseApi:
+## SenseApi
 
-The SenseApi is a single repository that stores all active Recipes within your application:
+The SenseApi is the repository that stores all active Recipes within your application:
 
 ### Sense Api Functions
-
+```swift
+let results = SenseApi.register(recipe: myRecipe, delegate: myDelegate)
+if results.successful {
+  NSLog("recipe registration successful")
+}
+else if let errors = result.errors {
+    NSLog("Registration unsucessful, see errors below")
+    for error in errors {
+      NSLog("message: \(error.message)")
+    }
+}
+```
 Function | Parameters | Description
 --------- | ------- |------- 
-registerRecipe | X,Y,Z | adds recipe to SenseApi and starts listening for events
-unregisterRecipe | X,Y,Z | removes recipe from SenseApi and stops listening for events
-findRecipeByName | X,Y,Z | finds recipe by name indicated in registerRecipe
+register | recipe, delegate | adds your recipe and delegate to SenseApi, and starts listening for events
+unregister | recipe | stops and removes the recipe from SenseApi
+findRecipe | name | finds and returns a recipe by name
+getAllRecipes | | returns all registered recipes
+saveState | | persists the state of the sdk
+restoreState | restoreDelegate | restores the state of the sdk
 
-### Registering a Recipe
+### Save and restoring state
+```swift
+func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+  SenseApi.restoreState(restoreDelegate: self)
+}
 
-Once you are satisfied with your recipe, you need to register the recipe.
+func applicationWillTerminate(application: UIApplication) {
+  SenseApi.saveState()
+}
+
+func restoreRecipe(args: RecipeRestoreArgs) -> RecipeRestoreResult {
+  if(args.recipe.name == "Recipe #1") {
+    return RecipeRestoreResult(delegate: recipeNumberOneDelegate)
+  }
+  else if(args.recipe.name == "Recipe #2") {
+    return RecipeRestoreResult(delegate: recipeNumberTwoDelegate)
+  }
+}
+```
+Your application will not always be running, but you probably want your triggers to.  In order to accomplish this, the SenseApi provides methods that persist your recipes and the state of your triggers when your application is not running.  Since the SenseApiDelegate is not set within the recipe, it is your job to match each your recipes with the correct delegate.  This is done by implementing the SenseApiRestoreDelegate protocol.
 
 
 ## SenseApiDelegate
+```swift
+class MyDelegate : SenseApiDelegate {
+    func onTriggerFired(args: TriggerFiredArgs) {
+        NSLog("\(places.count) places fired on \(timestamp), with a confidence level of: \(args.confidenceLevel)")
+    }
+}
+```
 
-### Available Information
-
-Once the trigger set on the recipe is fired, the delegate is notified with the following information:
+The SenseApiDelegate registered alongside your trigger in the SenseApi is notified with the following information once your trigger fires:
 
 * A list of Places that the trigger matched
 * `TIMESTAMP` when the trigger fired
 * The confidence level of the places matched
+* The containing recipe
+
 
 ### Confidence Levels
 
