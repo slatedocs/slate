@@ -299,7 +299,7 @@ func applicationWillTerminate(application: UIApplication) {
   SenseApi.saveState()
 }
 
-func restoreRecipe(args: RecipeRestoreArgs) -> RecipeRestoreResult {
+func recipeRestored(args: RecipeRestoreArgs) -> RecipeRestoreResult {
   if(args.recipe.name == "Recipe #1") {
     return RecipeRestoreResult(delegate: recipeNumberOneDelegate)
   }
