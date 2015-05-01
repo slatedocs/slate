@@ -45,21 +45,44 @@ The fastest setup to get up and running.
 import SenseSdk
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, SenseApiDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, SenseApiDelegate, SenseApiRestoreDelegate {
     // ...
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         SenseApi.apiKey = "your-api-key-here"
         
+        // restore any previously running recipes
+        SenseApi.restoreState(self)
+        
         let recipe = buildRecipe()
-        SenseApi.registerRecipe("RecipeName1", recipe: recipe)
+        SenseApi.register(recipe: recipe, delegate: self)
         
         return true
     }
     
+    func applicationWillTerminate(application: UIApplication) {
+      // Save state before the application terminates
+      SenseApi.saveState()
+    }
+    
+    // Callback - when recipe can be re-started
+    func recipeRestored(args: RecipeRestoreArgs) -> RecipeRestoreResult {
+      if args.recipe.name == 'atSoccerFieldTrigger' {
+          return RecipeRestoreResult(delegate: self)
+        } else {
+          return RecipeRestoreResult(delegate: nil)
+        }
+    }
+    
+    // Callback - when trigger is satisfied
+    func onTriggerFired(args: TriggerFiredArgs) {
+      NSLog("Triggered \(args.recipe.trigger.customIdentifier) at time \(args.timestamp)")
+    }
+    
+    // Build Trigger and Recipe
     func buildRecipe -> Recipe {
-      let myTrigger = buildTrigger()
+      let atSoccerFieldTrigger = buildTrigger()
       
-      return Recipe(trigger: myTrigger, delegate: self)
+      return Recipe(trigger: atFieldTrigger, name: 'atSoccerFieldTrigger')
     }
     
     func buildTrigger() -> Trigger {
@@ -71,10 +94,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SenseApiDelegate {
               .hasEntered()
               .build()
     }
-    
-    func onTriggerFired(args: TriggerFiredArgs) {
-      NSLog("Triggered \(args.recipe.trigger.customIdentifier) at time \(args.timestamp)")
-    }
     // ...
 }
 ```
@@ -83,11 +102,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SenseApiDelegate {
 
 The following example shows how to setup to be notified when a user enters within 100m of the latitude/longitude point of 34.0274938,-118.3898094.
 
+<br><br>
+
 ### Setup
 1. Add SenseSdk import
-2. Implement SenseApiDelegate class to receive callback when trigger is satisfied.
-3. Register with SenseApi with API key.
+2. Register with `SenseApi` with API key in `didFinishLaunchingWithOptions` method.
+3. Restore state of any previously running triggers when application starts back up. (Will happen if application was terminated)
+4. Register any new recipes. (In most situations this would be done elsewhere)
+5. Save state when the application will be terminated in `applicationWillTerminate` method.
 
+<br><br><br><br><br><br><br>
+
+###Implement Callbacks
+
+1. Implement `SenseApiRestoreDelegate` in `UIApplicationDelegate` to receive callback when trigger is restored. Attach delegate for trigger.
+2. Implement `SenseApiDelegate` in `UIApplicationDelegate` to receive callback when trigger is satisfied.
+
+
+<br><br><br><br><br><br><br>
 
 ### [Define Trigger](#triggers)
 
@@ -102,7 +134,7 @@ A trigger defines a place you care about.
 A recipe defines the when (Trigger) and to notify your application of an event (delegate).
 
 1. Define a trigger.
-2. Attach a delegate.
+2. Provide a unique name.
 
 # Triggers
 
