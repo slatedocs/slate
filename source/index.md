@@ -163,11 +163,15 @@ Enter | hasEntered() | Triggers when the user enters any of the geofences
 Exit | hasExited() | Triggers when the user exits any of the geofences
 FartherThan | fartherThan(km: Integer) | Triggers when the user is farther than X km away from any of the geofences
 
-The TriggerBuilder returns either the trigger or a list of errors. 
 
 ### Trigger Build Result  Definition:
 
-Need sample here
+The TriggerBuilder returns either the trigger or a list of errors.  The properties are:
+
+TriggerBuildResult Type | Name | Description
+--------- | ------- |------- | -----------
+Trigger?|trigger|The final trigger when there are no errors
+[TriggerError]?|errors|The errors that took place during the build
 
 ## Business Place
 ```swift
