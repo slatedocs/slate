@@ -267,11 +267,34 @@ name | true |
 [window](#window)| false 
 [frequency cap](#frequency-cap) | false 
 
-## SenseApi
+
+## Window
+
+Only allow triggers to fire between certain times.
+
+This example would have the trigger only fire between 5:30pm (user’s timezone) to 10:00pm:
+
+`TimeWindow(fromHour: 17, toHour: 22)`
+
+## Frequency Cap
+
+The maximum frequency with which a trigger can fire.
+
+This would allow the trigger to fire only once every 2 days. 
+
+`FrequencyCap(oncePer: 2, timeUnit: FrequencyTimeUnit.Days)`
+
+<aside class="warning">
+Frequency can only be set in days.
+</aside>
+
+
+
+# SenseApi
 
 The SenseApi is the repository that stores all active Recipes within your application:
 
-### Sense Api Functions
+## Sense Api Functions
 ```swift
 let results = SenseApi.register(recipe: myRecipe, delegate: myDelegate)
 if results.successful {
@@ -292,28 +315,6 @@ findRecipe | name | finds and returns a recipe by name
 getAllRecipes | | returns all registered recipes
 saveState | | persists the state of the sdk
 restoreState | restoreDelegate | restores the state of the sdk
-
-### Save and restoring state
-```swift
-func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-  SenseApi.restoreState(restoreDelegate: self)
-}
-
-func applicationWillTerminate(application: UIApplication) {
-  SenseApi.saveState()
-}
-
-func recipeRestored(args: RecipeRestoreArgs) -> RecipeRestoreResult {
-  if(args.recipe.name == "Recipe #1") {
-    return RecipeRestoreResult(delegate: recipeNumberOneDelegate)
-  }
-  else if(args.recipe.name == "Recipe #2") {
-    return RecipeRestoreResult(delegate: recipeNumberTwoDelegate)
-  }
-}
-```
-Your application will not always be running, but you probably want your triggers to.  In order to accomplish this, the SenseApi provides methods that persist your recipes and the state of your triggers when your application is not running.  Since the SenseApiDelegate is not set within the recipe, it is your job to match each your recipes with the correct delegate.  This is done by implementing the SenseApiRestoreDelegate protocol.
-
 
 ## SenseApiDelegate
 ```swift
@@ -346,26 +347,27 @@ When a trigger is fired, it brings along one of three confidence levels.
 </aside>
 
 
+## Save and restoring state
+```swift
+func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+  SenseApi.restoreState(restoreDelegate: self)
+}
 
-## Window
+func applicationWillTerminate(application: UIApplication) {
+  SenseApi.saveState()
+}
 
-Only allow triggers to fire between certain times.
+func recipeRestored(args: RecipeRestoreArgs) -> RecipeRestoreResult {
+  if(args.recipe.name == "Recipe #1") {
+    return RecipeRestoreResult(delegate: recipeNumberOneDelegate)
+  }
+  else if(args.recipe.name == "Recipe #2") {
+    return RecipeRestoreResult(delegate: recipeNumberTwoDelegate)
+  }
+}
+```
+Your application will not always be running, but you probably want your triggers to.  In order to accomplish this, the SenseApi provides methods that persist your recipes and the state of your triggers when your application is not running.  Since the SenseApiDelegate is not set within the recipe, it is your job to match each your recipes with the correct delegate.  This is done by implementing the SenseApiRestoreDelegate protocol.
 
-This example would have the trigger only fire between 5:30pm (user’s timezone) to 10:00pm:
-
-`TimeWindow(fromHour: 17, toHour: 22)`
-
-## Frequency Cap
-
-The maximum frequency with which a trigger can fire.
-
-This would allow the trigger to fire only once every 2 days. 
-
-`FrequencyCap(oncePer: 2, timeUnit: FrequencyTimeUnit.Days)`
-
-<aside class="warning">
-Frequency can only be set in days.
-</aside>
 
 # Inspiration
 
