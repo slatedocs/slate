@@ -349,36 +349,6 @@ Packaging will carry your branding, not ours -- your customers never need to kno
 
 We have a global product fulfilment and distribution network to get orders into your customers hands faster.
 
-## Available products
-
-### products & template_ids
-
-          | |
---------- | -----------
-Magnets<span class="attribute-type">magnets</span> | Our magnets are printed on a unique MagneCote substrate, providing photo quality imagery with a thin magnetic backing
-Square Prints<span class="attribute-type">squares</span> | Amazing quality square prints printed on 350 GSM card completed with a matte finish
-Mini Square Prints<span class="attribute-type">squares_mini</span> | Like our Square Prints, just smaller! Amazing quality printed on 350 GSM card completed with a matte finish
-Retro Prints<span class="attribute-type">polaroids</span> | Polaroid style prints printed on 350 GSM card completed with a matte finish
-Mini Retro Prints<span class="attribute-type">polaroids_mini</span> | Like our Retro Prints, just smaller! Mini Polaroid style prints printed on 350 GSM card completed with a matte finish
-Classic Photo Prints<span class="attribute-type">photos_4x6</span> | Our classic photo 6x4 prints printed on 350 GSM card completed with a matte finish
-Square Stickers<span class="attribute-type">stickers_square</span> | Fun personalised square stickers. Just peel them off and stick them on
-Circle Stickers<span class="attribute-type">stickers_circle</span> | Fun personalised circle stickers. Just peel them off and stick them on
-Greetings Cards<span class="attribute-type">greeting_cards</span> | Our greetings cards are printed on thick premium card stock and once folded, form a 14.8 cm square
-Frames<span class="attribute-type">frames_50cm frames_50cm_2x2 frames_50cm_3x3 frames_50cm_4x4</span> | The perfect way to show off your most loved photos. They come in various configurations allowing between one and sixteen images to printed and enclosed within a wooden frame
-A1 Poster<span class="attribute-type">a1_poster<br />a1_poster_35<br />a1_poster_54<br />a1_poster_70</span> | Our large format poster prints are printed on 190 GSM sheets with a satin finish. Various templates are available from single images to photo collages. They are delivered worldwide in sturdy cardboard tubes
-A2 Poster<span class="attribute-type">a2_poster<br />a2_poster_24<br />a2_poster_35<br />a2_poster_54</span> | Our large format poster prints are printed on 190 GSM sheets with a satin finish. Various templates are available from single images to photo collages. They are delivered worldwide in sturdy cardboard tubes
-A3 Poster<span class="attribute-type">a3_poster</span> | Our large format poster prints are printed on 190 GSM sheets with a satin finish. They are delivered worldwide in sturdy cardboard tubes
-Postcards<span class="attribute-type">postcard</span> | Our postcards are printed on high quality card stock with a gloss finish and dispatched worldwide. Fully customise our templates or create your own to make them unique to you
-iPhone 6 Case<span class="attribute-type">i6_case</span> | iPhone 6 snap case constructed to the highest quality design, material & coating
-iPhone 6 Tough Case<span class="attribute-type">i6_tough_case</span> | iPhone 6 tough case constructed to the highest quality design, material & coating.  Durable two layered case that offer the best solution for protecting your phone
-iPhone 5/5S Case<span class="attribute-type">i5_case</span> | iPhone 5 snap case constructed to the highest quality design, material & coating
-iPhone 5/5S Tough Case<span class="attribute-type">i5_tough_case</span> | iPhone 5 tough case constructed to the highest quality design, material & coating.  Durable two layered case that offer the best solution for protecting your phone
-iPhone 5C Case<span class="attribute-type">i5c_case</span> | iPhone 5c snap case constructed to the highest quality design, material & coating
-iPhone 5C Tough Case<span class="attribute-type">i5c_tough_case</span> | iPhone 5c tough case constructed to the highest quality design, material & coating.  Durable two layered case that offer the best solution for protecting your phone
-iPhone 4/4S Case<span class="attribute-type">i4_case</span> | iPhone 4 snap case constructed to the highest quality design, material & coating
-iPhone 4/4S Tough Case<span class="attribute-type">i4_tough_case</span> | iPhone 4 tough case constructed to the highest quality design, material & coating.  Durable two layered case that offer the best solution for protecting your phone
-
-
 ## The job object
 
 > Example JSON
@@ -403,6 +373,8 @@ A job encapsulates the details to create a single personalised product. For exam
 --------- | -----------
 template_id<span class="attribute-type">string</span> | The identifier for the product you want created. A full list of template identifiers for products is found [above](#available-products)
 assets<span class="attribute-type">list</span> | A list of image URLs accessible to the Kite servers or a list of [asset object](#the-asset-object) identifiers that you have received by [uploading an asset](#uploading-an-asset) to Kite. These assets will be used in the creation of the personalised product indicated by `template_id`
+options<span class="attribute-type">object</span> | *Optional* object only applicable for certain products. It contains product specific modifiers; for example for [t-shirts](#ordering-apparel) you can specify the color and size amongst other things in here, for [phone cases](#ordering-phone-cases) you can specify gloss or matte finish, etc.
+pdf<span class="attribute-type">string</span> | *Optional* object only applicable for certain products such as [photobooks](#ordering-photobooks). A PDF URL accessible to the Kite servers or an [asset object](#the-asset-object) identifier that you have received by [uploading an asset](#uploading-an-asset) to Kite.
 
 ## The order object
 
@@ -448,7 +420,7 @@ customer_phone<span class="attribute-type">string</span> | The customer's phone 
 user_data<span class="attribute-type">dictionary</span> | A dictionary containing any application or user specific meta data that you attached to the order.
 jobs<span class="attribute-type">list</span> | A list of one or more [job objects](#the-job-object) to be created and delivered to `shipping_address`
 
-## Ordering a product
+## Placing orders
 
 > Example Order Request
 
@@ -459,20 +431,20 @@ curl "https://api.kite.ly/v1.3/print/" \
     "shipping_address": {
       "recipient_name": "Deon Botha",
       "address_line_1": "Eastcastle House",
-	  "address_line_2": "27-28 Eastcastle Street",
-	  "city": "London",
-	  "county_state": "Greater London",
-	  "postcode": "W1W 8DH",
-	  "country_code": "GBR"
+    "address_line_2": "27-28 Eastcastle Street",
+    "city": "London",
+    "county_state": "Greater London",
+    "postcode": "W1W 8DH",
+    "country_code": "GBR"
     },
     "customer_email": "{{ user_email }}",
     "customer_phone": "+44 (0)784297 1234",
     "jobs": [{
       "assets": ["http://psps.s3.amazonaws.com/sdk_static/1.jpg"],
-	  "template_id": "i6_case"
+    "template_id": "i6_case"
     }, {
       "assets": ["http://psps.s3.amazonaws.com/sdk_static/2.jpg"],
-	  "template_id": "a1_poster"
+    "template_id": "a1_poster"
     }]
   }'
 ```
@@ -513,7 +485,7 @@ card.cvv2 = @"123";
 [card chargeCard:printOrder.cost currencyCode:printOrder.currencyCode description:@"A Kite order!" completionHandler:^(NSString *proofOfPayment, NSError *error) {
   // if no error occured set the OLPrintOrder proofOfPayment to the one provided and submit the order
   order.proofOfPayment = proofOfPayment;
-  [self.printOrder submitForPrintingWithProgressHandler:nil 
+  [self.printOrder submitForPrintingWithProgressHandler:nil
                    completionHandler:^(NSString *orderIdReceipt, NSError *error) {
     // If there is no error then you can display a success outcome to the user
   }];
@@ -601,9 +573,12 @@ public void onError(PrintOrder printOrder, Exception error) {
 }
 ```
 
+
 With a single API request to Kite you can have personalised products created, packaged and shipped anywhere in the world. Packaging will carry your branding, not ours – your customers never need to know we were involved! 
 
 For example the request on the right would result in an iPhone 6 Case and an A1 Poster being created and shipped to the specified address.
+
+Product identifiers and product specific request arguments (if any) are documented in dedicated sections following this one.
 
 ### HTTP Request
 
@@ -622,7 +597,886 @@ jobs<span class="required-argument">required</span> | A list of one or more [job
 
 ### Returns
 
-Returns the an dictionary containing the order id
+Returns a dictionary containing the order id
+
+## Ordering print products
+
+> Example Order Request
+
+```shell
+curl "https://api.kite.ly/v1.3/print/" \
+  -H "Authorization: ApiKey {{ test_api_key }}:<your_secret_key>" \
+  --data '{
+    "shipping_address": {
+      "recipient_name": "Deon Botha",
+      "address_line_1": "Eastcastle House",
+      "address_line_2": "27-28 Eastcastle Street",
+      "city": "London",
+      "county_state": "Greater London",
+      "postcode": "W1W 8DH",
+      "country_code": "GBR"
+    },
+    "customer_email": "{{ user_email }}",
+    "customer_phone": "+44 (0)784297 1234",
+    "jobs": [{
+      "assets": [
+        "http://psps.s3.amazonaws.com/sdk_static/1.jpg",
+        "http://psps.s3.amazonaws.com/sdk_static/2.jpg",
+        "http://psps.s3.amazonaws.com/sdk_static/3.jpg",
+        "http://psps.s3.amazonaws.com/sdk_static/4.jpg"
+      ],
+      "template_id": "squares"
+    }]
+  }'
+```
+
+```objective_c
+// See https://github.com/OceanLabs/iOS-Print-SDK#custom-user-experience for full step by step instructions
+#import <Kite-Print-SDK/OLKitePrintSDK.h>
+
+NSArray *assets = @[
+    [OLAsset assetWithURL:[NSURL URLWithString:@"http://psps.s3.amazonaws.com/sdk_static/1.jpg"]],
+    [OLAsset assetWithURL:[NSURL URLWithString:@"http://psps.s3.amazonaws.com/sdk_static/2.jpg"]],
+    [OLAsset assetWithURL:[NSURL URLWithString:@"http://psps.s3.amazonaws.com/sdk_static/3.jpg"]],
+    [OLAsset assetWithURL:[NSURL URLWithString:@"http://psps.s3.amazonaws.com/sdk_static/4.jpg"]]
+];
+
+id<OLPrintJob> squarePrints = [OLPrintJob printJobWithTemplateId:@"squares" OLAssets:assets];
+
+OLPrintOrder *order = [[OLPrintOrder alloc] init];
+[order addPrintJob:squarePrints];
+
+OLAddress *a    = [[OLAddress alloc] init];
+a.recipientName = @"Deon Botha";
+a.line1         = @"27-28 Eastcastle House";
+a.line2         = @"Eastcastle Street";
+a.city          = @"London";
+a.stateOrCounty = @"Greater London";
+a.zipOrPostcode = @"W1W 8DH";
+a.country       = [OLCountry countryForCode:@"GBR"];
+
+order.shippingAddress = a;
+
+OLPayPalCard *card = [[OLPayPalCard alloc] init];
+card.type = kOLPayPalCardTypeVisa;
+card.number = @"4121212121212127";
+card.expireMonth = 12;
+card.expireYear = 2020;
+card.cvv2 = @"123";
+
+[card chargeCard:printOrder.cost currencyCode:printOrder.currencyCode description:@"A Kite order!" completionHandler:^(NSString *proofOfPayment, NSError *error) {
+  // if no error occured set the OLPrintOrder proofOfPayment to the one provided and submit the order
+  order.proofOfPayment = proofOfPayment;
+  [self.printOrder submitForPrintingWithProgressHandler:nil
+                   completionHandler:^(NSString *orderIdReceipt, NSError *error) {
+    // If there is no error then you can display a success outcome to the user
+  }];
+}];
+
+```
+
+```java
+// See https://github.com/OceanLabs/Android-Print-SDK#custom-checkout for full step by step instructions
+
+import ly.kite.address.Address;
+import ly.kite.payment.PayPalCard;
+import ly.kite.print.Asset;
+import ly.kite.print.PrintJob;
+import ly.kite.print.PrintOrder;
+
+ArrayList<Asset> assets = new ArrayList<Asset>();
+assets.add(new Asset(new URL("http://psps.s3.amazonaws.com/sdk_static/1.jpg"))));
+assets.add(new Asset(new URL("http://psps.s3.amazonaws.com/sdk_static/2.jpg"))));
+assets.add(new Asset(new URL("http://psps.s3.amazonaws.com/sdk_static/3.jpg"))));
+assets.add(new Asset(new URL("http://psps.s3.amazonaws.com/sdk_static/4.jpg"))));
+
+PrintJob squarePrints = PrintJob.createPrintJob(assets, "squares");
+
+PrintOrder order = new PrintOrder();
+order.addPrintJob(squarePrints);
+
+Address a = new Address();
+a.setRecipientName("Deon Botha");
+a.setLine1("Eastcastle House");
+a.setLine2("27-28 Eastcastle Street");
+a.setCity("London");
+a.setStateOrCounty("London");
+a.setZipOrPostalCode("W1W 8DH");
+a.setCountry(Country.getInstance("GBR"));
+
+order.setShippingAddress(a);
+
+PayPalCard card = new PayPalCard();
+card.setNumber("4121212121212127");
+card.setExpireMonth(12);
+card.setExpireYear(2012);
+card.setCvv2("123");
+
+card.chargeCard(PayPalCard.Environment.SANDBOX, printOrder.getCost(), PayPalCard.Currency.GBP, "A Kite order!", new PayPalCardChargeListener() {
+    @Override
+    public void onChargeSuccess(PayPalCard card, String proofOfPayment) {
+        // set the PrintOrder proofOfPayment to the one provided and submit the order
+    }
+
+    @Override
+    public void onError(PayPalCard card, Exception ex) {
+        // handle gracefully
+        order.setProofOfPayment(proofOfPayment);
+        printOrder.submitForPrinting(getApplicationContext(), /*PrintOrderSubmissionListener:*/this);
+    }
+});
+
+```
+
+> Replace `<your_secret_key>` with the one found in the [credentials](https://www.kite.ly/accounts/credentials) section of the dashboard.<br /><br />
+
+> Example Response
+
+```shell
+{
+  "print_order_id": "PS96-996634811"
+}
+```
+
+If you haven't already, see [Placing orders](#placing-orders) for a general overview of the order request & response which is applicable to all product orders. 
+
+The example request on the right would result in a square prints being created and shipped to the specified address.
+
+### print products & template_ids
+          | |
+--------- | -----------
+Magnets<span class="attribute-type">magnets</span> | Our magnets are printed on a unique MagneCote substrate, providing photo quality imagery with a thin magnetic backing
+Square Prints<span class="attribute-type">squares</span> | Amazing quality square prints printed on 350 GSM card completed with a matte finish
+Mini Square Prints<span class="attribute-type">squares_mini</span> | Like our Square Prints, just smaller! Amazing quality printed on 350 GSM card completed with a matte finish
+Retro Prints<span class="attribute-type">polaroids</span> | Polaroid style prints printed on 350 GSM card completed with a matte finish
+Mini Retro Prints<span class="attribute-type">polaroids_mini</span> | Like our Retro Prints, just smaller! Mini Polaroid style prints printed on 350 GSM card completed with a matte finish
+Classic Photo Prints<span class="attribute-type">photos_4x6</span> | Our classic photo 6x4 prints printed on 350 GSM card completed with a matte finish
+Square Stickers<span class="attribute-type">stickers_square</span> | Fun personalised square stickers. Just peel them off and stick them on
+Circle Stickers<span class="attribute-type">stickers_circle</span> | Fun personalised circle stickers. Just peel them off and stick them on
+Greetings Cards<span class="attribute-type">greeting_cards</span> | Our greetings cards are printed on thick premium card stock and once folded, form a 14.8 cm square
+Frames<span class="attribute-type">frames_50cm frames_50cm_2x2 frames_50cm_3x3 frames_50cm_4x4</span> | The perfect way to show off your most loved photos. They come in various configurations allowing between one and sixteen images to printed and enclosed within a wooden frame
+A1 Poster<span class="attribute-type">a1_poster<br />a1_poster_35<br />a1_poster_54<br />a1_poster_70</span> | Our large format poster prints are printed on 190 GSM sheets with a satin finish. Various templates are available from single images to photo collages. They are delivered worldwide in sturdy cardboard tubes
+A2 Poster<span class="attribute-type">a2_poster<br />a2_poster_24<br />a2_poster_35<br />a2_poster_54</span> | Our large format poster prints are printed on 190 GSM sheets with a satin finish. Various templates are available from single images to photo collages. They are delivered worldwide in sturdy cardboard tubes
+A3 Poster<span class="attribute-type">a3_poster</span> | Our large format poster prints are printed on 190 GSM sheets with a satin finish. They are delivered worldwide in sturdy cardboard tubes
+
+## Ordering phone cases
+
+> Example Order Request
+
+```shell
+curl "https://api.kite.ly/v1.3/print/" \
+  -H "Authorization: ApiKey {{ test_api_key }}:<your_secret_key>" \
+  --data '{
+    "shipping_address": {
+      "recipient_name": "Deon Botha",
+      "address_line_1": "Eastcastle House",
+      "address_line_2": "27-28 Eastcastle Street",
+      "city": "London",
+      "county_state": "Greater London",
+      "postcode": "W1W 8DH",
+      "country_code": "GBR"
+    },
+    "customer_email": "{{ user_email }}",
+    "customer_phone": "+44 (0)784297 1234",
+    "jobs": [{
+      "assets": ["http://psps.s3.amazonaws.com/sdk_static/1.jpg"],
+      "template_id": "ipad_air_case"
+    }, {
+      "options": {
+      	"case_style": "matte"
+      },
+      "assets": ["http://psps.s3.amazonaws.com/sdk_static/2.jpg"],
+      "template_id": "samsung_s5_case"      
+    }]
+  }'
+```
+
+```objective_c
+// See https://github.com/OceanLabs/iOS-Print-SDK#custom-user-experience for full step by step instructions
+#import <Kite-Print-SDK/OLKitePrintSDK.h>
+
+NSArray *assets = @[
+    [OLAsset assetWithURL:[NSURL URLWithString:@"http://psps.s3.amazonaws.com/sdk_static/1.jpg"]]
+];
+
+id<OLPrintJob> ipadAirCase = [OLPrintJob printJobWithTemplateId:@"ipad_air_case" OLAssets:assets];
+id<OLPrintJob> galaxyS5Case = [OLPrintJob printJobWithTemplateId:@"samsung_s5_case" OLAssets:assets];
+[galaxyS5Case setValue:@"matte" forOption:@"case_style"];
+
+OLPrintOrder *order = [[OLPrintOrder alloc] init];
+[order addPrintJob:ipadAirCase];
+[order addPrintJob:galaxyS5Case];
+
+OLAddress *a    = [[OLAddress alloc] init];
+a.recipientName = @"Deon Botha";
+a.line1         = @"27-28 Eastcastle House";
+a.line2         = @"Eastcastle Street";
+a.city          = @"London";
+a.stateOrCounty = @"Greater London";
+a.zipOrPostcode = @"W1W 8DH";
+a.country       = [OLCountry countryForCode:@"GBR"];
+
+order.shippingAddress = a;
+
+OLPayPalCard *card = [[OLPayPalCard alloc] init];
+card.type = kOLPayPalCardTypeVisa;
+card.number = @"4121212121212127";
+card.expireMonth = 12;
+card.expireYear = 2020;
+card.cvv2 = @"123";
+
+[card chargeCard:printOrder.cost currencyCode:printOrder.currencyCode description:@"A Kite order!" completionHandler:^(NSString *proofOfPayment, NSError *error) {
+  // if no error occured set the OLPrintOrder proofOfPayment to the one provided and submit the order
+  order.proofOfPayment = proofOfPayment;
+  [self.printOrder submitForPrintingWithProgressHandler:nil
+                   completionHandler:^(NSString *orderIdReceipt, NSError *error) {
+    // If there is no error then you can display a success outcome to the user
+  }];
+}];
+
+```
+
+```java
+// See https://github.com/OceanLabs/Android-Print-SDK#custom-checkout for full step by step instructions
+
+import ly.kite.address.Address;
+import ly.kite.payment.PayPalCard;
+import ly.kite.print.Asset;
+import ly.kite.print.PrintJob;
+import ly.kite.print.PrintOrder;
+
+ArrayList<Asset> assets = new ArrayList<Asset>();
+assets.add(new Asset(new URL("http://psps.s3.amazonaws.com/sdk_static/1.jpg"))));
+
+PrintJob ipadAirCase = PrintJob.createPrintJob(assets, "ipad_air_case");
+PrintJob galaxyS5Case = PrintJob.createPrintJob(assets, "samsung_s5_case");
+galaxyS5Case.setOption("case_style", "matte");
+
+PrintOrder order = new PrintOrder();
+order.addPrintJob(ipadAirCase);
+order.addPrintJob(galaxyS5Case);
+
+Address a = new Address();
+a.setRecipientName("Deon Botha");
+a.setLine1("Eastcastle House");
+a.setLine2("27-28 Eastcastle Street");
+a.setCity("London");
+a.setStateOrCounty("London");
+a.setZipOrPostalCode("W1W 8DH");
+a.setCountry(Country.getInstance("GBR"));
+
+order.setShippingAddress(a);
+
+PayPalCard card = new PayPalCard();
+card.setNumber("4121212121212127");
+card.setExpireMonth(12);
+card.setExpireYear(2012);
+card.setCvv2("123");
+
+card.chargeCard(PayPalCard.Environment.SANDBOX, printOrder.getCost(), PayPalCard.Currency.GBP, "A Kite order!", new PayPalCardChargeListener() {
+    @Override
+    public void onChargeSuccess(PayPalCard card, String proofOfPayment) {
+        // set the PrintOrder proofOfPayment to the one provided and submit the order
+    }
+
+    @Override
+    public void onError(PayPalCard card, Exception ex) {
+        // handle gracefully
+        order.setProofOfPayment(proofOfPayment);
+        printOrder.submitForPrinting(getApplicationContext(), /*PrintOrderSubmissionListener:*/this);
+    }
+});
+
+```
+
+> Replace `<your_secret_key>` with the one found in the [credentials](https://www.kite.ly/accounts/credentials) section of the dashboard.<br /><br />
+
+> Example Response
+
+```shell
+{
+  "print_order_id": "PS96-996634811"
+}
+```
+
+If you haven't already, see [Placing orders](#placing-orders) for a general overview of the order request & response which is applicable to all product orders. 
+
+The example request on the right would result in iPad Air & Samsung Galaxy 5 cases being created and shipped to the specified address.
+
+### cases & template_ids
+
+          | |
+--------- | -----------
+iPhone 6+ Case<span class="attribute-type">i6plus_case</span> | iPhone 6+ snap case constructed to the highest quality design, material & coating
+iPhone 6+ Tough Case<span class="attribute-type">i6plus_tough_case</span> | iPhone 6+ tough case constructed to the highest quality design, material & coating.  Durable two layered case that offer the best solution for protecting your phone
+iPhone 6 Case<span class="attribute-type">i6_case</span> | iPhone 6 snap case constructed to the highest quality design, material & coating
+iPhone 6 Tough Case<span class="attribute-type">i6_tough_case</span> | iPhone 6 tough case constructed to the highest quality design, material & coating.  Durable two layered case that offer the best solution for protecting your phone
+iPhone 5/5S Case<span class="attribute-type">i5_case</span> | iPhone 5 snap case constructed to the highest quality design, material & coating
+iPhone 5/5S Tough Case<span class="attribute-type">i5_tough_case</span> | iPhone 5 tough case constructed to the highest quality design, material & coating.  Durable two layered case that offer the best solution for protecting your phone
+iPhone 5C Case<span class="attribute-type">i5c_case</span> | iPhone 5c snap case constructed to the highest quality design, material & coating
+iPhone 5C Tough Case<span class="attribute-type">i5c_tough_case</span> | iPhone 5c tough case constructed to the highest quality design, material & coating.  Durable two layered case that offer the best solution for protecting your phone
+iPhone 4/4S Case<span class="attribute-type">i4_case</span> | iPhone 4 snap case constructed to the highest quality design, material & coating
+iPhone 4/4S Tough Case<span class="attribute-type">i4_tough_case</span> | iPhone 4 tough case constructed to the highest quality design, material & coating.  Durable two layered case that offer the best solution for protecting your phone
+iPad Mini Case<span class="attribute-type">ipad_mini_case</span> | iPad Mini snap case constructed to the highest quality design, material & coating
+iPad Air Case<span class="attribute-type">ipad_air_case</span> | iPad Air snap case constructed to the highest quality design, material & coating
+iPad Case<span class="attribute-type">ipad_case</span> | iPad 2,3,4 snap case constructed to the highest quality design, material & coating
+Samsung Galaxy S5 Case<span class="attribute-type">samsung_s5_case</span> | Samsung Galaxy S5 snap case constructed to the highest quality design, material & coating
+Samsung Galaxy S5 Mini Case<span class="attribute-type">samsung_s5_mini_case</span> | Samsung Galaxy S5 Mini snap case constructed to the highest quality design, material & coating
+Samsung Galaxy S4 Case<span class="attribute-type">samsung_s4_case</span> | Samsung Galaxy S4 snap case constructed to the highest quality design, material & coating
+Samsung Galaxy S4 Mini Case<span class="attribute-type">samsung_s4_mini_case</span> | Samsung Galaxy S4 Mini snap case constructed to the highest quality design, material & coating
+Samsung Galaxy S3 Case<span class="attribute-type">samsung_s3_case</span> | Samsung Galaxy S3 snap case constructed to the highest quality design, material & coating
+Samsung Galaxy S3 Mini Case<span class="attribute-type">samsung_s3_mini_case</span> | Samsung Galaxy S3 Mini snap case constructed to the highest quality design, material & coating
+Samsung Galaxy Note 3 Case<span class="attribute-type">samsung_n3_case</span> | Samsung Galaxy Note 3 snap case constructed to the highest quality design, material & coating
+Sony Xperia Z1 Case<span class="attribute-type">sony_x_z1_case</span> | Sony Xperia Z1 snap case constructed to the highest quality design, material & coating
+Sony Xperia C Case<span class="attribute-type">sony_x_c_case</span> | Sony Xperia Z1 snap case constructed to the highest quality design, material & coating
+LG G2 Case<span class="attribute-type">lg_g2_case</span> | LG G2 snap case constructed to the highest quality design, material & coating
+Nexus 5 Case<span class="attribute-type">nexus_5_case</span> | Nexus 5 snap case constructed to the highest quality design, material & coating
+
+### Options Arguments
+
+          | |
+--------- | -----------
+case_style<span class="optional-argument">optional</span> | Either `matte` or `gloss`. Defaults to `gloss` if not present. `matte` style only valid for `i4_case`, `i5_case`, `i5c_case`, `i6_case`, `i6plus_case`, `samsung_s4_case`, `samsung_s5_case` and `samsung_s5_mini_case`.
+
+## Ordering apparel
+
+> Example Order Request
+
+```shell
+curl "https://api.kite.ly/v1.3/print/" \
+  -H "Authorization: ApiKey {{ test_api_key }}:<your_secret_key>" \
+  --data '{
+    "shipping_address": {
+      "recipient_name": "Deon Botha",
+      "address_line_1": "Eastcastle House",
+      "address_line_2": "27-28 Eastcastle Street",
+      "city": "London",
+      "county_state": "Greater London",
+      "postcode": "W1W 8DH",
+      "country_code": "GBR"
+    },
+    "customer_email": "{{ user_email }}",
+    "customer_phone": "+44 (0)784297 1234",
+    "jobs": [{
+      "options": {
+        "garment_size": "M",
+        "garment_color": "white"
+      },
+      "assets": {
+        "center_chest": "http://psps.s3.amazonaws.com/sdk_static/1.jpg",
+        "center_back": "http://psps.s3.amazonaws.com/sdk_static/2.jpg"
+      },
+      "template_id": "gildan_tshirt"
+    }]
+  }'
+```
+
+```objective_c
+// See https://github.com/OceanLabs/iOS-Print-SDK#custom-user-experience for full step by step instructions
+#import <Kite-Print-SDK/OLKitePrintSDK.h>
+
+NSArray *assets = @{
+    @"center_chest": [OLAsset assetWithURL:[NSURL URLWithString:@"http://psps.s3.amazonaws.com/sdk_static/1.jpg"]],
+    @"center_back":[OLAsset assetWithURL:[NSURL URLWithString:@"http://psps.s3.amazonaws.com/sdk_static/2.jpg"]]
+};
+
+id<OLPrintJob> tshirt = [OLPrintJob printJobWithTemplateId:@"gildan_tshirt" OLAssets:assets];
+[tshirt setValue:@"M" forOption:@"garment_size"];
+[tshirt setValue:@"white" forOption:@"garment_color"];
+
+OLPrintOrder *order = [[OLPrintOrder alloc] init];
+[order addPrintJob:tshirt];
+
+OLAddress *a    = [[OLAddress alloc] init];
+a.recipientName = @"Deon Botha";
+a.line1         = @"27-28 Eastcastle House";
+a.line2         = @"Eastcastle Street";
+a.city          = @"London";
+a.stateOrCounty = @"Greater London";
+a.zipOrPostcode = @"W1W 8DH";
+a.country       = [OLCountry countryForCode:@"GBR"];
+
+order.shippingAddress = a;
+
+OLPayPalCard *card = [[OLPayPalCard alloc] init];
+card.type = kOLPayPalCardTypeVisa;
+card.number = @"4121212121212127";
+card.expireMonth = 12;
+card.expireYear = 2020;
+card.cvv2 = @"123";
+
+[card chargeCard:printOrder.cost currencyCode:printOrder.currencyCode description:@"A Kite order!" completionHandler:^(NSString *proofOfPayment, NSError *error) {
+  // if no error occured set the OLPrintOrder proofOfPayment to the one provided and submit the order
+  order.proofOfPayment = proofOfPayment;
+  [self.printOrder submitForPrintingWithProgressHandler:nil
+                   completionHandler:^(NSString *orderIdReceipt, NSError *error) {
+    // If there is no error then you can display a success outcome to the user
+  }];
+}];
+
+```
+
+```java
+// See https://github.com/OceanLabs/Android-Print-SDK#custom-checkout for full step by step instructions
+
+import ly.kite.address.Address;
+import ly.kite.payment.PayPalCard;
+import ly.kite.print.Asset;
+import ly.kite.print.PrintJob;
+import ly.kite.print.PrintOrder;
+
+Map<String, Asset> assets = new HashMap<String, Asset>();
+assets.put("center_chest", new Asset(new URL("http://psps.s3.amazonaws.com/sdk_static/1.jpg"))));
+assets.put("center_back", new Asset(new URL("http://psps.s3.amazonaws.com/sdk_static/2.jpg"))));
+
+PrintJob tshirt = PrintJob.createPrintJob(assets, "gildan_tshirt");
+tshirt.setOption("garment_size", "M");
+tshirt.setOption("garment_color", "white");
+
+PrintOrder order = new PrintOrder();
+order.addPrintJob(tshirt);
+
+Address a = new Address();
+a.setRecipientName("Deon Botha");
+a.setLine1("Eastcastle House");
+a.setLine2("27-28 Eastcastle Street");
+a.setCity("London");
+a.setStateOrCounty("London");
+a.setZipOrPostalCode("W1W 8DH");
+a.setCountry(Country.getInstance("GBR"));
+
+order.setShippingAddress(a);
+
+PayPalCard card = new PayPalCard();
+card.setNumber("4121212121212127");
+card.setExpireMonth(12);
+card.setExpireYear(2012);
+card.setCvv2("123");
+
+card.chargeCard(PayPalCard.Environment.SANDBOX, printOrder.getCost(), PayPalCard.Currency.GBP, "A Kite order!", new PayPalCardChargeListener() {
+    @Override
+    public void onChargeSuccess(PayPalCard card, String proofOfPayment) {
+        // set the PrintOrder proofOfPayment to the one provided and submit the order
+    }
+
+    @Override
+    public void onError(PayPalCard card, Exception ex) {
+        // handle gracefully
+        order.setProofOfPayment(proofOfPayment);
+        printOrder.submitForPrinting(getApplicationContext(), /*PrintOrderSubmissionListener:*/this);
+    }
+});
+
+```
+
+> Replace `<your_secret_key>` with the one found in the [credentials](https://www.kite.ly/accounts/credentials) section of the dashboard.<br /><br />
+
+> Example Response
+
+```shell
+{
+  "print_order_id": "PS96-996634811"
+}
+```
+
+
+If you haven't already, see [Placing orders](#placing-orders) for a general overview of the order request & response which is applicable to all product orders. 
+
+The example request on the right would result in a t-shirt being created (with an photo on the front and back) and shipped to the specified address.
+
+### products & template_ids
+
+          | |
+--------- | -----------
+T-Shirt<span class="attribute-type">gildan_tshirt</span> | Our plain t-shirt offering from [Gildan](http://www.gildan.com/), the number one t-shirt brand in America. Manufactured using 100% ringspun cotton with a weight of 155-165 grams
+Hoodie<span class="attribute-type">gildan_hoodie</span> | Our hoodie offering from [Gildan](http://www.gildan.com/). It has been made with air jet spun yarn, giving it a softer feel and ensuring it will last wash after wash without pilling/fraying. For easy washing, it has also been quarter turned to eliminate centre creasing. It includes a front pouch pocket, set-in sleeves, a 1x1 athletic rib with Lycra
+Zipped Hoodie<span class="attribute-type">gildan_hoodie_zipped</span> | Our zipped hoodie offering from [Gildan](http://www.gildan.com/). It has been made with air jet spun yarn, giving it a softer feel and ensuring it will last wash after wash without pilling/fraying. For easy washing, it has also been quarter turned to eliminate centre creasing. It includes a full length covered YKK zip, self coloured drawstring on hood, front pouch pockets, set-in sleeves, a 1x1 athletic rib with Lycra
+
+### Options Arguments
+
+          | |
+--------- | -----------
+garment_size<span class="required-argument">required</span> | The size of garment you want created. Must be one of the following: `S`, `M`, `L`, `XL`, `XXL` corresponding to small, medium, large, extra large & extra extra large respectively
+garment_color<span class="required-argument">required</span> | The base material/fabric colour of the garment you want created. See the [Gildan color swatch](http://www.mygildan.com/colorSwatch/home) to review fabric colours. Must be one of the following:  `white`, `black`, `red`, `royal`, `navy`, `light blue`, `forest green`, `orange`, `indigo blue`, `purple`, `sand`, `cardinal`, `sapphire`, `charcoal`, `daisy`, `chestnut`, `dark chocolate`, `sports grey`, `dark heather`, `kiwi`, `cherry red`, `irish green`, `military green`, `heliconia`, `cobalt blue`, `heather purple`, `heather royal`, `antique cherry red`, `antique heliconia`, `antique sapphire`, `heather irish green`, `heather military`, `heather navy`, `heather orange`
+
+### Assets Position Arguments
+<table class="apparel-positions">
+	<thead>
+		<tr>
+			<th>Position</th>
+			<th></th>
+			<th>Applicable Products</th>
+			<th>Max Width</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>center_chest<span class="optional-argument">optional</span></td>
+			<td class="img-tshirt"><img alt="T-Shirt Print API Centre Chest" src="static/docs_new/images/centre_chest.jpg"></td>
+			<td><code class="prettyprint">gildan_tshirt</code>, <code class="prettyprint">gildan_hoodie</code>, <code class="prettyprint">gildan_hoodie_zipped</code></td>
+			<td>30cm</td>
+		</tr>
+		<tr>
+			<td>center_back<span class="optional-argument">optional</span></td>
+			<td class="img-tshirt"><img alt="T-Shirt Print API Centre Back" src="static/docs_new/images/centre_back.jpg"></td>
+			<td><code class="prettyprint">gildan_tshirt</code>, <code class="prettyprint">gildan_hoodie</code>, <code class="prettyprint">gildan_hoodie_zipped</code></td>
+			<td>30cm</td>
+		</tr>
+		
+		
+		<tr>
+			<td>top_chest<span class="optional-argument">optional</span></td>
+			<td class="img-tshirt"><img alt="T-Shirt Print API Top Chest" src="static/docs_new/images/top_chest.jpg"></td>
+			<td><code class="prettyprint">gildan_tshirt</code></td>
+			<td>30cm</td>
+		</tr>
+		<tr>
+			<td>top_back<span class="optional-argument">optional</span></td>
+			<td class="img-tshirt"><img alt="T-Shirt Print API Top Back" src="static/docs_new/images/top_back.jpg"></td>
+			<td><code class="prettyprint">gildan_tshirt</code>, <code class="prettyprint">gildan_hoodie</code>, <code class="prettyprint">gildan_hoodie_zipped</code></td>
+			<td>30cm</td>
+		</tr>
+		
+		<tr>
+			<td>right_sleeve<span class="optional-argument">optional</span></td>
+			<td class="img-tshirt"><img alt="T-Shirt Print API Right Sleeve" src="static/docs_new/images/right_sleeve.jpg"></td>
+			<td><code class="prettyprint">gildan_tshirt</code>, <code class="prettyprint">gildan_hoodie</code>, <code class="prettyprint">gildan_hoodie_zipped</code></td>
+			<td>10cm</td>
+		</tr>
+		<tr>
+			<td>left_sleeve<span class="optional-argument">optional</span></td>
+			<td class="img-tshirt"><img alt="T-Shirt Print API Left Sleeve" src="static/docs_new/images/left_sleeve.jpg"></td>
+			<td><code class="prettyprint">gildan_tshirt</code>, <code class="prettyprint">gildan_hoodie</code>, <code class="prettyprint">gildan_hoodie_zipped</code></td>
+			<td>10cm</td>
+		</tr>
+		
+		<tr>
+			<td>right_chest<span class="optional-argument">optional</span></td>
+			<td class="img-tshirt"><img alt="T-Shirt Print API Right Chest" src="static/docs_new/images/right_chest.jpg"></td>
+			<td><code class="prettyprint">gildan_tshirt</code>, <code class="prettyprint">gildan_hoodie</code>, <code class="prettyprint">gildan_hoodie_zipped</code></td>
+			<td>12cm</td>
+		</tr>
+		<tr>
+			<td>left_chest<span class="optional-argument">optional</span></td>
+			<td class="img-tshirt"><img alt="T-Shirt Print API Left Chest" src="static/docs_new/images/left_chest.jpg"></td>
+			<td><code class="prettyprint">gildan_tshirt</code>, <code class="prettyprint">gildan_hoodie</code>, <code class="prettyprint">gildan_hoodie_zipped</code></td>
+			<td>12cm</td>
+		</tr>
+		
+		<tr>
+			<td>bottom_right<span class="optional-argument">optional</span></td>
+			<td class="img-tshirt"><img alt="T-Shirt Print API Bottom Right" src="static/docs_new/images/bottom_right.jpg"></td>
+			<td><code class="prettyprint">gildan_tshirt</code>, <code class="prettyprint">gildan_hoodie</code>, <code class="prettyprint">gildan_hoodie_zipped</code></td>
+			<td>12cm</td>
+		</tr>
+		<tr>
+			<td>bottom_left<span class="optional-argument">optional</span></td>
+			<td class="img-tshirt"><img alt="T-Shirt Print API Bottom Left" src="static/docs_new/images/bottom_left.jpg"></td>
+			<td><code class="prettyprint">gildan_tshirt</code>, <code class="prettyprint">gildan_hoodie</code>, <code class="prettyprint">gildan_hoodie_zipped</code></td>
+			<td>12cm</td>
+		</tr>
+		
+	</tbody>
+</table>
+
+
+
+## Ordering photobooks
+
+> Example Order Request
+
+```shell
+curl "https://api.kite.ly/v1.3/print/" \
+  -H "Authorization: ApiKey {{ test_api_key }}:<your_secret_key>" \
+  --data '{
+    "shipping_address": {
+      "recipient_name": "Deon Botha",
+      "address_line_1": "Eastcastle House",
+      "address_line_2": "27-28 Eastcastle Street",
+      "city": "London",
+      "county_state": "Greater London",
+      "postcode": "W1W 8DH",
+      "country_code": "GBR"
+    },
+    "customer_email": "{{ user_email }}",
+    "customer_phone": "+44 (0)784297 1234",
+    "jobs": [{
+      "options": {
+      	"spine_color": "#FFFFFF"
+      },
+      "pdf": "http://psps.s3.amazonaws.com/sdk_static/portrait_photobook.pdf",
+      "template_id": "photobook_small_portrait"
+    }]
+  }'
+```
+
+```objective_c
+// See https://github.com/OceanLabs/iOS-Print-SDK#custom-user-experience for full step by step instructions
+#import <Kite-Print-SDK/OLKitePrintSDK.h>
+
+NSArray *assets = @[
+    [OLAsset assetWithURL:[NSURL URLWithString:@"http://psps.s3.amazonaws.com/sdk_static/portrait_photobook.pdf"]]
+];
+
+id<OLPrintJob> photobook = [OLPrintJob printJobWithTemplateId:@"photobook_small_portrait" OLAssets:assets];
+[photobook setValue:@"#FFFFFF" forOption:@"spine_color"];
+
+OLPrintOrder *order = [[OLPrintOrder alloc] init];
+[order addPrintJob:photobook];
+
+OLAddress *a    = [[OLAddress alloc] init];
+a.recipientName = @"Deon Botha";
+a.line1         = @"27-28 Eastcastle House";
+a.line2         = @"Eastcastle Street";
+a.city          = @"London";
+a.stateOrCounty = @"Greater London";
+a.zipOrPostcode = @"W1W 8DH";
+a.country       = [OLCountry countryForCode:@"GBR"];
+
+order.shippingAddress = a;
+
+OLPayPalCard *card = [[OLPayPalCard alloc] init];
+card.type = kOLPayPalCardTypeVisa;
+card.number = @"4121212121212127";
+card.expireMonth = 12;
+card.expireYear = 2020;
+card.cvv2 = @"123";
+
+[card chargeCard:printOrder.cost currencyCode:printOrder.currencyCode description:@"A Kite order!" completionHandler:^(NSString *proofOfPayment, NSError *error) {
+  // if no error occured set the OLPrintOrder proofOfPayment to the one provided and submit the order
+  order.proofOfPayment = proofOfPayment;
+  [self.printOrder submitForPrintingWithProgressHandler:nil
+                   completionHandler:^(NSString *orderIdReceipt, NSError *error) {
+    // If there is no error then you can display a success outcome to the user
+  }];
+}];
+
+```
+
+```java
+// See https://github.com/OceanLabs/Android-Print-SDK#custom-checkout for full step by step instructions
+
+import ly.kite.address.Address;
+import ly.kite.payment.PayPalCard;
+import ly.kite.print.Asset;
+import ly.kite.print.PrintJob;
+import ly.kite.print.PrintOrder;
+
+ArrayList<Asset> assets = new ArrayList<Asset>();
+assets.add(new Asset(new URL("http://psps.s3.amazonaws.com/sdk_static/portrait_photobook.pdf"))));
+
+PrintJob photobook = PrintJob.createPrintJob(assets, "photobook_small_portrait");
+photobook.setOption("spine_color", "#FFFFFF");
+
+PrintOrder order = new PrintOrder();
+order.addPrintJob(ipadAirCase);
+order.addPrintJob(galaxyS5Case);
+
+Address a = new Address();
+a.setRecipientName("Deon Botha");
+a.setLine1("Eastcastle House");
+a.setLine2("27-28 Eastcastle Street");
+a.setCity("London");
+a.setStateOrCounty("London");
+a.setZipOrPostalCode("W1W 8DH");
+a.setCountry(Country.getInstance("GBR"));
+
+order.setShippingAddress(a);
+
+PayPalCard card = new PayPalCard();
+card.setNumber("4121212121212127");
+card.setExpireMonth(12);
+card.setExpireYear(2012);
+card.setCvv2("123");
+
+card.chargeCard(PayPalCard.Environment.SANDBOX, printOrder.getCost(), PayPalCard.Currency.GBP, "A Kite order!", new PayPalCardChargeListener() {
+    @Override
+    public void onChargeSuccess(PayPalCard card, String proofOfPayment) {
+        // set the PrintOrder proofOfPayment to the one provided and submit the order
+    }
+
+    @Override
+    public void onError(PayPalCard card, Exception ex) {
+        // handle gracefully
+        order.setProofOfPayment(proofOfPayment);
+        printOrder.submitForPrinting(getApplicationContext(), /*PrintOrderSubmissionListener:*/this);
+    }
+});
+
+```
+
+> Replace `<your_secret_key>` with the one found in the [credentials](https://www.kite.ly/accounts/credentials) section of the dashboard.<br /><br />
+
+> Example Response
+
+```shell
+{
+  "print_order_id": "PS96-996634811"
+}
+```
+
+
+If you haven't already, see [Placing orders](#placing-orders) for a general overview of the order request & response which is applicable to all product orders. 
+
+The example request on the right would result in a portrait photobook being created and shipped to the specified address.
+
+### products & template_ids
+
+          | |
+--------- | -----------
+Portrait Photobook<span class="attribute-type">photobook_small_portrait</span> | A5 hardcover portrait photobook (148mm x 210mm). Our books are perfectly bound with images printed on glossy 200gsm paper
+Landscape Photobook<span class="attribute-type">photobook_small_landscape</span> | A5 hardcover landscape photobook (210mm x 148mm). Our books are perfectly bound with images printed on glossy 200gsm paper
+
+### Options Arguments
+
+          | |
+--------- | -----------
+spine_color<span class="optional-argument">optional</span> | A color hex code indicating the color for the spine of the book. Defaults to `#FFFFFF` if not specified.
+
+### Job Arguments
+
+          | |
+--------- | -----------
+pdf<span class="required-argument">required</span> | A PDF URL accessible to the Kite servers or an [asset object](#the-asset-object) identifier that you have received by [uploading an asset](#uploading-an-asset) to Kite. The PDF itself should contain 24 pages. Each PDF page must have dimensions matching those specified by the chosen photobook template. The first and last pages of the PDF form the front and back covers for the photobook respectively.
+
+
+## Ordering postcards
+
+> Example Order Request
+
+```shell
+curl "https://api.kite.ly/v1.3/print/" \
+  -H "Authorization: ApiKey {{ test_api_key }}:<your_secret_key>" \
+  --data '{
+    "shipping_address": {
+      "recipient_name": "Deon Botha",
+      "address_line_1": "Eastcastle House",
+      "address_line_2": "27-28 Eastcastle Street",
+      "city": "London",
+      "county_state": "Greater London",
+      "postcode": "W1W 8DH",
+      "country_code": "GBR"
+    },
+    "customer_email": "{{ user_email }}",
+    "customer_phone": "+44 (0)784297 1234",
+    "jobs": [{
+      "assets": {
+        "front_image": "http://psps.s3.amazonaws.com/sdk_static/4.jpg"
+      },
+      "template_id": "postcard", 
+      "message": "Hello World!"
+    }]
+  }'
+```
+
+```objective_c
+// See https://github.com/OceanLabs/iOS-Print-SDK#custom-user-experience for full step by step instructions
+#import <Kite-Print-SDK/OLKitePrintSDK.h>
+
+OLAsset *frontImage = [OLAsset assetWithURL:[NSURL URLWithString:@"http://psps.s3.amazonaws.com/sdk_static/4.jpg"]];
+id<OLPrintJob> postcard = [OLPrintJob postcardWithTemplateId:@"postcard" frontImageOLAsset:frontImage message:@"Hello World!" address:/*Address*/];
+
+OLPrintOrder *order = [[OLPrintOrder alloc] init];
+[order addPrintJob:postcard];
+
+OLPayPalCard *card = [[OLPayPalCard alloc] init];
+card.type = kOLPayPalCardTypeVisa;
+card.number = @"4121212121212127";
+card.expireMonth = 12;
+card.expireYear = 2020;
+card.cvv2 = @"123";
+
+[card chargeCard:printOrder.cost currencyCode:printOrder.currencyCode description:@"A Kite order!" completionHandler:^(NSString *proofOfPayment, NSError *error) {
+  // if no error occured set the OLPrintOrder proofOfPayment to the one provided and submit the order
+  order.proofOfPayment = proofOfPayment;
+  [self.printOrder submitForPrintingWithProgressHandler:nil
+                   completionHandler:^(NSString *orderIdReceipt, NSError *error) {
+    // If there is no error then you can display a success outcome to the user
+  }];
+}];
+
+```
+
+```java
+// See https://github.com/OceanLabs/Android-Print-SDK#custom-checkout for full step by step instructions
+
+import ly.kite.address.Address;
+import ly.kite.payment.PayPalCard;
+import ly.kite.print.Asset;
+import ly.kite.print.PrintJob;
+import ly.kite.print.PrintOrder;
+
+Address a = new Address();
+a.setRecipientName("Deon Botha");
+a.setLine1("Eastcastle House");
+a.setLine2("27-28 Eastcastle Street");
+a.setCity("London");
+a.setStateOrCounty("London");
+a.setZipOrPostalCode("W1W 8DH");
+a.setCountry(Country.getInstance("GBR"));
+
+Asset frontImage = new Asset(new URL("http://psps.s3.amazonaws.com/sdk_static/4.jpg")));
+PrintJob postcard = PrintJob.createPostcardJob("postcard", frontImage, "Hello World", a);
+
+PrintOrder order = new PrintOrder();
+order.addPrintJob(postcard);
+
+PayPalCard card = new PayPalCard();
+card.setNumber("4121212121212127");
+card.setExpireMonth(12);
+card.setExpireYear(2012);
+card.setCvv2("123");
+
+card.chargeCard(PayPalCard.Environment.SANDBOX, printOrder.getCost(), PayPalCard.Currency.GBP, "A Kite order!", new PayPalCardChargeListener() {
+    @Override
+    public void onChargeSuccess(PayPalCard card, String proofOfPayment) {
+        // set the PrintOrder proofOfPayment to the one provided and submit the order
+    }
+
+    @Override
+    public void onError(PayPalCard card, Exception ex) {
+        // handle gracefully
+        order.setProofOfPayment(proofOfPayment);
+        printOrder.submitForPrinting(getApplicationContext(), /*PrintOrderSubmissionListener:*/this);
+    }
+});
+
+```
+
+> Replace `<your_secret_key>` with the one found in the [credentials](https://www.kite.ly/accounts/credentials) section of the dashboard.<br /><br />
+
+> Example Response
+
+```shell
+{
+  "print_order_id": "PS96-996634811"
+}
+```
+
+
+If you haven't already, see [Placing orders](#placing-orders) for a general overview of the order request & response which is applicable to all product orders. 
+
+The example request on the right would result in a postcard being created and shipped to the specified address.
+
+### products & template_ids
+
+          | |
+--------- | -----------
+Postcard<span class="attribute-type">postcard</span> | Our postcards are printed on high quality 350gsm card stock with a gloss finish and dispatched worldwide
+
+### Job Arguments
+
+          | |
+--------- | -----------
+message<span class="required-argument">required</span> | The text message that you want to appear on the back of the postcard
+
+### Assets Arguments
+
+          | |
+--------- | -----------
+front_image<span class="required-argument">required</span> | A image URL accessible to the Kite servers or an [asset object](#the-asset-object) identifier that you have received by [uploading an asset](#uploading-an-asset) to Kite
+
+
 
 # Addresses
 Our address lookup services allows you to perform international address searches. You'll benefit from the most up to date and complete address information available as our databases are typically updated daily.

@@ -486,6 +486,30 @@ html, body {
     }
   }
 
+  table.apparel-positions {
+    th {
+      display: table-cell;
+      border-bottom-style: none;
+      font-weight: 500;
+      font-size: 13px;
+    }
+
+    thead {
+      tr {
+        border-style: none;
+      }
+    }
+
+    td:first-child {
+      text-align: right;
+      width: auto;
+    }
+
+    .img-tshirt {
+      width: 25%;
+    }
+  }
+
   dt {
     font-weight: bold;
   }
