@@ -150,8 +150,8 @@ There are 3 types of TriggerBuilders that correspond to 3 place types:
 TriggerBuilder Type | Signature | Description
 --------- | ------- |------- | -----------
 [Business Place](#business-place) | BusinessCategoryTriggerBuilder() | Business Categories (like *restaurant* or *shopping mall*)
-[Custom Place](#custom-place) | CustomPlaceTriggerBuilder() | Custom set of lat/longs + radius 
 [Personal Place](#personal-place) | PersonalizedTriggerBuilder() | User-specific locations (like *home* or *work*)geofences
+[Custom Place](#custom-place) | CustomPlaceTriggerBuilder() | Custom set of lat/longs + radius 
 
 ### Action Types
 
@@ -239,7 +239,7 @@ radiusMeters | Int | true | radius of geofence
 customIdentifier | String | true | unique name for place
 
 
-<aside class="warning"> You can have no more than [50] custom places included in a single trigger.
+<aside class="warning"> You can have no more than [150] custom places included in a single trigger.
 Minimum radius for a CustomPlace is [20 meters]
 </aside>
 
@@ -251,7 +251,7 @@ let trigger = CompoundTriggerBuilder()
 ```
 You have the ability to combine triggers to create a compound trigger:
 
-In two of the examples above, both airportTrigger and homeTrigger were defined.  By then ANDing the two, you get a trigger that listens for when a user was at an airport AND 100+ kilometers from home (i.e. traveling):
+In two of the examples above, both airportTrigger and homeTrigger were defined.  By then ANDing the two, you get a trigger that listens for when a user is at an airport AND 100+ kilometers from home (i.e. traveling):
 
 
 # Recipes
