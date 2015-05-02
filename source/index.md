@@ -16,7 +16,7 @@ search: true
 
 # Introduction
 
-Sense360 allows you to quickly build functions around actions that your users take in the physical world. You can build triggers based on where a user is, what they are doing, or what is happening around them. Adding these real-world triggers to your app can take months if you try to achieve high accuracy, low battery drain, and maximum user privacy. We try to make this experience as quick and painless as possible.
+Sense360 allows you to quickly build functions around actions that your users take in the physical world. You can build triggers based on where a user is, what they are doing, or what is happening around them. **You can do all this in the background while your app is not in use.** Adding these real-world triggers to your app can take months if you try to achieve high accuracy, low battery drain, and maximum user privacy. We try to make this experience as quick and painless as possible.
 
 # API Components
 
@@ -192,8 +192,6 @@ Restaurant | .set(place: BusinessCategory.Restaurant) | hasEntered(), hasExited(
 Mall | .set(place: BusinessCategory.Mall) | hasEntered(), hasExited()
 Gas Station | .set(place: BusinessCategory.gasStation) | hasEntered(), hasExited()
 
-**_Possible action types are hasEntered() and hasExited()._**
-
 ## Personal Place
 ```swift
 let homeTrigger = PersonalizedTriggerBuilder()
@@ -343,7 +341,7 @@ When a trigger is fired, it brings along one of three confidence levels.
 
 
 <aside class="notice">
-  Currently, confidence levels of Low do not trigger the firing of a trigger.
+  Currently, a confidence level of Low does not trigger the firing of a trigger.
 </aside>
 
 
@@ -367,15 +365,3 @@ func recipeRestored(args: RecipeRestoreArgs) -> RecipeRestoreResult {
 }
 ```
 Your application will not always be running, but you probably want your triggers to.  In order to accomplish this, the SenseApi provides methods that persist your recipes and the state of your triggers when your application is not running.  Since the SenseApiDelegate is not set within the recipe, it is your job to match each your recipes with the correct delegate.  This is done by implementing the SenseApiRestoreDelegate protocol.
-
-
-# Inspiration
-
-## User on way home from vacation.
-
-## User arrives home from work.
-
-## User grocery shopping.
-
-
-
