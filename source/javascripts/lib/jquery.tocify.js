@@ -150,6 +150,9 @@
             self.tocifyWrapper = $('.tocify-wrapper');
             self.extendPageScroll = true;
 
+            // Getting rid of possibly existing helper divs
+            $("[data-unique]").remove();
+
             // Internal array that keeps track of all TOC items (Helps to recognize if there are duplicate TOC item strings)
             self.items = [];
 
@@ -536,9 +539,12 @@
                 $self,
 
                 // Instantiates a new variable that will be used to determine the smoothScroll animation time duration
-                duration;
+                duration,
+
+                li = this.element.find("li");
 
             // Event delegation that looks for any clicks on list item elements inside of the HTML element calling the plugin
+            this.element.off("click.tocify", "li");
             this.element.on("click.tocify", "li", function(event) {
 
                 if(self.options.history) {
@@ -567,7 +573,9 @@
             });
 
             // Mouseenter and Mouseleave event handlers for the list item's within the HTML element calling the plugin
-            this.element.find("li").on({
+            li.off("mouseenter.tocify");
+            li.off("mouseleave.tocify");
+            li.on({
 
                 // Mouseenter event handler
                 "mouseenter.tocify": function() {
@@ -595,10 +603,12 @@
 
             // Reset height cache on scroll
 
-            $(window).on('resize', function() {
+            $(window).off('resize.tocify');
+            $(window).on('resize.tocify', function() {
                 self.calculateHeights();
             });
 
+            $(window).off("scroll.tocify");
             // Window scroll event handler
             $(window).on("scroll.tocify", function() {
 
