@@ -1112,13 +1112,13 @@ garment_color<span class="required-argument">required</span> | The base material
 	<tbody>
 		<tr>
 			<td>center_chest<span class="optional-argument">optional</span></td>
-			<td class="img-tshirt"><img alt="T-Shirt Print API Centre Chest" src="static/docs_new/images/centre_chest.jpg"></td>
+			<td class="img-tshirt"><img alt="T-Shirt Print API Centre Chest" src="{% static "docs_new/images/centre_chest.jpg" %}"></td>
 			<td><code class="prettyprint">gildan_tshirt</code>, <code class="prettyprint">gildan_hoodie</code>, <code class="prettyprint">gildan_hoodie_zipped</code></td>
 			<td>30cm</td>
 		</tr>
 		<tr>
 			<td>center_back<span class="optional-argument">optional</span></td>
-			<td class="img-tshirt"><img alt="T-Shirt Print API Centre Back" src="static/docs_new/images/centre_back.jpg"></td>
+			<td class="img-tshirt"><img alt="T-Shirt Print API Centre Back" src="{% static "docs_new/images/centre_back.jpg" %}"></td>
 			<td><code class="prettyprint">gildan_tshirt</code>, <code class="prettyprint">gildan_hoodie</code>, <code class="prettyprint">gildan_hoodie_zipped</code></td>
 			<td>30cm</td>
 		</tr>
@@ -1126,52 +1126,52 @@ garment_color<span class="required-argument">required</span> | The base material
 		
 		<tr>
 			<td>top_chest<span class="optional-argument">optional</span></td>
-			<td class="img-tshirt"><img alt="T-Shirt Print API Top Chest" src="static/docs_new/images/top_chest.jpg"></td>
+			<td class="img-tshirt"><img alt="T-Shirt Print API Top Chest" src="{% static "docs_new/images/top_chest.jpg" %}"></td>
 			<td><code class="prettyprint">gildan_tshirt</code></td>
 			<td>30cm</td>
 		</tr>
 		<tr>
 			<td>top_back<span class="optional-argument">optional</span></td>
-			<td class="img-tshirt"><img alt="T-Shirt Print API Top Back" src="static/docs_new/images/top_back.jpg"></td>
+			<td class="img-tshirt"><img alt="T-Shirt Print API Top Back" src="{% static "docs_new/images/top_back.jpg" %}"></td>
 			<td><code class="prettyprint">gildan_tshirt</code>, <code class="prettyprint">gildan_hoodie</code>, <code class="prettyprint">gildan_hoodie_zipped</code></td>
 			<td>30cm</td>
 		</tr>
 		
 		<tr>
 			<td>right_sleeve<span class="optional-argument">optional</span></td>
-			<td class="img-tshirt"><img alt="T-Shirt Print API Right Sleeve" src="static/docs_new/images/right_sleeve.jpg"></td>
+			<td class="img-tshirt"><img alt="T-Shirt Print API Right Sleeve" src="{% static "docs_new/images/right_sleeve.jpg" %}"></td>
 			<td><code class="prettyprint">gildan_tshirt</code>, <code class="prettyprint">gildan_hoodie</code>, <code class="prettyprint">gildan_hoodie_zipped</code></td>
 			<td>10cm</td>
 		</tr>
 		<tr>
 			<td>left_sleeve<span class="optional-argument">optional</span></td>
-			<td class="img-tshirt"><img alt="T-Shirt Print API Left Sleeve" src="static/docs_new/images/left_sleeve.jpg"></td>
+			<td class="img-tshirt"><img alt="T-Shirt Print API Left Sleeve" src="{% static "docs_new/images/left_sleeve.jpg" %}"></td>
 			<td><code class="prettyprint">gildan_tshirt</code>, <code class="prettyprint">gildan_hoodie</code>, <code class="prettyprint">gildan_hoodie_zipped</code></td>
 			<td>10cm</td>
 		</tr>
 		
 		<tr>
 			<td>right_chest<span class="optional-argument">optional</span></td>
-			<td class="img-tshirt"><img alt="T-Shirt Print API Right Chest" src="static/docs_new/images/right_chest.jpg"></td>
+			<td class="img-tshirt"><img alt="T-Shirt Print API Right Chest" src="{% static "docs_new/images/right_chest.jpg" %}"></td>
 			<td><code class="prettyprint">gildan_tshirt</code>, <code class="prettyprint">gildan_hoodie</code>, <code class="prettyprint">gildan_hoodie_zipped</code></td>
 			<td>12cm</td>
 		</tr>
 		<tr>
 			<td>left_chest<span class="optional-argument">optional</span></td>
-			<td class="img-tshirt"><img alt="T-Shirt Print API Left Chest" src="static/docs_new/images/left_chest.jpg"></td>
+			<td class="img-tshirt"><img alt="T-Shirt Print API Left Chest" src="{% static "docs_new/images/left_chest.jpg" %}"></td>
 			<td><code class="prettyprint">gildan_tshirt</code>, <code class="prettyprint">gildan_hoodie</code>, <code class="prettyprint">gildan_hoodie_zipped</code></td>
 			<td>12cm</td>
 		</tr>
 		
 		<tr>
 			<td>bottom_right<span class="optional-argument">optional</span></td>
-			<td class="img-tshirt"><img alt="T-Shirt Print API Bottom Right" src="static/docs_new/images/bottom_right.jpg"></td>
+			<td class="img-tshirt"><img alt="T-Shirt Print API Bottom Right" src="{% static "docs_new/images/bottom_right.jpg" %}"></td>
 			<td><code class="prettyprint">gildan_tshirt</code>, <code class="prettyprint">gildan_hoodie</code>, <code class="prettyprint">gildan_hoodie_zipped</code></td>
 			<td>12cm</td>
 		</tr>
 		<tr>
 			<td>bottom_left<span class="optional-argument">optional</span></td>
-			<td class="img-tshirt"><img alt="T-Shirt Print API Bottom Left" src="static/docs_new/images/bottom_left.jpg"></td>
+			<td class="img-tshirt"><img alt="T-Shirt Print API Bottom Left" src="{% static "docs_new/images/bottom_left.jpg" %}"></td>
 			<td><code class="prettyprint">gildan_tshirt</code>, <code class="prettyprint">gildan_hoodie</code>, <code class="prettyprint">gildan_hoodie_zipped</code></td>
 			<td>12cm</td>
 		</tr>
