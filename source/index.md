@@ -19,6 +19,7 @@ includes:
   - bodhicloud/cloudtools/Tooling
   - bodhicloud/cloudtools/Bodhi-cli
   - bodhicloud/cloudtools/bodhi_types-cli
+  - bodhicloud/cloudtools/bodhi-jobs-cli
   - bodhicloud/cloudtools/bodhitype
   - bodhicloud/cloudtools/query
   
