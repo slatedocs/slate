@@ -112,26 +112,39 @@ Where possible an error response will include an `error` object that provides fu
 ### Error code summary
           | |
 --------- | -----------
-00 | Failed to parse JSON from the body of the request. Please ensure you're sending data through as valid JSON and please check it can be decoded as UTF-8
-01 | The request data does not match the required JSON schema
-04 | Product does not exist
-05 | You must provide assets to fulfil an order
-06 | 'assets' should be an array for the product provided
-07 | 'assets' should be an object for the product provided
-08 | 'assets' must be an array or object
-09 | Shipping address is required for this product
-12 | Cannot set email in both 'user_data' and 'customer_email'
-13 | Customer email address is invalid
-16 | Promo code provided does not exist
-20 | Payment confirmation already used on a successful order
-21 | Payment confirmation already used on a failed order
-22 | Unknown payment method provided
-23 | Error looking up payment
-24 | No proof of payment and no secret key provided
-27 | Confirmed payment does not cover order cost
-30 | Unexpected fulfilment error
-31 | Asset provided does not exist
-32 | One or more photos provided were corrupt or unavailable
+<span id="error-code-E00">00</span> | Failed to parse JSON from the body of the request. Please ensure you're sending data through as valid JSON and please check it can be decoded as UTF-8
+<span id="error-code-E01">01</span> | The request data does not match the required JSON schema
+<span id="error-code-E02">02</span> | The product you specified is not available for your account
+<span id="error-code-E03">03</span> | The product you specified is not available for your account
+<span id="error-code-E04">04</span> | The product template you specified does not exist
+<span id="error-code-E05">05</span> | You must provide assets to fulfil an order
+<span id="error-code-E06">06</span> | 'assets' must be an array for the product provided
+<span id="error-code-E07">07</span> | 'assets' must be an object for the product provided
+<span id="error-code-E08">08</span> | 'assets' must be an array or object
+<span id="error-code-E09">09</span> | Shipping address is required for this product
+<span id="error-code-E10">10</span> | Asset supplied is not of an acceptable file type
+<span id="error-code-E11">11</span> | PDF supplied with incorrect dimensions or pages
+<span id="error-code-E12">12</span> | Cannot set email in both 'user_data' and 'customer_email'
+<span id="error-code-E13">13</span> | Customer email address is invalid
+<span id="error-code-E14">14</span> | Must specify pdf true for this product
+<span id="error-code-E15">15</span> | PDF supplied does not match required dimensions of template
+<span id="error-code-E16">16</span> | Promo code provided does not exist
+<span id="error-code-E17">17</span> | Assets must be passed as a dictionary for Apparel
+<span id="error-code-E18">18</span> | Invalid [apparel asset position](#assets-position-arguments)
+<span id="error-code-E19">19</span> | Invalid [apparel asset position](#assets-position-arguments) for the specified template
+<span id="error-code-E20">20</span> | Payment confirmation already used on a successful order
+<span id="error-code-E21">21</span> | Payment confirmation already used on a failed order
+<span id="error-code-E22">22</span> | Unknown payment method provided
+<span id="error-code-E23">23</span> | Error looking up payment
+<span id="error-code-E24">24</span> | No proof of payment and no secret key provided
+<span id="error-code-E25">25</span> | Max number of PayPal echeques exceeded
+<span id="error-code-E26">26</span> | Cannot use promo codes without a billing method set up against your account
+<span id="error-code-E27">27</span> | Confirmed payment does not cover order cost
+<span id="error-code-E30">30</span> | Unexpected fulfilment error
+<span id="error-code-E31">31</span> | Asset provided does not exist
+<span id="error-code-E32">32</span> | One or more photos provided were corrupt or unavailable
+<span id="error-code-E33">33</span> | `garment_size` and `garment_color` options are required for apparel orders
+<span id="error-code-E34">34</span> | Required options not specified for product
 
 # Pagination
 
@@ -1204,7 +1217,7 @@ curl "https://api.kite.ly/v1.3/print/" \
       "options": {
       	"spine_color": "#FFFFFF"
       },
-      "pdf": "http://psps.s3.amazonaws.com/sdk_static/portrait_photobook.pdf",
+      "pdf": "https://s3.amazonaws.com/sdk-static/portrait_photobook.pdf",
       "template_id": "photobook_small_portrait"
     }]
   }'
@@ -1215,7 +1228,7 @@ curl "https://api.kite.ly/v1.3/print/" \
 #import <Kite-Print-SDK/OLKitePrintSDK.h>
 
 NSArray *assets = @[
-    [OLAsset assetWithURL:[NSURL URLWithString:@"http://psps.s3.amazonaws.com/sdk_static/portrait_photobook.pdf"]]
+    [OLAsset assetWithURL:[NSURL URLWithString:@"https://s3.amazonaws.com/sdk-static/portrait_photobook.pdf"]]
 ];
 
 id<OLPrintJob> photobook = [OLPrintJob printJobWithTemplateId:@"photobook_small_portrait" OLAssets:assets];
@@ -1263,7 +1276,7 @@ import ly.kite.print.PrintJob;
 import ly.kite.print.PrintOrder;
 
 ArrayList<Asset> assets = new ArrayList<Asset>();
-assets.add(new Asset(new URL("http://psps.s3.amazonaws.com/sdk_static/portrait_photobook.pdf"))));
+assets.add(new Asset(new URL("https://s3.amazonaws.com/sdk-static/portrait_photobook.pdf"))));
 
 PrintJob photobook = PrintJob.createPrintJob(assets, "photobook_small_portrait");
 photobook.setOption("spine_color", "#FFFFFF");
