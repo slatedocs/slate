@@ -600,7 +600,7 @@ The bank account number token should be included in the JSON string of the reque
 #### 1.19
 - Added 1.18 backwards compatibility mode (rule number and name changes still relevant)
 - Scorecard now included in transaction and transfer results
-- smid and smna fields replaced by profile field
+- smid replaced by profile field
 - Removed some unused fields
 - Simplified TestResult encoding
 - Changed KYC response so that it is consistent with other transaction types
