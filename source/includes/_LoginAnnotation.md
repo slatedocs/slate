@@ -70,7 +70,7 @@ EXAMPLE SERVICE REQUEST
 		</tr>
 		<tr>
 			<td>profile<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
-			<td>The policy profile to be used to evaluate this transaction. Prior to IDMRisk 1.19, this was encoded in the <code>smna</code> and <code>smid</code> fields.</td>
+			<td>The policy profile to be used to evaluate this transaction. If no profile is specified, the DEFAULT profile is used. Prior to IDMRisk 1.19, this was encoded in the <code>smid</code> field.</td>
 		</tr>
 		<tr>
 			<td>clat<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
