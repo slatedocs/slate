@@ -107,12 +107,12 @@ curl "https://api.mojopages.com/api/v1/partner/listings"
       "offer_message": null,
       "offer_url": null,
       "attribution_logo": {
-          "description": "Yext PowerListings",
-          "url": "http://www.yextstatic.com/cms/pl-synced/pl-synced.png",
-          "width": 143,
+          "description": "Company",
+          "url": "http://www.company.com/attribution/logo.png",
+          "width": 100,
           "height": 20
         },
-      "attribution_url": "http://www.yext.com",
+      "attribution_url": "http://www.company.com",
       "updated_at": "2014-11-27T11:35:27.364Z"
     }
   ]
@@ -238,12 +238,12 @@ curl "https://api.mojopages.com/api/v1/partner/listing/7d373c1da40cbfc3f165"
     "offer_message": null,
     "offer_url": null,
     "attribution_logo": {
-        "description": "Yext PowerListings",
-        "url": "http://www.yextstatic.com/cms/pl-synced/pl-synced.png",
-        "width": 143,
+        "description": "Company",
+        "url": "http://www.company.com/attribution/logo.png",
+        "width": 100,
         "height": 20
       },
-    "attribution_url": "http://www.yext.com",
+    "attribution_url": "http://www.company.com",
     "updated_at": "2014-11-27T11:35:27.364Z"
   }
 }
@@ -677,12 +677,12 @@ curl "https://api.mojopages.com/api/v1/listings/search?name=Instant+Phones&local
       "offer_message": null,
       "offer_url": null,
       "attribution_logo": {
-          "description": "Yext PowerListings",
-          "url": "http://www.yextstatic.com/cms/pl-synced/pl-synced.png",
-          "width": 143,
+          "description": "Company",
+          "url": "http://www.company.com/attribution/logo.png",
+          "width": 100,
           "height": 20
         },
-      "attribution_url": "http://www.yext.com",
+      "attribution_url": "http://www.company.com",
       "updated_at": "2014-11-27T11:35:27.364Z"
     }
   ]
@@ -778,15 +778,15 @@ curl "https://api.mojopages.com/api/v1/listing/11079728"
     "video_urls": [],
     "offer_message": null,
     "offer_url": null,
-    "attribution_logo": {
-        "description": "Yext PowerListings",
-        "url": "http://www.yextstatic.com/cms/pl-synced/pl-synced.png",
-        "width": 143,
-        "height": 20
-      },
-    "attribution_url": "http://www.yext.com",
-    "updated_at": "2014-11-27T11:35:27.364Z"
-  }
+      "attribution_logo": {
+          "description": "Company",
+          "url": "http://www.company.com/attribution/logo.png",
+          "width": 100,
+          "height": 20
+        },
+      "attribution_url": "http://www.company.com",
+      "updated_at": "2014-11-27T11:35:27.364Z"
+    }
 }
 ```
 
