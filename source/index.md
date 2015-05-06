@@ -102,12 +102,12 @@ You must replace `YOUR-ACCESS-TOKEN` with your API key.
   "offer_message": null,
   "offer_url": null,
   "attribution_logo": {
-      "description": "Yext PowerListings",
-      "url": "http://www.yextstatic.com/cms/pl-synced/pl-synced.png",
-      "width": 143,
+      "description": "Company",
+      "url": "http://www.company.com/attribution/logo.png",
+      "width": 100,
       "height": 20
     },
-  "attribution_url": "http://www.yext.com",
+  "attribution_url": "http://www.company.com",
   "updated_at": "2014-11-27T11:35:27.364Z"
 }
 
