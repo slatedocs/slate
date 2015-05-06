@@ -145,6 +145,19 @@ Code | Meaning
 50010 |	Good History of Account and Destination Payment
 50011 |	Recent History of Account and Destination Payment
 
+## Automated Review Policy Codes
+
+Code | Meaning
+-----|---------
+20005 | Accept transactions from a user that has a good history
+20006 | Accept prepaid card
+20007 | Similar transaction previously manually accepted
+20008 | Transaction amount is below threshold for review
+20009 | Country mismatch override
+20010 | Accept MOTO=2 (rebill) transactions
+20011 | Whitelist
+20012 | KYC previously accepted
+
 ## Security Test IDs
 
 Test ID | Security Test Name
