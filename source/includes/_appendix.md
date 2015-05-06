@@ -146,7 +146,7 @@ yelp-aus|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class=
 
 Identifier|NAP|Reviews|URL|Other|Notes
 ----------|---|-------|---|-----|-----
-c411|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
+c411|<span class="yes">Yes</span>|||<span class="yes">Yes</span>|
 allpages|<span class="yes">Yes</span>||||
 brownbook|<span class="yes">Yes</span>||||
 canpages|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
