@@ -54,7 +54,6 @@ yahoo|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes
 yasabe|<span class="yes">Yes</span>||||
 YellowBook|<span class="yes">Yes</span>||||
 yellowbot|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
-Yellowee|||<span class="yes">Yes</span>||
 yellowpagecity|<span class="yes">Yes</span>||||
 yellowpages|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 yelp|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
