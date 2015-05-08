@@ -67,6 +67,7 @@ You must replace `YOUR-ACCESS-TOKEN` with your API key.
   "mojo_id": "11079728",
   "mojo_url": "https://www.mojopages.com/biz/instant-phones-phoenix-az/11079728",
   "name": "Instant Phones",
+  "description": null,
   "address": "2415 E Thomas Rd",
   "locality": "Pheonix",
   "region": "AZ",
@@ -133,6 +134,7 @@ listing_id | Your unique identifier for the listing, used for adding or deleting
 mojo_id | Claims a Business based on mojo_id, will automap or create new listing when not included
 mojo_url | URL for MojoPages listing
 name | Name of the business
+description | Description of the business
 address | Address of the business
 address_extended | Second address of the business if there is one
 locality | City where the business is located

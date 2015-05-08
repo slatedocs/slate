@@ -72,6 +72,7 @@ curl "https://api.mojopages.com/api/v1/partner/listings"
       "mojo_id": "11079728",
       "mojo_url": "https://www.mojopages.com/biz/instant-phones-phoenix-az/11079728",
       "name": "Instant Phones",
+      "description": null,
       "address": "2415 E Thomas Rd",
       "locality": "Pheonix",
       "region": "AZ",
@@ -203,6 +204,7 @@ curl "https://api.mojopages.com/api/v1/partner/listing/7d373c1da40cbfc3f165"
     "mojo_id": "11079728",
     "mojo_url": "https://www.mojopages.com/biz/instant-phones-phoenix-az/11079728",
     "name": "Instant Phones",
+    "description": null,
     "address": "2415 E Thomas Rd",
     "locality": "Pheonix",
     "region": "AZ",
@@ -299,7 +301,9 @@ curl "https://api.mojopages.com/api/v1/partner/listing/7d373c1da40cbfc3f165"
     "status": 200
   },
   "listing_status": {
-    "status": "LIVE",
+    "status": "LIVE"
+  },
+  "listing": {
     "listing_id": "7d373c1da40cbfc3f165",
     "mojo_id": "201702",
     "mojo_url": "https://www.mojopages.com/biz/piety-hill-cottages-phoenix-az/201702"
@@ -315,7 +319,9 @@ curl "https://api.mojopages.com/api/v1/partner/listing/7d373c1da40cbfc3f165"
     "status": 422
   },
   "listing_status": {
-    "status": "BLOCKED",
+    "status": "BLOCKED"
+  },
+  "listing": {
     "listing_id": "7d373c1da40cbfc3f165",
     "mojo_id": "201702",
     "mojo_url": "https://www.mojopages.com/biz/piety-hill-cottages-phoenix-az/201702"
@@ -331,14 +337,19 @@ curl "https://api.mojopages.com/api/v1/partner/listing/7d373c1da40cbfc3f165"
     "status": 422
   },
   "listing_status": {
-    "status": "REJECTED",
-    "error": {
-      "messages": [
-        {
-          "message": "Validation failed: Postcode can't be blank"
-        }
-      ]
-    }
+    "status": "REJECTED"
+  },
+  "listing": {
+    "listing_id": "7d373c1da40cbfc3f165",
+    "mojo_id": "201702",
+    "mojo_url": "https://www.mojopages.com/biz/piety-hill-cottages-phoenix-az/201702"
+  },
+  "error": {
+    "messages": [
+      {
+        "message": "Validation failed: Postcode can't be blank"
+      }
+    ]
   }
 }
 ```
@@ -375,6 +386,7 @@ Listing Value | required | Description
 listing_id | true | Your unique identifier for the listing, used for adding or deleting a record
 mojo_id | false | Claims a Business based on mojo_id, will automap or create new listing when not included
 name | true | Name of the business
+description | false | Description of the business
 address | true | Address of the business
 address_extended | false | Second address of the business if there is one
 locality | true | City where the business is located
@@ -423,7 +435,9 @@ curl "https://api.mojopages.com/api/v1/partner/listing/7d373c1da40cbfc3f165"
     "status": 200
   },
   "listing_status": {
-    "status": "LIVE",
+    "status": "LIVE"
+  },
+  "listing": {
     "listing_id": "7d373c1da40cbfc3f165",
     "mojo_id": "201702",
     "mojo_url": "https://www.mojopages.com/biz/piety-hill-cottages-phoenix-az/201702"
@@ -439,7 +453,9 @@ curl "https://api.mojopages.com/api/v1/partner/listing/7d373c1da40cbfc3f165"
     "status": 422
   },
   "listing_status": {
-    "status": "BLOCKED",
+    "status": "BLOCKED"
+  },
+  "listing": {
     "listing_id": "7d373c1da40cbfc3f165",
     "mojo_id": "201702",
     "mojo_url": "https://www.mojopages.com/biz/piety-hill-cottages-phoenix-az/201702"
@@ -479,6 +495,7 @@ Listing Value | Description
 listing_id | Your unique identifier for the listing, used for adding or deleting a record
 mojo_id | Claims a Business based on mojo_id, will automap or create new listing when not included
 name | Name of the business
+description | Description of the business
 address | Address of the business
 address_extended | Second address of the business if there is one
 locality | City where the business is located
@@ -646,6 +663,7 @@ curl "https://api.mojopages.com/api/v1/listings/search?name=Instant+Phones&local
       "mojo_id": "11079728",
       "mojo_url": "https://www.mojopages.com/biz/instant-phones-phoenix-az/11079728",
       "name": "Instant Phones",
+      "description": null,
       "address": "2415 E Thomas Rd",
       "locality": "Pheonix",
       "region": "AZ",
@@ -743,6 +761,7 @@ curl "https://api.mojopages.com/api/v1/listing/11079728"
     "mojo_id": "11079728",
     "mojo_url": "https://www.mojopages.com/biz/instant-phones-phoenix-az/11079728",
     "name": "Instant Phones",
+    "description": null,
     "address": "2415 E Thomas Rd",
     "locality": "Pheonix",
     "region": "AZ",
