@@ -5,7 +5,7 @@ language_tabs:
   - Swift
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
+  - <a id="sign" href='https://docs.google.com/a/sense360.com/forms/d/1EJwLR8GC0JAqeH5F1FIWKVZJ527qdQZ7GiWirS0mDxc/viewform?usp=send_form'>Sign Up for a Developer Key!</a>
   - <a href='http://github.com/tripit/slate'>Documentation Powered by Slate</a>
 
 includes:
@@ -256,7 +256,7 @@ In two of the examples above, both airportTrigger and homeTrigger were defined. 
 ```swift
 let recipe = Recipe(name: "My Recipe", trigger: someTrigger)
 ```
-The Recipe is the receptacle that encases your trigger, and various other settings.  Recipes are registered globally within your application with a call to the [SenseApi](#senseapi).  Below are the inputs that make up a Recipe:
+The Recipe is the container that encases your trigger, and various other settings.  Recipes are registered globally within your application with a call to the [SenseApi](#senseapi).  Below are the inputs that make up a Recipe:
 
 Parameter | Required
 --------- | ------- 

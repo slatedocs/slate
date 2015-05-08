@@ -209,10 +209,21 @@ html, body {
     padding: 1em 0;
     margin-top: 1em;
     border-top: 1px dashed $nav-footer-border-color;
+    font-size: 14px;
 
     li,a {
       color: $nav-text;
       text-decoration: none;
+    }
+
+ li,a#sign {
+      color: green;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    li,a#sign:hover {
+      text-decoration: underline;
     }
 
     a:hover {
