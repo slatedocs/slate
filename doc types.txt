@@ -1,0 +1,3 @@
+1) Bitcoin companies should have consumer KYC, Transaction Monitoring and Payment
+2) Merchant underwriting should have KYC Consumer Application
+3) AntiFraud should have Payment Transaction
