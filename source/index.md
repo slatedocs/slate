@@ -1,14 +1,11 @@
 ---
-title: API Reference
+title: Dirble API v.2
 
 language_tabs:
   - shell
-  - ruby
-  - python
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='http://github.com/tripit/slate'>Documentation Powered by Slate</a>
+  - <a href='https://dirble.com/users/apikeys'>Sign Up for a Developer Key</a>
 
 includes:
   - errors
@@ -18,67 +15,39 @@ search: true
 
 # Introduction
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+Welcoem to Dirble API. This is a api for getting radio stations based on categories (read genres) and countries. You can also search, get similar stations and get played songs.
 
-We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+# Base url
 
-This example API documentation page was created with [Slate](http://github.com/tripit/slate). Feel free to edit it and use it as a base for your own API's documentation.
+All calls will go to http://api.dirble.com/v2/
 
 # Authentication
 
 > To authorize, use this code:
 
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-```
-
 ```shell
 # With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
+curl "http://api.dirble.com/v2/stations?token={your token}"
 ```
 
-> Make sure to replace `meowmeowmeow` with your API key.
+> Make sure to replace `{your token}` with your API token.
 
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
+Dirble uses API keys to allow access to the API. You can register a new Dirble API token at our [developer portal](https://dirble.com/users/apikeys).
 
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
+Kittn expects for the API key to be included in all API requests to the server in a param that looks like the following:
 
-`Authorization: meowmeowmeow`
+`?token={your token}`
 
 <aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
+You must replace <code>{your token}</code> with your personal API key.
 </aside>
 
-# Kittens
+# Stations
 
-## Get All Kittens
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
+## Get All Stations
 
 ```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
+curl "http://api.dirble.com/v2/stations?token={your token}"
 ```
 
 > The above command returns JSON structured like this:
@@ -86,83 +55,219 @@ curl "http://example.com/api/kittens"
 ```json
 [
   {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
+    "id": 10,
+    "name": "Sr P3",
+    "description": "",
+    "country": "SE",
+    "accepted": 1,
+    "added": "2012-01-15T05:55:12.000+01:00",
+    "website": "",
+    "currentsong_reverse": null,
+    "image": {
+      "url": null,
+      "thumb": {
+        "url": null
+      }
+    },
+    "created_at": "2012-01-15T05:55:12.000+01:00",
+    "updated_at": "2015-04-11T14:10:45.000+02:00",
+    "slug": "sr-p3",
+    "disableSongChecks": false
   },
   {
-    "id": 2,
-    "name": "Isis",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
+    "id": 11,
+    "name": "Digitally Imported Hardcore",
+    "description": "",
+    "country": "US",
+    "accepted": 1,
+    "added": "2012-01-15T05:56:48.000+01:00",
+    "website": "",
+    "currentsong_reverse": null,
+    "image": {
+      "url": null,
+      "thumb": {
+        "url": null
+      }
+    },
+    "created_at": "2012-01-15T05:56:48.000+01:00",
+    "updated_at": "2015-04-11T14:10:45.000+02:00",
+    "slug": "digitally-imported-hardcore",
+    "disableSongChecks": false
   }
+  ...
 ]
 ```
 
-This endpoint retrieves all kittens.
+This endpoint retrieves all stations.
 
 ### HTTP Request
 
-`GET http://example.com/kittens`
+`GET http://api.dirble.com/v2/stations`
 
 ### Query Parameters
 
 Parameter | Default | Description
 --------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
+page | 0 | show which per_page stations to show
+per\_page | 20 | How many stations per page to show
+offset | 5 |
 
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
+## Get a Specific Station
 
 ```shell
-curl "http://example.com/api/kittens/3"
-  -H "Authorization: meowmeowmeow"
+curl "http://api.dirble.com/v2/station/10?token={your token}"
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
 {
-  "id": 2,
-  "name": "Isis",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
+  "id": 10,
+  "name": "Sr P3",
+  "accepted": 1,
+  "added": "2012-01-15T05:55:12.000+01:00",
+  "country": "SE",
+  "description": "",
+  "image": {
+    "image": {
+      "url": null,
+      "thumb": {
+        "url": null
+      }
+    }
+  },
+  "slug": "sr-p3",
+  "website": "",
+  "streams": [
+    {
+      "id": 3,
+      "stream": "http://http-live.sr.se/p3-mp3-192",
+      "bitrate": 0,
+      "content_type": "?",
+      "status": 1,
+      "Station_id": 10,
+      "created_at": "2015-04-11T14:20:24.000+02:00",
+      "updated_at": "2015-04-25T22:46:30.000+02:00",
+      "timedout": true,
+      "emptycounter": 3
+    }
+  ],
+  "categories": [
+    {
+      "id": 17,
+      "title": "Top 40",
+      "description": "",
+      "urlid": null,
+      "created_at": "2015-04-11T13:49:53.000+02:00",
+      "updated_at": "2015-04-11T13:49:53.000+02:00",
+      "slug": "top-40",
+      "ancestry": "5",
+      "position": null
+    }
+  ],
+  "station_songs": [
+    {
+      "id": "553bf51b7370612594513400",
+      "name": "Musikguiden i P3",
+      "title": "Tiger Bell - Gorilla Dance",
+      "week": 17,
+      "year": 2015,
+      "station_id": 10,
+      "info": null,
+      "date": "2015-04-25T22:12:11+02:00"
+    },
+    {
+      "id": "553bd9ae7370612594ed1900",
+      "name": "Humorhimlen Lab",
+      "title": "Circa Waves - T-Shirt Weather",
+      "week": 17,
+      "year": 2015,
+      "station_id": 10,
+      "info": null,
+      "date": "2015-04-25T20:15:10+02:00"
+    }
+    ...
+  ]
 }
 ```
 
-This endpoint retrieves a specific kitten.
+This endpoint retrieves a specific station.
 
-<aside class="warning">If you're not using an administrator API key, note that some kittens will return 403 Forbidden if they are hidden for admins only.</aside>
+<aside class="warning">In API v1 station had a streamurl and status variable. this is now inside the stream element in the streams array.</aside>
 
 ### HTTP Request
 
-`GET http://example.com/kittens/<ID>`
+`GET http://api.dirble.com/v2/station/<ID>`
 
 ### URL Parameters
 
 Parameter | Description
 --------- | -----------
-ID | The ID of the cat to retrieve
+ID | The ID of the station to retrieve
 
+
+## Get Similar Stations
+
+```shell
+curl "http://api.dirble.com/v2/station/10/similar?token={your token}"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+[
+  {
+    "id": 181,
+    "name": "Sr P2",
+    "description": "",
+    "country": "SE",
+    "accepted": 1,
+    "added": "2012-03-28T21:28:20.000+02:00",
+    "website": "http://www.sverigesradio.se",
+    "currentsong_reverse": null,
+    "image": {
+      "url": "https://cdn.devality.com/station/181/original.png",
+      "thumb": {
+        "url": "https://cdn.devality.com/station/181/thumb_original.png"
+      }
+    },
+    "created_at": "2012-03-28T21:28:20.000+02:00",
+    "updated_at": "2015-04-11T14:11:00.000+02:00",
+    "slug": "sr-p2",
+    "disableSongChecks": false
+  },
+  {
+    "id": 601,
+    "name": "Nrk P3",
+    "description": "",
+    "country": "NO",
+    "accepted": 1,
+    "added": "2013-06-22T04:37:19.000+02:00",
+    "website": "http://radio.nrk.no/direkte/p3",
+    "currentsong_reverse": null,
+    "image": {
+      "url": null,
+      "thumb": {
+        "url": null
+      }
+    },
+    "created_at": "2013-06-22T04:37:19.000+02:00",
+    "updated_at": "2015-04-11T14:11:22.000+02:00",
+    "slug": "nrk-p3",
+    "disableSongChecks": false
+  }
+  ...
+]
+```
+
+This endpoint retrieves similar stations.
+
+### HTTP Request
+
+`GET http://api.dirble.com/v2/station/<ID>/similar`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+ID | The ID of the station toi get similar stations from
