@@ -83,7 +83,7 @@ The following example shows how to setup to be notified when a user arrives at a
 3. Define a trigger and recipe.
 4. Register the recipe.
 
-<br><br><br><br><br><br><br>
+<br><br><br><br><br>
 
 ###Implement Callbacks
 
