@@ -37,7 +37,7 @@
       <div id="toc">
       </div>
         <ul class="toc-footer">
-            <li><a href='#'>Sign Up for a Developer Key</a></li>
+            <li><a id="sign" href='https://docs.google.com/a/sense360.com/forms/d/1EJwLR8GC0JAqeH5F1FIWKVZJ527qdQZ7GiWirS0mDxc/viewform?usp=send_form'>Sign Up for a Developer Key!</a></li>
             <li><a href='http://github.com/tripit/slate'>Documentation Powered by Slate</a></li>
         </ul>
     </div>
@@ -61,8 +61,7 @@
 <li><p><strong>Delegate (required)</strong>: The data we pass to you when a trigger is fired.</p></li>
 <li><p><strong>Trigger (required)</strong>: See above. </p></li>
 <li><p><strong>Window (optional)</strong>: The period of time during which you want to listen for the trigger.</p></li>
-<li><p><strong>Frequency Cap (optional)</strong>: The maximum frequency with which you’d like a
-specific trigger to fire.</p></li>
+<li><p><strong>Cooldown (optional)</strong>: The amount of time after a trigger fires, to wait before the same trigger can fire again.</p></li>
 </ul>
 
 <h1 id="quick-start">Quick Start</h1>
@@ -76,49 +75,23 @@ specific trigger to fire.</p></li>
 </span>    <span class="kd">func</span> <span class="nf">application</span><span class="p">(</span><span class="nv">application</span><span class="p">:</span> <span class="kt">UIApplication</span><span class="p">,</span> <span class="n">didFinishLaunchingWithOptions</span> <span class="nv">launchOptions</span><span class="p">:</span> <span class="p">[</span><span class="kt">NSObject</span><span class="p">:</span> <span class="kt">AnyObject</span><span class="p">]?)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span> <span class="p">{</span>
         <span class="kt">SenseApi</span><span class="o">.</span><span class="n">apiKey</span> <span class="o">=</span> <span class="s">"your-api-key-here"</span>
 
-        <span class="c1">// restore any previously running recipes
-</span>        <span class="kt">SenseApi</span><span class="o">.</span><span class="nf">restoreState</span><span class="p">(</span><span class="k">self</span><span class="p">)</span>
+        <span class="k">let</span> <span class="nv">trigger</span> <span class="o">=</span> <span class="kt">BusinessCategoryTriggerBuilder</span><span class="p">()</span>
+                        <span class="o">.</span><span class="nf">set</span><span class="p">(</span><span class="nv">place</span><span class="p">:</span> <span class="kt">BusinessCategory</span><span class="o">.</span><span class="kt">Airport</span><span class="p">)</span>
+                        <span class="o">.</span><span class="nf">hasEntered</span><span class="p">()</span>
+                        <span class="o">.</span><span class="nf">build</span><span class="p">()</span>
 
-        <span class="k">let</span> <span class="nv">recipe</span> <span class="o">=</span> <span class="nf">buildRecipe</span><span class="p">()</span>
+        <span class="k">let</span> <span class="nv">recipe</span> <span class="o">=</span> <span class="kt">Recipe</span><span class="p">(</span><span class="nv">trigger</span><span class="p">:</span> <span class="n">trigger</span><span class="p">,</span> <span class="nv">name</span><span class="p">:</span> <span class="err">'</span><span class="n">airportRecipe</span><span class="err">'</span><span class="p">)</span>
         <span class="kt">SenseApi</span><span class="o">.</span><span class="nf">register</span><span class="p">(</span><span class="nv">recipe</span><span class="p">:</span> <span class="n">recipe</span><span class="p">,</span> <span class="nv">delegate</span><span class="p">:</span> <span class="k">self</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="kc">true</span>
     <span class="p">}</span>
 
-    <span class="kd">func</span> <span class="nf">applicationWillTerminate</span><span class="p">(</span><span class="nv">application</span><span class="p">:</span> <span class="kt">UIApplication</span><span class="p">)</span> <span class="p">{</span>
-      <span class="c1">// Save state before the application terminates
-</span>      <span class="kt">SenseApi</span><span class="o">.</span><span class="nf">saveState</span><span class="p">()</span>
+    <span class="kd">func</span> <span class="nf">recipeRestored</span><span class="p">(</span><span class="nv">args</span><span class="p">:</span> <span class="kt">RecipeRestoreArgs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">RecipeRestoreResult</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="kt">RecipeRestoreResult</span><span class="p">(</span><span class="nv">delegate</span><span class="p">:</span> <span class="k">self</span><span class="p">)</span>
     <span class="p">}</span>
 
-    <span class="c1">// Callback - when recipe can be re-started
-</span>    <span class="kd">func</span> <span class="nf">recipeRestored</span><span class="p">(</span><span class="nv">args</span><span class="p">:</span> <span class="kt">RecipeRestoreArgs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">RecipeRestoreResult</span> <span class="p">{</span>
-      <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">recipe</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="err">'</span><span class="n">atSoccerFieldTrigger</span><span class="err">'</span> <span class="p">{</span>
-          <span class="k">return</span> <span class="kt">RecipeRestoreResult</span><span class="p">(</span><span class="nv">delegate</span><span class="p">:</span> <span class="k">self</span><span class="p">)</span>
-        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-          <span class="k">return</span> <span class="kt">RecipeRestoreResult</span><span class="p">(</span><span class="nv">delegate</span><span class="p">:</span> <span class="kc">nil</span><span class="p">)</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-
-    <span class="c1">// Callback - when trigger is satisfied
-</span>    <span class="kd">func</span> <span class="nf">onTriggerFired</span><span class="p">(</span><span class="nv">args</span><span class="p">:</span> <span class="kt">TriggerFiredArgs</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">func</span> <span class="nf">onTriggerFired</span><span class="p">(</span><span class="nv">args</span><span class="p">:</span> <span class="kt">TriggerFiredArgs</span><span class="p">)</span> <span class="p">{</span>
       <span class="kt">NSLog</span><span class="p">(</span><span class="s">"Triggered </span><span class="se">\(</span><span class="n">args</span><span class="o">.</span><span class="n">recipe</span><span class="o">.</span><span class="n">trigger</span><span class="o">.</span><span class="n">customIdentifier</span><span class="se">)</span><span class="s"> at time </span><span class="se">\(</span><span class="n">args</span><span class="o">.</span><span class="n">timestamp</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
-    <span class="p">}</span>
-
-    <span class="c1">// Build Trigger and Recipe
-</span>    <span class="kd">func</span> <span class="n">buildRecipe</span> <span class="o">-&gt;</span> <span class="kt">Recipe</span> <span class="p">{</span>
-      <span class="k">let</span> <span class="nv">atSoccerFieldTrigger</span> <span class="o">=</span> <span class="nf">buildTrigger</span><span class="p">()</span>
-
-      <span class="k">return</span> <span class="kt">Recipe</span><span class="p">(</span><span class="nv">trigger</span><span class="p">:</span> <span class="n">atFieldTrigger</span><span class="p">,</span> <span class="nv">name</span><span class="p">:</span> <span class="err">'</span><span class="n">atSoccerFieldTrigger</span><span class="err">'</span><span class="p">)</span>
-    <span class="p">}</span>
-
-    <span class="kd">func</span> <span class="nf">buildTrigger</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Trigger</span> <span class="p">{</span>
-      <span class="k">let</span> <span class="nv">soccerFieldLocation</span> <span class="p">:</span> <span class="kt">Location</span> <span class="o">=</span> <span class="kt">Location</span><span class="p">(</span><span class="nv">lat</span><span class="p">:</span> <span class="mf">34.0274938</span><span class="p">,</span> <span class="nv">long</span><span class="p">:</span> <span class="o">-</span><span class="mf">118.3898094</span><span class="p">)</span>
-      <span class="k">let</span> <span class="nv">customPlaceField</span> <span class="o">=</span> <span class="kt">CustomPlace</span><span class="p">(</span><span class="nv">location</span><span class="p">:</span> <span class="n">soccerFieldLocation</span><span class="p">,</span> <span class="nv">radiusMeters</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span> <span class="nv">customIdentifier</span><span class="p">:</span> <span class="s">"Soccer Field"</span><span class="p">)</span>
-
-      <span class="k">return</span> <span class="kt">CustomPlaceTriggerBuilder</span><span class="p">()</span>
-              <span class="o">.</span><span class="nf">set</span><span class="p">(</span><span class="nv">places</span><span class="p">:</span> <span class="n">customPlaceField</span><span class="p">)</span>
-              <span class="o">.</span><span class="nf">hasEntered</span><span class="p">()</span>
-              <span class="o">.</span><span class="nf">build</span><span class="p">()</span>
     <span class="p">}</span>
     <span class="c1">// ...
 </span><span class="p">}</span>
@@ -126,7 +99,7 @@ specific trigger to fire.</p></li>
 
 <h3 id="scenario">Scenario</h3>
 
-<p>The following example shows how to setup to be notified when a user enters within 100m of the latitude/longitude point of 34.0274938,-118.3898094.</p>
+<p>The following example shows how to setup to be notified when a user arrives at an airport.</p>
 
 <p><br><br></p>
 
@@ -135,9 +108,8 @@ specific trigger to fire.</p></li>
 <ol>
 <li>Add SenseSdk import</li>
 <li>Register with <code class="prettyprint">SenseApi</code> with API key in <code class="prettyprint">didFinishLaunchingWithOptions</code> method.</li>
-<li>Restore state of any previously running triggers when application starts back up. (Will happen if application was terminated)</li>
-<li>Register any new recipes. (In most situations this would be done elsewhere)</li>
-<li>Save state when the application will be terminated in <code class="prettyprint">applicationWillTerminate</code> method.</li>
+<li>Define a trigger and recipe.</li>
+<li>Register the recipe.</li>
 </ol>
 
 <p><br><br><br><br><br><br><br></p>
@@ -147,27 +119,6 @@ specific trigger to fire.</p></li>
 <ol>
 <li>Implement <code class="prettyprint">SenseApiRestoreDelegate</code> in <code class="prettyprint">UIApplicationDelegate</code> to receive callback when trigger is restored. Attach delegate for trigger.</li>
 <li>Implement <code class="prettyprint">SenseApiDelegate</code> in <code class="prettyprint">UIApplicationDelegate</code> to receive callback when trigger is satisfied.</li>
-</ol>
-
-<p><br><br><br><br><br><br><br></p>
-
-<h3 id="define-trigger"><a href="#triggers">Define Trigger</a></h3>
-
-<p>A trigger defines a place you care about.</p>
-
-<ol>
-<li>Define a location.</li>
-<li>Give location a radius and name.</li>
-<li>Define an action type.</li>
-</ol>
-
-<h3 id="define-recipe"><a href="#recipes">Define Recipe</a></h3>
-
-<p>A recipe defines the when (Trigger) and to notify your application of an event (delegate).</p>
-
-<ol>
-<li>Define a trigger.</li>
-<li>Provide a unique name.</li>
 </ol>
 
 <h1 id="triggers">Triggers</h1>
@@ -196,7 +147,7 @@ specific trigger to fire.</p></li>
 <tr>
 <td><a href="#personal-place">Personal Place</a></td>
 <td>PersonalizedTriggerBuilder()</td>
-<td>User-specific locations (like <em>home</em> or <em>work</em>)geofences</td>
+<td>User-specific geofences (like <em>home</em> or <em>work</em>)</td>
 </tr>
 <tr>
 <td><a href="#custom-place">Custom Place</a></td>
@@ -399,7 +350,7 @@ Minimum radius for a CustomPlace is [20 meters]
 <pre><code class="highlight swift"><span class="k">let</span> <span class="nv">recipe</span> <span class="o">=</span> <span class="kt">Recipe</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="s">"My Recipe"</span><span class="p">,</span> <span class="nv">trigger</span><span class="p">:</span> <span class="n">someTrigger</span><span class="p">)</span>
 </code></pre>
 
-<p>The Recipe is the receptacle that encases your trigger, and various other settings.  Recipes are registered globally within your application with a call to the <a href="#senseapi">SenseApi</a>.  Below are the inputs that make up a Recipe:</p>
+<p>The Recipe is the container that encases your trigger, and various other settings.  Recipes are registered globally within your application with a call to the <a href="#senseapi">SenseApi</a>.  Below are the inputs that make up a Recipe:</p>
 
 <table><thead>
 <tr>
@@ -420,7 +371,7 @@ Minimum radius for a CustomPlace is [20 meters]
 <td>false</td>
 </tr>
 <tr>
-<td><a href="#frequency-cap">frequency cap</a></td>
+<td><a href="#cooldown">cool down</a></td>
 <td>false</td>
 </tr>
 </tbody></table>
@@ -429,17 +380,17 @@ Minimum radius for a CustomPlace is [20 meters]
 
 <p>Only allow triggers to fire between certain times.</p>
 
-<p>This example would have the trigger only fire between 5:30pm (user’s timezone) to 10:00pm:</p>
+<p>This example would have the trigger only fire between 5pm (user’s timezone) to 10pm:</p>
 
 <p><code class="prettyprint">TimeWindow(fromHour: 17, toHour: 22)</code></p>
 
-<h2 id="frequency-cap">Frequency Cap</h2>
+<h2 id="cooldown">Cooldown</h2>
 
-<p>The maximum frequency with which a trigger can fire.</p>
+<p>The amount of time after a trigger fires, to wait before the same trigger can fire again.</p>
 
 <p>This would allow the trigger to fire only once every 2 days. </p>
 
-<p><code class="prettyprint">FrequencyCap(oncePer: 2, timeUnit: FrequencyTimeUnit.Days)</code></p>
+<p><code class="prettyprint">Cooldown(oncePer: 2, timeUnit: CooldownTimeUnit.Days)</code></p>
 
 <aside class="warning">
 Frequency can only be set in days.
@@ -544,8 +495,7 @@ Frequency can only be set in days.
 <span class="kd">func</span> <span class="nf">recipeRestored</span><span class="p">(</span><span class="nv">args</span><span class="p">:</span> <span class="kt">RecipeRestoreArgs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">RecipeRestoreResult</span> <span class="p">{</span>
   <span class="k">if</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">recipe</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s">"Recipe #1"</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">return</span> <span class="kt">RecipeRestoreResult</span><span class="p">(</span><span class="nv">delegate</span><span class="p">:</span> <span class="n">recipeNumberOneDelegate</span><span class="p">)</span>
-  <span class="p">}</span>
-  <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">recipe</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s">"Recipe #2"</span><span class="p">)</span> <span class="p">{</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">recipe</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s">"Recipe #2"</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">return</span> <span class="kt">RecipeRestoreResult</span><span class="p">(</span><span class="nv">delegate</span><span class="p">:</span> <span class="n">recipeNumberTwoDelegate</span><span class="p">)</span>
   <span class="p">}</span>
 <span class="p">}</span>

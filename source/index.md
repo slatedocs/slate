@@ -34,8 +34,7 @@ The following are the main components of building with Sense360
 
 * **Window (optional)**: The period of time during which you want to listen for the trigger.
   
-* **Frequency Cap (optional)**: The maximum frequency with which you’d like a
-specific trigger to fire.
+* **Cooldown (optional)**: The amount of time after a trigger fires, to wait before the same trigger can fire again.
 
 # Quick Start
 
@@ -49,50 +48,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SenseApiDelegate, SenseAp
     // ...
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         SenseApi.apiKey = "your-api-key-here"
-        
-        // restore any previously running recipes
-        SenseApi.restoreState(self)
-        
-        let recipe = buildRecipe()
+                
+        let trigger = BusinessCategoryTriggerBuilder()
+                        .set(place: BusinessCategory.Airport)
+                        .hasEntered()
+                        .build()
+                        
+        let recipe = Recipe(trigger: trigger, name: 'airportRecipe')
         SenseApi.register(recipe: recipe, delegate: self)
         
         return true
     }
     
-    func applicationWillTerminate(application: UIApplication) {
-      // Save state before the application terminates
-      SenseApi.saveState()
-    }
-    
-    // Callback - when recipe can be re-started
     func recipeRestored(args: RecipeRestoreArgs) -> RecipeRestoreResult {
-      if args.recipe.name == 'atSoccerFieldTrigger' {
-          return RecipeRestoreResult(delegate: self)
-        } else {
-          return RecipeRestoreResult(delegate: nil)
-        }
+      return RecipeRestoreResult(delegate: self)
     }
     
-    // Callback - when trigger is satisfied
     func onTriggerFired(args: TriggerFiredArgs) {
       NSLog("Triggered \(args.recipe.trigger.customIdentifier) at time \(args.timestamp)")
-    }
-    
-    // Build Trigger and Recipe
-    func buildRecipe -> Recipe {
-      let atSoccerFieldTrigger = buildTrigger()
-      
-      return Recipe(trigger: atFieldTrigger, name: 'atSoccerFieldTrigger')
-    }
-    
-    func buildTrigger() -> Trigger {
-      let soccerFieldLocation : Location = Location(lat: 34.0274938, long: -118.3898094)
-      let customPlaceField = CustomPlace(location: soccerFieldLocation, radiusMeters: 100, customIdentifier: "Soccer Field")
-      
-      return CustomPlaceTriggerBuilder()
-              .set(places: customPlaceField)
-              .hasEntered()
-              .build()
     }
     // ...
 }
@@ -100,16 +73,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SenseApiDelegate, SenseAp
 
 ### Scenario
 
-The following example shows how to setup to be notified when a user enters within 100m of the latitude/longitude point of 34.0274938,-118.3898094.
+The following example shows how to setup to be notified when a user arrives at an airport.
 
 <br><br>
 
 ### Setup
 1. Add SenseSdk import
 2. Register with `SenseApi` with API key in `didFinishLaunchingWithOptions` method.
-3. Restore state of any previously running triggers when application starts back up. (Will happen if application was terminated)
-4. Register any new recipes. (In most situations this would be done elsewhere)
-5. Save state when the application will be terminated in `applicationWillTerminate` method.
+3. Define a trigger and recipe.
+4. Register the recipe.
 
 <br><br><br><br><br><br><br>
 
@@ -117,24 +89,6 @@ The following example shows how to setup to be notified when a user enters withi
 
 1. Implement `SenseApiRestoreDelegate` in `UIApplicationDelegate` to receive callback when trigger is restored. Attach delegate for trigger.
 2. Implement `SenseApiDelegate` in `UIApplicationDelegate` to receive callback when trigger is satisfied.
-
-
-<br><br><br><br><br><br><br>
-
-### [Define Trigger](#triggers)
-
-A trigger defines a place you care about.
-
-1. Define a location.
-2. Give location a radius and name.
-3. Define an action type.
-
-### [Define Recipe](#recipes)
-
-A recipe defines the when (Trigger) and to notify your application of an event (delegate).
-
-1. Define a trigger.
-2. Provide a unique name.
 
 # Triggers
 
@@ -150,7 +104,7 @@ There are 3 types of TriggerBuilders that correspond to 3 place types:
 TriggerBuilder Type | Signature | Description
 --------- | ------- |------- | -----------
 [Business Place](#business-place) | BusinessCategoryTriggerBuilder() | Business Categories (like *restaurant* or *shopping mall*)
-[Personal Place](#personal-place) | PersonalizedTriggerBuilder() | User-specific locations (like *home* or *work*)geofences
+[Personal Place](#personal-place) | PersonalizedTriggerBuilder() | User-specific geofences (like *home* or *work*)
 [Custom Place](#custom-place) | CustomPlaceTriggerBuilder() | Custom set of lat/longs + radius 
 
 ### Action Types
@@ -263,24 +217,24 @@ Parameter | Required
 name | true |
 [trigger](#triggers) | true 
 [window](#window)| false 
-[frequency cap](#frequency-cap) | false 
+[cool down](#cooldown) | false 
 
 
 ## Window
 
 Only allow triggers to fire between certain times.
 
-This example would have the trigger only fire between 5:30pm (user’s timezone) to 10:00pm:
+This example would have the trigger only fire between 5pm (user’s timezone) to 10pm:
 
 `TimeWindow(fromHour: 17, toHour: 22)`
 
-## Frequency Cap
+## Cooldown
 
-The maximum frequency with which a trigger can fire.
+The amount of time after a trigger fires, to wait before the same trigger can fire again.
 
 This would allow the trigger to fire only once every 2 days. 
 
-`FrequencyCap(oncePer: 2, timeUnit: FrequencyTimeUnit.Days)`
+`Cooldown(oncePer: 2, timeUnit: CooldownTimeUnit.Days)`
 
 <aside class="warning">
 Frequency can only be set in days.
@@ -358,8 +312,7 @@ func applicationWillTerminate(application: UIApplication) {
 func recipeRestored(args: RecipeRestoreArgs) -> RecipeRestoreResult {
   if(args.recipe.name == "Recipe #1") {
     return RecipeRestoreResult(delegate: recipeNumberOneDelegate)
-  }
-  else if(args.recipe.name == "Recipe #2") {
+  } else if(args.recipe.name == "Recipe #2") {
     return RecipeRestoreResult(delegate: recipeNumberTwoDelegate)
   }
 }
