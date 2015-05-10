@@ -4,7 +4,7 @@
 @import 'variables';
 @import 'syntax';
 @import 'icon-font';
-
+@import url(http://fonts.googleapis.com/css?family=Parisienne);
 /*
 Copyright 2008-2013 Concur Technologies, Inc.
 
@@ -92,6 +92,20 @@ html, body {
   // This is the logo at the top of the ToC
   &>img {
     display: block;
+  }
+
+  &>.logo {
+    display:block;
+    color-background: #ffffff;
+    margin-top:10px;
+    color:white;
+    height:40px;
+    width:100%;
+    font-size:34px;
+    text-align:center;
+    &>.dirble {
+      font-family: 'Parisienne', cursive;
+    }
   }
 
   &>.search {
