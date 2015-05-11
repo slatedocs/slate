@@ -199,7 +199,7 @@ radiusMeters | Int | true | radius of geofence
 customIdentifier | String | true | unique name for place
 
 
-<aside class="warning"> You can have no more than [150] custom places included in a single trigger.
+<aside class="warning"> You can have no more than [1000] custom places included in a single trigger.
 Minimum radius for a CustomPlace is [20 meters]
 </aside>
 
