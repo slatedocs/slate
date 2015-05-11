@@ -28,7 +28,7 @@ The following are the main components of building with Sense360
 
 [Recipes](#recipes):  A collection of elements (including the Trigger) that defines **when** you want to listen for the trigger, and **what** you want to happen when the trigger is fired. Recipes gives you the flexibility to do whatever you want upon a Trigger event and are constructed of the following:
 
-* **Name (required)**: A unique name amongst all recipes within your app.
+* **Unique Id (required)**: A unique identifier amongst all recipes within your app.
 
 * **Delegate (required)**: The data we pass to you when a trigger is fired.
 
@@ -47,7 +47,7 @@ The fastest setup to get up and running.
 import SenseSdk
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, SenseApiDelegate, SenseApiRestoreDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, SenseApiDelegate {
     // ...
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Setup
@@ -64,15 +64,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SenseApiDelegate, SenseAp
         return true
     }
     
-    func recipeRestored(args: RecipeRestoreArgs) -> RecipeRestoreResult {
-      return RecipeRestoreResult(delegate: self)
-    }
-    
-    // Implement Callbacks
+    // Implement Callback
     func onTriggerFired(args: TriggerFiredArgs) {
       NSLog("Triggered \(args.recipe.trigger.customIdentifier) at time \(args.timestamp)")
     }
     // ...
+
+    // Save State
+    func applicationWillTerminate(application: UIApplication) {
+      SenseApi.saveState()
+    }
 }
 ```
 
@@ -89,10 +90,15 @@ The following example shows how to setup to be notified when a user arrives at a
 
 <br><br><br><br><br>
 
-###Implement Callbacks
+###Implement Callback
 
-1. Implement `SenseApiRestoreDelegate` in `UIApplicationDelegate` to receive callback when trigger is restored. Attach delegate for trigger.
-2. Implement `SenseApiDelegate` in `UIApplicationDelegate` to receive callback when trigger is satisfied.
+1. Implement `SenseApiDelegate` in `UIApplicationDelegate` to receive callback when trigger is satisfied.
+
+<br><br>
+
+###Save state
+
+1. Saving the state ensures that your triggers will function properly even if a user terminates the app.
 
 # Triggers
 
@@ -218,7 +224,7 @@ The Recipe is the container that encases your trigger, and various other setting
 
 Parameter | Required
 --------- | ------- 
-name | true |
+uniqueId | true |
 [trigger](#triggers) | true 
 [window](#window)| false 
 [cool down](#cooldown) | false 
@@ -314,3 +320,6 @@ When a trigger is fired, it brings along one of three confidence levels.
 2. Medium
 3. Low
 
+# Thanks for using Sense360
+
+### *To sign up for a developer key, click the green link on the left side of this page!*
