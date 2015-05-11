@@ -30,7 +30,7 @@ The following are the main components of building with Sense360
 
 * **Unique Id (required)**: A unique identifier amongst all recipes within your app.
 
-* **Delegate (required)**: The data we pass to you when a trigger is fired.
+* **Delegate (required)**: The method that is called when the trigger is fired.
 
 * **Trigger (required)**: See above. 
 
@@ -64,7 +64,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SenseApiDelegate {
         return true
     }
     
-    // Implement Callback
     func onTriggerFired(args: TriggerFiredArgs) {
       NSLog("Triggered \(args.recipe.trigger.customIdentifier) at time \(args.timestamp)")
     }
@@ -88,7 +87,7 @@ The following example shows how to setup to be notified when a user arrives at a
 2. Define a trigger and recipe.
 3. Register the recipe.
 
-<br><br><br><br><br>
+<br><br><br><br>
 
 ###Implement Callback
 
