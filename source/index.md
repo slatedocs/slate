@@ -16,7 +16,9 @@ search: true
 
 # Introduction
 
-Sense360 allows you to quickly build functions around actions that your users take in the physical world. You can build triggers based on where a user is, what they are doing, or what is happening around them. **You can do all this in the background while your app is not in use.** Adding these real-world triggers to your app can take months if you try to achieve high accuracy, low battery drain, and maximum user privacy. We try to make this experience as quick and painless as possible.
+Sense360 allows you to quickly build functions around actions that your users take in the physical world. You can build triggers based on where a user is, what they are doing, or what is happening around them. **You can do all this in the background, even if your app is closed.** Adding these real-world triggers to your app can take months if you try to achieve high accuracy, low battery drain, and maximum user privacy. We try to make this experience as quick and painless as possible.
+
+**Sign up for a developer key** by clicking the green link on the left and feel free to provide any feedback that would make this toolset more useful for you. We want to make your life easier!
 
 # API Components
 
@@ -41,12 +43,14 @@ The following are the main components of building with Sense360
 The fastest setup to get up and running.
 
 ```swift
+
 import SenseSdk
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, SenseApiDelegate, SenseApiRestoreDelegate {
     // ...
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        // Setup
         SenseApi.apiKey = "your-api-key-here"
                 
         let trigger = BusinessCategoryTriggerBuilder()
@@ -54,7 +58,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SenseApiDelegate, SenseAp
                         .hasEntered()
                         .build()
                         
-        let recipe = Recipe(trigger: trigger, name: 'airportRecipe')
+        let recipe = Recipe(trigger: trigger, name: "airportRecipe")
         SenseApi.register(recipe: recipe, delegate: self)
         
         return true
@@ -64,6 +68,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SenseApiDelegate, SenseAp
       return RecipeRestoreResult(delegate: self)
     }
     
+    // Implement Callbacks
     func onTriggerFired(args: TriggerFiredArgs) {
       NSLog("Triggered \(args.recipe.trigger.customIdentifier) at time \(args.timestamp)")
     }
@@ -78,10 +83,9 @@ The following example shows how to setup to be notified when a user arrives at a
 <br><br>
 
 ### Setup
-1. Add SenseSdk import
-2. Register with `SenseApi` with API key in `didFinishLaunchingWithOptions` method.
-3. Define a trigger and recipe.
-4. Register the recipe.
+1. Register with `SenseApi` with API key in `didFinishLaunchingWithOptions` method.
+2. Define a trigger and recipe.
+3. Register the recipe.
 
 <br><br><br><br><br>
 
@@ -153,12 +157,7 @@ let homeTrigger = PersonalizedTriggerBuilder()
 	.hasEntered()
 	.build()
 ```
-<aside class="notice"> This type of trigger is custom built on a user by user basis and will only go live one week after a user has joined your service. 
-
-Due to the sensitivity of this data, neither developers nor us will ever see the raw data or store a users home or office location. The computation happens on the device itself and stays there to ensure your users privacy.
-</aside>
-
-A personalized location trigger allows you to listen and fire off user-unique locations, such as user home and user office. 
+A personalized location trigger allows you to listen and fire off user-specific locations, such as a user's home or work. Our SDK automatically learns where these Personal Places are (a process that typicaly takes 1 week).
 
 The currently supported personalized location categories are:
 
@@ -166,6 +165,10 @@ Category | Signature | Supported Action Types
 --------- | ------- |------- | -----------
 Home | .set(place: PersonalizedPlaceType.Home) | hasEntered(), hasExited(), fartherThan()
 Work | .set(place: PersonalizedPlaceType.Work) | hasEntered(), hasExited(), fartherThan()
+
+<aside class="notice"> 
+Due to the sensitivity of this data, neither developers nor us will ever see the raw data or store a users home or office location. The computation happens on the device itself and stays there to ensure your users privacy.
+</aside>
 
 ## Custom Place
 ```swift
@@ -208,7 +211,8 @@ In two of the examples above, both airportTrigger and homeTrigger were defined. 
 
 # Recipes
 ```swift
-let recipe = Recipe(name: "My Recipe", trigger: someTrigger)
+let recipe = Recipe(name: "My Recipe", 
+  trigger: someTrigger)
 ```
 The Recipe is the container that encases your trigger, and various other settings.  Recipes are registered globally within your application with a call to the [SenseApi](#senseapi).  Below are the inputs that make up a Recipe:
 
@@ -222,7 +226,18 @@ name | true |
 
 ## Window
 
-Only allow triggers to fire between certain times.
+```swift
+let recipe = Recipe(name: "My Recipe", 
+  trigger: someTrigger, 
+  window: TimeWindow(fromHour: 17, toHour: 22))
+```
+
+Only allow triggers to fire between certain times. 
+
+Parameter | Type | Range | Required | Description
+--------- | ------- |------- | ----------- | -----------
+fromHour | Int | 0-24 | true | Window start time (user's local time)
+toHour | Int | 0-24 | true | Window end time (user's local time)
 
 This example would have the trigger only fire between 5pm (user’s timezone) to 10pm:
 
@@ -230,16 +245,23 @@ This example would have the trigger only fire between 5pm (user’s timezone) to
 
 ## Cooldown
 
-The amount of time after a trigger fires, to wait before the same trigger can fire again.
+```swift
+let recipe = Recipe(name: "My Recipe", 
+  trigger: someTrigger, 
+  cooldown: Cooldown(timespan: Days(2))
+```
+
+The amount of time after a trigger fires, to wait before the same trigger can fire again.  
+
+Unit | Signature 
+--------- | ------- |
+Minutes|Cooldown(timespan: Minutes())
+Hours|Cooldown(timespan: Hours())
+Days|Cooldown(timespan: Days())
 
 This would allow the trigger to fire only once every 2 days. 
 
-`Cooldown(oncePer: 2, timeUnit: CooldownTimeUnit.Days)`
-
-<aside class="warning">
-Frequency can only be set in days.
-</aside>
-
+`Cooldown(timespan: Days(2))`
 
 
 # SenseApi
@@ -248,6 +270,7 @@ The SenseApi is the repository that stores all active Recipes within your applic
 
 ## Sense Api Functions
 ```swift
+// Registering a recipe and delegate
 let results = SenseApi.register(recipe: myRecipe, delegate: myDelegate)
 if results.successful {
   NSLog("recipe registration successful")
@@ -265,8 +288,6 @@ register | recipe, delegate | adds your recipe and delegate to SenseApi, and sta
 unregister | recipe | stops and removes the recipe from SenseApi
 findRecipe | name | finds and returns a recipe by name
 getAllRecipes | | returns all registered recipes
-saveState | | persists the state of the sdk
-restoreState | restoreDelegate | restores the state of the sdk
 
 ## SenseApiDelegate
 ```swift
@@ -293,28 +314,3 @@ When a trigger is fired, it brings along one of three confidence levels.
 2. Medium
 3. Low
 
-
-<aside class="notice">
-  Currently, a confidence level of Low does not trigger the firing of a trigger.
-</aside>
-
-
-## Save and restoring state
-```swift
-func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-  SenseApi.restoreState(restoreDelegate: self)
-}
-
-func applicationWillTerminate(application: UIApplication) {
-  SenseApi.saveState()
-}
-
-func recipeRestored(args: RecipeRestoreArgs) -> RecipeRestoreResult {
-  if(args.recipe.name == "Recipe #1") {
-    return RecipeRestoreResult(delegate: recipeNumberOneDelegate)
-  } else if(args.recipe.name == "Recipe #2") {
-    return RecipeRestoreResult(delegate: recipeNumberTwoDelegate)
-  }
-}
-```
-Your application will not always be running, but you probably want your triggers to.  In order to accomplish this, the SenseApi provides methods that persist your recipes and the state of your triggers when your application is not running.  Since the SenseApiDelegate is not set within the recipe, it is your job to match each your recipes with the correct delegate.  This is done by implementing the SenseApiRestoreDelegate protocol.
