@@ -27,7 +27,7 @@ Some of our SDKs are also bundled with optional checkout experiences proven to c
 > Example Request
 
 ```shell
-curl "https://api.kite.ly/v1.3/address/search/?country_code=USA&search_term=1+Infinite+Loop" \
+curl "https://api.kite.ly/v1.4/address/search/?country_code=USA&search_term=1+Infinite+Loop" \
   -H "Authorization: ApiKey {{ test_api_key }}:"
 ```
 
@@ -68,7 +68,7 @@ This is the easiest approach to using the Kite platform as it means you don't ne
 > Example Request
 
 ```shell
-curl "https://api.kite.ly/v1.3/address/search/?country_code=USA&search_term=1+Infinite+Loop" \
+curl "https://api.kite.ly/v1.4/address/search/?country_code=USA&search_term=1+Infinite+Loop" \
   -H "Authorization: ApiKey {{ test_api_key }}:<your_secret_key>"
 ```
 
@@ -151,7 +151,7 @@ Where possible an error response will include an `error` object that provides fu
 > Example Request
 
 ```shell
-curl "https://api.kite.ly/v1.3/order/?offset=30&limit=5" \
+curl "https://api.kite.ly/v1.4/order/?offset=30&limit=5" \
   -H "Authorization: ApiKey {{ test_api_key }}:{{ test_secret_key }}"
 ```
 
@@ -242,7 +242,7 @@ url<span class="attribute-type">string</span> | The URL from which the asset can
 > Managed Asset Registration Request
 
 ```shell
-curl "https://api.kite.ly/v1.3/asset/sign/?mime_types=image/jpeg&client_asset=true" \
+curl "https://api.kite.ly/v1.4/asset/sign/?mime_types=image/jpeg&client_asset=true" \
   -H "Authorization: ApiKey {{ test_api_key }}:"
 ```
 
@@ -335,7 +335,7 @@ Registering and uploading a managed asset is a two step process. First you make 
 
 ### HTTP Request
 
-`GET https://api.kite.ly/v1.3/asset/sign/`
+`GET https://api.kite.ly/v1.4/asset/sign/`
 
 ### Arguments
 
@@ -438,7 +438,7 @@ jobs<span class="attribute-type">list</span> | A list of one or more [job object
 > Example Order Request
 
 ```shell
-curl "https://api.kite.ly/v1.3/print/" \
+curl "https://api.kite.ly/v1.4/print/" \
   -H "Authorization: ApiKey {{ test_api_key }}:<your_secret_key>" \
   --data '{
     "shipping_address": {
@@ -595,7 +595,7 @@ Product identifiers and product specific request arguments (if any) are document
 
 ### HTTP Request
 
-`POST https://api.kite.ly/v1.3/print/`
+`POST https://api.kite.ly/v1.4/print/`
 
 ### Arguments
 
@@ -617,7 +617,7 @@ Returns a dictionary containing the order id
 > Example Order Request
 
 ```shell
-curl "https://api.kite.ly/v1.3/print/" \
+curl "https://api.kite.ly/v1.4/print/" \
   -H "Authorization: ApiKey {{ test_api_key }}:<your_secret_key>" \
   --data '{
     "shipping_address": {
@@ -777,7 +777,7 @@ A3 Poster<span class="attribute-type">a3_poster</span> | Our large format poster
 > Example Order Request
 
 ```shell
-curl "https://api.kite.ly/v1.3/print/" \
+curl "https://api.kite.ly/v1.4/print/" \
   -H "Authorization: ApiKey {{ test_api_key }}:<your_secret_key>" \
   --data '{
     "shipping_address": {
@@ -956,7 +956,7 @@ case_style<span class="optional-argument">optional</span> | Either `matte` or `g
 > Example Order Request
 
 ```shell
-curl "https://api.kite.ly/v1.3/print/" \
+curl "https://api.kite.ly/v1.4/print/" \
   -H "Authorization: ApiKey {{ test_api_key }}:<your_secret_key>" \
   --data '{
     "shipping_address": {
@@ -1125,13 +1125,13 @@ garment_color<span class="required-argument">required</span> | The base material
 	<tbody>
 		<tr>
 			<td>center_chest<span class="optional-argument">optional</span></td>
-			<td class="img-tshirt"><img alt="T-Shirt Print API Centre Chest" src="{% static "docs_new/images/centre_chest.jpg" %}"></td>
+			<td class="img-tshirt"><img alt="T-Shirt Print API Centre Chest" src="{% static "docs/images/centre_chest.jpg" %}"></td>
 			<td><code class="prettyprint">gildan_tshirt</code>, <code class="prettyprint">gildan_hoodie</code>, <code class="prettyprint">gildan_hoodie_zipped</code></td>
 			<td>30cm</td>
 		</tr>
 		<tr>
 			<td>center_back<span class="optional-argument">optional</span></td>
-			<td class="img-tshirt"><img alt="T-Shirt Print API Centre Back" src="{% static "docs_new/images/centre_back.jpg" %}"></td>
+			<td class="img-tshirt"><img alt="T-Shirt Print API Centre Back" src="{% static "docs/images/centre_back.jpg" %}"></td>
 			<td><code class="prettyprint">gildan_tshirt</code>, <code class="prettyprint">gildan_hoodie</code>, <code class="prettyprint">gildan_hoodie_zipped</code></td>
 			<td>30cm</td>
 		</tr>
@@ -1139,52 +1139,52 @@ garment_color<span class="required-argument">required</span> | The base material
 		
 		<tr>
 			<td>top_chest<span class="optional-argument">optional</span></td>
-			<td class="img-tshirt"><img alt="T-Shirt Print API Top Chest" src="{% static "docs_new/images/top_chest.jpg" %}"></td>
+			<td class="img-tshirt"><img alt="T-Shirt Print API Top Chest" src="{% static "docs/images/top_chest.jpg" %}"></td>
 			<td><code class="prettyprint">gildan_tshirt</code></td>
 			<td>30cm</td>
 		</tr>
 		<tr>
 			<td>top_back<span class="optional-argument">optional</span></td>
-			<td class="img-tshirt"><img alt="T-Shirt Print API Top Back" src="{% static "docs_new/images/top_back.jpg" %}"></td>
+			<td class="img-tshirt"><img alt="T-Shirt Print API Top Back" src="{% static "docs/images/top_back.jpg" %}"></td>
 			<td><code class="prettyprint">gildan_tshirt</code>, <code class="prettyprint">gildan_hoodie</code>, <code class="prettyprint">gildan_hoodie_zipped</code></td>
 			<td>30cm</td>
 		</tr>
 		
 		<tr>
 			<td>right_sleeve<span class="optional-argument">optional</span></td>
-			<td class="img-tshirt"><img alt="T-Shirt Print API Right Sleeve" src="{% static "docs_new/images/right_sleeve.jpg" %}"></td>
+			<td class="img-tshirt"><img alt="T-Shirt Print API Right Sleeve" src="{% static "docs/images/right_sleeve.jpg" %}"></td>
 			<td><code class="prettyprint">gildan_tshirt</code>, <code class="prettyprint">gildan_hoodie</code>, <code class="prettyprint">gildan_hoodie_zipped</code></td>
 			<td>10cm</td>
 		</tr>
 		<tr>
 			<td>left_sleeve<span class="optional-argument">optional</span></td>
-			<td class="img-tshirt"><img alt="T-Shirt Print API Left Sleeve" src="{% static "docs_new/images/left_sleeve.jpg" %}"></td>
+			<td class="img-tshirt"><img alt="T-Shirt Print API Left Sleeve" src="{% static "docs/images/left_sleeve.jpg" %}"></td>
 			<td><code class="prettyprint">gildan_tshirt</code>, <code class="prettyprint">gildan_hoodie</code>, <code class="prettyprint">gildan_hoodie_zipped</code></td>
 			<td>10cm</td>
 		</tr>
 		
 		<tr>
 			<td>right_chest<span class="optional-argument">optional</span></td>
-			<td class="img-tshirt"><img alt="T-Shirt Print API Right Chest" src="{% static "docs_new/images/right_chest.jpg" %}"></td>
+			<td class="img-tshirt"><img alt="T-Shirt Print API Right Chest" src="{% static "docs/images/right_chest.jpg" %}"></td>
 			<td><code class="prettyprint">gildan_tshirt</code>, <code class="prettyprint">gildan_hoodie</code>, <code class="prettyprint">gildan_hoodie_zipped</code></td>
 			<td>12cm</td>
 		</tr>
 		<tr>
 			<td>left_chest<span class="optional-argument">optional</span></td>
-			<td class="img-tshirt"><img alt="T-Shirt Print API Left Chest" src="{% static "docs_new/images/left_chest.jpg" %}"></td>
+			<td class="img-tshirt"><img alt="T-Shirt Print API Left Chest" src="{% static "docs/images/left_chest.jpg" %}"></td>
 			<td><code class="prettyprint">gildan_tshirt</code>, <code class="prettyprint">gildan_hoodie</code>, <code class="prettyprint">gildan_hoodie_zipped</code></td>
 			<td>12cm</td>
 		</tr>
 		
 		<tr>
 			<td>bottom_right<span class="optional-argument">optional</span></td>
-			<td class="img-tshirt"><img alt="T-Shirt Print API Bottom Right" src="{% static "docs_new/images/bottom_right.jpg" %}"></td>
+			<td class="img-tshirt"><img alt="T-Shirt Print API Bottom Right" src="{% static "docs/images/bottom_right.jpg" %}"></td>
 			<td><code class="prettyprint">gildan_tshirt</code>, <code class="prettyprint">gildan_hoodie</code>, <code class="prettyprint">gildan_hoodie_zipped</code></td>
 			<td>12cm</td>
 		</tr>
 		<tr>
 			<td>bottom_left<span class="optional-argument">optional</span></td>
-			<td class="img-tshirt"><img alt="T-Shirt Print API Bottom Left" src="{% static "docs_new/images/bottom_left.jpg" %}"></td>
+			<td class="img-tshirt"><img alt="T-Shirt Print API Bottom Left" src="{% static "docs/images/bottom_left.jpg" %}"></td>
 			<td><code class="prettyprint">gildan_tshirt</code>, <code class="prettyprint">gildan_hoodie</code>, <code class="prettyprint">gildan_hoodie_zipped</code></td>
 			<td>12cm</td>
 		</tr>
@@ -1199,7 +1199,7 @@ garment_color<span class="required-argument">required</span> | The base material
 > Example Order Request
 
 ```shell
-curl "https://api.kite.ly/v1.3/print/" \
+curl "https://api.kite.ly/v1.4/print/" \
   -H "Authorization: ApiKey {{ test_api_key }}:<your_secret_key>" \
   --data '{
     "shipping_address": {
@@ -1358,7 +1358,7 @@ pdf<span class="required-argument">required</span> | A PDF URL accessible to the
 > Example Order Request
 
 ```shell
-curl "https://api.kite.ly/v1.3/print/" \
+curl "https://api.kite.ly/v1.4/print/" \
   -H "Authorization: ApiKey {{ test_api_key }}:<your_secret_key>" \
   --data '{
     "shipping_address": {
@@ -1555,7 +1555,7 @@ display_address<span class="attribute-type">string</span> | A partial textual re
 > Example Address Search Request
 
 ```shell
-curl "https://api.kite.ly/v1.3/address/search/?country_code=GBR&search_term=10+Downing+Street,London" \
+curl "https://api.kite.ly/v1.4/address/search/?country_code=GBR&search_term=10+Downing+Street,London" \
   -H "Authorization: ApiKey {{ test_api_key }}:"
 ```
 
@@ -1629,7 +1629,7 @@ public void onError(AddressSearchRequest req, Exception error) {
 > Example Address Search Request
 
 ```shell
-curl "https://api.kite.ly/v1.3/address/search/?country_code=GBR&address_id=GBR|PR|23747771|0|0|0||Retrieve" \
+curl "https://api.kite.ly/v1.4/address/search/?country_code=GBR&address_id=GBR|PR|23747771|0|0|0||Retrieve" \
   -H "Authorization: ApiKey {{ test_api_key }}:"
 ```
 
@@ -1678,7 +1678,7 @@ You can perform a search on any part of the address not just the ZIP/Postal code
 
 ### HTTP Request
 
-`GET https://api.kite.ly/v1.3/address/search/`
+`GET https://api.kite.ly/v1.4/address/search/`
 
 ### Arguments
 
