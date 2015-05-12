@@ -16,9 +16,13 @@ search: true
 
 # Introduction
 
-Sense360 allows you to quickly build functions around actions that your users take in the physical world. You can build triggers based on where a user is, what they are doing, or what is happening around them. **You can do all this in the background, even if your app is closed.** Adding these real-world triggers to your app can take months if you try to achieve high accuracy, low battery drain, and maximum user privacy. We try to make this experience as quick and painless as possible.
+Sense360 allows you to quickly build functions around actions that your users take in the physical world. You can build triggers based on where a user is, what they are doing, or what is happening around them. **You can do all this in the background, even if your app is closed.** Adding these real-world triggers to your app can take months if you try to achieve high accuracy, low battery drain, and maximum user privacy. We make the process quick and painless.
 
-**Sign up for a developer key** by clicking the green link on the left and feel free to provide any feedback that would make this toolset more useful for you. We want to make your life easier!
+Eventually, we aim to have a trigger for any action a user can take, whether it be "running", "driving", "waking up", "eating", "watching tv", "playing basketball", "watching basketball", etc.
+
+**Sign up for a developer key** by clicking the green link on the left. 
+
+Have fun creating!
 
 # API Components
 
