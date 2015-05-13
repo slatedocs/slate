@@ -140,6 +140,9 @@ TriggerBuildResult Type | Name | Description
 Trigger?|trigger|The final trigger when there are no errors
 [TriggerError]?|errors|The errors that took place during the build
 
+<aside class="notice"> Full list of TriggerErrors will be coming soon.
+</aside>
+
 ## Business Place
 ```swift
 let airportTrigger = BusinessCategoryTriggerBuilder()
@@ -245,8 +248,8 @@ Only allow triggers to fire between certain times.
 
 Parameter | Type | Range | Required | Description
 --------- | ------- |------- | ----------- | -----------
-fromHour | Int | 0-24 | true | Window start time (user's local time)
-toHour | Int | 0-24 | true | Window end time (user's local time)
+fromHour | Int | 0-23 | true | Window start time (user's local time)
+toHour | Int | 0-23 | true | Window end time (user's local time)
 
 This example would have the trigger only fire between 5pm (user’s timezone) to 10pm:
 
