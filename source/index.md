@@ -378,4 +378,8 @@ published_at | No | The time the request is made (if the story has not already b
 
 ## Webhook
 
-To make publishing stories easier, we provide a webhook that will push stories to you as they are completed (in the format specified above). Our webhook will submit a POST request to the URL you specifiy so that you don't have to poll for newly completed stories. Speak with your account manager to configure the webhook for your publication.
+To make publishing stories easier, we provide a webhook that will push stories to you as they are completed. Our webhook will submit a POST request to the URL you specifiy so that you don't have to poll for newly completed stories. The body of the request will contain the JSON data for the story in the [format specified above](#story-details).
+
+If security is a concern and you want to verify that Contently sent the webhook, you can simply use the story ID sent over (ignoring the rest of the request) to [request the story directly](#story-details) from our API. This will return the same information that we push to you via the webhook, but you will have initiated the request and specified the story based on the story ID initially pushed to you.
+
+Speak with your account manager to configure the webhook for your publication.
