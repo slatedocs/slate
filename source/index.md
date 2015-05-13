@@ -160,7 +160,8 @@ Airport | .set(place: BusinessCategory.Airport) | hasEntered(), hasExited()
 Bar | .set(place: BusinessCategory.Bar) | hasEntered(), hasExited()
 Restaurant | .set(place: BusinessCategory.Restaurant) | hasEntered(), hasExited()
 Mall | .set(place: BusinessCategory.Mall) | hasEntered(), hasExited()
-Gas Station | .set(place: BusinessCategory.gasStation) | hasEntered(), hasExited()
+Cafe | .set(place: BusinessCategory.Cafe) | hasEntered(), hasExited()
+Gym | .set(place: BusinessCategory.Gym) | hasEntered(), hasExited()
 
 ## Personal Place
 ```swift
