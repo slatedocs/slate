@@ -572,16 +572,10 @@ curl "http://api.dirble.com/v2/category/11/stations?token={your token}"
     "updated_at": "2015-04-12T03:23:47.000+02:00",
     "streams": [
       {
-        "id": 6697,
         "stream": "http://kmr.iad.streamguys1.com:80/symphony",
         "bitrate": 60,
         "content_type": "audio/mpeg",
         "status": 1,
-        "Station_id": 12341,
-        "created_at": "2015-04-12T03:23:49.000+02:00",
-        "updated_at": "2015-05-10T15:09:39.000+02:00",
-        "timedout": false,
-        "emptycounter": 8
       }
     ],
     "categories": [
@@ -589,9 +583,6 @@ curl "http://api.dirble.com/v2/category/11/stations?token={your token}"
         "id": 11,
         "title": "Classical",
         "description": "Classical music such as Mozart and Beethoven but also Greig and others.",
-        "urlid": null,
-        "created_at": "2015-04-11T13:49:53.000+02:00",
-        "updated_at": "2015-04-11T13:49:53.000+02:00",
         "slug": "classical",
         "ancestry": null,
         "position": null
@@ -600,9 +591,6 @@ curl "http://api.dirble.com/v2/category/11/stations?token={your token}"
         "id": 26,
         "title": "Classical period music",
         "description": "",
-        "urlid": null,
-        "created_at": "2015-04-11T13:49:53.000+02:00",
-        "updated_at": "2015-04-11T13:49:53.000+02:00",
         "slug": "classical-period-music",
         "ancestry": "11",
         "position": null
@@ -628,16 +616,10 @@ curl "http://api.dirble.com/v2/category/11/stations?token={your token}"
     "updated_at": "2015-04-11T14:19:55.000+02:00",
     "streams": [
       {
-        "id": 6339,
         "stream": "http://77.92.64.44:8398/stream",
         "bitrate": 64,
         "content_type": "audio/mpeg",
         "status": 1,
-        "Station_id": 12314,
-        "created_at": "2015-04-11T14:23:29.000+02:00",
-        "updated_at": "2015-05-10T15:03:35.000+02:00",
-        "timedout": false,
-        "emptycounter": 0
       }
     ],
     "categories": [
@@ -645,9 +627,6 @@ curl "http://api.dirble.com/v2/category/11/stations?token={your token}"
         "id": 18,
         "title": "Classic Rock",
         "description": "",
-        "urlid": null,
-        "created_at": "2015-04-11T13:49:53.000+02:00",
-        "updated_at": "2015-04-11T13:49:53.000+02:00",
         "slug": "classic-rock",
         "ancestry": "2",
         "position": null
@@ -656,9 +635,6 @@ curl "http://api.dirble.com/v2/category/11/stations?token={your token}"
         "id": 48,
         "title": "Folk Rock",
         "description": "",
-        "urlid": null,
-        "created_at": "2015-04-11T13:49:53.000+02:00",
-        "updated_at": "2015-04-11T13:49:53.000+02:00",
         "slug": "folk-rock",
         "ancestry": "46",
         "position": null
@@ -667,9 +643,6 @@ curl "http://api.dirble.com/v2/category/11/stations?token={your token}"
         "id": 46,
         "title": "Folk",
         "description": "",
-        "urlid": null,
-        "created_at": "2015-04-11T13:49:53.000+02:00",
-        "updated_at": "2015-04-11T13:49:53.000+02:00",
         "slug": "folk",
         "ancestry": null,
         "position": null
@@ -678,34 +651,22 @@ curl "http://api.dirble.com/v2/category/11/stations?token={your token}"
         "id": 51,
         "title": "Classic Country",
         "description": "",
-        "urlid": null,
-        "created_at": "2015-04-11T13:49:54.000+02:00",
-        "updated_at": "2015-04-11T13:49:54.000+02:00",
         "slug": "classic-country",
         "ancestry": "49",
-        "position": null
       },
       {
         "id": 11,
         "title": "Classical",
         "description": "Classical music such as Mozart and Beethoven but also Greig and others.",
-        "urlid": null,
-        "created_at": "2015-04-11T13:49:53.000+02:00",
-        "updated_at": "2015-04-11T13:49:53.000+02:00",
         "slug": "classical",
         "ancestry": null,
-        "position": null
       },
       {
         "id": 49,
         "title": "Country",
         "description": "",
-        "urlid": null,
-        "created_at": "2015-04-11T13:49:53.000+02:00",
-        "updated_at": "2015-04-11T13:49:53.000+02:00",
         "slug": "country",
         "ancestry": null,
-        "position": null
       }
     ]
   },
@@ -728,16 +689,10 @@ curl "http://api.dirble.com/v2/category/11/stations?token={your token}"
     "updated_at": "2015-04-11T14:19:35.000+02:00",
     "streams": [
       {
-        "id": 5822,
         "stream": "http://classicandjazz.ice.infomaniak.ch:80/classicandjazz-128.mp3",
         "bitrate": 128,
         "content_type": "audio/mpeg",
         "status": 1,
-        "Station_id": 11858,
-        "created_at": "2015-04-11T14:23:19.000+02:00",
-        "updated_at": "2015-05-10T15:09:32.000+02:00",
-        "timedout": false,
-        "emptycounter": 0
       }
     ],
     "categories": [
@@ -745,23 +700,15 @@ curl "http://api.dirble.com/v2/category/11/stations?token={your token}"
         "id": 11,
         "title": "Classical",
         "description": "Classical music such as Mozart and Beethoven but also Greig and others.",
-        "urlid": null,
-        "created_at": "2015-04-11T13:49:53.000+02:00",
-        "updated_at": "2015-04-11T13:49:53.000+02:00",
         "slug": "classical",
         "ancestry": null,
-        "position": null
       },
       {
         "id": 12,
         "title": "Jazz",
         "description": "The classical music - Jazz.",
-        "urlid": null,
-        "created_at": "2015-04-11T13:49:53.000+02:00",
-        "updated_at": "2015-04-11T13:49:53.000+02:00",
         "slug": "jazz",
         "ancestry": null,
-        "position": null
       }
     ]
   },
@@ -801,7 +748,6 @@ curl "http://api.dirble.com/v2/search/mental?token={your token}"
   {
     "id": 8763,
     "name": "Hotmusic  Super 936",
-    "accepted": 1,
     "country": "NL",
     "description": "",
     "image": {
@@ -818,16 +764,10 @@ curl "http://api.dirble.com/v2/search/mental?token={your token}"
     "updated_at": "2015-04-11T14:14:29.000+02:00",
     "streams": [
       {
-        "id": 2275,
         "stream": "http://95.97.83.199:8000",
         "bitrate": 192,
         "content_type": "audio/mpeg\r\n",
         "status": 1,
-        "Station_id": 8763,
-        "created_at": "2015-04-11T14:21:01.000+02:00",
-        "updated_at": "2015-05-10T15:18:19.000+02:00",
-        "timedout": false,
-        "emptycounter": 0
       }
     ],
     "categories": [
@@ -835,19 +775,14 @@ curl "http://api.dirble.com/v2/search/mental?token={your token}"
         "id": 17,
         "title": "Top 40",
         "description": "",
-        "urlid": null,
-        "created_at": "2015-04-11T13:49:53.000+02:00",
-        "updated_at": "2015-04-11T13:49:53.000+02:00",
         "slug": "top-40",
         "ancestry": "5",
-        "position": null
       }
     ]
   },
   {
     "id": 12079,
     "name": "Radio GFM",
-    "accepted": 1,
     "country": "DE",
     "description": "",
     "image": {
@@ -864,40 +799,22 @@ curl "http://api.dirble.com/v2/search/mental?token={your token}"
     "updated_at": "2015-04-11T14:19:45.000+02:00",
     "streams": [
       {
-        "id": 6095,
         "stream": "http://streams.radio-gfm.net:8000/metal.mp3",
         "bitrate": 128,
         "content_type": "audio/mpeg",
         "status": 1,
-        "Station_id": 12079,
-        "created_at": "2015-04-11T14:23:24.000+02:00",
-        "updated_at": "2015-05-10T15:18:38.000+02:00",
-        "timedout": false,
-        "emptycounter": 1
       },
       {
-        "id": 6096,
         "stream": "http://streams.radio-gfm.net:8000/electro.mp3",
         "bitrate": 128,
         "content_type": "audio/mpeg",
         "status": 1,
-        "Station_id": 12079,
-        "created_at": "2015-04-11T14:23:24.000+02:00",
-        "updated_at": "2015-05-07T05:58:14.000+02:00",
-        "timedout": false,
-        "emptycounter": 0
       },
       {
-        "id": 6097,
         "stream": "http://streams.radio-gfm.net:8000/rockpop.mp3",
         "bitrate": 128,
         "content_type": "audio/mpeg",
         "status": 1,
-        "Station_id": 12079,
-        "created_at": "2015-04-11T14:23:24.000+02:00",
-        "updated_at": "2015-04-28T17:02:01.000+02:00",
-        "timedout": false,
-        "emptycounter": 0
       }
     ],
     "categories": [
@@ -905,41 +822,28 @@ curl "http://api.dirble.com/v2/search/mental?token={your token}"
         "id": 2,
         "title": "Rock",
         "description": "simple rock. from elvis to metallica and like hardrock as iron maiden.",
-        "urlid": null,
-        "created_at": "2015-04-11T13:49:53.000+02:00",
-        "updated_at": "2015-04-11T13:49:53.000+02:00",
         "slug": "rock",
         "ancestry": null,
-        "position": null
       },
       {
         "id": 5,
         "title": "Pop",
         "description": "stations that normally play pop-music",
-        "urlid": null,
-        "created_at": "2015-04-11T13:49:53.000+02:00",
-        "updated_at": "2015-04-11T13:49:53.000+02:00",
         "slug": "pop",
         "ancestry": null,
-        "position": null
       },
       {
         "id": 14,
         "title": "Electronic",
         "description": "all computeriz made.",
-        "urlid": null,
-        "created_at": "2015-04-11T13:49:53.000+02:00",
-        "updated_at": "2015-04-11T13:49:53.000+02:00",
         "slug": "electronic",
         "ancestry": null,
-        "position": null
       }
     ]
   },
   {
     "id": 7909,
     "name": "Gotradio  Reggae",
-    "accepted": 1,
     "country": "US",
     "description": "",
     "image": {
@@ -956,16 +860,10 @@ curl "http://api.dirble.com/v2/search/mental?token={your token}"
     "updated_at": "2015-04-11T14:13:45.000+02:00",
     "streams": [
       {
-        "id": 1926,
         "stream": "http://173.244.215.163:8470",
         "bitrate": 128,
         "content_type": "audio/mpeg\r\n",
         "status": 1,
-        "Station_id": 7909,
-        "created_at": "2015-04-11T14:20:55.000+02:00",
-        "updated_at": "2015-05-10T15:18:17.000+02:00",
-        "timedout": false,
-        "emptycounter": 0
       }
     ],
     "categories": [
@@ -973,12 +871,8 @@ curl "http://api.dirble.com/v2/search/mental?token={your token}"
         "id": 9,
         "title": "Reggae",
         "description": "Who don't know Bob Marley?",
-        "urlid": null,
-        "created_at": "2015-04-11T13:49:53.000+02:00",
-        "updated_at": "2015-04-11T13:49:53.000+02:00",
         "slug": "reggae",
         "ancestry": null,
-        "position": null
       }
     ]
   }
@@ -1012,25 +906,16 @@ curl "http://api.dirble.com/v2/countries?token={your token}"
 ```json
 [
   {
-    "id": 1,
     "country_code": "DZ",
     "Continent_id": 3,
-    "created_at": "2015-04-11T14:32:22.000+02:00",
-    "updated_at": "2015-04-11T14:32:22.000+02:00"
   },
   {
-    "id": 2,
     "country_code": "AO",
     "Continent_id": 3,
-    "created_at": "2015-04-11T14:32:22.000+02:00",
-    "updated_at": "2015-04-11T14:32:22.000+02:00"
   },
   {
-    "id": 3,
     "country_code": "BJ",
     "Continent_id": 3,
-    "created_at": "2015-04-11T14:32:22.000+02:00",
-    "updated_at": "2015-04-11T14:32:22.000+02:00"
   },
   ...
 ]
@@ -1059,50 +944,32 @@ curl "http://api.dirble.com/v2/continents?token={your token}"
   {
     "id": 1,
     "name": "Europe",
-    "created_at": "2015-04-11T14:32:22.000+02:00",
-    "updated_at": "2015-04-11T14:32:22.000+02:00",
     "slug": "europe",
-    "legacy_id": 1
   },
   {
     "id": 2,
     "name": "Asia",
-    "created_at": "2015-04-11T14:32:22.000+02:00",
-    "updated_at": "2015-04-11T14:32:22.000+02:00",
     "slug": "asia",
-    "legacy_id": 2
   },
   {
     "id": 3,
     "name": "Africa",
-    "created_at": "2015-04-11T14:32:22.000+02:00",
-    "updated_at": "2015-04-11T14:32:22.000+02:00",
     "slug": "africa",
-    "legacy_id": 3
   },
   {
     "id": 4,
     "name": "North America",
-    "created_at": "2015-04-11T14:32:22.000+02:00",
-    "updated_at": "2015-04-11T14:32:22.000+02:00",
     "slug": "north-america",
-    "legacy_id": 4
   },
   {
     "id": 5,
     "name": "Oceania",
-    "created_at": "2015-04-11T14:32:22.000+02:00",
-    "updated_at": "2015-04-11T14:32:22.000+02:00",
     "slug": "oceania",
-    "legacy_id": 5
   },
   {
     "id": 6,
     "name": "South Amerika",
-    "created_at": "2015-04-11T14:32:22.000+02:00",
-    "updated_at": "2015-04-11T14:32:22.000+02:00",
     "slug": "south-amerika",
-    "legacy_id": 6
   }
 ]
 ```
@@ -1128,39 +995,24 @@ curl "http://api.dirble.com/v2/continents/1/countries?token={your token}"
 ```json
 [
   {
-    "id": 97,
     "country_code": "AL",
     "Continent_id": 1,
-    "created_at": "2015-04-11T14:32:24.000+02:00",
-    "updated_at": "2015-04-11T14:32:24.000+02:00"
   },
   {
-    "id": 98,
     "country_code": "AD",
     "Continent_id": 1,
-    "created_at": "2015-04-11T14:32:25.000+02:00",
-    "updated_at": "2015-04-11T14:32:25.000+02:00"
   },
   {
-    "id": 99,
     "country_code": "AM",
     "Continent_id": 1,
-    "created_at": "2015-04-11T14:32:25.000+02:00",
-    "updated_at": "2015-04-11T14:32:25.000+02:00"
   },
   {
-    "id": 100,
     "country_code": "AT",
     "Continent_id": 1,
-    "created_at": "2015-04-11T14:32:25.000+02:00",
-    "updated_at": "2015-04-11T14:32:25.000+02:00"
   },
   {
-    "id": 101,
     "country_code": "BY",
     "Continent_id": 1,
-    "created_at": "2015-04-11T14:32:25.000+02:00",
-    "updated_at": "2015-04-11T14:32:25.000+02:00"
   },
   ...
 ]
@@ -1211,28 +1063,16 @@ curl "http://api.dirble.com/v2/countries/SE/stations?token={your token}"
     "updated_at": "2015-04-11T14:10:45.000+02:00",
     "streams": [
       {
-        "id": 2512,
         "stream": "http://fire1.neradio.com",
         "bitrate": 128,
         "content_type": "audio/mpeg\r\n",
         "status": 1,
-        "Station_id": 15,
-        "created_at": "2015-04-11T14:21:07.000+02:00",
-        "updated_at": "2015-05-10T15:21:06.000+02:00",
-        "timedout": false,
-        "emptycounter": 0
       },
       {
-        "id": 2513,
         "stream": "http://fire2.neradio.com",
         "bitrate": 128,
         "content_type": "audio/mpeg\r\n",
         "status": 1,
-        "Station_id": 15,
-        "created_at": "2015-04-11T14:21:07.000+02:00",
-        "updated_at": "2015-05-04T11:45:12.000+02:00",
-        "timedout": false,
-        "emptycounter": 0
       }
     ],
     "categories": [
@@ -1240,12 +1080,8 @@ curl "http://api.dirble.com/v2/countries/SE/stations?token={your token}"
         "id": 1,
         "title": "Trance",
         "description": "stations that plays commercial and other things in trance-music genre.",
-        "urlid": "",
-        "created_at": "2015-04-11T13:49:53.000+02:00",
-        "updated_at": "2015-04-19T21:20:42.000+02:00",
         "slug": "trance",
         "ancestry": "14",
-        "position": null
       }
     ]
   },
@@ -1269,16 +1105,10 @@ curl "http://api.dirble.com/v2/countries/SE/stations?token={your token}"
     "updated_at": "2015-04-11T14:10:47.000+02:00",
     "streams": [
       {
-        "id": 5307,
         "stream": "http://194.16.21.227/nrj_se_mp3",
         "bitrate": 128,
         "content_type": "audio/mpeg",
         "status": 1,
-        "Station_id": 25,
-        "created_at": "2015-04-11T14:23:09.000+02:00",
-        "updated_at": "2015-05-10T15:24:07.000+02:00",
-        "timedout": false,
-        "emptycounter": 0
       }
     ],
     "categories": [
@@ -1286,34 +1116,22 @@ curl "http://api.dirble.com/v2/countries/SE/stations?token={your token}"
         "id": 3,
         "title": "Dance",
         "description": "dance music, the new from 80's and 90's, like bubblegum and more.",
-        "urlid": "",
-        "created_at": "2015-04-11T13:49:53.000+02:00",
-        "updated_at": "2015-04-19T21:19:17.000+02:00",
         "slug": "dance",
         "ancestry": "14",
-        "position": null
       },
       {
         "id": 6,
         "title": "Harddance",
         "description": "harddance as hardstyle, hardcore, gabber, speedcore, terrorcore, happy hardcore etc etc",
-        "urlid": "",
-        "created_at": "2015-04-11T13:49:53.000+02:00",
-        "updated_at": "2015-04-19T21:20:04.000+02:00",
         "slug": "harddance",
         "ancestry": "14",
-        "position": null
       },
       {
         "id": 23,
         "title": "House",
         "description": "",
-        "urlid": null,
-        "created_at": "2015-04-11T13:49:53.000+02:00",
-        "updated_at": "2015-04-11T13:49:53.000+02:00",
         "slug": "house",
         "ancestry": "14",
-        "position": null
       }
     ]
   },
