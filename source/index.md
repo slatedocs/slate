@@ -16,8 +16,7 @@ search: true
 
 # Introduction
 
-Welcome to Dirble API. This is a api for getting radio stations based on categories (read genres) and countries. You can also search, get similar stations and get played songs.
-
+Welcome to Dirble API. This is a API for getting radio stations based on categories and countries. You can also search, get similar stations, and get previously played songs.
 
 ## Contribute
 Have you made a framework or a wrapper on a specific programming language? [fork this repo](http://github.com/dirble/api-doc), add your code examples for your programming language and create a pull request.
@@ -71,10 +70,7 @@ curl "http://api.dirble.com/v2/stations?token={your token}"
     "name": "Sr P3",
     "description": "",
     "country": "SE",
-    "accepted": 1,
-    "added": "2012-01-15T05:55:12.000+01:00",
     "website": "",
-    "currentsong_reverse": null,
     "image": {
       "url": null,
       "thumb": {
@@ -84,17 +80,13 @@ curl "http://api.dirble.com/v2/stations?token={your token}"
     "created_at": "2012-01-15T05:55:12.000+01:00",
     "updated_at": "2015-04-11T14:10:45.000+02:00",
     "slug": "sr-p3",
-    "disableSongChecks": false
   },
   {
     "id": 11,
     "name": "Digitally Imported Hardcore",
     "description": "",
     "country": "US",
-    "accepted": 1,
-    "added": "2012-01-15T05:56:48.000+01:00",
     "website": "",
-    "currentsong_reverse": null,
     "image": {
       "url": null,
       "thumb": {
@@ -104,7 +96,6 @@ curl "http://api.dirble.com/v2/stations?token={your token}"
     "created_at": "2012-01-15T05:56:48.000+01:00",
     "updated_at": "2015-04-11T14:10:45.000+02:00",
     "slug": "digitally-imported-hardcore",
-    "disableSongChecks": false
   },
   ...
 ]
@@ -137,8 +128,6 @@ curl "http://api.dirble.com/v2/station/10?token={your token}"
 {
   "id": 10,
   "name": "Sr P3",
-  "accepted": 1,
-  "added": "2012-01-15T05:55:12.000+01:00",
   "country": "SE",
   "description": "",
   "image": {
@@ -233,10 +222,7 @@ curl "http://api.dirble.com/v2/station/10/similar?token={your token}"
     "name": "Sr P2",
     "description": "",
     "country": "SE",
-    "accepted": 1,
-    "added": "2012-03-28T21:28:20.000+02:00",
     "website": "http://www.sverigesradio.se",
-    "currentsong_reverse": null,
     "image": {
       "url": "https://cdn.devality.com/station/181/original.png",
       "thumb": {
@@ -246,17 +232,13 @@ curl "http://api.dirble.com/v2/station/10/similar?token={your token}"
     "created_at": "2012-03-28T21:28:20.000+02:00",
     "updated_at": "2015-04-11T14:11:00.000+02:00",
     "slug": "sr-p2",
-    "disableSongChecks": false
   },
   {
     "id": 601,
     "name": "Nrk P3",
     "description": "",
     "country": "NO",
-    "accepted": 1,
-    "added": "2013-06-22T04:37:19.000+02:00",
     "website": "http://radio.nrk.no/direkte/p3",
-    "currentsong_reverse": null,
     "image": {
       "url": null,
       "thumb": {
@@ -266,7 +248,6 @@ curl "http://api.dirble.com/v2/station/10/similar?token={your token}"
     "created_at": "2013-06-22T04:37:19.000+02:00",
     "updated_at": "2015-04-11T14:11:22.000+02:00",
     "slug": "nrk-p3",
-    "disableSongChecks": false
   },
   ...
 ]
@@ -346,34 +327,22 @@ curl "http://api.dirble.com/v2/categories?token={your token}"
     "id": 1,
     "title": "Trance",
     "description": "stations that plays commercial and other things in trance-music genre.",
-    "urlid": "",
-    "created_at": "2015-04-11T13:49:53.000+02:00",
-    "updated_at": "2015-04-19T21:20:42.000+02:00",
     "slug": "trance",
     "ancestry": "14",
-    "position": null
   },
   {
     "id": 2,
     "title": "Rock",
     "description": "simple rock. from elvis to metallica and like hardrock as iron maiden.",
-    "urlid": null,
-    "created_at": "2015-04-11T13:49:53.000+02:00",
-    "updated_at": "2015-04-11T13:49:53.000+02:00",
     "slug": "rock",
     "ancestry": null,
-    "position": null
   },
   {
     "id": 3,
     "title": "Dance",
     "description": "dance music, the new from 80's and 90's, like bubblegum and more.",
-    "urlid": "",
-    "created_at": "2015-04-11T13:49:53.000+02:00",
-    "updated_at": "2015-04-19T21:19:17.000+02:00",
     "slug": "dance",
     "ancestry": "14",
-    "position": null
   },
   ...
 ]
@@ -403,34 +372,22 @@ curl "http://api.dirble.com/v2/categories/primary?token={your token}"
     "id": 11,
     "title": "Classical",
     "description": "Classical music such as Mozart and Beethoven but also Greig and others.",
-    "urlid": null,
-    "created_at": "2015-04-11T13:49:53.000+02:00",
-    "updated_at": "2015-04-11T13:49:53.000+02:00",
     "slug": "classical",
     "ancestry": null,
-    "position": null
   },
   {
     "id": 49,
     "title": "Country",
     "description": "",
-    "urlid": null,
-    "created_at": "2015-04-11T13:49:53.000+02:00",
-    "updated_at": "2015-04-11T13:49:53.000+02:00",
     "slug": "country",
     "ancestry": null,
-    "position": null
   },
   {
     "id": 40,
     "title": "Decades",
     "description": "",
-    "urlid": null,
-    "created_at": "2015-04-11T13:49:53.000+02:00",
-    "updated_at": "2015-04-11T13:49:53.000+02:00",
     "slug": "decades",
     "ancestry": null,
-    "position": null
   },
   ...
 ]
@@ -460,23 +417,15 @@ curl "http://api.dirble.com/v2/category/11/childs?token={your token}"
     "id": 24,
     "title": "Baroque",
     "description": "",
-    "urlid": null,
-    "created_at": "2015-04-11T13:49:53.000+02:00",
-    "updated_at": "2015-04-11T13:49:53.000+02:00",
     "slug": "baroque",
     "ancestry": "11",
-    "position": null
   },
   {
     "id": 26,
     "title": "Classical period music",
     "description": "",
-    "urlid": null,
-    "created_at": "2015-04-11T13:49:53.000+02:00",
-    "updated_at": "2015-04-11T13:49:53.000+02:00",
     "slug": "classical-period-music",
     "ancestry": "11",
-    "position": null
   }
 ]
 ```
@@ -607,7 +556,6 @@ curl "http://api.dirble.com/v2/category/11/stations?token={your token}"
   {
     "id": 12341,
     "name": "iradiophilly Symphony",
-    "accepted": 1,
     "country": "US",
     "description": "",
     "image": {
@@ -664,7 +612,6 @@ curl "http://api.dirble.com/v2/category/11/stations?token={your token}"
   {
     "id": 12314,
     "name": "Radio Munna",
-    "accepted": 1,
     "country": "BD",
     "description": "",
     "image": {
@@ -765,7 +712,6 @@ curl "http://api.dirble.com/v2/category/11/stations?token={your token}"
   {
     "id": 11858,
     "name": "Classic  Jazz Paris  France",
-    "accepted": 1,
     "country": "FR",
     "description": "",
     "image": {
