@@ -46,7 +46,7 @@ You must replace <code>{your token}</code> with your personal API key.
 
 # Pagination
 
-Dirble API v.2 use a pagination to make it slow the pressure on the servers but also make it easier for you to not download heavy data everytime.
+Dirble API v.2 use a pagination to make it slow the pressure on the servers but also make it easier for you to not download heavy data every time.
 
 Requests that have support for pagination have parameters like page, per-page and offset. You add this to the url like `?page=1&per_page=10` - this will show 10-20 of the data in the database.
 
@@ -113,7 +113,7 @@ Parameter | Default | Description
 --------- | ------- | -----------
 page | 0 | show which per_page stations to show
 per\_page | 20 | How many stations per page to show
-offset | 5 |
+offset | 0 |
 
 
 ## Get a Specific Station
@@ -142,16 +142,10 @@ curl "http://api.dirble.com/v2/station/10?token={your token}"
   "website": "",
   "streams": [
     {
-      "id": 3,
       "stream": "http://http-live.sr.se/p3-mp3-192",
       "bitrate": 0,
       "content_type": "?",
       "status": 1,
-      "Station_id": 10,
-      "created_at": "2015-04-11T14:20:24.000+02:00",
-      "updated_at": "2015-04-25T22:46:30.000+02:00",
-      "timedout": true,
-      "emptycounter": 3
     }
   ],
   "categories": [
@@ -159,36 +153,9 @@ curl "http://api.dirble.com/v2/station/10?token={your token}"
       "id": 17,
       "title": "Top 40",
       "description": "",
-      "urlid": null,
-      "created_at": "2015-04-11T13:49:53.000+02:00",
-      "updated_at": "2015-04-11T13:49:53.000+02:00",
       "slug": "top-40",
       "ancestry": "5",
-      "position": null
     }
-  ],
-  "station_songs": [
-    {
-      "id": "553bf51b7370612594513400",
-      "name": "Musikguiden i P3",
-      "title": "Tiger Bell - Gorilla Dance",
-      "week": 17,
-      "year": 2015,
-      "station_id": 10,
-      "info": null,
-      "date": "2015-04-25T22:12:11+02:00"
-    },
-    {
-      "id": "553bd9ae7370612594ed1900",
-      "name": "Humorhimlen Lab",
-      "title": "Circa Waves - T-Shirt Weather",
-      "week": 17,
-      "year": 2015,
-      "station_id": 10,
-      "info": null,
-      "date": "2015-04-25T20:15:10+02:00"
-    },
-    ...
   ]
 }
 ```
@@ -440,10 +407,10 @@ This endpoint retrieves all child categories of specific primary category.
 
 Parameter | Default | Description
 --------- | ------- | -----------
-id | | (*Required*), id of primary cateogry to show child categories of
+id | | (*Required*), id of primary category to show child categories of
 page | 0 | show which per_page stations to show
 per\_page | 20 | How many stations per page to show
-offset | 5 |
+offset | 0 |
 
 ## Get Categories as tree
 
@@ -533,7 +500,7 @@ curl "http://api.dirble.com/v2/categories/tree?token={your token}"
 ]
 ```
 
-This endpoint retrieves all categories structered as a tree.
+This endpoint retrieves all categories structured as a tree.
 
 ### HTTP Request
 
@@ -584,16 +551,14 @@ curl "http://api.dirble.com/v2/category/11/stations?token={your token}"
         "title": "Classical",
         "description": "Classical music such as Mozart and Beethoven but also Greig and others.",
         "slug": "classical",
-        "ancestry": null,
-        "position": null
+        "ancestry": null
       },
       {
         "id": 26,
         "title": "Classical period music",
         "description": "",
         "slug": "classical-period-music",
-        "ancestry": "11",
-        "position": null
+        "ancestry": "11"
       }
     ]
   },
@@ -733,7 +698,7 @@ Parameter | Default | Description
 id | | (*Required*), id of category to get stations of
 page | 0 | show which per_page stations to show
 per\_page | 20 | How many stations per page to show
-offset | 5 |
+offset | 0 |
 
 # Search
 
@@ -1031,7 +996,7 @@ Parameter | Default | Description
 continent | | (*Required*), the continent id to get countries from
 page | 0 | show which per_page stations to show
 per\_page | 20 | How many stations per page to show
-offset | 5 |
+offset | 0 |
 
 ## Get Station from Country
 
@@ -1152,4 +1117,4 @@ Parameter | Default | Description
 code | | (*Required*), the country code for the country to get stations from
 page | 0 | show which per_page stations to show
 per\_page | 20 | How many stations per page to show
-offset | 5 |
+offset | 0 |
