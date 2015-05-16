@@ -674,6 +674,7 @@ EXAMPLE SERVICE RESPONSE DATA
   "error_message": "A JSONObject text must begin with ‘{‘ at character 1"
 }
 ```
+
 <table>
 		<tr>
 			<th colspan=2>Chargeback</th>
@@ -1013,8 +1014,7 @@ EXAMPLE SERVICE RESPONSE DATA
     "message": "Feedback accepted for REFUND_FRAUD feedback on transaction 42"
 }
 ```
-
-	<table>		
+<table>		
 		<tr>
 			<th>Key</th>
 			<th>Description</th>
