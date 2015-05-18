@@ -41,7 +41,6 @@ EXAMPLE SERVICE REQUEST
   	"ssn" : "123 anystreet",
   	"tid" : "89"
 }
-
 ```
 <table>
 		<tr>
@@ -428,7 +427,6 @@ EXAMPLE SERVICE RESPONSE DATA
         "upr": "UNKNOWN",
         "user": "UNKNOWN"
     }
-
 ```
 > The response includes detailed result codes and the transaction unique identifier. The most important part of the response is whether the transaction is to be accepted, denied, or scheduled for manual review, which is dependent on the configured fraud policy.
 
@@ -642,14 +640,15 @@ EXAMPLE SERVICE RESPONSE DATA
 
 ## Chargeback Notification
 
-Notifies that a chargeback occurred on a transaction. Note that the transaction may be either a Payment Transaction or an Account Transfer.
+Notifies that a chargeback occurred on a transaction. The transaction may be either a Payment Transaction or an Account Transfer.
 
-In the case of a chargeback on a transaction that eDNA has not previously processed then the Payment Instrument information is required.
+In the case of a chargeback on a transaction that eDNA has not previously processed, the Payment Instrument information is required.
 
-The following URL can be used for requesting chargeback notification evaluation:  
+The following URL can be used for requesting chargeback notification evaluation:<br>
 `POST https://edna.identitymind.com/im/jax/chargeback/`
 
-#### Arguments
+##### Arguments
+
 ```code
 EXAMPLE SERVICE REQUEST
 ```
@@ -671,9 +670,10 @@ EXAMPLE SERVICE RESPONSE DATA
 }
 
 {
-  "error_message": "A JSONObject text must begin with ‘{‘ at character 1"
+  "error_message": "A JSONObject text must begin with '{' at character 1"
 }
 ```
+
 <table>
 		<tr>
 			<th colspan=2>Chargeback</th>
@@ -692,7 +692,7 @@ EXAMPLE SERVICE RESPONSE DATA
 		</tr>
 		<tr>
 			<td>error_code<br><font color=#446CB3>string</font><br><font color=#CF000F><i>required</i></font></td>
-			<td>This should be used to pass the reason code for the chargeback. For a full set of reason codes as defined by the card brands, click [here](https://www.merchantconnect.com/CWRWeb/pdf/chargeback_reason_codes.pdf).</td>
+			<td>This should be used to pass the reason code for the chargeback. For a full set of reason codes as defined by the card brands, click <a href="https://www.merchantconnect.com/CWRWeb/pdf/chargeback_reason_codes.pdf">here</a>.</td>
 		</tr>
 		<tr>
 			<td>reason<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
@@ -753,8 +753,6 @@ EXAMPLE SERVICE RESPONSE DATA
 			<td>tid<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
 			<td>Merchant unique identifier for the original authorization transaction. The transaction ID must be encoded as a string (e.g. <code>"tid":"123455"</code>).</td>
 		</tr>
-
-
 		<tr>
 			<th colspan=2>Sub Merchant</th>
 		</tr>
@@ -764,10 +762,8 @@ EXAMPLE SERVICE RESPONSE DATA
 			<br><br>
 			<b>Note</b>: The value of the smid should not include the apostrophe symbol.</td>
 		</tr>
-
-
 		<tr>
-			<th colspan=3>Credit Card</th>
+			<th colspan=2>Credit Card</th>
 		</tr>
 		<tr>
 			<td>pccn<br><font color=#446CB3>string</font><br><font color=#CF000F><i>required</i></font></td>
@@ -819,8 +815,6 @@ EXAMPLE SERVICE RESPONSE DATA
 				</ul>
 			Default is <code>UNKNOWN</code></td>
 		</tr>
-
-
 		<tr>
 			<th colspan=2>PayPal</th>
 		</tr>
@@ -832,21 +826,21 @@ EXAMPLE SERVICE RESPONSE DATA
 			<td>pppe<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
 			<td>Email address associated to the PayPal account. It corresponds to PayPal's <code>EMAIL</code> field from PayPal Express Checkout.</td>
 		</tr>
-
 	</table>
 
 ## Credit Notification
 
 Notifies that a credit occurred on a transaction.
 
-In the case of credit or blind credit on a transaction that eDNA has not previously processed, then the payment instrument information is required.
+In the case of credit or blind credit on a transaction that eDNA has not previously processed, the payment instrument information is required.
 
 The following URL can be used for credit notification evaluation:  
 `POST https://edna.identitymind.com/im/jax/credit/`
  
 <aside class="notice">The transaction may either be a payment transaction or an account transfer.</aside>
 
-#### Arguments
+##### Arguments
+
 ```code
 EXAMPLE SERVICE REQUEST
 ```
@@ -867,9 +861,10 @@ EXAMPLE SERVICE RESPONSE DATA
 }
 
 {
-  "error_message": "A JSONObject text must begin with ‘{‘ at character 1"
+  "error_message": "A JSONObject text must begin with '{' at character 1"
 }
 ```
+
 <table>
 		<tr>
 			<th colspan=2>Credit</th>
@@ -905,8 +900,6 @@ EXAMPLE SERVICE RESPONSE DATA
 			<td>Merchant unique identifier for the original authorization transaction. The transaction ID must be encoded as a string (e.g. <code>"tid":"123455"</code>). Maximum length is 40 characters.
 			</td>
 		</tr>
-
-
 		<tr>
 			<th colspan=2>Sub Merchant</th>
 		</tr>
@@ -914,8 +907,6 @@ EXAMPLE SERVICE RESPONSE DATA
 			<td>smid<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
 			<td>A unique identifier for the merchant for whom this transaction is being processed.</td>
 		</tr>
-
-
 		<tr>
 			<th colspan=2>Credit Card</th>
 		</tr>
@@ -945,8 +936,6 @@ EXAMPLE SERVICE RESPONSE DATA
 				</ul>
 			Default is <code>UNKNOWN</code></td>
 		</tr>
-
-
 		<tr>
 			<th colspan=2>PayPal</th>
 		</tr>
@@ -958,10 +947,8 @@ EXAMPLE SERVICE RESPONSE DATA
 			<td>pppe<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
 			<td>Email address associated to the PayPal account. It corresponds to PayPal's <code>EMAIL</code> field from the PayPal Express Checkout</td>
 		</tr>
-
-
 		<tr>
-			<th colspan=3>Generic Financial Account</th>
+			<th colspan=2>Generic Financial Account</th>
 		</tr>
 		<tr>
 			<td>phash<br><font color=#446CB3>string</font><br><font color=#CF000F><i>required</i></font></td>
@@ -991,7 +978,8 @@ The transaction ID is part of the URL. The "refund-ok" URL should be used when t
 
 <aside class="notice">The transaction may be either a payment transaction or an account transfer.</aside>
 
-#### Arguments
+##### Arguments
+
 ```code
 EXAMPLE SERVICE REQUEST
 ```
@@ -1013,6 +1001,7 @@ EXAMPLE SERVICE RESPONSE DATA
     "message": "Feedback accepted for REFUND_FRAUD feedback on transaction 42"
 }
 ```
+
 <table>		
 		<tr>
 			<th>Key</th>
@@ -1109,6 +1098,7 @@ Provides feedback that the transaction has been rejected by default.<br>
 <aside class="notice">The transaction may be a payment transaction or an account transfer. All arguments are optional.</aside>
 
 ##### Arguments
+
 ```code
 EXAMPLE SERVICE REQUEST
 ```
