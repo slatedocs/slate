@@ -84,8 +84,8 @@
         <span class="c1">// Setup
 </span>        <span class="kt">SenseApi</span><span class="o">.</span><span class="n">apiKey</span> <span class="o">=</span> <span class="s">"your-api-key-here"</span>
 
-        <span class="k">let</span> <span class="nv">trigger</span> <span class="o">=</span> <span class="kt">BusinessCategoryTriggerBuilder</span><span class="p">()</span>
-                        <span class="o">.</span><span class="nf">set</span><span class="p">(</span><span class="nv">place</span><span class="p">:</span> <span class="kt">BusinessCategory</span><span class="o">.</span><span class="kt">Airport</span><span class="p">)</span>
+        <span class="k">let</span> <span class="nv">trigger</span> <span class="o">=</span> <span class="kt">PoiTriggerBuilder</span><span class="p">()</span>
+                        <span class="o">.</span><span class="nf">set</span><span class="p">(</span><span class="nv">poiType</span><span class="p">:</span> <span class="kt">PoiType</span><span class="o">.</span><span class="kt">Airport</span><span class="p">)</span>
                         <span class="o">.</span><span class="nf">hasEntered</span><span class="p">()</span>
                         <span class="o">.</span><span class="nf">build</span><span class="p">()</span>
 
@@ -156,9 +156,9 @@
 </tr>
 </thead><tbody>
 <tr>
-<td><a href="#business-place">Business Place</a></td>
-<td>BusinessCategoryTriggerBuilder()</td>
-<td>Business Categories (like <em>restaurant</em> or <em>shopping mall</em>)</td>
+<td><a href="#place-of-interest-(poi)">POI Type</a></td>
+<td>PoiTriggerBuilder()</td>
+<td>Place of Interest Categories (like <em>restaurant</em> or <em>shopping mall</em>)</td>
 </tr>
 <tr>
 <td><a href="#personal-place">Personal Place</a></td>
@@ -226,14 +226,14 @@
 <aside class="notice"> Full list of TriggerErrors will be coming soon.
 </aside>
 
-<h2 id="business-place">Business Place</h2>
-<pre><code class="highlight swift"><span class="k">let</span> <span class="nv">airportTrigger</span> <span class="o">=</span> <span class="kt">BusinessCategoryTriggerBuilder</span><span class="p">()</span>
-    <span class="o">.</span><span class="nf">set</span><span class="p">(</span><span class="nv">place</span><span class="p">:</span> <span class="kt">BusinessCategory</span><span class="o">.</span><span class="kt">Airport</span><span class="p">)</span>
+<h2 id="place-of-interest-(poi)">Place of Interest (POI)</h2>
+<pre><code class="highlight swift"><span class="k">let</span> <span class="nv">airportTrigger</span> <span class="o">=</span> <span class="kt">PoiTriggerBuilder</span><span class="p">()</span>
+    <span class="o">.</span><span class="nf">set</span><span class="p">(</span><span class="nv">poiType</span><span class="p">:</span> <span class="kt">PoiType</span><span class="o">.</span><span class="kt">Airport</span><span class="p">)</span>
     <span class="o">.</span><span class="nf">hasEntered</span><span class="p">()</span>
     <span class="o">.</span><span class="nf">build</span><span class="p">()</span>
 </code></pre>
 
-<p>The business category trigger allows you to determine whether someone is entering or leaving a business type. </p>
+<p>The Place of Interest (POI) trigger allows you to determine whether someone is entering or leaving a particular place type.</p>
 
 <p>The currently supported use cases are:</p>
 
@@ -246,32 +246,32 @@
 </thead><tbody>
 <tr>
 <td>Airport</td>
-<td>.set(place: BusinessCategory.Airport)</td>
+<td>.set(place: PoiType.Airport)</td>
 <td>hasEntered(), hasExited()</td>
 </tr>
 <tr>
 <td>Bar</td>
-<td>.set(place: BusinessCategory.Bar)</td>
+<td>.set(place: PoiType.Bar)</td>
 <td>hasEntered(), hasExited()</td>
 </tr>
 <tr>
 <td>Restaurant</td>
-<td>.set(place: BusinessCategory.Restaurant)</td>
+<td>.set(place: PoiType.Restaurant)</td>
 <td>hasEntered(), hasExited()</td>
 </tr>
 <tr>
 <td>Mall</td>
-<td>.set(place: BusinessCategory.Mall)</td>
+<td>.set(place: PoiType.Mall)</td>
 <td>hasEntered(), hasExited()</td>
 </tr>
 <tr>
 <td>Cafe</td>
-<td>.set(place: BusinessCategory.Cafe)</td>
+<td>.set(place: PoiType.Cafe)</td>
 <td>hasEntered(), hasExited()</td>
 </tr>
 <tr>
 <td>Gym</td>
-<td>.set(place: BusinessCategory.Gym)</td>
+<td>.set(place: PoiType.Gym)</td>
 <td>hasEntered(), hasExited()</td>
 </tr>
 </tbody></table>

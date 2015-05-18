@@ -57,8 +57,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SenseApiDelegate {
         // Setup
         SenseApi.apiKey = "your-api-key-here"
                 
-        let trigger = BusinessCategoryTriggerBuilder()
-                        .set(place: BusinessCategory.Airport)
+        let trigger = PoiTriggerBuilder()
+                        .set(poiType: PoiType.Airport)
                         .hasEntered()
                         .build()
                         
@@ -116,7 +116,7 @@ There are 3 types of TriggerBuilders that correspond to 3 place types:
 
 TriggerBuilder Type | Signature | Description
 --------- | ------- |------- | -----------
-[Business Place](#business-place) | BusinessCategoryTriggerBuilder() | Business Categories (like *restaurant* or *shopping mall*)
+[POI Type](#place-of-interest-(poi)) | PoiTriggerBuilder() | Place of Interest Categories (like *restaurant* or *shopping mall*)
 [Personal Place](#personal-place) | PersonalizedTriggerBuilder() | User-specific geofences (like *home* or *work*)
 [Custom Place](#custom-place) | CustomPlaceTriggerBuilder() | Custom set of lat/longs + radius 
 
@@ -143,25 +143,25 @@ Trigger?|trigger|The final trigger when there are no errors
 <aside class="notice"> Full list of TriggerErrors will be coming soon.
 </aside>
 
-## Business Place
+## Place of Interest (POI)
 ```swift
-let airportTrigger = BusinessCategoryTriggerBuilder()
-	.set(place: BusinessCategory.Airport)
+let airportTrigger = PoiTriggerBuilder()
+	.set(poiType: PoiType.Airport)
 	.hasEntered()
 	.build()
 ```
-The business category trigger allows you to determine whether someone is entering or leaving a business type. 
+The Place of Interest (POI) trigger allows you to determine whether someone is entering or leaving a particular place type.
 
 The currently supported use cases are:
 
 Category | Signature | Supported Action Types
 --------- | ------- |------- | -----------
-Airport | .set(place: BusinessCategory.Airport) | hasEntered(), hasExited()
-Bar | .set(place: BusinessCategory.Bar) | hasEntered(), hasExited()
-Restaurant | .set(place: BusinessCategory.Restaurant) | hasEntered(), hasExited()
-Mall | .set(place: BusinessCategory.Mall) | hasEntered(), hasExited()
-Cafe | .set(place: BusinessCategory.Cafe) | hasEntered(), hasExited()
-Gym | .set(place: BusinessCategory.Gym) | hasEntered(), hasExited()
+Airport | .set(place: PoiType.Airport) | hasEntered(), hasExited()
+Bar | .set(place: PoiType.Bar) | hasEntered(), hasExited()
+Restaurant | .set(place: PoiType.Restaurant) | hasEntered(), hasExited()
+Mall | .set(place: PoiType.Mall) | hasEntered(), hasExited()
+Cafe | .set(place: PoiType.Cafe) | hasEntered(), hasExited()
+Gym | .set(place: PoiType.Gym) | hasEntered(), hasExited()
 
 ## Personal Place
 ```swift
