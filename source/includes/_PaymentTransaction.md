@@ -638,11 +638,12 @@ EXAMPLE SERVICE RESPONSE DATA
 		</tr>
 	</table>
 
+	
 ## Chargeback Notification
 
-Notifies that a chargeback occurred on a transaction. The transaction may be either a Payment Transaction or an Account Transfer.
+Notifies that a chargeback occurred on a transaction. The transaction may be a Payment Transaction or an Account Transfer.
 
-In the case of a chargeback on a transaction that eDNA has not previously processed, the Payment Instrument information is required.
+In the case of a chargeback on a transaction that eDNA has not previously processed, payment instrument information is required.
 
 The following URL can be used for requesting chargeback notification evaluation:<br>
 `POST https://edna.identitymind.com/im/jax/chargeback/`
@@ -654,23 +655,24 @@ EXAMPLE SERVICE REQUEST
 ```
 ```json
 {
-     "amt": 250,
-     "cbtype": "DEBIT",
-     "pccn": "DNsxhwmQCWeC5gPxTOwPRZlFfx",
-     "pcct": "401201XXXXXX1110",
-     "tid": "9900040"
+	"amt" : 250,
+	"cbtype" : "DEBIT",
+	"pccn" : "DNsxhwmQCWeC5gPxTOwPRZlFfx",
+	"pcct" : "401201XXXXXX1110",
+	"tid" : "9900040"
 }
 ```
 ```code
 EXAMPLE SERVICE RESPONSE DATA
 ```
+
 ```json
 {
-  "message": "credit notification accepted"
+	"message" : "credit notification accepted"
 }
 
 {
-  "error_message": "A JSONObject text must begin with '{' at character 1"
+	"error_message" : "A JSONObject text must begin with '{' at character 1"
 }
 ```
 
@@ -679,7 +681,7 @@ EXAMPLE SERVICE RESPONSE DATA
 			<th colspan=2>Chargeback</th>
 		</tr>
 		<tr>
-			<th>Key</th>
+			<th>Parameter</th>
 			<th>Description</th>
 		</tr>
 		<tr>
@@ -712,7 +714,7 @@ EXAMPLE SERVICE RESPONSE DATA
 		</tr>
 		<tr>
 			<td>cbdate<br><font color=#446CB3>string</font><br><font color=#CF000F><i>required</i></font></td>
-			<td>Date of the chargeback action. For example, if the cbtype is <code>CREDIT</code>, then the date field should be the date that the <code>CREDIT</code> happens. The format of the value for this field is either an ISO 8601 encoded string or a UNIX timestamp.
+			<td>Date of the chargeback action. For example, if the cbtype is <code>CREDIT</code>, then the date field should be the date that the CREDIT happens. The format of the value for this field is either an ISO 8601 encoded string or a UNIX timestamp.
 				<ul type="disc">
 					<li><code>"cbdate": "2011-01-01T13:12:16+0000"</code></li>
 					<li><code>"cbdate":1293887536</code></li>
@@ -744,14 +746,14 @@ EXAMPLE SERVICE RESPONSE DATA
 					<li><code>SC</code> - Safe Charge</li>
 					<li><code>AUTH</code> - Auth.net</li>
 					<li><code>INTERAC</code> - Interac</li>
-					<li><code>generic</code> - See <i>Appendix C: Generic Gateway Codes</i></li>
+					<li><code>generic</code></li>
 				</ul>
 			<b>Note</b>: While this field is required, backwards compatibility feedback will not be rejected if not present, but will instead be interpreted as MES gateway data. 
 			</td>
 		</tr>
 		<tr>
 			<td>tid<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
-			<td>Merchant unique identifier for the original authorization transaction. The transaction ID must be encoded as a string (e.g. <code>"tid":"123455"</code>).</td>
+			<td>Merchant unique identifier for the original authorization transaction. The transaction ID must be encoded as a string (e.g. <code>"tid" : "123455"</code>).</td>
 		</tr>
 		<tr>
 			<th colspan=2>Sub Merchant</th>
@@ -769,11 +771,11 @@ EXAMPLE SERVICE RESPONSE DATA
 			<td>pccn<br><font color=#446CB3>string</font><br><font color=#CF000F><i>required</i></font></td>
 			<td>Credit card unique identifier (hash) while obscuring actual number. IdentityMind will supply procedure to generate hash.
 			<br><br>
-			<b>Note</b>: The hash must be of the full card number, not a masked or tokenized representation.<br><br><i>Required, if the provided tid does not refer to a transaction previously processed by eDNA.</i></td>>
+			<b>Note</b>: The hash must be of the full card number, not a masked or tokenized representation.<br><br><i>Required if the provided <code>tid</code> does not refer to a transaction previously processed by eDNA.</i></td>>
 		</tr>
 		<tr>
-			<td>pcct</td>
-			<td>A masked or tokenized version of the credit card number. IdentityMind will supply procedure to generate token. Maximum length is 64 characters.<br><br><i>Required, if the provided tid does not refer to a transaction previously processed by eDNA</i></td>
+			<td>pcct<br><font color=#446CB3>string</font><br><font color=#CF000F><i>required</i></font></td>
+			<td>A masked or tokenized version of the credit card number. IdentityMind will supply procedure to generate token. Maximum length is 64 characters.<br><br><i>Required if the provided <code>tid</code> does not refer to a transaction previously processed by eDNA</i></td>
 		</tr>
 		<tr>
 			<td>ric<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
@@ -820,7 +822,7 @@ EXAMPLE SERVICE RESPONSE DATA
 		</tr>
 		<tr>
 			<td>pppi<br><font color=#446CB3>string</font><br><font color=#CF000F><i>required</i></font></td>
-			<td>PayPal Payer ID. It corresponds to PayPal's <code>PAYERID</code> field from PayPal Express Checkout.<br><br><i>Required, if the provided tid does not refer to a transaction previously processed by eDNA</i></td>
+			<td>PayPal Payer ID. It corresponds to PayPal's <code>PAYERID</code> field from PayPal Express Checkout.<br><br><i>Required if the provided <code>tid</code> does not refer to a transaction previously processed by eDNA</i></td>
 		</tr>
 		<tr>
 			<td>pppe<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
@@ -846,10 +848,10 @@ EXAMPLE SERVICE REQUEST
 ```
 ```json
 {
-     "amt": 10.4,
-     "pccn": "DNsxhwmQCWeC5gPxTOwPRZlFfx",
-     "pcct": "401201XXXXXX1110",
-     "tid": "988833" 
+     "amt" : 10.4,
+     "pccn" : "DNsxhwmQCWeC5gPxTOwPRZlFfx",
+     "pcct" : "401201XXXXXX1110",
+     "tid" : "988833" 
 }
 ```
 ```code
@@ -857,11 +859,11 @@ EXAMPLE SERVICE RESPONSE DATA
 ```
 ```json
 {
-  "message": "credit notification accepted"
+  "message" : "credit notification accepted"
 }
 
 {
-  "error_message": "A JSONObject text must begin with '{' at character 1"
+  "error_message" : "A JSONObject text must begin with '{' at character 1"
 }
 ```
 
@@ -870,7 +872,7 @@ EXAMPLE SERVICE RESPONSE DATA
 			<th colspan=2>Credit</th>
 		</tr>
 		<tr>
-			<th>Key</th>
+			<th>Parameter</th>
 			<th>Description</th>
 		</tr>
 		<tr>
@@ -985,12 +987,12 @@ EXAMPLE SERVICE REQUEST
 ```
 ```json
 {
-    "amt": 0.25,
-    "auth_response": "rejected",
-    "auth_response_text": "Transaction already refunded",
-    "error_code": "206",
-    "reason": "Suspected friendly fraud",
-    "tid": "42"
+    "amt" : 0.25,
+    "auth_response" : "rejected",
+    "auth_response_text" : "Transaction already refunded",
+    "error_code" : "206",
+    "reason" : "Suspected friendly fraud",
+    "tid" : "42"
 }
 ```
 ```code
@@ -998,13 +1000,13 @@ EXAMPLE SERVICE RESPONSE DATA
 ```
 ```json
 {
-    "message": "Feedback accepted for REFUND_FRAUD feedback on transaction 42"
+    "message" : "Feedback accepted for REFUND_FRAUD feedback on transaction 42"
 }
 ```
 
 <table>		
 		<tr>
-			<th>Key</th>
+			<th>Parameter</th>
 			<th>Description</th>
 		</tr>
 		<tr>
