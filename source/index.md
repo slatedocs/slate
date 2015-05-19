@@ -116,9 +116,9 @@ There are 3 types of TriggerBuilders that correspond to 3 place types:
 
 TriggerBuilder Type | Signature | Description
 --------- | ------- |------- | -----------
-[POI Type](#place-of-interest-(poi)) | PoiTriggerBuilder() | Place of Interest Categories (like *restaurant* or *shopping mall*)
+[Place of Interest (POI)](#place-of-interest-(poi)) | PoiTriggerBuilder() | Place of Interest Categories (like *restaurant* or *shopping mall*)
 [Personal Place](#personal-place) | PersonalizedTriggerBuilder() | User-specific geofences (like *home* or *work*)
-[Custom Place](#custom-place) | CustomPlaceTriggerBuilder() | Custom set of lat/longs + radius 
+[Custom Geofence](#custom-geofence) | CustomGeofenceTriggerBuilder() | Custom set of lat/longs + radius 
 
 ### Action Types
 
@@ -126,8 +126,8 @@ Each trigger must be accompanied by one of the following action types:
 
 Action | Signature | Description
 --------- | ------- |------- | -----------
-Enter | hasEntered() | Triggers when the user enters any of the geofences
-Exit | hasExited() | Triggers when the user exits any of the geofences
+Enter | hasEntered() | Triggers within five minutes of a user entering any of the geofences
+Exit | hasExited() | Triggers within five minutes of a user exiting any of the geofences
 FartherThan | fartherThan(km: Integer) | Triggers when the user is farther than X km away from any of the geofences
 
 
@@ -156,12 +156,12 @@ The currently supported use cases are:
 
 Category | Signature | Supported Action Types
 --------- | ------- |------- | -----------
-Airport | .set(place: PoiType.Airport) | hasEntered(), hasExited()
-Bar | .set(place: PoiType.Bar) | hasEntered(), hasExited()
-Restaurant | .set(place: PoiType.Restaurant) | hasEntered(), hasExited()
-Mall | .set(place: PoiType.Mall) | hasEntered(), hasExited()
-Cafe | .set(place: PoiType.Cafe) | hasEntered(), hasExited()
-Gym | .set(place: PoiType.Gym) | hasEntered(), hasExited()
+Airport | .set(place: BusinessCategory.Airport) | hasEntered(), hasExited()
+Bar | .set(place: BusinessCategory.Bar) | hasEntered(), hasExited()
+Restaurant | .set(place: BusinessCategory.Restaurant) | hasEntered(), hasExited()
+Mall | .set(place: BusinessCategory.Mall) | hasEntered(), hasExited()
+Cafe | .set(place: BusinessCategory.Cafe) | hasEntered(), hasExited()
+Gym | .set(place: BusinessCategory.Gym) | hasEntered(), hasExited()
 
 ## Personal Place
 ```swift
@@ -183,22 +183,22 @@ Work | .set(place: PersonalizedPlaceType.Work) | hasEntered(), hasExited(), fart
 Due to the sensitivity of this data, neither developers nor us will ever see the raw data or store a users home or office location. The computation happens on the device itself and stays there to ensure your users privacy.
 </aside>
 
-## Custom Place
+## Custom Geofence
 ```swift
-let hq = CustomPlace(latitude: 37.124, longitude: -127.456, radiusMeters: 20,
+let hq = CustomGeofence(latitude: 37.124, longitude: -127.456, radiusMeters: 20,
   customIdentifier: "Sense 360 Headquarters")
 
-let lunchSpot = CustomPlace(latitude: 37.124, longitude: -127.456, radiusMeters: 35,
+let lunchSpot = CustomGeofence(latitude: 37.124, longitude: -127.456, radiusMeters: 35,
   customIdentifier: "A&B Bar and Grill")
 
-let trigger = CustomPlaceTriggerBuilder()
+let trigger = CustomGeofenceTriggerBuilder()
   .set(places: hq, lunchSpot)
   .fartherThan(kilometers: Kilometers(1))
   .build()
 ```
-A custom place allows you to determine if someone is inside a geo-fence or a group of geofences that you build. 
+A custom geofence allows you to determine if someone is inside a geo-fence or a group of geofences that you build. 
 
-All custom place triggers must specify the following parameters
+All custom geofence triggers must specify the following parameters
 
 Parameter | Type | Required | Description
 --------- | ------- |------- | -----------
@@ -207,8 +207,8 @@ radiusMeters | Int | true | radius of geofence
 customIdentifier | String | true | unique name for place
 
 
-<aside class="warning"> You can have no more than [1000] custom places included in a single trigger.
-Minimum radius for a CustomPlace is [20 meters]
+<aside class="warning"> You can have no more than [1000] custom geofences included in a single trigger.
+Minimum radius for a CustomGeofence is [20 meters]
 </aside>
 
 ## Compound Triggers
@@ -255,6 +255,8 @@ toHour | Int | 0-23 | true | Window end time (user's local time)
 This example would have the trigger only fire between 5pm (user’s timezone) to 10pm:
 
 `TimeWindow(fromHour: 17, toHour: 22)`
+
+*Note: if a user enters at 5am, and the window was set for 6am - 7am, the trigger WILL NOT fire, even if the user is still within the specified geofence at 6am.*
 
 ## Cooldown
 
