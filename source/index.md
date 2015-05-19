@@ -156,12 +156,12 @@ The currently supported use cases are:
 
 Category | Signature | Supported Action Types
 --------- | ------- |------- | -----------
-Airport | .set(place: PoiType.Airport) | hasEntered(), hasExited()
-Bar | .set(place: PoiType.Bar) | hasEntered(), hasExited()
-Restaurant | .set(place: PoiType.Restaurant) | hasEntered(), hasExited()
-Mall | .set(place: PoiType.Mall) | hasEntered(), hasExited()
-Cafe | .set(place: PoiType.Cafe) | hasEntered(), hasExited()
-Gym | .set(place: PoiType.Gym) | hasEntered(), hasExited()
+Airport | .set(poiType: PoiType.Airport) | hasEntered(), hasExited()
+Bar | .set(poiType: PoiType.Bar) | hasEntered(), hasExited()
+Restaurant | .set(poiType: PoiType.Restaurant) | hasEntered(), hasExited()
+Mall | .set(poiType: PoiType.Mall) | hasEntered(), hasExited()
+Cafe | .set(poiType: PoiType.Cafe) | hasEntered(), hasExited()
+Gym | .set(poiType: PoiType.Gym) | hasEntered(), hasExited()
 
 ## Personal Place
 ```swift
