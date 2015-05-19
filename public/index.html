@@ -156,7 +156,7 @@
 </tr>
 </thead><tbody>
 <tr>
-<td><a href="#place-of-interest-(poi)">POI Type</a></td>
+<td><a href="#place-of-interest-(poi)">Place of Interest (POI)</a></td>
 <td>PoiTriggerBuilder()</td>
 <td>Place of Interest Categories (like <em>restaurant</em> or <em>shopping mall</em>)</td>
 </tr>
@@ -166,8 +166,8 @@
 <td>User-specific geofences (like <em>home</em> or <em>work</em>)</td>
 </tr>
 <tr>
-<td><a href="#custom-place">Custom Place</a></td>
-<td>CustomPlaceTriggerBuilder()</td>
+<td><a href="#custom-geofence">Custom Geofence</a></td>
+<td>CustomGeofenceTriggerBuilder()</td>
 <td>Custom set of lat/longs + radius</td>
 </tr>
 </tbody></table>
@@ -186,12 +186,12 @@
 <tr>
 <td>Enter</td>
 <td>hasEntered()</td>
-<td>Triggers when the user enters any of the geofences</td>
+<td>Triggers within five minutes of a user entering any of the geofences</td>
 </tr>
 <tr>
 <td>Exit</td>
 <td>hasExited()</td>
-<td>Triggers when the user exits any of the geofences</td>
+<td>Triggers within five minutes of a user exiting any of the geofences</td>
 </tr>
 <tr>
 <td>FartherThan</td>
@@ -310,22 +310,22 @@
 Due to the sensitivity of this data, neither developers nor us will ever see the raw data or store a users home or office location. The computation happens on the device itself and stays there to ensure your users privacy.
 </aside>
 
-<h2 id="custom-place">Custom Place</h2>
-<pre><code class="highlight swift"><span class="k">let</span> <span class="nv">hq</span> <span class="o">=</span> <span class="kt">CustomPlace</span><span class="p">(</span><span class="nv">latitude</span><span class="p">:</span> <span class="mf">37.124</span><span class="p">,</span> <span class="nv">longitude</span><span class="p">:</span> <span class="o">-</span><span class="mf">127.456</span><span class="p">,</span> <span class="nv">radiusMeters</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span>
+<h2 id="custom-geofence">Custom Geofence</h2>
+<pre><code class="highlight swift"><span class="k">let</span> <span class="nv">hq</span> <span class="o">=</span> <span class="kt">CustomGeofence</span><span class="p">(</span><span class="nv">latitude</span><span class="p">:</span> <span class="mf">37.124</span><span class="p">,</span> <span class="nv">longitude</span><span class="p">:</span> <span class="o">-</span><span class="mf">127.456</span><span class="p">,</span> <span class="nv">radiusMeters</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span>
   <span class="nv">customIdentifier</span><span class="p">:</span> <span class="s">"Sense 360 Headquarters"</span><span class="p">)</span>
 
-<span class="k">let</span> <span class="nv">lunchSpot</span> <span class="o">=</span> <span class="kt">CustomPlace</span><span class="p">(</span><span class="nv">latitude</span><span class="p">:</span> <span class="mf">37.124</span><span class="p">,</span> <span class="nv">longitude</span><span class="p">:</span> <span class="o">-</span><span class="mf">127.456</span><span class="p">,</span> <span class="nv">radiusMeters</span><span class="p">:</span> <span class="mi">35</span><span class="p">,</span>
+<span class="k">let</span> <span class="nv">lunchSpot</span> <span class="o">=</span> <span class="kt">CustomGeofence</span><span class="p">(</span><span class="nv">latitude</span><span class="p">:</span> <span class="mf">37.124</span><span class="p">,</span> <span class="nv">longitude</span><span class="p">:</span> <span class="o">-</span><span class="mf">127.456</span><span class="p">,</span> <span class="nv">radiusMeters</span><span class="p">:</span> <span class="mi">35</span><span class="p">,</span>
   <span class="nv">customIdentifier</span><span class="p">:</span> <span class="s">"A&amp;B Bar and Grill"</span><span class="p">)</span>
 
-<span class="k">let</span> <span class="nv">trigger</span> <span class="o">=</span> <span class="kt">CustomPlaceTriggerBuilder</span><span class="p">()</span>
+<span class="k">let</span> <span class="nv">trigger</span> <span class="o">=</span> <span class="kt">CustomGeofenceTriggerBuilder</span><span class="p">()</span>
   <span class="o">.</span><span class="nf">set</span><span class="p">(</span><span class="nv">places</span><span class="p">:</span> <span class="n">hq</span><span class="p">,</span> <span class="n">lunchSpot</span><span class="p">)</span>
   <span class="o">.</span><span class="nf">fartherThan</span><span class="p">(</span><span class="nv">kilometers</span><span class="p">:</span> <span class="kt">Kilometers</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
   <span class="o">.</span><span class="nf">build</span><span class="p">()</span>
 </code></pre>
 
-<p>A custom place allows you to determine if someone is inside a geo-fence or a group of geofences that you build. </p>
+<p>A custom geofence allows you to determine if someone is inside a geo-fence or a group of geofences that you build. </p>
 
-<p>All custom place triggers must specify the following parameters</p>
+<p>All custom geofence triggers must specify the following parameters</p>
 
 <table><thead>
 <tr>
@@ -355,8 +355,8 @@ Due to the sensitivity of this data, neither developers nor us will ever see the
 </tr>
 </tbody></table>
 
-<aside class="warning"> You can have no more than [1000] custom places included in a single trigger.
-Minimum radius for a CustomPlace is [20 meters]
+<aside class="warning"> You can have no more than [1000] custom geofences included in a single trigger.
+Minimum radius for a CustomGeofence is [20 meters]
 </aside>
 
 <h2 id="compound-triggers">Compound Triggers</h2>
@@ -436,6 +436,8 @@ Minimum radius for a CustomPlace is [20 meters]
 <p>This example would have the trigger only fire between 5pm (user’s timezone) to 10pm:</p>
 
 <p><code class="prettyprint">TimeWindow(fromHour: 17, toHour: 22)</code></p>
+
+<p><em>Note: if a user enters at 5am, and the window was set for 6am - 7am, the trigger WILL NOT fire, even if the user is still within the specified geofence at 6am.</em></p>
 
 <h2 id="cooldown">Cooldown</h2>
 <pre><code class="highlight swift"><span class="k">let</span> <span class="nv">recipe</span> <span class="o">=</span> <span class="kt">Recipe</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="s">"My Recipe"</span><span class="p">,</span> 
