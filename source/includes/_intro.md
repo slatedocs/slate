@@ -2,19 +2,19 @@
 
 Welcome to the Chartboost third-party documentation center! 
 
-This site features API instructions third-party attribution platforms can use to send two types of data to Chartboost: install attribution postbacks to power SmartBid oCPC campaigns, and post-install revenue data for Chartboost Post-Install Analytics (PIA). Each product's API has a unique external endpoint.
+This site features API instructions third-party attribution platforms can use to send two types of data to Chartboost: install attribution postbacks to power Smartbid campaigns, and post-install revenue data for Chartboost Post-Install Analytics (PIA). Each product's API has a unique external endpoint.
 
-## SmartBid Overview
+## Smartbid Overview
 
-Chartboost is introducing a new campaign type, SmartBid, that lets advertisers leverage third-party attribution data to optimize CPC (cost-per-click) campaigns toward a CPI (cost-per-install) target. 
+Chartboost is introducing a new campaign type, Smartbid, that lets advertisers leverage third-party attribution data to optimize CPC (cost-per-click) campaigns toward a CPI (cost-per-install) target. 
 
-After Chartboost receives install attribution postbacks from a third party (via <a href="#install-attribution">this endpoint</a>), the game's CPI campaigns in the Chartboost dashbaord will be replaced with SmartBid oCPC (optimized CPC) campaigns. (Third-party attribution data will then replace attribution data collected by the Chartboost SDK or received via server-to-server integration.)
+After Chartboost receives install attribution postbacks from a third party (via <a href="#install-attribution">this endpoint</a>), the game's CPI campaign targets in the Chartboost dashbaord will be replaced with Smartbid targets. (Third-party attribution data will then replace attribution data collected by the Chartboost SDK or received via server-to-server integration.)
 
-### SmartBid Requirements
+### Smartbid Requirements
 
 - Third-party attribution platform SDK integration. Chartboost SDK integration is recommended (if you plan to publish, for example), but optional.
 - Tracking URLs/macros to send Chartboost click data to your third-party via <a href="https://answers.chartboost.com/hc/en-us/articles/201220115">callbacks</a>
-- SmartBid customers will also need to use their third-party attribution service's website to create install attribution postbacks. These postbacks need to include all bootups and attributed installs (using the <code>claim=</code> parameter).
+- Smartbid customers will also need to use their third-party attribution service's website to create install attribution postbacks. These postbacks need to include all bootups and attributed installs (using the <code>claim=</code> parameter).
 
 ## Post-Install Analytics Overview
 
