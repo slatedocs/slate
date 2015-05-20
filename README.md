@@ -43,77 +43,15 @@ You're going to need:
 
 ### Getting Set Up
 
- 1. Fork this repository on Github.
- 2. Clone *your forked repository* (not our original one) to your hard drive with `git clone https://github.com/YOURUSERNAME/slate.git`
+ 1. Clone this repo
  3. `cd slate`
  4. Install all dependencies: `bundle install`
  5. Start the test server: `bundle exec middleman server`
 
-Or use the included Dockerfile! (must install Docker first)
-
-```shell
-docker build -t slate .
-docker run -d -p 4567:4567 slate
-```
-
 You can now see the docs at <http://localhost:4567>. Whoa! That was fast!
-
-*Note: if you're using the Docker setup on OSX, the docs will be
-availalable at the output of `boot2docker ip` instead of `localhost:4567`.*
 
 Now that Slate is all set up your machine, you'll probably want to learn more about [editing Slate markdown](https://github.com/tripit/slate/wiki/Markdown-Syntax), or [how to publish your docs](https://github.com/tripit/slate/wiki/Deploying-Slate).
 
-Examples of Slate in the Wild
----------------------------------
+### Publishing
 
-* [Travis-CI's API docs](http://docs.travis-ci.com/api/)
-* [Mozilla's localForage docs](http://mozilla.github.io/localForage/)
-* [Mozilla Recroom](http://mozilla.github.io/recroom/)
-* [ChaiOne Gameplan API docs](http://chaione.github.io/gameplanb2b/#introduction)
-* [Drcaban's Build a Quine tutorial](http://drcabana.github.io/build-a-quine/#introduction)
-* [PricePlow API docs](https://www.priceplow.com/api/documentation)
-* [Emerging Threats API docs](http://apidocs.emergingthreats.net/)
-* [Appium docs](http://appium.io/slate/en/master)
-* [Golazon Developer](http://developer.golazon.com)
-* [Dwolla API docs](https://docs.dwolla.com/)
-* [RozpisyZapasu API docs](http://www.rozpisyzapasu.cz/dev/api/)
-* [Codestar Framework Docs](http://codestarframework.com/documentation/)
-* [Buddycloud API](http://buddycloud.com/api)
-* [Crafty Clicks API](https://craftyclicks.co.uk/api/)
-* [Paracel API Reference](http://paracel.io/docs/api_reference.html)
-* [Switch Payments Documentation](http://switchpayments.com/docs/) & [API](http://switchpayments.com/developers/)
-* [Coinbase API Reference](https://developers.coinbase.com/api)
-* [Whispir.io API](https://whispir.github.io/api)
-* [NASA API](https://data.nasa.gov/developer/external/planetary/)
-* [CardPay API](https://developers.cardpay.com/)
-* [IBM Cloudant](https://docs-testb.cloudant.com/content-review/_design/couchapp/index.html)
-* [Bitrix basis components](http://bbc.bitrix.expert/)
-
-(Feel free to add your site to this list in a pull request!)
-
-Need Help? Found a bug?
---------------------
-
-Just [submit a issue](https://github.com/tripit/slate/issues) to the Slate Github if you need any help. And, of course, feel free to submit pull requests with bug fixes or changes.
-
-
-Contributors
---------------------
-
-Slate was built by [Robert Lord](http://lord.io) while at [TripIt](http://tripit.com).
-
-Thanks to the following people who have submitted major pull requests:
-
-- [@chrissrogers](https://github.com/chrissrogers)
-- [@bootstraponline](https://github.com/bootstraponline)
-- [@realityking](https://github.com/realityking)
-
-Also, thanks to [Sauce Labs](http://saucelabs.com) for helping sponsor the project.
-
-Special Thanks
---------------------
-- [Middleman](https://github.com/middleman/middleman)
-- [jquery.tocify.js](https://github.com/gfranko/jquery.tocify.js)
-- [middleman-syntax](https://github.com/middleman/middleman-syntax)
-- [middleman-gh-pages](https://github.com/neo/middleman-gh-pages)
-- [Font Awesome](http://fortawesome.github.io/Font-Awesome/)
+To publish simply run `rake publish` in the slate directory.
