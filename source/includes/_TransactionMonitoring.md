@@ -246,7 +246,7 @@ EXAMPLE SERVICE REQUEST
 		</tr>
 		<tr>
 			<td>blg<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
-			<td>Customer browser langauge</td>
+			<td>Customer browser language</td>
 		</tr>
 		<tr>
 			<td>clat<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
@@ -391,7 +391,7 @@ EXAMPLE SERVICE RESPONSE DATA
 
 <table>
 		<tr>
-			<th colspan=2>Transaction Reponse Data</th>
+			<th colspan=2>Transaction Response Data</th>
 		</tr>
 		<tr>
 			<th>Parameter</th>

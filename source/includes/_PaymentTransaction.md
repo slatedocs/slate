@@ -285,7 +285,7 @@ EXAMPLE SERVICE REQUEST
 		</tr>
 		<tr>
 			<td>blg<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
-			<td>Customer browser langauge</td>
+			<td>Customer browser language</td>
 		</tr>
 		<tr>
 			<td>clat<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
@@ -432,7 +432,7 @@ EXAMPLE SERVICE RESPONSE DATA
 
 <table>
 		<tr>
-			<th colspan=2>Transaction Reponse Data</th>
+			<th colspan=2>Transaction Response Data</th>
 		</tr>
 		<tr>
 			<th>Parameter</th>
@@ -771,7 +771,7 @@ EXAMPLE SERVICE RESPONSE DATA
 			<td>pccn<br><font color=#446CB3>string</font><br><font color=#CF000F><i>required</i></font></td>
 			<td>Credit card unique identifier (hash) while obscuring actual number. IdentityMind will supply procedure to generate hash.
 			<br><br>
-			<b>Note</b>: The hash must be of the full card number, not a masked or tokenized representation.<br><br><i>Required if the provided <code>tid</code> does not refer to a transaction previously processed by eDNA.</i></td>>
+			<b>Note</b>: The hash must be of the full card number, not a masked or tokenized representation.<br><br><i>Required if the provided <code>tid</code> does not refer to a transaction previously processed by eDNA.</i></td>
 		</tr>
 		<tr>
 			<td>pcct<br><font color=#446CB3>string</font><br><font color=#CF000F><i>required</i></font></td>
@@ -796,7 +796,7 @@ EXAMPLE SERVICE RESPONSE DATA
 			<td>pccn2<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
 			<td>Hash of the credit card to which the chargeback amount is to be credited if it is different from the credit card where the chargeback was reported.
 			<br><br>
-			<b>Note</b>: The has must be of the full card number, not a masked or tokenized representation.</td>
+			<b>Note</b>: The hash must be of the full card number, not a masked or tokenized representation.</td>
 		</tr>
 		<tr>
 			<td>pcct2<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
@@ -1088,7 +1088,7 @@ Provides feedback that the transaction has been rejected after review.<br>
 Provides feedback that the transaction has been accepted due to user validation.<br>
 `POST https://edna.identitymind.com/im/transaction/<transaction_id>/accepted-user-validated`
 
-Provides feedback that the transaction has been been rejected due to user validation failure.<br>
+Provides feedback that the transaction has been rejected due to user validation failure.<br>
 `POST https://edna.identitymind.com/im/transaction/<transaction_id>/rejected-user-failed-validation`
 
 Provides feedback that the transaction has been accepted by default.<br>

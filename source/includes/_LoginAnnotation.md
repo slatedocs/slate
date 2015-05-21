@@ -108,7 +108,7 @@ EXAMPLE SERVICE RESPONSE DATA
 
 <table>
 		<tr>
-			<th colspan=2>Transaction Reponse Data</th>
+			<th colspan=2>Transaction Response Data</th>
 		</tr>
 		<tr>
 			<th>Parameter</th>

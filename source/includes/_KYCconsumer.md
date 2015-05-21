@@ -55,7 +55,7 @@ Retrieve the current state of a consumer application:<br>
 		</tr>
 		<tr>
 			<td>personalguarantee<br><font color=#446CB3>boolean</font><br><font color=#BDC3C7><i>optional</i></font></td>
-			<td>If this individual is linked to a merchant (business) as one of hte owners of the business, whether the individual provides a personal guarantee of debt</td>
+			<td>If this individual is linked to a merchant (business) as one of the owners of the business, whether the individual provides a personal guarantee of debt</td>
 		</tr>
 		<tr>
 			<td>ownership<br><font color=#446CB3>number</font><br><font color=#BDC3C7><i>optional</i></font></td>
@@ -207,7 +207,7 @@ Retrieve the current state of a consumer application:<br>
 		</tr>
 		<tr>
 			<td>blg<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
-			<td>Customer browser langauge</td>
+			<td>Customer browser language</td>
 		</tr>
 		<tr>
 			<td>clat<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>

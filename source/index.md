@@ -6,6 +6,7 @@ language_tabs:
 
 toc_footers:
   - <a href='http://www.identitymindglobal.com/'>IdentityMind Global</a>
+  - <a href='http://documentation.identitymindglobal.com/'>Support Portal</a>
   - eDNA API Reference Beta v1.1.2
 
 includes:	

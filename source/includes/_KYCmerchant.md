@@ -34,7 +34,7 @@ Retrieve the current state of a merchant application:<br>
 		</tr>
 		<tr>
 			<td>aln<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
-			<td>The last name of hte contract person for the business</td>
+			<td>The last name of the contract person for the business</td>
 		</tr>
 		<tr>
 			<td>asn<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
@@ -110,7 +110,7 @@ Retrieve the current state of a merchant application:<br>
 		</tr>
 		<tr>
 			<td>giin<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
-			<td>The business' Global Intermediary Identification Number. GIIN is a 19 character number that uniquely identifies an entity as having registered with the IRS for hte purposes of FACTA</td>
+			<td>The business' Global Intermediary Identification Number. GIIN is a 19 character number that uniquely identifies an entity as having registered with the IRS for the purposes of FACTA</td>
 		</tr>
 		<tr>
 			<td>title<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
@@ -138,7 +138,7 @@ Retrieve the current state of a merchant application:<br>
 		</tr>
 		<tr>
 			<td>personalguarantee<br><font color=#446CB3>boolean</font><br><font color=#BDC3C7><i>optional</i></font></td>
-			<td>If this individual is linked to a merchant (business) as one of hte owners of the business, whether the individual provides a personal guarantee of debt</td>
+			<td>If this individual is linked to a merchant (business) as one of the owners of the business, whether the individual provides a personal guarantee of debt</td>
 		</tr>
 		<tr>
 			<td>ownership<br><font color=#446CB3>number</font><br><font color=#BDC3C7><i>optional</i></font></td>
@@ -298,7 +298,7 @@ Retrieve the current state of a merchant application:<br>
 		</tr>
 		<tr>
 			<td>blg<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
-			<td>Customer browser langauge</td>
+			<td>Customer browser language</td>
 		</tr>
 		<tr>
 			<td>clat<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
