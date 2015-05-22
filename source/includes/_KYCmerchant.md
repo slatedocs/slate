@@ -106,7 +106,7 @@ Retrieve the current state of a merchant application:<br>
 		</tr>
 		<tr>
 			<td>mcc<br><font color=#446CB3>MerchantCategoryCode</font><br><font color=#BDC3C7><i>optional</i></font></td>
-			<td>The MCC code of the buisness</td>
+			<td>The MCC code of the business</td>
 		</tr>
 		<tr>
 			<td>giin<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
@@ -508,7 +508,7 @@ EXAMPLE SERVICE RESPONSE DATA
 		</tr>
 		<tr>
 			<td>rcd<br><font color=#446CB3>string</font></td>
-			<td>The set of result codes from the evaulation of the current transaction</td>
+			<td>The set of result codes from the evaluation of the current transaction</td>
 		</tr>
 		<tr>
 			<td>frn<br><font color=#446CB3>string</font></td>
