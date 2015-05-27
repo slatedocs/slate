@@ -20,7 +20,7 @@ Quick Start 서비스의 범위를 설명하여 이해하기 위해, 먼저 Serv
 ### Service Provider와 Service Site
 Service Provider는 서비스를 구축하고 제공하는 주체입니다. Service Site는 Service Provider가 사용자(User)에게 제공하려는 BM(Business Model)이 포함된 서비스입니다. 
 
-![overview_building](Overview_Building.png)
+<img src="http://docs.pallycon.com/images/QuickStart_ServiceProvider_ServiceSite.png" width="720" height="360">
 
 
 Service Provider는  [PallyCon Admin](http://admin.pallycon.com/#/main/dashboard)에서 여러개의 Service Site를 생성할 수 있습니다. 각 Service Site마다 PallyCon 서비스를 구축하여야 사용자에게 DRM 서비스를 제공할 수 있습니다. 
