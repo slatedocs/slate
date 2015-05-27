@@ -20,11 +20,7 @@ Quick Start 서비스의 범위를 설명하여 이해하기 위해, 먼저 Serv
 ### Service Provider와 Service Site
 Service Provider는 서비스를 구축하고 제공하는 주체입니다. Service Site는 Service Provider가 사용자(User)에게 제공하려는 BM(Business Model)이 포함된 서비스입니다. 
 
-<img src="../images/QuickStart_ServiceProvider_ServiceSite.png" width="200"></a>
-
-
-<img src="http://docs.pallycon.com/images/QuickStart_ServiceProvider_ServiceSite.png" width="720" height="360">
-
+<img src="../images/QuickStart_ServiceProvider_ServiceSite.png" width="720" height="360">
 
 Service Provider는  [PallyCon Admin](http://admin.pallycon.com/#/main/dashboard)에서 여러개의 Service Site를 생성할 수 있습니다. 각 Service Site마다 PallyCon 서비스를 구축하여야 사용자에게 DRM 서비스를 제공할 수 있습니다. 
 
@@ -37,7 +33,7 @@ PallyCon 서비스는 다음과 같은 구조로 되어 있습니다.
 
 이와 같이 PallyCon 서비스는 Service Site의 정책(BM: Business Model)이 반영되지 않을 경우, 동작할 수 없습니다. PallyCon 서비스에서는 Service Site의 정책을 반영하기 위해 연동되는 모듈을 **'게이트웨이(Gateway)'**라고 부릅니다. 
 
-<img src="http://drive.google.com/uc?export=download&id=0B1b4FYUmU3f5RENQYlhhYy1OYms&authuser=0" width="720" height="360">
+<img src="../images/QuickStart_PallyConService_Gateway.png" width="720" height="360">
 
 게이트웨이가 적용되면 PallyCon 서비스가 동작할 수 있게 됩니다. 
 
@@ -46,7 +42,7 @@ PallyCon 서비스는 다음과 같은 구조로 되어 있습니다.
 ### Quick Start 서비스 
 Quick Start 서비스는 **Service Provider에서 개발해야 하는 게이트웨이를 샘플(Quick Start Sample)로 제공**합니다. 샘플은 PHP, JSP, ASP의 형태로 제공되기 때문에 Service Provider에서 원하는 플랫폼으로 다운로드 받아 사용하실 수 있습니다. 그와 함께, PallyCon 서비스의 체험을 위해 **Packager를 제공**합니다. 
 
-<img src="http://drive.google.com/uc?export=download&id=0B1b4FYUmU3f5VTFUU095Y2tBMmc&authuser=0" width="320" height="360">
+<img src="../images/QuickStart_QuickStartService.png" width="320" height="360">
 
 Quick Start 샘플은 Service Site의 BM을 적용하는 부분을 분리되어 주석처리되어 있습니다. 그리고 PallyCon 서비스의 동작을 위해 Service Site의 BM을 적용한 후에 결정되는 **결과값을 기본값으로 설정**되어 있습니다. 
 기본값은 Config 페이지에 Service Site의 BM이 설정되지 않은 임시로 입력된 값이거나, 샘플 소스내에 별도의 처리없이 성공으로 설정된 값입니다 .
@@ -63,9 +59,11 @@ Quick Start
 
 Quick Start는 아래의 링크에서 플랫폼별로 다운로드 받으실 수 있습니다.
 
-<i class="icon-folder-open"></i> [PHP 버전 다운로드](http://www.pallycon.com/developer/)
-<i class="icon-folder-open"></i> [ASP 버전 다운로드](http://www.pallycon.com/developer/)
-<i class="icon-folder-open"></i> [JSP 버전 다운로드](http://www.pallycon.com/developer/)
+<i class="icon-folder-open"></i> [PHP 버전 다운로드](http://file.pallycon.com/docs/php.zip)
+
+<i class="icon-folder-open"></i> [ASP 버전 다운로드](http://file.pallycon.com/docs/asp.zip)
+
+<i class="icon-folder-open"></i> [JSP 버전 다운로드](http://file.pallycon.com/docs/jsp.zip)
 
 
 
@@ -86,7 +84,7 @@ Quick Start는 아래의 링크에서 플랫폼별로 다운로드 받으실 수
 
 게이트웨이의 주요 파일들은 다음과 같습니다. (확장자 미표시)
 
-<img src="http://drive.google.com/uc?export=download&id=0B1b4FYUmU3f5enZNNUI5aGZXaEU&authuser=0" width="220" height="260">
+<img src="../images/QuickStart_QuickStartGateway.png" width="220" height="260">
 
 - **Config**: PallyCon 서비스 체험을 위해 **Service Site의 BM이 적용되어야 하는 값을 임시로 설정해야 하는 페이지**입니다. 그리고 통신에 암호화를 적용하기 위한 AES256 KEY값을 설정하는 페이지입니다. 
 - **CIDIssue**: DRM 콘텐츠 생성에 필요한 **콘텐츠 아이디(Content ID)를 발급하는 페이지**입니다. 
@@ -97,7 +95,7 @@ Quick Start는 아래의 링크에서 플랫폼별로 다운로드 받으실 수
 주요 파일들은 PallyCon 서비스와 연동됩니다. 
 
 
-<img src="http://drive.google.com/uc?export=download&id=0B1b4FYUmU3f5Z0hTMGN3RjFkY3M&authuser=0" width="470" height="360">
+<img src="../images/QuickStart_QuickStartLinkage.png" width="470" height="360">
 
 PallyCon 서비스 연동 I(PallyCon Service Linkage I): DRM 콘텐츠 생성 
 : Packager에서 DRM 콘텐츠를 생성하는데 필요한 **콘텐츠 아이디(Content ID)를 Cloud Server로 요청**합니다. Cloud Server에서는 등록된 Service Site의 정보 중 Content ID Issue 페이지의 주소를 추출합니다. **Cloud Server는 이 페이지 주소로 콘텐츠 아이디를 요청**합니다. 
@@ -121,7 +119,7 @@ Quick Start는 PallyCon 서비스의 빠른 체험과 상용 서비스의 빠른
 
 요약하면 다음과 같습니다. 
 
-<img src="http://drive.google.com/uc?export=download&id=0B1b4FYUmU3f5OUd3SS1rSjBUdlU&authuser=0" width="410" height="260">
+<img src="../images/QuickStart_QuickStartSampleUsageI.png" width="410" height="260">
 
 - **Config 파일의 설정되어야 하는 값을 입력**
 - **CIDIssue 페이지와 ContentUsageRightsInfo 페이지의 주소를 PallyCon Admin([PallyCon Admin > Setting > Contnet ID Issue URL / Content Usage Info URL](http://admin.pallycon.com/#/main/settings))에 입력**
@@ -130,7 +128,7 @@ Quick Start는 PallyCon 서비스의 빠른 체험과 상용 서비스의 빠른
 ### 활용 II: 상용 서비스 구축을 위한 활용
 Quick Start는 약간의 작업을 통해, 상용 서비스에 필요한 게이트웨이를 구축할 수 있습니다. 필요한 작업은 다음과 같습니다. 
 
-<img src="http://drive.google.com/uc?export=download&id=0B1b4FYUmU3f5Y1NtZGJCb0xYTTQ&authuser=0" width="750" height="340">
+<img src="../images/QuickStart_QuickStartSampleUsageII.png" width="750" height="340">
 
 Service Site 개발
 : Service Site는 DRM 콘텐츠를 다운로드 혹은 스트리밍 재생을 위해 표시하는 페이지입니다. 그렇기 때문에, **Service Provider에서 원하는 형태로 새롭게 페이지가 개발**되어야 합니다. Quick Start에서 제공하는 Service Site는 Contents Player로 전달하는 정보를 참고하는 용도로 활용할 수 있습니다. 
@@ -168,12 +166,12 @@ PallyCon 체험을 위해 Quick Start에서 제공되는 Packager는 Application
 ###Step2: Packager 세팅
  PallyCon Admin에서 확인이 가능한 Site ID 와 Packager Key를 입력합니다.
 
-<img src="./Dev_Guide_Images/Packaging_Setting - Packaging.png" width="390" height="400">
+<img src="../images/Packaging_Setting-Packaging.png" width="390" height="400">
 
 ###Step3: Packaging
  테스트 할 MP4파일 3개를 선택 후 start packaging 버튼을 클릭하여 파일을 Packaging 합니다. (_8번 버튼 클릭_)
  
-  <img src="./Dev_Guide_Images/Packaging_CloudApplicationPackager_Main.png" width="840" height="580">
+<img src="../images/Packaging_CloudApplicationPackager_Main.png" width="840" height="580">
   
 ###Step4. Packaging 완료된 콘텐츠 파일 세팅
 Packaging이 완료되면 원본콘텐츠(MP4)는 DRM콘텐츠(NCG)로 변환됩니다. 
@@ -202,8 +200,8 @@ DRM 콘텐츠의 사용 준비가 끝나면, Contents Player를 통해 사용할
 
 PallyCon Mobile Player는 앱 스토어나 구글 플레이를 통해 설치할 수 있습니다. 
 
-[App Store](http://)
-[Google Play](http://)
+<a href="https://itunes.apple.com/kr/app/pallycon-player/id918473490?mt=8"><img src="../images/appstore_logo.png" width="200"></a>
+<a href="https://play.google.com/store/apps/details?id=com.inka.pallycon.pallyconplayer"><img src="../images/google_play_logo.png" width="200"></a>
 
 
 
