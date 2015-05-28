@@ -453,7 +453,7 @@ EXAMPLE SERVICE RESPONSE DATA
 		</tr>
 		<tr>
 			<td>tid<br><font color=#446CB3>string</font></td>
-			<td>The transaction ID of the current transaction</td>
+			<td>The transaction ID.</td>
 		</tr>
 		<tr>
 			<td>frn<br><font color=#446CB3>string</font></td>

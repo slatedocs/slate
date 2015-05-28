@@ -474,7 +474,7 @@ EXAMPLE SERVICE RESPONSE DATA
 		</tr>
 		<tr>
 			<td>tid<br><font color=#446CB3>string</font></td>
-			<td>The transaction ID of the current transaction</td>
+			<td>The transaction ID.</td>
 		</tr>		
 		<tr>
 			<th colspan=2>Document Verification</th>

@@ -494,7 +494,7 @@ EXAMPLE SERVICE RESPONSE DATA
 		</tr>
 		<tr>
 			<td>tid<br><font color=#446CB3>string</font></td>
-			<td>The transaction ID of the current transaction</td>
+			<td>The transaction ID.</td>
 		</tr>
 		<tr>
 			<td>frn<br><font color=#446CB3>string</font></td>
@@ -1227,7 +1227,7 @@ EXAMPLE SERVICE RESPONSE DATA
 		</tr>
 		<tr>
 			<td>tid<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
-			<td>The transaction ID of the current transaction</td>
+			<td>The transaction ID.<br><br>If the <code>tid</code> is provided with a new value in a feedback call, this new value will overwrite the old transaction ID. This new transaction ID will then be used to reference the transaction, and the old ID will be invalid.</td>
 		</tr>
 		<tr>
 			<td>validation_status<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
