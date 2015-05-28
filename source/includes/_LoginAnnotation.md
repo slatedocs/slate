@@ -200,10 +200,10 @@ EXAMPLE SERVICE RESPONSE DATA
 		</tr>
 		<tr>
 			<td>ednaScoreCard<br><font color=#446CB3>ExternalizedTransactionScorecard</font></td>
-			<td>The scorecard for the current transaction</td>
+			<td>The score card for the current transaction</td>
 		</tr>
 		<tr>
-			<th colspan=2>Externalized Transaction Scorecard</th>
+			<th colspan=2>Externalized Transaction Score Card</th>
 		</tr>
 		<tr>
 			<td>ar<br><font color=#446CB3>AutomatedReviewEngineResult</font><br><font color=#BDC3C7><i>optional</i></font></td>

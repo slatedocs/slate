@@ -97,6 +97,23 @@ EXAMPLE SERVICE REQUEST
 			<td>Hash of the unique identifier for a destination Bitcoin wallet</td>
 		</tr>
 		<tr>
+			<td>moto<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
+			<td>The MOTO/eCommerce indicator describes the type of eCommerce transaction that is taking place. 
+				<ul type="disc">
+					<li><code> </code> - (space) card present</li>
+					<li><code>1</code> - one time mail / phone order</li>
+					<li><code>2</code> - recurring payment</li>
+					<li><code>3</code> - installment payment</li>
+					<li><code>4</code> - other</li>
+					<li><code>5</code> - 3D secure full</li>
+					<li><code>6</code> - 3D secure merchant</li>
+					<li><code>7</code> - eCommerce (channel encrypted)</li>
+					<li><code>8</code> - eCommerce (non-secure)</li>
+				</ul>
+				The default is <code>7</code> if the field is not supplied.		
+			</td>
+		</tr>
+		<tr>
 			<td>amt<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
 			<td>Transaction amount</td>
 		</tr>
@@ -483,10 +500,10 @@ EXAMPLE SERVICE RESPONSE DATA
 		</tr>
 		<tr>
 			<td>ednaScoreCard<br><font color=#446CB3>ExternalizedTransactionScorecard</font></td>
-			<td>The scorecard for the current transaction</td>
+			<td>The score card for the current transaction</td>
 		</tr>
 		<tr>
-			<th colspan=2>Externalized Transaction Scorecard</th>
+			<th colspan=2>Externalized Transaction Score Card</th>
 		</tr>
 		<tr>
 			<td>ar<br><font color=#446CB3>AutomatedReviewEngineResult</font><br><font color=#BDC3C7><i>optional</i></font></td>
