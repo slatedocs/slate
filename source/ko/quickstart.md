@@ -27,7 +27,7 @@ Service Provider는  [PallyCon Admin](http://admin.pallycon.com/#/main/dashboard
 ### PallyCon 서비스와 게이트웨이(Gateway)
 PallyCon 서비스는 다음과 같은 구조로 되어 있습니다. 
 
-- **Cloud Server**: INKA ENTWORKS에서 운영하는 서버로 PallyCon Admin 등 모든 PallyCon 서비스 사이트를 포함하고 있습니다. 이 서버는 PallyCon 서비스에서 제공하는 클라이언트가 DRM 콘텐츠를 생성하거나 사용하기 위한 필요한 정보를 생성 또는 전달합니다. 이 정보는 Service Site의 BM(Business Model)이 반영된 정보입니다. 그렇기 때문에 Cloud Server에서는 이 정보를 서버에서 독자적으로 생성할 수 없습니다. 이 정보를 얻기 위해 서버에서는 Service Site에게 요청을 합니다. **이 정보를 얻지 못할 경우, PallyCon 서비스는 동작하지 않습니다.**
+- **Cloud Server**: INKAENTWORKS에서 운영하는 서버로 PallyCon Admin 등 모든 PallyCon 서비스 사이트를 포함하고 있습니다. 이 서버는 PallyCon 서비스에서 제공하는 클라이언트가 DRM 콘텐츠를 생성하거나 사용하기 위한 필요한 정보를 생성 또는 전달합니다. 이 정보는 Service Site의 BM(Business Model)이 반영된 정보입니다. 그렇기 때문에 Cloud Server에서는 이 정보를 서버에서 독자적으로 생성할 수 없습니다. 이 정보를 얻기 위해 서버에서는 Service Site에게 요청을 합니다. **이 정보를 얻지 못할 경우, PallyCon 서비스는 동작하지 않습니다.**
 - **Packager**: 원본 콘텐츠를 DRM 콘텐츠로 변환하는데 사용하는 클라이언트입니다. 
 - **Content Player**: DRM 콘텐츠를 사용하기 위한 클라이언트입니다. **DRM 콘텐츠의 사용을 위해 Cloud Server 외에 Service Site의 연동 페이지가 필요**합니다. 
 
