@@ -11,11 +11,12 @@ Quick Start를 통해, Service Provider는
 - PallyCon 서비스를 적용하기 전에 먼저 체험할 수 있도록, **30분 이내로 빠르게 구축할 수 있는 환경**을 제공받을 수 있습니다.
 - PallyCon 서비스를 상용으로 구축하기 위해서, **쉽게 BM(Business Model)을 적용할 수 있는 환경**을 제공받을 수 있습니다. 
 
+
 --------
 ### Quick Start 서비스의 범위
 
->>>>>>> Stashed changes
 Quick Start 서비스의 범위를 설명하여 이해하기 위해, 먼저 Service Provider와 Service Site, PallyCon 서비스와 게이트웨이(Gateway)를 먼저 아셔야 합니다. 
+
 
 #### Service Provider와 Service Site
 Service Provider는 서비스를 구축하고 제공하는 주체입니다. Service Site는 Service Provider가 사용자(User)에게 제공하려는 BM(Business Model)이 포함된 서비스입니다. 
@@ -40,7 +41,6 @@ PallyCon 서비스는 다음과 같은 구조로 되어 있습니다.
 
 #### Quick Start 서비스 
 
->>>>>>> Stashed changes
 Quick Start 서비스는 **Service Provider에서 개발해야 하는 게이트웨이를 샘플(Quick Start Sample)로 제공**합니다. 샘플은 PHP, JSP, ASP의 형태로 제공되기 때문에 Service Provider에서 원하는 플랫폼으로 다운로드 받아 사용하실 수 있습니다. 그와 함께, PallyCon 서비스의 체험을 위해 **Packager를 제공**합니다. 
 
 <img src="../images/QuickStart_QuickStartService.png" width="320" height="360">
@@ -69,7 +69,6 @@ Quick Start 샘플은 아래의 링크에서 개발언어별로 다운로드 받
 ----------------------------------------
 ### Quick Start 구조
 
->>>>>>> Stashed changes
 
 다운로드 받으신 파일의 압축을 풉니다. 언집(Un-zip)된 폴더안에는 다음과 같은 폴더와 파일이 있습니다. 
 
@@ -202,17 +201,11 @@ Packaging이 완료되면 원본콘텐츠(MP4)는 DRM콘텐츠(NCG)로 변환됩
 DRM 콘텐츠의 사용 준비가 끝나면, Contents Player를 통해 사용할 수 있습니다. Contents Player는 서비스 중인 최신 버전을 사용합니다. 
 이 챕터에서는 Contents Player의 사용방법에 대해 설명합니다 그리고 PallyCon 서비스의 사용 내역을 확인하는 방법을 설명합니다. 
 
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
 
 
 -------------------------------
 ### PallyCon Mobile Player 설치하기 
-=======
->>>>>>> Stashed changes
-##PallyCon Mobile Player 설치하기 
->>>>>>> origin/master
+
 
 PallyCon Mobile Player는 앱 스토어나 구글 플레이를 통해 설치할 수 있습니다. 
 
@@ -227,10 +220,6 @@ PallyCon Mobile Player는 앱 스토어나 구글 플레이를 통해 설치할 
 
 ### MOBILE Player: 스트리밍, 다운로드, 로컬 재생하기
 
-=======
->>>>>>> Stashed changes
-##MOBILE Player: 스트리밍, 다운로드, 로컬 재생하기
->>>>>>> origin/master
 
 PallyCon Mobile Player는 Service Site에서 호출하여 사용하는 방법으로 구동됩니다. 
 
