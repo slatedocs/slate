@@ -169,9 +169,11 @@ PallyCon 체험을 위해 Quick Start에서 제공되는 Packager는 Application
 <img src="../images/Packaging_Setting-Packaging.png" width="390" height="400">
 
 ###Step3: Packaging
- 테스트 할 MP4파일 3개를 선택 후 start packaging 버튼을 클릭하여 파일을 Packaging 합니다. (_8번 버튼 클릭_)
+ 테스트 할 MP4/MP3파일 3개를 선택 후 start packaging 버튼을 클릭하여 파일을 Packaging 합니다. (_8번 버튼 클릭_)
  
 <img src="../images/Packaging_CloudApplicationPackager_Main.png" width="840" height="580">
+
+> **NOTE:** MP4 / MP3 파일만 허용됩니다. 그외의 파일들은 클라이언트에서 재생이 되지 않습니다. 
   
 ###Step4. Packaging 완료된 콘텐츠 파일 세팅
 Packaging이 완료되면 원본콘텐츠(MP4)는 DRM콘텐츠(NCG)로 변환됩니다. 
