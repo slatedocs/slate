@@ -12,8 +12,6 @@ Quick Start를 통해, Service Provider는
 - PallyCon 서비스를 적용하기 전에 먼저 체험할 수 있도록, **30분 이내로 빠르게 구축할 수 있는 환경**을 제공받을 수 있습니다.
 - PallyCon 서비스를 상용으로 구축하기 위해서, **쉽게 BM(Business Model)을 적용할 수 있는 환경**을 제공받을 수 있습니다. 
 
-
---------
 ## Quick Start 서비스의 범위
 Quick Start 서비스의 범위를 설명하여 이해하기 위해, 먼저 Service Provider와 Service Site, PallyCon 서비스와 게이트웨이(Gateway)를 먼저 아셔야 합니다. 
 
@@ -38,7 +36,6 @@ PallyCon 서비스는 다음과 같은 구조로 되어 있습니다.
 게이트웨이가 적용되면 PallyCon 서비스가 동작할 수 있게 됩니다. 
 
 
-
 ### Quick Start 서비스 
 Quick Start 서비스는 **Service Provider에서 개발해야 하는 게이트웨이를 샘플(Quick Start Sample)로 제공**합니다. 샘플은 PHP, JSP, ASP의 형태로 제공되기 때문에 Service Provider에서 원하는 플랫폼으로 다운로드 받아 사용하실 수 있습니다. 그와 함께, PallyCon 서비스의 체험을 위해 **Packager를 제공**합니다. 
 
@@ -48,16 +45,10 @@ Quick Start 샘플은 Service Site의 BM을 적용하는 부분을 분리되어 
 기본값은 Config 페이지에 Service Site의 BM이 설정되지 않은 임시로 입력된 값이거나, 샘플 소스 내에 별도의 처리 없이 성공으로 설정된 값입니다 .
 
 
-
-
-----------
-
------------
-
-Quick Start 
+Quick Start 샘플 다운로드
 =========
 
-Quick Start는 아래의 링크에서 플랫폼별로 다운로드 받으실 수 있습니다.
+Quick Start 샘플은 아래의 링크에서 개발언어별로 다운로드 받으실 수 있습니다.
 
 <i class="icon-folder-open"></i> [PHP 버전 다운로드](http://file.pallycon.com/docs/php.zip)
 
@@ -66,8 +57,6 @@ Quick Start는 아래의 링크에서 플랫폼별로 다운로드 받으실 수
 <i class="icon-folder-open"></i> [JSP 버전 다운로드](http://file.pallycon.com/docs/jsp.zip)
 
 
-
-----------------------------------------
 ## Quick Start 구조
 
 다운로드 받으신 파일의 압축을 풉니다. 언집(Un-zip)된 폴더안에는 다음과 같은 폴더와 파일이 있습니다. 
@@ -78,8 +67,6 @@ Quick Start는 아래의 링크에서 플랫폼별로 다운로드 받으실 수
 
 > **NOTE:** Packager의 사용법은 다음 챕터에서 설명됩니다. 
 
-
-----------------------------------------
 ## 게이트웨이(gateway 폴더 내)의 주요 파일 설명
 
 게이트웨이의 주요 파일들은 다음과 같습니다. (확장자 미표시)
@@ -107,8 +94,6 @@ PallyCon 서비스 연동 II(PallyCon Service Linkage II): DRM 콘텐츠 사용
 Cloud Server로 요청된 정보가 전달되면, 이 정보를 이용하여 **라이선스를 생성합니다. 그다음, 이 라이선스를 Contents Player로 전달**합니다. 
 그 외에 **Contents Player는 DRM 콘텐츠 사용에 필요한 다양한 기능**을 가지고 있습니다. 이 기능들은 **Service Manager 페이지와 연동되면서 구동**됩니다. 
 
-
---------------------------------
 ## Quick Start 활용 
 
 
@@ -141,16 +126,6 @@ BM을 적용하는데 주의해야 할 점은 두가지입니다. 첫번째는 *
 Config 파일 제거 또는 수정 
 : Config 파일에는 PallyCon 서비스의 체험을 위해 Service Site의 BM에 적용되는 값을 임시로 설정된 값들이 있습니다. 상용 서비스에는 **Config에 설정된 값 중 AES256_KEY 값을 제외한 모든 값을 제거**하셔야 합니다. AES256_KEY 값은 반드시 필요한 값이기 때문에 다른 부분에 정의하시고 Config 파일을 제거하는 것을 추천합니다. 
 
-
-
-
-
-------------------
-
--------------------
-
-
-
 PallyCon 서비스 체험을 위한 Packager 사용법
 ==============
 
@@ -181,35 +156,18 @@ Packaging이 완료되면 원본콘텐츠(MP4)는 DRM콘텐츠(NCG)로 변환됩
  1. DRM 콘텐츠의 경로를 Config 파일의 설정값으로 입력합니다. 
  2. 해당 콘텐츠 파일명을 Config 파일의 설정값으로 입력합니다.
 
-
-
-
---------------
-
---------------
-
-
-
 PallyCon 서비스 체험을 위한 Contents Player 사용법
 ===========
 
 DRM 콘텐츠의 사용 준비가 끝나면, Contents Player를 통해 사용할 수 있습니다. Contents Player는 서비스 중인 최신 버전을 사용합니다. 
 이 챕터에서는 Contents Player의 사용방법에 대해 설명합니다 그리고 PallyCon 서비스의 사용 내역을 확인하는 방법을 설명합니다. 
 
-
--------------------------------
 ##PallyCon Mobile Player 설치하기 
 
 PallyCon Mobile Player는 앱 스토어나 구글 플레이를 통해 설치할 수 있습니다. 
 
 <a href="https://itunes.apple.com/kr/app/pallycon-player/id918473490?mt=8"><img src="../images/appstore_logo.png" width="200"></a>
 <a href="https://play.google.com/store/apps/details?id=com.inka.pallycon.pallyconplayer"><img src="../images/google_play_logo.png" width="200"></a>
-
-
-
-
-
------------------------------
 
 ##MOBILE Player: 스트리밍, 다운로드, 로컬 재생하기
 
@@ -224,22 +182,9 @@ Mobile Web sample 페이지에서 Download 버튼을 터치하면 PallyCon Mobil
 ###로컬 재생
 다운로드된 DRM 콘텐츠는 리스트에서 확인할 수 있습니다. 리스트에서 원하는 콘텐츠를 터치하면, 로컬 재생을 시작합니다. 
 
-
-
-
-----------------------------
 ## 사용 내역 조회하기 
 
 PallyCon 서비스를 체험하면서 사용한 서비스에 대한 내역을 [PallyCon Admin](http://admin.pallycon.com/#/main/dashboard)에서 조회할 수 있습니다. 조회 가능한 내용은 DRM 콘텐츠 생성 내역(Packaging 이력), License 발급 내역 등에 대한 내용입니다. 
-
-
-
-
-------------
-
------------
-
-
 
 
 Revision History
