@@ -23,13 +23,3 @@ PallyCon 서비스는 클라우드 기반의 DRM 라이선스 서버와 DRM 콘�
 
 [PallyCon SDK](#sdk-가이드)를 이용해 자체 플레이어를 개발하기 원하는 고객사를 위하여 SDK 개발 가이드를 제공합니다.
 보다 상세한 API 레퍼런스 문서는 별도 계약 후 전달되는 각 플랫폼 별 SDK에 포함되어 있습니다.
-
-## 다운로드
-빠른 시작을 위해서는 아래 '퀵 스타트 샘플'을 다운로드 받고 [퀵스타트 가이드](#퀵스타트-가이드)를 따라해 주시기 바랍니다.
-콘텐츠 파일 패키징을 위한 패키져도 아래 링크에서 다운로드 가능합니다.
-
-- 퀵스타트 샘플 [다운로드](http://www.pallycon.com/download/PallyCon_QuickStartSample.zip)
-- 패키저 [다운로드](http://www.pallycon.com/download/PallyCon_Packager.zip)
-
-
-
