@@ -80,6 +80,11 @@ html, body {
   font-size: 13px;
   font-weight: bold;
 
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
   // language selector for mobile devices
   .lang-selector {
     display: none;
