@@ -1,17 +1,19 @@
 Tether API Documentation
 ========
 
+The most recent compiled version of documentation is available at http://platform.tether.to/
+
+This repository contains source files only. Feel free to submit pull requests with additions, examples and corrections to documentation.
+
+Please report errors in API clients to the corresponding issue tracker on Bitbucket:
+
+- [Tether API Ruby client](https://bitbucket.org/tetherto/tether-api-client-ruby/issues)
+- Tether API PHP client (planned)
+- Tether API Python client (planned)
+
 The documentation is powered by [Slate](https://github.com/tripit/slate/).
-Feel free to submit pull requests with additions, examples and corrections to documentation.
 
-Please report errors in API clients to the corresponding issue tracker on Github:
-
-- [Tether API Ruby client](https://github.com/WebLogicNow/tether-api-client-ruby/issues)
-- [Tether API PHP client](https://github.com/WebLogicNow/tether-api-client-php/issues)
-- [Tether API Python client](https://github.com/WebLogicNow/tether-api-client-python/issues)
-
-
-Getting Started
+Suggesting improvements to the documentation
 ------------------------------
 
 ### Prerequisites
