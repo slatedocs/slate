@@ -108,7 +108,7 @@ EXAMPLE SERVICE RESPONSE DATA
 
 <table>
 		<tr>
-			<th colspan=2>Transaction Reponse Data</th>
+			<th colspan=2>Transaction Response Data</th>
 		</tr>
 		<tr>
 			<th>Parameter</th>
@@ -149,11 +149,11 @@ EXAMPLE SERVICE RESPONSE DATA
 		</tr>
 		<tr>
 			<td>rcd<br><font color=#446CB3>string</font></td>
-			<td>The set of result codes from the evaulation of the current transaction</td>
+			<td>The set of result codes from the evaluation of the current transaction</td>
 		</tr>
 		<tr>
 			<td>tid<br><font color=#446CB3>string</font></td>
-			<td>The transaction ID of the current transaction</td>
+			<td>The transaction ID.</td>
 		</tr>
 		<tr>
 			<td>frn<br><font color=#446CB3>string</font></td>
@@ -200,10 +200,10 @@ EXAMPLE SERVICE RESPONSE DATA
 		</tr>
 		<tr>
 			<td>ednaScoreCard<br><font color=#446CB3>ExternalizedTransactionScorecard</font></td>
-			<td>The scorecard for the current transaction</td>
+			<td>The score card for the current transaction</td>
 		</tr>
 		<tr>
-			<th colspan=2>Externalized Transaction Scorecard</th>
+			<th colspan=2>Externalized Transaction Score Card</th>
 		</tr>
 		<tr>
 			<td>ar<br><font color=#446CB3>AutomatedReviewEngineResult</font><br><font color=#BDC3C7><i>optional</i></font></td>

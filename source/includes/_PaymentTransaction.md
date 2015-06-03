@@ -2,10 +2,10 @@
 
 Evaluate a transaction for payment fraud.
 
-The following URL can be used for requesting payment transaction anti-fraud evaluation:<br>
+Request payment transaction anti-fraud evaluation:<br>
 `POST https://edna.identitymind.com/im/transaction`
 
-The following URL can be used to retrieve the current state of a transaction:<br>
+Retrieve the current state of a transaction:<br>
 `GET https://edna.identitymind.com/im/transaction/<transaction_id>`
 
 <aside class="notice">Not all fields are required, but anti-fraud evaluation is more comprehensive when richer evidence is provided.</aside>
@@ -41,7 +41,6 @@ EXAMPLE SERVICE REQUEST
   	"ssn" : "123 anystreet",
   	"tid" : "89"
 }
-
 ```
 <table>
 		<tr>
@@ -87,6 +86,23 @@ EXAMPLE SERVICE REQUEST
 					<li><code>INTERAC</code> - Interac</li>
 					<li><code>generic</code></li>
 				</ul></td>
+		</tr>
+		<tr>
+			<td>moto<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
+			<td>The MOTO/eCommerce indicator describes the type of eCommerce transaction that is taking place. 
+				<ul type="disc">
+					<li><code> </code> - (space) card present</li>
+					<li><code>1</code> - one time mail / phone order</li>
+					<li><code>2</code> - recurring payment</li>
+					<li><code>3</code> - installment payment</li>
+					<li><code>4</code> - other</li>
+					<li><code>5</code> - 3D secure full</li>
+					<li><code>6</code> - 3D secure merchant</li>
+					<li><code>7</code> - eCommerce (channel encrypted)</li>
+					<li><code>8</code> - eCommerce (non-secure)</li>
+				</ul>
+				The default is <code>7</code> if the field is not supplied.		
+			</td>
 		</tr>
 		<tr>
 			<td>error_code<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
@@ -286,7 +302,7 @@ EXAMPLE SERVICE REQUEST
 		</tr>
 		<tr>
 			<td>blg<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
-			<td>Customer browser langauge</td>
+			<td>Customer browser language</td>
 		</tr>
 		<tr>
 			<td>clat<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
@@ -428,13 +444,12 @@ EXAMPLE SERVICE RESPONSE DATA
         "upr": "UNKNOWN",
         "user": "UNKNOWN"
     }
-
 ```
 > The response includes detailed result codes and the transaction unique identifier. The most important part of the response is whether the transaction is to be accepted, denied, or scheduled for manual review, which is dependent on the configured fraud policy.
 
 <table>
 		<tr>
-			<th colspan=2>Transaction Reponse Data</th>
+			<th colspan=2>Transaction Response Data</th>
 		</tr>
 		<tr>
 			<th>Parameter</th>
@@ -475,11 +490,11 @@ EXAMPLE SERVICE RESPONSE DATA
 		</tr>
 		<tr>
 			<td>rcd<br><font color=#446CB3>string</font></td>
-			<td>The set of result codes from the evaulation of the current transaction</td>
+			<td>The set of result codes from the evaluation of the current transaction</td>
 		</tr>
 		<tr>
 			<td>tid<br><font color=#446CB3>string</font></td>
-			<td>The transaction ID of the current transaction</td>
+			<td>The transaction ID.</td>
 		</tr>
 		<tr>
 			<td>frn<br><font color=#446CB3>string</font></td>
@@ -526,10 +541,10 @@ EXAMPLE SERVICE RESPONSE DATA
 		</tr>
 		<tr>
 			<td>ednaScoreCard<br><font color=#446CB3>ExternalizedTransactionScorecard</font></td>
-			<td>The scorecard for the current transaction</td>
+			<td>The score card for the current transaction</td>
 		</tr>
 		<tr>
-			<th colspan=2>Externalized Transaction Scorecard</th>
+			<th colspan=2>Externalized Transaction Score Card</th>
 		</tr>
 		<tr>
 			<td>ar<br><font color=#446CB3>AutomatedReviewEngineResult</font><br><font color=#BDC3C7><i>optional</i></font></td>
@@ -640,6 +655,418 @@ EXAMPLE SERVICE RESPONSE DATA
 		</tr>
 	</table>
 
+	
+## Chargeback Notification
+
+Notifies that a chargeback occurred on a transaction. The transaction may be a Payment Transaction or an Account Transfer.
+
+In the case of a chargeback on a transaction that eDNA has not previously processed, payment instrument information is required.
+
+Request chargeback notification evaluation:<br>
+`POST https://edna.identitymind.com/im/jax/chargeback/`
+
+##### Arguments
+
+```code
+EXAMPLE SERVICE REQUEST
+```
+```json
+{
+	"amt" : 250,
+	"cbtype" : "DEBIT",
+	"pccn" : "DNsxhwmQCWeC5gPxTOwPRZlFfx",
+	"pcct" : "401201XXXXXX1110",
+	"tid" : "9900040"
+}
+```
+```code
+EXAMPLE SERVICE RESPONSE DATA
+```
+
+```json
+{
+	"message" : "credit notification accepted"
+}
+
+{
+	"error_message" : "A JSONObject text must begin with '{' at character 1"
+}
+```
+
+<table>
+		<tr>
+			<th colspan=2>Chargeback</th>
+		</tr>
+		<tr>
+			<th>Parameter</th>
+			<th>Description</th>
+		</tr>
+		<tr>
+			<td>amt<br><font color=#446CB3>string</font><br><font color=#CF000F><i>required</i></font></td>
+			<td>Amount of the chargeback</td>
+		</tr>
+		<tr>
+			<td>ccy<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
+			<td>The ISO 4217 currency code of the transaction encoded as a string. Default is <code>USD</code>.</td>
+		</tr>
+		<tr>
+			<td>error_code<br><font color=#446CB3>string</font><br><font color=#CF000F><i>required</i></font></td>
+			<td>This should be used to pass the reason code for the chargeback. For a full set of reason codes as defined by the card brands, click <a href="https://www.merchantconnect.com/CWRWeb/pdf/chargeback_reason_codes.pdf">here</a>.</td>
+		</tr>
+		<tr>
+			<td>reason<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
+			<td>Text describing the reason for refund/chargeback.</td>
+		</tr>
+		<tr>
+			<td>cbtype<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
+			<td>The chargeback type:
+				<ul type="disc">
+					<li><code>DEBIT</code></li>
+					<li><code>CREDIT</code></li>
+					<li><code>REPRESENTMENT</code></li>
+					<li><code>REVERSAL</code></li>
+				</ul>
+			The default is <code>DEBIT</code> if not provided.
+			</td>
+		</tr>
+		<tr>
+			<td>cbdate<br><font color=#446CB3>string</font><br><font color=#CF000F><i>required</i></font></td>
+			<td>Date of the chargeback action. For example, if the cbtype is <code>CREDIT</code>, then the date field should be the date that the CREDIT happens. The format of the value for this field is either an ISO 8601 encoded string or a UNIX timestamp.
+				<ul type="disc">
+					<li><code>"cbdate": "2011-01-01T13:12:16+0000"</code></li>
+					<li><code>"cbdate":1293887536</code></li>
+					<li><code>"cbdate":"1293887536"</code></li>
+				</ul>
+			</td>
+		</tr>
+		<tr>
+			<td>authdate<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
+			<td>Date of the original authorization transaction. The format of the value for this field is either an ISO 8601 encoded string or a UNIX timestamp.
+				<ul type="disc">
+					<li><code>"authdate": "2011-01-01T13:12:16+0000"</code></li>
+					<li><code>"authdate":1293887536</code></li>
+					<li><code>"authdate":"1293887536"</code></li>
+				</ul></td>
+		</tr>
+		<tr>
+			<td>gateway<br><font color=#446CB3>string</font><br><font color=#CF000F><i>required</i></font></td>
+			<td>The name of the payment gateway used. This information is used to interpret the result/error codes. Currently, we support:
+				<ul type="disc">
+					<li><code>MES</code> - Merchant e-Solutions</li>
+					<li><code>GC</code> - Google Checkout</li>
+					<li><code>PPP</code> - PayPal Pro</li>
+					<li><code>PFP</code> - Pay Flow Pro</li>
+					<li><code>CDP</code> - Centro de Pagos</li>
+					<li><code>commerce</code> - CommerceGate</li>
+					<li><code>DHD</code> - DHD Media</li>
+					<li><code>IDM</code> - IDMPay</li>
+					<li><code>SC</code> - Safe Charge</li>
+					<li><code>AUTH</code> - Auth.net</li>
+					<li><code>INTERAC</code> - Interac</li>
+					<li><code>generic</code></li>
+				</ul>
+			<b>Note</b>: While this field is required, backwards compatibility feedback will not be rejected if not present, but will instead be interpreted as MES gateway data. 
+			</td>
+		</tr>
+		<tr>
+			<td>tid<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
+			<td>Merchant unique identifier for the original authorization transaction. The transaction ID must be encoded as a string (e.g. <code>"tid" : "123455"</code>).</td>
+		</tr>
+		<tr>
+			<th colspan=2>Sub Merchant</th>
+		</tr>
+		<tr>
+			<td>smid<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
+			<td>A unique identifier for the merchant for whom this transaction is being processed.
+			<br><br>
+			<b>Note</b>: The value of the smid should not include the apostrophe symbol.</td>
+		</tr>
+		<tr>
+			<th colspan=2>Credit Card</th>
+		</tr>
+		<tr>
+			<td>pccn<br><font color=#446CB3>string</font><br><font color=#CF000F><i>required</i></font></td>
+			<td>Credit card unique identifier (hash) while obscuring actual number. IdentityMind will supply procedure to generate hash.
+			<br><br>
+			<b>Note</b>: The hash must be of the full card number, not a masked or tokenized representation.<br><br><i>Required if the provided <code>tid</code> does not refer to a transaction previously processed by eDNA.</i></td>
+		</tr>
+		<tr>
+			<td>pcct<br><font color=#446CB3>string</font><br><font color=#CF000F><i>required</i></font></td>
+			<td>A masked or tokenized version of the credit card number. IdentityMind will supply procedure to generate token. Maximum length is 64 characters.<br><br><i>Required if the provided <code>tid</code> does not refer to a transaction previously processed by eDNA</i></td>
+		</tr>
+		<tr>
+			<td>ric<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
+			<td>The issuer country of the card used in the transaction. The country code is the two letter abbreviation as defined in ISO-3166-1.</td>
+		</tr>
+		<tr>
+			<td>pcty<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
+			<td>The card type. Values are:
+				<ul type="disc">
+					<li><code>CREDIT</code></li>
+					<li><code>DEBIT</code></li>
+					<li><code>PREPAID</code></li>
+					<li><code>UNKNOWN</code></li>
+				</ul>
+			</td>
+		</tr>
+		<tr>
+			<td>pccn2<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
+			<td>Hash of the credit card to which the chargeback amount is to be credited if it is different from the credit card where the chargeback was reported.
+			<br><br>
+			<b>Note</b>: The hash must be of the full card number, not a masked or tokenized representation.</td>
+		</tr>
+		<tr>
+			<td>pcct2<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
+			<td>Token of the credit card to which the chargeback amount is to be credited if it is different from the credit card where the chargeback was reported.</td>
+		</tr>
+		<tr>
+			<td>ric2<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
+			<td>The issuer country of the credit card to which the chargeback amount is to be credited if it is different from the credit card where the chargeback was reported. The country code is the two letter abbreviation as defined in ISO-3166-1.</td>
+		</tr>
+		<tr>
+			<td>pcty2<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
+			<td>The type of the credit card to which the chargeback amount is to be credited if it is different from the credit card where the chargeback was reported.
+				<ul type="disc">
+					<li><code>CREDIT</code></li>
+					<li><code>DEBIT</code></li>
+					<li><code>PREPAID</code></li>
+					<li><code>UNKNOWN</code></li>
+				</ul>
+			Default is <code>UNKNOWN</code></td>
+		</tr>
+		<tr>
+			<th colspan=2>PayPal</th>
+		</tr>
+		<tr>
+			<td>pppi<br><font color=#446CB3>string</font><br><font color=#CF000F><i>required</i></font></td>
+			<td>PayPal Payer ID. It corresponds to PayPal's <code>PAYERID</code> field from PayPal Express Checkout.<br><br><i>Required if the provided <code>tid</code> does not refer to a transaction previously processed by eDNA</i></td>
+		</tr>
+		<tr>
+			<td>pppe<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
+			<td>Email address associated to the PayPal account. It corresponds to PayPal's <code>EMAIL</code> field from PayPal Express Checkout.</td>
+		</tr>
+	</table>
+
+## Credit Notification
+
+Notifies that a credit occurred on a transaction.
+
+In the case of credit or blind credit on a transaction that eDNA has not previously processed, the payment instrument information is required.
+
+Request credit notification evaluation:  
+`POST https://edna.identitymind.com/im/jax/credit/`
+ 
+<aside class="notice">The transaction may either be a payment transaction or an account transfer.</aside>
+
+##### Arguments
+
+```code
+EXAMPLE SERVICE REQUEST
+```
+```json
+{
+     "amt" : 10.4,
+     "pccn" : "DNsxhwmQCWeC5gPxTOwPRZlFfx",
+     "pcct" : "401201XXXXXX1110",
+     "tid" : "988833" 
+}
+```
+```code
+EXAMPLE SERVICE RESPONSE DATA
+```
+```json
+{
+  "message" : "credit notification accepted"
+}
+
+{
+  "error_message" : "A JSONObject text must begin with '{' at character 1"
+}
+```
+
+<table>
+		<tr>
+			<th colspan=2>Credit</th>
+		</tr>
+		<tr>
+			<th>Parameter</th>
+			<th>Description</th>
+		</tr>
+		<tr>
+			<td>amt<br><font color=#446CB3>string</font><br><font color=#CF000F><i>required</i></font></td>
+			<td>Amount of the credit.</td>
+		</tr>
+		<tr>
+			<td>ccy<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
+			<td>The ISO 4217 currency code of the transaction encoded as a string. Default is <code>USD</code>.</td>
+		</tr>
+		<tr>
+			<td>reason<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
+			<td>Text describing the reason for the credit.</td>
+		</tr>
+		<tr>
+			<td>crdate<br><font color=#446CB3>string</font><br><font color=#CF000F><i>required</i></font></td>
+			<td>Date of the credit action. The format of the value for this field is either an ISO 8601 encoded string or a UNIX timestamp.
+				<ul type="disc">
+					<li><code>"crdate": "2011-01-01T13:12:16+0000"</code></li>
+					<li><code>"crdate":1293887536</code></li>
+					<li><code>"crdate":"1293887536"</code></li>
+				</ul>
+			</td>
+		</tr>
+		<tr>
+			<td>tid<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
+			<td>Merchant unique identifier for the original authorization transaction. The transaction ID must be encoded as a string (e.g. <code>"tid":"123455"</code>). Maximum length is 40 characters.
+			</td>
+		</tr>
+		<tr>
+			<th colspan=2>Sub Merchant</th>
+		</tr>
+		<tr>
+			<td>smid<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
+			<td>A unique identifier for the merchant for whom this transaction is being processed.</td>
+		</tr>
+		<tr>
+			<th colspan=2>Credit Card</th>
+		</tr>
+		<tr>
+			<td>pccn<br><font color=#446CB3>string</font><br><font color=#CF000F><i>required</i></font></td>
+			<td>Credit card unique identifier (hash) while obscuring actual number. IdentityMind will supply procedure to generate the hash.
+			<br><br>
+			<b>Note</b>: The hash must be of the full card number, not a masked or tokenized representation. Maximum length is 128 characters.
+			</td>
+		</tr>
+		<tr>
+			<td>pcct<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
+			<td>A masked or tokenized version of the credit card number. IdentityMind will supply procedure to generate the token.</td>
+		</tr>
+		<tr>
+			<td>ric<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
+			<td>The issuer country of the card used in the transaction. The country code is the two letter abbreviation as defined in ISO-3166-1.</td>
+		</tr>
+		<tr>
+			<td>pcty<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
+			<td>The card type. Values are:
+				<ul type="disc">
+					<li><code>CREDIT</code></li>
+					<li><code>DEBIT</code></li>
+					<li><code>PREPAID</code></li>
+					<li><code>UNKNOWN</code></li>
+				</ul>
+			Default is <code>UNKNOWN</code></td>
+		</tr>
+		<tr>
+			<th colspan=2>PayPal</th>
+		</tr>
+		<tr>
+			<td>pppi<br><font color=#446CB3>string</font><br><font color=#CF000F><i>required</i></font></td>
+			<td>PayPal Payer ID. It corresponds to PayPal's <code>PAYERID</code> field from PayPal Express Checkout.</td>
+		</tr>
+		<tr>
+			<td>pppe<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
+			<td>Email address associated to the PayPal account. It corresponds to PayPal's <code>EMAIL</code> field from the PayPal Express Checkout</td>
+		</tr>
+		<tr>
+			<th colspan=2>Generic Financial Account</th>
+		</tr>
+		<tr>
+			<td>phash<br><font color=#446CB3>string</font><br><font color=#CF000F><i>required</i></font></td>
+			<td>Account unique identifier (hash) while obscuring actual number. This is used when IdentityMind does not natively support the payment type.
+			<br><br>
+			<b>Note</b>: The hash must be of the full account number, not a masked or tokenized representation.</td>
+		</tr>
+		<tr>
+			<td>ptoken<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
+			<td>A masked or tokenized version of the account token.</td>
+		</tr>
+	</table>
+
+## Transaction Neutral/Refund Notification
+
+Notifies that a refund occurred on a transaction. All arguments are optional.
+
+The transaction ID is part of the URL. The "refund-ok" URL should be used when the merchant believes that the refund is legitimate. The "refund-fraud" URL should be used when the merchant believes there is fraud, but a refund is being made to avoid a later chargeback.
+
+`POST https://edna.identitymind.com/im/transaction/<transaction_ID>/refund-ok`
+
+`POST https://edna.identitymind.com/im/transaction/<transaction_ID>/refund-fraud`
+
+`POST https://edna.identitymind.com/im/transaction/<transaction_ID>/refund-partial-ok`
+
+`POST https://edna.identitymind.com/im/transaction/<transaction_ID>/refund-partial-fraud`
+
+<aside class="notice">The transaction may be either a payment transaction or an account transfer.</aside>
+
+##### Arguments
+
+```code
+EXAMPLE SERVICE REQUEST
+```
+```json
+{
+    "amt" : 0.25,
+    "auth_response" : "rejected",
+    "auth_response_text" : "Transaction already refunded",
+    "error_code" : "206",
+    "reason" : "Suspected friendly fraud",
+    "tid" : "42"
+}
+```
+```code
+EXAMPLE SERVICE RESPONSE DATA
+```
+```json
+{
+    "message" : "Feedback accepted for REFUND_FRAUD feedback on transaction 42"
+}
+```
+
+<table>		
+		<tr>
+			<th>Parameter</th>
+			<th>Description</th>
+		</tr>
+		<tr>
+			<td>amt<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
+			<td>Amount of the refund/chargeback.</td>
+		</tr>
+		<tr>
+			<td>auth_response<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
+			<td>Response code from the gateway.</td>
+		</tr>
+		<tr>
+			<td>auth_response_text<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
+			<td>Text describing response code.</td>
+		</tr>
+		<tr>
+			<td>error_code<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
+			<td>Error code from the gateway, if any.</td>
+		</tr>
+		<tr>
+			<td>reason<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
+			<td>Text describing reason for refund/chargeback</td>
+		</tr>
+		<tr>
+			<td>bank_status<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
+			<td>The status of the transaction at the gateway/bank:
+				<ul type="disc">
+					<li><code>a</code> - auth_only</li>
+					<li><code>c</code> - captured</li>
+					<li><code>d</code> - declined</li>
+					<li><code>v</code> - void</li>
+					<li><code>r</code> - refund</li>
+					<li><code>b</code> - chargeback</li>
+					<li><code>u</code> - unknown</li>
+				</ul>
+			Default is <code>u</code>
+			</td>
+		</tr>
+		<tr>
+			<td>tid<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
+			<td>Transaction ID.</td>
+		</tr>
+	</table>
+
 ## Transaction Feedback
 
 ##### Transaction Neutral/Refund Notification
@@ -678,7 +1105,7 @@ Provides feedback that the transaction has been rejected after review.<br>
 Provides feedback that the transaction has been accepted due to user validation.<br>
 `POST https://edna.identitymind.com/im/transaction/<transaction_id>/accepted-user-validated`
 
-Provides feedback that the transaction has been been rejected due to user validation failure.<br>
+Provides feedback that the transaction has been rejected due to user validation failure.<br>
 `POST https://edna.identitymind.com/im/transaction/<transaction_id>/rejected-user-failed-validation`
 
 Provides feedback that the transaction has been accepted by default.<br>
@@ -690,6 +1117,7 @@ Provides feedback that the transaction has been rejected by default.<br>
 <aside class="notice">The transaction may be a payment transaction or an account transfer. All arguments are optional.</aside>
 
 ##### Arguments
+
 ```code
 EXAMPLE SERVICE REQUEST
 ```
@@ -799,7 +1227,7 @@ EXAMPLE SERVICE RESPONSE DATA
 		</tr>
 		<tr>
 			<td>tid<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
-			<td>The transaction ID of the current transaction</td>
+			<td>The transaction ID.<br><br>If the <code>tid</code> is provided with a new/different value in a feedback call, this value will overwrite the old transaction ID. The new transaction ID will then be used to reference the transaction, and the old ID will be invalid.</td>
 		</tr>
 		<tr>
 			<td>validation_status<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
