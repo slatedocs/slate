@@ -657,6 +657,157 @@ EXAMPLE SERVICE RESPONSE DATA
 		</tr>
 	</table>
 
+## Document Upload
+
+Attach a file to a transaction.
+
+`POST https://edna.identitymind.com/im/account/consumer/<transaction_id>/files`
+
+The following URL can be used to retrieve a list of files associated with the transaction:<br>
+`GET https://edna.identitymind.com/im/account/consumer/<transaction_id>/files`
+
+The following URL can be used to download a file associated with the transaction:<br>
+`GET https://edna.identitymind.com/im/account/consumer/<transaction_id>/files/<file_id>`
+
+
+##### Arguments
+
+```code
+EXAMPLE SERVICE REQUEST
+```
+```json
+{
+   "appId":"424284",
+   "file":"pic.ping"
+}
+```
+
+<table>
+		<tr>
+			<th colspan=2>Upload Document</th>
+		</tr>	
+		<tr>
+			<th>Parameter</th>
+			<th>Description</th>
+		</tr>
+		<tr>
+			<td>appId<br><font color=#446CB3>integer</font><br><font color=#CF000F><i>required</i></font></td>
+			<td>The application ID the file will be uploaded to.</td>
+		</tr>
+		<tr>
+			<td>file<br><font color=#446CB3>File</font><br><font color=#CF000F><i>required</i></font></td>
+			<td>The file to be uploaded.<br><br><b>Note</b>: Max size is 10MB</td>
+		</tr>
+		<tr>
+			<td>description<br><font color=#446CB3>string</font><br><font color=#BDC3C7><i>optional</i></font></td>
+			<td>The file description.</td>
+		</tr>
+	</table>
+
+##### Response
+
+```code
+EXAMPLE SERVICE RESPONSE DATA
+```
+```json
+{
+    "filename": “pic.png",
+    "success": "file saved"
+}
+
+
+{
+    "filename": “file.txt",
+    "error": "file NOT saved"
+}
+
+{
+    "filelist": [
+        {
+            "addedby": "merchant2",
+            "description": "File added via UI",
+            "attachdate": "2015-05-25 21:07:53.0",
+            "filename": "testfile.txt",
+            "fileid": 1
+        },
+        {
+            "addedby": "API",
+            "description": "a pic added via API",
+            "attachdate": "2015-05-25 21:31:27.0",
+            "filename": "stickman.jpeg",
+            "fileid": 2
+        },
+        {
+            "addedby": "API",
+            "description": "a test file",
+            "attachdate": "2015-05-25 21:35:07.0",
+            "filename": "testfile.txt",
+            "fileid": 3
+        },
+        {
+            "addedby": "API",
+            "description": "another test file",
+            "attachdate": "2015-05-26 15:09:04.0",
+            "filename": "one device.png",
+            "fileid": 4
+        }
+    ]
+}
+
+```
+
+<table>
+		<tr>
+			<th colspan=2>Feedback Response</th>
+		</tr>	
+		<tr>
+			<th>Parameter</th>
+			<th>Description</th>
+		</tr>
+		<tr>
+			<td>filename<br><font color=#446CB3>string</font><br><font color=#CF000F><i>required</i></font></td>
+			<td>The name of the uploaded file.</td>
+		</tr>
+		<tr>
+			<td>success/error<br><font color=#446CB3>string</font><br><font color=#CF000F><i>required</i></font></td>
+			<td>Returns whether the upload was a success or failure.</td>
+		</tr>
+		<tr>
+			<th colspan=2>File List Retrieval</th>
+		</tr>
+		<tr>
+			<td>filelist<br><font color=#446CB3>F</font>Filelist<br><font color=#CF000F><i>required</i></font></td>
+			<td>The list of attached files.</td>
+		</tr>
+		<tr>
+			<td>success/error<br><font color=#446CB3>string</font><br><font color=#CF000F><i>required</i></font></td>
+			<td>Returns whether the upload was a success or failure.</td>
+		</tr>
+		<tr>
+			<th colspan=2>Filelist</th>
+		</tr>
+		<tr>
+			<td>addedby<br><font color=#446CB3>F</font>Filelist<br><font color=#CF000F><i>required</i></font></td>
+			<td>The name of the user who added the file via the UI or API.</td>
+		</tr>
+		<tr>
+			<td>description<br><font color=#446CB3>string</font><br><font color=#CF000F><i>required</i></font></td>
+			<td>The file description, if provided.</td>
+		</tr>
+		<tr>
+			<td>attachdate<br><font color=#446CB3>string</font><br><font color=#CF000F><i>required</i></font></td>
+			<td>The date the file was uploaded.</td>
+		</tr>
+		<tr>
+			<td>filename<br><font color=#446CB3>string</font><br><font color=#CF000F><i>required</i></font></td>
+			<td>The name of the file.</td>
+		</tr>
+		<tr>
+			<td>fileid<br><font color=#446CB3>string</font><br><font color=#CF000F><i>required</i></font></td>
+			<td>The file ID, used for download requests.</td>
+		</tr>
+	</table>
+
 ## Quiz Response
 
 Provide a quiz response on the named KYC. 
