@@ -64,266 +64,128 @@
 <p><a href="#recipes">Recipes</a>:  A collection of elements (including the Trigger) that defines <strong>when</strong> you want to listen for the trigger, and <strong>what</strong> you want to happen when the trigger is fired. Recipes gives you the flexibility to do whatever you want upon a Trigger event and are constructed of the following:</p>
 
 <ul>
-<li><p><strong>Unique Id (required)</strong>: A unique identifier amongst all recipes within your app.</p></li>
+<li><p><strong>Unique Id (required)</strong>: A unique identifier amongst all recipes within your app. Examples: &ldquo;ID-1234&rdquo; or &ldquo;EnteredWork&rdquo;.</p></li>
 <li><p><strong>Delegate (required)</strong>: The method that is called when the trigger is fired.</p></li>
-<li><p><strong>Trigger (required)</strong>: See above. </p></li>
-<li><p><strong>Window (optional)</strong>: The period of time during which you want to listen for the trigger.</p></li>
-<li><p><strong>Cooldown (optional)</strong>: The amount of time after a trigger fires, to wait before the same trigger can fire again.</p></li>
+<li><p><strong>Trigger (required)</strong>: The real-world event that you want to listen for.</p></li>
+<li><p><strong>Window (optional)</strong>: The period of time during which you want to listen for the trigger. Examples: 9am to 12pm and 4pm - 11pm.</p></li>
+<li><p><strong>Cooldown (optional)</strong>: The amount of time to wait before the same trigger can fire again. Examples: 8 hours, 1 week.</p></li>
 </ul>
 
 <h1 id="quick-start">Quick Start</h1>
 
-<p>The fastest setup to get up and running.</p>
-<pre><code class="highlight swift">
-<span class="kd">import</span> <span class="kt">SenseSdk</span>
-
-<span class="k">@UIApplicationMain</span>
-<span class="kd">class</span> <span class="kt">AppDelegate</span><span class="p">:</span> <span class="kt">UIResponder</span><span class="p">,</span> <span class="kt">UIApplicationDelegate</span><span class="p">,</span> <span class="kt">SenseApiDelegate</span> <span class="p">{</span>
-    <span class="c1">// ...
-</span>    <span class="kd">func</span> <span class="nf">application</span><span class="p">(</span><span class="nv">application</span><span class="p">:</span> <span class="kt">UIApplication</span><span class="p">,</span> <span class="n">didFinishLaunchingWithOptions</span> <span class="nv">launchOptions</span><span class="p">:</span> <span class="p">[</span><span class="kt">NSObject</span><span class="p">:</span> <span class="kt">AnyObject</span><span class="p">]?)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span> <span class="p">{</span>
-        <span class="c1">// Setup
-</span>        <span class="kt">SenseApi</span><span class="o">.</span><span class="n">apiKey</span> <span class="o">=</span> <span class="s">"your-api-key-here"</span>
-
-        <span class="k">let</span> <span class="nv">trigger</span> <span class="o">=</span> <span class="kt">PoiTriggerBuilder</span><span class="p">()</span>
-                        <span class="o">.</span><span class="nf">set</span><span class="p">(</span><span class="nv">poiType</span><span class="p">:</span> <span class="kt">PoiType</span><span class="o">.</span><span class="kt">Airport</span><span class="p">)</span>
-                        <span class="o">.</span><span class="nf">hasEntered</span><span class="p">()</span>
-                        <span class="o">.</span><span class="nf">build</span><span class="p">()</span>
-
-        <span class="k">let</span> <span class="nv">recipe</span> <span class="o">=</span> <span class="kt">Recipe</span><span class="p">(</span><span class="nv">trigger</span><span class="p">:</span> <span class="n">trigger</span><span class="p">,</span> <span class="nv">name</span><span class="p">:</span> <span class="s">"airportRecipe"</span><span class="p">)</span>
-        <span class="kt">SenseApi</span><span class="o">.</span><span class="nf">register</span><span class="p">(</span><span class="nv">recipe</span><span class="p">:</span> <span class="n">recipe</span><span class="p">,</span> <span class="nv">delegate</span><span class="p">:</span> <span class="k">self</span><span class="p">)</span>
-
-        <span class="k">return</span> <span class="kc">true</span>
-    <span class="p">}</span>
-
-    <span class="kd">func</span> <span class="nf">onTriggerFired</span><span class="p">(</span><span class="nv">args</span><span class="p">:</span> <span class="kt">TriggerFiredArgs</span><span class="p">)</span> <span class="p">{</span>
-      <span class="kt">NSLog</span><span class="p">(</span><span class="s">"Triggered </span><span class="se">\(</span><span class="n">args</span><span class="o">.</span><span class="n">recipe</span><span class="o">.</span><span class="n">trigger</span><span class="o">.</span><span class="n">customIdentifier</span><span class="se">)</span><span class="s"> at time </span><span class="se">\(</span><span class="n">args</span><span class="o">.</span><span class="n">timestamp</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
-    <span class="p">}</span>
-    <span class="c1">// ...
-</span>
-    <span class="c1">// Save State
-</span>    <span class="kd">func</span> <span class="nf">applicationWillTerminate</span><span class="p">(</span><span class="nv">application</span><span class="p">:</span> <span class="kt">UIApplication</span><span class="p">)</span> <span class="p">{</span>
-      <span class="kt">SenseApi</span><span class="o">.</span><span class="nf">saveState</span><span class="p">()</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre>
-
-<h3 id="scenario">Scenario</h3>
-
-<p>The following example shows how to setup to be notified when a user arrives at an airport.</p>
-
-<p><br><br></p>
-
-<h3 id="setup">Setup</h3>
-
-<ol>
-<li>Register with <code class="prettyprint">SenseApi</code> with API key in <code class="prettyprint">didFinishLaunchingWithOptions</code> method.</li>
-<li>Define a trigger and recipe.</li>
-<li>Register the recipe.</li>
-</ol>
-
-<p><br><br><br><br></p>
-
-<h3 id="implement-callback">Implement Callback</h3>
-
-<ol>
-<li>Implement <code class="prettyprint">SenseApiDelegate</code> in <code class="prettyprint">UIApplicationDelegate</code> to receive callback when trigger is satisfied.</li>
-</ol>
-
-<p><br><br></p>
-
-<h3 id="save-state">Save state</h3>
-
-<ol>
-<li>Saving the state ensures that your triggers will function properly even if a user terminates the app.</li>
-</ol>
+<p>[Link to Quick Start]</p>
 
 <h1 id="triggers">Triggers</h1>
+
+<p>Triggers define the conditions under which your app should be notified. There are 3 types of places that you can be notified about. 3 types of Triggers are supported:</p>
+
+<ul>
+<li><a href="#place-of-interest-(poi)">Place of Interest (POI)</a> - Examples are: Restaurant, Shopping Mall, etc.</li>
+<li><a href="#personal-place">Personal Place</a> - Examples are: Home/Work.</li>
+<li><a href="#custom-geofence">Custom Geofence</a> - These can be any latitude/longitude point with a radius.</li>
+</ul>
 
 <aside class="notice"> IMPORTANT: A trigger on its own does nothing. You must build your triggers, and then add it to a Recipe in order to utilize the trigger. 
 </aside>
 
-<p>Triggers define the real-world events you want to listen for, and you must first build the Trigger. </p>
-
-<h3 id="triggerbuilders">TriggerBuilders</h3>
-
-<p>There are 3 types of TriggerBuilders that correspond to 3 place types:</p>
-
-<table><thead>
-<tr>
-<th>TriggerBuilder Type</th>
-<th>Signature</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><a href="#place-of-interest-(poi)">Place of Interest (POI)</a></td>
-<td>PoiTriggerBuilder()</td>
-<td>Place of Interest Categories (like <em>restaurant</em> or <em>shopping mall</em>)</td>
-</tr>
-<tr>
-<td><a href="#personal-place">Personal Place</a></td>
-<td>PersonalizedTriggerBuilder()</td>
-<td>User-specific geofences (like <em>home</em> or <em>work</em>)</td>
-</tr>
-<tr>
-<td><a href="#custom-geofence">Custom Geofence</a></td>
-<td>CustomGeofenceTriggerBuilder()</td>
-<td>Custom set of lat/longs + radius</td>
-</tr>
-</tbody></table>
-
-<h3 id="action-types">Action Types</h3>
-
-<p>Each trigger must be accompanied by one of the following action types: </p>
-
-<table><thead>
-<tr>
-<th>Action</th>
-<th>Signature</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>Enter</td>
-<td>hasEntered()</td>
-<td>Triggers within five minutes of a user entering any of the geofences</td>
-</tr>
-<tr>
-<td>Exit</td>
-<td>hasExited()</td>
-<td>Triggers within five minutes of a user exiting any of the geofences</td>
-</tr>
-<tr>
-<td>FartherThan</td>
-<td>fartherThan(km: Integer)</td>
-<td>Triggers when the user is farther than X km away from any of the geofences</td>
-</tr>
-</tbody></table>
-
-<h3 id="trigger-build-result-definition:">Trigger Build Result  Definition:</h3>
-
-<p>The TriggerBuilder returns either the trigger or a list of errors.  The properties are:</p>
-
-<table><thead>
-<tr>
-<th>TriggerBuildResult Type</th>
-<th>Name</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>Trigger?</td>
-<td>trigger</td>
-<td>The final trigger when there are no errors</td>
-</tr>
-<tr>
-<td>[TriggerError]?</td>
-<td>errors</td>
-<td>The errors that took place during the build</td>
-</tr>
-</tbody></table>
-
-<aside class="notice"> Full list of TriggerErrors will be coming soon.
-</aside>
-
 <h2 id="place-of-interest-(poi)">Place of Interest (POI)</h2>
-<pre><code class="highlight swift"><span class="k">let</span> <span class="nv">airportTrigger</span> <span class="o">=</span> <span class="kt">PoiTriggerBuilder</span><span class="p">()</span>
-    <span class="o">.</span><span class="nf">set</span><span class="p">(</span><span class="nv">poiType</span><span class="p">:</span> <span class="kt">PoiType</span><span class="o">.</span><span class="kt">Airport</span><span class="p">)</span>
-    <span class="o">.</span><span class="nf">hasEntered</span><span class="p">()</span>
-    <span class="o">.</span><span class="nf">build</span><span class="p">()</span>
+
+<p>Gives you the ability to be notified when a user enters or exits a particular POI type.</p>
+<pre><code class="highlight swift"><span class="c1">// Will notify you when the user enters an Airport
+</span><span class="k">let</span> <span class="nv">airportTrigger</span> <span class="o">=</span> <span class="kt">Trigger</span><span class="o">.</span><span class="nf">whenEnters</span><span class="p">(</span><span class="o">.</span><span class="kt">Airport</span><span class="p">)</span><span class="o">.</span><span class="n">trigger</span><span class="o">!</span>
 </code></pre>
 
-<p>The Place of Interest (POI) trigger allows you to determine whether someone is entering or leaving a particular place type.</p>
-
-<p>The currently supported use cases are:</p>
+<p>Supported POI types:</p>
 
 <table><thead>
 <tr>
 <th>Category</th>
-<th>Signature</th>
-<th>Supported Action Types</th>
+<th>Transitions</th>
+<th></th>
 </tr>
 </thead><tbody>
 <tr>
 <td>Airport</td>
-<td>.set(poiType: PoiType.Airport)</td>
-<td>hasEntered(), hasExited()</td>
+<td>.whenEnters(.Airport)</td>
+<td>.whenExits(.Airport)</td>
 </tr>
 <tr>
 <td>Bar</td>
-<td>.set(poiType: PoiType.Bar)</td>
-<td>hasEntered(), hasExited()</td>
+<td>.whenEnters(.Bar)</td>
+<td>.whenExits(.Bar)</td>
 </tr>
 <tr>
 <td>Restaurant</td>
-<td>.set(poiType: PoiType.Restaurant)</td>
-<td>hasEntered(), hasExited()</td>
+<td>.whenEnters(.Restaurant)</td>
+<td>.whenExits(.Restaurant)</td>
 </tr>
 <tr>
 <td>Mall</td>
-<td>.set(poiType: PoiType.Mall)</td>
-<td>hasEntered(), hasExited()</td>
+<td>.whenEnters(.Mall)</td>
+<td>.whenExits(.Mall)</td>
 </tr>
 <tr>
 <td>Cafe</td>
-<td>.set(poiType: PoiType.Cafe)</td>
-<td>hasEntered(), hasExited()</td>
+<td>.whenEnters(.Cafe)</td>
+<td>.whenExits(.Cafe)</td>
 </tr>
 <tr>
 <td>Gym</td>
-<td>.set(poiType: PoiType.Gym)</td>
-<td>hasEntered(), hasExited()</td>
+<td>.whenEnters(.Gym)</td>
+<td>.whenExits(.Gym)</td>
 </tr>
 </tbody></table>
 
-<h2 id="personal-place">Personal Place</h2>
-<pre><code class="highlight swift"><span class="k">let</span> <span class="nv">homeTrigger</span> <span class="o">=</span> <span class="kt">PersonalizedTriggerBuilder</span><span class="p">()</span>
-    <span class="o">.</span><span class="nf">set</span><span class="p">(</span><span class="nv">place</span><span class="p">:</span> <span class="kt">PersonalizedPlaceType</span><span class="o">.</span><span class="kt">Home</span><span class="p">)</span>
-    <span class="o">.</span><span class="nf">hasEntered</span><span class="p">()</span>
-    <span class="o">.</span><span class="nf">build</span><span class="p">()</span>
-</code></pre>
+<h3 id="caveats">Caveats</h3>
 
-<p>A personalized location trigger allows you to listen and fire off user-specific locations, such as a user&rsquo;s home or work. Our SDK automatically learns where these Personal Places are (a process that typicaly takes 1 week).</p>
+<ul>
+<li>Each trigger can only detect a single POI type.</li>
+<li>The sdk will not trigger immediately on entrance or exit because it needs to be sure of the action.</li>
+</ul>
+
+<h2 id="personal-place">Personal Place</h2>
+
+<p>Gives you the ability to be notified when a user enters or exits their home or work. You can also be notified if the user is far awar from their home or work.</p>
+<pre><code class="highlight swift"><span class="k">let</span> <span class="nv">homeTrigger</span> <span class="o">=</span> <span class="kt">Trigger</span><span class="o">.</span><span class="nf">whenEnters</span><span class="p">(</span><span class="o">.</span><span class="kt">Home</span><span class="p">)</span><span class="o">.</span><span class="n">trigger</span><span class="o">!</span>
+</code></pre>
 
 <p>The currently supported personalized location categories are:</p>
 
 <table><thead>
 <tr>
 <th>Category</th>
-<th>Signature</th>
-<th>Supported Action Types</th>
+<th>Transitions</th>
+<th></th>
 </tr>
 </thead><tbody>
 <tr>
 <td>Home</td>
-<td>.set(place: PersonalizedPlaceType.Home)</td>
-<td>hasEntered(), hasExited(), fartherThan()</td>
+<td>.whenEnters(.Home)</td>
+<td>.whenExits(.Home)</td>
 </tr>
 <tr>
 <td>Work</td>
-<td>.set(place: PersonalizedPlaceType.Work)</td>
-<td>hasEntered(), hasExited(), fartherThan()</td>
+<td>.whenEnters(.Work)</td>
+<td>.whenExits(.Work)</td>
 </tr>
 </tbody></table>
 
-<aside class="notice"> 
-Due to the sensitivity of this data, neither developers nor us will ever see the raw data or store a users home or office location. The computation happens on the device itself and stays there to ensure your users privacy.
-</aside>
+<h3 id="caveats">Caveats</h3>
+
+<ul>
+<li>The SDK takes roughly a week to determine a user&rsquo;s home or work. After the SDK identifies the users home or work, it can then start detecting it.</li>
+<li>The SDK will continually try to update the user&rsquo;s home every few days.</li>
+<li>Due to the sensitivity of this data, neither developers nor us will ever see the raw data or store a users home or office location. The computation happens on the device itself and stays there to ensure your users privacy.</li>
+</ul>
 
 <h2 id="custom-geofence">Custom Geofence</h2>
-<pre><code class="highlight swift"><span class="k">let</span> <span class="nv">hq</span> <span class="o">=</span> <span class="kt">CustomGeofence</span><span class="p">(</span><span class="nv">latitude</span><span class="p">:</span> <span class="mf">37.124</span><span class="p">,</span> <span class="nv">longitude</span><span class="p">:</span> <span class="o">-</span><span class="mf">127.456</span><span class="p">,</span> <span class="nv">radiusMeters</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span>
-  <span class="nv">customIdentifier</span><span class="p">:</span> <span class="s">"Sense 360 Headquarters"</span><span class="p">)</span>
 
-<span class="k">let</span> <span class="nv">lunchSpot</span> <span class="o">=</span> <span class="kt">CustomGeofence</span><span class="p">(</span><span class="nv">latitude</span><span class="p">:</span> <span class="mf">37.124</span><span class="p">,</span> <span class="nv">longitude</span><span class="p">:</span> <span class="o">-</span><span class="mf">127.456</span><span class="p">,</span> <span class="nv">radiusMeters</span><span class="p">:</span> <span class="mi">35</span><span class="p">,</span>
-  <span class="nv">customIdentifier</span><span class="p">:</span> <span class="s">"A&amp;B Bar and Grill"</span><span class="p">)</span>
+<p>A custom geofence allows you specify a region to monitor for entrance and exit.</p>
+<pre><code class="highlight swift"><span class="k">let</span> <span class="nv">hq</span> <span class="o">=</span> <span class="kt">CustomGeofence</span><span class="p">(</span><span class="nv">latitude</span><span class="p">:</span> <span class="mf">37.124</span><span class="p">,</span> <span class="nv">longitude</span><span class="p">:</span> <span class="o">-</span><span class="mf">127.456</span><span class="p">,</span> <span class="nv">radiusMeters</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span> <span class="nv">customIdentifier</span><span class="p">:</span> <span class="s">"Sense 360 Headquarters"</span><span class="p">)</span>
+<span class="k">let</span> <span class="nv">lunchSpot</span> <span class="o">=</span> <span class="kt">CustomGeofence</span><span class="p">(</span><span class="nv">latitude</span><span class="p">:</span> <span class="mf">37.124</span><span class="p">,</span> <span class="nv">longitude</span><span class="p">:</span> <span class="o">-</span><span class="mf">127.456</span><span class="p">,</span> <span class="nv">radiusMeters</span><span class="p">:</span> <span class="mi">35</span><span class="p">,</span> <span class="nv">customIdentifier</span><span class="p">:</span> <span class="s">"A&amp;B Bar and Grill"</span><span class="p">)</span>
 
-<span class="k">let</span> <span class="nv">trigger</span> <span class="o">=</span> <span class="kt">CustomGeofenceTriggerBuilder</span><span class="p">()</span>
-  <span class="o">.</span><span class="nf">set</span><span class="p">(</span><span class="nv">places</span><span class="p">:</span> <span class="n">hq</span><span class="p">,</span> <span class="n">lunchSpot</span><span class="p">)</span>
-  <span class="o">.</span><span class="nf">fartherThan</span><span class="p">(</span><span class="nv">kilometers</span><span class="p">:</span> <span class="kt">Kilometers</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
-  <span class="o">.</span><span class="nf">build</span><span class="p">()</span>
+<span class="k">let</span> <span class="nv">trigger</span> <span class="o">=</span> <span class="kt">Trigger</span><span class="o">.</span><span class="nf">whenEnters</span><span class="p">([</span><span class="n">hq</span><span class="p">,</span> <span class="n">lunchSpot</span><span class="p">])</span><span class="o">.</span><span class="n">trigger</span><span class="o">!</span>
 </code></pre>
-
-<p>A custom geofence allows you to determine if someone is inside a geo-fence or a group of geofences that you build. </p>
 
 <p>All custom geofence triggers must specify the following parameters</p>
 
@@ -355,58 +217,103 @@ Due to the sensitivity of this data, neither developers nor us will ever see the
 </tr>
 </tbody></table>
 
-<aside class="warning"> You can have no more than [1000] custom geofences included in a single trigger.
-Minimum radius for a CustomGeofence is [20 meters]
-</aside>
+<table><thead>
+<tr>
+<th>Type</th>
+<th>Transitions</th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>CustomGeofence</td>
+<td>.whenEnters()</td>
+<td>.whenExits()</td>
+</tr>
+</tbody></table>
 
-<h2 id="compound-triggers">Compound Triggers</h2>
-<pre><code class="highlight swift"><span class="k">let</span> <span class="nv">trigger</span> <span class="o">=</span> <span class="kt">CompoundTriggerBuilder</span><span class="p">()</span>
-    <span class="o">.</span><span class="nf">with</span><span class="p">(</span><span class="n">airportTrigger</span><span class="p">,</span> <span class="nv">and</span><span class="p">:</span> <span class="n">homeTrigger</span><span class="p">)</span>
-    <span class="o">.</span><span class="nf">build</span><span class="p">()</span>
+<h3 id="caveats">Caveats</h3>
+
+<ul>
+<li>You can specify at most 1000 geofences to monitor</li>
+<li>Geofences must have a radius of at least 20m</li>
+</ul>
+
+<h2 id="trigger-build-result-definition:">Trigger Build Result Definition:</h2>
+<pre><code class="highlight swift"><span class="k">let</span> <span class="nv">result</span> <span class="o">=</span> <span class="kt">Trigger</span><span class="o">.</span><span class="nf">whenEnters</span><span class="p">(</span><span class="o">.</span><span class="kt">Home</span><span class="p">)</span>
+<span class="k">if</span> <span class="k">let</span> <span class="nv">homeTrigger</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">trigger</span> <span class="p">{</span>
+    <span class="kt">NSLog</span><span class="p">(</span><span class="s">"It worked!"</span><span class="p">)</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="k">for</span> <span class="n">error</span> <span class="k">in</span> <span class="n">result</span><span class="o">.</span><span class="n">errors</span> <span class="p">{</span>
+        <span class="kt">NSLog</span><span class="p">(</span><span class="s">"Error: </span><span class="se">\(</span><span class="n">error</span><span class="o">.</span><span class="n">type</span><span class="o">.</span><span class="n">message</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 </code></pre>
 
-<p>You have the ability to combine triggers to create a compound trigger:</p>
+<p>The Trigger class returns either the trigger or a list of errors. The properties are:</p>
 
-<p>In two of the examples above, both airportTrigger and homeTrigger were defined.  By then ANDing the two, you get a trigger that listens for when a user is at an airport AND 100+ kilometers from home (i.e. traveling):</p>
+<table><thead>
+<tr>
+<th>TriggerBuildResult Type</th>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>SenseTrigger?</td>
+<td>trigger</td>
+<td>The final trigger when there are no errors.</td>
+</tr>
+<tr>
+<td>[TriggerError]</td>
+<td>errors</td>
+<td>The errors that took place during the build.</td>
+</tr>
+</tbody></table>
 
 <h1 id="recipes">Recipes</h1>
-<pre><code class="highlight swift"><span class="k">let</span> <span class="nv">recipe</span> <span class="o">=</span> <span class="kt">Recipe</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="s">"My Recipe"</span><span class="p">,</span> 
-  <span class="nv">trigger</span><span class="p">:</span> <span class="n">someTrigger</span><span class="p">)</span>
-</code></pre>
 
-<p>The Recipe is the container that encases your trigger, and various other settings.  Recipes are registered globally within your application with a call to the <a href="#senseapi">SenseApi</a>.  Below are the inputs that make up a Recipe:</p>
+<p>The Recipe is the container that encases your trigger, and various other settings.  Recipes are registered globally within your application with a call to the <a href="#sensesdk">SenseSdk</a>.  Below are the inputs that make up a Recipe:</p>
+<pre><code class="highlight swift"><span class="k">let</span> <span class="nv">recipe</span> <span class="o">=</span> <span class="kt">Recipe</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="s">"My Recipe"</span><span class="p">,</span> <span class="nv">trigger</span><span class="p">:</span> <span class="n">someTrigger</span><span class="p">)</span>
+</code></pre>
 
 <table><thead>
 <tr>
 <th>Parameter</th>
 <th>Required</th>
+<th>Default</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>uniqueId</td>
+<td>uniqueId (String)</td>
 <td>true</td>
+<td></td>
 </tr>
 <tr>
 <td><a href="#triggers">trigger</a></td>
 <td>true</td>
+<td></td>
 </tr>
 <tr>
 <td><a href="#window">window</a></td>
 <td>false</td>
+<td>0-23 hours</td>
 </tr>
 <tr>
 <td><a href="#cooldown">cool down</a></td>
 <td>false</td>
+<td>1 minute</td>
 </tr>
 </tbody></table>
 
 <h2 id="window">Window</h2>
-<pre><code class="highlight swift"><span class="k">let</span> <span class="nv">recipe</span> <span class="o">=</span> <span class="kt">Recipe</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="s">"My Recipe"</span><span class="p">,</span> 
-  <span class="nv">trigger</span><span class="p">:</span> <span class="n">someTrigger</span><span class="p">,</span> 
+
+<p>A window specifies which hours of the day a trigger is allowed to fire.</p>
+<pre><code class="highlight swift"><span class="c1">// This will only allow a trigger to fire between the hours of 5pm and 10pm (in the users local time)
+</span><span class="k">let</span> <span class="nv">recipe</span> <span class="o">=</span> <span class="kt">Recipe</span><span class="p">(</span>
+  <span class="nv">name</span><span class="p">:</span> <span class="s">"My Recipe"</span><span class="p">,</span> 
+  <span class="nv">trigger</span><span class="p">:</span> <span class="n">someTrigger</span><span class="p">,</span>
   <span class="nv">window</span><span class="p">:</span> <span class="kt">TimeWindow</span><span class="p">(</span><span class="nv">fromHour</span><span class="p">:</span> <span class="mi">17</span><span class="p">,</span> <span class="nv">toHour</span><span class="p">:</span> <span class="mi">22</span><span class="p">))</span>
 </code></pre>
-
-<p>Only allow triggers to fire between certain times. </p>
 
 <table><thead>
 <tr>
@@ -433,19 +340,21 @@ Minimum radius for a CustomGeofence is [20 meters]
 </tr>
 </tbody></table>
 
-<p>This example would have the trigger only fire between 5pm (user’s timezone) to 10pm:</p>
+<h3 id="caveats">Caveats</h3>
 
-<p><code class="prettyprint">TimeWindow(fromHour: 17, toHour: 22)</code></p>
-
-<p><em>Note: if a user enters at 5am, and the window was set for 6am - 7am, the trigger WILL NOT fire, even if the user is still within the specified geofence at 6am.</em></p>
+<ul>
+<li>The transition must occur between the times specified. For example, if a user enters at 5am, and the window was set for 6am - 7am, the trigger WILL NOT fire, even if the user is still within the specified geofence at 6am.</li>
+</ul>
 
 <h2 id="cooldown">Cooldown</h2>
-<pre><code class="highlight swift"><span class="k">let</span> <span class="nv">recipe</span> <span class="o">=</span> <span class="kt">Recipe</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="s">"My Recipe"</span><span class="p">,</span> 
-  <span class="nv">trigger</span><span class="p">:</span> <span class="n">someTrigger</span><span class="p">,</span> 
-  <span class="nv">cooldown</span><span class="p">:</span> <span class="kt">Cooldown</span><span class="p">(</span><span class="nv">timespan</span><span class="p">:</span> <span class="kt">Days</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
-</code></pre>
 
-<p>The amount of time after a trigger fires, to wait before the same trigger can fire again.  </p>
+<p>The amount of time after a trigger fires, to wait before the same trigger can fire again.</p>
+<pre><code class="highlight swift"><span class="c1">// Wait 2 days after the trigger fires
+</span><span class="k">let</span> <span class="nv">recipe</span> <span class="o">=</span> <span class="kt">Recipe</span><span class="p">(</span>
+  <span class="nv">name</span><span class="p">:</span> <span class="s">"My Recipe"</span><span class="p">,</span> 
+  <span class="nv">trigger</span><span class="p">:</span> <span class="n">someTrigger</span><span class="p">,</span> 
+  <span class="nv">cooldown</span><span class="p">:</span> <span class="kt">Cooldown</span><span class="o">.</span><span class="nf">create</span><span class="p">(</span><span class="nv">oncePer</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="nv">frequency</span><span class="p">:</span> <span class="o">.</span><span class="kt">Days</span><span class="p">)</span><span class="o">!</span>
+</code></pre>
 
 <table><thead>
 <tr>
@@ -455,33 +364,36 @@ Minimum radius for a CustomGeofence is [20 meters]
 </thead><tbody>
 <tr>
 <td>Minutes</td>
-<td>Cooldown(timespan: Minutes())</td>
+<td>Cooldown.create(oncePer: 1, frequency: .Minutes)!</td>
 </tr>
 <tr>
 <td>Hours</td>
-<td>Cooldown(timespan: Hours())</td>
+<td>Cooldown.create(oncePer: 1, frequency: .Hours)!</td>
 </tr>
 <tr>
 <td>Days</td>
-<td>Cooldown(timespan: Days())</td>
+<td>Cooldown.create(oncePer: 1, frequency: .Days)!</td>
 </tr>
 </tbody></table>
 
-<p>This would allow the trigger to fire only once every 2 days. </p>
+<h2 id="compound-triggers">Compound Triggers</h2>
+<pre><code class="highlight swift"><span class="k">let</span> <span class="nv">trigger</span> <span class="o">=</span> <span class="kt">CompoundTriggerBuilder</span><span class="p">()</span>
+    <span class="o">.</span><span class="nf">with</span><span class="p">(</span><span class="n">airportTrigger</span><span class="p">,</span> <span class="nv">and</span><span class="p">:</span> <span class="n">homeTrigger</span><span class="p">)</span>
+    <span class="o">.</span><span class="nf">build</span><span class="p">()</span>
+</code></pre>
 
-<p><code class="prettyprint">Cooldown(timespan: Days(2))</code></p>
+<p>You have the ability to combine triggers to create a compound trigger:</p>
 
-<h1 id="senseapi">SenseApi</h1>
+<p>In two of the examples above, both airportTrigger and homeTrigger were defined.  By then ANDing the two, you get a trigger that listens for when a user is at an airport AND 100+ kilometers from home (i.e. traveling):</p>
 
-<p>The SenseApi is the repository that stores all active Recipes within your application:</p>
+<h1 id="sensesdk">SenseSdk</h1>
 
-<h2 id="sense-api-functions">Sense Api Functions</h2>
+<p>The SenseSdk is the main entry point into the Sdk. It allows you to register and unregister recipes.</p>
 <pre><code class="highlight swift"><span class="c1">// Registering a recipe and delegate
-</span><span class="k">let</span> <span class="nv">results</span> <span class="o">=</span> <span class="kt">SenseApi</span><span class="o">.</span><span class="nf">register</span><span class="p">(</span><span class="nv">recipe</span><span class="p">:</span> <span class="n">myRecipe</span><span class="p">,</span> <span class="nv">delegate</span><span class="p">:</span> <span class="n">myDelegate</span><span class="p">)</span>
+</span><span class="k">let</span> <span class="nv">results</span> <span class="o">=</span> <span class="kt">SenseSdk</span><span class="o">.</span><span class="nf">register</span><span class="p">(</span><span class="nv">recipe</span><span class="p">:</span> <span class="n">myRecipe</span><span class="p">,</span> <span class="nv">delegate</span><span class="p">:</span> <span class="n">myDelegate</span><span class="p">)</span>
 <span class="k">if</span> <span class="n">results</span><span class="o">.</span><span class="n">successful</span> <span class="p">{</span>
   <span class="kt">NSLog</span><span class="p">(</span><span class="s">"recipe registration successful"</span><span class="p">)</span>
-<span class="p">}</span>
-<span class="k">else</span> <span class="k">if</span> <span class="k">let</span> <span class="nv">errors</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">errors</span> <span class="p">{</span>
+<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="k">let</span> <span class="nv">errors</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">errors</span> <span class="p">{</span>
     <span class="kt">NSLog</span><span class="p">(</span><span class="s">"Registration unsucessful, see errors below"</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">error</span> <span class="k">in</span> <span class="n">errors</span> <span class="p">{</span>
       <span class="kt">NSLog</span><span class="p">(</span><span class="s">"message: </span><span class="se">\(</span><span class="n">error</span><span class="o">.</span><span class="n">message</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
@@ -498,44 +410,66 @@ Minimum radius for a CustomGeofence is [20 meters]
 </thead><tbody>
 <tr>
 <td>register</td>
-<td>recipe, delegate</td>
-<td>adds your recipe and delegate to SenseApi, and starts listening for events</td>
+<td>Recipe, TriggerFiredDelegate</td>
+<td>Starts the recipe and registers the delegate to be called when the trigger fires.</td>
 </tr>
 <tr>
 <td>unregister</td>
-<td>recipe</td>
-<td>stops and removes the recipe from SenseApi</td>
+<td>Recipe</td>
+<td>Stops and removes the recipe from SenseSdk.</td>
 </tr>
 <tr>
 <td>findRecipe</td>
-<td>name</td>
-<td>finds and returns a recipe by name</td>
+<td>String</td>
+<td>Finds and returns a recipe by name.</td>
 </tr>
 <tr>
 <td>getAllRecipes</td>
 <td></td>
-<td>returns all registered recipes</td>
+<td>Returns all registered recipes.</td>
 </tr>
 </tbody></table>
 
-<h2 id="senseapidelegate">SenseApiDelegate</h2>
-<pre><code class="highlight swift"><span class="kd">class</span> <span class="kt">MyDelegate</span> <span class="p">:</span> <span class="kt">SenseApiDelegate</span> <span class="p">{</span>
+<h2 id="triggerfireddelegate">TriggerFiredDelegate</h2>
+
+<p>The TriggerFiredDelegate is a protocol that should be implemented by the class which will be notified when a trigger is fired.</p>
+<pre><code class="highlight swift"><span class="kd">class</span> <span class="kt">MyClass</span> <span class="p">:</span> <span class="kt">TriggerFiredDelegate</span> <span class="p">{</span>
     <span class="kd">func</span> <span class="nf">onTriggerFired</span><span class="p">(</span><span class="nv">args</span><span class="p">:</span> <span class="kt">TriggerFiredArgs</span><span class="p">)</span> <span class="p">{</span>
         <span class="kt">NSLog</span><span class="p">(</span><span class="s">"</span><span class="se">\(</span><span class="n">places</span><span class="o">.</span><span class="n">count</span><span class="se">)</span><span class="s"> places fired on </span><span class="se">\(</span><span class="n">timestamp</span><span class="se">)</span><span class="s">, with a confidence level of: </span><span class="se">\(</span><span class="n">args</span><span class="o">.</span><span class="n">confidenceLevel</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre>
 
-<p>The SenseApiDelegate registered alongside your trigger in the SenseApi is notified with the following information once your trigger fires:</p>
+<table><thead>
+<tr>
+<th>Response Arg</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>timestamp</td>
+<td>NSDate</td>
+<td>Time the trigger fired</td>
+</tr>
+<tr>
+<td>recipe</td>
+<td>Recipe</td>
+<td>The registered recipe that triggered</td>
+</tr>
+<tr>
+<td>places</td>
+<td>[Place]</td>
+<td>The list of places that were entered or exited</td>
+</tr>
+<tr>
+<td>confidenceLevel</td>
+<td>ConfidenceLevel</td>
+<td>The confidence that the action actually occurred.</td>
+</tr>
+</tbody></table>
 
-<ul>
-<li>A list of Places that the trigger matched</li>
-<li><code class="prettyprint">TIMESTAMP</code> when the trigger fired</li>
-<li>The confidence level of the places matched</li>
-<li>The containing recipe</li>
-</ul>
-
-<h3 id="confidence-levels">Confidence Levels</h3>
+<h2 id="confidence-levels">Confidence Levels</h2>
 
 <p>When a trigger is fired, it brings along one of three confidence levels.</p>
 
