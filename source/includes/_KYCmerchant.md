@@ -703,12 +703,13 @@ EXAMPLE SERVICE RESPONSE DATA
 
 Attach a file to a transaction.
 
+Upload a file to a transaction:<br>
 `POST https://edna.identitymind.com/im/account/merchant/<transaction_id>/files`
 
-The following URL can be used to retrieve a list of files associated with the transaction:<br>
+Retrieve a list of files associated with the transaction:<br>
 `GET https://edna.identitymind.com/im/account/merchant/<transaction_id>/files`
 
-The following URL can be used to download a file associated with the transaction:<br>
+Download a file associated with the transaction:<br>
 `GET https://edna.identitymind.com/im/account/merchant/<transaction_id>/files/<file_id>`
 
 

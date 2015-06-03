@@ -2,10 +2,10 @@
 
 Evaluate a transaction for payment fraud.
 
-The following URL can be used for requesting payment transaction anti-fraud evaluation:<br>
+Request payment transaction anti-fraud evaluation:<br>
 `POST https://edna.identitymind.com/im/transaction`
 
-The following URL can be used to retrieve the current state of a transaction:<br>
+Retrieve the current state of a transaction:<br>
 `GET https://edna.identitymind.com/im/transaction/<transaction_id>`
 
 <aside class="notice">Not all fields are required, but anti-fraud evaluation is more comprehensive when richer evidence is provided.</aside>
@@ -662,7 +662,7 @@ Notifies that a chargeback occurred on a transaction. The transaction may be a P
 
 In the case of a chargeback on a transaction that eDNA has not previously processed, payment instrument information is required.
 
-The following URL can be used for requesting chargeback notification evaluation:<br>
+Request chargeback notification evaluation:<br>
 `POST https://edna.identitymind.com/im/jax/chargeback/`
 
 ##### Arguments
@@ -853,7 +853,7 @@ Notifies that a credit occurred on a transaction.
 
 In the case of credit or blind credit on a transaction that eDNA has not previously processed, the payment instrument information is required.
 
-The following URL can be used for credit notification evaluation:  
+Request credit notification evaluation:  
 `POST https://edna.identitymind.com/im/jax/credit/`
  
 <aside class="notice">The transaction may either be a payment transaction or an account transfer.</aside>
