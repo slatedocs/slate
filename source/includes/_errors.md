@@ -6,6 +6,13 @@
 {"code":400,"error":"Insufficient balance for currency conversion operation"}
 ```
 
+```json
+{"code":400,"error":"Insufficient wallet balance to send ฿0.01 BTC"}
+```
+
+```json
+{"code":403,"error":"Forbidden"}
+```
 
 The Tether API uses the following error codes:
 

@@ -8,7 +8,7 @@ language_tabs:
 
 toc_footers:
   - <a href='https://wallet.tether.to/'>Tether homepage</a>
-  - <a href='https://wallet.tether.to/settings'>Generate API Key</a>
+  - <a href='https://wallet.tether.to/app/#!/settings/apikeys'>Generate API Key</a>
 
 includes:
   - errors
@@ -20,11 +20,11 @@ search: true
 
 Welcome to the Tether API!
 
-We have libraries in Ruby, PHP and Python. You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+We have library in Ruby, PHP and Python versions are planned. You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
 
 - [Tether API Ruby client](https://bitbucket.org/tetherto/tether-api-client-ruby)
-- [Tether API PHP client](https://bitbucket.org/tetherto/tether-api-client-php)
-- [Tether API Python client](https://bitbucket.org/tetherto/tether-api-client-python)
+- [Tether API PHP client](https://bitbucket.org/tetherto/tether-api-client-php) (planned)
+- [Tether API Python client](https://bitbucket.org/tetherto/tether-api-client-python) (planned)
 
 # Authentication
 
@@ -48,7 +48,7 @@ We have libraries in Ruby, PHP and Python. You can view code examples in the dar
 > Make sure to replace `TetherAPIKey` with your API key and `TetherAPISecret` with your API secret.
 
 Tether uses HMAC authentication. Each request should be signed with a secret that you can see when creating a new API key.
-You can create a Tether API key and Tether API secret key on [Tether Settings](https://wallet.tether.to/settings) page. 
+You can create a Tether API key and Tether API secret key on [API Keys](https://wallet.tether.to/app/#!/settings/apikeys) page. 
 Tether expects for the signature to be included in all API requests to the server in a standard HTTP Authorization header that has the following form:
 
 `Authorization: APIAuth TetherAPIKey:Signature`
@@ -79,7 +79,6 @@ Each API key can have one or more permissions:
 <tr><td>create_transaction</td><td>POST /transactions</td></tr>
 <tr><td>read_exchange_orders</td><td>GET /exchange_orders<br>GET /exchange_orders/:id</td></tr>
 <tr><td>create_exchange_order</td><td>POST /exchange_orders</td></tr>
-<tr><td>read_exchange_rates</td><td>GET /exchange_rates</td></tr>
 </table>
 
 If the API key does not have a required permission you will get `403 Forbidden` error as a response.
@@ -104,7 +103,7 @@ result = client.balances
 > The JSON in raw API response looks like this:
 
 ```json
-{"balances":[{"currency":"BTC","confirmed":"22.04085912","pending":"0.0"},{"currency":"USDt","confirmed":"5.56923451","pending":"0.0"}]}
+[{"confirmed":"12.30097754","pending":"0.0","currency":"USD₮"},{"confirmed":"0.01679","pending":"0.0","currency":"BTC"},{"confirmed":"32.0199","pending":"0.0","currency":"EUR₮"}]
 ```
 
 This endpoint retrieves all balances of the account.
@@ -138,7 +137,7 @@ result = client.exchange_rates
 > The JSON in raw API response looks like this:
 
 ```json
-{"exchange_rates":[{"source_currency":"BTC","target_currency":"USDt","exchange_rate":"246.5"},{"source_currency":"USDt","target_currency":"BTC","exchange_rate":"0.0040568"}]}
+[{"source_currency":"BTC","target_currency":"USD₮","exchange_rate":"235.51"},{"source_currency":"USD₮","target_currency":"BTC","exchange_rate":"0.0042461"},{"source_currency":"BTC","target_currency":"EUR₮","exchange_rate":"211.031655"},{"source_currency":"EUR₮","target_currency":"BTC","exchange_rate":"0.00473863"},{"source_currency":"BTC","target_currency":"JPY₮","exchange_rate":"28482.981295"},{"source_currency":"JPY₮","target_currency":"BTC","exchange_rate":"0.00003511"}]
 ```
 
 This endpoint retrieves all exchange rates on Tether.
@@ -171,10 +170,10 @@ result = client.transactions
 > The JSON in raw API response looks like this:
 
 ```json
-[{"id":331,"currency":"BTC","amount":"0.003","type":null,"status":"COMPLETED","message":null,"created_at":"2014-11-25T23:56:39Z","updated_at":"2014-11-25T23:56:39Z","remark":"You received BTC from an external account. txid: 52c90d367fac0a86057e8eb54022bbf504a1003a9b65fca444b59a1327dc7915","transaction_id":"52c90d367fac0a86057e8eb54022bbf504a1003a9b65fca444b59a1327dc7915"},{"id":432,"currency":"BTC","amount":"-0.03","type":null,"status":"COMPLETED","message":null,"created_at":"2014-11-26T00:00:51Z","updated_at":"2014-11-26T00:00:51Z","remark":"Convert 0.03 BTC to USDt. TXID: bd9c9e4f78ef39ffeba674d08673bba1f4ac91f6dbfd41e4760dfabd2ed99a9d","transaction_id":"bd9c9e4f78ef39ffeba674d08673bba1f4ac91f6dbfd41e4760dfabd2ed99a9d"},{"id":433,"currency":"USDt","amount":"0.007713","type":null,"status":"COMPLETED","message":null,"created_at":"2014-11-26T00:20:20Z","updated_at":"2014-11-26T00:20:20Z","remark":"Received 0.00771299 USDt from BTC conversion."}, {"id":512,"currency":"USDt","amount":"-143.0","type":null,"status":"COMPLETED","message":null,"created_at":"2014-12-10T16:44:53Z","updated_at":"2014-12-10T16:44:53Z","remark":"Redeem 143.0 USDt, Fee: 20, Total amount to be wired: 123.0"}]
+[{"id":2018,"amount":"1234.0","balance":"7201.94","message":null,"created_at":"2015-05-25T22:48:27+08:00","updated_at":"2015-05-25T23:16:09+08:00","description":"Acquire $1,234.00 USD₮, Fee: $20.00 USD₮, Total amount to be wired: $1,254.00 USD₮","currency":"USD₮","status":"completed","could_be_exchanged":false,"tx_type":"acquire","reference_id":"WE1AM64","fee":"20.0"},{"id":2019,"amount":"-1.0","balance":"7200.94","message":"For the glory of all cats in the world!","created_at":"2015-05-28T11:32:51+08:00","updated_at":"2015-05-28T11:32:51+08:00","description":"Sent $1.00 USD₮ to glory@cat.com","currency":"USD₮","status":"pending","could_be_exchanged":false,"tx_type":"send","transaction_id":null,"counterparty_address":"glory@cat.com"},{"id":2020,"amount":"-0.01","balance":"0.00679","message":"Here is your part of booty, Ma.","created_at":"2015-06-04T19:30:42+08:00","updated_at":"2015-06-04T19:30:42+08:00","description":"Sent ฿0.01000 BTC to ma@barker.me","currency":"BTC","status":"pending","could_be_exchanged":false,"tx_type":"send","transaction_id":null,"counterparty_address":"ma@barker.me"}]
 ```
 
-This endpoint retrieves all user's transactions on Tether.
+This endpoint retrieves all user's transactions on Tether. See <a href="#get-transaction-by-id">Get transaction by ID</a> section for description of returned values. 
 
 ### HTTP Request
 
@@ -202,7 +201,7 @@ result = client.get_transaction(transaction_id)
 > The JSON in raw API response looks like this:
 
 ```json
-{"id":12345,"currency":"BTC","amount":"0.003","type":null,"status":"COMPLETED","message":null,"created_at":"2014-11-25T23:56:39Z","updated_at":"2014-11-25T23:56:39Z","remark":"You received BTC from an external account. txid: 52c90d367fac0a86057e8eb54022bbf504a1003a9b65fca444b59a1327dc7915","transaction_id":"52c90d367fac0a86057e8eb54022bbf504a1003a9b65fca444b59a1327dc7915"}
+{"id":2019,"amount":"-1.0","balance":"7200.94","message":"For the glory of all cats in the world!","created_at":"2015-05-28T11:32:51+08:00","updated_at":"2015-05-28T11:32:51+08:00","description":"Sent $1.00 USD₮ to glory@cat.com","currency":"USD₮","status":"pending","could_be_exchanged":false,"tx_type":"send","transaction_id":null,"counterparty_address":"glory@cat.com"}
 ```
 
 This endpoint retrieves information about specific transaction.
@@ -217,6 +216,23 @@ Parameter | Description
 --------- | -----------
 transaction_id | ID that is returned in full transactions list and on new transaction creation
 
+### Return values
+
+Value | Description
+--------- | -----------
+amount | Amount of transaction, negative if it's an outgoing transaction
+balance | Account balance after the transaction
+could_be_exchanged | The transaction is applicable for automatic exchange
+counterparty_address | The address of recipient (`tx_type=send`) or the address of the sender (`tx_type=receive`)
+currency | Transaction currency code
+description | Automatically generated description of transaction
+fee | Wire transfer reference ID (`tx_type IN ('acquire', 'redeem')`)
+id | Internal transaction ID
+message | Message included with the transaction
+reference_id | Wire transfer reference ID (`tx_type=acquire`)
+status | 'Pending', 'Processing', 'Completed' or 'Denied'
+transaction_id | Blockchain transaction ID (`tx_type IN ('send', 'receive')`)
+tx_type | 'convert', 'receive', 'send', 'acquire', 'redeem', 'unclaimed_return' or 'claimed_own'
 
 ## Create new transaction
 
@@ -241,7 +257,7 @@ transaction = client.new_transaction(transaction_parameters)
 > The JSON in raw API response looks like this:
 
 ```json
-{"success":true,"id":1234,"message":"Success! Sent 1.2345 BTC to ma@barker.me","method":"email"}
+{"success":true,"id":1234,"message":"Success! Sent ฿1.2345 BTC to ma@barker.me","method":"email"}
 ```
 
 This endpoint creates new transaction and returns its ID.
@@ -254,23 +270,19 @@ This endpoint creates new transaction and returns its ID.
 
 Parameter | Description
 --------- | -----------
-currency | Currency of outgoing transaction
 amount | Amount to send (decimal (8,16))
-destination | Recipient: email or bitcoin address
-message | Message to include for email destinations
+currency | Currency of outgoing transaction
+destination | Recipient: email or bitcoin/mastercoin address
+message | Message to include (for email destinations and own reference)
 
 ### Return values
 
 Value | Description
 --------- | -----------
-id | Internal transaction ID
-method | 'internal', 'blockchain' or 'email'. Only blockchain transactions contain transaction_id
-transaction_id | Blockchain transaction ID
+id | Tether internal transaction ID
+method | 'internal', 'blockchain' or 'email'
 success | boolean 
-
-
-
-
+transaction_id | Blockchain transaction ID (`method=blockchain`)
 
 # Exchange orders
 
@@ -322,10 +334,10 @@ result = client.get_exchange_order(exchange_order_id)
 > The JSON in raw API response looks like this:
 
 ```json
-{"id":12345,"uuid":"2b9763d8-b429-4c56-b9e9-dcda1512f4a5","source_currency":"BTC","target_currency":"USDt","original_amount":"0.03","exchanged_amount":"11.121213","exchange_rate":"371.45","created_at":"2014-11-26T00:00:51Z","updated_at":"2014-11-26T20:10:33Z","status":"Completed"}
+{"id":12345,"uuid":"2b9763d8-b429-4c56-b9e9-dcda1512f4a5","source_currency":"BTC","target_currency":"USD₮","original_amount":"0.03","exchanged_amount":"11.121213","exchange_rate":"371.45","created_at":"2014-11-26T00:00:51Z","updated_at":"2014-11-26T20:10:33Z","status":"Completed"}
 ```
 
-This endpoint retrieves information about specific exchange order.
+This endpoint retrieves information about specific exchange order. See <a href="#create-new-exchange-order">Create new exchange order</a> section for description of returned values.
 
 ### HTTP Request
 
@@ -343,7 +355,7 @@ exchange_order_id | ID that is returned in full exchange orders list and on new 
 ```ruby
 exchange_order_parameters = {
   :source_currency => 'BTC',
-  :target_currency => 'USDt',
+  :target_currency => 'USD₮',
   :amount => 1.234
 }
 exchange_order = client.new_exchange_order(exchange_order_parameters)
@@ -360,7 +372,7 @@ exchange_order = client.new_exchange_order(exchange_order_parameters)
 > The JSON in raw API response looks like this:
 
 ```json
-{"id":12345,"uuid":"2b9763d8-b429-4c56-b9e9-dcda1512f4a5","source_currency":"BTC","target_currency":"USDt","original_amount":"0.03","exchanged_amount":"11.121213","exchange_rate":"371.45","created_at":"2014-11-26T00:00:51Z","updated_at":"2014-11-26T20:10:33Z","status":"Pending"}
+{"id":12345,"uuid":"2b9763d8-b429-4c56-b9e9-dcda1512f4a5","source_currency":"BTC","target_currency":"USD₮","original_amount":"0.03","exchanged_amount":"11.121213","exchange_rate":"371.45","created_at":"2014-11-26T00:00:51Z","updated_at":"2014-11-26T20:10:33Z","status":"Pending"}
 ```
 
 This endpoint creates new exchange order and returns its ID.
@@ -373,20 +385,19 @@ This endpoint creates new exchange order and returns its ID.
 
 Parameter | Description
 --------- | -----------
+amount | Amount to convert (decimal (8,16))
 source_currency | Currency which should be converted
 target_currency | Currency which would be received 
-amount | Amount to convert (decimal (8,16))
 
 ### Return values
 
 Value | Description
 --------- | -----------
 id | Internal exchange order ID
-uuid | Internal exchange order UUID
-source_currency | Currency which should be converted
-target_currency | Currency which would be received 
+exchange_rate | Rate of exchange, available when conversion status is Completed
+exchanged_amount | Amount received from conversion (decimal (8,16)), available when conversion status is Completed
 original_amount | Amount to convert (decimal (8,16))
-exchanged_amount | Amount received from conversion (decimal (8,16))
-exchange_rate | Rate of exchange
 status | 'Pending', 'Processing' or 'Completed'
-
+source_currency | Currency which would be converted
+target_currency | Currency which would be received 
+uuid | Internal exchange order UUID
