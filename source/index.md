@@ -49,12 +49,13 @@ The following are the main components of building with Sense360
 
 # Triggers
 
-Triggers define the conditions under which your app should be notified. There are 3 types of places that you can be notified about. 3 types of Triggers are supported:
+Triggers define the conditions under which your app should be notified.  There are 3 categories of places that you can be notified about.  These categories are:
 
 - [Place of Interest (POI)](#place-of-interest-(poi)) - Examples are: Restaurant, Shopping Mall, etc.
 - [Personal Place](#personal-place) - Examples are: Home/Work.
 - [Custom Geofence](#custom-geofence) - These can be any latitude/longitude point with a radius.
 
+All triggers are built by the class FireTrigger.  Within there, you will find every function you need to get going.
 
 <aside class="notice"> IMPORTANT: A trigger on its own does nothing. You must build your triggers, and then add it to a Recipe in order to utilize the trigger. 
 </aside>
