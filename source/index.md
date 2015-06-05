@@ -2,7 +2,8 @@
 title: Sense360 API Reference
 
 language_tabs:
-  - Swift
+  - swift: Swift
+  - objective_c: Objective-C
 
 toc_footers:
   - <a id="sign" href='https://docs.google.com/a/sense360.com/forms/d/1EJwLR8GC0JAqeH5F1FIWKVZJ527qdQZ7GiWirS0mDxc/viewform?usp=send_form'>Sign Up for a Developer Key!</a>
@@ -64,7 +65,12 @@ Gives you the ability to be notified when a user enters or exits a particular PO
 
 ```swift
 // Will notify you when the user enters an Airport
-let airportTrigger = Trigger.whenEnters(.Airport).trigger!
+let airportTrigger: Trigger? = FireTrigger.whenEntersPoi(.Airport)
+```
+
+```objective_c
+// Will notify you when the user enters an Airport
+Trigger *restaurantTrigger = [FireTrigger whenEntersPoi:PoiTypeRestaurant errorPtr:nil];
 ```
 
 Supported POI types:
@@ -87,8 +93,15 @@ Gym | .whenEnters(.Gym) | .whenExits(.Gym)
 Gives you the ability to be notified when a user enters or exits their home or work. You can also be notified if the user is far awar from their home or work.
 
 ```swift
-let homeTrigger = Trigger.whenEnters(.Home).trigger!
+// Will notify you when the user enters their Home
+let homeTrigger: Trigger? = FireTrigger.whenEntersPersonalizedPlace(PersonalizedPlaceType.Home)
 ```
+
+```objective_c
+// Will notify you when the user enters their Home
+Trigger *homeTrigger = [FireTrigger whenEntersPersonalizedPlace:PersonalizedPlaceTypeHome errorPtr:nil];
+```
+
 
 The currently supported personalized location categories are:
 
@@ -107,10 +120,16 @@ Work | .whenEnters(.Work) | .whenExits(.Work)
 A custom geofence allows you specify a region to monitor for entrance and exit.
 
 ```swift
-let hq = CustomGeofence(latitude: 37.124, longitude: -127.456, radiusMeters: 20, customIdentifier: "Sense 360 Headquarters")
-let lunchSpot = CustomGeofence(latitude: 37.124, longitude: -127.456, radiusMeters: 35, customIdentifier: "A&B Bar and Grill")
+let hq = CustomGeofence(latitude: 37.124, longitude: -127.456, radius: 20, customIdentifier: "Sense 360 Headquarters")
+let lunchSpot = CustomGeofence(latitude: 37.124, longitude: -127.456, radius: 35, customIdentifier: "A&B Bar and Grill")
+let geofenceTrigger: Trigger? = FireTrigger.whenEntersGeofences([hq, lunchSpot])
+```
 
-let trigger = Trigger.whenEnters([hq, lunchSpot]).trigger!
+```objective_c
+CustomGeofence *hq = [[CustomGeofence alloc] initWithLatitude:37.124 longitude:-127.456 radius:20 customIdentifier:@"Sense 360 Headquarters"];
+CustomGeofence *lunchSpot = [[CustomGeofence alloc] initWithLatitude:37.124 longitude:-127.456 radius:35 customIdentifier:@"A&B Bar and Grill"];
+NSArray *geofences = [[NSArray alloc] initWithObjects:hq,lunchSpot,nil];
+[FireTrigger whenEntersGeofences: geofences errorPtr:nil];
 ```
 
 All custom geofence triggers must specify the following parameters
@@ -118,36 +137,39 @@ All custom geofence triggers must specify the following parameters
 Parameter | Type | Required | Description
 --------- | ------- |------- | -----------
 location | Location | true | location
-radiusMeters | Int | true | radius of geofence
-customIdentifier | String | true | unique name for place
+radius | Int | true | radius of geofence
+customIdentifier | String | true | unique identifier for your geofence
 
 Type | Transitions | |
 --------- | ------- |------- |
-CustomGeofence | .whenEnters() | .whenExits()
+CustomGeofence | .whenEntersGeofence() | .whenExitsGeofence()
 
 ### Caveats
 
 - You can specify at most 1000 geofences to monitor
 - Geofences must have a radius of at least 20m
 
-## Trigger Build Result Definition:
+## Error handling
 
 ```swift
-let result = Trigger.whenEnters(.Home)
-if let homeTrigger = result.trigger {
-    NSLog("It worked!")
+let errorPtr = SenseSdkErrorPointer.create()
+if let restaurantTrigger = FireTrigger.whenEntersPoi(.Restaurant, errorPtr: errorPtr) {
+  // continue //
 } else {
-    for error in result.errors {
-        NSLog("Error: \(error.type.message)")
-    }
+  NSLog(errorPtr.error!.message)
 }
 ```
-The Trigger class returns either the trigger or a list of errors. The properties are:
 
-TriggerBuildResult Type | Name | Description
---------- | ------- |------- | -----------
-SenseTrigger?|trigger|The final trigger when there are no errors.
-[TriggerError]|errors|The errors that took place during the build.
+```objective_c
+SenseSdkErrorPointer *errorPtr = [SenseSdkErrorPointer create];
+Trigger *restaurantTrigger = [FireTrigger whenEntersPoi:PoiTypeRestaurant errorPtr:errorPtr];
+if(restaurantTrigger != nil) {
+  // continue //
+} else {
+    NSLog(@"%@", errorPtr.error.message);
+}
+```
+In the event that there is an error when setting up a trigger, a nil will be returned with the error message stored within the corresponding SenseSdkErrorPointer.
 
 
 # Recipes
@@ -158,6 +180,13 @@ The Recipe is the container that encases your trigger, and various other setting
 let recipe = Recipe(name: "My Recipe", trigger: someTrigger)
 ```
 
+```objective_c
+Recipe *recipe = [[Recipe alloc] initWithName: @"My Recipe" 
+                                      trigger: someTrigger
+                                   timeWindow: [TimeWindow allDay]
+                                     cooldown: [Cooldown defaultCooldown]];
+```
+
 Parameter | Required | Default
 --------- | -------  | --------
 uniqueId (String)| true |
@@ -166,16 +195,24 @@ uniqueId (String)| true |
 [cool down](#cooldown) | false | 1 minute
 
 
-## Window
+## Time Window
 
-A window specifies which hours of the day a trigger is allowed to fire.
+A time window specifies which hours of the day a trigger is allowed to fire.
 
 ```swift
 // This will only allow a trigger to fire between the hours of 5pm and 10pm (in the users local time)
 let recipe = Recipe(
   name: "My Recipe", 
   trigger: someTrigger,
-  window: TimeWindow(fromHour: 17, toHour: 22))
+  window: TimeWindow.create(fromHour: 17, toHour: 22))
+```
+
+```objective_c
+Recipe *recipe = [[Recipe alloc] initWithName: @"My Recipe"
+                                      trigger: someTrigger
+                                   timeWindow: [TimeWindow createFromHour:17 toHour:22 errorPtr:nil]
+                                     cooldown: [Cooldown defaultCooldown]];
+
 ```
 
 Parameter | Type | Range | Required | Description
@@ -199,22 +236,21 @@ let recipe = Recipe(
   cooldown: Cooldown.create(oncePer: 2, frequency: .Days)!
 ```
 
+```objective_c
+// Wait 2 days after the trigger fires
+Recipe *recipe = [[Recipe alloc] initWithName: @"My Recipe"
+                                      trigger: someTrigger
+                                   timeWindow: [TimeWindow allDay]
+                                     cooldown: [Cooldown createWithOncePer:2 frequency:CooldownTimeUnitDays errorPtr:nil]];
+
+
+```
+
 Unit | Signature 
 --------- | ------- |
 Minutes|Cooldown.create(oncePer: 1, frequency: .Minutes)!
 Hours|Cooldown.create(oncePer: 1, frequency: .Hours)!
 Days|Cooldown.create(oncePer: 1, frequency: .Days)!
-
-
-## Compound Triggers
-```swift
-let trigger = CompoundTriggerBuilder()
-	.with(airportTrigger, and: homeTrigger)
-	.build()
-```
-You have the ability to combine triggers to create a compound trigger:
-
-In two of the examples above, both airportTrigger and homeTrigger were defined.  By then ANDing the two, you get a trigger that listens for when a user is at an airport AND 100+ kilometers from home (i.e. traveling):
 
 
 # SenseSdk
@@ -223,15 +259,12 @@ The SenseSdk is the main entry point into the Sdk. It allows you to register and
 
 ```swift
 // Registering a recipe and delegate
-let results = SenseSdk.register(recipe: myRecipe, delegate: myDelegate)
-if results.successful {
-  NSLog("recipe registration successful")
-} else if let errors = results.errors {
-    NSLog("Registration unsucessful, see errors below")
-    for error in errors {
-      NSLog("message: \(error.message)")
-    }
-}
+let success = SenseSdk.register(recipe: restaurantRecipe, delegate: self, errorPtr: nil)
+```
+
+```objective_c
+// Registering a recipe and delegate
+Boolean success = [SenseSdk registerWithRecipe:recipe delegate:callback errorPtr:nil];
 ```
 
 Function | Parameters | Description
@@ -241,24 +274,57 @@ unregister | Recipe | Stops and removes the recipe from SenseSdk.
 findRecipe | String | Finds and returns a recipe by name.
 getAllRecipes | | Returns all registered recipes.
 
-## TriggerFiredDelegate
+## Acting when a recipe fires
 
-The TriggerFiredDelegate is a protocol that should be implemented by the class which will be notified when a trigger is fired.
+Acting on triggers are done by implementing the RecipeFiredDelegate protocol.  The protocol has one method with one argument that contains the information on why and when the recipe fired.
 
 ```swift
-class MyClass : TriggerFiredDelegate {
-    func onTriggerFired(args: TriggerFiredArgs) {
-        NSLog("\(places.count) places fired on \(timestamp), with a confidence level of: \(args.confidenceLevel)")
-    }
+class MyCallback : RecipeFiredDelegate {
+  func recipeFired(args: RecipeFiredArgs) {
+      NSLog("Recipe \(args.recipe.name) fired at \(args.timestamp).")
+      for trigger in args.triggersFired {
+          for place in trigger.places {
+              NSLog(place.description)
+          }
+      }
+  }
 }
 ```
 
-Response Arg | Type | Description
+```objective_c
+@interface MyCallback : NSObject<RecipeFiredDelegate>
+
+@implementation MyCallback {
+  - (void)recipeFired:(RecipeFiredArgs*) args {
+      NSLog(@"Recipe %@ fired at %@.", [[args recipe] name], [args timestamp]);
+      for (TriggerFiredArgs* trigger in [args triggersFired]) {
+          for (NSObject <NSCoding, Place>* place in [trigger places]) {
+              NSLog(@"%@", [place description]);
+          }
+      }
+  }
+}
+```
+
+
+**RecipeFiredDelegate**
+
+Property | Type | Description
 --------- | ------- |------- 
-timestamp | NSDate | Time the trigger fired
-recipe | Recipe | The registered recipe that triggered
-places | [Place] | The list of places that were entered or exited
-confidenceLevel | ConfidenceLevel | The confidence that the action actually occurred.
+timestamp | NSDate | The time at which the recipe was fired
+recipe | Recipe | The recipe itself
+triggersFired | [TriggerFiredArgs] | The pertinent infromation on the triggers that fired
+confidenceLevel | ConfidenceLevel | The combined confidence levels of all triggers within the recipe
+
+
+**TriggerFiredArgs**
+
+Property | Type | Description
+--------- | ------- |-------
+timestamp | NSDate | The time at which this trigger fired
+places | [Place] | The places that caused this trigger to fired
+confidenceLevel | ConfidenceLevel | The confidence that the corresponding action actually occurred
+
 
 
 ## Confidence Levels
