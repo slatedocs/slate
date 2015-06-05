@@ -14,7 +14,7 @@
 
       <script>
         $(function() {
-          setupLanguages(["Swift"]);
+          setupLanguages(["swift","objective_c"]);
         });
       </script>
   </head>
@@ -29,7 +29,8 @@
     <div class="tocify-wrapper">
       <img src="images/logo.png" />
         <div class="lang-selector">
-              <a href="#" data-language-name="Swift">Swift</a>
+              <a href="#" data-language-name="swift">Swift</a>
+              <a href="#" data-language-name="objective_c">Objective-C</a>
         </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
@@ -92,7 +93,10 @@
 
 <p>Gives you the ability to be notified when a user enters or exits a particular POI type.</p>
 <pre><code class="highlight swift"><span class="c1">// Will notify you when the user enters an Airport
-</span><span class="k">let</span> <span class="nv">airportTrigger</span> <span class="o">=</span> <span class="kt">Trigger</span><span class="o">.</span><span class="nf">whenEnters</span><span class="p">(</span><span class="o">.</span><span class="kt">Airport</span><span class="p">)</span><span class="o">.</span><span class="n">trigger</span><span class="o">!</span>
+</span><span class="k">let</span> <span class="nv">airportTrigger</span><span class="p">:</span> <span class="kt">Trigger</span><span class="p">?</span> <span class="o">=</span> <span class="kt">FireTrigger</span><span class="o">.</span><span class="nf">whenEntersPoi</span><span class="p">(</span><span class="o">.</span><span class="kt">Airport</span><span class="p">)</span>
+</code></pre>
+<pre><code class="highlight objective_c"><span class="c1">// Will notify you when the user enters an Airport
+</span><span class="n">Trigger</span> <span class="o">*</span><span class="n">restaurantTrigger</span> <span class="o">=</span> <span class="p">[</span><span class="n">FireTrigger</span> <span class="nf">whenEntersPoi</span><span class="p">:</span><span class="n">PoiTypeRestaurant</span> <span class="nf">errorPtr</span><span class="p">:</span><span class="nb">nil</span><span class="p">];</span>
 </code></pre>
 
 <p>Supported POI types:</p>
@@ -106,33 +110,33 @@
 </thead><tbody>
 <tr>
 <td>Airport</td>
-<td>.whenEnters(.Airport)</td>
-<td>.whenExits(.Airport)</td>
+<td>.whenEntersPoi(.Airport)</td>
+<td>.whenExitsPoi(.Airport)</td>
 </tr>
 <tr>
 <td>Bar</td>
-<td>.whenEnters(.Bar)</td>
-<td>.whenExits(.Bar)</td>
+<td>.whenEntersPoi(.Bar)</td>
+<td>.whenExitsPoi(.Bar)</td>
 </tr>
 <tr>
 <td>Restaurant</td>
-<td>.whenEnters(.Restaurant)</td>
-<td>.whenExits(.Restaurant)</td>
+<td>.whenEntersPoi(.Restaurant)</td>
+<td>.whenExitsPoi(.Restaurant)</td>
 </tr>
 <tr>
 <td>Mall</td>
-<td>.whenEnters(.Mall)</td>
-<td>.whenExits(.Mall)</td>
+<td>.whenEntersPoi(.Mall)</td>
+<td>.whenExitsPoi(.Mall)</td>
 </tr>
 <tr>
 <td>Cafe</td>
-<td>.whenEnters(.Cafe)</td>
-<td>.whenExits(.Cafe)</td>
+<td>.whenEntersPoi(.Cafe)</td>
+<td>.whenExitsPoi(.Cafe)</td>
 </tr>
 <tr>
 <td>Gym</td>
-<td>.whenEnters(.Gym)</td>
-<td>.whenExits(.Gym)</td>
+<td>.whenEntersPoi(.Gym)</td>
+<td>.whenExitsPoi(.Gym)</td>
 </tr>
 </tbody></table>
 
@@ -140,13 +144,17 @@
 
 <ul>
 <li>Each trigger can only detect a single POI type.</li>
-<li>The sdk will not trigger immediately on entrance or exit because it needs to be sure of the action.</li>
+<li>The sdk will not trigger immediately on entrance or exit because it needs to be sure of the user&rsquo;s presence.</li>
 </ul>
 
 <h2 id="personal-place">Personal Place</h2>
 
 <p>Gives you the ability to be notified when a user enters or exits their home or work. You can also be notified if the user is far awar from their home or work.</p>
-<pre><code class="highlight swift"><span class="k">let</span> <span class="nv">homeTrigger</span> <span class="o">=</span> <span class="kt">Trigger</span><span class="o">.</span><span class="nf">whenEnters</span><span class="p">(</span><span class="o">.</span><span class="kt">Home</span><span class="p">)</span><span class="o">.</span><span class="n">trigger</span><span class="o">!</span>
+<pre><code class="highlight swift"><span class="c1">// Will notify you when the user enters their Home
+</span><span class="k">let</span> <span class="nv">homeTrigger</span><span class="p">:</span> <span class="kt">Trigger</span><span class="p">?</span> <span class="o">=</span> <span class="kt">FireTrigger</span><span class="o">.</span><span class="nf">whenEntersPersonalizedPlace</span><span class="p">(</span><span class="kt">PersonalizedPlaceType</span><span class="o">.</span><span class="kt">Home</span><span class="p">)</span>
+</code></pre>
+<pre><code class="highlight objective_c"><span class="c1">// Will notify you when the user enters their Home
+</span><span class="n">Trigger</span> <span class="o">*</span><span class="n">homeTrigger</span> <span class="o">=</span> <span class="p">[</span><span class="n">FireTrigger</span> <span class="nf">whenEntersPersonalizedPlace</span><span class="p">:</span><span class="n">PersonalizedPlaceTypeHome</span> <span class="nf">errorPtr</span><span class="p">:</span><span class="nb">nil</span><span class="p">];</span>
 </code></pre>
 
 <p>The currently supported personalized location categories are:</p>
@@ -160,31 +168,36 @@
 </thead><tbody>
 <tr>
 <td>Home</td>
-<td>.whenEnters(.Home)</td>
-<td>.whenExits(.Home)</td>
+<td>.whenEntersPersonalizedPlace(.Home)</td>
+<td>.whenExitsPersonalizedPlace(.Home)</td>
 </tr>
 <tr>
 <td>Work</td>
-<td>.whenEnters(.Work)</td>
-<td>.whenExits(.Work)</td>
+<td>.whenEntersPersonalizedPlace(.Work)</td>
+<td>.whenExitsPersonalizedPlace(.Work)</td>
 </tr>
 </tbody></table>
 
 <h3 id="caveats">Caveats</h3>
 
 <ul>
-<li>The SDK takes roughly a week to determine a user&rsquo;s home or work. After the SDK identifies the users home or work, it can then start detecting it.</li>
+<li>The SDK takes roughly a week to determine a user&rsquo;s home or work. After the SDK identifies the users home or work, it can then start detecting the users presence there.</li>
 <li>The SDK will continually try to update the user&rsquo;s home every few days.</li>
 <li>Due to the sensitivity of this data, neither developers nor us will ever see the raw data or store a users home or office location. The computation happens on the device itself and stays there to ensure your users privacy.</li>
+<li>The sdk will not trigger immediately on entrance or exit because it needs to be sure of the user&rsquo;s presence.</li>
 </ul>
 
 <h2 id="custom-geofence">Custom Geofence</h2>
 
-<p>A custom geofence allows you specify a region to monitor for entrance and exit.</p>
-<pre><code class="highlight swift"><span class="k">let</span> <span class="nv">hq</span> <span class="o">=</span> <span class="kt">CustomGeofence</span><span class="p">(</span><span class="nv">latitude</span><span class="p">:</span> <span class="mf">37.124</span><span class="p">,</span> <span class="nv">longitude</span><span class="p">:</span> <span class="o">-</span><span class="mf">127.456</span><span class="p">,</span> <span class="nv">radiusMeters</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span> <span class="nv">customIdentifier</span><span class="p">:</span> <span class="s">"Sense 360 Headquarters"</span><span class="p">)</span>
-<span class="k">let</span> <span class="nv">lunchSpot</span> <span class="o">=</span> <span class="kt">CustomGeofence</span><span class="p">(</span><span class="nv">latitude</span><span class="p">:</span> <span class="mf">37.124</span><span class="p">,</span> <span class="nv">longitude</span><span class="p">:</span> <span class="o">-</span><span class="mf">127.456</span><span class="p">,</span> <span class="nv">radiusMeters</span><span class="p">:</span> <span class="mi">35</span><span class="p">,</span> <span class="nv">customIdentifier</span><span class="p">:</span> <span class="s">"A&amp;B Bar and Grill"</span><span class="p">)</span>
-
-<span class="k">let</span> <span class="nv">trigger</span> <span class="o">=</span> <span class="kt">Trigger</span><span class="o">.</span><span class="nf">whenEnters</span><span class="p">([</span><span class="n">hq</span><span class="p">,</span> <span class="n">lunchSpot</span><span class="p">])</span><span class="o">.</span><span class="n">trigger</span><span class="o">!</span>
+<p>A custom geofence allows you specify a region to monitor for entrance and exit. This geofence will only be registered for this user (not your entire application).</p>
+<pre><code class="highlight swift"><span class="k">let</span> <span class="nv">hq</span> <span class="o">=</span> <span class="kt">CustomGeofence</span><span class="p">(</span><span class="nv">latitude</span><span class="p">:</span> <span class="mf">37.124</span><span class="p">,</span> <span class="nv">longitude</span><span class="p">:</span> <span class="o">-</span><span class="mf">127.456</span><span class="p">,</span> <span class="nv">radius</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span> <span class="nv">customIdentifier</span><span class="p">:</span> <span class="s">"Sense 360 Headquarters"</span><span class="p">)</span>
+<span class="k">let</span> <span class="nv">lunchSpot</span> <span class="o">=</span> <span class="kt">CustomGeofence</span><span class="p">(</span><span class="nv">latitude</span><span class="p">:</span> <span class="mf">37.124</span><span class="p">,</span> <span class="nv">longitude</span><span class="p">:</span> <span class="o">-</span><span class="mf">127.456</span><span class="p">,</span> <span class="nv">radius</span><span class="p">:</span> <span class="mi">35</span><span class="p">,</span> <span class="nv">customIdentifier</span><span class="p">:</span> <span class="s">"A&amp;B Bar and Grill"</span><span class="p">)</span>
+<span class="k">let</span> <span class="nv">geofenceTrigger</span><span class="p">:</span> <span class="kt">Trigger</span><span class="p">?</span> <span class="o">=</span> <span class="kt">FireTrigger</span><span class="o">.</span><span class="nf">whenEntersGeofences</span><span class="p">([</span><span class="n">hq</span><span class="p">,</span> <span class="n">lunchSpot</span><span class="p">])</span>
+</code></pre>
+<pre><code class="highlight objective_c"><span class="n">CustomGeofence</span> <span class="o">*</span><span class="n">hq</span> <span class="o">=</span> <span class="p">[[</span><span class="n">CustomGeofence</span> <span class="nf">alloc</span><span class="p">]</span> <span class="nf">initWithLatitude</span><span class="p">:</span><span class="mi">37</span><span class="p">.</span><span class="mi">124</span> <span class="nf">longitude</span><span class="p">:</span><span class="o">-</span><span class="mi">127</span><span class="p">.</span><span class="mi">456</span> <span class="nf">radius</span><span class="p">:</span><span class="mi">20</span> <span class="nf">customIdentifier</span><span class="p">:</span><span class="s">@"Sense 360 Headquarters"</span><span class="p">];</span>
+<span class="n">CustomGeofence</span> <span class="o">*</span><span class="n">lunchSpot</span> <span class="o">=</span> <span class="p">[[</span><span class="n">CustomGeofence</span> <span class="nf">alloc</span><span class="p">]</span> <span class="nf">initWithLatitude</span><span class="p">:</span><span class="mi">37</span><span class="p">.</span><span class="mi">124</span> <span class="nf">longitude</span><span class="p">:</span><span class="o">-</span><span class="mi">127</span><span class="p">.</span><span class="mi">456</span> <span class="nf">radius</span><span class="p">:</span><span class="mi">35</span> <span class="nf">customIdentifier</span><span class="p">:</span><span class="s">@"A&amp;B Bar and Grill"</span><span class="p">];</span>
+<span class="n">NSArray</span> <span class="o">*</span><span class="n">geofences</span> <span class="o">=</span> <span class="p">[[</span><span class="n">NSArray</span> <span class="nf">alloc</span><span class="p">]</span> <span class="nf">initWithObjects</span><span class="p">:</span><span class="n">hq</span><span class="p">,</span><span class="n">lunchSpot</span><span class="p">,</span><span class="nb">nil</span><span class="p">];</span>
+<span class="p">[</span><span class="n">FireTrigger</span> <span class="nf">whenEntersGeofences</span><span class="p">:</span> <span class="n">geofences</span> <span class="nf">errorPtr</span><span class="p">:</span><span class="nb">nil</span><span class="p">];</span>
 </code></pre>
 
 <p>All custom geofence triggers must specify the following parameters</p>
@@ -204,7 +217,7 @@
 <td>location</td>
 </tr>
 <tr>
-<td>radiusMeters</td>
+<td>radius</td>
 <td>Int</td>
 <td>true</td>
 <td>radius of geofence</td>
@@ -213,7 +226,7 @@
 <td>customIdentifier</td>
 <td>String</td>
 <td>true</td>
-<td>unique name for place</td>
+<td>unique identifier for your geofence</td>
 </tr>
 </tbody></table>
 
@@ -226,8 +239,8 @@
 </thead><tbody>
 <tr>
 <td>CustomGeofence</td>
-<td>.whenEnters()</td>
-<td>.whenExits()</td>
+<td>.whenEntersGeofences()</td>
+<td>.whenExitsGeofences()</td>
 </tr>
 </tbody></table>
 
@@ -235,45 +248,40 @@
 
 <ul>
 <li>You can specify at most 1000 geofences to monitor</li>
-<li>Geofences must have a radius of at least 20m</li>
+<li>Geofences must have a radius of at least 30m</li>
+<li>The sdk will not trigger immediately on entrance or exit because it needs to be sure of the user&rsquo;s presence.</li>
 </ul>
 
-<h2 id="trigger-build-result-definition:">Trigger Build Result Definition:</h2>
-<pre><code class="highlight swift"><span class="k">let</span> <span class="nv">result</span> <span class="o">=</span> <span class="kt">Trigger</span><span class="o">.</span><span class="nf">whenEnters</span><span class="p">(</span><span class="o">.</span><span class="kt">Home</span><span class="p">)</span>
-<span class="k">if</span> <span class="k">let</span> <span class="nv">homeTrigger</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">trigger</span> <span class="p">{</span>
-    <span class="kt">NSLog</span><span class="p">(</span><span class="s">"It worked!"</span><span class="p">)</span>
+<h2 id="handling-trigger-creation-errors:">Handling Trigger Creation Errors:</h2>
+<pre><code class="highlight swift"><span class="k">let</span> <span class="nv">errorPointer</span> <span class="o">=</span> <span class="kt">SenseSdkErrorPointer</span><span class="p">()</span>
+<span class="k">let</span> <span class="nv">result</span> <span class="o">=</span> <span class="kt">FireTrigger</span><span class="o">.</span><span class="nf">whenEntersPoi</span><span class="p">(</span><span class="o">.</span><span class="kt">Airport</span><span class="p">,</span> <span class="nv">errorPtr</span><span class="p">:</span> <span class="n">errorPointer</span><span class="p">)</span>
+<span class="k">if</span> <span class="k">let</span> <span class="nv">airportTrigger</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">trigger</span> <span class="p">{</span>
+  <span class="kt">NSLog</span><span class="p">(</span><span class="s">"Success monitoring airport entrance!"</span><span class="p">)</span>
 <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-    <span class="k">for</span> <span class="n">error</span> <span class="k">in</span> <span class="n">result</span><span class="o">.</span><span class="n">errors</span> <span class="p">{</span>
-        <span class="kt">NSLog</span><span class="p">(</span><span class="s">"Error: </span><span class="se">\(</span><span class="n">error</span><span class="o">.</span><span class="n">type</span><span class="o">.</span><span class="n">message</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
-    <span class="p">}</span>
+  <span class="kt">NSLog</span><span class="p">(</span><span class="s">"Error building airport trigger. Msg="</span> <span class="o">+</span> <span class="n">errorPointer</span><span class="o">.</span><span class="n">error</span><span class="o">!.</span><span class="n">message</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre>
+<pre><code class="highlight objective_c"><span class="n">SenseSdkErrorPointer</span> <span class="o">*</span><span class="n">errorPtr</span> <span class="o">=</span> <span class="p">[</span><span class="n">SenseSdkErrorPointer</span> <span class="nf">create</span><span class="p">];</span>
+<span class="n">Trigger</span> <span class="o">*</span><span class="n">restaurantTrigger</span> <span class="o">=</span> <span class="p">[</span><span class="n">FireTrigger</span> <span class="nf">whenEntersPoi</span><span class="p">:</span><span class="n">PoiTypeRestaurant</span> <span class="nf">errorPtr</span><span class="p">:</span><span class="n">errorPtr</span><span class="p">];</span>
+<span class="k">if</span><span class="p">(</span><span class="n">restaurantTrigger</span> <span class="o">!=</span> <span class="nb">nil</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">NSLog</span><span class="p">(</span><span class="s">@"Success monitoring airport entrance!"</span><span class="p">);</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+  <span class="n">NSLog</span><span class="p">(</span><span class="s">@"%@"</span><span class="p">,</span> <span class="n">errorPtr</span><span class="p">.</span><span class="n">error</span><span class="p">.</span><span class="n">message</span><span class="p">);</span>
 <span class="p">}</span>
 </code></pre>
 
-<p>The Trigger class returns either the trigger or a list of errors. The properties are:</p>
-
-<table><thead>
-<tr>
-<th>TriggerBuildResult Type</th>
-<th>Name</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>SenseTrigger?</td>
-<td>trigger</td>
-<td>The final trigger when there are no errors.</td>
-</tr>
-<tr>
-<td>[TriggerError]</td>
-<td>errors</td>
-<td>The errors that took place during the build.</td>
-</tr>
-</tbody></table>
+<p>In the event that there is an error when setting up a trigger, a nil will be returned with the error message stored within the corresponding SenseSdkErrorPointer.</p>
 
 <h1 id="recipes">Recipes</h1>
 
 <p>The Recipe is the container that encases your trigger, and various other settings.  Recipes are registered globally within your application with a call to the <a href="#sensesdk">SenseSdk</a>.  Below are the inputs that make up a Recipe:</p>
-<pre><code class="highlight swift"><span class="k">let</span> <span class="nv">recipe</span> <span class="o">=</span> <span class="kt">Recipe</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="s">"My Recipe"</span><span class="p">,</span> <span class="nv">trigger</span><span class="p">:</span> <span class="n">someTrigger</span><span class="p">)</span>
+<pre><code class="highlight swift"><span class="c1">// Basic trigger. No time restriction. No cooldown. (can fire at most every minute)
+</span><span class="k">let</span> <span class="nv">recipe</span> <span class="o">=</span> <span class="kt">Recipe</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="s">"My Recipe"</span><span class="p">,</span> <span class="nv">trigger</span><span class="p">:</span> <span class="n">someTrigger</span><span class="p">)</span>
+</code></pre>
+<pre><code class="highlight objective_c"><span class="n">Recipe</span> <span class="o">*</span><span class="n">recipe</span> <span class="o">=</span> <span class="p">[[</span><span class="n">Recipe</span> <span class="nf">alloc</span><span class="p">]</span> <span class="nf">initWithName</span><span class="p">:</span> <span class="s">@"My Recipe"</span> 
+                                      <span class="nf">trigger</span><span class="p">:</span> <span class="n">someTrigger</span>
+                                   <span class="nf">timeWindow</span><span class="p">:</span> <span class="p">[</span><span class="n">TimeWindow</span> <span class="nf">allDay</span><span class="p">]</span>
+                                     <span class="nf">cooldown</span><span class="p">:</span> <span class="p">[</span><span class="n">Cooldown</span> <span class="nf">defaultCooldown</span><span class="p">]];</span>
 </code></pre>
 
 <table><thead>
@@ -305,14 +313,20 @@
 </tr>
 </tbody></table>
 
-<h2 id="window">Window</h2>
+<h2 id="time-window">Time Window</h2>
 
-<p>A window specifies which hours of the day a trigger is allowed to fire.</p>
+<p>A time window specifies which hours of the day a trigger is allowed to fire.</p>
 <pre><code class="highlight swift"><span class="c1">// This will only allow a trigger to fire between the hours of 5pm and 10pm (in the users local time)
 </span><span class="k">let</span> <span class="nv">recipe</span> <span class="o">=</span> <span class="kt">Recipe</span><span class="p">(</span>
   <span class="nv">name</span><span class="p">:</span> <span class="s">"My Recipe"</span><span class="p">,</span> 
   <span class="nv">trigger</span><span class="p">:</span> <span class="n">someTrigger</span><span class="p">,</span>
-  <span class="nv">window</span><span class="p">:</span> <span class="kt">TimeWindow</span><span class="p">(</span><span class="nv">fromHour</span><span class="p">:</span> <span class="mi">17</span><span class="p">,</span> <span class="nv">toHour</span><span class="p">:</span> <span class="mi">22</span><span class="p">))</span>
+  <span class="nv">window</span><span class="p">:</span> <span class="kt">TimeWindow</span><span class="o">.</span><span class="nf">create</span><span class="p">(</span><span class="nv">fromHour</span><span class="p">:</span> <span class="mi">17</span><span class="p">,</span> <span class="nv">toHour</span><span class="p">:</span> <span class="mi">22</span><span class="p">))</span>
+</code></pre>
+<pre><code class="highlight objective_c"><span class="n">Recipe</span> <span class="o">*</span><span class="n">recipe</span> <span class="o">=</span> <span class="p">[[</span><span class="n">Recipe</span> <span class="nf">alloc</span><span class="p">]</span> <span class="nf">initWithName</span><span class="p">:</span> <span class="s">@"My Recipe"</span>
+                                      <span class="nf">trigger</span><span class="p">:</span> <span class="n">someTrigger</span>
+                                   <span class="nf">timeWindow</span><span class="p">:</span> <span class="p">[</span><span class="n">TimeWindow</span> <span class="nf">createFromHour</span><span class="p">:</span><span class="mi">17</span> <span class="nf">toHour</span><span class="p">:</span><span class="mi">22</span> <span class="nf">errorPtr</span><span class="p">:</span><span class="nb">nil</span><span class="p">]</span>
+                                     <span class="nf">cooldown</span><span class="p">:</span> <span class="p">[</span><span class="n">Cooldown</span> <span class="nf">defaultCooldown</span><span class="p">]];</span>
+
 </code></pre>
 
 <table><thead>
@@ -355,6 +369,12 @@
   <span class="nv">trigger</span><span class="p">:</span> <span class="n">someTrigger</span><span class="p">,</span> 
   <span class="nv">cooldown</span><span class="p">:</span> <span class="kt">Cooldown</span><span class="o">.</span><span class="nf">create</span><span class="p">(</span><span class="nv">oncePer</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="nv">frequency</span><span class="p">:</span> <span class="o">.</span><span class="kt">Days</span><span class="p">)</span><span class="o">!</span>
 </code></pre>
+<pre><code class="highlight objective_c"><span class="c1">// Wait 2 days after the trigger fires
+</span><span class="n">Recipe</span> <span class="o">*</span><span class="n">recipe</span> <span class="o">=</span> <span class="p">[[</span><span class="n">Recipe</span> <span class="nf">alloc</span><span class="p">]</span> <span class="nf">initWithName</span><span class="p">:</span> <span class="s">@"My Recipe"</span>
+                                      <span class="nf">trigger</span><span class="p">:</span> <span class="n">someTrigger</span>
+                                   <span class="nf">timeWindow</span><span class="p">:</span> <span class="p">[</span><span class="n">TimeWindow</span> <span class="nf">allDay</span><span class="p">]</span>
+                                     <span class="nf">cooldown</span><span class="p">:</span> <span class="p">[</span><span class="n">Cooldown</span> <span class="nf">createWithOncePer</span><span class="p">:</span><span class="mi">2</span> <span class="nf">frequency</span><span class="p">:</span><span class="n">CooldownTimeUnitDays</span> <span class="nf">errorPtr</span><span class="p">:</span><span class="nb">nil</span><span class="p">]];</span>
+</code></pre>
 
 <table><thead>
 <tr>
@@ -376,29 +396,20 @@
 </tr>
 </tbody></table>
 
-<h2 id="compound-triggers">Compound Triggers</h2>
-<pre><code class="highlight swift"><span class="k">let</span> <span class="nv">trigger</span> <span class="o">=</span> <span class="kt">CompoundTriggerBuilder</span><span class="p">()</span>
-    <span class="o">.</span><span class="nf">with</span><span class="p">(</span><span class="n">airportTrigger</span><span class="p">,</span> <span class="nv">and</span><span class="p">:</span> <span class="n">homeTrigger</span><span class="p">)</span>
-    <span class="o">.</span><span class="nf">build</span><span class="p">()</span>
-</code></pre>
+<h3 id="caveats">Caveats</h3>
 
-<p>You have the ability to combine triggers to create a compound trigger:</p>
-
-<p>In two of the examples above, both airportTrigger and homeTrigger were defined.  By then ANDing the two, you get a trigger that listens for when a user is at an airport AND 100+ kilometers from home (i.e. traveling):</p>
+<ul>
+<li>The minimum cooldown time is 5 minutes.</li>
+</ul>
 
 <h1 id="sensesdk">SenseSdk</h1>
 
 <p>The SenseSdk is the main entry point into the Sdk. It allows you to register and unregister recipes.</p>
 <pre><code class="highlight swift"><span class="c1">// Registering a recipe and delegate
-</span><span class="k">let</span> <span class="nv">results</span> <span class="o">=</span> <span class="kt">SenseSdk</span><span class="o">.</span><span class="nf">register</span><span class="p">(</span><span class="nv">recipe</span><span class="p">:</span> <span class="n">myRecipe</span><span class="p">,</span> <span class="nv">delegate</span><span class="p">:</span> <span class="n">myDelegate</span><span class="p">)</span>
-<span class="k">if</span> <span class="n">results</span><span class="o">.</span><span class="n">successful</span> <span class="p">{</span>
-  <span class="kt">NSLog</span><span class="p">(</span><span class="s">"recipe registration successful"</span><span class="p">)</span>
-<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="k">let</span> <span class="nv">errors</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">errors</span> <span class="p">{</span>
-    <span class="kt">NSLog</span><span class="p">(</span><span class="s">"Registration unsucessful, see errors below"</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">error</span> <span class="k">in</span> <span class="n">errors</span> <span class="p">{</span>
-      <span class="kt">NSLog</span><span class="p">(</span><span class="s">"message: </span><span class="se">\(</span><span class="n">error</span><span class="o">.</span><span class="n">message</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+</span><span class="k">let</span> <span class="nv">success</span> <span class="o">=</span> <span class="kt">SenseSdk</span><span class="o">.</span><span class="nf">register</span><span class="p">(</span><span class="nv">recipe</span><span class="p">:</span> <span class="n">restaurantRecipe</span><span class="p">,</span> <span class="nv">delegate</span><span class="p">:</span> <span class="k">self</span><span class="p">,</span> <span class="nv">errorPtr</span><span class="p">:</span> <span class="kc">nil</span><span class="p">)</span>
+</code></pre>
+<pre><code class="highlight objective_c"><span class="c1">// Registering a recipe and delegate
+</span><span class="n">Boolean</span> <span class="n">success</span> <span class="o">=</span> <span class="p">[</span><span class="n">SenseSdk</span> <span class="nf">registerWithRecipe</span><span class="p">:</span><span class="n">recipe</span> <span class="nf">delegate</span><span class="p">:</span><span class="n">callback</span> <span class="nf">errorPtr</span><span class="p">:</span><span class="nb">nil</span><span class="p">];</span>
 </code></pre>
 
 <table><thead>
@@ -430,19 +441,39 @@
 </tr>
 </tbody></table>
 
-<h2 id="triggerfireddelegate">TriggerFiredDelegate</h2>
+<h2 id="acting-when-a-recipe-fires">Acting when a recipe fires</h2>
 
-<p>The TriggerFiredDelegate is a protocol that should be implemented by the class which will be notified when a trigger is fired.</p>
-<pre><code class="highlight swift"><span class="kd">class</span> <span class="kt">MyClass</span> <span class="p">:</span> <span class="kt">TriggerFiredDelegate</span> <span class="p">{</span>
-    <span class="kd">func</span> <span class="nf">onTriggerFired</span><span class="p">(</span><span class="nv">args</span><span class="p">:</span> <span class="kt">TriggerFiredArgs</span><span class="p">)</span> <span class="p">{</span>
-        <span class="kt">NSLog</span><span class="p">(</span><span class="s">"</span><span class="se">\(</span><span class="n">places</span><span class="o">.</span><span class="n">count</span><span class="se">)</span><span class="s"> places fired on </span><span class="se">\(</span><span class="n">timestamp</span><span class="se">)</span><span class="s">, with a confidence level of: </span><span class="se">\(</span><span class="n">args</span><span class="o">.</span><span class="n">confidenceLevel</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
-    <span class="p">}</span>
+<p>Acting on triggers are done by implementing the RecipeFiredDelegate protocol.  The protocol has one method with one argument that contains the information on why and when the recipe fired.</p>
+<pre><code class="highlight swift"><span class="kd">class</span> <span class="kt">MyCallback</span> <span class="p">:</span> <span class="kt">RecipeFiredDelegate</span> <span class="p">{</span>
+  <span class="kd">func</span> <span class="nf">recipeFired</span><span class="p">(</span><span class="nv">args</span><span class="p">:</span> <span class="kt">RecipeFiredArgs</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kt">NSLog</span><span class="p">(</span><span class="s">"Recipe </span><span class="se">\(</span><span class="n">args</span><span class="o">.</span><span class="n">recipe</span><span class="o">.</span><span class="n">name</span><span class="se">)</span><span class="s"> fired at </span><span class="se">\(</span><span class="n">args</span><span class="o">.</span><span class="n">timestamp</span><span class="se">)</span><span class="s">."</span><span class="p">)</span>
+      <span class="k">for</span> <span class="n">trigger</span> <span class="k">in</span> <span class="n">args</span><span class="o">.</span><span class="n">triggersFired</span> <span class="p">{</span>
+          <span class="k">for</span> <span class="n">place</span> <span class="k">in</span> <span class="n">trigger</span><span class="o">.</span><span class="n">places</span> <span class="p">{</span>
+              <span class="kt">NSLog</span><span class="p">(</span><span class="n">place</span><span class="o">.</span><span class="n">description</span><span class="p">)</span>
+          <span class="p">}</span>
+      <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+<pre><code class="highlight objective_c"><span class="k">@interface</span> <span class="nc">MyCallback</span> <span class="p">:</span> <span class="nc">NSObject</span><span class="o">&lt;</span><span class="n">RecipeFiredDelegate</span><span class="o">&gt;</span>
+
+<span class="k">@implementation</span> <span class="nc">MyCallback</span> <span class="p">{</span>
+  <span class="o">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">recipeFired</span><span class="o">:</span><span class="p">(</span><span class="n">RecipeFiredArgs</span><span class="o">*</span><span class="p">)</span> <span class="n">args</span> <span class="p">{</span>
+      <span class="n">NSLog</span><span class="p">(</span><span class="s">@"Recipe %@ fired at %@."</span><span class="p">,</span> <span class="p">[[</span><span class="n">args</span> <span class="nf">recipe</span><span class="p">]</span> <span class="nf">name</span><span class="p">],</span> <span class="p">[</span><span class="n">args</span> <span class="nf">timestamp</span><span class="p">]);</span>
+      <span class="k">for</span> <span class="p">(</span><span class="n">TriggerFiredArgs</span><span class="o">*</span> <span class="n">trigger</span> <span class="k">in</span> <span class="p">[</span><span class="n">args</span> <span class="nf">triggersFired</span><span class="p">])</span> <span class="p">{</span>
+          <span class="k">for</span> <span class="p">(</span><span class="n">NSObject</span> <span class="o">&lt;</span><span class="n">NSCoding</span><span class="p">,</span> <span class="n">Place</span><span class="o">&gt;*</span> <span class="n">place</span> <span class="k">in</span> <span class="p">[</span><span class="n">trigger</span> <span class="nf">places</span><span class="p">])</span> <span class="p">{</span>
+              <span class="n">NSLog</span><span class="p">(</span><span class="s">@"%@"</span><span class="p">,</span> <span class="p">[</span><span class="n">place</span> <span class="nf">description</span><span class="p">]);</span>
+          <span class="p">}</span>
+      <span class="p">}</span>
+  <span class="p">}</span>
 <span class="p">}</span>
 </code></pre>
 
+<h3 id="recipefireddelegate">RecipeFiredDelegate</h3>
+
 <table><thead>
 <tr>
-<th>Response Arg</th>
+<th>Property</th>
 <th>Type</th>
 <th>Description</th>
 </tr>
@@ -450,22 +481,48 @@
 <tr>
 <td>timestamp</td>
 <td>NSDate</td>
-<td>Time the trigger fired</td>
+<td>The time at which the recipe was fired</td>
 </tr>
 <tr>
 <td>recipe</td>
 <td>Recipe</td>
-<td>The registered recipe that triggered</td>
+<td>The recipe itself</td>
 </tr>
 <tr>
-<td>places</td>
-<td>[Place]</td>
-<td>The list of places that were entered or exited</td>
+<td>triggersFired</td>
+<td>[TriggerFiredArgs]</td>
+<td>The pertinent infromation on the triggers that fired</td>
 </tr>
 <tr>
 <td>confidenceLevel</td>
 <td>ConfidenceLevel</td>
-<td>The confidence that the action actually occurred.</td>
+<td>The combined confidence levels of all triggers within the recipe</td>
+</tr>
+</tbody></table>
+
+<h3 id="triggerfiredargs">TriggerFiredArgs</h3>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>timestamp</td>
+<td>NSDate</td>
+<td>The time at which this trigger fired</td>
+</tr>
+<tr>
+<td>places</td>
+<td>[Place]</td>
+<td>The places that caused this trigger to fired</td>
+</tr>
+<tr>
+<td>confidenceLevel</td>
+<td>ConfidenceLevel</td>
+<td>The confidence that the corresponding action actually occurred</td>
 </tr>
 </tbody></table>
 
@@ -487,7 +544,8 @@
       </div>
       <div class="dark-box">
           <div class="lang-selector">
-                <a href="#" data-language-name="Swift">Swift</a>
+                <a href="#" data-language-name="swift">Swift</a>
+                <a href="#" data-language-name="objective_c">Objective-C</a>
           </div>
       </div>
     </div>

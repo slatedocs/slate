@@ -77,16 +77,16 @@ Supported POI types:
 
 Category | Transitions | |
 --------- | ------- |------- |
-Airport | .whenEnters(.Airport) | .whenExits(.Airport)
-Bar | .whenEnters(.Bar) | .whenExits(.Bar)
-Restaurant | .whenEnters(.Restaurant) | .whenExits(.Restaurant)
-Mall | .whenEnters(.Mall) | .whenExits(.Mall)
-Cafe | .whenEnters(.Cafe) | .whenExits(.Cafe)
-Gym | .whenEnters(.Gym) | .whenExits(.Gym)
+Airport | .whenEntersPoi(.Airport) | .whenExitsPoi(.Airport)
+Bar | .whenEntersPoi(.Bar) | .whenExitsPoi(.Bar)
+Restaurant | .whenEntersPoi(.Restaurant) | .whenExitsPoi(.Restaurant)
+Mall | .whenEntersPoi(.Mall) | .whenExitsPoi(.Mall)
+Cafe | .whenEntersPoi(.Cafe) | .whenExitsPoi(.Cafe)
+Gym | .whenEntersPoi(.Gym) | .whenExitsPoi(.Gym)
 
 ### Caveats
 - Each trigger can only detect a single POI type.
-- The sdk will not trigger immediately on entrance or exit because it needs to be sure of the action.
+- The sdk will not trigger immediately on entrance or exit because it needs to be sure of the user's presence.
 
 ## Personal Place
 
@@ -107,17 +107,18 @@ The currently supported personalized location categories are:
 
 Category | Transitions | |
 --------- | ------- |------- |
-Home | .whenEnters(.Home) | .whenExits(.Home)
-Work | .whenEnters(.Work) | .whenExits(.Work)
+Home | .whenEntersPersonalizedPlace(.Home) | .whenExitsPersonalizedPlace(.Home)
+Work | .whenEntersPersonalizedPlace(.Work) | .whenExitsPersonalizedPlace(.Work)
 
 ### Caveats
-- The SDK takes roughly a week to determine a user's home or work. After the SDK identifies the users home or work, it can then start detecting it.
+- The SDK takes roughly a week to determine a user's home or work. After the SDK identifies the users home or work, it can then start detecting the users presence there.
 - The SDK will continually try to update the user's home every few days.
 - Due to the sensitivity of this data, neither developers nor us will ever see the raw data or store a users home or office location. The computation happens on the device itself and stays there to ensure your users privacy.
+- The sdk will not trigger immediately on entrance or exit because it needs to be sure of the user's presence.
 
 ## Custom Geofence
 
-A custom geofence allows you specify a region to monitor for entrance and exit.
+A custom geofence allows you specify a region to monitor for entrance and exit. This geofence will only be registered for this user (not your entire application).
 
 ```swift
 let hq = CustomGeofence(latitude: 37.124, longitude: -127.456, radius: 20, customIdentifier: "Sense 360 Headquarters")
@@ -142,21 +143,23 @@ customIdentifier | String | true | unique identifier for your geofence
 
 Type | Transitions | |
 --------- | ------- |------- |
-CustomGeofence | .whenEntersGeofence() | .whenExitsGeofence()
+CustomGeofence | .whenEntersGeofences() | .whenExitsGeofences()
 
 ### Caveats
 
 - You can specify at most 1000 geofences to monitor
-- Geofences must have a radius of at least 20m
+- Geofences must have a radius of at least 30m
+- The sdk will not trigger immediately on entrance or exit because it needs to be sure of the user's presence.
 
-## Error handling
+## Handling Trigger Creation Errors:
 
 ```swift
-let errorPtr = SenseSdkErrorPointer.create()
-if let restaurantTrigger = FireTrigger.whenEntersPoi(.Restaurant, errorPtr: errorPtr) {
-  // continue //
+let errorPointer = SenseSdkErrorPointer()
+let result = FireTrigger.whenEntersPoi(.Airport, errorPtr: errorPointer)
+if let airportTrigger = result.trigger {
+  NSLog("Success monitoring airport entrance!")
 } else {
-  NSLog(errorPtr.error!.message)
+  NSLog("Error building airport trigger. Msg=" + errorPointer.error!.message)
 }
 ```
 
@@ -164,19 +167,20 @@ if let restaurantTrigger = FireTrigger.whenEntersPoi(.Restaurant, errorPtr: erro
 SenseSdkErrorPointer *errorPtr = [SenseSdkErrorPointer create];
 Trigger *restaurantTrigger = [FireTrigger whenEntersPoi:PoiTypeRestaurant errorPtr:errorPtr];
 if(restaurantTrigger != nil) {
-  // continue //
+  NSLog(@"Success monitoring airport entrance!");
 } else {
-    NSLog(@"%@", errorPtr.error.message);
+  NSLog(@"%@", errorPtr.error.message);
 }
 ```
-In the event that there is an error when setting up a trigger, a nil will be returned with the error message stored within the corresponding SenseSdkErrorPointer.
 
+In the event that there is an error when setting up a trigger, a nil will be returned with the error message stored within the corresponding SenseSdkErrorPointer.
 
 # Recipes
 
 The Recipe is the container that encases your trigger, and various other settings.  Recipes are registered globally within your application with a call to the [SenseSdk](#sensesdk).  Below are the inputs that make up a Recipe:
 
 ```swift
+// Basic trigger. No time restriction. No cooldown. (can fire at most every minute)
 let recipe = Recipe(name: "My Recipe", trigger: someTrigger)
 ```
 
@@ -242,8 +246,6 @@ Recipe *recipe = [[Recipe alloc] initWithName: @"My Recipe"
                                       trigger: someTrigger
                                    timeWindow: [TimeWindow allDay]
                                      cooldown: [Cooldown createWithOncePer:2 frequency:CooldownTimeUnitDays errorPtr:nil]];
-
-
 ```
 
 Unit | Signature 
@@ -252,6 +254,8 @@ Minutes|Cooldown.create(oncePer: 1, frequency: .Minutes)!
 Hours|Cooldown.create(oncePer: 1, frequency: .Hours)!
 Days|Cooldown.create(oncePer: 1, frequency: .Days)!
 
+### Caveats
+- The minimum cooldown time is 5 minutes.
 
 # SenseSdk
 
@@ -306,8 +310,7 @@ class MyCallback : RecipeFiredDelegate {
 }
 ```
 
-
-**RecipeFiredDelegate**
+### RecipeFiredDelegate
 
 Property | Type | Description
 --------- | ------- |------- 
@@ -317,14 +320,13 @@ triggersFired | [TriggerFiredArgs] | The pertinent infromation on the triggers t
 confidenceLevel | ConfidenceLevel | The combined confidence levels of all triggers within the recipe
 
 
-**TriggerFiredArgs**
+### TriggerFiredArgs
 
 Property | Type | Description
 --------- | ------- |-------
 timestamp | NSDate | The time at which this trigger fired
 places | [Place] | The places that caused this trigger to fired
 confidenceLevel | ConfidenceLevel | The confidence that the corresponding action actually occurred
-
 
 
 ## Confidence Levels
