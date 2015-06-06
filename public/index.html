@@ -619,6 +619,46 @@
         <span class="p">}</span>
     <span class="p">}</span>
 </code></pre>
+<pre><code class="highlight objective_c"><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">recipeFired</span><span class="p">:(</span><span class="n">RecipeFiredArgs</span><span class="o">*</span><span class="p">)</span> <span class="n">args</span> <span class="p">{</span>
+    <span class="c1">//Your user has entered a restaurant!//
+</span>    <span class="n">NSLog</span><span class="p">(</span><span class="s">@"Recipe %@ fired at %@."</span><span class="p">,</span> <span class="n">args</span><span class="p">.</span><span class="n">recipe</span><span class="p">.</span><span class="n">name</span><span class="p">,</span> <span class="n">args</span><span class="p">.</span><span class="n">timestamp</span><span class="p">);</span>
+
+    <span class="n">NSString</span> <span class="o">*</span><span class="n">transitionDesc</span><span class="p">;</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">args</span><span class="p">.</span><span class="n">recipe</span><span class="p">.</span><span class="n">trigger</span><span class="p">.</span><span class="n">transitionType</span> <span class="o">==</span> <span class="n">TransitionTypeEnter</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">transitionDesc</span> <span class="o">=</span> <span class="s">@"Enter"</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="n">transitionDesc</span> <span class="o">=</span> <span class="s">@"Exit"</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span><span class="p">(</span><span class="n">args</span><span class="p">.</span><span class="n">triggersFired</span><span class="p">.</span><span class="n">count</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">TriggerFiredArgs</span> <span class="o">*</span><span class="n">trigger</span> <span class="o">=</span> <span class="p">(</span><span class="n">TriggerFiredArgs</span><span class="o">*</span><span class="p">)</span> <span class="n">args</span><span class="p">.</span><span class="n">triggersFired</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+
+        <span class="n">NSObject</span><span class="o">&lt;</span><span class="n">NSCoding</span><span class="p">,</span> <span class="n">Place</span><span class="o">&gt;</span> <span class="o">*</span><span class="n">place</span> <span class="o">=</span> <span class="p">(</span><span class="n">NSObject</span><span class="o">&lt;</span><span class="n">NSCoding</span><span class="p">,</span> <span class="n">Place</span><span class="o">&gt;*</span><span class="p">)</span><span class="n">trigger</span><span class="p">.</span><span class="n">places</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+
+        <span class="k">if</span><span class="p">(</span><span class="n">place</span><span class="p">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">PlaceTypeCustomGeofence</span><span class="p">)</span> <span class="p">{</span>
+
+            <span class="n">CustomGeofence</span> <span class="o">*</span><span class="n">geofence</span> <span class="o">=</span> <span class="p">(</span><span class="n">CustomGeofence</span><span class="o">*</span><span class="p">)</span><span class="n">place</span><span class="p">;</span>
+            <span class="n">NSString</span> <span class="o">*</span><span class="n">notificationBody</span> <span class="o">=</span> <span class="p">[[</span><span class="n">NSString</span> <span class="nf">alloc</span><span class="p">]</span> <span class="nf">initWithFormat</span><span class="p">:</span> <span class="s">@"%@ %@"</span><span class="p">,</span> <span class="n">transitionDesc</span><span class="p">,</span> <span class="n">geofence</span><span class="p">.</span><span class="n">customIdentifier</span><span class="p">];</span>
+            <span class="p">[</span><span class="n">NotificationSender</span> <span class="nf">send</span><span class="p">:</span><span class="n">notificationBody</span><span class="p">];</span>
+
+        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">place</span><span class="p">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">PlaceTypePersonal</span><span class="p">)</span> <span class="p">{</span>
+
+            <span class="n">PersonalizedPlace</span> <span class="o">*</span><span class="n">personalizedPlace</span> <span class="o">=</span> <span class="p">(</span><span class="n">PersonalizedPlace</span><span class="o">*</span><span class="p">)</span><span class="n">place</span><span class="p">;</span>
+            <span class="n">NSString</span> <span class="o">*</span><span class="n">personalizedPlaceType</span> <span class="o">=</span> <span class="p">[</span><span class="n">PersonalizedPlace</span> <span class="nf">getDescriptionOfPersonalizedPlaceType</span><span class="p">:(</span><span class="kt">int</span><span class="p">)</span><span class="n">personalizedPlace</span><span class="p">.</span><span class="n">type</span><span class="p">];</span>
+            <span class="n">NSString</span> <span class="o">*</span><span class="n">notificationBody</span> <span class="o">=</span> <span class="p">[[</span><span class="n">NSString</span> <span class="nf">alloc</span><span class="p">]</span> <span class="nf">initWithFormat</span><span class="p">:</span> <span class="s">@"%@ %@"</span><span class="p">,</span> <span class="n">transitionDesc</span><span class="p">,</span><span class="n">personalizedPlaceType</span><span class="p">];</span>
+            <span class="p">[</span><span class="n">NotificationSender</span> <span class="nf">send</span><span class="p">:</span><span class="n">notificationBody</span><span class="p">];</span>
+
+        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">place</span><span class="p">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">PlaceTypePoi</span><span class="p">)</span> <span class="p">{</span>
+
+            <span class="n">PoiPlace</span> <span class="o">*</span><span class="n">poiPlace</span> <span class="o">=</span> <span class="p">(</span><span class="n">PoiPlace</span><span class="o">*</span><span class="p">)</span><span class="n">place</span><span class="p">;</span>
+            <span class="n">NSString</span> <span class="o">*</span><span class="n">notificationBody</span> <span class="o">=</span> <span class="p">[[</span><span class="n">NSString</span> <span class="nf">alloc</span><span class="p">]</span> <span class="nf">initWithFormat</span><span class="p">:</span> <span class="s">@"%@ %@"</span><span class="p">,</span> <span class="n">transitionDesc</span><span class="p">,</span> <span class="n">poiPlace</span><span class="p">.</span><span class="n">description</span><span class="p">];</span>
+            <span class="p">[</span><span class="n">NotificationSender</span> <span class="nf">send</span><span class="p">:</span><span class="n">notificationBody</span><span class="p">];</span>
+
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+</code></pre>
 
 <h3 id="poiplace">PoiPlace</h3>
 
@@ -756,6 +796,25 @@
 
 <span class="k">if</span> <span class="n">errorPointer</span><span class="o">.</span><span class="n">error</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
     <span class="kt">NSLog</span><span class="p">(</span><span class="s">"Error sending trigger"</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre>
+<pre><code class="highlight objective_c"><span class="c1">//Create a fake restaurant
+</span><span class="n">PoiPlace</span><span class="o">*</span> <span class="n">poiPlace</span> <span class="o">=</span> <span class="p">[[</span><span class="n">PoiPlace</span> <span class="nf">alloc</span><span class="p">]</span> <span class="nf">initWithLatitude</span><span class="p">:</span><span class="mi">34</span><span class="p">.</span><span class="mi">111</span>
+                         <span class="nf">longitude</span><span class="p">:</span><span class="o">-</span><span class="mi">118</span><span class="p">.</span><span class="mi">111</span>
+                            <span class="nf">radius</span><span class="p">:</span><span class="mi">50</span>
+                              <span class="nf">name</span><span class="p">:</span><span class="s">@"Big Restaurant"</span>
+                                <span class="nf">id</span><span class="p">:</span><span class="s">@"id1"</span>
+                              <span class="nf">type</span><span class="p">:</span> <span class="n">PoiTypeRestaurant</span><span class="p">];</span>
+<span class="n">SenseSdkErrorPointer</span><span class="o">*</span> <span class="n">errorPtr</span> <span class="o">=</span> <span class="p">[</span><span class="n">SenseSdkErrorPointer</span> <span class="nf">create</span><span class="p">];</span>
+
+<span class="c1">// This method should only be used for testing
+</span><span class="n">NSArray</span><span class="o">*</span> <span class="n">places</span> <span class="o">=</span> <span class="p">[[</span><span class="n">NSArray</span> <span class="nf">alloc</span><span class="p">]</span> <span class="nf">initWithObjects</span><span class="p">:</span><span class="n">poiPlace</span><span class="p">,</span> <span class="nb">nil</span><span class="p">];</span>
+<span class="p">[</span><span class="n">SenseSdkTestUtility</span> <span class="nf">fireTriggerFromRecipe</span><span class="p">:</span><span class="s">@"ArrivedAtRestaurant"</span>
+                           <span class="nf">confidenceLevel</span><span class="p">:</span><span class="n">ConfidenceLevelMedium</span>
+                                    <span class="nf">places</span><span class="p">:</span><span class="n">places</span>
+                                  <span class="nf">errorPtr</span><span class="p">:</span><span class="n">errorPtr</span><span class="p">];</span>
+<span class="k">if</span><span class="p">(</span><span class="n">errorPtr</span><span class="p">.</span><span class="n">error</span> <span class="o">!=</span> <span class="nb">nil</span><span class="p">)</span> <span class="p">{</span>
+    <span class="p">[</span><span class="n">NotificationSender</span> <span class="nf">send</span><span class="p">:</span><span class="s">@"Error sending trigger"</span><span class="p">];</span>
 <span class="p">}</span>
 </code></pre>
 
