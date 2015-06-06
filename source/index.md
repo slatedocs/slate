@@ -29,6 +29,10 @@ Have fun creating!
 
 Swift and Objective-C projects are available at <a href='https://github.com/Sense360/Sense360IOSStarter'>https://github.com/Sense360/Sense360IOSStarter</a>.
 
+# Download
+
+You can download the stand alone framework <a href='https://www.dropbox.com/s/few391levfy93aj/SenseSdk.framework.zip?dl=0'>here</a>.
+
 # API Components
 
 The following are the main components of building with Sense360
