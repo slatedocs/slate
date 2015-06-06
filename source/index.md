@@ -25,6 +25,10 @@ Eventually, we aim to have a trigger for any action a user can take, whether it 
 
 Have fun creating!
 
+# Template Project
+
+Swift and Objective-C projects are available at <a href='https://github.com/Sense360/Sense360IOSStarter'>https://github.com/Sense360/Sense360IOSStarter</a>.
+
 # API Components
 
 The following are the main components of building with Sense360
@@ -42,10 +46,6 @@ The following are the main components of building with Sense360
 * **Window (optional)**: The period of time during which you want to listen for the trigger. Examples: 9am to 12pm and 4pm - 11pm.
   
 * **Cooldown (optional)**: The amount of time to wait before the same trigger can fire again. Examples: 8 hours, 1 week.
-
-# Quick Start
-
-[Link to Quick Start]
 
 # Triggers
 
@@ -95,7 +95,7 @@ Gives you the ability to be notified when a user enters or exits their home or w
 
 ```swift
 // Will notify you when the user enters their Home
-let homeTrigger: Trigger? = FireTrigger.whenEntersPersonalizedPlace(PersonalizedPlaceType.Home)
+let homeTrigger: Trigger? = FireTrigger.whenEntersPersonalizedPlace(.Home)
 ```
 
 ```objective_c
@@ -106,10 +106,10 @@ Trigger *homeTrigger = [FireTrigger whenEntersPersonalizedPlace:PersonalizedPlac
 
 The currently supported personalized location categories are:
 
-Category | Transitions | |
---------- | ------- |------- |
-Home | .whenEntersPersonalizedPlace(.Home) | .whenExitsPersonalizedPlace(.Home)
-Work | .whenEntersPersonalizedPlace(.Work) | .whenExitsPersonalizedPlace(.Work)
+Category | Transitions | | | 
+--------- | ------- |------- | ---- | ----
+Home | .whenEntersPersonalizedPlace(.Home) | .whenExitsPersonalizedPlace(.Home) | whenExitsPersonalizedPlace(.Home, kilometers: 10)
+Work | .whenEntersPersonalizedPlace(.Work) | .whenExitsPersonalizedPlace(.Work) | whenExitsPersonalizedPlace(.Work, kilometers: 10)
 
 ### Caveats
 - The SDK takes roughly a week to determine a user's home or work. After the SDK identifies the users home or work, it can then start detecting the users presence there.
@@ -122,14 +122,14 @@ Work | .whenEntersPersonalizedPlace(.Work) | .whenExitsPersonalizedPlace(.Work)
 A custom geofence allows you specify a region to monitor for entrance and exit. This geofence will only be registered for this user (not your entire application).
 
 ```swift
-let hq = CustomGeofence(latitude: 37.124, longitude: -127.456, radius: 20, customIdentifier: "Sense 360 Headquarters")
-let lunchSpot = CustomGeofence(latitude: 37.124, longitude: -127.456, radius: 35, customIdentifier: "A&B Bar and Grill")
+let hq = CustomGeofence(latitude: 37.124, longitude: -127.456, radius: 50, customIdentifier: "Sense 360 Headquarters")
+let lunchSpot = CustomGeofence(latitude: 37.124, longitude: -127.456, radius: 50, customIdentifier: "A&B Bar and Grill")
 let geofenceTrigger: Trigger? = FireTrigger.whenEntersGeofences([hq, lunchSpot])
 ```
 
 ```objective_c
-CustomGeofence *hq = [[CustomGeofence alloc] initWithLatitude:37.124 longitude:-127.456 radius:20 customIdentifier:@"Sense 360 Headquarters"];
-CustomGeofence *lunchSpot = [[CustomGeofence alloc] initWithLatitude:37.124 longitude:-127.456 radius:35 customIdentifier:@"A&B Bar and Grill"];
+CustomGeofence *hq = [[CustomGeofence alloc] initWithLatitude:37.124 longitude:-127.456 radius:50 customIdentifier:@"Sense 360 Headquarters"];
+CustomGeofence *lunchSpot = [[CustomGeofence alloc] initWithLatitude:37.124 longitude:-127.456 radius:50 customIdentifier:@"A&B Bar and Grill"];
 NSArray *geofences = [[NSArray alloc] initWithObjects:hq,lunchSpot,nil];
 [FireTrigger whenEntersGeofences: geofences errorPtr:nil];
 ```
@@ -142,15 +142,15 @@ location | Location | true | location
 radius | Int | true | radius of geofence
 customIdentifier | String | true | unique identifier for your geofence
 
-Type | Transitions | |
---------- | ------- |------- |
-CustomGeofence | .whenEntersGeofences() | .whenExitsGeofences()
+Type | Transitions | | |
+--------- | ------- |------- | ---- |
+CustomGeofence | .whenEntersGeofences() | .whenExitsGeofences() | .whenExitsGeofences([CustomGeofence], kilometers: 10)
 
 ### Caveats
 
 - You can specify at most 1000 geofences to monitor
 - Geofences must have a radius of at least 30m
-- The sdk will not trigger immediately on entrance or exit because it needs to be sure of the user's presence.
+- The SDK will not trigger immediately on entrance or exit because it needs to be sure of the user's presence.
 
 ## Handling Trigger Creation Errors:
 
@@ -197,7 +197,7 @@ Parameter | Required | Default
 uniqueId (String)| true |
 [trigger](#triggers) | true |
 [window](#window)| false | 0-23 hours
-[cool down](#cooldown) | false | 1 minute
+[cool down](#cooldown) | false | 5 minutes
 
 
 ## Time Window
@@ -220,10 +220,18 @@ Recipe *recipe = [[Recipe alloc] initWithName: @"My Recipe"
 
 ```
 
+#### Params
 Parameter | Type | Range | Required | Description
 --------- | ------- |------- | ----------- | -----------
 fromHour | Int | 0-23 | true | Window start time (user's local time)
 toHour | Int | 0-23 | true | Window end time (user's local time)
+
+### Values
+
+Value | Description
+--------- | ------- |
+allDay | No time restriction on firing |
+
 
 ### Caveats
 
@@ -249,11 +257,14 @@ Recipe *recipe = [[Recipe alloc] initWithName: @"My Recipe"
                                      cooldown: [Cooldown createWithOncePer:2 frequency:CooldownTimeUnitDays errorPtr:nil]];
 ```
 
+### Values
+
 Unit | Signature 
 --------- | ------- |
-Minutes|Cooldown.create(oncePer: 1, frequency: .Minutes)!
-Hours|Cooldown.create(oncePer: 1, frequency: .Hours)!
-Days|Cooldown.create(oncePer: 1, frequency: .Days)!
+Minutes|Cooldown.create(oncePer: 5, frequency: .Minutes)!
+Hours|Cooldown.create(oncePer: 5, frequency: .Hours)!
+Days|Cooldown.create(oncePer: 5, frequency: .Days)!
+Default | Cooldown.create(oncePer: 30, frequency: .Minutes)!
 
 ### Caveats
 - The minimum cooldown time is 5 minutes.
@@ -274,12 +285,16 @@ Boolean success = [SenseSdk registerWithRecipe:recipe delegate:callback errorPtr
 
 Function | Parameters | Description
 --------- | ------- |------- 
-register | Recipe, TriggerFiredDelegate | Starts the recipe and registers the delegate to be called when the trigger fires.
-unregister | Recipe | Stops and removes the recipe from SenseSdk.
+register | [Recipe](#recipes), [RecipeFiredDelegate](#recipefireddelegate) | Starts the recipe and registers the delegate to be called when the trigger fires.
+unregister | [Recipe](#recipes) | Stops and removes the recipe from SenseSdk.
 findRecipe | String | Finds and returns a recipe by name.
-getAllRecipes | | Returns all registered recipes.
+getAllRecipes | [[Recipe](#recipes)] | Returns all registered recipes.
 
-## Acting when a recipe fires
+
+<aside class="warning"> Your application key will be validated regulary every few days.
+</aside>
+
+# RecipeFiredDelegate
 
 Acting on triggers are done by implementing the RecipeFiredDelegate protocol.  The protocol has one method with one argument that contains the information on why and when the recipe fired.
 
@@ -311,32 +326,138 @@ class MyCallback : RecipeFiredDelegate {
 }
 ```
 
-### RecipeFiredDelegate
+<aside class="warning"> When we call your recipe delegate method, your code will have 10 seconds to run before iOS will shutdown the app
+</aside>
+
+## RecipeFiredDelegate
 
 Property | Type | Description
 --------- | ------- |------- 
 timestamp | NSDate | The time at which the recipe was fired
-recipe | Recipe | The recipe itself
-triggersFired | [TriggerFiredArgs] | The pertinent infromation on the triggers that fired
-confidenceLevel | ConfidenceLevel | The combined confidence levels of all triggers within the recipe
+recipe | [Recipe](#recipes) | The recipe itself
+triggersFired | [[TriggerFiredArgs](#triggerfiredargs)] | The pertinent infromation on the triggers that fired. Will hold a single value per trigger.
+confidenceLevel | [ConfidenceLevel](#confidence-levels) | The combined confidence levels of all triggers within the recipe
 
 
-### TriggerFiredArgs
+## TriggerFiredArgs
 
 Property | Type | Description
 --------- | ------- |-------
 timestamp | NSDate | The time at which this trigger fired
-places | [Place] | The places that caused this trigger to fired
-confidenceLevel | ConfidenceLevel | The confidence that the corresponding action actually occurred
+places | [[Place](#places)] | The places that caused this trigger to fired
+confidenceLevel | [ConfidenceLevel](#confidence-levels) | The confidence that the corresponding action actually occurred
+
+## Places
+
+### CustomGeofence
+
+Property | Type | Description
+--------- | ------- |-------
+customIdentifier | String | A unique string which identifies the custom geofence (provided by you)
+location | Location | The latitude and longitude of the center
+radius | Double | The radius of the geofence
+
+```swift
+func recipeFired(args: RecipeFiredArgs) {
+
+        NSLog("Recipe \(args.recipe.name) fired at \(args.timestamp). ")
+
+        if args.triggersFired.count > 0 {
+            let triggerFired = args.triggersFired[0]
+            if triggerFired.places.count > 0 {
+                let place = triggerFired.places[0]
+
+                let transitionDesc = args.recipe.trigger.transitionType.description
+                switch(place.type) {
+                    case .CustomGeofence:
+                        if let geofence = place as? CustomGeofence {
+                            NSLog("\(transitionDesc) \(geofence.customIdentifier)")
+                        }
+                        break;
+                    case .Personal:
+                        if let personal = place as? PersonalizedPlace {
+                            NSLog("\(transitionDesc) \(personal.personalizedPlaceType.description)")
+                        }
+                        break;
+                    case .Poi:
+                        if let poi = place as? PoiPlace {
+                            NSLog("\(transitionDesc) \(poi.types[0].description)")
+                        }
+                        break;
+                }
+            }
+        }
+    }
+```
+
+### PoiPlace
+
+Property | Type | Description
+--------- | ------- |-------
+id | String | A unique string which identifies the place (provided by us)
+location | Location | The latitude and longitude of the center
+radius | Double | The radius of the geofence
+types | [[PoiType](#poitype)] | The category of the place
+
+
+#### PoiType
+
+ |
+--------- |
+Airport |
+Bar |
+Restaurant |
+Mall |
+Cafe |
+Gym |
+
+### PersonalizedPlace
+Property | Type | Description
+--------- | ------- |-------
+location | Location | The latitude and longitude of the center
+radius | Double | The radius of the geofence
+personalizedPlaceType | [PersonalizedPlaceType](#personalizedplacetype) | The type of place
+
+#### PersonalizedPlaceType
+
+ |
+--------- |
+Home |
+Work |
+
 
 
 ## Confidence Levels
 
 When a trigger is fired, it brings along one of three confidence levels.
 
-1. High
-2. Medium
-3. Low
+ |
+--------- |
+High |
+Medium |
+Low |
+
+# Testing
+
+Testing in the real world is time consuming, so we provide a way to easily trigger your Recipe to fire.
+
+```swift
+//Create a fake restaurant
+let place = PoiPlace(latitude: 34.111, longitude: -118.111, radius: 50, name: "Big Restaurant", id: "id1", types: [.Restaurant])
+
+let errorPointer = SenseSdkErrorPointer.create()
+// This method should only be used for testing
+SenseSdkTestUtility.fireTrigger(
+    fromRecipe: "ArrivedAtRestaurant",
+    confidenceLevel: ConfidenceLevel.Medium,
+    places: [place],
+    errorPtr: errorPointer
+)
+
+if errorPointer.error != nil {
+    NSLog("Error sending trigger")
+}
+```
 
 # Thanks for using Sense360
 

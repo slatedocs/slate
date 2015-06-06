@@ -56,6 +56,10 @@
 
 <p>Have fun creating!</p>
 
+<h1 id="template-project">Template Project</h1>
+
+<p>Swift and Objective-C projects are available at <a href='https://github.com/Sense360/Sense360IOSStarter'>https://github.com/Sense360/Sense360IOSStarter</a>.</p>
+
 <h1 id="api-components">API Components</h1>
 
 <p>The following are the main components of building with Sense360</p>
@@ -72,19 +76,17 @@
 <li><p><strong>Cooldown (optional)</strong>: The amount of time to wait before the same trigger can fire again. Examples: 8 hours, 1 week.</p></li>
 </ul>
 
-<h1 id="quick-start">Quick Start</h1>
-
-<p>[Link to Quick Start]</p>
-
 <h1 id="triggers">Triggers</h1>
 
-<p>Triggers define the conditions under which your app should be notified. There are 3 types of places that you can be notified about. 3 types of Triggers are supported:</p>
+<p>Triggers define the conditions under which your app should be notified.  There are 3 categories of places that you can be notified about.  These categories are:</p>
 
 <ul>
 <li><a href="#place-of-interest-(poi)">Place of Interest (POI)</a> - Examples are: Restaurant, Shopping Mall, etc.</li>
 <li><a href="#personal-place">Personal Place</a> - Examples are: Home/Work.</li>
 <li><a href="#custom-geofence">Custom Geofence</a> - These can be any latitude/longitude point with a radius.</li>
 </ul>
+
+<p>All triggers are built by the class FireTrigger.  Within there, you will find every function you need to get going.</p>
 
 <aside class="notice"> IMPORTANT: A trigger on its own does nothing. You must build your triggers, and then add it to a Recipe in order to utilize the trigger. 
 </aside>
@@ -151,7 +153,7 @@
 
 <p>Gives you the ability to be notified when a user enters or exits their home or work. You can also be notified if the user is far awar from their home or work.</p>
 <pre><code class="highlight swift"><span class="c1">// Will notify you when the user enters their Home
-</span><span class="k">let</span> <span class="nv">homeTrigger</span><span class="p">:</span> <span class="kt">Trigger</span><span class="p">?</span> <span class="o">=</span> <span class="kt">FireTrigger</span><span class="o">.</span><span class="nf">whenEntersPersonalizedPlace</span><span class="p">(</span><span class="kt">PersonalizedPlaceType</span><span class="o">.</span><span class="kt">Home</span><span class="p">)</span>
+</span><span class="k">let</span> <span class="nv">homeTrigger</span><span class="p">:</span> <span class="kt">Trigger</span><span class="p">?</span> <span class="o">=</span> <span class="kt">FireTrigger</span><span class="o">.</span><span class="nf">whenEntersPersonalizedPlace</span><span class="p">(</span><span class="o">.</span><span class="kt">Home</span><span class="p">)</span>
 </code></pre>
 <pre><code class="highlight objective_c"><span class="c1">// Will notify you when the user enters their Home
 </span><span class="n">Trigger</span> <span class="o">*</span><span class="n">homeTrigger</span> <span class="o">=</span> <span class="p">[</span><span class="n">FireTrigger</span> <span class="nf">whenEntersPersonalizedPlace</span><span class="p">:</span><span class="n">PersonalizedPlaceTypeHome</span> <span class="nf">errorPtr</span><span class="p">:</span><span class="nb">nil</span><span class="p">];</span>
@@ -164,17 +166,20 @@
 <th>Category</th>
 <th>Transitions</th>
 <th></th>
+<th></th>
 </tr>
 </thead><tbody>
 <tr>
 <td>Home</td>
 <td>.whenEntersPersonalizedPlace(.Home)</td>
 <td>.whenExitsPersonalizedPlace(.Home)</td>
+<td>whenExitsPersonalizedPlace(.Home, kilometers: 10)</td>
 </tr>
 <tr>
 <td>Work</td>
 <td>.whenEntersPersonalizedPlace(.Work)</td>
 <td>.whenExitsPersonalizedPlace(.Work)</td>
+<td>whenExitsPersonalizedPlace(.Work, kilometers: 10)</td>
 </tr>
 </tbody></table>
 
@@ -190,12 +195,12 @@
 <h2 id="custom-geofence">Custom Geofence</h2>
 
 <p>A custom geofence allows you specify a region to monitor for entrance and exit. This geofence will only be registered for this user (not your entire application).</p>
-<pre><code class="highlight swift"><span class="k">let</span> <span class="nv">hq</span> <span class="o">=</span> <span class="kt">CustomGeofence</span><span class="p">(</span><span class="nv">latitude</span><span class="p">:</span> <span class="mf">37.124</span><span class="p">,</span> <span class="nv">longitude</span><span class="p">:</span> <span class="o">-</span><span class="mf">127.456</span><span class="p">,</span> <span class="nv">radius</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span> <span class="nv">customIdentifier</span><span class="p">:</span> <span class="s">"Sense 360 Headquarters"</span><span class="p">)</span>
-<span class="k">let</span> <span class="nv">lunchSpot</span> <span class="o">=</span> <span class="kt">CustomGeofence</span><span class="p">(</span><span class="nv">latitude</span><span class="p">:</span> <span class="mf">37.124</span><span class="p">,</span> <span class="nv">longitude</span><span class="p">:</span> <span class="o">-</span><span class="mf">127.456</span><span class="p">,</span> <span class="nv">radius</span><span class="p">:</span> <span class="mi">35</span><span class="p">,</span> <span class="nv">customIdentifier</span><span class="p">:</span> <span class="s">"A&amp;B Bar and Grill"</span><span class="p">)</span>
+<pre><code class="highlight swift"><span class="k">let</span> <span class="nv">hq</span> <span class="o">=</span> <span class="kt">CustomGeofence</span><span class="p">(</span><span class="nv">latitude</span><span class="p">:</span> <span class="mf">37.124</span><span class="p">,</span> <span class="nv">longitude</span><span class="p">:</span> <span class="o">-</span><span class="mf">127.456</span><span class="p">,</span> <span class="nv">radius</span><span class="p">:</span> <span class="mi">50</span><span class="p">,</span> <span class="nv">customIdentifier</span><span class="p">:</span> <span class="s">"Sense 360 Headquarters"</span><span class="p">)</span>
+<span class="k">let</span> <span class="nv">lunchSpot</span> <span class="o">=</span> <span class="kt">CustomGeofence</span><span class="p">(</span><span class="nv">latitude</span><span class="p">:</span> <span class="mf">37.124</span><span class="p">,</span> <span class="nv">longitude</span><span class="p">:</span> <span class="o">-</span><span class="mf">127.456</span><span class="p">,</span> <span class="nv">radius</span><span class="p">:</span> <span class="mi">50</span><span class="p">,</span> <span class="nv">customIdentifier</span><span class="p">:</span> <span class="s">"A&amp;B Bar and Grill"</span><span class="p">)</span>
 <span class="k">let</span> <span class="nv">geofenceTrigger</span><span class="p">:</span> <span class="kt">Trigger</span><span class="p">?</span> <span class="o">=</span> <span class="kt">FireTrigger</span><span class="o">.</span><span class="nf">whenEntersGeofences</span><span class="p">([</span><span class="n">hq</span><span class="p">,</span> <span class="n">lunchSpot</span><span class="p">])</span>
 </code></pre>
-<pre><code class="highlight objective_c"><span class="n">CustomGeofence</span> <span class="o">*</span><span class="n">hq</span> <span class="o">=</span> <span class="p">[[</span><span class="n">CustomGeofence</span> <span class="nf">alloc</span><span class="p">]</span> <span class="nf">initWithLatitude</span><span class="p">:</span><span class="mi">37</span><span class="p">.</span><span class="mi">124</span> <span class="nf">longitude</span><span class="p">:</span><span class="o">-</span><span class="mi">127</span><span class="p">.</span><span class="mi">456</span> <span class="nf">radius</span><span class="p">:</span><span class="mi">20</span> <span class="nf">customIdentifier</span><span class="p">:</span><span class="s">@"Sense 360 Headquarters"</span><span class="p">];</span>
-<span class="n">CustomGeofence</span> <span class="o">*</span><span class="n">lunchSpot</span> <span class="o">=</span> <span class="p">[[</span><span class="n">CustomGeofence</span> <span class="nf">alloc</span><span class="p">]</span> <span class="nf">initWithLatitude</span><span class="p">:</span><span class="mi">37</span><span class="p">.</span><span class="mi">124</span> <span class="nf">longitude</span><span class="p">:</span><span class="o">-</span><span class="mi">127</span><span class="p">.</span><span class="mi">456</span> <span class="nf">radius</span><span class="p">:</span><span class="mi">35</span> <span class="nf">customIdentifier</span><span class="p">:</span><span class="s">@"A&amp;B Bar and Grill"</span><span class="p">];</span>
+<pre><code class="highlight objective_c"><span class="n">CustomGeofence</span> <span class="o">*</span><span class="n">hq</span> <span class="o">=</span> <span class="p">[[</span><span class="n">CustomGeofence</span> <span class="nf">alloc</span><span class="p">]</span> <span class="nf">initWithLatitude</span><span class="p">:</span><span class="mi">37</span><span class="p">.</span><span class="mi">124</span> <span class="nf">longitude</span><span class="p">:</span><span class="o">-</span><span class="mi">127</span><span class="p">.</span><span class="mi">456</span> <span class="nf">radius</span><span class="p">:</span><span class="mi">50</span> <span class="nf">customIdentifier</span><span class="p">:</span><span class="s">@"Sense 360 Headquarters"</span><span class="p">];</span>
+<span class="n">CustomGeofence</span> <span class="o">*</span><span class="n">lunchSpot</span> <span class="o">=</span> <span class="p">[[</span><span class="n">CustomGeofence</span> <span class="nf">alloc</span><span class="p">]</span> <span class="nf">initWithLatitude</span><span class="p">:</span><span class="mi">37</span><span class="p">.</span><span class="mi">124</span> <span class="nf">longitude</span><span class="p">:</span><span class="o">-</span><span class="mi">127</span><span class="p">.</span><span class="mi">456</span> <span class="nf">radius</span><span class="p">:</span><span class="mi">50</span> <span class="nf">customIdentifier</span><span class="p">:</span><span class="s">@"A&amp;B Bar and Grill"</span><span class="p">];</span>
 <span class="n">NSArray</span> <span class="o">*</span><span class="n">geofences</span> <span class="o">=</span> <span class="p">[[</span><span class="n">NSArray</span> <span class="nf">alloc</span><span class="p">]</span> <span class="nf">initWithObjects</span><span class="p">:</span><span class="n">hq</span><span class="p">,</span><span class="n">lunchSpot</span><span class="p">,</span><span class="nb">nil</span><span class="p">];</span>
 <span class="p">[</span><span class="n">FireTrigger</span> <span class="nf">whenEntersGeofences</span><span class="p">:</span> <span class="n">geofences</span> <span class="nf">errorPtr</span><span class="p">:</span><span class="nb">nil</span><span class="p">];</span>
 </code></pre>
@@ -235,12 +240,14 @@
 <th>Type</th>
 <th>Transitions</th>
 <th></th>
+<th></th>
 </tr>
 </thead><tbody>
 <tr>
 <td>CustomGeofence</td>
 <td>.whenEntersGeofences()</td>
 <td>.whenExitsGeofences()</td>
+<td>.whenExitsGeofences([CustomGeofence], kilometers: 10)</td>
 </tr>
 </tbody></table>
 
@@ -249,7 +256,7 @@
 <ul>
 <li>You can specify at most 1000 geofences to monitor</li>
 <li>Geofences must have a radius of at least 30m</li>
-<li>The sdk will not trigger immediately on entrance or exit because it needs to be sure of the user&rsquo;s presence.</li>
+<li>The SDK will not trigger immediately on entrance or exit because it needs to be sure of the user&rsquo;s presence.</li>
 </ul>
 
 <h2 id="handling-trigger-creation-errors:">Handling Trigger Creation Errors:</h2>
@@ -309,7 +316,7 @@
 <tr>
 <td><a href="#cooldown">cool down</a></td>
 <td>false</td>
-<td>1 minute</td>
+<td>5 minutes</td>
 </tr>
 </tbody></table>
 
@@ -328,6 +335,8 @@
                                      <span class="nf">cooldown</span><span class="p">:</span> <span class="p">[</span><span class="n">Cooldown</span> <span class="nf">defaultCooldown</span><span class="p">]];</span>
 
 </code></pre>
+
+<h4 id="params">Params</h4>
 
 <table><thead>
 <tr>
@@ -354,6 +363,20 @@
 </tr>
 </tbody></table>
 
+<h3 id="values">Values</h3>
+
+<table><thead>
+<tr>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>allDay</td>
+<td>No time restriction on firing</td>
+</tr>
+</tbody></table>
+
 <h3 id="caveats">Caveats</h3>
 
 <ul>
@@ -376,6 +399,8 @@
                                      <span class="nf">cooldown</span><span class="p">:</span> <span class="p">[</span><span class="n">Cooldown</span> <span class="nf">createWithOncePer</span><span class="p">:</span><span class="mi">2</span> <span class="nf">frequency</span><span class="p">:</span><span class="n">CooldownTimeUnitDays</span> <span class="nf">errorPtr</span><span class="p">:</span><span class="nb">nil</span><span class="p">]];</span>
 </code></pre>
 
+<h3 id="values">Values</h3>
+
 <table><thead>
 <tr>
 <th>Unit</th>
@@ -384,15 +409,19 @@
 </thead><tbody>
 <tr>
 <td>Minutes</td>
-<td>Cooldown.create(oncePer: 1, frequency: .Minutes)!</td>
+<td>Cooldown.create(oncePer: 5, frequency: .Minutes)!</td>
 </tr>
 <tr>
 <td>Hours</td>
-<td>Cooldown.create(oncePer: 1, frequency: .Hours)!</td>
+<td>Cooldown.create(oncePer: 5, frequency: .Hours)!</td>
 </tr>
 <tr>
 <td>Days</td>
-<td>Cooldown.create(oncePer: 1, frequency: .Days)!</td>
+<td>Cooldown.create(oncePer: 5, frequency: .Days)!</td>
+</tr>
+<tr>
+<td>Default</td>
+<td>Cooldown.create(oncePer: 30, frequency: .Minutes)!</td>
 </tr>
 </tbody></table>
 
@@ -421,12 +450,12 @@
 </thead><tbody>
 <tr>
 <td>register</td>
-<td>Recipe, TriggerFiredDelegate</td>
+<td><a href="#recipes">Recipe</a>, <a href="#recipefireddelegate">RecipeFiredDelegate</a></td>
 <td>Starts the recipe and registers the delegate to be called when the trigger fires.</td>
 </tr>
 <tr>
 <td>unregister</td>
-<td>Recipe</td>
+<td><a href="#recipes">Recipe</a></td>
 <td>Stops and removes the recipe from SenseSdk.</td>
 </tr>
 <tr>
@@ -436,12 +465,15 @@
 </tr>
 <tr>
 <td>getAllRecipes</td>
-<td></td>
+<td>[<a href="#recipes">Recipe</a>]</td>
 <td>Returns all registered recipes.</td>
 </tr>
 </tbody></table>
 
-<h2 id="acting-when-a-recipe-fires">Acting when a recipe fires</h2>
+<aside class="warning"> Your application key will be validated regulary every few days.
+</aside>
+
+<h1 id="recipefireddelegate">RecipeFiredDelegate</h1>
 
 <p>Acting on triggers are done by implementing the RecipeFiredDelegate protocol.  The protocol has one method with one argument that contains the information on why and when the recipe fired.</p>
 <pre><code class="highlight swift"><span class="kd">class</span> <span class="kt">MyCallback</span> <span class="p">:</span> <span class="kt">RecipeFiredDelegate</span> <span class="p">{</span>
@@ -469,7 +501,10 @@
 <span class="p">}</span>
 </code></pre>
 
-<h3 id="recipefireddelegate">RecipeFiredDelegate</h3>
+<aside class="warning"> When we call your recipe delegate method, your code will have 10 seconds to run before iOS will shutdown the app
+</aside>
+
+<h2 id="recipefireddelegate">RecipeFiredDelegate</h2>
 
 <table><thead>
 <tr>
@@ -485,22 +520,22 @@
 </tr>
 <tr>
 <td>recipe</td>
-<td>Recipe</td>
+<td><a href="#recipes">Recipe</a></td>
 <td>The recipe itself</td>
 </tr>
 <tr>
 <td>triggersFired</td>
-<td>[TriggerFiredArgs]</td>
-<td>The pertinent infromation on the triggers that fired</td>
+<td>[<a href="#triggerfiredargs">TriggerFiredArgs</a>]</td>
+<td>The pertinent infromation on the triggers that fired. Will hold a single value per trigger.</td>
 </tr>
 <tr>
 <td>confidenceLevel</td>
-<td>ConfidenceLevel</td>
+<td><a href="#confidence-levels">ConfidenceLevel</a></td>
 <td>The combined confidence levels of all triggers within the recipe</td>
 </tr>
 </tbody></table>
 
-<h3 id="triggerfiredargs">TriggerFiredArgs</h3>
+<h2 id="triggerfiredargs">TriggerFiredArgs</h2>
 
 <table><thead>
 <tr>
@@ -516,13 +551,171 @@
 </tr>
 <tr>
 <td>places</td>
-<td>[Place]</td>
+<td>[<a href="#places">Place</a>]</td>
 <td>The places that caused this trigger to fired</td>
 </tr>
 <tr>
 <td>confidenceLevel</td>
-<td>ConfidenceLevel</td>
+<td><a href="#confidence-levels">ConfidenceLevel</a></td>
 <td>The confidence that the corresponding action actually occurred</td>
+</tr>
+</tbody></table>
+
+<h2 id="places">Places</h2>
+
+<h3 id="customgeofence">CustomGeofence</h3>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>customIdentifier</td>
+<td>String</td>
+<td>A unique string which identifies the custom geofence (provided by you)</td>
+</tr>
+<tr>
+<td>location</td>
+<td>Location</td>
+<td>The latitude and longitude of the center</td>
+</tr>
+<tr>
+<td>radius</td>
+<td>Double</td>
+<td>The radius of the geofence</td>
+</tr>
+</tbody></table>
+<pre><code class="highlight swift"><span class="kd">func</span> <span class="nf">recipeFired</span><span class="p">(</span><span class="nv">args</span><span class="p">:</span> <span class="kt">RecipeFiredArgs</span><span class="p">)</span> <span class="p">{</span>
+
+        <span class="kt">NSLog</span><span class="p">(</span><span class="s">"Recipe </span><span class="se">\(</span><span class="n">args</span><span class="o">.</span><span class="n">recipe</span><span class="o">.</span><span class="n">name</span><span class="se">)</span><span class="s"> fired at </span><span class="se">\(</span><span class="n">args</span><span class="o">.</span><span class="n">timestamp</span><span class="se">)</span><span class="s">. "</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">triggersFired</span><span class="o">.</span><span class="n">count</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="p">{</span>
+            <span class="k">let</span> <span class="nv">triggerFired</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">triggersFired</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">triggerFired</span><span class="o">.</span><span class="n">places</span><span class="o">.</span><span class="n">count</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="p">{</span>
+                <span class="k">let</span> <span class="nv">place</span> <span class="o">=</span> <span class="n">triggerFired</span><span class="o">.</span><span class="n">places</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+                <span class="k">let</span> <span class="nv">transitionDesc</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">recipe</span><span class="o">.</span><span class="n">trigger</span><span class="o">.</span><span class="n">transitionType</span><span class="o">.</span><span class="n">description</span>
+                <span class="k">switch</span><span class="p">(</span><span class="n">place</span><span class="o">.</span><span class="n">type</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="k">case</span> <span class="o">.</span><span class="kt">CustomGeofence</span><span class="p">:</span>
+                        <span class="k">if</span> <span class="k">let</span> <span class="nv">geofence</span> <span class="o">=</span> <span class="n">place</span> <span class="k">as</span><span class="p">?</span> <span class="kt">CustomGeofence</span> <span class="p">{</span>
+                            <span class="kt">NSLog</span><span class="p">(</span><span class="s">"</span><span class="se">\(</span><span class="n">transitionDesc</span><span class="se">)</span><span class="s"> </span><span class="se">\(</span><span class="n">geofence</span><span class="o">.</span><span class="n">customIdentifier</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
+                        <span class="p">}</span>
+                        <span class="k">break</span><span class="p">;</span>
+                    <span class="k">case</span> <span class="o">.</span><span class="kt">Personal</span><span class="p">:</span>
+                        <span class="k">if</span> <span class="k">let</span> <span class="nv">personal</span> <span class="o">=</span> <span class="n">place</span> <span class="k">as</span><span class="p">?</span> <span class="kt">PersonalizedPlace</span> <span class="p">{</span>
+                            <span class="kt">NSLog</span><span class="p">(</span><span class="s">"</span><span class="se">\(</span><span class="n">transitionDesc</span><span class="se">)</span><span class="s"> </span><span class="se">\(</span><span class="n">personal</span><span class="o">.</span><span class="n">personalizedPlaceType</span><span class="o">.</span><span class="n">description</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
+                        <span class="p">}</span>
+                        <span class="k">break</span><span class="p">;</span>
+                    <span class="k">case</span> <span class="o">.</span><span class="kt">Poi</span><span class="p">:</span>
+                        <span class="k">if</span> <span class="k">let</span> <span class="nv">poi</span> <span class="o">=</span> <span class="n">place</span> <span class="k">as</span><span class="p">?</span> <span class="kt">PoiPlace</span> <span class="p">{</span>
+                            <span class="kt">NSLog</span><span class="p">(</span><span class="s">"</span><span class="se">\(</span><span class="n">transitionDesc</span><span class="se">)</span><span class="s"> </span><span class="se">\(</span><span class="n">poi</span><span class="o">.</span><span class="n">types</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">description</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
+                        <span class="p">}</span>
+                        <span class="k">break</span><span class="p">;</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+</code></pre>
+
+<h3 id="poiplace">PoiPlace</h3>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>String</td>
+<td>A unique string which identifies the place (provided by us)</td>
+</tr>
+<tr>
+<td>location</td>
+<td>Location</td>
+<td>The latitude and longitude of the center</td>
+</tr>
+<tr>
+<td>radius</td>
+<td>Double</td>
+<td>The radius of the geofence</td>
+</tr>
+<tr>
+<td>types</td>
+<td>[<a href="#poitype">PoiType</a>]</td>
+<td>The category of the place</td>
+</tr>
+</tbody></table>
+
+<h4 id="poitype">PoiType</h4>
+
+<table><thead>
+<tr>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Airport</td>
+</tr>
+<tr>
+<td>Bar</td>
+</tr>
+<tr>
+<td>Restaurant</td>
+</tr>
+<tr>
+<td>Mall</td>
+</tr>
+<tr>
+<td>Cafe</td>
+</tr>
+<tr>
+<td>Gym</td>
+</tr>
+</tbody></table>
+
+<h3 id="personalizedplace">PersonalizedPlace</h3>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>location</td>
+<td>Location</td>
+<td>The latitude and longitude of the center</td>
+</tr>
+<tr>
+<td>radius</td>
+<td>Double</td>
+<td>The radius of the geofence</td>
+</tr>
+<tr>
+<td>personalizedPlaceType</td>
+<td><a href="#personalizedplacetype">PersonalizedPlaceType</a></td>
+<td>The type of place</td>
+</tr>
+</tbody></table>
+
+<h4 id="personalizedplacetype">PersonalizedPlaceType</h4>
+
+<table><thead>
+<tr>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Home</td>
+</tr>
+<tr>
+<td>Work</td>
 </tr>
 </tbody></table>
 
@@ -530,11 +723,41 @@
 
 <p>When a trigger is fired, it brings along one of three confidence levels.</p>
 
-<ol>
-<li>High</li>
-<li>Medium</li>
-<li>Low</li>
-</ol>
+<table><thead>
+<tr>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>High</td>
+</tr>
+<tr>
+<td>Medium</td>
+</tr>
+<tr>
+<td>Low</td>
+</tr>
+</tbody></table>
+
+<h1 id="testing">Testing</h1>
+
+<p>Testing in the real world is time consuming, so we provide a way to easily trigger your Recipe to fire.</p>
+<pre><code class="highlight swift"><span class="c1">//Create a fake restaurant
+</span><span class="k">let</span> <span class="nv">place</span> <span class="o">=</span> <span class="kt">PoiPlace</span><span class="p">(</span><span class="nv">latitude</span><span class="p">:</span> <span class="mf">34.111</span><span class="p">,</span> <span class="nv">longitude</span><span class="p">:</span> <span class="o">-</span><span class="mf">118.111</span><span class="p">,</span> <span class="nv">radius</span><span class="p">:</span> <span class="mi">50</span><span class="p">,</span> <span class="nv">name</span><span class="p">:</span> <span class="s">"Big Restaurant"</span><span class="p">,</span> <span class="nv">id</span><span class="p">:</span> <span class="s">"id1"</span><span class="p">,</span> <span class="nv">types</span><span class="p">:</span> <span class="p">[</span><span class="o">.</span><span class="kt">Restaurant</span><span class="p">])</span>
+
+<span class="k">let</span> <span class="nv">errorPointer</span> <span class="o">=</span> <span class="kt">SenseSdkErrorPointer</span><span class="o">.</span><span class="nf">create</span><span class="p">()</span>
+<span class="c1">// This method should only be used for testing
+</span><span class="kt">SenseSdkTestUtility</span><span class="o">.</span><span class="nf">fireTrigger</span><span class="p">(</span>
+    <span class="nv">fromRecipe</span><span class="p">:</span> <span class="s">"ArrivedAtRestaurant"</span><span class="p">,</span>
+    <span class="nv">confidenceLevel</span><span class="p">:</span> <span class="kt">ConfidenceLevel</span><span class="o">.</span><span class="kt">Medium</span><span class="p">,</span>
+    <span class="nv">places</span><span class="p">:</span> <span class="p">[</span><span class="n">place</span><span class="p">],</span>
+    <span class="nv">errorPtr</span><span class="p">:</span> <span class="n">errorPointer</span>
+<span class="p">)</span>
+
+<span class="k">if</span> <span class="n">errorPointer</span><span class="o">.</span><span class="n">error</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+    <span class="kt">NSLog</span><span class="p">(</span><span class="s">"Error sending trigger"</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre>
 
 <h1 id="thanks-for-using-sense360">Thanks for using Sense360</h1>
 
