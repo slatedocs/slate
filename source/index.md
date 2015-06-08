@@ -277,6 +277,9 @@ Default | Cooldown.create(oncePer: 30, frequency: .Minutes)!
 
 The SenseSdk is the main entry point into the Sdk. It allows you to register and unregister recipes.
 
+<aside class="warning"> You must call enableSdkWithKey in your AppDelegate's applicationDidFinishLaunching method.
+</aside>
+
 ```swift
 // Registering a recipe and delegate
 let success = SenseSdk.register(recipe: restaurantRecipe, delegate: self, errorPtr: nil)
@@ -289,14 +292,21 @@ Boolean success = [SenseSdk registerWithRecipe:recipe delegate:callback errorPtr
 
 Function | Parameters | Description
 --------- | ------- |------- 
-register | [Recipe](#recipes), [RecipeFiredDelegate](#recipefireddelegate) | Starts the recipe and registers the delegate to be called when the trigger fires.
-unregister | [Recipe](#recipes) | Stops and removes the recipe from SenseSdk.
+enableSdkWithKey | String | Enable the SDK with your application key (provided by Sense360)
+register | [Recipe](#recipes), [RecipeFiredDelegate](#recipefireddelegate), [SenseSdkErrorPointer](#sensesdkerrorpointer) | Starts the recipe and registers the delegate to be called when the trigger fires.
+unregister | String | Stops and removes the recipe from SenseSdk by name.
 findRecipe | String | Finds and returns a recipe by name.
-getAllRecipes | [[Recipe](#recipes)] | Returns all registered recipes.
 
-
-<aside class="warning"> Your application key will be validated regulary every few days.
+<aside class="notice"> Your application key will be validated regulary every few days.
 </aside>
+
+## SenseSdkErrorPointer
+
+This class is used to communicate any errors on a registration of a recipe with the [SenseSdk](#sensesdk).
+
+Containing Class | Property | Description
+--------- | ------- |------- | ---------
+SenseSdkError | message | The error message
 
 # RecipeFiredDelegate
 
