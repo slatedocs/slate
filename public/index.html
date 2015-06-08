@@ -438,6 +438,9 @@
 <h1 id="sensesdk">SenseSdk</h1>
 
 <p>The SenseSdk is the main entry point into the Sdk. It allows you to register and unregister recipes.</p>
+
+<aside class="warning"> You must call enableSdkWithKey in your AppDelegate&rsquo;s applicationDidFinishLaunching method.
+</aside>
 <pre><code class="highlight swift"><span class="c1">// Registering a recipe and delegate
 </span><span class="k">let</span> <span class="nv">success</span> <span class="o">=</span> <span class="kt">SenseSdk</span><span class="o">.</span><span class="nf">register</span><span class="p">(</span><span class="nv">recipe</span><span class="p">:</span> <span class="n">restaurantRecipe</span><span class="p">,</span> <span class="nv">delegate</span><span class="p">:</span> <span class="k">self</span><span class="p">,</span> <span class="nv">errorPtr</span><span class="p">:</span> <span class="kc">nil</span><span class="p">)</span>
 </code></pre>
@@ -453,29 +456,47 @@
 </tr>
 </thead><tbody>
 <tr>
+<td>enableSdkWithKey</td>
+<td>String</td>
+<td>Enable the SDK with your application key (provided by Sense360)</td>
+</tr>
+<tr>
 <td>register</td>
-<td><a href="#recipes">Recipe</a>, <a href="#recipefireddelegate">RecipeFiredDelegate</a></td>
+<td><a href="#recipes">Recipe</a>, <a href="#recipefireddelegate">RecipeFiredDelegate</a>, <a href="#sensesdkerrorpointer">SenseSdkErrorPointer</a></td>
 <td>Starts the recipe and registers the delegate to be called when the trigger fires.</td>
 </tr>
 <tr>
 <td>unregister</td>
-<td><a href="#recipes">Recipe</a></td>
-<td>Stops and removes the recipe from SenseSdk.</td>
+<td>String</td>
+<td>Stops and removes the recipe from SenseSdk by name.</td>
 </tr>
 <tr>
 <td>findRecipe</td>
 <td>String</td>
 <td>Finds and returns a recipe by name.</td>
 </tr>
-<tr>
-<td>getAllRecipes</td>
-<td>[<a href="#recipes">Recipe</a>]</td>
-<td>Returns all registered recipes.</td>
-</tr>
 </tbody></table>
 
-<aside class="warning"> Your application key will be validated regulary every few days.
+<aside class="notice"> Your application key will be validated regulary every few days.
 </aside>
+
+<h2 id="sensesdkerrorpointer">SenseSdkErrorPointer</h2>
+
+<p>This class is used to communicate any errors on a registration of a recipe with the <a href="#sensesdk">SenseSdk</a>.</p>
+
+<table><thead>
+<tr>
+<th>Containing Class</th>
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>SenseSdkError</td>
+<td>message</td>
+<td>The error message</td>
+</tr>
+</tbody></table>
 
 <h1 id="recipefireddelegate">RecipeFiredDelegate</h1>
 
