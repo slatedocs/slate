@@ -34,7 +34,7 @@ $lang-select-border: #000;
 $lang-select-bg: #222;
 $lang-select-active-bg: $examples-bg; // feel free to change this to blue or something
 $lang-select-pressed-bg: #111; // color of language tab bg when mouse is pressed
-$main-bg: $almost-white;
+$main-bg: #fff;
 $aside-notice-bg: #0064a4;
 $aside-warning-bg: #722580;
 $aside-success-bg: #107f65;
@@ -68,9 +68,24 @@ $phone-width: $tablet-width - $nav-width; // min width before reverting to mobil
 
 // FONTS
 ////////////////////
+
+@font-face {
+    font-family: 'AvenirLTStd';
+    src: url(../fonts/AvenirLTPro-Heavy.ttf);
+    font-weight: font-weight-heavy;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'AvenirLTStd';
+    src: url(../fonts/AvenirLTPro-Roman.ttf);
+    font-weight: font-weight-normal;
+    font-style: normal;
+}
+
 %default-font {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 13px;
+  font-family: "AvenirLTStd", "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
 }
 
 %header-font {
