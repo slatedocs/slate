@@ -3,11 +3,11 @@ title: API Reference
 
 language_tabs:
   - shell
-  - ruby
   - python
+  - R
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
+  - <a href='http://crunch.io/'>Sign Up</a>
   - <a href='http://github.com/tripit/slate'>Documentation Powered by Slate</a>
 
 includes:
@@ -24,7 +24,9 @@ We have language bindings in Shell, Ruby, and Python! You can view code examples
 
 This example API documentation page was created with [Slate](http://github.com/tripit/slate). Feel free to edit it and use it as a base for your own API's documentation.
 
-# Authentication
+# Feature Guide
+
+## Authentication
 
 > To authorize, use this code:
 
@@ -58,7 +60,13 @@ Kittn expects for the API key to be included in all API requests to the server i
 You must replace <code>meowmeowmeow</code> with your personal API key.
 </aside>
 
-# Kittens
+## Importing Data
+
+## Appending Data
+
+## Deriving Variables
+
+# Endpoint Reference
 
 ## Get All Kittens
 
