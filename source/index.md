@@ -13,6 +13,7 @@ includes:
   - overview
 
   - getting-started
+  - getting-started/libraries
   - getting-started/entities
   - getting-started/get-events-in-genre
   - getting-started/search-for-events

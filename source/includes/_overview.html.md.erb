@@ -5,9 +5,11 @@ The official viagogo API v2 connects your website or application with the world'
 
 ## Quick Reference
 
+> Libraries are [available in several languages](#libraries).
+
 > **API Root Endpoint:** `https://api.viagogo.net/v2`
 
-All API access is over HTTPS, and accessed from the `api.viagogo.net` domain. Request and response payloads are formatted as `application/hal+json`, which is basically just plain old JSON with hyperlinks (see [Media Type](#media-type)). [OAuth2](http://oauth.net/2/) is used for all authentication. All API requests must be authenticated or you will receive a `401 Unauthorized` error response (see [Authentication](#authentication)).
+All API access is over HTTPS, and accessed from the `api.viagogo.net` domain. Request and response payloads are formatted as `application/hal+json`, which is basically just plain old JSON with hyperlinks (see [Media Type](#media-type)). We support [cross-origin resource sharing](http://en.wikipedia.org/wiki/Cross-origin_resource_sharing) to allow you to interact securely with our API from a client-side web application. [OAuth2](http://oauth.net/2/) is used for all authentication. All API requests must be authenticated or you will receive a `401 Unauthorized` error response (see [Authentication](#authentication)).
 
 Before accessing viagogo APIs, you need to register your application. During the beta period, API access will be available by invitation only.
 
@@ -37,7 +39,7 @@ All viagogo API resources are represented using the `application/hal+json` media
 
 Link relations (the keys in the `_links` property of resources) are very important in this API. They are a part of the contract between the API and your application and we have documented the request parameters and response type that are expected when your application follows a link (see [Link Relations](#link-relations). The idea is that applications will be coded to understand the different link relations but will not care about the actual URL of the link.
 
-To get a feel for how this works, look at our [Guides](#).
+To get a feel for how this works, look at our [Guides](#getting-started).
 
 ### Root endpoint
 
