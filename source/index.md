@@ -75,7 +75,7 @@ let airportTrigger: Trigger? = FireTrigger.whenEntersPoi(.Airport)
 
 ```objective_c
 // Will notify you when the user enters an Airport
-Trigger *restaurantTrigger = [FireTrigger whenEntersPoi:PoiTypeRestaurant errorPtr:nil];
+Trigger *restaurantTrigger = [FireTrigger whenEntersPoi:PoiTypeRestaurant conditions:nil errorPtr:nil];
 ```
 
 Supported POI types:
@@ -104,7 +104,7 @@ let homeTrigger: Trigger? = FireTrigger.whenEntersPersonalizedPlace(.Home)
 
 ```objective_c
 // Will notify you when the user enters their Home
-Trigger *homeTrigger = [FireTrigger whenEntersPersonalizedPlace:PersonalizedPlaceTypeHome errorPtr:nil];
+Trigger *homeTrigger = [FireTrigger whenEntersPersonalizedPlace:PersonalizedPlaceTypeHome conditions:nil errorPtr:nil];
 ```
 
 
@@ -135,7 +135,7 @@ let geofenceTrigger: Trigger? = FireTrigger.whenEntersGeofences([hq, lunchSpot])
 CustomGeofence *hq = [[CustomGeofence alloc] initWithLatitude:37.124 longitude:-127.456 radius:50 customIdentifier:@"Sense 360 Headquarters"];
 CustomGeofence *lunchSpot = [[CustomGeofence alloc] initWithLatitude:37.124 longitude:-127.456 radius:50 customIdentifier:@"A&B Bar and Grill"];
 NSArray *geofences = [[NSArray alloc] initWithObjects:hq,lunchSpot,nil];
-[FireTrigger whenEntersGeofences: geofences errorPtr:nil];
+[FireTrigger whenEntersGeofences: geofences conditions:nil errorPtr:nil];
 ```
 
 All custom geofence triggers must specify the following parameters
@@ -170,7 +170,7 @@ if let airportTrigger = result.trigger {
 
 ```objective_c
 SenseSdkErrorPointer *errorPtr = [SenseSdkErrorPointer create];
-Trigger *restaurantTrigger = [FireTrigger whenEntersPoi:PoiTypeRestaurant errorPtr:errorPtr];
+Trigger *restaurantTrigger = [FireTrigger whenEntersPoi:PoiTypeRestaurant conditions:nil errorPtr:errorPtr];
 if(restaurantTrigger != nil) {
   NSLog(@"Success monitoring airport entrance!");
 } else {
@@ -492,6 +492,35 @@ When a trigger is fired, it brings along one of three confidence levels.
 High |
 Medium |
 Low |
+
+# Conditional Elements
+A trigger is often just one half of the puzzle.  Your specific case may require a trigger to fire only when your user satisfies some other criteria, like how far they are from their home.  A conditional element allows you to do just that.
+
+Several conditions may be applied when creating any type of trigger through the FireTrigger class.  All conditions applied to a trigger MUST be satisfied in order for the entire recipe to fire.
+
+```swift
+FireTrigger.whenEntersPoi(.Airport, conditions: conditions)
+```
+
+```objective_c
+[FireTrigger whenEntersPoi:PoiTypeAirport conditions:conditions errorPtr:nil];
+```
+
+## Farther Than Condition
+The farther than modifier ensures that the trigger will only fire if the user is farther than X kilometers from either a personalized place or a list of custom geofences.
+
+One use could be that you your app should suggest a hotel to stay at when your user enters an airport and is farther than 150 kilometers from their home.
+
+```swift
+let condition = UsersLocation.isFartherThanPersonalizedPlace(.Home, kilometers: 150)
+```
+
+```objective_c
+ConditionalElement* condition = [UsersLocation 
+                     isFartherThanPersonalizedPlace:PersonalizedPlaceTypeHome
+                                         kilometers:[NSNumber numberWithInt:150]
+                                           errorPtr:nil];
+```
 
 # Testing
 
