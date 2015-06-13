@@ -2,12 +2,12 @@
 title: API Dátil
 
 language_tabs:
-  - shell
-  - python
+  - shell: cURL
+  - python: Python
 
 toc_footers:
-  - <a href='#'>Para obtener mi llave del API</a>
-  - <a href='http://github.com/tripit/slate'>Documentation Powered by Slate</a>
+  - <a href='#'>Para obtener mi clave del API</a>
+  - <a href='http://github.com/tripit/slate'>Documentación gracias a Slate</a>
 
 includes:
   - errores
@@ -21,26 +21,56 @@ Integra tu aplicación con Facturación Electrónica. Este API de Dátil te perm
 emitir todos los tipos de comprobantes electrónicos: facturas, retenciones, notas
 de crédito, notas de débito y guías de remisión.
 
-El API de Dátil está diseñado como un servicio [REST](http://en.wikipedia.org/wiki/Representational_State_Transfer).
+El API de Dátil está diseñado como un servicio web [REST](http://en.wikipedia.org/wiki/Representational_State_Transfer).
 De esta manera resulta sencillo conversar con nuestra interfaz utilizando cualquier
-lenguaje que provea un cliente HTTP, ya que utilizamos el componentes del estándar
-como los verbos y los códigos de respuesta.
+librería en cualquier lenguaje que provea un cliente HTTP, ya que utilizamos 
+componentes del estándar como los verbos y los códigos de respuesta.
 
 Todos las operaciones responden en formato [JSON](http://www.json.org/), 
 incluso los errores.
 
 Dátil se encarga de todo el proceso de emisión del comprobante. El proceso de
 emisión bajo condiciones normales, toma entre 3 a 5 segundos. Luego de ese período
-de tiempo bastará con consultar el comprobante para conocer su estado.
+bastará con consultar el comprobante para conocer su estado.
+
+## Operaciones
+
+Una operación REST está formada por la combinación de un verbo HTTP, la URL base
+del servicio y la ruta de la operación. Las cuales se encuentran descritas en cada
+sección donde se describe una función del API. Esta operación, por ejemplo, emite
+una factura:
+
+`POST https://api.datil.co/invoices/issue`
+
+La URI anterior en conjunto con la información en formato JSON como cuerpo del
+requerimiento y las cabeceras HTTP necesarias, conforman el requerimiento.
+
+## Proceso de emisión
+
+Comprende las siguientes fases:
+
+1. __Creación__: Se registra el comprobante para posterior referencia.
+2. __Firmado__: Utilizando el certificado de y un algoritmo de  firma digital, 
+el comprobante es firmado para que el SRI pueda verificar su legitimidad
+3. __Envío__: El comprobante es enviado al SRI para ser procesado y autorizado.
+4. __Consulta de autorización__: Luego de un período de espera, Dátil consulta la
+autorización del comprobante.
+5. __Envío por email__: Se envía el comprobante al correo del destinatario especificado
+
+<aside class="notice">
+<strong>Recuerda:</strong> Que este proceso es administrado completamente por nosotros y para
+emitir un comprobante bastará enviarlo siguiendo la sección pertinente de esta
+documentación.
+</aside>
 
 # Autenticación
 
-Para obtener tu llave del API, inicia sesión con tu cuenta en 
-[app.datil.co](https://app.datil.co), revisa en la opción _Configuración_ la
+Para obtener la clave del API, inicia sesión con tu cuenta en 
+[app.datil.co](https://app.datil.co), ve a la opción _Configuración_ la
 sección "API Key".
 
-Dátil utiliza claves de API para autorizar el acceso al API. La llave de API
-debe estar incluída en todos los requerimientos en una cabecera:
+Dátil utiliza claves para autorizar el acceso al API. La clave debe estar 
+incluída en todos los requerimientos en una cabecera:
 
 `X-Key: api-key`
 
@@ -49,20 +79,23 @@ de firma electrónica. Esta clave deberá ser provista en una cabecera:
 
 `X-Password: clave-certificado-firma`
 
-<!--aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside-->
-
 # Facturas
 
 ## Emisión de una factura
 
-> Requerimiento de ejemplo
+### Operación
+
+`POST /invoices/issue`
+
+### Requerimiento
+
+> ### Requerimiento de ejemplo
 
 ```shell
-curl -v https://app.datil.co/api/facturar \
--H "Content-Type:application/json" \
+curl -v https://api.datil.co/invoices/issue \
+-H "Content-Type: application/json" \
 -H "X-Key: <API-key>" \
+-H "X-Password: <clave-certificado-firma>" \
 -d '{
   "secuencial": 0,
   "emisor": {
@@ -174,21 +207,41 @@ factura = {
 }
 cabeceras = {
     'x-key': 'clave-del-api'
-    'x-pasword': 'clave-certificado-firma',
+    'x-password': 'clave-certificado-firma',
     'content-type': 'application/json'}
 respuesta = requests.post(
-    "https://app.datil.co/api/facturar",
+    "https://app.datil.co/invoices/issue",
     headers = cabeceras,
     data = json.dumps(factura))
 ```
 
-> Respuesta de ejemplo
+Para la emisión de una factura se debe enviar la información completa del
+comprobante en el cuerpo del requerimiento en formato JSON.
+
+Parámetro | Tipo | Descripción
+--------- | ------- | -----------
+secuencial | string | Número de secuencia de la factura. __Requerido__
+emisor | [emisor](#emisor) | Información completa del emisor. __Requerido__
+moneda | string | Código [ISO](https://en.wikipedia.org/wiki/ISO_4217) de la moneda. __Requerido__
+ambiente | integer | Pruebas: `1`.<br>Producción `2`.<br>__Requerido__
+totales | objeto [totales](#totales) | Listado de totales. __Requerido__
+comprador | objeto [comprador](#comprador) | Información del comprador. __Requerido__
+tipo_emision | integer | Emisión normal: `1`.<br>Emisión por indisponibilidad: `2`<br>__Requerido__
+items | listado de objetos tipo [item](#item-de-factura) | Items incluídos en la factura. __Requerido__
+version | string | Versión de la especificación, opciones válidas: `1.0.0`, `1.1.0`
+clave_acceso | string | La clave de acceso representa un identificador único del comprobante. Si esta información no es provista, Dátil la generará.<br>¿Cómo [generar](#clave-de-acceso) la clave de acceso?
+
+<!--aside class="success">
+Remember — a happy kitten is an authenticated kitten!
+</aside-->
+
+### Respuesta
+
+> ### Respuesta de ejemplo
 
 ```shell
-curl -v https://app.datil.co/api/facturar \
--H "Content-Type:application/json" \
--H "X-Key: <API-key>" \
--d '{
+{
+  "id": "abcf12343faad06785",
   "secuencial": 0,
   "emisor": {
     "ruc": "string",
@@ -239,7 +292,7 @@ curl -v https://app.datil.co/api/facturar \
   ],
   "version": "string",
   "clave_acceso": "string"
-}'
+}
 ```
 
 ```python
@@ -301,37 +354,165 @@ print respuesta.json()
 """
 ```
 
+Retorna un objeto **[factura](#requerimiento)** que incluye un nuevo parámetro `id`,
+el cual identifica de manera única a la factura. El campo `clave_acceso` generado
+también se incluirá como parte de la respuesta.
+
+## Consulta de una factura
+
+Consulta una factura para conocer el estado de las fases del proceso de emisión.
+
 ### Operación
 
-`POST /facturar`
+`GET /invoices/<invoice-ID>`
 
 ### Requerimiento
 
-Para la emisión de una factura se debe enviar la información completa del
-comprobante en el cuerpo del requerimiento en formato JSON.
+> ### Requerimiento de ejemplo
 
-Parámetro | Tipo | Descripción
---------- | ------- | -----------
-secuencial | string | Número de secuencia de la factura. *Requerido*
-emisor | [emisor](#emisor) | Información completa del emisor. *Requerido*
-moneda | string | Código [ISO](https://en.wikipedia.org/wiki/ISO_4217) de la moneda. *Requerido*
-ambiente | integer | Pruebas: `1`. Producción `2` *Requerido*
-totales | objeto [totales](#totales) | Listado de totales. *Requerido*
-comprador | objeto [comprador](#comprador) | Información del comprador. *Requerido*
-tipo_emision | integer | Emisión normal: `1`.<br>Emisión por indisponibilidad: `2`<br>*Requerido*
-items | listado de objetos tipo [item](#item) | Items incluídos en la factura. *Requerido*
-version | string | Versión de la especificación, opciones válidas: `1.0.0`, `1.1.0`
-clave_acceso | string | La clave de acceso representa un identificador único del comprobante. Si esta información no es provista, el API la generará.<br>¿Cómo [generar](#clave-de-acceso) la clave de acceso?
+```shell
+curl -v https://api.datil.co/invoices/abcf12343faad06785 \
+-H "Content-Type: application/json" \
+-H "X-Key: <API-key>" \
+-H "X-Password: <clave-certificado-firma>" \
+```
 
-<!--aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside-->
+```python
+import requests
+cabeceras = {
+    'x-key': 'clave-del-api'
+    'x-pasword': 'clave-certificado-firma',
+    'content-type': 'application/json'}
+respuesta = requests.get(
+    'https://api.datil.co/invoices/abcf12343faad06785',
+    headers = cabeceras)
+```
 
+Reemplaza en la ruta `<invoice-ID>` por el `id` de la factura que necesitas consultar.
 
 ### Respuesta
 
-Retorna un objeto *[factura](#reqerimiento)* qu incluye un nuevo parámetro `id`
-que identifica de manera única a la factura.
+> ### Respuesta de ejemplo
+
+```shell
+{}
+```
+
+```python
+respuesta.json()
+# Respuesta completa de comprobante y sus propiedades relacionadas
+{
+    "secuencial": "16",
+    "fecha_emision": "2015-05-15",
+    "emisor": {
+        "ruc": "0992712554001",
+        "razon_social": "DATILMEDIA S.A.",
+        "nombre_comercial": "Dátil",
+        "direccion": null,
+        "obligado_contabilidad": true,
+        "contribuyente_especial": "",
+        "establecimiento": {
+            "codigo": "001",
+            "direccion": "V.E. 112 Y CIRCUNVALACION NORTE",
+            "punto_emision": "100"
+        }
+    },
+    "estado": "AUTORIZADO",
+    "correos_enviados": [
+        {
+            "fecha_envio": "2015-05-15T16:36:48.274604",
+            "destinatarios": "juanantonioplaza@datilmedia.com"
+        }
+    ],
+    "guia_remision": "",
+    "moneda": "USD",
+    "id": null,
+    "informacion_adicional": [],
+    "ambiente": "1",
+    "totales": {
+        "total_sin_impuestos": "150.00",
+        "descuento": "0.00",
+        "propina": "0.00",
+        "impuestos": [
+            {
+                "codigo": 2,
+                "codigo_porcentaje": "2",
+                "base_imponible": "150.00",
+                "valor": "18.00"
+            }
+        ],
+        "importe_total": "168.00"
+    },
+    "comprador": {
+        "razon_social": "Juan Antonio Plaza Argüello",
+        "identificacion": "0900102222",
+        "tipo_identificacion": 1,
+        "email": "juanantonioplaza@datilmedia.com",
+        "direccion": "Calle Uno y Calle Dos",
+        "telefono": "043334445"
+    },
+    "envio_sri": {
+        "mensajes": [],
+        "estado": "RECIBIDA",
+        "fecha": ""
+    },
+    "tipo_emision": "1",
+    "items": [
+        {
+            "detalles_adicionales": {
+                "Estadía": "2 noches",
+                "Habitación": "203"
+            },
+            "cantidad": "1.000000",
+            "codigo_principal": "HAB",
+            "codigo_auxiliar": "DOB",
+            "descripcion": "Habitación doble",
+            "precio_unitario": "150.000000",
+            "descuento": "0.00",
+            "precio_total_sin_impuestos": "",
+            "impuestos": [
+                {
+                    "tarifa": "12.00",
+                    "codigo": "2",
+                    "codigo_porcentaje": "2",
+                    "base_imponible": "150.00",
+                    "valor": "18.00"
+                }
+            ]
+        }
+    ],
+    "version": "1.0.0",
+    "clave_acceso": "1505201501099271255400110011000000000162092727615",
+    "autorizacion": {
+        "estado": "AUTORIZADO",
+        "mensajes": [
+            {
+                "identificador": "60",
+                "mensaje": "ESTE PROCESO FUE REALIZADO EN EL AMBIENTE DE PRUEBAS",
+                "tipo": "INFORMATIVO",
+                "informacion_adicional": ""
+            }
+        ],
+        "numero": "1505201516323509927125540010266935227",
+        "fecha": "2015-05-15T16:32:35.000380"
+    }
+}
+```
+
+Parámetro | Tipo | Descripción
+--------- | ------- | -----------
+secuencial | string | Número de secuencia de la factura. __Requerido__
+emisor | [emisor](#emisor) | Información completa del emisor. __Requerido__
+moneda | string | Código [ISO](https://en.wikipedia.org/wiki/ISO_4217) de la moneda. __Requerido__
+ambiente | integer | Pruebas: `1`.<br>Producción `2`.<br>__Requerido__
+totales | objeto [totales](#totales) | Listado de totales. __Requerido__
+comprador | objeto [comprador](#comprador) | Información del comprador. __Requerido__
+tipo_emision | integer | Emisión normal: `1`.<br>Emisión por indisponibilidad: `2`<br>__Requerido__
+items | listado de objetos tipo [item](#item-de-factura) | Items incluídos en la factura. __Requerido__
+version | string | Versión de la especificación, opciones válidas: `1.0.0`, `1.1.0`
+clave_acceso | string | La clave de acceso representa un identificador único del comprobante. Si esta información no es provista, Dátil la generará.<br>¿Cómo [generar](#clave-de-acceso) la clave de acceso?
+envio_sri | objeto [envio sri](#envio-sri) | Información luego de enviar el comprobante.
+autorizacion | objeto [autorizacion sri](#autorizacion-sri) | Información de la autorización.
 
 # Clave de acceso
 
@@ -349,16 +530,16 @@ Código Numérico| Numérico| 8
 Tipo de Emisión| Tabla 2| 1
 Dígito Verificador (módulo 11 )| Numérico| 1
 
-*Nota:* Todos los campos deben completarse conforme a la longitud indicada, es decir si en el número secuencial no completa los 9 dígitos, la clave de acceso estará mal conformada y será motivo de rechazo de la autorización en línea.
+**Nota:** Todos los campos deben completarse conforme a la longitud indicada, es decir si en el número secuencial no completa los 9 dígitos, la clave de acceso estará mal conformada y será motivo de rechazo de la autorización en línea.
 
 El dígito verificador será aplicado sobre toda la clave de acceso (48 dígitos) y deberá ser incorporado por el contribuyente a través del método denominado Módulo 11, con un factor de chequeo ponderado (2), este mecanismo de detección de errores, será verificado al momento de la recepción del comprobante. Cuando el resultado del dígito verificador obtenido sea igual a once (11), el digito verificador será el cero (0) y cuando el resultado del dígito verificador obtenido sea igual a diez 10, el digito verificador será el uno (1).
 
 El código numérico constituye un mecanismo para brindar seguridad al emisor en cada comprobante emitido, el algoritmo numérico para conformar este código es potestad absoluta del contribuyente emisor.
 
-Ver [aquí](https://es.wikipedia.org/wiki/C%C3%B3digo_de_control) ejemplo de verificación utilizando algoritmo de módulo 11
+Ver [aquí](https://es.wikipedia.org/wiki/C%C3%B3digo_de_control) ejemplo de verificación utilizando algoritmo de módulo 11.
 
 
-# Objetos del API
+# Objetos anidados
 
 ## Emisor
 
@@ -407,11 +588,15 @@ PLACA                       | `09`
 
 ## Totales
 
-Representa un establecimiento del comercio.
+Totales del comprobante.
 
-Parámetro | Tipo | Descripción
---------- | ---- |-----------
-impuestos | listado de objetos [impuesto](#total-impuesto) | Listado de impuesto totalizados.
+Parámetro           | Tipo                    | Descripción
+------------------- | ----------------------- |-----------
+total_sin_impuestos | float | Total antes de los impuestos.
+descuento           | float | Suma de los descuentos de cada ítem.
+propina             | float | Propina total, llamado también servicio.
+importe_total       | float | Total incluyendo impuestos.
+impuestos           | listado de objetos [total impuesto](#total-impuesto) | Listado de impuesto totalizados.
 
 ### Total impuesto
 
@@ -419,4 +604,31 @@ Parámetro | Tipo | Descripción
 --------- | ---- |-----------
 codigo | string | Código del impuesto.
 codigo_porcentaje | string | Código del porcentaje.
+base_imponible | float | Base imponible.
+valor | float | Valor del total.
 
+## Item de factura
+
+Representa un producto o servicio del comercio.
+
+Parámetro | Tipo | Descripción
+--------- | ---- |-----------
+descripcion | string | Descripción del ítem. __Requerido__
+codigo_principal | string | Código alfanumérico de uso del comercio. Máximo 25 caracteres.
+codigo_auxiliar | string | Código alfanumérico de uso del comercio. Máximo 25 caracteres.
+cantidad | float | Cantidad de items. __Requerido__
+precio_unitario | float | Precio unitario. __Requerido__
+descuento | float | El descuento es aplicado por cada producto. __Requerido__
+precio_total_sin_impuestos | float | Precio antes de los impuestos. Se obtiene multiplicando la `cantidad` por el `precio_unitario`
+impuestos | listado de objetos tipo [impuesto item](#impuesto-item) | Impuestos grabados sobre el producto. __Requerido__
+detalles_adicionales | object | Diccionario de datos de carácter adicional. Ejemplo:<br><code>{"marca": "Ferrari", "chasis": "UANEI832-NAU101"}</code>
+
+### Impuesto item
+
+Parámetro | Tipo | Descripción
+--------- | ---- |-----------
+codigo | string | Código del impuesto.
+codigo_porcentaje | string | Código del porcentaje.
+base_imponible | float | Base imponible.
+valor | float | Valor del total.
+tarifa | float | Porcentaje actual del impuesto expresado por un número entre 0.0 y 100.0

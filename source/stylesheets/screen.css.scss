@@ -205,6 +205,16 @@ html, body {
     }
   }
 
+  .tocify-subheader {
+    .tocify-subheader {
+      .tocify-item>a {
+        // Styling here for a level 2 nesting. For example -> 
+        padding-left: $nav-padding + $nav-indent * 3;
+        font-size: 12px;
+      }
+    }
+  }
+
   .toc-footer {
     padding: 1em 0;
     margin-top: 1em;
