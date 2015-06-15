@@ -4,6 +4,7 @@ title: API Dátil
 language_tabs:
   - shell: cURL
   - python: Python
+  - csharp: C#
 
 toc_footers:
   - <a href='#'>Para obtener mi clave del API</a>
@@ -40,7 +41,7 @@ del servicio y la ruta de la operación. Las cuales se encuentran descritas en c
 sección donde se describe una función del API. Esta operación, por ejemplo, emite
 una factura:
 
-`POST https://api.datil.co/invoices/issue`
+`POST http://link.datil.co/invoices/issue`
 
 La URI anterior en conjunto con la información en formato JSON como cuerpo del
 requerimiento y las cabeceras HTTP necesarias, conforman el requerimiento.
@@ -50,8 +51,8 @@ requerimiento y las cabeceras HTTP necesarias, conforman el requerimiento.
 Comprende las siguientes fases:
 
 1. __Creación__: Se registra el comprobante para posterior referencia.
-2. __Firmado__: Utilizando el certificado de y un algoritmo de  firma digital, 
-el comprobante es firmado para que el SRI pueda verificar su legitimidad
+2. __Firmado__: Utilizando el certificado de firma electrónica y un algoritmo de firma digital, 
+el comprobante es firmado para que el SRI pueda verificar su legitimidad.
 3. __Envío__: El comprobante es enviado al SRI para ser procesado y autorizado.
 4. __Consulta de autorización__: Luego de un período de espera, Dátil consulta la
 autorización del comprobante.
@@ -74,7 +75,7 @@ incluída en todos los requerimientos en una cabecera:
 
 `X-Key: api-key`
 
-Para la firma de cada comprobante se requiere también de la clave del certificado
+Para emitir o re-emitir un comprobante se requiere también la clave del certificado
 de firma electrónica. Esta clave deberá ser provista en una cabecera:
 
 `X-Password: clave-certificado-firma`
@@ -89,10 +90,10 @@ de firma electrónica. Esta clave deberá ser provista en una cabecera:
 
 ### Requerimiento
 
-> ### Requerimiento de ejemplo
+> #### Requerimiento de ejemplo
 
 ```shell
-curl -v https://api.datil.co/invoices/issue \
+curl -v http://link.datil.co/invoices/issue \
 -H "Content-Type: application/json" \
 -H "X-Key: <API-key>" \
 -H "X-Password: <clave-certificado-firma>" \
@@ -206,13 +207,95 @@ factura = {
   "clave_acceso": "string"
 }
 cabeceras = {
-    'x-key': 'clave-del-api'
+    'x-key': 'clave-del-api',
     'x-password': 'clave-certificado-firma',
     'content-type': 'application/json'}
 respuesta = requests.post(
     "https://app.datil.co/invoices/issue",
     headers = cabeceras,
     data = json.dumps(factura))
+```
+
+```c#
+using RestSharp;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace DatilClient {
+  class InvoicingServiceClient {
+    static void Main(string[] args) {
+
+      // Install rest client RestSharp 
+      // go to menu: tools > Library Package Manager > Package Manager Console
+      // paste and press enter: Install-Package RestSharp
+
+      var client = new RestClient("http://link.datil.co/");
+      var request = new RestRequest("invoices/issue", Method.POST);
+      request.AddHeader("X-Key", "clave-del-api");
+      request.AddHeader("X-Password", "clave-certificado-firma");
+
+      request.RequestBody = @"{
+        \"secuencial\": 0,
+        \"emisor\": {
+          \"ruc\": \"string\",
+          \"razon_social\": \"string\",
+          \"nombre_comercial\": \"string\",
+          \"direccion\": \"string\",
+          \"contribuyente_especial\": \"string\",
+          \"obligado_contabilidad\": true,
+          \"establecimiento\": {
+            \"codigo\": \"string\",
+            \"direccion\": \"string\",
+            \"punto_emision\": \"string\"
+          }
+        },
+        \"moneda\": \"string\",
+        \"id\": \"string\",
+        \"ambiente\": 0,
+        \"totales\": {
+          \"impuestos\": [
+            {
+              \"codigo\": \"string\",
+              \"codigo_porcentaje\": \"string\"
+            }
+          ]
+        },
+        \"comprador\": {
+          \"razon_social\": \"string\",
+          \"identificacion\": \"string\",
+          \"tipo_identificacion\": \"string\",
+          \"email\": \"string\",
+          \"direccion\": \"string\",
+          \"telefono\": \"string\"
+        },
+        \"tipo_emision\": 0,
+        \"items\": [
+          {
+            \"descripcion\": \"string\",
+            \"impuestos\": [
+              {
+                \"codigo\": \"string\",
+                \"codigo_porcentaje\": \"string\"
+              }
+            ],
+            \"detalles_adicionales\": {},
+            \"codigo_auxiliar\": \"string\",
+            \"codigo_principal\": \"string\"
+          }
+        ],
+        \"version\": \"string\",
+        \"clave_acceso\": \"string\"
+      }";
+
+      IRestResponse response = client.Execute(request);
+
+      Console.WriteLine(response.Content);
+      Console.ReadLine();
+    }
+  }
+}
 ```
 
 Para la emisión de una factura se debe enviar la información completa del
@@ -223,13 +306,16 @@ Parámetro | Tipo | Descripción
 secuencial | string | Número de secuencia de la factura. __Requerido__
 emisor | [emisor](#emisor) | Información completa del emisor. __Requerido__
 moneda | string | Código [ISO](https://en.wikipedia.org/wiki/ISO_4217) de la moneda. __Requerido__
+fecha_emision | string | Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6).
+guia_remision | string | Número de guía de remisión asociada a esta factura en formato 001-002-000000003 ([0-9]{3}-[0-9]{3}-[0-9]{9})
 ambiente | integer | Pruebas: `1`.<br>Producción `2`.<br>__Requerido__
-totales | objeto [totales](#totales) | Listado de totales. __Requerido__
-comprador | objeto [comprador](#comprador) | Información del comprador. __Requerido__
+totales | objeto tipo [totales](#totales) | Listado de totales. __Requerido__
+comprador | objeto tipo [comprador](#comprador) | Información del comprador. __Requerido__
 tipo_emision | integer | Emisión normal: `1`.<br>Emisión por indisponibilidad: `2`<br>__Requerido__
 items | listado de objetos tipo [item](#item-de-factura) | Items incluídos en la factura. __Requerido__
-version | string | Versión de la especificación, opciones válidas: `1.0.0`, `1.1.0`
+version | string | Versión del formato de comprobantes electrónicos de SRI. Si no se especifica, se utilizará la última revisión del formato implementada,
 clave_acceso | string | La clave de acceso representa un identificador único del comprobante. Si esta información no es provista, Dátil la generará.<br>¿Cómo [generar](#clave-de-acceso) la clave de acceso?
+informacion_adicional | objeto | Información adicional adjunta al comprobante en forma de diccionario. Ejemplo:<br>` {"plan": "Inicial", "vigencia": "1 mes"}`
 
 <!--aside class="success">
 Remember — a happy kitten is an authenticated kitten!
@@ -237,9 +323,9 @@ Remember — a happy kitten is an authenticated kitten!
 
 ### Respuesta
 
-> ### Respuesta de ejemplo
+> #### Respuesta de ejemplo
 
-```shell
+```json
 {
   "id": "abcf12343faad06785",
   "secuencial": 0,
@@ -295,66 +381,7 @@ Remember — a happy kitten is an authenticated kitten!
 }
 ```
 
-```python
-print respuesta.json()
-"""
-{
-  "id": "abcf12343faad06785",
-  "secuencial": 0,
-  "emisor": {
-    "ruc": "string",
-    "razon_social": "string",
-    "nombre_comercial": "string",
-    "direccion": "string",
-    "contribuyente_especial": "string",
-    "obligado_contabilidad": true,
-    "establecimiento": {
-      "codigo": "string",
-      "direccion": "string",
-      "punto_emision": "string"
-    }
-  },
-  "moneda": "string",
-  "id": "string",
-  "ambiente": 0,
-  "totales": {
-    "impuestos": [
-      {
-        "codigo": "string",
-        "codigo_porcentaje": "string"
-      }
-    ]
-  },
-  "comprador": {
-    "razon_social": "string",
-    "identificacion": "string",
-    "tipo_identificacion": "string",
-    "email": "string",
-    "direccion": "string",
-    "telefono": "string"
-  },
-  "tipo_emision": 0,
-  "items": [
-    {
-      "descripcion": "string",
-      "impuestos": [
-        {
-          "codigo": "string",
-          "codigo_porcentaje": "string"
-        }
-      ],
-      "detalles_adicionales": {},
-      "codigo_auxiliar": "string",
-      "codigo_principal": "string"
-    }
-  ],
-  "version": "string",
-  "clave_acceso": "string"
-}
-"""
-```
-
-Retorna un objeto **[factura](#requerimiento)** que incluye un nuevo parámetro `id`,
+Retorna un objeto tipo **[factura](#requerimiento)** que incluye un nuevo parámetro `id`,
 el cual identifica de manera única a la factura. El campo `clave_acceso` generado
 también se incluirá como parte de la respuesta.
 
@@ -368,10 +395,10 @@ Consulta una factura para conocer el estado de las fases del proceso de emisión
 
 ### Requerimiento
 
-> ### Requerimiento de ejemplo
+> #### Requerimiento de ejemplo
 
 ```shell
-curl -v https://api.datil.co/invoices/abcf12343faad06785 \
+curl -v http://link.datil.co/invoices/abcf12343faad06785 \
 -H "Content-Type: application/json" \
 -H "X-Key: <API-key>" \
 -H "X-Password: <clave-certificado-firma>" \
@@ -379,28 +406,22 @@ curl -v https://api.datil.co/invoices/abcf12343faad06785 \
 
 ```python
 import requests
-cabeceras = {
-    'x-key': 'clave-del-api'
-    'x-pasword': 'clave-certificado-firma',
-    'content-type': 'application/json'}
+cabeceras = {'x-key': 'clave-del-api'}
 respuesta = requests.get(
-    'https://api.datil.co/invoices/abcf12343faad06785',
+    'http://link.datil.co/invoices/abcf12343faad06785',
     headers = cabeceras)
+```
+
+```c#
 ```
 
 Reemplaza en la ruta `<invoice-ID>` por el `id` de la factura que necesitas consultar.
 
 ### Respuesta
 
-> ### Respuesta de ejemplo
+> #### Respuesta de ejemplo
 
-```shell
-{}
-```
-
-```python
-respuesta.json()
-# Respuesta completa de comprobante y sus propiedades relacionadas
+```json
 {
     "secuencial": "16",
     "fecha_emision": "2015-05-15",
@@ -426,7 +447,7 @@ respuesta.json()
     ],
     "guia_remision": "",
     "moneda": "USD",
-    "id": null,
+    "id": "abcf12343faad06785",
     "informacion_adicional": [],
     "ambiente": "1",
     "totales": {
@@ -502,19 +523,26 @@ respuesta.json()
 Parámetro | Tipo | Descripción
 --------- | ------- | -----------
 secuencial | string | Número de secuencia de la factura. __Requerido__
-emisor | [emisor](#emisor) | Información completa del emisor. __Requerido__
+fecha_emision | string | Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6).
+emisor | objeto tipo [emisor](#emisor) | Información completa del emisor. __Requerido__
 moneda | string | Código [ISO](https://en.wikipedia.org/wiki/ISO_4217) de la moneda. __Requerido__
 ambiente | integer | Pruebas: `1`.<br>Producción `2`.<br>__Requerido__
-totales | objeto [totales](#totales) | Listado de totales. __Requerido__
+totales | objeto tipo [totales](#totales) | Listado de totales. __Requerido__
 comprador | objeto [comprador](#comprador) | Información del comprador. __Requerido__
 tipo_emision | integer | Emisión normal: `1`.<br>Emisión por indisponibilidad: `2`<br>__Requerido__
 items | listado de objetos tipo [item](#item-de-factura) | Items incluídos en la factura. __Requerido__
 version | string | Versión de la especificación, opciones válidas: `1.0.0`, `1.1.0`
 clave_acceso | string | La clave de acceso representa un identificador único del comprobante. Si esta información no es provista, Dátil la generará.<br>¿Cómo [generar](#clave-de-acceso) la clave de acceso?
-envio_sri | objeto [envio sri](#envio-sri) | Información luego de enviar el comprobante.
-autorizacion | objeto [autorizacion sri](#autorizacion-sri) | Información de la autorización.
+envio_sri | objeto tipo [envio sri](#envío-sri) | Información luego de enviar el comprobante.
+autorizacion | objeto tipo [autorizacion sri](#autorización-sri) | Información de la autorización.
 
 # Clave de acceso
+
+El sistema se encarga de generar automáticamente la clave de acceso de cada
+comprobante y luego retornarla como parte de la respuesta de emisión del mismo.
+Pero es posible también proveer la clave de acceso si se requiere tener control
+en la generación de esta clave. La siguiente documentación explica como debe
+estar estructurada la clave de acceso.
 
 Las claves de acceso estarán compuestas de 49 caracteres numéricos, la herramienta o aplicativo a utilizar por el sujeto pasivo deberá generar de manera automática la clave de acceso, que constituirá un requisito que dará el carácter de único a cada uno de los comprobantes, y la misma servirá para que el SRI indique si el comprobante es autorizado o no; se describe a continuación su conformación:
 
@@ -596,16 +624,46 @@ total_sin_impuestos | float | Total antes de los impuestos.
 descuento           | float | Suma de los descuentos de cada ítem.
 propina             | float | Propina total, llamado también servicio.
 importe_total       | float | Total incluyendo impuestos.
-impuestos           | listado de objetos [total impuesto](#total-impuesto) | Listado de impuesto totalizados.
+impuestos           | listado de objetos [total impuesto](#impuesto-total) | Listado de impuesto totalizados.
 
-### Total impuesto
+### Impuesto total
 
 Parámetro | Tipo | Descripción
 --------- | ---- |-----------
-codigo | string | Código del impuesto.
+codigo | string | Código del [tipo de impuesto](#tipos-de-impuesto)
 codigo_porcentaje | string | Código del porcentaje.
 base_imponible | float | Base imponible.
 valor | float | Valor del total.
+
+## Envío SRI
+
+Contiene la información y el estado de la fase de envío al SRI
+
+Parámetro           | Tipo                    | Descripción
+------------------- | ----------------------- |-----------
+mensajes | listado de objeto [mensaje SRI](#mensajes-de-respuesta-sri) | Listado de mensajes.
+estado   | string | Posibles valores: `RECIBIDA`, `DEVUELTA`
+fecha    | string | Fecha en la que se realizó el envío en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6).
+
+## Autorización SRI
+
+Contiene la información y el estado de la fase de autorización del comprobante.
+
+Parámetro           | Tipo                    | Descripción
+------------------- | ----------------------- |-----------
+mensajes | listado de objeto [mensaje SRI](#mensajes-de-respuesta-sri) | Listado de mensajes.
+estado   | string | Posibles valores: `AUTORIZADO`, `NO AUTORIZADO`
+numero   | string | Número de autorización.
+fecha    | string | Fecha en la que se otorgó la autorización en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6).
+
+## Mensajes de respuesta SRI
+
+Parámetro             | Tipo   | Descripción
+--------------------- | ------ | -----------
+identificador         | string | Número con el que el SRI identifica al mensaje.
+mensaje               | string | Descripción del error, información o advertencia.
+tipo                  | string | Posibles valores: `INFORMATIVO`, `ADVERTENCIA`, `ERROR`
+informacion_adicional | string | Información adicional del mensaje.
 
 ## Item de factura
 
@@ -627,8 +685,20 @@ detalles_adicionales | object | Diccionario de datos de carácter adicional. Eje
 
 Parámetro | Tipo | Descripción
 --------- | ---- |-----------
-codigo | string | Código del impuesto.
+codigo | string | Código del [tipo de impuesto](#tipos-de-impuesto)
 codigo_porcentaje | string | Código del porcentaje.
 base_imponible | float | Base imponible.
 valor | float | Valor del total.
 tarifa | float | Porcentaje actual del impuesto expresado por un número entre 0.0 y 100.0
+
+# Catálogo
+
+## Tipos de impuesto
+
+Impuesto | Código
+-------- | ------
+IVA      | 2
+ICE      | 3
+IRBPNR   | 5
+
+
