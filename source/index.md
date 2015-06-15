@@ -175,8 +175,8 @@ This endpoint retrieves all articles published in `{region}` and `{category}` wi
 
 Parameter | Description
 --------- | -----------
-region | Filters articles published in `{region}`. See above for available countries. i.e. `U.S.`, `France`, `Ireland`
-category | Filters articles by `{category}`. See above for available categories. i.e. `All`, `News`, `Pre-Viral`. Note: the category should be passed in the language of the region. e.g. `Deutschland/Technik`
+region | Filters articles published in `{region}`. See above for available countries. i.e. `U.S.`, `France`, `Ireland`. Note: the region should be passed in English.
+category | Filters articles by `{category}`. See above for available categories. i.e. `All`, `News`, `Pre-Viral`. Note: the category should be passed in English.
 time_period | Filters articles published within the last `{time_period}` hours. Valid `time_periods` range from 1 up to 168 hours
 
 ## GET /v1/publisher
