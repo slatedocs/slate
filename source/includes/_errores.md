@@ -1,6 +1,6 @@
 # Errores
 
-Listado de posibles códigos de error y su significado.
+Listado de códigos de error y su significado.
 
 Código | Significado
 ---------- | -------
