@@ -413,6 +413,27 @@ respuesta = requests.get(
 ```
 
 ```c#
+using RestSharp;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace DatilClient {
+  class InvoicingServiceClient {
+    static void Main(string[] args) {
+
+      var client = new RestClient("http://link.datil.co/");
+      var idFactura = "id-factura";
+      var request = new RestRequest("invoices/" + idFactura, Method.POST);
+      request.AddHeader("X-Key", "clave-del-api");
+
+      IRestResponse response = client.Execute(request);
+
+      Console.WriteLine(response.Content);
+    }
+  }
+}
 ```
 
 Reemplaza en la ruta `<invoice-ID>` por el `id` de la factura que necesitas consultar.
