@@ -6,7 +6,6 @@ language_tabs:
   - objective_c: Objective-C
 
 toc_footers:
-  - <a id="sign" href='https://docs.google.com/a/sense360.com/forms/d/1EJwLR8GC0JAqeH5F1FIWKVZJ527qdQZ7GiWirS0mDxc/viewform?usp=send_form'>Sign Up for a Developer Key!</a>
   - <a href='http://github.com/tripit/slate'>Documentation Powered by Slate</a>
 
 includes:
@@ -55,7 +54,7 @@ The following are the main components of building with Sense360
 
 Triggers define the conditions under which your app should be notified.  There are 3 categories of places that you can be notified about.  These categories are:
 
-- [Place of Interest (POI)](#place-of-interest-(poi)) - Examples are: Restaurant, Shopping Mall, etc.
+- [Place of Interest](#place-of-interest) - Examples are: Restaurant, Shopping Mall, etc.
 - [Personal Place](#personal-place) - Examples are: Home/Work.
 - [Custom Geofence](#custom-geofence) - These can be any latitude/longitude point with a radius.
 
@@ -64,7 +63,7 @@ All triggers are built by the class FireTrigger.  Within there, you will find ev
 <aside class="notice"> IMPORTANT: A trigger on its own does nothing. You must build your triggers, and then add it to a Recipe in order to utilize the trigger. 
 </aside>
 
-## Place of Interest (POI)
+## Place of Interest
 
 Gives you the ability to be notified when a user enters or exits a particular POI type.
 
@@ -156,7 +155,7 @@ CustomGeofence | .whenEntersGeofences() | .whenExitsGeofences() | .whenExitsGeof
 - Geofences must have a radius of at least 30m
 - The SDK will not trigger immediately on entrance or exit because it needs to be sure of the user's presence.
 
-## Handling Trigger Creation Errors:
+## Handling Trigger Creation Errors
 
 ```swift
 let errorPointer = SenseSdkErrorPointer()
@@ -580,5 +579,4 @@ if(errorPtr.error != nil) {
 ```
 
 # Thanks for using Sense360
-
-### *To sign up for a developer key, click the green link on the left side of this page!*
+<div style="height:120px;"></div>

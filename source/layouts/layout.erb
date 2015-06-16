@@ -16,87 +16,153 @@ under the License.
 <% language_tabs = current_page.data.language_tabs %>
 <!doctype html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title><%= current_page.data.title || "API Documentation" %></title>
+<head>
+  <meta charset="utf-8">
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title><%= current_page.data.title || "API Documentation" %></title>
 
-    <%= stylesheet_link_tag :screen, media: :screen %>
-    <%= stylesheet_link_tag :print, media: :print %>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <% if current_page.data.search %>
-      <%= javascript_include_tag  "all" %>
-    <% else %>
-      <%= javascript_include_tag  "all_nosearch" %>
-    <% end %>
+  <%= stylesheet_link_tag :screen, media: :screen %>
+  <%= stylesheet_link_tag :print, media: :print %>
 
-    <% if language_tabs %>
-      <script>
-        $(function() {
-          setupLanguages(<%= language_tabs.map{ |lang| lang.is_a?(Hash) ? lang.keys.first : lang }.to_json %>);
-        });
-      </script>
-    <% end %>
-  </head>
+  <link href="stylesheets/main.css" rel="stylesheet" type="text/css" media="screen"/>
+  <link href="stylesheets/slate_custom.css" rel="stylesheet" type="text/css" media="screen"/>
 
-  <body class="<%= page_classes %>">
-    <a href="#" id="nav-button">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+  <% if current_page.data.search %>
+    <%= javascript_include_tag "all" %>
+  <% else %>
+    <%= javascript_include_tag "all_nosearch" %>
+  <% end %>
+
+  <% if language_tabs %>
+    <script>
+      $(function () {
+        setupLanguages(<%= language_tabs.map{ |lang| lang.is_a?(Hash) ? lang.keys.first : lang }.to_json %>);
+      });
+    </script>
+  <% end %>
+
+  <script type="text/javascript">
+
+    $(function () {
+      var $sidebar = $(".tocify-wrapper"),
+          $window = $(window),
+          offset = $sidebar.offset(),
+          topPadding = 15;
+
+      $window.scroll(function () {
+        if ($window.scrollTop() > offset.top) {
+          $sidebar.stop().animate({
+            marginTop: $window.scrollTop() - offset.top + topPadding
+          });
+        } else {
+          $sidebar.stop().animate({
+            marginTop: 0
+          });
+        }
+      });
+
+    });
+
+    $(function () {
+      var $sidebar = $("#nav-button"),
+          $window = $(window),
+          offset = $sidebar.offset(),
+          topPadding = 15;
+
+      $window.scroll(function () {
+        if ($window.scrollTop() > offset.top) {
+          $sidebar.stop().animate({
+            marginTop: $window.scrollTop() - offset.top + topPadding
+          });
+        } else {
+          $sidebar.stop().animate({
+            marginTop: 0
+          });
+        }
+      });
+
+    });
+  </script>
+</head>
+
+<body class="main <%= page_classes %>">
+
+<div class="header">
+  <div class="header-inner">
+    <div class="menu-box">
+      <a href="index.html" class="logo-blue"><img src="img/logo_blue.png"></a>
+      <a href="sign_up.html" class="register">REGISTER</a>
+
+      <div class="menu-nav">
+        <ul>
+          <li><a href="#">Ideas</a></li>
+          <li><a href="faq.html">Faq</a></li>
+          <li><a href="about_us.html">Company</a></li>
+          <li><a href="getting_started.html">Quick Start</a></li>
+          <li><a href=" http://sense-ios-docs.herokuapp.com/index.html">Docs</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="support.html">Support</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="topTitle">
+    <div class="topTitle-box">
+      <ul>
+        <li class="documentation"><a href="http://sense360docs.com">Quick Start</a></li>
+        <li class="get-key"><a href="sign_up.html" onclick="registerMainHomeButton()">Request API Key</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+<div class="getting-box">
+
+  <a href="#" id="nav-button" style="position:absolute; float: left;">
       <span>
         NAV
         <%= image_tag('navbar.png') %>
       </span>
-    </a>
-    <div class="tocify-wrapper">
-      <%= image_tag "logo.png" %>
-      <% if language_tabs %>
-        <div class="lang-selector">
-          <% language_tabs.each do |lang| %>
-            <% if lang.is_a? Hash %>
-              <a href="#" data-language-name="<%= lang.keys.first %>"><%= lang.values.first %></a>
-            <% else %>
-              <a href="#" data-language-name="<%= lang %>"><%= lang %></a>
-            <% end %>
-          <% end %>
-        </div>
-      <% end %>
-      <% if current_page.data.search %>
-        <div class="search">
-          <input type="text" class="search" id="input-search" placeholder="Search">
-        </div>
-        <ul class="search-results"></ul>
-      <% end %>
+  </a>
+
+  <div class="tocify-wrapper">
+    <% if current_page.data.search %>
+      <div class="search">
+        <input type="text" class="search" id="input-search" placeholder="Search">
+      </div>
+      <ul class="search-results"></ul>
+    <% end %>
+
+
+    <div class="getting-tab tabSwift active">
       <div id="toc">
       </div>
-      <% if current_page.data.toc_footers %>
-        <ul class="toc-footer">
-          <% current_page.data.toc_footers.each do |footer| %>
-            <li><%= footer %></li>
-          <% end %>
-        </ul>
+    </div>
+
+    <% if current_page.data.toc_footers %>
+      <ul class="toc-footer">
+        <% current_page.data.toc_footers.each do |footer| %>
+          <li><%= footer %></li>
+        <% end %>
+      </ul>
+    <% end %>
+  </div>
+
+
+  <div class="page-wrapper">
+    <div class="content">
+      <%= yield %>
+      <% current_page.data.includes && current_page.data.includes.each do |include| %>
+        <%= partial "includes/#{include}" %>
       <% end %>
     </div>
-    <div class="page-wrapper">
-      <div class="dark-box"></div>
-      <div class="content">
-        <%= yield %>
-        <% current_page.data.includes && current_page.data.includes.each do |include| %>
-          <%= partial "includes/#{include}" %>
-        <% end %>
-      </div>
-      <div class="dark-box">
-        <% if language_tabs %>
-          <div class="lang-selector">
-            <% language_tabs.each do |lang| %>
-              <% if lang.is_a? Hash %>
-                <a href="#" data-language-name="<%= lang.keys.first %>"><%= lang.values.first %></a>
-              <% else %>
-                <a href="#" data-language-name="<%= lang %>"><%= lang %></a>
-              <% end %>
-            <% end %>
-          </div>
-        <% end %>
-      </div>
+    <div class="dark-box">
     </div>
-  </body>
+  </div>
+</div>
+</body>
 </html>
