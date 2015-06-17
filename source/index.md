@@ -308,9 +308,11 @@ Containing Class | Property | Description
 --------- | ------- |------- | ---------
 SenseSdkError | message | The error message
 
-# RecipeFiredDelegate
+# After a trigger fires
 
-Acting on triggers are done by implementing the RecipeFiredDelegate protocol.  The protocol has one method with one argument that contains the information on why and when the recipe fired.
+Acting on triggers is done by implementing the RecipeFiredDelegate protocol. In order to implement the protocol, you must define the recipeFired method, which has one parameter of type RecipeFiredArgs. 
+
+The RecipeFiredArgs contains trigger-specific information which is passed through an array of TriggerFiredArgs. 
 
 ```swift
 class MyCallback : RecipeFiredDelegate {
@@ -343,7 +345,8 @@ class MyCallback : RecipeFiredDelegate {
 <aside class="warning"> When we call your recipe delegate method, your code will have 10 seconds to run before iOS will shutdown the app
 </aside>
 
-## RecipeFiredDelegate
+## RecipeFiredArgs
+
 
 Property | Type | Description
 --------- | ------- |------- 
@@ -498,6 +501,9 @@ A trigger is often just one half of the puzzle.  Your specific case may require 
 
 Several conditions may be applied when creating any type of trigger through the FireTrigger class.  All conditions applied to a trigger MUST be satisfied in order for the entire recipe to fire.
 
+<aside class="notice"> The only conditional element supported as of today is fartherThan, but closerThan and many more will be coming soon.
+</aside>
+
 ```swift
 FireTrigger.whenEntersPoi(.Airport, conditions: conditions)
 ```
@@ -507,9 +513,17 @@ FireTrigger.whenEntersPoi(.Airport, conditions: conditions)
 ```
 
 ## Farther Than Condition
-The farther than modifier ensures that the trigger will only fire if the user is farther than X kilometers from either a personalized place or a list of custom geofences.
+The farther than condition ensures that the trigger will only fire if the user is farther than X kilometers from either a personalized place or a list of custom geofences.
 
 One use could be that you your app should suggest a hotel to stay at when your user enters an airport and is farther than 150 kilometers from their home.
+
+### Caveats:
+
+- If you specify multiple geofences within a single condition, the user must be farther than ALL of the locations in order to trigger the callback.
+- If you need to create a fartherThan condition where user only needs to be [x] distance from one of multiple locations, you will need to create an individual Recipe PLUS Conditional Element per geofence.
+
+<aside class="warning"> Note: you cannot use the fartherThan condition with POI Place Types.
+</aside>
 
 ```swift
 let condition = UsersLocation.isFartherThanPersonalizedPlace(.Home, kilometers: 150)
