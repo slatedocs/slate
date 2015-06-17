@@ -41,7 +41,7 @@ del servicio y la ruta de la operación. Las cuales se encuentran descritas en c
 sección donde se describe una función del API. Esta operación, por ejemplo, emite
 una factura:
 
-`POST http://link.datil.co/invoices/issue`
+`POST https://link.datil.co/invoices/issue`
 
 La URI anterior en conjunto con la información en formato JSON como cuerpo del
 requerimiento y las cabeceras HTTP necesarias, conforman el requerimiento.
@@ -93,7 +93,7 @@ de firma electrónica. Esta clave deberá ser provista en una cabecera:
 > #### Requerimiento de ejemplo
 
 ```shell
-curl -v http://link.datil.co/invoices/issue \
+curl -v https://link.datil.co/invoices/issue \
 -H "Content-Type: application/json" \
 -H "X-Key: <API-key>" \
 -H "X-Password: <clave-certificado-firma>" \
@@ -231,7 +231,7 @@ namespace DatilClient {
       // go to menu: tools > Library Package Manager > Package Manager Console
       // paste and press enter: Install-Package RestSharp
 
-      var client = new RestClient("http://link.datil.co/");
+      var client = new RestClient("https://link.datil.co/");
       var request = new RestRequest("invoices/issue", Method.POST);
       request.AddHeader("X-Key", "clave-del-api");
       request.AddHeader("X-Password", "clave-certificado-firma");
@@ -398,7 +398,7 @@ Consulta una factura para conocer el estado de las fases del proceso de emisión
 > #### Requerimiento de ejemplo
 
 ```shell
-curl -v http://link.datil.co/invoices/abcf12343faad06785 \
+curl -v https://link.datil.co/invoices/abcf12343faad06785 \
 -H "Content-Type: application/json" \
 -H "X-Key: <API-key>" \
 -H "X-Password: <clave-certificado-firma>" \
@@ -408,7 +408,7 @@ curl -v http://link.datil.co/invoices/abcf12343faad06785 \
 import requests
 cabeceras = {'x-key': 'clave-del-api'}
 respuesta = requests.get(
-    'http://link.datil.co/invoices/abcf12343faad06785',
+    'https://link.datil.co/invoices/abcf12343faad06785',
     headers = cabeceras)
 ```
 
@@ -423,7 +423,7 @@ namespace DatilClient {
   class InvoicingServiceClient {
     static void Main(string[] args) {
 
-      var client = new RestClient("http://link.datil.co/");
+      var client = new RestClient("https://link.datil.co/");
       var idFactura = "id-factura";
       var request = new RestRequest("invoices/" + idFactura, Method.POST);
       request.AddHeader("X-Key", "clave-del-api");
