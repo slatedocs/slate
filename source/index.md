@@ -20,7 +20,7 @@ Sense360 allows you to quickly build functions around actions that your users ta
 
 Eventually, we aim to have a trigger for any action a user can take, whether it be "running", "driving", "waking up", "eating", "watching tv", "playing basketball", "watching basketball", etc.
 
-**Sign up for a developer key** by clicking the green link on the left. 
+**Sign up for a developer key** by clicking the "Request API Key" on the top right
 
 Have fun creating!
 
