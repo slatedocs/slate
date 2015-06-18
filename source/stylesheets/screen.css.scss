@@ -30,7 +30,7 @@ html, body {
   padding: 0;
   margin: 0;
   @extend %default-font;
-  background-color: $main-bg;
+  background-color: white;
   height: 100%;
   -webkit-text-size-adjust: none; /* Never autoresize text */
 }
@@ -290,7 +290,7 @@ html, body {
   position: relative;
   /*float: right;*/
   z-index: 10;
-  background-color: $main-bg;
+  background-color: white;
   min-height: 100%;
 
   padding-bottom: 1px; // prevent margin overflow
@@ -351,6 +351,8 @@ html, body {
     @include text-shadow($main-embossed-text-shadow);
 
     @extend %left-col;
+  }
+  body {
   }
 
   & > ul, & > ol {
