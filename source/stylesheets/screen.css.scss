@@ -537,6 +537,17 @@ html, body {
 // This is all the stuff that appears in the right half of the page
 
 .content {
+
+  a {
+    color: royalblue;
+    text-decoration: none;
+    border-bottom: dashed 1px #ccc;
+  }
+
+  a:hover {
+    border-bottom: solid 1px #ccc;
+  }
+
   pre, blockquote {
     overflow-x: auto;
     background: #e9f0f3;
@@ -564,12 +575,6 @@ html, body {
 
     & > p {
       margin: 0;
-    }
-
-    a {
-      color: #fff;
-      text-decoration: none;
-      border-bottom: dashed 1px #ccc;
     }
   }
 
