@@ -341,7 +341,8 @@ class MyCallback : RecipeFiredDelegate {
 }
 ```
 
-<aside class="warning"> When we call your recipe delegate method, your code will have 10 seconds to run before iOS will shutdown the app
+<aside class="warning"> In the event that your app was not running previously, your code will have 10 seconds to run once we call your recipe delegate method.
+After which time, iOS is free to shutdown your app.
 </aside>
 
 ## RecipeFiredArgs
