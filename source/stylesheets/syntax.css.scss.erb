@@ -13,13 +13,46 @@ WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
 License for the specific language governing permissions and limitations
 under the License.
 */
-
 @import 'variables';
 
-<%= Rouge::Themes::Base16::Monokai.render(:scope => '.highlight') %>
+<%= Rouge::Themes::Base16::Monokai.mode(:light).render(:scope => '.highlight') %>
+
+code.highlight.swift {
+  font-size: 16px;
+  text-shadow: 0 1px white;
+  font-family: Consolas, Monaco, 'Andale Mono', monospace;
+  direction: ltr;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  line-height: 1.5;
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+}
+
+code.highlight.objective_c {
+  font-size: 16px;
+  text-shadow: 0 1px white;
+  font-family: Consolas, Monaco, 'Andale Mono', monospace;
+  direction: ltr;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  line-height: 1.5;
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+}
 
 .highlight .c, .highlight .cm, .highlight .c1, .highlight .cs {
   color: #909090;
+}
+
+.highlight .kt {
+  /*color: #000000;*/
 }
 
 .highlight, .highlight .w {

@@ -92,7 +92,7 @@
 
 <p>All triggers are built by the class FireTrigger.  Within there, you will find every function you need to get going.</p>
 
-<aside class="notice"> IMPORTANT: A trigger on its own does nothing. You must build your triggers, and then add it to a Recipe in order to utilize the trigger. 
+<aside class="notice"> IMPORTANT: A trigger on its own does nothing. You must build your triggers, and then add it to a Recipe in order to utilize the trigger.
 </aside>
 
 <h2 id="place-of-interest-(poi)">Place of Interest (POI)</h2>
@@ -289,7 +289,7 @@
 <pre><code class="highlight swift"><span class="c1">// Basic trigger. No time restriction. No cooldown. (can fire at most every minute)
 </span><span class="k">let</span> <span class="nv">recipe</span> <span class="o">=</span> <span class="kt">Recipe</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="s">"My Recipe"</span><span class="p">,</span> <span class="nv">trigger</span><span class="p">:</span> <span class="n">someTrigger</span><span class="p">)</span>
 </code></pre>
-<pre><code class="highlight objective_c"><span class="n">Recipe</span> <span class="o">*</span><span class="n">recipe</span> <span class="o">=</span> <span class="p">[[</span><span class="n">Recipe</span> <span class="nf">alloc</span><span class="p">]</span> <span class="nf">initWithName</span><span class="p">:</span> <span class="s">@"My Recipe"</span> 
+<pre><code class="highlight objective_c"><span class="n">Recipe</span> <span class="o">*</span><span class="n">recipe</span> <span class="o">=</span> <span class="p">[[</span><span class="n">Recipe</span> <span class="nf">alloc</span><span class="p">]</span> <span class="nf">initWithName</span><span class="p">:</span> <span class="s">@"My Recipe"</span>
                                       <span class="nf">trigger</span><span class="p">:</span> <span class="n">someTrigger</span>
                                    <span class="nf">timeWindow</span><span class="p">:</span> <span class="p">[</span><span class="n">TimeWindow</span> <span class="nf">allDay</span><span class="p">]</span>
                                      <span class="nf">cooldown</span><span class="p">:</span> <span class="p">[</span><span class="n">Cooldown</span> <span class="nf">defaultCooldown</span><span class="p">]];</span>
@@ -329,7 +329,7 @@
 <p>A time window specifies which hours of the day a trigger is allowed to fire.</p>
 <pre><code class="highlight swift"><span class="c1">// This will only allow a trigger to fire between the hours of 5pm and 10pm (in the users local time)
 </span><span class="k">let</span> <span class="nv">recipe</span> <span class="o">=</span> <span class="kt">Recipe</span><span class="p">(</span>
-  <span class="nv">name</span><span class="p">:</span> <span class="s">"My Recipe"</span><span class="p">,</span> 
+  <span class="nv">name</span><span class="p">:</span> <span class="s">"My Recipe"</span><span class="p">,</span>
   <span class="nv">trigger</span><span class="p">:</span> <span class="n">someTrigger</span><span class="p">,</span>
   <span class="nv">window</span><span class="p">:</span> <span class="kt">TimeWindow</span><span class="o">.</span><span class="nf">create</span><span class="p">(</span><span class="nv">fromHour</span><span class="p">:</span> <span class="mi">17</span><span class="p">,</span> <span class="nv">toHour</span><span class="p">:</span> <span class="mi">22</span><span class="p">))</span>
 </code></pre>
@@ -392,8 +392,8 @@
 <p>The amount of time after a trigger fires, to wait before the same trigger can fire again.</p>
 <pre><code class="highlight swift"><span class="c1">// Wait 2 days after the trigger fires
 </span><span class="k">let</span> <span class="nv">recipe</span> <span class="o">=</span> <span class="kt">Recipe</span><span class="p">(</span>
-  <span class="nv">name</span><span class="p">:</span> <span class="s">"My Recipe"</span><span class="p">,</span> 
-  <span class="nv">trigger</span><span class="p">:</span> <span class="n">someTrigger</span><span class="p">,</span> 
+  <span class="nv">name</span><span class="p">:</span> <span class="s">"My Recipe"</span><span class="p">,</span>
+  <span class="nv">trigger</span><span class="p">:</span> <span class="n">someTrigger</span><span class="p">,</span>
   <span class="nv">cooldown</span><span class="p">:</span> <span class="kt">Cooldown</span><span class="o">.</span><span class="nf">create</span><span class="p">(</span><span class="nv">oncePer</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="nv">frequency</span><span class="p">:</span> <span class="o">.</span><span class="kt">Days</span><span class="p">)</span><span class="o">!</span>
 </code></pre>
 <pre><code class="highlight objective_c"><span class="c1">// Wait 2 days after the trigger fires
@@ -847,7 +847,7 @@
 
 <h3 id="to-sign-up-for-a-developer-key,-click-the-green-link-on-the-left-side-of-this-page!"><em>To sign up for a developer key, click the green link on the left side of this page!</em></h3>
 
-          
+
       </div>
       <div class="dark-box">
           <div class="lang-selector">
