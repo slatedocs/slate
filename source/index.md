@@ -13,6 +13,7 @@ includes:
     - api-types
     - api-url
     - auth
+    - api-wrapper
     - batch
     - rankings
     - local-directories
