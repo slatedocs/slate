@@ -28,11 +28,12 @@ under the License.
   <link href="stylesheets/main.css" rel="stylesheet" type="text/css" media="screen"/>
   <link href="stylesheets/slate_custom.css" rel="stylesheet" type="text/css" media="screen"/>
 
+  <script src="javascripts/lib/GA.js" type="text/javascript"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
   <% if current_page.data.search %>
-    <%= javascript_include_tag "all" %>
+  <%= javascript_include_tag "all" %>
   <% else %>
-    <%= javascript_include_tag "all_nosearch" %>
+  <%= javascript_include_tag "all_nosearch" %>
   <% end %>
 
   <% if language_tabs %>
@@ -100,9 +101,9 @@ under the License.
           <li><a href="#">Ideas</a></li>
           <li><a href="faq.html">Faq</a></li>
           <li><a href="about_us.html">Company</a></li>
-          <li><a href="http://test-sense-web.herokuapp.com/getting_started.html">Quick Start</a></li>
-          <li><a href=" http://sense-ios-docs.herokuapp.com/index.html">Docs</a></li>
-          <li><a href="#">Blog</a></li>
+          <li><a href="getting_started.html">Quick Start</a></li>
+          <li><a href="docs.html">Docs</a></li>
+          <li><a href="blog/">Blog</a></li>
           <li><a href="support.html">Support</a></li>
         </ul>
       </div>
@@ -112,7 +113,7 @@ under the License.
   <div class="topTitle">
     <div class="topTitle-box">
       <ul>
-        <li class="documentation"><a href="http://test-sense-web.herokuapp.com/getting_started.html">Quick Start</a>
+        <li class="documentation"><a href="getting_started.html">Quick Start</a>
         </li>
         <li class=" get-key"><a href="sign_up.html" onclick="registerMainHomeButton()">Request API Key</a></li>
       </ul>
