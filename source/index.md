@@ -1,14 +1,12 @@
 ---
-title: API Reference
+title: Astronomer Documentation
 
 language_tabs:
   - shell
-  - ruby
-  - python
+  - javascript
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='http://github.com/tripit/slate'>Documentation Powered by Slate</a>
+  - <a href='http://astronomer.io'>Sign up for a free Astronomer account</a>
 
 includes:
   - errors
@@ -165,4 +163,3 @@ This endpoint retrieves a specific kitten.
 Parameter | Description
 --------- | -----------
 ID | The ID of the cat to retrieve
-
