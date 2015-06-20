@@ -15,13 +15,14 @@ def run(command)
 end
 
 def main
+  run("rm -rf build")
   run("rake build")
-  run("rm -rf public/images")
-  run("rm -rf public/fonts")
-  run("rm -rf public/javascripts")
-  run("rm -rf public/stylesheets")
-  run("rm public/*")
-  run("mv build/* public/")
+  
+  run("cp -r build/javascripts/ ../PublicWebsite/javascripts")
+  run("cp source/javascripts/lib/GA.js ../PublicWebsite/javascripts/lib/")
+  run("cp -r build/fonts/ ../PublicWebsite/fonts/")
+  run("cp -r build/stylesheets/ ../PublicWebsite/stylesheets/")
+  run("cp build/index.html ../PublicWebsite/docs.html")
 end
 
 main
