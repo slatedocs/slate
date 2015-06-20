@@ -1,6 +1,8 @@
 Slate
 ========
 
+[![Join the chat at https://gitter.im/tripit/slate](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/tripit/slate?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 [![Build Status](https://travis-ci.org/tripit/slate.svg?branch=master)](https://travis-ci.org/tripit/slate) [![Dependency Status](https://gemnasium.com/tripit/slate.png)](https://gemnasium.com/tripit/slate)
 
 Slate helps you create beautiful API documentation. Think of it as an intelligent, responsive documentation template for your API.
@@ -81,6 +83,15 @@ Examples of Slate in the Wild
 * [Buddycloud API](http://buddycloud.com/api)
 * [Crafty Clicks API](https://craftyclicks.co.uk/api/)
 * [Paracel API Reference](http://paracel.io/docs/api_reference.html)
+* [Switch Payments Documentation](http://switchpayments.com/docs/) & [API](http://switchpayments.com/developers/)
+* [Coinbase API Reference](https://developers.coinbase.com/api)
+* [Whispir.io API](https://whispir.github.io/api)
+* [NASA API](https://data.nasa.gov/developer/external/planetary/)
+* [CardPay API](https://developers.cardpay.com/)
+* [IBM Cloudant](https://docs-testb.cloudant.com/content-review/_design/couchapp/index.html)
+* [Bitrix basis components](http://bbc.bitrix.expert/)
+* [viagogo API Documentation](http://developer.viagogo.net/)
+* [Fidor Bank API Documentation](http://docs.fidor.de/)
 
 (Feel free to add your site to this list in a pull request!)
 
