@@ -405,14 +405,13 @@ html, body {
 
   h3, h4, h5, h6 {
     @extend %header-font;
-    font-size: 12px;
+    font-size: 16px;
     margin-top: 2.5em;
     margin-bottom: 0.8em;
-    text-transform: uppercase;
   }
 
   h4, h5, h6 {
-    font-size: 10px;
+    font-size: 14px;
   }
 
   hr {
