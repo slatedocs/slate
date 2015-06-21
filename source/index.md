@@ -32,7 +32,11 @@ Swift and Objective-C projects are available at <a href='https://github.com/Sens
 
 You can download the stand alone framework <a href='https://www.dropbox.com/s/few391levfy93aj/SenseSdk.framework.zip?dl=0'>here</a>.
 
-# API Components
+# Quick Start
+
+To get up running quickly we also have provided a <a href="http://www.sense360.com/getting_started.html">Quick Start Guide</a>.
+
+# API Concepts
 
 The following are the main components of building with Sense360
 
@@ -55,7 +59,7 @@ The following are the main components of building with Sense360
 Triggers define the conditions under which your app should be notified.  There are 3 categories of places that you can be notified about.  These categories are:
 
 - [Place of Interest](#place-of-interest) - Examples are: Restaurant, Shopping Mall, etc.
-- [Personal Place](#personal-place) - Examples are: Home/Work.
+- [Personal Place](#personal-place) - Examples are: Home, Work.
 - [Custom Geofence](#custom-geofence) - These can be any latitude/longitude point with a radius.
 
 All triggers are built by the class FireTrigger.  Within there, you will find every function you need to get going.
@@ -117,8 +121,9 @@ Work | .whenEntersPersonalizedPlace(.Work) | .whenExitsPersonalizedPlace(.Work) 
 ### Caveats
 - The SDK takes roughly a week to determine a user's home or work. After the SDK identifies the users home or work, it can then start detecting the users presence there.
 - The SDK will continually try to update the user's home every few days.
-- Due to the sensitivity of this data, neither developers nor us will ever see the raw data or store a users home or office location. The computation happens on the device itself and stays there to ensure your users privacy.
 - The sdk will not trigger immediately on entrance or exit because it needs to be sure of the user's presence.
+
+<aside class="warning">Due to the sensitivity of this data, neither developers nor us will ever see the raw data or store a users home or office location. The computation happens on the device itself and stays there to ensure your users privacy.</aside>
 
 ## Custom Geofence
 
@@ -157,6 +162,8 @@ CustomGeofence | .whenEntersGeofences() | .whenExitsGeofences() | .whenExitsGeof
 
 ## Handling Trigger Creation Errors
 
+When creating triggers an error can be returned instead of a trigger if an invalid trigger has been created.
+
 ```swift
 let errorPointer = SenseSdkErrorPointer()
 let result = FireTrigger.whenEntersPoi(.Airport, errorPtr: errorPointer)
@@ -184,7 +191,7 @@ In the event that there is an error when setting up a trigger, a nil will be ret
 The Recipe is the container that encases your trigger, and various other settings.  Recipes are registered globally within your application with a call to the [SenseSdk](#sensesdk).  Below are the inputs that make up a Recipe:
 
 ```swift
-// Basic trigger. No time restriction. No cooldown. (can fire at most every minute)
+// Basic trigger. No time restriction. No cooldown. (can fire at most every 5 minutes)
 let recipe = Recipe(name: "My Recipe", trigger: someTrigger)
 ```
 
@@ -208,7 +215,8 @@ uniqueId (String)| true |
 A time window specifies which hours of the day a trigger is allowed to fire.
 
 ```swift
-// This will only allow a trigger to fire between the hours of 5pm and 10pm (in the users local time)
+// This will only allow a trigger to fire between the hours of 
+// 5pm and 10pm (in the users local time)
 let recipe = Recipe(
   name: "My Recipe", 
   trigger: someTrigger,
@@ -292,7 +300,7 @@ Boolean success = [SenseSdk registerWithRecipe:recipe delegate:callback errorPtr
 Function | Parameters | Description
 --------- | ------- |------- 
 enableSdkWithKey | String | Enable the SDK with your application key (provided by Sense360)
-register | [Recipe](#recipes), [RecipeFiredDelegate](#recipefireddelegate), [SenseSdkErrorPointer](#sensesdkerrorpointer) | Starts the recipe and registers the delegate to be called when the trigger fires.
+register | [Recipe](#recipes), [RecipeFiredDelegate](#handling-trigger-firing), [SenseSdkErrorPointer](#sensesdkerrorpointer) | Starts the recipe and registers the delegate to be called when the trigger fires.
 unregister | String | Stops and removes the recipe from SenseSdk by name.
 findRecipe | String | Finds and returns a recipe by name.
 
@@ -307,7 +315,7 @@ Containing Class | Property | Description
 --------- | ------- |------- | ---------
 SenseSdkError | message | The error message
 
-# After a trigger fires
+# Handling Trigger Firing
 
 Acting on triggers is done by implementing the RecipeFiredDelegate protocol. In order to implement the protocol, you must define the recipeFired method, which has one parameter of type RecipeFiredArgs. 
 
@@ -347,6 +355,7 @@ After which time, iOS is free to shutdown your app.
 
 ## RecipeFiredArgs
 
+The details of the recipe when it is fired.
 
 Property | Type | Description
 --------- | ------- |------- 
@@ -358,6 +367,8 @@ confidenceLevel | [ConfidenceLevel](#confidence-levels) | The combined confidenc
 
 ## TriggerFiredArgs
 
+The details of a trigger when it fires.
+
 Property | Type | Description
 --------- | ------- |-------
 timestamp | NSDate | The time at which this trigger fired
@@ -365,6 +376,8 @@ places | [[Place](#places)] | The places that caused this trigger to fired
 confidenceLevel | [ConfidenceLevel](#confidence-levels) | The confidence that the corresponding action actually occurred
 
 ## Places
+
+Below is a list of the types of places that can be passed back when the Recipe fires. Which one is presented depends on the type of trigger you use.
 
 ### CustomGeofence
 
@@ -497,25 +510,36 @@ Medium |
 Low |
 
 # Conditional Elements
-A trigger is often just one half of the puzzle.  Your specific case may require a trigger to fire only when your user satisfies some other criteria, like how far they are from their home.  A conditional element allows you to do just that.
+
+A conditional element is an extra restriction that you can create for a trigger that must be satisfied. A condition must be paired with a trigger and cannot stand alone.
 
 Several conditions may be applied when creating any type of trigger through the FireTrigger class.  All conditions applied to a trigger MUST be satisfied in order for the entire recipe to fire.
 
-<aside class="notice"> The only conditional element supported as of today is fartherThan, but closerThan and many more will be coming soon.
-</aside>
+## Farther Than Condition
+
+The farther than condition ensures that the trigger will only fire if the user is farther than X kilometers from either a personalized place or a list of custom geofences.
+
+For example, if you can trigger when a user enters a restaurant that is farther than 150 kilometers from their home.
 
 ```swift
-FireTrigger.whenEntersPoi(.Airport, conditions: conditions)
+let fartherThanHome = UsersLocation.isFartherThanPersonalizedPlace(
+        .Home, 
+        kilometers: 150)!
+  
+let restaurantTrigger = FireTrigger.whenEntersPoi(
+        .Restaurant, 
+        conditions: [fartherThanHome], 
+        errorPtr: errorPointer)
 ```
 
 ```objective_c
-[FireTrigger whenEntersPoi:PoiTypeAirport conditions:conditions errorPtr:nil];
+ConditionalElement *fartherThanHome = [UsersLocation
+                                       isFartherThanPersonalizedPlace:PersonalizedPlaceTypeHome
+                                       kilometers:[NSNumber numberWithInt:150]
+                                       errorPtr:errorPtr];
+NSArray* conditions = [[NSArray alloc] initWithObjects:fartherThanHome, nil];
+Trigger *restaurantTrigger = [FireTrigger whenEntersPoi:PoiTypeRestaurant conditions:conditions errorPtr:errorPtr];
 ```
-
-## Farther Than Condition
-The farther than condition ensures that the trigger will only fire if the user is farther than X kilometers from either a personalized place or a list of custom geofences.
-
-One use could be that you your app should suggest a hotel to stay at when your user enters an airport and is farther than 150 kilometers from their home.
 
 ### Caveats:
 
@@ -524,17 +548,6 @@ One use could be that you your app should suggest a hotel to stay at when your u
 
 <aside class="warning"> Note: you cannot use the fartherThan condition with POI Place Types.
 </aside>
-
-```swift
-let condition = UsersLocation.isFartherThanPersonalizedPlace(.Home, kilometers: 150)
-```
-
-```objective_c
-ConditionalElement* condition = [UsersLocation 
-                     isFartherThanPersonalizedPlace:PersonalizedPlaceTypeHome
-                                         kilometers:[NSNumber numberWithInt:150]
-                                           errorPtr:nil];
-```
 
 # Testing
 
