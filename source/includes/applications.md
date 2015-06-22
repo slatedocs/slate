@@ -107,8 +107,7 @@ business_unit | The business unit the application belongs to
 POST /api/v2/applications/:3 HTTP/1.1
 Accept: application/json
 Authorization: Token "YOUR SDE ACCESS TOKEN"
-
-
+```
 
 ```http
 HTTP/1.1 200 OK
