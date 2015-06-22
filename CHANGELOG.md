@@ -1,5 +1,24 @@
 # Changelog
 
+## Version 1.2
+
+*June 20, 2014*
+
+**Fixes:**
+
+- Remove crash on invalid languages
+- Update Tocify to scroll to the highlighted header in the Table of Contents
+- Fix variable leak and update search algorithms
+- Update Python examples to be valid Python
+- Update gems
+- More misc. bugfixes of Javascript errors
+- Add Dockerfile
+- Remove unused gems
+- Optimize images, fonts, and generated asset files
+- Add chinese font support
+- Remove RedCarpet header ID patch
+- Update language tabs to not disturb existing query strings
+
 ## Version 1.1
 
 *July 27th, 2014*
