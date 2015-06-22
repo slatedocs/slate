@@ -2,6 +2,7 @@
 title: API Reference
 
 language_tabs:
+    - http
     - shell
 
 toc_footers:
