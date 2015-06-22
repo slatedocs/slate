@@ -19,7 +19,13 @@ includes:
   - endpoint-public
   - endpoint-dataset
   - endpoint-variable
+  - endpoint-filter
+  - endpoint-analysis
+  - endpoint-version
+  - endpoint-batch
+  - endpoint-source
   - endpoint-user
+  - endpoint-team
   - object-reference
 
 search: true
