@@ -28,7 +28,7 @@ This endpoint retrieves a list of application objects.
 
 **HTTP Request:** `GET http://example.com/api/v2/applications`
 
-
+---
 
 ### Include & Expand Options
 

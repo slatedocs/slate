@@ -46,6 +46,7 @@ Will return a list of tasks associated with the project having id "project_id".
 
 `GET /api/v2/projects/{project_id}/tasks/`
 
+---
 
 ### Include & Expand Options
 
@@ -189,4 +190,3 @@ Field | Description
 ------|---------------------
 status| expands the status field associated with the task
 description | expands the description field associated with the task
-
