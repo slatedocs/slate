@@ -2,13 +2,16 @@
 
 ## Get All Applications
 
-```shell
-curl "http://example.com/api/v2/applications"
-  -H "Token xxxxxxxxxxxxxxxxxxxxx"
+```http
+GET /api/v2/applications/ HTTP/1.1
+Accept: application/json
+Authorization: Token "YOUR SDE ACCESS TOKEN"
 ```
-> The above command returns JSON structured like this:
 
-```json
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+
 {
     "results": [{
         "id": 1,
@@ -21,24 +24,25 @@ curl "http://example.com/api/v2/applications"
     }]
 }
 ```
-This endpoint retrieves all application objects.
+This endpoint retrieves a list of application objects.
 
-### HTTP Request
-
-`GET http://example.com/api/v2/applications`
+**HTTP Request:** `GET http://example.com/api/v2/applications`
 
 
 
-## - Include Options
+### Include & Expand Options
 
-```shell
-curl "http://example.com/api/v2/application/?include=projects"
-  -H "Authorization: Token xxxxxxxxxxxxxxxxxxxxx"
+
+```http
+GET /api/v2/applications/?include=projects HTTP/1.1
+Accept: application/json
+Authorization: Token "YOUR SDE ACCESS TOKEN"
 ```
 
-> The above command returns JSON structured like this:
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
 
-```json
 {
     "results": [{
         "id": 3,
@@ -56,28 +60,17 @@ curl "http://example.com/api/v2/application/?include=projects"
 }
 ```
 
-The following fields may be [included](#include-&-expand-options) in the applications request:
 
-* projects
-
-Notice how a list of project objects, which were previously not included in the applications request, are now embedded in the returned application objects.
-
-### HTTP Request
-
-`GET http://example.com/api/v2/application/?include=projects`
-
-
-
-## - Expand Options
-
-```shell
-curl "http://example.com/api/v2/application/?expand=business_units"
-  -H "Authorization: Token xxxxxxxxxxxxxxxxxxxxx"
+```http
+GET /api/v2/applications/?expand=business_units HTTP/1.1
+Accept: application/json
+Authorization: Token "YOUR SDE ACCESS TOKEN"
 ```
 
-> The above command returns JSON structured like this:
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
 
-```json
 {
     "results": [{
         "id": 3,
@@ -94,26 +87,33 @@ curl "http://example.com/api/v2/application/?expand=business_units"
     }]
 }
 ```
+See the [Include and Expand Options](#include-&-expand-options) section for a fuller discussion on their functionality.
 
-The following fields may be [expanded](#include-&-expand-options) in the applications request:
+Include
 
-* business_unit
+Field | Description
+------|------------------------------
+projects | something ehre
 
-### HTTP Request
+Expand
 
-`GET http://example.com/api/v2/application/?expand=business_unit`
-
+Field | Description
+------|------------------------------
+business_unit | The business unit the application belongs to
 
 ## Get a Specific Application
 
-```shell
-curl "http://example.com/api/v2/application/:3"
-  -H "Authorization: Token xxxxxxxxxxxxxxxxxxxxx"
-```
+```http
+POST /api/v2/applications/:3 HTTP/1.1
+Accept: application/json
+Authorization: Token "YOUR SDE ACCESS TOKEN"
 
-> The above command returns JSON structured like this:
 
-```json
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+
 {
     "results": [{
         "id": 3,
@@ -127,11 +127,9 @@ curl "http://example.com/api/v2/application/:3"
 }
 ```
 
-This endpoint retrieves a single application, as specified by the id parameter.
+This endpoint retrieves a single application resource, as specified by the id parameter.
 
-### HTTP Request
-
-`GET http://example.com/application/:{id}`
+**HTTP Request:** `GET http://example.com/application/:{id}`
 
 ### URL Parameters
 
@@ -143,15 +141,22 @@ id | The id of the application to retrieve
 
 ## Create a New Application
 
-```shell
-curl –X POST -H "Authorization: Token xxxxxxxxxxxxxxxxxxxxx" -H
-"Content-type: application/json"
-"https://example.com/api/v2/applications/" --data '{"name":"API Test"}'
+```http
+POST /api/v2/applications/?expand=business_units HTTP/1.1
+Accept: application/json
+Authorization: Token "YOUR SDE ACCESS TOKEN"
+
+{
+    "name":"API Test"
+}
+
 ```
 
-> The above command returns JSON structured like this:
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
 
-```json
+
 {
     "results": [{
         "id": 3,
@@ -165,9 +170,7 @@ curl –X POST -H "Authorization: Token xxxxxxxxxxxxxxxxxxxxx" -H
 }
 ```
 
-### HTTP Request
-
-`POST /api/v2/applications/`
+**HTTP Request:** `POST /api/v2/applications/`
 
 Fields | Required| Description
 -------|----------|-------------
@@ -178,15 +181,22 @@ business_unit| Yes |The ID of the business unit the application belongs to
 ## Edit an Application
 
 
-```shell
-curl –X PUT -H "Authorization: Token xxxxxxxxxxxxxxxxxxxxx" -H
-"Content-type: application/json"
-"https://example.com/api/v2/applications/1/" --data '{"name":"Edit Test", "business_unit":2}'
+```http
+POST /api/v2/applications/1/ HTTP/1.1
+Accept: application/json
+Authorization: Token "YOUR SDE ACCESS TOKEN"
+
+{
+    "name": "Edit Test",
+    "business_unit": 2
+}
+
 ```
 
-> The above command returns JSON structured like this:
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
 
-```json
 {
     "results": [{
         "id": 1,
@@ -210,6 +220,4 @@ name | No | The name of the application can be changed to any other string
 business unit|  No| This can be edited by setting the business unit id
 priority| No| The three options are: '0-none', '1-high', '2-medium', '3-low'
 
-### HTTP Request
-
-`PUT https://example.com/api/v2/applications/{id}`
+**HTTP Request:** `PUT https://example.com/api/v2/applications/{id}`

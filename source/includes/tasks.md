@@ -4,14 +4,16 @@
 ## Get all tasks of a project
 
 
-
-```shell
-curl "http://example.com/api/v2/projects/1/tasks/"
-  -H "Authorization: Token xxxxxxxxxxxxxxxxxxxxx"
+```http
+GET /api/v2/projects/1/tasks/ HTTP/1.1
+Accept: application/json
+Authorization: Token "YOUR SDE ACCESS TOKEN"
 ```
-> The above command returns JSON structured like this:
 
-```json
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+
 {
     "results": [{
         "id": "1-T2",
@@ -34,8 +36,8 @@ curl "http://example.com/api/v2/projects/1/tasks/"
         "artifact_proxy": null
     }]
 }
-
 ```
+
 
 
 Will return a list of tasks associated with the project having id "project_id".
@@ -45,30 +47,88 @@ Will return a list of tasks associated with the project having id "project_id".
 `GET /api/v2/projects/{project_id}/tasks/`
 
 
-## - Include & Expand Options
+### Include & Expand Options
+
+
+```http
+GET /api/v2/projects/1/tasks/?include=tags,related,problems,how_tos&expand=status,description HTTP/1.1
+Accept: application/json
+Authorization: Token "YOUR SDE ACCESS TOKEN"
+```
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+
+{
+    "results": [{
+        "id": "1-T2",
+        "task_id": "T2",
+        "url": "http://example.com/bunits/new-business-unit/...",
+        "title": "Secure forgotten password",
+        "description": "Insecure forgotten password and password reset...",
+        "priority": 8,
+        "phase": "Requirements",
+        "ad_hoc": false,
+        "relevant": true,
+        "accepted": true,
+        "assigned_to": [],
+        "updated": "2015-06-16T19:37:44.710100Z",
+        "library_task_created": "2015-06-16T19:36:57.863684Z",
+        "library_task_updated": "2015-06-16T19:36:57.836874Z",
+        "verification_status": null,
+        "status": "TODO",
+        "note_count": 0,
+        "artifact_proxy": null,
+        "tags": ["tag1", "tag2"],
+        "related": ["1-T31", "1-T32", "1-T34", "1-T98"],
+        "problem": {
+            "id": "P70"
+        }
+        "how_tos": [
+            {
+            "id": "I131",
+            "title": "I131: Manually with browser",
+            "slug": "test-account-lockout-manually-browser",
+            "url": "http://a7069ccda519b00c4/....",
+            "content": "1. Open your web browser ..."
+            }
+        ]
+
+    }]
+}
+
+```
+
+
+
+```shell
+{
+    "results": [{
+        "how_tos": [
+            {
+            "id": "I131",
+            "title": "I131: Manually with browser",
+            "slug": "test-account-lockout-manually-browser",
+            "url": "http://a7069ccda519b00c4/....",
+            "content": "1. Open your web browser ..."
+        }
+        ]
+    }]
+}
+```
+
 
 ```shell
 curl "http://example.com/api/v2/projects/1/tasks/?include=problem"
   -H "Authorization: Token xxxxxxxxxxxxxxxxxxxxx"
 ```
 
-> The above command returns JSON structured like this:
 
-
-```json
+```shell
 {
     "results": [{
-        "id": "1-T2",
-        "task_id": "T2",
-        "url": "http://example.com/bunits/new-business-unit/.../tasks/phase/requirements/1-T2",
-        "title": "Secure forgotten password",
-        "description": "Insecure forgotten password and password reset mechanisms...",
-        "priority": 8,
-        "phase": "Requirements",
-        "ad_hoc": false,
-        "relevant": true,
-        "accepted": true,
-        "status": "TODO",
         "problem": {
             "id": "P526",
             "title": "P526: Weak Password Recovery Mechanism for Forgotten Password",
@@ -78,25 +138,12 @@ curl "http://example.com/api/v2/projects/1/tasks/?include=problem"
 }
 ```
 
-> Notice how the "problem" field, previously not included in the response object, is now included.
-
-The following parameters may be [included](#include-&-expand-options) in the tasks request:
-
-* tags
-* related
-* problem
-* how_tos
-
-
 ```shell
 curl "http://example.com/api/v2/projects/1/tasks/?include=problem&expand=status"
   -H "Authorization: Token xxxxxxxxxxxxxxxxxxxxx"
 ```
 
-> The above command returns JSON structured like this:
-
-
-```json
+```shell
 {
     "results": [{
         "id": "1-T2",
@@ -122,10 +169,24 @@ curl "http://example.com/api/v2/projects/1/tasks/?include=problem&expand=status"
         }
     }]
 }
-
 ```
 
-The following parameters may be [expanded](#include-&-expand-options) in the tasks request:
+See the [Include and Expand Options](#include-&-expand-options) section for a fuller discussion on their functionality.
 
-* status
-* description
+Include
+
+Field | Description
+------|---------------------
+tags | includes a list of tags associated to the task
+related | includes a list of related tasks
+problem | includes the problem that the task is related to
+how_tos | includes a list of how-tos
+
+
+Expand
+
+Field | Description
+------|---------------------
+status| expands the status field associated with the task
+description | expands the description field associated with the task
+
