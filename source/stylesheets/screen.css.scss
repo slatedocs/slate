@@ -618,3 +618,11 @@ html, body {
     margin-top: $main-padding;
   }
 }
+
+// SDE Elements specifc
+.content {
+  hr {
+    border: 0;
+    clear: both;
+  }
+}
