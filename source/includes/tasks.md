@@ -86,7 +86,7 @@ Content-Type: application/json
         "related": ["1-T31", "1-T32", "1-T34", "1-T98"],
         "problem": {
             "id": "P70"
-        }
+        },
         "how_tos": [
             {
             "id": "I131",
