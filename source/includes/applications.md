@@ -26,7 +26,9 @@ Content-Type: application/json
 ```
 This endpoint retrieves a list of application objects.
 
-**HTTP Request:** `GET http://example.com/api/v2/applications`
+**HTTP Request:**
+
+`GET http://example.com/api/v2/applications`
 
 ---
 
@@ -129,9 +131,11 @@ Content-Type: application/json
 
 This endpoint retrieves a single application resource, as specified by the id parameter.
 
-**HTTP Request:** `GET http://example.com/application/:{id}`
+**HTTP Request:**
 
-### URL Parameters
+`GET http://example.com/application/:{id}`
+
+**URL Parameters:**
 
 Parameter | Description
 --------- | -----------
@@ -170,7 +174,9 @@ Content-Type: application/json
 }
 ```
 
-**HTTP Request:** `POST /api/v2/applications/`
+**HTTP Request:**
+
+`POST /api/v2/applications/`
 
 Fields | Required| Description
 -------|----------|-------------
@@ -220,4 +226,6 @@ name | No | The name of the application can be changed to any other string
 business unit|  No| This can be edited by setting the business unit id
 priority| No| The three options are: '0-none', '1-high', '2-medium', '3-low'
 
-**HTTP Request:** `PUT https://example.com/api/v2/applications/{id}`
+**HTTP Request:**
+
+`PUT https://example.com/api/v2/applications/{id}`
