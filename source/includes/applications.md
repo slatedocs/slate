@@ -34,11 +34,11 @@ The following parameters may be used to filter the application resources in the 
 
 Parameter | Description | Example
 ----------|-------------------|----------
-name | Returns the application resource with the specified name | "/?name=My%20New%20Application"
-priority | Returns a list of application resources with the specified priority | "/?priority=0-none"
+name | Returns application resource with specified name | "/?name=My%20New%20App"
+priority | Returns a list of application resources with specified priority | "/?priority=0-none"
 created | Returns a list of application resources created on the specified date | "/?created="
 updated | Returns a list of application resources updated on the specified date
-ordering | Returns a list of application resources ordered by the specified field. Accepted input: name | "?ordering=name"
+ordering | Returns a list of application resources ordered by the specified field. | "/?ordering=name"
 
 ---
 
@@ -153,7 +153,7 @@ This endpoint retrieves a single application resource, as specified by the id pa
 
 Parameter | Description
 --------- | -----------
-application_id        | The id of the application to retrieve
+application_id | The id of the application to retrieve
 
 
 
@@ -269,4 +269,4 @@ This endpoint deletes a single application resource, as specified by the id para
 
 Parameter | Description
 --------- | -----------
-application_id        | The id of the application to retrieve
+application_id | The id of the application to retrieve
