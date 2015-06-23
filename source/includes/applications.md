@@ -26,7 +26,9 @@ Content-Type: application/json
 ```
 This endpoint retrieves a list of application objects.
 
-**HTTP Request:** `GET http://example.com/api/v2/applications`
+**HTTP Request:**
+
+`GET http://example.com/api/v2/applications`
 
 ---
 
@@ -59,7 +61,7 @@ Content-Type: application/json
 }
 ```
 
-See the [Include and Expand Options](#include-&-expand-options) section for a fuller discussion on their functionality.
+See the [Include and Expand Options](#include-amp-expand-options) section for a fuller discussion on their functionality.
 
 Parameter | Description
 ----------|---------------
@@ -96,7 +98,7 @@ Content-Type: application/json
 }
 ```
 
-See the [Include and Expand Options](#include-&-expand-options) section for a fuller discussion on their functionality.
+See the [Include and Expand Options](#include-amp-expand-options) section for a fuller discussion on their functionality.
 
 Parameter     | Description
 --------------|------------------------------
@@ -105,7 +107,7 @@ business_unit | The business unit the application belongs to
 ## Get a Specific Application
 
 ```http
-POST /api/v2/applications/:3 HTTP/1.1
+GET /api/v2/applications/:3 HTTP/1.1
 Accept: application/json
 Authorization: Token "YOUR SDE ACCESS TOKEN"
 ```
@@ -129,9 +131,11 @@ Content-Type: application/json
 
 This endpoint retrieves a single application resource, as specified by the id parameter.
 
-**HTTP Request:** `GET http://example.com/application/:{id}`
+**HTTP Request:**
 
-### URL Parameters
+`GET http://example.com/application/:{id}`
+
+**URL Parameters:**
 
 Parameter | Description
 --------- | -----------
@@ -170,7 +174,9 @@ Content-Type: application/json
 }
 ```
 
-**HTTP Request:** `POST /api/v2/applications/`
+**HTTP Request:**
+
+`POST /api/v2/applications/`
 
 Fields | Required| Description
 -------|----------|-------------
@@ -182,7 +188,7 @@ business_unit| Yes |The ID of the business unit the application belongs to
 
 
 ```http
-POST /api/v2/applications/1/ HTTP/1.1
+PUT /api/v2/applications/1/ HTTP/1.1
 Accept: application/json
 Authorization: Token "YOUR SDE ACCESS TOKEN"
 
@@ -210,7 +216,7 @@ Content-Type: application/json
 }
 ```
 
-Edit a single application.  The application to edit is identified by the id.
+Edit a single application by specifying a new name and new business_unit. The application to edit is identified by the id.
 
 
 Fields | Required | Description
@@ -220,4 +226,6 @@ name | No | The name of the application can be changed to any other string
 business unit|  No| This can be edited by setting the business unit id
 priority| No| The three options are: '0-none', '1-high', '2-medium', '3-low'
 
-**HTTP Request:** `PUT https://example.com/api/v2/applications/{id}`
+**HTTP Request:**
+
+`PUT https://example.com/api/v2/applications/{id}`
