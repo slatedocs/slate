@@ -2,6 +2,7 @@
 
 ## Get All Applications
 
+
 ```http
 GET /api/v2/applications/ HTTP/1.1
 Accept: application/json
@@ -26,7 +27,21 @@ Content-Type: application/json
 ```
 This endpoint retrieves a list of Application resources.
 
+
+**Query Parameters:**
+
+The following parameters may be used to filter the application resources in the response.
+
+Parameter | Description
+----------|-------------------
+name | Returns the application resource with the specified name
+priority | Returns a list of application resources with the specified priority
+created | Returns a list of application resources created on the specified date
+updated | Returns a list of application resources updated on the specified date
+id | Returns the application resource with the specified id
+
 ---
+
 
 ### Include & Expand Parameters
 

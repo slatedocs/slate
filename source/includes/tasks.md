@@ -40,7 +40,7 @@ Content-Type: application/json
 
 Will return a list of tasks associated with the project having id "project_id".
 
-### HTTP Request
+**HTTP Request:**
 
 `GET /api/v2/projects/{project_id}/tasks/`
 
@@ -66,7 +66,10 @@ Content-Type: application/json
         "task_id": "T2",
         "url": "http://example.com/bunits/new-business-unit/...",
         "title": "Secure forgotten password",
-        "description": "Insecure forgotten password and password reset...",
+        "description": {
+            "content": "Insecure forgotten password and password reset...",
+            "amendments": []
+        },
         "priority": 8,
         "phase": "Requirements",
         "ad_hoc": false,
