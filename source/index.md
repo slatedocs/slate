@@ -335,11 +335,7 @@ Containing Class | Property | Description
 --------- | ------- |------- | ---------
 SenseSdkError | message | The error message
 
-<<<<<<< HEAD
-# Handling Recipe Firing
-=======
 # Handling a Recipe Firing
->>>>>>> Added activity and better testing sections
 
 Acting on recipes is done by implementing the RecipeFiredDelegate protocol. In order to implement the protocol, you must define the recipeFired method, which has one parameter of type RecipeFiredArgs. 
 
@@ -605,17 +601,11 @@ CustomGeofence | .whenExitsGeofences([CustomGeofence], kilometers: 10)
 
 # Testing
 
-<<<<<<< HEAD
-## Unit Testing
-
-Testing in the real world is time consuming, so we provide a way to easily trigger your Recipe to fire.
-=======
 ## Testing while at your desk
 
 Testing in the real world is time consuming, so we provide a way to easily fire anyone of your recipes.  This can also be very helpful when unit testing your own code.
 
 The example below shows you how to fire a recipe called "ArrivedAtRestaurant" with a restaurant called "Big Foot's Burgers".
->>>>>>> Added activity and better testing sections
 
 ```swift
 //Create your fake restaurant
@@ -657,20 +647,14 @@ if(errorPtr.error != nil) {
 }
 ```
 
-<<<<<<< HEAD
-## Real World Testing
-=======
 You will have to create the correct type of place depending on the type of trigger.  For example, if you have you have the case of "Enter Home", then you must make a place of type PersonalizedPlace.  The list of place types with their corresponding types can be found under: [Places](#places)
 
 ##Real world testing
 
->>>>>>> Added activity and better testing sections
 Please note that when you do real-world testing you need to mimic the action you are testing as closely as possible or the trigger might not fire. In order to avoid false positives, our algorithms will try to ignore actions that do not look like real-world actions.
 
 For example, if you are testing entering a restaurant. Make sure that you are not in or around the restaurant before starting the test and that you are at least 1km away. Drive, walk, or bike to the restaurant and make sure to enter it fully, sit down at a table, and stay at least five minutes. The more your testing reflects the way you would perform that action in the real-world, the more likely it is that our algorithms will pick it up.
 
-<<<<<<< HEAD
-=======
 Because we're developers too, we understand that any extra insight in how the sdk is working is extremely valuable.  This is why we provided a debug setting that will send you different notifications during your real-world testing.  To give it a try:
 
 1. Open your info.plist. (go to your project and hit the Info tab at the top of the screen)
@@ -681,7 +665,5 @@ Because we're developers too, we understand that any extra insight in how the sd
 6. Go at least 1 kilometer away from your location, sit down, and wait for a notification!
 
 
-
->>>>>>> Added activity and better testing sections
 # Thanks for using Sense360
 <div style="height:120px;"></div>
