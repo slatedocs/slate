@@ -176,6 +176,68 @@ CustomGeofence | .whenEntersGeofences() | .whenExitsGeofences()
 - Geofences must have a radius of at least 30m
 - The SDK will not trigger immediately on entrance or exit because it needs to be sure of the user's presence.
 
+## Conditional Elements
+
+A conditional element is an extra restriction that you can create for a trigger that must be satisfied. A condition must be paired with a trigger and cannot stand alone.
+
+Several conditions may be applied when creating any type of trigger through the FireTrigger class.  All conditions applied to a trigger MUST be satisfied in order for the entire recipe to fire.
+
+###Activity Condition
+
+Activity conditions are used to check the mode of transportation in which a user either arrives or departs from a specified place.
+
+For example, if you want to be notified when a user enters a restaurant, BUT only when they arrived by car, you would do the following:
+
+```swift
+let arrivedByCar = UsersActivity.arrivedBy(.Automotive)!
+let restaurantTrigger = FireTrigger.whenEntersPoi(.Restaurant, conditions: [arrivedByCar])
+```
+
+```objective_c
+ConditionalElement* arrivedByCar = [UsersActivity arrivedBy:ActivityTypeAutomotive errorPtr:nil];
+Trigger *restaurantTrigger = [FireTrigger whenEntersPoi:PoiTypeRestaurant conditions: arrivedByCar errorPtr:nil];
+```
+
+
+There are 5 types of activities available:
+walking |
+running |
+automotive |
+cycling
+
+### Farther Than Condition
+
+The farther than condition ensures that the trigger will only fire if the user is farther than X kilometers from either a personalized place or a list of custom geofences.
+
+For example, you can trigger when a user enters a restaurant that is farther than 150 kilometers from their home.
+
+```swift
+let fartherThanHome = UsersLocation.isFartherThanPersonalizedPlace(.Home, kilometers: 150)!
+let restaurantTrigger = FireTrigger.whenEntersPoi(.Restaurant, conditions: [fartherThanHome])
+```
+```objective_c
+ConditionalElement *fartherThanHome = [UsersLocation
+                                       isFartherThanPersonalizedPlace:PersonalizedPlaceTypeHome
+                                       kilometers:[NSNumber numberWithInt:150]
+                                       errorPtr:errorPtr];
+NSArray* conditions = [[NSArray alloc] initWithObjects:fartherThanHome, nil];
+Trigger *restaurantTrigger = [FireTrigger whenEntersPoi:PoiTypeRestaurant conditions:conditions errorPtr:nil];
+```
+
+Category | Transitions |
+--------- | ------- |
+Home |  whenExitsPersonalizedPlace(.Work, kilometers: 10)
+Work | whenExitsPersonalizedPlace(.Work, kilometers: 10)
+CustomGeofence | .whenExitsGeofences([CustomGeofence], kilometers: 10)
+
+### Caveats:
+
+- If you specify multiple geofences within a single condition, the user must be farther than ALL of the locations in order to trigger the callback.
+- If you need to create a fartherThan condition where user only needs to be [x] distance from one of multiple locations, you will need to create an individual Recipe PLUS Conditional Element per geofence.
+
+<aside class="warning"> Note: you cannot use the fartherThan condition with POI Place Types.
+</aside>
+
 ## Handling Trigger Creation Errors
 
 When creating triggers an error can be returned instead of a trigger if an invalid trigger has been created.
@@ -201,12 +263,6 @@ if(restaurantTrigger != nil) {
 ```
 
 In the event that there is an error when setting up a trigger, a nil will be returned with the error message stored within the corresponding SenseSdkErrorPointer.
-
-## Conditional Elements
-
-A conditional element is an extra restriction that you can create for a trigger that must be satisfied. A condition must be paired with a trigger and cannot stand alone.
-
-Several conditions may be applied when creating any type of trigger through the FireTrigger class.  All conditions applied to a trigger MUST be satisfied in order for the entire recipe to fire.
 
 # Recipes
 
@@ -429,6 +485,17 @@ Restaurant |
 Mall |
 Cafe |
 Gym |
+Loding |
+PoliceDepartment |
+BusStation |
+DepartmentStore |
+FireStation |
+Stadium |
+Hospital |
+Parking |
+NightClub |
+University
+
 
 ### PersonalizedPlace
 Property | Type | Description
@@ -536,71 +603,6 @@ func recipeFired(args: RecipeFiredArgs) {
 
 ```
 
-
-
-# Conditional Elements
-
-A conditional element is an extra restriction that you can create for a trigger that must be satisfied. A condition must be paired with a trigger and cannot stand alone.
-
-Several conditions may be applied when creating any type of trigger through the FireTrigger class.  All conditions applied to a trigger MUST be satisfied in order for the entire recipe to fire.
-
-##Activity Condition
-
-Activity conditions are used to check the mode of transportation in which a user either arrives or departs from a specified place.
-
-For example, if you want to be notified when a user enters a restaurant, BUT only when they arrived by car, you would do the following:
-
-```swift
-let arrivedByCar = UsersActivity.arrivedBy(.Automotive)!
-let restaurantTrigger = FireTrigger.whenEntersPoi(.Restaurant, conditions: [arrivedByCar])
-```
-
-```objective_c
-ConditionalElement* arrivedByCar = [UsersActivity arrivedBy:ActivityTypeAutomotive errorPtr:nil];
-Trigger *restaurantTrigger = [FireTrigger whenEntersPoi:PoiTypeRestaurant conditions: arrivedByCar errorPtr:nil];
-```
-
-
-There are 5 types of activities available:
-stationary |
-walking |
-running |
-automotive |
-cycling |
-
-## Farther Than Condition
-
-The farther than condition ensures that the trigger will only fire if the user is farther than X kilometers from either a personalized place or a list of custom geofences.
-
-For example, you can trigger when a user enters a restaurant that is farther than 150 kilometers from their home.
-
-```swift
-let fartherThanHome = UsersLocation.isFartherThanPersonalizedPlace(.Home, kilometers: 150)!
-let restaurantTrigger = FireTrigger.whenEntersPoi(.Restaurant, conditions: [fartherThanHome])
-```
-```objective_c
-ConditionalElement *fartherThanHome = [UsersLocation
-                                       isFartherThanPersonalizedPlace:PersonalizedPlaceTypeHome
-                                       kilometers:[NSNumber numberWithInt:150]
-                                       errorPtr:errorPtr];
-NSArray* conditions = [[NSArray alloc] initWithObjects:fartherThanHome, nil];
-Trigger *restaurantTrigger = [FireTrigger whenEntersPoi:PoiTypeRestaurant conditions:conditions errorPtr:nil];
-```
-
-Category | Transitions |
---------- | ------- |
-Home |  whenExitsPersonalizedPlace(.Work, kilometers: 10)
-Work | whenExitsPersonalizedPlace(.Work, kilometers: 10)
-CustomGeofence | .whenExitsGeofences([CustomGeofence], kilometers: 10)
-
-### Caveats:
-
-- If you specify multiple geofences within a single condition, the user must be farther than ALL of the locations in order to trigger the callback.
-- If you need to create a fartherThan condition where user only needs to be [x] distance from one of multiple locations, you will need to create an individual Recipe PLUS Conditional Element per geofence.
-
-<aside class="warning"> Note: you cannot use the fartherThan condition with POI Place Types.
-</aside>
-
 # Testing
 
 ## Testing while at your desk
@@ -657,7 +659,7 @@ Please note that when you do real-world testing you need to mimic the action you
 
 For example, if you are testing entering a restaurant. Make sure that you are not in or around the restaurant before starting the test and that you are at least 1km away. Drive, walk, or bike to the restaurant and make sure to enter it fully, sit down at a table, and stay at least five minutes. The more your testing reflects the way you would perform that action in the real-world, the more likely it is that our algorithms will pick it up.
 
-Because we're developers too, we understand that any extra insight in how the sdk is working is extremely valuable.  This is why we provided a debug setting that will send you different notifications during your real-world testing.  To give it a try:
+Because we're developers too, we understand that any extra insight in how the SDK is working is extremely valuable.  This is why we provided a debug setting that will send you different notifications during your real-world testing.  To give it a try:
 
 1. Open your info.plist. (go to your project and hit the Info tab at the top of the screen)
 2. Add the key "sense360:sendDebugNotifications"
