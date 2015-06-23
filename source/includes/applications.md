@@ -59,7 +59,7 @@ Content-Type: application/json
 }
 ```
 
-See the [Include and Expand Options](#include-&-expand-options) section for a fuller discussion on their functionality.
+See the [Include and Expand Options](#include-amp-expand-options) section for a fuller discussion on their functionality.
 
 Parameter | Description
 ----------|---------------
@@ -96,7 +96,7 @@ Content-Type: application/json
 }
 ```
 
-See the [Include and Expand Options](#include-&-expand-options) section for a fuller discussion on their functionality.
+See the [Include and Expand Options](#include-amp-expand-options) section for a fuller discussion on their functionality.
 
 Parameter     | Description
 --------------|------------------------------
