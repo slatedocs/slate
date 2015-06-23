@@ -1,21 +1,13 @@
 # Authentication
 
-> To authorize, use this code:
-
-
-```shell
-# With your shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-    -H "Authorization: Token xxxxxxxxxxxxxxxxxxxxx"
+```http
+GET /api/v2/users/ HTTP/1.1
+Accept: application/json
+Authorization: Token "YOUR SDE ACCESS TOKEN"
 ```
 
-> Make sure to replace `xxxxxxxxxxxxxxxxxxxxx` with your API key.
-
-`Authorization: Token xxxxxxxxxxxxxxxxxxxxx`
-
-<aside class="notice">
-Replace <code>xxxxxxxxxxxxxxxxxxxxx</code> with your personal APIv2 token.
-</aside>
+To authenticate against SDE Elements,
+you need to pass an API access token via an `Authorization` header.
 
 A token can be generated as follows:
 
