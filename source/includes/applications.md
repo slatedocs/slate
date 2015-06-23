@@ -28,7 +28,7 @@ Content-Type: application/json
 This endpoint retrieves a list of Application resources.
 
 
-**Query Parameters:**
+### Query Parameters
 
 The following parameters may be used to filter the application resources in the response.
 
@@ -38,12 +38,50 @@ name | Returns the application resource with the specified name
 priority | Returns a list of application resources with the specified priority
 created | Returns a list of application resources created on the specified date
 updated | Returns a list of application resources updated on the specified date
-id | Returns the application resource with the specified id
+
+---
+
+### Expand Parameters
+
+```http
+GET /api/v2/applications/?expand=business_units HTTP/1.1
+Accept: application/json
+Authorization: Token "YOUR SDE ACCESS TOKEN"
+```
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+    "results": [{
+        "id": 3,
+        "business_unit":  {
+            "id": 1,
+            "name": "Business Unit 1",
+            "slug": "business-unit-1"
+        },
+        "name": "Application Test",
+        "created": "2015-04-15T20:27:24.396442Z",
+        "updated": "2015-04-15T20:27:24.389957Z",
+        "priority": "0-none",
+        "slug": "application-test"
+    }]
+}
+```
+Expand Parameters allow you to request detailed information for specific resource fields.
+
+See the [Expand Parameters](#expand-parameters) section for more details.
+
+Parameter     | Description
+--------------|------------------------------
+business_unit | expands the business unit field in the application response object
 
 ---
 
 
-### Include & Expand Parameters
+
+### Include Parameters
 
 ```http
 GET /api/v2/applications/?include=projects HTTP/1.1
@@ -72,47 +110,14 @@ Content-Type: application/json
 }
 ```
 
-See the [Include and Expand Parameters](#include-amp-expand-parameters) section for a full discussion of their functionality.
+Include Parameters allow you to request related resources.
 
-**Include:**
+See the [Include Parameters](#include-parameters) section for more details.
 
 Parameter | Description
 ----------|---------------
 projects  | includes a list of projects contained associated with an application
 
-**Expand:**
-
-Parameter     | Description
---------------|------------------------------
-business_unit | expands the business unit field in the application response object
-
-
-```http
-GET /api/v2/applications/?expand=business_units HTTP/1.1
-Accept: application/json
-Authorization: Token "YOUR SDE ACCESS TOKEN"
-```
-
-```http
-HTTP/1.1 200 OK
-Content-Type: application/json
-
-{
-    "results": [{
-        "id": 3,
-        "business_unit":  {
-            "id": 1,
-            "name": "Business Unit 1",
-            "slug": "business-unit-1"
-        },
-        "name": "Application Test",
-        "created": "2015-04-15T20:27:24.396442Z",
-        "updated": "2015-04-15T20:27:24.389957Z",
-        "priority": "0-none",
-        "slug": "application-test"
-    }]
-}
-```
 
 ## Get a Specific Application
 

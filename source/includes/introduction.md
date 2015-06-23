@@ -16,15 +16,15 @@ API results are currently returned in XML and JSON formats.  It is advised to us
 
 `Content-type: application/json`
 
-## Include & Expand Parameters
+## Include Parameters
 
-Some endpoints allow users to *include* or *expand* certain objects included in the response object.
-
-* **Include**: Used to add a specific field to an element, or collection of elements. *For example, we may wish to receive a collection of projects that are within an application element.  Since projects are normally not a field of the applications element, we can include projects in our request to see it as a field.*
+Some endpoints allow users to *include* extra fields in the response object.  Used to add a specific field to an element, or collection of elements. *For example, we may wish to receive a collection of projects that are within an application element.  Since projects are normally not a field of the applications element, we can include projects in our request to see it as a field.*
 
 `/?include={field_to_include}`
 
-* **Expand**: Used to expand a given field of an element into a nested element with more information. *For example, by default, an application element contains the id of the business unit to which it belongs.  If we wish to retreive more information about the business unit, we would expand the business unit field get more information.*
+## Expand Parameters
+
+Some endpoints allow users to *expand* a field that is already present in the response object. *For example, by default, an application element contains the id of the business unit to which it belongs.  If we wish to retreive more information about the business unit, we would expand the business unit field get more information.*
 
 `/?expand={field_to_expand}`
 
