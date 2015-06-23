@@ -33,7 +33,7 @@ if ($batchId) {
         do {
             $results = $batchApi->get_results($batchId);
             sleep(10); // limit how often you poll
-        } while ($results['status'] !== 'Finished');
+        } while (!in_array($results['status'], array('Stopped', 'Finished')));
         print_r($results);
     }
 }
@@ -128,7 +128,7 @@ if ($batchId) {
         do {
             $results = $batchApi->get_results($batchId);
             sleep(10); // limit how often you poll
-        } while ($results['status'] !== 'Finished');
+        } while (!in_array($results['status'], array('Stopped', 'Finished')));
         print_r($results);
     }
 }
