@@ -36,6 +36,10 @@ You can download the stand alone framework <a href='https://www.dropbox.com/s/fe
 
 To get up running quickly we also have provided a <a href="http://www.sense360.com/getting_started.html">Quick Start Guide</a>.
 
+# Integration Notes
+
+Project must be built with Xcode version 6.3. It will **not** work with < 6.3 nor 7.0-beta.
+
 # API Concepts
 
 The following are the main components of building with Sense360
@@ -48,11 +52,11 @@ The following are the main components of building with Sense360
 
 * **Delegate (required)**: The method that is called when the trigger is fired.
 
-* **Trigger (required)**: The real-world event that you want to listen for.
+* **Trigger (required)**: The real-world event that you want to listen for. There can only be one trigger per recipe.
 
-* **Window (optional)**: The period of time during which you want to listen for the trigger. Examples: 9am to 12pm and 4pm - 11pm.
+* **Window (optional)**: The period of time during which you want to listen for the trigger. Examples: 9am to 12pm and 4pm - 11pm. There can only be one window per recipe.
   
-* **Cooldown (optional)**: The amount of time to wait before the same trigger can fire again. Examples: 8 hours, 1 week.
+* **Cooldown (optional)**: The amount of time to wait before the same trigger can fire again. Examples: 8 hours, 1 week. There can only be one cooldown per recipe.
 
 # Triggers
 
@@ -91,10 +95,20 @@ Restaurant | .whenEntersPoi(.Restaurant) | .whenExitsPoi(.Restaurant)
 Mall | .whenEntersPoi(.Mall) | .whenExitsPoi(.Mall)
 Cafe | .whenEntersPoi(.Cafe) | .whenExitsPoi(.Cafe)
 Gym | .whenEntersPoi(.Gym) | .whenExitsPoi(.Gym)
+Lodging | .whenEntersPoi(.Lodging) | .whenExitsPoi(.Lodging)
+PoliceDepartment | .whenEntersPoi(.PoliceDepartment) | .whenExitsPoi(.PoliceDepartment)
+BusStation | .whenEntersPoi(.BusStation) | .whenExitsPoi(.BusStation)
+DepartmentStore | .whenEntersPoi(.DepartmentStore) | .whenExitsPoi(.DepartmentStore)
+FireStation | .whenEntersPoi(.FireStation) | .whenExitsPoi(.FireStation)
+Stadium | .whenEntersPoi(.Stadium) | .whenExitsPoi(.Stadium)
+Hospital | .whenEntersPoi(.Hospital) | .whenExitsPoi(.Hospital)
+Parking | .whenEntersPoi(.Parking) | .whenExitsPoi(.Parking)
+NightClub | .whenEntersPoi(.NightClub) | .whenExitsPoi(.NightClub)
+University | .whenEntersPoi(.University) | .whenExitsPoi(.University)
+
 
 ### Caveats
 - Each trigger can only detect a single POI type.
-- The sdk will not trigger immediately on entrance or exit because it needs to be sure of the user's presence.
 
 ## Personal Place
 
@@ -113,17 +127,17 @@ Trigger *homeTrigger = [FireTrigger whenEntersPersonalizedPlace:PersonalizedPlac
 
 The currently supported personalized location categories are:
 
-Category | Transitions | | | 
---------- | ------- |------- | ---- | ----
-Home | .whenEntersPersonalizedPlace(.Home) | .whenExitsPersonalizedPlace(.Home) | whenExitsPersonalizedPlace(.Home, kilometers: 10)
-Work | .whenEntersPersonalizedPlace(.Work) | .whenExitsPersonalizedPlace(.Work) | whenExitsPersonalizedPlace(.Work, kilometers: 10)
+Category | Transitions | |
+--------- | ------- |------- |
+Home | .whenEntersPersonalizedPlace(.Home) | .whenExitsPersonalizedPlace(.Home)
+Work | .whenEntersPersonalizedPlace(.Work) | .whenExitsPersonalizedPlace(.Work)
 
 ### Caveats
 - The SDK takes roughly a week to determine a user's home or work. After the SDK identifies the users home or work, it can then start detecting the users presence there.
 - The SDK will continually try to update the user's home every few days.
-- The sdk will not trigger immediately on entrance or exit because it needs to be sure of the user's presence.
+- The SDK will not trigger immediately on entrance or exit because it needs to be sure of the user's presence.
 
-<aside class="warning">Due to the sensitivity of this data, neither developers nor us will ever see the raw data or store a users home or office location. The computation happens on the device itself and stays there to ensure your users privacy.</aside>
+<aside class="warning">Due to the sensitivity of this data, neither developers nor Sense360 will ever see the raw data or store a users home or office location. The computation happens on the device itself and stays there to ensure your user's privacy.</aside>
 
 ## Custom Geofence
 
@@ -150,9 +164,9 @@ location | Location | true | location
 radius | Int | true | radius of geofence
 customIdentifier | String | true | unique identifier for your geofence
 
-Type | Transitions | | |
---------- | ------- |------- | ---- |
-CustomGeofence | .whenEntersGeofences() | .whenExitsGeofences() | .whenExitsGeofences([CustomGeofence], kilometers: 10)
+Type | Transitions | |
+--------- | ------- |------- |
+CustomGeofence | .whenEntersGeofences() | .whenExitsGeofences()
 
 ### Caveats
 
@@ -186,6 +200,12 @@ if(restaurantTrigger != nil) {
 
 In the event that there is an error when setting up a trigger, a nil will be returned with the error message stored within the corresponding SenseSdkErrorPointer.
 
+## Conditional Elements
+
+A conditional element is an extra restriction that you can create for a trigger that must be satisfied. A condition must be paired with a trigger and cannot stand alone.
+
+Several conditions may be applied when creating any type of trigger through the FireTrigger class.  All conditions applied to a trigger MUST be satisfied in order for the entire recipe to fire.
+
 # Recipes
 
 The Recipe is the container that encases your trigger, and various other settings.  Recipes are registered globally within your application with a call to the [SenseSdk](#sensesdk).  Below are the inputs that make up a Recipe:
@@ -207,7 +227,7 @@ Parameter | Required | Default
 uniqueId (String)| true |
 [trigger](#triggers) | true |
 [window](#window)| false | 0-23 hours
-[cool down](#cooldown) | false | 5 minutes
+[cooldown](#cooldown) | false | 5 minutes
 
 
 ## Time Window
@@ -282,7 +302,7 @@ Default | Cooldown.create(oncePer: 30, frequency: .Minutes)!
 
 # SenseSdk
 
-The SenseSdk is the main entry point into the Sdk. It allows you to register and unregister recipes.
+The SenseSdk is the main entry point into the SDK. It allows you to register and unregister recipes.
 
 <aside class="warning"> You must call enableSdkWithKey in your AppDelegate's applicationDidFinishLaunching method.
 </aside>
@@ -315,9 +335,9 @@ Containing Class | Property | Description
 --------- | ------- |------- | ---------
 SenseSdkError | message | The error message
 
-# Handling Trigger Firing
+# Handling Recipe Firing
 
-Acting on triggers is done by implementing the RecipeFiredDelegate protocol. In order to implement the protocol, you must define the recipeFired method, which has one parameter of type RecipeFiredArgs. 
+Acting on recipes is done by implementing the RecipeFiredDelegate protocol. In order to implement the protocol, you must define the recipeFired method, which has one parameter of type RecipeFiredArgs. 
 
 The RecipeFiredArgs contains trigger-specific information which is passed through an array of TriggerFiredArgs. 
 
@@ -509,17 +529,11 @@ High |
 Medium |
 Low |
 
-# Conditional Elements
-
-A conditional element is an extra restriction that you can create for a trigger that must be satisfied. A condition must be paired with a trigger and cannot stand alone.
-
-Several conditions may be applied when creating any type of trigger through the FireTrigger class.  All conditions applied to a trigger MUST be satisfied in order for the entire recipe to fire.
-
 ## Farther Than Condition
 
 The farther than condition ensures that the trigger will only fire if the user is farther than X kilometers from either a personalized place or a list of custom geofences.
 
-For example, if you can trigger when a user enters a restaurant that is farther than 150 kilometers from their home.
+For example, you can trigger when a user enters a restaurant that is farther than 150 kilometers from their home.
 
 ```swift
 let fartherThanHome = UsersLocation.isFartherThanPersonalizedPlace(
@@ -541,6 +555,12 @@ NSArray* conditions = [[NSArray alloc] initWithObjects:fartherThanHome, nil];
 Trigger *restaurantTrigger = [FireTrigger whenEntersPoi:PoiTypeRestaurant conditions:conditions errorPtr:errorPtr];
 ```
 
+Category | Transitions |
+--------- | ------- |
+Home |  whenExitsPersonalizedPlace(.Work, kilometers: 10)
+Work | whenExitsPersonalizedPlace(.Work, kilometers: 10)
+CustomGeofence | .whenExitsGeofences([CustomGeofence], kilometers: 10)
+
 ### Caveats:
 
 - If you specify multiple geofences within a single condition, the user must be farther than ALL of the locations in order to trigger the callback.
@@ -550,6 +570,8 @@ Trigger *restaurantTrigger = [FireTrigger whenEntersPoi:PoiTypeRestaurant condit
 </aside>
 
 # Testing
+
+## Unit Testing
 
 Testing in the real world is time consuming, so we provide a way to easily trigger your Recipe to fire.
 
@@ -591,6 +613,11 @@ if(errorPtr.error != nil) {
     [NotificationSender send:@"Error sending trigger"];
 }
 ```
+
+## Real World Testing
+Please note that when you do real-world testing you need to mimic the action you are testing as closely as possible or the trigger might not fire. In order to avoid false positives, our algorithms will try to ignore actions that do not look like real-world actions.
+
+For example, if you are testing entering a restaurant. Make sure that you are not in or around the restaurant before starting the test and that you are at least 1km away. Drive, walk, or bike to the restaurant and make sure to enter it fully, sit down at a table, and stay at least five minutes. The more your testing reflects the way you would perform that action in the real-world, the more likely it is that our algorithms will pick it up.
 
 # Thanks for using Sense360
 <div style="height:120px;"></div>
