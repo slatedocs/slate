@@ -40,9 +40,7 @@ Content-Type: application/json
 
 Will return a list of tasks associated with the project having id "project_id".
 
-**HTTP Request:**
-
-`GET /api/v2/projects/{project_id}/tasks/`
+**`GET /api/v2/projects/{project_id}/tasks/`**
 
 ---
 

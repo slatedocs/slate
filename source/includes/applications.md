@@ -32,12 +32,13 @@ This endpoint retrieves a list of Application resources.
 
 The following parameters may be used to filter the application resources in the response.
 
-Parameter | Description
-----------|-------------------
-name | Returns the application resource with the specified name
-priority | Returns a list of application resources with the specified priority
-created | Returns a list of application resources created on the specified date
+Parameter | Description | Example
+----------|-------------------|----------
+name | Returns the application resource with the specified name | "/?name=My%20New%20Application"
+priority | Returns a list of application resources with the specified priority | "/?priority=0-none"
+created | Returns a list of application resources created on the specified date | "/?created="
 updated | Returns a list of application resources updated on the specified date
+ordering | Returns a list of application resources ordered by the specified field. Accepted input: name | "?ordering=name"
 
 ---
 
@@ -146,15 +147,13 @@ Content-Type: application/json
 
 This endpoint retrieves a single application resource, as specified by the id parameter.
 
-**HTTP Request:**
+**`GET /applications/{application_id}`**
 
-`GET /applications/{id}`
-
-**URL Parameters:**
+### URL Parameters
 
 Parameter | Description
 --------- | -----------
-id        | The id of the application to retrieve
+application_id        | The id of the application to retrieve
 
 
 
@@ -230,14 +229,44 @@ Content-Type: application/json
 
 Update a single application by specifying a new name and new business unit. The application to update is identified by the id.
 
+**`PUT /api/v2/applications/{application_id}/`**
+
+### URL Parameters
+
+Parameter| Description
+---------|------------------
+application_id | The id of the application to edit must be submitted in the request
+
+### Payload
 
 Fields | Required | Description
 -------|----------|---------------
-id | Yes | The id of the application to edit must be submitted in the request
 name | No | The name of the application can be changed to any other string
 business_unit |  No | This can be edited by setting the business unit id
 priority | No | The three options are: '0-none', '1-high', '2-medium', '3-low'
 
-**HTTP Request:**
 
-`PUT /api/v2/applications/{id}/`
+
+## Delete an Application
+
+```http
+DELETE /api/v2/applications/1/ HTTP/1.1
+Accept: application/json
+Authorization: Token "YOUR SDE ACCESS TOKEN"
+
+```
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+```
+
+This endpoint deletes a single application resource, as specified by the id parameter.
+
+**`DELETE /applications/{application_id}/`**
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+application_id        | The id of the application to retrieve
