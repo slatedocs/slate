@@ -48,7 +48,7 @@ Will return a list of tasks associated with the project having id "project_id".
 
 ---
 
-### Include & Expand Options
+### Include & Expand Parameters
 
 
 ```http
@@ -79,13 +79,20 @@ Content-Type: application/json
         "library_task_created": "2015-06-16T19:36:57.863684Z",
         "library_task_updated": "2015-06-16T19:36:57.836874Z",
         "verification_status": null,
-        "status": "TODO",
+        "status": {
+            "meaning": "TODO",
+            "icon": "clock-o",
+            "name": "Incomplete",
+            "slug": "TODO"
+        },
         "note_count": 0,
         "artifact_proxy": null,
         "tags": ["tag1", "tag2"],
         "related": ["1-T31", "1-T32", "1-T34", "1-T98"],
         "problem": {
-            "id": "P70"
+            "id": "P526",
+            "title": "P526: Weak Password Recovery Mechanism for Forgotten Password",
+            "content": "It is common for an application..."
         },
         "how_tos": [
             {
@@ -102,79 +109,9 @@ Content-Type: application/json
 
 ```
 
+See the [Include and Expand Parameters](#include-amp-expand-parameters) section for a full discussion on their functionality.
 
-
-```shell
-{
-    "results": [{
-        "how_tos": [
-            {
-            "id": "I131",
-            "title": "I131: Manually with browser",
-            "slug": "test-account-lockout-manually-browser",
-            "url": "http://a7069ccda519b00c4/....",
-            "content": "1. Open your web browser ..."
-        }
-        ]
-    }]
-}
-```
-
-
-```shell
-curl "http://example.com/api/v2/projects/1/tasks/?include=problem"
-  -H "Authorization: Token xxxxxxxxxxxxxxxxxxxxx"
-```
-
-
-```shell
-{
-    "results": [{
-        "problem": {
-            "id": "P526",
-            "title": "P526: Weak Password Recovery Mechanism for Forgotten Password",
-            "content": "It is common for an application..."
-        }
-    }]
-}
-```
-
-```shell
-curl "http://example.com/api/v2/projects/1/tasks/?include=problem&expand=status"
-  -H "Authorization: Token xxxxxxxxxxxxxxxxxxxxx"
-```
-
-```shell
-{
-    "results": [{
-        "id": "1-T2",
-        "task_id": "T2",
-        "url": "http://example.com/bunits/new-business-unit/.../tasks/phase/requirements/1-T2",
-        "title": "Secure forgotten password",
-        "description": "Insecure forgotten password and password reset mechanisms ...",
-        "priority": 8,
-        "phase": "Requirements",
-        "ad_hoc": false,
-        "relevant": true,
-        "accepted": true,
-        "status": {
-            "meaning": "TODO",
-            "icon": "clock-o",
-            "name": "Incomplete",
-            "slug": "TODO"
-        },
-        "problem": {
-            "id": "P526",
-            "title": "P526: Weak Password Recovery Mechanism for Forgotten Password",
-            "content": "It is common for an application..."
-        }
-    }]
-}
-```
-
-See the [Include and Expand Options](#include-&-expand-options) section for a fuller discussion on their functionality.
-
-Include
+**Include:**
 
 Field | Description
 ------|---------------------
@@ -184,7 +121,7 @@ problem | includes the problem that the task is related to
 how_tos | includes a list of how-tos
 
 
-Expand
+**Expand:**
 
 Field | Description
 ------|---------------------

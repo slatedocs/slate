@@ -24,15 +24,11 @@ Content-Type: application/json
     }]
 }
 ```
-This endpoint retrieves a list of application objects.
-
-**HTTP Request:**
-
-`GET http://example.com/api/v2/applications`
+This endpoint retrieves a list of Application resources.
 
 ---
 
-### Include Parameters
+### Include & Expand Parameters
 
 ```http
 GET /api/v2/applications/?include=projects HTTP/1.1
@@ -61,15 +57,20 @@ Content-Type: application/json
 }
 ```
 
-See the [Include and Expand Options](#include-amp-expand-options) section for a fuller discussion on their functionality.
+See the [Include and Expand Parameters](#include-amp-expand-parameters) section for a full discussion of their functionality.
+
+**Include:**
 
 Parameter | Description
 ----------|---------------
-projects  | something here
+projects  | includes a list of projects contained associated with an application
 
----
+**Expand:**
 
-### Expand Parameters
+Parameter     | Description
+--------------|------------------------------
+business_unit | expands the business unit field in the application response object
+
 
 ```http
 GET /api/v2/applications/?expand=business_units HTTP/1.1
@@ -97,12 +98,6 @@ Content-Type: application/json
     }]
 }
 ```
-
-See the [Include and Expand Options](#include-amp-expand-options) section for a fuller discussion on their functionality.
-
-Parameter     | Description
---------------|------------------------------
-business_unit | The business unit the application belongs to
 
 ## Get a Specific Application
 
@@ -174,10 +169,6 @@ Content-Type: application/json
 }
 ```
 
-**HTTP Request:**
-
-`POST /api/v2/applications/`
-
 Fields | Required| Description
 -------|----------|-------------
 name | Yes | The name of the new application
@@ -216,16 +207,16 @@ Content-Type: application/json
 }
 ```
 
-Edit a single application by specifying a new name and new business_unit. The application to edit is identified by the id.
+Edit a single application by specifying a new name and new business unit. The application to edit is identified by the id.
 
 
 Fields | Required | Description
 -------|----------|---------------
 id | Yes | The id of the application to edit must be submitted in the request
 name | No | The name of the application can be changed to any other string
-business unit|  No| This can be edited by setting the business unit id
+business_unit|  No| This can be edited by setting the business unit id
 priority| No| The three options are: '0-none', '1-high', '2-medium', '3-low'
 
 **HTTP Request:**
 
-`PUT https://example.com/api/v2/applications/{id}`
+`PUT https://example.com/api/v2/applications/{id}/`

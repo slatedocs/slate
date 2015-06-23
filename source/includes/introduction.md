@@ -16,7 +16,7 @@ API results are currently returned in XML and JSON formats.  It is advised to us
 
 `Content-type: application/json`
 
-## Include & Expand Options
+## Include & Expand Parameters
 
 Some endpoints allow users to *include* or *expand* certain objects included in the response object.
 
