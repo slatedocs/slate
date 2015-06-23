@@ -24,6 +24,7 @@ includes:
     - ct
     - cb
     - rf
+    - gpw
     - useful-tools
     - appendix
 
