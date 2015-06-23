@@ -2,8 +2,6 @@
 
 ## Get All Users
 
-This endpoint returns a list of User resources.
-
 ```http
 GET /api/v2/users/ HTTP/1.1
 Accept: application/json
@@ -29,9 +27,9 @@ Content-Type: application/json
 }
 ```
 
-## Get a specific User
+This endpoint returns a list of User resources.
 
-Get a specific User resource.
+## Get a specific User
 
 ```http
 GET /api/v2/users/599/ HTTP/1.1
@@ -57,9 +55,9 @@ Content-Type: application/json
 }
 ```
 
-## Create a User
+Get a specific User resource.
 
-Create a User resource.
+## Create a User
 
 ```http
 POST /api/v2/users/ HTTP/1.1
@@ -91,9 +89,9 @@ Content-Type: application/json
 }
 ```
 
-## Update a specific User
+Create a User resource.
 
-Update a specific User resource.
+## Update a specific User
 
 ```http
 PUT /api/v2/users/ HTTP/1.1
@@ -126,3 +124,5 @@ Content-Type: application/json
     "groups": ["Group2"]
 }
 ```
+
+Update a specific User resource.

@@ -2,8 +2,6 @@
 
 ## Get All Global Roles
 
-This endpoint returns a list of Global Role resources.
-
 ```http
 GET /api/v2/global-roles/ HTTP/1.1
 Accept: application/json
@@ -40,9 +38,9 @@ Content-Type: application/json
 }
 ```
 
-## Get a specific Global Role
+This endpoint returns a list of Global Role resources.
 
-Get a specific Global Role resource.
+## Get a specific Global Rolex
 
 ```http
 GET /api/v2/global-roles/UR4/ HTTP/1.1
@@ -60,3 +58,5 @@ Content-Type: application/json
     "description": "An administrator can create new..."
 }
 ```
+
+This endpoint returns a list of Global Role resources.

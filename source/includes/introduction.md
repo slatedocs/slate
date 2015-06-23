@@ -6,15 +6,15 @@ SD Elements's API documentation page was created with [Slate](http://github.com/
 
 ### Resources
 
-The most common types of resources obtained from this API are *Collections* and *Elements*.  A collection resource represents the set of all objects of one type (such as "projects" or "applicatoins").An element resource represents an individual member of a collection.  Each element consists of a set of name/value pairs.
+The most common types of resources obtained from this API are *Collections* and *Elements*.  A collection resource represents the set of all objects of one type (such as "projects" or "applicatoins"). An element resource represents an individual member of a collection.  Each element consists of a set of name/value pairs.
 
 
 ### API Format
 
-API results are currently returned in XML and JSON formats.  It is advised to use the JSON format only.Specify the JSON format by including the HTTP header in all requests:
+API results are currently returned in XML and JSON formats.  It is advised to use the JSON format only. Specify the JSON format by including the HTTP header in all requests:
 
 
-`Content-type: application-json`
+`Content-type: application/json`
 
 ## Include & Expand Options
 

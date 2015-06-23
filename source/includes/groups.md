@@ -2,8 +2,6 @@
 
 ## Get All Groups
 
-This endpoint returns a list of Group resources.
-
 ```http
 GET /api/v2/groups/ HTTP/1.1
 Accept: application/json
@@ -24,9 +22,9 @@ Content-Type: application/json
 }
 ```
 
-## Get a specific Group
+This endpoint returns a list of Group resources.
 
-Get a specific Group resource.
+## Get a specific Group
 
 ```http
 GET /api/v2/groups/G64/ HTTP/1.1
@@ -45,3 +43,5 @@ Content-Type: application/json
     "role": "Administrator"
 }
 ```
+
+Get a specific Group resource.
