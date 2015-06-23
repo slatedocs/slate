@@ -335,7 +335,11 @@ Containing Class | Property | Description
 --------- | ------- |------- | ---------
 SenseSdkError | message | The error message
 
+<<<<<<< HEAD
 # Handling Recipe Firing
+=======
+# Handling a Recipe Firing
+>>>>>>> Added activity and better testing sections
 
 Acting on recipes is done by implementing the RecipeFiredDelegate protocol. In order to implement the protocol, you must define the recipeFired method, which has one parameter of type RecipeFiredArgs. 
 
@@ -406,6 +410,58 @@ Property | Type | Description
 customIdentifier | String | A unique string which identifies the custom geofence (provided by you)
 location | Location | The latitude and longitude of the center
 radius | Double | The radius of the geofence
+
+### PoiPlace
+
+Property | Type | Description
+--------- | ------- |-------
+id | String | A unique string which identifies the place (provided by us)
+location | Location | The latitude and longitude of the center
+radius | Double | The radius of the geofence
+types | [[PoiType](#poitype)] | The category of the place
+
+
+#### PoiType
+
+ |
+--------- |
+Airport |
+Bar |
+Restaurant |
+Mall |
+Cafe |
+Gym |
+
+### PersonalizedPlace
+Property | Type | Description
+--------- | ------- |-------
+location | Location | The latitude and longitude of the center
+radius | Double | The radius of the geofence
+personalizedPlaceType | [PersonalizedPlaceType](#personalizedplacetype) | The type of place
+
+#### PersonalizedPlaceType
+
+ |
+--------- |
+Home |
+Work |
+
+
+
+## Confidence Levels
+
+When a trigger is fired, it brings along one of three confidence levels.
+
+ |
+--------- |
+High |
+Medium |
+Low |
+
+
+## Working with different types of places
+
+You may need to cast a place to the appropriate type once your recipe fires.  The following sample code shows you how to cast to any of the given types above depending on the place type:
 
 ```swift
 func recipeFired(args: RecipeFiredArgs) {
@@ -482,52 +538,37 @@ func recipeFired(args: RecipeFiredArgs) {
 
 ```
 
-### PoiPlace
-
-Property | Type | Description
---------- | ------- |-------
-id | String | A unique string which identifies the place (provided by us)
-location | Location | The latitude and longitude of the center
-radius | Double | The radius of the geofence
-types | [[PoiType](#poitype)] | The category of the place
 
 
-#### PoiType
+# Conditional Elements
 
- |
---------- |
-Airport |
-Bar |
-Restaurant |
-Mall |
-Cafe |
-Gym |
+A conditional element is an extra restriction that you can create for a trigger that must be satisfied. A condition must be paired with a trigger and cannot stand alone.
 
-### PersonalizedPlace
-Property | Type | Description
---------- | ------- |-------
-location | Location | The latitude and longitude of the center
-radius | Double | The radius of the geofence
-personalizedPlaceType | [PersonalizedPlaceType](#personalizedplacetype) | The type of place
+Several conditions may be applied when creating any type of trigger through the FireTrigger class.  All conditions applied to a trigger MUST be satisfied in order for the entire recipe to fire.
 
-#### PersonalizedPlaceType
+##Activity Condition
 
- |
---------- |
-Home |
-Work |
+Activity conditions are used to check the mode of transportation in which a user either arrives or departs from a specified place.
+
+For example, if you want to be notified when a user enters a restaurant, BUT only when they arrived by car, you would do the following:
+
+```swift
+let arrivedByCar = UsersActivity.arrivedBy(.Automotive)!
+let restaurantTrigger = FireTrigger.whenEntersPoi(.Restaurant, conditions: [arrivedByCar])
+```
+
+```objective_c
+ConditionalElement* arrivedByCar = [UsersActivity arrivedBy:ActivityTypeAutomotive errorPtr:nil];
+Trigger *restaurantTrigger = [FireTrigger whenEntersPoi:PoiTypeRestaurant conditions: arrivedByCar errorPtr:nil];
+```
 
 
-
-## Confidence Levels
-
-When a trigger is fired, it brings along one of three confidence levels.
-
- |
---------- |
-High |
-Medium |
-Low |
+There are 5 types of activities available:
+stationary |
+walking |
+running |
+automotive |
+cycling |
 
 ## Farther Than Condition
 
@@ -536,23 +577,16 @@ The farther than condition ensures that the trigger will only fire if the user i
 For example, you can trigger when a user enters a restaurant that is farther than 150 kilometers from their home.
 
 ```swift
-let fartherThanHome = UsersLocation.isFartherThanPersonalizedPlace(
-        .Home, 
-        kilometers: 150)!
-  
-let restaurantTrigger = FireTrigger.whenEntersPoi(
-        .Restaurant, 
-        conditions: [fartherThanHome], 
-        errorPtr: errorPointer)
+let fartherThanHome = UsersLocation.isFartherThanPersonalizedPlace(.Home, kilometers: 150)!
+let restaurantTrigger = FireTrigger.whenEntersPoi(.Restaurant, conditions: [fartherThanHome])
 ```
-
 ```objective_c
 ConditionalElement *fartherThanHome = [UsersLocation
                                        isFartherThanPersonalizedPlace:PersonalizedPlaceTypeHome
                                        kilometers:[NSNumber numberWithInt:150]
                                        errorPtr:errorPtr];
 NSArray* conditions = [[NSArray alloc] initWithObjects:fartherThanHome, nil];
-Trigger *restaurantTrigger = [FireTrigger whenEntersPoi:PoiTypeRestaurant conditions:conditions errorPtr:errorPtr];
+Trigger *restaurantTrigger = [FireTrigger whenEntersPoi:PoiTypeRestaurant conditions:conditions errorPtr:nil];
 ```
 
 Category | Transitions |
@@ -571,13 +605,22 @@ CustomGeofence | .whenExitsGeofences([CustomGeofence], kilometers: 10)
 
 # Testing
 
+<<<<<<< HEAD
 ## Unit Testing
 
 Testing in the real world is time consuming, so we provide a way to easily trigger your Recipe to fire.
+=======
+## Testing while at your desk
+
+Testing in the real world is time consuming, so we provide a way to easily fire anyone of your recipes.  This can also be very helpful when unit testing your own code.
+
+The example below shows you how to fire a recipe called "ArrivedAtRestaurant" with a restaurant called "Big Foot's Burgers".
+>>>>>>> Added activity and better testing sections
 
 ```swift
-//Create a fake restaurant
-let place = PoiPlace(latitude: 34.111, longitude: -118.111, radius: 50, name: "Big Restaurant", id: "id1", types: [.Restaurant])
+//Create your fake restaurant
+let place = PoiPlace(latitude: 34.111, longitude: -118.111, radius: 50,
+  name: "Big Foot's Burgers", id: "id1", types: [.Restaurant])
 
 let errorPointer = SenseSdkErrorPointer.create()
 // This method should only be used for testing
@@ -614,10 +657,31 @@ if(errorPtr.error != nil) {
 }
 ```
 
+<<<<<<< HEAD
 ## Real World Testing
+=======
+You will have to create the correct type of place depending on the type of trigger.  For example, if you have you have the case of "Enter Home", then you must make a place of type PersonalizedPlace.  The list of place types with their corresponding types can be found under: [Places](#places)
+
+##Real world testing
+
+>>>>>>> Added activity and better testing sections
 Please note that when you do real-world testing you need to mimic the action you are testing as closely as possible or the trigger might not fire. In order to avoid false positives, our algorithms will try to ignore actions that do not look like real-world actions.
 
 For example, if you are testing entering a restaurant. Make sure that you are not in or around the restaurant before starting the test and that you are at least 1km away. Drive, walk, or bike to the restaurant and make sure to enter it fully, sit down at a table, and stay at least five minutes. The more your testing reflects the way you would perform that action in the real-world, the more likely it is that our algorithms will pick it up.
 
+<<<<<<< HEAD
+=======
+Because we're developers too, we understand that any extra insight in how the sdk is working is extremely valuable.  This is why we provided a debug setting that will send you different notifications during your real-world testing.  To give it a try:
+
+1. Open your info.plist. (go to your project and hit the Info tab at the top of the screen)
+2. Add the key "sense360:sendDebugNotifications"
+3. Set it to a Boolean with a value of YES
+4. Make sure that at least one recipe is being registered (very important!)
+5. Turn your app on
+6. Go at least 1 kilometer away from your location, sit down, and wait for a notification!
+
+
+
+>>>>>>> Added activity and better testing sections
 # Thanks for using Sense360
 <div style="height:120px;"></div>
