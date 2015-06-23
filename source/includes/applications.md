@@ -102,7 +102,7 @@ Content-Type: application/json
 ## Get a Specific Application
 
 ```http
-GET /api/v2/applications/:3 HTTP/1.1
+GET /api/v2/applications/3 HTTP/1.1
 Accept: application/json
 Authorization: Token "YOUR SDE ACCESS TOKEN"
 ```
@@ -128,7 +128,7 @@ This endpoint retrieves a single application resource, as specified by the id pa
 
 **HTTP Request:**
 
-`GET http://example.com/application/:{id}`
+`GET /applications/{id}`
 
 **URL Parameters:**
 
@@ -220,4 +220,4 @@ priority | No | The three options are: '0-none', '1-high', '2-medium', '3-low'
 
 **HTTP Request:**
 
-`PUT https://example.com/api/v2/applications/{id}/`
+`PUT /api/v2/applications/{id}/`
