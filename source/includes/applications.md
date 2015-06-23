@@ -107,7 +107,7 @@ business_unit | The business unit the application belongs to
 ## Get a Specific Application
 
 ```http
-POST /api/v2/applications/:3 HTTP/1.1
+GET /api/v2/applications/:3 HTTP/1.1
 Accept: application/json
 Authorization: Token "YOUR SDE ACCESS TOKEN"
 ```
@@ -188,7 +188,7 @@ business_unit| Yes |The ID of the business unit the application belongs to
 
 
 ```http
-POST /api/v2/applications/1/ HTTP/1.1
+PUT /api/v2/applications/1/ HTTP/1.1
 Accept: application/json
 Authorization: Token "YOUR SDE ACCESS TOKEN"
 
@@ -216,7 +216,7 @@ Content-Type: application/json
 }
 ```
 
-Edit a single application.  The application to edit is identified by the id.
+Edit a single application by specifying a new name and new business_unit. The application to edit is identified by the id.
 
 
 Fields | Required | Description
