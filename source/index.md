@@ -26,7 +26,9 @@ Have fun creating!
 
 # Template Project
 
-Swift and Objective-C projects are available at <a href='https://github.com/Sense360/Sense360IOSStarter'>https://github.com/Sense360/Sense360IOSStarter</a>.
+A Swift starter project can be found at: <a href='https://github.com/Sense360/Sense360StarterSwift'>https://github.com/Sense360/Sense360StarterSwift</a>
+
+The same project but for objective-c can be found at: <a href='https://github.com/Sense360/Sense360StarterObjC'>https://github.com/Sense360/Sense360StarterObjC</a>
 
 # Download
 
