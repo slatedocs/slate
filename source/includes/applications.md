@@ -134,18 +134,19 @@ This endpoint retrieves a single application resource, as specified by the id pa
 
 Parameter | Description
 --------- | -----------
-id | The id of the application to retrieve
+id        | The id of the application to retrieve
 
 
 
 ## Create a New Application
 
 ```http
-POST /api/v2/applications/?expand=business_units HTTP/1.1
+POST /api/v2/applications/ HTTP/1.1
 Accept: application/json
 Authorization: Token "YOUR SDE ACCESS TOKEN"
 
 {
+    "business_unit": 1,
     "name":"API Test"
 }
 
@@ -169,13 +170,13 @@ Content-Type: application/json
 }
 ```
 
-Fields | Required| Description
+Fields | Required | Description
 -------|----------|-------------
 name | Yes | The name of the new application
-business_unit| Yes |The ID of the business unit the application belongs to
+business_unit | Yes | The ID of the business unit the application belongs to
 
 
-## Edit an Application
+## Update an Application
 
 
 ```http
@@ -207,15 +208,15 @@ Content-Type: application/json
 }
 ```
 
-Edit a single application by specifying a new name and new business unit. The application to edit is identified by the id.
+Update a single application by specifying a new name and new business unit. The application to update is identified by the id.
 
 
 Fields | Required | Description
 -------|----------|---------------
 id | Yes | The id of the application to edit must be submitted in the request
 name | No | The name of the application can be changed to any other string
-business_unit|  No| This can be edited by setting the business unit id
-priority| No| The three options are: '0-none', '1-high', '2-medium', '3-low'
+business_unit |  No | This can be edited by setting the business unit id
+priority | No | The three options are: '0-none', '1-high', '2-medium', '3-low'
 
 **HTTP Request:**
 

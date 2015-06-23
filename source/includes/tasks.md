@@ -38,8 +38,6 @@ Content-Type: application/json
 }
 ```
 
-
-
 Will return a list of tasks associated with the project having id "project_id".
 
 ### HTTP Request
@@ -113,9 +111,9 @@ See the [Include and Expand Parameters](#include-amp-expand-parameters) section 
 
 **Include:**
 
-Field | Description
-------|---------------------
-tags | includes a list of tags associated to the task
+Field   | Description
+--------|---------------------
+tags    | includes a list of tags associated to the task
 related | includes a list of related tasks
 problem | includes the problem that the task is related to
 how_tos | includes a list of how-tos
@@ -123,7 +121,7 @@ how_tos | includes a list of how-tos
 
 **Expand:**
 
-Field | Description
-------|---------------------
-status| expands the status field associated with the task
+Field       | Description
+------------|---------------------
+status      | expands the status field associated with the task
 description | expands the description field associated with the task
