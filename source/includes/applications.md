@@ -30,8 +30,7 @@ This endpoint retrieves a list of application objects.
 
 ---
 
-### Include & Expand Options
-
+### Include Parameters
 
 ```http
 GET /api/v2/applications/?include=projects HTTP/1.1
@@ -60,6 +59,15 @@ Content-Type: application/json
 }
 ```
 
+See the [Include and Expand Options](#include-&-expand-options) section for a fuller discussion on their functionality.
+
+Parameter | Description
+----------|---------------
+projects  | something here
+
+---
+
+### Expand Parameters
 
 ```http
 GET /api/v2/applications/?expand=business_units HTTP/1.1
@@ -87,18 +95,11 @@ Content-Type: application/json
     }]
 }
 ```
+
 See the [Include and Expand Options](#include-&-expand-options) section for a fuller discussion on their functionality.
 
-Include
-
-Field | Description
-------|------------------------------
-projects | something ehre
-
-Expand
-
-Field | Description
-------|------------------------------
+Parameter     | Description
+--------------|------------------------------
 business_unit | The business unit the application belongs to
 
 ## Get a Specific Application
