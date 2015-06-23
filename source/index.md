@@ -32,7 +32,7 @@ The same project but for objective-c can be found at: <a href='https://github.co
 
 # Download
 
-You can download the stand alone framework <a href='https://www.dropbox.com/s/few391levfy93aj/SenseSdk.framework.zip?dl=0'>here</a>.
+You can download the stand alone framework <a href='https://s3-us-west-1.amazonaws.com/sense360-public-files/SenseSdk.framework.zip'>here</a>.
 
 # Quick Start
 
