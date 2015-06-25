@@ -19,8 +19,7 @@ search: true
 # Introducción
 
 Integra tu aplicación con Facturación Electrónica. Este API de Dátil te permite
-emitir todos los tipos de comprobantes electrónicos: facturas, retenciones, notas
-de crédito, notas de débito y guías de remisión.
+emitir todos los tipos de comprobantes electrónicos: facturas, retenciones (próximamente), notas de crédito (próximamente), notas de débito (próximamente) y guías de remisión (próximamente).
 
 El API de Dátil está diseñado como un servicio web [REST](http://en.wikipedia.org/wiki/Representational_State_Transfer).
 De esta manera resulta sencillo conversar con nuestra interfaz utilizando cualquier
@@ -53,13 +52,13 @@ Comprende las siguientes fases:
 1. __Creación__: Se registra el comprobante para posterior referencia.
 2. __Firmado__: Utilizando el certificado de firma electrónica y un algoritmo de firma digital, 
 el comprobante es firmado para que el SRI pueda verificar su legitimidad.
-3. __Envío__: El comprobante es enviado al SRI para ser procesado y autorizado.
-4. __Consulta de autorización__: Luego de un período de espera, Dátil consulta la
+3. __Envío SRI__: El comprobante es enviado al SRI para ser procesado.
+4. __Consulta de autorización SRI__: Luego de un período de espera, Dátil consulta la
 autorización del comprobante.
-5. __Envío por email__: Se envía el comprobante al correo del destinatario especificado
+5. __Envío por email__: Se envía el comprobante al correo del receptor del comprobante, si una dirección de correo electrónico válida fue provista al momento de emitir el comprobante.
 
 <aside class="notice">
-<strong>Recuerda:</strong> Que este proceso es administrado completamente por nosotros y para
+<strong>Recuerda:</strong> Este proceso es administrado completamente por nosotros y para
 emitir un comprobante bastará enviarlo siguiendo la sección pertinente de esta
 documentación.
 </aside>
@@ -70,15 +69,17 @@ Para obtener la clave del API, inicia sesión con tu cuenta en
 [app.datil.co](https://app.datil.co), ve a la opción _Configuración_ la
 sección "API Key".
 
+<img src="https://s3-us-west-2.amazonaws.com/static-files/datil-py-blurred-api-key.png">
+
 Dátil utiliza claves para autorizar el acceso al API. La clave debe estar 
 incluída en todos los requerimientos en una cabecera:
 
-`X-Key: api-key`
+`X-Key: <clave-del-api>`
 
 Para emitir o re-emitir un comprobante se requiere también la clave del certificado
 de firma electrónica. Esta clave deberá ser provista en una cabecera:
 
-`X-Password: clave-certificado-firma`
+`X-Password: <clave-certificado-firma>`
 
 # Facturas
 
@@ -98,56 +99,78 @@ curl -v https://link.datil.co/invoices/issue \
 -H "X-Key: <API-key>" \
 -H "X-Password: <clave-certificado-firma>" \
 -d '{
-  "secuencial": 0,
-  "emisor": {
-    "ruc": "string",
-    "razon_social": "string",
-    "nombre_comercial": "string",
-    "direccion": "string",
-    "contribuyente_especial": "string",
-    "obligado_contabilidad": true,
-    "establecimiento": {
-      "codigo": "string",
-      "direccion": "string",
-      "punto_emision": "string"
+  "ambiente":1,
+  "tipo_emision":1,
+  "secuencial":148,
+  "fecha_emision":"2015-02-28T11:28:56.782Z",
+  "emisor":{
+    "ruc":"0910000000001",
+    "obligado_contabilidad":true,
+    "contribuyente_especial":"12345",
+    "nombre_comercial":"XYZ Corp",
+    "razon_social":"XYZ Corporación S.A.",
+    "direccion":"Av. Primera 234 y calle 5ta",
+    "establecimiento":{
+      "punto_emision":"002",
+      "codigo":"001",
+      "direccion":"Av. Primera 234 y calle 5ta"
     }
   },
-  "moneda": "string",
-  "id": "string",
-  "ambiente": 0,
-  "totales": {
-    "impuestos": [
+  "moneda":"USD",
+  "informacion_adicional":{
+    "Tiempo de entrega":"5 días"
+  },
+  "totales":{
+    "total_sin_impuestos":4359.54,
+    "impuestos":[
       {
-        "codigo": "string",
-        "codigo_porcentaje": "string"
+        "base_imponible":0.0,
+        "valor":0.0,
+        "codigo":"2",
+        "codigo_porcentaje":"0"
+      },
+      {
+        "base_imponible":4359.54,
+        "valor":523.14,
+        "codigo":"2",
+        "codigo_porcentaje":"2"
       }
-    ]
+    ],
+    "importe_total":4882.68,
+    "propina":0.0,
+    "descuento":0.0
   },
-  "comprador": {
-    "razon_social": "string",
-    "identificacion": "string",
-    "tipo_identificacion": "string",
-    "email": "string",
-    "direccion": "string",
-    "telefono": "string"
+  "comprador":{
+    "email":"juan.perez@xyz.com",
+    "identificacion":"0987654321",
+    "tipo_identificacion":"05",
+    "razon_social":"Juan Pérez",
+    "direccion":"Calle única Numero 987",
+    "telefono":"046029400"
   },
-  "tipo_emision": 0,
-  "items": [
+  "items":[
     {
-      "descripcion": "string",
+      "cantidad":622.0,
+      "codigo_principal":"ZNC",
+      "codigo_auxiliar": "050",
+      "precio_unitario": 7.01,
+      "descripcion": "Zanahoria granel  50 Kg.",
+      "precio_total_sin_impuestos": 4360.22,
       "impuestos": [
         {
-          "codigo": "string",
-          "codigo_porcentaje": "string"
+          "base_imponible":4359.54,
+          "valor":523.14,
+          "tarifa":12.0,
+          "codigo":"2",
+          "codigo_porcentaje":"2"
         }
       ],
-      "detalles_adicionales": {},
-      "codigo_auxiliar": "string",
-      "codigo_principal": "string"
+      "detalles_adicionales": {
+        "Peso":"5000.0000"
+      },
+      "descuento": 0.0
     }
-  ],
-  "version": "string",
-  "clave_acceso": "string"
+  ]
 }'
 ```
 
@@ -155,60 +178,82 @@ curl -v https://link.datil.co/invoices/issue \
 import requests, json
 
 factura = {
-  "secuencial": 0,
-  "emisor": {
-    "ruc": "string",
-    "razon_social": "string",
-    "nombre_comercial": "string",
-    "direccion": "string",
-    "contribuyente_especial": "string",
-    "obligado_contabilidad": true,
-    "establecimiento": {
-      "codigo": "string",
-      "direccion": "string",
-      "punto_emision": "string"
+  "ambiente":1,
+  "tipo_emision":1,
+  "secuencial":148,
+  "fecha_emision":"2015-02-28T11:28:56.782Z",
+  "emisor":{
+    "ruc":"0910000000001",
+    "obligado_contabilidad":true,
+    "contribuyente_especial":"12345",
+    "nombre_comercial":"XYZ Corp",
+    "razon_social":"XYZ Corporación S.A.",
+    "direccion":"Av. Primera 234 y calle 5ta",
+    "establecimiento":{
+      "punto_emision":"002",
+      "codigo":"001",
+      "direccion":"Av. Primera 234 y calle 5ta"
     }
   },
-  "moneda": "string",
-  "id": "string",
-  "ambiente": 0,
-  "totales": {
-    "impuestos": [
+  "moneda":"USD",
+  "informacion_adicional":{
+    "Tiempo de entrega":"5 días"
+  },
+  "totales":{
+    "total_sin_impuestos":4359.54,
+    "impuestos":[
       {
-        "codigo": "string",
-        "codigo_porcentaje": "string"
+        "base_imponible":0.0,
+        "valor":0.0,
+        "codigo":"2",
+        "codigo_porcentaje":"0"
+      },
+      {
+        "base_imponible":4359.54,
+        "valor":523.14,
+        "codigo":"2",
+        "codigo_porcentaje":"2"
       }
-    ]
+    ],
+    "importe_total":4882.68,
+    "propina":0.0,
+    "descuento":0.0
   },
-  "comprador": {
-    "razon_social": "string",
-    "identificacion": "string",
-    "tipo_identificacion": "string",
-    "email": "string",
-    "direccion": "string",
-    "telefono": "string"
+  "comprador":{
+    "email":"juan.perez@xyz.com",
+    "identificacion":"0987654321",
+    "tipo_identificacion":"05",
+    "razon_social":"Juan Pérez",
+    "direccion":"Calle única Numero 987",
+    "telefono":"046029400"
   },
-  "tipo_emision": 0,
-  "items": [
+  "items":[
     {
-      "descripcion": "string",
+      "cantidad":622.0,
+      "codigo_principal":"ZNC"
+      "codigo_auxiliar": "050",
+      "precio_unitario": 7.01,
+      "descripcion": "Zanahoria granel  50 Kg.",
+      "precio_total_sin_impuestos": 4360.22,
       "impuestos": [
         {
-          "codigo": "string",
-          "codigo_porcentaje": "string"
+          "base_imponible":4359.54,
+          "valor":523.14,
+          "tarifa":12.0,
+          "codigo":"2",
+          "codigo_porcentaje":"2"
         }
       ],
-      "detalles_adicionales": {},
-      "codigo_auxiliar": "string",
-      "codigo_principal": "string"
+      "detalles_adicionales": {
+        "Peso":"5000.0000"
+      },
+      "descuento": 0.0
     }
-  ],
-  "version": "string",
-  "clave_acceso": "string"
+  ]
 }
 cabeceras = {
-    'x-key': 'clave-del-api',
-    'x-password': 'clave-certificado-firma',
+    'x-key': '<clave-del-api>',
+    'x-password': '<clave-certificado-firma>',
     'content-type': 'application/json'}
 respuesta = requests.post(
     "https://app.datil.co/invoices/issue",
@@ -227,67 +272,89 @@ namespace DatilClient {
   class InvoicingServiceClient {
     static void Main(string[] args) {
 
-      // Install rest client RestSharp 
-      // go to menu: tools > Library Package Manager > Package Manager Console
-      // paste and press enter: Install-Package RestSharp
+      // Este ejemplo utiliza RestSharp 
+      // Para instalar anda al menú: tools > Library Package Manager > Package Manager Console
+      // copia y pega y presiona enter: Install-Package RestSharp
 
       var client = new RestClient("https://link.datil.co/");
       var request = new RestRequest("invoices/issue", Method.POST);
-      request.AddHeader("X-Key", "clave-del-api");
-      request.AddHeader("X-Password", "clave-certificado-firma");
+      request.AddHeader("X-Key", "<clave-del-api>");
+      request.AddHeader("X-Password", "<clave-certificado-firma>");
 
-      request.RequestBody = @"{
-        \"secuencial\": 0,
-        \"emisor\": {
-          \"ruc\": \"string\",
-          \"razon_social\": \"string\",
-          \"nombre_comercial\": \"string\",
-          \"direccion\": \"string\",
-          \"contribuyente_especial\": \"string\",
-          \"obligado_contabilidad\": true,
-          \"establecimiento\": {
-            \"codigo\": \"string\",
-            \"direccion\": \"string\",
-            \"punto_emision\": \"string\"
+      request.AddBody(@"{
+        ""ambiente"":1,
+        ""tipo_emision"":1,
+        ""secuencial"":148,
+        ""fecha_emision"":""2015-02-28T11:28:56.782Z"",
+        ""emisor"":{
+          ""ruc"":""0910000000001"",
+          ""obligado_contabilidad"":true,
+          ""contribuyente_especial"":""12345"",
+          ""nombre_comercial"":""XYZ Corp"",
+          ""razon_social"":""XYZ Corporación S.A."",
+          ""direccion"":""Av. Primera 234 y calle 5ta"",
+          ""establecimiento"":{
+            ""punto_emision"":""002"",
+            ""codigo"":""001"",
+            ""direccion"":""Av. Primera 234 y calle 5ta""
           }
         },
-        \"moneda\": \"string\",
-        \"id\": \"string\",
-        \"ambiente\": 0,
-        \"totales\": {
-          \"impuestos\": [
+        ""moneda"":""USD"",
+        ""informacion_adicional"":{
+          ""Tiempo de entrega"":""5 días""
+        },
+        ""totales"":{
+          ""total_sin_impuestos"":4359.54,
+          ""impuestos"":[
             {
-              \"codigo\": \"string\",
-              \"codigo_porcentaje\": \"string\"
+              ""base_imponible"":0.0,
+              ""valor"":0.0,
+              ""codigo"":""2"",
+              ""codigo_porcentaje"":""0""
+            },
+            {
+              ""base_imponible"":4359.54,
+              ""valor"":523.14,
+              ""codigo"":""2"",
+              ""codigo_porcentaje"":""2""
             }
-          ]
+          ],
+          ""importe_total"":4882.68,
+          ""propina"":0.0,
+          ""descuento"":0.0
         },
-        \"comprador\": {
-          \"razon_social\": \"string\",
-          \"identificacion\": \"string\",
-          \"tipo_identificacion\": \"string\",
-          \"email\": \"string\",
-          \"direccion\": \"string\",
-          \"telefono\": \"string\"
+        ""comprador"":{
+          ""email"":""juan.perez@xyz.com"",
+          ""identificacion"":""0987654321"",
+          ""tipo_identificacion"":""05"",
+          ""razon_social"":""Juan Pérez"",
+          ""direccion"":""Calle única Numero 987"",
+          ""telefono"":""046029400""
         },
-        \"tipo_emision\": 0,
-        \"items\": [
+        ""items"":[
           {
-            \"descripcion\": \"string\",
-            \"impuestos\": [
+            ""cantidad"":622.0,
+            ""codigo_principal"":""ZNC""
+            ""codigo_auxiliar"": ""050"",
+            ""precio_unitario"": 7.01,
+            ""descripcion"": ""Zanahoria granel  50 Kg."",
+            ""precio_total_sin_impuestos"": 4360.22,
+            ""impuestos"": [
               {
-                \"codigo\": \"string\",
-                \"codigo_porcentaje\": \"string\"
+                ""base_imponible"":4359.54,
+                ""valor"":523.14,
+                ""tarifa"":12.0,
+                ""codigo"":""2"",
+                ""codigo_porcentaje"":""2""
               }
             ],
-            \"detalles_adicionales\": {},
-            \"codigo_auxiliar\": \"string\",
-            \"codigo_principal\": \"string\"
+            ""detalles_adicionales"": {
+              ""Peso"":""5000.0000""
+            },
+            ""descuento"": 0.0
           }
-        ],
-        \"version\": \"string\",
-        \"clave_acceso\": \"string\"
-      }";
+        ]
+      }");
 
       IRestResponse response = client.Execute(request);
 
@@ -327,57 +394,80 @@ Remember — a happy kitten is an authenticated kitten!
 
 ```json
 {
-  "id": "abcf12343faad06785",
-  "secuencial": 0,
-  "emisor": {
-    "ruc": "string",
-    "razon_social": "string",
-    "nombre_comercial": "string",
-    "direccion": "string",
-    "contribuyente_especial": "string",
+  "id": "abcdef09876123cea56784f01",
+  "ambiente":1,
+  "tipo_emision":1,
+  "secuencial":148,
+  "fecha_emision":"2015-02-28T11:28:56.782Z",
+  "clave_acceso": "2802201501091000000000120010010000100451993736618",
+  "emisor":{
+    "ruc": "0910000000001",
     "obligado_contabilidad": true,
+    "contribuyente_especial": "12345",
+    "nombre_comercial": "XYZ Corp",
+    "razon_social": "XYZ Corporación S.A.",
+    "direccion": "Av. Primera 234 y calle 5ta",
     "establecimiento": {
-      "codigo": "string",
-      "direccion": "string",
-      "punto_emision": "string"
+      "punto_emision": "002",
+      "codigo": "001",
+      "direccion": "Av. Primera 234 y calle 5ta"
     }
   },
-  "moneda": "string",
-  "id": "string",
-  "ambiente": 0,
+  "moneda": "USD",
+  "informacion_adicional": {
+    "Tiempo de entrega": "5 días"
+  },
   "totales": {
+    "total_sin_impuestos": 4359.54,
     "impuestos": [
       {
-        "codigo": "string",
-        "codigo_porcentaje": "string"
+        "base_imponible": 0.0,
+        "valor": 0.0,
+        "codigo": "2",
+        "codigo_porcentaje": "0"
+      },
+      {
+        "base_imponible": 4359.54,
+        "valor": 523.14,
+        "codigo": "2",
+        "codigo_porcentaje": "2"
       }
-    ]
+    ],
+    "importe_total": 4882.68,
+    "propina": 0.0,
+    "descuento": 0.0
   },
   "comprador": {
-    "razon_social": "string",
-    "identificacion": "string",
-    "tipo_identificacion": "string",
-    "email": "string",
-    "direccion": "string",
-    "telefono": "string"
+    "email": "juan.perez@xyz.com",
+    "identificacion": "0987654321",
+    "tipo_identificacion": "05",
+    "razon_social": "Juan Pérez",
+    "direccion": "Calle única Numero 987",
+    "telefono": "046029400"
   },
-  "tipo_emision": 0,
-  "items": [
+  "items":[
     {
-      "descripcion": "string",
-      "impuestos": [
+      "cantidad": 622.0,
+      "codigo_principal": "ZNC"
+      "codigo_auxiliar": "050",
+      "precio_unitario": 7.01,
+      "descripcion": "Zanahoria granel  50 Kg.",
+      "precio_total_sin_impuestos": 4360.22,
+      "impuestos":[
         {
-          "codigo": "string",
-          "codigo_porcentaje": "string"
+          "base_imponible": 4359.54,
+          "valor": 523.14,
+          "tarifa": 12.0,
+          "codigo": "2",
+          "codigo_porcentaje": "2"
         }
       ],
-      "detalles_adicionales": {},
-      "codigo_auxiliar": "string",
-      "codigo_principal": "string"
+      "detalles_adicionales": {
+        "Peso": "5000.0000"
+      },
+      "descuento": 0.0
     }
-  ],
-  "version": "string",
-  "clave_acceso": "string"
+  ]
 }
 ```
 
@@ -387,28 +477,34 @@ también se incluirá como parte de la respuesta.
 
 ## Consulta de una factura
 
-Consulta una factura para conocer el estado de las fases del proceso de emisión.
+Consulta una factura para obtener toda la información del comprobante, incluyendo
+el estado del mismo.
+El parámetro `estado` de la respuesta obtenida al invocar esta operación, indica 
+el estado actual del comprobante.
+
+Si es necesario conocer en detalle, en que estado del [proceso de emisión](#proceso-de-emisión), 
+se debe examinar los parámetros `envio_sri` y `autorizacion_sri` de la respuesta.
 
 ### Operación
 
-`GET /invoices/<invoice-ID>`
+`GET /invoices/<invoice-id>`
 
 ### Requerimiento
 
 > #### Requerimiento de ejemplo
 
 ```shell
-curl -v https://link.datil.co/invoices/abcf12343faad06785 \
+curl -v https://link.datil.co/invoices/<id-factura> \
 -H "Content-Type: application/json" \
--H "X-Key: <API-key>" \
+-H "X-Key: <clave-del-api>" \
 -H "X-Password: <clave-certificado-firma>" \
 ```
 
 ```python
 import requests
-cabeceras = {'x-key': 'clave-del-api'}
+cabeceras = {'x-key': '<clave-del-api>'}
 respuesta = requests.get(
-    'https://link.datil.co/invoices/abcf12343faad06785',
+    'https://link.datil.co/invoices/<id-factura>',
     headers = cabeceras)
 ```
 
@@ -424,9 +520,9 @@ namespace DatilClient {
     static void Main(string[] args) {
 
       var client = new RestClient("https://link.datil.co/");
-      var idFactura = "id-factura";
-      var request = new RestRequest("invoices/" + idFactura, Method.POST);
-      request.AddHeader("X-Key", "clave-del-api");
+      var idFactura = "<id-factura>";
+      var request = new RestRequest("invoices/" + idFactura, Method.GET);
+      request.AddHeader("X-Key", "<clave-del-api>");
 
       IRestResponse response = client.Execute(request);
 
@@ -444,8 +540,11 @@ Reemplaza en la ruta `<invoice-ID>` por el `id` de la factura que necesitas cons
 
 ```json
 {
+    "id": "abcf12343faad06785",
     "secuencial": "16",
     "fecha_emision": "2015-05-15",
+    "version": "1.0.0",
+    "clave_acceso": "1505201501099271255400110011000000000162092727615",
     "emisor": {
         "ruc": "0992712554001",
         "razon_social": "DATILMEDIA S.A.",
@@ -468,7 +567,6 @@ Reemplaza en la ruta `<invoice-ID>` por el `id` de la factura que necesitas cons
     ],
     "guia_remision": "",
     "moneda": "USD",
-    "id": "abcf12343faad06785",
     "informacion_adicional": [],
     "ambiente": "1",
     "totales": {
@@ -486,10 +584,10 @@ Reemplaza en la ruta `<invoice-ID>` por el `id` de la factura que necesitas cons
         "importe_total": "168.00"
     },
     "comprador": {
-        "razon_social": "Juan Antonio Plaza Argüello",
+        "razon_social": "Carlos L. Plaza",
         "identificacion": "0900102222",
         "tipo_identificacion": 1,
-        "email": "juanantonioplaza@datilmedia.com",
+        "email": "cplaza@gye593.com",
         "direccion": "Calle Uno y Calle Dos",
         "telefono": "043334445"
     },
@@ -523,8 +621,6 @@ Reemplaza en la ruta `<invoice-ID>` por el `id` de la factura que necesitas cons
             ]
         }
     ],
-    "version": "1.0.0",
-    "clave_acceso": "1505201501099271255400110011000000000162092727615",
     "autorizacion": {
         "estado": "AUTORIZADO",
         "mensajes": [
@@ -543,19 +639,20 @@ Reemplaza en la ruta `<invoice-ID>` por el `id` de la factura que necesitas cons
 
 Parámetro | Tipo | Descripción
 --------- | ------- | -----------
-secuencial | string | Número de secuencia de la factura. __Requerido__
-fecha_emision | string | Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6).
-emisor | objeto tipo [emisor](#emisor) | Información completa del emisor. __Requerido__
-moneda | string | Código [ISO](https://en.wikipedia.org/wiki/ISO_4217) de la moneda. __Requerido__
-ambiente | integer | Pruebas: `1`.<br>Producción `2`.<br>__Requerido__
-totales | objeto tipo [totales](#totales) | Listado de totales. __Requerido__
-comprador | objeto [comprador](#comprador) | Información del comprador. __Requerido__
-tipo_emision | integer | Emisión normal: `1`.<br>Emisión por indisponibilidad: `2`<br>__Requerido__
-items | listado de objetos tipo [item](#item-de-factura) | Items incluídos en la factura. __Requerido__
-version | string | Versión de la especificación, opciones válidas: `1.0.0`, `1.1.0`
+secuencial | string | Número de secuencia de la factura.
+estado | string | Posibles valores: `AUTORIZADO`, `NO AUTORIZADO`, `ENVIADO`, `DEVUELTO`, `RECIBIDO`
+fecha_emision | string | Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf.
 clave_acceso | string | La clave de acceso representa un identificador único del comprobante. Si esta información no es provista, Dátil la generará.<br>¿Cómo [generar](#clave-de-acceso) la clave de acceso?
 envio_sri | objeto tipo [envio sri](#envío-sri) | Información luego de enviar el comprobante.
-autorizacion | objeto tipo [autorizacion sri](#autorización-sri) | Información de la autorización.
+autorizacion | objeto tipo [autorizacion sri](#autorización-sri) | Información de la autorización.org/html/rfc3339#section-5.6).
+emisor | objeto tipo [emisor](#emisor) | Información completa del emisor. 
+moneda | string | Código [ISO](https://en.wikipedia.org/wiki/ISO_4217) de la moneda. 
+ambiente | integer | Pruebas: `1`.<br>Producción `2`.<br>
+totales | objeto tipo [totales](#totales) | Listado de totales. 
+comprador | objeto [comprador](#comprador) | Información del comprador. 
+tipo_emision | integer | Emisión normal: `1`.<br>Emisión por indisponibilidad: `2`<br>
+items | listado de objetos tipo [item](#item-de-factura) | Items incluídos en la factura. 
+version | string | Versión de la especificación, opciones válidas: `1.0.0`, `1.1.0`
 
 # Clave de acceso
 
@@ -588,7 +685,7 @@ El código numérico constituye un mecanismo para brindar seguridad al emisor en
 Ver [aquí](https://es.wikipedia.org/wiki/C%C3%B3digo_de_control) ejemplo de verificación utilizando algoritmo de módulo 11.
 
 
-# Objetos anidados
+# Objetos comunes
 
 ## Emisor
 
