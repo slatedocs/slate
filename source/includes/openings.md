@@ -21,6 +21,7 @@ created_on | <strong>timestamp</strong>
 modified_on | <strong>timestamp</strong>
 allows_remote | <strong>boolean</strong>
 position_type | <strong>choice(`contract`, `full_time`, `part_time`) </strong>
+team | <strong>string</strong>
 
 ## List of all Openings
 
@@ -52,6 +53,7 @@ curl https://api.recruiterbox.com/v1/openings \
         "modified_on": 1413445073,
         "allows_remote": true,
         "position_type": "contract"
+        "team": "FrontEnd Engineers"
       }
     ],
     "meta": {
@@ -87,6 +89,7 @@ modified_on__lt | Filter by modified date lesser than a given timestamp
 order_by | Sort by created_on, modified_on attributes. Use "-" to sort in descending order
 allows_remote | Filter by remote working allowed/ not allowed
 position_type | Filter by one of the position_type `contract, full_time, part_time`
+team | Filter by team
 
 ## Get a specific Opening
 
@@ -112,6 +115,7 @@ curl https://api.recruiterbox.com/v1/openings/a42f3 \
   "modified_on": 1413445073,
   "allows_remote": true,
   "position_type": "full_time"
+  "team": "FrontEnd Engineer"
 }
 ```
 
