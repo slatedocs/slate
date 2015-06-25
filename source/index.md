@@ -151,7 +151,7 @@ curl -v https://link.datil.co/invoices/issue \
   "items":[
     {
       "cantidad":622.0,
-      "codigo_principal":"ZNC",
+      "codigo_principal": "ZNC",
       "codigo_auxiliar": "050",
       "precio_unitario": 7.01,
       "descripcion": "Zanahoria granel  50 Kg.",
@@ -230,7 +230,7 @@ factura = {
   "items":[
     {
       "cantidad":622.0,
-      "codigo_principal":"ZNC"
+      "codigo_principal":"ZNC",
       "codigo_auxiliar": "050",
       "precio_unitario": 7.01,
       "descripcion": "Zanahoria granel  50 Kg.",
@@ -448,7 +448,7 @@ Remember — a happy kitten is an authenticated kitten!
   "items":[
     {
       "cantidad": 622.0,
-      "codigo_principal": "ZNC"
+      "codigo_principal": "ZNC",
       "codigo_auxiliar": "050",
       "precio_unitario": 7.01,
       "descripcion": "Zanahoria granel  50 Kg.",
