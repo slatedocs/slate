@@ -44,7 +44,7 @@ Returns basic details about all reports associated with your account.
 
 ### HTTP Request
 
-`GET https://tools.brightlocal.com/seo-tools/api/v2/gpw/all`
+`GET https://tools.brightlocal.com/seo-tools/api/v4/gpw/all`
 
 ### Query Parameters
 
