@@ -31,9 +31,9 @@ under the License.
   <script src="javascripts/lib/GA.js" type="text/javascript"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
   <% if current_page.data.search %>
-  <%= javascript_include_tag "all" %>
+    <%= javascript_include_tag "all" %>
   <% else %>
-  <%= javascript_include_tag "all_nosearch" %>
+    <%= javascript_include_tag "all_nosearch" %>
   <% end %>
 
   <% if language_tabs %>
@@ -46,45 +46,32 @@ under the License.
 
   <script type="text/javascript">
 
-    $(function () {
-      var $sidebar = $(".tocify-wrapper"),
-          $window = $(window),
-          offset = $sidebar.offset(),
-          topPadding = 15;
+    function setupScroll(selector, topPadding) {
+      $(function () {
+        var $sidebar = selector,
+            $window = $(window),
+            offset = $sidebar.offset();
 
-      $window.scroll(function () {
-        if ($window.scrollTop() > offset.top) {
-          $sidebar.stop().animate({
-            marginTop: $window.scrollTop() - offset.top + topPadding
-          });
-        } else {
-          $sidebar.stop().animate({
-            marginTop: 0
-          });
-        }
+        $window.scroll(function () {
+          if ($window.scrollTop() + topPadding > offset.top) {
+            $sidebar.css('position', 'fixed');
+            $sidebar.css('top', topPadding + 'px');
+          } else {
+            $sidebar.css('position', 'absolute');
+            $sidebar.css('top', '');
+          }
+        });
       });
+    }
 
+    $(function () {
+      setupScroll($('.tocify-wrapper'), 15);
     });
 
     $(function () {
-      var $sidebar = $("#nav-button"),
-          $window = $(window),
-          offset = $sidebar.offset(),
-          topPadding = 15;
-
-      $window.scroll(function () {
-        if ($window.scrollTop() > offset.top) {
-          $sidebar.stop().animate({
-            marginTop: $window.scrollTop() - offset.top + topPadding
-          });
-        } else {
-          $sidebar.stop().animate({
-            marginTop: 0
-          });
-        }
-      });
-
+      setupScroll($('#nav-button'), 5);
     });
+
   </script>
 </head>
 
@@ -131,7 +118,7 @@ under the License.
       </span>
   </a>
 
-  <div class="tocify-wrapper">
+  <div class="tocify-wrapper" style="position: absolute;">
     <% if current_page.data.search %>
       <div class="search">
         <input type="text" class="search" id="input-search" placeholder="Search">
