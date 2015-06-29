@@ -48,8 +48,9 @@ to the Astronomer backend service.
 
 ## Multi-hub analytics.js build
 
-We've published a custom build of analytics.js
-that pushes data to both Segment and Astronomer. This is useful for
+**COMING SOON**
+
+We've published a custom build of analytics.js that pushes data to both Segment and Astronomer. This is useful for
 testing/evaluating Astronomer if you're currently a Segment user.
 
 We expect that some customers will choose to use both Segment and Astronomer,
@@ -120,3 +121,14 @@ You may want to create a separate Astronomer/Google Analytics/Keen instances to 
 Invite setup@astronomer.io user to be a project member to your Keen IO database(s), so we can see the events that are being generated (you can remove us later).
 
 And please report any issues, confusing steps, etc. you encounter in the process. Or any feedback of any kind :) Drop email to [setup@astronomer.io](mailto:setup@astronomer.io).
+
+# Frequently Asked Questions
+
+### What about USERcycle?
+
+If you push your data into Keen IO, you can use USERcycle. We're not actively
+developing new features in USERcycle at the moment, but it does generate some
+great cohort and behavior flow charts for your app.
+
+We may integrate some features of USERcycle into Astronomer at some point,
+but it's not on the immediate todo list.
