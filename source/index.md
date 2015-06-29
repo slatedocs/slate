@@ -106,7 +106,7 @@ Get the appId and appSecret from Astronomer "settings" tab.
 
 ### Step 5 - Confirm it's working
 
-1. Check the web browser's javascript console for your app, make sure it says "Authenticating with https://app.astronomer.io:443" to ensure you got the Meteor settings correct.
+1. Check the web browser's javascript console for your app, make sure you see **"Authenticating with https://app.astronomer.io:443"** to ensure you got the Meteor settings correct.
 2. Go to Google Analytics Real-Time, and click on Events tab.
 3. Take some actions in your app (sign up, change routes).
 4. Confirm events are flowing through the Real-Time tab in Google Analytics.
