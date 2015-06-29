@@ -63,3 +63,49 @@ will instrument your entire Meteor app automatically.
 
 Simply type `meteor add astronomerio:core`, add configuration, and your app
 will emit well-formed user events automatically to the Astronomer service.
+
+## Alpha Test process
+
+### Step 1 - Sign up for Astronomer (https://app.astronomer.io)
+
+We’ll use the Astronomer Data Hub service to broadcast our user events to both Google Analytics and Keen IO. The service also archives all events for future playback into new tools we may choose to adopt later (this isn’t 100% working yet, though).
+
+### Step 2 - Sign up for Google Analytics
+
+Every website + app should push data to Google Analytics — it provides a great value:effort ratio.
+After you sign up, flip on the Google Analytics in Astronomer, and paste in your Tracking ID (starts with UA-).
+
+### Step 3 - Sign up for Keen IO
+
+We’re going to push our data to Keen IO, which gives you ad-hoc query capability, and is free at low volume. After you sign up, turn on Keen IO in Astronomer, paste in your Project ID and Write Key.
+
+``` json
+{
+  "public": {
+    "astronomer": {
+      "appId": "XXXXXXXXX",
+      "appSecret": "XXXXXXXXXXXXXXXXXXX"
+    }
+  }
+}
+```
+
+### Step 4 - Add Astronomer package to your Meteor app
+
+This package emits well-formed user events from your app to the Astronomer Data Hub.
+
+`meteor add astronomerio:core`
+
+Add a settings.json file, with the appropriate settings, see sample to the right.
+
+Get the appId and appSecret from Astronomer "settings" tab.
+
+### Step 5 - Separate production/dev apps
+
+You may want to create a separate Astronomer/Google Analytics/Keen instances to keep your test/dev events out of your production data. I use the naming convention “{AppName} Prod” and “{AppName} Dev” across all 3 services to keep it all straight.
+
+### Step 6 - Share your Keen IO project with us (optional)
+
+Invite setup@astronomer.io user to be a project member to your Keen IO database(s), so we can see the events that are being generated.
+
+Report any issues, confusing steps, etc. you encounter in the process to [us](mailto:ry@astronomer.io).
