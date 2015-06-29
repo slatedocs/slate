@@ -333,7 +333,7 @@ title | String | The story title.
 brief | String | A description of the story and it's requirements.
 content | String (HTML) | The raw HTML of the story.
 url | String | A link to the story on the Contently platform.
-pubilshed_to_url | String | The URL where the story is published.
+published_to_url | String | The URL where the story is published.
 due_at | Unix datetime | The date the first version of the story was due.
 publish_at | Unix datetime | The date the story is planned to be published.
 published_at | Unix datetime | The date the story was actually published or marked published.
