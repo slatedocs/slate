@@ -66,7 +66,7 @@ will emit well-formed user events automatically to the Astronomer service.
 
 ## Alpha Test process
 
-### Step 1 - Sign up for Astronomer (https://app.astronomer.io)
+### Step 1 - Sign up for [Astronomer](https://app.astronomer.io/signup)
 
 We’ll use the Astronomer Data Hub service to broadcast our user events to both Google Analytics and Keen IO. The service also archives all events for future playback into new tools we may choose to adopt later (this isn’t 100% working yet, though).
 
