@@ -121,7 +121,7 @@ You may want to create a separate Astronomer/Google Analytics/Keen instances to 
 
 Invite setup@astronomer.io user to be a project member to your Keen IO database(s), so we can see the events that are being generated (you can remove us later).
 
-And please report any issues, confusing steps, etc. you encounter in the process. Or any feedback of any kind :) The fastest way to get a response from us is to join our [developer slack channel](https://astronomerchat.slack.com)
+And please report any issues, confusing steps, etc. you encounter in the process. Or any feedback of any kind :) The fastest way to get a response from us is to join our [developer slack channel](https://astronomerchat.slack.com).
 
 Or you can always send us a good ol' fashioned email at [setup@astronomer.io](mailto:setup@astronomer.io).
 We'll probably respond to that too. 
