@@ -108,4 +108,4 @@ You may want to create a separate Astronomer/Google Analytics/Keen instances to 
 
 Invite setup@astronomer.io user to be a project member to your Keen IO database(s), so we can see the events that are being generated.
 
-Report any issues, confusing steps, etc. you encounter in the process to [us](mailto:ry@astronomer.io).
+Report any issues, confusing steps, etc. you encounter in the process. Or any feedback of any kind :) Drop email to [setup@astronomer.io](mailto:setup@astronomer.io).
