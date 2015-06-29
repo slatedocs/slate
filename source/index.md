@@ -104,11 +104,18 @@ Add a settings.json file, with the appropriate settings, see sample to the right
 
 Get the appId and appSecret from Astronomer "settings" tab.
 
-### Step 5 - Create separate production/dev apps
+### Step 5 - Confirm it's working
+
+1. Check the web browser's javascript console for your app, make sure it says "Authenticating with https://app.astronomer.io:443" to ensure you got the Meteor settings correct.
+2. Go to Google Analytics Real-Time, and click on Events tab.
+3. Take some actions in your app (sign up, change routes).
+4. Confirm events are flowing through the Real-Time tab in Google Analytics.
+
+### Step 6 - Create separate production/dev apps
 
 You may want to create a separate Astronomer/Google Analytics/Keen instances to keep your test/dev events out of your production data. I use the naming convention “{AppName} Prod” and “{AppName} Dev” across all the services to keep it all straight.
 
-### Step 6 - Share your Keen IO project with us (optional)
+### Step 7 - Share your Keen IO project with us (optional)
 
 Invite setup@astronomer.io user to be a project member to your Keen IO database(s), so we can see the events that are being generated (you can remove us later).
 
