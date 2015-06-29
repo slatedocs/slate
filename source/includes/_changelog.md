@@ -4,6 +4,7 @@ Changes to the API and documentation are below.
 
 Date | Changes
 --------- | -----------
+6/29/2015 | Changed how we handle closed hours, day must now be left out of hours hash
 5/8/2015 | Added Description and changed listing_status in POST and PUT partner listings
 4/24/2015 | Added partner attribution url
 4/17/2015 | Added logo_url, photo_urls, video_urls, offer_message and offer_url to listings

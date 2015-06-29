@@ -82,11 +82,6 @@ You must replace `YOUR-ACCESS-TOKEN` with your API key.
   "instagram_id": "cricketnation",
   "omit_address": false,
   "hours": {
-      "sunday": [
-        [
-          "closed"
-        ]
-      ],
       "monday": [
         [
           "8:00",
@@ -151,7 +146,7 @@ twitter_id | Twitter username for the business, without the @ symbol
 google_plus_id | The Google Plus ID or the name used for the page of the business
 instagram_id | The Instgram ID or the username for the business listing
 omit_address | Boolean for omitting the address from the listing (default: false)
-hours | The Hours a business is open or closed represented by a hash of multi dimensional arrays
+hours | The Hours a business is open or closed represented by a hash of multi dimensional arrays or do not include days where business is completely closed.
 category_ids | MojoPages Category ID's that you want business to be listed under array (max: 3)
 logo_url | URL for the listing logo, must be a minimum of 150x150 pixels
 photo_urls | Array of URLs for the listing photos, must all be a minimum of 150x150 pixels

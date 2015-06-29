@@ -87,11 +87,6 @@ curl "https://api.mojopages.com/api/v1/partner/listings"
       "instagram_id": "cricketnation",
       "omit_address": false,
       "hours": {
-          "sunday": [
-            [
-              "closed"
-            ]
-          ],
           "monday": [
             [
               "8:00",
@@ -219,11 +214,6 @@ curl "https://api.mojopages.com/api/v1/partner/listing/7d373c1da40cbfc3f165"
     "instagram_id": "cricketnation",
     "omit_address": false,
     "hours": {
-        "sunday": [
-          [
-            "closed"
-          ]
-        ],
         "monday": [
           [
             "8:00",
@@ -403,7 +393,7 @@ twitter_id | false | Twitter username for the business, without the @ symbol
 google_plus_id | false | The Google Plus ID or the name used for the page of the business
 instagram_id | false | The Instgram ID or the username for the business listing
 omit_address | false | Boolean for omitting the address from the listing (default: false)
-hours | false | The Hours a business is open or closed represented by a hash of multi dimensional arrays
+hours | false | The Hours a business is open or closed represented by a hash of multi dimensional arrays or do not include days where business is completely closed.
 category_ids | true | MojoPages Category ID's that you want business to be listed under array (max: 3)
 logo_url | false | URL for the listing logo, must be a minimum of 150x150 pixels
 photo_urls | false | Array of URLs for the listing photos, must all be a minimum of 150x150 pixels
@@ -512,7 +502,7 @@ twitter_id | Twitter username for the business, without the @ symbol
 google_plus_id | The Google Plus ID or the name used for the page of the business
 instagram_id | The Instgram ID or the username for the business listing
 omit_address | Boolean for omitting the address from the listing (default: false)
-hours | The Hours a business is open or closed represented by a hash of multi dimensional arrays
+hours | The Hours a business is open or closed represented by a hash of multi dimensional arrays or do not include days where business is completely closed.
 category_ids | MojoPages Category ID's that you want business to be listed under array (max: 3)
 logo_url | URL for the listing logo, must be a minimum of 150x150 pixels
 photo_urls | Array of URLs for the listing photos, must all be a minimum of 150x150 pixels
@@ -674,11 +664,6 @@ curl "https://api.mojopages.com/api/v1/listings/search?name=Instant+Phones&local
       "latitude": "33.643668",
       "omit_address": false,
       "hours": {
-          "sunday": [
-            [
-              "closed"
-            ]
-          ],
           "monday": [
             [
               "8:00",
@@ -777,11 +762,6 @@ curl "https://api.mojopages.com/api/v1/listing/11079728"
     "status": "AVAILABLE",
     "omit_address": false,
     "hours": {
-        "sunday": [
-          [
-            "closed"
-          ]
-        ],
         "monday": [
           [
             "8:00",
