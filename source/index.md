@@ -22,11 +22,11 @@ Astronomer consists of:
 from your app. Our [Meteor package](https://atmospherejs.com/astronomerio/core)
 is in alpha testing presently.
 2. The **data hub** backend service, which:
-  * archives all raw events to S3 (for future playback)
+  * archives all raw events to S3 (for historical playback)
   * broadcasts events to popular tools
   * pushes the events into other databases
   * allows you to run any javascript on the stream
-3. The **configuration/monitoring portal**, which provides a GUI interface to monitor and configure your app's data.
+3. The **configuration/monitoring portal** through astronomer.io, which provides a GUI interface to monitor and configure your app's data. If you're here, you've probably already seen it.
 
 Presently, Astronomer is available only in SaaS form. We are engineering the
 product, however, to license the entire architecture for private use. We
@@ -41,14 +41,14 @@ on [analytics.js](https://github.com/segmentio/analytics.js) to minimize
 work required to access our data hub.
 
 If you've already instrumented your app
-using analytics.js or Segment, our service 100% API-compatible.
+using analytics.js or Segment, our service is 100% API-compatible.
 We've implemented a standard
 [analytics.js integration](https://github.com/astronomerio/analytics.js-integrations/blob/astronomer/lib/astronomer/index.js)
 to the Astronomer backend service.
 
 ## Multi-hub analytics.js build
 
-We've published a [custom build of analytics.js]()
+We've published a custom build of analytics.js
 that pushes data to both Segment and Astronomer. This is useful for
 testing/evaluating Astronomer if you're currently a Segment user.
 
