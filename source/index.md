@@ -106,7 +106,7 @@ Get the appId and appSecret from Astronomer "settings" tab.
 
 ### Step 5 - Create separate production/dev apps
 
-You may want to create a separate Astronomer/Google Analytics/Keen instances to keep your test/dev events out of your production data. I use the naming convention “{AppName} Prod” and “{AppName} Dev” across all 3 services to keep it all straight.
+You may want to create a separate Astronomer/Google Analytics/Keen instances to keep your test/dev events out of your production data. I use the naming convention “{AppName} Prod” and “{AppName} Dev” across all the services to keep it all straight.
 
 ### Step 6 - Share your Keen IO project with us (optional)
 
