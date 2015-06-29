@@ -70,12 +70,12 @@ will emit well-formed user events automatically to the Astronomer service.
 
 We’ll use the Astronomer Data Hub service to broadcast our user events to both Google Analytics and Keen IO. The service also archives all events for future playback into new tools we may choose to adopt later (this isn’t 100% working yet, though).
 
-### Step 2 - Sign up for Google Analytics
+### Step 2 - Sign up for [Google Analytics](https://www.google.com/analytics/)
 
 Every website + app should push data to Google Analytics — it provides a great value:effort ratio.
 After you sign up, flip on the Google Analytics in Astronomer, and paste in your Tracking ID (starts with UA-).
 
-### Step 3 - Sign up for Keen IO
+### Step 3 - Sign up for [Keen IO](https://keen.io/signup?source=astronomer)
 
 We’re going to push our data to Keen IO, which gives you ad-hoc query capability, and is free at low volume. After you sign up, turn on Keen IO in Astronomer, paste in your Project ID and Write Key.
 
@@ -90,7 +90,7 @@ We’re going to push our data to Keen IO, which gives you ad-hoc query capabili
 }
 ```
 
-### Step 4 - Add Astronomer package to your Meteor app
+### Step 4 - Add [Astronomer package](https://atmospherejs.com/astronomerio/core) to your Meteor app
 
 This package emits well-formed user events from your app to the Astronomer Data Hub.
 
@@ -100,12 +100,12 @@ Add a settings.json file, with the appropriate settings, see sample to the right
 
 Get the appId and appSecret from Astronomer "settings" tab.
 
-### Step 5 - Separate production/dev apps
+### Step 5 - Create separate production/dev apps
 
 You may want to create a separate Astronomer/Google Analytics/Keen instances to keep your test/dev events out of your production data. I use the naming convention “{AppName} Prod” and “{AppName} Dev” across all 3 services to keep it all straight.
 
 ### Step 6 - Share your Keen IO project with us (optional)
 
-Invite setup@astronomer.io user to be a project member to your Keen IO database(s), so we can see the events that are being generated.
+Invite setup@astronomer.io user to be a project member to your Keen IO database(s), so we can see the events that are being generated (you can remove us later).
 
-Report any issues, confusing steps, etc. you encounter in the process. Or any feedback of any kind :) Drop email to [setup@astronomer.io](mailto:setup@astronomer.io).
+And please report any issues, confusing steps, etc. you encounter in the process. Or any feedback of any kind :) Drop email to [setup@astronomer.io](mailto:setup@astronomer.io).
