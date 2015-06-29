@@ -57,7 +57,7 @@ as our services are different.
 
 # Meteor auto-events package
 
-If you're using Meteor and haven't instrumented your app for analytics yet,
+If you're using Meteor and haven't instrumented your app for **user analytics** yet,
 you're in luck. Our [Meteor package](https://atmospherejs.com/astronomerio/core)
 will instrument your entire Meteor app automatically.
 
