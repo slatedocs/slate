@@ -73,7 +73,11 @@ We’ll use the Astronomer Data Hub service to broadcast our user events to both
 ### Step 2 - Sign up for [Google Analytics](https://www.google.com/analytics/)
 
 Every website + app should push data to Google Analytics — it provides a great value:effort ratio.
-After you sign up, flip on the Google Analytics in Astronomer, and paste in your Tracking ID (starts with UA-).
+If you already have Google Analytics for your app, you can just use your current code. We only send
+Events to Google Analytics.
+
+After you have your code (starts with UA-), flip on the Google Analytics
+integration in Astronomer, and paste in your Tracking ID .
 
 ### Step 3 - Sign up for [Keen IO](https://keen.io/signup?source=astronomer)
 
