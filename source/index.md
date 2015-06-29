@@ -53,32 +53,32 @@ to the Astronomer backend service.
 We've published a custom build of analytics.js that pushes data to both Segment and Astronomer. This is useful for
 testing/evaluating Astronomer if you're currently a Segment user.
 
-We expect that some customers will choose to use both Segment and Astronomer,
-as our services are different.
+Additionally, some users may wish to employ both Segment and Astronomer and create a larger array of available destinations than either separately.
 
 # Meteor auto-events package
 
 If you're using Meteor and haven't instrumented your app for **user analytics** yet,
-you're in luck. Our [Meteor package](https://atmospherejs.com/astronomerio/core)
-will instrument your entire Meteor app automatically.
+you're in luck! Our [Meteor package](https://atmospherejs.com/astronomerio/core)
+will scan your code, identify all user events with available metadata, and instrument your entire Meteor app automatically.
 
 Simply type `meteor add astronomerio:core`, add configuration, and your app
 will emit well-formed user events automatically to the Astronomer service.
+From there you can choose where to send your user data.
 
 ## Alpha Test process
 
 ### Step 1 - Sign up for [Astronomer](https://app.astronomer.io/signup)
 
-We’ll use the Astronomer Data Hub service to broadcast our user events to both Google Analytics and Keen IO. The service also archives all events for future playback into new tools we may choose to adopt later (this isn’t 100% working yet, though).
+We’ll use the Astronomer Data Hub service to broadcast our user events to both Google Analytics and Keen IO. The service also archives all events in a separate, secure database. This will also allow for a future feature release enabling for historical playback into new tools you decide to use down the road.
 
 ### Step 2 - Sign up for [Google Analytics](https://www.google.com/analytics/)
 
-Every website + app should push data to Google Analytics — it provides a great value:effort ratio.
-If you already have Google Analytics for your app, you can just use your current code. We only send
-Events to Google Analytics.
+Every website + app should push data to Google Analytics — it provides a great value/effort ratio.
+If you already have Google Analytics for your app, you can just use your current code as we only send
+events to Google Analytics, not the standard pageviews.
 
-After you have your code (starts with UA-), flip on the Google Analytics
-integration in Astronomer, and paste in your Tracking ID .
+After you have your code (hint: it starts with UA-), flip on the Google Analytics
+integration in Astronomer, and paste in your Tracking ID.
 
 ### Step 3 - Sign up for [Keen IO](https://keen.io/signup?source=astronomer)
 
@@ -97,20 +97,21 @@ We’re going to push our data to Keen IO, which gives you ad-hoc query capabili
 
 ### Step 4 - Add [Astronomer package](https://atmospherejs.com/astronomerio/core) to your Meteor app
 
-This package emits well-formed user events from your app to the Astronomer Data Hub.
+This package emits user events from your app to the Astronomer Data Hub.
 
-`meteor add astronomerio:core`
+1. Type `meteor add astronomerio:core` into your command line.
 
-Add a settings.json file, with the appropriate settings, see sample to the right.
+2. Add a [settings.json](http://docs.meteor.com/#/full/meteor_settings) file to your app. 
 
-Get the appId and appSecret from Astronomer "settings" tab.
+3. Get the appId and appSecret from Astronomer "Settings" tab by clicking the 'Copy to Clipboard' button. Both will be copied in the appropriate format (see sample on right.)
 
-### Step 5 - Confirm it's working
+### Step 5 - Confirm Events are Being Sent
 
 1. Check the web browser's javascript console for your app, make sure you see **"Authenticating with https://app.astronomer.io:443"** to ensure you got the Meteor settings correct.
 2. Go to Google Analytics Real-Time, and click on Events tab.
 3. Take some actions in your app (sign up, change routes).
 4. Confirm events are flowing through the Real-Time tab in Google Analytics.
+5. Repeat steps 4 with Keen IO. If events are not showing up with either, wait a few minutes and refresh the page to try again.
 
 ### Step 6 - Create separate production/dev apps
 
@@ -120,7 +121,8 @@ You may want to create a separate Astronomer/Google Analytics/Keen instances to 
 
 Invite setup@astronomer.io user to be a project member to your Keen IO database(s), so we can see the events that are being generated (you can remove us later).
 
-And please report any issues, confusing steps, etc. you encounter in the process. Or any feedback of any kind :) Drop email to [setup@astronomer.io](mailto:setup@astronomer.io).
+And please report any issues, confusing steps, etc. you encounter in the process. Or any feedback of any kind :) The fastest way to get a response from us is to join our [developer slack channel](astronomerchat.slack.com) but you can always send us a good ol' fashioned email at [setup@astronomer.io](mailto:setup@astronomer.io).
+We'll probably respond to that too. 
 
 # Frequently Asked Questions
 
