@@ -48,6 +48,8 @@ to the Astronomer backend service.
 
 ## Multi-hub analytics.js build
 
+**COMING SOON**
+
 We've published a [custom build of analytics.js]()
 that pushes data to both Segment and Astronomer. This is useful for
 testing/evaluating Astronomer if you're currently a Segment user.
