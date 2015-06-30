@@ -78,11 +78,11 @@ If you already have Google Analytics for your app, you can just use your current
 events to Google Analytics, not the standard pageviews.
 
 After you have your code (hint: it starts with UA-), flip on the Google Analytics
-integration in Astronomer, and paste in your Tracking ID.
+integration in Astronomer, open up the credential window by clicking on 'Google Analytics', the and paste in your Tracking ID. 
 
 ### Step 3 - Sign up for [Keen IO](https://keen.io/signup?source=astronomer)
 
-We’re going to push our data to Keen IO, which gives you ad-hoc query capability, and is free at low volume. After you sign up, turn on Keen IO in Astronomer, paste in your Project ID and Write Key.
+We’re going to push our data to Keen IO, which gives you ad-hoc query capability, and is free at low volume. After you sign up, turn on Keen IO in Astronomer, paste in your Project ID and Write Key in the window that pops up when you click 'Keen IO.'
 
 ``` json
 {
@@ -124,7 +124,7 @@ Invite setup@astronomer.io user to be a project member to your Keen IO database(
 And please report any issues, confusing steps, etc. you encounter in the process. Or any feedback of any kind :) The fastest way to get a response from us is to join our [developer slack channel](https://astronomerchat.slack.com). Email [ben@astronomer.io](mailto:ben@astronomer.io) for an invite.
 
 Or you can always send us a good ol' fashioned email at [setup@astronomer.io](mailto:setup@astronomer.io).
-We'll probably respond to that too. 
+We'll probably respond to that too. :)
 
 # Frequently Asked Questions
 
@@ -136,3 +136,15 @@ great cohort and behavior flow charts for your app.
 
 We may integrate some features of USERcycle into Astronomer at some point,
 but it's not on the immediate todo list.
+
+### I turned on an integration but I don't see where I can put in my credentials.
+
+Yep, that was a bad UI choice on our part. Right now, when you switch on an integration, you'll need to click on the integration name to open up a window to put your credentials in. We're working on a fix to have this happen automatically when you switch the integration on.
+
+###Do I need to keep the Google Analytics script tag in my app?
+
+Yes, you will still need to keep your script tag.
+
+###Do I need to add Keen IO to my app in some way? Maybe with this npm package: https://github.com/keen/keen-js
+
+Nope! Once you've set up your Keen account with Astronomer, you'll be all set to go.
