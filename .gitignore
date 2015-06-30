@@ -1,3 +1,4 @@
+*.orig
 *.gem
 *.rbc
 .bundle

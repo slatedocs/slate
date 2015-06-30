@@ -116,13 +116,10 @@ $search-box-border-color: #666;
 // These settings are probably best left alone.
 
 %break-words {
- -ms-word-break: break-all;
      word-break: break-all;
 
      /* Non standard for webkit */
      word-break: break-word;
 
--webkit-hyphens: auto;
-   -moz-hyphens: auto;
         hyphens: auto;
 }
