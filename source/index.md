@@ -139,7 +139,7 @@ but it's not on the immediate todo list.
 
 ### I turned on an integration but I don't see where I can put in my credentials.
 
-Yep, that was a bad UI choice on our part. Right now, when you switch on an integration, you'll need to click on the integration name to open up a window to put your credentials in. We're working on a fix to have this happen automatically when you switch the integration on.
+Right now, when you switch on an integration, you'll need to click on the integration name to open up a window to put your credentials in. We're working on a fix to have this happen automatically when you switch the integration on.
 
 ###Do I need to keep the Google Analytics script tag in my app?
 
