@@ -78,7 +78,7 @@ If you already have Google Analytics for your app, you can just use your current
 events to Google Analytics, not the standard pageviews.
 
 After you have your code (hint: it starts with UA-), flip on the Google Analytics
-integration in Astronomer, open up the credential window by clicking on 'Google Analytics', the and paste in your Tracking ID. 
+integration in Astronomer, open up the credential window by clicking on 'Google Analytics', the and paste in your Tracking ID.
 
 ### Step 3 - Sign up for [Keen IO](https://keen.io/signup?source=astronomer)
 
@@ -101,9 +101,11 @@ This package emits user events from your app to the Astronomer Data Hub.
 
 1. Type `meteor add astronomerio:core` into your command line.
 
-2. Add a [settings.json](http://docs.meteor.com/#/full/meteor_settings) file to your app. 
+2. Add a [settings.json](http://docs.meteor.com/#/full/meteor_settings) file to your app.
 
 3. Get the appId and appSecret from Astronomer "Settings" tab by clicking the 'Copy to Clipboard' button. Both will be copied in the appropriate format (see sample on right.)
+
+*Note: be sure to restart your Meteor app when you change settings.json file.*
 
 ### Step 5 - Confirm Events are Being Sent
 
