@@ -40,7 +40,7 @@ Adds a new Google+ Local Wizard report to your account.
 
 ### HTTP Request
 
-`POST https://tools.brightlocal.com/seo-tools/api/v4/gpw`
+`POST https://tools.brightlocal.com/seo-tools/api/v4/gpw/add`
 
 ### Query Parameters
 
@@ -97,7 +97,7 @@ run | One of Yes or No. Runs the report after adding. Defaults to Yes.
 
 ### HTTP Request
 
-`PUT https://tools.brightlocal.com/seo-tools/api/v4/gpw`
+`PUT https://tools.brightlocal.com/seo-tools/api/v4/gpw/[reportId]`
 
 ### Query Parameters
 
@@ -106,7 +106,6 @@ Parameter | Notes
 api-key | <span class="label label-required">Required</span>
 sig | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
 expires | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
-report-id | <span class="label label-required">Required</span> The unique ID for the report in your account.
 report_name |
 client_id | Associate this report with a client in your account. This ID needs to correspond to a valid client in your account.
 white_label_profile_id | Assign a white label profile to this report. The ID needs to correspond to a valid white label profile in your account.
@@ -189,7 +188,7 @@ run | One of Yes or No. Runs the report after adding. Defaults to Yes.
 
 ### HTTP Request
 
-`GET https://tools.brightlocal.com/seo-tools/api/v4/gpw`
+`GET https://tools.brightlocal.com/seo-tools/api/v4/gpw/[reportId]`
 
 ### Query Parameters
 
@@ -198,7 +197,6 @@ Parameter | Notes
 api-key | <span class="label label-required">Required</span>
 sig | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
 expires | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
-report-id | <span class="label label-required">Required</span> The unique ID for the report in your account.
 
 ## Delete Report
 
@@ -225,7 +223,7 @@ report-id | <span class="label label-required">Required</span> The unique ID for
 
 ### HTTP Request
 
-`DELETE https://tools.brightlocal.com/seo-tools/api/v4/gpw`
+`DELETE https://tools.brightlocal.com/seo-tools/api/v4/gpw/[reportId]`
 
 ### Query Parameters
 
@@ -234,7 +232,6 @@ Parameter | Notes
 api-key | <span class="label label-required">Required</span>
 sig | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
 expires | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
-report-id | <span class="label label-required">Required</span> The unique ID for the report in your account.
 
 ## Get All Reports
 
@@ -280,7 +277,7 @@ Returns basic details about all reports associated with your account.
 
 ### HTTP Request
 
-`GET https://tools.brightlocal.com/seo-tools/api/v4/gpw/all`
+`GET https://tools.brightlocal.com/seo-tools/api/v4/gpw`
 
 ### Query Parameters
 
