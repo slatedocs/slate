@@ -484,6 +484,16 @@ html, body {
       font-size: 13px;
       text-transform: none;
     }
+
+    .attribute-secondary, .attribute-dimensions {
+      font-size: 13px;
+      display: block;
+      color: #939DA3;
+    }
+
+    .attribute-optimal-size {
+      font-size:11px;
+    }
   }
 
   table.apparel-positions {
