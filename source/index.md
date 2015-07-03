@@ -1,14 +1,12 @@
 ---
-title: API Reference
+title: "OmbuShop REST API: Referencia"
 
 language_tabs:
+  - http
   - shell
-  - ruby
-  - python
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='http://github.com/tripit/slate'>Documentation Powered by Slate</a>
+  - <a href='http://www.ombushop.com/partners'>Registrate en OmbuShop</a>
 
 includes:
   - errors
@@ -16,153 +14,167 @@ includes:
 search: true
 ---
 
-# Introduction
+# Introducción
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+Bienvenido a la API REST de OmbuShop. Aqui puedes ver la documentacion para
+todos los endpoints de la API de OmbuShop.
 
-We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+# Para hacer pedidos
 
-This example API documentation page was created with [Slate](http://github.com/tripit/slate). Feel free to edit it and use it as a base for your own API's documentation.
+Para realizar pedidos a la API REST, se debe pasar la API key de tu tienda
+como parametro `secret`. La API key la encontraras en el panel de administracion
+de tu tienda, en la seccion "Mi Cuenta".
 
-# Authentication
+# Productos
 
-> To authorize, use this code:
+## Obtener todos los productos
 
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
+```http
+GET /products HTTP/1.1
+Host: api.ombushop.com
 ```
 
 ```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
+curl "http://api.ombushop.com/products"
 ```
 
-> Make sure to replace `meowmeowmeow` with your API key.
-
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
-
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
-
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
-
-# Kittens
-
-## Get All Kittens
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
-
-```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
-```
-
-> The above command returns JSON structured like this:
+> Devuelve un JSON con la siguiente estructura:
 
 ```json
 [
   {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
+    "id": 120,
+    "name": "Zapatillas",
+    "description": "<p>Zapatillas de ultima moda</p>",
+    "created_at": "2015-06-25 14:43:51 -0300",
+    "updated_at": "2015-07-03 17:17:40 -0300",
+    "permalink": "zapatillas",
+    "deleted_at": null,
+    "meta_description": "Descripcion",
+    "meta_keywords": "Palabras clave",
+    "count_on_hand": 10,
+    "seller_id": 24,
+    "currency": "ARS"
   },
   {
-    "id": 2,
-    "name": "Isis",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
+    "id": 121,
+    "name": "Remera",
+    "description": "<p>Remera blanca</p>",
+    "created_at": "2015-06-25 14:43:51 -0300",
+    "updated_at": "2015-07-03 17:17:40 -0300",
+    "permalink": "remera",
+    "deleted_at": null,
+    "meta_description": "Descripcion",
+    "meta_keywords": "Palabras clave",
+    "count_on_hand": 20,
+    "seller_id": 24,
+    "currency": "ARS"
   }
 ]
 ```
 
-This endpoint retrieves all kittens.
+Obtener un JSON con todos los productos.
 
-### HTTP Request
+### Atributos
 
-`GET http://example.com/api/kittens`
+Atributo | Descripcion
+--------- | -----------
+id | Identificador del producto
+name | Nombre del producto
+description | Descripcion del producto
+created_at | Fecha de creacion del producto
+updated_at | Fecha de ultima actualizacion del producto
+permalink | Nombre amigable utilizado para la URL del producto
+deleted_at | Fecha de borrado del producto, si este hubiera sido borrado
+meta_description | Descripcion que puede ayudar a los buscadores web a tener informacion relevante sobre el producto
+meta_keywords | Palabras clave que pueden ayudar en la busqueda del producto
+count_on_hand | Cantidad de unidades disponibles del producto
+seller_id | Identificador del vendedor del producto
+currency | Moneda utilizada por la tienda
 
-### Query Parameters
+### Pedido HTTP
 
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
+`GET http://api.ombushop.com/products`
 
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
+### Parametros de la URL
 
-## Get a Specific Kitten
+Parametro | Descripcion
+--------- | -----------
+secret | API key del vendedor, la encontraras [aqui].
 
-```ruby
-require 'kittn'
+# Categorias
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
+## Obtener todas las categorias
 
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
+```http
+GET /taxons HTTP/1.1
+Host: api.ombushop.com
 ```
 
 ```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
+curl "http://api.ombushop.com/taxons"
 ```
 
-> The above command returns JSON structured like this:
+> Devuelve un JSON con la siguiente estructura:
 
 ```json
-{
-  "id": 2,
-  "name": "Isis",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
-}
+[
+  {
+    "id": 15,
+    "parent_id": null,
+    "name": "Calzado",
+    "created_at": "2015-07-03 13:03:27 -0300",
+    "updated_at": "2015-07-03 13:03:27 -0300",
+    "permalink": "calzado/"
+  },
+  {
+    "id": 16,
+    "parent_id": 15,
+    "name": "Calzado Casual",
+    "created_at": "2015-07-03 13:14:40 -0300",
+    "updated_at": "2015-07-03 13:14:40 -0300",
+    "permalink": "calzado/calzado-casual/"
+  },
+  {
+    "id": 17,
+    "parent_id": 15,
+    "name": "Calzado Deportivo",
+    "created_at": "2015-07-03 13:14:44 -0300",
+    "updated_at": "2015-07-03 13:14:44 -0300",
+    "permalink": "calzado/calzado-deportivo/"
+  },
+  {
+    "id": 18,
+    "parent_id": null,
+    "name": "Remeras",
+    "created_at": "2015-07-03 13:14:57 -0300",
+    "updated_at": "2015-07-03 13:14:57 -0300",
+    "permalink": "remeras/"
+  }
+]
 ```
 
-This endpoint retrieves a specific kitten.
+Obtener un JSON con todas las categorias.
 
 <aside class="warning">If you're not using an administrator API key, note that some kittens will return 403 Forbidden if they are hidden for admins only.</aside>
 
-### HTTP Request
+### Atributos
 
-`GET http://example.com/kittens/<ID>`
-
-### URL Parameters
-
-Parameter | Description
+Atributo | Descripcion
 --------- | -----------
-ID | The ID of the kitten to retrieve
+id | Identificador de la categoria
+parent_id | Identificador de la categoria padre
+name | Nombre de la categoria
+created_at | Fecha de creacion de la categoria
+updated_at | Fecha de ultima actualizacion de la categoria
+permalink | Nombre amigable utilizado para la URL de la categoria
 
+### Pedido HTTP
+
+`GET http://api.ombushop.com/taxons`
+
+### Parametros de la URL
+
+Parametro | Descripcion
+--------- | -----------
+secret | API key del vendedor, la encontraras [aqui].
