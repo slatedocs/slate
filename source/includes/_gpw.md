@@ -20,7 +20,7 @@
   "success": false,
   "errors":  {
     "run": "You don\'t have any credits left",
-    "business_names": "Please enter at least one business name",
+    "business_names": "Please enter one business name",
     "report_type": "Report type is not available",
     "phone_number": "Please enter a telephone number",
     "postcode": "Please enter a postcode",
@@ -52,7 +52,7 @@ expires | <span class="label label-required">Required</span> [See above for how 
 report_name | <span class="label label-required">Required</span>
 client_id | Associate this report with a client in your account. This ID needs to correspond to a valid client in your account.
 white_label_profile_id | Assign a white label profile to this report. The ID needs to correspond to a valid white label profile in your account.
-business_names | <span class="label label-required">Required</span> Supply one or more busines names (max 3) as a JSON string. For example, ["Greens Restaurant","Greens"].
+business_names | <span class="label label-required">Required</span> Supply one business name. For example, Greens Restaurant.
 schedule | <span class="label label-required">Required</span> One of Adhoc or Monthly
 day_of_month | <span class="label label-required">Required</span> One of 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, -1 (last day of month).
 report_type | <span class="label label-required">Required</span> One of with or without. 'with' - the business has a Google+ profile. 'without' - Ignore this business, just display competitor information. Defaults to with.
@@ -109,7 +109,7 @@ expires | <span class="label label-required">Required</span> [See above for how 
 report_name |
 client_id | Associate this report with a client in your account. This ID needs to correspond to a valid client in your account.
 white_label_profile_id | Assign a white label profile to this report. The ID needs to correspond to a valid white label profile in your account.
-business_names |  Supply one or more busines names (max 3) as a JSON string. For example, ["Greens Restaurant","Greens"].
+business_names |  Supply one business name. For example, Greens Restaurant.
 schedule |  One of Adhoc or Monthly
 day_of_month |  One of 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, -1 (last day of month).
 report_type | One of with or without. 'with' - the business has a Google+ profile. 'without' - Ignore this business, just display competitor information. Defaults to with.
@@ -163,7 +163,7 @@ run | One of Yes or No. Runs the report after adding. Defaults to Yes.
               "search_term3"
           ],
           "google_location": "Chicago, IL",
-          "notify": "0",
+          "notify": "No",
           "email_addresses": [
               "email@company.com"
           ],
