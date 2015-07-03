@@ -156,8 +156,6 @@ curl "http://api.ombushop.com/taxons"
 
 Obtener un JSON con todas las categorías.
 
-<aside class="warning">If you're not using an administrator API key, note that some kittens will return 403 Forbidden if they are hidden for admins only.</aside>
-
 ### Atributos
 
 Atributo | Descripción
