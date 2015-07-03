@@ -336,3 +336,594 @@ api-key | <span class="label label-required">Required</span>
 sig | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
 expires | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
 report-id | <span class="label label-required">Required</span> The unique ID for the report in your account.
+
+## Get Report Results
+
+<span class="label label-info">Account Method</span>
+
+> Success (200 OK)
+
+```json
+{
+  "success": true,
+  "results": {
+    "overview": {
+      "iron": {
+        "domain_authority": 30,
+        "citations_count": 99,
+        "backlinks": 557,
+        "num_reviews": 2,
+        "num_photos": 0,
+        "num_videos": 0,
+        "categories": [
+          "Hotel",
+          "General Contractor",
+          "Non-Profit Organization",
+          "Steel Fabricator",
+          "Metal Fabricator"
+        ]
+      },
+      "gold": {
+        "domain_authority": 34,
+        "citations_count": 82,
+        "backlinks": 3354,
+        "num_reviews": 19,
+        "num_photos": 2,
+        "num_videos": 0,
+        "categories": [
+          "Gift Basket Store",
+          "Hotel",
+          "Event Ticket Seller",
+          "Car Dealer",
+          "Marketing Consultant"
+        ]
+      }
+    },
+    "keywords": {
+      "iron": {
+        "top_10": [
+          {
+            "business_name": "Iron Galaxy Studios LLC",
+            "profile_url": "https://plus.google.com/106762967148362846974/about",
+            "claimed": false,
+            "num_followers": 0,
+            "num_views": 0,
+            "citations_count": 74,
+            "domain_authority": "37/100",
+            "backlinks": 1395,
+            "num_reviews": 4,
+            "star_rating": "5/5",
+            "num_photos": 0,
+            "categories": [
+              "Hotel"
+            ]
+          },
+          {
+            "business_name": "Iron Financial Management Inc",
+            "profile_url": "https://plus.google.com/116182082718959195517/about",
+            "claimed": false,
+            "num_followers": 0,
+            "num_views": 0,
+            "citations_count": 118,
+            "domain_authority": "22/100",
+            "backlinks": 86,
+            "num_reviews": 0,
+            "star_rating": "0/5",
+            "num_photos": 0,
+            "categories": [
+              "Financial Planner"
+            ]
+          },
+          {
+            "business_name": "Chicago Tube and Iron Company",
+            "profile_url": "https://plus.google.com/115679173636656864032/about",
+            "claimed": false,
+            "num_followers": 0,
+            "num_views": 0,
+            "citations_count": 106,
+            "domain_authority": "30/100",
+            "backlinks": 190,
+            "num_reviews": 2,
+            "star_rating": "1/5",
+            "num_photos": 0,
+            "categories": [
+              "Hotel",
+              "Hotel",
+              "Hotel",
+              "Hotel"
+            ]
+          },
+          {
+            "business_name": "Acorn Wire &amp; Iron Works LLC",
+            "profile_url": "https://plus.google.com/106228617083444002632/about",
+            "claimed": false,
+            "num_followers": 0,
+            "num_views": 0,
+            "citations_count": 56,
+            "domain_authority": "29/100",
+            "backlinks": 80,
+            "num_reviews": 0,
+            "star_rating": "0/5",
+            "num_photos": 1,
+            "categories": [
+              "Fence Supply Store"
+            ]
+          },
+          {
+            "business_name": "Iron &amp; Wire Custom Metal Studio LLC",
+            "profile_url": "https://plus.google.com/112699188083553695218/about",
+            "claimed": true,
+            "num_followers": 2,
+            "num_views": 21023,
+            "citations_count": 25,
+            "domain_authority": "18/100",
+            "backlinks": 18,
+            "num_reviews": 0,
+            "star_rating": "0/5",
+            "num_photos": 2,
+            "categories": [
+              "Metal Fabricator",
+              "Interior Designer",
+              "Steel Fabricator"
+            ]
+          },
+          {
+            "business_name": "Adams Street Iron Inc",
+            "profile_url": "https://plus.google.com/108717129803017731795/about",
+            "claimed": false,
+            "num_followers": 0,
+            "num_views": 0,
+            "citations_count": 66,
+            "domain_authority": "10/100",
+            "backlinks": 7,
+            "num_reviews": 0,
+            "star_rating": "0/5",
+            "num_photos": 0,
+            "categories": [
+              "Hotel",
+              "General Contractor"
+            ]
+          },
+          {
+            "business_name": "Iron Workers Union",
+            "profile_url": "https://plus.google.com/108612610808895922436/about",
+            "claimed": false,
+            "num_followers": 0,
+            "num_views": 0,
+            "citations_count": 39,
+            "domain_authority": "48/100",
+            "backlinks": 5037,
+            "num_reviews": 0,
+            "star_rating": "0/5",
+            "num_photos": 0,
+            "categories": [
+              "Hotel",
+              "Non-Profit Organization"
+            ]
+          },
+          {
+            "business_name": "Shaw Environmental/Infrstrctr",
+            "profile_url": "https://plus.google.com/106703892745911911440/about",
+            "claimed": false,
+            "num_followers": 0,
+            "num_views": 0,
+            "citations_count": 52,
+            "domain_authority": "60/100",
+            "backlinks": 8884,
+            "num_reviews": 0,
+            "star_rating": "0/5",
+            "num_photos": 0,
+            "categories": [
+              "Hotel"
+            ]
+          }
+        ],
+        "citations_matrix": [
+          {
+            "domain": "facebook.com",
+            "authority": "100/100",
+            "count": 5,
+            "businesses": [
+              {
+                "business_name": "Iron Galaxy Studios LLC",
+                "citations_count": "74",
+                "url": "https://www.facebook.com/103101903089752"
+              },
+              {
+                "business_name": "Iron Financial Management Inc",
+                "citations_count": "118",
+                "url": null
+              },
+              {
+                "business_name": "Chicago Tube and Iron Company",
+                "citations_count": "106",
+                "url": "https://www.facebook.com/pages/Law-Offices-of-Bernard-D-Ward-PC-708-349-5600-815-834-2000/143994815665091"
+              },
+              {
+                "business_name": "Acorn Wire &amp; Iron Works LLC",
+                "citations_count": "56",
+                "url": null
+              },
+              {
+                "business_name": "Iron &amp; Wire Custom Metal Studio LLC",
+                "citations_count": "25",
+                "url": "https://www.facebook.com/pages/Iron-Wire/104803202926726?sk=info"
+              },
+              {
+                "business_name": "Adams Street Iron Inc",
+                "citations_count": "66",
+                "url": "https://www.facebook.com/pages/Adams-Street-Iron/117016575024837"
+              },
+              {
+                "business_name": "Iron Workers Union",
+                "citations_count": "39",
+                "url": null
+              },
+              {
+                "business_name": "Shaw Environmental/Infrstrctr",
+                "citations_count": "52",
+                "url": "https://www.facebook.com/pages/International-Technology-Corp/154765177895978"
+              }
+            ]
+          },
+          {
+            "domain": "linkedin.com",
+            "authority": "100/100",
+            "count": 2,
+            "businesses": [
+              {
+                "business_name": "Iron Galaxy Studios LLC",
+                "citations_count": "74",
+                "url": "https://www.linkedin.com/in/michaelpickens"
+              },
+              {
+                "business_name": "Iron Financial Management Inc",
+                "citations_count": "118",
+                "url": "https://www.linkedin.com/pub/miles-muslin/18/287/950"
+              },
+              {
+                "business_name": "Chicago Tube and Iron Company",
+                "citations_count": "106",
+                "url": null
+              },
+              {
+                "business_name": "Acorn Wire &amp; Iron Works LLC",
+                "citations_count": "56",
+                "url": null
+              },
+              {
+                "business_name": "Iron &amp; Wire Custom Metal Studio LLC",
+                "citations_count": "25",
+                "url": null
+              },
+              {
+                "business_name": "Adams Street Iron Inc",
+                "citations_count": "66",
+                "url": null
+              },
+              {
+                "business_name": "Iron Workers Union",
+                "citations_count": "39",
+                "url": null
+              },
+              {
+                "business_name": "Shaw Environmental/Infrstrctr",
+                "citations_count": "52",
+                "url": null
+              }
+            ]
+          }
+        ],
+        "nap_comparison": [
+          {
+            "taken_from": "User supplied",
+            "business_name": "Example & Co",
+            "address": "email@example.com  Chicago, IL IL",
+            "postcode": "90210",
+            "telephone": "4234324234"
+          },
+          {
+            "taken_from": "Google+ Listing",
+            "business_name": null,
+            "address": "",
+            "postcode": null,
+            "telephone": null
+          }
+        ],
+        "top_categories": {
+          "Hotel": 8,
+          "General Contractor": 1,
+          "Non-Profit Organization": 1,
+          "Steel Fabricator": 1,
+          "Metal Fabricator": 1
+        },
+        "other_ranking_factors": []
+      },
+      "gold": {
+        "top_10": [
+          {
+            "business_name": "Gold Eagle",
+            "profile_url": "https://plus.google.com/108823071668145410367/about",
+            "claimed": true,
+            "num_followers": 0,
+            "num_views": 23656,
+            "citations_count": 62,
+            "domain_authority": "45/100",
+            "backlinks": 9918,
+            "num_reviews": 0,
+            "star_rating": "0/5",
+            "num_photos": 0,
+            "categories": [
+              "Shipping Company"
+            ]
+          },
+          {
+            "business_name": "Rickey Gold Associates",
+            "profile_url": "https://plus.google.com/112595303241640812004/about",
+            "claimed": false,
+            "num_followers": 0,
+            "num_views": 0,
+            "citations_count": 96,
+            "domain_authority": "26/100",
+            "backlinks": 57,
+            "num_reviews": 0,
+            "star_rating": "0/5",
+            "num_photos": 0,
+            "categories": [
+              "Marketing Consultant"
+            ]
+          },
+          {
+            "business_name": "Bentley Gold Coast",
+            "profile_url": "https://plus.google.com/117553286714777820423/about",
+            "claimed": false,
+            "num_followers": 0,
+            "num_views": 0,
+            "citations_count": 89,
+            "domain_authority": "32/100",
+            "backlinks": 87,
+            "num_reviews": 58,
+            "star_rating": "4.2/5",
+            "num_photos": 5,
+            "categories": [
+              "Car Dealer"
+            ]
+          },
+          {
+            "business_name": "Gold Coast Tickets",
+            "profile_url": "https://plus.google.com/101551987745165273616/about",
+            "claimed": false,
+            "num_followers": 0,
+            "num_views": 0,
+            "citations_count": 47,
+            "domain_authority": "34/100",
+            "backlinks": 1362,
+            "num_reviews": 0,
+            "star_rating": "0/5",
+            "num_photos": 0,
+            "categories": [
+              "Event Ticket Seller"
+            ]
+          },
+          {
+            "business_name": "Gold Canyon Candles",
+            "profile_url": "https://plus.google.com/117435376200648462394/about",
+            "claimed": true,
+            "num_followers": 0,
+            "num_views": 17900,
+            "citations_count": 19,
+            "domain_authority": "n/a",
+            "backlinks": 0,
+            "num_reviews": 0,
+            "star_rating": "0/5",
+            "num_photos": 0,
+            "categories": [
+              "Gift Basket Store",
+              "Hotel"
+            ]
+          }
+        ],
+        "citations_matrix": [
+          {
+            "domain": "facebook.com",
+            "authority": "100/100",
+            "count": 6,
+            "businesses": [
+              {
+                "business_name": "Iron Galaxy Studios LLC",
+                "citations_count": "74",
+                "url": "https://www.facebook.com/103101903089752"
+              },
+              {
+                "business_name": "Iron Financial Management Inc",
+                "citations_count": "118",
+                "url": null
+              },
+              {
+                "business_name": "Chicago Tube and Iron Company",
+                "citations_count": "106",
+                "url": "https://www.facebook.com/pages/Law-Offices-of-Bernard-D-Ward-PC-708-349-5600-815-834-2000/143994815665091"
+              },
+              {
+                "business_name": "Acorn Wire &amp; Iron Works LLC",
+                "citations_count": "56",
+                "url": null
+              },
+              {
+                "business_name": "Iron &amp; Wire Custom Metal Studio LLC",
+                "citations_count": "25",
+                "url": "https://www.facebook.com/pages/Iron-Wire/104803202926726?sk=info"
+              },
+              {
+                "business_name": "Adams Street Iron Inc",
+                "citations_count": "66",
+                "url": "https://www.facebook.com/pages/Adams-Street-Iron/117016575024837"
+              },
+              {
+                "business_name": "Iron Workers Union",
+                "citations_count": "39",
+                "url": null
+              },
+              {
+                "business_name": "Shaw Environmental/Infrstrctr",
+                "citations_count": "52",
+                "url": "https://www.facebook.com/pages/International-Technology-Corp/154765177895978"
+              },
+              {
+                "business_name": "Gold Eagle",
+                "citations_count": "62",
+                "url": null
+              },
+              {
+                "business_name": "Rickey Gold Associates",
+                "citations_count": "96",
+                "url": null
+              },
+              {
+                "business_name": "Bentley Gold Coast",
+                "citations_count": "89",
+                "url": "https://www.facebook.com/pages/Bentley-Gold-Coast/135572886504845"
+              },
+              {
+                "business_name": "Gold Coast Tickets",
+                "citations_count": "47",
+                "url": null
+              },
+              {
+                "business_name": "Gold Canyon Candles",
+                "citations_count": "19",
+                "url": null
+              }
+            ]
+          },
+          {
+            "domain": "linkedin.com",
+            "authority": "100/100",
+            "count": 2,
+            "businesses": [
+              {
+                "business_name": "Iron Galaxy Studios LLC",
+                "citations_count": "74",
+                "url": "https://www.linkedin.com/in/michaelpickens"
+              },
+              {
+                "business_name": "Iron Financial Management Inc",
+                "citations_count": "118",
+                "url": "https://www.linkedin.com/pub/miles-muslin/18/287/950"
+              },
+              {
+                "business_name": "Chicago Tube and Iron Company",
+                "citations_count": "106",
+                "url": null
+              },
+              {
+                "business_name": "Acorn Wire &amp; Iron Works LLC",
+                "citations_count": "56",
+                "url": null
+              },
+              {
+                "business_name": "Iron &amp; Wire Custom Metal Studio LLC",
+                "citations_count": "25",
+                "url": null
+              },
+              {
+                "business_name": "Adams Street Iron Inc",
+                "citations_count": "66",
+                "url": null
+              },
+              {
+                "business_name": "Iron Workers Union",
+                "citations_count": "39",
+                "url": null
+              },
+              {
+                "business_name": "Shaw Environmental/Infrstrctr",
+                "citations_count": "52",
+                "url": null
+              },
+              {
+                "business_name": "Gold Eagle",
+                "citations_count": "62",
+                "url": null
+              },
+              {
+                "business_name": "Rickey Gold Associates",
+                "citations_count": "96",
+                "url": null
+              },
+              {
+                "business_name": "Bentley Gold Coast",
+                "citations_count": "89",
+                "url": null
+              },
+              {
+                "business_name": "Gold Coast Tickets",
+                "citations_count": "47",
+                "url": null
+              },
+              {
+                "business_name": "Gold Canyon Candles",
+                "citations_count": "19",
+                "url": null
+              }
+            ]
+          }
+        ],
+        "nap_comparison": [
+          {
+            "taken_from": "User supplied",
+            "business_name": "Example & Co",
+            "address": "email@example.com  Chicago, IL IL",
+            "postcode": "85300",
+            "telephone": "4234324234"
+          },
+          {
+            "taken_from": "Google+ Listing",
+            "business_name": null,
+            "address": "",
+            "postcode": null,
+            "telephone": null
+          }
+        ],
+        "top_categories": {
+          "Gift Basket Store": 1,
+          "Hotel": 1,
+          "Event Ticket Seller": 1,
+          "Car Dealer": 1,
+          "Marketing Consultant": 1
+        },
+        "other_ranking_factors": []
+      }
+    },
+    "urls": {
+      "report_url": "https://tools.brightlocal.com/seo-tools/admin/gpw/reports/view/275",
+      "wl_url": "http://local-marketing-reports.com/google-plus-reports/b8ff7ea94bb0e1b79cf437719afc7126c20a3295/275"
+    }
+  }
+}
+```
+
+> Validation Failure (400 Bad Request)
+
+```json
+{
+  "success": false,
+  "errors":  {
+    "INVALID_CLIENT_ID": "Invalid client ID supplied"
+  }
+}
+```
+
+Return report URLs and raw data.
+
+### HTTP Request
+
+`GET https://tools.brightlocal.com/seo-tools/api/v4/gpw/[reportId]/results`
+
+### Query Parameters
+
+Parameter | Notes
+--------- | -----
+api-key | <span class="label label-required">Required</span>
+sig | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
+expires | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
