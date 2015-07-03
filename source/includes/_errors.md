@@ -14,6 +14,29 @@ The API uses the following error codes:
 }
 ```
 
+```php
+<?php
+try {
+    // code that might result in an error from the API
+} catch (\Productsup\Exceptions\ServerException $e) {
+    // A exception at the API Server happened, should not happen but may be caused by a short down time
+    // You may want to retry it later, if you keep getting this kind of exceptions please notice us.
+    throw new Exception('Error at the productsup API, retry later');
+} catch (\Productsup\Exceptions\ClientException $e) {
+    // Most likely some of the data you provided was malformed
+    // The error codes follow http status codes, @see http://en.wikipedia.org/wiki/List_of_HTTP_status_codes#4xx_Client_Error
+    // The message may give more information on what was wrong:
+    echo $e->getCode().' '.$e->getMessage();
+} catch (\Exception $e) {
+    // Exceptions not within the Productsup namespace are not thrown by the client, so these exceptions were most likely
+    // thrown from your application or another 3rd party application
+
+    // however, if you don't catch Productsup exceptions explicitly, you can catch them all like this
+    echo $e->getCode().' '.$e->getMessage();
+    throw $e;
+}
+```
+
 
 Error Code | Meaning
 ---------- | -------

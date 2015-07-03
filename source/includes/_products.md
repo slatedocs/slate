@@ -1,6 +1,23 @@
 # Products
 
 ## URL
+```php
+<?php
+// our php client builds the urls for you, but you have to set the infos to the classes:
+$ProductService = new Productsup\Service\ProductData($Client);
+$Reference = new Productsup\Platform\Site\Reference();
+
+/**
+ * You have to specify the site the products belong to.
+ * This is done by references to the site.
+ *
+ * In case you have a productsup site id, you can pass it like this:
+ **/
+$Reference->setKey($Reference::REFERENCE_SITE);
+$Reference->setValue(123); // Site ID
+$ProductService->setReference($Reference);
+
+```
 The URL for the uploading is looking like this:
 
 `/platform/v1/sites/Identifier:123/products/abcdef123/upload`
@@ -13,6 +30,7 @@ sites/Identifier:123 | the entity the upload is related to.
 /products | tells the api that you are about to upload products
 abcdef123 | is an identifier (batch id) you can create. It is only used during the upload and tells the API that all actions belong to this batch
 upload | is the action you want to perform.
+
 
 
 ## Upload
@@ -31,6 +49,24 @@ curl -d '[{
    "shipping": "0.99"
 }]'
 https://platform-api.productsup.io/platform/v1/sites/Identifier:123/products/abcdef123/upload
+```
+
+```php
+<?php
+$ProductService->insert(array(
+        'id' => 123,
+        'price' => 1.23,
+        'description' => 'test title',
+    )
+);
+
+$ProductService->insert(array(
+        'id' => 124,
+        'price' => 3.21,
+        'description' => 'next title',
+        'shipping' => 0.99
+    )
+);
 ```
 
 The example would result in a import that looks like this:
@@ -52,6 +88,14 @@ curl -d '[{
 https://platform-api.productsup.io/platform/v1/sites/Identifier:123/products/abcdef123/upload
 ```
 
+```php
+<?php
+$ProductService->delete(array(
+        'id' => 123,
+    )
+);
+```
+
 
 ## Commit
 When you finished all uploads into one batch, you can tell the API that it is done and the "batch" can be started to be processed.
@@ -63,6 +107,17 @@ Url in this case would be `https://platform-api.productsup.io/platform/v1/sites/
 ```shell
 curl -d '{"type":"full"}'
 https://platform-api.productsup.io/platform/v1/sites/Identifier:123/products/abcdef123/upload
+```
+
+```php
+<?php
+$productsService->setImportType(\Productsup\Service\ProductData::TYPE_DELTA);
+// OR
+$productsService->setImportType(\Productsup\Service\ProductData::TYPE_FULL);
+
+// note: if you do not define the type the "full" is used as default
+
+$result = $ProductService->commit();
 ```
 
 There are two types for commits:
@@ -78,4 +133,9 @@ The third action "discard" is only to abort a started upload. This removes all u
 
 ```shell
 curl https://platform-api.productsup.io/platform/v1/sites/Identifier:123/products/abcdef123/discard
+```
+
+```php
+<?php
+$result = $ProductService->discard();
 ```
