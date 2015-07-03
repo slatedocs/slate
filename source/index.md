@@ -16,14 +16,14 @@ search: true
 
 # Introducción
 
-Bienvenido a la API REST de OmbuShop. Aqui puedes ver la documentacion para
+Bienvenido a la API REST de OmbuShop. Aquí puedes ver la documentación para
 todos los endpoints de la API de OmbuShop.
 
 # Para hacer pedidos
 
 Para realizar pedidos a la API REST, se debe pasar la API key de tu tienda
-como parametro `secret`. La API key la encontraras en el panel de administracion
-de tu tienda, en la seccion "Mi Cuenta".
+como parámetro `secret`. La API key la encontraras en el panel de administración
+de tu tienda, en la sección "Mi Cuenta".
 
 # Productos
 
@@ -50,7 +50,7 @@ curl "http://api.ombushop.com/products"
     "updated_at": "2015-07-03 17:17:40 -0300",
     "permalink": "zapatillas",
     "deleted_at": null,
-    "meta_description": "Descripcion",
+    "meta_description": "Descripción",
     "meta_keywords": "Palabras clave",
     "count_on_hand": 10,
     "seller_id": 24,
@@ -64,7 +64,7 @@ curl "http://api.ombushop.com/products"
     "updated_at": "2015-07-03 17:17:40 -0300",
     "permalink": "remera",
     "deleted_at": null,
-    "meta_description": "Descripcion",
+    "meta_description": "Descripción",
     "meta_keywords": "Palabras clave",
     "count_on_hand": 20,
     "seller_id": 24,
@@ -77,17 +77,17 @@ Obtener un JSON con todos los productos.
 
 ### Atributos
 
-Atributo | Descripcion
+Atributo | Descripción
 --------- | -----------
 id | Identificador del producto
 name | Nombre del producto
-description | Descripcion del producto
-created_at | Fecha de creacion del producto
-updated_at | Fecha de ultima actualizacion del producto
+description | Descripción del producto
+created_at | Fecha de creación del producto
+updated_at | Fecha de ultima información del producto
 permalink | Nombre amigable utilizado para la URL del producto
 deleted_at | Fecha de borrado del producto, si este hubiera sido borrado
-meta_description | Descripcion que puede ayudar a los buscadores web a tener informacion relevante sobre el producto
-meta_keywords | Palabras clave que pueden ayudar en la busqueda del producto
+meta_description | Descripción que puede ayudar a los buscadores web a tener informacion relevante sobre el producto
+meta_keywords | Palabras clave que pueden ayudar en la búsqueda del producto
 count_on_hand | Cantidad de unidades disponibles del producto
 seller_id | Identificador del vendedor del producto
 currency | Moneda utilizada por la tienda
@@ -96,15 +96,15 @@ currency | Moneda utilizada por la tienda
 
 `GET http://api.ombushop.com/products`
 
-### Parametros de la URL
+### Parámetros de la URL
 
-Parametro | Descripcion
+Parámetro | Descripción
 --------- | -----------
-secret | API key del vendedor, la encontraras [aqui].
+secret | API key del vendedor, la encontraras [aquí].
 
-# Categorias
+# Categorías
 
-## Obtener todas las categorias
+## Obtener todas las categorías
 
 ```http
 GET /taxons HTTP/1.1
@@ -154,27 +154,27 @@ curl "http://api.ombushop.com/taxons"
 ]
 ```
 
-Obtener un JSON con todas las categorias.
+Obtener un JSON con todas las categorías.
 
 <aside class="warning">If you're not using an administrator API key, note that some kittens will return 403 Forbidden if they are hidden for admins only.</aside>
 
 ### Atributos
 
-Atributo | Descripcion
+Atributo | Descripción
 --------- | -----------
-id | Identificador de la categoria
+id | Identificador de la categoría
 parent_id | Identificador de la categoria padre
-name | Nombre de la categoria
-created_at | Fecha de creacion de la categoria
-updated_at | Fecha de ultima actualizacion de la categoria
-permalink | Nombre amigable utilizado para la URL de la categoria
+name | Nombre de la ategoría
+created_at | Fecha de creación de la categoría
+updated_at | Fecha de ultima actualización de la categoría
+permalink | Nombre amigable utilizado para la URL de la categoría
 
 ### Pedido HTTP
 
 `GET http://api.ombushop.com/taxons`
 
-### Parametros de la URL
+### Parámetro de la URL
 
-Parametro | Descripcion
+Parámetro | Descripción
 --------- | -----------
-secret | API key del vendedor, la encontraras [aqui].
+secret | API key del vendedor, la encontraras [aquí].
