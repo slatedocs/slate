@@ -24,6 +24,12 @@ Eventually, we aim to have a trigger for any action a user can take, whether it 
 
 Have fun creating!
 
+# Requirements
+
+- Must be using Xcode 6.3+. (We do not support Xcode 7.0-beta yet)
+- Deployment target must be iOS 8.0+
+- Currently can only run on iPhone, not iPhone simulator.
+
 # Template Project
 
 A Swift starter project can be found at: <a href='https://github.com/Sense360/Sense360StarterSwift'>https://github.com/Sense360/Sense360StarterSwift</a>
@@ -37,10 +43,6 @@ You can download the stand alone framework <a href='https://s3-us-west-1.amazona
 # Quick Start
 
 To get up running quickly we also have provided a <a href="http://www.sense360.com/getting_started.html">Quick Start Guide</a>.
-
-# Integration Notes
-
-Project must be built with Xcode version 6.3. It will **not** work with < 6.3 nor 7.0-beta.
 
 # API Concepts
 
