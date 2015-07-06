@@ -89,6 +89,18 @@ let airportTrigger: Trigger? = FireTrigger.whenEntersPoi(.Airport)
 Trigger *restaurantTrigger = [FireTrigger whenEntersPoi:PoiTypeRestaurant conditions:nil errorPtr:nil];
 ```
 
+It is also possible to fire a trigger when a user enters or exits any of the POI categories specified below.  If you wish to do this, use the "PoiType.All" category.
+
+```swift
+// Will notify you when the user enters an Airport
+let allPoiTypesTrigger: Trigger? = FireTrigger.whenEntersPoi(.All)
+```
+
+```objective_c
+// Will notify you when the user enters an Airport
+Trigger *allPoiTypesTrigger = [FireTrigger whenEntersPoi:PoiTypeAll conditions:nil errorPtr:nil];
+```
+
 Supported POI types:
 
 Category | Transitions | |
@@ -112,7 +124,7 @@ University | .whenEntersPoi(.University) | .whenExitsPoi(.University)
 
 
 ### Caveats
-- Each trigger can only detect a single POI type.
+- Besides the "All" category, each trigger can only detect a single POI type.
 
 ## Personal Place
 
