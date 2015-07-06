@@ -66,7 +66,7 @@ Identifier|NAP|Reviews|URL|Other|Notes
 ----------|---|-------|---|-----|-----
 192|<span class="yes">Yes</span>||||
 bizwiki|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
-brownbook|<span class="yes">Yes</span>|||<span class="yes">Yes</span>|
+brownbook|<span class="yes">Yes</span>||||
 businessclassified|<span class="yes">Yes</span>||||
 CityVisitor|<span class="yes">Yes</span>||||
 cylex|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
@@ -81,7 +81,7 @@ independent|<span class="yes">Yes</span>||||
 localdatasearch|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 localmole|||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 near|<span class="yes">Yes</span>||||
-manta|<span class="yes">Yes</span>||||<span class="yes">Yes</span>|
+manta|<span class="yes">Yes</span>|||||
 misterwhat|<span class="yes">Yes</span>||||
 mylocalservices|<span class="yes">Yes</span>||||
 scoot|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
@@ -146,7 +146,7 @@ yelp-aus|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class=
 Identifier|NAP|Reviews|URL|Other|Notes
 ----------|---|-------|---|-----|-----
 c411|<span class="yes">Yes</span>|||<span class="yes">Yes</span>|
-allpages|<span class="yes">Yes</span>|||<span class="yes">Yes</span>|
+allpages|<span class="yes">Yes</span>||||
 brownbook|<span class="yes">Yes</span>||||
 canpages|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 cdnpages|<span class="yes">Yes</span>||||
