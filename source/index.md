@@ -8,6 +8,9 @@ language_tabs:
 toc_footers:
   - <a href='http://www.ombushop.com/partners'>Registrate en OmbuShop</a>
 
+includes:
+  - errors
+
 search: true
 ---
 
@@ -158,7 +161,7 @@ Obtener un JSON con todas las categorías.
 Atributo | Descripción
 --------- | -----------
 id | Identificador de la categoría
-parent_id | Identificador de la categoria padre
+parent_id | Identificador de la categoría padre
 name | Nombre de la ategoría
 created_at | Fecha de creación de la categoría
 updated_at | Fecha de ultima actualización de la categoría
