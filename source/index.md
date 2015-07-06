@@ -655,6 +655,103 @@ if(errorPtr.error != nil) {
 
 You will have to create the correct type of place depending on the type of trigger.  For example, if you have you have the case of "Enter Home", then you must make a place of type PersonalizedPlace.  The list of place types with their corresponding types can be found under: [Places](#places)
 
+The example code below will show you how to create a personalized place, and fire a recipe named "ArrivedAtHome".
+
+```swift
+// Create a fake home location
+let place = PersonalizedPlace(latitude: 34.111, longitude: -118.111, 
+  radius: 50, personalizedPlaceType: .Home)
+
+// You can also create a PersonalizedPlace as follows:
+// let personalPlace = PersonalizedPlace(location: <Location>, 
+// radius: <Meters>, personalizedPlaceType: <PersonalizedPlaceType>)
+        
+let errorPointer = SenseSdkErrorPointer.create()
+
+SenseSdkTestUtility.fireTrigger(
+    fromRecipe: "ArrivedAtHome",
+    confidenceLevel: ConfidenceLevel.Medium,
+    places: [place],
+    errorPtr: errorPointer
+)
+
+if errorPointer.error != nil {
+    NSLog("Error sending trigger")
+}
+```
+
+```objective_c
+//Create a fake home location
+PersonalizedPlace* personalizedPlace = [[PersonalizedPlace alloc]                   
+                         initWithLatitude:34.111
+                                longitude:-118.111
+                                   radius:50
+                    personalizedPlaceType: PersonalizedPlaceTypeHome];
+
+// You can also create a PersonalizedPlace as follows:
+// PersonalizedPlace* personalPlace = [[PersonalizedPlace alloc]
+// initWithLocation:<(Location * __nonnull)> 
+// radius:<(double)> 
+// personalizedPlaceType:<(enum PersonalizedPlaceType)>]
+
+SenseSdkErrorPointer *errorPtr = [SenseSdkErrorPointer create];
+
+// This method should only be used for testing
+NSArray* places = [[NSArray alloc] initWithObjects:personalizedPlace, nil];
+[SenseSdkTestUtility fireTriggerFromRecipe:@"ArrivedAtHome"
+                           confidenceLevel:ConfidenceLevelMedium
+                                    places:places
+                                  errorPtr:errorPtr];
+if(errorPtr.error != nil) {
+    NSLog(@"Error sending trigger");
+}
+```
+
+The example code below will show you how to test a geofence, and fire a recipe named "ArrivedAtGeofence".
+
+```swift
+// Create two test geofences
+let geofence1 = CustomGeofence(latitude: 37.124, longitude: -127.456, 
+  radius: 50, customIdentifier: "My test geofence 1")
+let geofence2 = CustomGeofence(latitude: 37.124, longitude: -127.456, 
+  radius: 50, customIdentifier: "My test geofence 2")
+
+let errorPointer = SenseSdkErrorPointer.create()
+
+// This method should only be used for testing
+SenseSdkTestUtility.fireTrigger(
+    fromRecipe: "ArrivedAtGeofence",
+    confidenceLevel: ConfidenceLevel.Medium,
+    places: [geofence1, geofence2],
+    errorPtr: errorPointer
+)
+
+if errorPointer.error != nil {
+    NSLog("Error sending trigger")
+}
+```
+
+```objective_c
+// Create a geofence
+CustomGeofence *geofence1 = [[CustomGeofence alloc] 
+                        initWithLatitude:37.124 
+                               longitude:-127.456 
+                                  radius:50 
+                        customIdentifier:@"My test geofence"];
+
+SenseSdkErrorPointer *errorPtr = [SenseSdkErrorPointer create];
+
+// This method should only be used for testing, and will test with the NSArray *geofences
+NSArray* places = [[NSArray alloc] initWithObjects:geofence1, nil];
+[SenseSdkTestUtility fireTriggerFromRecipe:@"ArrivedAtGeofence"
+                           confidenceLevel:ConfidenceLevelMedium
+                                    places:places
+                                  errorPtr:errorPtr];
+if(errorPtr.error != nil) {
+    NSLog(@"Error sending trigger");
+}
+```
+
 ##Real world testing
 
 Please note that when you do real-world testing you need to mimic the action you are testing as closely as possible or the trigger might not fire. In order to avoid false positives, our algorithms will try to ignore actions that do not look like real-world actions.
