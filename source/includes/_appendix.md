@@ -9,7 +9,7 @@ The following tables provide details of the local directories we support for loo
 Identifier|NAP|Reviews|URL|Other|Notes
 ----------|---|-------|---|-----|-----
 acxiom|<span class="yes">Yes</span>|||<span class="yes">Yes</span>|
-allpages|<span class="yes">Yes</span>||||
+allpages|<span class="yes">Yes</span>|||<span class="yes">Yes</span>|
 angies|<span class="yes">Yes</span>|||<span class="yes">Yes</span>|
 b2byellowpages|<span class="yes">Yes</span>|||<span class="yes">Yes</span>|
 bbb|<span class="yes">Yes</span>|||<span class="yes">Yes</span>|
