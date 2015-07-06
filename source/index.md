@@ -8,9 +8,6 @@ language_tabs:
 toc_footers:
   - <a href='http://www.ombushop.com/partners'>Registrate en OmbuShop</a>
 
-includes:
-  - errors
-
 search: true
 ---
 
