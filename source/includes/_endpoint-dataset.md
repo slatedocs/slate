@@ -206,7 +206,7 @@ dataset_id | The id of the dataset
 
 Name | Type | Default | Description
 ---- | ---- | ------- | -----------
-name | string | - | Required. The name of the dataset
+name | string | | Required. The name of the dataset
 description | string | "" | A longer description of the dataset
 
 #### PATCH
