@@ -6,7 +6,7 @@ The following tables provide details of the local directories we support for loo
 
 ### United States (USA)
 
-Identifier|NAP|Reviews|URL|Other|Notes
+Identifier|NAP|Reviews|Find Profile URL|Website URL|Notes
 ----------|---|-------|---|-----|-----
 acxiom|<span class="yes">Yes</span>|||<span class="yes">Yes</span>|
 allpages|<span class="yes">Yes</span>|||<span class="yes">Yes</span>|
@@ -62,7 +62,7 @@ zocdoc|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="y
 
 ### Great Britain (GBR)
 
-Identifier|NAP|Reviews|URL|Other|Notes
+Identifier|NAP|Reviews|Find Profile URL|Website URL|Notes
 ----------|---|-------|---|-----|-----
 192|<span class="yes">Yes</span>||||
 bizwiki|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
@@ -100,7 +100,7 @@ yelp|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes
 
 ### Australia (AUS)
 
-Identifier|NAP|Reviews|URL|Other|Notes
+Identifier|NAP|Reviews|Find Profile URL|Website URL|Notes
 ----------|---|-------|---|-----|-----
 aubiz|<span class="yes">Yes</span>||||
 aussieweb|<span class="yes">Yes</span>|||<span class="yes">Yes</span>|
@@ -143,7 +143,7 @@ yelp-aus|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class=
 
 ### Canada (CAN)
 
-Identifier|NAP|Reviews|URL|Other|Notes
+Identifier|NAP|Reviews|Find Profile URL|Website URL|Notes
 ----------|---|-------|---|-----|-----
 c411|<span class="yes">Yes</span>|||<span class="yes">Yes</span>|
 allpages|<span class="yes">Yes</span>||||
