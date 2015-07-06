@@ -37,7 +37,7 @@ justdeal|<span class="yes">Yes</span>|||<span class="yes">Yes</span>|Incorrectly
 kudzu|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 localcom|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 magicyellow|<span class="yes">Yes</span>|||<span class="yes">Yes</span>|
-manta|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>||
+manta|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 mapquest|<span class="yes">Yes</span>|||<span class="yes">Yes</span>|
 merchantcircle|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 mojopages|<span class="yes">Yes</span>||||
