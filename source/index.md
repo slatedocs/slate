@@ -19,20 +19,20 @@ todos los endpoints de la API de OmbuShop.
 # Para hacer pedidos
 
 Para realizar pedidos a la API REST, se debe pasar la API key de tu tienda
-como parámetro `secret`. La API key la encontraras en el panel de administración
-de tu tienda, en la sección "Mi Cuenta".
+como parámetro `secret`. La API key la encontrarás en el panel de administración
+de tu tienda, en la sección ["Mi Cuenta"](https://secure.ombushop.com/admin/configurations).
 
 # Productos
 
 ## Obtener todos los productos
 
 ```http
-GET /products HTTP/1.1
-Host: api.ombushop.com
+GET /api/products HTTPS/1.1
+Host: secure.ombushop.com
 ```
 
 ```shell
-curl "http://api.ombushop.com/products"
+curl "https://secure.ombushop.com/api/products?secret=abcdef1234567890"
 ```
 
 > Devuelve un JSON con la siguiente estructura:
@@ -91,25 +91,25 @@ currency | Moneda utilizada por la tienda
 
 ### Pedido HTTP
 
-`GET http://api.ombushop.com/products`
+`GET https://secure.ombushop.com/api/products?secret=abcdef1234567890`
 
 ### Parámetros de la URL
 
 Parámetro | Descripción
 --------- | -----------
-secret | API key del vendedor, la encontraras [aquí].
+secret | API key del vendedor, la encontrarás [aquí](https://secure.ombushop.com/admin/configurations).
 
 # Categorías
 
 ## Obtener todas las categorías
 
 ```http
-GET /taxons HTTP/1.1
-Host: api.ombushop.com
+GET /api/taxons HTTPS/1.1
+Host: secure.ombushop.com
 ```
 
 ```shell
-curl "http://api.ombushop.com/taxons"
+curl "https://secure.ombushop.com/api/taxons?secret=abcdef1234567890"
 ```
 
 > Devuelve un JSON con la siguiente estructura:
@@ -166,10 +166,10 @@ permalink | Nombre amigable utilizado para la URL de la categoría
 
 ### Pedido HTTP
 
-`GET http://api.ombushop.com/taxons`
+`GET https://secure.ombushop.com/api/taxons?secret=abcdef1234567890`
 
 ### Parámetro de la URL
 
 Parámetro | Descripción
 --------- | -----------
-secret | API key del vendedor, la encontraras [aquí].
+secret | API key del vendedor, la encontrarás [aquí](https://secure.ombushop.com/admin/configurations).
