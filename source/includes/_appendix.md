@@ -13,7 +13,7 @@ allpages|<span class="yes">Yes</span>|||<span class="yes">Yes</span>|
 angies|<span class="yes">Yes</span>|||<span class="yes">Yes</span>|
 b2byellowpages|<span class="yes">Yes</span>|||<span class="yes">Yes</span>|
 bbb|<span class="yes">Yes</span>|||<span class="yes">Yes</span>|
-brownbook|<span class="yes">Yes</span>||||
+brownbook|<span class="yes">Yes</span>|||<span class="yes">Yes</span>|
 botw|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 chamberofcommerce|<span class="yes">Yes</span>|||<span class="yes">Yes</span>|
 citysearch|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
