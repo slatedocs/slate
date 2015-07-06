@@ -81,7 +81,7 @@ independent|<span class="yes">Yes</span>||||
 localdatasearch|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 localmole|||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 near|<span class="yes">Yes</span>||||
-manta|<span class="yes">Yes</span>|||||
+manta|<span class="yes">Yes</span>||||
 misterwhat|<span class="yes">Yes</span>||||
 mylocalservices|<span class="yes">Yes</span>||||
 scoot|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
