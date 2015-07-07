@@ -4,10 +4,9 @@ title: API Reference
 language_tabs:
   - shell
   - ruby
-  - python
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
+  - <a href='//geezeo.com'>Powered by:<img class="logo" src="/images/logo.png"></a>
   - <a href='http://github.com/tripit/slate'>Documentation Powered by Slate</a>
 
 includes:
@@ -16,153 +15,244 @@ includes:
 search: true
 ---
 
-# Introduction
+# Overview
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+The Geezeo REST API provides a method of read and partial write access to a users PFM data. This API is for Partner use only, and is not designed or intended for use by the end user. In addition, security is limited to a Partner-wide access token at this time, so care should be taken that the token is not exposed to an end user.
 
-We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+# Accounts
 
-This example API documentation page was created with [Slate](http://github.com/tripit/slate). Feel free to edit it and use it as a base for your own API's documentation.
+## Account Types
 
-# Authentication
+Group | Account Types
+----- | -------------
+Cash | checking, savings, money market
+Debt | autos creditline home loan student_loans
+Investment | investment
+Asset | asset cd
+Credit card | cards
+Bill | bill
 
-> To authorize, use this code:
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-```
+## Get Accounts
 
 ```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
+curl -X "GET" "http://geezeo.dev:3000/api/v2/users/:user_id:/accounts" -u "%geezeo-api-key%:"
 ```
-
-> Make sure to replace `meowmeowmeow` with your API key.
-
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
-
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
-
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
-
-# Kittens
-
-## Get All Kittens
 
 ```ruby
-require 'kittn'
+uri = URI('https://geezeobkdemo.mybankhq.com/api/v2/users/:user_id:')
+key = ':geezeo-aip-key:'
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
+Net::HTTP.start(uri.host, uri.port,
+  :use_ssl => uri.scheme == 'https') do |http|
 
-```python
-import kittn
+  request = Net::HTTP::Get.new uri.request_uri
+  request.basic_auth key,''
 
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
+  response = http.request request
 
-```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
-```
+  puts response.body
+end
 
-> The above command returns JSON structured like this:
-
-```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Isis",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
-```
-
-This endpoint retrieves all kittens.
-
-### HTTP Request
-
-`GET http://example.com/api/kittens`
-
-### Query Parameters
-
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
 {
-  "id": 2,
-  "name": "Isis",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
+  "accounts": [
+    {
+      "id": 42,
+      "name": "eChecking",
+      "balance": "300.54",
+      "reference_id": "789274930",
+      "aggregation_type": "cashedge",
+      "state": "active",
+      "harvest_updated_at": "2013-03-05T12:00:00Z",
+      "account_type": "checking",
+      "include_in_expenses": true,
+      "include_in_budget": true,
+      "include_in_cashflow": true,
+      "include_in_dashboard": true,
+      "include_in_goals": true,
+      "include_in_networth": true,
+      "fi": {
+        "id": 2,
+        "name": "CashEdge Test Bank (Agg) - Retail Non 2FA"
+      },
+      "error": {
+        "message": "There was an error.",
+        "code": "300",
+        "actionable": true
+      },
+      "cashedge_account_type": {
+        "name": "Savings",
+        "acct_type": "SDA",
+        "ext_type": "SDA",
+        "group": "Cash"
+      }
+    }
+  ]
 }
 ```
 
-This endpoint retrieves a specific kitten.
+Return a list of accounts for the given user (this will exclude non-classified CashEdge accounts).
 
-<aside class="warning">If you're not using an administrator API key, note that some kittens will return 403 Forbidden if they are hidden for admins only.</aside>
+`GET /api/v2/users/:user_id:/accounts`
 
-### HTTP Request
+###Status Codes
 
-`GET http://example.com/kittens/<ID>`
+Status | Description
+------ | -----------
+200 OK | returned when successful
+401 Not Authorized | returned when invalid credentials are provided
+404 Not Found | returned when an invalid user is specified
 
-### URL Parameters
+## Get All Accounts
 
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
+```shell
+curl -X "GET" "http://geezeo.dev:3000/api/v2/users/:user_id:/accounts/all" -u "%geezeo-api-key%:"
+```
 
+```ruby
+uri = URI('https://geezeobkdemo.mybankhq.com/api/v2/users/:user_id:/accounts/all')
+key = ':geezeo-aip-key:'
+
+Net::HTTP.start(uri.host, uri.port,
+  :use_ssl => uri.scheme == 'https') do |http|
+
+  request = Net::HTTP::Get.new uri.request_uri
+  request.basic_auth key,''
+
+  response = http.request request
+
+  puts response.body
+end
+
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "accounts": [
+    {
+      "id": 42,
+      "name": "eChecking",
+      "balance": "300.54",
+      "reference_id": "789274930",
+      "aggregation_type": "cashedge",
+      "state": "active",
+      "harvest_updated_at": "2013-03-05T12:00:00Z",
+      "account_type": "checking",
+      "include_in_expenses": true,
+      "include_in_budget": true,
+      "include_in_cashflow": true,
+      "include_in_dashboard": true,
+      "include_in_goals": true,
+      "include_in_networth": true,
+      "fi": {
+        "id": 2,
+        "name": "CashEdge Test Bank (Agg) - Retail Non 2FA"
+      },
+      "error": {
+        "message": "There was an error.",
+        "code": "300",
+        "actionable": true
+      },
+      "cashedge_account_type": {
+        "name": "Savings",
+        "acct_type": "SDA",
+        "ext_type": "SDA",
+        "group": "Cash"
+      }
+    }
+  ]
+}
+```
+
+Return a list of accounts for the given user (this will exclude non-classified CashEdge accounts).
+
+`GET /api/v2/users/:user_id:/accounts/all`
+
+###Status Codes
+
+Status | Description
+------ | -----------
+200 OK | returned when successful
+401 Not Authorized | returned when invalid credentials are provided
+404 Not Found | returned when an invalid user is specified
+
+## Get Potential Cashflow Accounts
+
+```shell
+curl -X "GET" "http://geezeo.dev:3000/api/v2/users/:user_id:/accounts/potential_cashflow" -u "%geezeo-api-key%:"
+```
+
+```ruby
+uri = URI('https://geezeobkdemo.mybankhq.com/api/v2/users/:user_id:/accounts/potential_cashflow')
+key = ':geezeo-aip-key:'
+
+Net::HTTP.start(uri.host, uri.port,
+  :use_ssl => uri.scheme == 'https') do |http|
+
+  request = Net::HTTP::Get.new uri.request_uri
+  request.basic_auth key,''
+
+  response = http.request request
+
+  puts response.body
+end
+
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "accounts": [
+    {
+      "id": 42,
+      "name": "eChecking",
+      "balance": "300.54",
+      "reference_id": "789274930",
+      "aggregation_type": "cashedge",
+      "state": "active",
+      "harvest_updated_at": "2013-03-05T12:00:00Z",
+      "account_type": "checking",
+      "include_in_expenses": true,
+      "include_in_budget": true,
+      "include_in_cashflow": true,
+      "include_in_dashboard": true,
+      "include_in_goals": true,
+      "include_in_networth": true,
+      "fi": {
+        "id": 2,
+        "name": "CashEdge Test Bank (Agg) - Retail Non 2FA"
+      },
+      "error": {
+        "message": "There was an error.",
+        "code": "300",
+        "actionable": true
+      },
+      "cashedge_account_type": {
+        "name": "Savings",
+        "acct_type": "SDA",
+        "ext_type": "SDA",
+        "group": "Cash"
+      }
+    }
+  ]
+}
+```
+
+Return a list of accounts for the given user (this will exclude non-classified CashEdge accounts).
+
+`GET /api/v2/users/:user_id:/accounts`
+
+###Status Codes
+
+Status | Description
+------ | -----------
+200 OK | returned when successful
+401 Not Authorized | returned when invalid credentials are provided
+404 Not Found | returned when an invalid user is specified
