@@ -57,6 +57,19 @@ html, body {
     $nav-subitem-bg;
 }
 
+.logo-background {
+  background-image: url('/images/inside-banner-bg.png');
+  background-repeat: repeat-x;
+  background-size: 100%;
+
+}
+
+.logo {
+  display: block;
+  width: 100%;
+
+}
+
 .tocify-wrapper {
   transition: left 0.3s ease-in-out;
 
