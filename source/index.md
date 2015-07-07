@@ -11,6 +11,7 @@ toc_footers:
 
 includes:
   - accounts
+  - ads
   - errors
 
 search: true
