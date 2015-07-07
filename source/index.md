@@ -12,7 +12,7 @@ toc_footers:
 includes:
   - accounts
   - ads
-  - errors
+  - budgets
 
 search: true
 ---
