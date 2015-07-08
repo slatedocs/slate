@@ -23,7 +23,7 @@ end
 
 ```
 
-> The above command returns JSON structured like this:
+> Response payload
 
 ```json
 {
@@ -122,7 +122,7 @@ end
 
 ```
 
-> The above command returns JSON structured like this:
+> Response payload
 
 ```json
 {
@@ -195,18 +195,40 @@ For budget histories, the state attribute will be either over or under. For budg
 
 'GET /api/v2/users/:user_id:/budgets/:budget_id:'
 
-## Status Codes
+### Status Codes
 Status | Description
 ------ | -----------
 200 OK | returned when successful
 401 Not Authorized | returned when invalid credentials are provided
 404 Not Found | returned when an invalid user is specified
 
-Create Budget
-Create a budget for the given user.
+## Create Budget
 
-Request
-POST /api/v2/users/:user_id:/budgets
+```shell
+curl -X "POST" "http://geezeo.dev:3000/api/v2/users/:user_id:/budgets" -u "%geezeo-api-key%:" -d ":request_payload:"
+```
+
+```ruby
+uri = URI('https://geezeobkdemo.mybankhq.com/api/v2/users/:user_id:/budgets')
+key = ':geezeo-aip-key:'
+
+Net::HTTP.start(uri.host, uri.port,
+  :use_ssl => uri.scheme == 'https') do |http|
+
+  request = Net::HTTP::Get.new uri.request_uri
+  request.basic_auth key,''
+  request.body = :request_payload:
+
+  response = http.request request
+
+  puts response.body
+end
+
+```
+
+> Request Payload
+
+```json
 {
   "budget": {
     "name": "Bike parts",
@@ -217,29 +239,27 @@ POST /api/v2/users/:user_id:/budgets
     ]
   }
 }
-Parameters
-Parameter	Description
-name	The name of the new budget. Required
-budget_amount	The amount of the new budget. Required
-tag_names	A list of tags to track. Required
-account_list	A list of Geezeo account ids to track.
-show_on_dashboard	Display this budget on the dashboard.
-other	Only track unbudgeted expenses.
-Response
+```
+
+> Response payload
+
+```json
 {
   "budgets": [
-    "id": 1234,
-    "name": "Food",
-    "month": 9,
-    "year": 2013,
-    "tag_names": [
-      "Diningout"
-    ],
-    "spent": 0,
-    "state": "under",
-    "budget_amount": 300,
-    "links": {
-      "budget_histories": [2468, 2469]
+    {
+      "id": 1234,
+      "name": "Food",
+      "month": 9,
+      "year": 2013,
+      "tag_names": [
+        "Diningout"
+      ],
+      "spent": 0,
+      "state": "under",
+      "budget_amount": 300,
+      "links": {
+        "budget_histories": [2468, 2469]
+      }
     }
   ],
   "budget_histories": [
@@ -261,35 +281,162 @@ Response
     }
   ]
 }
-For budget histories, the state attribute will be either over or under. For budgets, the state attribute will be one of over, risk, or under. A value of risk means that the current spending on the budget is over the spending limit, prorated for the current month.
+```
 
-Status Codes
-Status	Description
-201 Created	returned when successful
-401 Not Authorized	returned when invalid credentials are provided
-404 Not Found	returned when an invalid user is specified
-422 Unprocessable Entity	returned when the parameters given were invalid
-Update Budget
+Create a budget for the given user.
+
+`POST /api/v2/users/:user_id:/budgets`
+
+### Parameters
+Parameter | Description
+--------- | -----------
+`name` |The name of the new budget. Required
+`budget_amount`	| The amount of the new budget. Required
+`tag_names`	| A list of tags to track. Required
+`account_list` | A list of Geezeo account ids to track.
+'show_on_dashboard' |	Display this budget on the dashboard.
+'other' |	Only track unbudgeted expenses.
+
+
+###Status Codes
+Status | Description
+------ | -----------
+201 Created | returned when successful
+401 Not Authorized | returned when invalid credentials are provided
+404 Not Found | returned when an invalid user is specified
+422 Unprocessable Entity | returned when the parameters given were invalid
+
+## Update Budget
+
+```shell
+curl -X "PUT" "http://geezeo.dev:3000/api/v2/users/:user_id:/budgets" -u "%geezeo-api-key%:" -d ":request_payload:"
+```
+
+```ruby
+uri = URI('https://geezeobkdemo.mybankhq.com/api/v2/users/:user_id:/budgets')
+key = ':geezeo-aip-key:'
+
+Net::HTTP.start(uri.host, uri.port,
+  :use_ssl => uri.scheme == 'https') do |http|
+
+  request = Net::HTTP::Put.new uri.request_uri
+  request.basic_auth key,''
+  request.body = :request_payload:
+
+  response = http.request request
+
+  puts response.body
+end
+```
+
+> Request Payload
+
+```json
+{
+  "budget": {
+    "name": "Bike parts",
+    "budget_amount": 200,
+    "show_on_dashboard": true,
+    "tag_names": [
+      "Bikes"
+    ]
+  }
+}
+```
+
+> Response payload
+
+```json
+{
+  "budgets": [
+    {
+      "id": 1234,
+      "name": "Food",
+      "month": 9,
+      "year": 2013,
+      "tag_names": [
+        "Diningout"
+      ],
+      "spent": 0,
+      "state": "under",
+      "budget_amount": 300,
+      "links": {
+        "budget_histories": [2468, 2469]
+      }
+    }
+  ],
+  "budget_histories": [
+    {
+      "id": 2468,
+      "budget_amount": 300,
+      "month": 8,
+      "spent": 0,
+      "state": "under",
+      "year": 2013
+    },
+    {
+      "id": 2469,
+      "budget_amount": 300,
+      "month": 7,
+      "spent": 0,
+      "state": "under",
+      "year": 2013
+    }
+  ]
+}
+```
+
 Update a budget for the given user.
 
-Request
-PUT /api/v2/users/:user_id:/budgets/:budget_id:
-Parameters
-See Create Budget parameters
+`PUT /api/v2/users/:user_id:/budgets/:budget_id:`
 
-Status Codes
-Status	Description
-204 No Content	returned when successful
-401 Not Authorized	returned when invalid credentials are provided
-404 Not Found	returned when an invalid user is specified
-422 Unprocessable Entity	returned when the parameters given were invalid
-Delete Budget
+### Parameters
+Parameter | Description
+--------- | -----------
+`name` |The name of the new budget. Required
+`budget_amount`	| The amount of the new budget. Required
+`tag_names`	| A list of tags to track. Required
+`account_list` | A list of Geezeo account ids to track.
+`show_on_dashboard` |	Display this budget on the dashboard.
+`other` |	Only track unbudgeted expenses.
+
+### Status Codes
+Status | Description
+------ | -----------
+204 No Content | returned when successful
+401 Not Authorized | returned when invalid credentials are provided
+404 Not Found | returned when an invalid user is specified
+422 Unprocessable Entity | returned when the parameters given were invalid
+
+## Delete Budget
+
+```shell
+curl -X "DELETE" "http://geezeo.dev:3000/api/v2/users/:user_id:/budgets/:budget_id:" -u "%geezeo-api-key%:"
+```
+
+```ruby
+uri = URI('https://geezeobkdemo.mybankhq.com/api/v2/users/:user_id:/budgets/:budget_id:')
+key = ':geezeo-aip-key:'
+
+Net::HTTP.start(uri.host, uri.port,
+  :use_ssl => uri.scheme == 'https') do |http|
+
+  request = Net::HTTP::Delete.new uri.request_uri
+  request.basic_auth key,''
+
+  response = http.request request
+
+  puts response.body
+end
+```
+
 Delete a budget for the given user.
 
-Request
-DELETE /api/v2/users/:user_id:/budgets/:budget_id:
-Status Codes
-Status	Description
-204 No Content	returned when successful
-401 Not Authorized	returned when invalid credentials are provided
-404 Not Found	returned when an invalid user is specified
+`DELETE /api/v2/users/:user_id:/budgets/:budget_id:`
+
+###Status Codes
+Status | Description
+------ | -----------
+204 No Content | returned when successful
+401 Not Authorized | returned when invalid credentials are provided
+404 Not Found | returned when an invalid user is specified
