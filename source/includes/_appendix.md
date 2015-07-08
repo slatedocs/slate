@@ -49,6 +49,7 @@ showmelocal|<span class="yes">Yes</span>|||<span class="yes">Yes</span>|
 superpages|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 switchboard|<span class="yes">Yes</span>|||<span class="yes">Yes</span>|
 theusaexplorer|<span class="yes">Yes</span>||||
+tupalo|<span class="yes">Yes</span>||<span class="yes">Yes</span>||
 whitepages|<span class="yes">Yes</span>|||<span class="yes">Yes</span>|
 yahoo|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 yasabe|<span class="yes">Yes</span>||||
@@ -84,12 +85,14 @@ near|<span class="yes">Yes</span>||||
 manta|<span class="yes">Yes</span>||||
 misterwhat|<span class="yes">Yes</span>||||
 mylocalservices|<span class="yes">Yes</span>||||
+opendi<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 scoot|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 thediscdirectory|<span class="yes">Yes</span>||||
 thesun|<span class="yes">Yes</span>||||
 thomsonlocal|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 tipped|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 touchlocal|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
+tupalo|<span class="yes">Yes</span>||<span class="yes">Yes</span>||
 uk-local-search|<span class="yes">Yes</span>||||
 ukplaces|<span class="yes">Yes</span>||||
 wheresbest|<span class="yes">Yes</span>||||
@@ -129,6 +132,7 @@ reverseaustralia|<span class="yes">Yes</span>||||
 startlocal|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 superpagesaus|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 streetdirectory|<span class="yes">Yes</span>||||
+tupalo|<span class="yes">Yes</span>||<span class="yes">Yes</span>||
 tuugo|<span class="yes">Yes</span>||||
 truelocal|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 vicdir|<span class="yes">Yes</span>||||
@@ -165,6 +169,7 @@ pagesjaunes|<span class="yes">Yes</span>||||
 profilecanada|<span class="yes">Yes</span>|||<span class="yes">Yes</span>|
 salespider|<span class="yes">Yes</span>||||
 superpages||||<span class="yes">Yes</span>|
+tupalo|<span class="yes">Yes</span>||<span class="yes">Yes</span>||
 weblocal|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 wikidomo|<span class="yes">Yes</span>||||
 yalwa|<span class="yes">Yes</span>||||
