@@ -20,6 +20,7 @@ includes:
   - cashflows
   - current-partner
   - current-user
+  - expenses
 
 search: true
 ---
