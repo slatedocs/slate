@@ -28,7 +28,6 @@ Have fun creating!
 
 - Must be using Xcode 6.3+. (We do not support Xcode 7.0-beta yet)
 - Deployment target must be iOS 8.0+
-- Currently can only run on iPhone, not iPhone simulator.
 
 # Template Project
 
