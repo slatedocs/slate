@@ -24,6 +24,7 @@ includes:
   - expenses
   - harvests
   - networth
+  - payoff-goals
 
 search: true
 ---
