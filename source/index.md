@@ -19,6 +19,7 @@ includes:
   - cashflow-incomes
   - cashflows
   - current-partner
+  - current-user
 
 search: true
 ---
