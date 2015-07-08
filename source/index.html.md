@@ -17,6 +17,7 @@ includes:
   - cashflow-bills
   - cashflow-events
   - cashflow-incomes
+  - cashflows
 
 search: true
 ---
