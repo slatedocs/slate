@@ -22,6 +22,7 @@ includes:
   - current-user
   - expenses
   - harvests
+  - networth
 
 search: true
 ---
