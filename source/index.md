@@ -12,6 +12,7 @@ toc_footers:
 includes:
   - accounts
   - ads
+  - aggregation
   - budgets
 
 search: true
