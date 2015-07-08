@@ -14,6 +14,7 @@ includes:
   - ads
   - aggregation
   - budgets
+  - cashflow-bills
 
 search: true
 ---
