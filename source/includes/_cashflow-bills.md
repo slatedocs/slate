@@ -332,11 +332,11 @@ Stop a cashflow bill.
 ## Delete Cashflow Bill
 
 ```shell
-curl -X "DELETE" "http://geezeo.dev:3000/api/v2/users/:user_id:/cashflow/bills/:cashflow_bill_id:/stop" -u "%geezeo-api-key%:" 
+curl -X "DELETE" "http://geezeo.dev:3000/api/v2/users/:user_id:/cashflow/bills/:cashflow_bill_id:" -u "%geezeo-api-key%:" 
 ```
 
 ```ruby
-uri = URI('https://geezeobkdemo.mybankhq.com/api/v2/users/:user_id:/cashflow/bills/:cashflow_bill_id:/stop')
+uri = URI('https://geezeobkdemo.mybankhq.com/api/v2/users/:user_id:/cashflow/bills/:cashflow_bill_id:')
 key = ':geezeo-aip-key:'
 
 Net::HTTP.start(uri.host, uri.port,

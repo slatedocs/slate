@@ -15,6 +15,7 @@ includes:
   - aggregation
   - budgets
   - cashflow-bills
+  - cashflow-events
 
 search: true
 ---
