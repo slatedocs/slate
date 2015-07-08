@@ -1,13 +1,13 @@
-# Payoff Goals
+# Savings Goals
 
-## Payoff Goal States
+## Savings Goal States
 
 | State      | Description |
 |------------|-------------|
 | `active`   | The goal is being updated and is capable of generating alerts. |
 | `archived` | The goal is no longer being updated or generating alerts. |
 
-## Payoff Goal Statuses
+## Savings Goal Statuses
 
 | Status     | Description |
 |------------|-------------|
@@ -16,21 +16,21 @@
 | `risk`     | The goal is not on target for completion on time. (Its current value is less than 80% of its expected current value). |
 | `under`    | The goal is on target for completion on time. |
 
-## Payoff Goal Contributions
+## Savings Goal Contributions
 
 | Attribute              | Description |
 |------------------------|-------------|
 | `monthly_contribution` | The average monthly conrtibution (rounded to the nearest ten). |
 | `target_contribution`  | The amount that will be contributed to this goal every month. |
 
-## Get Payoff Goal Images
+## Get Savings Goal Images
 
 ```shell
-curl -X "GET" "http://geezeo.dev:3000/api/v2/payoff_goals" -u "%geezeo-api-key%:"
+curl -X "GET" "http://geezeo.dev:3000/api/v2/savings_goals" -u "%geezeo-api-key%:"
 ```
 
 ```ruby
-uri = URI('https://geezeobkdemo.mybankhq.com/api/v2/payoff_goals')
+uri = URI('https://geezeobkdemo.mybankhq.com/api/v2/savings_goals')
 key = ':geezeo-aip-key:'
 
 Net::HTTP.start(uri.host, uri.port,
@@ -49,19 +49,19 @@ end
 
 ```json
 {
-  "payoff_goal_images": [
+  "savings_goal_images": [
     {
-      "id": "credit_card.jpg",
-      "name": "Pay off a credit card",
-      "url": "http://www.example.com/images/standard_goal_images/credit_card.jpg?1368824034"
+      "id": "baby.jpg",
+      "name": "Save for a baby",
+      "url": "http://www.example.com/images/standard_goal_images/baby.jpg?1368824034"
     }
   ]
 }
 
 ```
-Return a list of pre-defined payoff goal images.
+Return a list of pre-defined savings goal images.
 
-`GET /api/v2/payoff_goals`
+`GET /api/v2/savings_goals`
 
 
 ### Status Codes
@@ -71,14 +71,14 @@ Return a list of pre-defined payoff goal images.
 | 200 OK | returned when successful |
 | 401 Not Authorized | returned when invalid credentials are provided |
 
-## Get Payoff Goals
+## Get Savings Goals
 
 ```shell
-curl -X "GET" "http://geezeo.dev:3000/api/v2/users/:user_id:/payoff_goals" -u "%geezeo-api-key%:"
+curl -X "GET" "http://geezeo.dev:3000/api/v2/users/:user_id:/savings_goals" -u "%geezeo-api-key%:"
 ```
 
 ```ruby
-uri = URI('https://geezeobkdemo.mybankhq.com/api/v2/users/:user_id:/payoff_goals')
+uri = URI('https://geezeobkdemo.mybankhq.com/api/v2/users/:user_id:/savings_goals')
 key = ':geezeo-aip-key:'
 
 Net::HTTP.start(uri.host, uri.port,
@@ -97,17 +97,17 @@ end
 
 ```json
 {
-  "payoff_goals": [
+  "savings_goals": [
     {
       "id": 583,
-      "name": "Payoff a car",
-      "image_name": "car.jpg",
-      "image_url": "https://example.com/images/car.jpg",
+      "name": "Save for a Baby",
+      "image_name": "baby.jpg",
+      "image_url": "https://example.com/images/baby.jpg",
       "state": "active",
       "status": "risk",
       "initial_value": "10.00",
       "current_value": "200.00",
-      "target_value": "0.00",
+      "target_value": "2000.00",
       "monthly_contribution": "50.00",
       "percent_complete": 2,
       "complete": false,
@@ -123,9 +123,9 @@ end
 }
 ```
 
-Return a list of payoff goals for the given user.
+Return a list of all savings goals for the given user.
 
-`GET /api/v2/users/:user_id:/payoff_goals`
+`GET /api/v2/users/:user_id:/savings_goals`
 
 
 ### Status Codes
@@ -137,14 +137,14 @@ Return a list of payoff goals for the given user.
 | 404 Not Found | returned when an invalid user is specified |
 
 
-## Get Payoff Goal
+## Get Savings Goal
 
 ```shell
-curl -X "GET" "http://geezeo.dev:3000/api/v2/users/:user_id:/payoff_goals/:payoff_goals_id:" -u "%geezeo-api-key%:"
+curl -X "GET" "http://geezeo.dev:3000/api/v2/users/:user_id:/savings_goals/:savings_goals_id:" -u "%geezeo-api-key%:"
 ```
 
 ```ruby
-uri = URI('https://geezeobkdemo.mybankhq.com/api/v2/users/:user_id:/payoff_goals/:payoff_goals_id:')
+uri = URI('https://geezeobkdemo.mybankhq.com/api/v2/users/:user_id:/savings_goals/:savings_goals_id:')
 key = ':geezeo-aip-key:'
 
 Net::HTTP.start(uri.host, uri.port,
@@ -163,17 +163,17 @@ end
 
 ```json
 {
-  "payoff_goals": [
+  "savings_goals": [
     {
       "id": 583,
-      "name": "Payoff a car",
-      "image_name": "car.jpg",
-      "image_url": "https://example.com/images/car.jpg",
+      "name": "Save for a Baby",
+      "image_name": "baby.jpg",
+      "image_url": "https://example.com/images/baby.jpg",
       "state": "active",
       "status": "risk",
       "initial_value": "10.00",
       "current_value": "200.00",
-      "target_value": "0.00",
+      "target_value": "2000.00",
       "monthly_contribution": "50.00",
       "percent_complete": 2,
       "complete": false,
@@ -189,20 +189,28 @@ end
 }
 ```
 
-Return a payoff goal for the given user.
+Return a savings goal for the given user.
 
-`GET /api/v2/users/:user_id:/payoff_goals/:payoff_goals_id:`
+`GET /api/v2/users/:user_id:/savings_goals/:savings_goals_id:`
 
 
+### Status Codes
 
-## Create Payoff Goal
+| Status | Description |
+|--------|-------------|
+| 200 OK | returned when successful |
+| 401 Not Authorized | returned when invalid credentials are provided |
+| 404 Not Found | returned when an invalid user is specified |
+
+
+## Create Savings Goal
 
 ```shell
-curl -X "POST" "http://geezeo.dev:3000/api/v2/users/:user_id:/payoff_goals" -u "%geezeo-api-key%:" -d ":request_payload:"
+curl -X "POST" "http://geezeo.dev:3000/api/v2/users/:user_id:/savings_goals" -u "%geezeo-api-key%:" -d ":request_payload:"
 ```
 
 ```ruby
-uri = URI('https://geezeobkdemo.mybankhq.com/api/v2/users/:user_id:/payoff_goals')
+uri = URI('https://geezeobkdemo.mybankhq.com/api/v2/users/:user_id:/savings_goals')
 key = ':geezeo-aip-key:'
 
 Net::HTTP.start(uri.host, uri.port,
@@ -223,49 +231,21 @@ end
 
 ```json
 {
-  "payoff_goal": {
-    "image_name": "car.jpg",
-    "name": "Payoff a car",
+  "savings_goal": {
+    "account_id": 2189,
+    "image_name": "baby.jpg",
+    "name": "Save for a Baby",
+    "locked_balance": "200.00",
     "target_contribution": "50.00",
-    "account_ids": [
-      2189
-    ]
+    "target_value": "2000.00"
   }
 }
 ```
 
-> Response payload
+Create a savings goal for the given user.
 
-```json
-{
-  "payoff_goals": [
-    {
-      "id": 583,
-      "name": "Payoff a car",
-      "image_name": "car.jpg",
-      "image_url": "https://example.com/images/car.jpg",
-      "state": "active",
-      "status": "risk",
-      "initial_value": "10.00",
-      "current_value": "200.00",
-      "target_value": "0.00",
-      "monthly_contribution": "50.00",
-      "percent_complete": 2,
-      "complete": false,
-      "target_completion_on": "2014-05-21",
-      "created_at": "2013-01-01T16:54:15Z",
-      "updated_at": "2013-10-01T20:21:01Z",
-      "links": {
-        "accounts": [2189]
-      }
-    }
-  ]
-}
-```
+POST /api/v2/users/:user_id:/savings_goals
 
-Create a payoff goal for the given user.
-
-`POST /api/v2/users/:user_id:/payoff_goals`
 
 ### Parameters
 
@@ -273,10 +253,11 @@ Create a payoff goal for the given user.
 |-----------|-------------|
 | `image_name` | The image that represents this payoff goal on the Geezeo dashboard. __Required__ |
 | `name` | Short name describing this goal. __Required__ |
+| `locked_balance` | The amount to reserve in the account (that will not apply to the goal) |
 | `target_contribution` | The amount that will be contributed to this goal every month. __Required unless target_completion_on is included__ |
-| `target_completion_on` | The date at which this goal should be obtained. __Required unless target_completion_on is included__ |
-| `account_ids` | The IDs of the Geezeo accounts that this payoff goal should be applied to. (The loan being paid-off has also been added to Geezeo) __Required__ |
-
+| `target_completion_on` | The date at which the target_value should be obtained. __Required unless target_completion_on is included__ |
+| `target_value` | The total amount to be saved for this goal. __Required__ |
+| `account_id` | The ID of the account that this savings goal should be added to. __Required__ |
 
 ### Status Codes
 
@@ -288,14 +269,14 @@ Create a payoff goal for the given user.
 | 422 Unprocessable Entity | returned when the parameters given were invalid |
 
 
-## Update Payoff Goal
+## Update Savings Goal
 
 ```shell
-curl -X "PUT" "http://geezeo.dev:3000/api/v2/users/payoff_goals/:payoff_goal_id:" -u "%geezeo-api-key%:" -d ":request_payload:"
+curl -X "PUT" "http://geezeo.dev:3000/api/v2/users/savings_goals/:savings_goal_id:" -u "%geezeo-api-key%:" -d ":request_payload:"
 ```
 
 ```ruby
-uri = URI('https://geezeobkdemo.mybankhq.com/api/v2/users/payoff_goals/:payoff_goal_id:')
+uri = URI('https://geezeobkdemo.mybankhq.com/api/v2/users/savings_goals/:savings_goal_id:')
 key = ':geezeo-aip-key:'
 
 Net::HTTP.start(uri.host, uri.port,
@@ -316,20 +297,20 @@ end
 
 ```json
 {
-  "payoff_goal": {
-    "image_name": "car.jpg",
-    "name": "Payoff a car",
+  "savings_goal": {
+    "account_id": 2189,
+    "image_name": "baby.jpg",
+    "name": "Save for a Baby",
+    "locked_balance": "200.00",
     "target_contribution": "50.00",
-    "account_ids": [
-      2189
-    ]
+    "target_value": "2000.00"
   }
 }
 ```
 
-Update a payoff goal for the given user.
+Update a savings goal for the given user.
 
-`PUT /api/v2/users/:user_id:/payoff_goals/:payoff_goal_id:`
+`PUT /api/v2/users/:user_id:/savings_goals/:savings_goals_id:`
 
 
 ### Parameters
@@ -338,9 +319,13 @@ Update a payoff goal for the given user.
 |-----------|-------------|
 | `image_name` | The image that represents this payoff goal on the Geezeo dashboard. __Required__ |
 | `name` | Short name describing this goal. __Required__ |
+| `locked_balance` | The amount to reserve in the account (that will not apply to the goal) |
 | `target_contribution` | The amount that will be contributed to this goal every month. __Required unless target_completion_on is included__ |
-| `target_completion_on` | The date at which this goal should be obtained. __Required unless target_completion_on is included__ |
-| `account_ids` | The IDs of the Geezeo accounts that this payoff goal should be applied to. (The loan being paid-off has also been added to Geezeo) __Required__ |
+| `target_completion_on` | The date at which the target_value should be obtained. __Required unless target_completion_on is included__ |
+| `target_value` | The total amount to be saved for this goal. __Required__ |
+| `account_id` | The ID of the account that this savings goal should be added to. __Required__ |
+
+
 
 ### Status Codes
 
@@ -351,15 +336,14 @@ Update a payoff goal for the given user.
 | 404 Not Found | returned when an invalid user is specified |
 | 422 Unprocessable Entity | returned when the parameters given were invalid |
 
-
-## Delete Payoff Goal
+## Delete Savings Goal
 
 ```shell
-curl -X "DELETE" "http://geezeo.dev:3000/api/v2/users/:user_id:/payoff_goals/:payoff_goal_id:" -u "%geezeo-api-key%:" 
+curl -X "DELETE" "http://geezeo.dev:3000/api/v2/users/:user_id:/savings_goals/:savings_goal_id:" -u "%geezeo-api-key%:" 
 ```
 
 ```ruby
-uri = URI('https://geezeobkdemo.mybankhq.com/api/v2/users/:user_id:/payoff_goals/:payoff_goal_id:')
+uri = URI('https://geezeobkdemo.mybankhq.com/api/v2/users/:user_id:/savings_goals/:savings_goal_id:')
 key = ':geezeo-aip-key:'
 
 Net::HTTP.start(uri.host, uri.port,
@@ -375,11 +359,9 @@ end
 
 ```
 
+Delete a savings goal for the given user.
 
-Delete a payoff goal for the given user.
-
-`DELETE /api/v2/users/:user_id:/payoff_goals/:payoff_goal_id:`
-
+`DELETE /api/v2/users/:user_id:/savings_goals/:savings_goals_id:`
 
 ### Status Codes
 
@@ -389,15 +371,14 @@ Delete a payoff goal for the given user.
 | 401 Not Authorized | returned when invalid credentials are provided |
 | 404 Not Found | returned when an invalid user is specified |
 
-
-## Archive Payoff Goal
+## Archive Savings Goal
 
 ```shell
-curl -X "PUT" "http://geezeo.dev:3000/api/v2/users/:user_id:/payoff_goals/:payoff_goal_id:/archive" -u "%geezeo-api-key%:" 
+curl -X "PUT" "http://geezeo.dev:3000/api/v2/users/:user_id:/savings_goals/:savings_goal_id:/archive" -u "%geezeo-api-key%:" 
 ```
 
 ```ruby
-uri = URI('https://geezeobkdemo.mybankhq.com/api/v2/users/payoff_goals/:payoff_goal_id:/archive')
+uri = URI('https://geezeobkdemo.mybankhq.com/api/v2/users/savings_goals/:savings_goal_id:/archive')
 key = ':geezeo-aip-key:'
 
 Net::HTTP.start(uri.host, uri.port,
@@ -414,9 +395,9 @@ end
 ```
 
 
-Archive a payoff goal for the given user.
+Archive a savings goal for the given user.
 
-`PUT /api/v2/users/:user_id:/payoff_goals/:payoff_goal_id:/archive`
+`PUT /api/v2/users/:user_id:/savings_goals/:savings_goals_id:/archive`
 
 ### Status Codes
 

@@ -25,6 +25,8 @@ includes:
   - harvests
   - networth
   - payoff-goals
+  - ping
+  - savings-goals
 
 search: true
 ---
