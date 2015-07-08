@@ -27,6 +27,7 @@ includes:
   - payoff-goals
   - ping
   - savings-goals
+  - tags
 
 search: true
 ---
