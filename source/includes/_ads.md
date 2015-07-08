@@ -23,7 +23,7 @@ end
 
 ```
 
-> The above command returns JSON structured like this:
+> Response payload
 
 ```json
 {
@@ -50,26 +50,26 @@ Return ads that are relevant to a user. This registers an impression for each re
 
 Parameter | Description
 --------- | -----------
-campaign_location | Limit results to this campaign location.
-count | Retrieve at most this many campaign impressions. Defaults to 1.
-ad_dimensions | Retrieve only ads with the requested ad_dimensions.
+`campaign_location` | Limit results to this campaign location.
+`count` | Retrieve at most this many campaign impressions. Defaults to 1.
+`ad_dimensions` | Retrieve only ads with the requested ad_dimensions.
 
 <aside class="warning">campaign_location and ad_dimensions are all optional, but only certain combinations are meaningful</aside>
 
 
 Description | ad_dimensions | campaign_location
 ----------- | ------------- | -----------------
-Alert Ad | 650_100 | Alert
-Budget Ad | 650_100 | Budget
-Cashflow Ad | 650_100 | Cashflow
-Goal Ad | 650_100 | SavingsGoal
-Large Banner Ad | 650_100 | n/a
-Left Sidebar Ad | 225_225 | n/a
-Mobile Ad | 320_80 | Mobile
-Net Worth Ad | 650_100 | Networth
-Right Sidebar Ad | 200_200 | n/a
-Small Right Sidebar Ad | 95 _95 | n/a
-Transaction Feed Ad | 425_100 | n/a
+`Alert Ad` | 650_100 | Alert
+`Budget Ad` | 650_100 | Budget
+`Cashflow Ad` | 650_100 | Cashflow
+`Goal Ad` | 650_100 | SavingsGoal
+`Large Banner Ad` | 650_100 | n/a
+`Left Sidebar Ad` | 225_225 | n/a
+`Mobile Ad` | 320_80 | Mobile
+`Net Worth Ad` | 650_100 | Networth
+`Right Sidebar Ad` | 200_200 | n/a
+`Small Right Sidebar Ad` | 95 _95 | n/a
+`Transaction Feed Ad` | 425_100 | n/a
 
 
 ###Status Codes
