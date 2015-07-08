@@ -21,6 +21,7 @@ includes:
   - current-partner
   - current-user
   - expenses
+  - harvests
 
 search: true
 ---
