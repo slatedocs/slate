@@ -162,7 +162,7 @@ Atributo | Descripción
 --------- | -----------
 id | Identificador de la categoría
 parent_id | Identificador de la categoría padre
-name | Nombre de la ategoría
+name | Nombre de la categoría
 created_at | Fecha de creación de la categoría
 updated_at | Fecha de ultima actualización de la categoría
 permalink | Nombre amigable utilizado para la URL de la categoría
