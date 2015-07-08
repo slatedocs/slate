@@ -18,6 +18,7 @@ includes:
   - cashflow-events
   - cashflow-incomes
   - cashflows
+  - current-partner
 
 search: true
 ---
