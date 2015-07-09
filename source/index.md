@@ -394,9 +394,9 @@ country_code | Two letter (lower case) ISO 3166 country code
 region_code | Available regions (lower case): `na`, `eu`, `oc`, `sea`, `sa`, `as`, `me`, `af` 
 language | Two letter ISO 639-1 language code 
 categories | Number 
-publisher | TLD such as `newswhip.com` 
-domain | Exact domain where the article was published. i.e. `blog.newswhip.com` 
-href | 
+publisher | TLD such as newswhip.com
+domain | Exact domain where the article was published. i.e. blog.newswhip.com 
+href |   
 
 <aside class="notice">Due to historical reasons, the queryable fields `headline` and `summary` differ in naming from their `Article` counterparts `link` and `excerpt`.</aside>
 
