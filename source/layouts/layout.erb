@@ -21,6 +21,7 @@ under the License.
   <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <title>API Documentation</title>
+  <meta name="Docs" content="Full developer documentation for the Sense360 SDK & API." >
 
   <%= stylesheet_link_tag :screen, media: :screen %>
   <%= stylesheet_link_tag :print, media: :print %>
@@ -71,11 +72,56 @@ under the License.
     $(function () {
       setupScroll($('#nav-button'), 5);
     });
+    
+    function trackDocsPage(){
+    	   analytics.track("Page View", {"Page Name": "Docs Page"})
+    }
+    
+    function registerMainHomeButton() {
+    	analytics.track("Clicked Register Main Home Button");
+    }
+    
+    function clickedDownloadGithubProjectSwift(){
+    	analytics.track("Download from Github project link for swift");
+    }
+    
+    function clickedDownloadLibraryLink(){
+    	analytics.track("Clicked download library link");
+    }
+    function clickedDownloadGithubProjectObjC(){
+    	analytics.track("Download from Github project link for objective-c");
+    }
 
   </script>
-</head>
+    
+<script type="text/javascript">
+    (function () {
+        window._pa = window._pa || {};
+        // _pa.orderId = "myOrderId"; // OPTIONAL: attach unique conversion identifier to conversions
+        // _pa.revenue = "19.99"; // OPTIONAL: attach dynamic purchase values to conversions
+        // _pa.productId = "myProductId"; // OPTIONAL: Include product ID for use with dynamic ads
+        var pa = document.createElement('script');
+        pa.type = 'text/javascript';
+        pa.async = true;
+        pa.src = ('https:' == document.location.protocol ? 'https:' : 'http:') + "//tag.marinsm.com/serve/5579c485519590efd7000147.js";
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(pa, s);
+    })();
+</script>
+  <script type="text/javascript">
+    !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.0.1";
+    analytics.load("gCbRQGkXhcizs7m7melabg49Z80XnQhH");
 
-<body class="main <%= page_classes %>">
+    analytics.page()
+    }}();
+  </script>
+
+  <!-- Start of sense360 Zendesk Widget script -->
+  <script> window.zEmbed||function(e,t){var n,o,d,i,s,a=[],r=document.createElement("iframe");window.zEmbed=function(){a.push(arguments)},window.zE=window.zE||window.zEmbed,r.src="javascript:false",r.title="",r.role="presentation",(r.frameElement||r).style.cssText="display: none",d=document.getElementsByTagName("script"),d=d[d.length-1],d.parentNode.insertBefore(r,d),i=r.contentWindow,s=i.document;try{o=s}catch(c){n=document.domain,r.src='javascript:var d=document.open();d.domain="'+n+'";void(0);',o=s}o.open()._l=function(){var o=this.createElement("script");n&&(this.domain=n),o.id="js-iframe-async",o.src=e,this.t=+new Date,this.zendeskHost=t,this.zEQueue=a,this.body.appendChild(o)},o.write('<body onload="document._l();">'),o.close()}("https://assets.zendesk.com/embeddable_framework/main.js","sense360.zendesk.com");/*]]>*/</script>
+  <!-- End of sense360 Zendesk Widget script -->
+</head>
+<script src="trackVideo.js"></script>
+<body class="main <%= page_classes %>" onload=trackDocsPage()>
 
 <div class="header">
   <div class="header-inner">
@@ -86,11 +132,11 @@ under the License.
       <div class="menu-nav">
         <ul>
           <li><a href="http://www.sense360ideas.com">Ideas</a></li>
+          <li><a href="use_cases.html">Use Cases</a></li>
           <li><a href="faq.html">Faq</a></li>
           <li><a href="about_us.html">Company</a></li>
           <li><a href="getting_started.html">Quick Start</a></li>
           <li><a href="docs.html">Docs</a></li>
-          <li><a href="use_cases.html">Use Cases</a></li>
           <li><a href="support.html">Support</a></li>
         </ul>
       </div>
