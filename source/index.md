@@ -379,8 +379,7 @@ language | Any | Two letter ISO 639-1 language code |
 sort_by | default | String | One of the following: `default`, `fb_likes`, `fb_shares`, `fb_comments`, `fb_total`, `twitter`, `linkedin`, `fb_tw_and_li`, `nw_score`, `nw_max_score`, `created_at`.
 video_only | false |   |
 default_field | Relevant fields | String | Field to be used when filtering by keywords (like `"Barack Obama"`) and no fields are used in the Query String.
-size |   | Integer | Max number of articles to be returned.
-size |   | Integer | Max number of articles to be returned.
+size |   | Integer | Max number of articles to be returned (includes relatedStories.)
 find_related | true | Boolean | Related stories will be collapsed when set.
 
 ### Available fields for filtering
