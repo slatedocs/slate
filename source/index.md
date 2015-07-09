@@ -30,6 +30,7 @@ includes:
   - tags
   - tickets
   - transactions
+  - users
 
 search: true
 ---
