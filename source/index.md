@@ -31,13 +31,13 @@ Have fun creating!
 
 # Template Project
 
-A Swift starter project can be found at: <a href='https://github.com/Sense360/Sense360StarterSwift'>https://github.com/Sense360/Sense360StarterSwift</a>
+A Swift starter project can be found at: <a href='https://github.com/Sense360/Sense360StarterSwift' onclick= "clickedDownloadGithubProjectSwift()">https://github.com/Sense360/Sense360StarterSwift</a>
 
-The same project but for objective-c can be found at: <a href='https://github.com/Sense360/Sense360StarterObjC'>https://github.com/Sense360/Sense360StarterObjC</a>
+The same project but for objective-c can be found at: <a href='https://github.com/Sense360/Sense360StarterObjC' onclick= "clickedDownloadGithubProjectObjC()">https://github.com/Sense360/Sense360StarterObjC</a>
 
 # Download
 
-You can download the stand alone framework <a href='https://s3-us-west-1.amazonaws.com/sense360-public-files/SenseSdk.framework.zip'>here</a>.
+You can download the stand alone framework <a href='https://s3-us-west-1.amazonaws.com/sense360-public-files/SenseSdk.framework.zip' onclick= "clickedDownloadLibraryLink()">here</a>.
 
 # Quick Start
 
@@ -71,7 +71,7 @@ Triggers define the conditions under which your app should be notified.  There a
 
 All triggers are built by the class FireTrigger.  Within there, you will find every function you need to get going.
 
-<aside class="notice"> IMPORTANT: A trigger on its own does nothing. You must build your triggers, and then add it to a Recipe in order to utilize the trigger. 
+<aside class="notice"> IMPORTANT: A trigger on its own does nothing. You must build your triggers, and then add it to a Recipe in order to utilize the trigger.
 </aside>
 
 ## Place of Interest
@@ -306,7 +306,7 @@ uniqueId (String)| true |
 A time window specifies which hours of the day a trigger is allowed to fire.
 
 ```swift
-// This will only allow a trigger to fire between the hours of 
+// This will only allow a trigger to fire between the hours of
 // 5pm and 10pm (in the users local time)
 let recipe = Recipe(
   name: "My Recipe", 
@@ -674,7 +674,7 @@ let place = PersonalizedPlace(latitude: 34.111, longitude: -118.111,
   radius: 50, personalizedPlaceType: .Home)
 
 // You can also create a PersonalizedPlace as follows:
-// let personalPlace = PersonalizedPlace(location: <Location>, 
+// let personalPlace = PersonalizedPlace(location: <Location>,
 // radius: <Meters>, personalizedPlaceType: <PersonalizedPlaceType>)
         
 let errorPointer = SenseSdkErrorPointer.create()
@@ -701,8 +701,8 @@ PersonalizedPlace* personalizedPlace = [[PersonalizedPlace alloc]
 
 // You can also create a PersonalizedPlace as follows:
 // PersonalizedPlace* personalPlace = [[PersonalizedPlace alloc]
-// initWithLocation:<(Location * __nonnull)> 
-// radius:<(double)> 
+// initWithLocation:<(Location * __nonnull)>
+// radius:<(double)>
 // personalizedPlaceType:<(enum PersonalizedPlaceType)>]
 
 SenseSdkErrorPointer *errorPtr = [SenseSdkErrorPointer create];
