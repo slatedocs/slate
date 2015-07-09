@@ -29,6 +29,7 @@ includes:
   - savings-goals
   - tags
   - tickets
+  - transactions
 
 search: true
 ---
