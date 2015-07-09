@@ -377,8 +377,9 @@ from | A week ago | Unix timestamp in milliseconds | Filters articles published 
 to | Now | Unix timestamp in milliseconds | Filters articles published before `{to}`.
 language | Any | Two letter ISO 639-1 language code |
 sort_by | default | String | One of the following: `default`, `fb_likes`, `fb_shares`, `fb_comments`, `fb_total`, `twitter`, `linkedin`, `fb_tw_and_li`, `nw_score`, `nw_max_score`, `created_at`.
-video_only | false | 
+video_only | false |   |
 default_field | Relevant fields | String | Field to be used when filtering by keywords (like `"Barack Obama"`) and no fields are used in the Query String.
+size |   | Integer | Max number of articles to be returned.
 size |   | Integer | Max number of articles to be returned.
 find_related | true | Boolean | Related stories will be collapsed when set.
 
@@ -386,14 +387,16 @@ find_related | true | Boolean | Related stories will be collapsed when set.
 
 Field | Type 
 ----- | ---- 
-headline |  |
-summary |  |
-authors |  |
-<del>country</del> | Number. Deprecated: use country_code instead |
-country_code | Two letter ISO 3166 country code |
-language | Two letter ISO 639-1 language code |
-categories | Number |
-publisher | 
+headline |  
+summary |  
+authors |  
+<del>country</del> | Number. Deprecated: use country_code instead 
+country_code | Two letter (lower case) ISO 3166 country code 
+region_code | Available regions (lower case): `na`, `eu`, `oc`, `sea`, `sa`, `as`, `me`, `af` 
+language | Two letter ISO 639-1 language code 
+categories | Number 
+publisher | TLD such as `newswhip.com` 
+domain | Exact domain where the article was published. i.e. `blog.newswhip.com` 
 href | 
 
 <aside class="notice">Due to historical reasons, the queryable fields `headline` and `summary` differ in naming from their `Article` counterparts `link` and `excerpt`.</aside>

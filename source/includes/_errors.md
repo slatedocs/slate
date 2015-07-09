@@ -28,6 +28,11 @@ We don't currently support JSONP.
 
 # Changelog
 
+### Version 1.0.3 (2015-07-09)
+
+- Added `region_code` and `domain` to available fields for filtering
+- Added `keywords` field to Article entity
+
 ### Version 1.0.2 (2015-03-03)
 
 - Added `has_video` field to Article entity
