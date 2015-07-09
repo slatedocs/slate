@@ -28,6 +28,7 @@ includes:
   - ping
   - savings-goals
   - tags
+  - tickets
 
 search: true
 ---
