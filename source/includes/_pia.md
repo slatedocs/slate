@@ -14,6 +14,7 @@ $app_specific_token = "06da93314c187242827faf6f93c6cae82d76799dace61ce60c964f12b
 $app_platform = "android";
 
 $gaid = "8df6c9bf-d647-4400-bc13-7ff317f046f3";
+$android_id = "358414046356276";
 
 $product_id = "bag_of_gems";
 $purchase_currency = "USD";
@@ -25,6 +26,7 @@ $data = json_encode(array(
 	"timestamp" => $now,
 	"identifiers" => array(
 		"gaid" => $gaid
+		"uuid" => $android_id
 	),
 	"iap" => array(
 		"product_id" => $product_id,
@@ -63,6 +65,7 @@ app_specific_token = '06da93314c187242827faf6f93c6cae82d76799dace61ce60c964f12ba
 app_platform = 'android'
 
 gaid = '8df6c9bf-d647-4400-bc13-7ff317f046f3'
+android_id = '358414046356276'
 
 product_id = 'bag_of_gems'
 purchase_currency = 'USD'
@@ -74,6 +77,7 @@ data = json.dumps({
 	'timestamp': now,
 	'identifiers': {
 		'gaid': gaid
+		'uuid': android_id
 	},
 	'iap': {
 		'product_id': product_id,
@@ -100,7 +104,7 @@ curl 'https://live.chartboost.com/event_service/v2/iap' \
   -H 'Content-Type: application/json' \
   -H 'X-Chartboost-App: 54ecc0535beacdc1e1eff778' \
   -H 'X-Chartboost-Signature: caca610497640fbb7e8d46ce048d19a71e8cde09d067cf3a32450026a6e49f60' \
-  -d '{"platform": "android", "token": "06da93314c187242827faf6f93c6cae82d76799dace61ce60c964f12ba29dd30", "identifiers": {"gaid": "8df6c9bf-d647-4400-bc13-7ff317f046f3"}, "iap": {"currency": "USD", "price": 1.99, "product_id": "bag_of_gems"}, "timestamp": 1427931538}'
+  -d '{"platform": "android", "token": "06da93314c187242827faf6f93c6cae82d76799dace61ce60c964f12ba29dd30", "identifiers": {"gaid": "8df6c9bf-d647-4400-bc13-7ff317f046f3", "uuid": "358414046356276"}, "iap": {"currency": "USD", "price": 1.99, "product_id": "bag_of_gems"}, "timestamp": 1427931538}'
 ```
 
 > Sample Response
@@ -163,9 +167,9 @@ One of the following is required in the identifiers parameter.
 
 Name          | Required | Type   | Description
 ----          | -------- | ----   | -----------
-gaid          | false    | string | Google advertising identifier
-ifa           | false    | string | Apple identifier for advertising
-uuid          | false    | string | `UUID` (if iOS), `android_id` (if Android)
+gaid          | true     | string | Google advertising identifier
+ifa           | true     | string | Apple identifier for advertising
+uuid          | true     | string | `UUID` (if iOS), `Android ID` (if Android)
 
 #### IAP
 
