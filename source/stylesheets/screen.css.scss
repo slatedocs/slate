@@ -84,6 +84,7 @@ html, body {
   // This is the logo at the top of the ToC
   &>img {
     display: block;
+    padding: 10px 0 10px 10px;
   }
 
   &>.search {
@@ -92,7 +93,7 @@ html, body {
     input {
       background: $nav-bg;
       border-width: 0 0 1px 0;
-      border-color: $search-box-border-color;
+      border-color: $nav-text;
       padding: 6px 0 6px 20px;
       box-sizing: border-box;
       margin: $nav-v-padding $nav-padding;
@@ -100,6 +101,21 @@ html, body {
       outline: none;
       color: $nav-text;
       border-radius: 0; /* ios has a default border radius */
+      &::-webkit-input-placeholder {
+        color: $nav-text;
+      }
+      &:-moz-placeholder {
+        color: $nav-text;
+        opacity:  1;
+      }
+      &::-moz-placeholder {
+        color: $nav-text;
+        opacity:  1;
+      }
+      &:-ms-input-placeholder {
+        color: $nav-text;
+      }
+
     }
 
     &:before {
@@ -174,7 +190,6 @@ html, body {
 
   // This is the currently selected ToC entry
   .tocify-focus {
-    box-shadow: 0px 1px 0px $nav-active-shadow;
     background-color: $nav-active-bg;
     color: $nav-active-text;
   }
