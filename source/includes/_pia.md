@@ -76,7 +76,7 @@ data = json.dumps({
 	'platform': app_platform,
 	'timestamp': now,
 	'identifiers': {
-		'gaid': gaid
+		'gaid': gaid,
 		'uuid': android_id
 	},
 	'iap': {
