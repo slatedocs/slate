@@ -25,7 +25,7 @@ $data = json_encode(array(
 	"platform" => $app_platform,
 	"timestamp" => $now,
 	"identifiers" => array(
-		"gaid" => $gaid
+		"gaid" => $gaid,
 		"uuid" => $android_id
 	),
 	"iap" => array(
