@@ -1,4 +1,4 @@
-## Wehbooks
+# Webhooks
 
 Webhooks or callback URLs allow you to define URLs on your server that notifications should be sent to. Notifications are sent for specific events, as defined in the “Supported Event” section below.
 
@@ -32,7 +32,7 @@ You can use the Webhooks API described below to update or delete your callback U
 
 The webhooks api endpoint is https://app.beyonic.com/api/webhooks
 
-### Creating a new webhook
+## Creating a new webhook
 
 > Example Request:
 
@@ -86,7 +86,7 @@ target | Yes | String | 'https://my.callback.url/"' | Must be an https URL
 
 * If successful, a JSON representation of the new webhook object will be returned.
 
-### Retrieving a single webhook
+## Retrieving a single webhook
 
 > Retrieve Individual Webhooks:
 
@@ -124,7 +124,7 @@ Parameter | Required | Type | Example | Notes
 --------- | -------- | ---- | ------- | -----
 id | Yes | Integer | 23 | The id of the webhook you want to retrieve
 
-### Listing all webhooks
+## Listing all webhooks
 
 > List Webhooks:
 
@@ -158,7 +158,7 @@ hooks = beyonic.Webhook.list()
 
 To retrieve a list of all webhooks, make a GET request to the webhooks endpoint. This will return a list of webhooks objects.
 
-### Updating a webhook
+## Updating a webhook
 
 > Updating a Webhook:
 
@@ -201,7 +201,7 @@ hook.save()
 
 To update a webhook, make a PUT request to the specific webhook’s endpoint, identified by its Id.
 
-### Deleting a webhook
+## Deleting a webhook
 
 > Deleting a Webhook:
 

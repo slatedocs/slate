@@ -1,4 +1,4 @@
-## Collections
+# Collections
 
 Collections are payments sent to you from mobile subscribers. See ['how collections work']](http://support.beyonic.com/how-collections-work/) for more information.
 
@@ -6,7 +6,7 @@ When the user sends in a payment, it will create a collection object that you ca
 
 The collections api endpoint is https://app.beyonic.com/api/collections
 
-### Retrieving a single collection
+## Retrieving a single collection
 
 > Retrieve Individual Collections:
 
@@ -44,7 +44,7 @@ Parameter | Required | Type | Example | Notes
 --------- | -------- | ---- | ------- | -----
 id | Yes | Integer | 23 | The id of the collection you want to retrieve
 
-### Listing all collections
+## Listing all collections
 
 > List Collections:
 
@@ -95,7 +95,7 @@ collection = beyonic.Collection.list()
 
 To retrieve a list of all collections, make a GET request to the collections endpoint. This will return a list of collection objects.
 
-### Searching for a collection
+## Searching for a collection
 
 > Search For Collections:
 
@@ -163,7 +163,7 @@ remote_transaction_id | Yes | String | SS12312 | The transaction id that the sub
 
 Note that the response will be a list of collections, not a single collection.
 
-### Claiming an ummatched collection
+## Claiming an ummatched collection
 
 > Claim a collection:
 

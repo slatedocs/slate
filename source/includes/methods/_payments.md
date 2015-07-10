@@ -1,10 +1,10 @@
-## Payments
+# Payments
 
 To send payments to a mobile subscriber, you create a new payment object. You can also retrieve individual payments or list all payments.
 
 * End Point: https://app.beyonic.com/api/payments
 
-### Creating a new payment
+## Creating a new payment
 
 > Example Request:
 
@@ -125,7 +125,7 @@ Callback URLs are used to send notifications of changes in payment status. Not a
     * rejected – for payments that were rejected during the approval process. The following fields will have more information: rejected_reason, rejected_by and rejected_time
     * cancelled – for payments that were cancelled. The following fields will have more information: cancelled_reason, cancelled_by and cancelled_time
 
-### Retrieving a single payment
+## Retrieving a single payment
 
 > Retrieve Single Payment:
 
@@ -163,7 +163,7 @@ Parameter | Required | Type | Example | Notes
 --------- | -------- | ---- | ------- | -----
 id | Yes | Integer | 2314 | The id of the payment you want to retrieve
 
-### Listing all payments
+## Listing all payments
 
 > List Payments:
 

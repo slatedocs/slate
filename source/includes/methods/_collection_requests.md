@@ -1,4 +1,4 @@
-## Collection Requests
+# Collection Requests
 
 Collection Requests are a way to notify us that you are expecting a a specific subscriber to send money to you.
 
@@ -8,7 +8,7 @@ Note: Currently, collection requests **do not** initiate any interaction with th
 
 The collection requests api endpoint is https://app.beyonic.com/api/collectionrequests
 
-### Creating a new collection request
+## Creating a new collection request
 
 > Example Request:
 
@@ -79,7 +79,7 @@ phonenumber | Yes | String | +256773712831 | Must be in international format
 amount | Yes | String, Integer or Decimal | 3000 | Do not include thousands separators
 currency | Yes | String | UGX | 3 letter ISO currency code. No currency conversion is done, so the currency must be valid for the selected phonenumber. You must have funded Beyonic an account in this currency. If your account for this currency has zero balance, your payment will fail.
 
-### Retrieving a single collection request
+## Retrieving a single collection request
 
 > Retrieve Individual Collections:
 
@@ -117,7 +117,7 @@ Parameter | Required | Type | Example | Notes
 --------- | -------- | ---- | ------- | -----
 id | Yes | Integer | 23 | The id of the collection you want to retrieve
 
-### Listing all collection requests
+## Listing all collection requests
 
 > List Collection Requests:
 

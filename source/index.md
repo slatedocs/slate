@@ -24,7 +24,6 @@ includes:
 
 search: true
 ---
-
 # Introduction
 
 > Scroll down for examples.
@@ -33,7 +32,7 @@ The Beyonic API is [REST](http://en.wikipedia.org/wiki/Representational_state_tr
 
 All responses shall be returned using [JSON](http://www.json.org/), however, if you are using the language libraries, the JSON responses will be converted into native, language specific objects.
 
-## Quick Start
+# Quick Start
 
 Can't wait to dive in? Follow the 6 steps below to get started.
 
