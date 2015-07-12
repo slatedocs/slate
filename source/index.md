@@ -46,6 +46,13 @@ We've implemented a standard
 [analytics.js integration](https://github.com/astronomerio/analytics.js-integrations/blob/astronomer/lib/astronomer/index.js)
 to the Astronomer backend service.
 
+```
+analytics.track("Custom Event");
+```
+You can use all the normal features of Analytics.js.
+
+[Full Documentation](https://segment.com/docs/libraries/analytics.js/)
+
 ## Multi-hub analytics.js build
 
 **COMING SOON**
@@ -156,7 +163,7 @@ Nope! Once you've set up your Keen account with Astronomer, you'll be all set to
 That's all up to you! Check out the integrations we have live by logging into your dashboard. We're working hard to add new integrations all the time and prioritize this work by demand so please let us know if you have a specific tool you'd like to send your data to! Odds are that we'll be able to help you out ;)
 
 ###Which events are being tracked within the app?
-All of them! In Meteor (which is the only framework that's live), this is done by tracking all methods and routes. 
+All of them! In Meteor (which is the only framework that's live), this is done by tracking all methods and routes.
 
 ###Does this work for Angular routing as well?
 Not yet, but we're working on it! Angular is the next framework that we'll be going after.
