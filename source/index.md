@@ -7,7 +7,6 @@ language_tabs:
 
 toc_footers:
   - <a href='//geezeo.com'>Powered by:<img class="logo" src="images/logo.png"></a>
-  - <a href='http://github.com/tripit/slate'>Documentation Powered by Slate</a>
 
 includes:
   - accounts
