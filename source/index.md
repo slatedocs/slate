@@ -12,7 +12,7 @@ includes:
 search: true
 ---
 
-# Getting Started
+# Faria API Reference
 
 Welcome to the Faria API documentation. 
 
