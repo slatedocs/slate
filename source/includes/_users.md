@@ -3,11 +3,11 @@
 ## Get Users
 
 ```shell
-curl -X "GET" "http://geezeo.dev:3000/api/v2/users" -u "%geezeo-api-key%:"
+curl -X "GET" "http://partner.url/api/v2/users" -u ":geezeo-api-key::"
 ```
 
 ```ruby
-uri = URI('https://geezeobkdemo.mybankhq.com/api/v2/users')
+uri = URI('https://partner.url/api/v2/users')
 key = ':geezeo-aip-key:'
 
 Net::HTTP.start(uri.host, uri.port,
@@ -69,11 +69,11 @@ Return a paginated list of all users.
 ## Get User
 
 ```shell
-curl -X "GET" "http://geezeo.dev:3000/api/v2/users/:user_id:" -u "%geezeo-api-key%:"
+curl -X "GET" "http://partner.url/api/v2/users/:user_id:" -u ":geezeo-api-key::"
 ```
 
 ```ruby
-uri = URI('https://geezeobkdemo.mybankhq.com/api/v2/users/:user_id:')
+uri = URI('https://partner.url/api/v2/users/:user_id:')
 key = ':geezeo-aip-key:'
 
 Net::HTTP.start(uri.host, uri.port,
@@ -125,11 +125,11 @@ Return information about a user.
 ## Create  User
 
 ```shell
-curl -X "POST" "http://geezeo.dev:3000/api/v2/users" -u "%geezeo-api-key%:" -d ":request_payload:"
+curl -X "POST" "http://partner.url/api/v2/users" -u ":geezeo-api-key::" -d ":request_payload:"
 ```
 
 ```ruby
-uri = URI('https://geezeobkdemo.mybankhq.com/api/v2/users')
+uri = URI('https://partner.url/api/v2/users')
 key = ':geezeo-aip-key:'
 
 Net::HTTP.start(uri.host, uri.port,
@@ -223,11 +223,11 @@ Create a new user.
 ## Update User
 
 ```shell
-curl -X "PUT" "http://geezeo.dev:3000/api/v2/users/:user_id:" -u "%geezeo-api-key%:" -d ":request_payload:"
+curl -X "PUT" "http://partner.url/api/v2/users/:user_id:" -u ":geezeo-api-key::" -d ":request_payload:"
 ```
 
 ```ruby
-uri = URI('https://geezeobkdemo.mybankhq.com/api/v2/users/:user_id:')
+uri = URI('https://partner.url/api/v2/users/:user_id:')
 key = ':geezeo-aip-key:'
 
 Net::HTTP.start(uri.host, uri.port,
@@ -322,11 +322,11 @@ Update an existing user.
 ## Delete User
 
 ```shell
-curl -X "DELETE" "http://geezeo.dev:3000/api/v2/users/:user_id:" -u "%geezeo-api-key%:" 
+curl -X "DELETE" "http://partner.url/api/v2/users/:user_id:" -u ":geezeo-api-key::" 
 ```
 
 ```ruby
-uri = URI('https://geezeobkdemo.mybankhq.com/api/v2/users/:user_id:')
+uri = URI('https://partner.url/api/v2/users/:user_id:')
 key = ':geezeo-aip-key:'
 
 Net::HTTP.start(uri.host, uri.port,

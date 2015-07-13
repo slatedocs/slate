@@ -3,11 +3,11 @@
 ## Get Default Tags
 
 ```shell
-curl -X "GET" "http://geezeo.dev:3000/api/v2/tags" -u "%geezeo-api-key%:"
+curl -X "GET" "http://partner.url/api/v2/tags" -u ":geezeo-api-key::"
 ```
 
 ```ruby
-uri = URI('https://geezeobkdemo.mybankhq.com/api/v2/tags')
+uri = URI('https://partner.url/api/v2/tags')
 key = ':geezeo-aip-key:'
 
 Net::HTTP.start(uri.host, uri.port,
@@ -63,11 +63,11 @@ Return the default tags available to all users.
 ## Get User Tags
 
 ```shell
-curl -X "GET" "http://geezeo.dev:3000/api/v2/users/:user_id:/tags" -u "%geezeo-api-key%:"
+curl -X "GET" "http://partner.url/api/v2/users/:user_id:/tags" -u ":geezeo-api-key::"
 ```
 
 ```ruby
-uri = URI('https://geezeobkdemo.mybankhq.com/api/v2/users/:user_id:/tags')
+uri = URI('https://partner.url/api/v2/users/:user_id:/tags')
 key = ':geezeo-aip-key:'
 
 Net::HTTP.start(uri.host, uri.port,

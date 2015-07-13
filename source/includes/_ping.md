@@ -3,11 +3,11 @@
 ## Get Ping
 
 ```shell
-curl -X "GET" "http://geezeo.dev:3000/api/v2/ping" -u "%geezeo-api-key%:"
+curl -X "GET" "http://partner.url/api/v2/ping" -u ":geezeo-api-key::"
 ```
 
 ```ruby
-uri = URI('https://geezeobkdemo.mybankhq.com/api/v2/ping')
+uri = URI('https://partner.url/api/v2/ping')
 key = ':geezeo-aip-key:'
 
 Net::HTTP.start(uri.host, uri.port,

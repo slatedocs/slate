@@ -3,11 +3,11 @@
 ## Get Cashflow Incomes
 
 ```shell
-curl -X "GET" "http://geezeo.dev:3000/api/v2/users/:user_id:/cashflow/incomes" -u "%geezeo-api-key%:"
+curl -X "GET" "http://partner.url/api/v2/users/:user_id:/cashflow/incomes" -u ":geezeo-api-key::"
 ```
 
 ```ruby
-uri = URI('https://geezeobkdemo.mybankhq.com/api/v2/users/:user_id:/cashflow/incomes')
+uri = URI('https://partner.url/api/v2/users/:user_id:/cashflow/incomes')
 key = ':geezeo-aip-key:'
 
 Net::HTTP.start(uri.host, uri.port,
@@ -65,11 +65,11 @@ Frequency will be one of the values defined below.
 ## Get Cashflow Income
 
 ```shell
-curl -X "GET" "http://geezeo.dev:3000/api/v2/users/:user_id:/cashflow/bills/:cashflow_income_id:" -u "%geezeo-api-key%:"
+curl -X "GET" "http://partner.url/api/v2/users/:user_id:/cashflow/bills/:cashflow_income_id:" -u ":geezeo-api-key::"
 ```
 
 ```ruby
-uri = URI('https://geezeobkdemo.mybankhq.com/api/v2/users/:user_id:/cashflow/bills/:cashflow_income_id:')
+uri = URI('https://partner.url/api/v2/users/:user_id:/cashflow/bills/:cashflow_income_id:')
 key = ':geezeo-aip-key:'
 
 Net::HTTP.start(uri.host, uri.port,
@@ -130,11 +130,11 @@ Frequency will be one of the values defined below.
 ## Create Cashflow Income
 
 ```shell
-curl -X "POST" "http://geezeo.dev:3000/api/v2/users/:user_id:/cashflow/incomes" -u "%geezeo-api-key%:" -d ":request_payload:"
+curl -X "POST" "http://partner.url/api/v2/users/:user_id:/cashflow/incomes" -u ":geezeo-api-key::" -d ":request_payload:"
 ```
 
 ```ruby
-uri = URI('https://geezeobkdemo.mybankhq.com/api/v2/users/:user_id:/cashflow/incomes')
+uri = URI('https://partner.url/api/v2/users/:user_id:/cashflow/incomes')
 key = ':geezeo-aip-key:'
 
 Net::HTTP.start(uri.host, uri.port,
@@ -223,11 +223,11 @@ Frequency will be one of the values defined below.
 ## Update Cashflow Income
 
 ```shell
-curl -X "PUT" "http://geezeo.dev:3000/api/v2/users/:user_id:/cashflow/incomes/:cashflow_income_id:" -u "%geezeo-api-key%:" -d ":request_payload:"
+curl -X "PUT" "http://partner.url/api/v2/users/:user_id:/cashflow/incomes/:cashflow_income_id:" -u ":geezeo-api-key::" -d ":request_payload:"
 ```
 
 ```ruby
-uri = URI('https://geezeobkdemo.mybankhq.com/api/v2/users/:user_id:/cashflow/incomes/:cashflow_income_id:')
+uri = URI('https://partner.url/api/v2/users/:user_id:/cashflow/incomes/:cashflow_income_id:')
 key = ':geezeo-aip-key:'
 
 Net::HTTP.start(uri.host, uri.port,
@@ -295,11 +295,11 @@ Frequency will be one of the values defined below.
 ## Stop Cashflow Income
 
 ```shell
-curl -X "PUT" "http://geezeo.dev:3000/api/v2/users/:user_id:/cashflow/incomes/:cashflow_income_id:/stop" -u "%geezeo-api-key%:" 
+curl -X "PUT" "http://partner.url/api/v2/users/:user_id:/cashflow/incomes/:cashflow_income_id:/stop" -u ":geezeo-api-key::" 
 ```
 
 ```ruby
-uri = URI('https://geezeobkdemo.mybankhq.com/api/v2/users/:user_id:/cashflow/incomes/:cashflow_income_id:/stop')
+uri = URI('https://partner.url/api/v2/users/:user_id:/cashflow/incomes/:cashflow_income_id:/stop')
 key = ':geezeo-aip-key:'
 
 Net::HTTP.start(uri.host, uri.port,
@@ -331,11 +331,11 @@ Stop a cashflow income.
 ## Delete Cashflow Income
 
 ```shell
-curl -X "DELETE" "http://geezeo.dev:3000/api/v2/users/:user_id:/cashflow/incomes/:cashflow_income_id:" -u "%geezeo-api-key%:" 
+curl -X "DELETE" "http://partner.url/api/v2/users/:user_id:/cashflow/incomes/:cashflow_income_id:" -u ":geezeo-api-key::" 
 ```
 
 ```ruby
-uri = URI('https://geezeobkdemo.mybankhq.com/api/v2/users/:user_id:/cashflow/incomes/:cashflow_income_id:')
+uri = URI('https://partner.url/api/v2/users/:user_id:/cashflow/incomes/:cashflow_income_id:')
 key = ':geezeo-aip-key:'
 
 Net::HTTP.start(uri.host, uri.port,

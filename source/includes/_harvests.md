@@ -3,11 +3,11 @@
 ## Get Harvest Status
 
 ```shell
-curl -X "GET" "http://geezeo.dev:3000/api/v2/users/:user_id:/harvest" -u "%geezeo-api-key%:"
+curl -X "GET" "http://partner.url/api/v2/users/:user_id:/harvest" -u ":geezeo-api-key::"
 ```
 
 ```ruby
-uri = URI('https://geezeobkdemo.mybankhq.com/api/v2/users/:user_id:/harvest')
+uri = URI('https://partner.url/api/v2/users/:user_id:/harvest')
 key = ':geezeo-aip-key:'
 
 Net::HTTP.start(uri.host, uri.port,
@@ -51,11 +51,11 @@ while harvesting, and change to `complete` when finished.
 ## Create Harvest
 
 ```shell
-curl -X "POST" "http://geezeo.dev:3000/api/v2/users/:user_id:/harvest" -u "%geezeo-api-key%:"
+curl -X "POST" "http://partner.url/api/v2/users/:user_id:/harvest" -u ":geezeo-api-key::"
 ```
 
 ```ruby
-uri = URI('https://geezeobkdemo.mybankhq.com/api/v2/users/:user_id:/harvest')
+uri = URI('https://partner.url/api/v2/users/:user_id:/harvest')
 key = ':geezeo-aip-key:'
 
 Net::HTTP.start(uri.host, uri.port,

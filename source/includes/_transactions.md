@@ -3,11 +3,11 @@
 ## Get User Transactions
 
 ```shell
-curl -X "GET" "http://geezeo.dev:3000/api/v2/:user_id:/transactions" -u "%geezeo-api-key%:"
+curl -X "GET" "http://partner.url/api/v2/:user_id:/transactions" -u ":geezeo-api-key::"
 ```
 
 ```ruby
-uri = URI('https://geezeobkdemo.mybankhq.com/api/v2/:user_id:/transactions')
+uri = URI('https://partner.url/api/v2/:user_id:/transactions')
 key = ':geezeo-aip-key:'
 
 Net::HTTP.start(uri.host, uri.port,
@@ -87,11 +87,11 @@ Return a paginated list of all transactions for the given user.
 ## Get Account Transactions
 
 ```shell
-curl -X "GET" "http://geezeo.dev:3000/api/v2/accounts/:account_id:/transactions" -u "%geezeo-api-key%:"
+curl -X "GET" "http://partner.url/api/v2/accounts/:account_id:/transactions" -u ":geezeo-api-key::"
 ```
 
 ```ruby
-uri = URI('https://geezeobkdemo.mybankhq.com/api/v2/accounts/:account_id:/transactions')
+uri = URI('https://partner.url/api/v2/accounts/:account_id:/transactions')
 key = ':geezeo-aip-key:'
 
 Net::HTTP.start(uri.host, uri.port,
@@ -165,11 +165,11 @@ To view additional transactions call `/api/v2/users/:user_id:/accounts/:account_
 ## Get Budget Transactions
 
 ```shell
-curl -X "GET" "http://geezeo.dev:3000/api/v2/users/:user_id:/budgets/:budget_id:/transactions" -u "%geezeo-api-key%:"
+curl -X "GET" "http://partner.url/api/v2/users/:user_id:/budgets/:budget_id:/transactions" -u ":geezeo-api-key::"
 ```
 
 ```ruby
-uri = URI('https://geezeobkdemo.mybankhq.com/api/v2/users/:user_id:/budgets/:budget_id:/transactions')
+uri = URI('https://partner.url/api/v2/users/:user_id:/budgets/:budget_id:/transactions')
 key = ':geezeo-aip-key:'
 
 Net::HTTP.start(uri.host, uri.port,
@@ -239,11 +239,11 @@ Return a list of all transactions for the given budget (for the current month).
 ## Search Transactions
 
 ```shell
-curl -X "GET" "http://geezeo.dev:3000/api/v2/users/:user_id:/transactions/search?q=GameStop&untagged=0&begin_on=2013-01-01&end_on=2013-06-01" -u "%geezeo-api-key%:"
+curl -X "GET" "http://partner.url/api/v2/users/:user_id:/transactions/search?q=GameStop&untagged=0&begin_on=2013-01-01&end_on=2013-06-01" -u ":geezeo-api-key::"
 ```
 
 ```ruby
-uri = URI('https://geezeobkdemo.mybankhq.com/api/v2/users/:user_id:/transactions/search?q=GameStop&untagged=0&begin_on=2013-01-01&end_on=2013-06-01')
+uri = URI('https://partner.url/api/v2/users/:user_id:/transactions/search?q=GameStop&untagged=0&begin_on=2013-01-01&end_on=2013-06-01')
 key = ':geezeo-aip-key:'
 
 Net::HTTP.start(uri.host, uri.port,
@@ -326,11 +326,11 @@ Search transactions for the given user.
 ## Updating transactions
 
 ```shell
-curl -X "PUT" "http://geezeo.dev:3000/api/v2/users/:user_id:/transactions/:transaction_id:" -u "%geezeo-api-key%:" -d ":request_payload:"
+curl -X "PUT" "http://partner.url/api/v2/users/:user_id:/transactions/:transaction_id:" -u ":geezeo-api-key::" -d ":request_payload:"
 ```
 
 ```ruby
-uri = URI('https://geezeobkdemo.mybankhq.com/api/v2/users/:user_id:/transactions/:transaction_id:')
+uri = URI('https://partner.url/api/v2/users/:user_id:/transactions/:transaction_id:')
 key = ':geezeo-aip-key:'
 
 Net::HTTP.start(uri.host, uri.port,

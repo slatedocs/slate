@@ -67,11 +67,11 @@ request.
 ## Get FIs
 
 ```shell
-curl -X "GET" "http://geezeo.dev:3000/api/v2/ce_fis" -u "%geezeo-api-key%:"
+curl -X "GET" "http://partner.url/api/v2/ce_fis" -u ":geezeo-api-key::"
 ```
 
 ```ruby
-uri = URI('https://geezeobkdemo.mybankhq.com/api/v2/ce_fis')
+uri = URI('https://partner.url/api/v2/ce_fis')
 key = ':geezeo-aip-key:'
 
 Net::HTTP.start(uri.host, uri.port,
@@ -159,11 +159,11 @@ returned in the account list response.
 ## Get an FI
 
 ```shell
-curl -X "GET" "http://geezeo.dev:3000/api/v2/ce_fis/:ce_fi_id:" -u "%geezeo-api-key%:"
+curl -X "GET" "http://partner.url/api/v2/ce_fis/:ce_fi_id:" -u ":geezeo-api-key::"
 ```
 
 ```ruby
-uri = URI('https://geezeobkdemo.mybankhq.com/api/v2/ce_fis/:ce_fi_id:')
+uri = URI('https://partner.url/api/v2/ce_fis/:ce_fi_id:')
 key = ':geezeo-aip-key:'
 
 Net::HTTP.start(uri.host, uri.port,
@@ -223,11 +223,11 @@ Return the requested CashEdge Financial Institution
 ## Search for an FI
 
 ```shell
-curl -X "GET" "http://geezeo.dev:3000/api/v2/ce_fis/search?:parameters:" -u "%geezeo-api-key%:"
+curl -X "GET" "http://partner.url/api/v2/ce_fis/search?:parameters:" -u ":geezeo-api-key::"
 ```
 
 ```ruby
-uri = URI('https://geezeobkdemo.mybankhq.com/api/v2/ce_fis/search?:parameters:')
+uri = URI('https://partner.url/api/v2/ce_fis/search?:parameters:')
 key = ':geezeo-aip-key:'
 
 Net::HTTP.start(uri.host, uri.port,
@@ -304,11 +304,11 @@ The `ce_login_parameters` are necessary to actually add the FI. Each parameter m
 ## Validate FI login credentials
 
 ```shell
-curl -X "GET" "http://geezeo.dev:3000/api/v2/:user_id:/ce_fis" -u "%geezeo-api-key%:" -d ":payload:"
+curl -X "GET" "http://partner.url/api/v2/:user_id:/ce_fis" -u ":geezeo-api-key::" -d ":payload:"
 ```
 
 ```ruby
-uri = URI('https://geezeobkdemo.mybankhq.com/api/v2/ce_fis/search?:parameters:')
+uri = URI('https://partner.url/api/v2/ce_fis/search?:parameters:')
 key = ':geezeo-aip-key:'
 
 Net::HTTP.start(uri.host, uri.port,

@@ -3,11 +3,11 @@
 ## Get Alerts
 
 ```shell
-curl -X "GET" "http://geezeo.dev:3000/api/v2/users/:user_id:/alerts" -u "%geezeo-api-key%:"
+curl -X "GET" "http://partner.url/api/v2/users/:user_id:/alerts" -u ":geezeo-api-key::"
 ```
 
 ```ruby
-uri = URI('https://geezeobkdemo.mybankhq.com/api/v2/users/:user_id:/alerts')
+uri = URI('https://partner.url/api/v2/users/:user_id:/alerts')
 key = ':geezeo-aip-key:'
 
 Net::HTTP.start(uri.host, uri.port,
@@ -116,6 +116,26 @@ Return a list of all alerts for a user.
 
 ## Get Alert
 
+```shell
+curl -X "GET" "http://partner.url/api/v2/users/:user_id:/alerts/:alert_id:" -u ":geezeo-api-key::"
+```
+
+```ruby
+uri = URI('https://partner.url/api/v2/users/:user_id:/alerts/:alert_id:')
+key = ':geezeo-aip-key:'
+
+Net::HTTP.start(uri.host, uri.port,
+  :use_ssl => uri.scheme == 'https') do |http|
+
+  request = Net::HTTP::Get.new uri.request_uri
+  request.basic_auth key,''
+
+  response = http.request request
+
+  puts response.body
+end
+```
+
 > Response payload
 
 ```json
@@ -179,11 +199,11 @@ Return an alert for the given user.
 ## Delete Alert
 
 ```shell
-curl -X "DELETE" "http://geezeo.dev:3000/api/v2/users/:user_id:/alerts/:alert_id:" -u "%geezeo-api-key%:" 
+curl -X "DELETE" "http://partner.url/api/v2/users/:user_id:/alerts/:alert_id:" -u ":geezeo-api-key::" 
 ```
 
 ```ruby
-uri = URI('https://geezeobkdemo.mybankhq.com/api/v2/users/:user_id:/alerts/:alert_id:')
+uri = URI('https://partner.url/api/v2/users/:user_id:/alerts/:alert_id:')
 key = ':geezeo-aip-key:'
 
 Net::HTTP.start(uri.host, uri.port,
@@ -218,11 +238,11 @@ Delete an alert for the given user.
 ## Create Account Threshold Alert
 
 ```shell
-curl -X "POST" "http://geezeo.dev:3000/api/v2/users/:user_id:/alerts/account_thresholds" -u "%geezeo-api-key%:" -d ":request_payload:"
+curl -X "POST" "http://partner.url/api/v2/users/:user_id:/alerts/account_thresholds" -u ":geezeo-api-key::" -d ":request_payload:"
 ```
 
 ```ruby
-uri = URI('https://geezeobkdemo.mybankhq.com/api/v2/users/:user_id:/alerts/account_thresholds')
+uri = URI('https://partner.url/api/v2/users/:user_id:/alerts/account_thresholds')
 key = ':geezeo-aip-key:'
 
 Net::HTTP.start(uri.host, uri.port,
@@ -260,7 +280,7 @@ Create an account threshold alert for the given user.
 
 ### Parameters
 
-| Parameter | Description |
+| Parameter name| Parameter Description |
 |-----------|-------------|
 | `account_id` | The account that this alert should monitor. __Required__ |
 | `threshold_amount` | The amount, in dollars, at which the alert will be triggered. __Required__ |
@@ -282,11 +302,11 @@ Create an account threshold alert for the given user.
 ## Update Account Threshold Alert
 
 ```shell
-curl -X "PUT" "http://geezeo.dev:3000/api/v2/users/alerts/account_thresholds/:alert_id:" -u "%geezeo-api-key%:" -d ":request_payload:"
+curl -X "PUT" "http://partner.url/api/v2/users/alerts/account_thresholds/:alert_id:" -u ":geezeo-api-key::" -d ":request_payload:"
 ```
 
 ```ruby
-uri = URI('https://geezeobkdemo.mybankhq.com/api/v2/users/alerts/account_thresholds/:alert_id:')
+uri = URI('https://partner.url/api/v2/users/alerts/account_thresholds/:alert_id:')
 key = ':geezeo-aip-key:'
 
 Net::HTTP.start(uri.host, uri.port,
@@ -344,11 +364,11 @@ Update an account threshold alert for the given user.
 ## Create Goal Alert
 
 ```shell
-curl -X "POST" "http://geezeo.dev:3000/api/v2/users/:user_id:/alerts/goals" -u "%geezeo-api-key%:" -d ":request_payload:"
+curl -X "POST" "http://partner.url/api/v2/users/:user_id:/alerts/goals" -u ":geezeo-api-key::" -d ":request_payload:"
 ```
 
 ```ruby
-uri = URI('https://geezeobkdemo.mybankhq.com/api/v2/users/:user_id:/alerts/goals')
+uri = URI('https://partner.url/api/v2/users/:user_id:/alerts/goals')
 key = ':geezeo-aip-key:'
 
 Net::HTTP.start(uri.host, uri.port,
@@ -406,11 +426,11 @@ Create a goal alert for the given user.
 ## Update Goal Alert
 
 ```shell
-curl -X "PUT" "http://geezeo.dev:3000/api/v2/users/alerts/goals/:alert_id:" -u "%geezeo-api-key%:" -d ":request_payload:"
+curl -X "PUT" "http://partner.url/api/v2/users/alerts/goals/:alert_id:" -u ":geezeo-api-key::" -d ":request_payload:"
 ```
 
 ```ruby
-uri = URI('https://geezeobkdemo.mybankhq.com/api/v2/users/alerts/goals/:alert_id:')
+uri = URI('https://partner.url/api/v2/users/alerts/goals/:alert_id:')
 key = ':geezeo-aip-key:'
 
 Net::HTTP.start(uri.host, uri.port,
@@ -471,11 +491,11 @@ The response body will be empty.
 ## Create Merchant Name Alert
 
 ```shell
-curl -X "POST" "http://geezeo.dev:3000/api/v2/users/:user_id:/alerts/merchant_names" -u "%geezeo-api-key%:" -d ":request_payload:"
+curl -X "POST" "http://partner.url/api/v2/users/:user_id:/alerts/merchant_names" -u ":geezeo-api-key::" -d ":request_payload:"
 ```
 
 ```ruby
-uri = URI('https://geezeobkdemo.mybankhq.com/api/v2/users/:user_id:/alerts/merchant_names')
+uri = URI('https://partner.url/api/v2/users/:user_id:/alerts/merchant_names')
 key = ':geezeo-aip-key:'
 
 Net::HTTP.start(uri.host, uri.port,
@@ -529,11 +549,11 @@ Create a merchant name alert for the given user.
 ## Update Merchant Name Alert
 
 ```shell
-curl -X "PUT" "http://geezeo.dev:3000/api/v2/users/alerts/merchant_names/:alert_id:" -u "%geezeo-api-key%:" -d ":request_payload:"
+curl -X "PUT" "http://partner.url/api/v2/users/alerts/merchant_names/:alert_id:" -u ":geezeo-api-key::" -d ":request_payload:"
 ```
 
 ```ruby
-uri = URI('https://geezeobkdemo.mybankhq.com/api/v2/users/alerts/merchant_names/:alert_id:')
+uri = URI('https://partner.url/api/v2/users/alerts/merchant_names/:alert_id:')
 key = ':geezeo-aip-key:'
 
 Net::HTTP.start(uri.host, uri.port,
@@ -590,11 +610,11 @@ Update a merchant name alert for the given user.
 > Request payload
 
 ```shell
-curl -X "POST" "http://geezeo.dev:3000/api/v2/users/:user_id:/alerts/spending_targets" -u "%geezeo-api-key%:" -d ":request_payload:"
+curl -X "POST" "http://partner.url/api/v2/users/:user_id:/alerts/spending_targets" -u ":geezeo-api-key::" -d ":request_payload:"
 ```
 
 ```ruby
-uri = URI('https://geezeobkdemo.mybankhq.com/api/v2/users/:user_id:/alerts/spending_targets')
+uri = URI('https://partner.url/api/v2/users/:user_id:/alerts/spending_targets')
 key = ':geezeo-aip-key:'
 
 Net::HTTP.start(uri.host, uri.port,
@@ -650,11 +670,11 @@ Create a spending target alert for the given user.
 ## Update Spending Target Alert
 
 ```shell
-curl -X "PUT" "http://geezeo.dev:3000/api/v2/users/alerts/spending_targets/:alert_id:" -u "%geezeo-api-key%:" -d ":request_payload:"
+curl -X "PUT" "http://partner.url/api/v2/users/alerts/spending_targets/:alert_id:" -u ":geezeo-api-key::" -d ":request_payload:"
 ```
 
 ```ruby
-uri = URI('https://geezeobkdemo.mybankhq.com/api/v2/users/alerts/spending_targets/:alert_id:')
+uri = URI('https://partner.url/api/v2/users/alerts/spending_targets/:alert_id:')
 key = ':geezeo-aip-key:'
 
 Net::HTTP.start(uri.host, uri.port,
@@ -712,11 +732,11 @@ Update a spending target alert for the given user.
 ## Create Transaction Limit Alert
 
 ```shell
-curl -X "POST" "http://geezeo.dev:3000/api/v2/users/:user_id:/alerts/transaction_limits" -u "%geezeo-api-key%:" -d ":request_payload:"
+curl -X "POST" "http://partner.url/api/v2/users/:user_id:/alerts/transaction_limits" -u ":geezeo-api-key::" -d ":request_payload:"
 ```
 
 ```ruby
-uri = URI('https://geezeobkdemo.mybankhq.com/api/v2/users/:user_id:/alerts/transaction_limits')
+uri = URI('https://partner.url/api/v2/users/:user_id:/alerts/transaction_limits')
 key = ':geezeo-aip-key:'
 
 Net::HTTP.start(uri.host, uri.port,
@@ -773,11 +793,11 @@ Create a transaction limit alert for the given user.
 ## Update Transaction Limit Alert
 
 ```shell
-curl -X "PUT" "http://geezeo.dev:3000/api/v2/users/alerts/transaction_limits/:alert_id:" -u "%geezeo-api-key%:" -d ":request_payload:"
+curl -X "PUT" "http://partner.url/api/v2/users/alerts/transaction_limits/:alert_id:" -u ":geezeo-api-key::" -d ":request_payload:"
 ```
 
 ```ruby
-uri = URI('https://geezeobkdemo.mybankhq.com/api/v2/users/alerts/transaction_limits/:alert_id:')
+uri = URI('https://partner.url/api/v2/users/alerts/transaction_limits/:alert_id:')
 key = ':geezeo-aip-key:'
 
 Net::HTTP.start(uri.host, uri.port,
@@ -835,11 +855,11 @@ Update a transaction limit alert for the given user.
 ## Create Upcoming Bill Alert
 
 ```shell
-curl -X "POST" "http://geezeo.dev:3000/api/v2/users/:user_id:/alerts/upcoming_bills" -u "%geezeo-api-key%:" -d ":request_payload:"
+curl -X "POST" "http://partner.url/api/v2/users/:user_id:/alerts/upcoming_bills" -u ":geezeo-api-key::" -d ":request_payload:"
 ```
 
 ```ruby
-uri = URI('https://geezeobkdemo.mybankhq.com/api/v2/users/:user_id:/alerts/upcoming_bills')
+uri = URI('https://partner.url/api/v2/users/:user_id:/alerts/upcoming_bills')
 key = ':geezeo-aip-key:'
 
 Net::HTTP.start(uri.host, uri.port,
@@ -897,11 +917,11 @@ Create an upcoming bill alert for the given user.
 ## Update Upcoming Bill Alert
 
 ```shell
-curl -X "PUT" "http://geezeo.dev:3000/api/v2/users/alerts/upcoming_bills/:alert_id:" -u "%geezeo-api-key%:" -d ":request_payload:"
+curl -X "PUT" "http://partner.url/api/v2/users/alerts/upcoming_bills/:alert_id:" -u ":geezeo-api-key::" -d ":request_payload:"
 ```
 
 ```ruby
-uri = URI('https://geezeobkdemo.mybankhq.com/api/v2/users/alerts/upcoming_bills/:alert_id:')
+uri = URI('https://partner.url/api/v2/users/alerts/upcoming_bills/:alert_id:')
 key = ':geezeo-aip-key:'
 
 Net::HTTP.start(uri.host, uri.port,
@@ -959,11 +979,11 @@ Update an upcoming bill alert for the given user.
 ## Get Notifications
 
 ```shell
-curl -X "GET" "http://geezeo.dev:3000/api/v2/users/:user_id:/alerts/notifications" -u "%geezeo-api-key%:"
+curl -X "GET" "http://partner.url/api/v2/users/:user_id:/alerts/notifications" -u ":geezeo-api-key::"
 ```
 
 ```ruby
-uri = URI('https://geezeobkdemo.mybankhq.com/api/v2/users/:user_id:/alerts/notifications')
+uri = URI('https://partner.url/api/v2/users/:user_id:/alerts/notifications')
 key = ':geezeo-aip-key:'
 
 Net::HTTP.start(uri.host, uri.port,
@@ -1016,11 +1036,11 @@ Return a list of notifications created by triggered alerts.
 ## Get Notification
 
 ```shell
-curl -X "GET" "http://geezeo.dev:3000/api/v2/users/:user_id:/alerts/notifications/:notification_id:" -u "%geezeo-api-key%:"
+curl -X "GET" "http://partner.url/api/v2/users/:user_id:/alerts/notifications/:notification_id:" -u ":geezeo-api-key::"
 ```
 
 ```ruby
-uri = URI('https://geezeobkdemo.mybankhq.com/api/v2/users/:user_id:/alerts/notifications/:notification_id:')
+uri = URI('https://partner.url/api/v2/users/:user_id:/alerts/notifications/:notification_id:')
 key = ':geezeo-aip-key:'
 
 Net::HTTP.start(uri.host, uri.port,
@@ -1067,11 +1087,11 @@ Return a notification.
 ## Delete Notification
 
 ```shell
-curl -X "DELETE" "http://geezeo.dev:3000/api/v2/users/:user_id:/alerts/notifications/:notification_id:" -u "%geezeo-api-key%:" 
+curl -X "DELETE" "http://partner.url/api/v2/users/:user_id:/alerts/notifications/:notification_id:" -u ":geezeo-api-key::" 
 ```
 
 ```ruby
-uri = URI('https://geezeobkdemo.mybankhq.com/api/v2/users/:user_id:/alerts/notifications/:notification_id:')
+uri = URI('https://partner.url/api/v2/users/:user_id:/alerts/notifications/:notification_id:')
 key = ':geezeo-aip-key:'
 
 Net::HTTP.start(uri.host, uri.port,
@@ -1105,11 +1125,11 @@ Delete/dismiss a notification.
 ## Get Destinations
 
 ```shell
-curl -X "GET" "http://geezeo.dev:3000/api/v2/users/:user_id:/alerts/destinations" -u "%geezeo-api-key%:"
+curl -X "GET" "http://partner.url/api/v2/users/:user_id:/alerts/destinations" -u ":geezeo-api-key::"
 ```
 
 ```ruby
-uri = URI('https://geezeobkdemo.mybankhq.com/api/v2/users/:user_id:/alerts/destinations')
+uri = URI('https://partner.url/api/v2/users/:user_id:/alerts/destinations')
 key = ':geezeo-aip-key:'
 
 Net::HTTP.start(uri.host, uri.port,
@@ -1158,11 +1178,11 @@ Alerts will not be delivered for partners that have not enabled sms alerts (indi
 ## Update Destinations
 
 ```shell
-curl -X "PUT" "http://geezeo.dev:3000/api/v2/users/alerts/destinations" -u "%geezeo-api-key%:" -d ":request_payload:"
+curl -X "PUT" "http://partner.url/api/v2/users/alerts/destinations" -u ":geezeo-api-key::" -d ":request_payload:"
 ```
 
 ```ruby
-uri = URI('https://geezeobkdemo.mybankhq.com/api/v2/users/alerts/destinations')
+uri = URI('https://partner.url/api/v2/users/alerts/destinations')
 key = ':geezeo-aip-key:'
 
 Net::HTTP.start(uri.host, uri.port,

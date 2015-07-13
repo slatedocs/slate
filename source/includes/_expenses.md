@@ -3,11 +3,11 @@
 ## Get Expenses
 
 ```shell
-curl -X "GET" "http://geezeo.dev:3000/api/v2/users/:user_id:/expenses" -u "%geezeo-api-key%:"
+curl -X "GET" "http://partner.url/api/v2/users/:user_id:/expenses" -u ":geezeo-api-key::"
 ```
 
 ```ruby
-uri = URI('https://geezeobkdemo.mybankhq.com/api/v2/users/:user_id:/expenses')
+uri = URI('https://partner.url/api/v2/users/:user_id:/expenses')
 key = ':geezeo-aip-key:'
 
 Net::HTTP.start(uri.host, uri.port,

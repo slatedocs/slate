@@ -26,11 +26,11 @@
 ## Get Savings Goal Images
 
 ```shell
-curl -X "GET" "http://geezeo.dev:3000/api/v2/savings_goals" -u "%geezeo-api-key%:"
+curl -X "GET" "http://partner.url/api/v2/savings_goals" -u ":geezeo-api-key::"
 ```
 
 ```ruby
-uri = URI('https://geezeobkdemo.mybankhq.com/api/v2/savings_goals')
+uri = URI('https://partner.url/api/v2/savings_goals')
 key = ':geezeo-aip-key:'
 
 Net::HTTP.start(uri.host, uri.port,
@@ -74,11 +74,11 @@ Return a list of pre-defined savings goal images.
 ## Get Savings Goals
 
 ```shell
-curl -X "GET" "http://geezeo.dev:3000/api/v2/users/:user_id:/savings_goals" -u "%geezeo-api-key%:"
+curl -X "GET" "http://partner.url/api/v2/users/:user_id:/savings_goals" -u ":geezeo-api-key::"
 ```
 
 ```ruby
-uri = URI('https://geezeobkdemo.mybankhq.com/api/v2/users/:user_id:/savings_goals')
+uri = URI('https://partner.url/api/v2/users/:user_id:/savings_goals')
 key = ':geezeo-aip-key:'
 
 Net::HTTP.start(uri.host, uri.port,
@@ -140,11 +140,11 @@ Return a list of all savings goals for the given user.
 ## Get Savings Goal
 
 ```shell
-curl -X "GET" "http://geezeo.dev:3000/api/v2/users/:user_id:/savings_goals/:savings_goals_id:" -u "%geezeo-api-key%:"
+curl -X "GET" "http://partner.url/api/v2/users/:user_id:/savings_goals/:savings_goals_id:" -u ":geezeo-api-key::"
 ```
 
 ```ruby
-uri = URI('https://geezeobkdemo.mybankhq.com/api/v2/users/:user_id:/savings_goals/:savings_goals_id:')
+uri = URI('https://partner.url/api/v2/users/:user_id:/savings_goals/:savings_goals_id:')
 key = ':geezeo-aip-key:'
 
 Net::HTTP.start(uri.host, uri.port,
@@ -206,11 +206,11 @@ Return a savings goal for the given user.
 ## Create Savings Goal
 
 ```shell
-curl -X "POST" "http://geezeo.dev:3000/api/v2/users/:user_id:/savings_goals" -u "%geezeo-api-key%:" -d ":request_payload:"
+curl -X "POST" "http://partner.url/api/v2/users/:user_id:/savings_goals" -u ":geezeo-api-key::" -d ":request_payload:"
 ```
 
 ```ruby
-uri = URI('https://geezeobkdemo.mybankhq.com/api/v2/users/:user_id:/savings_goals')
+uri = URI('https://partner.url/api/v2/users/:user_id:/savings_goals')
 key = ':geezeo-aip-key:'
 
 Net::HTTP.start(uri.host, uri.port,
@@ -272,11 +272,11 @@ POST /api/v2/users/:user_id:/savings_goals
 ## Update Savings Goal
 
 ```shell
-curl -X "PUT" "http://geezeo.dev:3000/api/v2/users/savings_goals/:savings_goal_id:" -u "%geezeo-api-key%:" -d ":request_payload:"
+curl -X "PUT" "http://partner.url/api/v2/users/savings_goals/:savings_goal_id:" -u ":geezeo-api-key::" -d ":request_payload:"
 ```
 
 ```ruby
-uri = URI('https://geezeobkdemo.mybankhq.com/api/v2/users/savings_goals/:savings_goal_id:')
+uri = URI('https://partner.url/api/v2/users/savings_goals/:savings_goal_id:')
 key = ':geezeo-aip-key:'
 
 Net::HTTP.start(uri.host, uri.port,
@@ -339,11 +339,11 @@ Update a savings goal for the given user.
 ## Delete Savings Goal
 
 ```shell
-curl -X "DELETE" "http://geezeo.dev:3000/api/v2/users/:user_id:/savings_goals/:savings_goal_id:" -u "%geezeo-api-key%:" 
+curl -X "DELETE" "http://partner.url/api/v2/users/:user_id:/savings_goals/:savings_goal_id:" -u ":geezeo-api-key::" 
 ```
 
 ```ruby
-uri = URI('https://geezeobkdemo.mybankhq.com/api/v2/users/:user_id:/savings_goals/:savings_goal_id:')
+uri = URI('https://partner.url/api/v2/users/:user_id:/savings_goals/:savings_goal_id:')
 key = ':geezeo-aip-key:'
 
 Net::HTTP.start(uri.host, uri.port,
@@ -374,11 +374,11 @@ Delete a savings goal for the given user.
 ## Archive Savings Goal
 
 ```shell
-curl -X "PUT" "http://geezeo.dev:3000/api/v2/users/:user_id:/savings_goals/:savings_goal_id:/archive" -u "%geezeo-api-key%:" 
+curl -X "PUT" "http://partner.url/api/v2/users/:user_id:/savings_goals/:savings_goal_id:/archive" -u ":geezeo-api-key::" 
 ```
 
 ```ruby
-uri = URI('https://geezeobkdemo.mybankhq.com/api/v2/users/savings_goals/:savings_goal_id:/archive')
+uri = URI('https://partner.url/api/v2/users/savings_goals/:savings_goal_id:/archive')
 key = ':geezeo-aip-key:'
 
 Net::HTTP.start(uri.host, uri.port,

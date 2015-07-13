@@ -3,11 +3,11 @@
 ## Get Current Partner
 
 ```shell
-curl -X "GET" "http://geezeo.dev:3000/api/v2/partners/current" -u "%geezeo-api-key%:"
+curl -X "GET" "http://partner.url/api/v2/partners/current" -u ":geezeo-api-key::"
 ```
 
 ```ruby
-uri = URI('https://geezeobkdemo.mybankhq.com/api/v2/partners/current')
+uri = URI('https://partner.url/api/v2/partners/current')
 key = ':geezeo-aip-key:'
 
 Net::HTTP.start(uri.host, uri.port,
