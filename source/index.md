@@ -14,7 +14,7 @@ includes:
 search: true
 ---
 
-# Getting Started
+## Getting Started
 
 Welcome to the Faria API documentation. 
 
@@ -28,7 +28,8 @@ Learn more about how you can build your own custom integration or quickly enable
 
 The listed API grants you access to the entire Faria Stack. Faria provides integrated information systems for international education and business.​
 
-# About
+## About
+
 
 Faria provides integrated information systems for international education and business.​
 
@@ -40,24 +41,40 @@ After nearly seven years of continuous development, we have re-imagined the scho
 
 [ManageBac](https://www.managebac.com) , [OpenApply](www.openapply.com) and InterSIS in concert provide the first integrated online learning platform designed for international schools with curriculum planning, assessment & reporting, attendance & behavior, parent access and a state-of-the-art billing & finance solution built on top of Xero – the world’s leading cloud accounting system.
 
-![](/images/stack_xero.png)
+
+<p>
+    <img src='/images/stack_xero.png' class="stack-image"/>
+</p>
 
 Learn more about the IB world school of tomorrow and the systems that power the IB continuum!
 
-# Key Advantages
+## Key Advantages
 
-![](/images/check-green.png) Consolidate and eliminate duplicate systems with one single login account per user.
+<p>
+    <img src='/images/check-green.png' class="check-image"/>
+    Consolidate and eliminate duplicate systems with one single login account per user.
+</p>
 
-![](/images/check-green.png) Integrated family & student profile combining admissions & enrollment, academics, behavior, attendance and finance.
+<p>
+    <img src='/images/check-green.png' class="check-image"/> Integrated family & student profile combining admissions & enrollment, academics, behavior, attendance and finance.
+</p>
 
-![](/images/check-green.png) Monitor enrollment, analytics and finance in real-time.
+<p>
+    <img src='/images/check-green.png' class="check-image"/> Monitor enrollment, analytics and finance in real-time.
+</p>
 
-![](/images/check-green.png) Accessible anywhere across any device (iPhone, iPad, Mac or PC).
+<p>
+    <img src='/images/check-green.png' class="check-image"/> Accessible anywhere across any device (iPhone, iPad, Mac or PC).
+</p>
 
-![](/images/check-green.png) Fast & effective implementation with roll-out in weeks not months.
+<p>
+    <img src='/images/check-green.png' class="check-image"/> Fast & effective implementation with roll-out in weeks not months.
+</p>
 
-![](/images/check-green.png) Reduced total cost of ownership.​
+<p>
+    <img src='/images/check-green.png' class="check-image"/> Reduced total cost of ownership.​
+</p>
 
-# Getting Help
+## Getting Help
 
-We really want this API to be useful to you. If you have any questions or concerns please contact us at develop@faria.co 
+We really want this API to be useful to you. If you have any questions or concerns please contact us at [api@faria.co](mailto:api@faria.co).

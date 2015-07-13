@@ -374,12 +374,13 @@ html, body {
   h2 {
     @extend %header-font;
     font-size: 20px;
-    margin-top: 4em;
-    margin-bottom: 0;
+    margin-top: 0;
+    margin-bottom: 0.5em;
     border-top: 1px solid #ccc;
-    padding-top: 1.2em;
-    padding-bottom: 1.2em;
-    background-image: linear-gradient(to bottom, rgba(#fff, 0.4), rgba(#fff, 0));
+    border-bottom: 1px solid #ccc;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    background-image: linear-gradient(to bottom, #fff, #f9f9f9);
   }
 
   // h2s right after h1s should bump right up
@@ -412,7 +413,7 @@ html, body {
     th,td {
       text-align: left;
       vertical-align: top;
-      line-height: 1.6;
+      line-height: 1.4;
     }
 
     th {
@@ -447,7 +448,7 @@ html, body {
   }
 
   p, li, dt, dd {
-    line-height: 1.6;
+    line-height: 1.4;
     margin-top: 0;
   }
 
@@ -475,7 +476,7 @@ html, body {
     margin-top: 1.5em;
     margin-bottom: 1.5em;
     background: $aside-notice-bg;
-    line-height: 1.6;
+    line-height: 1.4;
 
     &.warning {
       background-color: $aside-warning-bg;
@@ -676,7 +677,7 @@ html, body {
   }
 }
 
-h1#openapply-api, h1#managebac{
+h1#openapply-api, h1#managebac, h1#sso{
   font-size: 0!important;
 }
 h1#openapply-api{
@@ -685,9 +686,20 @@ h1#openapply-api{
 h1#managebac{
   padding: 15px 20px!important
 }
+h1#sso{
+  padding: 10px 20px!important
+}
 
+.check-image{
+  width: 20px;
+  height: 20px;
+  vertical-align: middle;
+  display: inline-block;
+}
 
-.mdcheckimage{
- width: 50px;
-height: 50px;
+.stack-image{
+  width:300px;
+  height:300px;
+  vertical-align: middle;
+  display: inline-block;
 }
