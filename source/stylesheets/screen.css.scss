@@ -655,6 +655,12 @@ html, body {
             color: yellow;
           }
         } 
+        &.index, &.oa, &.mb, &.sso{
+          a{
+            color: #FFD700
+            font-weight: bold;
+          }
+        }
       }
     }
     .logo-wrapper{
