@@ -3,11 +3,11 @@
 ## Get Cashflows Configuration
 
 ```shell
-curl -X "GET" "http://geezeo.dev:3000/api/v2/users/:user_id:/cashflow" -u "%geezeo-api-key%:"
+curl -X "GET" "http://partner.url/api/v2/users/:user_id:/cashflow" -u ":geezeo-api-key::"
 ```
 
 ```ruby
-uri = URI('https://geezeobkdemo.mybankhq.com/api/v2/users/:user_id:/cashflow')
+uri = URI('https://partner.url/api/v2/users/:user_id:/cashflow')
 key = ':geezeo-aip-key:'
 
 Net::HTTP.start(uri.host, uri.port,
@@ -77,11 +77,11 @@ cashflow calculation.
 ## Update Cashflow
 
 ```shell
-curl -X "PUT" "http://geezeo.dev:3000/api/v2/users/:user_id:/cashflow" -u "%geezeo-api-key%:" -d ":request_payload:"
+curl -X "PUT" "http://partner.url/api/v2/users/:user_id:/cashflow" -u ":geezeo-api-key::" -d ":request_payload:"
 ```
 
 ```ruby
-uri = URI('https://geezeobkdemo.mybankhq.com/api/v2/users/:user_id:/cashflow')
+uri = URI('https://partner.url/api/v2/users/:user_id:/cashflow')
 key = ':geezeo-aip-key:'
 
 Net::HTTP.start(uri.host, uri.port,

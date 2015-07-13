@@ -14,11 +14,11 @@ Group | Account Types
 ## Get Accounts
 
 ```shell
-curl -X "GET" "http://geezeo.dev:3000/api/v2/users/:user_id:/accounts" -u "%geezeo-api-key%:"
+curl -X "GET" "http://partner.url/api/v2/users/:user_id:/accounts" -u ":geezeo-api-key::"
 ```
 
 ```ruby
-uri = URI('https://geezeobkdemo.mybankhq.com/api/v2/users/:user_id:/accounts')
+uri = URI('https://partner.url/api/v2/users/:user_id:/accounts')
 key = ':geezeo-aip-key:'
 
 Net::HTTP.start(uri.host, uri.port,
@@ -89,11 +89,11 @@ Status | Description
 ## Get All Accounts
 
 ```shell
-curl -X "GET" "http://geezeo.dev:3000/api/v2/users/:user_id:/accounts/all" -u "%geezeo-api-key%:"
+curl -X "GET" "http://partner.url/api/v2/users/:user_id:/accounts/all" -u ":geezeo-api-key::"
 ```
 
 ```ruby
-uri = URI('https://geezeobkdemo.mybankhq.com/api/v2/users/:user_id:/accounts/all')
+uri = URI('https://partner.url/api/v2/users/:user_id:/accounts/all')
 key = ':geezeo-aip-key:'
 
 Net::HTTP.start(uri.host, uri.port,
@@ -164,11 +164,11 @@ Status | Description
 ## Get Potential Cashflow Accounts
 
 ```shell
-curl -X "GET" "http://geezeo.dev:3000/api/v2/users/:user_id:/accounts/potential_cashflow" -u "%geezeo-api-key%:"
+curl -X "GET" "http://partner.url/api/v2/users/:user_id:/accounts/potential_cashflow" -u ":geezeo-api-key::"
 ```
 
 ```ruby
-uri = URI('https://geezeobkdemo.mybankhq.com/api/v2/users/:user_id:/accounts/potential_cashflow')
+uri = URI('https://partner.url/api/v2/users/:user_id:/accounts/potential_cashflow')
 key = ':geezeo-aip-key:'
 
 Net::HTTP.start(uri.host, uri.port,
@@ -240,11 +240,11 @@ Status | Description
 ## Get Account
 
 ```shell
-curl -X "GET" "http://geezeo.dev:3000/api/v2/users/:user_id:/accounts/:account_id:" -u "%geezeo-api-key%:"
+curl -X "GET" "http://partner.url/api/v2/users/:user_id:/accounts/:account_id:" -u ":geezeo-api-key::"
 ```
 
 ```ruby
-uri = URI('https://geezeobkdemo.mybankhq.com/api/v2/users/:user_id:/accounts/:account_id:')
+uri = URI('https://partner.url/api/v2/users/:user_id:/accounts/:account_id:')
 key = ':geezeo-aip-key:'
 
 Net::HTTP.start(uri.host, uri.port,
@@ -310,11 +310,11 @@ Status | Description
 ## Get Account Investments
 
 ```shell
-curl -X "GET" "http://geezeo.dev:3000/api/v2/users/:user_id:/accounts/:account_id:/investments" -u "%geezeo-api-key%:"
+curl -X "GET" "http://partner.url/api/v2/users/:user_id:/accounts/:account_id:/investments" -u ":geezeo-api-key::"
 ```
 
 ```ruby
-uri = URI('https://geezeobkdemo.mybankhq.com/api/v2/users/:user_id:/accounts/:account_id:/investments')
+uri = URI('https://partner.url/api/v2/users/:user_id:/accounts/:account_id:/investments')
 key = ':geezeo-aip-key:'
 
 Net::HTTP.start(uri.host, uri.port,
@@ -396,11 +396,11 @@ Status | Description
 ## Update Account
 
 ```shell
-curl -X "PUT" "http://geezeo.dev:3000/api/v2/users/:user_id:/accounts/:account_id:" -u "%geezeo-api-key%:" -d ":request_payload:"
+curl -X "PUT" "http://partner.url/api/v2/users/:user_id:/accounts/:account_id:" -u ":geezeo-api-key::" -d ":request_payload:"
 ```
 
 ```ruby
-uri = URI('https://geezeobkdemo.mybankhq.com/api/v2/users/:user_id:/accounts/:account_id:')
+uri = URI('https://partner.url/api/v2/users/:user_id:/accounts/:account_id:')
 key = ':geezeo-aip-key:'
 
 Net::HTTP.start(uri.host, uri.port,
@@ -449,11 +449,11 @@ Update an account for the given user.
 ## Delete Account
 
 ```shell
-curl -X "DELETE" "http://geezeo.dev:3000/api/v2/users/:user_id:/accounts/:account_id:" -u "%geezeo-api-key%:""
+curl -X "DELETE" "http://partner.url/api/v2/users/:user_id:/accounts/:account_id:" -u ":geezeo-api-key::""
 ```
 
 ```ruby
-uri = URI('https://geezeobkdemo.mybankhq.com/api/v2/users/:user_id:/accounts/:account_id:')
+uri = URI('https://partner.url/api/v2/users/:user_id:/accounts/:account_id:')
 key = ':geezeo-aip-key:'
 
 Net::HTTP.start(uri.host, uri.port,

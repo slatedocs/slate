@@ -5,11 +5,11 @@ This endpoint operates on the currently authenticated user (OAuth user authentic
 ## Get Current User
 
 ```shell
-curl -X "GET" "http://geezeo.dev:3000/api/v2/users/current" -u "%geezeo-api-key%:"
+curl -X "GET" "http://partner.url/api/v2/users/current" -u ":geezeo-api-key::"
 ```
 
 ```ruby
-uri = URI('https://geezeobkdemo.mybankhq.com/api/v2/users/current')
+uri = URI('https://partner.url/api/v2/users/current')
 key = ':geezeo-aip-key:'
 
 Net::HTTP.start(uri.host, uri.port,
@@ -62,11 +62,11 @@ Return information about the currently authenticated user.
 ## Update Current User
 
 ```shell
-curl -X "PUT" "http://geezeo.dev:3000/api/v2/users/current" -u "%geezeo-api-key%:" -d ":request_payload:"
+curl -X "PUT" "http://partner.url/api/v2/users/current" -u ":geezeo-api-key::" -d ":request_payload:"
 ```
 
 ```ruby
-uri = URI('https://geezeobkdemo.mybankhq.com/api/v2/users/current')
+uri = URI('https://partner.url/api/v2/users/current')
 key = ':geezeo-aip-key:'
 
 Net::HTTP.start(uri.host, uri.port,
@@ -155,11 +155,11 @@ Update the currently authenticated user.
 ## Delete Current User
 
 ```shell
-curl -X "DELETE" "http://geezeo.dev:3000/api/v2/users/current" -u "%geezeo-api-key%:" 
+curl -X "DELETE" "http://partner.url/api/v2/users/current" -u ":geezeo-api-key::" 
 ```
 
 ```ruby
-uri = URI('https://geezeobkdemo.mybankhq.com/api/v2/users/current')
+uri = URI('https://partner.url/api/v2/users/current')
 key = ':geezeo-aip-key:'
 
 Net::HTTP.start(uri.host, uri.port,

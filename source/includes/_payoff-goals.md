@@ -26,11 +26,11 @@
 ## Get Payoff Goal Images
 
 ```shell
-curl -X "GET" "http://geezeo.dev:3000/api/v2/payoff_goals" -u "%geezeo-api-key%:"
+curl -X "GET" "http://partner.url/api/v2/payoff_goals" -u ":geezeo-api-key::"
 ```
 
 ```ruby
-uri = URI('https://geezeobkdemo.mybankhq.com/api/v2/payoff_goals')
+uri = URI('https://partner.url/api/v2/payoff_goals')
 key = ':geezeo-aip-key:'
 
 Net::HTTP.start(uri.host, uri.port,
@@ -74,11 +74,11 @@ Return a list of pre-defined payoff goal images.
 ## Get Payoff Goals
 
 ```shell
-curl -X "GET" "http://geezeo.dev:3000/api/v2/users/:user_id:/payoff_goals" -u "%geezeo-api-key%:"
+curl -X "GET" "http://partner.url/api/v2/users/:user_id:/payoff_goals" -u ":geezeo-api-key::"
 ```
 
 ```ruby
-uri = URI('https://geezeobkdemo.mybankhq.com/api/v2/users/:user_id:/payoff_goals')
+uri = URI('https://partner.url/api/v2/users/:user_id:/payoff_goals')
 key = ':geezeo-aip-key:'
 
 Net::HTTP.start(uri.host, uri.port,
@@ -140,11 +140,11 @@ Return a list of payoff goals for the given user.
 ## Get Payoff Goal
 
 ```shell
-curl -X "GET" "http://geezeo.dev:3000/api/v2/users/:user_id:/payoff_goals/:payoff_goals_id:" -u "%geezeo-api-key%:"
+curl -X "GET" "http://partner.url/api/v2/users/:user_id:/payoff_goals/:payoff_goals_id:" -u ":geezeo-api-key::"
 ```
 
 ```ruby
-uri = URI('https://geezeobkdemo.mybankhq.com/api/v2/users/:user_id:/payoff_goals/:payoff_goals_id:')
+uri = URI('https://partner.url/api/v2/users/:user_id:/payoff_goals/:payoff_goals_id:')
 key = ':geezeo-aip-key:'
 
 Net::HTTP.start(uri.host, uri.port,
@@ -198,11 +198,11 @@ Return a payoff goal for the given user.
 ## Create Payoff Goal
 
 ```shell
-curl -X "POST" "http://geezeo.dev:3000/api/v2/users/:user_id:/payoff_goals" -u "%geezeo-api-key%:" -d ":request_payload:"
+curl -X "POST" "http://partner.url/api/v2/users/:user_id:/payoff_goals" -u ":geezeo-api-key::" -d ":request_payload:"
 ```
 
 ```ruby
-uri = URI('https://geezeobkdemo.mybankhq.com/api/v2/users/:user_id:/payoff_goals')
+uri = URI('https://partner.url/api/v2/users/:user_id:/payoff_goals')
 key = ':geezeo-aip-key:'
 
 Net::HTTP.start(uri.host, uri.port,
@@ -291,11 +291,11 @@ Create a payoff goal for the given user.
 ## Update Payoff Goal
 
 ```shell
-curl -X "PUT" "http://geezeo.dev:3000/api/v2/users/payoff_goals/:payoff_goal_id:" -u "%geezeo-api-key%:" -d ":request_payload:"
+curl -X "PUT" "http://partner.url/api/v2/users/payoff_goals/:payoff_goal_id:" -u ":geezeo-api-key::" -d ":request_payload:"
 ```
 
 ```ruby
-uri = URI('https://geezeobkdemo.mybankhq.com/api/v2/users/payoff_goals/:payoff_goal_id:')
+uri = URI('https://partner.url/api/v2/users/payoff_goals/:payoff_goal_id:')
 key = ':geezeo-aip-key:'
 
 Net::HTTP.start(uri.host, uri.port,
@@ -355,11 +355,11 @@ Update a payoff goal for the given user.
 ## Delete Payoff Goal
 
 ```shell
-curl -X "DELETE" "http://geezeo.dev:3000/api/v2/users/:user_id:/payoff_goals/:payoff_goal_id:" -u "%geezeo-api-key%:" 
+curl -X "DELETE" "http://partner.url/api/v2/users/:user_id:/payoff_goals/:payoff_goal_id:" -u ":geezeo-api-key::" 
 ```
 
 ```ruby
-uri = URI('https://geezeobkdemo.mybankhq.com/api/v2/users/:user_id:/payoff_goals/:payoff_goal_id:')
+uri = URI('https://partner.url/api/v2/users/:user_id:/payoff_goals/:payoff_goal_id:')
 key = ':geezeo-aip-key:'
 
 Net::HTTP.start(uri.host, uri.port,
@@ -393,11 +393,11 @@ Delete a payoff goal for the given user.
 ## Archive Payoff Goal
 
 ```shell
-curl -X "PUT" "http://geezeo.dev:3000/api/v2/users/:user_id:/payoff_goals/:payoff_goal_id:/archive" -u "%geezeo-api-key%:" 
+curl -X "PUT" "http://partner.url/api/v2/users/:user_id:/payoff_goals/:payoff_goal_id:/archive" -u ":geezeo-api-key::" 
 ```
 
 ```ruby
-uri = URI('https://geezeobkdemo.mybankhq.com/api/v2/users/payoff_goals/:payoff_goal_id:/archive')
+uri = URI('https://partner.url/api/v2/users/payoff_goals/:payoff_goal_id:/archive')
 key = ':geezeo-aip-key:'
 
 Net::HTTP.start(uri.host, uri.port,

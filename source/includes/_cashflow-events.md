@@ -5,11 +5,11 @@ A cashflow event is the individual occurrence of a bill or income.
 ## Get Cashflow Events
 
 ```shell
-curl -X "GET" "http://geezeo.dev:3000/api/v2/users/:user_id:/cashflow/events" -u "%geezeo-api-key%:"
+curl -X "GET" "http://partner.url/api/v2/users/:user_id:/cashflow/events" -u ":geezeo-api-key::"
 ```
 
 ```ruby
-uri = URI('https://geezeobkdemo.mybankhq.com/api/v2/users/:user_id:/cashflow/events')
+uri = URI('https://partner.url/api/v2/users/:user_id:/cashflow/events')
 key = ':geezeo-aip-key:'
 
 Net::HTTP.start(uri.host, uri.port,
@@ -95,11 +95,11 @@ __Note:__ Daily cashflow balances are calculated based on current account balanc
 ## Update Cashflow Event
 
 ```shell
-curl -X "PUT" "http://geezeo.dev:3000/api/v2/users/:user_id:/cashflow/events/:cashflow_event_id:" -u "%geezeo-api-key%:" -d ":request_payload:"
+curl -X "PUT" "http://partner.url/api/v2/users/:user_id:/cashflow/events/:cashflow_event_id:" -u ":geezeo-api-key::" -d ":request_payload:"
 ```
 
 ```ruby
-uri = URI('https://geezeobkdemo.mybankhq.com/api/v2/users/:user_id:/events/bills/:cashflow_event_id:')
+uri = URI('https://partner.url/api/v2/users/:user_id:/events/bills/:cashflow_event_id:')
 key = ':geezeo-aip-key:'
 
 Net::HTTP.start(uri.host, uri.port,
@@ -154,11 +154,11 @@ Update an existing cashflow event.
 ## Delete Cashflow Event
 
 ```shell
-curl -X "DELETE" "http://geezeo.dev:3000/api/v2/users/:user_id:/cashflow/events/:cashflow_event_id:" -u "%geezeo-api-key%:" 
+curl -X "DELETE" "http://partner.url/api/v2/users/:user_id:/cashflow/events/:cashflow_event_id:" -u ":geezeo-api-key::" 
 ```
 
 ```ruby
-uri = URI('https://geezeobkdemo.mybankhq.com/api/v2/users/:user_id:/cashflow/events/:cashflow_event_id:')
+uri = URI('https://partner.url/api/v2/users/:user_id:/cashflow/events/:cashflow_event_id:')
 key = ':geezeo-aip-key:'
 
 Net::HTTP.start(uri.host, uri.port,

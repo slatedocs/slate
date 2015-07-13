@@ -4,11 +4,11 @@
 
 
 ```shell
-curl -X "POST" "http://geezeo.dev:3000/api/v2/users/:user_id:/tickets" -u "%geezeo-api-key%:" -d ":request_payload:"
+curl -X "POST" "http://partner.url/api/v2/users/:user_id:/tickets" -u ":geezeo-api-key::" -d ":request_payload:"
 ```
 
 ```ruby
-uri = URI('https://geezeobkdemo.mybankhq.com/api/v2/users/:user_id:/tickets')
+uri = URI('https://partner.url/api/v2/users/:user_id:/tickets')
 key = ':geezeo-aip-key:'
 
 Net::HTTP.start(uri.host, uri.port,

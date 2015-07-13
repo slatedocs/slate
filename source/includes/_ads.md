@@ -3,11 +3,11 @@
 ## Get Ads
 
 ```shell
-curl -X "GET" "http://geezeo.dev:3000/api/v2/users/:user_id:/ads" -u "%geezeo-api-key%:"
+curl -X "GET" "http://partner.url/api/v2/users/:user_id:/ads" -u ":geezeo-api-key::"
 ```
 
 ```ruby
-uri = URI('https://geezeobkdemo.mybankhq.com/api/v2/users/:user_id:/ads')
+uri = URI('https://partner.url/api/v2/users/:user_id:/ads')
 key = ':geezeo-aip-key:'
 
 Net::HTTP.start(uri.host, uri.port,
@@ -36,7 +36,7 @@ end
     "id": 338,
     "campaign_location": null,
     "marketing_campaign_image": "http://www.example.com/lorem.jpg",
-    "title": "title",
+    "title": "title"
   }]
 }
 ```
