@@ -24,6 +24,8 @@ activate :autoprefixer do |config|
   config.inline   = true
 end
 
+# Activate the pretty URLS, Note Check images
+activate :directory_indexes
 # Github pages require relative links
 activate :relative_assets
 set :relative_links, true
