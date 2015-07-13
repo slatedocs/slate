@@ -77,7 +77,9 @@ If a request fails, the error can be returned as an HTTP status code from the ra
 
 This is the most common type of request to automate creation of new user accounts.​
 
-For example, when a new student applies to the school, they are admitted on [OpenApply](http://openapply.com/ "OpenApply") and marked as Enrolled. At that point, we must have a way to create their account on ManageBac. This is the reference for that process.​
+For example, when a new student applies to the school, they are admitted on [OpenApply](http://openapply.com/ "OpenApply") and marked as Enrolled. At that point, we must have a way to create their account on ManageBac. 
+
+> Below is the reference for the User Model process
 
 ``` json
 {
@@ -864,7 +866,7 @@ HTTP/1.1 400 Bad Request
 }
 ```
 
-# Class Model
+## Class Model
 
 ### Retrieve Classes
 
