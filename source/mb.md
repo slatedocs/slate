@@ -19,19 +19,6 @@ search: true
 </h1>
 
 
-
-[ManageBac](http://www.managebac.com) our flagship service is the leading planning, assessment and reporting system for IB world schools founded by three former IB Diploma students in 2007.
-
-Today [ManageBac](http://www.managebac.com) is the trusted choice of 8 in 10 IB Diploma students at over 1,700 leading schools.
-After nearly seven years of continuous development, we have re-imagined the school information system and we are proud to announce our integrated suite together with [OpenApply](http://www.openapply.com) for admissions & enrollment and InterSIS for school information management.
-
-
-
-[ManageBac](http://www.managebac.com) and [OpenApply](http://www.openapply.com) provide the first integrated online learning platform designed for international schools with curriculum planning, assessment & reporting, attendance & behavior, parent access and a state-of-the-art billing & finance solution built on top of Xero – the world’s leading cloud accounting system.
-Learn more about the IB world school of tomorrow and the systems that power the IB continuum!
-
-# Summary
-
 The ManageBac API should be implemented in a RESTful style using JSON over HTTP. Based on REST principles, four HTTP methods are used: GET, POST, PUT and DELETE.
 
 The purpose of this API is to allow for integration with 3rd party databases to automate the creation or update of users (students or parents) including assigning students into their classes.
@@ -638,6 +625,7 @@ GET /api/ib_groups
 Retrieves the school's IB Groups’ basic information. This includes ``ib_group_id``, which should be used in the API functions below.​
 
 > IB Groups' basic information
+
 ``` json
 {
     "ib_groups": [
@@ -757,7 +745,8 @@ Retrieves List of IB Group students
 
 > Retrieves list of IB Group students​
 
-``` json
+``` 
+json
 {
     "members": [
         {
@@ -800,6 +789,7 @@ Retrieves List of IB Group students
         }
     ]
 }
+
 ```
 
 ### Add members to IB Group
@@ -877,6 +867,8 @@ GET /api/classes
 
 Retrieves all Classes with basic information.
 Note: By default, classes are sorted alphabetically by name if they can't be sorted by subject group.
+
+> All classes with basic information
 
 ``` json
 {
