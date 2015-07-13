@@ -203,7 +203,7 @@ POST /api/users
 
 Creates a new user on ManageBac.
 
-Example request for a student:
+> Example request for a student:
 
 ``` json
 {
@@ -289,7 +289,7 @@ Example request for a student:
 Note: "year_label" - a year label in your database, should be configured on Settings/Integration/Public API page. It is related to MB IB Group and
 homeroom advisor mapping.
 
-Example request for a parent:
+> Example request for a parent:
 
 ``` json
 {
@@ -339,7 +339,7 @@ Example request for a parent:
 
 ```
 
-Example request for teacher/advisor:
+> Example request for teacher/advisor:
 
 ``` json
 
@@ -377,7 +377,7 @@ Example request for teacher/advisor:
 
 ```
 
-Example response to create a user account:
+> Example response to create a user account:
 
 HTTP/1.1 200 OK
 
@@ -388,7 +388,7 @@ HTTP/1.1 200 OK
 }
 ```
 
-Example response with incorrect input data:
+> Example response with incorrect input data:
 
 HTTP/1.1 400 Bad Request
 
@@ -404,6 +404,8 @@ HTTP/1.1 400 Bad Request
 GET /api/users
 
 Retrieves all users with basic information. This includes User ID,  which can be used to access individual user information.
+
+> Retrieve All Users
 
 ``` json
 {
@@ -452,7 +454,7 @@ Retrieves all users with basic information. This includes User ID,  which can be
 
 <p>GET /api/users/{user_id}</p>
 
-Retrieves a specific user.
+> Retrieves a specific user.
 
 ```json
 {
@@ -499,7 +501,7 @@ Retrieves a specific user.
 
 GET /api/users/?type={ Student | Parent | Teacher(Advisor)}
 
-Retrieves a set of users with a specific user type.
+> Retrieves a set of users with a specific user type.
 
 ``` json
 {
@@ -561,7 +563,7 @@ Retrieves a set of users with a specific user type.
 
 Updates student information using the <a>{user_id}</a> as the key.
 
-Example of updating student information and assigning the student to multiple classes.:
+> Example of updating student information and assigning the student to multiple classes.:
 
 ``` json
 {
@@ -606,17 +608,17 @@ Example of updating student information and assigning the student to multiple cl
 }
 ```
 
-Example response to update a user account:
+
 
 HTTP/1.1 200 OK
-
+> Example response to update a user account:
 ``` json
 {
  "status": "Successfully updated."
 }
 ```
 
-Example response with incorrect input data:
+> Example response with incorrect input data:
 
 HTTP/1.1 400 Bad Request
 
@@ -635,6 +637,7 @@ GET /api/ib_groups
 
 Retrieves the school's IB Groups’ basic information. This includes ``ib_group_id``, which should be used in the API functions below.​
 
+> IB Groups' basic information
 ``` json
 {
     "ib_groups": [
@@ -752,7 +755,7 @@ Retrieves List of IB Group students
 
 <p>GET /api/groups/{ib_group_id}/members</p>
 
-### Retrieves list of IB Group students​
+> Retrieves list of IB Group students​
 
 ``` json
 {
@@ -803,7 +806,7 @@ Retrieves List of IB Group students
 
 <p>POST /api/groups/{ib_group_id}/add_members</p>
 
-Adds users to the specific group using the Users IDs.
+> Adds users to the specific group using the Users IDs.
 
 ``` json
 {
@@ -811,7 +814,7 @@ Adds users to the specific group using the Users IDs.
 }
 ```
 
-Example response to update a user account:
+> Example response to update a user account:
 
 HTTP/1.1 200 OK
 
@@ -821,7 +824,7 @@ HTTP/1.1 200 OK
 }
 ```
 
-Example response with incorrect input data:
+> Example response with incorrect input data:
 
 HTTP/1.1 400 Bad Request
 
@@ -837,7 +840,7 @@ HTTP/1.1 400 Bad Request
 
 <p>PUT /api/groups/{ib_group_id}/remove_members</p>
 
-Removes students from the specific IB group using the Users IDs.
+> Removes students from the specific IB group using the Users IDs.
 
 ``` json
 {
@@ -845,7 +848,7 @@ Removes students from the specific IB group using the Users IDs.
 }
 ```
 
-Example response to update a user account:
+> Example response to update a user account:
 
 HTTP/1.1 200 OK
 

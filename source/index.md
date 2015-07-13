@@ -38,8 +38,12 @@ Today [ManageBac](https://www.managebac.com) is the trusted choice of 8 in 10 IB
 
 After nearly seven years of continuous development, we have re-imagined the school information system and we are proud to announce our integrated suite together with [OpenApply](www.openapply.com) for admissions & enrollment and InterSIS for school information management.
 
-[ManageBac](https://www.managebac.com) , [OpenApply](www.openapply.com) and InterSIS in concert provide the first integrated online learning platform designed for international schools with curriculum planning, assessment & reporting, attendance & behavior, parent access and a state-of-the-art billing & finance solution built on top of Xero – the world’s leading cloud accounting system.
+[ManageBac](https://www.managebac.com) , [OpenApply](www.openapply.com) and [iSAMS](www.isams.co.uk) provide an integrated cloud-based solution for international schools with curriculum planning, assessment & reporting and a robust core management information system linked with two-way data synchronisation and LaunchPad single-sign-on.
 
+
+LaunchPad for Single-Sign-On provides a single account that give users seamless, one-click access to iSAMS, ManageBac and OpenApply plus our suite of integration partners such as Finalsite CMS or School Cloud Systems (Room Booking Systems & Parent Evening Systems).
+
+Optionally, you can connect LaunchPad to your local Active Directory, Office365 or GoogleApps for Education account to link user accounts and to streamline provisioning.
 
 <p>
     <img src='/images/stack_xero.png' class="stack-image"/>
