@@ -6,7 +6,6 @@ language_tabs:
   - ruby
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
  
 includes:
 
@@ -23,7 +22,7 @@ The ManageBac API should be implemented in a RESTful style using JSON over HTTP.
 
 The purpose of this API is to allow for integration with 3rd party databases to automate the creation or update of users (students or parents) including assigning students into their classes.
 
-# Authentication & Authorization
+# Authentication & Authorisation
 
 API requests can be made via HTTPS between the 3rd party database and ManageBac. All requests on the API can be authenticated to the subdomain with a unique product API token using HTTP Basic Access Authentication.
 
@@ -119,6 +118,7 @@ For example, when a new student applies to the school, they are admitted on [Ope
   }
 }
 ```
+
 
 ###Required Fields:
 
