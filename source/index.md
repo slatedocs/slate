@@ -2,7 +2,6 @@
 title: API Reference
 
 language_tabs:
-  - shell
   - ruby
 
 toc_footers:
@@ -14,7 +13,7 @@ includes:
 search: true
 ---
 
-## Getting Started
+# Getting Started
 
 Welcome to the Faria API documentation. 
 
@@ -28,7 +27,7 @@ Learn more about how you can build your own custom integration or quickly enable
 
 The listed API grants you access to the entire Faria Stack. Faria provides integrated information systems for international education and business.​
 
-## About
+# About
 
 
 Faria provides integrated information systems for international education and business.​
@@ -48,7 +47,7 @@ After nearly seven years of continuous development, we have re-imagined the scho
 
 Learn more about the IB world school of tomorrow and the systems that power the IB continuum!
 
-## Key Advantages
+# Key Advantages
 
 <p>
     <img src='/images/check-green.png' class="check-image"/>
@@ -75,6 +74,6 @@ Learn more about the IB world school of tomorrow and the systems that power the 
     <img src='/images/check-green.png' class="check-image"/> Reduced total cost of ownership.​
 </p>
 
-## Getting Help
+# Getting Help
 
 We really want this API to be useful to you. If you have any questions or concerns please contact us at [api@faria.co](mailto:api@faria.co).

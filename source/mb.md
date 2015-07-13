@@ -3,7 +3,6 @@ title: ManageBac API
 
 
 language_tabs:
-  - shell
   - ruby
 
 toc_footers:
@@ -23,30 +22,30 @@ search: true
 
 [ManageBac](http://www.managebac.com) our flagship service is the leading planning, assessment and reporting system for IB world schools founded by three former IB Diploma students in 2007.
 
-Today [ManageBac](http://www.managebac.com) is the trusted choice of 8 in 10 IB Diploma students at over 1,300 leading schools.
+Today [ManageBac](http://www.managebac.com) is the trusted choice of 8 in 10 IB Diploma students at over 1,700 leading schools.
 After nearly seven years of continuous development, we have re-imagined the school information system and we are proud to announce our integrated suite together with [OpenApply](http://www.openapply.com) for admissions & enrollment and InterSIS for school information management.
 
 
 
-[ManageBac](http://www.managebac.com) , [OpenApply](http://www.openapply.com) and InterSIS in concert provide the first integrated online learning platform designed for international schools with curriculum planning, assessment & reporting, attendance & behavior, parent access and a state-of-the-art billing & finance solution built on top of Xero – the world’s leading cloud accounting system.
+[ManageBac](http://www.managebac.com) and [OpenApply](http://www.openapply.com) provide the first integrated online learning platform designed for international schools with curriculum planning, assessment & reporting, attendance & behavior, parent access and a state-of-the-art billing & finance solution built on top of Xero – the world’s leading cloud accounting system.
 Learn more about the IB world school of tomorrow and the systems that power the IB continuum!
 
-## Summary
+# Summary
 
 The ManageBac API should be implemented in a RESTful style using JSON over HTTP. Based on REST principles, four HTTP methods are used: GET, POST, PUT and DELETE.
 
 The purpose of this API is to allow for integration with 3rd party databases to automate the creation or update of users (students or parents) including assigning students into their classes.
 
-## Authentication & Authorization
+# Authentication & Authorization
 
 API requests can be made via HTTPS between the 3rd party database and ManageBac. All requests on the API can be authenticated to the subdomain with a unique product API token using HTTP Basic Access Authentication.
 
 The API token can be generated manually via Settings > Integrations.
 
-![alt text](/images/mbintegrationapi.png)
+![MB integration](/images/mbintegrationapi.png)
 
 
-## Requests
+# Requests
 
 Every request to the ManageBac API should be assumed to be in JSON format.
 
@@ -56,7 +55,7 @@ Every request to the ManageBac API should be assumed to be in JSON format.
     POST  curl -i -H "auth_token:5c73d0b53d9c7b547ea4033794b9f34d" -H "Content-Type: application/json" -X POST -d '{"user":{"foo":"bar"}}' https://{school subdomain}.managebac.com/api/users/
 ```
 
-## Responses
+# Responses
 
 If a request fails, the error can be returned as an HTTP status code from the range 400 - 599. Successful requests return a status code of 200 or 201.
 
@@ -72,7 +71,7 @@ If a request fails, the error can be returned as an HTTP status code from the ra
 </table>
 
 
-## Users Data Reference
+# Users Data Reference
 
 ### User Model
 
@@ -865,7 +864,7 @@ HTTP/1.1 400 Bad Request
 }
 ```
 
-## Class Model
+# Class Model
 
 ### Retrieve Classes
 

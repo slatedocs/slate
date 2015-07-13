@@ -356,13 +356,13 @@ html, body {
 
   h1 {
     @extend %header-font;
-    font-size: 30px;
+    font-size: 20px;
     padding-top: 0.5em;
     padding-bottom: 0.5em;
     border-bottom: 1px solid #ccc;
+    border-top: 1px solid #ddd;
     margin-bottom: $h1-margin-bottom;
     margin-top: 2em;
-    border-top: 1px solid #ddd;
     background-image: linear-gradient(to bottom, #fff, #f9f9f9);
   }
 
@@ -698,8 +698,8 @@ h1#sso{
 }
 
 .stack-image{
-  width:300px;
-  height:300px;
+  margin: auto; 
+  width:100%;
   vertical-align: middle;
-  display: inline-block;
+  display: block;
 }

@@ -2,12 +2,10 @@
 title: API Reference
 
 language_tabs:
-  - shell
   - ruby
 
 toc_footers:
   - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='http://github.com/tripit/slate'>Documentation Powered by Slate</a>
 
 includes:
 
@@ -104,7 +102,7 @@ Before continuing, please take time to review the [LaunchPad Primer](/sso-primer
 
 The LaunchPad Client Application API authenticates using HTTP tokens exclusively. Here is a sample request made to an development endpoint:
 
- ```shell
+```
     $ curl http://ml.dev/api/v1/organizations \
         -H 'Authorization: Token token="d6b8d8500cb687c9283d9c78080705ec"'
 ```        
@@ -115,8 +113,10 @@ All other methods outlined in this document requires authentication.
 
 If your client application token is sufficiently authorized, you may be able to query some or all organizations currently participating in LaunchPad.
 
+```
      GET /organizations
      GET /organizations/:id
+```
 
 You may assume that only organizations you can view and/or access will be returned in these calls, and that all organizations will be returned at once.
 
@@ -128,11 +128,15 @@ The Organization representation contains the following attributes:
 
 If your Client Application token is sufficiently authenticated, you may be able to update an existing Organization:
 
+```
     PATCH /organizations/:id
+```
 
 or create a new Organization:
 
+```
     POST /organizations # must provide name; subdomain must be unique if provided
+```
 
 Please see the Integration Notes for an example.
 
@@ -142,7 +146,9 @@ The following methods allows you to interact with people and identities.
 
 ### Create new Person entries
 
+```
     POST /organizations/:id/people
+```
 
 If your client application token is sufficiently authenticated, you may be able to create Person entries within organizations you have formed or can control.
 
@@ -158,7 +164,9 @@ You may create identities separately, or together with the creation call by pass
 
 ### Update Person entries
 
+```
     PATCH /organizations/:organization_id/people/:person_id
+```
 
 You may pass the same payload you pass to `/organizations/:id/people` in order to update Person entries, but you can not delete identities this way.
 
@@ -168,11 +176,14 @@ This feature is currently unavailable.
 
 ### Retrieve information relevant to a given person
 
+```
     GET /organizations/:organization_id/people/:person_id
     GET /people/:person_id # if you have sufficient privileges
-    
+```
+
 Returns a Person entity, which looks like:
 
+```
     {
         "email": "cortiz@linktype.com",
         "family_name": "Green",
@@ -195,6 +206,7 @@ Returns a Person entity, which looks like:
             }
         ]
     }
+```
 
 ### Retrieve all identities relevant to a given person
 
@@ -204,6 +216,7 @@ Returns a list of all identities and their providers. You can use this informati
 
 The response looks like:
 
+```
     [
         {
             "id": "439d8dc0-5dce-43ab-bef5-93f4df7ac21c",
@@ -221,7 +234,7 @@ The response looks like:
         },
         …
     ]
-
+```
 
 
 ## Interacting with Authentication Sessions
@@ -236,6 +249,7 @@ Each Authentication Session is linked to an Identity (requested identity) and a 
 
 You must have corresponding privileges. The Faria SSO Portal will return with the Authentication Session alongside the detailed representation of the requesting person. The response looks like:
 
+```
     {
         "data": null,
         "expires_at": null,
@@ -266,6 +280,7 @@ You must have corresponding privileges. The Faria SSO Portal will return with th
         "requested_at": "2014-09-05T16:48:13.414Z",
         "status": "requested"
     }
+```
 
 In the future, the `data` field will carry end-user-specific information, like the original IP address where requests occurred.
 
@@ -305,6 +320,7 @@ Generally, you will send this request synchronously after your user has requeste
 
 If your request is successfully recognized (but not yet processed), you will receive the representation of the newly created Authentication Session with "context.client_application_url", and you should then redirect the user. The target Client Application, which implements the Forward Authentication API, will handle everything from there.
 
+```
     {
         "context": {
             "client_application_url": "https://target.example.com/handle_forward_authentication?session_id=:session_id"
@@ -327,6 +343,7 @@ If your request is successfully recognized (but not yet processed), you will rec
         "requested_at": "2014-09-05T16:48:13.414Z",
         "status": "requested"
     }
+```
 
 # Forward Authentication API
 
@@ -398,7 +415,80 @@ It is our hope that the following code snippets are helpful to you. Please feel 
 
 The Provisioner allows you to push identities from your application to Faria LaunchPad for the initial setup. Identities can be updated from your application using the Client Application API, or by the LaunchPad Portal after querying your application periodically.
 
-{% gist evadne/3a526427faa1c1773c3e utils-sso_provisioner.rb %}
+```
+require 'active_support/all'
+require 'forgery'
+require 'httparty'
+
+def section (title = nil, &block)
+  puts
+  answer = yield
+  if title
+    puts title
+    puts
+  end
+  PP.pp answer if answer
+  answer
+end
+
+section {
+  context = { # The following three arbitrary strings are important for your integration
+    client_application_token: '54e0476bac36ab5af88acecc1c8e9ff1',
+    client_application_id: 'c0148089-25c4-47c9-8a6e-f031e00da07b',
+    identity_provider_id: '321984ea-e6fe-4746-acdf-b431135df3bb'
+  }
+  
+  client = SSO::HTTPClient.new(token: context[:client_application_token])
+  
+  section('Depending on your privileges, you may be able to see all organizations:') {
+    client.organizations
+  }
+  
+  section('Also dependent on your privileges, you may see all identity providers:') {
+    client.identity_providers
+  }
+  
+  organization = section('You can create new organizations:') {
+    client.create_organization(name: SecureRandom.hex)
+  }
+  
+  section('â€¦or search by a name component:') {
+    client.organizations(organization['name'])
+  }
+  
+  section('You can create people without providing identities:') {
+    client.create_person(organization['id'], {
+      # avatar_url: accepted if provided
+      given_name: Forgery(:name).first_name,
+      family_name: Forgery(:name).last_name,
+      email: Forgery(:email).address
+    })
+  }
+  
+  person = section('â€¦or provide identities as you create them:') {
+    client.create_person(organization['id'], {
+      given_name: Forgery(:name).first_name,
+      family_name: Forgery(:name).last_name,
+      email: Forgery(:email).address,
+      identities_attributes: [{
+        provider_id: context[:identity_provider_id],
+        organization_id: organization['id'],
+        title: %w(engineer technician writer artist).sample.titleize,
+        description: SecureRandom.hex,
+        value: SecureRandom.hex,
+        status: :loginable
+      }]
+    })
+  }
+  
+  section('If you have the Person ID, you can retrieve all information linked to the object:') {
+    client.person(organization['id'], person['id'])
+  }
+  
+  nil
+}
+
+```
 
 ### Rails Routes
 
@@ -407,13 +497,49 @@ The following snippet demonstrates appropriate routing you must set up for your 
 1.  Accept Forward Authentication requests from users wishing to enter your application via the LaunchPad Portal. 
 2.  Accept Authentication Session requests from users currently using your application and wishing to enter other applications thru your in-app Identity Launchpad.
 
-{% gist evadne/3a526427faa1c1773c3e routes.rb %}
+```
+SSO::Application.routes.draw do
+  get 'handle_forward_authentication' => 'forward_authentication#handle', as: :handle_forward_authentication
+  get 'obtain_forward_authentication' => 'forward_authentication#obtain', as: :request_forward_authentication
+  â€¦
+end
+```
 
 ### Rails Controller
 
 The following snippet demonstrates how Forward Authentication requests may be handled from your application, and shows a way to issue Authentication Session requests from your application to the LaunchPad Portal.
 
-{% gist evadne/3a526427faa1c1773c3e sso-forward_authentication_controller.rb %}
+```
+class ForwardAuthenticationController < ApplicationController
+  skip_before_filter :authenticate_user!, only: %i(handle)
+
+  def handle
+    service = Faria::SSO::ForwardAuthenticationResponseService.new(params[:session_id])
+    if service.perform
+      current_user = service.authenticated_object
+      SSO::IdentityCachingService.new(current_user).store(service.authenticated_identity, service.available_identities)
+      sign_in(:user, current_user)
+      session.delete('user_return_to')
+      flash.clear
+      redirect_to after_sign_in_path_for(current_user) 
+    else
+      redirect_to request.referrer, error: 'Invalid credentials'
+    end
+  end
+  
+  def obtain
+    current_identity, available_identities = SSO::IdentityCachingService.new(current_user).load
+    service = SSO::ForwardAuthenticationRequestService.new(current_identity['id'], params[:identity_id])
+    did_request = service.send(:perform!)
+    if did_request
+      redirect_to service.client_application_url
+    else
+      redirect_to request.referrer
+    end
+  end
+end
+
+```
 
 ### Forward Authentication Response Service
 
@@ -424,7 +550,66 @@ The following snippet contains a Service Object you can use to authenticate inco
 
 (Further security measures may be carried out by the LaunchPad Portal directly.)
 
-{% gist evadne/3a526427faa1c1773c3e sso-forward_authentication_response_service.rb %}
+```
+class SSO::ForwardAuthenticationResponseService
+  attr_reader :authenticated_object, :authentication_session_id, :authenticated_identity, :available_identities
+
+  def initialize (authentication_session_id)
+    raise 'authentication_session_id must be a String' unless authentication_session_id.is_a?(String)
+    @authentication_session_id = authentication_session_id
+  end
+
+  def perform
+    answer = begin
+      perform!
+    rescue => e
+      false
+    end
+    
+    answer.tap { |x|
+      decision_type = x ? 'approve_session' : 'decline_session'
+      SSO::TransactionResponseWorker.perform_async(authentication_session_id, decision_type, {})
+    }
+  end
+
+private
+  def perform!
+    authentication_session = client.retrieve_session(authentication_session_id)
+    requested_identity = authentication_session['identity']
+    requested_user = object_for_identity_value(requested_identity['value'])
+    requested_by_person = authentication_session['person']
+    requested_own_identity = requested_by_person['identities'].include?(requested_identity)
+    
+    if requested_own_identity
+      @authenticated_object = requested_user
+      @authenticated_identity = requested_identity
+      @available_identities = requested_by_person['identities']
+      true
+    else
+      false
+    end
+  end
+
+  def client
+    @client = SSO::Client.new(ENV['SSO_TOKEN'], ENV['SSO_ENDPOINT'])
+  end
+
+  def object_for_identity_value (value)
+    matches = value.match(/([a-zA-Z]+)-(\d+)/)
+    role = matches[1]
+    if matches
+      if ((role.eql?("Staff")) && role.constantize)
+        role.constantize.find(matches[2].to_i).try(:user)
+      else
+        nil
+      end
+    else
+      nil
+    end
+  end
+end
+
+```
 
 ### Forward Authentication Request Service
 
@@ -433,22 +618,163 @@ The following snippet contains another Service Object you can use to create outg
 1.  You must be requesting authentication on behalf of one of your users.
 2.  The target identity must — according to the LaunchPad Portal — also belong to the same user.
 
-{% gist evadne/3a526427faa1c1773c3e sso-forward_authentication_request_service.rb %}
+```
+class SSO::ForwardAuthenticationRequestService
+  attr_reader :authentication_session, :requester_identity_id, :wanted_identity_id, :client_application_url
+
+  def initialize (requester_identity_id, wanted_identity_id)
+    @requester_identity_id = requester_identity_id
+    @wanted_identity_id = wanted_identity_id
+  end
+
+  def perform
+    begin
+      (perform!).present?
+    rescue => e
+      false
+    end
+  end
+
+private
+  def perform!
+    @authentication_session = client.request_session(requester_identity_id, wanted_identity_id)
+    @client_application_url = @authentication_session['context']['client_application_url']
+  end
+
+  def client
+    unless defined?(@client)
+      @client = SSO::Client.new(ENV['SSO_TOKEN'],ENV['SSO_ENDPOINT'])
+    end
+    @client
+  end
+end
+```
 
 ### Transaction Response Worker
 
 The following snippet demonstrates a way you can respond to authentication sessions asynchronously in order to ultimately log your approval or denial of an attempt to access your systems.
 
-{% gist evadne/3a526427faa1c1773c3e sso-transaction_response_worker.rb %}
+```
+class SSO::TransactionResponseWorker
+  include Sidekiq::Worker
+  sidekiq_options :retry => 16, :backtrace => true
+  
+  def perform (session_id, decision_type, data)
+    client = SSO::Client.new(ENV['SSO_TOKEN'], ENV['SSO_ENDPOINT'])
+    case decision_type.to_s
+    when 'approve_session'
+      client.approve_session(session_id, data)
+    when 'decline_session'
+      client.approve_session(session_id, data)
+    else
+      raise 'Unable to comply with the provided decision type'
+    end
+  end
+end
+```
 
 ### Identity Caching Service
 
 The following snippet demonstrates a way to store known LaunchPad identities of an user temporarily, so you can avoid querying the LaunchPad Portal every time you need to render an in-app Identity Launchpad.
 
-{% gist evadne/3a526427faa1c1773c3e sso-identity_caching_service.rb %}
+```
+class SSO::IdentityCachingService
+  attr_reader :object
+  
+  def initialize (object)
+    @object = object
+  end
+  
+  def store (*target)
+    Rails.cache.write(cache_key, target.to_json)
+  end
+  
+  def load
+    JSON.parse(Rails.cache.fetch(cache_key))
+  rescue
+    nil
+  end
+  
+  def cache_key
+    "sso/#{object.class.to_s.downcase}/#{object.id}/identities"
+  end
+end
+
+```
 
 ### API Client
 
 The API Client allows your application to interact with the LaunchPad Portal properly.
 
-{% gist evadne/3a526427faa1c1773c3e sso-client.rb %}
+```
+require 'httparty'
+ 
+module SSO
+  class Client
+    include HTTParty
+ 
+    format :json
+ 
+    def initialize(token = nil, endpoint=nil)
+      @token = token
+      self.class.base_uri endpoint
+    end
+ 
+    def authenticate
+      self.class.get('/organizations', :headers => default_headers)
+    end
+ 
+    def retrieve_session(session_id)
+      self.class.get("/authentication_sessions/#{session_id}", :headers => default_headers)
+    end
+    
+    def approve_session(session_id, data = {})
+      self.class.post("/authentication_sessions/#{session_id}/approve", :body => { :data => data }, :headers => default_headers)
+    end
+ 
+    def decline_session(session_id, data = {})
+      self.class.get("/authentication_sessions/#{session_id}/decline", :body => { :data => data }, :headers => default_headers)
+    end
+ 
+    def request_session (requester_identity_id, wanted_identity_id)
+      self.class.post('/authentication_sessions', :body => { :requester_identity_id => requester_identity_id, :wanted_identity_id => wanted_identity_id }, :headers => default_headers)
+    end
+ 
+    def approve(session_id)
+      self.class.post("/authentication_sessions/#{session_id}/approve", :headers => default_headers)
+    end
+ 
+    def decline
+      self.class.post("/authentication_sessions/#{session_id}/decline", :headers => default_headers)    
+    end
+ 
+    def identity_providers
+      self.class.get('/identity_providers', :headers => default_headers)
+    end
+    
+    def create_organization (attributes)
+      self.class.post('/organizations', :body => { :organization => attributes }, :headers => default_headers)
+    end
+    
+    def update_organization (organization_id, attributes)
+      self.class.post("/organizations/#{organization_id}", :body => { :organization => attributes }, :headers => default_headers)
+    end
+    
+    def retrieve_organization (organization_id)
+      self.class.get("/organizations/#{organization_id}", :headers => default_headers)
+    end
+    
+    def ingest_person (organization_id, person_representation)
+      self.class.post("/organizations/#{organization_id}/people", :body => { :person => person_representation }, :headers => default_headers)
+    end
+ 
+    def default_headers
+      @header = {
+        "Accept" => 'application/json',
+        "Authorization" => "Token token=\"#{@token}\""
+      }
+    end
+  end
+end
+
+```

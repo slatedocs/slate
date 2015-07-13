@@ -2,12 +2,10 @@
 title: OpenApply API
 
 language_tabs:
-  - shell
   - ruby
 
 toc_footers:
   - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='http://github.com/tripit/slate'>Documentation Powered by Slate</a>
 
 includes:
 
@@ -16,20 +14,19 @@ search: true
 
 # OpenApply API  ![openapply](/images/openapply-logo-text.png)
 
-## Summary
 
 The OpenApply (OA) Public API should be implemented in a RESTful style using JSON
 over HTTP. Based on REST principles, three HTTP verbs are used: GET, POST and PUT.
 
 The purpose of this API is to allow for integration with 3rd party databases to automate the creation or update of users including assignment into their classes.
 
-## Authentication & Authorization
+# Authentication & Authorization
 
 API requests can be made via HTTPS between the 3rd party database and OA. All requests on the API can be authenticated to the subdomain with a unique product API token using HTTP Basic Access Authentication.
 
 The API token should be generated manually via Settings > Integrations. Firstly you have to enable Public API function and add API token for the integrated applications.
 
-![alt text](/images/apiscreenshot.png)
+![API screenshot](/images/apiscreenshot.png)
 
 Here’s an example using curl:
 
@@ -37,7 +34,7 @@ Here’s an example using curl:
 curl https://{school subdomain}.openapply.com/api/v1/students?auth_token=2a8b196ee0af6cfa3509961fb573a8a3
 ```
 
-## Requests
+# Requests
 
 The API request Host url is:
 
@@ -52,7 +49,7 @@ For example, when accessing Student resources:
 GET https://{school subdomain}.openapply.com/api/v1/students? auth_token=2a8b196ee0af6cfa3509961fb573a8a3
 ```
 
-## Responses
+# Responses
 
 If a request fails, the error can be returned as an HTTP status code with the range 400 -
 599. Successful requests return a status code of 200 or 201.
@@ -67,11 +64,11 @@ If a request fails, the error can be returned as an HTTP status code with the ra
 <tr><td>HTTP/1.1 500 Internal Server Error</td><td>An error occurred while processing a request.</td></tr>
 </table>
 
-## Resources Reference
+# Resources Reference
 
 ### Students
 
-#### Retrieve Students
+### Retrieve Students:
 
 GET students/
 
@@ -161,7 +158,7 @@ HTTP/1.1 200 OK
 }
 ```
 
-#### Retrieve Student by ID
+## Retrieve Student by ID
 
 ``` bash
 GET students/:id
@@ -251,7 +248,7 @@ HTTP/1.1 200 OK
 }
 ```
 
-#### Update status of student
+## Update status of student
 
 ``` bash
 PUT students/:id/status
@@ -313,7 +310,7 @@ The status value is pre-deﬁned and can be matched to the following statuses
 <tr><td>Withdrawn</td><td>80</td></tr>
 </table>
 
-#### Retrieve Student's Payment Information
+## Retrieve Student's Payment Information
 
 ``` bash
 GET students/:id/payments
