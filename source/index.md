@@ -91,12 +91,12 @@ Trigger *restaurantTrigger = [FireTrigger whenEntersPoi:PoiTypeRestaurant condit
 It is also possible to fire a trigger when a user enters or exits any of the POI categories specified below.  If you wish to do this, use the "PoiType.All" category.
 
 ```swift
-// Will notify you when the user enters an Airport
+// Will notify you when the user enters any category Sense360 supports
 let allPoiTypesTrigger: Trigger? = FireTrigger.whenEntersPoi(.All)
 ```
 
 ```objective_c
-// Will notify you when the user enters an Airport
+// Will notify you when the user enters any category Sense360 supports
 Trigger *allPoiTypesTrigger = [FireTrigger whenEntersPoi:PoiTypeAll conditions:nil errorPtr:nil];
 ```
 
