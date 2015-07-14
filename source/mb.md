@@ -122,67 +122,47 @@ For example, when a new student applies to the school, they are admitted on [Ope
 
 ###Required Fields:
 
-type - string, options: Student | Parent | Advisor
-
-student_id - integer, required only for students
-
-first_name - string, student first name
-
-last_name - string, student last name
-
-email - string, student email
+| Field  | Type  | Description |
+| ------------- | ------------- | -------|
+| type  | string | The request is either sent from either a Student / Parent / Advisor |
+| student_id  | integer| The students id, required only for students  |
+| first_name | string| The student's first name |
+| last_name | string| The student's last name |
+| email | string| The student's email |
 
 
 ###Optional Fields:
 
-ib_group_id - integer, ID of IB Group
-
-country - string, user's country
-
-state - string, user's state
-
-city - string, user's city
-
-zipcode - string, user's zipcode
-
-street_address - string, user's street adress
-
-street_address_ii - string, user's aditional street adress
-
-mobile_phone_number - string, user's mobile phone number
-
-phone_number - string, user's stationary phone number
-
-welcome_email - string, options: Yes | No
-
-children_ids - array of integers, relevant for parent users only (can be more 
-
-than one id)
-
-parents_ids - array of integers, relevant for student users only (can be more 
-than one id)
-
-homeroom_advisor - user_id or email for the advisor or admin
-
-nickname - string, user's nickname
-
-other_name - string, user's other name
-
-gender - string, user's gender
-
-birthday - string, user's birthday
-
-language - string, user's language
-
-password - string, account passwords
-
-year_label - string, year label
-
-national_id - string, user's national id's
-
-language1 .. language4 - string, user's languages
-
-nationality1 .. nationality4 - string, user's nationality
+|Field | Type | Description |
+|---------------| ----------------| ------- |
+|ib_group_id |integer| The user's ID of IB Group|
+|country | string| The user's country |
+|state | string| The user's state |
+|city | string| The user's city |
+|zipcode| string| The user's zipcode |
+|street_address| string| The user's current street adress|
+|streeet_address_ii | string| The user's additional street address|
+|mobile_phone_number| string| The user's mobile phone number |
+|welcome_email| string| options: Yes or No |
+|children_ids| array of integers| This is relevant for parent users only (can be have more than one id)|
+|parents_ids | array of integers| This is relevant for student users only (can have more than one id)|
+|homeroom_advisor| string | The user_id or email for the advisor or admin |
+|nickname| string| The user's nickname |
+|other_name| string| The user's other name|
+|gender|string| The user's gender|
+|birthday|string| The user's birthday|
+|language|string| The user's language|
+|password|string| The user's account password|
+|year_label|string| The year the student is in|
+|national_id|string| The user's national id|
+|language1 |string| The user's first language|
+|language2 |string| The user's second language|
+|language3 |string| The user's third language|
+|language4 |string| The user's fourth language|
+|nationality1 |string | The user's first nationality|
+|nationality2 |string | The user's second nationality|
+|nationality3 |string | The user's third nationality|
+|nationality4 |string | The user's fourth nationality|
 
 ### New User Creation
 

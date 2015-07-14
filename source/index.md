@@ -7,7 +7,7 @@ language_tabs:
 toc_footers:
  
 includes:
-
+layout: "homepage"
 
 search: true
 ---

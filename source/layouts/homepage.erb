@@ -104,19 +104,6 @@ under the License.
             <%= partial "includes/#{include}" %>
           <% end %>
         </div>
-        <div class="dark-box">
-          <% if language_tabs %>
-            <div class="lang-selector">
-              <% language_tabs.each do |lang| %>
-                <% if lang.is_a? Hash %>
-                  <a href="#" data-language-name="<%= lang.keys.first %>"><%= lang.values.first %></a>
-                <% else %>
-                  <a href="#" data-language-name="<%= lang %>"><%= lang %></a>
-                <% end %>
-              <% end %>
-            </div>
-          <% end %>
-        </div>
       </div>
     </div>
   </body>

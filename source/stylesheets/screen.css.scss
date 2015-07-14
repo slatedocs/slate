@@ -622,9 +622,10 @@ html, body {
 
 
 .float-parent {
+  width: 80%;
+  margin: 30px auto;
   img{ 
     display: block;
-    width: 50%;
     float: left;
   }
   &:after{
@@ -704,8 +705,18 @@ h1#sso{
 }
 
 .stack-image{
-  margin: auto; 
-  width:100%;
+  margin: 30px auto;  
+  width:65%;
   vertical-align: middle;
   display: block;
+}
+
+
+
+body.index{
+  .content{
+    &>h1, &>h2, &>h3, &>h4, &>h5, &>h6, &>p, &>table, &>ul, &>ol, &>aside, &>dl {
+      margin-right: 0;
+    }
+  }
 }
