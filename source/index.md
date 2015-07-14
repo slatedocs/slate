@@ -24,6 +24,10 @@ or can be searched by a set of parameters. The search parameters include the las
 allowing you to use the API for tasks such as extracting all audits from the system, and retrieving new and updated
 audits periodically.
 
+The SafetyCulture API is currently available under a limited access trial. Please contact 
+[SafetyCulture Support](http://www.safetyculture.io/support/safetyculture/contact) if you are interested in early
+access.
+
 # Getting Started
 
 In this section, we will provide a quick guide to getting started with the SafetyCulture API. We will walk through
@@ -125,15 +129,86 @@ request was made.
 
 ## Retrieving an audit
 
-...
+> Retrieving a single audit
+
+```shell
+curl "https://api.safetyculture.io/audits/audit_01ca38a821504cda885736cccbb9ba40" \
+  -H "Authorization: Bearer ..."
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "template_id": "template_BB29F82814B64F559A33BF7CAA519787",
+  "audit_id": "audit_01ca38a821504cda885736cccbb9ba40",
+  "created_at": "2015-05-01T01:13:20.584Z",
+  "modified_at": "2015-06-30T05:03:40.754Z",
+  "audit_data": {
+  }
+}
+```
+
+
+Once you have found the list of audits that you'd like to retrieve, you can fetch them individually using the
+`https://api.safetyculture.io/audits/<audit_id>` endpoint. You can use the audit ID retrieved from a previous search, or
+by opening it in the SafetyCulture website to edit and looking at the URL, e.g.:
+
+`https://app.safetyculture.io/#/iauditor/audits/audit_01ca38a821504cda885736cccbb9ba40`
+
+The JSON returned from this endpoint is a complete representation of the audit data, including the template that it was
+based from. A description of the audit JSON format can be found in the [Get Audit](#get-audit) reference.
+
+> The audit will also contain media attached to particular items:
+
+```json
+    {
+      "media": [
+        {
+          "date_created": "2015-06-24T22:59:59.000Z",
+          "file_ext": "jpg",
+          "label": "no label",
+          "media_id": "9E3BD015-6275-4668-BAF1-296B2F38444C",
+          "href": "https://api.safetyculture.io/audits/audit_01ca38a821504cda885736cccbb9ba40/media/9E3BD015-6275-4668-BAF1-296B2F38444C"
+        }
+      ]
+    }
+```
+
+A particular section of interest is the media section as you can see in the snippet. These references can be used to
+determine how to retrieve the media from the API.
 
 ## Retrieving media from an audit
 
-...
+> Use the media IDs from a previously retrieved audit to find the URL to retrieve it via the API:
+
+```shell
+curl "https://api.safetyculture.io/audits/audit_01ca38a821504cda885736cccbb9ba40/media/9E3BD015-6275-4668-BAF1-296B2F38444C" \
+  -o 9E3BD015-6275-4668-BAF1-296B2F38444C.jpg \
+  -H "Authorization: Bearer ..."
+```
+
+> In this case, the response will not be JSON, but the actual media file with an appropriate `Content-Type` header.
+
+After retrieving the audits that you would like to use, you may want to retrieve their associated media (including 
+photos, images, drawings and signatures). To fetch a piece of media, you will need the audit ID, and the media ID within
+the audit which can be retrieved from the audit JSON as described above.
+
+The media is downloaded directly, so you should save the output to a file with an appropriate name. For example, you
+can use the values from the media item in the audit JSON to construct the filename `<media_id>.<file_ext>`.
+
+Repeat the request for as many of the media items in the audit that you need.
 
 ## Next steps
 
-...
+This concludes a basic walkthrough of the audit retrieval methods of the SafetyCulture API. Read on to the following
+sections to learn about all of the available requests and parameters, or take a look at the [Use Cases](#use-cases)
+for examples of API tasks that you might like to try.
+
+<aside class="success">
+If you have any questions, please contact 
+<a href="http://www.safetyculture.io/support/safetyculture/contact">SafetyCulture Support</a>.
+</aside>
 
 # Authentication
 
@@ -201,7 +276,7 @@ field |  | ...
 modified_before | | ...
 modified_after | | ...
 
-## Get a Specific Audit
+## Get Audit
 
 ```shell
 curl "https://api.safetyculture.io/audits/audit_01ca38a821504cda885736cccbb9ba40" \
@@ -213,7 +288,7 @@ curl "https://api.safetyculture.io/audits/audit_01ca38a821504cda885736cccbb9ba40
 ```json
 {
   "template_id": "template_BB29F82814B64F559A33BF7CAA519787",
-  "audit_id": "audit_a4a21f3a43224ec294fd8a38e25edf47",
+  "audit_id": "audit_01ca38a821504cda885736cccbb9ba40",
   "created_at": "2015-05-01T01:13:20.584Z",
   "modified_at": "2015-06-30T05:03:40.754Z",
   "audit_data": {
@@ -224,6 +299,8 @@ curl "https://api.safetyculture.io/audits/audit_01ca38a821504cda885736cccbb9ba40
 > The full JSON object is much larger, including information in the `audit_data` and other fields.
 
 This endpoint retrieves a specific audit.
+
+...
 
 ### HTTP Request
 
