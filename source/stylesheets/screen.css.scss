@@ -653,15 +653,9 @@ html, body {
           
           text-decoration: none;
           &:hover{
-            color: yellow;
+            background-color: #003C68;
           }
         } 
-        &.index, &.oa, &.mb, &.sso{
-          a{
-            color: #FED863;
-            font-weight: bold;
-          }
-        }
       }
     }
     .logo-wrapper{
@@ -718,5 +712,58 @@ body.index{
     &>h1, &>h2, &>h3, &>h4, &>h5, &>h6, &>p, &>table, &>ul, &>ol, &>aside, &>dl {
       margin-right: 0;
     }
+  }
+}
+
+@mixin highLigthtNavItem {
+  color: #FED863;
+  font-weight: bold;
+  background-color: #003C68;
+}
+
+body{
+  &.index{ 
+    .layout-navbar{    
+      ul{
+        li.index{
+          a{
+            @include highLigthtNavItem;
+          }
+        }
+      }
+    }     
+  }
+  &.oa{ 
+    .layout-navbar{    
+      ul{
+        li.oa{
+          a{
+            @include highLigthtNavItem;
+          }
+        }
+      }
+    }     
+  }
+  &.mb{ 
+    .layout-navbar{    
+      ul{
+        li.mb{
+          a{
+            @include highLigthtNavItem;
+          }
+        }
+      }
+    }     
+  }
+  &.sso{ 
+    .layout-navbar{    
+      ul{
+        li.sso{
+          a{
+            @include highLigthtNavItem;
+          }
+        }
+      }
+    }     
   }
 }
