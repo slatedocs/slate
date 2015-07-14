@@ -11,7 +11,7 @@ includes:
 search: true
 ---
 
-<h1 id="LaunchPad">
+<h1 id="sso">
   LaunchPad
   <img src="/images/launchpad_landscape.png" alt="" height="50">
 </h1>
