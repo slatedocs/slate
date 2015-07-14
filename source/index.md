@@ -17,6 +17,8 @@ search: true
 
 # Introduction
 
+> As you scroll through the page, you can follow these code snippets to try the API for yourself.
+
 The SafetyCulture API gives you direct access to your data in the SafetyCulture platform.
 
 The API supports read-only access to your audit data and attached images or media. Audits can be retrieved individually,
@@ -120,7 +122,15 @@ To search for audits using the API, make a GET request to the `https://api.safet
 By default the audits will be returned in ascending order from the earliest to latest, limited to the first 1000 audits.
 
 You can pass the list of fields that you want included, as well as a number of other parameters to narrow the request.
-For more information on the available options, see the [Search Audits](#search-audits) reference.
+For more information on the available search options, see the [Search Audits](#search-audits) reference.
+
+> You can also search available audits in a given period of time:
+
+```shell
+curl "https://api.safetyculture.io/audits/search?field=audit_id&field=modified_at&modified_after=2015-03-17T03:16:31.072Z&modified_before=2015-04-01T00:00:00.000Z" \
+  -H "Authorization: Bearer ..."
+```
+
 
 <aside class="notice">
 You must pass at least the audit_id field to the request, or you will receive a 400 HTTP error code indicating a bad
