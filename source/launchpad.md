@@ -1,5 +1,5 @@
 ---
-title: API Reference
+title: LaunchPad API Reference
 
 language_tabs:
   - ruby
@@ -11,8 +11,8 @@ includes:
 search: true
 ---
 
-<h1 id="sso">
-  Single-Sign-On
+<h1 id="LaunchPad">
+  LaunchPad
   <img src="/images/launchpad_landscape.png" alt="" height="50">
 </h1>
 
@@ -34,8 +34,9 @@ There are two parts of client-facing capabilities you might be interested about 
 ## Conceptual Model and Terminology
 
 The following section discusses data models used internally by, and/or exposed externally from the Faria LaunchPad Portal.
-
-![LaunchPad Domain Model](images/sso-domain-model.png)
+<p>
+<img src= '/images/sso-domain-model.png'>
+</p>
 
 * **Credential:** With a canonical master e-mail address this represents the Master Identity, which is linked to a Person at all times. Using the Master Identity, an user can sign into the Faria LaunchPad Portal directly, and place forward authentication requests against all linked Client Applications using Identities available to their linked Person.
 

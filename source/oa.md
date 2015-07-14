@@ -28,7 +28,7 @@ The API token should be generated manually via Settings > Integrations. Firstly 
 
 ![API screenshot](/images/apiscreenshot.png)
 
-Here’s an example using curl:
+> Here’s an example using curl:
 
 ``` bash
 curl https://{school subdomain}.openapply.com/api/v1/students?auth_token=2a8b196ee0af6cfa3509961fb573a8a3
@@ -38,12 +38,16 @@ curl https://{school subdomain}.openapply.com/api/v1/students?auth_token=2a8b196
 
 The API request Host url is:
 
+> Api request Host url
+
 ``` bash
 https://{school subdomain}.openapply.com/api/v1
 ```
 
 All the requests access resources from this API entry point with the authentication token.
 For example, when accessing Student resources:
+
+> Accessing Student resources
 
 ``` bash
 GET https://{school subdomain}.openapply.com/api/v1/students? auth_token=2a8b196ee0af6cfa3509961fb573a8a3
@@ -81,17 +85,20 @@ Return up to 1000 (default is 100) students are sorted by id. Response also incl
 <tr><td><b>since_date</b><br>(optional)</td><td>Return results with update greater than the speciﬁed date or time, e.g: 2013-09-23 or 2013-09-25 02:10:39.</td></tr>
 </table>
 
-Example Request
+> Example Request
 
 ``` bash
 GET https://{school subdomain}.openapply.com/api/v1/students
 ```
 
-Response:
+> Example Response:
 
+
+``` bash
 HTTP/1.1 200 OK
+```
 
-``` json
+```json
 {
   "students": [
     {
@@ -160,6 +167,8 @@ HTTP/1.1 200 OK
 
 ## Retrieve Student by ID
 
+> Retrieve Student by ID
+
 ``` bash
 GET students/:id
 ```
@@ -171,17 +180,18 @@ Return a single student with custom fields of the application form, speciﬁed b
 <tr><td><b>id</b><br>(required)</td><td>The numerical ID of the desired student.</td></tr>
 </table>
 
-Example Request
+> Example Request
 
 ``` bash
 GET https://{school subdomain}.openapply.com/api/v1/students/1
 ```
 
-Response:
+> Example Response:
 
 ``` bash
 HTTP/1.1 200 OK
 ```
+
 ``` json
 {
   "user": {
@@ -250,6 +260,8 @@ HTTP/1.1 200 OK
 
 ## Update status of student
 
+> Update status of student 
+
 ``` bash
 PUT students/:id/status
 ```
@@ -262,16 +274,18 @@ Updates the status of an individual student​
 <tr><td><b>status</b><br>(required)</td><td>The status value is pre-defined and can be matched to the following statuses</td></tr>
 </table>
 
-Example Request
+> Example Request
 
 ``` bash
 PUT https://{school subdomain}.openapply.com/api/v1/students/1/status
 PUT Data status=Applied
 ```
 
-Response:
+> Response:
 
+```
 HTTP/1.1 200 OK
+```
 
 ``` json
 {
@@ -288,9 +302,11 @@ HTTP/1.1 200 OK
 }
 ```
 
-If the update fails, the response will be​
+> If the update fails, the response will be​
 
+```
 HTTP/1.1 400 Bad Request
+```
 
 ``` json
 { "errors": "Cannot update status." }
@@ -312,6 +328,8 @@ The status value is pre-deﬁned and can be matched to the following statuses
 
 ## Retrieve Student's Payment Information
 
+> Retrieve Student's Payment Information
+
 ``` bash
 GET students/:id/payments
 ```
@@ -323,15 +341,17 @@ Return payment information of a student, speciﬁed by the student id parameter.
 <tr><td><b>id</b><br>(required)</td><td>The numerical ID of the desired student.</td></tr>
 </table>
 
-Example Request
+> Example Request
 
 ``` bash
 GET https://{school subdomain}.openapply.com/api/v1/students/1/payments
 ```
 
-Response:
+> Response:
 
+```
 HTTP/1.1 200 OK
+```
 
 ``` json
 {

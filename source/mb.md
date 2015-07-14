@@ -59,7 +59,7 @@ If a request fails, the error can be returned as an HTTP status code from the ra
 
 # Users Data Reference
 
-### User Model
+## User Model
 
 This is the most common type of request to automate creation of new user accounts.​
 
@@ -164,13 +164,17 @@ For example, when a new student applies to the school, they are admitted on [Ope
 |nationality3 |string | The user's third nationality|
 |nationality4 |string | The user's fourth nationality|
 
-### New User Creation
+## New User Creation
 
 POST /api/users
 
 Creates a new user on ManageBac.
 
 > Example request for a student:
+
+```
+POST /api/users
+```
 
 ``` json
 {
@@ -346,33 +350,44 @@ homeroom advisor mapping.
 
 > Example response to create a user account:
 
+```bash
 HTTP/1.1 200 OK
+```
 
 ``` json
 {
  "status": "Success",
  "user_id": "10565703"
 }
+
 ```
 
 > Example response with incorrect input data:
 
+```bash
 HTTP/1.1 400 Bad Request
+```
 
 ``` json
 {
  "status": "Error",
  "errors": "Invalid user data: Email has already been taken, Student ID must be unique."
 }
+
 ```
 
-### Retrieve Users
+## Retrieve Users
 
 GET /api/users
 
 Retrieves all users with basic information. This includes User ID,  which can be used to access individual user information.
 
+
 > Retrieve All Users
+
+```bash
+ Get/api/users
+```
 
 ``` json
 {
@@ -420,8 +435,14 @@ Retrieves all users with basic information. This includes User ID,  which can be
 ```
 
 <p>GET /api/users/{user_id}</p>
+Retrieves a specifc user.
 
-> Retrieves a specific user.
+
+> Retrieves a specific user
+
+```
+GET /api/users/{user_id}
+```
 
 ```json
 {
@@ -467,8 +488,13 @@ Retrieves all users with basic information. This includes User ID,  which can be
 ```
 
 GET /api/users/?type={ Student | Parent | Teacher(Advisor)}
+Retrieves a set of users with a specific type.
 
 > Retrieves a set of users with a specific user type.
+
+```
+GET /api/users/?type={ Student | Parent | Teacher(Advisor)}
+```
 
 ``` json
 {
@@ -524,13 +550,18 @@ GET /api/users/?type={ Student | Parent | Teacher(Advisor)}
 }
 ```
 
-### Update Users
+## Update Users
 
 <p>PUT /api/users/{user_id}</p>
 
 Updates student information using the <a>{user_id}</a> as the key.
 
 > Example of updating student information and assigning the student to multiple classes.:
+
+
+```
+PUT /api/users/{user_id}
+```
 
 ``` json
 {
@@ -577,8 +608,12 @@ Updates student information using the <a>{user_id}</a> as the key.
 
 
 
-HTTP/1.1 200 OK
 > Example response to update a user account:
+
+```
+HTTP/1.1 200 OK
+```
+
 ``` json
 {
  "status": "Successfully updated."
@@ -587,7 +622,9 @@ HTTP/1.1 200 OK
 
 > Example response with incorrect input data:
 
+```
 HTTP/1.1 400 Bad Request
+```
 
 ``` json
 {
@@ -602,9 +639,13 @@ HTTP/1.1 400 Bad Request
 
 GET /api/ib_groups
 
-Retrieves the school's IB Groups’ basic information. This includes ``ib_group_id``, which should be used in the API functions below.​
+Retrieves the school's IB Groups’ basic information. This includes `ib_group_id`, which should be used in the API functions below.​
 
 > IB Groups' basic information
+
+```
+GET /api/ib_groups
+```
 
 ``` json
 {
@@ -719,14 +760,17 @@ Retrieves the school's IB Groups’ basic information. This includes ``ib_group_
 
 ```
 
-Retrieves List of IB Group students
+### Retrieves List of IB Group students
 
 <p>GET /api/groups/{ib_group_id}/members</p>
 
 > Retrieves list of IB Group students​
 
+```
+GET /api/groups/{ib_group_id}/members
+```
+
 ``` 
-json
 {
     "members": [
         {
@@ -772,11 +816,16 @@ json
 
 ```
 
-### Add members to IB Group
+## Add members to IB Group
 
 <p>POST /api/groups/{ib_group_id}/add_members</p>
+Adds users to the specific group using Users IDs.
 
 > Adds users to the specific group using the Users IDs.
+
+```
+POST /api/groups/{ib_group_id}/add_members
+```
 
 ``` json
 {
@@ -786,7 +835,9 @@ json
 
 > Example response to update a user account:
 
+```
 HTTP/1.1 200 OK
+```
 
 ``` json
 {
@@ -796,7 +847,9 @@ HTTP/1.1 200 OK
 
 > Example response with incorrect input data:
 
+```
 HTTP/1.1 400 Bad Request
+```
 
 ``` json
 {
@@ -805,12 +858,17 @@ HTTP/1.1 400 Bad Request
 }
 ```
 
-### Remove members from the IB Group
+## Remove members from the IB Group
 
 
 <p>PUT /api/groups/{ib_group_id}/remove_members</p>
+Removes students from the specific IB group using the Users IDs.
 
 > Removes students from the specific IB group using the Users IDs.
+
+```
+PUT /api/groups/{ib_group_id}/remove_members
+```
 
 ``` json
 {
@@ -820,7 +878,9 @@ HTTP/1.1 400 Bad Request
 
 > Example response to update a user account:
 
+```
 HTTP/1.1 200 OK
+```
 
 ``` json
 {
@@ -828,9 +888,11 @@ HTTP/1.1 200 OK
 }
 ```
 
-Example response with incorrect input data:
+> Example response with incorrect input data:
 
+```
 HTTP/1.1 400 Bad Request
+```
 
 ``` json
 {
@@ -849,6 +911,10 @@ Retrieves all Classes with basic information.
 Note: By default, classes are sorted alphabetically by name if they can't be sorted by subject group.
 
 > All classes with basic information
+
+```
+GET /api/classes
+```
 
 ``` json
 {
@@ -1292,11 +1358,16 @@ Note: By default, classes are sorted alphabetically by name if they can't be sor
 
 ```
 
-### Retrieve Classes' members​
+## Retrieve Classes' members​
 
 <p>GET /api/groups/{class_id}/members</p>
+Retrieves the List of Class students.
 
-Retrieves the list of Class students.
+> List of Class students.
+
+```
+GET /api/groups/{class_id}/members
+```
 
 ``` json
 {
@@ -1343,11 +1414,17 @@ Retrieves the list of Class students.
 }
 ```
 
-### Add members to Class
+## Add members to Class
 
 <p>POST /api/groups/{class_id}/add_members</p>
-
 Adds users to the specific class using the Users IDs.
+
+
+> Adds users to the specific class
+
+```
+POST /api/groups/{class_id}/add_members
+```
 
 ``` json
 {
@@ -1355,9 +1432,11 @@ Adds users to the specific class using the Users IDs.
 }
 ```
 
-Example response to update a user account:
+> Example response to update a user account:
 
+```
 HTTP/1.1 200 OK
+```
 
 ``` json
 {
@@ -1365,9 +1444,11 @@ HTTP/1.1 200 OK
 }
 ```
 
-Example response with incorrect input data:
+> Example response with incorrect input data:
 
+```
 HTTP/1.1 400 Bad Request
+```
 
 ``` json
 {
@@ -1376,11 +1457,16 @@ HTTP/1.1 400 Bad Request
 }
 ```
 
-### Remove members from Class​
+## Remove members from Class​
 
 <p>PUT /api/groups/{class_id}/remove_members</p>
-
 Removes users from a specific class using the User IDs.
+
+> Removes users from a specific class
+
+```
+PUT /api/groups/{class_id}/remove_members
+```
 
 ``` json
 {
@@ -1388,9 +1474,11 @@ Removes users from a specific class using the User IDs.
 }
 ```
 
-Example response to update a user account:
+> Example response to update a user account:
 
+```
 HTTP/1.1 200 OK
+```
 
 ``` json
 {
@@ -1398,9 +1486,11 @@ HTTP/1.1 200 OK
 }
 ```
 
-Example response with incorrect input data:
+> Example response with incorrect input data:
 
+```
 HTTP/1.1 400 Bad Request
+```
 
 ``` json
 {

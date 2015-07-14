@@ -1,5 +1,5 @@
 ---
-title: API Reference
+title: Faria API Reference
 
 language_tabs:
   - ruby
@@ -31,16 +31,16 @@ The listed API grants you access to the entire Faria Stack. Faria provides integ
 
 Faria provides integrated information systems for international education and business.​
 
-[ManageBac](https://www.managebac.com) our flagship service is the leading planning, assessment and reporting system for IB world schools founded by three former IB Diploma students in 2007.
+[ManageBac](http://www.managebac.com) our flagship service is the leading planning, assessment and reporting system for IB world schools founded by three former IB Diploma students in 2007.
 
-Today [ManageBac](https://www.managebac.com) is the trusted choice of 8 in 10 IB Diploma students at over 1,300 leading schools.
+Today [ManageBac](http://www.managebac.com) is the trusted choice of 8 in 10 IB Diploma students at over 1,300 leading schools.
 
-After nearly seven years of continuous development, we have re-imagined the school information system and we are proud to announce our integrated suite together with [OpenApply](www.openapply.com) for admissions & enrollment and InterSIS for school information management.
+After nearly seven years of continuous development, we have re-imagined the school information system and we are proud to announce our integrated suite together with [OpenApply](http://www.openapply.com) for admissions & enrollment and InterSIS for school information management.
 
-[ManageBac](https://www.managebac.com) , [OpenApply](www.openapply.com) and [iSAMS](www.isams.co.uk) provide an integrated cloud-based solution for international schools with curriculum planning, assessment & reporting and a robust core management information system linked with two-way data synchronisation and LaunchPad single-sign-on.
+[ManageBac](http://www.managebac.com) , [OpenApply](http://www.openapply.com) and [iSAMS](http://www.isams.co.uk) provide an integrated cloud-based solution for international schools with curriculum planning, assessment & reporting and a robust core management information system linked with two-way data synchronisation and LaunchPad single-sign-on.
 
 
-LaunchPad for Single-Sign-On provides a single account that give users seamless, one-click access to iSAMS, ManageBac and OpenApply plus our suite of integration partners such as Finalsite CMS or School Cloud Systems (Room Booking Systems & Parent Evening Systems).
+LaunchPad for Single-Sign-On provides a single account that give users seamless, one-click access to iSAMS, [ManageBac](http://www.managebac.com) and [OpenApply](http://www.openapply.com) plus our suite of integration partners such as Finalsite CMS or School Cloud Systems (Room Booking Systems & Parent Evening Systems).
 
 Optionally, you can connect LaunchPad to your local Active Directory, Office365 or GoogleApps for Education account to link user accounts and to streamline provisioning.
 
