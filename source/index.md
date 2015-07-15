@@ -41,8 +41,6 @@ For more information on the structure of each request, see to the reference sect
 
 ## Generating an Authorisation Token
 
-> Create an authorisation token using your SafetyCulture username and password:
-
 ```shell
 curl \
   -X POST \
@@ -56,8 +54,6 @@ applications.
 
 Following the example, you will POST the `username` and `password` fields along with the field `grant_type` with a value
 of `password` to the `https://api.safetyculture.io/auth` endpoint.
-
-> The response will look like the following:
 
 ```json
 {
@@ -75,8 +71,6 @@ Keep the token safe! You will not be able to retrieve it again without generatin
 
 ## Authorising a Request
 
-> Search available audits using the authorisation token:
-
 ```shell
 curl "https://api.safetyculture.io/audits/search?field=audit_id" \
   -H "Authorization: Bearer b7f8f791920c1618ace0e24b4d52ce260473dad870e7bd56b869f8d2f26e554d"
@@ -90,8 +84,6 @@ If the header is forgotten, then the API will respond with a 401 HTTP error code
 authorised.
 
 ## Searching for available audits
-
-> Search available audits:
 
 ```shell
 curl "https://api.safetyculture.io/audits/search?field=audit_id&field=modified_at" \
@@ -139,8 +131,6 @@ request was made.
 
 ## Retrieving an audit
 
-> Retrieving a single audit
-
 ```shell
 curl "https://api.safetyculture.io/audits/audit_01ca38a821504cda885736cccbb9ba40" \
   -H "Authorization: Bearer ..."
@@ -158,7 +148,6 @@ curl "https://api.safetyculture.io/audits/audit_01ca38a821504cda885736cccbb9ba40
   }
 }
 ```
-
 
 Once you have found the list of audits that you'd like to retrieve, you can fetch them individually using the
 `https://api.safetyculture.io/audits/<audit_id>` endpoint. You can use the audit ID retrieved from a previous search, or
@@ -189,8 +178,6 @@ A particular section of interest is the media section as you can see in the snip
 determine how to retrieve the media from the API.
 
 ## Retrieving media from an audit
-
-> Use the media IDs from a previously retrieved audit to find the URL to retrieve it via the API:
 
 ```shell
 curl "https://api.safetyculture.io/audits/audit_01ca38a821504cda885736cccbb9ba40/media/9E3BD015-6275-4668-BAF1-296B2F38444C" \
@@ -268,9 +255,7 @@ any API requests within that period then it will not expire until it is revoked 
 There is a limit on the number of personal access tokens you can create. You should only create them as needed, and
 revoke them when they are no longer in use.
 
-## Generating an Authorisation Token
-
-> Create an authorisation token using your SafetyCulture username and password:
+## Request Authorisation Token
 
 ```shell
 curl \
