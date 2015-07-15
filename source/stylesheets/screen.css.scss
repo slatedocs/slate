@@ -4,7 +4,7 @@
 @import 'variables';
 @import 'syntax';
 @import 'icon-font';
-
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700);
 /*
 Copyright 2008-2013 Concur Technologies, Inc.
 
@@ -24,6 +24,10 @@ under the License.
 ////////////////////////////////////////////////////////////////////////////////
 // GENERAL STUFF
 ////////////////////////////////////////////////////////////////////////////////
+
+.open-sans{
+  font-family: 'Open Sans', sans-serif;
+}
 
 html, body {
   color: $main-text;
@@ -68,7 +72,7 @@ html, body {
   left: 0;
   bottom: 0;
   width: $nav-width;
-  background-color: $main-bg;
+  background-color: #F0F0F0;
   font-size: 13px;
   margin-top: 50px;
   font-weight: bold;
@@ -731,7 +735,16 @@ body{
           }
         }
       }
-    }     
+    }  
+    h1{
+      color: #004170;
+    }
+    .layout-content{
+      a{
+        color: #3989F6;
+        
+      }
+    }
   }
   &.oa{ 
     .layout-navbar{    
