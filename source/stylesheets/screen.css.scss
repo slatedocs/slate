@@ -755,10 +755,10 @@ body{
       }
     }     
   }
-  &.sso{ 
+  &.launchpad{ 
     .layout-navbar{    
       ul{
-        li.sso{
+        li.launchpad{
           a{
             @include highLigthtNavItem;
           }
