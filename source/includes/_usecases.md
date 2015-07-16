@@ -6,3 +6,6 @@ The following sections describe some common use cases for the API and how to bes
 
 ...
 
+## Getting modified audits
+
+...

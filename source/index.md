@@ -128,6 +128,14 @@ curl "https://api.safetyculture.io/audits/search"\
   -H "Authorization: Bearer ..."
 ```
 
+> Or search audits based on a particular template:
+
+```shell
+curl "https://api.safetyculture.io/audits/search?field=audit_id"\
+"&template=template_37afc5890aa94e778bbcde4fc4cbe480" \
+  -H "Authorization: Bearer ..."
+```
+
 
 <aside class="notice">
 You must pass at least the audit_id field to the request, or you will receive a 400 HTTP error code indicating a bad
@@ -331,7 +339,8 @@ access to the SafetyCulture API.
 
 # Audits
 
-...
+The SafetyCulture API contains a read-only interface to your audit data. There are methods to retrieve audits, their
+media, and to search for particular audits.
 
 ## Search Audits
 
@@ -359,7 +368,84 @@ curl "https://api.safetyculture.io/audits/search?field=audit_id&field=modified_a
 }
 ```
 
-...
+The audit search endpoint allows you to retrieve the audit IDs and modification date of audits that meet a certain
+criteria. It is possible to request audits between given dates, based on a particular template, and whether or not to
+include archived audits.
+
+This allows you to find particular audits, to gradually retrieve the audit IDs of every audit that you have access to,
+or to retrieve audits updated since your last search.
+
+In the request, you must specify the fields that you want to return. The field `audit_id` is required, but you can also
+include `modified_at`. Multiple `field` elements can be provided.
+
+> Searching by modification date:
+
+```shell
+curl "https://api.safetyculture.io/audits/search"\
+"?field=audit_id&field=modified_at"\
+"&modified_after=2015-01-01T00:00:00.000Z" \
+  -H "Authorization: Bearer ..."
+
+curl "https://api.safetyculture.io/audits/search"\
+"?field=audit_id&field=modified_at"\
+"&modified_after=2015-01-01T00:00:00.000Z"\
+"&modified_before=2015-04-01T00:00:00.000Z" \
+  -H "Authorization: Bearer ..."
+```
+
+To search between dates, use the `modified_before` and `modified_after` parameters. This will find audits between
+the dates given.
+
+The dates should be formatted according to ISO 8601 and include the date, time and timezone. For example,
+`2015-04-01T00:00:00.000Z` or `2015-04-01T00:00+1000`.
+
+<aside class="notice">
+Be aware that if you include a timezone, you must URL encode the <code>+</code> sign as <code>%2B</code> in any URL
+parameters.
+</aside>
+
+The modification dates used for searching are related to SafetyCulture's cloud storage and include latest sync times,
+modifications through the SafetyCulture website, and other system modifications. This means that the date may not
+match the last date that the audit was modified. This will ensure that you may consistently find all of the audits
+modified since your last search, even if they are synced some time after they are last changed.
+
+> Searching by template:
+
+```shell
+curl "https://api.safetyculture.io/audits/search?field=audit_id"\
+"&template=template_37afc5890aa94e778bbcde4fc4cbe480" \
+  -H "Authorization: Bearer ..."
+
+curl "https://api.safetyculture.io/audits/search?field=audit_id"\
+"&template=template_37afc5890aa94e778bbcde4fc4cbe480"\
+"&template=template_FCB63052F0D445AEB52F25DE6BEB8D40" \
+  -H "Authorization: Bearer ..."
+```
+
+Searching by template allows you to find all of the audits created from a certain template. You may specify one or more
+`template` parameters to search for. The template ID can be obtained from an audit, or by opening it for editing in
+SafetyCulture, e.g.: `https://app.safetyculture.io/#/iauditor/templates/<template_id>`
+
+> Including archived audits:
+
+```shell
+curl "https://api.safetyculture.io/audits/search?field=audit_id&archived=both" \
+  -H "Authorization: Bearer ..."
+```
+
+By default, archived audits are not included in the search. The `archived` parameter allows you to decide whether to
+search only archived audits (`true`), not search archived audits (`false`), or search all audits including those
+archived (`both`).
+
+The number of results returned defaults to 1000 at a time, which is the maximum allowed. It is possible to customise
+the `limit` parameter to retrieve fewer audits in each request. The limit is a maximum, and fewer audits may be returned
+than the limit, even if there are more available within the search parameters. This can occur if two or more audits
+have the same `modified_at` across the limit boundary, in which case no audits with that timestamp are returned,
+allowing you to correctly retrieve the next "page" using the `modified_after` parameter.
+
+The audits are returned in ascending order from the earliest first, up to the limit specified. More audits can be
+retrieved by repeating the search, using the `modified_at` of the last audit as the `modified_after` parameter to the
+next request.
 
 ### HTTP Request
 
@@ -367,11 +453,30 @@ curl "https://api.safetyculture.io/audits/search?field=audit_id&field=modified_a
 
 ### Query Parameters
 
-Parameter | Default | Description
---------- | ------- | -----------
-field |  | ...
-modified_before | | ...
-modified_after | | ...
+Parameter         | Description
+---------         | -----------
+`field`           | Field(s) of the audit to retrieve. Valid values are `audit_id` and `modified_at`. Multiple field parameters may be specified. `audit_id` must be specified.
+`modified_before` | Only search for audits where `modified_at` is before the given date. The date should be specified in full form ISO 8601 format, e.g. `2015-04-01T00:00:00.000Z`
+`modified_after`  | Only search for audits where `modified_at` is after the given date. The date should be specified in full form ISO 8601 format, e.g. `2015-04-01T00:00:00.000Z`
+`template`        | Only search for audits that were created from the given template. For example: `template_37afc5890aa94e778bbcde4fc4cbe480`
+`archived`        | Whether to search archived audits. Valid values are `true` (search only archived audits), `false` (do not search archived audits) or `both` (search all audits including those archived). The default is `false`.
+`limit`           | The maximum number of audits to retrieve. The maximum value is `1000`. The default is also `1000`.
+
+### Response
+
+The response will have the content type `application/json` and include the following parameters:
+
+Parameter      | Description
+---------      | -----------
+`audits`       | An array of audits matching the search results. Each audit is an object containing the fields specified in the request.
+`count`        | The number of audits returned by this request.
+`total`        | The total number of audits that could have been returned by this search if it were unlimited.
+
+<aside class="notice">
+If the <code>total</code> is greater than the <code>count</code>, more audits can be retrieved by either increasing the
+<code>limit</code>, or repeating the search with a new <code>modified_after</code> value.
+</aside>
+
 
 ## Get Audit
 
