@@ -172,8 +172,9 @@ Not yet, but we're working on it! Angular is the next framework that we'll be go
 # Integrations
 
 <s>Keen IO</s>
-~~Google Analytics~~
-~~Mixpanel~~
+
+<s>Google Analytics</s>
+<s>Mixpanel</s>
 Intercom
 KISSmetrics
 Mailchimp
