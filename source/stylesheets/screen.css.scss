@@ -188,6 +188,11 @@ html, body {
     .tocify-item>a {
       padding-left: $nav-padding + $nav-indent;
       font-size: 12px;
+      opacity: 0.5;
+    }
+    li.tocify-focus>a {
+      opacity: 1;
+      color: white;
     }
 
     // for embossed look:
@@ -363,7 +368,7 @@ html, body {
     margin-bottom: $h1-margin-bottom;
     margin-top: 2em;
     border-top: 1px solid #ddd;
-    background-image: linear-gradient(to bottom, #fff, #f9f9f9);
+    background-color: white;
   }
 
   h1:first-child, div:first-child + h1 {
@@ -476,6 +481,7 @@ html, body {
     margin-bottom: 1.5em;
     background: $aside-notice-bg;
     line-height: 1.6;
+    color: white;
 
     &.warning {
       background-color: $aside-warning-bg;
