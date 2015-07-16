@@ -171,7 +171,7 @@ Not yet, but we're working on it! Angular is the next framework that we'll be go
 
 # Integrations
 
-~~Keen IO~~
+<s>Keen IO</s>
 ~~Google Analytics~~
 ~~Mixpanel~~
 Intercom
