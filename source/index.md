@@ -169,15 +169,21 @@ All of them! In Meteor (which is the only framework that's live), this is done b
 Not yet, but we're working on it! Angular is the next framework that we'll be going after.
 
 
-# Integrations
+# Integrations Roadmap
 
-<s>Keen IO</s>
+<s>Keen IO</s> - (6/29/15)
 
-<s>Google Analytics</s>
-<s>Mixpanel</s>
+<s>Google Analytics</s> - (6/29/15)
+
+<s>Mixpanel</s> - (7/16/15)
+
 Intercom
+
 KISSmetrics
+
 Mailchimp
+
 USERcycle
+
 Churnbee
 
