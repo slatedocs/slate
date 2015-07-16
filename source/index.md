@@ -44,7 +44,9 @@ For more information on the structure of each request, see to the reference sect
 ```shell
 curl \
   -X POST \
-  -d "username=example@safetyculture.io&password=secret&grant_type=password" \
+  -d username=example@safetyculture.io \
+  -d password=secret \
+  -d grant_type=password \
   "https://api.safetyculture.io/auth"
 ```
 
@@ -116,10 +118,13 @@ By default the audits will be returned in ascending order from the earliest to l
 You can pass the list of fields that you want included, as well as a number of other parameters to narrow the request.
 For more information on the available search options, see the [Search Audits](#search-audits) reference.
 
-> You can also search available audits in a given period of time:
+> Search available audits in a given period of time:
 
 ```shell
-curl "https://api.safetyculture.io/audits/search?field=audit_id&field=modified_at&modified_after=2015-03-17T03:16:31.072Z&modified_before=2015-04-01T00:00:00.000Z" \
+curl "https://api.safetyculture.io/audits/search"\
+"?field=audit_id&field=modified_at"\
+"&modified_after=2015-01-01T00:00:00.000Z"\
+"&modified_before=2015-04-01T00:00:00.000Z" \
   -H "Authorization: Bearer ..."
 ```
 
@@ -153,7 +158,7 @@ Once you have found the list of audits that you'd like to retrieve, you can fetc
 `https://api.safetyculture.io/audits/<audit_id>` endpoint. You can use the audit ID retrieved from a previous search, or
 by opening it in the SafetyCulture website to edit and looking at the URL, e.g.:
 
-`https://app.safetyculture.io/#/iauditor/audits/audit_01ca38a821504cda885736cccbb9ba40`
+`https://app.safetyculture.io/#/iauditor/audits/<audit_id>`
 
 The JSON returned from this endpoint is a complete representation of the audit data, including the template that it was
 based from. A description of the audit JSON format can be found in the [Get Audit](#get-audit) reference.
@@ -260,7 +265,9 @@ revoke them when they are no longer in use.
 ```shell
 curl \
   -X POST \
-  -d "username=example@safetyculture.io&password=secret&grant_type=password" \
+  -d username=example@safetyculture.io \
+  -d password=secret \
+  -d grant_type=password \
   "https://api.safetyculture.io/auth"
 ```
 
