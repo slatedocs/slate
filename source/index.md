@@ -68,7 +68,8 @@ The `access_token` is your secret token for authorising all requests to the API,
 as the username normally does.
 
 <aside class="notice">
-Keep the token safe! You will not be able to retrieve it again without generating a new token.
+Keep the token safe! You will not be able to retrieve it again without generating a new token, and you may only generate
+a limited number for a single account.
 </aside>
 
 ## Authorising a Request
