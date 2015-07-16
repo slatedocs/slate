@@ -9,6 +9,7 @@ toc_footers:
   - <a href='http://github.com/tripit/slate'>Documentation Powered by Slate</a>
 
 includes:
+  - audit
   - errors
   - usecases
 
@@ -170,7 +171,7 @@ by opening it in the SafetyCulture website to edit and looking at the URL, e.g.:
 `https://app.safetyculture.io/#/iauditor/audits/<audit_id>`
 
 The JSON returned from this endpoint is a complete representation of the audit data, including the template that it was
-based from. A description of the audit JSON format can be found in the [Get Audit](#get-audit) reference.
+based from. A description of the audit JSON format can be found in the [Audit Format](#audit-format) reference.
 
 > The audit will also contain media attached to particular items:
 
@@ -499,11 +500,11 @@ curl "https://api.safetyculture.io/audits/audit_01ca38a821504cda885736cccbb9ba40
 }
 ```
 
-> The full JSON object is much larger, including information in the `audit_data` and other fields.
+This endpoint retrieves a specific audit with the supplied audit ID. The audit response contains the information
+recorded in the audit, as well as relevant parts of the original template at the time the audit was created, and links
+to media.
 
-This endpoint retrieves a specific audit.
-
-...
+The full JSON object is much larger than the example here, including information in the `audit_data` and other fields.
 
 ### HTTP Request
 
@@ -513,5 +514,38 @@ This endpoint retrieves a specific audit.
 
 Parameter | Description
 --------- | -----------
-audit ID | The ID of the audit to retrieve
+audit ID  | The ID of the audit to retrieve
+
+### Response
+
+A description of the audit format can be found in the [Audit Format](#audit-format) section.
+
+## Get Media
+
+```shell
+curl "https://api.safetyculture.io/audits/audit_01ca38a821504cda885736cccbb9ba40/media/9E3BD015-6275-4668-BAF1-296B2F38444C" \
+  -o 9E3BD015-6275-4668-BAF1-296B2F38444C.jpg \
+  -H "Authorization: Bearer ..."
+```
+
+The media endpoint allows you retrieve the media items associated with a particular audit. These can be identified by
+the `href` elements in the media items of the audit data.
+
+The media is downloaded directly, so you should save the output to a file with an appropriate name. For example, you
+can use the values from the media item in the audit JSON to construct the filename `<media_id>.<file_ext>`.
+
+### HTTP Request
+
+`GET https://api.safetyculture.io/audits/<audit ID>/media/<media ID>`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+audit ID  | The ID of the audit to retrieve
+media ID  | The ID of the media within the audit to retrieve
+
+### Response
+
+The `Content-Type` will the MIME type associated with the media, and the body of the response is the media itself.
 
