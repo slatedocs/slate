@@ -378,7 +378,7 @@ This allows you to find particular audits, to gradually retrieve the audit IDs o
 or to retrieve audits updated since your last search.
 
 In the request, you must specify the fields that you want to return. The field `audit_id` is required, but you can also
-include `modified_at`. Multiple `field` elements can be provided.
+include `modified_at` and `template_id`. Multiple `field` elements can be provided.
 
 > Searching by modification date:
 
@@ -457,7 +457,7 @@ next request.
 
 Parameter         | Description
 ---------         | -----------
-`field`           | Field(s) of the audit to retrieve. Valid values are `audit_id` and `modified_at`. Multiple field parameters may be specified. `audit_id` must be specified.
+`field`           | Field(s) of the audit to retrieve. Valid values are `audit_id`, `template_id` and `modified_at`. Multiple field parameters may be specified. `audit_id` must be specified.
 `modified_before` | Only search for audits where `modified_at` is before the given date. The date should be specified in full form ISO 8601 format, e.g. `2015-04-01T00:00:00.000Z`
 `modified_after`  | Only search for audits where `modified_at` is after the given date. The date should be specified in full form ISO 8601 format, e.g. `2015-04-01T00:00:00.000Z`
 `template`        | Only search for audits that were created from the given template. For example: `template_37afc5890aa94e778bbcde4fc4cbe480`
