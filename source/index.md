@@ -460,7 +460,7 @@ Parameter         | Description
 `field`           | Field(s) of the audit to retrieve. Valid values are `audit_id`, `template_id` and `modified_at`. Multiple field parameters may be specified. `audit_id` must be specified.
 `modified_before` | Only search for audits where `modified_at` is before the given date. The date should be specified in full form ISO 8601 format, e.g. `2015-04-01T00:00:00.000Z`
 `modified_after`  | Only search for audits where `modified_at` is after the given date. The date should be specified in full form ISO 8601 format, e.g. `2015-04-01T00:00:00.000Z`
-`template`        | Only search for audits that were created from the given template. For example: `template_37afc5890aa94e778bbcde4fc4cbe480`
+`template`        | Only search for audits that were created from the given template(s). Multiple `template` parameters may be specified to search across multiple templates. e.g. `template=template_37afc5890aa94e778bbcde4fc4cbe480`
 `archived`        | Whether to search archived audits. Valid values are `true` (search only archived audits), `false` (do not search archived audits) or `both` (search all audits including those archived). The default is `false`.
 `limit`           | The maximum number of audits to retrieve. The maximum value is `1000`. The default is also `1000`.
 
