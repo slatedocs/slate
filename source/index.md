@@ -13,7 +13,7 @@ search: true
 
 # Introduction
 
-Welcome to the Stories API. You can use our API to access your publication's stories and to mark things as published.
+Welcome to the Contently API. You can use our API to access your publication's taxonomy, stories, and to mark stories as published.
 
 The current version of the API is v1. When backwards-incompatible changes are made to the API, we will bump the version number in the request path.
 
@@ -34,7 +34,7 @@ curl --get https://api.contently.com/v1/stories \
 
 > Make sure to replace `<API_KEY>` with your API key.
 
-You authenticate with the Stories API by specifying your publication's API key in the request header. The API key should be kept secret.
+You authenticate with the Contently API by specifying your publication's API key in the request header. The API key should be kept secret.
 
 To change or reset your API key reach out to your account manager.
 
@@ -81,7 +81,7 @@ curl --get https://api.contently.com/v1/stories \
        -d page=2
 ```
 
-Every response from an endpoint that returns a collection includes pagination information based on the request. This data can give you information about your previous request, but should not be used for traversing results (see 'Link Header' below)
+Every response from an endpoint that returns a collection includes pagination information based on the request. This data can give you information about your previous request, but should **not** be used for traversing results (for traversing results see 'Link Header' below).
 
 The following pagination information is included in the response header:
 
@@ -159,13 +159,16 @@ curl --get https://api.contently.com/v1/stories \
     "last_modified_at": 1421771582,
     "completed_at": 1421771582,
     "content": "<p>HTML body of story</p>",
-    "brief": "Story description text",
     "status": "completed",
     "url": "https://contently.com/stories/1",
     "story_attributes": [
       {
+        "publication_story_attribute_id": 1,
         "name": "Attribute name",
-        "values": ["Attribute value 1", "Attribute value 2"]
+        "values": [
+          { "id": 1, "name": "Attribute value 1" },
+          { "id": 2, "name": "Attribute value 2" }
+        ]
       }
     ],
     "assets": [
@@ -250,7 +253,7 @@ publish_at | The planned publish date for the story.
 published_at | The date the story was actually published or marked published.
 completed_at | The date the story was completed.
 created_at | The date the story was created.
-last_modified_at | The last time this story was edited (includes things like changing the title or brief, but also actions like marking published).
+last_modified_at | The last time this story was edited (includes things like changing the title, but also actions like marking published).
 
 ## Story details
 
@@ -304,13 +307,16 @@ Returns fields for the specified story.
   "last_modified_at": 1421771582,
   "completed_at": 1421771582,
   "content": "<p>HTML body of story</p>",
-  "brief": "Story description text",
   "status": "completed",
   "url": "https://contently.com/stories/1",
   "story_attributes": [
     {
+      "publication_story_attribute_id": 1,
       "name": "Attribute name",
-      "values": ["Attribute value 1", "Attribute value 2"]
+      "values": [
+        { "id": 1, "name": "Attribute value 1" },
+        { "id": 2, "name": "Attribute value 2" }
+      ]
     }
   ],
   "assets": [
@@ -330,7 +336,6 @@ Field name | Type | Description
 id | Integer | The unique identifier for the story.
 status | String | The current status of the story.
 title | String | The story title.
-brief | String | A description of the story and it's requirements.
 content | String (HTML) | The raw HTML of the story.
 url | String | A link to the story on the Contently platform.
 published_to_url | String | The URL where the story is published.
@@ -339,13 +344,13 @@ publish_at | Unix datetime | The date the story is planned to be published.
 published_at | Unix datetime | The date the story was actually published or marked published.
 completed_at | Unix datetime | The date the story was completed.
 created_at | Unix datetime | The date the story was created.
-last_modified_at | Unix datetime | The last time this story was edited (includes things like changing the title or brief, but also actions like marking published).
+last_modified_at | Unix datetime | The last time this story was edited (includes things like changing the title, but also actions like marking published).
 contributors | Array of Objs. | An array of the Contently users who worked on the story.
 creator | Obj. | The user who created the story.
 publication | Obj. | The publication includes the ID and name of the story's associated publication.
 assets | Array of Objs. | An array of images embedded in the story content.
 story_fields | Array of Objs. | An array of the story's associate story fields and their content (These are freeform and extensions of stories, things like excerpts and tweets).
-story_attributes | Array of Objs. | Each story attribute has a name (String) and an array of values (Also Strings). These are configured at a publication level and assigned to stories by users to categorize and desribe them.
+story_attributes | Array of Objs. | Each story attribute has a publication_story_attribute_id (Integer, the unique ID of the attribute from the publication taxonomy), a name (String, also defined at the publication level), and an array of values. These are configured at a publication level and assigned to stories by users to categorize and desribe them.
 
 ## Marking stories published
 
@@ -361,7 +366,7 @@ curl -X PUT https://api.contently.com/v1/stories/:id/mark_published \
 
 > If you are using cURL, you must also specify the Content-Length in the header (any value will do).
 
-**If you are integrating the Stories API with your CMS, it is vital that you notify the Contently platform that a story has been published. This allows us to display the published_to_url on the platform and provide analytics data for the story.**
+**If you are integrating the Contently API with your CMS, it is vital that you notify the Contently platform that a story has been published. This allows us to display the published_to_url on the platform and provide analytics data for the story.**
 
 This endpoint updates the specified story, changing its status to 'published' and adding an item to the story's audit log (visible on the Contently platform) documenting the change. It enables analytics tracking and makes sure that published data on the platform is always up to date. It returns the story object if the update succeeded or an error message otherwise.
 
@@ -383,3 +388,74 @@ To make publishing stories easier, we provide a webhook that will push stories t
 If security is a concern and you want to verify that Contently sent the webhook, you can simply use the story ID sent over (ignoring the rest of the request) to [request the story directly](#story-details) from our API. This will return the same information that we push to you via the webhook, but you will have initiated the request and specified the story based on the story ID initially pushed to you.
 
 Speak with your account manager to configure the webhook for your publication.
+
+# Taxonomy
+
+```shell
+# GET /taxonomy
+
+curl -X PUT https://api.contently.com/v1/taxonomy \
+       -H "Contently-Api-Key: <API_KEY>" \
+```
+
+> The response JSON is structured like this:
+
+```json
+{
+  "contributors":[
+    {
+      "id": 1,
+      "first_name": "Rando",
+      "last_name": "Calrissian",
+      "email": "rando@example.com"
+    }
+  ],
+  "story_fields": [
+    {
+      "id": 1,
+      "name": "Twitter"
+    }
+  ],
+  "publication_story_attributes": [
+    {
+      "id": 1,
+      "name": "Attribute name",
+      "values": [
+        { "id": 1, "name": "Attribute value 1" },
+        { "id": 2, "name": "Attribute value 2" }
+      ]
+    }
+  ]
+}
+```
+
+There is a single endpoint available for querying the taxonomy of your publication.
+
+`https://api.contently.com/v1/taxonomy`
+
+
+The *taxonomy* endpoint provides you with access to publication level data that helps you understand your stories in a broader context. It returns story attributes, story fields, and user data to enable mappings between data on the Contently platform and the respective fields on your side.
+
+### Users
+
+Field name | Type | Description
+---- | ---- | ----
+id | Integer | The unique identifier for the user.
+first_name | String | The user's first name.
+last_name | String | The user's last name.
+email | String | The user's unique email address.
+
+### Story fields
+
+Field name | Type | Description
+---- | ---- | ----
+id | Integer | The unique identifier for the story field.
+name | String | The name of the story field.
+
+### Publication story attributes
+
+Field name | Type | Description
+---- | ---- | ----
+id | Integer | The unique identifier for the story attribute.
+name | String | The name of the story attribute.
+values | Array | An array of all the possible values that can be assigned to a story for a given story attribute.
