@@ -44,8 +44,8 @@ Key                           | Type              | Description
 Key                           | Type              | Description
 ------------------------------|-------------------|---------------------------------------------------------------------
 `name`                        | String            | String name of the audit
-`score`               | Double            | A double of the current score of the audit
-`total_score`         | Double            | A double of the total score for the audit
+`score`                       | Double            | A double of the current score of the audit
+`total_score`                 | Double            | A double of the total score for the audit
 `date_started`                | String            | A long of the date that the audit was started
 `date_modified`               | String            | A long of the date that the audit was last modified
 `date_completed`              | String            | A long of the date the audit was completed
@@ -230,30 +230,30 @@ Key                           | Type              | Description
 `computed_field`              | String            |
 `condition`                   | String            |
 `element`                     | String            |
-`enable_date`                 | String            |
-`enable_signature_timestamp`  | String            |
-`enable_time`                 | String            |
+`enable_date`                 | String            | Toggles the date portion of an item containing a datetime
+`enable_signature_timestamp`  | String            | Toggles the timestamp set when filling in a signature field
+`enable_time`                 | String            | Toggles the time portion of an item containing a datetime
 `hide_barcode`                | String            |
-`increment`                   | String            |
-`is_mandatory`                | String            |
+`increment`                   | String            | Controls the increment jumps in slider items
+`is_mandatory`                | String            | Toggles whether the item has to have a response before the audit can be completed
 `label`                       | String            |
-`link`                        | String            |
-`locked`                      | String            |
-`max`                         | String            |
+`link`                        | String            | URL field in information items
+`locked`                      | String            | Toggles whether an asset item has been locked
+`max`                         | String            | Maximum value for a slider item
 `media`                       | String            |
 `media_visible_in_report`     | String            |
-`min`                         | String            |
+`min`                         | String            | Minimum value for a slider item
 `multi_selection`             | String            |
 `multiple_selection`          | String            |
 `required`                    | String            |
 `response_set`                | String            |
 `secure`                      | String            |
-`type`                        | String            |
-`url`                         | String            |
-`values`                      | String            |
+`type`                        | String            | The type of an information field. Currently text, media or link
+`url`                         | String            | *DEPRECATED - use link* URL field in information items
+`values`                      | String            | The item's response
 `visible_in_audit`            | String            |
 `visible_in_report`           | String            |
-`weighting`                   | String            |
+`weighting`                   | String            | The weight used for generating audit scores
 
 ### Responses
 ```json
@@ -350,3 +350,50 @@ Key                           | Type              | Description
 `media_id`                    | String            |
 `label`                       | String            |
 `href`                        | String            |
+
+## Asset
+```json
+{
+  "id": "",
+  "barcode": "",
+  "cost": 400,
+  "depreciation": 200,
+  "height": 200,
+  "width": 200,
+  "depth": 200,
+  "weight": 30,
+  "description": "",
+  "identifier": "",
+  "make": "",
+  "media_id": "",
+  "model": "",
+  "rev": "",
+  "serial_number": "",
+  "time_stamp": "",
+  "title": "",
+  "year_of_manufacture": "",
+  "custom_fields": "",
+}
+```
+
+Key                           | Type              | Description
+------------------------------|-------------------|---------------------------------------------------------------------
+`id`                          | String            |
+`barcode`                     | String            |
+`cost`                        | Number            |
+`depreciation`                | Number            |
+`height`                      | Number            |
+`width`                       | Number            |
+`depth`                       | Number            |
+`weight`                      | Number            |
+`description`                 | String            |
+`identifier`                  | String            |
+`make`                        | String            |
+`media_id`                    | String            |
+`model`                       | String            |
+`rev`                         | String            |
+`serial_number`               | String            |
+`time_stamp`                  | String            |
+`title`                       | String            |
+`year_of_manufacture`         | String            |
+`custom_fields`               | Object            |
