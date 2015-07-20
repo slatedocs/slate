@@ -149,7 +149,8 @@ curl --get https://api.contently.com/v1/stories \
       {
         "id": 1,
         "name": "Twitter",
-        "content": "<p>HTML content</p>"
+        "content": "<p>HTML content</p>",
+        "asset_url": "https://s3.amazonaws.com/path_to_file"
       }
     ],
     "due_at": 1421771582,
@@ -297,7 +298,8 @@ Returns fields for the specified story.
     {
       "id": 1,
       "name": "Twitter",
-      "content": "<p>HTML content</p>"
+      "content": "<p>HTML content</p>",
+      "asset_url": "https://s3.amazonaws.com/path_to_file"
     }
   ],
   "due_at": 1421771582,
@@ -349,8 +351,8 @@ contributors | Array of Objs. | An array of the Contently users who worked on th
 creator | Obj. | The user who created the story.
 publication | Obj. | The publication includes the ID and name of the story's associated publication.
 assets | Array of Objs. | An array of images embedded in the story content.
-story_fields | Array of Objs. | An array of the story's associate story fields and their content (These are freeform and extensions of stories, things like excerpts and tweets).
-story_attributes | Array of Objs. | Each story attribute has a publication_story_attribute_id (Integer, the unique ID of the attribute from the publication taxonomy), a name (String, also defined at the publication level), and an array of values. These are configured at a publication level and assigned to stories by users to categorize and desribe them.
+story_fields | Array of Objs. | An array of the story's associated story fields and their content (These are freeform and extensions of stories, things like excerpts, tweets, and header images).
+story_attributes | Array of Objs. | Each story attribute has a publication_story_attribute_id (Integer, the unique ID of the attribute from the publication taxonomy), a name (String, also defined at the publication level), and an array of values. These are configured at a publication level and assigned to stories by users to categorize and describe them.
 
 ## Marking stories published
 
