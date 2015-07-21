@@ -439,6 +439,18 @@ By default, archived audits are not included in the search. The `archived` param
 search only archived audits (`true`), not search archived audits (`false`), or search all audits including those
 archived (`both`).
 
+> Including only completed audits:
+
+```shell
+curl "https://api.safetyculture.io/audits/search?field=audit_id&completed=true" \
+  -H "Authorization: Bearer ..."
+```
+
+Complete and incomplete audits are included in the search. The `completed` parameter 
+can be used to change this behaviour. Like the `archived` flag, you can set
+it to `true` to search only completed audits, `false` to search only
+incomplete audits, or `both` to search all audits.
+
 The number of results returned defaults to 1000 at a time, which is the maximum allowed. It is possible to customise
 the `limit` parameter to retrieve fewer audits in each request. The limit is a maximum, and fewer audits may be returned
 than the limit, even if there are more available within the search parameters. This can occur if two or more audits
@@ -462,6 +474,7 @@ Parameter         | Description
 `modified_after`  | Only search for audits where `modified_at` is after the given date. The date should be specified in full form ISO 8601 format, e.g. `2015-04-01T00:00:00.000Z`
 `template`        | Only search for audits that were created from the given template(s). Multiple `template` parameters may be specified to search across multiple templates. e.g. `template=template_37afc5890aa94e778bbcde4fc4cbe480`
 `archived`        | Whether to search archived audits. Valid values are `true` (search only archived audits), `false` (do not search archived audits) or `both` (search all audits including those archived). The default is `false`.
+`completed`       | Whether to search completed audits. Valid values are `true` (search only completed audits), `false` (do not search completed audits) or `both` (search all audits including those completed). The default is `both`.
 `limit`           | The maximum number of audits to retrieve. The maximum value is `1000`. The default is also `1000`.
 
 ### Response
