@@ -2,57 +2,63 @@
 
 This section describes the complete audit response format.
 
-##Top Level Audit Data
+## Top Level
 ```json
 {
-  "audit_id": "audit_50BA581235704A368D025056A583AA8B",
-  "template_id": "template_4183BCC822F146D3BE542118D3F15971",
+  "audit_id": "audit_50ba581235704a368d025056a583aa8b",
+  "template_id": "template_4183bcc822f146d3be542118d3f15971",
+  
+  "created_at": "2015-06-04T02:34:25.000Z",
+  "modified_at": "2015-06-04T02:39:21.000Z",
+  
   "audit_data": {},
   "template_data": {},
-  "assets": [{}],
+  
   "header_items": [{}],
-  "items": [{}]
+  "items": [{}],
+  "assets": [{}]
 }
 ```
 Key                           | Type              | Description
 ------------------------------|-------------------|---------------------------------------------------------------------
-`audit_id`                    | String            | A String containing the audit's ID
-`template_id`                 | String            | String ID of the parent template
-`audit_data`                  | Object            | JSON Object containing general information about the audit
-`template_data`               | Object            | JSON Object containing some information on the template
-`assets`                      | Array             | JSON Array containing the assets within the template
-`header_items`                | Array             | JSON Array of JSON Objects containing Header Items
-`items`                       | Array             | JSON Array of JSON Objects containing items in all sections after the header
+`audit_id`                    | String            | The audit's ID
+`template_id`                 | String            | Parent template
+`created_at`                  | String            | ISO date and time when the audit was first synced to the cloud
+`modified_at`                 | String            | ISO date and time when the audit was last synced to the cloud
+`audit_data`                  | Object            | General information about the audit (dates, author, scores, etc.)
+`template_data`               | Object            | Some information on the template (predefined response sets, author, images, etc.)
+`header_items`                | Array             | Audit header items (first page, can be missing)
+`items`                       | Array             | Items in all sections after the header
+`assets`                      | Array             | The assets within the template
 
-##Audit Data
+## Audit Data `.audit_data`
 
-###Root
+### Root
 ```json
 {
-  "audit_data": {
-    "score": 10,
-    "date_completed": "2015-06-04T02:38:02.000Z",
-    "name": "title",
-    "date_modified": "2015-06-04T02:38:11.000Z",
-    "duration": 224,
-    "authorship": {},
-    "date_started": "2015-06-04T02:34:25.000Z",
-    "total_score": 21
-  }
+  "name": "title",
+  "score": 10,
+  "date_completed": "2015-06-04T02:38:02.000Z",
+  "date_modified": "2015-06-04T02:38:11.000Z",
+  "duration": 224,
+  "authorship": {},
+  "date_started": "2015-06-04T02:34:25.000Z",
+  "total_score": 21
 }
 ```
 Key                           | Type              | Description
 ------------------------------|-------------------|---------------------------------------------------------------------
 `name`                        | String            | String name of the audit
-`score`                       | Double            | A double of the current score of the audit
-`total_score`                 | Double            | A double of the total score for the audit
-`date_started`                | String            | A long of the date that the audit was started
-`date_modified`               | String            | A long of the date that the audit was last modified
-`date_completed`              | String            | A long of the date the audit was completed
-`authorship`                  | Object            | A JSON Object containing information on the authorship of the audit
+`score`                       | Double            | Current score of the audit
+`duration`                    | Double            | Time taken to complete the audit (on a device or web app)
+`total_score`                 | Double            | Total score for the audit
+`date_started`                | String            | A time and date when the audit was started  (on a device or web app)
+`date_modified`               | String            | A time and date when the audit was last modified (on a device or web app)
+`date_completed`              | String            | A time and date when the audit was completed (on a device or web app)
+`authorship`                  | Object            | Information on the authorship of the audit
 
 
-###Authorship
+### Authorship `.audit_data.authorship`
 ```json
 {
   "authorship": {
@@ -64,31 +70,30 @@ Key                           | Type              | Description
 ```
 Key                           | Type              | Description
 ------------------------------|-------------------|---------------------------------------------------------------------
-`author`                      | Object            | A JSON Object containing some information about the author of the document
-`owner`                       | Object            | A JSON Object containing some information about the owner of the document
-`device_id`                   | String            | A string containing the device's ID
+`author`                      | Object            | Some information about the author of the document
+`owner`                       | Object            | Some information about the owner of the document
+`device_id`                   | String            | The device's ID which was used to create the audit
 
-###Person
+### Person `.audit_data.authorship.author` and `.audit_data.authorship.owner`
 ```json
 {
   "author": {
-    "id": "",
-    "name": "Brett Porter",
-    "context": ""
+    "id": "user_123456abcde123456abcde123456",
+    "name": "John Snow",
+    "context": "user"
   }
 }
 ```
 Key                           | Type              | Description
 ------------------------------|-------------------|---------------------------------------------------------------------
-`id`                          | String            | A string containing the ID of the templates author
-`name`                        | String            | A string containing the name of the templates author
-`context`                     | String            | A string containing the context of a templates author
+`id`                          | String            | The ID of the person
+`name`                        | String            | The name of the person
+`context`                     | String            | The context of the author (always "user")
 
-##Template Data
-###Root
+## Template Data `.template_data`
+### Root
 ```json
 {
-  "media": {},
   "metadata": {},
   "authorship": {},
   "response_sets": {}
@@ -96,24 +101,32 @@ Key                           | Type              | Description
 ```
 Key                           | Type              | Description
 ------------------------------|-------------------|---------------------------------------------------------------------
-`media`                       | Object            | JSON Object containing all media items stored within the template
-`metadata`                    | Object            | JSON Object containing some data about the Template
-`authorship`                  | Object            | JSON Object containing information about the author of the template
-`response_sets`               | Object            | JSON Object containing the response sets attached to the template
+`metadata`                    | Object            | Some data about the Template (name, description, images, etc.)
+`authorship`                  | Object            | Information about the author of the template. Same as audit authorship.
+`response_sets`               | Object            | The response sets attached to the template.
 
-###Response Sets
+### Response Sets `.template_data.response_sets`
+Keys of the object are the UUID's' of each set. Values of the object are the sets themselves.
 ```json
+{
+  "8a0161b0-a97d-11e4-800b-8f525e51b36e": { "id": "8a0161b0-a97d-11e4-800b-8f525e51b36e", "resposes": [] },
+  "ec410dd0-a97d-11e4-800b-8f525e51b36e": { "id": "ec410dd0-a97d-11e4-800b-8f525e51b36e", "resposes": [] }
+}
+```
+
+#### Response Set `.template_data.response_sets.*`
+```js
 {
   "id": "",
   "responses": []
 }
-```
 Key                           | Type              | Description
 ------------------------------|-------------------|---------------------------------------------------------------------
 `id`                          | Object            | ID of the response set
 `responses`                   | Array             | Array of response set items
+```
 
-###Response Sets Response
+##### Response Sets Response `.template_data.response_sets.*.responses`
 ```json
 {
   "id": "",
@@ -130,36 +143,27 @@ Key                           | Type              | Description
 `id`                          | String            | ID of the response set
 `colour`                      | String            | Color of the response button
 `enable_score`                | Boolean           | If Score is enabled
-`image`                       | Array             | Array of string IDs
+`image`                       | Object            | 
 `label`                       | String            | Label of the response (eg. 'Yes')
 `short_label`                 | String            | Short label of the response (eg. 'Y')
 `score`                       | Number            | Score of the response
 
-###Meta Data
+### Meta Data `.template_data.metadata`
 ```json
 {
   "name": "name",
   "description": "description",
-  "industry": 1,
-  "subindustry": 2,
   "image": "123f23fad5f4sdfv4s7df65v46",
-  "doc_no": "12",
-  "doc_no_prefix": "a",
-  "doc_no_suffix": "b"
 }
 ```
 Key                           | Type              | Description
 ------------------------------|-------------------|---------------------------------------------------------------------
-`name`                        | String            | A string containing the templates name
-`description`                 | String            | A string containing the templates description
-`industry`                    | Integer           | An Integer used to identify the selected industry
-`subindustry`                 | Integer           | An Integer used to identify the selected sub industry
-`image`                       | String            | A string containing the image ID
-`doc_no`                      | String            | A string containing the document number
-`doc_no_prefix`               | String            | A string containing the prefix of the document number
-`doc_no_suffix`               | String            | A string containing the suffix of the document number
+`name`                        | String            | The templates name
+`description`                 | String            | The templates description
+`image`                       | String            | The image ID
+`media`                       | Object            | JSON Object containing all media items stored within the template
 
-##Audit Items
+## Audit Items
 ### Root
 ```json
 {
