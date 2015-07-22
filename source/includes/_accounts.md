@@ -19,7 +19,7 @@ curl -X "GET" "http://partner.url/api/v2/users/:user_id:/accounts" -u ":geezeo-a
 
 ```ruby
 uri = URI('https://partner.url/api/v2/users/:user_id:/accounts')
-key = ':geezeo-aip-key:'
+key = ':geezeo-api-key:'
 
 Net::HTTP.start(uri.host, uri.port,
   :use_ssl => uri.scheme == 'https') do |http|
@@ -31,7 +31,14 @@ Net::HTTP.start(uri.host, uri.port,
 
   puts response.body
 end
+```
 
+```c#
+var apiKey = "geezeo-api-key";
+var url = "partner.url";
+var userId = "user_id";
+var sdk = new SDK(apiKey, url, userId);
+var accounts = sdk.GetAccounts();
 ```
 
 > Response payload
@@ -109,6 +116,16 @@ end
 
 ```
 
+```c#
+var apiKey = "geezeo-api-key";
+var url = "partner.url";
+var userId = "user_id"
+var sdk = new SDK(apiKey, url, userId);
+var accounts = sdk.GetAllAccounts();
+
+```
+
+
 > Response payload
 
 ```json
@@ -183,6 +200,15 @@ Net::HTTP.start(uri.host, uri.port,
 end
 
 ```
+
+```c#
+var apiKey = "geezeo-api-key";
+var url = "partner.url";
+var userId = "user_id";
+var sdk = new SDK(apiKey, url, userId);
+var accounts = sdk.GetPotentialCashflowAccounts();
+```
+
 
 > Response payload
 
@@ -260,6 +286,18 @@ end
 
 ```
 
+
+```c#
+var apiKey = "geezeo-api-key";
+var url = "partner.url";
+var userId = "user_id";
+int accountId = account_id;
+var sdk = new SDK(apiKey, url, userId);
+var accounts = sdk.GetAccountById(accountId);
+
+```
+
+
 > Response payload
 
 ```json
@@ -327,6 +365,16 @@ Net::HTTP.start(uri.host, uri.port,
 
   puts response.body
 end
+
+```
+
+```c#
+var apiKey = "geezeo-api-key";
+var url = "partner.url";
+var userId = "user_id";
+int accountId = account_id;
+var sdk = new SDK(apiKey, url, userId);
+var accounts = sdk.GetInvestmentsByAccountId(accountId);
 
 ```
 
@@ -417,6 +465,25 @@ end
 
 ```
 
+```c#
+var apiKey = "geezeo-api-key";
+var url = "partner.url";
+var userId = "user_id";
+int accountId = account_id;
+var sdk = new SDK(apiKey, url, userId);
+var accountToUpdate = new Account
+{
+	Name = "Renamed Checking"
+};
+
+var accountRequest = new AccountRequestModel {Account = accountToUpdate};
+
+bool response = sdk.UpdateAccount(accountId, accountRequest); //returns a bool indicating whether delete was successful
+
+
+```
+
+
 > Request Payload
 
 ```json
@@ -469,6 +536,15 @@ end
 
 ```
 
+```c#
+var apiKey = "geezeo-api-key";
+var url = "partner.url";
+var userId = "user_id";
+int accountId = account_id; 
+var sdk = new SDK(apiKey, url, userId);
+bool deleted = sdk.DeleteAccount(accountId); //returns a bool indicating whether delete was successful
+```
+
 Delete an account for the given user.
 
 ### Request
@@ -482,3 +558,4 @@ Delete an account for the given user.
 | `204 No Content` | returned when successful |
 | `401 Not Authorized` | returned when invalid credentials are provided |
 | `404 Not Found` | returned when an invalid user is specified |
+
