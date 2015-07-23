@@ -256,7 +256,7 @@ cabeceras = {
     'x-password': '<clave-certificado-firma>',
     'content-type': 'application/json'}
 respuesta = requests.post(
-    "https://app.datil.co/invoices/issue",
+    "https://link.datil.co/invoices/issue",
     headers = cabeceras,
     data = json.dumps(factura))
 ```
