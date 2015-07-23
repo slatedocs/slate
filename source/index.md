@@ -55,12 +55,8 @@ You can use all the normal features of Analytics.js.
 
 ## Multi-hub analytics.js build
 
-**COMING SOON**
+We've published a custom build of analytics.js that pushes data to both Segment and Astronomer so you can evaluate both. Additionally, some users may wish to employ both Segment and Astronomer and create a larger array of available destinations than either separately.
 
-We've published a custom build of analytics.js that pushes data to both Segment and Astronomer. This is useful for
-testing/evaluating Astronomer if you're currently a Segment user.
-
-Additionally, some users may wish to employ both Segment and Astronomer and create a larger array of available destinations than either separately.
 
 # Meteor auto-events package
 
@@ -134,6 +130,46 @@ And please report any issues, confusing steps, etc. you encounter in the process
 
 Or you can always send us a good ol' fashioned email at [setup@astronomer.io](mailto:setup@astronomer.io).
 We'll probably respond to that too. :)
+
+
+# Getting set Up without Meteor
+For those of you who are not using Meteor, follow these simple steps to start tracking your events.
+
+``` javascript
+<script type='text/javascript' src="http://cdn.astronomer.io/v1/analytics.min.js"></script>  
+```
+
+### Step 1 - Include the Javascript snippet (shown right) into your app.
+
+``` javascript
+analytics.initialize({  
+  "astronomer": {
+    "appId": "YOURAPPID"
+  }
+});
+```
+
+### Step 2 - Initialize it with your appId. If you haven't made an account yet, sign up [here](https://app.astronomer.io/signup) and create a new app by clicking the + icon at the top right of your dashboard. Once the new app is created, the appId will be located within the settings tab.
+
+``` javascriptanalytics.identify('f9s83swk4', {  
+  firstName : 'Ry',
+  lastName : 'Walker',
+  email : 'ry@astronomer.io'
+});
+```
+
+### Step 3 - Identify your users using their userId and any traits you have for them, such as name and email
+
+``` javascript
+analytics.track("Viewed Project", {  
+  projectId: 42
+});
+```
+
+### Step 4 - Begin tracking events wherever they are occurring. Name the event (in this case "Viewed Project"), and add any relevant traits to that event (such as the project id).
+
+
+
 
 # Frequently Asked Questions
 
