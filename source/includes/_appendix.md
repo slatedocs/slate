@@ -8,6 +8,7 @@ The following tables provide details of the local directories we support for loo
 
 Identifier|NAP|Reviews|URL|Other|Notes
 ----------|---|-------|---|-----|-----
+2findlocal|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 acxiom|<span class="yes">Yes</span>|||<span class="yes">Yes</span>|
 allpages|<span class="yes">Yes</span>|||<span class="yes">Yes</span>|
 angies|<span class="yes">Yes</span>|||<span class="yes">Yes</span>|
@@ -26,6 +27,7 @@ expressupdate|<span class="yes">Yes</span>|||<span class="yes">Yes</span>|
 facebook|<span class="yes">Yes</span>|||<span class="yes">Yes</span>|
 factual|<span class="yes">Yes</span>|||<span class="yes">Yes</span>|
 favecentral|<span class="yes">Yes</span>|||<span class="yes">Yes</span>|
+find-us-here|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 foursquare|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 google|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 healthgrades|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
@@ -50,6 +52,7 @@ superpages|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class
 switchboard|<span class="yes">Yes</span>|||<span class="yes">Yes</span>|
 theusaexplorer|<span class="yes">Yes</span>||||
 tupalo|<span class="yes">Yes</span>||<span class="yes">Yes</span>||
+tuugo|<span class="yes">Yes</span>||<span class="yes">Yes</span>||
 whitepages|<span class="yes">Yes</span>|||<span class="yes">Yes</span>|
 yahoo|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 yasabe|<span class="yes">Yes</span>||||
@@ -66,13 +69,16 @@ zocdoc|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="y
 Identifier|NAP|Reviews|URL|Other|Notes
 ----------|---|-------|---|-----|-----
 192|<span class="yes">Yes</span>||||
+2findlocal|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 bizwiki|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 brownbook|<span class="yes">Yes</span>||||
 businessclassified|<span class="yes">Yes</span>||||
+businessmagnet|<span class="yes">Yes</span>||<span class="yes">Yes</span>||
 CityVisitor|<span class="yes">Yes</span>||||
 cylex|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 facebook|<span class="yes">Yes</span>|||<span class="yes">Yes</span>|
 factual|<span class="yes">Yes</span>||||
+find-us-here|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 foursquare|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 freeindex|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 fyple|<span class="yes">Yes</span>||||
@@ -85,7 +91,7 @@ near|<span class="yes">Yes</span>||||
 manta|<span class="yes">Yes</span>||||
 misterwhat|<span class="yes">Yes</span>||||
 mylocalservices|<span class="yes">Yes</span>||||
-opendi<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
+opendi|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 scoot|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 thediscdirectory|<span class="yes">Yes</span>||||
 thesun|<span class="yes">Yes</span>||||
@@ -93,6 +99,7 @@ thomsonlocal|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span cl
 tipped|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 touchlocal|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 tupalo|<span class="yes">Yes</span>||<span class="yes">Yes</span>||
+tuugo|<span class="yes">Yes</span>||<span class="yes">Yes</span>||
 uk-local-search|<span class="yes">Yes</span>||||
 ukplaces|<span class="yes">Yes</span>||||
 wheresbest|<span class="yes">Yes</span>||||
@@ -105,6 +112,7 @@ yelp|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes
 
 Identifier|NAP|Reviews|URL|Other|Notes
 ----------|---|-------|---|-----|-----
+2findlocal|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 aubiz|<span class="yes">Yes</span>||||
 aussieweb|<span class="yes">Yes</span>|||<span class="yes">Yes</span>|
 australiabusinesslisting||||<span class="yes">Yes</span>|
@@ -117,6 +125,7 @@ cylexaus|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class=
 dlook|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 eatability|<span class="yes">Yes</span>||||
 facebook|<span class="yes">Yes</span>|||<span class="yes">Yes</span>|
+find-us-here|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 foursquare|||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 fyple|<span class="yes">Yes</span>||||
 google|||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
@@ -133,7 +142,7 @@ startlocal|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span clas
 superpagesaus|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 streetdirectory|<span class="yes">Yes</span>||||
 tupalo|<span class="yes">Yes</span>||<span class="yes">Yes</span>||
-tuugo|<span class="yes">Yes</span>||||
+tuugo|<span class="yes">Yes</span>||<span class="yes">Yes</span>||
 truelocal|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 vicdir|<span class="yes">Yes</span>||||
 whereis|<span class="yes">Yes</span>||||
@@ -149,6 +158,7 @@ yelp-aus|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class=
 
 Identifier|NAP|Reviews|URL|Other|Notes
 ----------|---|-------|---|-----|-----
+2findlocal|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 c411|<span class="yes">Yes</span>|||<span class="yes">Yes</span>|
 allpages|<span class="yes">Yes</span>||||
 brownbook|<span class="yes">Yes</span>||||
@@ -158,6 +168,7 @@ cylexcan|<span class="yes">Yes</span>|||<span class="yes">Yes</span>|
 directorycentral|<span class="yes">Yes</span>||||
 facebook|<span class="yes">Yes</span>|||<span class="yes">Yes</span>|
 factual|<span class="yes">Yes</span>||||
+find-us-here|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 foursquare|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 goldbook|<span class="yes">Yes</span>|||<span class="yes">Yes</span>|
 google||<span class="yes">Yes</span>||<span class="yes">Yes</span>|
@@ -170,6 +181,7 @@ profilecanada|<span class="yes">Yes</span>|||<span class="yes">Yes</span>|
 salespider|<span class="yes">Yes</span>||||
 superpages||||<span class="yes">Yes</span>|
 tupalo|<span class="yes">Yes</span>||<span class="yes">Yes</span>||
+tuugo|<span class="yes">Yes</span>||<span class="yes">Yes</span>||
 weblocal|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 wikidomo|<span class="yes">Yes</span>||||
 yalwa|<span class="yes">Yes</span>||||
