@@ -141,6 +141,7 @@ For those of you who are not using Meteor, follow these simple steps to start tr
 
 ### Step 1 - Include the Javascript snippet (shown right) into your app.
 <br>
+
 ``` javascript
 analytics.initialize({  
   "astronomer": {
