@@ -177,13 +177,17 @@ Not yet, but we're working on it! Angular is the next framework that we'll be go
 
 <s>Mixpanel</s> - (7/16/15)
 
+<s>KISSmetrics</s> - (7/16/15)
+
+<s>Heap</s> - (7/20/15)
+
+<s>Amplitude</s> - (7/20/15)
+
+<s>Customer.io</s> - (7/20/15)
+
+<s>Calq</s> - (7/20/15)
+
 Intercom
 
-KISSmetrics
-
 Mailchimp
-
-USERcycle
-
-Churnbee
 
