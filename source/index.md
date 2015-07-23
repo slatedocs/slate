@@ -140,7 +140,7 @@ For those of you who are not using Meteor, follow these simple steps to start tr
 ```
 
 ### Step 1 - Include the Javascript snippet (shown right) into your app.
-
+<br>
 ``` javascript
 analytics.initialize({  
   "astronomer": {
@@ -151,7 +151,8 @@ analytics.initialize({
 
 ### Step 2 - Initialize it with your appId. If you haven't made an account yet, sign up [here](https://app.astronomer.io/signup) and create a new app by clicking the + icon at the top right of your dashboard. Once the new app is created, the appId will be located within the settings tab.
 
-``` javascriptanalytics.identify('f9s83swk4', {  
+``` javascript
+analytics.identify('f9s83swk4', {  
   firstName : 'Ry',
   lastName : 'Walker',
   email : 'ry@astronomer.io'
