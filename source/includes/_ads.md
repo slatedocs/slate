@@ -23,6 +23,20 @@ end
 
 ```
 
+```c#
+var apiKey = "geezeo-api-key";
+var url = "partner.url";
+var userId = "user_id";
+var sdk = new SDK(apiKey, url, userId);
+var searchCriteria = new AdSearchCriteria{
+	CampaignLocation = "campaign location",
+	AdDimensions = "ad dimensions",
+	Count = 1
+};
+// use new AdSearchCriteria() to return all relevant ads
+var adsResponse = new AdsApi(_apiKey).GetAds(UserId, searchCriteria);
+```
+
 > Response payload
 
 ```json
