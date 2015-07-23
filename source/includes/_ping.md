@@ -22,6 +22,15 @@ Net::HTTP.start(uri.host, uri.port,
 end
 ```
 
+```c#
+var apiKey = "geezeo-api-key";
+var url = "partner.url";
+var userId = "user_id";
+var sdk = new SDK(apiKey, url, userId);
+var pingResponse = sdk.Ping();
+//response object includes a bool value indicating success
+```
+
 
 > Response payload
 
