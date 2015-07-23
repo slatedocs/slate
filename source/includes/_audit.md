@@ -2,6 +2,7 @@
 
 This section describes the complete audit response format.
 
+
 ## Top Level
 ```json
 {
@@ -31,66 +32,56 @@ Key                           | Type              | Description
 `items`                       | Array             | Items in all sections after the header
 `assets`                      | Array             | The assets within the template
 
-## Audit Data `.audit_data`
+
+## Audit Data
+`.audit_data`
 
 ### Root
 ```json
 {
   "name": "title",
   "score": 10,
+  "total_score": 21,
+  "score_percentage": 25,
   "date_completed": "2015-06-04T02:38:02.000Z",
   "date_modified": "2015-06-04T02:38:11.000Z",
   "duration": 224,
   "authorship": {},
-  "date_started": "2015-06-04T02:34:25.000Z",
-  "total_score": 21
+  "date_started": "2015-06-04T02:34:25.000Z"
 }
 ```
 Key                           | Type              | Description
 ------------------------------|-------------------|---------------------------------------------------------------------
 `name`                        | String            | String name of the audit
 `score`                       | Double            | Current score of the audit
-`duration`                    | Double            | Time taken to complete the audit (on a device or web app)
-`total_score`                 | Double            | Total score for the audit
+`total_score`                 | Double            | The maximum possible score
+`score_percentage`            | Double            | A value 0 to 100 calculated as `score/total_score`
+`duration`                    | Double            | Time taken to complete the audit (on a device or web app) in seconds
 `date_started`                | String            | A time and date when the audit was started  (on a device or web app)
 `date_modified`               | String            | A time and date when the audit was last modified (on a device or web app)
 `date_completed`              | String            | A time and date when the audit was completed (on a device or web app)
 `authorship`                  | Object            | Information on the authorship of the audit
 
-
-### Authorship `.audit_data.authorship`
+### Authorship
+`.audit_data.authorship`
 ```json
 {
   "authorship": {
-    "owner": {},
+    "owner": "Eddard Stark",
     "device_id": "81A34706-7417-4D6F-8C61-50AC2C814755",
-    "author": {}
+    "author": "Jon Snow"
   }
 }
 ```
 Key                           | Type              | Description
 ------------------------------|-------------------|---------------------------------------------------------------------
-`author`                      | Object            | Some information about the author of the document
-`owner`                       | Object            | Some information about the owner of the document
-`device_id`                   | String            | The device's ID which was used to create the audit
+`author`                      | String            | The person who created the audit. Never changes
+`owner`                       | String            | The person owning the audit. Can be changed anytime
+`device_id`                   | String            | The device's ID which was used to create the audit. Generated when the app is installed
 
-### Person `.audit_data.authorship.author` and `.audit_data.authorship.owner`
-```json
-{
-  "author": {
-    "id": "user_123456abcde123456abcde123456",
-    "name": "John Snow",
-    "context": "user"
-  }
-}
-```
-Key                           | Type              | Description
-------------------------------|-------------------|---------------------------------------------------------------------
-`id`                          | String            | The ID of the person
-`name`                        | String            | The name of the person
-`context`                     | String            | The context of the author (always "user")
 
-## Template Data `.template_data`
+## Template Data
+`.template_data`
 ### Root
 ```json
 {
@@ -101,54 +92,12 @@ Key                           | Type              | Description
 ```
 Key                           | Type              | Description
 ------------------------------|-------------------|---------------------------------------------------------------------
-`metadata`                    | Object            | Some data about the Template (name, description, images, etc.)
-`authorship`                  | Object            | Information about the author of the template. Same as audit authorship.
-`response_sets`               | Object            | The response sets attached to the template.
+`metadata`                    | Object            | Some data about the Template (name, description, image, etc.)
+`response_sets`               | Object            | The response sets attached to the template. (Yes/No/NA, Safe/AtRisk/NA, etc)
+`authorship`                  | Object            | Information on the authorship of the template. Same as audit authorship.
 
-### Response Sets `.template_data.response_sets`
-Keys of the object are the UUID's' of each set. Values of the object are the sets themselves.
-```json
-{
-  "8a0161b0-a97d-11e4-800b-8f525e51b36e": { "id": "8a0161b0-a97d-11e4-800b-8f525e51b36e", "resposes": [] },
-  "ec410dd0-a97d-11e4-800b-8f525e51b36e": { "id": "ec410dd0-a97d-11e4-800b-8f525e51b36e", "resposes": [] }
-}
-```
-
-#### Response Set `.template_data.response_sets.*`
-```js
-{
-  "id": "",
-  "responses": []
-}
-Key                           | Type              | Description
-------------------------------|-------------------|---------------------------------------------------------------------
-`id`                          | Object            | ID of the response set
-`responses`                   | Array             | Array of response set items
-```
-
-##### Response Sets Response `.template_data.response_sets.*.responses`
-```json
-{
-  "id": "",
-  "colour": "",
-  "enable_score": "",
-  "image": "",
-  "label": "",
-  "short_label": "",
-  "score": ""
-}
-```
-Key                           | Type              | Description
-------------------------------|-------------------|---------------------------------------------------------------------
-`id`                          | String            | ID of the response set
-`colour`                      | String            | Color of the response button
-`enable_score`                | Boolean           | If Score is enabled
-`image`                       | Object            | 
-`label`                       | String            | Label of the response (eg. 'Yes')
-`short_label`                 | String            | Short label of the response (eg. 'Y')
-`score`                       | Number            | Score of the response
-
-### Meta Data `.template_data.metadata`
+### Meta Data
+`.template_data.metadata`
 ```json
 {
   "name": "name",
@@ -158,39 +107,88 @@ Key                           | Type              | Description
 ```
 Key                           | Type              | Description
 ------------------------------|-------------------|---------------------------------------------------------------------
-`name`                        | String            | The templates name
-`description`                 | String            | The templates description
-`image`                       | String            | The image ID
-`media`                       | Object            | JSON Object containing all media items stored within the template
+`name`                        | String            | The template name
+`description`                 | String            | The template description
+`image`                       | Object            | Main [image](#media) of the template
 
-## Audit Items
-### Root
+### Response Sets
+`.template_data.response_sets`
+Keys of the object are the UUID's' of each set. Values of the object are the sets themselves.
 ```json
 {
-  "label": "",
-  "item_id": "",
-  "action_item_profile_id": "",
-  "type": "",
-  "parent_id": "",
-  "options": {},
-  "responses": {},
-  "media": {},
-  "children": {},
-  "scoring": {}
+  "8a0161b0-a97d-11e4-800b-8f525e51b36e": { "id": "8a0161b0-a97d-11e4-800b-8f525e51b36e", "resposes": [] },
+  "ec410dd0-a97d-11e4-800b-8f525e51b36e": { "id": "ec410dd0-a97d-11e4-800b-8f525e51b36e", "resposes": [] }
+}
+```
+
+#### Response Set
+`.template_data.response_sets.*`
+```js
+{
+  "id": "8a0161b0-a97d-11e4-800b-8f525e51b36e",
+  "responses": []
 }
 ```
 Key                           | Type              | Description
 ------------------------------|-------------------|---------------------------------------------------------------------
-`label`                       | String            |
-`item_id`                     | String            |
-`action_item_profile_id`      | String            |
-`type`                        | String            |
-`parent_id`                   | String            |
-`options`                     | Object            |
-`responses`                   | Object            |
-`media`                       | Object            |
-`children`                    | Object            |
-`scoring`                     | Object            |
+`id`                          | Object            | ID of the response set
+`responses`                   | Array             | Array of response set items
+
+##### Response Sets Response
+`.template_data.response_sets.*.responses`
+```json
+{
+  "id": "22a409a8-c02a-44d5-8b61-e66b6996927e",
+  "colour": "5,255,84",
+  "enable_score": true,
+  "image": "",
+  "label": "At risk",
+  "score": 1,
+  "short_label": "R",
+  "type": "list"
+},
+```
+Key                           | Type              | Description
+------------------------------|-------------------|---------------------------------------------------------------------
+`id`                          | String            | ID of the response set
+`colour`                      | String            | Colour of the response button
+`enable_score`                | Boolean           | If Score is enabled
+`image`                       | Object            | Image the user selects on screen. Often empty
+`label`                       | String            | Label of the response (eg. 'Yes')
+`score`                       | Number            | Score of the response
+`short_label`                 | String            | Short label of the response (eg. 'Y')
+`type`                        | Number            | Score of the response
+
+## Audit Items
+`.items`
+### Root
+```json
+{
+  "label": "Audit",
+  "item_id": "379d3910-d2e2-11e4-9038-695120da729f",
+  "action_item_profile_id": [],
+  "type": "checkbox",
+  "parent_id": "a78337ce-2cf2-419b-85b5-c81cd2d68090",
+  "options": {},
+  "responses": {},
+  "media": {},
+  "children": [],
+  "scoring": {}
+}
+```
+
+Key                           | Type              | Description
+------------------------------|-------------------|---------------------------------------------------------------------
+`item_id`                     | String            | The UUID of the item
+`parent_id`                   | String            | Parent item ID. Can be null
+`label`                       | String            | The text label of the item
+`action_item_profile_id`      | Array             | Followup task ID's
+`type`                        | String            | One the the following: `information`, `smartfield`, `checkbox`, `media`, `textsingle`, `element`, `primeelement`, `dynamicfield`, `category`, `section`, `text`, `signature`, `switch`, `slider`, `drawing`, `address`, `list`, `question`, `datetime`, `weather`, `asset`, `scanner` 
+`options`                     | Object            | A set of different options available to that type. Like: mix/max values, condition, signature, media, various flags, etc.
+`responses`                   | Object            | Represents user selections. Like value, or list item, or photo, location, date-time, etc. 
+`media`                       | Object            | 
+`children`                    | Array             | The list of child item ID's
+`scoring`                     | Object            | An object containing all the related scores of this item
 
 
 ### Options
@@ -349,11 +347,11 @@ Key                           | Type              | Description
 ```
 Key                           | Type              | Description
 ------------------------------|-------------------|---------------------------------------------------------------------
-`date_created`                | String            |
-`file_ext`                    | String            |
-`media_id`                    | String            |
-`label`                       | String            |
-`href`                        | String            |
+`date_created`                | String            | A timestamp of the image or photo
+`file_ext`                    | String            | A file extension representing image type (like png or jpeg)
+`media_id`                    | String            | A unique id of this media file
+`label`                       | String            | A label of the image or photo
+`href`                        | String            | A ready-to-go direct URI to retrieve the file from 
 
 ## Asset
 ```json
