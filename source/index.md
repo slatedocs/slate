@@ -396,7 +396,7 @@ Speak with your account manager to configure the webhook for your publication.
 ```shell
 # GET /taxonomy
 
-curl -X PUT https://api.contently.com/v1/taxonomy \
+curl -X GET https://api.contently.com/v1/taxonomy \
        -H "Contently-Api-Key: <API_KEY>" \
 ```
 
