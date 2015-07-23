@@ -174,6 +174,7 @@ analytics.track("Viewed Project", {
 
 <br>
 <br>
+<br>
 
 ### Step 4 - Begin tracking events wherever they are occurring. Name the event (in this case "Viewed Project"), and add any relevant traits to that event (such as the project id).
 
