@@ -139,8 +139,7 @@ For those of you who are not using Meteor, follow these simple steps to start tr
 <script type='text/javascript' src="http://cdn.astronomer.io/v1/analytics.min.js"></script>  
 ```
 
-### Step 1 - Include the Javascript snippet (shown right) into your app.
-<br>
+## Step 1 - Include the Javascript snippet (shown right) into your app.
 
 ``` javascript
 analytics.initialize({  
@@ -150,7 +149,7 @@ analytics.initialize({
 });
 ```
 
-### Step 2 - Initialize it with your appId. If you haven't made an account yet, sign up [here](https://app.astronomer.io/signup) and create a new app by clicking the + icon at the top right of your dashboard. Once the new app is created, the appId will be located within the settings tab.
+## Step 2 - Initialize it with your appId. If you haven't made an account yet, sign up [here](https://app.astronomer.io/signup) and create a new app by clicking the + icon at the top right of your dashboard. Once the new app is created, the appId will be located within the settings tab.
 
 ``` javascript
 analytics.identify('f9s83swk4', {  
@@ -160,7 +159,7 @@ analytics.identify('f9s83swk4', {
 });
 ```
 
-### Step 3 - Identify your users using their userId and any traits you have for them, such as name and email
+## Step 3 - Identify your users using their userId and any traits you have for them, such as name and email
 
 ``` javascript
 analytics.track("Viewed Project", {  
@@ -168,7 +167,7 @@ analytics.track("Viewed Project", {
 });
 ```
 
-### Step 4 - Begin tracking events wherever they are occurring. Name the event (in this case "Viewed Project"), and add any relevant traits to that event (such as the project id).
+## Step 4 - Begin tracking events wherever they are occurring. Name the event (in this case "Viewed Project"), and add any relevant traits to that event (such as the project id).
 
 
 
