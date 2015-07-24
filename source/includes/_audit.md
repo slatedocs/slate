@@ -92,7 +92,7 @@ Key                           | Type              | Description
 ```
 Key                           | Type              | Description
 ------------------------------|-------------------|---------------------------------------------------------------------
-`metadata`                    | Object            | Some [meta data]($template-meta-data) about the Template (name, description, image, etc.)
+`metadata`                    | Object            | Some [meta data](#template-meta-data) about the Template (name, description, image, etc.)
 `response_sets`               | Object            | The [response sets](#response-sets) attached to the template. (Yes/No/NA, Safe/AtRisk/NA, etc)
 `authorship`                  | Object            | Information on the [authorship](#authorship) of the template. Same as audit [authorship](#authorship).
 
@@ -188,7 +188,7 @@ Key                           | Type              | Description
 `label`                       | String            | The text label of the item
 `action_item_profile_id`      | Array             | Followup task ID's
 `type`                        | String            | One the the following: `information`, `smartfield`, `checkbox`, `media`, `textsingle`, `element`, `primeelement`, `dynamicfield`, `category`, `section`, `text`, `signature`, `switch`, `slider`, `drawing`, `address`, `list`, `question`, `datetime`, `weather`, `asset`, `scanner`
-`options`                     | Object            | A set of different [options](#item-option) available to that type. Like: mix/max values, condition, signature, media, various flags, etc.
+`options`                     | Object            | A set of different [options](#item-options) available to that type. Like: mix/max values, condition, signature, media, various flags, etc.
 `responses`                   | Object            | Represents user [selections](#item-responses). Like value, or list item, or photo, location, date-time, etc.
 `media`                       | Object            | Information about an [image or photo](#media) file
 `children`                    | Array             | The list of child item ID's
