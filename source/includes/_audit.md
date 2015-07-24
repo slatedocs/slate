@@ -150,7 +150,7 @@ Key                           | Type              | Description
 Key                           | Type              | Description
 ------------------------------|-------------------|---------------------------------------------------------------------
 `id`                          | String            | ID of the response
-`colour`                      | String            | Colour of the response button
+`colour`                      | String            | RGB colour of the response button. I.e. "0,0,0" is black, "255,255,255" is white.
 `enable_score`                | Boolean           | If Score is enabled
 `image`                       | Object            | Image the user selects on screen
 `label`                       | String            | Label of the response (eg. 'Yes')
