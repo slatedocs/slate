@@ -150,7 +150,8 @@ curl --get https://api.contently.com/v1/stories \
         "id": 1,
         "name": "Twitter",
         "content": "<p>HTML content</p>",
-        "asset_url": "https://s3.amazonaws.com/path_to_file"
+        "asset_url": "https://s3.amazonaws.com/path_to_file",
+        "publication_story_field_id": 2
       }
     ],
     "due_at": 1421771582,
@@ -299,7 +300,8 @@ Returns fields for the specified story.
       "id": 1,
       "name": "Twitter",
       "content": "<p>HTML content</p>",
-      "asset_url": "https://s3.amazonaws.com/path_to_file"
+      "asset_url": "https://s3.amazonaws.com/path_to_file",
+      "publication_story_field_id": 2
     }
   ],
   "due_at": 1421771582,
@@ -351,7 +353,7 @@ contributors | Array of Objs. | An array of the Contently users who worked on th
 creator | Obj. | The user who created the story.
 publication | Obj. | The publication includes the ID and name of the story's associated publication.
 assets | Array of Objs. | An array of images embedded in the story content.
-story_fields | Array of Objs. | An array of the story's associated story fields and their content (These are freeform and extensions of stories, things like excerpts, tweets, and header images).
+story_fields | Array of Objs. | An array of the story's associated story fields and their content (These are freeform and extensions of stories, things like excerpts, tweets, and header images). The publication_story_field_id is an Integer that references the associated publication_story_field configured at the publication level and available via the taxonomy endpoint.
 story_attributes | Array of Objs. | Each story attribute has a publication_story_attribute_id (Integer, the unique ID of the attribute from the publication taxonomy), a name (String, also defined at the publication level), and an array of values. These are configured at a publication level and assigned to stories by users to categorize and describe them.
 
 ## Marking stories published
@@ -412,7 +414,7 @@ curl -X GET https://api.contently.com/v1/taxonomy \
       "email": "rando@example.com"
     }
   ],
-  "story_fields": [
+  "publication_story_fields": [
     {
       "id": 1,
       "name": "Twitter"
@@ -436,7 +438,7 @@ There is a single endpoint available for querying the taxonomy of your publicati
 `https://api.contently.com/v1/taxonomy`
 
 
-The *taxonomy* endpoint provides you with access to publication level data that helps you understand your stories in a broader context. It returns story attributes, story fields, and user data to enable mappings between data on the Contently platform and the respective fields on your side.
+The *taxonomy* endpoint provides you with access to publication level data that helps you understand your stories in a broader context. It returns story attributes, publication story fields, and user data to enable mappings between data on the Contently platform and the respective fields on your side.
 
 ### Users
 
@@ -447,7 +449,7 @@ first_name | String | The user's first name.
 last_name | String | The user's last name.
 email | String | The user's unique email address.
 
-### Story fields
+### Publication story fields
 
 Field name | Type | Description
 ---- | ---- | ----
