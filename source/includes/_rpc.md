@@ -74,4 +74,4 @@ Optional:
 
 The `params` and `signature` fields are required if your function accepts parameters; otherwise, these fields can be excluded.  The `returns` field is used only to format the output, and has no effect on the actual RPC command.
 
-*`invoke` currently only works for Serpent contracts.*  The extra datatypes that Solidity includes are not (yet) supported by augur.js's encoder.  In our encoder, all parameters are type `string`, `int256`, or `int256[]`.  If you need a more flexible ABI encoder, I recommend [pyepm](https://github.com/etherex/pyepm), specifically the `pyepm.api.abi_data` method.
+<aside class="notice">*`invoke` currently only works for Serpent contracts.*  The extra datatypes that Solidity includes are not (yet) supported by augur.js's encoder.  In our encoder, all parameters are type `string`, `int256`, or `int256[]`.  If you need a more flexible ABI encoder, I recommend [pyepm](https://github.com/etherex/pyepm), specifically the `pyepm.api.abi_data` method.</aside>

@@ -455,6 +455,12 @@ html, body {
     max-width: 100%;
   }
 
+  .block {
+    display: block;
+    @extend %break-words;
+    @extend %code-font;
+  }
+
   code {
     background-color: rgba(0,0,0,0.05);
     padding: 3px;
@@ -468,6 +474,17 @@ html, body {
     padding: 0;
   }
 
+  a {
+    text-decoration: none;
+    color: #2A5DB0;
+  }
+  a:hover {
+    border-bottom: 1px solid #2A5DB0;
+  }
+  a:visited {
+    color: #5F04B4;
+  }
+
   aside {
     padding-top: 1em;
     padding-bottom: 1em;
@@ -476,6 +493,7 @@ html, body {
     margin-bottom: 1.5em;
     background: $aside-notice-bg;
     line-height: 1.6;
+    white-space: pre-line;
 
     &.warning {
       background-color: $aside-warning-bg;
