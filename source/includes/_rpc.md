@@ -39,39 +39,3 @@ Contract upload and download
 > Augur.read("0x5204f18c652d1c31c6a5968cb65e011915285a50")
 "0x7c010000000000000000000000000000000000000000000000000000000060003504636ffa1caa81141560415760043560405260026040510260605260206060f35b50"
 ```
-
-On-chain contract methods
--------------------------
-
-`invoke` executes a function in a contract already on the network:
-
-```javascript
-> tx = {
-   to: "0x5204f18c652d1c31c6a5968cb65e011915285a50",
-   method: "double",
-   signature: "i",
-   params: 22121,
-   send: false,
-   returns: "int"
-};
-
-> Augur.invoke(tx)
-44242
-```
-
-(Both `execute` and `run` are aliases for `invoke`.) The function called here `double(22121)` simply doubles its input argument, so the result is as expected.  The transaction fields are as follows:
-
-Required:
-- to: `<contract address> (hexstring)`
-- method: `<function name> (string)`
-- signature: `<function signature, e.g. "iia"> (string)`
-- params: `<parameters passed to the function>`
-
-Optional:
-- send: `<true to sendTransaction, false to call (default)>`
-- from: `<sender's address> (hexstring; defaults to the coinbase account)`
-- returns: `<"array", "int", "BigNumber", or "string" (default)>`
-
-The `params` and `signature` fields are required if your function accepts parameters; otherwise, these fields can be excluded.  The `returns` field is used only to format the output, and has no effect on the actual RPC command.
-
-<aside class="notice">*`invoke` currently only works for Serpent contracts.*  The extra datatypes that Solidity includes are not (yet) supported by augur.js's encoder.  In our encoder, all parameters are type `string`, `int256`, or `int256[]`.  If you need a more flexible ABI encoder, I recommend [pyepm](https://github.com/etherex/pyepm), specifically the `pyepm.api.abi_data` method.</aside>
