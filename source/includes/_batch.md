@@ -1,9 +1,12 @@
 Batching
 ========
 
-augur.js implements batched RPC, which can help reduce overhead if you're making several API calls that can be run in parallel (i.e., do not depend on each other's results).  For example, here is a batch RPC request that gets both the cash and reputation balance for account `0x63524e3fe4791aefce1e932bbfb3fdf375bfad89`:
-
 ```javascript
+/**
+ * Batch RPC request that gets the cash and reputation balances for account
+ * 0x63524e3fe4791aefce1e932bbfb3fdf375bfad89.
+ */
+
 var myAccount = "0x63524e3fe4791aefce1e932bbfb3fdf375bfad89";
 
 var batch = Augur.createBatch();
@@ -12,12 +15,10 @@ batch.add("getCashBalance", [myAccount], callback);
 batch.add("getRepBalance", [Augur.branches.dev, myAccount], callback);
 
 batch.execute();
-```
 
-If you need more control over the batched commands, you can also use augur.js's lower-level `Augur.batch` method directly.  This allows you to manually construct transaction objects.
+// Manual batching
 
-```javascript
-> var txlist = [{
+var txlist = [{
     to: "0x3caf506cf3d5bb16ba2c8f89a6591c5160d69cf3",
     method: "ten"
 }, {
@@ -27,6 +28,11 @@ If you need more control over the batched commands, you can also use augur.js's 
     params: 3
 }];
 
-> Augur.batch(txlist)
-['10', '6']
+Augur.batch(txlist);
+
+// returns: ['10', '6']
 ```
+
+augur.js implements [batch RPC](http://www.jsonrpc.org/specification#batch), which can help reduce overhead if you're making several API calls that can be run in parallel (i.e., do not depend on each other's results).
+
+If you need more control over the batched commands, you can also use augur.js's lower-level `Augur.batch` method directly.  `Augur.batch` accepts manually constructed transaction objects.
