@@ -35,4 +35,4 @@ Augur.batch(txlist);
 
 augur.js implements [batch RPC](http://www.jsonrpc.org/specification#batch), which can help reduce overhead if you're making several API calls that can be run in parallel (i.e., do not depend on each other's results).
 
-If you need more control over the batched commands, you can also use augur.js's lower-level `Augur.batch` method directly.  `Augur.batch` accepts manually constructed transaction objects.
+For finer-grained control over the batched commands, you can also use augur.js's lower-level `Augur.batch` method directly.  `Augur.batch` accepts manually constructed transaction objects.

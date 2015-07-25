@@ -11,8 +11,9 @@ toc_footers:
   - <a href="https://twitter.com/AugurProject">Twitter</a>
 
 includes:
-  - numbers
+  - accounts
   - callbacks
+  - numbers
   - api
   - rpc
   - batch
@@ -33,34 +34,24 @@ If you are running a [local Ethereum node](https://github.com/ethereum/go-ethere
 <code class="block">geth --unlock 0 --rpc --rpccorsdomain "http://localhost:8545" --rpcapi "shh,db,eth,net,web3" --shh</code>
 </aside>
 
-If maintaining a local Ethereum node isn't practical for you, Augur has a public Ethereum node at [http://geth.augur.net](http://geth.augur.net).
-
-Installation
-------------
-
-The easiest way to install augur.js is using [npm](https://www.npmjs.com/package/augur.js):
-
-`npm install augur.js`
-
-```javascript
-// After installing, just require augur.js to use it.
-
-var Augur = require('augur.js');
-```
+Augur maintains a public Ethereum node at [http://geth.augur.net](http://geth.augur.net).
 
 Getting started
 ---------------
 
-To use the Augur API, augur.js needs to connect to an Ethereum node:
+The easiest way to install augur.js is using [npm](https://www.npmjs.com/package/augur.js):
+
+`$ npm install augur.js`
+
+To use the Augur API, augur.js needs to connect to an Ethereum node.  By default, augur.js will look for a localhost Ethereum node listening on port 8545.  To change this, just call pass your RPC connection info to `Augur.connect`.
 
 ```javascript
+// After installing, just require augur.js to use it.
+var Augur = require('augur.js');
+
+// Attempt to connect to a local Ethereum node (on http://localhost:8545)
 Augur.connect();
-```
 
-By default, augur.js will look for a localhost Ethereum node listening on port 8545.  To change this, just call pass your RPC connection info to `Augur.connect`.  For example, to connect to Augur's public node:
-
-```javascript
-var ethereumNode = "geth.augur.net"; // default: "localhost:8545"
-
-Augur.connect(ethereumNode);
+// Connect to Augur's public node (geth.augur.net)
+Augur.connect("geth.augur.net");
 ```
