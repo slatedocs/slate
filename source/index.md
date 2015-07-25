@@ -23,7 +23,7 @@ Overview
 
 The [Augur JavaScript API](https://github.com/AugurProject/augur.js) requires an [Ethereum](https://www.ethereum.org/) client to communicate with [Augur's smart contracts](https://github.com/AugurProject/augur-core).  Our testing has been primarily carried out with the [Go](https://github.com/ethereum/go-ethereum) Ethereum implementation (geth).
 
-Augur's public Ethereum node is located at: [http://geth.augur.net](http://geth.augur.net)
+Augur's public Ethereum node is located at: [http://poc9.com](http://poc9.com)
 
 If you want to use your local Ethereum node, in order to use "send" RPC commands -- that is, RPC commands that consume ether! -- you will need to unlock your node.  The easiest way to do this is to start geth with the `--unlock` option:
 
