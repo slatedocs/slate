@@ -201,11 +201,11 @@ curl -X POST -H "Content-Type: application/json" -d JSON "https://airbrake.io/ap
     "os": "Linux 3.5.0-21-generic #32-Ubuntu SMP Tue Dec 11 18:51:59 UTC 2012 x86_64",
     "language": "Ruby 2.1.1",
     "environment": "production",
- 
+
     "version": "1.1.1",
     "url:": "http://some-site.com/example",
     "rootDirectory": "/home/app-root-directory",
- 
+
     "userId": "12345",
     "userName": "root",
     "userEmail": "root@root.com"
@@ -418,7 +418,7 @@ The API returns `200 OK` status code on success.
 ## Create deploy v4
 
 ```shell
-curl -X POST -H "Content-Type: application/json" -d '{"environment":"production","username":"john","repository":"https://github.com/airbrake/airbrake","revision":"38748467ea579e7ae64f7815452307c9d05e05c5",version:"v2.0"}' "https://airbrake.io/api/v4/projects/PROJECT_ID/deploys?key=PROJECT_KEY"
+curl -X POST -H "Content-Type: application/json" -d '{"environment":"production","username":"john","repository":"https://github.com/airbrake/airbrake","revision":"38748467ea579e7ae64f7815452307c9d05e05c5","version":"v2.0"}' "https://airbrake.io/api/v4/projects/PROJECT_ID/deploys?key=PROJECT_KEY"
 ```
 
 ### HTTP request
