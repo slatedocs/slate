@@ -1,11 +1,10 @@
 ---
-title: Augur JavaScript API
-
-language_tabs:
-  - javascript
+title: Augur API
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
+  - <a href='http://www.augur.net'>Augur Project</a>
+  - <a href='https://github.com/AugurProject'>Github</a>
+  - <a href='https://twitter.com/AugurProject'>Twitter</a>
   - <a href='http://github.com/tripit/slate'>Documentation Powered by Slate</a>
 
 includes:
@@ -22,27 +21,44 @@ search: true
 Overview
 ========
 
-To use augur.js, you must be running a local Ethereum node.  By default, it expects your Ethereum client to be listening on port 8545.  Note that we've only tested with [geth](https://github.com/ethereum/go-ethereum) so far; use with [eth](https://github.com/ethereum/cpp-ethereum) or [pyethapp](https://github.com/ethereum/pyethapp) at your own risk.
+The [Augur JavaScript API](https://github.com/AugurProject/augur.js) requires an [Ethereum](https://www.ethereum.org/) client to communicate with [Augur's smart contracts](https://github.com/AugurProject/augur-core).  Our testing has been primarily carried out with the [Go](https://github.com/ethereum/go-ethereum) Ethereum implementation (geth).
 
-To use "send" RPC commands, you will need to unlock your client.  The easiest way to do this is to start geth with the `--unlock` option:
+Augur's public Ethereum node is located at: [http://geth.augur.net](http://geth.augur.net)
 
-    $ geth --rpc --rpccorsdomain "http://localhost:8545" --rpcapi "shh,db,eth,net,web3" --shh --unlock 0
+If you want to use your local Ethereum node, in order to use "send" RPC commands -- that is, RPC commands that consume ether! -- you will need to unlock your node.  The easiest way to do this is to start geth with the `--unlock` option:
 
-augur.js can be installed using [npm](https://www.npmjs.com/):
+```shell
+geth --rpc --rpccorsdomain "http://localhost:8545" --rpcapi "shh,db,eth,net,web3" --shh --unlock 0
+```
 
-    $ npm install augur.js
+Installation
+------------
+
+The easiest way to install augur.js is using [npm](https://www.npmjs.com/package/augur.js):
+
+```shell
+npm install augur.js
+```
 
 After installing, just require augur.js to use it:
 
 ```javascript
 var Augur = require('augur.js');
+```
+
+Getting started
+---------------
+
+To use the Augur API, augur.js needs to connect to an Ethereum node:
+
+```javascript
 Augur.connect();
 ```
 
-By default, augur.js will look for a localhost Ethereum node listening on port 8545.  To change this, just call pass your RPC connection info (as an object or a URL string) to the `connect` method.  For example:
+By default, augur.js will look for a localhost Ethereum node listening on port 8545.  To change this, just call pass your RPC connection info to `Augur.connect`.  For example, to connect to Augur's public node:
 
 ```javascript
-Augur.connect({ protocol: "http", host: "localhost", port: 8545 });
-Augur.connect("http://poc9.com:8545");
-Augur.connect("127.0.0.1");
+var ethereumNode = "geth.augur.net"; // default: "localhost:8545"
+
+Augur.connect(ethereumNode);
 ```
