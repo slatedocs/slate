@@ -48,7 +48,7 @@ console.log(Augur.web.account);
 
 augur.js includes a trustless account management system.  The purpose of the accounts system is to allow people to use Augur without needing to run an Ethereum node themselves, as running a full Ethereum node can be resource-intensive.  Accounts are trustless because only the user's encrypted key is stored on our server.  Transaction signing and serialization is entirely carried out in the browser using [ethereumjs-tx](https://github.com/ethereum/ethereumjs-tx) and the `eth_sendRawTransaction` RPC; the plaintext private key never touches our servers at any time.
 
-The user specifies a username and password, and a private key (+ derived public key and address) is automatically generated for the user.  A secret key derived from the password using PBKDF2, along with a random 128-bit initialization vector, is used to encrypt the private key using AES-256.  The username, encrypted private key, and initialization vector are stored as a key-value pair in the Ethereum LevelDB.
+First, the user specifies a username and password, and a private key (+ derived public key and address) is automatically generated for the user.  A secret key derived from the password using PBKDF2, along with a random 128-bit initialization vector, is used to encrypt the private key using AES-256.  The username, encrypted private key, and initialization vector are stored as a key-value pair in the Ethereum LevelDB.
 
 <aside class="notice">This will be changed soon, possibly to nedb and/or html5 localstorage.  Manual put/get to the ethereum DB is [deprecated](https://github.com/ethereum/wiki/wiki/JSON-RPC) and slated for removal at some point.</aside>
 
