@@ -50,7 +50,7 @@ var Augur = require('augur.js');
 Augur.connect();
 
 // Connect to Augur's public node (eth1.augur.net)
-Augur.connect("eth1.augur.net");
+Augur.connect("http://eth1.augur.net");
 ```
 
 The easiest way to install augur.js is using [npm](https://www.npmjs.com/package/augur.js):

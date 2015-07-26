@@ -484,6 +484,9 @@ html, body {
   a:visited {
     color: #5F04B4;
   }
+  a:visited:hover {
+    border-bottom: 1px solid #5F04B4;
+  }
 
   aside {
     padding-top: 1em;
