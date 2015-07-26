@@ -34,7 +34,10 @@ If you are running a [local Ethereum node](https://github.com/ethereum/go-ethere
 <code class="block">geth --unlock 0 --rpc --rpccorsdomain "http://localhost:8545" --rpcapi "shh,db,eth,net,web3" --shh</code>
 </aside>
 
-Augur maintains a public Ethereum node at [http://geth.augur.net](http://geth.augur.net).
+Augur maintains two public Ethereum nodes:
+
+- [http://eth1.augur.net](http://eth1.augur.net)
+- [http://eth2.augur.net](http://eth2.augur.net)
 
 Getting started
 ---------------
@@ -46,8 +49,8 @@ var Augur = require('augur.js');
 // Attempt to connect to a local Ethereum node (on http://localhost:8545)
 Augur.connect();
 
-// Connect to Augur's public node (geth.augur.net)
-Augur.connect("geth.augur.net");
+// Connect to Augur's public node (eth1.augur.net)
+Augur.connect("eth1.augur.net");
 ```
 
 The easiest way to install augur.js is using [npm](https://www.npmjs.com/package/augur.js):
