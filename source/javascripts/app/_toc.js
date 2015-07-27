@@ -1,5 +1,6 @@
 //= require ../lib/_jquery_ui
 //= require ../lib/_jquery.tocify
+//= require ../lib/_imagesloaded.min
 (function (global) {
   'use strict';
 
@@ -37,14 +38,18 @@
 
   // Hack to make already open sections to start opened,
   // instead of displaying an ugly animation
-  function animate () {
+  function animate() {
     setTimeout(function() {
       toc.setOption('showEffectSpeed', 180);
     }, 50);
   }
 
-  $(makeToc);
-  $(animate);
-
+  $(function() {
+    makeToc();
+    animate();
+    $('.content').imagesLoaded( function() {
+      global.toc.calculateHeights();
+    });
+  });
 })(window);
 

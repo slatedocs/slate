@@ -2,7 +2,7 @@
 
 ## Version 1.2
 
-*June 20, 2014*
+*June 20, 2015*
 
 **Fixes:**
 

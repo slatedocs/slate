@@ -90,6 +90,8 @@ Examples of Slate in the Wild
 * [Bitrix basis components](http://bbc.bitrix.expert/)
 * [viagogo API Documentation](http://developer.viagogo.net/)
 * [Fidor Bank API Documentation](http://docs.fidor.de/)
+* [Market Prophit API Documentation](http://developer.marketprophit.com/)
+* [OAuth.io API Documentation](http://docs.oauth.io/)
 
 (Feel free to add your site to this list in a pull request!)
 
