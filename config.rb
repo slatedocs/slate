@@ -37,4 +37,4 @@ configure :build do
   # activate :gzip
 end
 
-set :build_dir, '../../public/docs'
+set :build_dir, '../constructor-io-website/public/docs'

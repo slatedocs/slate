@@ -1,6 +1,6 @@
 # To build:
 
-* `rock run bundle exec middleman build --clean`
+* `rock build`
 
 Slate
 ========

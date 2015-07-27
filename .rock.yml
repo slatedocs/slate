@@ -1,0 +1,7 @@
+runtime: ruby21
+
+env:
+  PATH: "${ROCK_PATH}/bin:${PATH}"
+
+build: |
+  bundle exec middleman build --clean
