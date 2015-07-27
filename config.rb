@@ -36,3 +36,5 @@ configure :build do
   # activate :asset_hash
   # activate :gzip
 end
+
+set :build_dir, '../../public/docs'
