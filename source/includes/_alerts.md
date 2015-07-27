@@ -21,7 +21,25 @@ Net::HTTP.start(uri.host, uri.port,
   puts response.body
 end
 ```
+```c#
+var apiKey = "geezeo-api-key";
+var url = "partner.url";
+var userId = "user_id";
+var sdk = new SDK(apiKey, url, userId);
+var alertContainer = sdk.GetAlerts();
 
+/*
+AlertContainer contains the following public fields:
+
+		public List<AccountThresholdAlertResponse> AccountThresholdAlerts;
+        public List<GoalAlertResponse> GoalAlerts;
+        public List<MerchantNameAlertResponse> MerchantNameAlerts;
+        public List<SpendingTargetAlertResponse> SpendingTargetAlerts;
+        public List<TransactionLimitAlertResponse> TransactionLimitAlerts;
+        public List<UpcomingBillAlertResponse> UpcomingBillAlerts;
+
+*/
+```
 
 > Response payload
 
@@ -104,6 +122,7 @@ Return a list of all alerts for a user.
 
 `GET /api/v2/users/:user_id:/alerts`
 
+For c#, the response is wrapped in the AlertContainer class which contains a list of each alert type. 
 
 
 ### Status Codes
@@ -134,6 +153,15 @@ Net::HTTP.start(uri.host, uri.port,
 
   puts response.body
 end
+```
+
+```c#
+var apiKey = "geezeo-api-key";
+var url = "partner.url";
+var userId = "user_id";
+var sdk = new SDK(apiKey, url, userId);
+var alertId = 12345;
+var alertContainer = sdk.GetAlertById(alertId);
 ```
 
 > Response payload
@@ -219,6 +247,14 @@ end
 
 ```
 
+```c#
+var apiKey = "geezeo-api-key";
+var url = "partner.url";
+var userId = "user_id";
+var sdk = new SDK(apiKey, url, userId);
+var alertId = 12345;
+var alertContainer = sdk.DeleteAlert(alertId);
+```
 
 Delete an alert for the given user.
 
@@ -257,6 +293,26 @@ Net::HTTP.start(uri.host, uri.port,
   puts response.body
 end
 
+```
+
+```c#
+
+var apiKey = "geezeo-api-key";
+var url = "partner.url";
+var userId = "user_id";
+var sdk = new SDK(apiKey, url, userId);
+
+var thresholdAlert = new ThresholdAlertRequestModel{
+	Alert = new ThresholdAlertModel{
+		AccountId = 4394163,
+        ThresholdType = ThresholdType.Minimum,
+        ThresholdAmount = 80,
+        EmailDelivery = true,
+        SMSDelivery = false
+	}
+};
+
+var response = sdk.CreateThresholdAlert(thresholdAlert);
 ```
 
 > Request payload
@@ -323,6 +379,26 @@ end
 
 ```
 
+```c#
+var apiKey = "geezeo-api-key";
+var url = "partner.url";
+var userId = "user_id";
+var sdk = new SDK(apiKey, url, userId);
+var alertId = 12345;
+
+var thresholdAlert = new ThresholdAlertRequestModel{
+	Alert = new ThresholdAlertModel{
+		AccountId = 4394163,
+        ThresholdType = ThresholdType.Minimum,
+        ThresholdAmount = 80,
+        EmailDelivery = true,
+        SMSDelivery = false
+	}
+};
+
+var updated = sdk.UpdateThresholdAlert(alertId, thresholdAlert);
+```
+
 > Request payload
 
 ```json
@@ -385,6 +461,47 @@ end
 
 ```
 
+```c#
+//create Savings Goal
+
+var apiKey = "geezeo-api-key";
+var url = "partner.url";
+var userId = "user_id";
+var sdk = new SDK(apiKey, url, userId);
+var alertRequest = new SavingsGoalAlertRequestModel
+{
+    Alert = new SavingsGoalAlertModel
+    {
+        Percentage = 85,
+        SavingsGoalId = 3998,
+        EmailDelivery = true,
+        SmsDelivery = false
+    }
+};
+
+var createdAlert = sdk.CreateSavingsGoalAlert(alertRequest);
+
+// Create Payoff Goal
+
+var apiKey = "geezeo-api-key";
+var url = "partner.url";
+var userId = "user_id";
+var sdk = new SDK(apiKey, url, userId);
+var alertRequest = new PayoffGoalAlertRequestModel
+{
+    Alert = new PayoffGoalAlertModel
+    {
+        Percentage = 85,
+        PayoffGoalId = 3998,
+        EmailDelivery = true,
+        SmsDelivery = false
+    }
+};
+
+var createdAlert = sdk.UpdateSavingsGoalAlert(alertRequest);
+
+```
+
 > Request payload
 
 ```json
@@ -444,6 +561,26 @@ Net::HTTP.start(uri.host, uri.port,
 
   puts response.body
 end
+
+```
+
+```c#
+
+var apiKey = "geezeo-api-key";
+var url = "partner.url";
+var userId = "user_id";
+var sdk = new SDK(apiKey, url, userId);
+var alertRequest = new GoalAlertRequestModel
+{
+    Alert = new GoalAlertModel
+    {
+        Percentage = 85,
+        EmailDelivery = true,
+        SmsDelivery = false
+    }
+};
+
+var createdAlert = sdk.UpdateGoalAlert(alertRequest);
 
 ```
 
@@ -511,6 +648,26 @@ Net::HTTP.start(uri.host, uri.port,
 end
 
 ```
+```c#
+
+var apiKey = "geezeo-api-key";
+var url = "partner.url";
+var userId = "user_id";
+var sdk = new SDK(apiKey, url, userId);
+var merchantName = "test mart";
+var alertRequest = new MerchantNameAlertRequestModel
+{
+    Alert = new MerchantNameAlertModel
+    {
+        Name = name,
+        EmailDelivery = true,
+        SmsDelivery = false
+    }
+};
+
+var createdAlert = sdk.CreateMerchantNameAlert(alertRequest);
+```
+
 > Request payload
 
 ```json
@@ -569,6 +726,28 @@ Net::HTTP.start(uri.host, uri.port,
 end
 
 ```
+
+```c#
+
+var apiKey = "geezeo-api-key";
+var url = "partner.url";
+var userId = "user_id";
+var sdk = new SDK(apiKey, url, userId);
+var alertId = 12345;
+var merchantName = "test mart";
+var alertRequest = new MerchantNameAlertRequestModel
+{
+    Alert = new MerchantNameAlertModel
+    {
+        Name = name,
+        EmailDelivery = true,
+        SmsDelivery = false
+    }
+};
+
+var updated = sdk.UpdateMerchantNameAlert(alertId, alertRequest);
+```
+
 
 > Request payload
 
@@ -631,6 +810,29 @@ end
 
 ```
 
+```c#
+
+var apiKey = "geezeo-api-key";
+var url = "partner.url";
+var userId = "user_id";
+var sdk = new SDK(apiKey, url, userId);
+var budgetId = 56789;
+var percentage = 70;
+var alertRequest = new SpendingTargetAlertRequestModel
+{
+    Alert = new SpendingTargetAlertModel
+    {
+        BudgetId = budgetId,
+        Percentage = percentage,
+        EmailDelivery = true,
+        SmsDelivery = false
+    }
+};
+
+var createdAlert = sdk.CreateSpendingTargetAlert(alertRequest);
+```
+
+
 ```json
 {
   "alert": {
@@ -689,6 +891,28 @@ Net::HTTP.start(uri.host, uri.port,
   puts response.body
 end
 
+```
+```c#
+
+var apiKey = "geezeo-api-key";
+var url = "partner.url";
+var userId = "user_id";
+var sdk = new SDK(apiKey, url, userId);
+var alertId = 12345;
+var budgetId = 56789;
+var percentage = 70;
+var alertRequest = new SpendingTargetAlertRequestModel
+{
+    Alert = new SpendingTargetAlertModel
+    {
+        BudgetId = budgetId,
+        Percentage = percentage,
+        EmailDelivery = true,
+        SmsDelivery = false
+    }
+};
+
+var updated = sdk.UpdateSpendingTargetAlert(alertId, alertRequest);
 ```
 
 > Request payload
@@ -753,6 +977,29 @@ end
 
 ```
 
+```c#
+
+var apiKey = "geezeo-api-key";
+var url = "partner.url";
+var userId = "user_id";
+var sdk = new SDK(apiKey, url, userId);
+var accountId = 56789;
+var limit = 100;
+var alertRequest = new TransactionLimitAlertRequestModel
+{
+    Alert = new TransactionLimitAlertModel
+    {
+        AccountId = accountId,
+        Limit = limit,
+        EmailDelivery = true,
+        SmsDelivery = false
+    }
+};
+
+var createdAlert = sdk.CreateTransactionLimitAlert(alertRequest);
+```
+
+
 > Request payload
 
 ```json
@@ -813,6 +1060,30 @@ Net::HTTP.start(uri.host, uri.port,
 end
 
 ```
+
+```c#
+
+var apiKey = "geezeo-api-key";
+var url = "partner.url";
+var userId = "user_id";
+var sdk = new SDK(apiKey, url, userId);
+var alertId = 12345;
+var accountId = 56789;
+var limit = 100;
+var alertRequest = new TransactionLimitAlertRequestModel
+{
+    Alert = new TransactionLimitAlertModel
+    {
+        AccountId = accountId,
+        Limit = limit,
+        EmailDelivery = true,
+        SmsDelivery = false
+    }
+};
+
+var updated = sdk.UpdateTransactionLimitAlert(alertId, alertRequest);
+```
+
 
 > Request payload
 
@@ -876,6 +1147,29 @@ end
 
 ```
 
+```c#
+
+var apiKey = "geezeo-api-key";
+var url = "partner.url";
+var userId = "user_id";
+var sdk = new SDK(apiKey, url, userId);
+var cashflowTransactionId = 56789;
+var days = 10;
+var alertRequest = new UpcomingBillAlertRequestModel
+{
+    Alert = new UpcomingBillAlertModel
+    {
+        CashflowTransactionId = cashflowTransactionId,
+        Days = days,
+        EmailDelivery = true,
+        SmsDelivery = false
+    }
+};
+
+var createdAlert = sdk.CreateUpcomingBillAlert(alertRequest);
+```
+
+
 > Request payload
 
 ```json
@@ -938,6 +1232,30 @@ end
 
 ```
 
+```c#
+var apiKey = "geezeo-api-key";
+var url = "partner.url";
+var userId = "user_id";
+var sdk = new SDK(apiKey, url, userId);
+var alertId = 12345;
+var cashflowTransactionId = 56789;
+var days = 10;
+var alertRequest = new UpcomingBillAlertRequestModel
+{
+    Alert = new UpcomingBillAlertModel
+    {
+        CashflowTransactionId = cashflowTransactionId,
+        Days = days,
+        EmailDelivery = true,
+        SmsDelivery = false
+    }
+};
+
+var updated = sdk.UpdateUpcomingBillAlert(alertId, alertRequest);
+```
+
+
+
 > Request payload
 
 ```json
@@ -998,6 +1316,14 @@ Net::HTTP.start(uri.host, uri.port,
 end
 ```
 
+```c# 
+var apiKey = "geezeo-api-key";
+var url = "partner.url";
+var userId = "user_id";
+var sdk = new SDK(apiKey, url, userId);
+var notifications = sdk.GetNotifications();
+```
+
 > Response payload
 
 ```json
@@ -1054,7 +1380,14 @@ Net::HTTP.start(uri.host, uri.port,
   puts response.body
 end
 ```
-
+```c# 
+var apiKey = "geezeo-api-key";
+var url = "partner.url";
+var userId = "user_id";
+var sdk = new SDK(apiKey, url, userId);
+var notificationId = 12345;
+var notification = sdk.GetNotificationById(notificationId);
+```
 
 > Response payload
 
@@ -1106,7 +1439,14 @@ Net::HTTP.start(uri.host, uri.port,
 end
 
 ```
-
+```c# 
+var apiKey = "geezeo-api-key";
+var url = "partner.url";
+var userId = "user_id";
+var sdk = new SDK(apiKey, url, userId);
+var notificationId = 12345;
+var deleted = sdk.DeleteAlertNotification(notificationId);
+```
 
 Delete/dismiss a notification.
 
@@ -1143,7 +1483,13 @@ Net::HTTP.start(uri.host, uri.port,
   puts response.body
 end
 ```
-
+```c# 
+var apiKey = "geezeo-api-key";
+var url = "partner.url";
+var userId = "user_id";
+var sdk = new SDK(apiKey, url, userId);
+var destinations = sdk.GetAlertDestinations();
+```
 
 > Response payload
 
@@ -1197,6 +1543,27 @@ Net::HTTP.start(uri.host, uri.port,
   puts response.body
 end
 
+```
+
+```c#
+var apiKey = "geezeo-api-key";
+var url = "partner.url";
+var userId = "user_id";
+var sdk = new SDK(apiKey, url, userId);
+
+var email = "myemail@geezeo.com";
+var smsNumber = "1238765432";
+
+var destinationRequest = new AlertDestinationsRequestModel
+{
+     Destinations = new AlertDestinationsModel
+     {
+          EmailAddress = email,
+          SmsNumber = smsNumber
+     }
+};
+
+var updated = sdk.UpdateAlertDestination(destinationRequest);
 ```
 
 > Request payload
