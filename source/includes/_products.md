@@ -1,5 +1,4 @@
 # Products
-
 ## URL
 ```php
 <?php
@@ -34,8 +33,6 @@ upload | is the action you want to perform.
 
 
 ## Upload
-To upload products, you can simply add an json encoded array of arrays as post body of the url from above:
-<aside class="notice">The key `id` is mandatory, all other keys end up as columns</aside>
 
 ```shell
 curl -d '[{
@@ -68,6 +65,9 @@ $ProductService->insert(array(
     )
 );
 ```
+To upload products, you can simply add an json encoded array of arrays as post body of the url from above:
+<aside class="notice">The key `id` is mandatory, all other keys end up as columns</aside>
+
 
 The example would result in a import that looks like this:
 

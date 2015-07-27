@@ -12,6 +12,11 @@ toc_footers:
 includes:
   - intro
   - auth
+  - sites
+  - sites_actions
+  - sites_datasources
+  - sites_tags
+  - sites_errors
   - products
   - errors
 

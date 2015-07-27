@@ -80,6 +80,17 @@ html, body {
   font-size: 13px;
   font-weight: bold;
 
+  .logo {
+    background: #000;
+    padding: 10px 15px;
+    .title {
+      display: block;
+      float: right;
+      margin: 3px 0;
+      color: #666;
+    }
+  }
+
   // language selector for mobile devices
   .lang-selector {
     display: none;
@@ -364,9 +375,10 @@ html, body {
 
   h1 {
     @extend %header-font;
-    font-size: 30px;
-    padding-top: 0.5em;
-    padding-bottom: 0.5em;
+    font-size: 20px;
+    font-weight: normal;
+    padding-top: 10px;
+    padding-bottom: 10px;
     border-bottom: 1px solid #ccc;
     margin-bottom: $h1-margin-bottom;
     margin-top: 2em;
@@ -383,15 +395,12 @@ html, body {
 
   h2 {
     @extend %header-font;
-    font-size: 20px;
-    margin-top: 4em;
+    font-size: 18px;
+    margin-top: 2em;
     margin-bottom: 0;
     border-top: 1px solid #ccc;
     padding-top: 1.2em;
     padding-bottom: 1.2em;
-    @include background-image(
-      linear-gradient(top, rgba(#fff,0.4), rgba(#fff, 0))
-    );
   }
 
   // h2s right after h1s should bump right up
