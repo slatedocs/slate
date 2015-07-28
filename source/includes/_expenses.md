@@ -22,6 +22,15 @@ Net::HTTP.start(uri.host, uri.port,
 end
 ```
 
+```c#
+var apiKey = "geezeo-api-key";
+var url = "partner.url";
+var userId = "user_id";
+var sdk = new SDK(apiKey, url, userId);
+var expenses = sdk.GetExpenses(null) //pass in either a null or empty search criteria object (new ExpenseSearchCriteriaModel())
+```
+
+
 > Response payload
 
 ```json
@@ -58,8 +67,21 @@ Return expenses calculated by tag for the given user.
 
 ### Request with Threshold
 
-    GET /api/v2/users/:user_id:/expenses?threshold=100
+    `GET /api/v2/users/:user_id:/expenses?threshold=100
 
+```c#
+var apiKey = "geezeo-api-key";
+var url = "partner.url";
+var userId = "user_id";
+var sdk = new SDK(apiKey, url, userId);
+// Criteria model also has BeginOn and EndOn parameters
+var searchCriteria = new ExpenseSearchCriteriaModel{
+	Threshold = 100
+};
+
+var expenses = sdk.GetExpenses(searchCriteria);
+
+```
 
 ### Status Codes
 
@@ -77,15 +99,42 @@ Return expenses from last month for the given user.
 
 `GET /api/v2/users/:user_id:/expenses/last_month`
 
+```c#
+var apiKey = "geezeo-api-key";
+var url = "partner.url";
+var userId = "user_id";
+var sdk = new SDK(apiKey, url, userId);
+var expenses = sdk.GetExpensesForLastMonth();
+
+```
+
 ### Get This Month
 
 Return expenses from this month for the given user.
 
 `GET /api/v2/users/:user_id:/expenses/this_month`
 
+```c#
+var apiKey = "geezeo-api-key";
+var url = "partner.url";
+var userId = "user_id";
+var sdk = new SDK(apiKey, url, userId);
+var expenses = sdk.GetExpensesForThisMonth();
+
+```
+
 ### Get Last 30 Days
 
 Return expenses from last thirty days for the given user.
 
 `GET /api/v2/users/:user_id:/expenses/last_thirty_days`
+
+```c#
+var apiKey = "geezeo-api-key";
+var url = "partner.url";
+var userId = "user_id";
+var sdk = new SDK(apiKey, url, userId);
+var expenses = sdk.GetExpensesForLastThirtyDays();
+
+```
 
