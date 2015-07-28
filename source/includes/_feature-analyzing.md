@@ -15,15 +15,14 @@ For example, if "3ffd45" is a categorical variable with three categories (one of
 ]
 ```
 
-...would form a result cube with two dimensions: one using the categories of variable "3ffd45", and one using the distinct values of (variable "2098f1" + 5). If variable "2098f1" has the distinct values [0, 10, 20, 30], then we would obtain a cube with the following extents:
- 
-  _____3ffd45|1|2|-1
-2098f1+5_____| | |
--------------|-|-|--
-5| | |
-15| | |
-25| | |
-35| | |
+...would form a result cube with two dimensions: one using the categories of variable "3ffd45", and one using the distinct values of (variable "2098f1" + 5). If variable "2098f1" has the distinct values [5, 15, 25, 35], then we would obtain a cube with the following extents:
+
+|   | 1 | 2 | -1 |
+|---|---|---|----|
+|  5|   |   |    |
+| 15|   |   |    |
+| 25|   |   |    |
+| 35|   |   |    |
 
 Each dimension used in a cube query needs to be reduced to distinct values. For categorical or enumerated variables, we only need to refer to the variable, and the system will automatically use the "categories" or "elements" metadata to determine the distinct values. For other types, the default is to scan the variable's data to find the unique values present and use those. Often, however, we want a more sophisticated approach: numeric variables, for example, are usually more useful when binned into a handful of ranges, like "0 to 10, 10 to 20, ...90 to 100" rather than 100 distinct points (or many more when dealing with non-integers). The available dimensioning functions vary from type to type; the most common are:
 
@@ -53,20 +52,19 @@ or:
 
 ```json
     "measures": {
-        "mean": {"function": "cube_mean", args: [{"variable": "datasets/1/variables/3"}]},
-        "stddev": {"function": "cube_stddev", args: [{"variable": "datasets/1/variables/3/"}]}
+        "mean": {"function": "cube_mean", "args": [{"variable": "datasets/1/variables/3"}]},
+        "stddev": {"function": "cube_stddev", "args": [{"variable": "datasets/1/variables/3/"}]}
     }
 ```
 
 When applied to the dimensions we defined above, this second example might fill the table thusly for the "mean" measure:
- 
-mean 3ffd45|1|2|-1
-2098f1+5| | |
---------|-|-|--
-5|4.3|12.3|8.1 
-15|13.1|0.0|9.2 
-25|72.4|4.2|55.5 
-35|8.9|9.1|0.4
+
+|mean| 1 | 2 | -1 |
+|---|---|---|----|
+|  5|4.3|12.3|8.1|
+| 15|13.1|0.0|9.2|
+| 25|72.4|4.2|55.5|
+| 35|8.9|9.1|0.4|
  
 ...and produce a similar one for the "stddev" measure. You can think of multiple measures as producing "overlays" over the same dimensions. However, the actual output format (in JSON) is more compact in that the dimensions are not repeated; see Object Reference:Cube output for details.
 
@@ -88,21 +86,19 @@ For example, if we have an analysis over two categorical variables "88dd88" and 
 
 then we might obtain a cube with the following output:
 
-_____ee4455|1|2|-1
-88dd88_____| | |
------------|-|-|--
-1|15|12|9
-2|72|8|3
-3|23|4|17
+|   | 1 | 2 | -1 |
+|---|---|---|----|
+|  1|15|12|9|
+|  2|72|8|3|
+|  3|23|4|17|
 
 Let's say we then want to overlay a comparison showing benchmarks for 88dd88 as follows:
  
-_____ee4455|1|2|-1|benchmarks
-88dd88_____| | |  |
------------|-|-|--|----------
-1|15|12|9|20
-2|72|8|3|70
-3|23|4|17|10
+|   | 1 | 2 | -1 |benchmarks|
+|---|---|---|----|----------|
+|1|15|12|9|20|
+|2|72|8|3|70|
+|3|23|4|17|10|
 
 Our first pass at this might be to generate the benchmark targets in some other system, and hand-enter them into Crunch. To accomplish this, we need to define a comparison. First, we need to define the "bases": the cube(s) to which our comparison applies, which in our case is just the above cube:
 
