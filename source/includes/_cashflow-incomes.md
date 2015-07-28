@@ -22,6 +22,14 @@ Net::HTTP.start(uri.host, uri.port,
 end
 ```
 
+```c#
+var apiKey = "geezeo-api-key";
+var url = "partner.url";
+var userId = "user_id";
+var sdk = new SDK(apiKey, url, userId);
+var incomes = sdk.GetIncomes();
+```
+
 > Response payload
 
 ```json
@@ -83,6 +91,14 @@ Net::HTTP.start(uri.host, uri.port,
   puts response.body
 end
 
+```
+```c#
+var apiKey = "geezeo-api-key";
+var url = "partner.url";
+var userId = "user_id";
+var sdk = new SDK(apiKey, url, userId);
+var incomeId = 12345;
+var incomesResponse = sdk.GetIncome(incomeId);
 ```
 
 > Response payload
@@ -150,7 +166,21 @@ Net::HTTP.start(uri.host, uri.port,
 end
 
 ```
-
+```c#
+var apiKey = "geezeo-api-key";
+var url = "partner.url";
+var userId = "user_id";
+var sdk = new SDK(apiKey, url, userId);
+var incomeRequest = new IncomeRequestModel{
+	Income = new IncomeModel{
+		Amount = 200f,
+		Frequency = Frequency.Daily,
+		Name = "Test Income",
+		StartDate = new Datetime(2015, 7, 1)
+	}
+};
+var incomeResponse = sdk.CreateIncome(incomeRequest);
+```
 
 > Request payload
 
@@ -244,6 +274,24 @@ end
 
 ```
 
+```c#
+var apiKey = "geezeo-api-key";
+var url = "partner.url";
+var userId = "user_id";
+var sdk = new SDK(apiKey, url, userId);
+var incomeId = 12345;
+
+var incomeRequest = new IncomeRequestModel{
+	Income = new IncomeModel{
+		Amount = 200f,
+		Frequency = Frequency.Daily,
+		Name = "Test Income",
+		StartDate = new Datetime(2015, 7, 1)
+	}
+};
+var updated = sdk.CreateIncome(incomeId, incomeRequest);
+```
+
 > Request payload
 
 ```json
@@ -315,6 +363,15 @@ end
 
 ```
 
+```c#
+var apiKey = "geezeo-api-key";
+var url = "partner.url";
+var userId = "user_id";
+var sdk = new SDK(apiKey, url, userId);
+var incomeId = 12345;
+var stopped = sdk.StopIncome(incomeId);
+```
+
 Stop a cashflow income.
 
 `PUT /api/v2/users/:user_id:/cashflow/incomes/:cashflow_income_id:/stop`
@@ -351,6 +408,14 @@ end
 
 ```
 
+```c#
+var apiKey = "geezeo-api-key";
+var url = "partner.url";
+var userId = "user_id";
+var sdk = new SDK(apiKey, url, userId);
+var incomeId = 12345;
+var deleted = sdk.DeleteIncome(incomeId);
+```
 
 Delete a cashflow income.
 
