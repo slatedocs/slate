@@ -4,6 +4,7 @@ This section describes the complete audit response format.
 
 
 ## Top Level
+
 ```json
 {
   "audit_id": "audit_50ba581235704a368d025056a583aa8b",
@@ -20,6 +21,7 @@ This section describes the complete audit response format.
   "assets": [{}]
 }
 ```
+
 Key                           | Type              | Description
 ------------------------------|-------------------|---------------------------------------------------------------------
 `audit_id`                    | String            | The audit's ID
@@ -34,9 +36,11 @@ Key                           | Type              | Description
 
 
 ## Audit Data
+
 `.audit_data`
 
 ### Audit Data Root
+
 ```json
 {
   "name": "title",
@@ -50,6 +54,7 @@ Key                           | Type              | Description
   "date_started": "2015-06-04T02:34:25.000Z"
 }
 ```
+
 Key                           | Type              | Description
 ------------------------------|-------------------|---------------------------------------------------------------------
 `name`                        | String            | String name of the audit
@@ -63,7 +68,9 @@ Key                           | Type              | Description
 `authorship`                  | Object            | Information on the [authorship](#authorship) of the audit
 
 ### Authorship
+
 `.audit_data.authorship`
+
 ```json
 {
   "authorship": {
@@ -73,6 +80,7 @@ Key                           | Type              | Description
   }
 }
 ```
+
 Key                           | Type              | Description
 ------------------------------|-------------------|---------------------------------------------------------------------
 `author`                      | String            | The person who created the audit. Never changes
@@ -81,8 +89,11 @@ Key                           | Type              | Description
 
 
 ## Template Data
+
 `.template_data`
+
 ### Template Data Root
+
 ```json
 {
   "metadata": {},
@@ -90,6 +101,7 @@ Key                           | Type              | Description
   "response_sets": {}
 }
 ```
+
 Key                           | Type              | Description
 ------------------------------|-------------------|---------------------------------------------------------------------
 `metadata`                    | Object            | Some [meta data](#template-meta-data) about the Template (name, description, image, etc.)
@@ -97,7 +109,9 @@ Key                           | Type              | Description
 `authorship`                  | Object            | Information on the [authorship](#authorship) of the template. Same as audit [authorship](#authorship).
 
 ### Template Meta Data
+
 `.template_data.metadata`
+
 ```json
 {
   "name": "name",
@@ -105,6 +119,7 @@ Key                           | Type              | Description
   "image": "52ED0287-93F1-4F53-B2C2-29EA3A2423E7",
 }
 ```
+
 Key                           | Type              | Description
 ------------------------------|-------------------|---------------------------------------------------------------------
 `name`                        | String            | The template name
@@ -112,7 +127,9 @@ Key                           | Type              | Description
 `image`                       | Object            | Main [image](#media) of the template
 
 ### Response Sets
+
 `.template_data.response_sets` - keys of the object are the UUID's' of each set. Values of the object are the sets themselves.
+
 ```json
 {
   "8a0161b0-a97d-11e4-800b-8f525e51b36e": { "id": "8a0161b0-a97d-11e4-800b-8f525e51b36e", "responses": [] },
@@ -121,20 +138,25 @@ Key                           | Type              | Description
 ```
 
 #### Response Set
+
 `.template_data.response_sets.*`
+
 ```js
 {
   "id": "8a0161b0-a97d-11e4-800b-8f525e51b36e",
   "responses": [{}]
 }
 ```
+
 Key                           | Type              | Description
 ------------------------------|-------------------|---------------------------------------------------------------------
 `id`                          | Object            | ID of the response set
 `responses`                   | Array             | Array of [response set items](#response-sets-response)
 
 ##### Response Sets Response
+
 `.template_data.response_sets.*.responses` most of the fields can be absent.
+
 ```json
 {
   "id": "22a409a8-c02a-44d5-8b61-e66b6996927e",
@@ -147,6 +169,7 @@ Key                           | Type              | Description
   "type": "list"
 },
 ```
+
 Key                           | Type              | Description
 ------------------------------|-------------------|---------------------------------------------------------------------
 `id`                          | String            | ID of the response
@@ -160,12 +183,17 @@ Key                           | Type              | Description
 
 
 ## Audit Header Items
+
 `.header_items`
+
 Same structure as **Audit Items**. See below.
 
 ## Audit Items
+
 `.items` are the responses or selections made by the auditor.
+
 ### Item Root
+
 ```json
 {
   "label": "Audit",
@@ -195,7 +223,9 @@ Key                           | Type              | Description
 `scoring`                     | Object            | An object containing all the related [scores](#item-scoring) of this item
 
 ### Item Options
+
 `.items[].options` most of the fields will be absent usually.
+
 ```json
 {
   "assets": ["e8a12eb4-5492-47bd-82bf-86e6d98bf81a"],
@@ -225,38 +255,41 @@ Key                           | Type              | Description
   "weighting": 8
 }
 ```
+
 Key                           | Type              | Description
 ------------------------------|-------------------|---------------------------------------------------------------------
 `assets`                      | Array             | Array of [asset](#audit-assets) ID's
 `computed_field`              | String            |
 `condition`                   | String            | The smart field condition. UUID of a response set
-`element`                     | String            |
+`element`                     | String            | The title of each element of a dynamic field.
 `enable_date`                 | Boolean           | Toggles the date portion of an item containing a date-time
 `enable_signature_timestamp`  | Boolean           | Toggles the timestamp set when filling in a signature field
 `enable_time`                 | Boolean           | Toggles the time portion of an item containing a date-time
-`hide_barcode`                | Boolean           |
+`hide_barcode`                | Boolean           | Means that you can only scan barcode. It's not editable.
 `increment`                   | String            | Controls the increment jumps in slider items
 `is_mandatory`                | Boolean           | Toggles whether the item has to have a response before the audit can be completed
-`label`                       | String            |
+`label`                       | String            | 
 `link`                        | String            | URL field in information items
 `locked`                      | Boolean           | Toggles whether an asset item has been locked
 `max`                         | String            | Maximum value for a slider item
 `media`                       | String            | A [media](#media) attached to the item
-`media_visible_in_report`     | Boolean           |
+`media_visible_in_report`     | Boolean           | 
 `min`                         | String            | Minimum value for a slider item
 `multiple_selection`          | Boolean           | True if this field allows multiple selection
-`required`                    | Boolean           |
+`required`                    | Boolean           | 
 `response_set`                | String            | A UUID of the response set this item relates to
-`secure`                      | String            |
+`secure`                      | String            | 
 `type`                        | String            | The type of an information field. Currently `text`, `media` or `link`
 `url`                         | String            | *DEPRECATED - use link* URL field in information items
 `values`                      | String            | The item's smart field reponse(s)
-`visible_in_audit`            | Boolean           |
-`visible_in_report`           | Boolean           |
+`visible_in_audit`            | Boolean           | Represents checkbox telling if an information item should be seen by auditor.
+`visible_in_report`           | Boolean           | Represents checkbox telling if an information item should appear in reports.
 `weighting`                   | String            | The weight used for generating audit scores
 
 ### Item Responses
+
 `.items[].responses` most of the fields will be absent usually.
+
 ```json
 {
   "assets": ["e8a12eb4-5492-47bd-82bf-86e6d98bf81a"],
@@ -273,14 +306,15 @@ Key                           | Type              | Description
   "image": {}
 }
 ```
+
 Key                           | Type              | Description
 ------------------------------|-------------------|---------------------------------------------------------------------
 `assets`                      | Array             | Array of selected [asset](#audit-assets) ID's
 `text`                        | String            | Text label of the response
 `value`                       | String            | The selected value, like slider position
 `name`                        | String            | Someone's name
-`timestamp`                   | String            |
-`datetime`                    | String            |
+`timestamp`                   | String            | 
+`datetime`                    | String            | 
 `location_text`               | String            | Location represented as text (address or coordinates)
 `location`                    | Object            | The [location](#location) object
 `selected`                    | Array             | The selected responses. Same as [template response items](#response-sets-response)
@@ -289,7 +323,9 @@ Key                           | Type              | Description
 `image`                       | Object            | An [image](#media) of the selection
 
 ### Item Scoring
+
 `.items[].scoring`
+
 ```json
 {
   "score": 5,
@@ -300,6 +336,7 @@ Key                           | Type              | Description
   "combined_score_percentage": 25
 }
 ```
+
 Key                           | Type              | Description
 ------------------------------|-------------------|---------------------------------------------------------------------
 `score`                       | Number            | Score for the answer
@@ -336,6 +373,7 @@ Key                           | Type              | Description
   "thoroughfare": ""
 }
 ```
+
 Key                           | Type              | Description
 ------------------------------|-------------------|---------------------------------------------------------------------
 `administrative_area`         | String            |
@@ -352,7 +390,9 @@ Key                           | Type              | Description
 `thoroughfare`                | String            |
 
 ## Audit Assets
+
 `.assets`
+
 ```json
 {
   "barcode": "",
@@ -402,7 +442,9 @@ Key                           | Type              | Description
 `year_of_manufacture`         | Number            |
 
 ## Media
+
 This object is used across the entire audit JSON.
+
 ```json
 {
   "date_created": "2015-03-23T23:57:52.000Z",
@@ -412,6 +454,7 @@ This object is used across the entire audit JSON.
   "href": "https://api.safetyculture.io/audits/audit_50ba581235704a368d025056a583aa8b/media/5f32d80c-3531-457f-b853-5f087927f5b8"
 }
 ```
+
 Key                           | Type              | Description
 ------------------------------|-------------------|---------------------------------------------------------------------
 `date_created`                | String            | A timestamp of the image or photo
