@@ -15,15 +15,20 @@ includes:
   - feature-importing
   - feature-appending
   - feature-deriving
+  - feature-arrays
+  - feature-analyzing
   - endpoint-intro
   - endpoint-public
   - endpoint-dataset
   - endpoint-variable
   - endpoint-filter
   - endpoint-analysis
+  - endpoint-comparison
   - endpoint-version
   - endpoint-batch
   - endpoint-source
+  - endpoint-join
+  - endpoint-permission
   - endpoint-user
   - endpoint-team
   - object-reference
