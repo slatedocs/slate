@@ -65,6 +65,7 @@ This section describes the metadata of a variable as exposed across HTTP, both e
 
 Crunch operates on the principle that analytic users proceed through a series of steps where they both refine existing data and transform existing variables into new variables. Therefore, it employs a structural type system, not a nominative one. Practically, this means that, although we may know the "type" of a variable (numeric, text, categorical, etc) even before data is input, we learn more about the metadata of a variable as time goes on. The variable definition therefore includes more knowledge than just the type name; we also learn details about range, precision, missing values and reasons, order, etc. Both definitions and types, therefore, are complete objects, not just names. For example:
 
+```json
 {
     "type": "categorical",
     "name": "Party ID",
@@ -90,6 +91,7 @@ Crunch operates on the principle that analytic users proceed through a series of
         }
     ]
 }
+```
 
 #### Variable types
 
@@ -201,6 +203,7 @@ The missing codes map to a reason phrase via this "missing reasons" type member.
 
 In the above example, the code of -1 would be looked up in a missing reasons map such as:
 
+```json
 {
     "missing reasons": {
         "no data": -1,
@@ -208,6 +211,7 @@ In the above example, the code of -1 would be looked up in a missing reasons map
         "my backup was corrupted": 1
     }
 }
+```
 
 See the Endpoint Reference for user-defined missing reasons.
 
@@ -247,30 +251,45 @@ Requesting multiple response values returns values that are each an array, the v
 
 Requesting categorical array values return values that are each an array, the values of which are the category names of the values for each subvariable. Each value in a categorical array is an array of equal length of the number of subvariables in the array.
 
-Example variables
-Creating variables
-Variables
+### Variables
+
 A complete Variable, then, is simply a Definition combined with its data array.
-Expressions
+
+### Expressions
+
 When attempting to describe which columns we'd like to use, we construct expressions. For example, to add columns X and Y into a third column Z, we could write "Z = X + Y". However, we have to be a bit careful that we distinguish between "Z = X + Y" where Y is the identifier of a variable, and "Z = X + Y" where we want to append the character "Y" to each value in variable X. We also have to distinguish a variable named "Qr" from a function named "Qr". Therefore, we wrap up each term in the expression in an object which declares whether the term is a variable, a value, or a function, etc.
-Value terms
+
+#### Value terms
+
 Terms refer to data values when they include a "value" member. Its value is any individual data value; that is, a value that is addressable by a column and row in the dataset. For example:
-{"value": 13}
-{"value": [3, 4, 5]}
+
+ * {"value": 13}
+ * {"value": [3, 4, 5]}
+
 Note that individual values may themselves be complex arrays or objects, depending on their type. You may explicitly include a "type" member in the object, or let Crunch infer the type.
-Variable terms
+
+#### Variable terms
+
 Terms refer to variables when they include a "variable" member. The value is the URL for the desired variable. For example:
-{"variable": "../variables/X/"}
-{"variable": "../joins/abcd/variables/Y/"}
-Function terms
+
+ * {"variable": "../variables/X/"}
+ * {"variable": "../joins/abcd/variables/Y/"}
+
+#### Function terms
+
 Terms refer to functions (and operators) when they include a "function" member. The value is the identifier for the desired function. They parameterize the function with an "args" member, whose value is an array of terms, one for each argument. Examples:
-{"function": "==", "args": [{"variable": "../variables/X/"}, {"value": 13}]}
-{"function": "contains", "args": [{"variable": "../joins/abcd/variables/Y/"}, {"value": "foo"}]}
+
+ * {"function": "==", "args": [{"variable": "../variables/X/"}, {"value": 13}]}
+ * {"function": "contains", "args": [{"variable": "../joins/abcd/variables/Y/"}, {"value": "foo"}]}
+
 You may include a "references" member to provide a name, alias, description, etc to the output of the function.
-Column terms
+
+#### Column terms
+
 Terms refer to columns (construct them, actually) when they include a "column" member. The value is an array of data values. You may include "type" and/or "references" members as well.
-{"column": [1, 2, 3, 17]}
-{"column": [{"?": -2}, 1, 4, 1], "type": {"class": "categorical", "categories": [...], ...}}
+
+ * {"column": [1, 2, 3, 17]}
+ * {"column": [{"?": -2}, 1, 4, 1], "type": {"class": "categorical", "categories": [...], ...}}
 
 ## Documents
 
@@ -282,6 +301,7 @@ Many representations returned from the API are Shoji Documents. Shoji is a media
 
 Anything that can be thought of as "a thing by itself" will probably be represented by a Shoji Entity Document. Entities possess a "body" member: a JSON object where each key/value pair is an attribute name and value. For example:
 
+```json
 {
     "element": "shoji:entity",
     "self": "https://.../api/users/1/",
@@ -295,37 +315,44 @@ Anything that can be thought of as "a thing by itself" will probably be represen
         "last_name": "Khan"
     }
 }
+```
 
 In general, an HTTP GET to the "self" URL will return the document, and a PUT of the same will update it. PUT should not be used for partial updates–use PATCH for that instead. In general, each member included in the "body" of a PATCH message will replace the current representation; attributes not included will not be altered. There is no facility to remove an attribute from an Entity.body via PATCH. In some cases, however, even finer-grained control is possible via PATCH; see the Endpoint Reference for details.
 
 ##### Dataset Entity
+
 A Dataset entity is a Shoji Entity which defines a rectangular collection of variables. It has the following members:
-description: A textual discussion of the Dataset resource in general.
-specification: A link to a formal specification of the Dataset resource format.
-catalogs: An object containing links to related catalogs:
-batches: the collection of batches contained by the Dataset. Each batch represents a set of inserted rows.
-variables: the collection of variables contained by the Dataset.
-...
-fragments:
-table: the editable data array for this Dataset.
-body: An editable object whose members include:
-archived: If true, the Dataset is hidden from most views.
-creation_time: an ISO-8601 timestamp, like "2014-07-07T19:15:29.541633+00:00".
-description: A long-form, textual description of the Dataset.
-name: A unique, friendly name for the Dataset.
-user_id: The id of a User resource which owns the Dataset.
-weight: The URI of a Variable in the Dataset which should be used for weights (and is therefore hidden from most other views and controls), or null.
-Variable Entity
+ * description: A textual discussion of the Dataset resource in general.
+ * specification: A link to a formal specification of the Dataset resource format.
+ * catalogs: An object containing links to related catalogs:
+   * batches: the collection of batches contained by the Dataset. Each batch represents a set of inserted rows.
+   * variables: the collection of variables contained by the Dataset.
+   * ...
+ * fragments:
+   * table: the editable data array for this Dataset.
+ * body: An editable object whose members include:
+   * archived: If true, the Dataset is hidden from most views.
+   * creation_time: an ISO-8601 timestamp, like "2014-07-07T19:15:29.541633+00:00".
+   * description: A long-form, textual description of the Dataset.
+   * name: A unique, friendly name for the Dataset.
+   * user_id: The id of a User resource which owns the Dataset.
+   * weight: The URI of a Variable in the Dataset which should be used for weights (and is therefore hidden from most other views and controls), or null.
+
+##### Variable Entity
+
 A Variable entity is a Shoji Entity which defines a variable. It has the following members:
-description: A description of what a Variable resource is and how it behaves.
-specification: A URL to a formal specification for Variable objects.
-body: An object with appropriate members from the variable's Definition, plus the following additional member:
-dataset_id: The id of the Dataset to which this Variable belongs. This is also published in the dataset_url, which you should probably prefer.
+ * description: A description of what a Variable resource is and how it behaves.
+ * specification: A URL to a formal specification for Variable objects.
+ * body: An object with appropriate members from the variable's Definition, plus the following additional member:
+   * dataset_id: The id of the Dataset to which this Variable belongs. This is also published in the dataset_url, which you should probably prefer.
+
 When creating a Variable entity, you only need to specify the "body"; attributes such as "description" and "specification" are returned as part of the Shoji Entity but are not required to create a Variable.
 
 #### Catalog
 
 Catalogs collect or contain entities. They act as an index to a collection, and indeed possess an "index" member for this:
+
+```json
 {
     "element": "shoji:catalog",
     "self": "https://.../api/users/",
@@ -341,6 +368,7 @@ Catalogs collect or contain entities. They act as an index to a collection, and 
         "3/": {"active": true}
     }
 }
+```
 
 Each key in the index is a URL (possibly relative to "self") which refers to a different resource. Often, these are Shoji Entity documents, but not always. The index also allows some attributes to be published as a set, rather than in each individual Entity. This allows clients to act on the collection as a whole, such as when rendering a list of references from which the user might select one entity.
 
@@ -354,6 +382,7 @@ Views cut across entities. They can publish nearly any arrangement of data, and 
 
 Orders can arrange any set of strings into an arbitrarily-nested tree; most often, they are used to provide one or more orderings of a Catalog's index. For example, each user may have their own ordering for an index of variables; the same URL's from the index keys are arranged in the Order. Given the Catalog above, for example, we might produce an Order like:
 
+```json
 {
     "element": "shoji:order",
     "self": "https://.../api/users/order/",
@@ -363,13 +392,17 @@ Orders can arrange any set of strings into an arbitrarily-nested tree; most ofte
         {"group B": ["4/"]}
     ]
 }
+```
 
 This represents the tree:
+
+```
       /  |  \
      2  {A} {B}
        / | \  \
       1  3  2  4
-      
+```
+
 The Order object itself allows lots of flexibility. Each of the following decisions are up to the API endpoint to constrain or not as it sees fit (see the Endpoint Reference for these details):
 
 * Not every string in the original set has to be present, allowing partial orders.
@@ -387,6 +420,8 @@ Most of the other representations returned from the API are Crunch Objects. They
 #### Table
 
 Tables collect columns of data and (optionally) their metadata into two-dimensional relations.
+
+```json
 {
     "element": "crunch:table",
     "self": "https://.../api/datasets/.../table/?limit=7",
@@ -400,6 +435,7 @@ Tables collect columns of data and (optionally) their metadata into two-dimensio
         "588392a": ["green", "red", "blue", "Red", "RED", "pink", " red"]
     }
 }
+```
 
 Each key in the "data" member is a variable identifier, and its corresponding value is a column of Crunch data values. The data values in a given column are homogeneous, but across columns they are heterogeneous. The lengths of all columns MUST be the same. The "metadata" member is optional; if given, it MUST contain matching keys that correspond to variable definitions.
 
@@ -414,6 +450,8 @@ Cubes have both input and output formats. The "crunch:cube" element is used for 
 The input format may vary slightly according to the API endpoint (since some parameters may be inherent in the particular resource), but involves the same basic ingredients.
 
 Example:
+
+```json
 {
     "dimensions": [
         {"variable": "datasets/ab8832/variables/3ffd45/"},
@@ -423,6 +461,7 @@ Example:
         "count": {"function": "cube_count", "args": []}
     }
 }
+```
 
 ###### dimensions
 
@@ -446,6 +485,7 @@ A reference to a variable to be used as the weight on all cube operations.
 
 Cubes collect columns of measure data in an arbitrary number of dimensions. Multiple measures in the same cube share dimensions, effectively overlaying each other. For example, a cube might contain a "count" measure and a "mean" measure with the same shape:
 
+```json
 {
     "element": "crunch:cube",
     "n": 210,
@@ -472,6 +512,7 @@ Cubes collect columns of measure data in an arbitrary number of dimensions. Mult
         "1": {"data": [90, 120]},
     }
 }
+```
 
 ###### dimensions
 
@@ -485,19 +526,23 @@ The number of rows considered for all measures.
 
 The "measures" member includes one object for each measure. The "metadata" member of each tells you the name, type and other definitions of the measure. The "data" member of each is a flattened array of values for that measure; the dimensions stride into that array in order, with the last dimension varying the fastest. In the example above, the first dimension ("A") has 3 categories, while "B" has 2; therefore, the "flat" array [10, 20, 30, 40, 50, 60] for the "count" measure is interpreted as the "unflattened" array [[10, 20], [30, 40], [50, 60]]. Graphically:
 
-B:11	B:12
-A:1	10	20
-A:2	30	40
-A:3	50	60
+|   |B:11|B:12|
+|---|----|----|
+|A:1|  10|  20|
+|A:2|  30|  40|
+|A:3|  50|  60|
+
 This is known in NumPy and other domains as "C order" (versus "Fortran order" which would be interpreted as [[10, 30, 50], [20, 40, 60]] instead).
 
 ###### n_missing
+
 The number of rows that are missing for this measure. Because different measures may have different inputs (the column to take the mean of, for example, or weighted versus unweighted), this number may vary from one measure to another even though the total "n" is the same for all.
 
 ###### margins
 
 The "margins" member is optional. When present, it is a tree of nested margins with one level of depth for each dimension. At the top, we always include the "grand total" for all dimensions. Then, we include a branch for each axis we "unroll". So, for example, for a 3-dimensional cube of X, Y, and Z, the margins member might contain:
 
+```json
 "margins": {
     "data": [4526],
     "0": {
@@ -528,5 +573,6 @@ The "margins" member is optional. When present, it is a tree of nested margins w
         ]}
     }
 }
+```
 
 Again, each branch in the tree is an axis we "unroll" from the grand total. So margins[0][2] contains the margin where X (axis 0) and Z (axis 2) are unrolled, and only Y (axis 1) is still "rolled up".
