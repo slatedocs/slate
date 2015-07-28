@@ -24,6 +24,13 @@ Net::HTTP.start(uri.host, uri.port,
 end
 
 ```
+```c#
+var apiKey = "geezeo-api-key";
+var url = "partner.url";
+var userId = "user_id";
+var sdk = new SDK(apiKey, url, userId);
+var events = sdk.GetEvents();
+```
 
 > Response payload
 
@@ -115,7 +122,21 @@ Net::HTTP.start(uri.host, uri.port,
 end
 
 ```
+```c#
+var apiKey = "geezeo-api-key";
+var url = "partner.url";
+var userId = "user_id";
+var sdk = new SDK(apiKey, url, userId);
+var eventId = 12345;
+var eventRequest = new EventRequestModel{
+	Event = new EventModel{
+		Memo = "memo",
+		Paid = true
+	}
+};
 
+var updated = sdk.UpdateEvent(eventId, eventRequest);
+```
 
 > Request payload
 
@@ -172,6 +193,15 @@ Net::HTTP.start(uri.host, uri.port,
   puts response.body
 end
 
+```
+
+```c#
+var apiKey = "geezeo-api-key";
+var url = "partner.url";
+var userId = "user_id";
+var sdk = new SDK(apiKey, url, userId);
+var eventId = 12345;
+var deleted = sdk.DeleteEvent(eventId);
 ```
 
 
