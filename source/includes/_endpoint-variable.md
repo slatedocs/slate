@@ -7,28 +7,35 @@
 A Shoji Catalog of variables.
 
 #### GET catalog
+
 When authenticated and authorized to view the given dataset, GET returns 200 status with a Shoji Catalog of variables in the dataset. If authorization is lacking, response will instead be 404.
 
 Private variables are not included in the index of this catalog, although they may be present at variables/{id}/. See Private Variables for an index of those.
 
 Catalog tuples contain the following keys:
+
+```
 {
-    name: <string>,             // Human-friendly string identifier
-    alias: <string>,            // More machine-friendly, traditional name for a variable
-    description: <string>,      // Optional longer string
-    id: <string>,               // Immutable internal identifier
-    discarded: <bool>,          // Whether the variable should be hidden from most views
-    derived: <bool>,            // Whether the variable is a function of another
-    type: <string>,             // The string type name 
-    subvariables: [<url>],      // For arrays, array of (ordered) references to subvariables
-    subvariables_catalog: <url> // For arrays, link to a Shoji Catalog of subvariables
+    "name": "<string>",             // Human-friendly string identifier
+    "alias": "<string>",            // More machine-friendly, traditional name for a variable
+    "description": "<string>",      // Optional longer string
+    "id": "<string>",               // Immutable internal identifier
+    "discarded": false,             // Whether the variable should be hidden from most views
+    "derived": false,               // Whether the variable is a function of another
+    "type": "<string>",             // The string type name 
+    "subvariables": ["<url>"],      // For arrays, array of (ordered) references to subvariables
+    "subvariables_catalog": "<url>" // For arrays, link to a Shoji Catalog of subvariables
 }
+```
 
 The catalog has two optional query parameters:
-"relative": if "on", all URLs in the "index" will be relative to "self"
-"nosubvars": if 1, array subvariables will not be included directly in the variables catalog–their metadata are instead accessible in each array variable's "subvariables_catalog". 
+
+ * "relative": if "on", all URLs in the "index" will be relative to "self"
+ * "nosubvars": if 1, array subvariables will not be included directly in the variables catalog–their metadata are instead accessible in each array variable's "subvariables_catalog". 
 
 With both flags enabled, the variable catalog looks something like this:
+
+```json
 {
     "element": "shoji:catalog",
     "self": "https://alpha.crunch.io/api/datasets/5ee0a0/variables/",
@@ -76,6 +83,7 @@ With both flags enabled, the variable catalog looks something like this:
         },
     }
 }
+```
 
 #### PATCH catalog
 
@@ -89,6 +97,7 @@ When PATCHing, you may include only the keys in each tuple that are being modifi
 
 Note that, because this catalog contains its entities (rather than collecting them), you cannot PATCH to add new variables, nor can you PATCH a null tuple to delete them. Attempting either will return a 400 response. Creating variables is allowed only by POST to the catalog, while deleting variables is accomplished via a DELETE on the variable entity.
 
+```json
 {
     "element": "shoji:catalog",
     "index": {
@@ -97,9 +106,11 @@ Note that, because this catalog contains its entities (rather than collecting th
         }
     }
 }
+```
 
 PATCHing this payload on the above catalog will return a 204 status. A subsequent GET of the catalog returns the following response; note the change in line 24.
 
+```json
 {
     "element": "shoji:catalog",
     "self": "https://alpha.crunch.io/api/datasets/5ee0a0/variables/",
@@ -147,27 +158,41 @@ PATCHing this payload on the above catalog will return a 204 status. A subsequen
         },
     }
 }
+```
 
 #### POST catalog
 
 A POST to this resource must be a Shoji Entity with the following "body" attributes:
 
-name
-type
+ * name
+ * type
+
 If "type" is "categorical":
-categories: an array of category definitions
+
+ * categories: an array of category definitions
+
 If "type" is "multiple_response" or "categorical_array":
-subvariables: an array of either
-URLs of variables to be "bound" together to form the array variable, or
+
+ * subvariables: an array of either URLs of variables to be "bound" together to form the array variable, or
 partial variable definitions, which will be created as categorical variables and then bound to form the array
 If including partial variable definitions, the array definition must include "categories", which are shared among the subvariables
-If type is "multiple_response", the definition may include a "selected_categories" array of category names present in the subvariables. This will mark the specified category or categories as the "selected" response in the multiple response variable. If no "selected_categories" array is provided, the new variable will use any categories already flagged as "selected": true. If no such category exists, the response will return a 400 status.
+
+If type is "multiple_response", the definition may include:
+
+ * a "selected_categories" array of category names present in the subvariables. This will mark the specified category or categories as the "selected" response in the multiple response variable. If no "selected_categories" array is provided, the new variable will use any categories already flagged as "selected": true. If no such category exists, the response will return a 400 status.
+
 If "type" is "datetime":
-resolution: a string, such as "Y", "M", "D", "h", "m", "s", "ms", that indicates the unit size of the datetime data.
+
+ * resolution: a string, such as "Y", "M", "D", "h", "m", "s", "ms", that indicates the unit size of the datetime data.
+
 See Variable Definitions for more details and examples of valid attributes, and Feature Guide: Arrays for more information on the various cases for creating array variables.
+
 It is encouraged, but not required, to include an "alias" in the body. If omitted, one will be generated from the required "name". 
+
 You may also include "values", which will create the column of data corresponding to this variable definition. See Importing Data: Column-by-column for details and examples. 
+
 You may instead also include an "expr" to derive a variable as a function of other variables. In this case, "type" is not required because it depends on the output of the specified derivation function. For details and examples, see Deriving Variables.
+
 A 201 indicates success and includes the URL of the newly-created variable in the Location header.
 
 ### Hierarchical Order
@@ -202,12 +227,14 @@ PATCH the `value` with a "groups" body. The URLs on the payload (that aren't wei
 
 PUT the `value` with a "groups" view. The value will overwrite the current weight variables with the incoming ones. Use this to delete weight variables.
 
+```json
 {
   "groups": [{
     "group": "weight_variables",
     "entities": [<var_url>...]
   }]
 }
+```
 
 Caveats: It is only possible to submit variables that belong to the main dataset. That is cannot accept variables from joined datasets.
 
@@ -219,6 +246,7 @@ This endpoint will eventually move to using a Shoji Order object instead of the 
 
 On GET will return a Crunch Order with the variables matching the `token` in the URL. The results will be under the "Search Results" group containing the urls for the matching variables.
 
+```json
 {
     "element": "shoji:view",
     "self": "https://alpha.crunch.io/api/datasets/06103cf80f26478f8a30856fb64e9a00/variables/search/something/",
@@ -237,6 +265,7 @@ On GET will return a Crunch Order with the variables matching the `token` in the
         ]
     }
 }
+```
 
 ### Entity
 
@@ -247,38 +276,38 @@ A Shoji Entity which exposes most of the metadata about a Variable in the datase
 #### GET
 
 Members:
-urls: An object with names as keys and their corresponding URL's as values, providing links to related information. Clients should be careful to follow the given links rather than constructing their own, as the construction rules may change.
-description: A description of what a Variable resource is and how it behaves.
-specification: A URL to a formal specification for Variable objects.
-body: An object with the following members:
-type: the class of data in the variable. One of "numeric", "text", "categorical", "date", "datetime", "boolean", "array", or "object".
-categories: If the variable class is "categorical", an array of category objects. The order is significant. Each object possesses the following members:
-_id: A numeric identifier for the category.
-name: A unique string identifying the category.
-missing: If true, the given category is marked as "missing", and is omitted from most calculations.
-name: A friendly name for the variable. Must be unique within the dataset.
-alias: 
-description: A long-form textual description of the Variable.
-derivation: a Crunch expression which was used to derive this variable, or null.
-discarded: If true, the Variable has been discarded and is not eligible for display or analysis.
-private: If true, the Variable is only visible to the owner and is only included in the private variables catalog, not the common catalog.
-format: An object with various members to control the display of Variable data:
-data: An object with a "digits" member, stating how many digits to display after the decimal point.
-summary: An object with a "digits" member, stating how many digits to display after the decimal point.
-source: unused.
-header_order: An integer giving the index of this Variable among the ordered list of all Variables in the Dataset.
-view: An object with various members to control the display of Variable data:
-show_codes: For categorical types only. If true, numeric values are shown.
-show_counts: If true, show counts; if false, show percents.
-include_missing: For categorical types only. If true, include missing categories.
-column_width: For "untyped" Variables only. The selected display width of column data, in pixels, or None.
+ * urls: An object with names as keys and their corresponding URL's as values, providing links to related information. Clients should be careful to follow the given links rather than constructing their own, as the construction rules may change.
+ * description: A description of what a Variable resource is and how it behaves.
+ * specification: A URL to a formal specification for Variable objects.
+ * body: An object with the following members:
+   * type: the class of data in the variable. One of "numeric", "text", "categorical", "date", "datetime", "boolean", "array", or "object".
+   * categories: If the variable class is "categorical", an array of category objects. The order is significant. Each object possesses the following members:
+   * _id: A numeric identifier for the category.
+   * name: A unique string identifying the category.
+   * missing: If true, the given category is marked as "missing", and is omitted from most calculations.
+   * name: A friendly name for the variable. Must be unique within the dataset.
+   * alias: 
+   * description: A long-form textual description of the Variable.
+   * derivation: a Crunch expression which was used to derive this variable, or null.
+   * discarded: If true, the Variable has been discarded and is not eligible for display or analysis.
+   * private: If true, the Variable is only visible to the owner and is only included in the private variables catalog, not the common catalog.
+   * format: An object with various members to control the display of Variable data:
+     * data: An object with a "digits" member, stating how many digits to display after the decimal point.
+     * summary: An object with a "digits" member, stating how many digits to display after the decimal point.
+   * source: unused.
+   * header_order: unused.
+   * view: An object with various members to control the display of Variable data:
+     * show_codes: For categorical types only. If true, numeric values are shown.
+     * show_counts: If true, show counts; if false, show percents.
+     * include_missing: For categorical types only. If true, include missing categories.
+     * column_width: For "untyped" Variables only. The selected display width of column data, in pixels, or None.
 include_noneoftheabove: For multipleresponse types only. If true, display a "none of the above" category in the requested summary or analysis.
-tags: an array of strings relating the given Variable to other Variables that possess the same tag(s).
-dataset_id: The id of the Dataset to which this Variable belongs.
-max_chars: The number of characters required to display all values contained within the Variable's data.
-missing_reasons: An object whose keys are reason phrases and whose values are missing codes. Missing entries in Variable data are represented by a {"?": code} missing marker; clients may look up the corresponding reason phrase for each code in this one-to-one map. Honestly, the only reason this is not in reverse order is because JSON doesn't allow integers as object keys.
+   * dataset_id: The id of the Dataset to which this Variable belongs.
+   * max_chars: The number of characters required to display all values contained within the Variable's data.
+   * missing_reasons: An object whose keys are reason phrases and whose values are missing codes. Missing entries in Variable data are represented by a {"?": code} missing marker; clients may look up the corresponding reason phrase for each code in this one-to-one map. Honestly, the only reason this is not in reverse order is because JSON doesn't allow integers as object keys.
 
 #### DELETE
+
 Calling DELETE on this resource will delete the variable. Will return Shoji View (status 200) with its return value be an array containing the newly promoted variables.
 
 In the case of array variables, this response value will contain the urls of the forming subvariables. In case of standard variables this will be an empty array.
@@ -290,6 +319,8 @@ In the case of array variables, this response value will contain the urls of the
 A collection of summary information describing the variable. A successful GET returns an object containing various scalars and tabular results in various formats. The set of included members varies by variable type. Exclusions, filters, and weights may all alter the output.
 
 For example, given a numeric variable with data [1, 2, 3, 4, 5, 4, {"?": -1}, 3, 5, {"?": -1}, 4, 3], a successful GET with no exclusions, filters, or weights returns:
+
+```json
 {
     "count": 12,
     "valid_count": 10,
@@ -314,42 +345,47 @@ For example, given a numeric variable with data [1, 2, 3, 4, 5, 4, {"?": -1}, 3,
     "mean": 3.4,
     "missing_frequencies": [{"count": 2, "value": "No Data"}],
 }
+```
 
 #### numeric
 
 The members include several counts:
-count: The number of entries in the variable.
-valid_count: The number of entries in the variable which are not missing.
-missing_count: The number of entries in the variable which are missing.
-missing_frequencies: An array of row objects. Each row represents a distinct missing reason, and includes the reason phrase as the "value" member and the number of entries which are missing for that reason as the "count" member.
-histogram: An array of row objects. Each row represents a discrete interval in the probability distribution, whose boundaries are given by the "bins" pair. An "at" member is included giving the midpoint between the two boundaries. The "value" member gives a count of entries which fall into the given bin.
+ * count: The number of entries in the variable.
+ * valid_count: The number of entries in the variable which are not missing.
+ * missing_count: The number of entries in the variable which are missing.
+ * missing_frequencies: An array of row objects. Each row represents a distinct missing reason, and includes the reason phrase as the "value" member and the number of entries which are missing for that reason as the "count" member.
+ * histogram: An array of row objects. Each row represents a discrete interval in the probability distribution, whose boundaries are given by the "bins" pair. An "at" member is included giving the midpoint between the two boundaries. The "value" member gives a count of entries which fall into the given bin.
 as well as basic summary statistics:
-fivenum: An array of five [quartile, point] pairs, where the "quartile" element is one of the strings "0", "0.25", "0.5", "0.75", "1", representing the min, first quartile, median, third quartile, and max boundaries to divide the data values into four equal groups. The "point" is the real number at each boundary, and is estimated using the same algorithm as Excel or R's "algorithm 7", where h is: (N - 1)p + 1.
-min, median, max: taken from "fivenum", above.
-mean: the sum of the values divided by the number of values, or, if weighted, the sum of weight times value divided by the sum of the weights.
-stddev: The standard deviation of the values.
+ * fivenum: An array of five [quartile, point] pairs, where the "quartile" element is one of the strings "0", "0.25", "0.5", "0.75", "1", representing the min, first quartile, median, third quartile, and max boundaries to divide the data values into four equal groups. The "point" is the real number at each boundary, and is estimated using the same algorithm as Excel or R's "algorithm 7", where h is: (N - 1)p + 1.
+ * min, median, max: taken from "fivenum", above.
+ * mean: the sum of the values divided by the number of values, or, if weighted, the sum of weight times value divided by the sum of the weights.
+ * stddev: The standard deviation of the values.
 
 #### categorical
 
 The basic counts are included:
-count: The number of entries in the variable.
-valid_count: The number of entries in the variable which are not missing.
-missing_count: The number of entries in the variable which are missing.
-missing_frequencies: An array of row objects. Each row represents a distinct missing reason, and includes the reason phrase as the "value" member. The number of entries which are missing for that reason is included as the "count" member.
+ * count: The number of entries in the variable.
+ * valid_count: The number of entries in the variable which are not missing.
+ * missing_count: The number of entries in the variable which are missing.
+ * missing_frequencies: An array of row objects. Each row represents a distinct missing reason, and includes the reason phrase as the "value" member. The number of entries which are missing for that reason is included as the "count" member.
+
 And the typical "frequencies" member is expanded into a custom "categories" member:
-categories: An array of row objects. Each row represents a distinct category (whether valid or missing), and includes its id the "_id" member (note the leading underscore), and its name as the "name" member. The "missing" member is true or false depending on whether the category is marked missing or not. The number of entries which possess that value is included as the "count" member.
+
+ * categories: An array of row objects. Each row represents a distinct category (whether valid or missing), and includes its id the "_id" member (note the leading underscore), and its name as the "name" member. The "missing" member is true or false depending on whether the category is marked missing or not. The number of entries which possess that value is included as the "count" member.
 
 #### text
 
 The basic counts are included:
-count: The number of entries in the variable.
-valid_count: The number of entries in the variable which are not missing.
-frequencies: An array of row objects. Each row represents a distinct valid value, and includes it as the "value" member. The number of entries which possess that value is included as the "count" member. The length of the array is limited to 10 entries; if more than 10 distinct values are present in the data, an 11th row is added with a "value" member of "(Others)", summing their counts.
-missing_count: The number of entries in the variable which are missing.
-missing_frequencies: An array of row objects. Each row represents a distinct missing reason, and includes the reason phrase as the "value" member. The number of entries which are missing for that reason is included as the "count" member.
-nunique: The number of distinct values in the data.
+ * count: The number of entries in the variable.
+ * valid_count: The number of entries in the variable which are not missing.
+ * frequencies: An array of row objects. Each row represents a distinct valid value, and includes it as the "value" member. The number of entries which possess that value is included as the "count" member. The length of the array is limited to 10 entries; if more than 10 distinct values are present in the data, an 11th row is added with a "value" member of "(Others)", summing their counts.
+ * missing_count: The number of entries in the variable which are missing.
+ * missing_frequencies: An array of row objects. Each row represents a distinct missing reason, and includes the reason phrase as the "value" member. The number of entries which are missing for that reason is included as the "count" member.
+ * nunique: The number of distinct values in the data.
+
 In addition:
-max_chars: The number of characters of the longest value in the data.
+
+ * max_chars: The number of characters of the longest value in the data.
 
 ### Summary view model
 
@@ -361,19 +397,24 @@ A "summary" member is added to the body, with the same output as `variable/{id}/
 
 For categorical and multiple response variables, body.summary.categories is removed, and body.categories is instead munged to include new members in each category object:
 
-count: taken from summary.categories.
-max_count: the largest "count" member from all categories.
-total_count: the sum of the "count" members from all categories.
-percent: (100 * count) / total_count, or {"?": -1} if no percent could be obtained.
+ * count: taken from summary.categories.
+ * max_count: the largest "count" member from all categories.
+ * total_count: the sum of the "count" members from all categories.
+ * percent: (100 * count) / total_count, or {"?": -1} if no percent could be obtained.
+
 A "weight" member is added to the body if the Variable is being used as a weight variable for the Dataset.
+
 The "urls" member is reduced to just a "variable_url" member, which points back at the transactional view of the variable and "dataset_url" which points back to the dataset.
 
 #### Univariate frequencies
-/datasets/{id}/variables/{id}/frequencies/{?filter_syntax,filter_url,exclude_exclusion_filter}
+
+`/datasets/{id}/variables/{id}/frequencies/{?filter_syntax,filter_url,exclude_exclusion_filter}`
+
 An array of row objects, giving the count of distinct values. The exact members vary by type:
-numeric: Each row represents a distinct valid value, and includes it as the "value" member. The number of entries which possess that value is included as the "count" member.
-categorical: Each row represents a distinct category (whether valid or missing), and includes its id the "_id" member (note the leading underscore), and its name as the "name" member. The "missing" member is true or false depending on whether the category is marked missing or not. The number of entries which possess that value is included as the "count" member.
-text: Each row represents a distinct valid value, and includes it as the "value" member. The number of entries which possess that value is included as the "count" member. The length of the array is limited to 10 entries; if more than 10 distinct values are present in the data, an 11th row is added with a "value" member of "(Others)", summing their counts.
+
+ * numeric: Each row represents a distinct valid value, and includes it as the "value" member. The number of entries which possess that value is included as the "count" member.
+ * categorical: Each row represents a distinct category (whether valid or missing), and includes its id the "_id" member (note the leading underscore), and its name as the "name" member. The "missing" member is true or false depending on whether the category is marked missing or not. The number of entries which possess that value is included as the "count" member.
+ * text: Each row represents a distinct valid value, and includes it as the "value" member. The number of entries which possess that value is included as the "count" member. The length of the array is limited to 10 entries; if more than 10 distinct values are present in the data, an 11th row is added with a "value" member of "(Others)", summing their counts.
 
 ### Transforming
 
@@ -383,34 +424,29 @@ text: Each row represents a distinct valid value, and includes it as the "value"
 
 A POST to this resource, with a JSON request body of {"cast_as": type}, will alter the variable to the given type. If the variable cannot be cast to the given type, 409 is returned. See next to obtain a preview summary of such a cast before committing to it.
 
-Casting to datetime
+##### Casting to datetime
 
-From Numeric: Need to include keys: `offset` as an ISO-8601 date string and `resolution` which is one of the following strings:
-Y: Year
-Q: Quarter
-M: Month
-W: Week
-D: Day
-h: Hour
-m: Minutes
+ * From Numeric: Need to include keys: `offset` as an ISO-8601 date string and `resolution` which is one of the following strings:
+   * Y: Year
+   * Q: Quarter
+   * M: Month
+   * W: Week
+   * D: Day
+   * h: Hour
+   * m: Minutes
+ * From Text: Need to include a `format` key containing a valid strftime string to format with.
+ * From Categorical: Need to include a `format` key containing a valid strftime string to format with.
 
-From Text: Need to include a `format` key containing a valid strftime string to format with.
+##### Casting from datetime
 
-From Categorical: Need to include a `format` key containing a valid strftime string to format with.
+ * To Numeric: Not supported
+ * To Text: Need to include a `format` key containing a valid strftime string that matches the variable values to parse with.
+ * To Categorical: Need to include a `format` key containing a valid strftime string that matches the category names to parse with.
 
-Casting from datetime
+##### Array variables
 
-To Numeric: Not supported
-
-To Text: Need to include a `format` key containing a valid strftime string that matches the variable values to parse with.
-
-To Categorical: Need to include a `format` key containing a valid strftime string that matches the category names to parse with.
-
-Array variables
-
-Multiple Response: Not supported
-
-Categorical Array: Not supported
+ * Multiple Response: Not supported
+ * Categorical Array: Not supported
 
 `/datasets/{id}/variables/{id}/cast/?cast_as={type}`
 
@@ -420,25 +456,25 @@ A GET on this resource will return the same response as ../summary would if the 
 
 #### Missing values
 
-/datasets/{id}/variables/{id}/missing_rules/
+`/datasets/{id}/variables/{id}/missing_rules/`
 
 A Shoji Entity whose "body" member contains an array of missing rule objects. POST a {reason: rule} to this URL to add a new rule. Rules take one of the following forms:
 
-{'value': v}: Entries which match the given value will be marked as missing for the given reason.
-
-{'set': [v1, v2, ...]}: Entries which are present in the given set will be marked as missing for the given reason.
-
-{'range': [lower, upper], 'inclusive': [true, false]}: Entries which exist between the given boundaries will be marked as missing for the given reason. If either "inclusive" element is null, the corresponding boundary is unbounded.
-
-{'function': '...', 'args': [...]}: Entries which match the given filter function will be marked as missing for the given reason. This is typically a tree of simple rules logical-OR'd together.
+ * {'value': v}: Entries which match the given value will be marked as missing for the given reason.
+ * {'set': [v1, v2, ...]}: Entries which are present in the given set will be marked as missing for the given reason.
+ * {'range': [lower, upper], 'inclusive': [true, false]}: Entries which exist between the given boundaries will be marked as missing for the given reason. If either "inclusive" element is null, the corresponding boundary is unbounded.
+ * {'function': '...', 'args': [...]}: Entries which match the given filter function will be marked as missing for the given reason. This is typically a tree of simple rules logical-OR'd together.
 
 Example:
+
+```json
 [
   {
     "Invalid": {"value": 0},
     "Sarai doesn't know how to use a calculator :(": {"range": [1000, null], "inclusive": [true, false]},
   }
 ]
+```
 
 #### Subvariables
 
