@@ -6,26 +6,31 @@ Simple variables have only one value per row; sometimes, however, it is convenie
 
 For the "categorical_array" type, each subvariable is considered distinct, and a row may have a different value for each of them. For example, you might field a survey where you ask respondents to rate soft drinks by filling in a grid of a set of brands versus a set of ratings:
 
+```
 72. How much do you like each soft drink?
        Not at all   Not much   OK   A bit   A lot
  Coke       o           o      o      o       o
 Pepsi       o           o      o      o       o
    RC       o           o      o      o       o
+```
 
 The respondent may only select one rating in each row. To represent that answer data in Crunch, you would first define a Variable for "Coke", one for "Pepsi", and one for "RC". Each of them would be of type "categorical", with a set of categories like:
 
+```json
 "categories": [
-    {"id": -1, "name": "No Data",    "numeric_value": None, "missing":  True},
-    {"id":  1, "name": "Not at all", "numeric_value": None, "missing": False},
-    {"id":  2, "name": "Not much",   "numeric_value": None, "missing": False},
-    {"id":  3, "name": "OK",         "numeric_value": None, "missing": False},
-    {"id":  4, "name": "A bit",      "numeric_value": None, "missing": False},
-    {"id":  5, "name": "A lot",      "numeric_value": None, "missing": False},
-    {"id": 99, "name": "Skipped",    "numeric_value": None, "missing":  True}
+    {"id": -1, "name": "No Data",    "numeric_value": null, "missing":  true},
+    {"id":  1, "name": "Not at all", "numeric_value": null, "missing": false},
+    {"id":  2, "name": "Not much",   "numeric_value": null, "missing": false},
+    {"id":  3, "name": "OK",         "numeric_value": null, "missing": false},
+    {"id":  4, "name": "A bit",      "numeric_value": null, "missing": false},
+    {"id":  5, "name": "A lot",      "numeric_value": null, "missing": false},
+    {"id": 99, "name": "Skipped",    "numeric_value": null, "missing":  true}
 ]
+```
 
 These variables would be populated like any other Variable of type "categorical". For example, when sending data Column-by-column, you might POST a Variable Entity with the payload:
 
+```json
 {
     ...
     "body": {
@@ -35,9 +40,11 @@ These variables would be populated like any other Variable of type "categorical"
         "values": [2, 4, 4, {"?": 99}, {"?": -1}, 3, ...]
     }
 }
+```
 
 Once all of the individual variables have been defined (you don't have to have all their data added yet), then you may create the parent array variable. Doing so by POSTing a Variable Entity would have a payload like:
 
+```json
 {
     "body": {
         "name": "Soft Drinks",
@@ -45,31 +52,37 @@ Once all of the individual variables have been defined (you don't have to have a
         "subvariables": [<URI of the "Coke" variable>, <URI of the "Pepsi" variable>, <URI of the "RC" variable>]
     }
 }
+```
 
 The "Soft Drinks" categorical array variable may now be included in analyses like any other variable, but has 2 dimensions instead of the typical 1. For example, a crosstab of a 1-dimensional "Gender" variable with a 1-dimensional "Education" variable yields a 2-D cube. A crosstab of 1-D "Gender" by 2-D "Soft Drinks" yields a 3-D cube.
 
 ### Multiple response
 The second type of array is "multiple_response". These arrays look very similar to categorical_array variables in their data representations, but are usually gathered very differently and behave differently in analyses. For example, you might field a survey where you ask respondents to select countries they have visited:
 
+```
 38. Which countries have you visited?
 
 [] USA
 [] Germany
 [] Japan
 [] None of the above 
+```
 
 The respondent may check the box or not for each row. To represent that answer data in Crunch, you would first define a Variable for "USA", one for "Germany", one for "Japan", and one for "None of the above". Each of them would be of type "categorical".
 
+```json
 "categories": [
-    {"id": -1, "name": "No Data",     "numeric_value": None, "missing":  True},
-    {"id":  1, "name": "Checked",     "numeric_value": None, "missing": False},
-    {"id":  2, "name": "Not checked", "numeric_value": None, "missing": False},
-    {"id": 98, "name": "Not shown",   "numeric_value": None, "missing":  True},
-    {"id": 99, "name": "Skipped",     "numeric_value": None, "missing":  True}
+    {"id": -1, "name": "No Data",     "numeric_value": null, "missing":  true},
+    {"id":  1, "name": "Checked",     "numeric_value": null, "missing": false},
+    {"id":  2, "name": "Not checked", "numeric_value": null, "missing": false},
+    {"id": 98, "name": "Not shown",   "numeric_value": null, "missing":  true},
+    {"id": 99, "name": "Skipped",     "numeric_value": null, "missing":  true}
 ]
+```
 
 These variables would be populated like any other Variable of type "categorical". For example, when sending data Column-by-column, you might POST a Variable Entity with the payload:
 
+```json
 {
     ...
     "body": {
@@ -79,9 +92,11 @@ These variables would be populated like any other Variable of type "categorical"
         "values": [1, 2, 2, {"?": 99}, {"?": -1}, 1, ...]
     }
 }
+```
 
 Once all of the individual variables have been defined (you don't have to have all their data added yet), then you may create the parent array variable. Doing so by POSTing a Variable Entity would have a payload like:
 
+```json
 {
     "body": {
         "name": "Countries Visited",
@@ -90,6 +105,7 @@ Once all of the individual variables have been defined (you don't have to have a
         "selected_categories": ["Checked"]
     }
 }
+```
 
 Aside from the new type name, the primary difference from the basic categorical array is that one or more categories are marked as "selected". These are then used to dichotomize the categories such that any subvariable response is treated more as if it were true or false (selected or unselected) than maintaining the difference between each category. If POSTing to create "multiple_response", you may include a "selected_categories" key in the body, containing an array of category names that indicate the dichotomous selection. If you do not include "selected_categories", there must be at least one "selected": true category in the subvariables you are binding into the multiple-response variable to indicate the dichotomous selection–see Object Reference#categories. If neither are true, the request will return 400 status.
 
@@ -111,11 +127,13 @@ To do so, the subvariable-to-be should currently be a variable of the dataset an
 
 Send a PATCH request containing the url of the new subvariable with an empty object as its tuple:
 
+```json
 {
   ...
-  index: {
-      http://.../url/new/subvariable/: {}
+  "index": {
+      "http://.../url/new/subvariable/": {}
   }
 }
+```
 
 A 204 response will indicate that the catalog was updated, and the new subvariable now is part of the array variable.
