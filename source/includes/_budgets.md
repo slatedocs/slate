@@ -23,6 +23,17 @@ end
 
 ```
 
+```c#
+var apiKey = "geezeo-api-key";
+var url = "partner.url";
+var userId = "user_id";
+var sdk = new SDK(apiKey, url, userId);
+
+var budgets = sdk.GetBudgets();
+
+```
+
+
 > Response payload
 
 ```json
@@ -119,6 +130,16 @@ Net::HTTP.start(uri.host, uri.port,
 
   puts response.body
 end
+
+```
+
+```c#
+var apiKey = "geezeo-api-key";
+var url = "partner.url";
+var userId = "user_id";
+var sdk = new SDK(apiKey, url, userId);
+var budgetId = 12345;
+var budget = sdk.GetBudgetById(budgetId);
 
 ```
 
@@ -226,6 +247,27 @@ end
 
 ```
 
+
+```c#
+var apiKey = "geezeo-api-key";
+var url = "partner.url";
+var userId = "user_id";
+var sdk = new SDK(apiKey, url, userId);
+var budgetRequest = new BudgetRequestModel{
+	Budget = new BudgetModel{
+		BudgetAmount = 300,
+		Name = "house budget",
+		ShowOnDashboard = false,
+		TagNames = new List<string>{"house"}
+	}
+};
+
+var budgetResponse = sdk.CreateBudget(budgetRequest);
+
+var budgets = sdk.GetBudgets();
+
+```
+
 > Request Payload
 
 ```json
@@ -329,6 +371,26 @@ Net::HTTP.start(uri.host, uri.port,
 end
 ```
 
+
+```c#
+var apiKey = "geezeo-api-key";
+var url = "partner.url";
+var userId = "user_id";
+var sdk = new SDK(apiKey, url, userId);
+var budgetId = 12345;
+var budgetRequest = new BudgetRequestModel{
+	Budget = new BudgetModel{
+		BudgetAmount = 500,
+		Name = "new house budget",
+		ShowOnDashboard = false,
+		TagNames = new List<string>{"house"}
+	}
+};
+
+var updated = sdk.UpdateBudget(budgetId, budgetRequest);
+
+```
+
 > Request Payload
 
 ```json
@@ -428,6 +490,19 @@ Net::HTTP.start(uri.host, uri.port,
 
   puts response.body
 end
+```
+
+
+
+```c#
+var apiKey = "geezeo-api-key";
+var url = "partner.url";
+var userId = "user_id";
+var sdk = new SDK(apiKey, url, userId);
+var budgetResponse = sdk.CreateBudget(budgetRequest);
+var budgetId = 12345;
+var deleted = sdk.DeleteBudget(budgetId);
+
 ```
 
 Delete a budget for the given user.
