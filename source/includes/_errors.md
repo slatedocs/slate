@@ -22,7 +22,9 @@ Error Code | Meaning
 65 | Whisper Post Failed: could not post message to whisper
 98 | Database Write Failed
 99 | Database Read Failed
+400 | Invalid Contract Parameter: cannot sent object parameter to contract
 401 | Not Logged In
+402 | Incorrect number of parameters
 403 | Bad Credentials: incorrect handle or password
 412 | Transaction Invalid: transaction validation failed
 422 | Handle Taken: handle already taken

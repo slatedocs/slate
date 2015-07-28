@@ -14,12 +14,12 @@ Augur.web.register(username, password, function (account) {
 });
 
 // output
-// Account: {
-//     handle: 'tinybike',
-//     privateKey: <Buffer 55 ec ac 35 98 76 6f b9 05 de a2 13 8c 6d 48 7f 07 9e b1 36 a8 fb eb 5b 93 e2 59 6f 91 4f 35 81>,
-//     address: '0x09129dcde8e0f510ffb2a715709b69f5c4a42361',
-//     nonce: 0
-// }
+Account: {
+    handle: 'tinybike',
+    privateKey: <Buffer 55 ec ac 35 98 76 6f b9 05 de a2 13 8c 6d 48 7f 07 9e b1 36 a8 fb eb 5b 93 e2 59 6f 91 4f 35 81>,
+    address: '0x09129dcde8e0f510ffb2a715709b69f5c4a42361',
+    nonce: 0
+}
 
 /**
  * The user is automatically logged in after registering.  When logged in,
