@@ -532,6 +532,20 @@ html, body {
     text-shadow: 1px 1px 0 #666;
     @include background(linear-gradient(bottom right, #F7E633 0%, #F1D32F 100%));
   }
+  
+  .about .title-page {
+    display: none;
+    font-size: 8pt;
+    padding : 3px;
+  }
+  
+  .about-control {
+    cursor: pointer; cursor: hand;
+    font-size: 10pt;
+    padding: 5px;
+    color: #085777;
+    text-decoration: underline;
+  }
 }
 
 ////////////////////////////////////////////////////////////////////////////////
