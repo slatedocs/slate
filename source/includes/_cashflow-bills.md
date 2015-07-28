@@ -23,6 +23,16 @@ end
 
 ```
 
+
+```c#
+var apiKey = "geezeo-api-key";
+var url = "partner.url";
+var userId = "user_id";
+var sdk = new SDK(apiKey, url, userId);
+var billsResponse = sdk.GetCashflowBills();
+
+```
+
 > Response payload
 
 ```json
@@ -85,6 +95,15 @@ Net::HTTP.start(uri.host, uri.port,
   puts response.body
 end
 
+```
+
+```c#
+var apiKey = "geezeo-api-key";
+var url = "partner.url";
+var userId = "user_id";
+var sdk = new SDK(apiKey, url, userId);
+var billId = 12345;
+var billsResponse = sdk.GetCashflowBill(billId);
 ```
 
 
@@ -153,6 +172,23 @@ Net::HTTP.start(uri.host, uri.port,
   puts response.body
 end
 
+```
+
+```c#
+var apiKey = "geezeo-api-key";
+var url = "partner.url";
+var userId = "user_id";
+var sdk = new SDK(apiKey, url, userId);
+var billRequest = new BillRequestModel{
+	Bill = new BillModel{
+		Amount = 200f,
+		Frequency = Frequency.Daily,
+		Name = "Test Bill",
+		StartDate = new DateTime(2015, 7, 1)
+	}
+};
+
+var billResponse = sdk.CreateBill(billRequest);
 ```
 
 
@@ -245,6 +281,24 @@ Net::HTTP.start(uri.host, uri.port,
 end
 
 ```
+```c#
+var apiKey = "geezeo-api-key";
+var url = "partner.url";
+var userId = "user_id";
+var sdk = new SDK(apiKey, url, userId);
+var billId = 12345;
+var billRequest = new BillRequestModel{
+	Bill = new BillModel{
+		Amount = 200f,
+		Frequency = Frequency.Daily,
+		Name = "Test Bill",
+		StartDate = new DateTime(2015, 7, 1)
+	}
+};
+
+var updated = sdk.UpdateBill(billId, billRequest);
+```
+
 
 > Request payload
 
@@ -316,6 +370,16 @@ end
 
 ```
 
+```c#
+var apiKey = "geezeo-api-key";
+var url = "partner.url";
+var userId = "user_id";
+var sdk = new SDK(apiKey, url, userId);
+var billId = 12345;
+
+var stopped = sdk.StopBill(billId);
+```
+
 Stop a cashflow bill.
 
 `PUT /api/v2/users/:user_id:/cashflow/bills/:cashflow_bill_id:/stop`
@@ -351,7 +415,14 @@ Net::HTTP.start(uri.host, uri.port,
 end
 
 ```
-
+```c#
+var apiKey = "geezeo-api-key";
+var url = "partner.url";
+var userId = "user_id";
+var sdk = new SDK(apiKey, url, userId);
+var billId = 12345;
+sdk.DeleteBill(billId);
+```
 
 Delete a cashflow bill.
 
