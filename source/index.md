@@ -33,7 +33,7 @@ Faria provides integrated information systems for international education and bu
 
 [ManageBac](http://www.managebac.com) our flagship service is the leading planning, assessment and reporting system for IB world schools founded by three former IB Diploma students in 2007.
 
-Today [ManageBac](http://www.managebac.com) is the trusted choice of 8 in 10 IB Diploma students at over 1,300 leading schools.
+Today [ManageBac](http://www.managebac.com) is the trusted choice of 8 in 10 IB Diploma students at over 1,700 leading schools.
 
 After nearly seven years of continuous development, we have re-imagined the school information system and we are proud to announce our integrated suite together with [OpenApply](http://www.openapply.com) for admissions & enrollment and InterSIS for school information management.
 
