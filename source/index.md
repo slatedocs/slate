@@ -1,5 +1,5 @@
 ---
-title: Chartboost API Documentation
+title: Chartboost Third-Party Documentation
 
 language_tabs:
   - shell
