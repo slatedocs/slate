@@ -101,7 +101,7 @@ currency | Yes | String | UGX | 3 letter ISO currency code. No currency conversi
 description | Yes | String | Per diem payment | This description will be sent to the recipient along with the payment, so it should be limited to about 140 characters.
 payment_type | No | String | money | Options: money (default), airtime - use "airtime" to send an airtime payment instead of a mobile money payment
 callback_url | No | String | https://my.website/payments/callback | See "Callback URLs" below for more info.
-metadata | No | Json-formatted string or dictinary | "{'id':'1234','name':'Lucy'}" | Metadata allows you to add custom attributes to your payments. E.g. You can include a unique ID to identify each payment. Attributes must be key-value pairs. Both the keys and values must be strings. You can add up to 10 attributes. This data will be returned when you retrieve a payment.
+metadata | No | Json-formatted string or dictionary | "{'id':'1234','name':'Lucy'}" | Metadata allows you to add custom attributes to your payments. E.g. You can include a unique ID to identify each payment. Attributes must be key-value pairs. Both the keys and values must be strings. You can add up to 10 attributes. This data will be returned when you retrieve a payment.
 
 **Callback URLs**
 
