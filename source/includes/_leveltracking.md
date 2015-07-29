@@ -78,7 +78,7 @@ The available fields are listed in the table below; common use cases follow:
 
 Of the five event types, three can be used specifically for sequential Level Tracking. These will accept integer-based level information (the player has gotten to level 3, 8, 17, etc.) which is always increasing and can never decrease, or any other numerical data you need to segment based on whether a player is “higher” or “lower” than a certain number. **Note:** For level tracking event types, Chartboost only records the player's first level event along with each subsequent level value increase. Events with level values that are equal to or less than the player's current value are disregarded.
 
-In addition, all five event types can be used to track achievement events. For non-sequential or non-numerical events, set <code>main_level:1</code> and <code>sub_level:0</code> in the request (see parameters <a href="#params">table below).</a>
+In addition, all five event types can be used to track achievement events. For non-sequential or non-numerical events, set <code>main_level:1</code> and <code>sub_level:0</code> in the request (see <a href="params">parameters table</a> below).
 
 ## Level Tracking Setup (for Third-Party Tracking Services)
 
