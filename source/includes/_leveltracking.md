@@ -76,8 +76,6 @@ The available fields are listed in the table below; common use cases follow:
 3. Chartboost customers can use these operators to create player segments to optimize UA efforts, power retargeting campaigns, and drive other types of monetization
 4. Optional event descriptions can be used to identify the level name ("Lunar Caverns," for example) rather than the type of level event ("Area main character is in")
 
----
-
 Of the five event types, three can be used specifically for sequential Level Tracking. These will accept integer-based level information (the player has gotten to level 3, 8, 17, etc.) which is always increasing and can never decrease, or any other numerical data you need to segment based on whether a player is “higher” or “lower” than a certain number. **Note:** For level tracking event types, Chartboost only records the player's first level event along with each subsequent level value increase. Events with level values that are equal to or less than the player's current value are disregarded.
 
 In addition, all five event types can be used to track achievement events. For non-sequential or non-numerical events, set <code>main_level:1</code> and <code>sub_level:0</code> in the request (see parameters <a href="#params">table below).</a>
@@ -86,9 +84,7 @@ In addition, all five event types can be used to track achievement events. For n
 
 This section will walk you – the third-party tracking service – through the initial Level Tracking integration. 
 
-### Event Tracking Server-to-Server Request Details
-
-#### Event Requests
+### Event Requests
 
 Inside the request, the `track_info` array contains within it a single JSON object element. This object specifies the details of the event. Multiple events can be sent as unique JSON objects within this array, though single events are most common.
 
@@ -96,17 +92,18 @@ The `track_info` array requires an `event_field` that specifies the event type (
 
 The `track_info` array also requires an `event_label`, which describes the nature of its corresponding `event_field`. The `event_label` can be the name of the event according to the attribution platform, but if possible, Chartboost would request that you allow user override of the event name in your dashboard.
 
-#### HTTP Request Method
+### HTTP Request Method
 
 `POST`
 
-#### Endpoint
+### Endpoint
 
 `https://live.chartboost.com/event_service/v2/level`
 
-#### Authentication
+### Authentication
 
 ```python
+# Generate computed signature
 import json
 import hashlib
 import requests
@@ -163,11 +160,11 @@ headers = {
 requests.post(POST_INSTALL_ENDPOINT, data=data, headers=headers)
 ```
 
-To authenticate with this endpoint, you must generate a **computed signature** for each request. The computed signature is created by taking the SHA-256 hash of a canonical string as shown in the code example in the right panel.
+To authenticate with this endpoint, you must generate a **computed signature** for each request. The computed signature is created by taking the SHA-256 hash of a canonical string as shown in the code example in the right panel (be sure to switch to the **Python** tab at the top of the right panel first). 
 
 The endpoint will always respond with an HTTP `200` status code. Check the `status` key on the JSON response for success or error notifications.
 
-<h4 id="headers">Headers</h4>
+<h3 id="headers">Headers</h4>
 
 (Note that headers contain authentication information.)
 
@@ -184,12 +181,12 @@ The endpoint will always respond with an HTTP `200` status code. Check the `stat
 <tr>
 <td>X-Chartboost-Signature</td>
 <td>173e6aeff28e4b76b488d5acf49ed8ebb8e95559</td>
-<td>See <a href="https://gist.github.com/seanwendt/74fb45d5e567f90e7a02">this gist</a> to generate. **This is NOT the same value as the Chartboost app signature!**</td>
+<td>See <a href="https://gist.github.com/seanwendt/74fb45d5e567f90e7a02">this gist</a> to generate. <b>This is NOT the same value as the Chartboost app signature!</b></td>
 </tr>
 </tbody>
 </table>
 
-<h4 id="params">JSON Body: Level Tracking Parameters</h4>
+<h3 id="params">JSON Body: Level Tracking Parameters</h4>
 
 <table class="table-creative-set">
 <thead class="table-creative-head">
@@ -248,7 +245,7 @@ The endpoint will always respond with an HTTP `200` status code. Check the `stat
 </tbody>
 </table>
 
-<h4 id="identifiers">JSON Body: Identifiers Parameters</h4>
+<h3 id="identifiers">JSON Body: Identifiers Parameters</h4>
 
 <table>
 <thead>
@@ -279,11 +276,11 @@ The endpoint will always respond with an HTTP `200` status code. Check the `stat
 </tbody>
 </table>
 
-##### Notes
+#### Notes
 
 <p><b>*</b> One of the two Android identifiers must always be sent, but it is strongly recommended to send both when available, as only sending one may lead to discrepancies.</p>
 
-#### JSON Body: Other Parameters
+### JSON Body: Other Parameters
 
 <table>
 <thead>
@@ -328,13 +325,7 @@ The endpoint will always respond with an HTTP `200` status code. Check the `stat
 </tbody>
 </table>
 
-#### Building the Request
-
-First, start with the endpoint:
-
-`https://live.chartboost.com/event_service/v2/level`
-
-Next, add the parameters in the JSON body, as shown in the example in the right panel.
+### Building the Request
 
 ```
 {
@@ -357,6 +348,12 @@ Next, add the parameters in the JSON body, as shown in the example in the right 
    "token": "cb8b8abc2860ab0ffdfab6bce73270b1bf9c213c83190815f61c0ac5d03794ac"
 }
 ```
+
+First, start with the endpoint:
+
+`https://live.chartboost.com/event_service/v2/level`
+
+Next, add the parameters in the JSON body, as shown in the example in the right panel.
 
 And then you're done – successful requests will receive: `{"status":200,"message":"Success"}`.
 
