@@ -73,7 +73,7 @@ The available fields are listed in the table below; common use cases follow:
 
 Of the five event types, three can be used specifically for sequential Level Tracking. These will accept integer-based level information (the player has gotten to level 3, 8, 17, etc.) which is always increasing and can never decrease, or any other numerical data you need to segment based on whether a player is "higher" or "lower" than a certain number. **Note:** For level tracking event types, Chartboost only records the player's first level event along with each subsequent level value increase. Events with level values that are equal to or less than the player's current value are disregarded.
 
-In addition, all five event types can be used to track achievement events. For non-sequential or non-numerical events, set <code>main_level:1</code> and <code>sub_level:0</code> in the request (see <a href="params">parameters table</a> below).
+In addition, all five event types can be used to track achievement events. For non-sequential or non-numerical events, set <code>main_level:1</code> and <code>sub_level:0</code> in the request (see <a href="#params">parameters table</a> below).
 
 ## Level Tracking Setup (for Third-Party Tracking Services)
 
@@ -95,7 +95,7 @@ The `track_info` array also requires an `event_label`, which describes the natur
 
 `https://live.chartboost.com/event_service/v2/level`
 
-<h3 id="authentication">Authentication</h3>
+<h3 id="authenticate">Authentication</h3>
 
 ```python
 # Generate computed signature
@@ -155,7 +155,7 @@ headers = {
 requests.post(POST_INSTALL_ENDPOINT, data=data, headers=headers)
 ```
 
-To authenticate with this endpoint, you must generate a **computed signature** for each request. The computed signature is created by taking the SHA-256 hash of a canonical string as shown in the <a href="http://partners.chartboost.com/?python#authentication">code example in the right-side panel</a>.
+To authenticate with this endpoint, you must generate a **computed signature** for each request. The computed signature is created by taking the SHA-256 hash of a canonical string as shown in the <a href="http://partners.chartboost.com/?python#authenticate">code example in the right-side panel</a>.
 
 The endpoint will always respond with an HTTP `200` status code. Check the `status` key on the JSON response for success or error notifications.
 
@@ -176,7 +176,7 @@ The endpoint will always respond with an HTTP `200` status code. Check the `stat
 <tr>
 <td>X-Chartboost-Signature</td> 
 <td>173e6aeff28e4b76b488d5acf49ed8ebb8e95559</td>
-<td>See <a href="http://partners.chartboost.com/?python#authentication">code example at right</a> to generate. <b>This is NOT the same value as the Chartboost app signature!</b></td>
+<td>See <a href="http://partners.chartboost.com/?python#authenticate">code example at right</a> to generate. <b>This is NOT the same value as the Chartboost app signature!</b></td>
 </tr>
 </tbody>
 </table>
