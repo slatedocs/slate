@@ -18,14 +18,13 @@ The available fields are listed in the table below; common use cases follow:
 
 <table>
 <thead>
-<tr><th>Event Field</th><th>Sequential? <sup>2</sup></th><th>Definition</th><th>Operators <sup>3</sup></th><th>Example Event Label <sup>1</sup></th><th>Optional<br />Description Example <sup>4</sup></th></tr>
+<tr><th>Event Field</th><th>Sequential? <sup>2</sup></th><th>Definition</th><th>Example Event Label <sup>1</sup></th><th>Optional<br />Description Example <sup>4</sup></th></tr>
 </thead>
 <tbody>
 <tr>
 <td><code>1</code></td>
 <td>Yes</td>
 <td>Highest numerical level a user has reached</td>
-<td>&gt;=, &gt;, ==, &lt;, &lt;=</td>
 <td>"Highest level puzzle solved"</td>
 <td>"Chocolate Fudge Level"</td>
 </tr>
@@ -33,7 +32,6 @@ The available fields are listed in the table below; common use cases follow:
 <td><code>2</code></td>
 <td>No</td>
 <td>User's current level/area</td>
-<td>==, !=</td>
 <td>"Area main character is in"</td>
 <td>"Lunar Caverns"</td>
 </tr>
@@ -41,7 +39,6 @@ The available fields are listed in the table below; common use cases follow:
 <td><code>3</code></td>
 <td>Yes</td>
 <td>The level of the player’s character in game</td>
-<td>&gt;=, &gt;, ==, &lt;, &lt;=</td>
 <td>"Level of the character class"</td>
 <td>"Master Wizard"</td>
 </tr>
@@ -49,7 +46,6 @@ The available fields are listed in the table below; common use cases follow:
 <td><code>4</code></td>
 <td>Yes</td>
 <td>Extra field for developers to send sequential data</td>
-<td>&gt;=, &gt;, ==, &lt;, &lt;=</td>
 <td>"VIP reward level"</td>
 <td>"5"</td>
 </tr>
@@ -57,7 +53,6 @@ The available fields are listed in the table below; common use cases follow:
 <td><code>5</code></td>
 <td>No</td>
 <td>Extra field for developers to send non-sequential data</td>
-<td>==, !=</td>
 <td>"FTUE completed?"</td>
 <td>"Tutorial Completed"</td>
 </tr>
@@ -67,9 +62,8 @@ The available fields are listed in the table below; common use cases follow:
 ### Notes
 
 1. Event labels are required and will be used to identify the type of event field in the Chartboost dashboard
-2. Chartboost customers can use sequential event fields to track either 1) level data that is always increasing and can never decrease; or 2) numerical data they need to segment based on whether a player is "higher" or "lower" than a certain number
-3. Chartboost customers can use these operators to create player segments to optimize UA efforts, power retargeting campaigns, and drive other types of monetization
-4. Optional event descriptions can be used to identify the level name ("Lunar Caverns," for example) rather than the type of level event ("Area main character is in")
+2. A sequential event field is used to track either 1) level data that is always increasing and can never decrease; or 2) numerical data developers need to segment based on whether a player is "higher" or "lower" than a certain number
+4. Optional event descriptions can be used to identify the level name ("Lunar Caverns," for example, as opposed to the event_label which defines the type of level event).
 
 Of the five event types, three can be used specifically for sequential Level Tracking. These will accept integer-based level information (the player has gotten to level 3, 8, 17, etc.) which is always increasing and can never decrease, or any other numerical data you need to segment based on whether a player is "higher" or "lower" than a certain number. **Note:** For level tracking event types, Chartboost only records the player's first level event along with each subsequent level value increase. Events with level values that are equal to or less than the player's current value are disregarded.
 
