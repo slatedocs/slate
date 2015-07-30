@@ -4,6 +4,7 @@ title: Constructor.io API Reference
 language_tabs:
   - shell
   - javascript
+  - ruby
 
 toc_footers:
   - <a href='/users/sign_up'>Sign Up for an API Token</a>

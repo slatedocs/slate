@@ -20,6 +20,12 @@ constructorio.add(
 );
 ```
 
+```ruby
+constructorio.add(
+  { item_name: "power_drill", autocomplete_section: "standard" }
+);
+```
+
 > The above command returns a 204 Success response on success.
 
 To add an item to your autocomplete index, use the `POST /item` call. The `item_name` is required. You can also pass in an optional `suggested_score` between 1-100, which will influence the item's initial ranking relative to other item scores (the higher the score, the higher in the list of suggestions the item will appear). You can also optionally pass in the item's `keywords` to give us more meta information and help us better determine how and where to display the item when autocompleting. If you would like to add an item that points to a direct link, just pass in that link as a `url`. Finally, if your autocomplete has multiple sections, like categories, search suggestions, and direct links to products, you must specify which section you are adding an item to. You can do this with the `autocomplete_section` parameter.
@@ -40,6 +46,11 @@ autocomplete_section | No | Your autocomplete suggestions can have multiple sect
 
 ## Remove an Item
 
+```shell
+curl -X DELETE -H "Content-Type: application/json" -d '{"item_name":"power drill","autocomplete_section":"products_autocomplete"}' \
+  -u "[your token]:" "https://ac.constructor.io/v1/item?autocomplete_key=[your_autocomplete_key]"
+```
+
 ```javascript
 constructorio.remove(
   { item_name: "power_drill", autocomplete_section: "standard" },
@@ -49,9 +60,10 @@ constructorio.remove(
 );
 ```
 
-```shell
-curl -X DELETE -H "Content-Type: application/json" -d '{"item_name":"power drill","autocomplete_section":"products_autocomplete"}' \
-  -u "[your token]:" "https://ac.constructor.io/v1/item?autocomplete_key=[your_autocomplete_key]"
+```ruby
+constructorio.remove(
+  { item_name: "power_drill", autocomplete_section: "standard" }
+);
 ```
 
 > The above command returns a 204 Success response on success.
@@ -71,6 +83,11 @@ autocomplete_section | No | Your autocomplete suggestions can have multiple sect
 
 ## Modify an Item
 
+```shell
+curl -X PUT -H "Content-Type: application/json" -d '{"item_name":"power drill","keywords":["concrete","power tools","drills","drywall"],"suggested_score":20,"url":"http://www.mysite.com/power_drill","autocomplete_section":"products_autocomplete"}' \
+  -u "[your token]:" "https://ac.constructor.io/v1/item?autocomplete_key=[your_autocomplete_key]"
+```
+
 ```javascript
 constructorio.modify(
   {
@@ -84,9 +101,14 @@ constructorio.modify(
 );
 ```
 
-```shell
-curl -X PUT -H "Content-Type: application/json" -d '{"item_name":"power drill","keywords":["concrete","power tools","drills","drywall"],"suggested_score":20,"url":"http://www.mysite.com/power_drill","autocomplete_section":"products_autocomplete"}' \
-  -u "[your token]:" "https://ac.constructor.io/v1/item?autocomplete_key=[your_autocomplete_key]"
+```ruby
+constructorio.modify(
+  {
+    item_name: "power_drill",
+    autocomplete_section: "standard",
+    url: "http://www.mysite.com/power_drill",
+  }
+);
 ```
 
 > The above command returns a 204 Success response on success.

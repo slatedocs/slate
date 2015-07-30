@@ -4,6 +4,12 @@
 
 > To authorize, use this code:
 
+```shell
+# with curl, there's no need to authorize separately -- just pass your API token in with every call
+curl -X POST -H "Content-Type: application/json" -d '{"item_name":"xyz","keywords":["k1","k2"]}' \
+  -u "[your token]:" https://ac.constructor.io/v1/item
+```
+
 ```javascript
 var ConstructorIO = require('constructorio');
 var constructorio = new ConstructorIO({
@@ -13,10 +19,13 @@ var constructorio = new ConstructorIO({
 
 ```
 
-```shell
-# with curl, there's no need to authorize separately -- just pass your API token in with every call
-curl -X POST -H "Content-Type: application/json" -d '{"item_name":"xyz","keywords":["k1","k2"]}' \
-  -u "[your token]:" https://ac.constructor.io/v1/item
+```ruby
+require('constructorio')
+ConstructorIO.configure do |config|
+  config.api_token = "[your token]"
+  config.autocomplete_key = "[your autocomplete key]"
+end
+constructorio = ConstructorIO::Client.new
 ```
 
 > Make sure to replace `[your token]` with your API token from [your dashboard](/dashboard).
@@ -39,6 +48,10 @@ constructorio.verify(function(error, response) {
     console.log("Response: " + response);
   }
 }
+```
+
+```ruby
+constructorio.verify
 ```
 
 You can verify that authentication works correctly by issuing a simple verification request.

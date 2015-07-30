@@ -16,6 +16,13 @@ constructorio.track_search({
 });
 ```
 
+```ruby
+constructorio.track_search({
+  term: "xyz",
+  num_results: "302"
+});
+```
+
 The `search` resource should be called whenever a search is performed on your site, together with the search `term` and number of results (`num_results`).
 
 ### HTTP Request
@@ -37,6 +44,14 @@ curl -X POST -H "Content-Type: application/json" -d '{"term":"xyz","item":"Alpha
 ```
 
 ```javascript
+constructorio.track_click_through({
+  term: "xyz",
+  item: "Alphabet soup",
+  autocomplete_section: "Products"
+});
+```
+
+```ruby
 constructorio.track_click_through({
   term: "xyz",
   item: "Alphabet soup",
@@ -66,6 +81,14 @@ curl -X POST -H "Content-Type: application/json" -d '{"term":"xyz","item":"Alpha
 ```
 
 ```javascript
+constructorio.track_conversion({
+  term: "xyz",
+  item: " Alphabet soup",
+  autocomplete_section: "Products"
+});
+```
+
+```ruby
 constructorio.track_conversion({
   term: "xyz",
   item: " Alphabet soup",
