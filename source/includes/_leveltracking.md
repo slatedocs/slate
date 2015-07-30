@@ -1,6 +1,6 @@
 # Level and Event Tracking
 
-For a more complete analysis of player level data across platforms or networks, Chartboost customers can configure third-party tracking services to send their IAP data to Chartboost. After the integration, Chartboost customers can then view the third-party data in the Chartboost dashboard.
+For a more complete analysis of player level data across platforms or networks, Chartboost customers can configure third-party tracking services to send their event/level data to Chartboost. After the integration, Chartboost customers can then view the third-party data in the Chartboost dashboard.
 
 Third-party tracking services can use the instructions on this page to build their initial level tracking integration. Chartboost customers using level tracking should refer to [these customer-facing instructions](https://answers.chartboost.com/hc/en-us/articles/204639335). 
 
@@ -22,7 +22,7 @@ The available fields are listed in the table below; common use cases follow:
 </thead>
 <tbody>
 <tr>
-<td><code>HIGHEST_LEVEL_REACHED</code></td>
+<td><code>1</code></td>
 <td>"Highest level puzzle solved"</td>
 <td>Highest numerical level a user has reached</td>
 <td>Yes</td>
@@ -31,7 +31,7 @@ The available fields are listed in the table below; common use cases follow:
 <td>"Chocolate Fudge Level"</td>
 </tr>
 <tr>
-<td><code>CURRENT_AREA</code></td>
+<td><code>2</code></td>
 <td>"Area main character is in"</td>
 <td>User's current level/area</td>
 <td>No</td>
@@ -40,7 +40,7 @@ The available fields are listed in the table below; common use cases follow:
 <td>"Lunar Caverns"</td>
 </tr>
 <tr>
-<td><code>CHARACTER_LEVEL</code></td>
+<td><code>3</code></td>
 <td>"Level of the character class"</td>
 <td>The level of the player’s character in game</td>
 <td>Yes</td>
@@ -49,7 +49,7 @@ The available fields are listed in the table below; common use cases follow:
 <td>"Master Wizard"</td>
 </tr>
 <tr>
-<td><code>OTHER_SEQUENTIAL</code></td>
+<td><code>4</code></td>
 <td>"VIP reward level"</td>
 <td>Extra field for developers to send sequential data</td>
 <td>Yes</td>
@@ -58,7 +58,7 @@ The available fields are listed in the table below; common use cases follow:
 <td>"5"</td>
 </tr>
 <tr>
-<td><code>OTHER_NONSEQUENTIAL</code></td>
+<td><code>5</code></td>
 <td>"FTUE completed?"</td>
 <td>Extra field for developers to send non-sequential data</td>
 <td>No</td>
@@ -76,7 +76,7 @@ The available fields are listed in the table below; common use cases follow:
 3. Chartboost customers can use these operators to create player segments to optimize UA efforts, power retargeting campaigns, and drive other types of monetization
 4. Optional event descriptions can be used to identify the level name ("Lunar Caverns," for example) rather than the type of level event ("Area main character is in")
 
-Of the five event types, three can be used specifically for sequential Level Tracking. These will accept integer-based level information (the player has gotten to level 3, 8, 17, etc.) which is always increasing and can never decrease, or any other numerical data you need to segment based on whether a player is “higher” or “lower” than a certain number. **Note:** For level tracking event types, Chartboost only records the player's first level event along with each subsequent level value increase. Events with level values that are equal to or less than the player's current value are disregarded.
+Of the five event types, three can be used specifically for sequential Level Tracking. These will accept integer-based level information (the player has gotten to level 3, 8, 17, etc.) which is always increasing and can never decrease, or any other numerical data you need to segment based on whether a player is "higher" or "lower" than a certain number. **Note:** For level tracking event types, Chartboost only records the player's first level event along with each subsequent level value increase. Events with level values that are equal to or less than the player's current value are disregarded.
 
 In addition, all five event types can be used to track achievement events. For non-sequential or non-numerical events, set <code>main_level:1</code> and <code>sub_level:0</code> in the request (see <a href="params">parameters table</a> below).
 
@@ -181,7 +181,7 @@ The endpoint will always respond with an HTTP `200` status code. Check the `stat
 <tr>
 <td>X-Chartboost-Signature</td>
 <td>173e6aeff28e4b76b488d5acf49ed8ebb8e95559</td>
-<td>See <a href="https://gist.github.com/seanwendt/74fb45d5e567f90e7a02">this gist</a> to generate. <b>This is NOT the same value as the Chartboost app signature!</b></td>
+<td>See code example at right to generate. <b>This is NOT the same value as the Chartboost app signature!</b></td>
 </tr>
 </tbody>
 </table>
