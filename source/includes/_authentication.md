@@ -40,3 +40,6 @@ constructorio.verify(function(error, response) {
   }
 }
 ```
+
+You can verify that authentication works correctly by issuing a simple verification request.
+

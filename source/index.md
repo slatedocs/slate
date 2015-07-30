@@ -10,10 +10,11 @@ toc_footers:
   - <a href='http://github.com/tripit/slate' target="_blank">Documentation Powered by Slate</a>
 
 includes:
-  - javascript_client
+  - authentication
   - autocomplete_items
   - behavioral_data
   - errors
+  - javascript_client
 
 search: true
 ---
