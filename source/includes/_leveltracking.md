@@ -18,52 +18,47 @@ The available fields are listed in the table below; common use cases follow:
 
 <table>
 <thead>
-<tr><th>Event Field</th><th>Example Event Label <sup>1</sup></th><th>Definition</th><th>Sequential? <sup>2</sup></th><th>Operators <sup>3</sup></th><th>ID</th><th>Optional<br />Description Example <sup>4</sup></th></tr>
+<tr><th>Event Field</th><th>Sequential? <sup>2</sup></th><th>Definition</th><th>Operators <sup>3</sup></th><th>Example Event Label <sup>1</sup></th><th>Optional<br />Description Example <sup>4</sup></th></tr>
 </thead>
 <tbody>
 <tr>
 <td><code>1</code></td>
-<td>"Highest level puzzle solved"</td>
-<td>Highest numerical level a user has reached</td>
 <td>Yes</td>
+<td>Highest numerical level a user has reached</td>
 <td>&gt;=, &gt;, ==, &lt;, &lt;=</td>
-<td>1</td>
+<td>"Highest level puzzle solved"</td>
 <td>"Chocolate Fudge Level"</td>
 </tr>
 <tr>
 <td><code>2</code></td>
-<td>"Area main character is in"</td>
-<td>User's current level/area</td>
 <td>No</td>
+<td>User's current level/area</td>
 <td>==, !=</td>
-<td>2</td>
+<td>"Area main character is in"</td>
 <td>"Lunar Caverns"</td>
 </tr>
 <tr>
 <td><code>3</code></td>
-<td>"Level of the character class"</td>
-<td>The level of the player’s character in game</td>
 <td>Yes</td>
+<td>The level of the player’s character in game</td>
 <td>&gt;=, &gt;, ==, &lt;, &lt;=</td>
-<td>3</td>
+<td>"Level of the character class"</td>
 <td>"Master Wizard"</td>
 </tr>
 <tr>
 <td><code>4</code></td>
-<td>"VIP reward level"</td>
-<td>Extra field for developers to send sequential data</td>
 <td>Yes</td>
+<td>Extra field for developers to send sequential data</td>
 <td>&gt;=, &gt;, ==, &lt;, &lt;=</td>
-<td>4</td>
+<td>"VIP reward level"</td>
 <td>"5"</td>
 </tr>
 <tr>
 <td><code>5</code></td>
-<td>"FTUE completed?"</td>
-<td>Extra field for developers to send non-sequential data</td>
 <td>No</td>
+<td>Extra field for developers to send non-sequential data</td>
 <td>==, !=</td>
-<td>5</td>
+<td>"FTUE completed?"</td>
 <td>"Tutorial Completed"</td>
 </tr>
 </tbody>
@@ -100,7 +95,7 @@ The `track_info` array also requires an `event_label`, which describes the natur
 
 `https://live.chartboost.com/event_service/v2/level`
 
-### Authentication
+<h3 id="authentication">Authentication</h3>
 
 ```python
 # Generate computed signature
@@ -160,7 +155,7 @@ headers = {
 requests.post(POST_INSTALL_ENDPOINT, data=data, headers=headers)
 ```
 
-To authenticate with this endpoint, you must generate a **computed signature** for each request. The computed signature is created by taking the SHA-256 hash of a canonical string as shown in the code example in the right panel (be sure to switch to the **Python** tab at the top of the right panel first). 
+To authenticate with this endpoint, you must generate a **computed signature** for each request. The computed signature is created by taking the SHA-256 hash of a canonical string as shown in the <a href="http://partners.chartboost.com/?python#authentication">code example in the right-side panel</a>.
 
 The endpoint will always respond with an HTTP `200` status code. Check the `status` key on the JSON response for success or error notifications.
 
@@ -179,9 +174,9 @@ The endpoint will always respond with an HTTP `200` status code. Check the `stat
 <td>Your Chartboost app ID</td>
 </tr>
 <tr>
-<td>X-Chartboost-Signature</td>
+<td>X-Chartboost-Signature</td> 
 <td>173e6aeff28e4b76b488d5acf49ed8ebb8e95559</td>
-<td>See code example at right to generate. <b>This is NOT the same value as the Chartboost app signature!</b></td>
+<td>See <a href="http://partners.chartboost.com/?python#authentication">code example at right</a> to generate. <b>This is NOT the same value as the Chartboost app signature!</b></td>
 </tr>
 </tbody>
 </table>
