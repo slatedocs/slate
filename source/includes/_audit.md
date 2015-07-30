@@ -25,7 +25,7 @@ This section describes the complete audit response format.
 Key                           | Type              | Description
 ------------------------------|-------------------|---------------------------------------------------------------------
 `audit_id`                    | String            | The audit's ID
-`template_id`                 | String            | Parent template
+`template_id`                 | String            | ID of the parent template
 `created_at`                  | String            | ISO date and time when the audit was first synced to the cloud
 `modified_at`                 | String            | ISO date and time when the audit was last synced to the cloud
 `audit_data`                  | Object            | General information about [the audit](#audit-data) (dates, author, scores, etc.)
@@ -57,8 +57,8 @@ Key                           | Type              | Description
 
 Key                           | Type              | Description
 ------------------------------|-------------------|---------------------------------------------------------------------
-`name`                        | String            | String name of the audit
-`score`                       | Double            | Current score of the audit
+`name`                        | String            | Name of the audit
+`score`                       | Double            | Score of the audit
 `total_score`                 | Double            | The maximum possible score
 `score_percentage`            | Double            | A value 0 to 100 calculated as `score/total_score`
 `duration`                    | Double            | Time taken to complete the audit (on a device or web app) in seconds
@@ -105,7 +105,7 @@ Key                           | Type              | Description
 Key                           | Type              | Description
 ------------------------------|-------------------|---------------------------------------------------------------------
 `metadata`                    | Object            | Some [meta data](#template-meta-data) about the Template (name, description, image, etc.)
-`response_sets`               | Object            | The [response sets](#response-sets) attached to the template. (Yes/No/NA, Safe/AtRisk/NA, etc)
+`response_sets`               | Object            | The question [responses](#response-sets) attached to the template. (Yes/No/NA, Safe/AtRisk/NA, etc)
 `authorship`                  | Object            | Information on the [authorship](#authorship) of the template. Same as audit [authorship](#authorship).
 
 ### Template Meta Data
@@ -116,7 +116,7 @@ Key                           | Type              | Description
 {
   "name": "name",
   "description": "description",
-  "image": "52ED0287-93F1-4F53-B2C2-29EA3A2423E7",
+  "image": "52ED0287-93F1-4F53-B2C2-29EA3A2423E7"
 }
 ```
 
@@ -124,11 +124,11 @@ Key                           | Type              | Description
 ------------------------------|-------------------|---------------------------------------------------------------------
 `name`                        | String            | The template name
 `description`                 | String            | The template description
-`image`                       | Object            | Main [image](#media) of the template
+`image`                       | Object            | The logo ([media](#media)) of the template used to create this audit
 
 ### Response Sets
 
-`.template_data.response_sets` - keys of the object are the UUID's' of each set. Values of the object are the sets themselves.
+`.template_data.response_sets` - The keys used in the object are the ID's of the stored responses. The values of the object are the sets themselves.
 
 ```json
 {
@@ -141,7 +141,7 @@ Key                           | Type              | Description
 
 `.template_data.response_sets.*`
 
-```js
+```json
 {
   "id": "8a0161b0-a97d-11e4-800b-8f525e51b36e",
   "responses": [{}]
@@ -167,19 +167,19 @@ Key                           | Type              | Description
   "score": 1,
   "short_label": "R",
   "type": "list"
-},
+}
 ```
 
 Key                           | Type              | Description
 ------------------------------|-------------------|---------------------------------------------------------------------
 `id`                          | String            | ID of the response
-`colour`                      | String            | RGB colour of the response button. I.e. "0,0,0" is black, "255,255,255" is white.
-`enable_score`                | Boolean           | If Score is enabled
-`image`                       | Object            | Image the user selects on screen
+`colour`                      | String            | RGB colour of the response button when selected. I.e. "0,0,0" is black, "255,255,255" is white.
+`enable_score`                | Boolean           | If Score checkbox is checked. Can be attached to any response type
+`image`                       | Object            | 
 `label`                       | String            | Label of the response (eg. 'Yes')
 `score`                       | Number            | Score of the response
 `short_label`                 | String            | Short label of the response (eg. 'Y')
-`type`                        | Number            | The response type. See [audit item](#item-root) for more info.
+`type`                        | String            | The response type. Can only be "question" (single selection) or "list" (multi choice)
 
 
 ## Audit Header Items
@@ -214,9 +214,9 @@ Key                           | Type              | Description
 `item_id`                     | String            | The UUID of the item
 `parent_id`                   | String            | Parent item ID. Can be null
 `label`                       | String            | The text label of the item
-`action_item_profile_id`      | Array             | Followup task ID's
+`action_item_profile_id`      | Array             | The ID's of any follow up tasks added to this item
 `type`                        | String            | One the the following: `information`, `smartfield`, `checkbox`, `media`, `textsingle`, `element`, `primeelement`, `dynamicfield`, `category`, `section`, `text`, `signature`, `switch`, `slider`, `drawing`, `address`, `list`, `question`, `datetime`, `weather`, `asset`, `scanner`
-`options`                     | Object            | A set of different [options](#item-options) available to that type. Like: mix/max values, condition, signature, media, various flags, etc.
+`options`                     | Object            | A set of different [options](#item-options) available to that type. Like: min/max values, condition, signature, media, various flags, etc.
 `responses`                   | Object            | Represents user [selections](#item-responses). Like value, or list item, or photo, location, date-time, etc.
 `media`                       | Object            | Information about an [image or photo](#media) file
 `children`                    | Array             | The list of child item ID's
@@ -224,7 +224,7 @@ Key                           | Type              | Description
 
 ### Item Options
 
-`.items[].options` most of the fields will be absent usually.
+`.items[].options` most of the fields are absent usually.
 
 ```json
 {
@@ -310,17 +310,17 @@ Key                           | Type              | Description
 Key                           | Type              | Description
 ------------------------------|-------------------|---------------------------------------------------------------------
 `assets`                      | Array             | Array of selected [asset](#audit-assets) ID's
-`text`                        | String            | Text label of the response
-`value`                       | String            | The selected value, like slider position
-`name`                        | String            | Someone's name
-`timestamp`                   | String            | 
-`datetime`                    | String            | 
+`text`                        | String            | A simple text an auditor types into a text box
+`value`                       | String            | The selected value. Used for sliders, checkboxes and on-off switch
+`name`                        | String            | Someone's name. Used with signature, location and weather items
+`timestamp`                   | String            | Time of an action. Used only with barcode and signature fields
+`datetime`                    | String            | Manually entered date and time. Also used with weather item
 `location_text`               | String            | Location represented as text (address or coordinates)
 `location`                    | Object            | The [location](#location) object
-`selected`                    | Array             | The selected responses. Same as [template response items](#response-sets-response)
+`selected`                    | Array             | The selected responses in questions and multi choice items. Same as [template response items](#response-sets-response)
 `weather`                     | Object            | Audit time weather
 `media`                       | Array             | An array of attached [photos](#media)
-`image`                       | Object            | An [image](#media) of the selection
+`image`                       | Object            | Signature or drawing. See [media](#media)
 
 ### Item Scoring
 
@@ -391,7 +391,7 @@ Key                           | Type              | Description
 
 ## Audit Assets
 
-`.assets`
+`.assets[]` is a list of object within a company that an auditor will review often.  
 
 ```json
 {
@@ -405,7 +405,7 @@ Key                           | Type              | Description
   "description": "Used to deliver various tool and people to the construction sites",
   "height": 45,
   "id": "e8a12eb4-5492-47bd-82bf-86e6d98bf81a",
-  "identifier": "522",
+  "identifier": "TDV-1",
   "make": "Toyota",
   "media_id": {},
   "model": "Tundra",
@@ -424,22 +424,22 @@ Key                           | Type              | Description
 `barcode`                     | String            | Asset barcode
 `cost`                        | Number            | Asset cost
 `custom_fields`               | Object            | The map of additional values one can attach to an asset
-`depreciation`                | Number            |
+`depreciation`                | Number            | Asset depreciation
 `depth`                       | Number            | Asset dimension
-`description`                 | String            |
+`description`                 | String            | General description of an asset
 `height`                      | Number            | Asset dimension
 `id`                          | String            | The UUID which is used to reference this asset from the other parts of the audit JSON
-`identifier`                  | String            |
-`make`                        | String            |
+`identifier`                  | String            | A way for the user to identify the asset.
+`make`                        | String            | The manufacturer of the asset
 `media_id`                    | Object            | An image or photo of the asset
-`model`                       | String            |
-`rev`                         | String            |
+`model`                       | String            | The specific model of the asset
+`rev`                         | String            | 
 `serial_number`               | String            | Asset S/N
-`time_stamp`                  | String            |
+`time_stamp`                  | String            | Time when the asset was last edited in the corresponding template
 `title`                       | String            | Asset title
 `weight`                      | Number            | Asset wight
 `width`                       | Number            | Asset dimension
-`year_of_manufacture`         | Number            |
+`year_of_manufacture`         | Number            | The asset year of manufacture
 
 ## Media
 
