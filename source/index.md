@@ -98,7 +98,7 @@ We’re going to push our data to Keen IO, which gives you ad-hoc query capabili
 }
 ```
 
-### Step 4 - Add [Astronomer package](https://atmospherejs.com/astronomerio/core) to your Meteor app
+### Step 4- Add [Astronomer package](https://atmospherejs.com/astronomerio/core) to your Meteor app
 
 This package emits user events from your app to the Astronomer Data Hub.
 
@@ -139,7 +139,7 @@ For those of you who are not using Meteor, follow these simple steps to start tr
 <script type='text/javascript' src="http://cdn.astronomer.io/v1/analytics.min.js"></script>  
 ```
 
-### Step 1 - Include the Javascript snippet (shown right) into your app.
+<b>Step 1</b> - Include the Javascript snippet (shown right) into your app.
 
 ``` javascript
 analytics.initialize({  
@@ -150,8 +150,9 @@ analytics.initialize({
 ```
 <br>
 <br>
+<br>
 
-### Step 2 - Initialize it with your appId. If you haven't made an account yet, sign up [here](https://app.astronomer.io/signup) and create a new app by clicking the + icon at the top right of your dashboard. Once the new app is created, the appId will be located within the settings tab.
+<b>Step 2</b> - Initialize it with your appId. If you haven't made an account yet, sign up [here](https://app.astronomer.io/signup) and create a new app by clicking the + icon at the top right of your dashboard. Once the new app is created, the appId will be located within the settings tab.
 
 ``` javascript
 analytics.identify('f9s83swk4', {  
@@ -164,7 +165,7 @@ analytics.identify('f9s83swk4', {
 <br>
 <br>
 
-### Step 3 - Identify your users using their userId and any traits you have for them, such as name and email
+<b>Step 3</b> - Identify your users using their userId and any traits you have for them, such as name and email
 
 ``` javascript
 analytics.track("Viewed Project", {  
@@ -176,7 +177,7 @@ analytics.track("Viewed Project", {
 <br>
 <br>
 
-### Step 4 - Begin tracking events wherever they are occurring. Name the event (in this case "Viewed Project"), and add any relevant traits to that event (such as the project id).
+<b>Step 4</b> - Begin tracking events wherever they are occurring. Name the event (in this case "Viewed Project"), and add any relevant traits to that event (such as the project id).
 
 
 
@@ -218,64 +219,82 @@ Not yet, but we're working on it! Angular is the next framework that we'll be go
 #Integrations
 
 ## Google Analytics
-### To get started sending events to Google Analytics, you'll need to your Serverside Tracking ID. This should be a string that should look like 'UA-XXXXXXXX-X.' To get up and running you'll need to: 
 
-### 1) Create a Google Analytics account via their [website](http://www.google.com/analytics)
+To get started sending events to Google Analytics, you'll need to your Serverside Tracking ID. This should be a string that should look like 'UA-XXXXXXXX-X.' To get up and running you'll need to: 
 
-### 2) Find your unique Tracking ID.
+<b>Step 1</b> Create a Google Analytics account via their [website](http://www.google.com/analytics)
+
+<b>Step 2</b> Find your unique Tracking ID.
 ![google_id_picture](/images/google_analytics/google_id.png)
 
-### 3) Add your Tracking ID into the Google Analytics integration on your dashboard.
+<br>
+
+<b>Step 3</b> Add your Tracking ID into the Google Analytics integration on your dashboard.
 ![google_tracking_picture](/images/google_analytics/add_google_tracking.png)
 
-### 4) Click the 'Reporting' tab on your Google Analytics dashboard, go to the Events page (within the Real-Time section), and take a look! You should have 1 active user on the site (that's you!) and your events should appear underneath in the order in which they occur. 
+<br>
+
+<b>Step 4</b> Click the 'Reporting' tab on your Google Analytics dashboard, go to the Events page (within the Real-Time section), and take a look! You should have 1 active user on the site (that's you!) and your events should appear underneath in the order in which they occur. 
 ![google_analytics.picture](/images/google_analytics/google_track.png)
 
 ## Keen IO
-### To get started sending events to Keen IO, you'll need a Project ID and Write Key. The ID is what tells Astronomer which project within Keen IO is yours and the Write Key gives Astronomer permission to send data into it. Both will be long strings of random characters (the ID will be 24 characters and the Write Key will be 224.)
 
-### 1) Create a Keen IO account via their [website](http://www.keen.io)
+To get started sending events to Keen IO, you'll need a Project ID and Write Key. The ID is what tells Astronomer which project within Keen IO is yours and the Write Key gives Astronomer permission to send data into it. Both will be long strings of random characters (the ID will be 24 characters and the Write Key will be 224.)
 
-### 2) Keen IO is kind enough to create your first project for you so you already have anything you'll need. They even have a reminder that you haven't sent any data to them yet. We'll fix that soon enough ;) For now, copy over your Project ID and Write Key (which you can get by clicking on 'Show API Keys')
+<b>Step 1</b> Create a Keen IO account via their [website](http://www.keen.io)
+
+<b>Step 2</b> Keen IO is kind enough to create your first project for you so you already have anything you'll need. They even have a reminder that you haven't sent any data to them yet. We'll fix that soon enough ;) For now, copy over your Project ID and Write Key (which you can get by clicking on 'Show API Keys')
 ![google_id_picture](/images/keen_io/keen_io_write.png)
 
-### 3) Add your Project ID and Write Key into the Keen IO integration on your dashboard.
+<br>
+
+<b>Step 3</b> Add your Project ID and Write Key into the Keen IO integration on your dashboard.
 ![google_tracking_picture](/images/keen_io/add_keen_io_tracking.png)
 
-### 4) Click around your app to send off some test events and then go back to Keen IO to see those events begin populating your project! They should appear in less than a minute!
+<br>
+
+<b>Step 4</b> Click around your app to send off some test events and then go back to Keen IO to see those events begin populating your project! They should appear in less than a minute!
 ![google_analytics.picture](/images/keen_io/keen_io_track.png)
 
 ## KISSmetrics
 
-### To get started sending events to KISSmetrics, you'll need your project specific API Key. The ID is what tells Astronomer which project within Keen IO is yours and the Write Key gives Astronomer permission to send data into it. Both will be long strings of random characters (the ID will be 24 characters and the Write Key will be 224.)
+To get started sending events to KISSmetrics, you'll need your project specific API Key. The ID is what tells Astronomer which project within Keen IO is yours and the Write Key gives Astronomer permission to send data into it. Both will be long strings of random characters (the ID will be 24 characters and the Write Key will be 224.)
 
-### 1) Create a KISSmetrics account via their [website](http://www.kissmetrics.com)
+<b>Step 1</b> Create a KISSmetrics account via their [website](http://www.kissmetrics.com)
 
-### 2) Before you're able to hit your dashboard, you'll need to integrate KISSmetrics into you app and, as luck would have it, you can do that through Astronomer! You'll need your API Key which is a 40 character string that you'll be able to find in the javascript snippet they suggest adding to your app.
+<b>Step 2</b> Before you're able to hit your dashboard, you'll need to integrate KISSmetrics into you app and, as luck would have it, you can do that through Astronomer! You'll need your API Key which is a 40 character string that you'll be able to find in the javascript snippet they suggest adding to your app.
 ![google_id_picture](/images/kissmetrics/kiss_api.png)
 
-### 3) Add your API Key into the Keen IO integration on your dashboard.
+<br>
+
+<b>Step 3</b> Add your API Key into the Keen IO integration on your dashboard.
 ![google_tracking_picture](/images/kissmetrics/add_kiss_tracking.png)
 
-### 4) Click around your app to send off some test events. It might take an hour or so for events to start populating into your project but be patient! They're on their way. Once the first events are sent, the others will start following in much faster. You can check to see if events are coming in by clicking on the 'Live' tab at the top of the page and looking athe 'All Activity' section.
+<br>
+
+<b>Step 4</b> Click around your app to send off some test events. It might take an hour or so for events to start populating into your project but be patient! They're on their way. Once the first events are sent, the others will start following in much faster. You can check to see if events are coming in by clicking on the 'Live' tab at the top of the page and looking athe 'All Activity' section.
 ![google_analytics.picture](/images/kissmetrics/kiss_track.png)
 
 ## Mixpanel
 
-### To get started sending events to Mixpanel, you'll need your Token and API Key. Both will be a 32 random character string.
+To get started sending events to Mixpanel, you'll need your Token and API Key. Both will be a 32 random character string.
 
-### 1) Create a Mixpanel account via their [website](http://www.mixpanel.com)
+<b>Step 1</b> Create a Mixpanel account via their [website](http://www.mixpanel.com)
 
-### 2) They'll suggest installing their library, but we know better than that. We're using Astronomer! We're going to skip ahead and click on the 'Account' tab at the top, which opens up a new box to get your Token and API Key
+<b>Step 2</b> They'll suggest installing their library, but we know better than that. We're using Astronomer! We're going to skip ahead and click on the 'Account' tab at the top, which opens up a new box to get your Token and API Key
 ![google_id_picture](/images/mixpanel/mixpanel_write1.png)
+
 <br>
+
 Get your Token and API Key by clicking on the Projects tab within the new window. The Token and API Key will be clearly labeled. 
 ![google_id_picture](/images/mixpanel/mixpanel_write2.png)
 
-### 3) Add your Token and API Key into the Mixpanel integration on your dashboard.
+<b>Step 3</b> Add your Token and API Key into the Mixpanel integration on your dashboard.
 ![google_tracking_picture](/images/mixpanel/add_mixpanel_tracking.png)
 
-### 4) Almost immediately, you'll get a notice that Mixpanel is receiving events! Click on 'View Your Data' to start exploring. 
+<br>
+
+<b>Step 4</b> Almost immediately, you'll get a notice that Mixpanel is receiving events! Click on 'View Your Data' to start exploring. 
 ![google_analytics.picture](/images/mixpanel/mixpanel_track1.png)
 
 You can see what specific events are coming in by going to the 'Live view' page, located in the left-hand menu bar.
