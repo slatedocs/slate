@@ -229,13 +229,13 @@ To get started sending events to Google Analytics, you'll need to your Serversid
 
 <br>
 
-<b>Step 3</b> Add your Tracking ID into the Google Analytics integration on your dashboard.
+<b>Step 3</b> Add your Tracking ID into the Google Analytics integration on your Astronomer dashboard.
 ![google_tracking_picture](/images/google_analytics/add_google_tracking.png)
 
 <br>
 
 <b>Step 4</b> Click the 'Reporting' tab on your Google Analytics dashboard, go to the Events page (within the Real-Time section), and take a look! You should have 1 active user on the site (that's you!) and your events should appear underneath in the order in which they occur. 
-![google_analytics.picture](/images/google_analytics/google_track.png)
+![google_analytics_picture](/images/google_analytics/google_track.png)
 
 ## Keen IO
 
@@ -244,17 +244,17 @@ To get started sending events to Keen IO, you'll need a Project ID and Write Key
 <b>Step 1</b> Create a Keen IO account via their [website](http://www.keen.io)
 
 <b>Step 2</b> Keen IO is kind enough to create your first project for you so you already have anything you'll need. They even have a reminder that you haven't sent any data to them yet. We'll fix that soon enough ;) For now, copy over your Project ID and Write Key (which you can get by clicking on 'Show API Keys')
-![google_id_picture](/images/keen_io/keen_io_write.png)
+![keen_write_picture](/images/keen_io/keen_io_write.png)
 
 <br>
 
-<b>Step 3</b> Add your Project ID and Write Key into the Keen IO integration on your dashboard.
-![google_tracking_picture](/images/keen_io/add_keen_io_tracking.png)
+<b>Step 3</b> Add your Project ID and Write Key into the Keen IO integration on your Astronomer dashboard.
+![add_keen_tracking_picture](/images/keen_io/add_keen_io_tracking.png)
 
 <br>
 
 <b>Step 4</b> Click around your app to send off some test events and then go back to Keen IO to see those events begin populating your project! They should appear in less than a minute!
-![google_analytics.picture](/images/keen_io/keen_io_track.png)
+![keen_track_picture](/images/keen_io/keen_io_track.png)
 
 ## KISSmetrics
 
@@ -263,17 +263,17 @@ To get started sending events to KISSmetrics, you'll need your project specific 
 <b>Step 1</b> Create a KISSmetrics account via their [website](http://www.kissmetrics.com)
 
 <b>Step 2</b> Before you're able to hit your dashboard, you'll need to integrate KISSmetrics into you app and, as luck would have it, you can do that through Astronomer! You'll need your API Key which is a 40 character string that you'll be able to find in the javascript snippet they suggest adding to your app.
-![google_id_picture](/images/kissmetrics/kiss_api.png)
+![kiss_api_picture](/images/kissmetrics/kiss_api.png)
 
 <br>
 
 <b>Step 3</b> Add your API Key into the Keen IO integration on your dashboard.
-![google_tracking_picture](/images/kissmetrics/add_kiss_tracking.png)
+![add_kiss_tracking_picture](/images/kissmetrics/add_kiss_tracking.png)
 
 <br>
 
 <b>Step 4</b> Click around your app to send off some test events. It might take an hour or so for events to start populating into your project but be patient! They're on their way. Once the first events are sent, the others will start following in much faster. You can check to see if events are coming in by clicking on the 'Live' tab at the top of the page and looking athe 'All Activity' section.
-![google_analytics.picture](/images/kissmetrics/kiss_track.png)
+![kiss_track_picture](/images/kissmetrics/kiss_track.png)
 
 ## Mixpanel
 
@@ -282,23 +282,48 @@ To get started sending events to Mixpanel, you'll need your Token and API Key. B
 <b>Step 1</b> Create a Mixpanel account via their [website](http://www.mixpanel.com)
 
 <b>Step 2</b> They'll suggest installing their library, but we know better than that. We're using Astronomer! We're going to skip ahead and click on the 'Account' tab at the top, which opens up a new box to get your Token and API Key
-![google_id_picture](/images/mixpanel/mixpanel_write1.png)
+![mixpanel_write1_picture](/images/mixpanel/mixpanel_write1.png)
+
+Get your Token and API Key by clicking on the Projects tab within the new window. The Token and API Key will be clearly labeled. 
+![mixpanel_write2_picture](/images/mixpanel/mixpanel_write2.png)
 
 <br>
 
-Get your Token and API Key by clicking on the Projects tab within the new window. The Token and API Key will be clearly labeled. 
-![google_id_picture](/images/mixpanel/mixpanel_write2.png)
-
-<b>Step 3</b> Add your Token and API Key into the Mixpanel integration on your dashboard.
-![google_tracking_picture](/images/mixpanel/add_mixpanel_tracking.png)
+<b>Step 3</b> Add your Token and API Key into the Mixpanel integration on your Astronomer dashboard.
+![mixpanel_tracking_picture](/images/mixpanel/add_mixpanel_tracking.png)
 
 <br>
 
 <b>Step 4</b> Almost immediately, you'll get a notice that Mixpanel is receiving events! Click on 'View Your Data' to start exploring. 
-![google_analytics.picture](/images/mixpanel/mixpanel_track1.png)
+![mixpanel_track_picture1](/images/mixpanel/mixpanel_track1.png)
 
 You can see what specific events are coming in by going to the 'Live view' page, located in the left-hand menu bar.
-![google_analytics.picture](/images/mixpanel/mixpanel_track2.png)
+![mixpanel_track_picture2](/images/mixpanel/mixpanel_track2.png)
+
+## Heap
+
+To get started sending events to Heap, all you'll need is your App Id, which can be found as soon as you create an account with them.
+
+<b>Step 1</b> Create a Heap Analytics account via their [website](http://www.heapanalytics.com)
+
+<b>Step 2</b> A page will load suggesting you install Heap into your app. If you're using Astronomer for a web app, this isn't necessary as you'll be able to copy over the App ID into your Astronomer account. Your App ID will be located at the end of the javascript snippet they provide with the 'heap.load()' function.
+![heap_id1_picture](/images/heap/heap_id1.png)
+
+It's important to note here that Heap automatically sets you up with a Development and Production project when you create an account. Make sure you're copying over the right ID as that will affect which project within Heap your data gets sent to.
+![heap_id2_picture](/images/heap/heap_id2.png)
+
+<br>
+
+<b>Step 3</b> Add your App ID into the Heap integration on your Astronomer dashboard.
+![heap_tracking_picture](/images/heap/add_heap_tracking.png)
+
+<br>
+
+<b>Step 4</b> When you return to your Heap account, you might get a message saying "There's no data here!" Oh no! But actually, look very closely as there might actually be data in a different environment (i.e. development instead of production.)
+![heap_no_data_picture](/images/heap/heap_no_data.png)
+
+You can see what specific events are coming in by going to the 'Events' page, located in the left-hand menu bar.
+![heap_events_picture](/images/heap/heap_events.png)
 
 # Integrations Roadmap
 
