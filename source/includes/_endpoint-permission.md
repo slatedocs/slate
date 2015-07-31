@@ -1,13 +1,14 @@
 ## Permissions
 
-### Catalog
+Authorization to view, edit, and manage a dataset is controlled by the dataset's permissions catalog:
 
 `/datasets/{id}/permissions/`
 
-#### GET
+The permissions catalog is a Shoji Catalog that collects (not contains) Users. There are no permission "entities" to retrieve, create, or delete: all action is achieved directly on the permissions catalog.
 
-If authorized to view the dataset, a successful GET returns a Shoji Catalog indicating the users who have access to this dataset and their respective permissions. This includes the current, authorized user making the request. Index tuples are keyed by User URL. 
+### GET Catalog
 
+```json
 {
     "element": "shoji:catalog",
     "self": "https://alpha.crunch.io/api/datasets/1/permissions/",
@@ -26,22 +27,31 @@ If authorized to view the dataset, a successful GET returns a Shoji Catalog indi
         }
     }
 }
+```
+
+If authorized to view the dataset, a successful GET returns a Shoji Catalog indicating the users who have access to this dataset and their respective permissions. This includes the current, authorized user making the request. Index tuples are keyed by User URL. 
 
 Tuple values include:
-dataset_permissions: an object of boolean values governing the user's authorization with respect to this dataset
-edit
-view
-change_permissions: whether this user is authorized to alter other users' authorization on this dataset, as described below
-add_users: whether this user is authorized to grant authorization to users that currently do not have access to this dataset
-is_owner: boolean indicating whether this user is the dataset's "owner"
-name: string display name of the user
-email: string email address of the user
 
-#### PATCH
+Name | Type | Description
+---- | ---- | -----------
+name | string | Display name of the user
+email | string | Email address of the user
+is_owner | boolean | Whether this user is the dataset's "owner"
+dataset_permissions | object | Attributes governing the user's authorization. See below.
+
+Supported `dataset_permissions`, all boolean, are:
+
+* **view**: Whether the user can view the dataset. Note that "viewing" is not limited to just GET requests, for dataset viewers may create filters, private variables, and saved analyses, for example.
+* **edit**: Whether the user can edit the dataset. When editing, users with this permission may modify the common data of a dataset, including things like public filters available to all viewers of the dataset.
+* **add_users**: Whether the user may share this dataset with others. Specifically, they may PATCH the catalog with references to users not already included in the catalog.
+* **change_permissions**: Whether the user may alter other users' authorization on this dataset, i.e., PATCH tuples for users that already exist on the catalog.
+
+### PATCH Catalog
 
 The PATCH verb is used to make all modifications to dataset authorization: modifying existing permissions, revoking permissions for users with access, and granting access to users. 
 
-##### Modify existing
+#### Modify existing
 
 To change the permissions a user has, PATCH new dataset_permissions, like:
 
@@ -65,7 +75,7 @@ Multiple users' permissions can be modified in a single request by including mul
 
 The "send_notification" key in the payload is optional; if included and True, the server will send an email invitation to all newly added users (see below), as well as to users who are granted "edit" privileges. 
 
-##### Add new user from within account
+#### Add new user from within account
 
 To add a user (i.e. share with them), there are two cases. First, if the user to be added is a member of the current user's account, PATCH similar to above, using this user's URL as key:
 
@@ -92,7 +102,7 @@ Valid "profile" members include:
 "applied_filters", an array of filter URLs which are shared with all dataset viewers. If any of the specified filters are private, the PATCH request will return 400 status. Default value for "applied_filters" is [].
 If the "profile" member is not included, the newly shared users will be created with their user dataset preferences matching the sharer's current weight.
 
-##### Revoking access
+#### Revoking access
 
 To revoke users' access to this dataset (aka "unshare" with them), PATCH a null tuple for their user URLs:
 
@@ -103,7 +113,7 @@ To revoke users' access to this dataset (aka "unshare" with them), PATCH a null 
 
 Note that all of these PATCHes for add/edit/remove access to the dataset can be done in a single request that combines them all. 
 
-##### Validation
+#### Validation
 
 The server will insist, and clients should also validate, that
 
@@ -111,7 +121,7 @@ The server will insist, and clients should also validate, that
 * The users who are receiving new authorization via PATCH must have corresponding dataset_permissions on their account authorization. For example, the user who is updated to have edit: true has a dataset_permission of edit: true on their account authorization. If not, the PATCH request will return 400.
 * The user that is PATCHing this catalog must have share: true for this dataset; if not, the PATCH request will return 403.
 
-##### Inviting new users
+#### Inviting new users
 
 It is possible to share a dataset with people that are not users of Crunch yet. To do so, it is necessary to send in an email address instead of a user URL as a sharing key.
 
