@@ -8,7 +8,7 @@ Suggestions that are shown in the autocomplete results are called `items`.  `ite
 curl -X POST -H "Content-Type: application/json" \
   -d '{"item_name":"power drill","keywords":["battery-powered","drills","drywall"], \
   "suggested_score":36,"url":"http://www.mysite.com/power_drill","autocomplete_section":"products_autocomplete"}' \
-  -u"[your token]:" "https://ac.constructor.io/v1/item?autocomplete_key=[your_autocomplete_key]"
+  -u"[your token]:" "https://ac.constructor.io/v1/item?autocomplete_key=[your autocomplete key]"
 ```
 
 ```javascript
@@ -32,7 +32,7 @@ To add an item to your autocomplete index, use the `POST /item` call. The `item_
 
 ### HTTP Request
 
-`POST https://ac.constructor.io/v1/item?autocomplete_key=[your_autocomplete_key]`
+`POST https://ac.constructor.io/v1/item?autocomplete_key=[your autocomplete key]`
 
 ### JSON Parameters
 
@@ -48,7 +48,7 @@ autocomplete_section | No | Your autocomplete suggestions can have multiple sect
 
 ```shell
 curl -X DELETE -H "Content-Type: application/json" -d '{"item_name":"power drill","autocomplete_section":"products_autocomplete"}' \
-  -u "[your token]:" "https://ac.constructor.io/v1/item?autocomplete_key=[your_autocomplete_key]"
+  -u "[your token]:" "https://ac.constructor.io/v1/item?autocomplete_key=[your autocomplete key]"
 ```
 
 ```javascript
@@ -72,12 +72,12 @@ To remove an item from your autocomplete index (if, for instance, a product has 
 
 ### HTTP Request
 
-`DELETE https://ac.constructor.io/v1/item?autocomplete_key=[your_autocomplete_key]`
+`DELETE https://ac.constructor.io/v1/item?autocomplete_key=[your autocomplete key]`
 
 ### JSON Parameters
 
 Parameter | Required? | Description
---------- | ----------- | ----------`
+--------- | ----------- | ----------
 item_name | Yes | The name of the item, as it will appear in the autocomplete suggestions
 autocomplete_section | No | Your autocomplete suggestions can have multiple sections like "Products" and "Search Suggestions".  This indicates which section this item is for.
 
@@ -85,7 +85,7 @@ autocomplete_section | No | Your autocomplete suggestions can have multiple sect
 
 ```shell
 curl -X PUT -H "Content-Type: application/json" -d '{"item_name":"power drill","keywords":["concrete","power tools","drills","drywall"],"suggested_score":20,"url":"http://www.mysite.com/power_drill","autocomplete_section":"products_autocomplete"}' \
-  -u "[your token]:" "https://ac.constructor.io/v1/item?autocomplete_key=[your_autocomplete_key]"
+  -u "[your token]:" "https://ac.constructor.io/v1/item?autocomplete_key=[your autocomplete key]"
 ```
 
 ```javascript
@@ -119,7 +119,7 @@ Note: modifying an item replaces all meta information, such as keywords, we prev
 
 ### HTTP Request
 
-`PUT https://ac.constructor.io/v1/item?autocomplete_key=[your_autocomplete_key]`
+`PUT https://ac.constructor.io/v1/item?autocomplete_key=[your autocomplete key]`
 
 ### JSON Parameters
 

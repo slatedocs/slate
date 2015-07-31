@@ -100,5 +100,16 @@ under the License.
         <% end %>
       </div>
     </div>
+    <script>
+      $(document).ready(function() {
+        $.get("/companies/autocomplete_key", function(data) {
+          if (data && data.autocomplete_key) {
+            $("code").each(function() {
+              $(this).html( $(this).html().replace("[your autocomplete key]", data.autocomplete_key) );
+            });
+          }
+        });
+      });
+    </script>
   </body>
 </html>

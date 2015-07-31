@@ -37,7 +37,7 @@ Authentication is done using [HTTP Basic Auth](https://en.wikipedia.org/wiki/Bas
 ## Verification
 
 ```shell
-curl -u "[your token]:" "https://ac.constructor.io/v1/verify?autocomplete_key=[your_autocomplete_key]"
+curl -u "[your token]:" "https://ac.constructor.io/v1/verify?autocomplete_key=[your autocomplete key]"
 ```
 
 ```javascript
@@ -55,4 +55,8 @@ constructorio.verify
 ```
 
 You can verify that authentication works correctly by issuing a simple verification request.
+
+### HTTP Request
+
+`GET https://ac.constructor.io/v1/verify?autocomplete_key=[your autocomplete key]`
 
