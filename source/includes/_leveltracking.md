@@ -329,7 +329,7 @@ The endpoint will always respond with an HTTP `200` status code. Check the `stat
         "event_field":1,
         "main_level":1,
         "sub_level":2,
-        "description":"Lunar Caverns"
+        "description":"Lunar Caverns",
         "data_type":"level_info" 
       }
    ],
