@@ -18,7 +18,7 @@ The available fields are listed in the table below; common use cases follow:
 
 <table>
 <thead>
-<tr><th>Event Field</th><th>Sequential? <sup>2</sup></th><th>Definition</th><th>Example Event Label <sup>1</sup></th><th>Optional<br />Description Example <sup>4</sup></th></tr>
+<tr><th>Event Field</th><th>Sequential? <sup>2</sup></th><th>Definition</th><th>Example Event Label <sup>1</sup></th><th>Optional<br />Description Example <sup>3</sup></th></tr>
 </thead>
 <tbody>
 <tr>
@@ -30,7 +30,7 @@ The available fields are listed in the table below; common use cases follow:
 </tr>
 <tr>
 <td><code>2</code></td>
-<td>No</td>
+<td>.</td>
 <td>User's current level/area</td>
 <td>"Area main character is in"</td>
 <td>"Lunar Caverns"</td>
@@ -51,7 +51,7 @@ The available fields are listed in the table below; common use cases follow:
 </tr>
 <tr>
 <td><code>5</code></td>
-<td>No</td>
+<td>.</td>
 <td>Extra field for developers to send non-sequential data</td>
 <td>"FTUE completed?"</td>
 <td>"Tutorial Completed"</td>
@@ -63,11 +63,11 @@ The available fields are listed in the table below; common use cases follow:
 
 1. Event labels are required and will be used to identify the type of event field in the Chartboost dashboard
 2. A sequential event field is used to track either 1) level data that is always increasing and can never decrease; or 2) numerical data developers need to segment based on whether a player is "higher" or "lower" than a certain number
-4. Optional event descriptions can be used to identify the level name ("Lunar Caverns," for example, as opposed to the event_label which defines the type of level event).
+3. Optional event descriptions can be used to identify the level name ("Lunar Caverns," for example, as opposed to the event_label which defines the type of level event).
 
 Of the five event types, three can be used specifically for sequential Level Tracking. These will accept integer-based level information (the player has gotten to level 3, 8, 17, etc.) which is always increasing and can never decrease, or any other numerical data you need to segment based on whether a player is "higher" or "lower" than a certain number. **Note:** For level tracking event types, Chartboost only records the player's first level event along with each subsequent level value increase. Events with level values that are equal to or less than the player's current value are disregarded.
 
-In addition, all five event types can be used to track achievement events. For non-sequential or non-numerical events, set <code>main_level:1</code> and <code>sub_level:0</code> in the request (see <a href="#params">parameters table</a> below).
+In addition, all five event types can be used to track achievement events.
 
 ## Level Tracking Setup (for Third-Party Tracking Services)
 
@@ -80,6 +80,8 @@ Inside the request, the `track_info` array contains within it a single JSON obje
 The `track_info` array requires an `event_field` that specifies the event type (1,2,3,4, or 5). In your advertiser-facing UI, the `event_field` should be able to be selected by the Chartboost customer and will correspond to a specific event tracked in your platform, labeled as the **Event ID**. 
 
 The `track_info` array also requires an `event_label`, which describes the nature of its corresponding `event_field`. The `event_label` can be the name of the event according to the attribution platform, but if possible, Chartboost would request that you allow user override of the event name in your dashboard.
+
+For non-sequential or non-numerical events, set <code>main_level:1</code> and <code>sub_level:0</code> in the request
 
 ### HTTP Request Method
 
@@ -179,7 +181,7 @@ The endpoint will always respond with an HTTP `200` status code. Check the `stat
 
 <table class="table-creative-set">
 <thead class="table-creative-head">
-<tr><th>Parameters</th><th>iOS Apps</th><th>Android Apps</th><th>Example</th><th>Description</th></tr>
+<tr><th style="width:20%">Parameters</th><th>iOS Apps</th><th>Android Apps</th><th>Example</th><th>Description</th></tr>
 </thead>
 <tbody>
 <tr>
@@ -219,8 +221,8 @@ The endpoint will always respond with an HTTP `200` status code. Check the `stat
 </tr>
 <tr>
 <td><code>description</code></td>
-<td>Optional</td>
-<td>Optional</td>
+<td>Required</td>
+<td>Required</td>
 <td><code>"The boss level"</code></td>
 <td>Description of the level</td>
 </tr>
@@ -245,14 +247,16 @@ The endpoint will always respond with an HTTP `200` status code. Check the `stat
 <td><code>ifa</code></td>
 <td>Required</td>
 <td>N/A</td>
-<td>IFA: <code>"7e8ec8092004283043e99d515ab0c51b0ef755ff"</code> (32 characters; dashes OK; uppercase letters OK)</td>
+<td><code>"b1c99c76f014428590cf3a5c99d9dfc6"</code> 
+(32 characters; dashes OK; uppercase letters OK)</td>
 <td>Identifier for Advertising</td>
 </tr>
 <tr>
 <td><code>gaid</code></td>
 <td>N/A</td>
 <td>Required*</td>
-<td><code>"38400000-8cf0-11bd-b23e-10b96e40000d"</code> (32 characters, plus 4 dashes)</td>
+<td><code>"a2c79c76-f014-4285-90cf-3a5c57999fc6"</code> 
+(32 characters w/ 4 dashes)</td>
 <td>Google Play Services Advertising ID (Android Only), if available</td>
 </tr>
 <tr>
@@ -273,7 +277,7 @@ The endpoint will always respond with an HTTP `200` status code. Check the `stat
 
 <table>
 <thead>
-<tr><th>Parameters</th><th>iOS Apps</th><th>Android Apps</th><th>Example</th><th>Description</th></tr>
+<tr><th style="width:20%">Parameters</th><th>iOS Apps</th><th>Android Apps</th><th style="width:20%">Example</th><th>Description</th></tr>
 </thead>
 <tbody>
 <tr>
@@ -333,8 +337,8 @@ The endpoint will always respond with an HTTP `200` status code. Check the `stat
       "gaid": "8ccaa247-1177-4c09-8117-c9bec33447d0",
       "uuid": "7b7940e5800bfcc2"
    },
-   "party": "TUNE",
-   "token": "cb8b8abc2860ab0ffdfab6bce73270b1bf9c213c83190815f61c0ac5d03794ac"
+   "token": "cb8b8abc2860ab0ffdfab6bce72270b1bf9c213c83190815f61c0ac5d03794ac",
+   "party": "TUNE"
 }
 ```
 
