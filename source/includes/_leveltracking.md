@@ -18,7 +18,7 @@ The available fields are listed in the table below; common use cases follow:
 
 <table>
 <thead>
-<tr><th>Event Field</th><th>Sequential? <sup>2</sup></th><th>Definition</th><th>Example Event Label <sup>1</sup></th><th>Optional<br />Description Example <sup>3</sup></th></tr>
+<tr><th>Event Field</th><th>Sequential?<sup>2</sup></th><th>Definition</th><th>Example Event Label <sup>1</sup></th><th>Optional<br />Description Example <sup>3</sup></th></tr>
 </thead>
 <tbody>
 <tr>
@@ -65,19 +65,19 @@ The available fields are listed in the table below; common use cases follow:
 2. A sequential event field is used to track either 1) level data that is always increasing and can never decrease; or 2) numerical data developers need to segment based on whether a player is "higher" or "lower" than a certain number
 3. Optional event descriptions can be used to identify the level name ("Lunar Caverns," for example, as opposed to the event_label which defines the type of level event).
 
-Of the five event types, three can be used specifically for sequential Level Tracking. These will accept integer-based level information (the player has gotten to level 3, 8, 17, etc.) which is always increasing and can never decrease, or any other numerical data you need to segment based on whether a player is "higher" or "lower" than a certain number. **Note:** For level tracking event types, Chartboost only records the player's first level event along with each subsequent level value increase. Events with level values that are equal to or less than the player's current value are disregarded.
+Of the five event types, three can be used specifically for sequential Level Tracking. These will accept integer-based level information (the player has gotten to level 3, 8, 17, etc.) which is always increasing and can never decrease, or any other numerical data you need to segment based on whether a player is "higher" or "lower" than a certain number. 
 
-In addition, all five event types can be used to track achievement events.
+**Note:** For sequential event types, Chartboost only records the player's first level event along with each subsequent level value increase. Sequential events with level values that are equal to or less than the player's current value are disregarded.
 
 ## Level Tracking Setup (for Third-Party Tracking Services)
 
-This section will walk you – the third-party tracking service – through the initial Level Tracking integration. 
+This section will walk you–the third-party tracking service–through the initial Level Tracking integration. 
 
 ### Event Requests
 
 Inside the request, the `track_info` array contains within it a single JSON object element. This object specifies the details of the event. Multiple events can be sent as unique JSON objects within this array, though single events are most common.
 
-The `track_info` array requires an `event_field` that specifies the event type (1,2,3,4, or 5). In your advertiser-facing UI, the `event_field` should be able to be selected by the Chartboost customer and will correspond to a specific event tracked in your platform, labeled as the **Event ID**. 
+The `track_info` array requires an `event_field` that specifies the event type (1,2,3,4, or 5). In your advertiser-facing UI, the `event_field` should be able to be selected by the Chartboost customer and will correspond to a specific event tracked in your platform, labeled as the **Event ID**. 
 
 The `track_info` array also requires an `event_label`, which describes the nature of its corresponding `event_field`. The `event_label` can be the name of the event according to the attribution platform, but if possible, Chartboost would request that you allow user override of the event name in your dashboard.
 
@@ -106,11 +106,11 @@ gaid = {{Google Advertising ID}}  # example: '8df6c9bf-d647-4400-bc13-7ff317f046
 android_id = {{Android ID / UUID}}  # example: '358414046356276'
 # ifa = {{iOS IDFA - no dashes}} # example: '7e8ec8092004283043e99d515ab0c51b0ef755ff'
 
-event_label = {{Custom label for event}}  # Example: "Level of character"
+event_label = {{Custom label for event}}  # Example: "Highest Level Reached"
 event_field = {{Chartboost Event ID}} # corresponding to type of event, 1-5.  Example: 3
 main_level = {{Main level}} # non-zero integer; use 1 if event does not have any numerical value associated with it.  Example: 1
 sub_level = {{Sub-level integer}} # use 0 if event does not have any sub-level associated with it.  Example: 0
-description = {{Optional description of the main level}} # example: "Lunar Caverns Level"
+description = {{Description of the main level}} # example: "Lunar Caverns"
 timestamp = {{Unix timpestamp of event}} # Example: 1408480492
 
 party = '3rd Party Company'
@@ -125,6 +125,7 @@ data = json.dumps(
          "event_field": event_field,
          "main_level": main_level,
          "sub_level": sub_level,
+         "description": description,
          "data_type": data_type
        }
     ],
@@ -181,7 +182,7 @@ The endpoint will always respond with an HTTP `200` status code. Check the `stat
 
 <table class="table-creative-set">
 <thead class="table-creative-head">
-<tr><th style="width:20%">Parameters</th><th>iOS Apps</th><th>Android Apps</th><th>Example</th><th>Description</th></tr>
+<tr><th style="width:15%">Parameters</th><th>iOS Apps</th><th>Android Apps</th><th>Example</th><th>Description</th></tr>
 </thead>
 <tbody>
 <tr>
@@ -277,7 +278,7 @@ The endpoint will always respond with an HTTP `200` status code. Check the `stat
 
 <table>
 <thead>
-<tr><th style="width:20%">Parameters</th><th>iOS Apps</th><th>Android Apps</th><th style="width:20%">Example</th><th>Description</th></tr>
+<tr><th style="width:15%">Parameters</th><th>iOS Apps</th><th>Android Apps</th><th style="width:15%">Example</th><th>Description</th></tr>
 </thead>
 <tbody>
 <tr>
@@ -324,11 +325,12 @@ The endpoint will always respond with an HTTP `200` status code. Check the `stat
 {
    "track_info":[
       {
-        "event_label":"GameLevel1",
+        "event_label":"Highest Level Reached",
         "event_field":1,
         "main_level":1,
         "sub_level":2,
-        "data_type": "level_info" 
+        "description":"Lunar Caverns"
+        "data_type":"level_info" 
       }
    ],
    "platform": "Android 5.0.1",
