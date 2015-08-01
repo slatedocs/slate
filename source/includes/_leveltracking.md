@@ -30,7 +30,7 @@ The available fields are listed in the table below; common use cases follow:
 </tr>
 <tr>
 <td><code>2</code></td>
-<td>.</td>
+<td> </td>
 <td>User's current level/area</td>
 <td>"Area main character is in"</td>
 <td>"Lunar Caverns"</td>
@@ -51,7 +51,7 @@ The available fields are listed in the table below; common use cases follow:
 </tr>
 <tr>
 <td><code>5</code></td>
-<td>.</td>
+<td> </td>
 <td>Extra field for developers to send non-sequential data</td>
 <td>"FTUE completed?"</td>
 <td>"Tutorial Completed"</td>
@@ -278,7 +278,7 @@ The endpoint will always respond with an HTTP `200` status code. Check the `stat
 
 <table>
 <thead>
-<tr><th style="width:15%">Parameters</th><th>iOS Apps</th><th>Android Apps</th><th style="width:15%">Example</th><th>Description</th></tr>
+<tr><th style="width:15%">Parameters</th><th>iOS Apps</th><th>Android Apps</th><th style="width:20%">Example</th><th>Description</th></tr>
 </thead>
 <tbody>
 <tr>
