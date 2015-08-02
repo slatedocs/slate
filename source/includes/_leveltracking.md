@@ -182,7 +182,7 @@ The endpoint will always respond with an HTTP `200` status code. Check the `stat
 
 <table class="table-creative-set">
 <thead class="table-creative-head">
-<tr><th style="width:15%">Parameters</th><th>iOS Apps</th><th>Android Apps</th><th>Example</th><th>Description</th></tr>
+<tr><th style="width:17%">Parameters</th><th>iOS Apps</th><th>Android Apps</th><th>Example</th><th>Description</th></tr>
 </thead>
 <tbody>
 <tr>
@@ -278,7 +278,7 @@ The endpoint will always respond with an HTTP `200` status code. Check the `stat
 
 <table>
 <thead>
-<tr><th style="width:15%">Parameters</th><th>iOS Apps</th><th>Android Apps</th><th style="width:20%">Example</th><th>Description</th></tr>
+<tr><th style="width:17%">Parameters</th><th>iOS Apps</th><th>Android Apps</th><th style="width:20%">Example</th><th>Description</th></tr>
 </thead>
 <tbody>
 <tr>
