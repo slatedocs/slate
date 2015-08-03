@@ -13,7 +13,7 @@ After Chartboost receives install attribution postbacks from a third party (via 
 ### CPI via Third-Party Attribution Requirements
 
 - Third-party attribution platform SDK integration. Chartboost SDK integration is recommended (if you plan to publish, for example), but optional.
-- Tracking URLs/macros to send Chartboost click data to your third-party via <a href="https://answers.chartboost.com/hc/en-us/articles/201220115">callbacks</a>
+- Tracking URLs/macros to send Chartboost click data to your third-party via <a href="https://answers.chartboost.com/hc/en-us/articles/205607385">callbacks</a>
 - CPI via Third-Party Attribution customers will also need to use their third-party attribution service's website to create install attribution postbacks. These postbacks need to include all bootups and attributed installs (using the <code>claim=</code> parameter).
 
 ## Post-Install Analytics Overview
@@ -24,7 +24,7 @@ The Post-Install Analytics (PIA) integration lets Chartboost customers view IAP 
 
 ### PIA Requirements
 
-- Chartboost <a href="https://answers.chartboost.com/hc/en-us/articles/201220265-Post-Install-Analytics-Beta">SDK PIA integration</a>, <a href="https://answers.chartboost.com/hc/en-us/articles/201220265-Post-Install-Analytics-Beta-#s2s">S2S PIA integration</a>, or <a href="https://answers.chartboost.com/hc/en-us/articles/202199899">third-party S2S PIA integration</a>
+- Chartboost <a href="https://answers.chartboost.com/hc/en-us/articles/201220265-Post-Install-Analytics-Beta">SDK PIA integration</a>, <a href="https://answers.chartboost.com/hc/en-us/articles/205607035">S2S PIA integration</a>, or <a href="https://answers.chartboost.com/hc/en-us/articles/204934549">third-party S2S PIA integration</a>
 
 ## How to Read These Docs
 
