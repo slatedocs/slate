@@ -65,7 +65,7 @@ Augur API methods that submit transactions to the network (using the `eth_sendTr
 - onSuccess: fires when the transaction has been successfully incorporated into a block.
 - onFailed: fires if the RPC request returns an error.
 
-The `onSent` callback is required; `onSuccess` and `onFailed` are both optional.  If the `onSuccess` callback is supplied, augur.js will poll the network every 6 seconds with `eth_getTransaction`, until the transaction record contains a non-null `blockHash` value, or a maximum of 12 requests have been made.
+The `onSent` callback is required; `onSuccess` and `onFailed` are both optional.  If the `onSuccess` callback is supplied, augur.js will poll the network every 12 seconds with `eth_getTransaction`, until the transaction record contains a non-null `blockHash` value, or a maximum of 12 requests have been made.
 
 Augur API methods that perform RPC requests that do not submit transactions to the network (using the `eth_call` RPC) take a single optional callback as their last parameter.  Unlike transaction RPCs, call RPCs can be synchronous.  If a callback is supplied, the RPC request will be asynchronous; otherwise, it will be synchronous.
 
