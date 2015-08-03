@@ -26,13 +26,13 @@ Key                           | Type              | Description
 ------------------------------|-------------------|---------------------------------------------------------------------
 `audit_id`                    | String            | The audit's ID
 `template_id`                 | String            | ID of the parent template
-`created_at`                  | String            | ISO date and time when the audit was first synced to the cloud
-`modified_at`                 | String            | ISO date and time when the audit was last synced to the cloud
+`created_at`                  | String            | ISO date and time when the audit was first synced to the cloud or created on SafetyCulture
+`modified_at`                 | String            | ISO date and time when the audit was last synced to the cloud or modified on SafetyCulture
 `audit_data`                  | Object            | General information about [the audit](#audit-data) (dates, author, scores, etc.)
 `template_data`               | Object            | Some information on [the template](#template-data) (predefined response sets, author, images, etc.)
-`header_items`                | Array             | [Audit header items](#audit-header-items) (first page, can be missing)
-`items`                       | Array             | [Items](#audit-items) in all sections after the header (basically the answers to the questions)
-`assets`                      | Array             | The [assets](#audit-assets) within the template. - Usually a regularly audited inventory list
+`header_items`                | Array             | [Audit header items](#audit-header-items) (first page, optional)
+`items`                       | Array             | [Items](#audit-items) in all sections after the header (basically the answers to the questions and other line items)
+`assets`                      | Array             | The [assets](#audit-assets) within the template. Contains assets such as a regularly audited inventory list
 
 
 ## Audit Data
@@ -61,10 +61,10 @@ Key                           | Type              | Description
 `score`                       | Double            | Score of the audit
 `total_score`                 | Double            | The maximum possible score
 `score_percentage`            | Double            | A value 0 to 100 calculated as `score/total_score`
-`duration`                    | Double            | Time taken to complete the audit (on a device or web app) in seconds
-`date_started`                | String            | A time and date when the audit was started  (on a device or web app)
-`date_modified`               | String            | A time and date when the audit was last modified (on a device or web app)
-`date_completed`              | String            | A time and date when the audit was completed (on a device or web app)
+`duration`                    | Double            | Time taken to complete the audit (on a device or on SafetyCulture) in seconds
+`date_started`                | String            | A time and date when the audit was started  (on a device or on SafetyCulture)
+`date_modified`               | String            | A time and date when the audit was last modified (on a device or on SafetyCulture)
+`date_completed`              | String            | A time and date when the audit was completed (on a device or on SafetyCulture)
 `authorship`                  | Object            | Information on the [authorship](#authorship) of the audit
 
 ### Authorship
@@ -85,7 +85,7 @@ Key                           | Type              | Description
 ------------------------------|-------------------|---------------------------------------------------------------------
 `author`                      | String            | The person who created the audit. Never changes
 `owner`                       | String            | The person owning the audit. Can be changed anytime
-`device_id`                   | String            | The device's ID which was used to create the audit. Generated when the app is installed
+`device_id`                   | String            | The ID of the device which was used to create the audit. Generated when the app is installed
 
 
 ## Template Data
@@ -104,11 +104,11 @@ Key                           | Type              | Description
 
 Key                           | Type              | Description
 ------------------------------|-------------------|---------------------------------------------------------------------
-`metadata`                    | Object            | Some [meta data](#template-meta-data) about the Template (name, description, image, etc.)
-`response_sets`               | Object            | The question [responses](#response-sets) attached to the template. (Yes/No/NA, Safe/AtRisk/NA, etc)
+`metadata`                    | Object            | Some [metadata](#template-meta-data) about the template (name, description, image, etc.)
+`response_sets`               | Object            | The question [responses](#response-sets) attached to the template. (Yes/No/NA, Safe/At Risk/NA, etc.)
 `authorship`                  | Object            | Information on the [authorship](#authorship) of the template. Same as audit [authorship](#authorship).
 
-### Template Meta Data
+### Template Metadata
 
 `.template_data.metadata`
 
@@ -128,7 +128,7 @@ Key                           | Type              | Description
 
 ### Response Sets
 
-`.template_data.response_sets` - The keys used in the object are the ID's of the stored responses. The values of the object are the sets themselves.
+`.template_data.response_sets` - The keys used in the object are the IDs of the stored responses. The values of the object are the sets themselves.
 
 ```json
 {
@@ -176,9 +176,9 @@ Key                           | Type              | Description
 `colour`                      | String            | RGB colour of the response button when selected. I.e. "0,0,0" is black, "255,255,255" is white.
 `enable_score`                | Boolean           | If Score checkbox is checked. Can be attached to any response type
 `image`                       | Object            | 
-`label`                       | String            | Label of the response (eg. 'Yes')
+`label`                       | String            | Label of the response (e.g. 'Yes')
 `score`                       | Number            | Score of the response
-`short_label`                 | String            | Short label of the response (eg. 'Y')
+`short_label`                 | String            | Short label of the response (e.g. 'Y')
 `type`                        | String            | The response type. Can only be "question" (single selection) or "list" (multi choice)
 
 
@@ -214,12 +214,12 @@ Key                           | Type              | Description
 `item_id`                     | String            | The UUID of the item
 `parent_id`                   | String            | Parent item ID. Can be null
 `label`                       | String            | The text label of the item
-`action_item_profile_id`      | Array             | The ID's of any follow up tasks added to this item
+`action_item_profile_id`      | Array             | The IDs of any follow up tasks added to this item
 `type`                        | String            | One the the following: `information`, `smartfield`, `checkbox`, `media`, `textsingle`, `element`, `primeelement`, `dynamicfield`, `category`, `section`, `text`, `signature`, `switch`, `slider`, `drawing`, `address`, `list`, `question`, `datetime`, `weather`, `asset`, `scanner`
 `options`                     | Object            | A set of different [options](#item-options) available to that type. Like: min/max values, condition, signature, media, various flags, etc.
 `responses`                   | Object            | Represents user [selections](#item-responses). Like value, or list item, or photo, location, date-time, etc.
 `media`                       | Object            | Information about an [image or photo](#media) file
-`children`                    | Array             | The list of child item ID's
+`children`                    | Array             | The list of child item IDs
 `scoring`                     | Object            | An object containing all the related [scores](#item-scoring) of this item
 
 ### Item Options
@@ -258,14 +258,14 @@ Key                           | Type              | Description
 
 Key                           | Type              | Description
 ------------------------------|-------------------|---------------------------------------------------------------------
-`assets`                      | Array             | Array of [asset](#audit-assets) ID's
+`assets`                      | Array             | Array of [asset](#audit-assets) IDs
 `computed_field`              | String            |
 `condition`                   | String            | The smart field condition. UUID of a response set
 `element`                     | String            | The title of each element of a dynamic field.
 `enable_date`                 | Boolean           | Toggles the date portion of an item containing a date-time
 `enable_signature_timestamp`  | Boolean           | Toggles the timestamp set when filling in a signature field
 `enable_time`                 | Boolean           | Toggles the time portion of an item containing a date-time
-`hide_barcode`                | Boolean           | Means that you can only scan barcode. It's not editable.
+`hide_barcode`                | Boolean           | Means that you can only scan barcode. Not editable.
 `increment`                   | String            | Controls the increment jumps in slider items
 `is_mandatory`                | Boolean           | Toggles whether the item has to have a response before the audit can be completed
 `label`                       | String            | 
@@ -281,7 +281,7 @@ Key                           | Type              | Description
 `secure`                      | String            | 
 `type`                        | String            | The type of an information field. Currently `text`, `media` or `link`
 `url`                         | String            | *DEPRECATED - use link* URL field in information items
-`values`                      | String            | The item's smart field reponse(s)
+`values`                      | String            | The item's smart field response(s)
 `visible_in_audit`            | Boolean           | Represents checkbox telling if an information item should be seen by auditor.
 `visible_in_report`           | Boolean           | Represents checkbox telling if an information item should appear in reports.
 `weighting`                   | String            | The weight used for generating audit scores
