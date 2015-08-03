@@ -45,6 +45,14 @@ Net::HTTP.start(uri.host, uri.port,
 end
 ```
 
+```c#
+var apiKey = "geezeo-api-key";
+var url = "partner.url";
+var userId = "user_id";
+var sdk = new SDK(apiKey, url, userId);
+var SavigsGoalImages = sdk.GetSavingsGoalImages();
+```
+
 > Response payload
 
 ```json
@@ -91,6 +99,14 @@ Net::HTTP.start(uri.host, uri.port,
 
   puts response.body
 end
+```
+
+```c#
+var apiKey = "geezeo-api-key";
+var url = "partner.url";
+var userId = "user_id";
+var sdk = new SDK(apiKey, url, userId);
+var savingsGoalsResponse = sdk.GetSavingsGoals();
 ```
 
 > Response payload
@@ -157,6 +173,15 @@ Net::HTTP.start(uri.host, uri.port,
 
   puts response.body
 end
+```
+
+```c#
+var apiKey = "geezeo-api-key";
+var url = "partner.url";
+var userId = "user_id";
+var sdk = new SDK(apiKey, url, userId);
+var savingsGoalId = 12345;
+var savingsGoalsResponse = sdk.GetSavingsGoal(savingsGoalId);
 ```
 
 > Response payload
@@ -227,6 +252,25 @@ end
 
 ```
 
+```c#
+var apiKey = "geezeo-api-key";
+var url = "partner.url";
+var userId = "user_id";
+var sdk = new SDK(apiKey, url, userId);
+var savingsGoalRequest = new SavingsGoalRequest{
+	SavingsGoal = new SavingsGoalModel{
+       AccountId = 4394169,
+       ImageName = "house.jpg",
+       Name = GoalName,
+       LockedBalance = 200.00,
+       TargetContribution = 50.00,
+       TargetValue = 2000.00
+	}
+};
+
+var savingsGoalsResponse = sdk.CreateSavingsGoal(savingsGoalRequest);
+```
+
 > Request payload
 
 ```json
@@ -291,6 +335,26 @@ Net::HTTP.start(uri.host, uri.port,
   puts response.body
 end
 
+```
+
+```c#
+var apiKey = "geezeo-api-key";
+var url = "partner.url";
+var userId = "user_id";
+var sdk = new SDK(apiKey, url, userId);
+var savingsGoalId = 12345;
+var savingsGoalRequest = new SavingsGoalRequest{
+	SavingsGoal = new SavingsGoalModel{
+       AccountId = 4394169,
+       ImageName = "house.jpg",
+       Name = GoalName,
+       LockedBalance = 200.00,
+       TargetContribution = 50.00,
+       TargetValue = 2000.00
+	}
+};
+
+var updated = sdk.UpdateSavingsGoal(savingsGoalId, savingsGoalRequest);
 ```
 
 > Request payload
@@ -359,6 +423,27 @@ end
 
 ```
 
+```c#
+var apiKey = "geezeo-api-key";
+var url = "partner.url";
+var userId = "user_id";
+var sdk = new SDK(apiKey, url, userId);
+var savingsGoalId = 12345;
+var savingsGoalRequest = new SavingsGoalRequest{
+	SavingsGoal = new SavingsGoalModel{
+       AccountId = 4394169,
+       ImageName = "house.jpg",
+       Name = GoalName,
+       LockedBalance = 200.00,
+       TargetContribution = 50.00,
+       TargetValue = 2000.00
+	}
+};
+
+var deleted = sdk.DeleteSavingsGoal(savingsGoalId);
+```
+
+
 Delete a savings goal for the given user.
 
 `DELETE /api/v2/users/:user_id:/savings_goals/:savings_goals_id:`
@@ -392,6 +477,15 @@ Net::HTTP.start(uri.host, uri.port,
   puts response.body
 end
 
+```
+
+```c#
+var apiKey = "geezeo-api-key";
+var url = "partner.url";
+var userId = "user_id";
+var sdk = new SDK(apiKey, url, userId);
+var savingsGoalId = 12345;
+var archived = sdk.ArchiveSavingsGoal(savingsGoalId);
 ```
 
 

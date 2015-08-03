@@ -106,7 +106,7 @@ var apiKey = "geezeo-api-key";
 var url = "partner.url";
 var userId = "user_id";
 var sdk = new SDK(apiKey, url, userId);
-var payoffGoalImages = sdk.GetPayoffGoals();
+var payoffGoalsResponse = sdk.GetPayoffGoals();
 ```
 
 > Response payload
@@ -181,7 +181,7 @@ var url = "partner.url";
 var userId = "user_id";
 var sdk = new SDK(apiKey, url, userId);
 var payoffGoalId = 12345;
-var payoffGoalImages = sdk.GetPayoffGoal(payoffGoalId);
+var payoffGoalsResponse = sdk.GetPayoffGoal(payoffGoalId);
 ```
 
 > Response payload
