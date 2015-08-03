@@ -45,6 +45,15 @@ Net::HTTP.start(uri.host, uri.port,
 end
 ```
 
+```c#
+var apiKey = "geezeo-api-key";
+var url = "partner.url";
+var userId = "user_id";
+var sdk = new SDK(apiKey, url, userId);
+var payoffGoalImages = sdk.GetPayoffGoalImages();
+```
+
+
 > Response payload
 
 ```json
@@ -91,6 +100,13 @@ Net::HTTP.start(uri.host, uri.port,
 
   puts response.body
 end
+```
+```c#
+var apiKey = "geezeo-api-key";
+var url = "partner.url";
+var userId = "user_id";
+var sdk = new SDK(apiKey, url, userId);
+var payoffGoalImages = sdk.GetPayoffGoals();
 ```
 
 > Response payload
@@ -159,6 +175,15 @@ Net::HTTP.start(uri.host, uri.port,
 end
 ```
 
+```c#
+var apiKey = "geezeo-api-key";
+var url = "partner.url";
+var userId = "user_id";
+var sdk = new SDK(apiKey, url, userId);
+var payoffGoalId = 12345;
+var payoffGoalImages = sdk.GetPayoffGoal(payoffGoalId);
+```
+
 > Response payload
 
 ```json
@@ -217,6 +242,24 @@ Net::HTTP.start(uri.host, uri.port,
   puts response.body
 end
 
+```
+
+```c#
+var apiKey = "geezeo-api-key";
+var url = "partner.url";
+var userId = "user_id";
+var sdk = new SDK(apiKey, url, userId);
+var payoffGoalRequest = new PayoffGoalRequest{
+	PayoffGoal = new PayoffGoalModel{
+		ImageName = "house.jpg",
+       Name = GoalName,
+       TargetCompletionOn = DateTime.Now.Add(new TimeSpan(30,0,0,0)),
+       TargetContribution = 50.00,
+       AccountIds = new List<int> {4394169}
+	}
+};
+
+var payoffGoalsResponse = sdk.CreatePayoffGoal(payoffGoalRequest);
 ```
 
 > Request payload
@@ -312,6 +355,26 @@ end
 
 ```
 
+
+```c#
+var apiKey = "geezeo-api-key";
+var url = "partner.url";
+var userId = "user_id";
+var sdk = new SDK(apiKey, url, userId);
+var payoffGoalId = 12345;
+var payoffGoalRequest = new PayoffGoalRequest{
+	PayoffGoal = new PayoffGoalModel{
+		ImageName = "house.jpg",
+       Name = GoalName,
+       TargetCompletionOn = DateTime.Now.Add(new TimeSpan(30,0,0,0)),
+       TargetContribution = 50.00,
+       AccountIds = new List<int> {4394169}
+	}
+};
+
+var updated = sdk.UpdatePayoffGoal(payoffGoalId, payoffGoalRequest);
+```
+
 > Request payload
 
 ```json
@@ -375,6 +438,14 @@ end
 
 ```
 
+```c#
+var apiKey = "geezeo-api-key";
+var url = "partner.url";
+var userId = "user_id";
+var sdk = new SDK(apiKey, url, userId);
+var payoffGoalId = 12345;
+var deleted = sdk.DeletePayoffGoal(payoffGoalId);
+```
 
 Delete a payoff goal for the given user.
 
@@ -412,6 +483,17 @@ Net::HTTP.start(uri.host, uri.port,
 end
 
 ```
+
+```c#
+var apiKey = "geezeo-api-key";
+var url = "partner.url";
+var userId = "user_id";
+var sdk = new SDK(apiKey, url, userId);
+var payoffGoalId = 12345;
+var archived = sdk.ArchivePayoffGoal(payoffGoalId);
+```
+
+
 
 
 Archive a payoff goal for the given user.
