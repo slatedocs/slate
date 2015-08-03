@@ -9,11 +9,11 @@ Callbacks
 var address = "0x05ae1d0ca6206c6168b42efcd1fbe0ed144e821b";
 
 // Synchronous
-var showMeTheMoney = Augur.getCashBalance(address);
+var showMeTheMoney = augur.getCashBalance(address);
 // '98855.99999999999999994145'
 
 // Asynchronous
-Augur.getCashBalance(address, function (showMeTheMoney) {
+augur.getCashBalance(address, function (showMeTheMoney) {
     console.log(showMeTheMoney);
 });
 // prints 98855.99999999999999994145
@@ -30,7 +30,7 @@ var cb = {
     onFailed: function (res) { console.log("Failed:", res); }
 };
 
-Augur.sendCash(address, amountToSend, cb.onSent, cb.onSuccess, cb.onFailed);
+augur.sendCash(address, amountToSend, cb.onSent, cb.onSuccess, cb.onFailed);
 
 // Printed almost immediately; the callReturn field is the sendCash method's
 // return value.  If the transaction was sent successfully, callReturn will

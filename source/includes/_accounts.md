@@ -3,13 +3,13 @@ Accounts
 
 ```javascript
 /**
- * Create an account using the Augur.web.register method.
+ * Create an account using the augur.web.register method.
  */
 
 var username = "tinybike";
 var password = "tinypassword";
 
-Augur.web.register(username, password, function (account) {
+augur.web.register(username, password, function (account) {
     console.log("Account:", account); 
 });
 
@@ -23,20 +23,20 @@ Account: {
 
 /**
  * The user is automatically logged in after registering.  When logged in,
- * the user's data is kept in the the Augur.web.account object.  Logging out
- * unsets the Augur.web.account object.
+ * the user's data is kept in the the augur.web.account object.  Logging out
+ * unsets the augur.web.account object.
  */
 
-Augur.web.logout();
-console.log("Account:", Augur.web.account);
+augur.web.logout();
+console.log("Account:", augur.web.account);
 
 // output
 Account: {}
 
-/* Logging in both sets and returns the Augur.web.account object: */
+/* Logging in both sets and returns the augur.web.account object: */
 
-Augur.web.login(username, password, function (account) {
-    console.log(Augur.web.account);
+augur.web.login(username, password, function (account) {
+    console.log(augur.web.account);
 });
 
 // output
@@ -56,6 +56,6 @@ The user specifies a username and password, and a private key (+ derived public 
 
 Transaction signing and serialization is entirely carried out in the browser using [ethereumjs-tx](https://github.com/ethereum/ethereumjs-tx) and the `eth_sendRawTransaction` RPC; the plaintext private key never touches our servers at any time.
 
-Invoking contract methods is unchanged from normal use (from the client's perspective).  The Augur API functions can simply be called in the usual way (e.g., `Augur.reputationFaucet`), and augur.js will default to client-side transactions if the user is logged in.
+Invoking contract methods is unchanged from normal use (from the client's perspective).  The Augur API functions can simply be called in the usual way (e.g., `augur.reputationFaucet`), and augur.js will default to client-side transactions if the user is logged in.
 
 <aside class="notice">Since the user's account key is an ordinary Ethereum private key, the user's key (and therefore their funds and Reputation) can be used with any Ethereum node.  Therefore, although the accounts system is managed using an ordinary web server, since the user's funds are neither tied to nor controlled by our server, the accounts are still decentralized in the ways that (in our opinion) matter.</aside>

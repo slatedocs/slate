@@ -9,10 +9,10 @@ Batching
 
 var myAccount = "0x63524e3fe4791aefce1e932bbfb3fdf375bfad89";
 
-var batch = Augur.createBatch();
+var batch = augur.createBatch();
 
 batch.add("getCashBalance", [myAccount], callback);
-batch.add("getRepBalance", [Augur.branches.dev, myAccount], callback);
+batch.add("getRepBalance", [augur.branches.dev, myAccount], callback);
 
 batch.execute();
 
@@ -28,11 +28,11 @@ var txlist = [{
     params: 3
 }];
 
-Augur.batch(txlist);
+augur.batch(txlist);
 
 // returns: ['10', '6']
 ```
 
 augur.js implements [batch RPC](http://www.jsonrpc.org/specification#batch), which can help reduce overhead if you're making several API calls that can be run in parallel (i.e., do not depend on each other's results).
 
-For finer-grained control over the batched commands, you can also use augur.js's lower-level `Augur.batch` method directly.  `Augur.batch` accepts manually constructed transaction objects.
+For finer-grained control over the batched commands, you can also use augur.js's lower-level `augur.batch` method directly.  `augur.batch` accepts manually constructed transaction objects.
