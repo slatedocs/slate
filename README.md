@@ -20,3 +20,10 @@ $ rake build
 $ bundle exec middleman server
 $ open http://localhost:4567/
 ```
+
+Sometimes `bundle exec middleman server` might not work or work fine but pages can never be opened.
+As a workaround do the following:
+```sh
+$ npm i -g node-static
+$ static -p 4567 build
+```
