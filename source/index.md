@@ -325,6 +325,197 @@ It's important to note here that Heap automatically sets you up with a Developme
 You can see what specific events are coming in by going to the 'Events' page, located in the left-hand menu bar.
 ![heap_events_picture](/images/heap/heap_events.png)
 
+## Amplitude
+
+To get started sending events to Amplitude, all you'll need is your API Key, which can be found as soon as you create an account with them.
+
+<b>Step 1</b> Create a Heap Analytics account via their [website](http://www.amplitude.com). After you create your account, you'll be asked to create an organization. 
+![amplitude_org_picture](/images/amplitude/amplitude_org.png)
+
+<br>
+
+<b>Step 2</b> A page will load asking you to create your first app. Within Amplitude, this will function as your project to receive events from Astronomer. 
+![amplitude_app_picture](/images/amplitude/amplitude_app.png)
+
+As soon as you create your first app, an API Key will be generated and presented into this dashboard.
+![amplitude_id_picture](/images/amplitude/amplitude_id.png)
+
+<br>
+
+<b>Step 3</b> Add your App ID into the Heap integration on your Astronomer dashboard.
+![amplitude_dash_picture](/images/amplitude/amplitude_dash.png)
+
+<br>
+
+<b>Step 4</b> Now just go back to your amplitude account, click into our new app, and look! We've got exactly one active user! You can click around to the 'Events' and 'User Activity' tabs at the top to see exactly what you've been doing and what events are being sent over.
+![amplitude_user_picture](/images/amplitude/amplitude_user.png)
+
+
+## Customer.io
+
+To get started sending events to Customer.io, you're going to need both your Site ID and your API Key, both of which are 20 random characters and quite easy to find.
+
+<b>Step 1</b> Create a Customer.io account via their [website](http://www.customer.io). After you create your account, you'll be asked to create an organization. 
+![customer_app_picture](/images/customer_io/customer_test.png)
+
+<br>
+
+<b>Step 2</b> You can find both your Site ID and API Key clearly presented and labeled (thanks Customer.io for making it easy!) once you click on the 'Integration' tab within the 'Configuration' section of the left hand menu.
+![customer_app_picture](/images/customer_io/customer_id.png)
+
+<br>
+
+<b>Step 3</b> Add your App ID into the Customer.io integration on your Astronomer dashboard.
+![customer_tracking_picture](/images/customer_io/customer_dash.png)
+
+<br>
+
+<b>Step 4</b> Now just go back to your Amplitude account, click into our new app, and look! We've got exactly one active user! You can click around to the 'Events' and 'User Activity' tabs at the top to see exactly what you've been doing and what events are being sent over.
+![customer_user_picture](/images/customer_io/customer_tracking.png)
+
+## Calq
+
+To get started sending events to Calq, you're only going to need your Write Key.
+
+<b>Step 1</b> Create a Calq account via their [website](http://www.calq.io). After you create your account, you'll be asked to create a new project. 
+![calq_project_picture](/images/calq/calq_project.png)
+
+<br>
+
+<b>Step 2</b> Calq makes it really easy to send data to them. As soon as you create your new project, you'll be advised to integrate their client library. In that section, you'll find your write key, which is all you need when using Astronomer.
+![calq_key_picture](/images/calq/calq_key.png)
+
+<br>
+
+<b>Step 3</b> Add your App ID into the Calq integration on your Astronomer dashboard.
+![calq_tracking_picture](/images/calq/calq_id.png)
+
+<br>
+
+<b>Step 4</b> If you look back at your Calq account, you'll have already sent your first events and will have a message waiting for you at the bottom of the page you were on confirming that the events have been received. If you don't see a confirmation message like below, something's gone wrong.
+![calq_user_picture](/images/calq/calq_tracking1.png)
+
+And...yep! Those are our events! 
+![calq_user_picture](/images/calq/calq_tracking2.png)
+
+## Woopra
+
+To get started sending events to Woopra, you're only going to need your Domain Name.
+
+<b>Step 1</b> Create a Woopra account via their [website](http://www.woopra.com). 
+
+<br>
+
+<b>Step 2</b>After you create your account, you'll be asked to create a new project with the domain of your website or app. 
+![woopra_project_picture](/images/woopra/woopra_project.png)
+
+<br>
+
+<b>Step 3</b> Add your domain name into the Woopra integration on your Astronomer dashboard.
+![woopra_dash_picture](/images/woopra/woopra_dash.png)
+
+<br>
+
+<b>Step 4</b> If you look back at your Woopra account, your events should begin to be trickling in. If you click on the 'People' icon on the left hand side of the dashboard, you'll see 1 new user. That's you! Click on that new user to see the history of events being recorded.
+![woopra_tracking_picture](/images/woopra/woopra_tracking.png)
+
+
+## Vero
+
+To get started sending events to Vero, you're only going to need your API Key and Authorization Token.
+
+<b>Step 1</b> Create a Vero account via their [website](http://www.getvero.com). 
+
+<br>
+
+<b>Step 2</b>After you create your account, you'll be asked to install their javascript library. We're using Astronomer so we're going to skip that go straight to the dashboard.
+![vero_project_picture](/images/vero/vero_js.png)
+
+To access your key and token, click on your profile at the top right, go into your account, and click 'API Keys' within the Configuration section on the left hand menu. An important note here is that projects in Vero have a Test environment and Production environment. To make sure you're getting things right when just starting out, you'll probably want to switch into your Test environment, which you can do by toggling into it from the top left drop down menu.
+![vero_id_picture](/images/vero/vero_id.png)
+
+<br>
+
+<b>Step 3</b> Add your domain name into the Vero integration on your Astronomer dashboard.
+![vero_dash_picture](/images/vero/vero_dash.png)
+
+<br>
+
+<b>Step 4</b> If you look back at your Vero account, you'll be able to see your events by going back to your main dashboard and clicking on the Logs section. Your events will automatically be set with a UTC time stamp.
+![vero_tracking_picture](/images/vero/vero_tracking.png)
+
+## Lytics
+
+To get started sending events to Lytics, you're only going to need your Data API Key and Account ID.
+
+<b>Step 1</b> Create a Lytics account via their [website](http://www.getlytics.com). 
+
+<b>Step 2</b>After you create your account, you'll be dropped into a welcome page asking you connect up some integrations. 
+![lytics_project_picture](/images/lytics/lytics_project.png)
+
+We're not on that page yet (if you work at Lytics, we'd love to join the ranks!) but here's how you connect us up. Click on your email address at the top right, and click on the 'Manage Accounts' option. There you'll see your ID on the left hand side of your account and your Data API on the right.
+![lytics_id_picture](/images/lytics/lytics_id.png)
+
+<br>
+
+<b>Step 3</b> Add your Account ID and Data API into the Lytics integration on your Astronomer dashboard.
+![lytics_dash_picture](/images/lytics/lytics_dash.png)
+
+<br>
+
+<b>Step 4</b>  Lytics updates their incoming data stream every two minutes so your events won't show up QUITE immediately, but give it a couple of minutes. You can check back in on the status of your project by going to the 'Data' tab at the top.
+![lytics_tracking1_picture](/images/lytics/lytics_tracking1.png)
+
+## Klaviyo
+
+To get started sending events to Klaviyo, you're only going to need your API Key.
+
+<b>Step 1</b> Create a Klaviyo account via their [website](http://www.klaviyo.com). 
+
+<b>Step 2</b> After you create your account, you'll be asked to tell Klaviyo a little about your business. Feel free to go through their setup, but you can also skip ahead and connect to Astronomer. Click on your account on the top right and into 'Account Settings.' Then go into the 'Integrations' page on the left hand menu.
+![klaviyo_id_picture](/images/klaviyo/klaviyo_id.png)
+
+At some point, you'll probably hit a page like this, requiring you to put in additional info. This is necessary due to the nature of Klaviyo's services. So it goes.
+![klaviyo_info_picture](/images/klaviyo/klaviyo_info.png)
+
+<br>
+
+<b>Step 3</b> Add your domain name into the Klaviyo integration on your Astronomer dashboard.
+![klaviyo_dash_picture](/images/klaviyo/klaviyo_dash.png)
+
+<br>
+
+<b>Step 4</b> If you look back at your Klaviyo account, your events should begin to be trickling in. If you click on the Dashboard icon on the top of th eleft hand menu and go into the 'Analytics' tab, you'll see some new activity. 
+![klaviyo_tracking1_picture](/images/klaviyo/klaviyo_tracking1.png)
+
+Click into the new user to see the events being sent.
+![klaviyo_tracking2_picture](/images/klaviyo/klaviyo_tracking2.png)
+
+
+## Librato
+
+To get started sending events to Librato, you're only going to need your Email Address and API Token.
+
+<b>Step 1</b> Create a Librato account via their [website](http://www.librato.com). 
+
+<b>Step 2</b>After you create your account, you'll be asked whether you need an API Token. If you're using Astronomer (which you probably are if you're reading this...), then yes! You do need one! Click that button already! 
+![librato_project_picture](/images/librato/librato_project.png)
+
+You'll have an auto-generated token created by Librato but you're also free to create new tokens when needed.
+![librato_api_picture](/images/librato/librato_api.png)
+
+<br>
+
+<b>Step 3</b> Add your API Token and the email address associated with your Librato account into the Librato integration on your Astronomer dashboard.
+![librato_dash_picture](/images/librato/librato_dash.png)
+
+<br>
+
+<b>Step 4</b> After you've put your credentials in, click on the 'Metrics' tab at the top of the Settings page you were on (the one with your API Token). Look at those events! Beautiful!
+![calq_user_picture](/images/librato/librato_tracking.png)
+
+
+
 # Integrations Roadmap
 
 <s>Keen IO</s> - (6/29/15)
