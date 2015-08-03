@@ -22,6 +22,15 @@ Net::HTTP.start(uri.host, uri.port,
 end
 ```
 
+```c#
+var apiKey = "geezeo-api-key";
+var url = "partner.url";
+var userId = "user_id";
+var sdk = new SDK(apiKey, url, userId);
+var networth = sdk.GetNetworth();
+```
+
+
 
 > Response payload
 
@@ -106,6 +115,21 @@ end
 
 ```
 
+```c#
+var apiKey = "geezeo-api-key";
+var url = "partner.url";
+var userId = "user_id";
+var sdk = new SDK(apiKey, url, userId);
+var networth = new NetworthAccountRequestModel{
+	Networth = new NetworthAccountModel{
+		AccountType = AccountType.Debt,
+		Balance = 1000,
+		Name = "House"
+	}
+}
+var networthAccountsResponse = sdk.CreateNetworth(networth);
+```
+
 
 > Request payload
 
@@ -166,6 +190,23 @@ end
 
 ```
 
+```c#
+var apiKey = "geezeo-api-key";
+var url = "partner.url";
+var userId = "user_id";
+var sdk = new SDK(apiKey, url, userId);
+var networthId = 12345;
+var networth = new NetworthAccountRequestModel{
+	Networth = new NetworthAccountModel{
+		AccountType = AccountType.Debt,
+		Balance = 1000,
+		Name = "House"
+	}
+}
+var updated = sdk.UpdateNetworth(networthId, networth);
+```
+
+
 > Request payload
 
 
@@ -222,6 +263,15 @@ Net::HTTP.start(uri.host, uri.port,
   puts response.body
 end
 
+```
+
+```c#
+var apiKey = "geezeo-api-key";
+var url = "partner.url";
+var userId = "user_id";
+var sdk = new SDK(apiKey, url, userId);
+var networthId = 12345;
+var deleted = sdk.DeleteNetworth(networthId);
 ```
 
 
