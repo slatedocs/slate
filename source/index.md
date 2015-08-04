@@ -2,17 +2,31 @@
 
 title: Authoring a DevNet API Reference Manual
 
-languages:
+version: V2.0.1 
+
+copyright: Copyright &copy; 2014-2015 by Cisco Systems, Inc., All Rights Reserved.
+
+publisher: DevNet, Cisco's Developer Program
+
+publisher_address: Cisco Systems, Inc., 150 W Tasman Dr, San Jose, CA 95134, USA
+
+comments: DevNet Slate is based upon the open source project called Slate
+
+title_page: true
 
 language_tabs:
   - shell: Sample
   
+toc_enabled: true
+
+search: true
+  
+toc_selectors: h1, h2, h3
+  
 toc_footers:
- - V1.0.0
  - Copyright &copy; 2014 by Cisco Systems, Inc.
  - All Rights Reserved.
 
-search: true
 ---
 
 # Authoring a DevNet API Reference Manual 
@@ -133,8 +147,8 @@ As you look at this document, you will notice that there are a couple of feature
 
 The TOC panel on the left hand side of the panel is composed of the following elements starting at the top and moving to the bottom:
 
-* The Logo - this is generated from the logo held in the logo.png file held in the source directory.  We want to use this same Cisco Logo for all documents.
-* The Table of Contents - DevNet Slate only uses the first three level of headers in the Table of Contents.  By default, on the H1 is normally displayed.  If a user selects a H1 item, the TOC will expand to display the H2 items underneath it.  If the user selects a H2 item, the TOC will expand to display the H3 items underneath it.  Headers from 4 and below are not displayed.
+* Search Box - If search is enabled, a Search Box will appear above the Table of Contents.  The Search Box is used to search the document looking for phrases of interest.  The phrases are then highlighted in the Table of Contents.
+* The Table of Contents - The Table of Contents are automatically built if the feature has been turned on.  By default, on the H1 is normally displayed.  If a user selects a H1 item, the TOC will expand to display the H2 items underneath it.  If the user selects a H2 item, the TOC will expand to display the H3 items underneath it.  Directives are used to control the table of contents.
 * The TOC Footer - for this we want Cisco Copyright Information.
 
 ### Document Body
@@ -171,23 +185,51 @@ Sample code is anchored to either the H1 or H2 heading that they are inserted un
 ```markdown
 ---
 title: Authoring a DevNet API Reference Manual
+
+version: V2.0.1 
+
+copyright: Copyright &copy; 2014-2015 by Cisco Systems, Inc., All Rights Reserved.
+
+publisher: DevNet, Cisco's Developer Program
+
+publisher_address: Cisco Systems, Inc., 150 W Tasman Dr, San Jose, CA 95134, USA
+
+comments: DevNet Slate is based upon the open source project called Slate
+
+title_page: true
+
 languages:
+
 language_tabs:
   - shell: Sample
   
+toc_enabled: true
+
+search: true
+  
+toc_selectors: h1, h2, h3
+  
 toc_footers:
- - V1.1.3
  - Copyright &copy; 2014 by Cisco Systems, Inc.
  - All Rights Reserved.
- 
-search: true
+
 ---
 ```
-The source document that is used to generate a DevNet Slate API Reference Manual is a GFM Document.  The GFM document is a plain text document that starts with headers that set some items about the document and include:
+The source document that is used to generate a DevNet Slate API Reference Manual is a GFM Document.  The GFM document is a plain text document that starts with headers that set variables that are used to control how the document is formatted. These items about the document and include:
 
-## Setting the Document Title
+## Title Page
 
-This is just the name of the document and is a simple text string
+There are a number of variables that are used for display in the title page of the document.  The Title Page is displayed at the very top of the document is the text "About this Document" which is a link.  When the link is selected, the Title Page will open up and display information about the document from the variables in the header including:
+
+* title_page: if set to _true_ then the Title Page is turned on. 
+* title: text string contains the name of the document and is used for both the Title Page and the &lt;title&gt; tag in the header of the page.
+* version: a text string used to display the current version of the document in both the Title Page and the TOC Footer if it is turned on.
+* copyright: a text string that contains the copyright statement for the document.  Copyright statements should contain the word "Copyright", followed by the copyright symbol of &copy;, followed by the years that the work was first created and the year that it was last modified, and finished off with the phrase "All Rights Reservered."
+* publisher: a text string that contains the Cisco Organization followed by ", Cisco Systems, Inc."
+* publisher_address: a text string that contains the address of the publisher which should be "Cisco Systems, Inc., 150 W Tasman Dr, San Jose, CA 95134, USA".
+* comments:  a free text string that allows the author to put in information about the document that will help the reader understand the context.
+
+In addition to these values that are set for the Title Page, the date that the document was "built" is displayed at the bottom of the "Title Page" as the "Published Date".
 
 ## Turning on Language Tabs
 
@@ -227,47 +269,28 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
 >>>>>>> tripit/master
 </aside>
 
-## The Footer Statement
+# Creating a Table of Contents
 
-The footer statement is used to place text and links at the bottom of the Table of Contents.  For DevNet, we've decided to use this for two important meta-data elements about your document; version number and copyright statement.
+The Table of Contents (ToC) appears in the far left panel of a document if it is turned on.  The ToC is automatically generated from the Headers found in your GFM source document but it is controlled by the values you set for directives in the headers of your documents.  If the ToC is enabled, then the headers that you designate using one or more `#` characters are used to collect the entries of the ToC. 
 
-### The Document Version Number
+## ToC Directives
 
-The first item that we want you to put into the footer is the document version number.  For an API Reference Manual, this will typically correspond to the version number of the API.  It should be a string such as:
+There are a number of directives for controlling how the Table of Contents is presented.  These are:
 
-`- V1.3.2.a` 
-
-which would render as:
-
-V1.3.2.a
-
-### The Document Copyright Statement
-
-The second item to be placed into the footer statement is the Cisco Copyright Statement.  This works best if it is on two lines.  The first line to claim the copyright and the second line to state what rights are being claimed. A typical statement might be as follows:
-
-`- Copyright &copy; 2014 by Cisco Systems, Inc.`
-
-`- All Rights Reserved.` 
-
-which would render as:
-
-Copyright &copy; 2014 by Cisco Systems, Inc.
-
-All Rights Reserved.
+* search: this true or false value will be used to turn on/off the search function.  The search function will only be enabled if the Table of Contents are turned on.
+* toc_selectors: this is a comma list of the document elements that will be selected for inclusion into the table of contents.  If the statement is missing, then the default value is "h1, h2, h3" which means that Headers 1, 2, and 3 will be included into the Table of Contents.  If you were to choose "h2, h3, h4, h5" then the first level headers would be ignored and only the second, third, fourth, and fifth levels will be selected for inclusion into the Table of Contents.
+* toc_footers: this is a bullet list of text that will appear at the bottom of the table of contents.  The footer statement is used to place text and links at the bottom of the Table of Contents.  In addition to the values that you specify, the version number (see the version directive above) will be included, followed by the values that you provide, and finally the date that the document was built.
 
 <aside class="notice">
-Make sure that you put the proper years that the document was created and updated in the copyright statement.  These years should be either a single year or a range of years.  A range of years are used when the document was first published in one year but was subsequently updated in other years.
+Overtime, using the TOC footer to show copyright information will be deprecated for DevNet documents in favor of using the Title Page.
 </aside>
+
 
 ## Turning on Document Search
 
 DevNet Slate has the option of providing readers with a local search.  When you insert the line `search: true` into your header, the search option becomes enabled and a search box will appear in the Table of Contents right below the logo.
 
 When a user types in text into the search box, the Table of Contents is automatically filtered to remove sections that do not contain the search term.  Text that matches the search term will be highlighted with a yellow background.
-
-# Creating a Table of Contents
-
-The Table of Contents (ToC) of a document is automatically generated from the Headers found in your GFM source document.  In GFM, headers are denoted using one or more `#` characters. For DevNet Slate, only the first two levels of Headers will be written to the Table of Contents.  H1 Headers are found in the basic TOC while the H2 headers will pop up into the display when the user scrolls down to that area.
 
 # Creating the Body of the API Reference
 
@@ -300,7 +323,7 @@ On the right are a list of headers in markdown and below is how they will appear
 #### H6 Header
 
 <aside class="notice">
-Remember that only level 1, 2, and 3 headers will appear in the Table of Contents.
+Remember that only level 1, 2, and 3 headers will appear in the Table of Contents by default and that this you can change this using the "toc_selector" directive.
 </aside>
 
 ## Creating a Paragraphs
