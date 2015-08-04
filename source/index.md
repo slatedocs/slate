@@ -54,6 +54,7 @@ ruby 2.0.0p247 (2013-06-27 revision 41674)
 ```
 > How to install Bundler (Shell Tab)
 
+<<<<<<< HEAD
 ```md
 $ gem install bundler
 ```
@@ -90,6 +91,12 @@ When you download the Zip file and install DevNet Slate, like the Fork and Clone
 
 ```md
 $ git clone https://github.com/YOURUSERNAME/DevNetSlate.git
+=======
+```python
+import kittn
+
+api = kittn.authorize('meowmeowmeow')
+>>>>>>> tripit/master
 ```
 
 > Install the Dependencies
@@ -255,7 +262,11 @@ tab regardless if that language is used in the document.
 </aside>
 
 <aside class="notice">
+<<<<<<< HEAD
 Please use the language tabs as stated above such that the Tabs are consistent between API's.
+=======
+You must replace <code>meowmeowmeow</code> with your personal API key.
+>>>>>>> tripit/master
 </aside>
 
 # Creating a Table of Contents
@@ -303,6 +314,7 @@ On the right are a list of headers in markdown and below is how they will appear
 
 ```
 
+<<<<<<< HEAD
 # H1 Header
 ## H2 Header
 ### H3 Header
@@ -337,6 +349,13 @@ Make sure the lines above below your paragraph are empty.
     
     Finally, you can combine ***bold and italic***.
     
+=======
+```python
+import kittn
+
+api = kittn.authorize('meowmeowmeow')
+api.kittens.get()
+>>>>>>> tripit/master
 ```
 
     This text is **bold**, this is *italic*, and this is an
@@ -399,7 +418,11 @@ The link definitions can appear anywhere in the document -- before or after the 
 
 You can also use standard HTML hyperlink syntax.  The HTML example to the right produces the text below:
 
+<<<<<<< HEAD
 <a href="http://developer.cisco.com" title="DevNet">Cisco DevNet</a>
+=======
+`GET http://example.com/api/kittens`
+>>>>>>> tripit/master
 
 
 ## Inserting an Image
@@ -611,6 +634,7 @@ Code samples are an important way of communicating how to use an API.  DevNet Sl
 > Large Python Program
 
 ```python
+<<<<<<< HEAD
 
 import collections
 import itertools
@@ -1905,6 +1929,17 @@ For example, I can use the `>` to place a table into the right hand panel.
 
 > ![Cisco Logo](/images/logo.png).
 
+=======
+import kittn
+
+api = kittn.authorize('meowmeowmeow')
+api.kittens.get(2)
+```
+
+```shell
+curl "http://example.com/api/kittens/2"
+  -H "Authorization: meowmeowmeow"
+>>>>>>> tripit/master
 ```
 
 > will result in the image placed into the right hand panel:
@@ -2017,6 +2052,12 @@ Before we get into the specifics, let's deal with the high-level guidelines or g
 
 ## Language Libraries
 
+<<<<<<< HEAD
 REST (or RESTful) APIs are becoming the standard.  Developers like using REST APIs because they are simple and universal.  Because REST APIs use HTTP protocol along with JSON or XML, it is easy to call a REST API from pretty much any programming language.  As a result, there is a natural tendency for the API engineer to think that language libraries (wrappers that make the REST call in the programming language of choice) is not needed. This is a fallacy.
+=======
+Parameter | Description
+--------- | -----------
+ID | The ID of the kitten to retrieve
+>>>>>>> tripit/master
 
 A Programmer can call REST in a language like Python, Java, or C, with four to five lines of code.  When faced with this, the Programmer will typically write their own library of wrappers (code that encapsulates each REST end point) to make programming more module and cleaner.  Thus, if you want your API to be simple to use, you should have the wrappers for popular libraries built.  Next, you should use the language tabs of DevNet Slate to provide the syntax for each of the programming languages that you will be supporting.

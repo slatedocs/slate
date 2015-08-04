@@ -31,6 +31,7 @@ Getting Started with Slate
 
 You're going to need:
 
+ - **Linux or OS X** — Windows may work, but is unsupported.
  - **Ruby, version 1.9.3 or newer**
  - **Bundler** — If Ruby is already installed, but the `bundle` command doesn't work, just run `gem install bundler` in a terminal.
 
@@ -42,22 +43,31 @@ You're going to need:
  4. Install all dependencies: `bundle install`
  5. Start the test server: `bundle exec middleman server`
 
-You can now see the docs at <http://localhost:4567>. And as you edit `source/index.md`, your server should automatically update! Whoa! That was fast!
+Or use the included Dockerfile! (must install Docker first)
+
+```shell
+docker build -t slate .
+docker run -d -p 4567:4567 slate
+```
+
+You can now see the docs at <http://localhost:4567>. Whoa! That was fast!
+
+*Note: if you're using the Docker setup on OSX, the docs will be
+availalable at the output of `boot2docker ip` instead of `localhost:4567`.*
 
 Learn How to Create a DevNet Slate API Document
 ---------------------------------
 
-* [How to Document a DevNet API](http://rawgithub.com/pnerger/DevNetSlate/DevNet-Slate/build/index.html)
-
 Contributors
 --------------------
 
-Slate was built by [Robert Lord](http://lord.io) while at [TripIt](http://tripit.com).
+Slate was built by [Robert Lord](https://lord.io) while at [TripIt](http://tripit.com).
 
 Thanks to the following people who have submitted major pull requests:
 
 - [@chrissrogers](https://github.com/chrissrogers)
 - [@bootstraponline](https://github.com/bootstraponline)
+- [@realityking](https://github.com/realityking)
 
 Also, thanks to [Sauce Labs](http://saucelabs.com) for helping sponsor the project.
 
