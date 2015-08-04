@@ -22,6 +22,7 @@ under the License.
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title><%= current_page.data.title || "API Documentation" %></title>
 
+
     <%= stylesheet_link_tag :screen, media: :screen %>
     <%= stylesheet_link_tag :print, media: :print %>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
@@ -30,56 +31,7 @@ under the License.
     <% else %>
       <%= javascript_include_tag  "all_nosearch" %>
     <% end %>
-    <% toc = (current_page.data.toc_enabled || false) %>
-    <% if toc %>
-      <script>
-        (function (global) {
-        
-          var closeToc = function() {
-            $(".tocify-wrapper").removeClass('open');
-            $("#nav-button").removeClass('open');
-          };
-        
-          var makeToc = function() {
-            global.toc = $("#toc").tocify({
-              selectors: '<%= current_page.data.toc_selectors || "h1, h2, h3" %>',
-              extendPage: false,
-              theme: 'none',
-              smoothScroll: false,
-              showEffectSpeed: 0,
-              hideEffectSpeed: 180,
-              ignoreSelector: '.toc-ignore',
-              highlightOffset: 60,
-              scrollTo: 50,
-              scrollHistory: true,
-              hashGenerator: function (text, element) {
-                return element.prop('id');
-              }
-            }).data('toc-tocify');
-        
-            $("#nav-button").click(function() {
-              $(".tocify-wrapper").toggleClass('open');
-              $("#nav-button").toggleClass('open');
-              return false;
-            });
-        
-            $(".page-wrapper").click(closeToc);
-            $(".tocify-item").click(closeToc);
-          };
-        
-          // Hack to make already open sections to start opened,
-          // instead of displaying an ugly animation
-          function animate () {
-            setTimeout(function() {
-              toc.setOption('showEffectSpeed', 180);
-            }, 50);
-          }
-        
-          $(makeToc);
-          $(animate);
-        })(window);
-      </script>
-    <% end %>
+
     <% if language_tabs %>
       <script>
         $(function() {
@@ -96,8 +48,8 @@ under the License.
         <%= image_tag('navbar.png') %>
       </span>
     </a>
-
     <div class="tocify-wrapper">
+      <%= image_tag "logo.png" %>
       <% if language_tabs %>
         <div class="lang-selector">
           <% language_tabs.each do |lang| %>
@@ -109,72 +61,26 @@ under the License.
           <% end %>
         </div>
       <% end %>
-      <% if toc %>
-        <% if current_page.data.search %>
-          <div class="search">
-            <input type="text" class="search" id="input-search" placeholder="Search">
-          </div>
-          <ul class="search-results"></ul>
-        <% end %>
-        <div id="toc">
+      <% if current_page.data.search %>
+        <div class="search">
+          <input type="text" class="search" id="input-search" placeholder="Search">
         </div>
-        <% if current_page.data.toc_footers %>
-          <ul class="toc-footer">
-            <li><%= current_page.data.version %></li>
-            <% current_page.data.toc_footers.each do |footer| %>
-              <li><%= footer %></li>
-            <% end %>
-            <li>Published <%= datestring %></li> 
-          </ul>
-        <% end %>
+        <ul class="search-results"></ul>
+      <% end %>
+      <div id="toc">
+      </div>
+      <% if current_page.data.toc_footers %>
+        <ul class="toc-footer">
+          <% current_page.data.toc_footers.each do |footer| %>
+            <li><%= footer %></li>
+          <% end %>
+          <li>Published <%= datestring %></li> 
+        </ul>
       <% end %>
     </div>
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        <% if current_page.data.title_page %>
-          <div class="about">
-            <div class="about-control"><span>About this Document</span>
-            </div>
-            <div class="title-page">
-              <% if current_page.data.title %>
-                <p><strong>Title: </strong><%= current_page.data.title %> </p>
-              <% end %>
-              <% if current_page.data.version %>
-                <p><strong>Version: </strong><%= current_page.data.version %></p>
-              <% end %>
-              <% if current_page.data.copyrigh %>
-                <p><strong>Copyright: </strong><%= current_page.data.copyright %></p>
-              <% end %>
-              <% if current_page.data.publisher %>
-                <p><strong>Publisher: </strong><%= current_page.data.publisher %></p>
-              <% end %>
-              <% if current_page.data.publisher_address %>
-                <p><strong>Publisher Address: </strong><%= current_page.data.publisher_address %></p>
-              <% end %>
-              <% if current_page.data.comments %>
-                <p><strong>Comments: </strong><%= current_page.data.comments %></p>
-              <% end %>
-              <p><strong>Published Date: </strong><%= datestring %></p>
-            </div>
-          </div>
-          <script>      
-            $(".about-control").click(function () {
-              $header = $(this);
-              //getting the next element
-              $content = $header.next();
-              //open up the content needed - toggle the slide- if visible, slide up, if not slidedown.
-              $content.slideToggle(500, function () {
-                //execute this after slideToggle is done
-                //change text of header based on visibility of content div
-                $header.text(function () {
-                  //change text based on condition
-                  return $content.is(":visible") ? "hide" : "About this Document";
-                });
-              });
-            });
-          </script>
-        <% end %>
         <%= yield %>
         <% current_page.data.includes && current_page.data.includes.each do |include| %>
           <%= partial "includes/#{include}" %>

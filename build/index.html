@@ -6,58 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>Authoring a DevNet API Reference Manual</title>
 
+
     <link href="stylesheets/screen.css" rel="stylesheet" type="text/css" media="screen" />
     <link href="stylesheets/print.css" rel="stylesheet" type="text/css" media="print" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
       <script src="javascripts/all.js" type="text/javascript"></script>
-    <script>
-      (function (global) {
-      
-        var closeToc = function() {
-          $(".tocify-wrapper").removeClass('open');
-          $("#nav-button").removeClass('open');
-        };
-      
-        var makeToc = function() {
-          global.toc = $("#toc").tocify({
-            selectors: 'h1, h2, h3',
-            extendPage: false,
-            theme: 'none',
-            smoothScroll: false,
-            showEffectSpeed: 0,
-            hideEffectSpeed: 180,
-            ignoreSelector: '.toc-ignore',
-            highlightOffset: 60,
-            scrollTo: -10,
-            scrollHistory: true,
-            hashGenerator: function (text, element) {
-              return element.prop('id');
-            }
-          }).data('toc-tocify');
-      
-          $("#nav-button").click(function() {
-            $(".tocify-wrapper").toggleClass('open');
-            $("#nav-button").toggleClass('open');
-            return false;
-          });
-      
-          $(".page-wrapper").click(closeToc);
-          $(".tocify-item").click(closeToc);
-        };
-      
-        // Hack to make already open sections to start opened,
-        // instead of displaying an ugly animation
-        function animate () {
-          setTimeout(function() {
-            toc.setOption('showEffectSpeed', 180);
-          }, 50);
-        }
-      
-        $(makeToc);
-        $(animate);
-      
-      })(window);
-    </script>
+
       <script>
         $(function() {
           setupLanguages(["shell"]);
@@ -73,6 +27,7 @@
       </span>
     </a>
     <div class="tocify-wrapper">
+      <img src="images/logo.png" />
         <div class="lang-selector">
               <a href="#" data-language-name="shell">Sample</a>
         </div>
@@ -83,47 +38,14 @@
       <div id="toc">
       </div>
         <ul class="toc-footer">
-          <li>V2.0.1</li>
+            <li>V1.0.0</li>
             <li>Copyright &copy; 2014 by Cisco Systems, Inc.</li>
             <li>All Rights Reserved.</li>
-          <li>Published July 27, 2015</li> 
         </ul>
     </div>
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-
-        <div class="about">
-          <div class="about-control"><span>About this Document</span>
-          </div>
-          <div class="title-page">
-            <p><em>About this Document</em></p>
-            <p><strong>Title: </strong>Authoring a DevNet API Reference Manual </p>
-            <p><strong>Version: </strong>V2.0.1</p>
-            <p><strong>Copyright: </strong>Copyright &copy; 2014-2015 by Cisco Systems, Inc., All Rights Reserved.</p>
-            <p><strong>Publisher: </strong>DevNet, Cisco's Developer Program</p>
-            <p><strong>Publisher Address: </strong>Cisco Systems, Inc., 150 W Tasman Dr, San Jose, CA 95134, USA</p>
-            <p><strong>Comments: </strong>DevNet Slate is based upon the open source project called Slate</p>
-            <p><strong>Published Date: </strong>July 27, 2015</p>
-          </div>
-        </div>
-        <script>      
-          $(".about-control").click(function () {
-            $header = $(this);
-            //getting the next element
-            $content = $header.next();
-            //open up the content needed - toggle the slide- if visible, slide up, if not slidedown.
-            $content.slideToggle(500, function () {
-              //execute this after slideToggle is done
-              //change text of header based on visibility of content div
-              $header.text(function () {
-                //change text based on condition
-                return $content.is(":visible") ? "hide" : "About this Document";
-              });
-            });
-          });
-        </script>
-
         <h1 id='authoring-a-devnet-api-reference-manual'>Authoring a DevNet API Reference Manual</h1>
 <p>DevNet is Cisco&rsquo;s Developer Program aimed a helping developers gain access to Cisco Technology such that they can build cool and exciting products.  Wether a developer is an IT Professional working inside of a Cisco Customer&rsquo;s IT organization, a System Integrator, or a developer at an Independent Software Developer Program, Cisco DevNet is there to help make your professional life easier.</p>
 

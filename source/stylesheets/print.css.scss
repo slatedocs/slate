@@ -28,20 +28,8 @@ body {
   @extend %default-font;
 }
 
-.lang-selector, .search, #nav-button {
+.tocify, .toc-footer, .lang-selector, .search, #nav-button {
   display: none;
-}
-
-.tocify {
-  display: visible;
-}
-
-.toc-footer>li {
-  display: visible;
-  text-decoration: none;
-  font-size: 0.8em;
-  line-height: 1.2;
-  list-style-type: none;
 }
 
 .tocify-wrapper>img {
@@ -96,7 +84,7 @@ body {
     margin-bottom: $h1-margin-bottom;
     border: 2px solid $print-color-light;
     border-width: 2px 0;
-    text-align: left;
+    text-align: center;
   }
 
   h2 {
@@ -118,10 +106,11 @@ body {
     font-size: 0.8em;
     margin-top: 1.5em;
     margin-bottom: 0.8em;
+    text-transform: uppercase;
   }
 
   h5, h6 {
-
+    text-transform: uppercase;
   }
 
   aside {

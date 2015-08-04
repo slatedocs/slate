@@ -526,20 +526,6 @@ html, body {
     @include text-shadow(1px 1px 0 #666);
     background: linear-gradient(to top left, #F7E633 0%, #F1D32F 100%);
   }
-  
-  .about .title-page {
-    display: none;
-    font-size: 8pt;
-    padding : 3px;
-  }
-  
-  .about-control {
-    cursor: pointer; cursor: hand;
-    font-size: 10pt;
-    padding: 5px;
-    color: #085777;
-    text-decoration: underline;
-  }
 }
 
 ////////////////////////////////////////////////////////////////////////////////
