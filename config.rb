@@ -8,7 +8,7 @@ set :markdown,
     tables: true,
     with_toc_data: true,
     no_intra_emphasis: true,
-    strikethrough: true,
+    strikethrough: true
 
 # Assets
 set :css_dir, 'stylesheets'
