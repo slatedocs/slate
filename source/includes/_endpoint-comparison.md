@@ -45,8 +45,8 @@ The catalog looks something like this:
 ```json
 {
     "element": "shoji:catalog",
-    "self": "https://alpha.crunch.io/api/datasets/5ee0a0/comparisons/",
-    "specification": "https://alpha.crunch.io/api/specifications/comparisons/",
+    "self": "https://beta.crunch.io/api/datasets/5ee0a0/comparisons/",
+    "specification": "https://beta.crunch.io/api/specifications/comparisons/",
     "description": "List of the comparisons for this dataset",
     "index": {
         "491fe3/": {

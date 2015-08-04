@@ -1,82 +1,181 @@
 ## Teams
 
-The teams API allows you to create and manage your Teams, their members and access to Datasets.
+Teams contain references to users and datasets. By sharing a dataset with a team, you can grant access to a set of users at once, and by adding a user to a team, you can grant them access to a set of datasets.
 
-Creating teams
+### Catalog
 
-To start with the Teams API you will need to create a new Team by POSTing your new team entity to the /teams/ endpoint:
+`/teams/`
 
-POST /teams/
+#### GET
+
+```http
+GET /teams/ HTTP/1.1
+Host: beta.crunch.io
+--------
+200 OK
+Content-Type: application/json
+```
+
+```json
+// Example team catalog:
 {
-  element: "shoji:entity",
-  body: {
-    name: "My new team with ytpo"
-  }
-}
-
-The returning header will provide you with the URL of your new team, it will also be available under the /teams/ catalog. Naturally, since you created the team, you will be the team's owner:
-
-GET /teams/
-
-{
-  element: "shoji:catalog",
-  index: {
-    http://host/teams/:teamId/: {
-      name: "My new team with ytpo",
-      owner: http://host/users/:ownerId/
-    }
-  }
-}
-
-To see all the information of your team, you can GET that team's detail URL
-GET /teams/:teamId/
-
-{
-  element: "shoji:entity",
-  body: {
-    name: "My new team with ytpo",
-    owner: http://host/users/:ownerId/
-  },
-  catalogs: {
-    datasets: http://host/members/:teamId/datasets/, 
-    members: http://host/members/:teamId/members/,
-  }
-}
-
-To fix the team's name you need to PATCH the correct value to the team's detail endpoint.
-
-PATCH /teams/:teamId/
-
-{
-  element: "shoji:entity",
-  body: {
-    name: "My new team without typo",
-    owner: http://host/users/:ownerId/
-  }
-}
-
-Managing teams' members
-
-To add or remove users from a team, you will need to have the `manage_members` team's permissions. As a team owner you have this by default. To add users on the API you will first navigate to the member's detail page and follow the `members` catalog, you will find yourself as the only current member:
-
-GET /teams/:teamId/members/
-{
-  element: "shoji:catalog",
-  index: {
-      http://host/users/:ownerId/: {
-        display_name: "Owner's name",
-        permissions: {
-          manage_members: true,
+    "element": "shoji:catalog",
+    "self": "https://beta.crunch.io/api/teams/",
+    "description": "List of all the teams where the current user is member",
+    "index": {
+        "https://beta.crunch.io/api/teams/d07edb/": {
+            "owner": "https://beta.crunch.io/api/users/41c69d/",
+            "name": "The A-Team"
+        },
+        "https://beta.crunch.io/api/teams/67fe89/": {
+            "owner": "https://beta.crunch.io/api/users/41c69d/",
+            "name": "Palo Alto Data Science"
         }
-      }
-  }
+    }
 }
+```
 
-Adding members
+```r
+teams <- getTeams()
+names(teams)
+## [1] "The A-Team" "Palo Alto Data Science"
+```
 
-Then proceed to add the users by PATCHing them with the permissions you want. They have to be existing users on the application, but they can be from any account:
+#### POST
 
-PATCH /teams/:teamId/members/
+To create a new team, POST a Shoji Entity with a team "name" in the body. No other attributes are required, and you will be automatically assigned as the "owner". 
+
+```http
+POST /teams/ HTTP/1.1
+Host: beta.crunch.io
+Content-Type: application/json
+...
+{
+    "element": "shoji:entity",
+    "body": {
+        "name": "My new team with ytpo"
+    }
+}
+--------
+201 Created
+Location: /teams/03df2a/
+```
+
+```r
+# Create a new team by assigning into the teams catalog
+teams[["My new team with ytpo"]] <- list()
+names(teams) # Let's see that it was created
+## [1] "The A-Team" "Palo Alto Data Science"
+## [3] "My new team with ytpo"
+
+# You can also assign members to the team when you create it,
+# even though the POST /teams/ API does not support it.
+teams[["New team with members"]] <- list(members="fake.user@example.com")
+```
+
+### Entity
+
+`/teams/{team_id}/`
+
+#### GET 
+
+```http
+GET /teams/d07edb/ HTTP/1.1
+Host: beta.crunch.io
+--------
+200 OK
+Content-Type: application/json
+```
+
+```json
+// Example team entity
+{
+    "element": "shoji:entity",
+    "self": "https://beta.crunch.io/api/teams/d07edb/",
+    "description": "Details for a specific team",
+    "body": {
+        "owner": "https://beta.crunch.io/api/users/41c69d/",
+        "name": "The A-Team"
+    },
+    "catalogs": {
+        "datasets": "https://beta.crunch.io/api/teams/d07edb/datasets/",
+        "members": "https://beta.crunch.io/api/teams/d07edb/members/"
+    }
+}
+```
+
+```r
+# Access a team by name using $ or [[ from the team catalog
+a.team <- teams[["The A-Team"]]
+name(a.team)
+## [1] "The A-Team"
+self(a.team)
+## [1] "https://beta.crunch.io/api/teams/d07edb/"
+```
+
+A GET request on a team entity URL returns the same "name" and "owner" attributes as shown in the team catalog, as well as references to the "datasets" and "members" catalogs corresponding to the team. Authorization is required: if the requesting user is not a member of the team, a 404 response will result.
+
+#### PATCH
+Team names are editable by PATCHing the team entity. Authorization is required: only the team owner may edit the team's name; other team members will receive a 403 response on PATCH.
+
+```http
+PATCH /teams/03df2a/ HTTP/1.1
+Host: beta.crunch.io
+Content-Type: application/json
+{
+    "element": "shoji:entity",
+    "body": {
+        "name": "My new team without typo"
+    }
+}
+--------
+204 No Content
+```
+
+```r
+name(teams[["My new team with ytpo"]]) <- "My new team without typo"
+names(teams) # Check that it was updated
+## [1] "The A-Team" "Palo Alto Data Science"
+## [3] "My new team without typo"
+```
+
+
+### Team members catalog
+
+`/teams/{team_id}/members/`
+
+The team members catalog is a Shoji Catalog similar in nature to the [dataset permissions catalog](#permissions). It collects references to users and defines the authorizations they have with respect to the team. All information about the member relationships is contained in the catalog--there are no "member entities"--and all changes to team membership, whether adding, modifying, or removing users, is done via PATCH.
+
+#### GET 
+
+```json
+{
+    "element": "shoji:catalog",
+    "self": "https://beta.crunch.io/api/teams/d07edb/members/",
+    "description": "Catalog of users that belong to this team",
+    "index": {
+        "https://beta.crunch.io/api/users/47193a/": {
+            "name": "B. A. Baracus",
+            "permissions": {
+                "manage_members": false
+            }
+        },
+        "https://beta.crunch.io/api/users/41c69d/": {
+            "name": "Hannibal",
+            "permissions": {
+                "manage_members": true
+            }
+        }
+    }
+}
+```
+
+#### PATCH
+
+Authorization is required: team members who do not have the "manage_members" permission and who attempt to PATCH the member catalog will receive a 403 response. As with the team entity, non-members will receive 404 on attempted PATCH.
+
+##### Add new members
+
 {
   element: "shoji:catalog",
   index: {
@@ -90,7 +189,7 @@ PATCH /teams/:teamId/members/
 }
 
 On the above example, userId1 has `manage_members` permissions granted, as of userId2 is a regular member. Looking the at the catalog again:
-GET /teams/:teamId/members/
+GET /teams/{team_id}/members/
 {
   element: "shoji:catalog",
   index: {
@@ -115,9 +214,11 @@ GET /teams/:teamId/members/
   }
 }
 Notice how it is possible for many members of the team to have the `manage_members` permission enabled simultaneously.
-Change members' permissions
-To change a team member's pemissions, you can patch in the same way than adding users, just specifying the new permissions:
-PATCH /teams/:teamId/members/
+
+##### Modify existing members' permissions
+
+To change a team member's permissions, you can patch in the same way than adding users, just specifying the new permissions:
+PATCH /teams/{team_id}/members/
 {
   element: "shoji:catalog",
   index: {
@@ -129,7 +230,7 @@ PATCH /teams/:teamId/members/
   }
 }
 Then verify the changes
-GET /teams/:teamId/members/
+GET /teams/{team_id}/members/
 {
   element: "shoji:catalog",
   index: {
@@ -153,9 +254,11 @@ GET /teams/:teamId/members/
       }
   }
 }
-Removing members
+
+##### Removing members
+
 To remove members, same as with other Shoji catalogs, it is needed to PATCH the catalog with the tuple set to `null`:
-PATCH /teams/:teamId/members/
+PATCH /teams/{team_id}/members/
 {
   element: "shoji:catalog",
   index: {
@@ -163,7 +266,7 @@ PATCH /teams/:teamId/members/
   }
 }
 And userId2 will not be a member of the team anymore
-GET /teams/:teamId/members/
+GET /teams/{team_id}/members/
 {
   element: "shoji:catalog",
   index: {
@@ -181,6 +284,13 @@ GET /teams/:teamId/members/
       }
   }
 }
+
+### Team datasets catalog
+
+`/teams/{team_id}/datasets/`
+
+#### GET
+
 Managing teams' datasets
 The way of linking teams and datasets is by sharing the dataset with the team you want. The mechanics are exactly the same as to share a dataset with users, but with the difference that you will be sending in a team's URL instead of a user's url.
 Another difference is that teams cannot have `edit` permissions assigned.
@@ -190,7 +300,7 @@ PATCH /dataset/:datasetId/permissions/
 {
   element: "shoji:catalog",
   index: {
-    "http://host/teams/:teamId/": {
+    "http://host/teams/{team_id}/": {
       "dataset_permissions": {
         view: true,
       }
@@ -203,7 +313,7 @@ PATCH /dataset/:datasetId/permissions/
 {
   element: "shoji:catalog",
   index: {
-    "http://host/teams/:teamId/": null
+    "http://host/teams/{team_id}/": null
   }
 }
 Coalesced access
@@ -231,72 +341,3 @@ GET /datasets/
     }
   }
 }
-Sharing notifications
-Same as when sharing datasets with users, when a dataset is shared with a team all their members will receive a notification email indicating under which team the dataset has been shared with.
-In the case that a user gets access to a dataset through many teams, they will only receive one email for one of the teams.
-Versioning
-Teams aren't versioned, so teams and membership are not restored when going back to in history. Dataset sharing is versioned though, so going back in history on a dataset will revert its access back in time as well, which means that if a team was not shared with the dataset at such point, it will not be accessible, just like the rest of permissions.
-Endpoints
-/teams/
-GET: Returns the catalog of all the teams the logged user is a member of.
-The tuples have the following shape:
-{
-  name: <str>,
-  owner: <url>
-}
-POST: Allows to create new teams making the logged user their owner. All users have the capacity to create infinite teams. By default all created teams will have the creator as their initial member and will have the `manage_members` permission.
-Expected payload:
-{
-  element: "shoji:entity",
-  body: {
-    name: <required str>
-  }
-}
-
-/teams/id/
-GET: Returns the details of a given team. You can only see the teams where you are a member of. The payload has the following shape:
-{
-  element: "shoji:entity",
-  body: {
-    name: <str>,
-    owner: <url>
-  },
-  catalogs: {
-    datasets: <url>,
-    members: <url>,
-  }
-}
-PATCH: Used to change the attributes of a team. Currently the only attribute that can be changed is the team's name. Expects the following payload:
-{
-  element: "shoji:entity",
-  body: {
-    name: <str>
-  }
-}
-/teams/id/members/
-GET: Returns the catalog of all team members, the payload has the following shape:
-{
-  element: "shoji:catalog",
-  index: {
-    <user url> {
-      display_name: <str>,
-      permissions: {
-        manage_members: <bool>
-      }
-    }
-  }
-}
-PATCH: Supports adding and deleting members from the team, expects the following payload:
-{
-  element: "shoji:catalog",
-  index: {
-    <user url> {  // Or null for removing users from team
-      permissions: {   // optional, if blank or empty assumes all permissions False
-        manage_members: <bool>
-      }
-    }
-  }
-}
-/teams/id/datasets/
-GET: Returns the list of datasets that have been shared with this team.
-To add/remove datasets from here you have to PATCH each dataset's permissions endpoint to share them with the team,

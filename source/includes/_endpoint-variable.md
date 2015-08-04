@@ -10,43 +10,45 @@ A Shoji Catalog of variables.
 
 When authenticated and authorized to view the given dataset, GET returns 200 status with a Shoji Catalog of variables in the dataset. If authorization is lacking, response will instead be 404.
 
-Private variables are not included in the index of this catalog, although they may be present at variables/{id}/. See Private Variables for an index of those.
+Private variables are not included in the index of this catalog, although entities may be present at `variables/{id}/`. See Private Variables for an index of those.
 
 Catalog tuples contain the following keys:
 
-```
-{
-    "name": "<string>",             // Human-friendly string identifier
-    "alias": "<string>",            // More machine-friendly, traditional name for a variable
-    "description": "<string>",      // Optional longer string
-    "id": "<string>",               // Immutable internal identifier
-    "discarded": false,             // Whether the variable should be hidden from most views
-    "derived": false,               // Whether the variable is a function of another
-    "type": "<string>",             // The string type name 
-    "subvariables": ["<url>"],      // For arrays, array of (ordered) references to subvariables
-    "subvariables_catalog": "<url>" // For arrays, link to a Shoji Catalog of subvariables
-}
-```
+Name | Type | Description
+---- | ---- | -----------
+name | string | Human-friendly string identifier
+alias | string | More machine-friendly, traditional name for a variable
+description | string | Optional longer string
+id | string | Immutable internal identifier
+discarded | boolean | Whether the variable should be hidden from most views; default: false
+derived | Whether the variable is a function of another; default: false
+type | string | The string type name 
+subvariables | array of URLs | For arrays, array of (ordered) references to subvariables
+subvariables_catalog | URL | For arrays, link to a Shoji Catalog of subvariables
+
+
 
 The catalog has two optional query parameters:
 
- * "relative": if "on", all URLs in the "index" will be relative to "self"
- * "nosubvars": if 1, array subvariables will not be included directly in the variables catalog–their metadata are instead accessible in each array variable's "subvariables_catalog". 
+Name | Type | Description
+---- | ---- | -----------
+relative | string | If "on", all URLs in the "index" will be relative to the catalog's "self"
+nosubvars | integer | If 1, array subvariables will not be included directly in the variables catalog. Their metadata are instead accessible in each array variable's "subvariables_catalog". 
 
 With both flags enabled, the variable catalog looks something like this:
 
 ```json
 {
     "element": "shoji:catalog",
-    "self": "https://alpha.crunch.io/api/datasets/5ee0a0/variables/",
+    "self": "https://beta.crunch.io/api/datasets/5ee0a0/variables/",
     "orders": {
-        "hier": "https://alpha.crunch.io/api/datasets/5330a0/variables/hier/",
+        "hier": "https://beta.crunch.io/api/datasets/5330a0/variables/hier/",
     },
     "views": {
-        "weights": "https://alpha.crunch.io/api/datasets/5ee0a0/variables/weights/",
-        "search": "https://alpha.crunch.io/api/datasets/5ee0a0/variables/search/?q={token}"
+        "weights": "https://beta.crunch.io/api/datasets/5ee0a0/variables/weights/",
+        "search": "https://beta.crunch.io/api/datasets/5ee0a0/variables/search/?q={token}"
     },
-    "specification": "https://alpha.crunch.io/api/specifications/variables/",
+    "specification": "https://beta.crunch.io/api/specifications/variables/",
     "description": "List of Variables of this dataset",
     "index": {
         "a77d9f/": {
@@ -113,15 +115,15 @@ PATCHing this payload on the above catalog will return a 204 status. A subsequen
 ```json
 {
     "element": "shoji:catalog",
-    "self": "https://alpha.crunch.io/api/datasets/5ee0a0/variables/",
+    "self": "https://beta.crunch.io/api/datasets/5ee0a0/variables/",
     "orders": {
-        "hier": "https://alpha.crunch.io/api/datasets/5330a0/variables/hier/"
+        "hier": "https://beta.crunch.io/api/datasets/5330a0/variables/hier/"
     },
     "views": {
-        "weights": "https://alpha.crunch.io/api/datasets/5ee0a0/variables/weights/",
-        "search": "https://alpha.crunch.io/api/datasets/5ee0a0/variables/search/?q={token}"
+        "weights": "https://beta.crunch.io/api/datasets/5ee0a0/variables/weights/",
+        "search": "https://beta.crunch.io/api/datasets/5ee0a0/variables/search/?q={token}"
     },
-    "specification": "https://alpha.crunch.io/api/specifications/variables/",
+    "specification": "https://beta.crunch.io/api/specifications/variables/",
     "description": "List of Variables of this dataset",
     "index": {
         "a77d9f/": {
@@ -164,26 +166,12 @@ PATCHing this payload on the above catalog will return a 204 status. A subsequen
 
 A POST to this resource must be a Shoji Entity with the following "body" attributes:
 
- * name
- * type
-
-If "type" is "categorical":
-
- * categories: an array of category definitions
-
-If "type" is "multiple_response" or "categorical_array":
-
- * subvariables: an array of either URLs of variables to be "bound" together to form the array variable, or
-partial variable definitions, which will be created as categorical variables and then bound to form the array
-If including partial variable definitions, the array definition must include "categories", which are shared among the subvariables
-
-If type is "multiple_response", the definition may include:
-
- * a "selected_categories" array of category names present in the subvariables. This will mark the specified category or categories as the "selected" response in the multiple response variable. If no "selected_categories" array is provided, the new variable will use any categories already flagged as "selected": true. If no such category exists, the response will return a 400 status.
-
-If "type" is "datetime":
-
- * resolution: a string, such as "Y", "M", "D", "h", "m", "s", "ms", that indicates the unit size of the datetime data.
+ * **name**
+ * **type**
+ * (If "type" is "categorical", "multiple_response", or "categorical_array"): **categories**: an array of category definitions
+ * If "type" is "multiple_response" or "categorical_array": **subvariables**: an array of either URLs of variables to be "bound" together to form the array variable, or partial variable definitions, which will be created as categorical variables and then bound to form the array. If including partial variable definitions, the array definition must include "categories", which are shared among the subvariables
+ * If type is "multiple_response", the definition may include **selected_categories**: an array of category names present in the subvariables. This will mark the specified category or categories as the "selected" response in the multiple response variable. If no "selected_categories" array is provided, the new variable will use any categories already flagged as "selected": true. If no such category exists, the response will return a 400 status.
+ * If "type" is "datetime": **resolution**: a string, such as "Y", "M", "D", "h", "m", "s", "ms", that indicates the unit size of the datetime data.
 
 See Variable Definitions for more details and examples of valid attributes, and Feature Guide: Arrays for more information on the various cases for creating array variables.
 
@@ -249,16 +237,16 @@ On GET will return a Crunch Order with the variables matching the `token` in the
 ```json
 {
     "element": "shoji:view",
-    "self": "https://alpha.crunch.io/api/datasets/06103cf80f26478f8a30856fb64e9a00/variables/search/something/",
+    "self": "https://beta.crunch.io/api/datasets/06103cf80f26478f8a30856fb64e9a00/variables/search/something/",
     "description": "Returns a view with a group containing all the variables that match the given query",
     "value": {
         "groups": [
             {
                 "entities": [
-                    "https://alpha.crunch.io/api/datasets/e4d5ac858b5c44579b8eae2beaed7d5b/variables/1e1868dfc4734841a448d238edb66668/",
-                    "https://alpha.crunch.io/api/datasets/e4d5ac858b5c44579b8eae2beaed7d5b/variables/8f68ca6382ea453aa333a24975d5644b/",
-                    "https://alpha.crunch.io/api/datasets/e4d5ac858b5c44579b8eae2beaed7d5b/variables/f6ae03e459144cb0bc13e64d8ee47a0a/",
-                    "https://alpha.crunch.io/api/datasets/e4d5ac858b5c44579b8eae2beaed7d5b/variables/b4bd6a2085e942ee9d886340f10d7cbc/",
+                    "https://beta.crunch.io/api/datasets/e4d5ac858b5c44579b8eae2beaed7d5b/variables/1e1868dfc4734841a448d238edb66668/",
+                    "https://beta.crunch.io/api/datasets/e4d5ac858b5c44579b8eae2beaed7d5b/variables/8f68ca6382ea453aa333a24975d5644b/",
+                    "https://beta.crunch.io/api/datasets/e4d5ac858b5c44579b8eae2beaed7d5b/variables/f6ae03e459144cb0bc13e64d8ee47a0a/",
+                    "https://beta.crunch.io/api/datasets/e4d5ac858b5c44579b8eae2beaed7d5b/variables/b4bd6a2085e942ee9d886340f10d7cbc/",
                 ],
                 "group": "Search Results"
             }
