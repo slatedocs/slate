@@ -2,19 +2,19 @@
 
 Welcome to the Chartboost third-party documentation center! 
 
-This site features API instructions third-party attribution platforms can use to send two types of data to Chartboost: install attribution postbacks to power CPI via Third-Party Attribution campaigns, and post-install revenue data for Chartboost Post-Install Analytics (PIA). Each product's API has a unique external endpoint.
+This site features API instructions third-party attribution platforms can use to send two types of data to Chartboost: install attribution postbacks to power S2S Tracking campaigns, and post-install revenue data for Chartboost Post-Install Analytics (PIA). Each product's API has a unique external endpoint.
 
-## CPI via Third-Party Attribution Overview
+## S2S Tracking Overview
 
-Chartboost is introducing a new campaign type, CPI via Third-Party Attribution, that lets advertisers leverage third-party attribution data to run CPI campaigns on the Chartboost network. 
+Chartboost is introducing a new campaign type, S2S Tracking, that lets advertisers leverage third-party attribution data to run CPI campaigns on the Chartboost network. 
 
-After Chartboost receives install attribution postbacks from a third party (via <a href="#install-attribution">this endpoint</a>), the game's CPI campaign targets in the Chartboost dashbaord will be replaced with CPI via Third-Party Attribution targets. (Third-party attribution data will then replace attribution data collected by the Chartboost SDK or received via server-to-server integration.)
+After Chartboost receives install attribution postbacks from a third party (via <a href="#install-attribution">this endpoint</a>), the game's CPI campaign targets in the Chartboost dashbaord will be replaced with S2S Tracking targets. (Third-party attribution data will then replace attribution data collected by the Chartboost SDK or received via server-to-server integration.)
 
-### CPI via Third-Party Attribution Requirements
+### S2S Tracking Requirements
 
 - Third-party attribution platform SDK integration. Chartboost SDK integration is recommended (if you plan to publish, for example), but optional.
 - Tracking URLs/macros to send Chartboost click data to your third-party via <a href="https://answers.chartboost.com/hc/en-us/articles/205607385">callbacks</a>
-- CPI via Third-Party Attribution customers will also need to use their third-party attribution service's website to create install attribution postbacks. These postbacks need to include all bootups and attributed installs (using the <code>claim=</code> parameter).
+- S2S Tracking customers will also need to use their third-party attribution service's website to create install attribution postbacks. These postbacks need to include all bootups and attributed installs (using the <code>claim=</code> parameter).
 
 ## Post-Install Analytics Overview
 
