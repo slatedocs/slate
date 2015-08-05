@@ -175,7 +175,6 @@ Key                           | Type              | Description
 `id`                          | String            | ID of the response
 `colour`                      | String            | RGB colour of the response button when selected. I.e. "0,0,0" is black, "255,255,255" is white.
 `enable_score`                | Boolean           | If Score checkbox is checked. Can be attached to any response type
-`image`                       | Object            | 
 `label`                       | String            | Label of the response (e.g. 'Yes')
 `score`                       | Number            | Score of the response
 `short_label`                 | String            | Short label of the response (e.g. 'Y')
@@ -259,7 +258,7 @@ Key                           | Type              | Description
 Key                           | Type              | Description
 ------------------------------|-------------------|---------------------------------------------------------------------
 `assets`                      | Array             | Array of [asset](#audit-assets) IDs
-`computed_field`              | String            |
+`computed_field`              | String            | *DEPRECATED*, can appear in very old audits
 `condition`                   | String            | The smart field condition. UUID of a response set
 `element`                     | String            | The title of each element of a dynamic field.
 `enable_date`                 | Boolean           | Toggles the date portion of an item containing a date-time
@@ -268,17 +267,16 @@ Key                           | Type              | Description
 `hide_barcode`                | Boolean           | Means that you can only scan barcode. Not editable.
 `increment`                   | String            | Controls the increment jumps in slider items
 `is_mandatory`                | Boolean           | Toggles whether the item has to have a response before the audit can be completed
-`label`                       | String            | 
+`label`                       | String            | The main visual text of an item
 `link`                        | String            | URL field in information items
 `locked`                      | Boolean           | Toggles whether an asset item has been locked
 `max`                         | String            | Maximum value for a slider item
 `media`                       | String            | A [media](#media) attached to the item
-`media_visible_in_report`     | Boolean           | 
+`media_visible_in_report`     | Boolean           | *DEPRECATED*, can appear in very old audits
 `min`                         | String            | Minimum value for a slider item
 `multiple_selection`          | Boolean           | True if this field allows multiple selection
-`required`                    | Boolean           | 
 `response_set`                | String            | A UUID of the response set this item relates to
-`secure`                      | String            | 
+`secure`                      | Boolean           | "Barcode Scanner" - "Visible in Audit" switch value
 `type`                        | String            | The type of an information field. Currently `text`, `media` or `link`
 `url`                         | String            | *DEPRECATED - use link* URL field in information items
 `values`                      | String            | The item's smart field response(s)
@@ -433,7 +431,6 @@ Key                           | Type              | Description
 `make`                        | String            | The manufacturer of the asset
 `media_id`                    | Object            | An image or photo of the asset
 `model`                       | String            | The specific model of the asset
-`rev`                         | String            | 
 `serial_number`               | String            | Asset S/N
 `time_stamp`                  | String            | Time when the asset was last edited in the corresponding template
 `title`                       | String            | Asset title
