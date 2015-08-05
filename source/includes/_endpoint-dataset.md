@@ -76,6 +76,9 @@ permissions | object | {"edit": false} | Authorizations on this dataset
 owner_id | url |  | URL of the user entity of the dataset's owner
 owner_display_name | string | "" | That user's name, for display
 
+<aside class="notice">
+    A user may have access to a dataset because someone has shared it directly with him, or because someone has shared it with a team of which he is a member. If a user has access to a dataset from different sources, be it by multiple teams or by direct sharing, the final permissions they have on the dataset will be the maximum of all the permissions granted.
+</aside>
 
 #### PATCH
 ```http

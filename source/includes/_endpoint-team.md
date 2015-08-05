@@ -148,6 +148,13 @@ The team members catalog is a Shoji Catalog similar in nature to the [dataset pe
 
 #### GET 
 
+```http
+GET /teams/d07edb/members/ HTTP/1.1
+Host: beta.crunch.io
+--------
+200 OK
+Content-Type: application/json
+```
 ```json
 {
     "element": "shoji:catalog",
@@ -170,174 +177,227 @@ The team members catalog is a Shoji Catalog similar in nature to the [dataset pe
 }
 ```
 
+```r
+members(team)
+```
+
+Tuple values include:
+
+Name | Type | Description
+---- | ---- | -----------
+name | string | Display name of the user
+permissions | object | Attributes governing the user's authorization on the team.
+
+Supported `permissions`, all boolean, include:
+
+* **manage_members**: Whether the user may add or remove users from the team, as well as modify the permissions of users on the team; i.e., PATCH the member catalog.
+
 #### PATCH
 
 Authorization is required: team members who do not have the "manage_members" permission and who attempt to PATCH the member catalog will receive a 403 response. As with the team entity, non-members will receive 404 on attempted PATCH.
 
+PATCH a partial Shoji Catalog to add users to the team, to modify permissions of members already on the team, and to remove team members. The examples below illustrate each of those actions separately, but all can be done together in a single PATCH request, in fact. 
+
+In the "index" attribute of the catalog, object keys must be either (a) URLs of User entities or (b) email addresses. They can be mixed in a single PATCH request. Using email address allows you to invite a user to Crunch while adding them to the team if they do not yet have a Crunch account, but it is also valid as a reference to Users that already exist. 
+
 ##### Add new members
 
+```http
+PATCH /teams/d07edb/members/ HTTP/1.1
+Host: beta.crunch.io
+Content-Type: application/json
 {
-  element: "shoji:catalog",
-  index: {
-      http://host/users/:userId1/: {
-        permissions: {
-          manage_members: true,
+    "element": "shoji:catalog",
+    "index": {
+        "https://beta.crunch.io/api/users/47193a/": {
+            "permissions": {
+                "manage_members": true
+            }
+        },
+        "https://beta.crunch.io/api/users/e3211a/": {},
+        "templeton.peck@army.gov": {
+            "permissions": {
+                "manage_members": true
+            }
         }
-      },
-      http://host/users/:userId2/: {}
-  }
+    }
 }
+--------
+204 No Content
+```
 
-On the above example, userId1 has `manage_members` permissions granted, as of userId2 is a regular member. Looking the at the catalog again:
-GET /teams/{team_id}/members/
+If the index object keys do not correspond to users already found in the member catalog, the indicated users will be added to the team. 
+
+(discuss)
+
+```http
+GET /teams/d07edb/members/ HTTP/1.1
+Host: beta.crunch.io
+--------
+200 OK
+Content-Type: application/json
+```
+```json
 {
-  element: "shoji:catalog",
-  index: {
-      http://host/users/:ownerId/: {
-        display_name: "Owner's name",
-        permissions: {
-          manage_members: true,
+    "element": "shoji:catalog",
+    "self": "https://beta.crunch.io/api/teams/d07edb/members/",
+    "description": "Catalog of users that belong to this team",
+    "index": {
+        "https://beta.crunch.io/api/users/47193a/": {
+            "name": "B. A. Baracus",
+            "permissions": {
+                "manage_members": true
+            }
+        },
+        "https://beta.crunch.io/api/users/41c69d/": {
+            "name": "Hannibal",
+            "permissions": {
+                "manage_members": true
+            }
+        },
+        "https://beta.crunch.io/api/users/e3211a/": {
+            "name": "Howling Mad Murdock",
+            "permissions": {
+                "manage_members": false
+            }
+        },
+        "https://beta.crunch.io/api/users/89eb3a/": {
+            "name": "templeton.peck@army.gov",
+            "permissions": {
+                "manage_members": true
+            }
         }
-      },
-      http://host/users/:userId1/: {
-        display_name: "User one",
-        permissions: {
-          manage_members: true
-        }
-      },
-      http://host/users/:userId2/: {
-        display_name: "User two",
-        permissions: {
-          manage_members: false
-        }
-      }
-  }
+    }
 }
+```
+
 Notice how it is possible for many members of the team to have the `manage_members` permission enabled simultaneously.
 
 ##### Modify existing members' permissions
 
 To change a team member's permissions, you can patch in the same way than adding users, just specifying the new permissions:
-PATCH /teams/{team_id}/members/
+
+```http
+PATCH /teams/d07edb/members/ HTTP/1.1
+Host: beta.crunch.io
+Content-Type: application/json
 {
-  element: "shoji:catalog",
-  index: {
-      http://host/users/:userId1/: {
-        permissions: {
-          manage_members: false,
+    "element": "shoji:catalog",
+    "index": {
+        "https://beta.crunch.io/api/users/89eb3a/": {
+            "permissions": {
+                "manage_members": false
+            }
         }
-      }
-  }
+    }
 }
-Then verify the changes
-GET /teams/{team_id}/members/
+--------
+204 No Content
+```
+
+```http
+GET /teams/d07edb/members/ HTTP/1.1
+Host: beta.crunch.io
+--------
+200 OK
+Content-Type: application/json
+```
+```json
 {
-  element: "shoji:catalog",
-  index: {
-      http://host/users/:ownerId/: {
-        display_name: "Owner's name",
-        permissions: {
-          manage_members: true,
+    "element": "shoji:catalog",
+    "self": "https://beta.crunch.io/api/teams/d07edb/members/",
+    "description": "Catalog of users that belong to this team",
+    "index": {
+        "https://beta.crunch.io/api/users/47193a/": {
+            "name": "B. A. Baracus",
+            "permissions": {
+                "manage_members": true
+            }
+        },
+        "https://beta.crunch.io/api/users/41c69d/": {
+            "name": "Hannibal",
+            "permissions": {
+                "manage_members": true
+            }
+        },
+        "https://beta.crunch.io/api/users/e3211a/": {
+            "name": "Howling Mad Murdock",
+            "permissions": {
+                "manage_members": false
+            }
+        },
+        "https://beta.crunch.io/api/users/89eb3a/": {
+            "name": "templeton.peck@army.gov",
+            "permissions": {
+                "manage_members": false
+            }
         }
-      },
-      http://host/users/:userId1/: {
-        display_name: "User one",
-        permissions: {
-          manage_members: false
-        }
-      },
-      http://host/users/:userId2/: {
-        display_name: "User two",
-        permissions: {
-          manage_members: false
-        }
-      }
-  }
+    }
 }
+```
 
 ##### Removing members
 
 To remove members, same as with other Shoji catalogs, it is needed to PATCH the catalog with the tuple set to `null`:
-PATCH /teams/{team_id}/members/
+
+
+```http
+PATCH /teams/d07edb/members/ HTTP/1.1
+Host: beta.crunch.io
+Content-Type: application/json
+```json
 {
-  element: "shoji:catalog",
-  index: {
-      http://host/users/:userId2/: null
-  }
+    "element": "shoji:catalog",
+    "index": {
+        "https://beta.crunch.io/api/users/e3211a/": null
+    }
 }
-And userId2 will not be a member of the team anymore
-GET /teams/{team_id}/members/
+--------
+204 No Content
+```
+
+
+```http
+GET /teams/d07edb/members/ HTTP/1.1
+Host: beta.crunch.io
+--------
+200 OK
+Content-Type: application/json
+```
+```json
 {
-  element: "shoji:catalog",
-  index: {
-      http://host/users/:ownerId/: {
-        display_name: "Owner's name",
-        permissions: {
-          manage_members: true,
+    "element": "shoji:catalog",
+    "self": "https://beta.crunch.io/api/teams/d07edb/members/",
+    "description": "Catalog of users that belong to this team",
+    "index": {
+        "https://beta.crunch.io/api/users/47193a/": {
+            "name": "B. A. Baracus",
+            "permissions": {
+                "manage_members": true
+            }
+        },
+        "https://beta.crunch.io/api/users/41c69d/": {
+            "name": "Hannibal",
+            "permissions": {
+                "manage_members": true
+            }
+        },
+        "https://beta.crunch.io/api/users/89eb3a/": {
+            "name": "templeton.peck@army.gov",
+            "permissions": {
+                "manage_members": false
+            }
         }
-      },
-      http://host/users/:userId1/: {
-        display_name: "User one",
-        permissions: {
-          manage_members: false
-        }
-      }
-  }
+    }
 }
+```
 
 ### Team datasets catalog
 
 `/teams/{team_id}/datasets/`
 
+The team datasets catalog only supports the GET verb. To add a dataset to a team, you must PATCH its [permissions catalog](#permissions). 
+
 #### GET
 
-Managing teams' datasets
-The way of linking teams and datasets is by sharing the dataset with the team you want. The mechanics are exactly the same as to share a dataset with users, but with the difference that you will be sending in a team's URL instead of a user's url.
-Another difference is that teams cannot have `edit` permissions assigned.
-Add a dataset to a team
-PATCH to the dataset's permissions catalog with the needed permissions.
-PATCH /dataset/:datasetId/permissions/
-{
-  element: "shoji:catalog",
-  index: {
-    "http://host/teams/{team_id}/": {
-      "dataset_permissions": {
-        view: true,
-      }
-    }
-  }
-}
-Remove a dataset from a team
-Similarly, to remove a dataset from a team, the steps are the same as to unshare the team from the dataset. A PATCH is required with `null` as the tuple's value
-PATCH /dataset/:datasetId/permissions/
-{
-  element: "shoji:catalog",
-  index: {
-    "http://host/teams/{team_id}/": null
-  }
-}
-Coalesced access
-When a team is granted access to a dataset, all the users in that team have the specified access on such dataset. If a user has access to a dataset from different sources, be it by multiple teams or by direct sharing, the final permissions will be the max of all the permissions granted.
-The access you have on the dataset will be using those coalesced permissions.
-Your final permissions for each dataset will be available on the dataset catalog under the `permission` key, it will always contain the values for all permissions.
-GET /datasets/
-{
-  element: "shoji:catalog",
-  index: {
-    "http://host/datasets/:dsId/": {
-      name: "my dataset",
-      description:  <str>,
-      id: <uuid>, 
-      archived: <bool>,
-      owner_id: <url>,
-      owner_display_name: <str>,
-      permissions: {
-        view: <bool>,
-        add_users: <bool>,
-        change_permissions: <bool>,
-        edit: <bool>,
-        change_weight: <bool>,
-      },
-    }
-  }
-}
+GET returns a Shoji Catalog of datasets that have been shared with this team. This is a subset of the datasets in `/datasets/`. See [datasets](#datasets) for details.
