@@ -265,10 +265,8 @@ The token used by the API is a [Bearer token](https://tools.ietf.org/html/rfc675
 required to create an authorisation token at this time.
 
 The token expires after 1 month of inactivity. After that point you will need to create a new token. If the token makes
-any API requests within that period then it will not expire until it is revoked by the owner.
-
-There is a limit on the number of personal access tokens you can create. You should only create them as needed, and
-revoke them when they are no longer in use.
+any API requests within that period then it will not expire until it is revoked by the owner. 
+(A token revoking API endpoint is in development at the moment.)
 
 ## Request Authorisation Token
 
