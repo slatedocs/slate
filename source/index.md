@@ -500,8 +500,7 @@ Numbered lists are created using the GFM markdown code to the right.  You can cr
 
 <aside class="notice"> Notice that the order of the numbers do not make a difference.  It is just that a number is used that makes an ordered list. </aside>
 
-<aside class="notice"> Note that by indenting by two characters, you are creating an indented list and the numbering restarts and when you go back, the
-numbering resumes.</aside>
+<aside class="notice"> Note that by indenting by two characters, you are creating an indented list and the numbering restarts and when you go back, the numbering resumes.</aside>
 
 ## Creating Bulleted Lists
 
@@ -535,17 +534,19 @@ to the right will create the list below:
 
 ## Creating Special Notes and Warnings
 
-> GFM for creating Notes and Warnings
+> Sample for creating Notes and Warnings
 
-```html
+```markdown
+
 <aside class="notice"> This is a sample note. </aside>
     
 <aside class="warning"> This is a sample warning.</aside>
 
 <aside class="success"> This is a sample hint.</aside>
+
 ```
 
-You can add little highlighted warnings and notes with just a little HTML embedded in your markdown document.  To the right, are three different examples of highlights using markdown.  Below you will see how each of the three examples will manifest themselves in the final document.
+You can add warnings and notes with just a little HTML embedded in your markdown document.  To the right, are three different examples of highlights using html.  Below you will see how each of the three examples will manifest themselves in the final document.
 
 <aside class="notice"> This is a sample note. </aside>
     
@@ -553,7 +554,7 @@ You can add little highlighted warnings and notes with just a little HTML embedd
 
 <aside class="success"> This is a sample hint.</aside>
 
-Use `class="notice"` for blue notes, `class="warning"` for red warnings, and `class="success"` for green notes.
+Use the `class="notice"` for blue notes, `class="warning"` for red warnings, and `class="success"` for green notes.
 
 # Sample Code
 

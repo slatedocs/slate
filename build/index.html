@@ -617,355 +617,362 @@ Row 2 col 1 | Row 2 col 2 | Row 2 col 3
 
 <aside class="notice"> Notice that the order of the numbers do not make a difference.  It is just that a number is used that makes an ordered list. </aside>
 
-<aside class="notice"> Note that by indenting by two characters, you are creating an indented list and the numbering restarts and when you go back, the
-numbering resumes.</aside>
+<aside class="notice"> Note that by indenting by two characters, you are creating an indented list and the numbering restarts and when you go back, the numbering resumes.</aside>
 
-## Creating Bulleted Lists
+<h2 id="creating-bulleted-lists">Creating Bulleted Lists</h2>
 
-> GFM for created bullet lists
+<blockquote>
+<p>GFM for created bullet lists</p>
+</blockquote>
+<pre class="highlight markdown"><code><span class="p">-</span> This
+<span class="p">+</span> Is
+<span class="p">  *</span> nested
+<span class="p">  -</span> bullet
+<span class="p">*</span> A
+<span class="p">*</span> Bullet
+<span class="p">*</span> List
+</code></pre>
 
-&ldquo;`markdown
-- This
-+ Is
-  * nested
-  - bullet
-* A
-* Bullet
-* List
-&rdquo;`
+<p>Numbered lists are created using the GFM markdown code to the right.  you can create nested lists, but the bullets are indented by two spaces.  The sample code
+to the right will create the list below:</p>
 
-Numbered lists are created using the GFM markdown code to the right.  you can create nested lists, but the bullets are indented by two spaces.  The sample code
-to the right will create the list below:
+<ul>
+<li>This</li>
+<li>Is</li>
+<li>A
 
-- This
-+ Is
-* A
-  * nested
-  - bullet
-* Bullet
-* List
-
+<ul>
+<li>nested</li>
+<li>bullet</li>
+</ul></li>
+<li>Bullet</li>
+<li>List</li>
+</ul>
 
 <aside class="notice"> Notice that bullet lists can be created using a -, a +, or an \*. </aside>
 
 <aside class="notice"> Note that by indenting by two characters, you are creating an indented list.</aside>
 
-## Creating Special Notes and Warnings
+<h2 id="creating-special-notes-and-warnings">Creating Special Notes and Warnings</h2>
 
-> GFM for creating Notes and Warnings
+<blockquote>
+<p>Sample for creating Notes and Warnings</p>
+</blockquote>
+<pre class="highlight markdown"><code>
+<span class="nt">&lt;aside</span> <span class="na">class=</span><span class="s">"notice"</span><span class="nt">&gt;</span> This is a sample note. <span class="nt">&lt;/aside&gt;</span>
 
-&ldquo;`html
+<span class="nt">&lt;aside</span> <span class="na">class=</span><span class="s">"warning"</span><span class="nt">&gt;</span> This is a sample warning.<span class="nt">&lt;/aside&gt;</span>
+
+<span class="nt">&lt;aside</span> <span class="na">class=</span><span class="s">"success"</span><span class="nt">&gt;</span> This is a sample hint.<span class="nt">&lt;/aside&gt;</span>
+
+</code></pre>
+
+<p>You can add warnings and notes with just a little HTML embedded in your markdown document.  To the right, are three different examples of highlights using html.  Below you will see how each of the three examples will manifest themselves in the final document.</p>
+
 <aside class="notice"> This is a sample note. </aside>
     
+
 <aside class="warning"> This is a sample warning.</aside>
 
 <aside class="success"> This is a sample hint.</aside>
-&rdquo;`
 
-You can add little highlighted warnings and notes with just a little HTML embedded in your markdown document.  To the right, are three different examples of highlights using markdown.  Below you will see how each of the three examples will manifest themselves in the final document.
+<p>Use the <code class="prettyprint">class=&quot;notice&quot;</code> for blue notes, <code class="prettyprint">class=&quot;warning&quot;</code> for red warnings, and <code class="prettyprint">class=&quot;success&quot;</code> for green notes.</p>
 
-<aside class="notice"> This is a sample note. </aside>
-    
-<aside class="warning"> This is a sample warning.</aside>
+<h1 id="sample-code">Sample Code</h1>
 
-<aside class="success"> This is a sample hint.</aside>
-
-Use `class=&ldquo;notice&rdquo;` for blue notes, `class=&ldquo;warning&rdquo;` for red warnings, and `class=&ldquo;success&rdquo;` for green notes.
-
-# Sample Code
-
-> Sample GFM to Denote Sample Code
-
-&ldquo;`markdown
-    &rdquo;`python
+<blockquote>
+<p>Sample GFM to Denote Sample Code</p>
+</blockquote>
+<pre class="highlight markdown"><code>    <span class="sb">```</span>python
     // this is some python code
-    &ldquo;`
-    &rdquo;`ruby
+    <span class="p">```</span>
+    <span class="p">```</span>ruby
     # this is some ruby code
-    &ldquo;`
-&rdquo;`
+    <span class="sb">```</span>
+</code></pre>
 
-Code samples are an important way of communicating how to use an API.  DevNet Slate does an excellent job of handling code samples in multiple languages simultaneously through the use of the tabbed sample code panel on the right hand side.
+<p>Code samples are an important way of communicating how to use an API.  DevNet Slate does an excellent job of handling code samples in multiple languages simultaneously through the use of the tabbed sample code panel on the right hand side.</p>
 
-## Inserting Large Code Samples
+<h2 id="inserting-large-code-samples">Inserting Large Code Samples</h2>
 
-> Large Python Program
-
-&ldquo;`python
-
-import collections
-import itertools
-import re
-import sys
-import warnings
-from bs4.dammit import EntitySubstitution
-try:
-    next
-except NameError:
-    from bs4._compatibility import next_function as next
-
-
-DEFAULT_OUTPUT_ENCODING = &quot;utf-8&rdquo;
-PY3K = (sys.version_info[0] > 2)
-
-whitespace_re = re.compile(&ldquo;\s+&rdquo;)
-
-def _alias(attr):
-    &ldquo;&rdquo;&ldquo;Alias one attribute name to another for backward compatibility&rdquo;&ldquo;&rdquo;
-    def _get_alias(self):
-        return getattr(self, attr)
-
-    def _set_alias(self):
-        return setattr(self, attr)
-
-    alias = property(_get_alias, _set_alias)
-    return alias
+<blockquote>
+<p>Large Python Program</p>
+</blockquote>
+<pre class="highlight python"><code>
+<span class="kn">import</span> <span class="nn">collections</span>
+<span class="kn">import</span> <span class="nn">itertools</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="kn">from</span> <span class="nn">bs4.dammit</span> <span class="kn">import</span> <span class="n">EntitySubstitution</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="nb">next</span>
+<span class="k">except</span> <span class="nb">NameError</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">bs4._compatibility</span> <span class="kn">import</span> <span class="n">next_function</span> <span class="k">as</span> <span class="nb">next</span>
 
 
-class NamespacedAttribute(unicode):
+<span class="n">DEFAULT_OUTPUT_ENCODING</span> <span class="o">=</span> <span class="s">"utf-8"</span>
+<span class="n">PY3K</span> <span class="o">=</span> <span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">version_info</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">)</span>
 
-    def __new__(cls, prefix, name, namespace=None):
-        if name is None:
-            obj = unicode.__new__(cls, prefix)
-        else:
-            obj = unicode.__new__(cls, prefix + &ldquo;:&rdquo; + name)
-        obj.prefix = prefix
-        obj.name = name
-        obj.namespace = namespace
-        return obj
+<span class="n">whitespace_re</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="nb">compile</span><span class="p">(</span><span class="s">"</span><span class="err">\</span><span class="s">s+"</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">_alias</span><span class="p">(</span><span class="n">attr</span><span class="p">):</span>
+    <span class="s">"""Alias one attribute name to another for backward compatibility"""</span>
+    <span class="k">def</span> <span class="nf">_get_alias</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_set_alias</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">)</span>
+
+    <span class="n">alias</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">_get_alias</span><span class="p">,</span> <span class="n">_set_alias</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">alias</span>
 
 
-class PageElement(object):
-    &ldquo;&rdquo;&ldquo;Contains the navigational information for some part of the page
-    (either a tag or a piece of text)&rdquo;&ldquo;&rdquo;
+<span class="k">class</span> <span class="nc">NamespacedAttribute</span><span class="p">(</span><span class="nb">unicode</span><span class="p">):</span>
 
-    # There are five possible values for the &ldquo;formatter&rdquo; argument passed in
-    # to methods like encode() and prettify():
-    #
-    # &ldquo;html&rdquo; - All Unicode characters with corresponding HTML entities
-    #   are converted to those entities on output.
-    # &ldquo;minimal&rdquo; - Bare ampersands and angle brackets are converted to
-    #   XML entities: &amp; &lt; &gt;
-    # None - The null formatter. Unicode characters are never
-    #   converted to entities.  This is not recommended, but it&rsquo;s
-    #   faster than &ldquo;minimal&rdquo;.
-    # A function - This function will be called on every string that
-    #  needs to undergo entity substition
-    FORMATTERS = {
-        &ldquo;html&rdquo; : EntitySubstitution.substitute_html,
-        &ldquo;minimal&rdquo; : EntitySubstitution.substitute_xml,
-        None : None
-        }
+    <span class="k">def</span> <span class="nf">__new__</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">prefix</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">namespace</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">name</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">obj</span> <span class="o">=</span> <span class="nb">unicode</span><span class="o">.</span><span class="n">__new__</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">prefix</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">obj</span> <span class="o">=</span> <span class="nb">unicode</span><span class="o">.</span><span class="n">__new__</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">prefix</span> <span class="o">+</span> <span class="s">":"</span> <span class="o">+</span> <span class="n">name</span><span class="p">)</span>
+        <span class="n">obj</span><span class="o">.</span><span class="n">prefix</span> <span class="o">=</span> <span class="n">prefix</span>
+        <span class="n">obj</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="n">obj</span><span class="o">.</span><span class="n">namespace</span> <span class="o">=</span> <span class="n">namespace</span>
+        <span class="k">return</span> <span class="n">obj</span>
 
-    def setup(self, parent=None, previous_element=None):
-        &ldquo;&rdquo;&ldquo;Sets up the initial relations between this element and
-        other elements.&rdquo;&ldquo;&rdquo;
-        self.parent = parent
-        self.previous_element = previous_element
-        self.next_element = None
-        self.previous_sibling = None
-        self.next_sibling = None
-        if self.parent is not None and self.parent.contents:
-            self.previous_sibling = self.parent.contents[-1]
-            self.previous_sibling.next_sibling = self
 
-    nextSibling = _alias(&ldquo;next_sibling&rdquo;)  # BS3
-    previousSibling = _alias(&ldquo;previous_sibling&rdquo;)  # BS3
+<span class="k">class</span> <span class="nc">PageElement</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="s">"""Contains the navigational information for some part of the page
+    (either a tag or a piece of text)"""</span>
 
-    def replace_with(self, replace_with):
-        if replace_with is self:
-            return
-        if replace_with is self.parent:
-            raise ValueError(&ldquo;Cannot replace a Tag with its parent.&rdquo;)
-        old_parent = self.parent
-        my_index = self.parent.index(self)
-        if (hasattr(replace_with, &lsquo;parent&rsquo;)
-            and replace_with.parent is self.parent):
-            # We&rsquo;re replacing this element with one of its siblings.
-            if self.parent.index(replace_with) < my_index:
-                # Furthermore, it comes before this element. That
-                # means that when we extract it, the index of this
-                # element will change.
-                my_index -= 1
-        self.extract()
-        old_parent.insert(my_index, replace_with)
-        return self
-    replaceWith = replace_with  # BS3
+    <span class="c"># There are five possible values for the "formatter" argument passed in</span>
+    <span class="c"># to methods like encode() and prettify():</span>
+    <span class="c">#</span>
+    <span class="c"># "html" - All Unicode characters with corresponding HTML entities</span>
+    <span class="c">#   are converted to those entities on output.</span>
+    <span class="c"># "minimal" - Bare ampersands and angle brackets are converted to</span>
+    <span class="c">#   XML entities: &amp;amp; &amp;lt; &amp;gt;</span>
+    <span class="c"># None - The null formatter. Unicode characters are never</span>
+    <span class="c">#   converted to entities.  This is not recommended, but it's</span>
+    <span class="c">#   faster than "minimal".</span>
+    <span class="c"># A function - This function will be called on every string that</span>
+    <span class="c">#  needs to undergo entity substition</span>
+    <span class="n">FORMATTERS</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s">"html"</span> <span class="p">:</span> <span class="n">EntitySubstitution</span><span class="o">.</span><span class="n">substitute_html</span><span class="p">,</span>
+        <span class="s">"minimal"</span> <span class="p">:</span> <span class="n">EntitySubstitution</span><span class="o">.</span><span class="n">substitute_xml</span><span class="p">,</span>
+        <span class="bp">None</span> <span class="p">:</span> <span class="bp">None</span>
+        <span class="p">}</span>
 
-    def replace_with_children(self):
-        my_parent = self.parent
-        my_index = self.parent.index(self)
-        self.extract()
-        for child in reversed(self.contents[:]):
-            my_parent.insert(my_index, child)
-        return self
-    replaceWithChildren = replace_with_children  # BS3
+    <span class="k">def</span> <span class="nf">setup</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">previous_element</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="s">"""Sets up the initial relations between this element and
+        other elements."""</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">parent</span> <span class="o">=</span> <span class="n">parent</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">previous_element</span> <span class="o">=</span> <span class="n">previous_element</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">next_element</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">previous_sibling</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">next_sibling</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">contents</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">previous_sibling</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">contents</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">previous_sibling</span><span class="o">.</span><span class="n">next_sibling</span> <span class="o">=</span> <span class="bp">self</span>
 
-    def extract(self):
-        """Destructively rips this element out of the tree."""
-        if self.parent is not None:
-            del self.parent.contents[self.parent.index(self)]
+    <span class="n">nextSibling</span> <span class="o">=</span> <span class="n">_alias</span><span class="p">(</span><span class="s">"next_sibling"</span><span class="p">)</span>  <span class="c"># BS3</span>
+    <span class="n">previousSibling</span> <span class="o">=</span> <span class="n">_alias</span><span class="p">(</span><span class="s">"previous_sibling"</span><span class="p">)</span>  <span class="c"># BS3</span>
 
-        #Find the two elements that would be next to each other if
-        #this element (and any children) hadn't been parsed. Connect
-        #the two.
-        last_child = self._last_descendant()
-        next_element = last_child.next_element
+    <span class="k">def</span> <span class="nf">replace_with</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">replace_with</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">replace_with</span> <span class="ow">is</span> <span class="bp">self</span><span class="p">:</span>
+            <span class="k">return</span>
+        <span class="k">if</span> <span class="n">replace_with</span> <span class="ow">is</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="nb">ValueError</span><span class="p">(</span><span class="s">"Cannot replace a Tag with its parent."</span><span class="p">)</span>
+        <span class="n">old_parent</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span>
+        <span class="n">my_index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nb">hasattr</span><span class="p">(</span><span class="n">replace_with</span><span class="p">,</span> <span class="s">'parent'</span><span class="p">)</span>
+            <span class="ow">and</span> <span class="n">replace_with</span><span class="o">.</span><span class="n">parent</span> <span class="ow">is</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="p">):</span>
+            <span class="c"># We're replacing this element with one of its siblings.</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">replace_with</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">my_index</span><span class="p">:</span>
+                <span class="c"># Furthermore, it comes before this element. That</span>
+                <span class="c"># means that when we extract it, the index of this</span>
+                <span class="c"># element will change.</span>
+                <span class="n">my_index</span> <span class="o">-=</span> <span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">extract</span><span class="p">()</span>
+        <span class="n">old_parent</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">my_index</span><span class="p">,</span> <span class="n">replace_with</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span>
+    <span class="n">replaceWith</span> <span class="o">=</span> <span class="n">replace_with</span>  <span class="c"># BS3</span>
 
-        if self.previous_element is not None:
-            self.previous_element.next_element = next_element
-        if next_element is not None:
-            next_element.previous_element = self.previous_element
-        self.previous_element = None
-        last_child.next_element = None
+    <span class="k">def</span> <span class="nf">replace_with_children</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">my_parent</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span>
+        <span class="n">my_index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">extract</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="nb">reversed</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">contents</span><span class="p">[:]):</span>
+            <span class="n">my_parent</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">my_index</span><span class="p">,</span> <span class="n">child</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span>
+    <span class="n">replaceWithChildren</span> <span class="o">=</span> <span class="n">replace_with_children</span>  <span class="c"># BS3</span>
 
-        self.parent = None
-        if self.previous_sibling is not None:
-            self.previous_sibling.next_sibling = self.next_sibling
-        if self.next_sibling is not None:
-            self.next_sibling.previous_sibling = self.previous_sibling
-        self.previous_sibling = self.next_sibling = None
-        return self
+    <span class="k">def</span> <span class="nf">extract</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="s">"""Destructively rips this element out of the tree."""</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">contents</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="bp">self</span><span class="p">)]</span>
 
-    def _last_descendant(self):
-        "Finds the last element beneath this object to be parsed."
-        last_child = self
-        while hasattr(last_child, 'contents') and last_child.contents:
-            last_child = last_child.contents[-1]
-        return last_child
-    # BS3: Not part of the API!
-    _lastRecursiveChild = _last_descendant
+        <span class="c">#Find the two elements that would be next to each other if</span>
+        <span class="c">#this element (and any children) hadn't been parsed. Connect</span>
+        <span class="c">#the two.</span>
+        <span class="n">last_child</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_last_descendant</span><span class="p">()</span>
+        <span class="n">next_element</span> <span class="o">=</span> <span class="n">last_child</span><span class="o">.</span><span class="n">next_element</span>
 
-    def insert(self, position, new_child):
-        if new_child is self:
-            raise ValueError("Cannot insert a tag into itself.")
-        if (isinstance(new_child, basestring)
-            and not isinstance(new_child, NavigableString)):
-            new_child = NavigableString(new_child)
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">previous_element</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">previous_element</span><span class="o">.</span><span class="n">next_element</span> <span class="o">=</span> <span class="n">next_element</span>
+        <span class="k">if</span> <span class="n">next_element</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">next_element</span><span class="o">.</span><span class="n">previous_element</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">previous_element</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">previous_element</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="n">last_child</span><span class="o">.</span><span class="n">next_element</span> <span class="o">=</span> <span class="bp">None</span>
 
-        position = min(position, len(self.contents))
-        if hasattr(new_child, 'parent') and new_child.parent is not None:
-            # We're 'inserting' an element that's already one
-            # of this object's children.
-            if new_child.parent is self:
-                if self.index(new_child) > position:
-                    # Furthermore we&rsquo;re moving it further down the
-                    # list of this object&rsquo;s children. That means that
-                    # when we extract this element, our target index
-                    # will jump down one.
-                    position -= 1
-            new_child.extract()
+        <span class="bp">self</span><span class="o">.</span><span class="n">parent</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">previous_sibling</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">previous_sibling</span><span class="o">.</span><span class="n">next_sibling</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">next_sibling</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">next_sibling</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">next_sibling</span><span class="o">.</span><span class="n">previous_sibling</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">previous_sibling</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">previous_sibling</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">next_sibling</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="k">return</span> <span class="bp">self</span>
 
-        new_child.parent = self
-        previous_child = None
-        if position == 0:
-            new_child.previous_sibling = None
-            new_child.previous_element = self
-        else:
-            previous_child = self.contents[position - 1]
-            new_child.previous_sibling = previous_child
-            new_child.previous_sibling.next_sibling = new_child
-            new_child.previous_element = previous_child._last_descendant()
-        if new_child.previous_element is not None:
-            new_child.previous_element.next_element = new_child
+    <span class="k">def</span> <span class="nf">_last_descendant</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="s">"Finds the last element beneath this object to be parsed."</span>
+        <span class="n">last_child</span> <span class="o">=</span> <span class="bp">self</span>
+        <span class="k">while</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">last_child</span><span class="p">,</span> <span class="s">'contents'</span><span class="p">)</span> <span class="ow">and</span> <span class="n">last_child</span><span class="o">.</span><span class="n">contents</span><span class="p">:</span>
+            <span class="n">last_child</span> <span class="o">=</span> <span class="n">last_child</span><span class="o">.</span><span class="n">contents</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">last_child</span>
+    <span class="c"># BS3: Not part of the API!</span>
+    <span class="n">_lastRecursiveChild</span> <span class="o">=</span> <span class="n">_last_descendant</span>
 
-        new_childs_last_element = new_child._last_descendant()
+    <span class="k">def</span> <span class="nf">insert</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">position</span><span class="p">,</span> <span class="n">new_child</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">new_child</span> <span class="ow">is</span> <span class="bp">self</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="nb">ValueError</span><span class="p">(</span><span class="s">"Cannot insert a tag into itself."</span><span class="p">)</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">new_child</span><span class="p">,</span> <span class="nb">basestring</span><span class="p">)</span>
+            <span class="ow">and</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">new_child</span><span class="p">,</span> <span class="n">NavigableString</span><span class="p">)):</span>
+            <span class="n">new_child</span> <span class="o">=</span> <span class="n">NavigableString</span><span class="p">(</span><span class="n">new_child</span><span class="p">)</span>
 
-        if position >= len(self.contents):
-            new_child.next_sibling = None
+        <span class="n">position</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">position</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">contents</span><span class="p">))</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">new_child</span><span class="p">,</span> <span class="s">'parent'</span><span class="p">)</span> <span class="ow">and</span> <span class="n">new_child</span><span class="o">.</span><span class="n">parent</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="c"># We're 'inserting' an element that's already one</span>
+            <span class="c"># of this object's children.</span>
+            <span class="k">if</span> <span class="n">new_child</span><span class="o">.</span><span class="n">parent</span> <span class="ow">is</span> <span class="bp">self</span><span class="p">:</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">new_child</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">position</span><span class="p">:</span>
+                    <span class="c"># Furthermore we're moving it further down the</span>
+                    <span class="c"># list of this object's children. That means that</span>
+                    <span class="c"># when we extract this element, our target index</span>
+                    <span class="c"># will jump down one.</span>
+                    <span class="n">position</span> <span class="o">-=</span> <span class="mi">1</span>
+            <span class="n">new_child</span><span class="o">.</span><span class="n">extract</span><span class="p">()</span>
 
-            parent = self
-            parents_next_sibling = None
-            while parents_next_sibling is None and parent is not None:
-                parents_next_sibling = parent.next_sibling
-                parent = parent.parent
-                if parents_next_sibling is not None:
-                    # We found the element that comes next in the document.
-                    break
-            if parents_next_sibling is not None:
-                new_childs_last_element.next_element = parents_next_sibling
-            else:
-                # The last element of this tag is the last element in
-                # the document.
-                new_childs_last_element.next_element = None
-        else:
-            next_child = self.contents[position]
-            new_child.next_sibling = next_child
-            if new_child.next_sibling is not None:
-                new_child.next_sibling.previous_sibling = new_child
-            new_childs_last_element.next_element = next_child
+        <span class="n">new_child</span><span class="o">.</span><span class="n">parent</span> <span class="o">=</span> <span class="bp">self</span>
+        <span class="n">previous_child</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="k">if</span> <span class="n">position</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">new_child</span><span class="o">.</span><span class="n">previous_sibling</span> <span class="o">=</span> <span class="bp">None</span>
+            <span class="n">new_child</span><span class="o">.</span><span class="n">previous_element</span> <span class="o">=</span> <span class="bp">self</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">previous_child</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">contents</span><span class="p">[</span><span class="n">position</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
+            <span class="n">new_child</span><span class="o">.</span><span class="n">previous_sibling</span> <span class="o">=</span> <span class="n">previous_child</span>
+            <span class="n">new_child</span><span class="o">.</span><span class="n">previous_sibling</span><span class="o">.</span><span class="n">next_sibling</span> <span class="o">=</span> <span class="n">new_child</span>
+            <span class="n">new_child</span><span class="o">.</span><span class="n">previous_element</span> <span class="o">=</span> <span class="n">previous_child</span><span class="o">.</span><span class="n">_last_descendant</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">new_child</span><span class="o">.</span><span class="n">previous_element</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">new_child</span><span class="o">.</span><span class="n">previous_element</span><span class="o">.</span><span class="n">next_element</span> <span class="o">=</span> <span class="n">new_child</span>
 
-        if new_childs_last_element.next_element is not None:
-            new_childs_last_element.next_element.previous_element = new_childs_last_element
-        self.contents.insert(position, new_child)
+        <span class="n">new_childs_last_element</span> <span class="o">=</span> <span class="n">new_child</span><span class="o">.</span><span class="n">_last_descendant</span><span class="p">()</span>
 
-    def append(self, tag):
-        &ldquo;&rdquo;&ldquo;Appends the given tag to the contents of this tag.&rdquo;&ldquo;&rdquo;
-        self.insert(len(self.contents), tag)
+        <span class="k">if</span> <span class="n">position</span> <span class="o">&gt;=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">contents</span><span class="p">):</span>
+            <span class="n">new_child</span><span class="o">.</span><span class="n">next_sibling</span> <span class="o">=</span> <span class="bp">None</span>
 
-    def insert_before(self, predecessor):
-        &ldquo;&rdquo;&ldquo;Makes the given element the immediate predecessor of this one.
+            <span class="n">parent</span> <span class="o">=</span> <span class="bp">self</span>
+            <span class="n">parents_next_sibling</span> <span class="o">=</span> <span class="bp">None</span>
+            <span class="k">while</span> <span class="n">parents_next_sibling</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="n">parent</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="n">parents_next_sibling</span> <span class="o">=</span> <span class="n">parent</span><span class="o">.</span><span class="n">next_sibling</span>
+                <span class="n">parent</span> <span class="o">=</span> <span class="n">parent</span><span class="o">.</span><span class="n">parent</span>
+                <span class="k">if</span> <span class="n">parents_next_sibling</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+                    <span class="c"># We found the element that comes next in the document.</span>
+                    <span class="k">break</span>
+            <span class="k">if</span> <span class="n">parents_next_sibling</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="n">new_childs_last_element</span><span class="o">.</span><span class="n">next_element</span> <span class="o">=</span> <span class="n">parents_next_sibling</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c"># The last element of this tag is the last element in</span>
+                <span class="c"># the document.</span>
+                <span class="n">new_childs_last_element</span><span class="o">.</span><span class="n">next_element</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">next_child</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">contents</span><span class="p">[</span><span class="n">position</span><span class="p">]</span>
+            <span class="n">new_child</span><span class="o">.</span><span class="n">next_sibling</span> <span class="o">=</span> <span class="n">next_child</span>
+            <span class="k">if</span> <span class="n">new_child</span><span class="o">.</span><span class="n">next_sibling</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="n">new_child</span><span class="o">.</span><span class="n">next_sibling</span><span class="o">.</span><span class="n">previous_sibling</span> <span class="o">=</span> <span class="n">new_child</span>
+            <span class="n">new_childs_last_element</span><span class="o">.</span><span class="n">next_element</span> <span class="o">=</span> <span class="n">next_child</span>
+
+        <span class="k">if</span> <span class="n">new_childs_last_element</span><span class="o">.</span><span class="n">next_element</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">new_childs_last_element</span><span class="o">.</span><span class="n">next_element</span><span class="o">.</span><span class="n">previous_element</span> <span class="o">=</span> <span class="n">new_childs_last_element</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">contents</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">position</span><span class="p">,</span> <span class="n">new_child</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">append</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tag</span><span class="p">):</span>
+        <span class="s">"""Appends the given tag to the contents of this tag."""</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">contents</span><span class="p">),</span> <span class="n">tag</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">insert_before</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">predecessor</span><span class="p">):</span>
+        <span class="s">"""Makes the given element the immediate predecessor of this one.
 
         The two elements will have the same parent, and the given element
         will be immediately before this one.
-        &rdquo;&ldquo;&rdquo;
-        if self is predecessor:
-            raise ValueError(&ldquo;Can&rsquo;t insert an element before itself.&rdquo;)
-        parent = self.parent
-        if parent is None:
-            raise ValueError(
-                &ldquo;Element has no parent, so 'before&rsquo; has no meaning.&rdquo;)
-        # Extract first so that the index won&rsquo;t be screwed up if they
-        # are siblings.
-        if isinstance(predecessor, PageElement):
-            predecessor.extract()
-        index = parent.index(self)
-        parent.insert(index, predecessor)
+        """</span>
+        <span class="k">if</span> <span class="bp">self</span> <span class="ow">is</span> <span class="n">predecessor</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="nb">ValueError</span><span class="p">(</span><span class="s">"Can't insert an element before itself."</span><span class="p">)</span>
+        <span class="n">parent</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span>
+        <span class="k">if</span> <span class="n">parent</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="nb">ValueError</span><span class="p">(</span>
+                <span class="s">"Element has no parent, so 'before' has no meaning."</span><span class="p">)</span>
+        <span class="c"># Extract first so that the index won't be screwed up if they</span>
+        <span class="c"># are siblings.</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">predecessor</span><span class="p">,</span> <span class="n">PageElement</span><span class="p">):</span>
+            <span class="n">predecessor</span><span class="o">.</span><span class="n">extract</span><span class="p">()</span>
+        <span class="n">index</span> <span class="o">=</span> <span class="n">parent</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="n">parent</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">predecessor</span><span class="p">)</span>
 
-    def insert_after(self, successor):
-        &ldquo;&rdquo;&ldquo;Makes the given element the immediate successor of this one.
+    <span class="k">def</span> <span class="nf">insert_after</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">successor</span><span class="p">):</span>
+        <span class="s">"""Makes the given element the immediate successor of this one.
 
         The two elements will have the same parent, and the given element
         will be immediately after this one.
-        &rdquo;&ldquo;&rdquo;
-        if self is successor:
-            raise ValueError(&ldquo;Can&rsquo;t insert an element after itself.&rdquo;)
-        parent = self.parent
-        if parent is None:
-            raise ValueError(
-                &ldquo;Element has no parent, so 'after&rsquo; has no meaning.&rdquo;)
-        # Extract first so that the index won&rsquo;t be screwed up if they
-        # are siblings.
-        if isinstance(successor, PageElement):
-            successor.extract()
-        index = parent.index(self)
-        parent.insert(index+1, successor)
+        """</span>
+        <span class="k">if</span> <span class="bp">self</span> <span class="ow">is</span> <span class="n">successor</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="nb">ValueError</span><span class="p">(</span><span class="s">"Can't insert an element after itself."</span><span class="p">)</span>
+        <span class="n">parent</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span>
+        <span class="k">if</span> <span class="n">parent</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="nb">ValueError</span><span class="p">(</span>
+                <span class="s">"Element has no parent, so 'after' has no meaning."</span><span class="p">)</span>
+        <span class="c"># Extract first so that the index won't be screwed up if they</span>
+        <span class="c"># are siblings.</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">successor</span><span class="p">,</span> <span class="n">PageElement</span><span class="p">):</span>
+            <span class="n">successor</span><span class="o">.</span><span class="n">extract</span><span class="p">()</span>
+        <span class="n">index</span> <span class="o">=</span> <span class="n">parent</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="n">parent</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">index</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">successor</span><span class="p">)</span>
 
 
-&ldquo;`
+</code></pre>
 
-Sometimes you will need to insert a very large block of sample code that might be too wide or extremely deep.  DevNet Slate manages this by automatically creating vertical and horizontal scroll bars such that the sample code is preserved without taking up too much space.  The example to the right is an extremely large python program pulled from the Internet.  There is no wrapping of text, instead, your readers need to use horizontal scrolling to see the full code sample.  Also, it is very long, but a maximum height of 50 cm has been set for the display area.  If your sample code exceeds this, then DevNet Slate will also provide vertical scrolling such that the space is better managed. 
+<p>Sometimes you will need to insert a very large block of sample code that might be too wide or extremely deep.  DevNet Slate manages this by automatically creating vertical and horizontal scroll bars such that the sample code is preserved without taking up too much space.  The example to the right is an extremely large python program pulled from the Internet.  There is no wrapping of text, instead, your readers need to use horizontal scrolling to see the full code sample.  Also, it is very long, but a maximum height of 50 cm has been set for the display area.  If your sample code exceeds this, then DevNet Slate will also provide vertical scrolling such that the space is better managed. </p>
 
-## Inserting a Sample Code into a Particular Tab
+<h2 id="inserting-a-sample-code-into-a-particular-tab">Inserting a Sample Code into a Particular Tab</h2>
 
-You denote a code samples by using three left-single-quote marks followed by the name of the language.  The name of the language is used to place the code sample into the proper tab. Each code samples will appear in the dark area to the right of the main text. Code samples need to appear right under the Level 1 or Level 2 headers in your markdown file to allow them to be anchored properly.
+<p>You denote a code samples by using three left-single-quote marks followed by the name of the language.  The name of the language is used to place the code sample into the proper tab. Each code samples will appear in the dark area to the right of the main text. Code samples need to appear right under the Level 1 or Level 2 headers in your markdown file to allow them to be anchored properly.</p>
 
-The &quot;language tabs&rdquo; are the tabs that appear in the upper right of DevNet Slate Documents. Users browsing the docs use them to select their programming language of choice.
+<p>The &ldquo;language tabs&rdquo; are the tabs that appear in the upper right of DevNet Slate Documents. Users browsing the docs use them to select their programming language of choice.</p>
 
-In the sample GFM code to the right, the Ruby code will appear in the Ruby tab, while the Python code will appear in the Python tab. Because the DevNet Slate engine understands the syntax of most computer programming languages, the sample code will have its language syntax highlighted automatically in a way that would make sense to the developer.
+<p>In the sample GFM code to the right, the Ruby code will appear in the Ruby tab, while the Python code will appear in the Python tab. Because the DevNet Slate engine understands the syntax of most computer programming languages, the sample code will have its language syntax highlighted automatically in a way that would make sense to the developer.</p>
 
-But just because a language is used as sample code within a DevNet Slate document it does not mean that the tab will appear.  You tell the system which Language tabs you want to display by editing the `language-tabs` list at the top of your GFM source document.
+<p>But just because a language is used as sample code within a DevNet Slate document it does not mean that the tab will appear.  You tell the system which Language tabs you want to display by editing the <code class="prettyprint">language-tabs</code> list at the top of your GFM source document.</p>
 
 <aside class="success"> Sometimes it is useful to share code between multiple tabs, you can do this by placing tagging the sample code using a language that is not used as a tab name.  For example if you tag sample code as `all` and `all` is not listed in the `language-tabs` then that sample code will appear in all of the tabs.</aside>
 
-## Creating Code Sample Annotations
+<h2 id="creating-code-sample-annotations">Creating Code Sample Annotations</h2>
 
-> Code Sample Annotations
+<blockquote>
+<p>Code Sample Annotations</p>
+</blockquote>
+<pre class="highlight markdown"><code><span class="gt">&gt; This is a Code Annotation!</span>
+</code></pre>
 
-&ldquo;`markdown
-> This is a Code Annotation!
-&rdquo;`
-It is sometimes useful to highlight or annotate a part of the sample code.  This is done with code annotations.  By placing a > as the first character in your GFM line of text, you will create a code annotation that will appear in the area to the right, next to the code samples.
+<p>It is sometimes useful to highlight or annotate a part of the sample code.  This is done with code annotations.  By placing a &gt; as the first character in your GFM line of text, you will create a code annotation that will appear in the area to the right, next to the code samples.</p>
 
 <aside class="warning"> Make sure that you have a blank line after your Code Annotation.  If you do not, the annotation will continue until there is a blank line.
 </aside>
