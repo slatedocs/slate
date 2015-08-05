@@ -405,7 +405,7 @@ Key                           | Type              | Description
   "id": "e8a12eb4-5492-47bd-82bf-86e6d98bf81a",
   "identifier": "TDV-1",
   "make": "Toyota",
-  "media_id": {},
+  "media": {},
   "model": "Tundra",
   "rev": "fd82de46-2484-49eb-9f5e-44a2844b6c25",
   "serial_number": "0071450261293",
@@ -429,7 +429,7 @@ Key                           | Type              | Description
 `id`                          | String            | The UUID which is used to reference this asset from the other parts of the audit JSON
 `identifier`                  | String            | A way for the user to identify the asset.
 `make`                        | String            | The manufacturer of the asset
-`media_id`                    | Object            | An image or photo of the asset
+`media`                       | Object            | An image or photo of the asset
 `model`                       | String            | The specific model of the asset
 `serial_number`               | String            | Asset S/N
 `time_stamp`                  | String            | Time when the asset was last edited in the corresponding template
