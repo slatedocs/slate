@@ -224,9 +224,9 @@ PUT the `value` with a "groups" view. The value will overwrite the current weigh
 }
 ```
 
-Caveats: It is only possible to submit variables that belong to the main dataset. That is cannot accept variables from joined datasets.
-
-This endpoint will eventually move to using a Shoji Order object instead of the custom "groups" format.
+<aside class="warning">
+It is only possible to submit variables that belong to the main dataset. That is, variables from joined datasets cannot be set as weight.
+</aside>
 
 ### Search
 
@@ -237,16 +237,16 @@ On GET will return a Crunch Order with the variables matching the `token` in the
 ```json
 {
     "element": "shoji:view",
-    "self": "https://beta.crunch.io/api/datasets/06103cf80f26478f8a30856fb64e9a00/variables/search/something/",
+    "self": "https://beta.crunch.io/api/datasets/4e9a00/variables/search/something/",
     "description": "Returns a view with a group containing all the variables that match the given query",
     "value": {
         "groups": [
             {
                 "entities": [
-                    "https://beta.crunch.io/api/datasets/e4d5ac858b5c44579b8eae2beaed7d5b/variables/1e1868dfc4734841a448d238edb66668/",
-                    "https://beta.crunch.io/api/datasets/e4d5ac858b5c44579b8eae2beaed7d5b/variables/8f68ca6382ea453aa333a24975d5644b/",
-                    "https://beta.crunch.io/api/datasets/e4d5ac858b5c44579b8eae2beaed7d5b/variables/f6ae03e459144cb0bc13e64d8ee47a0a/",
-                    "https://beta.crunch.io/api/datasets/e4d5ac858b5c44579b8eae2beaed7d5b/variables/b4bd6a2085e942ee9d886340f10d7cbc/",
+                    "https://beta.crunch.io/api/datasets/4e9a00/variables/b66668/",
+                    "https://beta.crunch.io/api/datasets/4e9a00/variables/8f68ca/",
+                    "https://beta.crunch.io/api/datasets/4e9a00/variables/f6ae03/",
+                    "https://beta.crunch.io/api/datasets/4e9a00/variables/b4bd6a/",
                 ],
                 "group": "Search Results"
             }
@@ -264,6 +264,7 @@ A Shoji Entity which exposes most of the metadata about a Variable in the datase
 #### GET
 
 Members:
+
  * urls: An object with names as keys and their corresponding URL's as values, providing links to related information. Clients should be careful to follow the given links rather than constructing their own, as the construction rules may change.
  * description: A description of what a Variable resource is and how it behaves.
  * specification: A URL to a formal specification for Variable objects.
@@ -338,6 +339,7 @@ For example, given a numeric variable with data [1, 2, 3, 4, 5, 4, {"?": -1}, 3,
 #### numeric
 
 The members include several counts:
+
  * count: The number of entries in the variable.
  * valid_count: The number of entries in the variable which are not missing.
  * missing_count: The number of entries in the variable which are missing.
@@ -352,6 +354,7 @@ as well as basic summary statistics:
 #### categorical
 
 The basic counts are included:
+
  * count: The number of entries in the variable.
  * valid_count: The number of entries in the variable which are not missing.
  * missing_count: The number of entries in the variable which are missing.
@@ -364,6 +367,7 @@ And the typical "frequencies" member is expanded into a custom "categories" memb
 #### text
 
 The basic counts are included:
+
  * count: The number of entries in the variable.
  * valid_count: The number of entries in the variable which are not missing.
  * frequencies: An array of row objects. Each row represents a distinct valid value, and includes it as the "value" member. The number of entries which possess that value is included as the "count" member. The length of the array is limited to 10 entries; if more than 10 distinct values are present in the data, an 11th row is added with a "value" member of "(Others)", summing their counts.

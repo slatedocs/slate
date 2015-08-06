@@ -17,6 +17,7 @@ Alternately, you may POST a urlencoded payload with a `source_url` parameter tha
 `/sources/{id}/`
 
 A Shoji Entity representing a single Source. Its "body" member contains:
+
  * name: A friendly name for the Source.
  * type: a string declaring the media type of the source. One of ("csv", "spss").
  * user_id: the id of the User who created the Source.

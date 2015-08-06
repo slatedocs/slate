@@ -190,7 +190,7 @@ permissions | object | Attributes governing the user's authorization on the team
 
 Supported `permissions`, all boolean, include:
 
-* **manage_members**: Whether the user may add or remove users from the team, as well as modify the permissions of users on the team; i.e., PATCH the member catalog.
+* **manage_members**: Whether the user may add or remove users from the team, as well as modify the permissions of users on the team; i.e., PATCH the member catalog. 
 
 #### PATCH
 
@@ -220,7 +220,9 @@ Content-Type: application/json
                 "manage_members": true
             }
         }
-    }
+    },
+    "send_notification": true,
+    "url_base": ""
 }
 --------
 204 No Content
@@ -270,8 +272,6 @@ Content-Type: application/json
     }
 }
 ```
-
-Notice how it is possible for many members of the team to have the `manage_members` permission enabled simultaneously.
 
 ##### Modify existing members' permissions
 
