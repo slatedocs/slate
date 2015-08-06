@@ -276,6 +276,7 @@ Returns fields for the specified story.
 {
   "id": 1,
   "title": "Example story",
+  "story_type": "Article"
   "published_to_url": "http://example.com",
   "publication":{
     "id": 1,
@@ -340,6 +341,7 @@ Field name | Type | Description
 id | Integer | The unique identifier for the story.
 status | String | The current status of the story.
 title | String | The story title.
+story_type | String | The type of story, such as 'Article' or 'Infographic.''
 content | String (HTML) | The raw HTML of the story.
 url | String | A link to the story on the Contently platform.
 published_to_url | String | The URL where the story is published.
