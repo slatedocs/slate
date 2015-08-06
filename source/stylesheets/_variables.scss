@@ -71,16 +71,16 @@ $phone-width: $tablet-width - $nav-width; // min width before reverting to mobil
 
 @font-face {
     font-family: 'AvenirLTStd';
-    // src: url(https://beta.crunch.io/AvenirLTPro-Heavy.ttf);
-    src: url(../fonts/AvenirLTPro-Heavy.ttf);
+    src: url(https://beta.crunch.io/AvenirLTPro-Heavy.ttf);
+    // src: url(../fonts/AvenirLTPro-Heavy.ttf);
     font-weight: font-weight-heavy;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'AvenirLTStd';
-    // src: url(https://beta.crunch.io/AvenirLTPro-Roman.ttf);
-    src: url(../fonts/AvenirLTPro-Roman.ttf);
+    src: url(https://beta.crunch.io/AvenirLTPro-Roman.ttf);
+    // src: url(../fonts/AvenirLTPro-Roman.ttf);
     font-weight: font-weight-normal;
     font-style: normal;
 }

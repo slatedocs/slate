@@ -180,7 +180,7 @@ The CSV can be sent in one of two ways:
 
 #### Example
 
-LINK
+Here's an example [dataset metadata](examples/dataset.json) and corresponding [csv](examples/dataset.csv).
 
 Several things to note:
 
