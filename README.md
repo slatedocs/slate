@@ -1,3 +1,7 @@
+# Crunch.io API docs
+
+a fork of, and indebted to the framework provided by:
+
 Slate
 ========
 
