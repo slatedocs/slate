@@ -21,6 +21,14 @@ Net::HTTP.start(uri.host, uri.port,
   puts response.body
 end
 ```
+
+```c#
+var apiKey = "geezeo-api-key";
+var url = "partner.url";
+var userId = "user_id";
+var sdk = new SDK(apiKey, url, userId);
+var TransactionsResponse = sdk.GetTransactions();
+```
 > Response payload
 
 ```json
@@ -69,6 +77,15 @@ Return a paginated list of all transactions for the given user.
 
 `GET /api/v2/users/:user_id:/transactions`
 
+```c#
+var apiKey = "geezeo-api-key";
+var url = "partner.url";
+var userId = "user_id";
+var sdk = new SDK(apiKey, url, userId);
+var pageNumber = 2;
+var TransactionsResponse = sdk.GetTransactionsByPage(pageNumber);
+```
+
 ### Parameters
 
 | Parameter | Description |
@@ -104,6 +121,15 @@ Net::HTTP.start(uri.host, uri.port,
 
   puts response.body
 end
+```
+
+```c#
+var apiKey = "geezeo-api-key";
+var url = "partner.url";
+var userId = "user_id";
+var sdk = new SDK(apiKey, url, userId);
+var accountId = 12345;
+var TransactionsResponse = sdk.GetTransactionsByAccount(accountId);
 ```
 
 > Response payload
@@ -184,6 +210,15 @@ Net::HTTP.start(uri.host, uri.port,
 end
 ```
 
+```c#
+var apiKey = "geezeo-api-key";
+var url = "partner.url";
+var userId = "user_id";
+var sdk = new SDK(apiKey, url, userId);
+var budgetId = 12345;
+var TransactionsResponse = sdk.GetTransactionsByBudget(budgetId);
+```
+
 > Response payload
 
 ```json
@@ -256,6 +291,22 @@ Net::HTTP.start(uri.host, uri.port,
 
   puts response.body
 end
+```
+
+```c#
+var apiKey = "geezeo-api-key";
+var url = "partner.url";
+var userId = "user_id";
+var sdk = new SDK(apiKey, url, userId);
+var searchCriteria = new TransactionSearchCriteriaModel{
+	Query = "GameStop",
+	Untagged = false,
+	BeginOn = new DateTime(2013, 1, 1),
+	EndOn = new DateTime(2013, 6, 1),
+	AccountIds = new List<int>{12345, 67890},
+	Tags = new List<string>{"Personal", "Transportation"}
+};
+var TransactionsResponse = sdk.SearchTransactions(searchCriteria);
 ```
 
 > Response payload
@@ -347,6 +398,24 @@ end
 
 ```
 
+```c#
+var apiKey = "geezeo-api-key";
+var url = "partner.url";
+var userId = "user_id";
+var sdk = new SDK(apiKey, url, userId);
+var requestModel = new TransactionRequestModel{
+	Transaction = new TransactionModel{
+		Nickname = "Starbucks"
+	},
+	Tagging = new TaggingModel{
+		Type = TaggingType.Regular,
+		Regular = new List<string> {"Coffee"}
+	}
+};
+var transactionId = "85b20186-b367-4feb-8acd-d5378e7b4d94";
+var updated = sdk.UpdateTransaction(transactionId, requestModel);
+```
+
 
 > Request payload single tag
 
@@ -360,6 +429,20 @@ end
     "regular": ["Coffee"]
   }
 }
+```
+
+```c#
+
+var requestModel = new TransactionRequestModel{
+	Transaction = new TransactionModel{
+		Nickname = "Starbucks"
+	},
+	Tagging = new TaggingModel{
+		Type = TaggingType.Regular,
+		Regular = new List<string> {"Coffee"}
+	}
+};
+
 ```
 
 > Request payload split tag
@@ -379,6 +462,32 @@ end
 }
 ```
 
+```c#
+var apiKey = "geezeo-api-key";
+var url = "partner.url";
+var userId = "user_id";
+var sdk = new SDK(apiKey, url, userId);
+var requestModel = new SplitTransactionRequestModel{
+	Transaction = new TransactionModel{
+		Nickname = "Starbucks"
+	},
+	Tagging = new SplitTaggingModel{
+		Type = TaggingType.Split,
+		Split = new List<TagRequest> {
+			new TagRequest{Name = "Entertainment", Value = 3},
+			new TagRequest{Name = "Coffee", Value = 2.50}
+		}
+	}
+};
+var transactionId = "85b20186-b367-4feb-8acd-d5378e7b4d94";
+var updated = sdk.SplitTransaction(transactionId, requestModel);
+```
+
+```c#
+
+
+```
+
 > Request payload with adding a rule
 
 ```json
@@ -393,6 +502,30 @@ end
   }
 }
 ```
+
+```c#
+var apiKey = "geezeo-api-key";
+var url = "partner.url";
+var userId = "user_id";
+var sdk = new SDK(apiKey, url, userId);
+
+var requestModel = new TransactionRuleRequestModel{
+	Transaction = new TransactionModel{
+		Nickname = "Starbucks"
+	},
+	Tagging = new TaggingRuleModel{
+		Type = TaggingType.Regular,
+		Regular = new List<string> {"Coffee"},
+		Repeat = true,
+		Account = TaggingAccount.CurrentAccount,
+		PostedAt = TaggingPostedAt.AnyDate
+	}
+};
+var transactionId = "85b20186-b367-4feb-8acd-d5378e7b4d94";
+var updated = sdk.UpdateTransactionRule(transactionId, requestModel);
+
+```
+
 
 > Error response payload
 
@@ -411,7 +544,7 @@ Tags can be a single tag, or split a transactions into multiple tags.
 
 Rules can be added by adding a repeat node to the json. Once a rule is added the platform will ensure future matching transactions receive that tag and nickname.
 
-Split tags are not supported by rules as the are specific to an exact amount.
+Split tags are not supported by rules as they are specific to an exact amount.
 
 `PUT /api/v2/users/:user_id:/transactions/:transaction_id:`
 
