@@ -53,7 +53,7 @@ Or use the included Dockerfile! (must install Docker first)
 
 ```shell
 docker build -t slate .
-docker run -d -p 4567:4567 slate
+docker run -d -p 4567:80 slate
 ```
 
 You can now see the docs at <http://localhost:4567>. Whoa! That was fast!
@@ -88,6 +88,7 @@ Examples of Slate in the Wild
 * [CardPay API](https://developers.cardpay.com/)
 * [IBM Cloudant](https://docs-testb.cloudant.com/content-review/_design/couchapp/index.html)
 * [Bitrix basis components](http://bbc.bitrix.expert/)
+* [viagogo API Documentation](http://developer.viagogo.net/)
 
 (Feel free to add your site to this list in a pull request!)
 
