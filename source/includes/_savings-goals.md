@@ -45,7 +45,7 @@ Net::HTTP.start(uri.host, uri.port,
 end
 ```
 
-```c#
+```csharp
 var apiKey = "geezeo-api-key";
 var url = "partner.url";
 var userId = "user_id";
@@ -101,7 +101,7 @@ Net::HTTP.start(uri.host, uri.port,
 end
 ```
 
-```c#
+```csharp
 var apiKey = "geezeo-api-key";
 var url = "partner.url";
 var userId = "user_id";
@@ -175,7 +175,7 @@ Net::HTTP.start(uri.host, uri.port,
 end
 ```
 
-```c#
+```csharp
 var apiKey = "geezeo-api-key";
 var url = "partner.url";
 var userId = "user_id";
@@ -252,7 +252,7 @@ end
 
 ```
 
-```c#
+```csharp
 var apiKey = "geezeo-api-key";
 var url = "partner.url";
 var userId = "user_id";
@@ -337,7 +337,7 @@ end
 
 ```
 
-```c#
+```csharp
 var apiKey = "geezeo-api-key";
 var url = "partner.url";
 var userId = "user_id";
@@ -423,7 +423,7 @@ end
 
 ```
 
-```c#
+```csharp
 var apiKey = "geezeo-api-key";
 var url = "partner.url";
 var userId = "user_id";
@@ -479,7 +479,7 @@ end
 
 ```
 
-```c#
+```csharp
 var apiKey = "geezeo-api-key";
 var url = "partner.url";
 var userId = "user_id";
