@@ -4,7 +4,7 @@ title: API Reference
 language_tabs:
   - shell
   - ruby
-  - c#
+  - csharp
 
 toc_footers:
   - <a href='//geezeo.com'>Powered by:<img class="logo" src="images/logo.png"></a>

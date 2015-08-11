@@ -22,7 +22,7 @@ Net::HTTP.start(uri.host, uri.port,
 end
 ```
 
-```c#
+```csharp
 var apiKey = "geezeo-api-key";
 var url = "partner.url";
 var userId = "user_id";
@@ -77,7 +77,7 @@ Return a paginated list of all transactions for the given user.
 
 `GET /api/v2/users/:user_id:/transactions`
 
-```c#
+```csharp
 var apiKey = "geezeo-api-key";
 var url = "partner.url";
 var userId = "user_id";
@@ -123,7 +123,7 @@ Net::HTTP.start(uri.host, uri.port,
 end
 ```
 
-```c#
+```csharp
 var apiKey = "geezeo-api-key";
 var url = "partner.url";
 var userId = "user_id";
@@ -210,7 +210,7 @@ Net::HTTP.start(uri.host, uri.port,
 end
 ```
 
-```c#
+```csharp
 var apiKey = "geezeo-api-key";
 var url = "partner.url";
 var userId = "user_id";
@@ -293,7 +293,7 @@ Net::HTTP.start(uri.host, uri.port,
 end
 ```
 
-```c#
+```csharp
 var apiKey = "geezeo-api-key";
 var url = "partner.url";
 var userId = "user_id";
@@ -398,7 +398,7 @@ end
 
 ```
 
-```c#
+```csharp
 var apiKey = "geezeo-api-key";
 var url = "partner.url";
 var userId = "user_id";
@@ -431,7 +431,7 @@ var updated = sdk.UpdateTransaction(transactionId, requestModel);
 }
 ```
 
-```c#
+```csharp
 
 var requestModel = new TransactionRequestModel{
 	Transaction = new TransactionModel{
@@ -462,7 +462,7 @@ var requestModel = new TransactionRequestModel{
 }
 ```
 
-```c#
+```csharp
 var apiKey = "geezeo-api-key";
 var url = "partner.url";
 var userId = "user_id";
@@ -483,7 +483,7 @@ var transactionId = "85b20186-b367-4feb-8acd-d5378e7b4d94";
 var updated = sdk.SplitTransaction(transactionId, requestModel);
 ```
 
-```c#
+```csharp
 
 
 ```
@@ -503,7 +503,7 @@ var updated = sdk.SplitTransaction(transactionId, requestModel);
 }
 ```
 
-```c#
+```csharp
 var apiKey = "geezeo-api-key";
 var url = "partner.url";
 var userId = "user_id";

@@ -22,7 +22,7 @@ Net::HTTP.start(uri.host, uri.port,
 end
 ```
 
-```c#
+```csharp
 var apiKey = "geezeo-api-key";
 var url = "partner.url";
 var userId = "user_id";
@@ -69,7 +69,7 @@ Return expenses calculated by tag for the given user.
 
     `GET /api/v2/users/:user_id:/expenses?threshold=100
 
-```c#
+```csharp
 var apiKey = "geezeo-api-key";
 var url = "partner.url";
 var userId = "user_id";
@@ -99,7 +99,7 @@ Return expenses from last month for the given user.
 
 `GET /api/v2/users/:user_id:/expenses/last_month`
 
-```c#
+```csharp
 var apiKey = "geezeo-api-key";
 var url = "partner.url";
 var userId = "user_id";
@@ -114,7 +114,7 @@ Return expenses from this month for the given user.
 
 `GET /api/v2/users/:user_id:/expenses/this_month`
 
-```c#
+```csharp
 var apiKey = "geezeo-api-key";
 var url = "partner.url";
 var userId = "user_id";
@@ -129,7 +129,7 @@ Return expenses from last thirty days for the given user.
 
 `GET /api/v2/users/:user_id:/expenses/last_thirty_days`
 
-```c#
+```csharp
 var apiKey = "geezeo-api-key";
 var url = "partner.url";
 var userId = "user_id";
