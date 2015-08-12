@@ -29,6 +29,7 @@ Error Code | Meaning
 412 | Transaction Invalid: transaction validation failed
 422 | Handle Taken: handle already taken
 500 | Transaction Failed
+501 | Transaction Not Confirmed: polled network but could not confirm transaction
 
 Contract Errors
 ---------------
