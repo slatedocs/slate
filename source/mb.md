@@ -180,7 +180,7 @@ POST /api/users
 {
   "users": {
             "type": "student",
-            "city": "Miami",
+            "city": "Austin",
             "nationality1": "United states",
             "phone_number": "",
             "attendance_start_date": "2014-08-01",

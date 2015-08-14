@@ -103,9 +103,9 @@ HTTP/1.1 200 OK
   "students": [
     {
       "id": 1,
-      "name": "Kimberly Grifﬁn",
-      "ﬁrst_name": "Kimberly",
-      "last_name": "Grifﬁn",
+      "name": "Chloe Epelbaum",
+      "ﬁrst_name": "Chloe",
+      "last_name": "Epelbaum",
       "birth_date": "1999-01-29",
       "gender": "female",
       "enrollment_year": 2013,
@@ -130,9 +130,9 @@ HTTP/1.1 200 OK
     },
     {
       "id": 2,
-      "name": "Lisa Lawrence",
-      "ﬁrst_name": "Lisa",
-      "last_name": "Lawrence",
+      "name": "Henry Epelbaum",
+      "ﬁrst_name": "Henry",
+      "last_name": "Epelbaum",
       "birth_date": "1999-03-27",
       "gender": "female",
       "enrollment_year": 2013,
@@ -196,9 +196,9 @@ HTTP/1.1 200 OK
 {
   "user": {
     "id": 1,
-    "name": "Kimberly Grifﬁn",
-    "ﬁrst_name": "Kimberly",
-    "last_name": "Grifﬁn",
+    "name": "Chloe Epelbaum",
+    "ﬁrst_name": "Chloe",
+    "last_name": "Epelbaum",
     "birth_date": "1999-01-29",
     "gender": "female",
     "enrollment_year": 2013,
