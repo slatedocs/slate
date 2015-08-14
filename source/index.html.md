@@ -50,6 +50,7 @@ These SDKs will follow best practices for the specific platform, and should sign
 We have recently released our .net SDK. [Download it here](https://github.com/Geezeo/net-sdk-public)
 
 The .net SDK provides :
+
 * Concrete types for all API endpoints
 * Simple scoped access to user resources
 * Caching
