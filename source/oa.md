@@ -26,7 +26,7 @@ API requests can be made via HTTPS between the 3rd party database and OA. All re
 
 The API token should be generated manually via Settings > Integrations. Firstly you have to enable Public API function and add API token for the integrated applications.
 
-![API screenshot](/images/apiscreenshot.png)
+![API screenshot](/images/oaintegration_api.png)
 
 > Here’s an example using curl:
 

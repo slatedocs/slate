@@ -150,6 +150,55 @@ The following methods allows you to interact with people and identities.
     POST /organizations/:id/people
 ```
 
+```
+{
+  "person":{
+   "given_name": "Simon",
+   "family_name": "Lin",
+   "email": "simon@example.com",
+   "avatar_url": "http://www.abc.com/image.jpg"
+   "identities_attributes": [
+     {
+       "provider_id": "dfe45dba-02a7-47a1-b216-02836fe39c04",
+       "organization_id": "17c9f976-cf95-48a5-b1c3-11e09c8321e1",
+       "value": "Student-123123",
+       "status": "loginable", "#loginable or active"
+       "title": "Simon Lin",
+       "description": "Student"
+     },
+     {
+       "provider_id": "5643c01e-1e8d-4a2e-9af0-991763ad5375",
+       "organization_id": "17c9f976-cf95-48a5-b1c3-11e09c8321e1",
+       "value": "Student-12751e4c-c97f-4e09-a340-16e503989ee8",
+       "status": "active",
+       "title": "Simon Lin",
+       "description": "Student"
+     },
+   ]
+  }
+  }
+```
+
+```
+  POST /organizations/:organization_id/identities
+
+```  
+
+```
+{
+ "identity": {
+   "provider_id": "5643c01e-1e8d-4a2e-9af0-991763ad5375",
+   "organization_id": "17c9f976-cf95-48a5-b1c3-11e09c8321e1",
+   "person_id": "477ac262-780c-44bb-b6a0-ad1880e94c27",
+   "value": "Staff-o1iu23",
+   "status": "loginable",
+   "title": "Barbara Hampton",
+   "description": "DP Coordinator"
+ }
+}
+
+```
+
 If your client application token is sufficiently authenticated, you may be able to create Person entries within organizations you have formed or can control.
 
 You may provide the following information:
@@ -160,7 +209,7 @@ You may provide the following information:
 
 None of the information listed above is mandatory, but creating duplicate Person entries within any organization is not recommended.
 
-You may create identities separately, or together with the creation call by passing them under `identities_attributes`. Please see the Integration Notes for an example.
+You may create identities separately, or together with the creation call by passing them under `identities_attributes`. Please see " POST /organizations/:organization_id/identities" or the Integration Notes for an example.
 
 ### Update Person entries
 

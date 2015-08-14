@@ -26,9 +26,9 @@ The purpose of this API is to allow for integration with 3rd party databases to 
 
 API requests can be made via HTTPS between the 3rd party database and ManageBac. All requests on the API can be authenticated to the subdomain with a unique product API token using HTTP Basic Access Authentication.
 
-The API token can be generated manually via Settings > Integrations.
+The API token can be generated manually via Settings > Integrations. From here you can fill in the appropriate selections. If it is enabled there will be a checkmark in the checkbox on the left hand side under the corresponding tab. You can select your homeroom advisor, IB Group, and Year Label in your Database.  
 
-![MB integration](/images/mbintegrationapi.png)
+![MB integration](/images/mb_integration_public_api.png)
 
 
 # Requests
@@ -71,12 +71,12 @@ For example, when a new student applies to the school, they are admitted on [Ope
 {
   "user": {
     "type": "student",
-    "first_name": "Peter",
-    "last_name": "Mcqueen",
-    "nickname": "AMac",
-    "other_name": "Al-Li",
-    "email": "test@eduvo.com",
-    "gender": "Male",
+    "first_name": "Chloe",
+    "last_name": "Epelbaum",
+    "nickname": "CMac",
+    "other_name": "Cb",
+    "email": "chloe@eduvo.com",
+    "gender": "Femail",
     "birthday": "17.03.1999",
     "mobile_phone_number": "+1-123-456-78-91",
     "language": "English",
@@ -91,10 +91,10 @@ For example, when a new student applies to the school, they are admitted on [Ope
     "student_id": "#12345",
     "year_label": "11",
     "national_id": "#0987654",
-    "salutation": "Mr.",
+    "salutation": "Mrs.",
     "title": "Developer",
     "work_state": "Eduvo",
-    "work_email": "test@work.em",
+    "work_email": "edudeveloper@work.em",
     "work_postal_code": "77590-77592",
     "work_country": "US",
     "work_phone": "+1-234-567-89-00",
@@ -180,7 +180,7 @@ POST /api/users
 {
   "users": {
             "type": "student",
-            "city": "Pok Fu Lam",
+            "city": "Miami",
             "nationality1": "United states",
             "phone_number": "",
             "attendance_start_date": "2014-08-01",
@@ -220,11 +220,11 @@ POST /api/users
 {
   "user": {
     "type": "student",
-    "first_name": "Peter",
-    "last_name": "Mcqueen",
-    "nickname": "AMac",
-    "other_name": "Peter-Li",
-    "email": "test_student@eduvo.com",
+    "first_name": "Henry",
+    "last_name": "Epelbaum",
+    "nickname": "Henny",
+    "other_name": "Hen",
+    "email": "henryep@eduvo.com",
     "student_id": "#12345890",
     "gender": "Male",
     "birthday": "17.03.1999",
@@ -266,12 +266,12 @@ homeroom advisor mapping.
 {
   "user": {
     "type": "parent",
-    "first_name": "Alexander",
-    "last_name": "Mcqueen",
+    "first_name": "Adrienne",
+    "last_name": "Epelbaum",
     "nickname": "AMac",
-    "other_name": "Al-Li",
-    "email": "test_parent@eduvo.com",
-    "gender": "Male",
+    "other_name": "Addie",
+    "email": "adrienne@eduvo.com",
+    "gender": "Female",
     "birthday": "19.06.1969",
     "mobile_phone_number": "+1-123-456-78-91",
     "language": "English",
@@ -283,26 +283,26 @@ homeroom advisor mapping.
     "zipcode": "77590-77592",
     "country": "US",
     "password": "123456",
-    "salutation": "Mr.",
+    "salutation": "Mrs.",
     "title": "Developer",
-    "work_state": "Test",
-    "work_email": "test@work.em",
+    "work_state": "Texus",
+    "work_email": "aebaum@work.em",
     "work_postal_code": "77590-77592",
     "work_country": "US",
     "work_phone": "+1-234-567-89-00",
     "work_fax": "+1-234-567-89-00",
     "work_address_ii": "b12",
     "work_city": "Alvin",
-    "employer": "Test inc.",
+    "employer": "Eduvo inc.",
     "work_address": "Flover str",
     "language1": "English",
-    "language2": "Romanian",
-    "language3": "Kurdish",
-    "language4": "Burmese",
-    "nationality1": "Uganda",
-    "nationality2": "Turkey",
-    "nationality3": "Vanuatu",
-    "nationality4": "Yemen",
+    "language2": "Spanish",
+    "language3": "German",
+    "language4": "French",
+    "nationality1": "Canada",
+    "nationality2": "USA",
+    "nationality3": "Spain",
+    "nationality4": "Germany",
     "welcome_email": "Yes",
     "children_ids": "10544210, 10544211"
   }
@@ -317,12 +317,12 @@ homeroom advisor mapping.
 {
   "user": {
     "type": "advisor",
-    "first_name": "John",
-    "last_name": "Mcqueen",
-    "nickname": "AMac",
-    "other_name": "John-Li",
-    "email": "test_advisor@eduvo.com",
-    "gender": "Male",
+    "first_name": "Risa",
+    "last_name": "Aoki",
+    "nickname": "RMac",
+    "other_name": "Ri-si",
+    "email": "risaaoki@eduvo.com",
+    "gender": "Female",
     "birthday": "12.07.1989",
     "mobile_phone_number": "+1-123-456-78-91",
     "language": "English",
@@ -335,13 +335,13 @@ homeroom advisor mapping.
     "country": "US",
     "password": "123456",
     "language1": "English",
-    "language2": "Romanian",
-    "language3": "Kurdish",
-    "language4": "Burmese",
-    "nationality1": "Uganda",
-    "nationality2": "Turkey",
-    "nationality3": "Vanuatu",
-    "nationality4": "Yemen",
+    "language2": "French",
+    "language3": "Chinese",
+    "language4": "Japanese",
+    "nationality1": "Canada",
+    "nationality2": "Britian",
+    "nationality3": "Japan",
+    "nationality4": "China",
     "welcome_email": "Yes"
   }
 }
@@ -394,7 +394,7 @@ Retrieves all users with basic information. This includes User ID,  which can be
   "users": [
         {
             "type": "Students",
-            "city": "Pok Fu Lam",
+            "city": "Austin",
             "nationality1": "United states",
             "phone_number": "",
             "attendance_start_date": "2014-08-01",
@@ -448,7 +448,7 @@ GET /api/users/{user_id}
 {
     "user": {
         "type": "Students",
-        "city": "Pok Fu Lam",
+        "city": "Austin",
         "nationality1": "United states",
         "phone_number": "",
         "attendance_start_date": "2014-08-01",
@@ -501,7 +501,7 @@ GET /api/users/?type={ Student | Parent | Teacher(Advisor)}
     "users": [
         {
             "type": "Parents",
-            "city": "Pok Fu Lam",
+            "city": "Austin",
             "work_address_ii": null,
             "nationality1": null,
             "phone_number": "+852 2396 6840",
@@ -567,7 +567,7 @@ PUT /api/users/{user_id}
 {
     "user": {
         "type": "Student",
-        "city": "Pok Fu Lam",
+        "city": "Austin",
         "nationality1": "United states",
         "phone_number": "",
         "attendance_start_date": "2014-08-01",
@@ -775,7 +775,7 @@ GET /api/groups/{ib_group_id}/members
     "members": [
         {
             "type": "Students",
-            "city": "Pok Fu Lam",
+            "city": "Austin",
             "nationality1": "United states",
             "phone_number": "",
             "attendance_start_date": "2014-08-01",
@@ -1374,7 +1374,7 @@ GET /api/groups/{class_id}/members
     "members": [
         {
             "type": "Students",
-            "city": "Pok Fu Lam",
+            "city": "Austin",
             "nationality1": "United states",
             "phone_number": "",
             "attendance_start_date": "2014-08-01",
