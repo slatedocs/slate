@@ -26,7 +26,7 @@ The purpose of this API is to allow for integration with 3rd party databases to 
 
 API requests can be made via HTTPS between the 3rd party database and ManageBac. All requests on the API can be authenticated to the subdomain with a unique product API token using HTTP Basic Access Authentication.
 
-The API token can be generated manually via Settings > Integrations. From here you can fill in the appropriate selections. If it is enabled there will be a checkmark in the checkbox on the left hand side under the corresponding tab. You can select your homeroom advisor, IB Group, and Year Label in your Database.  
+The API token can be generated manually via Settings > Integrations. Please ensure that you enable API integration for the specific year levels and provide accurate mapping to the default Homeroom Advisor and Year group. You can optionally indicate year level labels as they appear in your main SIS.  
 
 ![MB integration](/images/mb_integration_public_api.png)
 
