@@ -16,8 +16,11 @@ Host: beta.crunch.io
 Content-Type: application/json
 ```
 
-```json
+```
 // Example team catalog:
+```
+
+```json
 {
     "element": "shoji:catalog",
     "self": "https://beta.crunch.io/api/teams/",
@@ -87,8 +90,11 @@ Host: beta.crunch.io
 Content-Type: application/json
 ```
 
-```json
+```
 // Example team entity
+```
+
+```json
 {
     "element": "shoji:entity",
     "self": "https://beta.crunch.io/api/teams/d07edb/",
@@ -190,7 +196,7 @@ permissions | object | Attributes governing the user's authorization on the team
 
 Supported `permissions`, all boolean, include:
 
-* **manage_members**: Whether the user may add or remove users from the team, as well as modify the permissions of users on the team; i.e., PATCH the member catalog. 
+* **manage_members**: Whether the user may add or remove users from the team, as well as modify the permissions of users on the team; i.e., PATCH the member catalog. Default is False, except for the team owner.
 
 #### PATCH
 
@@ -200,7 +206,7 @@ PATCH a partial Shoji Catalog to add users to the team, to modify permissions of
 
 In the "index" attribute of the catalog, object keys must be either (a) URLs of User entities or (b) email addresses. They can be mixed in a single PATCH request. Using email address allows you to invite a user to Crunch while adding them to the team if they do not yet have a Crunch account, but it is also valid as a reference to Users that already exist. 
 
-##### Add new members
+##### Add and modify members
 
 ```http
 PATCH /teams/d07edb/members/ HTTP/1.1
@@ -222,15 +228,19 @@ Content-Type: application/json
         }
     },
     "send_notification": true,
-    "url_base": ""
+    "url_base": "https://beta.crunch.io/password/change/${token}/"
 }
 --------
 204 No Content
 ```
 
-If the index object keys do not correspond to users already found in the member catalog, the indicated users will be added to the team. 
+If the index object keys correspond to users that already appear in the member catalog, their permissions will be updated with the corresponding value. In this example, user `47193a`, B. A. Baracus, has been given the `manage_members` permission.
 
-(discuss)
+If the index object keys do not correspond to users already found in the member catalog, the indicated users will be added to the team. And, if the indicated user, as specified by email address, does not yet exist, they will be invited to Crunch and added to the team. In this example, we added existing user `e3211a`, implicitly with `manage_members` set to False, to the team, and we also added "templeton.peck@army.gov", who did not previously have a Crunch account. 
+
+If "send_notification" was included and true in the request, new-to-Crunch users will receive a notification email informing them that they have been invited to Crunch. New users, unless they have an OAuth provider specified, will need to set a password, and the client application should send a URL template that directs them to a place where they can set that password. To do so, include a "url_base" attribute in the payload, a URL template with a `${token}` variable into which the server will insert the password-setting token. For the Crunch web application, this template is `https://beta.crunch.io/password/change/${token}/`.
+
+A GET on the members catalog shows the updated catalog.
 
 ```http
 GET /teams/d07edb/members/ HTTP/1.1
@@ -267,69 +277,6 @@ Content-Type: application/json
             "name": "templeton.peck@army.gov",
             "permissions": {
                 "manage_members": true
-            }
-        }
-    }
-}
-```
-
-##### Modify existing members' permissions
-
-To change a team member's permissions, you can patch in the same way than adding users, just specifying the new permissions:
-
-```http
-PATCH /teams/d07edb/members/ HTTP/1.1
-Host: beta.crunch.io
-Content-Type: application/json
-{
-    "element": "shoji:catalog",
-    "index": {
-        "https://beta.crunch.io/api/users/89eb3a/": {
-            "permissions": {
-                "manage_members": false
-            }
-        }
-    }
-}
---------
-204 No Content
-```
-
-```http
-GET /teams/d07edb/members/ HTTP/1.1
-Host: beta.crunch.io
---------
-200 OK
-Content-Type: application/json
-```
-```json
-{
-    "element": "shoji:catalog",
-    "self": "https://beta.crunch.io/api/teams/d07edb/members/",
-    "description": "Catalog of users that belong to this team",
-    "index": {
-        "https://beta.crunch.io/api/users/47193a/": {
-            "name": "B. A. Baracus",
-            "permissions": {
-                "manage_members": true
-            }
-        },
-        "https://beta.crunch.io/api/users/41c69d/": {
-            "name": "Hannibal",
-            "permissions": {
-                "manage_members": true
-            }
-        },
-        "https://beta.crunch.io/api/users/e3211a/": {
-            "name": "Howling Mad Murdock",
-            "permissions": {
-                "manage_members": false
-            }
-        },
-        "https://beta.crunch.io/api/users/89eb3a/": {
-            "name": "templeton.peck@army.gov",
-            "permissions": {
-                "manage_members": false
             }
         }
     }
@@ -338,7 +285,7 @@ Content-Type: application/json
 
 ##### Removing members
 
-To remove members, same as with other Shoji catalogs, it is needed to PATCH the catalog with the tuple set to `null`:
+To remove members from the team, PATCH the catalog with a `null` value:
 
 
 ```http
