@@ -235,7 +235,7 @@ ID | The ID of the station to get similar stations from
 ## Get Songhistory for a Station
 
 ```shell
-curl "http://api.dirble.com/v2/station/10/song_history?token=?token={your token}"
+curl "http://api.dirble.com/v2/station/10/song_history?token={your token}"
 ```
 
 > The above command returns JSON structured like this:
