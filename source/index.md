@@ -33,7 +33,7 @@ We have library in Ruby, PHP and Python versions are planned. You can view code 
 ```ruby
   require 'tether';
   client = Tether::Client.new('TetherAPIKey', 'TetherAPISecret')
-  
+
   # Ruby client returns [Hashie::Mash](https://github.com/intridea/hashie) object on API requests.
 ```
 
@@ -48,7 +48,7 @@ We have library in Ruby, PHP and Python versions are planned. You can view code 
 > Make sure to replace `TetherAPIKey` with your API key and `TetherAPISecret` with your API secret.
 
 Tether uses HMAC authentication. Each request should be signed with a secret that you can see when creating a new API key.
-You can create a Tether API key and Tether API secret key on [API Keys](https://wallet.tether.to/app/#!/settings/apikeys) page. 
+You can create a Tether API key and Tether API secret key on [API Keys](https://wallet.tether.to/app/#!/settings/apikeys) page.
 Tether expects for the signature to be included in all API requests to the server in a standard HTTP Authorization header that has the following form:
 
 `Authorization: APIAuth TetherAPIKey:Signature`
@@ -58,14 +58,14 @@ The Authorization header is computed as following:
 
 <aside>
   Authorization = "APIAuth" + " " + TetherAPIKey + ":" + Signature;<br><br>
-  
+
   Signature = Base64( HMAC-SHA1( TetherAPISecret, StringToSign ) );<br><br>
-  
+
   StringToSign = Content-Type + "," +	Content-MD5 + "," +	URI + "," + Timestamp;
 </aside>
 
-The Signature is the Base64 encoded RFC 2104 HMAC-SHA1 of selected parts from the request, and so the Signature part of the Authorization header will vary from request to request. 
-If the request signature calculated by the Tether API matches the Signature included in the Authorization header, the request will be processed under the identity of 
+The Signature is the Base64 encoded RFC 2104 HMAC-SHA1 of selected parts from the request, and so the Signature part of the Authorization header will vary from request to request.
+If the request signature calculated by the Tether API matches the Signature included in the Authorization header, the request will be processed under the identity of
 the user to whom the key was issued. Otherwise you will get `401 Unauthorized` error as a response.
 
 # Permissions
@@ -79,6 +79,7 @@ Each API key can have one or more permissions:
 <tr><td>create_transaction</td><td>POST /transactions</td></tr>
 <tr><td>read_exchange_orders</td><td>GET /exchange_orders<br>GET /exchange_orders/:id</td></tr>
 <tr><td>create_exchange_order</td><td>POST /exchange_orders</td></tr>
+<tr><td><a href="#merchant-api">merchant</a></td><td>POST /invoices</td></tr>
 </table>
 
 If the API key does not have a required permission you will get `403 Forbidden` error as a response.
@@ -173,7 +174,7 @@ result = client.transactions
 [{"id":2018,"amount":"1234.0","balance":"7201.94","message":null,"created_at":"2015-05-25T22:48:27+08:00","updated_at":"2015-05-25T23:16:09+08:00","description":"Acquire $1,234.00 USD₮, Fee: $20.00 USD₮, Total amount to be wired: $1,254.00 USD₮","currency":"USD₮","status":"completed","could_be_exchanged":false,"tx_type":"acquire","reference_id":"WE1AM64","fee":"20.0"},{"id":2019,"amount":"-1.0","balance":"7200.94","message":"For the glory of all cats in the world!","created_at":"2015-05-28T11:32:51+08:00","updated_at":"2015-05-28T11:32:51+08:00","description":"Sent $1.00 USD₮ to glory@cat.com","currency":"USD₮","status":"pending","could_be_exchanged":false,"tx_type":"send","transaction_id":null,"counterparty_address":"glory@cat.com"},{"id":2020,"amount":"-0.01","balance":"0.00679","message":"Here is your part of booty, Ma.","created_at":"2015-06-04T19:30:42+08:00","updated_at":"2015-06-04T19:30:42+08:00","description":"Sent ฿0.01000 BTC to ma@barker.me","currency":"BTC","status":"pending","could_be_exchanged":false,"tx_type":"send","transaction_id":null,"counterparty_address":"ma@barker.me"}]
 ```
 
-This endpoint retrieves all user's transactions on Tether. See <a href="#get-transaction-by-id">Get transaction by ID</a> section for description of returned values. 
+This endpoint retrieves all user's transactions on Tether. See <a href="#get-transaction-by-id">Get transaction by ID</a> section for description of returned values.
 
 ### HTTP Request
 
@@ -281,7 +282,7 @@ Value | Description
 --------- | -----------
 id | Tether internal transaction ID
 method | 'internal', 'blockchain' or 'email'
-success | boolean 
+success | boolean
 transaction_id | Blockchain transaction ID (`method=blockchain`)
 
 # Exchange orders
@@ -387,7 +388,7 @@ Parameter | Description
 --------- | -----------
 amount | Amount to convert (decimal (8,16))
 source_currency | Currency which should be converted
-target_currency | Currency which would be received 
+target_currency | Currency which would be received
 
 ### Return values
 
@@ -399,5 +400,88 @@ exchanged_amount | Amount received from conversion (decimal (8,16)), available w
 original_amount | Amount to convert (decimal (8,16))
 status | 'Pending', 'Processing' or 'Completed'
 source_currency | Currency which would be converted
-target_currency | Currency which would be received 
+target_currency | Currency which would be received
 uuid | Internal exchange order UUID
+
+# Merchant API
+
+This section describes API which is available only for merchants. It is manually activated for your account by Tether.
+Please [contact support](https://tether.to/contact-us/) for additional information and instructions.
+
+## Create new invoice
+
+```ruby
+invoice_parameters = {
+  :currency => 'USD₮',
+  :amount => 420
+}
+invoice = client.new_invoice(invoice_parameters)
+```
+
+```php
+# TODO
+```
+
+```python
+# TODO
+```
+
+> The JSON in raw API response looks like this:
+
+```json
+{"id":10344,"deposit_address":"37G3god6LmXyfyYbPxokCAwqQvqaENZQsq","status":"no_payment","invoiced_amount":"420.0","received_amount":"0.0","created_at":"2015-08-13T13:33:11Z","updated_at":"2015-08-13T13:33:11Z","currency":"USD₮"}
+```
+
+This endpoint creates new invoice and returns its information.
+
+### HTTP Request
+
+`POST /invoices`
+
+### Parameters
+
+Parameter | Description
+--------- | -----------
+amount | Amount of invoice (decimal (8,16))
+currency | Currency of invoice
+
+### Return values
+
+Value | Description
+--------- | -----------
+id | Internal invoice ID
+deposit_address | Address where invoiced amount should be sent. You should pass this address to your customer together with invoiced_amount and currency
+status | 'no_payment', 'partial_payment', 'full_payment' or 'overpaid'
+invoiced_amount | Amount that is expected to be received (decimal (8,16))
+received_amount | Actually received amount (decimal (8,16))
+currency | Currency that is expected to receive
+
+## Callbacks
+
+> The JSON of callback:
+
+```json
+{"id":13406,"deposit_address":"35dzdB6HbgusXHgvY7L3wyWmqhiNkwdPRH","status":"overpaid","invoiced_amount":"420.0","received_amount":"600.01036121","created_at":"2015-08-14T15:45:29Z","updated_at":"2015-08-16T13:44:41Z","currency":"USD₮"}
+```
+
+If the status of created invoice is changed you will get a callback to the IPN URL you've provided during
+Merchant API activation. The structure of callback JSON is the same as on <a href="#create-new-invoice">new invoice creation</a>.
+
+<aside>
+Please make sure that requests to your IPN URL are accepted only from Tether IPs!
+</aside>
+
+Expected IPN response should have HTTP 200 status code. Otherwise the callback is marked as undelivered and will be repeatedly resent with increasing delay:
+
+Attempt # | Delay before
+--------- | -----------
+1 | 0 seconds
+2 | 1 minute
+3 | 3 minutes
+4 | 30 minutes
+5 | 1 hour
+6 | 12 hours
+7 | 1 day
+8 | 1 week
+9 | 1 month
+10 | callback is marked as failed
