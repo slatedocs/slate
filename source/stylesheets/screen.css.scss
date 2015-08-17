@@ -68,10 +68,11 @@ html, body {
   left: 0;
   bottom: 0;
   width: $nav-width;
-  background-color: $nav-bg;
+  background-color: $main-bg;
   font-size: 13px;
+  margin-top: 50px;
   font-weight: bold;
-
+  border-right: 1px solid #aaa;
   // language selector for mobile devices
   .lang-selector {
     display: none;
@@ -185,13 +186,12 @@ html, body {
     display: none; // tocify will override this when needed
     background-color: $nav-subitem-bg;
     font-weight: 500;
+    // for embossed look:
+    // @include embossed-bg;
     .tocify-item>a {
       padding-left: $nav-padding + $nav-indent;
       font-size: 12px;
     }
-
-    // for embossed look:
-    @include embossed-bg;
     &>li:last-child {
       box-shadow: none; // otherwise it'll overflow out of the subheader
     }
@@ -374,12 +374,13 @@ html, body {
   h2 {
     @extend %header-font;
     font-size: 20px;
-    margin-top: 4em;
-    margin-bottom: 0;
+    margin-top: 0;
+    margin-bottom: 0.5em;
     border-top: 1px solid #ccc;
-    padding-top: 1.2em;
-    padding-bottom: 1.2em;
-    background-image: linear-gradient(to bottom, rgba(#fff, 0.4), rgba(#fff, 0));
+    border-bottom: 1px solid #ccc;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    background-image: linear-gradient(to bottom, #fff, #f9f9f9);
   }
 
   // h2s right after h1s should bump right up
@@ -412,7 +413,7 @@ html, body {
     th,td {
       text-align: left;
       vertical-align: top;
-      line-height: 1.6;
+      line-height: 1.4;
     }
 
     th {
@@ -447,7 +448,7 @@ html, body {
   }
 
   p, li, dt, dd {
-    line-height: 1.6;
+    line-height: 1.4;
     margin-top: 0;
   }
 
@@ -475,7 +476,7 @@ html, body {
     margin-top: 1.5em;
     margin-bottom: 1.5em;
     background: $aside-notice-bg;
-    line-height: 1.6;
+    line-height: 1.4;
 
     &.warning {
       background-color: $aside-warning-bg;
@@ -617,4 +618,88 @@ html, body {
   %right-col + %left-col {
     margin-top: $main-padding;
   }
+}
+
+
+.float-parent {
+  img{ 
+    display: block;
+    width: 50%;
+    float: left;
+  }
+  &:after{
+    display: table;
+    content: '';
+    clear: both;
+  }
+}
+
+.layout{
+  padding-top: 50px;
+  .layout-navbar{
+    z-index: 3;
+    ul { 
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      float: right;
+      li {
+        display: inline;
+        a{
+          display: inline-block;
+          color: white;
+          padding: 15px;
+          
+          text-decoration: none;
+          &:hover{
+            color: yellow;
+          }
+        } 
+      }
+    }
+    .logo-wrapper{
+      float: left;
+    }
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: #004170;
+
+  }
+  .layout-navigation{
+    z-index: 2;
+  }
+  .layout-content{
+    z-index: 1;
+   
+  }
+}
+
+h1#openapply-api, h1#managebac, h1#sso{
+  font-size: 0!important;
+}
+h1#openapply-api{
+  padding: 10px 20px!important;
+}
+h1#managebac{
+  padding: 15px 20px!important
+}
+h1#sso{
+  padding: 10px 20px!important
+}
+
+.check-image{
+  width: 20px;
+  height: 20px;
+  vertical-align: middle;
+  display: inline-block;
+}
+
+.stack-image{
+  width:300px;
+  height:300px;
+  vertical-align: middle;
+  display: inline-block;
 }

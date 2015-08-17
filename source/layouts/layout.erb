@@ -41,50 +41,41 @@ under the License.
   </head>
 
   <body class="<%= page_classes %>">
-    <a href="#" id="nav-button">
-      <span>
-        NAV
-        <%= image_tag('navbar.png') %>
-      </span>
-    </a>
-    <div class="tocify-wrapper">
-      <%= image_tag "logo.png" %>
-      <% if language_tabs %>
-        <div class="lang-selector">
-          <% language_tabs.each do |lang| %>
-            <% if lang.is_a? Hash %>
-              <a href="#" data-language-name="<%= lang.keys.first %>"><%= lang.values.first %></a>
-            <% else %>
-              <a href="#" data-language-name="<%= lang %>"><%= lang %></a>
-            <% end %>
-          <% end %>
-        </div>
-      <% end %>
-      <% if current_page.data.search %>
-        <div class="search">
-          <input type="text" class="search" id="input-search" placeholder="Search">
-        </div>
-        <ul class="search-results"></ul>
-      <% end %>
-      <div id="toc">
+    <div class="layout">
+      <div class="layout-navbar navbar navbar-inverse navbar-fixed-top" role="navigation">
+          <div class="navbar-header logo-wrapper" href="#">
+            <%= image_tag "logo.png", height: "50" %>
+          </div>
+          <ul>
+            <li>
+                  <a href="localhost:4567">
+                      Home
+                  </a>
+              </li>
+              <li>
+              <li>
+                  <a href="/oa.html">
+                      OpenApply
+                  </a>
+              </li>
+              <li>
+                  <a href="/mb.html">
+                      ManageBac
+                  </a>
+              </li>
+              <li>
+                  <a href="/sso.html">
+                      Single-Sign-On
+                  </a>
+              </li>
+             <li>
+                  <a href="http://develop.faria.co">
+                      MessageBus
+                  </a>
+              </li>
+          </ul>
       </div>
-      <% if current_page.data.toc_footers %>
-        <ul class="toc-footer">
-          <% current_page.data.toc_footers.each do |footer| %>
-            <li><%= footer %></li>
-          <% end %>
-        </ul>
-      <% end %>
-    </div>
-    <div class="page-wrapper">
-      <div class="dark-box"></div>
-      <div class="content">
-        <%= yield %>
-        <% current_page.data.includes && current_page.data.includes.each do |include| %>
-          <%= partial "includes/#{include}" %>
-        <% end %>
-      </div>
-      <div class="dark-box">
+      <div class="layout-navigation tocify-wrapper">
         <% if language_tabs %>
           <div class="lang-selector">
             <% language_tabs.each do |lang| %>
@@ -96,6 +87,43 @@ under the License.
             <% end %>
           </div>
         <% end %>
+        <% if current_page.data.search %>
+          <div class="search">
+            <input type="text" class="search" id="input-search" placeholder="Search">
+          </div>
+          <ul class="search-results"></ul>
+        <% end %>
+        <div id="toc">
+        </div>
+        <% if current_page.data.toc_footers %>
+          <ul class="toc-footer">
+            <% current_page.data.toc_footers.each do |footer| %>
+              <li><%= footer %></li>
+            <% end %>
+          </ul>
+        <% end %>
+      </div>
+      <div class="layout-content page-wrapper">
+        <div class="dark-box"></div>
+        <div class="content">
+          <%= yield %>
+          <% current_page.data.includes && current_page.data.includes.each do |include| %>
+            <%= partial "includes/#{include}" %>
+          <% end %>
+        </div>
+        <div class="dark-box">
+          <% if language_tabs %>
+            <div class="lang-selector">
+              <% language_tabs.each do |lang| %>
+                <% if lang.is_a? Hash %>
+                  <a href="#" data-language-name="<%= lang.keys.first %>"><%= lang.values.first %></a>
+                <% else %>
+                  <a href="#" data-language-name="<%= lang %>"><%= lang %></a>
+                <% end %>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
       </div>
     </div>
   </body>

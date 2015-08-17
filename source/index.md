@@ -4,165 +4,77 @@ title: API Reference
 language_tabs:
   - shell
   - ruby
-  - python
 
 toc_footers:
   - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='http://github.com/tripit/slate'>Documentation Powered by Slate</a>
-
+ 
 includes:
-  - errors
+
 
 search: true
 ---
 
-# Introduction
+## Getting Started
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+Welcome to the Faria API documentation. 
 
-We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+Learn more about how you can build your own custom integration or quickly enable one of our 3rd party services.​
 
-This example API documentation page was created with [Slate](http://github.com/tripit/slate). Feel free to edit it and use it as a base for your own API's documentation.
+<p class="float-parent">
+  <img src='/images/products.png'/>
+  <img src='/images/3rdparty.png'/>
+</p>
 
-# Authentication
 
-> To authorize, use this code:
+The listed API grants you access to the entire Faria Stack. Faria provides integrated information systems for international education and business.​
 
-```ruby
-require 'kittn'
+## About
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
 
-```python
-import kittn
+Faria provides integrated information systems for international education and business.​
 
-api = kittn.authorize('meowmeowmeow')
-```
+[ManageBac](https://www.managebac.com) our flagship service is the leading planning, assessment and reporting system for IB world schools founded by three former IB Diploma students in 2007.
 
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
-```
+Today [ManageBac](https://www.managebac.com) is the trusted choice of 8 in 10 IB Diploma students at over 1,300 leading schools.
 
-> Make sure to replace `meowmeowmeow` with your API key.
+After nearly seven years of continuous development, we have re-imagined the school information system and we are proud to announce our integrated suite together with [OpenApply](www.openapply.com) for admissions & enrollment and InterSIS for school information management.
 
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
+[ManageBac](https://www.managebac.com) , [OpenApply](www.openapply.com) and InterSIS in concert provide the first integrated online learning platform designed for international schools with curriculum planning, assessment & reporting, attendance & behavior, parent access and a state-of-the-art billing & finance solution built on top of Xero – the world’s leading cloud accounting system.
 
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
 
-`Authorization: meowmeowmeow`
+<p>
+    <img src='/images/stack_xero.png' class="stack-image"/>
+</p>
 
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
+Learn more about the IB world school of tomorrow and the systems that power the IB continuum!
 
-# Kittens
+## Key Advantages
 
-## Get All Kittens
+<p>
+    <img src='/images/check-green.png' class="check-image"/>
+    Consolidate and eliminate duplicate systems with one single login account per user.
+</p>
 
-```ruby
-require 'kittn'
+<p>
+    <img src='/images/check-green.png' class="check-image"/> Integrated family & student profile combining admissions & enrollment, academics, behavior, attendance and finance.
+</p>
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
+<p>
+    <img src='/images/check-green.png' class="check-image"/> Monitor enrollment, analytics and finance in real-time.
+</p>
 
-```python
-import kittn
+<p>
+    <img src='/images/check-green.png' class="check-image"/> Accessible anywhere across any device (iPhone, iPad, Mac or PC).
+</p>
 
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
+<p>
+    <img src='/images/check-green.png' class="check-image"/> Fast & effective implementation with roll-out in weeks not months.
+</p>
 
-```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
-```
+<p>
+    <img src='/images/check-green.png' class="check-image"/> Reduced total cost of ownership.​
+</p>
 
-> The above command returns JSON structured like this:
+## Getting Help
 
-```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Isis",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
-```
-
-This endpoint retrieves all kittens.
-
-### HTTP Request
-
-`GET http://example.com/api/kittens`
-
-### Query Parameters
-
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 2,
-  "name": "Isis",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
-}
-```
-
-This endpoint retrieves a specific kitten.
-
-<aside class="warning">If you're not using an administrator API key, note that some kittens will return 403 Forbidden if they are hidden for admins only.</aside>
-
-### HTTP Request
-
-`GET http://example.com/kittens/<ID>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
-
+We really want this API to be useful to you. If you have any questions or concerns please contact us at [api@faria.co](mailto:api@faria.co).
