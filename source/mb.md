@@ -100,6 +100,7 @@ For example, when a new student applies to the school, they are admitted on [Ope
     "state": "Texas",
     "zipcode": "77590-77592",
     "country": "US",
+    "profile_photo": "https://mb.com/uploads ... photo.png",
     "password": "123456",
     "student_id": "#12345",
     "year_label": "11",
@@ -195,6 +196,8 @@ national_id - string, user's national id's
 language1 .. language4 - string, user's languages
 
 nationality1 .. nationality4 - string, user's nationality
+
+profile_photo - user's photo
 
 ### New User Creation
 
@@ -422,6 +425,7 @@ Retrieves all users with basic information. This includes User ID,  which can be
                 10752669
             ],
             "language1": "English",
+            "profile_photo": "https://mb.com/uploads ... photo.png",
             "openapply_student_id": null,
             "first_name": "Chloe",
             "mobile_phone_number": "+852 9301 5831",
@@ -470,6 +474,7 @@ Retrieves a specific user.
             10752669
         ],
         "language1": "English",
+        "profile_photo": "https://mb.com/uploads ... photo.png",
         "openapply_parent_id": null,
         "first_name": "Chloe",
         "mobile_phone_number": "+852 9301 5831",
@@ -527,6 +532,7 @@ Retrieves a set of users with a specific user type.
             "last_name": "Epelbaum",
             "street_address_ii": null,
             "work_state": "",
+            "profile_photo": "https://mb.com/uploads ... photo.png",
             "nationality4": null,
             "child_ids": [
                 10752610,
@@ -771,6 +777,7 @@ Retrieves List of IB Group students
                 10752669
             ],
             "language1": "English",
+            "profile_photo": "https://mb.com/uploads ... photo.png",
             "first_name": "Chloe",
             "mobile_phone_number": "+852 9301 5831",
             "nationality3": null,
