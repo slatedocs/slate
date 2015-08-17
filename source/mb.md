@@ -87,6 +87,7 @@ For example, when a new student applies to the school, they are admitted on [Ope
     "state": "Texas",
     "zipcode": "77590-77592",
     "country": "US",
+    "profile_photo": "https://managebac.com/uploads/.../photo.gif",
     "password": "123456",
     "student_id": "#12345",
     "year_label": "11",
@@ -163,6 +164,7 @@ For example, when a new student applies to the school, they are admitted on [Ope
 |nationality2 |string | The user's second nationality|
 |nationality3 |string | The user's third nationality|
 |nationality4 |string | The user's fourth nationality|
+|profile_photo|string | The user's photo|
 
 ## New User Creation
 
@@ -407,6 +409,7 @@ Retrieves all users with basic information. This includes User ID,  which can be
                 10752669
             ],
             "language1": "English",
+            "profile_photo": "https://managebac.com/uploads/.../photo.gif",
             "openapply_student_id": null,
             "first_name": "Chloe",
             "mobile_phone_number": "+852 9301 5831",
@@ -461,6 +464,7 @@ GET /api/users/{user_id}
             10752669
         ],
         "language1": "English",
+        "profile_photo": "https://managebac.com/uploads/.../photo.gif",
         "openapply_parent_id": null,
         "first_name": "Chloe",
         "mobile_phone_number": "+852 9301 5831",
@@ -530,6 +534,7 @@ GET /api/users/?type={ Student | Parent | Teacher(Advisor)}
                 10752675
             ],
             "nickname": "",
+            "profile_photo": "https://managebac.com/uploads/.../photo.gif",
             "zipcode": "",
             "work_phone": "",
             "language3": null,
@@ -788,6 +793,7 @@ GET /api/groups/{ib_group_id}/members
                 10752669
             ],
             "language1": "English",
+            "profile_photo": "https://managebac.com/uploads/.../photo.gif",
             "first_name": "Chloe",
             "mobile_phone_number": "+852 9301 5831",
             "nationality3": null,
