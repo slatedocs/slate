@@ -35,11 +35,15 @@ If you are running a [local Ethereum node](https://github.com/ethereum/go-ethere
 <code class="block">geth --unlock 0 --rpc --rpccorsdomain "http://localhost:8545" --rpcapi "shh,db,eth,net,web3" --shh</code>
 </aside>
 
-Augur maintains three public Ethereum nodes:
+Augur maintains five public Ethereum nodes:
 
 - [http://eth1.augur.net](http://eth1.augur.net)
 - [http://eth2.augur.net](http://eth2.augur.net)
 - [http://eth3.augur.net](http://eth3.augur.net)
+- [http://eth4.augur.net](http://eth4.augur.net)
+- [http://eth5.augur.net](http://eth5.augur.net)
+
+These nodes are temporarily on a private chain (networkid 7).  We plan to move to the Frontier testnet once it is set up!
 
 Getting started
 ---------------
@@ -51,7 +55,7 @@ var augur = require("augur.js");
 // Attempt to connect to a local Ethereum node (on http://localhost:8545)
 augur.connect();
 
-// Connect to Augur's public node (eth1.augur.net)
+// Connect to one of Augur's public nodes (eth1.augur.net)
 augur.connect("http://eth1.augur.net");
 ```
 
