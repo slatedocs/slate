@@ -39,6 +39,28 @@ Parameter  | Type    | Default  | Description
 `page`     | integer | `1`      | Which page of the results to return. If omitted, the first page with index 1 is returned.
 `page_size`| integer | (varies) | Maximum number of returned objects per page. The default value and limitations depend on the API end-point.
 
+> An example of a JSON response with a paginated collection
+
+```json
+{
+  "count": 13,
+  "per_page": 5,
+  "num_pages": 3,
+  "current_page": 1,
+  "next_page": 2,
+  "previous_page": null,
+  "next_page_url": "https://service.giosg.com/api/v3/examples?page=2",
+  "previous_page_url": null,
+  "results": [
+    {"name": "Example Resource 1"},
+    {"name": "Example Resource 2"},
+    {"name": "Example Resource 3"},
+    {"name": "Example Resource 4"},
+    {"name": "Example Resource 5"}
+  ]
+}
+```
+
 Those API endpoints that return paginated collections return an object with the following attributes.
 
 Attribute | Type | Description
