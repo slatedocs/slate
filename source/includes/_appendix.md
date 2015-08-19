@@ -21,6 +21,7 @@ citysearch|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class
 citysquares|<span class="yes">Yes</span>|||<span class="yes">Yes</span>|
 cmac|<span class="yes">Yes</span>|||<span class="yes">Yes</span>|
 cortera|<span class="yes">Yes</span>|||<span class="yes">Yes</span>|
+cylex|<span class="yes">Yes</span>|||<span class="yes">Yes</span>|
 dexknows|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 doctoroogle|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 expressupdate|<span class="yes">Yes</span>|||<span class="yes">Yes</span>|
@@ -121,7 +122,7 @@ australianplanet|<span class="yes">Yes</span>|||<span class="yes">Yes</span>|
 bloo|<span class="yes">Yes</span>||||
 brownbookaus|<span class="yes">Yes</span>|||<span class="yes">Yes</span>|
 businesscomau|||||
-cylexaus|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
+cylex|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|Was previously referred to as cylexaus
 dlook|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 eatability|<span class="yes">Yes</span>||||
 facebook|<span class="yes">Yes</span>|||<span class="yes">Yes</span>|
@@ -129,7 +130,7 @@ find-us-here|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span cl
 foursquare|||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 fyple|<span class="yes">Yes</span>||||
 google|||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
-hotfrogaus|<span class="yes">Yes</span>|||<span class="yes">Yes</span>|
+hotfrog|<span class="yes">Yes</span>|||<span class="yes">Yes</span>|Was previously referred to as hotfrogaus
 localstore|<span class="yes">Yes</span>||||
 localbd|<span class="yes">Yes</span>||||
 localbusinessguide|<span class="yes">Yes</span>|||<span class="yes">Yes</span>|
@@ -152,7 +153,7 @@ wowcity|<span class="yes">Yes</span>||||
 yalwa|<span class="yes">Yes</span>||||
 yellowbook||||<span class="yes">Yes</span>|
 yellowpagesaus|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
-yelp-aus|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
+yelp|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|Was previously referred to as yelp-aus
 
 ### Canada (CAN)
 
@@ -164,7 +165,7 @@ allpages|<span class="yes">Yes</span>||||
 brownbook|<span class="yes">Yes</span>||||
 canpages|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 cdnpages|<span class="yes">Yes</span>||||
-cylexcan|<span class="yes">Yes</span>|||<span class="yes">Yes</span>|
+cylex|<span class="yes">Yes</span>|||<span class="yes">Yes</span>|Was previously referred to as cylexcan
 directorycentral|<span class="yes">Yes</span>||||
 facebook|<span class="yes">Yes</span>|||<span class="yes">Yes</span>|
 factual|<span class="yes">Yes</span>||||
@@ -172,7 +173,7 @@ find-us-here|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span cl
 foursquare|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 goldbook|<span class="yes">Yes</span>|||<span class="yes">Yes</span>|
 google||<span class="yes">Yes</span>||<span class="yes">Yes</span>|
-hotfrogcan|<span class="yes">Yes</span>|||<span class="yes">Yes</span>|
+hotfrog|<span class="yes">Yes</span>|||<span class="yes">Yes</span>|Was previously referred to as hotfrogcan
 ibegin|<span class="yes">Yes</span>|||<span class="yes">Yes</span>|
 nearyouca|<span class="yes">Yes</span>||||
 manta|<span class="yes">Yes</span>||<span class="yes">Yes</span>||
@@ -186,7 +187,7 @@ weblocal|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class=
 wikidomo|<span class="yes">Yes</span>||||
 yalwa|<span class="yes">Yes</span>||||
 yellowpagesca|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
-yelp-can|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
+yelp|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|Was previously referred to as yelp-can
 ziplocal|<span class="yes">Yes</span>||||
 zoominfo|<span class="yes">Yes</span>||||
 
