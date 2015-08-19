@@ -38,24 +38,22 @@ POST /api/v3/network/invitations/outgoing/
 
 ### Cancel an outgoing invitation
 You may cancel a partnership invitation before it is accepted or rejected, by a given ID.
-```
-DELETE /api/v3/network/invitations/outgoing/[invitation_id]
-```
+
+`DELETE /api/v3/network/invitations/outgoing/[invitation_id]`
+
 The endpoint returns a 404 status code if the invitation is not found or if you are not authenticated as the sender of this invitation or if the invitation has already been cancelled.
 
 The endpoint returns a 403 status code if the invitation has already been accepted or rejected.
 
 ### Retrieve outgoing invitation details
 Get a single [outgoing invitation][] object sent by your company, by a given ID.
-```
-GET /api/v3/network/invitations/outgoing/[invitation_id]
-```
+
+`GET /api/v3/network/invitations/outgoing/[invitation_id]`
 
 ### Get a collection of outgoing invitations
 Get a [paginated collection][] of all sent [outgoing invitation][] objects.
-```
-GET /api/v3/network/invitations/outgoing/
-```
+
+`GET /api/v3/network/invitations/outgoing/`
 
 This endpoint accepts the following GET parameters.
 
@@ -94,16 +92,14 @@ Attribute | Type | Editable | Description
 
 ### Retrieve incoming invitation details
 Retrieve a [incoming invitation][] resource by its **invitation key**. Incoming invitations are identified by their automatically generated, random key strings, instead of integer IDs.
-```
-GET /api/v3/network/invitations/incoming/[invitation_key]
-```
+
+`GET /api/v3/network/invitations/incoming/[invitation_key]`
 
 ### Get a collection of incoming invitations
 Get a [paginated collection][] of all received [incoming invitation][] objects. This endpoint returns invitations accepted or rejected by your company. It also returns those invitations that are sent to one of your company's email address. **NOTE** that the company who sends the invitation does not know if this email address actually exists in giosg system.
 
-```
-GET /api/v3/network/invitations/incoming/
-```
+
+`GET /api/v3/network/invitations/incoming/`
 This endpoint accepts the following GET parameters.
 
 Parameter | Type | Default | Description
@@ -162,16 +158,15 @@ Attribute | Type | Editable | Description
 `company` | object | read-only | Your [company][] resource, for convenience
 `dislay_name` | string | **optional** | Name that is shown to your company members for this partner. May be `null`, in which case the original name is shown
 `visible_to_everyone` | boolean | **required** | If `true`, the new partner will become visible to your company members. If `false`, it will be shown only on company management.
-`incoming_invitation_id` | integer | ID of the incoming invitation that resulted in creation of this partnership, or `null`.
-`incoming_invitation` | object | The [incoming invitation][] resource that resulted in creation of this partnership, or `null`.
-`outgoing_invitation_id` | integer | ID of the outgoing invitation that resulted in creation of this partnership, or `null`.
-`outgoing_invitation` | object | The [outgoing invitation][] resource that resulted in creation of this partnership, or `null`.
+`incoming_invitation_id` | integer | read-only | ID of the incoming invitation that resulted in creation of this partnership, or `null`.
+`incoming_invitation` | object | read-only | The [incoming invitation][] resource that resulted in creation of this partnership, or `null`.
+`outgoing_invitation_id` | integer | read-only | ID of the outgoing invitation that resulted in creation of this partnership, or `null`.
+`outgoing_invitation` | object | read-only | The [outgoing invitation][] resource that resulted in creation of this partnership, or `null`.
 
 ### Get a collection of partnerships
 Get a [paginated collection] of all the known partnerships.
-```
-GET /api/v3/network/partnerships/
-```
+
+`GET /api/v3/network/partnerships/`
 
 This end-point accepts the following GET parameters.
 
@@ -183,9 +178,8 @@ Parameter | Type | Default | Description
 
 ### Retrieve partnership details
 Retrieve a single [partnership][] resource by the partnership ID (not partner company's ID).
-```
-GET /api/v3/network/partnerships/[partnership_id]
-```
+
+`GET /api/v3/network/partnerships/[partnership_id]`
 
 ### Remove a partnership
 
@@ -195,17 +189,15 @@ This will immediately remove the company from your partners and remove your part
 </aside>
 
 Being aware of this, you may remove another company from your partners.
-```
-DELETE /api/v3/network/partnerships/[partnership_id]
-```
+
+`DELETE /api/v3/network/partnerships/[partnership_id]`
+
 
 ### Update a partnership
 You may update the editable attributes of a partnership.
-```
-PUT /api/v3/network/partnerships/[partnership_id]
-```
-```
-PATCH /api/v3/network/partnerships/[partnership_id]
-```
+
+`PUT /api/v3/network/partnerships/[partnership_id]`
+
+`PATCH /api/v3/network/partnerships/[partnership_id]`
 
 When using `PUT` you need to provide an object as a request payload that contains the changed attributes of the [partnership][]. When using `PATCH`, you may omit those attributes that you do not want to change.
