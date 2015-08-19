@@ -468,6 +468,10 @@ html, body {
     padding: 0;
   }
 
+  table code {
+    word-break: normal;
+  }
+
   aside {
     padding-top: 1em;
     padding-bottom: 1em;
