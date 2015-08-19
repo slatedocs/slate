@@ -170,13 +170,17 @@ html, body {
     color: $nav-text;
     transition-property: background;
     transition-timing-function: linear;
-    transition-duration: 230ms;
+    transition-duration: 150ms;
   }
 
   // This is the currently selected ToC entry
-  .tocify-focus {
+  .tocify-focus, .tocify-item.tocify-focus:hover {
     box-shadow: 0px 1px 0px $nav-active-shadow;
     background-color: $nav-active-bg;
+    color: $nav-active-text;
+  }
+  .tocify-item:hover {
+    background-color: mix($nav-subitem-bg, $nav-active-bg, 50%);
     color: $nav-active-text;
   }
 
@@ -189,6 +193,20 @@ html, body {
     .tocify-item>a {
       padding-left: $nav-padding + $nav-indent;
       font-size: 12px;
+    }
+
+    // Level 2 subheader
+    .tocify-subheader {
+      .tocify-item {
+        color: mix($nav-text, $nav-subitem-bg, 60%);
+        >a {
+          padding-left: $nav-padding + $nav-indent * 2;
+          font-size: 12px;
+        }
+      }
+      .tocify-focus {
+        color: $nav-active-text;
+      }
     }
 
     // for embossed look:
