@@ -61,7 +61,7 @@ $nav-v-padding: 10px; // padding used vertically around search boxes and results
 $nav-indent: 10px; // extra padding for ToC subitems
 $code-annotation-padding: 13px; // padding inside code annotations
 $h1-margin-bottom: 21px; // padding under the largest header tags
-$tablet-width: 930px; // min width before reverting to tablet size
+$tablet-width: 1200px; // min width before reverting to tablet size (original: 930px)
 $phone-width: $tablet-width - $nav-width; // min width before reverting to mobile size
 
 
