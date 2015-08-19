@@ -189,7 +189,10 @@ GET /api/v3/network/partnerships/[partnership_id]
 
 ### Remove a partnership
 
-**WARNING!** This will immediately remove the company from your partners and remove your partner's access to your shared resources. You cannot undo this action! You need to invite your partner again and re-share all your rooms/teams and re-set any permissions.
+<aside class="warning">
+<strong>WARNING!</strong>
+This will immediately remove the company from your partners and remove your partner's access to your shared resources. You cannot undo this action! You need to invite your partner again and re-share all your rooms/teams and re-set any permissions.
+</aside>
 
 Being aware of this, you may remove another company from your partners.
 ```
