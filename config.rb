@@ -1,9 +1,18 @@
 # Markdown
+class Redcarpet::Markdown
+  # This override prefixes every rendered Markdown with the contents of source/_linkrefs.md!
+  alias_method :orig_render, :render
+  def render(markdown)
+    prefix = File.open("source/_linkrefs.md").read
+    orig_render("#{prefix}#{markdown}")
+  end
+end
+
 set :markdown_engine, :redcarpet
 set :markdown,
     fenced_code_blocks: true,
     smartypants: true,
-    disable_indented_code_blocks: true,
+    disable_indented_code_blocks: false,
     prettify: true,
     tables: true,
     with_toc_data: true,
