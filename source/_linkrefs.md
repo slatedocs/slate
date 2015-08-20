@@ -16,3 +16,5 @@
   [outgoing room share]: <#outgoing-room-shares>
   [incoming team share]: <#incoming-team-shares>
   [outgoing team share]: <#outgoing-team-shares>
+
+  [timezone list]: <https://en.wikipedia.org/wiki/List_of_tz_database_time_zones>

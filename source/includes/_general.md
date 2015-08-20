@@ -81,4 +81,4 @@ Attribute | Type | Description
 
 ## Date/time format
 
-All the date/times are defined in ISO-8601 format strings, for example: `2015-06-12T12:34:56.000000Z`
+Unless stated otherwise, all the date/times returned by API endpoints in ISO-8601 format strings with format `YYYY-MM-DDTHH:MM:SS.MSS`, for example: `2015-06-12T12:34:56.000`. Also, any date/time URL parameters or attributes send as a request payload accept this same format. Unless stated otherwise, the times are in UTC timezone!
