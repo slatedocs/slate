@@ -15,7 +15,9 @@ curl -X POST -H "Content-Type: application/json" \
 constructorio.add(
   { item_name: "power_drill", autocomplete_section: "standard" },
   function(error, response) {
-    console.log(response);
+    if (error) {
+      console.log(error);
+    }
   }
 );
 ```
@@ -55,7 +57,9 @@ curl -X DELETE -H "Content-Type: application/json" -d '{"item_name":"power drill
 constructorio.remove(
   { item_name: "power_drill", autocomplete_section: "standard" },
   function(error, response) {
-    console.log(response);
+    if (error) {
+      console.log(error);
+    }
   }
 );
 ```
@@ -96,7 +100,9 @@ constructorio.modify(
     url: "http://www.mysite.com/power_drill",
   },
   function(error, response) {
-    console.log(response);
+    if (error) {
+      console.log(error);
+    }
   }
 );
 ```
