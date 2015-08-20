@@ -327,8 +327,9 @@ Attribute | Format | Description
 
 <aside class="notice">
 This endpoint has been updated on August 2015 to a new version <strong>v4</strong>!
-Please use this new version instead of the old version v3, as it will be removed in the future!
 </aside>
+
+**Please use this version instead of the [deprecated version v3](https://docs.giosg.com/doku.php?id=public:technical-documentation:backend-api:reporting-api#get_api_v3_reporting_salesstats_timeline), as it will be removed in the future!**
 
 You can get the aggregated shopping cart (giosg BASKET) statistics by making a GET request.
 
@@ -337,6 +338,7 @@ You can get the aggregated shopping cart (giosg BASKET) statistics by making a G
 You may define define these optional GET parameters to localize and filter the sales stats aggregation results.
 
 Parameter | Format | Default | Description
+:---------|:-------|:--------|------------
 `room_gid` | string | | Only statistics on the room with this Giosg-signed ID string (used in chat). If not given, sales stats will be calculated from all company's rooms.
 
 ```json
@@ -373,14 +375,3 @@ Attribute | Format | Description
 `monthly_chat_sales` | string | Monthly billable sales related to a chat conversation that has at least 3 messages
 `purchased_carts` | string | Count of carts that have been locked/purchased.
 `purchased_carts_with_chat` | string | Count of carts with conversation that have been locked/purchased
-
-<aside class="warning">
-The deprecated endpoint version v3 has the following differences with v4.
-</aside>
-
-Attribute | Status | Format | Description
-:---------|:-------|:-------|------------
-`chat_sales` | **Changed!** | string | Sales that are related in any chat conversation, as a decimal string.
-`monthly_chat_sales` | **Changed!** | string | Monthly billable sales related to any chat conversation, as a decimal string.
-`carts` | **Removed!** | integer | Count of carts that have been locked (removed in v4 in favor of `purchased_carts`)
-`carts_with_chat` | **Removed!** | integer | Count of carts with conversation that have been locked (removed in v4 in favor of `purchased_carts_with_chat`)
