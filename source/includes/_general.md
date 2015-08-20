@@ -7,7 +7,7 @@ This documentation is a <strong>draft</strong>!
 
 ## Authentication
 
-You need to provide a valid API key in order access the API. You can create an API key from "API keys" section in your company settings:
+You need to provide a valid API key in order access the API. You can create an API key from ["API keys" section in your company settings](https://service.giosg.com/en/settings/#/live/company/tokens):
 
 *Log in to Console → Settings Menu → Company → API keys*
 
