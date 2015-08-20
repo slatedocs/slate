@@ -56,7 +56,7 @@ Attribute | Type | Editable | Description
 ### Share a resource
 You may share a resource to one of your partners by making a `POST` request.
 
-`POST /api/v3/network/shares/outgoing/[resource_type]/`
+`POST https://service.giosg.com/api/v3/network/shares/outgoing/[resource_type]/`
 
 The `[resource_type]` must be either `rooms` or `teams`. You may only share resources that you own or are being shared to your company. You need to provide the required attributes of an [outgoing room share][] or an [outgoing team share][] as well as desired optional attributes as a payload.
 
@@ -65,19 +65,19 @@ The API returns an [outgoing room share][] or an [outgoing team share][] as a re
 ### Retrieve outgoing share details
 Returns an [outgoing room share][] or an [outgoing team share][] resource by the given ID.
 
-`GET /api/v3/network/shares/outgoing/[resource_type]/[share_id]`
+`GET https://service.giosg.com/api/v3/network/shares/outgoing/[resource_type]/[share_id]`
 
 The `[resource_type]` must be either `rooms` or `teams`. Results in 404 response if you have no access to the share.
 
 ### Unshare a resource
 You may decide not to share a resource any more to the specific partner. In this case, you may delete the [outgoing share][] resource.
 
-`DELETE /api/v3/network/shares/outgoing/[resource_type]/[share_id]`
+`DELETE https://service.giosg.com/api/v3/network/shares/outgoing/[resource_type]/[share_id]`
 
 ### Get a collection of outgoing shares
 You may get a [paginated collection][] of all the [outgoing room share][] or [outgoing team share][] resources that your company has created.
 
-`GET /api/v3/network/shares/outgoing/[resource_type]/`
+`GET https://service.giosg.com/api/v3/network/shares/outgoing/[resource_type]/`
 
 The `[resource_type]` must be either `rooms` or `teams`. This endpoint accepts the following GET parameters.
 
@@ -92,9 +92,9 @@ Parameter | Type | Default | Description
 ### Update an outgoing share
 Once a resource share is created, you cannot change its resource, partnership or other relations. If you shared a wrong resource or to a wrong partner, you need to delete the share and create a new one. You may still update a resource share resource, specifically its `share_name`, by making a `PUT` or `PATCH` request:
 
-`PUT /api/v3/network/shares/outgoing/[resource_type]/[resourceshare_id]`
+`PUT https://service.giosg.com/api/v3/network/shares/outgoing/[resource_type]/[resourceshare_id]`
 
-`PATCH /api/v3/network/shares/outgoing/[resource_type]/[resourceshare_id]`
+`PATCH https://service.giosg.com/api/v3/network/shares/outgoing/[resource_type]/[resourceshare_id]`
 
 The `[resource_type]` must be either `rooms` or `teams`.
 
@@ -133,7 +133,7 @@ Attribute | Type | Editable | Description
 ### Get a collection of incoming shares
 You may get a [paginated collection][] of all the [incoming room share][] or [incoming team share][] resources that are shared to your company.
 
-`GET /api/v3/network/shares/incoming/[resource_type]/`
+`GET https://service.giosg.com/api/v3/network/shares/incoming/[resource_type]/`
 
 The `[resource_type]` must be either `rooms` or `teams`. This endpoint accepts the following GET parameters.
 
@@ -148,6 +148,6 @@ Parameter | Type | Default | Description
 ### Retrieve incoming share details
 Returns an [incoming room share][] or [incoming team share][] resource by the given ID.
 
-`GET /api/v3/network/shares/incoming/[resource_type]/[share_id]`
+`GET https://service.giosg.com/api/v3/network/shares/incoming/[resource_type]/[share_id]`
 
 The `[resource_type]` must be either `rooms` or `teams`.

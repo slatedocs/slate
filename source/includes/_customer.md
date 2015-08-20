@@ -36,14 +36,14 @@ Attribute | Type | Editable | Description
 ### Retrieve company details
 Get a single [company][] object by its ID.
 
-`GET /api/v4/customer/companies/[company_id]`
+`GET https://service.giosg.com/api/v4/customer/companies/[company_id]`
 
 ### Update company details
 You may update some of the attributes a company, if you have permissions to do so.
 
-`PUT /api/v4/customer/companies/[company_id]`
+`PUT https://service.giosg.com/api/v4/customer/companies/[company_id]`
 
-`PATCH /api/v4/customer/companies/[company_id]`
+`PATCH https://service.giosg.com/api/v4/customer/companies/[company_id]`
 
 When using `PUT` you need to provide an object as a request payload that contains the changed attributes the [company][]. When using `PATCH`, you may omit those attributes that you do not want to change.
 
@@ -76,10 +76,10 @@ Attribute | Type | Editable | Description
 ### Retrieve person details
 Get a single [person][] object by its ID.
 
-`GET /api/v4/customer/persons/[person_id]`
+`GET https://service.giosg.com/api/v4/customer/persons/[person_id]`
 Alternatively, you may get **your own** user account details by replacing the ID with the word `me`.
 
-`GET /api/v4/customer/persons/me`
+`GET https://service.giosg.com/api/v4/customer/persons/me`
 
 This endpoint accepts the following GET parameters.
 
@@ -92,9 +92,9 @@ If you try to get a person that has been deleted, the endpoint results in 404 re
 ### Update person details
 You may update some of the attributes of a user account.
 
-`PUT /api/v4/customer/persons/[person_id]`
+`PUT https://service.giosg.com/api/v4/customer/persons/[person_id]`
 
-`PATCH /api/v4/customer/persons/[person_id]`
+`PATCH https://service.giosg.com/api/v4/customer/persons/[person_id]`
 
 Once again, you may replace the person ID with word `me` in order to update your own account details.
 
@@ -103,7 +103,7 @@ When using `PUT` you need to provide an object as a request payload that contain
 ### Get a collection of persons
 Get a [paginated collection][] of persons that you are allowed to list.
 
-`GET /api/v4/customer/persons/`
+`GET https://service.giosg.com/api/v4/customer/persons/`
 
 Parameter | Type | Default | Description
 ----------|------|---------|------------
@@ -138,7 +138,7 @@ Attribute | Type | Description
 ### Retrieve room details
 Get a single room object that your company has access to, by its ID. This may be a shared room.
 
-`GET /api/v4/customer/rooms/[room_id]`
+`GET https://service.giosg.com/api/v4/customer/rooms/[room_id]`
 
 This endpoint accepts the following GET parameters.
 
@@ -151,7 +151,7 @@ If you try to get a room that has been deleted, the endpoint results in 404 resp
 ### Get a collection of rooms
 Return a [paginated collection][] of all the [room][] resources you have access to, including any shared rooms:
 
-`GET /api/v4/customer/rooms`
+`GET https://service.giosg.com/api/v4/customer/rooms`
 
 Parameter | Type | Default | Description
 ----------|------|---------|------------
@@ -180,12 +180,12 @@ Attribute | Type | Description
 ### Retrieve team details
 Get a single team object that your company has access to, by its ID. This may be a shared team.
 
-`GET /api/v4/customer/teams/[team_id]`
+`GET https://service.giosg.com/api/v4/customer/teams/[team_id]`
 
 ### Get a collection of teams
 Return a [paginated collection][] of all the [team][] resources you have access to, including any shared teams:
 
-`GET /api/v4/customer/teams`
+`GET https://service.giosg.com/api/v4/customer/teams`
 
 Parameter | Type | Default | Description
 ----------|------|---------|------------
@@ -211,7 +211,7 @@ Attribute | Type | Description
 ### Get a collection of team memberships for a team
 Return a [paginated collection][] of all the [team membership][] resources for a specific [team][].
 
-`GET /api/v4/customer/teams/[team_id]/memberships`
+`GET https://service.giosg.com/api/v4/customer/teams/[team_id]/memberships`
 
 Parameter | Type | Default | Description
 ----------|------|---------|------------

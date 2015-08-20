@@ -47,7 +47,7 @@ If the time range is longer than the maximum allowed range, or starts too early,
 
 You can get the time-based aggregated visitor statistics by making a GET request:
 
-`GET /api/v3/reporting/visitorstats/timeline`
+`GET https://service.giosg.com/api/v3/reporting/visitorstats/timeline`
 
 You may define define these optional GET parameters to localize and filter the visitor stats aggregation results.
 
@@ -95,7 +95,7 @@ Attribute | Format | Description
 
 You can get the time-based aggregated chat statistics by making a GET request:
 
-`GET /api/v3/reporting/chatstats/timeline`
+`GET https://service.giosg.com/api/v3/reporting/chatstats/timeline`
 
 You may define define these optional GET parameters to localize and filter the chat stats aggregation results.
 
@@ -169,7 +169,7 @@ Attribute | Format | Description
 
 You can get the time-based aggregated chat statistics per-room by making a GET request:
 
-`GET /api/v3/reporting/chatstats/rooms/timeline`
+`GET https://service.giosg.com/api/v3/reporting/chatstats/rooms/timeline`
 
 You may define define these optional GET parameters to localize and filter the chat stats aggregation results.
 
@@ -273,11 +273,11 @@ Attribute | Format | Description
 `start_time` | integer | The starting time of this aggregation. Its duration is equal to the selected time interval, eg. 1 hour. This time is in the "local" time if a timezone was defined, otherwise it is in UTC.
 `rooms` | array of objects | Statistics for every room, with same attributes than the chat statistics time series, except the `start_time`. Instead, it has the attribute `room_gid` containing the Giosg-signed token identifying the room.
 
-===== GET /api/v3/reporting/operatorstats/timeline =====
+## Operator statistics time series
 
 You can get the time-based aggregated operator statistics by making a GET request.
 
-`GET /api/v3/reporting/operatorstats/timeline`
+`GET https://service.giosg.com/api/v3/reporting/operatorstats/timeline`
 
 <aside class="warning">
 <strong>Note</strong> that this API provides data only starting from 2015-05-12!
@@ -333,7 +333,7 @@ This endpoint has been updated on August 2015 to a new version <strong>v4</stron
 
 You can get the aggregated shopping cart (giosg BASKET) statistics by making a GET request.
 
-`GET /api/v4/reporting/salesstats/timeline`
+`GET https://service.giosg.com/api/v4/reporting/salesstats/timeline`
 
 You may define define these optional GET parameters to localize and filter the sales stats aggregation results.
 

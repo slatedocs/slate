@@ -33,13 +33,13 @@ If your invitation is accepted by an existing partner, then any shared teams or 
 ### Send an invitation
 You may send an invitation to your partner's email address by creating a new [outgoing invitation][] object.
 ```
-POST /api/v3/network/invitations/outgoing/
+POST https://service.giosg.com/api/v3/network/invitations/outgoing/
 ```
 
 ### Cancel an outgoing invitation
 You may cancel a partnership invitation before it is accepted or rejected, by a given ID.
 
-`DELETE /api/v3/network/invitations/outgoing/[invitation_id]`
+`DELETE https://service.giosg.com/api/v3/network/invitations/outgoing/[invitation_id]`
 
 The endpoint returns a 404 status code if the invitation is not found or if you are not authenticated as the sender of this invitation or if the invitation has already been cancelled.
 
@@ -48,12 +48,12 @@ The endpoint returns a 403 status code if the invitation has already been accept
 ### Retrieve outgoing invitation details
 Get a single [outgoing invitation][] object sent by your company, by a given ID.
 
-`GET /api/v3/network/invitations/outgoing/[invitation_id]`
+`GET https://service.giosg.com/api/v3/network/invitations/outgoing/[invitation_id]`
 
 ### Get a collection of outgoing invitations
 Get a [paginated collection][] of all sent [outgoing invitation][] objects.
 
-`GET /api/v3/network/invitations/outgoing/`
+`GET https://service.giosg.com/api/v3/network/invitations/outgoing/`
 
 This endpoint accepts the following GET parameters.
 
@@ -93,13 +93,13 @@ Attribute | Type | Editable | Description
 ### Retrieve incoming invitation details
 Retrieve a [incoming invitation][] resource by its **invitation key**. Incoming invitations are identified by their automatically generated, random key strings, instead of integer IDs.
 
-`GET /api/v3/network/invitations/incoming/[invitation_key]`
+`GET https://service.giosg.com/api/v3/network/invitations/incoming/[invitation_key]`
 
 ### Get a collection of incoming invitations
 Get a [paginated collection][] of all received [incoming invitation][] objects. This endpoint returns invitations accepted or rejected by your company. It also returns those invitations that are sent to one of your company's email address. **NOTE** that the company who sends the invitation does not know if this email address actually exists in giosg system.
 
 
-`GET /api/v3/network/invitations/incoming/`
+`GET https://service.giosg.com/api/v3/network/invitations/incoming/`
 This endpoint accepts the following GET parameters.
 
 Parameter | Type | Default | Description
@@ -112,7 +112,7 @@ Parameter | Type | Default | Description
 ### Accept an incoming invitation
 You need to accept an invitation to become partners with the sender. In order to accept the invitation, you need the invitation key.
 ```
-POST /api/v3/network/invitations/incoming/[invitation_key]/accept
+POST https://service.giosg.com/api/v3/network/invitations/incoming/[invitation_key]/accept
 ```
 As soon as you accept the invitation, the partnership will be created. Also, any shared rooms and teams will become available to your company.
 
@@ -136,7 +136,7 @@ A successful response will result in the updated [incoming invitation][] resourc
 ### Reject an invitation
 You may reject an invitation by its invitation key.
 ```
-POST /api/v3/network/invitations/incoming/[invitation_key]/reject
+POST https://service.giosg.com/api/v3/network/invitations/incoming/[invitation_key]/reject
 ```
 No request payload is required. After rejecting an invitation, its status will become `2`.
 
@@ -166,7 +166,7 @@ Attribute | Type | Editable | Description
 ### Get a collection of partnerships
 Get a [paginated collection] of all the known partnerships.
 
-`GET /api/v3/network/partnerships/`
+`GET https://service.giosg.com/api/v3/network/partnerships/`
 
 This end-point accepts the following GET parameters.
 
@@ -179,7 +179,7 @@ Parameter | Type | Default | Description
 ### Retrieve partnership details
 Retrieve a single [partnership][] resource by the partnership ID (not partner company's ID).
 
-`GET /api/v3/network/partnerships/[partnership_id]`
+`GET https://service.giosg.com/api/v3/network/partnerships/[partnership_id]`
 
 ### Remove a partnership
 
@@ -190,14 +190,14 @@ This will immediately remove the company from your partners and remove your part
 
 Being aware of this, you may remove another company from your partners.
 
-`DELETE /api/v3/network/partnerships/[partnership_id]`
+`DELETE https://service.giosg.com/api/v3/network/partnerships/[partnership_id]`
 
 
 ### Update a partnership
 You may update the editable attributes of a partnership.
 
-`PUT /api/v3/network/partnerships/[partnership_id]`
+`PUT https://service.giosg.com/api/v3/network/partnerships/[partnership_id]`
 
-`PATCH /api/v3/network/partnerships/[partnership_id]`
+`PATCH https://service.giosg.com/api/v3/network/partnerships/[partnership_id]`
 
 When using `PUT` you need to provide an object as a request payload that contains the changed attributes of the [partnership][]. When using `PATCH`, you may omit those attributes that you do not want to change.
