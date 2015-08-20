@@ -8,8 +8,8 @@ toc_footers:
 includes:
   - general
   - chats
-  - timelines
   - customer
+  - timelines
   - partnerships
   - sharing
 
