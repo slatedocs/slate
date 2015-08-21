@@ -1,168 +1,44 @@
 ---
-title: API Reference
-
-language_tabs:
-  - shell
-  - ruby
-  - python
-
-toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a>
-
-includes:
-  - errors
+title: Welcome to Dexter
 
 search: true
+
+stylesheet: twocol
+
 ---
 
-# Introduction
+# Welcome
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+Welcome to Dexter! Get ready to build the world. In a code sense, of course - not in a bulldozer-and-crane sense. Or even in a minecraft sense. More in the sense of throwing byte-sized bricks and using them to build the software skyscraper of your dreams.  Or casting coded i-beams to build a business bridge like no one has seen before.
 
-We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+# What you’re getting into
+## Who’s who
 
-This example API documentation page was created with [Slate](https://github.com/tripit/slate). Feel free to edit it and use it as a base for your own API's documentation.
+Dexter means many things to many people. Well, more specifically, it means 3 different things to 3 different kinds of people, depending on how deeply you want to descend into our world.
 
-# Authentication
+Most Dexterous types start out as **users** - folks who sign up to find some App (a program written inside Dexter) and use it as its creator intented. Then you’ll find yourself tracking down more and more Apps as you figure out all the ways they can make your day-to-day life better. Life will be good.
 
-> To authorize, use this code:
+After that, though, you’ll find you start to catch the bug. One App won’t work quite the way you want, or you really feel like mixing and matching features from two different Apps would start to be better. At that point you’ll graduate to being a **power user** - you’ll be using the Dexter App editor to build your own Apps to share with the world at large!
 
-```ruby
-require 'kittn'
+Eventually even that taste of power won’t be enough. You’ll crave more - the vast array of existing tools won’t be enought to satisfy your ever growing needs. You’ll find yourself driving to that final bastion of Dexter power - the programming SDK. Before you know it, you’ll have written Dexter modules that control the lights in your house, start your car in the morning, and feed your cat before you leave. You’ll officially be a Dexter **developer**.
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
+# Getting started
+## Sign up for Dexter
 
-```python
-import kittn
+Sound good? We think so too! Now that we all agree, let’s get you signed up.
 
-api = kittn.authorize('meowmeowmeow')
-```
+Hop over to our beta site and sign up for an account. You just need an email and a password. Make sure it’s a good one!
 
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
-```
+# Start exploring
+## Find an App you like
 
-> Make sure to replace `meowmeowmeow` with your API key.
+People all over the world are building cool Things with Dexter, just for you! Well, for you and everyone else with the good taste to use Dexter. You should see what other people have already built and find some cool Apps to use!
 
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
+## Learn the tools
 
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
+We have really, really cool web-based development tools - you should learn all about them. With a little knowhow and our awesome premade modules, you can make some amazing Apps without ever touching the code!
 
-`Authorization: meowmeowmeow`
 
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
+## Dive in deeper
 
-# Kittens
-
-## Get All Kittens
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
-
-```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
-```
-
-> The above command returns JSON structured like this:
-
-```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Isis",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
-```
-
-This endpoint retrieves all kittens.
-
-### HTTP Request
-
-`GET http://example.com/api/kittens`
-
-### Query Parameters
-
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 2,
-  "name": "Isis",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
-}
-```
-
-This endpoint retrieves a specific kitten.
-
-<aside class="warning">If you're not using an administrator API key, note that some kittens will return 403 Forbidden if they are hidden for admins only.</aside>
-
-### HTTP Request
-
-`GET http://example.com/kittens/<ID>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
-
+Ready to learn more? Set up our development SDK, write some code, take a peek under the hood, and get your App on!

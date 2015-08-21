@@ -356,7 +356,7 @@ html, body {
 
   h1 {
     @extend %header-font;
-    font-size: 30px;
+    font-size: 25px;
     padding-top: 0.5em;
     padding-bottom: 0.5em;
     border-bottom: 1px solid #ccc;
@@ -617,4 +617,12 @@ html, body {
   %right-col + %left-col {
     margin-top: $main-padding;
   }
+}
+
+
+#dexter-logo {
+    background-color: white;
+    width: 90%;
+    padding: 20px 5%;
+    height: 50px;
 }
