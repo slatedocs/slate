@@ -32,7 +32,9 @@ If you are running a [local Ethereum node](https://github.com/ethereum/go-ethere
 
 <aside class="notice">To use "sendTransaction" RPC commands (i.e., anything that requires Ether / is actually sent to the network) you will need to unlock your Ethereum node.  If you are running geth, the easiest way to do this is to start it with the <code>--unlock</code> option:
 
-<code class="block">geth --unlock 0 --rpc --rpccorsdomain "http://localhost:8545" --rpcapi "shh,db,eth,net,web3" --shh</code>
+<code class="block">geth --unlock 0 --rpc --rpccorsdomain "http://localhost:8545" --rpcapi "shh,db,eth,net,web3" --shh --genesis /path/to/genesis_block.json --networkid 7</code>
+
+Here, <code>/path/to/genesis_block.json</code> is the genesis block for the (temporary) Augur private chain.  <a href="http://augur.link/genesis_block.json">Download the genesis block here.</a>
 </aside>
 
 Augur maintains five public Ethereum nodes:
@@ -43,7 +45,7 @@ Augur maintains five public Ethereum nodes:
 - [http://eth4.augur.net](http://eth4.augur.net)
 - [http://eth5.augur.net](http://eth5.augur.net)
 
-These nodes are temporarily on a private chain (networkid 7).  We plan to move to the Frontier testnet once it is set up!
+Nodes [eth1](http://eth1.augur.net), [eth3](http://eth3.augur.net), [eth4](http://eth4.augur.net) and [eth5](http://eth5.augur.net) are temporarily on a private chain (networkid 7).  We plan to move to the Frontier testnet once it is set up!  [eth2.augur.net](http://eth2.augur.net) is on the Frontier network, and is being used by the [Augur Reputation sale app](https://sale.augur.net) until the end of the sale on Oct. 1 at noon EST.
 
 Getting started
 ---------------
