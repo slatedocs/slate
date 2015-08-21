@@ -217,7 +217,7 @@ This endpoint retrieves all application form fields of a specific opening.
 
 ### HTTP Request
 
-`GET https://api.recruiterbox.com/v1/openings/{id}/appication_form`
+`GET https://api.recruiterbox.com/v1/openings/{id}/application_form`
 
 ### Attributes
 
