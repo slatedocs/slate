@@ -13,7 +13,8 @@ curl https://app.beyonic.com/api/contacts -H "Authorization: Token ab594c1498661
 -d first_name='John' \
 -d last_name='Doe' \
 -d phone_number='+256712954253' \
--d email='john.doe@beyonic.com'
+-d email='john.doe@beyonic.com' \
+-d metadata="{'my_id': '123ASDAsd123'}"
 ```
 
 ```ruby
@@ -24,7 +25,8 @@ payment = Beyonic::Contact.create(
     phonenumber: "+256773712831",
     first_name: "John",
     last_name: "Doe",
-    email: "john.doe@beyonic.com"
+    email: "john.doe@beyonic.com",
+    metadata: "{'my_id': '123ASDAsd123'}"
 )
 ```
 
@@ -37,7 +39,8 @@ Beyonic_Contact::create(array(
   "phonenumber" => "+256773712831",
   "first_name" => "John",
   "last_name" => "Doe",
-  "email" => "john.doe@beyonic.com"
+  "email" => "john.doe@beyonic.com",
+  "metadata" => "{'my_id': '123ASDAsd123'}"
 ));
 ?>
 ```
@@ -50,6 +53,7 @@ beyonic.Contact.create(phonenumber='+256773712831',
                        first_name='John', 
                        last_name='Doe',
                        email='john.doe@beyonic.com'
+                       metadata="{'my_id': '123ASDAsd123'}"
                        )
 ```
 
@@ -77,6 +81,7 @@ phonenumber | Yes | String | +256773712831 | Must be in international format
 first_name | Yes | String | John | The contact's first name
 last_name | Yes | String | Doe | The contact's last name
 email | No | String | john.doe@beyonic.com | The contact's email address
+metadata | No | JSON String | "{'my_id': '123ASDAsd123'}" | Custom attributes to store with this object. See the Metadata section for more information.
 
 ## Retrieving a single contact
 

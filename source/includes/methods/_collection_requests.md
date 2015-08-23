@@ -16,7 +16,8 @@ The collection requests api endpoint is https://app.beyonic.com/api/collectionre
 curl https://app.beyonic.com/api/collectionrequests -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900" \
 -d phonenumber=+256772781923 \
 -d currency=UGX \
--d amount=3000
+-d amount=3000 \
+-d metadata="{'my_id': '123ASDAsd123'}"
 ```
 
 ```ruby
@@ -26,7 +27,8 @@ Beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 payment = Beyonic::CollectionRequest.create(
     phonenumber: "+256773712831",
     amount: "100.2",
-    currency: "UGX"
+    currency: "UGX",
+    metadata: "{'my_id': '123ASDAsd123'}"
 )
 ```
 
@@ -38,7 +40,8 @@ Beyonic::setApiKey("ab594c14986612f6167a975e1c369e71edab6900");
 Beyonic_CollectionRequest::create(array(
   "phonenumber" => "+256773712831",
   "amount" => "100.2",
-  "currency" => "UGX"
+  "currency" => "UGX",
+  "metadata" => "{'my_id': '123ASDAsd123'}"
 ));
 ?>
 ```
@@ -51,7 +54,8 @@ beyonic.CollectionRequest.create(phonenumber='+256773712831',
                        amount='1200', 
                        currency='UGX',
                        description='Per diem',
-                       callback_url='https://my.website/payments/callback'
+                       callback_url='https://my.website/payments/callback',
+                       metadata="{'my_id': '123ASDAsd123'}"
                        )
 ```
 
@@ -78,6 +82,7 @@ Parameter | Required | Type | Example | Notes
 phonenumber | Yes | String | +256773712831 | Must be in international format
 amount | Yes | String, Integer or Decimal | 3000 | Do not include thousands separators
 currency | Yes | String | UGX | 3 letter ISO currency code. No currency conversion is done, so the currency must be valid for the selected phonenumber. You must have funded Beyonic an account in this currency. If your account for this currency has zero balance, your payment will fail.
+metadata | No | JSON String | "{'my_id': '123ASDAsd123'}" | Custom attributes to store with this object. See the Metadata section for more information.
 
 ## Retrieving a single collection request
 
