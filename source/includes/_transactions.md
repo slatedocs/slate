@@ -537,6 +537,38 @@ var updated = sdk.UpdateTransactionRule(transactionId, requestModel);
   }
 }
 ```
+```csharp
+//Typical Error object format returned from SDK
+{
+	  var error = new GeezeoSdkException{ //base class
+	  					GeezeoError = new GeezeoError{
+					  			Error = new InternalError{
+					  				Message = "Error in transaction"
+					  				Data = new List<string>{
+					  					"Specific Error Message"
+					  				}
+					  			},
+					  			Message = "Error in transaction"
+		  					},
+		  				 ExceptionType = ExceptionType.InternalServer	
+	  					}
+}
+
+//Typical Error object format returned from SDK when error is unprocessable entity
+{
+	  var error = new GeezeoSdkException{ //base class
+	  					GeezeoError = new GeezeoError{
+					  			Error = new InternalError{
+					  				Message = "Error in transaction"
+					  				Data = new Dictionary<string, object>{
+					  					"Specific property", "error message"
+					  				}
+					  			}
+		  					},
+		  				 ExceptionType = ExceptionType.UnprocessableEntity	
+	  					}
+}
+```
 
 Transaction nicknames and tags can be changed. 
 
