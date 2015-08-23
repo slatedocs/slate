@@ -160,6 +160,34 @@ payment = beyonic.Payment.get(2314)
 
 ```
 
+> Sample Response (JSON):
+
+```json
+{
+    "id": 2314, 
+    "organization": 1, 
+    "amount": "30", 
+    "currency": "UGX",
+    "payment_type": "money",
+    "metadata": {"id": 1234, "name": "Lucy"}, 
+    "description": "Per diem payment", 
+    "phone_nos": ["+256772781923"], 
+    "state": "new", 
+    "last_error": null,
+    "rejected_reason": null,
+    "rejected_by": null,
+    "rejected_time": null,
+    "cancelled_reason": null,
+    "cancelled_by": null,
+    "cancelled_time": null, 
+    "created": "2014-11-22T20:57:04.017Z",
+    "author": 15,
+    "modified": "2014-11-22T20:57:04.018Z",
+    "updated_by": null,
+    "start_date": "2014-11-22T20:57:04.018Z"
+}
+```
+
 To retrieve a single payment object, provide the payment id and a payment object will be returned.
 
 Parameter | Required | Type | Example | Notes

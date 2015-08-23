@@ -116,6 +116,22 @@ collection = beyonic.CollectionTRequest.get(23)
 
 ```
 
+> Sample Response (JSON):
+
+```json
+{
+    "id": 230, 
+    "organization": 1, 
+    "amount": "30", 
+    "currency": "UGX",
+    "phone_number": "+256772781923",
+    "created": "2014-11-22T20:57:04.017Z",
+    "author": 15,
+    "modified": "2014-11-22T20:57:04.018Z",
+    "updated_by": null,
+}
+```
+
 To retrieve a single collection request, provide the collection request id and a collection request object will be returned.
 
 Parameter | Required | Type | Example | Notes

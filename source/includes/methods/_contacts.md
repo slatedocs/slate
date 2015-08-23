@@ -61,15 +61,19 @@ beyonic.Contact.create(phonenumber='+256773712831',
 
 ```json
 {
-    "id": 3620, 
-    "organization": 1, 
-    "amount": "30", 
-    "currency": "UGX",
-    "phone_number": "+256772781923",
-    "created": "2014-11-22T20:57:04.017Z",
-    "author": 15,
-    "modified": "2014-11-22T20:57:04.018Z",
-    "updated_by": null,
+    "id": 26,
+    "organization": "Beyonic",
+    "first_name": "Suzanne",
+    "last_name": "Kwagala",
+    "email": "suzanne@beyonic.com",
+    "phone_number": "+256784522611",
+    "type": "employee",
+    "status": "active",
+    "metadata": null,
+    "created": "2013-09-19T21:26:10Z",
+    "author": 1,
+    "modified": "2015-04-14T18:21:47Z",
+    "updated_by": 42
 }
 ```
 
@@ -113,6 +117,25 @@ beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
 contact = beyonic.Contact.get(23)
 
+```
+> Sample Response (JSON):
+
+```json
+{
+    "id": 23,
+    "organization": "Beyonic",
+    "first_name": "Suzanne",
+    "last_name": "Kwagala",
+    "email": "suzanne@beyonic.com",
+    "phone_number": "+256784522611",
+    "type": "employee",
+    "status": "active",
+    "metadata": null,
+    "created": "2013-09-19T21:26:10Z",
+    "author": 1,
+    "modified": "2015-04-14T18:21:47Z",
+    "updated_by": 42
+}
 ```
 
 To retrieve a single contact, provide the contact id and a contact object will be returned.

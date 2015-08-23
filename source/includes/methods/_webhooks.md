@@ -74,6 +74,19 @@ hook = beyonic.Webhook.create(event='payment.status.changed',
 
 ```
 
+> Sample Response (JSON)
+
+```json
+{
+    "id": 53,
+    "created": "2015-08-01T16:56:29Z",
+    "updated": "2015-08-01T16:56:29Z",
+    "event": "payment.status.changed",
+    "target": "https://my.callback.url/",
+    "user": 42
+}
+```
+
 To create a new webhook, make a POST to the endpoint above, with the attributes below.
 
 Parameter | Required | Type | Example | Notes
@@ -118,6 +131,19 @@ hook = beyonic.Webhook.get(23)
 
 ```
 
+> Sample Response (JSON)
+
+```json
+{
+    "id": 23,
+    "created": "2015-08-01T16:56:29Z",
+    "updated": "2015-08-01T16:56:29Z",
+    "event": "payment.status.changed",
+    "target": "https://my.callback.url/",
+    "user": 42
+}
+```
+
 To retrieve a single webhook object, provide the webhook id and a webhook object will be returned.
 
 Parameter | Required | Type | Example | Notes
@@ -156,6 +182,50 @@ hooks = beyonic.Webhook.list()
 
 ```
 
+> Sample Response (JSON)
+
+```json
+{
+    "count": 4,
+    "next": "http://localhost:8000/api/webhooks?offset=10",
+    "previous": null,
+    "results": [
+        {
+            "id": 50,
+            "created": "2015-08-01T16:43:43Z",
+            "updated": "2015-08-01T17:05:38Z",
+            "event": "payment.status.changed",
+            "target": "https://mysite.com/callbacks/payment/saved/1",
+            "user": 42
+        },
+        {
+            "id": 52,
+            "created": "2015-08-01T16:43:43Z",
+            "updated": "2015-08-01T17:05:38Z",
+            "event": "payment.status.changed",
+            "target": "https://mysite.com/callbacks/payment/saved",
+            "user": 42
+        },
+        {
+            "id": 53,
+            "created": "2015-08-01T16:56:29Z",
+            "updated": "2015-08-01T16:56:29Z",
+            "event": "payment.status.changed",
+            "target": "https://my.callback.url/",
+            "user": 42
+        },
+        {
+            "id": 55,
+            "created": "2015-08-01T16:56:29Z",
+            "updated": "2015-08-01T16:56:29Z",
+            "event": "payment.status.changed",
+            "target": "https://google.com",
+            "user": 42
+        }
+    ]
+}
+```
+       
 To retrieve a list of all webhooks, make a GET request to the webhooks endpoint. This will return a list of webhooks objects.
 
 ## Updating a webhook
@@ -197,6 +267,19 @@ hook = beyonic.Webhook.get(1)
 hook.target = 'https://my.callback.url/'
 hook.save()
 
+```
+
+> Sample Response (JSON)
+
+```json
+{
+    "id": 1,
+    "created": "2015-08-01T16:56:29Z",
+    "updated": "2015-08-01T16:56:29Z",
+    "event": "payment.status.changed",
+    "target": "https://my.callback.url/",
+    "user": 42
+}
 ```
 
 To update a webhook, make a PUT request to the specific webhook’s endpoint, identified by its Id.

@@ -38,6 +38,26 @@ collection = beyonic.Collection.get(23)
 
 ```
 
+> Sample Response (JSON):
+
+```json
+{
+    "id": 230,
+    "remote_transaction_id": "12132",
+    "organization": 1,
+    "amount": "20.0000",
+    "currency": 1,
+    "phonenumber": "+2547227272723",
+    "payment_date": "2015-12-12T00:00:00Z",
+    "reference": null,
+    "status": "successful",
+    "created": "2015-08-01T16:49:48Z",
+    "author": null,
+    "modified": "2015-08-01T16:55:38Z",
+    "updated_by": null
+}
+```
+
 To retrieve a single collection object, provide the collection id and a collection object will be returned.
 
 Parameter | Required | Type | Example | Notes
