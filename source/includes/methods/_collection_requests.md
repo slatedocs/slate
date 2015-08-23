@@ -10,7 +10,7 @@ The collection requests api endpoint is https://app.beyonic.com/api/collectionre
 
 ## Creating a new collection request
 
-> Example Request:
+> Sample Request:
 
 ```shell
 curl https://app.beyonic.com/api/collectionrequests -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900" \
@@ -55,7 +55,7 @@ beyonic.CollectionRequest.create(phonenumber='+256773712831',
                        )
 ```
 
-> Example JSON Response:
+> Sample Response (JSON):
 
 ```json
 {
@@ -81,7 +81,7 @@ currency | Yes | String | UGX | 3 letter ISO currency code. No currency conversi
 
 ## Retrieving a single collection request
 
-> Retrieve Individual Collections:
+> Sample Request:
 
 ```shell
 curl https://app.beyonic.com/api/collectionrequests/230 -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900"
@@ -119,7 +119,7 @@ id | Yes | Integer | 23 | The id of the collection you want to retrieve
 
 ## Listing all collection requests
 
-> List Collection Requests:
+> Sample Request:
 
 ```shell
 curl https://app.beyonic.com/api/collectionrequests -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900"
@@ -149,21 +149,52 @@ collection = beyonic.CollectionRequest.list()
 
 ```
 
-> Response Object List
+> Sample Response (JSON)
 
 ```json
-[
-       {
-        "id": 134,
-        "phonenumber": "+256XXXXXX",
-        "amount": 3000.000,
-        "currency": "UGX",
-        "created": "2014-11-22T20:57:04.017Z",
-        "author": 15,
-        "modified": "2014-11-22T20:57:04.018Z",
-        "updated_by": null,
-       }
-]
+{
+    "count": 3,
+    "next": "http://localhost:8000/api/collectionrequests?offset=10",
+    "previous": null,
+    "results": [
+        {
+            "id": 99,
+            "organization": "Beyonic",
+            "amount": "3000.0000",
+            "currency": "UGX",
+            "phonenumber": "+256772781923",
+            "metadata": null,
+            "created": "2015-08-10T16:10:01Z",
+            "author": 42,
+            "modified": "2015-08-10T16:10:01Z",
+            "updated_by": 42
+        },
+        {
+            "id": 100,
+            "organization": "Beyonic",
+            "amount": "3000.0000",
+            "currency": "UGX",
+            "phonenumber": "+256772781923",
+            "metadata": null,
+            "created": "2015-08-10T16:10:01Z",
+            "author": 42,
+            "modified": "2015-08-10T16:10:01Z",
+            "updated_by": 42
+        },
+        {
+            "id": 101,
+            "organization": "Beyonic",
+            "amount": "3000.0000",
+            "currency": "UGX",
+            "phonenumber": "+256772781923",
+            "metadata": null,
+            "created": "2015-08-10T16:10:01Z",
+            "author": 42,
+            "modified": "2015-08-10T16:10:01Z",
+            "updated_by": 42
+        }
+    ]
+}
 ```
 
 To retrieve a list of all collections, make a GET request to the collections endpoint. This will return a list of collection objects.

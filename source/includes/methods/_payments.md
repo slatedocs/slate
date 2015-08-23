@@ -6,7 +6,7 @@ To send payments to a mobile subscriber, you create a new payment object. You ca
 
 ## Creating a new payment
 
-> Example Request:
+> Sample Request:
 
 ```shell
 curl https://app.beyonic.com/api/payments -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900" \
@@ -63,7 +63,7 @@ beyonic.Payment.create(phonenumber='+256773712831',
                        )
 ```
 
-> Example JSON Response:
+> Sample Response (JSON):
 
 ```json
 {
@@ -102,6 +102,8 @@ description | Yes | String | Per diem payment | This description will be sent to
 payment_type | No | String | money | Options: money (default), airtime - use "airtime" to send an airtime payment instead of a mobile money payment
 callback_url | No | String | https://my.website/payments/callback | See "Callback URLs" below for more info.
 metadata | No | JSON-formatted string or dictionary | "{'id':'1234','name':'Lucy'}" | Metadata allows you to add custom attributes to your payments. E.g. You can include a unique ID to identify each payment. Attributes must be key-value pairs. Both the keys and values must be strings. You can add up to 10 attributes. This data will be returned when you retrieve a payment.
+first_name | No | String | John | If this payment is to a new contact, you can include their first name. This name will only be used if the contact is new.
+last_name | No | String | Doe | If this payment is to a new contact, you can include their last name. This name will only be used if the contact is new.
 
 **Callback URLs**
 
@@ -128,7 +130,7 @@ Callback URLs are used to send notifications of changes in payment status. Not a
 
 ## Retrieving a single payment
 
-> Retrieve Single Payment:
+> Sample Request:
 
 ```shell
 curl https://app.beyonic.com/api/payments/2314 -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900"
@@ -166,7 +168,7 @@ id | Yes | Integer | 2314 | The id of the payment you want to retrieve
 
 ## Listing all payments
 
-> List Payments:
+> Sample Request:
 
 ```shell
 curl https://app.beyonic.com/api/payments -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900"
@@ -196,58 +198,65 @@ payments = beyonic.Payment.list()
 
 ```
 
-> List Payments JSON Response:
+> Sample Response (JSON)
 
 
 ```json
-[
-  {
-      "id": 3620, 
-      "organization": 1, 
-      "amount": "30", 
-      "currency": "UGX",
-      "payment_type": "money",
-      "metadata": {"id": 1234, "name": "Lucy"}, 
-      "description": "Per diem payment", 
-      "phone_nos": ["+256772781923"], 
-      "state": "new", 
-      "last_error": null,
-      "rejected_reason": null,
-      "rejected_by": null,
-      "rejected_time": null,
-      "cancelled_reason": null,
-      "cancelled_by": null,
-      "cancelled_time": null, 
-      "created": "2014-11-22T20:57:04.017Z",
-      "author": 15,
-      "modified": "2014-11-22T20:57:04.018Z",
-      "updated_by": null,
-      "start_date": "2014-11-22T20:57:04.018Z"
-  },
-  {
-      "id": 3636, 
-      "organization": 1, 
-      "amount": "50", 
-      "currency": "UGX",
-      "payment_type": "money",
-      "metadata": {"id": 3123, "name": "Lucy"}, 
-      "description": "Per diem payment", 
-      "phone_nos": ["+256772788923"], 
-      "state": "new", 
-      "last_error": null,
-      "rejected_reason": null,
-      "rejected_by": null,
-      "rejected_time": null,
-      "cancelled_reason": null,
-      "cancelled_by": null,
-      "cancelled_time": null, 
-      "created": "2014-11-22T20:57:04.017Z",
-      "author": 15,
-      "modified": "2014-11-22T20:57:04.018Z",
-      "updated_by": null,
-      "start_date": "2014-11-22T20:57:04.018Z"
-  }
-]
+{
+    "count": 2,
+    "next": "http://app.beyonic.com/api/payments?offset=10",
+    "previous": null,
+    "results": [
+        {
+            "id": 1,
+            "organization": "Beyonic",
+            "amount": "0.0000",
+            "currency": "UGX",
+            "payment_type": "money",
+            "metadata": null,
+            "description": "Test",
+            "phone_nos": [
+                "+256784522613"
+            ],
+            "state": "approved",
+            "last_error": null,
+            "rejected_reason": null,
+            "rejected_by": null,
+            "rejected_time": null,
+            "cancelled_reason": null,
+            "cancelled_by": null,
+            "cancelled_time": null,
+            "created": "2013-08-20T17:21:39Z",
+            "author": 1,
+            "modified": "2013-08-20T17:21:39Z",
+            "updated_by": null,
+            "start_date": "2013-08-20T00:00:00Z"
+        },
+        {
+            "id": 2,
+            "organization": "Beyonic",
+            "amount": "200.0000",
+            "currency": "UGX",
+            "payment_type": "money",
+            "metadata": null,
+            "description": "Test2",
+            "phone_nos": [
+                "+256784522611"
+            ],
+            "state": "scheduled",
+            "last_error": null,
+            "rejected_reason": null,
+            "rejected_by": null,
+            "rejected_time": null,
+            "cancelled_reason": null,
+            "cancelled_by": null,
+            "cancelled_time": null,
+            "created": "2013-08-22T01:53:35Z",
+            "author": 1,
+            "modified": "2013-08-22T01:53:36Z",
+            "updated_by": 1,
+            "start_date": "2013-08-21T00:00:00Z"
+        },
 ```
 
 To return a list of all payments, make a GET request to the payments endpoint. This will return a list of payment objects.

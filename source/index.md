@@ -16,7 +16,11 @@ includes:
   - libraries
   - versioning
   - authentication
+  - pagination
+  - ordering
+  - metadata
   - methods
+  - methods/contacts
   - methods/payments
   - methods/collections
   - methods/collection_requests
@@ -27,6 +31,8 @@ search: true
 # Introduction
 
 > Scroll down for examples.
+
+Welcome to Beyonic's API documentation. 
 
 The Beyonic API is [REST](http://en.wikipedia.org/wiki/Representational_state_transfer) based. We provide libraries for several languages, including PHP, Java, Ruby and Python. You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
 

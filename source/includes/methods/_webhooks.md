@@ -34,7 +34,7 @@ The webhooks api endpoint is https://app.beyonic.com/api/webhooks
 
 ## Creating a new webhook
 
-> Example Request:
+> Sample Request:
 
 ```shell
 curl http://app.beyonic.com/api/webhooks -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900" \
@@ -88,7 +88,7 @@ target | Yes | String | 'https://my.callback.url/"' | Must be an https URL
 
 ## Retrieving a single webhook
 
-> Retrieve Individual Webhooks:
+> Sample Request:
 
 ```shell
 curl https://app.beyonic.com/api/webhooks/23 -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900"
@@ -126,7 +126,7 @@ id | Yes | Integer | 23 | The id of the webhook you want to retrieve
 
 ## Listing all webhooks
 
-> List Webhooks:
+> Sample Request:
 
 ```shell
 curl https://app.beyonic.com/api/webhooks -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900"
@@ -160,7 +160,7 @@ To retrieve a list of all webhooks, make a GET request to the webhooks endpoint.
 
 ## Updating a webhook
 
-> Updating a Webhook:
+> Sample Request:
 
 ```shell
 ccurl http://app.beyonic.com/api/webhooks/1 -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900" \
@@ -203,7 +203,7 @@ To update a webhook, make a PUT request to the specific webhook’s endpoint, id
 
 ## Deleting a webhook
 
-> Deleting a Webhook:
+> Sample Request:
 
 ```shell
 curl http://app.beyonic.com/api/webhooks/1 -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900" -X DELETE
