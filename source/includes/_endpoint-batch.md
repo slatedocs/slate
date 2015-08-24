@@ -4,7 +4,7 @@
 
 `/datasets/{id}/batches/`
 
-A GET on this resource returns a Shoji Catalog enumerating the batches present in the Dataset. Each tuple in the index includes a "status" member, which may be one of "analyzing", "conflict", "importing", "imported", or "appended".
+A GET on this resource returns a Shoji Catalog enumerating the batches present in the Dataset. Each tuple in the index includes a "status" member, which may be one of "analyzing", "conflict", "error", "importing", "imported", or "appended".
 
 ```json
 {
@@ -22,7 +22,7 @@ A POST to this resource adds new rows as a batch. The payload can be be a Crunch
 
 If the append operation takes more than two minutes, 202 is returned instead and the batch will continue being appended in the background. The Location header is still returned, pointing to the new batch's URL. The client can GET that URL to query its status.
 
-Batches are created in `idle` status and will be advanced to `ready` status once their processing starts. If there was a problem in processing it, its status will be `conflict` or `error`.
+Batches are created in `analyzing` status and will be advanced through `importing`, `imported`, and `appended` status if there are no problems. If there was a problem in processing it, its status will be `conflict` or `error`.
 
 Note that the status code will always be 202 for asynchronous or 201 for synchronous creation of the batch whether there were conflicts or not. So you need to GET the new batch's URL to see if the data is good to go (status `appended`).
 
