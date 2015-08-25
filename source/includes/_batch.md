@@ -28,11 +28,11 @@ var txlist = [{
     params: 3
 }];
 
-augur.batch(txlist);
+augur.rpc.batch(txlist);
 
 // returns: ['10', '6']
 ```
 
 augur.js implements [batch RPC](http://www.jsonrpc.org/specification#batch), which can help reduce overhead if you're making several API calls that can be run in parallel (i.e., do not depend on each other's results).
 
-For finer-grained control over the batched commands, you can also use augur.js's lower-level `augur.batch` method directly.  `augur.batch` accepts manually constructed transaction objects.
+For finer-grained control over the batched commands, you can also use [ethrpc](https://github.com/AugurProject/ethrpc)'s lower-level `batch` method directly, which is attached to `augur.rpc`.  `augur.rpc.batch` accepts a list of manually constructed transaction objects.

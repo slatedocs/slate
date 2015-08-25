@@ -101,41 +101,41 @@ sendReputation(branchId, receiver, value[, callback])
 
 getSimulatedBuy(market, outcome, amount[, callback])
 
-> Augur.getSimulatedBuy("0xb13d98f933cbd602a3d9d4626260077678ab210d1e63b3108b231c1758ff9971", 1, Augur.ONE.toString(16))
+> augur.getSimulatedBuy("0xb13d98f933cbd602a3d9d4626260077678ab210d1e63b3108b231c1758ff9971", 1, augur.ONE.toString(16))
 ["0x0000000000000000000000000000000000000000000000000013b073172aceb2",
  "0x0000000000000000000000000000000000000000000000008de39f2500000000"]
 
 getSimulatedSell(market, outcome, amount[, callback])
 
-> Augur.getSimulatedSell("0xb13d98f933cbd602a3d9d4626260077678ab210d1e63b3108b231c1758ff9971", 1, Augur.ONE.toString(16))
+> augur.getSimulatedSell("0xb13d98f933cbd602a3d9d4626260077678ab210d1e63b3108b231c1758ff9971", 1, augur.ONE.toString(16))
 ["0x0000000000000000000000000000000000000000000000000013af84d04feba9",
  "0x0000000000000000000000000000000000000000000000008dd635b900000000"]
 
 getCreator(id[, callback])
 
 > var market = "0xb13d98f933cbd602a3d9d4626260077678ab210d1e63b3108b231c1758ff9971";
-> Augur.getCreator(market);
+> augur.getCreator(market);
 "0x0000000000000000000000001c11aa45c792e202e9ffdc2f12f99d0d209bef70"
 
 getCreationFee(id[, callback])
 
-> Augur.getCreationFee(market)
+> augur.getCreationFee(market)
 "0x00000000000000000000000000000000000000000000000a0000000000000000"
 
 getExpiration(event[, callback]): Event expiration block.
 
 > var event = "0xb2a6de45f349b5ac384b01a785e640f519f0a8597ab2031c964c7f572d96b13c";
-> Augur.getExpiration(event)
+> augur.getExpiration(event)
 "0x000000000000000000000000000000000000000000000000000000000003d090"
 
 getMarketNumOutcomes(market[, callback]): Number of outcomes in this market as an integer.
 
-> Augur.getMarketNumOutcomes(market)
+> augur.getMarketNumOutcomes(market)
 2
 
 price(market, outcome[, callback]): Get the current (instantaneous) price of an outcome.
 
-> Augur.price(market_id, 1, function (r) { console.log(r.dividedBy(Augur.ONE).toFixed()); })
+> augur.price(market_id, 1, function (r) { console.log(r.dividedBy(augur.ONE).toFixed()); })
 0.55415210523642599583
 
 getWinningOutcomes(market[, callback])
@@ -143,21 +143,20 @@ getWinningOutcomes(market[, callback])
 
 The Augur API is a set of JavaScript bindings for the methods encoded in Augur's [smart contracts](https://github.com/AugurProject/augur-core).  The API method name, as well as its parameters, are generally identical to those of the underlying smart contract method.
 
-In some cases, you may need more flexibility beyond simply mix-and-matching the Augur API methods.  To do this, first build a transaction object manually, then execute it using `invoke`.  The `invoke` method executes a method in a contract already on the network.  It can broadcast transactions to the network and/or capture return values by calling the contract method(s) locally.
+In some cases, you may need more flexibility beyond simply mix-and-matching the Augur API methods.  To do this, use [ethrpc](https://github.com/AugurProject/ethrpc)'s lower-level `invoke` method (`augur.rpc.invoke`).  First, build a transaction object manually, then execute it using `invoke`.  The `invoke` method executes a method in a contract already on the network.  It can broadcast transactions to the network and/or capture return values by calling the contract method(s) locally.
 
 ```javascript
 
-// The method called here, double(22121), simply doubles its input argument.
-> tx = {
+// The method called here doubles its input argument.
+augur.rpc.invoke({
    to: "0x5204f18c652d1c31c6a5968cb65e011915285a50",
    method: "double",
    signature: "i",
-   params: 22121,
+   params: 22121, // parameter value(s)
    send: false,
-   returns: "int"
-};
-
-> Augur.invoke(tx)
+   returns: "number"
+});
+// this returns:
 44242
 ```
 
@@ -178,4 +177,4 @@ Optional:
 
 The `params` and `signature` fields are required if your function accepts parameters; otherwise, these fields can be excluded.  The `returns` field is used only to format the output, and does not affect the actual RPC request.
 
-<aside class="notice"><b><code>invoke</code> currently only works for <a href="https://github.com/ethereum/serpent">Serpent</a> contracts.</b>  The extra datatypes included by <a href="https://github.com/ethereum/wiki/wiki/The-Solidity-Programming-Language">Solidity</a> are not (yet) supported by augur.js's encoder.  In our encoder, all parameters are required to be type <code>string</code>, <code>int256</code>, or <code>int256[]</code>.  If you need a more flexible ABI encoder, check out <a href="https://github.com/etherex/pyepm">pyepm</a> and its <code>api.abi_data</code> method.</aside>
+<aside class="notice"><b><code>invoke</code> currently only works for <a href="https://github.com/ethereum/serpent">Serpent</a> contracts.</b>  The extra datatypes included by <a href="https://github.com/ethereum/solidity">Solidity</a> are not (yet) supported by the <a href="https://github.com/AugurProject/augur-abi">augur-abi</a> encoder.  The augur-abi encoder requires all parameters to be type <code>string</code>, <code>int256</code>, or <code>int256[]</code>.</aside>
