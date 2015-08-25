@@ -34,4 +34,4 @@ A DELETE destroys the Source resource. 204 indicates success.
 
 A GET returns the original source file.
 
-For `crunch:table` sources, a POST of a subsequent `crunch:table` to this URL will append the given rows to the existing ones within this Source. This allows clients to "stream" rows one- or a few-at-a-time to Crunch with maximum efficiency, yet still retain high reliability. This does *not* add the new rows to the dataset by itself; see the [Batch Entity](#entity87) docs to set up an autoappend strategy.
+For `crunch:table` sources, a POST of a subsequent `crunch:table` to this URL will append the given rows to the existing ones within this Source. This allows clients to "stream" rows one- or a few-at-a-time to Crunch with maximum efficiency, yet still retain high reliability. This does *not* add the new rows to the dataset by itself; see the [Feature Guide](#streaming-rows) docs to set up an autoappender.
