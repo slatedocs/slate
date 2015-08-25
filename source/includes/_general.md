@@ -61,24 +61,30 @@ Parameter  | Type    | Default  | Description
 }
 ```
 
-Those API endpoints that return paginated collections return an object with the following attributes.
+Paginated collections are objects with the following attributes.
 
 Attribute | Type | Description
 :---------|:-----|------------
 `count` | integer | The total number of objects matching the query. This may be much larger than the number of the actually returned objects in this response.
-`per_page` | integer | Maximum number of objects per page. The actual number of returned objects on the last page may be fewer than this number. This equals to the 'page_size' GET parameter or its default value.
-`num_pages` | integer | The total number of pages for the matching query results. In practice, this is same than count / per_page, rounded up.
+`per_page` | integer | Maximum number of objects per page. The actual number of returned objects on the last page may be fewer than this number. This equals to the `page_size` GET parameter or its default value.
+`num_pages` | integer | The total number of pages for the matching query results. In practice, this is same than `count` / `per_page`, rounded up.
 `current_page` | integer | The index of the current page. The counting starts from one (1).
-`next_page` | integer | Index of the next available page. This is null if the current page is the last page.
+`next_page` | integer | Index of the next available page. This is `null` if the current page is the last page.
 `previous_page` | integer | Index of the previous available page. This is `null` if the current page is the first page.
 `next_page_url` | string | For convenience, ready-to-use URL for requesting the next page. This is `null` if the current page is the last page.
 `previous_page_url` | string | For convenience, ready-to-use URL for requesting the previous page. This is `null` if the current page is the first page
-`results` | array of objects | The list containing the results for the current page
+`results` | array of objects | The list containing the results for the current page. Each item is an object whose attributes depend on the returned resource type.
 
 ## Ordering Collections
 
-[Paginated collection][] can usually be ordered by using a `ordering` attribute. The allowed sorting criteria depends on the endpoint, but the basic usage is always the same. You have an allowed set of sorting attributes, e.g. `first_name`, `last_name` and `created_at`. You may then choose the primary sorting key and any secondary sorting keys with a comma-separated string, e.g. `last_name,first_name`. Any sorting order is ascending by default, but may be reverted to descending order by prefixing with a minus (`-`) character, e.g. `-created_at` or `last_name,-created_at`.
+A [paginated collection][] can usually be ordered by using an `ordering` attribute.
+
+The allowed sorting criteria depends on the endpoint, but the basic usage is always the same. You have an allowed set of sorting attributes, e.g. `first_name`, `last_name` and `created_at`. You may then choose the primary sorting key and any secondary sorting keys with a comma-separated string, e.g. `last_name,first_name`.
+
+Any sorting order is ascending by default, but may be reverted to descending order by prefixing with a minus (`-`) character, e.g. `-created_at` or `last_name,-created_at`.
 
 ## Date/time format
 
-Unless stated otherwise, all the date/times returned by API endpoints in ISO-8601 format strings with format `YYYY-MM-DDTHH:MM:SS.MSS`, for example: `2015-06-12T12:34:56.000`. Also, any date/time URL parameters or attributes send as a request payload accept this same format. Unless stated otherwise, the times are in UTC timezone!
+Unless stated otherwise, all the date/times returned by API endpoints are ISO-8601 strings with format `YYYY-MM-DDTHH:MM:SS.MSS`, for example: `2015-06-12T12:34:56.000`. Also, any date/time URL parameters or attributes send as a request payload accept this same format.
+
+Unless stated otherwise, the times are expressed in UTC timezone!

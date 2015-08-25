@@ -32,9 +32,8 @@ If your invitation is accepted by an existing partner, then any shared teams or 
 
 ### Send an invitation
 You may send an invitation to your partner's email address by creating a new [outgoing invitation][] object.
-```
-POST https://service.giosg.com/api/v3/network/invitations/outgoing/
-```
+
+`POST https://service.giosg.com/api/v3/network/invitations/outgoing/`
 
 ### Cancel an outgoing invitation
 You may cancel a partnership invitation before it is accepted or rejected, by a given ID.
@@ -98,8 +97,8 @@ Retrieve a [incoming invitation][] resource by its **invitation key**. Incoming 
 ### Get a collection of incoming invitations
 Get a [paginated collection][] of all received [incoming invitation][] objects. This endpoint returns invitations accepted or rejected by your company. It also returns those invitations that are sent to one of your company's email address. **NOTE** that the company who sends the invitation does not know if this email address actually exists in giosg system.
 
-
 `GET https://service.giosg.com/api/v3/network/invitations/incoming/`
+
 This endpoint accepts the following GET parameters.
 
 Parameter | Type | Default | Description
@@ -111,9 +110,9 @@ Parameter | Type | Default | Description
 
 ### Accept an incoming invitation
 You need to accept an invitation to become partners with the sender. In order to accept the invitation, you need the invitation key.
-```
-POST https://service.giosg.com/api/v3/network/invitations/incoming/[invitation_key]/accept
-```
+
+`POST https://service.giosg.com/api/v3/network/invitations/incoming/[invitation_key]/accept`
+
 As soon as you accept the invitation, the partnership will be created. Also, any shared rooms and teams will become available to your company.
 
 You should send an object as a payload with the following attributes, matching the attributes on a [partnership][] resource. They may be omitted, see below.
@@ -135,9 +134,9 @@ A successful response will result in the updated [incoming invitation][] resourc
 
 ### Reject an invitation
 You may reject an invitation by its invitation key.
-```
-POST https://service.giosg.com/api/v3/network/invitations/incoming/[invitation_key]/reject
-```
+
+`POST https://service.giosg.com/api/v3/network/invitations/incoming/[invitation_key]/reject`
+
 No request payload is required. After rejecting an invitation, its status will become `2`.
 
 The request will result in 404 response if the invitation was not found, has been cancelled, or has already been accepted/rejected by some other company. The request will result in 403 response if the invitation has already been accepted or rejected by your company, or if you are not allowed to accept/reject the invitation, e.g. you are the original creator of this invitation.
