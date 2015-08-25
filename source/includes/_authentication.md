@@ -43,11 +43,11 @@ curl -u "[your token]:" "https://ac.constructor.io/v1/verify?autocomplete_key=[y
 ```javascript
 constructorio.verify(function(error, response) {
   if (error) {
-    console.log("Error: " + error);
+    console.log("Error: ", error);
   } else {
-    console.log("Response: " + response);
+    console.log("Response: ", response);
   }
-}
+});
 ```
 
 ```ruby
