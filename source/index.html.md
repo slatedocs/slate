@@ -31,6 +31,7 @@ includes:
   - tickets
   - transactions
   - users
+  - data-source
 
 search: true
 ---
