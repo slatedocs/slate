@@ -190,16 +190,16 @@ You may delete one of your own rooms by making a `DELETE` request.
 
 A team object contains the following attributes.
 
-Attribute | Type | Description
-:---------|:-----|------------
-`id` | integer | The unique identifier of this team
-`company_id` | integer | ID of the company who owns this room.
-`company` | object | The [company][] who owns this room.
-`name` | string | Name of the team, set by the owner
-`display_name` | string | Display name of the team. It may equal to the `name` attribute, unless this team is [shared][outgoing team share] to your company with a custom `share_name`.
-`is_shared` | boolean | `true` if the room is shared to your company, `false` if your company owns the room
-`member_count` | integer | Number of [members][team membership] in this team, including both admins and non-admins. **Visible only to your own company.**
-`admin_count` | integer | Number of [admins][team membership] in this team. **Visible only to your own company.**
+Attribute | Type | Editable | Description
+:---------|:-----|----------|------------
+`id` | integer | read-only | The unique identifier of this team
+`company_id` | integer | read-only | ID of the company who owns this team.
+`company` | object | read-only | The [company][] who owns this team.
+`name` | string | **required** | Name of the team. Must be a non-empty string.
+`display_name` | string | read-only | Display name of the team. It may equal to the `name` attribute, unless this team is [shared][outgoing team share] to your company with a custom `share_name`.
+`is_shared` | boolean | read-only | `true` if the team is shared to your company, `false` if your company owns the team
+`member_count` | integer | read-only | Number of [members][team membership] in this team, including both admins and non-admins. **Visible only to your own company.**
+`admin_count` | integer | read-only | Number of [admins][team membership] in this team. **Visible only to your own company.**
 
 ### Retrieve team details
 Get a single team object that your company has access to, by its ID. This may be a shared team.
@@ -219,20 +219,45 @@ Parameter | Type | Default | Description
 `page` | integer | 1 | [Page][paginated collection] to get
 `page_size` | integer | 50 | [Page size][paginated collection] for the pages, with max value of 200
 
+Teams are readable by anyone in the same company. However, they can be created, updated or deleted only by company managers.
+
+### Creating a team
+Create a team to your own company:
+
+`POST https://service.giosg.com/api/v4/customer/teams`
+
+### Update a team
+You may update the editable attributes of your own team by making either a `PATCH` (update a subset of attributes) or `POST` request (update all the attributes).
+
+`PUT https://service.giosg.com/api/v4/customer/team/[team_id]`
+
+`PATCH https://service.giosg.com/api/v4/customer/team/[team_id]`
+
+### Delete a team
+
+<aside class="warning">
+Deleting a team will immediately clear all the memberships from the team. It will also unshare it from your partners! You cannot undo this action, but you can re-create and re-share the team and its memberships again.
+</aside>
+
+You may delete one of your own teams by making a `DELETE` request.
+
+`DELETE https://service.giosg.com/api/v4/customer/teams/[team_id]`
+
 ## Team memberships
 
 A **team membership** represents a person belonging to a specific team. Team memberships are only visible for teams of your own company. A team membership resource has the following attributes.
 
-Attribute | Type | Description
-:---------|:-----|------------
-`id` | integer | The unique identifier of this team
-`team_id`| integer | ID of the team to which this member belongs.
-`team`| object | The [team][] to which this member belongs, with attributes `id`, `name`, `display_name`, and `company_id`.
-`person_id` | integer | ID of the member person.
-`person` | object | The member [person][] resource. Has all other attributes than `company`
-`is_admin` | boolean | Whether or not the member is the admin of the team.
+Attribute | Type | Editable | Description
+:---------|:-----|----------|------------
+`team_id`| integer | read-only | ID of the team to which this member belongs.
+`team`| object | read-only | The [team][] to which this member belongs, with attributes `id`, `name`, `display_name`, and `company_id`.
+`person_id` | integer | read-only | ID of the member person.
+`person` | object | read-only | The member [person][] resource. Has all other attributes than `company`
+`is_admin` | boolean | **required** | Whether or not the member is an admin of the team.
 
-### Get a collection of team memberships for a team
+Team memberships are readable by any member of the same company. However, they can be created, updated or deleted only by either company managers or by team admins. Otherwise, the endpoints will return a `403 Forbidden` response.
+
+### Get a collection of team members
 Return a [paginated collection][] of all the [team membership][] resources for a specific [team][].
 
 `GET https://service.giosg.com/api/v4/customer/teams/[team_id]/memberships`
@@ -242,3 +267,29 @@ Parameter | Type | Default | Description
 `is_admin` | boolean | (none) | If `true`, return only admin memberships. If `false`, return only non-admin memberships.
 `page` | integer | 1 | [Page][paginated collection] to get
 `page_size` | integer | 50 | [Page size][paginated collection] for the pages, with max value of 200
+
+### Add a member to a team
+You may add a person of your own company to one of your teams by creating a team membership object.
+
+`POST https://service.giosg.com/api/v4/customer/teams/[team_id]/memberships/[person_id]`
+
+This returns a `201 Created` response if the person with the given ID was successfully added to the team. If the person was already in the team, this updates the `is_admin` attribute and returns `200 OK` response with the existing membership resource.
+
+### Update a team membership
+You may update a team membership, i.e. change the admin status of a member either by attempting to create a new membership with `POST` or updating with `PUT`.
+
+`PUT https://service.giosg.com/api/v4/customer/teams/[team_id]/memberships/[person_id]`
+
+This returns a `201 Created` response if the person did not belong to team previously but was now added. If the person was already in the team, this updates the attributes and returns `200 OK` response with the existing membership resource.
+
+You may also update a membership with a `PATCH` request, but this will return `404 Not Found` in case the membership did not exist.
+
+### Remove a member from a team
+You may remove a person from a team by deleting his/her membership.
+
+`DELETE https://service.giosg.com/api/v4/customer/teams/[team_id]/memberships/[person_id]`
+
+### Retrieve team membership details
+You may get the a person membership resource in a team:
+
+`GET https://service.giosg.com/api/v4/customer/teams/[team_id]/memberships/[person_id]`
