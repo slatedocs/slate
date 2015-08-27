@@ -4,7 +4,7 @@
   [ordering]: <#ordering-collections>
   [company]: <#companies>
   [person]: <#persons>
-  [room]: <#rooms>
+  [room]: <#rooms-and-domains>
   [team]: <#teams>
   [team membership]: <#team-memberships>
   [incoming invitation]: <#incoming-partnership-invitations>

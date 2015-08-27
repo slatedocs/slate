@@ -113,27 +113,29 @@ Parameter | Type | Default | Description
 `page` | integer | 1 | [Page][paginated collection] to get
 `page_size` | integer | 50 | [Page size][paginated collection] for the pages, with max value of 200
 
-## Rooms
+## Rooms and domains
 
 A room object contains the following attributes.
 
-Attribute | Type | Description
-:---------|:-----|------------
-`id` | integer | The unique identifier of this room
-`token` | string | A signed Giosg token, used as a public identifier of this room
-`company_id`| integer | ID of the company who owns this room.
-`company`| object | The [company][] who owns this room.
-`domain` | string | A domain hostname if this room is a domain room, otherwise `null`
-`name` | string | Name of the room, set by the owner
-`display_name` | string | Display name of the room. It may equal to the `name` attribute, unless this room is [shared][outgoing room share] to your company with a custom `share_name`.
-`is_shared` | boolean | `true` if the room is shared to your company, `false` if your company owns the room
-`allowed_domains` | array of objects | List of domain rooms on which this room may be used. Each object in the array contains `id`, `name`, `display_name` and `domain` attributes.
-`language_code` | string | Language of this room in ISO 639-1 code, or `null` if undefined.
-`created_at` | [date/time][] | When this room was created. **Visible only to your own company.**
-`modified_at` | [date/time][] | When this room was modified last time. **Visible only to your own company.**
-`last_modifier_id` | integer | ID of the person who last modified this room, or `null` if unknown. **Visible only to your own company.**
-`last_modifier` | object | Details of the person who last modified this room, or `null` if unknown. **Visible only to your own company.**
-`is_deleted` | boolean | read-only | Whether this room exists no more. The resource exists only for historical purposes and cannot be used in any other context.
+Attribute | Type | Editable | Description
+:---------|:-----|----------|------------
+`id` | integer | read-only | The unique identifier of this room
+`token` | string | read-only | A signed Giosg token, used as a public identifier of this room
+`company_id`| integer | read-only | ID of the company who owns this room.
+`company`| object | read-only | The [company][] who owns this room.
+`domain` | string | **optional** | A domain hostname if this room is a **domain room**, otherwise `null` if this is a custom room. **Cannot be changed after creation.** You cannot have multiple domain rooms with the same `domain` attribute!
+`name` | string | **required** | Name of the room, set by the owner. Must be a non-empty string.
+`display_name` | string | read-only | Display name of the room. It may equal to the `name` attribute, unless this room is [shared][outgoing room share] to your company with a custom `share_name`.
+`is_shared` | boolean | read-only | `true` if the room is shared to your company, `false` if your company owns the room
+`allowed_domains` | array of objects | read-only | List of domain rooms on which this room may be used. Each object in the array contains `id`, `name`, `display_name` and `domain` attributes.
+`language_code` | string | **optional** | Language of this room in ISO 639-1 code, or `null` if undefined.
+`created_at` | [date/time][] | read-only | When this room was created. **Visible only to your own company.**
+`modified_at` | [date/time][] | read-only | When this room was modified last time. **Visible only to your own company.**
+`last_modifier_id` | integer | read-only | ID of the person who last modified this room, or `null` if unknown. **Visible only to your own company.**
+`last_modifier` | object | read-only | Details of the person who last modified this room, or `null` if unknown. **Visible only to your own company.**
+`is_deleted` | boolean | read-only | read-only | Whether this room exists no more. The resource exists only for historical purposes and cannot be used in any other context.
+
+Domain rooms are like any other rooms except that they are linked to exactly one domain (website). You need a domain room in order to use a Giosg services on your website.
 
 ### Retrieve room details
 Get a single room object that your company has access to, by its ID. This may be a shared room.
@@ -161,6 +163,28 @@ Parameter | Type | Default | Description
 `company_id` | integer | (none) | Return only rooms owned by this company ID
 `page` | integer | 1 | [Page][paginated collection] to get
 `page_size` | integer | 50 | [Page size][paginated collection] for the pages, with max value of 200
+
+### Creating a room
+Create a new custom room or a domain room by making a `POST` request, providing the [room object][room] as a payload. By providing the `domain` attribute with non-null value will create a new domain room.
+
+`POST https://service.giosg.com/api/v4/customer/rooms`
+
+### Update a room
+You may update the editable attributes of your own room by making either a `PATCH` (update a subset of attributes) or `POST` request (update all the attributes).
+
+`PUT https://service.giosg.com/api/v4/customer/rooms/[room_id]`
+
+`PATCH https://service.giosg.com/api/v4/customer/rooms/[room_id]`
+
+### Delete a room
+
+<aside class="warning">
+Deleting a room will immediately unshare it from your partners! You cannot undo this action, but you can re-create and re-share the room again.
+</aside>
+
+You may delete one of your own rooms by making a `DELETE` request.
+
+`DELETE https://service.giosg.com/api/v4/customer/rooms/[room_id]`
 
 ## Teams
 
