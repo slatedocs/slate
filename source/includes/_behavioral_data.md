@@ -39,7 +39,7 @@ num_results | No | The number of total results returned in the search
 ## Track a click-through
 
 ```shell
-curl -X POST -H "Content-Type: application/json" -d '{"term":"xyz","item":"Alphabet soup","autocomplete_section":"products_autocomplete"}' \
+curl -X POST -H "Content-Type: application/json" -d '{"term":"xyz","item":"Alphabet soup","autocomplete_section":"Search Suggestions"}' \
   -u "[your token]:" "https://ac.constructor.io/v1/click_through?autocomplete_key=[your autocomplete key]"
 ```
 
@@ -47,7 +47,7 @@ curl -X POST -H "Content-Type: application/json" -d '{"term":"xyz","item":"Alpha
 constructorio.track_click_through({
   term: "xyz",
   item: "Alphabet soup",
-  autocomplete_section: "Products"
+  autocomplete_section: "Search Suggestions"
 });
 ```
 
@@ -55,11 +55,11 @@ constructorio.track_click_through({
 response = constructorio.track_click_through({
   term: "xyz",
   item: "Alphabet soup",
-  autocomplete_section: "Products"
+  autocomplete_section: "Search Suggestions"
 });
 ```
 
-The `click_through` resource should be called when a user clicks on a search result (this can often be done from the product detail page). Pass in the search `term` and, optionally, the `item` clicked on so we can learn which items are receiving clicks from which terms and increase their ranking in the autocomplete index. If your autocomplete has multiple sections, also pass in the `autocomplete_section` parameter with the appropriate section name.
+The `click_through` resource should be called when a user clicks on a search result (this can often be done from the product detail page). Pass in the search `term` and, optionally, the `item` clicked on so we can learn which items are receiving clicks from which terms and increase their ranking in the autocomplete index. Beacuse your autocomplete can have multiple sections, you must also pass in the `autocomplete_section` parameter with the appropriate section name.
 
 ### HTTP Request
 
@@ -70,13 +70,13 @@ The `click_through` resource should be called when a user clicks on a search res
 Parameter | Required? | Description
 --------- | ----------- | ----------
 term | Yes | The search term the user entered in the search box
+autocomplete_section | Yes | Your autocomplete suggestions can have multiple sections like "Products" and "Search Suggestions".  This indicates which section this item is for.  See [your dashboard](/dashboard) for the section names to use.
 item | No | The autocomplete item that the user clicked on
-autocomplete_section | No | Your autocomplete suggestions can have multiple sections like "Products" and "Search Suggestions".  This indicates which section this item is for.
 
 ## Track a conversion
 
 ```shell
-curl -X POST -H "Content-Type: application/json" -d '{"term":"xyz","item":"Alphabet soup","autocomplete_section":"products_autocomplete"}' \
+curl -X POST -H "Content-Type: application/json" -d '{"term":"xyz","item":"Alphabet soup","autocomplete_section":"Search Suggestions"}' \
   -u "[your token]:" "https://ac.constructor.io/v1/conversion?autocomplete_key=[your autocomplete key]"
 ```
 
@@ -84,7 +84,7 @@ curl -X POST -H "Content-Type: application/json" -d '{"term":"xyz","item":"Alpha
 constructorio.track_conversion({
   term: "xyz",
   item: " Alphabet soup",
-  autocomplete_section: "Products"
+  autocomplete_section: "Search Suggestions"
 });
 ```
 
@@ -92,11 +92,11 @@ constructorio.track_conversion({
 response = constructorio.track_conversion({
   term: "xyz",
   item: " Alphabet soup",
-  autocomplete_section: "Products"
+  autocomplete_section: "Search Suggestions"
 });
 ```
 
-The `conversion` resource should be called when a user purchases a product (or successfully performs another action important to your site). Pass in the search `term` so we can learn which items are receiving conversions and increase their ranking in the autocomplete index. You can also pass in an optional `item` parameter to indicate which item the customer purchased. If your autocomplete has multiple sections, also pass in the `autocomplete_section` parameter with the appropriate section name.
+The `conversion` resource should be called when a user purchases a product (or successfully performs another action important to your site). Pass in the search `term` so we can learn which items are receiving conversions and increase their ranking in the autocomplete index. You can also pass in an optional `item` parameter to indicate which item the customer purchased. Because your autocomplete can have multiple sections, you must also pass in the `autocomplete_section` parameter with the appropriate section name.
 
 ### HTTP Request
 
@@ -107,6 +107,6 @@ The `conversion` resource should be called when a user purchases a product (or s
 Parameter | Required? | Description
 --------- | ----------- | ----------
 term | Yes | The search term the user entered in the search box
+autocomplete_section | Yes | Your autocomplete suggestions can have multiple sections like "Products" and "Search Suggestions".  This indicates which section this item is for.  See [your dashboard](/dashboard) for the section names to use.
 item | No | The autocomplete item that the user clicked on
-autocomplete_section | No | Your autocomplete suggestions can have multiple sections like "Products" and "Search Suggestions".  This indicates which section this item is for.
 
