@@ -17,7 +17,7 @@ constructorio.track_search({
 ```
 
 ```ruby
-constructorio.track_search({
+response = constructorio.track_search({
   term: "xyz",
   num_results: "302"
 });
@@ -52,7 +52,7 @@ constructorio.track_click_through({
 ```
 
 ```ruby
-constructorio.track_click_through({
+response = constructorio.track_click_through({
   term: "xyz",
   item: "Alphabet soup",
   autocomplete_section: "Products"
@@ -89,7 +89,7 @@ constructorio.track_conversion({
 ```
 
 ```ruby
-constructorio.track_conversion({
+response = constructorio.track_conversion({
   term: "xyz",
   item: " Alphabet soup",
   autocomplete_section: "Products"

@@ -23,7 +23,7 @@ constructorio.add(
 ```
 
 ```ruby
-constructorio.add(
+response = constructorio.add(
   { item_name: "power_drill", autocomplete_section: "standard" }
 );
 ```
@@ -65,7 +65,7 @@ constructorio.remove(
 ```
 
 ```ruby
-constructorio.remove(
+response = constructorio.remove(
   { item_name: "power_drill", autocomplete_section: "standard" }
 );
 ```
@@ -108,7 +108,7 @@ constructorio.modify(
 ```
 
 ```ruby
-constructorio.modify(
+response = constructorio.modify(
   {
     item_name: "power_drill",
     autocomplete_section: "standard",

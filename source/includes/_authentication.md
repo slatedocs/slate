@@ -51,7 +51,7 @@ constructorio.verify(function(error, response) {
 ```
 
 ```ruby
-constructorio.verify
+response = constructorio.verify
 ```
 
 You can verify that authentication works correctly by issuing a simple verification request.
