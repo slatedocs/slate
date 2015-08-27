@@ -1,38 +1,63 @@
 # Data Source Setup
 
-The Geezeo platform provides a number of transaction enrichment and aggregation services. A key component of any partnership with Geezeo is setting up the data source where Geezeo will get partner accounts and transactions.
+Geezeo provides robust transaction enrichment for partner and aggregated accounts. The first step in any implementation is connecting the platform to a data source for all partner accounts.
 
-The transaction enrichment and aggregation services work on both partner and aggregated accounts. Partners do not need to do additional setup for aggregated accounts.
+Geezeo provides a standard XML specification for harvesting transactions and accounts. Partners must provide an endpoint that meets the XML specifications below to provide data.
 
-We have both an http api, as well as a file interface. The httpinterface is required, while the file interface can be used supplement http traffic for bulk processing.
+The Geezeo platform will harvest users data based on a predefined schedule. 
+
+Geezeo also provides a file transfer using the same XML spec. File transfers are often used in larger implementions for bulk data.  
 
 ## Customer User data format
 
-> Users XML sample for either Flat File or SAX endpoint
+> Users Request XML
 
 ```xml
-
-<Users>
-  <User>
-    <Action>New</Action>
-    <PartnerCustomerId>123</PartnerCustomerId>
-    <FirstName>FirstName</FirstName>
-    <LastName>LastName</LastName>
-    <Email>flastname@geezeo.com</Email>
-    <ZipCode>06000</ZipCode>
-  </User>
-</Users>
-
+<PartnerRequest
+    signature=”PartnerSignature” 
+    id=”2” 
+    sso_partner_id=”abc122”>
+  <UserList>
+    <Users>
+      <User>
+        <PartnerCustomerId>1234</PartnerCustomerId>
+      </User>
+    </Users>
+  </UserList>
+</PartnerRequest>
 ```
 
 
-The Users call is used to create, update, or delete a user.
+> Users Response XML
+
+
+```xml
+<PartnerResponse
+    signature=”PartnerSignature” 
+    request_id=”2”>
+  <Users>
+    <User>
+      <Action>New</Action>
+      <PartnerCustomerId>123</PartnerCustomerId>
+      <FirstName>FirstName</FirstName>
+      <LastName>LastName</LastName>
+      <Email>flastname@geezeo.com</Email>
+      <ZipCode>06000</ZipCode>
+    </User>
+  </Users>
+</PartnerResponse>
+```
+
+
+Geezeo will request a list of users by sending User elements containing only their PartnerCustomerIds.
+
+Validating a [Partner Signature Request](#PartnerSignatureRequest) and generating a [Partner Signature Response](#PartnerSignatureResponse).
 
 Tag | Type | Usage | Description |
 ----|------|-------|-------------|
 \<Users> | Container | Required |Contains all \<User> records in the set |
 \<User> | Container | Required | Contains data defining a single customer |
-\<Action> | [ActionType](#ActionType)| Required | If this element is left out, Geezeo will attempt to update the record, or add it if it does not exist; specify “Delete” if the account is to be deleted |
+\<Action> | [Enum](#ActionType)| Required | If this element is left out, Geezeo will attempt to update the record, or add it if it does not exist; specify “Delete” if the account is to be deleted |
 \<PartnerCustomerId> | String (255) | Required; Unique | Unique alphanumeric ID; used to identify the customer and match accounts to it |
 \<FirstName> | String (255) | Required | Customer’s first name|
 \<LastName> |String (255) | Required | Customer’s last name |
@@ -42,44 +67,65 @@ Tag | Type | Usage | Description |
 
 ## Customer Account data format
 
-> Accounts XML sample for either Flat File or SAX endpoint
+> Accounts Request XML
 
 ```xml
-
-<Accounts>
-  <Account>
-    <Action>NEW</Action>
-    <PartnerCustomerId>12345</PartnerCustomerId>
-    <AccountId>999</AccountId>
-    <AccountFiName>JOHN Q PUBLIC</AccountFiName>
-    <AccountNickname>John’s Savings</AccountNickname>
-    <AccountType>Savings</AccountType>
-    <AccountBalances>
-      <AccountBalance>
-        <BalanceType>Current</BalanceType>
-        <BalanceAmount>1999.99</BalanceAmount>
-        <CurrencyCode>USD</CurrencyCode>
-      </AccountBalance>
-    </AccountBalances>
-  </Account>
-</Accounts>
-
+<PartnerRequest
+    signature=”PartnerSignature” 
+    id=”2” 
+    sso_partner_id=”abc122”>
+  <AccountList>
+      <Accounts>
+        <Account>
+          <PartnerCustomerId>4453</PartnerCustomerId>
+        </Account>
+      </Accounts>
+    </AccountList>
+</PartnerRequest>
 ```
 
 
-The Users call is used to create, update, or delete a user.
+> Accounts Response XML
+
+
+```xml
+<PartnerResponse
+    signature=”PartnerSignature” 
+    request_id=”2”>
+  <Accounts>
+    <Account>
+      <Action>NEW</Action>
+      <PartnerCustomerId>12345</PartnerCustomerId>
+      <AccountId>999</AccountId>
+      <AccountFiName>JOHN Q PUBLIC</AccountFiName>
+      <AccountNickname>John’s Savings</AccountNickname>
+      <AccountType>Savings</AccountType>
+      <AccountBalances>
+        <AccountBalance>
+          <BalanceType>Current</BalanceType>
+          <BalanceAmount>1999.99</BalanceAmount>
+          <CurrencyCode>USD</CurrencyCode>
+        </AccountBalance>
+      </AccountBalances>
+    </Account>
+  </Accounts>
+</PartnerResponse>
+```
+Geezeo will request a list of accounts belonging to a user by sending an Account element containing only the user’s PartnerCustomerId. You may optionally respond with updated account information instead of all account information. We will create any accounts that do not exist in the Geezeo database, update any accounts that do exist, and mark as closed any accounts that are in the Geezeo database but not in the response.
+
+Validating a [Partner Signature Request](#PartnerSignatureRequest) and generating a [Partner Signature Response](#PartnerSignatureResponse).
 
 Tag | Type | Usage | Description |
 ----|------|-------|-------------|
 \<Accounts> | Container | Required | Contains all \<Account> records in the set |
 \<Account> | Container | Required | Contains data defining a single account |
-\<Action> | [ActionType](#ActionType) | Optional | If this element is left out, Geezeo will attempt to update the record, or add it if it does not exist; specify “Delete” if the account is to be deleted |
+\<Action> | [Enum](#ActionType) | Optional | If this element is left out, Geezeo will attempt to update the record, or add it if it does not exist; specify “Delete” if the account is to be deleted |
 \<PartnerCustomerId> | String (255) | Required | Matches the account with the proper customer |
 \<AccountId> | String (255) |Required; Unique| |Unique ID, may contain letters and numbers; used to identify the account and match transactions to it. Full credit card numbers must not be sent as the account ID. |
 \<AccountNumber> | String (255) | Optional | Further identifying information show to the user in certain circumstances to help identify the account to them. Full credit card numbers must not be supplied. |
 \<AccountFiName> | String (255) | Required | Account name as provided by partner |
 \<AccountNickname> | String (255) | Optional |Account nickname if set by partner |
-\<AccountType> | [AccountType](#AccountType) | Required | Account type from closed list
+\<AccountType> | [Enum](#AccountType) | Required | Account type from closed list
 \<AccountBalances> | Container | Required |Contains [\<AccountBalance>\(#AccountBalance) elements|
 \<Properties> | Container | Optional | Contains [\<Property>](#Properties) elements |
 
@@ -87,9 +133,9 @@ Tag | Type | Usage | Description |
 
 | AccountBalance | Type | Usage | Description |
 | -------------- | ---- | ----- | ----------- | 
-\<BalanceType> | [\<BalanceType>](#BalanceType) | Required | The type of balance |
+\<BalanceType> | [Enum](#BalanceType) | Required | The type of balance |
 \<BalanceAmount> | Decimal | Required |The relative value of the balance type to two decimal places, e.g. 505.12 or -1110.56; a negative number should be preceded by a minus sign. Two decimal places are always required, even for .00 amounts. |
-\<CurrencyCode> | [\<CurrencyType>](#CurrencyType) | Required | The currency code (currently only USD or CAD) |
+\<CurrencyCode> | [Enum](#CurrencyType) | Required | The currency code (currently only USD or CAD) |
 
 <a name="BalanceType"></a>
 
@@ -120,7 +166,7 @@ The properties container is used to define non-balance based information and sta
 | Tag | Type | Usage | Description |
 | --- | ---- | ----- | ----------- |
 \<Property> | Container | Required | Contains property information|
-\<PropertyType> | [\<PropertyType>](#PropertyType)| Required | The type of property in the record|
+\<PropertyType> | [Element](#PropertyType)| Required | The type of property in the record|
 \<PropertyValue> | String (255) | Required | The property’s value |
 
 ### <a name="PropertyType"></a> Property Types
@@ -130,6 +176,44 @@ The properties container is used to define non-balance based information and sta
 PurchasesApr | Decimal | Optional | APR for Purchase with one decimal of precision; e.g. 24.5% would be 25.5, not .255|
 PaymentDueDate | DateTime | Optional | Due date for current pay period |
 InternalTransaction | String (255) | Optional | Add type to internal transaction with these possible options: “bill pay”, “transfer”; added for clarity to user |
+
+## Customer Transaction data format
+
+> Transactions XML sample for either File or SAX endpoint
+
+```xml
+
+<Transactions>
+  <Transaction>
+    <TransactionId>12345</TransactionId>
+    <AccountId>9999901</AccountId>
+    <TransactionType>Debit</TransactionType>
+    <PostedDate>2009-03-19T11:40:50-04:00</PostedDate>
+    <OriginationDate>2009-03-19T15:31:36-04:00</OriginationDate>
+    <Amount>112.03</Amount>
+    <Pending>true</Pending>
+    <Memo>DUNKINDONUTS*100094</Memo>
+  </Transaction>
+</Transactions>
+
+```
+
+Tag | Type | Usage | Description |
+--- | ---- | ----- | ----------- |
+\<Transactions> | Container | Required | Contains all \<Transaction> records in the file |
+\<Transaction> | Container | Required | Contains data defining a single transaction |
+\<Action> | [Enum](#ActionType) | Required | If this element is left out, Geezeo will attempt to update the record, or add it if it does not exist; specify “Delete” if the transaction is to be deleted |
+\<TransactionId> | String (255) | Required; Unique | Unique alphanumeric ID; used to identify the transaction. This must be unique within each account, and never change. |
+\<AccountId> | String(255) | Required | Used to match the transaction with its account |
+\<TransactionType> | Closed List | Required | “Debit” for a negative transaction, “Credit” for a positive transaction |
+\<PostedDate> | DateTime | Required | The time that the transaction posted to the user’s account |
+\<OriginationDate> | DateTime | Optional | The time the transaction actually occurred |
+\<Amount> | Decimal | Required | The absolute value of the transaction; do not use a dash to indicate a negative number. Two decimal places are required, even if they amount is even (5.00). |
+\<Pending> | Closed List | Optional | If this is a pending transaction, pass “true”; otherwise do not include this field |
+\<Memo> | String (255) | Required | The transaction description. What is provided in this field should match what’s shown on the users statement, and/or in the FIs OLB |
+\<CheckNumber> | String (255) | Optional | If the transaction is a check, a check number may be included in this field. |
+
+
 
 ### <a name="AccountType"></a> Account Types
 
