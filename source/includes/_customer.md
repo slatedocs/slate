@@ -18,7 +18,7 @@ A company object contains the following attributes. Note that the contact inform
 Attribute | Type | Editable | Description
 :---------|:-----|:---------|------------
 `id` | integer | read-only | Unique identifier for this company
-`name` | string | **required?** | The name of the company. Required, if your company is using Network features.
+`name` | string | **required?** | The name of the company. Required, if your company is using Network features, such as [partnerships](#partnership-api) or [sharing](#sharing-api).
 `email` | string | **optional** | Contact email address, or `null`
 `phone` | string | **optional** | Contact phone number, or `null`
 `street` | string | **optional** | Contact street address, or `null`
