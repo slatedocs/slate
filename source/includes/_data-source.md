@@ -333,16 +333,10 @@ signature=”2385432dff1286f507acaec2485b14cdef92e669da759b2f30824eb
 </PartnerRequest>
 ```
 
-> Example payload
+> Example payload - note : no spaces or line feeds
 
 ```xml
-<AccountList>
-    <Accounts>
-      <Account>
-        <PartnerCustomerId>2358475</PartnerCustomerId>
-      </Account>
-    </Accounts>
-  </AccountList>
+<AccountList><Accounts><Account><PartnerCustomerId>2358475</PartnerCustomerId></Account></Accounts></AccountList>
 ```
 
 > Example api key
@@ -354,7 +348,11 @@ Using the example to the right. The payload should be used for the signature.
 
 The payload is the actual request body inside the PartnerRequest.
 
-Using an example api key to the right. 
+Using an example key.
+ 
+ 2385432dff1286f507acaec2485b14cdef92e669da759b2f30824eb844a6d6ad11d36968ce62d99556dda62449495189b5d688cc8d2c820288b34d8a701af783
+ 
+The SHA512 of that
 
 
 
