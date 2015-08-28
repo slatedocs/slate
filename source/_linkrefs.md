@@ -1,20 +1,23 @@
-  [date]: <#date-format>
-  [date/time]: <#datetime-format>
-  [paginated collection]: <#paginated-collections>
-  [ordering]: <#ordering-collections>
-  [company]: <#companies>
-  [person]: <#persons>
-  [room]: <#rooms-and-domains>
-  [team]: <#teams>
-  [team membership]: <#team-memberships>
-  [incoming invitation]: <#incoming-partnership-invitations>
-  [outgoing invitation]: <#outgoing-partnership-invitations>
-  [partnership]: <#partnerships>
-  [incoming share]: <#incoming-shares>
-  [outgoing share]: <#outgoing-shares>
-  [incoming room share]: <#incoming-room-shares>
-  [outgoing room share]: <#outgoing-room-shares>
-  [incoming team share]: <#incoming-team-shares>
-  [outgoing team share]: <#outgoing-team-shares>
+  [date]: <#date-format> "Date format"
+  [date/time]: <#datetime-format> "Date/time format"
+  [paginated collection]: <#paginated-collections> "Paginated collections"
+  [ordering]: <#ordering-collections> "Ordering collections"
+  [company]: <#companies> "Companies"
+  [person]: <#persons> "Persons"
+  [room]: <#rooms-and-domains> "Rooms and domains"
+  [team]: <#teams> "Teams"
+  [team membership]: <#team-memberships> "Team membershipss"
+  [asset]: <#assets> "Assets"
+  [incoming invitation]: <#incoming-partnership-invitations> "Incoming partnership invitations"
+  [outgoing invitation]: <#outgoing-partnership-invitations> "Outgoing partnership invitations"
+  [partnership]: <#partnerships> "Partnerships"
+  [incoming share]: <#incoming-shares> "Incoming shares"
+  [outgoing share]: <#outgoing-shares> "Outgoing shares"
+  [incoming room share]: <#incoming-room-shares> "Incoming room shares"
+  [outgoing room share]: <#outgoing-room-shares> "Outgoing room shares"
+  [incoming team share]: <#incoming-team-shares> "Incoming team shares"
+  [outgoing team share]: <#outgoing-team-shares> "Outgoing team shares"
 
-  [timezone list]: <https://en.wikipedia.org/wiki/List_of_tz_database_time_zones>
+  [timezone list]: <https://en.wikipedia.org/wiki/List_of_tz_database_time_zones> "List of timezones"
+  [uuid]: <https://en.wikipedia.org/wiki/Universally_unique_identifier> "Universally Unique Identifier"
+  [content type]: <https://en.wikipedia.org/wiki/Internet_media_type> "Internet Media Type"

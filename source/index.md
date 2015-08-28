@@ -12,6 +12,7 @@ includes:
   - chats
   - partnerships
   - sharing
+  - assets
   - timelines
 
 search: true
