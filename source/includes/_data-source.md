@@ -314,6 +314,50 @@ characters.
 5. Convert the result to hexadecimal (low nibble first)
 Once a signature has been generated, place it in the “signature” attribute of the top level XML element, which will be PartnerRequest or PartnerResponse.
 
+## Signature Example
+
+> Example Partner Request
+
+```xml
+<PartnerRequest
+signature=”2385432dff1286f507acaec2485b14cdef92e669da759b2f30824eb
+844a6d6ad11d36968ce62d99556dda62449495189b5d688cc8d2c820288b34d8a7
+01af783” id=”1” sso_partner_id=”abc123”>
+  <AccountList>
+    <Accounts>
+      <Account>
+        <PartnerCustomerId>2358475</PartnerCustomerId>
+      </Account>
+    </Accounts>
+  </AccountList>
+</PartnerRequest>
+```
+
+> Example payload
+
+```xml
+<AccountList>
+    <Accounts>
+      <Account>
+        <PartnerCustomerId>2358475</PartnerCustomerId>
+      </Account>
+    </Accounts>
+  </AccountList>
+```
+
+> Example api key
+```
+2385432dff1286f507acaec2485b14cdef92e669da759b2f30824eb844a6d6ad11d36968ce62d99556dda62449495189b5d688cc8d2c820288b34d8a701af783
+```
+
+Using the example to the right. The payload should be used for the signature. 
+
+The payload is the actual request body inside the PartnerRequest.
+
+Using an example api key to the right. 
+
+
+
 
 ## Reporting Errors
 
