@@ -56,50 +56,34 @@ The Crunch system will have done its best to resolve such conflicts for you. Whe
 
 ### Streaming rows
 
-Existing datasets are best sent to Crunch as a single Source, or a handful of subsequent Sources if gathered monthly or on some other schedule. Sometimes however you want to "stream" data to Crunch as it is being gathered, even one row at a time, rather than in a single post-processing phase. You do *not* want to make each row its own batch (it's simply not worth the overhead). Instead, you should make a Source and append rows to it, then create a Batch and configure its autoappend attribute.
+Existing datasets are best sent to Crunch as a single Source, or a handful of subsequent Sources if gathered monthly or on some other schedule. Sometimes however you want to "stream" data to Crunch as it is being gathered, even one row at a time, rather than in a single post-processing phase. You do *not* want to make each row its own batch (it's simply not worth the overhead). Instead, you should make a Stream and send rows to it, then periodically create a Source and Batch from it.
 
-#### Stream rows to a source
+#### Send rows to a stream
 
-You may use a single Source for all row-by-row appends, or you may create additional sources to segment your data as you see fit. For example, you might create a new source whenever your schema changes significantly (but you are not required to do so), or when you re-field a survey after an idle period, or whatever makes sense to you. Alternately, you may make additional variables to distinguish your rows. Crunch uses a (mostly hidden) `__batch_id__` variable to keep track of which rows belong to which batch, and it's your choice whether and how to take advantage of it.
-
-To append one or more rows to an existing crunch:table source, simply POST a new Crunch Table to the source's [`file` endpoint](#entity92):
+To send one or more rows to a dataset stream, simply POST one or more lines of line-delimited json to the dataset's `stream` endpoint:
 
 ```json
-{
-  "element": "crunch:table",
-    "data": {
-      "var_id_1": [1, 2, 3, ...],
-      "var_id_2": ["a", "b", "c", ...]
-    }
-}
+{"var_id_1": 1, "var_id_2": "a"}
 ```
 
 The variable ids must correspond to existing variables in the dataset, and the data must match the target variable types, so that we can process the row as quickly as possible. We want no casting or other guesswork slowing us down here. Among other things, this means that categorical values must be represented as Crunch's assigned category ids, not names or numeric values.
 
-Note that this format is column-major, and therefore allows you to send more than one row at a time if you prefer. For example, your data collection system may already post-process row data in, say, 5 minute increments. The more rows you can send together, the less overhead spent processing each one and the more you can send in a given time.
+Note that this format allows you to send more than one row at a time if you prefer. For example, your data collection system may already post-process row data in, say, 5 minute increments. The more rows you can send together, the less overhead spent processing each one and the more you can send in a given time.
 
 As when creating a new source, don't worry about sending values for derived variables; Crunch will fill these out for you for each row using the data you send.
 
-#### Autoappend the new rows to the dataset
+#### Append the new rows to the dataset
 
-The above added new rows to the Source resource so that you can be confident that your data is completely safe with Crunch. To append those rows to the dataset requires another step. You could stream rows to a Source and then, once they are all assembled, explicitly append the whole Source to the dataset by POST'ing the source URL to `datasets/{id}/batches/` like any other source. However, if you're streaming rows into the Source at intervals it's likely you want to append them to the dataset at intervals, too. But doing so one row at a time is usually counter-productive; it slows the rate at which you can send rows, balloons metadata, and interrupts users who are analyzing the data.
+The above added new rows to the Stream resource so that you can be confident that your data is completely safe with Crunch. To append those rows to the dataset requires another step. You could stream rows and then, once they are all assembled, append them all as a single Source to the dataset. However, if you're streaming rows at intervals it's likely you want to append them to the dataset at intervals, too. But doing so one row at a time is usually counter-productive; it slows the rate at which you can send rows, balloons metadata, and interrupts users who are analyzing the data.
 
-Instead, you can control how often you want the streamed rows to be appended to the dataset. POST an autoappend Entity to datasets/{id}/autoappenders/:
+Instead, you control how often you want the streamed rows to be appended to the dataset. POST to `datasets/{id}/batches/` and provide the "stream" member containing any extra metadata the new Source should possess:
 
 ```json
 {
-    "element": "shoji:entity",
-    "body": {
-        "source": "/api/sources/{id}/",
-        "enabled": true,
-        "interval": 3600,
-        "threshold": 10
+    "stream": {
+        "name": "My streamed rows",
+        "description": "Yet Another batch from the stream",
+        "type": "ldsjon"
     }
 }
 ```
-
-The "interval" attribute tells Crunch how often, in seconds, to see if the Source has any pending rows. The default is 3600. For the time being, 300 (5 minutes) is the minimum value; we'll work on lowering that as customers inquire.
-
-At that interval, the "threshold" attribute then tells Crunch to skip appending new rows if there aren't enough yet, as a percentage of how many rows have already been appended. For example, if your dataset has 1000 rows and 1 new row arrives every five minutes, it's likely not statistically significant enough to warrant the efficiency hit and interruption cost to append each one immediately. Instead, if you specify `"threshold": 10`, Crunch will wait until there are (1000 x 10% =) 100 pending rows before appending them to the dataset. The number of pending rows therefore increases the larger your dataset grows.
-
-You may edit these attributes (via PATCH) to cause appending to speed up, slow down, or idle, even switch sources, as you see fit.
