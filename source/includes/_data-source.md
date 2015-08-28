@@ -6,7 +6,7 @@ Geezeo provides a standard XML specification for harvesting transactions and acc
 
 The Geezeo platform will harvest users data based on a predefined schedule. 
 
-Geezeo also provides a file transfer using the same XML spec. File transfers are often used in larger implementions for bulk data.  
+Geezeo also provides a file transfer using the same XML spec. File transfers are often used in larger implementations for bulk data.  
 
 ## Customer User data format
 
@@ -179,24 +179,46 @@ InternalTransaction | String (255) | Optional | Add type to internal transaction
 
 ## Customer Transaction data format
 
-> Transactions XML sample for either File or SAX endpoint
+> Transactions Request XML
 
 ```xml
-
-<Transactions>
-  <Transaction>
-    <TransactionId>12345</TransactionId>
-    <AccountId>9999901</AccountId>
-    <TransactionType>Debit</TransactionType>
-    <PostedDate>2009-03-19T11:40:50-04:00</PostedDate>
-    <OriginationDate>2009-03-19T15:31:36-04:00</OriginationDate>
-    <Amount>112.03</Amount>
-    <Pending>true</Pending>
-    <Memo>DUNKINDONUTS*100094</Memo>
-  </Transaction>
-</Transactions>
-
+<PartnerRequest
+    signature=”PartnerSignature” 
+    id=”2” 
+    sso_partner_id=”abc122”>
+ <TransactionList>
+    <AccountId>12345</AccountId>
+    <LastTransactionId>9876</LastTransactionId>
+  </TransactionList>
+</PartnerRequest>
 ```
+
+
+> Trasactions Response XML
+
+
+```xml
+<PartnerResponse
+    signature=”PartnerSignature” 
+    request_id=”2”>
+  <Transactions>
+    <Transaction>
+      <TransactionId>12345</TransactionId>
+      <AccountId>9999901</AccountId>
+      <TransactionType>Debit</TransactionType>
+      <PostedDate>2009-03-19T11:40:50-04:00</PostedDate>
+      <OriginationDate>2009-03-19T15:31:36-04:00</OriginationDate>
+      <Amount>112.03</Amount>
+      <Pending>true</Pending>
+      <Memo>DUNKINDONUTS*100094</Memo>
+    </Transaction>
+  </Transactions>
+
+</PartnerResponse>
+```
+
+Geezeo will request a list of transactions belonging to a particular account by sending a TransactionList element containing an AccountId. We may provide you with the last TransactionId that we received. In that case, please respond with only transactions newer than that transaction. If we do not provide a TransactionId (for example when adding a new user), simply respond with all transactions.
+
 
 Tag | Type | Usage | Description |
 --- | ---- | ----- | ----------- |
@@ -214,6 +236,106 @@ Tag | Type | Usage | Description |
 \<CheckNumber> | String (255) | Optional | If the transaction is a check, a check number may be included in this field. |
 
 
+## Partner Request
+
+> Request Format
+
+```xml
+<PartnerRequest
+    signature=”PartnerSignature” 
+    id=”2” 
+    sso_partner_id=”abc122”>
+    <!-- Payload -->
+</PartnerRequest>
+```
+
+All requests will come within a Partner Request. 
+
+Attribute | Type | Element | Description
+--------- | ---- | ------- | -----------
+signature | String(128) | PartnerRequest, PartnerResponse | Contains authentication data
+id | Integer | PartnerRequest | An integer to identify the request. These request IDs will be unique per day, but no tracking or verification is necessary.
+sso_partner_id | String(128) | PartnerRequest | This value is identical to the partner_id value submitted in the SSO assertion. It can be used by Resellers that use a single end point for all related FIs as a differentiator, if the PartnerCustomerId values are not globally unique.
+request_id | Integer | PartnerResponse | The value of this attribute must be the value of the “id” attribute from the corresponding PartnerRequest.
+
+## Validating a Request Signature
+
+###Signature Verification
+
+1. Retrieve the signature from the complete XML request
+2. Extract the inner portion of the XML request body
+3. Generate a signature for this portion of the body, using the steps outlined above 4. Ensure the signature generated matches the signature provided by the request
+
+In order for the partner to authenticate Geezeo’s requests, and for Geezeo to authenticate the partner’s responses, the partner will be issued an API key. This key will never be included in any request or response, rather it will be used as a “shared secret” to generate a signature for each request and response.
+
+The API key may also be used to identify the partner that the request is targeted at if necessary; for instance, if multiple partners are served through the same partner API.
+
+Each request from Geezeo, as well as each response from the partner, will include a signature that is calculated the exact same way. The steps for signature generation and verification are outlined below.
+
+
+## Partner Response
+
+> Request Format
+
+```xml
+<PartnerResponse
+    signature=”PartnerSignature” 
+    request_id=”2”>
+    <!-- Payload -->
+</PartnerResponse>
+
+```
+
+All responses should be come in the form of a PartnerResponse. 
+
+Attribute | Type | Element | Description
+--------- | ---- | ------- | -----------
+signature | String(128) | PartnerRequest, PartnerResponse | Contains authentication data
+id | Integer | PartnerRequest | An integer to identify the request. These request IDs will be unique per day, but no tracking or verification is necessary.
+sso_partner_id | String(128) | PartnerRequest | This value is identical to the partner_id value submitted in the SSO assertion. It can be used by Resellers that use a single end point for all related FIs as a differentiator, if the PartnerCustomerId values are not globally unique.
+request_id | Integer | PartnerResponse | The value of this attribute must be the value of the “id” attribute from the corresponding PartnerRequest.
+
+## Generating a Response Signature
+
+In order for the partner to authenticate Geezeo’s requests, and for Geezeo to authenticate the partner’s responses, the partner will be issued an API key. This key will never be included in any request or response, rather it will be used as a “shared secret” to generate a signature for each request and response.
+
+The API key may also be used to identify the partner that the request is targeted at if necessary; for instance, if multiple partners are served through the same partner API.
+
+Each request from Geezeo, as well as each response from the partner, will include a signature that is calculated the exact same way. The steps for signature generation and verification are outlined below.
+
+
+### Signature Generation
+
+1. Generate the inner portion of the XML request body
+2. Remove any leading and trailing whitespace from each line, and then remove any newline
+characters.
+3. Generate a SHA512 hash of this body
+4. XOR this hash with the hexadecimal decoded version of the partner’s API key
+5. Convert the result to hexadecimal (low nibble first)
+Once a signature has been generated, place it in the “signature” attribute of the top level XML element, which will be PartnerRequest or PartnerResponse.
+
+
+## Reporting Errors
+
+> Error Response
+
+```xml
+<Errors>
+  <Error>
+    <Code>500</Code>
+    <Description>
+      Unable to find account 12345 for member 99999.
+    </Description>
+</Error>
+  ...
+</Errors>
+```
+
+
+If an API request cannot be processed, please include any applicable errors by code and/or description in the body of the response.
+
+
+## General reused types
 
 ### <a name="AccountType"></a> Account Types
 
