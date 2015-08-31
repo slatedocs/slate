@@ -28,6 +28,7 @@ Error Code | Meaning
 403 | Bad Credentials: incorrect handle or password
 412 | Transaction Invalid: transaction validation failed
 422 | Handle Taken: handle already taken
+450 | Filter could not be created
 500 | Transaction Failed
 501 | Transaction Not Confirmed: polled network but could not confirm transaction
 
