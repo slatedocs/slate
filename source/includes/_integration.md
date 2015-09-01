@@ -1,16 +1,16 @@
 # Integration Overview
 
-To integrate with FariaMQ, you have to finish the following steps:
+Required steps to integrate FariaMQ:
 
-1. Determine You Application Code and Models to sync
+1. Determine your Application Code and Models to sync
 2. Implement to Publish Messages
 3. Implement to Subscribe/Receive Messages
 
-Here we have OpenApply as the sample application, which's application code is *OA*. And we plan to implement the synchronization of Student model.
+Here we have OpenApply as the sample application, with the application code *OA*. And we plan to implement the synchronization of Student model.
 
 
 
-Before we start to implement, you need to understand the type of exchanges we used in RabbitMQ.
+Before execution, please review the type of exchanges used in RabbitMQ.
 
 ## Types of RabbitMQ Exchanges
 
@@ -28,11 +28,11 @@ exchange.publish(encoded_body,
 )
 ```
 
-We use topic exchange when sending update request of document message, in order to deliver message to the broker of the specified school by looking up the routing key
+We use topic exchange when sending update requests of document message, in order to deliver the message to the broker of the specified school by looking up the routing key
 
-The routing key is composed by the school core id and the phrase of the message lifecycle. For example, to send update request, the routing key is *KB-Organization-1045.update_requests*
+The routing key is composed by the school core id and the phrase of the message lifecycle. For example, to send update request, the routing key is `KB-Organization-1045.update_requests`
 
-After broker received the request, it will send the decisions to target applications by delivering them to direct exchange.
+After broker received the request, it sends the decisions to target applications by delivering them to direct exchange.
 
 ```ruby
 # Publish update reply with topic exchange
@@ -55,7 +55,7 @@ queue = channel.queue("update_decisions-OA").bind(x, :routing_key => "OA")
 
 
 
-- When edge application sending reply of document message, it published to topic exchange with to corresponding routes again.
+- When edge application sends a reply of document message, it publishes  topic exchange with corresponding routes again.
 
 
 
@@ -73,18 +73,17 @@ exchange.publish(encoded_message_body,
 )
 ```
 
-For command message, it used direct exchange to deliver. With code of target application as routing key.
+For command message, it uses direct exchange to deliver. With the code of target application as routing key.
 
 
 ### Use Direct Exchange to send Event Message
 
-TODO
 
 # Integrate with Document Message
 
-As we metioned before, the document message was delivered as a *Group Message*. Each group message is like a envelop which wrapped one ore more message entries. The message group is also composited by body and headers as JSON, but its schema is much simplier.
+As metioned before, the document message was delivered as a *Group Message*. Each group message is like an envelop which wrapped more message entries. The message group is also composed of body and headers as JSON, but its schema is much simplier.
 
-Therefore, you need to gather the request entries into the group body(each entry contains its body and headers too). Then encoded it and publish it to RabbitMQ.
+Therefore, you need to gather the request entries into the group body(each entry contains it's body and headers too). Then encode it and publish it to RabbitMQ.
 
 ## Publish Update Request
 
@@ -135,16 +134,16 @@ exchange.publish(encoded_content,
 
 ```
 
-1. Firstly, prepare the message entries you are going to published, the sample codes generated a request entry to update the student's first name from 'Andy' to 'Aaron'
+1. Firstly, prepare the message entries you are going to publish, the sample code generates a request entry to update the student's first name from 'Andy' to 'Aaron'.
 
-2. You can prepare several entries, then wrap them into a message group. A message group also composited by body and headers. The body just stored the array of request entries with *entries* as key. And the headers contained the school id and the group identifier as well.
+2. You can prepare several entries, then wrap them into a message group. A message group is also composed of body and headers. The body stored the array of request entries with *entries* as the key. And the headers contained the school id and the group identifier as well.
 
-3. RabbitMQ accept only string as content to publish, so you need to encode the content of the group to string
+3. RabbitMQ accepts only strings as content to publish, so you need to encode the content of the group to a string.
 
 4. Finally, send the encoded content and the headers to the document exchange. With the routing key composited by the school id
 
 <aside class="notice">
-Send the encoded content and the headers to the topic exchange named <code>documents</code> with routing key as <code>#{School Core ID}.update_requests</code>.
+Send the encoded content and the headers to the topic exchange named <code>documents</code> with the routing key as <code>#{School Core ID}.update_requests</code>.
 </aside>
 
 ## Receive Update Decision
@@ -178,7 +177,7 @@ end
 ```
 
 
-Broker delivers the update decision to your queue which subscribing the exchange of *update_decisions*. The update decision message you received is also a group message. With the string as its payload, you have to convert the payload from String to JSON as well.
+Broker delivers the update decision to your queue which subscribes the exchange of *update_decisions*. The update decision message you received is also a group message. With the string as its payload, you have to convert the payload from String to JSON as well.
 
 <aside class="notice">
 To subscribe messages of update decision, bind the queue to the direct exchange <code>update_decision</code> with your application code as routing key.
@@ -186,8 +185,8 @@ To subscribe messages of update decision, bind the queue to the direct exchange 
 
 ### The Headers of Decision Group
 
-In the headers of group message, there is an important value you have to notice: *correlation_id*, which is the identifier of the request-response interactive.
-Which means when you want to send a response to the broker, your reply must have the same correlation id in its headers
+In the headers of group message, there is an important value must notice: *correlation_id*, which is the identifier of the request-response interactive.
+This means when you want to send a response to the broker, your reply must have the same correlation id in its headers
 
 
 <aside class="notice">
@@ -196,29 +195,28 @@ The <code>correlation_id</code> is an identifier of a single request-response co
 
 ### The Body of Decision Group
 
-After decoded the incoming payload, you will get content of the message group. Just like how we wrapped the request entries when publishing update request. You can just access it by *entries* as the key. Then you will get an array of decision entries.
+After decoding the incoming payload, you will receive the content of the message group. Just like how we wrapped the request entries when publishing update request. You can access it by *entries* as the key. Then you will receive an array of decision entries.
 
 ### The Decision Entry
 
-Each decision entry implied one update request of data record which published/requested by the source application.
+Each decision entry implemented one update request of data record that was published/requested by the source application.
 
 The entry's body usually contains the Core ID of the target record. With the specified type in the headers, you can understand which record will be operated.
 
 <aside class="notice">
-With the <code>type</code> in the headers and the <code>Core ID</code> in the body, you will be able to find the target record to do operation.
+With the <code>type</code> in the headers and the <code>Core ID</code> in the body, you will be able to find the target record to execute the operation.
 </aside>
 
-Besides, when broker converting the request to decision entry, it added a *verb* into the headers, which tells the application what operation should do on the target record. The verb could be:
+In addition, when broker converted the request to decision entry, it added a *verb* into the headers, which tells the application what operation should do on the target record. The verb could be:
 
 - create: To create the record with the given attributes in the entry body.
 - update: To update the record with the given attributes in the entry body.
-- upsert: To update the record. If it does not existed, change to create it.
+- upsert: To update the record. If it does not exist, change to create it.
 - delete: To delete the record.
 
 
 ### Verb Mismatch
 
-TODO
 
 
 ## Send Update Reply
@@ -247,7 +245,7 @@ x.publish(encoded_content,
 
 ```
 
-After you processed all decision entries, you must send a reply message to the broker. The reply message is also a group message, including reply entries of all corresponding decision entries. They are matched by the same uuid in the headers. On the other words, you can generate headers of reply by cloning from decision entry directly.
+After you processed all decision entries, you must send a reply message to the broker. The reply message is also a group message, including reply entries of all corresponding decision entries. They are matched by the same uuid in the headers. In the other words, you can generate headers of reply by cloning from decision entry directly.
 
 For each reply entry, you need to add the result of your process to the headers, the result could be following values:
 
@@ -256,18 +254,18 @@ Value | Description
 success | The entry had been processed successfully.
 ignore | The entry was ignored to process.
 error | The entry processed failed(and you have to add error info to the headers of reply entry).
-break | The entry was stopped to process because there is an error occured previously.
+break | The entry was stopped to process because there is an error that occured previously.
 
-When all reply entries are prepared, wrap them as another group message (reply group). Then publish it to the *update_replies* exchange. It just like publishing update request, but it has different exchange name and routing key.
+When all reply entries are prepared, wrap them as another group message (reply group). Then publish it to the *update_replies* exchange. It is similar to publishing update request, but it has different exchange name and routing key.
 
 <aside class="notice">
-To subscribe messages of update decision, bind the queue to the direct exchange <code>update_decision</code> with your application code as routing key.
+To subscribe to messages of update decision, bind the queue to the direct exchange <code>update_decision</code> with your application code as routing key.
 </aside>
 
 
 ## Reply with Error
 
-If error occurs when processing the decision entry, you have to add error information to the headers with *error* as the key, the error info is also a hash, with accept following attributes:
+If error occurs when processing the decision entry, you have to add error information to the headers with *error* as the key, the error info is also a hash, with the following attributes:
 
 - message: The text of error message.
 - backtrace: The bracktrace stack of the codes.

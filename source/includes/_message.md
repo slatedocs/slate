@@ -48,10 +48,10 @@ Headers represented the metadata of the message, which can include the following
 * group_identifier: If the message is part of a sequential group message, headers should contain it.
 * reply_to: If the message requires a response, the headers will contain the name of the replied queue. After the consumer processes the message, it should send a reply with this queue name as the routing key.
 * correlation_id: If the message needs to be responded to, the headers must contain the correlation id as an identifier for response. After the consumer processes the message, it should also send a reply with this correlation id in its headers.
-* verb: the action decided by broker when making decision, It informs the target application what to do. the value will be: update, create, delete or upsert.
-* result: the result after the consumer processes the entry, the value will return: success, error or break.
+* verb: the action decided by broker when making decision, It notifies the target application what to do. the value will be: update, create, delete or upsert.
+* result: after the consumer processes the entry, the value will return: success, error or break.
 * error: if the result throws an error, the consumer should put the error info into headers.
-* context: To specify the message is process under some special context.
+* context: To specify the message is processed under some special context.
 
 
 ### Body
@@ -106,7 +106,7 @@ Here is a breif explaination:
 
 Most of the messages are document messages, they are published by behaviors of common users.
 
-But before we jumped into Document Message, we have to introduce the 2 major concepts.
+But before we jump into Document Message, we have to introduce the 2 major concepts.
 
 * The Standard Lifecycle of Document Message
 * The Message Group and Entries
@@ -121,13 +121,13 @@ The document messages are used for normal requests acted by the end-user, which 
 3. [Target Application] receives the decision and processes them by consumers, after generates an update reply and sends it back to the broker.
 
 
-Within this workflow, the message convert to the next phase under each transition.
+Within this workflow, the message proceeds to the next phase under each transition.
 
-- When source application publishing the message, which is an Update *Request* message
-- When Broker converted the request, it besomes an Update *Decision* message
-- When Target application received the decision and processed it, then it transformed to Update *Reply* message delivered back to the broker.
+- When source application publishes the message, which is an Update *Request* message
+- When Broker converts the request, it becomes an Update *Decision* message
+- When Target application receives the decision and processes it, then it transforms to Update *Reply* message and is delivered back to the broker.
 
-Normally, the message under each transition will extend the headers of current phase, and appends additional info for the next step.
+Normally, the message under each transition will extend the headers of the current phase, and append additional info for the next step.
 
 Phase | Who | Description
 ----- | --- | -----------
@@ -139,16 +139,15 @@ Publish Update Reply | Target Application | Add result of the process
 
 ## Message Group and Entries
 
-The message group is structured as the wrapper with its content. Each group is like a envelope with several content *entries* inside. Which is just like a relationship of one-to-many. The key points are:
+The message group is structured as the wrapper with its content. Each group is like an envelope with several content *entries* inside. Which is just like a relationship of one-to-many. The key points are:
 
 - The Message Group is the unit that is delivered between the Broker and Applications (on RabbitMQ).
 - The Message Entry is the minimum unit when publishing, and can be processed by the consumer.
 
-The main reason why we designed group-entry structure for the document message is because,
-when the message is triggered by the behavior of an user on the web, it's probably an bulk update across multiple models. To ensure the sequence and corresponding operations in a single transaction, we have to treat those update entries as a single unit.
+The reason we designed group-entry structure for the document message is because, when the message is triggered by the behavior of a user on the web, it's probably a bulk update across multiple models. To ensure the sequence and corresponding operations in a single transaction, we have to treat those update entries as a single unit.
 
 <aside class="success">
-Group Message is only using for Document Message.
+Group Message is only used for Document Message.
 </aside>
 
 
@@ -170,9 +169,9 @@ body = {
 }
 ```
 
-A Message Group also follow the composition of message. It has body and headers as well.
+A Message Group also follows the composition of message. It has a body and headers as well.
 
-The headers contained the info of this message sequence. And the body is just like a container to store its entries.
+The headers contained the info of the message sequence. And the body is acts as a container that stores its entries.
 
 #### Headers
 
@@ -184,7 +183,7 @@ Headers of message group could have following information:
 - correlation_id: ()
 
 #### Body
-- entries: An array of the entries within this group, each entry should be composed with json of body and headers. For example:
+- entries: An array of the entries within this group, each entry should be composed with JSON for body and headers. For example:
 
 
 
@@ -211,15 +210,15 @@ Headers of message group could have following information:
 }
 ```
 
-Command message, is used to directly ask remote applications to do an action. The most unexpected is when Command Message does NOT consider the feature flag. It is delivered to the remote application with a direct queue instead of routing through the decision maker(broker).
+The Command message is used to directly ask remote applications to carry out an action. The most unexpected is when Command Message does NOT consider the feature flag. It is delivered to the remote application with a direct queue instead of routing through the decision maker(broker).
 
 Command message doesn't relate to message group, it called by single atom action.
 
 ## Type of command
 
-Each message put it command name in the type of header, with prefix of *command.*. And the content is the arguments of the command.
+Each message puts command name in the type of header, with prefix of *command.*. And the content is the arguments of the command.
 
-For example, the sample codes is a command for merging students, this command includes 3 arguments: the model name and the IDs of loser and winner.
+For example, the sample code is a command for merging students, this command includes 3 arguments: the model name and the IDs of loser and winner.
 
 
 ## The Response of Command
@@ -244,13 +243,11 @@ For example, the sample codes is a command for merging students, this command in
 ```
 
 
-Most of the commands have to be responded. The consumer should send reply message to the broker by looking up the info about reply_to and correlation_id in the headers of incoming message.
+Most of the commands require a response. The consumer should send a reply message to the broker by looking up the info about reply_to and correlation_id in the headers of the incoming message.
 
-The content of the reply message is just copied from the command and put the boolean value of *success* to into the body.
+The content of the reply message is copied from the command and put into a boolean value of *success* into the body.
 
-If the command executed failed with errors, insert the errors to the content also.
+If the command executed failed with errors, errors will be inserted into the content.
 
 
 # Event Message
-
-TODO

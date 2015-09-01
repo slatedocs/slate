@@ -26,7 +26,7 @@ In what instance would we discard the incoming event?
 </ul>
 </aside>
 
-> We use application code to represent the application, ex: *OA* represent to OpenApply
+> We use application code to represent the application, ex: *OA* represents to OpenApply
 
 ### School Agent sends Update Decisions
 
@@ -49,7 +49,7 @@ Before all Update Replies are received for all Update Decisions, no further Upda
 
 ### School Actor processes Update Replies
 
-The School Actor will collect Update Replies from all Client Applications involved and decide next steps. As mentioned above, there is future room for expansion in fault-tolerant behavior (re-trying an intermittent failure automatically, or attempting to heal data inconsistencies in a deterministic manner).
+The School Actor will collect Update Replies from all Client Applications involved and decide the next steps. As mentioned above, there is future room for expansion in fault-tolerant behavior (re-trying an intermittent failure automatically, or attempting to heal data inconsistencies in a deterministic manner).
 
 * This concludes a Tick in the Messaging Lifecycle.
 * The School Actor will not continue processing another Update Request before its current one has been satisfactorily processed by all Applications, or before it has exhausted all other available means to repair the inconsistencies.
