@@ -2,6 +2,10 @@
 
 Derived variables are variables that, instead of having a column of values backing them, are functionally dependent on other variables. In Crunch, users with view-only permissions on a dataset can still make derived variables of their own–just as they can make filters. Dataset editors can also derive other types of variables as permanent additions to the dataset, available for all viewers.
 
+<aside class="notice">
+    In this section, sample variable documents have been trimmed to the attributes essential to the derivation examples. Actual variable documents in the wild will have more attributes than those shown here.
+</aside>
+
 ### Combining categories
 
 The "combine_categories" function takes two arguments: 
@@ -14,45 +18,11 @@ Given a variable such as:
 ```json
 {
     "element": "shoji:entity",
-    "self": "https://alpha.crunch.io/api/datasets/3ad42c/variables/0000f5/",
-    "fragments": {
-        "card_view": "card_view/",
-        "missing_rules": "missing_rules/",
-        "user_settings": "user_settings/"
-    },
-    "views": {
-        "frequencies": "frequencies/",
-        "summary": "summary/",
-        "values": "values/",
-        "cast": "cast/"
-    },
-    "combine": "combine/",
-    "urls": {
-        "dataset_url": "../"
-    },
+    "self": "https://beta.crunch.io/api/datasets/3ad42c/variables/0000f5/",
     "body": {
         "name": "Education",
-        "format": {
-            "summary": {
-                "digits": 0
-            }
-        },
-        "missing_reasons": {
-            "No Data": -1,
-            "Skipped": 8,
-            "Not Asked": 9
-        },
-        "discarded": false,
         "alias": "educ",
-        "dataset_id": "3ad42c",
-        "view": {
-            "show_counts": false,
-            "show_numeric_values": false,
-            "include_missing": false,
-            "column_width": null
-        },
         "type": "categorical",
-        "id": "0000f5",
         "categories": [
             {
                 "numeric_value": null,
@@ -110,9 +80,7 @@ Given a variable such as:
             }
         ],
         "description": "Education"
-    },
-    "specification": "https://alpha.crunch.io/api/specifications/categorical_variables/",
-    "description": "Details for a given Variable"
+    }
 }
 ```
 
@@ -189,35 +157,9 @@ Given a variable such as:
 ```json
 {
     "element": "shoji:entity",
-    "self": "https://alpha.crunch.io/api/datasets/455288/variables/3c2e57/",
-    "catalogs": {
-        "subvariables": "subvariables/"
-    },
-    "fragments": {
-        "card_view": "card_view/",
-        "missing_rules": "missing_rules/",
-        "user_settings": "user_settings/"
-    },
-    "views": {
-        "frequencies": "frequencies/",
-        "summary": "summary/",
-        "values": "values/",
-        "cast": "cast/"
-    },
-    "urls": {
-        "dataset_url": "../"
-    },
+    "self": "https://beta.crunch.io/api/datasets/455288/variables/3c2e57/",
     "body": {
         "name": "Aided awareness",
-        "format": {
-            "summary": {
-                "digits": 0
-            }
-        },
-        "missing_reasons": {
-            "No Data": -1
-        },
-        "discarded": false,
         "alias": "aided",
         "subvariables": [
             "../870a2d/",
@@ -227,15 +169,7 @@ Given a variable such as:
             "../f775ab/",
             "../6405c2/"
         ],
-        "dataset_id": "455288",
-        "view": {
-            "show_counts": false,
-            "include_noneoftheabove": false,
-            "include_missing": false,
-            "column_width": null
-        },
         "type": "multiple_response",
-        "id": "3c2e57",
         "categories": [
             {
                 "numeric_value": 1,
@@ -270,9 +204,7 @@ Given a variable such as:
             }
         ],
         "description": "Which of the following coffee brands do you recognize? Check all that apply."
-    },
-    "specification": "https://alpha.crunch.io/api/specifications/multiple_response_variables/",
-    "description": "Details for a given Variable"
+    }
 }
 ```
 
