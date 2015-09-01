@@ -97,7 +97,7 @@ POST'ing to the private variables catalog a Shoji Entity containing a ZCL functi
             "function": "combine_categories",
             "args": [
                 {
-                    "variable": "https://alpha.crunch.io/api/datasets/3ad42c/variables/0000f5/"
+                    "variable": "https://beta.crunch.io/api/datasets/3ad42c/variables/0000f5/"
                 },
                 {
                     "value": [
@@ -221,7 +221,7 @@ POSTing to the variables catalog a Shoji Entity containing a ZCL function like:
             "function": "combine_responses",
             "args": [
                 {
-                    "variable": "https://alpha.crunch.io/api/datasets/455288/variables/3c2e57/"
+                    "variable": "https://beta.crunch.io/api/datasets/455288/variables/3c2e57/"
                 },
                 {
                     "value": [
