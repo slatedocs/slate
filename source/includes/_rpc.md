@@ -39,3 +39,26 @@ Contract upload and download
 > augur.rpc.read("0x5204f18c652d1c31c6a5968cb65e011915285a50")
 "0x7c010000000000000000000000000000000000000000000000000000000060003504636ffa1caa81141560415760043560405260026040510260605260206060f35b50"
 ```
+
+Filters
+-------
+
+```javascript
+// Create a filter for transactions on any of the augur contract addresses
+augur.filters.start_contracts_listener();
+
+// "Heartbeat" check for new transactions every 5 seconds
+augur.filters.heartbeat(function (message) {
+    console.log("new transaction:", message);
+});
+
+// Stop heartbeat polling
+augur.filters.stop_heartbeat();
+
+// Clear the contract transactions filter
+augur.filters.clear_contracts_filter();
+```
+
+The contracts-listener filter watches for new transactions and calls back with the augur-related transaction(s); for example, shares purchased/sold.
+
+<aside class="warning">Due to a geth bug affecting multi-address filters, all-contract filters <b>will not work</b> until <a href="https://github.com/ethereum/go-ethereum/pull/1751">ethereum/go-ethereum#1751</a> is merged.</aside>
