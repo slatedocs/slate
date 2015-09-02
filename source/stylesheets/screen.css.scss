@@ -625,6 +625,8 @@ html, body {
 }
 
 
+//Customized CSS
+
 .float-parent {
   width: 80%;
   margin: 30px auto;
@@ -639,6 +641,10 @@ html, body {
   }
 }
 
+/*.nav{
+  display:table;
+}*/
+
 .layout{
   padding-top: 50px;
   .layout-navbar{
@@ -649,7 +655,7 @@ html, body {
       padding: 0;
       float: right;
       li {
-        display: inline;
+        display: table-cell;
         a{
           display: inline-block;
           color: white;
@@ -682,7 +688,9 @@ html, body {
   }
 }
 
-h1#openapply-api, h1#managebac, h1#sso{
+
+//For Searchable headers hacl
+h1#openapply-api, h1#managebac, h1#sso, {
   font-size: 0!important;
 }
 h1#openapply-api{
@@ -772,6 +780,17 @@ body{
     .layout-navbar{    
       ul{
         li.launchpad{
+          a{
+            @include highLigthtNavItem;
+          }
+        }
+      }
+    }     
+  }
+  &.mq{ 
+    .layout-navbar{    
+      ul{
+        li.mq{
           a{
             @include highLigthtNavItem;
           }
