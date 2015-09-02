@@ -1,4 +1,8 @@
-# Introduction
+<h1 id="mq">
+  FariaMQ
+  <img src="/images/icon-mq-text.png">
+</h1>
+ 
 
 The Faria Message Broker is a re-engineered entity synchronization solution that ensures data consistency between ManageBac, OpenApply and InterSIS. The Faria Message Broker is mainly implemented in Ruby and serves ManageBac, OpenApply and InterSIS, all of them a multi-tenant Ruby on Rails applications.
 To learn more about Message Bus capabilites, please select one of the sections below. If you have any questions, please let us know at [api@faria.co](mailto:api@faria.co).
@@ -58,5 +62,3 @@ The School Actor will collect Update Replies from all Client Applications involv
 
 
 ## Identity Table
-
-TODO
