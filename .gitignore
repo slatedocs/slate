@@ -1,6 +1,5 @@
 *.gem
 *.rbc
-.bundle
 .config
 coverage
 InstalledFiles
@@ -20,3 +19,7 @@ build/
 _yardoc
 doc/
 .idea/
+
+# Environment Normalisation
+.bundle
+vendor/bundle
