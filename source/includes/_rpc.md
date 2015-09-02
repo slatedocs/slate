@@ -59,6 +59,4 @@ augur.filters.stop_heartbeat();
 augur.filters.clear_contracts_filter();
 ```
 
-The contracts-listener filter watches for new transactions and calls back with the augur-related transaction(s); for example, shares purchased/sold.
-
-<aside class="warning">Due to a geth bug affecting multi-address filters, all-contract filters <b>will not work</b> until <a href="https://github.com/ethereum/go-ethereum/pull/1751">ethereum/go-ethereum#1751</a> is merged.</aside>
+The contracts-listener filter watches for new Augur transactions and calls back with the transaction(s) data; for example, shares purchased/sold.
