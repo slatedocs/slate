@@ -47,10 +47,15 @@ Filters
 // Create a filter for transactions on any of the augur contract addresses
 augur.filters.start_contracts_listener();
 
-// "Heartbeat" check for new transactions every 5 seconds
-augur.filters.heartbeat(function (message) {
-    console.log("new transaction:", message);
-});
+var callbacks = {
+    contracts: function (message) {
+        console.log("new transaction:", message);
+    },
+    price: function (message) {
+        console.log("price update:", message);
+    }
+};
+augur.filters.start_heartbeat(callbacks);
 
 // Stop heartbeat polling
 augur.filters.stop_heartbeat();
@@ -58,5 +63,9 @@ augur.filters.stop_heartbeat();
 // Clear the contract transactions filter
 augur.filters.clear_contracts_filter();
 ```
+
+"Heartbeat" checks for new transactions and/or price updates every 5 seconds.  Passing callback functions for `contracts` and/or `price` to the `augur.filters.start_heartbeat` method will start polling the contracts and price filters, respectively.
+
+<aside class="notice">You can adjust the heartbeat polling interval by changing the value of <code>augur.filters.PULSE</code>.  By default it is set to <code>5000</code> (5 seconds).</aside>
 
 The contracts-listener filter watches for new Augur transactions and calls back with the transaction(s) data; for example, shares purchased/sold.
