@@ -648,6 +648,7 @@ html, body {
 .layout{
   padding-top: 50px;
   .layout-navbar{
+    height:52px;
     z-index: 3;
     ul { 
       list-style-type: none;
@@ -655,7 +656,7 @@ html, body {
       padding: 0;
       float: right;
       li {
-        display: table-cell;
+        display: inline-block;
         a{
           display: inline-block;
           color: white;
