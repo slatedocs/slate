@@ -18,13 +18,13 @@ Attribute | Type | Editable | Description
 `created_at` | [date/time][] | read-only | When this invitation was sent
 `created_by_organization_id` | integer | read-only | ID of the organization who sent this invitation
 `created_by_organization` | object | read-only | The [organization][] resource who sent this invitation, with all of its attributes.
-`created_by_person_id` | integer | read-only | ID of the person who sent this invitation
-`created_by_person` | object | read-only | The [person][] resource who sent this invitation, with all other attributes except `organization` and `organization_id`
+`created_by_user_id` | integer | read-only | ID of the user who sent this invitation
+`created_by_user` | object | read-only | The [user][] resource who sent this invitation, with all other attributes except `organization` and `organization_id`
 `resolved_at` | [date/time][] | read-only | When this invitation was accepted or rejected, `null` if still pending
 `resolved_by_organization_id` | integer | read-only | ID of the organization who accepted/rejected this invitation, or `null` if still pending or unknown
 `resolved_by_organization` | object | read-only | The [organization][] resource who accepted/rejected this invitation, or `null` if still pending or unknown
-`resolved_by_person_id` | integer | read-only | ID of the person who accepted/rejected this invitation, or `null` if still pending or unknown
-`resolved_by_person` | object | read-only | The [person][] who accepted/rejected this invitation, or `null` if still pending or unknown
+`resolved_by_user_id` | integer | read-only | ID of the user who accepted/rejected this invitation, or `null` if still pending or unknown
+`resolved_by_user` | object | read-only | The [user][] who accepted/rejected this invitation, or `null` if still pending or unknown
 `partnership_id` | integer | read-only | ID of the [partnership][] of the partner who accepted this invitation, or `null` if not accepted
 `created_new_partnership` | boolean | read-only | This is `true` if the invitation was accepted by a new partner, `false` if it was accepted by an existing partner, or `null` if not yet accepted.
 
@@ -79,13 +79,13 @@ Attribute | Type | Editable | Description
 `created_at` | [date/time][] | read-only | When this invitation sent
 `created_by_organization_id` | integer | read-only | ID of the organization who sent this invitation
 `created_by_organization` | object | read-only | The [organization][] who sent this invitation, with all of its attributes.
-`created_by_person_id` | integer | read-only | ID of the person who sent this invitation
-`created_by_person` | object | read-only | The [person][] who sent this invitation, with all other attributes except `organization` and `organization_id`
+`created_by_user_id` | integer | read-only | ID of the user who sent this invitation
+`created_by_user` | object | read-only | The [user][] who sent this invitation, with all other attributes except `organization` and `organization_id`
 `resolved_at` | [date/time][] | read-only | When this invitation was accepted or rejected, `null` if still pending
 `resolved_by_organization_id` | integer | read-only | ID of the organization who accepted/rejected this invitation, or `null` if still pending or unknown
 `resolved_by_organization` | object | read-only | The [organization][] resource who accepted/rejected this invitation, or `null` if still pending or unknown
-`resolved_by_person_id` | integer | read-only | ID of the person who accepted/rejected this invitation, or `null` if still pending or unknown
-`resolved_by_person` | object | read-only | The [person][] who accepted/rejected this invitation, or `null` if still pending or unknown
+`resolved_by_user_id` | integer | read-only | ID of the user who accepted/rejected this invitation, or `null` if still pending or unknown
+`resolved_by_user` | object | read-only | The [user][] who accepted/rejected this invitation, or `null` if still pending or unknown
 `partnership_id` | integer | read-only | ID of the [partnership][] of the partner whose invitation was accepted, or `null` if not accepted
 `created_new_partnership` | boolean | read-only | This is `true` if the invitation was accepted by a new partner, `false` if it was accepted by an existing partner, or `null` if not yet accepted.
 

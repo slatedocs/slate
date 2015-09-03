@@ -20,8 +20,8 @@ Attribute | Type | Editable | Description
 :---------|:-----|:---------|------------
 `id` | integer | read-only | Unique identifier for the share
 `created_at` | [date/time][] | read-only | When the resource was shared
-`creator_person_id` | integer | read-only | ID of the person who shared the resource
-`creator_person` | object | read-only | The [person][] resource who shared the resource, with all of the available attributes
+`created_by_user_id` | integer | read-only | ID of the user who shared the resource
+`created_by_user` | object | read-only | The [user][] resource who shared the resource, with all of the available attributes
 `share_name` | string | **optional** | Name that is shown to the receiver as a display name for this resource. If `null`, the original name is displayed. This may be updated later.
 `partnership_id` | integer | **required** | ID of the [partnership][] of the partner to whom the resource is shared. **Cannot be changed after creation.**
 `original_share_id` | integer | **required (?)** | ID of the incoming share if the resource is being re-shared, or `null` otherwise. Required if you are sharing forward a resource that has been shared to you. **Cannot be changed after creation.**
