@@ -3,15 +3,15 @@ Chat API
 
 ## Get a collection of chats
 
-You can get a list of chats by making a GET request.
+You can get a list of your organization's chats by making a GET request.
 
-`GET https://service.giosg.com/api/v3/chat/chatsessions`
+`GET https://service.giosg.com/api/v5/orgs/<organization_id>/chats`
 
 By default, the API returns all the available chats paginated, sorted by ascending ID order. You may want to filter the chats or change the order or pagination parameters by providing GET parameters in the URL. Remember to URL-encode any parameter values.
 
 Parameter | Format | Default | Description
 :---------|:-------|:--------|------------
-`ordering` | [ordering][] | id | Order results by either `id`, `start_time` or `end_time`. Use `-` prefix to reverse.
+`ordering` | [ordering][] | id | Order results by either `id`, `start_time` or `end_time`.
 `page` | integer | 1 | [Page][paginated collection] to get
 `page_size` | integer | 25 | [Page size][paginated collection] for the pages, with max value of 100
 `since_id` | integer | | Only return chats with IDs larger than the value (exclusive)
@@ -32,14 +32,14 @@ Parameter | Format | Default | Description
   "current_page": 1, 
   "next_page": 2, 
   "previous_page": null,
-  "next_page_url": "https://service.giosg.com/api/v3/chat/chatsessions?page=2",
+  "next_page_url": "https://service.giosg.com/api/v5/orgs/7f9e9580-095b-42c7-838c-c04e667b26f7/chats?page=2",
   "previous_page_url": null,
   "results": [
     {
       "id": 1, 
       "start_time": "2015-02-13T11:31:36.042", 
       "end_time": "2015-02-13T12:38:36.424", 
-      "modified": "2015-02-13T12:38:36.431",
+      "updated_at": "2015-02-13T12:38:36.431",
       "private": false, 
       "real_conversation": false,
       "is_autosuggested": false, 
@@ -124,7 +124,7 @@ Attribute | Type | Description
 `id` | integer | Unique identifier for this chat 
 `start_time` | [date/time][] | When the chat conversation started
 `end_time` | [date/time][] | When the chat conversation ended (or `null` if not yet ended)
-`modified` | [date/time][] | When the chat conversation was last time modified
+`updated_at` | [date/time][] | When the chat conversation was last time updated
 `private` | boolean | Whether or not the chat is marked as private for its operators
 `real_conversation` | boolean | Whether or not the chat is an actual conversation
 `is_autosuggested` | boolean | Whether or not the chat started with an autosuggestion

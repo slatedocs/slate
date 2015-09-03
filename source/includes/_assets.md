@@ -9,7 +9,7 @@ This API is available only if your account has the <strong>Assets</strong> featu
 
 Assets are files that you can upload to giosg system and that are publicly available. They are useful to hosts resources for you custom customized giosg products or your website components!
 
-Even though asset contents are publicly available, they can only be accessed with an URL. In other words, only your company members are able to see the list of your company assets. When the asset is used somewhere, e.g. on your custom chat dialog or your website, anyone is (and need to be) able to download its contents and see its public attributes.
+Even though asset contents are publicly available, they can only be accessed with an URL. In other words, only your organization members are able to see the list of your organization assets. When the asset is used somewhere, e.g. on your custom chat dialog or your website, anyone is (and need to be) able to download its contents and see its public attributes.
 
 An asset resource has the following attributes.
 
@@ -18,8 +18,8 @@ Attribute     | Type      | Editable     | Description
 `id`            | string    | read-only    | [UUID][] string identifier
 `name`          | string    | **required**     | Short, human-readable name.
 `description`   | string    | **optional**     | Human-readable description
-`company_id`    | integer   | read-only    | The ID of the owner company
-`company`       | object    | read-only    | The owner company resource
+`organization_id`    | integer   | read-only    | The ID of the owner organization
+`organization`       | object    | read-only    | The owner organization resource
 `file_name`     | string    | read-only    | The original file name of the uploaded file
 `url`           | string    | read-only    | The full URL for original, uploaded file. **Use this URL to link to your asset!**
 `size`          | integer   | read-only    | Size of the uploaded file in bytes
@@ -37,9 +37,9 @@ Attribute     | Type      | Editable     | Description
 
 ### Upload a new asset
 
-Upload a file creating a new asset for a company.
+Upload a file creating a new asset for a organization.
 
-`POST /api/v3/customer/assets`
+`POST /api/v5/orgs/<organization_id>/assets`
 
 **IMPORTANT!** In contrast to the all other API endpoints, this only accepts `multipart/form-data` requests, because you need to upload a file with the request. The request payload takes the following attributes.
 
@@ -49,13 +49,13 @@ Attribute   | Type   | Editable     | Description
 `name`        | string | **optional**     | Name for the newly created asset. If omitted, defaults to the file name. Otherwise, it must be a non-empty string value.
 `description` | string | **optional**     | Description for this asset.
 
-This endpoint returns an [asset][] resource. It results in a 400 response if the upload would exceed your company's free asset storage space.
+This endpoint returns an [asset][] resource. It results in a 400 response if the upload would exceed your organization's free asset storage space.
 
 ### List assets
 
-Get a paginated collection of all the assets of your company:
+Get a paginated collection of all the assets of your organization:
 
-`GET /api/v3/customer/assets`
+`GET /api/v5/orgs/<organization_id>/assets`
 
 The endpoint accepts the following GET parameters.
 
@@ -67,29 +67,29 @@ Parameter | Type | Default | Description
 
 ### Retrieve a single asset
 
-`GET /api/v3/customer/assets/[asset_id]`
+`GET /api/v5/orgs/<organization_id>/assets/<asset_id>`
 
 ### Update an asset
 You may update the `name` and/or `description` attributes of an asset.
 
-`PUT /api/v3/customer/assets/[asset_id]`
+`PUT /api/v5/orgs/<organization_id>/assets/<asset_id>`
 
-`PATCH /api/v3/customer/assets/[asset_id]`
+`PATCH /api/v5/orgs/<organization_id>/assets/<asset_id>`
 
 ### Delete an asset
 You may delete your assets. Their size is freed for new asset uploads.
 
-`DELETE /api/v3/customer/assets/[asset_id]`
+`DELETE /api/v5/orgs/<organization_id>/assets/<asset_id>`
 
-### Retrieve company's storage information
-You may check your company's current asset storage space usage:
+### Retrieve organization's storage information
+You may check your organization's current asset storage space usage:
 
-`GET /api/v3/customer/quota`
+`GET /api/v5/orgs/<organization_id>/quota`
 
 This returns an object with the following attributes:
 
 Attribute   | Type   | Description
 ------------|--------|--------------
 `free_space` | integer | Total free space for new assets, in bytes
-`usage` | integer | Sum of all your company asset sizes, in bytes
-`limit` | The maximun allowed sum of your company asset sizes, in bytes
+`usage` | integer | Sum of all your organization asset sizes, in bytes
+`limit` | The maximun allowed sum of your organization asset sizes, in bytes

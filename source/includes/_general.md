@@ -5,6 +5,10 @@ Using the API
 This documentation is a <strong>draft</strong>!
 </aside>
 
+<aside class="success">
+<strong>This is the new, recommended version of giosg API, preferred over the <a href="https://docs.giosg.com/doku.php?id=public:technical-documentation:backend-api">old deprecated API</a>!</strong>
+</aside>
+
 ## Authentication
 
 You need to provide a valid API key in order access the API. You can create an API key from ["API keys" section in your company settings](https://service.giosg.com/en/settings/#/live/company/tokens):
@@ -49,7 +53,7 @@ Parameter  | Type    | Default  | Description
   "current_page": 1,
   "next_page": 2,
   "previous_page": null,
-  "next_page_url": "https://service.giosg.com/api/v3/examples?page=2",
+  "next_page_url": "https://service.giosg.com/api/v5/examples?page=2",
   "previous_page_url": null,
   "results": [
     {"name": "Example Resource 1"},
