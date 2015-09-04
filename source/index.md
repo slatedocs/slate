@@ -14,6 +14,7 @@ includes:
   - sharing
   - assets
   - timelines
+  - realtime
 
 search: true
 ---
