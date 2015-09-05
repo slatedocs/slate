@@ -461,14 +461,22 @@ currency | Currency that is expected to receive
 > The JSON of callback:
 
 ```json
-{"id":13406,"deposit_address":"35dzdB6HbgusXHgvY7L3wyWmqhiNkwdPRH","status":"overpaid","invoiced_amount":"420.0","received_amount":"600.01036121","created_at":"2015-08-14T15:45:29Z","updated_at":"2015-08-16T13:44:41Z","currency":"USD₮"}
+{"id":13406,"deposit_address":"35dzdB6HbgusXHgvY7L3wyWmqhiNkwdPRH","status":"overpaid","invoiced_amount":"420.0","received_amount":"600.01","created_at":"2015-08-14T15:45:29Z","updated_at":"2015-08-16T13:44:41Z","currency":"USD₮","signature":"cf61abec01ca26f582311bea5e5b3682"}
+```
+
+> String to be MD5 hashed to calculate signature (using demo API secret):
+ 
+```
+1340635dzdB6HbgusXHgvY7L3wyWmqhiNkwdPRH420.0600.01USD₮overpaidZOEHtNbe8fgj4DMHSZAq/2hDZE6JHruqPKYfLbMASBX6Y/OVGuY/5xmJh3MCyOwG5PIodX2/q+gBjZ4KoJXYsQ==
 ```
 
 If the status of created invoice is changed you will get a callback to the IPN URL you've provided during
-Merchant API activation. The structure of callback JSON is the same as on <a href="#create-new-invoice">new invoice creation</a>.
+Merchant API activation. The structure of callback JSON is the same as on <a href="#create-new-invoice">new invoice creation</a> + a signature field.
 
 <aside>
-Please make sure that requests to your IPN URL are accepted only from Tether IPs!
+Every callback should have a signature in it. All requests without a valid signature should be discarded and reported as a hack attempt.
+To check the signature concatenate the following fields from callback (order is important): id, deposit_address, invoiced_amount, received_amount, currency, status.
+Concatenate the resulting string with your API secret and hash it with MD5. The resulting hash should be equal to the hash in callback.
 </aside>
 
 Expected IPN response should have HTTP 200 status code. Otherwise the callback is marked as undelivered and will be repeatedly resent with increasing delay:
