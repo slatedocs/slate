@@ -32,6 +32,7 @@ Error Code | Meaning
 450 | Filter could not be created
 500 | Transaction Failed
 501 | Transaction Not Confirmed: polled network but could not confirm transaction
+651 | Ethereum Not Found: no active Ethereum node(s) found
 
 Contract Errors
 ---------------
