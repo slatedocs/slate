@@ -464,10 +464,29 @@ currency | Currency that is expected to receive
 {"id":13406,"deposit_address":"35dzdB6HbgusXHgvY7L3wyWmqhiNkwdPRH","status":"overpaid","invoiced_amount":"420.0","received_amount":"600.01","created_at":"2015-08-14T15:45:29Z","updated_at":"2015-08-16T13:44:41Z","currency":"USD₮","signature":"cf61abec01ca26f582311bea5e5b3682"}
 ```
 
-> String to be MD5 hashed to calculate signature (using demo API secret):
+> String to be MD5 hashed to manually calculate signature (using demo API secret):
  
 ```
 1340635dzdB6HbgusXHgvY7L3wyWmqhiNkwdPRH420.0600.01USD₮overpaidZOEHtNbe8fgj4DMHSZAq/2hDZE6JHruqPKYfLbMASBX6Y/OVGuY/5xmJh3MCyOwG5PIodX2/q+gBjZ4KoJXYsQ==
+```
+
+> Checking signature using client library:
+
+```ruby
+begin
+  client.check_signature(:invoice_callback, params)
+  # Signature is valid
+rescue ApiError => error
+  # Signature is not valid, see error.message for details
+end
+```
+
+```php
+# TODO
+```
+
+```python
+# TODO
 ```
 
 If the status of created invoice is changed you will get a callback to the IPN URL you've provided during
