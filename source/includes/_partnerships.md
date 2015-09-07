@@ -76,7 +76,7 @@ Attribute | Type | Editable | Description
 `message` | string | read-only | Message to be sent with the invitation to your partner.
 `room_shares` | array of objects | read-only | The rooms that will be shared when the invitation is accepted. An array where each item has the following attributes of an [incoming room share][] objects: `room_id` and `room`
 `team_shares` | array of objects | read-only | The teams that will be shared when the invitation is accepted. An array where each item has the following attributes of an [incoming team share][] object: `team_id` and `team`
-`created_at` | [date/time][] | read-only | When this invitation sent
+`created_at` | [date/time][] | read-only | When this invitation was sent
 `created_by_organization_id` | integer | read-only | ID of the organization who sent this invitation
 `created_by_organization` | object | read-only | The [organization][] who sent this invitation, with all of its attributes.
 `created_by_user_id` | integer | read-only | ID of the user who sent this invitation
@@ -86,8 +86,6 @@ Attribute | Type | Editable | Description
 `resolved_by_organization` | object | read-only | The [organization][] resource who accepted/rejected this invitation, or `null` if still pending or unknown
 `resolved_by_user_id` | integer | read-only | ID of the user who accepted/rejected this invitation, or `null` if still pending or unknown
 `resolved_by_user` | object | read-only | The [user][] who accepted/rejected this invitation, or `null` if still pending or unknown
-`partnership_id` | integer | read-only | ID of the [partnership][] of the partner whose invitation was accepted, or `null` if not accepted
-`created_new_partnership` | boolean | read-only | This is `true` if the invitation was accepted by a new partner, `false` if it was accepted by an existing partner, or `null` if not yet accepted.
 
 ### Retrieve incoming invitation details
 Retrieve a [incoming invitation][] resource by its **invitation key**. Incoming invitations are identified by their automatically generated, random key strings, instead of integer IDs.
@@ -149,12 +147,12 @@ A partnership object describes a connection between your organization and one of
 
 Attribute | Type | Editable | Description
 :---------|:-----|:---------|------------
-`created_at` | [date/time][] | read-only | When you became partners
 `partner_organization_id` | integer | read-only | ID of the partner organization
 `partner_organization` | object | read-only | The partner [organization][] resource, with all of its available attributes
-`organization_id` | integer | read-only | ID of your organization, for convenience
+`organization_id` | integer | read-only | ID of your organization, for convenience (matching the `<organization_id>` in the URL)
 `dislay_name` | string | **optional** | Name that is shown to your organization members for this partner. May be `null`, in which case the original name is shown
 `visible_to_everyone` | boolean | **required** | If `true`, the new partner will become visible to your organization members. If `false`, it will be shown only on organization management.
+`created_at` | [date/time][] | read-only | When you became partners
 `incoming_invitation_id` | integer | read-only | ID of the incoming invitation that resulted in creation of this partnership, or `null`.
 `incoming_invitation` | object | read-only | The [incoming invitation][] resource that resulted in creation of this partnership, or `null`.
 `outgoing_invitation_id` | integer | read-only | ID of the outgoing invitation that resulted in creation of this partnership, or `null`.
@@ -174,9 +172,9 @@ Parameter | Type | Default | Description
 `page_size` | integer | 25 | [Page size][paginated collection] for the pages, with max value of 100
 
 ### Retrieve partnership details
-Retrieve a single [partnership][] resource for your organization (`<organization_id>`) by the partner organization's ID (`<partner_id>`).
+Retrieve a single [partnership][] resource for your organization (`<organization_id>`) by the partner organization's ID (`<partner_organization_id>`).
 
-`GET https://service.giosg.com/api/v5/orgs/<organization_id>/partnerships/<partner_id>`
+`GET https://service.giosg.com/api/v5/orgs/<organization_id>/partnerships/<partner_organization_id>`
 
 ### Remove a partnership
 
@@ -185,16 +183,16 @@ Retrieve a single [partnership][] resource for your organization (`<organization
 This will immediately remove the organization from your partners and remove your partner's access to your shared resources. You cannot undo this action! You need to invite your partner again and re-share all your rooms/teams and re-set any permissions.
 </aside>
 
-Being aware of this, you may remove another organization (`<partner_id>`) from your organization's (`<organization_id>`) partners.
+Being aware of this, you may remove another organization (`<partner_organization_id>`) from your organization's (`<organization_id>`) partners.
 
-`DELETE https://service.giosg.com/api/v5/orgs/<organization_id>/partnerships/<partner_id>`
+`DELETE https://service.giosg.com/api/v5/orgs/<organization_id>/partnerships/<partner_organization_id>`
 
 
 ### Update a partnership
-You may update the editable attributes of a partnership for your organization (`<organization_id>`) by the given partner organization's ID (`<partner_id>`).
+You may update the editable attributes of a partnership for your organization (`<organization_id>`) by the given partner organization's ID (`<partner_organization_id>`).
 
-`PUT https://service.giosg.com/api/v5/orgs/<organization_id>/partnerships/<partner_id>`
+`PUT https://service.giosg.com/api/v5/orgs/<organization_id>/partnerships/<partner_organization_id>`
 
-`PATCH https://service.giosg.com/api/v5/orgs/<organization_id>/partnerships/<partner_id>`
+`PATCH https://service.giosg.com/api/v5/orgs/<organization_id>/partnerships/<partner_organization_id>`
 
 When using `PUT` you need to provide an object as a request payload that contains the changed attributes of the [partnership][]. When using `PATCH`, you may omit those attributes that you do not want to change.
