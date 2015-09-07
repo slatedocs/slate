@@ -101,7 +101,8 @@ Parameter | Value | Notes
 --------- | ----- | -----
 api-key | | <span class="label label-required">Required</span>
 batch-id | | <span class="label label-required">Required</span>
-telephone | search-by-phone | <span class="label label-required">Required</span>
+telephone | | <span class="label label-required">Required</span>
+search-type | search-by-phone | <span class="label label-required">Required</span>
 
 ## Fetch Profile Details (by profile URL)
 
