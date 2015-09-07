@@ -103,7 +103,7 @@ Parameter | Value | Notes
 --------- | ----- | -----
 api-key | | <span class="label label-required">Required</span>
 batch-id | | <span class="label label-required">Required</span>
-local-directory | <span class="label label-required">Required</span> See possible options in appendix below.
+local-directory | | <span class="label label-required">Required</span> See possible options in appendix below.
 telephone | | <span class="label label-required">Required</span>
 search-type | search-by-phone | <span class="label label-required">Required</span>
 
