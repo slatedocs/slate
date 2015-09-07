@@ -1,8 +1,6 @@
 # Local Directories
 
-## Fetch Profile URL
-
-<span class="label label-info">Batch Method</span>
+## Fetch Profile URL (Batch Method)
 
 > Success (201 Created)
 
@@ -58,6 +56,56 @@ postcode | <span class="label label-required">Required</span>
 local-directory | <span class="label label-required">Required</span> See possible options in appendix below.
 telephone |
 street-address |
+
+## Fetch Profile URL (Telephone Number Only)
+
+> Success (201 Created)
+
+```json
+{
+    "success": true,
+    "job-id": 318
+}
+```
+ 
+> Failure (400 Bad Request)
+
+```json
+{
+ "success": false,
+ "errors": {
+   "INVALID_TELEPHONE": "Invalid telephone specified",
+   "INVALID_LOCAL_DIRECTORY": "Invalid local directory  specified"
+ }
+}
+```
+ 
+> Failure (405 Method Not Allowed)
+
+```json
+{
+  "success": false,
+  "errors": {
+    "INVALID_METHOD": "Invalid method specified. Only POST method is available"
+  }
+}
+```
+
+Authentication for this method is via API key only.
+
+### HTTP Request
+
+`POST https://tools.brightlocal.com/seo-tools/api/v4/ld/fetch-profile-url`
+
+### Query Parameters
+
+Parameter | Value | Notes
+--------- | ----- | -----
+api-key | | <span class="label label-required">Required</span>
+batch-id | | <span class="label label-required">Required</span>
+local-directory | | <span class="label label-required">Required</span> See possible options in appendix below.
+telephone | | <span class="label label-required">Required</span>
+search-type | search-by-phone | <span class="label label-required">Required</span>
 
 ## Fetch Profile Details (by profile URL)
 
