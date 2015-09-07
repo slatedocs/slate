@@ -1,3 +1,4 @@
+  [id]: <#resource-identifiers> "Resource identifiers"
   [date]: <#date-format> "Date format"
   [date/time]: <#datetime-format> "Date/time format"
   [paginated collection]: <#paginated-collections> "Paginated collections"
