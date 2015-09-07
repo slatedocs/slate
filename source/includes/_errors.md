@@ -27,6 +27,7 @@ Error Code | Meaning
 402 | Incorrect number of parameters
 403 | Bad Credentials: incorrect handle or password
 405 | Password Too Short: password must be at least 6 characters long
+408 | No Response
 412 | Transaction Invalid: transaction validation failed
 422 | Handle Taken: handle already taken
 450 | Filter could not be created
