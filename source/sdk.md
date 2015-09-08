@@ -45,21 +45,10 @@ Before you do anything, you'll need to log in with your rundexter.com credential
 
 ## Make a key
 ```shell
-if [[ ! -f ~/.ssh/id_rsa && ! -f ~/.ssh/id_dsa ]]; then
-    # Make sure you have the keygen script
-    if [[ ! `which ssh-keygen` ]]; then
-        if [[ `which apt-get` ]]; then
-            sudo apt-get install openssh-client
-        elif [[ `which yum` ]]; then
-            sudo yum install openssh-clients
-        fi
-    fi
-    # Create a default SSH key
-    ssh-keygen -f ~/.ssh/id_rsa -N ""
-fi
+ssh-keygen -f ~/.ssh/id_rsa -N ""
 ```
 
-You’ll need to have an SSH key of some flavor (RSA or DSA). You might already have one - they’re useful things, and you’ve probably needed one before. They’re probably in ~/.ssh/ and called id_rsa and id_rsa.pub. If you don’t have one, make one now.
+You’ll need to have an SSH key of some flavor (RSA or DSA). You might already have one - they’re useful things, and you’ve probably needed one before. They’re probably in ~/.ssh/ and called id_rsa and id_rsa.pub. If you don’t have one, make one now.  You can run the given sample code to create a key, and [read more on the subject](https://help.ubuntu.com/community/SSH/OpenSSH/Keys) if you're interested.
 
 ## Send your key
 ```shell
