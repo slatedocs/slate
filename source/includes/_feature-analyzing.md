@@ -131,3 +131,119 @@ Then, we need to define target data. We are supplying these in a hand-generated 
 Note that our overlay has to have a dimension, too. In this case, we simply re-use variable "88dd88" as the dimension. This ensures that our target data is interpreted with the same category metadata as our base analysis.
 
 We POST the above to datasets/{id}/comparisons/ and can obtain the overlay output at datasets/{id}/comparisons/{comparison_id}/cube/. See the Endpoint Reference for details.
+
+
+### Overviews
+
+Analyses as described above are truly multidimensional; when you add another variable, the resulting cube obtains another dimension. Sometimes, however, you want to compare analyses side by side, typically looking at several (even *all*) variables against a common set of conditioning variables. For example, you might nominate "Gender", "Age", and "Race" as the conditioning variables and cross every other variable with those, in order to quickly discover common correlations.
+
+Crunch provides a separate catalog where you can define and manage these common sets of variables. Like most catalogs, you can GET it to see which overviews are defined:
+
+```http
+GET datasets/{id}/overviews/ HTTP/1.1
+
+200 OK
+{
+    "element": "shoji:catalog",
+    "index": {
+        "1/": {"name": "Major demographics"},
+        "2/": {"name": "Political tendencies"}
+    }
+}
+```
+
+...POST a new overview:
+
+```http
+POST datasets/{id}/overviews/ HTTP/1.1
+
+{
+    "element": "shoji:entity",
+    "body": {
+        "name": "Geographical indicators",
+        "variables": [
+            {"variable": "../variables/de85b32/"},
+            {"variable": "../variables/398620f/"},
+            {"variable": "../variables/c116a77/"}
+        ]
+    }
+}
+
+201 Created
+Location: datasets/{id}/overviews/3/
+```
+
+...or GET an individual overview:
+
+```http
+GET datasets/{id}/overviews/3/ HTTP/1.1
+
+{
+    "element": "shoji:entity",
+    "body": {
+        "name": "Geographical indicators",
+        "variables": [
+            {"variable": "../../variables/de85b32/"},
+            {"variable": "../../variables/398620f/"},
+            {"variable": "../../variables/c116a77/"}
+        ]
+    }
+}
+```
+
+Each overview is simply a list of variable references; to obtain their multiple output cubes, you `GET datasets/{id}/cube?query=<q>` where `<q>` is a ZCL object in JSON format (which must then be %-encoded for inclusion in the querystring). Use the "each" function to iterate over the overview variables, producing one output cube for each one as "variable x". For example, to cross each of the above 3 variables against another variable "449b421":
+
+```json
+{
+    "function": "each",
+    "args": [
+        {"value": "x"},
+        [{"variable": "de85b32"}, {"variable": "398620f"}, {"variable": "c116a77"}]
+    ],
+    "block": {
+        "function": "cube",
+        "args": [
+            [{"variable": "449b421"}, {"variable": "x"}],
+            {"count": {"function": "cube_count", "args": []}}
+        ]
+    }
+}
+```
+
+The result will be an array of output cubes:
+
+```json
+{
+    "element": "shoji:view",
+    "value": {
+        "result": {
+            "definitions": {
+                "449b421": {"type": {"class": "categorical", ...}, "references": {...}, "derived": False},
+                "de85b32": {"type": {"class": "categorical", ...}, "references": {...}, "derived": False},
+                "398620f": {"type": {"class": "categorical", ...}, "references": {...}, "derived": False},
+                "c116a77": {"type": {"class": "categorical", ...}, "references": {...}, "derived": False},
+                "count": {"type": {"class": "numeric"}, "references": {...}, "derived": True}
+            },
+            "cubes": [{
+                "element": "crunch:cube",
+                "dimensions": [{"definition": "449b421"}, {"definition": "de85b32"}],
+                "measures": {
+                    "count": {
+                        "data": [23],
+                        "metadata": {"definition": "count"},
+                        "n_missing": 2
+                    }
+                }
+            }, {
+                "element": "crunch:cube",
+                "dimensions": [{"definition": "449b421"}, {"definition": "398620f"}],
+                "measures": {...}
+            }, {
+                "element": "crunch:cube",
+                "dimensions": [{...}],
+                "measures": {...}
+            }]
+        }
+    }
+}
+```
