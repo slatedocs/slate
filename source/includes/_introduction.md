@@ -13,11 +13,11 @@ This is the typical messaging workflow involving a change from the user:
 
 ### Application sends Update Request
 
-Data updates within a client application may occur due to direct interaction, indirect user interaction or automation. Updated information that needs to be synchronized across applications is then sent to the School Agent.
+Data updates within a client application may occur due to direct interaction, indirect user interaction or automation. Updated information that needs to be synchronized across applications is then sent to the School Actor.
 
-### School Agent processes Update Request
+### School Actor processes Update Request
 
-The corresponding School Agent, having subscribed to the Update Requests queue, forms Update Decisions.
+The corresponding School Actor, having subscribed to the Update Requests queue, forms Update Decisions.
 The School Agent may make multiple Update Decisions in order to fully process a single Update Request, or it may simply discard the message and not react at all.
 
 <aside class="notice">
@@ -32,9 +32,9 @@ In what instance would we discard the incoming event?
 
 > We use application code to represent the application, ex: *OA* represents to OpenApply
 
-### School Agent sends Update Decisions
+### School Actor sends Update Decisions
 
-The School Agent decides on a series of data transformations to be applied to client applications, and sends them in Update Decisions.
+The School Actor decides on a series of data transformations to be applied to client applications, and sends them in Update Decisions.
 Different client applications may receive different transformations due to their internal differences.
 
 ### Applications process Update Decisions
@@ -57,7 +57,7 @@ The School Actor will collect Update Replies from all Client Applications involv
 
 * This concludes a Tick in the Messaging Lifecycle.
 * The School Actor will not continue processing another Update Request before its current one has been satisfactorily processed by all Applications, or before it has exhausted all other available means to repair the inconsistencies.
-* There may be a maximum number of retries allowed for a given Update Request. After the number of retries has been exhausted, the Update Request will be flagged for human review.
+* There may be a maximum number of retries allowed for a given Update Request. After the number of retries threshold has been reached, the Update Request will be flagged for human review.
 * Future expansions plans may include a heartbeat / throughput monitoring system here.
 
 

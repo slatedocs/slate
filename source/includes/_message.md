@@ -33,7 +33,7 @@ A message is composited by 2 parts: *headers* and *body*. Both of them formatted
 ```
 
 
-The Headers contain the information to describe the message, such as the type, when, and where it is published.
+The Headers contain the information to describe the message, such as the type, when, and where it was published.
 When the queue subscriber receives the message, it looks up the headers firstly to determine what consumer is responsible to handle it.
 The message body, or payload, is the content of the message going to processed by the consumer.
 
@@ -87,12 +87,12 @@ body = {
 
 Message body or, the payload, represent to the content of the message.
 
-The format of the message body is different from each types of message, we defined them in the section of [Canonical Data Model](#message-protocol).
+The format of the message body is different from each type of message, we have defined them in the section [Canonical Data Model](#message-protocol).
 
-In addition, for document message, the attributes in the message also changed with the message lifecycle:
+In addition, for document message, the attributes in the message are changed within the message lifecycle:
 
-- When sending *update request*, the message content should contain all attributes of the model. Besides, it has an additional info about what this message requested to change. Which stored in _changed attribute
-- But when the request is converted to update decision, broker will only keep the changed attributes in the message body
+- When sending *update request*, the message content should contain all attributes of the model. Moreover, contain additional information about what the message requested to change. This is stored in the '_changed' attribute
+- However, when the request is converted to an update decision, the broker will only keep the changed attributes in the message body.
 
 ## Types of Message
 
@@ -106,7 +106,7 @@ Here is a breif explaination:
 
 Most of the messages are document messages, they are published by behaviors of common users.
 
-But before we jump into Document Message, we have to introduce the 2 major concepts.
+Before we institute Document Message, we must introduce 2 major concepts.
 
 * The Standard Lifecycle of Document Message
 * The Message Group and Entries
@@ -114,7 +114,7 @@ But before we jump into Document Message, we have to introduce the 2 major conce
 
 ## The Standard Lifecycle of Document Message
 
-The document messages are used for normal requests acted by the end-user, which is processed by the standard work flow we metiond before:
+The document messages are used for normal requests acted by the end-user, that are processed by the standard work flow we metiond before:
 
 1. [Source Application] publishes the message to broker
 2. [Broker] according its strategies to generate an update decision for each related application, then sends the decisions to remote applications.
@@ -123,9 +123,9 @@ The document messages are used for normal requests acted by the end-user, which 
 
 Within this workflow, the message proceeds to the next phase under each transition.
 
-- When source application publishes the message, which is an Update *Request* message
+- When the source application publishes the message, which is the Update *Request* message
 - When Broker converts the request, it becomes an Update *Decision* message
-- When Target application receives the decision and processes it, then it transforms to Update *Reply* message and is delivered back to the broker.
+- When the Target application receives the decision and processes it, then transforms it to an Update *Reply* message and is delivered back to the broker.
 
 Normally, the message under each transition will extend the headers of the current phase, and append additional info for the next step.
 
@@ -139,12 +139,12 @@ Publish Update Reply | Target Application | Add result of the process
 
 ## Message Group and Entries
 
-The message group is structured as the wrapper with its content. Each group is like an envelope with several content *entries* inside. Which is just like a relationship of one-to-many. The key points are:
+The message group is structured as a wrapper with content. Each group is like an envelope with several upadates *entries* inside. This is similar to a relationship of one-to-many. The key points are:
 
 - The Message Group is the unit that is delivered between the Broker and Applications (on RabbitMQ).
 - The Message Entry is the minimum unit when publishing, and can be processed by the consumer.
 
-The reason we designed group-entry structure for the document message is because, when the message is triggered by the behavior of a user on the web, it's probably a bulk update across multiple models. To ensure the sequence and corresponding operations in a single transaction, we have to treat those update entries as a single unit.
+The reason we designed group-entry structure for the document message is because, when the message is triggered by the behavior of a user on the web, it's typically a bulk update across multiple models. To ensure the sequence and corresponding operations of a single transaction, we have to treat those update entries as a single unit.
 
 <aside class="success">
 Group Message is only used for Document Message.
@@ -171,7 +171,7 @@ body = {
 
 A Message Group also follows the composition of message. It has a body and headers as well.
 
-The headers contained the info of the message sequence. And the body is acts as a container that stores its entries.
+The headers contain info of the message sequence. And the body acts as a container that stores its entries.
 
 #### Headers
 
@@ -210,13 +210,13 @@ Headers of message group could have following information:
 }
 ```
 
-The Command message is used to directly ask remote applications to carry out an action. The most unexpected is when Command Message does NOT consider the feature flag. It is delivered to the remote application with a direct queue instead of routing through the decision maker(broker).
+The Command message is used to directly ask remote applications to carry out an action. The most unexpected is when Command Message does NOT consider the feature flag. It is delivered to the remote application with a direct queue instead of routing through the decision maker(broker).
 
 Command message doesn't relate to message group, it called by single atom action.
 
 ## Type of command
 
-Each message puts command name in the type of header, with prefix of *command.*. And the content is the arguments of the command.
+Each message puts command name in the "type" section of header, with a prefix of *command.*. And the content is the arguments of the command.
 
 For example, the sample code is a command for merging students, this command includes 3 arguments: the model name and the IDs of loser and winner.
 
