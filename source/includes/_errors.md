@@ -28,6 +28,7 @@ Error Code | Meaning
 403 | Bad Credentials: incorrect handle or password
 405 | Password Too Short: password must be at least 6 characters long
 408 | No Response
+409 | Invalid JSON: could not parse response from Ethereum node
 412 | Transaction Invalid: transaction validation failed
 422 | Handle Taken: handle already taken
 450 | Filter could not be created
