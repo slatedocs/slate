@@ -165,7 +165,8 @@ POST datasets/{id}/overviews/ HTTP/1.1
             {"variable": "../variables/de85b32/"},
             {"variable": "../variables/398620f/"},
             {"variable": "../variables/c116a77/"}
-        ]
+        ],
+        is_public: false
     }
 }
 
