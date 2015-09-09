@@ -464,7 +464,7 @@ It is our hope that the following code snippets are helpful to you. Please feel 
 
 The Provisioner allows you to push identities from your application to Faria LaunchPad for the initial setup. Identities can be updated from your application using the Client Application API, or by the LaunchPad Portal after querying your application periodically.
 
-```
+```ruby
 require 'active_support/all'
 require 'forgery'
 require 'httparty'
@@ -546,7 +546,7 @@ The following snippet demonstrates appropriate routing you must set up for your 
 1.  Accept Forward Authentication requests from users wishing to enter your application via the LaunchPad Portal. 
 2.  Accept Authentication Session requests from users currently using your application and wishing to enter other applications thru your in-app Identity Launchpad.
 
-```
+```ruby
 SSO::Application.routes.draw do
   get 'handle_forward_authentication' => 'forward_authentication#handle', as: :handle_forward_authentication
   get 'obtain_forward_authentication' => 'forward_authentication#obtain', as: :request_forward_authentication
@@ -558,7 +558,7 @@ end
 
 The following snippet demonstrates how Forward Authentication requests may be handled from your application, and shows a way to issue Authentication Session requests from your application to the LaunchPad Portal.
 
-```
+```ruby
 class ForwardAuthenticationController < ApplicationController
   skip_before_filter :authenticate_user!, only: %i(handle)
 
@@ -599,7 +599,7 @@ The following snippet contains a Service Object you can use to authenticate inco
 
 (Further security measures may be carried out by the LaunchPad Portal directly.)
 
-```
+```ruby
 class SSO::ForwardAuthenticationResponseService
   attr_reader :authenticated_object, :authentication_session_id, :authenticated_identity, :available_identities
 
@@ -658,7 +658,7 @@ private
   end
 end
 
-```
+```ruby
 
 ### Forward Authentication Request Service
 
@@ -703,7 +703,7 @@ end
 
 The following snippet demonstrates a way you can respond to authentication sessions asynchronously in order to ultimately log your approval or denial of an attempt to access your systems.
 
-```
+```ruby
 class SSO::TransactionResponseWorker
   include Sidekiq::Worker
   sidekiq_options :retry => 16, :backtrace => true
@@ -726,7 +726,7 @@ end
 
 The following snippet demonstrates a way to store known LaunchPad identities of an user temporarily, so you can avoid querying the LaunchPad Portal every time you need to render an in-app Identity Launchpad.
 
-```
+```ruby
 class SSO::IdentityCachingService
   attr_reader :object
   
@@ -755,7 +755,7 @@ end
 
 The API Client allows your application to interact with the LaunchPad Portal properly.
 
-```
+```ruby
 require 'httparty'
  
 module SSO

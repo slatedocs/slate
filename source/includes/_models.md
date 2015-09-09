@@ -23,8 +23,37 @@
 ```
 
 ## Year Grade
+```ruby
+{
+  :label => "Grade 15"
+  :number => 15
+  :program_core_id => "IS-Program-2020"
+  :school_core_id =>"KB-Organization-712"
+  :enable => false
+}
+
+```
+
 ## Program
+```ruby
+{
+  :name => "IB Primary Years"
+  :program_core_id => "OA-Program-4211"
+  :school_core_id => "KB-Organization-1045"
+}
+```  
+
 ## Academic Year
+```ruby
+{
+  :school_core_id => "KB-Organization-2786",
+  :name => "2015-2016 Academic Year",
+  :year => 2015,
+  :academic_year_core_id => "IS-AcademicYear-1",
+  :starts_on => "2015-08-01",
+  :ends_on => "2016-07-31",
+}
+```
 ## Student
 
 
@@ -72,5 +101,144 @@
 ```
 
 ## Parent
+```ruby
+{
+  :school_core_id => "KB-Organization-1045"
+  :id =>777472
+  :parent_core_id =>"OA-Parent-2494"
+  :name => "Philip Anderson"
+  :first_name => "Philip"
+  :last_name => "Anderson"
+  :title => "Director"
+  :employer => nil
+  :preferred_name => nil
+  :other_name => nil
+  :salutation => nil
+  :birth_date => "05/06/1977"
+  :gender => "M"
+  :photo => nil
+  :email => "ja@eduvo.com"
+  :work_email => nil
+  :addresses => 
+    [
+      {
+        "type"=>"Home", 
+        "address"=>"Baker Street", 
+        "address_ii"=>nil, 
+        "city"=>"Austin", 
+        "state"=>"Texus", 
+        "postal_code"=>nil, 
+        "country_alpha2"=>nil
+      }
+    ]
+  :phones => 
+    [
+      {
+        "type"=>"Mobile",
+        "number"=>nil
+      }, 
+      {
+        "type"=>"Work", 
+        "number"=>"415-555-0178"
+      },
+      {
+        "type"=>"Fax", 
+         "number"=>nil
+      }, 
+      {
+        "type"=>"WorkFax", 
+        "number"=>nil
+        }
+      }
+    ]          
+  :nationalities => []
+  :languages => []
+  :messagings =>nil
+  :relationships => 
+    [
+      {
+        :student_core_id=>"OA-Student-4459", 
+        :parent_role=>"father", 
+        :notification=>true, 
+        :position=>1, 
+        :school_core_id=>"KB-Organization-1045", 
+        :student_core_id=>"OA-Student-77", 
+        :parent_role=>"father", 
+        :notification=>false, 
+        :position=>1, 
+        :school_core_id=>"KB-Organization-1045"
+      }
+    ]  
+  :accounts => 
+    [
+      {
+      :is=> 
+        {
+          :id=>777472
+        }, 
+      :oa=>
+        {
+          :id=>2494
+          }
+        }
+  :archived => false
+  :mq_deleted => false
+}
+```
+
 ## Relationship
+```ruby
+{
+  :student_core_id =>"OA-Student-86059"
+  :parent_core_id =>"OA-Parent-95307"
+  :parent_role =>"father"
+  :notification =>true
+  :position =>1
+}
+```
 ## Staff
+```ruby
+{
+  :school_core_id =>"KB-Organization-1045"
+  :staff_core_id =>"OA-User-2154"
+  :name =>"johnny lu"
+  :first_name =>"lu"
+  :last_name => "lu"
+  :preferred_name =>nil
+  :other_name =>nil
+  :birth_date =>nil
+  :gender =>M
+  :photo =>nil
+  :email =>jolai@eduvo.com
+  :addresses =>[]
+  :phones =>
+    [
+      {
+        "type"=> work,
+        "Number"=> +852 2820 2910
+      }
+      {
+        "type"=> mobile,
+        "NUmber"=>nil
+      }
+    ]   
+  :title =>"oa"
+  :roles =>[]
+  :nationalities =>[]
+  :languages =>[]
+  :accounts => 
+    [
+      {
+      :is=> 
+        {
+          :id=>777472
+        }, 
+      :oa=>
+        {
+          :id=>2494
+          }
+        }
+  :archived =>false
+  :mq_deleted =>false
+}
+```
