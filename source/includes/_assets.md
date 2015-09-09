@@ -1,10 +1,6 @@
 Assets API
 ==========
 
-<aside class="info">
-This API is available only if your account has the <strong>Assets</strong> feature.
-</aside>
-
 ## Assets
 
 Assets are files that you can upload to giosg system and that are publicly available. They are useful to hosts resources for you custom customized giosg products or your website components!
@@ -15,10 +11,10 @@ An asset resource has the following attributes.
 
 Attribute     | Type      | Editable     | Description
 --------------|-----------|--------------|------------
-`id`            | string    | read-only    | [UUID][] string identifier
+`id`            | [ID][]    | read-only    | [UUID][] string identifier
 `name`          | string    | **required**     | Short, human-readable name.
 `description`   | string    | **optional**     | Human-readable description
-`organization_id`    | integer   | read-only    | The ID of the owner organization
+`organization_id` | [ID][]   | read-only    | The ID of the owner organization
 `organization`       | object    | read-only    | The owner organization resource
 `file_name`     | string    | read-only    | The original file name of the uploaded file
 `url`           | string    | read-only    | The full URL for original, uploaded file. **Use this URL to link to your asset!**
@@ -27,11 +23,11 @@ Attribute     | Type      | Editable     | Description
 `kind`          | string    | read-only    | What kind of file the asset is: `"image"`, `"css"`, `"javascript"`, `"font"` or `null` (unknown)
 `charset`       | string    | read-only    | Character encoding for a text file, e.g. `UTF-8` (or `null` if binary or unknown)
 `created_at`    | date/time | read-only | When the asset was created
-`modified_at`   | date/time | read-only | When the asset name or description was last time modified
-`creator_id` | integer | read-only | The ID of the person who created this asset
-`creator` | object | read-only | The person resource who created this asset
-`modifier_id` | integer | read-only | The ID of the person who last time modified this asset
-`modifier` | object | read-only | The person resource who last time modified this asset
+`created_by_user_id` | [ID][] | read-only | The ID of the person who created this asset
+`created_by_user` | object | read-only | The person resource who created this asset
+`updated_at`   | date/time | read-only | When the asset name or description was last time updated
+`updated_by_user_id` | [ID][] | read-only | The ID of the person who last time updated this asset
+`updated_by_user` | object | read-only | The person resource who last time updated this asset
 `width` | integer | read-only | The width of an image in pixels. Available for images only. It is `null` for other assets.
 `height` | integer | read-only | The height of an image in pixels. Available for images only. It is `null` for other assets.
 
@@ -41,7 +37,9 @@ Upload a file creating a new asset for a organization.
 
 `POST /api/v5/orgs/<organization_id>/assets`
 
-**IMPORTANT!** In contrast to the all other API endpoints, this only accepts `multipart/form-data` requests, because you need to upload a file with the request. The request payload takes the following attributes.
+<aside class="warning">
+<strong>IMPORTANT!</strong> In contrast to the all other API endpoints, this only accepts <code>multipart/form-data</code> requests, because you need to upload a file with the request. The request payload takes the following attributes.
+</aside>
 
 Attribute   | Type   | Editable     | Description
 ------------|--------|--------------|------------
@@ -61,7 +59,7 @@ The endpoint accepts the following GET parameters.
 
 Parameter | Type | Default | Description
 ----------|------|---------|------------
-`ordering` | [ordering][] | `created_at` | Ordering of results with options `created_at`, `modified_at`, `name`, `kind`, `content_type`
+`ordering` | [ordering][] | `created_at` | Ordering of results with options `created_at`, `updated_at`, `name`, `kind`, `content_type`
 `page` | integer | 1 | [Page][paginated collection] to get
 `page_size` | integer | 50 | [Page size][paginated collection] for the pages, with max value of 100
 

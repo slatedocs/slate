@@ -34,6 +34,12 @@ You also need to define that you accept JSON-formatted responses by providing th
 
 Alternatively, if you are unable to customize headers, you may add `format=json` GET parameter.
 
+## Resource identifiers
+
+Unless stated otherwise, all the resources in the system are identified with a [Universally Unique Identifier (UUID)][UUID]. It is always represented as a string ID, in lower case and including dashes.
+
+For example: `9ae65e7d-56c5-11e5-af8d-6c4008c08dfe`
+
 ## Paginated Collections
 
 Some of the API endpoints return paginated collections. Unless stated otherwise, all these endpoints accept the following optional GET parameters.

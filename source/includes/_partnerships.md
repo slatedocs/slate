@@ -7,7 +7,7 @@ You may build your giosg NETWORK by inviting them. This is done with invitation 
 
 Attribute | Type | Editable | Description
 :---------|:-----|:---------|------------
-`id` | integer | read-only | Unique identifier of this invitation
+`id` | [ID][] | read-only | Unique identifier of this invitation
 `status` | integer | read-only | Status of the invitation, with the following possible values: `0`= Pending, `1`= Accepted by the received, `2`= Rejected by the received
 `email` | string | **required** | A valid email address to which the invitation will be sent. Must be set on creation and cannot be changed later.
 `message` | string | **optional** | Message to be sent with the invitation to your partner. May only be set on creation.
@@ -16,16 +16,16 @@ Attribute | Type | Editable | Description
 `room_shares` | array of objects | **optional** | You may **share rooms** to your partner when they accept your invitation. This should be an array of objects similar to [outgoing room share][] objects. On creation, the objects may contain attributes `room_id` and `share_name`. In responses these objects contain the attributes `room_id`, `room`, and `share_name`.
 `team_shares` | array of objects | **optional** | You may **share teams** to your partner when they accept your invitation. This should be an array of objects similar to [outgoing team share][] objects. On creation, the objects may contain attributes `team_id` and `share_name`. In responses these objects contain the attributes `team_id`, `team`, and `share_name`.
 `created_at` | [date/time][] | read-only | When this invitation was sent
-`created_by_organization_id` | integer | read-only | ID of the organization who sent this invitation
+`created_by_organization_id` | [ID][] | read-only | ID of the organization who sent this invitation
 `created_by_organization` | object | read-only | The [organization][] resource who sent this invitation, with all of its attributes.
-`created_by_user_id` | integer | read-only | ID of the user who sent this invitation
+`created_by_user_id` | [ID][] | read-only | ID of the user who sent this invitation
 `created_by_user` | object | read-only | The [user][] resource who sent this invitation, with all other attributes except `organization` and `organization_id`
 `resolved_at` | [date/time][] | read-only | When this invitation was accepted or rejected, `null` if still pending
-`resolved_by_organization_id` | integer | read-only | ID of the organization who accepted/rejected this invitation, or `null` if still pending or unknown
+`resolved_by_organization_id` | [ID][] | read-only | ID of the organization who accepted/rejected this invitation, or `null` if still pending or unknown
 `resolved_by_organization` | object | read-only | The [organization][] resource who accepted/rejected this invitation, or `null` if still pending or unknown
-`resolved_by_user_id` | integer | read-only | ID of the user who accepted/rejected this invitation, or `null` if still pending or unknown
+`resolved_by_user_id` | [ID][] | read-only | ID of the user who accepted/rejected this invitation, or `null` if still pending or unknown
 `resolved_by_user` | object | read-only | The [user][] who accepted/rejected this invitation, or `null` if still pending or unknown
-`partnership_id` | integer | read-only | ID of the [partnership][] of the partner who accepted this invitation, or `null` if not accepted
+`partnership_id` | [ID][] | read-only | ID of the [partnership][] of the partner who accepted this invitation, or `null` if not accepted
 `created_new_partnership` | boolean | read-only | This is `true` if the invitation was accepted by a new partner, `false` if it was accepted by an existing partner, or `null` if not yet accepted.
 
 If your invitation is accepted by an existing partner, then any shared teams or rooms are added to that partner. No existing shares are removed in this case.
@@ -70,21 +70,21 @@ When you are a receiving party of a partnership invitation then you handle the i
 Attribute | Type | Editable | Description
 :---------|:-----|:---------|------------
 `key` | string | read-only | Unique key for this invitation. You need to use this to identify *incoming* invitations.
-`id` | integer | read-only | Unique identifier of this invitation
+`id` | [ID][] | read-only | Unique identifier of this invitation
 `status` | integer | read-only | Status of the invitation, with the following possible values: `0`= Pending, `1`= Accepted by the received, `2`= Rejected by the received
 `email` | string | read-only | The email address to which this invitation was sent
 `message` | string | read-only | Message to be sent with the invitation to your partner.
 `room_shares` | array of objects | read-only | The rooms that will be shared when the invitation is accepted. An array where each item has the following attributes of an [incoming room share][] objects: `room_id` and `room`
 `team_shares` | array of objects | read-only | The teams that will be shared when the invitation is accepted. An array where each item has the following attributes of an [incoming team share][] object: `team_id` and `team`
 `created_at` | [date/time][] | read-only | When this invitation was sent
-`created_by_organization_id` | integer | read-only | ID of the organization who sent this invitation
+`created_by_organization_id` | [ID][] | read-only | ID of the organization who sent this invitation
 `created_by_organization` | object | read-only | The [organization][] who sent this invitation, with all of its attributes.
-`created_by_user_id` | integer | read-only | ID of the user who sent this invitation
+`created_by_user_id` | [ID][] | read-only | ID of the user who sent this invitation
 `created_by_user` | object | read-only | The [user][] who sent this invitation, with all other attributes except `organization` and `organization_id`
 `resolved_at` | [date/time][] | read-only | When this invitation was accepted or rejected, `null` if still pending
-`resolved_by_organization_id` | integer | read-only | ID of the organization who accepted/rejected this invitation, or `null` if still pending or unknown
+`resolved_by_organization_id` | [ID][] | read-only | ID of the organization who accepted/rejected this invitation, or `null` if still pending or unknown
 `resolved_by_organization` | object | read-only | The [organization][] resource who accepted/rejected this invitation, or `null` if still pending or unknown
-`resolved_by_user_id` | integer | read-only | ID of the user who accepted/rejected this invitation, or `null` if still pending or unknown
+`resolved_by_user_id` | [ID][] | read-only | ID of the user who accepted/rejected this invitation, or `null` if still pending or unknown
 `resolved_by_user` | object | read-only | The [user][] who accepted/rejected this invitation, or `null` if still pending or unknown
 
 ### Retrieve incoming invitation details
@@ -147,15 +147,15 @@ A partnership object describes a connection between your organization and one of
 
 Attribute | Type | Editable | Description
 :---------|:-----|:---------|------------
-`partner_organization_id` | integer | read-only | ID of the partner organization
+`partner_organization_id` | [ID][] | read-only | ID of the partner organization
 `partner_organization` | object | read-only | The partner [organization][] resource, with all of its available attributes
-`organization_id` | integer | read-only | ID of your organization, for convenience (matching the `<organization_id>` in the URL)
+`organization_id` | [ID][] | read-only | ID of your organization, for convenience (matching the `<organization_id>` in the URL)
 `dislay_name` | string | **optional** | Name that is shown to your organization members for this partner. May be `null`, in which case the original name is shown
 `visible_to_everyone` | boolean | **required** | If `true`, the new partner will become visible to your organization members. If `false`, it will be shown only on organization management.
 `created_at` | [date/time][] | read-only | When you became partners
-`incoming_invitation_id` | integer | read-only | ID of the incoming invitation that resulted in creation of this partnership, or `null`.
+`incoming_invitation_id` | [ID][] | read-only | ID of the incoming invitation that resulted in creation of this partnership, or `null`.
 `incoming_invitation` | object | read-only | The [incoming invitation][] resource that resulted in creation of this partnership, or `null`.
-`outgoing_invitation_id` | integer | read-only | ID of the outgoing invitation that resulted in creation of this partnership, or `null`.
+`outgoing_invitation_id` | [ID][] | read-only | ID of the outgoing invitation that resulted in creation of this partnership, or `null`.
 `outgoing_invitation` | object | read-only | The [outgoing invitation][] resource that resulted in creation of this partnership, or `null`.
 
 ### Get a collection of partnerships

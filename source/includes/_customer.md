@@ -17,7 +17,7 @@ An organization object contains the following attributes. Note that the contact 
 
 Attribute | Type | Editable | Description
 :---------|:-----|:---------|------------
-`id` | integer | read-only | Unique identifier for this organization
+`id` | [ID][] | read-only | Unique identifier for this organization
 `name` | string | **required?** | The name of the organization. Required, if your organization is using Network features, such as [partnerships](#partnership-api) or [sharing](#sharing-api).
 `email` | string | **optional** | Contact email address, or `null`
 `phone` | string | **optional** | Contact phone number, or `null`
@@ -52,9 +52,9 @@ A user represents a giosg user account. A user resource has the following attrib
 
 Attribute | Type | Editable | Description
 :---------|:-----|:---------|------------
-`id` | integer | read-only | Unique identifier
+`id` | [ID][] | read-only | Unique identifier
 `email` | string | read-only | Email address
-`organization_id` | integer | read-only | ID of the organization to which the user belongs to
+`organization_id` | [ID][] | read-only | ID of the organization to which the user belongs to
 `organization` | object | read-only | The [organization][] resource to which the user belongs to
 `first_name` | string | **optional** | First name
 `last_name`| string | **optional** | Last name
@@ -120,9 +120,9 @@ A room object contains the following attributes.
 
 Attribute | Type | Editable | Description
 :---------|:-----|----------|------------
-`id` | integer | read-only | The unique identifier of this room
+`id` | [ID][] | read-only | The unique identifier of this room
 `token` | string | read-only | A signed Giosg token, used as a public identifier of this room
-`organization_id`| integer | read-only | ID of the organization who owns this room.
+`organization_id` | [ID][] | read-only | ID of the organization who owns this room.
 `organization`| object | read-only | The [organization][] who owns this room.
 `domain` | string | **optional** | A domain hostname if this room is a **domain room**, otherwise `null` if this is a custom room. **Cannot be changed after creation.** You cannot have multiple domain rooms with the same `domain` attribute!
 `name` | string | **required** | Name of the room, set by the owner. Must be a non-empty string.
@@ -132,7 +132,7 @@ Attribute | Type | Editable | Description
 `language_code` | string | **optional** | Language of this room in ISO 639-1 code, or `null` if undefined.
 `created_at` | [date/time][] | read-only | When this room was created. **Available only to your own organization.**
 `updated_at` | [date/time][] | read-only | When this room was updated last time. **Available only to your own organization.**
-`updated_by_user_id` | integer | string | ID of the user who last updated this room, or `null` if unknown. **Available only to your own organization.**
+`updated_by_user_id` | [ID][] | string | ID of the user who last updated this room, or `null` if unknown. **Available only to your own organization.**
 `updated_by_user` | object | read-only | Details of the user who last updated this room, or `null` if unknown. **Available only to your own organization.**
 `is_deleted` | boolean | read-only | read-only | Whether this room exists no more. The resource exists only for historical purposes and cannot be used in any other context.
 
@@ -161,7 +161,7 @@ Parameter | Type | Default | Description
 `ordering` | [ordering][] | `created_at` | Ordering of results with options `id`, `name`, `domain`, `created_at`, `updated_at`, `organization_id`
 `include_deleted` | boolean | `false` | If `true`, include deleted resources to results. If `false` (default), excludes any deleted resources.
 `is_shared` | boolean | (none) | If `true`, return only rooms shared to your organization. If `false`, return only your own organization's rooms.
-`organization_id` | integer | (none) | Return only rooms owned by this organization ID
+`organization_id` | [ID][] | (none) | Return only rooms owned by this organization ID
 `page` | integer | 1 | [Page][paginated collection] to get
 `page_size` | integer | 50 | [Page size][paginated collection] for the pages, with max value of 200
 
@@ -193,8 +193,8 @@ A team object contains the following attributes.
 
 Attribute | Type | Editable | Description
 :---------|:-----|----------|------------
-`id` | integer | read-only | The unique identifier of this team
-`organization_id` | integer | read-only | ID of the organization who owns this team.
+`id` | [ID][] | read-only | The unique identifier of this team
+`organization_id` | [ID][] | read-only | ID of the organization who owns this team.
 `organization` | object | read-only | The [organization][] who owns this team.
 `name` | string | **required** | Name of the team. Must be a non-empty string.
 `display_name` | string | read-only | Display name of the team. It may equal to the `name` attribute, unless this team is [shared][outgoing team share] to your organization with a custom `share_name`.
@@ -216,7 +216,7 @@ Parameter | Type | Default | Description
 ----------|------|---------|------------
 `ordering` | [ordering][] | `created_at` | Ordering of results with options `id`, `name`, `organization_id`
 `is_shared` | boolean | (none) | If `true`, return only teams shared to your organization. If `false`, return only your own organization's teams.
-`organization_id` | integer | (none) | Return only rooms owned by this organization ID
+`organization_id` | [ID][] | (none) | Return only rooms owned by this organization ID
 `page` | integer | 1 | [Page][paginated collection] to get
 `page_size` | integer | 50 | [Page size][paginated collection] for the pages, with max value of 200
 
@@ -250,9 +250,9 @@ A **team membership** represents a user belonging to a specific team. Team membe
 
 Attribute | Type | Editable | Description
 :---------|:-----|----------|------------
-`team_id`| integer | read-only | ID of the team to which this member belongs.
+`team_id` | [ID][] | read-only | ID of the team to which this member belongs.
 `team`| object | read-only | The [team][] to which this member belongs, with attributes `id`, `name`, `display_name`, and `organization_id`.
-`user_id` | integer | read-only | ID of the member user.
+`user_id` | [ID][] | read-only | ID of the member user.
 `user` | object | read-only | The member [user][] resource. Has all other attributes than `organization`
 `is_admin` | boolean | **required** | Whether or not the member is an admin of the team.
 
