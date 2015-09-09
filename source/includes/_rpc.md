@@ -39,33 +39,3 @@ Contract upload and download
 > augur.rpc.read("0x5204f18c652d1c31c6a5968cb65e011915285a50")
 "0x7c010000000000000000000000000000000000000000000000000000000060003504636ffa1caa81141560415760043560405260026040510260605260206060f35b50"
 ```
-
-Filters
--------
-
-```javascript
-// Create a filter for transactions on any of the augur contract addresses
-augur.filters.start_contracts_listener();
-
-var callbacks = {
-    contracts: function (message) {
-        console.log("new transaction:", message);
-    },
-    price: function (message) {
-        console.log("price update:", message);
-    }
-};
-augur.filters.start_heartbeat(callbacks);
-
-// Stop heartbeat polling
-augur.filters.stop_heartbeat();
-
-// Clear the contract transactions filter
-augur.filters.clear_contracts_filter();
-```
-
-"Heartbeat" checks for new transactions and/or price updates every 5 seconds.  Passing callback functions for `contracts` and/or `price` to the `augur.filters.start_heartbeat` method will start polling the contracts and price filters, respectively.
-
-<aside class="notice">You can adjust the heartbeat polling interval by changing the value of <code>augur.filters.PULSE</code>.  By default it is set to <code>5000</code> (5 seconds).</aside>
-
-The contracts-listener filter watches for new Augur transactions and calls back with the transaction(s) data; for example, shares purchased/sold.

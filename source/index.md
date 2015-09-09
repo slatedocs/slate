@@ -17,6 +17,7 @@ includes:
   - numbers
   - api
   - rpc
+  - filters
   - batch
   - tests
   - errors
