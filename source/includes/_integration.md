@@ -30,9 +30,9 @@ exchange.publish(encoded_body,
 
 We use topic exchange when sending update requests of document message, in order to deliver the message to the broker of the specified school by looking up the routing key
 
-The routing key is composed by the school core id and the phrase of the message lifecycle. For example, to send update request, the routing key is `KB-Organization-1045.update_requests`
+The routing key is composed by the school core id and the phase of the message lifecycle. For example, to send update request, the routing key is `KB-Organization-1045.update_requests`
 
-After broker received the request, it sends the decisions to target applications by delivering them to direct exchange.
+After the broker receives the request, it sends the decisions to target applications by delivering them to direct exchange.
 
 ```ruby
 # Publish update reply with topic exchange
@@ -55,7 +55,7 @@ queue = channel.queue("update_decisions-OA").bind(x, :routing_key => "OA")
 
 
 
-- When edge application sends a reply of document message, it publishes  topic exchange with corresponding routes again.
+- When an edge application sends a document message reply, it publishes the topic exchange with corresponding routes again.
 
 
 
@@ -73,7 +73,7 @@ exchange.publish(encoded_message_body,
 )
 ```
 
-For command message, it uses direct exchange to deliver. With the code of target application as routing key.
+Command message uses a direct exchange for delivery, using the code from the target application as the routing key.
 
 
 ### Use Direct Exchange to send Event Message
@@ -81,7 +81,7 @@ For command message, it uses direct exchange to deliver. With the code of target
 
 # Integrate with Document Message
 
-As metioned before, the document message was delivered as a *Group Message*. Each group message is like an envelop which wrapped more message entries. The message group is also composed of body and headers as JSON, but its schema is much simplier.
+As metioned previously, the document message was delivered as a *Group Message*. Each group message is like an envelop wrapped with more message entries. The message group is also composed of body and headers as JSON, but its schema is much simplier.
 
 Therefore, you need to gather the request entries into the group body(each entry contains it's body and headers too). Then encode it and publish it to RabbitMQ.
 
@@ -136,11 +136,11 @@ exchange.publish(encoded_content,
 
 1. Firstly, prepare the message entries you are going to publish, the sample code generates a request entry to update the student's first name from 'Andy' to 'Aaron'.
 
-2. You can prepare several entries, then wrap them into a message group. A message group is also composed of body and headers. The body stored the array of request entries with *entries* as the key. And the headers contained the school id and the group identifier as well.
+2. You can prepare several entries, then wrap them into a message group. A message group is also composed of body and headers. The body stores the array of request entries with *entries* as the key. The headers contain the school id and the group identifier as well.
 
 3. RabbitMQ accepts only strings as content to publish, so you need to encode the content of the group to a string.
 
-4. Finally, send the encoded content and the headers to the document exchange. With the routing key composited by the school id
+4. Finally, send the encoded content and headers to the document exchange. With the routing key composited by the school id
 
 <aside class="notice">
 Send the encoded content and the headers to the topic exchange named <code>documents</code> with the routing key as <code>#{School Core ID}.update_requests</code>.
@@ -177,16 +177,16 @@ end
 ```
 
 
-Broker delivers the update decision to your queue which subscribes the exchange of *update_decisions*. The update decision message you received is also a group message. With the string as its payload, you have to convert the payload from String to JSON as well.
+The broker delivers the update decision to your queue which subscribes the exchange of *update_decisions*. The update decision message you received is also a group message. With the string as its payload, you have to convert the payload from a String to JSON as well.
 
 <aside class="notice">
-To subscribe messages of update decision, bind the queue to the direct exchange <code>update_decision</code> with your application code as routing key.
+To subscribe to update decision messages, bind the queue to the direct exchange <code>update_decision</code> with your application code as routing key.
 </aside>
 
 ### The Headers of Decision Group
 
-In the headers of group message, there is an important value must notice: *correlation_id*, which is the identifier of the request-response interactive.
-This means when you want to send a response to the broker, your reply must have the same correlation id in its headers
+In the headers of group message, there is an important value you must notice: *correlation_id*, which is the identifier of the request-response interaction.
+This means when you want to send a response to the broker, your reply must have the same correlation id in its headers.
 
 
 <aside class="notice">
@@ -195,19 +195,19 @@ The <code>correlation_id</code> is an identifier of a single request-response co
 
 ### The Body of Decision Group
 
-After decoding the incoming payload, you will receive the content of the message group. Just like how we wrapped the request entries when publishing update request. You can access it by *entries* as the key. Then you will receive an array of decision entries.
+After decoding the incoming payload, you will receive the content of the message group. Similar to how we wrapped the request entries when publishing update request. You can access it with *entries* as the key.  You will then receive an array of decision entries.
 
 ### The Decision Entry
 
-Each decision entry implemented one update request of data record that was published/requested by the source application.
+Each decision entry implements one update request of data record that was published/requested by the source application.
 
-The entry's body usually contains the Core ID of the target record. With the specified type in the headers, you can understand which record will be operated.
+The entry's body usually contains the Core ID of the target record. With the specified type in the headers, you interpret which record will be operated.
 
 <aside class="notice">
 With the <code>type</code> in the headers and the <code>Core ID</code> in the body, you will be able to find the target record to execute the operation.
 </aside>
 
-In addition, when broker converted the request to decision entry, it added a *verb* into the headers, which tells the application what operation should do on the target record. The verb could be:
+In addition, when the broker converted the request to decision entry, it added a *verb* into the headers. This tells the application what operation should do on the target record. The verb could be:
 
 - create: To create the record with the given attributes in the entry body.
 - update: To update the record with the given attributes in the entry body.

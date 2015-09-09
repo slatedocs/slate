@@ -169,7 +169,7 @@ body = {
 }
 ```
 
-A Message Group also follows the composition of message. It has a body and headers as well.
+A Message Group also follows the composition of message. It contains a body and headers as well.
 
 The headers contain info of the message sequence. And the body acts as a container that stores its entries.
 
@@ -186,6 +186,9 @@ Headers of message group could have following information:
 - entries: An array of the entries within this group, each entry should be composed with JSON for body and headers. For example:
 
 
+# Feature Flag
+
+The feature flag is the ability for schools to switch off data received from a specific application. For example, if a school does not require data from Open Apply, they can disable the feature flag. The feature flag has 4 features, publish, update, create, and delete. This function can be activated or deactivated in the MQ panel.
 
 
 # Command Message
