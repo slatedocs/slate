@@ -133,14 +133,16 @@ Note that our overlay has to have a dimension, too. In this case, we simply re-u
 We POST the above to datasets/{id}/comparisons/ and can obtain the overlay output at datasets/{id}/comparisons/{comparison_id}/cube/. See the Endpoint Reference for details.
 
 
-### Overviews
+### Multitables
 
-Analyses as described above are truly multidimensional; when you add another variable, the resulting cube obtains another dimension. Sometimes, however, you want to compare analyses side by side, typically looking at several (even *all*) variables against a common set of conditioning variables. For example, you might nominate "Gender", "Age", and "Race" as the conditioning variables and cross every other variable with those, in order to quickly discover common correlations.
+Analyses as described above are truly multidimensional; when you add another variable, the resulting cube obtains another dimension. Sometimes, however, you want to compare analyses side by side, typically looking at several (even *all*) variables against a common set of conditioning variables. For example, you might nominate "Gender", "Age", and "Race" as the conditioning variables and cross every other variable with those, in order to quickly discover common correlations. 
+
+Multi-table definitions mainly provide a `template` member that clients can use to construct a valid query with the variable(s) of interest.
 
 Crunch provides a separate catalog where you can define and manage these common sets of variables. Like most catalogs, you can GET it to see which overviews are defined:
 
 ```http
-GET datasets/{id}/overviews/ HTTP/1.1
+GET datasets/{id}/multitables/ HTTP/1.1
 
 200 OK
 {
@@ -155,13 +157,13 @@ GET datasets/{id}/overviews/ HTTP/1.1
 ...POST a new overview:
 
 ```http
-POST datasets/{id}/overviews/ HTTP/1.1
+POST datasets/{id}/multitables/ HTTP/1.1
 
 {
     "element": "shoji:entity",
     "body": {
         "name": "Geographical indicators",
-        "variables": [
+        "template": [
             {"variable": "../variables/de85b32/"},
             {"variable": "../variables/398620f/"},
             {"variable": "../variables/c116a77/"}
@@ -171,19 +173,19 @@ POST datasets/{id}/overviews/ HTTP/1.1
 }
 
 201 Created
-Location: datasets/{id}/overviews/3/
+Location: datasets/{id}/multitables/3/
 ```
 
-...or GET an individual overview:
+...or GET an individual multitable:
 
 ```http
-GET datasets/{id}/overviews/3/ HTTP/1.1
+GET datasets/{id}/multitable/3/ HTTP/1.1
 
 {
     "element": "shoji:entity",
     "body": {
         "name": "Geographical indicators",
-        "variables": [
+        "template": [
             {"variable": "../../variables/de85b32/"},
             {"variable": "../../variables/398620f/"},
             {"variable": "../../variables/c116a77/"}
@@ -192,7 +194,7 @@ GET datasets/{id}/overviews/3/ HTTP/1.1
 }
 ```
 
-Each overview is simply a list of variable references; to obtain their multiple output cubes, you `GET datasets/{id}/cube?query=<q>` where `<q>` is a ZCL object in JSON format (which must then be %-encoded for inclusion in the querystring). Use the "each" function to iterate over the overview variables, producing one output cube for each one as "variable x". For example, to cross each of the above 3 variables against another variable "449b421":
+Each multi-table is simply a list of variable references; to obtain their multiple output cubes, you `GET datasets/{id}/cube?query=<q>` where `<q>` is a ZCL object in JSON format (which must then be URI encoded for inclusion in the querystring). Use the "each" function to iterate over the overview variables, producing one output cube for each one as "variable x". For example, to cross each of the above 3 variables against another variable "449b421":
 
 ```json
 {
