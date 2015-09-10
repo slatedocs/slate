@@ -225,10 +225,11 @@ In keeping with the theme of doing one thing and doing it well, Dexter assumes a
 
 That doesn't mean you're restricted to returning a single object.  If your module didn't produce any output, just return nothing.  If it produced multiple data points, return a collection of your output objects.  So long as each object has properties that are recognizable from your `meta.json:outputs` definitions, Dexter will be able to parse the outputs and pass them along as needed.
 
-What you *don't* want to do is to define and return complex object properties.  Dexter's power lies in the ability to map the output from one module to the input of another, and to let the user decide how to make those associations meaningful.  In order for you output to be understood by the widest variety of other modules, each object property should be a basic type (string/numeric good, binary/object bad) and well named (email/url good, o_fsk_n/egweg902 bad).
+What you *don't* want to do is to define and return complex object properties.  Dexter's power lies in the ability to map the output from one module to the input of another, and to let the user decide how to make those associations meaningful.  In order for you output to be understood by the widest variety of other modules, each object property should be a basic type (string/numeric good, binary/object bad) and well named (email/url good, o_fsk_n50/aws_9009939923f_useast1 bad).
 
-That doesn't mean you *can't* move around complex objects.  If you're building a pool of apps that perform image manipulation, you should create a series of modules that base64 encode image binaries and moves them around for processing.  If you're doing an AWS automation App, you should have IAM objects as a basic type that your modules understand.  Just know that most other modules won't know what you
+That doesn't mean you *can't* move around complex objects.  If you're building a pool of apps that perform image manipulation, you should create a series of modules that base64 encode image binaries and moves them around for processing.  If you're doing an AWS automation App, you should have IAM objects as a basic type that your modules understand.  Just know that most other modules won't know what you're talking about!
 
+You can read more about outputs under [BaseModule::succeed](#basemodule-succeed-data).
 
 
 ## Data collections
@@ -247,93 +248,6 @@ Property|Description
 length | How many items are in the collection
 [0...length] | Access the collection like an array, returns `undefined` if the index doesn't exist.
 
-# Tutorial: RSS Filter
-## Create the module
-> Creating the module
-
-```shell
-dexter create "`whoami`_rssfilter"
-```
-
-We'll start by creating a new module.  First, make sure you've [set up the SDK tools](sdk.html) - you should be able to run:
-
-`dexter list_keys`
-
-and see your machine's public key on the list.
-
-After that, you can use the dexter CLI tool to create your program.  Namespacing your program using your name is a good idea - right now all Dexter user modules share a namespace, so collisions can be a problem.
-
-After you've done that, you'll want to give your module a friendly name - this goes in the module's meta.json file
-
-
-
-## Basic programming
-```node
-var requests = require('request')
-    , Q = require('q');
-module.exports = {
-    fetch: function(url) {
-        return Q.promise(function(resolve, reject) {
-            var request = requests.get(url);
-            request.on('success', function(response, stream) {
-                resolve({ url: url, stream: stream });
-            });
-            request.on('error', reject);
-            request.run();
-        });
-    },   
-    parse: function(stream) {
-        return Q.promise(function(resolve, reject) {
-            var parser = require('')
-                , items = [];
-            parser.load(stream);
-            parser.on('item', function(item) {
-                items.push(item);
-            });
-            parser.on('complete', function() {
-                resolve(items);
-            });
-        });
-    },
-    bundle: function(items) {
-        var returnVal = [];
-        items.each(function(item) {
-            returnVal.push({ title: item.title(), url: item.url() });
-        });
-        this.complete(returnVal);
-    },
-    run: function(dexter) {
-        var urls = dexter.step().input('url')
-            , fetchers = []
-            , self = this;
-        urls.each(function(url) {
-            fetchers.push(self.fetch(url));
-        });
-        Q.all(fetchers).then(function(results) {
-            var parsers = [];
-            results.each(function(result) {
-                var url = result.url
-                    , stream = result.stream
-                    ;
-                parsers.push(self.stream);
-            });
-            return Q.all(parsers);            
-        })
-        .then(function(results) {
-            var bundlers = [];
-            results.each(function(result) {
-                var titl            
-        })
-        .fail(this.fail);
-    }
-};
-```
-
-## Isolate inputs
-## Create fixtures
-## Test
-## Deploy
-# Best Practices
 # Module functions
 ## BaseModule
 When you create a module, it implicitly extends a Dexter BaseModel before it's run.  The BaseModel provides several functions that are required for your Module to run in a Dexter App.
@@ -705,12 +619,44 @@ return this.succeed();
 
 Fetch an input bound to this step in the App editor.
 
-Unlike most other functions
+Unlike most other functions, this returns a [Dexter collection](#data-collections) object instead of a raw value.  This wrapper helps you navigate multiple or missing inputs as you prepare to run your module.  You can read more about inputs [here](#inputs)
 
 ## step.inputs()
+```javascript
+var inputs = step.inputs(),
+    inputKeys = Object.keys(inputs),
+    types = {};
+inputKeys.forEach(function(key) {
+    types(key) = typeof inputs[key];
+});
+console.log(types);
+//inputs: { x: 1, y: [2,3], z: null }
+//log: { x: integer, y: array, z: null }
+```
+
+Get the raw input object.  This will be a single object with all the input properties defined in your `meta.json:inputs` section and the raw values as parsed by Dexter.
+
 ## step.output(key, default)
+```javascript
+var output = step.trigger().output('url');
+console.log(output.length, output.toArray())
+//outputs: [{ url: 'http://google.com' }, { url: 'http://yahoo.com' }]
+//log: 2 ['http://google.com', 'http://yahoo.com']
+```
+
+Extract a single property's worth of output data from a step.  This isn't often used inside of a module, but *is* often used inside a switch statement to compare information.  Like inputs, this returns a [Dexter collection](#data-collections)
+
 ## step.outputs()
-## collection
-## collection.first()
-## collection.toArray()
-## collection.each()
+```javascript
+var outputs = step.outputs(),
+    outputKeys = Object.keys(outputs),
+    types = {};
+outputKeys.forEach(function(key) {
+    types(key) = typeof outputs[key];
+});
+console.log(types);
+//outputs: { x: 1, y: [2,3], z: null }
+//log: { x: integer, y: array, z: null }
+```
+
+Get the raw output object.  This will be a single object with all the output properties emitted by the module, which should match the outputs defined in that module's `meta.json:outputs` section.
