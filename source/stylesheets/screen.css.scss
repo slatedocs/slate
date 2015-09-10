@@ -650,6 +650,54 @@ html, body {
   %right-col + %left-col {
     margin-top: $main-padding;
   }
+ 
+  .content {
+	  p {
+		  font-size: 18px;
+	  }
+	  h1{
+		  font-size: 24px;
+	  }
+	  h2{
+		  font-size: 20px;
+	  }
+	  pre{
+	      background-color: #042433;
+	      color: #fff;
+	      padding: 1.5em 1.5em;
+	      margin: 1.5em 1.5em;
+	      clear: right;
+	      box-sizing: border-box;
+	      border-radius: 5px;
+	  }
+	  code{
+		  font-size: 16px;
+		  line-height: 1.5;
+	  }
+	  aside{
+		  width: 100%;
+		  padding-top: 1.5em;
+		  padding-bottom: 1.5em;
+		  margin: 0;
+		  border-radius: 2px;
+		  line-height: 1.5;
+		  font-size: 16px;
+	  }
+	  blockquote {
+		  background-color: $main-bg;
+		  padding-top: 1.5em;
+		  
+		  p {
+	  	    color: #00c5bb;
+	  		font-weight: 400;
+	  		font-size: 1.2em;
+			text-align: center;
+			border-radius: 0px;
+			padding: 0;
+			border: none;	
+		  }
+	  }
+  }
 }
 
 
