@@ -49,12 +49,7 @@ html, body {
 }
 
 @mixin embossed-bg {
-  background:
-    linear-gradient(to bottom, rgba(#000, 0.2), rgba(#000, 0) 8px),
-    linear-gradient(to top, rgba(#000, 0.2), rgba(#000, 0) 8px),
-    linear-gradient(to bottom, rgba($nav-embossed-border-top, 1), rgba($nav-embossed-border-top, 0) 1.5px),
-    linear-gradient(to top, rgba($nav-embossed-border-bottom, 1), rgba($nav-embossed-border-bottom, 0) 1.5px),
-    $nav-subitem-bg;
+  background: none;
 }
 
 .tocify-wrapper {
@@ -70,7 +65,7 @@ html, body {
   background-color: $nav-bg;
   border-right: 1px solid #161a1c;
   font-size: 13px;
-  font-weight: bold;
+  font-weight: 400;
 
   // language selector for mobile devices
   .lang-selector {
@@ -144,6 +139,10 @@ html, body {
       &:hover {
         text-decoration: underline;
       }
+	  
+	  &:active {
+		  color: #00c5bb;
+	  };
     }
   }
 
@@ -175,7 +174,7 @@ html, body {
 
   // This is the currently selected ToC entry
   .tocify-focus {
-    box-shadow: 0px 1px 0px $nav-active-shadow;
+    box-shadow: none $nav-active-shadow;
     background-color: $nav-active-bg;
     color: $nav-active-text;
   }
@@ -185,10 +184,10 @@ html, body {
   .tocify-subheader {
     display: none; // tocify will override this when needed
     background-color: $nav-subitem-bg;
-    font-weight: 500;
+    font-weight: 400;
     .tocify-item>a {
       padding-left: $nav-padding + $nav-indent;
-      font-size: 12px;
+      font-size: 0.88em;
     }
 
     // for embossed look:
@@ -199,9 +198,9 @@ html, body {
   }
 
   .toc-footer {
-    padding: 0em 0.1em;
-    margin-top: 0.5em;
-    border-top: none;
+    padding: 1.5em 0.1em;
+    margin-top: 1.5em;
+    border-top: 1px solid #1E4D63;
 
     li,a {
       color: $nav-text;
@@ -209,7 +208,8 @@ html, body {
     }
 
     a:hover {
-      text-decoration: underline;
+      text-decoration: none;
+	  color: #00c5bb;
     }
 
     li {
@@ -371,13 +371,14 @@ html, body {
   h1 {
     @extend %header-font;
     font-size: 20px;
+	font-weight: 400;
     padding-top: 0.5em;
     padding-bottom: 0.5em;
     margin-bottom: $h1-margin-bottom;
     margin-top: 2em;
     border: none;
-    background-color: #1c1f24;
-	color: #fff;
+    background-color: none;
+	color: #052e41;
   }
 
   h1:first-child, div:first-child + h1 {
@@ -387,13 +388,13 @@ html, body {
 
   h2 {
     @extend %header-font;
-	color: #3ab7d6;
+	color: #052e41;
     font-size: 18px;
-	font-weight: 500;
+	font-weight: 400;
     margin-top: 1em;
     margin-bottom: 0;
-    padding-top: 1.2em;
-    padding-bottom: 1.2em;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
   }
 
   // h2s right after h1s should bump right up
@@ -431,8 +432,9 @@ html, body {
 
     th {
       padding: 5px 10px;
-      border-bottom: 1px solid #ccc;
+      border-bottom: none;
       vertical-align: bottom;
+	  font-weight: 400;
     }
 
     td {
@@ -440,7 +442,7 @@ html, body {
     }
 
     tr:last-child {
-      border-bottom: 1px solid #ccc;
+      border-bottom: 1px none;
     }
 
     tr:nth-child(odd)>td {
@@ -483,21 +485,25 @@ html, body {
   }
 
   aside {
+	  color: #ffffff;
+	  width: 46%;
 	  padding-top: 1em;
 	  padding-bottom: 1em;
 	  margin-top: 1.5em;
 	  margin-bottom: 1.5em;
-	  width: 46%;
-	  margin-left: 1.5em;
+	  margin-left: 2%;
+	  margin-right: 2%;
 	  border-radius: 2px;
 	  background: #8fbcd4;
 	  line-height: 1.6;
 
     &.warning {
+	  color: #ffffff;
       background-color: $aside-warning-bg;
     }
 
     &.success {
+      color: #ffffff;
       background-color: $aside-success-bg;
     }
   }
@@ -540,7 +546,7 @@ html, body {
     background-color: $code-bg;
     color: #fff;
 
-    padding: 2em 1.5em;
+    padding: 0% 2%;
     margin: 0;
     width: $examples-width;
 
@@ -563,18 +569,15 @@ html, body {
   pre {
     @extend %code-font;
 	
-    background-color: $code-bg;
+    background-color: #042433;
     color: #fff;
-
     padding: 2em $main-padding;
-    margin: 0;
-    width: $examples-width;
-
+    margin: 2% 2% 4% 2%;
+    width: 46%;
     float:right;
     clear:right;
-
     box-sizing: border-box;
-    /*@include text-shadow(0px 1px 2px rgba(0,0,0,0.4));*/
+    border-radius: 5px;
 
     @extend %right-col;
   }
@@ -583,7 +586,7 @@ html, body {
     &>p {
       background-color: $code-annotation-bg;
       border-radius: 2px;
-      padding: $code-annotation-padding;
+      padding: 0;
       color: #fff;
 	  font-weight: 500;
 	  font-size: 0.9em;
