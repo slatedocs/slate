@@ -6,7 +6,7 @@ To improve your autocomplete suggestions, you can send three types of behavioral
 
 ```shell
 curl -X POST -H "Content-Type: application/json" -d '{"term":"xyz","num_results":302}' \
-  -u "[your token]:" "https://ac.constructor.io/v1/search?autocomplete_key=[your autocomplete key]"
+  -u "[your token]:" "https://ac.cnstrc.com/v1/search?autocomplete_key=[your autocomplete key]"
 ```
 
 ```javascript
@@ -27,7 +27,7 @@ The `search` resource should be called whenever a search is performed on your si
 
 ### HTTP Request
 
-`POST https://ac.constructor.io/v1/search?autocomplete_key=[your autocomplete key]`
+`POST https://ac.cnstrc.com/v1/search?autocomplete_key=[your autocomplete key]`
 
 ### JSON Parameters
 
@@ -40,7 +40,7 @@ num_results | No | The number of total results returned in the search
 
 ```shell
 curl -X POST -H "Content-Type: application/json" -d '{"term":"xyz","item":"Alphabet soup","autocomplete_section":"Search Suggestions"}' \
-  -u "[your token]:" "https://ac.constructor.io/v1/click_through?autocomplete_key=[your autocomplete key]"
+  -u "[your token]:" "https://ac.cnstrc.com/v1/click_through?autocomplete_key=[your autocomplete key]"
 ```
 
 ```javascript
@@ -63,7 +63,7 @@ The `click_through` resource should be called when a user clicks on a search res
 
 ### HTTP Request
 
-`POST https://ac.constructor.io/v1/click_through?autocomplete_key=[your autocomplete key]`
+`POST https://ac.cnstrc.com/v1/click_through?autocomplete_key=[your autocomplete key]`
 
 ### JSON Parameters
 
@@ -77,7 +77,7 @@ item | No | The autocomplete item that the user clicked on
 
 ```shell
 curl -X POST -H "Content-Type: application/json" -d '{"term":"xyz","item":"Alphabet soup","autocomplete_section":"Search Suggestions"}' \
-  -u "[your token]:" "https://ac.constructor.io/v1/conversion?autocomplete_key=[your autocomplete key]"
+  -u "[your token]:" "https://ac.cnstrc.com/v1/conversion?autocomplete_key=[your autocomplete key]"
 ```
 
 ```javascript
@@ -100,7 +100,7 @@ The `conversion` resource should be called when a user purchases a product (or s
 
 ### HTTP Request
 
-`POST https://ac.constructor.io/v1/conversion?autocomplete_key=[your autocomplete key]`
+`POST https://ac.cnstrc.com/v1/conversion?autocomplete_key=[your autocomplete key]`
 
 ### JSON Parameters
 

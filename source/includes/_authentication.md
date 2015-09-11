@@ -7,7 +7,7 @@
 ```shell
 # with curl, there's no need to authorize separately -- just pass your API token in with every call
 curl -X POST -H "Content-Type: application/json" -d '{"item_name":"xyz","keywords":["k1","k2"]}' \
-  -u "[your token]:" https://ac.constructor.io/v1/item
+  -u "[your token]:" https://ac.cnstrc.com/v1/item
 ```
 
 ```javascript
@@ -37,7 +37,7 @@ Authentication is done using [HTTP Basic Auth](https://en.wikipedia.org/wiki/Bas
 ## Verification
 
 ```shell
-curl -u "[your token]:" "https://ac.constructor.io/v1/verify?autocomplete_key=[your autocomplete key]"
+curl -u "[your token]:" "https://ac.cnstrc.com/v1/verify?autocomplete_key=[your autocomplete key]"
 ```
 
 ```javascript
@@ -58,5 +58,5 @@ You can verify that authentication works correctly by issuing a simple verificat
 
 ### HTTP Request
 
-`GET https://ac.constructor.io/v1/verify?autocomplete_key=[your autocomplete key]`
+`GET https://ac.cnstrc.com/v1/verify?autocomplete_key=[your autocomplete key]`
 

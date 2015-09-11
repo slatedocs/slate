@@ -8,7 +8,7 @@ Suggestions that are shown in the autocomplete results are called `items`.  `ite
 curl -X POST -H "Content-Type: application/json" \
   -d '{"item_name":"power drill","keywords":["battery-powered","drills","drywall"], \
   "suggested_score":36,"url":"http://www.mysite.com/power_drill","autocomplete_section":"Search Suggestions"}' \
-  -u"[your token]:" "https://ac.constructor.io/v1/item?autocomplete_key=[your autocomplete key]"
+  -u"[your token]:" "https://ac.cnstrc.com/v1/item?autocomplete_key=[your autocomplete key]"
 ```
 
 ```javascript
@@ -34,7 +34,7 @@ To add an item to your autocomplete index, use the `POST /item` call. The `item_
 
 ### HTTP Request
 
-`POST https://ac.constructor.io/v1/item?autocomplete_key=[your autocomplete key]`
+`POST https://ac.cnstrc.com/v1/item?autocomplete_key=[your autocomplete key]`
 
 ### JSON Parameters
 
@@ -50,7 +50,7 @@ url | No | A URL to directly send the user after selecting the item
 
 ```shell
 curl -X DELETE -H "Content-Type: application/json" -d '{"item_name":"power drill","autocomplete_section":"products_autocomplete"}' \
-  -u "[your token]:" "https://ac.constructor.io/v1/item?autocomplete_key=[your autocomplete key]"
+  -u "[your token]:" "https://ac.cnstrc.com/v1/item?autocomplete_key=[your autocomplete key]"
 ```
 
 ```javascript
@@ -76,7 +76,7 @@ To remove an item from your autocomplete index (if, for instance, a product has 
 
 ### HTTP Request
 
-`DELETE https://ac.constructor.io/v1/item?autocomplete_key=[your autocomplete key]`
+`DELETE https://ac.cnstrc.com/v1/item?autocomplete_key=[your autocomplete key]`
 
 ### JSON Parameters
 
@@ -89,7 +89,7 @@ autocomplete_section | Yes | Your autocomplete suggestions can have multiple sec
 
 ```shell
 curl -X PUT -H "Content-Type: application/json" -d '{"item_name":"power drill","new_item_name":"super power drill","keywords":["concrete","power tools","drills","drywall"],"suggested_score":20,"url":"http://www.mysite.com/power_drill","autocomplete_section":"products_autocomplete"}' \
-  -u "[your token]:" "https://ac.constructor.io/v1/item?autocomplete_key=[your autocomplete key]"
+  -u "[your token]:" "https://ac.cnstrc.com/v1/item?autocomplete_key=[your autocomplete key]"
 ```
 
 ```javascript
@@ -127,7 +127,7 @@ Note: modifying an item replaces all meta information, such as keywords, we prev
 
 ### HTTP Request
 
-`PUT https://ac.constructor.io/v1/item?autocomplete_key=[your autocomplete key]`
+`PUT https://ac.cnstrc.com/v1/item?autocomplete_key=[your autocomplete key]`
 
 ### JSON Parameters
 
