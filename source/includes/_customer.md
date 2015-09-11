@@ -2,7 +2,7 @@ Customer API
 ============
 
 <aside class="success">
-This is the new, recommended version (v4) of the customer API!
+This is the new, recommended version (v5) of the customer API!
 </aside>
 
 **You should use this new API instead of the [deprecated v3 version](https://docs.giosg.com/doku.php?id=public:technical-documentation:backend-api:customer-api).**
@@ -108,7 +108,7 @@ Get a [paginated collection][] of users that you are allowed to list.
 
 Parameter | Type | Default | Description
 ----------|------|---------|------------
-`ordering` | [ordering][] | `created_at` | Ordering of results with options `id`, `last_name`, `first_name`, `email`, `alias`, `created_at`, `updated_at`
+`ordering` | [ordering][] | `created_at` | Ordering of results with options `last_name`, `first_name`, `email`, `alias`, `created_at`, `updated_at`
 `include_deleted` | boolean | false | If `true`, include deleted resources to results. If `false` (default), excludes any deleted resources.
 `is_manager` | boolean | (none) | If `true`, only include managers. If `false`, exclude all managers.
 `page` | integer | 1 | [Page][paginated collection] to get
@@ -158,7 +158,7 @@ Return a [paginated collection][] of all the [room][] resources you have access 
 
 Parameter | Type | Default | Description
 ----------|------|---------|------------
-`ordering` | [ordering][] | `created_at` | Ordering of results with options `id`, `name`, `domain`, `created_at`, `updated_at`, `organization_id`
+`ordering` | [ordering][] | `created_at` | Ordering of results with options `name`, `domain`, `created_at`, `updated_at`
 `include_deleted` | boolean | `false` | If `true`, include deleted resources to results. If `false` (default), excludes any deleted resources.
 `is_shared` | boolean | (none) | If `true`, return only rooms shared to your organization. If `false`, return only your own organization's rooms.
 `organization_id` | [ID][] | (none) | Return only rooms owned by this organization ID

@@ -12,7 +12,7 @@ Attribute | Type | Editable | Description
 `email` | string | **required** | A valid email address to which the invitation will be sent. Must be set on creation and cannot be changed later.
 `message` | string | **optional** | Message to be sent with the invitation to your partner. May only be set on creation.
 `partner_display_name` | string | **optional** | A display name that will be set to the new partner when they accept the invitation and the partnership is created. The display name is visible to your organization members. May be `null`, in which case the partner will be shown with their original name.
-`partner_visible_to_everyone` | boolean | **required** | If `true`, the new partner will become visible to your organization members. If `false`, it will be shown only on organization management.
+`partner_visibility` | string | **required** | This must be either `organization` (the partner will become visible to all your organization members) or `management` (visible only to your organization managers)
 `room_shares` | array of objects | **optional** | You may **share rooms** to your partner when they accept your invitation. This should be an array of objects similar to [outgoing room share][] objects. On creation, the objects may contain attributes `room_id` and `share_name`. In responses these objects contain the attributes `room_id`, `room`, and `share_name`.
 `team_shares` | array of objects | **optional** | You may **share teams** to your partner when they accept your invitation. This should be an array of objects similar to [outgoing team share][] objects. On creation, the objects may contain attributes `team_id` and `share_name`. In responses these objects contain the attributes `team_id`, `team`, and `share_name`.
 `created_at` | [date/time][] | read-only | When this invitation was sent
@@ -118,9 +118,9 @@ You should send an object as a payload with the following attributes, matching t
 Attribute | Type | Editable | Description
 ----------|------|----------|------------
 `display_name` | string | **optional** | A display name that will be set to the newly created partner. The display name is visible to your organization members. May be `null`, in which case the partner will be shown with their original name.
-`visible_to_everyone` | boolean | **required** | If `true`, the new partner will become visible to your organization members. If `false`, it will be shown only on organization management.
+`visibility` | string | **required** | This must be either `organization` (the partner will become visible to all your organization members) or `management` (visible only to your organization managers)
 
-It is possible to accept an invitation from an existing partner. In this case, no new partnership is created. The `display_name` and `visible_to_everyone` will overwrite the corresponding attributes of the existing [partnership][] resource, **unless they are omitted**, in which case the old values are preserved.
+It is possible to accept an invitation from an existing partner. In this case, no new partnership is created. The `display_name` and `visibility` will overwrite the corresponding attributes of the existing [partnership][] resource, **unless they are omitted**, in which case the old values are preserved.
 
 If you are accepting the invitation with [shared rooms][incoming room share] or [teams][incoming team share] from an existing partner, then the rooms and teams will become available to you.
 
@@ -151,15 +151,11 @@ Attribute | Type | Editable | Description
 `partner_organization` | object | read-only | The partner [organization][] resource, with all of its available attributes
 `organization_id` | [ID][] | read-only | ID of your organization, for convenience (matching the `<organization_id>` in the URL)
 `dislay_name` | string | **optional** | Name that is shown to your organization members for this partner. May be `null`, in which case the original name is shown
-`visible_to_everyone` | boolean | **required** | If `true`, the new partner will become visible to your organization members. If `false`, it will be shown only on organization management.
+`visibility` | string | **required** | If `organization` then the partner is visible to all your organization members. If `management`, it is visible only to your organization managers
 `created_at` | [date/time][] | read-only | When you became partners
-`incoming_invitation_id` | [ID][] | read-only | ID of the incoming invitation that resulted in creation of this partnership, or `null`.
-`incoming_invitation` | object | read-only | The [incoming invitation][] resource that resulted in creation of this partnership, or `null`.
-`outgoing_invitation_id` | [ID][] | read-only | ID of the outgoing invitation that resulted in creation of this partnership, or `null`.
-`outgoing_invitation` | object | read-only | The [outgoing invitation][] resource that resulted in creation of this partnership, or `null`.
 
 ### Get a collection of partnerships
-Get a [paginated collection] of all the known partnerships.
+Get a [paginated collection][] of all the known partnerships.
 
 `GET https://service.giosg.com/api/v5/orgs/<organization_id>/partnerships`
 
@@ -167,7 +163,7 @@ This end-point accepts the following GET parameters.
 
 Parameter | Type | Default | Description
 ----------|------|---------|------------
-`ordering` | [ordering][] | `created_at` | Ordering of results with options `partner_organization_name`, `created_at`
+`ordering` | [ordering][] | `created_at` | Ordering of results with options `partner_organization_name`, `created_at`, `display_name`
 `page` | integer | 1 | [Page][paginated collection] to get
 `page_size` | integer | 25 | [Page size][paginated collection] for the pages, with max value of 100
 

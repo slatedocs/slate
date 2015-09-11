@@ -325,12 +325,6 @@ Attribute | Format | Description
 
 ## Sales statistics time series
 
-<aside class="notice">
-This endpoint has been updated on August 2015 to a new version <strong>v4</strong>!
-</aside>
-
-**Please use this version instead of the [deprecated version v3](https://docs.giosg.com/doku.php?id=public:technical-documentation:backend-api:reporting-api#get_api_v3_reporting_salesstats_timeline), as it will be removed in the future!**
-
 You can get the aggregated shopping cart (giosg BASKET) statistics by making a GET request.
 
 `GET https://service.giosg.com/api/v5/orgs/<organization_id>/reports/salesstats/timeseries`
