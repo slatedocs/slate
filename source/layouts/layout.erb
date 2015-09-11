@@ -14,6 +14,7 @@ License for the specific language governing permissions and limitations
 under the License.
 %>
 <% language_tabs = current_page.data.language_tabs %>
+<% stylesheet = current_page.data.stylesheet || 'screen' %>
 <!doctype html>
 <html>
   <head>
@@ -22,7 +23,7 @@ under the License.
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title><%= current_page.data.title || "API Documentation" %></title>
 
-    <%= stylesheet_link_tag :screen, media: :screen %>
+    <%= stylesheet_link_tag stylesheet, media: :screen %>
     <%= stylesheet_link_tag :print, media: :print %>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <% if current_page.data.search %>
@@ -38,6 +39,28 @@ under the License.
         });
       </script>
     <% end %>
+
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,400italic,300,300italic' rel='stylesheet' type='text/css'>
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/images/favicons/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/images/favicons/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/images/favicons/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/images/favicons/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/images/favicons/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/images/favicons/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/images/favicons/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/images/favicons/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="/images/favicons/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="/images/favicons/android-chrome-192x192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="/images/favicons/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="/images/favicons/favicon-16x16.png" sizes="16x16">
+    <link rel="manifest" href="/images/favicons/manifest.json">
+    <link rel="shortcut icon" href="/images/favicons/favicon.ico">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="msapplication-TileImage" content="/images/favicons/mstile-144x144.png">
+    <meta name="msapplication-config" content="/images/favicons/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
   </head>
 
   <body class="<%= page_classes %>">
@@ -48,7 +71,38 @@ under the License.
       </span>
     </a>
     <div class="tocify-wrapper">
-      <%= image_tag "logo.png" %>
+		<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+			 viewBox="-89.5 344.1 200.3 39.5" style="enable-background:new -89.5 344.1 200.3 39.5; padding: 25px 15px 10px 15px; width: 60%; text-align: center" xml:space="preserve">
+		<style type="text/css">
+			.st0{fill:#ffffff;}
+		</style>
+		<g>
+			<path class="st0" d="M-75.9,354.5V345c0-0.5-0.4-0.9-0.9-0.9h-11.8c-0.5,0-0.9,0.4-0.9,0.9v9.5c0,0.5,0.4,0.9,0.9,0.9h11.8
+				C-76.3,355.4-75.9,355-75.9,354.5z"/>
+			<path class="st0" d="M-68,347.8h-4.3c-0.5,0-0.9,0.4-0.9,0.9l0,7.8c0,0.5,0.4,0.9,0.9,0.9h3.4c4.3,0,7.5,3.1,7.5,9
+				c0,5.9-5.7,7.7-7.8,7.7H-73c-0.5,0-0.9-0.4-0.9-0.9V359c0-0.5-0.4-0.9-0.9-0.9l-8.5,0c-0.5,0-0.9,0.4-0.9,0.9v23.7
+				c0,0.5,0.4,0.9,0.9,0.9h15.9c3.2,0,16.8-1.9,16.8-18.4C-50.6,348.6-66.5,347.8-68,347.8z"/>
+			<path class="st0" d="M44.4,347.9h-24c-0.3,0-0.7,0.2-0.8,0.5l-4.7,7.7c-0.2,0.3-0.1,0.7,0.2,0.9c0.1,0.1,0.3,0.1,0.5,0.1h8.1
+				c0.5,0,1,0.4,1,1v24.5c0,0.5,0.4,1,1,1h8.6c0.5,0,1-0.4,1-1v-24.5c0-0.5,0.4-1,1-1h8.2c0.5,0,1-0.4,1-1v-7.3
+				C45.4,348.4,45,347.9,44.4,347.9z"/>
+			<path class="st0" d="M-20.7,347.8h-26.8c-0.5,0-0.9,0.4-0.9,0.9v33.9c0,0.5,0.4,0.9,0.9,0.9h26.8c0.5,0,0.9-0.4,0.9-0.9v-7.2
+				c0-0.5-0.4-0.9-0.9-0.9h-16.6c-0.5,0-0.9-0.4-0.9-0.9v-2.5c0-0.5,0.4-0.9,0.9-0.9h9.3c0.5,0,0.9-0.4,0.9-0.9v-7.6
+				c0-0.5-0.4-0.9-0.9-0.9h-9.3c-0.5,0-0.9-0.4-0.9-0.9v-2.6c0-0.5,0.4-0.9,0.9-0.9h16.6c0.5,0,0.9-0.4,0.9-0.9v-6.9
+				C-19.8,348.2-20.2,347.8-20.7,347.8z"/>
+			<path class="st0" d="M76.1,347.8H49.4c-0.5,0-0.9,0.4-0.9,0.9v33.9c0,0.5,0.4,0.9,0.9,0.9h26.8c0.5,0,0.9-0.4,0.9-0.9v-7.2
+				c0-0.5-0.4-0.9-0.9-0.9H59.6c-0.5,0-0.9-0.4-0.9-0.9v-2.5c0-0.5,0.4-0.9,0.9-0.9h9.3c0.5,0,0.9-0.4,0.9-0.9v-7.6
+				c0-0.5-0.4-0.9-0.9-0.9h-9.3c-0.5,0-0.9-0.4-0.9-0.9v-2.6c0-0.5,0.4-0.9,0.9-0.9h16.6c0.5,0,0.9-0.4,0.9-0.9v-6.9
+				C77,348.2,76.6,347.8,76.1,347.8z"/>
+			<path class="st0" d="M110.7,382.2l-6.6-11.1c-0.3-0.5-0.1-1,0.4-1.2c1.8-0.9,5.8-3.6,5.8-9.7c0-10.3-10.4-12.2-12.5-12.2H81
+				c-0.5,0-0.9,0.4-0.9,0.9v33.8c0,0.5,0.4,0.9,0.9,0.9h8.5c0.5,0,0.9-0.4,0.9-0.9v-10c0-0.5,0.4-0.9,0.9-0.9h1.9
+				c0.3,0,0.6,0.2,0.8,0.5l5.7,10.8c0.1,0.3,0.5,0.5,0.8,0.5h9.4C110.6,383.5,111,382.8,110.7,382.2z M95.8,363.1h-4.6
+				c-0.5,0-0.9-0.4-0.9-0.9v-4.4c0-0.5,0.4-0.9,0.9-0.9h4.3c3.2,0,4.2,1,4.2,3.4C99.7,362.5,97.3,363.1,95.8,363.1z"/>
+			<path class="st0" d="M6.4,366.1c-0.2-0.3-0.2-0.6,0-0.9l9.5-16c0.3-0.6-0.1-1.4-0.8-1.4H5.4c-0.3,0-0.6,0.2-0.8,0.5l-3.9,7.3
+				c-0.3,0.6-1.2,0.6-1.6,0l-3.7-7.3c-0.1-0.3-0.5-0.5-0.8-0.5h-10c-0.7,0-1.1,0.7-0.8,1.3l9.1,15.9c0.2,0.3,0.1,0.6,0,0.9l-9.6,16.2
+				c-0.3,0.6,0.1,1.4,0.8,1.4h9.9c0.3,0,0.6-0.2,0.8-0.5l3.9-7.7c0.3-0.6,1.2-0.7,1.6,0l4.4,7.8c0.2,0.3,0.5,0.5,0.8,0.5h9.9
+				c0.7,0,1.1-0.8,0.8-1.4L6.4,366.1z"/>
+		</g>
+		</svg>
       <% if language_tabs %>
         <div class="lang-selector">
           <% language_tabs.each do |lang| %>
@@ -68,13 +122,6 @@ under the License.
       <% end %>
       <div id="toc">
       </div>
-      <% if current_page.data.toc_footers %>
-        <ul class="toc-footer">
-          <% current_page.data.toc_footers.each do |footer| %>
-            <li><%= footer %></li>
-          <% end %>
-        </ul>
-      <% end %>
     </div>
     <div class="page-wrapper">
       <div class="dark-box"></div>

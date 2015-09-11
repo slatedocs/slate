@@ -49,17 +49,11 @@ html, body {
 }
 
 @mixin embossed-bg {
-  background:
-    linear-gradient(to bottom, rgba(#000, 0.2), rgba(#000, 0) 8px),
-    linear-gradient(to top, rgba(#000, 0.2), rgba(#000, 0) 8px),
-    linear-gradient(to bottom, rgba($nav-embossed-border-top, 1), rgba($nav-embossed-border-top, 0) 1.5px),
-    linear-gradient(to top, rgba($nav-embossed-border-bottom, 1), rgba($nav-embossed-border-bottom, 0) 1.5px),
-    $nav-subitem-bg;
+  background: none;
 }
 
 .tocify-wrapper {
   transition: left 0.3s ease-in-out;
-
   overflow-y: auto;
   overflow-x: hidden;
   position: fixed;
@@ -69,8 +63,9 @@ html, body {
   bottom: 0;
   width: $nav-width;
   background-color: $nav-bg;
-  font-size: 13px;
-  font-weight: bold;
+  border-right: 1px solid #161a1c;
+  font-size: 16px;
+  font-weight: 400;
 
   // language selector for mobile devices
   .lang-selector {
@@ -90,23 +85,24 @@ html, body {
     position: relative;
 
     input {
-      background: $nav-bg;
-      border-width: 0 0 1px 0;
-      border-color: $search-box-border-color;
-      padding: 6px 0 6px 20px;
+      background: #ffffff;
+	  font-family: 'Roboto';
+	  font-weight: 200;
+      border: none;
+      padding: 6px 0 6px 25px;
       box-sizing: border-box;
       margin: $nav-v-padding $nav-padding;
       width: $nav-width - 30;
       outline: none;
-      color: $nav-text;
-      border-radius: 0; /* ios has a default border radius */
+      color: $nav-bg;
+      border-radius: 2px; /* ios has a default border radius */
     }
 
     &:before {
       position: absolute;
       top: 17px;
-      left: $nav-padding;
-      color: $nav-text;
+      left: 23px;
+      color: $nav-bg;
       @extend %icon-search;
     }
   }
@@ -143,6 +139,10 @@ html, body {
       &:hover {
         text-decoration: underline;
       }
+	  
+	  &:active {
+		  color: #00c5bb;
+	  };
     }
   }
 
@@ -174,7 +174,7 @@ html, body {
 
   // This is the currently selected ToC entry
   .tocify-focus {
-    box-shadow: 0px 1px 0px $nav-active-shadow;
+    box-shadow: none $nav-active-shadow;
     background-color: $nav-active-bg;
     color: $nav-active-text;
   }
@@ -184,10 +184,10 @@ html, body {
   .tocify-subheader {
     display: none; // tocify will override this when needed
     background-color: $nav-subitem-bg;
-    font-weight: 500;
+    font-weight: 400;
+    padding-left: $nav-padding + $nav-indent;
     .tocify-item>a {
-      padding-left: $nav-padding + $nav-indent;
-      font-size: 12px;
+      font-size: 0.88em;
     }
 
     // for embossed look:
@@ -198,9 +198,9 @@ html, body {
   }
 
   .toc-footer {
-    padding: 1em 0;
-    margin-top: 1em;
-    border-top: 1px dashed $nav-footer-border-color;
+    padding: 1.5em 0.1em;
+    margin-top: 1.5em;
+    border-top: 1px solid #1E4D63;
 
     li,a {
       color: $nav-text;
@@ -208,13 +208,15 @@ html, body {
     }
 
     a:hover {
-      text-decoration: underline;
+      text-decoration: none;
+	  color: #00c5bb;
     }
 
     li {
-      font-size: 0.8em;
-      line-height: 1.7;
-      text-decoration: none;
+		font-size: 1.2em;
+		line-height: 1.85;
+		text-decoration: none;
+		font-weight: 400;
     }
   }
 
@@ -265,7 +267,7 @@ html, body {
   background-color: $main-bg;
   min-height: 100%;
 
-  padding-bottom: 1px; // prevent margin overflow
+  padding-bottom: 800px; // prevent margin overflow
 
   // The dark box is what gives the code samples their dark background.
   // It sits essentially under the actual content block, which has a
@@ -279,6 +281,7 @@ html, body {
     right: 0;
     top: 0;
     bottom: 0;
+	border-left: 1px solid #161a1c;
   }
 
   .lang-selector {
@@ -328,6 +331,7 @@ html, body {
   // to place content above the dark box
   position: relative;
   z-index: 30;
+  padding-top: 15px;
 
   &:after {
     content: '';
@@ -340,30 +344,50 @@ html, body {
     padding: 0 $main-padding;
     box-sizing: border-box;
     display: block;
-    @include text-shadow($main-embossed-text-shadow);
 
     @extend %left-col;
   }
 
   &>ul, &>ol {
     padding-left: $main-padding + 15px;
+    >li {
+        &+li {
+            margin-top: $main-padding - 10px;
+        }
+        >ol {
+            margin-bottom: $main-padding - 10px;
+        }
+    }
   }
 
   // the div is the tocify hidden div for placeholding stuff
   &>h1, &>h2, &>div {
     clear:both;
   }
+  
+  a {
+	color: #47bfb9;
+  }
+  
+  a:hover {
+	color: #2aa39d;
+  }
+  
+  a:visited {
+	color: #2aa39d;
+  }
 
   h1 {
     @extend %header-font;
-    font-size: 30px;
+    font-size: 20px;
+	font-weight: 400;
     padding-top: 0.5em;
     padding-bottom: 0.5em;
-    border-bottom: 1px solid #ccc;
-    margin-bottom: $h1-margin-bottom;
+    margin-bottom: 0;//$h1-margin-bottom;
     margin-top: 2em;
-    border-top: 1px solid #ddd;
-    background-image: linear-gradient(to bottom, #fff, #f9f9f9);
+    border: none;
+    background-color: none;
+	color: #052e41;
   }
 
   h1:first-child, div:first-child + h1 {
@@ -373,19 +397,19 @@ html, body {
 
   h2 {
     @extend %header-font;
-    font-size: 20px;
-    margin-top: 4em;
+	color: #052e41;
+    font-size: 18px;
+	font-weight: 400;
+    margin-top: 1em;
     margin-bottom: 0;
-    border-top: 1px solid #ccc;
-    padding-top: 1.2em;
-    padding-bottom: 1.2em;
-    background-image: linear-gradient(to bottom, rgba(#fff, 0.4), rgba(#fff, 0));
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
   }
 
   // h2s right after h1s should bump right up
   // against the h1s.
   h1 + h2, h1 + div + h2 {
-    margin-top: $h1-margin-bottom * -1;
+    //margin-top: $h1-margin-bottom * -1;
     border-top: none;
   }
 
@@ -417,8 +441,9 @@ html, body {
 
     th {
       padding: 5px 10px;
-      border-bottom: 1px solid #ccc;
+      border-bottom: none;
       vertical-align: bottom;
+	  font-weight: 400;
     }
 
     td {
@@ -426,7 +451,7 @@ html, body {
     }
 
     tr:last-child {
-      border-bottom: 1px solid #ccc;
+      border-bottom: 1px none;
     }
 
     tr:nth-child(odd)>td {
@@ -449,6 +474,11 @@ html, body {
   p, li, dt, dd {
     line-height: 1.6;
     margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  p+p {
+      margin-top: 10px;
   }
 
   img {
@@ -469,22 +499,26 @@ html, body {
   }
 
   aside {
-    padding-top: 1em;
-    padding-bottom: 1em;
-    @include text-shadow(0 1px 0 lighten($aside-notice-bg, 15%));
-    margin-top: 1.5em;
-    margin-bottom: 1.5em;
-    background: $aside-notice-bg;
-    line-height: 1.6;
+	  color: #ffffff;
+	  width: 46%;
+	  padding-top: 1em;
+	  padding-bottom: 1em;
+	  margin-top: 1.5em;
+	  margin-bottom: 1.5em;
+	  margin-left: 2%;
+	  margin-right: 2%;
+	  border-radius: 2px;
+	  background: #8fbcd4;
+	  line-height: 1.6;
 
     &.warning {
+	  color: #ffffff;
       background-color: $aside-warning-bg;
-      @include text-shadow(0 1px 0 lighten($aside-warning-bg, 15%));
     }
 
     &.success {
+      color: #ffffff;
       background-color: $aside-success-bg;
-      @include text-shadow(0 1px 0 lighten($aside-success-bg, 15%));
     }
   }
 
@@ -522,11 +556,11 @@ html, body {
 // This is all the stuff that appears in the right half of the page
 
 .content {
-  pre, blockquote {
+  blockquote {
     background-color: $code-bg;
     color: #fff;
 
-    padding: 2em $main-padding;
+    padding: 0% 2%;
     margin: 0;
     width: $examples-width;
 
@@ -534,8 +568,7 @@ html, body {
     clear:right;
 
     box-sizing: border-box;
-    @include text-shadow(0px 1px 2px rgba(0,0,0,0.4));
-
+	
     @extend %right-col;
 
     &>p { margin: 0; }
@@ -543,22 +576,36 @@ html, body {
     a {
       color: #fff;
       text-decoration: none;
-      border-bottom: dashed 1px #ccc;
+      border-bottom: none;
     }
   }
 
   pre {
     @extend %code-font;
+	
+    background-color: #042433;
+    color: #fff;
+    padding: 2em $main-padding;
+    margin: 0 2% 2% 2%;
+    width: 46%;
+    float:right;
+    clear:right;
+    box-sizing: border-box;
+    border-radius: 5px;
+
+    @extend %right-col;
   }
 
   blockquote {
     &>p {
       background-color: $code-annotation-bg;
-      border-radius: 5px;
-      padding: $code-annotation-padding;
-      color: #ccc;
-      border-top: 1px solid #000;
-      border-bottom: 1px solid #404040;
+      border-radius: 2px;
+      padding: 0;
+      color: #fff;
+	  font-weight: 500;
+	  font-size: 0.9em;
+      border-top: none;
+      border-bottom: none;
     }
   }
 }
@@ -617,4 +664,60 @@ html, body {
   %right-col + %left-col {
     margin-top: $main-padding;
   }
+ 
+  .content {
+	  p {
+		  font-size: 18px;
+	  }
+	  h1{
+		  font-size: 24px;
+	  }
+	  h2{
+		  font-size: 20px;
+	  }
+	  pre{
+	      background-color: #042433;
+	      color: #fff;
+	      padding: 1.5em 1.5em;
+	      margin: 1.5em 1.5em;
+	      clear: right;
+	      box-sizing: border-box;
+	      border-radius: 5px;
+	  }
+	  code{
+		  font-size: 16px;
+		  line-height: 1.5;
+	  }
+	  aside{
+		  width: 100%;
+		  padding-top: 1.5em;
+		  padding-bottom: 1.5em;
+		  margin: 0;
+		  border-radius: 2px;
+		  line-height: 1.5;
+		  font-size: 16px;
+	  }
+	  blockquote {
+		  background-color: $main-bg;
+		  padding-top: 1.5em;
+		  
+		  p {
+	  	    color: #00c5bb;
+	  		font-weight: 400;
+	  		font-size: 1.2em;
+			text-align: center;
+			border-radius: 0px;
+			padding: 0;
+			border: none;	
+		  }
+	  }
+  }
+}
+
+
+#dexter-logo {
+    background-color: white;
+    width: 90%;
+    padding: 20px 5%;
+    height: 50px;
 }
