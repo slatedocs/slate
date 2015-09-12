@@ -81,6 +81,7 @@ Parameter | Required? | Description
 term | Yes | The search term the user entered in the search box
 autocomplete_section | Yes | Your autocomplete suggestions can have multiple sections like "Products" and "Search Suggestions".  This indicates which section this item is for.  See [your dashboard](/dashboard) for the section names to use.
 item | No | The autocomplete item that the user clicked on
+revenue | No | The purchase amount in cents (that is, the dollar amount * 100)
 
 ## Track a conversion
 
