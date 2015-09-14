@@ -9,6 +9,7 @@ toc_footers:
 includes:
   - general
   - customer
+  - rooms
   - chats
   - partnerships
   - sharing
