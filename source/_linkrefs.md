@@ -12,6 +12,7 @@
   [incoming invitation]: <#incoming-partnership-invitations> "Incoming partnership invitations"
   [outgoing invitation]: <#outgoing-partnership-invitations> "Outgoing partnership invitations"
   [partnership]: <#partnerships> "Partnerships"
+  [sharing]: <#sharing-api> "Sharing resources"
   [incoming share]: <#incoming-shares> "Incoming shares"
   [outgoing share]: <#outgoing-shares> "Outgoing shares"
   [incoming room share]: <#incoming-room-shares> "Incoming room shares"

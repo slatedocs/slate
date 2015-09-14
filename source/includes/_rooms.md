@@ -21,7 +21,7 @@ Attribute | Type | Editable | Description
 `updated_at` | [date/time][] | read-only | When this room was updated last time. **Available only to your own organization.**
 `updated_by_user_id` | [ID][] | string | ID of the user who last updated this room, or `null` if unknown. **Available only to your own organization.**
 `updated_by_user` | object | read-only | Details of the user who last updated this room, or `null` if unknown. **Available only to your own organization.**
-`is_deleted` | boolean | read-only | read-only | Whether this room exists no more. The resource exists only for historical purposes and cannot be used in any other context.
+`is_deleted` | boolean | read-only | Whether this room exists no more. The resource exists only for historical purposes and cannot be used in any other context.
 
 Domain rooms are like any other rooms except that they are linked to exactly one domain (website). You need a domain room in order to use a Giosg services on your website.
 
@@ -67,7 +67,7 @@ You may update the editable attributes of your own room by making either a `PATC
 ### Delete a room
 
 <aside class="warning">
-Deleting a room will immediately unshare it from your partners! You cannot undo this action, but you can re-create and re-share the room again.
+Deleting a room will immediately unshare it from your partners! Even though your statistics for this room are preserved, you cannot gather any more data for this room. You cannot undo this action, but you need to re-create and re-share the room again.
 </aside>
 
 You may delete one of your own rooms by making a `DELETE` request.
