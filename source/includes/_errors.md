@@ -22,7 +22,7 @@ Error Code | Meaning
 65 | Whisper Post Failed: could not post message to whisper
 98 | Database Write Failed
 99 | Database Read Failed
-400 | Invalid Contract Parameter: cannot sent object parameter to contract
+400 | Invalid Contract Parameter: cannot send parameter to contract
 401 | Not Logged In
 402 | Incorrect number of parameters
 403 | Bad Credentials: incorrect handle or password
@@ -30,7 +30,7 @@ Error Code | Meaning
 408 | No Response
 409 | Invalid Response: could not parse response from Ethereum node
 410 | Local Node Failure: RPC request to local Ethereum node failed
-411 | Hosted Nodes Failure: RPC request to hosted nodes failed
+411 | Hosted Node Failure: RPC request to hosted nodes failed
 412 | Transaction Invalid: transaction validation failed
 422 | Handle Taken: handle already taken
 450 | Filter could not be created
