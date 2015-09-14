@@ -11,14 +11,14 @@ To learn more about Message Bus capabilites, please select one of the sections b
 
 This is the typical messaging workflow involving a change from the user:
 
-### Application sends Update Request
+### Application Sends Update Request
 
-Data updates within a client application may occur due to direct interaction, indirect user interaction or automation. Updated information that needs to be synchronized across applications is then sent to the School Actor.
+Data updates within a client application may occur due to direct interaction, indirect user interaction or automation. Updated information that requires synchronization across applications is then sent to the School Actor.
 
-### School Actor processes Update Request
+### School Actor Processes Update Request
 
 The corresponding School Actor, having subscribed to the Update Requests queue, forms Update Decisions.
-The School Agent may make multiple Update Decisions in order to fully process a single Update Request, or it may simply discard the message and not react at all.
+The School Agent may construct multiple Update Decisions in order to fully process a single Update Request, or it may discard the message and not react at all.
 
 <aside class="notice">
 In what instance would we discard the incoming event?
@@ -30,35 +30,34 @@ In what instance would we discard the incoming event?
 </ul>
 </aside>
 
-> We use application code to represent the application, ex: *OA* represents to OpenApply
+> We use the application's code to represent the application, e.g *OA* represents to OpenApply
 
-### School Actor sends Update Decisions
+### School Actor Sends Update Decisions
 
-The School Actor decides on a series of data transformations to be applied to client applications, and sends them in Update Decisions.
+The School Actor determines a series of data transformations to be applied to client applications, and sends them in `Update Decisions`.
 Different client applications may receive different transformations due to their internal differences.
 
-### Applications process Update Decisions
+### Application Processes Update Decisions
 
-The client applications, having subscribed to the Update Decisions queues, receive instructions from the message broker.
+The client applications, having subscribed to the `Update Decisions` queues, receive instructions from the message broker.
 
-### Applications send Update Replies
+### Application sends Update Replies
 
-The client applications update or delete data, then send Update Replies outlining changes made.
-
-Every Update Request is linked to an Update Reply.
+The client applications update or delete data, subsequently sending `Update Replies` outlining changes made. Every Update Request is linked to an Update Reply.
 
 <aside class="success">
-Before all Update Replies are received for all Update Decisions, no further Update Decisions will be made nor sent to Applications.
+Before all Update Replies are received for Update Decisions, no further Update Decisions will be produced nor sent to Applications.
 </aside>
 
 ### School Actor processes Update Replies
 
-The School Actor will collect Update Replies from all Client Applications involved and decide the next steps. As mentioned above, there is future room for expansion in fault-tolerant behavior (re-trying an intermittent failure automatically, or attempting to heal data inconsistencies in a deterministic manner).
+The School Actor accumulates Update Replies from all Client Applications involved and determines the next steps. As mentioned previously, there is future room for expansion in fault-tolerant behavior (re-trying an intermittent failure automatically, or attempting to heal data inconsistencies in a deterministic manner).
 
 * This concludes a Tick in the Messaging Lifecycle.
-* The School Actor will not continue processing another Update Request before its current one has been satisfactorily processed by all Applications, or before it has exhausted all other available means to repair the inconsistencies.
+* The School Actor will not continue processing another Update Request before the current one has been satisfactorily processed by all Applications, or before it has exhausted all other available means to repair the inconsistencies.
 * There may be a maximum number of retries allowed for a given Update Request. After the number of retries threshold has been reached, the Update Request will be flagged for human review.
 * Future expansions plans may include a heartbeat / throughput monitoring system here.
 
 
 ## Identity Table
+The identity table is responsible for storing multiple identities of one entity in a table. For example, one person could have multiple identities across applications. One identity in MB, OA, etc. The identity table stores the status and basic information in the table.

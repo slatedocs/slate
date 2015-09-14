@@ -1,4 +1,0 @@
-# Events
-
-
-## Year Transition

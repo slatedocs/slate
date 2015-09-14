@@ -1,11 +1,11 @@
 # Message Protocol
 
-The messages transmitted on FariaMQ are categorized as two kinds by their purpose. The Document and Command message. Each Message can only communicate with one school, one message is never delivered for cross-schools.
-Before we come to message type, let's introduce the basic compisition of message
+The messages transmitted on FariaMQ are categorized as two kinds by their purpose. The Document and Command message. Each Message can only communicate with one school, one message is never delivered across multiple schools.
+Before addressing message type, let's introduce the basic compisition of a message.
 
 ## Message Composition
 
-A message is composited by 2 parts: *headers* and *body*. Both of them formatted with JSON.
+A message is composited by 2 parts: *headers* and *body*. Both formatted with JSON.
 
 ### Headers
 
@@ -33,8 +33,8 @@ A message is composited by 2 parts: *headers* and *body*. Both of them formatted
 ```
 
 
-The Headers contain the information to describe the message, such as the type, when, and where it was published.
-When the queue subscriber receives the message, it looks up the headers firstly to determine what consumer is responsible to handle it.
+The Headers contain the information that describe the message, such as the type, when, and where it was published.
+When the queue subscriber receives the message, it looks up the headers firstly to determine which consumer is responsible for managing it.
 The message body, or payload, is the content of the message going to processed by the consumer.
 
 Headers represented the metadata of the message, which can include the following data:
@@ -89,7 +89,7 @@ Message body or, the payload, represent to the content of the message.
 
 The format of the message body is different from each type of message, we have defined them in the section [Canonical Data Model](#message-protocol).
 
-In addition, for document message, the attributes in the message are changed within the message lifecycle:
+In addition, for document message, the attributes in the message are modified within the message lifecycle:
 
 - When sending *update request*, the message content should contain all attributes of the model. Moreover, contain additional information about what the message requested to change. This is stored in the '_changed' attribute
 - However, when the request is converted to an update decision, the broker will only keep the changed attributes in the message body.
