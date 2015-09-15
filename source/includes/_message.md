@@ -33,18 +33,18 @@ A message is composited by 2 parts: *headers* and *body*. Both formatted with JS
 ```
 
 
-The Headers contain the information that describe the message, such as the type, when, and where it was published.
+The Headers contain the information that describes the message, such as the type, when, and where it was published.
 When the queue subscriber receives the message, it looks up the headers firstly to determine which consumer is responsible for managing it.
-The message body, or payload, is the content of the message going to processed by the consumer.
+The message body, or payload, is the content of the message going to be processed by the consumer.
 
 Headers represented the metadata of the message, which can include the following data:
 
 * type (required): To specify what type the message is. It composited with 2 segement, the message type and name.
 * school_core_id (required): To represent which school(logic area) the message belongs to.
 * uuid (required): A unique ID to represent this message.
-* timestamp (required)
-* source: The source application who published the message
-* target: The destination of the message to be delivered
+* timestamp (required) A time and date when the message was published.
+* source: The source application who published the message.
+* target: The destination of the message to be delivered.
 * group_identifier: If the message is part of a sequential group message, headers should contain it.
 * reply_to: If the message requires a response, the headers will contain the name of the replied queue. After the consumer processes the message, it should send a reply with this queue name as the routing key.
 * correlation_id: If the message needs to be responded to, the headers must contain the correlation id as an identifier for response. After the consumer processes the message, it should also send a reply with this correlation id in its headers.
@@ -85,18 +85,18 @@ body = {
 } # update decision
 ```
 
-Message body or, the payload, represent to the content of the message.
+Message body or, the payload, represents the content of the message.
 
 The format of the message body is different from each type of message, we have defined them in the section [Canonical Data Model](#message-protocol).
 
 In addition, for document message, the attributes in the message are modified within the message lifecycle:
 
-- When sending *update request*, the message content should contain all attributes of the model. Moreover, contain additional information about what the message requested to change. This is stored in the '_changed' attribute
+- When sending *update request*, the message content should contain all attributes of the model. Moreover, contain additional information about what the message requested to change. This is stored in the *_changed* attribute
 - However, when the request is converted to an update decision, the broker will only keep the changed attributes in the message body.
 
 ## Types of Message
 
-There are 3 types of message we used in Faria Messaging System, they are: Document, Command and Event.
+There are 3 types of messages we use in Faria Messaging System, they are: Document, Command and Event.
 
 Here is a breif explaination:
 
@@ -108,15 +108,15 @@ Most of the messages are document messages, they are published by behaviors of c
 
 Before we institute Document Message, we must introduce 2 major concepts.
 
-* The Standard Lifecycle of Document Message
-* The Message Group and Entries
+* The Standard Lifecycle of Document Message.
+* The Message Group and Entries.
 
 
 ## The Standard Lifecycle of Document Message
 
-The document messages are used for normal requests acted by the end-user, that are processed by the standard work flow we metiond before:
+The document messages are used for normal requests generated from the end-user. They are processed by the standard work flow we metiond before:
 
-1. [Source Application] publishes the message to broker
+1. [Source Application] publishes the message to broker.
 2. [Broker] according its strategies to generate an update decision for each related application, then sends the decisions to remote applications.
 3. [Target Application] receives the decision and processes them by consumers, after generates an update reply and sends it back to the broker.
 
@@ -139,7 +139,7 @@ Publish Update Reply | Target Application | Add result of the process
 
 ## Message Group and Entries
 
-The message group is structured as a wrapper with content. Each group is like an envelope with several upadates *entries* inside. This is similar to a relationship of one-to-many. The key points are:
+The message group is structured as a wrapper with content. Each group is like an envelope with several update *entries* inside. This is similar to a relationship of one-to-many. The key points are:
 
 - The Message Group is the unit that is delivered between the Broker and Applications (on RabbitMQ).
 - The Message Entry is the minimum unit when publishing, and can be processed by the consumer.
@@ -173,16 +173,16 @@ A Message Group also follows the composition of message. It contains a body and 
 
 The headers contain info of the message sequence. And the body acts as a container that stores its entries.
 
-#### Headers
+### Headers
 
-Headers of message group could have following information:
+Headers of message group could have the following information:
 
 - school_core_id (required)
 - source (required)
 - group_identifier: (required when publishing message of update request)
 - correlation_id: ()
 
-#### Body
+### Body
 - entries: An array of the entries within this group, each entry should be composed with JSON for body and headers. For example:
 
 
@@ -246,11 +246,9 @@ For example, the sample code is a command for merging students, this command inc
 ```
 
 
-Most of the commands require a response. The consumer should send a reply message to the broker by looking up the info about reply_to and correlation_id in the headers of the incoming message.
+Most commands require a response. The consumer should send a reply message to the broker by looking up the info about *reply_to* and *correlation_id* in the headers of the incoming message.
 
 The content of the reply message is copied from the command and put into a boolean value of *success* into the body.
 
 If the command executed failed with errors, errors will be inserted into the content.
 
-
-# Event Message

@@ -47,7 +47,7 @@ q.payload[:applications]
 
 ```
 
-Query Application Info queries information about each application for a specified school. For example, the subdomain of the school on Openapply, the actual academic year on ManageBac..etc. Additionally, the MQ settings have become part of the appication info, providing similar data of QueryMQMode stored with the key value of `:mq_settings`.
+Query Application Info queries information about each application for a specified school. For example, the subdomain of the school on Openapply, the actual academic year on ManageBac.etc. Additionally, the MQ settings have become part of the appication info, providing similar data of QueryMQMode stored with the key value of `:mq_settings`.
 
 
 ## Query Entity Info

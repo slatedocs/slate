@@ -2,9 +2,9 @@
 
 Required steps to integrate FariaMQ:
 
-1. Determine your Application Code and Models to sync
-2. Implement to Publish Messages
-3. Implement to Subscribe/Receive Messages
+1. Determine your Application Code and Models to sync.
+2. Implement to Publish Messages.
+3. Implement to Subscribe/Receive Messages.
 
 Here we have OpenApply as the sample application, with the application code *OA*. And we plan to implement the synchronization of Student model.
 
@@ -14,7 +14,7 @@ Before execution, please review the type of exchanges used in RabbitMQ.
 
 ## Types of RabbitMQ Exchanges
 
-The type of exchange we used is different from the scenario of message type.
+The type of exchange we used is different than the scenario of message type.
 
 ### Use Topic Exchange for sending Document Message
 
@@ -63,7 +63,7 @@ queue = channel.queue("update_decisions-OA").bind(x, :routing_key => "OA")
 ### Use Direct Exchange to send Command Message
 
 ```ruby
-# Send Command Message
+# Send Command Message using Direct Exchange
 exchange = channel.direct('commands')
 exchange.publish(encoded_message_body,
   :headers => headers,
@@ -73,7 +73,7 @@ exchange.publish(encoded_message_body,
 )
 ```
 
-Command message uses a direct exchange for delivery, using the code from the target application as the routing key.
+- Command message uses a direct exchange for delivery, using the code from the target application as the routing key.
 
 
 ### Use Direct Exchange to send Event Message
@@ -254,18 +254,18 @@ Value | Description
 success | The entry had been processed successfully.
 ignore | The entry was ignored to process.
 error | The entry processed failed(and you have to add error info to the headers of reply entry).
-break | The entry was stopped to process because there is an error that occured previously.
+break | The entry stopped to process because there was an error that occured previously.
 
-When all reply entries are prepared, wrap them as another group message (reply group). Then publish it to the *update_replies* exchange. It is similar to publishing update request, but it has different exchange name and routing key.
+When all reply entries are prepared, wrap them as another group message (reply group). Then publish it to the *update_replies* exchange. It is similar to publishing update request, but has a different exchange name and routing key.
 
 <aside class="notice">
-To subscribe to messages of update decision, bind the queue to the direct exchange <code>update_decision</code> with your application code as routing key.
+To subscribe to messages of update decision, bind the queue to the direct exchange <code>update_decision</code> with your application code as the routing key.
 </aside>
 
 
 ## Reply with Error
 
-If error occurs when processing the decision entry, you have to add error information to the headers with *error* as the key, the error info is also a hash, with the following attributes:
+If errors occur when processing the decision entry, you have to add error information to the headers with *error* as the key, the error info is also a hash, with the following attributes:
 
 - message: The text of error message.
 - backtrace: The bracktrace stack of the codes.

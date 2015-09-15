@@ -1,6 +1,18 @@
 # Canonical Data Model
-## School
+Here are some example schema models listed for the applications.
+
+- School
+- Year Grade
+- Program
+- Academic Year
+- Student
+- Parent
+- Relationship
+- Staff
+
+
 ```ruby
+# School
 {
   :school_core_id=>"KB-Organization-1045",
   :name=>"Faria International School",
@@ -21,8 +33,9 @@
 }
 ```
 
-## Year Grade
+
 ```ruby
+# Year Grade
 {
   :label => "Grade 15"
   :number => 15
@@ -33,8 +46,9 @@
 
 ```
 
-## Program
+
 ```ruby
+# Program
 {
   :name => "IB Primary Years"
   :program_core_id => "OA-Program-4211"
@@ -42,8 +56,9 @@
 }
 ```  
 
-## Academic Year
+
 ```ruby
+# Academic Year
 {
   :school_core_id => "KB-Organization-2786",
   :name => "2015-2016 Academic Year",
@@ -53,10 +68,11 @@
   :ends_on => "2016-07-31",
 }
 ```
-## Student
+
 
 
 ```ruby
+# Student
 {
  :id => 2,
  :student_core_id => "MB-User-10857745",
@@ -99,8 +115,9 @@
 }
 ```
 
-## Parent
+
 ```ruby
+# Parent
 {
   :school_core_id => "KB-Organization-1045"
   :id =>777472
@@ -185,8 +202,9 @@
 }
 ```
 
-## Relationship
 ```ruby
+# Relationship
+
 {
   :student_core_id =>"OA-Student-86059"
   :parent_core_id =>"OA-Parent-95307"
@@ -195,8 +213,9 @@
   :position =>1
 }
 ```
-## Staff
 ```ruby
+# Staff
+
 {
   :school_core_id =>"KB-Organization-1045"
   :staff_core_id =>"OA-User-2154"
