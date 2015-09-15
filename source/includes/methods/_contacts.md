@@ -14,7 +14,7 @@ curl https://app.beyonic.com/api/contacts -H "Authorization: Token ab594c1498661
 -d last_name='Doe' \
 -d phone_number='+256712954253' \
 -d email='john.doe@beyonic.com' \
--d metadata="{'my_id': '123ASDAsd123'}"
+-d metadata.my_id='123ASDAsd123'
 ```
 
 ```ruby
@@ -26,7 +26,7 @@ payment = Beyonic::Contact.create(
     first_name: "John",
     last_name: "Doe",
     email: "john.doe@beyonic.com",
-    metadata: "{'my_id': '123ASDAsd123'}"
+    'metadata.my_id': "123ASDAsd123"
 )
 ```
 
@@ -40,7 +40,7 @@ Beyonic_Contact::create(array(
   "first_name" => "John",
   "last_name" => "Doe",
   "email" => "john.doe@beyonic.com",
-  "metadata" => "{'my_id': '123ASDAsd123'}"
+  "metadata.my_id" => "123ASDAsd123"
 ));
 ?>
 ```
@@ -49,11 +49,13 @@ Beyonic_Contact::create(array(
 import beyonic
 beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
+kwargs = {'metadata.my_id': '123ASDAsd123'}
+
 beyonic.Contact.create(phonenumber='+256773712831',
                        first_name='John', 
                        last_name='Doe',
-                       email='john.doe@beyonic.com'
-                       metadata="{'my_id': '123ASDAsd123'}"
+                       email='john.doe@beyonic.com',
+                       **kwargs
                        )
 ```
 

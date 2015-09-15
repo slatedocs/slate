@@ -17,7 +17,7 @@ curl https://app.beyonic.com/api/collectionrequests -H "Authorization: Token ab5
 -d phonenumber=+256772781923 \
 -d currency=UGX \
 -d amount=3000 \
--d metadata="{'my_id': '123ASDAsd123'}"
+-d metadata.my_id='123ASDAsd123'
 ```
 
 ```ruby
@@ -28,7 +28,7 @@ payment = Beyonic::CollectionRequest.create(
     phonenumber: "+256773712831",
     amount: "100.2",
     currency: "UGX",
-    metadata: "{'my_id': '123ASDAsd123'}"
+    'metadata.my_id': "123ASDAsd123"
 )
 ```
 
@@ -41,7 +41,7 @@ Beyonic_CollectionRequest::create(array(
   "phonenumber" => "+256773712831",
   "amount" => "100.2",
   "currency" => "UGX",
-  "metadata" => "{'my_id': '123ASDAsd123'}"
+  "metadata.my_id" => "123ASDAsd123"
 ));
 ?>
 ```
@@ -50,12 +50,14 @@ Beyonic_CollectionRequest::create(array(
 import beyonic
 beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
+kwargs = {'metadata.my_id': '123ASDAsd123'}
+
 beyonic.CollectionRequest.create(phonenumber='+256773712831',
                        amount='1200', 
                        currency='UGX',
                        description='Per diem',
                        callback_url='https://my.website/payments/callback',
-                       metadata="{'my_id': '123ASDAsd123'}"
+                       **kwargs
                        )
 ```
 
