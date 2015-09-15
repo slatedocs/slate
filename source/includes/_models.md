@@ -1,6 +1,5 @@
 # Canonical Data Model
 ## School
-
 ```ruby
 {
   :school_core_id=>"KB-Organization-1045",

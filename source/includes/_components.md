@@ -2,7 +2,7 @@
 
 ## Actors Manager
 
-The actors manager is an object that generates many actors. It supports commands to manage the actors. For example, maybe we want re-activate an actor, the actor manager commands the actor to initialize.
+The actors manager is an object that generates many actors and exhibits control over them, and forwards commands to manage the actors. For example, maybe we want re-activate an actor, the actor manager instructs the actor to initialize.
 
 ## Actor
 The actor is responsible for receiving the update request from the topic exchange. The actor only communicates with a subscriber. An actor receives the reply from the subscriber. After they will attempt to update the identity table based on the content of reply message.
@@ -12,7 +12,7 @@ The actor is responsible for receiving the update request from the topic exchang
 
 The decision maker is responsible for resolving the verb by referencing the identity table. If the request does not have a remote id it will prompt the verb create(and wait for the reply). Otherwise, the decision maker will apply the verb `update` to the identity table.   
 
-The Decision Maker has three major processes. First, it checks for subscriptions. Second, the Decision Maker checks the feature flag. This is based on the action type and not the data type. Finally, the decision maker determines where the update decisions are going to eg. which applications(OA,MB).
+The Decision Maker has three major processes. First, it checks for subscriptions. Second, the Decision Maker determines if there is a feature flag. This is based on the action type and not the data type. Finally, the decision maker determines where the update decisions are going to eg. which applications(OA,MB).
 
 
 ## Subscriber

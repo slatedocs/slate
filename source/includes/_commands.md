@@ -1,10 +1,18 @@
 # Commands
 
-Currently We have following commands for client application.
+Currently we have following commands for client application.
 
-## MergeRecord
+- Merge Record
+- Query Application Info
+- Query Entity Info
+- Delete Identity
+- Enable Synchronization
+- Bulk Enabled Synchronization
+
+
+## Merge Record
 ```ruby
-#Merged specificed identities
+#Merged Specified Identities
 FariaMq::Command::MergeRecord.new(
     school, 
     model: 'student',
@@ -18,9 +26,9 @@ FariaMq::Command::MergeRecord.new(
 FariaMq::Command::MergeRecord.new(school, model: 'student' winner_remote_id: '9182736', loser_remote_id: '2812746').publish!
 
 ```
-Informs the broker to merge specified identities in an identity table. It required arguments of model. And the IDs to specify the winner and loser. You can use core ID or the remote ID(the local ID on your application).
+Informs the broker to merge specified identities in an identity table. It requires arguments from the model, and the IDs to specify the winner and loser. You can use core ID or the remote ID(the local ID on your application).
 
-## QueryApplicationInfo
+## Query Application Info
 
 ```ruby
 #Querry Application Information
@@ -39,7 +47,7 @@ q.payload[:applications]
 
 ```
 
-To query the information about each applications for a specified school. For example, the subdomain of the school on Openapply, the actual academic year on ManageBac..etc. And the settings of MQ is also became part of application info, it provided similar data of QueryMqMode by store the value with key of `:mq_settings`.
+Query Application Info queries information about each application for a specified school. For example, the subdomain of the school on Openapply, the actual academic year on ManageBac..etc. Additionally, the MQ settings have become part of the appication info, providing similar data of QueryMQMode stored with the key value of `:mq_settings`.
 
 
 ## Query Entity Info
@@ -59,7 +67,7 @@ The return values is a hash with properties:
 - mirrors: A hash with mirror applications as key, each value contains an array of info of identitys on the application
 
 ```ruby
-#For example
+#A hash with with properties
 {
   core_id: "OA-Student-109",
   url: "https://faria.openapply.com/admin/students/109",
@@ -88,7 +96,7 @@ Informs the broker to delete specified identities in the identity table. It requ
 FariaMq::Command::EnableSynchronization.new(school, destination: 'SR', model: 'student', identifier: 'Student-281').query!
 
 ```
-Inform the broker to start sync specified identity from source application to target application
+Informs the broker to start to synchronizing the specified identity from the source application to the target application.
 
 It requires arguments:
 
@@ -102,7 +110,7 @@ It requires arguments:
 FariaMq::Command::BulkEnableSynchronization.new(school, destination: 'SR', model: 'student', identifiers: ['Student-281', 'Student-282']).publish!
 
 ```
-Informs the broker to bulk sync specified identities from source the application to target applications.
+Informs the broker to bulk synchronize specified identities from the source application to target applications.
 
 It requires arguments:
 
