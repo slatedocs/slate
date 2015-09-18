@@ -73,14 +73,24 @@ Attribute | Type | Editable | Description
 `is_deleted` | boolean | read-only | Whether this user exists no more. If `true`, the resource exists only for historical purposes and cannot be used in any other context!
 `team_memberships` | array of objects | read-only | The [team membership][] resources, listing the teams this user belongs to. Each object in the array has the attributes `id`, `team_id`, `team`, `is_admin`
 
-### Retrieve user details
-Get a single [user][] object by its ID.
+### Get your own user
 
-`GET https://service.giosg.com/api/v5/users/<user_id>`
+<aside class="success">
+It is a common use case to first find out your own user or your organization's information, and then perform further actions on it.
+</aside>
 
-Alternatively, you may get **your own** user account details by replacing the ID with the word `me`.
+There is a special API endpoint that returns the [user][] resource depending on who is [authenticated][authentication].
 
 `GET https://service.giosg.com/api/v5/users/me`
+
+To find out your organization's ID, just use the `organization_id` attribute of the returned resource. Alternatively you can use the nested [organization][] resource for more details).
+
+This API endpoint returns a 401 response if you are not being currently authenticated. It returns a 403 response if your authentication token is not directly related to one specific user.
+
+### Retrieve details of a user
+Get a single [user][] object by its ID (`<user_id>`).
+
+`GET https://service.giosg.com/api/v5/users/<user_id>`
 
 This endpoint accepts the following GET parameters.
 

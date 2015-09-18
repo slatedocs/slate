@@ -3,6 +3,7 @@
   [date/time]: <#datetime-format> "Date/time format"
   [paginated collection]: <#paginated-collections> "Paginated collections"
   [ordering]: <#ordering-collections> "Ordering collections"
+  [authentication]: <#authentication> "Authentication"
   [organization]: <#organizations> "Organizations"
   [user]: <#users> "Users"
   [room]: <#rooms-and-domains> "Rooms and domains"
