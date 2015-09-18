@@ -151,7 +151,7 @@ Algorithm   | Type   | Description
 `RS384` | JWT | RSASSA-PKCS1-v1_5 signature algorithm using SHA-384 hash algorithm
 `RS512` | JWT | RSASSA-PKCS1-v1_5 signature algorithm using SHA-512 hash algorithm
 `sha1`| hash | SHA-1 (Secure Hash Algorithm 1)
-`md5`| hash | ksd
+`md5`| hash | MD5 message-digest algorithm
 
 
 ### Generating signed payload with JWT
@@ -226,7 +226,12 @@ It is also possible to remove submitted data from visitor.
 
 `_giosg('visitor', 'remove', <key>);`
 
-**Remove single data key from visitor:**
+
+Attribute   | Type   | Required | Description
+------------|--------|----------|--------------
+`key` | String | **required** | Attribute from previously submitted api data that should be removed.
+
+**Remove all previously added data from visitor:**
 
 `_giosg('visitor', 'removeAll');`
 
@@ -235,9 +240,66 @@ It is also possible to remove submitted data from visitor.
 
 With javascript rooms API you can control which rooms visitor will be connected to.
 
-### Connect visitor to room
+### Join visitor to room
 
-### Remove visitor from room
+```javascript
+// Join visitor to room with room ID
+var roomInfo = { id:
+	'swugkoy472m5tdg4lyaafmnl4xtbs2ar4sxtq4c2w2z2wzym'
+};
+_giosg('room', 'join', roomInfo);
+
+// Join visitor to room with room name
+var roomInfo = { name: 'Special room' };
+_giosg('room', 'join', roomInfo);
+
+// Join visitor to multiple room's with once call
+var roomInfo = [{
+	id: 'swugkoy472m5tdg4lyaafmnl4xtbs2ar4sxtq4c2w2z2wzym'
+}, {
+	name: 'Sales'
+}];
+_giosg('room', 'join', roomInfo);
+```
+
+Javascript call:
+
+`_giosg('room', 'join', <room_information>);`
+
+
+Attribute   | Type   | Required | Description
+------------|--------|----------|--------------
+`room_information` | Array | **required** | Array of room information objects. This parameter controls what rooms visitor will join to. Room info object has to contain either `id` or `name` attribute. Example: `[{ name: 'My custom room' }]`
+
+
+### Leave visitor from room
+
+```javascript
+// Leave visitor from room by id
+var roomInfo = {
+	id:'swugkoy472m5tdg4lyaafmnl4xtbs2ar4sxtq4c2w2z2wzym'
+};
+_giosg('room', 'leave', roomInfo);
+
+// Leave visitor from room by name
+var roomInfo = {
+	name:'Support room'
+};
+_giosg('room', 'leave', roomInfo);
+
+// Leave visitor from all rooms expect domain room.
+_giosg('room', 'leave');
+```
+
+Javascript call:
+
+`_giosg('room', 'leave', <room_information>);`
+
+
+Attribute   | Type   | Required | Description
+------------|--------|----------|--------------
+`room_information` | Array | optional | Array of room information objects. This parameter controls what rooms to leave. If not set, visitor will leave all rooms expect domain room. Room info object has to contain either `id` or `name` attribute. Example: `[{ name: 'My custom room' }]`
+
 
 ## Visitor chat API
 
