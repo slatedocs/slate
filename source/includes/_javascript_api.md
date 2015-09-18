@@ -303,5 +303,37 @@ Attribute   | Type   | Required | Description
 
 ## Visitor chat API
 
+With javascript chat API it is possible to force ending of chat conversation and/or hiding a chat window if a visitor for example logs out from your application.
+
 ### End chat session
+
+```javascript
+// Close all open chats for this visitor
+_giosg('chat', 'close', { all:true });
+// or
+_giosg('chat', 'close');
+
+
+// Close all open chats for this visitor and hide the visitor's chat window
+_giosg('chat', 'close', { hide:true });
+
+
+// Close specific chat session with parent room ID
+var opts = {
+	id: 'sgek3zw6h3orokc4giaafcxcm72zx3qr4sqzk3cabcw7p2am'
+};
+_giosg('chat', 'close', opts);
+
+
+// Close chat from specific parent room with room name
+_giosg('chat', 'close', { name:'Sales room' });
+```
+
+Javascript call:
+
+`_giosg('chat', 'close', <options>);`
+
+Attribute   | Type   | Required | Description
+------------|--------|----------|--------------
+`options` | Object | optional | Array of room information objects. This parameter controls what rooms to leave. If not set, visitor will leave all rooms expect domain room. Room info object has to contain either `id` or `name` attribute. Example: `[{ name: 'My custom room' }]`
 
