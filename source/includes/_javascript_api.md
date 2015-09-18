@@ -112,6 +112,16 @@ Javascript call:
 var jwt_payload = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjb21pY191cmwiOiJodHRwOi8veGtjZC5jb20vMTM2MC8ifQ.BsjBt9a9imoj9P5_7aIAe5nuhPd5jb8HGvAJKPCwm6A';
 var algorithm = 'HS256';
 _giosg('visitor', 'submit', jwt_payload, algorithm);
+
+// Example of submitting SHA1/MD5 signed visitor data
+var payload = {
+	username: 'Django signed',
+	email:'django@giosg.com',
+	_checksum:'e584526251c396fc937e27561c9597c8',
+	_exp:'1371720939'
+};
+_giosg('visitor', 'submit', payload, 'md5', true);
+
 ```
 
 Signing is used for validating that data is not altered by web page's visitor. If signing is required for domain and checksum is not set or it's wrong, then giosg will reject the data and HTTP status 400 will be returned.
@@ -144,7 +154,7 @@ Algorithm   | Type   | Description
 `md5`| hash | ksd
 
 
-### Generating signed payload
+### Generating signed payload with JWT
 
 ```python
 # 1. Install PyJWT
@@ -153,7 +163,8 @@ Algorithm   | Type   | Description
 >>> import time
 >>> exp = int(time.time() + 30) # 30 seconds in future
 >>> payload = { "comic_url": "http://xkcd.com/1360/", "exp": exp }
->>> jwt.encode(payload, "supersecretkey", "HS256")
+>>> token = jwt.encode(payload, "supersecretkey", "HS256")
+>>> print token
 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjb21pY191cmwiOiJodHRwOi8veGtjZC5jb20vMTM2MC8ifQ.BsjBt9a9imoj9P5_7aIAe5nuhPd5jb8HGvAJKPCwm6A'
 >>>
 ```
@@ -168,14 +179,61 @@ You can find more information about JWT from these resources:
 - Java: [https://github.com/auth0/java-jwt]()
 - Asp.Net: [https://www.nuget.org/packages/JWT]()
 
+### Generating signed payload with SHA1/MD5
 
+```python
+# Open python shell and run:
+>>> import hashlib
+>>> secret_key = 'supersecret'
+>>> payload = { 'username': 'John Doe', 'age': 29 };
+>>> sorted_keys = sorted(payload.keys(), key=str.lower)
+>>> concatenated_payload = ''
+>>> for k in sorted_keys:
+>>>     concatenated_payload += '%s:%s&' % (k, payload[k])
+>>> concatenated_payload += secret_key
+>>> checksum = str(hashlib.md5(concatenated_payload).hexdigest())
+>>> print checksum
+'0ea59ee5af5fa0aba76f1a6fd209d396'
+>>>
+```
 
+Checksum is calculated on server side by using md5 or sha1 algorithm. For checksum calculation payload data need's to be formatted in specific way as a string.
+First JSON paylod parameters must be sorted alphabetically. Then every parameter and it's value need's to be delimited with `:`.
+Delimiter between multiple key/value pairs is `&`. Then checksum need's to be calculated from that string and appended secret key.
 
-### Using promises
+After calculation checksum need's to be placed inside payload JSON in `_checksum` field. It is also recommended that `_exp` field is present on payload
+and contains checksum expiration time as a UTC UNIX timestamp (an int).
+
+**Note:** Boolean values should be lower case if present. For example checkbox:true. Null values are not recommended.
+
+Example of generating md5 checksum with Python can be found from the right.
+
 
 ### Remove submitted data
 
+```javascript
+// Remove single key from visitor data
+_giosg('visitor', 'remove', 'username');
+
+// Clear all data from visitor
+_giosg('visitor', 'removeAll');
+
+```
+
+It is also possible to remove submitted data from visitor.
+
+**Remove single data key from visitor:**
+
+`_giosg('visitor', 'remove', <key>);`
+
+**Remove single data key from visitor:**
+
+`_giosg('visitor', 'removeAll');`
+
+
 ## Visitor rooms API
+
+With javascript rooms API you can control which rooms visitor will be connected to.
 
 ### Connect visitor to room
 
