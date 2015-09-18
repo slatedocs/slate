@@ -327,6 +327,16 @@ _giosg('chat', 'close', opts);
 
 // Close chat from specific parent room with room name
 _giosg('chat', 'close', { name:'Sales room' });
+
+
+// You can also show a message to user, specify "sender"
+// of this message and clear existing history.
+var roomData = {
+	message: 'Chat conversations has ended!',
+	messageSender: 'Chat service',
+	clearHistory: true
+};
+_giosg('chat', 'close', roomData);
 ```
 
 Javascript call:
@@ -335,5 +345,51 @@ Javascript call:
 
 Attribute   | Type   | Required | Description
 ------------|--------|----------|--------------
-`options` | Object | optional | Array of room information objects. This parameter controls what rooms to leave. If not set, visitor will leave all rooms expect domain room. Room info object has to contain either `id` or `name` attribute. Example: `[{ name: 'My custom room' }]`
+`options` | Object | optional | Options object. See possible option values below
+
+
+**Possible attributes for options object:**
+
+Option    | Type   | Required |Description
+----------|--------|----------|----------------------
+`all` | Bool |       optional | If set to true, close all open chat sessions
+`hide` | Bool    |   optional  | If set to true, hides chat window also.
+`id` | String     |  optional  | ID of the room where to close the chat session from.
+`name` | String      optional  | Name of the room where to close the chat session from.
+`clearHistory` | Bool | optional | If set to true, clear's all visitors chat history. This doesn't remove data from database but from client only!
+`message` | String |  ptional | Show a message to user when chat session is closed
+`messageSender` | String | optional |Set sender of the `message`. This option only applies if `message` is specified also.
+
+
+
+### Hide chat
+
+```javascript
+// Close chat window
+_giosg('chat', 'hide');
+
+
+// Close chat window without affection other tabs
+// where chat window might be open.
+_giosg('chat', 'hide', { preserveWindowState:true });
+```
+
+Hide a chat from a visitor without closing the chat session.
+
+Javascript call:
+
+`_giosg('chat', 'hide', <options>);`
+
+
+Attribute   | Type   | Required | Description
+------------|--------|----------|--------------
+`options` | Object | optional | Options object. See possible option values from below.
+
+**Possible attributes for options object:**
+
+Option                | Type   | Description
+----------------------|--------|--------------
+`preserveWindowState` | Object | If `preserveWindowState` is set to `true` will not affect other tabs where window might be open.
+
+
 
