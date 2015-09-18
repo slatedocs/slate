@@ -1,12 +1,6 @@
 Customer API
 ============
 
-<aside class="success">
-This is the new, recommended version (v5) of the customer API!
-</aside>
-
-**You should use this new API instead of the [deprecated v3 version](https://docs.giosg.com/doku.php?id=public:technical-documentation:backend-api:customer-api).**
-
 ## Organizations
 
 An organization represents any organization account on giosg system. An organization consists of a number of users with their own user accounts. A user always belongs to exactly one organization.
