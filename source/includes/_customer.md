@@ -87,10 +87,24 @@ To find out your organization's ID, just use the `organization_id` attribute of 
 
 This API endpoint returns a 401 response if you are not being currently authenticated. It returns a 403 response if your authentication token is not directly related to one specific user.
 
-### Retrieve details of a user
-Get a single [user][] object by its ID (`<user_id>`).
+### Get a collection of organization members
 
-`GET https://service.giosg.com/api/v5/users/<user_id>`
+Get a [paginated collection][] of users who belong to a given organization (`<organization_id>`)
+
+`GET https://service.giosg.com/api/v5/orgs/<organization_id>/users`
+
+Parameter | Type | Default | Description
+----------|------|---------|------------
+`ordering` | [ordering][] | `created_at` | Ordering of results with options `last_name`, `first_name`, `email`, `alias`, `created_at`, `updated_at`
+`include_deleted` | boolean | false | If `true`, include deleted users to results. If `false` (default), excludes any deleted users.
+`is_manager` | boolean | (none) | If `true`, only include managers. If `false`, exclude all managers.
+`page` | integer | 1 | [Page][paginated collection] to get
+`page_size` | integer | 50 | [Page size][paginated collection] for the pages, with max value of 200
+
+### Retrieve details of an organization member
+Get a single [user][] object by its ID (`<user_id>`) that belongs to an organization (`<organization_id>`)
+
+`GET https://service.giosg.com/api/v5/orgs/<organization_id>/users/<user_id>`
 
 This endpoint accepts the following GET parameters.
 
@@ -100,26 +114,17 @@ Parameter | Type | Default | Description
 
 If you try to get a user that has been deleted, the endpoint results in 404 response by default. You may access the removed users of your organization for historical purposes by adding `include_deleted=true` to the GET parameters.
 
-### Update user details
-You may update some of the attributes of a user account.
+This endpoint returns a 403 response if you do not have permissions for this organization. It returns a 404 response if the user does not exists **or** they doesn't belong to the organization.
 
-`PUT https://service.giosg.com/api/v5/users/<user_id>`
+### Update details of an organization member
+You may update some of the attributes of a user (`<user_id>`) that belongs to an organization (`<organization_id>`)
 
-`PATCH https://service.giosg.com/api/v5/users/<user_id>`
+`PUT https://service.giosg.com/api/v5/orgs/<organization_id>/users/<user_id>`
 
-Once again, you may replace the user ID with word `me` in order to update your own account details.
+`PATCH https://service.giosg.com/api/v5/orgs/<organization_id>/users/<user_id>`
 
 When using `PUT` you need to provide an object as a request payload that contains all the changed attributes of the [user][]. When using `PATCH`, you may omit those attributes that you do not want to change.
 
-### Get a collection of users
-Get a [paginated collection][] of users that you are allowed to list.
-
-`GET https://service.giosg.com/api/v5/users/`
-
-Parameter | Type | Default | Description
-----------|------|---------|------------
-`ordering` | [ordering][] | `created_at` | Ordering of results with options `last_name`, `first_name`, `email`, `alias`, `created_at`, `updated_at`
-`include_deleted` | boolean | false | If `true`, include deleted resources to results. If `false` (default), excludes any deleted resources.
-`is_manager` | boolean | (none) | If `true`, only include managers. If `false`, exclude all managers.
-`page` | integer | 1 | [Page][paginated collection] to get
-`page_size` | integer | 50 | [Page size][paginated collection] for the pages, with max value of 200
+<aside class="warning">
+You are allowed to update your own details. You may only change other users' details if you have management rights for the organization. Otherwise this endpoint will result in a 403 response.
+</aside>
