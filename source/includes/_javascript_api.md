@@ -28,7 +28,7 @@ _giosg(function () {
 
 To use giosg visitor javascript api you need to be using latest version of [giosg script tag][] on the site.
 
-The best practice is to include giosg script at the start of the HTML document. This is not necessary but is advised so that the `_giosg object is
+The best practice is to include giosg script at the start of the HTML document. This is not necessary but is advised so that the `_giosg` object is
 available as soon as possible.
 
 Javascript api can be used in two ways. Asynchronously with `_giosg` object or calling api method's directly. `_giosg` object is available right after
