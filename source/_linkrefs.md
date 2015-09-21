@@ -24,3 +24,4 @@
   [timezone list]: <https://en.wikipedia.org/wiki/List_of_tz_database_time_zones> "List of timezones"
   [uuid]: <https://en.wikipedia.org/wiki/Universally_unique_identifier> "Universally Unique Identifier"
   [content type]: <https://en.wikipedia.org/wiki/Internet_media_type> "Internet Media Type"
+  [giosg script tag]: <http://docs.giosg.com/doku.php?id=public:technical-documentation:installation-instructions> "giosg script tag"

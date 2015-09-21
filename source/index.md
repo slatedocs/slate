@@ -17,6 +17,7 @@ includes:
   - assets
   - timelines
   - realtime
+  - javascript_api
 
 search: true
 ---
