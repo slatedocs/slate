@@ -1,6 +1,7 @@
 publish:
 	rake build
 	git checkout gh-pages
+	git pull
 	rm -rf fonts
 	rm -rf javascripts
 	rm -rf images
