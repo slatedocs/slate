@@ -22,10 +22,6 @@ Attribute | Type | Editable | Description
 `business_id` | string | **optional** | Business ID of the organization, if any, or `null`
 `created_at` | [date/time][] | read-only | When this organization account was created. **Available only for your own organization.**
 `updated_at` | [date/time][] | read-only | When organization details were changed last time. **Available only for your own organization.**
-`billing_street` | string | **optional** | Billing street address, or `null`. **Available only for your own organization**
-`billing_postal_code` | string | **optional** | Billing postal code, or `null`. **Available only for your own organization**
-`billing_city` | string | **optional** | Billing city, or `null`. **Available only for your own organization**
-`billing_country` | string | **optional** | Billing country as a two-letter ISO 3166-1 code, or `null`. **Available only for your own organization**
 
 ### Retrieve organization details
 Get a single [organization][] object by its ID.
