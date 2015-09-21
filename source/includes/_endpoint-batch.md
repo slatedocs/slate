@@ -18,7 +18,7 @@ A GET on this resource returns a Shoji Catalog enumerating the batches present i
 }
 ```
 
-A POST to this resource adds new rows as a batch. The payload can be be a Crunch Table, a Source or another dataset (provided that the authenticated user has view permissions). All added rows obtain the same batch id. A 201 indicates success, and returns the URL of the new batch in the Location header.
+A POST to this resource adds a new batch. The payload can be be a Crunch Table (with variable metadata, row data, or both), the URI of a Source, or the URI of another dataset (provided that the authenticated user has view permissions). All added rows regardless of source obtain the same batch id. A 201 indicates success, and returns the URL of the new batch in the Location header.
 
 If the append operation takes more than two minutes, 202 is returned instead and the batch will continue being appended in the background. The Location header is still returned, pointing to the new batch's URL. The client can GET that URL to query its status.
 
