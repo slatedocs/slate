@@ -7,6 +7,24 @@ Antes de acessar o Cobrato, você deve criar uma conta em: Cobrato. Se você já
 Autenticação na API do Cobrato é realizada utilizando HTTP Basic, Porem você não vai usar sua senha e login como de costume, você terá que usar o token da API como sendo seu login e a senha em branco, (se o seu cliente HTTP requer uma senha, você pode digitar X).
 
 
+```
+Formato JSON
+
+EXEMPLO DE REQUISIÇÃO
+
+  $ curl -i -u $YOUR_API_TOKEN:X
+    -H 'User-Agent: My App 1.0' \
+    -H 'Accept: application/json' \
+    -H 'Content-type: application/json' \
+    -X GET https://app.cobrato.com/api/v1
+
+EXEMPLO DE RESPOSTA
+
+{
+  "chave": "valor"
+}
+
+```
 
 ## Formatos de requisição e resposta
 
@@ -23,6 +41,13 @@ Todas as datas e horas são formatadas de acordo com ISO 8601 padrão, e sempre 
 
 Você deve sempre fornecer os seus valores de data e hora no mesmo formato ISO 8601 e no fuso horário UTC.
 
-Tipo | Formato | Exemplo
-Data | YYYY-mm-dd |  2014-11-05
-Data hora | YYYY-mm-ddTHH:MM:SSZ  |  2014-11-05T17:28:03Z
+|Tipo      | Formato                 | Exemplo                |
+|----------|-------------------------|------------------------|
+|Data      | YYYY-mm-dd              |  2014-11-05            |
+|Data hora | YYYY-mm-ddTHH:MM:SSZ    |  2014-11-05T17:28:03Z  |
+
+
+## Formato numérico
+
+Todos os números são fornecidos tanto com números inteiros, ponto flutuante nativos para JSON.
+
