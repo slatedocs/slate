@@ -1,9 +1,8 @@
 
-includes:
-  - nao_to_sendo_chamado
-
 
 # Webhooks
+
+
 
 
 ## Lista de Todos os Webhooks
@@ -126,7 +125,7 @@ EXEMPLO DE CORPO DA RESPOSTA COM INSUCESSO
 
 ```
 
-Criação de Webhook
+##Criação de Webhook
 
 Cria um novo webhook, retornando as informações do mesmo caso haja sucesso. Para realizar o cadastro é necessária que a URL informa aceite as requisições POST e GET, respondendo sempre com HTTP 200. Afim de verificação da URL, o Cobrato fará requisições testes a mesma
 
@@ -207,7 +206,6 @@ EXEMPLO DE ESTADO DA RESPOSTA COM WEBHOOK INEXISTENTE
     404 Not Found
 
 ```
-
 Exclui determinado webhook. A exclusão é irreversível.
 
 
@@ -228,3 +226,5 @@ As ações notificadas são:
 |charge_account | created            | quando a conta de cobrança é criada             |
 |charge_account | updated            | quando a conta de cobrança é atualizada         |
 |charge_account | destroyed          | quando a conta de cobrança é excluída           |
+
+

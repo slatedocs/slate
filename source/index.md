@@ -13,6 +13,7 @@ includes:
   - conta_cobranca
   - cobranca
   - webhook
+  - webhook_cobranca/index
 
 search: true
 ---
