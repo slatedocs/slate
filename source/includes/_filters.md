@@ -9,6 +9,9 @@ augur.filters.listen({
     contracts: function (augurTx) {
         console.log("augur transaction:", augurTx);
     },
+    creation: function (newMarket) {
+        console.log("new market created:", newMarket.marketId);
+    },
     price: function (updatedPrice) {
         console.log("updated price:", updatedPrice);
     }
@@ -27,7 +30,7 @@ augur.filters.ignore(true);
 // block
 blockHash = "0x999553c632fa10f3eb2af9a2be9ab612726372721680e3f76441f75f7c879a2f"
 
-// contracts
+// contracts (topics and data fields vary by contract and method)
 augurTx = {
     address: "0xc1c4e2f32e4b84a60b8b7983b6356af4269aab79",
     topics: [
@@ -47,6 +50,12 @@ augurTx = {
     transactionIndex: "0x0"
 }
 
+// creation
+newMarket = {
+    marketId: "-0xcaa8317a2d53b432c94180c591f09c30594e72cb6f747ef12be1bb5504c664bc",
+    blockNumber: "4689"
+}
+
 // price
 updatedPrice = {
     user: "0x00000000000000000000000005ae1d0ca6206c6168b42efcd1fbe0ed144e821b",
@@ -64,8 +73,9 @@ Filter | Message contents
 ------ | ----------------
 block | new blockhashes
 contracts | transactions involving any Augur contract
+creation | new market's ID and creation blocknumber
 price | market price updates
 
-Passing callback functions for `block`, `contracts` and/or `price` to the `augur.filters.listen` method will start polling the block, contracts and price filters, respectively.
+Passing callback functions for `block`, `contracts`, `creation` and/or `price` to the `augur.filters.listen` method will start polling the block, contracts, creation and price filters, respectively.
 
 <aside class="notice">You can adjust the polling interval by changing the value of <code>augur.filters.PULSE</code>.  By default it is set to <code>5000</code> (5 seconds).</aside>
