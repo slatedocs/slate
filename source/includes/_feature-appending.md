@@ -53,3 +53,57 @@ GET the new Batch:
 If any variable conflicts, it will possess one or more "conflicts" members. For example, if the new variable "cdbd11" had extra categories or was missing some categories compared to the existing variable "cdbd11", the Batch resource would contain the above message and resolution. Variables which have no conflicts will still report their metadata but have `"conflicts": []`.
 
 The Crunch system will have done its best to resolve such conflicts for you. When it cannot, each Conflict object will likely only contain a "message" member. If it has resolved the conflict, it will add a "resolution" member.
+
+### Streaming rows
+
+Existing datasets are best sent to Crunch as a single Source, or a handful of subsequent Sources if gathered monthly or on some other schedule. Sometimes however you want to "stream" data to Crunch as it is being gathered, even one row at a time, rather than in a single post-processing phase. You do *not* want to make each row its own batch (it's simply not worth the overhead). Instead, you should make a Stream and send rows to it, then periodically create a Source and Batch from it.
+
+#### Send rows to a stream
+
+To send one or more rows to a dataset stream, simply POST one or more lines of [line-delimited JSON](https://en.wikipedia.org/wiki/Line_Delimited_JSON) to the dataset's `stream` endpoint:
+
+```json
+{"var_id_1": 1, "var_id_2": "a"}
+```
+
+```python
+by_alias = ds.variables.by('alias')
+while True:
+    row = my_system.read_a_row()
+    importing.importer.stream_rows(ds, {
+        by_alias["gender"].id: row['gender'],
+        by_alias["age"].id: row['age']
+    })
+```
+
+The variable ids must correspond to existing variables in the dataset. The Python code shows how to efficiently map aliases to ids. The data must match the target variable types, so that we can process the row as quickly as possible. We want no casting or other guesswork slowing us down here. Among other things, this means that categorical values must be represented as Crunch's assigned category ids, not names or numeric values.
+
+You may also send more than one row at a time if you prefer. For example, your data collection system may already post-process row data in, say, 5 minute increments. The more rows you can send together, the less overhead spent processing each one and the more you can send in a given time. Send multiple lines of line-delimited JSON, or if using pycrunch, a list of dicts rather than a single dict.
+
+As when creating a new source, don't worry about sending values for derived variables; Crunch will fill these out for you for each row using the data you send.
+
+#### Append the new rows to the dataset
+
+The above added new rows to the Stream resource so that you can be confident that your data is completely safe with Crunch. To append those rows to the dataset requires another step. You could stream rows and then, once they are all assembled, append them all as a single Source to the dataset. However, if you're streaming rows at intervals it's likely you want to append them to the dataset at intervals, too. But doing so one row at a time is usually counter-productive; it slows the rate at which you can send rows, balloons metadata, and interrupts users who are analyzing the data.
+
+Instead, you control how often you want the streamed rows to be appended to the dataset. When you're ready, POST to `datasets/{id}/batches/` and provide the "stream" member, plus any extra metadata the new Source should possess:
+
+```json
+{
+    "stream": null,
+    "type": "ldjson",
+    "name": "My streamed rows",
+    "description": "Yet Another batch from the stream",
+}
+```
+
+```python
+ds.batches.create({"body": {
+    "stream": None,
+    "type": "ldjson",
+    "name": "My streamed rows",
+    "description": "Yet Another batch from the stream",
+}})
+```
+
+The "stream" member tells Crunch to acquire rows from the stream to form this Batch. If `null`/`None`, the system will acquire all currently pending rows (any new rows which arrive during the formation of this Batch will be queued and not fetched). If an integer, the system will attempt to fetch that many rows from the stream, waiting up to 10 seconds for new ones if the number exceeds the number of pending rows. If there are no pending rows, `409 Conflict` is returned instead of 201/202 for the new Batch.
