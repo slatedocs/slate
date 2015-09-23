@@ -7,13 +7,11 @@ toc_footers:
  - <a href='#'>Myfreecomm</a>
 
 includes:
-  - autenticacao
-  - cedente
-  - conta_bancaria
-  - conta_cobranca
-  - cobranca
-  - webhook
-  - webhook_cobranca/index
+  atualizada_cobranca
+  criada_cobranca
+  excluida_cobranca
+  recebida_cobranca
+  refazer_recebimento_cobranca
 
 search: true
 ---
