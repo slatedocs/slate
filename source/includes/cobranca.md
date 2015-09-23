@@ -187,29 +187,21 @@ Cria um nova cobrança, caso haja sucesso retornará as informações da mesma e
 
 Parâmetros
 
-charge_account_id:  integer requirido
-código de identificação da conta bancária em que a conta de cobrança irá pertencer
-due_date: date requirido
-data de vencimento da cobrança
-document_kind:  string requirido
-espécie do documento, podendo ser DM (Duplicata Mercantil), DS (Duplicata de Serviço), NP (Nota Promissória) ou DV (Diversos)
-document_date:  date
-data de emissão do documento
-document_number:  string
-our_number: string
-Caso não informado, é atribuído automaticamente pelo sistema
-our_number_digit: integer
-digito do verificador do nosso número
-custom_our_number:  boolean
-Preenchido automaticamente, mas caso informado true, o campo 'our_number' se torna requirido
-total_amount: decimal requirido
-valor total do boleto
-instructions: string
-instruções de pagamento do boleto, por padrão "Pago em qualquer agência até data do vencimento."
-demonstrative:  string
-demonstrativo do Boleto, por padrão, contém a taxa bancária
-payer_emails: array of strings
-emails de quem irá pagar o boleto
+
+|Campo                    | Tipo      | Comentário  |
+|-------------------------|-----------|--------------|
+| charge_account_id |  integer  | requirido código de identificação da conta bancária em que a conta de cobrança irá pertencer |
+| due_date | date  | requirido  data de vencimento da cobrança |
+| document_kind |  string  | requirido espécie do documento, podendo ser DM (Duplicata Mercantil), DS (Duplicata de Serviço), NP (Nota Promissória) ou DV (Diversos) |
+| document_date |  date | data de emissão do documento |
+| document_number |  string |
+| our_number | string | Caso não informado, é atribuído automaticamente pelo sistema |
+| our_number_digit | integer | digito do verificador do nosso número |
+| custom_our_number |  boolean | Preenchido automaticamente, mas caso informado true, o campo 'our_number' se torna requirido |
+| total_amount | decimal |  requirido valor total do boleto |
+| instructions | string | instruções de pagamento do boleto, por padrão "Pago em qualquer agência até data do vencimento." |
+| demonstrative |  string | demonstrativo do Boleto, por padrão, contém a taxa bancária |
+| payer_emails | array of strings | Semails de quem irá pagar o boleto |
 
 
 ## Atualização de Cobrança
@@ -269,27 +261,19 @@ Observação: Os campos 'recived', 'recived_at' e 'recived_amount', não são al
 
 Parâmetros
 
-due_date: date
-data de vencimento da cobrança
-document_kind:  string
-espécie do documento, podendo ser DM (Duplicata Mercantil), DS (Duplicata de Serviço), NP (Nota Promissória) ou DV (Diversos)
-document_date:  date
-data de emissão do documento
-document_number:  string
-our_number: string
-requirido caso o 'custom_our_number' for informado como true
-our_number_digit: integer
-digito do verificador do nosso número
-custom_our_number:  boolean
-Informe 'true' se desejar utilizar um nosso número personalizado, informe 'false' se estiver usando nosso número personalizado e deseja alterar para um nosso número atribuído pelo Cobrato
-total_amount: decimal
-valor total do boleto
-instructions: string
-instruções de pagamento do boleto, por padrão "Pago em qualquer agência até data do vencimento."
-demonstrative:  string
-demonstrativo do Boleto, por padrão, contém a taxa bancária
-payer_emails: array of strings
-emails de quem irá pagar o boleto
+|Campo                    | Tipo      | Comentário  |
+|-------------------------|-----------|-------------|
+| due_date|  date | data de vencimento da cobrança |
+| document_kind |   string  | espécie do documento, podendo ser DM (Duplicata Mercantil), DS (Duplicata de Serviço), NP (Nota Promissória) ou DV (Diversos) |
+| document_date|   date | data de emissão do documento |
+| document_number|   string  | |
+| our_number|  string | requirido caso o 'custom_our_number' for informado como true |
+| our_number_digit|  integer | digito do verificador do nosso número |
+| custom_our_number|   boolean | Informe 'true' se desejar utilizar um nosso número personalizado, informe 'false' se estiver usando nosso número personalizado e deseja alterar para um nosso número atribuído pelo Cobrato |
+| total_amount|  decimal | valor total do boleto |
+| instructions|  string | instruções de pagamento do boleto, por padrão "Pago em qualquer agência até data do vencimento." |
+| demonstrative|   string | demonstrativo do Boleto, por padrão, contém a taxa bancária |
+| payer_emails|  array of strings  | emails de quem irá pagar o boleto |
 
 
 

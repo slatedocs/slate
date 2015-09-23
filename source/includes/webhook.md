@@ -1,9 +1,4 @@
-
-
 # Webhooks
-
-
-
 
 ## Lista de Todos os Webhooks
 
