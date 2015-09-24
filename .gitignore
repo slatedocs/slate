@@ -20,3 +20,4 @@ build/
 _yardoc
 doc/
 .idea/
+.ruby-version

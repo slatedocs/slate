@@ -17,6 +17,7 @@ includes:
   - charges_webhook
   - update_charges_webhook
   - charge_accounts_webhook
+  - charging_types
 
 search: true
 ---
