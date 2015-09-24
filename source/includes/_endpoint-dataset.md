@@ -219,3 +219,9 @@ description | string | "" | A longer description of the dataset
 #### DELETE
 
 `DELETE /datasets/{dataset_id}/`
+
+# Filter datasets by exact name
+
+The datasets catalog will contain a `by_name` sub catalog on its response. GET to that endpoint with the interpolated dataset name to get a catalog with the same shape as the main datasets catalog.
+
+Matches will be case sensitive
