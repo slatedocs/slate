@@ -12,3 +12,4 @@ gem 'rake', '~> 10.4.2'
 gem 'therubyracer', '~> 0.12.1'
 
 gem 'git_remote_branch', '0.3.8'
+gem 'therubyracer', '~> 0.12.1', platforms: :ruby
