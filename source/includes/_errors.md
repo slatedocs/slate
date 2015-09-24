@@ -27,6 +27,7 @@ Error Code | Meaning
 402 | Incorrect number of parameters
 403 | Bad Credentials: incorrect handle or password
 405 | Password Too Short: password must be at least 6 characters long
+407 | Null Response: expected transaction hash from Ethereum node, received null
 408 | No Response
 409 | Invalid Response: could not parse response from Ethereum node
 410 | Local Node Failure: RPC request to local Ethereum node failed
