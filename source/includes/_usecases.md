@@ -48,6 +48,10 @@ curl "https://api.safetyculture.io/audits/search?field=audit_id&field=modified_a
 
 If you have more than 1000 audits, then you'll see that the amount is limited and the `total` will be greater than the `count` retrieved. In this case, you should make another request, setting the `modified_after` parameter to the date of the last retrieved audit. Repeat this process until all of the audits have been retrieved.
 
+<aside class="info">
+Ensure that you retrieve further audits if the total is greater than the count, even if the count is less than the expected limit of 1000.
+</aside>
+
 ### Retrieve the corresponding audit data for each identifier
 
 ```shell
@@ -83,6 +87,28 @@ The media associated with all audits can be quite a large quantity. To preserve 
 
 ## Getting modified audits
 
-Once you have extracted all of the historical data, the next obvious step is to retrieve the modified audits so that you can continue populating your other data stores. This function is also useful for producing regular updates from your audit data, such as a live dashboard.
+```shell
+curl "https://api.safetyculture.io/audits/search?field=audit_id&field=modified_at&modified_after=2015-03-24T06:31:47.203Z" \
+  -H "Authorization: Bearer ..."
+```
 
-...
+Once you have extracted all of the historical data, the next obvious step is to retrieve the modified audits so that you can continue populating your own systems with new audit data. This function is also useful for producing regular updates from your audit data, such as a live dashboard.
+
+To do this, you will search for audits that are either after the last audit that you have, or the last time you attempted to retrieve new audits, using the `modified_after` parameter.
+
+```json
+{
+  "count": 1,
+  "total": 1,
+  "audits": [
+    {
+      "audit_id": "audit_853C17E6040B43DA1DFDDD8E6A4D6D3A",
+      "modified_at": "2015-03-24T06:31:47.203Z"
+    }
+  ]
+}
+```
+
+This will retrieve only the audits modified since you last retrieved data, and often may contain no audits at all depending on the frequency of updates and the frequency data is retrieved. With this information, you may then follow the steps from the [previous use case](#retrieve-the-corresponding-audit-data-for-each-identifier) to retrieve the audit content and media.
+
+Note that the audits retrieved in this request may return identifiers that you have previously retrieved if the audit it points to has been modified. You should ensure that this overwrites any audit data that exists in your own system rather than duplicating them.
