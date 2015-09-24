@@ -26,7 +26,9 @@ Error Code | Meaning
 401 | Not Logged In
 402 | Incorrect number of parameters
 403 | Bad Credentials: incorrect handle or password
+404 | Transaction Not Found
 405 | Password Too Short: password must be at least 6 characters long
+406 | Null Call Return: expected contract call to return value, received null
 407 | Null Response: expected transaction hash from Ethereum node, received null
 408 | No Response
 409 | Invalid Response: could not parse response from Ethereum node
