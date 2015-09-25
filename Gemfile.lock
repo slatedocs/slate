@@ -32,7 +32,6 @@ GEM
     erubis (2.7.0)
     execjs (2.5.2)
     ffi (1.9.8)
-    git_remote_branch (0.3.8)
     haml (4.0.6)
       tilt
     hike (1.2.3)
@@ -131,7 +130,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  git_remote_branch (= 0.3.8)
   middleman (~> 3.3.10)
   middleman-autoprefixer (~> 2.4.4)
   middleman-gh-pages (~> 0.0.3)
@@ -140,6 +138,3 @@ DEPENDENCIES
   redcarpet (~> 3.3.2)
   rouge (~> 1.9.0)
   therubyracer (~> 0.12.1)
-
-BUNDLED WITH
-   1.10.6
