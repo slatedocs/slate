@@ -1,7 +1,8 @@
 ---
-
 title: API Cobrato
 
+language_tabs:
+  - shell
 
 toc_footers:
  - Este projeto é mantido por
@@ -21,4 +22,3 @@ includes:
 
 search: true
 ---
-

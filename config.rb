@@ -21,7 +21,7 @@ activate :syntax
 activate :autoprefixer do |config|
   config.browsers = ['last 2 version', 'Firefox ESR']
   config.cascade  = false
-  config.inline   = true
+  # config.inline   = true # FIXME commented to get titles with accented chars working
 end
 
 # Github pages require relative links
