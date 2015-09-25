@@ -2231,6 +2231,66 @@ EXEMPLO DE PAYLOAD
 
 <p>Informações enviadas quando uma Conta de Cobrança é excluida.</p>
 
+          <h1 id="tipos-de-cobran�a">Tipos de cobrança</h1>
+
+<p>Os tipos de cobrança implementados pelo Cobrato. Não é necessária autenticação.</p>
+
+<p>Parâmetros</p>
+
+<ul>
+<li>bank_billets (array): lista de boletos bancários implementados
+
+<ul>
+<li>bank_code (string): código do banco</li>
+<li>bank_name (string): nome do banco</li>
+<li>portfolio_codes (array): lista de códigos de portfólio do banco</li>
+<li>regress (boolean): indica se para este banco é aceito ou não arquivo de retorno</li>
+<li>remittance (boolean): indica se para este banco é aceito ou não arquivo de remessa</li>
+</ul></li>
+</ul>
+
+<h2 id="lista-de-todos-os-tipos-de-cobran�a">Lista de Todos os Tipos de Cobrança</h2>
+<pre class="highlight plaintext"><code>Listar Tipos de Cobrança
+
+DEFINIÇÃO
+
+  GET https://app.cobrato.com/api/v1/charging_types
+
+EXEMPLO DE REQUISIÇÃO
+
+  $ curl -i \
+    -H 'User-Agent: My App 1.0' \
+    -H 'Accept: application/json' \
+    -H 'Content-type: application/json' \
+    -X GET https://app.cobrato.com/api/v1/charging_types
+
+EXEMPLO DE ESTADO DA RESPOSTA
+
+    200 OK
+
+EXEMPLO DE CORPO DA RESPOSTA
+
+  {
+    "charging_types": {
+      "bank_billets": [
+        {
+          "bank_code": "001",
+          "bank_name": "BancoDoBrasil",
+          "portfolio_codes": [ "11", "12", "16", "17", "18", "31", "51" ],
+          "regress": true,
+          "remittance": false
+        },
+        {
+          // informações de outro banco
+        }
+        ...
+      ]
+    }
+  }
+</code></pre>
+
+<p>Retorna um objeto JSON contendo todos os tipos de cobraça implementados pelo Cobrato.</p>
+
       </div>
       <div class="dark-box">
           <div class="lang-selector">
