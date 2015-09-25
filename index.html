@@ -11,6 +11,11 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
       <script src="javascripts/all.js" type="text/javascript"></script>
 
+      <script>
+        $(function() {
+          setupLanguages(["shell"]);
+        });
+      </script>
   </head>
 
   <body class="index">
@@ -22,6 +27,9 @@
     </a>
     <div class="tocify-wrapper">
       <img src="images/logo.png" />
+        <div class="lang-selector">
+              <a href="#" data-language-name="shell">shell</a>
+        </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
         </div>
@@ -37,7 +45,7 @@
       <div class="dark-box"></div>
       <div class="content">
         
-          <h1 id="autenticação">Autenticação</h1>
+          <h1 id="autentica��o">Autenticação</h1>
 
 <p>Autenticação</p>
 
@@ -62,11 +70,11 @@ EXEMPLO DE RESPOSTA
 
 </code></pre>
 
-<h2 id="formatos-de-requisição-e-resposta">Formatos de requisição e resposta</h2>
+<h2 id="formatos-de-requisi��o-e-resposta">Formatos de requisição e resposta</h2>
 
 <p>O único formato disponível para requisições e respostas é JSON.</p>
 
-<h2 id="fuso-horário">Fuso horário</h2>
+<h2 id="fuso-hor�rio">Fuso horário</h2>
 
 <p>Todos os dados recebidos e enviados através da API do Cobrato é baseado no fuso horário UTC. No entanto um usuário pode ter uma preferência por outro. Este fuso horário vai ser utilizado para apresentar a resposta, isso não afeta o resultado da resposta da API</p>
 
@@ -95,7 +103,7 @@ EXEMPLO DE RESPOSTA
 </tr>
 </tbody></table>
 
-<h2 id="formato-numérico">Formato numérico</h2>
+<h2 id="formato-num�rico">Formato numérico</h2>
 
 <p>Todos os números são fornecidos tanto com números inteiros, ponto flutuante nativos para JSON.</p>
 
@@ -235,7 +243,7 @@ EXEMPLO DE CORPO DA RESPOSTA
   }
 </code></pre>
 
-<h2 id="informações-do-cedente">Informações do Cedente</h2>
+<h2 id="informa��es-do-cedente">Informações do Cedente</h2>
 <pre class="highlight plaintext"><code>Mostra Cedente
 
 DEFINIÇÃO
@@ -279,7 +287,7 @@ EXEMPLO DE CORPO DA RESPOSTA
 
 <p>Retorna as informações detalhadas do cedente informado em JSON.</p>
 
-<h2 id="criação-de-cedente">Criação de Cedente</h2>
+<h2 id="cria��o-de-cedente">Criação de Cedente</h2>
 <pre class="highlight plaintext"><code>Criar Cedente
 
 DEFINIÇÃO
@@ -393,7 +401,7 @@ EXEMPLO DE CORPO DA RESPOSTA COM INSUCESSO
 </tr>
 </tbody></table>
 
-<h2 id="atualização-de-cedente">Atualização de Cedente</h2>
+<h2 id="atualiza��o-de-cedente">Atualização de Cedente</h2>
 <pre class="highlight plaintext"><code>Atualizar Cedente
 
 DEFINIÇÃO
@@ -498,7 +506,7 @@ EXEMPLO DE CORPO DA RESPOSTA COM INSUCESSO
 </tr>
 </tbody></table>
 
-<h2 id="exclusão-de-cedente">Exclusão de Cedente</h2>
+<h2 id="exclus�o-de-cedente">Exclusão de Cedente</h2>
 <pre class="highlight plaintext"><code>Excluir Cedente
 
 DEFINIÇÃO
@@ -524,7 +532,7 @@ EXEMPLO DE ESTADO DA RESPOSTA COM CEDENTE INEXISTENTE
 
 <p>Exclui determinado cedente e junto a ele todas suas contas de cobrança, contas bancárias e as cobranças. As mudanças são irreversíveis.</p>
 
-          <h1 id="contas-bancárias">Contas Bancárias</h1>
+          <h1 id="contas-banc�rias">Contas Bancárias</h1>
 <pre class="highlight plaintext"><code>Conta Bancária
 
 EXEMPLO
@@ -565,7 +573,7 @@ Apenas não utilizado pelo HSBC(399)
 _links: array of object
 links da conta bancária e de seu cedente</p>
 
-<h2 id="lista-de-todos-as-contas-bancárias">Lista de Todos as Contas Bancárias</h2>
+<h2 id="lista-de-todos-as-contas-banc�rias">Lista de Todos as Contas Bancárias</h2>
 <pre class="highlight plaintext"><code>Listar Conta Bancária
 
 DEFINIÇÃO
@@ -603,7 +611,7 @@ EXEMPLO DE CORPO DA RESPOSTA
 
 <p>Retorna uma lista em JSON contendo todos as contas bancárias em que seus cedentes pertencentes a sua Conta de Serviço.</p>
 
-<h2 id="informações-da-conta-bancária">Informações da Conta Bancária</h2>
+<h2 id="informa��es-da-conta-banc�ria">Informações da Conta Bancária</h2>
 <pre class="highlight plaintext"><code>Mostra Conta Bancária
 
 DEFINIÇÃO
@@ -643,7 +651,7 @@ EXEMPLO DE CORPO DA RESPOSTA
 
 </code></pre>
 
-<h2 id="retorna-as-informações-detalhadas-da-conta-bancária-informada-em-json-e-também-a-referência-ao-seu-cedente">Retorna as informações detalhadas da conta bancária informada em JSON e também a referência ao seu cedente.</h2>
+<h2 id="retorna-as-informa��es-detalhadas-da-conta-banc�ria-informada-em-json-e-tamb�m-a-refer�ncia-ao-seu-cedente">Retorna as informações detalhadas da conta bancária informada em JSON e também a referência ao seu cedente.</h2>
 <pre class="highlight plaintext"><code>Criar Conta Bancária
 
 DEFINIÇÃO
@@ -704,7 +712,7 @@ agency_digit: string requirido apenas para o Banco do Brasil(001)
 account:  string requirido
 account_digit:  string requirido com exceção do HSBC(399)</p>
 
-<h2 id="atualização-de-conta-bancária">Atualização de Conta Bancária</h2>
+<h2 id="atualiza��o-de-conta-banc�ria">Atualização de Conta Bancária</h2>
 <pre class="highlight plaintext"><code>Atualizar Conta Bancária
 
 DEFINIÇÃO
@@ -760,7 +768,7 @@ agency_digit: string
 account:  string
 account_digit:  string</p>
 
-<h2 id="exclusão-de-conta-bancária">Exclusão de Conta Bancária</h2>
+<h2 id="exclus�o-de-conta-banc�ria">Exclusão de Conta Bancária</h2>
 <pre class="highlight plaintext"><code>Excluir Conta Bancária
 
 DEFINIÇÃO
@@ -837,7 +845,7 @@ EXEMPLO DE ESTADO DA RESPOSTA COM INSUCESSO
 
 <p>Retorna todas as carteiras disponíveis de uma determinada Conta de Cobrança a partir de uma Conta Bancária.</p>
 
-          <h1 id="conta-cobrança">Conta Cobrança</h1>
+          <h1 id="conta-cobran�a">Conta Cobrança</h1>
 <pre class="highlight plaintext"><code>Conta de Cobrança
 
 EXEMPLO
@@ -890,7 +898,7 @@ caso for &#39;ok&rsquo; a conta já consta como homologada
 _links: array of object
 links da conta de cobrança e de sua conta bancária</p>
 
-<h2 id="lista-de-todos-as-contas-de-cobrança">Lista de Todos as Contas de Cobrança</h2>
+<h2 id="lista-de-todos-as-contas-de-cobran�a">Lista de Todos as Contas de Cobrança</h2>
 <pre class="highlight plaintext"><code>Listar Conta de Cobrança
 
 DEFINIÇÃO
@@ -928,7 +936,7 @@ EXEMPLO DE CORPO DA RESPOSTA
 
 <p>Retorna uma lista em JSON contendo todos as contas de cobranças que pertencem a sua Conta de Serviço.</p>
 
-<h3 id="informações-da-conta-de-cobrança">Informações da Conta de Cobrança</h3>
+<h3 id="informa��es-da-conta-de-cobran�a">Informações da Conta de Cobrança</h3>
 <pre class="highlight plaintext"><code>Mostra Conta de Cobrança
 
 DEFINIÇÃO
@@ -973,7 +981,7 @@ EXEMPLO DE CORPO DA RESPOSTA
 
 <p>Retorna as informações detalhadas da conta de cobrança informada em JSON e também a referência a sua conta bancária.</p>
 
-<h2 id="informações-da-conta-de-cobrança">Informações da Conta de Cobrança</h2>
+<h2 id="informa��es-da-conta-de-cobran�a">Informações da Conta de Cobrança</h2>
 <pre class="highlight plaintext"><code>Mostra Conta de Cobrança
 
 DEFINIÇÃO
@@ -1016,7 +1024,7 @@ EXEMPLO DE CORPO DA RESPOSTA
 
 </code></pre>
 
-<h2 id="retorna-as-informações-detalhadas-da-conta-de-cobrança-informada-em-json-e-também-a-referência-a-sua-conta-bancária">Retorna as informações detalhadas da conta de cobrança informada em JSON e também a referência a sua conta bancária.</h2>
+<h2 id="retorna-as-informa��es-detalhadas-da-conta-de-cobran�a-informada-em-json-e-tamb�m-a-refer�ncia-a-sua-conta-banc�ria">Retorna as informações detalhadas da conta de cobrança informada em JSON e também a referência a sua conta bancária.</h2>
 <pre class="highlight plaintext"><code>Criar Conta de Cobrança
 
 DEFINIÇÃO
@@ -1170,7 +1178,7 @@ número inicial do nosso número, sendo atribuído automaticamente e sequencialm
 end_number: integer
 número final do nosso número, sendo o último número a ser atribuído, após isso a sequência é reiniciada</p>
 
-<h2 id="atualização-de-conta-de-cobrança">Atualização de Conta de Cobrança</h2>
+<h2 id="atualiza��o-de-conta-de-cobran�a">Atualização de Conta de Cobrança</h2>
 <pre class="highlight plaintext"><code>Atualizar Conta de Cobrança
 
 DEFINIÇÃO
@@ -1276,7 +1284,7 @@ número inicial do nosso número, sendo atribuído automaticamente e sequencialm
 end_number: integer
 número final do nosso número, sendo o último número a ser atribuído, após isso a sequência é reiniciada</p>
 
-<h2 id="exclusão-de-conta-de-cobrança">Exclusão de Conta de Cobrança</h2>
+<h2 id="exclus�o-de-conta-de-cobran�a">Exclusão de Conta de Cobrança</h2>
 <pre class="highlight plaintext"><code>Excluir Conta de Cobrança
 
 DEFINIÇÃO
@@ -1303,7 +1311,7 @@ EXEMPLO DE ESTADO DA RESPOSTA COM CONTA DE COBRANÇA INEXISTENTE
 
 <p>Exclui determinada conta de cobrança e junto a ela todas suas cobranças. As mudanças são irreversíveis.</p>
 
-          <h1 id="cobrança">Cobrança</h1>
+          <h1 id="cobran�a">Cobrança</h1>
 
 <p>As Cobranças, pertencem as suas contas de cobrança, sendo assim é necessário que sempre haja ao menos uma conta de cobrança homologada para a criação de cobranças. Ao criar uma conta de cobrança é automaticamente gerada uma cobrança para homologar a conta.</p>
 
@@ -1418,7 +1426,7 @@ EXEMPLO DE ESTADO DA RESPOSTA COM CONTA DE COBRANÇA INEXISTENTE
 </tr>
 </tbody></table>
 
-<h2 id="lista-de-todos-as-cobrança">Lista de Todos as Cobrança</h2>
+<h2 id="lista-de-todos-as-cobran�a">Lista de Todos as Cobrança</h2>
 
 <p>Retorna uma lista em JSON contendo todos as cobranças que pertencem a sua Conta de Serviço.</p>
 <pre class="highlight plaintext"><code>Listar Cobrança
@@ -1456,7 +1464,7 @@ EXEMPLO DE CORPO DA RESPOSTA
 
 </code></pre>
 
-<h2 id="informações-da-cobrança">Informações da Cobrança</h2>
+<h2 id="informa��es-da-cobran�a">Informações da Cobrança</h2>
 <pre class="highlight plaintext"><code>Informar Cobrança
 
 DEFINIÇÃO
@@ -1557,7 +1565,7 @@ EXEMPLO DE CORPO DA RESPOSTA COM INSUCESSO
 
 </code></pre>
 
-<h2 id="criação-de-cobrança">Criação de Cobrança</h2>
+<h2 id="cria��o-de-cobran�a">Criação de Cobrança</h2>
 
 <p>Cria um nova cobrança, caso haja sucesso retornará as informações da mesma e será gerado seu boleto. Se houverem erros eles serão informados no corpo da resposta.</p>
 
@@ -1632,7 +1640,7 @@ EXEMPLO DE CORPO DA RESPOSTA COM INSUCESSO
 </tr>
 </tbody></table>
 
-<h2 id="atualização-de-cobrança">Atualização de Cobrança</h2>
+<h2 id="atualiza��o-de-cobran�a">Atualização de Cobrança</h2>
 <pre class="highlight plaintext"><code>Atualizar Cobrança
 
 DEFINIÇÃO
@@ -1751,7 +1759,7 @@ Exclui determinada cobrança. As mudanças são irreversíveis, e não será mai
 </tr>
 </tbody></table>
 
-<h2 id="exclusão-de-cobrança">Exclusão de Cobrança</h2>
+<h2 id="exclus�o-de-cobran�a">Exclusão de Cobrança</h2>
 <pre class="highlight plaintext"><code>Excluir Conta de Cobrança
 
 DEFINIÇÃO
@@ -1817,7 +1825,7 @@ EXEMPLO DE CORPO DA RESPOSTA
 
 <p>Retorna uma lista em JSON contendo todos os webhooks pertencentes a sua Conta de Serviço.</p>
 
-<h2 id="informações-do-webhook">Informações do Webhook</h2>
+<h2 id="informa��es-do-webhook">Informações do Webhook</h2>
 <pre class="highlight plaintext"><code>Mostra Webhook
 
 DEFINIÇÃO
@@ -1892,7 +1900,7 @@ EXEMPLO DE CORPO DA RESPOSTA COM INSUCESSO
 
 </code></pre>
 
-<h2 id="criação-de-webhook">Criação de Webhook</h2>
+<h2 id="cria��o-de-webhook">Criação de Webhook</h2>
 
 <p>Cria um novo webhook, retornando as informações do mesmo caso haja sucesso. Para realizar o cadastro é necessária que a URL informa aceite as requisições POST e GET, respondendo sempre com HTTP 200. Afim de verificação da URL, o Cobrato fará requisições testes a mesma</p>
 
@@ -1903,7 +1911,7 @@ URL na qual serão feitas as requisições GET e POST, esperando HTTP 200 como r
 description:  string
 Descrição opcional do Webhook</p>
 
-<h2 id="atualização-de-webhook">Atualização de Webhook</h2>
+<h2 id="atualiza��o-de-webhook">Atualização de Webhook</h2>
 <pre class="highlight plaintext"><code>Atualizar Webhook
 
 DEFINIÇÃO
@@ -1944,7 +1952,7 @@ EXEMPLO DE ESTADO DA RESPOSTA COM INSUCESSO
 <p>description:  string
 Descrição opcional do Webhook</p>
 
-<h2 id="exclusão-de-webhook">Exclusão de Webhook</h2>
+<h2 id="exclus�o-de-webhook">Exclusão de Webhook</h2>
 <pre class="highlight plaintext"><code>Excluir Webhook
 
 DEFINIÇÃO
@@ -2031,9 +2039,9 @@ EXEMPLO DE ESTADO DA RESPOSTA COM WEBHOOK INEXISTENTE
 </tr>
 </tbody></table>
 
-          <h1 id="webhook-cobrança">Webhook - Cobrança</h1>
+          <h1 id="webhook-cobran�a">Webhook - Cobrança</h1>
 
-<h2 id="cobrança-atualizada">Cobrança Atualizada</h2>
+<h2 id="cobran�a-atualizada">Cobrança Atualizada</h2>
 <pre class="highlight plaintext"><code>Cobrança Atualizada
 
 EXEMPLO DE PAYLOAD
@@ -2054,7 +2062,7 @@ EXEMPLO DE PAYLOAD
 
 <p>Informações enviadas quando uma Cobrança é atualizada.</p>
 
-<h2 id="cobrança-criada">Cobrança criada</h2>
+<h2 id="cobran�a-criada">Cobrança criada</h2>
 <pre class="highlight plaintext"><code>Cobrança Criada
 
 EXEMPLO DE PAYLOAD
@@ -2075,7 +2083,7 @@ EXEMPLO DE PAYLOAD
 
 <p>Informações enviadas quando uma Cobrança é criada.</p>
 
-<h2 id="cobrança-recebida">Cobrança Recebida</h2>
+<h2 id="cobran�a-recebida">Cobrança Recebida</h2>
 <pre class="highlight plaintext"><code>Cobrança Recebida
 
 EXEMPLO DE PAYLOAD
@@ -2096,7 +2104,7 @@ EXEMPLO DE PAYLOAD
 
 <p>Informações enviadas quando uma Cobrança é recebida.</p>
 
-<h2 id="cobrança-excluida">Cobrança Excluida</h2>
+<h2 id="cobran�a-excluida">Cobrança Excluida</h2>
 <pre class="highlight plaintext"><code>Cobrança Excluida
 
 EXEMPLO DE PAYLOAD
@@ -2117,7 +2125,7 @@ EXEMPLO DE PAYLOAD
 
 <p>Informações enviadas quando uma Cobrança é excluida.</p>
 
-<h2 id="desfazer-recebimento-de-cobrança">Desfazer Recebimento de Cobrança</h2>
+<h2 id="desfazer-recebimento-de-cobran�a">Desfazer Recebimento de Cobrança</h2>
 <pre class="highlight plaintext"><code>Desfazer Recebimento de Cobrança
 
 EXEMPLO DE PAYLOAD
@@ -2138,7 +2146,7 @@ EXEMPLO DE PAYLOAD
 
 <p>Informações enviadas quando uma Cobrança tem seu recebimento desfeito.</p>
 
-          <h2 id="cobrança-atualizada">Cobrança Atualizada</h2>
+          <h2 id="cobran�a-atualizada">Cobrança Atualizada</h2>
 <pre class="highlight plaintext"><code>Cobrança Atualizada
 
 EXEMPLO DE PAYLOAD
@@ -2161,7 +2169,7 @@ EXEMPLO DE PAYLOAD
 
           <h1 id="webhook-conta-cobranca">Webhook Conta Cobranca</h1>
 
-<h2 id="conta-de-cobrança-atualizada">Conta de Cobrança Atualizada</h2>
+<h2 id="conta-de-cobran�a-atualizada">Conta de Cobrança Atualizada</h2>
 <pre class="highlight plaintext"><code>Conta de Cobrança Atualizada
 
 EXEMPLO DE PAYLOAD
@@ -2181,7 +2189,7 @@ EXEMPLO DE PAYLOAD
 
 <p>Informações enviadas quando uma Conta de Cobrança é atualizada.</p>
 
-<h2 id="conta-de-cobrança-criada">Conta de Cobrança criada</h2>
+<h2 id="conta-de-cobran�a-criada">Conta de Cobrança criada</h2>
 <pre class="highlight plaintext"><code>Conta de Cobrança Criada
 
 EXEMPLO DE PAYLOAD
@@ -2202,7 +2210,7 @@ EXEMPLO DE PAYLOAD
 
 <p>Informações enviadas quando uma Conta de Cobrança é criada.</p>
 
-<h2 id="conta-de-cobrança-excluida">Conta de Cobrança Excluida</h2>
+<h2 id="conta-de-cobran�a-excluida">Conta de Cobrança Excluida</h2>
 <pre class="highlight plaintext"><code>Conta de Cobrança Excluida
 
 EXEMPLO DE PAYLOAD
@@ -2225,6 +2233,9 @@ EXEMPLO DE PAYLOAD
 
       </div>
       <div class="dark-box">
+          <div class="lang-selector">
+                <a href="#" data-language-name="shell">shell</a>
+          </div>
       </div>
     </div>
   </body>
