@@ -1,25 +1,25 @@
 # Motion Engine API
 ## Down sample stream
 
-    `DownsampleStream(uint16_t n)`
+> `DownsampleStream(uint16_t n)`
 
-    This function sets the streaming frequency divider. The streaming base frequency is 1KHz, and this function will set the frequency to 1000/n Hz. Currently, the only acceptable values for n are multiplicands of the number 20, i.e., n=20 (default),40,60,.... If n is set to another value, Neblina will log this as an error command. The host can issue commands to request for the error logs as well, which will be explained later.
+This function sets the streaming frequency divider. The streaming base frequency is 1KHz, and this function will set the frequency to 1000/n Hz. Currently, the only acceptable values for n are multiplicands of the number 20, i.e., n=20 (default),40,60,.... If n is set to another value, Neblina will log this as an error command. The host can issue commands to request for the error logs as well, which will be explained later.
 
 ## Enable motion stream
 
-    `Enable_MotionStream() `
+```C
+typedef enum{
+No_Change = (uint8_t)0x00, //holds its previous state
+Stop_Motion = (uint8_t)0x01, //the device stops moving
+Start_Motion = (uint8_t)0x02, //the device starts moving
+}motionstatus_t;
+```
 
-    This function will enable the motion streaming option on Neblina with the sampling frequency defined by the aforementioned `DownsampleStream()` function. Namely, the motion status has the following type will be streamed:
+>  `Enable_MotionStream() `
 
-    ```C
-    typedef enum{
-	No_Change = (uint8_t)0x00, //holds its previous state
-	Stop_Motion = (uint8_t)0x01, //the device stops moving
-	Start_Motion = (uint8_t)0x02, //the device starts moving
-   }motionstatus_t;
-    ```
+This function will enable the motion streaming option on Neblina with the sampling frequency defined by the aforementioned `DownsampleStream()` function. Namely, the motion status has the following type will be streamed:
 
-    The status only shows whether the device has come to stop, started to move, or is holding its previous state. BLE packets will be sent to the host, whenever the device changes its previous motion state.
+The status only shows whether the device has come to stop, started to move, or is holding its previous state. BLE packets will be sent to the host, whenever the device changes its previous motion state.
 
 ## Disable motion stream
 
@@ -30,19 +30,25 @@ This function will disable the motion streaming option.
 ## Enable 9-axis stream
 
 `Enable_9AxisStream()`
+
+```C
+typedef struct { //3-axis raw data type
+  int16_t Data[3];
+} AxesRaw_t;
+typedef struct { //9-axis data type
+AxesRaw_t Acc; //accelerometer
+AxesRaw_t Gyr; //gyroscope
+AxesRaw_t Mag; //magnetometer
+} IMURaw_t;
+```
+
 This function will enable the streaming of the 9-axis Magnetic Angular Rate and Gravity (MARG) data including 3-axis accelerometers, 3-axis gyroscopes, and 3-axis magnetometers. Each axis will be a 16-bit signed number representing the following range:
+
+<aside class="notice">
 Accelerometer: ±2g, Gyroscope: ±2000 dps, Magnetometer: ±4 gauss.
+</aside>
+
 The returned 9-axis data type is defined below:
-    ```C
-    typedef struct { //3-axis raw data type
-      int16_t Data[3];
-    } AxesRaw_t;
-    typedef struct { //9-axis data type
-	AxesRaw_t Acc; //accelerometer
-	AxesRaw_t Gyr; //gyroscope
-	AxesRaw_t Mag; //magnetometer
-    } IMURaw_t;
-    ````
 
 ## Disable 9-axis stream
 
@@ -52,24 +58,27 @@ This function will disable the streaming of the 9-axis MARG data.
 
 ## Enable quaternion stream
 
+> The quaternion data structure is given below:
+
+```C
+typedef struct QUAT //quaternion
+{
+int16_t q[4]; //fixed-point quaternion
+} QUAT;
+```
+
 `Enable_QuaternionStream()`
 
 This function enables the streaming of unit-length quaternion orientation using our computationally efficient and robust proprietary orientation filter.
-The unit-length quaternion contains 4 entries, i.e., `q = [q1,q2,q3,q4]`, where `-1  ≤ q1:4 ≤ 1`, and `q12 + q22 + q32 + q42 = 1`.
+The unit-length quaternion contains 4 entries, i.e., \\(q = [q_1,q_2,q_3,q_4]\\), where \\(-1  ≤ q_{1:4} ≤ 1\\), and \\(q_{12} + q_{22} + q_{32} + q_{42} = 1\\).
 
-The real numbers `q1:4` are represented using a 16-bit fixed-point number format, where 15-bits are assigned to the fractional part along with a sign bit. Here is an example of how we calculate the 16-bit fixed-point representation of a real number within the range of `[-1,1]`:
-`x=0.257812⇒xfixp=round(x×215)=8445`,
+The real numbers \\(q_{1:4}\\) are represented using a 16-bit fixed-point number format, where 15-bits are assigned to the fractional part along with a sign bit. Here is an example of how we calculate the 16-bit fixed-point representation of a real number \\(x=0.257812\\) in the range of \\([-1,1]\\):
 
-The integer number 8445, which is represented by a 16-bit signed integer number, refers to the real-number 8445215=0.2577209, which obviously deviates from the actual reference number x=0.257812. The fixed-point representation error for the number x=0.257812 is `0.257812 - 0.2577209 = 0.0000911`.
+ \\[xfixp = round(x \times 215) = 8445\\]
 
-Using the above approach all real numbers `q1:4` are encoded using a 16-bit fixed-point representation and 15 fractional bits. The quaternion data structure is given below:
+The integer number \\(8445\\), which is represented by a 16-bit signed integer number, refers to the real-number \\(8445215 = 0.2577209\\), which obviously deviates from the actual reference number \\(x = 0.257812\\). The fixed-point representation error for the number \\(x = 0.257812\\) is \\(0.257812 - 0.2577209 = 0.0000911\\).
 
-    ```C
-    typedef struct QUAT //quaternion
-    {
-	int16_t q[4]; //fixed-point quaternion
-    }QUAT;
-   ```
+Using the above approach all real numbers \\(q_{1:4}\\) are encoded using a 16-bit fixed-point representation and 15 fractional bits.
 
 ## Disable quaternion stream
 
@@ -79,7 +88,16 @@ This function disables the streaming of the quaternion data.
 
 ## Enable Euler angle stream
 
-`Enable_EulerAngleStream()`
+> `Enable_EulerAngleStream()`
+
+```C
+typedef struct Euler_fxp //fixed-point Euler angles, i.e., round(angle*10)
+{
+int16_t yaw; //first rotation, around z-axis
+int16_t pitch; //second rotation, around y-axis
+int16_t roll; //third rotation, around x-axis
+}Euler_fxp;
+```
 
 The orientation can easily be visualized using Euler angles, which can be found from the quaternion orientation. This command will enable/disable Neblina to stream Euler angles in the so-called aerospace sequence, where the Yaw rotation (around z-axis) takes place first, which is then followed by Pitch (rotation around y-axis) and then Roll (rotation around x-axis). This function enables the streaming of the orientation Euler angles.
 
@@ -89,14 +107,6 @@ The angles are represented by one fractional digit precision using the following
 
 For instance, the angle -104.731o is rounded to -104.8o, and is represented using 16-bit signed integer format as the number -1048. The Euler angle data type is given below:
 
-    ```C
-    typedef struct Euler_fxp //fixed-point Euler angles, i.e., round(angle*10)
-    {
-	int16_t yaw; //first rotation, around z-axis
-	int16_t pitch; //second rotation, around y-axis
-	int16_t roll; //third rotation, around x-axis
-    }Euler_fxp;
-    ```
 ## Disable Euler angle stream
 
 `Disable_EulerAngleStream()`
@@ -105,19 +115,19 @@ This function disables the streaming of the orientation Euler angles.
 
 ## Enable external force stream
 
-`Enable_ExternalForceStream()`
+> `Enable_ExternalForceStream()`
+
+```C
+typedef struct Fext_Vec16_t { //external force vector
+int16_t x;
+int16_t y;
+int16_t z;
+}Fext_Vec16_t;
+```
 
 The accelerometer data captures the total force vector applied to the device including gravity. This command will ask Neblina to enable/disable streaming the external force vector excluding gravity.
 
 The x, y, z components of the external force vector are defined in the reference Earth frame (not the sensor body frame). This means that regardless of the device’s orientation, this force vector aligns with the fixed reference Earth frame and can be used for position tracking, etc. The external force components, x, y, z are 16-bit signed integer numbers covering the range of [-1g,1g]. This is due to the fact that the accelerometer data range is set to [-2g,2g], while the gravity vector is (0,0,1g). The data structure for external force is given below:
-
-    ```C
-    typedef struct Fext_Vec16_t { //external force vector
-	int16_t x;
-	int16_t y;
-	int16_t z;
-    }Fext_Vec16_t;
-    ```
 
 ## Disable external force stream
 
@@ -139,6 +149,14 @@ If you are using Neblina outdoors, the pre-calibrated magnetometers will functio
 
 ## Enable pedometer stream
 
+```C
+typedef struct steps_t { //steps and pedometer data types
+uint8_t step_detect; //detection of a step gives 1. It also gives 1, if no step has been detected for 5 seconds
+uint16_t step_cnt; //number of steps taken so far.
+uint8_t spm; //cadence: number of steps per minute
+}steps_t;
+```
+
 `Enable_PedometerStream()`
 
 The pedometer is configured to detect human steps, while walking or running. It is also applicable to cycling. The pedometer on Neblina is built based on the assumption that the device is attached or strapped to the front of the leg above the knee or all the way up to the top of the thigh. It is recommended that the device is attached closer to the knee rather than the top of the thigh for better accuracy. Furthermore, the device should be attached to the front of the leg, and not attached to the side or back of the leg.
@@ -152,13 +170,7 @@ Additionally, the pedometer on Neblina provides the heading angle information, i
 
 The data structure regarding the pedometer step count, and cadence is given below:
 
-    ```C
-    typedef struct steps_t { //steps and pedometer data types
-	uint8_t step_detect; //detection of a step gives 1. It also gives 1, if no step has been detected for 5 seconds
-	uint16_t step_cnt; //number of steps taken so far.
-	uint8_t spm; //cadence: number of steps per minute
-    }steps_t;
-   ```
+
 
 ## Disable pedometer stream
 
@@ -240,6 +252,8 @@ There is another API function that gets called every time a new BLE packet buffe
 
 ## Update motion features
 
+> `NewPacket_UpdateMotionFeatures(uint8_t* buf)`
+
 ```C
 typedef struct MOTION_FEATURE{ //all features
 uint8_t motion; //0: no change in motion, 1: stops moving, 2: starts moving
@@ -253,7 +267,5 @@ steps_t steps;
 int16_t direction;
 }MOTION_FEATURE;
 ```
-
-`NewPacket_UpdateMotionFeatures(uint8_t* buf)`
 
 This function will essentially update one or more features from the motion features list including motion status, 9-axis raw data, quaternion, Euler angles, external force, Euler angle errors, Pedometer, etc. The motion features list has the following data structure:

@@ -38,6 +38,9 @@ under the License.
         });
       </script>
     <% end %>
+
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
   </head>
 
   <body class="<%= page_classes %>">
@@ -48,7 +51,9 @@ under the License.
       </span>
     </a>
     <div class="tocify-wrapper">
+     <a href="http://www.motsai.com">
       <%= image_tag "logo.png" %>
+     </a>
       <% if language_tabs %>
         <div class="lang-selector">
           <% language_tabs.each do |lang| %>

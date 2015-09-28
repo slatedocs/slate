@@ -5,7 +5,7 @@ language_tabs:
   - C: C code
 
 toc_footers:
-  - <a href='http://www.motsai.com'>&copy; Motsai</a> All Rights Reserved
+  - <a href='http://www.motsai.com'>&copy; Motsai.</a> All Rights Reserved
   - <a href='http://github.com/tripit/slate'>Documentation Powered by Slate</a>
 
 includes:
