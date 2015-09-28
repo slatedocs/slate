@@ -8,6 +8,7 @@
 ## Enable motion stream
 
     `Enable_MotionStream() `
+
     This function will enable the motion streaming option on Neblina with the sampling frequency defined by the aforementioned `DownsampleStream()` function. Namely, the motion status has the following type will be streamed:
 
     ```C
@@ -23,6 +24,7 @@
 ## Disable motion stream
 
 `Disable_MotionStream()`
+
 This function will disable the motion streaming option.
 
 ## Enable 9-axis stream
@@ -45,6 +47,7 @@ The returned 9-axis data type is defined below:
 ## Disable 9-axis stream
 
 `Disable_9AxisStream()`
+
 This function will disable the streaming of the 9-axis MARG data.
 
 ## Enable quaternion stream
@@ -71,6 +74,7 @@ Using the above approach all real numbers `q1:4` are encoded using a 16-bit fixe
 ## Disable quaternion stream
 
 `Disable_QuaternionStream()`
+
 This function disables the streaming of the quaternion data.
 
 ## Enable Euler angle stream
@@ -118,6 +122,7 @@ The x, y, z components of the external force vector are defined in the reference
 ## Disable external force stream
 
 `Disable_ExternalForceStream()`
+
 This function disables the streaming of the external force vector.
 
 ## Set 9-axis mode
@@ -210,11 +215,13 @@ returns quaternion
 ## Get Euler angles
 
 `Get_Euler_Angles(Euler_fxp* angles, uint32_t* TimeStamp)`
+
 returns Euler angles
 
 ## Get external force
 
 `Get_ExternalForce_EarthFrame(Fext_Vec16_t* fext, uint32_t* TimeStamp)`
+
 returns force
 
 ## Get Euler angle error
@@ -233,20 +240,20 @@ There is another API function that gets called every time a new BLE packet buffe
 
 ## Update motion features
 
+```C
+typedef struct MOTION_FEATURE{ //all features
+uint8_t motion; //0: no change in motion, 1: stops moving, 2: starts moving
+IMURaw_t IMUData;
+Quaternion_t quatrn;
+Euler_fxp angles;
+Fext_Vec16_t force;
+Euler_fxp angles_err; //error in Euler angles compared to a reference trajectory
+uint32_t TimeStamp; //in microseconds
+steps_t steps;
+int16_t direction;
+}MOTION_FEATURE;
+```
+
 `NewPacket_UpdateMotionFeatures(uint8_t* buf)`
 
 This function will essentially update one or more features from the motion features list including motion status, 9-axis raw data, quaternion, Euler angles, external force, Euler angle errors, Pedometer, etc. The motion features list has the following data structure:
-
-    ```C
-    typedef struct MOTION_FEATURE{ //all features
-	uint8_t motion; //0: no change in motion, 1: stops moving, 2: starts moving
-	IMURaw_t IMUData;
-	Quaternion_t quatrn;
-	Euler_fxp angles;
-	Fext_Vec16_t force;
-	Euler_fxp angles_err; //error in Euler angles compared to a reference trajectory
-	uint32_t TimeStamp; //in microseconds
-	steps_t steps;
-	int16_t direction;
-    }MOTION_FEATURE;
-    ```

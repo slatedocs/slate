@@ -2,7 +2,7 @@
 title: Neblina API Reference
 
 language_tabs:
-  - C
+  - C: C code
 
 toc_footers:
   - <a href='http://www.motsai.com'>&copy; Motsai</a> All Rights Reserved
