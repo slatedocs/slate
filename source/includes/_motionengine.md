@@ -1,0 +1,252 @@
+# Motion Engine API
+## Down sample stream
+
+    `DownsampleStream(uint16_t n)`
+
+    This function sets the streaming frequency divider. The streaming base frequency is 1KHz, and this function will set the frequency to 1000/n Hz. Currently, the only acceptable values for n are multiplicands of the number 20, i.e., n=20 (default),40,60,.... If n is set to another value, Neblina will log this as an error command. The host can issue commands to request for the error logs as well, which will be explained later.
+
+## Enable motion stream
+
+    `Enable_MotionStream() `
+    This function will enable the motion streaming option on Neblina with the sampling frequency defined by the aforementioned `DownsampleStream()` function. Namely, the motion status has the following type will be streamed:
+
+    ```C
+    typedef enum{
+	No_Change = (uint8_t)0x00, //holds its previous state
+	Stop_Motion = (uint8_t)0x01, //the device stops moving
+	Start_Motion = (uint8_t)0x02, //the device starts moving
+   }motionstatus_t;
+    ```
+
+    The status only shows whether the device has come to stop, started to move, or is holding its previous state. BLE packets will be sent to the host, whenever the device changes its previous motion state.
+
+## Disable motion stream
+
+`Disable_MotionStream()`
+This function will disable the motion streaming option.
+
+## Enable 9-axis stream
+
+`Enable_9AxisStream()`
+This function will enable the streaming of the 9-axis Magnetic Angular Rate and Gravity (MARG) data including 3-axis accelerometers, 3-axis gyroscopes, and 3-axis magnetometers. Each axis will be a 16-bit signed number representing the following range:
+Accelerometer: ±2g, Gyroscope: ±2000 dps, Magnetometer: ±4 gauss.
+The returned 9-axis data type is defined below:
+    ```C
+    typedef struct { //3-axis raw data type
+      int16_t Data[3];
+    } AxesRaw_t;
+    typedef struct { //9-axis data type
+	AxesRaw_t Acc; //accelerometer
+	AxesRaw_t Gyr; //gyroscope
+	AxesRaw_t Mag; //magnetometer
+    } IMURaw_t;
+    ````
+
+## Disable 9-axis stream
+
+`Disable_9AxisStream()`
+This function will disable the streaming of the 9-axis MARG data.
+
+## Enable quaternion stream
+
+`Enable_QuaternionStream()`
+
+This function enables the streaming of unit-length quaternion orientation using our computationally efficient and robust proprietary orientation filter.
+The unit-length quaternion contains 4 entries, i.e., `q = [q1,q2,q3,q4]`, where `-1  ≤ q1:4 ≤ 1`, and `q12 + q22 + q32 + q42 = 1`.
+
+The real numbers `q1:4` are represented using a 16-bit fixed-point number format, where 15-bits are assigned to the fractional part along with a sign bit. Here is an example of how we calculate the 16-bit fixed-point representation of a real number within the range of `[-1,1]`:
+`x=0.257812⇒xfixp=round(x×215)=8445`,
+
+The integer number 8445, which is represented by a 16-bit signed integer number, refers to the real-number 8445215=0.2577209, which obviously deviates from the actual reference number x=0.257812. The fixed-point representation error for the number x=0.257812 is `0.257812 - 0.2577209 = 0.0000911`.
+
+Using the above approach all real numbers `q1:4` are encoded using a 16-bit fixed-point representation and 15 fractional bits. The quaternion data structure is given below:
+
+    ```C
+    typedef struct QUAT //quaternion
+    {
+	int16_t q[4]; //fixed-point quaternion
+    }QUAT;
+   ```
+
+## Disable quaternion stream
+
+`Disable_QuaternionStream()`
+This function disables the streaming of the quaternion data.
+
+## Enable Euler angle stream
+
+`Enable_EulerAngleStream()`
+
+The orientation can easily be visualized using Euler angles, which can be found from the quaternion orientation. This command will enable/disable Neblina to stream Euler angles in the so-called aerospace sequence, where the Yaw rotation (around z-axis) takes place first, which is then followed by Pitch (rotation around y-axis) and then Roll (rotation around x-axis). This function enables the streaming of the orientation Euler angles.
+
+Each Euler angle is represented by 16 bits. The Euler angles are read in degrees and they have the following ranges: Yaw ∈[-180,180], 	Pitch ∈[-90,90], 	Roll ∈[-180,180].
+
+The angles are represented by one fractional digit precision using the following equation: `angle_est =round(angle_ref×10)`
+
+For instance, the angle -104.731o is rounded to -104.8o, and is represented using 16-bit signed integer format as the number -1048. The Euler angle data type is given below:
+
+    ```C
+    typedef struct Euler_fxp //fixed-point Euler angles, i.e., round(angle*10)
+    {
+	int16_t yaw; //first rotation, around z-axis
+	int16_t pitch; //second rotation, around y-axis
+	int16_t roll; //third rotation, around x-axis
+    }Euler_fxp;
+    ```
+## Disable Euler angle stream
+
+`Disable_EulerAngleStream()`
+
+This function disables the streaming of the orientation Euler angles.
+
+## Enable external force stream
+
+`Enable_ExternalForceStream()`
+
+The accelerometer data captures the total force vector applied to the device including gravity. This command will ask Neblina to enable/disable streaming the external force vector excluding gravity.
+
+The x, y, z components of the external force vector are defined in the reference Earth frame (not the sensor body frame). This means that regardless of the device’s orientation, this force vector aligns with the fixed reference Earth frame and can be used for position tracking, etc. The external force components, x, y, z are 16-bit signed integer numbers covering the range of [-1g,1g]. This is due to the fact that the accelerometer data range is set to [-2g,2g], while the gravity vector is (0,0,1g). The data structure for external force is given below:
+
+    ```C
+    typedef struct Fext_Vec16_t { //external force vector
+	int16_t x;
+	int16_t y;
+	int16_t z;
+    }Fext_Vec16_t;
+    ```
+
+## Disable external force stream
+
+`Disable_ExternalForceStream()`
+This function disables the streaming of the external force vector.
+
+## Set 9-axis mode
+
+`Set_9Axis_Mode()`
+
+Our proprietary orientation filter works for both the IMU case (6-axis accelerometer/gyro combo), as well as the full 9-axis MARG case adding magnetometers. Magnetometers are pre-calibrated at factory, however, due to the presence of metal objects, indoor concrete, big LCDs in a lab environment, etc., they might fail to deliver accurate heading calculations. This command will set the mode to the 9-axis case, which mostly works efficiently outdoors.
+
+## Set 6-axis mode
+
+`Set_6Axis_Mode()`
+
+If you are using Neblina outdoors, the pre-calibrated magnetometers will function really well. However, indoors, one might try the 6-axis IMU mode without magnetometers using this API. This mode is the default option on Neblina. It is notable that using the IMU mode, the heading information will eventually be lost due to the presence of drift in gyroscope readings. However, in the IMU mode, the gyro’s zero-bias drift can successfully be tracked and compensated. There is just no reference to correct the calculated heading angle, if it deviates from the actual heading.
+
+## Enable pedometer stream
+
+`Enable_PedometerStream()`
+
+The pedometer is configured to detect human steps, while walking or running. It is also applicable to cycling. The pedometer on Neblina is built based on the assumption that the device is attached or strapped to the front of the leg above the knee or all the way up to the top of the thigh. It is recommended that the device is attached closer to the knee rather than the top of the thigh for better accuracy. Furthermore, the device should be attached to the front of the leg, and not attached to the side or back of the leg.
+
+The step count is a 16-bit unsigned integer value, and it shows the number of steps that has been taken so far by the person, who is wearing Neblina on his leg. A packet will also be sent to the host every 5 seconds, if there has been no steps recorded for the past 5 seconds. The steps per minute (spm) also known as cadence is an average value calculated among the last 4 steps. The average recreational runner has a cadence value in the range of 150-170 spm.
+The pedometer here is simply applicable to cycling activities as well. With the same positioning of Neblina on the front of the leg, the step count will represent the total number of 360orotations applied to the pedals and the cadence value will similarly be valid.
+
+Additionally, the pedometer on Neblina provides the heading angle information, i.e., the direction of walking/running/cycling with respect to the magnetic north. There are certain conditions that must be taken into account in order for the heading angle information to be useful. Firstly, the device has to be placed on the front of the thigh, such that its x-axis is aligned with the leg (pointing either up or down) and the y-axis is perpendicular to the leg pointing to your left. Note that the direction of x and y-axis are shown on the Neblina PCB. If Neblina is configured in the 6-axis IMU mode (no magnetometers), then there is no reference for heading angle calculation, and under such conditions, the heading angle returned by the Pedometer will show the change in the heading angle between the current step, and the previously detected step. That way, the left/right turns within walking/running can easily be detected, although the actual direction of walking will be lost eventually. The heading angle in the 9-axis mode (or its change in the 6-axis mode) is returned as a 16-bit signed integer using one decimal fractional digit as follows:
+6-axis mode, heading_angle difference: round(HeadingAngleDiff×10).
+9-axis mode, heading_angle: round(HeadingAngle×10).
+
+The data structure regarding the pedometer step count, and cadence is given below:
+
+    ```C
+    typedef struct steps_t { //steps and pedometer data types
+	uint8_t step_detect; //detection of a step gives 1. It also gives 1, if no step has been detected for 5 seconds
+	uint16_t step_cnt; //number of steps taken so far.
+	uint8_t spm; //cadence: number of steps per minute
+    }steps_t;
+   ```
+
+## Disable pedometer stream
+
+`Disable_PedometerStream()`
+
+This function disables the pedometer streaming. Note that if we disable the pedometer streaming, the step count value will be reset to zero. Hence, on the host side, if needed, the user should store the last step count value before disabling the pedometer.
+
+## Start trajectory record
+
+`StartTrajectoryRecord()`
+
+Neblina provides the capability to record an orientation trajectory, a reference path for the moving object, on the fly. The recorded trajectory can be the swing of a stick with Neblina being attached to it, a hand motion, etc. This command asks Neblina to start recording the orientation values. After this command is issued, the recording will start as soon the device starts moving, and it starts right away, if the device is already in motion. The recording automatically stops when the device stops moving. One can also issue an optional stop recording command as well to stop the recording process at any time.
+
+We recommend that users use slow motions to record the reference orientation trajectory. That way the reference trajectory can be built more accurately. It is also notable that due to memory limitations, the reference trajectory cannot be longer than 20 seconds. If we reach 20 seconds, the recording will stop automatically.
+
+## Stop trajectory record
+
+`StopTrajectoryRecord()`
+
+This optional command can only be issued after sending the TrajectoryRecStart command to stop the in-process recording for the orientation trajectory. If that does not occur an error log will be recorded by Neblina. Note that the recording stops automatically as the device comes to stop. Hence, it is not mandatory to call this function to stop the recording process.
+
+## Enable trajectory distance stream
+
+`Enable_TrajectoryDistanceStream()`
+
+After the recording of a reference orientation trajectory is stopped (either by issuing the optional command StopTrajectoryRecord() or by the device itself as it comes to stop with no motion), we can enable the streaming of the orientation tracker. This checks the device orientation in real-time to see how far we are from the reference pre-recorded orientation trajectory. The distance is returned in terms of the error we face in Yaw, Pitch and Roll, in degrees. If the fusion type is IMU, then the error is only reported in Pitch and Roll, while we have the error in Yaw to be zero. This is due to the fact that in the IMU mode, there is no reference information to correct the heading angle. On the other hand, in the MARG mode, the error is reported in all three angles. If we issue this command to enable streaming before recording a reference track, or if the reference track is too short with very few samples, e.g., less than 1 second of recorded data, then an error log will be recorded by Neblina. The errors in Yaw, Pitch and Roll are returned as 16-bit signed integer numbers.
+
+## Disable trajectory distance stream
+
+`Disable_TrajectoryDistanceStream()`
+
+This function disables the tracking of the orientation trajectory.
+
+    While the aforementioned motion engine APIs issue commands to Neblina to control its settings and streaming options, the next set of APIs will instantaneously return the last updated motion features reported by Neblina to the host.
+
+## Get motion stream
+
+`Get_Motion_Status(motionstatus_t* motion, uint32_t* TimeStamp)`
+
+This function has no inputs and it returns the most recent motion status of Neblina, which has been streamed at the TimeStamp in microseconds. The function only returns valid motion states, if the motion streaming option has been previously activated.
+
+## Get 9-axis raw data
+
+`Get_9Axis_RawData(IMURaw_t* data, uint32_t* TimeStamp)`
+
+This function has no inputs and it returns the most recent 9-axis raw MARG data reported by Neblina at the TimeStamp in microseconds
+
+## Get quaternion vector
+
+`Get_Quaternion_Vector(Quaternion_t* quatrn, uint32_t* TimeStamp)`
+
+returns quaternion
+
+## Get Euler angles
+
+`Get_Euler_Angles(Euler_fxp* angles, uint32_t* TimeStamp)`
+returns Euler angles
+
+## Get external force
+
+`Get_ExternalForce_EarthFrame(Fext_Vec16_t* fext, uint32_t* TimeStamp)`
+returns force
+
+## Get Euler angle error
+
+`Get_Euler_Angle_Err(Euler_fxp* angles_err, uint32_t* TimeStamp)`
+
+This function returns the Euler angle errors at TimeStamp in comparison with the pre-recorded orientation trajectory. The errors are in degrees and are integer values.
+
+## Get pedometer information
+
+`Get_Pedometer_Info(steps_t* steps, int16_t* direction, uint32_t* TimeStamp)`
+
+This function returns the steps information including step count and cadence as well as the walking/running/cycling direction in degrees. If the fusion type is 9-axis this would be the heading angle in degrees in comparison with the magnetic north vector, otherwise, for the 6-axis mode, the direction will represent the change in the heading angle in degrees.
+
+There is another API function that gets called every time a new BLE packet buffer targeting the motion engine is received by the host:
+
+## Update motion features
+
+`NewPacket_UpdateMotionFeatures(uint8_t* buf)`
+
+This function will essentially update one or more features from the motion features list including motion status, 9-axis raw data, quaternion, Euler angles, external force, Euler angle errors, Pedometer, etc. The motion features list has the following data structure:
+
+    ```C
+    typedef struct MOTION_FEATURE{ //all features
+	uint8_t motion; //0: no change in motion, 1: stops moving, 2: starts moving
+	IMURaw_t IMUData;
+	Quaternion_t quatrn;
+	Euler_fxp angles;
+	Fext_Vec16_t force;
+	Euler_fxp angles_err; //error in Euler angles compared to a reference trajectory
+	uint32_t TimeStamp; //in microseconds
+	steps_t steps;
+	int16_t direction;
+    }MOTION_FEATURE;
+    ```
