@@ -6,10 +6,10 @@ The following tables provide details of the local directories we support for loo
 
 ###Key to table:
 
-Indentifier = name of directory to be used when querying data for a specific directory
-NAP = we are able to retrieve Business Name, Address, Phone Number from a directory (some sites provide address in component parts, some as single data string)
-Find Profile URL = we are able to return a URL on directory for this business
-Website URL = we are able to retrieve website URL from a directory (if it is present) 
+*Indentifier = name of directory to be used when querying data for a specific directory
+*NAP = we are able to retrieve Business Name, Address, Phone Number from a directory (some sites provide address in component parts, some as single data string)
+*Find Profile URL = we are able to return a URL on directory for this business
+*Website URL = we are able to retrieve website URL from a directory (if it is present) 
 
 ### United States (USA)
 
