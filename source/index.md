@@ -12,6 +12,7 @@ toc_footers:
 
 includes:
   - errores
+  - webhooks
 
 search: true
 ---
@@ -720,6 +721,7 @@ Parámetro | Tipo | Descripción
 razon_social | string | Razón social del comprador. Máximo 300 caracteres.
 identificacion | string | De 5 a 20 caracteres.
 tipo_identificacion | string | Ver [tabla](#tipo-de-identificación) de tipos de identificación
+email | string | Correo electrónico del cliente.
 
 ## Tipo de identificación
 
