@@ -2,7 +2,7 @@
 title: API Cobrato
 
 language_tabs:
-  - shell
+  - Shell: cURL
 
 toc_footers:
  - Este projeto é mantido por

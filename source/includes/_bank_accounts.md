@@ -1,8 +1,6 @@
 # Contas Bancárias
 
-```
-Conta Bancária
-
+```shell
 EXEMPLO
 
   {
@@ -27,26 +25,21 @@ As Contas Bancárias, pertencem aos seus cedentes, sendo assim é necessário qu
 
 Parâmetros
 
-id: integer
-payee_id: integer
-identificador do cedento no Cobrato
-bank_code:  string
-código do banco no Febraban
-agency: string
-agency_digit: string
-Apenas utilizado pelo Banco do Brasil(001)
-account:  string
-account_digit:  string
-Apenas não utilizado pelo HSBC(399)
-_links: array of object
-links da conta bancária e de seu cedente
+|Campo                    | Tipo            | Comentário                                             |
+|-------------------------|-----------------|--------------------------------------------------------|
+|id                       |  integer |                                                           |
+|payee_id                 |  integer | identificador do cedento no Cobrato |
+|bank_code | string | código do banco no Febraban |
+|agency|  string | |
+|agency_digit|  string | Apenas utilizado pelo Banco do Brasil(001) |
+|account| string |  |
+|account_digit| string | Apenas não utilizado pelo HSBC(399) |
+|_links|  array of object | links da conta bancária e de seu cedente
 
 
 ## Lista de Todos as Contas Bancárias
 
-```
-Listar Conta Bancária
-
+```shell
 DEFINIÇÃO
 
   GET https://app.cobrato.com/api/v1/bank_accounts
@@ -85,10 +78,7 @@ Retorna uma lista em JSON contendo todos as contas bancárias em que seus cedent
 
 ## Informações da Conta Bancária
 
-
-```
-Mostra Conta Bancária
-
+```shell
 DEFINIÇÃO
 
   GET https://app.cobrato.com/api/v1/bank_accounts/:bank_account_id
@@ -127,12 +117,9 @@ EXEMPLO DE CORPO DA RESPOSTA
 ```
 
 
-## Retorna as informações detalhadas da conta bancária informada em JSON e também a referência ao seu cedente.
+Retorna as informações detalhadas da conta bancária informada em JSON e também a referência ao seu cedente.
 
-
-```
-Criar Conta Bancária
-
+```shell
 DEFINIÇÃO
 
   POST https://app.cobrato.com/api/v1/bank_accounts
@@ -175,26 +162,24 @@ EXEMPLO DE CORPO DA RESPOSTA COM INSUCESSO
 
 
 ```
-
-
-Criação de Conta Bancária
+## Criação de Conta Bancária
 
 Cria um nova conta bancária, retornando as informações da mesma caso haja sucesso. Se houverem erros eles serão informados no corpo da resposta.
 
 Parâmetros
 
-payee_id: integer requirido
-identificação do cedente em que a conta bancária irá pertencer
-bank_code:  string requirido
-código do banco no Febraban
-agency: string requirido
-agency_digit: string requirido apenas para o Banco do Brasil(001)
-account:  string requirido
-account_digit:  string requirido com exceção do HSBC(399)
+|Campo                    | Tipo            | Comentário                                             |
+|-------------------------|-----------------|--------------------------------------------------------|
+|payee_id                 | integer         | requirido identificação do cedente em que a conta bancária irá pertencer      |
+|bank_code                |  string         | requirido código do banco no Febraban                    |
+|agency | string | requirido |
+|agency_digit | string | requirido apenas para o Banco do Brasil(001) |
+|account |  string | requirido |
+|account_digit |  string | requirido com exceção do HSBC(399) |
 
 ##Atualização de Conta Bancária
 
-```
+```shell
 Atualizar Conta Bancária
 
 DEFINIÇÃO
@@ -245,16 +230,18 @@ Ao alterar campo 'bank_code', caso houvesse algum campo preenchido que de acordo
 
 Parâmetros
 
-agency: string
-agency_digit: string
-account:  string
-account_digit:  string
+|Campo                    | Tipo            | Comentário                                             |
+|-------------------------|-----------------|--------------------------------------------------------|
+| agency                  | string          |          -                                             |
+| agency_digit            | string          |          -                                             |
+| account                 | string          |          -                                             |
+| account_digit           | string          |          -                                             |
 
 
 
 ## Exclusão de Conta Bancária
 
-```
+```shell
 Excluir Conta Bancária
 
 DEFINIÇÃO
@@ -278,14 +265,13 @@ EXEMPLO DE ESTADO DA RESPOSTA COM CONTA BANCÁRIA INEXISTENTE
     404 Not Found
 
 ```
+
 Exclui determinada conta bancária e junto a ela todas suas contas de cobrança, e cobranças. As mudanças são irreversíveis.
 
 
-Carteiras disponíveis
+## Carteiras disponíveis
 
-```
-Carteiras disponíveis
-
+```shell
 DEFINIÇÃO
 
   GET https://app.cobrato.com/api/v1/bank_accounts/:bank_account_id/portfolio_codes

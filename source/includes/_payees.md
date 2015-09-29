@@ -1,5 +1,5 @@
 # Cedente
-```
+```shell
 Cedente
 
 EXEMPLO
@@ -50,9 +50,7 @@ Parâmetros
 
 Retorna uma lista em JSON contendo todos os cedentes pertencentes a sua Conta de Serviço.
 
-```
-Listar Cedentes
-
+```shell
 DEFINIÇÃO
 
   GET https://app.cobrato.com/api/v1/payees
@@ -87,11 +85,7 @@ EXEMPLO DE CORPO DA RESPOSTA
 
 
 ## Informações do Cedente
-
-
-```
-Mostra Cedente
-
+```shell
 DEFINIÇÃO
 
   GET https://app.cobrato.com/api/v1/payees/:payee_id
@@ -132,12 +126,8 @@ EXEMPLO DE CORPO DA RESPOSTA
 ```
 Retorna as informações detalhadas do cedente informado em JSON.
 
-
 ## Criação de Cedente
-
-```
-Criar Cedente
-
+```shell
 DEFINIÇÃO
 
   POST https://app.cobrato.com/api/v1/payees
@@ -205,11 +195,7 @@ Parâmetros
 
 
 ## Atualização de Cedente
-
-
-```
-Atualizar Cedente
-
+```shell
 DEFINIÇÃO
 
   PUT https://app.cobrato.com/api/v1/payees/:payee_id
@@ -266,12 +252,8 @@ Parâmetros
 | zipcode                  | string |                                                              |
 | complement               | string |                                                              |
 
-
 ## Exclusão de Cedente
-
-```
-Excluir Cedente
-
+```shell
 DEFINIÇÃO
 
   DELETE https://app.cobrato.com/api/v1/payees/:payee_id
@@ -292,6 +274,5 @@ EXEMPLO DE ESTADO DA RESPOSTA COM CEDENTE INEXISTENTE
 
     404 Not Found
 ```
-
 Exclui determinado cedente e junto a ele todas suas contas de cobrança, contas bancárias e as cobranças. As mudanças são irreversíveis.
 

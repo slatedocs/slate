@@ -7,24 +7,24 @@ Antes de acessar o Cobrato, você deve criar uma conta em: Cobrato. Se você já
 Autenticação na API do Cobrato é realizada utilizando HTTP Basic, Porem você não vai usar sua senha e login como de costume, você terá que usar o token da API como sendo seu login e a senha em branco, (se o seu cliente HTTP requer uma senha, você pode digitar X).
 
 
-```
-Formato JSON
+  ```shell
+    Formato JSON
 
-EXEMPLO DE REQUISIÇÃO
+    EXEMPLO DE REQUISIÇÃO
 
-  $ curl -i -u $YOUR_API_TOKEN:X
-    -H 'User-Agent: My App 1.0' \
-    -H 'Accept: application/json' \
-    -H 'Content-type: application/json' \
-    -X GET https://app.cobrato.com/api/v1
+      $ curl -i -u $YOUR_API_TOKEN:X
+        -H 'User-Agent: My App 1.0' \
+        -H 'Accept: application/json' \
+        -H 'Content-type: application/json' \
+        -X GET https://app.cobrato.com/api/v1
 
-EXEMPLO DE RESPOSTA
+    EXEMPLO DE RESPOSTA
 
-{
-  "chave": "valor"
-}
+    {
+      "chave": "valor"
+    }
 
-```
+  ```
 
 ## Formatos de requisição e resposta
 
