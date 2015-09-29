@@ -4,7 +4,7 @@
 
 The following tables provide details of the local directories we support for looking up profile URLs, profile details and/or reviews. For some directories we are able to grab all informatio and for others only partial information due to restrictions on certain sites or due to complications in the data gathering process (e.g. site uses JS to mask certain data points or doesn't present listing on separate, distinct URLs)
 
-Key to table:
+###Key to table:
 
 Indentifier = name of directory to be used when querying data for a specific directory
 NAP = we are able to retrieve Business Name, Address, Phone Number from a directory (some sites provide address in component parts, some as single data string)
