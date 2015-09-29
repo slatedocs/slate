@@ -25,9 +25,9 @@ EXEMPLO
   }
 ```
 
-
+<aside class="notice">
 É possível ter indeterminados cedentes, e a eles que pertencem as contas bancárias, contas de cobrança, e as próprias cobranças do sistema. Podem ser tanto pessoas físicas como pessoas jurídicas.
-
+</aside>
 Parâmetros
 
 

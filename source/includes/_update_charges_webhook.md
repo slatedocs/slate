@@ -18,6 +18,6 @@ EXEMPLO DE PAYLOAD
         }
 
 ```
-
+<aside class="notice">
 Informações enviadas quando uma Cobrança é atualizada.
-
+</aside>

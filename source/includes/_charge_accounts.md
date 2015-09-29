@@ -25,7 +25,9 @@ EXEMPLO
 
 ```
 
+<aside class="notice">
 As Contas de Cobranças, pertencem as suas contas bancárias, sendo assim é necessário que sempre haja ao menos uma conta bancária para criação de conta de cobrança. As validações nas contas de cobranças são de acordo com o banco, de sua conta bancária.
+</aside>
 
 Parâmetros
 

@@ -37,9 +37,9 @@ EXEMPLO DE CORPO DA RESPOSTA
       ]
   }
 ```
-
+<aside class="notice">
 Retorna uma lista em JSON contendo todos os webhooks pertencentes a sua Conta de Serviço.
-
+</aside>
 
 ## Informações do Webhook
 

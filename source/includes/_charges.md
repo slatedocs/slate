@@ -1,6 +1,8 @@
 # Cobrança
 
+<aside class="notice">
 As Cobranças, pertencem as suas contas de cobrança, sendo assim é necessário que sempre haja ao menos uma conta de cobrança homologada para a criação de cobranças. Ao criar uma conta de cobrança é automaticamente gerada uma cobrança para homologar a conta.
+</aside>
 
 Parâmetros
 

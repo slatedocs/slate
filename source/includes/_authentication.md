@@ -28,7 +28,7 @@ Autenticação na API do Cobrato é realizada utilizando HTTP Basic, Porem você
 
 ## Formatos de requisição e resposta
 
-O único formato disponível para requisições e respostas é JSON.
+<aside class="notice">O único formato disponível para requisições e respostas é JSON.</aside>
 
 
 ## Fuso horário
@@ -49,5 +49,5 @@ Você deve sempre fornecer os seus valores de data e hora no mesmo formato ISO 8
 
 ## Formato numérico
 
-Todos os números são fornecidos tanto com números inteiros, ponto flutuante nativos para JSON.
+<aside class="notice">Todos os números são fornecidos tanto com números inteiros, ponto flutuante nativos para JSON.</aside>
 

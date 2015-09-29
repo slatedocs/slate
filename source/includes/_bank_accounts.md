@@ -20,8 +20,9 @@ EXEMPLO
       ]
   }
 ```
-
+<aside class="notice">
 As Contas Bancárias, pertencem aos seus cedentes, sendo assim é necessário que sempre haja ao menos um cedente para criação de conta bancária.
+</aside>
 
 Parâmetros
 
