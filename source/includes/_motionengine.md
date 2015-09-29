@@ -150,13 +150,13 @@ This function disables the streaming of the external force vector.
 
 `Set_9Axis_Mode()`
 
-Our proprietary orientation filter works for both the IMU case (6-axis accelerometer/gyro combo), as well as the full 9-axis MARG case adding magnetometers. Magnetometers are pre-calibrated at factory, however, due to the presence of metal objects, indoor concrete, big LCDs in a lab environment, etc., they might fail to deliver accurate heading calculations. This command will set the mode to the 9-axis case, which mostly works efficiently outdoors.
+Our proprietary orientation filter works for both the IMU case (6-axis accelerometer/gyro combo), as well as the full 9-axis MARG case adding magnetometers. This command will set the mode to the 9-axis case, which is the default option on Neblina. Magnetometers are pre-calibrated at factory in an environment with minimum external magnetic disturbance. Generally, due to the presence of metal objects, indoor concrete, big LCDs in a lab environment, etc., the calibrated magnetometers might fail to deliver accurate heading calculations indoors. Our proprietary 9-axis orientation filter is capable of detecting external magnetic disturbance, and will temporarily exclude magnetometers from the fusion process until the magnetic field becomes clean again. For example, if you are walking near a concrete column indoors, the filter switches to the 6-axis mode temporarily, and waits until the distance from the object is far enough, and then, it switches back to the 9-axis mode.
 
 ## Set 6-axis mode
 
 `Set_6Axis_Mode()`
 
-If you are using Neblina outdoors, the pre-calibrated magnetometers will function really well. However, indoors, one might try the 6-axis IMU mode without magnetometers using this API. This mode is the default option on Neblina. It is notable that using the IMU mode, the heading information will eventually be lost due to the presence of drift in gyroscope readings. However, in the IMU mode, the gyro’s zero-bias drift can successfully be tracked and compensated. There is just no reference to correct the calculated heading angle, if it deviates from the actual heading.
+If you are using Neblina outdoors or indoors with few sources of disturbance for the magnetic field, the pre-calibrated magnetometers will function really well. However, in particular lab environments with several sources causing magnetic disturbance, one might simply try the 6-axis IMU mode without magnetometers using this API. It is notable that using the IMU mode, the heading information will eventually be lost due to the presence of drift in gyroscope readings. However, in the IMU mode, the gyro’s zero-bias drift can successfully be tracked and compensated. There is just no reference to correct the calculated heading angle, if it deviates from the actual heading.
 
 ## Enable pedometer stream
 
