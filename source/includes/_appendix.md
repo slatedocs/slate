@@ -787,3 +787,4 @@ Windshield Repair|859
 Wine and Beer|609
 Wine Merchants|618
 Yoga Instructor / Yoga Center|860
+.
