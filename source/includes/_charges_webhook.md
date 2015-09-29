@@ -2,7 +2,7 @@
 
 ## Cobrança Atualizada
 
-```
+```shell
 Cobrança Atualizada
 
 EXEMPLO DE PAYLOAD
@@ -26,7 +26,7 @@ Informações enviadas quando uma Cobrança é atualizada.
 
 ## Cobrança criada
 
-```
+```shell
 Cobrança Criada
 
 EXEMPLO DE PAYLOAD
@@ -50,7 +50,7 @@ Informações enviadas quando uma Cobrança é criada.
 ## Cobrança Recebida
 
 
-```
+```shell
 Cobrança Recebida
 
 EXEMPLO DE PAYLOAD
@@ -73,7 +73,7 @@ Informações enviadas quando uma Cobrança é recebida.
 
 ## Cobrança Excluida
 
-```
+```shell
 Cobrança Excluida
 
 EXEMPLO DE PAYLOAD
@@ -98,7 +98,7 @@ Informações enviadas quando uma Cobrança é excluida.
 
 ## Desfazer Recebimento de Cobrança
 
-```
+```shell
 Desfazer Recebimento de Cobrança
 
 EXEMPLO DE PAYLOAD

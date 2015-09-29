@@ -426,7 +426,3 @@ EXEMPLO DE ESTADO DA RESPOSTA COM CONTA DE COBRANÇA INEXISTENTE
 
 ```
 Exclui determinada conta de cobrança e junto a ela todas suas cobranças. As mudanças são irreversíveis.
-
-
-
-

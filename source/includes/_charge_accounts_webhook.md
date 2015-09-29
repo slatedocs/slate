@@ -2,7 +2,7 @@
 
 ## Conta de Cobrança Atualizada
 
-```
+```shell
 Conta de Cobrança Atualizada
 
 EXEMPLO DE PAYLOAD
@@ -25,7 +25,7 @@ Informações enviadas quando uma Conta de Cobrança é atualizada.
 
 ## Conta de Cobrança criada
 
-```
+```shell
 Conta de Cobrança Criada
 
 EXEMPLO DE PAYLOAD
@@ -45,11 +45,11 @@ EXEMPLO DE PAYLOAD
 ```
 
 
-Informações enviadas quando uma Conta de Cobrança é criada.
+Informações enviadas quando uma Conta de Cobrança é Criada.
 
 ## Conta de Cobrança Excluida
 
-```
+```shell
 Conta de Cobrança Excluida
 
 EXEMPLO DE PAYLOAD

@@ -2,7 +2,8 @@
 
 ## Lista de Todos os Webhooks
 
-```
+```shell
+
 Listar Webhooks
 
 DEFINIÇÃO
@@ -42,7 +43,7 @@ Retorna uma lista em JSON contendo todos os webhooks pertencentes a sua Conta de
 
 ## Informações do Webhook
 
-```
+```shell
 Mostra Webhook
 
 DEFINIÇÃO
@@ -79,7 +80,7 @@ EXEMPLO DE CORPO DA RESPOSTA
 
 Retorna as informações detalhadas do webhook em formato JSON.
 
-```
+```shell
 Criar Webhook
 
 DEFINIÇÃO
@@ -126,15 +127,15 @@ Cria um novo webhook, retornando as informações do mesmo caso haja sucesso. Pa
 
 Parâmetros
 
-url:  string requirido
-URL na qual serão feitas as requisições GET e POST, esperando HTTP 200 como retorno
-description:  string
-Descrição opcional do Webhook
+Campo                    | Tipo            | Comentário                                             |
+|-------------------------|-----------------|--------------------------------------------------------|
+| url | string | requirido URL na qual serão feitas as requisições GET e POST, esperando HTTP 200 como retorno |
+| description | string | Descrição opcional do Webhook |
 
 
 ## Atualização de Webhook
 
-```
+```shell
 Atualizar Webhook
 
 DEFINIÇÃO
@@ -172,12 +173,13 @@ Atualiza a descrição do webhook. Não é possível alterar a URL de um Webhook
 
 Parâmetros
 
-description:  string
-Descrição opcional do Webhook
+Campo                    | Tipo            | Comentário                                             |
+|-------------------------|-----------------|--------------------------------------------------------|
+description |  string | Descrição opcional do Webhook |
 
 ## Exclusão de Webhook
 
-```
+```shell
 Excluir Webhook
 
 DEFINIÇÃO

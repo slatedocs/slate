@@ -1,6 +1,6 @@
 ## Cobrança Atualizada
 
-```
+```shell
 Cobrança Atualizada
 
 EXEMPLO DE PAYLOAD
