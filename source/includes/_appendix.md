@@ -68,7 +68,7 @@ yellowpages|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span clas
 yelp|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 ziplocal|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 zocdoc|<span class="yes">Yes</span>||<span class="yes">Yes</span>|
-zomato|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
+zomato|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 
 ### Great Britain (GBR)
 
@@ -92,7 +92,7 @@ google|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="ye
 hotfrog|<span class="yes">Yes</span>|||<span class="yes">Yes</span>|
 independent|<span class="yes">Yes</span>|||<span class="yes">Yes</span>|
 localdatasearch|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
-manta|<span class="yes">Yes</span>|<span class="yes">Yes</span>||<span class="yes">Yes</span>|
+manta|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|Currently causing issues when grabbing profile details
 misterwhat|<span class="yes">Yes</span>|<span class="yes">Yes</span>||<span class="yes">Yes</span>|
 mylocalservices|<span class="yes">Yes</span>|||<span class="yes">Yes</span>|
 near|<span class="yes">Yes</span>|<span class="yes">Yes</span>|||
@@ -112,6 +112,7 @@ yahoo|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes
 yalwa|<span class="yes">Yes</span>|<span class="yes">Yes</span>||<span class="yes">Yes</span>|
 yell|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 yelp|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
+zomato|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 
 ### Australia (AUS)
 
@@ -134,14 +135,14 @@ factual|<span class="yes">Yes</span>|||<span class="yes">Yes</span>|
 find-us-here|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 foursquare||<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 fyple|<span class="yes">Yes</span>|<span class="yes">Yes</span>||<span class="yes">Yes</span>|
-google||<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
+google|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 hotfrog|<span class="yes">Yes</span>|||<span class="yes">Yes</span>|Was previously referred to as hotfrogaus
 localbd|<span class="yes">Yes</span>|||<span class="yes">Yes</span>|
 localbusinessguide|<span class="yes">Yes</span>|||<span class="yes">Yes</span>|
 localcomau|<span class="yes">Yes</span>|||<span class="yes">Yes</span>|
 localsearch|<span class="yes">Yes</span>|<span class="yes">Yes</span>||<span class="yes">Yes</span>|
 localstore|<span class="yes">Yes</span>|||<span class="yes">Yes</span>|
-manta|<span class="yes">Yes</span>|<span class="yes">Yes</span>||<span class="yes">Yes</span>|
+manta|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|Currently causing issues when grabbing profile details
 nationaldirectory|<span class="yes">Yes</span>|||<span class="yes">Yes</span>|
 nearyouau|<span class="yes">Yes</span>|||<span class="yes">Yes</span>|
 pinkpages|<span class="yes">Yes</span>|<span class="yes">Yes</span>||<span class="yes">Yes</span>|
@@ -162,7 +163,7 @@ yalwa|<span class="yes">Yes</span>||||
 yellowbook|<span class="yes">Yes</span>|||<span class="yes">Yes</span>|
 yellowpagesaus|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 yelp|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|Was previously referred to as yelp-aus
-zomato|<span class="yes">Yes</span>|<span class="yes">Yes</span>||<span class="yes">Yes</span>|
+zomato|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 
 
 ### Canada (CAN)
@@ -170,36 +171,44 @@ zomato|<span class="yes">Yes</span>|<span class="yes">Yes</span>||<span class="y
 Identifier|NAP|Reviews|Find Profile URL|Website URL|Notes
 ----------|---|-------|---|-----|-----
 2findlocal|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
-c411|<span class="yes">Yes</span>|||<span class="yes">Yes</span>|
 allpages|<span class="yes">Yes</span>||||
-brownbook|<span class="yes">Yes</span>||||
+bbb|<span class="yes">Yes</span>|||<span class="yes">Yes</span>|
+brownbook|<span class="yes">Yes</span>|<span class="yes">Yes</span>||<span class="yes">Yes</span>|
+c411|<span class="yes">Yes</span>|<span class="yes">Yes</span>||<span class="yes">Yes</span>|
+canadabusinessdirectory|<span class="yes">Yes</span>|<span class="yes">Yes</span>||<span class="yes">Yes</span>|
+canadaone|<span class="yes">Yes</span>|<span class="yes">Yes</span>||<span class="yes">Yes</span>|
 canpages|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
-cdnpages|<span class="yes">Yes</span>||||
+cdnpages|<span class="yes">Yes</span>|||<span class="yes">Yes</span>|
 cylex|<span class="yes">Yes</span>|||<span class="yes">Yes</span>|Was previously referred to as cylexcan
 directorycentral|<span class="yes">Yes</span>||||
-facebook|<span class="yes">Yes</span>|||<span class="yes">Yes</span>|
-factual|<span class="yes">Yes</span>||||
+facebook|<span class="yes">Yes</span>|<span class="yes">Yes</span>||<span class="yes">Yes</span>|
+factual|<span class="yes">Yes</span>|||<span class="yes">Yes</span>|
 find-us-here|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
-foursquare|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
-goldbook|<span class="yes">Yes</span>|||<span class="yes">Yes</span>|
-google||<span class="yes">Yes</span>||<span class="yes">Yes</span>|
+foursquare|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
+goldbook|<span class="yes">Yes</span>|<span class="yes">Yes</span>||<span class="yes">Yes</span>|
+google|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 hotfrog|<span class="yes">Yes</span>|||<span class="yes">Yes</span>|Was previously referred to as hotfrogcan
 ibegin|<span class="yes">Yes</span>|||<span class="yes">Yes</span>|
+manta|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|Currently causing issues when grabbing profile details
 nearyouca|<span class="yes">Yes</span>||||
-manta|<span class="yes">Yes</span>||<span class="yes">Yes</span>||
-pagesjaunes|<span class="yes">Yes</span>||||
-profilecanada|<span class="yes">Yes</span>|||<span class="yes">Yes</span>|
-salespider|<span class="yes">Yes</span>||||
-superpages||||<span class="yes">Yes</span>|
-tupalo|<span class="yes">Yes</span>||<span class="yes">Yes</span>||
-tuugo|<span class="yes">Yes</span>||<span class="yes">Yes</span>||
-weblocal|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
-wikidomo|<span class="yes">Yes</span>||||
-yalwa|<span class="yes">Yes</span>||||
+opentable|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
+ourbis|<span class="yes">Yes</span>|||<span class="yes">Yes</span>|
+pagesjaunes|<span class="yes">Yes</span>|||<span class="yes">Yes</span>|
+profilecanada|<span class="yes">Yes</span>|<span class="yes">Yes</span>||<span class="yes">Yes</span>|
+salespider|<span class="yes">Yes</span>|||<span class="yes">Yes</span>|
+superpages|<span class="yes">Yes</span>|<span class="yes">Yes</span>||<span class="yes">Yes</span>|
+tripadvisor|<span class="yes">Yes</span>|<span class="yes">Yes</span>||<span class="yes">Yes</span>|
+tupalo|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
+tuugo|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
+weblocal|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>||
+worldweb|<span class="yes">Yes</span>|||<span class="yes">Yes</span>|
+yahoo|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
+yalwa|<span class="yes">Yes</span>|<span class="yes">Yes</span>|||
 yellowpagesca|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
-yelp|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|Was previously referred to as yelp-can
-ziplocal|<span class="yes">Yes</span>||||
-zoominfo|<span class="yes">Yes</span>||||
+yelp|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|Was previously referred to as yelp-can
+ylm|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>||
+zomato|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
+zoominfo|<span class="yes">Yes</span>|||<span class="yes">Yes</span>|
 
 ## Business Category IDs
 
