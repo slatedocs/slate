@@ -4,8 +4,6 @@ As Cobranças, pertencem as suas contas de cobrança, sendo assim é necessário
 
 Parâmetros
 
-
-
 |Campo                    | Tipo             | Comentário                                                                                |
 |-------------------------|-----------       |-------------------------------------------------------------------------------------------|
 | id                      | integer          |                                                                                           |
@@ -35,7 +33,7 @@ Parâmetros
 Retorna uma lista em JSON contendo todos as cobranças que pertencem a sua Conta de Serviço.
 
 
-```
+```shell
 Listar Cobrança
 
 DEFINIÇÃO
@@ -75,7 +73,7 @@ EXEMPLO DE CORPO DA RESPOSTA
 ## Informações da Cobrança
 
 
-```
+```shell
 Informar Cobrança
 
 DEFINIÇÃO
@@ -133,7 +131,7 @@ EXEMPLO DE CORPO DA RESPOSTA
 
 Retorna as informações detalhadas da cobrança informada em JSON e também a referência a sua conta de cobrança.
 
-```
+```shell
 Criar Cobrança
 
 DEFINIÇÃO
@@ -183,10 +181,7 @@ EXEMPLO DE CORPO DA RESPOSTA COM INSUCESSO
 
 Cria um nova cobrança, caso haja sucesso retornará as informações da mesma e será gerado seu boleto. Se houverem erros eles serão informados no corpo da resposta.
 
-
-
 Parâmetros
-
 
 |Campo                    | Tipo      | Comentário  |
 |-------------------------|-----------|--------------|
@@ -206,7 +201,7 @@ Parâmetros
 
 ## Atualização de Cobrança
 
-```
+```shell
 Atualizar Cobrança
 
 DEFINIÇÃO
@@ -279,7 +274,7 @@ Parâmetros
 
 ## Exclusão de Cobrança
 
-```
+```shell
 Excluir Conta de Cobrança
 
 DEFINIÇÃO
