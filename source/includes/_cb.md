@@ -245,7 +245,7 @@ citations | <span class="label label-required">Required</span> JSON Array. If au
                         "domain_authority": "< 10/100",
                         "citation_value": "High"
                     }
-                }
+                ]
             }
         ]
     }
