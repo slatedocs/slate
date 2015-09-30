@@ -89,7 +89,7 @@ bizwiki|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="
 brownbook|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 businessclassified|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 businessmagnet|<span class="yes">Yes</span>||<span class="yes">Yes</span>||
-~~bview~~|~~<span class="yes">Yes</span>~~||~~<span class="yes">Yes</span>~~||No longer available
+<s>bview</s>|<span class="yes">Yes</span>||<span class="yes">Yes</span>||No longer available
 cityvisitor|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 cylex|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 dentons|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
@@ -103,7 +103,7 @@ google|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="ye
 hotfrog|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 independent|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 localdatasearch|<span class="yes">Yes</span>||<span class="yes">Yes</span>||
-~~localmole~~|~~<span class="yes">Yes</span>~~|~~<span class="yes">Yes</span>~~|~~<span class="yes">Yes</span>~~|~~<span class="yes">Yes</span>~~|No longer available
+<s>localmole</s>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|No longer available
 manta|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|Currently causing issues in grabbing profile details
 misterwhat|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>||
 mylocalservices|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
@@ -122,7 +122,7 @@ tuugo|<span class="yes">Yes</span>||<span class="yes">Yes</span>||
 uk-local-search|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 ukplaces|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 wampit|<span class="yes">Yes</span>||<span class="yes">Yes</span>||
-~~welovelocal~~|~~<span class="yes">Yes</span>~~||~~<span class="yes">Yes</span>~~||No longer available
+<s>welovelocal</s>|<span class="yes">Yes</span>||<span class="yes">Yes</span>||No longer available
 wheresbest|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 worldweb|<span class="yes">Yes</span>||<span class="yes">Yes</span>||
 yahoo|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
@@ -204,7 +204,7 @@ facebook|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="
 factual|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 find-us-here|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 foursquare|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
-~~goldbook~~|~~<span class="yes">Yes</span>~~|~~<span class="yes">Yes</span>~~|~~<span class="yes">Yes</span>~~|~~<span class="yes">Yes</span>~~|No longer available
+<s>goldbook</s>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|No longer available
 google|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 hotfrog|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|Was previously referred to as hotfrogcan
 ibegin|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
