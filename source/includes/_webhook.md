@@ -212,16 +212,16 @@ Exemplos de requisições enviadas pelo webhook do Cobrato.
 
 As ações notificadas são:
 
-|Objeto         |  Ação              |    Descrição                                    |
-|---------------|--------------------|-------------------------------------------------|
-|charge         | created            | quando a cobrança é criada                      |
-|charge         | received           |  quando a cobrança é recebida                   |
-|charge         | undone_receivement |  quando a cobrança tem seu recebimento desfeito |
-|charge         | updated            | quando a cobrança é atualizada                  |
-|charge         | destroyed          | quando a cobrança é excluída                    |
-|charge         | received           |  quando a cobrança é recebida                   |
-|charge_account | created            | quando a conta de cobrança é criada             |
-|charge_account | updated            | quando a conta de cobrança é atualizada         |
-|charge_account | destroyed          | quando a conta de cobrança é excluída           |
+| Objeto         | Evento             | Descrição                                      |
+|----------------|--------------------|------------------------------------------------|
+| charge         | created            | quando a cobrança é criada                     |
+| charge         | received           | quando a cobrança é recebida                   |
+| charge         | undone_receivement | quando a cobrança tem seu recebimento desfeito |
+| charge         | updated            | quando a cobrança é atualizada                 |
+| charge         | destroyed          | quando a cobrança é excluída                   |
+| charge         | received           | quando a cobrança é recebida                   |
+| charge_account | created            | quando a conta de cobrança é criada            |
+| charge_account | updated            | quando a conta de cobrança é atualizada        |
+| charge_account | destroyed          | quando a conta de cobrança é excluída          |
 
 
