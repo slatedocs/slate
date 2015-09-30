@@ -9,7 +9,7 @@ EXEMPLO DE PAYLOAD
 
         {
           "created_at":"2015-05-21T16:13:33Z",
-          "action":"updated",
+          "event":"updated",
           "object_type":"charge_account",
           "object_id":7,
           "_links":[{
@@ -32,7 +32,7 @@ EXEMPLO DE PAYLOAD
 
         {
           "created_at":"2015-05-21T16:13:33Z",
-          "action":"created",
+          "event":"created",
           "object_type":"charge_account",
           "object_id":7,
           "_links":[{
@@ -56,7 +56,7 @@ EXEMPLO DE PAYLOAD
 
         {
           "created_at":"2015-05-21T16:13:33Z",
-          "action":"destroyed",
+          "event":"destroyed",
           "object_type":"charge_account",
           "object_id":7,
           "_links":[{
