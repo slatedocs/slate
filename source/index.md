@@ -12,6 +12,11 @@ toc_footers:
 includes:
   - intro
   - auth
+  - projects
+  - sites
+  - importhistory
+  - channels
+  - channel_history
   - products
   - errors
 
