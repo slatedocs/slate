@@ -18,6 +18,7 @@ includes:
   - channels
   - channel_history
   - products
+  - product_data
   - errors
 
 search: true

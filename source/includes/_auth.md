@@ -1,4 +1,6 @@
 # Authentication
+For every request to our API you have to provide authorization. The token gets issued by our team and you need to provide it as X-Auth-Token header for every request.
+
 > To authorize, use this code:
 
 ```php
@@ -15,7 +17,4 @@ curl "api_endpoint_here"
 ```
 
 > Make sure to replace `1234` and `simsalabim` with the client id and secret you got provided.
-
-
-For every request to our API you have to provide authorization. The token gets issued by our team and you need to provide it as X-Auth-Token header for every request.
 

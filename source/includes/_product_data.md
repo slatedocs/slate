@@ -1,141 +1,137 @@
-# Products (write)
+# Product Data (Read)
+
 ## URL
-```php
-<?php
-// our php client builds the urls for you, but you have to set the infos to the classes:
-$ProductService = new Productsup\Service\ProductData($Client);
-$Reference = new Productsup\Platform\Site\Reference();
+The URL for fetching properties looks like this:
 
-/**
- * You have to specify the site the products belong to.
- * This is done by references to the site.
- *
- * In case you have a productsup site id, you can pass it like this:
- **/
-$Reference->setKey($Reference::REFERENCE_SITE);
-$Reference->setValue(123); // Site ID
-$ProductService->setReference($Reference);
+`/product/v1/site/{site id}/stage/{name of stage}/{stage id}/{action}`
 
-```
-The URL for the uploading is looking like this:
-
-`/platform/v1/sites/Identifier:123/products/abcdef123/upload`
+`/product/v1/site/123/stage/intermediate/0/properties/`
 
 It consists of the folowing parts:
 
-example | description
-------- | -----------
-sites/Identifier:123 | the entity the upload is related to.
-/products | tells the api that you are about to upload products
-abcdef123 | is an identifier (batch id) you can create. It is only used during the upload and tells the API that all actions belong to this batch
-upload | is the action you want to perform.
+name | example | description
+---- | ------- | -----------
+site_id | `sites/123`| the entity the upload is related to, see [sites](#sites).
+stage | `stage/intermediate` | one of `import`, `intermediate`,`export` or `channel`
+stage_id | `0` or `321` | 0 for import and intermediate, channel_id for [channels](#channels), export_id for exports.
+action | empty for queries, or `properties` | see [properties](#properties) or [query](#query) 
 
 
+## Properties
+The properties endpoint provides some meta data about the queried dataset
 
-## Upload
+```php
+<?php
+// see Product Data write for more info
+$ProductService = new Productsup\Service\ProductData($Client);
+$Reference = new Productsup\Platform\Site\Reference();
+
+$productData = new \Productsup\Service\ProductData($client);
+$reference = new \Productsup\Platform\Site\Reference();
+$reference->setKey(\Productsup\Platform\Site\Reference::REFERENCE_SITE);
+$reference->setValue(123); // site id
+$productData->setReference($reference);
+$metaData = $productData->getProperties(\Productsup\Service\ProductData::STAGE_INTERMEDIATE,0);
+/** response: 
+Array (
+      [success] => 1
+      [columns] => Array
+          (
+              [0] => id
+              [1] => gtin
+              [2] => price
+              ...
+          )
+      [products] => 42
+  )
+
+*/
+```
 
 ```shell
-curl -d '[{
-   "id": 123,
-   "title": "test title",
-   "price": 1.23
-}, {
-   "id": 124,
-   "title": "next title",
-   "price": 3.21,
-   "shipping": "0.99"
-}]'
-https://platform-api.productsup.io/platform/v1/sites/Identifier:123/products/abcdef123/upload
+curl https://platform-api.productsup.io/product/v1/site/123/stage/intermediate/0/properties/
+```
+```shell
+result: 
+{
+    "success": true,
+    "columns": ["id", "gtin", "price", ...],
+    "products": 42
+}
+```
+
+field | type | description
+----- | ---- | -----------
+columns | Array | Columns of the dataset
+products | Integer | Count of products in dataset
+
+## Query
+
+```shell
+curl  http://api.productsup.io/product/v1/site/123/stage/intermediate/
+    ?filter=id+%3C%3E+%27%27
+    &limit=5000
+    &offset=0
+    &fields%5B0%5D=id
+    &fields%5B1%5D=gtin
+    &hidden=0
+```
+
+```shell
+{
+    "success": true,
+    "products": [{
+        "id": "123",
+        "gtin": "42"
+    }]
+}
 ```
 
 ```php
 <?php
-$ProductService->insert(array(
-        'id' => 123,
-        'price' => 1.23,
-        'description' => 'test title',
-    )
+$productData = new \Productsup\Service\ProductData($client);
+$reference = new \Productsup\Platform\Site\Reference();
+$reference->setKey(\Productsup\Platform\Site\Reference::REFERENCE_SITE);
+$reference->setValue(123); // site id
+$productData->setReference($reference);
+
+$productData->setReference($reference);
+
+$query = new \Productsup\Query();
+$query->fields = array(
+    'id',
+    'gtin'
 );
 
-$ProductService->insert(array(
-        'id' => 124,
-        'price' => 3.21,
-        'description' => 'next title',
-        'shipping' => 0.99
-    )
-);
-```
-To upload products, you can simply add an json encoded array of arrays as post body of the url from above:
-<aside class="notice">The key `id` is mandatory, all other keys end up as columns</aside>
+$query->filter = "id <> ''";
+$query->limit = 5000;
+$query->offset = 0;
 
-
-The example would result in a import that looks like this:
-
-
-id | title | price | shipping
--------------- | -------------- | -------------- | ----------
-123 |test title | 1.23
-124 | next title | 3.21 | 0.99
-
-## Delete
-If you do "delta" or "incremental" uploads (see commit action) you may want to delete old products you already uploaded. To do so, just add the key ```pup:isDelete``` with value ```1``` and the id of the product:
-
-```shell
-curl -d '[{
-    "id": 124,
-    "pup:isDelete": 1
-}]'
-https://platform-api.productsup.io/platform/v1/sites/Identifier:123/products/abcdef123/upload
+$products = $productData->get(\Productsup\Service\ProductData::STAGE_INTERMEDIATE,0,$query);
 ```
 
 ```php
-<?php
-$ProductService->delete(array(
-        'id' => 123,
-    )
-);
+result:
+Array
+(
+    [success] => 1
+    [products] => Array
+        (
+            [0] => Array
+                (
+                    [id] => 123
+                    [gtin] => 42
+                )
+        )
+)
 ```
 
+Querying product data allows to search for products withing the provided stage
 
-## Commit
-When you finished all uploads into one batch, you can tell the API that it is done and the "batch" can be started to be processed.
-
-Url in this case would be `https://platform-api.productsup.io/platform/v1/sites/Identifier:123/products/abcdef123/commit`
-
-> As body of the POST request you have to provide again a JSON, this time with only one parameter:
-
-```shell
-curl -d '{"type":"full"}'
-https://platform-api.productsup.io/platform/v1/sites/Identifier:123/products/abcdef123/upload
-```
-
-```php
-<?php
-$productsService->setImportType(\Productsup\Service\ProductData::TYPE_DELTA);
-// OR
-$productsService->setImportType(\Productsup\Service\ProductData::TYPE_FULL);
-
-// note: if you do not define the type the "full" is used as default
-
-$result = $ProductService->commit();
-```
-
-There are two types for commits:
-
-
-type | description
----- | -----------
-full | tells the API that the current upload are all products for the given entity, all past uploads are removed
-delta | tells the API that the current upload is only a part of all your products, in case you plan to send incremental uploads
-
-## Discard
-The third action "discard" is only to abort a started upload. This removes all uploads for the given batch id and you can start over.
-
-```shell
-curl https://platform-api.productsup.io/platform/v1/sites/Identifier:123/products/abcdef123/discard
-```
-
-```php
-<?php
-$result = $ProductService->discard();
-```
+name | example | default | description
+---- | ------- | ------- | -----------
+limit | `50` | `5000` | maximum number of data
+offset | `50` | `0` |  offset for querying data
+fields | `id` | all fields |  array of fields
+hidden | `1` | `0` | if set to `1` also hidden fields (fields that are not exported) are included
+filter | `id=123` | none | condition to filter for, in [SQL syntax](http://www.tutorialspoint.com/sql/sql-operators.htm)

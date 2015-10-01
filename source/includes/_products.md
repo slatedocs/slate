@@ -1,4 +1,4 @@
-# Products
+# Product Data (Write)
 ## URL
 ```php
 <?php
@@ -100,7 +100,9 @@ $ProductService->delete(array(
 ## Commit
 When you finished all uploads into one batch, you can tell the API that it is done and the "batch" can be started to be processed.
 
-Url in this case would be `https://platform-api.productsup.io/platform/v1/sites/Identifier:123/products/abcdef123/commit`
+Url in this case would be
+ 
+ `/platform/v1/sites/Identifier:123/products/abcdef123/commit`
 
 > As body of the POST request you have to provide again a JSON, this time with only one parameter:
 
