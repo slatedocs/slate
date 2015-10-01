@@ -1,4 +1,4 @@
-# Products
+# Products (write)
 ## URL
 ```php
 <?php
