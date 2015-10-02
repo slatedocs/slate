@@ -278,50 +278,11 @@ var budgets = sdk.GetBudgets();
     "show_on_dashboard": true,
     "tag_names": [
       "Bikes"
+    ],
+    "account_list":[
+      396,397
     ]
   }
-}
-```
-
-> Response payload
-
-```json
-{
-  "budgets": [
-    {
-      "id": 1234,
-      "name": "Food",
-      "month": 9,
-      "year": 2013,
-      "tag_names": [
-        "Diningout"
-      ],
-      "spent": 0,
-      "state": "under",
-      "budget_amount": 300,
-      "links": {
-        "budget_histories": [2468, 2469]
-      }
-    }
-  ],
-  "budget_histories": [
-    {
-      "id": 2468,
-      "budget_amount": 300,
-      "month": 8,
-      "spent": 0,
-      "state": "under",
-      "year": 2013
-    },
-    {
-      "id": 2469,
-      "budget_amount": 300,
-      "month": 7,
-      "spent": 0,
-      "state": "under",
-      "year": 2013
-    }
-  ]
 }
 ```
 
@@ -401,7 +362,10 @@ var updated = sdk.UpdateBudget(budgetId, budgetRequest);
     "show_on_dashboard": true,
     "tag_names": [
       "Bikes"
-    ]
+    ],
+     "account_list":[
+       396,397
+     ]
   }
 }
 ```
