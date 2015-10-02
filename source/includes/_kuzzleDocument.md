@@ -28,18 +28,28 @@ Deletes this document in Kuzzle.
 
 Replaces the current content with the last version of this document stored in Kuzzle.
 
-## subscribe ![public](./images/public.png)
+## save ![public](./images/public.png)
 
-Listens to events concerning documents similar to this one.
+Saves this document in Kuzzle. If an ID is specified, this function will update the document with the corresponding ID. Otherwise, a new document is created **and stored**.
 
-**Returns:** a KuzzleRoom object
+## send ![public](./images/public.png)
 
-## update ![public](./images/public.png)
+Sends the content of this document as a realtime message.
 
-Updates the current content with new data
+## set ![public](./images/public.png)
 
-#### update(data)
+<aside class="notice">Changes made by this function won't be applied until you call the <code>save</code> method</aside>
+
+Replaces the current content with new data.
+
+#### set(data)
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
-| data | JSON Object | Updated content |
+| data | JSON Object | New content |
+
+## subscribe ![public](./images/public.png)
+
+Listens to events concerning this document. Has no effect if the document doesn't have an ID (*i.e. if the document hasn't yet been created as a persisted document*).
+
+**Returns:** a KuzzleRoom object
