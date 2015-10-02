@@ -193,6 +193,24 @@ POST a JSON object to create a new Dataset; a 201 indicates success, and the ret
 
 The body must contain a "name", and additional parameters "description" and "archived" are allowed. You can also include a Crunch Table in a "table" key, as discussed in the Feature Guide. Sending any other attribute will return a 400 response.
 
+### Other catalogs
+
+In addition to `/datasets/`, there are a few other catalogs of datasets in the API:
+
+#### Team datasets
+
+`/teams/{team_id}/datasets/`
+
+A Shoji Catalog of datasets that have been shared with this team. These datasets are not included in the primary dataset catalog. See [teams](#teams) for more.
+
+#### Filter datasets by name
+
+`/datasets/by_name/{dataset_name}/`
+
+The `by_name` catalog returns (on GET) a Shoji Catalog that is a subset of `/datasets/` where the dataset name matches the "dataset_name" value. Matches are case sensitive.
+
+Verbs other than GET are not supported on this subcatalog. PATCH and POST at the primary dataset catalog.
+
 ### Entity
 
 #### GET
@@ -219,9 +237,3 @@ description | string | "" | A longer description of the dataset
 #### DELETE
 
 `DELETE /datasets/{dataset_id}/`
-
-# Filter datasets by exact name
-
-The datasets catalog will contain a `by_name` sub catalog on its response. GET to that endpoint with the interpolated dataset name to get a catalog with the same shape as the main datasets catalog.
-
-Matches will be case sensitive

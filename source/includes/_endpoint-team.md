@@ -347,4 +347,4 @@ The team datasets catalog only supports the GET verb. To add a dataset to a team
 
 #### GET
 
-GET returns a Shoji Catalog of datasets that have been shared with this team. This is a subset of the datasets in `/datasets/`. See [datasets](#datasets) for details.
+GET returns a Shoji Catalog of datasets that have been shared with this team. See [datasets](#datasets) for details.
