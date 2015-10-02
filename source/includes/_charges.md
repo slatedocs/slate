@@ -6,29 +6,30 @@ As Cobranças, pertencem as suas contas de cobrança, sendo assim é necessário
 
 Parâmetros
 
-|Campo                    | Tipo             | Comentário                                                                                |
-|-------------------------|-----------       |-------------------------------------------------------------------------------------------|
-| id                      | integer          |                                                                                           |
-| charge_account_id       | integer          | identificador da conta de cobrança                                                        |
-| due_date                | date             | data de vencimento da cobranca                                                            |
-| document_kind           | string           | espécie do documento, podendo ser DM (Duplicata Mercantil), DS (Duplicata de Serviço), NP (Nota Promissória)  ou DV (Diversos)                                                                                                           |
-| document_date           | date             | data de emissão do documento                                                              |
-| document_number         | string           |                                                                                           |
-| our_number              | string           |                                                                                           |
-| our_number_digit        | integer          | digito do verificador do nosso número                                                     |
-| custom_our_number       |  boolean         | caso true, o nosso número é atribuído pelo usuário, caso contrário, é atribuído automaticamente pelo Cobrato                                                                                                                             |
-| total_amount            |  decimal         | valor total do boleto                                                                     |
-| instructions            |  string          | instruções de pagamento do boleto, por padrão "Pago em qualquer agência até data do vencimento."                                                                                                                                          |
-| demonstrative           |   string         | demonstrativo do Boleto, por padrão, contém a taxa bancária                               |
-| payer_emails            |  array of strings  | emails de quem irá pagar o boleto                                                       |
-| received                |  boolean         | caso for true, o boleto já foi marcado como recebido                                      |
-| received_amount         |   decimal        | valor recebido do boleto bancário                                                         |
-| received_at             |   date           | dia do pagamento do boleto                                                                |
-| processing_date         |   date           | data de geração do boleto                                                                 |
-| for_homologation        |  boolean         | caso for true, é uma cobrança gerada automaticamente pelo sistema e utilizada para homologação da sua conta de cobrança |
-| billet                  |  object          | link com expiração em uma hora para download do boleto caso já tenha sido gerado          |
-| _links                  |  array of object | links da conta de cobrança e de sua conta bancária |
-
+|Campo                    | Tipo             | Comentário                                                                                                                     |
+|-------------------------|------------------|--------------------------------------------------------------------------------------------------------------------------------|
+| id                      | integer          |                                                                                                                                |
+| charge_account_id       | integer          | identificador da conta de cobrança                                                                                             |
+| due_date                | date             | data de vencimento da cobranca                                                                                                 |
+| document_kind           | string           | espécie do documento, podendo ser DM (Duplicata Mercantil), DS (Duplicata de Serviço), NP (Nota Promissória)  ou DV (Diversos) |
+| document_date           | date             | data de emissão do documento                                                                                                   |
+| document_number         | string           |                                                                                                                                |
+| our_number              | string           |                                                                                                                                |
+| our_number_digit        | integer          | digito do verificador do nosso número                                                                                          |
+| custom_our_number       | boolean          | caso true, o nosso número é atribuído pelo usuário, caso contrário, é atribuído automaticamente pelo Cobrato                   |
+| total_amount            | decimal          | valor total do boleto                                                                                                          |
+| instructions            | string           | instruções de pagamento do boleto, por padrão "Pago em qualquer agência até data do vencimento."                               |
+| demonstrative           | string           | demonstrativo do Boleto, por padrão, contém a taxa bancária                                                                    |
+| payer_emails            | array of strings | emails de quem irá pagar o boleto                                                                                              |
+| received                | boolean          | caso for true, o boleto já foi marcado como recebido                                                                           |
+| received_amount         | decimal          | valor recebido do boleto bancário                                                                                              |
+| received_at             | date             | dia do pagamento do boleto                                                                                                     |
+| processing_date         | date             | data de geração do boleto                                                                                                      |
+| for_homologation        | boolean          | caso for true, é uma cobrança gerada automaticamente pelo sistema e utilizada para homologação da sua conta de cobrança        |
+| billet                  | object           | link com expiração em uma hora para download do boleto caso já tenha sido gerado                                               |
+| payment_method          | string           | identifica o método de pagamento da cobranças                                                                                  |
+| has_cnab_remittance     | boolean          | para cobranças onde o "payment_method" é "cnab", identifica se o arquivo de remessa já foi gerado                              |
+| _links                  | array of object  | links da conta de cobrança e de sua conta bancária                                                                             |
 
 ## Lista de Todos as Cobrança
 
@@ -198,7 +199,8 @@ Parâmetros
 | total_amount | decimal |  requirido valor total do boleto |
 | instructions | string | instruções de pagamento do boleto, por padrão "Pago em qualquer agência até data do vencimento." |
 | demonstrative |  string | demonstrativo do Boleto, por padrão, contém a taxa bancária |
-| payer_emails | array of strings | Semails de quem irá pagar o boleto |
+| payer_emails | array of strings | E-mails de quem irá pagar o boleto |
+| payment_method | strings | método de pagamento da cobrança, as opções são disponibilizadas pela conta de cobrança |
 
 
 ## Atualização de Cobrança
@@ -221,7 +223,8 @@ EXEMPLO DE REQUISIÇÃO
     -D '{
           "document_date":"2015-02-02",
           "document_number":"123456789",
-          "payer_emails":["myemail@gmail.com"]
+          "payer_emails":["myemail@gmail.com"],
+          "payment_method": "billet"
         }'
 
 EXEMPLO DE ESTADO DA RESPOSTA COM SUCESSO
@@ -254,7 +257,7 @@ Atualiza a cobrança determinada, caso haja sucesso retornará as informações 
 
 Não é possível atualizar uma cobrança após seu recebimento, para isso é necessário desfazer o recebimento da mesma!
 
-Observação: Os campos 'recived', 'recived_at' e 'recived_amount', não são alterados via atualização de cobrança, apenas no recebimento ou desfazendo o recebimento da mesma.
+Observação: Os campos 'recived', 'recived_at' e 'recived_amount', não são alterados via atualização de cobrança, apenas no recebimento ou desfazendo o recebimento da mesma. O campo 'has_cnab_remittance' é alterado, apenas em cobranças em que o 'payment_method' é 'cnab', quando a gerado o arquivo de remessa para a cobrança.
 
 Parâmetros
 
@@ -271,6 +274,7 @@ Parâmetros
 | instructions|  string | instruções de pagamento do boleto, por padrão "Pago em qualquer agência até data do vencimento." |
 | demonstrative|   string | demonstrativo do Boleto, por padrão, contém a taxa bancária |
 | payer_emails|  array of strings  | emails de quem irá pagar o boleto |
+| payment_method | strings | método de pagamento da cobrança, as opções são disponibilizadas pela conta de cobrança |
 
 
 

@@ -45,8 +45,8 @@ Parâmetros
 | end_number | integer | número final do nosso número, sendo o último número a ser atribuído, após isso a sequência é reiniciada |
 | status | string | caso for 'pending' a conta ainda não está homologada
 caso for 'ok' a conta já consta como homologada |
+| payment_methods | array of strings | métodos de pagamentos disponíveis para pagamentos de cobranças criadas a partir desta conta |
 | _links | array of object | links da conta de cobrança e de sua conta bancária |
-
 
 ## Lista de Todos as Contas de Cobrança
 
@@ -281,13 +281,14 @@ Parâmetros
 
 |Campo                    | Tipo            | Comentário                                             |
 |-------------------------|-----------------|--------------------------------------------------------|
-| bank_account_id         |  integer        | requirido código de identificação da conta bancária em que a conta de cobrança irá pertencer |
-| portfolio_code          | string          | requirido código de portfólio, validação conforme o banco determinado através |
-| agreement_code          | string          | requirido, com exceção do Itaú onde é preenchido automaticamente |
-| agreement_code_digit    | string          | requirido, com exceção do HSBC e Itaú, sendo preenchido automaticamente para o último |
-| name                    | string          | requirido |
-| initial_number          | integer         | requirido  número inicial do nosso número, sendo atribuído automaticamente e sequencialmente às cobranças |
-| end_number              | integer         | número final do nosso número, sendo o último número a ser atribuído, após isso a sequência é reiniciada |
+| bank_account_id         | integer          | requirido código de identificação da conta bancária em que a conta de cobrança irá pertencer |
+| portfolio_code          | string           | requirido código de portfólio, validação conforme o banco determinado através |
+| agreement_code          | string           | requirido, com exceção do Itaú onde é preenchido automaticamente |
+| agreement_code_digit    | string           | requirido, com exceção do HSBC e Itaú, sendo preenchido automaticamente para o último |
+| name                    | string           | requirido |
+| initial_number          | integer          | requirido  número inicial do nosso número, sendo atribuído automaticamente e sequencialmente às cobranças |
+| end_number              | integer          | número final do nosso número, sendo o último número a ser atribuído, após isso a sequência é reiniciada |
+| payment_methods         | array of strings | métodos de pagamentos disponíveis para pagamentos de cobranças criadas a partir desta conta, [verificar api](#métodos-de-pagamentos-disponíveis) |
 
 
 ## Atualização de Conta de Cobrança
@@ -312,6 +313,7 @@ EXEMPLO DE REQUISIÇÃO
           "agreement_code": "12345678",
           "agreement_code_digit": "1",
           "name": "Novo Nome"
+          "payment_methods": ["billet", "cnab"]
         }'
 
 EXEMPLO DE ESTADO DA RESPOSTA COM SUCESSO
@@ -398,6 +400,7 @@ Parâmetros
 |name                     | string          | - |
 |initial_number           | integer         | requirido número inicial do nosso número, sendo atribuído automaticamente e sequencialmente as cobranças |
 |end_number               | integer         | número final do nosso número, sendo o último número a ser atribuído, após sso a sequência é reiniciada |
+|payment_methods          | array of strings | - |
 
 
 
@@ -428,3 +431,37 @@ EXEMPLO DE ESTADO DA RESPOSTA COM CONTA DE COBRANÇA INEXISTENTE
 
 ```
 Exclui determinada conta de cobrança e junto a ela todas suas cobranças. As mudanças são irreversíveis.
+
+## Métodos de Pagamentos Disponíveis
+
+```shell
+Métodos de Pagamentos Disponíveis
+
+DEFINIÇÂo
+  GET https://app.cobrato.com/api/v1/charge_accounts/available_payment_methods
+
+EXEMPLO DE REQUISIÇÃO
+
+  $ curl -i -u $API_TOKEN:X
+    -H 'User-Agent: My App 1.0' \
+    -H 'Accept: application/json' \
+    -H 'Content-type: application/json' \
+    -X GET https://app.cobrato.com/api/v1/charge_accounts/available_payment_methods
+
+EXEMPLO DE ESTADO DA RESPOTA COM SUCESSO
+
+  200 OK
+
+EXEMPLO DE CORPO DA RESPOSTA COM INSUCESSO
+
+  {
+    "portfolio_codes":
+    [
+      "billet",
+      "cnab"
+    ]
+  }
+
+
+```
+Mostra todos os métodos de pagamentos disponíveis pelo Cobrato.
