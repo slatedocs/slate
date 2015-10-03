@@ -28,6 +28,10 @@ response = constructorio.add(
 );
 ```
 
+```python
+response = constructor_instance.add(item_name="power drill", autocomplete_section="Search Suggestions")
+```
+
 > The above command returns a 204 Success response on success.
 
 To add an item to your autocomplete index, use the `POST /item` call. The `item_name` is required. You can also pass in an optional `suggested_score` between 1-100, which will influence the item's initial ranking relative to other item scores (the higher the score, the higher in the list of suggestions the item will appear). You can also optionally pass in the item's `keywords` to give us more meta information and help us better determine how and where to display the item when autocompleting. If you would like to add an item that points to a direct link, just pass in that link as a `url`. Finally, because your autocomplete can have multiple sections, like categories, search suggestions, and direct links to products, you must specify which section you are adding an item to. You can do this with the `autocomplete_section` parameter.
@@ -68,6 +72,10 @@ constructorio.remove(
 response = constructorio.remove(
   { item_name: "power drill", autocomplete_section: "Search Suggestions" }
 );
+```
+
+```python
+response = constructor_instance.remove(item_name="power drill", autocomplete_section="Search Suggestions")
 ```
 
 > The above command returns a 204 Success response on success.
@@ -117,6 +125,13 @@ response = constructorio.modify(
     url: "http://www.mysite.com/power_drill",
   }
 );
+```
+
+```python
+response = constructor_instance.modify(item_name="power drill", 
+	   			       new_item_name="better power drill", 
+	   			       autocomplete_section="standard", 
+				       url="http://www.mysite.com/power_drill")
 ```
 
 > The above command returns a 204 Success response on success.

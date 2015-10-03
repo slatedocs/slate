@@ -28,6 +28,12 @@ end
 constructorio = ConstructorIO::Client.new
 ```
 
+```python
+from constructor_io import ConstructorIO
+constructor_instance = ConstructorIO(api_token="[your_api_token]", 
+	      		     	     autocomplete_key="[your_autocomplete_key]")
+```
+
 > Make sure to replace `[your token]` with your API token from [your dashboard](/dashboard).
 
 You authenticate to the REST API by providing your API token, which you can obtain from [your dashboard](/dashboard).
@@ -52,6 +58,10 @@ constructorio.verify(function(error, response) {
 
 ```ruby
 response = constructorio.verify
+```
+
+```python
+response = constructor_instance.verify()
 ```
 
 You can verify that authentication works correctly by issuing a simple verification request.
