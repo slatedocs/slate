@@ -130,10 +130,11 @@ response = constructorio.modify(
 ```
 
 ```python
-response = constructor_instance.modify(item_name="power drill",
-                                       new_item_name="better power drill",
-                                       autocomplete_section="standard",
-                                       url="http://www.mysite.com/power_drill")
+response = constructor_instance.modify(
+    item_name="power drill",
+    new_item_name="better power drill",
+    autocomplete_section="standard",
+    url="http://www.mysite.com/power_drill")
 ```
 
 > The above command returns a 204 Success response on success.
