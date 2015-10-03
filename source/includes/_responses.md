@@ -17,6 +17,13 @@ puts response.status # print the status code
 puts JSON(response.body)["message"]
 ```
 
+```python
+# responses are converted to dictionaries for your convenience
+response = constructor_instance.verify()
+print response
+# {u'message': u'successful authentication'}
+```
+
 Most successful responses return 204 No Data codes without any further information.
 
 Responses and errors that return data are JSON structures that will contain a "message" parameter with more information.
