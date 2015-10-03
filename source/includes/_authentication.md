@@ -30,8 +30,9 @@ constructorio = ConstructorIO::Client.new
 
 ```python
 from constructor_io import ConstructorIO
-constructor_instance = ConstructorIO(api_token="[your api token]",
-                                     autocomplete_key="[your autocomplete key]")
+constructor_instance = ConstructorIO(
+    api_token="[your api token]",
+    autocomplete_key="[your autocomplete key]")
 ```
 
 > Make sure to replace `[your token]` with your API token from [your dashboard](/dashboard).

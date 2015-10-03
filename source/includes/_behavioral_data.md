@@ -24,7 +24,9 @@ response = constructorio.track_search({
 ```
 
 ```python
-response = constructor_instance.track_search(term="xyz", num_results=302)
+response = constructor_instance.track_search(
+    term="xyz",
+    num_results=302)
 ```
 
 The `search` resource should be called whenever a search is performed on your site, together with the search `term` and number of results (`num_results`).
@@ -64,8 +66,10 @@ response = constructorio.track_click_through({
 ```
 
 ```python
-response = constructor_instance.track_click_through(term="xyz", num_results=302,
-                                                    autocomplete_section="Search Suggestions")
+response = constructor_instance.track_click_through(
+    term="xyz",
+    num_results=302,
+    autocomplete_section="Search Suggestions")
 ```
 
 The `click_through` resource should be called when a user clicks on a search result (this can often be done from the product detail page). Pass in the search `term` and, optionally, the `item` clicked on so we can learn which items are receiving clicks from which terms and increase their ranking in the autocomplete index. Beacuse your autocomplete can have multiple sections, you must also pass in the `autocomplete_section` parameter with the appropriate section name.
@@ -107,8 +111,10 @@ response = constructorio.track_conversion({
 ```
 
 ```python
-response = constructor_instance.track_conversion(term="xyz", item="Alphabet Soup",
-                                                 autocomplete_section="Search Suggestions")
+response = constructor_instance.track_conversion(
+    term="xyz",
+    item="Alphabet Soup",
+    autocomplete_section="Search Suggestions")
 ```
 
 The `conversion` resource should be called when a user purchases a product (or successfully performs another action important to your site). Pass in the search `term` so we can learn which items are receiving conversions and increase their ranking in the autocomplete index. You can also pass in an optional `item` parameter to indicate which item the customer purchased. Because your autocomplete can have multiple sections, you must also pass in the `autocomplete_section` parameter with the appropriate section name.

@@ -29,7 +29,9 @@ response = constructorio.add(
 ```
 
 ```python
-response = constructor_instance.add(item_name="power drill", autocomplete_section="Search Suggestions")
+response = constructor_instance.add(
+    item_name="power drill",
+    autocomplete_section="Search Suggestions")
 ```
 
 > The above command returns a 204 Success response on success.
