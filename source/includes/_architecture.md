@@ -15,7 +15,7 @@ where <code>/path/to/genesis_block.json</code> is the genesis block for the (tem
 Hosted node
 -----------
 <img src="images/architecture_hosted.svg" onerror="this.src='images/architecture_hosted.png'">
-Understandably, many users will not want to go to the trouble of running a full Ethereum node solely for the purpose of using Augur.  Augur maintains five public Ethereum nodes, which are used automatically by [client.augur.net](http://client.augur.net) if an Ethereum node is not detected on localhost:
+Understandably, many users will not want to go to the trouble of running a full Ethereum node solely for the purpose of using Augur.  Augur maintains five public Ethereum nodes, which are used automatically by [client.augur.net](http://client.augur.net) if a local Ethereum node is not detected:
 
 - [http://eth1.augur.net](http://eth1.augur.net)
 - [http://eth2.augur.net](http://eth2.augur.net)
@@ -23,4 +23,4 @@ Understandably, many users will not want to go to the trouble of running a full 
 - [http://eth4.augur.net](http://eth4.augur.net)
 - [http://eth5.augur.net](http://eth5.augur.net)
 
-Nodes [eth1](http://eth1.augur.net), [eth3](http://eth3.augur.net), [eth4](http://eth4.augur.net) and [eth5](http://eth5.augur.net) are temporarily on a private chain (networkid 7).  [eth2.augur.net](http://eth2.augur.net) is temporarily on the Frontier network; it is being used by the [Augur Reputation sale app](https://sale.augur.net) until the end of the sale on Oct. 1 at noon EST.
+All five nodes are temporarily on a private chain (networkid 7), rather than the main Frontier network, while Augur is in alpha/beta testing.
