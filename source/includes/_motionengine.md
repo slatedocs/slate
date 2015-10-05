@@ -29,7 +29,7 @@ The status only shows whether the device has come to stop, started to move, or i
 
 This function will disable the motion streaming option.
 
-## Enable 9-axis stream
+## Enable 6-axis IMU stream
 
 > The 3-axis raw data type is defined below:
 
@@ -39,29 +39,28 @@ typedef struct { //3-axis raw data type
 } AxesRaw_t;
 ```
 
-> The returned 9-axis data type is defined below:
+> The overall returned 6-axis IMU data type is defined below:
 
 ```c
 typedef struct { //9-axis data type
   AxesRaw_t Acc; //accelerometer
   AxesRaw_t Gyr; //gyroscope
-  AxesRaw_t Mag; //magnetometer
-} IMURaw_t;
+} IMU6AxisRaw_t;
 ```
 
-`Enable_9AxisStream()`
+`Enable_6AxisIMU_Stream()`
 
-This function will enable the streaming of the 9-axis Magnetic Angular Rate and Gravity (MARG) data including 3-axis accelerometers, 3-axis gyroscopes, and 3-axis magnetometers.
+This function will enable the streaming of the 6-axis Inertial Measurement Unit (IMU) data including 3-axis accelerometers and 3-axis gyroscopes. 
 <aside class="notice">
 Each axis will be a 16-bit signed number representing the following range:<br>
-Accelerometer: ±2g, Gyroscope: ±2000 dps, Magnetometer: ±4 gauss.
+Accelerometer: ±2g, Gyroscope: ±2000 dps.
 </aside>
 
-## Disable 9-axis stream
+## Disable 6-axis IMU stream
 
-`Disable_9AxisStream()`
+`Disable_6AxisIMU_Stream()`
 
-This function will disable the streaming of the 9-axis MARG data.
+This function will disable the streaming of the 6-axis IMU data.
 
 ## Enable quaternion stream
 
@@ -217,6 +216,28 @@ If the fusion type is IMU, then the error is only reported in Pitch and Roll, wh
 
 This function disables the tracking of the orientation trajectory.
 
+
+## Enable magnetometer data stream
+
+`Enable_MAG_Stream()`
+This function will enable the streaming of the 3-axis magnetometer data. Each axis will be a 16-bit signed number representing the range: ±4 gauss.
+The magnetometer, accelerometer, and gyroscope data are together represented with the following data structure:
+```c
+typedef struct { //3-axis raw data type
+  int16_t Data[3];
+} AxesRaw_t;
+typedef struct { //9-axis data type
+	AxesRaw_t Acc; //accelerometer
+	AxesRaw_t Gyr; //gyroscope
+	AxesRaw_t Mag; //magnetometer
+} IMURaw_t;
+```
+
+## Disable magnetometer data stream
+
+`Disable_MAG_Stream()`
+This function will disable the streaming of the magnetometer data.
+
 While the aforementioned motion engine APIs issue commands to Neblina to control its settings and streaming options, the next set of APIs will instantaneously return the last updated motion features reported by Neblina to the host.
 
 ## Get motion stream
@@ -263,22 +284,74 @@ This function returns the steps information including step count and cadence as 
 
 There is another API function that gets called every time a new BLE packet buffer targeting the motion engine is received by the host:
 
-## Update motion features
+## Motion Engine Call Back Functions
 
+Alternatively, developers can define API call-backs whenever a new motion feature has been updated using the following function pointers:
+```c
+typedef void (*Motion_CallBack)(motionstatus_t motion, uint32_t TimeStamp);
+typedef void (*IMU_6Axis_CallBack)(IMU_6Axis_t data, uint32_t TimeStamp);
+typedef void (*Quaternion_CallBack)(Quaternion_t quatrn, uint32_t TimeStamp);
+typedef void (*EulerAngle_CallBack)(Euler_fxp angles, uint32_t TimeStamp);
+typedef void (*ExternalForce_CallBack)(Fext_Vec16_t fext, uint32_t TimeStamp);
+typedef void (*EulerAngleErr_CallBack)(Euler_fxp angles_err, uint32_t TimeStamp);
+typedef void (*Pedometer_CallBack)(steps_t steps, int16_t direction, uint32_t TimeStamp);
+typedef void (*MAG_CallBack)(AxesRaw_t data, uint32_t TimeStamp);
+
+typedef struct MotionEngine_CallBack_CFG_t
+{
+	Motion_CallBack MotionStatus_CallBk;
+	IMU_6Axis_CallBack IMU_6Axis_CallBk;
+	Quaternion_CallBack Quaternion_CallBk;
+	EulerAngle_CallBack EulerAngle_CallBk;
+	ExternalForce_CallBack ExternalForce_CallBk;
+	EulerAngleErr_CallBack EulerAngleErr_CallBk;
+	Pedometer_CallBack Pedometer_CallBk;
+	MAG_CallBack MAG_CallBk;
+} MotionEngine_CallBack_CFG_t;
+```
+
+For example, one might define a single API call-back regarding pedometer as follows:
+```c
+void Pedometer_CallBack_Function(steps_t steps, int16_t direction, uint32_t TimeStamp)
+{
+//Everytime a new packet corresponding to pedometer data has arrived, this function is called with the appropriate input arguments
+//write your code below...
+	return;
+}
+
+//API call-backs for the motion engine configuration data
+MotionEngine_CallBack_CFG_t g_MotionEngine_CallBackCfg = {
+		NULL, //motion status
+		NULL, //6-axis IMU data - accelerometer and gyroscope
+		NULL, //Quaternion
+		NULL, //Euler Angles
+		NULL, //External Force
+		NULL, //Euler Angle Error
+		Pedometer_CallBack_Function, //Pedometer
+		NULL, //Magnetometer data
+};
+```
+
+## Update Motion Features Main API Function
+There is also another important function that should be called everytime a new BLE packet buf targeting the motion engine is received by the host:
+```c
+Host_RcvdPacket_UpdateMotionFeatures(uint8_t* buf, MOTION_FEATURE* dev, 
+MotionEngine_CallBack_CFG_t cfg)
+```
+
+This function will essentially update one or more features from the motion features list including motion status, 9-axis raw data, quaternion, Euler angles, external force, Euler angle errors, Pedometer, etc. The motion features list has the following data structure:
 ```c
 typedef struct MOTION_FEATURE{ //all features
-uint8_t motion; //0: no change in motion, 1: stops moving, 2: starts moving
-IMURaw_t IMUData;
-Quaternion_t quatrn;
-Euler_fxp angles;
-Fext_Vec16_t force;
-Euler_fxp angles_err; //error in Euler angles compared to a reference trajectory
-uint32_t TimeStamp; //in microseconds
-steps_t steps;
-int16_t direction;
+	uint8_t motion; //0: no change in motion, 1: stops moving, 2: starts moving
+	IMURaw_t IMUData;
+	Quaternion_t quatrn;
+	Euler_fxp angles; 
+	Fext_Vec16_t force; 
+	Euler_fxp angles_err; //error in Euler angles compared to a reference trajectory
+	uint32_t TimeStamp; //in microseconds
+	steps_t steps;
+	int16_t direction;
 }MOTION_FEATURE;
 ```
 
-`NewPacket_UpdateMotionFeatures(uint8_t* buf)`
-
-This function will essentially update one or more features from the motion features list including motion status, 9-axis raw data, quaternion, Euler angles, external force, Euler angle errors, Pedometer, etc. The motion features list has the following data structure:
+The cfg argument also defines all the user-defined API call back functions for specific motion features.
