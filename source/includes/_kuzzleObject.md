@@ -8,13 +8,14 @@ Here is the object diagram of our SDKs:
 
 ## Constructors
 
-### Kuzzle(ApplicationName)
+### Kuzzle(ApplicationName, KuzzleURL)
 
 Connects to a Kuzzle instance.
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
 | ApplicationName | string | The name of the application using Kuzzle. |
+| KuzzleURL | string | URL to the target Kuzzle instance |
 
 
 ### Kuzzle(ApplicationName, Options)
