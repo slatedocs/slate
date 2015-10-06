@@ -14,6 +14,7 @@ includes:
   - bank_accounts
   - charge_accounts
   - charges
+  - remittances
   - webhook
   - charges_webhook
   - update_charges_webhook
