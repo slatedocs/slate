@@ -28,6 +28,9 @@ end
 activate :relative_assets
 set :relative_links, true
 
+# Livereload
+activate :livereload, :host => "127.0.0.1"
+
 # Build Configuration
 configure :build do
   activate :minify_css
