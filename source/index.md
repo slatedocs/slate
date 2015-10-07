@@ -14,6 +14,7 @@ includes:
   - auth
   - projects
   - sites
+  - site_errors
   - importhistory
   - channels
   - channel_history
