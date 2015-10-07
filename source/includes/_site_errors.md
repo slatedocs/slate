@@ -72,3 +72,57 @@ id | Integer | Internal ID
 pid | String | Process ID
 error | Integer | Error ID
 data | JSON/Array | additional infos about the error
+
+## Create
+To create a new error (information) for one site, you can use a POST request (or the insert method).
+
+```shell
+ curl 
+    -d '{"pid":"abd456def","error":123,"data":{"foo":"bar"}}' 
+    https://platform-api.productsup.io/platform/v1/sites/123/errors
+
+
+# result:
+{
+    "success": true,
+    "Errors": [{
+        "id": 42,
+        "pid": "abc456def",
+        "error": 123,
+        "data": "{\"foo\":\"bar\"}",
+        "site_id": 123,
+        "links": [...]
+    }]
+}
+```
+
+```php
+<?php
+$site = new \Productsup\Platform\Site();
+$site->id = 123;
+$errorService = new \Productsup\Service\Errors($client);
+$errorService->setSite($site);
+$result = $errorService->get();
+
+$error = new \Productsup\Platform\Error();
+$error->pid = 'something';
+$error->error = 123;
+$error->data = ['foo' => 'bar'];
+$result = $errorService->insert($error);
+print_r($result);
+
+/**
+Productsup\Platform\Error Object
+(
+    [id] => 42
+    [pid] => something
+    [error] => 123
+    [data] => {"foo":"bar"}
+    [links:protected] => ...
+)
+*/
+
+
+```
+
+
