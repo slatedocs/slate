@@ -7,6 +7,16 @@ With site errors, you can see the last errors or add new custom errors for a sit
 ## Get
 To list errors for one site, you can use get. See [Sites](#sites) for how to identify sites.
 
+### Optional Params for get requests
+
+param | example | default | description
+----- | ------- | ------- | -----------
+pid | `abc456def` | (latest) | process id, by default the latest process is shown
+limit | `10` | `50` | maximum number of results
+offset | `20` | `0` | results begin at this position
+
+
+
 ```php
 <?php
 $site = new \Productsup\Platform\Site();
@@ -15,6 +25,13 @@ $site->id = 123;
 
 $errorService = new \Productsup\Service\Errors($client);
 $errorService->setSite($site);
+
+// optional params
+$errorService->setParam('pid','abc456def');
+$errorService->setParam('limit',1);
+$errorService->setParam('offset',2);
+
+
 $result = $errorService->get();
 
 /*
@@ -64,6 +81,8 @@ response:
 ### HTTP Request
 
 `GET https://platform-api.productsup.io/platform/v1/sites/123/errors`
+
+`GET https://platform-api.productsup.io/platform/v1/sites/123/errors?pid=abc456def&limit=10&offset=20`
 
 ### Response fields
 Field | Type | Description
