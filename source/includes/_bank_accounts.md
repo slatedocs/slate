@@ -1,6 +1,8 @@
-# Contas Bancárias
+# Conta Bancária
 
 ```shell
+Conta Bancária
+
 EXEMPLO
 
   {
@@ -20,73 +22,34 @@ EXEMPLO
       ]
   }
 ```
-<aside class="notice">
+
 As Contas Bancárias, pertencem aos seus cedentes, sendo assim é necessário que sempre haja ao menos um cedente para criação de conta bancária.
-</aside>
 
-Parâmetros
+**Parâmetros**
 
-|Campo                    | Tipo            | Comentário                                             |
-|-------------------------|-----------------|--------------------------------------------------------|
-|id                       |  integer |                                                           |
-|payee_id                 |  integer | identificador do cedento no Cobrato |
-|bank_code | string | código do banco no Febraban |
-|agency|  string | |
-|agency_digit|  string | Apenas utilizado pelo Banco do Brasil(001) |
-|account| string |  |
-|account_digit| string | Apenas não utilizado pelo HSBC(399) |
-|_links|  array of object | links da conta bancária e de seu cedente
-
-
-## Lista de Todos as Contas Bancárias
-
-```shell
-DEFINIÇÃO
-
-  GET https://app.cobrato.com/api/v1/bank_accounts
-
-EXEMPLO DE REQUISIÇÃO
-
-  $ curl -i -u $API_TOKEN:X
-    -H 'User-Agent: My App 1.0' \
-    -H 'Accept: application/json' \
-    -H 'Content-type: application/json' \
-    -X GET https://app.cobrato.com/api/v1/bank_accounts
-
-EXEMPLO DE ESTADO DA RESPOSTA
-
-    200 OK
-
-EXEMPLO DE CORPO DA RESPOSTA
-
-  {
-    "bank_accounts":
-      [
-        {
-          //informações conta bancária 1
-        },
-        {
-          //informações conta bancária 2
-        },
-        ...
-      ]
-  }
-
-```
-
-Retorna uma lista em JSON contendo todos as contas bancárias em que seus cedentes pertencentes a sua Conta de Serviço.
-
+| Campo         | Tipo            | Comentário                                                                        |
+|---------------|-----------------|-----------------------------------------------------------------------------------|
+| id            | integer         |                                                                                   |
+| payee_id      | integer         | identificador do cedente no Cobrato                                               |
+| bank_code     | string          | código do banco no Febraban                                                       |
+| agency        | string          | agência da conta bancária                                                         |
+| agency_digit  | string          | dígito da agência da conta bancária (apenas utilizado pelo Banco do Brasil - 001) |
+| account       | string          | número da conta bancária                                                          |
+| account_digit | string          | dígito do número da conta bancária (apenas não utilizado pelo HSBC - 399)         |
+| _links        | array of object | links da conta bancária e de seu cedente                                          |
 
 ## Informações da Conta Bancária
 
 ```shell
+Mostrar Conta Bancária
+
 DEFINIÇÃO
 
   GET https://app.cobrato.com/api/v1/bank_accounts/:bank_account_id
 
 EXEMPLO DE REQUISIÇÃO
 
-  $ curl -i -u $API_TOKEN:X
+  $ curl -i -u $API_TOKEN:X \
     -H 'User-Agent: My App 1.0' \
     -H 'Accept: application/json' \
     -H 'Content-type: application/json' \
@@ -117,22 +80,65 @@ EXEMPLO DE CORPO DA RESPOSTA
 
 ```
 
-
 Retorna as informações detalhadas da conta bancária informada em JSON e também a referência ao seu cedente.
 
+## Lista de Todos as Contas Bancárias
+
 ```shell
+Listar Contas Bancárias
+
+DEFINIÇÃO
+
+  GET https://app.cobrato.com/api/v1/bank_accounts
+
+EXEMPLO DE REQUISIÇÃO
+
+  $ curl -i -u $API_TOKEN:X \
+    -H 'User-Agent: My App 1.0' \
+    -H 'Accept: application/json' \
+    -H 'Content-type: application/json' \
+    -X GET https://app.cobrato.com/api/v1/bank_accounts
+
+EXEMPLO DE ESTADO DA RESPOSTA
+
+    200 OK
+
+EXEMPLO DE CORPO DA RESPOSTA
+
+  {
+    "bank_accounts":
+      [
+        {
+          // informações conta bancária 1
+        },
+        {
+          // informações conta bancária 2
+        },
+        ...
+      ]
+  }
+
+```
+
+Retorna uma lista em JSON contendo todos as contas bancárias em que seus cedentes pertencentes a sua Conta de Serviço.
+
+## Criação de Conta Bancária
+
+```shell
+Criar Conta Bancária
+
 DEFINIÇÃO
 
   POST https://app.cobrato.com/api/v1/bank_accounts
 
 EXEMPLO DE REQUISIÇÃO
 
-  $ curl -i -u $API_TOKEN:X
+  $ curl -i -u $API_TOKEN:X \
     -H 'User-Agent: My App 1.0' \
     -H 'Accept: application/json' \
     -H 'Content-type: application/json' \
-    -X POST https://app.cobrato.com/api/v1/bank_accounts
-    -D '{
+    -X POST https://app.cobrato.com/api/v1/bank_accounts \
+    -d '{
           "payee_id": "1",
           "bank_code": "001",
           "agency":"1606",
@@ -163,22 +169,21 @@ EXEMPLO DE CORPO DA RESPOSTA COM INSUCESSO
 
 
 ```
-## Criação de Conta Bancária
 
 Cria um nova conta bancária, retornando as informações da mesma caso haja sucesso. Se houverem erros eles serão informados no corpo da resposta.
 
-Parâmetros
+**Parâmetros**
 
-|Campo                    | Tipo            | Comentário                                             |
-|-------------------------|-----------------|--------------------------------------------------------|
-|payee_id                 | integer         | requirido identificação do cedente em que a conta bancária irá pertencer      |
-|bank_code                |  string         | requirido código do banco no Febraban                    |
-|agency | string | requirido |
-|agency_digit | string | requirido apenas para o Banco do Brasil(001) |
-|account |  string | requirido |
-|account_digit |  string | requirido com exceção do HSBC(399) |
+| Campo         | Tipo    | Comentário                                                                                 |
+|---------------|---------|--------------------------------------------------------------------------------------------|
+| payee_id      | integer | **(requerido)** identificador do cedente no Cobrato em que a conta bancária irá pertencer  |
+| bank_code     | string  | **(requerido)** código do banco no Febraban                                                |
+| agency        | string  | **(requerido)** agência da conta bancária                                                  |
+| agency_digit  | string  | **(requerido apenas pelo Banco do Brasil - 001)** dígito da agência da conta bancária      |
+| account       | string  | **(requerido)** número da conta bancária                                                   |
+| account_digit | string  | **(requerido, com exceção do HSBC - 399)** dígito do número da conta bancária              |
 
-##Atualização de Conta Bancária
+## Atualização de Conta Bancária
 
 ```shell
 Atualizar Conta Bancária
@@ -190,12 +195,12 @@ DEFINIÇÃO
 
 EXEMPLO DE REQUISIÇÃO
 
-  $ curl -i -u $API_TOKEN:X
+  $ curl -i -u $API_TOKEN:X \
     -H 'User-Agent: My App 1.0' \
     -H 'Accept: application/json' \
     -H 'Content-type: application/json' \
-    -X PATCH https://app.cobrato.com/api/v1/bank_accounts/:bank_account_id
-    -D '{
+    -X PATCH https://app.cobrato.com/api/v1/bank_accounts/:bank_account_id \
+    -d '{
           "agency":"1606",
           "agency_digit":"3"
         }'
@@ -227,18 +232,19 @@ EXEMPLO DE CORPO DA RESPOSTA COM INSUCESSO
 
 Atualiza a conta bancária determinada, retornando as informações da mesma caso haja sucesso. Se houverem erros eles serão informados no corpo da resposta. A requisição não diferencia a utilização dos verbos PUT e PATCH.
 
-Ao alterar campo 'bank_code', caso houvesse algum campo preenchido que de acordo com o novo banco deverá ficar em branco, o Cobrato fará automaticamente. Exemplo ao alterar uma conta bancária do Banco do Brasil para o Bradesco, o campo 'agency_digit' receberá 'null' como novo valor.
+Ao alterar campo 'bank_code', caso houvesse algum campo preenchido que de acordo com o novo banco deverá ficar em branco, o Cobrato fará automaticamente. Exemplo: ao alterar uma conta bancária ('bank_code') do Banco do Brasil (001) para o Bradesco (327), o campo 'agency_digit' receberá 'null' como novo valor.
 
-Parâmetros
+Alterações nos campos 'bank_code', 'agency', 'agency_digit', 'account' ou 'account_digit' colocará a conta de cobrança em homologação.
 
-|Campo                    | Tipo            | Comentário                                             |
-|-------------------------|-----------------|--------------------------------------------------------|
-| agency                  | string          |          -                                             |
-| agency_digit            | string          |          -                                             |
-| account                 | string          |          -                                             |
-| account_digit           | string          |          -                                             |
+**Parâmetros**
 
-
+| Campo         | Tipo    | Comentário                                                                                 |
+|---------------|---------|--------------------------------------------------------------------------------------------|
+| bank_code     | string  | **(requerido)** código do banco no Febraban                                                |
+| agency        | string  | **(requerido)** agência da conta bancária                                                  |
+| agency_digit  | string  | **(requerido apenas pelo Banco do Brasil - 001)** dígito da agência da conta bancária      |
+| account       | string  | **(requerido)** número da conta bancária                                                   |
+| account_digit | string  | **(requerido, com exceção do HSBC - 399)** dígito do número da conta bancária              |
 
 ## Exclusão de Conta Bancária
 
@@ -251,7 +257,7 @@ DEFINIÇÃO
 
 EXEMPLO DE REQUISIÇÃO
 
-  $ curl -i -u $API_TOKEN:X
+  $ curl -i -u $API_TOKEN:X \
     -H 'User-Agent: My App 1.0' \
     -H 'Accept: application/json' \
     -H 'Content-type: application/json' \
@@ -269,17 +275,18 @@ EXEMPLO DE ESTADO DA RESPOSTA COM CONTA BANCÁRIA INEXISTENTE
 
 Exclui determinada conta bancária e junto a ela todas suas contas de cobrança, e cobranças. As mudanças são irreversíveis.
 
-
 ## Carteiras disponíveis
 
 ```shell
+Listar carteiras disponíveis para Conta Bancária
+
 DEFINIÇÃO
 
   GET https://app.cobrato.com/api/v1/bank_accounts/:bank_account_id/portfolio_codes
 
 EXEMPLO DE REQUISIÇÃO
 
-  $ curl -i -u $API_TOKEN:X
+  $ curl -i -u $API_TOKEN:X \
     -H 'User-Agent: My App 1.0' \
     -H 'Accept: application/json' \
     -H 'Content-type: application/json' \
@@ -318,5 +325,4 @@ EXEMPLO DE ESTADO DA RESPOSTA COM INSUCESSO
 
 ```
 
-Retorna todas as carteiras disponíveis de uma determinada Conta de Cobrança a partir de uma Conta Bancária.
-
+Retorna todas as carteiras disponíveis do banco de uma Conta Bancária.

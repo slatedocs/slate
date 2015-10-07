@@ -2,17 +2,16 @@
 
 Os tipos de cobrança implementados pelo Cobrato. Não é necessária autenticação.
 
-
 Parâmetros
 
-Campo                    | Tipo            | Comentário                                             |
-|------------------------|-----------------|--------------------------------------------------------|
-| bank_billets | array |  lista de boletos bancários implementados |
-| bank_code | string |  código do banco |
-| bank_name | string |  nome do banco |
-| portfolio_codes | array |  lista de códigos de portfólio do banco |
-| regress | boolean |  indica se para este banco é aceito ou não arquivo de retorno |
-| remittance | boolean |  indica se para este banco é aceito ou não arquivo de remessa |
+| Campo           | Tipo    | Comentário                                                   |
+|-----------------|---------|--------------------------------------------------------------|
+| bank_billets    | array   | lista de boletos bancários implementados                     |
+| bank_code       | string  | código do banco                                              |
+| bank_name       | string  | nome do banco                                                |
+| portfolio_codes | array   | lista de códigos de portfólio do banco                       |
+| regress         | boolean | indica se para este banco é aceito ou não arquivo de retorno |
+| remittance      | boolean | indica se para este banco é aceito ou não arquivo de remessa |
 
 
 ## Lista de Todos os Tipos de Cobrança

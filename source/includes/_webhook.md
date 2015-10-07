@@ -1,4 +1,8 @@
-# Webhooks
+# Webhook
+
+
+É possível ter indeterminados webhooks, que enviarão requisições para uma determinada URL quando certas ações ocorrem no Cobrato ([Payloads](#payloads)).
+
 
 ## Lista de Todos os Webhooks
 
@@ -12,7 +16,7 @@ DEFINIÇÃO
 
 EXEMPLO DE REQUISIÇÃO
 
-  $ curl -i -u $API_TOKEN:X
+  $ curl -i -u $API_TOKEN:X \
     -H 'User-Agent: My App 1.0' \
     -H 'Accept: application/json' \
     -H 'Content-type: application/json' \
@@ -37,9 +41,8 @@ EXEMPLO DE CORPO DA RESPOSTA
       ]
   }
 ```
-<aside class="notice">
+
 Retorna uma lista em JSON contendo todos os webhooks pertencentes a sua Conta de Serviço.
-</aside>
 
 ## Informações do Webhook
 
@@ -52,7 +55,7 @@ DEFINIÇÃO
 
 EXEMPLO DE REQUISIÇÃO
 
-  $ curl -i -u $API_TOKEN:X
+  $ curl -i -u $API_TOKEN:X \
     -H 'User-Agent: My App 1.0' \
     -H 'Accept: application/json' \
     -H 'Content-type: application/json' \
@@ -77,8 +80,9 @@ EXEMPLO DE CORPO DA RESPOSTA
 
 ```
 
-
 Retorna as informações detalhadas do webhook em formato JSON.
+
+## Criação de Webhook
 
 ```shell
 Criar Webhook
@@ -89,12 +93,12 @@ DEFINIÇÃO
 
 EXEMPLO DE REQUISIÇÃO
 
-  $ curl -i -u $API_TOKEN:X
+  $ curl -i -u $API_TOKEN:X \
     -H 'User-Agent: My App 1.0' \
     -H 'Accept: application/json' \
     -H 'Content-type: application/json' \
-    -X POST https://app.cobrato.com/api/v1/webhooks
-    -D '{
+    -X POST https://app.cobrato.com/api/v1/webhooks \
+    -d '{
         "url": "http://www.seusitema.com/cobrato",
         "description": "Webhook teste"
       }'
@@ -113,24 +117,21 @@ EXEMPLO DE CORPO DA RESPOSTA COM INSUCESSO
     "errors": {
       "url": [
         "não é válida",
-        "não pode ficar em branco",
-        "não é válido"
+        "não pode ficar em branco"
       ]
     }
   }
 
 ```
 
-##Criação de Webhook
-
 Cria um novo webhook, retornando as informações do mesmo caso haja sucesso. Para realizar o cadastro é necessária que a URL informa aceite as requisições POST e GET, respondendo sempre com HTTP 200. Afim de verificação da URL, o Cobrato fará requisições testes a mesma
 
 Parâmetros
 
-Campo                    | Tipo            | Comentário                                             |
-|-------------------------|-----------------|--------------------------------------------------------|
-| url | string | requirido URL na qual serão feitas as requisições GET e POST, esperando HTTP 200 como retorno |
-| description | string | Descrição opcional do Webhook |
+| Campo       | Tipo            | Comentário                                                                                    |
+|-------------|-----------------|-----------------------------------------------------------------------------------------------|
+| url         | string          | requerido URL na qual serão feitas as requisições GET e POST, esperando HTTP 200 como retorno |
+| description | string          | descrição opcional do Webhook                                                                 |
 
 
 ## Atualização de Webhook
@@ -145,12 +146,12 @@ DEFINIÇÃO
 
 EXEMPLO DE REQUISIÇÃO
 
-  $ curl -i -u $API_TOKEN:X
+  $ curl -i -u $API_TOKEN:X \
     -H 'User-Agent: My App 1.0' \
     -H 'Accept: application/json' \
     -H 'Content-type: application/json' \
-    -X PATCH https://app.cobrato.com/api/v1/webhooks/:webhook_id
-    -D '{
+    -X PATCH https://app.cobrato.com/api/v1/webhooks/:webhook_id \
+    -d '{
         "city": "Farroupilha",
         "state": "RS"
       }'
@@ -173,9 +174,9 @@ Atualiza a descrição do webhook. Não é possível alterar a URL de um Webhook
 
 Parâmetros
 
-Campo                    | Tipo            | Comentário                                             |
-|-------------------------|-----------------|--------------------------------------------------------|
-description |  string | Descrição opcional do Webhook |
+| Campo       | Tipo   | Comentário                    |
+|-------------|--------|-------------------------------|
+| description | string | Descrição opcional do Webhook |
 
 ## Exclusão de Webhook
 
@@ -188,7 +189,7 @@ DEFINIÇÃO
 
 EXEMPLO DE REQUISIÇÃO
 
-  $ curl -i -u $API_TOKEN:X
+  $ curl -i -u $API_TOKEN:X \
     -H 'User-Agent: My App 1.0' \
     -H 'Accept: application/json' \
     -H 'Content-type: application/json' \
@@ -203,25 +204,5 @@ EXEMPLO DE ESTADO DA RESPOSTA COM WEBHOOK INEXISTENTE
     404 Not Found
 
 ```
+
 Exclui determinado webhook. A exclusão é irreversível.
-
-
-## Payloads
-
-Exemplos de requisições enviadas pelo webhook do Cobrato.
-
-As ações notificadas são:
-
-| Objeto         | Evento             | Descrição                                      |
-|----------------|--------------------|------------------------------------------------|
-| charge         | created            | quando a cobrança é criada                     |
-| charge         | received           | quando a cobrança é recebida                   |
-| charge         | undone_receivement | quando a cobrança tem seu recebimento desfeito |
-| charge         | updated            | quando a cobrança é atualizada                 |
-| charge         | destroyed          | quando a cobrança é excluída                   |
-| charge         | received           | quando a cobrança é recebida                   |
-| charge_account | created            | quando a conta de cobrança é criada            |
-| charge_account | updated            | quando a conta de cobrança é atualizada        |
-| charge_account | destroyed          | quando a conta de cobrança é excluída          |
-
-
