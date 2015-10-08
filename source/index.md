@@ -32,7 +32,7 @@ We have library in Ruby, PHP and Python versions are planned. You can view code 
 
 ```ruby
   require 'tether';
-  client = Tether::Client.new('TetherAPIKey', 'TetherAPISecret')
+  client = Tether::Client.new('TetherAPIKey', 'TetherAPISecret', 'Your_Password')
 
   # Ruby client returns [Hashie::Mash](https://github.com/intridea/hashie) object on API requests.
 ```
@@ -45,7 +45,7 @@ We have library in Ruby, PHP and Python versions are planned. You can view code 
 # TODO
 ```
 
-> Make sure to replace `TetherAPIKey` with your API key and `TetherAPISecret` with your API secret.
+> Make sure to replace `TetherAPIKey` with your API key and `TetherAPISecret` with your API secret. If you would like to create transactions or exchange orders you also need to supply your account password. It will be used to decrypt the private key for your multisig address.
 
 Tether uses HMAC authentication. Each request should be signed with a secret that you can see when creating a new API key.
 You can create a Tether API key and Tether API secret key on [API Keys](https://wallet.tether.to/app/#!/settings/apikeys) page.
@@ -241,7 +241,7 @@ tx_type | 'convert', 'receive', 'send', 'acquire', 'redeem', 'unclaimed_return' 
 transaction_parameters = {
   :currency => 'BTC',
   :amount => 1.234,
-  :destination => 'ma@barker.me',
+  :destination => '1FgmrfGxkhbHFN2HgPjMBJtygbWS2yvFHq',
   :message => 'Here is your part of booty, Ma.'
 }
 transaction = client.new_transaction(transaction_parameters)
@@ -258,14 +258,25 @@ transaction = client.new_transaction(transaction_parameters)
 > The JSON in raw API response looks like this:
 
 ```json
-{"success":true,"id":1234,"message":"Success! Sent ฿1.2345 BTC to ma@barker.me","method":"email"}
+{"success":true,"id":1234,"message":"Success! Sent ฿1.2345 BTC to 1FgmrfGxkhbHFN2HgPjMBJtygbWS2yvFHq","method":"blockchain","transaction_id":"bf770730f17cca6b0e723fbc0c5b1c6815d3474956935cc8c91ab007c2242d4a"}
 ```
 
-This endpoint creates new transaction and returns its ID.
+This endpoint creates new transaction and returns its ID. Transaction creation process includes making two requests:
+<ul>
+  <li>POST /transactions/prepare</li>
+  <li>POST /transactions</li>
+</ul>
 
-### HTTP Request
+The API client signs the prepared transaction by own private key and POSTs it to /transactions. 
 
-`POST /transactions`
+<aside>
+  This API call requires that you supply your account password when initializing the API client. This password is not transmitted in any form and is used only to decrypt the private key required to sign the transaction.
+</aside>
+
+### HTTP Requests
+
+`POST /transactions/prepare` and `POST /transactions`
+
 
 ### Parameters
 
@@ -376,11 +387,21 @@ exchange_order = client.new_exchange_order(exchange_order_parameters)
 {"id":12345,"uuid":"2b9763d8-b429-4c56-b9e9-dcda1512f4a5","source_currency":"BTC","target_currency":"USD₮","original_amount":"0.03","exchanged_amount":"11.121213","exchange_rate":"371.45","created_at":"2014-11-26T00:00:51Z","updated_at":"2014-11-26T20:10:33Z","status":"Pending"}
 ```
 
-This endpoint creates new exchange order and returns its ID.
+This endpoint creates new exchange order and returns its ID. Order creation process includes making two requests:
+<ul>
+  <li>POST /exchange_orders/prepare</li>
+  <li>POST /exchange_orders</li>
+</ul>
 
-### HTTP Request
+The API client signs the prepared exchange transaction by own private key and POSTs it to /exchange_orders.
 
-`POST /exchange_orders`
+<aside>
+  This API call requires that you supply your account password when initializing the API client. This password is not transmitted in any form and is used only to decrypt the private key required to sign the transaction.
+</aside>
+
+### HTTP Requests
+
+`POST /exchange_orders/prepare` and `POST /exchange_orders`
 
 ### Parameters
 
