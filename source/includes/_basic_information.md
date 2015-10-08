@@ -1,6 +1,6 @@
-# Autenticação
+# Informaçães básicas
 
-Autenticação
+## Autenticação
 
 Antes de acessar o Cobrato, você deve criar uma conta em: Cobrato. Se você já tiver uma, você precisa ter o seu API token, você pode conseguí-lo nas configurações de sua conta, o token é requerido em todas as requisições via API, o token é usado para identificá-lo.
 
@@ -12,7 +12,7 @@ Autenticação na API do Cobrato é realizada utilizando HTTP Basic, Porem você
 
     EXEMPLO DE REQUISIÇÃO
 
-      $ curl -i -u $YOUR_API_TOKEN:X
+      $ curl -i -u $YOUR_API_TOKEN:X \
         -H 'User-Agent: My App 1.0' \
         -H 'Accept: application/json' \
         -H 'Content-type: application/json' \
@@ -51,3 +51,6 @@ Você deve sempre fornecer os seus valores de data e hora no mesmo formato ISO 8
 
 <aside class="notice">Todos os números são fornecidos tanto com números inteiros, ponto flutuante nativos para JSON.</aside>
 
+## Formato numérico
+
+<aside class="notice">Todos os números são fornecidos tanto com números inteiros, ponto flutuante nativos para JSON.</aside>

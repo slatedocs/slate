@@ -1,4 +1,5 @@
 # Cedente
+
 ```shell
 Cedente
 
@@ -25,74 +26,37 @@ EXEMPLO
   }
 ```
 
-<aside class="notice">
 É possível ter indeterminados cedentes, e a eles que pertencem as contas bancárias, contas de cobrança, e as próprias cobranças do sistema. Podem ser tanto pessoas físicas como pessoas jurídicas.
-</aside>
-Parâmetros
 
+**Parâmetros**
 
-|Campo                    | Tipo            | Comentário                                             |
-|-------------------------|-----------------|--------------------------------------------------------|
-|id                       | integer         |                                                        |
-|national_identifier_type | string          | tipo de identificação nacional, cpf ou cnpj            |
-|national_identifier      | string          | código do cnpj ou cpf, de acordo com o campo anterior  |
-|name                     | string          |                                                        |
-|city                     | string          | nome da cidade na qual o cedente reside                |
-|state                    | string          | uf do estado aonde o cedente reside                    |
-|neighbourhood            | string          |                                                        |
-|street                   | string          |                                                        |
-|number                   | string          |                                                        |
-|zipcode                  | string          |                                                        |
-|complement               | string          |                                                        |
-|_links                   | array of object | links do cedente                                       |
-
-## Lista de Todos os Cedentes
-
-Retorna uma lista em JSON contendo todos os cedentes pertencentes a sua Conta de Serviço.
-
-```shell
-DEFINIÇÃO
-
-  GET https://app.cobrato.com/api/v1/payees
-
-EXEMPLO DE REQUISIÇÃO
-
-  $ curl -i -u $API_TOKEN:X
-    -H 'User-Agent: My App 1.0' \
-    -H 'Accept: application/json' \
-    -H 'Content-type: application/json' \
-    -X GET https://app.cobrato.com/api/v1/payees
-
-EXEMPLO DE ESTADO DA RESPOSTA
-
-    200 OK
-
-EXEMPLO DE CORPO DA RESPOSTA
-
-  {
-    "payees":
-      [
-        {
-          //informações cedente 1
-        },
-        {
-          //informações cedente 2
-        },
-        ...
-      ]
-  }
-```
-
+| Campo                    | Tipo            | Comentário                                                      |
+|--------------------------|-----------------|-----------------------------------------------------------------|
+| id                       | integer         |                                                                 |
+| national_identifier_type | string          | tipo de identificação nacional ('cpf' ou 'cnpj')                |
+| national_identifier      | string          | número válido de cnpj ou cpf, de acordo com o campo anterior    |
+| name                     | string          | nome completo do cedente                                        |
+| city                     | string          | nome da cidade do domicílio do cedente                          |
+| state                    | string          | uf do estado do domicílio do cedente (duas letras, p. ex. 'RJ') |
+| neighbourhood            | string          | bairro do domicílio do cedente                                  |
+| street                   | string          | rua do domicílio do cedente                                     |
+| number                   | string          | número da rua do domicílio do cedente                           |
+| zipcode                  | string          | cep do domicílio do cedente                                     |
+| complement               | string          | complemento para o endereço de domicilio do cedente             |
+| _links                   | array of object | links do cedente                                                |
 
 ## Informações do Cedente
+
 ```shell
+Mostrar Cedente
+
 DEFINIÇÃO
 
   GET https://app.cobrato.com/api/v1/payees/:payee_id
 
 EXEMPLO DE REQUISIÇÃO
 
-  $ curl -i -u $API_TOKEN:X
+  $ curl -i -u $API_TOKEN:X \
     -H 'User-Agent: My App 1.0' \
     -H 'Accept: application/json' \
     -H 'Content-type: application/json' \
@@ -124,22 +88,65 @@ EXEMPLO DE CORPO DA RESPOSTA
       ]
   }
 ```
+
 Retorna as informações detalhadas do cedente informado em JSON.
 
-## Criação de Cedente
+## Lista de Todos os Cedentes
+
 ```shell
+Listar Cedentes
+
+DEFINIÇÃO
+
+  GET https://app.cobrato.com/api/v1/payees
+
+EXEMPLO DE REQUISIÇÃO
+
+  $ curl -i -u $API_TOKEN:X \
+    -H 'User-Agent: My App 1.0' \
+    -H 'Accept: application/json' \
+    -H 'Content-type: application/json' \
+    -X GET https://app.cobrato.com/api/v1/payees
+
+EXEMPLO DE ESTADO DA RESPOSTA
+
+    200 OK
+
+EXEMPLO DE CORPO DA RESPOSTA
+
+  {
+    "payees":
+      [
+        {
+          // informações cedente 1
+        },
+        {
+          // informações cedente 2
+        },
+        ...
+      ]
+  }
+```
+
+Retorna uma lista em JSON contendo todos os cedentes pertencentes a sua Conta de Serviço.
+
+## Criação de Cedente
+
+```shell
+Criar Cedente
+
 DEFINIÇÃO
 
   POST https://app.cobrato.com/api/v1/payees
 
 EXEMPLO DE REQUISIÇÃO
 
-  $ curl -i -u $API_TOKEN:X
+  $ curl -i -u $API_TOKEN:X \
     -H 'User-Agent: My App 1.0' \
     -H 'Accept: application/json' \
     -H 'Content-type: application/json' \
-    -X POST https://app.cobrato.com/api/v1/payees
-    -D '{
+    -X POST https://app.cobrato.com/api/v1/payees \
+    -d '{
         "name": "João Silva",
         "city": "Caxias do Sul",
         "national_identifier_type": "cpf",
@@ -178,24 +185,26 @@ EXEMPLO DE CORPO DA RESPOSTA COM INSUCESSO
 
 Cria um novo cedente, retornando as informações do mesmo caso haja sucesso. Se houverem erros eles serão informados no corpo da resposta.
 
-Parâmetros
+**Parâmetros**
 
-|Campo                    | Tipo            | Comentário                                                               |
-|-------------------------|-----------------|--------------------------------------------------------------------------|
-|national_identifier_type | string          | requirido tipo de identificação nacional, deve ser cpf ou cnpj           |
-|national_identifier      | string          | requirido  código válido de cnpj ou cpf, de acordo com o campo anterior  |
-|name                     | string          | requirido  nome completo do cedente                                      |
-|city                     | string          | requirido  nome da cidade na qual o cedente reside                       |
-|state                    | string          | requirido uf do estado aonde o cedente reside                            |
-|neighbourhood            | string          | requirido                                                                |
-|street                   | string          | requirido                                                                |
-|number                   | string          | requirido                                                                |
-|zipcode                  | string          | requirido                                                                |
-|complement               | string          |                                                                          |
-
+| Campo                    | Tipo   | Comentário                                                                      |
+|--------------------------|--------|---------------------------------------------------------------------------------|
+| national_identifier_type | string | **(requerido)** tipo de identificação nacional ('cpf' ou 'cnpj')                |
+| national_identifier      | string | **(requerido)** número válido de cnpj ou cpf, de acordo com o campo anterior    |
+| name                     | string | **(requerido)** nome completo do cedente                                        |
+| city                     | string | **(requerido)** nome da cidade do domicílio do cedente                          |
+| state                    | string | **(requerido)** uf do estado do domicílio do cedente (duas letras, p. ex. 'RJ') |
+| neighbourhood            | string | **(requerido)** bairro do domicílio do cedente                                  |
+| street                   | string | **(requerido)** rua do domicílio do cedente                                     |
+| number                   | string | **(requerido)** número da rua do domicílio do cedente                           |
+| zipcode                  | string | **(requerido)** cep do domicílio do cedente                                     |
+| complement               | string | (opcional)  complemento para o endereço de domicilio do cedente                 |
 
 ## Atualização de Cedente
+
 ```shell
+Atualizar Cedente
+
 DEFINIÇÃO
 
   PUT https://app.cobrato.com/api/v1/payees/:payee_id
@@ -203,12 +212,12 @@ DEFINIÇÃO
 
 EXEMPLO DE REQUISIÇÃO
 
-  $ curl -i -u $API_TOKEN:X
+  $ curl -i -u $API_TOKEN:X \
     -H 'User-Agent: My App 1.0' \
     -H 'Accept: application/json' \
     -H 'Content-type: application/json' \
-    -X PATCH https://app.cobrato.com/api/v1/payees/:payee_id
-    -D '{
+    -X PATCH https://app.cobrato.com/api/v1/payees/:payee_id \
+    -d '{
         "city": "Farroupilha",
         "state": "RS"
       }'
@@ -237,30 +246,33 @@ EXEMPLO DE CORPO DA RESPOSTA COM INSUCESSO
 
 Atualiza o cedente determinado, retornando as informações do mesmo caso haja sucesso. Se houverem erros eles serão informados no corpo da resposta. A requisição não diferencia a utilização dos verbos PUT e PATCH.
 
-Parâmetros
+**Parâmetros**
 
-|Campo                     | Tipo   | Comentário                                                   |
-|--------------------------|--------|--------------------------------------------------------------|
-| national_identifier_type | string | tipo de identificação nacional, deve ser cpf ou cnpj         |
-| national_identifier      | string | código válido de cnpj ou cpf, de acordo com o campo anterior |
-| name                     | string | nome completo do cedente                                     |
-| city                     | string | nome da cidade na qual o cedente reside                      |
-| state                    | string | uf do estado aonde o cedente reside                          |
-| neighbourhood            | string |                                                              |
-| street                   | string |                                                              |
-| number                   | string |                                                              |
-| zipcode                  | string |                                                              |
-| complement               | string |                                                              |
+| Campo                    | Tipo   | Comentário                                                                      |
+|--------------------------|--------|---------------------------------------------------------------------------------|
+| national_identifier_type | string | **(requerido)** tipo de identificação nacional ('cpf' ou 'cnpj')                |
+| national_identifier      | string | **(requerido)** número válido de cnpj ou cpf, de acordo com o campo anterior    |
+| name                     | string | **(requerido)** nome completo do cedente                                        |
+| city                     | string | **(requerido)** nome da cidade do domicílio do cedente                          |
+| state                    | string | **(requerido)** uf do estado do domicílio do cedente (duas letras, p. ex. 'RJ') |
+| neighbourhood            | string | **(requerido)** bairro do domicílio do cedente                                  |
+| street                   | string | **(requerido)** rua do domicílio do cedente                                     |
+| number                   | string | **(requerido)** número da rua do domicílio do cedente                           |
+| zipcode                  | string | **(requerido)** cep do domicílio do cedente                                     |
+| complement               | string | (opcional)  complemento para o endereço de domicilio do cedente                 |
 
 ## Exclusão de Cedente
+
 ```shell
+Excluir Cedente
+
 DEFINIÇÃO
 
   DELETE https://app.cobrato.com/api/v1/payees/:payee_id
 
 EXEMPLO DE REQUISIÇÃO
 
-  $ curl -i -u $API_TOKEN:X
+  $ curl -i -u $API_TOKEN:X \
     -H 'User-Agent: My App 1.0' \
     -H 'Accept: application/json' \
     -H 'Content-type: application/json' \
@@ -274,5 +286,6 @@ EXEMPLO DE ESTADO DA RESPOSTA COM CEDENTE INEXISTENTE
 
     404 Not Found
 ```
+
 Exclui determinado cedente e junto a ele todas suas contas de cobrança, contas bancárias e as cobranças. As mudanças são irreversíveis.
 

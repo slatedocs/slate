@@ -9,15 +9,13 @@ toc_footers:
  - <a href='#'>Myfreecomm</a>
 
 includes:
-  - authentication
+  - basic_information
   - payees
   - bank_accounts
   - charge_accounts
   - charges
   - webhook
-  - charges_webhook
-  - update_charges_webhook
-  - charge_accounts_webhook
+  - payloads
   - charging_types
 
 search: true
