@@ -1,5 +1,5 @@
 ---
-title: Kite API Reference
+title: Print API Reference
 
 layout: layout_preview
 
