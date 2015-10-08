@@ -19,6 +19,7 @@ EXEMPLO
     "instructions":"Pagável em qualquer agência até data do vencimento",
     "demonstrative":"Demonstrativo",
     "payer_emails":["myemail@gmail.com"],
+    "payer_info":"Empresa A - CNPJ X",
     "received":true,
     "received_amount":"10.07",
     "received_at":"2015-01-30",
@@ -56,6 +57,7 @@ As Cobranças, pertencem as suas contas de cobrança, sendo assim é necessário
 | instructions      | string           | instruções de pagamento do boleto, por padrão "Pago em qualquer agência até data do vencimento."                                                    |
 | demonstrative     | string           | demonstrativo do Boleto, por padrão "Pago em qualquer agência até data do vencimento."                                                              |
 | payer_emails      | array of strings | emails de quem irá pagar o boleto                                                                                                                   |
+| payer_info        | string           | informações gerais de quem irá pagar a cobraça (p.ex. nome, documento, endereço)                                                                    |
 | received          | boolean          | indica se a cobrança foi recebida                                                                                                                   |
 | received_amount   | decimal          | valor recebido                                                                                                                                      |
 | received_at       | date             | dia em que a cobraça foi recebida                                                                                                                   |
@@ -100,6 +102,7 @@ EXEMPLO DE CORPO DA RESPOSTA
     "instructions":"Pagável em qualquer agência até data do vencimento",
     "demonstrative":"Demonstrativo",
     "payer_emails":["myemail@gmail.com"],
+    "payer_info":"Empresa A - CNPJ X",
     "received":true,
     "received_amount":"10.07",
     "received_at":"2015-01-30",
@@ -245,6 +248,7 @@ Cria um nova cobrança, caso haja sucesso retornará as informações da mesma e
 | instructions      | string           | (opcional) instruções de pagamento do boleto, por padrão "Pago em qualquer agência até data do vencimento."                                                    |
 | demonstrative     | string           | (opcional) demonstrativo do Boleto, por padrão "Não receber após o vencimento."                                                                                |
 | payer_emails      | array of strings | (opcional) emails de quem irá pagar o boleto                                                                                                                   |
+| payer_info        | string           | (opcional) informações gerais de quem irá pagar a cobraça (p.ex. nome, documento, endereço)                                                                    |
 
 ## Atualização de Cobrança
 
@@ -320,6 +324,7 @@ Os campos 'recived', 'recived_at' e 'recived_amount', não são alterados via at
 | instructions      | string           | (opcional) instruções de pagamento do boleto, por padrão "Pago em qualquer agência até data do vencimento."                                                    |
 | demonstrative     | string           | (opcional) demonstrativo do Boleto, por padrão "Não receber após o vencimento."                                                                                |
 | payer_emails      | array of strings | (opcional) emails de quem irá pagar o boleto                                                                                                                   |
+| payer_info        | string           | (opcional) informações gerais de quem irá pagar a cobraça (p.ex. nome, documento, endereço)                                                                    |
 
 ## Exclusão de Cobrança
 
