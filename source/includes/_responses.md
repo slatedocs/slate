@@ -24,6 +24,15 @@ print response
 # {u'message': u'successful authentication'}
 ```
 
+```php
+// responses are converted to arrays for your convenience
+$response = $constructor->verify();
+print_r($response);
+// {
+//   "message": "successful authentication"
+// }
+```
+
 Most successful responses return 204 No Data codes without any further information.
 
 Responses and errors that return data are JSON structures that will contain a "message" parameter with more information.

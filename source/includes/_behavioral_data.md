@@ -29,6 +29,14 @@ response = constructor_instance.track_search(
     num_results=302)
 ```
 
+```php
+$response = $constructor->trackSearch(
+  "boinkamoinka", // term name
+  "Search Suggestions", // autocomplete section name
+  array("num_results" => 200) // array of properties of the search
+);
+```
+
 The `search` resource should be called whenever a search is performed on your site, together with the search `term` and number of results (`num_results`).
 
 ### HTTP Request
@@ -70,6 +78,14 @@ response = constructor_instance.track_click_through(
     term="xyz",
     num_results=302,
     autocomplete_section="Search Suggestions")
+```
+
+```php
+$response = $constructor.trackClickThrough(
+  "boinkamoinka", // term name
+  "Search Suggestions", // autocomplete section name
+  array("num_results" => 200) // array of properties of the click through
+);
 ```
 
 The `click_through` resource should be called when a user clicks on a search result (this can often be done from the product detail page). Pass in the search `term` and, optionally, the `item` clicked on so we can learn which items are receiving clicks from which terms and increase their ranking in the autocomplete index. Beacuse your autocomplete can have multiple sections, you must also pass in the `autocomplete_section` parameter with the appropriate section name.
@@ -115,6 +131,14 @@ response = constructor_instance.track_conversion(
     term="xyz",
     item="Alphabet Soup",
     autocomplete_section="Search Suggestions")
+```
+
+```php
+$response = $constructor.trackConversion(
+  "boinkamoinka", // term name
+  "Search Suggestions", // autocomplete section name
+  array("num_results" => 200) // array of properties of the conversion
+);
 ```
 
 The `conversion` resource should be called when a user purchases a product (or successfully performs another action important to your site). Pass in the search `term` so we can learn which items are receiving conversions and increase their ranking in the autocomplete index. You can also pass in an optional `item` parameter to indicate which item the customer purchased. Because your autocomplete can have multiple sections, you must also pass in the `autocomplete_section` parameter with the appropriate section name.
