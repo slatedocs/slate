@@ -35,6 +35,13 @@ constructor_instance = ConstructorIO(
     autocomplete_key="[your autocomplete key]")
 ```
 
+```php
+// if using Composer autoloading:
+// require_once "vendor/autoload.php";
+use ConstructorIO\ConstructorIO;
+$constructor = new ConstructorIO("[your API token]","[your autocomplete key]");
+```
+
 > Make sure to replace `[your token]` with your API token from [your dashboard](/dashboard).
 
 You authenticate to the REST API by providing your API token, which you can obtain from [your dashboard](/dashboard).
@@ -63,6 +70,10 @@ response = constructorio.verify
 
 ```python
 response = constructor_instance.verify()
+```
+
+```php
+$response = $constructor->verify();
 ```
 
 You can verify that authentication works correctly by issuing a simple verification request.

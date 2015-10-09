@@ -16,4 +16,8 @@ gem install constructorio
 pip install constructor-io
 ```
 
+```php
+composer require constructor-io/constructor-io
+```
+
 Install the library specific to your language by following the instructions on the right.
