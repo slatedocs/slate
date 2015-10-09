@@ -49,7 +49,7 @@ As Cobranças, pertencem as suas contas de cobrança, sendo assim é necessário
 | due_date          | date             | data de vencimento da cobranca                                                                                                                      |
 | document_kind     | string           | espécie do documento, podendo ser DM (Duplicata Mercantil), DS (Duplicata de Serviço), NP (Nota Promissória) ou DV (Diversos)                       |
 | document_date     | date             | data de emissão do documento                                                                                                                        |
-| document_number   | string           | número do documento                                                                                                                                 |
+| document_number   | string           | número do documento, também chamado de "seu número", é o número utilizado e controlado pelo beneficiário para identificar o título de cobrança      |
 | our_number        | string           | nosso número                                                                                                                                        |
 | our_number_digit  | integer          | digito do verificador do nosso número                                                                                                               |
 | custom_our_number | boolean          | indica se a cobrança utiliza um "nosso número" customizado. O valor padrão é false, mas caso definido true, o campo 'our_number' se torna requerido |
@@ -240,15 +240,15 @@ Cria um nova cobrança, caso haja sucesso retornará as informações da mesma e
 | due_date          | date             | **(requerido)** data de vencimento da cobrança                                                                                                                 |
 | document_kind     | string           | **(requerido)** espécie do documento, podendo ser DM (Duplicata Mercantil), DS (Duplicata de Serviço), NP (Nota Promissória) ou DV (Diversos)                  |
 | total_amount      | decimal          | **(requerido)** valor total do boleto                                                                                                                          |
+| document_number   | string           | **(requerido)** número do documento, também chamado de "seu número", é o número utilizado e controlado pelo beneficiário para identificar o título de cobrança |
+| payer_info        | string           | **(requerido)** nome, documento e endereço de quem irá pagar a cobraça (pode ser 3 linhas separadas por "\n")                                                  |
+| payer_emails      | array of strings | (opcional) emails de quem irá pagar o boleto                                                                                                                   |
 | document_date     | date             | (opcional) data de emissão do documento                                                                                                                        |
-| document_number   | string           | (opcional) número do documento                                                                                                                                 |
 | our_number        | string           | (opcional) nosso número. Caso não informado, é atribuído automaticamente pelo sistema                                                                          |
 | our_number_digit  | integer          | (opcional) digito do verificador do nosso número                                                                                                               |
 | custom_our_number | boolean          | (opcional) indica se a cobrança utiliza um "nosso número" customizado. O valor padrão é false, mas caso definido true, o campo 'our_number' se torna requerido |
-| instructions      | string           | (opcional) instruções de pagamento do boleto, por padrão "Pago em qualquer agência até data do vencimento."                                                    |
-| demonstrative     | string           | (opcional) demonstrativo do Boleto, por padrão "Não receber após o vencimento."                                                                                |
-| payer_emails      | array of strings | (opcional) emails de quem irá pagar o boleto                                                                                                                   |
-| payer_info        | string           | (opcional) informações gerais de quem irá pagar a cobraça (p.ex. nome, documento, endereço)                                                                    |
+| instructions      | string           | (opcional) instruções de pagamento do boleto, por padrão "Pago em qualquer agência até data do vencimento." (pode ser linhas separadas por "\n")               |
+| demonstrative     | string           | (opcional) demonstrativo do Boleto, por padrão "Não receber após o vencimento." (pode ser linhas separadas por "\n")                                           |
 
 ## Atualização de Cobrança
 
@@ -316,15 +316,16 @@ Os campos 'recived', 'recived_at' e 'recived_amount', não são alterados via at
 | due_date          | date             | **(requerido)** data de vencimento da cobrança                                                                                                                 |
 | document_kind     | string           | **(requerido)** espécie do documento, podendo ser DM (Duplicata Mercantil), DS (Duplicata de Serviço), NP (Nota Promissória) ou DV (Diversos)                  |
 | total_amount      | decimal          | **(requerido)** valor total do boleto                                                                                                                          |
+| document_number   | string           | **(requerido)** número do documento, também chamado de "seu número", é o número utilizado e controlado pelo beneficiário para identificar o título de cobrança |
+| payer_info        | string           | **(requerido)** nome, documento e endereço de quem irá pagar a cobraça (pode ser 3 linhas separadas por "\n")                                                  |
+| payer_emails      | array of strings | (opcional) emails de quem irá pagar o boleto                                                                                                                   |
 | document_date     | date             | (opcional) data de emissão do documento                                                                                                                        |
-| document_number   | string           | (opcional) número do documento                                                                                                                                 |
 | our_number        | string           | (opcional) nosso número. Caso não informado, é atribuído automaticamente pelo sistema                                                                          |
 | our_number_digit  | integer          | (opcional) digito do verificador do nosso número                                                                                                               |
 | custom_our_number | boolean          | (opcional) indica se a cobrança utiliza um "nosso número" customizado. O valor padrão é false, mas caso definido true, o campo 'our_number' se torna requerido |
-| instructions      | string           | (opcional) instruções de pagamento do boleto, por padrão "Pago em qualquer agência até data do vencimento."                                                    |
-| demonstrative     | string           | (opcional) demonstrativo do Boleto, por padrão "Não receber após o vencimento."                                                                                |
-| payer_emails      | array of strings | (opcional) emails de quem irá pagar o boleto                                                                                                                   |
-| payer_info        | string           | (opcional) informações gerais de quem irá pagar a cobraça (p.ex. nome, documento, endereço)                                                                    |
+| instructions      | string           | (opcional) instruções de pagamento do boleto, por padrão "Pago em qualquer agência até data do vencimento." (pode ser linhas separadas por "\n")               |
+| demonstrative     | string           | (opcional) demonstrativo do Boleto, por padrão "Não receber após o vencimento." (pode ser linhas separadas por "\n")                                           |
+
 
 ## Exclusão de Cobrança
 
