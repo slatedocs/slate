@@ -6,6 +6,7 @@ language_tabs:
   - javascript
   - ruby
   - python
+  - php
 
 toc_footers:
   - <a href='/users/sign_up'>Sign Up for an API Token</a>

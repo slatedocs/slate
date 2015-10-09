@@ -32,7 +32,6 @@ response = constructor_instance.track_search(
 ```php
 $response = $constructor->trackSearch(
   "boinkamoinka", // term name
-  "Search Suggestions", // autocomplete section name
   array("num_results" => 200) // array of properties of the search
 );
 ```
@@ -76,7 +75,6 @@ response = constructorio.track_click_through({
 ```python
 response = constructor_instance.track_click_through(
     term="xyz",
-    num_results=302,
     autocomplete_section="Search Suggestions")
 ```
 
@@ -84,7 +82,7 @@ response = constructor_instance.track_click_through(
 $response = $constructor.trackClickThrough(
   "boinkamoinka", // term name
   "Search Suggestions", // autocomplete section name
-  array("num_results" => 200) // array of properties of the click through
+  array("item" => "power drill") // array of properties of the click through
 );
 ```
 
@@ -137,7 +135,7 @@ response = constructor_instance.track_conversion(
 $response = $constructor.trackConversion(
   "boinkamoinka", // term name
   "Search Suggestions", // autocomplete section name
-  array("num_results" => 200) // array of properties of the conversion
+  array("item" => "power drill") // array of properties of the conversion
 );
 ```
 
