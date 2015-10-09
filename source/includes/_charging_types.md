@@ -1,12 +1,13 @@
 # Tipos de cobrança
 
-Os tipos de cobrança implementados pelo Cobrato. Não é necessária autenticação.
+Os tipos de cobrança implementados pelo Cobrato.
 
-Parâmetros
+<aside class="notice">Não é necessária autenticação.</aside>
+
+**bank_billets (Boletos bancários)**
 
 | Campo           | Tipo    | Comentário                                                   |
 |-----------------|---------|--------------------------------------------------------------|
-| bank_billets    | array   | lista de boletos bancários implementados                     |
 | bank_code       | string  | código do banco                                              |
 | bank_name       | string  | nome do banco                                                |
 | portfolio_codes | array   | lista de códigos de portfólio do banco                       |
