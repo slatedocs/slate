@@ -392,6 +392,7 @@ curl "https://api.safetyculture.io/audits/search"\
 "&modified_before=2015-04-01T00:00:00.000Z" \
   -H "Authorization: Bearer ..."
 ```
+To modify the order in which audits are returned, an optional param `order` can be given. `order` defaults to (`asc`) meaning audit's are given from earliest to latest, but can also be set to (`desc`).
 
 To search between dates, use the `modified_before` and `modified_after` parameters. This will find audits between
 the dates given.
