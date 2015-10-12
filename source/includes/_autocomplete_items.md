@@ -36,8 +36,15 @@ response = constructor_instance.add(
 
 ```php
 $response = $constructor->add(
-  "boinkamoinka", // item name
+  "power drill", // item name
   "Search Suggestions" // autocomplete section name
+);
+```
+
+```perl
+my $response = $constructorio->add(
+  item_name => "power drill",
+  autocomplete_section => "Search Suggestions"
 );
 ```
 
@@ -89,8 +96,15 @@ response = constructor_instance.remove(item_name="power drill", autocomplete_sec
 
 ```php
 $response = $constructor->remove(
-  "boinkamoinka", // item name
+  "power drill", // item name
   "Search Suggestions" // autocomplete section name
+);
+```
+
+```perl
+my $response = $constructorio->remove(
+  item_name => "power drill",
+  autocomplete_section => "Search Suggestions"
 );
 ```
 
@@ -153,10 +167,19 @@ response = constructor_instance.modify(
 
 ```php
 $response = $constructor->modify(
-  "boinkamoinka", // item name
-  "some new name", // new item name (this is required!)
+  "power drill", // item name
+  "super power drill", // new item name (this is required)
   "Search Suggestions", // autocomplete section name
   array("suggested_score" => 100) // array of item properties to modify
+);
+```
+
+```perl
+my $response = $constructorio->modify(
+  item_name => "power drill",
+  new_item_name => "super power drill",
+  autocomplete_section => "Search Suggestions",
+  url => "http://www.mysite.com/power_drill"
 );
 ```
 

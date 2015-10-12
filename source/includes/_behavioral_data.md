@@ -31,8 +31,15 @@ response = constructor_instance.track_search(
 
 ```php
 $response = $constructor->trackSearch(
-  "boinkamoinka", // term name
-  array("num_results" => 200) // array of properties of the search
+  "xyz", // term name
+  array("num_results" => 302) // array of properties of the search
+);
+```
+
+```perl
+my $response = $constructorio->track_search(
+  term => "xyz",
+  num_results => 302
 );
 ```
 
@@ -80,9 +87,17 @@ response = constructor_instance.track_click_through(
 
 ```php
 $response = $constructor.trackClickThrough(
-  "boinkamoinka", // term name
+  "xyz", // term name
   "Search Suggestions", // autocomplete section name
   array("item" => "power drill") // array of properties of the click through
+);
+```
+
+```perl
+my $response = $constructorio->track_click_through(
+  term => "xyz",
+  item => "Alphabet soup",
+  autocomplete_section => "Search Suggestions"
 );
 ```
 
@@ -103,38 +118,46 @@ item | No | The autocomplete item that the user clicked on
 ## Track a conversion
 
 ```shell
-curl -X POST -H "Content-Type: application/json" -d '{"term":"xyz","item":"Alphabet soup","autocomplete_section":"Search Suggestions"}' \
+curl -X POST -H "Content-Type: application/json" -d '{"term":"xyz","autocomplete_section":"Search Suggestions","item":"Alphabet soup"}' \
   -u "[your token]:" "https://ac.cnstrc.com/v1/conversion?autocomplete_key=[your autocomplete key]"
 ```
 
 ```javascript
 constructorio.track_conversion({
   term: "xyz",
-  item: "Alphabet soup",
-  autocomplete_section: "Search Suggestions"
+  autocomplete_section: "Search Suggestions",
+  item: "Alphabet soup"
 });
 ```
 
 ```ruby
 response = constructorio.track_conversion({
   term: "xyz",
-  item: "Alphabet soup",
-  autocomplete_section: "Search Suggestions"
+  autocomplete_section: "Search Suggestions",
+  item: "Alphabet soup"
 });
 ```
 
 ```python
 response = constructor_instance.track_conversion(
     term="xyz",
-    item="Alphabet Soup",
-    autocomplete_section="Search Suggestions")
+    autocomplete_section="Search Suggestions",
+    item="Alphabet Soup")
 ```
 
 ```php
 $response = $constructor.trackConversion(
-  "boinkamoinka", // term name
+  "xyz", // term name
   "Search Suggestions", // autocomplete section name
   array("item" => "power drill") // array of properties of the conversion
+);
+```
+
+```perl
+my $response = $constructorio->track_conversion(
+  term => "xyz",
+  autocomplete_section => "Search Suggestions",
+  item => "Alhabet Soup"
 );
 ```
 

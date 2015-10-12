@@ -7,13 +7,13 @@
 ```shell
 # with curl, there's no need to authorize separately -- just pass your API token in with every call
 curl -X POST -H "Content-Type: application/json" -d '{"item_name":"xyz","keywords":["k1","k2"]}' \
-  -u "[your token]:" https://ac.cnstrc.com/v1/item
+  -u "[your API token]:" https://ac.cnstrc.com/v1/item
 ```
 
 ```javascript
 var ConstructorIO = require('constructorio');
 var constructorio = new ConstructorIO({
-  apiToken: "[your token]",
+  apiToken: "[your API token]",
   autocompleteKey: "[your autocomplete key]",
 });
 
@@ -22,7 +22,7 @@ var constructorio = new ConstructorIO({
 ```ruby
 require('constructorio')
 ConstructorIO.configure do |config|
-  config.api_token = "[your token]"
+  config.api_token = "[your API token]"
   config.autocomplete_key = "[your autocomplete key]"
 end
 constructorio = ConstructorIO::Client.new
@@ -42,7 +42,15 @@ use ConstructorIO\ConstructorIO;
 $constructor = new ConstructorIO("[your API token]","[your autocomplete key]");
 ```
 
-> Make sure to replace `[your token]` with your API token from [your dashboard](/dashboard).
+```perl
+use WebService::ConstructorIO;
+my $constructorio = new WebService::ConstructorIO->new(
+  api_token => "[your API token]",
+  autocomplete_key => "[your autocomplete key]"
+);
+```
+
+> Make sure to replace `[your API token]` with your API token from [your dashboard](/dashboard).
 
 You authenticate to the REST API by providing your API token, which you can obtain from [your dashboard](/dashboard).
 
@@ -51,7 +59,7 @@ Authentication is done using [HTTP Basic Auth](https://en.wikipedia.org/wiki/Bas
 ## Verification
 
 ```shell
-curl -u "[your token]:" "https://ac.cnstrc.com/v1/verify?autocomplete_key=[your autocomplete key]"
+curl -u "[your API token]:" "https://ac.cnstrc.com/v1/verify?autocomplete_key=[your autocomplete key]"
 ```
 
 ```javascript
@@ -74,6 +82,10 @@ response = constructor_instance.verify()
 
 ```php
 $response = $constructor->verify();
+```
+
+```perl
+my $response = $constructorio->verify();
 ```
 
 You can verify that authentication works correctly by issuing a simple verification request.

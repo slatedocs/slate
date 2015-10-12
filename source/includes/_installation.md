@@ -20,4 +20,8 @@ pip install constructor-io
 composer require constructor-io/constructor-io
 ```
 
+```perl
+cpanm WebService::ConstructorIO
+```
+
 Install the library specific to your language by following the instructions on the right.

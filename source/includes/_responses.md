@@ -33,6 +33,11 @@ print_r($response);
 // }
 ```
 
+```perl
+# responses are HTTP::Response objects
+my $response = $constructorio->verify();
+```
+
 Most successful responses return 204 No Data codes without any further information.
 
 Responses and errors that return data are JSON structures that will contain a "message" parameter with more information.
