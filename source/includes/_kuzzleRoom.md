@@ -4,21 +4,22 @@ This object is the result of a subscription request, allowing to manipulate the 
 
 In Kuzzle, you don't exactly subscribe to a room or a topic but, instead, you subscribe to documents.
 
-What it means is that, to subscribe, you provide to Kuzzle a set of matching criterias.  
-Once you have subscribed, if a pub/sub message is published matching your criterias, or if a matching stored document change (because it is created, updated or deleted), then you'll receive a notification about it.
+What it means is that, to subscribe, you provide to Kuzzle a set of matching filters.  
+Once you have subscribed, if a pub/sub message is published matching your filters, or if a matching stored document change (because it is created, updated or deleted), then you'll receive a notification about it.
 
 ## Constructors
 
 Susbcribes to documents using a set of filters.
 
-### KuzzleRoom(Kuzzle, filters)
+#### KuzzleRoom(Kuzzle, filters, callback)
 
-### KuzzleRoom(Kuzzle, filters, options)
+#### KuzzleRoom(Kuzzle, filters, callback, options)
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
 | Kuzzle | object | an instantiated Kuzzle object |
 | filters | JSON Object | Filters in [Kuzzle DSL](https://github.com/kuzzleio/kuzzle/blob/master/docs/filters.md) format |
+| callback | function | Callback to call every time a notification is received on this subscription |
 | Options | object | Subscription configuration |
 
 Available options:
@@ -33,32 +34,29 @@ Available options:
 
 | Property name | Type | Description | get/set |
 |--------------|--------|-----------------------------------|---------|
-| listeningToConnections | boolean | Is this subscription (not) listening to other ``subscribed`` events on that room | get |
-| listeningToDisconnections | boolean | Is this subscription (not) listening to other ``unsubcribed`` events on that room | get |
+| filters | JSON object | The current set of filters of this room | get/set |
+| listeningToConnections | boolean | Is this subscription (not) listening to other ``subscribed`` events on that room | get/set |
+| listeningToDisconnections | boolean | Is this subscription (not) listening to other ``unsubcribed`` events on that room | get/set |
 | metadata | JSON Object | (inherited) Application specific informations, shared to any other subscribers | get/set |
+| subscribeToSelf | boolean | (Don't) subscribe to notifications fired as a consequence of our own queries | get/set |
 | subscriptionID | string | Unique subscription identifier | get |
 | subscriptionTimestamp | timestamp | The timestamp of the start of this subscription | get |
+
+**Notes:**
+
+* giving new values to the ``filters`` property is equivalent to calling ``renew(filters)``
+* the properties ``listeningTo*`` affect only the provided callback. Listeners on the corresponding global events receive notifications even if these flags are turned off.
+* updating the value of ``listeningTo*`` properties takes effect immediately
 
 ## count ![public](./images/public.png)
 
 Returns the number of other subscriptions on that room.
 
-## listen ![public](./images/public.png)
-
-Start/Stop listening to a room special event. A special event is an event not concerning a document, but the room itself.
-
-These special events trigger the Kuzzle event handler, on which you have to plug a callback method.
-
-#### listen(event)
-
-#### listen(event, start)
-
-| Arguments | Type | Description | Default |
-|---------------|---------|----------------------------------------|---------|
-| event | string | Special event. The complete list can be found in the Kuzzle/Event Handling part of this documentation | |
-| start | boolean | Start (``true``) or stop (``false``) listening to that event | true |
-
 ## list ![public](./images/public.png)
+
+<aside class="warning">
+To be implemented
+</aside>
 
 Returns a list of objects detailing other subscriptions on the same room.
 
@@ -67,16 +65,16 @@ These objects contain:
 * the subscription metadata
 * the subscription timestamp
 
-## unsubscribe ![public](./images/public.png)
-
-Unsubscribes and invalidates this KuzzleRoom object.
-
-## update ![public](./images/public.png)
+## renew ![public](./images/public.png)
 
 Renew the subscription using new filters
 
-#### update(filters)
+#### renew(filters)
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
 | filters | JSON Object | Filters in [Kuzzle DSL](https://github.com/kuzzleio/kuzzle/blob/master/docs/filters.md) format |
+
+## unsubscribe ![public](./images/public.png)
+
+Unsubscribes from Kuzzle.

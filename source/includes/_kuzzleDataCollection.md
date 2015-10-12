@@ -7,19 +7,21 @@ A data collection is a set of data managed by Kuzzle. It acts like a data table 
 
 ## Constructors
 
-### KuzzleDataCollection(dataCollectionName)
+### KuzzleDataCollection(kuzzle, collection)
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
-| dataCollectionName | string | The name of the data collection you want to manipulate |
+| kuzzle | object | Kuzzle object |
+| collection | string | The name of the data collection you want to manipulate |
 
 
-### KuzzleDataCollection(dataCollectionName, defaultDocumentsHeaders)
+### KuzzleDataCollection(kuzzle, collection, headers)
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
-| dataCollectionName | string | The name of the data collection you want to manipulate |
-| defaultDocumentsHeaders | JSON Object | Common properties for all future write documents queries |
+| kuzzle | object | Kuzzle object |
+| collection | string | The name of the data collection you want to manipulate |
+| headers | JSON Object | Common properties for all future write documents queries |
 
 ## Properties
 
@@ -27,7 +29,9 @@ Inherited from Kuzzle.Properties.headers
 
 | Property name | Type | Description | get/set |
 |--------------|--------|-----------------------------------|---------|
-| DocumentHeaders | object | Headers for all sent documents. | get/set |
+| kuzzle | object | linked kuzzle instance | get |
+| collection | string | The name of the data collection handled by this instance | get |
+| headers | object | Headers for all sent documents. | get/set |
 
 ## advancedSearch ![public](./images/public.png)
 
@@ -41,19 +45,15 @@ Executes an advanced search on the data collection.
 |---------------|---------|----------------------------------------|
 | filters | JSON Object | Filters in [ElasticSearch Query DSL](https://www.elastic.co/guide/en/elasticsearch/reference/1.3/query-dsl.html) format |
 
-## commit ![public](./images/public.png)
-
-Commits bufferized queries since the last ``prepare`` call, as a bulk command.
-
-Does nothing if ``prepare`` hasn't been called before.
-
-Using this mechanism is generally faster when large amount of queries is involved, since the ``commit`` function will submit these queries as a bulk command instead of a set of individual queries.
-
 ## count ![public](./images/public.png)
 
 <aside class="notice">There is a small delay between documents creation and their existence in our advanced search layer, usually a couple of seconds. That means that a document that was just been created won't be returned by this function</aside>
 
 Returns the number of documents matching the provided set of filters.
+
+| Arguments | Type | Description |
+|---------------|---------|----------------------------------------|
+| filters | JSON Object | Filters in [ElasticSearch Query DSL](https://www.elastic.co/guide/en/elasticsearch/reference/1.3/query-dsl.html) format |
 
 #### count(filters)
 
@@ -86,7 +86,9 @@ Available options:
 
 ## delete ![public](./images/public.png)
 
-<aside class="notice">There is a small delay between documents creation and their existence in our advanced search layer, usually a couple of seconds. That means that a document that was just been created won't be deleted by the filtered version of this function</aside>
+<aside class="notice">
+There is a small delay between documents creation and their existence in our advanced search layer, usually a couple of seconds. That means that a document that was just been created won't be deleted by the filtered version of this function
+</aside>
 
 Delete persistent documents.
 
@@ -123,19 +125,13 @@ Retrieve a single stored document using its unique document ID.
 
 Retrieves all documents stored in this data collection.
 
-**Returns:** a container of KuzzleDocument objects
+**Returns:** a KuzzleDocumentSet object
 
 ## getMapping ![public](./images/public.png)
 
 Instantiates a KuzzleDataMapping object containing the current mapping of this collection.
 
 **Returns:** a KuzzleDataMapping object
-
-## prepare ![public](./images/public.png)
-
-Asks the SDK to bufferize every subsequent queries until the next ``commit`` call.
-
-Using this mechanism is generally faster when large amount of queries is involved, since the ``commit`` function will submit these queries as a bulk command instead of a set of individual queries.
 
 ## replace ![public](./images/public.png)
 
@@ -153,11 +149,14 @@ Replace an existing document with a new one.
 
 ## update ![public](./images/public.png)
 
-Updates a document.
+Update parts of a document
 
 #### update(documentId, KuzzleDocument)
+
+#### update(documentId, content)
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
 | documentId | string | Unique document identifier |
 | KuzzleDocument | object | KuzzleDocument containing the updated content |
+| content | JSON Object | Content of the document to create |

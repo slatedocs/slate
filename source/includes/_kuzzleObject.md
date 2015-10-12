@@ -8,24 +8,23 @@ Here is the object diagram of our SDKs:
 
 ## Constructors
 
-### Kuzzle(ApplicationName, KuzzleURL)
+### Kuzzle(url)
 
 Connects to a Kuzzle instance.
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
-| ApplicationName | string | The name of the application using Kuzzle. |
-| KuzzleURL | string | URL to the target Kuzzle instance |
+| url | string | URL to the target Kuzzle instance |
 
 
-### Kuzzle(ApplicationName, Options)
+### Kuzzle(url, options)
 
 Connects to a Kuzzle instance.
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
-| ApplicationName | string | The name of the application using Kuzzle. |
-| Options | object | Configuration of the connection to Kuzzle |
+| url | string | URL to the target Kuzzle instance |
+| options | object | Configuration of the connection to Kuzzle |
 
 Available options:
 
@@ -37,24 +36,38 @@ Available options:
 
 | Property name | Type | Description | get/set |
 |--------------|--------|-----------------------------------|---------|
-| applicationID | string | Unique application ID. Provided by Kuzzle | get |
-| applicationName | string | Set by the constructor | get/set |
-| connectionID | string | Unique client ID. Provided by Kuzzle | get |
-| connectionTimestamp | timestamp | Timestamp of the last successful connection to Kuzzle | get |
+| autoReconnect | boolean | Auto-reconnect on a connection loss | get/set |
 | headers | object | Common headers for all sent documents. | get/set |
 | metadata | JSON Object | Application specific informations, shared to other subscribers | get/set |
 
 ## Event Handling
 
-The Kuzzle object listens to global events fired by Kuzzle. To add your own actions on these events, simply plug a callback function to the event you want to act upon.
+The Kuzzle object listens to global events fired by Kuzzle. To subscribe or unsubscribe on these events, simply plug a callback function to the event you want to act upon, using the functions ``addListener`` and ``removeListener``.
 
 Here is the list of these special events:
 
 | Event Name | Description | Expected callback arguments |
 |--------------|-------------------------------------------------------------------|--------------------------------|
-| subscribed | Fired when someone enters a subscribed room  | Room name, updated users count |
-| unsubscribed | Fired when someone leaves a subscribed room | Room name, updated users count |
+| subscribed | Fired when someone enters a subscribed room  | Room name, Subscription informations |
+| unsubscribed | Fired when someone leaves a subscribed room | Room name, Unsubscription informations |
 | disconnected | Fired when the current session has been unexpectedly disconnected |  |
+
+## addListener ![public](./images/public.png)
+
+Adds a listener to a Kuzzle global event. When an event is fired, listeners are called in the order of their insertion.
+
+<aside class="notice">
+The ID returned by this function is required if you want to remove this listener later.
+</aside>
+
+#### addListener(event, listener)
+
+| Arguments | Type | Description |
+|---------------|---------|----------------------------------------|
+| event | string | One of the event described in the ``Event Handling`` section of this documentation |
+| listener | function | The function to call each time one of the registered event is fired |
+
+**Returns:** an unique listener ID.
 
 ## count ![public](./images/public.png)
 
@@ -64,14 +77,14 @@ Here is the list of these special events:
 
 Instantiates a new KuzzleDataCollection object.
 
-#### dataCollectionFactory(dataCollectionName)
+#### dataCollectionFactory(collection)
 
-#### dataCollectionFactory(dataCollectionName, defaultDocumentsHeaders)
+#### dataCollectionFactory(collection, headers)
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
-| dataCollectionName | string | The name of the data collection you want to manipulate |
-| defaultDocumentsHeaders | JSON Object | Common properties for all future write documents queries |
+| collection | string | The name of the data collection you want to manipulate |
+| headers | JSON Object | Common properties for all future write documents queries |
 
 **Returns:** a KuzzleDataCollection object
 
@@ -83,6 +96,23 @@ Closes the current connection. Does not fire a ``disconnected`` event.
 
 **Returns:** the current Kuzzle UTC timestamp.
 
+## query ![public](./images/public.png)
+
+<aside class="warning">
+This is a low-level method, exposed to allow advanced SDK users to bypass high-level methods.<br/>
+Check the Kuzzle documentation available <a href=https://github.com/kuzzleio/kuzzle/tree/master/docs>here</a>
+</aside>
+
+#### query(collection, controller, action, query)
+
+| Arguments | Type | Description |
+|---------------|---------|----------------------------------------|
+| collection | string | The name of the data collection you want to manipulate |
+| controller | string | The Kuzzle controller that will handle this query |
+| action | string | Controller action to perform |
+| query | JSON Object | Query to execute |
+
+Base method used to send queries to Kuzzle
 
 ## reconnect ![protected](./images/protected.png)
 
@@ -94,28 +124,25 @@ The purpose of this method is to:
 * retries connecting to Kuzzle at regular intervals
 * once connection has been established again, replays sequentially all bufferized queries
 
-## search ![public](./images/public.png)
+## removeAllListeners ![public](./images/public.png)
 
-<aside class="warning">This is a low-level method, exposed to allow advanced SDK users to bypass high-level methods.</aside>
+Removes all listeners, either from a specific event or from all events
 
-Base method used to send search queries to Kuzzle
+#### removeAllListeners()
 
-## subscribe ![public](./images/public.png)
-
-<aside class="warning">This is a low-level method, exposed to allow advanced SDK users to bypass high-level methods.</aside>
-
-Base method to create a new document or room subscription.
-
-#### subscribe(filters)
+#### removeAllListeners(event)
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
-| filters | JSON Object | Set of filters corresponding to the documents we want to listen to |
+| event | string | One of the event described in the ``Event Handling`` section of this documentation |
 
-**Returns:** a KuzzleRoom object
+## removeListener ![public](./images/public.png)
 
-## write ![public](./images/public.png)
+Removes a listener from an event.
 
-<aside class="warning">This is a low-level method, exposed to allow advanced SDK users to bypass high-level methods.</aside>
+#### removeListener(event, listenerID)
 
-Used to interact directly with Kuzzle's write controller.
+| Arguments | Type | Description |
+|---------------|---------|----------------------------------------|
+| event | string | One of the event described in the ``Event Handling`` section of this documentation |
+| listenerID | string | The ID returned by ``addListener`` |

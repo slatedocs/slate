@@ -23,6 +23,16 @@ The KuzzleDataMapping object allow to get the current mapping of a data collecti
 
 Applies the new mapping to the data collection.
 
+## refresh ![public](./images/public.png)
+
+<aside class="warning">
+Calling this function will discard any uncommited changes. You can commit changes by calling the ``apply`` function
+</aside>
+
+Replaces the current content with the mapping stored in Kuzzle
+
+
+
 ## remove ![public](./images/public.png)
 
 <aside class="notice">Changes made by this function won't be applied until you call the <code>apply</code> method</aside>
