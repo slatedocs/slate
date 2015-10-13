@@ -1,83 +1,74 @@
 # Cobrança
 
-<aside class="notice">
-As Cobranças, pertencem as suas contas de cobrança, sendo assim é necessário que sempre haja ao menos uma conta de cobrança homologada para a criação de cobranças. Ao criar uma conta de cobrança é automaticamente gerada uma cobrança para homologar a conta.
-</aside>
-
-Parâmetros
-
-|Campo                    | Tipo             | Comentário                                                                                                                     |
-|-------------------------|------------------|--------------------------------------------------------------------------------------------------------------------------------|
-| id                      | integer          |                                                                                                                                |
-| charge_account_id       | integer          | identificador da conta de cobrança                                                                                             |
-| due_date                | date             | data de vencimento da cobranca                                                                                                 |
-| document_kind           | string           | espécie do documento, podendo ser DM (Duplicata Mercantil), DS (Duplicata de Serviço), NP (Nota Promissória)  ou DV (Diversos) |
-| document_date           | date             | data de emissão do documento                                                                                                   |
-| document_number         | string           |                                                                                                                                |
-| our_number              | string           |                                                                                                                                |
-| our_number_digit        | integer          | digito do verificador do nosso número                                                                                          |
-| custom_our_number       | boolean          | caso true, o nosso número é atribuído pelo usuário, caso contrário, é atribuído automaticamente pelo Cobrato                   |
-| total_amount            | decimal          | valor total do boleto                                                                                                          |
-| instructions            | string           | instruções de pagamento do boleto, por padrão "Pago em qualquer agência até data do vencimento."                               |
-| demonstrative           | string           | demonstrativo do Boleto, por padrão, contém a taxa bancária                                                                    |
-| payer_emails            | array of strings | emails de quem irá pagar o boleto                                                                                              |
-| received                | boolean          | caso for true, o boleto já foi marcado como recebido                                                                           |
-| received_amount         | decimal          | valor recebido do boleto bancário                                                                                              |
-| received_at             | date             | dia do pagamento do boleto                                                                                                     |
-| processing_date         | date             | data de geração do boleto                                                                                                      |
-| for_homologation        | boolean          | caso for true, é uma cobrança gerada automaticamente pelo sistema e utilizada para homologação da sua conta de cobrança        |
-| billet                  | object           | link com expiração em uma hora para download do boleto caso já tenha sido gerado                                               |
-| payment_method          | string           | identifica o método de pagamento da cobranças                                                                                  |
-| has_cnab_remittance     | boolean          | para cobranças onde o "payment_method" é "cnab", identifica se o arquivo de remessa já foi gerado                              |
-| _links                  | array of object  | links da conta de cobrança e de sua conta bancária                                                                             |
-
-## Lista de Todos as Cobrança
-
-Retorna uma lista em JSON contendo todos as cobranças que pertencem a sua Conta de Serviço.
-
-
 ```shell
-Listar Cobrança
+Cobrança
 
-DEFINIÇÃO
-
-  GET https://app.cobrato.com/api/v1/charges
-
-EXEMPLO DE REQUISIÇÃO
-
-  $ curl -i -u $API_TOKEN:X
-    -H 'User-Agent: My App 1.0' \
-    -H 'Accept: application/json' \
-    -H 'Content-type: application/json' \
-    -X GET https://app.cobrato.com/api/v1/charges
-
-EXEMPLO DE ESTADO DA RESPOSTA
-
-    200 OK
-
-EXEMPLO DE CORPO DA RESPOSTA
+EXEMPLO
 
   {
-    "charges":
+    "id":1,
+    "charge_account_id": 1,
+    "due_date":"2015-02-14",
+    "document_kind":"DV",
+    "document_date":null,
+    "document_number":null,
+    "custom_our_number": "true",
+    "our_number":"0",
+    "our_number_digit":null,
+    "total_amount":"10.07",
+    "instructions":"Pagável em qualquer agência até data do vencimento",
+    "demonstrative":"Demonstrativo",
+    "payer_emails":["myemail@gmail.com"],
+    "payer_info":"Empresa A - CNPJ X",
+    "received":true,
+    "received_amount":"10.07",
+    "received_at":"2015-01-30",
+    "processing_date":"2015-01-30",
+    "for_homologation":true,
+    "_links":
       [
-        {
-          //informações cobrança 1
-        },
-        {
-          //informações cobrança 2
-        },
-        ...
+        {"rel":"self","method":"GET","href":"https://app.cobrato.com/api/v1/charges/1"},
+        {"rel":"update","method":"PUT","href":"https://app.cobrato.com/api/v1/charges/1"},
+        {"rel":"destroy","method":"DELETE","href":"https://app.cobrato.com/api/v1/charges/1"},
+        {"rel":"receive","method":"POST","href":"https://app.cobrato.com/api/v1/charges/1/receive"},
+        {"rel":"deliver","method":"POST","href":"https://app.cobrato.com/api/v1/charges/1/deliver_billet"},
+        {"rel":"charge_account","method":"GET","href":"https://app.cobrato.com/api/v1/charge_accounts/1"},
+        {"rel":"billet","method":"GET","href":"http://localhost:3000/charges/1/download_billet"}
       ]
   }
-
 ```
 
+As Cobranças, pertencem as suas contas de cobrança, sendo assim é necessário que sempre haja ao menos uma conta de cobrança homologada para a criação de cobranças. Ao criar uma conta de cobrança é automaticamente gerada uma cobrança para homologar a conta.
+
+**Parâmetros**
+
+| Campo             | Tipo             | Comentário                                                                                                                                          |
+|-------------------|------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------|
+| id                | integer          |                                                                                                                                                     |
+| charge_account_id | integer          | identificador da conta de cobrança a qual esta cobraça pertece                                                                                      |
+| due_date          | date             | data de vencimento da cobranca                                                                                                                      |
+| document_kind     | string           | espécie do documento, podendo ser DM (Duplicata Mercantil), DS (Duplicata de Serviço), NP (Nota Promissória) ou DV (Diversos)                       |
+| document_date     | date             | data de emissão do documento                                                                                                                        |
+| document_number   | string           | número do documento, também chamado de "seu número", é o número utilizado e controlado pelo beneficiário para identificar o título de cobrança      |
+| our_number        | string           | nosso número                                                                                                                                        |
+| our_number_digit  | integer          | digito do verificador do nosso número                                                                                                               |
+| custom_our_number | boolean          | indica se a cobrança utiliza um "nosso número" customizado. O valor padrão é false, mas caso definido true, o campo 'our_number' se torna requerido |
+| total_amount      | decimal          | valor total do boleto                                                                                                                               |
+| instructions      | string           | instruções de pagamento do boleto, por padrão "Pago em qualquer agência até data do vencimento."                                                    |
+| demonstrative     | string           | demonstrativo do Boleto, por padrão "Pago em qualquer agência até data do vencimento."                                                              |
+| payer_emails      | array of strings | emails de quem irá pagar o boleto                                                                                                                   |
+| payer_info        | string           | informações gerais de quem irá pagar a cobraça (p.ex. nome, documento, endereço)                                                                    |
+| received          | boolean          | indica se a cobrança foi recebida                                                                                                                   |
+| received_amount   | decimal          | valor recebido                                                                                                                                      |
+| received_at       | date             | dia em que a cobraça foi recebida                                                                                                                   |
+| processing_date   | date             | data de geração do boleto                                                                                                                           |
+| for_homologation  | boolean          | indica se é uma cobrança gerada automaticamente pelo sistema para ser utilizada na homologação da conta de cobrança                                 |
+| _links            | array of object  | links relacionados à cobraça                                                                                                                        |
 
 ## Informações da Cobrança
 
-
 ```shell
-Informar Cobrança
+Mostrar Cobrança
 
 DEFINIÇÃO
 
@@ -85,7 +76,7 @@ DEFINIÇÃO
 
 EXEMPLO DE REQUISIÇÃO
 
-  $ curl -i -u $API_TOKEN:X
+  $ curl -i -u $API_TOKEN:X \
     -H 'User-Agent: My App 1.0' \
     -H 'Accept: application/json' \
     -H 'Content-type: application/json' \
@@ -111,12 +102,12 @@ EXEMPLO DE CORPO DA RESPOSTA
     "instructions":"Pagável em qualquer agência até data do vencimento",
     "demonstrative":"Demonstrativo",
     "payer_emails":["myemail@gmail.com"],
+    "payer_info":"Empresa A - CNPJ X",
     "received":true,
     "received_amount":"10.07",
     "received_at":"2015-01-30",
     "processing_date":"2015-01-30",
     "for_homologation":true,
-    "billet":"https://cobrato-billet-storage.s3.amazonaws.com/billets/1/0269_0008961_1422621964.pdf?AWSAccessKeyId=AKIAJZYRPE7LUTTBNALQ\u0026Expires=1422650715\u0026Signature=JXdko57tCsKRWSy473zQXYUxVfg%3D",
     "_links":
       [
         {"rel":"self","method":"GET","href":"https://app.cobrato.com/api/v1/charges/1"},
@@ -124,15 +115,74 @@ EXEMPLO DE CORPO DA RESPOSTA
         {"rel":"destroy","method":"DELETE","href":"https://app.cobrato.com/api/v1/charges/1"},
         {"rel":"receive","method":"POST","href":"https://app.cobrato.com/api/v1/charges/1/receive"},
         {"rel":"deliver","method":"POST","href":"https://app.cobrato.com/api/v1/charges/1/deliver_billet"},
-        {"rel":"charge_account","method":"GET","href":"https://app.cobrato.com/api/v1/charge_accounts/1"}
+        {"rel":"charge_account","method":"GET","href":"https://app.cobrato.com/api/v1/charge_accounts/1"},
+        {"rel":"billet","method":"GET","href":"http://localhost:3000/charges/1/download_billet"}
+      ]
+  }
+```
+
+Retorna as informações detalhadas da cobrança informada em JSON e também a referência a sua conta de cobrança.
+
+<aside class="notice">
+  O conteúdo do nó "_links" irá variar de acordo com o status da cobrança. Além dos itens básicos mostrados no exemplo de resposta ao lado, se a cobraça tiver sido recebida, irá conter o seguinte link:
+
+  <br><br>
+  <p>
+    <code>
+    {"rel":"receive","method":"POST","href":"https://app.cobrato.com/api/v1/charges/1/receive"}
+    </code>
+  </p>
+
+  <p>Caso contrário, irá conter este link:</p>
+
+  <p>
+    <code>
+    {"rel":"undo_receive","method":"POST","href":"https://app.cobrato.com/api/v1/charges/1/undo_receive"}
+    </code>
+  </p>
+</aside>
+
+## Lista de Todos as Cobrança
+
+```shell
+
+
+DEFINIÇÃO
+
+  GET https://app.cobrato.com/api/v1/charges
+
+EXEMPLO DE REQUISIÇÃO
+
+  $ curl -i -u $API_TOKEN:X \
+    -H 'User-Agent: My App 1.0' \
+    -H 'Accept: application/json' \
+    -H 'Content-type: application/json' \
+    -X GET https://app.cobrato.com/api/v1/charges
+
+EXEMPLO DE ESTADO DA RESPOSTA
+
+    200 OK
+
+EXEMPLO DE CORPO DA RESPOSTA
+
+  {
+    "charges":
+      [
+        {
+          // informações cobrança 1
+        },
+        {
+          // informações cobrança 2
+        },
+        ...
       ]
   }
 
-
 ```
 
+Retorna uma lista em JSON contendo todos as cobranças que pertencem a sua Conta de Serviço.
 
-Retorna as informações detalhadas da cobrança informada em JSON e também a referência a sua conta de cobrança.
+## Criação de Cobrança
 
 ```shell
 Criar Cobrança
@@ -143,12 +193,12 @@ DEFINIÇÃO
 
 EXEMPLO DE REQUISIÇÃO
 
-  $ curl -i -u $API_TOKEN:X
+  $ curl -i -u $API_TOKEN:X \
     -H 'User-Agent: My App 1.0' \
     -H 'Accept: application/json' \
     -H 'Content-type: application/json' \
-    -X POST https://app.cobrato.com/api/v1/charges
-    -D '{
+    -X POST https://app.cobrato.com/api/v1/charges \
+    -d '{
           "charge_account_id": 1,
           "due_date":"2015-02-14",
           "document_kind":"DV",
@@ -180,28 +230,25 @@ EXEMPLO DE CORPO DA RESPOSTA COM INSUCESSO
 
 ```
 
-## Criação de Cobrança
-
 Cria um nova cobrança, caso haja sucesso retornará as informações da mesma e será gerado seu boleto. Se houverem erros eles serão informados no corpo da resposta.
 
-Parâmetros
+**Parâmetros**
 
-|Campo                    | Tipo      | Comentário  |
-|-------------------------|-----------|--------------|
-| charge_account_id |  integer  | requirido código de identificação da conta bancária em que a conta de cobrança irá pertencer |
-| due_date | date  | requirido  data de vencimento da cobrança |
-| document_kind |  string  | requirido espécie do documento, podendo ser DM (Duplicata Mercantil), DS (Duplicata de Serviço), NP (Nota Promissória) ou DV (Diversos) |
-| document_date |  date | data de emissão do documento |
-| document_number |  string |
-| our_number | string | Caso não informado, é atribuído automaticamente pelo sistema |
-| our_number_digit | integer | digito do verificador do nosso número |
-| custom_our_number |  boolean | Preenchido automaticamente, mas caso informado true, o campo 'our_number' se torna requirido |
-| total_amount | decimal |  requirido valor total do boleto |
-| instructions | string | instruções de pagamento do boleto, por padrão "Pago em qualquer agência até data do vencimento." |
-| demonstrative |  string | demonstrativo do Boleto, por padrão, contém a taxa bancária |
-| payer_emails | array of strings | E-mails de quem irá pagar o boleto |
-| payment_method | strings | método de pagamento da cobrança, as opções são disponibilizadas pela conta de cobrança |
-
+|Campo              | Tipo             | Comentário                                                                                                                                                     |
+|-------------------|------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| charge_account_id | integer          | **(requerido)** código de identificação da conta bancária em que a conta de cobrança irá pertencer                                                             |
+| due_date          | date             | **(requerido)** data de vencimento da cobrança                                                                                                                 |
+| document_kind     | string           | **(requerido)** espécie do documento, podendo ser DM (Duplicata Mercantil), DS (Duplicata de Serviço), NP (Nota Promissória) ou DV (Diversos)                  |
+| total_amount      | decimal          | **(requerido)** valor total do boleto                                                                                                                          |
+| document_number   | string           | **(requerido)** número do documento, também chamado de "seu número", é o número utilizado e controlado pelo beneficiário para identificar o título de cobrança |
+| payer_info        | string           | **(requerido)** nome, documento e endereço de quem irá pagar a cobraça (pode ser 3 linhas separadas por "\n")                                                  |
+| payer_emails      | array of strings | (opcional) emails de quem irá pagar o boleto                                                                                                                   |
+| document_date     | date             | (opcional) data de emissão do documento                                                                                                                        |
+| our_number        | string           | (opcional) nosso número. Caso não informado, é atribuído automaticamente pelo sistema                                                                          |
+| our_number_digit  | integer          | (opcional) digito do verificador do nosso número                                                                                                               |
+| custom_our_number | boolean          | (opcional) indica se a cobrança utiliza um "nosso número" customizado. O valor padrão é false, mas caso definido true, o campo 'our_number' se torna requerido |
+| instructions      | string           | (opcional) instruções de pagamento do boleto, por padrão "Pago em qualquer agência até data do vencimento." (pode ser linhas separadas por "\n")               |
+| demonstrative     | string           | (opcional) demonstrativo do Boleto, por padrão "Não receber após o vencimento." (pode ser linhas separadas por "\n")                                           |
 
 ## Atualização de Cobrança
 
@@ -215,23 +262,22 @@ DEFINIÇÃO
 
 EXEMPLO DE REQUISIÇÃO
 
-  $ curl -i -u $API_TOKEN:X
+  $ curl -i -u $API_TOKEN:X \
     -H 'User-Agent: My App 1.0' \
     -H 'Accept: application/json' \
     -H 'Content-type: application/json' \
-    -X PATCH https://app.cobrato.com/api/v1/charges/:charge_id
-    -D '{
+    -X PATCH https://app.cobrato.com/api/v1/charges/:charge_id \
+    -d '{
           "document_date":"2015-02-02",
           "document_number":"123456789",
-          "payer_emails":["myemail@gmail.com"],
-          "payment_method": "billet"
+          "payer_emails":["myemail@gmail.com"]
         }'
 
 EXEMPLO DE ESTADO DA RESPOSTA COM SUCESSO
 
     200 OK
 
-EXEMPLO DE ESTADO DA RESPOSTA COM CONTA DE COBRANÇA INEXISTENTE
+EXEMPLO DE ESTADO DA RESPOSTA COM COBRANÇA INEXISTENTE
 
     404 Not Found
 
@@ -255,33 +301,36 @@ Exclui determinada cobrança. As mudanças são irreversíveis, e não será mai
 
 Atualiza a cobrança determinada, caso haja sucesso retornará as informações da mesma e será gerado um novo boleto sobrescrevendo o anterior. Se houverem erros eles serão informados no corpo da resposta. A requisição não diferencia a utilização dos verbos PUT e PATCH.
 
+<aside class="warning">
 Não é possível atualizar uma cobrança após seu recebimento, para isso é necessário desfazer o recebimento da mesma!
+</aside>
 
-Observação: Os campos 'recived', 'recived_at' e 'recived_amount', não são alterados via atualização de cobrança, apenas no recebimento ou desfazendo o recebimento da mesma. O campo 'has_cnab_remittance' é alterado, apenas em cobranças em que o 'payment_method' é 'cnab', quando a gerado o arquivo de remessa para a cobrança.
+<aside class="notice">
+Os campos 'recived', 'recived_at' e 'recived_amount', não são alterados via atualização de cobrança, apenas no recebimento ou desfazendo o recebimento da mesma.
+</aside>
 
-Parâmetros
+**Parâmetros**
 
-|Campo                    | Tipo      | Comentário  |
-|-------------------------|-----------|-------------|
-| due_date|  date | data de vencimento da cobrança |
-| document_kind |   string  | espécie do documento, podendo ser DM (Duplicata Mercantil), DS (Duplicata de Serviço), NP (Nota Promissória) ou DV (Diversos) |
-| document_date|   date | data de emissão do documento |
-| document_number|   string  | |
-| our_number|  string | requirido caso o 'custom_our_number' for informado como true |
-| our_number_digit|  integer | digito do verificador do nosso número |
-| custom_our_number|   boolean | Informe 'true' se desejar utilizar um nosso número personalizado, informe 'false' se estiver usando nosso número personalizado e deseja alterar para um nosso número atribuído pelo Cobrato |
-| total_amount|  decimal | valor total do boleto |
-| instructions|  string | instruções de pagamento do boleto, por padrão "Pago em qualquer agência até data do vencimento." |
-| demonstrative|   string | demonstrativo do Boleto, por padrão, contém a taxa bancária |
-| payer_emails|  array of strings  | emails de quem irá pagar o boleto |
-| payment_method | strings | método de pagamento da cobrança, as opções são disponibilizadas pela conta de cobrança |
-
+|Campo              | Tipo             | Comentário                                                                                                                                                     |
+|-------------------|------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| due_date          | date             | **(requerido)** data de vencimento da cobrança                                                                                                                 |
+| document_kind     | string           | **(requerido)** espécie do documento, podendo ser DM (Duplicata Mercantil), DS (Duplicata de Serviço), NP (Nota Promissória) ou DV (Diversos)                  |
+| total_amount      | decimal          | **(requerido)** valor total do boleto                                                                                                                          |
+| document_number   | string           | **(requerido)** número do documento, também chamado de "seu número", é o número utilizado e controlado pelo beneficiário para identificar o título de cobrança |
+| payer_info        | string           | **(requerido)** nome, documento e endereço de quem irá pagar a cobraça (pode ser 3 linhas separadas por "\n")                                                  |
+| payer_emails      | array of strings | (opcional) emails de quem irá pagar o boleto                                                                                                                   |
+| document_date     | date             | (opcional) data de emissão do documento                                                                                                                        |
+| our_number        | string           | (opcional) nosso número. Caso não informado, é atribuído automaticamente pelo sistema                                                                          |
+| our_number_digit  | integer          | (opcional) digito do verificador do nosso número                                                                                                               |
+| custom_our_number | boolean          | (opcional) indica se a cobrança utiliza um "nosso número" customizado. O valor padrão é false, mas caso definido true, o campo 'our_number' se torna requerido |
+| instructions      | string           | (opcional) instruções de pagamento do boleto, por padrão "Pago em qualquer agência até data do vencimento." (pode ser linhas separadas por "\n")               |
+| demonstrative     | string           | (opcional) demonstrativo do Boleto, por padrão "Não receber após o vencimento." (pode ser linhas separadas por "\n")                                           |
 
 
 ## Exclusão de Cobrança
 
 ```shell
-Excluir Conta de Cobrança
+Excluir Cobrança
 
 DEFINIÇÃO
 
@@ -289,7 +338,7 @@ DEFINIÇÃO
 
 EXEMPLO DE REQUISIÇÃO
 
-  $ curl -i -u $API_TOKEN:X
+  $ curl -i -u $API_TOKEN:X \
     -H 'User-Agent: My App 1.0' \
     -H 'Accept: application/json' \
     -H 'Content-type: application/json' \
@@ -299,7 +348,7 @@ EXEMPLO DE ESTADO DA RESPOSTA COM SUCESSO
 
     204 No Content
 
-EXEMPLO DE ESTADO DA RESPOSTA COM CONTA DE COBRANÇA INEXISTENTE
+EXEMPLO DE ESTADO DA RESPOSTA COM COBRANÇA INEXISTENTE
 
     404 Not Found
 
