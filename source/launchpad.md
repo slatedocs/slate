@@ -428,7 +428,8 @@ The following major steps must be taken.
 ##Handling Custom Target Page
 ```ruby
 #Request(source application)
-view: = link_to request_forward_authentication_path(target_page: 'identities/link/some_page')
+#view:
+ = link_to request_forward_authentication_path(target_page: 'identities/link/some_page')
 ```
 
 ```ruby
