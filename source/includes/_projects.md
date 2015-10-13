@@ -58,7 +58,7 @@ name | String | Name of the project
 created_at | Date | Date of creation
 
 ## Create
-To create a new site, you can use a POST request (or the insert method).
+To create a new project, you can use a POST request (or the insert method).
 
 ```shell
  curl 
@@ -89,7 +89,7 @@ print_r($result);
 result:
 Productsup\Platform\Project Object
         (
-            [id] => 1
+            [id] => 125
             [name] => test project
             [created_at] => 2015-07-30 12:54:52
         )
@@ -98,32 +98,30 @@ Productsup\Platform\Project Object
 
 ### HTTP Request
 
-`POST https://platform-api.productsup.io/platform/v1/projects/321/sites`
+`POST https://platform-api.productsup.io/platform/v1/projects`
 
 The data to insert has to be provided as a JSON-Object
 ### Request fields
 Field | Type | Description
 ------ | -------- | --------------
-title | String | Name of the site
-project_id | Integer | ID of the project this site belongs to
+name | String | Name of the project
 
 `ID` and `created_at` have to be empty, otherwise the values get overwritten, or the request may result in an error.
-The `project_id` may be also included in the URL, like in the example above.
 
 ## Delete
 ### HTTP Request
 
-`DELETE https://platform-api.productsup.io/platform/v1/sites/125`
+`DELETE https://platform-api.productsup.io/platform/v1`
 
 ```shell
-curl -X DELETE https://platform-api.productsup.io/platform/v1/sites/125
+curl -X DELETE https://platform-api.productsup.io/platform/v1/projects/125
 # response:
 {"success":true}
 ```
 
 ```php
 <?php
-$SitesService = new Productsup\Service\Sites($Client);
+$SitesService = new Productsup\Service\Projects($Client);
 $result = $siteService->delete(125); // id fetched from API
 // result is true, if the delete was successful
 ```
