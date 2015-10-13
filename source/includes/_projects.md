@@ -111,7 +111,7 @@ name | String | Name of the project
 ## Delete
 ### HTTP Request
 
-`DELETE https://platform-api.productsup.io/platform/v1`
+`DELETE https://platform-api.productsup.io/platform/v1/projects/125`
 
 ```shell
 curl -X DELETE https://platform-api.productsup.io/platform/v1/projects/125
