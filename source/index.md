@@ -13,10 +13,10 @@ toc_footers:
 
 includes:
   - architecture
+  - api
   - accounts
   - callbacks
   - numbers
-  - api
   - rpc
   - filters
   - batch
