@@ -20,34 +20,35 @@ under the License.
 ////////////////////////////////////////////////////////////////////////////////
 // Use these settings to help adjust the appearance of Slate
 
+$almost-white: #f7f7f7;
 
 // BACKGROUND COLORS
 ////////////////////
-$nav-bg: #393939;
+$nav-bg: #f1f1f1;
 $examples-bg: #393939;
-$code-bg: #292929;
+$code-bg: #242424;
 $code-annotation-bg: #1c1c1c;
-$nav-subitem-bg: #262626;
-$nav-active-bg: #2467af;
+$nav-subitem-bg: #f1f1f1;
+$nav-active-bg: #d3d3d3;
 $lang-select-border: #000;
 $lang-select-bg: #222;
 $lang-select-active-bg: $examples-bg; // feel free to change this to blue or something
 $lang-select-pressed-bg: #111; // color of language tab bg when mouse is pressed
-$main-bg: #eaf2f6;
-$aside-notice-bg: #8fbcd4;
-$aside-warning-bg: #c97a7e;
-$aside-success-bg: #6ac174;
+$main-bg: #fff;
+$aside-notice-bg: #0064a4;
+$aside-warning-bg: #722580;
+$aside-success-bg: #107f65;
 $search-notice-bg: #c97a7e;
 
 
 // TEXT COLORS
 ////////////////////
 $main-text: #333; // main content text color
-$nav-text: #fff;
+$nav-text: #565656;
 $nav-active-text: #fff;
-$lang-select-text: #fff; // color of unselected language tab text
-$lang-select-active-text: #fff; // color of selected language tab text
-$lang-select-pressed-text: #fff; // color of language tab text when mouse is pressed
+$lang-select-text: $almost-white; // color of unselected language tab text
+$lang-select-active-text: $almost-white; // color of selected language tab text
+$lang-select-pressed-text: $almost-white; // color of language tab text when mouse is pressed
 
 
 // SIZES
@@ -67,9 +68,26 @@ $phone-width: $tablet-width - $nav-width; // min width before reverting to mobil
 
 // FONTS
 ////////////////////
+
+@font-face {
+    font-family: 'AvenirLTStd';
+    src: url(https://beta.crunch.io/AvenirLTPro-Heavy.ttf);
+    // src: url(../fonts/AvenirLTPro-Heavy.ttf);
+    font-weight: font-weight-heavy;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'AvenirLTStd';
+    src: url(https://beta.crunch.io/AvenirLTPro-Roman.ttf);
+    // src: url(../fonts/AvenirLTPro-Roman.ttf);
+    font-weight: font-weight-normal;
+    font-style: normal;
+}
+
 %default-font {
-  font-family: "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei","微软雅黑", STXihei, "华文细黑", sans-serif;
-  font-size: 13px;
+  font-family: "AvenirLTStd", "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
 }
 
 %header-font {

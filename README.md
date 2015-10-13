@@ -1,3 +1,15 @@
+# Crunch.io API docs
+
+## Editing the docs
+Edit content in the "source" directory. See "Getting set up" below for instructions on how to build the HTML from the markdown for local viewing. If the ruby middleman server doesn't work for you, like it doesn't work for me sometimes, do `rake build` and then serve the contents of the "build" directory by your preferred means (open index.html in your browser, `python -m SimpleHTTPServer`, etc.)
+
+## Publishing
+`make` will build the HTML/CSS/JS, checkout the "gh-pages" branch, commit those changes to it, and push that branch. This updates what is up on GitHub pages, which is viewable at [docs.crunch.io](http://docs.crunch.io).
+
+
+## For more details
+This repository is a fork of, and indebted to the framework provided by:
+
 Slate
 ========
 
