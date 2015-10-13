@@ -250,3 +250,76 @@ The result will be an array of output cubes:
     }
 }
 ```
+
+### Transforming analyses for presentation
+
+The `transform` member of an analysis specification (or multitable definition)
+provides a way to transform that dimension's results after computation. The 
+cube result dimension will always be derived from the `variable_query` part of the
+request (`{variable: $variableId})`, `{function: f, args: [$variableId, …]}`, &c.
+
+### Structure
+
+A `transform` is an array of target transforms for **valid** output-dimension elements. 
+Therefore to create a valid `transform` it is generally necessary to make a cube query, inspect
+the result dimension, and proceed from there. For categorical and multiple response
+variables, elements may also be obtained from the variable entity.
+
+Consider the following example result dimension:
+
+| Name       | missing |
+|------------|---------|
+| Element A  |         |
+| Element B  |         |
+| Element C  |         |
+| Don’t know |         |
+| Not asked  | true    |
+
+A full `transform` can specify a new order of output elements, new names, 
+and in the future, bases for hypothesis testing, result sorting, and 
+aggregation of results. A `transform` will have **four** elements, which may
+contain keys: 
+
+- **i**: index or array of indices in the target row/column
+- **name**: name of new target column
+- **sort**: `-1` or `1` indicating to sort results descending or ascending by this element
+- **compare**: `neq`, `leq`, `geq` indicating to test other rows/columns against
+the hypothesis that they are ≠, ≤, or ≥ to the present element
+- **combine**: `sum` (or `mean`?) — combine the indices in `[i]` to produce this target row/column
+
+A `transform` with object members can do lots of things. Suppose we want to put _Element C_ first, 
+hide the _Don’t know_, and more compactly represent the result as just _C, B, A_:
+
+```json
+transform: [
+    {'i': 2, 'name': 'C'},
+    {'i': 0, 'name': 'A'},
+    {'i': 1, 'name': 'B'}
+]
+```
+
+#### In the future: `combine`
+
+Suppose we want to combine results in _A_ and _B_ into _Others_:
+
+```json
+transform: [
+    {'i': 2, 'name': 'C'},
+    {'i': [0,1], 'name': 'Others', 'combine': 'sum'}
+]
+```
+
+#### Shorthands
+
+There are two shorthand specifiers:
+
+1. An all-numeric vector of indices corresponds to an array with only `i` member keys. This
+allows result rows or columns to be dropped and reordered with no renaming. `[0,1,2]` for the
+example above would drop the “Don’t know” element. *If the elements are not all numeric, or if
+any element of the `transform` is null, it will be ignored.*
+
+2. An array of identical length to the input result, with _string_ or _null_ elements corresponds
+to a same-ordered array of transforms with only `name` members, allowing the renaming
+of elements in place with no re-ordering. For compact display, one might write,
+`['A', 'B', 'C', 'DK']`, or perhaps `[null, null, null, 'DK']`. *If such a shorthand array
+is not of identical length to the valid result-dimension, it will be ignored.*
