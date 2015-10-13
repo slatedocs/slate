@@ -150,7 +150,7 @@ The following methods allows you to interact with people and identities.
     POST /organizations/:id/people
 ```
 
-```
+```ruby
 {
   "person":{
    "given_name": "Simon",
@@ -184,7 +184,7 @@ The following methods allows you to interact with people and identities.
 
 ```  
 
-```
+```ruby
 {
  "identity": {
    "provider_id": "5643c01e-1e8d-4a2e-9af0-991763ad5375",
@@ -232,7 +232,7 @@ This feature is currently unavailable.
 
 Returns a Person entity, which looks like:
 
-```
+```ruby
     {
         "email": "cortiz@linktype.com",
         "family_name": "Green",
@@ -265,7 +265,7 @@ Returns a list of all identities and their providers. You can use this informati
 
 The response looks like:
 
-```
+```ruby
     [
         {
             "id": "439d8dc0-5dce-43ab-bef5-93f4df7ac21c",
@@ -298,7 +298,7 @@ Each Authentication Session is linked to an Identity (requested identity) and a 
 
 You must have corresponding privileges. The Faria SSO Portal will return with the Authentication Session alongside the detailed representation of the requesting person. The response looks like:
 
-```
+```ruby
     {
         "data": null,
         "expires_at": null,
@@ -369,7 +369,7 @@ Generally, you will send this request synchronously after your user has requeste
 
 If your request is successfully recognized (but not yet processed), you will receive the representation of the newly created Authentication Session with "context.client_application_url", and you should then redirect the user. The target Client Application, which implements the Forward Authentication API, will handle everything from there.
 
-```
+```ruby
     {
         "context": {
             "client_application_url": "https://target.example.com/handle_forward_authentication?session_id=:session_id"
@@ -424,6 +424,21 @@ The following major steps must be taken.
 4. **Faria:** Provision Faria IDs for new users.
 5. **Vendor:** Implement the Faria Forward Authentication protocol. (Alternatively, work with Faria Systems engineering to implement a substitute.)
 6. **Vendor:** Using the same Client Application token, periodically update identities stored in the Faria LaunchPad Portal.
+
+##Handling Custom Target Page
+```ruby
+#Request(source application)
+view: = link_to request_forward_authentication_path(target_page: 'identities/link/some_page')
+```
+
+```ruby
+# Handle(target application)
+In ForwardAuthenticationController#handle. 
+params[:target_page] should be available with value being 'identities/link/some_page'
+```
+To handle custom target page an options hash with a :target_page key/value pair can be passed into `SSO::ForwardAuthenticationRequestService`.
+
+
 
 ## Technical Components To Be Completed
 
@@ -550,7 +565,6 @@ The following snippet demonstrates appropriate routing you must set up for your 
 SSO::Application.routes.draw do
   get 'handle_forward_authentication' => 'forward_authentication#handle', as: :handle_forward_authentication
   get 'obtain_forward_authentication' => 'forward_authentication#obtain', as: :request_forward_authentication
-  â€¦
 end
 ```
 
@@ -658,7 +672,7 @@ private
   end
 end
 
-```ruby
+```
 
 ### Forward Authentication Request Service
 
@@ -667,7 +681,7 @@ The following snippet contains another Service Object you can use to create outg
 1.  You must be requesting authentication on behalf of one of your users.
 2.  The target identity must — according to the LaunchPad Portal — also belong to the same user.
 
-```
+```ruby
 class SSO::ForwardAuthenticationRequestService
   attr_reader :authentication_session, :requester_identity_id, :wanted_identity_id, :client_application_url
 
@@ -827,3 +841,4 @@ module SSO
 end
 
 ```
+
