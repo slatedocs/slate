@@ -1,5 +1,5 @@
 ---
-title: Augur API
+title: Augur documentation
 
 language_tabs:
   - javascript: JavaScript
@@ -22,35 +22,32 @@ includes:
   - batch
   - tests
   - errors
+  - contributing
 
 search: true
 ---
 Overview
 ========
 
-The [Augur API](https://github.com/AugurProject/augur.js) requires an [Ethereum](https://www.ethereum.org/) client to communicate with [Augur's smart contracts](https://github.com/AugurProject/augur-core).  Our testing has been primarily carried out with the [Go](https://github.com/ethereum/go-ethereum) Ethereum implementation (geth).
+[Augur](http://augur.net) is a decentralized prediction market platform that runs on Ethereum.
 
 Getting started
 ---------------
 
-```javascript
-// After installing, just require augur.js to use it.
-var augur = require("augur.js");
+The Augur client (user interface) is built and hosted at [client.augur.net](http://client.augur.net).  If you want to use or help test Augur, you do not need to download or install anything!  Just go to [client.augur.net](http://client.augur.net) and start using it.  The latest bleeding-edge development build is at [development.augur.divshot.io](http://development.augur.divshot.io).
 
-// Attempt to connect to a local Ethereum node
-augur.connect();
+If you want to help develop Augur, you will need to build the client from source.  To do this, first install [Node.js](https://nodejs.org/), then execute the following commands to build the client:
 
-// Connect to a local Ethereum node with IPC support
-augur.connect(null, "/home/augur/.ethereum/geth.ipc");
+`$ git clone https://github.com/AugurProject/augur.git`
 
-// Connect to one of Augur's public nodes (eth1.augur.net)
-augur.connect("http://eth1.augur.net");
-```
+`$ cd augur`
 
-The easiest way to install augur.js is using [npm](https://www.npmjs.com/package/augur.js):
+`$ ./nuke`
 
-`$ npm install augur.js`
+(`nuke` is a simple shell script that rebuilds the client.)  Next, start the static web server:
 
-To use the Augur API, augur.js needs to connect to an Ethereum node.  By default, augur.js will look for a local Ethereum node listening on localhost port 8545.  To change this, just call pass your RPC connection info to `augur.connect`.
+`$ npm start`
 
-<aside class="notice"><code>augur.connect</code> also accepts a second argument specifying the path to geth's IPC (inter-process communication) file.  IPC creates a persistent connection using a Unix domain socket (or a named pipe on Windows).  It is significantly faster than HTTP RPC, but requires access to the filesystem, so it cannot be used from the browser.</aside>
+Finally, go to [http://localhost:8080](http://localhost:8080) in your web browser.  You should be greeted by Augur's overview interface.  Congratulations, you're ready to start hacking!
+
+<aside class="notice">If you are using or helping develop the Augur client (i.e., the front-end/user interface), it is usually not necessary for you to run a local Ethereum node on your computer.  We're already running several [hosted nodes](http://docs.augur.net/#hosted-node) that you can simply plug into!  Presently, the hosted nodes provide a snappier/more pleasant user (and developer) experience, due to a [caching process](https://github.com/AugurProject/marketeer) attached to each hosted node.  If you are running an Ethereum node, the client will automatically detect it and begin talking to it; if you are not, the client will default to using the hosted nodes.</aside>
