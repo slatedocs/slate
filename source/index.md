@@ -1,13 +1,11 @@
 ---
-title: API Reference
+title: Sendle API
 
 language_tabs:
-  - shell
-  - ruby
-  - python
+  - interact with Sendle API using json
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
+  - <a href='#'>Get your Developer Key</a>
   - <a href='http://github.com/tripit/slate'>Documentation Powered by Slate</a>
 
 includes:
@@ -18,47 +16,113 @@ search: true
 
 # Introduction
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+Welcome to the Sendle API! You can use our API to access Sendle Booking endpoints, which will allow you to book Sendle pickups, manage shipping, and oversee past and present orders any way you like!
 
-We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+Sendle API uses only JSON. You can view code examples in the dark area to the right.
 
-This example API documentation page was created with [Slate](http://github.com/tripit/slate). Feel free to edit it and use it as a base for your own API's documentation.
+# Getting Started
 
-# Authentication
+> Requests should be made with the following headers:
 
-> To authorize, use this code:
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
+```
+  Content-Type: application/json
+  Accept: application/json
 ```
 
-```python
-import kittn
+Before anything else, you will need to have a [Sendle Account](https://www.sendle.com/#signup-form) authorised with an API.
 
-api = kittn.authorize('meowmeowmeow')
+For API access, please contact support@sendle.com.
+
+![Account Settings](images/account_settings.png)
+
+When Access is granted, visit `Account Settings` (top right) on your Sendle Dashboard.
+
+![API Modal](images/api_modal.png)
+
+Once you have been granted API access, visit your API tab to get your `api key`.
+
+<aside class="warning">Be sure to keep your API Key secret!</aside>
+
+## Set Up Payments
+
+> Without Payment Details
+
 ```
+{"error":"payment_required","error_description":"The account associated with this API key has no method of payment. Please go to your Account Settings in your Sendle Dashboard and add a payment method."}  
+```
+
+<aside class="notice">To use Sendle API, you will need a valid payment option attached to the Sendle Account.</aside>
+
+![Add Payment Details](images/payment_modal.png)
+
+To use the API, be sure to have a credit card on file.
+
+For payments, Sendle uses [Stripe](https://stripe.com). If you want to use a dummy credit card for sandbox testing, [visit stripes testing docs](https://stripe.com/docs/testing) for credit examples.
+
+
+# Ping Server
+
+> All API interactions will require your Sendle ID and your API Key (Make sure to replace **sendleAPI** and **42RRTjYz5Z4hZrm8XY3t4Vxt** with your Sendle ID & API key.)
 
 ```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
+  curl 'https://sendle.com/api/ping'
+  -u sendleAPI:42RRTjYz5Z4hZrm8XY3t4Vxt
 ```
 
-> Make sure to replace `meowmeowmeow` with your API key.
+Sendle uses your **Sendle ID** together with your own **API Key** to grant access to the server. Together this allows you access through the API so that you may book and follow up with orders, as well as view passed orders you have sent or received.
 
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
+For this initial example, we'll simply ping the server.
 
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
+You must include your credentials in the request, or you will be denied. However, if you include your `Sendle ID`, you will be prompted to enter your API key (password).
 
-`Authorization: meowmeowmeow`
+## OK Response
 
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
+> Status 200:
 
-# Kittens
+```json
+  {"ping":"pong"}% 
+```
+
+When the api receives a request with a `Sendle ID` and an `API Key` the server responds with a `JSON` string containing the relevant details.
+
+## Without Credentials
+> No Sendle ID AND No API Key
+
+```shell
+  curl 'https://sendle.com/api/ping'
+```
+
+> Response:
+
+```
+  HTTP Basic: Access denied.
+```
+
+> Response With incorrect Credentials:
+
+```
+  {"error":"unauthorised","error_description":"The authorisation details are not valid. Either the Sendle ID or API key are incorrect."}
+```
+
+Depending on what information is left out determines the response. *If* you include your `Sendle ID` the response will ask for your `API Key` (as **password** on the command line). If you reply with your key, the server will respond with the request **but** due to the length of API keys, this isn't suggested practice.
+
+# Getting Quotes
+
+# Creating Orders
+
+## Getting Labels
+
+## Create Order & Get Label
+
+# Check for Status Updates
+
+## Statuses & States
+
+# Cancelling Orders
+
+# Errors
+
+# Kitten
 
 ## Get All Kittens
 
@@ -166,3 +230,6 @@ Parameter | Description
 --------- | -----------
 ID | The ID of the kitten to retrieve
 
+# Credits
+
+This example API documentation page was created with [Slate](http://github.com/tripit/slate). 
