@@ -9,31 +9,31 @@ Once you have subscribed, if a pub/sub message is published matching your filter
 
 ## Constructors
 
-Susbcribes to documents using a set of filters.
+Creates a KuzzleRoom object.
 
-#### KuzzleRoom(Kuzzle, filters, callback)
+#### KuzzleRoom(KuzzleDataCollection)
 
-#### KuzzleRoom(Kuzzle, filters, callback, options)
+#### KuzzleRoom(KuzzleDataCollection, options)
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
-| Kuzzle | object | an instantiated Kuzzle object |
-| filters | JSON Object | Filters in [Kuzzle DSL](https://github.com/kuzzleio/kuzzle/blob/master/docs/filters.md) format |
-| callback | function | Callback to call every time a notification is received on this subscription |
-| Options | object | Subscription configuration |
+| KuzzleDataCollection | object | an instantiated Kuzzle Data Collection object |
+| options | object | Subscription configuration |
 
 Available options:
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
 | subscribeToSelf | boolean | (Don't) subscribe to notifications fired as a consequence of our own queries | false |
-| listenToSubscriptions | boolean | (Don't) listen to other subscriptions on that room | false |
-| listenToUnsubscriptions | boolean | (Don't) listen to other subscription cancellations on that room | false |
+| listeningToConnections | boolean | (Don't) listen to other subscriptions on that room | false |
+| listeningToDisconnections | boolean | (Don't) listen to other subscription cancellations on that room | false |
+
 
 ## Properties
 
 | Property name | Type | Description | get/set |
 |--------------|--------|-----------------------------------|---------|
+| collection | string | The subscribed data collection | get |
 | filters | JSON object | The current set of filters of this room | get/set |
 | listeningToConnections | boolean | Is this subscription (not) listening to other ``subscribed`` events on that room | get/set |
 | listeningToDisconnections | boolean | Is this subscription (not) listening to other ``unsubcribed`` events on that room | get/set |
@@ -69,11 +69,13 @@ These objects contain:
 
 Renew the subscription using new filters
 
-#### renew(filters)
+#### renew(filters, callback)
+
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
 | filters | JSON Object | Filters in [Kuzzle DSL](https://github.com/kuzzleio/kuzzle/blob/master/docs/filters.md) format |
+| callback | function | Function called each time a notification is received |
 
 ## unsubscribe ![public](./images/public.png)
 

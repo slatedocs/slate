@@ -147,6 +147,26 @@ Replace an existing document with a new one.
 | KuzzleDocument | object | KuzzleDocument object |
 | content | JSON Object | Content of the document to create |
 
+## subscribe ![public](./images/public.png)
+
+Subscribes to this data collection with a set of filters.
+
+<aside class="notice">
+To subscribe to the entire data collection, simply provide an empty filter.
+</aside>
+
+#### subscribe(filters, callback)
+
+#### subscribe(filters, callback, options)
+
+| Arguments | Type | Description |
+|---------------|---------|----------------------------------------|
+| filters | JSON Object | Filters in [Kuzzle DSL](https://github.com/kuzzleio/kuzzle/blob/master/docs/filters.md) format |
+| callback | function | Callback to call every time a notification is received on this subscription |
+| options | object | Subscription configuration |
+
+**Returns:** a KuzzleRoom object
+
 ## update ![public](./images/public.png)
 
 Update parts of a document
