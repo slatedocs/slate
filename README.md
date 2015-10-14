@@ -15,11 +15,9 @@ You're going to need:
  - **Ruby, version 1.9.3 or newer**
  - Run:
  - `gem install eventmachine -- --with-cppflags=-I/usr/local/opt/openssl/include` 
- - `git clone git://github.com/cowboyd/libv8.git`
- - `cd libv8`
- - `bundle install`
- - `bundle exec rake checkout`
- - `bundle exec rake compile`
+ - `gem uninstall libv8`
+ - `gem install therubyracer -v '0.12.2'`
+ - `gem install libv8 -v '3.16.14.11' -- --with-system-v8`
  - **Bundler** — If Ruby is already installed, but the `bundle` command doesn't work, just run `gem install bundler` in a terminal
 
 ### Getting Set Up
