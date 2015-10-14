@@ -27,9 +27,9 @@ or can be searched by a set of parameters. The search parameters include the las
 allowing you to use the API for tasks such as extracting all audits from the system, and retrieving new and updated
 audits periodically.
 
-The SafetyCulture API is currently available under a limited access trial. Please contact 
-[SafetyCulture Support](http://www.safetyculture.io/support/safetyculture/contact) if you are interested in early
-access.
+Access to the SafetyCulture API requires a Premium plan. You can sign up for
+the plan with a free trial from the [SafetyCulture
+website](http://www.safetyculture.io/pricing).
 
 # Getting Started
 
