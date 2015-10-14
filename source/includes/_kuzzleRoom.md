@@ -44,7 +44,6 @@ Available options:
 
 **Notes:**
 
-* giving new values to the ``filters`` property is equivalent to calling ``renew(filters)``
 * the properties ``listeningTo*`` affect only the provided callback. Listeners on the corresponding global events receive notifications even if these flags are turned off.
 * updating the value of ``listeningTo*`` properties takes effect immediately
 
