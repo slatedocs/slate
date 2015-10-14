@@ -16,16 +16,16 @@ search: true
 
 # Introduction
 
-> using Curl
+> example of a Sendle API call using Curl:
 
 ```
   curl 'https://sendle.com/api/quote?pickup_suburb=Wonglepong&pickup_postcode=4275&delivery_suburb=Foul%20Bay&delivery_postcode=5577&kilogram_weight=2.0&cubic_metre_volume=0.01' -H 'Content-Type: application/json'
 ```
 
-Welcome to the Sendle API! You can use our API to access Sendle Booking endpoints, which ill allow you to book Sendle pickups, manage shipping, and oversee past and present orders any way you like!
+Welcome to the Sendle API! You can use our API to access booking endpoints, which will allow you to book Sendle pickups, manage shipping, and oversee past and present orders any way you like!
 
 
-Sendle API uses only JSON. You can view code examples in the dark area to the right.
+Sendle API uses JSON. You can view code examples in the dark area to the right.
 
 For all examples, we will be using [curl](http://curl.haxx.se/) from command line, but you are encouraged to make requests in whichever method you are most comfortable with.
 
@@ -50,17 +50,17 @@ When Access is granted, visit `Account Settings` (top right) on your Sendle Dash
 
 Once you have been granted API access, visit your API tab to get your `api key`.
 
-<aside class="warning">Be sure to keep your API Key secret!</aside>
+<aside class="warning">Be sure to keep your API Key private!</aside>
 
 ## Set Up Payments
 
 > Without Payment Details
 
 ```
-{"error":"payment_required","error_description":"The account associated with this API key has no method of payment. Please go to your Account Settings in your Sendle Dashboard and add a payment method."}  
+  {"error":"payment_required","error_description":"The account associated with this API key has no method of payment. Please go to your Account Settings in your Sendle Dashboard and add a payment method."}  
 ```
 
-<aside class="notice">To use Sendle API, you will need a valid payment option attached to the Sendle Account.</aside>
+<aside class="success">To use Sendle API, you will need a valid payment option attached to the Sendle Account.</aside>
 
 ![Add Payment Details](images/payment_modal.png)
 
@@ -89,7 +89,7 @@ You must include your credentials in the request, or you will be denied. However
 > Status 200:
 
 ```json
-  {"ping":"pong"}% 
+  {"ping":"pong"}
 ```
 
 When the api receives a request with a `Sendle ID` and an `API Key` the server responds with a `JSON` string containing the relevant details.
@@ -121,9 +121,6 @@ The quoting API does not require you to add your Sendle ID and API Key, but be s
 
 <aside class="notice">With curl, add <strong>-H 'Content-Type: application/json'</strong> to transmit in <strong>JSON</strong></aside>
 
-<aside class="warning">
-Some 
-</aside>
 
 ## Quote Requirements
 
@@ -186,15 +183,249 @@ Paramerters required:
 
 # Creating Orders
 
-## Getting Labels
+`POST /orders`
+
+To create an order, submit order data via POST command. The order will be rejected if the data fails validation and the API will respond with an error.
+
+## Order Requirements
+> Example Booking
+
+```shell
+  curl https://sendle.com/api/orders -X POST 
+  -u sendleAPI:42RRTjYz5Z4hZrm8XY3t4Vxt 
+  -H "Content-Type: application/json"
+  -d '{ 
+    "pickup_date": "2015-11-24",
+    "description": "Kryptonite",
+    "confirmed_not_dangerous": true,
+    "kilogram_weight": 1,
+    "cubic_metre_volume": 0.01, 
+    "customer_reference": "SupBdayPressie", 
+    "sender": { 
+      "contact": { 
+        "name": "Lex Luthor", 
+        "sendle_id": "sendleAPI", 
+        "phone": "0412 345 678"
+      }, 
+      "address": {
+        "address_line1": "123 Gotham Ln", 
+        "suburb": "Sydney", 
+        "state_name": "NSW", 
+        "postcode": "2000", 
+        "country": "Australia"
+      }, 
+      "instructions": "Knock loudly"
+    },
+    "receiver": {
+      "contact": {
+        "name": "Clark Kent",
+        "email": "clarkissuper@dailyplanet.xyz"
+      },
+      "address": {
+        "address_line1": "80 Wentworth Park Road",
+        "suburb": "Glebe",
+        "state_name": "NSW",
+        "postcode": "2037",
+        "country": "Australia"
+      }, 
+      "instructions": "Give directly to Clark"
+    }
+  }'
+```
+
+> 200 Response
+
+```
+  {
+    "order_id":"f5233746-71d4-4b05-bf63-56f4abaed5f6",
+    "state":"Payment",
+    "order_url":"https://sendle.com/api/orders/f5233746-71d4-4b05-bf63-56f4abaed5f6",
+    "labels":null,
+    "scheduling":{
+      "is_cancellable":true,
+      "pickup_date":"2015-10-24"
+    },
+    "description":"Kryptonite",
+    "confirmed_not_dangerous":true,
+    "kilogram_weight":"1.0",
+    "cubic_metre_volume":"0.01",
+    "customer_reference":"SupBdayPressie",
+    "sender":{
+      "contact":{
+        "name":"Lex Luthor",
+        "phone":"0412 345 678",
+        "email":null
+      },
+      "address":{
+        "address_line1":"123 Gotham Ln",
+        "address_line2":null,
+        "suburb":"Sydney",
+        "state_name":"NSW",
+        "postcode":"2000",
+        "country":"Australia"
+      },
+      "instructions":"Knock loudly"
+    },
+    "receiver":{
+      "contact":{
+        "name":"Clark Kent",
+        "phone":null,
+        "email":"clarkissuper@dailyplanet.xyz"
+      },
+      "address":{
+        "address_line1":"80 Wentworth Park Road",
+        "address_line2":null,
+        "suburb":"Glebe",
+        "state_name":"NSW",
+        "postcode":"2037",
+        "country":"Australia"
+      },
+      "instructions":"Give directly to Clark"
+    }
+  }
+```
+
+- `pickup_date`
+  - Format: **yyyy-mm-dd**
+  - Date must be at least one non-holiday, business day in the future.
+- `description`
+  - Description is used by users to track the parcel. It does not show up on a label.
+  - It must be under 255 characters in length.
+- `confirmed_not_dangerous`
+  - Boolean value (true or false)
+  - **Sendle** will only deliver if `confirmed_not_dangerous` is set to **true**
+- `kilogram_weight`
+  - Must be a decimal value over zero.
+- `cubic_metre_volume`
+  - To get value Multiply length x width x depth of parcel **in metres**.
+  - Must be a decimal value above zero and less than 1.
+- `customer_reference`
+  - Reference will appear on the label for parcel identification.
+  - It must be under 255 characters in length.
+
 
 ## Create Order & Get Label
+
+# View an Order
+
+> [ Get /orders/{id} ] f5233746-71d4-4b05-bf63-56f4abaed5f6
+
+```
+  curl 'https://sendle.com/api/orders/f5233746-71d4-4b05-bf63-56f4abaed5f6'
+    -u sendleAPI:42RRTjYz5Z4hZrm8XY3t4Vxt
+    -H "Content-Type: application/json"
+```
+
+> 200 Resonse
+
+```
+  {
+    "order_id":"f5233746-71d4-4b05-bf63-56f4abaed5f6",
+    "state":"Pickup",
+    "order_url":"https://sendle.com/api/orders/f5233746-71d4-4b05-bf63-56f4abaed5f6",
+    "labels":[
+      {
+        "format":"pdf",
+        "size":"a4",
+        "url":"https://sendle.com/api/orders/f5233746-71d4-4b05-bf63-56f4abaed5f6/labels/a4.pdf"
+      },
+      {
+        "format":"pdf",
+        "size":"cropped",
+        "url":"https://sendle.com/api/orders/f5233746-71d4-4b05-bf63-56f4abaed5f6/labels/cropped.pdf"
+      }
+    ],
+    "scheduling":{
+      "is_cancellable":true,
+      "pickup_date":"2015-10-24",
+      "estimated_delivery_date_minimum":"2015-10-26",
+      "estimated_delivery_date_maximum":"2015-10-27"
+    },
+    "description":"Kryptonite",
+    "confirmed_not_dangerous":true,
+    "kilogram_weight":"1.0",
+    "cubic_metre_volume":"0.01",
+    "customer_reference":"SupBdayPressie",
+    "sender":{
+      "contact":{
+        "name":"Lex Luthor",
+        "phone":"0412 345 678",
+        "email":null
+      },
+      "address":{
+        "address_line1":"123 Gotham Ln",
+        "address_line2":null,
+        "suburb":"Sydney",
+        "state_name":"NSW",
+        "postcode":"2000",
+        "country":"Australia"
+      },
+      "instructions":"Knock loudly"
+    },
+    "receiver":{
+      "contact":{
+        "name":"Clark Kent",
+        "phone":null,
+        "email":"clarkissuper@dailyplanet.xyz"
+      },
+      "address":{
+        "address_line1":"80 Wentworth Park Road",
+        "address_line2":null,
+        "suburb":"Glebe",
+        "state_name":"NSW",
+        "postcode":"2037",
+        "country":"Australia"
+      },
+      "instructions":"Give directly to Clark"
+    }
+  } 
+```
+
+Viewing an order will give you all the details associated with an existing Sendle Booking. Important details in an order include:
+
+- State
+  - current status of the order (see more in [Statuses and States](#check-for-status-updates))
+- Labels
+  - Label urls for different label size options.
+- Scheduling
+  - `is_cancellable`
+    - Boolean value determines whether an order can be cancelled.
+  - `pickup_date`
+  - Estimate Delivery range (minumum & maxium)
+    - These dates can change depending on courier conditions.
+- Parcel details
+  - From the order booking
+
+# Getting Labels
+
+> [ GET /label_url ]
+
+```
+  curl 'https://sendle.com/api/orders'f5233746-71d4-4b05-bf63-56f4abaed5f6/labels/a4.pdf' -u sendleAPI:42RRTjYz5Z4hZrm8XY3t4Vxt
+```
+
+> 200 Response:
+
+```
+  <html>
+    <body>
+      You are being <a href="https://sendle-labels.s3.amazonaws.com/cropped-1D0000030929.pdf?X-Amz-Expires=60&amp;X-Amz-Date=20151014T225737Z&amp;X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=AKIAIWXY45BSRIDQDVUA/20151014/us-east-1/s3/aws4_request&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=29de86aebf55bc2a77d224993dff251a0e3834f68f99e2d38fa7bb4884766753">redirected</a>.
+    </body>
+  </html>
+```
+
+Using our [order](#creating-orders), we can grab the label by curling the label url **or** view the url in the browser adding our `sendle_id` and `api_key` as parameters
+
+`https://sendle.com/api/orders/f5233746-71d4-4b05-bf63-56f4abaed5f6/labels/a4.pdf?sendle_id=sendleAPI&api_key=42RRTjYz5Z4hZrm8XY3t4Vxt`
+
 
 # Check for Status Updates
 
 ## Statuses & States
 
 # Cancelling Orders
+
+> [ Delete /orders/{id} ]
 
 # Errors
 
