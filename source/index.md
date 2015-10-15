@@ -7,17 +7,17 @@ toc_footers:
   - <a href='https://github.com/tripit/slate' target="_blank">Documentation Powered by Slate</a>
 
 includes:
-  - general
-  - customer
-  - teams
-  - rooms
-  - chats
-  - partnerships
-  - sharing
-  - assets
-  - timelines
-  - realtime
-  - javascript_api
+  - http_api/general
+  - http_api/customer
+  - http_api/teams
+  - http_api/rooms
+  - http_api/chats
+  - http_api/partnerships
+  - http_api/sharing
+  - http_api/assets
+  - http_api/timelines
+  - http_api/realtime
+  - http_api/javascript_api
 
 search: true
 ---
