@@ -26,24 +26,24 @@ EXEMPLO
   }
 ```
 
-É possível ter indeterminados cedentes, e a eles que pertencem as contas bancárias, contas de cobrança, e as próprias cobranças do sistema. Podem ser tanto pessoas físicas como pessoas jurídicas.
+É possível ter indeterminados beneficiários, e a eles que pertencem as contas bancárias, contas de cobrança, e as próprias cobranças do sistema. Podem ser tanto pessoas físicas como pessoas jurídicas.
 
 **Parâmetros**
 
-| Campo                    | Tipo            | Comentário                                                      |
-|--------------------------|-----------------|-----------------------------------------------------------------|
-| id                       | integer         |                                                                 |
-| national_identifier_type | string          | tipo de identificação nacional ('cpf' ou 'cnpj')                |
-| national_identifier      | string          | número válido de cnpj ou cpf, de acordo com o campo anterior    |
-| name                     | string          | nome completo do cedente                                        |
-| city                     | string          | nome da cidade do domicílio do cedente                          |
-| state                    | string          | uf do estado do domicílio do cedente (duas letras, p. ex. 'RJ') |
-| neighbourhood            | string          | bairro do domicílio do cedente                                  |
-| street                   | string          | rua do domicílio do cedente                                     |
-| number                   | string          | número da rua do domicílio do cedente                           |
-| zipcode                  | string          | cep do domicílio do cedente                                     |
-| complement               | string          | complemento para o endereço de domicilio do cedente             |
-| _links                   | array of object | links do cedente                                                |
+| Campo                    | Tipo            | Comentário                                                           |
+|--------------------------|-----------------|----------------------------------------------------------------------|
+| id                       | integer         |                                                                      |
+| national_identifier_type | string          | tipo de identificação nacional ('cpf' ou 'cnpj')                     |
+| national_identifier      | string          | número válido de cnpj ou cpf, de acordo com o campo anterior         |
+| name                     | string          | nome completo do beneficiário                                        |
+| city                     | string          | nome da cidade do domicílio do beneficiário                          |
+| state                    | string          | uf do estado do domicílio do beneficiário (duas letras, p. ex. 'RJ') |
+| neighbourhood            | string          | bairro do domicílio do beneficiário                                  |
+| street                   | string          | rua do domicílio do beneficiário                                     |
+| number                   | string          | número da rua do domicílio do beneficiário                           |
+| zipcode                  | string          | cep do domicílio do beneficiário                                     |
+| complement               | string          | complemento para o endereço de domicilio do beneficiário             |
+| _links                   | array of object | links do beneficiário                                                |
 
 ## Informações do Beneficiário
 
@@ -89,7 +89,7 @@ EXEMPLO DE CORPO DA RESPOSTA
   }
 ```
 
-Retorna as informações detalhadas do cedente informado em JSON.
+Retorna as informações detalhadas do beneficiário informado em JSON.
 
 ## Lista de Todos os Beneficiários
 
@@ -118,17 +118,17 @@ EXEMPLO DE CORPO DA RESPOSTA
     "payees":
       [
         {
-          // informações cedente 1
+          // informações beneficiário 1
         },
         {
-          // informações cedente 2
+          // informações beneficiário 2
         },
         ...
       ]
   }
 ```
 
-Retorna uma lista em JSON contendo todos os cedentes pertencentes a sua Conta de Serviço.
+Retorna uma lista em JSON contendo todos os beneficiários pertencentes a sua Conta de Serviço.
 
 ## Criação de Beneficiário
 
@@ -183,22 +183,22 @@ EXEMPLO DE CORPO DA RESPOSTA COM INSUCESSO
 
 ```
 
-Cria um novo cedente, retornando as informações do mesmo caso haja sucesso. Se houverem erros eles serão informados no corpo da resposta.
+Cria um novo beneficiário, retornando as informações do mesmo caso haja sucesso. Se houverem erros eles serão informados no corpo da resposta.
 
 **Parâmetros**
 
-| Campo                    | Tipo   | Comentário                                                                      |
-|--------------------------|--------|---------------------------------------------------------------------------------|
-| national_identifier_type | string | **(requerido)** tipo de identificação nacional ('cpf' ou 'cnpj')                |
-| national_identifier      | string | **(requerido)** número válido de cnpj ou cpf, de acordo com o campo anterior    |
-| name                     | string | **(requerido)** nome completo do cedente                                        |
-| city                     | string | **(requerido)** nome da cidade do domicílio do cedente                          |
-| state                    | string | **(requerido)** uf do estado do domicílio do cedente (duas letras, p. ex. 'RJ') |
-| neighbourhood            | string | **(requerido)** bairro do domicílio do cedente                                  |
-| street                   | string | **(requerido)** rua do domicílio do cedente                                     |
-| number                   | string | **(requerido)** número da rua do domicílio do cedente                           |
-| zipcode                  | string | **(requerido)** cep do domicílio do cedente                                     |
-| complement               | string | (opcional)  complemento para o endereço de domicilio do cedente                 |
+| Campo                    | Tipo   | Comentário                                                                           |
+|--------------------------|--------|--------------------------------------------------------------------------------------|
+| national_identifier_type | string | **(requerido)** tipo de identificação nacional ('cpf' ou 'cnpj')                     |
+| national_identifier      | string | **(requerido)** número válido de cnpj ou cpf, de acordo com o campo anterior         |
+| name                     | string | **(requerido)** nome completo do beneficiário                                        |
+| city                     | string | **(requerido)** nome da cidade do domicílio do beneficiário                          |
+| state                    | string | **(requerido)** uf do estado do domicílio do beneficiário (duas letras, p. ex. 'RJ') |
+| neighbourhood            | string | **(requerido)** bairro do domicílio do beneficiário                                  |
+| street                   | string | **(requerido)** rua do domicílio do beneficiário                                     |
+| number                   | string | **(requerido)** número da rua do domicílio do beneficiário                           |
+| zipcode                  | string | **(requerido)** cep do domicílio do beneficiário                                     |
+| complement               | string | (opcional)  complemento para o endereço de domicilio do beneficiário                 |
 
 ## Atualização de Beneficiário
 
@@ -226,7 +226,7 @@ EXEMPLO DE ESTADO DA RESPOSTA COM SUCESSO
 
     200 OK
 
-EXEMPLO DE ESTADO DA RESPOSTA COM CEDENTE INEXISTENTE
+EXEMPLO DE ESTADO DA RESPOSTA COM BENEFICIÁRIO INEXISTENTE
 
     404 Not Found
 
@@ -244,22 +244,22 @@ EXEMPLO DE CORPO DA RESPOSTA COM INSUCESSO
 
 ```
 
-Atualiza o cedente determinado, retornando as informações do mesmo caso haja sucesso. Se houverem erros eles serão informados no corpo da resposta. A requisição não diferencia a utilização dos verbos PUT e PATCH.
+Atualiza o beneficiário determinado, retornando as informações do mesmo caso haja sucesso. Se houverem erros eles serão informados no corpo da resposta. A requisição não diferencia a utilização dos verbos PUT e PATCH.
 
 **Parâmetros**
 
-| Campo                    | Tipo   | Comentário                                                                      |
-|--------------------------|--------|---------------------------------------------------------------------------------|
-| national_identifier_type | string | **(requerido)** tipo de identificação nacional ('cpf' ou 'cnpj')                |
-| national_identifier      | string | **(requerido)** número válido de cnpj ou cpf, de acordo com o campo anterior    |
-| name                     | string | **(requerido)** nome completo do cedente                                        |
-| city                     | string | **(requerido)** nome da cidade do domicílio do cedente                          |
-| state                    | string | **(requerido)** uf do estado do domicílio do cedente (duas letras, p. ex. 'RJ') |
-| neighbourhood            | string | **(requerido)** bairro do domicílio do cedente                                  |
-| street                   | string | **(requerido)** rua do domicílio do cedente                                     |
-| number                   | string | **(requerido)** número da rua do domicílio do cedente                           |
-| zipcode                  | string | **(requerido)** cep do domicílio do cedente                                     |
-| complement               | string | (opcional)  complemento para o endereço de domicilio do cedente                 |
+| Campo                    | Tipo   | Comentário                                                                           |
+|--------------------------|--------|--------------------------------------------------------------------------------------|
+| national_identifier_type | string | **(requerido)** tipo de identificação nacional ('cpf' ou 'cnpj')                     |
+| national_identifier      | string | **(requerido)** número válido de cnpj ou cpf, de acordo com o campo anterior         |
+| name                     | string | **(requerido)** nome completo do beneficiário                                        |
+| city                     | string | **(requerido)** nome da cidade do domicílio do beneficiário                          |
+| state                    | string | **(requerido)** uf do estado do domicílio do beneficiário (duas letras, p. ex. 'RJ') |
+| neighbourhood            | string | **(requerido)** bairro do domicílio do beneficiário                                  |
+| street                   | string | **(requerido)** rua do domicílio do beneficiário                                     |
+| number                   | string | **(requerido)** número da rua do domicílio do beneficiário                           |
+| zipcode                  | string | **(requerido)** cep do domicílio do beneficiário                                     |
+| complement               | string | (opcional)  complemento para o endereço de domicilio do beneficiário                 |
 
 ## Exclusão de Beneficiário
 
@@ -282,10 +282,10 @@ EXEMPLO DE ESTADO DA RESPOSTA COM SUCESSO
 
     204 No Content
 
-EXEMPLO DE ESTADO DA RESPOSTA COM CEDENTE INEXISTENTE
+EXEMPLO DE ESTADO DA RESPOSTA COM BENEFICIÁRIO INEXISTENTE
 
     404 Not Found
 ```
 
-Exclui determinado cedente e junto a ele todas suas contas de cobrança, contas bancárias e as cobranças. As mudanças são irreversíveis.
+Exclui determinado beneficiário e junto a ele todas suas contas de cobrança, contas bancárias e as cobranças. As mudanças são irreversíveis.
 

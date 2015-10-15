@@ -23,7 +23,7 @@ EXEMPLO
   }
 ```
 
-As Contas Bancárias, pertencem aos seus beneficiários, sendo assim é necessário que sempre haja ao menos um cedente para criação de conta bancária.
+As Contas Bancárias, pertencem aos seus beneficiários, sendo assim é necessário que sempre haja ao menos um beneficiário para criação de conta bancária.
 
 **Parâmetros**
 

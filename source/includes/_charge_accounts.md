@@ -32,20 +32,20 @@ As Contas de Cobranças, pertencem as suas contas bancárias, sendo assim é nec
 
 **Parâmetros**
 
-| Campo                | Tipo             | Comentário                                                                                                                   |
-|----------------------|------------------|------------------------------------------------------------------------------------------------------------------------------|
-| id                   | integer          |                                                                                                                              |
-| bank_account_id      | integer          | identificador da conta bancária desta conta de cobrança no Cobrato                                                           |
-| portfolio_code       | string           | código de portfólio                                                                                                          |
-| agreement_code       | string           | código de convênio ou do cedente, de acordo com o banco. No caso do Itaú deve ser igual ao campo 'account' da conta bancária |
-| agreement_code_digit | string           | verificador do código de convênio, de acordo com o banco                                                                     |
-| name                 | string           | nome que identifica esta conta de cobraça                                                                                    |
-| initial_number       | integer          | número inicial do nosso número, sendo atribuído automaticamente e sequencialmente as cobranças                               |
-| current_number       | integer          | nosso número atribuído a última cobrança criada a partir desta conta de cobrança                                             |
-| end_number           | integer          | número final do nosso número, sendo o último número a ser atribuído, após isso a sequência é reiniciada                      |
-| status               | string           | caso for 'pending' a conta ainda não está homologada caso for 'ok' a conta já consta como homologada                         |
-| payment_methods      | array of strings | métodos de pagamentos disponíveis para pagamentos de cobranças criadas a partir desta conta                                  |
-| _links               | array of object  | links da conta de cobrança e de sua conta bancária                                                                           |
+| Campo                | Tipo             | Comentário                                                                                                                        |
+|----------------------|------------------|-----------------------------------------------------------------------------------------------------------------------------------|
+| id                   | integer          |                                                                                                                                   |
+| bank_account_id      | integer          | identificador da conta bancária desta conta de cobrança no Cobrato                                                                |
+| portfolio_code       | string           | código de portfólio                                                                                                               |
+| agreement_code       | string           | código de convênio ou do beneficiário, de acordo com o banco. No caso do Itaú deve ser igual ao campo 'account' da conta bancária |
+| agreement_code_digit | string           | verificador do código de convênio, de acordo com o banco                                                                          |
+| name                 | string           | nome que identifica esta conta de cobraça                                                                                         |
+| initial_number       | integer          | número inicial do nosso número, sendo atribuído automaticamente e sequencialmente as cobranças                                    |
+| current_number       | integer          | nosso número atribuído a última cobrança criada a partir desta conta de cobrança                                                  |
+| end_number           | integer          | número final do nosso número, sendo o último número a ser atribuído, após isso a sequência é reiniciada                           |
+| status               | string           | caso for 'pending' a conta ainda não está homologada caso for 'ok' a conta já consta como homologada                              |
+| payment_methods      | array of strings | métodos de pagamentos disponíveis para pagamentos de cobranças criadas a partir desta conta                                       |
+| _links               | array of object  | links da conta de cobrança e de sua conta bancária                                                                                |
 
 ## Informações da Conta de Cobrança
 
@@ -192,7 +192,7 @@ Cria um nova conta de cobrança, retornando as informações da mesma caso haja 
 |----------------------|------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | bank_account_id      | integer          | **(requerido)** código de identificação da conta bancária em que a conta de cobrança irá pertencer                                                                                         |
 | portfolio_code       | string           | **(requerido)** código de portfólio, validação conforme o banco                                                                                                                            |
-| agreement_code       | string           | **(requerido, com exceção do Itaú onde é preenchido automaticamente)** código de convênio ou do cedente, de acordo com o banco                                                             |
+| agreement_code       | string           | **(requerido, com exceção do Itaú onde é preenchido automaticamente)** código de convênio ou do beneficiário, de acordo com o banco                                                        |
 | agreement_code_digit | string           | **(requerido, com exceção do HSBC e Itaú, sendo preenchido automaticamente para o último)** verificador do código de convênio, de acordo com o banco                                       |
 | name                 | string           | **(requerido)** nome que identifica esta conta de cobraça                                                                                                                                  |
 | initial_number       | integer          | **(requerido)** número inicial do nosso número, sendo atribuído automaticamente e sequencialmente às cobranças                                                                             |
@@ -255,7 +255,7 @@ Atualiza a conta de cobrança determinada, retornando as informações da mesma 
 | Campo                | Tipo    | Comentário                                                                                                                                                                                          |
 |----------------------|---------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | portfolio_code       | string  | **(requerido)** código de portfólio, validação conforme o banco                                                                                                                                     |
-| agreement_code       | string  | **(requerido, com exceção do Itaú onde é preenchido automaticamente)** código de convênio ou do cedente, de acordo com o banco                                                                      |
+| agreement_code       | string  | **(requerido, com exceção do Itaú onde é preenchido automaticamente)** código de convênio ou do beneficiário, de acordo com o banco                                                                 |
 | agreement_code_digit | string  | **(requerido, com exceção do HSBC e Itaú, sendo preenchido automaticamente para o último)** verificador do código de convênio, de acordo com o banco                                                |
 | name                 | string  | **(requerido)** nome que identifica esta conta de cobraça                                                                                                                                           |
 | initial_number       | integer | **(requerido)** número inicial do nosso número, sendo atribuído automaticamente e sequencialmente às cobranças                                                                                      |
