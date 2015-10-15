@@ -1,7 +1,7 @@
-# Cedente
+# Beneficiário
 
 ```shell
-Cedente
+Beneficiário
 
 EXEMPLO
 
@@ -45,10 +45,10 @@ EXEMPLO
 | complement               | string          | complemento para o endereço de domicilio do cedente             |
 | _links                   | array of object | links do cedente                                                |
 
-## Informações do Cedente
+## Informações do Beneficiário
 
 ```shell
-Mostrar Cedente
+Mostrar Beneficiário
 
 DEFINIÇÃO
 
@@ -91,10 +91,10 @@ EXEMPLO DE CORPO DA RESPOSTA
 
 Retorna as informações detalhadas do cedente informado em JSON.
 
-## Lista de Todos os Cedentes
+## Lista de Todos os Beneficiários
 
 ```shell
-Listar Cedentes
+Listar Beneficiários
 
 DEFINIÇÃO
 
@@ -130,10 +130,10 @@ EXEMPLO DE CORPO DA RESPOSTA
 
 Retorna uma lista em JSON contendo todos os cedentes pertencentes a sua Conta de Serviço.
 
-## Criação de Cedente
+## Criação de Beneficiário
 
 ```shell
-Criar Cedente
+Criar Beneficiário
 
 DEFINIÇÃO
 
@@ -200,10 +200,10 @@ Cria um novo cedente, retornando as informações do mesmo caso haja sucesso. Se
 | zipcode                  | string | **(requerido)** cep do domicílio do cedente                                     |
 | complement               | string | (opcional)  complemento para o endereço de domicilio do cedente                 |
 
-## Atualização de Cedente
+## Atualização de Beneficiário
 
 ```shell
-Atualizar Cedente
+Atualizar Beneficiário
 
 DEFINIÇÃO
 
@@ -261,10 +261,10 @@ Atualiza o cedente determinado, retornando as informações do mesmo caso haja s
 | zipcode                  | string | **(requerido)** cep do domicílio do cedente                                     |
 | complement               | string | (opcional)  complemento para o endereço de domicilio do cedente                 |
 
-## Exclusão de Cedente
+## Exclusão de Beneficiário
 
 ```shell
-Excluir Cedente
+Excluir Beneficiário
 
 DEFINIÇÃO
 

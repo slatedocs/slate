@@ -23,20 +23,20 @@ EXEMPLO
   }
 ```
 
-As Contas Bancárias, pertencem aos seus cedentes, sendo assim é necessário que sempre haja ao menos um cedente para criação de conta bancária.
+As Contas Bancárias, pertencem aos seus beneficiários, sendo assim é necessário que sempre haja ao menos um cedente para criação de conta bancária.
 
 **Parâmetros**
 
 | Campo         | Tipo            | Comentário                                                                        |
 |---------------|-----------------|-----------------------------------------------------------------------------------|
 | id            | integer         |                                                                                   |
-| payee_id      | integer         | identificador do cedente no Cobrato                                               |
+| payee_id      | integer         | identificador do beneficiários no Cobrato                                         |
 | bank_code     | string          | código do banco no Febraban                                                       |
 | agency        | string          | agência da conta bancária                                                         |
 | agency_digit  | string          | dígito da agência da conta bancária (apenas utilizado pelo Banco do Brasil - 001) |
 | account       | string          | número da conta bancária                                                          |
 | account_digit | string          | dígito do número da conta bancária (apenas não utilizado pelo HSBC - 399)         |
-| _links        | array of object | links da conta bancária e de seu cedente                                          |
+| _links        | array of object | links da conta bancária e de seu beneficiários                                    |
 
 ## Informações da Conta Bancária
 
@@ -80,7 +80,7 @@ EXEMPLO DE CORPO DA RESPOSTA
 
 ```
 
-Retorna as informações detalhadas da conta bancária informada em JSON e também a referência ao seu cedente.
+Retorna as informações detalhadas da conta bancária informada em JSON e também a referência ao seu beneficiário.
 
 ## Lista de Todos as Contas Bancárias
 
@@ -120,7 +120,7 @@ EXEMPLO DE CORPO DA RESPOSTA
 
 ```
 
-Retorna uma lista em JSON contendo todos as contas bancárias em que seus cedentes pertencentes a sua Conta de Serviço.
+Retorna uma lista em JSON contendo todos as contas bancárias em que seus beneficiários pertencentes a sua Conta de Serviço.
 
 ## Criação de Conta Bancária
 
@@ -174,14 +174,14 @@ Cria um nova conta bancária, retornando as informações da mesma caso haja suc
 
 **Parâmetros**
 
-| Campo         | Tipo    | Comentário                                                                                 |
-|---------------|---------|--------------------------------------------------------------------------------------------|
-| payee_id      | integer | **(requerido)** identificador do cedente no Cobrato em que a conta bancária irá pertencer  |
-| bank_code     | string  | **(requerido)** código do banco no Febraban                                                |
-| agency        | string  | **(requerido)** agência da conta bancária                                                  |
-| agency_digit  | string  | **(requerido apenas pelo Banco do Brasil - 001)** dígito da agência da conta bancária      |
-| account       | string  | **(requerido)** número da conta bancária                                                   |
-| account_digit | string  | **(requerido, com exceção do HSBC - 399)** dígito do número da conta bancária              |
+| Campo         | Tipo    | Comentário                                                                                      |
+|---------------|---------|-------------------------------------------------------------------------------------------------|
+| payee_id      | integer | **(requerido)** identificador do beneficiário no Cobrato em que a conta bancária irá pertencer  |
+| bank_code     | string  | **(requerido)** código do banco no Febraban                                                     |
+| agency        | string  | **(requerido)** agência da conta bancária                                                       |
+| agency_digit  | string  | **(requerido apenas pelo Banco do Brasil - 001)** dígito da agência da conta bancária           |
+| account       | string  | **(requerido)** número da conta bancária                                                        |
+| account_digit | string  | **(requerido, com exceção do HSBC - 399)** dígito do número da conta bancária                   |
 
 ## Atualização de Conta Bancária
 
