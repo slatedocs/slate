@@ -7,31 +7,23 @@ A data collection is a set of data managed by Kuzzle. It acts like a data table 
 
 ## Constructors
 
-### KuzzleDataCollection(kuzzle, collection)
+#### KuzzleDataCollection(kuzzle, collection)
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
 | kuzzle | object | Kuzzle object |
 | collection | string | The name of the data collection you want to manipulate |
-
-
-### KuzzleDataCollection(kuzzle, collection, headers)
-
-| Arguments | Type | Description |
-|---------------|---------|----------------------------------------|
-| kuzzle | object | Kuzzle object |
-| collection | string | The name of the data collection you want to manipulate |
-| headers | JSON Object | Common properties for all future write documents queries |
 
 ## Properties
-
-Inherited from Kuzzle.Properties.headers
 
 | Property name | Type | Description | get/set |
 |--------------|--------|-----------------------------------|---------|
 | kuzzle | object | linked kuzzle instance | get |
 | collection | string | The name of the data collection handled by this instance | get |
 | headers | object | Headers for all sent documents. | get/set |
+
+
+**Note:** the ``headers`` property is inherited from the main ``Kuzzle`` object and can be overrided
 
 ## advancedSearch ![public](./images/public.png)
 

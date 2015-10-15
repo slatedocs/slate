@@ -4,7 +4,7 @@ Kuzzle handles documents, either as realtime messages or as stored documents. Ku
 
 ## Constructors
 
-### KuzzleDocument(KuzzleDataCollection)
+#### KuzzleDocument(KuzzleDataCollection)
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
@@ -17,11 +17,14 @@ Kuzzle handles documents, either as realtime messages or as stored documents. Ku
 | collection | string | The data collection associated to this document | get |
 | content | JSON Object | The content of the document | get/set |
 | createdTimestamp | timestamp | The creation datetime of this document | get |
-| headers | JSON Object | (inherited) The mandatory properties of this document | get/set |
+| headers | JSON Object | Common headers for all sent documents. | get/set |
 | id | string | Unique document identifier | get |
 | modifiedTimestamp | timestamp | The last modification datetime of this document | get |
 
-**Note:** setting a new value to the ``content`` property is equivalent to calling ``setContent(data, false)``
+**Notes:**  
+
+* setting a new value to the ``content`` property is equivalent to calling ``setContent(data, false)``
+* the ``headers`` property is inherited from the provided ``KuzzleDataCollection`` object and can be overrided
 
 ## delete ![public](./images/public.png)
 

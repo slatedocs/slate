@@ -8,18 +8,12 @@ Here is the object diagram of our SDKs:
 
 ## Constructors
 
-### Kuzzle(url)
-
 Connects to a Kuzzle instance.
 
-| Arguments | Type | Description |
-|---------------|---------|----------------------------------------|
-| url | string | URL to the target Kuzzle instance |
+#### Kuzzle(url)
 
+#### Kuzzle(url, options)
 
-### Kuzzle(url, options)
-
-Connects to a Kuzzle instance.
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
@@ -31,6 +25,8 @@ Available options:
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
 | autoReconnect | boolean | Auto-reconnect on a connection loss | true |
+| headers | JSON object | Common headers for all sent documents | |
+
 
 ## Properties
 
