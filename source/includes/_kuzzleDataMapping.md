@@ -7,7 +7,7 @@ The KuzzleDataMapping object allow to get the current mapping of a data collecti
 
 ## Constructors
 
-### KuzzleDataMapping(KuzzleDataCollection)
+#### KuzzleDataMapping(KuzzleDataCollection)
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
@@ -17,7 +17,10 @@ The KuzzleDataMapping object allow to get the current mapping of a data collecti
 
 | Property name | Type | Description | get/set |
 |--------------|--------|-----------------------------------|---------|
+| headers | JSON Object | Common headers for all sent documents. | get/set |
 | mapping | object | Easy-to-understand list of mappings per field | get |
+
+**Note:** the ``headers`` property is inherited from the provided ``KuzzleDataCollection`` object and can be overrided
 
 ## apply ![public](./images/public.png)
 
@@ -55,5 +58,5 @@ Adds or updates a field mapping.
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
-| field | string | Name of the field from which the mapping is to be removed |
+| field | string | Name of the field from which the mapping is to be added or updated |
 | mapping | JSON Object | Mapping for this field, following the [Elasticsearch Mapping format](https://www.elastic.co/guide/en/elasticsearch/reference/1.3/mapping.html)
