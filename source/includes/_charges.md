@@ -35,7 +35,7 @@ EXEMPLO
         {"rel":"receive","method":"POST","href":"https://app.cobrato.com/api/v1/charges/1/receive"},
         {"rel":"deliver","method":"POST","href":"https://app.cobrato.com/api/v1/charges/1/deliver_billet"},
         {"rel":"charge_account","method":"GET","href":"https://app.cobrato.com/api/v1/charge_accounts/1"},
-        {"rel":"billet","method":"GET","href":"http://localhost:3000/charges/1/download_billet"}
+        {"rel":"billet","method":"GET","href":"https://app.cobrato.com/api/v1/charges/1/billet"}
       ]
   }
 ```
@@ -122,7 +122,7 @@ EXEMPLO DE CORPO DA RESPOSTA
         {"rel":"receive","method":"POST","href":"https://app.cobrato.com/api/v1/charges/1/receive"},
         {"rel":"deliver","method":"POST","href":"https://app.cobrato.com/api/v1/charges/1/deliver_billet"},
         {"rel":"charge_account","method":"GET","href":"https://app.cobrato.com/api/v1/charge_accounts/1"},
-        {"rel":"billet","method":"GET","href":"http://localhost:3000/charges/1/download_billet"}
+        {"rel":"billet","method":"GET","href":"https://app.cobrato.com/api/v1/charges/1/billet"}
       ]
   }
 ```
@@ -366,3 +366,42 @@ EXEMPLO DE ESTADO DA RESPOSTA COM COBRANÇA INEXISTENTE
 ```
 
 Exclui determinada cobrança. As mudanças são irreversíveis, e não será mais possível receber o boleto da cobrança excluída!
+
+## Boleto da Cobrança
+
+```shell
+Mostrar URL do Boleto da Cobrança
+
+DEFINIÇÃO
+
+  GET https://app.cobrato.com/api/v1/charges/:charge_id/billet
+
+EXEMPLO DE REQUISIÇÃO
+
+  $ curl -i -u $API_TOKEN:X \
+    -H 'User-Agent: My App 1.0' \
+    -H 'Accept: application/json' \
+    -H 'Content-type: application/json' \
+    -X DELETE https://app.cobrato.com/api/v1/charges/:charge_id/billet
+
+EXEMPLO DE ESTADO DA RESPOSTA COM SUCESSO
+
+    200 OK
+
+EXEMPLO DE ESTADO DA RESPOSTA COM COBRANÇA INEXISTENTE
+
+    404 Not Found
+
+EXEMPLO DE CORPO DA RESPOSTA COM SUCESSO
+
+  {
+    "url":"https://cobrato-uploads.s3.amazonaws.com/billets/1/6186_08033_1445001056.pdf?Expires=1445034829"
+  }
+
+```
+
+Mostra o link da url do boleto de determinada cobraça
+
+<aside class="warning">
+As URLs disponibilizadas são válidas por apenas 60 minutos. Sendo assim, não armazene o retorno e sempre que for necessário realize uma nova chamada à API.
+</aside>
