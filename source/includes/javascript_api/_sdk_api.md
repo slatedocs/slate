@@ -1,3 +1,7 @@
+<aside class="warning">
+This documentation is a <strong>draft</strong>!
+</aside>
+
 Giosg SDK API
 =============
 
