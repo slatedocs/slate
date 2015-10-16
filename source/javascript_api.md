@@ -10,6 +10,7 @@ toc_footers:
 
 includes:
   - javascript_api/javascript_api
+  - javascript_api/sdk_api
 
 search: true
 ---
