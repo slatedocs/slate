@@ -1,6 +1,6 @@
 # Errors
 
-<aside class="success">This guide is in now way complete. If you happen upon errors that are not listed here, please let us know so we can help make the guide and the Sendle API better!</aside>
+<aside class="success">This guide is in no way complete. If you happen upon errors that are not listed here, please let us know so we can help make the guide and the Sendle API better!</aside>
 
 ## Error Codes
 

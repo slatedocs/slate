@@ -1,12 +1,12 @@
 # Check for Status Updates
 
-```
+```json
   {
     "state":"Pickup"
   }
 ```
 
-<aside class='notice'>The state tracks the position of an order in it's lifetime with Sendle. Below is a table explaining the various states.</aside>
+<aside class='notice'>The state tracks the position of an order throughout its lifetime with Sendle. Below is a table explaining the various states.</aside>
 
 
 ### States

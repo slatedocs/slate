@@ -21,7 +21,7 @@ To create an order, submit order data via POST command. The order will be reject
     "sender": { 
       "contact": { 
         "name": "Lex Luthor", 
-        "sendle_id": "sendleAPI", 
+        "sendle_id": "worldDominator",
         "phone": "0412 345 678"
       }, 
       "address": {
@@ -52,7 +52,7 @@ To create an order, submit order data via POST command. The order will be reject
 
 > 200 Response
 
-```
+```json
   {
     "order_id":"f5233746-71d4-4b05-bf63-56f4abaed5f6",
     "state":"Payment",
