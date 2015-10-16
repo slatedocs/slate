@@ -28,5 +28,5 @@ search: true
 
 Welcome to the Constructor.io REST API.
 
-We have libraries for [Rails](https://github.com/Constructor-io/constructorio-ruby) and [Node/Javascript](https://github.com/Constructor-io/constructorio-javascript).  You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+We have libraries for [Python](https://github.com/Constructor-io/constructorio-python), [Ruby](https://github.com/Constructor-io/constructorio-ruby-gem), [Rails](https://github.com/Constructor-io/constructorio-rails), [PHP](https://github.com/Constructor-io/constructorio-php), [Node/Javascript](https://github.com/Constructor-io/constructorio-javascript), and [Perl](https://github.com/Constructor-io/constructorio-perl).  You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
 
