@@ -76,6 +76,52 @@ headers = {
 requests.post(ATTRIBUTION_ENDPOINT, data=data, headers=headers)
 ```
 
+```javascript
+var https = require('https');
+var crypto = require('crypto');
+
+var app_id = "55ef46745b14530c09698f94";
+var app_signature = "dd5ccf325df48c2cd88ad53bca6614f0ecc3a13e";
+var ifa = "FCA3FE48-AC39-4885-B94A-0970ED8813D8";
+var ATTRIBUTION_PLATFORM_SECRET = "api_secret";
+var ATTRIBUTION_PLATFORM_TOKEN = "api_token";
+var ATTRIBUTION_ENDPOINT = "https://live.chartboost.com/api/v1/install.json";
+var claim = 1;
+var attributed_to = "Chartboost";
+
+var data = JSON.stringify({
+	"app_id": app_id,
+	"ifa": ifa,
+	"claim": claim,
+	"attributed_to": attributed_to
+});
+var descriptor = "action:attribution\n" + ATTRIBUTION_PLATFORM_SECRET + "\n" + app_signature + "\n" + data;
+var signature = crypto.createHash('sha256').update(descriptor).digest('hex');
+
+var post_options = {
+      host: "live.chartboost.com",
+      port: '443',
+      path: '/api/v1/install.json',
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json',
+          'Content-Length': data.length,
+          'X-Chartboost-Token': ATTRIBUTION_PLATFORM_TOKEN,
+          'X-Chartboost-Signature': signature
+      }
+  };
+
+var post_req = https.request(post_options, function(res) {
+      res.setEncoding('utf8');
+      res.on('data', function (chunk) {
+        console.log('Response: ' + chunk);
+      });
+  });
+
+post_req.write(data);
+post_req.end();
+```
+
 ```shell
 curl 'https://live.chartboost.com/api/v1/install.json' \
   -H 'Content-Type: application/json' \
