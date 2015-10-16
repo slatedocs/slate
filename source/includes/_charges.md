@@ -367,6 +367,100 @@ EXEMPLO DE ESTADO DA RESPOSTA COM COBRANÇA INEXISTENTE
 
 Exclui determinada cobrança. As mudanças são irreversíveis, e não será mais possível receber o boleto da cobrança excluída!
 
+## Recebimento de Cobrança
+
+```shell
+Receber Cobrança
+
+DEFINIÇÃO
+
+  POST https://app.cobrato.com/api/v1/charges/:charge_id/receive
+
+EXEMPLO DE REQUISIÇÃO
+
+  $ curl -i -u $API_TOKEN:X \
+    -H 'User-Agent: My App 1.0' \
+    -H 'Accept: application/json' \
+    -H 'Content-type: application/json' \
+    -X POST https://app.cobrato.com/api/v1/charges/:charge_id/receive \
+    -d '{
+         "received_at": "2015-02-06",
+         "received_amount": "9.57"
+        }'
+
+EXEMPLO DE ESTADO DA RESPOSTA COM SUCESSO
+
+    200 OK
+
+EXEMPLO DE ESTADO DA RESPOSTA COM CONTA DE COBRANÇA INEXISTENTE
+
+    404 Not Found
+
+EXEMPLO DE ESTADO DA RESPOSTA COM INSUCESSO
+
+    422 Unprocessable Entity
+
+EXEMPLO DE CORPO DA RESPOSTA COM INSUCESSO
+
+  {
+    "errors": {
+      "received_at": ["não pode ficar em branco"],
+      "received_amount": ["não pode ficar em branco"]
+    }
+  }
+```
+
+Marca determinada cobrança como recebida, retornando JSON contendo as informações da cobrança em caso de sucesso ou os erros, caso haja algum.
+
+**Parâmetros**
+
+| Campo           | Tipo    | Comentário                                    |
+|-----------------|---------|-----------------------------------------------|
+| received_at     | date    | **(requerido)** data de pagamento da cobrança |
+| received_amount | decimal | **(requerido)** valor recebido da cobrança    |
+
+## Desfazer Recebimento de Cobrança
+
+```
+Desfazer Recebimento de Cobrança
+
+DEFINIÇÃO
+
+  POST https://app.cobrato.com/api/v1/charges/:charge_id/undo_receive
+
+EXEMPLO DE REQUISIÇÃO
+
+  $ curl -i -u $API_TOKEN:X \
+    -H 'User-Agent: My App 1.0' \
+    -H 'Accept: application/json' \
+    -H 'Content-type: application/json' \
+    -X POST https://app.cobrato.com/api/v1/charges/:charge_id/undo_receive
+
+EXEMPLO DE ESTADO DA RESPOSTA COM SUCESSO
+
+    200 OK
+
+EXEMPLO DE ESTADO DA RESPOSTA COM CONTA DE COBRANÇA INEXISTENTE
+
+    404 Not Found
+
+EXEMPLO DE ESTADO DA RESPOSTA COM INSUCESSO
+
+    422 Unprocessable Entity
+
+EXEMPLO DE CORPO DA RESPOSTA COM INSUCESSO
+
+  {
+    "errors": {
+      "received": [
+        "Impossível cancelar o recebimento de uma cobrança não recebida!"
+      ]
+    }
+  }
+```
+
+Marca determinada cobrança como não recebida, retornando JSON contendo as informações da cobrança em caso de sucesso ou os erros, caso haja algum.
+
 ## Boleto da Cobrança
 
 ```shell
@@ -397,7 +491,6 @@ EXEMPLO DE CORPO DA RESPOSTA COM SUCESSO
   {
     "url":"https://cobrato-uploads.s3.amazonaws.com/billets/1/6186_08033_1445001056.pdf?Expires=1445034829"
   }
-
 ```
 
 Mostra o link da url do boleto de determinada cobraça
@@ -405,3 +498,52 @@ Mostra o link da url do boleto de determinada cobraça
 <aside class="warning">
 As URLs disponibilizadas são válidas por apenas 60 minutos. Sendo assim, não armazene o retorno e sempre que for necessário realize uma nova chamada à API.
 </aside>
+
+## Envio de Boleto da Cobrança
+
+```shell
+Enviar Boleto da Cobrança
+
+DEFINIÇÃO
+
+  POST https://app.cobrato.com/api/v1/charges/:charge_id/deliver_billet
+
+EXEMPLO DE REQUISIÇÃO
+
+  $ curl -i -u $API_TOKEN:X \
+    -H 'User-Agent: My App 1.0' \
+    -H 'Accept: application/json' \
+    -H 'Content-type: application/json' \
+    -X POST https://app.cobrato.com/api/v1/charges/:charge_id/deliver_billet \
+    -d '{
+         "to": ["email1@host.com","email1@host.com"]
+        }'
+
+EXEMPLO DE ESTADO DA RESPOSTA COM SUCESSO
+
+    200 OK
+
+EXEMPLO DE ESTADO DA RESPOSTA COM CONTA DE COBRANÇA INEXISTENTE
+
+    404 Not Found
+
+EXEMPLO DE ESTADO DA RESPOSTA COM EMAIL NÃO CADASTRADO E NÃO INFORMADO
+
+      422 Unprocessable Entity
+
+EXEMPLO DE CORPO DA RESPOSTA COM INSUCESSO
+
+  {
+    "errors": {
+      "payer_emails": ["não pode ficar em branco"]
+    }
+  }
+```
+
+Envia o boleto da cobrança por email, gerando o mesmo caso necessário. É enviado para os emails informados, ou então os cadastrados na cobrança.
+
+**Parâmetros**
+
+| Campo | Tipo            | Comentário                                                                                |
+|-------|-----------------|-------------------------------------------------------------------------------------------|
+| to    | array of string | **(requerido)** emails que receberão o boleto ao invés dos emails cadastrados na cobrança |
