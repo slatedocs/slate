@@ -13,18 +13,18 @@ You're going to need:
 
  - **Linux or OS X** — Windows may work, but is unsupported.
  - **Ruby, version 1.9.3 or newer**
+ - **Bundler** — If Ruby is already installed, but the `bundle` command doesn't work, just run `gem install bundler` in a terminal
  - Run:
  - `gem install eventmachine -- --with-cppflags=-I/usr/local/opt/openssl/include` 
- - `gem uninstall libv8`
- - `gem install therubyracer -v '0.12.2'`
- - `gem install libv8 -v '3.16.14.11' -- --with-system-v8`
- - **Bundler** — If Ruby is already installed, but the `bundle` command doesn't work, just run `gem install bundler` in a terminal
+ - `gem install libv8 -v '3.16.14.7' -- --with-system-v8`
 
 ### Getting Set Up
 
  1. Clone this repository.
  2. `cd api-docs`
  3. Install all dependencies: `bundle install`
+ 4. If while installing dependencies you get a `Killed` error on some package, take note of it, then run `gem uninstall <some package>`, and try again.
+ 5. If while installing dependencies you get an error to run `gem install <some package> -v 'x.x.x'`, run that and try again.  You may face several of these.
  4. Start the test server: `bundle exec middleman server`
 
 Or use the included Dockerfile! (must install Docker first)
