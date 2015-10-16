@@ -119,3 +119,7 @@ To create an order, submit order data via POST command. The order will be reject
 - `customer_reference`
   - Reference will appear on the label for parcel identification.
   - It must be under 255 characters in length.
+
+### Getting the Label
+
+Getting a label for an order requires an order to be created and booked with a courier which happens asynchronously. For more information, read more in [getting labels](#getting-lables).
