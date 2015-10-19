@@ -50,7 +50,7 @@ typedef struct { //9-axis data type
 
 `Enable_6AxisIMU_Stream()`
 
-This function will enable the streaming of the 6-axis Inertial Measurement Unit (IMU) data including 3-axis accelerometers and 3-axis gyroscopes. 
+This function will enable the streaming of the 6-axis Inertial Measurement Unit (IMU) data including 3-axis accelerometers and 3-axis gyroscopes.
 <aside class="notice">
 Each axis will be a 16-bit signed number representing the following range:<br>
 Accelerometer: ±2g, Gyroscope: ±2000 dps.
@@ -220,8 +220,10 @@ This function disables the tracking of the orientation trajectory.
 ## Enable magnetometer data stream
 
 `Enable_MAG_Stream()`
+
 This function will enable the streaming of the 3-axis magnetometer data. Each axis will be a 16-bit signed number representing the range: ±4 gauss.
 The magnetometer, accelerometer, and gyroscope data are together represented with the following data structure:
+
 ```c
 typedef struct { //3-axis raw data type
   int16_t Data[3];
@@ -311,7 +313,7 @@ typedef struct MotionEngine_CallBack_CFG_t
 } MotionEngine_CallBack_CFG_t;
 ```
 
-For example, one might define a single API call-back regarding pedometer as follows:
+> For example, one might define a single API call-back regarding pedometer as follows:
 
 ```c
 void Pedometer_CallBack_Function(steps_t steps, int16_t direction, uint32_t TimeStamp)
@@ -335,20 +337,23 @@ MotionEngine_CallBack_CFG_t g_MotionEngine_CallBackCfg = {
 ```
 
 ## Update Motion Features Main API Function
-There is also another important function that should be called everytime a new BLE packet buf targeting the motion engine is received by the host:
+
+There is also another important function that should be called every time a new BLE packet buf targeting the motion engine is received by the host:
+
 ```c
-Host_RcvdPacket_UpdateMotionFeatures(uint8_t* buf, MOTION_FEATURE* dev, 
+Host_RcvdPacket_UpdateMotionFeatures(uint8_t* buf, MOTION_FEATURE* dev,
 MotionEngine_CallBack_CFG_t cfg)
 ```
 
 This function will essentially update one or more features from the motion features list including motion status, 9-axis raw data, quaternion, Euler angles, external force, Euler angle errors, Pedometer, etc. The motion features list has the following data structure:
+
 ```c
 typedef struct MOTION_FEATURE{ //all features
 	uint8_t motion; //0: no change in motion, 1: stops moving, 2: starts moving
 	IMURaw_t IMUData;
 	Quaternion_t quatrn;
-	Euler_fxp angles; 
-	Fext_Vec16_t force; 
+	Euler_fxp angles;
+	Fext_Vec16_t force;
 	Euler_fxp angles_err; //error in Euler angles compared to a reference trajectory
 	uint32_t TimeStamp; //in microseconds
 	steps_t steps;
