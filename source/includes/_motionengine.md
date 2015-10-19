@@ -338,14 +338,11 @@ MotionEngine_CallBack_CFG_t g_MotionEngine_CallBackCfg = {
 
 ## Update Motion Features Main API Function
 
-There is also another important function that should be called every time a new BLE packet buf targeting the motion engine is received by the host:
+`
+Host_RcvdPacket_UpdateMotionFeatures(uint8_t* buf, MOTION_FEATURE* dev, MotionEngine_CallBack_CFG_t cfg)
+`
 
-```c
-Host_RcvdPacket_UpdateMotionFeatures(uint8_t* buf, MOTION_FEATURE* dev,
-MotionEngine_CallBack_CFG_t cfg)
-```
-
-This function will essentially update one or more features from the motion features list including motion status, 9-axis raw data, quaternion, Euler angles, external force, Euler angle errors, Pedometer, etc. The motion features list has the following data structure:
+> The motion features list has the following data structure:
 
 ```c
 typedef struct MOTION_FEATURE{ //all features
@@ -358,7 +355,11 @@ typedef struct MOTION_FEATURE{ //all features
 	uint32_t TimeStamp; //in microseconds
 	steps_t steps;
 	int16_t direction;
-}MOTION_FEATURE;
+} MOTION_FEATURE;
 ```
 
-The cfg argument also defines all the user-defined API call back functions for specific motion features.
+This is an important function that should be called every time a new BLE packet `buf` targeting the motion engine is received by the host.
+
+This function will essentially update one or more features from the motion features list including motion status, 9-axis raw data, quaternion, Euler angles, external force, Euler angle errors, Pedometer, etc.
+
+The `cfg` argument defines all the user-defined API call back functions for specific motion features.

@@ -3,6 +3,8 @@ title: Neblina API Reference
 
 language_tabs:
   - C: C code
+  - swift: Swift
+  - java: Java
 
 toc_footers:
   - <a href='http://www.motsai.com'>&copy; Motsai.</a> All Rights Reserved
