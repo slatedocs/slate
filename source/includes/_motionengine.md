@@ -287,6 +287,7 @@ There is another API function that gets called every time a new BLE packet buffe
 ## Motion Engine Call Back Functions
 
 Alternatively, developers can define API call-backs whenever a new motion feature has been updated using the following function pointers:
+
 ```c
 typedef void (*Motion_CallBack)(motionstatus_t motion, uint32_t TimeStamp);
 typedef void (*IMU_6Axis_CallBack)(IMU_6Axis_t data, uint32_t TimeStamp);
@@ -311,6 +312,7 @@ typedef struct MotionEngine_CallBack_CFG_t
 ```
 
 For example, one might define a single API call-back regarding pedometer as follows:
+
 ```c
 void Pedometer_CallBack_Function(steps_t steps, int16_t direction, uint32_t TimeStamp)
 {
