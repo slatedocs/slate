@@ -26,4 +26,4 @@ This option is only valid once an order has been booked with a courier.
 
 _Shipping Label taken displayed in the browser_
 
-<aside class='success'>If you desire to build a method to book an order AND get the order label, because of the short delay between booking an order and booking with the courier, you will want to investigate options like long-polling or websockets to check for labels until they're generated on the <strong>order view</strong>.</aside>
+<aside class='success'>If you desire to build a method to book an order AND get the order label, because of the short delay between booking an order and booking with the courier, you will want to investigate options like <strong>long-polling</strong> or setting up a <strong>websocket</strong> to check for labels until they're generated and added to the order.</aside>
