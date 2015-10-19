@@ -16,7 +16,7 @@
   </html>
 ```
 
-Using our [order](#creating-orders), we can grab the label by curling the label url **or** which redirects to the label url hosted by S3. View the url in the browser adding our `sendle_id` and `api_key` as parameters.
+Using our [order](#creating-orders), we can grab the label by using curl to get the label url **or** which redirects to the label url hosted by S3. View the url in the browser adding our `sendle_id` and `api_key` as parameters.
 
 `https://sendle.com/api/orders/f5233746-71d4-4b05-bf63-56f4abaed5f6/labels/a4.pdf?sendle_id=sendleAPI&api_key=42RRTjYz5Z4hZrm8XY3t4Vxt`
 

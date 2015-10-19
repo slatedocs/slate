@@ -185,7 +185,7 @@ If an Order ID or label url is incorrectly entered, a `404` error will be return
     "error_description":"The data you supplied is invalid. Error messages are in the messages section. Please fix those fields and try again."
 ```
 
-*Data could not be processed, but API style is correct*
+*Data could not be processed, but API format is correct*
 
 `422` errors occur most commonly as users become more familiar with the API interface. These errors occur when the server receives your request, it is properly formatted, but the POST information can not be processed as is.
 
