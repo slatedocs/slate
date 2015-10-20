@@ -82,7 +82,7 @@ EXEMPLO DE CORPO DA RESPOSTA
 
 Retorna as informações detalhadas da conta bancária informada em JSON e também a referência ao seu beneficiário.
 
-## Lista de Todos as Contas Bancárias
+## Lista de Todas as Contas Bancárias
 
 ```shell
 Listar Contas Bancárias

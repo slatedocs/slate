@@ -148,7 +148,7 @@ Retorna as informações detalhadas da cobrança informada em JSON e também a r
   </p>
 </aside>
 
-## Lista de Todos as Cobrança
+## Lista de Todas as Cobrança
 
 ```shell
 
@@ -421,7 +421,7 @@ Marca determinada cobrança como recebida, retornando JSON contendo as informaç
 
 ## Desfazer Recebimento de Cobrança
 
-```
+```shell
 Desfazer Recebimento de Cobrança
 
 DEFINIÇÃO
@@ -464,7 +464,7 @@ Marca determinada cobrança como não recebida, retornando JSON contendo as info
 ## Boleto da Cobrança
 
 ```shell
-Mostrar URL do Boleto da Cobrança
+Mostrar Boleto da Cobrança (URL)
 
 DEFINIÇÃO
 
