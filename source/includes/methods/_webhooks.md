@@ -1,5 +1,7 @@
 # Webhooks
 
+## Introduction
+
 Webhooks or callback URLs allow you to define URLs on your server that notifications should be sent to. Notifications are sent for specific events, as defined in the “Supported Event” section below.
 
 You can be managed in two ways:
@@ -10,13 +12,6 @@ You can be managed in two ways:
 *Required permisions*
 
 To manage webhooks, either with the API or the web browser, you must have “Manage Users and Organization Settings” permissions for your organization
-
-*Supported events*
-
-The following events are supported:
-
-* payment.status.changed – Receive notification whenever the status of any payments in your organization changes. See the Payments API for more information.
-* collection.received - Receive notifications whenever you receive a collection (an incoming payment) from a customer)
 
 *Managing Webhooks from the web browser*
 
@@ -31,6 +26,62 @@ To manage webhooks using the web browser:
 You can use the Webhooks API described below to update or delete your callback URLs programatically.
 
 The webhooks api endpoint is https://app.beyonic.com/api/webhooks
+
+## Supported events
+
+The following events are supported
+
+Event | Description | Object returned in data
+--------- | -------- | ----------------------
+payment.status.changed | Triggered any time a payment changes status. | Payment object
+collection.received | Triggered any time a collection (an incoming payment) is received from a customer | Collection object
+
+## Notification body format
+
+> Sample Response (JSON):
+
+```json
+{
+    "hook": {
+			    "id": 53,
+			    "created": "2015-08-01T16:56:29Z",
+			    "updated": "2015-08-01T16:56:29Z",
+			    "event": "payment.status.changed",
+			    "target": "https://my.callback.url/",
+			    "user": 42
+			},
+	"data": {
+				"id": 2314, 
+			    "organization": 1, 
+			    "amount": "30", 
+			    "currency": "UGX",
+			    "payment_type": "money",
+			    "metadata": {"id": 1234, "name": "Lucy"}, 
+			    "description": "Per diem payment", 
+			    "phone_nos": ["+256772781923"], 
+			    "state": "completed", 
+			    "last_error": null,
+			    "rejected_reason": null,
+			    "rejected_by": null,
+			    "rejected_time": null,
+			    "cancelled_reason": null,
+			    "cancelled_by": null,
+			    "cancelled_time": null, 
+			    "created": "2014-11-22T20:57:04.017Z",
+			    "author": 15,
+			    "modified": "2014-11-22T20:57:04.018Z",
+			    "updated_by": null,
+			    "start_date": "2014-11-22T20:57:04.018Z"
+			}
+}
+```
+
+When an event is triggered, a JSON post will be sent to the URL that subscribed to the webhook. The JSON post body will include the following information:
+
+Parameter | Description 
+--------- | --------
+hook | A JSON representation of a webhook object. See the see webhook section below.
+data | A JSON representation of the object that triggered the event. This is different for each event. See the 'Supported events' section above.
 
 ## Creating a new webhook
 

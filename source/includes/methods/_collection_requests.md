@@ -1,5 +1,7 @@
 # Collection Requests
 
+## Introduction
+
 Collection Requests are a way to notify us that you are expecting a a specific subscriber to send money to you.
 
 Creating a collection request prior to receiving an expected collection greatly improves the user experience for your subscribers by automatically matching transactions to your organization, even if the subscriber misses out some information or gets some of the information wrong, for example if they forget to include a reference code. Payments matching the amount, number and currency in the collection requests will be correctly assigned to you.
