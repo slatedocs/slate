@@ -1,5 +1,7 @@
 # Payments
 
+## Introduction
+
 To send payments to a mobile subscriber, you create a new payment object. You can also retrieve individual payments or list all payments.
 
 * End Point: https://app.beyonic.com/api/payments
