@@ -9,7 +9,7 @@ Bytes#5-20: Data Section
 
 ### Header Section
 The header section consists of four bytes.
-#### Byte#1: Subsystem
+###### Byte#1: Subsystem
 ```c 
 Bit#7: (Error Log) 
 ```
@@ -19,13 +19,13 @@ Bits#6-0: (Subsystem value)
 ```
 This is the subsystem index, which currently has only two modes: 0x01 (motion engine), 0x02 (power management)
 
-#### Byte#2: Data Section Packet Length
+###### Byte#2: Data Section Packet Length
 The BLE protocol currently is set to a fixed packet length of 20 bytes including both header and data, where the data section is 16 bytes. Hence, this byte is set to the value of 0x10 = 16.
 
-#### Byte#3: CRC
+###### Byte#3: CRC
 The 8-bit CRC is calculated over the data section of the packet.
 
-#### Byte#4: Command
+###### Byte#4: Command
 Different commands can be issued identified by this field. For the power management subsystem, currently there is only one command as follows:
 ```c 
 #define POWERMGMT_GET_BAT_LEVEL 0
@@ -47,29 +47,18 @@ However, regarding the motion engine subsystem a number of commands exist, which
 ```
 
 ### Data Section
-The data section consists of 12 bytes, which could be representing different values depending on the subsystem and the command fields.
+The data section consists of 12 bytes, which could be representing different values depending on the subsystem and the command fields. 
+#### Power Management Data Section
+Regarding the power management's single command, the data consists of only 2 valid bytes, representing the percentage of the battery level with one decimal fractional digit precision, i.e., an unsigned integer within the range of [0, 1000]:
+###### Byte#5: battery level (%), Least Significant Byte (LSB)
+###### Byte#6: battery level (%), Most Significant Byte (MSB)
+#### Motion Engine Data Section
+The data section regarding the motion engine has different representations based on the command, which are explained next.
+##### Downsample Command
+Neblina is programmed to stream information to the host as per its request. The maximum streaming frequency is 1kHz, and the users can reduce the streaming frequency to 1000/n, where n is an unsigned 16-bit positive integer. Regarding this command, we have to set the following input arguments:
+###### Byte#5: n, LSB
+###### Byte#6: n, MSB
 
 
 
-The Bits6-0 determine, which susbsytem the packet targets, and the most significant bit shows whether the packet targets the corresponding subsystem error log, or it is just a regular command/response for the aforementioned subsystem.
 
-
-`DownsampleStream(uint16_t n)`
-
-This function sets the streaming frequency divider. The streaming base frequency is 1KHz, and this function will set the frequency to 1000/n Hz. Currently, the default value of `n` is 20 and the acceptable values for `n` are integer multiples of 20, i.e., n = 20, 40, 60, etc. If n is set to another value, Neblina will log this as an error. The host can issue commands to request for the error logs as well, which will be explained later.
-
-## Enable motion stream
-
-> The motion status has the following type, which will be streamed:
-
-```c
-typedef enum {
-  No_Change = (uint8_t)0x00, //holds its previous state
-  Stop_Motion = (uint8_t)0x01, //the device stops moving
-  Start_Motion = (uint8_t)0x02, //the device starts moving
-} motionstatus_t;
-```
-
-`EnableMotionStream()`
-
-This function will enable the motion streaming op
