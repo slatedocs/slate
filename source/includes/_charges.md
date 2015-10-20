@@ -476,7 +476,7 @@ EXEMPLO DE REQUISIÇÃO
     -H 'User-Agent: My App 1.0' \
     -H 'Accept: application/json' \
     -H 'Content-type: application/json' \
-    -X DELETE https://app.cobrato.com/api/v1/charges/:charge_id/billet
+    -X GET https://app.cobrato.com/api/v1/charges/:charge_id/billet
 
 EXEMPLO DE ESTADO DA RESPOSTA COM SUCESSO
 
