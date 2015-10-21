@@ -50,7 +50,7 @@ To create an order, submit order data via POST command. The order will be reject
   }'
 ```
 
-> 200 Response
+> 201 Response
 
 ```json
   {
