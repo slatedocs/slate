@@ -328,7 +328,9 @@ In a saved analysis the transforms are an array in `display_settings` with the s
     }}
 },
 "display_settings": {
-    "transform": ["First Quarter", "Second Quarter", "Third Quarter", "Fourth Quarter"]
+    "transform": [
+        ["First Quarter", "Second Quarter", "Third Quarter", "Fourth Quarter"]
+    ]
 }
 ```
 
