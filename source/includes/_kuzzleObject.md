@@ -65,10 +65,6 @@ The ID returned by this function is required if you want to remove this listener
 
 **Returns:** an unique listener ID.
 
-## count ![public](./images/public.png)
-
-**Returns:** the number of other connected clients
-
 ## dataCollectionFactory ![public](./images/public.png)
 
 Instantiates a new KuzzleDataCollection object.
@@ -83,6 +79,31 @@ Instantiates a new KuzzleDataCollection object.
 | headers | JSON Object | Common properties for all future write documents queries |
 
 **Returns:** a KuzzleDataCollection object
+
+## getAllStatistics ![public](./images/public.png)
+
+Kuzzle monitors active connections, and ongoing/completed/failed requests.  
+This method returns all available statistics from Kuzzle.
+
+
+**Returns:** a JSON object containing all available statistics
+
+## getStatistics ![public](./images/public.png)
+
+Kuzzle monitors active connections, and ongoing/completed/failed requests.  
+This method allows getting either the last statistics frame, or a set of frames starting from a provided timestamp.
+
+#### getStatistics()
+
+#### getStatistics(timestamp)
+
+| Arguments | Type | Description |
+|---------------|---------|----------------------------------------|
+| timestamp | Epoch time | Starting time from which the frames are to be retrieved |
+
+**Returns:** a JSON object containing the requested statistics frame(s)
+
+**Note:** Kuzzle statistics are cleaned up regularly. If the timestamp is set too far in the past, then this method will return all available statistics.
 
 ## logout ![public](./images/public.png)
 
