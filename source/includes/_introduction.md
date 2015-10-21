@@ -11,7 +11,6 @@
 
 You can use our API to book Sendle parcels, manage shipping, and oversee past and present orders any way you like!
 
-
 Sendle API uses [JSON](http://www.json.org/). You can view code examples in the dark area to the right.
 
 For all examples in this guide, we will be using [**curl**](http://curl.haxx.se/) from the command line, but you are encouraged to make requests in whichever method you are most comfortable with.
