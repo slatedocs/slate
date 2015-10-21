@@ -194,7 +194,13 @@ GET datasets/{id}/multitable/3/ HTTP/1.1
 }
 ```
 
-Each multi-table is simply a list of variable references; to obtain their multiple output cubes, you `GET datasets/{id}/cube?query=<q>` where `<q>` is a ZCL object in JSON format (which must then be URI encoded for inclusion in the querystring). Use the "each" function to iterate over the overview variables, producing one output cube for each one as "variable x". For example, to cross each of the above 3 variables against another variable "449b421":
+Each multi-table template may be a list of variable references and other information used to construct the dimension and transform its output.
+
+### More complex multitable templates
+
+The template may contain in addition to variable references, optional members `function` and `transform`: `function` is used for numeric variables to define a `bin` and for datetime variables to define a `rollup`. Each of these is an object: `"function": {"bin": []}` (the query will need to insert the variable here, but further arguments such as number of bins or cut points go in the arguments array). The `transform` argument is defined below, in terms of the output extent.
+
+To obtain their multiple output cubes, you `GET datasets/{id}/cube?query=<q>` where `<q>` is a ZCL object in JSON format (which must then be URI encoded for inclusion in the querystring). Use the "each" function to iterate over the overview variables, producing one output cube for each one as "variable x". For example, to cross each of the above 3 variables against another variable "449b421":
 
 ```json
 {
@@ -306,6 +312,34 @@ Suppose we want to combine results in _A_ and _B_ into _Others_:
 transform: [
     {'i': 2, 'name': 'C'},
     {'i': [0,1], 'name': 'Others', 'combine': 'sum'}
+]
+```
+
+#### Example transform in a saved analysis
+
+In a saved analysis the transforms are an array in `display_settings` with the same extents output dimensions (as well as, of course, the query used to generate them). This syntax makes a univariate table of a quarterly rolled up datetime variable and renames the hypothetical output.
+
+
+```json
+"query": {
+    "dimensions": {"function": "rollup", "args": [{"variable":"B"}, "value": "Q"]},
+    "measures": {"count": {
+        "function": "cube_count", args: []
+    }}
+},
+"display_settings": {
+    "transform": ["First Quarter", "Second Quarter", "Third Quarter", "Fourth Quarter"]
+}
+```
+
+#### Example transform in a multitable template
+
+In a multitable, the `transform` is part of each dimension definition object in the `template` array. 
+
+```json
+"template": [
+    {"variable": "A", "transform": […]},
+    {"variable": "A", "transform": […], "function": {"rollup": ["M"]}}
 ]
 ```
 
