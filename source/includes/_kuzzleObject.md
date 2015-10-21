@@ -105,6 +105,10 @@ This method allows getting either the last statistics frame, or a set of frames 
 
 **Note:** Kuzzle statistics are cleaned up regularly. If the timestamp is set too far in the past, then this method will return all available statistics.
 
+## listCollections ![public](./images/public.png)
+
+Returns the list of known persisted data collections.
+
 ## logout ![public](./images/public.png)
 
 Closes the current connection. Does not fire a ``disconnected`` event.
