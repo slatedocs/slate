@@ -3,22 +3,14 @@
 > [ GET /label_url ]
 
 ```shell
-  curl 'https://sendle.com/api/orders/f5233746-71d4-4b05-bf63-56f4abaed5f6/labels/a4.pdf' -u sendleAPI:42RRTjYz5Z4hZrm8XY3t4Vxt
+  curl 'https://sendle.com/api/orders/f5233746-71d4-4b05-bf63-56f4abaed5f6/labels/a4.pdf' -u sendleAPI:42RRTjYz5Z4hZrm8XY3t4Vxt -JL -o label.pdf
 ```
 
-> Response (redirect):
+Using our [order](#creating-orders), we can download the label by using cURL set to save the target and follow redirects. 
 
-```html
-  <html>
-    <body>
-      You are being <a href="https://sendle-labels.s3.amazonaws.com/cropped-1D0000030929.pdf?X-Amz-Expires=60&amp;X-Amz-Date=20151014T225737Z&amp;X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=AKIAIWXY45BSRIDQDVUA/20151014/us-east-1/s3/aws4_request&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=29de86aebf55bc2a77d224993dff251a0e3834f68f99e2d38fa7bb4884766753">redirected</a>.
-    </body>
-  </html>
-```
+The label URL will redirect you to a private PDF, do not cache this redirect URL as the access permissions expire in 1 minute.
 
-Using our [order](#creating-orders), we can grab the label by using curl to get the label url **or** which redirects to the label url hosted by S3. View the url in the browser adding our `sendle_id` and `api_key` as parameters.
-
-`https://sendle.com/api/orders/f5233746-71d4-4b05-bf63-56f4abaed5f6/labels/a4.pdf?sendle_id=sendleAPI&api_key=42RRTjYz5Z4hZrm8XY3t4Vxt`
+Always use the `label_url` exposed on the order and follow the redirect to the PDF. If you are using cURL you can use the `-O` option to save the label with the remote file name, or `-o <filename>` to specify a filename locally.
 
 This option is only valid once an order has been booked with a courier.
 
