@@ -84,6 +84,7 @@ html, body {
   // This is the logo at the top of the ToC
   &>img {
     display: block;
+    width: 100%;
   }
 
   &>.search {
@@ -116,6 +117,8 @@ html, body {
   }
 
   .search-results {
+    box-shadow: 0px 1px 0px $nav-active-shadow;
+    background: $search-bg;
     margin-top: 0;
     box-sizing: border-box;
     height: 0;
@@ -129,7 +132,7 @@ html, body {
       margin-bottom: 1em;
     }
 
-    @include embossed-bg;
+    //@include embossed-bg;
 
     li {
       margin: 1em $nav-padding;
@@ -187,11 +190,16 @@ html, body {
     font-weight: 500;
     .tocify-item>a {
       padding-left: $nav-padding + $nav-indent;
-      font-size: 12px;
+      font-size: 13px;
+
+      &:before {
+        content: "-";
+        margin-right: 4px;
+      }
     }
 
     // for embossed look:
-    @include embossed-bg;
+    //@include embossed-bg;
     &>li:last-child {
       box-shadow: none; // otherwise it'll overflow out of the subheader
     }
@@ -340,7 +348,7 @@ html, body {
     padding: 0 $main-padding;
     box-sizing: border-box;
     display: block;
-    @include text-shadow($main-embossed-text-shadow);
+    //@include text-shadow($main-embossed-text-shadow);
 
     @extend %left-col;
   }
@@ -363,7 +371,7 @@ html, body {
     margin-bottom: $h1-margin-bottom;
     margin-top: 2em;
     border-top: 1px solid #ddd;
-    background-image: linear-gradient(to bottom, #fff, #f9f9f9);
+    background-image: linear-gradient(to bottom, #fdfdfd, #f9f9f9);
   }
 
   h1:first-child, div:first-child + h1 {
@@ -398,6 +406,14 @@ html, body {
 
   h4, h5, h6 {
     font-size: 10px;
+  }
+
+  a {
+    color: $link-color;
+
+    &:hover {
+      color: darken($link-color, 10%);
+    }
   }
 
   hr {
@@ -471,20 +487,19 @@ html, body {
   aside {
     padding-top: 1em;
     padding-bottom: 1em;
-    @include text-shadow(0 1px 0 lighten($aside-notice-bg, 15%));
     margin-top: 1.5em;
     margin-bottom: 1.5em;
     background: $aside-notice-bg;
     line-height: 1.6;
+    color: $aside-text-color;
+    @include text-shadow(none);
 
     &.warning {
       background-color: $aside-warning-bg;
-      @include text-shadow(0 1px 0 lighten($aside-warning-bg, 15%));
     }
 
     &.success {
       background-color: $aside-success-bg;
-      @include text-shadow(0 1px 0 lighten($aside-success-bg, 15%));
     }
   }
 
@@ -511,7 +526,7 @@ html, body {
     margin: -2px;
     border-radius: 4px;
     border: 1px solid #F7E633;
-    @include text-shadow(1px 1px 0 #666);
+    //@include text-shadow(1px 1px 0 #666);
     background: linear-gradient(to top left, #F7E633 0%, #F1D32F 100%);
   }
 }
