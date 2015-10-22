@@ -23,19 +23,21 @@ under the License.
 
 // BACKGROUND COLORS
 ////////////////////
-$nav-bg: #393939;
+$nav-bg: #f2f2f2;
+$search-bg: #eaeaea;
 $examples-bg: #393939;
 $code-bg: #292929;
 $code-annotation-bg: #1c1c1c;
-$nav-subitem-bg: #262626;
-$nav-active-bg: #2467af;
+$nav-subitem-bg: #f0f0f0;
+$nav-active-bg: #444;
 $lang-select-border: #000;
 $lang-select-bg: #222;
 $lang-select-active-bg: $examples-bg; // feel free to change this to blue or something
 $lang-select-pressed-bg: #111; // color of language tab bg when mouse is pressed
-$main-bg: #eaf2f6;
-$aside-notice-bg: #8fbcd4;
-$aside-warning-bg: #c97a7e;
+$main-bg: #fff;
+$aside-text-color: #fff;
+$aside-notice-bg: #87b5ce;
+$aside-warning-bg: #e44144;
 $aside-success-bg: #6ac174;
 $search-notice-bg: #c97a7e;
 
@@ -43,11 +45,12 @@ $search-notice-bg: #c97a7e;
 // TEXT COLORS
 ////////////////////
 $main-text: #333; // main content text color
-$nav-text: #fff;
-$nav-active-text: #fff;
+$nav-text: #444;
+$nav-active-text: #eee;
 $lang-select-text: #fff; // color of unselected language tab text
 $lang-select-active-text: #fff; // color of selected language tab text
 $lang-select-pressed-text: #fff; // color of language tab text when mouse is pressed
+$link-color: #00bbe3;
 
 
 // SIZES
@@ -69,7 +72,7 @@ $phone-width: $tablet-width - $nav-width; // min width before reverting to mobil
 ////////////////////
 %default-font {
   font-family: "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei","微软雅黑", STXihei, "华文细黑", sans-serif;
-  font-size: 13px;
+  font-size: 14px;
 }
 
 %header-font {
@@ -86,10 +89,10 @@ $phone-width: $tablet-width - $nav-width; // min width before reverting to mobil
 
 // OTHER
 ////////////////////
-$nav-active-shadow: #000;
+$nav-active-shadow: #aaa;
 $nav-footer-border-color: #666;
 $nav-embossed-border-top: #000;
-$nav-embossed-border-bottom: #939393;
+$nav-embossed-border-bottom: #f2f2f2;//#939393;
 $main-embossed-text-shadow: 0px 1px 0px #fff;
 $search-box-border-color: #666;
 
