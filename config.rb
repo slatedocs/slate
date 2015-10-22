@@ -30,8 +30,8 @@ set :relative_links, true
 
 # Build Configuration
 configure :build do
-  activate :minify_css
-  activate :minify_javascript
+  # activate :minify_css
+  # activate :minify_javascript
   # activate :relative_assets
   # activate :asset_hash
   # activate :gzip
