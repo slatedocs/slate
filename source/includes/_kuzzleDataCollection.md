@@ -27,7 +27,9 @@ A data collection is a set of data managed by Kuzzle. It acts like a data table 
 
 ## advancedSearch ![public](./images/public.png)
 
-<aside class="notice">There is a small delay between documents creation and their existence in our advanced search layer, usually a couple of seconds. That means that a document that was just been created won't be returned by this function</aside>
+<aside class="notice">
+There is a small delay between documents creation and their existence in our advanced search layer, usually a couple of seconds. That means that a document that was just been created won't be returned by this function
+</aside>
 
 Executes an advanced search on the data collection.
 
@@ -36,6 +38,8 @@ Executes an advanced search on the data collection.
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
 | filters | JSON Object | Filters in [ElasticSearch Query DSL](https://www.elastic.co/guide/en/elasticsearch/reference/1.3/query-dsl.html) format |
+
+**Returns:** a set of KuzzleDocument objects
 
 ## count ![public](./images/public.png)
 
@@ -53,28 +57,23 @@ Returns the number of documents matching the provided set of filters.
 
 ## create ![public](./images/public.png)
 
-Store a document or publish a realtime message.
+Create a new document in Kuzzle.
 
 #### create(KuzzleDocument)
 
-#### create(KuzzleDocument, options)
+#### create(KuzzleDocument, updateIfExist)
 
 #### create(content)
 
-#### create(content, options)
+#### create(content, updateIfExist)
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
 | KuzzleDocument | object | KuzzleDocument object |
 | content | JSON Object | Content of the document to create |
-| Options | object | Configuration for this document creation |
+| updateIfExist | boolean | If the same document already exists: throw an error if sets to ``false``. Update the existing document otherwise |
 
-Available options:
-
-| Option | Type | Description | Default |
-|---------------|---------|----------------------------------------|---------|
-| persist | boolean | Indicates if this is a realtime message or a persistent document | false |
-| updateIfExist | boolean | If the same document already exists: throw an error if sets to ``false``. Update the existing document otherwise. | false |
+**Note:** by default, the ``updateIfExist`` is set to ``false``
 
 ## delete ![public](./images/public.png)
 
@@ -93,19 +92,14 @@ Delete persistent documents.
 | documentId | string | Unique document identifier |
 | filters | JSON Object | Filters in [ElasticSearch Query DSL](https://www.elastic.co/guide/en/elasticsearch/reference/1.3/query-dsl.html) format |
 
+**Returns:** the list of deleted document IDs
+
+
 ## fetch ![public](./images/public.png)
-
-Alias to the ``get`` method.
-
-## fetchAll ![public](./images/public.png)
-
-Alias to the ``getAll`` method.
-
-## get ![public](./images/public.png)
 
 Retrieve a single stored document using its unique document ID.
 
-#### get(documentId)
+#### fetch(documentId)
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
@@ -113,7 +107,7 @@ Retrieve a single stored document using its unique document ID.
 
 **Returns:** a KuzzleDocument object containing the retrieved document
 
-## getAll ![public](./images/public.png)
+## fetchAll ![public](./images/public.png)
 
 Retrieves all documents stored in this data collection.
 
@@ -124,6 +118,19 @@ Retrieves all documents stored in this data collection.
 Instantiates a KuzzleDataMapping object containing the current mapping of this collection.
 
 **Returns:** a KuzzleDataMapping object
+
+## publish ![public](./images/public.png)
+
+Publish a realtime message
+
+#### publish(KuzzleDocument)
+
+#### publish(content)
+
+| Arguments | Type | Description |
+|---------------|---------|----------------------------------------|
+| KuzzleDocument | object | KuzzleDocument object |
+| content | JSON Object | Content of the document to create |
 
 ## replace ![public](./images/public.png)
 

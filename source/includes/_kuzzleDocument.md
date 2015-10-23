@@ -6,9 +6,19 @@ Kuzzle handles documents, either as realtime messages or as stored documents. Ku
 
 #### KuzzleDocument(KuzzleDataCollection)
 
+#### KuzzleDocument(KuzzleDataCollection, content)
+
+#### KuzzleDocument(KuzzleDataCollection, documentId)
+
+#### KuzzleDocument(KuzzleDataCollection, documentId, content)
+
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
 | KuzzleDataCollection | object | An instanciated KuzzleDataCollection object |
+| content | JSON Object | Initializes this document with the provided content |
+| documentId | string | ID of an existing document. |
+
+**Note:**  providing a documentID to the constructor will automatically call ``refresh``, unless a ``content`` is also provided
 
 ## Properties
 
@@ -30,6 +40,10 @@ Kuzzle handles documents, either as realtime messages or as stored documents. Ku
 
 Deletes this document in Kuzzle.
 
+## publish ![public](./images/public.png)
+
+Publishes the content of this document as a realtime message.
+
 ## refresh ![public](./images/public.png)
 
 Replaces the current content with the last version of this document stored in Kuzzle.
@@ -48,9 +62,6 @@ If this is a new document, this function will create it in Kuzzle. Otherwise, yo
 
 **Note:** the ``replace`` argument is ignored if the document is to be created into Kuzzle
 
-## send ![public](./images/public.png)
-
-Sends the content of this document as a realtime message.
 
 ## setContent ![public](./images/public.png)
 
