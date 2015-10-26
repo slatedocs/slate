@@ -10,10 +10,16 @@ Here is the object diagram of our SDKs:
 
 Connects to a Kuzzle instance.
 
+
+```js
+var kuzzle = new Kuzzle('http://localhost:7512', {autoReconnect: true, headers: {someheader: "value"}});
+```
+
+> Returns an instanciated Kuzzle Object
+
 #### Kuzzle(url)
 
 #### Kuzzle(url, options)
-
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
@@ -26,7 +32,6 @@ Available options:
 |---------------|---------|----------------------------------------|---------|
 | autoReconnect | boolean | Auto-reconnect on a connection loss | true |
 | headers | JSON object | Common headers for all sent documents | |
-
 
 ## Properties
 
@@ -48,7 +53,17 @@ Here is the list of these special events:
 | unsubscribed | Fired when someone leaves a subscribed room | Room name, Unsubscription informations |
 | disconnected | Fired when the current session has been unexpectedly disconnected |  |
 
+**Note:** listeners are called in the order of their insertion.
+
 ## addListener ![public](./images/public.png)
+
+```js
+  var listenerId = kuzzle.addListener('subscribed', function (room, subscription) {
+    // Actions to perform when receiving a 'subscribed' global event
+  });
+```
+
+> Returns an unique listener ID
 
 Adds a listener to a Kuzzle global event. When an event is fired, listeners are called in the order of their insertion.
 
@@ -63,32 +78,145 @@ The ID returned by this function is required if you want to remove this listener
 | event | string | One of the event described in the ``Event Handling`` section of this documentation |
 | listener | function | The function to call each time one of the registered event is fired |
 
-**Returns:** an unique listener ID.
+**Note:** Currently, the ``subscription`` object only contains the room ID, the subscription ID of the user from whom the event originate, and the current user count on this room
 
 ## dataCollectionFactory ![public](./images/public.png)
+
+```js
+  var collection = kuzzle.dataCollectionFactory('foobar');
+```
+
+> Returns a KuzzleDataCollection object
 
 Instantiates a new KuzzleDataCollection object.
 
 #### dataCollectionFactory(collection)
 
-#### dataCollectionFactory(collection, headers)
-
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
 | collection | string | The name of the data collection you want to manipulate |
-| headers | JSON Object | Common properties for all future write documents queries |
 
-**Returns:** a KuzzleDataCollection object
 
 ## getAllStatistics ![public](./images/public.png)
+
+```js
+/*
+ Using callbacks (NodeJS or Web Browser)
+ */
+kuzzle.getAllStatistics(function (err, stats) {
+  stats.forEach(function (frame) {
+    // loop through all returned frames
+  });
+});
+
+/*
+ Using promises (NodeJS only)
+ */
+kuzzle
+  .getAllStatisticsAsync()
+  .then(stats => {
+    stats.forEach(function (frame) {
+      // loop through all returned frames
+    });
+  });
+```
+
+> Returns an array of frames
+
+```json
+[{ "connections": { "websocket": 1 },
+    "ongoingRequests": { "mq": 0, "rest": 0, "websocket": 0 },
+    "completedRequests": { "mq": 37, "websocket": 17 },
+    "failedRequests": { "websocket": 1 },
+    "timestamp": "2015-10-26T12:21:00.218Z" },
+  { "connections": { "websocket": 1 },
+    "ongoingRequests": { "mq": 0, "rest": 0, "websocket": 0 },
+    "completedRequests": { "websocket": 34 },
+    "failedRequests": { "websocket": 3 },
+    "timestamp": "2015-10-26T12:21:10.218Z" },
+  { "connections": {},
+    "ongoingRequests": { "mq": 0, "rest": 0, "websocket": 0 },
+    "completedRequests": { "websocket": 40 },
+    "failedRequests": {},
+    "timestamp": "2015-10-26T12:21:20.218Z" }]
+```
 
 Kuzzle monitors active connections, and ongoing/completed/failed requests.  
 This method returns all available statistics from Kuzzle.
 
 
-**Returns:** a JSON object containing all available statistics
-
 ## getStatistics ![public](./images/public.png)
+
+> Without argument, returns the last statistic frame:
+
+```js
+/*
+ Using callbacks (NodeJS or Web Browser)
+ */
+kuzzle.getStatistics(function (err, stats) {
+  // ...
+});
+
+/*
+ Using promises (NodeJS only)
+ */
+kuzzle
+  .getStatisticsAsync()
+  .then(stats => {
+    // ...
+  });
+```
+
+> Result:
+
+```json
+{ "connections": { "websocket": 1 },
+    "ongoingRequests": { "mq": 0, "rest": 0, "websocket": 0 },
+    "completedRequests": { "mq": 37, "websocket": 17 },
+    "failedRequests": { "websocket": 1 },
+    "timestamp": "2015-10-26T12:21:00.218Z" }
+```
+
+> When providing a timestamp, returns all frames recorded after that timestamp:
+
+```js
+var ts = Date.parse('2015-10-26T12:19:10.213Z');
+/*
+ Using callbacks (NodeJS or Web Browser)
+ */
+kuzzle.getStatistics(ts, function (err, stats) {
+  // ...
+});
+
+/*
+ Using promises (NodeJS only)
+ */
+kuzzle
+  .getStatisticsAsync(ts)
+  .then(stats => {
+    // ...
+  });
+```
+
+> Result:
+
+```json
+[{ "connections": { "websocket": 1 },
+    "ongoingRequests": { "mq": 0, "rest": 0, "websocket": 0 },
+    "completedRequests": { "mq": 37, "websocket": 17 },
+    "failedRequests": { "websocket": 1 },
+    "timestamp": "2015-10-26T12:21:00.218Z" },
+  { "connections": { "websocket": 1 },
+    "ongoingRequests": { "mq": 0, "rest": 0, "websocket": 0 },
+    "completedRequests": { "websocket": 34 },
+    "failedRequests": { "websocket": 3 },
+    "timestamp": "2015-10-26T12:21:10.218Z" },
+  { "connections": {},
+    "ongoingRequests": { "mq": 0, "rest": 0, "websocket": 0 },
+    "completedRequests": { "websocket": 40 },
+    "failedRequests": {},
+    "timestamp": "2015-10-26T12:21:20.218Z" }]
+```
 
 Kuzzle monitors active connections, and ongoing/completed/failed requests.  
 This method allows getting either the last statistics frame, or a set of frames starting from a provided timestamp.
@@ -101,23 +229,98 @@ This method allows getting either the last statistics frame, or a set of frames 
 |---------------|---------|----------------------------------------|
 | timestamp | Epoch time | Starting time from which the frames are to be retrieved |
 
-**Returns:** a JSON object containing the requested statistics frame(s)
-
 **Note:** Kuzzle statistics are cleaned up regularly. If the timestamp is set too far in the past, then this method will return all available statistics.
 
 ## listCollections ![public](./images/public.png)
+
+```js
+/*
+ Using callbacks (NodeJS or Web Browser)
+ */
+kuzzle.listCollections(function (err, collections) {
+  // ...
+});
+
+/*
+ Using promises (NodeJS only)
+ */
+kuzzle
+  .listCollectionsAsync()
+  .then(collections => {
+    // ...
+  });
+```
+
+> Result:
+
+```json
+["foo", "bar", "baz", "qux"]
+```
 
 Returns the list of known persisted data collections.
 
 ## logout ![public](./images/public.png)
 
+```js
+kuzzle.logout();
+```
+
 Closes the current connection. Does not fire a ``disconnected`` event.
 
 ## now ![public](./images/public.png)
 
-**Returns:** the current Kuzzle UTC timestamp.
+```js
+// TODO
+```
+
+Returns the current Kuzzle UTC timestamp.
+
 
 ## query ![public](./images/public.png)
+
+```js
+/*
+ Using callbacks (NodeJS or Web Browser)
+ */
+kuzzle.query('foo', 'read', 'search', {}, function (err, res) {
+  // ...
+});
+
+/*
+ Using promises (NodeJS only)
+ */
+kuzzle
+  .queryAsync('foo', 'read', 'search', {})
+  .then(result => {
+
+  });
+```
+
+> Result: a Kuzzle Response Object
+
+```json
+{ "error": null,
+  "result": {
+    "_shards": {
+      "failed": 0,
+      "successful": 5,
+      "total": 5
+    },
+    "_source": {},
+    "action": "search",
+    "collection": "foo",
+    "controller": "read",
+    "hits": {
+      "hits": [],
+      "max_score": 0,
+      "total": 0
+    },
+    "requestId": "bf87b930-7c02-11e5-ab10-dfa9e9fd2e07",
+    "timed_out": false,
+    "took": 1
+  }
+}
+```
 
 <aside class="warning">
 This is a low-level method, exposed to allow advanced SDK users to bypass high-level methods.<br/>
@@ -137,6 +340,10 @@ Base method used to send queries to Kuzzle
 
 ## reconnect ![protected](./images/protected.png)
 
+```js
+// TODO
+```
+
 This function is automatically executed by the event handler, when a ``disconnected`` event is fired, and only if the ``autoReconnect`` option has been set to ``true``.
 
 The purpose of this method is to:
@@ -146,6 +353,14 @@ The purpose of this method is to:
 * once connection has been established again, replays sequentially all bufferized queries
 
 ## removeAllListeners ![public](./images/public.png)
+
+```js
+// Removes all listeners on the "unsubscribed" global event
+kuzzle.removeAllListeners('unsubscribed');
+
+// Removes all listeners on all global events
+kuzzle.removeAllListeners();
+```
 
 Removes all listeners, either from a specific event or from all events
 
@@ -158,6 +373,10 @@ Removes all listeners, either from a specific event or from all events
 | event | string | One of the event described in the ``Event Handling`` section of this documentation |
 
 ## removeListener ![public](./images/public.png)
+
+```js
+kuzzle.removeListener('disconnected', listenerId);
+```
 
 Removes a listener from an event.
 

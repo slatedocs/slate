@@ -7,6 +7,13 @@ A data collection is a set of data managed by Kuzzle. It acts like a data table 
 
 ## Constructors
 
+```js
+/*
+ The simplest way to get a KuzzleDataCollection object is to call
+ kuzzle.dataCollectionFactory('collection name');
+ */
+```
+
 #### KuzzleDataCollection(kuzzle, collection)
 
 | Arguments | Type | Description |
@@ -27,6 +34,40 @@ A data collection is a set of data managed by Kuzzle. It acts like a data table 
 
 ## advancedSearch ![public](./images/public.png)
 
+```js
+/*
+ Using callbacks (NodeJS or Web Browser)
+ */
+kuzzle
+  .dataCollectionFactory('collection')
+  .advancedSearch({}, function (err, res) {
+    res.forEach(document => {
+      console.log(document.toString());
+    });
+  });
+
+/*
+ Using promises (NodeJS only)
+ */
+kuzzle
+  .dataCollectionFactory('collection')
+  .advancedSearchAsync({})
+  .then(res => {
+    res.forEach(document => {
+      console.log(document.toString());
+    });
+  });
+```
+
+> Returns an object containing the total number of documents, and an array of retrieved documents
+
+```json
+{ "total": 3,
+  "documents": [{object}, {object}, {object}]
+}
+```
+
+
 <aside class="notice">
 There is a small delay between documents creation and their existence in our advanced search layer, usually a couple of seconds. That means that a document that was just been created won't be returned by this function
 </aside>
@@ -39,21 +80,47 @@ Executes an advanced search on the data collection.
 |---------------|---------|----------------------------------------|
 | filters | JSON Object | Filters in [ElasticSearch Query DSL](https://www.elastic.co/guide/en/elasticsearch/reference/1.3/query-dsl.html) format |
 
-**Returns:** a set of KuzzleDocument objects
 
 ## count ![public](./images/public.png)
+
+```js
+/*
+ Using callbacks (NodeJS or Web Browser)
+ */
+kuzzle
+  .dataCollectionFactory('collection')
+  .count({}, function (err, res) {
+    // ...
+  });
+
+/*
+ Using promises (NodeJS only)
+ */
+kuzzle
+ .dataCollectionFactory('collection')
+ .countAsync({})
+ .then(res => {
+   // ...
+ });
+```
+
+> Returns the number of matched documents
+
+```json
+0
+```
 
 <aside class="notice">There is a small delay between documents creation and their existence in our advanced search layer, usually a couple of seconds. That means that a document that was just been created won't be returned by this function</aside>
 
 Returns the number of documents matching the provided set of filters.
 
+#### count(filters)
+
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
 | filters | JSON Object | Filters in [ElasticSearch Query DSL](https://www.elastic.co/guide/en/elasticsearch/reference/1.3/query-dsl.html) format |
 
-#### count(filters)
 
-**Returns:** the number of matched documents
 
 ## create ![public](./images/public.png)
 
