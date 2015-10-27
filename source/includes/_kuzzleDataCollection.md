@@ -188,6 +188,12 @@ kuzzle
  });
 ```
 
+> Returns the list of deleted document IDs
+
+```json
+["AVCoeBkimsySTKTfa8AX"]
+```
+
 <aside class="notice">
 There is a small delay between documents creation and their existence in our advanced search layer, usually a couple of seconds. That means that a document that was just been created won't be deleted by the filtered version of this function
 </aside>
@@ -203,10 +209,27 @@ Delete persistent documents.
 | documentId | string | Unique document identifier |
 | filters | JSON Object | Filters in [ElasticSearch Query DSL](https://www.elastic.co/guide/en/elasticsearch/reference/1.3/query-dsl.html) format |
 
-**Returns:** the list of deleted document IDs
-
 
 ## fetch ![public](./images/public.png)
+
+```js
+// Using callbacks (NodeJS or Web Browser)
+kuzzle
+  .dataCollectionFactory('collection')
+  .fetch('documentId', function (error, result) {
+    // result is a KuzzleDocument object
+  });
+
+// Using promises (NodeJS)
+kuzzle
+  .dataCollectionFactory('collection')
+  .fetchPromise('documentId')
+  .then(result => {
+    // result is a KuzzleDocument object
+  });
+```
+
+> Returns a KuzzleDocument object
 
 Retrieve a single stored document using its unique document ID.
 
@@ -216,9 +239,35 @@ Retrieve a single stored document using its unique document ID.
 |---------------|---------|----------------------------------------|
 | documentId | string | Unique document identifier |
 
-**Returns:** a KuzzleDocument object containing the retrieved document
 
 ## fetchAll ![public](./images/public.png)
+
+```js
+// Using callbacks (NodeJS or Web Browser)
+kuzzle
+  .dataCollectionFactory('collection')
+  .fetchAll(function (error, result) {
+    // result is an object containing the total number of documents
+    // and an array of KuzzleDocument objects
+  });
+
+// Using promises (NodeJS)
+kuzzle
+  .dataCollectionFactory('collection')
+  .fetchAllPromise()
+  .then(result => {
+    // result is an object containing the total number of documents
+    // and an array of KuzzleDocument objects
+  });
+```
+
+> Returns an object containing the total number of documents, and an array of retrieved documents
+
+```json
+{ "total": 3,
+  "documents": [{object}, {object}, {object}]
+}
+```
 
 Retrieves all documents stored in this data collection.
 
@@ -226,11 +275,35 @@ Retrieves all documents stored in this data collection.
 
 ## getMapping ![public](./images/public.png)
 
+```js
+// Using callbacks (NodeJS or Web Browser)
+kuzzle
+  .dataCollectionFactory('collection')
+  .getMapping(function (error, result) {
+    // result is a KuzzleDataMapping object
+  });
+
+// Using promises (NodeJS)
+kuzzle
+  .dataCollectionFactory('collection')
+  .getMappingPromise()
+  .then(result => {
+    // result is a KuzzleDataMapping object
+  });
+```
+
+> Returns a KuzzleDataMapping object
+
 Instantiates a KuzzleDataMapping object containing the current mapping of this collection.
 
-**Returns:** a KuzzleDataMapping object
 
 ## publish ![public](./images/public.png)
+
+```js
+kuzzle
+  .dataCollectionFactory('collection')
+  .publish({foo: 'bar', baz: 'qux'});
+```
 
 Publish a realtime message
 
@@ -241,9 +314,28 @@ Publish a realtime message
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
 | KuzzleDocument | object | KuzzleDocument object |
-| content | JSON Object | Content of the document to create |
+| content | JSON Object | Content of the document to publish |
 
 ## replace ![public](./images/public.png)
+
+```js
+// Using callbacks (NodeJS or Web Browser)
+kuzzle
+  .dataCollectionFactory('collection')
+  .replace('documentId', {title: 'foo', content: 'bar'}, function (error, result) {
+    // result is a KuzzleDocument object
+  });
+
+// Using promises (NodeJS)
+kuzzle
+  .dataCollectionFactory('collection')
+  .replacePromise('documentId', {title: 'foo', content: 'bar'})
+  .then(result => {
+    // result is a KuzzleDocument object
+  });
+```
+
+> Returns a KuzzleDocument object containing the new version of the document
 
 Replace an existing document with a new one.
 
@@ -258,6 +350,15 @@ Replace an existing document with a new one.
 | content | JSON Object | Content of the document to create |
 
 ## subscribe ![public](./images/public.png)
+
+```js
+var room = kuzzle.dataCollectionFactory('collection')
+  .subscribe({term: {title: 'foo'}}, function (error, result) {
+    // called each time a new notification on this filter is received
+  }, {subscribeToSelf: true});
+```
+
+> Returns a KuzzleRoom object
 
 Subscribes to this data collection with a set of filters.
 
@@ -275,9 +376,27 @@ To subscribe to the entire data collection, simply provide an empty filter.
 | callback | function | Callback to call every time a notification is received on this subscription |
 | options | object | Subscription configuration |
 
-**Returns:** a KuzzleRoom object
 
 ## update ![public](./images/public.png)
+
+```js
+// Using callbacks (NodeJS or Web Browser)
+kuzzle
+  .dataCollectionFactory('collection')
+  .update('documentId', {title: 'foo', content: 'bar'}, function (error, result) {
+    // result is a KuzzleDocument object
+  });
+
+// Using promises (NodeJS)
+kuzzle
+  .dataCollectionFactory('collection')
+  .updatePromise('documentId', {title: 'foo', content: 'bar'})
+  .then(result => {
+    // result is a KuzzleDocument object
+  });
+```
+
+> Returns a KuzzleDocument object containing the new version of the document
 
 Update parts of a document
 
