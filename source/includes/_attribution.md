@@ -192,5 +192,5 @@ attributed_to | false    | string | Name of network that received the attributio
 timestamp     | false    | int    | UNIX timestamp in seconds
 
 <aside class="notice">
-* Both Android ID and Google Advertising ID are required unless the device only has Android ID available.
+* Both Android ID and Google Advertising ID are *required* in every request unless the device only has Android ID available, in which case the single Android ID (uuid) parameter may be sent.
 </aside>
