@@ -352,10 +352,14 @@ Replace an existing document with a new one.
 ## subscribe ![public](./images/public.png)
 
 ```js
-var room = kuzzle.dataCollectionFactory('collection')
-  .subscribe({term: {title: 'foo'}}, function (error, result) {
-    // called each time a new notification on this filter is received
-  }, {subscribeToSelf: true});
+var notificationCB = function (error, result) {
+  // called each time a new notification on this filter is received
+};
+
+var room =
+  kuzzle
+    .dataCollectionFactory('collection')
+    .subscribe({term: {title: 'foo'}}, notificationCB, {subscribeToSelf: true});
 ```
 
 > Returns a KuzzleRoom object

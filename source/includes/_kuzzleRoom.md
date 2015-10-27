@@ -51,7 +51,25 @@ Available options:
 
 ## count ![public](./images/public.png)
 
-Returns the number of other subscriptions on that room.
+```js
+// Using callbacks (NodeJS or Web Browser)
+room.count(function (error, result) {
+  // ...
+});
+
+// Using promises (NodeJS)
+room.countPromise().then(result => {
+  // ...
+});
+```
+
+> Return the number of subscribers on that room
+
+```json
+1
+```
+
+Return the number of subscribers on that room
 
 ## list ![public](./images/public.png)
 
@@ -68,7 +86,14 @@ These objects contain:
 
 ## renew ![public](./images/public.png)
 
-Renew the subscription using new filters
+```js
+room.renew({terms: {field: ['some', 'new', 'filter']}}, function (err, res) {
+  // called each time a change is detected on documents matching this filter
+});
+```
+
+Renew the subscription using new filters.  
+Unsubscribes first if this KuzzleRoom was already listening to events.
 
 #### renew(filters, callback)
 
@@ -80,4 +105,8 @@ Renew the subscription using new filters
 
 ## unsubscribe ![public](./images/public.png)
 
-Unsubscribes from Kuzzle.
+```js
+room.unsubscribe();
+```
+
+Cancels the current subscription.
