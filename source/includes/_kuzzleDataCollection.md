@@ -396,7 +396,7 @@ kuzzle
   });
 ```
 
-> Returns a KuzzleDocument object containing the new version of the document
+> Returns a KuzzleDocument object containing the new version of the document  
 
 Update parts of a document
 
