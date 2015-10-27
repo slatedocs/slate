@@ -100,20 +100,16 @@ Instantiates a new KuzzleDataCollection object.
 ## getAllStatistics ![public](./images/public.png)
 
 ```js
-/*
- Using callbacks (NodeJS or Web Browser)
- */
+// Using callbacks (NodeJS or Web Browser)
 kuzzle.getAllStatistics(function (err, stats) {
   stats.forEach(function (frame) {
     // loop through all returned frames
   });
 });
 
-/*
- Using promises (NodeJS only)
- */
+// Using promises (NodeJS only)
 kuzzle
-  .getAllStatisticsAsync()
+  .getAllStatisticsPromise()
   .then(stats => {
     stats.forEach(function (frame) {
       // loop through all returned frames
@@ -150,18 +146,14 @@ This method returns all available statistics from Kuzzle.
 > Without argument, returns the last statistic frame:
 
 ```js
-/*
- Using callbacks (NodeJS or Web Browser)
- */
+// Using callbacks (NodeJS or Web Browser)
 kuzzle.getStatistics(function (err, stats) {
   // ...
 });
 
-/*
- Using promises (NodeJS only)
- */
+// Using promises (NodeJS only)
 kuzzle
-  .getStatisticsAsync()
+  .getStatisticsPromise()
   .then(stats => {
     // ...
   });
@@ -181,18 +173,15 @@ kuzzle
 
 ```js
 var ts = Date.parse('2015-10-26T12:19:10.213Z');
-/*
- Using callbacks (NodeJS or Web Browser)
- */
+
+// Using callbacks (NodeJS or Web Browser)
 kuzzle.getStatistics(ts, function (err, stats) {
   // ...
 });
 
-/*
- Using promises (NodeJS only)
- */
+// Using promises (NodeJS only)
 kuzzle
-  .getStatisticsAsync(ts)
+  .getStatisticsPromise(ts)
   .then(stats => {
     // ...
   });
@@ -234,18 +223,14 @@ This method allows getting either the last statistics frame, or a set of frames 
 ## listCollections ![public](./images/public.png)
 
 ```js
-/*
- Using callbacks (NodeJS or Web Browser)
- */
+// Using callbacks (NodeJS or Web Browser)
 kuzzle.listCollections(function (err, collections) {
   // ...
 });
 
-/*
- Using promises (NodeJS only)
- */
+// Using promises (NodeJS only)
 kuzzle
-  .listCollectionsAsync()
+  .listCollectionsPromise()
   .then(collections => {
     // ...
   });
@@ -279,18 +264,14 @@ Returns the current Kuzzle UTC timestamp.
 ## query ![public](./images/public.png)
 
 ```js
-/*
- Using callbacks (NodeJS or Web Browser)
- */
+// Using callbacks (NodeJS or Web Browser)
 kuzzle.query('foo', 'read', 'search', {}, function (err, res) {
   // ...
 });
 
-/*
- Using promises (NodeJS only)
- */
+// Using promises (NodeJS only)
 kuzzle
-  .queryAsync('foo', 'read', 'search', {})
+  .queryPromise('foo', 'read', 'search', {})
   .then(result => {
 
   });

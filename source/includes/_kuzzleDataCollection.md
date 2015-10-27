@@ -35,9 +35,7 @@ A data collection is a set of data managed by Kuzzle. It acts like a data table 
 ## advancedSearch ![public](./images/public.png)
 
 ```js
-/*
- Using callbacks (NodeJS or Web Browser)
- */
+// Using callbacks (NodeJS or Web Browser)
 kuzzle
   .dataCollectionFactory('collection')
   .advancedSearch({}, function (err, res) {
@@ -46,12 +44,10 @@ kuzzle
     });
   });
 
-/*
- Using promises (NodeJS only)
- */
+// Using promises (NodeJS only)
 kuzzle
   .dataCollectionFactory('collection')
-  .advancedSearchAsync({})
+  .advancedSearchPromise({})
   .then(res => {
     res.forEach(document => {
       console.log(document.toString());
@@ -84,21 +80,17 @@ Executes an advanced search on the data collection.
 ## count ![public](./images/public.png)
 
 ```js
-/*
- Using callbacks (NodeJS or Web Browser)
- */
+// Using callbacks (NodeJS or Web Browser)
 kuzzle
   .dataCollectionFactory('collection')
   .count({}, function (err, res) {
     // ...
   });
 
-/*
- Using promises (NodeJS only)
- */
+// Using promises (NodeJS only)
 kuzzle
  .dataCollectionFactory('collection')
- .countAsync({})
+ .countPromise({})
  .then(res => {
    // ...
  });
@@ -107,7 +99,7 @@ kuzzle
 > Returns the number of matched documents
 
 ```json
-0
+12
 ```
 
 <aside class="notice">There is a small delay between documents creation and their existence in our advanced search layer, usually a couple of seconds. That means that a document that was just been created won't be returned by this function</aside>
@@ -121,8 +113,28 @@ Returns the number of documents matching the provided set of filters.
 | filters | JSON Object | Filters in [ElasticSearch Query DSL](https://www.elastic.co/guide/en/elasticsearch/reference/1.3/query-dsl.html) format |
 
 
-
 ## create ![public](./images/public.png)
+
+```js
+// Using callbacks (NodeJS or Web Browser)
+kuzzle
+  .dataCollectionFactory('collection')
+  .create({title: 'foo', content: 'bar'}, {updateIfExist: true}, function (err, res) {
+    // callback called once the create action has been completed
+    // => the result is a KuzzleDocument object
+  });
+
+// Using promises (NodeJS only)
+kuzzle
+ .dataCollectionFactory('collection')
+ .createPromise({title: 'foo', content: 'bar'}, {updateIfExist: true})
+ .then(res => {
+   // promise resolved once the create action has been completed
+   // => the result is a KuzzleDocument object
+ });
+```
+
+> Returns a KuzzleDocument object containing the newly created document
 
 Create a new document in Kuzzle.
 
@@ -143,6 +155,38 @@ Create a new document in Kuzzle.
 **Note:** by default, the ``updateIfExist`` is set to ``false``
 
 ## delete ![public](./images/public.png)
+
+```js
+// Deleting one document using callbacks (NodeJS or Web Browser)
+kuzzle
+  .dataCollectionFactory('collection')
+  .delete('document unique ID', function (err, res) {
+    // callback called once the delete action has been completed
+  });
+
+// Deleting one document using promises (NodeJS)
+kuzzle
+  .dataCollectionFactory('collection')
+  .deletePromise('document unique ID')
+  .then(res => {
+    // promises resolved once the delete action has been completed
+  });
+
+// Deleting multiple documents using callbacks (NodeJS or Web Browser)
+kuzzle
+  .dataCollectionFactory('collection')
+  .delete({term: {title: 'foo'}}, function (err, res) {
+    // callback called once the delete with query has been completed
+  });
+
+// Deleting multiple documents using promises (NodeJS)
+ kuzzle
+ .dataCollectionFactory('collection')
+ .deletePromise({title: 'foo', content: 'bar'}, {updateIfExist: true})
+ .then(res => {
+   // promise resolved once the delete by query has been completed
+ });
+```
 
 <aside class="notice">
 There is a small delay between documents creation and their existence in our advanced search layer, usually a couple of seconds. That means that a document that was just been created won't be deleted by the filtered version of this function
