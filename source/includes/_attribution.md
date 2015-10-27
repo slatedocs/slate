@@ -185,12 +185,12 @@ Name          | Required | Type   | Description
 app_id        | true     | string | Chartboost app ID (found in the Chartboost dashboard)
 claim         | true     | int    | 1 if Chartboost can claim the install, 0 otherwise
 gaid          | true*    | string | Google advertising identifier
-ifa           | true*    | string | Apple identifier for advertising
+ifa           | true    | string | Apple identifier for advertising
 uuid          | true*    | string | `UUID` (if iOS), `android_id` (if Android)
 organic       | false    | int    | 1 if organic install, 0 if attributed to a network
 attributed_to | false    | string | Name of network that received the attribution
 timestamp     | false    | int    | UNIX timestamp in seconds
 
 <aside class="notice">
-* At least one device identifier is required per request.
+* Both Android ID and Google Advertising ID are required unless the device only has Android ID available.
 </aside>
