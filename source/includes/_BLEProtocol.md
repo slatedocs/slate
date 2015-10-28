@@ -129,9 +129,9 @@ These two commands do not have a data section.
 ##### TrajectoryDistance Command/Response
 In the command mode, the packet enables/disables the streaming of the distance from a pre-recorded orientation trajectory. Byte#5 will be a Boolean value representing the Enable/Disable command. The overall command mode TrajectoryDistance packet has the following structure:
 
-| Byte 1 (subsystem) | Byte 2 (length) | Byte 3 (CRC) |     Byte 4 (command)    |     Byte 5     | Bytes 6-20 |
-|:------------------:|:---------------:|:------------:|:-----------------------:|:--------------:|------------|
-|        0x01        |       0x10      |      CRC     |0x0A (TrajectoryDistance)| Enable/Disable |  Reserved  |
+| Byte 1 (subsystem) | Byte 2 (length) | Byte 3 (CRC) |   Byte 4 (command)  |     Byte 5     | Bytes 6-20 |
+|:------------------:|:---------------:|:------------:|:-------------------:|:--------------:|------------|
+|        0x01        |       0x10      |      CRC     |  0x0A (Trajectory)  | Enable/Disable |  Reserved  |
 
 In the response mode, the data section includes 4 bytes for the timestamp (Byte#5-8), which is then followed by 6 bytes (Byte#9-14) representing the Euler angle errors, which have been described by the "EnableTrajectoryDistanceStream()" API function in the motion engine documentation.
 ##### Pedometer Command/Response
