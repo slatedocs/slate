@@ -188,13 +188,13 @@ In the command mode, the packet enables/disables the streaming of the 3-axis mag
 
 | Byte 1 (subsystem) | Byte 2 (length) | Byte 3 (CRC) |  Byte 4 (command) |     Byte 5     | Bytes 6-20 |
 |:------------------:|:---------------:|:------------:|:-----------------:|:--------------:|------------|
-|        0x01        |       0x10      |      CRC     |  0x0B (MAG_Data)  | Enable/Disable |  Reserved  |
+|        0x01        |       0x10      |      CRC     |  0x0C (MAG_Data)  | Enable/Disable |  Reserved  |
 
 In the response mode, the data section includes 4 bytes for the timestamp (Byte#5-8), which is then followed by 2*6 bytes (Byte#9-20) with the "AxesRaw_t" data structure defined in the motion engine documentation. The first 6 bytes (Byte#9-14) will be a "AxesRaw_t" data structure for magnetometers, and the next 6 bytes (Byte#15-20) will be another "AxesRaw_t" data structure for accelerometer data. The whole response packet structure including header is shown below:
 
 |Byte 1 (subsystem)|Byte 2 (length)|Byte 3 (CRC)|Byte 4 (command)|Byte 5-8 |   Byte 9-14   |  Bytes 15-20  |
 |:----------------:|:-------------:|:----------:|:--------------:|:-------:|:-------------:|:-------------:|
-|       0x01       |      0x10     |    CRC     |      0x0B      |TimeStamp|AxesRaw_t (Mag)|AxesRaw_t (Acc)|
+|       0x01       |      0x10     |    CRC     |      0x0C      |TimeStamp|AxesRaw_t (Mag)|AxesRaw_t (Acc)|
 
 
 
