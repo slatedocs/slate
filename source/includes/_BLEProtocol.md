@@ -82,11 +82,11 @@ Overall, the command packet has the following structure:
 |:------------------:|:---------------:|:------------:|:-----------------:|:--------------:|------------|
 |        0x01        |       0x10      |      CRC     |0x02 (motion state)| Enable/Disable |  Reserved  |
 
-In the response mode, the data section includes 4 bytes for the timestamp in microseconds (Byte#5-8), and then the motion state data, i.e., a single byte (Byte#9) with the "motionstatus_t" structure defined in the motion engine documentation. The whole response packet structure including header is shown below:
+In the response mode, the data section includes 4 bytes for the timestamp in microseconds (Byte#5-8), and then the motion state data, i.e., a single byte (Byte#9), which is either 0 (stop motion) or 1 (start motion). The whole response packet structure including header is shown below:
 
 | Byte 1 (subsystem) | Byte 2 (length) | Byte 3 (CRC) |  Byte 4 (command) |Byte 5-8 |    Byte 9    | Bytes 10-20 |
 |:------------------:|:---------------:|:------------:|:-----------------:|:-------:|--------------|-------------|
-|        0x01        |       0x10      |      CRC     |        0x02       |TimeStamp|motionstatus_t|  Reserved   |
+|        0x01        |       0x10      |      CRC     |        0x02       |TimeStamp|  stop/start  |  Reserved   |
 
 ##### IMU_Data Command/Response
 In the command mode, the packet enables/disables the streaming of the 6-axis IMU sensor data, including the 3-axis accelerometer and 3-axis gyroscope. Byte#5 will be a Boolean value representing the Enable/Disable command. The overall command mode IMU_Data packet has the following structure:
