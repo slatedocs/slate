@@ -79,7 +79,13 @@ These two commands do not have a data section.
 ##### TrajectoryDistance Command/Response
 In the command mode, the packet enables/disables the streaming of the distance from a pre-recorded orientation trajectory. Byte#5 will be a Boolean value representing the Enable/Disable command. In the response mode, the data section includes 4 bytes for the timestamp (Byte#5-8), which is then followed by 6 bytes (Byte#9-14) representing the Euler angle errors, which have been described by the "EnableTrajectoryDistanceStream()" API function in the motion engine documentation.
 ##### Pedometer Command/Response
-In the command mode, the packet enables/disables the streaming of the Pedometer data. Byte#5 will be a Boolean value representing the Enable/Disable command. In the response mode, the data section includes 4 bytes for the timestamp (Byte#5-8), which is then followed by 4 bytes (Byte#9-12)  with the "steps_t" data structure defined in the motion engine documentation.
+In the command mode, the packet enables/disables the streaming of the Pedometer data. Byte#5 will be a Boolean value representing the Enable/Disable command. In the response mode, the data section includes 4 bytes for the timestamp (Byte#5-8), which is then followed by 5 bytes (Byte#9-13) with the following subfields:
+###### Byte#9: step count, LSB
+###### Byte#10: step count, MSB
+###### Byte#11: spm (Cadence)
+###### Byte#12: walking direction angle value LSB
+###### Byte#13: walking direction angle value MSB
+Note that the angle format includes one fractional decimal digit and it is compatible with the Euler angle representations described in the motion engine documentation.
 ##### MAG_Data Command/Response
 In the command mode, the packet enables/disables the streaming of the 3-axis magnetometer data along with the 3-axis accelerometer data. Byte#5 will be a Boolean value representing the Enable/Disable command. In the response mode, the data section includes 4 bytes for the timestamp (Byte#5-8), which is then followed by 2*6 bytes (Byte#9-20) with the "AxesRaw_t" data structure defined in the motion engine documentation. The first 6 bytes (Byte#9-14) will be a "AxesRaw_t" data structure for magnetometers, and the next 6 bytes (Byte#15-20) will be another "AxesRaw_t" data structure for accelerometer data.
 
