@@ -139,7 +139,7 @@ Analyses as described above are truly multidimensional; when you add another var
 
 Multi-table definitions mainly provide a `template` member that clients can use to construct a valid query with the variable(s) of interest.
 
-Crunch provides a separate catalog where you can define and manage these common sets of variables. Like most catalogs, you can GET it to see which overviews are defined:
+Crunch provides a separate catalog where you can define and manage these common sets of variables. Like most catalogs, you can GET it to see which multitables are defined:
 
 ```http
 GET datasets/{id}/multitables/ HTTP/1.1
@@ -164,9 +164,9 @@ POST datasets/{id}/multitables/ HTTP/1.1
     "body": {
         "name": "Geographical indicators",
         "template": [
-            {"variable": "../variables/de85b32/"},
-            {"variable": "../variables/398620f/"},
-            {"variable": "../variables/c116a77/"}
+            {"variable": "../variables/de85b32/", query: [{"variable": "../variables/de85b32/"}]},
+            {"variable": "../variables/398620f/", query: [{"variable": "../variables/398620f/"}]},
+            {"variable": "../variables/c116a77/", query: [{"function": "bin", "args":[{"variable": "../variables/398620f/"}]}]}
         ],
         is_public: false
     }
@@ -186,9 +186,9 @@ GET datasets/{id}/multitable/3/ HTTP/1.1
     "body": {
         "name": "Geographical indicators",
         "template": [
-            {"variable": "../../variables/de85b32/"},
-            {"variable": "../../variables/398620f/"},
-            {"variable": "../../variables/c116a77/"}
+            {"variable": "../variables/de85b32/", query: [{"variable": "../variables/de85b32/"}]},
+            {"variable": "../variables/398620f/", query: [{"variable": "../variables/398620f/"}]},
+            {"variable": "../variables/c116a77/", query: [{"function": "bin", "args":[{"variable": "../variables/398620f/"}]}]}
         ]
     }
 }
@@ -198,9 +198,8 @@ Each multi-table template may be a list of variable references and other informa
 
 ### More complex multitable templates
 
-The template may contain in addition to variable references, optional members `function` and `transform`: `function` is used for numeric variables to define a `bin` and for datetime variables to define a `rollup`. Each of these is an object: `"function": {"bin": []}` (the query will need to insert the variable here, but further arguments such as number of bins or cut points go in the arguments array). The `transform` argument is defined below, in terms of the output extent.
-
-To obtain their multiple output cubes, you `GET datasets/{id}/cube?query=<q>` where `<q>` is a ZCL object in JSON format (which must then be URI encoded for inclusion in the querystring). Use the "each" function to iterate over the overview variables, producing one output cube for each one as "variable x". For example, to cross each of the above 3 variables against another variable "449b421":
+The template may contain in addition to variable references and their query arguments, an optional `transform`: \
+To obtain their multiple output cubes, you `GET datasets/{id}/cube?query=<q>` where `<q>` is a ZCL object in JSON format (which must then be URI encoded for inclusion in the querystring). Use the "each" function to iterate over the overview variables’ `query`, producing one output cube for each one as "variable x". For example, to cross each of the above 3 variables against another variable "449b421":
 
 ```json
 {
@@ -261,32 +260,36 @@ The result will be an array of output cubes:
 
 The `transform` member of an analysis specification (or multitable definition)
 provides a way to transform that dimension's results after computation. The 
-cube result dimension will always be derived from the `variable_query` part of the
+cube result dimension will always be derived from the `query` part of the
 request (`{variable: $variableId})`, `{function: f, args: [$variableId, …]}`, &c.
 
 ### Structure
 
-A `transform` is an array of target transforms for **valid** output-dimension elements. 
+A `transform` is an array of target transforms for output-dimension elements. 
 Therefore to create a valid `transform` it is generally necessary to make a cube query, inspect
 the result dimension, and proceed from there. For categorical and multiple response
 variables, elements may also be obtained from the variable entity.
 
+Transforms are designed for variables that are more stable than not, with element ids
+that inhere in the underlying elements, such as category or subvariable ids. Dynamic
+elements such as results of `bin`ning a numeric variable, may not be transformed.
+
 Consider the following example result dimension:
 
-| Name       | missing |
-|------------|---------|
-| Element A  |         |
-| Element B  |         |
-| Element C  |         |
-| Don’t know |         |
-| Not asked  | true    |
+| Name       | missing | id |
+|------------|---------|----|
+| Element A  |         | 0  |
+| Element B  |         | 1  |
+| Element C  |         | 2  |
+| Don’t know |         | 3  |
+| Not asked  | true    | 4  |
 
 A full `transform` can specify a new order of output elements, new names, 
 and in the future, bases for hypothesis testing, result sorting, and 
 aggregation of results. A `transform` will have **four** elements, which may
 contain keys: 
 
-- **i**: index or array of indices in the target row/column
+- **id**: id or array of ids in the target row/column
 - **name**: name of new target column
 - **sort**: `-1` or `1` indicating to sort results descending or ascending by this element
 - **compare**: `neq`, `leq`, `geq` indicating to test other rows/columns against
@@ -294,13 +297,13 @@ the hypothesis that they are ≠, ≤, or ≥ to the present element
 - **combine**: `sum` (or `mean`?) — combine the indices in `[i]` to produce this target row/column
 
 A `transform` with object members can do lots of things. Suppose we want to put _Element C_ first, 
-hide the _Don’t know_, and more compactly represent the result as just _C, B, A_:
+hide the _Don’t know_, and more compactly represent the result as just _C, A, B_:
 
 ```json
 transform: [
-    {'i': 2, 'name': 'C'},
-    {'i': 0, 'name': 'A'},
-    {'i': 1, 'name': 'B'}
+    {'id': 2, 'name': 'C'},
+    {'id': 0, 'name': 'A'},
+    {'id': 1, 'name': 'B'}
 ]
 ```
 
@@ -310,27 +313,31 @@ Suppose we want to combine results in _A_ and _B_ into _Others_:
 
 ```json
 transform: [
-    {'i': 2, 'name': 'C'},
-    {'i': [0,1], 'name': 'Others', 'combine': 'sum'}
+    {'id': 2, 'name': 'C'},
+    {'id': [0,1], 'name': 'Others', 'combine': 'sum'}
 ]
 ```
 
+#### Order of transform operations
+
+1. Combine
+1. Name
+1. Order
+
 #### Example transform in a saved analysis
 
-In a saved analysis the transforms are an array in `display_settings` with the same extents output dimensions (as well as, of course, the query used to generate them). This syntax makes a univariate table of a quarterly rolled up datetime variable and renames the hypothetical output.
+In a saved analysis the transforms are an array in `display_settings` with the same extents output dimensions (as well as, of course, the query used to generate them). This syntax makes a univariate table of a multitple response variable and re-orders the result.
 
 
 ```json
 "query": {
-    "dimensions": {"function": "rollup", "args": [{"variable":"B"}, "value": "Q"]},
+    "dimensions": [{"function": "selected_array", "args":[{"variable": "../variables/398620f/"}]}, {"variable": "../variables/398620f/"}],
     "measures": {"count": {
         "function": "cube_count", args: []
     }}
 },
 "display_settings": {
-    "transform": [
-        ["First Quarter", "Second Quarter", "Third Quarter", "Fourth Quarter"]
-    ]
+    "transform": [{"id": "f007", "value": "My preferred first item"}, {"id": "fee7", "value": "The zeroth response"}, {"id": "c001", "name": "Third response"}]
 }
 ```
 
@@ -340,22 +347,7 @@ In a multitable, the `transform` is part of each dimension definition object in 
 
 ```json
 "template": [
-    {"variable": "A", "transform": […]},
-    {"variable": "A", "transform": […], "function": {"rollup": ["M"]}}
+    {"variable": "A", "query" [{"variable": "A"}], transform": [{}, {}]},
+    {"variable": "B", "query": [{"function": "rollup, "args": [{"value": "M"}, {"variable": "B"}] }]}
 ]
 ```
-
-#### Shorthands
-
-There are two shorthand specifiers:
-
-1. An all-numeric vector of indices corresponds to an array with only `i` member keys. This
-allows result rows or columns to be dropped and reordered with no renaming. `[0,1,2]` for the
-example above would drop the “Don’t know” element. *If the elements are not all numeric, or if
-any element of the `transform` is null, it will be ignored.*
-
-2. An array of identical length to the input result, with _string_ or _null_ elements corresponds
-to a same-ordered array of transforms with only `name` members, allowing the renaming
-of elements in place with no re-ordering. For compact display, one might write,
-`['A', 'B', 'C', 'DK']`, or perhaps `[null, null, null, 'DK']`. *If such a shorthand array
-is not of identical length to the valid result-dimension, it will be ignored.*
