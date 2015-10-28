@@ -126,10 +126,11 @@ For example, when a new student applies to the school, they are admitted on [Ope
 | Field  | Type  | Description |
 | ------------- | ------------- | -------|
 | type  | string | The request is either sent from either a Student / Parent / Advisor |
-| student_id  | integer| The students id, required only for students  |
-| first_name | string| The student's first name |
-| last_name | string| The student's last name |
-| email | string| The student's email |
+| student_id  | string| The student's id, required only for students  |
+| first_name | string| The user's first name |
+| last_name | string| The user's last name |
+| email | string| The user's email |
+| gender |string| The user's gender|
 
 
 ###Optional Fields:
@@ -150,7 +151,6 @@ For example, when a new student applies to the school, they are admitted on [Ope
 |homeroom_advisor| string | The user_id or email for the advisor or admin |
 |nickname| string| The user's nickname |
 |other_name| string| The user's other name|
-|gender|string| The user's gender|
 |birthday|string| The user's birthday|
 |language|string| The user's language|
 |password|string| The user's account password|
