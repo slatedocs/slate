@@ -13,6 +13,11 @@ Bytes#5-20: Data Section
 | Header Section | Data Section  |
 ### Header Section
 The header section consists of four bytes.
+
+|  Byte 1 (bit_7) |  Byte 1 (bit_6_0) |  Byte 2   | Byte 3 | Byte 4 |
+|-----------------|-------------------|-----------|--------|--------|
+|    Error Log    |  Subsystem value  |data length|  CRC   |command |
+
 ###### Byte#1: Subsystem
 ```c 
 Bit#7: (Error Log) 
