@@ -67,7 +67,12 @@ The data section regarding the motion engine has different representations based
 Neblina is programmed to stream information to the host as per its request. The maximum streaming frequency is 1kHz, and the users can reduce the streaming frequency to 1000/n, where n is an unsigned 16-bit positive integer. Regarding this command, we have the following data section with only 2 valid bytes:
 ###### Byte#5: n, LSB
 ###### Byte#6: n, MSB
-Currently, the supporting streaming frequencies are multiplicands of 20, i.e., 50Hz, 50Hz/2, 50Hz/3, and so on. Therefore, the value of n should be set as a multiplicand of 20.
+Currently, the supporting streaming frequencies are multiplicands of 20, i.e., 50Hz, 50Hz/2, 50Hz/3, and so on. Therefore, the value of n should be set as a multiplicand of 20. Overall, the downsample command packet including both header and data sections has the following structure:
+
+| Byte 1 (subsystem) | Byte 2 (length) | Byte 3 (CRC) | Byte 4 (command) |     Bytes 5-6     | Bytes 7-20 |
+|:------------------:|:---------------:|:------------:|:----------------:|:-----------------:|------------|
+|        0x01        |       0x16      |      CRC     |       0x01       | downsample factor | Reserved   |
+
 ##### MotionState Command/Response
 In the command mode the packet enables/disables the streaming of the motion state for the target device. If enabled, it basically inquires whether the device changes its motion state either from stop to movement, or from movement to stop. We recommend that after the device power-up you hold the device still for a couple of seconds (2-5 seconds) for initial calibration and orientation convergence. Data section for this packet type is a single byte, which should be set to either 0 or 1 to disable or enable the streaming of the motion states respectively.
 ###### Byte#5: Enable (1) or Disable (0) Motion State streaming
