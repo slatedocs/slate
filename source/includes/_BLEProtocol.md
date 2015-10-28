@@ -69,9 +69,9 @@ Neblina is programmed to stream information to the host as per its request. The 
 ###### Byte#6: n, MSB
 Currently, the supporting streaming frequencies are multiplicands of 20, i.e., 50Hz, 50Hz/2, 50Hz/3, and so on. Therefore, the value of n should be set as a multiplicand of 20. Overall, the downsample command packet including both header and data sections has the following structure:
 
-| Byte 1 (subsystem) | Byte 2 (length) | Byte 3 (CRC) | Byte 4 (command) |     Bytes 5-6     | Bytes 7-20 |
-|:------------------:|:---------------:|:------------:|:----------------:|:-----------------:|------------|
-|        0x01        |       0x10      |      CRC     | 0x01 (downsample)| downsample factor |  Reserved  |
+|Byte 1 (subsystem)|Byte 2 (length)|Byte 3 (CRC)|Byte 4 (command) |Bytes 5-6|Bytes 7-20|
+|:----------------:|:-------------:|:----------:|:---------------:|:-------:|:--------:|
+|       0x01       |      0x10     |     CRC    |0x01 (downsample)|  factor | Reserved |
 
 ##### MotionState Command/Response
 In the command mode the packet enables/disables the streaming of the motion state for the target device. If enabled, it basically inquires whether the device changes its motion state either from stop to movement, or from movement to stop. We recommend that after the device power-up you hold the device still for a couple of seconds (2-5 seconds) for initial calibration and orientation convergence. Data section for this packet type is a single byte, which should be set to either 0 or 1 to disable or enable the streaming of the motion states respectively.
@@ -192,9 +192,9 @@ In the command mode, the packet enables/disables the streaming of the 3-axis mag
 
 In the response mode, the data section includes 4 bytes for the timestamp (Byte#5-8), which is then followed by 2*6 bytes (Byte#9-20) with the "AxesRaw_t" data structure defined in the motion engine documentation. The first 6 bytes (Byte#9-14) will be a "AxesRaw_t" data structure for magnetometers, and the next 6 bytes (Byte#15-20) will be another "AxesRaw_t" data structure for accelerometer data. The whole response packet structure including header is shown below:
 
-|Byte 1 (subsystem)|Byte 2 (length)| Byte 3 |Byte 4 (command)|Byte 5-8 |   Byte 9-14   |  Bytes 15-20  |
-|:----------------:|:-------------:|:------:|:--------------:|:-------:|:-------------:|:-------------:|
-|       0x01       |      0x10     |  CRC   |      0x06      |TimeStamp|AxesRaw_t (Mag)|AxesRaw_t (Acc)|
+|Byte 1 (subsystem)|Byte 2 (length)|Byte 3 (CRC)|Byte 4 (command)|Byte 5-8 |   Byte 9-14   |  Bytes 15-20  |
+|:----------------:|:-------------:|:----------:|:--------------:|:-------:|:-------------:|:-------------:|
+|       0x01       |      0x10     |    CRC     |      0x06      |TimeStamp|AxesRaw_t (Mag)|AxesRaw_t (Acc)|
 
 
 
