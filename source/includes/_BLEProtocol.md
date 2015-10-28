@@ -84,22 +84,64 @@ Overall, the command packet has the following structure:
 
 In the response mode, the data section includes 4 bytes for the timestamp in microseconds (Byte#5-8), and then the motion state data, i.e., a single byte (Byte#9) with the "motionstatus_t" structure defined in the motion engine documentation.
 ##### IMU_Data Command/Response
-In the command mode, the packet enables/disables the streaming of the 6-axis IMU sensor data, including the 3-axis accelerometer and 3-axis gyroscope. Byte#5 will be a Boolean value representing the Enable/Disable command. In the response mode, the data section includes 4 bytes for the timestamp (Byte#5-8), which is then followed by 12 bytes (Byte#9-20) with the "IMU6AxisRaw_t" data structure defined in the motion engine documentation.
+In the command mode, the packet enables/disables the streaming of the 6-axis IMU sensor data, including the 3-axis accelerometer and 3-axis gyroscope. Byte#5 will be a Boolean value representing the Enable/Disable command. The overall command mode IMU_Data packet has the following structure:
+
+| Byte 1 (subsystem) | Byte 2 (length) | Byte 3 (CRC) |  Byte 4 (command) |     Byte 5     | Bytes 6-20 |
+|:------------------:|:---------------:|:------------:|:-----------------:|:--------------:|------------|
+|        0x01        |       0x10      |      CRC     | 0x03 (6-axis IMU) | Enable/Disable |  Reserved  |
+
+In the response mode, the data section includes 4 bytes for the timestamp (Byte#5-8), which is then followed by 12 bytes (Byte#9-20) with the "IMU6AxisRaw_t" data structure defined in the motion engine documentation.
 ##### Quaternion Command/Response
-In the command mode, the packet enables/disables the streaming of the quaternion data. Byte#5 will be a Boolean value representing the Enable/Disable command. In the response mode, the data section includes 4 bytes for the timestamp (Byte#5-8), which is then followed by 8 bytes (Byte#9-16) with the "QUAT" data structure defined in the motion engine documentation.
+In the command mode, the packet enables/disables the streaming of the quaternion data. Byte#5 will be a Boolean value representing the Enable/Disable command. The overall command mode Quaternion packet has the following structure:
+
+| Byte 1 (subsystem) | Byte 2 (length) | Byte 3 (CRC) |  Byte 4 (command) |     Byte 5     | Bytes 6-20 |
+|:------------------:|:---------------:|:------------:|:-----------------:|:--------------:|------------|
+|        0x01        |       0x10      |      CRC     | 0x04 (Quaternion) | Enable/Disable |  Reserved  |
+
+In the response mode, the data section includes 4 bytes for the timestamp (Byte#5-8), which is then followed by 8 bytes (Byte#9-16) with the "QUAT" data structure defined in the motion engine documentation.
 ##### EulerAngle Command/Response
-In the command mode, the packet enables/disables the streaming of the Euler Angle data. Byte#5 will be a Boolean value representing the Enable/Disable command. In the response mode, the data section includes 4 bytes for the timestamp (Byte#5-8), which is then followed by 6 bytes (Byte#9-14) with the "Euler_fxp" data structure defined in the motion engine documentation.
+In the command mode, the packet enables/disables the streaming of the Euler Angle data. Byte#5 will be a Boolean value representing the Enable/Disable command. The overall command mode Euler Angle packet has the following structure:
+
+| Byte 1 (subsystem) | Byte 2 (length) | Byte 3 (CRC) |  Byte 4 (command)  |     Byte 5     | Bytes 6-20 |
+|:------------------:|:---------------:|:------------:|:------------------:|:--------------:|------------|
+|        0x01        |       0x10      |      CRC     | 0x05 (Euler Angle) | Enable/Disable |  Reserved  |
+
+In the response mode, the data section includes 4 bytes for the timestamp (Byte#5-8), which is then followed by 6 bytes (Byte#9-14) with the "Euler_fxp" data structure defined in the motion engine documentation.
 ##### ExtForce Command/Response
-In the command mode, the packet enables/disables the streaming of the external force vector. Byte#5 will be a Boolean value representing the Enable/Disable command. In the response mode, the data section includes 4 bytes for the timestamp (Byte#5-8), which is then followed by 6 bytes (Byte#9-14) with the "Fext_Vec16_t" data structure defined in the motion engine documentation.
+In the command mode, the packet enables/disables the streaming of the external force vector. Byte#5 will be a Boolean value representing the Enable/Disable command. The overall command mode External Force packet has the following structure:
+
+| Byte 1 (subsystem) | Byte 2 (length) | Byte 3 (CRC) |  Byte 4 (command) |     Byte 5     | Bytes 6-20 |
+|:------------------:|:---------------:|:------------:|:-----------------:|:--------------:|------------|
+|        0x01        |       0x10      |      CRC     |  0x06 (ExtForce)  | Enable/Disable |  Reserved  |
+
+In the response mode, the data section includes 4 bytes for the timestamp (Byte#5-8), which is then followed by 6 bytes (Byte#9-14) with the "Fext_Vec16_t" data structure defined in the motion engine documentation.
 ##### SetFusionType Command:
-The corresponding packet includes only 1 byte, indicating whether the fusion should be set to either 6-axis or 9-axis mode:
-###### Byte#5: 6-axis mode (0) or 9-axis mode (1)
+The corresponding packet includes only 1 byte, indicating whether the fusion should be set to either 6-axis IMU or 9-axis MARG mode involving magnetometers:
+###### Byte#5: 6-axis IMU mode (0) or 9-axis MARG mode (1)
+The overall packet structure is as follows:
+
+| Byte 1 (subsystem) | Byte 2 (length) | Byte 3 (CRC) |  Byte 4 (command)  |  Byte 5  | Bytes 6-20 |
+|:------------------:|:---------------:|:------------:|:------------------:|:--------:|------------|
+|        0x01        |       0x10      |      CRC     |0x07 (SetFusionType)| IMU/MARG |  Reserved  |
+
 ##### TrajectoryRecStart & TrajectoryRecStop
 These two commands do not have a data section.
 ##### TrajectoryDistance Command/Response
-In the command mode, the packet enables/disables the streaming of the distance from a pre-recorded orientation trajectory. Byte#5 will be a Boolean value representing the Enable/Disable command. In the response mode, the data section includes 4 bytes for the timestamp (Byte#5-8), which is then followed by 6 bytes (Byte#9-14) representing the Euler angle errors, which have been described by the "EnableTrajectoryDistanceStream()" API function in the motion engine documentation.
+In the command mode, the packet enables/disables the streaming of the distance from a pre-recorded orientation trajectory. Byte#5 will be a Boolean value representing the Enable/Disable command. The overall command mode TrajectoryDistance packet has the following structure:
+
+| Byte 1 (subsystem) | Byte 2 (length) | Byte 3 (CRC) |     Byte 4 (command)    |     Byte 5     | Bytes 6-20 |
+|:------------------:|:---------------:|:------------:|:-----------------------:|:--------------:|------------|
+|        0x01        |       0x10      |      CRC     |0x0A (TrajectoryDistance)| Enable/Disable |  Reserved  |
+
+In the response mode, the data section includes 4 bytes for the timestamp (Byte#5-8), which is then followed by 6 bytes (Byte#9-14) representing the Euler angle errors, which have been described by the "EnableTrajectoryDistanceStream()" API function in the motion engine documentation.
 ##### Pedometer Command/Response
-In the command mode, the packet enables/disables the streaming of the Pedometer data. Byte#5 will be a Boolean value representing the Enable/Disable command. In the response mode, the data section includes 4 bytes for the timestamp (Byte#5-8), which is then followed by 5 bytes (Byte#9-13) with the following subfields:
+In the command mode, the packet enables/disables the streaming of the Pedometer data. Byte#5 will be a Boolean value representing the Enable/Disable command. The overall command mode Pedometer packet has the following structure:
+
+| Byte 1 (subsystem) | Byte 2 (length) | Byte 3 (CRC) |  Byte 4 (command)  |     Byte 5     | Bytes 6-20 |
+|:------------------:|:---------------:|:------------:|:------------------:|:--------------:|------------|
+|        0x01        |       0x10      |      CRC     |  0x0B (Pedometer)  | Enable/Disable |  Reserved  |
+
+In the response mode, the data section includes 4 bytes for the timestamp (Byte#5-8), which is then followed by 5 bytes (Byte#9-13) with the following subfields:
 ###### Byte#9: step count, LSB
 ###### Byte#10: step count, MSB
 ###### Byte#11: spm (Cadence)
@@ -107,7 +149,13 @@ In the command mode, the packet enables/disables the streaming of the Pedometer 
 ###### Byte#13: walking direction angle value MSB
 Note that the angle format includes one fractional decimal digit and it is compatible with the Euler angle representations described in the motion engine documentation.
 ##### MAG_Data Command/Response
-In the command mode, the packet enables/disables the streaming of the 3-axis magnetometer data along with the 3-axis accelerometer data. Byte#5 will be a Boolean value representing the Enable/Disable command. In the response mode, the data section includes 4 bytes for the timestamp (Byte#5-8), which is then followed by 2*6 bytes (Byte#9-20) with the "AxesRaw_t" data structure defined in the motion engine documentation. The first 6 bytes (Byte#9-14) will be a "AxesRaw_t" data structure for magnetometers, and the next 6 bytes (Byte#15-20) will be another "AxesRaw_t" data structure for accelerometer data.
+In the command mode, the packet enables/disables the streaming of the 3-axis magnetometer data along with the 3-axis accelerometer data. Byte#5 will be a Boolean value representing the Enable/Disable command. The overall command mode MAG_Data packet has the following structure:
+
+| Byte 1 (subsystem) | Byte 2 (length) | Byte 3 (CRC) |  Byte 4 (command) |     Byte 5     | Bytes 6-20 |
+|:------------------:|:---------------:|:------------:|:-----------------:|:--------------:|------------|
+|        0x01        |       0x10      |      CRC     |  0x0B (MAG_Data)  | Enable/Disable |  Reserved  |
+
+In the response mode, the data section includes 4 bytes for the timestamp (Byte#5-8), which is then followed by 2*6 bytes (Byte#9-20) with the "AxesRaw_t" data structure defined in the motion engine documentation. The first 6 bytes (Byte#9-14) will be a "AxesRaw_t" data structure for magnetometers, and the next 6 bytes (Byte#15-20) will be another "AxesRaw_t" data structure for accelerometer data.
 
 
 
