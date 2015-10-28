@@ -71,11 +71,17 @@ Currently, the supporting streaming frequencies are multiplicands of 20, i.e., 5
 
 | Byte 1 (subsystem) | Byte 2 (length) | Byte 3 (CRC) | Byte 4 (command) |     Bytes 5-6     | Bytes 7-20 |
 |:------------------:|:---------------:|:------------:|:----------------:|:-----------------:|------------|
-|        0x01        |       0x16      |      CRC     |       0x01       | downsample factor | Reserved   |
+|        0x01        |       0x10      |      CRC     | 0x01 (downsample)| downsample factor |  Reserved  |
 
 ##### MotionState Command/Response
 In the command mode the packet enables/disables the streaming of the motion state for the target device. If enabled, it basically inquires whether the device changes its motion state either from stop to movement, or from movement to stop. We recommend that after the device power-up you hold the device still for a couple of seconds (2-5 seconds) for initial calibration and orientation convergence. Data section for this packet type is a single byte, which should be set to either 0 or 1 to disable or enable the streaming of the motion states respectively.
 ###### Byte#5: Enable (1) or Disable (0) Motion State streaming
+Overall, the command packet has the following structure:
+
+| Byte 1 (subsystem) | Byte 2 (length) | Byte 3 (CRC) |  Byte 4 (command) |     Byte 5     | Bytes 6-20 |
+|:------------------:|:---------------:|:------------:|:-----------------:|:--------------:|------------|
+|        0x01        |       0x10      |      CRC     |0x02 (motion state)| Enable/Disable |  Reserved  |
+
 In the response mode, the data section includes 4 bytes for the timestamp in microseconds (Byte#5-8), and then the motion state data, i.e., a single byte (Byte#9) with the "motionstatus_t" structure defined in the motion engine documentation.
 ##### IMU_Data Command/Response
 In the command mode, the packet enables/disables the streaming of the 6-axis IMU sensor data, including the 3-axis accelerometer and 3-axis gyroscope. Byte#5 will be a Boolean value representing the Enable/Disable command. In the response mode, the data section includes 4 bytes for the timestamp (Byte#5-8), which is then followed by 12 bytes (Byte#9-20) with the "IMU6AxisRaw_t" data structure defined in the motion engine documentation.
