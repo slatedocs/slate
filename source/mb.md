@@ -130,7 +130,7 @@ For example, when a new student applies to the school, they are admitted on [Ope
 | first_name | string| The user's first name |
 | last_name | string| The user's last name |
 | email | string| The user's email |
-| gender |string| The user's gender|
+| gender | string| The user's gender|
 
 
 ###Optional Fields:
