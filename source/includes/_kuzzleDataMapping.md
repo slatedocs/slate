@@ -5,6 +5,10 @@ It means that, by default, you won't be able to exploit the full capabilities of
 
 The KuzzleDataMapping object allow to get the current mapping of a data collection and to modify it if needed.
 
+<aside class="notice">
+Once a field mapping has been set, it cannot be removed without reconstructing the data collection.
+</aside>
+
 ## Constructors
 
 #### KuzzleDataMapping(KuzzleDataCollection)
@@ -24,9 +28,37 @@ The KuzzleDataMapping object allow to get the current mapping of a data collecti
 
 ## apply ![public](./images/public.png)
 
+```js
+// Using callbacks (NodeJS or Web Browser)
+dataMapping.apply(function (error, result) {
+  // called once the mapping action has been completed
+});
+
+// Using promises (NodeJS)
+dataMapping.applyPromise(function (error, result) {
+  // resolved once the mapping action has been completed
+});
+```
+
+> Return the updated KuzzleDataMapping object
+
 Applies the new mapping to the data collection.
 
 ## refresh ![public](./images/public.png)
+
+```js
+// Using callbacks (NodeJS & Web Browser)
+dataMapping.refresh(function (error, result) {
+  // called once the mapping has been retrieved from Kuzzle
+});
+
+// Using promises (NodeJS)
+dataMapping.refreshPromise().then(result => {
+  // resolved once the mapping has been retrieved from Kuzzle
+});
+```
+
+> Return the updated KuzzleDataMapping object
 
 <aside class="warning">
 Calling this function will discard any uncommited changes. You can commit changes by calling the <code>apply</code> function
@@ -34,20 +66,13 @@ Calling this function will discard any uncommited changes. You can commit change
 
 Replaces the current content with the mapping stored in Kuzzle
 
-
-## remove ![public](./images/public.png)
-
-<aside class="notice">Changes made by this function won't be applied until you call the <code>apply</code> method</aside>
-
-Removes a field mapping.
-
-#### remove(field)
-
-| Arguments | Type | Description |
-|---------------|---------|----------------------------------------|
-| field | string | Name of the field from which the mapping is to be removed |
-
 ## set ![public](./images/public.png)
+
+```js
+dataMapping.set('field', {type: 'string', index: 'analyzed', null_value: ''});
+```
+
+> Return the updated KuzzleDataMapping object
 
 <aside class="notice">Changes made by this function won't be applied until you call the <code>apply</code> method</aside>
 
