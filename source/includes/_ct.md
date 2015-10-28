@@ -94,6 +94,73 @@ white-label-profile-id |
 active-only | Flag to fetch only active citations. One of Yes, No. Defaults to No.
 is-public | Publish reports on a white label URL. Yes or No.
 
+## Get Report
+
+<span class="label label-info">Account Method</span>
+
+> Success (200 OK)
+
+```json
+{
+    "success": true,
+    "report": {
+        "report_id": "255565",
+        "customer_id": "88",
+        "client_id": "235285",
+        "weekly_run": "3",
+        "monthly_run": "0",
+        "report_name": "The View",
+        "website_address": "www.ullubatanc.com",
+        "business_name": "Ullu Bata Inc.",
+        "business_location": "London",
+        "postcode": "ABCD1234",
+        "country": "GBR",
+        "state_code": null,
+        "address1": "",
+        "address2": "",
+        "telephone": "01273 207 100",
+        "business_type": "Restaurant",
+        "primary_location": "Brighton",
+        "last_run_id": "1185703",
+        "old_business_name_1": "View Hove",
+        "old_postcode_1": "01273 207 037",
+        "old_business_name_2": "Babylon Lounge",
+        "old_postcode_2": "BN3 4FA",
+        "last_run": "2015-10-28 05:31:59",
+        "company_name": "Ullu Bata Inc.",
+        "white_label_profile_id": "7819",
+        "notify": "0",
+        "email_addresses": "[\"example@brightlocal.com\"]",
+        "active_only": "",
+        "is_public": "Yes",
+        "public_key": "<REPLACED>",
+        "created": "2015-10-28 05:00:34",
+        "status": "complete",
+        "urls": {
+            "interactive_url": "https:\/\/tools.brightlocal.com\/seo-tools\/admin\/ct\/reports\/view\/255565",
+            "pdf_url": "https:\/\/tools.brightlocal.com\/seo-tools\/admin\/ct\/reports\/pdf\/255565",
+            "csv_url": "https:\/\/tools.brightlocal.com\/seo-tools\/admin\/ct\/reports\/csv\/255565",
+            "public_interactive_url": "<REPLACED>",
+            "public_pdf_url": "<REPLACED>",
+            "public_csv_url": "<REPLACED>"
+        }
+    }
+}
+```
+
+### HTTP Request
+
+`GET https://tools.brightlocal.com/seo-tools/api/v2/ct/get`
+
+### Query Parameters
+
+Parameter | Notes
+--------- | -----
+api-key | <span class="label label-required">Required</span>	
+sig | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
+expires | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
+report-id | <span class="label label-required">Required</span>
+
 ## Run Report
 
 <span class="label label-info">Account Method</span>
