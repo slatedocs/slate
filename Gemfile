@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.2.2'
+ruby '2.2.3'
 
 # Middleman
 gem 'middleman', '~>3.3.10'
@@ -10,4 +10,4 @@ gem 'rouge', '~> 1.9.0'
 gem 'redcarpet', '~> 3.3.1'
 
 gem 'rake', '~> 10.4.2'
-# gem 'therubyracer', '~> 0.12.1', platforms: :ruby
+gem 'therubyracer'
