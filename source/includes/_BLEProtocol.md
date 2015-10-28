@@ -123,9 +123,9 @@ In the command mode, the packet enables/disables the streaming of the Euler Angl
 
 In the response mode, the data section includes 4 bytes for the timestamp (Byte#5-8), which is then followed by 6 bytes (Byte#9-14) with the "Euler_fxp" data structure defined in the motion engine documentation. The whole response packet structure including header is shown below:
 
-| Byte 1 (subsystem) | Byte 2 (length) | Byte 3 (CRC) |  Byte 4 (command) |Byte 5-8 |  Byte 9-14  | Bytes 15-20 |
-|:------------------:|:---------------:|:------------:|:-----------------:|:-------:|-------------|-------------|
-|        0x01        |       0x10      |      CRC     |        0x05       |TimeStamp|  Euler_fxp  |  Reserved   |
+|Byte 1 (subsystem)|Byte 2 (length)|Byte 3|Byte 4 (command)|Byte 5-8|Byte 9-14|Bytes 15-20|
+|:----------------:|:-------------:|:----:|:--------------:|:-------:|:-------:|:---------:|
+|       0x01       |      0x10     | CRC  |      0x05      |TimeStamp|Euler_fxp| Reserved  |
 
 ##### ExtForce Command/Response
 In the command mode, the packet enables/disables the streaming of the external force vector. Byte#5 will be a Boolean value representing the Enable/Disable command. The overall command mode External Force packet has the following structure:
