@@ -194,7 +194,7 @@ In the response mode, the data section includes 4 bytes for the timestamp (Byte#
 
 |Byte 1 (subsystem)|Byte 2 (length)|Byte 3 (CRC)|Byte 4 (command)|Byte 5-8 |   Byte 9-14   |  Bytes 15-20  |
 |:----------------:|:-------------:|:----------:|:--------------:|:-------:|:-------------:|:-------------:|
-|       0x01       |      0x10     |    CRC     |      0x06      |TimeStamp|AxesRaw_t (Mag)|AxesRaw_t (Acc)|
+|       0x01       |      0x10     |    CRC     |      0x0B      |TimeStamp|AxesRaw_t (Mag)|AxesRaw_t (Acc)|
 
 
 
