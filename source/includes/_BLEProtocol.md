@@ -2,11 +2,15 @@
 
 ## General Format
 The general format of the BLE packets being transferred between Neblina and the host applicaion is as follows:
+<!---
 ```c
 Bytes#1-4: Header Section
 Bytes#5-20: Data Section
 ```
-
+-->
+| Bytes 1-4      | Bytes 5-20    |
+|----------------|---------------|
+| Header Section | Data Section  |
 ### Header Section
 The header section consists of four bytes.
 ###### Byte#1: Subsystem
