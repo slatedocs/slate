@@ -79,14 +79,19 @@ beyonic.CollectionRequest.create(phonenumber='+256773712831',
 }
 ```
 
-To create a new collection, make a POST to the endpoint above, with the attributes below.
+To create a new collection request, make a POST to the endpoint above, with the attributes below.
 
 Parameter | Required | Type | Example | Notes
 --------- | -------- | ---- | ------- | -----
 phonenumber | Yes | String | +256773712831 | Must be in international format
+first_name | No | String | Luke | Optional subscriber first name - if omitted, the first name will be set to 'Anonymous'
+last_name | No | String | Woods | Optional subscriber last name - if omitted, the last name will be set to 'Contact'
 amount | Yes | String, Integer or Decimal | 3000 | Do not include thousands separators
 currency | Yes | String | UGX | 3 letter ISO currency code. No currency conversion is done, so the currency must be valid for the selected phonenumber. You must have funded Beyonic an account in this currency. If your account for this currency has zero balance, your payment will fail.
 metadata | No | JSON String | "{'my_id': '123ASDAsd123'}" | Custom attributes to store with this object. See the Metadata section for more information.
+success_message | No | String (Max 140 characters) | "Thank you for your payment!" | *New in V2.* This message will be sent via SMS to the subscriber when they make a payment for this collection request. '-Powered by Beyonic' shall be appended to this message. If you leave this message out, a default message shall be sent by Beyonic. You can include {amount} and {customer} placeholders - these will be replaced with the amount and customer name or number details before the message is sent.
+send_instructions | No | Boolean | False | *New in V2.* Defaults to True. Indicates whether we should send payment instructions to the subscriber via SMS. This value may be ignored on some networks that have alternative ways of notifying the subscriber of pending payment requests.
+instructions | No | String (Max 140 characters) | "Use #1234 as the reference" | *New in V2.* Allows overriding of the default instructions sent to the subscriber. This value may be ignored on some networks that have alternative ways of notifying the subscriber of pending payment requests.
 
 ## Retrieving a single collection request
 

@@ -31,10 +31,12 @@ import beyonic
 beyonic.api_version = 'v1'
 ```
 
-The current version is v1. The default API endpoint to this version.
+You don't need to specify a version in your request. The first time an api request is made for your organization, the version is saved, and will be used on subsequent api  requests unless it is changed in the organization settings, or overridden as below. This allows your client applications to continue working even if newer API versions are released.
 
-You can access a specific API version in 2 ways:
+You can override the API version for a specific request in 2 ways:
 
 * Use version specific URLS like: https://app.beyonic.com/api/v1
 * Include the Beyonic-Version header in your request as shown in the examples to the right.
+
+The various API libraries provide methods for changing the version, as shown in the examples to the right.
 
