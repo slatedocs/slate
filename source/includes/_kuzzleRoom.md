@@ -9,6 +9,15 @@ Once you have subscribed, if a pub/sub message is published matching your filter
 
 ## Constructors
 
+```js
+/*
+ Constructors are not exposed in the JS/Node SDK.
+ KuzzleRoom objects are returned by KuzzleDataCollection.subscribe and
+ KuzzleDocument.subscribe methods.
+ */
+```
+
+
 Creates a KuzzleRoom object.
 
 #### KuzzleRoom(KuzzleDataCollection)

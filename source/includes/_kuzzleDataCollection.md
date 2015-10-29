@@ -9,8 +9,8 @@ A data collection is a set of data managed by Kuzzle. It acts like a data table 
 
 ```js
 /*
- The simplest way to get a KuzzleDataCollection object is to call
- kuzzle.dataCollectionFactory('collection name');
+ Constructors are not exposed in the JS/Node SDK. You may get an instantiated
+ KuzzleDataCollection object by calling Kuzzle.dataCollectionFactory()
  */
 ```
 

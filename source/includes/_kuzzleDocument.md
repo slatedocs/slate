@@ -4,6 +4,14 @@ Kuzzle handles documents, either as realtime messages or as stored documents. Ku
 
 ## Constructors
 
+```js
+/*
+ Constructors are not exposed in the JS/Node SDK.
+ KuzzleDocument objects are returned by various KuzzleDataCollection methods.
+ */
+```
+
+
 #### KuzzleDocument(KuzzleDataCollection)
 
 #### KuzzleDocument(KuzzleDataCollection, content)

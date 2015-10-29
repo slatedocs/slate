@@ -11,6 +11,14 @@ Once a field mapping has been set, it cannot be removed without reconstructing t
 
 ## Constructors
 
+```js
+/*
+ Constructors are not exposed in the JS/Node SDK.
+ KuzzleDataMapping objects are returned by the method
+ KuzzleDataCollection.getMapping
+ */
+```
+
 #### KuzzleDataMapping(KuzzleDataCollection)
 
 | Arguments | Type | Description |
