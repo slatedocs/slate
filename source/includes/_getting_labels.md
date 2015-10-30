@@ -16,6 +16,6 @@ This option is only valid once an order has been booked with a courier.
 
 ![Label PDF](images/label_pdf.png)
 
-_Shipping Label taken displayed in the browser_
+_Example Shipping Label_
 
-<aside class='success'>If you desire to build a method to book an order AND get the order label, because of the short delay between booking an order and booking with the courier, you will want to investigate options like <strong>long-polling</strong> or setting up a <strong>websocket</strong> to check for labels until they're generated and added to the order.</aside>
+<aside class='success'>If you desire to build a method to book an order AND get the order label, because of the short delay between booking an order and booking with the courier, you will want to investigate options like <strong>long-polling</strong> to check for labels until they're generated and added to the order.</aside>
