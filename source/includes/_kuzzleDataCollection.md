@@ -378,7 +378,7 @@ To subscribe to the entire data collection, simply provide an empty filter.
 |---------------|---------|----------------------------------------|
 | filters | JSON Object | Filters in [Kuzzle DSL](https://github.com/kuzzleio/kuzzle/blob/master/docs/filters.md) format |
 | callback | function | Callback to call every time a notification is received on this subscription |
-| options | object | Subscription configuration |
+| options | object | Subscription configuration. Passed to the KuzzleRoom constructor. |
 
 
 ## update ![public](./images/public.png)
