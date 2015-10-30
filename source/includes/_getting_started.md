@@ -29,10 +29,6 @@ Once you have been granted API access, visit your API tab to get your `api key`.
   {"error":"payment_required","error_description":"The account associated with this API key has no method of payment. Please go to your Account Settings in your Sendle Dashboard and add a payment method."}  
 ```
 
-<aside class="success">To use Sendle API, you will need a valid payment option attached to the Sendle Account for any request that would create a booking.</aside>
+To use the Sendle API, during the beta period you need to be on a manually invoiced account. Sendle Support will
+organise this for you.
 
-![Add Payment Details](images/payment_modal.png)
-
-To use the API, be sure to have a credit card on file.
-
-For payments, Sendle uses [Stripe](https://stripe.com). If you want to use a dummy credit card for sandbox testing, [visit stripes testing docs](https://stripe.com/docs/testing) for examples.
