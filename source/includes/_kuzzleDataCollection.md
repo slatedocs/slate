@@ -113,13 +113,13 @@ Returns the number of documents matching the provided set of filters.
 | filters | JSON Object | Filters in [ElasticSearch Query DSL](https://www.elastic.co/guide/en/elasticsearch/reference/1.3/query-dsl.html) format |
 
 
-## create ![public](./images/public.png)
+## createDocument ![public](./images/public.png)
 
 ```js
 // Using callbacks (NodeJS or Web Browser)
 kuzzle
   .dataCollectionFactory('collection')
-  .create({title: 'foo', content: 'bar'}, {updateIfExist: true}, function (err, res) {
+  .createDocument({title: 'foo', content: 'bar'}, {updateIfExist: true}, function (err, res) {
     // callback called once the create action has been completed
     // => the result is a KuzzleDocument object
   });
@@ -127,7 +127,7 @@ kuzzle
 // Using promises (NodeJS only)
 kuzzle
  .dataCollectionFactory('collection')
- .createPromise({title: 'foo', content: 'bar'}, {updateIfExist: true})
+ .createDocumentPromise({title: 'foo', content: 'bar'}, {updateIfExist: true})
  .then(res => {
    // promise resolved once the create action has been completed
    // => the result is a KuzzleDocument object
@@ -138,13 +138,13 @@ kuzzle
 
 Create a new document in Kuzzle.
 
-#### create(KuzzleDocument)
+#### createDocument(KuzzleDocument)
 
-#### create(KuzzleDocument, updateIfExist)
+#### createDocument(KuzzleDocument, updateIfExist)
 
-#### create(content)
+#### createDocument(content)
 
-#### create(content, updateIfExist)
+#### createDocument(content, updateIfExist)
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
@@ -154,20 +154,20 @@ Create a new document in Kuzzle.
 
 **Note:** by default, the ``updateIfExist`` is set to ``false``
 
-## delete ![public](./images/public.png)
+## deleteDocument ![public](./images/public.png)
 
 ```js
 // Deleting one document using callbacks (NodeJS or Web Browser)
 kuzzle
   .dataCollectionFactory('collection')
-  .delete('document unique ID', function (err, res) {
+  .deleteDocument('document unique ID', function (err, res) {
     // callback called once the delete action has been completed
   });
 
 // Deleting one document using promises (NodeJS)
 kuzzle
   .dataCollectionFactory('collection')
-  .deletePromise('document unique ID')
+  .deleteDocumentPromise('document unique ID')
   .then(res => {
     // promises resolved once the delete action has been completed
   });
@@ -175,14 +175,14 @@ kuzzle
 // Deleting multiple documents using callbacks (NodeJS or Web Browser)
 kuzzle
   .dataCollectionFactory('collection')
-  .delete({term: {title: 'foo'}}, function (err, res) {
+  .deleteDocument({term: {title: 'foo'}}, function (err, res) {
     // callback called once the delete with query has been completed
   });
 
 // Deleting multiple documents using promises (NodeJS)
  kuzzle
  .dataCollectionFactory('collection')
- .deletePromise({title: 'foo', content: 'bar'}, {updateIfExist: true})
+ .deleteDocumentPromise({title: 'foo', content: 'bar'}, {updateIfExist: true})
  .then(res => {
    // promise resolved once the delete by query has been completed
  });
@@ -200,9 +200,9 @@ There is a small delay between documents creation and their existence in our adv
 
 Delete persistent documents.
 
-#### delete(documentId)
+#### deleteDocument(documentId)
 
-#### delete(filters)
+#### deleteDocument(filters)
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
@@ -210,20 +210,20 @@ Delete persistent documents.
 | filters | JSON Object | Filters in [ElasticSearch Query DSL](https://www.elastic.co/guide/en/elasticsearch/reference/1.3/query-dsl.html) format |
 
 
-## fetch ![public](./images/public.png)
+## fetchDocument ![public](./images/public.png)
 
 ```js
 // Using callbacks (NodeJS or Web Browser)
 kuzzle
   .dataCollectionFactory('collection')
-  .fetch('documentId', function (error, result) {
+  .fetchDocument('documentId', function (error, result) {
     // result is a KuzzleDocument object
   });
 
 // Using promises (NodeJS)
 kuzzle
   .dataCollectionFactory('collection')
-  .fetchPromise('documentId')
+  .fetchDocumentPromise('documentId')
   .then(result => {
     // result is a KuzzleDocument object
   });
@@ -233,20 +233,20 @@ kuzzle
 
 Retrieve a single stored document using its unique document ID.
 
-#### fetch(documentId)
+#### fetchDocument(documentId)
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
 | documentId | string | Unique document identifier |
 
 
-## fetchAll ![public](./images/public.png)
+## fetchAllDocuments ![public](./images/public.png)
 
 ```js
 // Using callbacks (NodeJS or Web Browser)
 kuzzle
   .dataCollectionFactory('collection')
-  .fetchAll(function (error, result) {
+  .fetchAllDocuments(function (error, result) {
     // result is an object containing the total number of documents
     // and an array of KuzzleDocument objects
   });
@@ -254,7 +254,7 @@ kuzzle
 // Using promises (NodeJS)
 kuzzle
   .dataCollectionFactory('collection')
-  .fetchAllPromise()
+  .fetchAllDocumentsPromise()
   .then(result => {
     // result is an object containing the total number of documents
     // and an array of KuzzleDocument objects
@@ -316,20 +316,20 @@ Publish a realtime message
 | KuzzleDocument | object | KuzzleDocument object |
 | content | JSON Object | Content of the document to publish |
 
-## replace ![public](./images/public.png)
+## replaceDocument ![public](./images/public.png)
 
 ```js
 // Using callbacks (NodeJS or Web Browser)
 kuzzle
   .dataCollectionFactory('collection')
-  .replace('documentId', {title: 'foo', content: 'bar'}, function (error, result) {
+  .replaceDocument('documentId', {title: 'foo', content: 'bar'}, function (error, result) {
     // result is a KuzzleDocument object
   });
 
 // Using promises (NodeJS)
 kuzzle
   .dataCollectionFactory('collection')
-  .replacePromise('documentId', {title: 'foo', content: 'bar'})
+  .replaceDocumentPromise('documentId', {title: 'foo', content: 'bar'})
   .then(result => {
     // result is a KuzzleDocument object
   });
@@ -339,9 +339,9 @@ kuzzle
 
 Replace an existing document with a new one.
 
-#### replace(documentId, KuzzleDocument)
+#### replaceDocument(documentId, KuzzleDocument)
 
-#### replace(documentId, content)
+#### replaceDocument(documentId, content)
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
@@ -381,20 +381,20 @@ To subscribe to the entire data collection, simply provide an empty filter.
 | options | object | Subscription configuration. Passed to the KuzzleRoom constructor. |
 
 
-## update ![public](./images/public.png)
+## updateDocument ![public](./images/public.png)
 
 ```js
 // Using callbacks (NodeJS or Web Browser)
 kuzzle
   .dataCollectionFactory('collection')
-  .update('documentId', {title: 'foo', content: 'bar'}, function (error, result) {
+  .updateDocument('documentId', {title: 'foo', content: 'bar'}, function (error, result) {
     // result is a KuzzleDocument object
   });
 
 // Using promises (NodeJS)
 kuzzle
   .dataCollectionFactory('collection')
-  .updatePromise('documentId', {title: 'foo', content: 'bar'})
+  .updateDocumentPromise('documentId', {title: 'foo', content: 'bar'})
   .then(result => {
     // result is a KuzzleDocument object
   });
@@ -404,9 +404,9 @@ kuzzle
 
 Update parts of a document
 
-#### update(documentId, KuzzleDocument)
+#### updateDocument(documentId, KuzzleDocument)
 
-#### update(documentId, content)
+#### updateDocument(documentId, content)
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
