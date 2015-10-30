@@ -17,7 +17,7 @@ var document = kuzzle
   .dataCollectionFactory('collection')
   .documentFactory({content: 'some content'});
 
-var document = var document = kuzzle
+var document = kuzzle
   .dataCollectionFactory('collection')
   .documentFactory('id', {content: 'some content'});
 ```
