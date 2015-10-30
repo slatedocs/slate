@@ -9,17 +9,17 @@ Kuzzle handles documents, either as realtime messages or as stored documents. Ku
  Constructors are not exposed in the JS/Node SDK.
  KuzzleDocument objects are returned by various KuzzleDataCollection methods.
 
- You may also use the KuzzleDataCollection.Document() factory:
+ You may also use the KuzzleDataCollection.documentFactory() method:
  */
-var document = kuzzle.dataCollectionFactory('collection').Document('id');
+var document = kuzzle.dataCollectionFactory('collection').documentFactory('id');
 
 var document = kuzzle
   .dataCollectionFactory('collection')
-  .Document({content: 'some content'});
+  .documentFactory({content: 'some content'});
 
 var document = var document = kuzzle
   .dataCollectionFactory('collection')
-  .Document('id', {content: 'some content'});
+  .documentFactory('id', {content: 'some content'});
 ```
 
 
