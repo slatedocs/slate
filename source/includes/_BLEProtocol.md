@@ -36,10 +36,13 @@ The 8-bit CRC is calculated over the data section of the packet.
 
 ###### Byte#4: Command
 Different commands can be issued identified by this field. For the power management subsystem, currently there is only one command as follows:
+
 ```c 
 #define POWERMGMT_GET_BAT_LEVEL 0
 ```
+
 However, regarding the motion engine subsystem a number of commands exist, which are listed below:
+
 ```c 
 #define Downsample 0x01 //Downsampling factor definition
 #define MotionState 0x02 //streaming Motion State
