@@ -367,3 +367,24 @@ Removes a listener from an event.
 |---------------|---------|----------------------------------------|
 | event | string | One of the event described in the ``Event Handling`` section of this documentation |
 | listenerID | string | The ID returned by ``addListener`` |
+
+## setHeaders ![public](./images/public.png)
+
+```js
+kuzzle.setHeaders({someContent: 'someValue'}, true);
+```
+
+> Returns itself
+
+This is a helper function returning itself, allowing to easily chain calls.
+
+#### setHeaders(content)
+
+#### setHeaders(content, replace)
+
+| Arguments | Type | Description |
+|---------------|---------|----------------------------------------|
+| content | JSON Object | New content |
+| replace | boolean | true: replace the current content with the provided data, false: merge it |
+
+**Note:** by default, the ``replace`` argument is set to ``false``

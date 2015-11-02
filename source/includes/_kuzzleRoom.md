@@ -119,6 +119,27 @@ Unsubscribes first if this KuzzleRoom was already listening to events.
 | filters | JSON Object | Filters in [Kuzzle DSL](https://github.com/kuzzleio/kuzzle/blob/master/docs/filters.md) format |
 | callback | function | Function called each time a notification is received |
 
+## setHeaders ![public](./images/public.png)
+
+```js
+room.setHeaders({someContent: 'someValue'}, true);
+```
+
+> Returns itself
+
+This is a helper function returning itself, allowing to easily chain calls.
+
+#### setHeaders(content)
+
+#### setHeaders(content, replace)
+
+| Arguments | Type | Description |
+|---------------|---------|----------------------------------------|
+| content | JSON Object | New content |
+| replace | boolean | true: replace the current content with the provided data, false: merge it |
+
+**Note:** by default, the ``replace`` argument is set to ``false``
+
 ## unsubscribe ![public](./images/public.png)
 
 ```js

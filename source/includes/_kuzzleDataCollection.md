@@ -349,6 +349,29 @@ Replace an existing document with a new one.
 | KuzzleDocument | object | KuzzleDocument object |
 | content | JSON Object | Content of the document to create |
 
+## setHeaders ![public](./images/public.png)
+
+```js
+kuzzle
+  .dataCollectionFactory('collection')
+  .setHeaders({someContent: 'someValue'}, true);
+```
+
+> Returns itself
+
+This is a helper function returning itself, allowing to easily chain calls.
+
+#### setHeaders(content)
+
+#### setHeaders(content, replace)
+
+| Arguments | Type | Description |
+|---------------|---------|----------------------------------------|
+| content | JSON Object | New content |
+| replace | boolean | true: replace the current content with the provided data, false: merge it |
+
+**Note:** by default, the ``replace`` argument is set to ``false``
+
 ## subscribe ![public](./images/public.png)
 
 ```js

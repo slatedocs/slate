@@ -95,3 +95,24 @@ Adds or updates a field mapping.
 |---------------|---------|----------------------------------------|
 | field | string | Name of the field from which the mapping is to be added or updated |
 | mapping | JSON Object | Mapping for this field, following the [Elasticsearch Mapping format](https://www.elastic.co/guide/en/elasticsearch/reference/1.3/mapping.html)
+
+## setHeaders ![public](./images/public.png)
+
+```js
+dataMapping.setHeaders({someContent: 'someValue'}, true);
+```
+
+> Returns itself
+
+This is a helper function returning itself, allowing to easily chain calls.
+
+#### setHeaders(content)
+
+#### setHeaders(content, replace)
+
+| Arguments | Type | Description |
+|---------------|---------|----------------------------------------|
+| content | JSON Object | New content |
+| replace | boolean | true: replace the current content with the provided data, false: merge it |
+
+**Note:** by default, the ``replace`` argument is set to ``false``

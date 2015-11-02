@@ -69,18 +69,7 @@ document.deletePromise().then(result => {
 });
 ```
 
-> Returns a JSON object containing the result of the request
-
-```json
-{ "_id": "document Id",
-  "found": true,
-  "_version": 1,
-  "requestId": "unique request identifier",
-  "controller": "write",
-  "action": "delete",
-  "collection": "collection",
-  "_source": { "deletedDocument": "content"} }
-```
+> Return this KuzzleDocument object
 
 Deletes this document in Kuzzle.
 
@@ -164,6 +153,27 @@ Replaces the current content with new data.
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
 | data | JSON Object | New content |
+| replace | boolean | true: replace the current content with the provided data, false: merge it |
+
+**Note:** by default, the ``replace`` argument is set to ``false``
+
+## setHeaders ![public](./images/public.png)
+
+```js
+document.setHeaders({someContent: 'someValue'}, true);
+```
+
+> Returns itself
+
+This is a helper function returning itself, allowing to easily chain calls.
+
+#### setHeaders(content)
+
+#### setHeaders(content, replace)
+
+| Arguments | Type | Description |
+|---------------|---------|----------------------------------------|
+| content | JSON Object | New content |
 | replace | boolean | true: replace the current content with the provided data, false: merge it |
 
 **Note:** by default, the ``replace`` argument is set to ``false``
