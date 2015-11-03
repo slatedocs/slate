@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/kuzzleio/sdk-documentation.svg?branch=master)](https://travis-ci.org/kuzzleio/sdk-documentation)
+
 # Kuzzle SDK Documentation
 
 Welcome to the Kuzzle SDK Documentation builder project!
