@@ -3,11 +3,11 @@ language: ruby
 rvm:
 - 2.0.0
 cache: bundler
-script: bundle exec rake -t 
+script: bundle exec rake -t
 after_success:
-- if [ "${TRAVIS_BRANCH}" = "master" ]; then git config --global user.email "${GIT_EMAIL}";
+- if [ "${TRAVIS_BRANCH}" = "master" ]; then git config --global user.email "support@kuzzle.io";
   fi
-- if [ "${TRAVIS_BRANCH}" = "master" ]; then git config --global user.name "${GIT_NAME}";
+- if [ "${TRAVIS_BRANCH}" = "master" ]; then git config --global user.name "Travis CI";
   fi
 - if [ "${TRAVIS_BRANCH}" = "master" ]; then  git clone --quiet --branch=gh-pages
   https://${GH_TOKEN}@github.com/${TRAVIS_REPO_SLUG} travis-build > /dev/null; fi
