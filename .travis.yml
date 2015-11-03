@@ -1,9 +1,23 @@
 sudo: false
-
 language: ruby
-
 rvm:
-  - 1.9.3
-  - 2.0.0
-
+- 1.9.3
+- 2.0.0
 cache: bundler
+script: rake build
+after_success:
+- if [ "${TRAVIS_BRANCH}" = "master" ]; then git config --global user.email "${GIT_EMAIL}";
+  fi
+- if [ "${TRAVIS_BRANCH}" = "master" ]; then git config --global user.name "${GIT_NAME}";
+  fi
+- if [ "${TRAVIS_BRANCH}" = "master" ]; then  git clone --quiet --branch=gh-pages
+  https://${GH_TOKEN}@github.com/${TRAVIS_REPO_SLUG} travis-build > /dev/null; fi
+- if [ "${TRAVIS_BRANCH}" = "master" ]; then  cp -rp build/* travis-build/ && cd travis-build
+  ; fi
+- if [ "${TRAVIS_BRANCH}" = "master" ]; then  git commit -m "Travis CI auto-merge
+  from travis build ${TRAVIS_BUILD_NUMBER}"; fi
+- if [ "${TRAVIS_BRANCH}" = "master" ]; then  git push -fq origin gh-pages > /dev/null;
+  fi
+env:
+  global:
+    secure: tpDot2Asp8EePE2WEb1cySoeOdwSmwTITm+pa6EdTgy9EHR3ZlTIcR8IMlqI7ohdLkK6pcE1lHVR6P6NVggF/FmV92A/sMROGNpv+8jNYJ1eOZ7esS2k4DxNKjLCkh+Uym7uXien4AFnxx21z2iSiFhPPjvX6+9QWuUE3k+jSph2aJsCQ2t0WfV7yZSBfb43oZfPf2GbVcza5eGM2eh2vYl/lTsUHg0brCU7fsAcJQEBmoKrHdenGy9UKfKzbTlHXuMCtcI7cNSMfdRi3UoXiAegvPSG8qVlg35OqBhwABO6o+fzzHTbzs8+KBxkwaGXa3AsntgVJfW9e/eYYbkHcbDBGcyFFiiOv2y3YvGSdGjhbUnBobrBM+LDwGnuiYwMTFiS7yDUo5qcbBUmPrEFJiKUsOCOtPTvMAnkSKlkE8vfMYObQV2+CmxypZ79p9O1TrXsUDmFOjMIH+PI4BoVTZTutTmrCrEl8L147gGYMoJbL6HOb9HJEwuekUxMEWUdzUX3IPoICqTxTNjhDYltKo4ClwLt8yzvJYzlky3zF1k89JNxeMwQmIpDRVOgvQqPeGQitqp/vJaviyDP4TXD3sLu4jNjpm9+9g7V3nPfi/sjTecf0fP7TMu6YEMaEj/aSq1njNQMdNJ2QcItkOldWdWfBzG1XFZOegWevkQWE6U=

@@ -31,6 +31,7 @@ A data collection is a set of data managed by Kuzzle. It acts like a data table 
 
 
 **Note:** the ``headers`` property is inherited from the main ``Kuzzle`` object and can be overrided
+foo
 
 ## advancedSearch ![public](./images/public.png)
 
