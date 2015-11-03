@@ -1,13 +1,13 @@
-Giosg Apps (Developer preview)
+Giosg APPS (Developer preview)
 ==========
 
 <aside class="warning">
 This documentation is a <strong>draft</strong>!
 </aside>
 
-Giosg Apps allow developers to develop own applications for giosg Live chat and embed them inside operator console much like canvas apps in Facebook.
+Giosg APPS allow developers to develop own applications for giosg Live chat and embed them inside operator console much like canvas apps in Facebook.
 
-Idea and usage of Giosg Apps is basically the same as in Facebook. You need to develop your own application with web technologies of your choice (examples and libs will be available for Angular-Meteor, Meteor and Django) and deploy to your own servers. You can then create your application to giosg.
+Idea and usage of Giosg APPS is basically the same as in Facebook. You need to develop your own application with web technologies of your choice (examples and libs will be available for Angular-Meteor, Meteor and Django) and deploy to your own servers. You can then create your application to giosg.
 
 Creating your application means defining name, description, image and application url. You also need to decide when the application will run and what permissions it needs. After saving you are ready to install and use the application.
 
@@ -87,7 +87,7 @@ Clients (apps) should authenticate by passing both the JWT token that was provid
 ```
 
 ## SSL is required for apps to work
-Applications are required to use SSL in order to be accepted as Giosg Apps. Currently UI allows saving pretty much anything as application url but requests will fail if the url doesn't start with HTTPS.
+Applications are required to use SSL in order to be accepted as Giosg APPS. Currently UI allows saving pretty much anything as application url but requests will fail if the url doesn't start with HTTPS.
 
 To develop apps locally it is possible to allow insecure urls by setting `allow_insecure_url` to `True` manually on database. No UI is provided for this to not make it too easy for some weak minded people to allow this for our customers! ;) Another possibility is to generate self signed certificate.
 
