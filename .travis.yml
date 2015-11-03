@@ -1,10 +1,9 @@
 sudo: false
 language: ruby
 rvm:
-- 1.9.3
 - 2.0.0
 cache: bundler
-script: rake build
+script: bundle exec rake -t 
 after_success:
 - if [ "${TRAVIS_BRANCH}" = "master" ]; then git config --global user.email "${GIT_EMAIL}";
   fi
