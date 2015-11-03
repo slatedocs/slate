@@ -1,13 +1,14 @@
 ---
-title: API Reference
+title: Quick Start Guide to Using the GDC API
 
 language_tabs:
-  - shell
-  - ruby
-  - python
+  - shell: cURL
+  - java: JAVA
+  - python: Python
+  
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
+  - <a href='#'>GDC API Appendix</a>
   - <a href='http://github.com/tripit/slate'>Documentation Powered by Slate</a>
 
 includes:
@@ -18,151 +19,159 @@ search: true
 
 # Introduction
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+**The GDC Application Programming Interface (API) provides developers with a programmatic interface to query and download GDC data as well as to submit data to GDC**
 
-We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+The GDC API is the external facing REST interface for the National Cancer Institute (NCI) Genomic Data Commons (GDC). The GDC API drives the GDC Data Portal and is made accessible to external developers for programmatic access to the same functionality found through the GDC Data Portal.  This includes searching for and downloading subsets of data files, metadata, and annotations based on specific parameters.  GDC API also allows programatic access for submission of dbGaP registered projects (studies) and its associated  data files, metadata, and annotations.
 
-This example API documentation page was created with [Slate](http://github.com/tripit/slate). Feel free to edit it and use it as a base for your own API's documentation.
+The GDC API allows developers to :
+-
+- Querying GDC data
+- Downloading GDC data
+- Submitting data to GDC
 
 # Authentication
 
-> To authorize, use this code:
+> Each GDC API request must include "X-Auth-Token" custom header.
 
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
+```java
 ```
 
 ```python
-import kittn
+import gdcapi
 
-api = kittn.authorize('meowmeowmeow')
+api = gdcapi.authorize('your_GDC_API_token')
 ```
 
 ```shell
 # With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
+export TOKEN='your_GDC_API_token'
+curl -H 'X-Auth-Token:$TOKEN' -k -O https://gdc-api.nci.nih.gov/data/64cfcd9d-8a23-4f88-95b6-49c05c7cbde4
+
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100 53.3M    0 53.3M    0     0   513k      0 --:--:--  0:01:46 --:--:-- 1208k
 ```
 
-> Make sure to replace `meowmeowmeow` with your API key.
+> Make sure to replace `your_GDC_API_token` with your GDC token.
 
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
+Open data and metadata in GDC is can be downloaded via GDC API without authentication. However, in order to obtain access to controlled data available in GDC, researchers must first obtain an NIH eRA Commons account and authorization to access the data through the NIH database of Genotypes and Phenotypes (dbGaP). 
 
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
+**How can I access controlled data in GDC?**
 
-`Authorization: meowmeowmeow`
+Once a researcher has obtained an eRA Commons account and dbGaP access, they can log into the GDC Data Portal and acquire an authentication token from the portal that will allow them to download the controlled data sets for which they have access via the GDC API.
 
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
+To obtain the authentication token:
+
+1. Log in to the GDC Data Portal by clicking the Login button at the top right of the page. This will redirect to the eRA Commons login page. 
+2. Once logged in to the eRA Commons, the GDC Data Portal will recognize the user as logged in and display the username in place of the login button. 
+3. Clicking the username will trigger a drop-down menu. From that menu, the option ‘Download Token’ may be selected, which will initiate an HTTPS download of a token file. 
+4. This file will contain the authentication token to be used with any secure data access associated with the GDC.
+
+<aside class="warning">
+**Remember** —   The authentication token should be kept in a secure location, as it allows access to all data accessible by the associated user.
 </aside>
+**Token Expiration**
+A token lasts for 1 month. Once it expires you will get a 401 HTTP error code.
 
-# Kittens
+Unauthorized access to data (for example invalid token) will produce the following error message:
 
-## Get All Kittens
+HTTP/1.1 403 FORBIDDEN
+    {
+      "error": "You don't have access to the data"
+    }
 
-```ruby
-require 'kittn'
+<aside class="info">
+**Remember** —   Invalid credentials will result in a server error even if the data is open access.
+</aside>
+# GDC Endpoints
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
+The GDC API is composed of multiple top level endpoints that can be used to query the API and retrieve data.
+
+##Status Endpoint
+```java
+
 ```
 
 ```python
-import kittn
 
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
 ```
 
 ```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
+curl -k 'https://gdc-api.nci.nih.gov/status'
 ```
-
 > The above command returns JSON structured like this:
 
 ```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Isis",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
+{
+  "status": "OK",
+  "tag": "0.2.15",
+  "version": 1
+}
 ```
-
-This endpoint retrieves all kittens.
-
+**Status** - https://gdc-portal.nci.nih.gov/status
 ### HTTP Request
 
-`GET http://example.com/api/kittens`
+`GET https://gdc-api.nci.nih.gov/status`
+
+##Search and Retrieval Endpoints
+The GDC search and retrieval endpoints all support the same query logic and will produce similarly structured json output 
+
+```shell
+$ curl -k 'https://gdc-api.nci.nih.gov/projects?pretty=true'
+```
+> The above command returns JSON structured like this:
+
+```json
+{
+  "data": {
+    "hits": [
+      {
+        "state": "legacy", 
+        "project_id": "TARGET-AML", 
+        "primary_site": "Blood", 
+        "disease_type": "Acute Myeloid Leukemia", 
+        "name": "Acute Myeloid Leukemia"
+      }, 
+       	...
+      {
+        "state": "legacy", 
+        "project_id": "TCGA-LAML", 
+        "primary_site": "Blood", 
+        "disease_type": "Acute Myeloid Leukemia", 
+        "name": "Acute Myeloid Leukemia"
+      }
+    ], 
+    "pagination": {
+      "count": 10, 
+      "sort": "", 
+      "from": 1, 
+      "pages": 5, 
+      "total": 44, 
+      "page": 1, 
+      "size": 10
+    }
+  }, 
+  "warnings": {}
+}
+```
+### Project Endpoint
+The Projects endpoints provides overall access to all the data served by GDC organized by Project such project(study) name, program,disease, primary site and state.
+  
+**Projects** - https://gdc-portal.nci.nih.gov/projects
+### HTTP Request
+
+`GET https://gdc-api.nci.nih.gov/projects`
 
 ### Query Parameters
 
 Parameter | Default | Description
 --------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
+facets | false | Provides a list document counts for each included facet
+fields | false | Query option to specify which fields to include in the response 
+filters| false | Query option filters specify criteria for the returned response
+from   | false | allows to specify the first record to return from the set resulting of a query
+size | false | determines the number of results to return
+sort | false | specifies a field to sort the returned results by sort order: + use asc for ascending order + use des for descending order
+pretty | false | Returns response with indentations and line breaks in a human-readable format
 
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 2,
-  "name": "Isis",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
-}
-```
-
-This endpoint retrieves a specific kitten.
-
-<aside class="warning">If you're not using an administrator API key, note that some kittens will return 403 Forbidden if they are hidden for admins only.</aside>
-
-### HTTP Request
-
-`GET http://example.com/kittens/<ID>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
 
