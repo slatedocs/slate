@@ -10,7 +10,22 @@ The collections api endpoint is https://app.beyonic.com/api/collections
 
 ## The collection object
 
-
+Field | Type | Description
+----- | -----| ----
+id | long integer | Unique object identifier
+remote_transaction_id | string | The unique transaction ID from the mobile network operator
+organization | long integer | The ID of the organization that the collection was matched to
+amount | decimal | The collection amount
+currency | string | The 3 letter ISO currency code for the collection
+phonenumber | string | The phone number that the collection was initiated from, in international format, starting with a +
+payment_date | string | The date that the collection was made, in the UTC timezone. Format: "YYYY-MM-DDTHH:MM:SSZ"
+reference | string | The description or reference code that was included with the collection
+status | string | A string showing the status of the collection. One of: successful, failed, pending or cashed_out
+created | string | The date that the collection was created, in the UTC timezone. Format: "YYYY-MM-DDTHH:MM:SSZ"
+author | long integer | The ID of the user who created the collection
+modified | string | The date that the collection was last modified, in the UTC timezone. Format: "YYYY-MM-DDTHH:MM:SSZ"
+updated_by | string | The ID of the user who last updated the collection
+collection_request | long integer or null | The ID of the collection request that this collection was matched to, if any
 
 ## Retrieving a single collection
 

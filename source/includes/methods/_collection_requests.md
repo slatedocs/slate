@@ -10,6 +10,27 @@ Note: Currently, collection requests **do not** initiate any interaction with th
 
 The collection requests api endpoint is https://app.beyonic.com/api/collectionrequests
 
+## The collection request object
+
+Field | Type | Description
+----- | -----| ----
+id | long integer | Unique object identifier
+organization | long integer | The ID of the organization that owns this collection request (This is usually your organization ID)
+amount | decimal | The collection request amount
+currency | string | The 3 letter ISO currency code for the collection request
+phonenumber | string | The phone number that the collection request is intended for, in international format, starting with a +
+reason | string or null | Internal description or reason for this collection request
+metadata | hash | Any custom metadata that was added to the collection request when it was created
+created | string | The date that the collection request was created, in the UTC timezone. Format: "YYYY-MM-DDTHH:MM:SSZ"
+author | long integer | The ID of the user who created the collection request
+modified | string | The date that the collection request was last modified, in the UTC timezone. Format: "YYYY-MM-DDTHH:MM:SSZ"
+updated_by | string | The ID of the user who last updated the collection request
+collection | long integer or null | The ID of the collection that fulfilled the collection request, if any
+success_message | string or null | The confirmation message delivered to the customer upon successful completion of this payment request
+instructions | string or null | Any custom instructions that were delivered to the customer
+send_instructions | boolean | Whether or not Beyonic will attempt to send instructions to the user
+                  
+                  
 ## Creating a new collection request
 
 > Sample Request:
@@ -88,6 +109,7 @@ first_name | No | String | Luke | Optional subscriber first name - if omitted, t
 last_name | No | String | Woods | Optional subscriber last name - if omitted, the last name will be set to 'Contact'
 amount | Yes | String, Integer or Decimal | 3000 | Do not include thousands separators
 currency | Yes | String | UGX | 3 letter ISO currency code. No currency conversion is done, so the currency must be valid for the selected phonenumber. You must have funded Beyonic an account in this currency. If your account for this currency has zero balance, your payment will fail.
+reason | No | String | Transaction Fees | Internal description or reason for this collection request
 metadata | No | JSON String | "{'my_id': '123ASDAsd123'}" | Custom attributes to store with this object. See the Metadata section for more information.
 success_message | No | String (Max 140 characters) | "Thank you for your payment!" | *New in V2.* This message will be sent via SMS to the subscriber when they make a payment for this collection request. '-Powered by Beyonic' shall be appended to this message. If you leave this message out, a default message shall be sent by Beyonic. You can include {amount} and {customer} placeholders - these will be replaced with the amount and customer name or number details before the message is sent.
 send_instructions | No | Boolean | False | *New in V2.* Defaults to True. Indicates whether we should send payment instructions to the subscriber via SMS. This value may be ignored on some networks that have alternative ways of notifying the subscriber of pending payment requests.

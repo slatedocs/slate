@@ -6,6 +6,31 @@ To send payments to a mobile subscriber, you create a new payment object. You ca
 
 * End Point: https://app.beyonic.com/api/payments
 
+## The payment object
+
+Field | Type | Description
+----- | -----| ----
+id | long integer | Unique object identifier
+organization | long integer | The ID of the organization that the payment belongs to. (This is usually your organization ID)
+amount | decimal | The payment amount
+currency | string | The 3 letter ISO currency code for the payment
+description | string | The payment description
+phone_nos | list | A list of phone numbers that this payment was sent to
+start_date | string | The date that the payment is scheduled to be delivered, in the UTC timezone. Format: "YYYY-MM-DDTHH:MM:SSZ"
+metadata | hash | Any custom metadata that was added to the contact object at creation time
+state | string | The payment state. One of: new, validated, approval_needed, approval_requested, approved, rejected, scheduled, processed, processed_with_errors or cancelled
+last_error | string | A string description of the latest error that occurred, if any
+rejected_reason | string | Describes why the payment was rejected, if it is in the rejected state
+rejected_time | string | The date that the payment was rejected, in the UTC timezone. Format: "YYYY-MM-DDTHH:MM:SSZ"
+rejected_by | long integer | The ID of the user who rejected the payment
+cancelled_reason | string | Describes why the payment was cancelled, if it is in the cancelled state
+cancelled_time | string | The date that the payment was cancelled, in the UTC timezone. Format: "YYYY-MM-DDTHH:MM:SSZ"
+cancelled_by long integer | The ID of the user who cancelled the payment
+created | string | The date that the payment was created, in the UTC timezone. Format: "YYYY-MM-DDTHH:MM:SSZ"
+author | long integer | The ID of the user who created the payment
+modified | string | The date that the payment was last modified, in the UTC timezone. Format: "YYYY-MM-DDTHH:MM:SSZ"
+updated_by | string | The ID of the user who last updated the payment
+                  
 ## Creating a new payment
 
 > Sample Request:

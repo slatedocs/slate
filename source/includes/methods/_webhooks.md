@@ -27,6 +27,17 @@ You can use the Webhooks API described below to update or delete your callback U
 
 The webhooks api endpoint is https://app.beyonic.com/api/webhooks
 
+## The webhook object
+
+Field | Type | Description
+----- | -----| ----
+id | long integer | Unique object identifier
+user | long integer | The ID of the user who created the webhook
+event | string | The webhook event. See supported events below
+created | string | The date that the webhook was created, in the UTC timezone. Format: "YYYY-MM-DDTHH:MM:SSZ"
+updated | string | The date that the webhook was last modified, in the UTC timezone. Format: "YYYY-MM-DDTHH:MM:SSZ"
+target | string | The URL that triggered events will be sent to
+
 ## Supported events
 
 The following events are supported

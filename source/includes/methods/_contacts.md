@@ -6,6 +6,25 @@ Contacts represent people whom you can send payments to, or receive payments fro
 
 The contacts api endpoint is https://app.beyonic.com/api/contacts
 
+## The contact object
+
+Field | Type | Description
+----- | -----| ----
+id | long integer | Unique object identifier
+organization | long integer | The ID of the organization that the contact belongs to. (This is usually your organization ID)
+first_name | string | The contact's first name
+last_name | string | The contact's last name
+email | string | The contact's email address
+phone_number | string | The contact's phone number, in international format, starting with a +
+type | string | The contact's type, as set in the system. One of: employee, beneficiary, vendor, other OR a custom string
+status | string | The contact's status. One of: active or inactive
+metadata | hash | Any custom metadata that was added to the contact object at creation time
+created | string | The date that the contact was created, in the UTC timezone. Format: "YYYY-MM-DDTHH:MM:SSZ"
+author | long integer | The ID of the user who created the contact
+modified | string | The date that the contact was last modified, in the UTC timezone. Format: "YYYY-MM-DDTHH:MM:SSZ"
+updated_by | string | The ID of the user who last updated the contact
+
+
 ## Creating a new contact
 
 > Sample Request:
