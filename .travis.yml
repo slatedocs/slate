@@ -13,7 +13,7 @@ after_success:
   https://${GH_TOKEN}@github.com/${TRAVIS_REPO_SLUG} travis-build > /dev/null; fi
 - if [ "${TRAVIS_BRANCH}" = "master" ]; then  cp -rp build/* travis-build/ && cd travis-build
   ; fi
-- if [ "${TRAVIS_BRANCH}" = "master" ]; then  git commit -m "Travis CI auto-merge
+- if [ "${TRAVIS_BRANCH}" = "master" ]; then  git commit -am "Travis CI auto-merge
   from travis build ${TRAVIS_BUILD_NUMBER}"; fi
 - if [ "${TRAVIS_BRANCH}" = "master" ]; then  git push -fq origin gh-pages > /dev/null;
   fi
