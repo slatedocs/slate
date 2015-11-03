@@ -20,6 +20,7 @@ includes:
   - ordering
   - filtering
   - metadata
+  - changelog
   - methods
   - methods/collections
   - methods/collection_requests
