@@ -1,0 +1,241 @@
+$orange: #f0592a;
+$red: #c54920;
+$yellow: #fbaf42;
+$lightgray: #e1ebf0;
+// $gray: #bdd2dc;
+$gray: #e2ebf0;
+$darkgray: #373c41;
+$blue: #6b3281;
+$purple: #511d62;
+$green: #7aae37;
+$darkgreen: #64953f;
+
+.highlight, .highlight .w {
+    background-color: #292929;
+}
+
+/* no dark box in sidebar ... content takes remaining width */
+.page-wrapper {
+  background: #fff;
+  margin-left: 280px;
+  .dark-box {
+	 display: none;
+  }
+}
+.content > h1, .content > h2, .content > h3, .content > h4, .content > h5, .content > h6, .content > p, .content > table, .content > ul, .content > ol, .content > aside, .content > dl {
+	margin-right: 0;
+	text-shadow: none;
+  background-image: none;
+}
+
+.content h6, html, body {
+	font-size: 15px;
+    font-family: 'Signika', sans-serif; /* Signika is a google font */
+  font-weight: 300;
+}
+
+.content {
+  max-width: 800px;
+  > pre {
+        margin-left: 28px;
+  }
+  pre {
+    border-radius: 3px;
+    padding: 15px;
+    margin-bottom: 10px;
+    width: auto;
+  }
+  pre, blockquote {
+  	float: inherit;
+  	background-color: #efefef;
+  	text-shadow: none;
+  	color: #333;
+  	p {
+  		background-color: inherit;
+  		color: #333;
+  		border: none;
+  	}
+  }
+  h1.dark {
+  	background: $orange;
+  	color: #fff;
+  	border-bottom: 0;
+  }
+  h1, h2, h3 {
+    font-family: 'Exo', sans-serif; /** exo is a google font **/
+    text-transform: uppercase;
+    font-weight: 800;
+  } 
+  h1 {
+    font-size: 40px;
+    border-top: none;
+    border-bottom-color: #efefef;
+    color: $orange;
+    margin-left: 20px;
+    padding-left: 10px;
+  }
+  h2 {
+    font-size: 30px;
+    color: $purple;
+  }
+  h3 {
+    font-size: 20px;
+  }
+}
+
+.highlight, .highlight .w {
+  background-color: inherit;
+  color: inherit;
+}
+
+.highlight .s, .highlight .sb, .highlight .sc, .highlight .sd, .highlight .s2, .highlight .sh, .highlight .sx, .highlight .s1, .highlight .no {
+  // default color was too light. 
+  color: $red;
+}
+
+.highlight .p, .highlight .pi {
+  color: #333;
+}
+
+#logo {
+	width: 50%;
+	padding: 15px 5% 10px;
+}
+
+.tocify-wrapper {
+  width: 280px;
+  font-size: 18px;
+  font-weight: normal;
+}
+
+.tocify-wrapper .tocify-subheader .tocify-item > a {
+  padding-left: 25px;
+  font-size: 14px;
+}
+
+.tocify-wrapper ul, .tocify-wrapper li {
+  line-height: 45px;
+}
+
+/*** lookup table ***/
+
+.content table tr:last-child {
+  border-bottom: none;
+}
+
+table.lookup {
+  width: 100%;
+  margin-bottom: 40px;
+}
+
+table.lookup thead th {
+    color: gray;
+    text-transform: uppercase;
+    font-size: 12px;
+}
+
+table.lookup th {
+    text-align: left;
+}
+
+.content table.lookup th, table.lookup tr > td {
+    padding: 10px;
+    line-height: 180%;
+    background-color: #fff;
+        font-size: 13px;
+}
+
+.content > ul {
+    padding-left: 63px;
+}
+
+.content table tr:nth-child(odd) > td, .content table tr:nth-child(even) > td , table.lookup tbody th {
+    background-color: #fff;
+    border-bottom: 1px solid #efefef;
+}
+
+table.help {
+  &.install > tbody > tr > td {
+    border-bottom: none;
+  }
+  span.step, span.done {
+    background: $green;
+    padding: 5px 10px;
+    border-radius: 2px;
+    color: #fff;
+    font-size: 30px;
+    font-weight: bold;
+    font-family: Helvetica, Arial;
+    vertical-align: middle;
+  }
+  h2 {
+    line-height: 50px;
+  }
+  span.done {
+        background: green;
+  }
+  li {
+    margin: 7px 0;
+    .terminal {
+      padding: 2px;
+    }
+  }
+  td {
+    vertical-align: top;
+    /*border-top: 1px solid #eee;*/
+    padding: 20px 0;
+    h2 {
+      margin-top: 17px;
+    }
+  }
+
+  tr {
+    td:first-child {
+      padding-right: 20px;
+    }
+    td:last-child span.step{
+      height: 24px;
+      line-height: 24px;
+      border-radius: 13px;
+      font-size: 18px;
+      width: 26px;
+      margin-right: 6px;
+    }
+    td p:first-child {
+      font-weight: bold;
+      line-height: 45px; /* step height */
+    }
+    td p{
+      padding-bottom: 5px;
+      margin: 0;
+    }
+    p.indent {
+      margin-left: 36px;
+    }
+  }
+}
+
+.content .search-highlight {
+  text-shadow: none;
+  background: $yellow;
+  color: #333;
+}
+
+.tocify-wrapper > .search:before {
+
+  left: 25px;
+}
+
+    .tocify-wrapper > .search input {
+      background: #000;
+      border-width: 1px;
+      border-color: #666;
+      padding: 6px 0 6px 35px;
+      box-sizing: border-box;
+      margin: 10px 15px;
+      width: 230px;
+      outline: none;
+      color: #fff;
+      border-radius: 3px;
+      font-size: 14px;
+      }

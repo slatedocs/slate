@@ -23,6 +23,7 @@ under the License.
     <title><%= current_page.data.title || "API Documentation" %></title>
 
     <%= stylesheet_link_tag :screen, media: :screen %>
+    <%= stylesheet_link_tag :screen_overrides, media: :screen %>
     <%= stylesheet_link_tag :print, media: :print %>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <% if current_page.data.search %>
@@ -30,6 +31,8 @@ under the License.
     <% else %>
       <%= javascript_include_tag  "all_nosearch" %>
     <% end %>
+
+    <link href='https://fonts.googleapis.com/css?family=Exo:400,400italic,700,700italic,800,800italic|Signika:400,700,300' rel='stylesheet' type='text/css'> 
 
     <% if language_tabs %>
       <script>
@@ -48,7 +51,7 @@ under the License.
       </span>
     </a>
     <div class="tocify-wrapper">
-      <%= image_tag "logo.png" %>
+      <%= image_tag "logo.png", id: 'logo' %>
       <% if language_tabs %>
         <div class="lang-selector">
           <% language_tabs.each do |lang| %>
