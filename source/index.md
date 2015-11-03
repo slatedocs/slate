@@ -18,12 +18,13 @@ includes:
   - authentication
   - pagination
   - ordering
+  - filtering
   - metadata
   - methods
-  - methods/contacts
-  - methods/payments
   - methods/collections
   - methods/collection_requests
+  - methods/contacts
+  - methods/payments
   - methods/webhooks
 
 search: true

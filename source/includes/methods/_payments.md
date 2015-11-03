@@ -301,3 +301,45 @@ payments = beyonic.Payment.list()
 ```
 
 To return a list of all payments, make a GET request to the payments endpoint. This will return a list of payment objects.
+
+## Filtering payments
+
+> Sample Request:
+
+```shell
+curl https://app.beyonic.com/api/payments?amount=500 -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900"
+```
+
+```ruby
+require 'beyonic'
+Beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
+
+payments = Beyonic::Payment.list(
+  amount: 500
+)
+```
+
+```php
+<?php
+require_once('./lib/Beyonic.php');
+Beyonic::setApiKey("ab594c14986612f6167a975e1c369e71edab6900");
+
+$payments = Beyonic_Payment::getAll(
+  "amount" => 500
+);
+?>
+```
+
+```python
+import beyonic
+beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
+
+payments = beyonic.Payment.list(amount=500)
+
+```
+
+You can search or filter payments on the following fields. Simply add them to your request as shown in the examples. You can combine multiple filters. Note that filters return exact matches only.
+
+* amount - the payment amount
+* currency - the payment currency code
+* payment_type - the payment type

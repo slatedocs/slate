@@ -368,3 +368,44 @@ beyonic.Webhook.delete(11)
 ```
 
 To delete a webhook, make a DELETE request to the specific webhook’s endpoint, identified by its Id.
+
+## Filtering webhooks
+
+> Sample Request:
+
+```shell
+curl https://app.beyonic.com/api/webhooks?user=1 -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900"
+```
+
+```ruby
+require 'beyonic'
+Beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
+
+hooks = Beyonic::Webhook.list(
+  user: 1
+)
+```
+
+```php
+<?php
+require_once('./lib/Beyonic.php');
+Beyonic::setApiKey("ab594c14986612f6167a975e1c369e71edab6900");
+
+$hooks = Beyonic_Webhook::getAll((
+  "user" => 1
+);
+?>
+```
+
+```python
+import beyonic
+beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
+
+hooks = beyonic.Webhook.list(user=1)
+
+```
+
+You can search or filter webhooks on the following fields. Simply add them to your request as shown in the examples. You can combine multiple filters. Note that filters return exact matches only.
+
+* user - the ID of the user who created the webhook. Note that only users within your organization will be matched.
+* event - the webhook event

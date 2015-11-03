@@ -228,3 +228,49 @@ collection = beyonic.CollectionRequest.list()
 ```
 
 To retrieve a list of all collections, make a GET request to the collections endpoint. This will return a list of collection objects.
+
+## Filtering collection requests
+
+> Sample Request:
+
+```shell
+curl https://app.beyonic.com/api/collectionrequests?remote_transaction_id=12345&amount=500 -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900"
+```
+
+```ruby
+require 'beyonic'
+Beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
+
+collection = Beyonic::CollectionRequest.list(
+  remote_transaction_id: '12345',
+  amount: 500
+)
+```
+
+```php
+<?php
+require_once('./lib/Beyonic.php');
+Beyonic::setApiKey("ab594c14986612f6167a975e1c369e71edab6900");
+
+$collection = Beyonic_CollectionRequest::getAll(
+  "remote_transaction_id" => "12345",
+  "amount" => 500
+);
+?>
+```
+
+```python
+import beyonic
+beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
+
+collection = beyonic.CollectionRequest.list(remote_transaction_id='12345', amount=500)
+
+```
+
+You can search or filter collection requests on the following fields. Simply add them to your request as shown in the examples. You can combine multiple filters. Note that filters return exact matches only. (The phonenumber field is treated differently - see below).
+
+* amount - the transaction amount
+* currency - the currency code
+* collection - the ID of the collection that fulfilled or matched this collection request 
+* phonenumber - the phonenumber that the collection request was intended for. Note that the phonenumber will be matched in international format, starting with a '+' sign. If the '+' sign isn't included in your request, it will be appended before attempting to match your request.
+* remote_transaction_id - the transation id or transaction reference of the collection on the mobile network operator's side

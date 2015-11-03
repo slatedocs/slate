@@ -22,7 +22,7 @@ Beyonic::setApiKey("ab594c14986612f6167a975e1c369e71edab6900");
 
 $contacts = Beyonic_Contact::getAll(
   "ordering" => "-created"
-));
+);
 ?>
 ```
 

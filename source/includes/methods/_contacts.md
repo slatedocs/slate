@@ -224,6 +224,46 @@ contact = beyonic.Contact.list()
 
 To retrieve a list of all contacts, make a GET request to the contact end point. This will return a list of contacts. 
 
-* **Ordering**: Remember that you can order the list. Look at the ordering section for more information.
-* **Pagination**: You can also paginate the list of contacts. Look at the pagination section for more information.
+## Filtering contacts
+
+> Sample Request:
+
+```shell
+curl https://app.beyonic.com/api/contacts?first_name=luke -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900"
+```
+
+```ruby
+require 'beyonic'
+Beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
+
+contact = Beyonic::Contact.list(
+  first_name: "luke"
+)
+```
+
+```php
+<?php
+require_once('./lib/Beyonic.php');
+Beyonic::setApiKey("ab594c14986612f6167a975e1c369e71edab6900");
+
+$contact = Beyonic_Contact::getAll(
+  "first_name" => "luke"
+);
+?>
+```
+
+```python
+import beyonic
+beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
+
+contact = beyonic.Contact.list(first_name='luke')
+
+```
+
+You can search or filter contacts on the following fields. Simply add them to your request as shown in the examples. You can combine multiple filters. Note that filters return exact matches only. (The phone_number field is treated differently - see below).
+
+* first_name - the contact's first name
+* last_name - the contact's last name
+* email - the contact's email 
+* phone_number - the contact's phone number. Note that the phonenumber will be matched in international format, starting with a '+' sign. If the '+' sign isn't included in your request, it will be appended before attempting to match your request.
 

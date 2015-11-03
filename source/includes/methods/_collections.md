@@ -8,6 +8,10 @@ When the user sends in a payment, it will create a collection object that you ca
 
 The collections api endpoint is https://app.beyonic.com/api/collections
 
+## The collection object
+
+
+
 ## Retrieving a single collection
 
 > Sample Request:
@@ -157,7 +161,7 @@ collection = beyonic.Collection.list()
 
 To retrieve a list of all collections, make a GET request to the collections endpoint. This will return a list of collection objects.
 
-## Searching for a collection
+## Filtering collections
 
 > Sample Request:
 
@@ -183,7 +187,7 @@ Beyonic::setApiKey("ab594c14986612f6167a975e1c369e71edab6900");
 $collection = Beyonic_Collection::getAll(
   "phonenumber" => "+256772712893",
   "remote_transaction_id" => "SS12312"
-));
+);
 ?>
 ```
 
@@ -214,12 +218,15 @@ collection = beyonic.Collection.list(phonenumber='+256772712893',
 ]
 ```
 
-You can search for a specific payment by passing two parameters to the list() method. Both parameters are required.
+You can search or filter collections on the following fields. Simply add them to your request as shown in the examples. You can combine multiple filters. Note that filters return exact matches only (the phonenumber field is treated differently - see below).
 
-Parameter | Required | Type | Example | Notes
---------- | -------- | ---- | ------- | -----
-phonenumber | Yes | String | +25677271289 | The phone number that sent the payment you are searching for
-remote_transaction_id | Yes | String | SS12312 | The transaction id that the subscriber received from the telecom company when they made that payment.
+* amount - the transaction amount
+* currency - the currency code
+* phonenumber - the phonenumber that the collection request was intended for. Note that the phonenumber will be matched in international format, starting with a '+' sign. If the '+' sign isn't included in your request, it will be appended before attempting to match your request. This is only true for phone number searches with collections, to make claiming of transactions easier. Other 
+* reference - the reference code that the customer used when sending the collection
+* remote_transaction_id - the transation id or transaction reference of the collection on the mobile network operator's side
+* collection_request - the ID of the collection request that this collection was matched to
+
 
 **Response**
 
@@ -255,7 +262,7 @@ $collection = Beyonic_Collection::getAll(
   "remote_transaction_id" => "SS12312",
   "claim" => "True",
   "amount" => "200",
-));
+);
 ?>
 ```
 
@@ -290,15 +297,17 @@ collection = beyonic.Collection.list(phonenumber='+256772712893',
 
 By default, when you search for a collection, only collections that have been successfully assigned to your organization are searched. 
 
-You can add two more parameters to instruct Beyonic to also search unmatched collections, and if any of the unmatched collections match your input, they will be assigned to your organization. 
+You can add the "claim" parameter to instruct Beyonic to also search unmatched collections, and if any of the unmatched collections match your input, they will be assigned to your organization. 
 
-Note that these parameters are **in addition** to the ones used when searching for a collection. These two additional parameters are included below:
+Note that when you include the claim parameter, you **must** also include the amount, remote_transaction_id and phonenumber parameters. Failure to do so will result in an error.
 
-Parameter | Required | Type | Example | Notes
-----------| -------- | ---- | ------- | -----
-claim | Yes | Boolean or String | True | Instruct system to search unmatched transctions and claim them for your organization.
-amount | Yes | String, Integer or Decimal | 3000 | Do not include thousands separators. This must be included if the "claim" parameter is used. The currency is inferred from the phone number
+Also note that the phonenumber will be matched in international format, starting with a '+' sign. Partial phone number matches will fail when you try to claim a transaction. If the '+' sign isn't included in your request, it will be appended before attempting to match your request.
+
+Parameter | Type | Example | Notes
+----------| ---- | ------- | -----
+claim | Boolean or String | True | Instruct system to search unmatched transctions and claim them for your organization.
 
 **Response**
 
 Note that the response will be a list of collections, not a single collection.
+
