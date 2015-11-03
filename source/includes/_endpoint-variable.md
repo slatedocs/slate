@@ -22,7 +22,7 @@ description | string | Optional longer string
 id | string | Immutable internal identifier
 discarded | boolean | Whether the variable should be hidden from most views; default: false
 derived | Whether the variable is a function of another; default: false
-type | string | The string type name 
+type | string | The string type name, one of "numeric", "text", "categorical", "datetime", "categorical_array", or "multiple_response"
 subvariables | array of URLs | For arrays, array of (ordered) references to subvariables
 subvariables_catalog | URL | For arrays, link to a Shoji Catalog of subvariables
 
@@ -177,11 +177,17 @@ See Variable Definitions for more details and examples of valid attributes, and 
 
 It is encouraged, but not required, to include an "alias" in the body. If omitted, one will be generated from the required "name". 
 
-You may also include "values", which will create the column of data corresponding to this variable definition. See Importing Data: Column-by-column for details and examples. 
+You may also include "values", which will create the column of data corresponding to this variable definition. See [Importing Data: Column-by-column](#column-by-column) for details and examples. 
 
-You may instead also include an "expr" to derive a variable as a function of other variables. In this case, "type" is not required because it depends on the output of the specified derivation function. For details and examples, see Deriving Variables.
+You may instead also include an "expr" to derive a variable as a function of other variables. In this case, "type" is not required because it depends on the output of the specified derivation function. For details and examples, see [Deriving Variables](#deriving-variables).
 
 A 201 indicates success and includes the URL of the newly-created variable in the Location header.
+
+#### Private variables catalog
+
+`/datasets/{id}/variables/private/{?relative,nosubvars}`
+
+`GET` returns a Shoji Catalog of variables, as described above, containing those variables that are private to the authenticated user. You may `PATCH` this catalog to edit names, aliases, descriptions, etc. of the private variables. `POST`, however, is not supported at this endpoint. To create new private variables, `POST` to the main variables catalog with a `"private": true` body attribute.
 
 ### Hierarchical Order
 
@@ -263,43 +269,65 @@ A Shoji Entity which exposes most of the metadata about a Variable in the datase
 
 #### GET
 
-Members:
+Variable entities' `body` attributes contain the following:
 
- * urls: An object with names as keys and their corresponding URL's as values, providing links to related information. Clients should be careful to follow the given links rather than constructing their own, as the construction rules may change.
- * description: A description of what a Variable resource is and how it behaves.
- * specification: A URL to a formal specification for Variable objects.
- * body: An object with the following members:
-   * type: the class of data in the variable. One of "numeric", "text", "categorical", "date", "datetime", "boolean", "array", or "object".
-   * categories: If the variable class is "categorical", an array of category objects. The order is significant. Each object possesses the following members:
-   * _id: A numeric identifier for the category.
-   * name: A unique string identifying the category.
-   * missing: If true, the given category is marked as "missing", and is omitted from most calculations.
-   * name: A friendly name for the variable. Must be unique within the dataset.
-   * alias: 
-   * description: A long-form textual description of the Variable.
-   * derivation: a Crunch expression which was used to derive this variable, or null.
-   * discarded: If true, the Variable has been discarded and is not eligible for display or analysis.
-   * private: If true, the Variable is only visible to the owner and is only included in the private variables catalog, not the common catalog.
-   * format: An object with various members to control the display of Variable data:
-     * data: An object with a "digits" member, stating how many digits to display after the decimal point.
-     * summary: An object with a "digits" member, stating how many digits to display after the decimal point.
-   * source: unused.
-   * header_order: unused.
-   * view: An object with various members to control the display of Variable data:
-     * show_codes: For categorical types only. If true, numeric values are shown.
-     * show_counts: If true, show counts; if false, show percents.
-     * include_missing: For categorical types only. If true, include missing categories.
-     * column_width: For "untyped" Variables only. The selected display width of column data, in pixels, or None.
-include_noneoftheabove: For multipleresponse types only. If true, display a "none of the above" category in the requested summary or analysis.
-   * dataset_id: The id of the Dataset to which this Variable belongs.
-   * max_chars: The number of characters required to display all values contained within the Variable's data.
-   * missing_reasons: An object whose keys are reason phrases and whose values are missing codes. Missing entries in Variable data are represented by a {"?": code} missing marker; clients may look up the corresponding reason phrase for each code in this one-to-one map. Honestly, the only reason this is not in reverse order is because JSON doesn't allow integers as object keys.
+Name | Type | Description
+---- | ---- | -----------
+name | string | Human-friendly string identifier
+alias | string | More machine-friendly, traditional name for a variable
+description | string | Optional longer string
+id | string | Immutable internal identifier
+discarded | boolean | Whether the variable should be hidden from most views; default: false
+private | boolean | If true, the Variable is only visible to the owner and is only included in the private variables catalog, not the common catalog.
+derived | boolean | Whether the variable is a function of another; default: false
+type | string | The string type name
+categories | array | If "type" is "categorical", "multiple_response", or "categorical_array", an array of category definitions (see below). Other types have an empty array.
+subvariables | array of URLs | For arrays, array of (ordered) references to subvariables
+derivation | object | For derived variables, a Crunch expression which was used to derive this variable; or null.
+format | object | An object with various members to control the display of Variable data (see below)
+view | object | An object with various members to control the display of Variable data
+dataset_id | string | The id of the Dataset to which this Variable belongs.
+missing_reasons | object | An object whose keys are reason phrases and whose values are missing codes. Missing entries in Variable data are represented by a {"?": code} missing marker; clients may look up the corresponding reason phrase for each code in this one-to-one map. 
+
+Category objects have the following members:
+
+Name | Type | Description
+---- | ---- | -----------
+id | integer | identifier for the category, corresponding to values in the column of data
+name | string | A unique label identifying the category
+numeric_value | numeric | A quantity assigned to this category for numeric aggregation. May be `null`.
+missing | boolean | If true, the given category is marked as "missing", and is omitted from most calculations.
+selected | boolean | For categories in multiple response variables, those with `"selected": true` which values correspond to the "response" being selected. If omitted, the category is treated as not selected. Multiple response variables must have at least one category marked as selected and may have more than one.
+
+<aside class="notice">
+For variables with categories, you can get the "missing reasons" from the category definitions. You don't need the "missing_reasons" body attribute.
+</aside>
+
+Format objects may contain:
+
+Name | Type | Description
+---- | ---- | -----------
+data | object | An object with an integer "digits" member, stating how many digits to display after the decimal point when showing data values.
+summary | object | An object with an integer "digits" member, stating how many digits to display after the decimal point when showing aggregates values.
+
+View objects may contain:
+
+Name | Type | Description
+---- | ---- | -----------
+show_codes | boolean | For categorical types only. If true, numeric values are shown.
+show_counts | boolean | If true, show counts; if false, show percents.
+include_missing | boolean | For categorical types only. If true, include missing categories.
+include_noneoftheabove | boolean | For multiple response types only. If true, display a "none of the above" category in the requested summary or analysis.
+
+#### PATCH
+
+PATCH variable entities to edit their metadata. 
 
 #### DELETE
 
-Calling DELETE on this resource will delete the variable. Will return Shoji View (status 200) with its return value be an array containing the newly promoted variables.
+Calling DELETE on this resource will delete the variable. On success, `DELETE` returns 200 status with a Shoji View. When deleting array variables, this response value will contain the URLs of the (formerly sub-)variables, which are promoted to regular variables on `DELETE` of the array. That is, deleting an array "unbinds" the subvariables, and to delete the array fully, one must then make a `DELETE` request on each of the returned URLs.
 
-In the case of array variables, this response value will contain the urls of the forming subvariables. In case of standard variables this will be an empty array.
+For non-array variables, this View will be an empty array.
 
 ### Summary
 
