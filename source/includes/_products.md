@@ -19,7 +19,7 @@ $ProductService->setReference($Reference);
 ```
 The URL for the uploading is looking like this:
 
-`/platform/v1/sites/Identifier:123/products/abcdef123/upload`
+`/platform/v1/sites/Identifier:123/products/md5string32chars/upload`
 
 It consists of the folowing parts:
 
@@ -27,7 +27,7 @@ example | description
 ------- | -----------
 sites/Identifier:123 | the entity the upload is related to.
 /products | tells the api that you are about to upload products
-abcdef123 | is an identifier (batch id) you can create. It is only used during the upload and tells the API that all actions belong to this batch
+md5string32chars | is an identifier (batch id) you can create. It is only used during the upload and tells the API that all actions belong to this batch
 upload | is the action you want to perform.
 
 
@@ -45,7 +45,7 @@ curl -d '[{
    "price": 3.21,
    "shipping": "0.99"
 }]'
-https://platform-api.productsup.io/platform/v1/sites/Identifier:123/products/abcdef123/upload
+https://platform-api.productsup.io/platform/v1/sites/Identifier:123/products/md5string32chars/upload
 ```
 
 ```php
@@ -85,7 +85,7 @@ curl -d '[{
     "id": 124,
     "pup:isDelete": 1
 }]'
-https://platform-api.productsup.io/platform/v1/sites/Identifier:123/products/abcdef123/upload
+https://platform-api.productsup.io/platform/v1/sites/Identifier:123/products/md5string32chars/upload
 ```
 
 ```php
@@ -102,13 +102,13 @@ When you finished all uploads into one batch, you can tell the API that it is do
 
 Url in this case would be
  
- `/platform/v1/sites/Identifier:123/products/abcdef123/commit`
+ `/platform/v1/sites/Identifier:123/products/md5string32chars/commit`
 
 > As body of the POST request you have to provide again a JSON, this time with only one parameter:
 
 ```shell
 curl -d '{"type":"full"}'
-https://platform-api.productsup.io/platform/v1/sites/Identifier:123/products/abcdef123/upload
+https://platform-api.productsup.io/platform/v1/sites/Identifier:123/products/md5string32chars/commit
 ```
 
 ```php
@@ -134,7 +134,7 @@ delta | tells the API that the current upload is only a part of all your product
 The third action "discard" is only to abort a started upload. This removes all uploads for the given batch id and you can start over.
 
 ```shell
-curl https://platform-api.productsup.io/platform/v1/sites/Identifier:123/products/abcdef123/discard
+curl https://platform-api.productsup.io/platform/v1/sites/Identifier:123/products/md5string32chars/discard
 ```
 
 ```php
