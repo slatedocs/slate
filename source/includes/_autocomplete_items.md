@@ -48,6 +48,18 @@ my $response = $constructorio->add(
 );
 ```
 
+```java
+boolean success = constructorio.add("power drill", "Search Suggestions");
+// power drill is an item name
+// Search Suggestions is an autocomplete section name
+```
+
+```c#
+bool success = constructorio.Add("power drill", "Search Suggestions");
+// power drill is an item name
+// Search Suggestions is an autocomplete section name
+```
+
 > The above command returns a 204 Success response on success.
 
 To add an item to your autocomplete index, use the `POST /item` call. The `item_name` is required. You can also pass in an optional `suggested_score` between 1-100, which will influence the item's initial ranking relative to other item scores (the higher the score, the higher in the list of suggestions the item will appear). You can also optionally pass in the item's `keywords` to give us more meta information and help us better determine how and where to display the item when autocompleting. If you would like to add an item that points to a direct link, just pass in that link as a `url`. Finally, because your autocomplete can have multiple sections, like categories, search suggestions, and direct links to products, you must specify which section you are adding an item to. You can do this with the `autocomplete_section` parameter.
@@ -106,6 +118,18 @@ my $response = $constructorio->remove(
   item_name => "power drill",
   autocomplete_section => "Search Suggestions"
 );
+```
+
+```java
+boolean success = constructorio.remove("power drill", "Search Suggestions");
+// power drill is an item name
+// Search Suggestions is an autocomplete section name
+```
+
+```c#
+bool success = constructorio.Remove("power drill", "Search Suggestions");
+// power drill is an item name
+// Search Suggestions is an autocomplete section name
 ```
 
 > The above command returns a 204 Success response on success.
@@ -181,6 +205,22 @@ my $response = $constructorio->modify(
   autocomplete_section => "Search Suggestions",
   url => "http://www.mysite.com/power_drill"
 );
+```
+
+```java
+boolean success = constructorio.modify("power drill", "super power drill", "Search Suggestions", paramMap);
+// power drill is an item name
+// super power drill is an item name
+// Search Suggestions is an autocomplete section name
+// paramMap is a Map<String, Object> you filled beforehand with the other properties you want to modify. Optional.
+```
+
+```c#
+bool success = constructorio.Modify("power drill", "super power drill", "Search Suggestions", paramDict);
+// power drill is an item name
+// super power drill is the new item name
+// Search Suggestions is an autocomplete section name
+// paramDict is a Dictionary<string, object> you filled beforehand with the other properties you want to modify, it can be null
 ```
 
 > The above command returns a 204 Success response on success.

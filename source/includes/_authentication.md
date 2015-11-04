@@ -50,6 +50,16 @@ my $constructorio = new WebService::ConstructorIO->new(
 );
 ```
 
+```java
+import com.cnstrc.client.ConstructorIO;
+ConstructorIO constructorClient = new ConstructorIO("[your API token]", "[your autocomplete key"], true, null);
+```
+
+```c#
+using ConstructorIOClient;
+ConstructorIO constructorClient = new ConstructorIO("[your API token]", "[your autocomplete key"]);
+```
+
 > Make sure to replace `[your API token]` with your API token from [your dashboard](/dashboard).
 
 You authenticate to the REST API by providing your API token, which you can obtain from [your dashboard](/dashboard).
@@ -86,6 +96,14 @@ $response = $constructor->verify();
 
 ```perl
 my $response = $constructorio->verify();
+```
+
+```java
+boolean isValid = constructorio.verify();
+```
+
+```c#
+bool isValid = constructorio.Verify();
 ```
 
 You can verify that authentication works correctly by issuing a simple verification request.
