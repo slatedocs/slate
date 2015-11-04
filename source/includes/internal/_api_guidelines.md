@@ -113,15 +113,29 @@ Do **NOT** automatically use the authenticated organization's or user's time zon
 
 ### Render and accept date/times in ISO-8601 format
 
+```python
+from rest_framework import serializers
+from giosgchat.modules.common.api_v5.serializers import UTCDateTimeField
+
+class MyModelSerializer(serializers.ModelSerializer):
+    created_at = UTCDateTimeField(read_only=True)
+    # ...
+```
+
 When returngin a date/time in a response, render it in ISO-8601 format (e.g. `2015-08-31T16:32:17.879Z`).
 
 - There must be **exactly three (3) decimals for the second**
 - The date/time string **must end with `Z`**
 
+<aside class="success">
+<strong>PRO TIP!</strong> Use <code>giosgchat.modules.common.api_v5.serializers.UTCDateTimeField</code> class, which handles this formatting automatically for you!
+</aside>
+
 Also, if your API takes date/time parameters, the user should be able to provide it in ISO format. In these cases, the trailing `Z` could be optional.
 
-### Use Django REST framework 2 views
-If you are creating API views for creating, getting, listing, updating or destroying Django models, you should use [Django REST framework generic views](http://tomchristie.github.io/rest-framework-2-docs/api-guide/generic-views). In other cases, you should still use the framework's [base view class](http://tomchristie.github.io/rest-framework-2-docs/api-guide/generic-views) `APIView`. This way you ensure that your views work consistently with all other views, in regards to response rendering, accept headers, authentication and permissions!
+### Use Django REST framework 3
+
+If you are creating API views for creating, getting, listing, updating or destroying Django models, you should use [Django REST framework generic views](http://www.django-rest-framework.org/api-guide/generic-views/). In other cases, you should still use the framework's [base view class](http://www.django-rest-framework.org/api-guide/views/) `APIView`. This way you ensure that your views work consistently with all other views, in regards to response rendering, accept headers, authentication and permissions!
 
 ### Use pagination
 
