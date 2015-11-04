@@ -140,14 +140,14 @@ If you are creating API views for creating, getting, listing, updating or destro
 ### Use pagination
 
 ```python
-from giosgchat.modules.common.serializers import PageNumberPaginationSerializer
+from rest_framework.pagination import CursorPagination
 
 class MyResourceListCreateAPIView(ListCreateAPIView):
-    pagination_serializer_class = PageNumberPaginationSerializer
+    pagination_class = CursorPagination
     # etc.
 ```
 
-If your API lists resources, it needs to be [paginated](https://docs.giosg.com/doku.php?id=public:technical-documentation:backend-api#pagination). When using a REST framework generic view, you just need to define our custom pagination serializer for your view class:
+If your API lists resources, it needs to be paginated. Use one of the pagination classes provided by REST framework 3, preferably [CursorPagination](http://www.django-rest-framework.org/api-guide/pagination/#cursorpagination).
 
 Pagination is not required if your view restricts the maximum number of returned results in some other way. E.g. for getting a report for each day in a range, the maximum range is limited.
 
