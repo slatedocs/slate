@@ -61,7 +61,7 @@ $darkgreen: #64953f;
   	color: #fff;
   	border-bottom: 0;
   }
-  h1, h2, h3 {
+  h1, h2, h3, h4 {
     font-family: 'Exo', sans-serif; /** exo is a google font **/
     text-transform: uppercase;
     font-weight: 800;
@@ -80,6 +80,10 @@ $darkgreen: #64953f;
   }
   h3 {
     font-size: 20px;
+  }
+  h4 {
+    font-size: 15px;
+    color: gray;
   }
 }
 
@@ -136,6 +140,7 @@ table.lookup thead th {
 
 table.lookup th {
     text-align: left;
+    vertical-align: middle;
 }
 
 .content table.lookup th, table.lookup tr > td {

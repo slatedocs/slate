@@ -1,4 +1,4 @@
-# Getting Started
+# Configuration
 
 ## Requirements
 
@@ -65,7 +65,8 @@ Scout APM can be configured via the `config/scout_apm.yml` Yaml file and/or envi
 ERB is evaluated when loading the config file. For example, you can set the app name based on the hostname:
 
 ```ruby
-name: <%= Socket.gethostname.include?(staging) ? 'Staging App' : 'Production App' %>
+common: &defaults
+  name: <%= "ProjectPlanner.io (#{Rails.env})" %>
 ```
 
 ### Configuration Reference
@@ -97,7 +98,10 @@ The following configuration settings are available:
         <td>
           Name of the application (ex: 'Photos App').
         </td>
-        <td></td>
+        <td>
+          <code>Rails.application.class.to_s.
+             sub(/::Application$/, '')</code>
+        </td>
         <td>
           Yes
         </td>
@@ -223,13 +227,13 @@ The following libraries are currently instrumented:
 
 ## Adding Custom Context
 
-Context lets you see the forest from the trees. For example, you can add custom context to answer critical questions like:
+[Context](#context) lets you see the forest from the trees. For example, you can add custom context to answer critical questions like:
 
 * How many users are impacted by slow requests?
 * How many trial customers are impacted by slow requests?
 * How much of an impact are slow requests having on our highest paying customers?
 
-It's simple to add custom context to your app. There are two types of context:
+It's simple to add [custom context](#context) to your app. There are two types of context:
 
 ### User Context
 
@@ -301,4 +305,32 @@ Add the following line to the `ApplicationController#set_scout_context` method d
 
 ```ruby
 ScoutApm::Context.add(monthly_spend: current_org.monthly_spend) if current_org
+```
+
+## Environments
+
+It typically makes sense to treat each environment (production, staging, etc) as a separate application within Scout and ignore the development and test environments.
+
+Here's an example `scout_apm.yml` configuration to achieve this:
+
+```ruby
+common: &defaults
+  name: name: <%= "YOUR_APP_NAME (#{Rails.env})" %>
+  key: YOUR_KEY
+  log_level: debug
+  monitor: true
+
+production:
+  <<: *defaults
+
+development:
+  <<: *defaults
+  monitor: false
+   
+test:
+  <<: *defaults
+  monitor: false
+
+staging:
+  <<: *defaults
 ```

@@ -112,3 +112,7 @@ We're transparent about our uptime and service issues. If you appear to be exper
 
 * [Check out status site](http://status.scoutapp.com). You can subscribe to service incidents. 
 * [Email us](mailto:support@scoutapp.com)
+
+## Contacting Support
+
+Don't hesitate to contact us at [apm.support@scoutapp.com](mailto:support@scoutapp.com) any issues. We typically respond in a couple of hours during the business day.
