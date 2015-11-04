@@ -21,7 +21,7 @@ alias | string | More machine-friendly, traditional name for a variable
 description | string | Optional longer string
 id | string | Immutable internal identifier
 discarded | boolean | Whether the variable should be hidden from most views; default: false
-derived | Whether the variable is a function of another; default: false
+derived | boolean | Whether the variable is a function of another; default: false
 type | string | The string type name, one of "numeric", "text", "categorical", "datetime", "categorical_array", or "multiple_response"
 subvariables | array of URLs | For arrays, array of (ordered) references to subvariables
 subvariables_catalog | URL | For arrays, link to a Shoji Catalog of subvariables
@@ -236,7 +236,7 @@ It is only possible to submit variables that belong to the main dataset. That is
 
 ### Search
 
-`/datasets/{id}/variables/search/{token}/`
+`/datasets/{id}/variables/search/{?q}`
 
 On GET will return a Crunch Order with the variables matching the `token` in the URL. The results will be under the "Search Results" group containing the urls for the matching variables.
 
