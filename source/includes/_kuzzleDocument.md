@@ -103,12 +103,12 @@ Replaces the current content with the last version of this document stored in Ku
 
 ```js
 // Using callbacks (NodeJS or Web Browser)
-document.save(true, function (error, result) {
+document.save(function (error, result) {
   // called once the save action has been completed
 });
 
 // Using promises (NodeJS)
-document.savePromise(true).then(result => {
+document.savePromise().then(result => {
   // called once the save action has been completed
 });
 ```
@@ -117,21 +117,8 @@ document.savePromise(true).then(result => {
 
 Saves this document into Kuzzle.
 
-If this is a new document, this function will create it in Kuzzle. Otherwise, you can specify whether you want to merge this document with the one stored in Kuzzle, or if you want to replace it.
-
-
-#### save()
-
-#### save(replace)
-
-| Arguments | Type | Description |
-|---------------|---------|----------------------------------------|
-| replace | boolean | true: replace the document, false: merge it |
-
-**Notes:**
-
-* the ``replace`` argument is ignored if the document is to be created into Kuzzle
-* by default, ``replace`` is set to false
+If this is a new document, this function will create it in Kuzzle and the ``id`` property will be made available.  
+Otherwise, this method will replace the latest version of this document in Kuzzle by the current content of this object.
 
 
 ## setContent ![public](./images/public.png)
