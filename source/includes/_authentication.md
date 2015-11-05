@@ -55,7 +55,7 @@ import com.cnstrc.client.ConstructorIO;
 ConstructorIO constructorClient = new ConstructorIO("[your API token]", "[your autocomplete key"], true, null);
 ```
 
-```c#
+```cs
 using ConstructorIOClient;
 ConstructorIO constructorClient = new ConstructorIO("[your API token]", "[your autocomplete key"]);
 ```
@@ -102,7 +102,7 @@ my $response = $constructorio->verify();
 boolean isValid = constructorio.verify();
 ```
 
-```c#
+```cs
 bool isValid = constructorio.Verify();
 ```
 

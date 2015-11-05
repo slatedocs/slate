@@ -49,7 +49,7 @@ boolean success = constructorio.trackSearch("xyz", 302);
 // 302 is the number of results
 ```
 
-```c#
+```cs
 bool success = constructorio.TrackSearch("xyz", 302);
 // "xyz" is the term that was searched
 // 302 is the number of results
@@ -120,7 +120,7 @@ boolean success = constructorio.trackClickThrough("xyz", "alphabet soup", "Searc
 // Search Suggestions is the autocomplete section
 ```
 
-```c#
+```cs
 bool success = constructorio.TrackClickThrough("xyz", "alphabet soup", "Search Suggestions");
 // xyz is the term
 // alphabet soup is the item
@@ -193,7 +193,7 @@ boolean success = constructorio.trackConversion("xyz", "Search Suggestions");
 // Search Suggestions is the autocomplete section
 ```
 
-```c#
+```cs
 bool success = constructorio.TrackConversion("xyz", "Search Suggestions");
 // xyz is the term
 // Search Suggestions is the autocomplete section

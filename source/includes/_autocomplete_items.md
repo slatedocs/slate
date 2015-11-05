@@ -54,7 +54,7 @@ boolean success = constructorio.add("power drill", "Search Suggestions");
 // Search Suggestions is an autocomplete section name
 ```
 
-```c#
+```cs
 bool success = constructorio.Add("power drill", "Search Suggestions");
 // power drill is an item name
 // Search Suggestions is an autocomplete section name
@@ -126,7 +126,7 @@ boolean success = constructorio.remove("power drill", "Search Suggestions");
 // Search Suggestions is an autocomplete section name
 ```
 
-```c#
+```cs
 bool success = constructorio.Remove("power drill", "Search Suggestions");
 // power drill is an item name
 // Search Suggestions is an autocomplete section name
@@ -215,7 +215,7 @@ boolean success = constructorio.modify("power drill", "super power drill", "Sear
 // paramMap is a Map<String, Object> you filled beforehand with the other properties you want to modify. Optional.
 ```
 
-```c#
+```cs
 bool success = constructorio.Modify("power drill", "super power drill", "Search Suggestions", paramDict);
 // power drill is an item name
 // super power drill is the new item name
