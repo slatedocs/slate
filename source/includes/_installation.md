@@ -40,7 +40,7 @@ If using Gradle, include this:
 compile 'com.cnstrc.client:constructorio-client:0.0.1'
 ```
 
-```cs
+```csharp
 Run in the Package Manager Console:
 
 Install-Package constructor.io
