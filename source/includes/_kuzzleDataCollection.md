@@ -339,14 +339,11 @@ kuzzle
 
 Replace an existing document with a new one.
 
-#### replaceDocument(documentId, KuzzleDocument)
-
 #### replaceDocument(documentId, content)
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
 | documentId | string | Unique document identifier |
-| KuzzleDocument | object | KuzzleDocument object |
 | content | JSON Object | Content of the document to create |
 
 ## setHeaders ![public](./images/public.png)
@@ -427,12 +424,9 @@ kuzzle
 
 Update parts of a document
 
-#### updateDocument(documentId, KuzzleDocument)
-
 #### updateDocument(documentId, content)
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
 | documentId | string | Unique document identifier |
-| KuzzleDocument | object | KuzzleDocument containing the updated content |
 | content | JSON Object | Content of the document to create |
