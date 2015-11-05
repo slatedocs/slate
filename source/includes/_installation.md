@@ -25,6 +25,7 @@ cpanm WebService::ConstructorIO
 ```
 
 ```java
+/*
 If using Maven, include in your pom.xml:
 
 <dependency>
@@ -38,9 +39,11 @@ If using Ivy, include this:
 
 If using Gradle, include this:
 compile 'com.cnstrc.client:constructorio-client:0.0.1'
+*/
 ```
 
 ```csharp
+/*
 Run in the Package Manager Console:
 
 Install-Package constructor.io
@@ -48,6 +51,7 @@ Install-Package constructor.io
 Or, if using nuget on the command line:
 
 nuget install constructor.io
+*/
 ```
 
 Install the library specific to your language by following the instructions on the right.
