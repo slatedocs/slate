@@ -26,14 +26,14 @@ var mapping = kuzzle.dataCollectionFactory('collection').dataMappingFactory();
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
-| KuzzleDataCollection | object | An instanciated KuzzleDataCollection object |
+| ``KuzzleDataCollection`` | object | An instanciated KuzzleDataCollection object |
 
 ## Properties
 
 | Property name | Type | Description | get/set |
 |--------------|--------|-----------------------------------|---------|
-| headers | JSON Object | Common headers for all sent documents. | get/set |
-| mapping | object | Easy-to-understand list of mappings per field | get |
+| ``headers`` | JSON Object | Common headers for all sent documents. | get/set |
+| ``mapping`` | object | Easy-to-understand list of mappings per field | get |
 
 **Note:** the ``headers`` property is inherited from the provided ``KuzzleDataCollection`` object and can be overrided
 
@@ -93,8 +93,8 @@ Adds or updates a field mapping.
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
-| field | string | Name of the field from which the mapping is to be added or updated |
-| mapping | JSON Object | Mapping for this field, following the [Elasticsearch Mapping format](https://www.elastic.co/guide/en/elasticsearch/reference/1.3/mapping.html)
+| ``field`` | string | Name of the field from which the mapping is to be added or updated |
+| ``mapping`` | JSON Object | Mapping for this field, following the [Elasticsearch Mapping format](https://www.elastic.co/guide/en/elasticsearch/reference/1.3/mapping.html)
 
 ## setHeaders ![public](./images/public.png)
 
@@ -112,7 +112,7 @@ This is a helper function returning itself, allowing to easily chain calls.
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
-| content | JSON Object | New content |
-| replace | boolean | true: replace the current content with the provided data, false: merge it |
+| ``content`` | JSON Object | New content |
+| ``replace`` | boolean | true: replace the current content with the provided data, false: merge it |
 
 **Note:** by default, the ``replace`` argument is set to ``false``

@@ -33,9 +33,9 @@ var document = kuzzle
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
-| KuzzleDataCollection | object | An instanciated KuzzleDataCollection object |
-| content | JSON Object | Initializes this document with the provided content |
-| documentId | string | ID of an existing document. |
+| ``KuzzleDataCollection`` | object | An instanciated KuzzleDataCollection object |
+| ``content`` | JSON Object | Initializes this document with the provided content |
+| ``documentId`` | string | ID of an existing document. |
 
 **Note:**  providing a documentID to the constructor will automatically call ``refresh``, unless a ``content`` is also provided
 
@@ -43,12 +43,10 @@ var document = kuzzle
 
 | Property name | Type | Description | get/set |
 |--------------|--------|-----------------------------------|---------|
-| collection | string | The data collection associated to this document | get |
-| content | JSON Object | The content of the document | get/set |
-| createdTimestamp | timestamp | The creation datetime of this document | get |
-| headers | JSON Object | Common headers for all sent documents. | get/set |
-| id | string | Unique document identifier | get |
-| modifiedTimestamp | timestamp | The last modification datetime of this document | get |
+| ``collection`` | string | The data collection associated to this document | get |
+| ``content`` | JSON Object | The content of the document | get/set |
+| ``headers`` | JSON Object | Common headers for all sent documents. | get/set |
+| ``id`` | string | Unique document identifier | get |
 
 **Notes:**  
 
@@ -73,6 +71,21 @@ document.deletePromise().then(result => {
 
 Deletes this document in Kuzzle.
 
+#### delete()
+
+#### delete(options)
+
+| Arguments | Type | Description |
+|---------------|---------|----------------------------------------|
+| ``options`` | JSON Object | Optional parameters |
+
+Available options:
+
+| Option | Type | Description | Default |
+|---------------|---------|----------------------------------------|---------|
+| ``metadata`` | JSON Object | Additional information passed to notifications to other users | ``null`` |
+
+
 ## publish ![public](./images/public.png)
 
 ```js
@@ -80,6 +93,22 @@ document.publish();
 ```
 
 Publishes the content of this document as a realtime message.
+
+#### publish()
+
+#### publish(options)
+
+| Arguments | Type | Description |
+|---------------|---------|----------------------------------------|
+| ``options`` | JSON Object | Optional parameters |
+
+Available options:
+
+| Option | Type | Description | Default |
+|---------------|---------|----------------------------------------|---------|
+| ``metadata`` | JSON Object | Additional information passed to notifications to other users | ``null`` |
+
+
 
 ## refresh ![public](./images/public.png)
 
@@ -120,6 +149,21 @@ Saves this document into Kuzzle.
 If this is a new document, this function will create it in Kuzzle and the ``id`` property will be made available.  
 Otherwise, this method will replace the latest version of this document in Kuzzle by the current content of this object.
 
+#### save()
+
+#### save(options)
+
+| Arguments | Type | Description |
+|---------------|---------|----------------------------------------|
+| ``options`` | JSON Object | Optional parameters |
+
+Available options:
+
+| Option | Type | Description | Default |
+|---------------|---------|----------------------------------------|---------|
+| ``metadata`` | JSON Object | Additional information passed to notifications to other users | ``null`` |
+
+
 
 ## setContent ![public](./images/public.png)
 
@@ -139,8 +183,8 @@ Replaces the current content with new data.
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
-| data | JSON Object | New content |
-| replace | boolean | true: replace the current content with the provided data, false: merge it |
+| ``data`` | JSON Object | New content |
+| ``replace`` | boolean | true: replace the current content with the provided data, false: merge it |
 
 **Note:** by default, the ``replace`` argument is set to ``false``
 
@@ -160,8 +204,8 @@ This is a helper function returning itself, allowing to easily chain calls.
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
-| content | JSON Object | New content |
-| replace | boolean | true: replace the current content with the provided data, false: merge it |
+| ``content`` | JSON Object | New content |
+| ``replace`` | boolean | true: replace the current content with the provided data, false: merge it |
 
 **Note:** by default, the ``replace`` argument is set to ``false``
 
@@ -182,4 +226,4 @@ Throws an error if this document has not yet been created in Kuzzle.
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
-| cb | function | Callback that will be called each time a change has been detected on this document |
+| ``cb`` | function | Callback that will be called each time a change has been detected on this document |

@@ -33,31 +33,29 @@ Creates a KuzzleRoom object.
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
-| KuzzleDataCollection | object | an instantiated Kuzzle Data Collection object |
-| options | object | Subscription configuration |
+| ``KuzzleDataCollection`` | object | an instantiated Kuzzle Data Collection object |
+| ``options`` | object | Subscription configuration |
 
 Available options:
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
-| subscribeToSelf | boolean | (Don't) subscribe to notifications fired as a consequence of our own queries | false |
-| listeningToConnections | boolean | (Don't) listen to other subscriptions on that room | false |
-| listeningToDisconnections | boolean | (Don't) listen to other subscription cancellations on that room | false |
+| ``subscribeToSelf`` | boolean | (Don't) subscribe to notifications fired as a consequence of our own queries | false |
+| ``listeningToConnections`` | boolean | (Don't) listen to other subscriptions on that room | false |
+| ``listeningToDisconnections`` | boolean | (Don't) listen to other subscription cancellations on that room | false |
 
 
 ## Properties
 
 | Property name | Type | Description | get/set |
 |--------------|--------|-----------------------------------|---------|
-| collection | string | The subscribed data collection | get |
-| filters | JSON object | The current set of filters of this room | get/set |
-| headers | JSON Object | Common headers for all sent documents. | get/set |
-| listeningToConnections | boolean | Is this subscription (not) listening to other ``subscribed`` events on that room | get/set |
-| listeningToDisconnections | boolean | Is this subscription (not) listening to other ``unsubcribed`` events on that room | get/set |
-| metadata | JSON Object | (inherited) Application specific informations, shared to any other subscribers | get/set |
-| subscribeToSelf | boolean | (Don't) subscribe to notifications fired as a consequence of our own queries | get/set |
-| subscriptionID | string | Unique subscription identifier | get |
-| subscriptionTimestamp | timestamp | The timestamp of the start of this subscription | get |
+| ``collection`` | string | The subscribed data collection | get |
+| ``filters`` | JSON object | The current set of filters of this room | get/set |
+| ``headers`` | JSON Object | Common headers for all sent documents. | get/set |
+| ``listeningToConnections`` | boolean | Is this subscription (not) listening to other ``subscribed`` events on that room | get/set |
+| ``listeningToDisconnections`` | boolean | Is this subscription (not) listening to other ``unsubcribed`` events on that room | get/set |
+| ``subscribeToSelf`` | boolean | (Don't) subscribe to notifications fired as a consequence of our own queries | get/set |
+| ``roomId`` | string | Unique room identifier | get |
 
 **Notes:**
 
@@ -108,16 +106,18 @@ room.renew({terms: {field: ['some', 'new', 'filter']}}, function (err, res) {
 });
 ```
 
-Renew the subscription using new filters.  
+Renew the subscription. Force a resubscription using the same filters if no new ones are provided.
 Unsubscribes first if this KuzzleRoom was already listening to events.
+
+#### renew(callback)
 
 #### renew(filters, callback)
 
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
-| filters | JSON Object | Filters in [Kuzzle DSL](https://github.com/kuzzleio/kuzzle/blob/master/docs/filters.md) format |
-| callback | function | Function called each time a notification is received |
+| ``filters`` | JSON Object | Filters in [Kuzzle DSL](https://github.com/kuzzleio/kuzzle/blob/master/docs/filters.md) format |
+| ``callback`` | function | Function called each time a notification is received |
 
 ## setHeaders ![public](./images/public.png)
 
@@ -135,8 +135,8 @@ This is a helper function returning itself, allowing to easily chain calls.
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
-| content | JSON Object | New content |
-| replace | boolean | true: replace the current content with the provided data, false: merge it |
+| ``content`` | JSON Object | New content |
+| ``replace`` | boolean | true: replace the current content with the provided data, false: merge it |
 
 **Note:** by default, the ``replace`` argument is set to ``false``
 

@@ -18,16 +18,16 @@ A data collection is a set of data managed by Kuzzle. It acts like a data table 
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
-| kuzzle | object | Kuzzle object |
-| collection | string | The name of the data collection you want to manipulate |
+| ``kuzzle`` | object | Kuzzle object |
+| ``collection`` | string | The name of the data collection you want to manipulate |
 
 ## Properties
 
 | Property name | Type | Description | get/set |
 |--------------|--------|-----------------------------------|---------|
-| kuzzle | object | linked kuzzle instance | get |
-| collection | string | The name of the data collection handled by this instance | get |
-| headers | object | Headers for all sent documents. | get/set |
+| ``kuzzle`` | object | linked kuzzle instance | get |
+| ``collection`` | string | The name of the data collection handled by this instance | get |
+| ``headers`` | object | Headers for all sent documents. | get/set |
 
 
 **Note:** the ``headers`` property is inherited from the main ``Kuzzle`` object and can be overrided
@@ -74,7 +74,7 @@ Executes an advanced search on the data collection.
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
-| filters | JSON Object | Filters in [ElasticSearch Query DSL](https://www.elastic.co/guide/en/elasticsearch/reference/1.3/query-dsl.html) format |
+| ``filters`` | JSON Object | Filters in [ElasticSearch Query DSL](https://www.elastic.co/guide/en/elasticsearch/reference/1.3/query-dsl.html) format |
 
 
 ## count ![public](./images/public.png)
@@ -110,7 +110,7 @@ Returns the number of documents matching the provided set of filters.
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
-| filters | JSON Object | Filters in [ElasticSearch Query DSL](https://www.elastic.co/guide/en/elasticsearch/reference/1.3/query-dsl.html) format |
+| ``filters`` | JSON Object | Filters in [ElasticSearch Query DSL](https://www.elastic.co/guide/en/elasticsearch/reference/1.3/query-dsl.html) format |
 
 
 ## createDocument ![public](./images/public.png)
@@ -140,19 +140,26 @@ Create a new document in Kuzzle.
 
 #### createDocument(KuzzleDocument)
 
-#### createDocument(KuzzleDocument, updateIfExist)
+#### createDocument(KuzzleDocument, options)
 
 #### createDocument(content)
 
-#### createDocument(content, updateIfExist)
+#### createDocument(content, options)
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
-| KuzzleDocument | object | KuzzleDocument object |
-| content | JSON Object | Content of the document to create |
-| updateIfExist | boolean | If the same document already exists: throw an error if sets to ``false``. Update the existing document otherwise |
+| ``KuzzleDocument`` | object | KuzzleDocument object |
+| ``content`` | JSON Object | Content of the document to create |
+| ``options`` | JSON Object | Optional parameters |
 
-**Note:** by default, the ``updateIfExist`` is set to ``false``
+Available options:
+
+| Option | Type | Description | Default |
+|---------------|---------|----------------------------------------|---------|
+| ``metadata`` | JSON Object | Additional information passed to notifications to other users | ``null`` |
+| ``updateIfExist`` | boolean | If the same document already exists: throw an error if sets to ``false``. Update the existing document otherwise | ``false`` |
+
+
 
 ## deleteDocument ![public](./images/public.png)
 
@@ -202,13 +209,23 @@ Delete persistent documents.
 
 #### deleteDocument(documentId)
 
+#### deleteDocument(documentId, options)
+
 #### deleteDocument(filters)
+
+#### deleteDocument(filters, options)
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
-| documentId | string | Unique document identifier |
-| filters | JSON Object | Filters in [ElasticSearch Query DSL](https://www.elastic.co/guide/en/elasticsearch/reference/1.3/query-dsl.html) format |
+| ``documentId`` | string | Unique document identifier |
+| ``filters`` | JSON Object | Filters in [ElasticSearch Query DSL](https://www.elastic.co/guide/en/elasticsearch/reference/1.3/query-dsl.html) format |
+| ``options`` | JSON Object | Optional parameters |
 
+Available options:
+
+| Option | Type | Description | Default |
+|---------------|---------|----------------------------------------|---------|
+| ``metadata`` | JSON Object | Additional information passed to notifications to other users | ``null`` |
 
 ## fetchDocument ![public](./images/public.png)
 
@@ -237,7 +254,7 @@ Retrieve a single stored document using its unique document ID.
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
-| documentId | string | Unique document identifier |
+| ``documentId`` | string | Unique document identifier |
 
 
 ## fetchAllDocuments ![public](./images/public.png)
@@ -309,12 +326,23 @@ Publish a realtime message
 
 #### publish(KuzzleDocument)
 
+#### publish(KuzzleDocument, options)
+
 #### publish(content)
+
+#### publish(content, options)
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
-| KuzzleDocument | object | KuzzleDocument object |
-| content | JSON Object | Content of the document to publish |
+| ``KuzzleDocument`` | object | KuzzleDocument object |
+| ``content`` | JSON Object | Content of the document to publish |
+| ``options`` | JSON Object | Optional parameters |
+
+Available options:
+
+| Option | Type | Description | Default |
+|---------------|---------|----------------------------------------|---------|
+| ``metadata`` | JSON Object | Additional information passed to notifications to other users | ``null`` |
 
 ## replaceDocument ![public](./images/public.png)
 
@@ -341,17 +369,29 @@ Replace an existing document with a new one.
 
 #### replaceDocument(documentId, content)
 
+#### replaceDocument(documentId, content, options)
+
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
-| documentId | string | Unique document identifier |
-| content | JSON Object | Content of the document to create |
+| ``documentId`` | string | Unique document identifier |
+| ``content`` | JSON Object | Content of the document to create |
+| ``options`` | JSON Object | Optional parameters |
+
+Available options:
+
+| Option | Type | Description | Default |
+|---------------|---------|----------------------------------------|---------|
+| ``metadata`` | JSON Object | Additional information passed to notifications to other users | ``null`` |
 
 ## setHeaders ![public](./images/public.png)
 
 ```js
 kuzzle
   .dataCollectionFactory('collection')
-  .setHeaders({someContent: 'someValue'}, true);
+  .setHeaders({
+    someContent: 'someValue',
+    metadata: { someMetaData: ['with', 'some', 'values']}
+  }, true);
 ```
 
 > Returns itself
@@ -364,8 +404,8 @@ This is a helper function returning itself, allowing to easily chain calls.
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
-| content | JSON Object | New content |
-| replace | boolean | true: replace the current content with the provided data, false: merge it |
+| ``content`` | JSON Object | New content |
+| ``replace`` | boolean | true: replace the current content with the provided data, false: merge it |
 
 **Note:** by default, the ``replace`` argument is set to ``false``
 
@@ -396,9 +436,9 @@ To subscribe to the entire data collection, simply provide an empty filter.
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
-| filters | JSON Object | Filters in [Kuzzle DSL](https://github.com/kuzzleio/kuzzle/blob/master/docs/filters.md) format |
-| callback | function | Callback to call every time a notification is received on this subscription |
-| options | object | Subscription configuration. Passed to the KuzzleRoom constructor. |
+| ``filters`` | JSON Object | Filters in [Kuzzle DSL](https://github.com/kuzzleio/kuzzle/blob/master/docs/filters.md) format |
+| ``callback`` | function | Callback to call every time a notification is received on this subscription |
+| ``options`` | object | Subscription configuration. Passed to the KuzzleRoom constructor. |
 
 
 ## updateDocument ![public](./images/public.png)
@@ -426,7 +466,16 @@ Update parts of a document
 
 #### updateDocument(documentId, content)
 
+#### updateDocument(documentId, content, options)
+
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
-| documentId | string | Unique document identifier |
-| content | JSON Object | Content of the document to create |
+| ``documentId`` | string | Unique document identifier |
+| ``content`` | JSON Object | Content of the document to create |
+| ``options`` | JSON Object | Optional parameters |
+
+Available options:
+
+| Option | Type | Description | Default |
+|---------------|---------|----------------------------------------|---------|
+| ``metadata`` | JSON Object | Additional information passed to notifications to other users | ``null`` |

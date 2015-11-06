@@ -23,23 +23,22 @@ var kuzzle = new Kuzzle('http://localhost:7512', {autoReconnect: true, headers: 
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
-| url | string | URL to the target Kuzzle instance |
-| options | object | Configuration of the connection to Kuzzle |
+| ``url`` | string | URL to the target Kuzzle instance |
+| ``options`` | object | Configuration of the connection to Kuzzle |
 
 Available options:
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
-| autoReconnect | boolean | Auto-reconnect on a connection loss | true |
-| headers | JSON object | Common headers for all sent documents | |
+| ``autoReconnect`` | boolean | Auto-reconnect on a connection loss | true |
+| ``headers`` | JSON object | Common headers for all sent documents | |
 
 ## Properties
 
 | Property name | Type | Description | get/set |
 |--------------|--------|-----------------------------------|---------|
-| autoReconnect | boolean | Auto-reconnect on a connection loss | get/set |
-| headers | object | Common headers for all sent documents. | get/set |
-| metadata | JSON Object | Application specific informations, shared to other subscribers | get/set |
+| ``autoReconnect`` | boolean | Auto-reconnect on a connection loss | get/set |
+| ``headers`` | object | Common headers for all sent documents. | get/set |
 
 ## Event Handling
 
@@ -49,9 +48,10 @@ Here is the list of these special events:
 
 | Event Name | Description | Expected callback arguments |
 |--------------|-------------------------------------------------------------------|--------------------------------|
-| subscribed | Fired when someone enters a subscribed room  | Room name, Subscription informations |
-| unsubscribed | Fired when someone leaves a subscribed room | Room name, Unsubscription informations |
-| disconnected | Fired when the current session has been unexpectedly disconnected |  |
+| ``subscribed`` | Fired when someone enters a subscribed room  | Room name, Subscription informations |
+| ``unsubscribed`` | Fired when someone leaves a subscribed room | Room name, Unsubscription informations |
+| ``reconnected`` | Fired when the current session has reconnected to Kuzzle after a disconnection |
+| ``disconnected`` | Fired when the current session has been unexpectedly disconnected |  |
 
 **Note:** listeners are called in the order of their insertion.
 
@@ -75,8 +75,8 @@ The ID returned by this function is required if you want to remove this listener
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
-| event | string | One of the event described in the ``Event Handling`` section of this documentation |
-| listener | function | The function to call each time one of the registered event is fired |
+| ``event`` | string | One of the event described in the ``Event Handling`` section of this documentation |
+| ``listener`` | function | The function to call each time one of the registered event is fired |
 
 **Note:** Currently, the ``subscription`` object only contains the room ID, the subscription ID of the user from whom the event originate, and the current user count on this room
 
@@ -94,7 +94,7 @@ Instantiates a new KuzzleDataCollection object.
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
-| collection | string | The name of the data collection you want to manipulate |
+| ``collection`` | string | The name of the data collection you want to manipulate |
 
 
 ## getAllStatistics ![public](./images/public.png)
@@ -216,7 +216,7 @@ This method allows getting either the last statistics frame, or a set of frames 
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
-| timestamp | Epoch time | Starting time from which the frames are to be retrieved |
+| ``timestamp`` | Epoch time | Starting time from which the frames are to be retrieved |
 
 **Note:** Kuzzle statistics are cleaned up regularly. If the timestamp is set too far in the past, then this method will return all available statistics.
 
@@ -308,16 +308,27 @@ This is a low-level method, exposed to allow advanced SDK users to bypass high-l
 Check the Kuzzle documentation available <a href=https://github.com/kuzzleio/kuzzle/tree/master/docs>here</a>
 </aside>
 
+Base method used to send queries to Kuzzle
+
 #### query(collection, controller, action, query)
+
+#### query(collection, controller, action, query, options)
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
-| collection | string | The name of the data collection you want to manipulate |
-| controller | string | The Kuzzle controller that will handle this query |
-| action | string | Controller action to perform |
-| query | JSON Object | Query to execute |
+| ``collection`` | string | The name of the data collection you want to manipulate |
+| ``controller`` | string | The Kuzzle controller that will handle this query |
+| ``action`` | string | Controller action to perform |
+| ``query`` | JSON Object | Query to execute |
+| ``options`` | JSON Object | Optional parameters |
 
-Base method used to send queries to Kuzzle
+Available options:
+
+| Option | Type | Description | Default |
+|---------------|---------|----------------------------------------|---------|
+| ``metadata`` | JSON Object | Additional information passed to notifications to other users | ``null`` |
+
+
 
 ## reconnect ![protected](./images/protected.png)
 
@@ -351,7 +362,7 @@ Removes all listeners, either from a specific event or from all events
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
-| event | string | One of the event described in the ``Event Handling`` section of this documentation |
+| ``event`` | string | One of the event described in the ``Event Handling`` section of this documentation |
 
 ## removeListener ![public](./images/public.png)
 
@@ -365,8 +376,8 @@ Removes a listener from an event.
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
-| event | string | One of the event described in the ``Event Handling`` section of this documentation |
-| listenerID | string | The ID returned by ``addListener`` |
+| ``event`` | string | One of the event described in the ``Event Handling`` section of this documentation |
+| ``listenerID`` | string | The ID returned by ``addListener`` |
 
 ## setHeaders ![public](./images/public.png)
 
@@ -384,7 +395,7 @@ This is a helper function returning itself, allowing to easily chain calls.
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
-| content | JSON Object | New content |
-| replace | boolean | true: replace the current content with the provided data, false: merge it |
+| ``content`` | JSON Object | New content |
+| ``replace`` | boolean | true: replace the current content with the provided data, false: merge it |
 
 **Note:** by default, the ``replace`` argument is set to ``false``
