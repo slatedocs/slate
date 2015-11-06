@@ -286,15 +286,16 @@ Consider the following example result dimension:
 
 A full `transform` can specify a new order of output elements, new names, 
 and in the future, bases for hypothesis testing, result sorting, and 
-aggregation of results. A `transform` will have **four** elements, which may
-contain keys: 
+aggregation of results. A `transform` has elements that look generally like
+the dimension's extent, with some optional properties: 
 
-- **id**: id or array of ids in the target row/column
+- **id**: (required) id or array of ids in the target row/column
 - **name**: name of new target column
 - **sort**: `-1` or `1` indicating to sort results descending or ascending by this element
 - **compare**: `neq`, `leq`, `geq` indicating to test other rows/columns against
 the hypothesis that they are ≠, ≤, or ≥ to the present element
 - **combine**: `sum` (or `mean`?) — combine the indices in `[i]` to produce this target row/column
+- **hide**: suppress this element's row/column from displaying at all. Defaults to false for valid elements, true for missing, so that if an element is added, it will be present until a transform with `hide: true` is added to suppress it.
 
 A `transform` with object members can do lots of things. Suppose we want to put _Element C_ first, 
 hide the _Don’t know_, and more compactly represent the result as just _C, A, B_:
@@ -303,7 +304,8 @@ hide the _Don’t know_, and more compactly represent the result as just _C, A, 
 transform: [
     {'id': 2, 'name': 'C'},
     {'id': 0, 'name': 'A'},
-    {'id': 1, 'name': 'B'}
+    {'id': 1, 'name': 'B'},
+    {'id': 3, 'hide': true}
 ]
 ```
 
@@ -314,7 +316,8 @@ Suppose we want to combine results in _A_ and _B_ into _Others_:
 ```json
 transform: [
     {'id': 2, 'name': 'C'},
-    {'id': [0,1], 'name': 'Others', 'combine': 'sum'}
+    {'id': [0,1], 'name': 'Others', 'combine': 'sum'},
+    {'id': 3, 'hide': true}
 ]
 ```
 
@@ -323,6 +326,7 @@ transform: [
 1. Combine
 1. Name
 1. Order
+2. Hide
 
 #### Example transform in a saved analysis
 
