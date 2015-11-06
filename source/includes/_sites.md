@@ -1,5 +1,5 @@
 # Sites
- 
+
 Sites are the smallest entity, below projects and have one data source and may have several exports/channels
 <aside class="info">Authentication is not included in the examples, see [Authentication](#authentication)</aside>
 
@@ -37,7 +37,7 @@ Array
             [created_at] => 2015-01-01 11:22:33
             [project_id] => 321
             [links:protected] => Array(...)
-            [reference:protected] => 
+            [reference:protected] =>
         )
     ...
 */
@@ -58,9 +58,9 @@ curl https://platform-api.productsup.io/platform/v1/sites/123
 
 
 ```
-    
-```shell    
-response: 
+
+```shell
+response:
 {
     "success": true,
     "Sites": [{
@@ -94,8 +94,8 @@ links | Array | Array of relevant resources
 To create a new site, you can use a POST request (or the insert method).
 
 ```shell
- curl 
-    -d '{"title":"test"}' 
+ curl
+    -d '{"title":"example site","reference":"myReferenceKey:myReference1234"}'
     https://platform-api.productsup.io/platform/v1/projects/321/sites
 
 
@@ -120,8 +120,15 @@ $project->id = 321;
 $SitesService->setProject($project);
 $siteObject = new \Productsup\Platform\Site();
 $siteObject->title = 'new example site';
+/* optional
+$reference = new \Productsup\Platform\Site\Reference();
+$reference->setKey('myReferenceKey');
+$reference->setValue('myReference1234');
+$siteObject->addReference($reference);
+*/
+
 $result = $SitesService->insert($siteObject);
-print_r($result); 
+print_r($result);
 /**
 result:
 Productsup\Platform\Site Object
