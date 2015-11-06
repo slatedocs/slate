@@ -21,7 +21,7 @@ var room = kuzzle.dataCollectionFactory('collection').roomFactory();
 
 var room = kuzzle
   .dataCollectionFactory('collection')
-  .roomFactory({subscribeToSelf: true, listeningToConnections: false});
+  .roomFactory({subscribeToSelf: true, listenToConnections: false});
 ```
 
 
@@ -41,8 +41,8 @@ Available options:
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
 | ``subscribeToSelf`` | boolean | (Don't) subscribe to notifications fired as a consequence of our own queries | false |
-| ``listeningToConnections`` | boolean | (Don't) listen to other subscriptions on that room | false |
-| ``listeningToDisconnections`` | boolean | (Don't) listen to other subscription cancellations on that room | false |
+| ``listenToConnections`` | boolean | (Don't) listen to other subscriptions on that room | false |
+| ``listenToDisconnections`` | boolean | (Don't) listen to other subscription cancellations on that room | false |
 
 
 ## Properties
@@ -52,15 +52,15 @@ Available options:
 | ``collection`` | string | The subscribed data collection | get |
 | ``filters`` | JSON object | The current set of filters of this room | get/set |
 | ``headers`` | JSON Object | Common headers for all sent documents. | get/set |
-| ``listeningToConnections`` | boolean | Is this subscription (not) listening to other ``subscribed`` events on that room | get/set |
-| ``listeningToDisconnections`` | boolean | Is this subscription (not) listening to other ``unsubcribed`` events on that room | get/set |
+| ``listenToConnections`` | boolean | Is this subscription (not) listening to other ``subscribed`` events on that room | get/set |
+| ``listenToDisconnections`` | boolean | Is this subscription (not) listening to other ``unsubcribed`` events on that room | get/set |
 | ``subscribeToSelf`` | boolean | (Don't) subscribe to notifications fired as a consequence of our own queries | get/set |
 | ``roomId`` | string | Unique room identifier | get |
 
 **Notes:**
 
-* the properties ``listeningTo*`` affect only the provided callback. Listeners on the corresponding global events receive notifications even if these flags are turned off.
-* updating the value of ``listeningTo*`` properties takes effect immediately
+* the properties ``listenTo*`` affect only the provided callback. Listeners on the corresponding global events receive notifications even if these flags are turned off.
+* updating the value of ``listenTo*`` properties takes effect immediately
 * the ``headers`` property is inherited from the provided ``KuzzleDataCollection`` object and can be overrided
 
 ## count ![public](./images/public.png)
