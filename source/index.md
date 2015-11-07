@@ -22,7 +22,7 @@ The requests presented on this API documentation are for our live **production e
 Server |  URL
 --------- | -----------
 **Sandbox:** | `http://demo.rubiconmd.com`
-**Production:** | `https://www.rubiconmd.com` 
+**Production:** | `https://www.rubiconmd.com`
 
 # Authentication
 
@@ -301,7 +301,7 @@ Parameter | Description
 CASE_ID | The ID of the case to retrieve
 
 
-## Accept / Reject a Specific Case 
+## Accept / Reject a Specific Case
 
 ```shell
 curl -i https://rubiconmd.com/api/v1/referrals/57/reject?access_token="AAAAAA"
@@ -392,7 +392,7 @@ Retrieves all the responses associated with a specific case.
 
 `GET https://rubiconmd.com/api/v1/referrals/CASE_ID/responses?access_token="AAAAAA"`
 
-or 
+or
 
 `GET https://rubiconmd.com/api/v1/provider_cases/CASE_ID/responses?access_token="AAAAAA"`
 
@@ -425,7 +425,7 @@ curl -i https://rubiconmd.com/api/v1/provider_cases/63/responses/17?access_token
 >The above command returns JSON like this:
 
 ```json
-{  
+{
   "id":17,
   "case_id":63,
   "specialist_id":12,
@@ -442,7 +442,7 @@ Lookup a specific response by the response's ID.
 
 `GET https://rubiconmd.com/api/v1/referrals/CASE_ID/responses/RESPONSE_ID?access_token="AAAAAA"`
 
-or 
+or
 
 `GET https://rubiconmd.com/api/v1/provider_cases/CASE_ID/responses/RESPONSE_ID?access_token="AAAAAA"`
 
@@ -485,7 +485,7 @@ This allows you post a response in a specific case (as a specialist). It also re
 
 `POST https://rubiconmd.com/api/v1/referrals/CASE_ID/responses/ {"response": {"body": TEXT, "purpose": "specialist_opinion", "need_reply": BOOLEAN} }`
 
-or 
+or
 
 `POST https://rubiconmd.com/api/v1/provider_cases/CASE_ID/responses/ {"response": {"body": TEXT, "purpose": "pcp_comment", "need_reply": BOOLEAN} }`
 
@@ -502,7 +502,7 @@ need_reply | BOOLEAN field, set to true if a reply is required from the provider
 The server will return an "unprocessable entity" HTTP response if the purpose does not match the user type (e.g., the user is a provider but the purpose is "specialist_reply").
 </aside>
 
-<!-- 
+<!--
  ##
  ##
  ## USER INFO
@@ -585,7 +585,7 @@ This allows you to create a new provider for your organization.
 
 `POST https://rubiconmd.com/api/v1/users/ {"user": {"email": TEXT, "first_name": TEXT, "last_name": TEXT, "role": ROLE} }`
 
-### URL Parameters 
+### URL Parameters
 
 Parameter |  Description
 --------- | -----------
@@ -620,7 +620,9 @@ curl -i https://rubiconmd.com/api/v1/users/token?access_token="AAAAAA"
 ```json
 [
   {
-    "user_token": "AAAAAA"
+    "user_token": "AAAAAA",
+    "created_at": -1302048000,
+    "expires_in": 300
   }
 ]
 ```
@@ -631,13 +633,13 @@ curl -i https://rubiconmd.com/api/v1/users/token?access_token="AAAAAA"
 
 ##Auto-login & Display case
 
-Pass user email, user token, and case id parameters into the URL.
+Pass users' username, user token, and case id parameters into the URL.
 
 ### HTTP Request
 
-`GET https://rubiconmd.com/pcp_iframe?user_email=EMAIL&user_token=TOKEN&case_id=CASE_ID`
+`GET https://rubiconmd.com/pcp_iframe?user_username=EMAIL&user_token=TOKEN&case_id=CASE_ID`
 
-### URL Parameters 
+### URL Parameters
 
 Parameter |  Description
 --------- | -----------
