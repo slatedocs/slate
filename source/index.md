@@ -168,11 +168,6 @@ curl -X POST -H "Content-Type: application/json" -d JSON "https://airbrake.io/ap
 
 ```json
 {
-  "notifier": {
-    "name": "notifier name",
-    "version": "notifier version",
-    "url": "notifier url"
-  },
   "errors": [
     {
       "type": "error1",
@@ -198,6 +193,11 @@ curl -X POST -H "Content-Type: application/json" -d JSON "https://airbrake.io/ap
     }
   ],
   "context": {
+  "notifier": {
+      "name": "notifier name",
+      "version": "notifier version",
+      "url": "notifier url"
+    },
     "os": "Linux 3.5.0-21-generic #32-Ubuntu SMP Tue Dec 11 18:51:59 UTC 2012 x86_64",
     "language": "Ruby 2.1.1",
     "environment": "production",
@@ -230,10 +230,6 @@ curl -X POST -H "Content-Type: application/json" -d JSON "https://airbrake.io/ap
 
 Field | Required | Description
 ------|----------|------------
-notifier | true | An object describing the notifier client library.
-notifier/name | true | The name of the notifier client submitting the request, e.g. "airbrake-js".
-notifier/version | true | The version number of the notifier client submitting the request, e.g. "1.2.3".
-notifier/url | true | A URL at which more information can be obtained concerning the notifier client.
 errors | true | An array of objects describing the error that occurred.
 errors/{i}/type | true | The class name or type of error that occurred.
 errors/{i}/message | false | A short message describing the error that occurred.
@@ -243,6 +239,10 @@ errors/{i}/backtrace/{i}/line | false | The file's line number in this entry of 
 errors/{i}/backtrace/{i}/column | false | The line's column number in this entry of the backtrace.
 errors/{i}/backtrace/{i}/function | false | When available, the function or method name in this entry of the backtrace.
 context | false | An object describing additional context for this error.
+context/notifier | true | An object describing the notifier client library.
+context/notifier/name | true | The name of the notifier client submitting the request, e.g. "airbrake-js".
+context/notifier/version | true | The version number of the notifier client submitting the request, e.g. "1.2.3".
+context/notifier/url | true | A URL at which more information can be obtained concerning the notifier client.
 context/environment | false | The name of the server environment in which the error occurred, e.g. "staging", "production", etc.
 context/component | false | The component or module in which the error occurred. In MVC frameworks like Rails, this should be set to the controller. Otherwise, this can be set to a route or other request category.
 context/action | false | The action in which the error occurred. If each request is routed to a controller action, this should be set here. Otherwise, this can be set to a method or other request subcategory.
@@ -252,9 +252,9 @@ context/version | false | Describe the application version, e.g. "v1.2.3".
 context/url | false | The application's URL.
 context/userAgent | false | The requesting browser's full user-agent string.
 context/rootDirectory | false | The application's root directory path.
-context/userId | false | If applicable, the current user's ID.
-context/userName | false | If applicable, the current user's username.
-context/userEmail | false | If applicable, the current user's email address.
+context/user/id | false | If applicable, the current user's ID.
+context/user/name | false | If applicable, the current user's username.
+context/user/email | false | If applicable, the current user's email address.
 environment | false | An object containing the current environment variables. Where the key is the variable name, e.g. `{ "PORT": "443", "CODE_NAME": "gorilla" }`.
 session | false | An object containing the current session variables. Where the key is the variable name, e.g. `{ "basket_total": "1234", "user_id": "123" }`.
 params | false | An object containing the request parameters. Where the key is the parameter name, e.g. `{ "page": "3", "sort": "desc" }`.
