@@ -13,11 +13,11 @@ Scout currently supports Ruby on Rails 2.2+ and Ruby 1.8.7+ and the following ap
 * Unicorn
 * WEBrick
 
-### Stack Profiling
+### Stack Profiling - Optional
 
 Stack Profiling requires Ruby 2.1+.
 
-### Git Integration
+### Git Integration - Optional
 
 Viewing your application code within Scout requires that your source code is hosted at Github.com.
 
@@ -64,7 +64,7 @@ Scout APM can be configured via the `config/scout_apm.yml` Yaml file and/or envi
 
 ERB is evaluated when loading the config file. For example, you can set the app name based on the hostname:
 
-```ruby
+```yaml
 common: &defaults
   name: <%= "ProjectPlanner.io (#{Rails.env})" %>
 ```
@@ -161,6 +161,20 @@ The following configuration settings are available:
       </tr>
       <tr>
         <th>
+          hostname
+        </th>
+        <td>
+          The hostname the metrics should be aggregrated under. 
+        </td>
+        <td>
+          <code>Socket.gethostname</code>
+        </td>
+        <td>
+          No
+        </td>
+      </tr>
+      <tr>
+        <th>
           proxy
         </th>
         <td>Specify the proxy URL (ex: <code>https://proxy</code>) if a proxy is required. 
@@ -189,7 +203,7 @@ The following configuration settings are available:
 
 ### Environment Variables
 
-You can also configure Scout APM via environment variables. Environment variables override settings provided in `scout_apm.yml`.
+You can also configure Scout APM via environment variables. _Environment variables override settings provided in_ `scout_apm.yml`.
 
 Environment variables have the same names as those in the Yaml config file, but are prefixed with `SCOUT_`. For example, to set the organization key via environment variables:
 
@@ -197,12 +211,50 @@ Environment variables have the same names as those in the Yaml config file, but 
 export SCOUT_KEY=YOURKEY
 ```
 
-## Heroku
+## Heroku <img src="images/heroku.png" style="float:right;width: 150px" />
 
 Scout runs on Heroku without any special configuration. When Scout detects that an app is being served via Heroku:
 
 * Logging is set to `STDOUT` vs. logging to a file. Log messages are prefixed with `[Scout]` for easy filtering.
 * The dyno name (ex: `web.1`) is reported vs. the dyno hostname. Dyno hostnames are dynamically generated and don't have any meaningful information.
+
+## Cloud Foundry <img src="images/cf_logo.png" style="float:right;width: 150px" />
+
+Scout runs on Cloud Foundry without any special configuration. 
+
+We suggest a few configuration changes in the `scout_apm.yml` file to best take advantage of Cloud Foundry:
+
+1. Set `log_file_path: STDOUT` to send your the Scout APM log contents to the Loggregator. 
+2. Use the application name configured via Cloud Foundry to identify the app.
+3. Override the hostname reported to Scout. Cloud Foundry hostnames are dynamically generated and don't have any meaningful information. We suggest using a combination of the application name and the instance index.
+
+A sample config for Cloud Foundry that implements the above suggestions:
+
+```yaml
+common: &defaults
+  key: YOUR_KEY
+  monitor: true
+  # use the configured application name to identify the app.
+  name: <%= ENV['VCAP_APPLICATION'] ? JSON.parse(ENV['VCAP_APPLICATION'])['application_name'] : "YOUR APP NAME (#{Rails.env})" %>
+  # make logs available to the Loggregator
+  log_file_path: STDOUT
+  # reports w/a more identifiable instance name using the application name and instance index. ex: rails-sample.0
+  hostname: <%= ENV['VCAP_APPLICATION'] ? "#{JSON.parse(ENV['VCAP_APPLICATION'])['application_name']}.#{ENV['CF_INSTANCE_INDEX']}"  : Socket.gethostname %>
+
+production:
+  <<: *defaults
+
+development:
+  <<: *defaults
+  monitor: false
+
+test:
+  <<: *defaults
+  monitor: false
+
+staging:
+  <<: *defaults
+```
 
 ### Configuration
 
@@ -214,7 +266,7 @@ heroku config:set SCOUT_NAME='My Heroku App'
 
 See the configuration section for more information on the available config settings and environment variable functionality.
 
-## Instrumented Libaries
+## Instrumented Libraries
 
 The following libraries are currently instrumented:
 
@@ -313,9 +365,9 @@ It typically makes sense to treat each environment (production, staging, etc) as
 
 Here's an example `scout_apm.yml` configuration to achieve this:
 
-```ruby
+```yaml
 common: &defaults
-  name: name: <%= "YOUR_APP_NAME (#{Rails.env})" %>
+  name: <%= "YOUR_APP_NAME (#{Rails.env})" %>
   key: YOUR_KEY
   log_level: debug
   monitor: true

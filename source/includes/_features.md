@@ -101,17 +101,17 @@ You'll see a histogram representation for each piece of context for the endpoint
 
 ### Endpoints Overview
 
-The endpoints area within Scout provides a sortable view of your app's overall performance aggregrated by endpoint name. Click on an endpoint to view details.
+The endpoints area within Scout provides a sortable view of your app's overall performance aggregated by endpoint name. Click on an endpoint to view details.
 
 ![endpoints overview](endpoints_annotated.png)
 
 ### Endpoint Details
 
-View aggregrated metrics across requests for a specific endpoint by clicking on the endpoint name from overview area. You can also drill into slow requests for this endpoint from this page.
+View aggregated metrics across requests for a specific endpoint by clicking on the endpoint name from overview area. You can also drill into slow requests for this endpoint from this page.
 
 ![endpoint details](endpoints_show_annotated.png)
 
-## Time Comparisions
+## Time Comparisons
 
 You can easily compare the performance of your application between different time periods via the time selection on the top right corner of the UI.
 

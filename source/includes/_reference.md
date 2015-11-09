@@ -5,7 +5,7 @@
 Scout is engineered to monitor the performance of your mission-critical production applications by providing an easy-install, low-overhead monitoring agent with a hosted SaaS service that values your security. The basic flow:
 
 * Embed our agent in your application. You don't access to the servers your app is deployed on.
-* The agent instruments key libaries (database access, controllers, views, etc) using low-overhead instrumentation. 
+* The agent instruments key libraries (database access, controllers, views, etc) using low-overhead instrumentation. 
 * Every minute, the agent connects over https (always) through a 256-bit secure, encrypted connection (the same encryption your bank uses) and sends metrics to our servers.
 * Over servers store the data.
 
@@ -54,9 +54,9 @@ You can pick your billing approach in the billing area within Scout. Your billin
 
 ## Replacing New Relic
 
-Scout is an attractive option for modern dev teams (frequent deploys, using Git, deploying to many micro instances & containers, using vendors for key infastructure services like Amazon RDS, etc). We provide a laser-focus on getting to slow custom application code fast vs. wide breadth as debugging slow custom application code is typically the most time-intensive performance optimization work. 
+Scout is an attractive option for modern dev teams (frequent deploys, using Git, deploying to many micro instances & containers, using vendors for key infrastructure services like Amazon RDS, etc). We provide a laser-focus on getting to slow custom application code fast vs. wide breadth as debugging slow custom application code is typically the most time-intensive performance optimization work. 
 
-In many cases, Scout is able to replace New Relic as-is. However, there are cases where your app has specific needs we currently don't provide. Here's some of the more common scenarios and our suggestions:
+In many cases, Scout is able to replace New Relic as-is. However, there are cases where your app has specific needs we currently don't provide. Don't fret - here's some of the more common scenarios and our suggestions for building a monitoring stack you'll love:
 
 * __Exception Monitoring__ - we provide metrics on the rate of exceptions but we don't currently provide details on exceptions. Our favorite tool for this is [Sentry](http://getsentry.com):
   * Affordable: starts @ $29/mo. 
