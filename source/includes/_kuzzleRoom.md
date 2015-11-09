@@ -65,6 +65,7 @@ Available options:
 * updating the value of ``listenTo*`` properties takes effect immediately
 * the ``headers`` property is inherited from the provided ``KuzzleDataCollection`` object and can be overrided
 * updating the ``metadata`` property takes effect after ``renew`` is called
+* by default, the global Kuzzle ``metadata`` properties are sent along with the subscription request. If a ``metadata`` option is provided during subscription, it will be merged with the global ``metadata`` for the subscription only. In case of conflicts, subscription ``metadata`` take priority over the global ``metadata``.
 
 ## count ![public](./images/public.png)
 
