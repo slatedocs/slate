@@ -1513,7 +1513,7 @@ curl "https://api.kite.ly/v1.4/print/" \
       "assets": {
         "front_image": "https://s3.amazonaws.com/kite-samples/greetings/front.png",
         "back_image": "https://s3.amazonaws.com/kite-samples/greetings/back.png",
-        "inside_right": "https://s3.amazonaws.com/kite-samples/greetings/inside.png"
+        "inside_right_image": "https://s3.amazonaws.com/kite-samples/greetings/inside.png"
       },
       "template_id": "greeting_cards_a5"
     }]
@@ -1560,8 +1560,8 @@ Greetings cards 7"x5" (10 Pack) <span class="attribute-type">greeting_cards_7x5_
 --------- | -----------
 front_image<span class="required-argument">required</span> | A image URL accessible to the Kite servers or an [asset object](#the-asset-object) identifier that you have received by [uploading an asset](#uploading-an-asset) to Kite. It will form the front of the greetings card
 back_image<span class="optional-argument">optional</span> | A image URL accessible to the Kite servers or an [asset object](#the-asset-object) identifier that you have received by [uploading an asset](#uploading-an-asset) to Kite. Specifying a `back_image` gives you total control of the back of the greetings card.
-inside_left<span class="optional-argument">optional</span> | A image URL accessible to the Kite servers or an [asset object](#the-asset-object) identifier that you have received by [uploading an asset](#uploading-an-asset) to Kite. Specifying an `inside_left` gives you total control of the inside of the greetings card.
-inside_right<span class="optional-argument">optional</span> | A image URL accessible to the Kite servers or an [asset object](#the-asset-object) identifier that you have received by [uploading an asset](#uploading-an-asset) to Kite. Specifying a `inside_right` gives you total control of the inside of the greetings card.
+inside_left_image<span class="optional-argument">optional</span> | A image URL accessible to the Kite servers or an [asset object](#the-asset-object) identifier that you have received by [uploading an asset](#uploading-an-asset) to Kite. Specifying an `inside_left_image` gives you total control of the inside of the greetings card.
+inside_right_image<span class="optional-argument">optional</span> | A image URL accessible to the Kite servers or an [asset object](#the-asset-object) identifier that you have received by [uploading an asset](#uploading-an-asset) to Kite. Specifying a `inside_right_image` gives you total control of the inside of the greetings card.
 
 
 # Addresses
