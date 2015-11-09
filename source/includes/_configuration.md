@@ -20,7 +20,7 @@ Stack Profiling requires Ruby 2.1+.
 You must explicitly add the stackprof gem to your Gemfile:
 
 ```ruby
-gem 'scout_apm'
+gem 'stackprof', '~> 0.2.7'
 ```
 
 ### Git Integration - Optional
