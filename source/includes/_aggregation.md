@@ -408,7 +408,7 @@ In this case, the `UserName` value is `script1`, and the `Password` value is `ca
 > Request payload
 
 ```
-accounts[657][type_code]=SDA,SDA&accounts[657][details]=My+Checking&accounts[658][type_code]=ignore
+accounts[657][type_code]=SDA,SDA&accounts[658][type_code]=ignore
 ```
 
 > Response payload
@@ -457,7 +457,6 @@ providing the `details` parameter.
 | Parameter | Description |
 |-----------|-------------|
 | `accounts[657]` | The integer portion of this key is the `id` value from the account details in the previous `POST /api/v2/users/pcid/ce_fis` request. |
-| `accounts[657][details]` | The given string will be used as the name for this account in PFM instead of the one supplied by the aggregator. |
 | `accounts[657][type_code]` | A value is made up of the concatenated `acct_type` and `ext_type`, joined by a comma (ie: SDA,SDA). This is our best guess as to what the account is. Submitting a value of `ignore` will omit the account from aggregation. |
 
 
