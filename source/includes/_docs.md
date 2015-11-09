@@ -1490,6 +1490,78 @@ message<span class="optional-argument">optional</span> | The text message that y
 front_image<span class="required-argument">required</span> | A image URL accessible to the Kite servers or an [asset object](#the-asset-object) identifier that you have received by [uploading an asset](#uploading-an-asset) to Kite. It will form the front of the postcard
 back_image<span class="optional-argument">optional</span> | A image URL accessible to the Kite servers or an [asset object](#the-asset-object) identifier that you have received by [uploading an asset](#uploading-an-asset) to Kite. Specifying a `back_image` gives you near total control of the back of postcard layout. In doing so you are expected to insert the message & recipient address directly into the image according to our guidelines  
 
+## Ordering greeting cards
+
+> Example Order Request
+
+```shell
+curl "https://api.kite.ly/v1.4/print/" \
+  -H "Authorization: ApiKey {{ test_api_key }}:<your_secret_key>" \
+  --data '{
+    "shipping_address": {
+      "recipient_name": "Deon Botha",
+      "address_line_1": "Eastcastle House",
+      "address_line_2": "27-28 Eastcastle Street",
+      "city": "London",
+      "county_state": "Greater London",
+      "postcode": "W1W 8DH",
+      "country_code": "GBR"
+    },
+    "customer_email": "{{ user_email }}",
+    "customer_phone": "+44 (0)784297 1234",
+    "jobs": [{
+      "assets": {
+        "front_image": "https://s3.amazonaws.com/kite-samples/greetings/front.png",
+        "back_image": "https://s3.amazonaws.com/kite-samples/greetings/back.png",
+        "inside_right": "https://s3.amazonaws.com/kite-samples/greetings/inside.png"
+      },
+      "template_id": "greeting_cards_a5"
+    }]
+  }'
+```
+
+```objective_c
+// See https://github.com/OceanLabs/iOS-Print-SDK#custom-user-experience for full step by step instructions
+
+```
+
+```java
+// See https://github.com/OceanLabs/Android-Print-SDK#custom-checkout for full step by step instructions
+
+```
+
+> Replace `<your_secret_key>` with the one found in the [credentials](https://www.kite.ly/accounts/credentials) section of the dashboard.<br /><br />
+
+> Example Response
+
+```shell
+{
+  "print_order_id": "PS96-996634811"
+}
+```
+
+
+If you haven't already, see [Placing orders](#placing-orders) for a general overview of the order request & response which is applicable to all product orders.
+
+The example request on the right would result in a greetings card being created and shipped to the specified address.
+
+### products & template_ids
+
+          | |
+--------- | -----------
+Greetings card A5 <span class="attribute-type">greeting_cards_a5</span> | Our greetings cards are 330gsm Fedrigoni one sided Symbol gloss and gloss UV varnished card. Dispatched worldwide.
+Greetings card 7"x5" <span class="attribute-type">greeting_cards_7x5</span> | Our greetings cards are 330gsm Fedrigoni one sided Symbol gloss and gloss UV varnished card. Dispatched worldwide.
+Greetings cards A5 (10 Pack) <span class="attribute-type">greeting_cards_a5_10pack</span> | Pack of 10 single design greetings cards printed on 330gsm Fedrigoni one sided Symbol gloss and gloss UV varnished card. Dispatched worldwide.
+Greetings cards 7"x5" (10 Pack) <span class="attribute-type">greeting_cards_7x5_10pack</span> | Pack of 10 single design greetings cards printed on 330gsm Fedrigoni one sided Symbol gloss and gloss UV varnished card. Dispatched worldwide.
+
+### Assets Arguments
+
+          | |
+--------- | -----------
+front_image<span class="required-argument">required</span> | A image URL accessible to the Kite servers or an [asset object](#the-asset-object) identifier that you have received by [uploading an asset](#uploading-an-asset) to Kite. It will form the front of the greetings card
+back_image<span class="optional-argument">optional</span> | A image URL accessible to the Kite servers or an [asset object](#the-asset-object) identifier that you have received by [uploading an asset](#uploading-an-asset) to Kite. Specifying a `back_image` gives you total control of the back of the greetings card.
+inside_left<span class="optional-argument">optional</span> | A image URL accessible to the Kite servers or an [asset object](#the-asset-object) identifier that you have received by [uploading an asset](#uploading-an-asset) to Kite. Specifying an `inside_left` gives you total control of the inside of the greetings card.
+inside_right<span class="optional-argument">optional</span> | A image URL accessible to the Kite servers or an [asset object](#the-asset-object) identifier that you have received by [uploading an asset](#uploading-an-asset) to Kite. Specifying a `inside_right` gives you total control of the inside of the greetings card.
 
 
 # Addresses

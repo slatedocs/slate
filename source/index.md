@@ -1,7 +1,7 @@
 ---
 title: Print API Reference
 
-layout: layout_django
+layout: layout_preview
 
 language_tabs:
   - {shell: "Curl"}
