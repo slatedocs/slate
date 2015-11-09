@@ -215,6 +215,12 @@ This is a helper function returning itself, allowing to easily chain calls.
 var room = document.subscribe(function (error, notification) {
   // called each time a change occurs on this document
 });
+
+var room = document.subscribe(
+  {subscribeToSelf: true, metadata: { myId: 'someId'}},
+  function (error, notification) {
+    // called each time a change occurs on this document
+  });
 ```
 
 > Return a KuzzleRoom object
@@ -222,8 +228,11 @@ var room = document.subscribe(function (error, notification) {
 Listens to changes occuring on this document.  
 Throws an error if this document has not yet been created in Kuzzle.
 
+#### subscribe(options, cb)
+
 #### subscribe(cb)
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
+| ``options`` | object | Subscription configuration. Passed to the KuzzleRoom constructor. |
 | ``cb`` | function | Callback that will be called each time a change has been detected on this document |
