@@ -68,6 +68,17 @@ If you don't enable the Github integration, you'll see a backtrace.
 
 Scout records details on every slow request but limits the collection of call breakdown metrics to ten slow requests per-server to prevent sending too much data to Scout.
 
+## Stack Profiling
+
+Stack profiling is separate from the standard request breakdowns. It samples the stack at regular intervals to determine where time is being spent.
+
+
+Stack Profiling requires Ruby 2.1+. You must explicitly add the stackprof gem to your Gemfile:
+
+```ruby
+gem 'scout_apm'
+```
+
 ## Git Integration
 
 If your code is hosted at Github, you can see the relevant slow line-of-code within the Scout user interface when viewing slow request details. Additionally, you'll also see the:
