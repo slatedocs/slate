@@ -339,7 +339,7 @@ MotionEngine_CallBack_CFG_t g_MotionEngine_CallBackCfg = {
 ## Update Motion Features Main API Function
 
 `
-Host_RcvdPacket_UpdateMotionFeatures(uint8_t* buf, MOTION_FEATURE* dev, MotionEngine_CallBack_CFG_t cfg)
+Host_RcvdPacket_UpdateMotionFeatures(uint8_t* buf, Motion_Feature_t* dev, MotionEngine_CallBack_CFG_t cfg)
 `
 
 > The motion features list has the following data structure:
