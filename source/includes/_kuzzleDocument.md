@@ -47,6 +47,7 @@ var document = kuzzle
 | ``content`` | JSON Object | The content of the document | get/set |
 | ``headers`` | JSON Object | Common headers for all sent documents. | get/set |
 | ``id`` | string | Unique document identifier | get |
+| ``version`` | integer | Current document version | get |
 
 **Notes:**  
 
