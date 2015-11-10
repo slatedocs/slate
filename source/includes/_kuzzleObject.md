@@ -260,10 +260,24 @@ Closes the current connection. Does not fire a ``disconnected`` event.
 ## now ![public](./images/public.png)
 
 ```js
-// TODO
+// Using callbacks (NodeJS or Web Browser)
+kuzzle.now(function (err, res) {
+  // 'res' contains the Kuzzle timestamp
+});
+
+// Using promises (NodeJS only)
+kuzzle.nowPromise().then(res => {
+  // 'res' contains the Kuzzle timestamp
+});
 ```
 
-Returns the current Kuzzle UTC timestamp.
+> Return an UTC Epoch time in milliseconds
+
+```json
+1447151167622
+```
+
+Returns the current Kuzzle time.
 
 
 ## query ![public](./images/public.png)
