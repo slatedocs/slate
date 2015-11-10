@@ -67,10 +67,10 @@ This function will disable the streaming of the 6-axis IMU data.
 > The quaternion data structure is given below:
 
 ```c
-typedef struct QUAT //quaternion
+typedef struct Quaternion_t //quaternion
 {
-  int16_t q[4]; //fixed-point quaternion
-} QUAT;
+  int16_t q[4]; //fixed-point normalized quaternion with 15 fractional bits
+} Quaternion_t;
 ```
 
 `EnableQuaternionStream()`
@@ -97,12 +97,12 @@ This function disables the streaming of the quaternion data.
 > The Euler angle data type is given below:
 
 ```c
-typedef struct Euler_fxp //fixed-point Euler angles, i.e., round(angle*10)
+typedef struct Euler_fxp_t //fixed-point Euler angles, i.e., round(angle*10)
 {
   int16_t yaw; //first rotation, around z-axis
   int16_t pitch; //second rotation, around y-axis
   int16_t roll; //third rotation, around x-axis
-} Euler_fxp;
+} Euler_fxp_t;
 ```
 
 `EnableEulerAngleStream()`
@@ -262,7 +262,7 @@ returns quaternion
 
 ## Get Euler angles
 
-`GetEulerAngles(Euler_fxp* angles, uint32_t* TimeStamp)`
+`GetEulerAngles(Euler_fxp_t* angles, uint32_t* TimeStamp)`
 
 returns Euler angles
 
@@ -274,7 +274,7 @@ returns force
 
 ## Get Euler angle error
 
-`GetEulerAngleErr(Euler_fxp* angles_err, uint32_t* TimeStamp)`
+`GetEulerAngleErr(Euler_fxp_t* angles_err, uint32_t* TimeStamp)`
 
 This function returns the Euler angle errors at TimeStamp in comparison with the pre-recorded orientation trajectory. The errors are in degrees and are integer values.
 
@@ -294,9 +294,9 @@ Alternatively, developers can define API call-backs whenever a new motion featur
 typedef void (*Motion_CallBack)(motionstatus_t motion, uint32_t TimeStamp);
 typedef void (*IMU_6Axis_CallBack)(IMU_6Axis_t data, uint32_t TimeStamp);
 typedef void (*Quaternion_CallBack)(Quaternion_t quatrn, uint32_t TimeStamp);
-typedef void (*EulerAngle_CallBack)(Euler_fxp angles, uint32_t TimeStamp);
+typedef void (*EulerAngle_CallBack)(Euler_fxp_t angles, uint32_t TimeStamp);
 typedef void (*ExternalForce_CallBack)(Fext_Vec16_t fext, uint32_t TimeStamp);
-typedef void (*EulerAngleErr_CallBack)(Euler_fxp angles_err, uint32_t TimeStamp);
+typedef void (*EulerAngleErr_CallBack)(Euler_fxp_t angles_err, uint32_t TimeStamp);
 typedef void (*Pedometer_CallBack)(steps_t steps, int16_t direction, uint32_t TimeStamp);
 typedef void (*MAG_CallBack)(AxesRaw_t data, uint32_t TimeStamp);
 
@@ -345,17 +345,17 @@ Host_RcvdPacket_UpdateMotionFeatures(uint8_t* buf, MOTION_FEATURE* dev, MotionEn
 > The motion features list has the following data structure:
 
 ```c
-typedef struct MOTION_FEATURE{ //all features
+typedef struct Motion_Feature_t{ //all features
 	uint8_t motion; //0: no change in motion, 1: stops moving, 2: starts moving
 	IMURaw_t IMUData;
 	Quaternion_t quatrn;
-	Euler_fxp angles;
+	Euler_fxp_t angles;
 	Fext_Vec16_t force;
-	Euler_fxp angles_err; //error in Euler angles compared to a reference trajectory
+	Euler_fxp_t angles_err; //error in Euler angles compared to a reference trajectory
 	uint32_t TimeStamp; //in microseconds
 	steps_t steps;
 	int16_t direction;
-} MOTION_FEATURE;
+} Motion_Feature_t;
 ```
 
 This is an important function that should be called every time a new BLE packet `buf` targeting the motion engine is received by the host.
