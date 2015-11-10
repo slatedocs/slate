@@ -68,7 +68,7 @@ products | Integer | Count of products in dataset
 ## Query
 
 ```shell
-curl  http://api.productsup.io/product/v1/site/123/stage/intermediate/
+curl  https://platform-api.productsup.io/product/v1/site/123/stage/intermediate/
     ?filter=id+%3C%3E+%27%27
     &limit=5000
     &offset=0
