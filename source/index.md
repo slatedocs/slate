@@ -1,11 +1,9 @@
 ---
-title: API Reference
+title: FINCLUSTER API Reference
 
 language_tabs:
-  - shell
-  - ruby
-  - python
-
+  - json: JSON Request/Response
+  
 toc_footers:
   - <a href='#'>Sign Up for a Developer Key</a>
   - <a href='http://github.com/tripit/slate'>Documentation Powered by Slate</a>
@@ -18,151 +16,760 @@ search: true
 
 # Introduction
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
-
-We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
-
-This example API documentation page was created with [Slate](http://github.com/tripit/slate). Feel free to edit it and use it as a base for your own API's documentation.
-
-# Authentication
-
-> To authorize, use this code:
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-```
-
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
-```
-
-> Make sure to replace `meowmeowmeow` with your API key.
-
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
-
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
-
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
-
-# Kittens
-
-## Get All Kittens
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
-
-```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
-```
-
-> The above command returns JSON structured like this:
+> https://fincluster.com:8080/api/CORE/This/function;
 
 ```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Isis",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
-```
-
-This endpoint retrieves all kittens.
-
-### HTTP Request
-
-`GET http://example.com/api/kittens`
-
-### Query Parameters
-
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
-```
-
-> The above command returns JSON structured like this:
-
-```json
+//request
 {
-  "id": 2,
-  "name": "Isis",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
+  "Portfolios_name":"001testAPI",
+  "sid":"Your_API_key",
+  "Portfolios_currency":"EUR",
+  "organisation":{
+  "Resources_key":"00001"}
+}
+//response
+{
+  "Portfolios_key":"4601344"
 }
 ```
 
-This endpoint retrieves a specific kitten.
+Welcome to the Fincluster API! You can use our API to access Fincluster API endpoints.
 
-<aside class="warning">If you're not using an administrator API key, note that some kittens will return 403 Forbidden if they are hidden for admins only.</aside>
+The Fincluster API is built using REST principles which follow HTTP rules, so a wide range of HTTP clients can be used to interact with the API. Every function is exposed as a URL Endpoint and the REQUEST is always made with the **POST** action. Both REQUEST and RESPONSE are formatted as JSON objects. This documentation shows which parameters are obligatory or optional for the REQUEST objects and the type of key:values returned by the RESPONSE object. Required parameters are at the top of each table. 
 
-### HTTP Request
+Complex nested objects are shown preceded by an indented colon. 
 
-`GET http://example.com/kittens/<ID>`
+For more information about options, please see the [Help guide](https://fincluster.com:8080/agent/#/help).
 
-### URL Parameters
+### Example Query Parameters
 
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
+Parameter | Required | Type | Description 
+--------- | ------- | ---------- | ----------
+Portfolios_name | TRUE | String |The Portfolio's title
+sid | TRUE | String |Your API key
+Portfolios_currency | FALSE | String |Portfolio's base currency
+organization | FALSE | Object |Counterparty info
+&nbsp;&nbsp;:Resources_key | FALSE | String |Counterparty ID
+
+The column on the right shows the format of a Fincluster *Endpoint*, a *JSON*  REQUEST object and a *JSON* RESPONSE object used by an http or AJAX client. You can use any AJAX wrapper, or compose the REQUEST in any language which is REST-compatible. (The `key:values` shown here for `This_function` are for illustration only.) 
+
+## Authentication
+
+> https://dev.fincluster.com:8080/api/CORE/Auth/get
+
+```json
+//request
+{
+  "username":"User Name",
+  "password":"p*ssw*rd!",
+  "rememberme":0,
+  "surl":"https://dev.fincluster.com:8080/agent/#"
+}
+//response
+{
+  "Users_key":"400180",
+  "Users_role":"OPERATOR",
+  "Users_email":"someone@fincluster.com",
+  "Users_name":"User Name",
+  "Users_username":"p*ssw*rd!",
+  "Users_lang":"en",
+  "Users_pub":{},"Users_prefs":{},
+  "Users_data":{"currency":"EUR","calc_netPnlu":0,"calc_currency":"EUR","calc_netPerfu":0,"calc_netPnl1d":0,"calc_netPerf1d":0,"calc_curNetAmount":0,"calc_numPortfolios":0,"calc_curNetSecAmount":0,"calc_curNetCashAmount":0},
+  "Companies_name":"FINCLUSTER","Companies_key":3,
+  "Users_capabilities":[],
+  "sid":"S152d5ca85700b3056f7e02f9f60996f27587c195"
+}
+
+```
+
+### Auth_get Query Parameters
+
+Parameter | Required | Type | Description 
+--------- | ------- | ---------- | ----------
+username | TRUE | String |Login name
+password | TRUE | String |Valid password
+rememberme | FALSE | Boolean |Cache login
+surl | FALSE | String |Base URL
+
+> https://fincluster.com/api/Developers/key
+
+Initial authentication using the Required parameters of `Auth_get` is required to validate any subsequent `"sid": "value"`, either generated by this Endpoint call or by a previous one. **???Reconfigure for public API???** *Fincluster uses API keys to allow access to the API. You can register a new Fincluster API key at our [developer portal](https://fincluster.com/api/Developers/key)*.
+
+After authentication, the Fincluster database expects the API key to be included in all API requests to the server in a header that looks like the following:
+
+`"sid" : "Your_API_key"`
+
+<aside class="notice">
+You must replace <code>Your_API_key</code> with your personal API key.
+</aside>
+
+# Portfolios
+
+## New Portfolio
+
+> https://fincluster.com/api/Portfolios/save
+
+```json
+//request
+{
+  "Portfolios_name":"001AnyName",
+  "sid":"Your_API_key",
+  "Portfolios_data":{},
+  "Portfolios_currency":"EUR",
+  "Portfolios_setupDate":"2015-11-05",
+  "Portfolios_type":"DEFAULT",
+  "startCash": 1000,
+  "Portfolios_prefs":{"tz":"+00:00"},
+  "Accounts_OrganizationsKey":"120976",
+  "Contacts_key":null,
+  "Portfolios_dossier":"FC001",
+  "Accounts_iban":"0001",
+  "Portfolios_notes":"Parameter test",
+  "Companies_key":3,
+  "organization":{"Resources_key":"120976","Resources_name":"Allianz Bank","Resources_type":"ORGANIZATION","Resources_CompaniesKey":3,"Resources_data":{"key":120976,"name":"Allianz Bank","type":"BANK","notes":null,"CompaniesKey":3},
+  "Resources_mts":"2015-09-05T16:36:18.888Z",
+  "Resources_tags":[],
+  "Share_perm":10}
+}
+//response
+{
+  "Portfolios_key":"4601344"
+}
+
+```
+`Portfolios_save` creates a new Portfolio, with the parameters listed in the following table. A successful request will return a new Portfolio: id as the `"Portfolios_key"` string value. The Portfolio: id is unique, the Portfolio: name does not have to be unique.
+
+### Portfolios_save Query Parameters
+
+Parameter | Required | Type | Description 
+--------- | ------- | ---------- | ----------
+Portfolios_name | TRUE | String |The Portfolio's title
+sid | TRUE | String |Your API key
+Portfolios_data | FALSE | Object |{tags: []} array of shared portfolio tags
+Portfolios_currency | FALSE | String |Portfolio's base currency
+Portfolios_setupDate | FALSE | Date |YYYY-MM-DD format
+Portfolios_type | FALSE | String |DEFAULT or FUND
+startCash | FALSE | Number |Initial cash in base currency
+Portfolios_prefs | FALSE | Time |Time zone from GMT
+Accounts_OrganizationsKey | FALSE | String |Account ID
+Contacts_key | FALSE | ??? |???
+Accounts_iban | FALSE | String |IBAN code
+Portfolios_notes | FALSE | String |Additional info
+Companies_key | FALSE | Number |Company ID
+organization | FALSE | Object |Organisation info
+&nbsp;&nbsp;:Resources_key | FALSE | String |Organisation ID
+&nbsp;&nbsp;:Resources_name | FALSE | String |Organisation name
+&nbsp;&nbsp;:Resources_type | FALSE | String |Organisation type
+&nbsp;&nbsp;:Resources_CompaniesKey | FALSE | Number |Company key
+&nbsp;&nbsp;:Resources_data | FALSE | Object |Organisation data
+&nbsp;&nbsp;&nbsp;&nbsp;:key | FALSE | Number |Organisation key
+&nbsp;&nbsp;&nbsp;&nbsp;:name | FALSE | String |Organisation name
+&nbsp;&nbsp;&nbsp;&nbsp;:type | FALSE | String |Organisation type
+&nbsp;&nbsp;&nbsp;&nbsp;:notes | FALSE | String |Organisation info
+&nbsp;&nbsp;&nbsp;&nbsp;:CompaniesKey | FALSE | String |Companies key
+&nbsp;&nbsp;:Resources_mts??? | FALSE | DateTime |YYYY-MM-DDThh:mm:ss.sssZ (UTC)
+&nbsp;&nbsp;:Resources_tags | FALSE | Array |Shared tags???
+&nbsp;&nbsp;:Share_perm | FALSE | Number |???
+
+
+## List Portfolios
+
+> https://dev.fincluster.com:8080/api/CORE/Portfolios/list
+
+```json
+//request
+{
+  "sid":"S2f1667847932c30972205746a5b748c85d9ce693",
+  "qwhere":" AND (\"Portfolios\".data->>'active')::BOOL = true",
+  "qorder":"\"Portfolios\".\"name\" asc",
+  "getPerm":1,
+  "getShares":1,
+  "Companies_key":3,
+  "page":1,
+  "rows":25
+}
+//response
+{"rows":[{
+"Portfolios_key":"4603708",
+"Portfolios_name":"001testAPI",
+"Portfolios_type":"DEFAULT",
+"Portfolios_dossier":"FC001",
+"Portfolios_currency":"EUR",
+"Portfolios_setupDate":"2015-11-05T00:00:00.000Z",
+"Portfolios_AssetsKey":null,
+"Portfolios_rule":null,
+"Portfolios_notes":"Parameter test",
+"Portfolios_CompaniesKey":3,
+"Portfolios_data":{
+"tseq":1447155832104,
+"active":true,
+"calc_date":"2015-11-10T11:43:51+00:00",
+"calc_netPnlu":0,
+"calc_netPerfu":0,
+"calc_curNetAmount":0},
+"Portfolios_prefs":{
+"tz":"+00:00"},
+"Assets_key":null,
+"Assets_AssetID":null,
+"Assets_AssetIsin":null,
+"Assets_AssetFeederCode":null,
+"Assets_AssetName":null,
+"Assets_AssetShortName":null,
+"Assets_AssetTypo":null,
+"Assets_AssetCurrency":null,
+"Assets_AssetIndustrySector":null,
+"Assets_AssetMultiplier":null,
+"Assets_AssetExpirationDate":null,
+"Assets_AssetCountry":null,
+"Assets_AssetCountryName":null,
+"Assets_CompaniesKey":null,
+"Share_perm":10,
+"Shares_UsersKeys":[
+"400180"],
+"Shares_UsersNames":[
+"User Name"]
+}],"page":1}
+
+```
+`Portfolios_list` lists all available portfolios, sorted by qorder values ??? (asc || desc).
+
+### Portfolios_list Query Parameters
+
+Parameter | Required | Type | Description 
+--------- | ------- | ---------- | ----------
+sid | TRUE | String |Your API key
+qwhere | FALSE | String |Query of portfolio selection
+qorder | FALSE | String |Portfolios' sort order
+getPerm | FALSE | Boolean |???
+getShares | FALSE | Boolean |???
+Companies_key | FALSE | Number |Company ID
+page | FALSE | Number |Page displayed on platform
+rows | FALSE | Number |Rows displayed per page
+
+## Delete Portfolio
+
+> https://dev.fincluster.com:8080/api/CORE/Portfolios/del
+
+```json
+//request
+{
+  "qwhere":" AND \"Portfolios\".\"key\" in ('4603731', '4603729')",
+  "sid":"S2f1667847932c30972205746a5b748c85d9ce693",
+  "Companies_key":3
+}
+//response
+{
+  "Portfolios_keys":["4603731","4603729"]
+}
+
+```
+`Portfolios_del` deletes a portfolio or portfolios, with the parameters listed in the following table. A successful request will return the deleted Portfolio: id(s) as an array of the deleted `"Portfolios_key"` string values. If the query selection criteria (here, portfolios IDs) are not found, the RESPONSE will be an empty array `{"Portfolios_keys":[]}`.
+
+### Portfolios_del Query Parameters
+
+Parameter | Required | Type | Description 
+--------- | ------- | ---------- | ----------
+qwhere | TRUE | String |Query portfolio selection
+sid | TRUE | String |Your API key
+Companies_key | FALSE | Number |Company ID
+
+
+## Report Status
+
+> https://dev.fincluster.com:8080/api/CORE/Report/status
+
+```json
+//request
+{
+  "Portfolios_keys":["4603841"],
+  "sid":"S2f1667847932c30972205746a5b748c85d9ce693",
+  "currency":"EUR",
+  "endDate":"2015-11-10T13:32:17+00:00",
+  "history":1,
+  "simulate":0,
+  "Companies_key":3
+}
+//response
+{"report":{
+"endDate":"2015-11-10T13:32:17+00:00",
+"name":"001testAPI",
+"portfolios":[
+{
+"Portfolios_key":"4603841",
+"Portfolios_name":"001testAPI",
+"Portfolios_type":"DEFAULT",
+"Portfolios_dossier":"FC001",
+"Portfolios_currency":"EUR",
+"Portfolios_setupDate":"2015-11-05T00:00:00.000Z",
+"Portfolios_AssetsKey":null,
+"Portfolios_rule":null,
+"Portfolios_notes":"Parameter test",
+"Portfolios_CompaniesKey":3,
+"Portfolios_data":{
+"tseq":1447160602877,
+"active":true,
+"calc_date":"2015-11-10T13:03:22+00:00",
+"calc_netPnlu":0,
+"calc_netPerfu":0,
+"calc_curNetAmount":0
+},
+"Portfolios_prefs":{
+"tz":"+00:00"
+},
+"Assets_key":null,
+"Assets_AssetID":null,
+"Assets_AssetIsin":null,
+"Assets_AssetFeederCode":null,
+"Assets_AssetName":null,
+"Assets_AssetShortName":null,
+"Assets_AssetTypo":null,
+"Assets_AssetCurrency":null,
+"Assets_AssetIndustrySector":null,
+"Assets_AssetMultiplier":null,
+"Assets_AssetExpirationDate":null,
+"Assets_AssetCountry":null,
+"Assets_AssetCountryName":null,
+"Assets_CompaniesKey":null,
+"Share_perm":10
+}
+],
+"views":{
+"AGGR":{
+"entries":{
+"CASH|EUR CURNCY|DEFAULT|4603843":{
+"asset":{
+"Assets_key":118685,
+"Assets_AssetID":"EUR CURNCY",
+"Assets_AssetIsin":null,
+"Assets_AssetFeederCode":"EUR CURNCY",
+"Assets_AssetName":"Euro Spot",
+"Assets_AssetTypo":"Currency",
+"Assets_AssetCurrency":"EUR",
+"Assets_AssetIndustrySector":null,
+"Assets_AssetMultiplier":1,
+"Assets_AssetExpirationDate":null,
+"Assets_AssetCountry":"UNKNOWN",
+"Assets_CompaniesKey":3,
+"Assets_AssetClassFocus":"Curncy",
+"Assets_feeder":"BBG",
+"Assets_AssetSedol":null,
+"Assets_AssetTicker":"EUR",
+"Assets_AssetCountryName":"eurozone",
+"Assets_AssetSectorName":"Curncy",
+"Assets_name":"Euro Spot",
+"Assets_AssetCategory":"SPOT",
+"Assets_AssetShortName":"Euro Spot",
+"Assets_AssetCompany":"Euro Spot",
+"Assets_AssetIssuer":"Euro Spot",
+"Assets_AssetParentCompany":null,
+"Assets_AssetExposureMultiplier":1,
+"Assets_data":{
+},
+"Assets_AssetPriceMultiplier":1,
+"Assets__minfo":null,
+"Assets__mstatus":null,
+"Assets_AssetSearchName":"Euro Spot",
+"Assets_custom":null,
+"Assets_cur":{
+"CONVERTIBLE":0,
+"CONVERTIBLE_ts":"2015-10-14T00:00:00",
+"LAST_PRICE":1,
+"LAST_PRICE_ts":"2015-11-10T13:03:22",
+"PX_OPEN":1.3525,
+"PX_OPEN_ts":"2014-07-19T00:00:00",
+"EXCH_CODE":0,
+"EXCH_CODE_ts":"2015-09-04T00:00:00",
+"PX_MID":1,
+"PX_MID_ts":"2015-11-10T12:38:16",
+"AssetTypo":"Currency",
+"LAST_PRICE_1D":1,
+"LAST_CHANGE_1D":1
+},
+"Assets_AssetIssuerLimits":"euro spot"
+},
+"account":{
+"Accounts_key":4603843,
+"Accounts_OrganizationsKey":120976,
+"Accounts_iban":"0001",
+"Accounts_currency":"EUR",
+"Accounts_bank":"Allianz Bank"
+},
+"portfolio":{
+"Portfolios_key":4603841,
+"Portfolios_name":"001testAPI",
+"Portfolios_dossier":"FC001",
+"Portfolios_currency":"EUR"
+},
+"bank":{
+"Resources_key":120976,
+"Resources_name":"Allianz Bank"
+},
+"Trades_pvtag":"CASH|EUR CURNCY|DEFAULT|4603843",
+"Trades_key":"CASH|EUR CURNCY|DEFAULT|4603843",
+"Trades_data":{
+"key":"CASH|EUR CURNCY|DEFAULT|4603843",
+"calc_netPnlu":0,
+"calc_netPnluBs":0,
+"calc_netPnluNC":0,
+"calc_pnlu":0,
+"calc_pnluBs":0,
+"calc_pnluNC":0,
+"calc_netPerfu":0,
+"calc_netPerfuBs":0,
+"calc_netPerfuNC":0,
+"calc_perfu":0,
+"calc_perfuBs":0,
+"calc_perfuNC":0,
+"calc_netAmount1dNC":1000,
+"calc_netAmount1dBs":1000,
+"calc_netAmount1d":1000,
+"calc_pnlr1d":0,
+"calc_pnlr1dBs":0,
+"calc_netPnlr1d":0,
+"calc_netPnlr1dBs":0,
+"calc_pnlu1d":0,
+"calc_pnlu1dBs":0,
+"calc_netPnlu1d":0,
+"calc_netPnlu1dBs":0,
+"calc_netPerfr1d":0,
+"calc_netPerfr1dBs":0,
+"calc_netPerfu1d":0,
+"calc_netPerfu1dBs":0,
+"calc_netPnlr":0,
+"calc_netPnlrBs":0,
+"calc_pnlr":0,
+"calc_pnlrBs":0,
+"calc_netPnl1d":0,
+"calc_netPnl1dBs":0,
+"calc_pnl1d":0,
+"calc_pnl1dBs":0,
+"calc_netPerf1d":0,
+"calc_netPerf1dBs":0,
+"calc_avgChange":1,
+"quota_otc":0,
+"__keep":1
+},
+"Trades_stage":"position",
+"Trades_action":"POS",
+"Trades_status":"POSITION",
+"Trades_errors":[
+],
+"Trades_type":"DEFAULT",
+"Trades_group":"CASH",
+"Trades_tags":[
+"CASH"
+],
+"Trades_currency":"EUR",
+"Trades_changeCurrency":"EUR",
+"Trades_date":"2015-11-04T00:00:00+00:00",
+"Trades_settleDate":"2015-11-04T00:00:00+00:00",
+"Trades_curPriceDate":"2015-11-10T13:03:22",
+"Trades_curChangeDate":"2015-11-04T00:00:00.000Z",
+"Trades_AssetsKey":"118685",
+"Trades_avgChange":1,
+"Trades_avgVizChange":1,
+"Trades_avgCurChange":1,
+"Trades_avgCurVizChange":1,
+"Trades_sign":1,
+"Trades_quota":1000,
+"Trades_price":1,
+"Trades_curPrice":1,
+"Trades_netPrice":1,
+"Trades_curNetPrice":1,
+"Trades_accIntVal":0,
+"Trades_delta":0,
+"Trades_undlPrice":0,
+"Trades_quotaCost":0,
+"Trades_commissionNC":0,
+"Trades_commissionBs":0,
+"Trades_commission":0,
+"Trades_curCommissionNC":0,
+"Trades_curCommissionBs":0,
+"Trades_curCommission":0,
+"Trades_interestNC":0,
+"Trades_interestBs":0,
+"Trades_interest":0,
+"Trades_curInterestNC":0,
+"Trades_curInterestBs":0,
+"Trades_curInterest":0,
+"Trades_taxNC":0,
+"Trades_taxBs":0,
+"Trades_tax":0,
+"Trades_curTaxNC":0,
+"Trades_curTaxBs":0,
+"Trades_curTax":0,
+"Trades_amountNC":1000,
+"Trades_amountBs":1000,
+"Trades_amount":1000,
+"Trades_netAmountNC":1000,
+"Trades_netAmountBs":1000,
+"Trades_netAmount":1000,
+"Trades_notionalNC":1000,
+"Trades_notionalBs":1000,
+"Trades_notional":1000,
+"Trades_netNotionalNC":1000,
+"Trades_netNotionalBs":1000,
+"Trades_netNotional":1000,
+"Trades_curAmountNC":1000,
+"Trades_curAmountBs":1000,
+"Trades_curAmount":1000,
+"Trades_curNetAmountNC":1000,
+"Trades_curNetAmountBs":1000,
+"Trades_curNetAmount":1000,
+"Trades_curNotionalNC":1000,
+"Trades_curNotionalBs":1000,
+"Trades_curNotional":1000,
+"Trades_curNetNotionalNC":1000,
+"Trades_curNetNotionalBs":1000,
+"Trades_curNetNotional":1000,
+"Trades_curExposureNC":1000,
+"Trades_curExposureBs":1000,
+"Trades_curExposure":1000,
+"Trades_curNetExposureNC":1000,
+"Trades_curNetExposureBs":1000,
+"Trades_curNetExposure":1000,
+"Trades_change":1,
+"Trades_curChange":1,
+"Trades_AccountsKey":"4603843",
+"Trades_PortfoliosKey":"4603841",
+"Trades_BankOrganizationsKey":"120976",
+"Trades_BrokerOrganizationsKey":null,
+"Trades_curCompanyNotional":1000,
+"Trades_curAssetNotional":1000,
+"Trades_curCompanyNetNotional":1000,
+"Trades_curAssetNetNotional":1000,
+"Trades_curCompanyExposure":1000,
+"Trades_curAssetExposure":1000,
+"Trades_curCompanyNetExposure":1000,
+"Trades_curAssetNetExposure":1000,
+"Trades_curWeight":1,
+"Trades_curGWeight":1,
+"Trades_curNotionalWeight":1,
+"Trades_curNotionalGWeight":1,
+"Trades_curNetNotionalWeight":1,
+"Trades_curNetNotionalGWeight":1,
+"Trades_curExposureWeight":1,
+"Trades_curExposureGWeight":1,
+"Trades_curNetExposureWeight":1,
+"Trades_curNetExposureGWeight":1,
+"Trades_weight":1,
+"Trades_gWeight":1,
+"Trades_curPAWeight":1,
+"Trades_curPANotionalWeight":1,
+"Trades_curPANetNotionalWeight":1,
+"Trades_curPAExposureWeight":1,
+"Trades_curPANetExposureWeight":1
+}
+},
+"conf":{
+"pview":{
+"parts":{
+"SECURITY":{
+},
+"CASH":{
+}
+}
+},
+"calc":{
+}
+},
+"calc":{
+"amount":1000,
+"netAmount":1000,
+"netAmount1d":1000,
+"curAmount":1000,
+"curNetAmount":1000,
+"curNotional":1000,
+"curNetNotional":1000,
+"curExposure":1000,
+"curNetExposure":1000,
+"curInterest":0,
+"pnlu":0,
+"pnluNC":0,
+"netPnlu":0,
+"netPnluNC":0,
+"pnlr":0,
+"netPnlr":0,
+"pnlu1d":0,
+"netPnlu1d":0,
+"pnlr1d":0,
+"netPnlr1d":0,
+"pnl1d":0,
+"netPnl1d":0,
+"netPerfu":0,
+"netPerf1d":0,
+"curPAWeight":1,
+"curPANotionalWeight":1,
+"curPANetNotionalWeight":1,
+"curPAExposureWeight":1,
+"curPANetExposureWeight":1
+},
+"parts":{
+"SECURITY":{
+"calc":{
+"amount":0,
+"netAmount":0,
+"netAmount1d":0,
+"curAmount":0,
+"curNetAmount":0,
+"curNotional":0,
+"curNetNotional":0,
+"curExposure":0,
+"curNetExposure":0,
+"curInterest":0,
+"pnlu":0,
+"pnluNC":0,
+"netPnlu":0,
+"netPnluNC":0,
+"pnlr":0,
+"netPnlr":0,
+"pnlu1d":0,
+"netPnlu1d":0,
+"pnlr1d":0,
+"netPnlr1d":0,
+"pnl1d":0,
+"netPnl1d":0,
+"curPAWeight":0,
+"curPANotionalWeight":0,
+"curPANetNotionalWeight":0,
+"curPAExposureWeight":0,
+"curPANetExposureWeight":0
+}
+},
+"CASH":{
+"calc":{
+"amount":1000,
+"netAmount":1000,
+"netAmount1d":1000,
+"curAmount":1000,
+"curNetAmount":1000,
+"curNotional":1000,
+"curNetNotional":1000,
+"curExposure":1000,
+"curNetExposure":1000,
+"curInterest":0,
+"pnlu":0,
+"pnluNC":0,
+"netPnlu":0,
+"netPnluNC":0,
+"pnlr":0,
+"netPnlr":0,
+"pnlu1d":0,
+"netPnlu1d":0,
+"pnlr1d":0,
+"netPnlr1d":0,
+"pnl1d":0,
+"netPnl1d":0,
+"curPAWeight":1,
+"curPANotionalWeight":1,
+"curPANetNotionalWeight":1,
+"curPAExposureWeight":1,
+"curPANetExposureWeight":1}
+}
+},
+"endDate":"2015-11-04T00:00:00+00:00"
+}
+},
+"conf":{
+"Portfolios_keys":[
+"4603841"]
+},
+"calc":{
+"curAUM":1000,
+"curNotional":1000,
+"curNetNotional":1000,
+"curExposure":1000,
+"curNetExposure":1000,
+"cash0d":0,
+"netPerfu":0,
+"netPnlu":0,
+"netPerf1d":0,
+"netPnl1d":0
+},
+"currency":"EUR",
+"limitStatus":true,
+"history":[]
+}
+}
+
+```
+`Report_status` shows all the properties, values, calculations, resources and assets related to a portfolio, or aggregated series of portfolios identified by their IDs (`Portfolios_keys`).
+
+Optional REQUEST parameters allow you to show that portfolio or aggregate, with a different context, without changing the actual portfolio data permanently. It will simply show all the different values and calculations in the RESPONSE object triggered by the REQUEST object. 
+
+For example, changing the `currency` from a base currency of 'EUR' to 'USD' will show what values the portfolio would have had with a base currency of US$ (equivalent to the `Valuation CCY` dropdown on the platform). 
+
+Changing the `endDate` would show the portfolio's positions on that date (equivalent to the `Valuation date` dropdown on the platform's PORTFOLIO page). Setting the endDate as a date (in format YYYY-MM-DD) rather than UTC dateTime will show the closing prices for that date.
+
+The `history` parameter set to `1` (true) will show the historic daily positions if the `Rebuild Historical Portfolio Position` Task has previously been run for that portfolio, or else show an empty array ("history":[], as here).
+
+### Report_status Query Parameters
+
+Parameter | Required | Type | Description 
+--------- | ------- | ---------- | ----------
+Portfolios_keys | TRUE | String |Portfolio ID
+sid | TRUE | String |Your API key
+currency | FALSE | String |Base currency
+endDate | FALSE | DateTime |YYYY-MM-DDThh:mm:ss (UTC)
+history | FALSE | Boolean |Show historic positions
+simulate | FALSE | Boolean |???
+Companies_key | FALSE | Number |Company ID
+
+The RESPONSE object contains a `report` key with a complex series of nested object values, shown in its simplest form (with one cash transaction of EUR 1000 - the base currency.) The structure of the `report` object is:
+
+{ report: 
+   { endDate: '2015-11-11T09:31:07+00:00',  
+     name: '001testAPI',  
+     portfolios: [ [Object] ],  
+     views: { AGGR: [Object] },  
+     conf: { Portfolios_keys: [Object] },  
+     calc:   
+      { curAUM: 1000,  
+        curNotional: 1000,  
+        curNetNotional: 1000,  
+        curExposure: 1000,  
+        curNetExposure: 1000,  
+        cash0d: 0,  
+        netPerfu: 0,  
+        netPnlu: 0,  
+        netPerf1d: 0,  
+        netPnl1d: 0 },  
+     currency: 'EUR',  
+     limitStatus: true } }  
+
+The `portfolios` key takes an array of objects in order to allow aggregate values from different portfolios. Each object shows all available information about that portfolio.
+
+The `views` key contains an `AGGR` object with an `entries` object value whose keys are asset tag objects in the format ASSET TYPE | SECURITY NAME and TYPE| PORTFOLIO TYPE | PORTFOLIO ID for all assets. `ASSET TYPE` is `SECURITY` or `CASH`, `SECURITY TYPE` is `EQUITY`, or `CURNCY` or ???. `PORTFOLIO TYPE` is `DEFAULT` or `FUND`, and the PORTFOLIO ID again allows for multiple portfolios to be aggregated. Typical examples are `SECURITY|AAPL US EQUITY|DEFAULT|4603983` or `CASH|EUR CURNCY|DEFAULT|4603983`. 
+
+The `report.views.AGGR` object also contains `conf` (configuration) and `calc` keys that take their own objects.
+
+The `conf` key value is `Portfolios_keys` which takes an array of IDs.
+
+The `calc` key value is an object which contains all the totals for the asset value calculations. ???Currently these have a delta of 11 and are???:  
+`curAUM`: current Assets Under Management - total market value of portfolio's assets  
+`curNotional`: current total value of a leveraged position's assets  
+`curNetNotional`: current notional value after deduction of charges (eg commission)  
+`curExposure`: current replacement cost and credit exposure  
+`curNetExposure`: ????  
+`cash0d`: ????  
+`netPerfu`: unrealized performance  
+`netPnlu`: unrealized Pnl  
+`netPerf1d`: performance over 1 day (since previous closing prices)  
+`netPnl1d`: PnL over 1 day (since previous closing prices)
+
+`currency` flags the REQUEST parameter described above and the currency used in this `Report_status`
+
+`limitStatus` is a boolean switch for whether 
+
+
+
+
+
+
+
+
+
+
+
+
 
