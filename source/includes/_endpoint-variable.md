@@ -321,7 +321,23 @@ include_noneoftheabove | boolean | For multiple response types only. If true, di
 
 #### PATCH
 
-PATCH variable entities to edit their metadata. 
+PATCH variable entities to edit their metadata. Send a Shoji Entity with a "body" member containing the attributes to modify. Omitted body attributes will be unchanged. 
+
+Successful requests return 204 status. Among the actions achievable by PATCHing variable entities:
+
+* Editing category attributes and adding categories. Include all categories.
+* Reordering subvariables in an array
+* Editing derivation expressions
+* Editing format and view settings
+
+Actions that are best or only achieved elsewhere include: 
+
+* changing variable names, aliases, and descriptions, which is best accomplished by PATCHing the variable catalog, as described above;
+* changing a variable's type, which can only be done by POSTing to the variable's "cast" resource (see [Convert type](#convert-type) below);
+* editing names, aliases, and descriptions of subvariables in an array, which is done by PATCHing the variable's subvariable catalog;
+* altering missing rules.
+
+Variable "id" and "dataset_id" are immutable.
 
 #### DELETE
 
