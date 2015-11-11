@@ -97,5 +97,5 @@ For production apps it is also possible to get free certificates from StartSSL a
 Here are some example applications and boilerplates that you can use when you start building your own application. All of the apps are open source and can be used anyway you wish.
 
 <aside class="info">
-Examples are not available yet! Please check back soon!
+[ChatToMail](https://github.com/giosg/chattomail_giosg_app).
 </aside>
