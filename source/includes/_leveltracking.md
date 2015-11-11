@@ -4,13 +4,11 @@ For a more complete analysis of player level data across platforms or networks, 
 
 Third-party tracking services can use the instructions on this page to build their initial level tracking integration. Chartboost customers using level tracking should refer to [these customer-facing instructions](https://answers.chartboost.com/hc/en-us/articles/204639335). 
 
-## General Level Tracking Information
+## General Event Tracking Information
 
-The PIA level tracking integration works by sending player level data – tutorial completed, for example – from a third party tracking service to Chartboost via S2S integration in the form of distinct **Event Fields**.
+The PIA event tracking integration works by sending player event/level data – tutorial completed, for example – from a third party tracking service to Chartboost via S2S integration in the form of distinct **Event Fields**.
 
-We designed the fields to let developers collect and send level data in a way that will maximize reengagement and monetization via intelligent segmentation of players.
-
-Each event field must correspond to a single type of level data.
+Each event field must correspond to a single type of event, e.g. "Level Reached" or "Registration Completed".
 
 The available fields are listed in the table below; common use cases follow:
 
@@ -63,11 +61,11 @@ The available fields are listed in the table below; common use cases follow:
 
 1. Event labels are required and will be used to identify the type of event field in the Chartboost dashboard
 2. A sequential event field is used to track either 1) level data that is always increasing and can never decrease; or 2) numerical data developers need to segment based on whether a player is "higher" or "lower" than a certain number
-3. Optional event descriptions can be used to identify the level name ("Lunar Caverns," for example, as opposed to the event_label which defines the type of level event).
+3. Optional event descriptions can be used to identify specific level values.  For example, if main_level==2, description might be "Lunar Caverns,", while main_level==3 might be "Lunar Landing". The event_label describes more generically the type of the event, such as "Level Reached".
 
-Of the five event types, three can be used specifically for sequential Level Tracking. These will accept integer-based level information (the player has gotten to level 3, 8, 17, etc.) which is always increasing and can never decrease, or any other numerical data you need to segment based on whether a player is "higher" or "lower" than a certain number. 
+Of the five event types, three can be used specifically for sequential Level Tracking. These will accept integer-based level values (the player has gotten to level 3, 8, 17, etc.) which is always increasing and can never decrease, or any other numerical data you need to segment based on whether a player is "higher" or "lower" than a certain number. 
 
-**Note:** For sequential event types, Chartboost only records the player's first level event along with each subsequent level value increase. Sequential events with level values that are equal to or less than the player's current value are disregarded.
+**Note:** For sequential event types, Chartboost only records the player's first level event along with subsequent level value increases. Sequential events with level values that are equal to or less than the player's current value are discarded.
 
 ## Level Tracking Setup (for Third-Party Tracking Services)
 
@@ -110,7 +108,7 @@ event_label = {{Custom label for event}}  # Example: "Highest Level Reached"
 event_field = {{Chartboost Event ID}} # corresponding to type of event, 1-5.  Example: 3
 main_level = {{Main level}} # non-zero integer; use 1 if event does not have any numerical value associated with it.  Example: 1
 sub_level = {{Sub-level integer}} # use 0 if event does not have any sub-level associated with it.  Example: 0
-description = {{Description of the main level}} # example: "Lunar Caverns"
+description = {{Dynamic description of the respective level value}} # example: "Lunar Caverns"
 timestamp = {{Unix timpestamp of event}} # Example: 1408480492
 
 party = '3rd Party Company'
@@ -196,7 +194,7 @@ The endpoint will always respond with an HTTP `200` status code. Check the `stat
 <td><code>event_label</code></td>
 <td>Required</td>
 <td>Required</td>
-<td><code>"Highest level puzzle solved"</code></td>
+<td><code>"Highest level reached"</code></td>
 <td>Custom label for in-game event</td>
 </tr>
 <tr>
@@ -272,7 +270,7 @@ The endpoint will always respond with an HTTP `200` status code. Check the `stat
 
 #### Notes
 
-<p><b>*</b> One of the two Android identifiers must always be sent, but it is strongly recommended to send both when available, as only sending one may lead to discrepancies.</p>
+<p><b>*</b> Both GAID and AndroidID identifiers must always be sent, unless only Android ID is available on the device, such as with Amazon devices.</p>
 
 ### JSON Body: Other Parameters
 
