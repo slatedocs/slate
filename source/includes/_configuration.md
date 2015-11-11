@@ -224,6 +224,16 @@ Scout runs on Heroku without any special configuration. When Scout detects that 
 * Logging is set to `STDOUT` vs. logging to a file. Log messages are prefixed with `[Scout]` for easy filtering.
 * The dyno name (ex: `web.1`) is reported vs. the dyno hostname. Dyno hostnames are dynamically generated and don't have any meaningful information.
 
+### Configuration
+
+Scout can be configured via environment variables. This means you can use `heroku config:set` to configure the agent. For example, you can set the application name that appears in the Scout UI with:
+
+```bash
+heroku config:set SCOUT_NAME='My Heroku App'
+```
+
+See the configuration section for more information on the available config settings and environment variable functionality.
+
 ## Cloud Foundry <img src="images/cf_logo.png" style="float:right;width: 150px" />
 
 Scout runs on Cloud Foundry without any special configuration. 
@@ -261,16 +271,6 @@ test:
 staging:
   <<: *defaults
 ```
-
-### Configuration
-
-Scout can be configured via environment variables. This means you can use `heroku config:set` to configure the agent. For example, you can set the application name that appears in the Scout UI with:
-
-```bash
-heroku config:set SCOUT_NAME='My Heroku App'
-```
-
-See the configuration section for more information on the available config settings and environment variable functionality.
 
 ## Instrumented Libraries
 
