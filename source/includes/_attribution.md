@@ -85,8 +85,7 @@ var app_signature = "dd5ccf325df48c2cd88ad53bca6614f0ecc3a13e";
 var ifa = "FCA3FE48-AC39-4885-B94A-0970ED8813D8";
 var ATTRIBUTION_PLATFORM_SECRET = "api_secret";
 var ATTRIBUTION_PLATFORM_TOKEN = "api_token";
-var ATTRIBUTION_ENDPOINT = "https://live.chartboost.com/api/v1/install.json";
-var claim = 1;
+var claim = 1; // or claim=0 if non-attributable
 var attributed_to = "Chartboost";
 
 var data = JSON.stringify({
@@ -151,7 +150,7 @@ This endpoint's response will always be an HTTP 200 status code. Check the "stat
 
 ### Authentication
 
-(This service is only available for install attribution platforms. If you are representing an install attribution platform, please <a href="mailto:support.integrations@chartboost.com">contact Chartboost Support</a> for a platform-specific API token and platform-specific secret to authenticate with this service.)
+(This service is only available for install attribution platforms. If you are representing an install attribution platform, please <a href="mailto:support.integrations@chartboost.com">contact Chartboost Integrations Support</a> for a platform-specific API token and platform-specific secret to authenticate with this service.)
 
 To authenticate with this endpoint, you must generate a signature on each request. A string with the following template must be made, and the signature is created by taking the SHA-256 hash of the string. Note that anything contained within double curly brackets is a variable that is meant to be filled in.
 
