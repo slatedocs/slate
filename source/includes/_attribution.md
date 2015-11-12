@@ -14,7 +14,7 @@ $app_id = "54ecc0535beacdc1e1eff778";
 $app_signature = "601be68e3bb4e7eb953024eb4f2ac03376e2c2fb";
 
 $gaid = "8df6c9bf-d647-4400-bc13-7ff317f046f3";
-$claim = 1;
+$claim = 1; # or claim=0 if non-attributable
 $attributed_to = "Chartboost";
 
 $data = json_encode(array(
@@ -53,7 +53,7 @@ app_id = '54ecc0535beacdc1e1eff778'
 app_signature = '601be68e3bb4e7eb953024eb4f2ac03376e2c2fb'
 
 gaid = '8df6c9bf-d647-4400-bc13-7ff317f046f3'
-claim = 1
+claim = 1  # or claim=0 if non-attributable
 attributed_to = 'Chartboost'
 
 data = json.dumps({
