@@ -108,7 +108,8 @@ Our first pass at this might be to generate the benchmark targets in some other 
     "bases": [{
         "dimensions": [{"variable": "88dd88"}],
         "measures": {"count": {"function": "cube_count", "args": []}}
-    }],
+    }]
+}
 ```
 
 Notice, however, that we've left out the second dimension. This means that this comparison will be available for any analysis where "88dd88" is the row dimension. The base cube here is a sort of "supercube": a superset of the cubes to which we might apply the comparison. We include the measure to indicate that this comparison should apply to a "cube_count" (frequency count) involving variable "88dd88".
@@ -116,6 +117,7 @@ Notice, however, that we've left out the second dimension. This means that this 
 Then, we need to define target data. We are supplying these in a hand-generated way, so our measure is simply a static column instead of a function:
 
 ```json
+{
     "overlay": {
         "dimensions": [{"variable": "88dd88"}],
         "measures": {
@@ -164,11 +166,37 @@ POST datasets/{id}/multitables/ HTTP/1.1
     "body": {
         "name": "Geographical indicators",
         "template": [
-            {"variable": "../variables/de85b32/", query: [{"variable": "../variables/de85b32/"}]},
-            {"variable": "../variables/398620f/", query: [{"variable": "../variables/398620f/"}]},
-            {"variable": "../variables/c116a77/", query: [{"function": "bin", "args":[{"variable": "../variables/398620f/"}]}]}
+            {
+                "variable": "../variables/de85b32/",
+                "query": [
+                    {
+                        "variable": "../variables/de85b32/"
+                    }
+                ]
+            },
+            {
+                "variable": "../variables/398620f/",
+                "query": [
+                    {
+                        "variable": "../variables/398620f/"
+                    }
+                ]
+            },
+            {
+                "variable": "../variables/c116a77/",
+                "query": [
+                    {
+                        "function": "bin",
+                        "args": [
+                            {
+                                "variable": "../variables/398620f/"
+                            }
+                        ]
+                    }
+                ]
+            }
         ],
-        is_public: false
+        "is_public": false
     }
 }
 
@@ -186,9 +214,35 @@ GET datasets/{id}/multitable/3/ HTTP/1.1
     "body": {
         "name": "Geographical indicators",
         "template": [
-            {"variable": "../variables/de85b32/", query: [{"variable": "../variables/de85b32/"}]},
-            {"variable": "../variables/398620f/", query: [{"variable": "../variables/398620f/"}]},
-            {"variable": "../variables/c116a77/", query: [{"function": "bin", "args":[{"variable": "../variables/398620f/"}]}]}
+            {
+                "variable": "../variables/de85b32/",
+                "query": [
+                    {
+                        "variable": "../variables/de85b32/"
+                    }
+                ]
+            },
+            {
+                "variable": "../variables/398620f/",
+                "query": [
+                    {
+                        "variable": "../variables/398620f/"
+                    }
+                ]
+            },
+            {
+                "variable": "../variables/c116a77/",
+                "query": [
+                    {
+                        "function": "bin",
+                        "args": [
+                            {
+                                "variable": "../variables/398620f/"
+                            }
+                        ]
+                    }
+                ]
+            }
         ]
     }
 }
@@ -206,15 +260,43 @@ To obtain their multiple output cubes, you `GET datasets/{id}/cube?query=<q>` wh
 {
     "function": "each",
     "args": [
-        {"value": "x"},
-        [{"variable": "de85b32"}, {"variable": "398620f"}, {"variable": "c116a77"}]
+        {
+            "value": "x"
+        },
+        [
+            {
+                "variable": "de85b32"
+            },
+            {
+                "variable": "398620f"
+            },
+            {
+                "variable": "c116a77"
+            }
+        ]
     ],
     "block": {
         "function": "cube",
         "args": [
-            [{"variable": "449b421"}, {"variable": "x"}],
-            {"map": {"count": {"function": "cube_count", "args": []}}},
-            {"value": null}
+            [
+                {
+                    "variable": "449b421"
+                },
+                {
+                    "variable": "x"
+                }
+            ],
+            {
+                "map": {
+                    "count": {
+                        "function": "cube_count",
+                        "args": []
+                    }
+                }
+            },
+            {
+                "value": null
+            }
         ]
     }
 }
@@ -225,28 +307,55 @@ The result will be an array of output cubes:
 ```json
 {
     "element": "shoji:view",
-    "value": [{
-        "query": {},
-        "result": {
+    "value": [
+        {
+            "query": {},
+            "result": {
                 "element": "crunch:cube",
-                "dimensions": [{ "references" : "449b421", "type": "etc." }, {"references": "de85b32", "type": "etc."}],
+                "dimensions": [
+                    {
+                        "references": "449b421",
+                        "type": "etc."
+                    },
+                    {
+                        "references": "de85b32",
+                        "type": "etc."
+                    }
+                ],
                 "measures": {...}
             }
         },
-    },
-    {
-    "query": {},
-    "result": {
-            "element": "crunch:cube",
-            "dimensions": [{ "references" : "449b421", "type": "etc." }, {"references": "398620f", "type": "etc."}],
-            "measures": {...}
-        }
-    },
-    {
-        "query": {},
-        "result": {
+        {
+            "query": {},
+            "result": {
                 "element": "crunch:cube",
-                "dimensions":  [{ "references" : "449b421", "type": "etc." }, {"references": "c116a77", "type": "etc."}],
+                "dimensions": [
+                    {
+                        "references": "449b421",
+                        "type": "etc."
+                    },
+                    {
+                        "references": "398620f",
+                        "type": "etc."
+                    }
+                ],
+                "measures": {...}
+            }
+        },
+        {
+            "query": {},
+            "result": {
+                "element": "crunch:cube",
+                "dimensions": [
+                    {
+                        "references": "449b421",
+                        "type": "etc."
+                    },
+                    {
+                        "references": "c116a77",
+                        "type": "etc."
+                    }
+                ],
                 "measures": {...}
             }
         }
@@ -332,14 +441,44 @@ In a saved analysis the transforms are an array in `display_settings` with the s
 
 
 ```json
-"query": {
-    "dimensions": [{"function": "selected_array", "args":[{"variable": "../variables/398620f/"}]}, {"variable": "../variables/398620f/"}],
-    "measures": {"count": {
-        "function": "cube_count", args: []
-    }}
-},
-"display_settings": {
-    "transform": [{"id": "f007", "value": "My preferred first item"}, {"id": "fee7", "value": "The zeroth response"}, {"id": "c001", "name": "Third response"}]
+{
+    "query": {
+        "dimensions": [
+            {
+                "function": "selected_array",
+                "args": [
+                    {
+                        "variable": "../variables/398620f/"
+                    }
+                ]
+            },
+            {
+                "variable": "../variables/398620f/"
+            }
+        ],
+        "measures": {
+            "count": {
+                "function": "cube_count",
+                "args": []
+            }
+        }
+    },
+    "display_settings": {
+        "transform": [
+            {
+                "id": "f007",
+                "value": "My preferred first item"
+            },
+            {
+                "id": "fee7",
+                "value": "The zeroth response"
+            },
+            {
+                "id": "c001",
+                "name": "Third response"
+            }
+        ]
+    }
 }
 ```
 
@@ -348,8 +487,36 @@ In a saved analysis the transforms are an array in `display_settings` with the s
 In a multitable, the `transform` is part of each dimension definition object in the `template` array. 
 
 ```json
-"template": [
-    {"variable": "A", "query" [{"variable": "A"}], transform": [{}, {}]},
-    {"variable": "B", "query": [{"function": "rollup, "args": [{"value": "M"}, {"variable": "B"}] }]}
-]
+{
+    "template": [
+        {
+            "variable": "A",
+            "query": [
+                {
+                    "variable": "A"
+                }
+            ],
+            "transform": [
+                {},
+                {}
+            ]
+        },
+        {
+            "variable": "B",
+            "query": [
+                {
+                    "function": "rollup",
+                    "args": [
+                        {
+                            "value": "M"
+                        },
+                        {
+                            "variable": "B"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
 ```
