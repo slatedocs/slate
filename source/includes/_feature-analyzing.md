@@ -201,6 +201,7 @@ Each multi-table template may be a list of variable references and other informa
 The template may contain in addition to variable references and their query arguments, an optional `transform`: \
 To obtain their multiple output cubes, you `GET datasets/{id}/cube?query=<q>` where `<q>` is a ZCL object in JSON format (which must then be URI encoded for inclusion in the querystring). Use the "each" function to iterate over the overview variables’ `query`, producing one output cube for each one as "variable x". For example, to cross each of the above 3 variables against another variable "449b421":
 
+
 ```json
 {
     "function": "each",
@@ -212,7 +213,8 @@ To obtain their multiple output cubes, you `GET datasets/{id}/cube?query=<q>` wh
         "function": "cube",
         "args": [
             [{"variable": "449b421"}, {"variable": "x"}],
-            {"count": {"function": "cube_count", "args": []}}
+            {"map": {"count": {"function": "cube_count", "args": []}}},
+            {"value": null}
         ]
     }
 }
@@ -223,36 +225,32 @@ The result will be an array of output cubes:
 ```json
 {
     "element": "shoji:view",
-    "value": {
+    "value": [{
+        "query": {},
         "result": {
-            "definitions": {
-                "449b421": {"type": {"class": "categorical", ...}, "references": {...}, "derived": False},
-                "de85b32": {"type": {"class": "categorical", ...}, "references": {...}, "derived": False},
-                "398620f": {"type": {"class": "categorical", ...}, "references": {...}, "derived": False},
-                "c116a77": {"type": {"class": "categorical", ...}, "references": {...}, "derived": False},
-                "count": {"type": {"class": "numeric"}, "references": {...}, "derived": True}
-            },
-            "cubes": [{
                 "element": "crunch:cube",
-                "dimensions": [{"definition": "449b421"}, {"definition": "de85b32"}],
-                "measures": {
-                    "count": {
-                        "data": [23],
-                        "metadata": {"definition": "count"},
-                        "n_missing": 2
-                    }
-                }
-            }, {
-                "element": "crunch:cube",
-                "dimensions": [{"definition": "449b421"}, {"definition": "398620f"}],
+                "dimensions": [{ "references" : "449b421", "type": "etc." }, {"references": "de85b32", "type": "etc."}],
                 "measures": {...}
-            }, {
-                "element": "crunch:cube",
-                "dimensions": [{...}],
-                "measures": {...}
-            }]
+            }
+        },
+    },
+    {
+    "query": {},
+    "result": {
+            "element": "crunch:cube",
+            "dimensions": [{ "references" : "449b421", "type": "etc." }, {"references": "398620f", "type": "etc."}],
+            "measures": {...}
         }
-    }
+    },
+    {
+        "query": {},
+        "result": {
+                "element": "crunch:cube",
+                "dimensions":  [{ "references" : "449b421", "type": "etc." }, {"references": "c116a77", "type": "etc."}],
+                "measures": {...}
+            }
+        }
+    ]
 }
 ```
 
