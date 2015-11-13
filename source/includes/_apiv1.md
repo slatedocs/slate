@@ -102,6 +102,7 @@ curl "https://api.mojopages.com/api/v1/partner/listings"
       "video_urls": [],
       "offer_message": null,
       "offer_url": null,
+      "menu_url": null,
       "attribution_logo": {
           "description": "Company",
           "url": "http://www.company.com/attribution/logo.png",
@@ -229,6 +230,7 @@ curl "https://api.mojopages.com/api/v1/partner/listing/7d373c1da40cbfc3f165"
     "video_urls": [],
     "offer_message": null,
     "offer_url": null,
+    "menu_url": null,
     "attribution_logo": {
         "description": "Company",
         "url": "http://www.company.com/attribution/logo.png",
@@ -400,6 +402,7 @@ photo_urls | false | Array of URLs for the listing photos, must all be a minimum
 video_urls | false | Array of URLs for the listing videos, must be either YouTube or Vimeo links
 offer_message | false | Special Offer or Coupon Message used as a link on the listing page
 offer_url | false | Special Offer or Coupon URL used as a link on the listing page
+menu_url | false | Menu URL used as a link on the listing page
 attribution_logo | false | Partner attribution logo hash with description, width, height and a url that also supports https
 attribution_url | false | Partner attribution url
 
@@ -509,6 +512,7 @@ photo_urls | Array of URLs for the listing photos, must all be a minimum of 150x
 video_urls | Array of URLs for the listing videos, must be either YouTube or Vimeo links
 offer_message | Special Offer or Coupon Message used as a link on the listing page
 offer_url | Special Offer or Coupon URL used as a link on the listing page
+menu_url | false | Menu URL used as a link on the listing page
 attribution_logo | Partner attribution logo hash with description, width, height and a url that also supports https
 attribution_url | Partner attribution url
 
@@ -679,6 +683,7 @@ curl "https://api.mojopages.com/api/v1/listings/search?name=Instant+Phones&local
       "video_urls": [],
       "offer_message": null,
       "offer_url": null,
+      "menu_url": null,
       "attribution_logo": {
           "description": "Company",
           "url": "http://www.company.com/attribution/logo.png",
@@ -777,15 +782,16 @@ curl "https://api.mojopages.com/api/v1/listing/11079728"
     "video_urls": [],
     "offer_message": null,
     "offer_url": null,
-      "attribution_logo": {
-          "description": "Company",
-          "url": "http://www.company.com/attribution/logo.png",
-          "width": 100,
-          "height": 20
-        },
-      "attribution_url": "http://www.company.com",
-      "updated_at": "2014-11-27T11:35:27.364Z"
-    }
+    "menu_url": null,
+    "attribution_logo": {
+        "description": "Company",
+        "url": "http://www.company.com/attribution/logo.png",
+        "width": 100,
+        "height": 20
+      },
+    "attribution_url": "http://www.company.com",
+    "updated_at": "2014-11-27T11:35:27.364Z"
+  }
 }
 ```
 
