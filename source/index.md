@@ -1,12 +1,12 @@
 ---
-title: MojoPages API Documentation
+title: LocalStack API Documentation
 
 
 toc_footers:
   - <a href='#'>Get an Access</a>
   - <a href='http://support.localstack.com'>Get some help</a>
   - <a href='http://github.com/tripit/slate'>Documentation Powered by Slate</a>
-  - <p>&#169; 2014 MojoPages, Inc. San Diego, CA</p>
+  - <p>&#169; 2014 LocalStack, Inc. San Diego, CA</p>
 
 includes:
   - apiv1
@@ -19,7 +19,7 @@ search: true
 
 # Introduction
 
-Welcome to the MojoPages API documentation! MojoPages is a local business search application which uses social media to provide relavant and interesting results. The API is RESTful and enables adding, updating or delete business listing data on [MojoPages.com](http://mojopages.com) and it's properties. The API also allows you to check the status and map your business data to our database as well as retrieve all your business listings within our system.
+Welcome to the LocalStack API documentation! LocalStack is a local business search application which uses social media to provide relavant and interesting results. The API is RESTful and enables adding, updating or delete business listing data on [LocalStack.com](http://LocalStack.com) and it's properties. The API also allows you to check the status and map your business data to our database as well as retrieve all your business listings within our system.
 
 Sample code is currently available as cURL in the dark area to the right. Requests and responses are all in JSON.
 
@@ -42,9 +42,9 @@ curl https://api.localstack.com/api/v1/status
 
 > Make sure to replace `YOUR-ACCESS-TOKEN` with your API access key.
 
-MojoPages uses API keys to allow access to the API. You can get an account by contacting us.
+LocalStack uses API keys to allow access to the API. You can get an account by contacting us.
 
-The MojoPages API expects for the API key to be included in all API requests to the server. The API key can be passed either as a parameter like the following:
+The LocalStack API expects for the API key to be included in all API requests to the server. The API key can be passed either as a parameter like the following:
 
 `access_token=YOUR-ACCESS-TOKEN`
 
@@ -116,7 +116,7 @@ Business listings are made up of different pieces of data. These are the excepte
 Status Type | Description
 --------- | -----------
 AVAILABLE | This listing is not currently a claimed listing, it may be successfully claimed by you.
-ACTIVE | This listing is fully activated and live on MojoPages.com.
+ACTIVE | This listing is fully activated and live on LocalStack.com.
 SUPPRESSED | The listing is suppressed, which means it should not appear in our search results or have a detail page.
 BLOCKED | The listing has an existing relationship with another partner and may not be controlled by you.
 
@@ -127,7 +127,7 @@ Data Type | Description
 status | Contains either AVAILABLE, ACTIVE, SUPPRESSED or BLOCKED status
 listing_id | Your unique identifier for the listing, used for adding or deleting a record
 mojo_id | Claims a Business based on mojo_id, will automap or create new listing when not included
-mojo_url | URL for MojoPages listing
+mojo_url | URL for LocalStack listing
 name | Name of the business
 description | Description of the business
 address | Address of the business
@@ -147,7 +147,7 @@ google_plus_id | The Google Plus ID or the name used for the page of the busines
 instagram_id | The Instgram ID or the username for the business listing
 omit_address | Boolean for omitting the address from the listing (default: false)
 hours | The Hours a business is open or closed represented by a hash of multi dimensional arrays or do not include days where business is completely closed.
-category_ids | MojoPages Category ID's that you want business to be listed under array (max: 3)
+category_ids | LocalStack Category ID's that you want business to be listed under array (max: 3)
 logo_url | URL for the listing logo, must be a minimum of 150x150 pixels
 photo_urls | Array of URLs for the listing photos, must all be a minimum of 150x150 pixels
 video_urls | Array of URLs for the listing videos, must be either YouTube or Vimeo links

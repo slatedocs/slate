@@ -132,7 +132,7 @@ access_token | true | Access token used to authenticate
 Status Type | Description
 --------- | -----------
 AVAILABLE | This listing is not currently a claimed listing, it may be successfully claimed by you.
-ACTIVE | This listing is fully activated and live on MojoPages.com.
+ACTIVE | This listing is fully activated and live on LocalStack.com.
 SUPPRESSED | The listing is suppressed, which means it should not appear in our search results or have a detail page.
 BLOCKED | The listing has an existing relationship with another partner and may not be controlled by you.
 
@@ -170,7 +170,7 @@ access_token | true | Access token used to authenticate
 Status Type | Description
 --------- | -----------
 AVAILABLE | This listing is not currently a claimed listing, it may be successfully claimed by you.
-ACTIVE | This listing is fully activated and live on MojoPages.com.
+ACTIVE | This listing is fully activated and live on LocalStack.com.
 SUPPRESSED | The listing is suppressed, which means it should not appear in our search results or have a detail page.
 BLOCKED | The listing has an existing relationship with another partner and may not be controlled by you.
 
@@ -265,7 +265,7 @@ You must replace `:LISTING_ID` with your business listing id.
 Status Type | Description
 --------- | -----------
 AVAILABLE | This listing is not currently a claimed listing, it may be successfully claimed by you.
-ACTIVE | This listing is fully activated and live on MojoPages.com.
+ACTIVE | This listing is fully activated and live on LocalStack.com.
 SUPPRESSED | The listing is suppressed, which means it should not appear in our search results or have a detail page.
 BLOCKED | The listing has an existing relationship with another partner and may not be controlled by you.
 
@@ -346,7 +346,7 @@ curl "https://api.localstack.com/api/v1/partner/listing/7d373c1da40cbfc3f165"
 }
 ```
 
-This endpoint is used to post a new business listings to MojoPages.
+This endpoint is used to post a new business listings to LocalStack.
 
 ### HTTP Request
 
@@ -367,7 +367,7 @@ You must replace `:LISTING_ID` with your business listings id.
 
 Status Type | Description
 --------- | -----------
-LIVE | The Listing added or mapped is fully activated and live on MojoPages.com.
+LIVE | The Listing added or mapped is fully activated and live on LocalStack.com.
 REJECTED | The Listing did not pass our validation and description of the issue will be stated.
 BLOCKED | You cannot create the Listing and description of the issue will be stated.
 
@@ -396,7 +396,7 @@ google_plus_id | false | The Google Plus ID or the name used for the page of the
 instagram_id | false | The Instgram ID or the username for the business listing
 omit_address | false | Boolean for omitting the address from the listing (default: false)
 hours | false | The Hours a business is open or closed represented by a hash of multi dimensional arrays or do not include days where business is completely closed.
-category_ids | true | MojoPages Category ID's that you want business to be listed under array (max: 3)
+category_ids | true | LocalStack Category ID's that you want business to be listed under array (max: 3)
 logo_url | false | URL for the listing logo, must be a minimum of 150x150 pixels
 photo_urls | false | Array of URLs for the listing photos, must all be a minimum of 150x150 pixels
 video_urls | false | Array of URLs for the listing videos, must be either YouTube or Vimeo links
@@ -456,7 +456,7 @@ curl "https://api.localstack.com/api/v1/partner/listing/7d373c1da40cbfc3f165"
 }
 ```
 
-This endpoint is used to put updated data for an existing business listing into MojoPages.
+This endpoint is used to put updated data for an existing business listing into LocalStack.
 
 ### HTTP Request
 
@@ -477,7 +477,7 @@ You must replace `:LISTING_ID` with your business listings id.
 
 Status Type | Description
 --------- | -----------
-LIVE | The Listing added or mapped is fully activated and live on MojoPages.com.
+LIVE | The Listing added or mapped is fully activated and live on LocalStack.com.
 REJECTED | The Listing did not pass our validation and description of the issue will be stated.
 BLOCKED | You cannot create the Listing and description of the issue will be stated.
 
@@ -506,7 +506,7 @@ google_plus_id | The Google Plus ID or the name used for the page of the busines
 instagram_id | The Instgram ID or the username for the business listing
 omit_address | Boolean for omitting the address from the listing (default: false)
 hours | The Hours a business is open or closed represented by a hash of multi dimensional arrays or do not include days where business is completely closed.
-category_ids | MojoPages Category ID's that you want business to be listed under array (max: 3)
+category_ids | LocalStack Category ID's that you want business to be listed under array (max: 3)
 logo_url | URL for the listing logo, must be a minimum of 150x150 pixels
 photo_urls | Array of URLs for the listing photos, must all be a minimum of 150x150 pixels
 video_urls | Array of URLs for the listing videos, must be either YouTube or Vimeo links
@@ -538,7 +538,7 @@ curl "https://api.localstack.com/api/v1/partner/listing/7d373c1da40cbfc3f165"
 }
 ```
 
-This endpoint is used to delete an existing business listing from MojoPages.
+This endpoint is used to delete an existing business listing from LocalStack.
 
 ### HTTP Request
 
@@ -697,7 +697,7 @@ curl "https://api.localstack.com/api/v1/listings/search?name=Instant+Phones&loca
 }
 ```
 
-This endpoint allows you to search the MojoPages database like you would do on the site but with more specific attributes like Name, Address, Latitude, Longitude and Phone number.
+This endpoint allows you to search the LocalStack database like you would do on the site but with more specific attributes like Name, Address, Latitude, Longitude and Phone number.
 
 ### HTTP Request
 
@@ -723,7 +723,7 @@ latitude | false | Latitude of the business location
 Status Type | Description
 --------- | -----------
 AVAILABLE | This listing is not currently a claimed listing, it may be successfully claimed by you.
-ACTIVE | This listing is fully activated and live on MojoPages.com.
+ACTIVE | This listing is fully activated and live on LocalStack.com.
 SUPPRESSED | The listing is suppressed, which means it should not appear in our search results or have a detail page.
 BLOCKED | The listing has an existing relationship with another partner and may not be controlled by you.
 
@@ -815,7 +815,7 @@ You must replace `:MOJO_ID` with your business listing id.
 Status Type | Description
 --------- | -----------
 AVAILABLE | This listing is not currently a claimed listing, it may be successfully claimed by you.
-ACTIVE | This listing is fully activated and live on MojoPages.com.
+ACTIVE | This listing is fully activated and live on LocalStack.com.
 SUPPRESSED | The listing is suppressed, which means it should not appear in our search results or have a detail page.
 BLOCKED | The listing has an existing relationship with another partner and may not be controlled by you.
 
@@ -899,7 +899,7 @@ curl "https://api.localstack.com/api/v1/listing/11079728/suppress/4279039?reason
 }
 ```
 
-This endpoint is used to to suppress a duplicate or invalid listings on MojoPages. If a listing is SUPPRESSed, we will remove the listing from our site's search results. If a CANONICALLISTING_MOJO_ID is included in the path then a redirect is setup with 301 permenant redirection to the correct listing.
+This endpoint is used to to suppress a duplicate or invalid listings on LocalStack. If a listing is SUPPRESSed, we will remove the listing from our site's search results. If a CANONICALLISTING_MOJO_ID is included in the path then a redirect is setup with 301 permenant redirection to the correct listing.
 
 ### HTTP Request
 
@@ -947,7 +947,7 @@ curl "https://api.localstack.com/api/v1/listing/11079728/unsuppress"
 }
 ```
 
-This endpoint is used to remove a redirect or suppression for a business listings to MojoPages. You need to be the one who originally suppressed the listing in order to unsupress it.
+This endpoint is used to remove a redirect or suppression for a business listings to LocalStack. You need to be the one who originally suppressed the listing in order to unsupress it.
 
 ### HTTP Request
 

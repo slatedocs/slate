@@ -1,6 +1,6 @@
 # Errors
 
-MojoPages API uses the following error codes:
+LocalStack API uses the following error codes:
 
 
 Error Code | Meaning
