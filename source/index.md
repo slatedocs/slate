@@ -4,7 +4,7 @@ title: MojoPages API Documentation
 
 toc_footers:
   - <a href='#'>Get an Access</a>
-  - <a href='http://help.mojopages.com'>Get some help</a>
+  - <a href='http://support.localstack.com'>Get some help</a>
   - <a href='http://github.com/tripit/slate'>Documentation Powered by Slate</a>
   - <p>&#169; 2014 MojoPages, Inc. San Diego, CA</p>
 
@@ -23,11 +23,11 @@ Welcome to the MojoPages API documentation! MojoPages is a local business search
 
 Sample code is currently available as cURL in the dark area to the right. Requests and responses are all in JSON.
 
-The API base url is: **https://api.mojopages.com/api/v1/**
+The API base url is: **https://api.localstack.com/api/v1/**
 
 The API is versioned, the current version is 1. This is designated in the url path with /v1
 
-If you have any question please visit [our support pages](http://help.mojopages.com).
+If you have any question please visit [our support pages](http://support.localstack.com).
 
 
 # Authentication
@@ -36,7 +36,7 @@ If you have any question please visit [our support pages](http://help.mojopages.
 
 ```shell
 # With shell, you can just pass the correct header with each request
-curl https://api.mojopages.com/api/v1/status
+curl https://api.localstack.com/api/v1/status
   -H "Authorization: Token token=YOUR-ACCESS-TOKEN"
 ```
 
@@ -65,7 +65,7 @@ You must replace `YOUR-ACCESS-TOKEN` with your API key.
   "status": "AVAILABLE",
   "listing_id": "f76ae9ceb01cf2904fe2",
   "mojo_id": "11079728",
-  "mojo_url": "https://www.mojopages.com/biz/instant-phones-phoenix-az/11079728",
+  "mojo_url": "https://www.localstack.com/biz/instant-phones-phoenix-az/11079728",
   "name": "Instant Phones",
   "description": null,
   "address": "2415 E Thomas Rd",
