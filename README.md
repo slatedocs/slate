@@ -1,7 +1,10 @@
-Slate
+Sendle API Docs
 ========
 
-[Live docs](http://tushare.github.io/sendle-api-doc)
+[Live docs](http://sendle.github.io/sendle-api-doc)
+
+Slate
+========
 
 [![Build Status](https://travis-ci.org/tripit/slate.svg?branch=master)](https://travis-ci.org/tripit/slate) [![Dependency Status](https://gemnasium.com/tripit/slate.png)](https://gemnasium.com/tripit/slate)
 
