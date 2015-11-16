@@ -33,6 +33,7 @@ Available options:
 | ``autoReconnect`` | boolean | Auto-reconnect on a connection loss | true |
 | ``headers`` | JSON object | Common headers for all sent documents | |
 | ``metadata`` | JSON object | Common metadata, will be sent to all future requests | |
+| ``reconnectionDelay`` | integer | number of milliseconds between reconnection attempts | 1000 |
 
 ## Properties
 
@@ -41,6 +42,7 @@ Available options:
 | ``autoReconnect`` | boolean | Auto-reconnect on a connection loss | get/set |
 | ``headers`` | JSON object | Common headers for all sent documents. | get/set |
 | ``metadata`` | JSON object | Common metadata, will be sent to all future requests | get/set |
+| ``reconnectionDelay`` | integer | number of milliseconds between reconnection attempts | get |
 
 **Notes:** multiple methods allow passing specific ``metadata``. These ``metadata`` will be merged with the global Kuzzle object ``metadata`` when sending the request, with the request specific ``metadata`` taking priority over the global ones.
 
