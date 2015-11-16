@@ -54,7 +54,7 @@ var document = kuzzle
 * setting a new value to the ``content`` property is equivalent to calling ``setContent(data, false)``
 * the ``headers`` property is inherited from the provided ``KuzzleDataCollection`` object and can be overrided
 
-## delete ![public](./images/public.png)
+## delete
 
 ```js
 // Using callbacks (NodeJS or Web Browser)
@@ -72,9 +72,7 @@ document.deletePromise().then(result => {
 
 Deletes this document in Kuzzle.
 
-#### delete()
-
-#### delete(options)
+#### delete([options])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
@@ -85,9 +83,10 @@ Available options:
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
 | ``metadata`` | JSON Object | Additional information passed to notifications to other users | ``null`` |
+| ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
 
 
-## publish ![public](./images/public.png)
+## publish
 
 ```js
 document.publish();
@@ -95,9 +94,7 @@ document.publish();
 
 Publishes the content of this document as a realtime message.
 
-#### publish()
-
-#### publish(options)
+#### publish([options])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
@@ -108,10 +105,10 @@ Available options:
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
 | ``metadata`` | JSON Object | Additional information passed to notifications to other users | ``null`` |
+| ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
 
 
-
-## refresh ![public](./images/public.png)
+## refresh
 
 ```js
 // Using callbacks (NodeJS or Web Browser)
@@ -129,7 +126,20 @@ document.refreshPromise().then(result => {
 
 Replaces the current content with the last version of this document stored in Kuzzle.
 
-## save ![public](./images/public.png)
+#### refresh([options])
+
+| Arguments | Type | Description |
+|---------------|---------|----------------------------------------|
+| ``options`` | JSON Object | Optional parameters |
+
+Available options:
+
+| Option | Type | Description | Default |
+|---------------|---------|----------------------------------------|---------|
+| ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
+
+
+## save
 
 ```js
 // Using callbacks (NodeJS or Web Browser)
@@ -150,9 +160,7 @@ Saves this document into Kuzzle.
 If this is a new document, this function will create it in Kuzzle and the ``id`` property will be made available.  
 Otherwise, this method will replace the latest version of this document in Kuzzle by the current content of this object.
 
-#### save()
-
-#### save(options)
+#### save([options])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
@@ -163,10 +171,10 @@ Available options:
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
 | ``metadata`` | JSON Object | Additional information passed to notifications to other users | ``null`` |
+| ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
 
 
-
-## setContent ![public](./images/public.png)
+## setContent
 
 ```js
 document.setContent({newContent: 'someValue'}, true);
@@ -189,7 +197,7 @@ Replaces the current content with new data.
 
 **Note:** by default, the ``replace`` argument is set to ``false``
 
-## setHeaders ![public](./images/public.png)
+## setHeaders
 
 ```js
 document.setHeaders({someContent: 'someValue'}, true);
@@ -210,7 +218,7 @@ This is a helper function returning itself, allowing to easily chain calls.
 
 **Note:** by default, the ``replace`` argument is set to ``false``
 
-## subscribe ![public](./images/public.png)
+## subscribe
 
 ```js
 var room = document.subscribe(function (error, notification) {

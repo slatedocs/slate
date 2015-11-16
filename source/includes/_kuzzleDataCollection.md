@@ -32,7 +32,7 @@ A data collection is a set of data managed by Kuzzle. It acts like a data table 
 
 **Note:** the ``headers`` property is inherited from the main ``Kuzzle`` object and can be overrided
 
-## advancedSearch ![public](./images/public.png)
+## advancedSearch
 
 ```js
 // Using callbacks (NodeJS or Web Browser)
@@ -70,14 +70,21 @@ There is a small delay between documents creation and their existence in our adv
 
 Executes an advanced search on the data collection.
 
-#### advancedSearch(filters)
+#### advancedSearch(filters, [options])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
 | ``filters`` | JSON Object | Filters in [ElasticSearch Query DSL](https://www.elastic.co/guide/en/elasticsearch/reference/1.3/query-dsl.html) format |
+| ``options`` | JSON Object | Optional parameters |
+
+Available options:
+
+| Option | Type | Description | Default |
+|---------------|---------|----------------------------------------|---------|
+| ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
 
 
-## count ![public](./images/public.png)
+## count
 
 ```js
 // Using callbacks (NodeJS or Web Browser)
@@ -106,14 +113,22 @@ kuzzle
 
 Returns the number of documents matching the provided set of filters.
 
-#### count(filters)
+#### count(filters, [options])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
 | ``filters`` | JSON Object | Filters in [ElasticSearch Query DSL](https://www.elastic.co/guide/en/elasticsearch/reference/1.3/query-dsl.html) format |
+| ``options`` | JSON Object | Optional parameters |
+
+Available options:
+
+| Option | Type | Description | Default |
+|---------------|---------|----------------------------------------|---------|
+| ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
 
 
-## createDocument ![public](./images/public.png)
+
+## createDocument
 
 ```js
 // Using callbacks (NodeJS or Web Browser)
@@ -138,13 +153,9 @@ kuzzle
 
 Create a new document in Kuzzle.
 
-#### createDocument(KuzzleDocument)
+#### createDocument(KuzzleDocument, [options])
 
-#### createDocument(KuzzleDocument, options)
-
-#### createDocument(content)
-
-#### createDocument(content, options)
+#### createDocument(content, [options])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
@@ -157,11 +168,13 @@ Available options:
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
 | ``metadata`` | JSON Object | Additional information passed to notifications to other users | ``null`` |
+| ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
 | ``updateIfExist`` | boolean | If the same document already exists: throw an error if sets to ``false``. Update the existing document otherwise | ``false`` |
 
 
 
-## deleteDocument ![public](./images/public.png)
+
+## deleteDocument
 
 ```js
 // Deleting one document using callbacks (NodeJS or Web Browser)
@@ -207,13 +220,9 @@ There is a small delay between documents creation and their existence in our adv
 
 Delete persistent documents.
 
-#### deleteDocument(documentId)
+#### deleteDocument(documentId, [options])
 
-#### deleteDocument(documentId, options)
-
-#### deleteDocument(filters)
-
-#### deleteDocument(filters, options)
+#### deleteDocument(filters, [options])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
@@ -226,8 +235,10 @@ Available options:
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
 | ``metadata`` | JSON Object | Additional information passed to notifications to other users | ``null`` |
+| ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
 
-## fetchDocument ![public](./images/public.png)
+
+## fetchDocument
 
 ```js
 // Using callbacks (NodeJS or Web Browser)
@@ -250,14 +261,21 @@ kuzzle
 
 Retrieve a single stored document using its unique document ID.
 
-#### fetchDocument(documentId)
+#### fetchDocument(documentId, [options])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
 | ``documentId`` | string | Unique document identifier |
+| ``options`` | JSON Object | Optional parameters |
+
+Available options:
+
+| Option | Type | Description | Default |
+|---------------|---------|----------------------------------------|---------|
+| ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
 
 
-## fetchAllDocuments ![public](./images/public.png)
+## fetchAllDocuments
 
 ```js
 // Using callbacks (NodeJS or Web Browser)
@@ -288,9 +306,20 @@ kuzzle
 
 Retrieves all documents stored in this data collection.
 
-**Returns:** a KuzzleDocumentSet object
+#### fetchAllDocuments([options])
 
-## getMapping ![public](./images/public.png)
+| Arguments | Type | Description |
+|---------------|---------|----------------------------------------|
+| ``options`` | JSON Object | Optional parameters |
+
+Available options:
+
+| Option | Type | Description | Default |
+|---------------|---------|----------------------------------------|---------|
+| ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
+
+
+## getMapping
 
 ```js
 // Using callbacks (NodeJS or Web Browser)
@@ -313,8 +342,20 @@ kuzzle
 
 Instantiates a KuzzleDataMapping object containing the current mapping of this collection.
 
+#### getMapping([options])
 
-## publish ![public](./images/public.png)
+| Arguments | Type | Description |
+|---------------|---------|----------------------------------------|
+| ``options`` | JSON Object | Optional parameters |
+
+Available options:
+
+| Option | Type | Description | Default |
+|---------------|---------|----------------------------------------|---------|
+| ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
+
+
+## publish
 
 ```js
 kuzzle
@@ -324,13 +365,9 @@ kuzzle
 
 Publish a realtime message
 
-#### publish(KuzzleDocument)
+#### publish(KuzzleDocument, [options])
 
-#### publish(KuzzleDocument, options)
-
-#### publish(content)
-
-#### publish(content, options)
+#### publish(content, [options])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
@@ -343,8 +380,9 @@ Available options:
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
 | ``metadata`` | JSON Object | Additional information passed to notifications to other users | ``null`` |
+| ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
 
-## replaceDocument ![public](./images/public.png)
+## replaceDocument
 
 ```js
 // Using callbacks (NodeJS or Web Browser)
@@ -367,9 +405,7 @@ kuzzle
 
 Replace an existing document with a new one.
 
-#### replaceDocument(documentId, content)
-
-#### replaceDocument(documentId, content, options)
+#### replaceDocument(documentId, content, [options])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
@@ -382,8 +418,9 @@ Available options:
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
 | ``metadata`` | JSON Object | Additional information passed to notifications to other users | ``null`` |
+| ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
 
-## setHeaders ![public](./images/public.png)
+## setHeaders
 
 ```js
 kuzzle
@@ -409,7 +446,7 @@ This is a helper function returning itself, allowing to easily chain calls.
 
 **Note:** by default, the ``replace`` argument is set to ``false``
 
-## subscribe ![public](./images/public.png)
+## subscribe
 
 ```js
 var notificationCB = function (error, result) {
@@ -441,7 +478,7 @@ To subscribe to the entire data collection, simply provide an empty filter.
 | ``options`` | object | Subscription configuration. Passed to the KuzzleRoom constructor. |
 
 
-## updateDocument ![public](./images/public.png)
+## updateDocument
 
 ```js
 // Using callbacks (NodeJS or Web Browser)
@@ -464,9 +501,7 @@ kuzzle
 
 Update parts of a document
 
-#### updateDocument(documentId, content)
-
-#### updateDocument(documentId, content, options)
+#### updateDocument(documentId, content, [options])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
@@ -479,3 +514,4 @@ Available options:
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
 | ``metadata`` | JSON Object | Additional information passed to notifications to other users | ``null`` |
+| ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
