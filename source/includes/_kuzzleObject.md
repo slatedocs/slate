@@ -39,7 +39,7 @@ Available options:
 
 | Property name | Type | Description | get/set |
 |--------------|--------|-----------------------------------|---------|
-| ``autoReconnect`` | boolean | Auto-reconnect on a connection loss | get/set |
+| ``autoReconnect`` | boolean | Auto-reconnect on a connection loss | get |
 | ``headers`` | JSON object | Common headers for all sent documents. | get/set |
 | ``metadata`` | JSON object | Common metadata, will be sent to all future requests | get/set |
 | ``reconnectionDelay`` | integer | number of milliseconds between reconnection attempts | get |
