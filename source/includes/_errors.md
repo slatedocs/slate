@@ -8,7 +8,6 @@ The Sendle API uses the following error codes:
 
 Error Code | Meaning
 ---------- | -------
-200 | OK -- A successful response (for reference - not an error)
 400 | Bad Request -- The data provided by the client (typically in the body) is invalid or incorrectly structured.
 401 | Unauthorized -- The authorisation details are invalid. Either the Sendle ID, the API key (or both) are incorrect and should be fixed.
 402 | Payment Required -- The client does not yet have a payment-method set up on their account, and cannot create orders.
