@@ -53,7 +53,7 @@ Or use the included Dockerfile! (must install Docker first)
 
 ```shell
 docker build -t slate .
-docker run -d -p 4567:4567 --name slate -v $(pwd)/source:/app/source slate
+docker run -d -p 4567:4567 -v $(pwd)/source:/app/source slate
 ```
 
 You can now see the docs at <http://localhost:4567>. Whoa! That was fast!
