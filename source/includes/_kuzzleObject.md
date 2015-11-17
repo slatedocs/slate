@@ -39,6 +39,7 @@ Available options:
 | ``queueMaxSize`` | integer | Number of maximum requests kept during offline mode | ``500`` |
 | ``headers`` | JSON object | Common headers for all sent documents | |
 | ``metadata`` | JSON object | Common metadata, will be sent to all future requests | |
+| ``replayInterval`` | integer | Delay between each replayed requests, in milliseconds | ``10`` |
 | ``reconnectionDelay`` | integer | number of milliseconds between reconnection attempts | ``1000`` |
 
 **Notes:** the ``offlineMode`` option only accept the ``manual`` and ``auto`` values
@@ -57,6 +58,7 @@ Available options:
 | ``queueTTL`` | integer | Time a queued request is kept during offline mode, in milliseconds | get/set |
 | ``headers`` | JSON object | Common headers for all sent documents. | get/set |
 | ``metadata`` | JSON object | Common metadata, will be sent to all future requests | get/set |
+| ``replayInterval`` | integer | Delay between each replayed requests | get/set |
 | ``reconnectionDelay`` | integer | number of milliseconds between reconnection attempts | get |
 
 **Notes:**
