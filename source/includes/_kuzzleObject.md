@@ -65,7 +65,7 @@ Available options:
 * the ``queueFilter`` property is a function taking a JSON object as an argument. This object is the request sent to Kuzzle, following the [Kuzzle Websocket API](https://github.com/kuzzleio/kuzzle/blob/master/docs/API.WebSocket.md) format
 * if ``queueTTL`` is set to ``0``, requests are kept indefinitely
 * The offline buffer acts like a FIFO queue, meaning that if the ``queueMaxSize`` limit is reached, older requests are deleted and new requests are queued
-* if ``queueMaxSize`` is set to ``0``, an unlimited number of requests are is kept until the buffer is flushed
+* if ``queueMaxSize`` is set to ``0``, an unlimited number of requests is kept until the buffer is flushed
 
 ## Offline mode
 
@@ -88,7 +88,7 @@ You may also control when to start and stop queuing manually, by using the ``sta
 The queue itself can be configured using the ``queueTTL`` and ``queueMaxSize`` options.
 
 Once a ``reconnected`` event is fired, you may replay the content of the queue with the ``replayQueue`` method. Or you can let the SDK replay it automatically by setting the ``autoReplay`` option to ``true``.  
-Emitted requests while replaying the queue are delayed until the queue is empty, to ensure all requests are played in the right order.
+Requests emitted while replaying the queue are delayed until the queue is empty, to ensure all requests are played in the right order.
 
 You can also control what request can be queued. By default, all requests are queued, but you may decide to filter some of these requests with the ``queueFilter`` property.  
 Additionally, all methods accept a ``queuable`` option. If set to ``false``, the request will be discarded if the SDK is disconnected, and it will be played immediately with no queuing otherwise. This option bypasses the ``queueFilter`` property.
