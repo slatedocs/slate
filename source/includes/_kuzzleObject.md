@@ -90,7 +90,7 @@ You may also control when to start and stop queuing manually, by using the ``sta
 The queue itself can be configured using the ``queueTTL`` and ``queueMaxSize`` options.
 
 Once a ``reconnected`` event is fired, you may replay the content of the queue with the ``replayQueue`` method. Or you can let the SDK replay it automatically by setting the ``autoReplay`` option to ``true``.  
-Requests emitted while replaying the queue are delayed until the queue is empty, to ensure all requests are played in the right order.
+Requests are emitted with the ``replayInterval`` delay between each one of them, and requests submitted while replaying the queue are delayed until the queue is empty, to ensure all requests are played in the right order.
 
 You can also control what request can be queued. By default, all requests are queued, but you may decide to filter some of these requests with the ``queueFilter`` property.  
 Additionally, all methods accept a ``queuable`` option. If set to ``false``, the request will be discarded if the SDK is disconnected, and it will be played immediately with no queuing otherwise. This option bypasses the ``queueFilter`` property.
