@@ -3,7 +3,7 @@
 > All API interactions will require your Sendle ID and your API Key (Make sure to replace **sendleAPI** and **42RRTjYz5Z4hZrm8XY3t4Vxt** with your Sendle ID & API key.)
 
 ```shell
-  curl 'https://sendle.com/api/ping'
+  curl 'https://www.sendle.com/api/ping'
   -u sendleAPI:42RRTjYz5Z4hZrm8XY3t4Vxt
 ```
 
@@ -29,7 +29,7 @@ When the api receives a request with a `Sendle ID` and an `API Key` the server r
 > No Sendle ID AND No API Key
 
 ```shell
-  curl 'https://sendle.com/api/ping'
+  curl 'https://www.sendle.com/api/ping'
 ```
 
 > Response:

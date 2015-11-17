@@ -10,7 +10,7 @@ The quoting API does not require you to add your Sendle ID and API Key, but be s
 > [GET /api/quote]
 
 ```shell
-  curl 'https://sendle.com/api/quote?pickup_suburb=Wonglepong&pickup_postcode=4275&delivery_suburb=Foul%20Bay&delivery_postcode=5577&kilogram_weight=2.0&cubic_metre_volume=0.01' -H 'Content-Type: application/json'
+  curl 'https://www.sendle.com/api/quote?pickup_suburb=Wonglepong&pickup_postcode=4275&delivery_suburb=Foul%20Bay&delivery_postcode=5577&kilogram_weight=2.0&cubic_metre_volume=0.01' -H 'Content-Type: application/json'
 ```
 
 > 200 Response
@@ -57,7 +57,7 @@ The quoting API does not require you to add your Sendle ID and API Key, but be s
 > Empty Request
 
 ```shell
-curl 'https://sendle.com/api/quote'
+curl 'https://www.sendle.com/api/quote'
 ```
 > Response 
 
@@ -96,7 +96,7 @@ Parameters required:
 > Request with `plan_name`
 
 ```shell
-  curl 'https://sendle.com/api/quote?pickup_suburb=Wonglepong&pickup_postcode=4275&delivery_suburb=Foul%20Bay&delivery_postcode=5577&kilogram_weight=2.0&cubic_metre_volume=0.01&plan_name=Premium'
+  curl 'https://www.sendle.com/api/quote?pickup_suburb=Wonglepong&pickup_postcode=4275&delivery_suburb=Foul%20Bay&delivery_postcode=5577&kilogram_weight=2.0&cubic_metre_volume=0.01&plan_name=Premium'
   -H 'Content-Type: application/json'
 ```
 

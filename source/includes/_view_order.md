@@ -3,7 +3,7 @@
 > [ Get /orders/{id} ] f5233746-71d4-4b05-bf63-56f4abaed5f6
 
 ```
-  curl 'https://sendle.com/api/orders/f5233746-71d4-4b05-bf63-56f4abaed5f6'
+  curl 'https://www.sendle.com/api/orders/f5233746-71d4-4b05-bf63-56f4abaed5f6'
     -u sendleAPI:42RRTjYz5Z4hZrm8XY3t4Vxt
     -H "Content-Type: application/json"
 ```
@@ -14,17 +14,17 @@
   {
     "order_id":"f5233746-71d4-4b05-bf63-56f4abaed5f6",
     "state":"Pickup",
-    "order_url":"https://sendle.com/api/orders/f5233746-71d4-4b05-bf63-56f4abaed5f6",
+    "order_url":"https://www.sendle.com/api/orders/f5233746-71d4-4b05-bf63-56f4abaed5f6",
     "labels":[
       {
         "format":"pdf",
         "size":"a4",
-        "url":"https://sendle.com/api/orders/f5233746-71d4-4b05-bf63-56f4abaed5f6/labels/a4.pdf"
+        "url":"https://www.sendle.com/api/orders/f5233746-71d4-4b05-bf63-56f4abaed5f6/labels/a4.pdf"
       },
       {
         "format":"pdf",
         "size":"cropped",
-        "url":"https://sendle.com/api/orders/f5233746-71d4-4b05-bf63-56f4abaed5f6/labels/cropped.pdf"
+        "url":"https://www.sendle.com/api/orders/f5233746-71d4-4b05-bf63-56f4abaed5f6/labels/cropped.pdf"
       }
     ],
     "scheduling":{

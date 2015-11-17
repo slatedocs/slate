@@ -3,7 +3,7 @@
 > [ GET /label_url ]
 
 ```shell
-  curl 'https://sendle.com/api/orders/f5233746-71d4-4b05-bf63-56f4abaed5f6/labels/a4.pdf' -u sendleAPI:42RRTjYz5Z4hZrm8XY3t4Vxt -JL -o label.pdf
+  curl 'https://www.sendle.com/api/orders/f5233746-71d4-4b05-bf63-56f4abaed5f6/labels/a4.pdf' -u sendleAPI:42RRTjYz5Z4hZrm8XY3t4Vxt -JL -o label.pdf
 ```
 
 Using our [order](#creating-orders), we can download the label by using cURL set to save the target and follow redirects. 

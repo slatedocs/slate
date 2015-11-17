@@ -19,7 +19,7 @@ Error Code | Meaning
 ## 400 Bad request
 
 ```shell
-  curl -i https://sendle.com/api/orders
+  curl -i https://www.sendle.com/api/orders
   -X POST
   -u sendleAPI:42RRTjYz5Z4hZrm8XY3t4Vxt
   -H "Content-Type: application/json" 
@@ -80,7 +80,7 @@ Without a [credit card on file](#set-up-payments), booking orders will respond w
 
 **Non-booking queries will contine to work without payment and will not receive an error.**
 
-<aside class='notice'>Access to <strong><code>sendle.com/api/ping</code></strong> will respond with a <code>402</code> error to test your ability to make a request, mirroring the booking endpoint.</aside>
+<aside class='notice'>Access to <strong><code>www.sendle.com/api/ping</code></strong> will respond with a <code>402</code> error to test your ability to make a request, mirroring the booking endpoint.</aside>
 
 ## 404 Not Found
 > 404 Response when entring incorrect Order ID
@@ -100,7 +100,7 @@ If an Order ID or label url is incorrectly entered, a `404` error will be return
 > Request with unallowable errors:
 
 ```shell
-  curl https://sendle.com/api/orders
+  curl https://www.sendle.com/api/orders
   -u sendleAPI:42RRTjYz5Z4hZrm8XY3t4Vxt
   -H "Content-Type: application/json"
   -X POST
