@@ -37,7 +37,7 @@ var mapping = kuzzle.dataCollectionFactory('collection').dataMappingFactory();
 
 **Note:** the ``headers`` property is inherited from the provided ``KuzzleDataCollection`` object and can be overrided
 
-## apply ![public](./images/public.png)
+## apply
 
 ```js
 // Using callbacks (NodeJS or Web Browser)
@@ -55,7 +55,19 @@ dataMapping.applyPromise(function (error, result) {
 
 Applies the new mapping to the data collection.
 
-## refresh ![public](./images/public.png)
+#### apply([options])
+
+| Arguments | Type | Description |
+|---------------|---------|----------------------------------------|
+| ``options`` | JSON Object | Optional parameters |
+
+Available options:
+
+| Option | Type | Description | Default |
+|---------------|---------|----------------------------------------|---------|
+| ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
+
+## refresh
 
 ```js
 // Using callbacks (NodeJS & Web Browser)
@@ -77,7 +89,20 @@ Calling this function will discard any uncommited changes. You can commit change
 
 Replaces the current content with the mapping stored in Kuzzle
 
-## set ![public](./images/public.png)
+#### refresh([options])
+
+| Arguments | Type | Description |
+|---------------|---------|----------------------------------------|
+| ``options`` | JSON Object | Optional parameters |
+
+Available options:
+
+| Option | Type | Description | Default |
+|---------------|---------|----------------------------------------|---------|
+| ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
+
+
+## set
 
 ```js
 dataMapping.set('field', {type: 'string', index: 'analyzed', null_value: ''});
@@ -96,7 +121,7 @@ Adds or updates a field mapping.
 | ``field`` | string | Name of the field from which the mapping is to be added or updated |
 | ``mapping`` | JSON Object | Mapping for this field, following the [Elasticsearch Mapping format](https://www.elastic.co/guide/en/elasticsearch/reference/1.3/mapping.html)
 
-## setHeaders ![public](./images/public.png)
+## setHeaders
 
 ```js
 dataMapping.setHeaders({someContent: 'someValue'}, true);

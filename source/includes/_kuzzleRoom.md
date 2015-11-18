@@ -67,7 +67,7 @@ Available options:
 * updating the ``metadata`` property takes effect after ``renew`` is called
 * by default, the global Kuzzle ``metadata`` properties are sent along with the subscription request. If a ``metadata`` option is provided during subscription, it will be merged with the global ``metadata`` for the subscription only. In case of conflicts, subscription ``metadata`` take priority over the global ``metadata``.
 
-## count ![public](./images/public.png)
+## count
 
 ```js
 // Using callbacks (NodeJS or Web Browser)
@@ -89,7 +89,7 @@ room.countPromise().then(result => {
 
 Return the number of subscribers on that room
 
-## list ![public](./images/public.png)
+## list
 
 <aside class="warning">
 To be implemented
@@ -102,7 +102,7 @@ These objects contain:
 * the subscription metadata
 * the subscription timestamp
 
-## renew ![public](./images/public.png)
+## renew
 
 ```js
 room.renew({terms: {field: ['some', 'new', 'filter']}}, function (err, res) {
@@ -123,7 +123,7 @@ Unsubscribes first if this KuzzleRoom was already listening to events.
 | ``filters`` | JSON Object | Filters in [Kuzzle DSL](https://github.com/kuzzleio/kuzzle/blob/master/docs/filters.md) format |
 | ``callback`` | function | Function called each time a notification is received |
 
-## setHeaders ![public](./images/public.png)
+## setHeaders
 
 ```js
 room.setHeaders({someContent: 'someValue'}, true);
@@ -144,7 +144,7 @@ This is a helper function returning itself, allowing to easily chain calls.
 
 **Note:** by default, the ``replace`` argument is set to ``false``
 
-## unsubscribe ![public](./images/public.png)
+## unsubscribe
 
 ```js
 room.unsubscribe();
