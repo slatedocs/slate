@@ -14,9 +14,9 @@ Bytes#4-19: Data Section
 ### Header Section
 The header section consists of four bytes.
 
-|  Byte 0 (bit_7) |  Byte 0 (bit_6_0) |  Byte 1   | Byte 2 | Byte 3 |
-|-----------------|-------------------|-----------|--------|--------|
-|    Error Log    |  Subsystem value  |data length|  CRC   |command |
+|  Byte 0 (bit_7) |  Byte 0 (bit_6_0) |  Byte 1   | Byte 2 |   Byte 3 (bit_7)    |Byte 3 (bit_6_0)|
+|-----------------|-------------------|-----------|--------|---------------------|----------------|
+|    Error Log    |  Subsystem value  |data length|  CRC   |Command/Response Mode|  Command Type  |
 
 ###### Byte#0: Subsystem
 ```c 
@@ -35,6 +35,13 @@ The BLE protocol currently is set to a fixed packet length of 20 bytes including
 The 8-bit CRC is calculated over the data section of the packet.
 
 ###### Byte#3: Command
+```c 
+Bit#7: (Command/Response Mode) 
+```
+This bit, when set to "1", shows that the packet is a command issued to Neblina from the host. When the bit is set to "0", it means that the packet is a response from Neblina to the host. 
+```c 
+Bits#6-0: (Command Type)
+```
 Different commands can be issued identified by this field. For the power management subsystem, currently there is only one command as follows:
 
 ```c 
