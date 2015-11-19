@@ -217,6 +217,12 @@ Environment variables have the same names as those in the Yaml config file, but 
 export SCOUT_KEY=YOURKEY
 ```
 
+## Docker <img src="images/docker.png" style="float:right;width: 150px" />
+
+Scout runs within Docker containers without any special configuration. 
+
+It's common to configure Docker containers with environment variables. Scout can use [enviornment variables](#environment-variables) instead of the `scout_apm.yml` config file.
+
 ## Heroku <img src="images/heroku.png" style="float:right;width: 150px" />
 
 Scout runs on Heroku without any special configuration. When Scout detects that an app is being served via Heroku:
