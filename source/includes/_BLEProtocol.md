@@ -204,5 +204,17 @@ In the response mode, the data section includes 4 bytes for the timestamp (Byte#
 |:----------------:|:-------------:|:----------:|:--------------:|:-------:|:-------------:|:-------------:|
 |       0x01       |      0x10     |    CRC     |      0x0C      |TimeStamp|AxesRaw_t (Mag)|AxesRaw_t (Acc)|
 
+##### SittingStanding Command/Response
+In the command mode, the packet enables/disables the streaming of sitting/standing modes. Byte#4 will be a Boolean value representing the Enable/Disable command. The overall command mode SittingStanding packet has the following structure:
+
+| Byte 0 (subsystem) | Byte 1 (length) | Byte 2 (CRC) |   Byte 3 (command)   |     Byte 4     | Bytes 5-19 |
+|:------------------:|:---------------:|:------------:|:--------------------:|:--------------:|------------|
+|        0x41        |       0x10      |      CRC     |0x0D (SittingStanding)| Enable/Disable |  Reserved  |
+
+In the response mode, the data section includes 4 bytes for the timestamp (Byte#4-7), which is then followed by a single byte (Byte#8) indicating whether the person has just stood up (Byte#8 = 0x01), or has just sat down (Byte#8 = 0x00). If the person remains standing/sitting, no response packet will be sent to the host.  Next, we have 4 bytes (Byte#9-12), a 32-bit unsigned integer value, representing the amount of time in seconds the person has been sitting so far. The next 4 bytes (Byte#13-16) construct another 32-bit unsigned integer, which represents the amount of time in seconds the person has been standing up so far. The last 3 bytes (Byte#17-19) are reserved. The whole response packet structure including header is shown below:
+
+|Byte 0 |Byte 1|Byte 2|Byte 3|Byte 4-7 | Byte 8  |Byte 9-12|Byte 13-16|Bytes 17-19|
+|:-----:|:----:|-----:|:----:|:-------:|:-------:|:-------:|:--------:|:---------:|
+| 0x01  | 0x10 | CRC  | 0x0D |TimeStamp|Sit/Stand| SitTime |StandTime | Reserved  |
 
 
