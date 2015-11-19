@@ -127,6 +127,43 @@ Available options:
 | ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
 
 
+## create
+
+```js
+// Using callbacks (NodeJS or Web Browser)
+kuzzle
+  .dataCollectionFactory('collection')
+  .create(function (error, result) {
+    // callback called once the create operation has completed
+    // => the result is a JSON object containing the raw Kuzzle response
+  });
+
+// Using promises (NodeJS only)
+kuzzle
+ .dataCollectionFactory('collection')
+ .createPromise()
+ .then(result => {
+   // promise resolved once the create operation has completed
+   // => the result is a JSON object containing the raw Kuzzle response
+ });
+```
+
+Create a new empty data collection, with no associated mapping.
+
+Kuzzle automatically creates data collections when storing documents, but there are cases where we want to create and prepare data collections before storing documents in it.
+
+#### create([options])
+
+| Arguments | Type | Description |
+|---------------|---------|----------------------------------------|
+| ``options`` | JSON Object | Optional parameters |
+
+Available options:
+
+| Option | Type | Description | Default |
+|---------------|---------|----------------------------------------|---------|
+| ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
+
 
 ## createDocument
 
@@ -172,7 +209,40 @@ Available options:
 | ``updateIfExist`` | boolean | If the same document already exists: throw an error if sets to ``false``. Update the existing document otherwise | ``false`` |
 
 
+## delete
 
+```js
+// Using callbacks (NodeJS or Web Browser)
+kuzzle
+  .dataCollectionFactory('collection')
+  .delete(function (error, result) {
+    // callback called once the delete operation has completed
+    // => the result is a JSON object containing the raw Kuzzle response
+  });
+
+// Using promises (NodeJS only)
+kuzzle
+ .dataCollectionFactory('collection')
+ .deletePromise()
+ .then(result => {
+   // promise resolved once the delete operation has completed
+   // => the result is a JSON object containing the raw Kuzzle response
+ });
+```
+
+Delete this data collection and all documents in it.
+
+#### delete([options])
+
+| Arguments | Type | Description |
+|---------------|---------|----------------------------------------|
+| ``options`` | JSON Object | Optional parameters |
+
+Available options:
+
+| Option | Type | Description | Default |
+|---------------|---------|----------------------------------------|---------|
+| ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
 
 ## deleteDocument
 
@@ -476,6 +546,44 @@ To subscribe to the entire data collection, simply provide an empty filter.
 | ``filters`` | JSON Object | Filters in [Kuzzle DSL](https://github.com/kuzzleio/kuzzle/blob/master/docs/filters.md) format |
 | ``callback`` | function | Callback to call every time a notification is received on this subscription |
 | ``options`` | object | Subscription configuration. Passed to the KuzzleRoom constructor. |
+
+
+## truncate
+
+```js
+// Using callbacks (NodeJS or Web Browser)
+kuzzle
+  .dataCollectionFactory('collection')
+  .truncate(function (error, result) {
+    // callback called once the truncate operation has completed
+    // => the result is a JSON object containing the raw Kuzzle response
+  });
+
+// Using promises (NodeJS only)
+kuzzle
+ .dataCollectionFactory('collection')
+ .truncatePromise()
+ .then(result => {
+   // promise resolved once the truncate operation has completed
+   // => the result is a JSON object containing the raw Kuzzle response
+ });
+```
+
+Truncate the data collection, removing all stored documents but keeping all associated mappings.
+
+This method is a lot faster than removing all documents using a query.
+
+#### truncate([options])
+
+| Arguments | Type | Description |
+|---------------|---------|----------------------------------------|
+| ``options`` | JSON Object | Optional parameters |
+
+Available options:
+
+| Option | Type | Description | Default |
+|---------------|---------|----------------------------------------|---------|
+| ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
 
 
 ## updateDocument
