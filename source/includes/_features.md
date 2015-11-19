@@ -81,7 +81,7 @@ gem 'stackprof', '~> 0.2.7'
 
 ## Git Integration
 
-If your code is hosted at Github, you can see the relevant slow line-of-code within the Scout user interface when viewing slow request details. Additionally, you'll also see the:
+If your code is hosted at Github, you can see the [relevant slow line-of-code within the Scout user interface](#code-backtraces) when viewing slow request details. Additionally, you'll also see the:
 
 * author
 * commit time
