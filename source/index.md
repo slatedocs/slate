@@ -14,7 +14,11 @@ search: true
 
 # Introduction
 
-Welcome to the Slyce API!
+Welcome to the Slyce API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+
+We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+
+This example API documentation page was created with [Slate](http://github.com/tripit/slate). Feel free to edit it and use it as a base for your own API's documentation.
 
 # Authentication
 
@@ -589,7 +593,7 @@ zip |  | Zip/Postal code.
     "id": "0012",
     "firstname": "John",
     "lastname": "Doe",
-    "email": "doe@mail.com",
+    "email": "doe@test.com",
     "company": "CMS",
     "phone": "1234-123-1234",
     "fax": "1234-123-1234",
@@ -644,7 +648,7 @@ zip |  | Zip/Postal code.
     "sku": "123",
     "amount": "12.00",
     "description": "Test Fee.",
-    "completed": true
+    "completed": 1
   }
 }
 ```
@@ -663,9 +667,6 @@ PLANID | The ID of the payplan to retrieve fees.
 FEEID | The ID of the fee.
 
 
-
-
-
 ## View All
 
 > Returns JSON structured like this:
@@ -679,7 +680,7 @@ FEEID | The ID of the fee.
       "sku": "123",
       "amount": "12.00",
       "description": "Test Fee.",
-      "completed": true
+      "completed": 1
     },
     {
       "id": 2,
@@ -687,7 +688,7 @@ FEEID | The ID of the fee.
       "sku": "",
       "amount": "10.00",
       "description": "",
-      "completed": true
+      "completed": 1
     }
   ],
   "meta": {
