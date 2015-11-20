@@ -47,7 +47,7 @@ You're going to need:
 2. Clone *your forked repository* (not our original one) to your hard drive with `git clone https://github.com/YOURUSERNAME/slate.git`
 3. `cd slate`
 4. Initialize and start (there are a few options for this):
- 
+
 #### Manual/local
 
 ```shell
@@ -61,7 +61,7 @@ docker build -t slate .
 docker run -d -p 4567:4567 --name slate -v $(pwd)/source:/app/source slate
 ```    
 
-You can now see the docs at http://localhost:4567. Whoa! That was fast! 
+You can now see the docs at http://localhost:4567. Whoa! That was fast!
 
 *Note: if you're using the Docker setup on OSX, the docs will be availalable at the output of `boot2docker ip` instead of `localhost:4567`.*
 
@@ -104,7 +104,7 @@ Examples of Slate in the Wild
 * [Market Prophit API Documentation](http://developer.marketprophit.com/)
 * [OAuth.io API Documentation](http://docs.oauth.io/)
 * [Aircall for Developers](http://developer.aircall.io/)
-* [SupportKit API Docs](http://docs.supportkit.io/)
+* [Smooch API Docs](http://docs.smooch.io/)
 * [SocialRadar's LocationKit Docs](https://docs.locationkit.io/)
 * [SafetyCulture API Documentation](https://developer.safetyculture.io/)
 * [hosting.de API Documentation](https://www.hosting.de/docs/api/)
