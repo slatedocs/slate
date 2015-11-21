@@ -43,7 +43,7 @@ Beyonic_Payment::create(array(
   "payment_type" => "money",
   "callback_url" => "https://my.website/payments/callback",
   "metadata.id" => "1234", 
-  "name.name" => "Lucy"
+  "metadata.name" => "Lucy"
 ));
 ?>
 ```

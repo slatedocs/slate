@@ -265,9 +265,9 @@ contact = Beyonic::Contact.list(
 require_once('./lib/Beyonic.php');
 Beyonic::setApiKey("ab594c14986612f6167a975e1c369e71edab6900");
 
-$contact = Beyonic_Contact::getAll(
+$contact = Beyonic_Contact::getAll(array(
   "first_name" => "luke"
-);
+));
 ?>
 ```
 

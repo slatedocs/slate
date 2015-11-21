@@ -23,7 +23,7 @@ require_once('./lib/Beyonic.php');
 Beyonic::setApiVersion("v2");
 Beyonic::setApiKey("ab594c14986612f6167a975e1c369e71edab6900");
 
-$contacts = Beyonic_Contact::getAll(
+$contacts = Beyonic_Contact::getAll(array(
   "limit" => "10",
   "offset" => "5"
 ));

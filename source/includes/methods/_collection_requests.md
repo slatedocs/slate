@@ -274,10 +274,10 @@ collection = Beyonic::CollectionRequest.list(
 require_once('./lib/Beyonic.php');
 Beyonic::setApiKey("ab594c14986612f6167a975e1c369e71edab6900");
 
-$collection = Beyonic_CollectionRequest::getAll(
+$collection = Beyonic_CollectionRequest::getAll(array(
   "remote_transaction_id" => "12345",
   "amount" => 500
-);
+));
 ?>
 ```
 

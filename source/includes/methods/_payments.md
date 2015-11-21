@@ -349,9 +349,9 @@ payments = Beyonic::Payment.list(
 require_once('./lib/Beyonic.php');
 Beyonic::setApiKey("ab594c14986612f6167a975e1c369e71edab6900");
 
-$payments = Beyonic_Payment::getAll(
+$payments = Beyonic_Payment::getAll(array(
   "amount" => 500
-);
+));
 ?>
 ```
 

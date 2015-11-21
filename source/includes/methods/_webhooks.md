@@ -402,9 +402,9 @@ hooks = Beyonic::Webhook.list(
 require_once('./lib/Beyonic.php');
 Beyonic::setApiKey("ab594c14986612f6167a975e1c369e71edab6900");
 
-$hooks = Beyonic_Webhook::getAll((
+$hooks = Beyonic_Webhook::getAll(array(
   "user" => 1
-);
+));
 ?>
 ```
 

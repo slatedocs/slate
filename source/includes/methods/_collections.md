@@ -199,10 +199,10 @@ collection = Beyonic::Collection.list(
 require_once('./lib/Beyonic.php');
 Beyonic::setApiKey("ab594c14986612f6167a975e1c369e71edab6900");
 
-$collection = Beyonic_Collection::getAll(
+$collection = Beyonic_Collection::getAll(array(
   "phonenumber" => "+256772712893",
   "remote_transaction_id" => "SS12312"
-);
+));
 ?>
 ```
 
@@ -272,12 +272,12 @@ collection = Beyonic::Collection.list(
 require_once('./lib/Beyonic.php');
 Beyonic::setApiKey("ab594c14986612f6167a975e1c369e71edab6900");
 
-$collection = Beyonic_Collection::getAll(
+$collection = Beyonic_Collection::getAll(array(
   "phonenumber" => "+256772712893",
   "remote_transaction_id" => "SS12312",
   "claim" => "True",
   "amount" => "200",
-);
+));
 ?>
 ```
 
