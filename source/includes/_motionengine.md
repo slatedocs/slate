@@ -202,17 +202,17 @@ We recommend that users use slow motions to record the reference orientation tra
 
 This optional command can only be issued after sending the TrajectoryRecStart command to stop the in-process recording for the orientation trajectory. If that does not occur an error log will be recorded by Neblina. Note that the recording stops automatically as the device comes to stop. Hence, it is not mandatory to call this function to stop the recording process.
 
-## Enable trajectory distance stream
+## Enable trajectory information stream
 
-`EnableTrajectoryDistanceStream()`
+`EnableTrajectoryInfoStream()`
 
 After the recording of a reference orientation trajectory is stopped (either by issuing the optional command StopTrajectoryRecord() or by the device itself as it comes to stop with no motion), we can enable the streaming of the orientation tracker. This checks the device orientation in real-time to see how far we are from the reference pre-recorded orientation trajectory. The distance is returned in terms of the error we face in Yaw, Pitch and Roll, in degrees. Furthermore, the device counts how many times the recorded pattern has been repeated. It also captures how much of the track has been covered so far (0% to 100%). Whenever the full trajectory is covered, the counter is increased by 1, and the progress percentage is reset to 0%.
 
 If the fusion type is IMU, then the Euler angle error is only reported in Pitch and Roll, while we have the error in Yaw to be zero. This is due to the fact that in the IMU mode, there is no reference information to correct the heading angle. On the other hand, in the MARG mode, the error is reported in all three angles. If we issue this command to enable streaming before recording a reference track, or if the reference track is too short with very few samples, e.g., less than 1 second of recorded data, then an error log will be recorded by Neblina. The errors in Yaw, Pitch and Roll are returned as 16-bit signed integer numbers.
 
-## Disable trajectory distance stream
+## Disable trajectory information stream
 
-`DisableTrajectoryDistanceStream()`
+`DisableTrajectoryInfoStream()`
 
 This function disables the tracking of the orientation trajectory.
 
