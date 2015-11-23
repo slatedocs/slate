@@ -206,9 +206,9 @@ This optional command can only be issued after sending the TrajectoryRecStart co
 
 `EnableTrajectoryDistanceStream()`
 
-After the recording of a reference orientation trajectory is stopped (either by issuing the optional command StopTrajectoryRecord() or by the device itself as it comes to stop with no motion), we can enable the streaming of the orientation tracker. This checks the device orientation in real-time to see how far we are from the reference pre-recorded orientation trajectory. The distance is returned in terms of the error we face in Yaw, Pitch and Roll, in degrees.
+After the recording of a reference orientation trajectory is stopped (either by issuing the optional command StopTrajectoryRecord() or by the device itself as it comes to stop with no motion), we can enable the streaming of the orientation tracker. This checks the device orientation in real-time to see how far we are from the reference pre-recorded orientation trajectory. The distance is returned in terms of the error we face in Yaw, Pitch and Roll, in degrees. Furthermore, the device counts how many times the recorded pattern has been repeated. It also captures how much of the track has been covered so far (0% to 100%). Whenever the full trajectory is covered, the counter is increased by 1, and the progress percentage is reset to 0%.
 
-If the fusion type is IMU, then the error is only reported in Pitch and Roll, while we have the error in Yaw to be zero. This is due to the fact that in the IMU mode, there is no reference information to correct the heading angle. On the other hand, in the MARG mode, the error is reported in all three angles. If we issue this command to enable streaming before recording a reference track, or if the reference track is too short with very few samples, e.g., less than 1 second of recorded data, then an error log will be recorded by Neblina. The errors in Yaw, Pitch and Roll are returned as 16-bit signed integer numbers.
+If the fusion type is IMU, then the Euler angle error is only reported in Pitch and Roll, while we have the error in Yaw to be zero. This is due to the fact that in the IMU mode, there is no reference information to correct the heading angle. On the other hand, in the MARG mode, the error is reported in all three angles. If we issue this command to enable streaming before recording a reference track, or if the reference track is too short with very few samples, e.g., less than 1 second of recorded data, then an error log will be recorded by Neblina. The errors in Yaw, Pitch and Roll are returned as 16-bit signed integer numbers.
 
 ## Disable trajectory distance stream
 
@@ -352,6 +352,8 @@ typedef struct Motion_Feature_t{ //all features
 	Euler_fxp_t angles;
 	Fext_Vec16_t force;
 	Euler_fxp_t angles_err; //error in Euler angles compared to a reference trajectory
+	uint16_t motiontrack_cntr; //shows how many times the pre-recorded track has been repeated
+	uint8_t motiontrack_progress; //the percentage showing how much of a pre-recorded track has been covered
 	uint32_t TimeStamp; //in microseconds
 	steps_t steps;
 	int16_t direction;
