@@ -310,6 +310,7 @@ typedef struct MotionEngine_CallBack_CFG_t
 	EulerAngleErr_CallBack EulerAngleErr_CallBk;
 	Pedometer_CallBack Pedometer_CallBk;
 	MAG_CallBack MAG_CallBk;
+	SitStand_CallBack SitStand_CallBk;
 } MotionEngine_CallBack_CFG_t;
 ```
 
@@ -333,6 +334,7 @@ MotionEngine_CallBack_CFG_t g_MotionEngine_CallBackCfg = {
 		NULL, //Euler Angle Error
 		PedometerCallBackFunction, //Pedometer
 		NULL, //Magnetometer data
+		NULL, //Sitting/Standing Report
 };
 ```
 
