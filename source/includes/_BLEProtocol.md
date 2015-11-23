@@ -57,7 +57,7 @@ However, regarding the motion engine subsystem a number of commands exist, which
 #define SetFusionType 0x07 //setting the Fusion type to either 6-axis or 9-axis
 #define TrajectoryRecStart 0x08 //start recording orientation trajectory
 #define TrajectoryRecStop 0x09 //stop recording orientation trajectory
-#define TrajectoryDistance 0x0A //Analyzes the current trajectory w.r.t. the pre-recorded one
+#define TrajectoryInfo 0x0A //Analyzes the current trajectory w.r.t. the pre-recorded one
 #define Pedometer 0x0B //streaming pedometer data
 #define MAG_Data 0x0C //streaming magnetometer data
 ```
@@ -159,14 +159,14 @@ The overall packet structure is as follows:
 
 ##### TrajectoryRecStart & TrajectoryRecStop
 These two commands do not have a data section.
-##### TrajectoryDistance Command/Response
+##### TrajectoryInfo Command/Response
 In the command mode, the packet enables/disables the streaming of the distance from a pre-recorded orientation trajectory, as well as the progress report. Byte#4 will be a Boolean value representing the Enable/Disable command. The overall command mode TrajectoryDistance packet has the following structure:
 
 | Byte 0 (subsystem) | Byte 1 (length) | Byte 2 (CRC) |   Byte 3 (command)  |     Byte 4     | Bytes 5-19 |
 |:------------------:|:---------------:|:------------:|:-------------------:|:--------------:|------------|
 |        0x41        |       0x10      |      CRC     |  0x0A (Trajectory)  | Enable/Disable |  Reserved  |
 
-In the response mode, the data section includes 4 bytes for the timestamp (Byte#4-7), which is then followed by 6 bytes (Byte#8-13) representing the Euler angle errors, which have been described by the "EnableTrajectoryDistanceStream()" API function in the motion engine documentation. The next 2 bytes (Byte#14-15) represent a 16-bit unsigned integer number showing how many times the recorded track has been repeated. Finally, Byte#16 shows the percentage of completion indicating how much of the recorded track has been covered. The track Counter (Byte#14-15) will be increased by 1, and the percentage value will drop back to zero, when the full track is covered. The whole response packet structure including header is shown below:
+In the response mode, the data section includes 4 bytes for the timestamp (Byte#4-7), which is then followed by 6 bytes (Byte#8-13) representing the Euler angle errors, which have been described by the "EnableTrajectoryInfoStream()" API function in the motion engine documentation. The next 2 bytes (Byte#14-15) represent a 16-bit unsigned integer number showing how many times the recorded track has been repeated. Finally, Byte#16 shows the percentage of completion indicating how much of the recorded track has been covered. The track Counter (Byte#14-15) will be increased by 1, and the percentage value will drop back to zero, when the full track is covered. The whole response packet structure including header is shown below:
 
 |Byte 0 (subsystem)|Byte 1 (length)|Byte 2|Byte 3|Byte 4-7 |    Byte 8-13    |Byte 14-15|Byte 16 |Bytes 17-19|
 |:----------------:|:-------------:|:----:|:----:|:-------:|:---------------:|:--------:|:------:|:---------:|
