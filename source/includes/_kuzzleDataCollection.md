@@ -452,6 +452,42 @@ Available options:
 | ``metadata`` | JSON Object | Additional information passed to notifications to other users | ``null`` |
 | ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
 
+## putMapping
+
+```js
+// Using callbacks (NodeJS or Web Browser)
+kuzzle
+  .dataCollectionFactory('collection')
+  .putMapping({foo: {type: 'string', store: true}, bar: {type: 'date'}, function (error, result) {
+    // result is a KuzzleDataMapping object
+  });
+
+// Using promises (NodeJS)
+kuzzle
+  .dataCollectionFactory('collection')
+  .putMappingPromise({foo: {type: 'string', store: true}, bar: {type: 'date'})
+  .then(result => {
+    // result is a KuzzleDataMapping object
+  });
+```
+
+Applies a new mapping to the data collection.  
+Note that you cannot delete an existing mapping, you can only add or update one.
+
+#### putMapping(mapping, [options])
+
+| Arguments | Type | Description |
+|---------------|---------|----------------------------------------|
+| ``mapping`` | JSON Object | Mapping to apply |
+| ``options`` | JSON Object | Optional parameters |
+
+Available options:
+
+| Option | Type | Description | Default |
+|---------------|---------|----------------------------------------|---------|
+| ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
+
+
 ## replaceDocument
 
 ```js

@@ -20,20 +20,23 @@ Once a field mapping has been set, it cannot be removed without reconstructing t
  You may also use the KuzzleDataCollection.dataMappingFactory() method:
  */
 var mapping = kuzzle.dataCollectionFactory('collection').dataMappingFactory();
+
+var mapping = kuzzle.dataCollectionFactory('collection', mapping).dataMappingFactory();
 ```
 
-#### KuzzleDataMapping(KuzzleDataCollection)
+#### KuzzleDataMapping(KuzzleDataCollection, [mapping])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
-| ``KuzzleDataCollection`` | object | An instanciated KuzzleDataCollection object |
+| ``KuzzleDataCollection`` | JSON Object | An instanciated KuzzleDataCollection object |
+| ``mapping`` | JSON Object | Optional mapping |
 
 ## Properties
 
 | Property name | Type | Description | get/set |
 |--------------|--------|-----------------------------------|---------|
 | ``headers`` | JSON Object | Common headers for all sent documents. | get/set |
-| ``mapping`` | object | Easy-to-understand list of mappings per field | get |
+| ``mapping`` | object | Easy-to-understand list of mappings per field | get/set |
 
 **Note:** the ``headers`` property is inherited from the provided ``KuzzleDataCollection`` object and can be overrided
 
