@@ -16,8 +16,8 @@ EXEMPLO
     "our_number":"0",
     "our_number_digit":null,
     "total_amount":"10.07",
-    "instructions":"Pagável em qualquer agência até data do vencimento",
-    "demonstrative":"Demonstrativo",
+    "instructions":"Pagável em qualquer agência até data do vencimento.",
+    "demonstrative":"Não receber após o vencimento.",
     "payer_emails":["myemail@gmail.com"],
     "payer_info":"Empresa A - CNPJ X",
     "received":true,
@@ -56,8 +56,8 @@ As Cobranças, pertencem as suas contas de cobrança, sendo assim é necessário
 | our_number_digit    | integer          | digito do verificador do nosso número                                                                                                               |
 | custom_our_number   | boolean          | indica se a cobrança utiliza um "nosso número" customizado. O valor padrão é false, mas caso definido true, o campo 'our_number' se torna requerido |
 | total_amount        | decimal          | valor total do boleto                                                                                                                               |
-| instructions        | string           | instruções de pagamento do boleto, por padrão "Pago em qualquer agência até data do vencimento."                                                    |
-| demonstrative       | string           | demonstrativo do Boleto, por padrão "Pago em qualquer agência até data do vencimento."                                                              |
+| instructions        | string           | instruções de pagamento do boleto, por padrão "Pagável em qualquer agência até data do vencimento."                                                 |
+| demonstrative       | string           | demonstrativo do Boleto, por padrão "Não receber após o vencimento."                                                                                |
 | payer_emails        | array of strings | emails de quem irá pagar o boleto                                                                                                                   |
 | payer_info          | string           | informações gerais de quem irá pagar a cobraça (p.ex. nome, documento, endereço)                                                                    |
 | received            | boolean          | indica se a cobrança foi recebida                                                                                                                   |
@@ -103,8 +103,8 @@ EXEMPLO DE CORPO DA RESPOSTA
     "our_number":"0",
     "our_number_digit":null,
     "total_amount":"10.07",
-    "instructions":"Pagável em qualquer agência até data do vencimento",
-    "demonstrative":"Demonstrativo",
+    "instructions":"Pagável em qualquer agência até data do vencimento.",
+    "demonstrative":"Não receber após o vencimento.",
     "payer_emails":["myemail@gmail.com"],
     "payer_info":"Empresa A - CNPJ X",
     "received":true,
@@ -253,7 +253,7 @@ Cria um nova cobrança, caso haja sucesso retornará as informações da mesma e
 | our_number          | string           | (opcional) nosso número. Caso não informado, é atribuído automaticamente pelo sistema                                                                          |
 | our_number_digit    | integer          | (opcional) digito do verificador do nosso número                                                                                                               |
 | custom_our_number   | boolean          | (opcional) indica se a cobrança utiliza um "nosso número" customizado. O valor padrão é false, mas caso definido true, o campo 'our_number' se torna requerido |
-| instructions        | string           | (opcional) instruções de pagamento do boleto, por padrão "Pago em qualquer agência até data do vencimento." (pode ser linhas separadas por "\n")               |
+| instructions        | string           | (opcional) instruções de pagamento do boleto, por padrão "Pagável em qualquer agência até data do vencimento." (pode ser linhas separadas por "\n")            |
 | demonstrative       | string           | (opcional) demonstrativo do Boleto, por padrão "Não receber após o vencimento." (pode ser linhas separadas por "\n")                                           |
 | payment_method      | string           | (opcional) identifica o método de pagamento da cobranças, por padrão "billet"                                                                                  |
 
@@ -334,7 +334,7 @@ O campo 'has_cnab_remittance' é alterado, apenas em cobranças em que o 'paymen
 | our_number          | string           | (opcional) nosso número. Caso não informado, é atribuído automaticamente pelo sistema                                                                          |
 | our_number_digit    | integer          | (opcional) digito do verificador do nosso número                                                                                                               |
 | custom_our_number   | boolean          | (opcional) indica se a cobrança utiliza um "nosso número" customizado. O valor padrão é false, mas caso definido true, o campo 'our_number' se torna requerido |
-| instructions        | string           | (opcional) instruções de pagamento do boleto, por padrão "Pago em qualquer agência até data do vencimento." (pode ser linhas separadas por "\n")               |
+| instructions        | string           | (opcional) instruções de pagamento do boleto, por padrão "Pagável em qualquer agência até data do vencimento." (pode ser linhas separadas por "\n")            |
 | demonstrative       | string           | (opcional) demonstrativo do Boleto, por padrão "Não receber após o vencimento." (pode ser linhas separadas por "\n")                                           |
 | payment_method      | string           | (opcional) identifica o método de pagamento da cobranças, por padrão "billet"                                                                                  |
 
