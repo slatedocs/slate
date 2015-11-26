@@ -13,13 +13,17 @@ Connects to a Kuzzle instance.
 
 ```js
 var kuzzle = new Kuzzle('http://localhost:7512', {autoReconnect: true, headers: {someheader: "value"}});
+
+// A callback is also available and will be invoked once connected to the Kuzzle instance:
+var kuzzle = new Kuzzle('http://localhost:7512', function (err, res) {
+  // ...
+});
 ```
 
 > Returns an instanciated Kuzzle Object
 
-#### Kuzzle(url)
+#### Kuzzle(url, [options])
 
-#### Kuzzle(url, options)
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
@@ -34,6 +38,7 @@ Available options:
 | ``autoReconnect`` | boolean | Automatically reconnect after a connection loss | ``true`` |
 | ``autoReplay`` | boolean | Automatically replay queued requests on a ``reconnected`` event | ``false`` |
 | ``autoResubscribe`` | boolean | Automatically renew all subscriptions on a ``reconnected`` event | ``true`` |
+| ``connect`` | string | Manually or automatically connect to the Kuzzle instance | ``auto`` |
 | ``offlineMode`` | string | Offline mode configuration | ``manual`` |
 | ``queueTTL`` | integer | Time a queued request is kept during offline mode, in milliseconds | ``120000`` |
 | ``queueMaxSize`` | integer | Number of maximum requests kept during offline mode | ``500`` |
@@ -63,6 +68,8 @@ Available options:
 
 **Notes:**
 
+* if ``connect`` is set to ``manual``, the ``connect`` method will have to be called manually
+* the kuzzle instance will automatically queue all requests, and play them automatically once a first connection is established, regardless of the ``connect`` or offline mode option values.
 * multiple methods allow passing specific ``metadata``. These ``metadata`` will be merged with the global Kuzzle object ``metadata`` when sending the request, with the request specific ``metadata`` taking priority over the global ones.
 * the ``queueFilter`` property is a function taking a JSON object as an argument. This object is the request sent to Kuzzle, following the [Kuzzle Websocket API](https://github.com/kuzzleio/kuzzle/blob/master/docs/API.WebSocket.md) format
 * if ``queueTTL`` is set to ``0``, requests are kept indefinitely
@@ -144,6 +151,16 @@ The ID returned by this function is required if you want to remove this listener
 | ``listener`` | function | The function to call each time one of the registered event is fired |
 
 **Note:** Currently, the ``subscription`` object only contains the room ID, the subscription ID of the user from whom the event originate, and the current user count on this room
+
+## connect
+
+```js
+kuzzle.connect();
+```
+
+Connects to the Kuzzle instance using the URL provided to the constructor.  
+Has no effect if ``connect`` is set to ``auto``.
+
 
 ## dataCollectionFactory
 
