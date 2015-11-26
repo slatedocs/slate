@@ -155,7 +155,15 @@ The ID returned by this function is required if you want to remove this listener
 ## connect
 
 ```js
-kuzzle.connect();
+// Using callbacks (NodeJS or Web Browser)
+kuzzle.connect(function (err, kuzzle) {
+  // invoked once connected, kuzzle contains the kuzzle instance
+});
+
+// Using promises (NodeJS only)
+kuzzle.connectPromise().then(kuzzle => {
+  // resolved once connected, kuzzle contains the kuzzle instance
+});
 ```
 
 Connects to the Kuzzle instance using the URL provided to the constructor.  
