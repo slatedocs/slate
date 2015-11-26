@@ -125,6 +125,11 @@ This function disables the streaming of the orientation Euler angles.
 
 ## Enable external force stream
 
+`EnableExternalForceStream()`
+
+The accelerometer data captures the total force vector applied to the device including gravity. This command will ask Neblina to enable/disable streaming the external force vector excluding gravity.
+
+The x, y, z components of the external force vector are defined in the reference Earth frame (not the sensor body frame). This means that regardless of the device’s orientation, this force vector aligns with the fixed reference Earth frame and can be used for position tracking, etc. The external force components, x, y, z are 16-bit signed integer numbers covering the range of [-1g,1g]. This is due to the fact that the accelerometer data range is set to [-2g,2g], while the gravity vector is (0,0,1g). The data structure for external force is given below:
 ```c
 typedef struct Fext_Vec16_t { //external force vector
 int16_t x;
@@ -132,12 +137,6 @@ int16_t y;
 int16_t z;
 }Fext_Vec16_t;
 ```
-
-`EnableExternalForceStream()`
-
-The accelerometer data captures the total force vector applied to the device including gravity. This command will ask Neblina to enable/disable streaming the external force vector excluding gravity.
-
-The x, y, z components of the external force vector are defined in the reference Earth frame (not the sensor body frame). This means that regardless of the device’s orientation, this force vector aligns with the fixed reference Earth frame and can be used for position tracking, etc. The external force components, x, y, z are 16-bit signed integer numbers covering the range of [-1g,1g]. This is due to the fact that the accelerometer data range is set to [-2g,2g], while the gravity vector is (0,0,1g). The data structure for external force is given below:
 
 ## Disable external force stream
 
