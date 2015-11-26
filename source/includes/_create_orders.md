@@ -21,7 +21,7 @@ To create an order, submit order data via POST command. The order will be reject
     "sender": { 
       "contact": { 
         "name": "Lex Luthor", 
-        "sendle_id": "worldDominator",
+        "email": "me@lexluthor.com",
         "phone": "0412 345 678"
       }, 
       "address": {
@@ -71,7 +71,7 @@ To create an order, submit order data via POST command. The order will be reject
       "contact":{
         "name":"Lex Luthor",
         "phone":"0412 345 678",
-        "email":null
+        "email":"me@lexluthor.com"
       },
       "address":{
         "address_line1":"123 Gotham Ln",
@@ -119,6 +119,11 @@ To create an order, submit order data via POST command. The order will be reject
 - `customer_reference`
   - Reference will appear on the label for parcel identification.
   - It must be under 255 characters in length.
+- `sender`
+  - `contact`
+      - `email`
+          - Must be your email address for the account you are
+            authenticated with
 
 ### Getting the Label
 
