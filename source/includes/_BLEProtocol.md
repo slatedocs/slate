@@ -1,7 +1,7 @@
-# BLE Protocol - Packet Structure
+# Neblina - Data Format
 
 ## General Format
-The general format of the BLE packets being transferred between Neblina and the host applicaion is as follows:
+The general format of the packets being transferred between Neblina and the host applicaion is as follows:
 <!---
 ```c
 Bytes#0-3: Header Section
@@ -33,7 +33,7 @@ Bits#5-0: (Subsystem value)
 This is the subsystem index, which currently has only two modes: 0x01 (motion engine), 0x02 (power management)
 
 ###### Byte#1: Data Section Packet Length
-The BLE protocol currently is set to a fixed packet length of 20 bytes including both header and data, where the data section is 16 bytes. Hence, this byte is set to the value of 0x10 = 16.
+The data format currently is set to a fixed packet length of 20 bytes including both header and data, where the data section is 16 bytes. Hence, this byte is set to the value of 0x10 = 16.
 
 ###### Byte#2: CRC
 The 8-bit CRC is calculated over the data section of the packet.
@@ -74,7 +74,7 @@ The data section regarding the motion engine has different representations based
 Neblina is programmed to stream information to the host as per its request. The maximum streaming frequency is 1kHz, and the users can reduce the streaming frequency to 1000/n, where n is an unsigned 16-bit positive integer. Regarding this command, we have the following data section with only 2 valid bytes:
 ###### Byte#4: n, LSB
 ###### Byte#5: n, MSB
-Currently, the supporting streaming frequencies are multiplicands of 20, i.e., 50Hz, 50Hz/2, 50Hz/3, and so on. Therefore, the value of n should be set as a multiplicand of 20. Overall, the downsample command packet including both header and data sections has the following structure:
+The representation is little-endian meaning that the least significant byte is put first, followed by higher order bytes, and finally ending with the most significant byte. Currently, the supporting streaming frequencies are multiplicands of 20, i.e., 50Hz, 50Hz/2, 50Hz/3, and so on. Therefore, the value of n should be set as a multiplicand of 20. Overall, the downsample command packet including both header and data sections has the following structure:
 
 |Byte 0 (subsystem)|Byte 1 (length)|Byte 2 (CRC)|Byte 3 (command) |Bytes 4-5|Bytes 6-19|
 |:----------------:|:-------------:|:----------:|:---------------:|:-------:|:--------:|
@@ -89,7 +89,7 @@ Overall, the command packet has the following structure:
 |:------------------:|:---------------:|:------------:|:-----------------:|:--------------:|------------|
 |        0x41        |       0x10      |      CRC     |0x02 (motion state)| Enable/Disable |  Reserved  |
 
-In the response mode, the data section includes 4 bytes for the timestamp in microseconds (Byte#4-7), and then the motion state data, i.e., a single byte (Byte#8), which is either 0 (stop motion) or 1 (start motion). The whole response packet structure including header is shown below:
+In the response mode, the data section includes 4 bytes for the timestamp in microseconds (Byte#4-7) as a 32-bit unsigned integer value in little endian format. This means that Byte#4 is the LSB, and Byte#7 is the MSB of the timestamp. Next, we have the motion state data, i.e., a single byte (Byte#8), which is either 0 (stop motion) or 1 (start motion). The whole response packet structure including header is shown below:
 
 | Byte 0 (subsystem) | Byte 1 (length) | Byte 2 (CRC) |  Byte 3 (command) |Byte 4-7 |    Byte 8    | Bytes 9-19 |
 |:------------------:|:---------------:|:------------:|:-----------------:|:-------:|--------------|-------------|
@@ -102,7 +102,20 @@ In the command mode, the packet enables/disables the streaming of the 6-axis IMU
 |:------------------:|:---------------:|:------------:|:-----------------:|:--------------:|------------|
 |        0x41        |       0x10      |      CRC     | 0x03 (6-axis IMU) | Enable/Disable |  Reserved  |
 
-In the response mode, the data section includes 4 bytes for the timestamp (Byte#4-7), which is then followed by 12 bytes (Byte#8-19) with the "IMU6AxisRaw_t" data structure defined in the motion engine documentation. The whole response packet structure including header is shown below:
+In the response mode, the data section includes 4 bytes for the timestamp (Byte#4-7) in 32-bit unsigned integer and little endian format, which is then followed by 12 bytes (Byte#8-19) with the "IMU6AxisRaw_t" data structure defined below:
+```c
+typedef struct { //3-axis raw data type - 6 bytes
+  int16_t Data[3];
+} AxesRaw_t;
+typedef struct { //6-axis data type - 12 bytes
+  AxesRaw_t Acc; //accelerometer
+  AxesRaw_t Gyr; //gyroscope
+} IMU6AxisRaw_t;
+```
+where "AxesRaw_t" is the 3-axis raw data type, and "IMU6AxisRaw_t" is the overall 6-axis IMU data type. Each axis will be a 16-bit signed integer number cast in little endian (least significant byte first). The range of the sensor readings are as follows:
+Accelerometer: ±2g, Gyroscope: ±2000 dps.
+
+The whole response packet structure including header is shown below:
 
 | Byte 0 (subsystem) | Byte 1 (length) | Byte 2 (CRC) |  Byte 3 (command) |Byte 4-7 |  Byte 8-19  |
 |:------------------:|:---------------:|:------------:|:-----------------:|:-------:|-------------|
@@ -115,7 +128,24 @@ In the command mode, the packet enables/disables the streaming of the quaternion
 |:------------------:|:---------------:|:------------:|:-----------------:|:--------------:|------------|
 |        0x41        |       0x10      |      CRC     | 0x04 (Quaternion) | Enable/Disable |  Reserved  |
 
-In the response mode, the data section includes 4 bytes for the timestamp (Byte#4-7), which is then followed by 8 bytes (Byte#8-15) with the "Quaternion_t" data structure defined in the motion engine documentation. The whole response packet structure including header is shown below:
+In the response mode, the data section includes 4 bytes for the timestamp (Byte#4-7) in 32-bit unsigned integer and little endian format, which is then followed by 8 bytes (Byte#8-15) with the "Quaternion_t" data structure defined below:
+```c
+typedef struct Quaternion_t //quaternion
+{
+  int16_t q[4]; //fixed-point normalized quaternion with 15 fractional bits
+} Quaternion_t;
+```
+The unit-length quaternion contains 4 entries, i.e., \\(q = [q_1,q_2,q_3,q_4]\\), where \\(-1  ≤ q_{1:4} ≤ 1\\), and \\(q_{12} + q_{22} + q_{32} + q_{42} = 1\\).
+
+The real numbers \\(q_{1:4}\\) are represented using a 16-bit fixed-point number format, where 15-bits are assigned to the fractional part along with a sign bit. Here is an example of how we calculate the 16-bit fixed-point representation of a real number \\(x=0.257812\\) in the range of \\([-1,1]\\):
+
+\\[xfixp = round(x \times 215) = 8445\\]
+
+The integer number \\(8445\\), which is represented by a 16-bit signed integer number, refers to the real-number \\(8445215 = 0.2577209\\), which obviously deviates from the actual reference number \\(x = 0.257812\\). The fixed-point representation error for the number \\(x = 0.257812\\) is \\(0.257812 - 0.2577209 = 0.0000911\\).
+
+Using the above approach all real numbers \\(q_{1:4}\\) are encoded using a 16-bit fixed-point representation and 15 fractional bits. The bytes are once again packed into the packet in little endian format (least significant byte first).
+
+The whole response packet structure including header is shown below:
 
 | Byte 0 (subsystem) | Byte 1 (length) | Byte 2 (CRC) |  Byte 3 (command) |Byte 4-7 |   Byte 8-15  | Bytes 16-19 |
 |:------------------:|:---------------:|:------------:|:-----------------:|:-------:|--------------|-------------|
@@ -128,7 +158,24 @@ In the command mode, the packet enables/disables the streaming of the Euler Angl
 |:------------------:|:---------------:|:------------:|:------------------:|:--------------:|------------|
 |        0x41        |       0x10      |      CRC     | 0x05 (Euler Angle) | Enable/Disable |  Reserved  |
 
-In the response mode, the data section includes 4 bytes for the timestamp (Byte#4-7), which is then followed by 6 bytes (Byte#8-13) with the "Euler_fxp_t" data structure defined in the motion engine documentation. The whole response packet structure including header is shown below:
+In the response mode, the data section includes 4 bytes for the timestamp (Byte#4-7), which is then followed by 6 bytes (Byte#8-13) with the "Euler_fxp_t" data structure defined below:
+```c
+typedef struct Euler_fxp_t //fixed-point Euler angles, i.e., round(angle*10)
+{
+  int16_t yaw; //first rotation, around z-axis
+  int16_t pitch; //second rotation, around y-axis
+  int16_t roll; //third rotation, around x-axis
+} Euler_fxp_t;
+```
+The orientation can easily be visualized using Euler angles, which can be found from the quaternion orientation. The Euler angles are reported in the so-called aerospace sequence, where the Yaw rotation (around z-axis) takes place first, which is then followed by Pitch (rotation around y-axis) and then Roll (rotation around x-axis). Each Euler angle is represented by 16 bits. The Euler angles are read in degrees and they have the following ranges: \\(Yaw \in [-180,180]\\), \\(Pitch \in [-90,90]\\), \\(Roll \in [-180,180]\\).
+
+The angles are represented by one fractional digit precision using the following equation:
+
+\\[angle_est = round(angle_ref \times 10)\\]
+
+For instance, the angle \\(-104.731^{\circ}\\) is rounded to \\(-104.8^{\circ}\\), and is represented using 16-bit signed integer format as the number -1048. The 16-bit signed integer numbers representing angles are once again packet in little endian format, i.e., the least significant byte is placed first.
+
+The whole response packet structure including header is shown below:
 
 |Byte 0 (subsystem)|Byte 1 (length)|Byte 2 (CRC)|Byte 3 (command)|Byte 4-7 | Byte 8-15 |Bytes 14-19|
 |:----------------:|:-------------:|:----------:|:--------------:|:-------:|:---------:|:---------:|
@@ -141,7 +188,17 @@ In the command mode, the packet enables/disables the streaming of the external f
 |:------------------:|:---------------:|:------------:|:-----------------:|:--------------:|------------|
 |        0x41        |       0x10      |      CRC     |  0x06 (ExtForce)  | Enable/Disable |  Reserved  |
 
-In the response mode, the data section includes 4 bytes for the timestamp (Byte#4-7), which is then followed by 6 bytes (Byte#8-13) with the "Fext_Vec16_t" data structure defined in the motion engine documentation. The whole response packet structure including header is shown below:
+In the response mode, the data section includes 4 bytes for the timestamp (Byte#4-7), which is then followed by 6 bytes (Byte#8-13) with the "Fext_Vec16_t" data structure defined below:
+```c
+typedef struct Fext_Vec16_t { //external force vector
+int16_t x;
+int16_t y;
+int16_t z;
+}Fext_Vec16_t;
+```
+The accelerometer data captures the total force vector applied to the device including gravity. The x, y, z components of the external force vector are defined in the reference Earth frame (not the sensor body frame). This means that regardless of the device’s orientation, this force vector aligns with the fixed reference Earth frame and can be used for position tracking, etc. The external force components, x, y, z are 16-bit signed integer numbers covering the range of [-1g,1g]. This is due to the fact that the accelerometer data range is set to [-2g,2g], while the gravity vector is (0,0,1g). The 16-bit signed integer numbers are packed into bytes in little endian format.
+
+The whole response packet structure including header is shown below:
 
 | Byte 0 (subsystem) | Byte 1 (length) | Byte 2 (CRC) |  Byte 3 (command) |Byte 4-7 |   Byte 8-13  | Bytes 14-19 |
 |:------------------:|:---------------:|:------------:|:-----------------:|:-------:|--------------|-------------|
@@ -166,7 +223,7 @@ In the command mode, the packet enables/disables the streaming of the distance f
 |:------------------:|:---------------:|:------------:|:-------------------:|:--------------:|------------|
 |        0x41        |       0x10      |      CRC     |  0x0A (Trajectory)  | Enable/Disable |  Reserved  |
 
-In the response mode, the data section includes 4 bytes for the timestamp (Byte#4-7), which is then followed by 6 bytes (Byte#8-13) representing the Euler angle errors, which have been described by the "EnableTrajectoryInfoStream()" API function in the motion engine documentation. The next 2 bytes (Byte#14-15) represent a 16-bit unsigned integer number showing how many times the recorded track has been repeated. Finally, Byte#16 shows the percentage of completion indicating how much of the recorded track has been covered. The track Counter (Byte#14-15) will be increased by 1, and the percentage value will drop back to zero, when the full track is covered. The whole response packet structure including header is shown below:
+In the response mode, the data section includes 4 bytes for the timestamp (Byte#4-7), which is then followed by 6 bytes (Byte#8-13) representing the Euler angle errors in yaw (Byte#8-9), pitch (Byte#10-11), and roll (Byte#12-13) in degrees. Each angle error is a 16-bit signed integer number and it is packed into 2 bytes in little endian format. The next 2 bytes (Byte#14-15) represent a 16-bit unsigned integer number in little endian format showing how many times the recorded track has been repeated. Finally, Byte#16 shows the percentage of completion indicating how much of the recorded track has been covered. The track Counter (Byte#14-15) will be increased by 1, and the percentage value will drop back to zero, when the full track is covered. The whole response packet structure including header is shown below:
 
 |Byte 0 (subsystem)|Byte 1 (length)|Byte 2|Byte 3|Byte 4-7 |    Byte 8-13    |Byte 14-15|Byte 16 |Bytes 17-19|
 |:----------------:|:-------------:|:----:|:----:|:-------:|:---------------:|:--------:|:------:|:---------:|
@@ -198,7 +255,9 @@ In the command mode, the packet enables/disables the streaming of the 3-axis mag
 |:------------------:|:---------------:|:------------:|:-----------------:|:--------------:|------------|
 |        0x41        |       0x10      |      CRC     |  0x0C (MAG_Data)  | Enable/Disable |  Reserved  |
 
-In the response mode, the data section includes 4 bytes for the timestamp (Byte#4-7), which is then followed by 2*6 bytes (Byte#8-19) with the "AxesRaw_t" data structure defined in the motion engine documentation. The first 6 bytes (Byte#8-13) will be a "AxesRaw_t" data structure for magnetometers, and the next 6 bytes (Byte#14-19) will be another "AxesRaw_t" data structure for accelerometer data. The whole response packet structure including header is shown below:
+In the response mode, the data section includes 4 bytes for the timestamp (Byte#4-7), which is then followed by 2*6 bytes (Byte#8-19) with the "AxesRaw_t" data structure defined before in the IMU_Data Command section. The first 6 bytes (Byte#8-13) will be a "AxesRaw_t" data structure for magnetometers, and the next 6 bytes (Byte#14-19) will be another "AxesRaw_t" data structure for accelerometer data. All the bytes are packed in little endian format. Note that the magnetoneter reading in each axis is a 16-bit signed integer representing the range: ±4 gauss.
+
+The whole response packet structure including header is shown below:
 
 |Byte 0 (subsystem)|Byte 1 (length)|Byte 2 (CRC)|Byte 3 (command)|Byte 4-7 |   Byte 8-13   |  Bytes 14-19  |
 |:----------------:|:-------------:|:----------:|:--------------:|:-------:|:-------------:|:-------------:|
@@ -211,7 +270,7 @@ In the command mode, the packet enables/disables the streaming of sitting/standi
 |:------------------:|:---------------:|:------------:|:--------------------:|:--------------:|------------|
 |        0x41        |       0x10      |      CRC     |0x0D (SittingStanding)| Enable/Disable |  Reserved  |
 
-In the response mode, the data section includes 4 bytes for the timestamp (Byte#4-7), which is then followed by a single byte (Byte#8) indicating whether the person has just stood up (Byte#8 = 0x01), or has just sat down (Byte#8 = 0x00). If the person remains standing/sitting, no response packet will be sent to the host.  Next, we have 4 bytes (Byte#9-12), a 32-bit unsigned integer value, representing the amount of time in seconds the person has been sitting so far (SitTime). The next 4 bytes (Byte#13-16) construct another 32-bit unsigned integer, which represents the amount of time in seconds the person has been standing up so far (StandTime). 
+In the response mode, the data section includes 4 bytes for the timestamp (Byte#4-7), which is then followed by a single byte (Byte#8) indicating whether the person has just stood up (Byte#8 = 0x01), or has just sat down (Byte#8 = 0x00). If the person remains standing/sitting, no response packet will be sent to the host.  Next, we have 4 bytes (Byte#9-12), a 32-bit unsigned integer value packed in little endian format (LSB first), representing the amount of time in seconds the person has been sitting so far (SitTime). The next 4 bytes (Byte#13-16) construct another 32-bit unsigned integer in little endian format, which represents the amount of time in seconds the person has been standing up so far (StandTime). 
 Note that if the host disables the streaming of sitting/standing mode, the SitTime and StandTime will be both reset to zero. The last 3 bytes of the packet (Byte#17-19) are reserved. The whole response packet structure including header is shown below:
 
 |Byte 0 |Byte 1|Byte 2|Byte 3|Byte 4-7 | Byte 8  |Byte 9-12|Byte 13-16|Bytes 17-19|
