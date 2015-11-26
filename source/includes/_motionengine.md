@@ -34,7 +34,7 @@ This function will disable the motion streaming option.
 > The 3-axis raw data type is defined below:
 
 ```c
-typedef struct { //3-axis raw data type
+typedef struct { //3-axis raw data type - 6 bytes
   int16_t Data[3];
 } AxesRaw_t;
 ```
@@ -42,7 +42,7 @@ typedef struct { //3-axis raw data type
 > The overall returned 6-axis IMU data type is defined below:
 
 ```c
-typedef struct { //9-axis data type
+typedef struct { //6-axis data type - 12 bytes
   AxesRaw_t Acc; //accelerometer
   AxesRaw_t Gyr; //gyroscope
 } IMU6AxisRaw_t;
@@ -221,18 +221,13 @@ This function disables the tracking of the orientation trajectory.
 `EnableMAGStream()`
 
 This function will enable the streaming of the 3-axis magnetometer data. Each axis will be a 16-bit signed number representing the range: ±4 gauss.
-The magnetometer, accelerometer, and gyroscope data are together represented with the following data structure:
+The 3-axis magnetometer data has the following structure:
 
 ```c
-typedef struct { //3-axis raw data type
+typedef struct { //3-axis raw data type - 6 bytes
   int16_t Data[3];
 } AxesRaw_t;
-typedef struct { //9-axis data type
-	AxesRaw_t Acc; //accelerometer
-	AxesRaw_t Gyr; //gyroscope
-	AxesRaw_t Mag; //magnetometer
-} IMURaw_t;
-```
+
 
 ## Disable magnetometer data stream
 
