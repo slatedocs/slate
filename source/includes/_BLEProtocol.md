@@ -60,6 +60,7 @@ However, regarding the motion engine subsystem a number of commands exist, which
 #define TrajectoryInfo 0x0A //Analyzes the current trajectory w.r.t. the pre-recorded one
 #define Pedometer 0x0B //streaming pedometer data
 #define MAG_Data 0x0C //streaming magnetometer data
+#define SittingStanding 0x0D //sitting/standing tracker
 ```
 
 ### Data Section
