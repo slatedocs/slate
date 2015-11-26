@@ -159,7 +159,7 @@ kuzzle.connect();
 ```
 
 Connects to the Kuzzle instance using the URL provided to the constructor.  
-Has no effect if ``connect`` is set to ``auto``.
+Has no effect if ``connect`` is set to ``auto``, unless ``logout`` has been called first.
 
 
 ## dataCollectionFactory

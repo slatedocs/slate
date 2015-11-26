@@ -192,11 +192,12 @@ Create a new document in Kuzzle.
 
 #### createDocument(KuzzleDocument, [options])
 
-#### createDocument(content, [options])
+#### createDocument([id], content, [options])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
 | ``KuzzleDocument`` | object | KuzzleDocument object |
+| ``id`` | string | Optional document identifier |
 | ``content`` | JSON Object | Content of the document to create |
 | ``options`` | JSON Object | Optional parameters |
 
@@ -425,19 +426,19 @@ Available options:
 | ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
 
 
-## publish
+## publishMessage
 
 ```js
 kuzzle
   .dataCollectionFactory('collection')
-  .publish({foo: 'bar', baz: 'qux'});
+  .publishMessage({foo: 'bar', baz: 'qux'});
 ```
 
 Publish a realtime message
 
-#### publish(KuzzleDocument, [options])
+#### publishMessage(KuzzleDocument, [options])
 
-#### publish(content, [options])
+#### publishMessage(content, [options])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
