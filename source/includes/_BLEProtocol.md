@@ -67,22 +67,22 @@ However, regarding the motion engine subsystem a number of commands exist, which
 ```
 
 ### Data Section
-The data section consists of 12 bytes, which could be representing different values depending on the subsystem and the command fields. 
+The data section consists of 16 bytes. The first 4 bytes (Byte 4-7) refer to the timestamp, which is only valid for response packets from Neblina. Hence, for all the commands being sent from the host to Neblina these four bytes are reserved. The next 12 bytes in the data section could be representing different values depending on the subsystem and the command fields.
 #### Power Management Data Section
 Regarding the power management's single command, the data consists of only 2 valid bytes, representing the percentage of the battery level with one decimal fractional digit precision, i.e., an unsigned integer within the range of [0, 1000]:
-###### Byte#4: battery level (%), Least Significant Byte (LSB)
-###### Byte#5: battery level (%), Most Significant Byte (MSB)
+###### Byte#8: battery level (%), Least Significant Byte (LSB)
+###### Byte#9: battery level (%), Most Significant Byte (MSB)
 #### Motion Engine Data Section
 The data section regarding the motion engine has different representations based on the command, which are explained next.
 ##### Downsample Command
 Neblina is programmed to stream information to the host as per its request. The maximum streaming frequency is 1kHz, and the users can reduce the streaming frequency to 1000/n, where n is an unsigned 16-bit positive integer. Regarding this command, we have the following data section with only 2 valid bytes:
-###### Byte#4: n, LSB
-###### Byte#5: n, MSB
+###### Byte#8: n, LSB
+###### Byte#9: n, MSB
 The representation is little-endian meaning that the least significant byte is put first, followed by higher order bytes, and finally ending with the most significant byte. Currently, the supporting streaming frequencies are multiplicands of 20, i.e., 50Hz, 50Hz/2, 50Hz/3, and so on. Therefore, the value of n should be set as a multiplicand of 20. Overall, the downsample command packet including both header and data sections has the following structure:
 
 |Byte 0 (subsystem)|Byte 1 (length)|Byte 2 (CRC)|Byte 3 (command) |Byte 4-7|Bytes 8-9|Bytes 10-19|
 |:----------------:|:-------------:|:----------:|:---------------:|:------:|:-------:|:---------:|
-|       0x41       |      0x10     |     CRC    |0x01 (downsample)|Reserved|  factor | Reserved  |
+|       0x41       |      0x10     |     CRC    |0x01 (downsample)|Reserved| factor  | Reserved  |
 
 ##### MotionState Command/Response
 In the command mode the packet enables/disables the streaming of the motion state for the target device. If enabled, it basically inquires whether the device changes its motion state either from stop to movement, or from movement to stop. We recommend that after the device power-up you hold the device still for a couple of seconds (2-5 seconds) for initial calibration and orientation convergence. Data section for this packet type is a single byte, which should be set to either 0 or 1 to disable or enable the streaming of the motion states respectively.
