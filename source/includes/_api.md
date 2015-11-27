@@ -11,7 +11,7 @@ augur.connect();
 augur.connect(null, "/home/augur/.ethereum/geth.ipc");
 
 // Connect to one of Augur's public nodes (eth1.augur.net)
-augur.connect("http://eth1.augur.net");
+augur.connect("https://eth1.augur.net");
 ```
 Augur's [core contracts](https://github.com/AugurProject/augur-core) exist on Ethereum's decentralized network.  The various serialization, networking, and formatting tasks required to communicate with the Augur contracts from a web application are carried out by Augur's sprawling [middleware](http://docs.augur.net/#architecture).
 
