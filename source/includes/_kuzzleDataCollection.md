@@ -556,14 +556,12 @@ This is a helper function returning itself, allowing to easily chain calls.
 ## subscribe
 
 ```js
-var notificationCB = function (error, result) {
-  // called each time a new notification on this filter is received
-};
-
 var room =
   kuzzle
     .dataCollectionFactory('collection')
-    .subscribe({term: {title: 'foo'}}, notificationCB, {subscribeToSelf: true});
+    .subscribe({term: {title: 'foo'}}, function (error, result) {
+      // called each time a new notification on this filter is received
+    };
 ```
 
 > Returns a KuzzleRoom object
@@ -574,15 +572,15 @@ Subscribes to this data collection with a set of filters.
 To subscribe to the entire data collection, simply provide an empty filter.
 </aside>
 
-#### subscribe(filters, callback)
+#### subscribe(filters, [options], callback)
 
-#### subscribe(filters, callback, options)
+#### subscribe(filters, options)
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
 | ``filters`` | JSON Object | Filters in [Kuzzle DSL](https://github.com/kuzzleio/kuzzle/blob/master/docs/filters.md) format |
+| ``options`` | object | (Optional) Subscription configuration. Passed to the KuzzleRoom constructor. |
 | ``callback`` | function | Callback to call every time a notification is received on this subscription |
-| ``options`` | object | Subscription configuration. Passed to the KuzzleRoom constructor. |
 
 
 ## truncate
