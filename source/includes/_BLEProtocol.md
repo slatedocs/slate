@@ -67,7 +67,7 @@ However, regarding the motion engine subsystem a number of commands exist, which
 ```
 
 ### Data Section
-The data section consists of 16 bytes. The first 4 bytes (Byte 4-7) refer to the timestamp, which is only valid for response packets from Neblina. Hence, for all the commands being sent from the host to Neblina these four bytes are reserved. The next 12 bytes in the data section could be representing different values depending on the subsystem and the command fields.
+The data section consists of 16 bytes. The first 4 bytes (Byte 4-7) refer to the timestamp, which is only valid for response packets from Neblina. Hence, for all the commands being sent from the host to Neblina, these four bytes are reserved. The next 12 bytes (Byte 8-19) in the data section could be representing different values depending on the subsystem and the command fields.
 #### Power Management Data Section
 Regarding the power management's single command, the data consists of only 2 valid bytes, representing the percentage of the battery level with one decimal fractional digit precision, i.e., an unsigned integer within the range of [0, 1000]:
 ###### Byte#8: battery level (%), Least Significant Byte (LSB)
