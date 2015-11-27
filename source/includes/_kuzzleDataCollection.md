@@ -574,8 +574,6 @@ To subscribe to the entire data collection, simply provide an empty filter.
 
 #### subscribe(filters, [options], callback)
 
-#### subscribe(filters, options)
-
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
 | ``filters`` | JSON Object | Filters in [Kuzzle DSL](https://github.com/kuzzleio/kuzzle/blob/master/docs/filters.md) format |
