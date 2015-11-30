@@ -30,7 +30,11 @@ If set to 1, it shows that the packet is a command from the host to the target d
 ```c 
 Bits#5-0: (Subsystem value)
 ```
-This is the subsystem index, which currently has three modes: 0x00 (Debug mode),  0x01 (motion engine), and 0x02 (power management)
+This is the subsystem index, which currently has three modes: 
+
+1. **0x00 (debug subsystem)** : Information about the device, special modes, etc.
+1. **0x01 (motion engine)** : Motion data information, orientation, quaternions, trajectories, etc.
+1. **0x02 (power management)**: Battery information, voltages and other information related to the power management IC
 
 ###### Byte#1: Data Section Packet Length
 The data format currently is set to a fixed packet length of 20 bytes including both header and data, where the data section is 16 bytes. Hence, this byte is set to the value of 0x10 = 16.
