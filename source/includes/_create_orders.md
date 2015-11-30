@@ -21,7 +21,6 @@ To create an order, submit order data via POST command. The order will be reject
     "sender": {
       "contact": {
         "name": "Lex Luthor",
-        "email": "me@lexluthor.com",
         "phone": "0412 345 678"
       },
       "address": {
@@ -106,7 +105,7 @@ To create an order, submit order data via POST command. The order will be reject
   - Format: **yyyy-mm-dd**
   - Date must be at least one non-holiday, business day in the future.
 - `description`
-  - Description is used by users to track the parcel. It does not show up on a label.
+  - Description is used by you to track the parcel. It does not show up on a label.
   - It must be under 255 characters in length.
 - `confirmed_not_dangerous`
   - Boolean value (true or false)
@@ -120,10 +119,19 @@ To create an order, submit order data via POST command. The order will be reject
   - Reference will appear on the label for parcel identification.
   - It must be under 255 characters in length.
 - `sender`
+  - `instructions`
+    - Short message used as pickup instructions for courier
+    - It must be under 255 chars, but is recommended to be under 40 chars
+      due to label-size limitations
   - `contact`
+      - `name`
+        - It must be under 255 characters in length.
       - `email`
-          - Must be your email address for the account you are
-            authenticated with
+        - Leave this empty - it will be populated with your email
+      - `phone`
+        - Used to coordinate pickup eg the courier is stuck outside
+        - It must be a valid Australian phone number (inc area code), or fully qualified international number.
+        - eg. (02) 1234 1234, +1 519 123 1234, +61 (0)4 1234 1234
 
 ### Getting the Label
 
