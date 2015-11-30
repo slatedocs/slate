@@ -30,7 +30,7 @@ If set to 1, it shows that the packet is a command from the host to the target d
 ```c 
 Bits#5-0: (Subsystem value)
 ```
-This is the subsystem index, which currently has only two modes: 0x01 (motion engine), 0x02 (power management)
+This is the subsystem index, which currently has three modes: 0x00 (Debug mode),  0x01 (motion engine), and 0x02 (power management)
 
 ###### Byte#1: Data Section Packet Length
 The data format currently is set to a fixed packet length of 20 bytes including both header and data, where the data section is 16 bytes. Hence, this byte is set to the value of 0x10 = 16.
@@ -40,12 +40,15 @@ The 8-bit CRC is calculated over the data section of the packet.
 
 ###### Byte#3: Command
 Different commands can be issued identified by this field. For the power management subsystem, currently there is only one command as follows:
-
 ```c 
 #define POWERMGMT_GET_BAT_LEVEL 0
 ```
+There is also a single command corresponding to the Debug mode, that is to set the interface protocol between the host and Neblina. By default, the interface is set to BLE, but we can set the interface to UART as well. Here is the command code for setting the interface:
+```c 
+#define DEBUG_SET_INTERFACE 1
+```
 
-However, regarding the motion engine subsystem a number of commands exist, which are listed below:
+Regarding the motion engine subsystem a number of commands exist, which are listed below:
 
 ```c 
 #define Downsample 0x01 //Downsampling factor definition
@@ -69,9 +72,11 @@ However, regarding the motion engine subsystem a number of commands exist, which
 ### Data Section
 The data section consists of 16 bytes. The first 4 bytes (Byte 4-7) refer to the timestamp, which is only valid for response packets from Neblina. Hence, for all the commands being sent from the host to Neblina, these four bytes are reserved. The next 12 bytes (Byte 8-19) in the data section could be representing different values depending on the subsystem and the command fields.
 #### Power Management Data Section
-Regarding the power management's single command, the data consists of only 2 valid bytes, representing the percentage of the battery level with one decimal fractional digit precision, i.e., an unsigned integer within the range of [0, 1000]:
+Regarding the power management's single command, the data consists of only 2 valid bytes (Byte#8-9), representing the percentage of the battery level with one decimal fractional digit precision, i.e., an unsigned integer within the range of [0, 1000]:
 ###### Byte#8: battery level (%), Least Significant Byte (LSB)
 ###### Byte#9: battery level (%), Most Significant Byte (MSB)
+#### Debug Data Section
+Regarding the debug mode's single command, i.e., to set the interface protocol, the data consists of only 1 valid byte (Byte 8). If the byte is set to 0 (default value), it means that the interface should be set to BLE, while (Byte#8 = 1) indicates that the interface should be set to UART.
 #### Motion Engine Data Section
 The data section regarding the motion engine has different representations based on the command, which are explained next.
 ##### Downsample Command
