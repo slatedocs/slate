@@ -105,7 +105,7 @@ To create an order, submit order data via POST command. The order will be reject
   - Format: **yyyy-mm-dd**
   - Date must be at least one non-holiday, business day in the future.
 - `description`
-  - Description is used by you to track the parcel. It does not show up on a label.
+  - Description is used by the customer to track the parcel. It does not show up on a label.
   - It must be under 255 characters in length.
 - `confirmed_not_dangerous`
   - Boolean value (true or false)
