@@ -8,29 +8,29 @@ To create an order, submit order data via POST command. The order will be reject
 > Example Booking
 
 ```shell
-  curl https://www.sendle.com/api/orders -X POST 
-  -u sendleAPI:42RRTjYz5Z4hZrm8XY3t4Vxt 
+  curl https://www.sendle.com/api/orders -X POST
+  -u sendleAPI:42RRTjYz5Z4hZrm8XY3t4Vxt
   -H "Content-Type: application/json"
-  -d '{ 
+  -d '{
     "pickup_date": "2015-11-24",
     "description": "Kryptonite",
     "confirmed_not_dangerous": true,
     "kilogram_weight": 1,
-    "cubic_metre_volume": 0.01, 
-    "customer_reference": "SupBdayPressie", 
-    "sender": { 
-      "contact": { 
-        "name": "Lex Luthor", 
+    "cubic_metre_volume": 0.01,
+    "customer_reference": "SupBdayPressie",
+    "sender": {
+      "contact": {
+        "name": "Lex Luthor",
         "email": "me@lexluthor.com",
         "phone": "0412 345 678"
-      }, 
+      },
       "address": {
-        "address_line1": "123 Gotham Ln", 
-        "suburb": "Sydney", 
-        "state_name": "NSW", 
-        "postcode": "2000", 
+        "address_line1": "123 Gotham Ln",
+        "suburb": "Sydney",
+        "state_name": "NSW",
+        "postcode": "2000",
         "country": "Australia"
-      }, 
+      },
       "instructions": "Knock loudly"
     },
     "receiver": {
@@ -44,7 +44,7 @@ To create an order, submit order data via POST command. The order will be reject
         "state_name": "NSW",
         "postcode": "2037",
         "country": "Australia"
-      }, 
+      },
       "instructions": "Give directly to Clark"
     }
   }'
