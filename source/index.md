@@ -14,13 +14,19 @@ search: true
 
 # Introduction
 
-Welcome to the Slyce API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+Welcome to the Slyce API! 
 
-We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+# Setup
 
-This example API documentation page was created with [Slate](http://github.com/tripit/slate). Feel free to edit it and use it as a base for your own API's documentation.
+**Base URI**: `https://api.slycepay.com/v1`
+
+**Base URI (dev)**: `http://apidev.slycepay.com/v1`
+
+**Current Version**: `1.0`
+
 
 # Authentication
+
 
 > To authorize, use this code:
 
@@ -44,6 +50,8 @@ You must replace <code>meowmeowmeow</code> with your own API key.
 
 # Payplans
 
+Payplan handles all types of recurring plans.
+
 ## View
 
 > Returns JSON structured like this:
@@ -51,37 +59,54 @@ You must replace <code>meowmeowmeow</code> with your own API key.
 ```json
 {
   "data": {
-    "id": 2,
-    "customer": "001",
+    "id": 1,
+    "customer": "123456",
     "method": {
-      "id": 213,
+      "id": 10,
       "method": "cc",
-      "reference": "XXXX-XXXX-XXXX-o079",
-      "number": "XXXX-XXXX-XXXX-2226",
+      "reference": "XXXX-XXXX-XXXX-b8wn",
+      "number": "XXXX-XXXX-XXXX-2224",
       "type": "Visa"
     },
     "type": "subscription",
     "scheme": "monthly",
-    "balance": "10.00",
+    "balance": "54.00",
     "total": "0.00",
-    "start_date": "2015-11-13",
+    "start_date": "2015-11-11",
     "next_due": {
-      "date": "2015-11-13",
-      "amount": "10.00",
-      "fees": []
+      "date": "2016-02-11",
+      "amount": "54.00",
+      "fees": [
+        {
+          "id": 5,
+          "payplan_id": 1,
+          "sku": "",
+          "amount": "67.00",
+          "description": "Another sample fee",
+          "completed": 0
+        },
+        {
+          "id": 6,
+          "payplan_id": 1,
+          "sku": "332",
+          "amount": "14.00",
+          "description": "",
+          "completed": 0
+        }
+      ]
     },
-    "paid_count": 0,
+    "paid_count": 3,
     "status": "ongoing",
     "status_code": 1,
     "completed": false,
-    "created": 1447467989,
-    "updated": 1447467989,
+    "created": 1447299415,
+    "updated": 1447301838,
     "config": {
-      "initial_fee": "0.00",
-      "duration": 0,
+      "initial_fee": "65.00",
+      "duration": 2,
       "options": null,
       "payload": null,
-      "callback_url": "http://localhost/index.php"
+      "callback_url": "http://www.sample.com/webhook.php"
     }
   }
 }
@@ -91,13 +116,13 @@ This endpoint retrieves a specific payplan.
 
 ### HTTP Request
 
-`GET https://api.slycepay.com/v1/payplans/<ID>`
+`GET payplans/<PLANID>`
 
 ### URL Parameters
 
 Parameter | Description
 --------- | -----------
-ID | The ID of the payplan to retrieve.
+PLANID | The ID of the payplan to retrieve.
 
 ## View All
 
@@ -154,7 +179,7 @@ ID | The ID of the payplan to retrieve.
         "duration": 2,
         "options": null,
         "payload": null,
-        "callback_url": "http://localhost"
+        "callback_url": "http://www.sample.com/webhook.php"
       }
     },
     {
@@ -188,19 +213,19 @@ ID | The ID of the payplan to retrieve.
         "duration": 0,
         "options": null,
         "payload": null,
-        "callback_url": "http://localhost/index.php"
+        "callback_url": "http://www.sample.com/webhook.php"
       }
     }
   ],
   "meta": {
     "pagination": {
-      "total": 22,
+      "total": 23,
       "count": 2,
       "per_page": 2,
       "current_page": 1,
-      "total_pages": 11,
+      "total_pages": 12,
       "links": {
-        "next": "https://sliceapilocal.cmsonline.com/v1/payplans/?limit=2&page=2"
+        "next": "https://www.sample.com/v1/payplans/?limit=2&page=2"
       }
     }
   }
@@ -211,7 +236,7 @@ This endpoint retrieves all payplans.
 
 ### HTTP Request
 
-`GET https://api.slycepay.com/v1/payplans`
+`GET payplans`
 
 ### Query Parameters
 
@@ -220,7 +245,7 @@ Parameter | Default | Description
 customer |  | If set, the result will include only paylans associated with specific customer.
 status |  | If set, the result will include only payplans with specific status. Possible values are "ongoing", "cancelled", and "completed".
 type |  | If set, the result will include only payplans with specific type. Possible values are "subscription" and "payplan".
-limit | 20 | Returned items limit.
+limit | 20 | Number of items to show per page.
 page | 1 | Page number.
 
 ## Create
@@ -230,7 +255,7 @@ page | 1 | Page number.
 ```json
 {
   "data": {
-    "id": 24,
+    "id": 25,
     "customer": "123456",
     "method": {
       "id": 22,
@@ -253,14 +278,14 @@ page | 1 | Page number.
     "status": "ongoing",
     "status_code": 1,
     "completed": false,
-    "created": 1447997128,
-    "updated": 1447997128,
+    "created": 1448004054,
+    "updated": 1448004054,
     "config": {
       "initial_fee": "65.00",
       "duration": 2,
       "options": null,
       "payload": null,
-      "callback_url": "http://localhost"
+      "callback_url": "http://www.sample.com/webhook.php"
     }
   }
 }
@@ -270,7 +295,7 @@ This method lets you create new payplan.
 
 ### HTTP Request
 
-`POST https://api.slycepay.com/v1/payplans`
+`POST payplans`
 
 ### Query Parameters
 
@@ -296,37 +321,37 @@ total | Total amount that will be charge for the entire plan period. Applies onl
 ```json
 {
   "data": {
-    "id": 5,
-    "customer": "2015-001",
+    "id": 25,
+    "customer": "123456",
     "method": {
-      "id": 111,
+      "id": 22,
       "method": "cc",
-      "reference": "XXXX-XXXX-XXXX-bd5p",
-      "number": "XXXX-XXXX-XXXX-2222",
+      "reference": "XXXX-XXXX-XXXX-dr2e",
+      "number": "XXXX-XXXX-XXXX-2224",
       "type": "Visa"
     },
     "type": "subscription",
     "scheme": "monthly",
-    "balance": "10.00",
+    "balance": "54.00",
     "total": "0.00",
-    "start_date": "2015-11-11",
+    "start_date": "2015-11-21",
     "next_due": {
-      "date": "2015-11-11",
-      "amount": "10.00",
+      "date": "2015-11-21",
+      "amount": "54.00",
       "fees": []
     },
     "paid_count": 0,
     "status": "ongoing",
     "status_code": 1,
     "completed": false,
-    "created": 1447307030,
-    "updated": 1447307030,
+    "created": 1448004054,
+    "updated": 1448004054,
     "config": {
-      "initial_fee": "0.00",
-      "duration": 0,
+      "initial_fee": "65.00",
+      "duration": 2,
       "options": null,
       "payload": null,
-      "callback_url": "http:\/\/localhost.com"
+      "callback_url": "https://someurl.com"
     }
   }
 }
@@ -336,21 +361,23 @@ This method lets you update existing payplan.
 
 ### HTTP Request
 
-`PUT https://api.slycepay.com/v1/payplans/<ID>`
+`PUT payplans/<PLANID>`
 
 ### URL Parameters
 
 Parameter | Description
 --------- | -----------
-ID | The ID of the payplan to retrieve.
+PLANID | The ID of the payplan to retrieve.
 
 ### Query Parameters
 
 Parameter | Description
 --------- | -----------
 method | The payment method ID to use.
+scheme | The plan scheme type. "M" for monthly and "Y" for annually/yearly.
 balance | The due amount.
 callback | The URL that will be use by the system when a payment has been made.
+
 
 ## Logs
 
@@ -380,27 +407,18 @@ callback | The URL that will be use by the system when a payment has been made.
       "reason": "",
       "created": 1447299673,
       "updated": 1447299673
-    },
-    {
-      "refnum": "100095584",
-      "date": "2016-01-11",
-      "balance": "54.00",
-      "total_fees": "91.00",
-      "total": "145.00",
-      "error": false,
-      "reason": "",
-      "created": 1447301838,
-      "updated": 1447301838
     }
   ],
   "meta": {
     "pagination": {
       "total": 3,
-      "count": 3,
-      "per_page": 20,
+      "count": 2,
+      "per_page": 2,
       "current_page": 1,
-      "total_pages": 1,
-      "links": []
+      "total_pages": 2,
+      "links": {
+        "next": "https://api.slycepay.com/v1/payplans/1/logs/?limit=2&page=2"
+      }
     }
   }
 }
@@ -410,15 +428,13 @@ This method lets view all logs in a specific plan.
 
 ### HTTP Request
 
-`GET https://api.slycepay.com/v1/payplans/<ID>/logs`
+`GET payplans/<PLANID>/logs`
 
 ### URL Parameters
 
 Parameter | Description
 --------- | -----------
-ID | The ID of the payplan to retrieve logs.
-
-
+PLANID | The ID of the payplan to retrieve logs.
 
 
 # Customers
@@ -433,15 +449,15 @@ ID | The ID of the payplan to retrieve logs.
     "id": "0011",
     "firstname": "John",
     "lastname": "Doe",
-    "email": "john.doe@mail.com",
+    "email": "someemail@mail.com",
     "company": "CMS",
     "phone": "1234-123-1234",
     "fax": "1234-123-1234",
-    "city": "",
-    "street": "Street 1",
+    "city": "Some City",
+    "street": "",
     "street2": "",
-    "state": "",
-    "country": "",
+    "state": "Some State",
+    "country": "Some Country",
     "zip": "6000",
     "created": 1418817615,
     "updated": 1446130697
@@ -453,13 +469,13 @@ This endpoint retrieves specific customer.
 
 ### HTTP Request
 
-`GET https://api.slycepay.com/v1/customers/<ID>`
+`GET customers/<CUSTID>`
 
 ### URL Parameters
 
 Parameter | Description
 --------- | -----------
-ID | The ID of the customer to retrieve.
+CUSTID | The ID of the customer to retrieve.
 
 ## View All
 
@@ -472,16 +488,16 @@ ID | The ID of the customer to retrieve.
       "id": "0011",
       "firstname": "John",
       "lastname": "Doe",
-      "email": "john.doe@mail.com",
+      "email": "user@mail.com",
       "company": "CMS",
       "phone": "1234-123-1234",
       "fax": "1234-123-1234",
-      "city": "",
-      "street": "Street 1",
-      "street2": "",
-      "state": "",
-      "country": "",
-      "zip": "6000",
+      "city": "Some City",
+      "street": "Some Address",
+      "street2": "Some Address 2",
+      "state": "Some Street",
+      "country": "Some Country",
+      "zip": "123456",
       "created": 1418817615,
       "updated": 1446130697
     },
@@ -489,16 +505,16 @@ ID | The ID of the customer to retrieve.
       "id": "0012",
       "firstname": "Jener",
       "lastname": "Hay",
-      "email": "jener.hay@mail.com",
+      "email": "jensomeemail@mailer.com",
       "company": "CMS",
       "phone": "1234-123-1234",
       "fax": "1234-123-1234",
-      "city": "",
-      "street": "Street 1",
-      "street2": "",
-      "state": "",
-      "country": "",
-      "zip": "6000",
+      "city": "Some City",
+      "street": "Some Address",
+      "street2": "Some Address 2",
+      "state": "Some Street",
+      "country": "Some Country",
+      "zip": "123456",
       "created": 1418817615,
       "updated": 1446130697
     }
@@ -507,11 +523,11 @@ ID | The ID of the customer to retrieve.
     "pagination": {
       "total": 52,
       "count": 2,
-      "per_page": 1,
+      "per_page": 2,
       "current_page": 1,
       "total_pages": 26,
       "links": {
-        "next": "http://sliceapilocal.cmsonline.com/v1/customers/?limit=2&page=2"
+        "next": "http://api.slycepay.com/v1/customers/?limit=2&page=1"
       }
     }
   }
@@ -522,13 +538,13 @@ This endpoint retrieves all customers.
 
 ### HTTP Request
 
-`GET https://api.slycepay.com/v1/customers`
+`GET customers`
 
 ### Query Parameters
 
 Parameter | Default | Description
 --------- | ------- | -----------
-limit | 20 | Returned items limit.
+limit | 20 | Number of items to show per page.
 page | 1 | Page number.
 
 ## Create
@@ -538,18 +554,18 @@ page | 1 | Page number.
 ```json
 {
   "data": {
-    "id": "0012",
+    "id": "0014",
     "firstname": "John",
     "lastname": "Doe",
-    "email": "john.doe@mail.com",
+    "email": "user@mail.com",
     "company": "CMS",
     "phone": "1234-123-1234",
     "fax": "1234-123-1234",
-    "city": "",
-    "street": "Street 1",
+    "city": "Some City",
+    "street": "",
     "street2": "",
-    "state": "",
-    "country": "",
+    "state": "Some State",
+    "country": "Some Country",
     "zip": "6000",
     "created": 1418817615,
     "updated": 1446130697
@@ -561,7 +577,7 @@ This endpoint creates new customer.
 
 ### HTTP Request
 
-`POST https://api.slycepay.com/v1/customers`
+`POST customers`
 
 ### Query Parameters
 
@@ -590,18 +606,18 @@ zip |  | Zip/Postal code.
 ```json
 {
   "data": {
-    "id": "0012",
+    "id": "0014",
     "firstname": "John",
     "lastname": "Doe",
-    "email": "doe@test.com",
+    "email": "user@mail.com",
     "company": "CMS",
     "phone": "1234-123-1234",
     "fax": "1234-123-1234",
-    "city": "",
-    "street": "Street 1",
+    "city": "Some City",
+    "street": "",
     "street2": "",
-    "state": "",
-    "country": "",
+    "state": "Some State",
+    "country": "Some Country",
     "zip": "6000",
     "created": 1418817615,
     "updated": 1446130697
@@ -613,7 +629,7 @@ This endpoint updates existing customer.
 
 ### HTTP Request
 
-`PUT https://api.slycepay.com/v1/customers/<ID>`
+`PUT customers/<ID>`
 
 ### Query Parameters
 
@@ -646,9 +662,9 @@ zip |  | Zip/Postal code.
     "id": 1,
     "payplan_id": 1,
     "sku": "123",
-    "amount": "12.00",
-    "description": "Test Fee.",
-    "completed": 1
+    "amount": "123.50",
+    "description": "Test fee.",
+    "completed": true
   }
 }
 ```
@@ -657,7 +673,7 @@ This method lets you view specific fee.
 
 ### HTTP Request
 
-`GET https://api.slycepay.com/v1/payplans/<PLANID>/fees/<FEEID>`
+`GET payplans/<PLANID>/fees/<FEEID>`
 
 ### URL Parameters
 
@@ -680,7 +696,7 @@ FEEID | The ID of the fee.
       "sku": "123",
       "amount": "12.00",
       "description": "Test Fee.",
-      "completed": 1
+      "completed": true
     },
     {
       "id": 2,
@@ -688,17 +704,19 @@ FEEID | The ID of the fee.
       "sku": "",
       "amount": "10.00",
       "description": "",
-      "completed": 1
+      "completed": true
     }
   ],
   "meta": {
     "pagination": {
-      "total": 2,
+      "total": 6,
       "count": 2,
-      "per_page": 20,
+      "per_page": 2,
       "current_page": 1,
-      "total_pages": 1,
-      "links": []
+      "total_pages": 3,
+      "links": {
+        "next": "http://api.slycepay.com/v1/payplans/1/fees/?limit=2&page=1"
+      }
     }
   }
 }
@@ -708,7 +726,7 @@ This method lets you view all fees in a specific plan.
 
 ### HTTP Request
 
-`GET https://api.slycepay.com/v1/payplans/<PLANID>/fees`
+`GET payplans/<PLANID>/fees`
 
 ### URL Parameters
 
@@ -728,8 +746,8 @@ PLANID | The ID of the payplan to retrieve fees.
     "id": 1,
     "payplan_id": 1,
     "sku": "123",
-    "amount": "12.00",
-    "description": "Test Fee.",
+    "amount": "12.52",
+    "description": "Test fee 2.",
     "completed": true
   }
 }
@@ -739,7 +757,7 @@ This method lets you create new fee.
 
 ### HTTP Request
 
-`POST https://api.slycepay.com/v1/payplans/<PLANID>/fees`
+`POST payplans/<PLANID>/fees`
 
 ### URL Parameters
 
@@ -753,3 +771,223 @@ Parameter | Default | Description
 --------- | ------- | -----------
 amount |  | Fee amount.
 sku |  | Tracking id for keeping purposes.
+
+
+## Delete
+
+> Returns `true` on successful
+
+This method lets you remove the unpaid fees identified by an SKU.
+
+### HTTP Request
+
+`POST payplans/<PLANID>/fees/<SKU>`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+PLANID | The ID of the payplan to retrieve fees.
+SKU | Sku id provided.
+
+
+# Transactions
+
+## View
+
+> Returns JSON structured like this:
+
+```json
+{
+  "data": {
+    "id": 102286438,
+    "custid": "123456",
+    "accountHolder": "John Doe",
+    "checkData": {
+      "account": null,
+      "routing": null
+    },
+    "creditCardData": {
+      "avsStreet": "",
+      "avsZip": "",
+      "cardCode": "XXX",
+      "cardExpiration": "XXXX",
+      "cardNumber": "XXXXXXXXXXXX2227",
+      "cardPresent": false,
+      "cardType": "V",
+      "internalCardAuth": false,
+      "magStripe": "",
+      "magSupport": "",
+      "pares": "",
+      "termType": ""
+    },
+    "datetime": "2015-11-23 18:37:10",
+    "timestamp": 1448332630,
+    "lineitems": [],
+    "details": {
+      "amount": 135,
+      "clerk": "",
+      "currency": "",
+      "description": "Recurring Payment",
+      "comments": "",
+      "discount": 0,
+      "invoice": "1448332630",
+      "nonTax": false,
+      "orderID": "",
+      "pONum": "",
+      "shipping": 0,
+      "subtotal": 0,
+      "table": "",
+      "tax": 0,
+      "terminal": "",
+      "tip": 0
+    },
+    "response": {
+      "acsUrl": null,
+      "authAmount": 135,
+      "authCode": "086595",
+      "avsResult": "Address Information not verified for domestic transaction",
+      "avsResultCode": "XXU",
+      "batchNum": 0,
+      "batchRefNum": -2,
+      "cardCodeResult": "Match",
+      "cardCodeResultCode": "M",
+      "cardLevelResult": null,
+      "cardLevelResultCode": null,
+      "conversionRate": 0,
+      "convertedAmount": 0,
+      "convertedAmountCurrency": "",
+      "custNum": 0,
+      "error": "Approved",
+      "errorCode": 0,
+      "isDuplicate": false,
+      "payload": null,
+      "refNum": 102286438,
+      "result": "Approved",
+      "resultCode": "A",
+      "status": "Pending",
+      "statusCode": "P",
+      "vpasResultCode": null
+    },
+    "serverIP": "125.212.45.130",
+    "source": "Slice 1.5 Local",
+    "status": "Authorized (Pending Settlement)",
+    "transactionType": "Sale",
+    "user": "auto"
+  }
+}
+```
+
+This method lets you view specific transaction.
+
+### HTTP Request
+
+`GET transactions/<TRANID>`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+TRANID | The reference number of the transaction.
+
+
+## View All
+
+> Returns JSON structured like this:
+
+```json
+{
+  "data": [
+    {
+      "id": 102286438,
+      "custid": "123456",
+      "accountHolder": "John Doe",
+      "checkData": {
+        "account": null,
+        "routing": null
+      },
+      "creditCardData": {
+        ...
+      },
+      "datetime": "2015-11-23 18:37:10",
+      "timestamp": 1448332630,
+      "lineitems": [],
+      "details": {
+        ...
+      },
+      "response": {
+        ...
+      },
+      "serverIP": "125.212.45.130",
+      "source": "Slice 1.5 Local",
+      "status": "Authorized (Pending Settlement)",
+      "transactionType": "Sale",
+      "user": "auto"
+    },
+    {
+      "id": 102230071,
+      "custid": "new01",
+      "accountHolder": "Jenner",
+      "checkData": {
+        "account": "XXXXX3123",
+        "routing": "XXXXX3123"
+      },
+      "creditCardData": {
+        ...
+      },
+      "datetime": "2015-11-19 15:58:01",
+      "timestamp": 1447977481,
+      "lineitems": [
+        {
+          "SKU": "32",
+          "ProductName": "Prod 1",
+          "Description": "Test lineitem",
+          "UnitPrice": "3.35",
+          "Qty": "4.0000",
+          "Taxable": true
+        },
+        {
+          "SKU": "8",
+          "ProductName": "Prod 2",
+          "Description": "Test lineitem 2",
+          "UnitPrice": "1.00",
+          "Qty": "4.0000",
+          "Taxable": true
+        }
+      ],
+      "details": {
+        ...
+      },
+      "response": {
+        ...
+      },
+      "serverIP": "125.212.45.130",
+      "source": "Slice 1.5 Local",
+      "status": "Pending",
+      "transactionType": "Check (Sale)",
+      "user": "auto"
+    }
+  ]
+}
+```
+
+This method lets you view all transactions.
+
+### HTTP Request
+
+`GET transactions`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+PLANID | The ID of the payplan to retrieve fees.
+
+### Query Parameters
+
+Parameter | Default | Description
+--------- | ------- | -----------
+start | (today - 1month) | Start date.
+end | today | End date.
+limit | 20 | Number of items to show per page. 
+page | 1 | Page number. 
