@@ -75,15 +75,12 @@
 
 Viewing an order will give you all the details associated with an existing Sendle Booking. Important details in an order include:
 
-- State
-  - current status of the order (see more in [Statuses and States](#check-for-status-updates))
-- Labels
-  - Label urls for different label size options.
-- Scheduling
-  - `is_cancellable`
-    - Boolean value determines whether an order can be cancelled.
-  - `pickup_date`
-  - Estimate Delivery range (minumum & maxium)
-    - These dates can change depending on courier conditions.
-- Parcel details
-  - From the order booking
+| Value | Description |
+|------:|:------------|
+| **state** | Current status of the order (see more in [Statuses and States](#check-for-status-updates))
+| **labels** | Label urls for different label size options.
+| **is_cancellable** | Boolean value determines whether an order can be cancelled.
+| **scheduling** | pickup_date
+ | Estimate Delivery range (minumum & maxium).
+ | These dates can change depending on courier conditions.
+| **parcel details** | from the order booking.

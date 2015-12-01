@@ -1,11 +1,11 @@
 # Getting Quotes
 
-The quoting API does not require you to add your Sendle ID and API Key, but be sure to include all the relevant fields.
+The quoting API does not require you to include your Sendle ID and API Key, but be sure to include all the relevant fields.
 
 <aside class="notice">With curl, the add-on <code>-H 'Content-Type: application/json'</code> adds <code>JSON</code> formatting for the request. If you use a method besides <strong>curl</strong>, be sure to include <strong>json</strong> formatting in the request header.</aside>
 
 
-### Quote Requirements
+### Parcel Quote Requirements
 
 > [GET /api/quote]
 
@@ -76,23 +76,20 @@ curl 'https://www.sendle.com/api/quote'
 ```
 
 
-Parameters required:
 
-- `pickup_suburb`
-  - Suburb must be real and match pickup postcode.
-- `pickup_postcode`
-  - Four digit post code for the pickup address.
-- `delivery_suburb`
-  - Suburb must be real and match delivery postcode.
-- `delivery_postcode`
-  - Four digit post code for the delivery address.
-- `kilogram_weight`
-  - Must be a decimal value above zero.
-- `cubic_metre_volume`
-  - To determine this measurement multiply length x width x depth of the parcel **in metres**
-  - This value must be decimal above zero and less than 1.
+| Field | Attributes |
+|------:|:-----------|
+| **pickup_suburb** | Suburb must be real and match pickup postcode.
+| **pickup_postcode** | Four digit post code for the pickup address.
+| **delivery_suburb** | Suburb must be real and match delivery postcode.
+| **delivery_postcode** | Four digit post code for the delivery address.
+| **kilogram_weight** | Must be a decimal value above zero and below weight limits.
+ | Max weight is 25 kilos.
+| **cubic_metre_volume** | This value must be decimal above zero and less than one.
+ | To determine this measurement multiply *length* x *width* x *depth* of the parcel **in metres**.
+| **plan_name** | If specified, the API will respond with a quote for the given plan. If left out, the API will give quotes for all available plans.
+ | Current available plans are **Standard** and **Premium**.
 
-### Optional Parameters
 > Request with `plan_name`
 
 ```shell
@@ -124,9 +121,5 @@ Parameters required:
   ]
 ```
 
-- `plan_name`
-  - If specified, the API will respond with a quote for the given plan. If left out, the API will give quotes for all available plans.
-  - Currently available plans are **Standard** and **Premium**
-
-<aside class='warning'>To find out more about<strong>error messages</strong>, be sure to read up on the <a href="#errors">errors</a> to help you get to better results.</aside>
+<aside class='warning'>To find out more about <strong>error messages</strong>, be sure to read up on the <a href="#errors">errors</a> to help you get to better results.</aside>
 

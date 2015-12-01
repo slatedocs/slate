@@ -8,9 +8,9 @@
 
 Using our [order](#creating-orders), we can download the label by using cURL set to save the target and follow redirects. 
 
-The label URL will redirect you to a private PDF, do not cache this redirect URL as the access permissions expire in 1 minute.
+The label URL will redirect you to a private PDF, do not cache this redirect URL as the access permissions expire after a minute.
 
-Always use the `label_url` exposed on the order and follow the redirect to the PDF. If you are using cURL you can use the `-O` option to save the label with the remote file name, or `-o <filename>` to specify a filename locally.
+Always use the `label_url` exposed on the order and follow the redirect to the PDF. If you are using cURL you can use the `-O` *(Open)* option to save the label with the remote file name, or `-o <filename>` to specify a filename locally.
 
 This option is only valid once an order has been booked with a courier.
 

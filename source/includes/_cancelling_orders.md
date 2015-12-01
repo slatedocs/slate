@@ -19,12 +19,11 @@
   }
 ```
 
-### is_cancellable
-
 As long as an order has not been consigned with the courier, an order is cancellable. The value to review is:
 
-- `is_cancellable`
-  - if `true`, the order can be cancelled.
+| | |
+|--:|:--|
+**is_cancellable** | If `true`, the order can be cancelled.
 
 If a booking has already been submitted to the courier for pickup, a failure response (422) will be returned. `is_cancellable` is found in the `scheduling` section of the `JSON` along with delivery estimates. For an example of where `is_cancellable` can be seen, check the [View an Order](#view-an-order) section.
 
