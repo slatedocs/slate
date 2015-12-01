@@ -5,7 +5,6 @@
 To create an order, submit order data via POST command. The order will be rejected if the data fails validation and the API will respond with an error.
 
 ## Order Requirements
-All fields, whether number or text should be entered as a [string value](http://www.json.org/) surrounded with quotes.
 > Example Booking
 
 ```shell
@@ -101,88 +100,42 @@ All fields, whether number or text should be entered as a [string value](http://
     }
   }
 ```
+<aside class="success">All fields, whether number or text should be entered as a [string value](http://www.json.org/) surrounded with quotes.</aside>
+
 | Data Field | Attributes |
 |-----------:|:-----------|
-**pickup_date** | Format: **yyyy-mm-dd** 
- | Date must be at least one non-holiday, business day in the future.
-**description** |**optional**
- | Description is used by the customer to track the parcel on Sendle Dashboard. It does not show up on a label.
- | It must be under 255 characters in length.
-**confirmed_not_dangerous** | *boolean value* (true or false).
- | **Sendle** will only make a booking if `confirmed_not_dangerous` is set to **true**.
+**pickup_date** <div class="optional">"yyyy-mm-dd"</div>| Date must be at least one non-holiday, business day in the future.
+**description** <div class="optional">optional</div> | Description is used by the customer to track the parcel on Sendle Dashboard. It does not show up on a label.  It must be under 255 characters in length.
+**confirmed_not_dangerous** <div class="optional">boolean value</div> | Sendle will only make a booking if `confirmed_not_dangerous` is set to true.
 **kilogram_weight** | Must be a decimal value over zero and less than the category/max weight allowed (25kg max).
-**cubic_metre_volume** | Must be a decimal value above zero and less than one.
- | To get value, multiply *length* x *width* x *depth* of parcel **in metres**.
-**customer_reference** |**optional**
- | Reference will appear on the label for parcel identification.
- | It must be under 255 characters in length.
- |
-**sender** | *An object of parcel origin details.*
-**instructions** |**optional**
- | Short message used as pickup instructions for courier.
- | It must be under 255 chars, but is recommended to be under 40 chars due to label-size limitations.
- |
-**contact** | *An object of sender contact details.*
+**cubic_metre_volume** | Must be a decimal value above zero and less than one.  To get value, multiply *length* x *width* x *depth* of parcel in metres.
+**customer_reference** <div class="optional">optional</div> | Reference will appear on the label for parcel identification.  It must be under 255 characters in length.
+**sender** <div class="optional">object</div> | *A collection of parcel origin details.*
+**instructions** <div class="optional">optional</div> | Short message used as pickup instructions for courier.  It must be under 255 chars, but is recommended to be under 40 chars due to label-size limitations.
+**contact** <div class="optional">object</div> | *A collection of sender contact details.*
 **name** | It must be under 255 characters in length.
 **email** | Leave this empty - it will be populated with your email based on your `sendle_id`.
-**phone** | Used to coordinate pickup if the courier is outside attempting delivery.
- | It must be a valid Australian phone number (inc area code), or fully qualified international number.
- | eg. (02) 1234 1234, +1 519 123 1234, +61 (0)4 1234 1234.
- |
-**address** | *An object of origin address details.*
-**address_line1** | The street address where the parcel will be picked up. Addresses can be split over two lines using `address_line1` and `address_line2`. Only `address_line1` is mandatory. `line2` will be displayed below `line1` on the parcel label.
- | Do not include postcode, state, or suburb in this field
- | It must be under 255 char in length, but best practice to keep under 40 chars due to label-size limitations.
-**address_line2** |**optional**
- | Second line of the street address for the pickup location.
-**suburb** | Suburb or town where the parcel is to be picked up.
- | If Sendle cannot service this location, response will be a validation error stating that the suburb is not serviceable.
- | Postcode and suburb must match. If they do not match, Sendle will return a set of alternates to choose from.
- | If reciving an unserviceable error, you may want to check if the location is also listed under a different suburb name.
-**postcode** | Postcode of pickup location.
- | It must be a four digit string for a valid location.
- | If the area cannot be picked up from, response will be a validation error stating the location is unserviceable.
-**state_name** | Must be the pickup location's state or territory.
- | Valid options include: ACT, NSW, NT, QLD, SA, TAS, VIC, WA.
- | Long-form (i.e. "Northern Territory") is also accepted.
-**country** |**optional**
- | Sendle only works within Australia. If absecent, Sendle assumes orders are in Australia.
- | String value under 255 characters in length.
- | If included, must read "Australia"
- |
-**receiver** | *An object of parcel destination details.*
-**instructions** |**optional**
- | Short message used as delivery instructions for courier.
- | It must be under 255 chars, but is recommended to be under 40 chars due to label-size limitations.
- |
-**contact** | *An object of receiver details.*
+**phone** | Used to coordinate pickup if the courier is outside attempting delivery.  It must be a valid Australian phone number (inc area code), or fully qualified international number.  Examples: (02) 1234 1234, +1 519 123 1234, +61 (0)4 1234 1234.
+**address** <div class="optional">object</div>| *A collection of origin address details.*
+**address_line1** | The street address where the parcel will be picked up. Addresses can be split over two lines using `address_line1` and `address_line2`. Only `address_line1` is mandatory. `line2` will be displayed below `line1` on the parcel label.  Do not include postcode, state, or suburb in this field  It must be under 255 char in length, but best practice to keep under 40 chars due to label-size limitations.
+**address_line2** <div class="optional">optional</div> | Second line of the street address for the pickup location.
+**suburb** | Suburb or town where the parcel is to be picked up.  If Sendle cannot service this location, response will be a validation error stating that the suburb is not serviceable.  Postcode and suburb must match. If they do not match, Sendle will return a set of alternates to choose from.  If reciving an unserviceable error, you may want to check if the location is also listed under a different suburb name.
+**postcode** | Postcode of pickup location.  It must be a four digit string for a valid location.  If the area cannot be picked up from, response will be a validation error stating the location is unserviceable.
+**state_name** | Must be the pickup location's state or territory.  Valid options include: ACT, NSW, NT, QLD, SA, TAS, VIC, WA.  Long-form (i.e. "Northern Territory") is also accepted.
+**country** <div class="optional">optional</div> | Sendle only works within Australia. If absecent, Sendle assumes orders are in Australia.  String value under 255 characters in length.  If included, must read "Australia"
+**receiver** <div class="optional">object</div> | *A collection of parcel destination details.*
+**instructions** <div class="optional">optional</div> | Short message used as delivery instructions for courier.  It must be under 255 chars, but is recommended to be under 40 chars due to label-size limitations.
+**contact** <div class="optional">object</div> | *A collection of receiver details.*
 **name** | It must be under 255 characters in length.
-**email** |**optional**
- | Recipient email allows **Sendle** to send parcel updates to the recipient.
-**phone** |**optional**
- | Used to coordinate pickup if the courier is outside attempting delivery.
- | It must be a valid Australian phone number (inc area code), or fully qualified international number.
- | eg. (02) 1234 1234, +1 519 123 1234, +61 (0)4 1234 1234.
- |
-**address** | *An object of destination address details.*
-**address_line1** | The street address where the parcel will be delivered. Addresses can be split over two lines using `address_line1` and `address_line2`. Only `address_line1` is mandatory. `line2` will be displayed below `line1` on the parcel label.
- | Do not include postcode, state, or suburb in this field
- | It must be under 255 char in length, but best practice to keep under 40 chars due to label-size limitations.
-**address_line2** |**optional**
- | Second line of the street address for the pickup location.
-**suburb** | Suburb or town where the parcel is to be delivered.
- | If Sendle cannot service this location, response will be a validation error stating that the suburb is not serviceable.
- | Postcode and suburb must match. If they do not match, Sendle will return a set of alternates to choose from.
-**postcode** | Postcode of destination location.
- | It must be a four digit string for a valid location.
- | If the area is cannot be delivered to, response will be a validation error stating the location is unserviceable.
-**state_name** | Must be the destination location's state or territory.
- | Valid options include: ACT, NSW, NT, QLD, SA, TAS, VIC, WA.
- | Long-form (i.e. "Northern Territory") is also accepted.
-**country** |**optional**
- | Sendle only works within Australia. If absecent, Sendle assumes orders are in Australia.
- | String value under 255 characters in length.
- | If included, must read "Australia"
+**email** <div class="optional">optional</div> | Recipient email allows **Sendle** to send parcel updates to the recipient.
+**phone** <div class="optional">optional</div> | Used to coordinate pickup if the courier is outside attempting delivery.  It must be a valid Australian phone number (inc area code), or fully qualified international number.  Examples: (02) 1234 1234, +1 519 123 1234, +61 (0)4 1234 1234.
+**address** <div class="optional">object</div> | *A collection of destination address details.*
+**address_line1** | The street address where the parcel will be delivered. Addresses can be split over two lines using `address_line1` and `address_line2`. Only `address_line1` is mandatory. `line2` will be displayed below `line1` on the parcel label.  Do not include postcode, state, or suburb in this field.  It must be under 255 char in length, but best practice to keep under 40 chars due to label-size limitations.
+**address_line2** <div class="optional">optional</div> | Second line of the street address for the pickup location.
+**suburb** | Suburb or town where the parcel is to be delivered.  If Sendle cannot service this location, response will be a validation error stating that the suburb is not serviceable.  Postcode and suburb must match. If they do not match, Sendle will return a set of alternates to choose from.
+**postcode** | Postcode of destination location.  It must be a four digit string for a valid location.  If the area is cannot be delivered to, response will be a validation error stating the location is unserviceable.
+**state_name** | Must be the destination location's state or territory.  Valid options include: ACT, NSW, NT, QLD, SA, TAS, VIC, WA.  Long-form (i.e. "Northern Territory") is also accepted.
+**country** <div class="optional">optional</div> | Sendle only works within Australia. If absecent, Sendle assumes orders are in Australia.  String value under 255 characters in length.  If included, must read "Australia"
 
 
 ### Getting the Label

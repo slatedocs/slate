@@ -35,10 +35,10 @@ $lang-select-bg: #222;
 $lang-select-active-bg: $examples-bg; // feel free to change this to blue or something
 $lang-select-pressed-bg: #111; // color of language tab bg when mouse is pressed
 $main-bg: #fff;
-$aside-text-color: #fff;
-$aside-notice-bg: #87b5ce;
-$aside-warning-bg: #e44144;
-$aside-success-bg: #6ac174;
+$aside-text-color: #fff;    // originals colors -> SENDLE colors!
+$aside-notice-bg: #67CDCC;  // #87b5ce;
+$aside-warning-bg: #E44144; // #E44144;
+$aside-success-bg: #FF6800; // #6ac174;
 $search-notice-bg: #c97a7e;
 
 
@@ -109,4 +109,17 @@ $search-box-border-color: #666;
      word-break: break-word;
 
         hyphens: auto;
+}
+
+//////////////////////////////
+// CUSTOM
+////////////////////////////
+// For Sendle-Docs
+
+.prettyprint {
+  color: #b93d6a; // red
+}
+
+.optional {
+  color: #939da3; // grey
 }
