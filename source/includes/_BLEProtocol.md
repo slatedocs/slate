@@ -35,6 +35,8 @@ This is the subsystem index, which currently has three modes:
 1. **0x00 (debug subsystem)** : Information about the device, special modes, etc.
 1. **0x01 (motion engine)** : Motion data information, orientation, quaternions, trajectories, etc.
 1. **0x02 (power management)**: Battery information, voltages and other information related to the power management IC
+1. **0x03 (ADC)**
+2. **0x04 (GPIO)**
 
 ###### Byte#1: Data Section Packet Length
 The data format currently is set to a fixed packet length of 20 bytes including both header and data, where the data section is 16 bytes. Hence, this byte is set to the value of 0x10 = 16.
