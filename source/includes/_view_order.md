@@ -79,8 +79,8 @@ Viewing an order will give you all the details associated with an existing Sendl
 |------:|:------------|
 | **state** | Current status of the order (see more in [Statuses and States](#check-for-status-updates))
 | **labels** | Label urls for different label size options.
-| **is_cancellable** | Boolean value determines whether an order can be cancelled.
-| **scheduling** | pickup_date
+| **scheduling** | `pickup_date`
+ | `is_cancellable` – Boolean value determines whether an order can be [cancelled](#cancelling-orders).
  | Estimate Delivery range (minumum & maxium).
  | These dates can change depending on courier conditions.
 | **parcel details** | from the order booking.

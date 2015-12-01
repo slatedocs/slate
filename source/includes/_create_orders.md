@@ -117,19 +117,19 @@ All fields, whether number or text should be entered as a [string value](http://
  | Reference will appear on the label for parcel identification.
  | It must be under 255 characters in length.
  |
-**sender** |
+**sender** | *An object of parcel origin details.*
 **instructions** |**optional**
  | Short message used as pickup instructions for courier.
  | It must be under 255 chars, but is recommended to be under 40 chars due to label-size limitations.
  |
-**contact** | 
+**contact** | *An object of sender contact details.*
 **name** | It must be under 255 characters in length.
 **email** | Leave this empty - it will be populated with your email based on your `sendle_id`.
 **phone** | Used to coordinate pickup if the courier is outside attempting delivery.
  | It must be a valid Australian phone number (inc area code), or fully qualified international number.
  | eg. (02) 1234 1234, +1 519 123 1234, +61 (0)4 1234 1234.
  |
-**address** |
+**address** | *An object of origin address details.*
 **address_line1** | The street address where the parcel will be picked up. Addresses can be split over two lines using `address_line1` and `address_line2`. Only `address_line1` is mandatory. `line2` will be displayed below `line1` on the parcel label.
  | Do not include postcode, state, or suburb in this field
  | It must be under 255 char in length, but best practice to keep under 40 chars due to label-size limitations.
@@ -150,12 +150,12 @@ All fields, whether number or text should be entered as a [string value](http://
  | String value under 255 characters in length.
  | If included, must read "Australia"
  |
-**receiver** | 
+**receiver** | *An object of parcel destination details.*
 **instructions** |**optional**
  | Short message used as delivery instructions for courier.
  | It must be under 255 chars, but is recommended to be under 40 chars due to label-size limitations.
  |
-**contact** | 
+**contact** | *An object of receiver details.*
 **name** | It must be under 255 characters in length.
 **email** |**optional**
  | Recipient email allows **Sendle** to send parcel updates to the recipient.
@@ -164,7 +164,7 @@ All fields, whether number or text should be entered as a [string value](http://
  | It must be a valid Australian phone number (inc area code), or fully qualified international number.
  | eg. (02) 1234 1234, +1 519 123 1234, +61 (0)4 1234 1234.
  |
-**address** |
+**address** | *An object of destination address details.*
 **address_line1** | The street address where the parcel will be delivered. Addresses can be split over two lines using `address_line1` and `address_line2`. Only `address_line1` is mandatory. `line2` will be displayed below `line1` on the parcel label.
  | Do not include postcode, state, or suburb in this field
  | It must be under 255 char in length, but best practice to keep under 40 chars due to label-size limitations.
