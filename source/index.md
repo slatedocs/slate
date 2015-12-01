@@ -3,6 +3,7 @@ title: Kuzzle SDK Documentation
 
 language_tabs:
   - javascript: Javascript
+  - java: Java
 
 toc_footers:
   - <a href='http://github.com/kuzzleio/kuzzle'>Kuzzle on GitHub</a>

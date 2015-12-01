@@ -14,6 +14,10 @@ A data collection is a set of data managed by Kuzzle. It acts like a data table 
  */
 ```
 
+```java
+  KuzzleDataCollection myCollection = new KuzzleDataCollection(kuzzle, "my-collection");
+```
+
 #### KuzzleDataCollection(kuzzle, collection)
 
 | Arguments | Type | Description |
@@ -53,6 +57,21 @@ kuzzle
       console.log(document.toString());
     });
   });
+```
+
+```java
+JSONObject filters = new JSONObject();
+dataCollection.advancedSearch(filters, new ResponseListener() {
+  @Override
+  public void onSuccess(JSONObject object) throws Exception {
+    // Handle success
+  }
+
+  @Override
+  public void onError(JSONObject error) throws Exception {
+    // Handle error
+  }
+});
 ```
 
 > Returns an object containing the total number of documents, and an array of retrieved documents
@@ -103,6 +122,21 @@ kuzzle
  });
 ```
 
+```java
+JSONObject filters = new JSONObject();
+dataCollection.count(filters, new ResponseListener() {
+  @Override
+  public void onSuccess(JSONObject object) throws Exception {
+    // Handle success
+  }
+
+  @Override
+  public void onError(JSONObject error) throws Exception {
+    // Handle error
+  }
+});
+```
+
 > Returns the number of matched documents
 
 ```json
@@ -148,6 +182,21 @@ kuzzle
  });
 ```
 
+```java
+dataCollection.create(new ResponseListener() {
+  @Override
+  public void onSuccess(JSONObject object) throws Exception {
+    // callback called once the create operation has completed
+    // => the result is a JSON object containing the raw Kuzzle response
+  }
+
+  @Override
+  public void onError(JSONObject error) throws Exception {
+    // Handle error
+  }
+});
+```
+
 Create a new empty data collection, with no associated mapping.
 
 Kuzzle automatically creates data collections when storing documents, but there are cases where we want to create and prepare data collections before storing documents in it.
@@ -184,6 +233,24 @@ kuzzle
    // promise resolved once the create action has been completed
    // => the result is a KuzzleDocument object
  });
+```
+
+```java
+KuzzleDocument myDocument = new KuzzleDocument(collection);
+myDocument.setContent("title", "foo");
+myDocument.setContent("content", "bar");
+dataCollection.createDocument(myDocument, new ResponseListener() {
+  @Override
+  public void onSuccess(JSONObject object) throws Exception {
+    // callback called once the create action has been completed
+    // => the result is a KuzzleDocument object
+  }
+
+  @Override
+  public void onError(JSONObject error) throws Exception {
+    // Handle error
+  }
+});
 ```
 
 > Returns a KuzzleDocument object containing the newly created document
@@ -228,6 +295,21 @@ kuzzle
    // promise resolved once the delete operation has completed
    // => the result is a JSON object containing the raw Kuzzle response
  });
+```
+
+```java
+dataCollection.delete(new ResponseListener() {
+  @Override
+  public void onSuccess(JSONObject object) throws Exception {
+    // callback called once the delete operation has completed
+    // => the result is a JSON object containing the raw Kuzzle response
+  }
+
+  @Override
+  public void onError(JSONObject error) throws Exception {
+    // Handle error
+  }
+});
 ```
 
 Delete this data collection and all documents in it.
@@ -276,6 +358,38 @@ kuzzle
  .then(res => {
    // promise resolved once the delete by query has been completed
  });
+```
+
+```java
+// Deleting one document
+dataCollection.deleteDocument("document unique ID", new ResponseListener() {
+  @Override
+  public void onSuccess(JSONObject object) throws Exception {
+    // callback called once the delete action has been completed
+  }
+
+  @Override
+  public void onError(JSONObject error) throws Exception {
+    // Handle error
+  }
+});
+
+// Deleting multiple documents
+JSONObject termFilter = new JSONObject();
+JSONObject title = new JSONObject();
+title.put("title", "foo");
+termFilter.put("term", title);
+dataCollection.deleteDocument(termFilter, new ResponseListener() {
+  @Override
+  public void onSuccess(JSONObject object) throws Exception {
+    // callback called once the delete with query has been completed
+  }
+
+  @Override
+  public void onError(JSONObject error) throws Exception {
+    // Handle error
+  }
+});
 ```
 
 > Returns the list of deleted document IDs
@@ -327,6 +441,21 @@ kuzzle
   });
 ```
 
+```java
+KuzzleDocument myDoc;
+dataCollection.fetchDocument("documentId", new ResponseListener() {
+  @Override
+  public void onSuccess(JSONObject object) throws Exception {
+    myDoc = new KuzzleDocument(dataCollection, object);
+  }
+
+  @Override
+  public void onError(JSONObject error) throws Exception {
+    // Handle error
+  }
+});
+```
+
 > Returns a KuzzleDocument object
 
 Retrieve a single stored document using its unique document ID.
@@ -364,6 +493,21 @@ kuzzle
     // result is an object containing the total number of documents
     // and an array of KuzzleDocument objects
   });
+```
+
+```java
+dataCollection.fetchAllDocuments(new ResponseListener() {
+  @Override
+  public void onSuccess(JSONObject object) throws Exception {
+    // result is an object containing the total number of documents
+    // and an array of KuzzleDocument objects
+  }
+
+  @Override
+  public void onError(JSONObject error) throws Exception {
+    // Handle error
+  }
+});
 ```
 
 > Returns an object containing the total number of documents, and an array of retrieved documents
@@ -408,6 +552,20 @@ kuzzle
   });
 ```
 
+```java
+dataCollection.getMapping(new ResponseListener() {
+  @Override
+  public void onSuccess(JSONObject object) throws Exception {
+    // result is a KuzzleDataMapping object
+  }
+
+  @Override
+  public void onError(JSONObject error) throws Exception {
+    // Handle error
+  }
+});
+```
+
 > Returns a KuzzleDataMapping object
 
 Instantiates a KuzzleDataMapping object containing the current mapping of this collection.
@@ -431,6 +589,13 @@ Available options:
 kuzzle
   .dataCollectionFactory('collection')
   .publish({foo: 'bar', baz: 'qux'});
+```
+
+```java
+KuzzleDocument myDocument = new KuzzleDocument(dataCollection);
+myDocument.setContent("title", "foo");
+myDocument.setContent("content", "bar");
+dataCollection.publish(myDocument);
 ```
 
 Publish a realtime message
@@ -471,6 +636,20 @@ kuzzle
   });
 ```
 
+```java
+dataCollection.putMapping(myKuzzleDataMapping, new ResponseListener() {
+  @Override
+  public void onSuccess(JSONObject object) throws Exception {
+    // result is a KuzzleDataMapping object
+  }
+
+  @Override
+  public void onError(JSONObject error) throws Exception {
+    // Handle error
+  }
+});
+```
+
 Applies a new mapping to the data collection.  
 Note that you cannot delete an existing mapping, you can only add or update one.
 
@@ -507,6 +686,12 @@ kuzzle
   });
 ```
 
+```java
+KuzzleDocument doc = new KuzzleDocument(collection);
+doc.setContent("foo", "bar");
+dataCollection.replaceDocument("42", doc);
+```
+
 > Returns a KuzzleDocument object containing the new version of the document
 
 Replace an existing document with a new one.
@@ -537,6 +722,17 @@ kuzzle
   }, true);
 ```
 
+```java
+JSONObject content = new JSONObject();
+content.put("someContent", "someValue");
+JSONObject meta = new JSONObject();
+JSONArray metaValue = new JSONArray();
+metaValue.put("with").put("some").put("value");
+meta.put("someMetaData", metaValue);
+content.put("metadata", meta);
+dataCollection.setHeaders(content, true);
+```
+
 > Returns itself
 
 This is a helper function returning itself, allowing to easily chain calls.
@@ -563,6 +759,24 @@ var room =
   kuzzle
     .dataCollectionFactory('collection')
     .subscribe({term: {title: 'foo'}}, notificationCB, {subscribeToSelf: true});
+```
+
+```java
+JSONObject term = new JSONObject();
+JSONObject title = new JSONObject();
+title.put("title", "foo");
+term.put("term", title);
+dataCollection.subscribe(term, new ResponseListener() {
+  @Override
+  public void onSuccess(JSONObject object) throws Exception {
+    // called each time a new notification on this filter is received
+  }
+
+  @Override
+  public void onError(JSONObject error) throws Exception {
+    // Handle error
+  }
+});
 ```
 
 > Returns a KuzzleRoom object
@@ -605,6 +819,21 @@ kuzzle
  });
 ```
 
+```java
+dataCollection.truncate(new ResponseListener() {
+  @Override
+  public void onSuccess(JSONObject object) throws Exception {
+    // callback called once the truncate operation has completed
+    // => the result is a JSON object containing the raw Kuzzle response
+  }
+
+  @Override
+  public void onError(JSONObject error) throws Exception {
+    // Handle error
+  }
+});
+```
+
 Truncate the data collection, removing all stored documents but keeping all associated mappings.
 
 This method is a lot faster than removing all documents using a query.
@@ -639,6 +868,25 @@ kuzzle
   .then(result => {
     // result is a KuzzleDocument object
   });
+```
+
+```java
+KuzzleDocument doc = new KuzzleDocument(collection);
+doc.setContent("bar", "foo");
+doc.save();
+doc.setContent("foo", "bar");
+dataCollection.updateDocument("documentId", doc, new ResponseListener() {
+  @Override
+  public void onSuccess(JSONObject object) throws Exception {
+    // callback called once the truncate operation has completed
+    // => the result is a JSON object containing the raw Kuzzle response
+  }
+
+  @Override
+  public void onError(JSONObject error) throws Exception {
+    // Handle error
+  }
+});
 ```
 
 > Returns a KuzzleDocument object containing the new version of the document  
