@@ -259,11 +259,12 @@ Create a new document in Kuzzle.
 
 #### createDocument(KuzzleDocument, [options])
 
-#### createDocument(content, [options])
+#### createDocument([id], content, [options])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
 | ``KuzzleDocument`` | object | KuzzleDocument object |
+| ``id`` | string | Optional document identifier |
 | ``content`` | JSON Object | Content of the document to create |
 | ``options`` | JSON Object | Optional parameters |
 
@@ -583,12 +584,12 @@ Available options:
 | ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
 
 
-## publish
+## publishMessage
 
 ```js
 kuzzle
   .dataCollectionFactory('collection')
-  .publish({foo: 'bar', baz: 'qux'});
+  .publishMessage({foo: 'bar', baz: 'qux'});
 ```
 
 ```java
@@ -600,9 +601,9 @@ dataCollection.publish(myDocument);
 
 Publish a realtime message
 
-#### publish(KuzzleDocument, [options])
+#### publishMessage(KuzzleDocument, [options])
 
-#### publish(content, [options])
+#### publishMessage(content, [options])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
@@ -751,14 +752,12 @@ This is a helper function returning itself, allowing to easily chain calls.
 ## subscribe
 
 ```js
-var notificationCB = function (error, result) {
-  // called each time a new notification on this filter is received
-};
-
 var room =
   kuzzle
     .dataCollectionFactory('collection')
-    .subscribe({term: {title: 'foo'}}, notificationCB, {subscribeToSelf: true});
+    .subscribe({term: {title: 'foo'}}, function (error, result) {
+      // called each time a new notification on this filter is received
+    };
 ```
 
 ```java
@@ -787,15 +786,13 @@ Subscribes to this data collection with a set of filters.
 To subscribe to the entire data collection, simply provide an empty filter.
 </aside>
 
-#### subscribe(filters, callback)
-
-#### subscribe(filters, callback, options)
+#### subscribe(filters, [options], callback)
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
 | ``filters`` | JSON Object | Filters in [Kuzzle DSL](https://github.com/kuzzleio/kuzzle/blob/master/docs/filters.md) format |
+| ``options`` | object | (Optional) Subscription configuration. Passed to the KuzzleRoom constructor. |
 | ``callback`` | function | Callback to call every time a notification is received on this subscription |
-| ``options`` | object | Subscription configuration. Passed to the KuzzleRoom constructor. |
 
 
 ## truncate
