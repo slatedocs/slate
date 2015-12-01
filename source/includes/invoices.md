@@ -570,3 +570,24 @@ comprador | objeto [comprador](#comprador) | Información del comprador.
 tipo_emision | integer | Emisión normal: `1`.<br>Emisión por indisponibilidad: `2`<br>
 items | listado de objetos tipo [item](#item-de-factura) | Items incluídos en la factura. 
 version | string | Versión de la especificación, opciones válidas: `1.0.0`, `1.1.0`
+
+## Re-emisión de una factura
+
+### Operación
+
+`POST /invoices/:id/reissue`
+
+### Requerimiento
+
+Esta operación debe ser utilizada para corregir comprobantes NO AUTORIZADOS o
+DEVUELTOS por el Servicio de Rentas Internas.
+
+En la URL de esta opción se debe incluir el `id` de la factura recibida al 
+momento de emitirla.
+
+El cuerpo del requerimiento es un objeto [factura](#requerimiento) con los 
+datos corregidos para que pueda ser procesado y autorizado.
+
+### Respuesta
+
+Retornará un error si el comprobante se encuentra autorizado.
