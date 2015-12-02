@@ -1,16 +1,20 @@
 # Neblina - Data Format
 
 ## General Format
+
+### Nomenclature, byte ordering, bit ordering
+
+The Neblina platform is meant to be network-centric.  To support this concept globally and allow the packets to be transported over various mediums a lightweight stack was defined.  
+
+The transport medium for the packets could be UDP, TCP, Bluetooth LE Characteristic (main focus of this project), Serial Interface, light pulses or electrical pulses.  The protocol is meant to be as stateless as possible.
+
 The general format of the packets being transferred between Neblina and the host application is as follows:
-<!---
-```c
-Bytes#0-3: Header Section
-Bytes#4-19: Data Section
-```
--->
-| Bytes 0-3      | Bytes 4-19    |
-|----------------|---------------|
-| Header Section | Data Section  |
+
+| Bytes 0-3      | Bytes 4-254    |
+|----------------|----------------|
+| Header Section | Data Section   |
+
+**Limitation**: At this time, the Data Section spans bytes 4-19 (complete packet is maxed at 20 bytes).  The protocol supports larger packets, but for the best use of the BLE MTU, a special effort is made to ensure that no packet exceed 20 bytes.  This allows more efficient transfer of real-time characteristic updates when streaming motion data.
 
 The **Header Section** is used to route the commands from the application (e.g. an iPhone) to the Neblina module and identify the responses back from Neblina and destined for the application.
 
