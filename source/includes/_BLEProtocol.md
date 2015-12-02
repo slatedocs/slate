@@ -72,7 +72,7 @@ In this version of the API, the data format currently is set to a fixed packet l
 Note that this fixed length attribute of the packets may change in future APIs.
 
 #### Byte 2: CRC
-The 8-bit CRC is calculated over the data section of the packet.  The polynomial is initialized to 0x00.  
+The 8-bit CRC is calculated over both the header and data sections of the packet. The polynomial is initialized to 0x00.  
 
 ```C
 crc = 0;
@@ -84,11 +84,11 @@ for (i = 0; i < Len; i++)
 }
 ```    
 
-The calculations are done as follow:
+The calculations are done as follows:
 
-To create the packet, the CRC byte is set to 0xFF.  Then the CRC computation is performed on the complete packet (based on the length information), including the header.  The CRC byte is then replaced with the computed value.
+To create the packet, the CRC byte is set to 0xFF.  Then the CRC computation is performed on the complete packet (based on the length information), including the header. The CRC byte is then replaced with the computed value.
 
-To validate the CRC, the code first takes a copy of the CRC byte then set it to 0xFF.  It calculates the CRC as for transmission and then compares the calculated CRC against the copied data.
+To validate the CRC, the code first takes a copy of the CRC byte then sets it to 0xFF.  It calculates the CRC as for transmission and then compares the calculated CRC against the copied data.
 
 #### Byte 3: Command
 
