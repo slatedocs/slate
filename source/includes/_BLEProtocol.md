@@ -54,14 +54,16 @@ Bits#5-0: (SUB) Subsystem Identifier
 This is the subsystem identifier:
 
 0. **0x00 [Debug Subsystem](_debug.md)**: Information about the device, special modes, etc.
-1. **0x01 [Motion Engine](_motionenginepackets.md)**: Motion data information, orientation, quaternions, trajectories, etc.
+1. **0x01 [Motion Engine](_motionenginepackets.md)**: Motion data information, orientation, quaternions, trajectories, acceleration, magnetic, etc.
 2. **0x02 [Power Management](_powermanagement.md)**: Battery information, voltages and other information related to the power management IC
 3. **0x03 [Digital IO](_digitalio.md)**: Digital IO on the module
 4. **0x04 [LEDs or indicators](_led.md)**: LEDs (unicolor or RGB, backlights)
-5. **0x05 [Analog to Digital Converters (ADC)](_adc.md)**
-6. **0x06 [Digital to Analog Converters (DAC)](_dac.md)**
-7. **0x07 [I2C Subsystem](_i2c.md)**
-8. **0x08 [SPI Subsystem](_spi.md)**
+5. **0x05 [Analog to Digital Converters (ADC)](_adc.md)**: Access to module ADCs
+6. **0x06 [Digital to Analog Converters (DAC)](_dac.md)**: Access to module DACs
+7. **0x07 [I2C Subsystem](_i2c.md)**: Access to I2C subsystems (for programmers)
+8. **0x08 [SPI Subsystem](_spi.md)**: Access to SPI subsystems (for programmers)
+9. **0x09 [Firmware Management](_firmware.md)**: Firmware versions, firmware checks, self-test, serial numbers
+10. **0x0A [Cryptography](_security.md)**: Cryptography peripherals, data security
 
 #### Byte 1: Data Section Packet Length
 
