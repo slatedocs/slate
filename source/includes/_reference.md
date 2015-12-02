@@ -67,6 +67,10 @@ In many cases, Scout is able to replace New Relic as-is. However, there are case
 * __Background Job Monitoring__ - this is on our roadmap as well. [Scout Server Monitoring](https://scoutapp.com/info/server_monitoring) can be used to monitor queue depths, failure rates, etc for all of the common Ruby background job systems. Many background job systems also provide a web ui (for example, the [Sidekiq Web UI](https://github.com/mperham/sidekiq/wiki/Monitoring#web-ui)).
 * __Browser Monitoring (Real User Monitoring)__ - there are a number of dedicated tools for both Real User Monitoring (RUM) and synthetic monitoring. You can also continue to use New Relic for browser monitoring and use Scout for application monitoring.
 
+### Our Monitoring Stack
+
+Curious about what a company that lives-and-breathes monitoring (us!) uses to monitor our apps? [We shared our complete monitoring stack on our blog](http://blog.scoutapp.com/articles/2015/12/02/rails-monitoring-stack-2016).
+
 ### Talk to us about your monitoring stack
 
 Don't hesitate to [email us](mailto:apm.support@scoutapp.com) if you need to talk through your monitoring stack. Monitoring is something we know and love.
