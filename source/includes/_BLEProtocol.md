@@ -25,23 +25,33 @@ For example, commands destined to the Motion Engine subsystem will have a header
 ### Header Section
 The header section consists of four bytes.
 
-|  Byte 0 (bit_7) |    Byte 0 (bit_6)   | Byte 0 (bit_5_0) |  Byte 1   | Byte 2 |   Byte 3   |
-|-----------------|---------------------|------------------|-----------|--------|------------|
-|    Error Log    |Command/Response Mode| Subsystem value  |data length|  CRC   |Command Type|
+|  Byte 0  |  Byte 1 | Byte 2 |   Byte 3   |
+|----------|---------|--------|------------|
+|    **Control Subystem (ERR/CR/SUB)** | data length|  CRC   |Command Type|
 
-###### Byte#0: Subsystem
+Control Subsystem Byte Details
+
+|  Bit 7 (ERR)    |    Bit 6 (CR)                 | Bit 5:0   (SUB)  |
+|--------         |------------                   |---------         |
+| Error Log       |Command/Response Indicator     | Subsystem Code   |
+
+
+#### Byte 0: Control Subsystem
 ```c 
-Bit#7: (Error Log) 
+Bit#7: (ERR) Error Log 
 ```
-If set to 1, it shows that the packet is an error log command/response associated with the subsystem represented by Bits#6-0. Otherwise, if set to 0, it shows that the packet is a regular command/response associated with the subsystem represented by Bits#6-0.
+If set to 1, it shows that the packet is an error log command/response associated with the subsystem represented by *SUB*. Otherwise, if set to 0, it shows that the packet is a regular command/response associated with the subsystem represented by *SUB*.
+
 ```c 
-Bit#6: (Command/Response mode) 
+Bit#6: (CR) Command/Response Indicator
 ```
-If set to 1, it shows that the packet is a command from the host to the target device. Otherwise, the packet is a response from the target to the host.
+If set to 1, it shows that the packet is a command from the host to the target device. Otherwise, the packet is a response from the target to the host. *Note: Target is usually the Neblina module or one of its component, host is a tablet or smartphone*
+
 ```c 
-Bits#5-0: (Subsystem value)
+Bits#5-0: (SUB) Subsystem Identifier
 ```
-This is the subsystem index, which currently has three modes: 
+
+This is the subsystem identifier:
 
 0. **0x00 [Debug Subsystem](_debug.md)**: Information about the device, special modes, etc.
 1. **0x01 [Motion Engine](_motionenginepackets.md)**: Motion data information, orientation, quaternions, trajectories, etc.
@@ -51,13 +61,13 @@ This is the subsystem index, which currently has three modes:
 5. **0x05 [Analog to Digital Converters (ADC)](_adc.md)**
 6. **0x06 [Digital to Analog Converters (DAC)](_dac.md)**
 
-###### Byte#1: Data Section Packet Length
+#### Byte 1: Data Section Packet Length
 
-In this version of the API, the data format currently is set to a fixed packet length of 20 bytes including both header and data, where the data section is 16 bytes. Hence, this byte is set to the value of 0x10 = 16.  Bytes that are not used by subsystems commands and responses should be padded with zeros when the packets are created.  When packet are interpreted, no assumptions should be made on the content of the packet outside of their defined bytes fields.
+In this version of the API, the data format currently is set to a fixed packet length of 20 bytes (including both header and data), where the data section is 16 bytes. Hence, this byte is set to the value of 0x10 = 16.  Bytes that are not used by subsystems commands and responses should be padded with zeros when the packets are created.  When packet are interpreted, no assumptions should be made on the content of the packet outside of their defined bytes fields.
 
 Note that this fixed length attribute of the packets may change in future APIs.
 
-###### Byte#2: CRC
+#### Byte 2: CRC
 The 8-bit CRC is calculated over the data section of the packet.  The polynomial is initialized to 0x00.  
 
 ```C
@@ -76,7 +86,12 @@ To create the packet, the CRC byte is set to 0xFF.  Then the CRC computation is 
 
 To validate the CRC, the code first takes a copy of the CRC byte then set it to 0xFF.  It calculates the CRC as for transmission and then compares the calculated CRC against the copied data.
 
-###### Byte#3: Command
+#### Byte 3: Command
+
+Commands are defined per subsystem.  Refer to the appropriate section of the documentation for command details.
+
+------
+
 Different commands can be issued identified by this field. For the power management subsystem, currently there is only one command as follows:
 ```c 
 #define POWERMGMT_GET_BAT_LEVEL 0
