@@ -21,9 +21,9 @@ This command is used to read the values of up to 8 LEDs at a time. You specify t
 
 **Response**:
 
-|0 (subsystem)|1 (length)|2 (CRC)|3 (command)|4|5|
-|:-:|:-:|:-:|:-:|:-:|:-:|
-|0x04|0x10|CRC|0x02|Number of LEDs|Value|Value|(...)|Value|
+|0 (subsystem)|1 (length)|2 (CRC)|3 (command)|4|5|6|7|8|(...)|18|19|
+|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+|0x04|0x10|CRC|0x02|Number of LEDs|Index|Value|Index|Value|(...)|Index|Value|
 
 ## LED Configuration
 
