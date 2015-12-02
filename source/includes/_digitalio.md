@@ -1,6 +1,6 @@
 
 # Digital I/O
-Subsystem Number: 0x06
+Subsystem Number: 0x04
 
 ## Set/Get Config
 
@@ -14,20 +14,20 @@ Modify and access the parameters of the GPIOs.
 
 ### Mode Config Byte
 
-|Bit 0|Bit 1|Bit 2|Bit 3|Bit 4|Bit 5|Bit 6|Bit 7|
+|Bit 7|Bit 6|Bit 5|Bit 4|Bit 3|Bit 2:1|Bit 0|
 |:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
-|Reserved|Reserved|Reserved|Reserved|Reserved|Direction|Mode[1]|Mode[0]|
+|Reserved|Reserved|Reserved|Reserved|Reserved|Mode[1]|Mode[0]|Direction|
 
 ### Direction codes
 
-|In| Out|
+|In|Out|
 |:-:|:-:|
-|0x0| 0x1|
+|0x0|0x1|
 
 ### Mode codes
-|Push-Pull|Pull-Down|Pull-Up|
-|:-:|:-:|:-:|
-|0x0|0x1|0x2|
+|Floating|Pull-Down|Pull-Up|Push-Pull
+|:-:|:-:|:-:|:-:|
+|0x0|0x1|0x2|0x3|
 
 ###Example
 
@@ -69,6 +69,6 @@ When a edge has triggered this event, the application receives a notification th
 
 |0 (subsystem)|1 (length)|2 (CRC)|3 (command)|4(Index)|
 |:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
-|0x06|0x10|CRC|0x02|Index|
+|0x46|0x10|CRC|0x02|Index|
 
 
