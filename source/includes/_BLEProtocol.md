@@ -32,12 +32,14 @@ Bits#5-0: (Subsystem value)
 ```
 This is the subsystem index, which currently has three modes: 
 
-0. **0x00 debug subsystem** : Information about the device, special modes, etc.
-1. **0x01 motion engine** : Motion data information, orientation, quaternions, trajectories, etc.
-2. **0x02 power management**: Battery information, voltages and other information related to the power management IC
-3. **0x03 ADC)**
-4. **0x04 [Digital IO](_digitalio.md)**
-5. **0x05 [LEDs or indicators](_led.md)**
+0. **0x00 [Debug Subsystem](_debug.md)**: Information about the device, special modes, etc.
+1. **0x01 [Motion Engine](_motion_engine.md)**: Motion data information, orientation, quaternions, trajectories, etc.
+2. **0x02 [Power Management](_power_mgmt.md)**: Battery information, voltages and other information related to the power management IC
+3. **0x03 [Digital IO](_digitalio.md)**: Digital IO on the module
+4. **0x04 [LEDs or indicators](_led.md)**: LEDs (unicolor or RGB, backlights)
+5. **0x05 [Analog to Digital Converters (ADC)](_adc.md)**
+6. **0x06 [Digital to Analog Converters (DAC)](_dac.md)**
+
 
 ###### Byte#1: Data Section Packet Length
 The data format currently is set to a fixed packet length of 20 bytes including both header and data, where the data section is 16 bytes. Hence, this byte is set to the value of 0x10 = 16.
