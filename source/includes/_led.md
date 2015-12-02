@@ -7,7 +7,7 @@ This command is used to change up to 8 LEDs at a time. You specify the amount of
 
 |0 (subsystem)|1 (length)|2 (CRC)|3 (command)|4|5|6|7|8|(...)|18|19|
 |:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
-|0x44|0x10|CRC|0x18|Number of LEDs|Index|Value|Index|Value|(...)|Index|Value|
+|0x44|0x10|CRC|0x01|Number of LEDs|Index|Value|Index|Value|(...)|Index|Value|
 
 
 ## Read LED Value(s)
@@ -17,19 +17,19 @@ This command is used to read the values of up to 8 LEDs at a time. You specify t
 
 |0 (subsystem)|1 (length)|2 (CRC)|3 (command)|4|5|(...)|19|
 |:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
-|0x44|0x10|CRC|0x90|Number of LEDs|Index|(...)|Index|
+|0x44|0x10|CRC|0x02|Number of LEDs|Index|(...)|Index|
 
 **Response**:
 
 |0 (subsystem)|1 (length)|2 (CRC)|3 (command)|4|5|
 |:-:|:-:|:-:|:-:|:-:|:-:|
-|0x04|0x10|CRC|0x90|Number of LEDs|Value|Value|(...)|Value|
+|0x04|0x10|CRC|0x02|Number of LEDs|Value|Value|(...)|Value|
 
 ## LED Configuration
 
 |0 (subsystem)|1 (length)|2 (CRC)|3 (command)|4(Index)|5-19 (config bytes)|
 |:-:|:-:|:-:|:-:|:-:|:-:|
-|0x44|0x10|CRC|0x01|Index|Config TBD|
+|0x44|0x10|CRC|0x03|Index|Config TBD|
 
 ## Examples
 
@@ -41,13 +41,13 @@ Reading the values of LEDs #2, #3, #6, #8.
 
 |0|1|2|3|4|5|6|7|8|
 |:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
-|0x44|0x10|CRC|0x90|0x4|0x2|0x3|0x6|0x8|
+|0x44|0x10|CRC|0x02|0x4|0x2|0x3|0x6|0x8|
 
 **Response**:
 
 |0|1|2|3|4|5|6|7|8|
 |:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
-|0x44|0x10|CRC|0x90|0x4|0xA5|0xFF|0xFF|0x00|
+|0x44|0x10|CRC|0x02|0x4|0xA5|0xFF|0xFF|0x00|
 
 
 ### Changing the luminosity values of 3 different LEDs. 
