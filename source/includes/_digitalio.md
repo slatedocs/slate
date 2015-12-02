@@ -9,7 +9,7 @@ Modify and access the parameters of the Digital I/Os.
 
 |0 (subsystem)|1 (length)|2 (CRC)|3 (command)|4(LED Index)|5(Config)|
 |:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
-|0x43|0x10|CRC|0x01|Index(0-256)|Mode Config|
+|0x43|0x10|CRC|0x01|Index|Mode Config|
 
 ### Mode Config Byte
 
@@ -90,8 +90,8 @@ Configuring pin #5 to output push-pull and setting the I/O value #5 to output **
 
 |Description|0|1|2|3|4|5|
 |:-:|:-:|:-:|:-:|:-:|:-:|:-:|
-|Set Config|0x43|0x10|CRC|0x01|0x5|0x4|
-|Drive Output|0x43|0x10|CRC|0x02|0x5|0x1|
+|Set Config Command|0x43|0x10|CRC|0x01|0x5|0x4|
+|Drive Output Command|0x43|0x10|CRC|0x02|0x5|0x1|
 
 ### Read Value Example
 
@@ -107,8 +107,8 @@ Reading the value of Digital I/O #4
 Make a notification happen when there is an signal transition on pin #7. There is then a notification that a transition has occured on pin #7.
 
 |Description|0|1|2|3|4|5|
-|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
-|Notify Set Command|0x43|0x10|CRC|0x03|0x7|
+|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+|Notify Set Command|0x43|0x10|CRC|0x03|0x7|0x1|
 |Notify Event Response|0x03|0x10|CRC|0x83|0x7|
 
 
