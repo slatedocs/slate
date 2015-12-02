@@ -9,14 +9,14 @@ This subsystem is used to extract information on the Neblina firmware structure 
 Requests the firmware information structure
 
 |Command Data Bytes|
-|--|
+|------------------|
 |Byte 0 : 0x01 (Neblina Module Request ID)|
 |Others : Don't Care (set to all 0)|
 
 The Neblina will respond with the following information regarding its main firmware
 
 |Response Data Bytes|
-|----|
+|-------------------|
 |Byte 0 (returns 0x01 - Neblina ID)|
 |Byte 1 (Protocol API Release): Currently 0x01|
 |Byte 2 (KL26 Version Major): VERS.Major (Should be 0x01 at the moment)|
@@ -33,12 +33,14 @@ The Neblina will respond with the following information regarding its main firmw
 Request bluetooth detail identifiers
 
 |Command Data Bytes|
-|--|
+|------------------|
 |Byte 0: 0x01 (Neblina Identifier)|
 |Don't Care (set to all 0)|
 
+Response from Neblina
+
 |Response Data Bytes|
-|--|
+|--------------------|
 |Byte 0: 0x01 (Neblina Identifier)|
 |Bytes 1-N: TBD According to what Nordic can provide |
 
