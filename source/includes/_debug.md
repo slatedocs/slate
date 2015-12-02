@@ -26,6 +26,6 @@ There is also a single command corresponding to the Debug mode, that is to set t
 | Header: Bytes(0-3) |
 | Data (4-7): RESERVED |
 |Data (8):|
-| * 0x00 MCU receives commands from BLE interface|
-| * 0x01 MCU receives commands from the debug UART interface.|
+| * 0x00 MCU receives commands and responds to them through the BLE interface|
+| * 0x01 MCU receives commands and responds to them through the debug UART interface.|
 
