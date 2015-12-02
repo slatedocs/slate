@@ -3,7 +3,7 @@ Subsystem Number: 0x03
 
 ## Set/Get Config
 
-Modify and access the parameters of the GPIOs.
+Modify and access the parameters of the Digital I/Os.
 
 ### Packet Structure
 
@@ -36,7 +36,7 @@ Setting and getting the GPIO value.
 
 Setting the value of the Digital I/O pin to either '0' or '1'.
 
-|0 (subsystem)|1 (length)|2 (CRC)|3 (command)|4(Index)|5(Value)|
+|0 (subsystem)|1 (length)|2 (CRC)|3 (command)|4(Index)|5(Value[0])|
 |:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
 |0x43|0x10|CRC|0x02|Index|(0/1)|
 
@@ -61,7 +61,7 @@ Response:
 
 ### Notify Set Packet Structure
 
-A packet will be sent when a change in the input signal has been detected.
+A packet will be sent when a change (either edge) in the input signal has been detected.
 
 |0 (subsystem)|1 (length)|2 (CRC)|3 (command)|4(Index)|5(Off/On)|
 |:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
@@ -84,7 +84,7 @@ When a edge has triggered this event, the application receives a notification th
 
 ## Examples
 
-### Example #1
+### Setting Pin Config and Output Value Example
 
 Configuring pin #5 to output push-pull and setting the I/O value #5 to output **1** (need two packets)
 
@@ -93,7 +93,7 @@ Configuring pin #5 to output push-pull and setting the I/O value #5 to output **
 |Set Config|0x43|0x10|CRC|0x01|0x5|0x4|
 |Drive Output|0x43|0x10|CRC|0x02|0x5|0x1|
 
-### Example #2
+### Read Value Example
 
 Reading the value of Digital I/O #4
 
@@ -102,7 +102,7 @@ Reading the value of Digital I/O #4
 |Get Value Command|0x43|0x10|CRC|0x82|0x4|
 |Get Value Response|0x03|0x10|CRC|0x82|0x4|0x1|
 
-### Example #3
+### Event Notification Example
 
 Make a notification happen when there is an signal transition on pin #7. There is then a notification that a transition has occured on pin #7.
 
