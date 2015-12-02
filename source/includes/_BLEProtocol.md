@@ -10,9 +10,9 @@ The transport medium for the packets could be UDP, TCP, Bluetooth LE Characteris
 
 The general format of the packets being transferred between Neblina and the host application is as follows:
 
-| Bytes 0-3      | Bytes 4-254    |
+| Bytes 0-3      | Bytes 4-255 (currently limited to 4-19)    |
 |----------------|----------------|
-| Header Section | Data Section   |
+| Header Section | Data Section (16 bytes in this API)  |
 
 **Limitation**: At this time, the Data Section spans bytes 4-19 (complete packet is maxed at 20 bytes).  The protocol supports larger packets, but for the best use of the BLE MTU, a special effort is made to ensure that no packet exceed 20 bytes.  This allows more efficient transfer of real-time characteristic updates when streaming motion data.
 
