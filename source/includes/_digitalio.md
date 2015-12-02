@@ -9,7 +9,7 @@ Modify and access the parameters of the Digital I/Os.
 
 |0 (subsystem)|1 (length)|2 (CRC)|3 (command)|4(LED Index)|5(Config)|
 |:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
-|0x43|0x10|CRC|0x01|Index(0-256)|Mode Config|
+|0x43|0x10|CRC|0x01|Index|Mode Config|
 
 ### Mode Config Byte
 
