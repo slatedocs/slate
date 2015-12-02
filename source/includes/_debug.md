@@ -16,7 +16,7 @@ at the core of Neblina.
 ### Debug - Set Interface (0x01)
 
 ```c 
-#define DEBUG_SET_INTERFACE 0x01
+#define DEBUG_CMD_SET_INTERFACE 0x01
 ```
 
 There is also a single command corresponding to the Debug mode, that is to set the interface protocol between the host and Neblina. By default, the interface is set to BLE, but we can set the interface to UART as well. Here is the command code for setting the interface:
