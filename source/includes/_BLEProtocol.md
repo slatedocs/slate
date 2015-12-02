@@ -1,7 +1,7 @@
 # Neblina - Data Format
 
 ## General Format
-The general format of the packets being transferred between Neblina and the host applicaion is as follows:
+The general format of the packets being transferred between Neblina and the host application is as follows:
 <!---
 ```c
 Bytes#0-3: Header Section
@@ -11,6 +11,13 @@ Bytes#4-19: Data Section
 | Bytes 0-3      | Bytes 4-19    |
 |----------------|---------------|
 | Header Section | Data Section  |
+
+The **Header Section** is used to route the commands from the application (e.g. an iPhone) to the Neblina module and identify the responses back from Neblina and destined for the application.
+
+Based on the **Header Section** a command will be directed to the appropriate subsystem which can be the radio IC of the Neblina or the motion processor.  In other systems, some commands may be passed on to peripheral devices, so the protocol allows for scalability.  The **Data Section** will vary depending on the subsystem interpreting the command.
+
+For example, commands destined to the Motion Engine subsystem will have a header with 0x01 in the subsystem value.
+
 ### Header Section
 The header section consists of four bytes.
 
@@ -32,18 +39,38 @@ Bits#5-0: (Subsystem value)
 ```
 This is the subsystem index, which currently has three modes: 
 
-0. **0x00 debug subsystem** : Information about the device, special modes, etc.
-1. **0x01 motion engine** : Motion data information, orientation, quaternions, trajectories, etc.
-2. **0x02 power management**: Battery information, voltages and other information related to the power management IC
-3. **0x03 ADC)**
-4. **0x04 [Digital IO](_digitalio.md)**
-5. **0x05 [LEDs or indicators](_led.md)**
+0. **0x00 [Debug Subsystem](_debug.md)**: Information about the device, special modes, etc.
+1. **0x01 [Motion Engine](_motion_engine.md)**: Motion data information, orientation, quaternions, trajectories, etc.
+2. **0x02 [Power Management](_powermanagement.md)**: Battery information, voltages and other information related to the power management IC
+3. **0x03 [Digital IO](_digitalio.md)**: Digital IO on the module
+4. **0x04 [LEDs or indicators](_led.md)**: LEDs (unicolor or RGB, backlights)
+5. **0x05 [Analog to Digital Converters (ADC)](_adc.md)**
+6. **0x06 [Digital to Analog Converters (DAC)](_dac.md)**
 
 ###### Byte#1: Data Section Packet Length
-The data format currently is set to a fixed packet length of 20 bytes including both header and data, where the data section is 16 bytes. Hence, this byte is set to the value of 0x10 = 16.
+
+In this version of the API, the data format currently is set to a fixed packet length of 20 bytes including both header and data, where the data section is 16 bytes. Hence, this byte is set to the value of 0x10 = 16.  Bytes that are not used by subsystems commands and responses should be padded with zeros when the packets are created.  When packet are interpreted, no assumptions should be made on the content of the packet outside of their defined bytes fields.
+
+Note that this fixed length attribute of the packets may change in future APIs.
 
 ###### Byte#2: CRC
-The 8-bit CRC is calculated over the data section of the packet.
+The 8-bit CRC is calculated over the data section of the packet.  The polynomial is initialized to 0x00.  
+
+```C
+crc = 0;
+for (i = 0; i < Len; i++)
+{
+    e = crc ^ pData[i];
+    f = e ^ (e >> 4) ^ (e >> 7);
+    crc = (f << 1) ^ (f << 4);
+}
+```    
+
+The calculations are done as follow:
+
+To create the packet, the CRC byte is set to 0xFF.  Then the CRC computation is performed on the complete packet (based on the length information), including the header.  The CRC byte is then replaced with the computed value.
+
+To validate the CRC, the code first takes a copy of the CRC byte then set it to 0xFF.  It calculates the CRC as for transmission and then compares the calculated CRC against the copied data.
 
 ###### Byte#3: Command
 Different commands can be issued identified by this field. For the power management subsystem, currently there is only one command as follows:
@@ -78,10 +105,7 @@ Regarding the motion engine subsystem a number of commands exist, which are list
 
 ### Data Section
 The data section consists of 16 bytes. The first 4 bytes (Byte 4-7) refer to the timestamp, which is only valid for response packets from Neblina. Hence, for all the commands being sent from the host to Neblina, these four bytes are reserved. The next 12 bytes (Byte 8-19) in the data section could be representing different values depending on the subsystem and the command fields.
-#### Power Management Data Section
-Regarding the power management's single command, the data consists of only 2 valid bytes (Byte#8-9), representing the percentage of the battery level with one decimal fractional digit precision, i.e., an unsigned integer within the range of [0, 1000]:
-###### Byte#8: battery level (%), Least Significant Byte (LSB)
-###### Byte#9: battery level (%), Most Significant Byte (MSB)
+
 #### Debug Data Section
 Regarding the debug mode's single command, i.e., to set the interface protocol, the data consists of only 1 valid byte (Byte 8). If the byte is set to 0 (default value), it means that the interface should be set to BLE, while (Byte#8 = 1) indicates that the interface should be set to UART.
 #### Motion Engine Data Section
