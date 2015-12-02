@@ -47,9 +47,11 @@ This is the subsystem index, which currently has three modes:
 5. **0x05 [Analog to Digital Converters (ADC)](_adc.md)**
 6. **0x06 [Digital to Analog Converters (DAC)](_dac.md)**
 
-
 ###### Byte#1: Data Section Packet Length
-The data format currently is set to a fixed packet length of 20 bytes including both header and data, where the data section is 16 bytes. Hence, this byte is set to the value of 0x10 = 16.
+
+In this version of the API, the data format currently is set to a fixed packet length of 20 bytes including both header and data, where the data section is 16 bytes. Hence, this byte is set to the value of 0x10 = 16.  Bytes that are not used by subsystems commands and responses should be padded with zeros when the packets are created.  When packet are interpreted, no assumptions should be made on the content of the packet outside of their defined bytes fields.
+
+Note that this fixed length attribute of the packets may change in future APIs.
 
 ###### Byte#2: CRC
 The 8-bit CRC is calculated over the data section of the packet.  The polynomial is initialized to 0x00.  
