@@ -22,12 +22,11 @@ Regarding the motion engine subsystem a number of commands exist, which are list
 #define FlashRecordStartStop 0x0F //start/stop a recording session
 #define FlashPlaybackStartStop 0x10 //start/stop playing back from the recorder
 ```
+Note that the above commands are placed within the header section of the packet in Byte#3.
 
 ## Data Section
 The data section consists of 16 bytes. The first 4 bytes (Byte 4-7) refer to the timestamp, which is only valid for response packets from Neblina. Hence, for all the commands being sent from the host to Neblina, these four bytes are reserved. The next 12 bytes (Byte 8-19) in the data section could be representing different values depending on the subsystem and the command fields.
 
-### Debug Data Section
-Regarding the debug mode's single command, i.e., to set the interface protocol, the data consists of only 1 valid byte (Byte 8). If the byte is set to 0 (default value), it means that the interface should be set to BLE, while (Byte#8 = 1) indicates that the interface should be set to UART.
 ### Motion Engine Data Section
 The data section regarding the motion engine has different representations based on the command, which are explained next.
 #### Downsample Command
@@ -73,7 +72,7 @@ typedef struct { //6-axis data type - 12 bytes
 } IMU6AxisRaw_t;
 ```
 where "AxesRaw_t" is the 3-axis raw data type, and "IMU6AxisRaw_t" is the overall 6-axis IMU data type. Each axis will be a 16-bit signed integer number cast in little endian (least significant byte first). The range of the sensor readings are as follows:
-Accelerometer: ±2g, Gyroscope: ±2000 dps.
+Accelerometer: Â±2g, Gyroscope: Â±2000 dps.
 
 The whole response packet structure including header is shown below:
 
@@ -156,7 +155,7 @@ int16_t y;
 int16_t z;
 }Fext_Vec16_t;
 ```
-The accelerometer data captures the total force vector applied to the device including gravity. The x, y, z components of the external force vector are defined in the reference Earth frame (not the sensor body frame). This means that regardless of the device’s orientation, this force vector aligns with the fixed reference Earth frame and can be used for position tracking, etc. The external force components, x, y, z are 16-bit signed integer numbers covering the range of [-1g,1g]. This is due to the fact that the accelerometer data range is set to [-2g,2g], while the gravity vector is (0,0,1g). The 16-bit signed integer numbers are packed into bytes in little endian format.
+The accelerometer data captures the total force vector applied to the device including gravity. The x, y, z components of the external force vector are defined in the reference Earth frame (not the sensor body frame). This means that regardless of the deviceÂ’s orientation, this force vector aligns with the fixed reference Earth frame and can be used for position tracking, etc. The external force components, x, y, z are 16-bit signed integer numbers covering the range of [-1g,1g]. This is due to the fact that the accelerometer data range is set to [-2g,2g], while the gravity vector is (0,0,1g). The 16-bit signed integer numbers are packed into bytes in little endian format.
 
 The whole response packet structure including header is shown below:
 
@@ -215,7 +214,7 @@ In the command mode, the packet enables/disables the streaming of the 3-axis mag
 |:------------------:|:---------------:|:------------:|:-----------------:|:------:|:--------------:|------------|
 |        0x41        |       0x10      |      CRC     |  0x0C (MAG_Data)  |Reserved| Enable/Disable |  Reserved  |
 
-In the response mode, the data section includes 4 bytes for the timestamp (Byte#4-7), which is then followed by 2*6 bytes (Byte#8-19) with the "AxesRaw_t" data structure defined before in the IMU_Data Command section. The first 6 bytes (Byte#8-13) will be a "AxesRaw_t" data structure for magnetometers, and the next 6 bytes (Byte#14-19) will be another "AxesRaw_t" data structure for accelerometer data. All the bytes are packed in little endian format. Note that the magnetoneter reading in each axis is a 16-bit signed integer representing the range: ±4 gauss.
+In the response mode, the data section includes 4 bytes for the timestamp (Byte#4-7), which is then followed by 2*6 bytes (Byte#8-19) with the "AxesRaw_t" data structure defined before in the IMU_Data Command section. The first 6 bytes (Byte#8-13) will be a "AxesRaw_t" data structure for magnetometers, and the next 6 bytes (Byte#14-19) will be another "AxesRaw_t" data structure for accelerometer data. All the bytes are packed in little endian format. Note that the magnetoneter reading in each axis is a 16-bit signed integer representing the range: Â±4 gauss.
 
 The whole response packet structure including header is shown below:
 
