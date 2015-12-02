@@ -60,6 +60,8 @@ This is the subsystem identifier:
 4. **0x04 [LEDs or indicators](_led.md)**: LEDs (unicolor or RGB, backlights)
 5. **0x05 [Analog to Digital Converters (ADC)](_adc.md)**
 6. **0x06 [Digital to Analog Converters (DAC)](_dac.md)**
+7. **0x07 [I2C Subsystem](_i2c.md)**
+8. **0x08 [SPI Subsystem](_spi.md)**
 
 #### Byte 1: Data Section Packet Length
 
