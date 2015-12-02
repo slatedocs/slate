@@ -40,7 +40,7 @@ Bits#5-0: (Subsystem value)
 This is the subsystem index, which currently has three modes: 
 
 0. **0x00 [Debug Subsystem](_debug.md)**: Information about the device, special modes, etc.
-1. **0x01 [Motion Engine](_motion_engine.md)**: Motion data information, orientation, quaternions, trajectories, etc.
+1. **0x01 [Motion Engine](_motionenginepackets.md)**: Motion data information, orientation, quaternions, trajectories, etc.
 2. **0x02 [Power Management](_powermanagement.md)**: Battery information, voltages and other information related to the power management IC
 3. **0x03 [Digital IO](_digitalio.md)**: Digital IO on the module
 4. **0x04 [LEDs or indicators](_led.md)**: LEDs (unicolor or RGB, backlights)
