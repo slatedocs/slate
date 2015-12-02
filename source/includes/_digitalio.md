@@ -107,8 +107,8 @@ Reading the value of Digital I/O #4
 Make a notification happen when there is an signal transition on pin #7. There is then a notification that a transition has occured on pin #7.
 
 |Description|0|1|2|3|4|5|
-|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
-|Notify Set Command|0x43|0x10|CRC|0x03|0x7|
+|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+|Notify Set Command|0x43|0x10|CRC|0x03|0x7|0x1|
 |Notify Event Response|0x03|0x10|CRC|0x83|0x7|
 
 
