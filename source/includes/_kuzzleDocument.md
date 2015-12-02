@@ -22,6 +22,17 @@ var document = kuzzle
   .documentFactory('id', {content: 'some content'});
 ```
 
+```java
+KuzzleDocument document = new KuzzleDocument(collection);
+
+KuzzleDocument document = new KuzzleDocument(collection, "id");
+
+JSONObject content = new JSONObject();
+content.put("content", "some content");
+KuzzleDocument document = new KuzzleDocument(collection, content);
+
+KuzzleDocument document = new KuzzleDocument(collection, "id", content);
+```
 
 #### KuzzleDocument(KuzzleDataCollection)
 
@@ -69,6 +80,20 @@ document.deletePromise().then(result => {
 });
 ```
 
+```java
+document.delete(new ResponseListener() {
+    @Override
+    public void onSuccess(JSONObject object) throws Exception {
+      // called once the delete action has been completed
+    }
+
+    @Override
+    public void onError(JSONObject error) throws Exception {
+      // Handle error
+    }
+});
+```
+
 > Return this KuzzleDocument object
 
 Deletes this document in Kuzzle.
@@ -90,6 +115,10 @@ Available options:
 ## publish
 
 ```js
+document.publish();
+```
+
+```java
 document.publish();
 ```
 
@@ -120,6 +149,20 @@ document.refresh(function (error, result) {
 // Using promises (NodeJS)
 document.refreshPromise().then(result => {
   // called once the refresh action has been completed
+});
+```
+
+```java
+document.refresh(new ResponseListener() {
+    @Override
+    public void onSuccess(JSONObject object) throws Exception {
+      // called once the refresh action has been completed
+    }
+
+    @Override
+    public void onError(JSONObject error) throws Exception {
+      // Handle error
+    }
 });
 ```
 
@@ -154,6 +197,20 @@ document.savePromise().then(result => {
 });
 ```
 
+```java
+document.save(new ResponseListener() {
+    @Override
+    public void onSuccess(JSONObject object) throws Exception {
+      // called once the save action has been completed
+    }
+
+    @Override
+    public void onError(JSONObject error) throws Exception {
+      // Handle error
+    }
+});
+```
+
 > Return the updated version of this KuzzleDocument object
 
 Saves this document into Kuzzle.
@@ -181,6 +238,16 @@ Available options:
 document.setContent({newContent: 'someValue'}, true);
 ```
 
+```java
+JSONObject content = new JSONObject();
+content.put("content", "some content");
+document.setContent(content, true);
+
+document.setContent("content", "some content");
+
+document.setContent(content);
+```
+
 <aside class="notice">
 Changes made by this function won't be applied until the <code>save</code> method is called
 </aside>
@@ -202,6 +269,12 @@ Replaces the current content with new data.
 
 ```js
 document.setHeaders({someContent: 'someValue'}, true);
+```
+
+```java
+JSONObject headers = new JSONObject();
+headers.put("someContent", "someValue");
+document.setHeaders(headers, true);
 ```
 
 > Returns itself
@@ -231,6 +304,20 @@ var room = document.subscribe(
   function (error, notification) {
     // called each time a change occurs on this document
   });
+```
+
+```java
+KuzzleRoom room = document.subscribe(new ResponseListener() {
+    @Override
+    public void onSuccess(JSONObject object) throws Exception {
+      // called each time a change occurs on this document
+    }
+
+    @Override
+    public void onError(JSONObject error) throws Exception {
+      // Handle error
+    }
+});
 ```
 
 > Return a KuzzleRoom object
