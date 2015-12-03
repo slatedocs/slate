@@ -21,7 +21,7 @@ Regarding the motion engine subsystem a number of commands exist, which are list
 #define FlashEraseAll 0x0E //erasing the on-chip recorder
 #define FlashRecordStartStop 0x0F //start/stop a recording session
 #define FlashPlaybackStartStop 0x10 //start/stop playing back from the recorder
-#define LockHeadingRef 0x11 //locks the magnetometer data to the reference 0 degrees heading angle
+#define LockHeadingRef 0x11 //locks the current magnetometer data to the reference 0 degrees heading angle
 ```
 Note that the above commands are placed within the header section of the packet in Byte#3.
 
