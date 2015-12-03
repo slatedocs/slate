@@ -28,6 +28,10 @@ We don't currently support JSONP.
 
 # Changelog
 
+### Version 1.0.4 (2015-12-03)
+
+- Fixed typo in GET /v1/search example
+
 ### Version 1.0.3 (2015-07-09)
 
 - Added `region_code` and `domain` to available fields for filtering

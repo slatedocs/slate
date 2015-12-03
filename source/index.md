@@ -244,7 +244,7 @@ time_period | Filters articles published within the last `{time_period}` hours. 
 > Get the top trending content published talking about `Tom Cruise`, in the last 24 hours.
 
 ``` shell
-curl "https://api.newswhip.com/v1/search?q=Tom%20Cruise?key=YOUR_API_KEY"
+curl "https://api.newswhip.com/v1/search?q=Tom%20Cruise&key=YOUR_API_KEY"
 ```
 
 ``` php
@@ -253,7 +253,7 @@ require 'vendor/autoload.php';
 use GuzzleHttp\Client;
 
 $client = new Client();
-$response = $client->get('https://api.newswhip.com/v1/search?q=Tom%20Cruise?key=YOUR_API_KEY', []);
+$response = $client->get('https://api.newswhip.com/v1/search?q=Tom%20Cruise&key=YOUR_API_KEY', []);
 echo $response->getBody();
 ?> 
 ```
