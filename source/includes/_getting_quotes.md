@@ -4,9 +4,6 @@ The quoting API does not require you to include your Sendle ID and API Key, but 
 
 <aside class="notice">With curl, the add-on <code>-H 'Content-Type: application/json'</code> adds <code>JSON</code> formatting for the request. If you use a method besides <strong>curl</strong>, be sure to include <strong>json</strong> formatting in the request header.</aside>
 
-
-### Parcel Quote Requirements
-
 > [GET /api/quote]
 
 ```shell
@@ -75,17 +72,19 @@ curl 'https://www.sendle.com/api/quote'
   }
 ```
 
+For information on GET & POST requests, The Treehouse <a href="http://blog.teamtreehouse.com/the-definitive-guide-to-get-vs-post">blog has a nice write up</a>. The <strong>?</strong> after the quote endpoint initiates the query. Separate terms using <strong>[name]=[value]</strong> pairs in your request like the example (right).
 
+### Parcel Quote Requirements
 
-| Field | Attributes |
+| name | Attributes |
 |------:|:-----------|
-| **pickup_suburb** | Suburb must be real and match pickup postcode.
-| **pickup_postcode** | Four digit post code for the pickup address.
-| **delivery_suburb** | Suburb must be real and match delivery postcode.
-| **delivery_postcode** | Four digit post code for the delivery address.
-| **kilogram_weight** | Must be a decimal value above zero and below weight limits.  Max weight is 25 kilos.
-| **cubic_metre_volume** | This value must be decimal above zero and less than one.  To determine this measurement multiply *length* x *width* x *depth* of the parcel **in metres**.
-| **plan_name** | If specified, the API will respond with a quote for the given plan. If left out, the API will give quotes for all available plans.  Current available plans are **Standard** and **Premium**.
+**pickup_suburb** | Suburb must be real and match pickup postcode.
+**pickup_postcode** | Four digit post code for the pickup address.
+**delivery_suburb** | Suburb must be real and match delivery postcode.
+**delivery_postcode** | Four digit post code for the delivery address.
+**kilogram_weight** | Must be a decimal value above zero and below weight limits.  Max weight is 25 kilos.
+**cubic_metre_volume** | This value must be decimal above zero and less than one.  To determine this measurement multiply *length* x *width* x *depth* of the parcel **in metres**.
+**plan_name** | If specified, the API will respond with a quote for the given plan. If left out, the API will give quotes for all available plans.  Current available plans are **Standard** and **Premium**.
 
 > Request with `plan_name`
 
@@ -119,4 +118,3 @@ curl 'https://www.sendle.com/api/quote'
 ```
 
 <aside class='warning'>To find out more about <strong>error messages</strong>, be sure to read up on the <a href="#errors">errors</a> to help you get to better results.</aside>
-
