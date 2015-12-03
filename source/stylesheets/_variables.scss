@@ -35,10 +35,12 @@ $lang-select-bg: #222;
 $lang-select-active-bg: $examples-bg; // feel free to change this to blue or something
 $lang-select-pressed-bg: #111; // color of language tab bg when mouse is pressed
 $main-bg: #fff;
-$aside-text-color: #fff;    // originals colors -> SENDLE colors!
-$aside-notice-bg: #67CDCC;  // #87b5ce;
-$aside-warning-bg: #E44144; // #E44144;
-$aside-success-bg: #FF6800; // #6ac174;
+$aside-text-color: #fff;
+
+                  // Sendle Colors //originals colors
+$aside-notice-bg:  #5BBCD1;        // #87b5ce;
+$aside-warning-bg: #E44144;        // #E44144;
+$aside-success-bg: #FB953F;        // #6ac174;
 $search-notice-bg: #c97a7e;
 
 
@@ -50,7 +52,7 @@ $nav-active-text: #eee;
 $lang-select-text: #fff; // color of unselected language tab text
 $lang-select-active-text: #fff; // color of selected language tab text
 $lang-select-pressed-text: #fff; // color of language tab text when mouse is pressed
-$link-color: #00bbe3;
+$link-color: #1747fa;  // #00bbe3;
 
 
 // SIZES
