@@ -21,6 +21,7 @@ Regarding the motion engine subsystem a number of commands exist, which are list
 #define FlashEraseAll 0x0E //erasing the on-chip recorder
 #define FlashRecordStartStop 0x0F //start/stop a recording session
 #define FlashPlaybackStartStop 0x10 //start/stop playing back from the recorder
+#define LockHeadingRef 0x11 //locks the current magnetometer readings and the heading information to the reference 0 degrees
 ```
 Note that the above commands are placed within the header section of the packet in Byte#3.
 
@@ -281,3 +282,9 @@ If the playback is successful, whenever we reach the end of the session, where t
 |:------:|:---------------:|:----:|:------------------:|:------:|:----------------:|:----------:|
 |  0x01  |       0x10      | CRC  |0x10 (FlashPlayback)|Reserved|0 (session closed)|  Reserved  |
 
+#### LockHeadingRef Command
+Neblina provides the option to lock magnetometer readings to represent the 0 degrees reference heading. When this command is issued, Neblina will wait until the device is positioned on either a horizontal or vertical plane and then the current magnetometer readings will be locked to the zero degrees heading. Therefore, whenever the device points back to the same direction, Neblina will provide correction for the heading angle to reach the reference 0 degrees. The correction is adaptive meaning that if the deviation of the heading angle caused by the Gyroscopes' drift is high enough at the reference heading angle, the correction will be aggressive. However, if the heading info is close to the zero degrees (<15 degrees), the correction will apply smoothly. The full command packet has the following structure:
+
+|Byte 0 (subsystem)|Byte 1 (length)|Byte 2|  Byte 3 (command)   |Byte 4-19 |
+|:----------------:|:-------------:|:----:|:-------------------:|:--------:|
+|       0x01       |      0x10     | CRC  |0x11 (LockHeadingRef)| Reserved |
