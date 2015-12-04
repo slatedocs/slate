@@ -205,7 +205,7 @@ Be sure to check the error messages as the server response will explain why the 
 
 *Invalid Endpoint*
 
-As an example, sending a request to `https://sendle-staging.herokuapp.com/api/` will yield a `500` error because the `/api/` is not a valid. If you send requests at a valid endpoint and receive a `500` error there is a server-side problem. If the later, Sendle will address the problem as soon as possible.
+As an example, sending a request to `https://sendle.com/api/` will yield a `500` error because the url is invalid. If you send requests at a valid endpoint and receive a `500` error there is a server-side problem. If the later, Sendle will address the problem as soon as possible.
 
 
 ## 503 Internal Server Error
