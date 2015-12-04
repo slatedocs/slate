@@ -52,7 +52,7 @@ $nav-active-text: #eee;
 $lang-select-text: #fff; // color of unselected language tab text
 $lang-select-active-text: #fff; // color of selected language tab text
 $lang-select-pressed-text: #fff; // color of language tab text when mouse is pressed
-$link-color: #1747fa;  // #00bbe3;
+$link-color: #2B8FF5;  // #00bbe3;
 
 
 // SIZES
@@ -124,4 +124,9 @@ $search-box-border-color: #666;
 
 .optional {
   color: #939da3; // grey
+}
+
+.content aside a {
+  color: #fff;
+  text-decoration: underline;
 }
