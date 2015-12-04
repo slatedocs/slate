@@ -79,15 +79,16 @@ PLACA                       | `09`
 
 ## Totales
 
-Totales del comprobante.
+Totales de la factura.
 
 Parámetro           | Tipo                    | Descripción
 ------------------- | ----------------------- |-----------
-total_sin_impuestos | float | Total antes de los impuestos.
-descuento           | float | Suma de los descuentos de cada ítem.
-propina             | float | Propina total, llamado también servicio.
-importe_total       | float | Total incluyendo impuestos.
-impuestos           | listado de objetos [total impuesto](#impuesto-total) | Listado de impuesto totalizados.
+total_sin_impuestos | float | Total antes de los impuestos. __Requerido__
+descuento_adicional | float | Descuento aplicado al subtotal de la factura.
+descuento           | float | Suma de los descuentos de cada ítem y del descuento adicional. __Requerido__
+propina             | float | Propina total, llamado también servicio. __Requerido__
+importe_total       | float | Total incluyendo impuestos. __Requerido__
+impuestos           | listado de objetos [total impuesto](#impuesto-total) | Listado de impuesto totalizados. __Requerido__
 
 ### Impuesto total
 
