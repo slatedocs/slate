@@ -79,7 +79,7 @@ curl "http://api.dirble.com/v2/stations?token={your token}"
     },
     "created_at": "2012-01-15T05:55:12.000+01:00",
     "updated_at": "2015-04-11T14:10:45.000+02:00",
-    "slug": "sr-p3",
+    "slug": "sr-p3"
   },
   {
     "id": 11,
@@ -95,7 +95,7 @@ curl "http://api.dirble.com/v2/stations?token={your token}"
     },
     "created_at": "2012-01-15T05:56:48.000+01:00",
     "updated_at": "2015-04-11T14:10:45.000+02:00",
-    "slug": "digitally-imported-hardcore",
+    "slug": "digitally-imported-hardcore"
   },
   ...
 ]
@@ -145,7 +145,7 @@ curl "http://api.dirble.com/v2/station/10?token={your token}"
       "stream": "http://http-live.sr.se/p3-mp3-192",
       "bitrate": 0,
       "content_type": "?",
-      "status": 1,
+      "status": 1
     }
   ],
   "categories": [
@@ -154,7 +154,7 @@ curl "http://api.dirble.com/v2/station/10?token={your token}"
       "title": "Top 40",
       "description": "",
       "slug": "top-40",
-      "ancestry": "5",
+      "ancestry": "5"
     }
   ]
 }
@@ -173,6 +173,34 @@ This endpoint retrieves a specific station.
 Parameter | Description
 --------- | -----------
 ID | The ID of the station to retrieve
+
+## Create a Station
+
+```shell
+curl -X POST -H "Content-Type: application/json" -d '{"name": "WQUL 97.7 FM Marion, IL", "description": "97.7 The Bear - The Classic Rock Station", "categories": [{"category":"Rock"}], "streams": [{"stream":"http://a1577.l1989746511.c19897.g.lm.akamaistream.net/D/1577/19897/v0001/reflector:46511?MSWMExt=.asf"}], "country": "United States"}' 'http://api.dirble.com/v2/station/?token={your token}'
+```
+
+This endpoint creates a Station
+
+### HTTP Request
+
+`POST http://api.dirble.com/v2/station/?token={your token}`
+
+### Post Parameters
+
+Parameter | Required | Description
+----------|----------|------------
+name | Yes | Station name
+Description | No | Description about station
+website | No | URL to station website (starts with http://)
+country | Yes | Country name or code
+streams | Yes | array ([{"stream":"{stream url}"}]) of streams urls
+categories| Yes | array ([{"category":"{category id or title}"}]) of categories, can be ID or title
+
+### Error messages
+It will give errors if the required parameters are wrong.
+It will also give 400 if country or category couldn't be found on the data you sent in.
+
 
 ## Get Similar Stations
 
@@ -198,7 +226,7 @@ curl "http://api.dirble.com/v2/station/10/similar?token={your token}"
     },
     "created_at": "2012-03-28T21:28:20.000+02:00",
     "updated_at": "2015-04-11T14:11:00.000+02:00",
-    "slug": "sr-p2",
+    "slug": "sr-p2"
   },
   {
     "id": 601,
@@ -214,7 +242,7 @@ curl "http://api.dirble.com/v2/station/10/similar?token={your token}"
     },
     "created_at": "2013-06-22T04:37:19.000+02:00",
     "updated_at": "2015-04-11T14:11:22.000+02:00",
-    "slug": "nrk-p3",
+    "slug": "nrk-p3"
   },
   ...
 ]
@@ -295,21 +323,21 @@ curl "http://api.dirble.com/v2/categories?token={your token}"
     "title": "Trance",
     "description": "stations that plays commercial and other things in trance-music genre.",
     "slug": "trance",
-    "ancestry": "14",
+    "ancestry": "14"
   },
   {
     "id": 2,
     "title": "Rock",
     "description": "simple rock. from elvis to metallica and like hardrock as iron maiden.",
     "slug": "rock",
-    "ancestry": null,
+    "ancestry": null
   },
   {
     "id": 3,
     "title": "Dance",
     "description": "dance music, the new from 80's and 90's, like bubblegum and more.",
     "slug": "dance",
-    "ancestry": "14",
+    "ancestry": "14"
   },
   ...
 ]
@@ -340,21 +368,21 @@ curl "http://api.dirble.com/v2/categories/primary?token={your token}"
     "title": "Classical",
     "description": "Classical music such as Mozart and Beethoven but also Greig and others.",
     "slug": "classical",
-    "ancestry": null,
+    "ancestry": null
   },
   {
     "id": 49,
     "title": "Country",
     "description": "",
     "slug": "country",
-    "ancestry": null,
+    "ancestry": null
   },
   {
     "id": 40,
     "title": "Decades",
     "description": "",
     "slug": "decades",
-    "ancestry": null,
+    "ancestry": null
   },
   ...
 ]
@@ -385,14 +413,14 @@ curl "http://api.dirble.com/v2/category/11/childs?token={your token}"
     "title": "Baroque",
     "description": "",
     "slug": "baroque",
-    "ancestry": "11",
+    "ancestry": "11"
   },
   {
     "id": 26,
     "title": "Classical period music",
     "description": "",
     "slug": "classical-period-music",
-    "ancestry": "11",
+    "ancestry": "11"
   }
 ]
 ```
@@ -542,7 +570,7 @@ curl "http://api.dirble.com/v2/category/11/stations?token={your token}"
         "stream": "http://kmr.iad.streamguys1.com:80/symphony",
         "bitrate": 60,
         "content_type": "audio/mpeg",
-        "status": 1,
+        "status": 1
       }
     ],
     "categories": [
@@ -584,7 +612,7 @@ curl "http://api.dirble.com/v2/category/11/stations?token={your token}"
         "stream": "http://77.92.64.44:8398/stream",
         "bitrate": 64,
         "content_type": "audio/mpeg",
-        "status": 1,
+        "status": 1
       }
     ],
     "categories": [
@@ -624,14 +652,14 @@ curl "http://api.dirble.com/v2/category/11/stations?token={your token}"
         "title": "Classical",
         "description": "Classical music such as Mozart and Beethoven but also Greig and others.",
         "slug": "classical",
-        "ancestry": null,
+        "ancestry": null
       },
       {
         "id": 49,
         "title": "Country",
         "description": "",
         "slug": "country",
-        "ancestry": null,
+        "ancestry": null
       }
     ]
   },
@@ -657,7 +685,7 @@ curl "http://api.dirble.com/v2/category/11/stations?token={your token}"
         "stream": "http://classicandjazz.ice.infomaniak.ch:80/classicandjazz-128.mp3",
         "bitrate": 128,
         "content_type": "audio/mpeg",
-        "status": 1,
+        "status": 1
       }
     ],
     "categories": [
@@ -666,14 +694,14 @@ curl "http://api.dirble.com/v2/category/11/stations?token={your token}"
         "title": "Classical",
         "description": "Classical music such as Mozart and Beethoven but also Greig and others.",
         "slug": "classical",
-        "ancestry": null,
+        "ancestry": null
       },
       {
         "id": 12,
         "title": "Jazz",
         "description": "The classical music - Jazz.",
         "slug": "jazz",
-        "ancestry": null,
+        "ancestry": null
       }
     ]
   },
@@ -872,15 +900,15 @@ curl "http://api.dirble.com/v2/countries?token={your token}"
 [
   {
     "country_code": "DZ",
-    "Continent_id": 3,
+    "Continent_id": 3
   },
   {
     "country_code": "AO",
-    "Continent_id": 3,
+    "Continent_id": 3
   },
   {
     "country_code": "BJ",
-    "Continent_id": 3,
+    "Continent_id": 3
   },
   ...
 ]
@@ -896,6 +924,7 @@ This endpoint retrieves all countries.
 
 None parameters
 
+
 ## Get All Continents
 
 ```shell
@@ -909,32 +938,32 @@ curl "http://api.dirble.com/v2/continents?token={your token}"
   {
     "id": 1,
     "name": "Europe",
-    "slug": "europe",
+    "slug": "europe"
   },
   {
     "id": 2,
     "name": "Asia",
-    "slug": "asia",
+    "slug": "asia"
   },
   {
     "id": 3,
     "name": "Africa",
-    "slug": "africa",
+    "slug": "africa"
   },
   {
     "id": 4,
     "name": "North America",
-    "slug": "north-america",
+    "slug": "north-america"
   },
   {
     "id": 5,
     "name": "Oceania",
-    "slug": "oceania",
+    "slug": "oceania"
   },
   {
     "id": 6,
     "name": "South Amerika",
-    "slug": "south-amerika",
+    "slug": "south-amerika"
   }
 ]
 ```
@@ -961,23 +990,23 @@ curl "http://api.dirble.com/v2/continents/1/countries?token={your token}"
 [
   {
     "country_code": "AL",
-    "Continent_id": 1,
+    "Continent_id": 1
   },
   {
     "country_code": "AD",
-    "Continent_id": 1,
+    "Continent_id": 1
   },
   {
     "country_code": "AM",
-    "Continent_id": 1,
+    "Continent_id": 1
   },
   {
     "country_code": "AT",
-    "Continent_id": 1,
+    "Continent_id": 1
   },
   {
     "country_code": "BY",
-    "Continent_id": 1,
+    "Continent_id": 1
   },
   ...
 ]
