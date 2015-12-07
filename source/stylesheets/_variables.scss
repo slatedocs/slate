@@ -36,9 +36,11 @@ $lang-select-active-bg: $examples-bg; // feel free to change this to blue or som
 $lang-select-pressed-bg: #111; // color of language tab bg when mouse is pressed
 $main-bg: #fff;
 $aside-text-color: #fff;
-$aside-notice-bg: #87b5ce;
-$aside-warning-bg: #e44144;
-$aside-success-bg: #6ac174;
+
+                  // Sendle Colors //originals colors
+$aside-notice-bg:  #5BBCD1;        // #87b5ce;
+$aside-warning-bg: #E44144;        // #E44144;
+$aside-success-bg: #FB953F;        // #6ac174;
 $search-notice-bg: #c97a7e;
 
 
@@ -50,13 +52,13 @@ $nav-active-text: #eee;
 $lang-select-text: #fff; // color of unselected language tab text
 $lang-select-active-text: #fff; // color of selected language tab text
 $lang-select-pressed-text: #fff; // color of language tab text when mouse is pressed
-$link-color: #00bbe3;
+$link-color: #2B8FF5;  // #00bbe3;
 
 
 // SIZES
 ////////////////////
 $nav-width: 230px; // width of the navbar
-$examples-width: 50%; // portion of the screen taken up by code examples
+$examples-width: 45%; // portion of the screen taken up by code examples
 $logo-margin: 20px; // margin between nav items and logo, ignored if search is active
 $main-padding: 28px; // padding to left and right of content & examples
 $nav-padding: 15px; // padding to left and right of navbar
@@ -109,4 +111,26 @@ $search-box-border-color: #666;
      word-break: break-word;
 
         hyphens: auto;
+}
+
+//////////////////////////////
+// CUSTOM
+////////////////////////////
+// For Sendle-Docs
+
+.prettyprint {
+  color: #b93d6a; // red
+}
+
+.optional {
+  color: #939da3; // grey
+}
+
+.content aside a {
+  color: #fff;
+  text-decoration: underline;
+}
+
+.phone-numbers {
+  white-space: nowrap;
 }

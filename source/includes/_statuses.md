@@ -11,13 +11,13 @@
 
 ### States
 
-Sendle uses a handful of terms to describe an order's state
+Sendle uses a handful of terms to describe an order's state within the shipment process. These mirror the states used in Sendle Dashboard.
 
 State | Description
 ------|------
-Payment | An order is in the payment process.
-Pickup | Booking has been consigned and Courier is scheduled to pick up the parcel.
-In Transit | Parcel is in transit.
-Delivered | Parcel has been successfully delivered.
-Cancelled | A cancelled order.
+**Payment** | An order is in the payment process.
+**Pickup** | Booking has been consigned and Courier is scheduled to pick up the parcel.
+**In Transit** | Parcel is in transit.
+**Delivered** | Parcel has been successfully delivered.
+**Cancelled** | A cancelled order.
 
