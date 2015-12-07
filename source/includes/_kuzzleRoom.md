@@ -31,6 +31,14 @@ var room = kuzzle
   .roomFactory({subscribeToSelf: true, listenToConnections: false});
 ```
 
+```java
+KuzzleRoom room = new KuzzleRoom(dataCollection);
+
+KuzzleRoomOptions options = new KuzzleRoomOptions();
+options.setListeningToConnections(true);
+KuzzleRoom room = new KuzzleRoom(dataCollection, options);
+```
+
 
 Creates a KuzzleRoom object.
 
@@ -85,6 +93,20 @@ room.countPromise().then(result => {
 });
 ```
 
+```java
+room.count(new ResponseListener() {
+ @Override
+ public void onSuccess(JSONObject object) throws Exception {
+   //  ...
+ }
+
+ @Override
+ public void onError(JSONObject error) throws Exception {
+   // Handle error
+ }
+});
+```
+
 > Return the number of subscribers on that room
 
 ```json
@@ -114,6 +136,26 @@ room.renew({terms: {field: ['some', 'new', 'filter']}}, function (err, res) {
 });
 ```
 
+```java
+JSONObject filters = new JSONObject();
+JSONObject terms = new JSONObject();
+JSONArray field = new JSONArray();
+field.put("some").put("new").put("filter");
+terms.put("field", field);
+filters.put("terms", terms);
+room.renew(terms, new ResponseListener() {
+ @Override
+ public void onSuccess(JSONObject object) throws Exception {
+   // called each time a change is detected on documents matching this filter
+ }
+
+ @Override
+ public void onError(JSONObject error) throws Exception {
+   // Handle error
+ }
+});
+```
+
 Renew the subscription. Force a resubscription using the same filters if no new ones are provided.
 Unsubscribes first if this KuzzleRoom was already listening to events.
 
@@ -131,6 +173,12 @@ Unsubscribes first if this KuzzleRoom was already listening to events.
 
 ```js
 room.setHeaders({someContent: 'someValue'}, true);
+```
+
+```java
+JSONObject headers = new JSONObject();
+headers.put("someContent", "someValue");
+room.setHeaders(headers, true);
 ```
 
 > Returns itself
@@ -151,6 +199,10 @@ This is a helper function returning itself, allowing to easily chain calls.
 ## unsubscribe
 
 ```js
+room.unsubscribe();
+```
+
+```java
 room.unsubscribe();
 ```
 

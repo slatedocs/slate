@@ -24,6 +24,18 @@ var mapping = kuzzle.dataCollectionFactory('collection').dataMappingFactory();
 var mapping = kuzzle.dataCollectionFactory('collection', mapping).dataMappingFactory();
 ```
 
+```java
+KuzzleDataMapping dataMapping = new KuzzleDataMapping(dataCollection);
+
+JSONObject mapping = new JSONObject();
+JSONObject type = new JSONObject();
+type.put("type", "string");
+mapping.put("foo", type);
+
+KuzzleDataMapping dataMapping = new KuzzleDataMapping(dataCollection, mapping);
+```
+
+
 #### KuzzleDataMapping(KuzzleDataCollection, [mapping])
 
 | Arguments | Type | Description |
@@ -51,6 +63,20 @@ dataMapping.apply(function (error, result) {
 // Using promises (NodeJS)
 dataMapping.applyPromise(function (error, result) {
   // resolved once the mapping action has been completed
+});
+```
+
+```java
+dataMapping.apply(new ResponseListener() {
+   @Override
+   public void onSuccess(JSONObject object) throws Exception {
+     // called once the mapping action has been completed
+   }
+
+   @Override
+   public void onError(JSONObject error) throws Exception {
+     // Handle error
+   }
 });
 ```
 
@@ -84,6 +110,20 @@ dataMapping.refreshPromise().then(result => {
 });
 ```
 
+```java
+dataMapping.refresh(new ResponseListener() {
+   @Override
+   public void onSuccess(JSONObject object) throws Exception {
+     // called once the mapping has been retrieved from Kuzzle
+   }
+
+   @Override
+   public void onError(JSONObject error) throws Exception {
+     // Handle error
+   }
+});
+```
+
 > Return the updated KuzzleDataMapping object
 
 <aside class="warning">
@@ -111,6 +151,14 @@ Available options:
 dataMapping.set('field', {type: 'string', index: 'analyzed', null_value: ''});
 ```
 
+```java
+JSONObject mapping = new JSONObject();
+mapping.put("type", "string");
+mapping.put("index", "analyzed");
+mapping.put("null_value", "");
+dataMapping.set("field", mapping);
+```
+
 > Return the updated KuzzleDataMapping object
 
 <aside class="notice">Changes made by this function won't be applied until you call the <code>apply</code> method</aside>
@@ -128,6 +176,12 @@ Adds or updates a field mapping.
 
 ```js
 dataMapping.setHeaders({someContent: 'someValue'}, true);
+```
+
+```java
+JSONObject headers = new JSONObject();
+headers.put("someContent", "someValue");
+dataMapping.setHeaders(headers, true);
 ```
 
 > Returns itself
