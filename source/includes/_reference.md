@@ -38,19 +38,29 @@ All that said, we suggest the following:
 
 ## Billing
 
-You can choose the billing approach that makes sense for your organization. We offer two billing options:
+### Free Trial
 
-### Per-Server
+We offer a no-risk, free 14-day trial. Delete your monitored apps before the trial concludes and you don't pay.
+
+### Billing Date
+
+Your first bill is 30 days after your signup date.
+
+### Subscription Style
+
+You can choose the subscription style that makes sense for your organization. We offer two subscription styles:
+
+#### Per-Server
 
 __This is the default approach__. You are billed for the number of servers that are actively reporting on your billing date. 
 
-### Per-Request
+#### Per-Request
 
 If you have a smaller application or have many smaller instances or Docker containers per-request billing may make more sense. Volume discounts are automatically applied as your application handles more throughput. 
 
-### Changing your Billing Option
+### Changing your subsciption style
 
-You can pick your billing approach in the billing area within Scout. Your billing preference can not be retroactively applied.
+You can pick your subscription styles in the billing area within Scout. Your billing preference can not be retroactively applied.
 
 ## Replacing New Relic
 
