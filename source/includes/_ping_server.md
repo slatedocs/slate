@@ -47,6 +47,6 @@ When the api receives a request with a `Sendle ID` and an `API Key` the server r
   }
 ```
 
-If you include your `Sendle ID` without your `API Key`,the server will ask for your `API Key` (as **password** if using curl). If you reply with your key, the server will respond with the original request but due to the length of API keys, this is not ideal practice.
+If you include your `Sendle ID` without your `API Key`, the server will ask for your `API Key` (as **password** if using cURL). If you reply with your key the server will respond with the original request, but as API keys are long and complex, this is not ideal practice.
 
 <aside class='warning'>Errors are covered in detail in the <a href="#errors">Errors</a> Section (see sidebar)</aside>

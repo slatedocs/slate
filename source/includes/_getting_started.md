@@ -9,7 +9,7 @@
 
 Before anything else, you will need to have a [Sendle Account](https://www.sendle.com/#signup-form) authorised with an API.
 
-**For API access, please contact [support@sendle.com](mailto:support@sendle.com?subject=Sendle%20API%20Access).**
+<aside class="success"><strong>For API access, please contact <a href="mailto:support@sendle.com?subject=Sendle%20API%20Access">support@sendle.com</a></strong></aside>
 
 ![Account Settings](images/account_settings.png)
 
@@ -23,7 +23,7 @@ Once you have been granted API access, visit your API tab to get your `api key`.
 
 ## Set Up Payments
 
-> Without Payment Details
+> Response Without Payment Details
 
 ```json
   {"error":"payment_required","error_description":"The account associated with this API key has no method of payment. Please go to your Account Settings in your Sendle Dashboard and add a payment method."}  

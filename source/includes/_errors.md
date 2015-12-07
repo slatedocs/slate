@@ -1,6 +1,6 @@
 # Errors
 
-<aside class="success">This guide is in no way complete. If you happen upon errors that are not listed here, please let us know so we can help make the guide and the Sendle API better!</aside>
+<aside class="success">This guide is in no way complete. If you happen upon errors that are not listed here, please <a href="mailto:support@sendle.com?subject=Sendle%20API%20Errors">let us know</a> so we can make this guide and the Sendle API better!</aside>
 
 
 ## Error Codes
@@ -21,9 +21,9 @@ Error Code | Meaning
 ## 400 Bad request
 
 ```shell
-  curl -i https://www.sendle.com/api/orders
+  curl -i "https://www.sendle.com/api/orders"
   -X POST
-  -u sendleAPI:42RRTjYz5Z4hZrm8XY3t4Vxt
+  -u "sendleAPI:42RRTjYz5Z4hZrm8XY3t4Vxt"
   -H "Content-Type: application/json" 
   -d ']'
 ```
@@ -45,7 +45,7 @@ Error Code | Meaning
 
 *Invalid API request formatting*
 
-When an invalid request is sent to the API, there is no visbile response. This will include mostly formatting errors.
+When an invalid request is sent to the API, there is no visible response. This will include mostly formatting errors.
 
 <aside class='success'>If using curl, adding a <code>-i</code> to a request shows header information.</aside>
 
@@ -81,13 +81,13 @@ If you have entered your Sendle ID or API Key incorrectly, you may want to doubl
 
 Without a [credit card on file](#set-up-payments), booking orders will respond with a `402` error.
 
-**Non-booking queries will contine to work without payment and will not receive an error.**
+**Non-booking queries will continue to work without payment and will not receive an error.**
 
 <aside class='notice'>Access to <strong><code>www.sendle.com/api/ping</code></strong> will respond with a <code>402</code> error to test your ability to make a request, mirroring the booking endpoint.</aside>
 
 
 ## 404 Not Found
-> 404 Response when entring incorrect Order ID
+> 404 Response when entering incorrect Order ID
 
 ```json
   {
@@ -105,12 +105,11 @@ If an Order ID or label url is incorrectly entered, a `404` error will be return
 > Request with unallowable errors:
 
 ```shell
-  curl https://www.sendle.com/api/orders
-  -u sendleAPI:42RRTjYz5Z4hZrm8XY3t4Vxt
+  curl "https://www.sendle.com/api/orders"
+  -u "sendleAPI:42RRTjYz5Z4hZrm8XY3t4Vxt"
   -H "Content-Type: application/json"
   -X POST
-  -d '
-    {
+  -d '{
       "pickup_date": "2012-12-25",
       "description": "Showing 400 Error",
       "confirmed_not_dangerous": false,
@@ -205,7 +204,7 @@ Be sure to check the error messages as the server response will explain why the 
 
 *Invalid Endpoint*
 
-As an example, sending a request to `https://sendle.com/api/` will yield a `500` error because the url is invalid. If you send requests at a valid endpoint and receive a `500` error there is a server-side problem. If the later, Sendle will address the problem as soon as possible.
+As an example, sending a request to `https://sendle.com/api/` will yield a `500` error because the url endpoint is invalid. If you send requests at a valid endpoint like `https://sendle.com/api/quote/` and receive a `500` error there is a server-side problem, Sendle will address the problem as soon as possible.
 
 
 ## 503 Internal Server Error

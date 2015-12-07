@@ -3,7 +3,10 @@
 > [ Delete /orders/{id} ]
 
 ```shell
-  curl 'https://www.sendle.com/api/orders/f5233746-71d4-4b05-bf63-56f4abaed5f6' -X DELETE -u sendleAPI:42RRTjYz5Z4hZrm8XY3t4Vxt -H "Content-Type: application/json"
+  curl "https://www.sendle.com/api/orders/f5233746-71d4-4b05-bf63-56f4abaed5f6"
+  -X DELETE
+  -u "sendleAPI:42RRTjYz5Z4hZrm8XY3t4Vxt"
+  -H "Content-Type: application/json"
 ```
 
 > 200 Response

@@ -8,8 +8,9 @@ To create an order, submit order data via POST command. The order will be reject
 > Example Booking
 
 ```shell
-  curl https://www.sendle.com/api/orders -X POST
-  -u sendleAPI:42RRTjYz5Z4hZrm8XY3t4Vxt
+  curl "https://www.sendle.com/api/orders"
+  -X POST
+  -u "sendleAPI:42RRTjYz5Z4hZrm8XY3t4Vxt"
   -H "Content-Type: application/json"
   -d '{
     "pickup_date": "2015-11-24",
@@ -61,7 +62,7 @@ Each collection within the example booking JSON is described in detail in the se
 [Parcel details](#parcel-details)| Pickup date, a parcel description, weight, volume, and a customer reference for the shipment  |
 [Sender details](#sender-details)| Sender contact details, origin address, and pickup instructions |
 [Sender address](#sender-address) | Origin Address Details |
-[Receiver details](#receiver-details) | Receipient contact details, destination address, and delivery instructions |
+[Receiver details](#receiver-details) | Recipient contact details, destination address, and delivery instructions |
 [Receiver address](#receiver-address) | Destination Address Details |
 [API response](#api-response) | JSON object returned with a valid booking |
 [Labels](#getting-labels) | Getting Shipping Labels |
@@ -89,12 +90,14 @@ Each collection within the example booking JSON is described in detail in the se
 
 ## Sender Details
 ```json
-  "sender":{
-    "instructions":"Pick up with reception",
-    "contact":{
-      "name":"Lex Luthor",
-      "phone":"0412 345 678",
-      "email":"me@lexluthor.com"
+  {
+    "sender":{
+      "instructions":"Pick up with reception",
+      "contact":{
+        "name":"Lex Luthor",
+        "phone":"0412 345 678",
+        "email":"me@lexluthor.com"
+      }
     }
   }
 ```
@@ -106,17 +109,19 @@ Each collection within the example booking JSON is described in detail in the se
 **contact** <div class="optional">object</div> | *A collection of sender contact details.*
 **name** | It must be under 255 characters in length.
 **email** | Leave this empty - it will be populated with your email based on your account.
-**phone** | Used to coordinate pickup if the courier is outside attempting delivery.  It must be a valid Australian phone number (inc area code), or fully qualified international number.  Examples: <span class="phone-numbers">(02) 1234 1234, +1 519 123 1234, +61 (0)4 1234 1234.</span>
+**phone** | Used to coordinate pickup if the courier is outside attempting delivery.  It must be a valid Australian phone number (including area code), or fully qualified international number.  Examples: <span class="phone-numbers">(02) 1234 1234, +1 519 123 1234, +61 (0)4 1234 1234.</span>
 
 ## Sender Address
 ```json
-  "address":{
-    "address_line1":"123 Gotham Ln",
-    "address_line2":null,
-    "suburb":"Sydney",
-    "state_name":"NSW",
-    "postcode":"2000",
-    "country":"Australia"
+  {
+    "address":{
+      "address_line1":"123 Gotham Ln",
+      "address_line2":null,
+      "suburb":"Sydney",
+      "state_name":"NSW",
+      "postcode":"2000",
+      "country":"Australia"
+    }
   }
 ```
 
@@ -132,12 +137,14 @@ Each collection within the example booking JSON is described in detail in the se
 
 ## Receiver Details
 ```json
-  "receiver": {
-    "instructions": "Give directly to Clark",
-    "contact": {
-      "name": "Clark Kent",
-      "email": "clarkissuper@dailyplanet.xyz",
-      "phone": "0287654321"
+  {
+    "receiver": {
+      "instructions": "Give directly to Clark",
+      "contact": {
+        "name": "Clark Kent",
+        "email": "clarkissuper@dailyplanet.xyz",
+        "phone": "0287654321"
+      }
     }
   }
 ```
@@ -149,16 +156,18 @@ Each collection within the example booking JSON is described in detail in the se
 **contact** <div class="optional">object</div> | *A collection of receiver details.*
 **name** | It must be under 255 characters in length.
 **email** <div class="optional">optional</div> | Recipient email allows **Sendle** to send parcel updates to the recipient.
-**phone** <div class="optional">optional</div> | Used to coordinate pickup if the courier is outside attempting delivery.  It must be a valid Australian phone number (inc area code), or fully qualified international number.  Examples: <span class="phone-numbers">(02) 1234 1234, +1 519 123 1234, +61 (0)4 1234 1234.</span>
+**phone** <div class="optional">optional</div> | Used to coordinate pickup if the courier is outside attempting delivery.  It must be a valid Australian phone number (including area code), or fully qualified international number.  Examples: <span class="phone-numbers">(02) 1234 1234, +1 519 123 1234, +61 (0)4 1234 1234.</span>
 
 ## Receiver Address
 ```json
-  "address": {
-    "address_line1": "80 Wentworth Park Road",
-    "suburb": "Glebe",
-    "state_name": "NSW",
-    "postcode": "2037",
-    "country": "Australia"
+  {
+    "address": {
+      "address_line1": "80 Wentworth Park Road",
+      "suburb": "Glebe",
+      "state_name": "NSW",
+      "postcode": "2037",
+      "country": "Australia"
+    }
   }
 ```
 
