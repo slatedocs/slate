@@ -17,7 +17,7 @@ Para suscribirte a las notificaciones envía un requerimiento a:
 > #### Requerimiento de ejemplo
 
 ```shell
-curl -v https://link.datil.co/invoices/<id-factura> \
+curl -v https://link.datil.co/webhooks \
 -H "Content-Type: application/json" \
 -H "X-Key: <clave-del-api>" \
 -H "X-Password: <clave-certificado-firma>" \
@@ -79,7 +79,7 @@ webhook_url | string | Dirección donde se recibirá la información en formato 
 
 ## Eventos
 
-Al ejecutarse un evento se enviará la información completa del comprobante en
+Al ejecutarse un evento se enviará en un requerimiento tipo *POST*, la información completa del comprobante en
 conjunto con la autorización a la dirección registrada como `webhook_url` al
 momento de la suscripción.
 
@@ -89,14 +89,94 @@ Un comprobante *Autorizado* contendrá información como el siguiente ejemplo:
 
 ```
 {
-  ...
-  "autorizacion": {
-    "numero": "2907201515283909927125540017656314390",
-    "fecha": "2015-09-28T19:28:56.782Z",
-    "estado": "AUTORIZADO",
-    "mensajes": []
+  "secuencial":1267,
+  "fecha_emision":"2015-12-04T19:28:56.782Z",
+  "emisor":{
+    "ruc":"0992712554001",
+    "obligado_contabilidad":true,
+    "contribuyente_especial":"",
+    "nombre_comercial":"Datilmedia",
+    "razon_social":"Datilmedia S.A.",
+    "direccion":"Kennedy Norte Av. Miguel H. Alcivar",
+    "establecimiento":{
+      "punto_emision":"002",
+      "codigo":"001",
+      "direccion":"Calle A"
+    },
+    "email":"clientes@datilmedia.com"
+  },
+  "guia_remision":"001-002-007654320",
+  "tipo":"factura",
+  "moneda":"USD",
+  "id":"1ae2afaf6fed46dcabb14d424311e232",
+  "informacion_adicional":{
+    "Tiempo de entrega":"5 días"
+  },
+  "ambiente":1,
+  "totales":{
+    "total_sin_impuestos":4359.54,
+    "impuestos":[
+      {
+        "base_imponible":0.0,
+        "valor":0.0,
+        "codigo":"2",
+        "codigo_porcentaje":"0"
+      },
+      {
+        "base_imponible":4359.54,
+        "valor":523.14,
+        "codigo":"2",
+        "codigo_porcentaje":"2"
+      }
+    ],
+    "importe_total":4882.68,
+    "propina":0.0,
+    "descuento":0.0
+  },
+  "comprador":{
+    "identificacion":"0924447956001",
+    "tipo_identificacion":"04",
+    "razon_social":"Juan Antonio Plaza",
+    "direccion":"Calle única Numero: S/N",
+    "telefono":"046015159",
+    "email":"jplazaarguello@gmail.com"
+  },
+  "tipo_emision":1,
+  "items":[
+    {
+      "precio_unitario":7.01,
+      "descripcion":"CEMENTO ROCA 50 KG. (1) 40U C/PALET",
+      "precio_total_sin_impuestos":4359.54,
+      "impuestos":[
+        {
+          "base_imponible":4359.54,
+          "valor":523.14,
+          "tarifa":12.0,
+          "codigo":"2",
+          "codigo_porcentaje":"2"
+        }
+      ],
+      "detalles_adicionales":{
+        "Peso":"5000.0000",
+        "Volumen":"1 Gl"
+      },
+      "cantidad":622.0,
+      "codigo_auxiliar":"CTO2",
+      "descuento":0.0,
+      "codigo_principal":"CTO1"
+    }
+  ],
+  "version":"1.0.0",
+  "clave_acceso":"0412201501099271255400110010020000012671994716611",
+  "api-key":"abcxyz1234567890mnbvqwe321tyu653",
+  "autorizacion":{
+    "numero":"0412201516042509927125540010331009539",
+    "fecha":"2015-12-04T16:04:25",
+    "estado":"AUTORIZADO",
+    "mensajes":[
+
+    ]
   }
-  ...
 }
 ```
 
@@ -106,7 +186,86 @@ Un comprobante *No autorizado* contendrá información como el siguiente ejemplo
 
 ```
 {
-  ...
+  "secuencial":1267,
+  "fecha_emision":"2015-12-04T19:28:56.782Z",
+  "emisor":{
+    "ruc":"0992712554001",
+    "obligado_contabilidad":true,
+    "contribuyente_especial":"",
+    "nombre_comercial":"Datilmedia",
+    "razon_social":"Datilmedia S.A.",
+    "direccion":"Kennedy Norte Av. Miguel H. Alcivar",
+    "establecimiento":{
+      "punto_emision":"002",
+      "codigo":"001",
+      "direccion":"Calle A"
+    },
+    "email":"clientes@datilmedia.com"
+  },
+  "guia_remision":"001-002-007654320",
+  "tipo":"factura",
+  "moneda":"USD",
+  "id":"1ae2afaf6fed46dcabb14d424311e232",
+  "informacion_adicional":{
+    "Tiempo de entrega":"5 días"
+  },
+  "ambiente":1,
+  "totales":{
+    "total_sin_impuestos":4359.54,
+    "impuestos":[
+      {
+        "base_imponible":0.0,
+        "valor":0.0,
+        "codigo":"2",
+        "codigo_porcentaje":"0"
+      },
+      {
+        "base_imponible":4359.54,
+        "valor":523.14,
+        "codigo":"2",
+        "codigo_porcentaje":"2"
+      }
+    ],
+    "importe_total":4882.68,
+    "propina":0.0,
+    "descuento":0.0
+  },
+  "comprador":{
+    "identificacion":"0924447956001",
+    "tipo_identificacion":"04",
+    "razon_social":"Juan Antonio Plaza",
+    "direccion":"Calle única Numero: S/N",
+    "telefono":"046015159",
+    "email":"jplazaarguello@gmail.com"
+  },
+  "tipo_emision":1,
+  "items":[
+    {
+      "precio_unitario":7.01,
+      "descripcion":"CEMENTO ROCA 50 KG. (1) 40U C/PALET",
+      "precio_total_sin_impuestos":4359.54,
+      "impuestos":[
+        {
+          "base_imponible":4359.54,
+          "valor":523.14,
+          "tarifa":12.0,
+          "codigo":"2",
+          "codigo_porcentaje":"2"
+        }
+      ],
+      "detalles_adicionales":{
+        "Peso":"5000.0000",
+        "Volumen":"1 Gl"
+      },
+      "cantidad":622.0,
+      "codigo_auxiliar":"CTO2",
+      "descuento":0.0,
+      "codigo_principal":"CTO1"
+    }
+  ],
+  "version":"1.0.0",
+  "clave_acceso":"0412201501099271255400110010020000012671994716611",
+  "api-key":"abcxyz1234567890mnbvqwe321tyu653",
   "autorizacion": {
     "numero": "2907201515283909927125540017656314390",
     "fecha": "2015-09-28T19:28:56.782Z",
@@ -118,7 +277,6 @@ Un comprobante *No autorizado* contendrá información como el siguiente ejemplo
       "tipo": "ERROR"
     }]
   }
-  ...
 }
 ```
 
@@ -128,22 +286,96 @@ Un comprobante *Devuelto* contendrá información como el siguiente ejemplo:
 
 ```
 {
-  ...
-  "envio_sri": {
-    "fecha": "2015-09-28T19:28:56.782Z",
-    "estado": "DEVUELTA",
-    "mensajes": [{
-      "identificador": 45,
-      "mensaje": "ERROR EN DIFERENCIAS",
-      "informacion_adicional": "El total 34.54 no coincide con el calculado 34.65",
-      "tipo": "ERROR"
-    }, {
-      "identificador": 69,
-      "mensaje": "IDENTIFICACION DEL RECEPTOR",
-      "informacion_adicional": "La cédula 0921091010 no tiene cumple con la validación del dígito verificador",
-      "tipo": "ADVERTENCIA"
-    }]
+  "secuencial":1267,
+  "fecha_emision":"2015-12-04T19:28:56.782Z",
+  "emisor":{
+    "ruc":"0992712554001",
+    "obligado_contabilidad":true,
+    "contribuyente_especial":"",
+    "nombre_comercial":"Datilmedia",
+    "razon_social":"Datilmedia S.A.",
+    "direccion":"Kennedy Norte Av. Miguel H. Alcivar",
+    "establecimiento":{
+      "punto_emision":"002",
+      "codigo":"001",
+      "direccion":"Calle A"
+    },
+    "email":"clientes@datilmedia.com"
+  },
+  "guia_remision":"001-002-007654320",
+  "tipo":"factura",
+  "moneda":"USD",
+  "id":"1ae2afaf6fed46dcabb14d424311e231",
+  "informacion_adicional":{
+    "Tiempo de entrega":"5 días"
+  },
+  "ambiente":1,
+  "totales":{
+    "total_sin_impuestos":4359.54,
+    "impuestos":[
+      {
+        "base_imponible":0.0,
+        "valor":0.0,
+        "codigo":"2",
+        "codigo_porcentaje":"0"
+      },
+      {
+        "base_imponible":4359.54,
+        "valor":523.14,
+        "codigo":"2",
+        "codigo_porcentaje":"2"
+      }
+    ],
+    "importe_total":4882.68,
+    "propina":0.0,
+    "descuento":0.0
+  },
+  "comprador":{
+    "identificacion":"0924447956001",
+    "tipo_identificacion":"04",
+    "razon_social":"Juan Antonio Plaza",
+    "direccion":"Calle única Numero: S/N",
+    "telefono":"046015159",
+    "email":"jplazaarguello@gmail.com"
+  },
+  "tipo_emision":1,
+  "items":[
+    {
+      "precio_unitario":7.01,
+      "descripcion":"CEMENTO ROCA 50 KG. (1) 40U C/PALET",
+      "precio_total_sin_impuestos":4359.54,
+      "impuestos":[
+        {
+          "base_imponible":4359.54,
+          "valor":523.14,
+          "tarifa":12.0,
+          "codigo":"2",
+          "codigo_porcentaje":"2"
+        }
+      ],
+      "detalles_adicionales":{
+        "Peso":"5000.0000",
+        "Volumen":"1 Gl"
+      },
+      "cantidad":622.0,
+      "codigo_auxiliar":"CTO2",
+      "descuento":0.0,
+      "codigo_principal":"CTO1"
+    }
+  ],
+  "version":"1.0.0",
+  "clave_acceso":"0412201501099271255400110010020000012671994716611",
+  "api-key":"abcxyz1234567890mnbvqwe321tyu653",
+  "envio_sri":{
+    "estado":"DEVUELTA",
+    "mensajes":[
+      {
+        "identificador":"35",
+        "mensaje":"ARCHIVO NO CUMPLE ESTRUCTURA XML",
+        "tipo":"ERROR",
+        "informacion_adicional":"Se encontró el siguiente error en la estructura del comprobante: cvc-minLength-valid: Value '' with length = '0' is not facet-valid with respect to minLength '1' for type '#AnonType_valordetAdicionaldetallesAdicionalesdetalledetallesfactura'."
+      }
+    ]
   }
-  ...
 }
 ```
