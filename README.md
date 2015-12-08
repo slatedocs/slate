@@ -66,7 +66,7 @@ Now that Slate is all set up your machine, you'll probably want to learn more ab
 Examples of Slate in the Wild
 ---------------------------------
 
-* [Travis-CI's API docs](http://docs.travis-ci.com/api/)
+* [Travis-CI's API docs](https://docs.travis-ci.com/api/)
 * [Mozilla's localForage docs](http://mozilla.github.io/localForage/)
 * [Mozilla Recroom](http://mozilla.github.io/recroom/)
 * [Drcaban's Build a Quine tutorial](http://drcabana.github.io/build-a-quine/#introduction)
@@ -92,7 +92,7 @@ Examples of Slate in the Wild
 * [Market Prophit API Documentation](http://developer.marketprophit.com/)
 * [OAuth.io API Documentation](http://docs.oauth.io/)
 * [Aircall for Developers](http://developer.aircall.io/)
-* [SupportKit API Docs](http://docs.supportkit.io/)
+* [SupportKit API Docs](http://docs.smooch.io/)
 * [SocialRadar's LocationKit Docs](https://docs.locationkit.io/)
 * [SafetyCulture API Documentation](https://developer.safetyculture.io/)
 * [hosting.de API Documentation](https://www.hosting.de/docs/api/)
@@ -111,7 +111,7 @@ Just [submit a issue](https://github.com/tripit/slate/issues) to the Slate Githu
 Contributors
 --------------------
 
-Slate was built by [Robert Lord](https://lord.io) while at [TripIt](http://tripit.com).
+Slate was built by [Robert Lord](https://lord.io) while at [TripIt](https://www.tripit.com/).
 
 Thanks to the following people who have submitted major pull requests:
 
@@ -126,5 +126,5 @@ Special Thanks
 - [Middleman](https://github.com/middleman/middleman)
 - [jquery.tocify.js](https://github.com/gfranko/jquery.tocify.js)
 - [middleman-syntax](https://github.com/middleman/middleman-syntax)
-- [middleman-gh-pages](https://github.com/neo/middleman-gh-pages)
+- [middleman-gh-pages](https://github.com/edgecase/middleman-gh-pages)
 - [Font Awesome](http://fortawesome.github.io/Font-Awesome/)
