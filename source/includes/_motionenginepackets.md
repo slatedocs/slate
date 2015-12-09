@@ -22,6 +22,7 @@ Regarding the motion engine subsystem a number of commands exist, which are list
 #define FlashRecordStartStop 0x0F //start/stop a recording session
 #define FlashPlaybackStartStop 0x10 //start/stop playing back from the recorder
 #define LockHeadingRef 0x11 //locks the current magnetometer data to the reference 0 degrees heading angle
+#define SetAccRange 0x12 //sets the accelerometer full-scale range
 ```
 Note that the above commands are placed within the header section of the packet in Byte#3.
 
