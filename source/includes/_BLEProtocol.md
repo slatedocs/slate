@@ -43,7 +43,7 @@ Bit#7-5: (PKT_TYPE) Packet Type
 This field generally determines the type of the packet. Currently, the types include: regular command/response packets, error log command/response packets, and an acknowledge response packet from Neblina to a command issued by the host. The 8 possible combinations of the packet type are described below:
 
 |  Bit 7:5 (PKT_TYPE) |                    Description                    |
-|:-------------------:|:-------------------------------------------------:|
+|:-------------------:|---------------------------------------------------|
 |         000         |Regular response packet from Neblina with data     |
 |         001         |Acknowledge from Neblina to a command from the host|
 |         010         |Regular command packet from the host               |
