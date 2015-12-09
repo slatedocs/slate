@@ -27,18 +27,37 @@ The header section consists of four bytes.
 
 |  Byte 0  |  Byte 1 | Byte 2 |   Byte 3   |
 |----------|---------|--------|------------|
-|    **Control Subystem (ERR/CR/SUB)** | data length|  CRC   |Command Type|
+|    **Control Byte (PKT_TYPE/SUB)** | data length|  CRC   |Command Type|
 
-Control Subsystem Byte Details
+Control Byte Details
 
-|  Bit 7 (ERR)    |    Bit 6 (CR)                 | Bit 5:0   (SUB)  |
-|--------         |------------                   |---------         |
-| Error Log       |Command/Response Indicator     | Subsystem Code   |
+|  Bit 7:5 (PKT_TYPE) |   Bit 4:0 (SUB)  |
+|:-------------------:|:----------------:|
+|     Packet Type     |  Subsystem Code  |
 
 
-#### Byte 0: Control Subsystem
+#### Byte 0: Control Byte
 ```c 
-Bit#7: (ERR) Error Log 
+Bit#7-5: (PKT_TYPE) Packet Type 
+```
+This field generally determines the type of the packet. Currently, the types include: regular command/response packets, error log command/response packets, and an acknowledge response packet from Neblina to a command issued by the host. The 8 possible combinations of the packet type are described below:
+
+|  Bit 7:5 (PKT_TYPE) |                    Description                    |
+|:-------------------:|:-------------------------------------------------:|
+|         000         |Regular response packet from Neblina with data     |
+|         001         |Acknowledge from Neblina to a command from the host|
+|         010         |Regular command packet from the host               |
+|         011         |Reserved                                           |
+|         100         |Error log response from Neblina                    |
+|         101         |Reserved                                           |
+|         110         |Error log command from the host                    |
+|         111         |Reserved                                           |
+
+Note that the above packet types are all associated with the subsystem represented by the *SUB* field. 
+
+<!---
+```c 
+Bit#7: (ERR) Error Log Indicator
 ```
 If set to 1, it shows that the packet is an error log command/response associated with the subsystem represented by *SUB*. Otherwise, if set to 0, it shows that the packet is a regular command/response associated with the subsystem represented by *SUB*.
 
@@ -48,9 +67,13 @@ Bit#6: (CR) Command/Response Indicator
 If set to 1, it shows that the packet is a command from the host to the target device. Otherwise, the packet is a response from the target to the host. *Note: Target is usually the Neblina module or one of its component, host is a tablet or smartphone*
 
 ```c 
-Bits#5-0: (SUB) Subsystem Identifier
+Bit#5: (ACK) Acknowledge Indicator
 ```
-
+If set to 1, it shows that the packet is a simple acknowledge response from Neblina to a command issued by the host.
+--->
+```c 
+Bits#4-0: (SUB) Subsystem Identifier
+```
 This is the subsystem identifier:
 
 0. **0x00 [Debug Subsystem](_debug.md)**: Information about the device, special modes, etc.
