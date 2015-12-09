@@ -118,12 +118,12 @@ The Kuzzle object listens to global events fired by Kuzzle. To subscribe or unsu
 
 Here is the list of these special events:
 
-| Event Name | Description | Expected callback arguments |
-|--------------|-------------------------------------------------------------------|--------------------------------|
-| ``subscribed`` | Fired when someone enters a subscribed room  | Room name, Subscription informations |
-| ``unsubscribed`` | Fired when someone leaves a subscribed room | Room name, Unsubscription informations |
+| Event Name | Description |
+|--------------|-------------------------------------------------------------------|
+| ``connected`` | Fired when the SDK has successfully connected to Kuzzle |
+| ``disconnected`` | Fired when the current session has been unexpectedly disconnected |
+| ``error`` | Fired when the SDK has failed to connect to Kuzzle. Does not trigger offline mode. |
 | ``reconnected`` | Fired when the current session has reconnected to Kuzzle after a disconnection, and only if ``autoReconnect`` is set to ``true`` |
-| ``disconnected`` | Fired when the current session has been unexpectedly disconnected |  |
 
 **Note:** listeners are called in the order of their insertion.
 
@@ -252,7 +252,7 @@ Available options:
 
 ## getStatistics
 
-> Without argument, returns the last statistic frame:
+> Without argument, returns the last statistic frame in an array:
 
 ```js
 // Using callbacks (NodeJS or Web Browser)
@@ -271,11 +271,11 @@ kuzzle
 > Result:
 
 ```json
-{ "connections": { "websocket": 1 },
+[{ "connections": { "websocket": 1 },
     "ongoingRequests": { "mq": 0, "rest": 0, "websocket": 0 },
     "completedRequests": { "mq": 37, "websocket": 17 },
     "failedRequests": { "websocket": 1 },
-    "timestamp": "2015-10-26T12:21:00.218Z" }
+    "timestamp": "2015-10-26T12:21:00.218Z" }]
 ```
 
 > When providing a timestamp, returns all frames recorded after that timestamp:
