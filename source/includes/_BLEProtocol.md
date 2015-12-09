@@ -40,7 +40,7 @@ Control Byte Details
 ```c 
 Bit#7-5: (PKT_TYPE) Packet Type 
 ```
-This field generally determines the type of the packet. Currently, the types include: regular command/response packets, error log command/response packets, and an acknowledge response packet from Neblina to a command issued by the host. The 8 possible combinations of the packet type are described below:
+This field generally determines the type of the packet. Currently, the types include: regular command/response packets, error log command/response packets, and an acknowledge response packet from Neblina to a command issued by the host. The 8 possible combinations of the packet type field are described below:
 
 |  Bit 7:5 (PKT_TYPE) |                    Description                    |
 |:-------------------:|---------------------------------------------------|
