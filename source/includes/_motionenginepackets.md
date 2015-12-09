@@ -288,3 +288,10 @@ Neblina provides the option to lock magnetometer readings to represent the 0 deg
 |Byte 0 (subsystem)|Byte 1 (length)|Byte 2|  Byte 3 (command)   |Byte 4-19 |
 |:----------------:|:-------------:|:----:|:-------------------:|:--------:|
 |       0x01       |      0x10     | CRC  |0x11 (LockHeadingRef)| Reserved |
+
+#### SetAccRange Command
+This command sets the accelerometer full-scale range to either 2G (Mode 0), 4G (Mode 1), 8G (Mode 2), or 16G (Mode 3). The default mode is 2G. Byte#8 will be set to 0, 1, 2, or 3, representing the mode. The overall SetAccRange packet has the following structure:
+
+| Byte 0 (subsystem) | Byte 1 (length) | Byte 2 (CRC) | Byte 3 (command) |Byte 4-7|Byte 8| Bytes 9-19 |
+|:------------------:|:---------------:|:------------:|:----------------:|:------:|:----:|------------|
+|        0x41        |       0x10      |      CRC     |0x12 (SetAccRange)|Reserved| Mode |  Reserved  |
