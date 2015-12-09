@@ -791,7 +791,7 @@ To subscribe to the entire data collection, simply provide an empty filter.
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
 | ``filters`` | JSON Object | Filters in [Kuzzle DSL](https://github.com/kuzzleio/kuzzle/blob/master/docs/filters.md) format |
-| ``options`` | object | (Optional) Subscription configuration. Passed to the KuzzleRoom constructor. |
+| ``options`` | object | (Optional) Subscription configuration. Passed to the [KuzzleRoom constructor](#constructors52). |
 | ``callback`` | function | Callback to call every time a notification is received on this subscription |
 
 
