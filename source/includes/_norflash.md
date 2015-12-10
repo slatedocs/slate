@@ -20,13 +20,12 @@ In the command mode, the packet commands Neblina to do a full-erase for the on-c
 |:------------------:|:---------------:|:------------:|:------------------:|:-------:|
 |        0x4B        |       0x10      |      CRC     |0x01 (FlashEraseAll)|Reserved |
 
-When the erasing process completes, Neblina will send a "process completed" packat back to the host as follows:
+In response, Neblina will first send an acknowledge packet to indicate the successful receipt of the command issued by the host. Next, when the erasing process completes, Neblina will send a "process completed" packet back to the host as follows:
 
 | Byte 0 (subsystem) | Byte 1 (length) | Byte 2 (CRC) |  Byte 3 (command)  | Bytes 4-19 |
 |:------------------:|:---------------:|:------------:|:------------------:|------------|
 |        0x0B        |       0x10      |      CRC     |0x01 (FlashEraseAll)|  Reserved  |
 
-In response, Neblina will only send an acknowledge packet to indicate the successful receipt of the command issued by the host.
 
 #### FlashRecordStartStop Command/Response
 In the command mode, the packet commands Neblina to either start a new recording session, or close the currently open one. Byte#8 will be a Boolean value representing the start (1) or stop (0) command. Here is the full command packet:
