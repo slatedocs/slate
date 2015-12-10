@@ -11,7 +11,7 @@ The NOR flash recorder uses subsystem ID 0x0B. Regarding this subsystem a number
 Note that the above commands are placed within the header section of the packet in Byte#3.
 
 ## Data Section
-The data section consists of 16 bytes. The first 4 bytes (Byte 4-7) are always reserved in the NOR flash subsystem. However, the other bytes might be used differently depending on the command field, which is explained next.
+The data section consists of 16 bytes. The first 4 bytes (Byte 4-7) and the last 9 bytes (Byte 11-19) are always reserved in the NOR flash subsystem. However, the other bytes might be used differently depending on the command field, which is explained next.
 
 #### FlashEraseAll Command/Response
 In the command mode, the packet commands Neblina to do a full-erase for the on-chip NOR flash memory. This takes about 2 minutes to complete. Here is the command packet:
