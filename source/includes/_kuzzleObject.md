@@ -20,6 +20,27 @@ var kuzzle = new Kuzzle('http://localhost:7512', function (err, res) {
 });
 ```
 
+```java
+JSONObject headers = new JSONObject();
+headers.put("someheader", "value");
+
+KuzzleOptions options = new KuzzleOptions();
+options.setAutoReconnect(true);
+options.setHeaders(headers);
+
+Kuzzle kuzzle = new Kuzzle("http://localhost:7512", options, new ResponseListener() {
+ @Override
+ public void onSuccess(JSONObject object) {
+   // invoked once connected, kuzzle contains the kuzzle instance
+ }
+
+ @Override
+ public void onError(JSONObject error) {
+   // Handle error
+ }
+});
+```
+
 > Returns an instanciated Kuzzle Object
 
 #### Kuzzle(url, [options])
@@ -166,6 +187,20 @@ kuzzle.connectPromise().then(kuzzle => {
 });
 ```
 
+```java
+kuzzle.connect(new ResponseListener() {
+  @Override
+  public void onSuccess(JSONObject object) {
+    // invoked once connected, kuzzle contains the kuzzle instance
+  }
+
+  @Override
+  public void onError(JSONObject error) {
+    // Handle error
+  }
+});
+```
+
 Connects to the Kuzzle instance using the URL provided to the constructor.  
 Has no effect if ``connect`` is set to ``auto``, unless ``logout`` has been called first.
 
@@ -174,6 +209,10 @@ Has no effect if ``connect`` is set to ``auto``, unless ``logout`` has been call
 
 ```js
   var collection = kuzzle.dataCollectionFactory('foobar');
+```
+
+```java
+KuzzleDataCollection collection = kuzzle.dataCollectionFactory("foobar");
 ```
 
 > Returns a KuzzleDataCollection object
@@ -190,6 +229,10 @@ Instantiates a new KuzzleDataCollection object.
 ## flushQueue
 
 ```js
+kuzzle.flushQueue();
+```
+
+```java
 kuzzle.flushQueue();
 ```
 
@@ -213,6 +256,20 @@ kuzzle
       // loop through all returned frames
     });
   });
+```
+
+```java
+kuzzle.getAllStatistics(new ResponseListener() {
+  @Override
+  public void onSuccess(JSONObject object) {
+    // loop through all returned frames
+  }
+
+  @Override
+  public void onError(JSONObject error) {
+    // Handle error
+  }
+};
 ```
 
 > Returns an array of frames
@@ -268,6 +325,20 @@ kuzzle
   });
 ```
 
+```java
+kuzzle.getStatistics(new ResponseListener() {
+  @Override
+  public void onSuccess(JSONObject object) {
+    // ...
+  }
+
+  @Override
+  public void onError(JSONObject error) {
+    // Handle error
+  }
+};
+```
+
 > Result:
 
 ```json
@@ -294,6 +365,20 @@ kuzzle
   .then(stats => {
     // ...
   });
+```
+
+```java
+kuzzle.getStatistics("2015-11-15T13:36:45.558Z", new ResponseListener() {
+  @Override
+  public void onSuccess(JSONObject object) {
+    // ...
+  }
+
+  @Override
+  public void onError(JSONObject error) {
+    // Handle error
+  }
+};
 ```
 
 > Result:
@@ -352,6 +437,20 @@ kuzzle
   });
 ```
 
+```java
+kuzzle.listCollections(new ResponseListener() {
+  @Override
+  public void onSuccess(JSONObject object) {
+    // ...
+  }
+
+  @Override
+  public void onError(JSONObject error) {
+    // Handle error
+  }
+};
+```
+
 > Result:
 
 ```json
@@ -379,6 +478,10 @@ Available options:
 ```js
 kuzzle.logout();
 ```
+```java
+kuzzle.logout();
+```
+
 
 Closes the current connection. Does not fire a ``disconnected`` event.
 
@@ -394,6 +497,20 @@ kuzzle.now(function (err, res) {
 kuzzle.nowPromise().then(res => {
   // 'res' contains the Kuzzle timestamp
 });
+```
+
+```java
+kuzzle.now(new ResponseListener() {
+  @Override
+  public void onSuccess(JSONObject object) {
+    // 'object' contains the Kuzzle timestamp
+  }
+
+  @Override
+  public void onError(JSONObject error) {
+    // Handle error
+  }
+};
 ```
 
 > Return an UTC Epoch time in milliseconds
@@ -432,6 +549,20 @@ kuzzle
   .then(result => {
 
   });
+```
+
+```java
+kuzzle.query("foo", "read", "search", new JSONObject(), new ResponseListener() {
+  @Override
+  public void onSuccess(JSONObject object) {
+
+  }
+
+  @Override
+  public void onError(JSONObject error) {
+    // Handle error
+  }
+};
 ```
 
 > Result: a Kuzzle Response Object
@@ -496,6 +627,14 @@ kuzzle.removeAllListeners('unsubscribed');
 kuzzle.removeAllListeners();
 ```
 
+```java
+// Removes all listeners on the "unsubscribed" global event
+kuzzle.removeAllListeners(EventType.UNSUBSCRIBED);
+
+// Removes all listeners on all global events
+kuzzle.removeAllListeners();
+```
+
 Removes all listeners, either from a specific event or from all events
 
 #### removeAllListeners()
@@ -510,6 +649,10 @@ Removes all listeners, either from a specific event or from all events
 
 ```js
 kuzzle.removeListener('disconnected', listenerId);
+```
+
+```java
+kuzzle.removeListener(EventType.DISCONNECTED, "listenerId");
 ```
 
 Removes a listener from an event.
@@ -527,12 +670,23 @@ Removes a listener from an event.
 kuzzle.replayQueue();
 ```
 
+```java
+kuzzle.replayQueue();
+```
+
 Replays the requests queued during offline mode. Works only if the SDK is not in a ``disconnected`` state, and if the ``autoReplay`` option is set to ``false``.
 
 ## setHeaders
 
 ```js
 kuzzle.setHeaders({someContent: 'someValue'}, true);
+```
+
+```java
+JSONObject headers = new JSONObject();
+headers.put("someContent", "someValue");
+
+kuzzle.setHeaders(headers, true);
 ```
 
 > Returns itself
@@ -556,12 +710,20 @@ This is a helper function returning itself, allowing to easily chain calls.
 kuzzle.startQueuing();
 ```
 
+```java
+kuzzle.startQueuing();
+```
+
 Starts the requests queuing. Works only during offline mode, and if the ``autoQueue`` option is set to ``false``.
 
 
 ## stopQueuing
 
 ```js
+kuzzle.stopQueuing();
+```
+
+```java
 kuzzle.stopQueuing();
 ```
 

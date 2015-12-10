@@ -69,12 +69,12 @@ dataMapping.applyPromise(function (error, result) {
 ```java
 dataMapping.apply(new ResponseListener() {
    @Override
-   public void onSuccess(JSONObject object) throws Exception {
+   public void onSuccess(JSONObject object) {
      // called once the mapping action has been completed
    }
 
    @Override
-   public void onError(JSONObject error) throws Exception {
+   public void onError(JSONObject error) {
      // Handle error
    }
 });
@@ -113,12 +113,12 @@ dataMapping.refreshPromise().then(result => {
 ```java
 dataMapping.refresh(new ResponseListener() {
    @Override
-   public void onSuccess(JSONObject object) throws Exception {
+   public void onSuccess(JSONObject object) {
      // called once the mapping has been retrieved from Kuzzle
    }
 
    @Override
-   public void onError(JSONObject error) throws Exception {
+   public void onError(JSONObject error) {
      // Handle error
    }
 });

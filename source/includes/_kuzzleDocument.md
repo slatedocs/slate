@@ -83,12 +83,12 @@ document.deletePromise().then(result => {
 ```java
 document.delete(new ResponseListener() {
     @Override
-    public void onSuccess(JSONObject object) throws Exception {
+    public void onSuccess(JSONObject object) {
       // called once the delete action has been completed
     }
 
     @Override
-    public void onError(JSONObject error) throws Exception {
+    public void onError(JSONObject error) {
       // Handle error
     }
 });
@@ -155,12 +155,12 @@ document.refreshPromise().then(result => {
 ```java
 document.refresh(new ResponseListener() {
     @Override
-    public void onSuccess(JSONObject object) throws Exception {
+    public void onSuccess(JSONObject object) {
       // called once the refresh action has been completed
     }
 
     @Override
-    public void onError(JSONObject error) throws Exception {
+    public void onError(JSONObject error) {
       // Handle error
     }
 });
@@ -200,12 +200,12 @@ document.savePromise().then(result => {
 ```java
 document.save(new ResponseListener() {
     @Override
-    public void onSuccess(JSONObject object) throws Exception {
+    public void onSuccess(JSONObject object) {
       // called once the save action has been completed
     }
 
     @Override
-    public void onError(JSONObject error) throws Exception {
+    public void onError(JSONObject error) {
       // Handle error
     }
 });
@@ -309,12 +309,12 @@ var room = document.subscribe(
 ```java
 KuzzleRoom room = document.subscribe(new ResponseListener() {
     @Override
-    public void onSuccess(JSONObject object) throws Exception {
+    public void onSuccess(JSONObject object) {
       // called each time a change occurs on this document
     }
 
     @Override
-    public void onError(JSONObject error) throws Exception {
+    public void onError(JSONObject error) {
       // Handle error
     }
 });
