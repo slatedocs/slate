@@ -87,6 +87,8 @@ This is the subsystem identifier:
 8. **0x08 [SPI Subsystem](_spi.md)**: Access to SPI subsystems (for programmers)
 9. **0x09 [Firmware Management](_firmware.md)**: Firmware versions, firmware checks, self-test, serial numbers
 10. **0x0A [Cryptography](_security.md)**: Cryptography peripherals, data security
+11. **0x0B [Storage](_norflash.md)**: NOR Flash Recorder: recording several hours of streaming data
+12. **0x0C [EEPROM](_eeprom.md)**: EEPROM Read/Write: board ID, features, etc. 
 
 #### Byte 1: Data Section Packet Length
 
