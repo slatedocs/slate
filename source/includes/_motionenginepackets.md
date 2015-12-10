@@ -37,6 +37,8 @@ The representation is little-endian meaning that the least significant byte is p
 |:----------------:|:-------------:|:----------:|:---------------:|:------:|:-------:|:---------:|
 |       0x41       |      0x10     |     CRC    |0x01 (downsample)|Reserved| factor  | Reserved  |
 
+In response, Neblina will only send an acknowledge/error packet to indicate the validity and receipt of the command issued by the host.
+
 #### MotionState Command/Response
 In the command mode the packet enables/disables the streaming of the motion state for the target device. If enabled, it basically inquires whether the device changes its motion state either from stop to movement, or from movement to stop. We recommend that after the device power-up you hold the device still for a couple of seconds (2-5 seconds) for initial calibration and orientation convergence. Data section for this packet type is a single byte, which should be set to either 0 or 1 to disable or enable the streaming of the motion states respectively.
 ##### Byte#8: Enable (1) or Disable (0) Motion State streaming
@@ -46,7 +48,7 @@ Overall, the command packet has the following structure:
 |:------------------:|:---------------:|:------------:|:-----------------:|:------:|:--------------:|------------|
 |        0x41        |       0x10      |      CRC     |0x02 (motion state)|Reserved| Enable/Disable |  Reserved  |
 
-In the response mode, the data section includes 4 bytes for the timestamp in microseconds (Byte#4-7) as a 32-bit unsigned integer value in little endian format. This means that Byte#4 is the LSB, and Byte#7 is the MSB of the timestamp. Next, we have the motion state data, i.e., a single byte (Byte#8), which is either 0 (stop motion) or 1 (start motion). The whole response packet structure including header is shown below:
+In the response mode, Neblina will first send an acknowledge packet to the host to confirm the successful receipt of the command. Next, the main response packet will be prepared, where the data section first includes 4 bytes for the timestamp in microseconds (Byte#4-7) as a 32-bit unsigned integer value in little endian format. This means that Byte#4 is the LSB, and Byte#7 is the MSB of the timestamp. Next, we have the motion state data, i.e., a single byte (Byte#8), which is either 0 (stop motion) or 1 (start motion). The whole response packet structure including header is shown below:
 
 | Byte 0 (subsystem) | Byte 1 (length) | Byte 2 (CRC) |  Byte 3 (command) |Byte 4-7 |    Byte 8    | Bytes 9-19 |
 |:------------------:|:---------------:|:------------:|:-----------------:|:-------:|--------------|-------------|
@@ -59,7 +61,7 @@ In the command mode, the packet enables/disables the streaming of the 6-axis IMU
 |:------------------:|:---------------:|:------------:|:-----------------:|:------:|:--------------:|------------|
 |        0x41        |       0x10      |      CRC     | 0x03 (6-axis IMU) |Reserved| Enable/Disable |  Reserved  |
 
-In the response mode, the data section includes 4 bytes for the timestamp (Byte#4-7) in 32-bit unsigned integer and little endian format, which is then followed by 12 bytes (Byte#8-19) with the "IMU6AxisRaw_t" data structure defined below:
+In the response mode, Neblina will first send an acknowledge packet to the host to confirm the successful receipt of the command. Next, the main response packet will be prepared, where the data section first includes 4 bytes for the timestamp (Byte#4-7) in 32-bit unsigned integer and little endian format, which is then followed by 12 bytes (Byte#8-19) with the "IMU6AxisRaw_t" data structure defined below:
 ```c
 typedef struct { //3-axis raw data type - 6 bytes
   int16_t Data[3];
@@ -85,7 +87,7 @@ In the command mode, the packet enables/disables the streaming of the quaternion
 |:------------------:|:---------------:|:------------:|:-----------------:|:------:|:--------------:|------------|
 |        0x41        |       0x10      |      CRC     | 0x04 (Quaternion) |Reserved| Enable/Disable |  Reserved  |
 
-In the response mode, the data section includes 4 bytes for the timestamp (Byte#4-7) in 32-bit unsigned integer and little endian format, which is then followed by 8 bytes (Byte#8-15) with the "Quaternion_t" data structure defined below:
+In the response mode, Neblina will first send an acknowledge packet to the host to confirm the successful receipt of the command. Next, the main response packet will be prepared, where the data section first includes 4 bytes for the timestamp (Byte#4-7) in 32-bit unsigned integer and little endian format, which is then followed by 8 bytes (Byte#8-15) with the "Quaternion_t" data structure defined below:
 ```c
 typedef struct Quaternion_t //quaternion
 {
@@ -115,7 +117,7 @@ In the command mode, the packet enables/disables the streaming of the Euler Angl
 |:------------------:|:---------------:|:------------:|:------------------:|:------:|:--------------:|------------|
 |        0x41        |       0x10      |      CRC     | 0x05 (Euler Angle) |Reserved| Enable/Disable |  Reserved  |
 
-In the response mode, the data section includes 4 bytes for the timestamp (Byte#4-7), which is then followed by 6 bytes (Byte#8-13) with the "Euler_fxp_t" data structure defined below:
+In the response mode, Neblina will first send an acknowledge packet to the host to confirm the successful receipt of the command. Next, the main response packet will be prepared, where the data section first includes 4 bytes for the timestamp (Byte#4-7), which is then followed by 6 bytes (Byte#8-13) with the "Euler_fxp_t" data structure defined below:
 ```c
 typedef struct Euler_fxp_t //fixed-point Euler angles, i.e., round(angle*10)
 {
@@ -145,7 +147,7 @@ In the command mode, the packet enables/disables the streaming of the external f
 |:------------------:|:---------------:|:------------:|:-----------------:|:------:|:--------------:|------------|
 |        0x41        |       0x10      |      CRC     |  0x06 (ExtForce)  |Reserved| Enable/Disable |  Reserved  |
 
-In the response mode, the data section includes 4 bytes for the timestamp (Byte#4-7), which is then followed by 6 bytes (Byte#8-13) with the "Fext_Vec16_t" data structure defined below:
+In the response mode, Neblina will first send an acknowledge packet to the host to confirm the successful receipt of the command. Next, the main response packet will be prepared, where the data section first includes 4 bytes for the timestamp (Byte#4-7), which is then followed by 6 bytes (Byte#8-13) with the "Fext_Vec16_t" data structure defined below:
 ```c
 typedef struct Fext_Vec16_t { //external force vector
 int16_t x;
@@ -171,12 +173,16 @@ The overall packet structure is as follows:
 |:------------------:|:---------------:|:------------:|:------------------:|:------:|:--------:|------------|
 |        0x41        |       0x10      |      CRC     |0x07 (SetFusionType)|Reserved| IMU/MARG |  Reserved  |
 
+In response, Neblina will only send an acknowledge/error packet to indicate the validity and receipt of the command issued by the host.
+
 #### TrajectoryRecStartStop
 The corresponding packet's data section includes only 1 byte (Byte#8), to determine the start (1) or stop (0) of the orientation recording process. The overall packet structure is as follows:
 
 | Byte 0 (subsystem) | Byte 1 (length) | Byte 2 (CRC) |       Byte 3 (command)      |Byte 4-7|  Byte 8  |Bytes 9-19|
 |:------------------:|:---------------:|:------------:|:---------------------------:|:------:|:--------:|----------|
 |        0x41        |       0x10      |      CRC     |0x08 (TrajectoryRecStartStop)|Reserved|start/stop| Reserved |
+
+In response, Neblina will only send an acknowledge/error packet to indicate the validity and receipt of the command issued by the host.
 
 #### TrajectoryInfo Command/Response
 In the command mode, the packet enables/disables the streaming of the distance from a pre-recorded orientation trajectory, as well as the progress report. Byte#8 will be a Boolean value representing the Enable/Disable command. The overall command mode TrajectoryDistance packet has the following structure:
@@ -185,7 +191,7 @@ In the command mode, the packet enables/disables the streaming of the distance f
 |:------------------:|:---------------:|:------------:|:-------------------:|:------:|:--------------:|------------|
 |        0x41        |       0x10      |      CRC     |  0x09 (Trajectory)  |Reserved| Enable/Disable |  Reserved  |
 
-In the response mode, the data section includes 4 bytes for the timestamp (Byte#4-7), which is then followed by 6 bytes (Byte#8-13) representing the Euler angle errors in yaw (Byte#8-9), pitch (Byte#10-11), and roll (Byte#12-13) in degrees. Each angle error is a 16-bit signed integer number and it is packed into 2 bytes in little endian format. The next 2 bytes (Byte#14-15) represent a 16-bit unsigned integer number in little endian format showing how many times the recorded track has been repeated. Finally, Byte#16 shows the percentage of completion indicating how much of the recorded track has been covered. The track Counter (Byte#14-15) will be increased by 1, and the percentage value will drop back to zero, when the full track is covered. The whole response packet structure including header is shown below:
+In the response mode, Neblina will first send an acknowledge packet to the host to confirm the successful receipt of the command. Next, the main response packet will be prepared, where the data section first includes 4 bytes for the timestamp (Byte#4-7), which is then followed by 6 bytes (Byte#8-13) representing the Euler angle errors in yaw (Byte#8-9), pitch (Byte#10-11), and roll (Byte#12-13) in degrees. Each angle error is a 16-bit signed integer number and it is packed into 2 bytes in little endian format. The next 2 bytes (Byte#14-15) represent a 16-bit unsigned integer number in little endian format showing how many times the recorded track has been repeated. Finally, Byte#16 shows the percentage of completion indicating how much of the recorded track has been covered. The track Counter (Byte#14-15) will be increased by 1, and the percentage value will drop back to zero, when the full track is covered. The whole response packet structure including header is shown below:
 
 |Byte 0 (subsystem)|Byte 1 (length)|Byte 2|Byte 3|Byte 4-7 |    Byte 8-13    |Byte 14-15|Byte 16 |Bytes 17-19|
 |:----------------:|:-------------:|:----:|:----:|:-------:|:---------------:|:--------:|:------:|:---------:|
@@ -198,7 +204,7 @@ In the command mode, the packet enables/disables the streaming of the Pedometer 
 |:------------------:|:---------------:|:------------:|:------------------:|:------:|:--------------:|------------|
 |        0x41        |       0x10      |      CRC     |  0x0A (Pedometer)  |Reserved| Enable/Disable |  Reserved  |
 
-In the response mode, the data section includes 4 bytes for the timestamp (Byte#4-7), which is then followed by 5 bytes (Byte#8-12) with the following subfields:
+In the response mode, Neblina will first send an acknowledge packet to the host to confirm the successful receipt of the command. Next, the main response packet will be prepared, where the data section first includes 4 bytes for the timestamp (Byte#4-7), which is then followed by 5 bytes (Byte#8-12) with the following subfields:
 ##### Byte#8: step count, LSB
 ##### Byte#9: step count, MSB
 ##### Byte#10: spm (Cadence)
@@ -217,7 +223,7 @@ In the command mode, the packet enables/disables the streaming of the 3-axis mag
 |:------------------:|:---------------:|:------------:|:-----------------:|:------:|:--------------:|------------|
 |        0x41        |       0x10      |      CRC     |  0x0B (MAG_Data)  |Reserved| Enable/Disable |  Reserved  |
 
-In the response mode, the data section includes 4 bytes for the timestamp (Byte#4-7), which is then followed by 2*6 bytes (Byte#8-19) with the "AxesRaw_t" data structure defined before in the IMU_Data Command section. The first 6 bytes (Byte#8-13) will be a "AxesRaw_t" data structure for magnetometers, and the next 6 bytes (Byte#14-19) will be another "AxesRaw_t" data structure for accelerometer data. All the bytes are packed in little endian format. Note that the magnetoneter reading in each axis is a 16-bit signed integer representing the range: ±4 gauss.
+In the response mode, Neblina will first send an acknowledge packet to the host to confirm the successful receipt of the command. Next, the main response packet will be prepared, where the data section first includes 4 bytes for the timestamp (Byte#4-7), which is then followed by 2*6 bytes (Byte#8-19) with the "AxesRaw_t" data structure defined before in the IMU_Data Command section. The first 6 bytes (Byte#8-13) will be a "AxesRaw_t" data structure for magnetometers, and the next 6 bytes (Byte#14-19) will be another "AxesRaw_t" data structure for accelerometer data. All the bytes are packed in little endian format. Note that the magnetoneter reading in each axis is a 16-bit signed integer representing the range: ±4 gauss.
 
 The whole response packet structure including header is shown below:
 
@@ -232,7 +238,7 @@ In the command mode, the packet enables/disables the streaming of sitting/standi
 |:------------------:|:---------------:|:------------:|:--------------------:|:------:|:--------------:|------------|
 |        0x41        |       0x10      |      CRC     |0x0C (SittingStanding)|Reserved| Enable/Disable |  Reserved  |
 
-In the response mode, the data section includes 4 bytes for the timestamp (Byte#4-7), which is then followed by a single byte (Byte#8) indicating whether the person has just stood up (Byte#8 = 0x01), or has just sat down (Byte#8 = 0x00). If the person remains standing/sitting, no response packet will be sent to the host.  Next, we have 4 bytes (Byte#9-12), a 32-bit unsigned integer value packed in little endian format (LSB first), representing the amount of time in seconds the person has been sitting so far (SitTime). The next 4 bytes (Byte#13-16) construct another 32-bit unsigned integer in little endian format, which represents the amount of time in seconds the person has been standing up so far (StandTime). 
+IIn the response mode, Neblina will first send an acknowledge packet to the host to confirm the successful receipt of the command. Next, the main response packet will be prepared, where the data section first includes 4 bytes for the timestamp (Byte#4-7), which is then followed by a single byte (Byte#8) indicating whether the person has just stood up (Byte#8 = 0x01), or has just sat down (Byte#8 = 0x00). If the person remains standing/sitting, no response packet will be sent to the host.  Next, we have 4 bytes (Byte#9-12), a 32-bit unsigned integer value packed in little endian format (LSB first), representing the amount of time in seconds the person has been sitting so far (SitTime). The next 4 bytes (Byte#13-16) construct another 32-bit unsigned integer in little endian format, which represents the amount of time in seconds the person has been standing up so far (StandTime). 
 Note that if the host disables the streaming of sitting/standing mode, the SitTime and StandTime will be both reset to zero. The last 3 bytes of the packet (Byte#17-19) are reserved. The whole response packet structure including header is shown below:
 
 |Byte 0 |Byte 1|Byte 2|Byte 3|Byte 4-7 | Byte 8  |Byte 9-12|Byte 13-16|Bytes 17-19|
@@ -246,9 +252,13 @@ Neblina provides the option to lock magnetometer readings to represent the 0 deg
 |:----------------:|:-------------:|:----:|:-------------------:|:--------:|
 |       0x01       |      0x10     | CRC  |0x0D (LockHeadingRef)| Reserved |
 
+In response, Neblina will only send an acknowledge packet to indicate the successful receipt of the command issued by the host.
+
 #### SetAccRange Command
 This command sets the accelerometer full-scale range to either 2G (Mode 0), 4G (Mode 1), 8G (Mode 2), or 16G (Mode 3). The default mode is 2G. Byte#8 will be set to 0, 1, 2, or 3, representing the mode. The overall SetAccRange packet has the following structure:
 
 | Byte 0 (subsystem) | Byte 1 (length) | Byte 2 (CRC) | Byte 3 (command) |Byte 4-7|Byte 8| Bytes 9-19 |
 |:------------------:|:---------------:|:------------:|:----------------:|:------:|:----:|------------|
 |        0x41        |       0x10      |      CRC     |0x0E (SetAccRange)|Reserved| Mode |  Reserved  |
+
+In response, Neblina will only send an acknowledge/error packet to indicate the validity and receipt of the command issued by the host.
