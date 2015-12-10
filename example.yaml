@@ -1,0 +1,13 @@
+{
+  name: "",
+  type: "String",
+  description: "",
+  filterable: "",
+  updatable: true,
+  creatable: true,
+  required: false,
+  readonly: false,
+  beta: false,
+  deprecated: false,
+  private: false
+},

@@ -1,0 +1,102 @@
+---
+en:
+  stock_transfer_line_item:
+    disable_update: true
+    parent: "stock_transfer"
+    parent_article: "a"
+    parent_klass: "StockTransfer"
+    parent_plural: "stock_transfers"
+    resource_article: "a"
+    resource_klass: "StockTransferLineItem"
+    resource_name: "stock_transfer_line_item"
+    resource_plural: "stock_transfer_line_items"
+    json: [
+      {
+        id: 1,
+        created_at: "2015-11-26T03:53:17.761Z",
+        updated_at: "2015-11-26T03:53:17.761Z",
+        stock_transfer_id: 1,
+        variant_id: 8,
+        quantity: "8.0",
+        position: 0,
+        image_url: null
+      },
+      {
+        id: 2,
+        created_at: "2015-11-26T03:53:17.775Z",
+        updated_at: "2015-11-26T03:53:17.775Z",
+        stock_transfer_id: 1,
+        variant_id: 9,
+        quantity: "9.0",
+        position: 1,
+        image_url: null
+      }
+    ]
+    gecko:
+      unavailable: true
+      create: {
+        quantity: "12.0",
+        stock_transfer_id: 1,
+        variant_id: 1,
+        price: "10.0"
+      }
+
+    attributes: {
+      id: {
+        name: "id",
+        type: "Integer",
+        readonly: true,
+        description: "A unique identifier for the resource."
+      },
+      created_at: {
+        name: "created_at",
+        type: "String",
+        description: "",
+        readonly: true
+      },
+      updated_at: {
+        name: "updated_at",
+        type: "String",
+        description: "",
+        readonly: true
+      },
+      stock_transfer_id: {
+        name: "stock_transfer_id",
+        type: "Integer",
+        description: "The stock_transfer to which the resource belongs.",
+        filterable: "Filter resources by stock_transfer",
+        creatable: true,
+        required: true
+      },
+      variant_id: {
+        name: "variant_id",
+        type: "Integer",
+        description: "The variant to which the resource belongs.",
+        filterable: "Filter resources by variant",
+        updatable: true,
+        creatable: true,
+        required: true
+      },
+      quantity: {
+        name: "quantity",
+        type: "String",
+        description: "",
+        updatable: true,
+        creatable: true,
+      },
+      position: {
+        name: "position",
+        type: "Integer",
+        description: "",
+        updatable: true,
+        creatable: true,
+      },
+      image_url: {
+        name: "image_url",
+        type: "String",
+        description: "",
+        updatable: true,
+        creatable: true,
+        readonly: true,
+      }
+    }

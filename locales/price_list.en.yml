@@ -1,0 +1,123 @@
+---
+en:
+  price_list:
+    resource_article: "a"
+    resource_klass: "PriceList"
+    resource_name: "price_list"
+    resource_plural: "price_lists"
+    json: [
+      {
+        id: "buy",
+        code: "BUY",
+        name: "Buy",
+        is_cost: true,
+        currency_id: 1,
+        currency_symbol: "$",
+        currency_iso: "NZD",
+        is_default: true
+      },
+      {
+        id: "wholesale",
+        code: "WHOLE",
+        name: "Wholesale",
+        currency_id: 1,
+        currency_symbol: "$",
+        currency_iso: "NZD",
+        is_default: true
+      },
+      {
+        id: "retail",
+        code: "RETAIL",
+        name: "Retail",
+        currency_id: 1,
+        currency_symbol: "$",
+        currency_iso: "NZD",
+        is_default: true
+      },
+      {
+        id: 1,
+        currency_id: 1,
+        currency_symbol: "$",
+        currency_iso: "NZD",
+        code: "RETAIL - NZ",
+        name: "New Zealand",
+        is_default: null,
+        position: 1
+      },
+  ]
+    gecko:
+      unavailable: true
+      create: {
+        currency_id: "1",
+        code: "RETAIL - NZ",
+        name: "New Zealand Dollar"
+      }
+
+      update: {
+        name: "New Zealand Peso"
+      }
+
+    attributes: {
+      id: {
+        name: "id",
+        type: "Integer",
+        description: "A unique identifier for the resource.",
+        readonly: true,
+      },
+      currency_id: {
+        name: "currency_id",
+        type: "String",
+        description: "The currency to which the price_list belongs.",
+        filterable: true,
+        updatable: true,
+        creatable: true,
+        required: true
+      },
+      currency_symbol: {
+        name: "currency_symbol",
+        type: "String",
+        description: "Provided by the associated currency",
+        readonly: true
+      },
+      currency_iso: {
+        name: "currency_iso",
+        type: "String",
+        description: "Provided by the associated currency",
+        readonly: true
+      },
+      code: {
+        name: "code",
+        type: "String",
+        description: "Identifier for your systems",
+        updatable: true,
+        creatable: true
+      },
+      name: {
+        name: "name",
+        type: "String",
+        description: "",
+        updatable: true,
+        creatable: true
+      },
+      is_cost: {
+        name: "is_cost",
+        type: "Boolean",
+        description: "Price list would be available in creating purchase orders if set to true",
+        updatable: true,
+        creatable: true
+      },
+      is_default: {
+        name: "is_default",
+        type: "Boolean",
+        description: "Is one of the wholesale, buy or retail price lists",
+        readonly: true
+      },
+      position: {
+        name: "position",
+        type: "Integer",
+        description: "",
+        updatable: true,
+        creatable: true,
+        readonly: true
+      }
+    }

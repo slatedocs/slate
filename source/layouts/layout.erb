@@ -43,12 +43,11 @@ under the License.
   <body class="<%= page_classes %>">
     <a href="#" id="nav-button">
       <span>
-        NAV
-        <%= image_tag('navbar.png') %>
+        <%= image_tag('navbar-2.png') %>
       </span>
     </a>
     <div class="tocify-wrapper">
-      <%= image_tag "logo.png" %>
+      <%= image_tag "logo.png", width: "200px" %>
       <% if language_tabs %>
         <div class="lang-selector">
           <% language_tabs.each do |lang| %>
@@ -80,8 +79,11 @@ under the License.
       <div class="dark-box"></div>
       <div class="content">
         <%= yield %>
-        <% current_page.data.includes && current_page.data.includes.each do |include| %>
-          <%= partial "includes/#{include}" %>
+        <%= partial "includes/getting_started" %>
+        <%= partial "includes/guides" %>
+        <%= partial "includes/errors" %>
+        <% current_page.data.resources && current_page.data.resources.each do |resource| %>
+          <%= partial "includes/resource", locals: { resource: resource } %>
         <% end %>
       </div>
       <div class="dark-box">

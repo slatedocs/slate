@@ -1,7 +1,8 @@
 @charset "utf-8";
 @import 'normalize';
 @import 'compass';
-@import 'variables';
+// @import 'variables'; revert to tripit defaults
+@import 'variables2'; // tradegecko overrides
 @import 'icon-font';
 
 /*

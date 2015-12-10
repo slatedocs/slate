@@ -1,0 +1,189 @@
+---
+en:
+  user:
+    current: true
+    disable_create: true
+    resource_article: "a"
+    resource_klass: "User"
+    resource_name: "user"
+    resource_plural: "users"
+    json: [
+      {
+        id: 1,
+        created_at: "2015-11-02T01:22:23.877Z",
+        updated_at: "2015-11-02T01:22:23.920Z",
+        action_items_email: "weekly",
+        avatar_url: "/assets/avatars/avatar1-70fa2b37c7341a16d9ef72fc6b0f961c253965e9c395fc063ad0165bc65b7167.png",
+        billing_contact: true,
+        email: "example@tradegecko.com",
+        first_name: "Gordon",
+        last_name: "Gecko",
+        last_sign_in_at: "2015-11-17T06:35:25.521Z",
+        location: null,
+        login_id: 1,
+        mobile: null,
+        notification_email: true,
+        permissions: [
+          "read_reports",
+          "write_stocks",
+          "write_orders",
+          "write_products",
+          "write_settings",
+          "write_companies",
+          "read_buy_prices"
+        ],
+        phone_number: null,
+        position: null,
+        sales_report_email: true,
+        status: "active",
+        account_id: 1
+      }
+    ]
+    gecko:
+      update: {
+        first_name: "Gordon"
+      }
+
+    attributes: {
+      id: {
+        name: "id",
+        type: "Integer",
+        description: "A unique identifier for the resource.",
+        readonly: true
+      },
+      created_at: {
+        name: "created_at",
+        type: "String",
+        description: "",
+        readonly: true
+      },
+      updated_at: {
+        name: "updated_at",
+        type: "String",
+        description: "",
+        readonly: true
+      },
+      status: {
+        name: "status",
+        type: "String",
+        description: "Tells whether the resource is 'active' or 'archived'",
+        filterable: true,
+        readonly: true
+      },
+      action_items_email: {
+        name: "action_items_email",
+        type: "String",
+        description: "Frequency of action items email [off, daily, weekly]",
+        updatable: true,
+        creatable: true
+      },
+      avatar_url: {
+        name: "avatar_url",
+        type: "String",
+        description: "This image is not processed (so it accepts gifs!)",
+        updatable: true,
+        creatable: true
+      },
+      billing_contact: {
+        name: "billing_contact",
+        type: "Boolean",
+        description: "Tells whether user is billing_contact for the current account",
+        updatable: true,
+        creatable: true
+      },
+      email: {
+        name: "email",
+        type: "String",
+        description: "",
+        updatable: true,
+        creatable: true
+      },
+      first_name: {
+        name: "first_name",
+        type: "String",
+        description: "",
+        updatable: true,
+        creatable: true
+      },
+      last_name: {
+        name: "last_name",
+        type: "String",
+        description: "",
+        updatable: true,
+        creatable: true
+      },
+      last_sign_in_at: {
+        name: "last_sign_in_at",
+        type: "String",
+        description: "",
+        updatable: true,
+        creatable: true
+      },
+      location: {
+        name: "location",
+        type: "String",
+        description: "",
+        updatable: true,
+        creatable: true
+      },
+      login_id: {
+        name: "login_id",
+        type: "Integer",
+        description: "The current login identifier.",
+        filterable: true,
+        updatable: true,
+        creatable: true,
+        readonly: true
+      },
+      mobile: {
+        name: "mobile",
+        type: "String",
+        description: "",
+        updatable: true,
+        creatable: true
+      },
+      notification_email: {
+        name: "notification_email",
+        type: "Boolean",
+        description: "",
+        updatable: true,
+        creatable: true
+      },
+      permissions: {
+        name: "permissions",
+        type: "Array",
+        description: "Permissions available to user.",
+        updatable: true,
+        creatable: true
+      },
+      phone_number: {
+        name: "phone_number",
+        type: "String",
+        description: "",
+        updatable: true,
+        creatable: true
+      },
+      position: {
+        name: "position",
+        type: "String",
+        description: "Role in the company",
+        updatable: true,
+        creatable: true
+      },
+      sales_report_email: {
+        name: "sales_report_email",
+        type: "Boolean",
+        description: "",
+        updatable: true,
+        creatable: true
+      },
+      account_id: {
+        name: "account_id",
+        type: "String",
+        description: "The current account identifier.",
+        filterable: true,
+        updatable: true,
+        creatable: true,
+        readonly: true
+      }
+    }

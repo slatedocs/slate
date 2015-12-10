@@ -1,0 +1,95 @@
+---
+en:
+  tax_component:
+    parent: "tax_type"
+    parent_article: "a"
+    parent_klass: "TaxType"
+    parent_plural: "tax_types"
+    resource_article: "a"
+    resource_klass: "TaxComponent"
+    resource_name: "tax_component"
+    resource_plural: "tax_components"
+    json: [
+      {
+        id: 3,
+        tax_type_id: 3,
+        position: 1,
+        label: "GST",
+        rate: "15.0",
+      },
+      {
+        id: 2,
+        tax_type_id: 2,
+        position: 1,
+        label: "GST",
+        rate: "15.0",
+      },
+      {
+        id: 1,
+        tax_type_id: 1,
+        position: 1,
+        label: "GST",
+        rate: "0.0",
+      }
+    ]
+    gecko:
+      unavailable: true
+      create: {
+        quantity: "12.0",
+        order_id: 1,
+        tax_type_id: 1,
+        price: "10.0"
+      }
+      update: {
+        quantity: "22.0",
+        price: "12.0"
+      }
+
+    attributes: {
+      id: {
+        name: "id",
+        type: "Integer",
+        readonly: true,
+        description: "A unique identifier for the resource."
+      },
+      tax_type_id: {
+        name: "tax_type_id",
+        type: "Integer",
+        description: "The tax_type to which the tax_component belongs.",
+        filterable: true,
+        creatable: true,
+        required: true,
+      },
+      position: {
+        name: "position",
+        type: "Integer",
+        description: "",
+        filterable: "",
+        updatable: true,
+        creatable: true,
+      },
+      label: {
+        name: "label",
+        type: "String",
+        description: "Display name",
+        filterable: "",
+        updatable: true,
+        creatable: true,
+      },
+      rate: {
+        name: "rate",
+        type: "String",
+        description: "Tax Rate",
+        filterable: "",
+        updatable: true,
+        creatable: true,
+      },
+      compound: {
+        name: "{",
+        type: "String",
+        description: "",
+        filterable: "",
+        updatable: true,
+        creatable: true,
+      }
+    }

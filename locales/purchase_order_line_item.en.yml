@@ -1,0 +1,211 @@
+---
+en:
+  purchase_order_line_item:
+    parent: "purchase_order"
+    parent_article: "a"
+    parent_klass: "PurchaseOrder"
+    parent_plural: "purchase_orders"
+    resource_article: "a"
+    resource_klass: "PurchaseOrderLineItem"
+    resource_name: "purchase_order_line_item"
+    resource_plural: "purchase_order_line_items"
+    json: [
+      {
+        id: 3,
+        created_at: "2015-11-23T11:19:50.405Z",
+        updated_at: "2015-11-23T11:19:50.405Z",
+        procurement_id: null,
+        purchase_order_id: 2,
+        tax_type_id: 3,
+        variant_id: 8,
+        base_price: null,
+        freeform: false,
+        image_url: null,
+        label: null,
+        position: 0,
+        price: "2.5",
+        quantity: "2.0",
+        tax_rate_override: null,
+        extra_cost_value: "0.0",
+        tax_rate: null
+      },
+      {
+        id: 1,
+        created_at: "2015-11-23T11:19:07.469Z",
+        updated_at: "2015-11-23T11:19:07.469Z",
+        procurement_id: null,
+        purchase_order_id: 1,
+        tax_type_id: 3,
+        variant_id: 8,
+        base_price: null,
+        freeform: false,
+        image_url: null,
+        label: null,
+        position: 0,
+        price: "2.5",
+        quantity: "1.0",
+        tax_rate_override: null,
+        extra_cost_value: "0.0",
+        tax_rate: null
+      },
+      {
+        id: 2,
+        created_at: "2015-11-23T11:19:50.297Z",
+        updated_at: "2015-11-23T11:19:50.297Z",
+        procurement_id: null,
+        purchase_order_id: 2,
+        tax_type_id: 3,
+        variant_id: 9,
+        base_price: null,
+        freeform: false,
+        image_url: null,
+        label: null,
+        position: 1,
+        price: "2.5",
+        quantity: "1.0",
+        tax_rate_override: null,
+        extra_cost_value: "0.0",
+        tax_rate: null
+      }
+    ]
+    gecko:
+      create: {
+        quantity: "12.0",
+        order_id: 1,
+        tax_type_id: 1,
+        price: "10.0"
+      }
+      update: {
+        quantity: "22.0",
+        price: "12.0"
+      }
+
+    attributes: {
+      id: {
+        name: "id",
+        type: "Integer",
+        readonly: true,
+        description: "A unique identifier for the resource."
+      },
+      created_at: {
+        name: "created_at",
+        type: "String",
+        description: "",
+        readonly: true
+      },
+      updated_at: {
+        name: "updated_at",
+        type: "String",
+        description: "",
+        readonly: true
+      },
+      purchase_order_id: {
+        name: "purchase_order_id",
+        type: "Integer",
+        description: "The purchase_order to which the purchase_order_line_item belongs.",
+        filterable: "Filter purchase_order_line_items by order",
+        creatable: true,
+        required: true
+      },
+      variant_id: {
+        name: "variant_id",
+        type: "Integer",
+        description: "The variant to which the purchase_order_line_item belongs.",
+        filterable: "Filter purchase_order_line_items by variant",
+        updatable: true,
+        creatable: true,
+        required: true
+      },
+      tax_type_id: {
+        name: "tax_type_id",
+        type: "Integer",
+        description: "The tax_type to which the purchase_order_line_item belongs.",
+        filterable: "Filter purchase_order_line_items by tax_type",
+        updatable: true,
+        creatable: true,
+        required: true
+      },
+      procurement_id: {
+        name: "procurement_id",
+        type: "Integer",
+        description: "",
+        filterable: true,
+        updatable: true,
+        creatable: true,
+      },
+      base_price: {
+        name: "base_price",
+        type: "String",
+        description: "",
+        updatable: true,
+        creatable: true,
+        readonly: true,
+      },
+      freeform: {
+        name: "freeform",
+        type: "Boolean",
+        description: "",
+        updatable: true,
+        creatable: true,
+      },
+      image_url: {
+        name: "image_url",
+        type: "String",
+        description: "",
+        updatable: true,
+        creatable: true,
+        readonly: true,
+      },
+      label: {
+        name: "label",
+        type: "String",
+        description: "",
+        updatable: true,
+        creatable: true,
+      },
+      position: {
+        name: "position",
+        type: "Integer",
+        description: "",
+        updatable: true,
+        creatable: true,
+      },
+      price: {
+        name: "price",
+        type: "String",
+        description: "",
+        updatable: true,
+        creatable: true,
+        required: true,
+      },
+      quantity: {
+        name: "quantity",
+        type: "String",
+        description: "",
+        updatable: true,
+        creatable: true,
+      },
+      tax_rate_override: {
+        name: "tax_rate_override",
+        type: "String",
+        description: "Optional tax rate override",
+        updatable: true,
+        creatable: true,
+      },
+      extra_cost_value: {
+        name: "extra_cost_value",
+        type: "String",
+        description: "",
+        updatable: true,
+        creatable: true,
+        readonly: true,
+      },
+      tax_rate: {
+        name: "tax_rate",
+        type: "String",
+        description: "Deprecated in favour of tax_rate_override",
+        updatable: true,
+        creatable: true,
+        deprecated: true,
+      }
+    }

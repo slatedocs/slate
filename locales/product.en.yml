@@ -1,0 +1,212 @@
+---
+en:
+  product:
+    child: "variant"
+    resource_article: "a"
+    resource_klass: "Product"
+    resource_name: "product"
+    resource_plural: "products"
+    json: [
+      {
+        id: 2,
+        created_at: "2015-11-02T01:22:24.817Z",
+        updated_at: "2015-11-02T01:22:24.817Z",
+        brand: null,
+        description: "All ready for Easter, our giant golden chocolate eggs are just what the doctor ordered, adults and children alike",
+        image_url: null,
+        name: "Golden Egg",
+        opt1: "Size",
+        opt2: null,
+        opt3: null,
+        product_type: "Chocolate",
+        quantity: "32.5",
+        search_cache: "DEMO-EGG-L Large DEMO-EGG-XL Extra-Large DEMO-EGG-M Medium DEMO-EGG-S Small",
+        status: "active",
+        supplier: "Wonka Candy",
+        supplier_ids: [
+          3
+        ],
+        tags: "candy,chocolate",
+        variant_ids: [
+          4,
+          5,
+          6,
+          7
+        ],
+        vendor: "Wonka Candy"
+      },
+      {
+        id: 1,
+        created_at: "2015-11-02T01:22:24.660Z",
+        updated_at: "2015-11-02T01:22:24.660Z",
+        brand: null,
+        description: "These everlasting gobstoppers will never run out. Just keep going forever and ever, full flavour guaranteed",
+        image_url: null,
+        name: "Everlasting Gobstopper",
+        opt1: "Flavour",
+        opt2: null,
+        opt3: null,
+        product_type: "Candy",
+        quantity: "17",
+        search_cache: "DEMO-GOBS-PEA Peach DEMO-GOBS-SNO Snozzberry",
+        status: "active",
+        supplier: "Wonka Candy",
+        supplier_ids: [
+          3
+        ],
+        tags: "candy,summer",
+        variant_ids: [
+          2,
+          3
+        ],
+        vendor: "Wonka Candy"
+      }
+    ]
+    gecko:
+      create: {
+        name: "Everlasting Gobstopper",
+        opt1: "Colour",
+      }
+      update: {
+        opt2: "Size",
+        opt3: "Weight"
+      }
+
+    attributes: {
+      id: {
+        name: "id",
+        type: "Integer",
+        readonly: true,
+        description: "A unique identifier for the resource."
+      },
+      created_at: {
+        name: "created_at",
+        type: "String",
+        description: "",
+        readonly: true
+      },
+      updated_at: {
+        name: "updated_at",
+        type: "String",
+        description: "",
+        readonly: true
+      },
+      status: {
+        name: "status",
+        type: "String",
+        description: "Tells whether the resource is 'active' or 'archived'",
+        filterable: true,
+        readonly: true,
+      },
+      brand: {
+        name: "brand",
+        type: "String",
+        description: "Name of the brand of the product",
+        filterable: true,
+        updatable: true,
+        creatable: true,
+      },
+      description: {
+        name: "description",
+        type: "String",
+        description: "A brief description of the product",
+        updatable: true,
+        creatable: true,
+      },
+      image_url: {
+        name: "image_url",
+        type: "String",
+        description: "First image of children variants (sorted on position)",
+        readonly: true,
+      },
+      name: {
+        name: "name",
+        type: "String",
+        description: "",
+        updatable: true,
+        creatable: true,
+        required: true,
+      },
+      opt1: {
+        name: "opt1",
+        type: "String",
+        description: "Custom product property name eg. 'Size', 'Color'",
+        updatable: true,
+        creatable: true,
+      },
+      opt2: {
+        name: "opt2",
+        type: "String",
+        description: "Custom product property name eg. 'Size', 'Color'",
+        updatable: true,
+        creatable: true,
+      },
+      opt3: {
+        name: "opt3",
+        type: "String",
+        description: "Custom product property name eg. 'Size', 'Color'",
+        updatable: true,
+        creatable: true,
+      },
+      product_type: {
+        name: "product_type",
+        type: "String",
+        description: "",
+        filterable: true,
+        updatable: true,
+        creatable: true,
+      },
+      quantity: {
+        name: "quantity",
+        type: "String",
+        description: "Sum of the quantities of child variants",
+        updatable: true,
+        creatable: true,
+        readonly: true
+      },
+      search_cache: {
+        name: "search_cache",
+        type: "String",
+        description: "",
+        readonly: true,
+        private: true
+      },
+      supplier: {
+        name: "supplier",
+        type: "String",
+        description: "Name of the supplier of the product",
+        updatable: true,
+        creatable: true,
+        deprecated: true,
+      },
+      supplier_ids: {
+        name: "supplier_ids",
+        type: "Array",
+        description: "Should currently only be one ID for backwards compatibility purposes",
+        updatable: true,
+        creatable: true,
+        beta: true,
+      },
+      tags: {
+        name: "tags",
+        type: "Array",
+        description: "Product tags for easier filtering and searching",
+        filterable: true,
+        updatable: true,
+        creatable: true,
+      },
+      variant_ids: {
+        name: "variant_ids",
+        type: "Array",
+        description: "",
+        readonly: true,
+      },
+      vendor: {
+        name: "vendor",
+        type: "String",
+        description: "Will be removed very soon.",
+        updatable: true,
+        creatable: true,
+        deprecated: true,
+      },
+    }

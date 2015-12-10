@@ -1,0 +1,417 @@
+---
+en:
+  order:
+    child: "order_line_item"
+    resource_article: "an"
+    resource_klass: "Order"
+    resource_name: "order"
+    resource_plural: "order"
+    json: [
+      {
+        "id":                     2,
+        "created_at":             "2015-11-12T08:06:01.561Z",
+        "updated_at":             "2015-11-12T08:06:01.561Z",
+        "document_url":           "http://api.lvh.me:3000/d/not-a-real-token-2",
+        "assignee_id":            nil,
+        "billing_address_id":     1,
+        "company_id":             1,
+        "contact_id":             nil,
+        "currency_id":            1,
+        "shipping_address_id":    1,
+        "stock_location_id":      1,
+        "user_id":                1,
+        "default_price_list_id":  "retail",
+        "email":                  "example@tradegecko.com",
+        "fulfillment_status":     "unshipped",
+        "invoice_status":         "uninvoiced",
+        "issued_at":              "2015-11-12",
+        "notes":                  nil,
+        "order_number":           "SO0001",
+        "packed_status":          "unpacked",
+        "payment_status":         "unpaid",
+        "phone_number":           "+1 650-468-2904",
+        "reference_number":       nil,
+        "return_status":          "unreturned",
+        "returning_status":       "unreturning",
+        "ship_at":                nil,
+        "source_url":             nil,
+        "status":                 "draft",
+        "tax_label":              "GST",
+        "tax_override":           nil,
+        "tax_treatment":          "inclusive",
+        "total":                  0,
+        "tags":                   [],
+        "fulfillment_ids":        [],
+        "fulfillment_return_ids": [],
+        "invoice_ids":            [],
+        "payment_ids":            [],
+        "refund_ids":             [],
+        "invoices":               [],
+        "cached_total":           0,
+        "default_price_type_id":  "wholesale",
+        "source":                 nil,
+        "tax_type":               "exclusive",
+        "tracking_number":        nil,
+        "url":                    nil,
+        "source_id":              nil,
+        "invoice_numbers":        {},
+        "order_line_item_ids":    [1,2]
+      },
+      {
+        "id":                     1,
+        "created_at":             "2015-11-12T08:06:00.561Z",
+        "updated_at":             "2015-11-12T08:06:00.561Z",
+        "document_url":           "http://api.lvh.me:3000/d/not-a-real-token",
+        "assignee_id":            nil,
+        "billing_address_id":     1,
+        "company_id":             1,
+        "contact_id":             nil,
+        "currency_id":            1,
+        "shipping_address_id":    1,
+        "stock_location_id":      1,
+        "user_id":                1,
+        "default_price_list_id":  "wholesale",
+        "email":                  "example@tradegecko.com",
+        "fulfillment_status":     "unshipped",
+        "invoice_status":         "uninvoiced",
+        "issued_at":              "2015-11-12",
+        "notes":                  nil,
+        "order_number":           "SO0001",
+        "packed_status":          "unpacked",
+        "payment_status":         "unpaid",
+        "phone_number":           "+1 650-468-2904",
+        "reference_number":       nil,
+        "return_status":          "unreturned",
+        "returning_status":       "unreturning",
+        "ship_at":                nil,
+        "source_url":             nil,
+        "status":                 "draft",
+        "tax_label":              "GST",
+        "tax_override":           nil,
+        "tax_treatment":          "exclusive",
+        "total":                  0,
+        "tags":                   [],
+        "fulfillment_ids":        [],
+        "fulfillment_return_ids": [],
+        "invoice_ids":            [],
+        "payment_ids":            [],
+        "refund_ids":             [],
+        "invoices":               [],
+        "cached_total":           0,
+        "default_price_type_id":  "wholesale",
+        "source":                 nil,
+        "tax_type":               "exclusive",
+        "tracking_number":        nil,
+        "url":                    nil,
+        "source_id":              nil,
+        "invoice_numbers":        {},
+        "order_line_item_ids":    []
+      }
+    ]
+    gecko:
+      create: {
+        company_id: 1,
+        issued_at: Time.now,
+        billing_address_id: 1,
+        shipping_address_id: 1
+      }
+      update: {
+        status: "active",
+        email: "hello@tradegecko.com",
+        billing_address_id: 2
+      }
+
+    attributes: {
+      id: {
+        name: "id",
+        type: "Integer",
+        description: "A unique identifier for the resource.",
+        readonly: true
+      },
+      created_at: {
+        name: "created_at",
+        type: "String",
+        description: "",
+        readonly: true
+      },
+      updated_at: {
+        name: "updated_at",
+        type: "String",
+        description: "",
+        readonly: true
+      },
+      assignee_id: {
+        name: "assignee_id",
+        type: "Integer",
+        description: "The assignee to which the order belongs.",
+        filterable: "Filter orders by assignee",
+        creatable: true,
+        updatable: true
+      },
+      issued_at: {
+        name: "issued_at",
+        type: "String",
+        description: "Issue date for the order",
+        creatable: true,
+        updatable: true,
+        required: true
+      },
+      ship_at: {
+        name: "ship_at",
+        type: "String",
+        description: "Ship date for the order.",
+        creatable: true,
+        updatable: true
+      },
+      billing_address_id: {
+        name: "billing_address_id",
+        type: "Integer",
+        description: "",
+        filterable: true,
+        creatable: true,
+        updatable: true,
+        required: true
+      },
+      company_id: {
+        name: "company_id",
+        type: "Integer",
+        description: "",
+        filterable: true,
+        creatable: true,
+        updatable: true,
+        required: true
+      },
+      contact_id: {
+        name: "contact_id",
+        type: "Integer",
+        description: "",
+        filterable: true,
+        creatable: true,
+        updatable: true
+      },
+      currency_id: {
+        name: "currency_id",
+        type: "Integer",
+        description: "",
+        filterable: true
+      },
+      shipping_address_id: {
+        name: "shipping_address_id",
+        type: "Integer",
+        description: "",
+        filterable: true,
+        creatable: true,
+        updatable: true,
+        required: true
+      },
+      stock_location_id: {
+        name: "stock_location_id",
+        type: "Integer",
+        description: "",
+        filterable: true,
+        creatable: true,
+        updatable: true
+      },
+      user_id: {
+        name: "user_id",
+        type: "Integer",
+        description: "",
+        filterable: true,
+        readonly: true
+      },
+      source_id: {
+        name: "source_id",
+        type: "String",
+        description: "Internal ID of the OAuth application that created the order (if not via web interface)",
+        filterable: "Internal ID of the OAuth application that created the order (if not via web interface)",
+        readonly: true
+      },
+      default_price_list_id: {
+        name: "default_price_list_id",
+        type: "String",
+        description: "",
+        filterable: false,
+        creatable: true,
+        updatable: true
+      },
+      document_url: {
+        name: "document_url",
+        type: "String",
+        description: "Shareable URL for resource document",
+        readonly: true
+      },
+      email: {
+        name: "email",
+        type: "String",
+        description: "",
+        creatable: true,
+        updatable: true
+      },
+      notes: {
+        name: "notes",
+        type: "String",
+        description: "",
+        creatable: true,
+        updatable: true
+      },
+      order_number: {
+        name: "order_number",
+        type: "String",
+        description: "",
+        creatable: true,
+        updatable: true
+      },
+      phone_number: {
+        name: "phone_number",
+        type: "String",
+        description: "",
+        creatable: true,
+        updatable: true
+      },
+      reference_number: {
+        name: "reference_number",
+        type: "String",
+        description: "A reference for the order that isn't the order_number",
+        creatable: true,
+        updatable: true
+      },
+      source_url: {
+        name: "source_url",
+        type: "String",
+        description: "",
+        creatable: true,
+        updatable: true
+      },
+      tags: {
+        name: "tags",
+        type: "Array",
+        description: "Reference tags for the order, used in filtering.",
+        creatable: true,
+        updatable: true,
+        filterable: true
+      },
+      tax_treatment: {
+        name: "tax_treatment",
+        type: "String",
+        description: "One of 'exclusive' or 'inclusive', if not provided defaults to account default.",
+        creatable: true,
+        updatable: true
+      },
+      total: {
+        name: "total",
+        type: "String",
+        description: "",
+        readonly: true
+      },
+      status: {
+        name: "status",
+        type: "String",
+        description: "Signifies the current state of the order, can be set as 'draft', 'active' or 'finalized'",
+        creatable: true,
+        updatable: true
+      },
+      payment_status: {
+        name: "payment_status",
+        type: "String",
+        description: "",
+        readonly: true,
+        filterable: "e.g. unpaid, partial or paid"
+      },
+      invoice_status: {
+        name: "invoice_status",
+        type: "String",
+        description: "",
+        readonly: true,
+        filterable: "e.g. uninvoiced, partial or invoiced"
+      },
+      packed_status: {
+        name: "packed_status",
+        type: "String",
+        description: "",
+        readonly: true,
+        filterable: "e.g. unpacked, partial or packed"
+      },
+      fulfillment_status: {
+        name: "fulfillment_status",
+        type: "String",
+        description: "",
+        readonly: true,
+        filterable: "e.g. unfulfilled, partial or fulfilled"
+      },
+      return_status: {
+        name: "return_status",
+        type: "String",
+        description: "",
+        readonly: true,
+        filterable: "e.g. unreturned, partial or returned"
+      },
+      returning_status: {
+        name: "returning_status",
+        type: "String",
+        description: "",
+        readonly: true,
+        filterable: "e.g. unreturning, partial or returning"
+      },
+      shippability_status: {
+        name: "shippability_status",
+        type: "String",
+        description: "",
+        readonly: true,
+        filterable: "e.g. not_shippable, partially_shippable or shippable"
+      },
+      backordering_status: {
+        name: "backordering_status",
+        type: "String",
+        description: "",
+        readonly: true,
+        filterable: "e.g. not_backordered, partially_backordered or backordered"
+      },
+      fulfillment_ids: {
+        name: "fulfillment_ids",
+        type: "Array",
+        description: "",
+        readonly: true
+      },
+      invoice_ids: {
+        name: "invoice_ids",
+        type: "Array",
+        description: "",
+        readonly: true
+      },
+      fulfillment_return_ids: {
+        name: "fulfillment_return_ids",
+        type: "Array",
+        description: "",
+        readonly: true
+      },
+      payment_ids: {
+        name: "payment_ids",
+        type: "Array",
+        description: "",
+        readonly: true
+      },
+      refund_ids: {
+        name: "refund_ids",
+        type: "Array",
+        description: "",
+        readonly: true
+      },
+      invoices: {
+        name: "invoices",
+        type: "Array",
+        description: "",
+        readonly: true
+      },
+      invoice_numbers: {
+        name: "invoice_numbers",
+        type: "Array",
+        description: "",
+        readonly: true
+      },
+      order_line_item_ids: {
+        name: "order_line_item_ids",
+        type: "Array",
+        description: "",
+        readonly: true
+      },
+    }

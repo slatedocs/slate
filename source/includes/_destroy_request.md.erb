@@ -1,0 +1,27 @@
+## Delete <%= t(".resource_article", scope: resource) %> <%= t(".resource_name", scope: resource) %>
+<% unless t('.gecko.unavailable', scope: resource)== true  %>
+
+```ruby
+require 'gecko-ruby'
+gecko = Gecko::Client.new(OAUTH_ID, OAUTH_SECRET)
+access_token = OAuth2::AccessToken.new(gecko.oauth_client, ACCESS_TOKEN)
+gecko.access_token = access_token
+<%= t(".resource_name", scope: resource) %> = gecko.<%= t(".resource_klass", scope: resource) %>.find(1).
+<%= t(".resource_name", scope: resource) %>.destroy
+```
+
+<% end %>
+
+```shell
+curl -X DELETE -H "Content-type: application/json" -H "Authorization: Bearer <ACCESS_TOKEN>"
+https://api.tradegecko.com/<%= t(".resource_plural", scope: resource) %>/1
+```
+
+> Response
+>
+> Returns 204 status when the <%= t(".resource_name", scope: resource) %> gets deleted successfully.
+
+Permanently deletes <%= t(".resource_article", scope: resource) %> <%= t(".resource_name", scope: resource) %>. It cannot be undone. This <%= t(".resource_name", scope: resource) %> is no longer available for future Sales Orders.
+
+### HTTP Request
+`DELETE https://api.tradegecko.com/<%= t(".resource_plural", scope: resource) %>/{RESOURCE_ID}/`

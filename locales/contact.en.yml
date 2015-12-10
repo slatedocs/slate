@@ -1,0 +1,195 @@
+---
+en:
+  contact:
+    parent: "company"
+    parent_article: "a"
+    parent_klass: "Company"
+    parent_plural: "companies"
+    resource_article: "a"
+    resource_klass: "Contact"
+    resource_name: "contact"
+    resource_plural: "contacts"
+    json: [
+      {
+        id: 7,
+        created_at: "2015-11-02T01:44:42.483Z",
+        updated_at: "2015-11-02T01:45:17.085Z",
+        company_id: 4,
+        email: "lachlan@tradegecko.com",
+        fax: null,
+        first_name: "B2B Test Contact",
+        last_name: "",
+        location: null,
+        mobile: null,
+        notes: null,
+        phone_number: null,
+        position: null,
+        status: "active",
+        iguana_admin: true,
+        online_ordering: true,
+        invitation_accepted_at: "2015-11-02T01:45:17.082Z",
+        phone: null
+      },
+      {
+        id: 6,
+        created_at: "2015-11-02T01:22:25.821Z",
+        updated_at: "2015-11-02T01:33:35.379Z",
+        company_id: 1,
+        email: "lcp@tradegecko.com",
+        fax: null,
+        first_name: "lcp",
+        last_name: "Gecko",
+        location: null,
+        mobile: null,
+        notes: null,
+        phone_number: null,
+        position: null,
+        status: "active",
+        iguana_admin: null,
+        online_ordering: true,
+        invitation_accepted_at: "2015-11-02T01:33:35.377Z",
+        phone: null
+      }
+    ]
+    gecko:
+      create: {
+        first_name: "TradeGecko (Demo)",
+        company_id: 1
+      }
+      update: {
+        last_name: "Rogers"
+      }
+
+    attributes: {
+      id: {
+        name: "id",
+        type: "Integer",
+        description: "A unique identifier for the resource.",
+        readonly: true,
+      },
+      created_at: {
+        name: "created_at",
+        type: "String",
+        description: "",
+        readonly: true
+      },
+      updated_at: {
+        name: "updated_at",
+        type: "String",
+        description: "",
+        readonly: true
+      },
+      status: {
+        name: "status",
+        type: "String",
+        description: "Tells whether the resource is 'active' or 'archived'",
+        filterable: true,
+        readonly: true
+      },
+      company_id: {
+        name: "company_id",
+        type: "Integer",
+        description: "The company id where the contact belongs.",
+        filterable: "Filter contacts by company",
+        creatable: true,
+        required: true,
+      },
+      email: {
+        name: "email",
+        type: "String",
+        description: "",
+        updatable: true,
+        creatable: true,
+      },
+      fax: {
+        name: "fax",
+        type: "String",
+        description: "",
+        updatable: true,
+        creatable: true,
+      },
+      first_name: {
+        name: "first_name",
+        type: "String",
+        description: "",
+        updatable: true,
+        creatable: true,
+        required: true,
+      },
+      last_name: {
+        name: "last_name",
+        type: "String",
+        description: "",
+        updatable: true,
+        creatable: true,
+      },
+      location: {
+        name: "location",
+        type: "String",
+        description: "",
+        updatable: true,
+        creatable: true,
+      },
+      mobile: {
+        name: "mobile",
+        type: "String",
+        description: "",
+        updatable: true,
+        creatable: true,
+      },
+      notes: {
+        name: "notes",
+        type: "String",
+        description: "",
+        updatable: true,
+        creatable: true,
+      },
+      phone_number: {
+        name: "phone_number",
+        type: "String",
+        description: "",
+        updatable: true,
+        creatable: true,
+      },
+      position: {
+        name: "position",
+        type: "Integer",
+        description: "",
+        updatable: true,
+        creatable: true,
+      },
+      iguana_admin: {
+        name: "iguana_admin",
+        type: "String",
+        description: "",
+        updatable: true,
+        creatable: true,
+        beta: true,
+        private: true
+      },
+      online_ordering: {
+        name: "online_ordering",
+        type: "String",
+        description: "Tells whether this contact has access to your B2B store",
+        filterable: true,
+        updatable: true,
+        creatable: true,
+      },
+      invitation_accepted_at: {
+        name: "invitation_accepted_at",
+        type: "String",
+        description: "",
+        updatable: true,
+        creatable: true,
+        beta: true,
+        private: true
+      },
+      phone: {
+        name: "phone",
+        type: "String",
+        description: "",
+        updatable: true,
+        creatable: true,
+        deprecated: true,
+      }
+    }

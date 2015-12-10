@@ -1,0 +1,146 @@
+---
+en:
+  stock_transfer:
+    child: "stock_transfer_line_item"
+    disable_update: true
+    resource_article: "a"
+    resource_klass: "StockTransfer"
+    resource_name: "stock_transfer"
+    resource_plural: "stock_transfer"
+    json: [
+      {
+        id: 2,
+        created_at: "2015-11-26T04:14:45.572Z",
+        updated_at: "2015-11-26T04:14:45.606Z",
+        adjustment_number: "ST0002",
+        status: "active",
+        received_at: null,
+        notes: "Reversal of Stock Transfer #ST0001",
+        source_location_id: 3,
+        destination_location_id: 1,
+        cached_quantity: "8.0",
+        transacted_at: null,
+        stock_transfer_line_item_ids: [
+          3,
+          4
+        ]
+      },
+      {
+        id: 1,
+        created_at: "2015-11-26T03:53:17.729Z",
+        updated_at: "2015-11-26T03:53:21.760Z",
+        adjustment_number: "ST0001",
+        status: "received",
+        received_at: "2015-11-26T03:52:51.000Z",
+        notes: null,
+        source_location_id: 1,
+        destination_location_id: 3,
+        cached_quantity: "17.0",
+        transacted_at: "2015-11-26T03:52:51.000Z",
+        stock_transfer_line_item_ids: [
+          1,
+          2
+        ]
+      }
+    ]
+    gecko:
+      unavailable: true
+      create: {
+        company_id: 1,
+        issued_at: Time.now,
+        billing_address_id: 1,
+        shipping_address_id: 1
+      }
+
+    attributes: {
+      id: {
+        name: "id",
+        type: "Integer",
+        description: "A unique identifier for the resource.",
+        readonly: true
+      },
+      created_at: {
+        name: "created_at",
+        type: "String",
+        description: "",
+        readonly: true
+      },
+      updated_at: {
+        name: "updated_at",
+        type: "String",
+        description: "",
+        readonly: true
+      },
+      status: {
+        name: "status",
+        type: "String",
+        description: "Tells whether the resource is 'active' or 'received'",
+        filterable: "",
+        updatable: true,
+        creatable: true,
+      },
+      adjustment_number: {
+        name: "adjustment_number",
+        type: "String",
+        description: "",
+        filterable: "",
+        updatable: true,
+        creatable: true,
+      },
+      received_at: {
+        name: "received_at",
+        type: "String",
+        description: "Automatically set when stock transfer status is set to received",
+        filterable: "",
+        updatable: true,
+        creatable: true,
+      },
+      notes: {
+        name: "notes",
+        type: "String",
+        description: "",
+        filterable: "",
+        updatable: true,
+        creatable: true,
+      },
+      source_location_id: {
+        name: "source_location_id",
+        type: "Integer",
+        description: "Origin of stock being tranferred",
+        filterable: "",
+        creatable: true,
+        required: true,
+      },
+      destination_location_id: {
+        name: "destination_location_id",
+        type: "Integer",
+        description: "Destination of stock being transferred",
+        filterable: "",
+        creatable: true,
+        required: true,
+      },
+      cached_quantity: {
+        name: "cached_quantity",
+        type: "String",
+        description: "Cumulative quantity of all variants being transferred",
+        filterable: "",
+        readonly: true,
+      },
+      transacted_at: {
+        name: "transacted_at",
+        type: "String",
+        description: "",
+        filterable: "",
+        updatable: true,
+        creatable: true,
+      },
+      stock_transfer_line_item_ids: {
+        name: "stock_transfer_line_item_ids",
+        type: "Array",
+        description: "",
+        filterable: "",
+        updatable: true,
+        creatable: true,
+        readonly: true,
+      }
+    }

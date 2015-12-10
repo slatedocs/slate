@@ -1,0 +1,116 @@
+---
+en:
+  stock_adjustment:
+    child: "stock_adjustment_line_item"
+    disable_update: true
+    resource_article: "a"
+    resource_klass: "StockAdjustment"
+    resource_name: "stock_adjustment"
+    resource_plural: "stock_adjustment"
+    json: [
+      {
+        id: 2,
+        created_at: "2015-11-25T07:27:39.813Z",
+        updated_at: "2015-11-25T07:27:40.176Z",
+        adjustment_number: "SA0002",
+        notes: "Reversal of Stock Adjustment #SA0001",
+        reason: "damaged",
+        stock_location_id: 1,
+        cached_quantity: "-15.0",
+        cached_total: "37.5",
+        stock_adjustment_line_item_ids: [
+          3,
+          4
+        ]
+      },
+      {
+        id: 1,
+        created_at: "2015-11-25T07:27:20.194Z",
+        updated_at: "2015-11-25T07:27:20.740Z",
+        adjustment_number: "SA0001",
+        notes: null,
+        reason: "production",
+        stock_location_id: 1,
+        cached_quantity: "25.0",
+        cached_total: "62.5",
+        stock_adjustment_line_item_ids: [
+          1,
+          2
+        ]
+      }
+    ]
+    gecko:
+      unavailable: true
+      create: {
+        company_id: 1,
+        issued_at: Time.now,
+        billing_address_id: 1,
+        shipping_address_id: 1
+      }
+
+    attributes: {
+      id: {
+        name: "id",
+        type: "Integer",
+        description: "A unique identifier for the resource.",
+        readonly: true
+      },
+      created_at: {
+        name: "created_at",
+        type: "String",
+        description: "",
+        readonly: true
+      },
+      updated_at: {
+        name: "updated_at",
+        type: "String",
+        description: "",
+        readonly: true
+      },
+      adjustment_number: {
+        name: "adjustment_number",
+        type: "String",
+        description: "",
+        filterable: true,
+        updatable: true,
+        creatable: true,
+      },
+      notes: {
+        name: "notes",
+        type: "String",
+        description: "",
+        updatable: true,
+        creatable: true,
+      },
+      reason: {
+        name: "reason",
+        type: "String",
+        description: "One of supplier (New Products), customer (Returned goods), damaged, shrinkage, promotion or production.",
+        updatable: true,
+        creatable: true,
+      },
+      stock_location_id: {
+        name: "stock_location_id",
+        type: "Integer",
+        description: "Defaults to account primary_location.",
+        filterable: true,
+      },
+      cached_quantity: {
+        name: "cached_quantity",
+        type: "String",
+        description: "Cumulative quantity of all variants being adjusted",
+        readonly: true,
+      },
+      cached_total: {
+        name: "cached_total",
+        type: "String",
+        description: "Cumulative value of all variants being adjusted",
+        readonly: true,
+      },
+      stock_adjustment_line_item_ids: {
+        name: "stock_adjustment_line_item_ids",
+        type: "Array",
+        description: "",
+        readonly: true,
+      }
+    }

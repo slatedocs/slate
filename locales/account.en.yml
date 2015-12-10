@@ -1,0 +1,354 @@
+---
+en:
+  account:
+    current: true
+    resource_article: "an"
+    resource_klass: "Account"
+    resource_name: "account"
+    resource_plural: "accounts"
+    disable_destroy: true
+    json: [
+      {
+        id: 1,
+        created_at: "2015-11-02T01:22:23.803Z",
+        updated_at: "2015-11-02T01:22:24.326Z",
+        contact_email: "lcp@tradegecko.com",
+        contact_mobile: null,
+        contact_phone: null,
+        country: "NZ",
+        default_order_price_list_id: "wholesale",
+        default_purchase_order_price_list_id: "buy",
+        default_sales_ledger_account_on: "company",
+        default_tax_treatment: "exclusive",
+        default_document_theme_id: 1,
+        industry: "",
+        logo_url: null,
+        name: "Bob's Burgers",
+        stock_level_warn: true,
+        tax_label: "GST",
+        tax_number: null,
+        tax_number_label: "GST Registration Number",
+        time_zone: "Pacific/Auckland",
+        website: null,
+        primary_location_id: 1,
+        primary_billing_location_id: 1,
+        default_currency_id: 1,
+        default_payment_term_id: 3,
+        billing_contact_id: 1,
+        default_sales_order_tax_type_id: 2,
+        default_purchase_order_tax_type_id: 3,
+        default_tax_exempt_id: 1,
+        default_tax_rate: "15.0",
+        default_tax_type: "exclusive",
+        default_tax_type_id: 2,
+        default_order_price_type_id: "wholesale",
+        default_purchase_order_price_type_id: "buy",
+        location_ids: [
+        1
+        ],
+        user_ids: [
+        1
+        ]
+      }
+    ]
+    gecko:
+      create: {
+        name: "Bobs Burgers",
+        country: "NZ",
+        email: "example@example.com"
+
+      }
+      update: {
+        country: "US"
+      }
+
+    attributes: {
+      id: {
+        name: "id",
+        type: "Integer",
+        description: "A unique identifier for the resource.",
+        readonly: true,
+      },
+      created_at: {
+        name: "created_at",
+        type: "String",
+        description: "",
+        readonly: true
+      },
+      updated_at: {
+        name: "updated_at",
+        type: "String",
+        description: "",
+        readonly: true
+      },
+      contact_email: {
+        name: "contact_email",
+        type: "String",
+        description: "",
+        filterable: "",
+        updatable: true,
+        creatable: true,
+      },
+      contact_mobile: {
+        name: "contact_mobile",
+        type: "String",
+        description: "",
+        filterable: "",
+        updatable: true,
+        creatable: true,
+      },
+      contact_phone: {
+        name: "contact_phone",
+        type: "String",
+        description: "",
+        filterable: "",
+        updatable: true,
+        creatable: true,
+      },
+      country: {
+        name: "country",
+        type: "String",
+        description: "Needs to be a valid ISO3166-1 alpha-2 code (US, NZ, SG etc)",
+        filterable: "",
+        updatable: true,
+        creatable: true,
+        required: true
+      },
+      default_order_price_list_id: {
+        name: "default_order_price_list_id",
+        type: "String",
+        description: "",
+        filterable: "",
+        updatable: true,
+        creatable: true,
+      },
+      default_purchase_order_price_list_id: {
+        name: "default_purchase_order_price_list_id",
+        type: "String",
+        description: "",
+        filterable: "",
+        updatable: true,
+        creatable: true,
+      },
+      default_sales_ledger_account_on: {
+        name: "default_sales_ledger_account_on",
+        type: "String",
+        description: "",
+        filterable: "",
+        updatable: true,
+        creatable: true,
+      },
+      default_tax_treatment: {
+        name: "default_tax_treatment",
+        type: "String",
+        description: "",
+        filterable: "",
+        updatable: true,
+        creatable: true,
+      },
+      default_document_theme_id: {
+        name: "default_document_theme_id",
+        type: "Integer",
+        description: "",
+        filterable: true,
+        updatable: true,
+        creatable: true,
+        private: true
+      },
+      industry: {
+        name: "industry",
+        type: "String",
+        description: "",
+        filterable: "",
+        updatable: true,
+        creatable: true,
+      },
+      logo_url: {
+        name: "logo_url",
+        type: "String",
+        description: "",
+        filterable: "",
+        updatable: true,
+        creatable: true,
+        readonly: true,
+        deprecated: true,
+      },
+      name: {
+        name: "name",
+        type: "String",
+        description: "",
+        filterable: "",
+        updatable: true,
+        creatable: true,
+        required: true,
+      },
+      stock_level_warn: {
+        name: "stock_level_warn",
+        type: "Boolean",
+        description: "",
+        filterable: "",
+        updatable: true,
+        creatable: true,
+      },
+      tax_label: {
+        name: "tax_label",
+        type: "String",
+        description: "",
+        filterable: "",
+        updatable: true,
+        creatable: true,
+      },
+      tax_number: {
+        name: "tax_number",
+        type: "String",
+        description: "",
+        filterable: "",
+        updatable: true,
+        creatable: true,
+      },
+      tax_number_label: {
+        name: "tax_number_label",
+        type: "String",
+        description: "",
+        filterable: "",
+        updatable: true,
+        creatable: true,
+      },
+      time_zone: {
+        name: "time_zone",
+        type: "String",
+        description: "",
+        filterable: "",
+        updatable: true,
+        creatable: true,
+      },
+      website: {
+        name: "website",
+        type: "String",
+        description: "",
+        filterable: "",
+        updatable: true,
+        creatable: true,
+      },
+      primary_location_id: {
+        name: "primary_location_id",
+        type: "Integer",
+        description: "",
+        filterable: true,
+        updatable: true,
+        creatable: true,
+      },
+      primary_billing_location_id: {
+        name: "primary_billing_location_id",
+        type: "Integer",
+        description: "",
+        filterable: true,
+        updatable: true,
+        creatable: true,
+      },
+      default_currency_id: {
+        name: "default_currency_id",
+        type: "Integer",
+        description: "",
+        filterable: true,
+        updatable: true,
+        creatable: true,
+      },
+      default_payment_term_id: {
+        name: "default_payment_term_id",
+        type: "Integer",
+        description: "",
+        filterable: true,
+        updatable: true,
+        creatable: true,
+      },
+      billing_contact_id: {
+        name: "billing_contact_id",
+        type: "Integer",
+        description: "Account Owner, can only be transferred by existing owner",
+        filterable: true,
+        updatable: true,
+        creatable: true,
+      },
+      default_sales_order_tax_type_id: {
+        name: "default_sales_order_tax_type_id",
+        type: "Integer",
+        description: "",
+        filterable: true,
+        updatable: true,
+        creatable: true,
+      },
+      default_purchase_order_tax_type_id: {
+        name: "default_purchase_order_tax_type_id",
+        type: "Integer",
+        description: "",
+        filterable: true,
+        updatable: true,
+        creatable: true,
+      },
+      default_tax_exempt_id: {
+        name: "default_tax_exempt_id",
+        type: "Integer",
+        description: "",
+        filterable: true,
+        updatable: true,
+        creatable: true,
+      },
+      default_tax_rate: {
+        name: "default_tax_rate",
+        type: "String",
+        description: "",
+        filterable: "",
+        updatable: true,
+        creatable: true,
+        readonly: true,
+        deprecated: true,
+      },
+      default_tax_type: {
+        name: "default_tax_type",
+        type: "String",
+        description: "",
+        filterable: "",
+        updatable: true,
+        creatable: true,
+        deprecated: true,
+      },
+      default_tax_type_id: {
+        name: "default_tax_type_id",
+        type: "Integer",
+        description: "",
+        filterable: true,
+        updatable: true,
+        creatable: true,
+      },
+      default_order_price_type_id: {
+        name: "default_order_price_type_id",
+        type: "String",
+        description: "",
+        filterable: "",
+        updatable: true,
+        creatable: true,
+        deprecated: true,
+      },
+      default_purchase_order_price_type_id: {
+        name: "default_purchase_order_price_type_id",
+        type: "String",
+        description: "",
+        filterable: "",
+        updatable: true,
+        creatable: true,
+        deprecated: true,
+      },
+      location_ids: {
+        name: "location_ids",
+        type: "Array",
+        description: "",
+        readonly: true,
+      },
+      user_ids: {
+        name: "user_ids",
+        type: "Array",
+        description: "",
+        readonly: true,
+      }
+    }

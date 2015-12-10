@@ -1,0 +1,112 @@
+---
+en:
+  image:
+    parent: "variant"
+    parent_article: "a"
+    parent_klass: "Variant"
+    parent_plural: "variants"
+    resource_article: "an"
+    resource_klass: "Image"
+    resource_name: "image"
+    resource_plural: "images"
+    disable_update: true
+    json: [
+      {
+        id: 2,
+        variant_id: 1,
+        uploader_id: 1,
+        name: "",
+        position: 1,
+        base_path: "https://tradegecko-development-images.s3.amazonaws.com/uploads/variant_image/image/2231",
+        file_name: "1xUh3yT8SN6SjK6l1WXw_photo_large.png",
+        versions: [
+          "thumbnail",
+          "medium"
+        ],
+      },
+      {
+        id: 1,
+        variant_id: 1,
+        uploader_id: 1,
+        name: null,
+        position: 1,
+        base_path: "https://tradegecko-development-images.s3.amazonaws.com/uploads/variant_image/image/2229",
+        file_name: "shw005a_4.jpg",
+        versions: [
+          "thumbnail",
+          "medium"
+        ],
+        image_processing: true
+      }
+    ]
+    gecko:
+      create: {
+        variant_id: 1,
+        url: "http://www.thisismyimage.com/image.png"
+      }
+
+    attributes: {
+      id: {
+        name: "id",
+        type: "Integer",
+        description: "A unique identifier for the resource.",
+        readonly: true,
+      },
+      variant_id: {
+        name: "variant_id",
+        type: "Integer",
+        description: "The variant to which the image belongs.",
+        filterable: "Filter images by variant",
+        creatable: true,
+        required: true,
+      },
+      uploader_id: {
+        name: "uploader_id",
+        type: "Integer",
+        description: "Identifier of the creating user or Integration (e.g. 'Shopify')",
+        filterable: "Filter images by uploader",
+        readonly: true
+      },
+      name: {
+        name: "name",
+        type: "String",
+        description: "Name of the file if changed",
+      },
+      position: {
+        name: "position",
+        type: "Integer",
+        description: "",
+        readonly: true,
+      },
+      base_path: {
+        name: "base_path",
+        type: "String",
+        description: "Base URL where image has been uploaded",
+        readonly: true,
+      },
+      file_name: {
+        name: "file_name",
+        type: "String",
+        description: "Parsed name of the file",
+        readonly: true,
+      },
+      versions: {
+        name: "versions",
+        type: "String",
+        description: "An array of image sizes",
+        readonly: true,
+      },
+      image_processing: {
+        name: "image_processing",
+        type: "String",
+        description: "Tells whether image sizes have been generated",
+        readonly: true
+      },
+      url: {
+        name: "url",
+        type: "String",
+        description: "URL of image for fetching",
+        creatable: true,
+        required: true
+      }
+    }

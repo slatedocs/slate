@@ -1,0 +1,40 @@
+## List all <%= t(".resource_plural", scope: resource) %>
+<% unless t('.gecko.unavailable', scope: resource) == true %>
+```ruby
+require 'gecko-ruby'
+gecko = Gecko::Client.new(OAUTH_ID, OAUTH_SECRET)
+access_token = OAuth2::AccessToken.new(gecko.oauth_client, ACCESS_TOKEN)
+gecko.access_token = access_token
+
+gecko.<%= t(".resource_klass", scope: resource) %>.where()
+```
+<% end %>
+
+```shell
+curl -X GET -H "Content-type: application/json" -H "Authorization: Bearer <ACCESS_TOKEN>"
+https://api.tradegecko.com/<%= t(".resource_plural", scope: resource) %>/
+```
+
+```json
+{
+  "<%= t(".resource_plural", scope: resource) %>": <%= json_all %>
+}
+```
+
+Returns a list of <%= t(".resource_plural", scope: resource) %> you’ve previously created. The <%= t(".resource_plural", scope: resource) %> are returned in sorted order, with the most recent <%= t(".resource_plural", scope: resource) %> appearing first.
+
+### Filters
+
+| Arguments          | Description
+|--------------------|--------------------
+| **created_at_min** | ISO 8601 format (e.g. 2015-11-04)
+| **created_at_max** | ISO 8601 format (e.g. 2015-11-04)
+| **updated_at_min** | ISO 8601 format (e.g. 2015-11-04)
+| **updated_at_max** | ISO 8601 format (e.g. 2015-11-04)
+| **limit**          | default is 100
+<% t(".attributes", scope: resource).select{ |k,v| v[:filterable] }.each_pair do |key, value| %>
+  **<%= value[:name] %>** | <%= value[:filterable].is_a?(String) ? value[:filterable] : nil %>
+<% end %>
+
+### HTTP Request:
+`GET  https://api.tradegecko.com/<%= t(".resource_plural", scope: resource) %>`

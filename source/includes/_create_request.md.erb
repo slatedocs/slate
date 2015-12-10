@@ -1,0 +1,60 @@
+## Create a new <%= t(".resource_name", scope: resource) %>
+
+<% unless t('.gecko.unavailable', scope: resource) == true %>
+```ruby
+require 'gecko-ruby'
+gecko = Gecko::Client.new(OAUTH_ID, OAUTH_SECRET)
+access_token = OAuth2::AccessToken.new(gecko.oauth_client, ACCESS_TOKEN)
+gecko.access_token = access_token
+gecko.<%= t(".resource_klass", scope: resource) %>.create(<%= t('.gecko.create', scope: resource) %>)
+```
+<% end %>
+
+```shell
+curl -X POST -H "Content-type: application/json" -H "Authorization: Bearer <ACCESS_TOKEN>"
+https://api.tradegecko.com/<%= t(".resource_plural", scope: resource) %>/ -d '{"<%= t(".resource_name", scope: resource) %>":<%= t('.gecko.create', scope: resource).to_json %>'
+```
+
+```json
+{
+  "<%= t(".resource_name", scope: resource) %>": <%= json_single %>
+}
+```
+
+Creates a new <%= t(".resource_name", scope: resource) %> object. This endpoint also accept embedded <%= t(".resource_plural", scope: resource) %>.
+<%= t(".resource_klass", scope: resource) %> are not required to be nested, but if they are nested, they do have required attributes.
+
+### Arguments
+
+| Attribute                      | Type          | Description                | Required
+| ------------------------------ | ------------- | -------------------------- | ------------
+<% t(".attributes", scope: resource).select{ |k,v| v[:creatable] }.each_pair do |key, value| %>
+  **<%= value[:name] %>**<%= " <span class='private'>private</span>" if value[:private] %><%= " <span class='deprecated'>deprecated</span>" if value[:deprecated] %> | <%= value[:type] %> | <%= value[:description] %> | <%= value[:required] %>
+<% end %>
+
+<% unless t('.child', scope: resource).to_s.include?("missing") %>
+<% child_resource = t('.child', scope: resource) %>
+
+### <%= t('.resource_klass', scope: child_resource) %>
+
+| Child Attribute                | Type          | Description                | Required
+| ------------------------------ | ------------- | -------------------------- | ------------
+<% t(".attributes", scope: child_resource).select{ |k,v| v[:creatable] }.each_pair do |key, value| %>
+  **<%= value[:name] %>**<%= " <span class='private'>private</span>" if value[:private] %><%= " <span class='deprecated'>deprecated</span>" if value[:deprecated] %> | <%= value[:type] %> | <%= value[:description] %> | <%= value[:required] %>
+<% end %>
+
+<% end %>
+
+<% unless t('.create_extra_table.enable', scope: resource).to_s.include?("missing") %>
+
+### <%= t('.create_extra_table.title', scope: resource) %>
+
+
+| <%= t('.create_extra_table.column_headers', scope: resource).join(" | ") %>
+| --- | ----- | --- |
+<% t('.create_extra_table.columns', scope: resource).each do |columns| %>
+  <%= columns.join(" | ") %>
+<% end %>
+<% end %>
+### HTTP Request
+`POST https://api.tradegecko.com/<%= t(".resource_plural", scope: resource) %>/`

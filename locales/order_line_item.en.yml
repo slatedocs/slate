@@ -1,0 +1,191 @@
+---
+en:
+  order_line_item:
+    parent: "order"
+    parent_article: "an"
+    parent_klass: "Order"
+    parent_plural: "orders"
+    resource_article: "an"
+    resource_klass: "OrderLineItem"
+    resource_name: "order_line_item"
+    resource_plural: "order_line_items"
+    json: [
+      {
+        "id":                               2,
+        "created_at":                       "2015-11-12T06:39:53.231Z",
+        "updated_at":                       "2015-11-12T06:39:53.231Z",
+        "order_id":                         1,
+        "variant_id":                       2,
+        "tax_type_id":                      1,
+        "discount":                         "11.0",
+        "freeform":                         false,
+        "image_url":                        nil,
+        "label":                            nil,
+        "line_type":                        nil,
+        "position":                         0,
+        "price":                            "189.0",
+        "quantity":                         "1.0",
+        "tax_rate_override":                nil,
+        "tax_rate":                         nil,
+        "fulfillment_line_item_ids":        [ ],
+        "fulfillment_return_line_item_ids": [ ],
+        "invoice_line_item_ids":            [ ]
+      },
+      {
+        "id":                               1,
+        "created_at":                       "2015-11-12T06:32:31.607Z",
+        "updated_at":                       "2015-11-12T06:32:31.607Z",
+        "order_id":                         1,
+        "variant_id":                       1,
+        "tax_type_id":                      1,
+        "discount":                         "11.0",
+        "freeform":                         false,
+        "image_url":                        "null",
+        "label":                            "null",
+        "line_type":                        "null",
+        "position":                         0,
+        "price":                            "189.0",
+        "quantity":                         "1.0",
+        "tax_rate_override":                nil,
+        "tax_rate":                         nil,
+        "fulfillment_line_item_ids":        [ ],
+        "fulfillment_return_line_item_ids": [ ],
+        "invoice_line_item_ids":            [ ]
+      }
+    ]
+    gecko:
+      create: {
+        quantity: "12.0",
+        order_id: 1,
+        tax_type_id: 1,
+        price: "10.0"
+      }
+      update: {
+        quantity: "22.0",
+        price: "12.0"
+      }
+
+    attributes: {
+      id: {
+        name: "id",
+        type: "Integer",
+        readonly: true,
+        description: "A unique identifier for the resource."
+      },
+      created_at: {
+        name: "created_at",
+        type: "String",
+        description: "",
+        readonly: true
+      },
+      updated_at: {
+        name: "updated_at",
+        type: "String",
+        description: "",
+        readonly: true
+      },
+      order_id: {
+        name: "order_id",
+        type: "Integer",
+        description: "The order to which the order_line_item belongs.",
+        filterable: "Filter order_line_items by order",
+        creatable: true,
+        required: true
+      },
+      variant_id: {
+        name: "variant_id",
+        type: "Integer",
+        description: "The variant to which the order_line_item belongs.",
+        filterable: "Filter order_line_items by variant",
+        updatable: true,
+        creatable: true,
+        required: true
+      },
+      tax_type_id: {
+        name: "tax_type_id",
+        type: "Integer",
+        description: "The tax_type to which the order_line_item belongs.",
+        filterable: "Filter order_line_items by tax_type",
+        updatable: true,
+        creatable: true,
+        required: true
+      },
+      discount: {
+        name: "discount",
+        type: "String",
+        description: "Between -100 and 100",
+        updatable: true,
+        creatable: true
+      },
+      freeform: {
+        name: "freeform",
+        type: "Boolean",
+        updatable: true,
+        creatable: true
+      },
+      image_url: {
+        name: "image_url",
+        type: "String",
+        updatable: true,
+        creatable: true
+      },
+      label: {
+        name: "label",
+        type: "String",
+        updatable: true,
+        creatable: true
+      },
+      line_type: {
+        updatable: true,
+        name: "line_type",
+        type: "String",
+        updatable: true,
+        creatable: true
+      },
+      position: {
+        name: "position",
+        type: "Integer",
+        updatable: true,
+        creatable: true
+      },
+      price: {
+        name: "price",
+        type: "String",
+        updatable: true,
+        creatable: true,
+        required: true
+      },
+      quantity: {
+        name: "quantity",
+        type: "String",
+        updatable: true,
+        creatable: true
+      },
+      tax_rate_override: {
+        name: "tax_rate_override",
+        type: "String",
+        updatable: true,
+        creatable: true
+      },
+      tax_rate: {
+        name: "tax_rate",
+        type: "String",
+        updatable: true,
+        creatable: true
+      },
+      fulfillment_line_item_ids: {
+        name: "fulfillment_line_item_ids",
+        type: "Array",
+        readonly: true
+      },
+      fulfillment_return_line_item_ids: {
+        name: "fulfillment_return_line_item_ids",
+        type: "Array",
+        readonly: true
+      },
+      invoice_line_item_ids: {
+        name: "invoice_line_item_ids",
+        type: "Array",
+        readonly: true
+      }
+    }

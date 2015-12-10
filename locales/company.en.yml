@@ -1,0 +1,278 @@
+---
+en:
+  company:
+    resource_article: "a"
+    resource_klass: "Company"
+    resource_name: "company"
+    resource_plural: "companies"
+    json: [
+      {
+        id: 4,
+        created_at: "2015-11-02T01:44:42.417Z",
+        updated_at: "2015-11-02T01:44:42.417Z",
+        assignee_id: 1,
+        default_ledger_account_id: null,
+        default_payment_term_id: null,
+        default_stock_location_id: null,
+        default_tax_type_id: null,
+        company_code: null,
+        company_type: "business",
+        default_discount_rate: null,
+        default_price_list_id: null,
+        default_tax_rate: null,
+        default_document_theme_id: null,
+        description: "",
+        email: null,
+        fax: null,
+        name: "B2B Test Company",
+        phone_number: null,
+        status: "active",
+        tax_number: null,
+        website: null,
+        address_ids: [6],
+        contact_ids: [7],
+        note_ids: [ ],
+        default_price_type_id: null
+      },
+      {
+        id: 3,
+        created_at: "2015-11-02T01:22:24.612Z",
+        updated_at: "2015-11-02T01:22:24.612Z",
+        assignee_id: null,
+        default_ledger_account_id: null,
+        default_payment_term_id: null,
+        default_stock_location_id: null,
+        default_tax_type_id: null,
+        company_code: null,
+        company_type: "supplier",
+        default_discount_rate: null,
+        default_price_list_id: null,
+        default_tax_rate: null,
+        default_document_theme_id: null,
+        description: "Greatest Candy-maker and chocolatier of all time and place",
+        email: "william@example.com",
+        fax: null,
+        name: "Wonka Candy (DEMO)",
+        phone_number: "123-456-789",
+        status: "active",
+        tax_number: null,
+        website: "http://williamwonkacandyltd.com",
+        address_ids: [
+          4,
+          5
+        ],
+        contact_ids: [
+          3,
+          4,
+          5
+        ],
+        note_ids: [ ],
+        default_price_type_id: null
+      }
+    ]
+    gecko:
+      create: {
+        name: "TradeGecko (Demo)",
+        company_type: "Supplier"
+      }
+      update: {
+        name: "Elephant",
+        email: "hello@tradegecko.com",
+        website: "http://tradegecko.com",
+      }
+
+    attributes: {
+      id: {
+        name: "id",
+        type: "Integer",
+        description: "A unique identifier for the resource.",
+        readonly: true,
+      },
+      created_at: {
+        name: "created_at",
+        type: "String",
+        description: "",
+        readonly: true
+      },
+      updated_at: {
+        name: "updated_at",
+        type: "String",
+        description: "",
+        readonly: true
+      },
+      status: {
+        name: "status",
+        type: "String",
+        description: "Tells whether the resource is 'active', 'disabled' or 'archived'",
+        filterable: true,
+        updatable: true,
+      },
+      assignee_id: {
+        name: "assignee_id",
+        type: "Integer",
+        description: "ID of the user to which new PO/SO will be assigned by default",
+        filterable: true,
+        updatable: true,
+        creatable: true,
+      },
+      default_ledger_account_id: {
+        name: "default_ledger_account_id",
+        type: "Integer",
+        description: "",
+        filterable: true,
+        updatable: true,
+        creatable: true,
+      },
+      default_payment_term_id: {
+        name: "default_payment_term_id",
+        type: "Integer",
+        description: "",
+        filterable: true,
+        updatable: true,
+        creatable: true,
+      },
+      default_stock_location_id: {
+        name: "default_stock_location_id",
+        type: "Integer",
+        description: "",
+        filterable: true,
+        updatable: true,
+        creatable: true,
+      },
+      default_tax_type_id: {
+        name: "default_tax_type_id",
+        type: "Integer",
+        description: "",
+        filterable: true,
+        updatable: true,
+        creatable: true,
+      },
+      company_code: {
+        name: "company_code",
+        type: "String",
+        description: "A unique identifier for your records",
+        filterable: true,
+        updatable: true,
+        creatable: true,
+      },
+      company_type: {
+        name: "company_type",
+        type: "String",
+        description: "Can be 'business', 'supplier' or 'consumer'",
+        filterable: true,
+        updatable: true,
+        creatable: true,
+        required: true,
+      },
+      default_discount_rate: {
+        name: "default_discount_rate",
+        type: "String",
+        description: "",
+        updatable: true,
+        creatable: true,
+      },
+      default_price_list_id: {
+        name: "default_price_list_id",
+        type: "String",
+        description: "",
+        filterable: true,
+        updatable: true,
+        creatable: true,
+      },
+      default_tax_rate: {
+        name: "default_tax_rate",
+        type: "String",
+        description: "",
+        updatable: true,
+        creatable: true,
+        deprecated: true
+      },
+      default_document_theme_id: {
+        name: "default_document_theme_id",
+        type: "Integer",
+        description: "",
+        filterable: true,
+        updatable: true,
+        creatable: true,
+        beta: true,
+        private: true
+      },
+      description: {
+        name: "description",
+        type: "String",
+        description: "",
+        updatable: true,
+        creatable: true,
+      },
+      email: {
+        name: "email",
+        type: "String",
+        description: "",
+        filterable: true,
+        updatable: true,
+        creatable: true,
+      },
+      fax: {
+        name: "fax",
+        type: "String",
+        description: "",
+        updatable: true,
+        creatable: true,
+      },
+      name: {
+        name: "name",
+        type: "String",
+        description: "",
+        updatable: true,
+        creatable: true,
+        required: true,
+      },
+      phone_number: {
+        name: "phone_number",
+        type: "String",
+        description: "",
+        updatable: true,
+        creatable: true,
+      },
+      tax_number: {
+        name: "tax_number",
+        type: "String",
+        description: "",
+        updatable: true,
+        creatable: true,
+      },
+      website: {
+        name: "website",
+        type: "String",
+        description: "",
+        updatable: true,
+        creatable: true,
+      },
+      address_ids: {
+        name: "address_ids",
+        type: "Array",
+        description: "",
+        readonly: true,
+      },
+      contact_ids: {
+        name: "contact_ids",
+        type: "Array",
+        description: "",
+        readonly: true,
+      },
+      note_ids: {
+        name: "note_ids",
+        type: "Array",
+        description: "",
+        readonly: true,
+      },
+      default_price_type_id: {
+        name: "default_price_type_id",
+        type: "String",
+        description: "",
+        filterable: true,
+        updatable: true,
+        creatable: true,
+        deprecated: true
+      },
+    }

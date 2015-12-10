@@ -1,0 +1,80 @@
+---
+en:
+  note:
+    parent: "company"
+    parent_article: "a"
+    parent_klass: "Company"
+    parent_plural: "companies"
+    resource_article: "a"
+    resource_klass: "Note"
+    resource_name: "note"
+    resource_plural: "notes"
+    json: [
+      {
+        id: 3,
+        created_at: "2015-11-13T08:29:32.741Z",
+        updated_at: "2015-11-13T08:29:32.741Z",
+        company_id: 4,
+        user_id: 1,
+        body: "90% discount, right? They are the best."
+      },
+      {
+        id: 2,
+        created_at: "2015-11-13T08:29:23.837Z",
+        updated_at: "2015-11-13T08:29:23.837Z",
+        company_id: 4,
+        user_id: 1,
+        body: "Working with them has been a real pleasure."
+      }
+    ]
+    gecko:
+      create: {
+        company_id: 1,
+        body: "These kittens are adorable."
+      }
+      update: {
+        body: "Cupcakes are for champions",
+      }
+
+    attributes: {
+      id: {
+        name: "id",
+        type: "Integer",
+        description: "A unique identifier for the resource.",
+        readonly: true,
+      },
+      created_at: {
+        name: "created_at",
+        type: "String",
+        description: "",
+        readonly: true
+      },
+      updated_at: {
+        name: "updated_at",
+        type: "String",
+        description: "",
+        readonly: true
+      },
+      company_id: {
+        name: "company_id",
+        type: "Integer",
+        description: "The company id where the address belongs.",
+        filterable: "Filter addresses by company",
+        creatable: true,
+        required: true,
+      },
+      user_id: {
+        name: "user_id",
+        type: "Integer",
+        description: "The user id of the author of the note.",
+        filterable: "Filter addresses by user",
+        readonly: true
+      },
+      body: {
+        name: "body",
+        type: "String",
+        description: "",
+        creatable: true,
+        updatable: true
+      },
+    }

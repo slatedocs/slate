@@ -1,0 +1,192 @@
+---
+en:
+  address:
+    parent: "company"
+    parent_article: "a"
+    parent_klass: "Company"
+    parent_plural: "companies"
+    resource_article: "an"
+    resource_klass: "Address"
+    resource_name: "address"
+    resource_plural: "addresses"
+    json: [
+      {
+        id: 6,
+        created_at: "2015-11-04T06:59:35.285Z",
+        updated_at: "2015-11-04T06:59:35.285Z",
+        company_id: 4,
+        address1: "Test address",
+        address2: "",
+        city: "Singapore",
+        company_name: "",
+        country: "Singapore",
+        email: "",
+        first_name: null,
+        last_name: null,
+        label: "Shipping",
+        phone_number: "",
+        state: "",
+        status: "active",
+        suburb: "",
+        zip_code: ""
+      },
+      {
+        id: 5,
+        created_at: "2015-11-02T01:22:24.630Z",
+        updated_at: "2015-11-02T01:22:24.630Z",
+        company_id: 3,
+        address1: "06157 Waters Road",
+        address2: "505 Frederick Flat",
+        city: "East Trudie",
+        company_name: null,
+        country: "UK",
+        email: "samara@williamwonkacandyltd.com",
+        first_name: null,
+        last_name: null,
+        label: "Warehouse (DEMO)",
+        phone_number: "952-649-4655",
+        state: null,
+        status: "active",
+        suburb: null,
+        zip_code: "98366-5837"
+      }
+    ]
+    gecko:
+      create: {
+        company_id: 1,
+        label: "Main Office",
+        address1: "12 Park Ave"
+      }
+      update: {
+        address1: "12 Park Ave",
+        city: "Singapore",
+        label: "Main Office"
+      }
+
+    attributes: {
+      id: {
+        name: "id",
+        type: "Integer",
+        description: "A unique identifier for the resource.",
+        readonly: true,
+      },
+      created_at: {
+        name: "created_at",
+        type: "String",
+        description: "",
+        readonly: true
+      },
+      updated_at: {
+        name: "updated_at",
+        type: "String",
+        description: "",
+        readonly: true
+      },
+      status: {
+        name: "status",
+        type: "String",
+        description: "",
+        filterable: true,
+        readonly: true
+      },
+      company_id: {
+        name: "company_id",
+        type: "Integer",
+        description: "The company id where the address belongs.",
+        filterable: "Filter addresses by company",
+        creatable: true,
+        required: true,
+      },
+      address1: {
+        name: "address1",
+        type: "String",
+        description: "",
+        updatable: true,
+        creatable: true,
+        required: true,
+      },
+      address2: {
+        name: "address2",
+        type: "String",
+        description: "",
+        updatable: true,
+        creatable: true,
+      },
+      city: {
+        name: "city",
+        type: "String",
+        description: "",
+        updatable: true,
+        creatable: true,
+      },
+      company_name: {
+        name: "company_name",
+        type: "String",
+        description: "Attention to field of an address",
+        updatable: true,
+        creatable: true,
+      },
+      country: {
+        name: "country",
+        type: "String",
+        description: "",
+        updatable: true,
+        creatable: true,
+      },
+      email: {
+        name: "email",
+        type: "String",
+        description: "",
+        updatable: true,
+        creatable: true,
+      },
+      first_name: {
+        name: "first_name",
+        type: "String",
+        description: "",
+        updatable: true,
+        creatable: true,
+      },
+      last_name: {
+        name: "last_name",
+        type: "String",
+        description: "",
+        updatable: true,
+        creatable: true,
+      },
+      label: {
+        name: "label",
+        type: "String",
+        description: "A (unique per company) label for the address e.g. Shipping, Billing",
+        updatable: true,
+        creatable: true,
+      },
+      phone_number: {
+        name: "phone_number",
+        type: "String",
+        description: "",
+        updatable: true,
+        creatable: true,
+      },
+      state: {
+        name: "state",
+        type: "String",
+        description: "",
+        updatable: true,
+        creatable: true,
+      },
+      suburb: {
+        name: "suburb",
+        type: "String",
+        description: "",
+        updatable: true,
+        creatable: true,
+      },
+      zip_code: {
+        name: "zip_code",
+        type: "String",
+        description: "",
+        updatable: true,
+        creatable: true,
+      },
+    }

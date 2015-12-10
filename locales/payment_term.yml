@@ -1,0 +1,77 @@
+---
+en:
+  payment_term:
+    resource_article: "a"
+    resource_klass: "PaymentTerm"
+    resource_name: "payment_term"
+    resource_plural: "payment_terms"
+    json: [
+      {
+        id: 3,
+        name: "NET30",
+        due_in_days: 30,
+        status: "active",
+        from: "now"
+      },
+      {
+        id: 2,
+        name: "NET10",
+        due_in_days: 10,
+        status: "active",
+        from: "now"
+      },
+      {
+        id: 1,
+        name: "Cash on Delivery",
+        due_in_days: 0,
+        status: "active",
+        from: "now"
+      },
+    ]
+    gecko:
+      create: {
+        name: "NET30",
+        due_in_days: "30",
+        from: "eom"
+      }
+
+      update: {
+        from: "now"
+      }
+
+    attributes: {
+      id: {
+        name: "id",
+        type: "Integer",
+        description: "A unique identifier for the resource.",
+        readonly: true
+      },
+      status: {
+        name: "status",
+        type: "String",
+        description: "Tells whether the resource is 'active' or 'archived'",
+        filterable: true,
+        readonly: true
+      },
+      name: {
+        name: "name",
+        type: "String",
+        description: "",
+        updatable: true,
+        creatable: true
+      },
+      due_in_days: {
+        name: "due_in_days",
+        type: "String",
+        description: "Number of days until payment is due",
+        updatable: true,
+        creatable: true
+      },
+      from: {
+        name: "from",
+        type: "String",
+        description: "Dictates whether due_in_days starts from 'now' or 'eom' (end of month).",
+        updatable: true,
+        creatable: true
+      }
+    }

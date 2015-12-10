@@ -20,20 +20,36 @@ under the License.
 ////////////////////////////////////////////////////////////////////////////////
 // Use these settings to help adjust the appearance of Slate
 
+// TG COLORS
+////////////////////
+$tg-green: #70cf32;
+$tg-dark-green: #61b729;
+$tg-slate: #2d3033;
+$tg-grey: #6c7279;
+$tg-teal: #65d5d9;
+$tg-red: #f6574d;
+$tg-bermuda-green: #7be3bd;
+$base-grey-10: #f4f4f5;
+$base-grey-5: rgba($base-grey-10, .5);
+$base-grey-30: #e2e6e8;
+$base-grey-70: #a4aeb3;
+$white: #ffffff;
+$black: #000000;
 
 // BACKGROUND COLORS
 ////////////////////
-$nav-bg: #2d3033;
-$examples-bg: #393939;
-$code-bg: #2d3033;
-$code-annotation-bg: #1c1c1c;
-$nav-subitem-bg: #262626;
-$nav-active-bg: #2467af;
+$nav-bg: $white;
+$examples-bg: #2b4c56;
+$code-bg: $tg-slate;
+$code-annotation-bg: #244048;
+$search-highlight: rgba($tg-bermuda-green, .3);
+$nav-subitem-bg: #fff;
+$nav-active-bg: $base-grey-5;
 $lang-select-border: #000;
 $lang-select-bg: #222;
-$lang-select-active-bg: $examples-bg; // feel free to change this to blue or something
-$lang-select-pressed-bg: #111; // color of language tab bg when mouse is pressed
-$main-bg: #eaf2f6;
+$lang-select-active-bg: #f6574d; // feel free to change this to blue or something
+$lang-select-pressed-bg: $code-annotation-bg; // color of language tab bg when mouse is pressed
+$main-bg: $base-grey-5;
 $aside-notice-bg: #8fbcd4;
 $aside-warning-bg: #c97a7e;
 $aside-success-bg: #6ac174;
@@ -42,12 +58,16 @@ $search-notice-bg: #c97a7e;
 
 // TEXT COLORS
 ////////////////////
-$main-text: #333; // main content text color
-$nav-text: #fff;
-$nav-active-text: #fff;
-$lang-select-text: #fff; // color of unselected language tab text
-$lang-select-active-text: #fff; // color of selected language tab text
-$lang-select-pressed-text: #fff; // color of language tab text when mouse is pressed
+$main-text: $tg-slate; // main content text color
+$nav-text: $tg-grey;
+$nav-active-text: $main-text;
+$nav-footer-text: $base-grey-70;
+$content-link: $tg-green;
+$content-link-hover: $tg-dark-green;
+$code: $tg-red;
+$lang-select-text: $white; // color of unselected language tab text
+$lang-select-active-text: $white; // color of selected language tab text
+$lang-select-pressed-text: $white; // color of language tab text when mouse is pressed
 
 
 // SIZES
@@ -56,8 +76,8 @@ $nav-width: 230px; // width of the navbar
 $examples-width: 50%; // portion of the screen taken up by code examples
 $logo-margin: 20px; // margin between nav items and logo, ignored if search is active
 $main-padding: 28px; // padding to left and right of content & examples
-$nav-padding: 15px; // padding to left and right of navbar
-$nav-v-padding: 10px; // padding used vertically around search boxes and results
+$nav-padding: 10px; // padding to left and right of navbar
+$nav-v-padding: 5px; // padding used vertically around search boxes and results
 $nav-indent: 10px; // extra padding for ToC subitems
 $code-annotation-padding: 13px; // padding inside code annotations
 $h1-margin-bottom: 21px; // padding under the largest header tags
@@ -67,31 +87,50 @@ $phone-width: $tablet-width - $nav-width; // min width before reverting to mobil
 
 // FONTS
 ////////////////////
-%default-font {
-  font-family: "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei","微软雅黑", STXihei, "华文细黑", sans-serif;
+%base-font {
+  font-size: 14px;
+}
+
+%nav-font {
   font-size: 13px;
+  font-weight: 600;
+}
+
+%small-font {
+  font-size: 12px;
+}
+
+%label-font {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+%default-font {
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei","微软雅黑", STXihei, "华文细黑", sans-serif;
+  @extend %base-font;
 }
 
 %header-font {
-  @extend %default-font;
-  font-weight: bold;
+  font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei","微软雅黑", STXihei, "华文细黑", sans-serif;
+  font-weight: 300;
 }
 
 %code-font {
   font-family: Consolas, Menlo, Monaco, "Lucida Console", "Liberation Mono", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Courier New", monospace, serif;
-  font-size: 12px;
   line-height: 1.5;
+  color: $code;
+
+  @extend %small-font;
 }
 
 
 // OTHER
 ////////////////////
-$nav-active-shadow: #000;
-$nav-footer-border-color: #666;
-$nav-embossed-border-top: #000;
-$nav-embossed-border-bottom: #939393;
-$main-embossed-text-shadow: 0px 1px 0px #fff;
-$search-box-border-color: #666;
+$border-radius: 3px;
+$border-color: $base-grey-30;
+$solid-border: 1px solid $border-color;
+$dotted-border: 1px dotted $border-color;
 
 
 ////////////////////////////////////////////////////////////////////////////////

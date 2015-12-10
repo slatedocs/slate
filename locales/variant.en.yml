@@ -1,0 +1,480 @@
+---
+en:
+  variant:
+    parent: "product"
+    parent_article: "a"
+    parent_klass: "Product"
+    parent_plural: "products"
+    resource_article: "a"
+    resource_klass: "Variant"
+    resource_name: "variant"
+    resource_plural: "variants"
+    json: [
+      {
+        id: 3,
+        created_at: "2015-11-02T01:22:24.772Z",
+        updated_at: "2015-11-02T01:34:04.502Z",
+        product_id: 1,
+        default_ledger_account_id: null,
+        buy_price: "4.5",
+        committed_stock: "3",
+        incoming_stock: "0",
+        composite: null,
+        description: null,
+        is_online: false,
+        keep_selling: false,
+        last_cost_price: "5.0",
+        manage_stock: true,
+        max_online: null,
+        moving_average_cost: "5",
+        name: "Peach",
+        online_ordering: true,
+        opt1: "Peach",
+        opt2: null,
+        opt3: null,
+        position: 2,
+        product_name: "Everlasting Gobstopper",
+        product_status: "active",
+        product_type: "Candy",
+        retail_price: "22.0",
+        sellable: true,
+        sku: "DEMO-GOBS-PEA",
+        status: "active",
+        stock_on_hand: "10",
+        supplier_code: null,
+        taxable: true,
+        upc: null,
+        weight: null,
+        weight_unit: null,
+        weight_value: null,
+        wholesale_price: "12.0",
+        image_ids: [ ],
+        variant_prices: [
+        {
+          price_list_id: "retail",
+          value: "22.0"
+        },
+        {
+          price_list_id: "wholesale",
+          value: "12.0"
+        },
+        {
+          price_list_id: "buy",
+          value: "4.5"
+        }
+        ],
+        locations: [
+          {
+            location_id: 1,
+            stock_on_hand: "10",
+            committed: "3",
+            incoming: null,
+            bin_location: null,
+            reorder_point: null
+          }
+        ],
+        channels: [ ],
+        prices: {
+          retail: "22.0",
+          wholesale: "12.0",
+          buy: "4.5"
+        },
+        stock_levels: {
+          1: "10.0"
+        },
+        committed_stock_levels: {
+          1: "3.0"
+        }
+      },
+      {
+        id: 2,
+        created_at: "2015-11-02T01:22:24.796Z",
+        updated_at: "2015-11-02T01:34:04.474Z",
+        product_id: 1,
+        default_ledger_account_id: null,
+        buy_price: "4.5",
+        committed_stock: "0",
+        incoming_stock: "0",
+        composite: null,
+        description: null,
+        is_online: false,
+        keep_selling: false,
+        last_cost_price: "6.0",
+        manage_stock: true,
+        max_online: null,
+        moving_average_cost: "6",
+        name: "Snozzberry",
+        online_ordering: true,
+        opt1: "Snozzberry",
+        opt2: null,
+        opt3: null,
+        position: 3,
+        product_name: "Everlasting Gobstopper",
+        product_status: "active",
+        product_type: "Candy",
+        retail_price: "24.0",
+        sellable: true,
+        sku: "DEMO-GOBS-SNO",
+        status: "active",
+        stock_on_hand: "10",
+        supplier_code: null,
+        taxable: true,
+        upc: null,
+        weight: null,
+        weight_unit: null,
+        weight_value: null,
+        wholesale_price: "12.0",
+        image_ids: [ ],
+        variant_prices: [
+          {
+            price_list_id: "retail",
+            value: "24.0"
+          },
+          {
+            price_list_id: "wholesale",
+            value: "12.0"
+          },
+          {
+            price_list_id: "buy",
+            value: "4.5"
+          }
+        ],
+        locations: [
+          {
+            location_id: 1,
+            stock_on_hand: "10",
+            committed: null,
+            incoming: null,
+            bin_location: null,
+            reorder_point: null
+          }
+        ],
+        channels: [ ],
+        prices: {
+          retail: "24.0",
+          wholesale: "12.0",
+          buy: "4.5"
+        },
+        stock_levels: {
+          1: 10
+        },
+        committed_stock_levels: { }
+      }
+    ]
+    gecko:
+      create: {
+        quantity: "12.0",
+        order_id: 1,
+        tax_type_id: 1,
+        price: "10.0"
+      }
+      update: {
+        quantity: "22.0",
+        price: "12.0"
+      }
+
+    attributes: {
+      id: {
+        name: "id",
+        type: "Integer",
+        readonly: true,
+        description: "A unique identifier for the resource."
+      },
+      created_at: {
+        name: "created_at",
+        type: "String",
+        description: "",
+        readonly: true
+      },
+      updated_at: {
+        name: "updated_at",
+        type: "String",
+        description: "",
+        readonly: true
+      },
+      status: {
+        name: "status",
+        type: "String",
+        description: "Tells whether the resource is 'active' or 'archived'",
+        filterable: true,
+        readonly: true,
+      },
+      product_id: {
+        name: "product_id",
+        type: "Integer",
+        description: "The product to which the variant belongs.",
+        filterable: true,
+        creatable: true,
+        required: true,
+      },
+      default_ledger_account_id: {
+        name: "default_ledger_account_id",
+        type: "Integer",
+        description: "Used for accounting integrations. (e.g. Revenue Ledger)",
+        filterable: true,
+        updatable: true,
+        creatable: true,
+      },
+      buy_price: {
+        name: "buy_price",
+        type: "String",
+        description: "",
+        updatable: true,
+        creatable: true,
+      },
+      committed_stock: {
+        name: "committed_stock",
+        type: "String",
+        description: "Stock committed for sale across all locations",
+        readonly: true,
+      },
+      incoming_stock: {
+        name: "incoming_stock",
+        type: "String",
+        description: "Stock on order across all locations",
+        readonly: true,
+      },
+      composite: {
+        name: "composite",
+        type: "Boolean",
+        description: "Tells whether this variant is a composite (composed of other variants)",
+        filterable: true,
+        updatable: true,
+        creatable: true,
+      },
+      description: {
+        name: "description",
+        type: "String",
+        description: "",
+        updatable: true,
+        creatable: true,
+      },
+      is_online: {
+        name: "is_online",
+        type: "Boolean",
+        description: "",
+        updatable: true,
+        creatable: true,
+        deprecated: true,
+      },
+      keep_selling: {
+        name: "keep_selling",
+        type: "Boolean",
+        description: "Allow item to continue to be sold, even if it is no longer in stock",
+        updatable: true,
+        creatable: true,
+      },
+      last_cost_price: {
+        name: "last_cost_price",
+        type: "String",
+        description: "Last purchase price paid for this variant",
+        readonly: true,
+      },
+      manage_stock: {
+        name: "manage_stock",
+        type: "Boolean",
+        description: "",
+        updatable: true,
+        creatable: true,
+      },
+      max_online: {
+        name: "max_online",
+        type: "String",
+        description: "Integrated online store(s) should show current stock levels up to a maximum of this value",
+        updatable: true,
+        creatable: true,
+      },
+      moving_average_cost: {
+        name: "moving_average_cost",
+        type: "String",
+        description: "Average cost price paid for this variant",
+        readonly: true,
+      },
+      name: {
+        name: "name",
+        type: "String",
+        description: "",
+        updatable: true,
+        creatable: true,
+      },
+      online_ordering: {
+        name: "online_ordering",
+        type: "Boolean",
+        description: "Tells whether variant is for sale on B2B platform",
+        filterable: true,
+        updatable: true,
+        creatable: true,
+      },
+      opt1: {
+        name: "opt1",
+        type: "String",
+        description: "",
+        updatable: true,
+        creatable: true,
+      },
+      opt2: {
+        name: "opt2",
+        type: "String",
+        description: "",
+        updatable: true,
+        creatable: true,
+      },
+      opt3: {
+        name: "opt3",
+        type: "String",
+        description: "",
+        updatable: true,
+        creatable: true,
+      },
+      position: {
+        name: "position",
+        type: "String",
+        description: "Default sort position of this variant (unique to product)",
+        updatable: true,
+        creatable: true,
+      },
+      product_name: {
+        name: "product_name",
+        type: "String",
+        description: "provided by the product to which the variant belongs",
+        readonly: true,
+      },
+      product_status: {
+        name: "product_status",
+        type: "String",
+        description: "provided by the product to which the variant belongs",
+        readonly: true,
+      },
+      product_type: {
+        name: "product_type",
+        type: "String",
+        description: "provided by the product to which the variant belongs",
+        readonly: true,
+      },
+      retail_price: {
+        name: "retail_price",
+        type: "String",
+        description: "The recommended retail price",
+        updatable: true,
+        creatable: true,
+      },
+      sellable: {
+        name: "sellable",
+        type: "String",
+        description: "Tells whether can be added to sales orders",
+        updatable: true,
+        creatable: true,
+      },
+      sku: {
+        name: "sku",
+        type: "String",
+        description: "Stock Keeping Unit (should be unique)",
+        filterable: true,
+        updatable: true,
+        creatable: true,
+      },
+      stock_on_hand: {
+        name: "stock_on_hand",
+        type: "String",
+        description: "Stock on hand across all locations",
+        readonly: true,
+      },
+      supplier_code: {
+        name: "supplier_code",
+        type: "String",
+        description: "",
+        updatable: true,
+        creatable: true,
+      },
+      taxable: {
+        name: "taxable",
+        type: "Boolean",
+        description: "Tells whether this variant can be taxed",
+        updatable: true,
+        creatable: true,
+      },
+      upc: {
+        name: "upc",
+        type: "String",
+        description: "The barcode or UPC number",
+        updatable: true,
+        creatable: true,
+      },
+      weight: {
+        name: "weight",
+        type: "String",
+        description: "The weight value",
+        updatable: true,
+        creatable: true,
+      },
+      weight_unit: {
+        name: "weight_unit",
+        type: "String",
+        description: "The weight unit (kg, gm, oz or lb)",
+        updatable: true,
+        creatable: true,
+      },
+      weight_value: {
+        name: "weight_value",
+        type: "String",
+        description: "",
+        updatable: true,
+        creatable: true,
+        beta: true,
+        private: true
+      },
+      wholesale_price: {
+        name: "wholesale_price",
+        type: "String",
+        description: "The recommended wholesale price for this product",
+        updatable: true,
+        creatable: true,
+      },
+      image_ids: {
+        name: "image_ids",
+        type: "Array",
+        description: "",
+        readonly: true,
+      },
+      variant_prices: {
+        name: "variant_prices",
+        type: "Array",
+        description: "An array of prices with price list IDs and the price value.",
+        updatable: true,
+        creatable: true,
+      },
+      locations: {
+        name: "locations",
+        type: "Array",
+        description: "An array of per-warehouse data about current variant.",
+        readonly: true,
+      },
+      channels: {
+        name: "channels",
+        type: "Array",
+        description: "The channels this variant is published on",
+        readonly: true,
+        private: true
+      },
+      prices: {
+        name: "prices",
+        type: "Hash",
+        description: "",
+        readonly: true,
+        deprecated: true,
+      },
+      stock_levels: {
+        name: "stock_levels",
+        type: "Hash",
+        description: "",
+        readonly: true,
+        deprecated: true,
+      },
+      committed_stock_levels: {
+        name: "committed_stock_levels",
+        type: "Hash",
+        description: "",
+        readonly: true,
+        deprecated: true,
+      },
+    }

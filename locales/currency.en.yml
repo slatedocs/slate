@@ -1,0 +1,145 @@
+---
+en:
+  currency:
+    resource_article: "a"
+    resource_klass: "Currency"
+    resource_name: "currency"
+    resource_plural: "currencies"
+    json: [
+      {
+        id: 2,
+        created_at: "2015-11-02T01:22:23.947Z",
+        updated_at: "2015-11-02T01:22:23.947Z",
+        delimiter: ",",
+        format: "%u%n",
+        iso: "NZD",
+        name: "New Zealand Dollars",
+        precision: 2,
+        rate: "1.1",
+        separator: ".",
+        symbol: "$",
+        status: "active",
+        subunit: 100
+      },
+      {
+        id: 1,
+        created_at: "2015-11-02T01:22:23.947Z",
+        updated_at: "2015-11-02T01:22:23.947Z",
+        delimiter: ",",
+        format: "%u%n",
+        iso: "SGD",
+        name: "Singaporean Dollars",
+        precision: 2,
+        rate: "1.0",
+        separator: ".",
+        symbol: "$",
+        status: "active",
+        subunit: 100
+      }
+    ]
+    gecko:
+      create: {
+        iso: "USD",
+        precision: 4,
+        format: "%n%u"
+      }
+      update: {
+        separator: "."
+      }
+
+    attributes: {
+      id: {
+        name: "id",
+        type: "Integer",
+        description: "A unique identifier for the resource.",
+        readonly: true,
+      },
+      created_at: {
+        name: "created_at",
+        type: "String",
+        description: "",
+        readonly: true
+      },
+      updated_at: {
+        name: "updated_at",
+        type: "String",
+        description: "",
+        readonly: true
+      },
+      status: {
+        name: "status",
+        type: "String",
+        description: "Tells whether the resource is 'active' or 'archived'",
+        filterable: true,
+        readonly: true,
+      },
+      delimiter: {
+        name: "delimiter",
+        type: "String",
+        description: "",
+        updatable: true,
+        creatable: true,
+      },
+      format: {
+        name: "format",
+        type: "String",
+        description: "Uses %n (number) and %u (unit). e.g. (%u%n would appear as '$12')",
+        updatable: true,
+        creatable: true,
+      },
+      iso: {
+        name: "iso",
+        type: "String",
+        description: "Three-character currency code",
+        updatable: true,
+        creatable: true,
+        required: true,
+      },
+      name: {
+        type: "String",
+        description: "",
+        updatable: true,
+        creatable: true,
+        name: "name",
+        type: "String",
+        description: "",
+        updatable: true,
+        creatable: true,
+      },
+      precision: {
+        name: "precision",
+        type: "String",
+        description: "",
+        updatable: true,
+        creatable: true,
+      },
+      rate: {
+        name: "rate",
+        type: "String",
+        description: "Exchange rate based on account's base currency",
+        updatable: true,
+        creatable: true,
+      },
+      separator: {
+        name: "separator",
+        type: "String",
+        description: "",
+        updatable: true,
+        creatable: true,
+      },
+      symbol: {
+        name: "symbol",
+        type: "String",
+        description: "",
+        updatable: true,
+        creatable: true,
+      },
+      subunit: {
+        name: "subunit",
+        type: "String",
+        description: "Dictates the smallest denomination of the currency. Dollar is 100, Yen is 1.",
+        readonly: true,
+        beta: true,
+        private: true
+      }
+    }

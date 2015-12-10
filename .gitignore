@@ -20,3 +20,5 @@ build/
 _yardoc
 doc/
 .idea/
+
+.env

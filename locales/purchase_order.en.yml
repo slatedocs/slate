@@ -1,0 +1,290 @@
+---
+en:
+  purchase_order:
+    child: "purchase_order_line_item"
+    resource_article: "a"
+    resource_klass: "PurchaseOrder"
+    resource_name: "purchase_order"
+    resource_plural: "purchase_order"
+    json: [
+      {
+        id: 2,
+        created_at: "2015-11-23T11:19:49.857Z",
+        updated_at: "2015-11-23T11:19:50.427Z",
+        status: "active",
+        document_url: "http://localhost:3000/d/gfPPrlS40mrZOGXXgmOIZcue",
+        billing_address_id: 1,
+        company_id: 3,
+        currency_id: 1,
+        stock_location_id: 1,
+        supplier_address_id: 4,
+        default_price_list_id: "buy",
+        due_at: "2015-12-07",
+        email: "william@example.com",
+        notes: null,
+        order_number: "PO0002",
+        procurement_status: "unprocured",
+        reference_number: null,
+        tax_treatment: "exclusive",
+        received_at: null,
+        total: "8.63",
+        tags: [ ],
+        cached_quantity: "3.0",
+        cached_total: "8.63",
+        default_price_type_id: "buy",
+        tax_type: "exclusive",
+        purchase_order_line_item_ids: [
+          3,
+          2
+        ],
+        procurement_ids: [ ]
+      },
+      {
+        id: 1,
+        document_url: "http://localhost:3000/d/RHEDdlXiapBcsQ-CspVHn0i3",
+        created_at: "2015-11-23T11:19:07.072Z",
+        updated_at: "2015-11-23T11:19:07.483Z",
+        billing_address_id: 1,
+        company_id: 3,
+        currency_id: 1,
+        stock_location_id: 1,
+        supplier_address_id: 4,
+        default_price_list_id: "buy",
+        due_at: "2015-12-07",
+        email: "william@example.com",
+        notes: null,
+        order_number: "PO0001",
+        procurement_status: "unprocured",
+        reference_number: null,
+        status: "active",
+        tax_treatment: "exclusive",
+        received_at: null,
+        total: "2.88",
+        tags: [ ],
+        cached_quantity: "1.0",
+        cached_total: "2.88",
+        default_price_type_id: "buy",
+        tax_type: "exclusive",
+        purchase_order_line_item_ids: [
+        1
+        ],
+        procurement_ids: [ ]
+      }
+    ]
+    gecko:
+      create: {
+        company_id: 1,
+        issued_at: Time.now,
+        billing_address_id: 1,
+        shipping_address_id: 1
+      }
+      update: {
+        status: "active",
+        email: "hello@tradegecko.com",
+        billing_address_id: 2
+      }
+
+    attributes: {
+      id: {
+        name: "id",
+        type: "Integer",
+        description: "A unique identifier for the resource.",
+        readonly: true
+      },
+      created_at: {
+        name: "created_at",
+        type: "String",
+        description: "",
+        readonly: true
+      },
+      updated_at: {
+        name: "updated_at",
+        type: "String",
+        description: "",
+        readonly: true
+      },
+      status: {
+        name: "status",
+        type: "String",
+        description: "",
+        updatable: true,
+        creatable: true,
+        readonly: true
+      },
+      document_url: {
+        name: "document_url",
+        type: "String",
+        description: "Shareable URL for resource document",
+        readonly: true
+      },
+      billing_address_id: {
+        name: "billing_address_id",
+        type: "Integer",
+        description: "The billing address for the purchase_order.",
+        filterable: true,
+        updatable: true,
+        creatable: true
+      },
+      company_id: {
+        name: "company_id",
+        type: "Integer",
+        description: "The company that will be supplying the purchase order",
+        filterable: true,
+        updatable: true,
+        creatable: true,
+        required: true
+      },
+      currency_id: {
+        name: "currency_id",
+        type: "Integer",
+        description: "The currency of the purchase_order",
+        filterable: true,
+        updatable: true,
+        creatable: true
+      },
+      stock_location_id: {
+        name: "stock_location_id",
+        type: "Integer",
+        description: "The stock location where stock will be delivered",
+        filterable: true,
+        updatable: true,
+        creatable: true
+      },
+      supplier_address_id: {
+        name: "supplier_address_id",
+        type: "Integer",
+        description: "The supplier address for the purchase_order.",
+        filterable: true,
+        updatable: true,
+        creatable: true
+      },
+      default_price_list_id: {
+        name: "default_price_list_id",
+        type: "String",
+        description: "Default prices for the purchase_order_line_items (if the variant has a price on this Price List",
+        updatable: true,
+        creatable: true
+      },
+      due_at: {
+        name: "due_at",
+        type: "String",
+        description: "",
+        updatable: true,
+        creatable: true,
+        required: true
+      },
+      email: {
+        name: "email",
+        type: "String",
+        description: "",
+        updatable: true,
+        creatable: true
+      },
+      notes: {
+        name: "notes",
+        type: "String",
+        description: "",
+        updatable: true,
+        creatable: true
+      },
+      order_number: {
+        name: "order_number",
+        type: "String",
+        description: "",
+        filterable: true,
+        updatable: true,
+        creatable: true
+      },
+      procurement_status: {
+        name: "procurement_status",
+        type: "String",
+        description: "",
+        updatable: true,
+        creatable: true,
+        readonly: true
+      },
+      reference_number: {
+        name: "reference_number",
+        type: "String",
+        description: "A reference for the purchase order that isn't the order_number",
+        updatable: true,
+        creatable: true
+      },
+      tax_treatment: {
+        name: "tax_treatment",
+        type: "String",
+        description: "One of 'exclusive' or 'inclusive', if not provided defaults to account default.",
+        updatable: true,
+        creatable: true,
+        required: true
+      },
+      received_at: {
+        name: "received_at",
+        type: "String",
+        description: "",
+        updatable: true,
+        creatable: true,
+        readonly: true
+      },
+      total: {
+        name: "total",
+        type: "String",
+        description: "",
+        updatable: true,
+        creatable: true,
+        readonly: true
+      },
+      tags: {
+        name: "tags",
+        type: "String",
+        description: "Reference tags for the purchase order, used in filtering.",
+        updatable: true,
+        creatable: true,
+        filterable: true
+      },
+      cached_quantity: {
+        name: "cached_quantity",
+        type: "String",
+        description: "",
+        updatable: true,
+        creatable: true,
+        readonly: true
+      },
+      cached_total: {
+        name: "cached_total",
+        type: "String",
+        description: "",
+        updatable: true,
+        creatable: true,
+        readonly: true,
+        deprecated: true
+      },
+      default_price_type_id: {
+        name: "default_price_type_id",
+        type: "String",
+        description: "",
+        updatable: true,
+        creatable: true,
+        deprecated: true
+      },
+      tax_type: {
+        name: "tax_type",
+        type: "String",
+        description: "",
+        updatable: true,
+        creatable: true,
+        deprecated: true
+      },
+      purchase_order_line_item_ids: {
+        name: "purchase_order_line_item_ids",
+        type: "Array",
+        description: "",
+        readonly: true
+      },
+      procurement_ids: {
+        name: "procurement_ids",
+        type: "Array",
+        description: "",
+        readonly: true
+      },
+    }

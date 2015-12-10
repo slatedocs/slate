@@ -1,20 +1,17 @@
 # Errors
 
-<aside class="notice">This error section is stored in a separate file in `includes/_errors.md`. Slate allows you to optionally separate out your docs into many files...just save them to the `includes` folder and add them to the top of your `index.md`'s frontmatter. Files are included in the order listed.</aside>
-
-The Kittn API uses the following error codes:
-
+The TradeGecko API uses the following error codes:
 
 Error Code | Meaning
 ---------- | -------
 400 | Bad Request -- Your request sucks
 401 | Unauthorized -- Your API key is wrong
-403 | Forbidden -- The kitten requested is hidden for administrators only
-404 | Not Found -- The specified kitten could not be found
-405 | Method Not Allowed -- You tried to access a kitten with an invalid method
+402 | Payment Required -- Your subscription has lapsed
+403 | Forbidden -- The resource requested is hidden for administrators only
+404 | Not Found -- The specified resource could not be found
+405 | Method Not Allowed -- We currently support GET, PUT, POST, PATCH and DELETE
 406 | Not Acceptable -- You requested a format that isn't json
-410 | Gone -- The kitten requested has been removed from our servers
-418 | I'm a teapot
-429 | Too Many Requests -- You're requesting too many kittens! Slow down!
+422 | Unprocessable Entity -- There was an issue parsing your json
+429 | Too Many Requests -- You are allowed 300 requests per 300 seconds.
 500 | Internal Server Error -- We had a problem with our server. Try again later.
-503 | Service Unavailable -- We're temporarially offline for maintanance. Please try again later.
+503 | Service Unavailable (Time out) -- The server is overloaded or down for maintenance.

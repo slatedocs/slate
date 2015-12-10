@@ -1,0 +1,118 @@
+---
+en:
+  tax_type:
+    resource_article: "a"
+    resource_klass: "TaxType"
+    resource_name: "tax_type"
+    resource_plural: "tax_types"
+    json: [
+      {
+        id: 3,
+        code: "PURCHASES",
+        imported_from: null,
+        name: "Purchases Tax",
+        status: "active",
+        quickbooks_online_id: null,
+        xero_online_id: null,
+        effective_rate: "15.0",
+        tax_component_ids: [
+          3
+        ]
+      },
+      {
+        id: 2,
+        code: "SALES",
+        imported_from: null,
+        name: "Sales Tax",
+        status: "active",
+        quickbooks_online_id: null,
+        xero_online_id: null,
+        effective_rate: "15.0",
+        tax_component_ids: [
+          2
+        ]
+      },
+      {
+        id: 1,
+        code: "TAX EXEMPT",
+        imported_from: null,
+        name: "Tax Exempt",
+        status: "active",
+        quickbooks_online_id: null,
+        xero_online_id: null,
+        effective_rate: "0.0",
+        tax_component_ids: [
+          1
+        ]
+      }
+    ]
+    gecko:
+      create: {
+        name: "Retail",
+        code: "RETAIL"
+      }
+      update: {
+        name: "Wholesale",
+        code: "WHOLESALE"
+      }
+
+    attributes: {
+      id: {
+        name: "id",
+        type: "Integer",
+        description: "A unique identifier for the resource.",
+        readonly: true
+      },
+      status: {
+        name: "status",
+        type: "String",
+        description: "Tells whether the resource is 'active' or 'archived'",
+        filterable: true,
+        readonly: true
+      },
+      code: {
+        name: "code",
+        type: "String",
+        description: "",
+        updatable: true,
+        creatable: true
+      },
+      imported_from: {
+        name: "imported_from",
+        type: "String",
+        description: "Source location (e.g. Quickbooks)",
+        readonly: true
+      },
+      name: {
+        name: "name",
+        type: "String",
+        description: "Display name",
+        updatable: true,
+        creatable: true,
+        required: true
+      },
+      quickbooks_online_id: {
+        name: "quickbooks_online_id",
+        type: "String",
+        description: "",
+        private: true
+      },
+      xero_online_id: {
+        name: "xero_online_id",
+        type: "String",
+        description: "",
+        private: true
+      },
+      effective_rate: {
+        name: "effective_rate",
+        type: "String",
+        description: "Computed rate of child tax_components",
+        readonly: true
+      },
+      tax_component_ids: {
+        name: "tax_component_ids",
+        type: "Array",
+        description: "",
+        readonly: true
+      }
+    }

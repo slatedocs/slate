@@ -1,0 +1,118 @@
+---
+en:
+  invoice_line_item:
+    parent: "invoice"
+    parent_article: "an"
+    parent_klass: "invoice"
+    parent_plural: "invoices"
+    resource_article: "an"
+    resource_klass: "InvoiceLineItem"
+    resource_name: "invoice_line_item"
+    resource_plural: "invoice_line_items"
+    json: [
+      {
+        id: 3,
+        created_at: "2015-11-02T01:22:25.427Z",
+        updated_at: "2015-11-02T01:22:25.427Z",
+        invoice_id: 1,
+        order_line_item_id: 4,
+        ledger_account_id: null,
+        position: 1,
+        quantity: "1.0"
+      },
+      {
+        id: 2,
+        created_at: "2015-11-02T01:22:25.424Z",
+        updated_at: "2015-11-02T01:22:25.424Z",
+        invoice_id: 1,
+        order_line_item_id: 5,
+        ledger_account_id: null,
+        position: 2,
+        quantity: "2.0"
+      },
+      {
+        id: 1,
+        created_at: "2015-11-02T01:22:25.420Z",
+        updated_at: "2015-11-02T01:22:25.420Z",
+        invoice_id: 1,
+        order_line_item_id: 6,
+        ledger_account_id: null,
+        position: 3,
+        quantity: "2.0"
+      }
+    ]
+    gecko:
+      create: {
+        invoice_id: 1,
+        order_line_item_id: 1,
+        quantity: "10.0",
+        position: 1
+      }
+      update: {
+        quantity: "22.0"
+      }
+
+    attributes: {
+      id: {
+        name: "id",
+        type: "Integer",
+        readonly: true,
+        description: "A unique identifier for the resource."
+      },
+      created_at: {
+        name: "created_at",
+        type: "String",
+        description: "",
+        readonly: true
+      },
+      updated_at: {
+        name: "updated_at",
+        type: "String",
+        description: "",
+        readonly: true
+      },
+      invoice_id: {
+        name: "invoice_id",
+        type: "Integer",
+        description: "The invoice to which the invoice_line_item belongs.",
+        filterable: "Filter invoice_line_items by invoice",
+        creatable: true,
+        required: true
+      },
+      order_line_item_id: {
+        name: "order_line_item_id",
+        type: "Integer",
+        description: "The order_line_item to which the invoice_line_item belongs.",
+        filterable: "Filter invoice_line_items by order_line_item",
+        updatable: true,
+        creatable: true,
+        required: true
+      },
+      base_price: {
+        name: "base_price",
+        type: "String",
+        description: "",
+        filterable: "Sales value of the variant in base currency at invoice shipped_at date",
+        updatable: true,
+        creatable: true,
+        readonly: true,
+        private: true
+      },
+      position: {
+        name: "position",
+        type: "Integer",
+        description: "",
+        filterable: "",
+        updatable: true,
+        creatable: true,
+      },
+      quantity: {
+        name: "quantity",
+        type: "String",
+        description: "",
+        filterable: "",
+        updatable: true,
+        creatable: true,
+        required: true,
+      }
+    }

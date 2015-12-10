@@ -1,6 +1,7 @@
 # Markdown
 set :markdown_engine, :redcarpet
 set :markdown,
+    layout_engine: :erb,
     fenced_code_blocks: true,
     smartypants: true,
     disable_indented_code_blocks: true,
@@ -8,6 +9,9 @@ set :markdown,
     tables: true,
     with_toc_data: true,
     no_intra_emphasis: true
+
+# Uses .env in the root of the project
+activate :dotenv
 
 # Assets
 set :css_dir, 'stylesheets'
@@ -17,6 +21,7 @@ set :fonts_dir, 'fonts'
 
 # Activate the syntax highlighter
 activate :syntax
+activate :i18n, langs: [:en]
 
 activate :autoprefixer do |config|
   config.browsers = ['last 2 version', 'Firefox ESR']
@@ -34,5 +39,5 @@ configure :build do
   activate :minify_javascript
   # activate :relative_assets
   # activate :asset_hash
-  # activate :gzip
+  activate :gzip
 end
