@@ -12,17 +12,13 @@ Regarding the motion engine subsystem a number of commands exist, which are list
 #define EulerAngle 0x05 //streaming the Euler angles
 #define ExtForce 0x06 //streaming the external force
 #define SetFusionType 0x07 //setting the Fusion type to either 6-axis or 9-axis
-#define TrajectoryRecStart 0x08 //start recording orientation trajectory
-#define TrajectoryRecStop 0x09 //stop recording orientation trajectory
-#define TrajectoryInfo 0x0A //Analyzes the current trajectory w.r.t. the pre-recorded one
-#define Pedometer 0x0B //streaming pedometer data
-#define MAG_Data 0x0C //streaming magnetometer data
-#define SittingStanding 0x0D //sitting/standing tracker
-#define FlashEraseAll 0x0E //erasing the on-chip recorder
-#define FlashRecordStartStop 0x0F //start/stop a recording session
-#define FlashPlaybackStartStop 0x10 //start/stop playing back from the recorder
-#define LockHeadingRef 0x11 //locks the current magnetometer data to the reference 0 degrees heading angle
-#define SetAccRange 0x12 //sets the accelerometer full-scale range
+#define TrajectoryRecStartStop 0x08 //start/stop recording orientation trajectory
+#define TrajectoryInfo 0x09 //Analyzes the current trajectory w.r.t. the pre-recorded one
+#define Pedometer 0x0A //streaming pedometer data
+#define MAG_Data 0x0B //streaming magnetometer data
+#define SittingStanding 0x0C //sitting/standing tracker
+#define LockHeadingRef 0x0D //locks the current magnetometer data to the reference 0 degrees heading angle
+#define SetAccRange 0x0E //sets the accelerometer full-scale range
 ```
 Note that the above commands are placed within the header section of the packet in Byte#3.
 
@@ -166,7 +162,7 @@ The whole response packet structure including header is shown below:
 |        0x01        |       0x10      |      CRC     |        0x06       |TimeStamp| Fext_Vec16_t |  Reserved   |
 
 #### SetFusionType Command:
-The corresponding packet includes only 1 byte, indicating whether the fusion should be set to either 6-axis IMU or 9-axis MARG mode involving magnetometers:
+The corresponding packet's data section includes only 1 byte (Byte #8), indicating whether the fusion should be set to either 6-axis IMU or 9-axis MARG mode involving magnetometers:
 
 ##### Byte#8: 6-axis IMU mode (0) or 9-axis MARG mode (1)
 The overall packet structure is as follows:
@@ -175,27 +171,32 @@ The overall packet structure is as follows:
 |:------------------:|:---------------:|:------------:|:------------------:|:------:|:--------:|------------|
 |        0x41        |       0x10      |      CRC     |0x07 (SetFusionType)|Reserved| IMU/MARG |  Reserved  |
 
-#### TrajectoryRecStart & TrajectoryRecStop
-These two commands do not have a data section.
+#### TrajectoryRecStartStop
+The corresponding packet's data section includes only 1 byte (Byte#8), to determine the start (1) or stop (0) of the orientation recording process. The overall packet structure is as follows:
+
+| Byte 0 (subsystem) | Byte 1 (length) | Byte 2 (CRC) |       Byte 3 (command)      |Byte 4-7|  Byte 8  |Bytes 9-19|
+|:------------------:|:---------------:|:------------:|:---------------------------:|:------:|:--------:|----------|
+|        0x41        |       0x10      |      CRC     |0x08 (TrajectoryRecStartStop)|Reserved|start/stop| Reserved |
+
 #### TrajectoryInfo Command/Response
 In the command mode, the packet enables/disables the streaming of the distance from a pre-recorded orientation trajectory, as well as the progress report. Byte#8 will be a Boolean value representing the Enable/Disable command. The overall command mode TrajectoryDistance packet has the following structure:
 
 | Byte 0 (subsystem) | Byte 1 (length) | Byte 2 (CRC) |   Byte 3 (command)  |Byte 4-7|     Byte 8     | Bytes 9-19 |
 |:------------------:|:---------------:|:------------:|:-------------------:|:------:|:--------------:|------------|
-|        0x41        |       0x10      |      CRC     |  0x0A (Trajectory)  |Reserved| Enable/Disable |  Reserved  |
+|        0x41        |       0x10      |      CRC     |  0x09 (Trajectory)  |Reserved| Enable/Disable |  Reserved  |
 
 In the response mode, the data section includes 4 bytes for the timestamp (Byte#4-7), which is then followed by 6 bytes (Byte#8-13) representing the Euler angle errors in yaw (Byte#8-9), pitch (Byte#10-11), and roll (Byte#12-13) in degrees. Each angle error is a 16-bit signed integer number and it is packed into 2 bytes in little endian format. The next 2 bytes (Byte#14-15) represent a 16-bit unsigned integer number in little endian format showing how many times the recorded track has been repeated. Finally, Byte#16 shows the percentage of completion indicating how much of the recorded track has been covered. The track Counter (Byte#14-15) will be increased by 1, and the percentage value will drop back to zero, when the full track is covered. The whole response packet structure including header is shown below:
 
 |Byte 0 (subsystem)|Byte 1 (length)|Byte 2|Byte 3|Byte 4-7 |    Byte 8-13    |Byte 14-15|Byte 16 |Bytes 17-19|
 |:----------------:|:-------------:|:----:|:----:|:-------:|:---------------:|:--------:|:------:|:---------:|
-|       0x01       |      0x10     | CRC  | 0x0A |TimeStamp|EulerAngle Errors|  Counter |Progress| Reserved  |
+|       0x01       |      0x10     | CRC  | 0x09 |TimeStamp|EulerAngle Errors|  Counter |Progress| Reserved  |
 
 #### Pedometer Command/Response
 In the command mode, the packet enables/disables the streaming of the Pedometer data. Byte#8 will be a Boolean value representing the Enable/Disable command. The overall command mode Pedometer packet has the following structure:
 
 | Byte 0 (subsystem) | Byte 1 (length) | Byte 2 (CRC) |  Byte 3 (command)  |Byte 4-7|     Byte 8     | Bytes 9-19 |
 |:------------------:|:---------------:|:------------:|:------------------:|:------:|:--------------:|------------|
-|        0x41        |       0x10      |      CRC     |  0x0B (Pedometer)  |Reserved| Enable/Disable |  Reserved  |
+|        0x41        |       0x10      |      CRC     |  0x0A (Pedometer)  |Reserved| Enable/Disable |  Reserved  |
 
 In the response mode, the data section includes 4 bytes for the timestamp (Byte#4-7), which is then followed by 5 bytes (Byte#8-12) with the following subfields:
 ##### Byte#8: step count, LSB
@@ -207,14 +208,14 @@ Note that the angle format includes one fractional decimal digit and it is compa
 
 | Byte 0 | Byte 1 | Byte 2 | Byte 3 |Byte 4-7 |Byte 8-9  |Byte 10|  Byte 11-12   |Bytes 13-19|
 |:------:|:------:|:------:|:------:|:-------:|:--------:|:-----:|:-------------:|:---------:|
-|  0x01  |  0x10  |  CRC   |  0x0B  |TimeStamp|step count|cadence|direction angle| Reserved  |
+|  0x01  |  0x10  |  CRC   |  0x0A  |TimeStamp|step count|cadence|direction angle| Reserved  |
 
 #### MAG_Data Command/Response
 In the command mode, the packet enables/disables the streaming of the 3-axis magnetometer data along with the 3-axis accelerometer data. Byte#8 will be a Boolean value representing the Enable/Disable command. The overall command mode MAG_Data packet has the following structure:
 
 | Byte 0 (subsystem) | Byte 1 (length) | Byte 2 (CRC) |  Byte 3 (command) |Byte 4-7|     Byte 8     | Bytes 9-19 |
 |:------------------:|:---------------:|:------------:|:-----------------:|:------:|:--------------:|------------|
-|        0x41        |       0x10      |      CRC     |  0x0C (MAG_Data)  |Reserved| Enable/Disable |  Reserved  |
+|        0x41        |       0x10      |      CRC     |  0x0B (MAG_Data)  |Reserved| Enable/Disable |  Reserved  |
 
 In the response mode, the data section includes 4 bytes for the timestamp (Byte#4-7), which is then followed by 2*6 bytes (Byte#8-19) with the "AxesRaw_t" data structure defined before in the IMU_Data Command section. The first 6 bytes (Byte#8-13) will be a "AxesRaw_t" data structure for magnetometers, and the next 6 bytes (Byte#14-19) will be another "AxesRaw_t" data structure for accelerometer data. All the bytes are packed in little endian format. Note that the magnetoneter reading in each axis is a 16-bit signed integer representing the range: ±4 gauss.
 
@@ -222,77 +223,32 @@ The whole response packet structure including header is shown below:
 
 |Byte 0 (subsystem)|Byte 1 (length)|Byte 2 (CRC)|Byte 3 (command)|Byte 4-7 |   Byte 8-13   |  Bytes 14-19  |
 |:----------------:|:-------------:|:----------:|:--------------:|:-------:|:-------------:|:-------------:|
-|       0x01       |      0x10     |    CRC     |      0x0C      |TimeStamp|AxesRaw_t (Mag)|AxesRaw_t (Acc)|
+|       0x01       |      0x10     |    CRC     |      0x0B      |TimeStamp|AxesRaw_t (Mag)|AxesRaw_t (Acc)|
 
 #### SittingStanding Command/Response
 In the command mode, the packet enables/disables the streaming of sitting/standing modes. Byte#8 will be a Boolean value representing the Enable/Disable command. The overall command mode SittingStanding packet has the following structure:
 
 | Byte 0 (subsystem) | Byte 1 (length) | Byte 2 (CRC) |   Byte 3 (command)   |Byte 4-7|     Byte 8     | Bytes 9-19 |
 |:------------------:|:---------------:|:------------:|:--------------------:|:------:|:--------------:|------------|
-|        0x41        |       0x10      |      CRC     |0x0D (SittingStanding)|Reserved| Enable/Disable |  Reserved  |
+|        0x41        |       0x10      |      CRC     |0x0C (SittingStanding)|Reserved| Enable/Disable |  Reserved  |
 
 In the response mode, the data section includes 4 bytes for the timestamp (Byte#4-7), which is then followed by a single byte (Byte#8) indicating whether the person has just stood up (Byte#8 = 0x01), or has just sat down (Byte#8 = 0x00). If the person remains standing/sitting, no response packet will be sent to the host.  Next, we have 4 bytes (Byte#9-12), a 32-bit unsigned integer value packed in little endian format (LSB first), representing the amount of time in seconds the person has been sitting so far (SitTime). The next 4 bytes (Byte#13-16) construct another 32-bit unsigned integer in little endian format, which represents the amount of time in seconds the person has been standing up so far (StandTime). 
 Note that if the host disables the streaming of sitting/standing mode, the SitTime and StandTime will be both reset to zero. The last 3 bytes of the packet (Byte#17-19) are reserved. The whole response packet structure including header is shown below:
 
 |Byte 0 |Byte 1|Byte 2|Byte 3|Byte 4-7 | Byte 8  |Byte 9-12|Byte 13-16|Bytes 17-19|
 |:-----:|:----:|-----:|:----:|:-------:|:-------:|:-------:|:--------:|:---------:|
-| 0x01  | 0x10 | CRC  | 0x0D |TimeStamp|Sit/Stand| SitTime |StandTime | Reserved  |
-
-#### FlashEraseAll Command/Response
-In the command mode, the packet commands Neblina to do a full-erase for the on-chip NOR flash memory. This takes about 2 minutes to complete. Here is the command packet:
-
-| Byte 0 (subsystem) | Byte 1 (length) | Byte 2 (CRC) |  Byte 3 (command)  |Byte 4-19|
-|:------------------:|:---------------:|:------------:|:------------------:|:-------:|
-|        0x41        |       0x10      |      CRC     |0x0E (FlashEraseAll)|Reserved |
-
-When the erasing process completes, Neblina will send an acknowledge packat back to the host as follows:
-
-| Byte 0 (subsystem) | Byte 1 (length) | Byte 2 (CRC) |  Byte 3 (command)  | Bytes 4-19 |
-|:------------------:|:---------------:|:------------:|:------------------:|------------|
-|        0x01        |       0x10      |      CRC     |0x0E (FlashEraseAll)|  Reserved  |
-
-#### FlashRecordStartStop Command/Response
-In the command mode, the packet commands Neblina to either start a new recording session, or close the currently open one. Byte#8 will be a Boolean value representing the start (1) or stop (0) command. Here is the full command packet:
-
-| Byte 0 (subsystem) | Byte 1 (length) | Byte 2 (CRC) | Byte 3 (command) |Byte 4-7|  Byte 8  | Bytes 9-19 |
-|:------------------:|:---------------:|:------------:|:----------------:|:------:|:--------:|------------|
-|        0x41        |       0x10      |      CRC     |0x0F (FlashRecord)|Reserved|start/stop|  Reserved  |
-
-In response, Neblina will send a single packet confirming the recording session number that has been created/closed. Byte#4 will be a Boolean value representing the creation (1) or closure (0) of the recording session. The session number is also a 16-bit unsigned integer packed into two bytes in little endian format (Byte 9-10). Here is the full response packet:
-
-|Byte 0 (subsystem)|Byte 1 (length)|Byte 2|Byte 3 (command)| Byte 4-7 |   Byte 8   |Byte 9-10 |Bytes 11-19|
-|:----------------:|:-------------:|:----:|:--------------:|:--------:|:----------:|:--------:|:---------:|
-|       0x01       |      0x10     | CRC  |      0x0F      | Reserved |create/close|Session ID|  Reserved |
-
-#### FlashPlaybackStartStop Command/Response
-In the command mode, the packet commands Neblina to either open a previously recorded session for playback or close the one that is currently open and being played. Byte#8 will be a Boolean value representing the open (1) or close (0) mode. If the mode is to close the current session, then, no session number is needed to be provided. Otherwise, in the opening mode, Byte#9-10 will include the session ID number as a 16-bit unsigned integer value. It is notable that in the opening mode, if the session ID is set to 0xFFFF, then Neblina will open the last recorded session. Here is the full command packet:
-
-| Byte 0 | Byte 1 |Byte 2|  Byte 3 (command)  |Byte 4-7|  Byte 8  |Byte 9-10 (open mode)|Bytes 11-19|
-|:------:|:------:|:----:|:------------------:|:------:|:--------:|:-------------------:|:---------:|
-|  0x41  |  0x10  | CRC  |0x10 (FlashPlayback)|Reserved|open/close|Session ID (Byte#8=1)| Reserved  |
-
-In response for opening a session for playback, Neblina will only send an error packet to the host, if the session opening has failed, e.g., due to an invalid session number request. If the session opening has been successful, Neblina will not send an acknowledge packet to the host, since the playback data being streamed to the host will virtually confirm this matter. Here is the error packet response to an invalid request to open a particular Session ID. Note that the most-significant bit of the first byte, i.e., error flag, is set to 1:
-
-| Byte 0 | Byte 1 (length) |Byte 2|  Byte 3 (command)  |Byte 4-7|   Byte 8  |Byte 9-10 |Bytes 11-19|
-|:------:|:---------------:|:----:|:------------------:|:------:|:---------:|:--------:|:---------:|
-|  0x81  |       0x10      | CRC  |0x10 (FlashPlayback)|Reserved|0x01 (open)|Session ID| Reserved |
-
-If the playback is successful, whenever we reach the end of the session, where there is no more data to be streamed to the host, Neblina will send a completion status packet to the host as follows:
-
-| Byte 0 | Byte 1 (length) |Byte 2|  Byte 3 (command)  |Byte 4-7|      Byte 8      | Bytes 9-19 |
-|:------:|:---------------:|:----:|:------------------:|:------:|:----------------:|:----------:|
-|  0x01  |       0x10      | CRC  |0x10 (FlashPlayback)|Reserved|0 (session closed)|  Reserved  |
+| 0x01  | 0x10 | CRC  | 0x0C |TimeStamp|Sit/Stand| SitTime |StandTime | Reserved  |
 
 #### LockHeadingRef Command
 Neblina provides the option to lock magnetometer readings to represent the 0 degrees reference heading. When this command is issued, Neblina will wait until the device is positioned on either a horizontal or vertical plane and then the current magnetometer readings will be locked to the zero degrees heading. Therefore, whenever the device points back to the same direction, Neblina will provide correction for the heading angle to reach the reference 0 degrees. The correction is adaptive meaning that if the deviation of the heading angle caused by the Gyroscopes' drift is high enough at the reference heading angle, the correction will be aggressive. However, if the heading info is close to the zero degrees (<15 degrees), the correction will apply smoothly. The full command packet has the following structure:
 
 |Byte 0 (subsystem)|Byte 1 (length)|Byte 2|  Byte 3 (command)   |Byte 4-19 |
 |:----------------:|:-------------:|:----:|:-------------------:|:--------:|
-|       0x01       |      0x10     | CRC  |0x11 (LockHeadingRef)| Reserved |
+|       0x01       |      0x10     | CRC  |0x0D (LockHeadingRef)| Reserved |
 
 #### SetAccRange Command
 This command sets the accelerometer full-scale range to either 2G (Mode 0), 4G (Mode 1), 8G (Mode 2), or 16G (Mode 3). The default mode is 2G. Byte#8 will be set to 0, 1, 2, or 3, representing the mode. The overall SetAccRange packet has the following structure:
 
 | Byte 0 (subsystem) | Byte 1 (length) | Byte 2 (CRC) | Byte 3 (command) |Byte 4-7|Byte 8| Bytes 9-19 |
 |:------------------:|:---------------:|:------------:|:----------------:|:------:|:----:|------------|
-|        0x41        |       0x10      |      CRC     |0x12 (SetAccRange)|Reserved| Mode |  Reserved  |
+|        0x41        |       0x10      |      CRC     |0x0E (SetAccRange)|Reserved| Mode |  Reserved  |
