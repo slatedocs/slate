@@ -63,12 +63,12 @@ kuzzle
 JSONObject filters = new JSONObject();
 dataCollection.advancedSearch(filters, new ResponseListener() {
   @Override
-  public void onSuccess(JSONObject object) throws Exception {
+  public void onSuccess(JSONObject object) {
     // Handle success
   }
 
   @Override
-  public void onError(JSONObject error) throws Exception {
+  public void onError(JSONObject error) {
     // Handle error
   }
 });
@@ -126,12 +126,12 @@ kuzzle
 JSONObject filters = new JSONObject();
 dataCollection.count(filters, new ResponseListener() {
   @Override
-  public void onSuccess(JSONObject object) throws Exception {
+  public void onSuccess(JSONObject object) {
     // Handle success
   }
 
   @Override
-  public void onError(JSONObject error) throws Exception {
+  public void onError(JSONObject error) {
     // Handle error
   }
 });
@@ -185,13 +185,13 @@ kuzzle
 ```java
 dataCollection.create(new ResponseListener() {
   @Override
-  public void onSuccess(JSONObject object) throws Exception {
+  public void onSuccess(JSONObject object) {
     // callback called once the create operation has completed
     // => the result is a JSON object containing the raw Kuzzle response
   }
 
   @Override
-  public void onError(JSONObject error) throws Exception {
+  public void onError(JSONObject error) {
     // Handle error
   }
 });
@@ -241,13 +241,13 @@ myDocument.setContent("title", "foo");
 myDocument.setContent("content", "bar");
 dataCollection.createDocument(myDocument, new ResponseListener() {
   @Override
-  public void onSuccess(JSONObject object) throws Exception {
+  public void onSuccess(JSONObject object) {
     // callback called once the create action has been completed
     // => the result is a KuzzleDocument object
   }
 
   @Override
-  public void onError(JSONObject error) throws Exception {
+  public void onError(JSONObject error) {
     // Handle error
   }
 });
@@ -301,13 +301,13 @@ kuzzle
 ```java
 dataCollection.delete(new ResponseListener() {
   @Override
-  public void onSuccess(JSONObject object) throws Exception {
+  public void onSuccess(JSONObject object) {
     // callback called once the delete operation has completed
     // => the result is a JSON object containing the raw Kuzzle response
   }
 
   @Override
-  public void onError(JSONObject error) throws Exception {
+  public void onError(JSONObject error) {
     // Handle error
   }
 });
@@ -365,12 +365,12 @@ kuzzle
 // Deleting one document
 dataCollection.deleteDocument("document unique ID", new ResponseListener() {
   @Override
-  public void onSuccess(JSONObject object) throws Exception {
+  public void onSuccess(JSONObject object) {
     // callback called once the delete action has been completed
   }
 
   @Override
-  public void onError(JSONObject error) throws Exception {
+  public void onError(JSONObject error) {
     // Handle error
   }
 });
@@ -382,12 +382,12 @@ title.put("title", "foo");
 termFilter.put("term", title);
 dataCollection.deleteDocument(termFilter, new ResponseListener() {
   @Override
-  public void onSuccess(JSONObject object) throws Exception {
+  public void onSuccess(JSONObject object) {
     // callback called once the delete with query has been completed
   }
 
   @Override
-  public void onError(JSONObject error) throws Exception {
+  public void onError(JSONObject error) {
     // Handle error
   }
 });
@@ -446,12 +446,12 @@ kuzzle
 KuzzleDocument myDoc;
 dataCollection.fetchDocument("documentId", new ResponseListener() {
   @Override
-  public void onSuccess(JSONObject object) throws Exception {
+  public void onSuccess(JSONObject object) {
     myDoc = new KuzzleDocument(dataCollection, object);
   }
 
   @Override
-  public void onError(JSONObject error) throws Exception {
+  public void onError(JSONObject error) {
     // Handle error
   }
 });
@@ -499,13 +499,13 @@ kuzzle
 ```java
 dataCollection.fetchAllDocuments(new ResponseListener() {
   @Override
-  public void onSuccess(JSONObject object) throws Exception {
+  public void onSuccess(JSONObject object) {
     // result is an object containing the total number of documents
     // and an array of KuzzleDocument objects
   }
 
   @Override
-  public void onError(JSONObject error) throws Exception {
+  public void onError(JSONObject error) {
     // Handle error
   }
 });
@@ -556,12 +556,12 @@ kuzzle
 ```java
 dataCollection.getMapping(new ResponseListener() {
   @Override
-  public void onSuccess(JSONObject object) throws Exception {
+  public void onSuccess(JSONObject object) {
     // result is a KuzzleDataMapping object
   }
 
   @Override
-  public void onError(JSONObject error) throws Exception {
+  public void onError(JSONObject error) {
     // Handle error
   }
 });
@@ -640,12 +640,12 @@ kuzzle
 ```java
 dataCollection.putMapping(myKuzzleDataMapping, new ResponseListener() {
   @Override
-  public void onSuccess(JSONObject object) throws Exception {
+  public void onSuccess(JSONObject object) {
     // result is a KuzzleDataMapping object
   }
 
   @Override
-  public void onError(JSONObject error) throws Exception {
+  public void onError(JSONObject error) {
     // Handle error
   }
 });
@@ -767,12 +767,12 @@ title.put("title", "foo");
 term.put("term", title);
 dataCollection.subscribe(term, new ResponseListener() {
   @Override
-  public void onSuccess(JSONObject object) throws Exception {
+  public void onSuccess(JSONObject object) {
     // called each time a new notification on this filter is received
   }
 
   @Override
-  public void onError(JSONObject error) throws Exception {
+  public void onError(JSONObject error) {
     // Handle error
   }
 });
@@ -819,13 +819,13 @@ kuzzle
 ```java
 dataCollection.truncate(new ResponseListener() {
   @Override
-  public void onSuccess(JSONObject object) throws Exception {
+  public void onSuccess(JSONObject object) {
     // callback called once the truncate operation has completed
     // => the result is a JSON object containing the raw Kuzzle response
   }
 
   @Override
-  public void onError(JSONObject error) throws Exception {
+  public void onError(JSONObject error) {
     // Handle error
   }
 });
@@ -874,13 +874,13 @@ doc.save();
 doc.setContent("foo", "bar");
 dataCollection.updateDocument("documentId", doc, new ResponseListener() {
   @Override
-  public void onSuccess(JSONObject object) throws Exception {
+  public void onSuccess(JSONObject object) {
     // callback called once the truncate operation has completed
     // => the result is a JSON object containing the raw Kuzzle response
   }
 
   @Override
-  public void onError(JSONObject error) throws Exception {
+  public void onError(JSONObject error) {
     // Handle error
   }
 });
