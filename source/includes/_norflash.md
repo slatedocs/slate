@@ -1,6 +1,6 @@
 # Storage (NOR Flash Recorder 0x0B)
 
-The NOR flash recorder uses subsystem ID 0x0B. Regarding this subsystem a number of commands exist, which are listed below:
+The NOR flash recorder exists only on the ProMotion board and it uses subsystem ID 0x0B. Regarding this subsystem a number of commands exist, which are listed below:
 
 ```c 
 #define FlashEraseAll 0x01 //erasing the on-chip recorder
