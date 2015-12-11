@@ -23,7 +23,7 @@ search: true
 
 Welcome to the Kuzzle SDK Documentation!
 
-At this stage we only propose a draft for the generic specifications of our future SDKs. We'll complete this documentation incrementally, and add code samples for each SDK we produce.
-This documentation has been designed both to help people use our SDKs, and to ensure that all our SDKs will follow the same global architecture.
+Here is the list of currently implemented SDKs:
 
-Our goal is to create at least a Javascript SDK and an Android SDK for our beta version of Kuzzle. Stay tuned!
+* [Javascript/NodeJS](https://github.com/kuzzleio/sdk-javascript)
+* [Android](https://github.com/kuzzleio/sdk-android)
