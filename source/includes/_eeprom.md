@@ -25,7 +25,7 @@ In response, Neblina will first send an acknowledge/error packet to confirm the 
 |:------------------:|:---------------:|:------------:|:----------------:|:------:|:-------:|:--------:|
 |        0x4C        |       0x10      |      CRC     |0x01 (EEPROM_Read)|page nb |read data| Reserved |
 
-#### EEPROM_Read Command/Response
+#### EEPROM_Write Command/Response
 In the command mode, the packet commands Neblina to write 8 bytes to a page number. Here is the packet structure:
 
 | Byte 0 (subsystem) | Byte 1 (length) | Byte 2 (CRC) | Byte 3 (command)  |Byte 4-5|Byte 6-13 |Byte 14-19|
