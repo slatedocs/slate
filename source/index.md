@@ -20,6 +20,7 @@ includes:
   - rpc
   - filters
   - batch
+  - geth
   - tests
   - errors
   - contributing
