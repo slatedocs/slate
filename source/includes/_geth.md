@@ -19,12 +19,10 @@ geth.start(options, function (err, proc) {
 
 // When you and geth have had enough lively times, geth.stop kills
 // the geth child process:
-geth.stop(function () {
-    // no more lively times :( 
-});
+geth.stop(function () { /* no more lively times :( */ });
 
-// `geth.start` accepts an optional second parameter which can specify
-// the listeners to overwrite.
+// The `stdout`, `stderr`, and `close` listeners can be initially set
+// by passing them to `geth.start`.
 var listeners = {
     stdout: function (data) {
         process.stdout.write("I got a message!! " + data.toString());
@@ -38,9 +36,6 @@ var listeners = {
         console.log("It's game over, man!  Game over!");
     }
 };
-
-// The `stdout`, `stderr`, and `close` listeners can be initially set
-// by passing them to `geth.start`.
 geth.start(options, listeners, function (err, proc) { /* <3 geth */ });
 
 // Swap out or add listeners after the initial startup:
