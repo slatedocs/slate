@@ -4,16 +4,14 @@
 
 > Example Request
 
+```cURL
+curl https://webapp.kotive.com/api/group/<group_id>/people  \
+	-H 'Authorization: Basic <login details>'
 ```
-curl https://webapp.kotive.com/api/group/<group_id>/people
-	-H 'Authorization: Basic <token>'
-```
-
-> Remember to replace `<group_id>` with the actual Group ID, and `<token>` with the Base64 token described in the Authentication section.
 
 > Example Response
 
-```
+```cURL
 {
   "people": [{
     "email": "example@example.com",
@@ -27,34 +25,33 @@ curl https://webapp.kotive.com/api/group/<group_id>/people
 }
 ```
 
-* Endpoint: `/group/<group_id>/people`
-* Request: `GET`
+* Endpoint: `GET /group/<group_id>/people`
 
 Ever feel like you need a list of everybody that's associated with your account? No? Well here's how to do it anyway:
 
-First of all you'll need the `group_id` of the list, so that you can find out who is in that group. Getting this value should be pretty easy, as it will be nested inside of the `groupsIndex` part of the login response you got earlier!
+First of all you'll need the `group_id` of the group, so that you can find out who is in that group. Getting this value should be pretty easy, as it will be nested inside of the `groupsIndex` part of the login response you got earlier!
 
-Once you've got that value, all you have to do it submit a `GET` request to `/group/<group_id>/people` and your response will contain all the information you needed!
+Once you've got that value, all you have to do it submit a `GET` request to `/group/<group_id>/people`, and the reponse will contain the list of people you're looking for.
 
 <aside class="notice">
-Don't forget to replace <code>&lt;group_&gt;</code> with your actual Group ID, otherwise it won't work. Yes, some people actually make that mistake.
+Don't forget to replace <code>&lt;group_id&gt;</code> with your actual Group ID, otherwise it won't work.
 </aside>
 
-## Add a person
+## Create a new person
 
 > Example Request
 
-```
-curl https://webapp.kotive.com/api/people
-	-H "Content-Type: application/json"
-	-H 'Authorization: Basic <token>' 
-	-X POST 
+```cURL
+curl https://webapp.kotive.com/api/people  \
+	-X POST                                \
+	-H "Content-Type: application/json"    \
+	-H 'Authorization: Basic <token>'      \
 	-d '{"person"{"email": "<email>", "username": "<username>", "firstname": "<firstname>", "lastname": "<lastname>", "mobile": "<mobile>", "password": "<password>", "groupId" :<groupId>}}'
 ```
 
 > Example Response
 
-```
+```cURL
 {
   "person": {
     "email": "johanna@example.com",
@@ -68,23 +65,34 @@ curl https://webapp.kotive.com/api/people
 }
 ```
 
-* Endpoint: `/people`
-* Request: `POST`
+* Endpoint: `POST /people`
 
 Has a new special someone come into your life? ;) Or is it just that time of year when your company has hired a whole load of newbies and wants you to add them to the system? Either way, here's how to do it quickly and still get time to procrastinate!
 
 To create a new person (not really), you must make a `POST` request to `/people` with all of the information about the new person:
 
-Field Name | Description | Required | Type
------------|-------------|----------|-----
-email | The email address of the new person to add | Yes | Email
-username | The username is also the email address | Yes | Email
-firstname | The new person's first name | Yes | Text
-lastname | The surname of the new person | Yes | Text
-mobile | The mobile phone number of the new person | No | Text
-password | The new person's password | No | Text
-groupId | The ID of the group to add the new person to | Yes | Number
+Field Name | Description | Required
+-----------|-------------|---------
+email | The email address of the person to add | Yes
+username | The username is the same as the email address | Yes
+firstname | The person's first name | Yes
+lastname | The person's last name | Yes
+mobile | The person's mobile number | No
+password | The person's password | No
+groupId | The ID of the group to add the new person to | Yes
 
 <aside class="notice">
-In order to assign roles to the new person, you will have to follow the 'Add a role to a user' section below
+In order to assign roles to the new person, you will have to follow the <a href="#assign-a-role-to-a-person">Assign a role to a person</a> section below
+</aside>
+
+If you wish to send an invitation email to the person after you have added them, simply follow the instructions on [Password reset](#password-reset), as resetting the password of a user that doesn't yet exist will sent them an invitation email.
+
+## Update a person
+
+Currently, the only change you can make to somebody's details is changing which roles have been assigned to them. Details on how to do this can be found in the ['Assign a role to a person'](#assign-a-role-to-a-person) and ['Revoke a role from a person'](#revoke-a-role-from-a-person) sections.
+
+## Delete a person
+
+<aside class="warning">
+Unknown
 </aside>
