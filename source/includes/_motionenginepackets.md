@@ -251,7 +251,7 @@ Neblina provides the option to lock magnetometer readings to represent the 0 deg
 
 |Byte 0 (subsystem)|Byte 1 (length)|Byte 2|  Byte 3 (command)   |Byte 4-19 |
 |:----------------:|:-------------:|:----:|:-------------------:|:--------:|
-|       0x01       |      0x10     | CRC  |0x0D (LockHeadingRef)| Reserved |
+|       0x41       |      0x10     | CRC  |0x0D (LockHeadingRef)| Reserved |
 
 In response, Neblina will only send an acknowledge packet to indicate the successful receipt of the command issued by the host.
 
@@ -269,5 +269,5 @@ This command disables all the streaming options in the motion engine. The comman
 
 |Byte 0 (subsystem)|Byte 1 (length)|Byte 2|     Byte 3 (command)     |Byte 4-19 |
 |:----------------:|:-------------:|:----:|:------------------------:|:--------:|
-|       0x01       |      0x10     | CRC  |0x0F (DisableAllStreaming)| Reserved |
+|       0x41       |      0x10     | CRC  |0x0F (DisableAllStreaming)| Reserved |
 
