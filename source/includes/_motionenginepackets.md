@@ -156,7 +156,7 @@ int16_t y;
 int16_t z;
 }Fext_Vec16_t;
 ```
-The accelerometer data captures the total force vector applied to the device including gravity. The x, y, z components of the external force vector are defined in the reference Earth frame (not the sensor body frame). This means that regardless of the devices orientation, this force vector aligns with the fixed reference Earth frame and can be used for position tracking, etc. The external force components, x, y, z are 16-bit signed integer numbers covering the range of [-1g,1g]. This is due to the fact that the accelerometer data range is set to [-2g,2g], while the gravity vector is (0,0,1g). The 16-bit signed integer numbers are packed into bytes in little endian format.
+The accelerometer data captures the total force vector applied to the device including gravity. The x, y, z components of the external force vector are defined in the reference Earth frame (not the sensor body frame). This means that regardless of the device's orientation, this force vector aligns with the fixed reference Earth frame and can be used for position tracking, etc. The external force components, x, y, z are 16-bit signed integer numbers covering the range of [-1g,1g]. This is due to the fact that the accelerometer data range is set to [-2g,2g], while the gravity vector is (0,0,1g). The 16-bit signed integer numbers are packed into bytes in little endian format.
 
 The whole response packet structure including header is shown below:
 
