@@ -439,13 +439,13 @@ Available options:
 
 ```js
 // Using callbacks (NodeJS or Web Browser)
-kuzzle.listCollections(function (err, collections) {
+kuzzle.listCollections({type: 'stored'}, function (err, collections) {
   // ...
 });
 
 // Using promises (NodeJS only)
 kuzzle
-  .listCollectionsPromise()
+  .listCollectionsPromise({type: 'stored'})
   .then(collections => {
     // ...
   });
@@ -484,7 +484,7 @@ Available options:
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
 | ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
-
+| ``type`` | string | Get either ``stored`` collections or ``realtime`` ones. By default, list ``all`` collections | ``all`` |
 
 
 ## logout
