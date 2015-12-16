@@ -34,9 +34,9 @@ Neblina is programmed to stream information to the host as per its request. The 
 ##### Byte#9: n, MSB
 The representation is little-endian meaning that the least significant byte is put first, followed by higher order bytes, and finally ending with the most significant byte. Currently, the supporting streaming frequencies are multiplicands of 20, i.e., 50Hz, 50Hz/2, 50Hz/3, and so on. Therefore, the value of n should be set as a multiplicand of 20. Overall, the downsample command packet including both header and data sections has the following structure:
 
-|Byte 0 (subsystem)|Byte 1 (length)|Byte 2 (CRC)|Byte 3 (command) |Byte 4-7|Bytes 8-9|Bytes 10-19|
-|:----------------:|:-------------:|:----------:|:---------------:|:------:|:-------:|:---------:|
-|       0x41       |      0x10     |     CRC    |0x01 (downsample)|Reserved| factor  | Reserved  |
+|Byte 0 (subsystem)|Byte 1 (length)|Byte 2 (CRC)|Byte 3 (command) |Byte 4-7|Bytes 8-9 |Bytes 10-19|
+|:----------------:|:-------------:|:----------:|:---------------:|:------:|:--------:|:---------:|
+|       0x41       |      0x10     |     CRC    |0x01 (downsample)|Reserved|factor (n)| Reserved  |
 
 In response, Neblina will only send an acknowledge/error packet to indicate the validity and receipt of the command issued by the host.
 
