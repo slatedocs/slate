@@ -13,7 +13,7 @@ Note that the above commands are placed within the header section of the packet 
 ## Data Section
 The data section consists of 16 bytes. The first 4 bytes (Byte 4-7) and the last 9 bytes (Byte 11-19) are always reserved in the NOR flash subsystem. However, the other bytes might be used differently depending on the command field, which is explained next.
 
-#### FlashEraseAll Command/Response
+#### FlashEraseAll Command/Response (0x01)
 In the command mode, the packet commands Neblina to do a full-erase for the on-chip NOR flash memory. This takes about 2 minutes to complete. Here is the command packet:
 
 | Byte 0 (subsystem) | Byte 1 (length) | Byte 2 (CRC) |  Byte 3 (command)  |Byte 4-19|
@@ -27,7 +27,7 @@ In response, Neblina will first send an acknowledge packet to indicate the succe
 |        0x0B        |       0x10      |      CRC     |0x01 (FlashEraseAll)|  Reserved  |
 
 
-#### FlashRecordStartStop Command/Response
+#### FlashRecordStartStop Command/Response (0x02)
 In the command mode, the packet commands Neblina to either start a new recording session, or close the currently open one. Byte#8 will be a Boolean value representing the start (1) or stop (0) command. Here is the full command packet:
 
 | Byte 0 (subsystem) | Byte 1 (length) | Byte 2 (CRC) | Byte 3 (command) |Byte 4-7|  Byte 8  | Bytes 9-19 |
@@ -40,7 +40,7 @@ In response, after sending the acknowledge packet to indicate the receipt of the
 |:----------------:|:-------------:|:----:|:--------------:|:--------:|:----------:|:--------:|:---------:|
 |       0x0B       |      0x10     | CRC  |      0x02      | Reserved |create/close|Session ID|  Reserved |
 
-#### FlashPlaybackStartStop Command/Response
+#### FlashPlaybackStartStop Command/Response (0x03)
 In the command mode, the packet commands Neblina to either open a previously recorded session for playback or close the one that is currently open and being played. Byte#8 will be a Boolean value representing the open (1) or close (0) mode. If the mode is to close the current session, then, no session number is needed to be provided. Otherwise, in the opening mode, Byte#9-10 will include the session ID number as a 16-bit unsigned integer value. It is notable that in the opening mode, if the session ID is set to 0xFFFF, then Neblina will open the last recorded session. Here is the full command packet:
 
 | Byte 0 | Byte 1 |Byte 2|  Byte 3 (command)  |Byte 4-7|  Byte 8  |Byte 9-10 (open mode)|Bytes 11-19|
