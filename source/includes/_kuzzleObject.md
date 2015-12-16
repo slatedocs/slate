@@ -190,29 +190,11 @@ The ID returned by this function is required if you want to remove this listener
 ## connect
 
 ```js
-// Using callbacks (NodeJS or Web Browser)
-kuzzle.connect(function (err, kuzzle) {
-  // invoked once connected, kuzzle contains the kuzzle instance
-});
-
-// Using promises (NodeJS only)
-kuzzle.connectPromise().then(kuzzle => {
-  // resolved once connected, kuzzle contains the kuzzle instance
-});
+kuzzle.connect();
 ```
 
 ```java
-kuzzle.connect(new ResponseListener() {
-  @Override
-  public void onSuccess(JSONObject object) {
-    // invoked once connected, kuzzle contains the kuzzle instance
-  }
-
-  @Override
-  public void onError(JSONObject error) {
-    // Handle error
-  }
-});
+kuzzle.connect();
 ```
 
 Connects to the Kuzzle instance using the URL provided to the constructor.  
