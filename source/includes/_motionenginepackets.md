@@ -265,4 +265,9 @@ This command sets the accelerometer full-scale range to either 2G (Mode 0), 4G (
 In response, Neblina will only send an acknowledge/error packet to indicate the validity and receipt of the command issued by the host.
 
 #### DisableAllStreaming Command (0x0F)
-This command disables all the streaming options in the motion engine. The command is useful for the host applications to ensure that there is no streaming traffic on the physical layer. The data section for this command is empty.
+This command disables all the streaming options in the motion engine. The command is useful for the host applications to ensure that there is no streaming traffic on the physical layer. The data section for this command is empty. The full command packet has the following structure:
+
+|Byte 0 (subsystem)|Byte 1 (length)|Byte 2|     Byte 3 (command)     |Byte 4-19 |
+|:----------------:|:-------------:|:----:|:------------------------:|:--------:|
+|       0x01       |      0x10     | CRC  |0x0F (DisableAllStreaming)| Reserved |
+
