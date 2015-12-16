@@ -19,6 +19,7 @@ Regarding the motion engine subsystem a number of commands exist, which are list
 #define SittingStanding 0x0C //sitting/standing tracker
 #define LockHeadingRef 0x0D //locks the current magnetometer data to the reference 0 degrees heading angle
 #define SetAccRange 0x0E //sets the accelerometer full-scale range
+#define DisableAllStreaming 0x0F //disables all the streaming options in the motion engine
 ```
 Note that the above commands are placed within the header section of the packet in Byte#3.
 
@@ -27,7 +28,7 @@ The data section consists of 16 bytes. The first 4 bytes (Byte 4-7) refer to the
 
 ### Motion Engine Data Section
 The data section regarding the motion engine has different representations based on the command, which are explained next.
-#### Downsample Command
+#### Downsample Command (0x01)
 Neblina is programmed to stream information to the host as per its request. The maximum streaming frequency is 1kHz, and the users can reduce the streaming frequency to 1000/n, where n is an unsigned 16-bit positive integer. Regarding this command, we have the following data section with only 2 valid bytes:
 ##### Byte#8: n, LSB
 ##### Byte#9: n, MSB
@@ -39,7 +40,7 @@ The representation is little-endian meaning that the least significant byte is p
 
 In response, Neblina will only send an acknowledge/error packet to indicate the validity and receipt of the command issued by the host.
 
-#### MotionState Command/Response
+#### MotionState Command/Response (0x02)
 In the command mode the packet enables/disables the streaming of the motion state for the target device. If enabled, it basically inquires whether the device changes its motion state either from stop to movement, or from movement to stop. We recommend that after the device power-up you hold the device still for a couple of seconds (2-5 seconds) for initial calibration and orientation convergence. Data section for this packet type is a single byte, which should be set to either 0 or 1 to disable or enable the streaming of the motion states respectively.
 ##### Byte#8: Enable (1) or Disable (0) Motion State streaming
 Overall, the command packet has the following structure:
@@ -54,7 +55,7 @@ In the response mode, Neblina will first send an acknowledge packet to the host 
 |:------------------:|:---------------:|:------------:|:-----------------:|:-------:|--------------|-------------|
 |        0x01        |       0x10      |      CRC     |        0x02       |TimeStamp|  stop/start  |  Reserved   |
 
-#### IMU_Data Command/Response
+#### IMU_Data Command/Response (0x03)
 In the command mode, the packet enables/disables the streaming of the 6-axis IMU sensor data, including the 3-axis accelerometer and 3-axis gyroscope. Byte#8 will be a Boolean value representing the Enable/Disable command. The overall command mode IMU_Data packet has the following structure:
 
 | Byte 0 (subsystem) | Byte 1 (length) | Byte 2 (CRC) |  Byte 3 (command) |Byte 4-7|     Byte 8     | Bytes 9-19 |
@@ -80,7 +81,7 @@ The whole response packet structure including header is shown below:
 |:------------------:|:---------------:|:------------:|:-----------------:|:-------:|-------------|
 |        0x01        |       0x10      |      CRC     |        0x03       |TimeStamp|IMU6AxisRaw_t|
 
-#### Quaternion Command/Response
+#### Quaternion Command/Response (0x04)
 In the command mode, the packet enables/disables the streaming of the quaternion data. Byte#8 will be a Boolean value representing the Enable/Disable command. The overall command mode Quaternion packet has the following structure:
 
 | Byte 0 (subsystem) | Byte 1 (length) | Byte 2 (CRC) |  Byte 3 (command) |Byte 4-7|     Byte 8     | Bytes 9-19 |
@@ -110,7 +111,7 @@ The whole response packet structure including header is shown below:
 |:------------------:|:---------------:|:------------:|:-----------------:|:-------:|--------------|-------------|
 |        0x01        |       0x10      |      CRC     |        0x04       |TimeStamp| Quaternion_t |  Reserved   |
 
-#### EulerAngle Command/Response
+#### EulerAngle Command/Response (0x05)
 In the command mode, the packet enables/disables the streaming of the Euler Angle data. Byte#8 will be a Boolean value representing the Enable/Disable command. The overall command mode Euler Angle packet has the following structure:
 
 | Byte 0 (subsystem) | Byte 1 (length) | Byte 2 (CRC) |  Byte 3 (command)  |Byte 4-7|     Byte 8     | Bytes 9-19 |
@@ -140,7 +141,7 @@ The whole response packet structure including header is shown below:
 |:----------------:|:-------------:|:----------:|:--------------:|:-------:|:---------:|:---------:|
 |       0x01       |      0x10     |    CRC     |      0x05      |TimeStamp|Euler_fxp_t| Reserved  |
 
-#### ExtForce Command/Response
+#### ExtForce Command/Response (0x06)
 In the command mode, the packet enables/disables the streaming of the external force vector. Byte#8 will be a Boolean value representing the Enable/Disable command. The overall command mode External Force packet has the following structure:
 
 | Byte 0 (subsystem) | Byte 1 (length) | Byte 2 (CRC) |  Byte 3 (command) |Byte 4-7|     Byte 8     | Bytes 9-19 |
@@ -163,7 +164,7 @@ The whole response packet structure including header is shown below:
 |:------------------:|:---------------:|:------------:|:-----------------:|:-------:|--------------|-------------|
 |        0x01        |       0x10      |      CRC     |        0x06       |TimeStamp| Fext_Vec16_t |  Reserved   |
 
-#### SetFusionType Command:
+#### SetFusionType Command (0x07)
 The corresponding packet's data section includes only 1 byte (Byte #8), indicating whether the fusion should be set to either 6-axis IMU or 9-axis MARG mode involving magnetometers:
 
 ##### Byte#8: 6-axis IMU mode (0) or 9-axis MARG mode (1)
@@ -175,7 +176,7 @@ The overall packet structure is as follows:
 
 In response, Neblina will only send an acknowledge/error packet to indicate the validity and receipt of the command issued by the host.
 
-#### TrajectoryRecStartStop
+#### TrajectoryRecStartStop (0x08)
 The corresponding packet's data section includes only 1 byte (Byte#8), to determine the start (1) or stop (0) of the orientation recording process. The overall packet structure is as follows:
 
 | Byte 0 (subsystem) | Byte 1 (length) | Byte 2 (CRC) |       Byte 3 (command)      |Byte 4-7|  Byte 8  |Bytes 9-19|
@@ -184,7 +185,7 @@ The corresponding packet's data section includes only 1 byte (Byte#8), to determ
 
 In response, Neblina will only send an acknowledge/error packet to indicate the validity and receipt of the command issued by the host.
 
-#### TrajectoryInfo Command/Response
+#### TrajectoryInfo Command/Response (0x09)
 In the command mode, the packet enables/disables the streaming of the distance from a pre-recorded orientation trajectory, as well as the progress report. Byte#8 will be a Boolean value representing the Enable/Disable command. The overall command mode TrajectoryDistance packet has the following structure:
 
 | Byte 0 (subsystem) | Byte 1 (length) | Byte 2 (CRC) |   Byte 3 (command)  |Byte 4-7|     Byte 8     | Bytes 9-19 |
@@ -197,7 +198,7 @@ In the response mode, Neblina will first send an acknowledge packet to the host 
 |:----------------:|:-------------:|:----:|:----:|:-------:|:---------------:|:--------:|:------:|:---------:|
 |       0x01       |      0x10     | CRC  | 0x09 |TimeStamp|EulerAngle Errors|  Counter |Progress| Reserved  |
 
-#### Pedometer Command/Response
+#### Pedometer Command/Response (0x0A)
 In the command mode, the packet enables/disables the streaming of the Pedometer data. Byte#8 will be a Boolean value representing the Enable/Disable command. The overall command mode Pedometer packet has the following structure:
 
 | Byte 0 (subsystem) | Byte 1 (length) | Byte 2 (CRC) |  Byte 3 (command)  |Byte 4-7|     Byte 8     | Bytes 9-19 |
@@ -216,7 +217,7 @@ Note that the angle format includes one fractional decimal digit and it is compa
 |:------:|:------:|:------:|:------:|:-------:|:--------:|:-----:|:-------------:|:---------:|
 |  0x01  |  0x10  |  CRC   |  0x0A  |TimeStamp|step count|cadence|direction angle| Reserved  |
 
-#### MAG_Data Command/Response
+#### MAG_Data Command/Response (0x0B)
 In the command mode, the packet enables/disables the streaming of the 3-axis magnetometer data along with the 3-axis accelerometer data. Byte#8 will be a Boolean value representing the Enable/Disable command. The overall command mode MAG_Data packet has the following structure:
 
 | Byte 0 (subsystem) | Byte 1 (length) | Byte 2 (CRC) |  Byte 3 (command) |Byte 4-7|     Byte 8     | Bytes 9-19 |
@@ -231,7 +232,7 @@ The whole response packet structure including header is shown below:
 |:----------------:|:-------------:|:----------:|:--------------:|:-------:|:-------------:|:-------------:|
 |       0x01       |      0x10     |    CRC     |      0x0B      |TimeStamp|AxesRaw_t (Mag)|AxesRaw_t (Acc)|
 
-#### SittingStanding Command/Response
+#### SittingStanding Command/Response (0x0C)
 In the command mode, the packet enables/disables the streaming of sitting/standing modes. Byte#8 will be a Boolean value representing the Enable/Disable command. The overall command mode SittingStanding packet has the following structure:
 
 | Byte 0 (subsystem) | Byte 1 (length) | Byte 2 (CRC) |   Byte 3 (command)   |Byte 4-7|     Byte 8     | Bytes 9-19 |
@@ -245,7 +246,7 @@ Note that if the host disables the streaming of sitting/standing mode, the SitTi
 |:-----:|:----:|-----:|:----:|:-------:|:-------:|:-------:|:--------:|:---------:|
 | 0x01  | 0x10 | CRC  | 0x0C |TimeStamp|Sit/Stand| SitTime |StandTime | Reserved  |
 
-#### LockHeadingRef Command
+#### LockHeadingRef Command (0x0D)
 Neblina provides the option to lock magnetometer readings to represent the 0 degrees reference heading. When this command is issued, Neblina will wait until the device is positioned on either a horizontal or vertical plane and then the current magnetometer readings will be locked to the zero degrees heading. Therefore, whenever the device points back to the same direction, Neblina will provide correction for the heading angle to reach the reference 0 degrees. The correction is adaptive meaning that if the deviation of the heading angle caused by the Gyroscopes' drift is high enough at the reference heading angle, the correction will be aggressive. However, if the heading info is close to the zero degrees (<15 degrees), the correction will apply smoothly. The full command packet has the following structure:
 
 |Byte 0 (subsystem)|Byte 1 (length)|Byte 2|  Byte 3 (command)   |Byte 4-19 |
@@ -254,7 +255,7 @@ Neblina provides the option to lock magnetometer readings to represent the 0 deg
 
 In response, Neblina will only send an acknowledge packet to indicate the successful receipt of the command issued by the host.
 
-#### SetAccRange Command
+#### SetAccRange Command (0x0E)
 This command sets the accelerometer full-scale range to either 2G (Mode 0), 4G (Mode 1), 8G (Mode 2), or 16G (Mode 3). The default mode is 2G. Byte#8 will be set to 0, 1, 2, or 3, representing the mode. The overall SetAccRange packet has the following structure:
 
 | Byte 0 (subsystem) | Byte 1 (length) | Byte 2 (CRC) | Byte 3 (command) |Byte 4-7|Byte 8| Bytes 9-19 |
@@ -262,3 +263,6 @@ This command sets the accelerometer full-scale range to either 2G (Mode 0), 4G (
 |        0x41        |       0x10      |      CRC     |0x0E (SetAccRange)|Reserved| Mode |  Reserved  |
 
 In response, Neblina will only send an acknowledge/error packet to indicate the validity and receipt of the command issued by the host.
+
+#### DisableAllStreaming Command (0x0F)
+This command disables all the streaming options in the motion engine. The command is useful for the host applications to ensure that there is no streaming traffic on the physical layer. The data section for this command is empty.
