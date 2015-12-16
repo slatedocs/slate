@@ -151,9 +151,23 @@ Here is the list of these special events:
 ## addListener
 
 ```js
-  var listenerId = kuzzle.addListener('subscribed', function (room, subscription) {
+  var listenerId = kuzzle.addListener('connected', function (room, subscription) {
     // Actions to perform when receiving a 'subscribed' global event
   });
+```
+
+```java
+  String listenerId = kuzzle.addListener(EventType.CONNECTED, new ResponseListener() {
+  @Override
+  public void onSuccess(JSONObject object) {
+    // Actions to perform when receiving a 'subscribed' global event
+  }
+
+  @Override
+  public void onError(JSONObject error) {
+    // Handle error
+  }
+});
 ```
 
 > Returns an unique listener ID
@@ -621,7 +635,7 @@ Available options:
 
 ```js
 // Removes all listeners on the "unsubscribed" global event
-kuzzle.removeAllListeners('unsubscribed');
+kuzzle.removeAllListeners('disconnected');
 
 // Removes all listeners on all global events
 kuzzle.removeAllListeners();
@@ -629,7 +643,7 @@ kuzzle.removeAllListeners();
 
 ```java
 // Removes all listeners on the "unsubscribed" global event
-kuzzle.removeAllListeners(EventType.UNSUBSCRIBED);
+kuzzle.removeAllListeners(EventType.DISCONNECTED);
 
 // Removes all listeners on all global events
 kuzzle.removeAllListeners();
