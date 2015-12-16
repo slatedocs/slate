@@ -28,14 +28,14 @@ var room = kuzzle.dataCollectionFactory('collection').roomFactory();
 
 var room = kuzzle
   .dataCollectionFactory('collection')
-  .roomFactory({subscribeToSelf: true, listenToConnections: false});
+  .roomFactory({subscribeToSelf: true});
 ```
 
 ```java
 KuzzleRoom room = new KuzzleRoom(dataCollection);
 
 KuzzleRoomOptions options = new KuzzleRoomOptions();
-options.setListeningToConnections(true);
+options.setSubscribeToSelf(false);
 KuzzleRoom room = new KuzzleRoom(dataCollection, options);
 ```
 
