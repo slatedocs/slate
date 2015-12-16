@@ -20,6 +20,7 @@ Regarding the motion engine subsystem a number of commands exist, which are list
 #define LockHeadingRef 0x0D //locks the current magnetometer data to the reference 0 degrees heading angle
 #define SetAccRange 0x0E //sets the accelerometer full-scale range
 #define DisableAllStreaming 0x0F //disables all the streaming options in the motion engine
+#define ResetTimeStamp  0x10 //resets the timestamp value to 0
 ```
 Note that the above commands are placed within the header section of the packet in Byte#3.
 
@@ -271,3 +272,9 @@ This command disables all the streaming options in the motion engine. The comman
 |:----------------:|:-------------:|:----:|:------------------------:|:--------:|
 |       0x41       |      0x10     | CRC  |0x0F (DisableAllStreaming)| Reserved |
 
+#### ResetTimeStamp Command (0x10)
+This commands resets the timestamp value to zero. The command is useful for the host application to synchronize with the motion engine's timestamp. The data section for this command is empty. The full command packet has the following structure:
+
+|Byte 0 (subsystem)|Byte 1 (length)|Byte 2|   Byte 3 (command)  |Byte 4-19 |
+|:----------------:|:-------------:|:----:|:-------------------:|:--------:|
+|       0x41       |      0x10     | CRC  |0x10 (ResetTimeStamp)| Reserved |
