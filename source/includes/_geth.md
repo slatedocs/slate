@@ -41,7 +41,7 @@ geth.start(options, listeners, function (err, proc) { /* <3 geth */ });
 // Swap out or add listeners after the initial startup:
 geth.listen("stdout", "data", function (data) { /* ... */ });
 ```
-[geth.js](https://github.com/AugurProject/geth.js) is a Node.js module that allows you to start, stop, and monitor [geth](https://github.com/ethereum/go-ethereum) programmatically.  These methods are a bit lower-level than what consumers of Augur's API will require.
+[geth.js](https://github.com/ethereumjs/geth.js) is a Node.js module that allows you to start, stop, and monitor [geth](https://github.com/ethereum/go-ethereum) programmatically.  These methods are a bit lower-level than what consumers of Augur's API will require.
 
 geth.js can be installed using npm:
 
