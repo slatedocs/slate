@@ -12,7 +12,7 @@ Note that the above commands are placed within the header section of the packet 
 ## Data Section
 The data section consists of 16 bytes. The first 2 bytes (Byte 4-5) represent the page number. Currently, the configurable EEPROM size is set to 2K bytes, and thus, considering the page sizes of 8 bytes, we can have up to 256 pages. Therefore, the page number value will have the range of 0-255 (Byte 4), and Byte 5 should be set to zero. The next 8 bytes (Byte 6-13), will refer to the read/write data corresponding to a single page. Finally, the last 6 bytes (Byte 14-19) are reserved. Here we explain the two commands in more details:
 
-#### EEPROM_Read Command/Response
+#### EEPROM_Read Command/Response (0x01)
 In the command mode, the packet commands Neblina to read 8 bytes from a page number. Here is the packet structure:
 
 | Byte 0 (subsystem) | Byte 1 (length) | Byte 2 (CRC) | Byte 3 (command) |Byte 4-5|Byte 6-19 |
@@ -25,7 +25,7 @@ In response, Neblina will first send an acknowledge/error packet to confirm the 
 |:------------------:|:---------------:|:------------:|:----------------:|:------:|:-------:|:--------:|
 |        0x4C        |       0x10      |      CRC     |0x01 (EEPROM_Read)|page nb |read data| Reserved |
 
-#### EEPROM_Write Command/Response
+#### EEPROM_Write Command/Response (0x02)
 In the command mode, the packet commands Neblina to write 8 bytes to a page number. Here is the packet structure:
 
 | Byte 0 (subsystem) | Byte 1 (length) | Byte 2 (CRC) | Byte 3 (command)  |Byte 4-5|Byte 6-13 |Byte 14-19|
