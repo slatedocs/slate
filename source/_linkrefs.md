@@ -5,6 +5,8 @@
   [ordering]: <#ordering-collections> "Ordering collections"
   [authentication]: <#authentication> "Authentication"
   [organization]: <#organizations> "Organizations"
+  [chat]: <#chats> "Chats"
+  [chat presence]: <#chat-operator-presences> "Chat operator presences"
   [user]: <#users> "Users"
   [room]: <#rooms-and-domains> "Rooms and domains"
   [team]: <#teams> "Teams"

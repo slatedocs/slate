@@ -1,7 +1,221 @@
 Chat API
 ========
 
-## Get a collection of chats
+## Chats
+
+### Get a collection of waiting chats
+
+You can get a list of open chats that are waiting for a response by an operator.
+
+`GET /api/v5/orgs/<org_id>/rooms/<room_id>/waiting_chats`
+
+This API endpoint returns a [paginated collection][]. They are sorted by the creation time of the chats, in ascending order.
+
+```json
+{
+  "next": "https://service.giosg.com/api/v5/orgs/7f9e9580-095b-42c7-838c-c04e667b26f7/rooms/9926bdfa-56e0-11e5-b98c-6c4008c08dfe/waiting_chats?cursor=171cfd0d7ce542be86221f01d2823cb1",
+  "previous": null,
+  "results": [
+    {
+      "id": "58f5055c-56e0-11e5-9354-6c4008c08dfe",
+      "token": "uibdbtmk5etolmjaduaafnqpl2ujzkyr4slkq3cabdai37qm",
+      "start_time": "2015-02-13T11:31:36.042",
+      "end_time": null,
+      "updated_at": "2015-02-13T12:38:36.431",
+      "is_private": false,
+      "is_real_conversation": false,
+      "is_autosuggested": false,
+      "room_id": "9926bdfa-56e0-11e5-b98c-6c4008c08dfe",
+      "message_count": 0,
+      "operator_message_count": 0,
+      "visitor_message_count": 0,
+      "first_visitor_message_url": "http://www.customerpage.com/settings",
+      "first_visitor_message_url_title": "Profile Settings",
+      "autosuggest_url": "http://www.customerpage.com/",
+      "autosuggest_url_title": "Site Frontpage",
+      "tags": [
+        {
+          "name": "Premium"
+        }
+      ],
+      "first_visitor_message": {
+        "type": "msg",
+        "created_at": "2015-02-13T11:31:36.042",
+        "message": "Hi, can you help me?"
+      }
+    }
+  ]
+}
+```
+
+### Get a collection of all chats of the user
+
+`GET /api/v5/orgs/<org_id>/users/<user_id>/chats`
+
+### Get a collection chats where the user is currently present
+
+Get a collection of chats where the user `<user_id>` has currently a [presence][chat presence].
+
+`GET /api/v5/orgs/<org_id>/users/<user_id>/current_chats`
+
+### Create a new chat with a visitor in a room
+
+Start a new chat with a visitor in the given room.
+
+`POST /api/v5/orgs/<org_id>/rooms/<room_id>/visitors/<visitor_id>/chats`
+
+Parameter | Format | Default | Description
+:---------|:-------|:--------|------------
+`auto_resume` | [ID][] | (none) | If provided, then attempt to get an existing recent chat where the given user can join, instead of creating a new chat. In addition, we will automatically (and atomically) create a [presence][chat presence] for this user and chat. **NOTE**: The “private chats” setting affects the decision whether to create or resume a chat.
+
+Returns 201 status code when a new chat was created successfully.
+Returns 200 if resumed an existing chat when `auto_resume` parameter was provided.
+
+## Chat operator presences
+
+A chat operator presence describes an user (a chat operator) being currently "joined" to a chat.
+
+Attribute | Format | Editable | Description
+:---------|:-------|:--------|------------
+`user_id` | [ID][] | **required** | ID of the user being currently joined to the chat.
+`user` | object | read-only | User being currently joined to the chat.
+`chat_id` | [ID][] | **required** | ID of the chat in which the user is currently being joined.
+`created_at` | [date/time][] | read-only | When this organization account was created. **Available only for your own organization.**
+
+### Get operators that are currently present at the chat
+
+You can get a collection of chat operator presences.
+
+`GET /api/v5/orgs/<org_id>/chats/<chat_id>/presences`
+
+This API endpoint returns a [paginated collection][]. They are sorted by the time on which the operators have joined the chat.
+
+```json
+{
+  "next": "https://service.giosg.com/api/v5/orgs/7f9e9580-095b-42c7-838c-c04e667b26f7/chats/58f5055c-56e0-11e5-9354-6c4008c08dfe/presences?cursor=45d9e7358e1249c491b4fa0212310f55",
+  "previous": null,
+  "results": [
+    {
+      "created_at": "2015-02-13T11:31:36.042",
+      "user_id": "378ad5a0-bb89-481b-978b-4268b368cfef",
+      "user": {
+        /* TODO */
+      }
+    },
+    {
+      "created_at": "2015-02-13T12:14:34.154",
+      "user_id": "c38e173c-c3ee-47f9-afa7-37c08e7a3b58",
+      "user": {
+        /* TODO */
+      }
+    }
+  ]
+}
+```
+
+### Join operator to a chat
+
+Adds the operator to the list of currently present operators of the chat. Operator is automatically removed from the joined operators if the operator has not been reached for a while.
+
+`POST /api/v5/orgs/<org_id>/chats/<chat_id>/presences`
+
+Parameter | Format | Default | Description
+:---------|:-------|:--------|------------
+`exclusive` | `true`/`false` | `false` | The exclusive parameter makes the join fail with 400 if there is already at least one other operator joined the chat. This prevents multiple operators taking the chat.
+
+Returns 201 if the user was added to the joined operators of the chat.
+Returns 200 if the user had already been added.
+Returns 400 if the user does not have permissions to join the chat.
+
+### Leave from a chat
+
+Removes the operator from the list of currently present operators of the chat.
+
+`DELETE /api/v5/orgs/<org_id>/chats/<chat_id>/presences/<user_id>`
+
+## Chat messages
+
+Chat consists of a number of messages. Some of them are actual typed messages from either operator or visitor, and some of them are automatically added events about the chat, especially when an operator has [joined or leaved][chat presence] the chat.
+
+Attribute | Type | Editable | Description
+:---------|:-----|----------|------------
+`id` | [ID][] | read-only | Unique identifier for the message
+`type` | string | read-only | Whether the message is an actual message (`msg`), autosuggest (`autosuggest`), a join event (`join`) or a leave event (`leave`). When POSTing a message, this will automatically be set to `msg`.
+`created_at` | [date/time][] | read-only | When the message was sent
+`sender_type` | string | read-only | Whether the sender is operator (`user`) or visitor (`visitor`). When POSTing a new message with these endpoints, this will automatically be set to `user`.
+`sender_id` | [ID][]/string | **required** | Identifier for the sender. If the sender is a user, then this is the user's ID. Otherwise this is an unique string for the visitor.
+`sender_public_name` | string | read-only | A display name for the sender as the visitor would see him.
+`sender_name` | string | read-only | A display name for the sender as an operator would see him.
+`message` | string | **required** | Content text of the message. The maximum length is 2000 characters.
+
+### Get chat history
+
+```json
+{
+  "next": "https://service.giosg.com/api/v5/orgs/54de4830-a16e-417a-802b-4bf4bcb59ed8/chats/450fc49e-277e-4dd6-af0f-6e9dcb885b09/messages?cursor=171cfd0d7ce542be86221f01d2823cb1",
+  "previous": null,
+  "results": [
+    {
+      "id": "8a94b3f1-d8a9-4530-b1f1-b757a8a57078",
+      "type": "autosuggest",
+      "created_at": "2015-02-13T11:30:03.045",
+      "sender_type": "user",
+      "sender_id": "7c94ae79-a4b4-4eea-ac23-24c16f910080",
+      "sender_public_name": "Customer Service",
+      "sender_name": "John Smith",
+      "message": "How may I help you?"
+    },
+    {
+      "id": "58f5055c-56e0-11e5-9354-6c4008c08dfe",
+      "type": "msg",
+      "created_at": "2015-02-13T11:31:36.042",
+      "sender_type": "visitor",
+      "sender_id": "f7a5a3b83d2e40dfb0dedd6c0e284214",
+      "sender_public_name": null,
+      "sender_name": null,
+      "message": "Yes, actually you could."
+    },
+    {
+      "id": "a3a3b8ed-7336-431a-8350-8f5be471a09e",
+      "type": "join",
+      "created_at": "2015-02-13T11:31:38.123",
+      "sender_type": "user",
+      "sender_id": "7c94ae79-a4b4-4eea-ac23-24c16f910080",
+      "sender_public_name": "Customer Service",
+      "sender_name": "John Smith"
+    },
+    {
+      "id": "487a4dce-503a-43d0-bd62-1e1a7582c93b",
+      "type": "msg",
+      "created_at": "2015-02-13T11:32:01.654",
+      "sender_type": "user",
+      "sender_id": "7c94ae79-a4b4-4eea-ac23-24c16f910080",
+      "sender_public_name": "Customer Service",
+      "sender_name": "John Smith",
+      "message": "OK, what do you want to know?"
+    }
+  ]
+}
+```
+
+Get the chat history, that is, the collection of all chat messages in the given chat.
+
+`GET /api/v5/orgs/<org_id>/chats/<chat_id>/messages`
+
+### Send a chat message
+
+    POST /api/v5/orgs/b2bf5dba-055c-4ac6-a83c-7f85a1f60db9/chats/4a591004-4c18-4260-bbb4-fc9f9f9a048d/messages
+
+```json
+{
+  "sender_id": "7c94ae79-a4b4-4eea-ac23-24c16f910080",
+  "message": "OK, I've found out the issue!"
+}
+```
+
+`POST /api/v5/orgs/<org_id>/chats/<chat_id>/messages`
+
+## Get a collection of chats on organization
 
 You can get a list of your organization's chats by making a GET request.
 
