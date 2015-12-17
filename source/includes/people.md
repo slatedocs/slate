@@ -42,10 +42,10 @@ Don't forget to replace <code>&lt;group_id&gt;</code> with your actual Group ID,
 > Example Request
 
 ```cURL
-curl https://webapp.kotive.com/api/people  \
-	-X POST                                \
-	-H "Content-Type: application/json"    \
-	-H 'Authorization: Basic <token>'      \
+curl https://webapp.kotive.com/api/people      \
+	-X POST                                    \
+	-H "Content-Type: application/json"        \
+	-H 'Authorization: Basic <login details>'  \
 	-d '{"person"{"email": "<email>", "username": "<username>", "firstname": "<firstname>", "lastname": "<lastname>", "mobile": "<mobile>", "password": "<password>", "groupId" :<groupId>}}'
 ```
 
@@ -71,7 +71,7 @@ Has a new special someone come into your life? ;) Or is it just that time of yea
 
 To create a new person (not really), you must make a `POST` request to `/people` with all of the information about the new person:
 
-Field Name | Description | Required
+Attribute | Description | Required
 -----------|-------------|---------
 email | The email address of the person to add | Yes
 username | The username is the same as the email address | Yes

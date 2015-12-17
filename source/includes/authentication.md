@@ -1,6 +1,6 @@
 # Authentication
 
-## Log in
+## Login
 
 > To authorise:
 
@@ -96,17 +96,17 @@ Great! You've successfully logged in! You'll see that with the above login reque
 
 We know it's a little daunting at first, but here's a breakdown of what's included in the response:
 
-Field name | Description
+Attribute | Description
 -----------|------------
 authToken  | This is the authToken that you may use instead of your password for making requests.
-systemRoles | This is an array of all of the default roles associated with your account. Each entry consists of the ID of that group, and a human-friendly label. Custom roles will not be displayed here.
-userRoles | This is an array of every role that has been assigned to you. Each entry contains your Person ID, a role object with the role ID and a description, and the ID of the group that you have that role in.
-groupsIndex | This is an array of every group that you belong to. It shows you the group's ID, as well as the ID of the parent group to which this group belongs.
+systemRoles | This is a list of all of the default roles associated with your account. Each entry consists of the ID of that group, and a human-friendly label. Custom roles will not be displayed here.
+userRoles | This is a list of every role that has been assigned to you. Each entry contains your Person ID, a role object with the role ID and a description, and the ID of the group that you have that role in.
+groupsIndex | This is a list of every group that you belong to. It shows you the group's ID, as well as the ID of the parent group to which this group belongs.
 user | Finally, this section provides you with information on your user account. It shows you your email address and username, your first and last names, your Person ID, your mobile phone number, and a hidden version of your password. Note that this will always show four stars, regardless of password length.
 
-This information will come in handy later, but for now, we're mostly just interested in the `authToken` field.
+This information will come in handy later, but for now, we're mostly just interested in the `authToken` attribute.
 
-The `authToken` field can be used to replace the password in all further requests, and in both types of authentication. This is more secure than using your password, as if something ever goes wrong, we can easily revoke your `authToken` and issue you a new one.
+The `authToken` attribute can be used to replace the password in all further requests, and in both types of authentication. This is more secure than using your password, as if something ever goes wrong, we can easily revoke your `authToken` and issue you a new one.
 
 To use it you would have:
 

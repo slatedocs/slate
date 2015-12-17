@@ -2,7 +2,7 @@
 title: Kotive API Reference
 
 toc_footers:
-  - <a href='http://www.kotive.com/#signup'>Sign Up for a Kotive</a>
+  - <a href='http://www.kotive.com/#signup'>Sign up for Kotive</a>
 
 language_tabs:
   - cURL

@@ -1,6 +1,6 @@
 # Groups
 
-Maker accounts, Apps and Organisations/Teams are all managed with Groups. <a href="http://kotive.com/how-to/the-structure-within-kotive/" target="_blank">Learn more about the structure of Kotive</a>
+Groups are used to manage Maker accounts, Apps and Organisations/Teams. <a href="http://kotive.com/how-to/the-structure-within-kotive/" target="_blank">Learn more about the structure of Kotive</a>
 
 ## Create a new group
 
