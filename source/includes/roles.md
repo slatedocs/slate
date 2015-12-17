@@ -16,7 +16,7 @@
 
 > Example Request
 
-```curl
+```shell
 curl https://webapp.kotive.com/api/group/<group_id>/personRoles?personId=<person_id>  \
 	-H 'Authorization: Basic <login details>'
 ```
@@ -49,7 +49,7 @@ Now that you have these values, you simply insert them in the URL of a `GET` req
 
 > Example Request
 
-```curl
+```shell
 curl https://webapp.kotive.com/api/personRoles  \
 	-X POST                                     \
 	-H 'Authorization: Basic <login details>'   \
@@ -90,7 +90,7 @@ You'll need to perform this request separately for every role that you assign to
 
 > Example Request
 
-```curl
+```shell
 curl 'https://webapp.kotive.com/api/personRoles/<id>'  \
 	-X DELETE                                          \
 	-H 'Authorization: Basic <login details>'

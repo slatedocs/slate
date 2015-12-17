@@ -4,7 +4,7 @@
 
 > Example Request
 
-```curl
+```shell
 curl https://webapp.kotive.com/api/group/<group_id>/people  \
 	-H 'Authorization: Basic <login details>'
 ```
@@ -41,7 +41,7 @@ Don't forget to replace <code>&lt;group_id&gt;</code> with your actual Group ID,
 
 > Example Request
 
-```curl
+```shell
 curl https://webapp.kotive.com/api/people      \
 	-X POST                                    \
 	-H "Content-Type: application/json"        \

@@ -5,7 +5,7 @@ toc_footers:
   - <a href='http://www.kotive.com/#signup'>Sign up for Kotive</a>
 
 language_tabs:
-  - cURL
+  - shell: cURL
 
 includes:
   - authentication

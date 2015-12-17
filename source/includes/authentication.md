@@ -4,14 +4,14 @@
 
 > To authorise:
 
-```curl
-curl -u username:password 'https://webapp.kotive.com/api/login'
+```shell
+curl -u username:password https://webapp.kotive.com/api/login
 ```
 
 > Or alternatively
 
-```curl
-curl 'https://webapp.kotive.com/api/login'     \
+```shell
+curl https://webapp.kotive.com/api/login       \
 	-H 'Authorization: Basic <login details>'
 ```
 
@@ -122,7 +122,7 @@ Where `<login details>` is made up of Base64 encoded `username:authToken`
 
 > Example Request
 
-```curl
+```shell
 curl https://webapp.kotive.com/api/user/resetpassword  \
 	-X POST                                            \
 	-H "Content-Type: application/json"                \
