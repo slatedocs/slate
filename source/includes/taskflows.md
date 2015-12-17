@@ -159,10 +159,10 @@ value | The current value of the field
 > Example Request
 
 ```shell
-curl 'https://webapp.kotive.com/api/group/<group_id>/process'  \
-	-X POST                                                    \
-	-H 'Authorization: Basic <login details>'                  \ 
-	-H 'Content-Type: application/json'                        \
+curl https://webapp.kotive.com/api/group/<group_id>/process  \
+	-X POST                                                  \
+	-H 'Authorization: Basic <login details>'                \ 
+	-H 'Content-Type: application/json'                      \
 	-d '{"id_process":<id_process>,"id_t":<id_t>,"id_owning_process":<id_owning_process>,"fields":[]}'
 ```
 
@@ -262,10 +262,10 @@ These instructions only have to be followed once for every new taskflow instance
 > Example Request
 
 ```shell
-curl 'https://webapp.kotive.com/api/group/<group_id>/process/<process_id>/activity'  \
-	-X POST                                                                          \
-	-H 'Authorization: Basic <login details>'                                        \
-	-H 'Content-Type: application/json'                                              \
+curl https://webapp.kotive.com/api/group/<group_id>/process/<process_id>/activity  \
+	-X POST                                                                        \
+	-H 'Authorization: Basic <login details>'                                      \
+	-H 'Content-Type: application/json'                                            \
 	-d'{"id_process":<id_process>,"id_t":<id_t>,"id_owning_process":<id_owning_process>,"fields":[{"id":<id>,"value":<value>},{"id":<id>,"value":<value>}]}'
 ```
 

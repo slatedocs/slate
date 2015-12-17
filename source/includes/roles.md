@@ -91,8 +91,8 @@ You'll need to perform this request separately for every role that you assign to
 > Example Request
 
 ```shell
-curl 'https://webapp.kotive.com/api/personRoles/<id>'  \
-	-X DELETE                                          \
+curl https://webapp.kotive.com/api/personRoles/<id>  \
+	-X DELETE                                        \
 	-H 'Authorization: Basic <login details>'
 	
 ```
