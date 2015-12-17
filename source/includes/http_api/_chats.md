@@ -71,6 +71,13 @@ Parameter | Format | Default | Description
 Returns 201 status code when a new chat was created successfully.
 Returns 200 if resumed an existing chat when `auto_resume` parameter was provided.
 
+This notifies the following real-time channels:
+
+- Each visitor of the chat is notified with an `added` message: `/api/v5/client/visitors/<visitor_id>/chats`
+- Each participant user of the chat is notified with an `added` message: `/api/v5/orgs/<org_id>/users/<user_id>/chats`
+- Each currently present operator of the chat is notified with an `added` message: `/api/v5/orgs/<org_id>/users/<user_id>/current_chats`
+- Chat parent room chat collection is notified with an `added` message for each organization having access to the room: `/api/v5/orgs/<org_id>/rooms/<room_id>/chats`
+
 ## Chat operator presences
 
 A chat operator presence describes an user (a chat operator) being currently "joined" to a chat.
