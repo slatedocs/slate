@@ -40,9 +40,42 @@ A data collection is a set of data managed by Kuzzle. It acts like a data table 
 
 ```js
 // Using callbacks (NodeJS or Web Browser)
+if (mode === 'cab') {
+  statuses = ['idle', 'wantToHire', 'toHire', 'riding'];
+  types = ['customer', 'cab'];
+} else {
+  // people may want to see idle, toHire and hired cabs
+  statuses = ['idle', 'toHire', 'hired', 'riding'];
+  types = ['cab'];
+}
+
+var filter = {
+  filter: {
+    and: [
+      {
+        terms: {
+          status: ['idle', 'wantToHire', 'toHire', 'riding'],
+        }
+      },
+      {
+        terms:{
+          type: ['cab']
+        }
+      },
+      {
+        geo_distance: {
+          distance: '10km',
+          pos: {
+            lat: '48.8566140', lon: '2.352222'
+          }
+        }
+      }
+    ]
+  }
+};
 kuzzle
   .dataCollectionFactory('collection')
-  .advancedSearch({}, function (err, res) {
+  .advancedSearch(filter, function (err, res) {
     res.forEach(document => {
       console.log(document.toString());
     });
@@ -60,8 +93,30 @@ kuzzle
 ```
 
 ```java
-JSONObject filters = new JSONObject();
-dataCollection.advancedSearch(filters, new ResponseListener() {
+JSONObject filter = new JSONObject();
+JSONArray and = new JSONArray();
+JSONArray types = new JSONArray();
+JSONArray status = new JSONArray();
+JSONObject statu = new JSONObject();
+JSONObject terms = new JSONObject();
+JSONObject terms2 = new JSONObject();
+JSONObject type = new JSONObject();
+types.put("cab");
+status.put("idle").put("hired").put("riding");
+if (userController.getUser().getType() == UserType.CAB) {
+  types.put("customer");
+  status.put("wantToHire");
+} else {
+  status.put("toHire");
+}
+type.put("type", types);
+statu.put("status", status);
+terms.put("terms", statu);
+terms2.put("terms", type);
+and.put(terms).put(terms2);
+filter.put("and", and);
+userFilter.put("filter", filter);
+dataCollection.advancedSearch(userFilter, new ResponseListener() {
   @Override
   public void onSuccess(JSONObject object) {
     // Handle success
