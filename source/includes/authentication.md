@@ -40,7 +40,7 @@ You must replace <code>&lt;login details&gt;</code> with your Base64 encoded use
 
 ```cURL
 {
-  "authToken": "3e2d130a58c243a887e72c17b9bb1bf7",
+  "authToken": "3e2dfoxa58c243arabbitc17b9bb1bf7",
   "systemRoles": [{
     "id": 1,
     "label": "Account Owner"
@@ -52,40 +52,40 @@ You must replace <code>&lt;login details&gt;</code> with your Base64 encoded use
     "label": "Maker"
   }],
   "userRoles": [{
-    "userId": 128,
+    "userId": 14,
     "role": {
       "id": 1,
       "label": "Account Owner"
     },
-    "groupId": 245
+    "groupId": 25
   }, {
-    "userId": 128,
+    "userId": 14,
     "role": {
       "id": 2,
       "label": "User Administrator"
     },
-    "groupId": 245
+    "groupId": 25
   }, {
-    "userId": 128,
+    "userId": 14,
     "role": {
       "id": 3,
       "label": "Maker"
     },
-    "groupId": 245
+    "groupId": 25
   }],
   "groupsIndex": [{
-    "id": 245,
+    "id": 24,
     "parentId": 1
   }, {
-    "id": 246,
+    "id": 24,
     "parentId": 245
   }],
   "user": {
-    "email": "jenkins.daniel.02@gmail.com",
-    "username": "jenkins.daniel.02@gmail.com",
-    "firstname": "Daniel",
-    "lastname": "Jenkins",
-    "id": 128,
+    "email": "example@example.com",
+    "username": "example@example.com",
+    "firstname": "John",
+    "lastname": "Doe",
+    "id": 14,
     "mobile": "",
     "password": "****"
   }

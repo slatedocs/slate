@@ -26,10 +26,10 @@ curl https://webapp.kotive.com/api/group/<group_id>/personRoles?personId=<person
 ```cURL
 {
   "personRoles": [{
-    "id": 359,
+    "id": 319,
     "userId": 130,
-    "roleId": 26,
-    "groupId": 246
+    "roleId": 22,
+    "groupId": 26
   }]
 }
 ```
@@ -62,10 +62,10 @@ curl https://webapp.kotive.com/api/personRoles  \
 ```cURL
 {
   "personRole": {
-    "id": 364,
-    "userId": 130,
+    "id": 34,
+    "userId": 10,
     "roleId": 2,
-    "groupId": 246
+    "groupId": 24
   }
 }
 ```

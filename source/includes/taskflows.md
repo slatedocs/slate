@@ -16,10 +16,10 @@ curl https://webapp.kotive.com/api/group/<group_id>/taskflowReports  \
 ```cURL
 {
   "taskflowReports": [{
-    "id": 769,
+    "id": 79,
     "label": "My Average Taskflow"
   }, {
-    "id": 796,
+    "id": 76,
     "label": "My Awesome Taskflow"
   }]
 }
@@ -53,10 +53,10 @@ curl https://webapp.kotive.com/api/group/<group_id>/process/<taskflow_id>/blank 
 {
   "activity": {
     "phase": "new",
-    "label": "An Actual Taskflow",
+    "label": "A Taskflow",
     "id_process": 0,
     "publish": false,
-    "id_t": 798,
+    "id_t": 79,
     "order": 0,
     "status": "blank",
     "fields": [],
@@ -68,7 +68,7 @@ curl https://webapp.kotive.com/api/group/<group_id>/process/<taskflow_id>/blank 
     "label": "Taskero numero twoero",
     "id_process": 0,
     "publish": false,
-    "id_t": 802,
+    "id_t": 862,
     "order": 0,
     "status": "blank",
     "fields": [{
@@ -77,7 +77,7 @@ curl https://webapp.kotive.com/api/group/<group_id>/process/<taskflow_id>/blank 
       "style": "{\"kind\":\"email\"}",
       "label": "Le Random Field",
       "readonly": false,
-      "id": "-1_802_1125",
+      "id": "-1_862_1015",
       "order": 0,
       "required": true,
       "value": ""
@@ -89,7 +89,7 @@ curl https://webapp.kotive.com/api/group/<group_id>/process/<taskflow_id>/blank 
     "label": "Taskero numero uno",
     "id_process": 0,
     "publish": false,
-    "id_t": 799,
+    "id_t": 749,
     "order": 0,
     "status": "blank",
     "fields": [{
@@ -98,7 +98,7 @@ curl https://webapp.kotive.com/api/group/<group_id>/process/<taskflow_id>/blank 
       "style": "{\"kind\":\"text\"}",
       "label": "Nuclear Missile Launch Codes",
       "readonly": false,
-      "id": "-1_799_1120",
+      "id": "-1_749_1020",
       "order": 0,
       "required": true,
       "value": ""
@@ -163,7 +163,7 @@ curl 'https://webapp.kotive.com/api/group/<group_id>/process'  \
 	-X POST                                                    \
 	-H 'Authorization: Basic <login details>'                  \ 
 	-H 'Content-Type: application/json'                        \
-	-d '{"id_process":0,"id_t":798,"id_owning_process":-1,"fields":[]}'
+	-d '{"id_process":<id_process>,"id_t":<id_t>,"id_owning_process":<id_owning_process>,"fields":[]}'
 ```
 
 > Example Response
@@ -172,9 +172,9 @@ curl 'https://webapp.kotive.com/api/group/<group_id>/process'  \
 [{
   "phase": "new",
   "label": "Taskero numero twoero",
-  "id_process": 335,
+  "id_process": 375,
   "publish": false,
-  "id_t": 802,
+  "id_t": 809,
   "order": 0,
   "status": "blank",
   "fields": [{
@@ -183,7 +183,7 @@ curl 'https://webapp.kotive.com/api/group/<group_id>/process'  \
     "style": "{\"kind\":\"email\"}",
     "label": "Le Random Field",
     "readonly": false,
-    "id": "-1_802_1125",
+    "id": "-1_809_1135",
     "order": 0,
     "required": true,
     "value": ""
@@ -193,9 +193,9 @@ curl 'https://webapp.kotive.com/api/group/<group_id>/process'  \
 }, {
   "phase": "new",
   "label": "Taskero numero uno",
-  "id_process": 335,
+  "id_process": 375,
   "publish": false,
-  "id_t": 799,
+  "id_t": 889,
   "order": 0,
   "status": "blank",
   "fields": [{
@@ -204,7 +204,7 @@ curl 'https://webapp.kotive.com/api/group/<group_id>/process'  \
     "style": "{\"kind\":\"number\"}",
     "label": "Nuclear Missile Launch Codes",
     "readonly": false,
-    "id": "-1_799_1120",
+    "id": "-1_889_1230",
     "order": 0,
     "required": true,
     "value": ""
@@ -214,7 +214,7 @@ curl 'https://webapp.kotive.com/api/group/<group_id>/process'  \
     "style": "{\"kind\":\"divider\"}",
     "label": "",
     "readonly": false,
-    "id": "-1_799_1126",
+    "id": "-1_889_1231",
     "order": 1,
     "required": false,
     "value": ""
@@ -224,7 +224,7 @@ curl 'https://webapp.kotive.com/api/group/<group_id>/process'  \
     "style": "{\"kind\":\"textarea\"}",
     "label": "Presidential Banking Details",
     "readonly": false,
-    "id": "-1_799_1127",
+    "id": "-1_889_1232",
     "order": 2,
     "required": false,
     "value": ""
@@ -274,10 +274,10 @@ curl 'https://webapp.kotive.com/api/group/<group_id>/process/<process_id>/activi
 ```cURL
 [{
   "phase": "new",
-  "label": "Form2",
-  "id_process": 326,
+  "label": "A Form",
+  "id_process": 386,
   "publish": false,
-  "id_t": 772,
+  "id_t": 798,
   "order": 2,
   "status": "blank",
   "fields": [{
@@ -286,7 +286,7 @@ curl 'https://webapp.kotive.com/api/group/<group_id>/process/<process_id>/activi
     "style": "{\"kind\":\"text\"}",
     "label": "Field",
     "readonly": false,
-    "id": "-1_772_1077",
+    "id": "-1_798_8701",
     "order": 0,
     "required": false,
     "value": "value"
@@ -332,10 +332,10 @@ curl https://webapp.kotive.com/api/group/<group_id>/process/<process_id>/next  \
 ```cURL
 [{
   "phase": "new",
-  "label": "Form2",
-  "id_process": 326,
+  "label": "A Form",
+  "id_process": 386,
   "publish": false,
-  "id_t": 772,
+  "id_t": 798,
   "order": 2,
   "status": "blank",
   "fields": [{
@@ -344,7 +344,7 @@ curl https://webapp.kotive.com/api/group/<group_id>/process/<process_id>/next  \
     "style": "{\"kind\":\"text\"}",
     "label": "Field",
     "readonly": false,
-    "id": "-1_772_1077",
+    "id": "-1_798_8701",
     "order": 0,
     "required": false,
     "value": "value"
