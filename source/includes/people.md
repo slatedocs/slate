@@ -91,8 +91,8 @@ If you wish to send an invitation email to the person after you have added them,
 
 Currently, the only change you can make to somebody's details is changing which roles have been assigned to them. Details on how to do this can be found in the ['Assign a role to a person'](#assign-a-role-to-a-person) and ['Revoke a role from a person'](#revoke-a-role-from-a-person) sections.
 
-## Delete a person
-
-<aside class="warning">
-Unknown
-</aside>
+[## Delete a person]: #
+[]: #
+[<aside class="warning">]: #
+[Unknown]: #
+[</aside>]: #

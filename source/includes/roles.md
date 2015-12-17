@@ -1,17 +1,17 @@
 # Roles
 
-## Create a new role
-
-<aside class="warning">
-BATCH
-</aside>
-
-## Delete a role
-
-<aside class="warning">
-BATCH
-</aside>
-
+[## Create a new role]: #
+[]: #
+[<aside class="warning">]: #
+[BATCH]: #
+[</aside>]: #
+[]: #
+[## Delete a role]: #
+[]: #
+[<aside class="warning">]: #
+[BATCH]: #
+[</aside>]: #
+[]: #
 ## Get a person's roles
 
 > Example Request
