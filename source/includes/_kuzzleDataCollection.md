@@ -39,16 +39,6 @@ A data collection is a set of data managed by Kuzzle. It acts like a data table 
 ## advancedSearch
 
 ```js
-// Using callbacks (NodeJS or Web Browser)
-if (mode === 'cab') {
-  statuses = ['idle', 'wantToHire', 'toHire', 'riding'];
-  types = ['customer', 'cab'];
-} else {
-  // people may want to see idle, toHire and hired cabs
-  statuses = ['idle', 'toHire', 'hired', 'riding'];
-  types = ['cab'];
-}
-
 var filter = {
   filter: {
     and: [
