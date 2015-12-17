@@ -4,14 +4,14 @@
 
 > Example Request
 
-```cURL
+```curl
 curl https://webapp.kotive.com/api/group/<group_id>/people  \
 	-H 'Authorization: Basic <login details>'
 ```
 
 > Example Response
 
-```cURL
+```json
 {
   "people": [{
     "email": "example@example.com",
@@ -41,7 +41,7 @@ Don't forget to replace <code>&lt;group_id&gt;</code> with your actual Group ID,
 
 > Example Request
 
-```cURL
+```curl
 curl https://webapp.kotive.com/api/people      \
 	-X POST                                    \
 	-H "Content-Type: application/json"        \
@@ -51,7 +51,7 @@ curl https://webapp.kotive.com/api/people      \
 
 > Example Response
 
-```cURL
+```json
 {
   "person": {
     "email": "johanna@example.com",

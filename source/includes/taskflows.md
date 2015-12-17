@@ -6,14 +6,14 @@ In Kotive, the terms `process` and `taskflow`, and `activity` and `task` are use
 
 > Example Request
 
-```cURL
+```curl
 curl https://webapp.kotive.com/api/group/<group_id>/taskflowReports  \
 	-H 'Authorization: Basic <login details>'
 ```
 
 > Example Response
 
-```cURL
+```json
 {
   "taskflowReports": [{
     "id": 79,
@@ -42,14 +42,14 @@ This call can be used to get a list of taskflows in an App or in an Organization
 ### Step 1: Get the taskflow template
 > Example Request
 
-```cURL
+```curl
 curl https://webapp.kotive.com/api/group/<group_id>/process/<taskflow_id>/blank  \
 	-H 'Authorization: Basic <login details>'
 ```
 
 > Example Response
 
-```cURL
+```json
 {
   "activity": {
     "phase": "new",
@@ -158,7 +158,7 @@ value | The current value of the field
 
 > Example Request
 
-```cURL
+```curl
 curl 'https://webapp.kotive.com/api/group/<group_id>/process'  \
 	-X POST                                                    \
 	-H 'Authorization: Basic <login details>'                  \ 
@@ -168,7 +168,7 @@ curl 'https://webapp.kotive.com/api/group/<group_id>/process'  \
 
 > Example Response
 
-```cURL
+```json
 [{
   "phase": "new",
   "label": "Taskero numero twoero",
@@ -261,7 +261,7 @@ These instructions only have to be followed once for every new taskflow instance
 
 > Example Request
 
-```cURL
+```curl
 curl 'https://webapp.kotive.com/api/group/<group_id>/process/<process_id>/activity'  \
 	-X POST                                                                          \
 	-H 'Authorization: Basic <login details>'                                        \
@@ -271,7 +271,7 @@ curl 'https://webapp.kotive.com/api/group/<group_id>/process/<process_id>/activi
 
 > Example Response
 
-```cURL
+```json
 [{
   "phase": "new",
   "label": "A Form",
@@ -322,14 +322,14 @@ The response obtained from this request may be:
 
 > Example Request
 
-```cURL
+```curl
 curl https://webapp.kotive.com/api/group/<group_id>/process/<process_id>/next  \
 	-H 'Authorization: Basic <login details>'
 ```
 
 > Example Response
 
-```cURL
+```json
 [{
   "phase": "new",
   "label": "A Form",

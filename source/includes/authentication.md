@@ -4,13 +4,13 @@
 
 > To authorise:
 
-```cURL
+```curl
 curl -u username:password 'https://webapp.kotive.com/api/login'
 ```
 
 > Or alternatively
 
-```cURL
+```curl
 curl 'https://webapp.kotive.com/api/login'     \
 	-H 'Authorization: Basic <login details>'
 ```
@@ -38,7 +38,7 @@ You must replace <code>&lt;login details&gt;</code> with your Base64 encoded use
 
 > Example Response:
 
-```cURL
+```json
 {
   "authToken": "3e2dfoxa58c243arabbitc17b9bb1bf7",
   "systemRoles": [{
@@ -122,7 +122,7 @@ Where `<login details>` is made up of Base64 encoded `username:authToken`
 
 > Example Request
 
-```cURL
+```curl
 curl https://webapp.kotive.com/api/user/resetpassword  \
 	-X POST                                            \
 	-H "Content-Type: application/json"                \
@@ -131,7 +131,7 @@ curl https://webapp.kotive.com/api/user/resetpassword  \
 
 > Example Response
 
-```cURL
+```
 OK
 ```
 
