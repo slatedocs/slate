@@ -12,7 +12,8 @@ includes:
   - http_api/sharing
   - http_api/assets
   - http_api/timelines
-  - http_api/realtime
+  - http_api/realtime_reporting
+  - socket_api
 
 search: true
 ---

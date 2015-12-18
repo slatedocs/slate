@@ -1,5 +1,5 @@
-Real-time API
-=============
+Real-time Reporting API
+=======================
 
 ## Room real-time statistics
 
