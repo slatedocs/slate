@@ -55,6 +55,7 @@ Available options:
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
+| ``index`` | string | Kuzzle's persistent storage index to use | ``mainindex`` |
 | ``autoQueue`` | boolean | Automatically queue all requests during offline mode | ``false`` |
 | ``autoReconnect`` | boolean | Automatically reconnect after a connection loss | ``true`` |
 | ``autoReplay`` | boolean | Automatically replay queued requests on a ``reconnected`` event | ``false`` |
