@@ -47,13 +47,21 @@ In the command mode, the packet commands Neblina to either open a previously rec
 |:------:|:------:|:----:|:------------------:|:------:|:--------:|:-------------------:|:---------:|
 |  0x4B  |  0x10  | CRC  |0x03 (FlashPlayback)|Reserved|open/close|Session ID (Byte#8=1)| Reserved  |
 
-In response, Neblina will first send an acknowledge packet to indicate the receipt of the command. Next, for opening a session for playback, Neblina will only send an error packet to the host, if the session opening has failed, e.g., due to an invalid session number request. If the session opening has been successful, Neblina will not send an acknowledge packet to the host, since the playback data being streamed to the host will virtually confirm this matter. Here is the error packet response to an invalid request to open a particular Session ID. Note that the most-significant bit of the first byte, i.e., error flag, is set to 1:
+In response, Neblina will first send an acknowledge packet to indicate the receipt of the command. Next, for opening a session for playback, Neblina will send an error packet to the host, if the session opening has failed, e.g., due to an invalid session number request. Here is the error packet response to an invalid request to open a particular Session ID. Note that the most-significant bit of the first byte, i.e., error flag, is set to 1:
 
 | Byte 0 | Byte 1 (length) |Byte 2|  Byte 3 (command)  |Byte 4-7|   Byte 8  |Byte 9-10 |Bytes 11-19|
 |:------:|:---------------:|:----:|:------------------:|:------:|:---------:|:--------:|:---------:|
-|  0x8B  |       0x10      | CRC  |0x03 (FlashPlayback)|Reserved|0x01 (open)|Session ID| Reserved |
+|  0x8B  |       0x10      | CRC  |0x03 (FlashPlayback)|Reserved|0x01 (open)|Session ID| Reserved  |
 
-If the playback is successful, whenever we reach the end of the session, where there is no more data to be streamed to the host, Neblina will send a completion status packet to the host as follows:
+If the session opening has been successful, Neblina will send another packet to the host with the opened Session ID. The packet will be a regular response packet as follows:
+
+| Byte 0 | Byte 1 (length) |Byte 2|  Byte 3 (command)  |Byte 4-7|   Byte 8  |Byte 9-10 |Bytes 11-19|
+|:------:|:---------------:|:----:|:------------------:|:------:|:---------:|:--------:|:---------:|
+|  0x0B  |       0x10      | CRC  |0x03 (FlashPlayback)|Reserved|0x01 (open)|Session ID| Reserved  |
+
+Note that if the command packet aims for opening the last recorded session by setting the Session ID to 0xFFFF, in response, Neblina will provide the session ID of the last recorded session within Byte 9-10 in the above response packet.
+
+If the whole playback procedure is successful, whenever we reach the end of the session, where there is no more data to be streamed to the host, Neblina will send a completion status packet to the host as follows:
 
 | Byte 0 | Byte 1 (length) |Byte 2|  Byte 3 (command)  |Byte 4-7|      Byte 8      | Bytes 9-19 |
 |:------:|:---------------:|:----:|:------------------:|:------:|:----------------:|:----------:|
