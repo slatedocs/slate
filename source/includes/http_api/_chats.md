@@ -42,7 +42,11 @@ This API endpoint returns a [paginated collection][]. They are sorted by the cre
         "type": "msg",
         "created_at": "2015-02-13T11:31:36.042",
         "message": "Hi, can you help me?"
-      }
+      },
+      "current_user_count": 1,
+      "participation_count": 2,
+      "user_participation_count": 1,
+      "visitor_participation_count": 1
     }
   ]
 }
@@ -71,12 +75,18 @@ Parameter | Format | Default | Description
 Returns 201 status code when a new chat was created successfully.
 Returns 200 if resumed an existing chat when `auto_resume` parameter was provided.
 
-This notifies the following real-time channels:
+When a new chat was successfully created, the following channels are notified with an `added` message. If an existing chat was resumed (with `auto_resume`) and the operator was joined to the chat, then a `changed` message is sent instead, notifying about a change in field `current_user_count`.
 
-- Each visitor of the chat is notified with an `added` message: `/api/v5/client/visitors/<visitor_id>/chats`
-- Each participant user of the chat is notified with an `added` message: `/api/v5/orgs/<org_id>/users/<user_id>/chats`
-- Each currently present operator of the chat is notified with an `added` message: `/api/v5/orgs/<org_id>/users/<user_id>/current_chats`
-- Chat parent room chat collection is notified with an `added` message for each organization having access to the room: `/api/v5/orgs/<org_id>/rooms/<room_id>/chats`
+- For each visitor of the chat: `/api/v5/client/visitors/<visitor_id>/chats`
+- For each participant and currently present user of the chat: `/api/v5/orgs/<org_id>/users/<user_id>/chats`
+- For the chat parent room chat collection and each organization having access that room: `/api/v5/orgs/<org_id>/rooms/<room_id>/chats`
+
+The following real-time channels are also notified when appropriate:
+
+- For each visitor of the chat: `/api/v5/client/visitors/<visitor_id>/chats/<chat_id>/presences`
+- For each participant user of the chat (including the joined user): `/api/v5/orgs/<org_id>/users/<user_id>/chats/<chat_id>/presences`
+- For each currently present operator (including the joined user): `/api/v5/orgs/<org_id>/users/<user_id>/current_chats/<chat_id>/presences`
+- For the chat parent room chat collection and each organization having access that room: `/api/v5/orgs/<org_id>/rooms/<room_id>/chats/<chat_id>/presences`
 
 ## Chat operator presences
 
@@ -134,11 +144,49 @@ Returns 201 if the user was added to the joined operators of the chat.
 Returns 200 if the user had already been added.
 Returns 400 if the user does not have permissions to join the chat.
 
+Because the `current_user_count` increased, we notify the following channels with a `changed` message:
+
+- For each visitor of the chat: `/api/v5/client/visitors/<visitor_id>/chats`
+- For each participant and currently present user of the chat: `/api/v5/orgs/<org_id>/users/<user_id>/chats`
+- For the chat parent room chat collection and each organization having access that room: `/api/v5/orgs/<org_id>/rooms/<room_id>/chats`
+
+The following real-time channels are notified with an `added` notification:
+
+- For each visitor of the chat: `/api/v5/client/visitors/<visitor_id>/chats/<chat_id>/presences`
+- For each participant and currently present user of the chat: `/api/v5/orgs/<org_id>/users/<user_id>/chats/<chat_id>/presences`
+- For the chat parent room chat collection and each organization having access that room: `/api/v5/orgs/<org_id>/rooms/<room_id>/chats/<chat_id>/presences`
+
 ### Leave from a chat
 
 Removes the operator from the list of currently present operators of the chat.
 
 `DELETE /api/v5/orgs/<org_id>/chats/<chat_id>/presences/<user_id>`
+
+Because the `current_user_count` decreased, we notify the following channels with a `changed` message:
+
+- For each visitor of the chat: `/api/v5/client/visitors/<visitor_id>/chats`
+- For each participant and currently present user of the chat: `/api/v5/orgs/<org_id>/users/<user_id>/chats`
+- For the chat parent room chat collection and each organization having access that room: `/api/v5/orgs/<org_id>/rooms/<room_id>/chats`
+
+The following real-time channels are notified with an `removed` notification:
+
+- For each visitor of the chat: `/api/v5/client/visitors/<visitor_id>/chats/<chat_id>/presences`
+- For each participant and currently present user of the chat: `/api/v5/orgs/<org_id>/users/<user_id>/chats/<chat_id>/presences`
+- For the chat parent room chat collection and each organization having access that room: `/api/v5/orgs/<org_id>/rooms/<room_id>/chats/<chat_id>/presences`
+
+## Chat participations
+
+Each user or visitor who have sent at least one message to the chat is added as a "participant" to the chat. This is represented as a "participation" resource:
+
+Attribute | Format | Editable | Description
+:---------|:-------|:--------|------------
+`id` | [ID][]/string | read-only | ID of the user or visitor that has participated in the chat.
+`type` | string | read-only | Either `visitor` or `user`.
+
+### Get a collection of chat participations
+
+`GET /api/v5/orgs/<org_id>/users/<user_id>/chats/<chat_id>/participations`
+
 
 ## Chat messages
 
@@ -221,6 +269,28 @@ Get the chat history, that is, the collection of all chat messages in the given 
 ```
 
 `POST /api/v5/orgs/<org_id>/chats/<chat_id>/messages`
+
+Because the `message_count` and `operator_message_count` were increased, we notify the following channels with a `changed` message. This also includes any possible changes to `participant_count` and `user_participant_count`.
+
+- For each visitor of the chat: `/api/v5/client/visitors/<visitor_id>/chats`
+- For each participant and currently present user of the chat: `/api/v5/orgs/<org_id>/users/<user_id>/chats`
+- For the chat parent room chat collection and each organization having access that room: `/api/v5/orgs/<org_id>/rooms/<room_id>/chats`
+
+The following real-time channels are notified with an `added` notification:
+
+- For each visitor of the chat: `/api/v5/client/visitors/<visitor_id>/chats/<chat_id>/messages`
+- For each participant and currently present user of the chat: `/api/v5/orgs/<org_id>/users/<user_id>/chats/<chat_id>/messages`
+- For the chat parent room chat collection and each organization having access that room: `/api/v5/orgs/<org_id>/rooms/<room_id>/chats/<chat_id>/messages`
+
+If the user was added as a participant to the chat we also notify the following channels with a `added` message:
+
+- For each visitor of the chat: `/api/v5/client/visitors/<visitor_id>/chats/<chat_id>/participations`
+- For each participant and currently present user of the chat: `/api/v5/orgs/<org_id>/users/<user_id>/chats/<chat_id>/participations`
+- For the chat parent room chat collection and each organization having access that room: `/api/v5/orgs/<org_id>/rooms/<room_id>/chats/<chat_id>/participations`
+
+
+
+
 
 ## Get a collection of chats on organization
 

@@ -7,6 +7,7 @@
   [organization]: <#organizations> "Organizations"
   [chat]: <#chats> "Chats"
   [chat presence]: <#chat-operator-presences> "Chat operator presences"
+  [chat participations]: <#chat-participations> "Chat participations"
   [user]: <#users> "Users"
   [room]: <#rooms-and-domains> "Rooms and domains"
   [team]: <#teams> "Teams"
