@@ -451,7 +451,10 @@ kuzzle.listCollections(new ResponseListener() {
 > Result:
 
 ```json
-["foo", "bar", "baz", "qux"]
+{
+  "stored": ["collection_1", "collection_2", "...", "collection_n"],
+  "realtime": ["collection_1", "collection_2", "...", "collection_n"]
+}
 ```
 
 Returns the list of known persisted data collections.
