@@ -3,17 +3,17 @@ Chat API
 
 ## Chats
 
-### Get a collection of waiting chats
+### Get a collection of chats at a room
 
 You can get a list of open chats that are waiting for a response by an operator.
 
-`GET /api/v5/orgs/<org_id>/rooms/<room_id>/waiting_chats`
+`GET /api/v5/orgs/<org_id>/rooms/<room_id>/chats`
 
 This API endpoint returns a [paginated collection][]. They are sorted by the creation time of the chats, in ascending order.
 
 ```json
 {
-  "next": "https://service.giosg.com/api/v5/orgs/7f9e9580-095b-42c7-838c-c04e667b26f7/rooms/9926bdfa-56e0-11e5-b98c-6c4008c08dfe/waiting_chats?cursor=171cfd0d7ce542be86221f01d2823cb1",
+  "next": "https://service.giosg.com/api/v5/orgs/7f9e9580-095b-42c7-838c-c04e667b26f7/rooms/9926bdfa-56e0-11e5-b98c-6c4008c08dfe/chats?cursor=171cfd0d7ce542be86221f01d2823cb1",
   "previous": null,
   "results": [
     {
@@ -27,23 +27,15 @@ This API endpoint returns a [paginated collection][]. They are sorted by the cre
       "is_autosuggested": false,
       "room_id": "9926bdfa-56e0-11e5-b98c-6c4008c08dfe",
       "message_count": 0,
-      "operator_message_count": 0,
+      "user_message_count": 0,
       "visitor_message_count": 0,
       "first_visitor_message_url": "http://www.customerpage.com/settings",
       "first_visitor_message_url_title": "Profile Settings",
       "autosuggest_url": "http://www.customerpage.com/",
       "autosuggest_url_title": "Site Frontpage",
-      "tags": [
-        {
-          "name": "Premium"
-        }
-      ],
-      "first_visitor_message": {
-        "type": "msg",
-        "created_at": "2015-02-13T11:31:36.042",
-        "message": "Hi, can you help me?"
-      },
-      "current_user_count": 1,
+      "tag_count": 2,
+      "is_waiting_response" true,
+      "currently_present_user_count": 1,
       "participation_count": 2,
       "user_participation_count": 1,
       "visitor_participation_count": 1
@@ -75,7 +67,7 @@ Parameter | Format | Default | Description
 Returns 201 status code when a new chat was created successfully.
 Returns 200 if resumed an existing chat when `auto_resume` parameter was provided.
 
-When a new chat was successfully created, the following channels are notified with an `added` message. If an existing chat was resumed (with `auto_resume`) and the operator was joined to the chat, then a `changed` message is sent instead, notifying about a change in field `current_user_count`.
+When a new chat was successfully created, the following channels are notified with an `added` message. If an existing chat was resumed (with `auto_resume`) and the operator was joined to the chat, then a `changed` message is sent instead, notifying about a change in field `currently_present_user_count`.
 
 - For each visitor of the chat: `/api/v5/client/visitors/<visitor_id>/chats`
 - For each participant and currently present user of the chat: `/api/v5/orgs/<org_id>/users/<user_id>/chats`
@@ -144,7 +136,7 @@ Returns 201 if the user was added to the joined operators of the chat.
 Returns 200 if the user had already been added.
 Returns 400 if the user does not have permissions to join the chat.
 
-Because the `current_user_count` increased, we notify the following channels with a `changed` message:
+Because the `currently_present_user_count` increased, we notify the following channels with a `changed` message:
 
 - For each visitor of the chat: `/api/v5/client/visitors/<visitor_id>/chats`
 - For each participant and currently present user of the chat: `/api/v5/orgs/<org_id>/users/<user_id>/chats`
@@ -162,7 +154,7 @@ Removes the operator from the list of currently present operators of the chat.
 
 `DELETE /api/v5/orgs/<org_id>/chats/<chat_id>/presences/<user_id>`
 
-Because the `current_user_count` decreased, we notify the following channels with a `changed` message:
+Because the `currently_present_user_count` decreased, we notify the following channels with a `changed` message:
 
 - For each visitor of the chat: `/api/v5/client/visitors/<visitor_id>/chats`
 - For each participant and currently present user of the chat: `/api/v5/orgs/<org_id>/users/<user_id>/chats`
@@ -268,9 +260,15 @@ Get the chat history, that is, the collection of all chat messages in the given 
 }
 ```
 
+Sends a new chat message with type `msg` to a chat.
+
 `POST /api/v5/orgs/<org_id>/chats/<chat_id>/messages`
 
-Because the `message_count` and `operator_message_count` were increased, we notify the following channels with a `changed` message. This also includes any possible changes to `participant_count` and `user_participant_count`.
+The ID of the sender must be explicitly provided. This is usually equal to the user who is authenticated. If the sender is not yet added as a participant of this chat, then a new [participation][chat participation] is automatically created.
+
+If the chat was previously in waiting state, then `is_waiting_response` of the chat is automatically changed to `false`.
+
+Because the `message_count` and `user_message_count` were increased, we notify the following channels with a `changed` message. This also includes any possible changes to `is_waiting_response`, `participant_count` and `user_participant_count`.
 
 - For each visitor of the chat: `/api/v5/client/visitors/<visitor_id>/chats`
 - For each participant and currently present user of the chat: `/api/v5/orgs/<org_id>/users/<user_id>/chats`
