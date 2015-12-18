@@ -168,7 +168,7 @@ The following real-time channels are notified with an `removed` notification:
 
 ## Chat participations
 
-Each user or visitor who have sent at least one message to the chat is added as a "participant" to the chat. This is represented as a "participation" resource:
+The visitor as well as each user who have sent at least one message to the chat is added as a "participant" to the chat. This is represented as a "participation" resource:
 
 Attribute | Format | Editable | Description
 :---------|:-------|:--------|------------
