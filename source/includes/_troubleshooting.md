@@ -106,6 +106,37 @@ tail -n1000 log/production.log | grep "Processing"
     </tr>
   </tbody></table>
 
+## Continuous Integration
+
+Having issues with Scout APM and your CI system?
+
+The scout_apm.yml file must be present in your CI environment.
+
+The easiest way to ensure this is to check the scout_apm.yml file into your CI repository.
+
+The scout_apm.yml file must be in place even if all it has is disabled monitoring
+    
+    development:
+     monitor:false
+    test:
+     monitor:false
+    production:
+     monitor:false
+
+You can also use environment variables in the scout_apm.yml file instead of hardcoding items. For example
+
+    common: &defaults
+     key: <% ENV[SCOUT_APM_ORG_KEY] %>
+     log_level: debug
+     monitor: false
+  
+    test:
+     <<: *defaults
+     name: <% ENV[SCOUT_APM_APP_NAME] %> (Production)
+     monitor: false
+  
+
+
 ## Service Status
 
 We're transparent about our uptime and service issues. If you appear to be experiencing issues with our service:
