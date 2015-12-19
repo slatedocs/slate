@@ -77,6 +77,20 @@ Parámetro | Tipo | Descripción
 event_name | string | Podrá ser `receipt-issued` o `issue-error`. __Requerido__
 webhook_url | string | Dirección donde se recibirá la información en formato JSON __Requerido__
 
+El evento `receipt-issued` es emitido cuando el proceso de emisión termina
+correctamente. Los posibles estados de un comprobante al terminar de ser
+procesado correctamente pueden ser:
+
+* AUTORIZADO
+* NO AUTORIZADO
+
+El evento `issue-error` es emitido cuando ocurre un error en uno de los pasos
+del proceso de emisión. Los posibles estados de un comprobante al terminar de ser
+procesado correctamente pueden ser:
+
+* CREADO (cuando no pudo ser firmado)
+* DEVUELTO
+
 ## Eventos
 
 Al ejecutarse un evento se enviará en un requerimiento tipo *POST*, la información completa del comprobante en
@@ -377,5 +391,101 @@ Un comprobante *Devuelto* contendrá información como el siguiente ejemplo:
       }
     ]
   }
+}
+```
+
+### Error en firma
+
+```
+{
+  "secuencial":766,
+  "firma":{
+    "result":"bad",
+    "error":"Clave de firma incorrecta, por favor inténtalo nuevamente.",
+    "status":400
+  },
+  "fecha_emision":"2015-12-16T15:38:01-05:00",
+  "emisor":{
+    "ruc":"1792478103001",
+    "obligado_contabilidad":"true",
+    "contribuyente_especial":"",
+    "nombre_comercial":"Dátil",
+    "razon_social":"Datilmedia S.A.",
+    "direccion":"Guayaquil Ecuador",
+    "establecimiento":{
+      "punto_emision":"003",
+      "codigo":"001",
+      "direccion":"Av. Primera 123 y Calle 2da, Guayas, Guayaquil."
+    },
+    "email":"jplaza@datilmedia.com"
+  },
+  "tipo":"factura",
+  "moneda":"USD",
+  "id":"9d30f85b12435a007ba1235e5007d123",
+  "informacion_adicional":null,
+  "ambiente":2,
+  "certificate-password":null,
+  "totales":{
+    "total_sin_impuestos":2,
+    "impuestos":[
+      {
+        "base_imponible":2274.11,
+        "valor":272.89,
+        "codigo":"2",
+        "codigo_porcentaje":"2"
+      }
+    ],
+    "importe_total":2547.0,
+    "propina":0,
+    "descuento":0,
+    "descuento_adicional":0
+  },
+  "comprador":{
+    "email":"jplaza@datilmedia.com",
+    "identificacion":"0924392929",
+    "tipo_identificacion":"04",
+    "razon_social":"Juan Antonio Plaza",
+    "direccion":"Mall del Sol Piso 3, Guayaquil",
+    "telefono":"099999119"
+  },
+  "tipo_emision":1,
+  "items":[
+    {
+      "cantidad":1,
+      "codigo_principal":"8806085980334",
+      "precio_unitario":1,
+      "descripcion":"TELEVISORES LED 3D SAMSUNG UN55H6400AHXPA",
+      "precio_total_sin_impuestos":1,
+      "impuestos":[
+        {
+          "base_imponible":1,
+          "valor":0.12,
+          "tarifa":12.0,
+          "codigo":"2",
+          "codigo_porcentaje":"2"
+        }
+      ],
+      "descuento":0
+    },
+    {
+      "cantidad":2,
+      "codigo_principal":"8806085462113",
+      "precio_unitario":600,
+      "descripcion":"LED 46 UN46F5500 SMART SAMSUNG",
+      "precio_total_sin_impuestos":1200.00,
+      "impuestos":[
+        {
+          "base_imponible":1200.00,
+          "valor":144,
+          "tarifa":12,
+          "codigo":"2",
+          "codigo_porcentaje":"2"
+        }
+      ],
+      "descuento":0
+    }
+  ],
+  "clave_acceso":"1612201501179247810300120010030987657662795494211",
+  "api-key":"1b123043215678b890ce7656780032ce"
 }
 ```
