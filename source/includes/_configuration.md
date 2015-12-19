@@ -223,13 +223,13 @@ Scout can measure the time it takes a request to reach your Rails app from farth
 
 <img src="images/request_queue_annotated.png" alt="request queuing" />
 
-To see this metric within Scout, you need to configure your upstream software, adding an HTTP header that our agent reads.
+To see this metric within Scout, you need to configure your upstream software, adding an HTTP header that our agent reads. This is typically a one-line change.
 
 ### HTTP Header
 
 The Scout agent depends on an HTTP request header set by an upstream load balancer (ex: HAProxy) or web server (ex: Apache, Ngnix). 
 
-We suggest adding the header as soon as possible. This ensures you won't miss performance issues that appear before the header is set.
+__Protip:__ We suggest adding the header as early as possible in your infrastructure. This ensures you won't miss performance issues that appear before the header is set.
 
 The agent will read any of the following headers as the start time of the request:
 
