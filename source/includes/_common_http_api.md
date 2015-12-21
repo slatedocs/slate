@@ -14,25 +14,14 @@ For example: `9ae65e7d-56c5-11e5-af8d-6c4008c08dfe`
 
 ## Paginated Collections
 
-Some of the API endpoints return paginated collections. Unless stated otherwise, all these endpoints accept the following optional GET parameters.
-
-Parameter  | Type    | Default  | Description
-:----------|:--------|----------|------------
-`page`     | integer | `1`      | Which page of the results to return. If omitted, the first page with index 1 is returned.
-`page_size`| integer | (varies) | Maximum number of returned objects per page. The default value and limitations depend on the API end-point.
+Some of the API endpoints return paginated collections. That means that for large collections of resources, not all resources are returned in a single response, but the response contains an URL that can be used to fetch the next chunk (page) of results.
 
 > An example of a JSON response with a paginated collection
 
 ```json
 {
-  "count": 13,
-  "per_page": 5,
-  "num_pages": 3,
-  "current_page": 1,
-  "next_page": 2,
-  "previous_page": null,
-  "next_page_url": "https://service.giosg.com/api/v5/examples?page=2",
-  "previous_page_url": null,
+  "next": "https://service.giosg.com/api/v5/examples?page=2",
+  "previous": null,
   "results": [
     {"name": "Example Resource 1"},
     {"name": "Example Resource 2"},
@@ -47,15 +36,9 @@ Paginated collections are objects with the following attributes.
 
 Attribute | Type | Description
 :---------|:-----|------------
-`count` | integer | The total number of objects matching the query. This may be much larger than the number of the actually returned objects in this response.
-`per_page` | integer | Maximum number of objects per page. The actual number of returned objects on the last page may be fewer than this number. This equals to the `page_size` GET parameter or its default value.
-`num_pages` | integer | The total number of pages for the matching query results. In practice, this is same than `count` / `per_page`, rounded up.
-`current_page` | integer | The index of the current page. The counting starts from one (1).
-`next_page` | integer | Index of the next available page. This is `null` if the current page is the last page.
-`previous_page` | integer | Index of the previous available page. This is `null` if the current page is the first page.
-`next_page_url` | string | For convenience, ready-to-use URL for requesting the next page. This is `null` if the current page is the last page.
-`previous_page_url` | string | For convenience, ready-to-use URL for requesting the previous page. This is `null` if the current page is the first page
-`results` | array of objects | The list containing the results for the current page. Each item is an object whose attributes depend on the returned resource type.
+`next` | string | Full URL for requesting the next page. This is `null` if the current page is the last page.
+`previous` | string | Full URL for requesting the previous page. This is `null` if the current page is the first page
+`results` | array of objects | The list containing the result resources for the current page. Each item is an object whose attributes depend on the returned resource type.
 
 ## Ordering Collections
 
@@ -67,6 +50,6 @@ Any sorting order is ascending by default, but may be reverted to descending ord
 
 ## Date/time format
 
-Unless stated otherwise, all the date/times returned by API endpoints are ISO-8601 strings with format `YYYY-MM-DDTHH:MM:SS.MSS`, for example: `2015-08-31T16:32:17.879Z`. Also, any date/time URL parameters or attributes send as a request payload accept this same format.
+Unless stated otherwise, all the date/times returned by API endpoints are ISO-8601 strings with format `YYYY-MM-DDTHH:MM:SS.MSSZ`, for example: `2015-08-31T16:32:17.879Z`. Also, any date/time URL parameters or attributes send as a request payload accept this same format.
 
 Unless stated otherwise, the times are expressed in UTC timezone!
