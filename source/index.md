@@ -3,6 +3,7 @@ title: giosg API Reference - HTTP API
 
 includes:
   - http_api/general
+  - common_http_api
   - http_api/customer
   - http_api/teams
   - http_api/rooms
