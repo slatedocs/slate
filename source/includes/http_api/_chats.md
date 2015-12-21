@@ -41,15 +41,9 @@ Channel | Description
 --------|------------
 `/api/v5/client/visitors/<visitor_id>/chats` | For each visitor of the chat
 `/api/v5/orgs/<org_id>/users/<user_id>/chats` | For each participant and currently present user of the chat
-`/api/v5/orgs/<org_id>/rooms/<room_id>/chats` | For the chat parent room chat collection and each organization having access that room
+`/api/v5/orgs/<org_id>/rooms/<room_id>/chats` | For the chat parent room chat collection and each organization having access to that room
 
-### Get a collection of chats at a room
-
-You can get a list of open chats that are waiting for a response by an operator.
-
-`GET /api/v5/orgs/<org_id>/rooms/<room_id>/chats`
-
-This API endpoint returns a [paginated collection][]. They are sorted by the creation time of the chats, in ascending order.
+### List chats at a room
 
 ```json
 {
@@ -86,15 +80,41 @@ This API endpoint returns a [paginated collection][]. They are sorted by the cre
 }
 ```
 
-### Get a collection of all chats of the user
+You can list chats for a room:
+
+`GET /api/v5/orgs/<org_id>/rooms/<room_id>/chats`
+
+This API endpoint returns a [paginated collection][]. They are sorted by the creation time of the chats, in descending order.
+
+This endpoint takes the following GET-parameters:
+
+Parameter             | Type    | Default | Description
+----------------------|---------|---------|------------
+`is_waiting_response` | boolean | (none)  | If `true`, then return only waiting chats. If `false`, return only chats that are not waiting.
+`is_ended`            | boolean | (none)  | If `true`, only return ended chats. If `false`, only return open chats.
+
+Returns 403 if you do not have permission to the room and you are not a manager.
+
+### List chats of a user
+
+You can get a collection of chats that a user has been participating **or** in which the user is currently present. If you need specifically either one of these then you can use the GET parameters described below.
 
 `GET /api/v5/orgs/<org_id>/users/<user_id>/chats`
 
-### Get a collection chats where the user is currently present
+This returns a [paginated collection][]. It is sorted by the creation time of the chat, in descending order.
 
-Get a collection of chats where the user `<user_id>` has currently a [presence][chat presence].
+Parameter             | Type    | Default | Description
+----------------------|---------|---------|------------
+`is_present`          | boolean | (none)  | If `true`, only return chats where `<user_id>` currently has a [chat presence][]. If `false`, exclude thats where `<user_id>` currently has a chat presence.
+`is_participant`      | boolean | (none)  | If `true`, only return chats where `<user_id>` is a [chat participant][]. If `false`, exclude thats where `<user_id>` is a chat participant.
+`is_ended`            | boolean | (none)  | If `true`, only return ended chats. If `false`, only return open chats.
 
-`GET /api/v5/orgs/<org_id>/users/<user_id>/current_chats`
+When using this endpoint, the chat as the following additional attributes:
+
+Attribute        | Type    | Editable  | Description
+-----------------|---------|-----------|------------
+`is_present`     | boolean | read-only | Whether or not the `<user_id>` currently has a [chat presence][] at this chat
+`is_participant` | boolean | read-only | Whether or not the `<user_id>` is a [participant of this chat][chat participant]
 
 ### Create a new chat with a visitor in a room
 
@@ -108,8 +128,7 @@ Parameter | Format | Default | Description
 
 Returns 201 status code when a new chat was created successfully.
 Returns 200 if resumed an existing chat when `auto_resume` parameter was provided.
-
-When a new chat was successfully created, the following channels are notified with an `added` message. If an existing chat was resumed (with `auto_resume`) and the operator was joined to the chat, then a `changed` message is sent instead, notifying about a change in field `currently_present_user_count`.
+Returns 403 if you have no permission to the room and you are not a manager.
 
 This notifies the [channels][] of the chat, as well as appropriate channels of [chat presences][chat presence] and [chat participants][chat participant].
 
@@ -136,7 +155,7 @@ Channels    | Description
 ------------|---------------
 `/api/v5/client/visitors/<visitor_id>/chats/<chat_id>/presences` | For each visitor of the chat
 `/api/v5/orgs/<org_id>/users/<user_id>/chats/<chat_id>/presences` | For each participant and currently present user of the chat
-`/api/v5/orgs/<org_id>/rooms/<room_id>/chats/<chat_id>/presences` | For the related room and each organization having access that room
+`/api/v5/orgs/<org_id>/rooms/<room_id>/chats/<chat_id>/presences` | For the related room and each organization having access to that room
 
 In addition, chat presences affect the following attributes of a [chat][], notifying the channels of the related chat:
 
@@ -308,7 +327,7 @@ Channel | Description
 --------|------------
 `/api/v5/client/visitors/<visitor_id>/chats/<chat_id>/messages` | For each visitor of the chat
 `/api/v5/orgs/<org_id>/users/<user_id>/chats/<chat_id>/messages` | For each participant and currently present user of the chat
-`/api/v5/orgs/<org_id>/rooms/<room_id>/chats/<chat_id>/messages` | For the chat parent room chat collection and each organization having access that room
+`/api/v5/orgs/<org_id>/rooms/<room_id>/chats/<chat_id>/messages` | For the chat parent room chat collection and each organization having access to that room
 
 In addition, sending chat messages affect the following attributes of a [chat][], which notifies the channels of the chat.
 
