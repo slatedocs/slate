@@ -140,13 +140,13 @@ A chat presence describes either a user (a chat operator) or a visitor being cur
 Both visitors' and operators' presences are automatically removed from chat presences if we have not heard about them for a while, indicating that they have closed their browser tab or they have lost their connection.
 
 Attribute | Format | Editable | Description
-:---------|:-------|:--------|------------
-`id`      | [ID][]/string | **required** | The ID of the user or the identifier string for the visitor currently joined to the chat.
-`type`    | string | read-only | Either `user` or `visitor`
-`name`    | string | read-only | The name of the user/visitor as it would be displayed for the operator. Either the actual name of the user, or any custom name given to the visitor. Otherwise `null`
-`public_name` | string | read-only | The name of the user/visitor as it would be displayed for the visitor. Either the user's alias, or any custom username of the visitor (e.g. set by API data)
+:---------|:-------|:---------|------------
+`id` | [ID][]/string | read-only | ID of the user or visitor that has participated in the chat.
+`type` | string | read-only | Either `visitor` or `user`.
+`name`    | string | read-only | The name of the user/visitor as it would be displayed for the operator. For users this the actual name. For visitors this is any custom name, or `null`.
+`public_name` | string | read-only | The name of the user/visitor as it would be displayed for the visitor. This is user's alias if they have one, otherwise it is their real name. For visitors, this is any custom username (e.g. set by API data) or `null`
 `avatar` | object | read-only | If the user/visitor has an avatar image, then this is is an object with `id` and `url` attributes. Otherwise this is `null`.
-`chat_id` | [ID][] | **required** | ID of the chat being joined.
+`chat_id` | [ID][] | read-only | ID of the chat.
 `created_at` | [date/time][] | read-only | When the user/visitor become present in the chat.
 
 Changes to chat presences are notified to the following [channels][]:
@@ -163,9 +163,9 @@ In addition, chat presences affect the following attributes of a [chat][], notif
 - `user_presence_count`
 - `visitor_presence_count`
 
-### Get currently present people at the chat
+### List currently present people at a chat
 
-    GET /api/v5/orgs/7f9e9580-095b-42c7-838c-c04e667b26f7/rooms/b5082826-76b7-4197-a362-1222c81d2661/chats/58f5055c-56e0-11e5-9354-6c4008c08dfe/presences
+    GET https://service.giosg.com/api/v5/orgs/7f9e9580-095b-42c7-838c-c04e667b26f7/rooms/b5082826-76b7-4197-a362-1222c81d2661/chats/58f5055c-56e0-11e5-9354-6c4008c08dfe/presences
 
 ```json
 {
@@ -267,18 +267,6 @@ Chat participants
 The visitor as well as each user who have sent at least one message to the chat is added as a "participant" to the chat.
 
 In contrast to the [chat presences][chat presence], chat _participant_ describes a person who has ever attended to the chat. They may not be currently present at the chat.
-
-A chat participant has the following attributes:
-
-Attribute | Format | Editable | Description
-:---------|:-------|:--------|------------
-`id` | [ID][]/string | read-only | ID of the user or visitor that has participated in the chat.
-`type` | string | read-only | Either `visitor` or `user`.
-`name`    | string | read-only | The name of the user/visitor as it would be displayed for the operator. Either the actual name of the user, or any custom name given to the visitor. Otherwise `null`
-`public_name` | string | read-only | The name of the user/visitor as it would be displayed for the visitor. Either the user's alias, or any custom username of the visitor (e.g. set by API data)
-`avatar` | object | read-only | If the user/visitor has an avatar image, then this is is an object with `id` and `url` attributes. Otherwise this is `null`.
-`chat_id` | [ID][] | **required** | ID of the chat being joined.
-`created_at` | [date/time][] | read-only | When the user/visitor become present in the chat.
 
 
 ### Get a collection of chat participants
