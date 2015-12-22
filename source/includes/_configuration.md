@@ -465,7 +465,7 @@ staging:
   <<: *defaults
 ```
 
-## Disabling a node
+## Disabling a Node
 
 To disable Scout APM on any node in your environment, just set `monitor: false` in your `scout_apm.yml` configuration file on that server, and restart your app server. Example:
 
