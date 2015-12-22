@@ -447,7 +447,7 @@ Here's an example `scout_apm.yml` configuration to achieve this:
 common: &defaults
   name: <%= "YOUR_APP_NAME (#{Rails.env})" %>
   key: YOUR_KEY
-  log_level: debug
+  log_level: info
   monitor: true
 
 production:
@@ -464,3 +464,33 @@ test:
 staging:
   <<: *defaults
 ```
+
+## Disabling a node
+
+To disable Scout APM on any node in your environment, just set `monitor: false` in your `scout_apm.yml` configuration file on that server, and restart your app server. Example:
+
+```yaml
+common: &defaults
+  name: <%= "YOUR_APP_NAME (#{Rails.env})" %>
+  key: YOUR_KEY
+  log_level: info
+  monitor: false
+
+production:
+  <<: *defaults
+```
+
+Since the YAML config file allows ERB evaluation, you can even programatically enable/disable nodes based on host name. This example enables Scout APM on web1 through web5:
+
+```yaml
+common: &defaults
+  name: <%= "YOUR_APP_NAME (#{Rails.env})" %>
+  key: YOUR_KEY
+  log_level: info
+  monitor: <%= Socket.gethostname.match(/web[1..5]/) %>
+
+production:
+  <<: *defaults
+```
+
+Aft you've disabled a node in your configuration file and restarted your app server, the node show up as inactive in the UI after 10 minutes.
