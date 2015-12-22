@@ -30,7 +30,7 @@ Google recently simplified their Google+ profile pages and removed much of the u
 
 `https://www.google.com/search?q="Pizza+Hut"+"67337"&gbv=2&rlst=fn`
 
-Please make sure you include &gbv=2&rlst=fn whichever format you use and also remember to URL encode each value. One format may work better than another for a specific business so we recommend testing both approaches to find the optimal profile URL. The code snippets on the right give examples of how to generate each type of URL.
+Please make sure you include &gbv=2&rlst=fn in whichever format you use. One format may work better than another for a specific business so we recommend testing both approaches to find the optimal profile URL. The code snippets on the right give examples of how to generate each type of URL.
 
 ## Supported Local Directories
 
