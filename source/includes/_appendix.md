@@ -5,7 +5,7 @@
 ```php
 <?php
 $url = 'https://www.google.com/search?' . http_build_query([
-    'q'    => '"Hub Plumbing & Mechanical Inc" "New York" 212-482-8500',
+    'q'    => sprintf('"%s" "%s" %s', 'Hub Plumbing & Mechanical Inc', 'New York', '212-482-8500'),
     'rlst' => 'fn',
     'gbv'  => 2,
 ]);
@@ -14,7 +14,7 @@ $url = 'https://www.google.com/search?' . http_build_query([
 ```php
 <?php
 $url = 'https://www.google.com/search?' . http_build_query([
-    'q'   => '"Pizza Hut" "67337"',
+    'q'   => sprintf('"%s" "%s"', 'Pizza Hut', '67337'),
     'rlst => 'fn',
     'gbv' => 2,
 ]);    
