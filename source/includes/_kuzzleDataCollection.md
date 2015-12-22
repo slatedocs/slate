@@ -265,7 +265,7 @@ Available options:
 // Using callbacks (NodeJS or Web Browser)
 kuzzle
   .dataCollectionFactory('collection')
-  .createDocument({title: 'foo', content: 'bar'}, {updateIfExist: true}, function (err, res) {
+  .createDocument('foobar', {title: 'foo', content: 'bar'}, {updateIfExist: true}, function (err, res) {
     // callback called once the create action has been completed
     // => the result is a KuzzleDocument object
   });
@@ -273,7 +273,7 @@ kuzzle
 // Using promises (NodeJS only)
 kuzzle
  .dataCollectionFactory('collection')
- .createDocumentPromise({title: 'foo', content: 'bar'}, {updateIfExist: true})
+ .createDocumentPromise('foobar', {title: 'foo', content: 'bar'}, {updateIfExist: true})
  .then(res => {
    // promise resolved once the create action has been completed
    // => the result is a KuzzleDocument object
