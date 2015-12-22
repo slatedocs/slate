@@ -1,6 +1,40 @@
 Socket API
 ==========
 
+You can listen real-time notifications about any interesting changes in the system by subscribing a **channel on the message router**.
+
+Retrieving message router information
+-------------------------------------
+
+    GET https://service.giosg.com/api/v5/messagerouter
+
+> An example response
+
+```json
+{
+    "url": "https://messagerouter.giosg.com/003/2/router",
+    "permission_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.e30.we2snuuhq-cnPk-GMJVoBhyZ7ZKPa95Qxe_3VkEaf_E",
+    "expires_at": "2015-12-22T11:25:30.595Z",
+    "expires_in": 1800
+}
+```
+
+In order to make a connection to the message router you need to make a HTTP request to the following endpoint:
+
+`GET /api/v5/messagerouter`
+
+This returns an object with the following attributes:
+
+Attribute          | Type   | Description
+-------------------|--------|------------
+`url`              | string | The URL where the client should open the socket connection.
+`permission_token` | string | A JWT permission token that is required when subscribing to real-time channels.
+`expires_at`       | [date/time][] | When the permission token expires. You should retrieve a new token before this.
+`expires_in`       | integer | After how many seconds the permission token will expire. You should retrieve a new token before this.
+
+Subscribing socket channels
+---------------------------
+
 Both users and visitors use a socket connection to receive real-time notifications about the changes. Notifications are delivered through **channels**.
 
 Subscribing the channels is done in the following way:
@@ -15,10 +49,10 @@ Subscribing the channels is done in the following way:
 
 The `<channel_id>` must be the ID of the channel being subscribed. The channel ID matches the URL path of the API endpoint where the resource or resource collection would be retrieved. For example: `/api/v5/client/visitors/e725acaa886f414986257bfe98d4db1c/chats` or `/api/v5/orgs/dc5e32c1-54d2-4010-8c04-8b66e565698e/rooms/3f7f6058-af90-4499-b769-9bb348af5736`.
 
-The `<permission_token>` must be a JWT token string. If the token is valid and it grants the permission to the requested channel, then the subscription will be accepted.
+The `<permission_token>` must be the JWT permission token string. If the token is valid and it grants the permission to the requested channel, then the subscription will be accepted.
 
 <aside class="warning">
-If the connection is ever closed and then re-opened, the client needs to re-send the <code>sub</code> messages for every channel they still want to subscribe!
+If the connection is closed and then re-opened, the client needs to re-send the <code>sub</code> messages for every channel they still want to subscribe!
 </aside>
 
 ```json
