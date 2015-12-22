@@ -4,21 +4,20 @@
 
 ```php
 <?php
-$url = sprintf(
-    'https://www.google.com/search?q="%s"+"%s"+%s&rlst=fn&gbv=2',
-    urlencode('Hub Plumbing & Mechanical Inc'),
-    urlencode('New York'),
-    urlencode('212-482-8500')
-);
+$url = 'https://www.google.com/search?' . http_build_query([
+    'q'    => '"Hub Plumbing & Mechanical Inc" "New York" 212-482-8500',
+    'rlst' => 'fn',
+    'gbv'  => 2,
+]);
 ```
 
 ```php
 <?php
-$url = sprintf(
-    'https://www.google.com/search?q="%s"+"%s"&rlst=fn&gbv=2',
-    urlencode('Pizza Hut'),
-    67337
-);
+$url = 'https://www.google.com/search?' . http_build_query([
+    'q'   => '"Pizza Hut" "67337"',
+    'rlst => 'fn',
+    'gbv' => 2,
+]);    
 ```
 
 Google recently simplified their Google+ profile pages and removed much of the useful profile information that we normally gather through APIs documented here, such as NAP and reviews. Consequently we have stopped using Google+ Local listings and have instead started tracking business profile information via Google SERP pages. This means that when requesting Google profile data or reviews via our API you need to supply us with a pre-formatted search URL rather than the plus URL that corresponds to that business. Your search URL should be constructed with one of the following formats:
