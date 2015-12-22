@@ -12,7 +12,7 @@ Unless stated otherwise, all the resources in the system are identified with a [
 
 For example: `9ae65e7d-56c5-11e5-af8d-6c4008c08dfe`
 
-## Paginated Collections
+## Paginated collections
 
 Some of the API endpoints return paginated collections. That means that for large collections of resources, not all resources are returned in a single response, but the response contains an URL that can be used to fetch the next chunk (page) of results.
 
@@ -40,7 +40,7 @@ Attribute | Type | Description
 `previous` | string | Full URL for requesting the previous page. This is `null` if the current page is the first page
 `results` | array of objects | The list containing the result resources for the current page. Each item is an object whose attributes depend on the returned resource type.
 
-## Ordering Collections
+## Ordering collections
 
 A [paginated collection][] can usually be ordered by using an `ordering` attribute.
 

@@ -14,7 +14,7 @@ Attribute | Type | Editable | Description
 `token` | string | read-only | A legacy Giosg-signed encoded unique string for the chat
 `created_at` | [date/time][] | read-only | When the chat conversation started
 `ended_at` | [date/time][] | read-only | When the chat conversation ended (or `null` if not yet ended)
-`updated_at` | [date/time][] | When the chat conversation was last time updated
+`updated_at` | [date/time][] | read-only | When the chat conversation was last time updated
 `is_private` | boolean | read-only | Whether or not the chat is marked as private for its operators
 `is_real_conversation` | boolean | read-only | Whether or not the chat is an actual conversation
 `is_autosuggested` | boolean | read-only | Whether or not the chat started with an autosuggestion
@@ -27,7 +27,7 @@ Attribute | Type | Editable | Description
 `autosuggest_url` | string | read-only | Full URL of the page that the visitor was on when they received an autosuggest, or `null` if this chat does not contain an autosuggestion.
 `autosuggest_url_title` | string | read-only | Title of the page that the visitor was on when they received an autosuggest, or `null` if this chat does not contain an autosuggestion.
 `tag_count` | integer | read-only | How many tags there are associated with this chat.
-`is_waiting_response` | boolean | read-only | This is `true` if the latest message in this chat is by the visitor, and if the chat has not ended, otherwise `false`.
+`is_waiting` | boolean | read-only | This is `true` if the latest message in this chat is by the visitor, and if the chat has not ended, otherwise `false`.
 `presence_count` | integer | read-only | How many people (visitor and users) there are currently present at this chat.
 `user_presence_count` | integer | read-only | How many users there are currently present at this chat.
 `visitor_presence_count` | integer | read-only | How many visitor there are currently present at this chat (0 or 1)
@@ -40,8 +40,8 @@ Any changes to chats are notified to the following [channels][]:
 Channel | Description
 --------|------------
 `/api/v5/client/visitors/<visitor_id>/chats` | For each visitor of the chat
-`/api/v5/orgs/<org_id>/users/<user_id>/chats` | For each participant and currently present user of the chat
-`/api/v5/orgs/<org_id>/rooms/<room_id>/chats` | For the chat parent room chat collection and each organization having access to that room
+`/api/v5/orgs/<organization_id>/users/<user_id>/chats` | For each participant and currently present user of the chat
+`/api/v5/orgs/<organization_id>/rooms/<room_id>/chats` | For the chat parent room chat collection and each organization having access to that room
 
 ### List chats at a room
 
@@ -68,7 +68,7 @@ Channel | Description
       "autosuggest_url": "http://www.customerpage.com/",
       "autosuggest_url_title": "Site Frontpage",
       "tag_count": 2,
-      "is_waiting_response": true,
+      "is_waiting": true,
       "presence_count": 1,
       "user_presence_count": 1,
       "visitor_presence_count": 1,
@@ -82,30 +82,30 @@ Channel | Description
 
 You can list chats for a room:
 
-`GET /api/v5/orgs/<org_id>/rooms/<room_id>/chats`
+`GET /api/v5/orgs/<organization_id>/rooms/<room_id>/chats`
 
 This API endpoint returns a [paginated collection][]. They are sorted by the creation time of the chats, in descending order.
 
 This endpoint takes the following GET-parameters:
 
-Parameter             | Type    | Default | Description
-----------------------|---------|---------|------------
-`is_waiting_response` | boolean | (none)  | If `true`, then return only waiting chats. If `false`, return only chats that are not waiting.
-`is_ended`            | boolean | (none)  | If `true`, only return ended chats. If `false`, only return open chats.
+Parameter    | Type    | Default | Description
+-------------|---------|---------|------------
+`is_waiting` | boolean | (none)  | If `true`, then return only waiting chats. If `false`, return only chats that are not waiting.
+`is_ended`   | boolean | (none)  | If `true`, only return ended chats. If `false`, only return open chats.
 
 Returns 403 if you do not have permission to the room and you are not a manager.
 
 ### List chats of a user
 
-You can get a collection of chats that a user has been participating **or** in which the user is currently present. If you need specifically either one of these then you can use the GET parameters described below.
+You can get a collection of chats that a user has been participating **or** in which the user has ever been present. Simply put, this returns the chats of the user.
 
-`GET /api/v5/orgs/<org_id>/users/<user_id>/chats`
+`GET /api/v5/orgs/<organization_id>/users/<user_id>/chats`
 
 This returns a [paginated collection][]. It is sorted by the creation time of the chat, in descending order.
 
 Parameter             | Type    | Default | Description
 ----------------------|---------|---------|------------
-`is_present`          | boolean | (none)  | If `true`, only return chats where `<user_id>` currently has a [chat presence][]. If `false`, exclude thats where `<user_id>` currently has a chat presence.
+`is_present`          | boolean | (none)  | If `true`, only return chats where `<user_id>` **currently** has a [chat presence][]. If `false`, exclude thats where `<user_id>` currently has a chat presence.
 `is_participant`      | boolean | (none)  | If `true`, only return chats where `<user_id>` is a [chat participant][]. If `false`, exclude thats where `<user_id>` is a chat participant.
 `is_ended`            | boolean | (none)  | If `true`, only return ended chats. If `false`, only return open chats.
 
@@ -113,14 +113,14 @@ When using this endpoint, the chat as the following additional attributes:
 
 Attribute        | Type    | Editable  | Description
 -----------------|---------|-----------|------------
-`is_present`     | boolean | read-only | Whether or not the `<user_id>` currently has a [chat presence][] at this chat
+`is_present`     | boolean | read-only | Whether or not the `<user_id>` **currently** has a [chat presence][] at this chat
 `is_participant` | boolean | read-only | Whether or not the `<user_id>` is a [participant of this chat][chat participant]
 
 ### Create a new chat with a visitor in a room
 
 Start a new chat with a visitor in the given room.
 
-`POST /api/v5/orgs/<org_id>/rooms/<room_id>/visitors/<visitor_id>/chats`
+`POST /api/v5/orgs/<organization_id>/rooms/<room_id>/visitors/<visitor_id>/chats`
 
 Parameter | Format | Default | Description
 :---------|:-------|:--------|------------
@@ -137,7 +137,7 @@ Chat presences
 
 A chat presence describes either a user (a chat operator) or a visitor being currently "joined" to a chat. In case of visitors, the presence is equal to the online status of the visitor in the related room. Users on the other hands need explicitly to "join" the chat.
 
-Both visitors' and operators' presences are automatically removed from a chat presences if we have not heard about them for a while, indicating that they have closed their browser tab or they have lost their web connection.
+Both visitors' and operators' presences are automatically removed from chat presences if we have not heard about them for a while, indicating that they have closed their browser tab or they have lost their connection.
 
 Attribute | Format | Editable | Description
 :---------|:-------|:--------|------------
@@ -154,8 +154,8 @@ Changes to chat presences are notified to the following [channels][]:
 Channels    | Description
 ------------|---------------
 `/api/v5/client/visitors/<visitor_id>/chats/<chat_id>/presences` | For each visitor of the chat
-`/api/v5/orgs/<org_id>/users/<user_id>/chats/<chat_id>/presences` | For each participant and currently present user of the chat
-`/api/v5/orgs/<org_id>/rooms/<room_id>/chats/<chat_id>/presences` | For the related room and each organization having access to that room
+`/api/v5/orgs/<organization_id>/users/<user_id>/chats/<chat_id>/presences` | For each participant and currently present user of the chat
+`/api/v5/orgs/<organization_id>/rooms/<room_id>/chats/<chat_id>/presences` | For the related room and each organization having access to that room
 
 In addition, chat presences affect the following attributes of a [chat][], notifying the channels of the related chat:
 
@@ -165,11 +165,11 @@ In addition, chat presences affect the following attributes of a [chat][], notif
 
 ### Get currently present people at the chat
 
-    GET /api/v5/orgs/7f9e9580-095b-42c7-838c-c04e667b26f7/chats/58f5055c-56e0-11e5-9354-6c4008c08dfe/presences
+    GET /api/v5/orgs/7f9e9580-095b-42c7-838c-c04e667b26f7/rooms/b5082826-76b7-4197-a362-1222c81d2661/chats/58f5055c-56e0-11e5-9354-6c4008c08dfe/presences
 
 ```json
 {
-  "next": "https://service.giosg.com/api/v5/orgs/7f9e9580-095b-42c7-838c-c04e667b26f7/chats/58f5055c-56e0-11e5-9354-6c4008c08dfe/presences?cursor=45d9e7358e1249c491b4fa0212310f55",
+  "next": "https://service.giosg.com/api/v5/orgs/7f9e9580-095b-42c7-838c-c04e667b26f7/rooms/b5082826-76b7-4197-a362-1222c81d2661/chats/58f5055c-56e0-11e5-9354-6c4008c08dfe/presences?cursor=45d9e7358e1249c491b4fa0212310f55",
   "previous": null,
   "results": [
     {
@@ -197,9 +197,14 @@ In addition, chat presences affect the following attributes of a [chat][], notif
 }
 ```
 
-You can get a collection of current chat presences:
+There are two endpoints to list the current presences at a chat.
+If you are inspecting a chat by a room, then use the following endpoint. It requires that you have a permission to the room.
 
-`GET /api/v5/orgs/<org_id>/chats/<chat_id>/presences`
+`GET /api/v5/orgs/<organization_id>/rooms/<room_id>/chats/<chat_id>/presences`
+
+If on the other hand you are inspecting a chat by a user, then use the following endpoint. It requires that you have a permission to the user and his/her chats.
+
+`GET /api/v5/orgs/<organization_id>/users/<user_id>/chats/<chat_id>/presences`
 
 This API endpoint returns a [paginated collection][]. They are sorted by the time on which the people have joined the chat.
 
@@ -207,7 +212,7 @@ This API endpoint returns a [paginated collection][]. They are sorted by the tim
 
 > Example request for joining the operator to a chat
 
-    POST /api/v5/orgs/39351090-2f16-49e0-ae14-96c9a3a721f2/chats/62eb5cd5-5d52-4bb1-b711-ba31f864e775/presences
+    POST /api/v5/orgs/39351090-2f16-49e0-ae14-96c9a3a721f2/rooms/adab695d-a648-42d6-b956-19efc1124e89/chats/62eb5cd5-5d52-4bb1-b711-ba31f864e775/presences
 
 ```json
 {
@@ -215,17 +220,23 @@ This API endpoint returns a [paginated collection][]. They are sorted by the tim
 }
 ```
 
-You can adds a user to the list of currently present people of the chat. Operator will be automatically removed from the joined operators if the operator has not been reached for a while, or by making a leave API request.
+You can add a user to the list of currently present people of the chat. Operator will be automatically removed from the joined operators if the operator has not been reached for a while, or by making a leave API request.
 
-`POST /api/v5/orgs/<org_id>/chats/<chat_id>/presences`
+If you are joining a user to a chat by a room, then use the following endpoint. It requires that you have a permission to the room. This can be used to join a chat that the user has not yet participated.
+
+`POST /api/v5/orgs/<organization_id>/rooms/<room_id>/chats/<chat_id>/presences`
 
 The request object must contain the `id` attribute, which is the ID of the user being joined.
 
-You may alternatively make the following request, in which case the payload is not required:
+Alternatively, if you are joining a chat by a user, then use the following endpoint. It requires that you have a permission to the user and his/her chats.
 
-`PUT /api/v5/orgs/<org_id>/chats/<chat_id>/presences/<user_id>`
+`GET /api/v5/orgs/<organization_id>/users/<user_id>/chats/<chat_id>/presences`
 
-This endpoint accepts the following GET parameters:
+In this case you may omit the `id` attribute from the payload, which will then default to the `<user_id>` in the URL. This basicly means that the user will re-join to this chat.
+
+If the related chat was previously in waiting state, then `is_waiting` of the chat is automatically changed to `false`.
+
+These endpoint accept the following GET parameters:
 
 Parameter | Format | Default | Description
 :---------|:-------|:--------|------------
@@ -241,7 +252,11 @@ This request sends notifications to the [channels][] of the chat presences as we
 
 Removes the operator from the list of currently present operators of the chat.
 
-`DELETE /api/v5/orgs/<org_id>/chats/<chat_id>/presences/<user_id>`
+`DELETE /api/v5/orgs/<organization_id>/rooms/<room_id>/chats/<chat_id>/presences/<user_id>`
+
+Or alternatively:
+
+`DELETE /api/v5/orgs/<organization_id>/rooms/<room_id>/users/<user_id>/presences/<user_id>`
 
 This request sends notifications to the [channels][] of the chat presences as well as the related chat.
 
@@ -268,7 +283,7 @@ Attribute | Format | Editable | Description
 
 ### Get a collection of chat participants
 
-    GET /api/v5/orgs/7f9e9580-095b-42c7-838c-c04e667b26f7/chats/58f5055c-56e0-11e5-9354-6c4008c08dfe/participants
+    GET /api/v5/orgs/7f9e9580-095b-42c7-838c-c04e667b26f7/rooms/aad26fe2-c8f3-45dc-931b-4b0b5e06467d/chats/58f5055c-56e0-11e5-9354-6c4008c08dfe/participants
 
 ```json
 {
@@ -302,10 +317,15 @@ Attribute | Format | Editable | Description
 
 You can get a [paginated collection][] of all the participants of the chat:
 
-`GET /api/v5/orgs/<org_id>/users/<user_id>/chats/<chat_id>/participants`
+`GET /api/v5/orgs/<organization_id>/rooms/<room_id>/chats/<chat_id>/participants`
+
+Or alternatively:
+
+`GET /api/v5/orgs/<organization_id>/users/<user_id>/chats/<chat_id>/participants`
 
 
-## Chat messages
+Chat messages
+-------------
 
 Chat consists of a number of messages. Some of them are actual typed messages from either operator or visitor, and some of them are automatically added events about the chat, especially when an operator has [joined or leaved][chat presence] the chat.
 
@@ -315,7 +335,7 @@ Attribute | Type | Editable | Description
 `type` | string | read-only | Whether the message is an actual message (`msg`), autosuggest (`autosuggest`), a join event (`join`) or a leave event (`leave`). When POSTing a message, this will automatically be set to `msg`.
 `created_at` | [date/time][] | read-only | When the message was sent
 `sender_type` | string | read-only | Whether the sender is operator (`user`) or visitor (`visitor`). When POSTing a new message with these endpoints, this will automatically be set to `user`.
-`sender_id` | [ID][]/string | **required** | Identifier for the sender. If the sender is a user, then this is the user's ID. Otherwise this is an unique string for the visitor.
+`sender_id` | [ID][]/string | read-only | Identifier for the sender. If the sender is a user, then this is the user's ID. Otherwise this is an unique string for the visitor.
 `sender_public_name` | string | read-only | A display name for the sender as the visitor would see him.
 `sender_name` | string | read-only | A display name for the sender as an operator would see him.
 `sender_avatar` | object | read-only | If the sender has an avatar image, then this is an object with `id` and `url` attributes. Otherwise this is `null`.
@@ -326,20 +346,20 @@ Any changes to chat messages are notified to the following [channels][]:
 Channel | Description
 --------|------------
 `/api/v5/client/visitors/<visitor_id>/chats/<chat_id>/messages` | For each visitor of the chat
-`/api/v5/orgs/<org_id>/users/<user_id>/chats/<chat_id>/messages` | For each participant and currently present user of the chat
-`/api/v5/orgs/<org_id>/rooms/<room_id>/chats/<chat_id>/messages` | For the chat parent room chat collection and each organization having access to that room
+`/api/v5/orgs/<organization_id>/users/<user_id>/chats/<chat_id>/messages` | For each participant and currently present user of the chat
+`/api/v5/orgs/<organization_id>/rooms/<room_id>/chats/<chat_id>/messages` | For the chat parent room chat collection and each organization having access to that room
 
 In addition, sending chat messages affect the following attributes of a [chat][], which notifies the channels of the chat.
 
 - `message_count`
 - `user_message_count`
 - `visitor_message_count`
-- `is_waiting_response`
+- `is_waiting`
 
 
-### Get chat history
+### List chat messages
 
-    GET /api/v5/orgs/54de4830-a16e-417a-802b-4bf4bcb59ed8/chats/450fc49e-277e-4dd6-af0f-6e9dcb885b09/messages
+    GET /api/v5/orgs/54de4830-a16e-417a-802b-4bf4bcb59ed8/rooms/d3b4ea93-c32c-4910-a114-c9d145e1c591/chats/450fc49e-277e-4dd6-af0f-6e9dcb885b09/messages
 
 ```json
 {
@@ -389,30 +409,35 @@ In addition, sending chat messages affect the following attributes of a [chat][]
 }
 ```
 
-Get the chat history, that is, the collection of all chat messages in the given chat.
+Get the collection of all chat messages in the given chat.
 
-`GET /api/v5/orgs/<org_id>/chats/<chat_id>/messages`
+`GET /api/v5/orgs/<organization_id>/rooms/<room_id>/chats/<chat_id>/messages`
+
+Or alternatively:
+
+`GET /api/v5/orgs/<organization_id>/users/<user_id>/chats/<chat_id>/messages`
 
 The response is a [paginated collection][], ordered by the creation date in descending order.
 
 ### Send a chat message
 
-    POST /api/v5/orgs/b2bf5dba-055c-4ac6-a83c-7f85a1f60db9/chats/4a591004-4c18-4260-bbb4-fc9f9f9a048d/messages
+    POST /api/v5/orgs/b2bf5dba-055c-4ac6-a83c-7f85a1f60db9/users/7c94ae79-a4b4-4eea-ac23-24c16f910080/chats/9d25ef9d-26ed-40e8-8d74-a6a17039195d/messages
 
 ```json
 {
-  "sender_id": "7c94ae79-a4b4-4eea-ac23-24c16f910080",
   "message": "OK, I've found out the issue!"
 }
 ```
 
-Send a new chat message with type `msg` to a chat:
+Send a new chat message to a user's chat with type `msg` to a chat:
 
-`POST /api/v5/orgs/<org_id>/chats/<chat_id>/messages`
+`POST /api/v5/orgs/<organization_id>/users/<user_id>/chats/<chat_id>/messages`
 
-The ID of the sender must be explicitly provided. This is usually equal to the user who is authenticated. If the sender is not yet added as a participant of this chat, then a new [participant][chat participant] is automatically created.
+The `<user_id>` will be set as the sender of the message. If the sender is not yet added as a participant of this chat, then a new [participant][chat participant] is automatically created.
 
-If the chat was previously in waiting state, then `is_waiting_response` of the chat is automatically changed to `false`.
+This returns 404 if the chat does not belong to the chats of the user. That is, in order to send a message, the user must have joined the chat at least once. However, he/she do not have to have a current presence.
+
+If the chat was previously in waiting state, then `is_waiting` of the chat is automatically changed to `false`.
 
 This notifies any channels of chat messages, as well as channels of the related [chat][] and [chat participants][chat participant] accordingly.
 
@@ -433,18 +458,12 @@ By default, the API returns all the available chats paginated, sorted by ascendi
 
 Parameter | Format | Default | Description
 :---------|:-------|:--------|------------
-`ordering` | [ordering][] | `created_at` | Order results by either `created_at` or `ended_at`.
-`page` | integer | 1 | [Page][paginated collection] to get
-`page_size` | integer | 25 | [Page size][paginated collection] for the pages, with max value of 100
-`since_id` | [ID][] | | Only return chats after the chat with this ID (exclusive)
-`created_at` | [date/time][] | | Only return chats started after this moment (inclusive)
-`ended_at` | [date/time][] | | Only return chats ended before this moment (exclusive)
-`has_sales` | true/false | | If `true`/`false`, only return chats with/without sales
-`is_real_conversation` | true/false | | If `true`/`false`, only return real/non-real chats
-`room_id` | [ID][] | | Only chats on the [room][] with this ID.
-`tag` | string | | Only chats that have this tag added to them by an operator.
-`min_message_count` | integer | | Only chats with at least this number of messages.
-`only_ended` | true/none | | If `true`, only include chats that have been ended
+`created_after` | [date/time][] | (none) | Only return chats that are created after this moment (exclusive)
+`created_up_to` | [date/time][] | (none) | Only return chats that are created after this moment (inclusive)
+`is_real_conversation` | boolean | | If `true`/`false`, only return real/non-real chats
+`tagged_with` | string | | Only chats that have this tag added to them by an operator.
+`min_message_count` | integer | | Only chats with at least this number of actual [chat messages][chat message] (not counting autosuggestions or other events)
+`is_ended` | boolean | | If `true`, only include chats that have been ended. If `false`, only include chats that are open.
 
 ```json
 {

@@ -1,6 +1,6 @@
   [id]: <#resource-identifiers> "Resource identifiers"
   [date]: <#date-format> "Date format"
-  [date/time]: <#datetime-format> "Date/time format"
+  [date/time]: <#date-time-format> "Date/time format"
   [paginated collection]: <#paginated-collections> "Paginated collections"
   [ordering]: <#ordering-collections> "Ordering collections"
   [authentication]: <#authentication> "Authentication"

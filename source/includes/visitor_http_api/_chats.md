@@ -1,9 +1,10 @@
 Chat API
 ========
 
-## Chats
+Chats
+-----
 
-### Get a collection of visitor's chats
+### List visitor's chats
 
 You can get a list of all chats of the visitor.
 
@@ -36,7 +37,7 @@ You can get a list of all chats of the visitor.
 
 This API endpoint returns a [paginated collection][]. They are sorted by the creation time of the chats, in ascending order.
 
-### Create a new chat with a visitor in a room
+### Create a new chat
 
 Start a new chat with a visitor in the given room.
 
@@ -56,7 +57,9 @@ When a new chat was successfully created, the following channels are notified wi
 - For the visitor: `/api/v5/client/visitors/<visitor_id>/chats`
 - For the chat parent room chat collection and each organization having access that room: `/api/v5/orgs/<org_id>/rooms/<room_id>/chats`
 
-## Chat operator presences
+
+Chat operator presences
+-----------------------
 
 A chat operator presence describes an user (a chat operator) being currently "joined" to a chat.
 
@@ -67,7 +70,7 @@ Attribute | Format | Editable | Description
 `chat_id` | [ID][] | **required** | ID of the chat in which the user is currently being joined.
 `created_at` | [date/time][] | read-only | When this organization account was created. **Available only for your own organization.**
 
-### Get operators that are currently present at the chat
+### List currently present people
 
 You can get a collection of chat operator presences.
 
@@ -98,7 +101,8 @@ This API endpoint returns a [paginated collection][]. They are sorted by the tim
 }
 ```
 
-## Chat participations
+Chat participants
+-------------------
 
 The visitor as well as each user who have sent at least one message to the chat is added as a "participant" to the chat. This is represented as a "participation" resource:
 
@@ -107,12 +111,13 @@ Attribute | Format | Editable | Description
 `id` | [ID][]/string | read-only | ID of the user or visitor that has participated in the chat.
 `type` | string | read-only | Either `visitor` or `user`.
 
-### Get a collection of chat participations
+### List chat participants
 
-`GET /api/v5/client/visitors/<visitor_id>/chats/<chat_id>/participations`
+`GET /api/v5/client/visitors/<visitor_id>/chats/<chat_id>/participants`
 
 
-## Chat messages
+Chat messages
+-------------
 
 Chat consists of a number of messages. Some of them are actual typed messages from either operator or visitor, and some of them are automatically added events about the chat, especially when an operator has [joined or leaved][chat presence] the chat.
 
@@ -126,7 +131,7 @@ Attribute | Type | Editable | Description
 `sender_public_name` | string | read-only | A display name for the sender as the visitor would see him.
 `message` | string | **required** | Content text of the message. The maximum length is 2000 characters.
 
-### Get chat history
+### List chat messages
 
 ```json
 {
@@ -172,7 +177,7 @@ Attribute | Type | Editable | Description
 }
 ```
 
-Get the chat history, that is, the collection of all chat messages in the given chat.
+Get the collection of all chat messages in the given chat.
 
 `GET /api/v5/client/visitors/<visitor_id>/chats/<chat_id>/messages`
 
