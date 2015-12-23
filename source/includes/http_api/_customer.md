@@ -1,43 +1,9 @@
 Customer API
 ============
 
-## Organizations
+Users
+-----
 
-An organization represents any organization account on giosg system. An organization consists of a number of users with their own user accounts. A user always belongs to exactly one organization.
-
-Please note that despite its name a "organization" in this context means any organization or group. It can even consists of only one user.
-
-An organization object contains the following attributes. Note that the contact information is public.
-
-Attribute | Type | Editable | Description
-:---------|:-----|:---------|------------
-`id` | [ID][] | read-only | Unique identifier for this organization
-`name` | string | **required?** | The name of the organization. Required, if your organization is using Network features, such as [partnerships](#partnership-api) or [sharing](#sharing-api).
-`email` | string | **optional** | Contact email address, or `null`
-`phone` | string | **optional** | Contact phone number, or `null`
-`street` | string | **optional** | Contact street address, or `null`
-`postal_code` | string | **optional** | Contact address postal code, or `null`
-`city` | string | **optional** | Contact address city, or `null`
-`country` | string | **optional** | Country as a two-letter, lowercase ISO 3166-1 code, or `null`
-`business_id` | string | **optional** | Business ID of the organization, if any, or `null`
-`created_at` | [date/time][] | read-only | When this organization account was created. **Available only for your own organization.**
-`updated_at` | [date/time][] | read-only | When organization details were changed last time. **Available only for your own organization.**
-
-### Retrieve organization details
-Get a single [organization][] object by its ID.
-
-`GET https://service.giosg.com/api/v5/orgs/<organization_id>`
-
-### Update organization details
-You may update some of the attributes a organization, if you have permissions to do so.
-
-`PUT https://service.giosg.com/api/v5/orgs/<organization_id>`
-
-`PATCH https://service.giosg.com/api/v5/orgs/<organization_id>`
-
-When using `PUT` you need to provide an object as a request payload that contains the changed attributes the [organization][]. When using `PATCH`, you may omit those attributes that you do not want to change.
-
-## Users
 A user represents a giosg user account. A user resource has the following attributes.
 
 Attribute | Type | Editable | Description
@@ -116,3 +82,41 @@ When using `PUT` you need to provide an object as a request payload that contain
 <aside class="warning">
 You are allowed to update your own details. You may only change other users' details if you have management rights for the organization. Otherwise this endpoint will result in a 403 response.
 </aside>
+
+
+Organizations
+-------------
+
+An organization represents any organization account on giosg system. An organization consists of a number of users with their own user accounts. A user always belongs to exactly one organization.
+
+Please note that despite its name a "organization" in this context means any organization or group. It can even consists of only one user.
+
+An organization object contains the following attributes. Note that the contact information is public.
+
+Attribute | Type | Editable | Description
+:---------|:-----|:---------|------------
+`id` | [ID][] | read-only | Unique identifier for this organization
+`name` | string | **required?** | The name of the organization. Required, if your organization is using Network features, such as [partnerships](#partnership-api) or [sharing](#sharing-api).
+`email` | string | **optional** | Contact email address, or `null`
+`phone` | string | **optional** | Contact phone number, or `null`
+`street` | string | **optional** | Contact street address, or `null`
+`postal_code` | string | **optional** | Contact address postal code, or `null`
+`city` | string | **optional** | Contact address city, or `null`
+`country` | string | **optional** | Country as a two-letter, lowercase ISO 3166-1 code, or `null`
+`business_id` | string | **optional** | Business ID of the organization, if any, or `null`
+`created_at` | [date/time][] | read-only | When this organization account was created. **Available only for your own organization.**
+`updated_at` | [date/time][] | read-only | When organization details were changed last time. **Available only for your own organization.**
+
+### Retrieve organization details
+Get a single [organization][] object by its ID.
+
+`GET https://service.giosg.com/api/v5/orgs/<organization_id>`
+
+### Update organization details
+You may update some of the attributes a organization, if you have permissions to do so.
+
+`PUT https://service.giosg.com/api/v5/orgs/<organization_id>`
+
+`PATCH https://service.giosg.com/api/v5/orgs/<organization_id>`
+
+When using `PUT` you need to provide an object as a request payload that contains the changed attributes the [organization][]. When using `PATCH`, you may omit those attributes that you do not want to change.
