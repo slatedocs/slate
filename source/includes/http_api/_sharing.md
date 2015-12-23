@@ -77,10 +77,8 @@ The `<resource_type>` must be either `rooms` or `teams`. This endpoint accepts t
 
 Parameter | Type | Default | Description
 ----------|------|---------|------------
-`ordering` | [ordering][] | `created_at` | Ordering of results with options: `created_at`
+`ordering` | [ordering][] | `created_at` | Ordering of results with options: `created_at` or `-created_at`
 `receiver_organization_id` | [ID][] | (none) | Filter the results by a receiving partner organization ID
-`page` | integer | 1 | [Page][paginated collection] to get
-`page_size` | integer | 25 | [Page size][paginated collection] for the pages, with max value of 200
 
 ### Update an outgoing share
 Once a resource share is created, you cannot change its resource, partnership or other relations. If you shared a wrong resource or to a wrong partner, you need to delete the share and create a new one. You may still update a resource share resource, specifically its `share_name`, by making a `PUT` or `PATCH` request:
@@ -130,10 +128,8 @@ The `<resource_type>` must be either `rooms` or `teams`. This endpoint accepts t
 
 Parameter | Type | Default | Description
 ----------|------|---------|------------
-`ordering` | [ordering][] | `created_at` | Ordering of results with options `created_at`
+`ordering` | [ordering][] | `created_at` | Ordering of results with options `created_at` and `-created_at`
 `sharer_organization_id` | [ID][] | (none) | Filter the results by a receiving partner organization ID
-`page` | integer | 1 | [Page][paginated collection] to get
-`page_size` | integer | 25 | [Page size][paginated collection] for the pages, with max value of 200
 
 ### Retrieve incoming share details
 Returns an [incoming room share][] or [incoming team share][] resource by the given ID.

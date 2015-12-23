@@ -85,11 +85,9 @@ Get a [paginated collection][] of users who belong to a given organization (`<or
 
 Parameter | Type | Default | Description
 ----------|------|---------|------------
-`ordering` | [ordering][] | `created_at` | Ordering of results with options `last_name`, `first_name`, `email`, `alias`, `created_at`, `updated_at`
+`ordering` | [ordering][] | `created_at` | Ordering of results with options `created_at` or `email` (with or without `-`)
 `include_deleted` | boolean | false | If `true`, include deleted users to results. If `false` (default), excludes any deleted users.
 `is_manager` | boolean | (none) | If `true`, only include managers. If `false`, exclude all managers.
-`page` | integer | 1 | [Page][paginated collection] to get
-`page_size` | integer | 50 | [Page size][paginated collection] for the pages, with max value of 200
 
 ### Retrieve details of an organization member
 Get a single [user][] object by its ID (`<user_id>`) that belongs to an organization (`<organization_id>`)

@@ -59,9 +59,7 @@ The endpoint accepts the following GET parameters.
 
 Parameter | Type | Default | Description
 ----------|------|---------|------------
-`ordering` | [ordering][] | `created_at` | Ordering of results with options `created_at`, `updated_at`, `name`, `kind`, `content_type`, `size`, `file_name`
-`page` | integer | 1 | [Page][paginated collection] to get
-`page_size` | integer | 50 | [Page size][paginated collection] for the pages, with max value of 100
+`ordering` | [ordering][] | `created_at` | Ordering of results with options `created_at` or `-created_at`
 
 ### Retrieve a single asset
 

@@ -45,12 +45,10 @@ Return a [paginated collection][] of all the [room][] resources you have access 
 
 Parameter | Type | Default | Description
 ----------|------|---------|------------
-`ordering` | [ordering][] | `created_at` | Ordering of results with options `name`, `domain`, `created_at`, `updated_at`
+`ordering` | [ordering][] | `created_at` | Ordering of results with options `created_at` and `-created_at`
 `include_deleted` | boolean | `false` | If `true`, include deleted resources to results. If `false` (default), excludes any deleted resources.
 `is_shared` | boolean | (none) | If `true`, return only rooms shared to your organization. If `false`, return only your own organization's rooms.
 `organization_id` | [ID][] | (none) | Return only rooms owned by this organization ID
-`page` | integer | 1 | [Page][paginated collection] to get
-`page_size` | integer | 50 | [Page size][paginated collection] for the pages, with max value of 200
 
 ### Creating a room
 Create a new custom room or a domain room by making a `POST` request, providing the [room object][room] as a payload. By providing the `domain` attribute with non-null value will create a new domain room.
