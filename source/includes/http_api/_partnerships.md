@@ -58,10 +58,8 @@ This endpoint accepts the following GET parameters.
 
 Parameter | Type | Default | Description
 ----------|------|---------|------------
-`ordering` | [ordering][] | `created_at` | Ordering of results with options `status`, `email`, `created_at`, `resolved_at`
+`ordering` | [ordering][] | `created_at` | Ordering of results with options `created_at` or `-created_at`
 `status` | integer | (none) | Filter the results by the `status` attribute
-`page` | integer | 1 | [Page][paginated collection] to get
-`page_size` | integer | 50 | [Page size][paginated collection] for the pages, with max value of 200
 
 ## Incoming partnership invitations
 
@@ -101,10 +99,8 @@ This endpoint accepts the following GET parameters.
 
 Parameter | Type | Default | Description
 ----------|------|---------|------------
-`ordering` | [ordering][] | `created_at` | Ordering of results with options `status`, `email`, `created_at`, `resolved_at`
+`ordering` | [ordering][] | `created_at` | Ordering of results with options `created_at`, `-created_at`
 `status` | integer | (none) | Filter the results by the `status` attribute
-`page` | integer | 1 | [Page][paginated collection] to get
-`page_size` | integer | 50 | [Page size][paginated collection] for the pages, with max value of 200
 
 ### Accept an incoming invitation
 You need to accept an invitation to become partners with the sender. In order to accept the invitation, you need the invitation key.
@@ -163,9 +159,7 @@ This end-point accepts the following GET parameters.
 
 Parameter | Type | Default | Description
 ----------|------|---------|------------
-`ordering` | [ordering][] | `created_at` | Ordering of results with options `partner_organization_name`, `created_at`, `display_name`
-`page` | integer | 1 | [Page][paginated collection] to get
-`page_size` | integer | 25 | [Page size][paginated collection] for the pages, with max value of 100
+`ordering` | [ordering][] | `created_at` | Ordering of results with options `created_at` and `-created_at`
 
 ### Retrieve partnership details
 Retrieve a single [partnership][] resource for your organization (`<organization_id>`) by the partner organization's ID (`<partner_organization_id>`).

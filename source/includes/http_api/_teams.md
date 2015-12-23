@@ -24,10 +24,8 @@ Return a [paginated collection][] of all the [team][] resources of an organizati
 
 Parameter | Type | Default | Description
 ----------|------|---------|------------
-`ordering` | [ordering][] | `created_at` | Ordering of results with options `name`, `organization_id`
+`ordering` | [ordering][] | `created_at` | Ordering of results with options `created_at` or `-created_at`
 `is_shared` | boolean | (none) | If `true`, return only teams that are shared to the organization. If `false`, return only the organization's own teams.
-`page` | integer | 1 | [Page][paginated collection] to get
-`page_size` | integer | 50 | [Page size][paginated collection] for the pages, with max value of 200
 
 Teams are readable by anyone in the same organization. However, they can be created, updated or deleted only by organization managers.
 
@@ -82,8 +80,6 @@ Return a [paginated collection][] of all the [team membership][] resources for a
 Parameter | Type | Default | Description
 ----------|------|---------|------------
 `is_admin` | boolean | (none) | If `true`, return only admin memberships. If `false`, return only non-admin memberships.
-`page` | integer | 1 | [Page][paginated collection] to get
-`page_size` | integer | 50 | [Page size][paginated collection] for the pages, with max value of 200
 
 ### Add a member to a team
 You may add a user of your own organization to one of your teams by creating a team membership object.

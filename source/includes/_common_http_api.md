@@ -14,8 +14,6 @@ For example: `9ae65e7d-56c5-11e5-af8d-6c4008c08dfe`
 
 ## Paginated collections
 
-Some of the API endpoints return paginated collections. That means that for large collections of resources, not all resources are returned in a single response, but the response contains an URL that can be used to fetch the next chunk (page) of results.
-
 > An example of a JSON response with a paginated collection
 
 ```json
@@ -32,6 +30,8 @@ Some of the API endpoints return paginated collections. That means that for larg
 }
 ```
 
+Some of the API endpoints return paginated collections. That means that for large collections of resources, not all resources are returned in a single response, but the response contains an URL that can be used to fetch the next chunk (page) of results.
+
 Paginated collections are objects with the following attributes.
 
 Attribute | Type | Description
@@ -39,6 +39,14 @@ Attribute | Type | Description
 `next` | string | Full URL for requesting the next page. This is `null` if the current page is the last page.
 `previous` | string | Full URL for requesting the previous page. This is `null` if the current page is the first page
 `results` | array of objects | The list containing the result resources for the current page. Each item is an object whose attributes depend on the returned resource type.
+
+<aside class="warning">
+Unless stated otherwise, the server only guarantees the order of the resources, but not the number of items returned per page. If you need a specific number of results, then you need to splice the returned list on the client.
+</aside>
+
+<aside class="info">
+If you need to load all resources using an endpoint returning paginated collections, then you need to check if the <code>next</code> attribute is not <code>null</code>, potentially load the next page and then repeat this until you have loaded and built the full collection of resources.
+</aside>
 
 ## Ordering collections
 
