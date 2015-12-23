@@ -45,6 +45,8 @@ Channel | Description
 
 ### List chats at a room
 
+    GET https://service.giosg.com/api/v5/orgs/7f9e9580-095b-42c7-838c-c04e667b26f7/rooms/9926bdfa-56e0-11e5-b98c-6c4008c08dfe/chats
+
 ```json
 {
   "next": "https://service.giosg.com/api/v5/orgs/7f9e9580-095b-42c7-838c-c04e667b26f7/rooms/9926bdfa-56e0-11e5-b98c-6c4008c08dfe/chats?cursor=171cfd0d7ce542be86221f01d2823cb1",
@@ -121,6 +123,8 @@ Attribute        | Type    | Editable  | Description
 Start a new chat with a visitor in the given room.
 
 `POST /api/v5/orgs/<organization_id>/rooms/<room_id>/visitors/<visitor_id>/chats`
+
+Creating a new chat using this endpoint does not require any attributes and therefore the payload is not required. However, it accepts the following get parameters:
 
 Parameter | Format | Default | Description
 :---------|:-------|:--------|------------

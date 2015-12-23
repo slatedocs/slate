@@ -2,7 +2,7 @@ Using the visitor API
 =====================
 
 <aside class="warning">
-This documentation is a <strong>draft</strong>!
+This documentation is a <strong>draft</strong>! Anything stated in this document may be changed significantly!
 </aside>
 
 ## Authentication

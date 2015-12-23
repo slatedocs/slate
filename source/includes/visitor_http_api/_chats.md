@@ -39,6 +39,8 @@ Channel | Description
 
 You can get a list of all chats of the visitor.
 
+    GET https://service.giosg.com/api/v5/client/visitors/3803737880ec4dedb7eee63a860bfff2/chats
+
 ```json
 {
   "next": "https://service.giosg.com/api/v5/client/visitors/3803737880ec4dedb7eee63a860bfff2/chats?cursor=48d7ca8d5a394ff99a32720ccf7893bd",
@@ -88,7 +90,7 @@ Returns 200 if resumed an existing chat when `auto_resume` parameter was provide
 When a new chat was successfully created, the following channels are notified with an `added` message.
 
 - For the visitor: `/api/v5/client/visitors/<visitor_id>/chats`
-- For the chat parent room chat collection and each organization having access that room: `/api/v5/orgs/<org_id>/rooms/<room_id>/chats`
+- For the chat parent room chat collection and each organization having access that room: `/api/v5/orgs/<organization_id>/rooms/<room_id>/chats`
 
 
 Chat presences
@@ -230,6 +232,8 @@ In addition, sending chat messages affect the following attributes of a [chat][]
 
 ### List chat messages
 
+    GET https://service.giosg.com/api/v5/client/visitors/f7a5a3b83d2e40dfb0dedd6c0e284214/chats/450fc49e-277e-4dd6-af0f-6e9dcb885b09/messages
+
 ```json
 {
   "next": "https://service.giosg.com/api/v5/client/visitors/f7a5a3b83d2e40dfb0dedd6c0e284214/chats/450fc49e-277e-4dd6-af0f-6e9dcb885b09/messages?cursor=171cfd0d7ce542be86221f01d2823cb1",
@@ -280,7 +284,9 @@ Get the collection of all chat messages in the given chat.
 
 ### Send a chat message
 
-    POST /api/v5/client/visitors/<visitor_id>/chats/4a591004-4c18-4260-bbb4-fc9f9f9a048d/messages
+    POST https://service.giosg.com/api/v5/client/visitors/be82243cf82540c49a629543022a3de2/chats/4a591004-4c18-4260-bbb4-fc9f9f9a048d/messages
+
+> Example request payload
 
 ```json
 {
