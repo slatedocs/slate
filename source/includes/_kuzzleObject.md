@@ -12,10 +12,10 @@ Connects to a Kuzzle instance.
 
 
 ```js
-var kuzzle = new Kuzzle('http://localhost:7512', {autoReconnect: true, headers: {someheader: "value"}});
+var kuzzle = new Kuzzle('http://localhost:7512', 'some index', {autoReconnect: true, headers: {someheader: "value"}});
 
 // A callback is also available and will be invoked once connected to the Kuzzle instance:
-var kuzzle = new Kuzzle('http://localhost:7512', function (err, res) {
+var kuzzle = new Kuzzle('http://localhost:7512', 'some index',function (err, res) {
   // ...
 });
 ```
@@ -28,7 +28,7 @@ KuzzleOptions options = new KuzzleOptions();
 options.setAutoReconnect(true);
 options.setHeaders(headers);
 
-Kuzzle kuzzle = new Kuzzle("http://localhost:7512", options, new ResponseListener() {
+Kuzzle kuzzle = new Kuzzle("http://localhost:7512", "some index", options, new ResponseListener() {
  @Override
  public void onSuccess(JSONObject object) {
    // invoked once connected, kuzzle contains the kuzzle instance
@@ -43,19 +43,19 @@ Kuzzle kuzzle = new Kuzzle("http://localhost:7512", options, new ResponseListene
 
 > Returns an instanciated Kuzzle Object
 
-#### Kuzzle(url, [options])
+#### Kuzzle(url, index, [options])
 
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
 | ``url`` | string | URL to the target Kuzzle instance |
+| ``index`` | string | Kuzzle's persistent storage index to use |
 | ``options`` | object | Kuzzle connection configuration |
 
 Available options:
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
-| ``index`` | string | Kuzzle's persistent storage index to use | ``mainindex`` |
 | ``autoQueue`` | boolean | Automatically queue all requests during offline mode | ``false`` |
 | ``autoReconnect`` | boolean | Automatically reconnect after a connection loss | ``true`` |
 | ``autoReplay`` | boolean | Automatically replay queued requests on a ``reconnected`` event | ``false`` |
@@ -79,6 +79,7 @@ Available options:
 | ``autoReconnect`` | boolean | Automatically reconnect after a connection loss | get |
 | ``autoReplay`` | boolean | Automatically replay queued requests on a ``reconnected`` event | get/set |
 | ``autoResubscribe`` | boolean | Automatically renew all subscriptions on a ``reconnected`` event | get/set |
+| ``index`` | string | Kuzzle's persistent storage index to use | get |
 | ``offlineQueue`` | JSON object | Contains the queued requests during offline mode | get/set |
 | ``queueFilter`` | function | Called during offline mode. Takes a request object as arguments and returns a boolean, indicating if a request can be queued | get/set |
 | ``queueMaxSize`` | integer | Number of maximum requests kept during offline mode | get/set |
