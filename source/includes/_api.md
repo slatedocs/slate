@@ -255,9 +255,13 @@ Full API
 --------
 ```javascript
 /**
- * All Augur functions have an optional callback (or callbacks) as their
+ * All Augur API methods have optional callback(s) as their
  * final parameter.
  */
+
+depositEther(value[, onSend, onSuccess, onFailed])
+
+withdrawEther(to, value[, onSend, onSuccess, onFailed])
 
 getCashBalance(address[, callback])
 
@@ -293,11 +297,9 @@ getPeriodLength(branchId[, callback])
 
 getBranch(branchIdNumber[, callback])
 
-sendCash(receiver, value[, callback])
+sendCash(receiver, value[, onSend, onSuccess, onFailed])
 
-cashFaucet([callback])
-
-reputationFaucet([callback])
+reputationFaucet([onSend, onSuccess, onFailed])
 
 getDescription(id[, callback])
 

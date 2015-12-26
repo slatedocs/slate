@@ -52,7 +52,6 @@ buyShares | -1 | Invalid outcome or trading closed
 buyShares | -2 | Entered a negative number of shares
 buyShares | -3 | Not enough money
 buyShares | -4 | Bad nonce/hash
-cashFaucet | -1 | Hey, you're not broke!
 checkReportValidity | -1 | Report isn't long enough
 checkReportValidity | -2 | Reporter doesn't exist, voting period is over, or voting period hasn't started yet
 closeMarket | -1 | Market has no cash
