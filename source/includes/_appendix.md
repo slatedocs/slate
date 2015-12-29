@@ -15,7 +15,7 @@ $url = 'https://www.google.com/search?' . http_build_query([
 <?php
 $url = 'https://www.google.com/search?' . http_build_query([
     'q'   => sprintf('"%s" "%s"', 'Pizza Hut', '67337'),
-    'rlst => 'fn',
+    'rlst' => 'fn',
     'gbv' => 2,
 ]);    
 ```
