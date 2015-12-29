@@ -233,13 +233,13 @@ The request object must contain the `id` attribute, which is the ID of the user 
 
 Alternatively, if you are joining a chat by a user, then use the following endpoint. It requires that you have a permission to the user and his/her chats.
 
-`GET /api/v5/orgs/<organization_id>/users/<user_id>/chats/<chat_id>/presences`
+`POST /api/v5/orgs/<organization_id>/users/<user_id>/chats/<chat_id>/presences`
 
 In this case you may omit the `id` attribute from the payload, which will then default to the `<user_id>` in the URL. This basicly means that the user will re-join to this chat.
 
 If the related chat was previously in waiting state, then `is_waiting` of the chat is automatically changed to `false`.
 
-These endpoint accept the following GET parameters:
+These endpoint accept the following URL parameters:
 
 Parameter | Format | Default | Description
 :---------|:-------|:--------|------------
