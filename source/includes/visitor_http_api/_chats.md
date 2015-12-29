@@ -1,8 +1,7 @@
 Chat API
 ========
 
-Chats
------
+## Chats
 
 A chat represents a single conversation. In practice, there is exactly one visitor member and an arbitrary number of user ("operator") members.
 
@@ -93,8 +92,7 @@ When a new chat was successfully created, the following channels are notified wi
 - For the chat parent room chat collection and each organization having access that room: `/api/v5/orgs/<organization_id>/rooms/<room_id>/chats`
 
 
-Chat presences
---------------
+## Chat presences
 
 A chat presence describes either a user (a chat operator) or a visitor being currently "joined" to a chat. In case of visitors, the presence is equal to the online status of the visitor in the related room. Users on the other hands need explicitly to "join" the chat.
 
@@ -164,8 +162,7 @@ You can get a collection of chat operator presences.
 This API endpoint returns a [paginated collection][]. They are sorted by the time on which the operators have joined the chat.
 
 
-Chat members
--------------------
+## Chat members
 
 The visitor and each user who has participated to a chat is added as a chat member to the chat.
 
@@ -236,8 +233,7 @@ You may get a [paginated collection][] of all members of a chat.
 Returns 404 if the chat is not one of the visitor's chats.
 
 
-Chat messages
--------------
+## Chat messages
 
 Chat consists of a number of messages. Some of them are actual typed messages from either operator or visitor, and some of them are automatically added events about the chat, especially when an operator has [joined or leaved][chat presence] the chat.
 

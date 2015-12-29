@@ -5,8 +5,7 @@ This documentation is a <strong>draft</strong>!
 Giosg SDK API
 =============
 
-Setup
------
+## Setup
 
 ### Set permission token
 
@@ -16,8 +15,7 @@ giosg.api.setPermissionToken(permissionJWT);
 
 Set the permission token used for all the actions for the Giosg SDK. Setting a new token replaces the previous one.
 
-Rooms
------
+## Rooms
 
 ### Room basic info and state
 
@@ -79,8 +77,8 @@ Leaves from the given room. Performing this action while not being joined to the
 This information is only shared between those Giosg SDK instances that are connected to the same proxy master.
 </aside>
 
-Visitor and operators
----------------------
+
+## Visitor and operators
 
 ### Online operators
 
@@ -138,8 +136,7 @@ Permission to get the state for one specific visitor:
 
 `/api/v5/client/visitors/133f73c7-08d3-4c01-86e8-aa8603e7bf37`
 
-Chats
------
+## Chats
 
 ### Chats for a visitor in a room
 

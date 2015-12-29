@@ -1,8 +1,7 @@
 Customer API
 ============
 
-Users
------
+## Users
 
 A user represents a giosg user account. A user resource has the following attributes.
 
@@ -84,8 +83,7 @@ You are allowed to update your own details. You may only change other users' det
 </aside>
 
 
-Organizations
--------------
+## Organizations
 
 An organization represents any organization account on giosg system. An organization consists of a number of users with their own user accounts. A user always belongs to exactly one organization.
 

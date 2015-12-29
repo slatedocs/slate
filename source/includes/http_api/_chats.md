@@ -1,8 +1,7 @@
 Chat API
 ========
 
-Chats
------
+## Chats
 
 A chat represents a single conversation. In practice, there is exactly one visitor member and an arbitrary number of user ("operator") members.
 
@@ -136,8 +135,8 @@ Returns 403 if you have no permission to the room and you are not a manager.
 
 This notifies the [channels][] of the chat, as well as appropriate channels of [chat presences][chat presence] and [chat members][chat member].
 
-Chat presences
---------------
+
+## Chat presences
 
 A chat presence describes either a user (a chat operator) or a visitor being currently "joined" to a chat. In case of visitors, the presence is equal to the online status of the visitor in the related room. Users on the other hands need explicitly to "join" the chat.
 
@@ -265,8 +264,7 @@ Or alternatively:
 This request sends notifications to the [channels][] of the chat presences as well as the related chat.
 
 
-Chat members
-------------
+## Chat members
 
 The visitor as well as each user who have sent at least one message to the chat is added as a "member" to the chat.
 
@@ -342,8 +340,7 @@ Or alternatively:
 `GET /api/v5/orgs/<organization_id>/users/<user_id>/chats/<chat_id>/members`
 
 
-Chat messages
--------------
+## Chat messages
 
 Chat consists of a number of messages. Some of them are actual typed messages from either operator or visitor, and some of them are automatically added events about the chat, especially when an operator has [joined or leaved][chat presence] the chat.
 
