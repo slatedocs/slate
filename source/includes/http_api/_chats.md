@@ -27,12 +27,12 @@ Attribute | Type | Editable | Description
 `autosuggest_url_title` | string | read-only | Title of the page that the visitor was on when they received an autosuggest, or `null` if this chat does not contain an autosuggestion.
 `tag_count` | integer | read-only | How many tags there are associated with this chat.
 `is_waiting` | boolean | read-only | This is `true` if the latest message in this chat is by the visitor, and if the chat has not ended, otherwise `false`.
-`presence_count` | integer | read-only | How many people (visitor and users) there are currently present at this chat.
-`user_presence_count` | integer | read-only | How many users there are currently present at this chat.
-`visitor_presence_count` | integer | read-only | How many visitor there are currently present at this chat (0 or 1)
+`present_member_count` | integer | read-only | How many people (visitor and users) there are currently present at this chat.
+`present_user_member_count` | integer | read-only | How many users there are currently present at this chat.
+`present_visitor_member_count` | integer | read-only | How many visitor there are currently present at this chat (0 or 1)
 `member_count` | integer | read-only | How many people (visitor and users) have attended or sent messages to this chat.
 `user_member_count` | integer | read-only | How many users have sent at least one message to the chat.
-`visitor_member_count` | integer | read-only | How many visitors have attended this chat. In practice, this always `1`, but this attribute exists for future.
+`visitor_member_count` | integer | read-only | How many visitors have attended this chat.
 
 Any changes to chats are notified to the following [channels][]:
 
@@ -70,9 +70,9 @@ Channel | Description
       "autosuggest_url_title": "Site Frontpage",
       "tag_count": 2,
       "is_waiting": true,
-      "presence_count": 1,
-      "user_presence_count": 1,
-      "visitor_presence_count": 1,
+      "present_member_count": 1,
+      "present_user_member_count": 1,
+      "present_visitor_member_count": 1,
       "member_count": 2,
       "user_member_count": 1,
       "visitor_member_count": 1
@@ -106,7 +106,7 @@ This returns a [paginated collection][]. It is sorted by the creation time of th
 
 Parameter             | Type    | Default | Description
 ----------------------|---------|---------|------------
-`is_present`          | boolean | (none)  | If `true`, only return chats where `<user_id>` **currently** has a [chat presence][]. If `false`, exclude thats where `<user_id>` currently has a chat presence.
+`is_present`          | boolean | (none)  | If `true`, only return chats where `<user_id>` is **currently** present. If `false`, exclude thats where `<user_id>` is currently present.
 `is_member`      | boolean | (none)  | If `true`, only return chats where `<user_id>` is a [chat member][]. If `false`, exclude thats where `<user_id>` is a chat member.
 `is_ended`            | boolean | (none)  | If `true`, only return ended chats. If `false`, only return open chats.
 
@@ -114,7 +114,7 @@ When using this endpoint, the chat as the following additional attributes:
 
 Attribute        | Type    | Editable  | Description
 -----------------|---------|-----------|------------
-`is_present`     | boolean | read-only | Whether or not the `<user_id>` **currently** has a [chat presence][] at this chat
+`is_present`     | boolean | read-only | Whether or not the `<user_id>` is **currently** present at the chat
 `is_member` | boolean | read-only | Whether or not the `<user_id>` is a [member of this chat][chat member]
 
 ### Create a new chat with a visitor in a room
@@ -136,134 +136,6 @@ Returns 403 if you have no permission to the room and you are not a manager.
 This notifies the [channels][] of the chat, as well as appropriate channels of [chat presences][chat presence] and [chat members][chat member].
 
 
-## Chat presences
-
-A chat presence describes either a user (a chat operator) or a visitor being currently "joined" to a chat. In case of visitors, the presence is equal to the online status of the visitor in the related room. Users on the other hands need explicitly to "join" the chat.
-
-Both visitors' and operators' presences are automatically removed from chat presences if we have not heard about them for a while, indicating that they have closed their browser tab or they have lost their connection.
-
-Attribute | Format | Editable | Description
-:---------|:-------|:---------|------------
-`id` | [ID][]/string | read-only | ID of the user or visitor being present at the chat.
-`type` | string | read-only | Either `visitor` or `user`.
-`name`    | string | read-only | The name of the user/visitor as it would be displayed for the operator. For users this the actual name. For visitors this is any custom name, or `null`.
-`public_name` | string | read-only | The name of the user/visitor as it would be displayed for the visitor. This is user's alias if they have one, otherwise it is their real name. For visitors, this is any custom username (e.g. set by API data) or `null`
-`avatar` | object | read-only | If the user/visitor has an avatar image, then this is is an object with `id` and `url` attributes. Otherwise this is `null`.
-`chat_id` | [ID][] | read-only | ID of the chat.
-`created_at` | [date/time][] | read-only | When the user/visitor become present in the chat.
-
-Changes to chat presences are notified to the following [channels][]:
-
-Channels    | Description
-------------|---------------
-`/api/v5/client/visitors/<visitor_id>/chats/<chat_id>/presences` | For each visitor of the chat
-`/api/v5/orgs/<organization_id>/users/<user_id>/chats/<chat_id>/presences` | For each user member
-`/api/v5/orgs/<organization_id>/rooms/<room_id>/chats/<chat_id>/presences` | For the related room and each organization having access to that room
-
-In addition, chat presences affect the following attributes of a [chat][], notifying the channels of the related chat:
-
-- `presence_count`
-- `user_presence_count`
-- `visitor_presence_count`
-
-### List currently present people at a chat
-
-    GET https://service.giosg.com/api/v5/orgs/7f9e9580-095b-42c7-838c-c04e667b26f7/rooms/b5082826-76b7-4197-a362-1222c81d2661/chats/58f5055c-56e0-11e5-9354-6c4008c08dfe/presences
-
-```json
-{
-  "next": "https://service.giosg.com/api/v5/orgs/7f9e9580-095b-42c7-838c-c04e667b26f7/rooms/b5082826-76b7-4197-a362-1222c81d2661/chats/58f5055c-56e0-11e5-9354-6c4008c08dfe/presences?cursor=45d9e7358e1249c491b4fa0212310f55",
-  "previous": null,
-  "results": [
-    {
-      "id": "378ad5a0-bb89-481b-978b-4268b368cfef",
-      "type": "user",
-      "name": "John Smith",
-      "public_name": "Customer Service",
-      "avatar": {
-        "id": "7f9cb877-0fd9-4c27-90b0-bd4c2842da3d",
-        "url": "http://www.example.com/avatar/5ef1a0ef-8b61-4473-8706-9669e30b47e6.jpg"
-      },
-      "chat_id": "58f5055c-56e0-11e5-9354-6c4008c08dfe",
-      "created_at": "2015-02-13T11:31:36.042"
-    },
-    {
-      "id": "3b90ef7c93484af4965a79ace7bc9a62",
-      "type": "visitor",
-      "name": null,
-      "public_name": null,
-      "avatar": null,
-      "chat_id": "58f5055c-56e0-11e5-9354-6c4008c08dfe",
-      "created_at": "2015-02-13T12:14:34.154"
-    }
-  ]
-}
-```
-
-There are two endpoints to list the current presences at a chat.
-If you are inspecting a chat by a room, then use the following endpoint. It requires that you have a permission to the room.
-
-`GET /api/v5/orgs/<organization_id>/rooms/<room_id>/chats/<chat_id>/presences`
-
-If on the other hand you are inspecting a chat by a user, then use the following endpoint. It requires that you have a permission to the user and his/her chats.
-
-`GET /api/v5/orgs/<organization_id>/users/<user_id>/chats/<chat_id>/presences`
-
-This API endpoint returns a [paginated collection][]. They are sorted by the time on which the people have joined the chat.
-
-### Join operator to a chat
-
-> Example request for joining the operator to a chat
-
-    POST /api/v5/orgs/39351090-2f16-49e0-ae14-96c9a3a721f2/rooms/adab695d-a648-42d6-b956-19efc1124e89/chats/62eb5cd5-5d52-4bb1-b711-ba31f864e775/presences
-
-```json
-{
-  "id": "ce771dbe-afbf-4e58-bbcb-9855ecacee9a"
-}
-```
-
-You can add a user to the list of currently present people of the chat. Operator will be automatically removed from the joined operators if the operator has not been reached for a while, or by making a leave API request.
-
-If you are joining a user to a chat by a room, then use the following endpoint. It requires that you have a permission to the room. This can be used to join a chat that the user has not yet participated.
-
-`POST /api/v5/orgs/<organization_id>/rooms/<room_id>/chats/<chat_id>/presences`
-
-The request object must contain the `id` attribute, which is the ID of the user being joined.
-
-Alternatively, if you are joining a chat by a user, then use the following endpoint. It requires that you have a permission to the user and his/her chats.
-
-`POST /api/v5/orgs/<organization_id>/users/<user_id>/chats/<chat_id>/presences`
-
-In this case you may omit the `id` attribute from the payload, which will then default to the `<user_id>` in the URL. This basicly means that the user will re-join to this chat.
-
-If the related chat was previously in waiting state, then `is_waiting` of the chat is automatically changed to `false`.
-
-These endpoint accept the following URL parameters:
-
-Parameter | Format | Default | Description
-:---------|:-------|:--------|------------
-`exclusive` | `true`/`false` | `false` | The exclusive parameter makes the join fail with 400 if there is already at least one other user joined the chat. This prevents multiple operators taking the chat. It does not matter if there is a visitor or not.
-
-Returns 201 if the user was added to the joined operators of the chat.
-Returns 200 if the user is already joined to the chat.
-Returns 400 if the user ID is invalid or the user cannot be joined to the chat.
-
-This request sends notifications to the [channels][] of the chat presences as well as the related chat.
-
-### Leave from a chat
-
-Removes the operator from the list of currently present operators of the chat.
-
-`DELETE /api/v5/orgs/<organization_id>/rooms/<room_id>/chats/<chat_id>/presences/<user_id>`
-
-Or alternatively:
-
-`DELETE /api/v5/orgs/<organization_id>/rooms/<room_id>/users/<user_id>/presences/<user_id>`
-
-This request sends notifications to the [channels][] of the chat presences as well as the related chat.
-
-
 ## Chat members
 
 The visitor as well as each user who have sent at least one message to the chat is added as a "member" to the chat.
@@ -280,6 +152,7 @@ Attribute | Format | Editable | Description
 `chat_id` | [ID][] | read-only | ID of the chat.
 `created_at` | [date/time][] | read-only | When the user/visitor was added as a chat member.
 `message_count` | integer | read-only | How many messages the user/visitor has sent to the chat. This may be 0, e.g. when operator has joined the chat but has not sent any message yet.
+`is_present` | boolean | **required** | Whether or not the user/visitor is currently present at the chat.
 
 Changes to chat members are notified to the following [channels][]:
 
@@ -294,6 +167,9 @@ In addition, chat members affect the following attributes of a [chat][], notifyi
 - `member_count`
 - `user_member_count`
 - `visitor_member_count`
+- `present_member_count`
+- `present_user_member_count`
+- `present_visitor_member_count`
 
 ### Get a collection of chat members
 
@@ -338,6 +214,82 @@ You can get a [paginated collection][] of all the members of the chat:
 Or alternatively:
 
 `GET /api/v5/orgs/<organization_id>/users/<user_id>/chats/<chat_id>/members`
+
+### Join a user to a chat
+
+> Example request for joining a user to a chat
+
+    POST /api/v5/orgs/39351090-2f16-49e0-ae14-96c9a3a721f2/rooms/adab695d-a648-42d6-b956-19efc1124e89/chats/62eb5cd5-5d52-4bb1-b711-ba31f864e775/members
+
+> Example request payload
+
+```json
+{
+  "id": "ce771dbe-afbf-4e58-bbcb-9855ecacee9a",
+  "is_present": true
+}
+```
+
+You can add a user as a member to the chat by using the following endpoints.
+
+<aside class="info">
+The <code>is_present</code> attribute of both visitors and operators is automatically set to <code>false</code> if the servers have not heard about them for a while, indicating that they have closed their browser tab or they have lost their connection. However, they will not be removed from the members.
+</aside>
+
+If you are joining a user to a chat by a room, then use the following endpoint. It requires that you have a permission to the room. This can be used to join a chat that the user has not yet participated.
+
+`POST /api/v5/orgs/<organization_id>/rooms/<room_id>/chats/<chat_id>/members`
+
+The request object must contain the `id` attribute, which is the ID of the user being joined.
+
+Also, by providing a `is_present` attribute with value `true` you can make the user to be currently present at the chat.
+
+Alternatively, you may use this endpoint:
+
+`PUT /api/v5/orgs/<organization_id>/rooms/<room_id>/chats/<chat_id>/members/<user_id>`
+
+In this case you do not have to provide the `id` attribute.
+
+Returns 201 if the user was added to the chat members.
+Returns 200 if the user was already a chat member.
+Returns 400 if the user cannot be joined to the chat or their presence cannot be updated.
+
+<aside class="info">
+If the <code>is_present</code> attribute was set to <code>true</code> and the related chat was previously in waiting state, then <code>is_waiting</code> of the chat is automatically changed to <code>false</code>.
+</aside>
+
+These endpoints accept the following URL parameters:
+
+Parameter | Format | Default | Description
+:---------|:-------|:--------|------------
+`exclusive` | `true`/`false` | `false` | This has effect only, if you are setting `is_present` with value `true`. This makes the join fail with 400 if there is already **at least one other user currently present** at the chat.
+
+<aside class="success">
+Use the `exclusive` parameter to prevent multiple operators taking the chat simultaneously.
+</aside>
+
+This request sends notifications to the [channels][] of the chat presences as well as the related chat.
+
+### Change operator chat presence
+
+> Example request for making the operator not to be present any more at the chat
+
+    PUT /api/v5/orgs/39351090-2f16-49e0-ae14-96c9a3a721f2/rooms/adab695d-a648-42d6-b956-19efc1124e89/chats/62eb5cd5-5d52-4bb1-b711-ba31f864e775/members/ce771dbe-afbf-4e58-bbcb-9855ecacee9a
+
+> Example request payload
+
+```json
+{
+  "is_present": false
+}
+```
+You can make a user present or not present at a chat like described in the previous section:
+
+`PUT /api/v5/orgs/<organization_id>/rooms/<room_id>/chats/<chat_id>/members/<user_id>`
+
+You should provide the `is_present` attribute with either `true` or `false` value, indicating whether or not the user should be currently present at the chat.
+
+The parameters and response codes are the same than described in the previous section.
 
 
 ## Chat messages
@@ -454,7 +406,9 @@ Send a new chat message to a user's chat with type `msg` to a chat:
 
 The `<user_id>` will be set as the sender of the message. If the sender is not yet added as a member of this chat, then a new [member][chat member] is automatically created.
 
-This returns 404 if the chat does not belong to the chats of the user. That is, in order to send a message, the user must have joined the chat at least once. However, he/she do not have to have a current presence.
+<aside class="warning">
+The user must be a member of the chat in order to send a message. Otherwise a 404 response is returned, as the chat was not found in the chats of the user.
+</aside>
 
 If the chat was previously in waiting state, then `is_waiting` of the chat is automatically changed to `false`.
 
