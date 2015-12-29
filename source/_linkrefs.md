@@ -9,7 +9,7 @@
   [chat]: <#chats> "Chats"
   [chat message]: <#chat-messages> "Chat messages"
   [chat presence]: <#chat-presences> "Chat presences"
-  [chat participant]: <#chat-participants> "Chat participants"
+  [chat member]: <#chat-members> "Chat members"
   [user]: <#users> "Users"
   [room]: <#rooms-and-domains> "Rooms and domains"
   [team]: <#teams> "Teams"

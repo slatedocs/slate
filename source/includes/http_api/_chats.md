@@ -4,7 +4,7 @@ Chat API
 Chats
 -----
 
-A chat represents a single conversation. In practice, there is exactly one visitor participant and an arbitrary number of user ("operator") participants.
+A chat represents a single conversation. In practice, there is exactly one visitor member and an arbitrary number of user ("operator") members.
 
 A chat has the following attributes:
 
@@ -31,16 +31,16 @@ Attribute | Type | Editable | Description
 `presence_count` | integer | read-only | How many people (visitor and users) there are currently present at this chat.
 `user_presence_count` | integer | read-only | How many users there are currently present at this chat.
 `visitor_presence_count` | integer | read-only | How many visitor there are currently present at this chat (0 or 1)
-`participant_count` | integer | read-only | How many people (visitor and users) have attended or sent messages to this chat.
-`user_participant_count` | integer | read-only | How many users have sent at least one message to the chat.
-`visitor_participant_count` | integer | read-only | How many visitors have attended this chat. In practice, this always `1`, but this attribute exists for future.
+`member_count` | integer | read-only | How many people (visitor and users) have attended or sent messages to this chat.
+`user_member_count` | integer | read-only | How many users have sent at least one message to the chat.
+`visitor_member_count` | integer | read-only | How many visitors have attended this chat. In practice, this always `1`, but this attribute exists for future.
 
 Any changes to chats are notified to the following [channels][]:
 
 Channel | Description
 --------|------------
 `/api/v5/client/visitors/<visitor_id>/chats` | For each visitor of the chat
-`/api/v5/orgs/<organization_id>/users/<user_id>/chats` | For each participant and currently present user of the chat
+`/api/v5/orgs/<organization_id>/users/<user_id>/chats` | For each member and currently present user of the chat
 `/api/v5/orgs/<organization_id>/rooms/<room_id>/chats` | For the chat parent room chat collection and each organization having access to that room
 
 ### List chats at a room
@@ -74,9 +74,9 @@ Channel | Description
       "presence_count": 1,
       "user_presence_count": 1,
       "visitor_presence_count": 1,
-      "participant_count": 2,
-      "user_participant_count": 1,
-      "visitor_participant_count": 1
+      "member_count": 2,
+      "user_member_count": 1,
+      "visitor_member_count": 1
     }
   ]
 }
@@ -108,7 +108,7 @@ This returns a [paginated collection][]. It is sorted by the creation time of th
 Parameter             | Type    | Default | Description
 ----------------------|---------|---------|------------
 `is_present`          | boolean | (none)  | If `true`, only return chats where `<user_id>` **currently** has a [chat presence][]. If `false`, exclude thats where `<user_id>` currently has a chat presence.
-`is_participant`      | boolean | (none)  | If `true`, only return chats where `<user_id>` is a [chat participant][]. If `false`, exclude thats where `<user_id>` is a chat participant.
+`is_member`      | boolean | (none)  | If `true`, only return chats where `<user_id>` is a [chat member][]. If `false`, exclude thats where `<user_id>` is a chat member.
 `is_ended`            | boolean | (none)  | If `true`, only return ended chats. If `false`, only return open chats.
 
 When using this endpoint, the chat as the following additional attributes:
@@ -116,7 +116,7 @@ When using this endpoint, the chat as the following additional attributes:
 Attribute        | Type    | Editable  | Description
 -----------------|---------|-----------|------------
 `is_present`     | boolean | read-only | Whether or not the `<user_id>` **currently** has a [chat presence][] at this chat
-`is_participant` | boolean | read-only | Whether or not the `<user_id>` is a [participant of this chat][chat participant]
+`is_member` | boolean | read-only | Whether or not the `<user_id>` is a [member of this chat][chat member]
 
 ### Create a new chat with a visitor in a room
 
@@ -134,7 +134,7 @@ Returns 201 status code when a new chat was created successfully.
 Returns 200 if resumed an existing chat when `auto_resume` parameter was provided.
 Returns 403 if you have no permission to the room and you are not a manager.
 
-This notifies the [channels][] of the chat, as well as appropriate channels of [chat presences][chat presence] and [chat participants][chat participant].
+This notifies the [channels][] of the chat, as well as appropriate channels of [chat presences][chat presence] and [chat members][chat member].
 
 Chat presences
 --------------
@@ -145,7 +145,7 @@ Both visitors' and operators' presences are automatically removed from chat pres
 
 Attribute | Format | Editable | Description
 :---------|:-------|:---------|------------
-`id` | [ID][]/string | read-only | ID of the user or visitor that has participated in the chat.
+`id` | [ID][]/string | read-only | ID of the user or visitor being present at the chat.
 `type` | string | read-only | Either `visitor` or `user`.
 `name`    | string | read-only | The name of the user/visitor as it would be displayed for the operator. For users this the actual name. For visitors this is any custom name, or `null`.
 `public_name` | string | read-only | The name of the user/visitor as it would be displayed for the visitor. This is user's alias if they have one, otherwise it is their real name. For visitors, this is any custom username (e.g. set by API data) or `null`
@@ -158,7 +158,7 @@ Changes to chat presences are notified to the following [channels][]:
 Channels    | Description
 ------------|---------------
 `/api/v5/client/visitors/<visitor_id>/chats/<chat_id>/presences` | For each visitor of the chat
-`/api/v5/orgs/<organization_id>/users/<user_id>/chats/<chat_id>/presences` | For each participant and currently present user of the chat
+`/api/v5/orgs/<organization_id>/users/<user_id>/chats/<chat_id>/presences` | For each user member
 `/api/v5/orgs/<organization_id>/rooms/<room_id>/chats/<chat_id>/presences` | For the related room and each organization having access to that room
 
 In addition, chat presences affect the following attributes of a [chat][], notifying the channels of the related chat:
@@ -265,21 +265,45 @@ Or alternatively:
 This request sends notifications to the [channels][] of the chat presences as well as the related chat.
 
 
-Chat participants
--------------------
+Chat members
+------------
 
-The visitor as well as each user who have sent at least one message to the chat is added as a "participant" to the chat.
+The visitor as well as each user who have sent at least one message to the chat is added as a "member" to the chat.
 
-In contrast to the [chat presences][chat presence], chat _participant_ describes a person who has ever attended to the chat. They may not be currently present at the chat.
+In contrast to the [chat presences][chat presence], chat _member_ describes a person who has ever attended to the chat. They may not be currently present at the chat.
 
+Attribute | Format | Editable | Description
+:---------|:-------|:---------|------------
+`id` | [ID][]/string | read-only | ID of the user or visitor being present at the chat.
+`type` | string | read-only | Either `visitor` or `user`.
+`name` | string | read-only | The name of the user/visitor as it would be displayed for the operator. For users this the actual name. For visitors this is any custom name, or `null`.
+`public_name` | string | read-only | The name of the user/visitor as it would be displayed for the visitor. This is user's alias if they have one, otherwise it is their real name. For visitors, this is any custom username (e.g. set by API data) or `null`
+`avatar` | object | read-only | If the user/visitor has an avatar image, then this is is an object with `id` and `url` attributes. Otherwise this is `null`.
+`chat_id` | [ID][] | read-only | ID of the chat.
+`created_at` | [date/time][] | read-only | When the user/visitor was added as a chat member.
+`message_count` | integer | read-only | How many messages the user/visitor has sent to the chat. This may be 0, e.g. when operator has joined the chat but has not sent any message yet.
 
-### Get a collection of chat participants
+Changes to chat members are notified to the following [channels][]:
 
-    GET /api/v5/orgs/7f9e9580-095b-42c7-838c-c04e667b26f7/rooms/aad26fe2-c8f3-45dc-931b-4b0b5e06467d/chats/58f5055c-56e0-11e5-9354-6c4008c08dfe/participants
+Channels    | Description
+------------|---------------
+`/api/v5/client/visitors/<visitor_id>/chats/<chat_id>/members` | For each visitor of the chat
+`/api/v5/orgs/<organization_id>/users/<user_id>/chats/<chat_id>/members` | For each user member of the chat
+`/api/v5/orgs/<organization_id>/rooms/<room_id>/chats/<chat_id>/members` | For the related room and each organization having access to that room
+
+In addition, chat members affect the following attributes of a [chat][], notifying its channels:
+
+- `member_count`
+- `user_member_count`
+- `visitor_member_count`
+
+### Get a collection of chat members
+
+    GET /api/v5/orgs/7f9e9580-095b-42c7-838c-c04e667b26f7/rooms/aad26fe2-c8f3-45dc-931b-4b0b5e06467d/chats/58f5055c-56e0-11e5-9354-6c4008c08dfe/members
 
 ```json
 {
-  "next": "https://service.giosg.com/api/v5/orgs/7f9e9580-095b-42c7-838c-c04e667b26f7/chats/58f5055c-56e0-11e5-9354-6c4008c08dfe/participants?cursor=45d9e7358e1249c491b4fa0212310f55",
+  "next": "https://service.giosg.com/api/v5/orgs/7f9e9580-095b-42c7-838c-c04e667b26f7/chats/58f5055c-56e0-11e5-9354-6c4008c08dfe/members?cursor=45d9e7358e1249c491b4fa0212310f55",
   "previous": null,
   "results": [
     {
@@ -292,7 +316,8 @@ In contrast to the [chat presences][chat presence], chat _participant_ describes
         "url": "http://www.example.com/avatar/5ef1a0ef-8b61-4473-8706-9669e30b47e6.jpg"
       },
       "chat_id": "58f5055c-56e0-11e5-9354-6c4008c08dfe",
-      "created_at": "2015-02-13T11:31:36.042"
+      "created_at": "2015-02-13T11:31:36.042",
+      "message_count": 8
     },
     {
       "id": "3b90ef7c93484af4965a79ace7bc9a62",
@@ -301,19 +326,20 @@ In contrast to the [chat presences][chat presence], chat _participant_ describes
       "public_name": null,
       "avatar": null,
       "chat_id": "58f5055c-56e0-11e5-9354-6c4008c08dfe",
-      "created_at": "2015-02-13T12:14:34.154"
+      "created_at": "2015-02-13T12:14:34.154",
+      "message_count": 7
     }
   ]
 }
 ```
 
-You can get a [paginated collection][] of all the participants of the chat:
+You can get a [paginated collection][] of all the members of the chat:
 
-`GET /api/v5/orgs/<organization_id>/rooms/<room_id>/chats/<chat_id>/participants`
+`GET /api/v5/orgs/<organization_id>/rooms/<room_id>/chats/<chat_id>/members`
 
 Or alternatively:
 
-`GET /api/v5/orgs/<organization_id>/users/<user_id>/chats/<chat_id>/participants`
+`GET /api/v5/orgs/<organization_id>/users/<user_id>/chats/<chat_id>/members`
 
 
 Chat messages
@@ -338,7 +364,7 @@ Any changes to chat messages are notified to the following [channels][]:
 Channel | Description
 --------|------------
 `/api/v5/client/visitors/<visitor_id>/chats/<chat_id>/messages` | For each visitor of the chat
-`/api/v5/orgs/<organization_id>/users/<user_id>/chats/<chat_id>/messages` | For each participant and currently present user of the chat
+`/api/v5/orgs/<organization_id>/users/<user_id>/chats/<chat_id>/messages` | For each member and currently present user of the chat
 `/api/v5/orgs/<organization_id>/rooms/<room_id>/chats/<chat_id>/messages` | For the chat parent room chat collection and each organization having access to that room
 
 In addition, sending chat messages affect the following attributes of a [chat][], which notifies the channels of the chat.
@@ -347,6 +373,10 @@ In addition, sending chat messages affect the following attributes of a [chat][]
 - `user_message_count`
 - `visitor_message_count`
 - `is_waiting`
+
+In addition, sending chat messages affect the following attributes of a [chat member][], notifying its related channels.
+
+- `message_count`
 
 
 ### List chat messages
@@ -425,13 +455,13 @@ Send a new chat message to a user's chat with type `msg` to a chat:
 
 `POST /api/v5/orgs/<organization_id>/users/<user_id>/chats/<chat_id>/messages`
 
-The `<user_id>` will be set as the sender of the message. If the sender is not yet added as a participant of this chat, then a new [participant][chat participant] is automatically created.
+The `<user_id>` will be set as the sender of the message. If the sender is not yet added as a member of this chat, then a new [member][chat member] is automatically created.
 
 This returns 404 if the chat does not belong to the chats of the user. That is, in order to send a message, the user must have joined the chat at least once. However, he/she do not have to have a current presence.
 
 If the chat was previously in waiting state, then `is_waiting` of the chat is automatically changed to `false`.
 
-This notifies any channels of chat messages, as well as channels of the related [chat][] and [chat participants][chat participant] accordingly.
+This notifies any channels of chat messages, as well as channels of the related [chat][] and [chat members][chat member] accordingly.
 
 
 
