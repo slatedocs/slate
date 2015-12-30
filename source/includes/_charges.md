@@ -292,13 +292,13 @@ Cria um nova cobrança, caso haja sucesso retornará as informações da mesma e
 | payer_national_identifier_type | string           | **(requerido)** tipo do documento do pagador (cpf ou cnpj)                                                                                                     |
 | payer_national_identifier      | string           | **(requerido)** documento do pagador                                                                                                                           |
 | payer_name                     | string           | **(requerido)** nome do pagador                                                                                                                                |
-| payer_number                   | string           | (opcional, requerido se reristered for `true`) número do endereço do pagador                                                                                   |
-| payer_complement               | string           | (opcional, requerido se reristered for `true`) complemento do endereço do pagador                                                                              |
-| payer_street                   | string           | (opcional, requerido se reristered for `true`) rua do endereço do pagador                                                                                      |
-| payer_neighbourhood            | string           | (opcional, requerido se reristered for `true`) bairro do endereço do pagador                                                                                   |
-| payer_zipcode                  | string           | (opcional, requerido se reristered for `true`) cep do endereço do pagador                                                                                      |
-| payer_city                     | string           | (opcional, requerido se reristered for `true`) cidade do endereço do pagador                                                                                   |
-| payer_state                    | string           | (opcional, requerido se reristered for `true`) sigla do estado do endereço do pagador ("RJ" por exemplo)                                                       |
+| payer_number                   | string           | (opcional, requerido se registered for `true`) número do endereço do pagador                                                                                   |
+| payer_complement               | string           | (opcional, requerido se registered for `true`) complemento do endereço do pagador                                                                              |
+| payer_street                   | string           | (opcional, requerido se registered for `true`) rua do endereço do pagador                                                                                      |
+| payer_neighbourhood            | string           | (opcional, requerido se registered for `true`) bairro do endereço do pagador                                                                                   |
+| payer_zipcode                  | string           | (opcional, requerido se registered for `true`) cep do endereço do pagador                                                                                      |
+| payer_city                     | string           | (opcional, requerido se registered for `true`) cidade do endereço do pagador                                                                                   |
+| payer_state                    | string           | (opcional, requerido se registered for `true`) sigla do estado do endereço do pagador ("RJ" por exemplo)                                                       |
 
 ## Atualização de Cobrança
 
@@ -383,13 +383,13 @@ O campo 'has_cnab_remittance' é alterado, apenas em cobranças em que o 'paymen
 | payer_national_identifier_type | string           | **(requerido)** tipo do documento do pagador (cpf ou cnpj)                                                                                                     |
 | payer_national_identifier      | string           | **(requerido)** documento do pagador                                                                                                                           |
 | payer_name                     | string           | **(requerido)** nome do pagador                                                                                                                                |
-| payer_number                   | string           | (opcional, requerido se reristered for `true`) número do endereço do pagador                                                                                   |
-| payer_complement               | string           | (opcional, requerido se reristered for `true`) complemento do endereço do pagador                                                                              |
-| payer_street                   | string           | (opcional, requerido se reristered for `true`) rua do endereço do pagador                                                                                      |
-| payer_neighbourhood            | string           | (opcional, requerido se reristered for `true`) bairro do endereço do pagador                                                                                   |
-| payer_zipcode                  | string           | (opcional, requerido se reristered for `true`) cep do endereço do pagador                                                                                      |
-| payer_city                     | string           | (opcional, requerido se reristered for `true`) cidade do endereço do pagador                                                                                   |
-| payer_state                    | string           | (opcional, requerido se reristered for `true`) sigla do estado do endereço do pagador ("RJ" por exemplo)                                                       |
+| payer_number                   | string           | (opcional, requerido se registered for `true`) número do endereço do pagador                                                                                   |
+| payer_complement               | string           | (opcional, requerido se registered for `true`) complemento do endereço do pagador                                                                              |
+| payer_street                   | string           | (opcional, requerido se registered for `true`) rua do endereço do pagador                                                                                      |
+| payer_neighbourhood            | string           | (opcional, requerido se registered for `true`) bairro do endereço do pagador                                                                                   |
+| payer_zipcode                  | string           | (opcional, requerido se registered for `true`) cep do endereço do pagador                                                                                      |
+| payer_city                     | string           | (opcional, requerido se registered for `true`) cidade do endereço do pagador                                                                                   |
+| payer_state                    | string           | (opcional, requerido se registered for `true`) sigla do estado do endereço do pagador ("RJ" por exemplo)                                                       |
 ## Exclusão de Cobrança
 
 ```shell
