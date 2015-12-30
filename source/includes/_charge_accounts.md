@@ -16,7 +16,10 @@ EXEMPLO
     "current_number": 1,
     "end_number": 1000,
     "status": "pending",
-    "payment_methods": ["billet", "cnab"],
+    "registered_charges": true,
+    "agreement_number": 4576361,
+    "remittance_cnab_pattern": 400,
+    "initial_remittance_number": 1,
     "_links":
       [
         {"rel":"self","method":"GET","href":"https://app.cobrato.com/api/v1/charge_accounts/1"},
@@ -32,20 +35,23 @@ As Contas de Cobranças, pertencem as suas contas bancárias, sendo assim é nec
 
 **Parâmetros**
 
-| Campo                | Tipo             | Comentário                                                                                                                        |
-|----------------------|------------------|-----------------------------------------------------------------------------------------------------------------------------------|
-| id                   | integer          |                                                                                                                                   |
-| bank_account_id      | integer          | identificador da conta bancária desta conta de cobrança no Cobrato                                                                |
-| portfolio_code       | string           | código de portfólio                                                                                                               |
-| agreement_code       | string           | código de convênio ou do beneficiário, de acordo com o banco. No caso do Itaú deve ser igual ao campo 'account' da conta bancária |
-| agreement_code_digit | string           | verificador do código de convênio, de acordo com o banco                                                                          |
-| name                 | string           | nome que identifica esta conta de cobraça                                                                                         |
-| initial_number       | integer          | número inicial do nosso número, sendo atribuído automaticamente e sequencialmente as cobranças                                    |
-| current_number       | integer          | nosso número atribuído a última cobrança criada a partir desta conta de cobrança                                                  |
-| end_number           | integer          | número final do nosso número, sendo o último número a ser atribuído, após isso a sequência é reiniciada                           |
-| status               | string           | caso for 'pending' a conta ainda não está homologada caso for 'ok' a conta já consta como homologada                              |
-| payment_methods      | array of strings | métodos de pagamentos disponíveis para pagamentos de cobranças criadas a partir desta conta                                       |
-| _links               | array of object  | links da conta de cobrança e de sua conta bancária                                                                                |
+| Campo                     | Tipo            | Comentário                                                                                                                        |
+|---------------------------|-----------------|-----------------------------------------------------------------------------------------------------------------------------------|
+| id                        | integer         |                                                                                                                                   |
+| bank_account_id           | integer         | identificador da conta bancária desta conta de cobrança no Cobrato                                                                |
+| portfolio_code            | string          | código de portfólio                                                                                                               |
+| agreement_code            | string          | código de convênio ou do beneficiário, de acordo com o banco. No caso do Itaú deve ser igual ao campo 'account' da conta bancária |
+| agreement_code_digit      | string          | verificador do código de convênio, de acordo com o banco                                                                          |
+| name                      | string          | nome que identifica esta conta de cobraça                                                                                         |
+| initial_number            | integer         | número inicial do nosso número, sendo atribuído automaticamente e sequencialmente as cobranças                                    |
+| current_number            | integer         | nosso número atribuído a última cobrança criada a partir desta conta de cobrança                                                  |
+| end_number                | integer         | número final do nosso número, sendo o último número a ser atribuído, após isso a sequência é reiniciada                           |
+| status                    | string          | caso for 'pending' a conta ainda não está homologada caso for 'ok' a conta já consta como homologada                              |
+| registered_charges        | boolean         | informa se a conta de cobrança utiliza boletos registrados ou não, sendo false por padrão                                         |
+| agreement_number          | integer         | número do convênio com o banco (apenas para o Bradesco)                                                                           |
+| remittance_cnab_pattern   | integer         | padrão utilizado no arquivo CNAB de remessa                                                                                       |
+| initial_remittance_number | integer         | número inicial de remessa, ou seja, qual foi o último número sequencial de remessa enviado para o banco (apenas para o Bradesco)  |
+| _links                    | array of object | links da conta de cobrança e de sua conta bancária                                                                                |
 
 ## Informações da Conta de Cobrança
 
@@ -81,7 +87,10 @@ EXEMPLO DE CORPO DA RESPOSTA
     "current_number": 1,
     "end_number": 1000,
     "status": "pending",
-    "payment_methods": ["billet", "cnab"],
+    "registered_charges": true,
+    "agreement_number": 4576361,
+    "remittance_cnab_pattern": 400,
+    "initial_remittance_number": 1,
     "_links":
       [
         {"rel":"self","method":"GET","href":"https://app.cobrato.com/api/v1/charge_accounts/1"},
@@ -159,7 +168,10 @@ EXEMPLO DE REQUISIÇÃO
           "name": "Conta Cobrança",
           "initial_number": "1",
           "end_number": "1000",
-          "payment_methods": ["billet"],
+          "registered_charges": "true",
+          "agreement_number": "4576361",
+          "remittance_cnab_pattern": "400",
+          "initial_remittance_number": "1"
         }'
 
 EXEMPLO DE ESTADO DA RESPOSTA COM SUCESSO
@@ -188,16 +200,19 @@ Cria um nova conta de cobrança, retornando as informações da mesma caso haja 
 
 **Parâmetros**
 
-| Campo                | Tipo             | Comentário                                                                                                                                                                                 |
-|----------------------|------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| bank_account_id      | integer          | **(requerido)** código de identificação da conta bancária em que a conta de cobrança irá pertencer                                                                                         |
-| portfolio_code       | string           | **(requerido)** código de portfólio, validação conforme o banco                                                                                                                            |
-| agreement_code       | string           | **(requerido, com exceção do Itaú onde é preenchido automaticamente)** código de convênio ou do beneficiário, de acordo com o banco                                                        |
-| agreement_code_digit | string           | **(requerido, com exceção do HSBC e Itaú, sendo preenchido automaticamente para o último)** verificador do código de convênio, de acordo com o banco                                       |
-| name                 | string           | **(requerido)** nome que identifica esta conta de cobraça                                                                                                                                  |
-| initial_number       | integer          | **(requerido)** número inicial do nosso número, sendo atribuído automaticamente e sequencialmente às cobranças                                                                             |
-| end_number           | integer          | (opcional) número final do nosso número, sendo o último número a ser atribuído, após isso a sequência é reiniciada                                                                         |
-| payment_methods      | array of strings | (opcional) métodos de pagamentos disponíveis para pagamentos de cobranças criadas a partir desta conta, por padrão ["billet", "cnab"]. [verificar api](#métodos-de-pagamentos-disponíveis) |
+| Campo                     | Tipo    | Comentário                                                                                                                                                          |
+|---------------------------|---------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| bank_account_id           | integer | **(requerido)** código de identificação da conta bancária em que a conta de cobrança irá pertencer                                                                  |
+| portfolio_code            | string  | **(requerido)** código de portfólio, validação conforme o banco                                                                                                     |
+| agreement_code            | string  | **(requerido, com exceção do Itaú onde é preenchido automaticamente)** código de convênio ou do beneficiário, de acordo com o banco                                 |
+| agreement_code_digit      | string  | **(requerido, com exceção do HSBC e Itaú, sendo preenchido automaticamente para o último)** verificador do código de convênio, de acordo com o banco                |
+| name                      | string  | **(requerido)** nome que identifica esta conta de cobraça                                                                                                           |
+| initial_number            | integer | **(requerido)** número inicial do nosso número, sendo atribuído automaticamente e sequencialmente às cobranças                                                      |
+| end_number                | integer | (opcional) número final do nosso número, sendo o último número a ser atribuído, após isso a sequência é reiniciada                                                  |
+| registered_charges        | boolean | (opcional) informa se a conta de cobrança utiliza boletos registrados ou não, sendo false por padrão                                                                |
+| agreement_number          | integer | (opcional, requerido apenas se registered_charges for `true`) número do convênio com o banco (apenas para o Bradesco)                                               |
+| remittance_cnab_pattern   | integer | (opcional, requerido apenas se registered_charges for `true`) padrão utilizado no arquivo CNAB de remessa. Os valores permitidos são 240 ou 400                     |
+| initial_remittance_number | integer | (opcional) número inicial de remessa, ou seja, qual foi o último número sequencial de remessa enviado para o banco (apenas para o Bradesco). Por padrão o valor é 1 |
 
 ## Atualização de Conta de Cobrança
 
@@ -252,15 +267,18 @@ Atualiza a conta de cobrança determinada, retornando as informações da mesma 
 
 **Parâmetros**
 
-| Campo                | Tipo    | Comentário                                                                                                                                                                                          |
-|----------------------|---------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| portfolio_code       | string  | **(requerido)** código de portfólio, validação conforme o banco                                                                                                                                     |
-| agreement_code       | string  | **(requerido, com exceção do Itaú onde é preenchido automaticamente)** código de convênio ou do beneficiário, de acordo com o banco                                                                 |
-| agreement_code_digit | string  | **(requerido, com exceção do HSBC e Itaú, sendo preenchido automaticamente para o último)** verificador do código de convênio, de acordo com o banco                                                |
-| name                 | string  | **(requerido)** nome que identifica esta conta de cobraça                                                                                                                                           |
-| initial_number       | integer | **(requerido)** número inicial do nosso número, sendo atribuído automaticamente e sequencialmente às cobranças                                                                                      |
-| end_number           | integer | (opcional) número final do nosso número, sendo o último número a ser atribuído, após isso a sequência é reiniciada                                                                                  |
-| payment_methods      | array of strings | (opcional) métodos de pagamentos disponíveis para pagamentos de cobranças criadas a partir desta conta, por padrão ["billet", "cnab"]. [verificar api](#métodos-de-pagamentos-disponíveis) |
+| Campo                     | Tipo    | Comentário                                                                                                                                                          |
+|---------------------------|---------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| portfolio_code            | string  | **(requerido)** código de portfólio, validação conforme o banco                                                                                                     |
+| agreement_code            | string  | **(requerido, com exceção do Itaú onde é preenchido automaticamente)** código de convênio ou do beneficiário, de acordo com o banco                                 |
+| agreement_code_digit      | string  | **(requerido, com exceção do HSBC e Itaú, sendo preenchido automaticamente para o último)** verificador do código de convênio, de acordo com o banco                |
+| name                      | string  | **(requerido)** nome que identifica esta conta de cobraça                                                                                                           |
+| initial_number            | integer | **(requerido)** número inicial do nosso número, sendo atribuído automaticamente e sequencialmente às cobranças                                                      |
+| end_number                | integer | (opcional) número final do nosso número, sendo o último número a ser atribuído, após isso a sequência é reiniciada                                                  |
+| registered_charges        | boolean | (opcional) informa se a conta de cobrança utiliza boletos registrados ou não, sendo false por padrão                                                                |
+| agreement_number          | integer | (opcional, requerido apenas se registered_charges for `true`) número do convênio com o banco (apenas para o Bradesco)                                               |
+| remittance_cnab_pattern   | integer | (opcional, requerido apenas se registered_charges for `true`) padrão utilizado no arquivo CNAB de remessa. Os valores permitidos são 240 ou 400                     |
+| initial_remittance_number | integer | (opcional) número inicial de remessa, ou seja, qual foi o último número sequencial de remessa enviado para o banco (apenas para o Bradesco). Por padrão o valor é 1 |
 
 ## Exclusão de Conta de Cobrança
 
