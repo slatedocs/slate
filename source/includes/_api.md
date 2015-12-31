@@ -15,7 +15,7 @@ On the other hand, a RESTful API means, among other things, that this API talks 
 
 ## Base URL
 
-Our API supports both HTTP and HTTPS. All the API calls should be made to either one of these URLs:
+Our API supports both HTTP and HTTPS. All API calls should be made to either one of these URLs:
 
 `http://things.ubidots.com/api/v1.6/`
 
@@ -115,8 +115,10 @@ curl "http://things.ubidots.com/api/v1.6/variables?page_size=5&page=2" -H "X-Aut
 
 API calls listing multiple items will return 30 items by default. You can change this number using the pagination parameters inside the URL of the request:
 
-* **?page_size**: Specifies the amount of elements to list per page (30 by default)
-* **?page**: Specifies the page number to retrieve.
+               |                                                                                                          |
+-------------- | -------------------------------------------------------------------------------------------------------- |
+**page_size**  | Specifies the amount of elements to list per page (30 by default). Example: <br>`?page_size=100` will return the first hundred items.
+**page**       | Specifies the page number to retrieve. Example: <br>`?page_size=100&page=2` will return a hundred items, from #101 to #200. 
 
 In the response, the **count** field will tell you the total number of items available.
 
@@ -246,7 +248,7 @@ Host: things.ubidots.com
 
 curl "http://things.ubidots.com/api/v1.6/datasource/?page_size=20&tag=car&token=MtRbM7ipKUsjRh6RwJE0ofIQo0KqoG"
 
-# Response example omitted (too long to print here!)
+# (Sample response omitted - too long to print here!)
 ```
 
 
@@ -269,7 +271,78 @@ Remember to replace {TOKEN} with a valid token from your account.
 
 ### List Variables of a Data Source
 
+> Http Request
+
+```shell
+GET /api/v1.6/datasources/{DS_ID}/variables/?token={TOKEN} HTTP/1.1
+Host: things.ubidots.com
+```
+> Example request
+
+```shell
+# Request
+
+curl http://things.ubidots.com/api/v1.6/datasources/5683f80476254244b1ad2b01/variables/?token=MtRbM7ipKUsjRh6RwJE0ofIQo0KqoG
+
+# (Sample response omitted - too long to print here!)
+```
+> Example request filtered by tags
+
+```shell
+# Request
+
+curl "http://things.ubidots.com/api/v1.6/datasources/5683fae97625424a4d8e17b4/variables/?token=MtRbM7ipKUsjRh6RwJE0ofIQo0KqoG&tag=weather"
+
+# (Sample response omitted - too long to print here!)
+```
+
+To list the variables of a data source make a GET request to:
+
+`http://things.ubidots.com/api/v1.6/datasources/{DS_ID}/variables/`
+
+This endpoint accepts the pagination parameters, plus a "tag" parameter for filtering purposes:
+
+               |                                                                                                          |
+-------------- | -------------------------------------------------------------------------------------------------------- |
+**page_size**  | Specifies the amount of elements to list per page (30 by default). Example: <br>`?page_size=100` will return the first hundred variables.
+**page**       | Specifies the page number to retrieve. Example: <br>`?page_size=100&page=2` will return a hundred variables, from #101 to #200. 
+**tag**        | Filter results to variables containing the specified tags (you can use one or more filters). Example: <br> `?tag=weather&tag=sky` will return variables containing the tags "weather" AND "sky".
+
+
+<aside class="notice">
+Remember to change {DS_ID} with the ID of the data source and {TOKEN} with a valid token from your account.
+</aside>
+
+
 ### Delete a Data Source
+
+> Http Request
+
+```shell
+DELETE /api/v1.6/datasources/{DS_ID}/?token={TOKEN} HTTP/1.1
+Host: things.ubidots.com
+```
+> Example request
+
+```shell
+# Request
+
+curl -X DELETE http://things.ubidots.com/api/v1.6/datasources/5684415076254267da0414cf/?token=MtRbM7ipKUsjRh6RwJE0ofIQo0KqoG
+
+# Response
+# * The response does not contain a BODY, only a response code is returned meaning the item was successfully deleted:
+
+204 NO CONTENT
+```
+
+To delete a data source, make a DELETE request to:
+
+`http://things.ubidots.com/api/v1.6/datasources/{DS_ID}/`
+
+<aside class="notice">
+Remember to replace {TOKEN} with a valid token from your account.
+</aside>
+
 
 ## Sensor Variables
 
@@ -424,7 +497,7 @@ Host: things.ubidots.com
 
 curl "http://things.ubidots.com/api/v1.6/variables/?page_size=2&token=MtRbM7ipKUsjRh6RwJE0ofIQo0KqoG"
 
-# Response example omitted (too long to print here!)
+# (Sample response omitted - too long to print here!)
 ```
 > Example request filtered by tags
 
@@ -486,6 +559,33 @@ Remember to replace {TOKEN} with a valid token from your account.
 </aside>
 
 ### Delete a Variable
+
+> Http Request
+
+```shell
+DELETE /api/v1.6/variables/{VAR_ID}/?token={TOKEN} HTTP/1.1
+Host: things.ubidots.com
+```
+> Example request
+
+```shell
+# Request
+
+curl -X DELETE http://things.ubidots.com/api/v1.6/variables/5683faf17625424c0bc280ed/?token=MtRbM7ipKUsjRh6RwJE0ofIQo0KqoG
+
+# Response
+# * The response does not contain a BODY, only a response code is returned meaning the item was successfully deleted:
+
+204 NO CONTENT
+```
+
+To delete a variable, make a DELETE request to:
+
+`http://things.ubidots.com/api/v1.6/variables/{VAR_ID}/`
+
+<aside class="notice">
+Remember to replace {TOKEN} with a valid token from your account.
+</aside>
 
 ## Values
 
@@ -552,6 +652,8 @@ Accepted fields are:
 **value**<br>*required*| Numeric value in decimal format.<br>Example: `"value": "35.8"` or `"value": 35.8`
 **context**    | An object with optional meta data as "key":"value" pairs.<br>Example: `"context": {"lat": 6.1, "lng": -35.1, "status": "driving"}`
 **timestamp**  | Optional timestamp **in milliseconds**, according to the POSIX standard.<br>Example: `"timestamp":1376056359000`
+
+* **PROTIP**: A useful tool to convert between Human readable dates and POSIX timestamps is: [www.epochconverter.com/](http://www.epochconverter.com/).
 
 <aside class="success">
 When sending the keys "lat" and "lng" in the "context" field of a value, the Ubidots dashboard will recognize it as a GeoPoint so it can be plotted in a map.
@@ -689,12 +791,199 @@ Remember to replace {VAR_ID} with the ID of the variable you want to update and 
 </aside>
 
 
-### Get Values from a Variable
+### List Values of a Variable
+
+> Http Request
+
+```shell
+GET /api/v1.6/variables/{VAR_ID}/values?token={TOKEN} HTTP/1.1
+Host: things.ubidots.com
+```
+> Example request
+
+```shell
+# Request: Retrieve the last 10 values of the variables with ID = "568405d376254261ef114f35"
+
+curl "http://things.ubidots.com/api/v1.6/variables/568405d376254261ef114f35/values/?page_size=10&token=MtRbM7ipKUsjRh6RwJE0ofIQo0KqoG"
+
+# (Sample response omitted - too long to print here!)
+```
+
+> Example request #2: Export the values as CSV
+
+```shell
+# Request: Retrieve the last 10 values of the variables with ID = "568405d376254261ef114f35"
+
+curl "http://things.ubidots.com/api/v1.6/variables/568405d376254261ef114f35/values/?page_size=10&token=MtRbM7ipKUsjRh6RwJE0ofIQo0KqoG&format=csv"
+
+# Response
+```
+```csv
+context.lat,context.lng,context.status,created_at,timestamp,value
+,,,2015-12-30 21:39:55.036000,1451511595036,41.2
+,,,2015-12-30 21:33:41.524000,1451511221524,41.2
+,,,2015-12-30 21:31:00.197000,1451511060197,41.2
+,,,2015-12-30 21:16:02.630000,1451510162630,41.2
+,,,2015-12-30 21:15:01.612000,1451510101612,41.2
+,,,2015-12-30 21:14:03.723000,1451510043723,41.2
+,,,2015-12-30 21:13:55.147000,1451510035147,41.2
+,,,2015-12-30 21:13:41.187000,1451510021187,41.2
+,,,2015-12-30 21:09:10.527000,1451509750527,41.2
+```
+
+> Example request #3: Send the values to an Email
+
+```shell
+# Request
+
+curl "http://things.ubidots.com/api/v1.6/variables/568405d376254261ef114f35/values/?page_size=10&token=MtRbM7ipKUsjRh6RwJE0ofIQo0KqoG&action=send_by_email&email=info@ubidots.com"
+
+# Response
+```
+```json
+{
+    "status": "sent_via_email"
+}
+```
+
+To list a set of variables in your account make a GET request to:
+
+`http://things.ubidots.com/api/v1.6/variables/{VAR_ID}/values`
+
+It is possible to retrieve a subset of values given their time range. Use the **start** and **end** parameters to do this:
+
+               |                                                                                                          |
+-------------- | -------------------------------------------------------------------------------------------------------- |
+**start**      | Returns values after this timestamp, inclusive with this timestamp. May be used in conjunction with the end parameter. Example: <br>`?start=1451170441000`
+**end**        | Returns values before this timestamp, inclusive with this timestamp. May be used in conjunction with the start parameter. Example: <br>`?end=1451570441000`
+**format**     | Specifies the format of the returned values:<br>`?format=csv`: Returns a CSV file.<br>`?format=json`: Returns a JSON formated text.
+**action** &<br>**email** | Queues the request to be sent per Email to the specified Email address as a CSV file - useful when requesting a large subset of values. Both parameters are to be used together. Example: <br>`?action=send_by_email&email=johndoe@email.com`
+**page_size**  | Specifies the amount of elements to list per page (30 by default). Example: <br>`?page_size=100` will return a hundred values.
+**page**       | Specifies the page number to retrieve. Example: <br>`?page_size=100&page=2` will return a hundred values, from #101 to #200. 
+
+* **PROTIP**: A useful tool to convert between Human readable dates and POSIX timestamps is: [www.epochconverter.com/](http://www.epochconverter.com/).
+
+<aside class="notice">
+Remember to replace {VAR_ID} with the ID of the Variable you wish to retrieve and {TOKEN} with a valid token from your account.
+</aside>
 
 ### Delete Values from a Variable
 
+> Http Request
+
+```shell
+DELETE /api/v1.6/variables/{VAR_ID}/values/{START}/{END}/?token={TOKEN} HTTP/1.1
+Host: things.ubidots.com
+```
+> Example request
+
+```shell
+# Request: Delete all values between timestamps 1447136223927 and 1449419580541:
+
+curl -X GET "http://things.ubidots.com/api/v1.6/variables/561ecb647625425fd0dfec9c/values/1447136223927/1449419580541/?token=MtRbM7ipKUsjRh6RwJE0ofIQo0KqoG"
+
+# Response
+```
+```json
+{
+    "count": 7200
+}
+```
+
+To delete a set of values in your account make a DELETE request to:
+
+`http://things.ubidots.com/api/v1.6/variables/{VAR_ID}/values/{START}/{END}/`
+
+Values between the `{START}` timestamp and the `{END}` timestamp will be deleted.
+
+* **PROTIP**: A useful tool to convert between Human readable dates and POSIX timestamps is: [www.epochconverter.com/](http://www.epochconverter.com/).
+
+<aside class="notice">
+Remember to replace {VAR_ID} with the ID of the Variable you wish to retrieve and {TOKEN} with a valid token from your account.
+</aside>
+
 ## Statistics
 
-### Get Statistical figures over a subset of Values
+### Compute statistics over a subset of Values
+
+> Http Request
+
+```shell
+GET /api/v1.6/variables/{VAR_ID}/statistics/{FIG}/{START}/{END}/?token={TOKEN} HTTP/1.1
+Host: things.ubidots.com
+```
+> Example request: Obtaining the main of all values
+
+```shell
+# Request
+
+NOW=$(date +%s)000
+curl -X GET http://things.ubidots.com/api/v1.6/variables/568405d376254261ef114f35/statistics/mean/0/$NOW/?token=MtRbM7ipKUsjRh6RwJE0ofIQo0KqoG
+
+# Response
+```
+```json
+{
+  "mean": 39.01176470588236
+}
+```
+
+> Example request: Computing multiple figures in a single request
+
+```shell
+# Request
+
+NOW=$(date +%s)000
+curl -X GET http://things.ubidots.com/api/v1.6/variables/568405d376254261ef114f35/statistics/mean,variance,min,max,count,sum/0/$NOW/?token=MtRbM7ipKUsjRh6RwJE0ofIQo0KqoG
+
+# Response
+```
+```json
+{
+  "count": 17, 
+  "min": 22.0, 
+  "max": 52.1, 
+  "sum": 663.2, 
+  "variance": 57.21986159169533, 
+  "mean": 39.01176470588236
+}
+```
+
+To compute a statistic over a subset of values, make a GET request to:
+
+`http://things.ubidots.com/api/v1.6/variables/{VAR_ID}/statistics/{FIG}/{START}/{END}/`
+
+The figure is given by `{FIG}` and the subset is given by the values between `{START}` and `{END}`.
+
+               |                                                                                                          |
+-------------- | -------------------------------------------------------------------------------------------------------- |
+**figure**     | A comma seperated value list of statistical figures to be computed. Supported operations are:<br>- mean<br>- variance<br>- min<br>- max<br>- count<br>- sum
+**start**      | The starting timestamp in milliseconds. The range is inclusive with this value. 
+**end**        | The ending timestamp in milliseconds. The range is inclusive with this value. 
+
+* **PROTIP**: A useful tool to convert between Human readable dates and POSIX timestamps is: [www.epochconverter.com/](http://www.epochconverter.com/).
+
+<aside class="notice">
+Remember to replace {VAR_ID} with the ID of the Variable you wish to retrieve and {TOKEN} with a valid token from your account.
+</aside>
+
 
 ### Get a series of Values after computing a rolling figure
+
+The rolling window endpoint allows you to compute an operation (mean, max, min, sum or count) over a rolling time window: every 5 minutes, 1 hour, 1 week, etc. It can either return a set of values, or create a new variable in your account with the new re-sampled values, so it can be used in dashboards, events or future API calls.
+
+This endpoint's documentation is not public yet. If you'd like more details, drop us an email at [support@ubidots.com](mailto:support@ubidots.com).
+
+## Response Codes
+
+The Ubidots API uses the following response codes:
+
+Code| Meaning
+----| -------
+200 | Ok -- Successful request.
+201 | Created -- Successful request + an item was created.
+400 | Bad Request -- Error due to an invalid body in your request. Please verify it's a valid JSON string and that the fields are the ones expected by the endpoint (string, object or float).
+403 | Forbidden -- This token is not valid. Please verify your token.
+404 | Not Found -- We couldn't find the variable or data source you are trying to access. Verify your token and item's ID.
+405 | Method Not Allowed -- This API endpoint does not accept the method used. Check our API docs to see the allowed methods.
+50* | Internal Error -- We're having issues with our servers. Please check our [status page](http://status.ubidots.com).
