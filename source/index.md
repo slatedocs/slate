@@ -12,7 +12,6 @@ includes:
   - devices
   - clients
   - features
-  - errors
 
 
 search: true
