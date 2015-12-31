@@ -104,6 +104,7 @@ Attribute | Format | Editable | Description
 `avatar` | object | read-only | If the user/visitor has an avatar image, then this is is an object with `id` and `url` attributes. Otherwise this is `null`.
 `chat_id` | [ID][] | read-only | ID of the chat.
 `created_at` | [date/time][] | read-only | When the user/visitor was added as a chat member.
+`updated_at` | [date/time][] | read-only | When the this membership was updated.
 `message_count` | integer | read-only | How many messages the user/visitor has sent to the chat. This may be 0, e.g. when operator has joined the chat but has not sent any message yet.
 `is_present` | boolean | read-only | Whether or not the user/visitor is currently present at the chat.
 
