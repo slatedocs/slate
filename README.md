@@ -49,17 +49,19 @@ You're going to need:
  4. Install all dependencies: `bundle install`
  5. Start the test server: `bundle exec middleman server`
 
-Or use the included Dockerfile! (must install Docker first)
+Or use Docker instead! (you must install it first, search for Docker Toolbox)
 
 ```shell
-docker build -t slate .
-docker run -d -p 4567:4567 --name slate -v $(pwd)/source:/app/source slate
+docker-compose up
 ```
+
+will spin an environment for you, with the `source` directory mapped to the container, so you can see changes instantly.
 
 You can now see the docs at <http://localhost:4567>. Whoa! That was fast!
 
-*Note: if you're using the Docker setup on OSX, the docs will be
-availalable at the output of `boot2docker ip` instead of `localhost:4567`.*
+*Note: if you're not using Docker natively (i.e. on Linux), the docs will be
+available at the IP of your docker host. If you're using docker-machine you can
+retrieve it with `docker-machine ip <your_machine_name>`*
 
 Now that Slate is all set up your machine, you'll probably want to learn more about [editing Slate markdown](https://github.com/tripit/slate/wiki/Markdown-Syntax), or [how to publish your docs](https://github.com/tripit/slate/wiki/Deploying-Slate).
 
