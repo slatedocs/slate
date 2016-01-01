@@ -40,6 +40,8 @@ Error Code | Meaning
 500 | Transaction Failed
 501 | Transaction Not Confirmed: polled network but could not confirm transaction
 502 | Duplicate Transaction
+503 | Raw Transaction Error: error sending client-side transaction
+504 | RLP Encoding Error (geth error -32603)
 650 | Loopback Not Found: loopback interface required for synchronous local commands
 651 | Ethereum Not Found: no active Ethereum node(s) found
 
