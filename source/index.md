@@ -32,7 +32,7 @@ Overview
 
 [Augur](http://augur.net) is a decentralized prediction market platform that runs on Ethereum.
 
-The Augur client (user interface) is built and hosted at [client.augur.net](https://client.augur.net).  If you want to use or help test Augur, you do not need to download or install anything!  Just go to [client.augur.net](https://client.augur.net) and start using it.
+The stable Augur client (user interface) is built and hosted at [client.augur.net](https://client.augur.net).  If you want to use or help test Augur, you do not need to download or install anything!  Just go to [client.augur.net](https://client.augur.net) and start using it.  (If you want to use our cutting-edge development client, this is maintained at [augur-dev.herokuapp.com](http://augur-dev.herokuapp.com) -- warning, we push changes to augur-dev pretty rapidly, so it can be a bit buggy!)
 
 If you want to help develop Augur, you will need to build the client from source.  To do this, first install [Node.js](https://nodejs.org/), then execute the following commands to build the client:
 
