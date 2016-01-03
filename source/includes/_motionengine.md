@@ -227,11 +227,12 @@ The 3-axis magnetometer data has the following structure:
 typedef struct { //3-axis raw data type - 6 bytes
   int16_t Data[3];
 } AxesRaw_t;
-
+```
 
 ## Disable magnetometer data stream
 
 `DisableMAGStream()`
+
 This function will disable the streaming of the magnetometer data.
 
 While the aforementioned motion engine APIs issue commands to Neblina to control its settings and streaming options, the next set of APIs will instantaneously return the last updated motion features reported by Neblina to the host.
@@ -282,18 +283,7 @@ There is another API function that gets called every time a new BLE packet buffe
 
 ## Motion Engine Call Back Functions
 
-Alternatively, developers can define API call-backs whenever a new motion feature has been updated using the following function pointers:
-
 ```c
-typedef void (*Motion_CallBack)(motionstatus_t motion, uint32_t TimeStamp);
-typedef void (*IMU_6Axis_CallBack)(IMU_6Axis_t data, uint32_t TimeStamp);
-typedef void (*Quaternion_CallBack)(Quaternion_t quatrn, uint32_t TimeStamp);
-typedef void (*EulerAngle_CallBack)(Euler_fxp_t angles, uint32_t TimeStamp);
-typedef void (*ExternalForce_CallBack)(Fext_Vec16_t fext, uint32_t TimeStamp);
-typedef void (*EulerAngleErr_CallBack)(Euler_fxp_t angles_err, uint32_t TimeStamp);
-typedef void (*Pedometer_CallBack)(steps_t steps, int16_t direction, uint32_t TimeStamp);
-typedef void (*MAG_CallBack)(AxesRaw_t data, uint32_t TimeStamp);
-
 typedef struct MotionEngine_CallBack_CFG_t
 {
 	Motion_CallBack MotionStatus_CallBk;
@@ -307,6 +297,24 @@ typedef struct MotionEngine_CallBack_CFG_t
 	SitStand_CallBack SitStand_CallBk;
 } MotionEngine_CallBack_CFG_t;
 ```
+
+Alternatively, developers can define API call-backs whenever a new motion feature has been updated using the following function pointers:
+
+`typedef void (*Motion_CallBack)(motionstatus_t motion, uint32_t TimeStamp);`
+
+`typedef void (*IMU_6Axis_CallBack)(IMU_6Axis_t data, uint32_t TimeStamp);`
+
+`typedef void (*Quaternion_CallBack)(Quaternion_t quatrn, uint32_t TimeStamp);`
+
+`typedef void (*EulerAngle_CallBack)(Euler_fxp_t angles, uint32_t TimeStamp);`
+
+`typedef void (*ExternalForce_CallBack)(Fext_Vec16_t fext, uint32_t TimeStamp);`
+
+`typedef void (*EulerAngleErr_CallBack)(Euler_fxp_t angles_err, uint32_t TimeStamp);`
+
+`typedef void (*Pedometer_CallBack)(steps_t steps, int16_t direction, uint32_t TimeStamp);`
+
+`typedef void (*MAG_CallBack)(AxesRaw_t data, uint32_t TimeStamp);`
 
 > For example, one might define a single API call-back regarding pedometer as follows:
 

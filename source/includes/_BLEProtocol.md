@@ -37,9 +37,8 @@ Control Byte Details
 
 
 #### Byte 0: Control Byte
-```c 
-Bit#7-5: (PKT_TYPE) Packet Type 
-```
+`Bit 7:5 = (PKT_TYPE) Packet Type`
+
 This field generally determines the type of the packet. Currently, the types include: regular command/response packets, error log command/response packets, and an acknowledge response packet from Neblina to a command issued by the host. The 8 possible combinations of the packet type field are described below:
 
 |  Bit 7:5 (PKT_TYPE) |                    Description                    |
@@ -71,24 +70,24 @@ Bit#5: (ACK) Acknowledge Indicator
 ```
 If set to 1, it shows that the packet is a simple acknowledge response from Neblina to a command issued by the host.
 --->
-```c 
-Bits#4-0: (SUB) Subsystem Identifier
-```
+
+`Bits 4:0 = (SUB) Subsystem Identifier`
+
 This is the subsystem identifier:
 
-0. **0x00 [Debug Subsystem](_debug.md)**: Information about the device, special modes, etc.
-1. **0x01 [Motion Engine](_motionenginepackets.md)**: Motion data information, orientation, quaternions, trajectories, acceleration, magnetic, etc.
-2. **0x02 [Power Management](_powermanagement.md)**: Battery information, voltages and other information related to the power management IC
-3. **0x03 [Digital IO](_digitalio.md)**: Digital IO on the module
-4. **0x04 [LEDs or indicators](_led.md)**: LEDs (unicolor or RGB, backlights)
-5. **0x05 [Analog to Digital Converters (ADC)](_adc.md)**: Access to module ADCs
-6. **0x06 [Digital to Analog Converters (DAC)](_dac.md)**: Access to module DACs
-7. **0x07 [I2C Subsystem](_i2c.md)**: Access to I2C subsystems (for programmers)
-8. **0x08 [SPI Subsystem](_spi.md)**: Access to SPI subsystems (for programmers)
-9. **0x09 [Firmware Management](_firmware.md)**: Firmware versions, firmware checks, self-test, serial numbers
-10. **0x0A [Cryptography](_security.md)**: Cryptography peripherals, data security
-11. **0x0B [Storage](_norflash.md)**: NOR Flash Recorder: recording several hours of streaming data
-12. **0x0C [EEPROM](_eeprom.md)**: EEPROM Read/Write: board ID, features, etc. 
+0. **0x00 [Debug Subsystem](/debug.html)**: Information about the device, special modes, etc.
+1. **0x01 [Motion Engine](/motionenginepackets.html)**: Motion data information, orientation, quaternions, trajectories, acceleration, magnetic, etc.
+2. **0x02 [Power Management](/powermanagement.html)**: Battery information, voltages and other information related to the power management IC
+3. **0x03 [Digital IO](/digitalio.html)**: Digital IO on the module
+4. **0x04 [LEDs or indicators](/led.html)**: LEDs (unicolor or RGB, backlights)
+5. **0x05 [Analog to Digital Converters (ADC)](/adc.html)**: Access to module ADCs
+6. **0x06 [Digital to Analog Converters (DAC)](/dac.html)**: Access to module DACs
+7. **0x07 [I2C Subsystem](/i2c.html)**: Access to I2C subsystems (for programmers)
+8. **0x08 [SPI Subsystem](/spi.html)**: Access to SPI subsystems (for programmers)
+9. **0x09 [Firmware Management](/firmware.html)**: Firmware versions, firmware checks, self-test, serial numbers
+10. **0x0A [Cryptography](/security.html)**: Cryptography peripherals, data security
+11. **0x0B [Storage](/norflash.html)**: NOR Flash Recorder: recording several hours of streaming data
+12. **0x0C [EEPROM](/eeprom.html)**: EEPROM Read/Write: board ID, features, etc. 
 
 #### Byte 1: Data Section Packet Length
 
@@ -97,9 +96,9 @@ In this version of the API, the data format currently is set to a fixed packet l
 Note that this fixed length attribute of the packets may change in future APIs.
 
 #### Byte 2: CRC
-The 8-bit CRC is calculated over both the header and data sections of the packet. The polynomial is initialized to 0x00.  
+The 8-bit CRC is calculated over both the header and data sections of the packet. The polynomial is initialized to 0x00.
 
-```C
+```c
 crc = 0;
 for (i = 0; i < Len; i++)
 {
@@ -119,15 +118,10 @@ To validate the CRC, the code first takes a copy of the CRC byte then sets it to
 
 Commands are defined per subsystem.  Refer to the appropriate section of the documentation for command details.
 
-------
-
 Different commands can be issued identified by this field. For the power management subsystem, currently there is only one command as follows:
-```c 
-#define POWERMGMT_GET_BAT_LEVEL 0
-```
+
+`#define POWERMGMT_GET_BAT_LEVEL 0`
+
 There is also a single command corresponding to the Debug mode, that is to set the interface protocol between the host and Neblina. By default, the interface is set to BLE, but we can set the interface to UART as well. Here is the command code for setting the interface:
-```c 
-#define DEBUG_SET_INTERFACE 1
-```
 
-
+`#define DEBUG_SET_INTERFACE 1`

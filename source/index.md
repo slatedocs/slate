@@ -13,7 +13,6 @@ toc_footers:
 includes:
   - motionengine
   - BLEProtocol
-  - powermanagement
 
 search: true
 ---
