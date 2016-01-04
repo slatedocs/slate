@@ -35,9 +35,10 @@ client-id |
 white-label-profile-id | (branding-profile-id is also supported but deprecated)
 tags | Comma separated list of tags
 search-terms | <span class="label label-required">Required</span> Newline (\n) separated list of search terms.
-website-address	|
-website-address-2 |	
-website-address-3 |	
+website-addresses	| Supply one or more website addresses (max 10) as a JSON string. For example, [“test.com”,“test2.com”].
+website-address	| (supported but deprecated)
+website-address-2 | (supported but deprecated)
+website-address-3 | (supported but deprecated)
 country	| One of USA, GBR, AUS, CAN:EN, CAN:FR. Defaults to USA.
 google-location	| Specify a location to perform search from. When set search keywords do not need to include a location.
 bing-location | Specify a location to perform search from. When set search keywords do not need to include a location.
@@ -87,9 +88,10 @@ client-id |
 white-label-profile-id | (branding-profile-id is also supported but deprecated)
 tags | Comma separated list of tags
 search-terms | Newline (\n) separated list of search terms
-website-address	|
-website-address-2 |	
-website-address-3 |	
+website-addresses	| Supply one or more website addresses (max 10) as a JSON string. For example, [“test.com”,“test2.com”].
+website-address	| (supported but deprecated)
+website-address-2 | (supported but deprecated)
+website-address-3 | (supported but deprecated)
 country	| One of USA, GBR, AUS, CAN:EN, CAN:FR.
 google-location	| Specify a location to perform search from. When set search keywords do not need to include a location.
 bing-location | Specify a location to perform search from. When set search keywords do not need to include a location.
@@ -226,6 +228,9 @@ client-id |
             ],
             "ppc_search_terms": null,
             "lookup_ppc": "No",
+            "website-addresses": [
+                "http://www.testpub.com/"
+            ],
             "website_address": "http://www.testpub.com/",
             "website_address_2": null,
             "website_address_3": null,
