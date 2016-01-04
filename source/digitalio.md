@@ -1,6 +1,14 @@
 # Digital I/O
 Subsystem Number: 0x03
 
+List of commands:
+* Set Config: **0x01**
+* Get Config: **0x02**
+* Set Value: **0x03**
+* Get Value: **0x04**
+* Notify Set: **0x05**
+* Notify Event: **0x06**
+
 ## Set/Get Config
 
 Modify and access the parameters of the Digital I/Os.
@@ -38,7 +46,7 @@ Setting the value of the Digital I/O pin to either '0' or '1'.
 
 |0 (subsystem)|1 (length)|2 (CRC)|3 (command)|4(Index)|5(Value[0])|
 |:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
-|0x43|0x10|CRC|0x02|Index|(0/1)|
+|0x43|0x10|CRC|0x03|Index|(0/1)|
 
 ### Get Value Packet Structure
 
@@ -48,13 +56,13 @@ Command:
 
 |0 (subsystem)|1 (length)|2 (CRC)|3 (command)|4(Index)|
 |:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
-|0x43|0x10|CRC|0x82|Index|
+|0x43|0x10|CRC|0x04|Index|
 
 Response:
 
 |0 (subsystem)|1 (length)|2 (CRC)|3 (command)|4(Index)|5(Value[0])|
 |:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
-|0x03|0x10|CRC|0x82|Index|(0/1)|
+|0x03|0x10|CRC|0x04|Index|(0/1)|
 
 
 ## Signal Change Notification
@@ -65,7 +73,7 @@ A packet will be sent when a change (either edge) in the input signal has been d
 
 |0 (subsystem)|1 (length)|2 (CRC)|3 (command)|4(Index)|5(Off/On)|
 |:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
-|0x43|0x10|CRC|0x02|Index|Off/On|
+|0x43|0x10|CRC|0x05|Index|Off/On|
 
 ### Notification activation codes
 
@@ -80,7 +88,7 @@ When a edge has triggered this event, the application receives a notification th
 
 |0 (subsystem)|1 (length)|2 (CRC)|3 (command)|4(Index)|
 |:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
-|0x03|0x10|CRC|0x02|Index|
+|0x03|0x10|CRC|0x06|Index|
 
 ## Examples
 
@@ -91,7 +99,7 @@ Configuring pin #5 to output push-pull and setting the I/O value #5 to output **
 |Description|0|1|2|3|4|5|
 |:-:|:-:|:-:|:-:|:-:|:-:|:-:|
 |Set Config Command|0x43|0x10|CRC|0x01|0x5|0x4|
-|Drive Output Command|0x43|0x10|CRC|0x02|0x5|0x1|
+|Drive Output Command|0x43|0x10|CRC|0x03|0x5|0x1|
 
 ### Read Value Example
 
@@ -99,8 +107,8 @@ Reading the value of Digital I/O #4
 
 |Description|0|1|2|3|4|5|
 |:-:|:-:|:-:|:-:|:-:|:-:|:-:|
-|Get Value Command|0x43|0x10|CRC|0x82|0x4|
-|Get Value Response|0x03|0x10|CRC|0x82|0x4|0x1|
+|Get Value Command|0x43|0x10|CRC|0x04|0x4|
+|Get Value Response|0x03|0x10|CRC|0x04|0x4|0x1|
 
 ### Event Notification Example
 
@@ -108,7 +116,7 @@ Make a notification happen when there is an signal transition on pin #7. There i
 
 |Description|0|1|2|3|4|5|
 |:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
-|Notify Set Command|0x43|0x10|CRC|0x03|0x7|0x1|
-|Notify Event Response|0x03|0x10|CRC|0x83|0x7|
+|Notify Set Command|0x43|0x10|CRC|0x03|0x05|0x1|
+|Notify Event Response|0x03|0x10|CRC|0x06|0x7|
 
 
