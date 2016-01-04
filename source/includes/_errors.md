@@ -15,3 +15,24 @@ Error Code | Meaning
 429 | Too Many Requests -- You're requesting too many kittens! Slow down!
 500 | Internal Server Error -- We had a problem with our server. Try again later.
 503 | Service Unavailable -- We're temporarially offline for maintanance. Please try again later.
+
+## Error Object
+Every api response with error status code will have a response body that tells more detail about the error.
+The error has following format :
+
+Attribute | Format | Description
+--------- | ------ | -----------
+type | String | TBD
+code | String | TBD
+param | String | TBD
+message | String | A human-readable providing details about the error. These message can be shown to your users.
+
+> Error body example
+```
+{
+	"type": "",
+	"code": "",
+	"param": "",
+	"message": "Card(s) not found"
+}
+```
