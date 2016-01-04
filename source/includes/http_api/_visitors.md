@@ -29,14 +29,17 @@ Attribute         | Type       | Description
 `geo_country_code`| string     | The best guess about the country where the visitor is currently located. This is usually resolved from their IP address. This is a upper-case, two-letter ISO 3166-1 country code
 `geo_country`     | string     | The country as in `country_code`, but represented as the name of the country.
 `referrer_url`    | string     | The full URL from which the visitor entered the room during this session
-`referrer_hostname` | string     | Hostname from which the visitor entered the room during this session
-`referrer_medium`   | string     | Either `internal`, `search`, `email`, `social`, or `website`
-`referrer_source`   | string     | The name of the referrer source
+`referrer_hostname` | string   | Hostname from which the visitor entered the room during this session
+`referrer_medium`   | string   | Either `internal`, `search`, `email`, `social`, or `website`
+`referrer_source`   | string   | The name of the referrer source
 `device_screen_width`  | integer | The width resolution of the visitor's screen
 `device_screen_height` | integer | The height resolution of the visitor's screen
+`shopping_cart_currency` | string     | The currency of the visitor's shopping cart in the room, if the visitor has any, otherwise `null`. Currency is an upper-case string, e.g. `EUR`.
+`shopping_cart_total_value` | string  | The total value of the visitor's shopping cart in the room, if the visitor has any. Value `null` means the shopping cart is not defined. The value is presented as a decimal string, e.g. `59.00` in the currency defined by `shopping_cart_currency`.
+`shopping_cart_total_subscription_value` | string  | The total monthly subscription value of the visitor's shopping cart in the room, if the visitor has any. Value `null` means the shopping cart is not defined. The value is presented as a decimal string, e.g. `59.00` in the currency defined by `shopping_cart_currency` and <strong>per month</strong>.
+`shopping_cart_locked_at` | [date/time][] | When the visitor checked out their shopping cart in this room, during this session. It is `null` if the cart is not yet checked out or the cart is not defined.
 
 **TODO:** Pipeline?
-**TODO:** Shopping carts?
 
 Changes to a visitor is notified to the following [channels][]:
 
@@ -45,7 +48,7 @@ Channels    | Description
 `/api/v5/orgs/<organization_id>/rooms/<room_id>/online_visitors/<visitor_id>` | For a changed visitor, for each room where the visitor is currently online, and for each organization having access to that room
 
 <aside class="warning">
-Note that <strong>there is no</strong> collection channel <code>/api/v5/orgs/&lt;organization_id&gt;/rooms/&lt;room_id&gt;/online_visitors</code> for performance reasons. You need to listen each visitor separately.
+Note that for performance reasons <strong>there is no collection channel</strong> for listening multiple visitors. You need to listen each visitor separately.
 </aside>
 
 ### Get a collection of visitors currently online at a room
