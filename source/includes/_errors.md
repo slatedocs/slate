@@ -42,6 +42,7 @@ Error Code | Meaning
 502 | Duplicate Transaction
 503 | Raw Transaction Error: error sending client-side transaction
 504 | RLP Encoding Error (geth error -32603)
+505 | No Market Info: could not retrieve market data
 599 | RPC Timeout: timed out while waiting for Ethereum network response
 650 | Loopback Not Found: loopback interface required for synchronous local commands
 651 | Ethereum Not Found: no active Ethereum node(s) found
