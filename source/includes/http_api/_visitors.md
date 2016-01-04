@@ -5,7 +5,9 @@ Visitors API
 
 A visitor has a separate representation **for each room**. The returned attributes are different depending on from which room the visitor was requested.
 
-**NOTE**: Not all visitor metadata may be available at the time of a request. In that case, they will be `null`. An appropriate notification will be sent via channels when the information becomes available.
+<aside class="warning">
+<strong>NOTE</strong> that all the metadata may not be available at the time of a request. In that case, they will be <code>null</code>. An appropriate notification will be sent via channels when the information becomes available.
+</aside>
 
 Attribute         | Type       | Description
 :-----------------|:-----------|:-----------------
@@ -16,24 +18,35 @@ Attribute         | Type       | Description
 `session_id`      | string     | Identifier for the latest session for the visitor in this room
 `visit_count`     | integer    | During how many distinct sessions the visitor has been active on this room.
 `device_type`     | string     | Either `desktop`, `mobile` or `tablet`
-`browser`         | string     | Browser which the visitor is currently using
-`os`              | string     | Operating system which the visitor is using
-`language_code`   | string     | The language of the visitor's browser as a lower-case, two-letter ISO 639-1 language code
+`browser_name`    | string     | Name of the browser which the visitor is currently using, without any version number.
+`browser_version` | string     | Version of the browser which the visitor is currently using.
+`os_name`         | string     | Name of the operating system which the visitor is using
+`os_version`      | string     | Version of the operating system which the visitor is using
 `user_agent`      | string     | User-Agent header of the visitor browser
-`ip_address`      | string     | IP address of the visitor
-`ip_company`      | string     | Company resolved from the IP address
-`isp`             | string     | The best guess about the name of the Internet Service Provider for the visitor's Internet connection.
-`country_code`    | string     | The best guess about the country where the visitor is currently located. This is usually resolved from their IP address. This is a upper-case, two-letter ISO 3166-1 country code
-`country`         | string     | The country as in `country_code`, but represented as the name of the country.
-`city`            | string     | The best guess about the name of the city where the visitor is currently located. This is usually resolved from their IP address.
-`referrer_domain` | string     | Hostname from which the visitor entered the room during this session
+`ip_address`      | string     | IP address of the visitor (IPv4)
+`ip_organization` | string     | An organization name resolved from the IP address
+`geo_city`        | string     | The best guess about the name of the city where the visitor is currently located. This is usually resolved from their IP address.
+`geo_country_code`| string     | The best guess about the country where the visitor is currently located. This is usually resolved from their IP address. This is a upper-case, two-letter ISO 3166-1 country code
+`geo_country`     | string     | The country as in `country_code`, but represented as the name of the country.
 `referrer_url`    | string     | The full URL from which the visitor entered the room during this session
-`referrer_kind`   | string     | Either `website`, `direct`, `search`, `partner` or `int`
-`screen_width`    | integer    | The width resolution of the visitor's screen
-`screen_height`   | integer    | The height resolution of the visitor's screen
+`referrer_hostname` | string     | Hostname from which the visitor entered the room during this session
+`referrer_medium`   | string     | Either `internal`, `search`, `email`, `social`, or `website`
+`referrer_source`   | string     | The name of the referrer source
+`device_screen_width`  | integer | The width resolution of the visitor's screen
+`device_screen_height` | integer | The height resolution of the visitor's screen
 
 **TODO:** Pipeline?
 **TODO:** Shopping carts?
+
+Changes to a visitor is notified to the following [channels][]:
+
+Channels    | Description
+------------|---------------
+`/api/v5/orgs/<organization_id>/rooms/<room_id>/online_visitors/<visitor_id>` | For a changed visitor, for each room where the visitor is currently online, and for each organization having access to that room
+
+<aside class="warning">
+Note that <strong>there is no</strong> collection channel <code>/api/v5/orgs/&lt;organization_id&gt;/rooms/&lt;room_id&gt;/online_visitors</code> for performance reasons. You need to listen each visitor separately.
+</aside>
 
 ### Get a collection of visitors currently online at a room
 
