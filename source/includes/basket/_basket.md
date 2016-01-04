@@ -23,7 +23,7 @@ Third and the least favored method is to use CSS selectors to collect basket dat
 ### Why using CSS selectors is not recommended?
 Using CSS selectors and existing site html is fast and easy but is not recommended because the integration may break very easily and data may not be correct when comparing to other systems. For example if the developers of the site which usually are not aware of this integration change the page layout or CSS classes basket integration will not work anymore.
 
-Also when using site html there is cases when for example the price of discounted product is shown in different element or with different CSS classes or even with discount percent appended into same element. These kind of problems are almost impossible to debug and causes data to not be accurate.
+Also when using site html there is cases when for example the price of discounted product is shown in different element or with different CSS classes or even with discount percent appended into same element which may cause problems. Also site users can very easily manipulate data that is submitted. If any page translation tools are in use the submitted data will be incorrect. These kind of problems are almost impossible to debug and causes data to not be accurate.
 
 When basket is integrated using method that involves some work from site developers they know what to take into account and know to update integration code when ever needed. This way the code to push shopping cart data to giosg is usually located near other analytics javascript calls and is easier to keep those in sync that the data is comparable.
 
