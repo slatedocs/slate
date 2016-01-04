@@ -43,6 +43,7 @@ Error Code | Meaning
 503 | Raw Transaction Error: error sending client-side transaction
 504 | RLP Encoding Error (geth error -32603)
 505 | No Market Info: could not retrieve market data
+506 | IPFS Add Failure: files could not be added to IPFS
 599 | RPC Timeout: timed out while waiting for Ethereum network response
 650 | Loopback Not Found: loopback interface required for synchronous local commands
 651 | Ethereum Not Found: no active Ethereum node(s) found
