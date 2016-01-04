@@ -1,12 +1,44 @@
 # Appendix
 
+## Constructing Google+ URLs
+
+```php
+<?php
+$url = 'https://www.google.com/search?' . http_build_query([
+    'q'    => sprintf('"%s" "%s" %s', 'Hub Plumbing & Mechanical Inc', 'New York', '212-482-8500'),
+    'rlst' => 'fn',
+    'gbv'  => 2,
+]);
+```
+
+```php
+<?php
+$url = 'https://www.google.com/search?' . http_build_query([
+    'q'   => sprintf('"%s" "%s"', 'Pizza Hut', '67337'),
+    'rlst' => 'fn',
+    'gbv' => 2,
+]);    
+```
+
+Google recently simplified their Google+ profile pages and removed much of the useful profile information that we normally gather through APIs documented here, such as NAP and reviews. Consequently we have stopped using Google+ Local listings and have instead started tracking business profile information via Google SERP pages. This means that when requesting Google profile data or reviews via our API you need to supply us with a pre-formatted search URL rather than the plus URL that corresponds to that business. Your search URL should be constructed with one of the following formats:
+
+### Business names (in quotes) + zip code (in quotes) and phone number (without quotes)
+
+`https://www.google.com/search?q="Hub+Plumbing+%26+Mechanical+Inc"+"New+York"+212-482-8500&rlst=fn&gbv=2`
+
+### Business name (in quotes) + zipcode (in quotes)
+
+`https://www.google.com/search?q="Pizza+Hut"+"67337"&gbv=2&rlst=fn`
+
+Please make sure you include &gbv=2&rlst=fn in whichever format you use. One format may work better than another for a specific business so we recommend testing both approaches to find the optimal profile URL. The code snippets on the right give examples of how to generate each type of URL.
+
 ## Supported Local Directories
 
-The following tables provide details of the local directories we support for looking up profile URLs, profile details and/or reviews. For some directories we are able to grab all informatio and for others only partial information due to restrictions on certain sites or due to complications in the data gathering process (e.g. site uses JS to mask certain data points or doesn't present listing on separate, distinct URLs)
+The following tables provide details of the local directories we support for looking up profile URLs, profile details and/or reviews. For some directories we are able to grab all information and for others only partial information due to restrictions on certain sites or due to complications in the data gathering process (e.g. site uses JS to mask certain data points or doesn't present listing on separate, distinct URLs)
 
-###Key to table:
+### Key for tables
 
-* Indentifier = name of directory to be used when querying data for a specific directory
+* Identifier = name of directory to be used when querying data for a specific directory
 * NAP = we are able to retrieve Business Name, Address, Phone Number from a directory (some sites provide address in component parts, some as single data string)
 * Reviews = we grab review content, star rating + review count from a directory
 * Find Profile URL = we are able to return a URL on directory for this business
