@@ -28,6 +28,7 @@ param | String | TBD
 message | String | A human-readable providing details about the error. These message can be shown to your users.
 
 > Error body example
+
 ```
 {
 	"type": "",

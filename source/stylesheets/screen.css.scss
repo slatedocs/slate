@@ -197,6 +197,16 @@ html, body {
     }
   }
 
+  // header level 2
+  .tocify-subheader {
+    .tocify-subheader {
+      .tocify-item>a {
+        padding-left: $nav-padding + $nav-indent * 2;
+        font-size: 12px;
+      }
+    }
+  }
+
   .toc-footer {
     padding: 1em 0;
     margin-top: 1em;
