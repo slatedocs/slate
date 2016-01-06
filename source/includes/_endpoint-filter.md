@@ -61,3 +61,38 @@ The `expression` attribute must contain a valid ZCL filter expression.
 `/datasets/{id}/filters/{id}/applied/`
 
 A Shoji order containing the filters applied by the current user.
+
+
+### Filtering endpoints
+
+Some endpoints will support filtering, they will accept a `filter` GET parameter
+that should be a JSON encoded object that can contain either the URL of a filter
+(available through the Filters catalog) or a filter expression.
+
+To filter using a filter URL, pass the following JSON object as the `filter` 
+parameter:
+
+```json
+{
+    "filter": "http://....."
+}
+```
+
+```http
+GET /datasets/id/summary/?filter=%7B%22filter%22%3A+%22http%3A%2F%2F...crunch.io%2Fdatasets%2Fid%2Ffilters%2Fid%2F%22%7D HTTP/1.1
+```
+
+To filter using a filter expression, pass the following JSON object as the 
+`filter` parameter:
+
+```json
+{
+    "expression": {"function": "..", "args": ....}
+}
+```
+
+
+```http
+GET /datasets/id/summary/?filter=%7B%22expression%22%3A+%7B%22function%22%3A+%22%3D%3D%22%2C+%22args%22%3A+%5B%7B%22variable%22%3A+%22id%22%7D%2C+%7B%22value%22%3A+%22xx%22%7D%5D%7D%7D HTTP/1.1
+```
+
