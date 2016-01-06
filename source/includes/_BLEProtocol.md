@@ -76,7 +76,7 @@ If set to 1, it shows that the packet is a simple acknowledge response from Nebl
 This is the subsystem identifier:
 
 0. **0x00 [Debug Subsystem](/debug.html)**: Information about the device, special modes, etc.
-1. **0x01 [Motion Engine](/motionenginepackets.html)**: Motion data information, orientation, quaternions, trajectories, acceleration, magnetic, etc.
+1. **0x01 [Motion Engine](/../motionenginepackets.html)**: Motion data information, orientation, quaternions, trajectories, acceleration, magnetic, etc.
 2. **0x02 [Power Management](/powermanagement.html)**: Battery information, voltages and other information related to the power management IC
 3. **0x03 [Digital IO](/digitalio.html)**: Digital IO on the module
 4. **0x04 [LEDs or indicators](/led.html)**: LEDs (unicolor or RGB, backlights)
