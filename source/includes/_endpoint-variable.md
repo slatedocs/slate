@@ -347,7 +347,7 @@ For non-array variables, this View will be an empty array.
 
 ### Summary
 
-`/datasets/{id}/variables/{id}/summary/{?filter_syntax,filter_url}`
+`/datasets/{id}/variables/{id}/summary/{?filter_syntax,filter_url,filter}`
 
 A collection of summary information describing the variable. A successful GET returns an object containing various scalars and tabular results in various formats. The set of included members varies by variable type. Exclusions, filters, and weights may all alter the output.
 

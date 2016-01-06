@@ -237,3 +237,27 @@ description | string | "" | A longer description of the dataset
 #### DELETE
 
 `DELETE /datasets/{dataset_id}/`
+
+### Summary
+
+`/datasets/{id}/summary/{?filter_syntax,filter_url,filter}`
+
+Returns a Shoji View with summary information about this dataset containing
+ its number of rows (weighted and unweighted) as well as the number of 
+ variables and columns.
+
+```json
+{
+    'weighted': {
+        "filtered": <int>,
+        "total": <int>
+    },
+    'unweighted': {
+        "filtered": <int>,
+        "total": <int>
+    },
+    'variables': <int>,
+    'columns': <int>
+}
+```
+
