@@ -70,7 +70,7 @@ Available options:
 | ``reconnectionDelay`` | integer | number of milliseconds between reconnection attempts | ``1000`` |
 | ``loginStrategy`` | string | The username |
 | ``loginCredentials`` | JSON object | The username |
-| ``loginExpiresIn`` | string | The username | ``1mn``
+| ``loginExpiresIn`` | string | The username | ``1h``
 
 **Notes:** the ``offlineMode`` option only accept the ``manual`` and ``auto`` values
 
@@ -101,7 +101,7 @@ Available options:
 * if ``queueTTL`` is set to ``0``, requests are kept indefinitely
 * The offline buffer acts like a FIFO queue, meaning that if the ``queueMaxSize`` limit is reached, older requests are deleted and new requests are queued
 * if ``queueMaxSize`` is set to ``0``, an unlimited number of requests is kept until the buffer is flushed
-* if ``loginStrategy`` and ``loginCredentials`` are set then a login will be trigger once the connection is established.
+* if ``loginStrategy`` and ``loginCredentials`` are set then a login will be triggered once the connection is established.
 
 ## Offline mode
 
@@ -502,15 +502,24 @@ Available options:
 |---------------|---------|----------------------------------------|---------|
 | ``loginStrategy`` | string | The strategy |
 | ``loginCredentials`` | JSON object | The credentials |
-| ``loginExpiresIn`` | string | Expire time | ``1mn``
+| ``loginExpiresIn`` | string | Expire time | ``1h``
+
+
+```js
+kuzzle.login("local", {username: "username", password: "password"}, "1h");
+```
 
 ```java
-kuzzle.login("local", "username", "password", 30000);
+kuzzle.login("local", "username", "password", "1h");
 ```
 
 Log a user according to the strategy and credentials.
 
 ## logout
+
+```js
+kuzzle.logout();
+```
 
 ```java
 kuzzle.logout();
