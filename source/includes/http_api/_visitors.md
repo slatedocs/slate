@@ -13,11 +13,12 @@ Attribute         | Type       | Description
 :-----------------|:-----------|:-----------------
 `id`              | string     | Unique identifier for the visitor. This is the same for the same visitor regardless of the room from which the visitor was requested.
 `room_id`         | [ID][]     | ID of the room from which this room visitor resource was requested
-`is_online`       | boolean    | Whether or not the visitor currently online in the room
-`become_online_at` | [date/time][] | When the visitor become online last time. This is always set when `is_online` is `true`.
+`is_online`       | boolean    | Whether or not the visitor is currently online in the room
 `session_id`      | string     | Identifier for the latest session for the visitor in this room
 `visit_count`     | integer    | During how many distinct sessions the visitor has been active on this room.
 `device_type`     | string     | Either `desktop`, `mobile` or `tablet`
+`device_screen_width`  | integer | The width resolution of the visitor's screen
+`device_screen_height` | integer | The height resolution of the visitor's screen
 `browser_name`    | string     | Name of the browser which the visitor is currently using, without any version number.
 `browser_version` | string     | Version of the browser which the visitor is currently using.
 `os_name`         | string     | Name of the operating system which the visitor is using
@@ -32,14 +33,27 @@ Attribute         | Type       | Description
 `referrer_hostname` | string   | Hostname from which the visitor entered the room during this session
 `referrer_medium`   | string   | Either `internal`, `search`, `email`, `social`, or `website`
 `referrer_source`   | string   | The name of the referrer source
-`device_screen_width`  | integer | The width resolution of the visitor's screen
-`device_screen_height` | integer | The height resolution of the visitor's screen
-`shopping_cart_currency` | string     | The currency of the visitor's shopping cart in the room, if the visitor has any, otherwise `null`. Currency is an upper-case string, e.g. `EUR`.
+`original_referrer_url` | string | The full URL from which the visitor originally entered the room
+`original_referrer_hostname` | string | Hostname from which the visitor originally entered the room
+`original_referrer_medium` | string | Either `internal`, `search`, `email`, `social`, or `website`
+`original_referrer_source` | string | The name of the original referrer source
+`current_page_url` | string | URL of the web page at which the visitor is currently, at this room.
+`current_page_canonical_url` | string | Canonical URL of the web page at which the visitor is currently, at this room. Same than `current_page_url` if no canonical URL is available.
+`current_page_title` | string | Title of the web page at which the visitor is currently, at this room.
+`shopping_cart_currency` | string     | The currency of the visitor's shopping cart in the room, if the visitor has any, otherwise `null`. Currency is a upper-case [ISO 4217 currency code](http://www.xe.com/iso4217.php), e.g. `EUR`.
 `shopping_cart_total_value` | string  | The total value of the visitor's shopping cart in the room, if the visitor has any. Value `null` means the shopping cart is not defined. The value is presented as a decimal string, e.g. `59.00` in the currency defined by `shopping_cart_currency`.
 `shopping_cart_total_subscription_value` | string  | The total monthly subscription value of the visitor's shopping cart in the room, if the visitor has any. Value `null` means the shopping cart is not defined. The value is presented as a decimal string, e.g. `59.00` in the currency defined by `shopping_cart_currency` and <strong>per month</strong>.
-`shopping_cart_locked_at` | [date/time][] | When the visitor checked out their shopping cart in this room, during this session. It is `null` if the cart is not yet checked out or the cart is not defined.
+`shopping_cart_locked_at` | [date/time][] | When the visitor checked out their shopping cart in this room. It is `null` if the cart is not yet checked out or the cart is not defined.
 
-**TODO:** Pipeline?
+<aside class="warning">
+The following attributes also exists but they are <strong>deprecated</strong>, so you should avoid using them.
+</aside>
+
+Attribute             | Type       | Description
+:---------------------|:-----------|:-----------------
+`pipeline_step_index` | integer | Number of the current pipeline step of the visitor starting from 1, or `null` if not in a pipeline.
+`pipeline_step_title` | string | Name of the current pipeline step of the visitor, or `null` if not in a pipeline.
+`pipeline_step_count` | integer | The total number of steps in the pipeline, or `null` if not in a pipeline.
 
 Changes to a visitor is notified to the following [channels][]:
 
