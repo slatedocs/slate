@@ -68,6 +68,9 @@ Available options:
 | ``metadata`` | JSON object | Common metadata, will be sent to all future requests | |
 | ``replayInterval`` | integer | Delay between each replayed requests, in milliseconds | ``10`` |
 | ``reconnectionDelay`` | integer | number of milliseconds between reconnection attempts | ``1000`` |
+| ``loginStrategy`` | string | The username |
+| ``loginCredentials`` | JSON object | The username |
+| ``loginExpiresIn`` | string | The username | ``1mn``
 
 **Notes:** the ``offlineMode`` option only accept the ``manual`` and ``auto`` values
 
@@ -98,6 +101,7 @@ Available options:
 * if ``queueTTL`` is set to ``0``, requests are kept indefinitely
 * The offline buffer acts like a FIFO queue, meaning that if the ``queueMaxSize`` limit is reached, older requests are deleted and new requests are queued
 * if ``queueMaxSize`` is set to ``0``, an unlimited number of requests is kept until the buffer is flushed
+* if ``loginStrategy`` and ``loginCredentials`` are set then a login will be trigger once the connection is established.
 
 ## Offline mode
 
@@ -200,7 +204,7 @@ kuzzle.connect();
 ```
 
 Connects to the Kuzzle instance using the URL provided to the constructor.  
-Has no effect if ``connect`` is set to ``auto``, unless ``logout`` has been called first.
+Has no effect if ``connect`` is set to ``auto``, unless ``disconnect`` has been called first.
 
 
 ## dataCollectionFactory
@@ -223,6 +227,18 @@ Instantiates a new KuzzleDataCollection object.
 |---------------|---------|----------------------------------------|
 | ``collection`` | string | The name of the data collection you want to manipulate |
 
+
+## disconnect
+
+```js
+kuzzle.disconnect();
+```
+```java
+kuzzle.disconnect();
+```
+
+
+Closes the current connection.
 
 ## flushQueue
 
@@ -474,17 +490,33 @@ Available options:
 | ``type`` | string | Get either ``stored`` collections or ``realtime`` ones. By default, list ``all`` collections | ``all`` |
 
 
+## login
+
+| Arguments | Type | Description |
+|---------------|---------|----------------------------------------|
+| ``options`` | JSON Object | Optional parameters |
+
+Available options:
+
+| Option | Type | Description | Default |
+|---------------|---------|----------------------------------------|---------|
+| ``loginStrategy`` | string | The strategy |
+| ``loginCredentials`` | JSON object | The credentials |
+| ``loginExpiresIn`` | string | Expire time | ``1mn``
+
+```java
+kuzzle.login("local", "username", "password", 30000);
+```
+
+Log a user according to the strategy and credentials.
+
 ## logout
 
-```js
-kuzzle.logout();
-```
 ```java
 kuzzle.logout();
 ```
 
-
-Closes the current connection. Does not fire a ``disconnected`` event.
+Logout the user.
 
 ## now
 
