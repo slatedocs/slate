@@ -61,12 +61,7 @@ Here is the bit-field declaration for this register:
 Each bit-field shows whether the corresponding motion engine feature has been enabled for streaming (1) or not (0).
 
 ##### Flash Recorder/Playback Status Register (Byte#12):
-Here is the bit-field declaration for this register:
-
-|Bits 7:2|  Bit 1  |  Bit 0 |
-|:------:|:-------:|:------:|
-|Reserved|Recording|Playback|
-
-The Recording bit is high, when the recorder is busy recording, while it will be zero, if the recorder is off. The same discussion goes for the Playback bit. It is notable that the recorder might be busy doing both recording and playback (Byte#12 = 0x03).
+Here is the status value regarding the flash recorder:
+Byte#12 = { 0x00 (Idle state), 0x01 (Playing back), 0x02 (Recording), 0x03-0xFF (unused) } 
 
 
