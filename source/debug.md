@@ -43,7 +43,13 @@ In the command mode, the host can send this packet to Neblina to inquire what st
 |:----------------:|:-------------:|:----------:|:------------------------------------:|:-------:|
 |       0x40       |      0x10     |     CRC    |0x02 (motion engine & recorder states)|Reserved |
 
-In the response mode, Neblina will first send an acknowledge packet to the host to confirm the successful receipt of the command. Next, the main response packet will be prepared, where Byte#4-7 is reserved, while Byte#8-11 represents the 32-bit motion engine status register, and Byte#12 will show the flash recorder state, which are explained next. Byte#13-19 are also reserved.
+In the response mode, Neblina will first send an acknowledge packet to the host to confirm the successful receipt of the command. Next, the main response packet will be prepared, where Byte#4-7 is reserved, while Byte#8-11 represents the 32-bit motion engine status register, and Byte#12 will show the flash recorder state. Byte#13-19 are also reserved. The full response packet is as follows:
+
+|Byte 0 (subsystem)|Byte 1 (length)|Byte 2 (CRC)|Byte 3 (command)|Byte 4-7 |     Byte 8-11      |    Byte 12    |Byte 13-19|
+|:----------------:|:-------------:|:----------:|:--------------:|:-------:|:------------------:|:-------------:|:--------:|
+|       0x0        |     0x10      |    CRC     |      0x02      |Reserved |motion engine status|recorder status| Reserved |
+
+The motion engine and recorder status registers are described next.
 
 ##### Motion Engine Status Register (32-bit register, Byte#8-11):
 Here is the bit-field declaration for this register:
