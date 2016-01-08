@@ -52,7 +52,7 @@ Overall, the command packet has the following structure:
 
 In the response mode, Neblina will first send an acknowledge packet to the host to confirm the successful receipt of the command. Next, the main response packet will be prepared, where the data section first includes 4 bytes for the timestamp in microseconds (Byte#4-7) as a 32-bit unsigned integer value in little endian format. This means that Byte#4 is the LSB, and Byte#7 is the MSB of the timestamp. Next, we have the motion state data, i.e., a single byte (Byte#8), which is either 0 (stop motion) or 1 (start motion). The whole response packet structure including header is shown below:
 
-| Byte 0 (subsystem) | Byte 1 (length) | Byte 2 (CRC) |  Byte 3 (command) |Byte 4-7 |    Byte 8    | Bytes 9-19 |
+| Byte 0 (subsystem) | Byte 1 (length) | Byte 2 (CRC) |  Byte 3 (command) |Byte 4-7 |    Byte 8    | Bytes 9-19  |
 |:------------------:|:---------------:|:------------:|:-----------------:|:-------:|--------------|-------------|
 |        0x01        |       0x10      |      CRC     |        0x02       |TimeStamp|  stop/start  |  Reserved   |
 
