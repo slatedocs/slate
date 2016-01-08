@@ -43,11 +43,11 @@ In the command mode, the host can send this packet to Neblina to inquire what st
 |:----------------:|:-------------:|:----------:|:------------------------------------:|:-------:|
 |       0x40       |      0x10     |     CRC    |0x02 (motion engine & recorder states)|Reserved |
 
-In the response mode, Neblina will first send an acknowledge packet to the host to confirm the successful receipt of the command. Next, the main response packet will be prepared, where Byte#4-7 is reserved, while Byte#8-11 represents the 32-bit motion engine status register, and Byte#12 will show the flash recorder state. Byte#13-19 are also reserved. The full response packet is as follows:
+In the response mode, Neblina will first send an acknowledge packet to the host to confirm the successful receipt of the command. Next, the main response packet will be prepared, where Byte#4-7 is reserved, while Byte#8-11 represent the 32-bit motion engine status register, and Byte#12 will show the flash recorder state. Byte#13-19 are also reserved. The full response packet is as follows:
 
 |Byte 0 (subsystem)|Byte 1 (length)|Byte 2 (CRC)|Byte 3 (command)|Byte 4-7 |     Byte 8-11      |    Byte 12    |Byte 13-19|
 |:----------------:|:-------------:|:----------:|:--------------:|:-------:|:------------------:|:-------------:|:--------:|
-|       0x0        |     0x10      |    CRC     |      0x02      |Reserved |motion engine status|recorder status| Reserved |
+|       0x0        |     0x10      |    CRC     |      0x02      |Reserved |Motion Engine Status|Recorder Status| Reserved |
 
 The motion engine and recorder status registers are described next.
 
@@ -60,13 +60,13 @@ Here is the bit-field declaration for this register:
 
 Each bit-field shows whether the corresponding motion engine feature has been enabled for streaming (1) or not (0).
 
-##### Flash Recorder/Playback State (Byte#12):
+##### Flash Recorder/Playback Status Register (Byte#12):
 Here is the bit-field declaration for this register:
 
 |Bits 7:2|  Bit 1  |  Bit 0 |
 |:------:|:-------:|:------:|
 |Reserved|Recording|Playback|
 
-The Recording bit is high, when the recorder is busy recording, while it will be zero, if the recorder is off. The same discussion goes for the Playback bit. It is notable that the recorder might be busy doing both recording and playback.
+The Recording bit is high, when the recorder is busy recording, while it will be zero, if the recorder is off. The same discussion goes for the Playback bit. It is notable that the recorder might be busy doing both recording and playback (Byte#12 = 0x03).
 
 
