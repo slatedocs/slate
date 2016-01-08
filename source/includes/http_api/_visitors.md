@@ -59,11 +59,13 @@ Changes to a visitor is notified to the following [channels][]:
 
 Channels    | Description
 ------------|---------------
+`/api/v5/orgs/<organization_id>/rooms/<room_id>/online_visitors` | For each room where the visitor is currently online, and for each organization having access to that room. **WARNING!** This channel may get a large amount of notifications for rooms with heavy traffic!
 `/api/v5/orgs/<organization_id>/rooms/<room_id>/online_visitors/<visitor_id>` | For a changed visitor, for each room where the visitor is currently online, and for each organization having access to that room
 
-<aside class="warning">
-Note that for performance reasons <strong>there is no collection channel</strong> for listening multiple visitors. You need to listen each visitor separately.
-</aside>
+Channels are notified with a `added` notification whenever a visitor becomes online at that specific room (i.e. the `is_online` attribute on the [room visitor][] changes). Similarly, it is notified with a `removed` notification whenever we have not heard about the visitor (in that specific room) for a while, making the visitor offline at the room.
+
+If any attribute of the room visitor changes, the channel receives a `changed` notification.
+
 
 ### Get a collection of visitors currently online at a room
 
@@ -75,9 +77,6 @@ This API endpoint returns a [paginated collection][].
 
 **TODO**: The ordering??
 
-The corresponding channel is notified with a `added` notification whenever a visitor becomes online at that specific room (i.e. the `is_online` attribute on the [room visitor][] changes). Similarly, it is notified with a `removed` notification whenever we have not heard about the visitor (in that specific room) for a while, making the visitor offline at the room.
-
-If any attribute of the room visitor changes, the channel receives a `changed` notification.
 
 ### Get a single visitor at a room
 
