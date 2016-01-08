@@ -31,7 +31,7 @@ There is also a single command corresponding to the Debug mode, that is to set t
 
 In response, Neblina will send an acknowledge packet to the host to confirm the successful receipt of the command.
 
-### Debug - Check Motion Engine and Flash Recorder States
+### Debug - Check Motion Engine and Flash Recorder States (0x02)
 
 ```c 
 #define DEBUG_CMD_MOTENGINE_RECORDER_STATUS 0x02
