@@ -83,6 +83,48 @@ You are allowed to update your own details. You may only change other users' det
 </aside>
 
 
+## User preferences
+
+Each user always has a single preferences resource containing private settings conserning the user account. A user prefernces resource has the following attributes.
+
+Attribute       | Type    | Editable  | Default | Description
+:---------------|:--------|:----------|---------|------------
+`id`            | [ID][]  | read-only |         | ID which equaling the ID of the related user
+`chat_capacity` | integer | **required**  | 5       | An estimate about the maximum number of people the user is willing to chat with simultaneously. The system uses this value in its algorithms to determine how many messages are sent in the name of the user.
+`desktop_message_sound` | string  | **required**  | `visitor_message` | Identifier for the message sound used when a visitor sends a message.
+`is_desktop_message_sound_continuous` | boolean | **required** | `true` | Whether or not to play the message sound continuously until the user interacts with the UI.
+`desktop_visitor_added_sound` | string | **required**  | `visitor_connect` | Identifier for the message sound played when a new visitor becomes present.
+`is_desktop_visitor_added_sound_continuous` | boolean | **required** | `true` | Whether or not to play the visitor added sound continuously until the user interacts with the UI.
+`ui_language_code` | string | **required** | `en` | Preferred UI Language in ISO 639-1 code.
+`is_muted_offline` | boolean | **required** | `false` | Whether or not to disable the sounds while the user is offline.
+`is_statistics_email_enabled` | boolean | **required** | `true` | Whether or not to send statistic emails to the user.
+`is_desktop_notification_enabled` | boolean | **required** | `false` | Whether or not to use desktop notifcations (if supported by the browser)
+`is_spellcheck_enabled` | boolean | **required** | `false` | Whether or not to enable spellchecking when composing messages (if supported by the browser)
+
+<aside class="info">
+User preferences are created and deleted with the user. They can only be updated. The preference attributes are initially set to their default values.
+</aside>
+
+### Retrieve user preferences
+
+You can get the preferences of the user:
+
+`GET /api/v5/orgs/<organization_id>/users/<user_id>/preferences`
+
+
+### Update user preferences
+
+You can update *some or all* your preferenes with a `PATCH` request:
+
+`PATCH /api/v5/orgs/<organization_id>/users/<user_id>/preferences`
+
+Any omitted preference attributes are kept in their previous values.
+
+You can also make a `PUT` request, but in this case you need to provide *all* the preference attributes, otherwise a 400 response is returned:
+
+`PUT /api/v5/orgs/<organization_id>/users/<user_id>/preferences`
+
+
 ## Organizations
 
 An organization represents any organization account on giosg system. An organization consists of a number of users with their own user accounts. A user always belongs to exactly one organization.
