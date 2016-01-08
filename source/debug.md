@@ -62,7 +62,7 @@ Each bit-field shows whether the corresponding motion engine feature has been en
 
 ##### Flash Recorder/Playback Status Register (Byte#12):
 Here is the status value regarding the flash recorder:
-
+```c 
 Byte#12 = { 0x00 (Idle state), 0x01 (Playing back), 0x02 (Recording), 0x03-0xFF (unused) } 
-
+```
 
