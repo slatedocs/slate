@@ -22,7 +22,8 @@ Attribute | Type | Editable | Description
 `created_at` | [date/time][] | read-only | When the user resource was created
 `updated_at` | [date/time][] | read-only | When the user resource was updated last time
 `avatar` | object | read-only | The avatar of the user as an object. It contains attributes `id`and `url`. This is `null` if the user has no avatar.
-`is_online` | boolean | read-only | Whether the user is currently in online status as an operator, based on the most recent information about the user.
+`is_online_enabled` | boolean | **optional** | Whether or not the user wants to serve online as an operator. This determines if the `is_online` can be true.
+`is_online` | boolean | read-only | Whether the user is currently in online status as an operator, based on the most recent information about the user. This can only be `true` if `is_online_enabled` is `true` *and* the user is considered signed in. Otherwise this is `false`.
 `is_signed_in` | boolean | read-only | Whether the user is currenlty logged in to the service, based on the most recent information about the user.
 `current_chat_count` | integer | read-only | The number of chats the user has currently, based on the most recent information about the user.
 `is_deleted` | boolean | read-only | Whether this user exists no more. If `true`, the resource exists only for historical purposes and cannot be used in any other context!
@@ -70,13 +71,24 @@ If you try to get a user that has been deleted, the endpoint results in 404 resp
 This endpoint returns a 403 response if you do not have permissions for this organization. It returns a 404 response if the user does not exists **or** they doesn't belong to the organization.
 
 ### Update details of an organization member
-You may update some of the attributes of a user (`<user_id>`) that belongs to an organization (`<organization_id>`)
 
-`PUT https://service.giosg.com/api/v5/orgs/<organization_id>/users/<user_id>`
+> **Example request and payload**: Switch user to online
+
+    PATCH https://service.giosg.com/api/v5/orgs/2577ef72-efa0-4b4c-b5b6-0fc3a73e818f/users/fb993c84-1591-41f1-8d36-3804117f64e0
+
+```json
+{
+    "is_online_enabled": true
+}
+```
+
+You may update some of the attributes of a user (`<user_id>`) that belongs to an organization (`<organization_id>`) by making a `PATCH` request:
 
 `PATCH https://service.giosg.com/api/v5/orgs/<organization_id>/users/<user_id>`
 
-When using `PUT` you need to provide an object as a request payload that contains all the changed attributes of the [user][]. When using `PATCH`, you may omit those attributes that you do not want to change.
+You may also update the whole user resource with a `PUT` request. In this case, you need to define all the required attributes and any omitted optional attributes will be set to their defaults:
+
+`PUT https://service.giosg.com/api/v5/orgs/<organization_id>/users/<user_id>`
 
 <aside class="warning">
 You are allowed to update your own details. You may only change other users' details if you have management rights for the organization. Otherwise this endpoint will result in a 403 response.
