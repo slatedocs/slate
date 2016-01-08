@@ -14,6 +14,7 @@ includes:
   - http_api/assets
   - http_api/timelines
   - http_api/realtime_reporting
+  - http_api/exports
   - socket_api
 
 search: true
