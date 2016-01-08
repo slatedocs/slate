@@ -18,8 +18,9 @@ Attribute | Type | Editable | Description
 `created_by_user_id` | [ID][] | read-only | ID of the user who started this export
 `updated_at` | [date/time][] | read-only | When the export was last time modified
 `completed_at` | [date/time][] | read-only | When the export completed (either successfully or with an error). It is `null` if the exporting is still in progress.
+`expires_at` | [date/time][] | read-only | The moment after which the report cannot be downloaded any more. It is `null` if exporting is still in progress or if it has failed.
 `is_failed` | boolean | read-only | `true` if the exporting has failed, `failed` if the export was successful, `null` if the export is still in progress
-`url` | string | read-only | The full absolute `url` at which the exported report file can be downloaded. Only available if the export has completed successfully, otherwise `null`
+`url` | string | read-only | The full absolute `url` at which the exported report file can be downloaded. Only available if the export has completed successfully and if the report is not yet expired, otherwise `null`.
 
 
 ### Start exporting a report
