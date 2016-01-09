@@ -13,13 +13,15 @@ const ATTRIBUTION_PLATFORM_SECRET = "api_secret";
 $app_id = "54ecc0535beacdc1e1eff778";
 $app_signature = "601be68e3bb4e7eb953024eb4f2ac03376e2c2fb";
 
-$gaid = "8df6c9bf-d647-4400-bc13-7ff317f046f3";
+$gaid = "8df6c9bf-d647-4400-bc13-7ff317ff0000"; # Google Advertising ID
+$android_id = "f533bc6a9d9a2000"; # legacy Android ID
 $claim = 1; # or claim=0 if non-attributable
 $attributed_to = "Chartboost";
 
 $data = json_encode(array(
   "app_id" => $app_id,
   "gaid" => $gaid,
+  "uuid" => $android_id,
   "claim" => $claim,
   "attributed_to" => $attributed_to
 ));
@@ -52,13 +54,15 @@ ATTRIBUTION_PLATFORM_SECRET = 'api_secret'
 app_id = '54ecc0535beacdc1e1eff778'
 app_signature = '601be68e3bb4e7eb953024eb4f2ac03376e2c2fb'
 
-gaid = '8df6c9bf-d647-4400-bc13-7ff317f046f3'
-claim = 1  # or claim=0 if non-attributable
+gaid = '8df6c9bf-d647-4400-bc13-7ff317ff0000' # Google Advertising ID
+android_id = 'f533bc6a9d9a2000' # Legacy Android ID
+claim = 1  # 1 if attributable or 0 if non-attributable
 attributed_to = 'Chartboost'
 
 data = json.dumps({
   'app_id': app_id,
   'gaid': gaid,
+  'uuid': android_id,
   'claim': claim,
   'attributed_to': attributed_to
 })
@@ -80,45 +84,64 @@ requests.post(ATTRIBUTION_ENDPOINT, data=data, headers=headers)
 var https = require('https');
 var crypto = require('crypto');
 
-var app_id = "55ef46745b14530c09698f94";
-var app_signature = "dd5ccf325df48c2cd88ad53bca6614f0ecc3a13e";
-var ifa = "FCA3FE48-AC39-4885-B94A-0970ED8813D8";
-var ATTRIBUTION_PLATFORM_SECRET = "api_secret";
-var ATTRIBUTION_PLATFORM_TOKEN = "api_token";
-var claim = 1; // or claim=0 if non-attributable
-var attributed_to = "Chartboost";
+var data, descriptor, signature, options, req;
 
-var data = JSON.stringify({
-	"app_id": app_id,
-	"ifa": ifa,
-	"claim": claim,
-	"attributed_to": attributed_to
-});
-var descriptor = "action:attribution\n" + ATTRIBUTION_PLATFORM_SECRET + "\n" + app_signature + "\n" + data;
-var signature = crypto.createHash('sha256').update(descriptor).digest('hex');
+var app_id = "54ecc0535beacdc1e1eff778"; // test app id 
+var app_signature = "601be68e3bb4e7eb953024eb4f2ac03376e2c2fb"; // test app signature
+const ATTRIBUTION_PLATFORM_SECRET = "<your API secret>"; // your party's API secret
+const ATTRIBUTION_PLATFORM_TOKEN = "<your API token>"; // your party's API token
+const ATTRIBUTION_HOST = "live.chartboost.com";
+const ATTRIBUTION_PATH = "/api/v1/install.json";
+const ATTRIBUTION_PORT = "443";
+const WAITSECONDS = 10; // used by setInterval at bottom of script; will repeat the request every WAITSECONDS seconds
 
-var post_options = {
-      host: "live.chartboost.com",
-      port: '443',
-      path: '/api/v1/install.json',
-      method: 'POST',
-      headers: {
-          'Content-Type': 'application/json',
-          'Content-Length': data.length,
-          'X-Chartboost-Token': ATTRIBUTION_PLATFORM_TOKEN,
-          'X-Chartboost-Signature': signature
-      }
-  };
+var idfa = "61109b4c0f164fbc82ec5475313af000";  // sample iOS IDFA
+var claim = 1; // should be 0 if install is organic / not-attrituable to Chartboost, 1 if attributable
+var attributed_to = "Chartboost"; // optional, send another network name if attributed to other network, or Organic if organic
+var is_organic = 0; // optional, send 0 if not organic, 1 if organic
 
-var post_req = https.request(post_options, function(res) {
-      res.setEncoding('utf8');
-      res.on('data', function (chunk) {
-        console.log('Response: ' + chunk);
-      });
-  });
+function sendInstall(callback) {
+    data = JSON.stringify({
+        "app_id": app_id,
+        "ifa": idfa,
+        "claim": claim,
+        "attributed_to": attributed_to,
+        "organic": is_organic
+    });
 
-post_req.write(data);
-post_req.end();
+    // X-Chartboost-Signature is generated on every request using the following hashing algorithm 
+    descriptor = "action:attribution\n" + ATTRIBUTION_PLATFORM_SECRET + "\n" + app_signature + "\n" + data;
+    signature = crypto.createHash('sha256').update(descriptor).digest('hex');
+    console.log(signature);
+
+    options = {
+        host: ATTRIBUTION_HOST,
+        port: ATTRIBUTION_PORT,
+        path: ATTRIBUTION_PATH,
+        method: 'POST',
+        agent: false,
+        headers: {
+            'Content-Type': 'application/json',
+            'Content-Length': data.length,
+            'X-Chartboost-Token': ATTRIBUTION_PLATFORM_TOKEN,
+            'X-Chartboost-Signature': signature
+        }
+    };
+    // Build the request using node https module
+    req = https.request(options, function(res) {
+        res.setEncoding('utf8');
+        console.log("statusCode: ", res.statusCode);
+        res.on('data', function(chunk) {
+            console.log('Response: ' + chunk);
+        });
+    });
+    req.write(data);
+    req.end();
+    callback();
+}
+
+// Send it!
+sendInstall( function() {console.log(data);} );
 ```
 
 ```shell
@@ -150,9 +173,9 @@ This endpoint's response will always be an HTTP 200 status code. Check the "stat
 
 ### Authentication
 
-(This service is only available for install attribution platforms. If you are representing an install attribution platform, please <a href="mailto:support.integrations@chartboost.com">contact Chartboost Integrations Support</a> for a platform-specific API token and platform-specific secret to authenticate with this service.)
+(This service is only available for install attribution platforms. If you are representing an install attribution platform, please <a href="mailto:support.integrations@chartboost.com">contact our Chartboost Partner Integrations Team</a> for a platform-specific API token and platform-specific secret to authenticate with this service.)
 
-To authenticate with this endpoint, you must generate a signature on each request. A string with the following template must be made, and the signature is created by taking the SHA-256 hash of the string. Note that anything contained within double curly brackets is a variable that is meant to be filled in.
+To authenticate with this endpoint, you must generate a unique signature to be included as a header on each request. A string with the following template must be made. The signature is then created by taking the SHA-256 hash of the string. Note that anything contained within double curly brackets is a macro that is meant to be filled in by your server.
 
 Computed signature: `"action:attribution\n{{platform-specific secret}}\n{{Chartboost app signature}}\n{{json body}}"`
 
