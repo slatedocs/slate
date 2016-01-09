@@ -99,6 +99,7 @@ Examples of Slate in the Wild
 * [BlockCypher's API Documentation](http://dev.blockcypher.com)
 * [InterServer API Documentation](https://my.interserver.net/apidoc/)
 * [ActionHeroJS's API Documentation](http://www.actionherojs.com/docs)
+* [Aplazame API Docs](http://docs.aplazame.com)
 
 (Feel free to add your site to this list in a pull request!)
 
