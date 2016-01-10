@@ -47,6 +47,7 @@ marketInfo = {
   creationFee: "1000",
   author: "0x1f068eba431ece4a3ce0bc9bf542d78641285e56",
   endDate: 609491,
+  type: "binary",
   participants: {
     0xaff9cb4dcb19d13b84761c040c91d21dc6c991ec: 0
   },
@@ -79,14 +80,20 @@ marketInfo = {
   _id: "-0x5932c04cfb6df8275387fc5d15a9897d61a2ef598c7e60ae45829e9e1e3409e6"
 }
 ```
-Our being-developed-as-we-speak Simplified API is designed for our new, Intrade-style UI.  This API is simplified in the sense that single requests to this API can be used to fetch a large amount of data, without the need for complicated RPC batch queries.  All of the methods in the Simplified API are getter methods that use an `eth_call` RPC request; for transactional requests (`eth_sendTransaction`), see the Full API section below.
+All of the methods in the Simplified API are getter methods that use an `eth_call` RPC request; for transactional requests (`eth_sendTransaction`), see the Full API section below.  This API is simplified in the sense that single requests to this API can be used to fetch a large amount of data, without the need for complicated RPC batch queries.
 
 ### getMarketInfo(marketId[, callback])
 
-Reads all information about a market that is stored on-contract.
+Reads all information about a market that is stored on-contract.  It also determines the `type` of the market, which can be `binary` (two outcomes; i.e., Yes or No), `categorical` (more than two outcomes, i.e., Multiple Choice), `scalar` (answer can be any of a range of values; i.e., Numerical), or `combinatorial` (for combined wagers on multiple events).  If the market is a combinatorial market, `getMarketInfo` also makes separate RPC request for the individual event descriptions.
 
 ```javascript
-augur.getMarketsInfo(branchId, function (marketsInfo) { /* ... */ })
+var options = {
+  branch: 1010101,     // branch ID (default: 1010101)
+  offset: 10,          // which markets to start  (default: 0)
+  numMarketsToLoad: 5, // numMarkets
+  combinatorial: true
+};
+augur.getMarketsInfo(options, function (marketsInfo) { /* ... */ })
 // example output:
 marketsInfo = {
   "-0x5932c04cfb6df8275387fc5d15a9897d61a2ef598c7e60ae45829e9e1e3409e6": {
@@ -102,9 +109,13 @@ marketsInfo = {
   /* ... */
 }
 ```
-### getMarketsInfo(branchId[, callback])
+### getMarketsInfo(options[, callback])
 
-Retrieve a `marketInfo` object for all markets on the specified branch.  The `marketInfo` objects (see above for example) are collected into a single object and indexed by `marketId`.
+Retrieve a `marketInfo` object for all markets on the specified branch.  The `marketInfo` objects (see above for example) are collected into a single object and indexed by `marketId`.  The `options` parameter is an object which specifies the branch ID (`branch`), and whether or not to send separate RPC requests for combinatorial event descriptions (`combinatorial`).  There are also two fields (`offset` and `numMarketsToLoad`) used to split up the `getMarketsInfo` query into multiple requests.  This is useful if the number of markets on the branch is too large for a single RPC request.
+
+<aside class="notice">Each branch's market IDs are stored as an "array" on the <a href="https://github.com/AugurProject/augur-core/blob/master/src/data%20and%20api/branches.se">branches</a> contract, in the contract's <code>Branches[](markets[], numMarkets, ...)</code> data.  Markets are indexed in the order created; i.e., the first market created has index 0, the second 1, etc.  This ordering allows us to break up a large aggregate request like <code>getMarketsInfo</code> into manageable chunks.
+
+For example, suppose you were displaying markets on separate pages.  You might want to retrieve information about all markets, but, to keep your loading time reasonable, only get 5 markets per request.  To get the first 5 markets, you would set <code>offset</code> to 0 and <code>numMarketsToLoad</code> to 5: <code>augur.getMarketsInfo({offset: 0, numMarketsToLoad: 5}, cb)</code>.  To get the second 5, <code>offset</code> would be 5: <code>augur.getMarketsInfo({offset: 5, numMarketsToLoad: 5}, cb)</code>.  The third 5, <code>offset</code> would be 10: <code>augur.getMarketsInfo({offset: 10, numMarketsToLoad: 5}, cb)</code>, and so on.</aside>
 
 ```javascript
 augur.getMostActive(branchId, function (mostActiveMarkets) { /* ... */ })

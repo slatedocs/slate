@@ -6,7 +6,7 @@ language_tabs:
 
 toc_footers:
   - <a href="http://www.augur.net">Augur.net</a>
-  - <a href="http://client.augur.net">Client</a>
+  - <a href="http://app.augur.net">App (Alpha)</a>
   - <a href="http://augur.link/augur.pdf">Whitepaper</a>
   - <a href="https://github.com/AugurProject">Github</a>
   - <a href="https://twitter.com/AugurProject">Twitter</a>
@@ -32,7 +32,7 @@ Overview
 
 [Augur](http://augur.net) is a decentralized prediction market platform that runs on Ethereum.
 
-The stable Augur client (user interface) is built and hosted at [client.augur.net](https://client.augur.net).  If you want to use or help test Augur, you do not need to download or install anything!  Just go to [client.augur.net](https://client.augur.net) and start using it.  (If you want to use our cutting-edge development client, this is maintained at [augur-dev.firebaseapp.com](https://augur-dev.firebaseapp.com) -- warning, we push changes to augur-dev pretty rapidly, so it can be a bit buggy!)
+The stable Augur application is built and hosted at [app.augur.net](https://app.augur.net).  If you want to use or help test Augur, you do not need to download or install anything!  Just go to [app.augur.net](https://app.augur.net) and start using it.  (If you want to use our cutting-edge development client, this is maintained at [augur-dev.firebaseapp.com](https://augur-dev.firebaseapp.com) -- warning, we push changes to augur-dev pretty rapidly, so it can be a bit buggy!)
 
 If you want to help develop Augur, you will need to build the client from source.  To do this, first install [Node.js](https://nodejs.org/), then execute the following commands to build the client:
 
