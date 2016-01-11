@@ -2,7 +2,14 @@
 # LED Data protocol
 Subsystem Number: 0x04
 
-## Write LED Value(s)
+|Command|Code|
+|:-:|:-:|
+|Set Value|**0x01**|
+|Get Value|**0x02**|
+|Set Config|**0x03**|
+|Get Config|**0x04**|
+
+## Set LED Value(s)
 This command is used to change up to 8 LEDs at a time. You specify the amount of LEDs you want to change and then specify the indices and values following them.
 
 |0 (subsystem)|1 (length)|2 (CRC)|3 (command)|4|5|6|7|8|(...)|18|19|
@@ -10,7 +17,7 @@ This command is used to change up to 8 LEDs at a time. You specify the amount of
 |0x44|0x10|CRC|0x01|Number of LEDs|Index|Value|Index|Value|(...)|Index|Value|
 
 
-## Read LED Value(s)
+## Get LED Value(s)
 This command is used to read the values of up to 8 LEDs at a time. You specify the amount of LEDs you want to know the value of and then specify the indices.
 
 **Command**:
@@ -25,11 +32,28 @@ This command is used to read the values of up to 8 LEDs at a time. You specify t
 |:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
 |0x04|0x10|CRC|0x02|Number of LEDs|Index|Value|Index|Value|(...)|Index|Value|
 
-## LED Configuration
+## Set LED Configuration
+
+**Command**:
 
 |0 (subsystem)|1 (length)|2 (CRC)|3 (command)|4(Index)|5-19 (config bytes)|
 |:-:|:-:|:-:|:-:|:-:|:-:|
 |0x44|0x10|CRC|0x03|Index|Config TBD|
+
+## Get LED Configuration
+
+**Command**:
+
+|0 (subsystem)|1 (length)|2 (CRC)|3 (command)|4(Index)|
+|:-:|:-:|:-:|:-:|:-:|:-:|
+|0x44|0x10|CRC|0x04|Index|
+
+**Response**:
+
+|0 (subsystem)|1 (length)|2 (CRC)|3 (command)|4(Index)|
+|:-:|:-:|:-:|:-:|:-:|:-:|
+|0x44|0x10|CRC|0x04|Index|Config TBD|
+
 
 ## Examples
 

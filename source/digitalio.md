@@ -1,13 +1,16 @@
 # Digital I/O
 Subsystem Number: 0x03
 
-List of commands:
-* Set Config: **0x01**
-* Get Config: **0x02**
-* Set Value: **0x03**
-* Get Value: **0x04**
-* Notify Set: **0x05**
-* Notify Event: **0x06**
+##List of commands:
+
+|Command|Code|
+|:-:|:-:|
+|Set Config|**0x01**|
+|Get Config|**0x02**|
+|Set Value|**0x03**|
+|Get Value|**0x04**|
+|Notify Set|**0x05**|
+|Notify Event|**0x06**|
 
 ## Set/Get Config
 
