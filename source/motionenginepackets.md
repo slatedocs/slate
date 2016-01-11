@@ -74,7 +74,7 @@ typedef struct { //6-axis data type - 12 bytes
 } IMU6AxisRaw_t;
 ```
 where "AxesRaw_t" is the 3-axis raw data type, and "IMU6AxisRaw_t" is the overall 6-axis IMU data type. Each axis will be a 16-bit signed integer number cast in little endian (least significant byte first). The range of the sensor readings are as follows:
-Accelerometer: ±2g, Gyroscope: ±2000 dps.
+Accelerometer: ±2g (default), Gyroscope: ±2000 dps. The accelerometer range can be changed using another command.
 
 The whole response packet structure including header is shown below:
 
