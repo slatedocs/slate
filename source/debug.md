@@ -95,7 +95,7 @@ In the command mode, the packet sends emulated 9-axis raw sensor data including 
 
 |Byte 0 (subsystem)|Byte 1 (length)|Byte 2 (CRC)|  Byte 3 (command)   |Byte 4-7 |Byte 8-13|Byte 14-19|Byte 20-25|
 |:----------------:|:-------------:|:----------:|:-------------------:|:-------:|:-------:|:--------:|:--------:|
-|       0x40       |      0x16     |     CRC    |0x04 (unit test data)|Timestamp|Acc Data | Gyr Data | Mag Data:|
+|       0x40       |      0x16     |     CRC    |0x04 (unit test data)|Timestamp|Acc Data | Gyr Data | Mag Data |
 
 The Timestamp is in microseconds and it is represented by a 32-bit unsigned integer value in little endian format, i.e., Byte 4 is LSB and Byte 7 is MSB. The 3-axis raw accelerometer (Byte 8-13), gyroscope (Byte 14-19), and magnetometer (Byte 20-25) data are represented by the following data structure:
 ```c
@@ -105,6 +105,3 @@ typedef struct { //3-axis raw data type - 6 bytes
 ```
 where each axis is a 16-bit signed integer value. The full-range for magnetometer and gyroscope data is ±4 gauss and ±2000 dps, respectively, while the accelerometer range can be set to ±2g, ±4g, ±8g, or ±16g, using a separate motion engine command. The default range for acclerometer data is ±2g.
 
-|Byte 0 (subsystem)|Byte 1 (length)|Byte 2 (CRC)|Byte 3 (command)|Byte 4-7 |   Byte 8-13   |  Bytes 14-19  |
-|:----------------:|:-------------:|:----------:|:--------------:|:-------:|:-------------:|:-------------:|
-|       0x40       |      0x10     |    CRC     |      0x0B      |TimeStamp|AxesRaw_t (Mag)|AxesRaw_t (Acc)|
