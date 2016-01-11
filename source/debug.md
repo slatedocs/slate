@@ -103,7 +103,7 @@ typedef struct { //3-axis raw data type - 6 bytes
   int16_t Data[3];
 } AxesRaw_t;
 ```
-where each axis is a 16-bit signed integer value. The full-range for magnetometer and gyroscope data is ±4 gauss and ±2000 dps, respectively, while the accelerometer range can be set to ±2g, ±4g, ±8g, or ±16g, using a separate motion engine command. The default range for acclerometer data is ±2g.
+where each axis is a 16-bit signed integer value. The full-range for magnetometer and gyroscope data is ±4 gauss and ±2000 dps, respectively, while the accelerometer range for the unit-test mode is ±2g.
 
 In the response mode, Neblina will send all the updated motion engine features to the host. The response packet is 71 bytes and has the following structure:
 
