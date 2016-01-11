@@ -128,5 +128,5 @@ typedef struct Motion_Feature_t{ //all motion engine features
 	sit_stand_t sit_stand; //9 bytes
 }Motion_Feature_t;
 ```
-More information about the motion engine data structures can be found below:
+More information about the motion engine data structures can be found here:
 https://github.com/Motsai/documentation/blob/master/source/motionenginepackets.md
