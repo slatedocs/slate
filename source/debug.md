@@ -73,3 +73,14 @@ Here is the status value regarding the flash recorder:
 Byte#12 = { 0x00 (Idle state), 0x01 (Playing back), 0x02 (Recording), 0x03-0xFF (unused) } 
 ```
 
+### Debug - Start/Stop the Motion Engine Unit Test (0x03)
+
+```c 
+#define DEBUG_CMD_MOTION_ENG_UNIT_TEST_START_STOP 0x03
+```
+
+This command packet will inform Neblina that the unit test procedure for motion engine has started/completed. We have to send the START command before starting the unit test procedure, such that Neblina switches to the unit-test mode. Similarly, we send the STOP command after successful completion of the unit test procedure. If the STOP command is not sent to Neblina, it will not switch back to its normal operation mode. Byte#8 will determine whether the packet is a START (1) command or a STOP (0) command, while all the other bytes in the data section are reserved. Here is the full packet:
+
+|Byte 0 (subsystem)|Byte 1 (length)|Byte 2 (CRC)|     Byte 3 (command)      |Byte 4-7|  Byte 8  |Byte 9-19|
+|:----------------:|:-------------:|:----------:|:-------------------------:|:------:|:--------:|:-------:|
+|       0x40       |      0x10     |     CRC    |0x03 (unit test start/stop)|Reserved|start/stop|Reserved |
