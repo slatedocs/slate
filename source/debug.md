@@ -105,3 +105,28 @@ typedef struct { //3-axis raw data type - 6 bytes
 ```
 where each axis is a 16-bit signed integer value. The full-range for magnetometer and gyroscope data is ±4 gauss and ±2000 dps, respectively, while the accelerometer range can be set to ±2g, ±4g, ±8g, or ±16g, using a separate motion engine command. The default range for acclerometer data is ±2g.
 
+In the response mode, Neblina will send all the updated motion engine features to the host. The response packet is 71 bytes and has the following structure:
+
+|Byte 0 (subsystem)|Byte 1 (length)|Byte 2 (CRC)|  Byte 3 (command)   |   Byte 4-70    |
+|:----------------:|:-------------:|:----------:|:-------------------:|:--------------:|
+|       0x00       |      0x43     |     CRC    |0x04 (unit test data)|Motion_Feature_t|
+
+where
+```c
+typedef struct Motion_Feature_t{ //all motion engine features
+	uint8_t motion; //0: no change in motion, 1: stops moving, 2: starts moving
+	IMURaw_t IMUData; //18 bytes
+	Quaternion_t quatrn; //8 bytes
+	Euler_fxp_t angles; //6 bytes
+	Fext_Vec16_t force; //6 bytes
+	Euler_fxp_t angles_err; //6 bytes: error in Euler angles compared to a reference trajectory
+	uint16_t motiontrack_cntr; //shows how many times the pre-recorded track has been repeated
+	uint8_t motiontrack_progress; //the percentage showing how much of a pre-recorded track has been covered
+	uint32_t TimeStamp; //4 bytes: in microseconds
+	steps_t steps; //4 bytes
+	int16_t direction; //9 bytes
+	sit_stand_t sit_stand;
+}Motion_Feature_t;
+```
+More information about the motion engine data structures can be found below:
+https://github.com/Motsai/documentation/blob/master/source/motionenginepackets.md
