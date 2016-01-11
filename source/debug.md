@@ -60,10 +60,10 @@ Here is the bit-field declaration for this register:
 |:-------:|:------:|
 |Reserved |SitStand|
 
-
-|Bits 31:9 (Byte|  Bit 8 |  Bit 7 |Bit 6 |Bit 5 | Bit 4  |  Bit 3   |Bit 2 |Bit 1 |  Bit 0 |
-|:-------:|:------:|:------:|:----:|:----:|:------:|:--------:|:----:|:----:|:------:|
-|Reserved |SitStand|MAG_data|Steps |Motion|IMU_data|Quaternion|Euler |Force |Distance|
+####### Byte 8:
+|  Bit 7 |Bit 6 |Bit 5 | Bit 4  |  Bit 3   |Bit 2 |Bit 1 |  Bit 0 |
+|:------:|:----:|:----:|:------:|:--------:|:----:|:----:|:------:|
+|MAG_data|Steps |Motion|IMU_data|Quaternion|Euler |Force |Distance|
 
 Each bit-field shows whether the corresponding motion engine feature has been enabled for streaming (1) or not (0).
 
