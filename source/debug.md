@@ -54,8 +54,8 @@ The motion engine and recorder status registers are described next.
 ##### Motion Engine Status Register (32-bit register, Byte#8-11):
 Here is the bit-field declaration for this register:
 
-|Byte 11-9| Byte 9 | Byte 8 |
-|:-------:|:------:|:------:|
+|Byte 11-9| Byte 9  |                     Byte 8                     |
+|:-------:|:-------:|:----------------------------------------------:|
 
 |Bits 31:9|  Bit 8 |  Bit 7 |Bit 6 |Bit 5 | Bit 4  |  Bit 3   |Bit 2 |Bit 1 |  Bit 0 |
 |:-------:|:------:|:------:|:----:|:----:|:------:|:--------:|:----:|:----:|:------:|
