@@ -124,8 +124,8 @@ typedef struct Motion_Feature_t{ //all motion engine features
 	uint8_t motiontrack_progress; //the percentage showing how much of a pre-recorded track has been covered
 	uint32_t TimeStamp; //4 bytes: in microseconds
 	steps_t steps; //4 bytes
-	int16_t direction; //9 bytes
-	sit_stand_t sit_stand;
+	int16_t direction; 
+	sit_stand_t sit_stand; //9 bytes
 }Motion_Feature_t;
 ```
 More information about the motion engine data structures can be found below:
