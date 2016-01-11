@@ -55,7 +55,7 @@ The motion engine and recorder status registers are described next.
 Here is the bit-field declaration for this register:
 
 |    Byte 9-11     |                           Byte 8                             |
-|:----------------:|:------------------------------------------------------------:|
+|:--------|-------:|:-------|-----|------|--------|----------|-----|-----|-------:|
 |Bits 31:9|  Bit 8 |  Bit 7 |Bit 6|Bit 5 | Bit 4  |  Bit 3   |Bit 2|Bit 1|  Bit 0 |
 |:-------:|:------:|:------:|:---:|:----:|:------:|:--------:|:---:|:---:|:------:|
 |Reserved |SitStand|MAG_data|Steps|Motion|IMU_data|Quaternion|Euler|Force|Distance|
