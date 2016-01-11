@@ -74,13 +74,37 @@ Byte#12 = { 0x00 (Idle state), 0x01 (Playing back), 0x02 (Recording), 0x03-0xFF 
 ```
 
 ### Debug - Start/Stop the Motion Engine Unit Test (0x03)
-
 ```c 
 #define DEBUG_CMD_MOTION_ENG_UNIT_TEST_START_STOP 0x03
 ```
-
 This command packet will inform Neblina that the unit test procedure for motion engine has started/completed. We have to send the START command before starting the unit test procedure, such that Neblina switches to the unit-test mode. Similarly, we send the STOP command after successful completion of the unit test procedure. If the STOP command is not sent to Neblina, it will not switch back to its normal operation mode. Byte#8 will determine whether the packet is a START (1) command or a STOP (0) command, while all the other bytes in the data section are reserved. Here is the full packet:
 
 |Byte 0 (subsystem)|Byte 1 (length)|Byte 2 (CRC)|     Byte 3 (command)      |Byte 4-7|  Byte 8  |Byte 9-19|
 |:----------------:|:-------------:|:----------:|:-------------------------:|:------:|:--------:|:-------:|
 |       0x40       |      0x10     |     CRC    |0x03 (unit test start/stop)|Reserved|start/stop|Reserved |
+
+Note that in responce, Neblina will just send an acknowledge packet to the host to confirm the successful receipt of the command.
+
+### Debug - Unit Test Motion Engine Data (0x04)
+```c 
+#define DEBUG_CMD_MOTION_ENG_UNIT_TEST_DATA 0x04
+```
+This command/response packet has a different length compared to the standard 20-byte packet structure on Neblina. 
+
+In the command mode, the packet sends emulated 9-axis raw sensor data including acclerometers, gyroscopes, and magnetometers, along with a timestamp in microseconds. The command packet consists of 26 bytes, and it has the following structure:
+
+|Byte 0 (subsystem)|Byte 1 (length)|Byte 2 (CRC)|  Byte 3 (command)   |Byte 4-7 |Byte 8-13|Byte 14-19|Byte 20-25|
+|:----------------:|:-------------:|:----------:|:-------------------:|:-------:|:-------:|:--------:|:--------:|
+|       0x40       |      0x16     |     CRC    |0x04 (unit test data)|Timestamp|Acc Data | Gyr Data | Mag Data:|
+
+The Timestamp is in microseconds and it is represented by a 32-bit unsigned integer value in little endian format, i.e., Byte 4 is LSB and Byte 7 is MSB. The 3-axis raw accelerometer (Byte 8-13), gyroscope (Byte 14-19), and magnetometer (Byte 20-25) data are represented by the following data structure:
+```c
+typedef struct { //3-axis raw data type - 6 bytes
+  int16_t Data[3];
+} AxesRaw_t;
+```
+where each axis is a 16-bit signed integer value. The full-range for magnetometer and gyroscope data is ±4 gauss and ±2000 dps, respectively, while the accelerometer range can be set to ±2g, ±4g, ±8g, or ±16g, using a separate motion engine command. The default range for acclerometer data is ±2g.
+
+|Byte 0 (subsystem)|Byte 1 (length)|Byte 2 (CRC)|Byte 3 (command)|Byte 4-7 |   Byte 8-13   |  Bytes 14-19  |
+|:----------------:|:-------------:|:----------:|:--------------:|:-------:|:-------------:|:-------------:|
+|       0x40       |      0x10     |    CRC     |      0x0B      |TimeStamp|AxesRaw_t (Mag)|AxesRaw_t (Acc)|
