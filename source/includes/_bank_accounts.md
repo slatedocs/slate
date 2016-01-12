@@ -120,7 +120,7 @@ EXEMPLO DE CORPO DA RESPOSTA
 
 ```
 
-Retorna uma lista em JSON contendo todos as contas bancárias em que seus beneficiários pertencentes a sua Conta de Serviço.
+Retorna uma lista em JSON contendo todos as contas bancárias em que seus beneficiários pertencentem a sua Conta de Serviço.
 
 ## Criação de Conta Bancária
 
