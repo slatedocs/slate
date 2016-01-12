@@ -15,7 +15,7 @@ Attribute | Type | Editable | Description
 `last_name`| string | **optional** | Last name
 `is_manager` | boolean | **required** | Whether the user is a manager. You cannot change this for yourself. You may change the value for the other members of your organization, if you are a manager.
 `alias` | string | **optional** | Display name, used when chatting. May be `null`
-`gender` | integer | **optional** | Gender with three options: `1`= male, `2`= female, `null`= unknown
+`gender` | integer | **optional** | Gender with three options: `"male"`, `"female"`, `null` (unknown)
 `birthday` | [date][] | **optional** | Date of birth in format `YYYY-MM-DD`, e.g. `1980-06-19`
 `phone` | string | **optional** | Contact phone number
 `title` | title | **optional** | Title of the user
