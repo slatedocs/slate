@@ -11,14 +11,14 @@ Attribute | Type | Editable | Description
 `email` | string | read-only | Email address
 `organization_id` | [ID][] | read-only | ID of the organization to which the user belongs to
 `organization` | object | read-only | The [organization][] resource to which the user belongs to
-`first_name` | string | **optional** | First name
-`last_name`| string | **optional** | Last name
+`first_name` | string | **required** | First name. Must be a non-blank string.
+`last_name`| string | **required** | Last name. Must be a non-blank string.
 `is_manager` | boolean | **required** | Whether the user is a manager. You cannot change this for yourself. You may change the value for the other members of your organization, if you are a manager.
-`alias` | string | **optional** | Display name, used when chatting. May be `null`
+`alias` | string | **optional** | Display name, used when chatting. May be `null` but not a blank string
 `gender` | integer | **optional** | Gender with three options: `"male"`, `"female"`, `null` (unknown)
 `birthday` | [date][] | **optional** | Date of birth in format `YYYY-MM-DD`, e.g. `1980-06-19`
 `phone` | string | **optional** | Contact phone number
-`title` | title | **optional** | Title of the user
+`title` | title | **optional** | Title of the user. May be `null` but not a blank string
 `created_at` | [date/time][] | read-only | When the user resource was created
 `updated_at` | [date/time][] | read-only | When the user resource was updated last time
 `avatar` | object | read-only | The avatar of the user as an object. It contains attributes `id`and `url`. This is `null` if the user has no avatar.
