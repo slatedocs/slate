@@ -30,11 +30,6 @@ search: true
 
 * [**Feature Guide**](#features): End-user guide explaining the main Ubidots features.
 
-
-## Contribute
-
-This API documentation was created with **Slate**. Feel free to suggest changes or additions on our [Github](http://github.com/ubidots/slate) page.
-
 # Getting Started
 
 ## Send your first data points
