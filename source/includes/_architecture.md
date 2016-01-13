@@ -15,7 +15,7 @@ where <code>/path/to/genesis_block.json</code> is the genesis block for the (tem
 Hosted node
 -----------
 <img src="images/architecture_hosted.svg" onerror="this.src='images/architecture_hosted.png'">
-Understandably, many users will not want to go to the trouble of running a full Ethereum node solely for the purpose of using Augur.  Augur maintains four public Ethereum nodes, which are used automatically by [client.augur.net](https://client.augur.net) if a local Ethereum node is not detected:
+Understandably, many users will not want to go to the trouble of running a full Ethereum node solely for the purpose of using Augur.  Augur maintains four public Ethereum nodes, which are used automatically by [app.augur.net](https://app.augur.net) if a local Ethereum node is not detected:
 
 - [https://eth1.augur.net](https://eth1.augur.net)
 - [https://eth3.augur.net](https://eth3.augur.net)
