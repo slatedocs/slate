@@ -107,12 +107,14 @@ Attribute | Format | Editable | Description
 `updated_at` | [date/time][] | read-only | When the this membership was updated.
 `message_count` | integer | read-only | How many messages the user/visitor has sent to the chat. This may be 0, e.g. when operator has joined the chat but has not sent any message yet.
 `is_present` | boolean | read-only | Whether or not the user/visitor is currently present at the chat.
+`composing_status` | string | **required** | One of the following: `idle`, `composing`, `has_composed`. The `composing` status will be automatically downgraded to `has_composed` if the composing status has not been refreshed for a while.
 
 Changes to chat members are notified to the following [channels][]:
 
 Channels    | Description
 ------------|---------------
 `/api/v5/client/visitors/<visitor_id>/chats/<chat_id>/members` | For each visitor of the chat
+`/api/v5/client/visitors/<visitor_id>/chats_memberships` | For the chat member, if a visitor
 `/api/v5/orgs/<organization_id>/users/<user_id>/chats/<chat_id>/members` | For each user member of the chat
 `/api/v5/orgs/<organization_id>/rooms/<room_id>/chats/<chat_id>/members` | For the related room and each organization having access to that room
 
@@ -164,6 +166,33 @@ You may get a [paginated collection][] of all members of a chat.
 `GET /api/v5/client/visitors/<visitor_id>/chats/<chat_id>/members`
 
 Returns 404 if the chat is not one of the visitor's chats.
+
+### List chat memberships of a visitor
+
+As an alternative to list a visitor's _chats_, you can also list a visitor's *chat memberships* as a [paginated collection][]. This includes each chat member object that represents the visitor in each of his chats.
+
+`GET /api/v5/client/visitors/<visitor_id>/chat_memberships`
+
+
+### Change visitor composing status
+
+> Example request for making the visitor typing at the chat
+
+    PUT /api/v5/client/visitors/5cd16aaf35d6488094a5f160afa29767/chat_memberships/e9f4c403-0d0f-4bb8-9883-8f2eb5c9079b
+
+> Example request payload
+
+```json
+{
+  "composing_status": "composing"
+}
+```
+
+You can make a user present or not present at a chat like described in the previous section:
+
+`PUT /api/v5/client/visitors/<visitor_id>/chat_memberships/<chat_id>`
+
+You should provide the `composing_status` attribute describing whether or not the user is typing or has typed a message.
 
 
 ## Chat messages

@@ -127,20 +127,18 @@ Creating a new chat using this endpoint does not require any attributes and ther
 
 Parameter | Format | Default | Description
 :---------|:-------|:--------|------------
-`auto_resume` | [ID][] | (none) | If provided, then attempt to get an existing recent chat where the given user can join, instead of creating a new chat. In addition, we will automatically (and atomically) create a [presence][chat presence] for this user and chat. **NOTE**: The “private chats” setting affects the decision whether to create or resume a chat.
+`auto_resume` | [ID][] | (none) | If provided, then attempt to get an existing recent chat where the given user can join, instead of creating a new chat. In addition, we will automatically (and atomically) create a [membership][chat member] for this user and chat. **NOTE**: The “private chats” setting affects the decision whether to create or resume a chat.
 
 Returns 201 status code when a new chat was created successfully.
 Returns 200 if resumed an existing chat when `auto_resume` parameter was provided.
 Returns 403 if you have no permission to the room and you are not a manager.
 
-This notifies the [channels][] of the chat, as well as appropriate channels of [chat presences][chat presence] and [chat members][chat member].
+This notifies the [channels][] of the chat, as well as appropriate channels of [chat members][chat member].
 
 
 ## Chat members
 
-The visitor as well as each user who have sent at least one message to the chat is added as a "member" to the chat.
-
-In contrast to the [chat presences][chat presence], chat _member_ describes a person who has ever attended to the chat. They may not be currently present at the chat.
+The visitor as well as each user who have attended to the chat is added as a "member" to the chat.
 
 Attribute | Format | Editable | Description
 :---------|:-------|:---------|------------
@@ -154,6 +152,7 @@ Attribute | Format | Editable | Description
 `updated_at` | [date/time][] | read-only | When the this membership was updated.
 `message_count` | integer | read-only | How many messages the user/visitor has sent to the chat. This may be 0, e.g. when operator has joined the chat but has not sent any message yet.
 `is_present` | boolean | **required** | Whether or not the user/visitor is currently present at the chat.
+`composing_status` | string | **required** | One of the following: `idle`, `composing`, `has_composed`. The `composing` status will be automatically downgraded to `has_composed` if the composing status has not been refreshed for a while.
 
 Changes to chat members are notified to the following [channels][]:
 
@@ -227,7 +226,8 @@ Or alternatively:
 ```json
 {
   "id": "ce771dbe-afbf-4e58-bbcb-9855ecacee9a",
-  "is_present": true
+  "is_present": true,
+  "composing_status": "idle"
 }
 ```
 
@@ -266,12 +266,12 @@ Parameter | Format | Default | Description
 `exclusive` | `true`/`false` | `false` | This has effect only, if you are setting `is_present` with value `true`. This makes the join fail with 400 if there is already **at least one other user currently present** at the chat.
 
 <aside class="success">
-Use the `exclusive` parameter to prevent multiple operators taking the chat simultaneously.
+Use the <code>exclusive</code> parameter to prevent multiple operators taking the chat simultaneously.
 </aside>
 
-This request sends notifications to the [channels][] of the chat presences as well as the related chat.
+This request sends notifications to the [channels][] of the chat members as well as the related chat.
 
-### Change operator chat presence
+### Change operator chat status
 
 > Example request for making the operator not to be present any more at the chat
 
@@ -281,21 +281,23 @@ This request sends notifications to the [channels][] of the chat presences as we
 
 ```json
 {
-  "is_present": false
+  "is_present": false,
+  "composing_status": "idle"
 }
 ```
+
 You can make a user present or not present at a chat like described in the previous section:
 
 `PUT /api/v5/orgs/<organization_id>/rooms/<room_id>/chats/<chat_id>/members/<user_id>`
 
-You should provide the `is_present` attribute with either `true` or `false` value, indicating whether or not the user should be currently present at the chat.
+You should provide the `is_present` attribute with either `true` or `false` value, indicating whether or not the user should be currently present at the chat. Also, you should provide the `composing_status` attribute describing whether or not the user is typing or has typed a message.
 
 The parameters and response codes are the same than described in the previous section.
 
 
 ## Chat messages
 
-Chat consists of a number of messages. Some of them are actual typed messages from either operator or visitor, and some of them are automatically added events about the chat, especially when an operator has [joined or leaved][chat presence] the chat.
+Chat consists of a number of messages. Some of them are actual typed messages from either operator or visitor, and some of them are automatically added events about the chat, especially when an operator has [joined or leaved][chat member] the chat.
 
 Attribute | Type | Editable | Description
 :---------|:-----|----------|------------
