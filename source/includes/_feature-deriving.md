@@ -8,7 +8,7 @@ Derived variables are variables that, instead of having a column of values backi
 
 ### Combining categories
 
-The "combine_categories" function takes two arguments: 
+The "combine_categories" function takes two arguments:
 
 * A reference to the categorical or categorical_array variable to be combined
 * A definition of the categories of the new variable, including all members found in categories, plus a "combined_ids" key that maps the derived category to one or more categories (by id) in the input variable.
@@ -215,7 +215,7 @@ POSTing to the variables catalog a Shoji Entity containing a ZCL function like:
     "element": "shoji:entity",
     "body": {
         "name": "Aided awareness by region",
-        "description": "Combined from aided brand awareness"
+        "description": "Combined from aided brand awareness",
         "alias": "aided_region",
         "expr": {
             "function": "combine_responses",
@@ -258,14 +258,14 @@ results in a multiple response variable with three responses. The "selected" sta
 
 ### Case statements
 
-The "case" function derives a variable using values from the first argument. Each of the remaining arguments contains a boolean expression. These are evaluated in order in an IF, ELSE IF, ELSE IF, ..., ELSE fashion; the first one that matches selects the corresponding value from the first argument. For example, if the first two boolean expressions do not match (return False) but the third one matches, then the third value in the first argument is placed into that row in the output. You may include an extra value for the case when none of the boolean expressions match; if not provided, it defaults to the system "No Data" missing value. 
+The "case" function derives a variable using values from the first argument. Each of the remaining arguments contains a boolean expression. These are evaluated in order in an IF, ELSE IF, ELSE IF, ..., ELSE fashion; the first one that matches selects the corresponding value from the first argument. For example, if the first two boolean expressions do not match (return False) but the third one matches, then the third value in the first argument is placed into that row in the output. You may include an extra value for the case when none of the boolean expressions match; if not provided, it defaults to the system "No Data" missing value.
 
 ```json
 {
     "element": "shoji:entity",
     "body": {
         "name": "Market segmentation",
-        "description": "Super-scientific classification of people"
+        "description": "Super-scientific classification of people",
         "alias": "segments",
         "expr": {
             "function": "case",
@@ -314,14 +314,14 @@ POST /api/datasets/{datasetid}/variables/ HTTP/1.1
 Content-Type: application/shoji
 Content-Length: 739
 {
-    "name": "weight", 
+    "name": "weight",
     "description": "my raked weight",
     "expr": {
-        "function": "rake", 
+        "function": "rake",
         "args": {
             "targets": [
                 {
-                    "{variable1.id}": [1, 2], 
+                    "{variable1.id}": [1, 2],
                     "target": [49.1, 50.9]
                 },
                 …
