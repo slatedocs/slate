@@ -50,268 +50,222 @@ This example updates 4 variables in Ubidots, but you can easily adapt it to fit 
 
 ```c++
 
-	/*
-	  
-	  Sample code to send data from an Arduino to four Ubidots variables using the Adafruit's FONA
+	// fona.ino
+/* Chip McClelland - Cellular Data Logger
+     BSD license, Please keep my name and the required Adafruit text in any redistribution
 
-	  Components:
-	  * Arduino Uno
-	  * Adafruit FONA
-
-	  Created 23 Feb 2015
-	  This code is based on the Adafruit FONAtest Example
-	  and was modified by Alejandro Gomez for Ubidots.
-
-	  This code is in the public domain.
-
-	  */
+  This sketch will connect to Ubidots and periodically upload the current temperature and humidity as well as the number
+  of times a PIR sensor has detected a person. The counts are then reset and you can access the data on your Ubidots account.
 
 
-	#include <SoftwareSerial.h>
-	#include "Adafruit_FONA.h"
-	#include <stdlib.h>
+  IDE: Arduino 1.0 or later
+  I had to add the following line to the Adafruit_FONA.cpp file: typedef
 
-	// Pin connections:
-	#define FONA_RX 2
-	#define FONA_TX 3
-	#define FONA_RST 4
-	#define FONA_KEY 7
-	#define FONA_PS 8
+  char PROGMEM prog_char;
 
-	// Ubidots token and variables
-	char token[] = "kA8XWNQRHFrXVcccakaJVY3cc2qRU1lq";
-	char id1[] = "54bd3afb762542282270ab18";
-	char id2[] = "54d25f9f76254263d5f5a9de";
-	char id3[] = "54c80c507625426507649569";
-	char id4[] = "54cfcc877625424794444c1f";
+  Otherwise this code would not compile
 
-	// this is a large buffer for replies
-	char replybuffer[255];
+  Hardware - Adafruit Fona GSM Board
+  Temperature Sensor - Dummy Code for now
+  Person Counter - Dummy Code for now
 
-	// or comment this out & use a hardware serial port like Serial1 (see below)
-	SoftwareSerial fonaSS = SoftwareSerial(FONA_TX, FONA_RX);
-	Adafruit_FONA fona = Adafruit_FONA(FONA_RST);
+  I made use of the Adafruit Fona library and parts of the example code
 
-	uint8_t readline(char *buff, uint8_t maxbuff, uint16_t timeout = 0);
-	int get_int_len(int);
-	void sendDataUbidots(void);
+  /***************************************************
+  This is an example for our Adafruit FONA Cellular Module
 
-	int value1, value2, value3, value4;
-	char buffer [33];
+  Designed specifically to work with the Adafruit FONA
+  ----> http://www.adafruit.com/products/1946
+  ----> http://www.adafruit.com/products/1963
 
-	void setup() {  
-	  //For FONA MODULE
-	  Serial.begin(115200);
-	  fonaSS.begin(4800);
-	  pinMode(FONA_KEY, OUTPUT);
-	  pinMode(FONA_PS, INPUT);
-	  analogReference(INTERNAL);
-	  delay(2000);
-	  TurnOffFona();
+  Adafruit invests time and resources providing this open source code,
+  please support Adafruit and open-source hardware by purchasing
+  products from Adafruit!
 
-	}
+  Written by Limor Fried/Ladyada for Adafruit Industries.
+  BSD license, all text above must be included in any redistribution
 
-	void loop() {
-	  flushSerial();
-	  TurnOnFona();
-	  checkFona();
-	  gprsOnFona();
-	  senseValues();
-	  
-	  while (fona.available()) {
-	    Serial.write(fona.read());
-	  }
-	  
-	  gprsOffFona();
-	  TurnOffFona();
-	  delay(600000);
+  ****************************************************/
 
-	}
+  /***************************************************
+  This code has been modified Sep 15 2014
+  by Mateo Vélez - Metavix - for Ubidots Inc.
 
-	void senseValues(){
-	  value1 = analogRead(A6);
-	  value2 = analogRead(A7);  
-	  value3 = analogRead(A0);
-	  value4 = analogRead(A1);
-	  
-	  ////////////////////////////////////////////
-	  
-	  sendDataUbidots(value1, id1);
-	  sendDataUbidots(value2, id2);
-	  sendDataUbidots(value3, id3);
-	  sendDataUbidots(value4, id4);
-	 
-	  /////////////////////////////////////////////
+  This code is in the public domain.
+  ****************************************************/
 
-	}
 
-	void sendDataUbidots(int value, char* myid){
-	  
-	  uint16_t statuscode;
-	  int16_t length;
-	  
-	  char url1[] = "things.ubidots.com/api/v1.6/variables/";
-	  char* url2 = myid;
-	  char url3[] = "/values?token=";
-	  char* url4 = token;
-	  int lurl = strlen(url1) + strlen(url2) + strlen(url3) + strlen(url4);
-	  
-	  char url[lurl];
-	  sprintf(url,"%s%s%s%s",url1,url2,url3,url4);
-	//  Serial.println(url);
-	   
-	  char data1[] = "{\"value\":";
-	  char data2[get_int_len(value)+1];
-	  char data3[] = "}";
-	  itoa(value,data2,10);
-	  int ldata = strlen(data1) + strlen(data2) + strlen(data3);
-	   
-	  char data[ldata];
-	  sprintf(data,"%s%s%s",data1,data2,data3);
-	  //Serial.println(data);
-	  
-	  Serial.print(F("http://"));
-	  Serial.println(url);
-	  Serial.println(data);
-	  
-	   Serial.println(F("****"));
-	   if (!fona.HTTP_POST_start(url, F("application/json"), (uint8_t *) data, strlen(data), &statuscode, (uint16_t *)&length)) {
-	     Serial.println("Failed!");
-	   }
-	   while (length > 0) {
-	     while (fona.available()) {
-	       char c = fona.read();
-	       
-	  #if defined(__AVR_ATmega328P__) || defined(__AVR_ATmega168__)
-	       loop_until_bit_is_set(UCSR0A, UDRE0); /* Wait until data register empty. */
-	       UDR0 = c;
-	  #else
-	       Serial.write(c);
-	  #endif
-	       
-	       length--;
-	       if (! length) break;
-	     }
-	   }
-	   Serial.println(F("\n****"));
-	   fona.HTTP_POST_end();
-	    
-	  // flush input
-	  flushSerial();
-	}
 
-	void flushSerial() {
-	    while (Serial.available()) 
-	    Serial.read();
-	}
+#include <HardwareSerial.h>
+#include "Adafruit_FONA.h"
 
-	char readBlocking() {
-	  while (!Serial.available());
-	  return Serial.read();
-	}
+#define FONA_RX 1
+#define FONA_TX 0
+#define FONA_RST 4
+#define FONA_KEY 6
+#define FONA_PS 7
 
-	uint16_t readnumber() {
-	  uint16_t x = 0;
-	  char c;
-	  while (! isdigit(c = readBlocking())) {
-	    //Serial.print(c);
-	  }
-	  Serial.print(c);
-	  x = c - '0';
-	  while (isdigit(c = readBlocking())) {
-	    Serial.print(c);
-	    x *= 10;
-	    x += c - '0';
-	  }
-	  return x;
-	}
-	  
-	uint8_t readline(char *buff, uint8_t maxbuff, uint16_t timeout) {
-	  uint16_t buffidx = 0;
-	  boolean timeoutvalid = true;
-	  if (timeout == 0) timeoutvalid = false;
-	  
-	  while (true) {
-	    if (buffidx > maxbuff) {
-	      //Serial.println(F("SPACE"));
-	      break;
-	    }
+#define HWSERIAL Serial1
 
-	    while(Serial.available()) {
-	      char c =  Serial.read();
 
-	      //Serial.print(c, HEX); Serial.print("#"); Serial.println(c);
+char replybuffer[255];
 
-	      if (c == '\r') continue;
-	      if (c == 0xA) {
-	        if (buffidx == 0)   // the first 0x0A is ignored
-	          continue;
-	        
-	        timeout = 0;         // the second 0x0A is the end of the line
-	        timeoutvalid = true;
-	        break;
-	      }
-	      buff[buffidx] = c;
-	      buffidx++;
-	    }
-	    
-	    if (timeoutvalid && timeout == 0) {
-	      //Serial.println(F("TIMEOUT"));
-	      break;
-	    }
-	    delay(1);
-	  }
-	  buff[buffidx] = 0;  // null term
-	  return buffidx;
-	}
+HardwareSerial fonaSS = Serial1;
+Adafruit_FONA fona = Adafruit_FONA(&fonaSS, FONA_RST);
 
-	int get_int_len (int value){
-	  int l=1;
-	  while(value>9){ l++; value/=10; }
-	  return l;
-	}
+uint8_t readline(char *buff, uint8_t maxbuff, uint16_t timeout = 0);
 
-	void checkFona(){
-	  // See if the FONA is responding
-	  if (! fona.begin(fonaSS)) {           // can also try fona.begin(Serial1) 
-	    Serial.println(F("Couldn't find FONA"));
-	    while (1);
-	  }
-	  Serial.println(F("FONA is OK"));
 
-	  //configure a GPRS APN
-	  fona.setGPRSNetworkSettings(F("web.vmc.net.co"), F(""), F(""));
-	}
+int Interval = 10000;             // Time between measurements in seconds
+int KeyTime = 2000;               // Time needed to turn on the Fona
+unsigned long Reporting = 30000;  // Time between uploads to Ubidots
+unsigned long TimeOut = 30000;    // How long we will give an AT command to comeplete
+uint8_t n=0;
 
-	void TurnOnFona(){  
-	  Serial.println("Turning on Fona: ");
-	  while(digitalRead(FONA_PS)==LOW)
-	    {
-	    digitalWrite(FONA_KEY, LOW);
-	    }
-	    digitalWrite(FONA_KEY, HIGH);
-	    delay(4000);
-	}
 
-	void TurnOffFona(){
-	  Serial.println("Turning off Fona ");
-	  while(digitalRead(FONA_PS)==HIGH)
-	  {
-	    digitalWrite(FONA_KEY, LOW);
-	    }
-	    digitalWrite(FONA_KEY, HIGH); 
-	    delay(4000);
-	}
+void setup() {
+  delay(3000);
+  HWSERIAL.begin(4800);
+  Serial.begin(9600);
+  Serial.println("Started setup");
+  pinMode(FONA_KEY,OUTPUT);                                    // This is the pin used to turn on and off the Fona
+  TurnOnFona();
+  Serial.println(F("FONA basic test"));
+  Serial.println(F("Initializing....(May take 3 seconds)"));   // See if the FONA is responding
+  if (! fona.begin(4800)) {                                    // make it slow so its easy to read!
+    Serial.println(F("Couldn't find FONA"));
+    while (1);
+  }
+  GetConnected();
+  Serial.println(F("FONA is OK"));
+  TurnOffFona();
+}
 
-	void gprsOnFona(){
-	  while(!fona.enableGPRS(true));
-	  Serial.println(F("Turn on"));
-	}
 
-	void gprsOffFona(){
-	  while (!fona.enableGPRS(false));
-	  Serial.println(F("Turn off"));
-	}
+void loop() {
+  Serial.println("in Loop");
+  delay(2000);
+  int value = analogRead(A0);
+  TurnOnFona();                                // Turn on the module
+  GetConnected();                              // Connect to network and start GPRS
+  Send2Ubidots(String(value));                 // Send data to Ubidots
+  GetDisconnected();                           // Disconnect from GPRS
+  TurnOffFona();                               // Turn off the modeule
+}
+
+// This function is to send the sensor data to Ubidots - each step is commented in the serial terminal
+void Send2ubidots(String value)
+{
+  int num;
+  String le;
+  String var;
+  var = "{\"value\":"+ value + "}";           //value is the sensor value
+  num = var.length();
+  le = String(num);                           //this is to calcule the length of var
+
+  Serial.print(F("Start the connection to Ubidots: "));
+  if (SendATCommand("AT+CIPSTART=\"tcp\",\"things.ubidots.com",\"80\"",'C','T')) {
+    Serial.println("Connected");
+  }
+  Serial.print(F("Begin to send data to the remote server: "));
+  if (SendATCommand("AT+CIPSEND",'\n','>')) {
+    Serial.println("Sending");
+  }
+ fona.println("POST /api/v1.6/variables/xxxxxxxxxxxxxxxx/values HTTP/1.1");           // Replace "xxx..." with your variable ID
+ fona.println("Content-Type: application/json");
+ fona.println("Content-Length: "+le);
+ fona.println("X-Auth-Token: xxxxxxxxxxxxxxxxxx");                                    // here you should replace "xxx..." with your Ubidots Token
+ fona.println("Host: things.ubidots.com");
+ fona.println();
+ fona.println(var);
+ fona.println();
+ fona.println((char)26);                                       //This ends the JSON SEND with a carriage return
+ Serial.print(F("Send JSON Package: "));
+ if (SendATCommand("",'2','0')) {                              // The 200 code from Ubidots means it was successfully uploaded
+    Serial.println("Sent");
+     PersonCount = 0;
+  }
+  else {
+    Serial.println("Send Timed out, will retry at next interval");
+  }
+ // delay(2000);
+ Serial.print(F("Close connection to Ubidots: "));              // Close the connection
+ if (SendATCommand("AT+CIPCLOSE",'G','M')) {
+    Serial.println("Closed");
+  }
+}
+
+boolean SendATCommand(char Command[], char Value1, char Value2) {
+ unsigned char buffer[64];                                  // buffer array for data recieve over serial port
+ int count = 0;
+ int complete = 0;
+ unsigned long commandClock = millis();                      // Start the timeout clock
+ fona.println(Command);
+ while(!complete && commandClock <= millis()+TimeOut)         // Need to give the modem time to complete command
+ {
+   while(!fona.available() && commandClock <= millis()+TimeOut);
+   while(fona.available()) {                                 // reading data into char array
+     buffer[count++]=fona.read();                            // writing data into array
+     if(count == 64) break;
+   }
+   Serial.write(buffer,count);                           // Uncomment if needed to debug
+   for (int i=0; i <= count; i++) {
+     if(buffer[i]==Value1 && buffer[i+1]==Value2) complete = 1;
+   }
+ }
+ if (complete ==1) return 1;                              // Returns "True"  - "False" sticks in the loop for now
+ else return 0;
+}
+
+void TurnOnFona()
+{
+  Serial.print("Turning on Fona: ");
+  while(digitalRead(FONA_PS))
+  {
+    digitalWrite(FONA_KEY,LOW);
+    unsigned long KeyPress = millis();
+    while(KeyPress + KeyTime >= millis()) {}
+    digitalWrite(FONA_KEY,HIGH);
+  }
+  fona.begin(4800);
+  Serial.println("success!");
+}
+
+void GetConnected()
+{
+  do
+  {
+    n = fona.getNetworkStatus();  // Read the Network / Cellular Status
+    Serial.print(F("Network status "));
+    Serial.print(n);
+    Serial.print(F(": "));
+      if (n == 0) Serial.println(F("Not registered"));
+      if (n == 1) Serial.println(F("Registered (home)"));
+      if (n == 2) Serial.println(F("Not registered (searching)"));
+      if (n == 3) Serial.println(F("Denied"));
+      if (n == 4) Serial.println(F("Unknown"));
+      if (n == 5) Serial.println(F("Registered roaming"));
+  } while (n != 1);
+}
+
+void GetDisconnected()
+{
+  fona.enableGPRS(false);
+  Serial.println(F("GPRS Serivces Started"));
+}
+
+void TurnOffFona()
+{
+  Serial.print("Turning off Fona: ");
+  while(digitalRead(FONA_PS))
+  {
+    digitalWrite(FONA_KEY,LOW);
+    unsigned long KeyPress = millis();
+    while(KeyPress + KeyTime >= millis()) {}
+    digitalWrite(FONA_KEY,HIGH);
+  }
+  Serial.println("success!");
+}
 ```
 
 
