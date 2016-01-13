@@ -48,10 +48,10 @@ EXEMPLO
     },
     "_links": 
       [
-        {"rel": "self", "method": "GET", "href": "http://localhost:3000/api/v1/regress_cnabs/1"}, 
-        {"rel": "destroy", "method": "DELETE", "href": "http://localhost:3000/api/v1/regress_cnabs/1"}, 
-        {"rel": "charge_account", "method": "GET", "href": "http://localhost:3000/api/v1/charge_accounts/1"}, 
-        {"rel": "file", "method": "GET", "href": "http://localhost:3000/api/v1/regress_cnabs/1/file"}
+        {"rel": "self", "method": "GET", "href": "https://app.cobrato.com/api/v1/regress_cnabs/1"}, 
+        {"rel": "destroy", "method": "DELETE", "href": "https://app.cobrato.com/api/v1/regress_cnabs/1"}, 
+        {"rel": "charge_account", "method": "GET", "href": "https://app.cobrato.com/api/v1/charge_accounts/1"}, 
+        {"rel": "file", "method": "GET", "href": "https://app.cobrato.com/api/v1/regress_cnabs/1/file"}
       ]
   }
 ```
@@ -60,13 +60,13 @@ Os arquivos CNABs de retorno, pertencem a uma determinada conta de cobrança, co
 
 **Parâmetros**
 
-| Campo              | Tipo            | Comentário                                    |
-|--------------------|-----------------|-----------------------------------------------|
-| id                 | integer         | identificador do CNAB de retorno              |
-| charge_account_id  | string          | identificador da conta de cobrança no Cobrato |
-| status             | string          | situação de processamento do arquivo CNAB     |
-| report             | string          | relatório de processamento do arquivo CNAB    |
-| _links             | array of object | links relacionado CNAB de retorno              |
+| Campo              | Tipo            | Comentário                                                                                                                              |
+|--------------------|-----------------|-----------------------------------------------------------------------------------------------------------------------------------------|
+| id                 | integer         | identificador do CNAB de retorno                                                                                                        |
+| charge_account_id  | string          | identificador da conta de cobrança no Cobrato                                                                                           |
+| status             | string          | situação do arquivo CNAB, podendo ser "processing" (processando), "processed" (processado) e "processing_error" (erro de processamento) |
+| report             | string          | relatório de processamento do arquivo CNAB                                                                                              |
+| _links             | array of object | links relacionado CNAB de retorno                                                                                                       |
 
 ## Informações do CNAB de Retorno
 
@@ -75,7 +75,7 @@ Mostrar CNAB de Retorno
 
 DEFINIÇÃO
 
-  GET https://app.cobrato.com/api/v1/regress_cnabs/:regress_cnab_id
+  GET https://app.cobrato.com/api/v1/regress_cnabs/:id
 
 EXEMPLO DE REQUISIÇÃO
 
@@ -83,7 +83,7 @@ EXEMPLO DE REQUISIÇÃO
     -H 'User-Agent: My App 1.0' \
     -H 'Accept: application/json' \
     -H 'Content-type: application/json' \
-    -X GET https://app.cobrato.com/api/v1/regress_cnabs/:regress_cnab_id
+    -X GET https://app.cobrato.com/api/v1/regress_cnabs/:id
 
 EXEMPLO DE ESTADO DA RESPOSTA
 
@@ -134,10 +134,10 @@ EXEMPLO DE CORPO DA RESPOSTA
     },
     "_links":
       [
-        {"rel": "self", "method": "GET", "href": "http://localhost:3000/api/v1/regress_cnabs/1"}, 
-        {"rel": "destroy", "method": "DELETE", "href": "http://localhost:3000/api/v1/regress_cnabs/1"}, 
-        {"rel": "charge_account", "method": "GET", "href": "http://localhost:3000/api/v1/charge_accounts/1"}, 
-        {"rel": "file", "method": "GET", "href": "http://localhost:3000/api/v1/regress_cnabs/1/file"}
+        {"rel": "self", "method": "GET", "href": "https://app.cobrato.com/api/v1/regress_cnabs/1"}, 
+        {"rel": "destroy", "method": "DELETE", "href": "https://app.cobrato.com/api/v1/regress_cnabs/1"}, 
+        {"rel": "charge_account", "method": "GET", "href": "https://app.cobrato.com/api/v1/charge_accounts/1"}, 
+        {"rel": "file", "method": "GET", "href": "https://app.cobrato.com/api/v1/regress_cnabs/1/file"}
       ]
   }
 
@@ -243,7 +243,7 @@ Excluir CNAB de retorno
 
 DEFINIÇÃO
 
-  DELETE https://app.cobrato.com/api/v1/regress_cnabs/:regress_cnab_id
+  DELETE https://app.cobrato.com/api/v1/regress_cnabs/:id
 
 EXEMPLO DE REQUISIÇÃO
 
@@ -251,7 +251,7 @@ EXEMPLO DE REQUISIÇÃO
     -H 'User-Agent: My App 1.0' \
     -H 'Accept: application/json' \
     -H 'Content-type: application/json' \
-    -X DELETE https://app.cobrato.com/api/v1/regress_cnabs/:regress_cnab_id
+    -X DELETE https://app.cobrato.com/api/v1/regress_cnabs/:id
 
 EXEMPLO DE ESTADO DA RESPOSTA COM SUCESSO
 
@@ -272,7 +272,7 @@ Mostrar Arquivo do CNAB de Retorno (URL)
 
 DEFINIÇÃO
 
-  GET https://app.cobrato.com/api/v1/regress_cnabs/:regress_cnab_id/file
+  GET https://app.cobrato.com/api/v1/regress_cnabs/:id/file
 
 EXEMPLO DE REQUISIÇÃO
 
@@ -280,7 +280,7 @@ EXEMPLO DE REQUISIÇÃO
     -H 'User-Agent: My App 1.0' \
     -H 'Accept: application/json' \
     -H 'Content-type: application/json' \
-    -X GET https://app.cobrato.com/api/v1/regress_cnabs/:regress_cnab_id/file
+    -X GET https://app.cobrato.com/api/v1/regress_cnabs/:id/file
 
 EXEMPLO DE ESTADO DA RESPOSTA COM SUCESSO
 
