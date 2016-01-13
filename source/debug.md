@@ -130,3 +130,37 @@ typedef struct Motion_Feature_t{ //all motion engine features
 ```
 More information about the motion engine data structures can be found here:
 https://github.com/Motsai/documentation/blob/master/source/motionenginepackets.md
+
+### Debug - Get Firmware Versions (0x05)
+```c 
+#define DEBUG_CMD_GET_FW_VERSION 0x05
+```
+In the command mode, the packet requests for the Neblina's version number as well as other information. The command packet has no data field and is structured as follows:
+
+|Byte 0 (subsystem)|Byte 1 (length)|Byte 2 (CRC)|       Byte 3 (command)     |Byte 4-19|
+|:----------------:|:-------------:|:----------:|:--------------------------:|:-------:|
+|       0x40       |      0x10     |     CRC    |0x05 (Get Firmware Versions)|Reserved |
+
+In response, Neblina will provide the requested information using the following data structure:
+```c
+typedef struct {
+	uint8_t API_Release; //API release version
+	FWVersion_t KL26; //Freescale's KL26 firmware version
+	FWVersion_t Nordic; //Nordic firmware version
+	uint64_t devid; //device ID
+}Neblina_FWVersions_t;
+```
+where
+```c
+typedef struct {
+	uint8_t major; //major revision
+	uint8_t minor; //minor revision
+	uint8_t build; //build number
+}FWVersion_t;
+```
+
+The response packet will thus have the following structure:
+
+|Byte 0 (subsystem)|Byte 1 (length)|Byte 2 (CRC)|      Byte 3 (command)      |     Byte 4-18      |Byte 19 |
+|:----------------:|:-------------:|:----------:|:--------------------------:|:------------------:|:------:|
+|       0x00       |      0x10     |     CRC    |0x05 (Get Firmware Versions)|Neblina_FWVersions_t|Reserved|
