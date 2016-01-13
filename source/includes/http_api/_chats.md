@@ -159,8 +159,10 @@ Changes to chat members are notified to the following [channels][]:
 Channels    | Description
 ------------|---------------
 `/api/v5/client/visitors/<visitor_id>/chats/<chat_id>/members` | For each visitor of the chat
+`/api/v5/client/visitors/<visitor_id>/chats_memberships` | For the chat member, if a visitor
 `/api/v5/orgs/<organization_id>/users/<user_id>/chats/<chat_id>/members` | For each user member of the chat
 `/api/v5/orgs/<organization_id>/rooms/<room_id>/chats/<chat_id>/members` | For the related room and each organization having access to that room
+`/api/v5/orgs/<organization_id>/users/<user_id>/chat_memberships` | For the chat member, if a user
 
 In addition, chat members affect the following attributes of a [chat][], notifying its channels:
 
@@ -215,6 +217,11 @@ Or alternatively:
 
 `GET /api/v5/orgs/<organization_id>/users/<user_id>/chats/<chat_id>/members`
 
+Also, as an alternative to list a user's *chats*, you may list their own *chat memberships*. Each result is a chat member resource for each of the chat of the user.
+
+`GET /api/v5/orgs/<organization_id>/users/<user_id>/chat_memberships`
+
+
 ### Join a user to a chat
 
 > Example request for joining a user to a chat
@@ -247,7 +254,7 @@ Also, by providing a `is_present` attribute with value `true` you can make the u
 
 Alternatively, you may use this endpoint:
 
-`PUT /api/v5/orgs/<organization_id>/rooms/<room_id>/chats/<chat_id>/members/<user_id>`
+`PUT /api/v5/orgs/<organization_id>/users/<user_id>/chat_memberships/<chat_id>`
 
 In this case you do not have to provide the `id` attribute.
 
@@ -275,7 +282,7 @@ This request sends notifications to the [channels][] of the chat members as well
 
 > Example request for making the operator not to be present any more at the chat
 
-    PUT /api/v5/orgs/39351090-2f16-49e0-ae14-96c9a3a721f2/rooms/adab695d-a648-42d6-b956-19efc1124e89/chats/62eb5cd5-5d52-4bb1-b711-ba31f864e775/members/ce771dbe-afbf-4e58-bbcb-9855ecacee9a
+    PUT /api/v5/orgs/39351090-2f16-49e0-ae14-96c9a3a721f2/users/ce771dbe-afbf-4e58-bbcb-9855ecacee9a/chat_memberships/62eb5cd5-5d52-4bb1-b711-ba31f864e775
 
 > Example request payload
 
@@ -288,7 +295,7 @@ This request sends notifications to the [channels][] of the chat members as well
 
 You can make a user present or not present at a chat like described in the previous section:
 
-`PUT /api/v5/orgs/<organization_id>/rooms/<room_id>/chats/<chat_id>/members/<user_id>`
+`PUT /api/v5/orgs/<organization_id>/users/<user_id>/chat_memberhips/<chat_id>`
 
 You should provide the `is_present` attribute with either `true` or `false` value, indicating whether or not the user should be currently present at the chat. Also, you should provide the `composing_status` attribute describing whether or not the user is typing or has typed a message.
 

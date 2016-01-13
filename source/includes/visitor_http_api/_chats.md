@@ -117,6 +117,7 @@ Channels    | Description
 `/api/v5/client/visitors/<visitor_id>/chats_memberships` | For the chat member, if a visitor
 `/api/v5/orgs/<organization_id>/users/<user_id>/chats/<chat_id>/members` | For each user member of the chat
 `/api/v5/orgs/<organization_id>/rooms/<room_id>/chats/<chat_id>/members` | For the related room and each organization having access to that room
+`/api/v5/orgs/<organization_id>/users/<user_id>/chat_memberships` | For the chat member, if a user
 
 In addition, chat members affect the following attributes of a [chat][], notifying its channels:
 
