@@ -8,7 +8,6 @@ This section contains firmware examples and tutorials to connect your device to 
 ## Arduino Ethernet
 [![Ups!](../images/dev-icons/arduino-eth.png)](../devices/ethernet.html)
 
-
 ## Arduino-based Modules
 
 |Arduino Wi-Fi Shield|Arduino GPRS Shield|Arduino GSM Shield|Arduino Yún|Arduino WizFi Shield|
@@ -70,18 +69,6 @@ This section contains firmware examples and tutorials to connect your device to 
 |Tessel|FONA MiniGSM|CC3000 WiFi Breakout|GPRSbee Module|WiDo IoT Node|
 |:---:|:---:|:---:|:---:|:---:|
 |[![Ups!](../images/dev-icons/tessel.png)](../devices/Tessel.html)|[![Ups!](../images/dev-icons/fona.png)](../devices/FONA.html)|[![Ups!](../images/dev-icons/cc3000.png)](../devices/cc3000.html)|[![Ups!](../images/dev-icons/gprsbee.png)](../devices/gprsbee.html)|[![Ups!](../images/dev-icons/wido.png)](../devices/wido.html)|
-
-## User-contributed Examples
-
-
-Here's a collection of projects shared by some of our users. While we try to test most of this code in our lab, we publish it here "as-is" and can't provide warranties of any kind:
-
-* [Track color & GPS-Data with Linkit One and Ubidots](https://github.com/snoller/LinkitOne_tracker)
-* [An Air Quality Sensor using the Linkit One and Ubidots](https://github.com/chipmc/AirQualitySensorProject)
-* [Track color & GPS-Data with FONA and Ubidots](https://github.com/snoller/Fona2Ubidots-Tracker)
-* :ref:`devices/cc3000_chip`
-
-If you'd like to share your project here, drop us a line at [devices@ubidots.com](mailto:devices@ubidots.com)
  
 <aside class="success">
 If your device is not in this list, it doesn’t mean it can’t talk to our API. Most Internet-enabled devices will be able to stream data to

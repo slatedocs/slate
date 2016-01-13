@@ -9,7 +9,6 @@ toc_footers:
 
 includes:
   - api
-  - devices
   - clients
   - features
 
@@ -25,7 +24,7 @@ search: true
 
 * [**API Reference**](#api-reference): A complete list of the supported API calls, with sample requests and responses.
 
-* [**Device Clients**](#devices): Firmware examples and tutorials on how to connect different devices to Ubidots.
+* [**Device Clients**](../devices): Firmware examples and tutorials on how to connect different devices to Ubidots.
 
 * [**API Clients**](#clients): API libraries to help you interact with Ubidots from your own applications.
 

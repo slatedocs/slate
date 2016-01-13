@@ -417,14 +417,14 @@ html, body {
     margin-bottom: 1em;
     overflow: auto;
     th,td {
-      text-align: left;
+      text-align: center;
       vertical-align: top;
       line-height: 1.6;
     }
 
     th {
       padding: 5px 10px;
-      border-bottom: 1px solid #ccc;
+      border-bottom: 0px solid #ccc;
       vertical-align: bottom;
     }
 
@@ -433,7 +433,7 @@ html, body {
     }
 
     tr:last-child {
-      border-bottom: 1px solid #ccc;
+      border-bottom: 0px solid #ccc;
     }
 
     tr:nth-child(odd)>td {

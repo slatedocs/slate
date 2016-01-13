@@ -1,118 +1,73 @@
-## Compatible Devices
+# Devices
 
-.. toctree::
-   :hidden:
+This section contains firmware examples and tutorials to connect your device to Ubidots.
 
-   android
-   arduino-wifi
-   ArduinoYUN
-   chipKITUno32
-   chipKitWiFire
-   Dragino
-   electricimp
-   FONA
-   gprs
-   hemZwave
-   microchipWCMKit
-   raspberrypi
-   rn131-171
-   spark
-   particle
-   particle-get
-   Tessel
-   wifly
-   wizfi
-   GSMTelefonica
-   cc3000
-   cc3000_chip
-   sparkcore_get
-   ESP8266
-   ESP8266-arduino
-   linkitone
-   arduino-ethernet
-   nodered
-   gprsbee
-   wido
+## Arduino Modules
 
+|||||
+|:---:|:---:|:---:|:---:|
+|Wi-Fi Shield<br>[![Ups!](../images/dev-icons/arduino-wifi.png)](../devices/arduino-wifi.html)  |GPRS Shield<br>[![Ups!](../images/dev-icons/arduino-gprs.png)](../devices/gprs.html)   |GSM Shield<br>[![Ups!](../images/dev-icons/arduino-gsm.png)](../devices/GSMTelefonica.html)    |Yún<br>[![Ups!](../images/dev-icons/arduino-yun.png)](../devices/ArduinoYUN.html)|
+|WizFi Shield<br>[![Ups!](../images/dev-icons/arduino-wizfi.png)](../devices/wizfi.html)|Dragino<br>[![Ups!](../images/dev-icons/dragino.png)](../devices/Dragino.html)|Ethernet Shield<br>[![Ups!](../images/dev-icons/arduino-eth.png)](../devices/ethernet.html)|CC3000 Wi-Fi<br>[![CC3000](../images/dev-icons/cc3000-adafruit.png)](../devices/coming-soon.html)|
 
+## Adafruit
 
-The Internet of Things ecosystem contains hundreds of sensor nodes and gateways, with new releases almost every month. 
-
-This section contains libraries and tutorials that make it easier to navigate such ecosystem, understanding the differences between each device and learning how to connect them to our API.
-
-If your device is not in this list, it doesn't mean it can't talk to our API. Most Internet-enabled devices will be able to stream data to Ubidots, as long as they support the HTTP protocol. If you'd like to see a specific device listed here, shoot us an Email at `devices@ubidots.com <mailto:devices@ubidots.com>`_
-
-
-## Arduino-based Modules
-
-|Arduino Wi-Fi Shield|Arduino GPRS Shield|Arduino GSM Shield|Arduino Yún|Arduino WizFi Shield|
-|:---:|:---:|:---:|:---:|:---:|
-| ![Ups!](../_static/icons/arduino-wifi.png)  |![Ups!](../_static/icons/arduino-gprs.png)   |![Ups!](../_static/icons/arduino-gsm.png)    |![Ups!](../_static/icons/arduino-yun.png)    |![Ups!](../_static/icons/arduino-wizfi.png)  |
-
-| Dragino IoT Sensor Node| Arduino Ethernet Shield|
-|:---:|:---:|
-|![Ups!](../_static/icons/dragino.png)       | ![Ups!](../_static/icons/arduino-eth.png)   |
+|||||
+|:---:|:---:|:---:|:---:|
+|FONA<br>[![Ups!](../images/dev-icons/fona.png)](../devices/FONA.html)|CC3000 Wi-Fi<br>[![CC3000](../images/dev-icons/cc3000-adafruit.png)](../devices/coming-soon.html)|||
 
 ## Particle
 
-|Photon (Send Data w/ HTTP library)| Photon (Get data w/ HTTP Library)|
-|:---:|:---:|
-| ![Ups!](../_static/icons/particle.png)|![Ups!](../_static/icons/particle-get.png)|                                      
+|||||
+|:---:|:---:|:---:|:---:|
+|Photon<br>[![Ups!](../images/dev-icons/particle.png)](../devices/particle.html)||||                                      
+
+## Intel
+
+|||||
+|:---:|:---:|:---:|:---:|
+|Edison<br>[![Edison](../images/dev-icons/edison.png)](../devices/coming-soon.html)||||                                      
+
 
 ## Embedded Linux
 
-|Raspberry Pi|Node-RED (ThingBox Image for Rpi)| OpenWRT Routers|
-|:---:|:---:|:---:|
-|![Ups!](../_static/icons/raspberry.png)|![Ups!](../_static/icons/nodered.png)| ![Ups!](../_static/icons/openwrt.png)|                               
+|||||
+|:---:|:---:|:---:|:---:|
+|Raspberry Pi<br>[![Raspberry-pi](../images/dev-icons/raspberry.png)](../devices/raspberrypi.html)|BeagleBone<br>[![Beaglebone](../images/dev-icons/beagle.png)](../devices/coming-soon.html)|OpenWRT<br>[![openwrt](../images/dev-icons/openwrt.png)](../devices/coming-soon.html)|ThingBox.io<br>[![Ups!](../images/dev-icons/thingbox.png)](../devices/nodered.html)|
 
 ## Mediatek Labs
 
-| Linkit One (GPRS)|
-|:---:|
-|![Ups!](../_static/icons/linkitone.png)|
+|||||
+|:---:|:---:|:---:|:---:|
+|Linkit One GPRS<br>[![Ups!](../images/dev-icons/linkit-one.png)](../devices/linkitone.html)|Linkit One Wi-Fi<br>[![Linkit-one](../images/dev-icons/linkit-one.png)](../devices/coming-soon.html)|Linkit Smart 7688<br>[![Linkit-Smart](../images/dev-icons/linkit-smart.png)](../devices/coming-soon.html)||
 
 ## ESP8266
 
-|ESP8266 + Arduino Board|ESP8266 Stand-alone|
-|:---:|:---:|
-|![Ups!](../_static/icons/esp.png)|![Ups!](../_static/icons/esp12.png)|                                            
+|||||
+|:---:|:---:|:---:|:---:|
+|As Wi-Fi Module<br>[![Ups!](../images/dev-icons/esp.png)](../devices/ESP8266-arduino.html)|Stand-alone<br>[![Ups!](../images/dev-icons/esp12.png)](../devices/ESP8266.html)|||
 
 ## Electric Imp
 
-|Imp001 Card|
-|:---:|
-|![Ups!](../_static/icons/imp001.png)|
-
-## Android-based Devices
-
-| Connect your Android App to Ubidots|
-|:---:|
-|![Ups!](../_static/icons/android.png)|
-
-## Microchip-based Modules
-
-|WCM Wi-Fi Module|RN131/RN171 Wi-Fi|ChipKIT Uno32 WiFi|ChipKIT WiFire|
+|||||
 |:---:|:---:|:---:|:---:|
-|![Ups!](../_static/icons/wcm.png)|![Ups!](../_static/icons/rn131.png)|![Ups!](../_static/icons/chipkit.png)|![Ups!](../_static/icons/wifire.png)|
+|Imp 001<br>[![Ups!](../images/dev-icons/imp001.png)](../devices/electricimp.html)||||
 
-![Ups!](../_static/icons/microchip-partner.jpg)
+## Microchip
 
-*Ubidots is an authorized Microchip Design Partner*.
+|||||
+|:---:|:---:|:---:|:---:|
+|WCM Wi-Fi<br>[![Ups!](../images/dev-icons/wcm.png)](../devices/microchipWCMKit.html)|chipKIT Uno32[![Ups!](../images/dev-icons/chipkit.png)](../devices/chipKITUno32.html)|chipKIT WiFire[![Ups!](../images/dev-icons/wifire.png)](../devices/chipKitWiFire.html)||
+
+![Microchip partner](../images/dev-icons/microchip-partner.jpg)
+
 
 ## Other Modules
 
-|Tessel|FONA MiniGSM|CC3000 WiFi Breakout|GPRSbee Module|WiDo IoT Node|
+|||||
 |:---:|:---:|:---:|:---:|:---:|
-|![Ups!](../_static/icons/tessel.png)|![Ups!](../_static/icons/fona.png)|![Ups!](../_static/icons/cc3000.png)|![Ups!](../_static/icons/gprsbee.png)|![Ups!](../_static/icons/wido.png)|
-
-## User-contributed Examples
-
-
-Here's a collection of projects shared by some of our users. While we try to test most of this code in our lab, we publish it here "as-is" and can't provide warranties of any kind:
-
-* [Track color & GPS-Data with Linkit One and Ubidots](https://github.com/snoller/LinkitOne_tracker)
-* [An Air Quality Sensor using the Linkit One and Ubidots](https://github.com/chipmc/AirQualitySensorProject)
-* [Track color & GPS-Data with FONA and Ubidots](https://github.com/snoller/Fona2Ubidots-Tracker)
-* :ref:`devices/cc3000_chip`
-
-If you'd like to share your project here, drop us a line at [devices@ubidots.com](mailto:devices@ubidots.com)
+|Tessel<br>[![Tessel](../images/dev-icons/tessel.png)](../devices/Tessel.html)|Sparkfun CC3000[![Sparkfun-cc3000](../images/dev-icons/cc3000.png)](../devices/cc3000.html)|GPRS Bee[![GPRS-bee](../images/dev-icons/gprsbee.png)](../devices/gprsbee.html)|DF Robot WiDo[![Wido](../images/dev-icons/wido.png)](../devices/wido.html)|
+ 
+<aside class="success">
+If your device is not in this list, it doesn’t mean it can’t talk to our API. Most Internet-enabled devices will be able to stream data to
+Ubidots, as long as they support the HTTP protocol. If you’d like to see a specific device listed, shoot us an Email to **devices@ubidots.com**.
+</aside>
