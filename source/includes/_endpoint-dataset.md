@@ -248,16 +248,16 @@ Returns a Shoji View with summary information about this dataset containing
 
 ```json
 {
-    'weighted': {
-        "filtered": <int>,
-        "total": <int>
+    "weighted": {
+        "filtered": 80,
+        "total": 100
     },
-    'unweighted': {
-        "filtered": <int>,
-        "total": <int>
+    "unweighted": {
+        "filtered": 80,
+        "total": 100
     },
-    'variables': <int>,
-    'columns': <int>
+    "variables": 20,
+    "columns": 25
 }
 ```
 

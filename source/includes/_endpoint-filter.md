@@ -16,7 +16,7 @@ the public filters are those that have been made public by the dataset editor.
     "name": "My filter",
     "is_public": true,
     "id": "1442EA...",
-    "owner_id": http://...../users/owner_id/,
+    "owner_id": "http://...../users/owner_id/",
 }
 ```
 
@@ -40,14 +40,14 @@ This resource will return the body of the requested filter as a Shoji Entity.
 
 ```json
 {
-    "id": "ac64ef..."
-    "dataset_id": "8c6c9e3..."
+    "id": "ac64ef"
+    "dataset_id": "8c6c9e3"
     "version": "master__tip",
-    "name": "Fitler name",
+    "name": "Filter name",
     "is_exclusion": false,
     "is_public": false,
-    "expression": {....}
-    "last_update": "2015-12-31...."
+    "expression": {}
+    "last_update": "2015-12-31"
 }
 ```
 
@@ -58,9 +58,20 @@ The `expression` attribute must contain a valid ZCL filter expression.
 
 ### Applied filters
 
-`/datasets/{id}/filters/{id}/applied/`
+`/datasets/{id}/filters/applied/`
 
 A Shoji order containing the filters applied by the current user.
+
+```json
+{
+    "element": "shoji:order",
+    "self": "http://beta.crunch.io/api/datasets/ac64ef/filters/applied/",
+    "graph": [
+        "http://beta.crunch.io/api/datasets/ac64ef/filters/28ef72/",
+        "http://beta.crunch.io/api/datasets/ac64ef/filters/0ac6e1/",
+    ]
+}
+```
 
 
 ### Filtering endpoints
