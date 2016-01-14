@@ -44,6 +44,10 @@ crGET("https://beta.crunch.io/api/datasets/")
             "permissions": {
                 "edit": false
             },
+            "size": {
+                "rows": 1234,
+                "columns": 67
+            },
             "id": "cc9161",
             "owner_id": "https://beta.crunch.io/api/users/685722/"
         },
@@ -54,6 +58,10 @@ crGET("https://beta.crunch.io/api/datasets/")
             "archived": false,
             "permissions": {
                 "edit": true
+            },
+            "size": {
+                "rows": null,
+                "columns": null
             },
             "id": "a598c7",
             "owner_id": "https://beta.crunch.io/api/users/af432c/"
@@ -75,6 +83,7 @@ archived | bool | false | Whether the dataset is "archived" or active
 permissions | object | {"edit": false} | Authorizations on this dataset
 owner_id | url |  | URL of the user entity of the dataset's owner
 owner_display_name | string | "" | That user's name, for display
+size | object | {"size" {"rows": null, "columns": null}} | Dimensions of the dataset
 
 <aside class="notice">
     A user may have access to a dataset because someone has shared it directly with him, or because someone has shared it with a team of which he is a member. If a user has access to a dataset from different sources, be it by multiple teams or by direct sharing, the final permissions they have on the dataset will be the maximum of all the permissions granted.
@@ -229,10 +238,40 @@ Name | Type | Default | Description
 ---- | ---- | ------- | -----------
 name | string | | Required. The name of the dataset
 description | string | "" | A longer description of the dataset
+owner | url | Url of creator | Points to the user or team that owns this dataset
+current_editor_name | string | null | Display name of the current editor if any
+current_editor | url | Url of creator | Points to the user who has current edit permissions
+archived | bool | false | Whether the dataset is "archived" or active
+size | object | {"size" {"rows": null, "columns": null}} | Dimensions of the dataset
+weight | url | null | Points to the current weight variable applied
 
 #### PATCH
 
 `PATCH /datasets/{dataset_id}/`
+
+Use PATCH to edit the the following attributes of this dataset:
+ 
+ * name
+ * description
+ * archived
+ * current_editor
+ * owner
+ * weight
+
+A successful request returns a 204 response. The attributes changed will be seen 
+by all users with access to this dataset; i.e., names, descriptions, and archived 
+state are not merely attributes of your view of the data but of the datasets themselves.
+
+Authorization is required: you must have "edit" privileges on this dataset.
+ If you try to PATCH and are not authorized, you will receive a 403 response 
+ and no changes will be made. If you have edit permissions but are not the 
+ current editor of this dataset, you will need first to PATCH to make yourself
+  the current editor and then proceed to make the desired changes.
+
+When PATCHing, you may include only the keys that are being 
+modified, or you may send the complete entity. As long as the keys that cannot be 
+modified via PATCH here are not modified, the request will succeed.
+
 
 #### DELETE
 
