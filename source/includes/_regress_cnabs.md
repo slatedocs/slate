@@ -7,44 +7,18 @@ EXEMPLO
 
   {
     "id": 1,
-    "charge_account_id": 1,
+    "charge_account_id": 9,
     "status": "processed",
     "report": {
-      "charge_account_id": 1,
-      "charges": {
-        "not_found_amount": 1,
-        "found_amount": 0,
-        "found": [],
-        "errors_amount": 0,
-        "successes_amount": 0,
-        "total": 1
-      },
-      "charge_account": {
-        "id": 1,
-        "bank_account_id": 1,
-        "portfolio_code": "11",
-        "agreement_code": "1",
-        "name": "Brazil's Bank",
-        "agreement_code_digit": "1",
-        "status": "pending",
-        "billet_file_name": null,
-        "billet_content_type": null,
-        "billet_file_size": null,
-        "billet_updated_at": null,
-        "initial_number": 1,
-        "current_number": 1,
-        "end_number": null,
-        "registered_charges": true,
-        "agreement_number": 1,
-        "initial_remittance_number": 1,
-        "current_remittance_number": null,
-        "remittance_cnab_pattern": 240,
-        "interest_amount_per_month": null,
-        "mulct_type": null,
-        "mulct_value": null
-      },
-      "received_charges": [],
-      "registered_charges": []
+      "charges_not_found": 0,
+      "received_charges": [{
+        "id": 46,
+        "_links": [{ "rel": "self", "method": "GET", "href": "https://app.cobrato.com/api/v1/charges/46" }]
+      }],
+      "registered_charges": [{
+        "id": 45,
+        "_links": [{ "rel": "self", "method": "GET", "href": "https://app.cobrato.com/api/v1/charges/45" }]
+      }]
     },
     "_links": 
       [
@@ -58,6 +32,10 @@ EXEMPLO
 
 Os arquivos CNABs de retorno, pertencem a uma determinada conta de cobrança, contendo informações de uma ou mais cobranças desta conta.
 
+<aside class="warning">
+A utilização desta API não é autorizada a contas com o plano **Gratuito**, resultando na resposta com o estado **403 Forbidden**!
+</aside>
+
 **Parâmetros**
 
 | Campo              | Tipo            | Comentário                                                                                                                              |
@@ -65,8 +43,16 @@ Os arquivos CNABs de retorno, pertencem a uma determinada conta de cobrança, co
 | id                 | integer         | identificador do CNAB de retorno                                                                                                        |
 | charge_account_id  | string          | identificador da conta de cobrança no Cobrato                                                                                           |
 | status             | string          | situação do arquivo CNAB, podendo ser "processing" (processando), "processed" (processado) e "processing_error" (erro de processamento) |
-| report             | string          | relatório de processamento do arquivo CNAB                                                                                              |
+| report             | string          | relatório de processamento do arquivo CNAB, os parâmetros do relatório se encontram na tabela abaixo                                    |
 | _links             | array of object | links relacionado CNAB de retorno                                                                                                       |
+
+**Parâmetros do Relatório de Processamento**
+
+| Campo              | Tipo             | Comentário                                                                              |
+|--------------------|------------------|-----------------------------------------------------------------------------------------|
+| charges_not_found  | integer          | Quantidade de cobranças que estavam no CNAB, mas não foram localizadas no sistema       |
+| received_charges   | array of objects | Informações das cobranças recebidas pelo CNAB, contendo o código identificador e link   |
+| registered_charges | array of objects | Informações das cobranças registradas pelo CNAB, contendo o código identificador e link |
 
 ## Informações do CNAB de Retorno
 
@@ -85,7 +71,7 @@ EXEMPLO DE REQUISIÇÃO
     -H 'Content-type: application/json' \
     -X GET https://app.cobrato.com/api/v1/regress_cnabs/:id
 
-EXEMPLO DE ESTADO DA RESPOSTA
+EXEMPLO DE ESTADO DA RESPOSTA 
 
     200 OK
 
@@ -93,46 +79,20 @@ EXEMPLO DE CORPO DA RESPOSTA
 
   {
     "id": 1,
-    "charge_account_id": 1,
+    "charge_account_id": 9,
     "status": "processed",
     "report": {
-      "charge_account_id": 1,
-      "charges": {
-        "not_found_amount": 1,
-        "found_amount": 0,
-        "found": [],
-        "errors_amount": 0,
-        "successes_amount": 0,
-        "total": 1
-      },
-      "charge_account": {
-        "id": 1,
-        "bank_account_id": 1,
-        "portfolio_code": "11",
-        "agreement_code": "1",
-        "name": "Brazil's Bank",
-        "agreement_code_digit": "1",
-        "status": "pending",
-        "billet_file_name": null,
-        "billet_content_type": null,
-        "billet_file_size": null,
-        "billet_updated_at": null,
-        "initial_number": 1,
-        "current_number": 1,
-        "end_number": null,
-        "registered_charges": true,
-        "agreement_number": 1,
-        "initial_remittance_number": 1,
-        "current_remittance_number": null,
-        "remittance_cnab_pattern": 240,
-        "interest_amount_per_month": null,
-        "mulct_type": null,
-        "mulct_value": null
-      },
-      "received_charges": [],
-      "registered_charges": []
+      "charges_not_found": 0,
+      "received_charges": [{
+        "id": 46,
+        "_links": [{ "rel": "self", "method": "GET", "href": "https://app.cobrato.com/api/v1/charges/46" }]
+      }],
+      "registered_charges": [{
+        "id": 45,
+        "_links": [{ "rel": "self", "method": "GET", "href": "https://app.cobrato.com/api/v1/charges/45" }]
+      }]
     },
-    "_links":
+    "_links": 
       [
         {"rel": "self", "method": "GET", "href": "https://app.cobrato.com/api/v1/regress_cnabs/1"}, 
         {"rel": "destroy", "method": "DELETE", "href": "https://app.cobrato.com/api/v1/regress_cnabs/1"}, 
