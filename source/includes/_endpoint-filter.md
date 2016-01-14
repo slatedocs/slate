@@ -5,56 +5,53 @@
 `/datasets/{id}/filters/`
 
 GET on this resource returns a Shoji Catalog with the list of Filters that the
-current user can use on thie Dataset.
+current user can use on this Dataset.
 
-This index is compound of two kind of filters, public and private filters.
-The private filters available are those created by the logged in user, while
-the public filters are those that have been made public by the dataset editor.
+This index contains two kinds of filters: public and private, denoted by the `is_public` tuple attribute. Private filters are those created by the authenticated user, and they cannot be accessed by other users. Public filters are available to all users who are authorized to view the dataset.
 
 ```json
 {
     "name": "My filter",
     "is_public": true,
     "id": "1442EA...",
-    "owner_id": "http://...../users/owner_id/",
+    "owner_id": "https://beta.crunch.io/api/users/{owner_id}/",
 }
 ```
 
-PATCH to this resource allows only to edit the filters' `name` attribute.
-A 204 response indicates success, attempting to edit any other attribute will
+The only tuple attribute editable via PATCHing the catalog is the "name". A 204 response indicates a successful PATCH. Attempting to PATCH any other attribute will
 return a 400 response.
 
-
-POST to this catalog allows to create new filters. Only the current dataset
-editor can create public filters (`is_public: true`), else a 403 response will
-be returned.
-All viewers can create private filters. They must indicate a `name` and an 
-`expression` as well as `is_public` set to False. Success is a 201 response
+POST a Shoji Entity to this catalog to create a new filter. Entities must include a `name` and an
+`expression`. If omitted, `is_public` defaults to False. A successful POST yields a 201 response
 that will contain a Location header with the URL of the newly created filter.
+
+All users with access to the dataset can create private filters; however, only the current dataset editor can create public filters (`is_public: true`). Attempting to create a public filter when not the current dataset editor results in a 403 response.
 
 ### Entity
 
 `/datasets/{id}/filters/{id}/`
 
-This resource will return the body of the requested filter as a Shoji Entity.
+GET this resource to return a Shoji Entity containing the requested filter.
 
 ```json
 {
-    "id": "ac64ef"
-    "dataset_id": "8c6c9e3"
+    "id": "ac64ef",
+    "dataset_id": "8c6c9e3",
     "version": "master__tip",
     "name": "Filter name",
-    "is_exclusion": false,
     "is_public": false,
-    "expression": {}
+    "expression": {},
     "last_update": "2015-12-31"
 }
 ```
 
-PATCH will allow to edit the `expression`, `name` and `is_public` attribute of
-the entity. As with the catalog, only the current editor can make filters public.
-The `expression` attribute must contain a valid ZCL filter expression.
+PATCH an entity to edit its `expression`, `name` or `is_public` attributes. Successful PATCH requests return 204 status. As with the POSTing new entities to the catalog, only the dataset's current editor can alter `is_public`.
 
+The `expression` attribute must contain a valid Crunch filter expression.
+
+<!-- Discuss valid crunch filter expressions -->
+
+See [expressions](#expressions) in the Object Reference for more details.
 
 ### Applied filters
 
@@ -80,7 +77,7 @@ Some endpoints will support filtering, they will accept a `filter` GET parameter
 that should be a JSON encoded object that can contain either the URL of a filter
 (available through the Filters catalog) or a filter expression.
 
-To filter using a filter URL, pass the following JSON object as the `filter` 
+To filter using a filter URL, pass the following JSON object as the `filter`
 parameter:
 
 ```json
@@ -93,7 +90,7 @@ parameter:
 GET /datasets/id/summary/?filter=%7B%22filter%22%3A+%22http%3A%2F%2F...crunch.io%2Fdatasets%2Fid%2Ffilters%2Fid%2F%22%7D HTTP/1.1
 ```
 
-To filter using a filter expression, pass the following JSON object as the 
+To filter using a filter expression, pass the following JSON object as the
 `filter` parameter:
 
 ```json
@@ -106,4 +103,3 @@ To filter using a filter expression, pass the following JSON object as the
 ```http
 GET /datasets/id/summary/?filter=%7B%22expression%22%3A+%7B%22function%22%3A+%22%3D%3D%22%2C+%22args%22%3A+%5B%7B%22variable%22%3A+%22id%22%7D%2C+%7B%22value%22%3A+%22xx%22%7D%5D%7D%7D HTTP/1.1
 ```
-

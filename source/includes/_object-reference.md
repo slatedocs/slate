@@ -257,11 +257,9 @@ A complete Variable, then, is simply a Definition combined with its data array.
 
 ### Expressions
 
-When attempting to describe which columns we'd like to use, we construct expressions.
+Crunch expressions are used to compute on a dataset, to do nuanced selects, updates, and deletes, and to accomplish many other routine operations. Expressions are JSON objects in which each term is wrapped in an object which declares whether the term is a variable, a value, or a function, etc. While verbose, doing so allows us to be more explicit about the operations we wish to do.
 
-Crunch expressions generally contain references to **variables**, **values**, or **columns** of values, often composed in **functions**. The output of expressions can be other variables, values, boolean masks, or cube aggregations, depending on the context and expression content.
-
-Expressions are JSON objects in which each term is wrapped in an object which declares whether the term is a variable, a value, or a function, etc. While verbose, doing so allows us to be more explicit about the operations we wish to do.
+Expressions generally contain references to **variables**, **values**, or **columns** of values, often composed in **functions**. The output of expressions can be other variables, values, boolean masks, or cube aggregations, depending on the context and expression content. Some endpoints have special semantics, but the general structure of the expressions follows the model described below.
 
 #### Variable terms
 
@@ -297,10 +295,15 @@ Terms refer to functions (and operators) when they include a "function" member. 
 
 You may include a "references" member to provide a name, alias, description, etc to the output of the function.
 
+<!-- 
 ##### Supported functions
 
-<!-- LIST THEM -->
-typeof
+LIST THEM -->
+<!-- typeof -->
+
+#### Filter terms
+
+Terms that refer to filters entities by URL are shorthand for the boolean expression stored in the entity. So, `{"filter": "../filters/59fc4d/"}` yields the Crunch expression contained in the Filter entity's "expression" attribute. Filter terms can be combined together with other expressions as well. For example, `{"function": "and", "args": [{"filter": "../filters/59fc4d/"}, {"function": "==", "args": [{"variable": "../variables/X/"}, {"value": 13}]}]}` would "and" together the boolean expression in filter 59fc4d with the `X == 13` expression.
 
 ## Documents
 
