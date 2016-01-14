@@ -101,7 +101,6 @@ Each user always has a single preferences resource containing private settings c
 
 Attribute       | Type    | Editable  | Default | Description
 :---------------|:--------|:----------|---------|------------
-`id`            | [ID][]  | read-only |         | ID which equaling the ID of the related user
 `chat_capacity` | integer | **required**  | 5       | An estimate about the maximum number of people the user is willing to chat with simultaneously. The system uses this value in its algorithms to determine how many messages are sent in the name of the user.
 `desktop_message_sound` | string  | **required**  | `visitor_message` | Identifier for the message sound used when a visitor sends a message.
 `is_desktop_message_sound_continuous` | boolean | **required** | `true` | Whether or not to play the message sound continuously until the user interacts with the UI.
