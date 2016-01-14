@@ -37,34 +37,52 @@ crGET("https://beta.crunch.io/api/datasets/")
     },
     "index": {
         "https://beta.crunch.io/api/datasets/cc9161/": {
-            "owner_display_name": "James T. Kirk",
+            "owner_name": "James T. Kirk",
             "name": "The Voyage Home",
             "description": "Stardate 8390",
             "archived": false,
             "permissions": {
-                "edit": false
+                "edit": false,
+                "change_permissions":,
+                "add_users":,
+                "change_weight":,
+                "view": true
             },
             "size": {
                 "rows": 1234,
                 "columns": 67
             },
             "id": "cc9161",
-            "owner_id": "https://beta.crunch.io/api/users/685722/"
+            "owner_id": "https://beta.crunch.io/api/users/685722/",
+            "start_date":,
+            "end_date":,
+            "creation_time":,
+            "current_editor":,
+            "current_editor_name":
         },
         "https://beta.crunch.io/api/datasets/a598c7/": {
-            "owner_display_name": "Spock",
+            "owner_name": "Spock",
             "name": "The Wrath of Khan",
             "description": "",
             "archived": false,
             "permissions": {
-                "edit": true
+                "edit": true,
+                "change_permissions":,
+                "add_users":,
+                "change_weight":,
+                "view": true
             },
             "size": {
                 "rows": null,
                 "columns": null
             },
             "id": "a598c7",
-            "owner_id": "https://beta.crunch.io/api/users/af432c/"
+            "owner_id": "https://beta.crunch.io/api/users/af432c/",
+            "start_date":,
+            "end_date":,
+            "creation_time":,
+            "current_editor":,
+            "current_editor_name":
         }
     }
 }
@@ -80,10 +98,15 @@ name | string |  | Required. The name of the dataset
 description | string | "" | A longer description of the dataset
 id | string |  | The dataset's id
 archived | bool | false | Whether the dataset is "archived" or active
-permissions | object | {"edit": false} | Authorizations on this dataset
-owner_id | url |  | URL of the user entity of the dataset's owner
-owner_display_name | string | "" | That user's name, for display
-size | object | {"size" {"rows": null, "columns": null}} | Dimensions of the dataset
+permissions | object | `{"edit": false}` | Authorizations on this dataset. See [Permissions](#permissions).
+owner_id | URL |  | URL of the user entity of the dataset's owner
+owner_name | string | "" | That user's name, for display
+size | object | `{"rows": null, "columns": null}` | Dimensions of the dataset
+creation_time | ISO-8601 string |  | Datetime at which the dataset was created in Crunch
+start_date | ISO-8601 string |  | Date/time for which the data in the dataset corresponds
+end_date | ISO-8601 string |  | End date/time of the dataset's data, defining a start_date:end_date range
+current_editor | URL or null | | URL of the user entity that is currently editing the dataset, or `null` if there is no current editor
+current_editor_name | string or null | | That user's name, for display
 
 <aside class="notice">
     A user may have access to a dataset because someone has shared it directly with him, or because someone has shared it with a team of which he is a member. If a user has access to a dataset from different sources, be it by multiple teams or by direct sharing, the final permissions they have on the dataset will be the maximum of all the permissions granted.
@@ -144,11 +167,11 @@ crPATCH("https://beta.crunch.io/api/datasets/",
 
 `PATCH /datasets/`
 
-Use PATCH to edit the "name", "description", or "archived" state of one or more datasets. A successful request returns a 204 response. The attributes changed will be seen by all users with access to this dataset; i.e., names, descriptions, and archived state are not merely attributes of your view of the data but of the datasets themselves.
+Use PATCH to edit the "name", "description", "start_date", "end_date", or "archived" state of one or more datasets. A successful request returns a 204 response. The attributes changed will be seen by all users with access to this dataset; i.e., names, descriptions, and archived state are not merely attributes of your view of the data but of the datasets themselves.
 
-Authorization is required: you must have "edit" privileges on the dataset(s) being modified, as shown in the "permissions" object in the catalog tuples. If you try to PATCH and are not authorized, you will receive a 403 response and no changes will be made. 
+Authorization is required: you must have "edit" privileges on the dataset(s) being modified, as shown in the "permissions" object in the catalog tuples. If you try to PATCH and are not authorized, you will receive a 403 response and no changes will be made.
 
-The tuple attributes other than "name", "description", and "archived" cannot be modified here by PATCH. Attempting to modify other attributes, or including new attributes, will return a 400 response. Changing permissions is accomplished by PATCH on the permissions catalog, and changing the owner is a PATCH on the dataset entity. The "owner_display_name" is modifiable, assuming authorization, by PATCH on the associated user entity. Dataset "id" is immutable.
+The tuple attributes other than "name", "description", and "archived" cannot be modified here by PATCH. Attempting to modify other attributes, or including new attributes, will return a 400 response. Changing permissions is accomplished by PATCH on the permissions catalog, and changing the owner is a PATCH on the dataset entity. The "owner_name" and "current_editor_name" attributes are modifiable, assuming authorization, by PATCH on the associated user entity. Dataset "size" is a cached property of the data, changing only if the number of rows or columns in the dataset change. Dataset "id" and "creation_time" are immutable.
 
 When PATCHing, you may include only the keys in each tuple that are being modified, or you may send the complete tuple. As long as the keys that cannot be modified via PATCH here are not modified, the request will succeed.
 
@@ -186,7 +209,7 @@ ds <- createDataset("Trouble with Tribbles",
 
 # More likely, you'll have a data.frame or
 # similar object in R, and you'll want to send
-# it to Crunch. To do that, 
+# it to Crunch. To do that,
 df <- read.csv("~/tribbles.csv")
 ds <- newDataset(df, name="Trouble with Tribbles",
     description="Stardate 4523.3")
@@ -236,43 +259,45 @@ dataset_id | The id of the dataset
 
 Name | Type | Default | Description
 ---- | ---- | ------- | -----------
-name | string | | Required. The name of the dataset
+name | string |  | Required. The name of the dataset
 description | string | "" | A longer description of the dataset
-owner | url | Url of creator | Points to the user or team that owns this dataset
-current_editor_name | string | null | Display name of the current editor if any
-current_editor | url | Url of creator | Points to the user who has current edit permissions
+notes | string | "" | Additional information you want to associate with this dataset
+id | string |  | The dataset's id
 archived | bool | false | Whether the dataset is "archived" or active
-size | object | {"size" {"rows": null, "columns": null}} | Dimensions of the dataset
-weight | url | null | Points to the current weight variable applied
+permissions | object | `{"edit": false}` | Authorizations on this dataset. See [Permissions](#permissions).
+owner_id | URL |  | URL of the user entity of the dataset's owner
+owner_name | string | "" | That user's name, for display
+size | object | `{"rows": null, "columns": null}` | Dimensions of the dataset
+creation_time | ISO-8601 string |  | Datetime at which the dataset was created in Crunch
+start_date | ISO-8601 string |  | Date/time for which the data in the dataset corresponds
+end_date | ISO-8601 string |  | End date/time of the dataset's data, defining a start_date:end_date range
+current_editor | URL or null | | URL of the user entity that is currently editing the dataset, or `null` if there is no current editor
+current_editor_name | string or null | | That user's name, for display
+weight | URL | null | Points to the current weight variable applied for the given user
 
 #### PATCH
 
 `PATCH /datasets/{dataset_id}/`
 
-Use PATCH to edit the the following attributes of this dataset:
- 
- * name
- * description
- * archived
- * current_editor
- * owner
- * weight
+See above about PATCHing the dataset catalog for all attributes duplicated on the entity and the catalog. You may PATCH those attributes on the entity, but you are encouraged to PATCH the catalog instead. The two attributes appearing on the entity and not the catalog, "notes" and "weight", are modifiable by PATCH here.
 
-A successful request returns a 204 response. The attributes changed will be seen 
-by all users with access to this dataset; i.e., names, descriptions, and archived 
+A successful PATCH request returns a 204 response. The attributes changed will be seen
+by all users with access to this dataset; i.e., names, descriptions, and archived
 state are not merely attributes of your view of the data but of the datasets themselves.
 
 Authorization is required: you must have "edit" privileges on this dataset.
- If you try to PATCH and are not authorized, you will receive a 403 response 
- and no changes will be made. If you have edit permissions but are not the 
- current editor of this dataset, you will need first to PATCH to make yourself
+ If you try to PATCH and are not authorized, you will receive a 403 response
+ and no changes will be made. If you have edit permissions but are not the
+ current editor of this dataset, PATCH requests of anything other than "current_editor" will respond with 409 status. You will need first to PATCH to make yourself
   the current editor and then proceed to make the desired changes.
 
-When PATCHing, you may include only the keys that are being 
-modified, or you may send the complete entity. As long as the keys that cannot be 
+When PATCHing, you may include only the keys that are being
+modified, or you may send the complete entity. As long as the keys that cannot be
 modified via PATCH here are not modified, the request will succeed.
 
 
 #### DELETE
 
 `DELETE /datasets/{dataset_id}/`
+
+With sufficient authorization, a successful DELETE request removes the dataset from the Crunch system and responds with 204 status. 
