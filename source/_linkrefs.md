@@ -8,7 +8,7 @@
   [room visitor]: <#room-visitors> "Room visitors"
   [chat]: <#chats> "Chats"
   [chat message]: <#chat-messages> "Chat messages"
-  [chat member]: <#chat-members> "Chat members"
+  [chat membership]: <#chat-memberships> "Chat memberships"
   [user]: <#users> "Users"
   [room]: <#rooms-and-domains> "Rooms and domains"
   [team]: <#teams> "Teams"

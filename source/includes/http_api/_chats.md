@@ -3,7 +3,7 @@ Chat API
 
 ## Chats
 
-A chat represents a single conversation. In practice, there is exactly one visitor member and an arbitrary number of user ("operator") members.
+A chat represents a single conversation. In practice, there is usually zero or one visitor member and an arbitrary number of user ("operator") members.
 
 A chat has the following attributes:
 
@@ -39,7 +39,7 @@ Any changes to chats are notified to the following [channels][]:
 Channel | Description
 --------|------------
 `/api/v5/client/visitors/<visitor_id>/chats` | For each visitor of the chat
-`/api/v5/orgs/<organization_id>/users/<user_id>/chats` | For each member and currently present user of the chat
+`/api/v5/orgs/<organization_id>/users/<user_id>/chats` | For each user [member of the chat][chat membership]
 `/api/v5/orgs/<organization_id>/rooms/<room_id>/chats` | For the chat parent room chat collection and each organization having access to that room
 
 ### List chats at a room
@@ -106,16 +106,9 @@ This returns a [paginated collection][]. It is sorted by the creation time of th
 
 Parameter             | Type    | Default | Description
 ----------------------|---------|---------|------------
-`is_present`          | boolean | (none)  | If `true`, only return chats where `<user_id>` is **currently** present. If `false`, exclude thats where `<user_id>` is currently present.
-`is_member`      | boolean | (none)  | If `true`, only return chats where `<user_id>` is a [chat member][]. If `false`, exclude thats where `<user_id>` is a chat member.
+`is_participating`    | boolean | (none)  | If `true`, only return chats where `<user_id>` is participating. If `false`, exclude thats where `<user_id>` is currently participating.
 `is_ended`            | boolean | (none)  | If `true`, only return ended chats. If `false`, only return open chats.
 
-When using this endpoint, the chat as the following additional attributes:
-
-Attribute        | Type    | Editable  | Description
------------------|---------|-----------|------------
-`is_present`     | boolean | read-only | Whether or not the `<user_id>` is **currently** present at the chat
-`is_member` | boolean | read-only | Whether or not the `<user_id>` is a [member of this chat][chat member]
 
 ### Create a new chat with a visitor in a room
 
@@ -127,44 +120,45 @@ Creating a new chat using this endpoint does not require any attributes and ther
 
 Parameter | Format | Default | Description
 :---------|:-------|:--------|------------
-`auto_resume` | [ID][] | (none) | If provided, then attempt to get an existing recent chat where the given user can join, instead of creating a new chat. In addition, we will automatically (and atomically) create a [membership][chat member] for this user and chat. **NOTE**: The “private chats” setting affects the decision whether to create or resume a chat.
+`auto_resume` | [ID][] | (none) | If provided, then attempt to get an existing recent chat where the given user can join, instead of creating a new chat. In addition, we will automatically (and atomically) create a [membership][chat membership] for this user and chat. **NOTE**: The “private chats” setting affects the decision whether to create or resume a chat.
 
 Returns 201 status code when a new chat was created successfully.
 Returns 200 if resumed an existing chat when `auto_resume` parameter was provided.
 Returns 403 if you have no permission to the room and you are not a manager.
 
-This notifies the [channels][] of the chat, as well as appropriate channels of [chat members][chat member].
+This notifies the [channels][] of the chat, as well as appropriate channels of [chat memberships][chat membership].
 
 
-## Chat members
+## Chat memberships
 
-The visitor as well as each user who have attended to the chat is added as a "member" to the chat.
+The visitor as well as each user who have attended to the chat (i.e. they are "chat members") are represented with a *chat membership* objects.
 
-Attribute | Format | Editable | Description
-:---------|:-------|:---------|------------
-`id` | [ID][]/string | read-only | ID of the user or visitor being present at the chat.
-`type` | string | read-only | Either `visitor` or `user`.
-`name` | string | read-only | The name of the user/visitor as it would be displayed for the operator. For users this the actual name. For visitors this is any custom name, or `null`.
-`public_name` | string | read-only | The name of the user/visitor as it would be displayed for the visitor. This is user's alias if they have one, otherwise it is their real name. For visitors, this is any custom username (e.g. set by API data) or `null`
-`avatar` | object | read-only | If the user/visitor has an avatar image, then this is is an object with `id` and `url` attributes. Otherwise this is `null`.
+Attribute   | Format | Editable | Description
+:-----------|:-------|:---------|------------
+`member_id` | [ID][]/string | **required** | ID of the user or visitor being present at the chat.
+`member_type` | string | read-only | Either `visitor` or `user`.
+`member_name` | string | read-only | The name of the user/visitor as it would be displayed for the operator. For users this the actual name. For visitors this is any custom name, or `null`.
+`member_public_name` | string | read-only | The name of the user/visitor as it would be displayed for the visitor. This is user's alias if they have one, otherwise it is their real name. For visitors, this is any custom username (e.g. set by API data) or `null`
+`member_avatar` | object | read-only | If the user/visitor has an avatar image, then this is is an object with `id` and `url` attributes. Otherwise this is `null`.
 `chat_id` | [ID][] | read-only | ID of the chat.
 `created_at` | [date/time][] | read-only | When the user/visitor was added as a chat member.
 `updated_at` | [date/time][] | read-only | When the this membership was updated.
 `message_count` | integer | read-only | How many messages the user/visitor has sent to the chat. This may be 0, e.g. when operator has joined the chat but has not sent any message yet.
-`is_present` | boolean | **required** | Whether or not the user/visitor is currently present at the chat.
+`is_participating` | boolean | **required** | Whether or not the user/visitor has the chat "open". In practise this reflects the state of the chat window. When the user/visitor closes the chat window, it is supposed that he is no more participating the chat (but the membership still remains)
+`is_present` | boolean | read-only | Whether or not the user/visitor is currently present. Equals the `is_present` attribute of the member.
 `composing_status` | string | **required** | One of the following: `idle`, `composing`, `has_composed`. The `composing` status will be automatically downgraded to `has_composed` if the composing status has not been refreshed for a while.
 
-Changes to chat members are notified to the following [channels][]:
+Changes to chat memberships are notified to the following [channels][]:
 
 Channels    | Description
 ------------|---------------
-`/api/v5/client/visitors/<visitor_id>/chats/<chat_id>/members` | For each visitor of the chat
+`/api/v5/client/visitors/<visitor_id>/chats/<chat_id>/memberships` | For each visitor of the chat
 `/api/v5/client/visitors/<visitor_id>/chats_memberships` | For the chat member, if a visitor
-`/api/v5/orgs/<organization_id>/users/<user_id>/chats/<chat_id>/members` | For each user member of the chat
-`/api/v5/orgs/<organization_id>/rooms/<room_id>/chats/<chat_id>/members` | For the related room and each organization having access to that room
+`/api/v5/orgs/<organization_id>/users/<user_id>/chats/<chat_id>/memberships` | For each user member of the chat
+`/api/v5/orgs/<organization_id>/rooms/<room_id>/chats/<chat_id>/memberships` | For the related room and each organization having access to that room
 `/api/v5/orgs/<organization_id>/users/<user_id>/chat_memberships` | For the chat member, if a user
 
-In addition, chat members affect the following attributes of a [chat][], notifying its channels:
+In addition, chat memberships affect the following attributes of a [chat][], notifying its channels:
 
 - `member_count`
 - `user_member_count`
@@ -173,51 +167,57 @@ In addition, chat members affect the following attributes of a [chat][], notifyi
 - `present_user_member_count`
 - `present_visitor_member_count`
 
-### Get a collection of chat members
+### Get a collection of chat memberships
 
-    GET /api/v5/orgs/7f9e9580-095b-42c7-838c-c04e667b26f7/rooms/aad26fe2-c8f3-45dc-931b-4b0b5e06467d/chats/58f5055c-56e0-11e5-9354-6c4008c08dfe/members
+    GET /api/v5/orgs/7f9e9580-095b-42c7-838c-c04e667b26f7/rooms/aad26fe2-c8f3-45dc-931b-4b0b5e06467d/chats/58f5055c-56e0-11e5-9354-6c4008c08dfe/memberships
 
 ```json
 {
-  "next": "https://service.giosg.com/api/v5/orgs/7f9e9580-095b-42c7-838c-c04e667b26f7/chats/58f5055c-56e0-11e5-9354-6c4008c08dfe/members?cursor=45d9e7358e1249c491b4fa0212310f55",
+  "next": "https://service.giosg.com/api/v5/orgs/7f9e9580-095b-42c7-838c-c04e667b26f7/chats/58f5055c-56e0-11e5-9354-6c4008c08dfe/memberships?cursor=45d9e7358e1249c491b4fa0212310f55",
   "previous": null,
   "results": [
     {
-      "id": "378ad5a0-bb89-481b-978b-4268b368cfef",
-      "type": "user",
-      "name": "John Smith",
-      "public_name": "Customer Service",
-      "avatar": {
+      "member_id": "378ad5a0-bb89-481b-978b-4268b368cfef",
+      "member_type": "user",
+      "member_name": "John Smith",
+      "member_public_name": "Customer Service",
+      "member_avatar": {
         "id": "7f9cb877-0fd9-4c27-90b0-bd4c2842da3d",
         "url": "http://www.example.com/avatar/5ef1a0ef-8b61-4473-8706-9669e30b47e6.jpg"
       },
       "chat_id": "58f5055c-56e0-11e5-9354-6c4008c08dfe",
       "created_at": "2015-02-13T11:31:36.042",
+      "is_participating": true,
+      "is_present": true,
+      "composing_status": "idle",
       "message_count": 8
     },
     {
-      "id": "3b90ef7c93484af4965a79ace7bc9a62",
-      "type": "visitor",
-      "name": null,
-      "public_name": null,
-      "avatar": null,
+      "member_id": "3b90ef7c93484af4965a79ace7bc9a62",
+      "member_type": "visitor",
+      "member_name": null,
+      "member_public_name": null,
+      "member_avatar": null,
       "chat_id": "58f5055c-56e0-11e5-9354-6c4008c08dfe",
       "created_at": "2015-02-13T12:14:34.154",
+      "is_participating": true,
+      "is_present": true,
+      "composing_status": "composing",
       "message_count": 7
     }
   ]
 }
 ```
 
-You can get a [paginated collection][] of all the members of the chat:
+You can get a [paginated collection][] of all the memberships of the chat:
 
-`GET /api/v5/orgs/<organization_id>/rooms/<room_id>/chats/<chat_id>/members`
+`GET /api/v5/orgs/<organization_id>/rooms/<room_id>/chats/<chat_id>/memberships`
 
 Or alternatively:
 
-`GET /api/v5/orgs/<organization_id>/users/<user_id>/chats/<chat_id>/members`
+`GET /api/v5/orgs/<organization_id>/users/<user_id>/chats/<chat_id>/memberships`
 
-Also, as an alternative to list a user's *chats*, you may list their own *chat memberships*. Each result is a chat member resource for each of the chat of the user.
+Also, as an alternative to list a user's *chats*, you may list their own *chat memberships*. Each result is a chat member resource for each of the chat of the user:
 
 `GET /api/v5/orgs/<organization_id>/users/<user_id>/chat_memberships`
 
@@ -226,57 +226,51 @@ Also, as an alternative to list a user's *chats*, you may list their own *chat m
 
 > Example request for joining a user to a chat
 
-    POST /api/v5/orgs/39351090-2f16-49e0-ae14-96c9a3a721f2/rooms/adab695d-a648-42d6-b956-19efc1124e89/chats/62eb5cd5-5d52-4bb1-b711-ba31f864e775/members
+    POST /api/v5/orgs/39351090-2f16-49e0-ae14-96c9a3a721f2/rooms/adab695d-a648-42d6-b956-19efc1124e89/chats/62eb5cd5-5d52-4bb1-b711-ba31f864e775/memberships
 
 > Example request payload
 
 ```json
 {
-  "id": "ce771dbe-afbf-4e58-bbcb-9855ecacee9a",
-  "is_present": true,
+  "member_id": "ce771dbe-afbf-4e58-bbcb-9855ecacee9a",
+  "is_participating": true,
   "composing_status": "idle"
 }
 ```
 
-You can add a user as a member to the chat by using the following endpoints.
-
-<aside class="info">
-The <code>is_present</code> attribute of both visitors and operators is automatically set to <code>false</code> if the servers have not heard about them for a while, indicating that they have closed their browser tab or they have lost their connection. However, they will not be removed from the members.
-</aside>
+You can add a user as a membership to the chat by using the following endpoints.
 
 If you are joining a user to a chat by a room, then use the following endpoint. It requires that you have a permission to the room. This can be used to join a chat that the user has not yet participated.
 
-`POST /api/v5/orgs/<organization_id>/rooms/<room_id>/chats/<chat_id>/members`
+`POST /api/v5/orgs/<organization_id>/rooms/<room_id>/chats/<chat_id>/memberships`
 
-The request object must contain the `id` attribute, which is the ID of the user being joined.
-
-Also, by providing a `is_present` attribute with value `true` you can make the user to be currently present at the chat.
+The request object must contain the `member_id` attribute, which is the ID of the user being joined. You also need to define whether you want to be participating the chat with `is_participating`. You may usually want to set this `true` when creating a new membership. Also, the `composing_status` is required, but may usually want to set it initially to `idle`.
 
 Alternatively, you may use this endpoint:
 
 `PUT /api/v5/orgs/<organization_id>/users/<user_id>/chat_memberships/<chat_id>`
 
-In this case you do not have to provide the `id` attribute.
+In this case you do not have to provide the `member_id` attribute. It is automatically determined from `<user_id>`.
 
-Returns 201 if the user was added to the chat members.
-Returns 200 if the user was already a chat member.
-Returns 400 if the user cannot be joined to the chat or their presence cannot be updated.
+Returns 201 if a new chat membership was added for the user.
+Returns 200 if the user already had a chat membership for the chat.
+Returns 400 if the chat membership cannot be created for this user or chat.
 
 <aside class="info">
-If the <code>is_present</code> attribute was set to <code>true</code> and the related chat was previously in waiting state, then <code>is_waiting</code> of the chat is automatically changed to <code>false</code>.
+If the <code>is_participating</code> attribute was set to <code>true</code> and the related chat was previously in waiting state, then <code>is_waiting</code> of the chat is automatically changed to <code>false</code>!
 </aside>
 
 These endpoints accept the following URL parameters:
 
 Parameter | Format | Default | Description
 :---------|:-------|:--------|------------
-`exclusive` | `true`/`false` | `false` | This has effect only, if you are setting `is_present` with value `true`. This makes the join fail with 400 if there is already **at least one other user currently present** at the chat.
+`exclusive` | `true`/`false` | `false` | This has effect only, if you are setting `is_participating` with value `true`. This makes the join fail with 400 if there is already **at least one participating user** at the chat who is also **currently present**.
 
 <aside class="success">
-Use the <code>exclusive</code> parameter to prevent multiple operators taking the chat simultaneously.
+Use the <code>exclusive</code> parameter to prevent multiple operators taking the chat simultaneously!
 </aside>
 
-This request sends notifications to the [channels][] of the chat members as well as the related chat.
+This request sends notifications to the [channels][] of the chat memberships as well as the related chat.
 
 ### Change operator chat status
 
@@ -288,23 +282,25 @@ This request sends notifications to the [channels][] of the chat members as well
 
 ```json
 {
-  "is_present": false,
-  "composing_status": "idle"
+  "is_participating": true,
+  "composing_status": "typing"
 }
 ```
 
-You can make a user present or not present at a chat like described in the previous section:
+The participation status should be refreshed when the user opens or closes a chat. In addition, you should frequently notify the backend about the composing status of the user. For example, you should make a request when the user starts typing a message for the chat (and more requests frequently if the user keeps typing, stops typing or clears the composition area).
+
+You can change the chat status of the user similarly than described in the previous session:
 
 `PUT /api/v5/orgs/<organization_id>/users/<user_id>/chat_memberhips/<chat_id>`
 
-You should provide the `is_present` attribute with either `true` or `false` value, indicating whether or not the user should be currently present at the chat. Also, you should provide the `composing_status` attribute describing whether or not the user is typing or has typed a message.
+You should provide the `is_participating` attribute with either `true` or `false` value, indicating whether or not the user should be currently present at the chat. Also, you should provide the `composing_status` attribute describing whether or not the user is typing or has typed a message.
 
 The parameters and response codes are the same than described in the previous section.
 
 
 ## Chat messages
 
-Chat consists of a number of messages. Some of them are actual typed messages from either operator or visitor, and some of them are automatically added events about the chat, especially when an operator has [joined or leaved][chat member] the chat.
+Chat consists of a number of messages. Some of them are actual typed messages from either operator or visitor, and some of them are automatically added events about the chat, especially when an operator has [joined or leaved][chat membership] the chat.
 
 Attribute | Type | Editable | Description
 :---------|:-----|----------|------------
@@ -333,7 +329,7 @@ In addition, sending chat messages affect the following attributes of a [chat][]
 - `visitor_message_count`
 - `is_waiting`
 
-In addition, sending chat messages affect the following attributes of a [chat member][], notifying its related channels.
+In addition, sending chat messages affect the following attributes of a [chat membership][], notifying its related channels.
 
 - `message_count`
 
@@ -414,7 +410,7 @@ Send a new chat message to a user's chat with type `msg` to a chat:
 
 `POST /api/v5/orgs/<organization_id>/users/<user_id>/chats/<chat_id>/messages`
 
-The `<user_id>` will be set as the sender of the message. If the sender is not yet added as a member of this chat, then a new [member][chat member] is automatically created.
+The `<user_id>` will be set as the sender of the message.
 
 <aside class="warning">
 The user must be a member of the chat in order to send a message. Otherwise a 404 response is returned, as the chat was not found in the chats of the user.
@@ -422,4 +418,4 @@ The user must be a member of the chat in order to send a message. Otherwise a 40
 
 If the chat was previously in waiting state, then `is_waiting` of the chat is automatically changed to `false`.
 
-This notifies any channels of chat messages, as well as channels of the related [chat][] and [chat members][chat member] accordingly.
+This notifies any channels of chat messages, as well as channels of the related [chat][] and [chat memberships][chat membership] accordingly.
