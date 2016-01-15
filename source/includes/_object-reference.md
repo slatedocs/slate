@@ -107,11 +107,11 @@ The following types are defined for public use:
 * categorical_array
 
 #### Variable names
-Crunch takes a principled stand that variable "names" should be for people, not for computers. 
+Crunch takes a principled stand that variable "names" should be for people, not for computers.
 
 ##### name
 
-You may be used to domains that have variable "name", "label", and "description". Name is some short, unique, machine-friendlier ID like "Q2"; label is short and human-friendly, something like "Brand awareness", and description is where you might put question wording if you have survey data. Crunch has "alias", "name", and "description". What you may be used to thinking of as a variable name, we consider as an alias: something for more internal use, not something appropriate for a polished dataset ready to share with people who didn't create the dataset (See more in the "Alias" section below). In Crunch, the variable's "name" is what you may be used to thinking of as a label. 
+You may be used to domains that have variable "name", "label", and "description". Name is some short, unique, machine-friendlier ID like "Q2"; label is short and human-friendly, something like "Brand awareness", and description is where you might put question wording if you have survey data. Crunch has "alias", "name", and "description". What you may be used to thinking of as a variable name, we consider as an alias: something for more internal use, not something appropriate for a polished dataset ready to share with people who didn't create the dataset (See more in the "Alias" section below). In Crunch, the variable's "name" is what you may be used to thinking of as a label.
 
 All variables must have a name, and these names must be unique across all variables, including "hidden" variables (see below) but excluding subvariables (see "Subvariables" below). Within an array variable, subvariable names must be unique. (You can think of subvariable names within an array as being variable_name.subvariable_name, and with that approach, all "variable names" must be unique.)
 
@@ -119,15 +119,15 @@ Names must be a string of length greater than zero, and any valid unicode string
 
 ##### alias
 
-Alias is a string identifier for variables. It must be unique across all variables, including subvariables, such that it can be used as an identifier. This is what legacy statistical software typically calls a variable name. 
+Alias is a string identifier for variables. It must be unique across all variables, including subvariables, such that it can be used as an identifier. This is what legacy statistical software typically calls a variable name.
 
 Aliases have several uses. Client applications, such as those exposing a scripting interface, may want to use aliases as a more machine-friendly, yet still human-readable, way of referencing variables. Aliases may also be used to help line up variables across different import batches.
 
-When creating variables via the API, alias is not a required field; if omitted, an alias will be generated. If an alias is supplied, it must be unique across all variables, including subvariables, and the new variable request will be rejected if the alias is not unique. When data are imported from file formats that have unique variable names, those names will in many cases be used as the alias in Crunch. 
+When creating variables via the API, alias is not a required field; if omitted, an alias will be generated. If an alias is supplied, it must be unique across all variables, including subvariables, and the new variable request will be rejected if the alias is not unique. When data are imported from file formats that have unique variable names, those names will in many cases be used as the alias in Crunch.
 
 ##### description
 
-Description is an optional string that provides more information about the variable. It is displayed in the web application on variable summary cards and with analyses. 
+Description is an optional string that provides more information about the variable. It is displayed in the web application on variable summary cards and with analyses.
 
 #### Type-specific attributes
 
@@ -140,18 +140,18 @@ Categorical variables must contain an array of Category objects, each of which i
 name: the string name which applications should use to identify the category.
 numeric_value: the numeric value bound to each name. If no numeric value should be bound, this should be null.
 id: a read-only integer identifier for the category. These correspond to the data values.
-missing: boolean indicating whether this category should be interpreted as missing values. 
+missing: boolean indicating whether this category should be interpreted as missing values.
 selected: (optional) boolean indicating whether this category corresponds to a selected value for a dichotomized variable, i.e. part of a multiple response variable. Not required for regular categorical variables, and defaults to `false` if omitted.
 
 Categories are valid if:
 
 * Category names are unique within the set
 * Category ids are unique within the set
-* Category ids for user-defined categories are nonnegative. Negative ids are reserved for system missing reasons. See "missing_reasons" below. 
+* Category ids for user-defined categories are nonnegative. Negative ids are reserved for system missing reasons. See "missing_reasons" below.
 
-numeric_values need not be unique. There also is no requirement for Categories in a dichotomized subvariable that only one Category be marked "selected". 
+numeric_values need not be unique. There also is no requirement for Categories in a dichotomized subvariable that only one Category be marked "selected".
 
-The order of the array defines the order of the categories, and thus the order in which aggregate data will be presented. This order can be changed by saving a reordered set of Categories. 
+The order of the array defines the order of the categories, and thus the order in which aggregate data will be presented. This order can be changed by saving a reordered set of Categories.
 
 ##### subvariables
 
@@ -224,7 +224,7 @@ When creating a new variable, one can also include a "values" member that contai
 ##### Text
 
 Text values are an array of quoted strings. Missing values are indicated as `{"?": <integer>}`, as discussed above, and all integer missing value codes must be defined in the "missing_reasons" object of the variable's metadata.
-    
+
 ##### Numeric
 
 A "numeric" value will always be e.g. 500 (a number, without quotes) in the JSON request and response messages, not "500" (a string, with quotes). Missing values are handled as with text variables.
@@ -257,45 +257,59 @@ A complete Variable, then, is simply a Definition combined with its data array.
 
 ### Expressions
 
-When attempting to describe which columns we'd like to use, we construct expressions. For example, to add columns X and Y into a third column Z, we could write "Z = X + Y". However, we have to be a bit careful that we distinguish between "Z = X + Y" where Y is the identifier of a variable, and "Z = X + Y" where we want to append the character "Y" to each value in variable X. We also have to distinguish a variable named "Qr" from a function named "Qr". Therefore, we wrap up each term in the expression in an object which declares whether the term is a variable, a value, or a function, etc.
+Crunch expressions are used to compute on a dataset, to do nuanced selects, updates, and deletes, and to accomplish many other routine operations. Expressions are JSON objects in which each term is wrapped in an object which declares whether the term is a variable, a value, or a function, etc. While verbose, doing so allows us to be more explicit about the operations we wish to do.
 
-#### Value terms
-
-Terms refer to data values when they include a "value" member. Its value is any individual data value; that is, a value that is addressable by a column and row in the dataset. For example:
-
- * {"value": 13}
- * {"value": [3, 4, 5]}
-
-Note that individual values may themselves be complex arrays or objects, depending on their type. You may explicitly include a "type" member in the object, or let Crunch infer the type.
+Expressions generally contain references to **variables**, **values**, or **columns** of values, often composed in **functions**. The output of expressions can be other variables, values, boolean masks, or cube aggregations, depending on the context and expression content. Some endpoints have special semantics, but the general structure of the expressions follows the model described below.
 
 #### Variable terms
 
 Terms refer to variables when they include a "variable" member. The value is the URL for the desired variable. For example:
 
- * {"variable": "../variables/X/"}
- * {"variable": "../joins/abcd/variables/Y/"}
+ * `{"variable": "../variables/X/"}`
+ * `{"variable": "https://beta.crunch.io/api/datasets/48ffc3/joins/abcd/variables/Y/"}`
 
-#### Function terms
+URLs must either be absolute or relative to the URL of the current request. For example, to refer to a variable in a query at `https://beta.crunch.io/api/datasets/48ffc3/cube/`, a variable at `https://beta.crunch.io/api/datasets/48ffc3/variables/9410fc/` may be referenced by its full URL or by "../variables/9410fc/".
 
-Terms refer to functions (and operators) when they include a "function" member. The value is the identifier for the desired function. They parameterize the function with an "args" member, whose value is an array of terms, one for each argument. Examples:
+#### Value terms
 
- * {"function": "==", "args": [{"variable": "../variables/X/"}, {"value": 13}]}
- * {"function": "contains", "args": [{"variable": "../joins/abcd/variables/Y/"}, {"value": "foo"}]}
+Terms refer to data values when they include a "value" member. Its value is any individual data value; that is, a value that is addressable by a column and row in the dataset. For example:
 
-You may include a "references" member to provide a name, alias, description, etc to the output of the function.
+ * `{"value": 13}`
+ * `{"value": [3, 4, 5]}`
+
+Note that individual values may themselves be complex arrays or objects, depending on their type. You may explicitly include a "type" member in the object, or let Crunch infer the type. One way to do this is to use the "typeof" function to indicate that the value you're specifying corresponds to the exact type of an existing variable. See "functions" below for more details.
 
 #### Column terms
 
 Terms refer to columns (construct them, actually) when they include a "column" member. The value is an array of data values. You may include "type" and/or "references" members as well.
 
- * {"column": [1, 2, 3, 17]}
- * {"column": [{"?": -2}, 1, 4, 1], "type": {"class": "categorical", "categories": [...], ...}}
+ * `{"column": [1, 2, 3, 17]}`
+ * `{"column": [{"?": -2}, 1, 4, 1], "type": {"class": "categorical", "categories": [...], ...}}`
+
+#### Function terms
+
+Terms refer to functions (and operators) when they include a "function" member. The value is the identifier for the desired function. They parameterize the function with an "args" member, whose value is an array of terms, one for each argument. Examples:
+
+ * `{"function": "==", "args": [{"variable": "../variables/X/"}, {"value": 13}]}`
+ * `{"function": "contains", "args": [{"variable": "../joins/abcd/variables/Y/"}, {"value": "foo"}]}`
+
+You may include a "references" member to provide a name, alias, description, etc to the output of the function.
+
+<!-- 
+##### Supported functions
+
+LIST THEM -->
+<!-- typeof -->
+
+#### Filter terms
+
+Terms that refer to filters entities by URL are shorthand for the boolean expression stored in the entity. So, `{"filter": "../filters/59fc4d/"}` yields the Crunch expression contained in the Filter entity's "expression" attribute. Filter terms can be combined together with other expressions as well. For example, `{"function": "and", "args": [{"filter": "../filters/59fc4d/"}, {"function": "==", "args": [{"variable": "../variables/X/"}, {"value": 13}]}]}` would "and" together the boolean expression in filter 59fc4d with the `X == 13` expression.
 
 ## Documents
 
 ### Shoji
 
-Many representations returned from the API are Shoji Documents. Shoji is a media type designed to foster scalable API's. Shoji is built with JSON, so any JSON parser should be able to at least deserialize Shoji documents. Shoji adds four document types: Entity, Catalog, View, and Order.
+Most representations returned from the API are Shoji Documents. Shoji is a media type designed to foster scalable API's. Shoji is built with JSON, so any JSON parser should be able to at least deserialize Shoji documents. Shoji adds four document types: Entity, Catalog, View, and Order.
 
 #### Entity
 
@@ -318,35 +332,6 @@ Anything that can be thought of as "a thing by itself" will probably be represen
 ```
 
 In general, an HTTP GET to the "self" URL will return the document, and a PUT of the same will update it. PUT should not be used for partial updates–use PATCH for that instead. In general, each member included in the "body" of a PATCH message will replace the current representation; attributes not included will not be altered. There is no facility to remove an attribute from an Entity.body via PATCH. In some cases, however, even finer-grained control is possible via PATCH; see the Endpoint Reference for details.
-
-##### Dataset Entity
-
-A Dataset entity is a Shoji Entity which defines a rectangular collection of variables. It has the following members:
- * description: A textual discussion of the Dataset resource in general.
- * specification: A link to a formal specification of the Dataset resource format.
- * catalogs: An object containing links to related catalogs:
-   * batches: the collection of batches contained by the Dataset. Each batch represents a set of inserted rows.
-   * variables: the collection of variables contained by the Dataset.
-   * ...
- * fragments:
-   * table: the editable data array for this Dataset.
- * body: An editable object whose members include:
-   * archived: If true, the Dataset is hidden from most views.
-   * creation_time: an ISO-8601 timestamp, like "2014-07-07T19:15:29.541633+00:00".
-   * description: A long-form, textual description of the Dataset.
-   * name: A unique, friendly name for the Dataset.
-   * user_id: The id of a User resource which owns the Dataset.
-   * weight: The URI of a Variable in the Dataset which should be used for weights (and is therefore hidden from most other views and controls), or null.
-
-##### Variable Entity
-
-A Variable entity is a Shoji Entity which defines a variable. It has the following members:
- * description: A description of what a Variable resource is and how it behaves.
- * specification: A URL to a formal specification for Variable objects.
- * body: An object with appropriate members from the variable's Definition, plus the following additional member:
-   * dataset_id: The id of the Dataset to which this Variable belongs. This is also published in the dataset_url, which you should probably prefer.
-
-When creating a Variable entity, you only need to specify the "body"; attributes such as "description" and "specification" are returned as part of the Shoji Entity but are not required to create a Variable.
 
 #### Catalog
 
@@ -372,7 +357,9 @@ Catalogs collect or contain entities. They act as an index to a collection, and 
 
 Each key in the index is a URL (possibly relative to "self") which refers to a different resource. Often, these are Shoji Entity documents, but not always. The index also allows some attributes to be published as a set, rather than in each individual Entity. This allows clients to act on the collection as a whole, such as when rendering a list of references from which the user might select one entity.
 
-In general, an HTTP GET to the "self" URL will return the document, and a PUT of the same will update it. Many catalogs allow POST to add a new entity to the collection. PUT should not be used for partial updates–use PATCH for that instead. In general, each member included in the "index" of a PATCH message will replace the current representation; tuples not included will not be altered. Tuples included in a PATCH which are not present in the server's current representation of the index may be added; it is up to each resource whether to support (and document!) this approach or prefer POST to add entities to the collection. There is no facility to remove a tuple from a Catalog.index via PATCH–use PUT for that instead. In some cases, even finer-grained control is possible via PATCH; see the Endpoint Reference below for details.
+In general, an HTTP GET to the "self" URL will return the document, and a PUT of the same will update it. Many catalogs allow POST to add a new entity to the collection. PUT should not be used for partial updates--use PATCH for that instead. In general, each member included in the "index" of a PATCH message will replace the current representation; tuples not included will not be altered. Tuples included in a PATCH which are not present in the server's current representation of the index may be added; it is up to each resource whether to support (and document!) this approach or prefer POST to add entities to the collection. In general, catalogs that _contain_ entities get new entities created by POST, while catalogs that _collect_ entities that are contained by other catalogs (e.g. a catalog of users who have permissions on a dataset) will have entities added by PATCH.
+
+Similarly, removing entities from catalogs is supported in one of two ways, typically varying by catalog type. For catalogs that contain entities, entities are removed only by DELETE on the entity's URL (its key in the Catalog.index). In contrast, for catalogs that collect entities, entities are removed by PATCHing the catalog with a `null` tuple. This removes the entity from the catalog but does not delete the entity (which is contained by a different catalog). T
 
 #### View
 
@@ -520,7 +507,7 @@ The "dimensions" member is the most straightforward: an array of variable Defini
 
 ###### n
 
-The number of rows considered for all measures. 
+The number of rows considered for all measures.
 
 ###### measures
 

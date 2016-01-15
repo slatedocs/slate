@@ -33,7 +33,7 @@ The catalog has two optional query parameters:
 Name | Type | Description
 ---- | ---- | -----------
 relative | string | If "on", all URLs in the "index" will be relative to the catalog's "self"
-nosubvars | integer | If 1, array subvariables will not be included directly in the variables catalog. Their metadata are instead accessible in each array variable's "subvariables_catalog". 
+nosubvars | integer | If 1, array subvariables will not be included directly in the variables catalog. Their metadata are instead accessible in each array variable's "subvariables_catalog".
 
 With both flags enabled, the variable catalog looks something like this:
 
@@ -89,9 +89,9 @@ With both flags enabled, the variable catalog looks something like this:
 
 #### PATCH catalog
 
-Use PATCH to edit the "name", "description", "alias", or "discarded" state of one or more variables. A successful request returns a 204 response. The attributes changed will be seen by all users with access to this dataset; i.e., names, descriptions, aliases, and discarded state are not merely attributes of your view of the data but of the datasets themselves. 
+Use PATCH to edit the "name", "description", "alias", or "discarded" state of one or more variables. A successful request returns a 204 response. The attributes changed will be seen by all users with access to this dataset; i.e., names, descriptions, aliases, and discarded state are not merely attributes of your view of the data but of the datasets themselves.
 
-Authorization is required: you must have "edit" privileges on the dataset being modified, as shown in the "permissions" object in the dataset's catalog tuple. If you try to PATCH and are not authorized, you will receive a 403 response and no changes will be made. 
+Authorization is required: you must have "edit" privileges on the dataset being modified, as shown in the "permissions" object in the dataset's catalog tuple. If you try to PATCH and are not authorized, you will receive a 403 response and no changes will be made.
 
 The tuple attributes other than "name", "description", "alias", and "discarded" cannot be modified here by PATCH. Attempting to modify other attributes, or including new attributes, will return a 400 response. Variable "type" can only be modified by the "cast" method, described below. The "subvariables" can be modified by PATCH on the variable entity. "subvariables_catalog" is a URL to a different variable catalog and is thus not editable, though you can navigate to its location and modify subvariable attributes there. A variable's "id" and its "derived" state are immutable.
 
@@ -175,9 +175,9 @@ A POST to this resource must be a Shoji Entity with the following "body" attribu
 
 See Variable Definitions for more details and examples of valid attributes, and Feature Guide: Arrays for more information on the various cases for creating array variables.
 
-It is encouraged, but not required, to include an "alias" in the body. If omitted, one will be generated from the required "name". 
+It is encouraged, but not required, to include an "alias" in the body. If omitted, one will be generated from the required "name".
 
-You may also include "values", which will create the column of data corresponding to this variable definition. See [Importing Data: Column-by-column](#column-by-column) for details and examples. 
+You may also include "values", which will create the column of data corresponding to this variable definition. See [Importing Data: Column-by-column](#column-by-column) for details and examples.
 
 You may instead also include an "expr" to derive a variable as a function of other variables. In this case, "type" is not required because it depends on the output of the specified derivation function. For details and examples, see [Deriving Variables](#deriving-variables).
 
@@ -287,7 +287,7 @@ derivation | object | For derived variables, a Crunch expression which was used 
 format | object | An object with various members to control the display of Variable data (see below)
 view | object | An object with various members to control the display of Variable data
 dataset_id | string | The id of the Dataset to which this Variable belongs.
-missing_reasons | object | An object whose keys are reason phrases and whose values are missing codes. Missing entries in Variable data are represented by a {"?": code} missing marker; clients may look up the corresponding reason phrase for each code in this one-to-one map. 
+missing_reasons | object | An object whose keys are reason phrases and whose values are missing codes. Missing entries in Variable data are represented by a {"?": code} missing marker; clients may look up the corresponding reason phrase for each code in this one-to-one map.
 
 Category objects have the following members:
 
@@ -321,7 +321,7 @@ include_noneoftheabove | boolean | For multiple response types only. If true, di
 
 #### PATCH
 
-PATCH variable entities to edit their metadata. Send a Shoji Entity with a "body" member containing the attributes to modify. Omitted body attributes will be unchanged. 
+PATCH variable entities to edit their metadata. Send a Shoji Entity with a "body" member containing the attributes to modify. Omitted body attributes will be unchanged.
 
 Successful requests return 204 status. Among the actions achievable by PATCHing variable entities:
 
@@ -330,7 +330,7 @@ Successful requests return 204 status. Among the actions achievable by PATCHing 
 * Editing derivation expressions
 * Editing format and view settings
 
-Actions that are best or only achieved elsewhere include: 
+Actions that are best or only achieved elsewhere include:
 
 * changing variable names, aliases, and descriptions, which is best accomplished by PATCHing the variable catalog, as described above;
 * changing a variable's type, which can only be done by POSTing to the variable's "cast" resource (see [Convert type](#convert-type) below);
@@ -347,7 +347,7 @@ For non-array variables, this View will be an empty array.
 
 ### Summary
 
-`/datasets/{id}/variables/{id}/summary/{?filter_syntax,filter_url}`
+`/datasets/{id}/variables/{id}/summary/{?filter}`
 
 A collection of summary information describing the variable. A successful GET returns an object containing various scalars and tabular results in various formats. The set of included members varies by variable type. Exclusions, filters, and weights may all alter the output.
 
@@ -425,7 +425,7 @@ In addition:
 
 ### Summary view model
 
-`/datasets/{id}/variables/{id}/card_view/{?filter_syntax,filter_url}`
+`/datasets/{id}/variables/{id}/card_view/{?filter}`
 
 A GET on this resource returns the information needed to render a "variable card" in the Crunch UI. It includes the same members as variables/{id}/ with the following alterations:
 
@@ -444,7 +444,7 @@ The "urls" member is reduced to just a "variable_url" member, which points back 
 
 #### Univariate frequencies
 
-`/datasets/{id}/variables/{id}/frequencies/{?filter_syntax,filter_url,exclude_exclusion_filter}`
+`/datasets/{id}/variables/{id}/frequencies/{?filter,exclude_exclusion_filter}`
 
 An array of row objects, giving the count of distinct values. The exact members vary by type:
 
@@ -530,9 +530,9 @@ It is possible to add new subvariables to the array variable in question. To do 
 
 #### Values
 
-`/datasets/{id}/variables/{id}/values/{?start,total,filter_syntax,filter_url}`
+`/datasets/{id}/variables/{id}/values/{?start,total,filter}`
 
-A GET on this set of resources will return a JSON array of values from the variable's data. Numeric variables will return numbers, text variables will return strings, and categorical variables will return category names for valid categories and {"?": code} missing markers for missing categories. The "start" and "total" parameters paginate the results. The "filter_syntax" parameter, when supplied, should be a Filter object. A "filter_url" may be supplied instead to reference an existing Filter.
+A GET on this set of resources will return a JSON array of values from the variable's data. Numeric variables will return numbers, text variables will return strings, and categorical variables will return category names for valid categories and {"?": code} missing markers for missing categories. The "start" and "total" parameters paginate the results. The "filter" is a Crunch filter expression.
 
 ### Private Variables
 

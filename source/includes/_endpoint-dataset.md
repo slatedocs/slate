@@ -301,3 +301,27 @@ modified via PATCH here are not modified, the request will succeed.
 `DELETE /datasets/{dataset_id}/`
 
 With sufficient authorization, a successful DELETE request removes the dataset from the Crunch system and responds with 204 status. 
+
+### Summary
+
+`/datasets/{id}/summary/{?filter}`
+
+Returns a Shoji View with summary information about this dataset containing
+ its number of rows (weighted and unweighted) as well as the number of 
+ variables and columns.
+
+```json
+{
+    "weighted": {
+        "filtered": 80,
+        "total": 100
+    },
+    "unweighted": {
+        "filtered": 80,
+        "total": 100
+    },
+    "variables": 20,
+    "columns": 25
+}
+```
+
