@@ -11,14 +11,14 @@ Kuzzle handles documents, either as realtime messages or as stored documents. Ku
 
  You may also use the KuzzleDataCollection.documentFactory() method:
  */
-var document = kuzzle.dataCollectionFactory('collection').documentFactory('id');
+var document = kuzzle.dataCollectionFactory('index', 'collection').documentFactory('id');
 
 var document = kuzzle
-  .dataCollectionFactory('collection')
+  .dataCollectionFactory('index', 'collection')
   .documentFactory({content: 'some content'});
 
 var document = kuzzle
-  .dataCollectionFactory('collection')
+  .dataCollectionFactory('index', 'collection')
   .documentFactory('id', {content: 'some content'});
 ```
 

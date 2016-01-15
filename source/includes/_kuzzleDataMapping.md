@@ -19,9 +19,9 @@ Once a field mapping has been set, it cannot be removed without reconstructing t
 
  You may also use the KuzzleDataCollection.dataMappingFactory() method:
  */
-var mapping = kuzzle.dataCollectionFactory('collection').dataMappingFactory();
+var mapping = kuzzle.dataCollectionFactory('index', 'collection').dataMappingFactory();
 
-var mapping = kuzzle.dataCollectionFactory('collection', mapping).dataMappingFactory();
+var mapping = kuzzle.dataCollectionFactory('index', 'collection').dataMappingFactory(mapping);
 ```
 
 ```java

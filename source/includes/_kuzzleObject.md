@@ -12,10 +12,10 @@ Connects to a Kuzzle instance.
 
 
 ```js
-var kuzzle = new Kuzzle('http://localhost:7512', 'some index', {autoReconnect: true, headers: {someheader: "value"}});
+var kuzzle = new Kuzzle('http://localhost:7512', {defaultIndex: 'some index', autoReconnect: true, headers: {someheader: "value"}});
 
 // A callback is also available and will be invoked once connected to the Kuzzle instance:
-var kuzzle = new Kuzzle('http://localhost:7512', 'some index',function (err, res) {
+var kuzzle = new Kuzzle('http://localhost:7512', function (err, res) {
   // ...
 });
 ```
@@ -25,10 +25,11 @@ JSONObject headers = new JSONObject();
 headers.put("someheader", "value");
 
 KuzzleOptions options = new KuzzleOptions();
+options.setDefaultIndex("some index");
 options.setAutoReconnect(true);
 options.setHeaders(headers);
 
-Kuzzle kuzzle = new Kuzzle("http://localhost:7512", "some index", options, new ResponseListener() {
+Kuzzle kuzzle = new Kuzzle("http://localhost:7512", options, new ResponseListener() {
  @Override
  public void onSuccess(JSONObject object) {
    // invoked once connected, kuzzle contains the kuzzle instance
@@ -49,7 +50,6 @@ Kuzzle kuzzle = new Kuzzle("http://localhost:7512", "some index", options, new R
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
 | ``url`` | string | URL to the target Kuzzle instance |
-| ``index`` | string | Kuzzle's persistent storage index to use |
 | ``options`` | object | Kuzzle connection configuration |
 
 Available options:
@@ -61,6 +61,7 @@ Available options:
 | ``autoReplay`` | boolean | Automatically replay queued requests on a ``reconnected`` event | ``false`` |
 | ``autoResubscribe`` | boolean | Automatically renew all subscriptions on a ``reconnected`` event | ``true`` |
 | ``connect`` | string | Manually or automatically connect to the Kuzzle instance | ``auto`` |
+| ``defaultIndex`` | string | Set the default index to use | |
 | ``offlineMode`` | string | Offline mode configuration | ``manual`` |
 | ``queueTTL`` | integer | Time a queued request is kept during offline mode, in milliseconds | ``120000`` |
 | ``queueMaxSize`` | integer | Number of maximum requests kept during offline mode | ``500`` |
@@ -82,7 +83,7 @@ Available options:
 | ``autoReconnect`` | boolean | Automatically reconnect after a connection loss | get |
 | ``autoReplay`` | boolean | Automatically replay queued requests on a ``reconnected`` event | get/set |
 | ``autoResubscribe`` | boolean | Automatically renew all subscriptions on a ``reconnected`` event | get/set |
-| ``index`` | string | Kuzzle's persistent storage index to use | get |
+| ``defaultIndex`` | string | Kuzzle's default index to use | get |
 | ``offlineQueue`` | JSON object | Contains the queued requests during offline mode | get/set |
 | ``queueFilter`` | function | Called during offline mode. Takes a request object as arguments and returns a boolean, indicating if a request can be queued | get/set |
 | ``queueMaxSize`` | integer | Number of maximum requests kept during offline mode | get/set |
@@ -210,22 +211,36 @@ Has no effect if ``connect`` is set to ``auto``, unless ``disconnect`` has been 
 ## dataCollectionFactory
 
 ```js
-  var collection = kuzzle.dataCollectionFactory('foobar');
+  var collection = kuzzle.dataCollectionFactory('index', 'collection');
+
+  // or using a default index:
+  var
+    kuzzle = new Kuzzle('http://localhost:7512', {defaultIndex: 'index'}),
+    collection = kuzzle.dataCollectionFactory('collection');
 ```
 
 ```java
-KuzzleDataCollection collection = kuzzle.dataCollectionFactory("foobar");
+KuzzleDataCollection collection = kuzzle.dataCollectionFactory("index", "collection");
+
+// or using a default index:
+kuzzle.setDefaultIndex('index');
+KuzzleDataCollection collection = kuzzle.dataCollectionFactory("collection");
 ```
 
 > Returns a KuzzleDataCollection object
 
 Instantiates a new KuzzleDataCollection object.
 
-#### dataCollectionFactory(collection)
+#### dataCollectionFactory([index], collection)
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
+| ``index`` | string | The name of the index containing the data collection |
 | ``collection`` | string | The name of the data collection you want to manipulate |
+
+If no ``index`` is provided, the factory will take the default index set in the main Kuzzle instance. If no default index has been set, an error is thrown.
+
+The ``index`` argument takes precedence over the default index.
 
 
 ## disconnect
@@ -640,17 +655,25 @@ Check the Kuzzle documentation available <a href=https://github.com/kuzzleio/kuz
 
 Base method used to send queries to Kuzzle
 
-#### query(collection, controller, action, query, [options])
+#### query(queryArgs, query, [options])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
-| ``collection`` | string | The name of the data collection you want to manipulate |
-| ``controller`` | string | The Kuzzle controller that will handle this query |
-| ``action`` | string | Controller action to perform |
+| ``queryArgs`` | JSON Object | Query base arguments |
 | ``query`` | JSON Object | Query to execute |
 | ``options`` | JSON Object | Optional parameters |
 
-Available options:
+Expected `queryArgs` content:
+
+| Option | Type | Description |  Required? |
+|---------------|---------|----------------------------------------|---------|
+| ``controller`` | string | API Controller argument | required |
+| ``action`` | string | API Controller action | required |
+| ``index`` | string | Index concerned by the action | optional |
+| ``collection`` | string | Data collection concerned by the action | optional |
+
+
+Available `options`:
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|

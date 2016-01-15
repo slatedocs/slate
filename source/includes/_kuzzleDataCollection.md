@@ -15,14 +15,15 @@ A data collection is a set of data managed by Kuzzle. It acts like a data table 
 ```
 
 ```java
-  KuzzleDataCollection myCollection = new KuzzleDataCollection(kuzzle, "my-collection");
+  KuzzleDataCollection myCollection = new KuzzleDataCollection(kuzzle, "my-index", "my-collection");
 ```
 
-#### KuzzleDataCollection(kuzzle, collection)
+#### KuzzleDataCollection(kuzzle, index, collection)
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
 | ``kuzzle`` | object | Kuzzle object |
+| ``index`` | string | Name of the index containing the data collection |
 | ``collection`` | string | The name of the data collection you want to manipulate |
 
 ## Properties
@@ -30,6 +31,7 @@ A data collection is a set of data managed by Kuzzle. It acts like a data table 
 | Property name | Type | Description | get/set |
 |--------------|--------|-----------------------------------|---------|
 | ``kuzzle`` | object | linked kuzzle instance | get |
+| ``index`` | object | Name of the index containing the data collection | get |
 | ``collection`` | string | The name of the data collection handled by this instance | get |
 | ``headers`` | object | Headers for all sent documents. | get/set |
 
@@ -64,7 +66,7 @@ var filter = {
   }
 };
 kuzzle
-  .dataCollectionFactory('collection')
+  .dataCollectionFactory('index', 'collection')
   .advancedSearch(filter, function (err, res) {
     res.forEach(document => {
       console.log(document.toString());
@@ -73,7 +75,7 @@ kuzzle
 
 // Using promises (NodeJS only)
 kuzzle
-  .dataCollectionFactory('collection')
+  .dataCollectionFactory('index', 'collection')
   .advancedSearchPromise({})
   .then(res => {
     res.forEach(document => {
@@ -119,7 +121,7 @@ dataCollection.advancedSearch(userFilter, new ResponseListener() {
 });
 ```
 
-> Returns an object containing the total number of documents, and an array of retrieved documents
+> Returns an object containing the total number of documents, and an array of KuzzleDocument objects
 
 ```json
 { "total": 3,
@@ -153,14 +155,14 @@ Available options:
 ```js
 // Using callbacks (NodeJS or Web Browser)
 kuzzle
-  .dataCollectionFactory('collection')
+  .dataCollectionFactory('index', 'collection')
   .count({}, function (err, res) {
     // ...
   });
 
 // Using promises (NodeJS only)
 kuzzle
- .dataCollectionFactory('collection')
+ .dataCollectionFactory('index', 'collection')
  .countPromise({})
  .then(res => {
    // ...
@@ -211,7 +213,7 @@ Available options:
 ```js
 // Using callbacks (NodeJS or Web Browser)
 kuzzle
-  .dataCollectionFactory('collection')
+  .dataCollectionFactory('index', 'collection')
   .create(function (error, result) {
     // callback called once the create operation has completed
     // => the result is a JSON object containing the raw Kuzzle response
@@ -219,7 +221,7 @@ kuzzle
 
 // Using promises (NodeJS only)
 kuzzle
- .dataCollectionFactory('collection')
+ .dataCollectionFactory('index', 'collection')
  .createPromise()
  .then(result => {
    // promise resolved once the create operation has completed
@@ -264,7 +266,7 @@ Available options:
 ```js
 // Using callbacks (NodeJS or Web Browser)
 kuzzle
-  .dataCollectionFactory('collection')
+  .dataCollectionFactory('index', 'collection')
   .createDocument('foobar', {title: 'foo', content: 'bar'}, {updateIfExist: true}, function (err, res) {
     // callback called once the create action has been completed
     // => the result is a KuzzleDocument object
@@ -272,7 +274,7 @@ kuzzle
 
 // Using promises (NodeJS only)
 kuzzle
- .dataCollectionFactory('collection')
+ .dataCollectionFactory('index', 'collection')
  .createDocumentPromise('foobar', {title: 'foo', content: 'bar'}, {updateIfExist: true})
  .then(res => {
    // promise resolved once the create action has been completed
@@ -327,7 +329,7 @@ Available options:
 ```js
 // Using callbacks (NodeJS or Web Browser)
 kuzzle
-  .dataCollectionFactory('collection')
+  .dataCollectionFactory('index', 'collection')
   .delete(function (error, result) {
     // callback called once the delete operation has completed
     // => the result is a JSON object containing the raw Kuzzle response
@@ -335,7 +337,7 @@ kuzzle
 
 // Using promises (NodeJS only)
 kuzzle
- .dataCollectionFactory('collection')
+ .dataCollectionFactory('index', 'collection')
  .deletePromise()
  .then(result => {
    // promise resolved once the delete operation has completed
@@ -377,14 +379,14 @@ Available options:
 ```js
 // Deleting one document using callbacks (NodeJS or Web Browser)
 kuzzle
-  .dataCollectionFactory('collection')
+  .dataCollectionFactory('index', 'collection')
   .deleteDocument('document unique ID', function (err, res) {
     // callback called once the delete action has been completed
   });
 
 // Deleting one document using promises (NodeJS)
 kuzzle
-  .dataCollectionFactory('collection')
+  .dataCollectionFactory('index', 'collection')
   .deleteDocumentPromise('document unique ID')
   .then(res => {
     // promises resolved once the delete action has been completed
@@ -392,14 +394,14 @@ kuzzle
 
 // Deleting multiple documents using callbacks (NodeJS or Web Browser)
 kuzzle
-  .dataCollectionFactory('collection')
+  .dataCollectionFactory('index', 'collection')
   .deleteDocument({term: {title: 'foo'}}, function (err, res) {
     // callback called once the delete with query has been completed
   });
 
 // Deleting multiple documents using promises (NodeJS)
  kuzzle
- .dataCollectionFactory('collection')
+ .dataCollectionFactory('index', 'collection')
  .deleteDocumentPromise({title: 'foo', content: 'bar'}, {updateIfExist: true})
  .then(res => {
    // promise resolved once the delete by query has been completed
@@ -473,14 +475,14 @@ Available options:
 ```js
 // Using callbacks (NodeJS or Web Browser)
 kuzzle
-  .dataCollectionFactory('collection')
+  .dataCollectionFactory('index', 'collection')
   .fetchDocument('documentId', function (error, result) {
     // result is a KuzzleDocument object
   });
 
 // Using promises (NodeJS)
 kuzzle
-  .dataCollectionFactory('collection')
+  .dataCollectionFactory('index', 'collection')
   .fetchDocumentPromise('documentId')
   .then(result => {
     // result is a KuzzleDocument object
@@ -525,7 +527,7 @@ Available options:
 ```js
 // Using callbacks (NodeJS or Web Browser)
 kuzzle
-  .dataCollectionFactory('collection')
+  .dataCollectionFactory('index', 'collection')
   .fetchAllDocuments(function (error, result) {
     // result is an object containing the total number of documents
     // and an array of KuzzleDocument objects
@@ -533,7 +535,7 @@ kuzzle
 
 // Using promises (NodeJS)
 kuzzle
-  .dataCollectionFactory('collection')
+  .dataCollectionFactory('index', 'collection')
   .fetchAllDocumentsPromise()
   .then(result => {
     // result is an object containing the total number of documents
@@ -584,14 +586,14 @@ Available options:
 ```js
 // Using callbacks (NodeJS or Web Browser)
 kuzzle
-  .dataCollectionFactory('collection')
+  .dataCollectionFactory('index', 'collection')
   .getMapping(function (error, result) {
     // result is a KuzzleDataMapping object
   });
 
 // Using promises (NodeJS)
 kuzzle
-  .dataCollectionFactory('collection')
+  .dataCollectionFactory('index', 'collection')
   .getMappingPromise()
   .then(result => {
     // result is a KuzzleDataMapping object
@@ -633,7 +635,7 @@ Available options:
 
 ```js
 kuzzle
-  .dataCollectionFactory('collection')
+  .dataCollectionFactory('index', 'collection')
   .publishMessage({foo: 'bar', baz: 'qux'});
 ```
 
@@ -668,14 +670,14 @@ Available options:
 ```js
 // Using callbacks (NodeJS or Web Browser)
 kuzzle
-  .dataCollectionFactory('collection')
+  .dataCollectionFactory('index', 'collection')
   .putMapping({foo: {type: 'string', store: true}, bar: {type: 'date'}, function (error, result) {
     // result is a KuzzleDataMapping object
   });
 
 // Using promises (NodeJS)
 kuzzle
-  .dataCollectionFactory('collection')
+  .dataCollectionFactory('index', 'collection')
   .putMappingPromise({foo: {type: 'string', store: true}, bar: {type: 'date'})
   .then(result => {
     // result is a KuzzleDataMapping object
@@ -718,14 +720,14 @@ Available options:
 ```js
 // Using callbacks (NodeJS or Web Browser)
 kuzzle
-  .dataCollectionFactory('collection')
+  .dataCollectionFactory('index', 'collection')
   .replaceDocument('documentId', {title: 'foo', content: 'bar'}, function (error, result) {
     // result is a KuzzleDocument object
   });
 
 // Using promises (NodeJS)
 kuzzle
-  .dataCollectionFactory('collection')
+  .dataCollectionFactory('index', 'collection')
   .replaceDocumentPromise('documentId', {title: 'foo', content: 'bar'})
   .then(result => {
     // result is a KuzzleDocument object
@@ -761,7 +763,7 @@ Available options:
 
 ```js
 kuzzle
-  .dataCollectionFactory('collection')
+  .dataCollectionFactory('index', 'collection')
   .setHeaders({
     someContent: 'someValue',
     metadata: { someMetaData: ['with', 'some', 'values']}
@@ -799,7 +801,7 @@ This is a helper function returning itself, allowing to easily chain calls.
 ```js
 var room =
   kuzzle
-    .dataCollectionFactory('collection')
+    .dataCollectionFactory('index', 'collection')
     .subscribe({term: {title: 'foo'}}, function (error, result) {
       // called each time a new notification on this filter is received
     };
@@ -845,7 +847,7 @@ To subscribe to the entire data collection, simply provide an empty filter.
 ```js
 // Using callbacks (NodeJS or Web Browser)
 kuzzle
-  .dataCollectionFactory('collection')
+  .dataCollectionFactory('index', 'collection')
   .truncate(function (error, result) {
     // callback called once the truncate operation has completed
     // => the result is a JSON object containing the raw Kuzzle response
@@ -853,7 +855,7 @@ kuzzle
 
 // Using promises (NodeJS only)
 kuzzle
- .dataCollectionFactory('collection')
+ .dataCollectionFactory('index', 'collection')
  .truncatePromise()
  .then(result => {
    // promise resolved once the truncate operation has completed
@@ -898,14 +900,14 @@ Available options:
 ```js
 // Using callbacks (NodeJS or Web Browser)
 kuzzle
-  .dataCollectionFactory('collection')
+  .dataCollectionFactory('index', 'collection')
   .updateDocument('documentId', {title: 'foo', content: 'bar'}, function (error, result) {
     // result is a KuzzleDocument object
   });
 
 // Using promises (NodeJS)
 kuzzle
-  .dataCollectionFactory('collection')
+  .dataCollectionFactory('index', 'collection')
   .updateDocumentPromise('documentId', {title: 'foo', content: 'bar'})
   .then(result => {
     // result is a KuzzleDocument object
