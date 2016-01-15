@@ -12,10 +12,10 @@ Connects to a Kuzzle instance.
 
 
 ```js
-var kuzzle = new Kuzzle('http://localhost:7512', 'some index', {autoReconnect: true, headers: {someheader: "value"}});
+var kuzzle = new Kuzzle('http://localhost:7512', {defaultIndex: 'some index', autoReconnect: true, headers: {someheader: "value"}});
 
 // A callback is also available and will be invoked once connected to the Kuzzle instance:
-var kuzzle = new Kuzzle('http://localhost:7512', 'some index',function (err, res) {
+var kuzzle = new Kuzzle('http://localhost:7512', function (err, res) {
   // ...
 });
 ```
@@ -25,10 +25,11 @@ JSONObject headers = new JSONObject();
 headers.put("someheader", "value");
 
 KuzzleOptions options = new KuzzleOptions();
+options.setDefaultIndex("some index");
 options.setAutoReconnect(true);
 options.setHeaders(headers);
 
-Kuzzle kuzzle = new Kuzzle("http://localhost:7512", "some index", options, new ResponseListener() {
+Kuzzle kuzzle = new Kuzzle("http://localhost:7512", options, new ResponseListener() {
  @Override
  public void onSuccess(JSONObject object) {
    // invoked once connected, kuzzle contains the kuzzle instance
@@ -49,7 +50,6 @@ Kuzzle kuzzle = new Kuzzle("http://localhost:7512", "some index", options, new R
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
 | ``url`` | string | URL to the target Kuzzle instance |
-| ``index`` | string | Kuzzle's persistent storage index to use |
 | ``options`` | object | Kuzzle connection configuration |
 
 Available options:
@@ -61,6 +61,7 @@ Available options:
 | ``autoReplay`` | boolean | Automatically replay queued requests on a ``reconnected`` event | ``false`` |
 | ``autoResubscribe`` | boolean | Automatically renew all subscriptions on a ``reconnected`` event | ``true`` |
 | ``connect`` | string | Manually or automatically connect to the Kuzzle instance | ``auto`` |
+| ``defaultIndex`` | string | Set the default index to use | |
 | ``offlineMode`` | string | Offline mode configuration | ``manual`` |
 | ``queueTTL`` | integer | Time a queued request is kept during offline mode, in milliseconds | ``120000`` |
 | ``queueMaxSize`` | integer | Number of maximum requests kept during offline mode | ``500`` |
@@ -82,7 +83,7 @@ Available options:
 | ``autoReconnect`` | boolean | Automatically reconnect after a connection loss | get |
 | ``autoReplay`` | boolean | Automatically replay queued requests on a ``reconnected`` event | get/set |
 | ``autoResubscribe`` | boolean | Automatically renew all subscriptions on a ``reconnected`` event | get/set |
-| ``index`` | string | Kuzzle's persistent storage index to use | get |
+| ``defaultIndex`` | string | Kuzzle's default index to use | get |
 | ``offlineQueue`` | JSON object | Contains the queued requests during offline mode | get/set |
 | ``queueFilter`` | function | Called during offline mode. Takes a request object as arguments and returns a boolean, indicating if a request can be queued | get/set |
 | ``queueMaxSize`` | integer | Number of maximum requests kept during offline mode | get/set |
@@ -97,7 +98,7 @@ Available options:
 * if ``connect`` is set to ``manual``, the ``connect`` method will have to be called manually
 * the kuzzle instance will automatically queue all requests, and play them automatically once a first connection is established, regardless of the ``connect`` or offline mode option values.
 * multiple methods allow passing specific ``metadata``. These ``metadata`` will be merged with the global Kuzzle object ``metadata`` when sending the request, with the request specific ``metadata`` taking priority over the global ones.
-* the ``queueFilter`` property is a function taking a JSON object as an argument. This object is the request sent to Kuzzle, following the [Kuzzle Websocket API](https://github.com/kuzzleio/kuzzle/blob/master/docs/API.WebSocket.md) format
+* the ``queueFilter`` property is a function taking a JSON object as an argument. This object is the request sent to Kuzzle, following the [Kuzzle Websocket API](http://kuzzleio.github.io/kuzzle-api-documentation/) format
 * if ``queueTTL`` is set to ``0``, requests are kept indefinitely
 * The offline buffer acts like a FIFO queue, meaning that if the ``queueMaxSize`` limit is reached, older requests are deleted and new requests are queued
 * if ``queueMaxSize`` is set to ``0``, an unlimited number of requests is kept until the buffer is flushed
@@ -210,22 +211,36 @@ Has no effect if ``connect`` is set to ``auto``, unless ``disconnect`` has been 
 ## dataCollectionFactory
 
 ```js
-  var collection = kuzzle.dataCollectionFactory('foobar');
+  var collection = kuzzle.dataCollectionFactory('index', 'collection');
+
+  // or using a default index:
+  var
+    kuzzle = new Kuzzle('http://localhost:7512', {defaultIndex: 'index'}),
+    collection = kuzzle.dataCollectionFactory('collection');
 ```
 
 ```java
-KuzzleDataCollection collection = kuzzle.dataCollectionFactory("foobar");
+KuzzleDataCollection collection = kuzzle.dataCollectionFactory("index", "collection");
+
+// or using a default index:
+kuzzle.setDefaultIndex('index');
+KuzzleDataCollection collection = kuzzle.dataCollectionFactory("collection");
 ```
 
 > Returns a KuzzleDataCollection object
 
 Instantiates a new KuzzleDataCollection object.
 
-#### dataCollectionFactory(collection)
+#### dataCollectionFactory([index], collection)
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
+| ``index`` | string | The name of the index containing the data collection |
 | ``collection`` | string | The name of the data collection you want to manipulate |
+
+If no ``index`` is provided, the factory will take the default index set in the main Kuzzle instance. If no default index has been set, an error is thrown.
+
+The ``index`` argument takes precedence over the default index.
 
 
 ## disconnect
@@ -310,6 +325,287 @@ Kuzzle monitors active connections, and ongoing/completed/failed requests.
 This method returns all available statistics from Kuzzle.
 
 #### getAllStatistics([options])
+
+| Arguments | Type | Description |
+|---------------|---------|----------------------------------------|
+| ``options`` | JSON Object | Optional parameters |
+
+Available options:
+
+| Option | Type | Description | Default |
+|---------------|---------|----------------------------------------|---------|
+| ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
+
+
+## getServerInfo
+
+```js
+// Using callbacks (NodeJS or Web Browser)
+kuzzle.getServerInfo(function (err, stats) {
+  // ...
+});
+
+// Using promises (NodeJS only)
+kuzzle.getServerInfoPromise()
+  .then(infos => {
+  // ...  
+  });
+```
+
+> Returns a JSON Object containing the server informations:
+
+```json
+{
+  "kuzzle": {
+    "api": {
+      "routes": {
+        "admin": [
+          "deleteCollection",
+          "putMapping",
+          "getMapping",
+          "getStats",
+          "getLastStats",
+          "getAllStats",
+          "truncateCollection",
+          "putRole",
+          "deleteIndexes",
+          "createIndex",
+          "deleteIndex",
+          "removeRooms"
+        ],
+        "auth": [
+          "login"
+        ],
+        "bulk": [
+          "import"
+        ],
+        "read": [
+          "search",
+          "get",
+          "count",
+          "listCollections",
+          "now",
+          "listIndexes",
+          "serverInfo"
+        ],
+        "subscribe": [
+          "on",
+          "join",
+          "off",
+          "count",
+          "list"
+        ],
+        "write": [
+          "create",
+          "publish",
+          "createOrUpdate",
+          "update",
+          "delete",
+          "deleteByQuery",
+          "createCollection"
+        ]
+      },
+      "version": "1.0"
+    },
+    "memoryUsed": 99901440,
+    "nodeVersion": "v4.2.1",
+    "plugins": {
+      "kuzzle-plugin-auth-passport-local": {
+        "activated": true,
+        "hooks": [
+          "auth:loadStrategies"
+        ],
+        "name": "kuzzle-plugin-auth-passport-local"
+      },
+      "kuzzle-plugin-logger": {
+        "activated": true,
+        "hooks": [
+          "log:silly",
+          "log:verbose",
+          "log:info",
+          "log:debug",
+          "log:warn",
+          "log:error",
+          "data:*",
+          "subscription:*",
+          "websocket:*",
+          "prepare:*",
+          "cleanDb:done",
+          "cleanDb:error",
+          "server:*",
+          "rabbit:started",
+          "rabbit:error",
+          "rabbit:stopped",
+          "internalBroker:*",
+          "room:new",
+          "room:remove",
+          "workerGroup:loaded",
+          "profiling:*"
+        ],
+        "name": "kuzzle-plugin-logger",
+        "version": "1.0.6"
+      },
+      "kuzzle-plugin-socketio": {
+        "activated": true,
+        "hooks": [
+          "protocol:broadcast",
+          "protocol:joinChannel",
+          "protocol:leaveChannel"
+        ],
+        "name": "kuzzle-plugin-socketio",
+        "version": "1.0.4"
+      }
+    },
+    "system": {
+      "cpus": [
+        {
+          "model": "Intel(R) Core(TM) i5-4310M CPU @ 2.70GHz",
+          "speed": 800,
+          "times": {
+            "idle": 8859265400,
+            "irq": 500,
+            "nice": 4325300,
+            "sys": 115447100,
+            "user": 497028200
+          }
+        },
+        {
+          "model": "Intel(R) Core(TM) i5-4310M CPU @ 2.70GHz",
+          "speed": 2701,
+          "times": {
+            "idle": 8848628800,
+            "irq": 400,
+            "nice": 3648100,
+            "sys": 115458300,
+            "user": 495154300
+          }
+        },
+        {
+          "model": "Intel(R) Core(TM) i5-4310M CPU @ 2.70GHz",
+          "speed": 1300,
+          "times": {
+            "idle": 8875594600,
+            "irq": 4200,
+            "nice": 3956800,
+            "sys": 98348100,
+            "user": 538083800
+          }
+        },
+        {
+          "model": "Intel(R) Core(TM) i5-4310M CPU @ 2.70GHz",
+          "speed": 2701,
+          "times": {
+            "idle": 8801022600,
+            "irq": 0,
+            "nice": 3946300,
+            "sys": 97387200,
+            "user": 552344400
+          }
+        }
+      ],
+      "memory": {
+        "free": 1651486720,
+        "total": 16729739264
+      }
+    },
+    "uptime": "161016.824s",
+    "version": "0.9.2"
+  },
+  "services": {
+    "internalCache": {
+      "memoryPeak": "4.88M",
+      "memoryUsed": "4.88M",
+      "mode": "standalone",
+      "type": "redis",
+      "version": "3.0.2"
+    },
+    "readEngine": {
+      "api": "1.7",
+      "lucene": "4.10.4",
+      "nodes": {
+        "count": {
+          "client": 0,
+          "data_only": 0,
+          "master_data": 1,
+          "master_only": 0,
+          "total": 1
+        },
+        "fs": {
+          "available": "5.5gb",
+          "available_in_bytes": 5996474368,
+          "free": "7.4gb",
+          "free_in_bytes": 8013250560,
+          "total": "36.5gb",
+          "total_in_bytes": 39237341184
+        },
+        "jvm": {
+          "max_uptime": "1.9d",
+          "max_uptime_in_millis": 171087444,
+          "mem": {
+            "heap_max": "990.7mb",
+            "heap_max_in_bytes": 1038876672,
+            "heap_used": "51.8mb",
+            "heap_used_in_bytes": 54394592
+          },
+          "threads": 75,
+          "versions": [
+            {
+              "count": 1,
+              "version": "1.8.0_66-internal",
+              "vm_name": "OpenJDK 64-Bit Server VM",
+              "vm_vendor": "Oracle Corporation",
+              "vm_version": "25.66-b01"
+            }
+          ]
+        },
+        "os": {
+          "available_processors": 4,
+          "cpu": [
+            {
+              "cache_size": "3kb",
+              "cache_size_in_bytes": 3072,
+              "cores_per_socket": 16,
+              "count": 1,
+              "mhz": 2701,
+              "model": "Core(TM) i5-4310M CPU @ 2.70GHz",
+              "total_cores": 4,
+              "total_sockets": 4,
+              "vendor": "Intel"
+            }
+          ],
+          "mem": {
+            "total": "15.5gb",
+            "total_in_bytes": 16729739264
+          }
+        },
+        "plugins": [],
+        "process": {
+          "cpu": {
+            "percent": 0
+          },
+          "open_file_descriptors": {
+            "avg": 190,
+            "max": 190,
+            "min": 190
+          }
+        },
+        "versions": [
+          "1.5.2"
+        ]
+      },
+      "spaceUsed": "14.5kb",
+      "status": "red",
+      "type": "elasticsearch",
+      "version": "1.5.2"
+    },
+    { "etc." }
+  }
+}
+```
+
+Returns information about Kuzzle, its plugins and active services.
+
+#### getServerInfo([options])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
@@ -439,20 +735,20 @@ Available options:
 
 ```js
 // Using callbacks (NodeJS or Web Browser)
-kuzzle.listCollections({type: 'stored'}, function (err, collections) {
+kuzzle.listCollections('index', {type: 'stored'}, function (err, collections) {
   // ...
 });
 
 // Using promises (NodeJS only)
 kuzzle
-  .listCollectionsPromise({type: 'stored'})
+  .listCollectionsPromise('index', {type: 'stored'})
   .then(collections => {
     // ...
   });
 ```
 
 ```java
-kuzzle.listCollections(new ResponseListener() {
+kuzzle.listCollections("index", new ResponseListener() {
   @Override
   public void onSuccess(JSONObject object) {
     // ...
@@ -474,12 +770,13 @@ kuzzle.listCollections(new ResponseListener() {
 }
 ```
 
-Returns the list of known persisted data collections.
+Returns the list of known data collections contained in a specified index.
 
-#### listCollections([options])
+#### listCollections([index], [options])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
+| ``index`` | string | Index containing the collections to be listed |
 | ``options`` | JSON Object | Optional parameters |
 
 Available options:
@@ -490,7 +787,58 @@ Available options:
 | ``type`` | string | Get either ``stored`` collections or ``realtime`` ones. By default, list ``all`` collections | ``all`` |
 
 
+If no `index` argument is provided, the `defaultIndex` property is used. If no default index is found, this method throws an error.
+
+## listIndexes
+
+```js
+// Using callbacks (NodeJS or Web Browser)
+kuzzle.listIndexes(function (err, collections) {
+  // ...
+});
+
+// Using promises (NodeJS only)
+kuzzle
+  .listIndexesPromise()
+  .then(indexes => {
+    // ...
+  });
+```
+
+> Result:
+
+```json
+[ 'index', 'another index', '...']
+```
+
+Returns the list of indexes stored in Kuzzle.
+
+#### listIndexes([options])
+
+| Arguments | Type | Description |
+|---------------|---------|----------------------------------------|
+| ``options`` | JSON Object | Optional parameters |
+
+Available options:
+
+| Option | Type | Description | Default |
+|---------------|---------|----------------------------------------|---------|
+| ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
+
+
 ## login
+
+```js
+kuzzle.login("local", {username: "username", password: "password"}, "1h");
+```
+
+```java
+kuzzle.login("local", "username", "password", "1h");
+```
+
+Log a user according to the strategy and credentials.
+
+#### login([options])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
@@ -504,16 +852,6 @@ Available options:
 | ``loginCredentials`` | JSON object | The credentials |
 | ``loginExpiresIn`` | string | Expire time | ``1h``
 
-
-```js
-kuzzle.login("local", {username: "username", password: "password"}, "1h");
-```
-
-```java
-kuzzle.login("local", "username", "password", "1h");
-```
-
-Log a user according to the strategy and credentials.
 
 ## logout
 
@@ -640,17 +978,25 @@ Check the Kuzzle documentation available <a href=https://github.com/kuzzleio/kuz
 
 Base method used to send queries to Kuzzle
 
-#### query(collection, controller, action, query, [options])
+#### query(queryArgs, query, [options])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
-| ``collection`` | string | The name of the data collection you want to manipulate |
-| ``controller`` | string | The Kuzzle controller that will handle this query |
-| ``action`` | string | Controller action to perform |
+| ``queryArgs`` | JSON Object | Query base arguments |
 | ``query`` | JSON Object | Query to execute |
 | ``options`` | JSON Object | Optional parameters |
 
-Available options:
+Expected `queryArgs` content:
+
+| Option | Type | Description |  Required? |
+|---------------|---------|----------------------------------------|---------|
+| ``controller`` | string | API Controller argument | required |
+| ``action`` | string | API Controller action | required |
+| ``index`` | string | Index concerned by the action | optional |
+| ``collection`` | string | Data collection concerned by the action | optional |
+
+
+Available `options`:
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
@@ -717,6 +1063,16 @@ kuzzle.replayQueue();
 ```
 
 Replays the requests queued during offline mode. Works only if the SDK is not in a ``disconnected`` state, and if the ``autoReplay`` option is set to ``false``.
+
+## setDefaultIndex
+
+``js
+kuzzle.setDefaultIndex('index');
+``
+
+> Returns the kuzzle object
+
+Set the default data index. Has the same effect than the `defaultIndex` constructor option.
 
 ## setHeaders
 

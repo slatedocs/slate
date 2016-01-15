@@ -24,11 +24,11 @@ You may subscribe multiple times to the same room, with identical or different s
 
  You may also use the KuzzleDataCollection.roomFactory() method:
  */
-var room = kuzzle.dataCollectionFactory('collection').roomFactory();
+var room = kuzzle.dataCollectionFactory('index', 'collection').roomFactory();
 
 var room = kuzzle
-  .dataCollectionFactory('collection')
-  .roomFactory({subscribeToSelf: true});
+  .dataCollectionFactory('index', 'collection')
+  .roomFactory({subscribeToSelf: false});
 ```
 
 ```java
