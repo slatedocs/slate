@@ -10,6 +10,7 @@
   [chat message]: <#chat-messages> "Chat messages"
   [chat membership]: <#chat-memberships> "Chat memberships"
   [user]: <#users> "Users"
+  [user client]: <#user-clients> "User clients"
   [room]: <#rooms-and-domains> "Rooms and domains"
   [team]: <#teams> "Teams"
   [team membership]: <#team-memberships> "Team membershipss"

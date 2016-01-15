@@ -23,8 +23,8 @@ Attribute | Type | Editable | Description
 `updated_at` | [date/time][] | read-only | When the user resource was updated last time
 `avatar` | object | read-only | The avatar of the user as an object. It contains attributes `id`and `url`. This is `null` if the user has no avatar.
 `is_online_enabled` | boolean | **optional** | Whether or not the user wants to serve online as an operator. This determines if the `is_online` can be true.
-`is_online` | boolean | read-only | Whether the user is currently in online status as an operator, based on the most recent information about the user. This can only be `true` if `is_online_enabled` is `true` *and* the user is considered signed in. Otherwise this is `false`.
-`is_signed_in` | boolean | read-only | Whether the user is currenlty logged in to the service, based on the most recent information about the user.
+`is_online` | boolean | read-only | Whether the user is currently in online status as an operator, based on the most recent information about the user. This can only be `true` if `is_online_enabled` is `true` *and* the user is considered signed in. Otherwise this is `false`. See [user clients][user client] for more information.
+`is_present` | boolean | read-only | Whether the user is currenlty present, based on the most recent information about the user. See [user clients][user client] for more information.
 `current_chat_count` | integer | read-only | The number of chats the user has currently, based on the most recent information about the user.
 `is_deleted` | boolean | read-only | Whether this user exists no more. If `true`, the resource exists only for historical purposes and cannot be used in any other context!
 `team_memberships` | array of objects | read-only | The [team membership][] resources, listing the teams this user belongs to. Each object in the array has the attributes `id`, `team_id`, `team`, `is_admin`
@@ -93,6 +93,52 @@ You may also update the whole user resource with a `PUT` request. In this case, 
 <aside class="warning">
 You are allowed to update your own details. You may only change other users' details if you have management rights for the organization. Otherwise this endpoint will result in a 403 response.
 </aside>
+
+
+## User clients
+
+Users have two special attributes that depends of whether or not the user has announced his presence: `is_online` and `is_present`. Their values may only be `true` if there is at least one *user client* we have heard about. The system is remembering when the client has last time announced about themselves and automatically determines if the related user is present. Also, user may only be online if they are also present.
+
+What is a "client" depends on the type of the app:
+
+- For web browser (either mobile or desktop) each browser *tab* or *window* is their own "client". It is recommended that you generate a new client ID when the page loads and then keep it in memory as while the page is open. There is no need to persist the ID, e.g. in a web storage. The client will be automatically forgotten when expired!
+- For mobile apps each app installation is their own "client". You should generate the ID on installation (or when signing in with the app) and then persist it until uninstallation (or sign out).
+
+A user client has the following attributes:
+
+Attribute | Type | Editable | Description
+:---------|:-----|:---------|------------
+`id` | string | read-only | An identifier for the client that you have generated.
+`rooms` | array of [IDs][ID] | **required** | An array of [room IDs][room] at which this client is currently present at. The user must have access for each of the listed rooms. The list may be empty, indicating that the user is not serving online at any room, but is still available e.g. for other organization members.
+`expires_in` | integer | **required** | The number of seconds the system should keep this client present. This also defines how often you need to refresh the client's presence status. Longer timeout allows you to make less refresh requests. On the other hand, with longer timeouts it takes longer to notice that your client has been closed, shut down, or disconnected from the network. We recommend shorter timeouts for browsers (e.g. 60 seconds) and longer timeouts for mobile apps. You may change this value for the client. Only the latest expiration time applies.
+`expires_at` | [date/time][] | read-only | When the client will expire, calculated from the `expires_in`.
+
+### Refresh user client presence
+
+<aside class="info">
+You need to frequently tell the server about the presence of your client, otherwise the user will be automatiaclly switched to "not present" and "offline" state.
+</aside>
+
+You refresh one of your clients' presence:
+
+`PUT /api/v5/orgs/<organization_id>/users/<user_id>/clients/<client_id>`
+
+The `<client_id>` is the ID that you must generate for your client. It must be a non-empty string (max. 128 characters) that uniquelly identifies the client for the user. The ID must only contain letters A-Z (upper or lower case), digits 0-9, dashes (`-`) and underscores (`_`). **We strongly recommended that you generate a random [UUID][] for your client.**
+
+You must a payload object with the `rooms` attribute, describing at which rooms your client is currently present. This overwrites any previously sent rooms list. **You can only be online at the rooms that you list here!**
+
+You must also provide the `expires_in` attribute. Please note that **you should refresh the client presence again before this number of seconds have elapsed** in order to keep your client online. You should consider your client devices performance for this.
+
+It returns 201 status if this was a new client, or any previous client with the same ID have expired.
+It returns 200 status if the client was already present and its presence is now refreshed.
+It returns 400 if the client ID was invalid.
+It returns 403 if the you have no access to the organization or to the user.
+
+### Remove user client presence
+
+Sometimes you might want to "expire" a client immediately, e.g. when a user signs out:
+
+`DELETE /api/v5/orgs/<organization_id>/users/<user_id>/clients/<client_id>`
 
 
 ## User preferences
