@@ -3,7 +3,7 @@ Datasets are the primary containers of statistical data in Crunch. Datasets cont
 
 Datasets are comprised of one or more batches of data uploaded to Crunch, and additional batches can be appended to datasets. Similarly, variables from other datasets can be joined onto a dataset.
 
-As with other objects in Crunch, references to the set of [dataset entities](#dataset-entity) are exposed in a catalog. This catalog can be organized and ordered.
+As with other objects in Crunch, references to the set of dataset entities are exposed in a catalog. This catalog can be organized and ordered.
 
 ### Catalog
 
@@ -54,11 +54,11 @@ crGET("https://beta.crunch.io/api/datasets/")
             },
             "id": "cc9161",
             "owner_id": "https://beta.crunch.io/api/users/685722/",
-            "start_date":,
-            "end_date":,
-            "creation_time":,
-            "current_editor":,
-            "current_editor_name":
+            "start_date": "2286",
+            "end_date": null,
+            "creation_time": "1986-11-26T12:05:00",
+            "current_editor": "https://beta.crunch.io/api/users/ff9443/",
+            "current_editor_name": "Leonard Nimoy"
         },
         "https://beta.crunch.io/api/datasets/a598c7/": {
             "owner_name": "Spock",
@@ -78,11 +78,11 @@ crGET("https://beta.crunch.io/api/datasets/")
             },
             "id": "a598c7",
             "owner_id": "https://beta.crunch.io/api/users/af432c/",
-            "start_date":,
-            "end_date":,
-            "creation_time":,
-            "current_editor":,
-            "current_editor_name":
+            "start_date": "2285-10-03",
+            "end_date": "2285-10-20",
+            "creation_time": "1982-06-04T09:16:23.231045",
+            "current_editor": null,
+            "current_editor_name": null
         }
     }
 }
@@ -300,14 +300,14 @@ modified via PATCH here are not modified, the request will succeed.
 
 `DELETE /datasets/{dataset_id}/`
 
-With sufficient authorization, a successful DELETE request removes the dataset from the Crunch system and responds with 204 status. 
+With sufficient authorization, a successful DELETE request removes the dataset from the Crunch system and responds with 204 status.
 
 ### Summary
 
 `/datasets/{id}/summary/{?filter}`
 
 Returns a Shoji View with summary information about this dataset containing
- its number of rows (weighted and unweighted) as well as the number of 
+ its number of rows (weighted and unweighted) as well as the number of
  variables and columns.
 
 ```json
@@ -324,4 +324,3 @@ Returns a Shoji View with summary information about this dataset containing
     "columns": 25
 }
 ```
-
