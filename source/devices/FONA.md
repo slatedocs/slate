@@ -15,7 +15,7 @@ Adafruit FONA MiniGSM is "an all-in-one cellular phone module that lets you add 
 
 	  * Vio       --> 5V (or 3V, with a 3V logic Arduino)
 	  * GND       --> GND
-    * KEY  --> GND 
+    * KEY       --> GND 
 	  * FONA_RX   --> Pin 2
 	  * FONA_TX   --> Pin 3
 	  * FONA_RST  --> Pin 4
@@ -49,8 +49,7 @@ To be able to compile this code, you'll need the FONA library for Arduino. [You 
 This example updates 4 variables in Ubidots, but you can easily adapt it to fit your project's variables.
 
 ```c++
-
-	/*
+/*
 
   Sample code to send data from an Arduino to four Ubidots variables using the Adafruit's FONA
 
@@ -89,26 +88,28 @@ Adafruit_FONA fona = Adafruit_FONA(FONA_RST);
 
 void setup() {
   //For FONA MODULE
-  Serial.begin(19200);
-  fonaSS.begin(9600);
+  Serial.begin(115200);
+  fonaSS.begin(4800);
   delay(2000);
+  
 }
 
 void loop() {
+  flushSerial();
   checkFona();
   gprsOnFona();
   save_value(344.32,id1);
-  Serial.println(get_value(id2));
-  gprsOffFona();
-  delay(6000);
+  float n = get_value(id2);
+  Serial.println(n);
+  delay(600);
 
 }
 void save_value(float value, char* myid){
   uint16_t statuscode;
   int16_t length;
-  char* url = (char *) malloc(sizeof(char) * 300);
+  char* url = (char *) malloc(sizeof(char) * 400);
   char* data = (char *) malloc(sizeof(char) * 50);
-  char val[8];
+  char* val = (char *) malloc(sizeof(char) * 8);
   String(value).toCharArray(val,9);
   sprintf(url,"things.ubidots.com/api/v1.6/variables/%s/values?token=%s", myid, TOKEN);
   sprintf(data,"{\"value\":%s}", val);  
@@ -121,13 +122,16 @@ void save_value(float value, char* myid){
   }
   free(url);
   free(data);
+  free(val);
   Serial.println(F("\n****"));
   fona.HTTP_POST_end();
+  flushSerial();
 }
 float get_value(char* myid){
   uint16_t statuscode;
   int16_t length;
-  char* url = (char *) malloc(sizeof(char) * 500);
+  float num;
+  char* url = (char *) malloc(sizeof(char) * 400);
   int i = 0;
   sprintf(url,"things.ubidots.com/api/v1.6/variables/%s/values?token=%s&page_size=1", myid, TOKEN);
   Serial.print(F("http://"));
@@ -144,12 +148,20 @@ float get_value(char* myid){
     }
     delay(10);
   }
-  url= strstr(url,"\"value\":");
-  String raw(url);
+  char* pch = strstr(url,"\"value\":");
+  String raw(pch);
   int bodyPosinit =9+ raw.indexOf("\"value\":");
   int bodyPosend = raw.indexOf(", \"timestamp\"");
   raw.substring(bodyPosinit,bodyPosend).toCharArray(url, 10);
-  return atof(url);  
+  num = atof(url);
+  free(url);
+  fona.HTTP_GET_end();
+  flushSerial();
+  return num;  
+}
+void flushSerial() {
+    while (Serial.available())
+    Serial.read();
 }
 void checkFona(){
   // See if the FONA is responding
@@ -165,12 +177,6 @@ void gprsOnFona(){
   while(!fona.enableGPRS(true));
   Serial.println(F("Turn on"));
 }
-
-void gprsOffFona(){
-  while (!fona.enableGPRS(false));
-  Serial.println(F("Turn off"));
-}
-
 ```
 
 
