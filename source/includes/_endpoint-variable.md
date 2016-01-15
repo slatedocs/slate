@@ -326,6 +326,7 @@ PATCH variable entities to edit their metadata. Send a Shoji Entity with a "body
 Successful requests return 204 status. Among the actions achievable by PATCHing variable entities:
 
 * Editing category attributes and adding categories. Include all categories.
+* Remove categories by sending all categories except for the ones you wish to remove. You can only remove categories that don't have any corresponding data values.
 * Reordering subvariables in an array
 * Editing derivation expressions
 * Editing format and view settings
