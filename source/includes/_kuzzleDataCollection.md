@@ -68,7 +68,7 @@ var filter = {
 kuzzle
   .dataCollectionFactory('index', 'collection')
   .advancedSearch(filter, function (err, res) {
-    res.forEach(document => {
+    res.documents.forEach(document => {
       console.log(document.toString());
     });
   });
@@ -78,7 +78,7 @@ kuzzle
   .dataCollectionFactory('index', 'collection')
   .advancedSearchPromise({})
   .then(res => {
-    res.forEach(document => {
+    res.documents.forEach(document => {
       console.log(document.toString());
     });
   });
