@@ -284,13 +284,13 @@ html, body {
   .lang-selector {
     position: fixed;
     z-index: 50;
-    border-bottom: 5px solid $lang-select-active-bg;
+    border-bottom: 1px solid $lang-select-active-bg;
   }
 }
 
 .lang-selector {
   background-color: $lang-select-bg;
-  width: 100%;
+  width: 50%;
   font-weight: bold;
   a {
     display: block;
@@ -351,7 +351,7 @@ html, body {
 
   // the div is the tocify hidden div for placeholding stuff
   &>h1, &>h2, &>div {
-    clear:both;
+    //clear:both;
   }
 
   h1 {
@@ -362,12 +362,10 @@ html, body {
     border-bottom: 1px solid #ccc;
     margin-bottom: $h1-margin-bottom;
     margin-top: 2em;
-    border-top: 1px solid #ddd;
     background-image: linear-gradient(to bottom, #fff, #f9f9f9);
   }
 
-  h1:first-child, div:first-child + h1 {
-    border-top-width: 0;
+  div:first-child + h1 {
     margin-top: 0;
   }
 
@@ -376,10 +374,10 @@ html, body {
     font-size: 20px;
     margin-top: 4em;
     margin-bottom: 0;
-    border-top: 1px solid #ccc;
+    border-top: 1px solid #aaa;
     padding-top: 1.2em;
     padding-bottom: 1.2em;
-    background-image: linear-gradient(to bottom, rgba(#fff, 0.4), rgba(#fff, 0));
+    background-image: linear-gradient(to bottom, rgba(#fff, 0.6), rgba(#fff, 0));
   }
 
   // h2s right after h1s should bump right up
@@ -397,7 +395,13 @@ html, body {
   }
 
   h4, h5, h6 {
-    font-size: 10px;
+    font-size: 14px;
+
+    &> span {
+      border-bottom: dashed 1px;
+      padding: 0 2px 3px 2px;
+      display: inline-block;
+    }
   }
 
   hr {
@@ -405,6 +409,47 @@ html, body {
     border-top: 2px solid $examples-bg;
     border-bottom: 2px solid $main-bg;
   }
+  .heading {
+    clear: both;
+
+    .left {
+      width: 50%;
+      float: left;
+      clear: left;
+      &>h1 {
+        border-top: 1px solid #ddd;
+      }
+      &>h2 {
+        padding: 1.2em 0 1.2em 25px;
+      }
+    }
+
+    .right {
+      float: right;
+      clear: right;
+      width: 50%;
+      text-align: right;
+      color: #AAA;
+      &>h1 {
+        border-top: 1px solid #333;
+      }
+      &>h2 {
+        padding: 1.2em 25px 1.2em 0;
+        border-top: 1px solid #000;
+        background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+      }
+    }
+  }
+
+  .clear {
+    clear: both;
+  }
+
+  .right h1 {
+    background-image: linear-gradient(to bottom, #444, #444);
+    border-bottom: solid 1px #555;
+  }
+
 
   table {
     margin-bottom: 1em;
@@ -472,10 +517,11 @@ html, body {
     padding-top: 1em;
     padding-bottom: 1em;
     @include text-shadow(0 1px 0 lighten($aside-notice-bg, 15%));
-    margin-top: 1.5em;
+    margin-top: 1.4em;
     margin-bottom: 1.5em;
     background: $aside-notice-bg;
     line-height: 1.6;
+    clear: left;
 
     &.warning {
       background-color: $aside-warning-bg;
@@ -526,6 +572,8 @@ html, body {
     background-color: $code-bg;
     color: #fff;
 
+    position: relative;
+
     padding: 2em $main-padding;
     margin: 0;
     width: $examples-width;
@@ -549,12 +597,30 @@ html, body {
 
   pre {
     @extend %code-font;
+
+    &::after {
+      content: " ";
+      position: absolute;
+      background: #eaf2f6;
+      top: -3px;
+      left: -10px;
+      width: 20px;
+      z-index: 10000;
+      height: 20px;
+      transform: skew(-45deg, 0);
+    }
+  }
+
+  blockquote {
+    border-top: 1px solid #AAA;
+    padding: 0 !important;
+    margin: 0;
   }
 
   blockquote {
     &>p {
       background-color: $code-annotation-bg;
-      border-radius: 5px;
+      //border-radius: 5px;
       padding: $code-annotation-padding;
       color: #ccc;
       border-top: 1px solid #000;
