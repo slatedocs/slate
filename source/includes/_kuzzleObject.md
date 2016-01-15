@@ -741,6 +741,16 @@ kuzzle.replayQueue();
 
 Replays the requests queued during offline mode. Works only if the SDK is not in a ``disconnected`` state, and if the ``autoReplay`` option is set to ``false``.
 
+## setDefaultIndex
+
+``js
+kuzzle.setDefaultIndex('index');
+``
+
+> Returns the kuzzle object
+
+Set the default data index. Has the same effect than the `defaultIndex` constructor option.
+
 ## setHeaders
 
 ```js
