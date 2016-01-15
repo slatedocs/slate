@@ -506,6 +506,7 @@ html, body {
     border-radius: 3px;
     @extend %break-words;
     @extend %code-font;
+    word-break: normal;
   }
 
   pre>code {
