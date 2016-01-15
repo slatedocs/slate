@@ -50,6 +50,31 @@
     $('.content').imagesLoaded( function() {
       global.toc.calculateHeights();
     });
+
+    $('h4').each(function(key, node) {
+      console.log(node)
+      $(node).html(
+        '<span>' +
+        $(node).text() +
+        '</span>'
+      )
+    })
+
+    $('h1, h2, h3, h5, h6').each(function(key, node) {
+      console.log('1',node)
+      if (key !== 0) {
+        $(node).replaceWith(
+          '<div class="heading">' +
+          '<div class="left">' +
+          node.outerHTML +
+          '</div>' +
+          '<div class="right">' +
+          node.outerHTML +
+          '</div>' +
+          '<div class="clear"></div>' +
+          '</div>'
+        )
+      }
+    })
   });
 })(window);
-
