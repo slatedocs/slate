@@ -143,7 +143,7 @@ EXEMPLO DE CORPO DA RESPOSTA
 
 ```
 
-Retorna uma lista em JSON contendo todos os CNABs de retorno que pertencentem a sua Conta de Serviço.
+Retorna uma lista em JSON contendo todos os CNABs de retorno que pertencem a sua Conta de Serviço.
 
 ## Criação de CNAB de Retorno
 
