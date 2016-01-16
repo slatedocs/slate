@@ -238,12 +238,12 @@ It is only possible to submit variables that belong to the main dataset. That is
 
 `/datasets/{id}/variables/search/{?q}`
 
-On GET will return a Crunch Order with the variables matching the `token` in the URL. The results will be under the "Search Results" group containing the urls for the matching variables.
+On GET will return a Crunch Order with the variables matching the `q` token in the URL. The results will be under the "Search Results" group containing the urls for the matching variables.
 
 ```json
 {
     "element": "shoji:view",
-    "self": "https://beta.crunch.io/api/datasets/4e9a00/variables/search/something/",
+    "self": "https://beta.crunch.io/api/datasets/4e9a00/variables/search/?q=something",
     "description": "Returns a view with a group containing all the variables that match the given query",
     "value": {
         "groups": [
