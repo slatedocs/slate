@@ -225,7 +225,7 @@ PUT the `value` with a "groups" view. The value will overwrite the current weigh
 {
   "groups": [{
     "group": "weight_variables",
-    "entities": [<var_url>...]
+    "entities": ["https://beta.crunch.io/api/datasets/42d0a3/variables/42229f"]
   }]
 }
 ```
