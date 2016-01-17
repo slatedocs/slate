@@ -797,20 +797,11 @@ augur.withdrawEther(to, value[, onSent, onSuccess, onFailed]);
 ### [cash contract](https://github.com/AugurProject/augur-core/blob/master/src/data%20and%20api/cash.se)
 #### sendCash(receiver, value[, onSent, onSuccess, onFailed])
 
-.
-
 #### sendCashFrom(to, value, from[, onSent, onSuccess, onFailed])
-
-.
 
 #### depositEther(value[, onSent, onSuccess, onFailed])
 
-.
-
 #### withdrawEther(to, value[, onSent, onSuccess, onFailed])
-
-.
-
 
 ```javascript
 // checkQuorum contract
@@ -843,7 +834,7 @@ augur.buyShares(augur.branches.dev, marketId, outcomeId, amount, null, null, con
 
 sellShares(branch, market, outcome, amount[, nonce, limit, onSent, onSuccess, onFailed])
 ```
-### [buy&sellShares contract]
+### [buy&sellShares contract](https://github.com/AugurProject/augur-core/blob/master/src/functions/buy%26sellShares.se)
 #### buyShares(branch, market, outcome, amount[, nonce, limit, onSent, onSuccess, onFailed])
 
 ```javascript
