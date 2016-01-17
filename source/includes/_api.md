@@ -527,158 +527,155 @@ Gets the total amount of Reputation issued on branch `branch` by `reportPeriod`.
 
 ```javascript
 // markets contract
-augur.getSimulatedBuy(market, outcome, amount, function (simulation) { /* ... */ });
+var marketId = "0xacc29bf675e03383eaf9beebcc975cdcbefda75322640d67baf3b04d6af198a";
+var outcomeId = 5; // 9-outcome categorical market
+var amount = 4;
+augur.getSimulatedBuy(marketId, outcomeId, amount, function (simulation) { /* ... */ });
 // example output:
-simulation =
+simulation = ["1.22497628703421360092", "0.5119122035959891813"] // [cost, price]
 
-augur.getSimulatedSell(market, outcome, amount, function (simulation) { /* ... */ });
+augur.getSimulatedSell(marketId, outcomeId, amount, function (simulation) { /* ... */ });
 // example output:
-simulation =
+simulation = ["0.27632515684523433055", "0.03172161728914410592"] // [cost, price]
 
-augur.lsLmsr(market, function (cost) { /* ... */ });
+augur.lsLmsr(marketId, function (cost) { /* ... */ });
 // example output:
-cost =
+cost = "32.66160518907426017564"
 
-augur.getMarketEvents(market, function (marketEvents) { /* ... */ });
+augur.getMarketEvents(marketId, function (marketEvents) { /* ... */ });
 // example output:
-marketEvents = 
+marketEvents = ["-0xa65427afe1fc912e973d8dac2a83487aea5f5707a74c3168afb56e5a95b760ea"]
 
-augur.getNumEvents(market, function (numEvents) { /* ... */ });
+augur.getNumEvents(marketId, function (numEvents) { /* ... */ });
 // example output:
-numEvents =
+numEvents = "1"
 
-augur.getBranchID(market, function (branchID) { /* ... */ });
+augur.getBranchID(marketId, function (branchID) { /* ... */ });
 // example output:
-branchID = 
+branchID = "0xf69b5"
 
-augur.getCurrentParticipantNumber(market, function (currentParticipationNumber) { /* ... */ });
+augur.getCurrentParticipantNumber(marketId, function (currentParticipantNumber) { /* ... */ });
 // example output:
-currentParticipationNumber = 
+currentParticipantNumber = "1"
 
-augur.getMarketNumOutcomes(market, function (marketNumOutcomes) { /* ... */ });
+augur.getMarketNumOutcomes(marketId, function (marketNumOutcomes) { /* ... */ });
 // example output:
-marketNumOutcomes = 
+marketNumOutcomes = "9"
 
-augur.getParticipantSharesPurchased(market, participantNumber, outcome, function (participantSharesPurchased) { /* ... */ });
+var participantNumber = "0";
+augur.getParticipantSharesPurchased(marketId, participantNumber, outcomeId, function (participantSharesPurchased) { /* ... */ });
 // example output:
-participantSharesPurchased = 
+participantSharesPurchased = "4"
 
-augur.getSharesPurchased(market, outcome, function (sharesPurchased) { /* ... */ });
+augur.getSharesPurchased(marketId, outcomeId, function (sharesPurchased) { /* ... */ });
 // example output:
-sharesPurchased = 
+sharesPurchased = "32.24854252438022522758"
 
-augur.getWinningOutcomes(market, function (winningOutcomes) { /* ... */ });
+augur.getWinningOutcomes(marketId, function (winningOutcomes) { /* ... */ });
 // example output:
-winningOutcomes = 
+winningOutcomes = ["0", "0", "0", "0", "0", "0", "0", "0", "0"]
 
-augur.price(market, outcome, function (price) { /* ... */ });
+augur.price(marketId, outcomeId, function (price) { /* ... */ });
 // example output:
-price = 
+price = "0.4882160701306164927"
 
-augur.getParticipantNumber(market, address, function (participantNumber) { /* ... */ });
+var address = "0x05ae1d0ca6206c6168b42efcd1fbe0ed144e821b";
+augur.getParticipantNumber(marketId, address, function (participantNumber) { /* ... */ });
 // example output:
-participantNumber = 
+participantNumber = "0"
 
-augur.getParticipantID(market, participantNumber, function (participantID) { /* ... */ });
+augur.getParticipantID(marketId, participantNumber, function (participantID) { /* ... */ });
 // example output:
-participantID = 
+participantID = "0x05ae1d0ca6206c6168b42efcd1fbe0ed144e821b"
 
-augur.getAlpha(market, function (alpha) { /* ... */ });
+augur.getAlpha(marketId, function (alpha) { /* ... */ });
 // example output:
-alpha = 
+alpha = "0.00790000000000000001"
 
-augur.getCumScale(market, function (cumScale) { /* ... */ });
+augur.getCumScale(marketId, function (cumScale) { /* ... */ });
 // example output:
-cumScale = 
+cumScale = "0.00000000000000000005"
 
-augur.getTradingPeriod(market, function (tradingPeriod) { /* ... */ });
+augur.getTradingPeriod(marketId, function (tradingPeriod) { /* ... */ });
 // example output:
-tradingPeriod = 
+tradingPeriod = "1075"
 
-augur.getTradingFee(market, function (tradingFee) { /* ... */ });
+augur.getTradingFee(marketId, function (tradingFee) { /* ... */ });
 // example output:
-tradingFee = 
+tradingFee = "0.00999999999999999999"
 ```
 ### [markets contract](https://github.com/AugurProject/augur-core/blob/master/src/data%20and%20api/markets.se)
-### getSimulatedBuy(market, outcome, amount[, callback])
+#### getSimulatedBuy(market, outcome, amount[, callback])
 
-.
+Gets "simulated" results for the proposed buy from the automated market maker, without actually making the trade.  Returns an array with 2 elements: the cost of the trade, and the current LS-LMSR price.
 
-### getSimulatedSell(market, outcome, amount[, callback])
+#### getSimulatedSell(market, outcome, amount[, callback])
 
-.
+Gets "simulated" results for the proposed sale from the automated market maker, without actually making the trade.  Returns an array with 2 elements: the cost of the trade, and the current LS-LMSR price.
 
-### lsLmsr(market[, callback])
+#### lsLmsr(market[, callback])
 
-.
+Gets the current value of the LS-LMSR's cost function for `market`.
 
-### getMarketInfo(market[, callback])
+#### getMarketEvents(market[, callback])
 
-.
+Gets an array of event IDs included in `market`.  (Note: only combinatorial markets have more than one event.)
 
-### getMarketsInfo([options, callback])
+#### getNumEvents(market[, callback])
 
-.
+Get the number of events included in `market`.  (Note: only combinatorial markets have more than one event.)
 
-### getMarketEvents(market[, callback])
+#### getBranchID(market[, callback])
 
-.
+Gets the branch ID of `market`.
 
-### getNumEvents(market[, callback])
+#### getCurrentParticipantNumber(market[, callback])
 
-.
+Gets the current number of participants (traders) in `market`, starting from 0.  (i.e., if there is a single trader, then he is assigned participant number 0, and the "current participant number" is 1.)
 
-### getBranchID(market[, callback])
+#### getMarketNumOutcomes(market[, callback])
 
-.
+Gets the total number of outcomes for `market`.  For binary and scalar markets, this is 2.  For categorical markets, this is equal to the number of categories (choices).  For combinatorial markets, this is the number of possible outcome combinations.
 
-### getCurrentParticipantNumber(market[, callback])
+#### getParticipantSharesPurchased(market, participantNumber, outcome[, callback])
 
-.
+The number of shares of `outcome` in `market` purchased by trader number `participantNumber`.  (Note: you can look up `participantNumber` using `augur.getParticipantNumber`.)
 
-### getMarketNumOutcomes(market[, callback])
+#### getSharesPurchased(market, outcome[, callback])
 
-.
+The total number of shares purchased (by all traders) of `outcome` in `market`.
 
-### getParticipantSharesPurchased(market, participantNumber, outcome[, callback])
+#### getWinningOutcomes(market[, callback])
 
-.
+Gets an array of outcomes showing the winning/correct outcome, or an array of all zeros if `market` has not yet been resolved.
 
-### getSharesPurchased(market, outcome[, callback])
+#### price(market, outcome[, callback])
 
-.
+The LS-LMSR's current instantaneous price for `outcome` in `market`.
 
-### getWinningOutcomes(market[, callback])
+#### getParticipantNumber(market, address[, callback])
 
-.
+Looks up the participant number for account `address`.
 
-### price(market, outcome[, callback])
+#### getParticipantID(market, participantNumber[, callback])
 
-.
+Looks up the account address for `participantNumber`.
 
-### getParticipantNumber(market, address[, callback])
+#### getAlpha(market[, callback])
 
-.
+Gets the value of the LS-LMSR parameter alpha for `market`.
 
-### getParticipantID(market, participantNumber[, callback])
+#### getCumScale(market[, callback])
 
-.
+Gets the cumulative scale for `market`.
 
-### getAlpha(market[, callback])
+#### getTradingPeriod(market[, callback])
 
-.
+Gets the trading period for `market`.
 
-### getCumScale(market[, callback])
+#### getTradingFee(market[, callback])
 
-.
-
-### getTradingPeriod(market[, callback])
-
-.
-
-### getTradingFee(market[, callback])
-
-.
+Gets the trading fee for `market`, expressed as a proportion.
 
 ```javascript
 // reporting contract
@@ -756,6 +753,25 @@ getNonce(id[, callback])
 buyShares(branch, market, outcome, amount[, nonce, limit, onSent, onSuccess, onFailed])
 sellShares(branch, market, outcome, amount[, nonce, limit, onSent, onSuccess, onFailed])
 ```
+
+```
+augur.buyShares(augur.branches.dev, marketId, outcomeId, amount, null, null, console.log, console.log, console.log)
+> { txHash: '0x5b99e6d18716da6be2c9c50795d92c0b716eb0a0012dcf2e73f96b9c0ee1b2b2',
+  callReturn: '1.23722604990455573688' }
+> { nonce: '0x4dc',
+  blockHash: '0xf32b439e5993add2af5133fad6c8b35c6552f16f4279ca7aeb3acc9def7c3c2d',
+  blockNumber: '0x6a2c',
+  transactionIndex: '0x0',
+  from: '0x05ae1d0ca6206c6168b42efcd1fbe0ed144e821b',
+  to: '0x2e5a882aa53805f1a9da3cf18f73673bca98fa0f',
+  value: '0x0',
+  gas: '0x2fd618',
+  gasPrice: '0xba43b7400',
+  input: '0x7d9e764100000000000000000000000000000000000000000000000000000000000f69b50acc29bf675e03383eaf9beebcc975cdcbefda75322640d67baf3b04d6af198a0000000000000000000000000000000000000000000000000000000000000005000000000000000000000000000000000000000000000004333333333333333300000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000',
+  callReturn: '1.23722604990455573688',
+  txHash: '0x5b99e6d18716da6be2c9c50795d92c0b716eb0a0012dcf2e73f96b9c0ee1b2b2' }
+```
+
 
 ```javascript
 // createBranch contract
