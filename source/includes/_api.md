@@ -743,94 +743,41 @@ Calculates the SHA256 hash of `ballot` using `salt`.
 
 ```javascript
 // buy&sellShares contract
-getNonce(id[, callback])
-buyShares(branch, market, outcome, amount[, nonce, limit, onSent, onSuccess, onFailed])
-sellShares(branch, market, outcome, amount[, nonce, limit, onSent, onSuccess, onFailed])
+augur.getNonce(id, function (nonce) { /* ... */ });
+// example output:
+"0"
 ```
+### [buy&sellShares contract](https://github.com/AugurProject/augur-core/blob/master/src/functions/buy%26sellShares.se)
+#### getNonce(id[, callback])
 
-```
-augur.buyShares(augur.branches.dev, marketId, outcomeId, amount, null, null, console.log, console.log, console.log)
-> { txHash: '0x5b99e6d18716da6be2c9c50795d92c0b716eb0a0012dcf2e73f96b9c0ee1b2b2',
-  callReturn: '1.23722604990455573688' }
-> { nonce: '0x4dc',
-  blockHash: '0xf32b439e5993add2af5133fad6c8b35c6552f16f4279ca7aeb3acc9def7c3c2d',
-  blockNumber: '0x6a2c',
-  transactionIndex: '0x0',
-  from: '0x05ae1d0ca6206c6168b42efcd1fbe0ed144e821b',
-  to: '0x2e5a882aa53805f1a9da3cf18f73673bca98fa0f',
-  value: '0x0',
-  gas: '0x2fd618',
-  gasPrice: '0xba43b7400',
-  input: '0x7d9e764100000000000000000000000000000000000000000000000000000000000f69b50acc29bf675e03383eaf9beebcc975cdcbefda75322640d67baf3b04d6af198a0000000000000000000000000000000000000000000000000000000000000005000000000000000000000000000000000000000000000004333333333333333300000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000',
-  callReturn: '1.23722604990455573688',
-  txHash: '0x5b99e6d18716da6be2c9c50795d92c0b716eb0a0012dcf2e73f96b9c0ee1b2b2' }
-```
-
-
-```javascript
-// createBranch contract
-// https://github.com/AugurProject/augur-core/blob/master/src/functions/createBranch.se
-createSubbranch(description, periodLength, parent, tradingFee[, onSent, onSuccess, onFailed])
-```
-
-```javascript
-// sendReputation contract
-// https://github.com/AugurProject/augur-core/blob/master/src/functions/sendReputation.se
-sendReputation(branch, to, value[, onSent, onSuccess, onFailed])
-```
+Gets a trading nonce.
 
 ```javascript
 // makeReports contract
-// https://github.com/AugurProject/augur-core/blob/master/src/functions/makeReports.se
-report(branch, report, reportPeriod, salt[, onSent, onSuccess, onFailed])
-submitReportHash(branch, reportHash, reportPeriod[, onSent, onSuccess, onFailed])
-checkReportValidity(branch, report, reportPeriod[, onSent, onSuccess, onFailed])
-slashRep(branch, reportPeriod, salt, report, reporter[, onSent, onSuccess, onFailed])
+var branchId = augur.branches.dev;
+var report = ["1", "2", "1", "1.5", "1", "1.5", "2", "1", "1", "1.5", "1", "1"];
+var reportPeriod = 397;
+augur.checkReportValidity(branchId, report, reportPeriod, function (isValid) { /* ... */ });
+// example output:
+isValid = "1"
 ```
+### [makeReports contract](https://github.com/AugurProject/augur-core/blob/master/src/functions/makeReports.se)
+#### checkReportValidity(branch, report, reportPeriod[, callback])
 
-```javascript
-// createEvent contract
-// https://github.com/AugurProject/augur-core/blob/master/src/functions/createEvent.se
-createEvent(branch, description, expDate, minValue, maxValue, numOutcomes[, onSent, onSuccess, onFailed])
-```
-
-```javascript
-// createMarket contract
-// https://github.com/AugurProject/augur-core/blob/master/src/functions/createMarket.se
-createMarket(branch, description, alpha, liquidity, tradingFee, events[, onSent, onSuccess, onFailed])
-```
-
-```javascript
-// closeMarket contract
-// https://github.com/AugurProject/augur-core/blob/master/src/functions/closeMarket.se
-closeMarket(branch, market[, onSent, onSuccess, onFailed])
-```
-
-```javascript
-// trade events (price history data)
-getPrices(market, callback)
-getClosingPrices(market, callback)
-getPriceHistory(branch, callback)
-getOutcomePriceHistory(market, outcome, callback)
-getMarketPriceHistory(market, callback)
-```
-
-```javascript
-// market creation events (block numbers)
-getCreationBlocks(branch, callback)
-getMarketCreationBlock(market, callback)
-```
+Checks the validity of `report` made on `branch` for `reportPeriod`.  A valid report is the correct length, is made before 2 reporting periods have elapsed, and is created by a valid reporting address.  Returns 1 if valid, -1 if invalid because the report is the wrong length (i.e., doesn't match the number of events being reported on), or -2 if invalid for another reason.
 
 Transaction API
 ---------------
 ```javascript
 // faucets contract
-reputationFaucet([onSent, onSuccess, onFailed])
+var branchId = augur.branches.dev;
+augur.reputationFaucet(branchId, onSent, onSuccess, onFailed);
+// example outputs:
 ```
 ### [faucets contract](https://github.com/AugurProject/augur-core/blob/master/src/functions/faucets.se)
-#### reputationFaucet([onSent, onSuccess, onFailed])
+#### reputationFaucet(branch[, onSent, onSuccess, onFailed])
 
-When invoked, grants 47 free Reputation!  (Only available during testing, obviously...)
+When invoked, grants 47 free Reputation.  (This is only available during testing, of course.)
 
 ```javascript
 // cash contract
@@ -877,48 +824,65 @@ augur.checkQuorum(branchId, onSent, onSuccess, onFailed)
 
 ```javascript
 // buy&sellShares contract
-getNonce(id[, callback])
-buyShares(branch, market, outcome, amount[, nonce, limit, onSent, onSuccess, onFailed])
+augur.buyShares(augur.branches.dev, marketId, outcomeId, amount, null, null, console.log, console.log, console.log)
+// example outputs:
+{ txHash: '0x5b99e6d18716da6be2c9c50795d92c0b716eb0a0012dcf2e73f96b9c0ee1b2b2',
+  callReturn: '1.23722604990455573688' }
+{ nonce: '0x4dc',
+  blockHash: '0xf32b439e5993add2af5133fad6c8b35c6552f16f4279ca7aeb3acc9def7c3c2d',
+  blockNumber: '0x6a2c',
+  transactionIndex: '0x0',
+  from: '0x05ae1d0ca6206c6168b42efcd1fbe0ed144e821b',
+  to: '0x2e5a882aa53805f1a9da3cf18f73673bca98fa0f',
+  value: '0x0',
+  gas: '0x2fd618',
+  gasPrice: '0xba43b7400',
+  input: '0x7d9e764100000000000000000000000000000000000000000000000000000000000f69b50acc29bf675e03383eaf9beebcc975cdcbefda75322640d67baf3b04d6af198a0000000000000000000000000000000000000000000000000000000000000005000000000000000000000000000000000000000000000004333333333333333300000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000',
+  callReturn: '1.23722604990455573688',
+  txHash: '0x5b99e6d18716da6be2c9c50795d92c0b716eb0a0012dcf2e73f96b9c0ee1b2b2' }
+
 sellShares(branch, market, outcome, amount[, nonce, limit, onSent, onSuccess, onFailed])
+```
+### [buy&sellShares contract]
+#### buyShares(branch, market, outcome, amount[, nonce, limit, onSent, onSuccess, onFailed])
 
+```javascript
 // createBranch contract
-// https://github.com/AugurProject/augur-core/blob/master/src/functions/createBranch.se
 createSubbranch(description, periodLength, parent, tradingFee[, onSent, onSuccess, onFailed])
+```
+### [createBranch contract](https://github.com/AugurProject/augur-core/blob/master/src/functions/createBranch.se)
 
+```javascript
 // sendReputation contract
-// https://github.com/AugurProject/augur-core/blob/master/src/functions/sendReputation.se
 sendReputation(branch, to, value[, onSent, onSuccess, onFailed])
+```
+### [sendReputation contract](https://github.com/AugurProject/augur-core/blob/master/src/functions/sendReputation.se)
 
+```javascript
 // makeReports contract
-// https://github.com/AugurProject/augur-core/blob/master/src/functions/makeReports.se
 report(branch, report, reportPeriod, salt[, onSent, onSuccess, onFailed])
 submitReportHash(branch, reportHash, reportPeriod[, onSent, onSuccess, onFailed])
-checkReportValidity(branch, report, reportPeriod[, onSent, onSuccess, onFailed])
 slashRep(branch, reportPeriod, salt, report, reporter[, onSent, onSuccess, onFailed])
-
-// createEvent contract
-// https://github.com/AugurProject/augur-core/blob/master/src/functions/createEvent.se
-createEvent(branch, description, expDate, minValue, maxValue, numOutcomes[, onSent, onSuccess, onFailed])
-
-// createMarket contract
-// https://github.com/AugurProject/augur-core/blob/master/src/functions/createMarket.se
-createMarket(branch, description, alpha, liquidity, tradingFee, events[, onSent, onSuccess, onFailed])
-
-// closeMarket contract
-// https://github.com/AugurProject/augur-core/blob/master/src/functions/closeMarket.se
-closeMarket(branch, market[, onSent, onSuccess, onFailed])
-
-// trade events (price history data)
-getPrices(market, callback)
-getClosingPrices(market, callback)
-getPriceHistory(branch, callback)
-getOutcomePriceHistory(market, outcome, callback)
-getMarketPriceHistory(market, callback)
-
-// market creation events (block numbers)
-getCreationBlocks(branch, callback)
-getMarketCreationBlock(market, callback)
 ```
+### [makeReports contract](https://github.com/AugurProject/augur-core/blob/master/src/functions/makeReports.se)
+
+```javascript
+// createEvent contract
+createEvent(branch, description, expDate, minValue, maxValue, numOutcomes[, onSent, onSuccess, onFailed])
+```
+### [createEvent contract](https://github.com/AugurProject/augur-core/blob/master/src/functions/createEvent.se)
+
+```javascript
+// createMarket contract
+createMarket(branch, description, alpha, liquidity, tradingFee, events[, onSent, onSuccess, onFailed])
+```
+### [createMarket contract](https://github.com/AugurProject/augur-core/blob/master/src/functions/createMarket.se)
+
+```javascript
+// closeMarket contract
+closeMarket(branch, market[, onSent, onSuccess, onFailed])
+```
+### [closeMarket contract](https://github.com/AugurProject/augur-core/blob/master/src/functions/closeMarket.se)
 
 ```javascript
 createEvent(eventObject)
@@ -1005,6 +969,24 @@ price(market, outcome[, callback]): Get the current (instantaneous) price of an 
 0.55415210523642599583
 
 getWinningOutcomes(market[, callback])
+```
+
+Events/logging API
+------------------
+
+```javascript
+// trade events (price history data)
+getPrices(market, callback)
+getClosingPrices(market, callback)
+getPriceHistory(branch, callback)
+getOutcomePriceHistory(market, outcome, callback)
+getMarketPriceHistory(market, callback)
+```
+
+```javascript
+// market creation events (block numbers)
+getCreationBlocks(branch, callback)
+getMarketCreationBlock(market, callback)
 ```
 
 Invoke
