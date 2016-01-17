@@ -262,58 +262,655 @@ closingPrices = {
 
 Gets the closing price (last trade price of the day) as well as the total volume traded over the day, ordered by timestamp (most recent record last).  `callback` is required; `getClosingPrices` is asynchronous-only.
 
-Full API
+Call API
 --------
 ```javascript
-/**
- * All Augur API methods have optional callback(s) as their
- * final parameter.
- */
+// cash contract
+var address = "0x639b41c4d3d399894f2a57894278e1653e7cd24c";
+augur.getCashBalance(address, function (cashBalance) { /* ... */ });
+// example output:
+cashBalance = "93016.83621687256922549981"
+```
+### [cash contract](https://github.com/AugurProject/augur-core/blob/master/src/data%20and%20api/cash.se)
+#### getCashBalance(address[, callback])
 
-depositEther(value[, onSend, onSuccess, onFailed])
+Gets the play money (CASH) balance of the user account `address`.
 
-withdrawEther(to, value[, onSend, onSuccess, onFailed])
+```javascript
+// info contract
+var marketId = "0x9368ff3e9ce1c0459b309fac6dd4e69229b91a42d736197278acab402980fd4";
+augur.getCreator(marketId, function (creator) { /* ... */ });
+// example output:
+creator = "0x639b41c4d3d399894f2a57894278e1653e7cd24c"
 
-getCashBalance(address[, callback])
+augur.getCreationFee(marketId, function (creationFee) { /* ... */ });
+// example output:
+creationFee = "16"
 
-getRepBalance(branch, address[, callback])
+augur.getDescription(marketId, function (description) { /* ... */ });
+// example output:
+description = "Will the Sun turn into a red giant and engulf the Earth by the end of 2016?"
+```
+### [info contract](https://github.com/AugurProject/augur-core/blob/master/src/data%20and%20api/info.se)
+#### getCreator(id[, callback])
 
-getBranches([callback])
+Gets the address of the account that created `id` (a market or event ID).
 
-getMarkets(branch[, callback])
+#### getCreationFee(id[, callback])
 
-getMarketInfo(market[, callback])
+Gets the fee paid by the creator of `id` (a market or event ID).
 
-getMarketEvents(market[, callback])
+#### getDescription(item[, callback])
 
-getNumEvents(market[, callback])
+Gets the plaintext (UTF-8) description of `item` (a market or event ID).
 
-getEventInfo(event[, callback])
+```javascript
+// branches contract
+var branchId = augur.branches.dev;
+augur.getNumBranches(function (numBranches) { /* ... */ });
+// example output:
 
-getBranchID(branch[, callback])
 
+augur.getBranches(function (branches) { /* ... */ });
+// example output:
+branches = ["0xf69b5"]
+
+augur.getMarkets(branchId, function (markets) { /* ... */ })
+// example output:
+markets = ["-0x519bcdaa60e7259143402153efb9825fc37a5c3d8eee0445b987453d2a23919c",
+           "-0xacfe5fbc7654fee0b8873e2db464f5c189a1fa9e6e0ea5f5fa44bf6a08832f7a",
+           "-0xb73f41b31a160852d059c870d1c4d205da9b72db6c53588d4426ffe261ccc745",
+           "-0x40189b8366a578e807f1381088de10bb4660505ff37d9cfa4be8d2a4eb39c74a",
+           "-0x5a2d3e163636f0f35ff25bfe9a87d62185228c970acaae71eb1a469132631406",
+           "-0xd7850ae02e616824cfaa2dfbe6129303752e31a7fdbd559f6c4466ec1594f7c6",
+           "-0xb52debd79c5baaeec50ef7fa85e9f7b7fca6ddecba38810b070aa4bb8ef06952",
+           "-0x5680dadb064bd5942e827dc70b389d2d24a63bd186279c0bea6e2ab46444c4a",
+           "-0x98e1eb72b4c1a5973ab2a443ad2ca0b7a90107c2dc2594c33daea307ec39aa1c",
+           "0x9368ff3e9ce1c0459b309fac6dd4e69229b91a42d736197278acab402980fd4",
+           "-0x679b4b3112994a7c034ae7f6fb4b5e7bcb4a6923e969c24696ee823fbe4e5524"]
+
+augur.getPeriodLength(branchId, function (periodLength) { /* ... */ })
+// example output:
+periodLength = "1800"
+
+augur.getVotePeriod(branchId, function (reportPeriod) { /* ... */ })
+// example output:
+reportPeriod = "397"
+
+augur.getNumMarkets(branchId, function (numMarkets) { /* ... */ })
+// example output:
+numMarkets = "45"
+
+augur.getMinTradingFee(branchId, function (minTradingFee) { /* ... */ })
+// example output:
+minTradingFee = "0.0078125"
+
+augur.getBranch(0, function (branch) { /* ... */ })
+// example output:
+branch = "0xf69b5"
+```
+### [branches contract](https://github.com/AugurProject/augur-core/blob/master/src/data%20and%20api/branches.se)
+#### augur.getNumBranches([callback])
+
+Looks up the total number of branches that exist on the current network.
+
+#### augur.getBranches([callback])
+
+Gets an array of all branch IDs on the current network.
+
+#### augur.getMarkets(branch[, callback])
+
+Gets an array of all markets on the specified branch ID `branch`.
+
+#### augur.getPeriodLength(branch[, callback])
+
+Gets the period length for the specified branch ID `branch`.
+
+#### augur.getVotePeriod(branch[, callback])
+
+Looks up the number of the current vote period on the specified branch ID `branch`.
+
+#### augur.getNumMarkets(branch[, callback])
+
+Gets the number of markets on the specified branch ID `branch`.
+
+#### augur.getMinTradingFee(branch[, callback])
+
+Gets the minimum trading fee allowed on the specified branch ID `branch`.
+
+#### augur.getBranch(branchNumber[, callback])
+
+Gets branch ID for the branch with index `branchNumber`.  (Branches are stored as an "array" on-contract; `branchNumber` is the index of the branch within this array.)
+
+```javascript
+// events contract
+var eventId = "-0x5fa67764c533d97e33ef2cbdc37cd11eb5f187b47c89c88d3d81250ba834cb3";
+augur.getEventInfo(eventId, function (eventInfo) { /* ... */ });
+// example output:
+eventInfo = ["0xf69b5", "13801186", "0", "1", "2", "2"]
+
+augur.getEventBranch(eventId, function (eventBranch) { /* ... */ });
+// example output:
+eventBranch = "0xf69b5"
+
+augur.getExpiration(eventId, function (expiration) { /* ... */ });
+// example output:
+expiration = "13801186"
+
+augur.getOutcome(eventId, function (outcome) { /* ... */ });
+// example output:
+outcome = "0"
+
+augur.getMinValue(eventId, function (minValue) { /* ... */ });
+// example output:
+minValue = "1"
+
+augur.getMaxValue(eventId, function (maxValue) { /* ... */ });
+// example output:
+maxValue = "2"
+
+augur.getNumOutcomes(eventId, function (numOutcomes) { /* ... */ });
+// example output:
+numOutcomes = "2"
+```
+### [events contract](https://github.com/AugurProject/augur-core/blob/master/src/data%20and%20api/events.se)
+#### getEventInfo(eventId[, callback])
+
+Fetches an array of basic information about event `eventId`: branch ID, expiration block number, outcome (`"0"` if not yet resolved), minimum value, maximum value, and number of outcomes.
+
+#### getEventBranch(eventId[, callback])
+
+Gets the branch ID of event `eventId`.
+
+#### getExpiration(eventId[, callback])
+
+Gets the expiration block number of event `eventId`.
+
+#### getOutcome(eventId[, callback])
+
+Gets the outcome (`"0"` if the event is not yet resolved) of event `eventId`.
+
+#### getMinValue(eventId[, callback])
+
+The minimum possible value for event `eventId`.  For binary (yes/no) events, the minimum value is `1`.
+
+#### getMaxValue(eventId[, callback])
+
+The minimum possible value for event `eventId`.  For binary (yes/no) events, the maximum value is `2`.
+
+#### getNumOutcomes(eventId[, callback])
+
+The total number of outcomes for this event.  Binary (yes/no) and scalar (numerical) events always have 2 outcomes; categorical events have more than 2 outcomes.
+
+```javascript
+// expiringEvents contract
+var branchId = augur.branches.dev;
+var reportPeriod = 397;
+augur.getEvents(branchId, reportPeriod, function (events) { /* ... */ });
+// example output:
+events = ["-0xc6481ca18bec443c7831578e5f2de02594041041e0abbf0e8ecafd70197fd1a5",
+          "-0xea03728786ca7ddcb91ec3303723ac794b7bcbcb9b3ad48943e797885c6d05ab",
+          "-0xdb633b6cdbfbd00c85ca1f093764dcb2b2f0b5284c2324baa6008a3d73e0a1c",
+          "-0xd0dbd235c8de8cccd7d8ef96b460c7dc2d19539fb45778f7897c412d4c0a3683",
+          "-0x16fe3cb92062b9f43ef9988eb871f346960ff23b5c16222c1ebe5a5e2fc908c6",
+          "-0x72162079f64916bccf580430cc1788d9b0873fd1e7de633d118c2d1e931eb47b",
+          "-0x80da06cc9b94b559880aab761a40c88f1cc9c9eae7124301eaa246688ed8eee6",
+          "-0x8e33043e75d6b8bc9ba5b60edaa159e25f0c84172730026d7c875e35377da13c",
+          "-0x2e78a12ce25c171d32d649498babc011152b6509d5880568d77009826c6660e3",
+          "-0xd5cbab9a85c1dd2ae692b87f98faa1e4841933d604d78622bb6dbe03d8acde36",
+          "-0x7a2c24bec3f16f5edfa06ed6941569f9de70cbe33c768b02617ed89b16be8d8f",
+          "-0x399c15976085e8dcf8cb57317c1001013ce8ee5472868b1faa8657edcd1336bd" ]
+
+augur.getNumberEvents(branchId, reportPeriod, function (numberEvents) { /* ... */ });
+// example output:
+numberEvents = "12"
+
+var eventIndex = 3;
+augur.getEvent(branchId, reportPeriod, eventIndex, function (event) { /* ... */ });
+// example output:
+event = "-0xd0dbd235c8de8cccd7d8ef96b460c7dc2d19539fb45778f7897c412d4c0a3683"
+
+augur.getTotalRepReported(branchId, reportPeriod, function (totalRepReported) { /* ... */ });
+// example output:
+totalRepReported = "76"
+
+augur.getReporterBallot(branchId, reportPeriod, reporterID, function (reporterBallot) { /* ... */ });
+// example output:
+reporterBallot = ["1", "2", "1", "1.5", "1", "1.5", "2", "1", "1", "1.5", "1", "1"]
+
+var reportNum = "0";
+augur.getReport(branchId, reportPeriod, reporter, reportNum, function (report) { /* ... */ });
+// example output:
+report = "1"
+
+augur.getReportHash(branchId, reportPeriod, reporter, function (reportHash) { /* ... */ });
+// example output:
+reportHash = "-0x4480ed40f94e2cb2ca244eb862df2d350300904a96039eb53cba0e34b8ace90a"
+
+augur.getTotalReputation(branchId, reportPeriod, function (totalReputation) { /* ... */ });
+// example output:
+totalReputation = "282"
+
+```
+### [expiringEvents contract](https://github.com/AugurProject/augur-core/blob/master/src/data%20and%20api/expiringEvents.se)
+#### getEvents(branch, reportPeriod[, callback])
+
+Fetches an array of event IDs that are scheduled to be reported on during `reportPeriod`.
+
+#### getNumberEvents(branch, reportPeriod[, callback])
+
+The total number of events scheduled to be reported on during `reportPeriod`.
+
+#### getEvent(branch, reportPeriod, eventIndex[, callback])
+
+Looks up the event ID that has index `eventIndex`.
+
+#### getTotalRepReported(branch, reportPeriod[, callback])
+
+Gets the total amount of Reputation reporting during `reportPeriod`.
+
+#### getReporterBallot(branch, reportPeriod, reporterID[, callback])
+
+Fetches the ballot submitted for `reportPeriod` by address `reporterID`.
+
+#### getReport(branch, reportPeriod, reporter, reportNum[, callback])
+
+The report for reporting event number `reportNum` submitted for `reportPeriod` by address `reporter`.
+
+#### getReportHash(branch, reportPeriod, reporter[, callback])
+
+The report hash submitted for `reportPeriod` by address `reporter`.
+
+#### getTotalReputation(branch, reportPeriod[, callback])
+
+Gets the total amount of Reputation issued on branch `branch` by `reportPeriod`.  (In the live release Reputation is neither created nor destroyed, so this will be a constant value of `11000000`.)
+
+```javascript
+// markets contract
+augur.getSimulatedBuy(market, outcome, amount, function (simulation) { /* ... */ });
+// example output:
+simulation =
+
+augur.getSimulatedSell(market, outcome, amount, function (simulation) { /* ... */ });
+// example output:
+simulation =
+
+augur.lsLmsr(market, function (cost) { /* ... */ });
+// example output:
+cost =
+
+augur.getMarketEvents(market, function (marketEvents) { /* ... */ });
+// example output:
+marketEvents = 
+
+augur.getNumEvents(market, function (numEvents) { /* ... */ });
+// example output:
+numEvents =
+
+augur.getBranchID(market, function (branchID) { /* ... */ });
+// example output:
+branchID = 
+
+augur.getCurrentParticipantNumber(market, function (currentParticipationNumber) { /* ... */ });
+// example output:
+currentParticipationNumber = 
+
+augur.getMarketNumOutcomes(market, function (marketNumOutcomes) { /* ... */ });
+// example output:
+marketNumOutcomes = 
+
+augur.getParticipantSharesPurchased(market, participantNumber, outcome, function (participantSharesPurchased) { /* ... */ });
+// example output:
+participantSharesPurchased = 
+
+augur.getSharesPurchased(market, outcome, function (sharesPurchased) { /* ... */ });
+// example output:
+sharesPurchased = 
+
+augur.getWinningOutcomes(market, function (winningOutcomes) { /* ... */ });
+// example output:
+winningOutcomes = 
+
+augur.price(market, outcome, function (price) { /* ... */ });
+// example output:
+price = 
+
+augur.getParticipantNumber(market, address, function (participantNumber) { /* ... */ });
+// example output:
+participantNumber = 
+
+augur.getParticipantID(market, participantNumber, function (participantID) { /* ... */ });
+// example output:
+participantID = 
+
+augur.getAlpha(market, function (alpha) { /* ... */ });
+// example output:
+alpha = 
+
+augur.getCumScale(market, function (cumScale) { /* ... */ });
+// example output:
+cumScale = 
+
+augur.getTradingPeriod(market, function (tradingPeriod) { /* ... */ });
+// example output:
+tradingPeriod = 
+
+augur.getTradingFee(market, function (tradingFee) { /* ... */ });
+// example output:
+tradingFee = 
+```
+### [markets contract](https://github.com/AugurProject/augur-core/blob/master/src/data%20and%20api/markets.se)
+### getSimulatedBuy(market, outcome, amount[, callback])
+
+.
+
+### getSimulatedSell(market, outcome, amount[, callback])
+
+.
+
+### lsLmsr(market[, callback])
+
+.
+
+### getMarketInfo(market[, callback])
+
+.
+
+### getMarketsInfo([options, callback])
+
+.
+
+### getMarketEvents(market[, callback])
+
+.
+
+### getNumEvents(market[, callback])
+
+.
+
+### getBranchID(market[, callback])
+
+.
+
+### getCurrentParticipantNumber(market[, callback])
+
+.
+
+### getMarketNumOutcomes(market[, callback])
+
+.
+
+### getParticipantSharesPurchased(market, participantNumber, outcome[, callback])
+
+.
+
+### getSharesPurchased(market, outcome[, callback])
+
+.
+
+### getWinningOutcomes(market[, callback])
+
+.
+
+### price(market, outcome[, callback])
+
+.
+
+### getParticipantNumber(market, address[, callback])
+
+.
+
+### getParticipantID(market, participantNumber[, callback])
+
+.
+
+### getAlpha(market[, callback])
+
+.
+
+### getCumScale(market[, callback])
+
+.
+
+### getTradingPeriod(market[, callback])
+
+.
+
+### getTradingFee(market[, callback])
+
+.
+
+```javascript
+// reporting contract
+getRepBalance(branchId, address, function (repBalance) { /* ... */ });
+// example output:
+repBalance = 
+
+getRepByIndex(branchId, repIndex, function (rep) { /* ... */ });
+// example output:
+rep = 
+
+getReporterID(branchId, index, function (reporterID) { /* ... */ });
+// example output:
+reporterID = 
+
+getReputation(address, function (reputation) { /* ... */ });
+// example output:
+reputation = 
+
+getNumberReporters(branchId, function (numberReporters) { /* ... */ });
+// example output:
+numberReporters = 
+
+repIDToIndex(branchId, repID, function (repIndex) { /* ... */ });
+// example output:
+repIndex = 
+
+getTotalRep(branchId, function (totalRep) { /* ... */ });
+// example output:
+totalRep = 
+
+var ballot = ["1", "2", "1", "1.5", "1", "1.5", "2", "1", "1", "1.5", "1", "1"];
+var salt = "0xbd352b6e2858ba27d8b7639afd2e34954803338e0e54cae7dcdf93f97f315225";
+hashReport(ballot, salt, function (reportHash) { /* ... */ });
+// example output:
+reportHash = "-0x4480ed40f94e2cb2ca244eb862df2d350300904a96039eb53cba0e34b8ace90a"
+
+```
+### [reporting contract](https://github.com/AugurProject/augur-core/blob/master/src/data%20and%20api/reporting.se)
+#### getRepBalance(branch, address[, callback])
+
+.
+
+#### getRepByIndex(branch, repIndex[, callback])
+
+.
+
+#### getReporterID(branch, index[, callback])
+
+.
+
+#### getReputation(address[, callback])
+
+.
+
+#### getNumberReporters(branch[, callback])
+
+.
+
+#### repIDToIndex(branch, repID[, callback])
+
+.
+
+#### getTotalRep(branch[, callback])
+
+.
+
+#### hashReport(ballot, salt[, callback])
+
+.
+
+```javascript
+// buy&sellShares contract
 getNonce(id[, callback])
+buyShares(branch, market, outcome, amount[, nonce, limit, onSent, onSuccess, onFailed])
+sellShares(branch, market, outcome, amount[, nonce, limit, onSent, onSuccess, onFailed])
+```
 
-getCurrentParticipantNumber(market[, callback])
+```javascript
+// createBranch contract
+// https://github.com/AugurProject/augur-core/blob/master/src/functions/createBranch.se
+createSubbranch(description, periodLength, parent, tradingFee[, onSent, onSuccess, onFailed])
+```
 
-getParticipantSharesPurchased(market, participantNumber, outcome[, callback])
+```javascript
+// sendReputation contract
+// https://github.com/AugurProject/augur-core/blob/master/src/functions/sendReputation.se
+sendReputation(branch, to, value[, onSent, onSuccess, onFailed])
+```
 
-getSharesPurchased(market, outcome[, callback])
+```javascript
+// makeReports contract
+// https://github.com/AugurProject/augur-core/blob/master/src/functions/makeReports.se
+report(branch, report, reportPeriod, salt[, onSent, onSuccess, onFailed])
+submitReportHash(branch, reportHash, reportPeriod[, onSent, onSuccess, onFailed])
+checkReportValidity(branch, report, reportPeriod[, onSent, onSuccess, onFailed])
+slashRep(branch, reportPeriod, salt, report, reporter[, onSent, onSuccess, onFailed])
+```
 
-getEvents(branchId, votePeriod[, callback])
+```javascript
+// createEvent contract
+// https://github.com/AugurProject/augur-core/blob/master/src/functions/createEvent.se
+createEvent(branch, description, expDate, minValue, maxValue, numOutcomes[, onSent, onSuccess, onFailed])
+```
 
-getVotePeriod(branchId[, callback])
+```javascript
+// createMarket contract
+// https://github.com/AugurProject/augur-core/blob/master/src/functions/createMarket.se
+createMarket(branch, description, alpha, liquidity, tradingFee, events[, onSent, onSuccess, onFailed])
+```
 
-getPeriodLength(branchId[, callback])
+```javascript
+// closeMarket contract
+// https://github.com/AugurProject/augur-core/blob/master/src/functions/closeMarket.se
+closeMarket(branch, market[, onSent, onSuccess, onFailed])
+```
 
-getBranch(branchIdNumber[, callback])
+```javascript
+// trade events (price history data)
+getPrices(market, callback)
+getClosingPrices(market, callback)
+getPriceHistory(branch, callback)
+getOutcomePriceHistory(market, outcome, callback)
+getMarketPriceHistory(market, callback)
+```
 
-sendCash(receiver, value[, onSend, onSuccess, onFailed])
+```javascript
+// market creation events (block numbers)
+getCreationBlocks(branch, callback)
+getMarketCreationBlock(market, callback)
+```
 
-reputationFaucet([onSend, onSuccess, onFailed])
+Transaction API
+---------------
+```javascript
+// faucets contract
+reputationFaucet([onSent, onSuccess, onFailed])
+```
+### [faucets contract](https://github.com/AugurProject/augur-core/blob/master/src/functions/faucets.se)
+#### reputationFaucet([onSent, onSuccess, onFailed])
 
-getDescription(id[, callback])
+When invoked, grants 47 free Reputation!  (Only available during testing, obviously...)
 
+```javascript
+// cash contract
+augur.sendCash(receiver, value[, onSent, onSuccess, onFailed]);
+// example output:
+
+augur.sendCashFrom(to, value, from[, onSent, onSuccess, onFailed]);
+// example output:
+
+augur.depositEther(value[, onSent, onSuccess, onFailed]);
+// example output:
+
+augur.withdrawEther(to, value[, onSent, onSuccess, onFailed]);
+// example output:
+
+```
+### [cash contract](https://github.com/AugurProject/augur-core/blob/master/src/data%20and%20api/cash.se)
+#### sendCash(receiver, value[, onSent, onSuccess, onFailed])
+
+.
+
+#### sendCashFrom(to, value, from[, onSent, onSuccess, onFailed])
+
+.
+
+#### depositEther(value[, onSent, onSuccess, onFailed])
+
+.
+
+#### withdrawEther(to, value[, onSent, onSuccess, onFailed])
+
+.
+
+
+```javascript
+// checkQuorum contract
+var branchId = augur.branches.dev;
+augur.checkQuorum(branchId, onSent, onSuccess, onFailed)
+// example output:
+
+```
+### [checkQuorum contract](https://github.com/AugurProject/augur-core/blob/master/src/functions/checkQuorum.se)
+#### checkQuorum(branch[, onSent, onSuccess, onFailed])
+
+```javascript
+// buy&sellShares contract
+getNonce(id[, callback])
+buyShares(branch, market, outcome, amount[, nonce, limit, onSent, onSuccess, onFailed])
+sellShares(branch, market, outcome, amount[, nonce, limit, onSent, onSuccess, onFailed])
+
+// createBranch contract
+// https://github.com/AugurProject/augur-core/blob/master/src/functions/createBranch.se
+createSubbranch(description, periodLength, parent, tradingFee[, onSent, onSuccess, onFailed])
+
+// sendReputation contract
+// https://github.com/AugurProject/augur-core/blob/master/src/functions/sendReputation.se
+sendReputation(branch, to, value[, onSent, onSuccess, onFailed])
+
+// makeReports contract
+// https://github.com/AugurProject/augur-core/blob/master/src/functions/makeReports.se
+report(branch, report, reportPeriod, salt[, onSent, onSuccess, onFailed])
+submitReportHash(branch, reportHash, reportPeriod[, onSent, onSuccess, onFailed])
+checkReportValidity(branch, report, reportPeriod[, onSent, onSuccess, onFailed])
+slashRep(branch, reportPeriod, salt, report, reporter[, onSent, onSuccess, onFailed])
+
+// createEvent contract
+// https://github.com/AugurProject/augur-core/blob/master/src/functions/createEvent.se
+createEvent(branch, description, expDate, minValue, maxValue, numOutcomes[, onSent, onSuccess, onFailed])
+
+// createMarket contract
+// https://github.com/AugurProject/augur-core/blob/master/src/functions/createMarket.se
+createMarket(branch, description, alpha, liquidity, tradingFee, events[, onSent, onSuccess, onFailed])
+
+// closeMarket contract
+// https://github.com/AugurProject/augur-core/blob/master/src/functions/closeMarket.se
+closeMarket(branch, market[, onSent, onSuccess, onFailed])
+
+// trade events (price history data)
+getPrices(market, callback)
+getClosingPrices(market, callback)
+getPriceHistory(branch, callback)
+getOutcomePriceHistory(market, outcome, callback)
+getMarketPriceHistory(market, callback)
+
+// market creation events (block numbers)
+getCreationBlocks(branch, callback)
+getMarketCreationBlock(market, callback)
+```
+
+```javascript
 createEvent(eventObject)
 /**
  * - eventObject has the following fields:
@@ -358,12 +955,6 @@ createMarket(marketObject)
  *   - createMarket(branchId, description, alpha, liquidity, tradingFee, events[, onSent, onSuccess, onFailed])
  */
 
-buyShares(branchId, market, outcome, amount, nonce[, callback])
-
-sellShares(branchId, market, outcome, amount, nonce[, callback])
-
-sendReputation(branchId, receiver, value[, callback])
-
 getSimulatedBuy(market, outcome, amount[, callback])
 
 > augur.getSimulatedBuy("0xb13d98f933cbd602a3d9d4626260077678ab210d1e63b3108b231c1758ff9971", 1, augur.ONE.toString(16))
@@ -405,8 +996,11 @@ price(market, outcome[, callback]): Get the current (instantaneous) price of an 
 
 getWinningOutcomes(market[, callback])
 ```
-In some cases, you may need more flexibility beyond simply mix-and-matching the Augur API methods.  To do this, use [ethrpc](https://github.com/AugurProject/ethrpc)'s lower-level `invoke` method (`augur.rpc.invoke`).  First, build a transaction object manually, then execute it using `invoke`.  The `invoke` method executes a method in a contract already on the network.  It can broadcast transactions to the network and/or capture return values by calling the contract method(s) locally.
 
+Invoke
+------
+
+In some cases, you may need more flexibility beyond simply mix-and-matching the Augur API methods.  To do this, use [ethrpc](https://github.com/AugurProject/ethrpc)'s lower-level `invoke` method (`augur.rpc.invoke`).  First, build a transaction object manually, then execute it using `invoke`.  The `invoke` method executes a method in a contract already on the network.  It can broadcast transactions to the network and/or capture return values by calling the contract method(s) locally.
 ```javascript
 // The method called here doubles its input argument.
 augur.rpc.invoke({
@@ -420,7 +1014,6 @@ augur.rpc.invoke({
 // this returns:
 44242
 ```
-
 Transaction fields are as follows:
 
 Required:
