@@ -679,73 +679,67 @@ Gets the trading fee for `market`, expressed as a proportion.
 
 ```javascript
 // reporting contract
-getRepBalance(branchId, address, function (repBalance) { /* ... */ });
+var branchId = augur.branches.dev;
+var address = "0x05ae1d0ca6206c6168b42efcd1fbe0ed144e821b"
+augur.getRepBalance(branchId, address, function (repBalance) { /* ... */ });
 // example output:
-repBalance = 
+repBalance = "47"
 
-getRepByIndex(branchId, repIndex, function (rep) { /* ... */ });
+var repIndex = 0;
+augur.getRepByIndex(branchId, repIndex, function (rep) { /* ... */ });
 // example output:
-rep = 
+rep = "47"
 
-getReporterID(branchId, index, function (reporterID) { /* ... */ });
+augur.getReporterID(branchId, repIndex, function (reporterID) { /* ... */ });
 // example output:
-reporterID = 
+reporterID = "0x05ae1d0ca6206c6168b42efcd1fbe0ed144e821b"
 
-getReputation(address, function (reputation) { /* ... */ });
+augur.getNumberReporters(branchId, function (numberReporters) { /* ... */ });
 // example output:
-reputation = 
+numberReporters = "38"
 
-getNumberReporters(branchId, function (numberReporters) { /* ... */ });
+augur.repIDToIndex(branchId, address, function (repIndex) { /* ... */ });
 // example output:
-numberReporters = 
+repIndex = "0"
 
-repIDToIndex(branchId, repID, function (repIndex) { /* ... */ });
+augur.getTotalRep(branchId, function (totalRep) { /* ... */ });
 // example output:
-repIndex = 
-
-getTotalRep(branchId, function (totalRep) { /* ... */ });
-// example output:
-totalRep = 
+totalRep = "1796"
 
 var ballot = ["1", "2", "1", "1.5", "1", "1.5", "2", "1", "1", "1.5", "1", "1"];
 var salt = "0xbd352b6e2858ba27d8b7639afd2e34954803338e0e54cae7dcdf93f97f315225";
 hashReport(ballot, salt, function (reportHash) { /* ... */ });
 // example output:
 reportHash = "-0x4480ed40f94e2cb2ca244eb862df2d350300904a96039eb53cba0e34b8ace90a"
-
 ```
 ### [reporting contract](https://github.com/AugurProject/augur-core/blob/master/src/data%20and%20api/reporting.se)
 #### getRepBalance(branch, address[, callback])
 
-.
+The Reputation balance on `branch` of account `address`.
 
 #### getRepByIndex(branch, repIndex[, callback])
 
-.
+The Reputation balance on `branch` of reporter number `repIndex`.
 
 #### getReporterID(branch, index[, callback])
 
-.
-
-#### getReputation(address[, callback])
-
-.
+Looks up a reporter's ID (address) by reporter number `index`.
 
 #### getNumberReporters(branch[, callback])
 
-.
+The total number of reporters on `branch`.
 
 #### repIDToIndex(branch, repID[, callback])
 
-.
+Looks up a reporter's number (index) by address `repID`.
 
 #### getTotalRep(branch[, callback])
 
-.
+The total amount of Reputation on `branch`.
 
 #### hashReport(ballot, salt[, callback])
 
-.
+Calculates the SHA256 hash of `ballot` using `salt`.
 
 ```javascript
 // buy&sellShares contract
