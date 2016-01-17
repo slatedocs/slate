@@ -264,6 +264,9 @@ Gets the closing price (last trade price of the day) as well as the total volume
 
 Call API
 --------
+
+Augur's Call API is made up of "getter" methods that retrieve information from the blockchain (using Ethereum's `eth_call` RPC) but do not write information to the blockchain.
+
 ```javascript
 // cash contract
 var address = "0x639b41c4d3d399894f2a57894278e1653e7cd24c";
@@ -768,6 +771,9 @@ Checks the validity of `report` made on `branch` for `reportPeriod`.  A valid re
 
 Transaction API
 ---------------
+
+Augur's Transaction API is made up of "setter" methods that can both read from and write to the blockchain using Ethereum's `eth_sendTransaction` RPC.
+
 ```javascript
 // faucets contract
 var branchId = augur.branches.dev;
