@@ -33,7 +33,7 @@ EXEMPLO
 Os arquivos CNABs de retorno, pertencem a uma determinada conta de cobrança, contendo informações de uma ou mais cobranças desta conta.
 
 <aside class="warning">
-A utilização desta API não é autorizada a contas com o plano **Gratuito**, resultando na resposta com o estado **403 Forbidden**!
+A utilização desta API não é autorizada a contas com o plano <strong>Gratuito</strong>, resultando na resposta com o estado <strong>403 Forbidden</strong>!
 </aside>
 
 **Parâmetros**
