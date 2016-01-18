@@ -308,21 +308,22 @@ kuzzle.getAllStatistics(new ResponseListener() {
     "ongoingRequests": { "mq": 0, "rest": 0, "websocket": 0 },
     "completedRequests": { "mq": 37, "websocket": 17 },
     "failedRequests": { "websocket": 1 },
-    "timestamp": "2015-10-26T12:21:00.218Z" },
+    "timestamp": "1453110641308" },
   { "connections": { "websocket": 1 },
     "ongoingRequests": { "mq": 0, "rest": 0, "websocket": 0 },
     "completedRequests": { "websocket": 34 },
     "failedRequests": { "websocket": 3 },
-    "timestamp": "2015-10-26T12:21:10.218Z" },
+    "timestamp": "1453110642308" },
   { "connections": {},
     "ongoingRequests": { "mq": 0, "rest": 0, "websocket": 0 },
     "completedRequests": { "websocket": 40 },
     "failedRequests": {},
-    "timestamp": "2015-10-26T12:21:20.218Z" }]
+    "timestamp": "1453110643308" }]
 ```
 
 Kuzzle monitors active connections, and ongoing/completed/failed requests.  
 This method returns all available statistics from Kuzzle.
+Timestamps are in milliseconds (utc)
 
 #### getAllStatistics([options])
 
@@ -656,12 +657,13 @@ kuzzle.getStatistics(new ResponseListener() {
     "ongoingRequests": { "mq": 0, "rest": 0, "websocket": 0 },
     "completedRequests": { "mq": 37, "websocket": 17 },
     "failedRequests": { "websocket": 1 },
-    "timestamp": "2015-10-26T12:21:00.218Z" }]
+    "timestamp": "1453110641308" }]
 ```
 
-> When providing a timestamp, returns all frames recorded after that timestamp:
+> When providing a timestamp, returns all frames recorded after that timestamp (utc, in milliseconds):
 
 ```js
+// Date can be either in ISO format or a timestamp (utc, in milliseconds)
 var ts = Date.parse('2015-10-26T12:19:10.213Z');
 
 // Using callbacks (NodeJS or Web Browser)
@@ -678,6 +680,7 @@ kuzzle
 ```
 
 ```java
+// Date can be either in ISO format or a timestamp (utc, in milliseconds)
 kuzzle.getStatistics("2015-11-15T13:36:45.558Z", new ResponseListener() {
   @Override
   public void onSuccess(JSONObject object) {
@@ -698,17 +701,17 @@ kuzzle.getStatistics("2015-11-15T13:36:45.558Z", new ResponseListener() {
     "ongoingRequests": { "mq": 0, "rest": 0, "websocket": 0 },
     "completedRequests": { "mq": 37, "websocket": 17 },
     "failedRequests": { "websocket": 1 },
-    "timestamp": "2015-10-26T12:21:00.218Z" },
+    "timestamp": "1453110641308" },
   { "connections": { "websocket": 1 },
     "ongoingRequests": { "mq": 0, "rest": 0, "websocket": 0 },
     "completedRequests": { "websocket": 34 },
     "failedRequests": { "websocket": 3 },
-    "timestamp": "2015-10-26T12:21:10.218Z" },
+    "timestamp": "1453110642308" },
   { "connections": {},
     "ongoingRequests": { "mq": 0, "rest": 0, "websocket": 0 },
     "completedRequests": { "websocket": 40 },
     "failedRequests": {},
-    "timestamp": "2015-10-26T12:21:20.218Z" }]
+    "timestamp": "1453110643308" }]
 ```
 
 Kuzzle monitors active connections, and ongoing/completed/failed requests.  
@@ -720,7 +723,7 @@ This method allows getting either the last statistics frame, or a set of frames 
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
-| ``timestamp`` | Epoch time | Starting time from which the frames are to be retrieved |
+| ``timestamp`` | Milliseconds since epoch time (utc) | Starting time from which the frames are to be retrieved |
 | ``options`` | JSON Object | Optional parameters |
 
 Available options:
@@ -870,12 +873,12 @@ Logout the user.
 ```js
 // Using callbacks (NodeJS or Web Browser)
 kuzzle.now(function (err, res) {
-  // 'res' contains the Kuzzle timestamp
+  // 'res' contains the Kuzzle timestamp (utc, in milliseconds)
 });
 
 // Using promises (NodeJS only)
 kuzzle.nowPromise().then(res => {
-  // 'res' contains the Kuzzle timestamp
+  // 'res' contains the Kuzzle timestamp (utc, in milliseconds)
 });
 ```
 
@@ -883,7 +886,7 @@ kuzzle.nowPromise().then(res => {
 kuzzle.now(new ResponseListener() {
   @Override
   public void onSuccess(JSONObject object) {
-    // 'object' contains the Kuzzle timestamp
+    // 'object' contains the Kuzzle timestamp (utc, in milliseconds)
   }
 
   @Override
