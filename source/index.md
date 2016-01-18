@@ -14,10 +14,10 @@ includes:
   - bank_accounts
   - charge_accounts
   - charges
+  - regress_cnabs
   - webhook
   - payloads
   - charging_types
-  - regress_cnabs
 
 search: true
 ---
