@@ -6,7 +6,7 @@ language_tabs:
 
 toc_footers:
   - <a href="http://www.augur.net">Augur.net</a>
-  - <a href="http://app.augur.net">App (Alpha)</a>
+  - <a href="http://app.augur.net">Alpha App</a>
   - <a href="http://augur.link/augur.pdf">Whitepaper</a>
   - <a href="https://github.com/AugurProject">Github</a>
   - <a href="https://twitter.com/AugurProject">Twitter</a>

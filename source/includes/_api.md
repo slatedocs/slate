@@ -859,7 +859,7 @@ failedResponse = {
 ```
 ### transact(tx[, onSent, onSuccess, onFailed])
 
-<aside class="warning">While it is possible to use `augur.transact` directly, it is generally easier and less error-prone to use one of the named API functions documented in the following sections.  Readers who want to use the Transaction API and aren't terribly curious about the augur.js/ethrpc plumbing under the hood are advised to skip this section!</aside>
+<aside class="warning">While it is possible to use `augur.transact` directly, it is generally easier and less error-prone to use one of the named API functions documented in the following sections.  Readers who want to use the Transaction API and aren't terribly curious about the augur.js/ethrpc plumbing under the hood should jump to the next section!</aside>
 
 `augur.transact` carries out the following "send-call-confirm" sequence:
 
@@ -871,7 +871,7 @@ failedResponse = {
 
 4. If `augur.rpc.txNotify` receives a non-null transaction object, then `augur.rpc.checkBlockHash` checks to see if the transaction's `blockHash` field is a nonzero value, indicating that it has been successfully incorporated into a block and attached to the blockchain.  If `blockHash` is zero, then after `augur.rpc.TX_POLL_INTERVAL` elapses, `augur.rpc.txNotify` again looks up the transaction; this step repeats at most `augur.rpc.TX_POLL_MAX` times, after which `augur.rpc.txs[txHash].status` is set to `"unconfirmed"`, the `TRANSACTION_NOT_CONFIRMED` error is passed to `onFailed`, and the sequence terminates.  If `blockHash` is non-zero, then `augur.rpc.txs[txHash].status` is set to `"confirmed"`.  A `callReturn` field is added to the transaction object, which is then passed to `onSuccess`, completing the sequence.
 
-<aside class="notice">The <code>augur.rpc</code> object is simply an instance of <a href="https://github.com/AugurProject/ethrpc">ethrpc</a> that has its state synchronized with the `augur` object.</aside>
+<aside class="notice">The <code>augur.rpc</code> object is simply an instance of <a href="https://github.com/AugurProject/ethrpc">ethrpc</a> that has its state synchronized with the <code>augur</code> object.</aside>
 
 The first argument to `augur.transact` is a "transaction object".
 
@@ -913,20 +913,61 @@ augur.withdrawEther(to, value[, onSent, onSuccess, onFailed]);
 ```javascript
 // checkQuorum contract
 var branchId = augur.branches.dev;
-augur.checkQuorum(branchId, onSent, onSuccess, onFailed)
-// example output:
-
+augur.checkQuorum({
+  branchId: branchId,
+  onSent: function (sentResponse) { /* ... */ },
+  onSuccess: function (successResponse) { /* ... */ },
+  onFailed: function (failedResponse) { /* ... */ }
+});
+// example outputs:
+sentResponse = {
+  txHash: '0x45bc69d4aaf9e9bc8d8524d6b4a33f3289d56d150ab4b58c3e85a480db851f47',
+  callReturn: '0'
+}
+successResponse = {
+  nonce: '0x4e3',
+  blockHash: '0x0211c8bd326e9e71bfadb19258ea787080626fe9940a4c197dea31edbe93c3c6',
+  blockNumber: '0x6a97',
+  transactionIndex: '0x0',
+  from: '0x05ae1d0ca6206c6168b42efcd1fbe0ed144e821b',
+  to: '0x8caf2c0ce7cdc2e81b58f74322cefdef440b3f8d',
+  value: '0x0',
+  gas: '0x2fd618',
+  gasPrice: '0xba43b7400',
+  input: '0x27138bfb00000000000000000000000000000000000000000000000000000000000f69b5',
+  callReturn: '0',
+  txHash: '0x45bc69d4aaf9e9bc8d8524d6b4a33f3289d56d150ab4b58c3e85a480db851f47'
+}
 ```
 ### [checkQuorum contract](https://github.com/AugurProject/augur-core/blob/master/src/functions/checkQuorum.se)
-#### checkQuorum(branch[, onSent, onSuccess, onFailed])
+#### checkQuorum(branchId[, onSent, onSuccess, onFailed])
+
+Determines whether consensus is ready to run.  If there aren't enough events in a vote period, push the events to the current period and increment the vote period.  Verifies if there are sufficient future events at stake; the minimum threshold is presently set at 200.  If the number of future events is not above this minimum threshold, then the branch stalls.  Returns 1 if ready, 0 otherwise.
 
 ```javascript
 // buy&sellShares contract
-augur.buyShares(augur.branches.dev, marketId, outcomeId, amount, null, null, console.log, console.log, console.log)
+var branchId = augur.branches.dev;
+var marketId = "-0x130158e01e01cc67d3d8803f88493b8aadc6654be759fbf2d40105506b41daa3";
+var outcome = 1;
+var amount = "0.1";
+augur.buyShares({
+  branchId: branchId,
+  marketId: marketId,
+  outcome: outcome,
+  amount: amount,
+  nonce: null,
+  limit: null,
+  onSent: function (sentResponse) { /* ... */ },
+  onSuccess: function (successResponse) { /* ... */ },
+  onFailed: function (failedResponse) { /* ... */ }
+});
 // example outputs:
-{ txHash: '0x5b99e6d18716da6be2c9c50795d92c0b716eb0a0012dcf2e73f96b9c0ee1b2b2',
-  callReturn: '1.23722604990455573688' }
-{ nonce: '0x4dc',
+sentResponse = {
+  txHash: '0x5b99e6d18716da6be2c9c50795d92c0b716eb0a0012dcf2e73f96b9c0ee1b2b2',
+  callReturn: '1.23722604990455573688'
+}
+successResponse = {
+  nonce: '0x4dc',
   blockHash: '0xf32b439e5993add2af5133fad6c8b35c6552f16f4279ca7aeb3acc9def7c3c2d',
   blockNumber: '0x6a2c',
   transactionIndex: '0x0',
@@ -937,12 +978,48 @@ augur.buyShares(augur.branches.dev, marketId, outcomeId, amount, null, null, con
   gasPrice: '0xba43b7400',
   input: '0x7d9e764100000000000000000000000000000000000000000000000000000000000f69b50acc29bf675e03383eaf9beebcc975cdcbefda75322640d67baf3b04d6af198a0000000000000000000000000000000000000000000000000000000000000005000000000000000000000000000000000000000000000004333333333333333300000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000',
   callReturn: '1.23722604990455573688',
-  txHash: '0x5b99e6d18716da6be2c9c50795d92c0b716eb0a0012dcf2e73f96b9c0ee1b2b2' }
+  txHash: '0x5b99e6d18716da6be2c9c50795d92c0b716eb0a0012dcf2e73f96b9c0ee1b2b2'
+}
 
-sellShares(branch, market, outcome, amount[, nonce, limit, onSent, onSuccess, onFailed])
+augur.sellShares({
+  branchId: branchId,
+  marketId: marketId,
+  outcome: outcome,
+  amount: amount,
+  nonce: null,
+  limit: null,
+  onSent: function (sentResponse) { /* ... */ },
+  onSuccess: function (successResponse) { /* ... */ },
+  onFailed: function (failedResponse) { /* ... */ }
+});
+// example outputs:
+sentResponse = {
+  txHash: '0x0c93b30f4e001b5aaf367470346874e15f4fb14acf024572a3aaac6515ab4adb',
+  callReturn: '0.07115672415962748134'
+}
+successResponse = {
+  nonce: '0x4e2',
+  blockHash: '0xc9b8506031f455cf9de3145e637b9bae13a79d8ed5c6f4eed257d483b0b6cdbb',
+  blockNumber: '0x6a79',
+  transactionIndex: '0x0',
+  from: '0x05ae1d0ca6206c6168b42efcd1fbe0ed144e821b',
+  to: '0x2e5a882aa53805f1a9da3cf18f73673bca98fa0f',
+  value: '0x0',
+  gas: '0x2fd618',
+  gasPrice: '0xba43b7400',
+  input: '0x314f177c00000000000000000000000000000000000000000000000000000000000f69b5ecfea71fe1fe33982c277fc077b6c47552399ab418a6040d2bfefaaf94be255d0000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000199999999999999a00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000',
+  callReturn: '0.07115672415962748134',
+  txHash: '0x0c93b30f4e001b5aaf367470346874e15f4fb14acf024572a3aaac6515ab4adb'
+}
 ```
 ### [buy&sellShares contract](https://github.com/AugurProject/augur-core/blob/master/src/functions/buy%26sellShares.se)
-#### buyShares(branch, market, outcome, amount[, nonce, limit, onSent, onSuccess, onFailed])
+#### buyShares(branchId, marketId, outcome, amount[, nonce, limit, onSent, onSuccess, onFailed])
+
+Buy `amount` shares of `outcome` in `marketId` from the automated market maker.
+
+#### sellShares(branchId, marketId, outcome, amount[, nonce, limit, onSent, onSuccess, onFailed])
+
+Sell `amount` shares of `outcome` in `marketId` from the automated market maker.
 
 ```javascript
 // createBranch contract
