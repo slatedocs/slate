@@ -1149,9 +1149,39 @@ Sell `amount` shares of `outcome` in `marketId` from the automated market maker.
 
 ```javascript
 // createBranch contract
-createSubbranch(description, periodLength, parent, tradingFee[, onSent, onSuccess, onFailed])
+augur.createSubbranch({
+  description: "Ground0:Party at Ground Zero",
+  periodLength: 25,
+  parent: augur.branches.dev,
+  tradingFee: "0.02",
+  onSent: function (sentResponse) { /* ... */ },
+  onSuccess: function (successResponse) { /* ... */ },
+  onFailed: function (failedResponse) { /* ... */ }
+});
+// example outputs:
+sentResponse = {
+  txHash: '0x29b169c0bd087aefd2f2dcd7b54c6ac08a3d8d78c6030a18980d059650f39117',
+  callReturn: '-0xab9869bbaf19cc580a5c6d4571cd7eac02e98ed6ef127c69478bfb43762d4d13'
+}
+successResponse = {
+  nonce: '0x4f0',
+  blockHash: '0xe521198ffbbd9c53bbe7e773502a08482ebe3cdebbb0053a1bf44487b834d43a',
+  blockNumber: '0x6b7f',
+  transactionIndex: '0x0',
+  from: '0x05ae1d0ca6206c6168b42efcd1fbe0ed144e821b',
+  to: '0x5f67ab9ff79be97b27ac8f26ef9f4b429b82e2df',
+  value: '0x0',
+  gas: '0x2fd618',
+  gasPrice: '0xba43b7400',
+  input: '0x5c5c65010000000000000000000000000000000000000000000000000000000000000080000000000000000000000000000000000000000000000000000000000000001900000000000000000000000000000000000000000000000000000000000f69b5000000000000000000000000000000000000000000000000051eb851eb851eb8000000000000000000000000000000000000000000000000000000000000001c47726f756e64303a50617274792061742047726f756e64205a65726f00000000',
+  callReturn: '-0xab9869bbaf19cc580a5c6d4571cd7eac02e98ed6ef127c69478bfb43762d4d13',
+  txHash: '0x29b169c0bd087aefd2f2dcd7b54c6ac08a3d8d78c6030a18980d059650f39117'
+}
 ```
 ### [createBranch contract](https://github.com/AugurProject/augur-core/blob/master/src/functions/createBranch.se)
+#### createSubbranch(description, periodLength, parent, tradingFee[, onSent, onSuccess, onFailed])
+
+Creates a new sub-branch of branch `parent`.  The description format is branchName:description.  `periodLength` is given in blocks.  Returns the new branch's ID if successful.  Otherwise, returns -1 if there is a bad input or the parent doesn't exist, -2 if there is insufficient funds to create the branch or if the branch already exists.
 
 ```javascript
 // sendReputation contract
