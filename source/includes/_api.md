@@ -1185,17 +1185,95 @@ Creates a new sub-branch of branch `parent`.  The description format is branchNa
 
 ```javascript
 // sendReputation contract
-sendReputation(branch, to, value[, onSent, onSuccess, onFailed])
+augur.sendReputation({
+  branchId: augur.branches.dev,
+  to: "0x0da70d5a92d6cfcd4c12e2a83950676fdf4c95f9",
+  value: 10,
+  onSent: function (sentResponse) { /* ... */ },
+  onSuccess: function (successResponse) { /* ... */ },
+  onFailed: function (failedResponse) { /* ... */ }
+});
+// example outputs:
+sentResponse = {
+  txHash: '0x1460b261654f24bf0bbb436f1766b68a94f476c57d4998e26da75114f56cc5a8',
+  callReturn: '10'
+}
+successResponse = {
+  nonce: '0x4f1',
+  blockHash: '0x2ad3f1071758d9efcb4d2458236128fdaa76585c3c4d551f50c26d2a50a2e38f',
+  blockNumber: '0x6b97',
+  transactionIndex: '0x0',
+  from: '0x05ae1d0ca6206c6168b42efcd1fbe0ed144e821b',
+  to: '0x35152caa07026203a1add680771afb690d872d7d',
+  value: '0x0',
+  gas: '0x2fd618',
+  gasPrice: '0xba43b7400',
+  input: '0xa677135c00000000000000000000000000000000000000000000000000000000000f69b50000000000000000000000000da70d5a92d6cfcd4c12e2a83950676fdf4c95f900000000000000000000000000000000000000000000000a0000000000000000',
+  callReturn: '10',
+  txHash: '0x1460b261654f24bf0bbb436f1766b68a94f476c57d4998e26da75114f56cc5a8'
+}
 ```
 ### [sendReputation contract](https://github.com/AugurProject/augur-core/blob/master/src/functions/sendReputation.se)
+#### sendReputation(branchId, to, value[, onSent, onSuccess, onFailed])
+
+Sends `value` Reputation tokens on branch `branchId` to address `to`.  Returns the value sent if successful.
 
 ```javascript
 // makeReports contract
-report(branch, report, reportPeriod, salt[, onSent, onSuccess, onFailed])
-submitReportHash(branch, reportHash, reportPeriod[, onSent, onSuccess, onFailed])
-slashRep(branch, reportPeriod, salt, report, reporter[, onSent, onSuccess, onFailed])
+var branchId = augur.branches.dev;
+var report = ["1", "2", "1", "1.5", "1", "1.5", "2", "1", "1", "1.5", "1", "1"];
+var reportPeriod = 397;
+var salt = "0xb3017088d3de23f9611dbf5d23773b5ad38621bab84aa79a0621c8800aeb4c33";
+augur.report({
+  branchId: branchId,
+  report: report,
+  reportPeriod: reportPeriod,
+  salt: salt,
+  onSent: function (sentResponse) { /* ... */ },
+  onSuccess: function (successResponse) { /* ... */ },
+  onFailed: function (failedResponse) { /* ... */ }
+});
+// example outputs:
+sentResponse = 
+
+augur.submitReportHash({
+  branchId: branchId,
+  reportHash: reportHash,
+  reportPeriod: reportPeriod,
+  salt: salt,
+  onSent: function (sentResponse) { /* ... */ },
+  onSuccess: function (successResponse) { /* ... */ },
+  onFailed: function (failedResponse) { /* ... */ }
+});
+// example outputs:
+sentResponse = 
+
+augur.slashRep({
+  branchId: branchId,
+  reportPeriod: reportPeriod,
+  salt: salt,
+  report: report,
+  reporter: "0x05ae1d0ca6206c6168b42efcd1fbe0ed144e821b",
+  onSent: function (sentResponse) { /* ... */ },
+  onSuccess: function (successResponse) { /* ... */ },
+  onFailed: function (failedResponse) { /* ... */ }
+});
+// example outputs:
+sentResponse = 
+
 ```
 ### [makeReports contract](https://github.com/AugurProject/augur-core/blob/master/src/functions/makeReports.se)
+#### report(branchId, report, reportPeriod, salt[, onSent, onSuccess, onFailed])
+
+Submits an array of reports `report` for report period `reportPeriod` on branch `branchId`.
+
+#### submitReportHash(branchId, reportHash, reportPeriod[, onSent, onSuccess, onFailed])
+
+Submits the SHA256 hash of the reports array `reportHash` for report period `reportPeriod` on branch `branchId`.
+
+#### slashRep(branchId, reportPeriod, salt, report, reporter[, onSent, onSuccess, onFailed])
+
+Slashes the Reputation of address `reporter` for `report` on branch `branchId`.
 
 ```javascript
 // createEvent contract
