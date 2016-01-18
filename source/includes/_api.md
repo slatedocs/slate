@@ -877,38 +877,164 @@ The first argument to `augur.transact` is a "transaction object".
 
 ```javascript
 // faucets contract
-var branchId = augur.branches.dev;
-augur.reputationFaucet(branchId, onSent, onSuccess, onFailed);
+var branch = augur.branches.dev;
+augur.reputationFaucet({
+  branch: branch,
+  onSent: function (sentResponse) { /* ... */ },
+  onSuccess: function (successResponse) { /* ... */ },
+  onFailed: function (failedResponse) { /* ... */ }
+});
 // example outputs:
+sentResponse = {
+  txHash: '0x7aeeacf586d3afa89dc7ca41a4df52307d1a91c33b8726552d3f84b041b5850e',
+  callReturn: '1'
+}
+successResponse = {
+  nonce: '0x4e4',
+  blockHash: '0x1fb89b98f59e8a1803556e99c6e2772992ad9bd199e638ccf5e9bff9aa595ffe',
+  blockNumber: '0x6ab8',
+  transactionIndex: '0x0',
+  from: '0x05ae1d0ca6206c6168b42efcd1fbe0ed144e821b',
+  to: '0x509592c96eee7e19f6a34772fd8783cb072ca3c6',
+  value: '0x0',
+  gas: '0x2fd618',
+  gasPrice: '0xba43b7400',
+  input: '0x988445fe00000000000000000000000000000000000000000000000000000000000f69b5',
+  callReturn: '1',
+  txHash: '0x7aeeacf586d3afa89dc7ca41a4df52307d1a91c33b8726552d3f84b041b5850e'
+}
 ```
 ### [faucets contract](https://github.com/AugurProject/augur-core/blob/master/src/functions/faucets.se)
 #### reputationFaucet(branch[, onSent, onSuccess, onFailed])
 
-When invoked, grants 47 free Reputation.  (This is only available during testing, of course.)
+Sets the Reputation balance of the sending account to 47.  (Only available during testing, of course!)
 
 ```javascript
 // cash contract
-augur.sendCash(receiver, value[, onSent, onSuccess, onFailed]);
-// example output:
+augur.sendCash({
+  to: "0x639b41c4d3d399894f2a57894278e1653e7cd24c",
+  value: 1,
+  onSent: function (sentResponse) { /* ... */ },
+  onSuccess: function (successResponse) { /* ... */ },
+  onFailed: function (failedResponse) { /* ... */ }
+});
+// example outputs:
+sentResponse = {
+  txHash: '0xff5ad9bdfc9e1ffce3f1014ead5feea6ce4ff15b4a4aaa8734ef4e18338a7bfb',
+  callReturn: '1'
+}
+successResponse = {
+  nonce: '0x4e6',
+  blockHash: '0xc1fd7a7897560f153cd37053389ac079942661c11f6b9296928481188e4b2b5d',
+  blockNumber: '0x6ade',
+  transactionIndex: '0x0',
+  from: '0x05ae1d0ca6206c6168b42efcd1fbe0ed144e821b',
+  to: '0xe4714fcbdcdba49629bc408183ef40d120700b8d',
+  value: '0x0',
+  gas: '0x2fd618',
+  gasPrice: '0xba43b7400',
+  input: '0x693200ce000000000000000000000000639b41c4d3d399894f2a57894278e1653e7cd24c0000000000000000000000000000000000000000000000010000000000000000',
+  callReturn: '1',
+  txHash: '0xff5ad9bdfc9e1ffce3f1014ead5feea6ce4ff15b4a4aaa8734ef4e18338a7bfb'
+}
 
-augur.sendCashFrom(to, value, from[, onSent, onSuccess, onFailed]);
-// example output:
+augur.sendCashFrom({
+  to: to,
+  value: value,
+  from: from,
+  onSent: function (sentResponse) { /* ... */ },
+  onSuccess: function (successResponse) { /* ... */ },
+  onFailed: function (failedResponse) { /* ... */ }
+});
+// example outputs:
+sentResponse = {
+  txHash: '0xb2dc04cb4b5f3bb4b0a1dec50d539f31cf048918f62da6bfd202a0a546a32b62',
+  callReturn: '1'
+}
+successResponse = {
+  nonce: '0x4e7',
+  blockHash: '0x220870218f6e62037139c4d86ba21fad96497ec8bcc3735999dc81e0bc099b21',
+  blockNumber: '0x6ae4',
+  transactionIndex: '0x0',
+  from: '0x05ae1d0ca6206c6168b42efcd1fbe0ed144e821b',
+  to: '0xe4714fcbdcdba49629bc408183ef40d120700b8d',
+  value: '0x0',
+  gas: '0x2fd618',
+  gasPrice: '0xba43b7400',
+  input: '0x80b97fc0000000000000000000000000639b41c4d3d399894f2a57894278e1653e7cd24c000000000000000000000000000000000000000000000001000000000000000000000000000000000000000005ae1d0ca6206c6168b42efcd1fbe0ed144e821b',
+  callReturn: '1',
+  txHash: '0xb2dc04cb4b5f3bb4b0a1dec50d539f31cf048918f62da6bfd202a0a546a32b62'
+}
 
-augur.depositEther(value[, onSent, onSuccess, onFailed]);
-// example output:
+augur.depositEther({
+  value: 2,
+  onSent: function (sentResponse) { /* ... */ },
+  onSuccess: function (successResponse) { /* ... */ },
+  onFailed: function (failedResponse) { /* ... */ }
+});
+// example outputs:
+sentResponse = {
+  txHash: '0x2cb4c0f6796b102fb6b1dead8cb85d91f2af330057eb69a6f6f9814617d04a56',
+  callReturn: '2000000000000000000'
+}
+successResponse = {
+  nonce: '0x4e8',
+  blockHash: '0x81cfb01f897dd7df9ca898f4fd232f5c0957f59596a35b1ef552e37516cdfc38',
+  blockNumber: '0x6af0',
+  transactionIndex: '0x0',
+  from: '0x05ae1d0ca6206c6168b42efcd1fbe0ed144e821b',
+  to: '0xe4714fcbdcdba49629bc408183ef40d120700b8d',
+  value: '0x1bc16d674ec80000',
+  gas: '0x2fd618',
+  gasPrice: '0xba43b7400',
+  input: '0x98ea5fca',
+  callReturn: '2000000000000000000',
+  txHash: '0x2cb4c0f6796b102fb6b1dead8cb85d91f2af330057eb69a6f6f9814617d04a56'
+}
 
-augur.withdrawEther(to, value[, onSent, onSuccess, onFailed]);
-// example output:
-
+augur.withdrawEther({
+  to: "0x05ae1d0ca6206c6168b42efcd1fbe0ed144e821b,
+  value: 2,
+  onSent: function (sentResponse) { /* ... */ },
+  onSuccess: function (successResponse) { /* ... */ },
+  onFailed: function (failedResponse) { /* ... */ }
+});
+// example outputs:
+sentResponse = {
+  txHash: '0x3f44c75513667dee7dcf0a5f08e7be32751fbc2c5c52a8a29018682941ee4895',
+  callReturn: '1'
+}
+successResponse = {
+  nonce: '0x4e9',
+  blockHash: '0xde4deb916d67631e63e8aed4fefec7839a09be9b3cd8b3914fe48d9751a159a4',
+  blockNumber: '0x6af3',
+  transactionIndex: '0x0',
+  from: '0x05ae1d0ca6206c6168b42efcd1fbe0ed144e821b',
+  to: '0xe4714fcbdcdba49629bc408183ef40d120700b8d',
+  value: '0x0',
+  gas: '0x2fd618',
+  gasPrice: '0xba43b7400',
+  input: '0x698f6e9d00000000000000000000000005ae1d0ca6206c6168b42efcd1fbe0ed144e821b0000000000000000000000000000000000000000000000001bc16d674ec80000',
+  callReturn: '1',
+  txHash: '0x3f44c75513667dee7dcf0a5f08e7be32751fbc2c5c52a8a29018682941ee4895'
+}
 ```
 ### [cash contract](https://github.com/AugurProject/augur-core/blob/master/src/data%20and%20api/cash.se)
-#### sendCash(receiver, value[, onSent, onSuccess, onFailed])
+#### sendCash(to, value[, onSent, onSuccess, onFailed])
+
+Sends `value` units of CASH to address `to`.  Returns the value sent if successful.
 
 #### sendCashFrom(to, value, from[, onSent, onSuccess, onFailed])
 
+Sends `value` units of CASH to address `to` from address `from`.  Returns the value sent if successful.
+
 #### depositEther(value[, onSent, onSuccess, onFailed])
 
+Exchange `value` units of Ether for an equivalent number of CASH tokens.  Returns the amount sent (in Wei).
+
 #### withdrawEther(to, value[, onSent, onSuccess, onFailed])
+
+Exchange `value` CASH tokens for an equivalent number of Ether tokens.  The withdrawn CASH is sent to address `to`.  Returns 1 if successful, 0 otherwise.
 
 ```javascript
 // checkQuorum contract
