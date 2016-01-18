@@ -859,7 +859,7 @@ failedResponse = {
 ```
 ### transact(tx[, onSent, onSuccess, onFailed])
 
-<aside class="warning">While it is possible to use `augur.transact` directly, it is generally easier and less error-prone to use one of the named API functions documented in the following sections.  Readers who want to use the Transaction API and aren't terribly curious about the augur.js/ethrpc plumbing under the hood should jump to the next section!</aside>
+<aside class="warning">While it is possible to use <code>augur.transact</code> directly, it is generally easier and less error-prone to use one of the named API functions documented in the following sections.  Readers who want to use the Transaction API and aren't terribly curious about the augur.js/ethrpc plumbing under the hood should jump to the next section!</aside>
 
 `augur.transact` carries out the following "send-call-confirm" sequence:
 
