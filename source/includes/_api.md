@@ -175,93 +175,6 @@ marketsSummary = [{
 
 Gets a few "vital statistics" for each market in `branchId`, suitable for an overview or summary display.
 
-```javascript
-augur.getPrices(marketId, function (prices) { /* ... */ })
-// example output:
-prices = {
-  "1": [{
-    year: 2015,
-    day: 15,
-    month: 12,
-    price: 0.9982875139911898,
-    volume: 1.1181621503989734,
-    timestamp: 1450205548
-  }, {
-    year: 2015,
-    day: 15,
-    month: 12,
-    price: 0.9999986905158383,
-    volume: 1.0002707146145515,
-    timestamp: 1450205782
-  }, {
-    year: 2015,
-    day: 15,
-    month: 12,
-    price: 0.9999999977785681,
-    volume: 1.0000002278530689,
-    timestamp: 1450206815
-  }, {
-    year: 2015,
-    day: 15,
-    month: 12,
-    price: 0.9999999999926208,
-    volume: 1.000000000422754,
-    timestamp: 1450209572
-  }, {
-    year: 2015,
-    day: 16,
-    month: 12,
-    price: 0.9999999999999568,
-    volume: 1.000000000001524,
-    timestamp: 1450248629
-  }],
-  "2": [{
-    year: 2015,
-    day: 16,
-    month: 12,
-    price: 7.34725727567e-9,
-    volume: 12.496966951483369,
-    timestamp: 1450248854
-  }]
-}
-```
-### getPrices(marketId, callback)
-
-Fetches all price changes and volumes for the specified market, ordered by timestamp (most recent record last).  `callback` is required; `getPrices` is asynchronous-only.
-
-```javascript
-augur.getClosingPrices(marketId, function (closingPrices) { /* ... */ })
-// example output:
-closingPrices = {
-  "1": [{
-    year: 2015,
-    day: 15,
-    month: 12,
-    timestamp: 1450248629,
-    closingPrice: 0.9999999999926208,
-    volume: 4.118433093289348
-  }, {
-    year: 2015,
-    day: 16,
-    month: 12,
-    closingPrice: 0.9999999999999568,
-    volume: 1.000000000001524,
-    timestamp: 1450248629
-  }],
-  "2": [{
-    year: 2015,
-    day: 16,
-    month: 12,
-    closingPrice: 7.34725727567e-9,
-    volume: 12.496966951483369,
-    timestamp: 1450248854
-  }]
-}
-```
-### getClosingPrices(marketId, callback)
-
-Gets the closing price (last trade price of the day) as well as the total volume traded over the day, ordered by timestamp (most recent record last).  `callback` is required; `getClosingPrices` is asynchronous-only.
-
 Call API
 --------
 
@@ -1277,126 +1190,206 @@ Slashes the Reputation of address `reporter` for `report` on branch `branchId`.
 
 ```javascript
 // createEvent contract
-createEvent(branch, description, expDate, minValue, maxValue, numOutcomes[, onSent, onSuccess, onFailed])
+var description = "What will the high temperature (in degrees Fahrenheit) be in San Francisco, California, on July 1, 2016?";
+var expirationBlock = augur.utils.date_to_block(augur, "7-2-2016");
+augur.createEvent({
+  branchId: augur.branches.dev,
+  description: description,
+  expirationBlock: expirationBlock,
+  minValue: 0,
+  maxValue: 120,
+  numOutcomes: 2,
+  onSent: function (sentResponse) { /* ... */ },
+  onSuccess: function (successResponse) { /* ... */ },
+  onFailed: function (failedResponse) { /* ... */ }
+});
+// example outputs:
+sentResponse =  {
+  txHash: '0x5ed66d25e36b6b4cb6e15c97d6c85c43060af75cdbfed4d562426d24ed37fb05',
+  callReturn: '-0x90fb310e94df790eaab7266034ae3807b147696bcf57a72f71db338f86718875'
+}
+successResponse = {
+  nonce: '0x532',
+  blockHash: '0x44818f0c59f089ffc55c147bd72eab5c755a34288826a40c1a695d711d5ef02c',
+  blockNumber: '0x72e2',
+  transactionIndex: '0x0',
+  from: '0x05ae1d0ca6206c6168b42efcd1fbe0ed144e821b',
+  to: '0x9fe69262bbaa47f013b7dbd6ca5f01e17446c645',
+  value: '0x0',
+  gas: '0x2fd618',
+  gasPrice: '0xba43b7400',
+  input: '0x130dd1b300000000000000000000000000000000000000000000000000000000000f69b500000000000000000000000000000000000000000000000000000000000000c00000000000000000000000000000000000000000000000000000000000129ad90000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000007800000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000068576861742077696c6c2074686520686967682074656d70657261747572652028696e20646567726565732046616872656e686569742920626520696e2053616e204672616e636973636f2c2043616c69666f726e69612c206f6e204a756c7920312c20323031363f000000000000000000000000000000000000000000000000',
+  callReturn: '-0x90fb310e94df790eaab7266034ae3807b147696bcf57a72f71db338f86718875',
+  txHash: '0x5ed66d25e36b6b4cb6e15c97d6c85c43060af75cdbfed4d562426d24ed37fb05'
+}
 ```
 ### [createEvent contract](https://github.com/AugurProject/augur-core/blob/master/src/functions/createEvent.se)
+#### createEvent(branchId, description, expirationBlock, minValue, maxValue, numOutcomes[, onSent, onSuccess, onFailed])
+
+Creates an event on branch `branchId` with `description`, expiration block number of `expirationBlock`, minimum value `minValue`, maximum value `maxValue`, and `numOutcomes` possible outcomes.
 
 ```javascript
 // createMarket contract
-createMarket(branch, description, alpha, liquidity, tradingFee, events[, onSent, onSuccess, onFailed])
+augur.createMarket({
+  branchId: augur.branches.dev,
+  description: description,
+  alpha: "0.0079",
+  initialLiquidity: 10,
+  tradingFee: "0.02",
+  events: ["-0x90fb310e94df790eaab7266034ae3807b147696bcf57a72f71db338f86718875"],
+  onSent: function (sentResponse) { /* ... */ },
+  onSuccess: function (successResponse) { /* ... */ },
+  onFailed: function (failedResponse) { /* ... */ }
+});
+// example outputs:
+sendResponse = {
+  txHash: '0x643462835b9899318ead8f47a1c43232b04a1dfeda8fba213e8c3d8a0c4651e0',
+  callReturn: '-0x3bb8d91f2481d886fe94acd4d1ffe3339ec60524aeb55ceb5a6c6c8631a796c2'
+}
+successResponse = {
+  nonce: '0x535',
+  blockHash: '0x60a299bc290af601300f2a17686947159073537884aa71fc18fe3628735c5f24',
+  blockNumber: '0x72e7',
+  transactionIndex: '0x0',
+  from: '0x05ae1d0ca6206c6168b42efcd1fbe0ed144e821b',
+  to: '0x448c01a2e1fd6c2ef133402c403d2f48c99993e7',
+  value: '0x0',
+  gas: '0x2fd618',
+  gasPrice: '0xba43b7400',
+  input: '0x08d19b3f00000000000000000000000000000000000000000000000000000000000f69b500000000000000000000000000000000000000000000000000000000000000c00000000000000000000000000000000000000000000000000205bc01a36e2eb200000000000000000000000000000000000000000000000a0000000000000000000000000000000000000000000000000000000000000000051eb851eb851eb800000000000000000000000000000000000000000000000000000000000001600000000000000000000000000000000000000000000000000000000000000068576861742077696c6c2074686520686967682074656d70657261747572652028696e20646567726565732046616872656e686569742920626520696e2053616e204672616e636973636f2c2043616c69666f726e69612c206f6e204a756c7920312c20323031363f00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000016f04cef16b2086f15548d99fcb51c7f84eb8969430a858d08e24cc70798e778b',
+  callReturn: '-0x3bb8d91f2481d886fe94acd4d1ffe3339ec60524aeb55ceb5a6c6c8631a796c2',
+  txHash: '0x643462835b9899318ead8f47a1c43232b04a1dfeda8fba213e8c3d8a0c4651e0'
+}
 ```
 ### [createMarket contract](https://github.com/AugurProject/augur-core/blob/master/src/functions/createMarket.se)
+#### createMarket(branchId, description, alpha, initialLiquidity, tradingFee, events[, onSent, onSuccess, onFailed])
+
+Creates a market on branch `branchId` with `description`, LS-LMSR `alpha` value, initial investment of `initialLiquidity`, trading fee (as a proportion) of `tradingFee`, containing event IDs supplied in an array `events`.  Regular (non-combinatorial) markets always have a single event; combinatorial markets allow up to 3 events.
 
 ```javascript
 // closeMarket contract
-closeMarket(branch, market[, onSent, onSuccess, onFailed])
+var marketId = "-0x3bb8d91f2481d886fe94acd4d1ffe3339ec60524aeb55ceb5a6c6c8631a796c2";
+augur.closeMarket({
+  branchId: augur.branches.dev,
+  marketId: marketId,
+  onSent: function (sentResponse) { /* ... */ },
+  onSuccess: function (successResponse) { /* ... */ },
+  onFailed: function (failedResponse) { /* ... */ }
+});
+// example outputs:
+sentResponse = {
+  txHash: '0x2b48ff35e52c9963503d573c15b559c53e6b34e2ba8f1be3d4d63709239bd8f2',
+  callReturn: '0'
+}
+successResponse = {
+  nonce: '0x536',
+  blockHash: '0x107c03ea39f081c462db612b7acbb8c6e3abfbdeb16fb7f2e27a680590092f9e',
+  blockNumber: '0x7301',
+  transactionIndex: '0x0',
+  from: '0x05ae1d0ca6206c6168b42efcd1fbe0ed144e821b',
+  to: '0xcece47d6c0a6a1c90521f38ec5bf7550df983804',
+  value: '0x0',
+  gas: '0x2fd618',
+  gasPrice: '0xba43b7400',
+  input: '0x60aea93e00000000000000000000000000000000000000000000000000000000000f69b5c44726e0db7e2779016b532b2e001ccc6139fadb514aa314a5939379ce58693e',
+  callReturn: '0',
+  txHash: '0x2b48ff35e52c9963503d573c15b559c53e6b34e2ba8f1be3d4d63709239bd8f2'
+}
 ```
 ### [closeMarket contract](https://github.com/AugurProject/augur-core/blob/master/src/functions/closeMarket.se)
+#### closeMarket(branchId, marketId[, onSent, onSuccess, onFailed])
 
-```javascript
-createEvent(eventObject)
-/**
- * - eventObject has the following fields:
- *   - branchId <integer>
- *   - description <string>
- *   - minValue <integer> (will be floating-point)
- *   - maxValue <integer> (will be floating-point)
- *   - numOutcomes <integer>
- *   - expDate <integer> - block number when the event expires
- *   - onSent <function> - callback that fires after the event is broadcast to
- *      the network
- *   - onSuccess <function> - optional callback that fires when augur.js is
- *      able to see your event on the network
- *
- * - Callback functions should accept a single parameter: an event object with
- *      txHash and callReturn fields
- *
- * - Calling createEvent with positional arguments also works:
- *   - createEvent(branchId, description, expDate, minValue, maxValue, numOutcomes[, onSent, onSuccess])
- */
-
-createMarket(marketObject)
-/**
- * - marketObject has the following fields:
- *   - branchId <integer>
- *   - description <string>
- *   - minValue <integer> (will be floating-point)
- *   - maxValue <integer> (will be floating-point)
- *   - numOutcomes <integer>
- *   - expDate <integer> - block number when the event expires
- *   - onSent <function> - callback that fires after the event is broadcast to
- *      the network
- *   - onSuccess <function> - optional callback that fires when augur.js is
- *      able to see the new market on the network
- *   - onFailure <function> - optional callback that fires if market creation
- *      errors
- *
- * - Callback functions should accept a single parameter: a market object
- *      txHash and callReturn fields
- *   
- * - Calling createMarket with positional arguments also works:
- *   - createMarket(branchId, description, alpha, liquidity, tradingFee, events[, onSent, onSuccess, onFailed])
- */
-
-getSimulatedBuy(market, outcome, amount[, callback])
-
-> augur.getSimulatedBuy("0xb13d98f933cbd602a3d9d4626260077678ab210d1e63b3108b231c1758ff9971", 1, augur.ONE.toString(16))
-["0x0000000000000000000000000000000000000000000000000013b073172aceb2",
- "0x0000000000000000000000000000000000000000000000008de39f2500000000"]
-
-getSimulatedSell(market, outcome, amount[, callback])
-
-> augur.getSimulatedSell("0xb13d98f933cbd602a3d9d4626260077678ab210d1e63b3108b231c1758ff9971", 1, augur.ONE.toString(16))
-["0x0000000000000000000000000000000000000000000000000013af84d04feba9",
- "0x0000000000000000000000000000000000000000000000008dd635b900000000"]
-
-getCreator(id[, callback])
-
-> var market = "0xb13d98f933cbd602a3d9d4626260077678ab210d1e63b3108b231c1758ff9971";
-> augur.getCreator(market);
-"0x0000000000000000000000001c11aa45c792e202e9ffdc2f12f99d0d209bef70"
-
-getCreationFee(id[, callback])
-
-> augur.getCreationFee(market)
-"0x00000000000000000000000000000000000000000000000a0000000000000000"
-
-getExpiration(event[, callback]): Event expiration block.
-
-> var event = "0xb2a6de45f349b5ac384b01a785e640f519f0a8597ab2031c964c7f572d96b13c";
-> augur.getExpiration(event)
-"0x000000000000000000000000000000000000000000000000000000000003d090"
-
-getMarketNumOutcomes(market[, callback]): Number of outcomes in this market as an integer.
-
-> augur.getMarketNumOutcomes(market)
-2
-
-price(market, outcome[, callback]): Get the current (instantaneous) price of an outcome.
-
-> augur.price(market_id, 1, function (r) { console.log(r.dividedBy(augur.ONE).toFixed()); })
-0.55415210523642599583
-
-getWinningOutcomes(market[, callback])
-```
+Closes market with ID `marketId` on branch `branchId`.
 
 Events/logging API
 ------------------
 
 ```javascript
-// trade events (price history data)
-getPrices(market, callback)
-getClosingPrices(market, callback)
-getPriceHistory(branch, callback)
-getOutcomePriceHistory(market, outcome, callback)
-getMarketPriceHistory(market, callback)
+augur.getPrices(marketId, function (prices) { /* ... */ })
+// example output:
+prices = {
+  "1": [{
+    year: 2015,
+    day: 15,
+    month: 12,
+    price: 0.9982875139911898,
+    volume: 1.1181621503989734,
+    timestamp: 1450205548
+  }, {
+    year: 2015,
+    day: 15,
+    month: 12,
+    price: 0.9999986905158383,
+    volume: 1.0002707146145515,
+    timestamp: 1450205782
+  }, {
+    year: 2015,
+    day: 15,
+    month: 12,
+    price: 0.9999999977785681,
+    volume: 1.0000002278530689,
+    timestamp: 1450206815
+  }, {
+    year: 2015,
+    day: 15,
+    month: 12,
+    price: 0.9999999999926208,
+    volume: 1.000000000422754,
+    timestamp: 1450209572
+  }, {
+    year: 2015,
+    day: 16,
+    month: 12,
+    price: 0.9999999999999568,
+    volume: 1.000000000001524,
+    timestamp: 1450248629
+  }],
+  "2": [{
+    year: 2015,
+    day: 16,
+    month: 12,
+    price: 7.34725727567e-9,
+    volume: 12.496966951483369,
+    timestamp: 1450248854
+  }]
+}
 ```
+### getPrices(marketId, callback)
+
+Fetches all price changes and volumes for the specified market, ordered by timestamp (most recent record last).  `callback` is required; `getPrices` is asynchronous-only.
 
 ```javascript
-// market creation events (block numbers)
-getCreationBlocks(branch, callback)
-getMarketCreationBlock(market, callback)
+augur.getClosingPrices(marketId, function (closingPrices) { /* ... */ })
+// example output:
+closingPrices = {
+  "1": [{
+    year: 2015,
+    day: 15,
+    month: 12,
+    timestamp: 1450248629,
+    closingPrice: 0.9999999999926208,
+    volume: 4.118433093289348
+  }, {
+    year: 2015,
+    day: 16,
+    month: 12,
+    closingPrice: 0.9999999999999568,
+    volume: 1.000000000001524,
+    timestamp: 1450248629
+  }],
+  "2": [{
+    year: 2015,
+    day: 16,
+    month: 12,
+    closingPrice: 7.34725727567e-9,
+    volume: 12.496966951483369,
+    timestamp: 1450248854
+  }]
+}
 ```
+### getClosingPrices(marketId, callback)
+
+Gets the closing price (last trade price of the day) as well as the total volume traded over the day, ordered by timestamp (most recent record last).  `callback` is required; `getClosingPrices` is asynchronous-only.
 
 Invoke
 ------
