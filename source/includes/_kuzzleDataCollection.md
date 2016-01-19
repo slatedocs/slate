@@ -12,6 +12,7 @@ A data collection is a set of data managed by Kuzzle. It acts like a data table 
  Constructors are not exposed in the JS/Node SDK. You may get an instantiated
  KuzzleDataCollection object by calling Kuzzle.dataCollectionFactory()
  */
+var dataCollection = kuzzle.dataCollectionFactory('index', 'collection');
 ```
 
 ```java
@@ -121,7 +122,7 @@ dataCollection.advancedSearch(userFilter, new ResponseListener() {
 });
 ```
 
-> Returns an object containing the total number of documents, and an array of KuzzleDocument objects
+> Callback response:
 
 ```json
 { "total": 3,
@@ -136,12 +137,14 @@ There is a small delay between documents creation and their existence in our adv
 
 Executes an advanced search on the data collection.
 
-#### advancedSearch(filters, [options])
+#### advancedSearch(filters, [options], callback)
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
-| ``filters`` | JSON Object | Filters in [ElasticSearch Query DSL](https://www.elastic.co/guide/en/elasticsearch/reference/1.3/query-dsl.html) format |
-| ``options`` | JSON Object | Optional parameters |
+| ``filters`` | JSON object | Filters in [ElasticSearch Query DSL](https://www.elastic.co/guide/en/elasticsearch/reference/1.3/query-dsl.html) format |
+| ``options`` | JSON object | Optional parameters |
+| ``callback`` | function | Callback handling the response |
+
 
 Available options:
 
@@ -149,6 +152,17 @@ Available options:
 |---------------|---------|----------------------------------------|---------|
 | ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
 
+#### Return value
+
+Returns the `KuzzleDataCollection` object to allow chaining.
+
+
+#### Callback response
+
+Resolves to a `JSON object` containing:
+
+- the total number of matched documents
+- an `array` of `KuzzleDocument` objects
 
 ## count
 
@@ -184,7 +198,7 @@ dataCollection.count(filters, new ResponseListener() {
 });
 ```
 
-> Returns the number of matched documents
+> Callback response:
 
 ```json
 12
@@ -194,12 +208,13 @@ dataCollection.count(filters, new ResponseListener() {
 
 Returns the number of documents matching the provided set of filters.
 
-#### count(filters, [options])
+#### count(filters, [options], callback)
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
 | ``filters`` | JSON Object | Filters in [ElasticSearch Query DSL](https://www.elastic.co/guide/en/elasticsearch/reference/1.3/query-dsl.html) format |
 | ``options`` | JSON Object | Optional parameters |
+| ``callback`` | function | Callback handling the response |
 
 Available options:
 
@@ -207,6 +222,14 @@ Available options:
 |---------------|---------|----------------------------------------|---------|
 | ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
 
+
+#### Return value
+
+Returns the `KuzzleDataCollection` object to allow chaining.
+
+#### Callback response
+
+Resolves to the matched documents count as a ``integer``.
 
 ## create
 
@@ -244,15 +267,32 @@ dataCollection.create(new ResponseListener() {
 });
 ```
 
+> Callback response:
+
+```json
+{
+  "status": 200,
+  "error": null,
+  "requestId": "cf1fc8b4-fd87-46c3-b0a2-3d9d2fb7d401",
+  "controller": "write",
+  "action": "createCollection",
+  "collection": "newly created collection",
+  "index": "index",
+  "metadata": {},
+  "state": "done",
+  "scope": null,
+  "result": {}
+}
+```
+
 Create a new empty data collection, with no associated mapping.
 
-Kuzzle automatically creates data collections when storing documents, but there are cases where we want to create and prepare data collections before storing documents in it.
-
-#### create([options])
+#### create([options], [callback])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
 | ``options`` | JSON Object | Optional parameters |
+| ``callback`` | function | Optional callback |
 
 Available options:
 
@@ -260,6 +300,13 @@ Available options:
 |---------------|---------|----------------------------------------|---------|
 | ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
 
+#### Return value
+
+Returns the `KuzzleDataCollection` object to allow chaining.
+
+#### Callback response
+
+Resolves to a `JSON object` containing the raw Kuzzle response.
 
 ## createDocument
 
@@ -300,29 +347,35 @@ dataCollection.createDocument(myDocument, new ResponseListener() {
 });
 ```
 
-> Returns a KuzzleDocument object containing the newly created document
-
 Create a new document in Kuzzle.
 
-#### createDocument(KuzzleDocument, [options])
+#### createDocument(KuzzleDocument, [options], [callback])
 
-#### createDocument([id], content, [options])
+#### createDocument([id], content, [options], [callback])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
 | ``KuzzleDocument`` | object | KuzzleDocument object |
 | ``id`` | string | Optional document identifier |
-| ``content`` | JSON Object | Content of the document to create |
-| ``options`` | JSON Object | Optional parameters |
+| ``content`` | JSON object | Content of the document to create |
+| ``options`` | JSON object | Optional parameters |
+| ``callback`` | function | Optional callback |
 
 Available options:
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
-| ``metadata`` | JSON Object | Additional information passed to notifications to other users | ``null`` |
+| ``metadata`` | JSON object | Additional information passed to notifications to other users | ``null`` |
 | ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
 | ``updateIfExist`` | boolean | If the same document already exists: throw an error if sets to ``false``. Update the existing document otherwise | ``false`` |
 
+#### Return value
+
+Returns the `KuzzleDataCollection` object to allow chaining.
+
+#### Callback response
+
+Resolves to a `KuzzleDocument` object containing the newly created document.
 
 ## delete
 
@@ -360,19 +413,46 @@ dataCollection.delete(new ResponseListener() {
 });
 ```
 
+> Callback response:
+
+```json
+{
+  "status": 200,
+  "error": null,
+  "requestId": "05e27297-082a-430c-bd20-a94850abdff7",
+  "controller": "admin",
+  "action": "deleteCollection",
+  "collection": "the deleted collection name",
+  "index": "index containing the collection",
+  "metadata": {},
+  "state": "done",
+  "scope": null,
+  "result": {}
+}
+```
+
 Delete this data collection and all documents in it.
 
-#### delete([options])
+#### delete([options], [callback])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
 | ``options`` | JSON Object | Optional parameters |
+| ``callback`` | function | Optional callback |
 
 Available options:
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
 | ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
+
+#### Return value
+
+Returns the `KuzzleDataCollection` object to allow chaining.
+
+#### Callback response
+
+Resolves to a `JSON object` containing the raw Kuzzle response.
 
 ## deleteDocument
 
@@ -440,35 +520,45 @@ dataCollection.deleteDocument(termFilter, new ResponseListener() {
 });
 ```
 
-> Returns the list of deleted document IDs
+> Callback response:
 
 ```json
-["AVCoeBkimsySTKTfa8AX"]
+[ "AVCoeBkimsySTKTfa8AX" ]
 ```
 
 <aside class="notice">
 There is a small delay between documents creation and their existence in our advanced search layer, usually a couple of seconds. That means that a document that was just been created won't be deleted by the filtered version of this function
 </aside>
 
-Delete persistent documents.
+Delete either a stored document, or all stored documents matching search filters.
 
-#### deleteDocument(documentId, [options])
+#### deleteDocument(documentId, [options], [callback])
 
-#### deleteDocument(filters, [options])
+#### deleteDocument(filters, [options], [callback])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
 | ``documentId`` | string | Unique document identifier |
-| ``filters`` | JSON Object | Filters in [ElasticSearch Query DSL](https://www.elastic.co/guide/en/elasticsearch/reference/1.3/query-dsl.html) format |
-| ``options`` | JSON Object | Optional parameters |
+| ``filters`` | JSON object | Filters in [ElasticSearch Query DSL](https://www.elastic.co/guide/en/elasticsearch/reference/1.3/query-dsl.html) format |
+| ``options`` | JSON object | Optional parameters |
+| ``callback`` | function | Optional callback |
+
 
 Available options:
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
-| ``metadata`` | JSON Object | Additional information passed to notifications to other users | ``null`` |
+| ``metadata`` | JSON object | Additional information passed to notifications to other users | ``null`` |
 | ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
 
+
+#### Return value
+
+Returns the `KuzzleDataCollection` object to allow chaining.
+
+#### Callback response
+
+Resolves to an `array` containing the deleted document IDs.
 
 ## fetchDocument
 
@@ -504,16 +594,16 @@ dataCollection.fetchDocument("documentId", new ResponseListener() {
 });
 ```
 
-> Returns a KuzzleDocument object
+Retrieves a single stored document using its unique document ID.
 
-Retrieve a single stored document using its unique document ID.
-
-#### fetchDocument(documentId, [options])
+#### fetchDocument(documentId, [options], callback)
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
 | ``documentId`` | string | Unique document identifier |
 | ``options`` | JSON Object | Optional parameters |
+| ``callback`` | function | Callback handling the response |
+
 
 Available options:
 
@@ -521,6 +611,14 @@ Available options:
 |---------------|---------|----------------------------------------|---------|
 | ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
 
+
+#### Return value
+
+Returns the `KuzzleDataCollection` object to allow chaining.
+
+#### Callback response
+
+Resolves to a `KuzzleDocument` object.
 
 ## fetchAllDocuments
 
@@ -558,7 +656,7 @@ dataCollection.fetchAllDocuments(new ResponseListener() {
 });
 ```
 
-> Returns an object containing the total number of documents, and an array of retrieved documents
+> Callback response:
 
 ```json
 { "total": 3,
@@ -568,17 +666,30 @@ dataCollection.fetchAllDocuments(new ResponseListener() {
 
 Retrieves all documents stored in this data collection.
 
-#### fetchAllDocuments([options])
+#### fetchAllDocuments([options], callback)
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
 | ``options`` | JSON Object | Optional parameters |
+| ``callback`` | function | Callback handling the response |
+
 
 Available options:
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
 | ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
+
+#### Return value
+
+Returns the `KuzzleDataCollection` object to allow chaining.
+
+#### Callback response
+
+Resolves to a `JSON object` containing:
+
+- the total number of retrieved documents
+- a `array` of `KuzzleDocument` objects
 
 
 ## getMapping
@@ -614,15 +725,16 @@ dataCollection.getMapping(new ResponseListener() {
 });
 ```
 
-> Returns a KuzzleDataMapping object
 
-Instantiates a KuzzleDataMapping object containing the current mapping of this collection.
+Retrieves the current mapping of this collection.
 
-#### getMapping([options])
+#### getMapping([options], callback)
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
-| ``options`` | JSON Object | Optional parameters |
+| ``options`` | JSON object | Optional parameters |
+| ``callback`` | function | Callback handling the response |
+
 
 Available options:
 
@@ -630,6 +742,13 @@ Available options:
 |---------------|---------|----------------------------------------|---------|
 | ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
 
+#### Return value
+
+Returns the `KuzzleDataCollection` object to allow chaining.
+
+#### Callback response
+
+Resolves to a `KuzzleDataMapping` object.
 
 ## publishMessage
 
@@ -665,20 +784,24 @@ Available options:
 | ``metadata`` | JSON Object | Additional information passed to notifications to other users | ``null`` |
 | ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
 
+#### Return value
+
+Returns the `KuzzleDataCollection` object to allow chaining.
+
 ## putMapping
 
 ```js
 // Using callbacks (NodeJS or Web Browser)
 kuzzle
   .dataCollectionFactory('index', 'collection')
-  .putMapping({foo: {type: 'string', store: true}, bar: {type: 'date'}, function (error, result) {
+  .putMapping({foo: {type: 'string', store: true}, bar: {type: 'date'}}, function (error, result) {
     // result is a KuzzleDataMapping object
   });
 
 // Using promises (NodeJS)
 kuzzle
   .dataCollectionFactory('index', 'collection')
-  .putMappingPromise({foo: {type: 'string', store: true}, bar: {type: 'date'})
+  .putMappingPromise({foo: {type: 'string', store: true}, bar: {type: 'date'}})
   .then(result => {
     // result is a KuzzleDataMapping object
   });
@@ -701,12 +824,13 @@ dataCollection.putMapping(myKuzzleDataMapping, new ResponseListener() {
 Applies a new mapping to the data collection.  
 Note that you cannot delete an existing mapping, you can only add or update one.
 
-#### putMapping(mapping, [options])
+#### putMapping(mapping, [options], [callback])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
 | ``mapping`` | JSON Object | Mapping to apply |
 | ``options`` | JSON Object | Optional parameters |
+| ``callback`` | function | Optional callback |
 
 Available options:
 
@@ -714,6 +838,13 @@ Available options:
 |---------------|---------|----------------------------------------|---------|
 | ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
 
+#### Return value
+
+Returns the `KuzzleDataCollection` object to allow chaining.
+
+#### Callback response
+
+Resolves to an up-to-date `KuzzleDataMapping` object.
 
 ## replaceDocument
 
@@ -740,17 +871,16 @@ doc.setContent("foo", "bar");
 dataCollection.replaceDocument("42", doc);
 ```
 
-> Returns a KuzzleDocument object containing the new version of the document
-
 Replace an existing document with a new one.
 
-#### replaceDocument(documentId, content, [options])
+#### replaceDocument(documentId, content, [options], [callback])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
 | ``documentId`` | string | Unique document identifier |
 | ``content`` | JSON Object | Content of the document to create |
 | ``options`` | JSON Object | Optional parameters |
+| ``callback`` | function | Optional callback |
 
 Available options:
 
@@ -758,6 +888,14 @@ Available options:
 |---------------|---------|----------------------------------------|---------|
 | ``metadata`` | JSON Object | Additional information passed to notifications to other users | ``null`` |
 | ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
+
+#### Return value
+
+Returns the `KuzzleDataCollection` object to allow chaining.
+
+#### Callback response
+
+Resolves to an updated `KuzzleDocument` object.
 
 ## setHeaders
 
@@ -781,9 +919,7 @@ content.put("metadata", meta);
 dataCollection.setHeaders(content, true);
 ```
 
-> Returns itself
-
-This is a helper function returning itself, allowing to easily chain calls.
+This is a helper function returning itself, allowing to easily set headers while chaining calls.
 
 #### setHeaders(content)
 
@@ -795,6 +931,10 @@ This is a helper function returning itself, allowing to easily chain calls.
 | ``replace`` | boolean | true: replace the current content with the provided data, false: merge it |
 
 **Note:** by default, the ``replace`` argument is set to ``false``
+
+#### Return value
+
+Returns the `KuzzleDataCollection` object to allow chaining.
 
 ## subscribe
 
@@ -825,8 +965,6 @@ dataCollection.subscribe(term, new ResponseListener() {
 });
 ```
 
-> Returns a KuzzleRoom object
-
 Subscribes to this data collection with a set of filters.
 
 <aside class="notice">
@@ -841,6 +979,9 @@ To subscribe to the entire data collection, simply provide an empty filter.
 | ``options`` | object | (Optional) Subscription configuration. Passed to the KuzzleRoom constructor. |
 | ``callback`` | function | Callback to call every time a notification is received on this subscription |
 
+#### Return value
+
+Returns a `KuzzleRoom` object.
 
 ## truncate
 
@@ -878,15 +1019,33 @@ dataCollection.truncate(new ResponseListener() {
 });
 ```
 
+> Callback response:
+
+```json
+{
+  "status": 200,
+  "error": null,
+  "requestId": "8fdc0efb-6fc7-427d-a3a1-fd8cf5eabc20",
+  "controller": "admin",
+  "action": "truncateCollection",
+  "collection": "name of the truncated collection",
+  "index": "name of the index containing the truncated collection",
+  "metadata": {},
+  "state": "done",
+  "result": { "acknowledged": true }
+}
+```
+
 Truncate the data collection, removing all stored documents but keeping all associated mappings.
 
 This method is a lot faster than removing all documents using a query.
 
-#### truncate([options])
+#### truncate([options], [callback])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
 | ``options`` | JSON Object | Optional parameters |
+| ``callback`` | function | Optional callback |
 
 Available options:
 
@@ -894,6 +1053,13 @@ Available options:
 |---------------|---------|----------------------------------------|---------|
 | ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
 
+#### Return value
+
+Returns the `KuzzleDataCollection` object to allow chaining.
+
+#### Callback response
+
+Resolves to a `JSON object` containing the raw Kuzzle response.
 
 ## updateDocument
 
@@ -933,21 +1099,29 @@ dataCollection.updateDocument("documentId", doc, new ResponseListener() {
 });
 ```
 
-> Returns a KuzzleDocument object containing the new version of the document  
+Update parts of a document, by replacing some fields or adding new ones.  
+Note that you cannot remove fields this way: missing fields will simply be left unchanged.
 
-Update parts of a document
-
-#### updateDocument(documentId, content, [options])
+#### updateDocument(documentId, content, [options], [callback])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
 | ``documentId`` | string | Unique document identifier |
-| ``content`` | JSON Object | Content of the document to create |
-| ``options`` | JSON Object | Optional parameters |
+| ``content`` | JSON object | Content of the document to create |
+| ``options`` | JSON object | Optional parameters |
+| ``callback`` | function | Optional callback |
 
 Available options:
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
-| ``metadata`` | JSON Object | Additional information passed to notifications to other users | ``null`` |
+| ``metadata`` | JSON object | Additional information passed to notifications to other users | ``null`` |
 | ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
+
+#### Return value
+
+Returns the `KuzzleDataCollection` object to allow chaining.
+
+#### Callback response
+
+Resolves to an up-to-date `KuzzleDocument` object.

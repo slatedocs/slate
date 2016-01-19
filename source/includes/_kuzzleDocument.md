@@ -48,7 +48,7 @@ KuzzleDocument document = new KuzzleDocument(collection, "id", content);
 | ``content`` | JSON Object | Initializes this document with the provided content |
 | ``documentId`` | string | ID of an existing document. |
 
-**Note:**  providing a documentID to the constructor will automatically call ``refresh``, unless a ``content`` is also provided
+**Note:**  this constructor won't make any call to Kuzzle. When providing only a document ID, the `refresh` method should be called to retrieve the corresponding document content.
 
 ## Properties
 
@@ -94,15 +94,14 @@ document.delete(new ResponseListener() {
 });
 ```
 
-> Return this KuzzleDocument object
-
 Deletes this document in Kuzzle.
 
-#### delete([options])
+#### delete([options], [callback])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
 | ``options`` | JSON Object | Optional parameters |
+| ``callback`` | function | Optional callback |
 
 Available options:
 
@@ -110,6 +109,14 @@ Available options:
 |---------------|---------|----------------------------------------|---------|
 | ``metadata`` | JSON Object | Additional information passed to notifications to other users | ``null`` |
 | ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
+
+#### Return value
+
+Returns this `KuzzleDocument` object to allow chaining.
+
+#### Callback response
+
+Resolves to this `KuzzleDocument` object once the document has been deleted in Kuzzle.
 
 
 ## publish
@@ -136,6 +143,10 @@ Available options:
 |---------------|---------|----------------------------------------|---------|
 | ``metadata`` | JSON Object | Additional information passed to notifications to other users | ``null`` |
 | ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
+
+#### Return value
+
+Returns this `KuzzleDocument` object to allow chaining.
 
 
 ## refresh
@@ -166,21 +177,29 @@ document.refresh(new ResponseListener() {
 });
 ```
 
-> Returns the refreshed KuzzleDocument object
-
 Replaces the current content with the last version of this document stored in Kuzzle.
 
-#### refresh([options])
+#### refresh([options], [callback])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
 | ``options`` | JSON Object | Optional parameters |
+| ``callback`` | function | Optional callback |
+
 
 Available options:
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
 | ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
+
+#### Return value
+
+Returns this `KuzzleDocument` object to allow chaining.
+
+#### Callback response
+
+Resolves to this `KuzzleDocument` object once the document has been refreshed.
 
 
 ## save
@@ -211,18 +230,17 @@ document.save(new ResponseListener() {
 });
 ```
 
-> Return the updated version of this KuzzleDocument object
-
 Saves this document into Kuzzle.
 
 If this is a new document, this function will create it in Kuzzle and the ``id`` property will be made available.  
 Otherwise, this method will replace the latest version of this document in Kuzzle by the current content of this object.
 
-#### save([options])
+#### save([options], [callback])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
 | ``options`` | JSON Object | Optional parameters |
+| ``callback`` | function | Optional callback |
 
 Available options:
 
@@ -230,6 +248,15 @@ Available options:
 |---------------|---------|----------------------------------------|---------|
 | ``metadata`` | JSON Object | Additional information passed to notifications to other users | ``null`` |
 | ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
+
+#### Return value
+
+Returns this `KuzzleDocument` object to allow chaining.
+
+#### Callback response
+
+Resolves to this `KuzzleDocument` object once the document has been saved.
+
 
 
 ## setContent
@@ -252,7 +279,8 @@ document.setContent(content);
 Changes made by this function won't be applied until the <code>save</code> method is called
 </aside>
 
-Replaces the current content with new data.
+Replaces the current content with new data.  
+This is a helper function returning itself, allowing to easily chain calls.
 
 #### setContent(data)
 
@@ -264,6 +292,10 @@ Replaces the current content with new data.
 | ``replace`` | boolean | true: replace the current content with the provided data, false: merge it |
 
 **Note:** by default, the ``replace`` argument is set to ``false``
+
+#### Return value
+
+Returns this `KuzzleDocument` object to allow chaining.
 
 ## setHeaders
 
@@ -277,8 +309,6 @@ headers.put("someContent", "someValue");
 document.setHeaders(headers, true);
 ```
 
-> Returns itself
-
 This is a helper function returning itself, allowing to easily chain calls.
 
 #### setHeaders(content)
@@ -291,6 +321,10 @@ This is a helper function returning itself, allowing to easily chain calls.
 | ``replace`` | boolean | true: replace the current content with the provided data, false: merge it |
 
 **Note:** by default, the ``replace`` argument is set to ``false``
+
+#### Return value
+
+Returns this `KuzzleDocument` object to allow chaining.
 
 ## subscribe
 
@@ -320,8 +354,6 @@ KuzzleRoom room = document.subscribe(new ResponseListener() {
 });
 ```
 
-> Return a KuzzleRoom object
-
 Listens to changes occuring on this document.  
 Throws an error if this document has not yet been created in Kuzzle.
 
@@ -333,3 +365,7 @@ Throws an error if this document has not yet been created in Kuzzle.
 |---------------|---------|----------------------------------------|
 | ``options`` | object | Subscription configuration. Passed to the KuzzleRoom constructor. |
 | ``cb`` | function | Callback that will be called each time a change has been detected on this document |
+
+#### Return value
+
+Returns a new `KuzzleRoom` object.

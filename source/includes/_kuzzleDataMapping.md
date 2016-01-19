@@ -80,21 +80,28 @@ dataMapping.apply(new ResponseListener() {
 });
 ```
 
-> Return the updated KuzzleDataMapping object
-
 Applies the new mapping to the data collection.
 
-#### apply([options])
+#### apply([options], [callback])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
 | ``options`` | JSON Object | Optional parameters |
+| ``callback`` | function | Optional callback |
 
 Available options:
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
 | ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
+
+#### Return value
+
+Returns this `KuzzleDataMapping` object to allow chaining.
+
+#### Callback response
+
+Resolves to this updated `KuzzleDataMapping` object.
 
 ## refresh
 
@@ -124,19 +131,18 @@ dataMapping.refresh(new ResponseListener() {
 });
 ```
 
-> Return the updated KuzzleDataMapping object
-
 <aside class="warning">
 Calling this function will discard any uncommited changes. You can commit changes by calling the <code>apply</code> function
 </aside>
 
 Replaces the current content with the mapping stored in Kuzzle
 
-#### refresh([options])
+#### refresh([options], [callback])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
 | ``options`` | JSON Object | Optional parameters |
+| ``callback`` | function | Optional callback |
 
 Available options:
 
@@ -144,6 +150,13 @@ Available options:
 |---------------|---------|----------------------------------------|---------|
 | ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
 
+#### Return value
+
+Returns this `KuzzleDataMapping` object to allow chaining.
+
+#### Callback response
+
+Resolves to this updated `KuzzleDataMapping` object.
 
 ## set
 
@@ -159,8 +172,6 @@ mapping.put("null_value", "");
 dataMapping.set("field", mapping);
 ```
 
-> Return the updated KuzzleDataMapping object
-
 <aside class="notice">Changes made by this function won't be applied until you call the <code>apply</code> method</aside>
 
 Adds or updates a field mapping.
@@ -171,6 +182,10 @@ Adds or updates a field mapping.
 |---------------|---------|----------------------------------------|
 | ``field`` | string | Name of the field from which the mapping is to be added or updated |
 | ``mapping`` | JSON Object | Mapping for this field, following the [Elasticsearch Mapping format](https://www.elastic.co/guide/en/elasticsearch/reference/1.3/mapping.html)
+
+#### Return value
+
+Returns this `KuzzleDataMapping` object to allow chaining.
 
 ## setHeaders
 
@@ -184,8 +199,6 @@ headers.put("someContent", "someValue");
 dataMapping.setHeaders(headers, true);
 ```
 
-> Returns itself
-
 This is a helper function returning itself, allowing to easily chain calls.
 
 #### setHeaders(content)
@@ -198,3 +211,7 @@ This is a helper function returning itself, allowing to easily chain calls.
 | ``replace`` | boolean | true: replace the current content with the provided data, false: merge it |
 
 **Note:** by default, the ``replace`` argument is set to ``false``
+
+#### Return value
+
+Returns this `KuzzleDataMapping` object to allow chaining.

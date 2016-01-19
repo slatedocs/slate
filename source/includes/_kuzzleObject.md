@@ -32,25 +32,24 @@ options.setHeaders(headers);
 Kuzzle kuzzle = new Kuzzle("http://localhost:7512", options, new ResponseListener() {
  @Override
  public void onSuccess(JSONObject object) {
-   // invoked once connected, kuzzle contains the kuzzle instance
+   // invoked once connected, object contains the kuzzle instance
  }
 
  @Override
  public void onError(JSONObject error) {
-   // Handle error
+   // Handle connection error
  }
 });
 ```
 
-> Returns an instanciated Kuzzle Object
-
-#### Kuzzle(url, index, [options])
+#### Kuzzle(url, [options], [callback])
 
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
 | ``url`` | string | URL to the target Kuzzle instance |
-| ``options`` | object | Kuzzle connection configuration |
+| ``options`` | JSON object | Optional Kuzzle connection configuration |
+| ``callback`` | function | Optional callback |
 
 Available options:
 
@@ -74,6 +73,11 @@ Available options:
 | ``loginExpiresIn`` | string | The username | ``1h``
 
 **Notes:** the ``offlineMode`` option only accept the ``manual`` and ``auto`` values
+
+#### Callback response
+
+If the connection succeeds, resolves to the `Kuzzle` object itself.    
+If the `connect` option is set to `manual`, the callback will be called after the `connect` method is resolved.
 
 ## Properties
 
@@ -177,8 +181,6 @@ Here is the list of these special events:
 });
 ```
 
-> Returns an unique listener ID
-
 Adds a listener to a Kuzzle global event. When an event is fired, listeners are called in the order of their insertion.
 
 <aside class="notice">
@@ -194,6 +196,10 @@ The ID returned by this function is required if you want to remove this listener
 
 **Note:** Currently, the ``subscription`` object only contains the room ID, the subscription ID of the user from whom the event originate, and the current user count on this room
 
+#### Return value
+
+Returns a `string` containing an unique listener ID.
+
 ## connect
 
 ```js
@@ -206,6 +212,14 @@ kuzzle.connect();
 
 Connects to the Kuzzle instance using the URL provided to the constructor.  
 Has no effect if ``connect`` is set to ``auto``, unless ``disconnect`` has been called first.
+
+#### Return value
+
+Returns the `Kuzzle` object to allow chaining.
+
+#### Callback response
+
+If a callback has been provided to the `Kuzzle` constructor, it will be called with the `Kuzzle` instance once successfully connected
 
 
 ## dataCollectionFactory
@@ -227,8 +241,6 @@ kuzzle.setDefaultIndex('index');
 KuzzleDataCollection collection = kuzzle.dataCollectionFactory("collection");
 ```
 
-> Returns a KuzzleDataCollection object
-
 Instantiates a new KuzzleDataCollection object.
 
 #### dataCollectionFactory([index], collection)
@@ -242,6 +254,10 @@ If no ``index`` is provided, the factory will take the default index set in the 
 
 The ``index`` argument takes precedence over the default index.
 
+
+#### Return value
+
+Returns a `KuzzleDataCollection` object.
 
 ## disconnect
 
@@ -266,6 +282,10 @@ kuzzle.flushQueue();
 ```
 
 Empties the offline queue without replaying it.
+
+#### Return value
+
+Returns the `Kuzzle` object to allow chaining.
 
 ## getAllStatistics
 
@@ -301,34 +321,35 @@ kuzzle.getAllStatistics(new ResponseListener() {
 };
 ```
 
-> Returns an array of frames
+> Callback response example:
 
 ```json
-[{ "connections": { "websocket": 1 },
-    "ongoingRequests": { "mq": 0, "rest": 0, "websocket": 0 },
-    "completedRequests": { "mq": 37, "websocket": 17 },
-    "failedRequests": { "websocket": 1 },
-    "timestamp": "2015-10-26T12:21:00.218Z" },
-  { "connections": { "websocket": 1 },
-    "ongoingRequests": { "mq": 0, "rest": 0, "websocket": 0 },
-    "completedRequests": { "websocket": 34 },
-    "failedRequests": { "websocket": 3 },
-    "timestamp": "2015-10-26T12:21:10.218Z" },
+[{ "connections": { "socketio": 1 },
+    "ongoingRequests": { "rest": 0, "socketio": 0 },
+    "completedRequests": { "mqtt": 37, "socketio": 17 },
+    "failedRequests": { "socketio": 1 },
+    "timestamp": "1453110641308" },
+  { "connections": { "socketio": 1 },
+    "ongoingRequests": { "rest": 0, "socketio": 0 },
+    "completedRequests": { "socketio": 34 },
+    "failedRequests": { "socketio": 3 },
+    "timestamp": "1453110642308" },
   { "connections": {},
-    "ongoingRequests": { "mq": 0, "rest": 0, "websocket": 0 },
-    "completedRequests": { "websocket": 40 },
+    "ongoingRequests": { "rest": 0, "socketio": 0 },
+    "completedRequests": { "socketio": 40 },
     "failedRequests": {},
-    "timestamp": "2015-10-26T12:21:20.218Z" }]
+    "timestamp": "1453110643308" }]
 ```
 
 Kuzzle monitors active connections, and ongoing/completed/failed requests.  
 This method returns all available statistics from Kuzzle.
 
-#### getAllStatistics([options])
+#### getAllStatistics([options], callback)
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
-| ``options`` | JSON Object | Optional parameters |
+| ``options`` | JSON object | Optional parameters |
+| ``callback`` | function | Callback handling the response |
 
 Available options:
 
@@ -336,6 +357,14 @@ Available options:
 |---------------|---------|----------------------------------------|---------|
 | ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
 
+
+#### Return value
+
+Returns the `Kuzzle` object to allow chaining.
+
+#### Callback response
+
+The response is an array of JSON objects, each one of them being a statistic frame.
 
 ## getServerInfo
 
@@ -352,7 +381,7 @@ kuzzle.getServerInfoPromise()
   });
 ```
 
-> Returns a JSON Object containing the server informations:
+> Callback response example:
 
 ```json
 {
@@ -603,13 +632,15 @@ kuzzle.getServerInfoPromise()
 }
 ```
 
-Returns information about Kuzzle, its plugins and active services.
+Retrieves information about Kuzzle, its plugins and active services.
 
-#### getServerInfo([options])
+#### getServerInfo([options], callback)
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
-| ``options`` | JSON Object | Optional parameters |
+| ``options`` | JSON object | Optional parameters |
+| ``callback`` | function | Optional callback |
+
 
 Available options:
 
@@ -617,9 +648,17 @@ Available options:
 |---------------|---------|----------------------------------------|---------|
 | ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
 
+#### Return value
+
+Returns the `Kuzzle` object to allow chaining.
+
+#### Callback response
+
+Resolves to a JSON object containing server information.
+
 ## getStatistics
 
-> Without argument, returns the last statistic frame in an array:
+> Without argument, retrieves the last statistic frame in an array:
 
 ```js
 // Using callbacks (NodeJS or Web Browser)
@@ -649,17 +688,17 @@ kuzzle.getStatistics(new ResponseListener() {
 };
 ```
 
-> Result:
+> Callback response:
 
 ```json
-[{ "connections": { "websocket": 1 },
-    "ongoingRequests": { "mq": 0, "rest": 0, "websocket": 0 },
-    "completedRequests": { "mq": 37, "websocket": 17 },
-    "failedRequests": { "websocket": 1 },
-    "timestamp": "2015-10-26T12:21:00.218Z" }]
+[{ "connections": { "socketio": 1 },
+    "ongoingRequests": { "rest": 0, "socketio": 0 },
+    "completedRequests": { "mqtt": 37, "socketio": 17 },
+    "failedRequests": { "socketio": 1 },
+    "timestamp": "1453110641308" }]
 ```
 
-> When providing a timestamp, returns all frames recorded after that timestamp:
+> When providing a timestamp, retrieves all frames recorded after that timestamp:
 
 ```js
 var ts = Date.parse('2015-10-26T12:19:10.213Z');
@@ -691,37 +730,38 @@ kuzzle.getStatistics("2015-11-15T13:36:45.558Z", new ResponseListener() {
 };
 ```
 
-> Result:
+> Callback response:
 
 ```json
-[{ "connections": { "websocket": 1 },
-    "ongoingRequests": { "mq": 0, "rest": 0, "websocket": 0 },
-    "completedRequests": { "mq": 37, "websocket": 17 },
-    "failedRequests": { "websocket": 1 },
-    "timestamp": "2015-10-26T12:21:00.218Z" },
-  { "connections": { "websocket": 1 },
-    "ongoingRequests": { "mq": 0, "rest": 0, "websocket": 0 },
-    "completedRequests": { "websocket": 34 },
-    "failedRequests": { "websocket": 3 },
-    "timestamp": "2015-10-26T12:21:10.218Z" },
+[{ "connections": { "socketio": 1 },
+    "ongoingRequests": { "rest": 0, "socketio": 0 },
+    "completedRequests": { "mqtt": 37, "socketio": 17 },
+    "failedRequests": { "socketio": 1 },
+    "timestamp": "1453110641308" },
+  { "connections": { "socketio": 1 },
+    "ongoingRequests": { "rest": 0, "socketio": 0 },
+    "completedRequests": { "socketio": 34 },
+    "failedRequests": { "socketio": 3 },
+    "timestamp": "1453110642308" },
   { "connections": {},
-    "ongoingRequests": { "mq": 0, "rest": 0, "websocket": 0 },
-    "completedRequests": { "websocket": 40 },
+    "ongoingRequests": { "rest": 0, "socketio": 0 },
+    "completedRequests": { "socketio": 40 },
     "failedRequests": {},
-    "timestamp": "2015-10-26T12:21:20.218Z" }]
+    "timestamp": "1453110643308" }]
 ```
 
 Kuzzle monitors active connections, and ongoing/completed/failed requests.  
 This method allows getting either the last statistics frame, or a set of frames starting from a provided timestamp.
 
-#### getStatistics([options])
+#### getStatistics([options], callback)
 
-#### getStatistics(timestamp, [options])
+#### getStatistics(timestamp, [options], callback)
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
 | ``timestamp`` | Epoch time | Starting time from which the frames are to be retrieved |
-| ``options`` | JSON Object | Optional parameters |
+| ``options`` | JSON object | Optional parameters |
+| ``callback`` | function | Callback handling the response |
 
 Available options:
 
@@ -730,6 +770,14 @@ Available options:
 | ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
 
 **Note:** Kuzzle statistics are cleaned up regularly. If the timestamp is set too far in the past, then this method will return all available statistics.
+
+#### Return value
+
+Returns the `Kuzzle` object to allow chaining.
+
+#### Callback response
+
+Resolves to an `array` containing one or more statistics frame(s), as JSON objects.
 
 ## listCollections
 
@@ -761,7 +809,7 @@ kuzzle.listCollections("index", new ResponseListener() {
 };
 ```
 
-> Result:
+> Callback response:
 
 ```json
 {
@@ -770,14 +818,15 @@ kuzzle.listCollections("index", new ResponseListener() {
 }
 ```
 
-Returns the list of known data collections contained in a specified index.
+Retrieves the list of known data collections contained in a specified index.
 
-#### listCollections([index], [options])
+#### listCollections([index], [options], callback)
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
 | ``index`` | string | Index containing the collections to be listed |
 | ``options`` | JSON Object | Optional parameters |
+| ``callback`` | function | Callback handling the response |
 
 Available options:
 
@@ -789,11 +838,19 @@ Available options:
 
 If no `index` argument is provided, the `defaultIndex` property is used. If no default index is found, this method throws an error.
 
+#### Return value
+
+Returns the `Kuzzle` object to allow chaining.
+
+#### Callback response
+
+Resolves to a `JSON object` containing the list of stored and/or realtime collections on the provided index.
+
 ## listIndexes
 
 ```js
 // Using callbacks (NodeJS or Web Browser)
-kuzzle.listIndexes(function (err, collections) {
+kuzzle.listIndexes(function (err, indexes) {
   // ...
 });
 
@@ -805,19 +862,21 @@ kuzzle
   });
 ```
 
-> Result:
+> Callback response:
 
 ```json
-[ 'index', 'another index', '...']
+[ "index", "another index", "..."]
 ```
 
-Returns the list of indexes stored in Kuzzle.
+Retrieves the list of indexes stored in Kuzzle.
 
-#### listIndexes([options])
+#### listIndexes([options], callback)
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
-| ``options`` | JSON Object | Optional parameters |
+| ``options`` | JSON object | Optional parameters |
+| ``callback`` | function | Callback handling the response |
+
 
 Available options:
 
@@ -825,45 +884,81 @@ Available options:
 |---------------|---------|----------------------------------------|---------|
 | ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
 
+#### Return value
+
+Returns the `Kuzzle` object to allow chaining.
+
+#### Callback response
+
+The response is an `array` of index names.
+
 
 ## login
 
 ```js
-kuzzle.login("local", {username: "username", password: "password"}, "1h");
+// Using callbacks (NodeJS or Web Browser)
+kuzzle.login("local", {username: "username", password: "password"}, "1h", function (err, res) {
+  // ...
+});
+
+// Using promises (NodeJS only)
+kuzzle.loginPromise("local", {username: "username", password: "password"}, "1h")
+  .then(res => {
+    // ...
+  });
 ```
 
-```java
-kuzzle.login("local", "username", "password", "1h");
-```
 
 Log a user according to the strategy and credentials.
 
-#### login([options])
+#### login(strategy, credentials, expiration, [callback])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
-| ``options`` | JSON Object | Optional parameters |
+| ``strategy`` | string | Authentication strategy (local, facebook, github, ...) |
+| ``credentials`` | JSON object | Login credentials, depending on the strategy |
+| ``expiration`` | string | Login expiration time, following this [time conversion library](https://www.npmjs.com/package/ms) |
+| ``callback`` | function | Optional callback handling the response |
 
-Available options:
+#### Return value
 
-| Option | Type | Description | Default |
-|---------------|---------|----------------------------------------|---------|
-| ``loginStrategy`` | string | The strategy |
-| ``loginCredentials`` | JSON object | The credentials |
-| ``loginExpiresIn`` | string | Expire time | ``1h``
+Returns the `Kuzzle` object to allow chaining.
 
+#### Callback response
+
+Resolves to the `Kuzzle` object itself once the login process is complete, either successfully or not.  
+If no callback is provided and if the login attempt fails, an error is thrown.
 
 ## logout
 
 ```js
-kuzzle.logout();
-```
+// Using callbacks (NodeJS or Web Browser)
+kuzzle.logout(function (err, res) {
+  // ...
+});
 
-```java
-kuzzle.logout();
+// Using promises (NodeJS only)
+kuzzle.logoutPromise()
+  .then(res => {
+    // ...
+  });
 ```
 
 Logout the user.
+
+#### logout([callback])
+
+| Arguments | Type | Description |
+|---------------|---------|----------------------------------------|
+| ``callback`` | function | Optional callback handling the response |
+
+#### Return value
+
+Returns the `Kuzzle` object to allow chaining.
+
+#### Callback response
+
+Resolves to the `Kuzzle` object itself once the logout process is complete, either successfully or not.  
 
 ## now
 
@@ -893,19 +988,21 @@ kuzzle.now(new ResponseListener() {
 };
 ```
 
-> Return an UTC Epoch time in milliseconds
+> Callback response:
 
 ```json
 1447151167622
 ```
 
-Returns the current Kuzzle time.
+Retrieves the current Kuzzle time.
 
-#### now([options])
+#### now([options], callback)
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
 | ``options`` | JSON Object | Optional parameters |
+| ``callback`` | function | Callback handling the response |
+
 
 Available options:
 
@@ -914,6 +1011,13 @@ Available options:
 | ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
 
 
+#### Return value
+
+Returns the `Kuzzle` object to allow chaining.
+
+#### Callback response
+
+Returns a `integer` containing the current Kuzzle time, encoded as an UTC Epoch time in milliseconds.
 
 ## query
 
@@ -945,7 +1049,7 @@ kuzzle.query("foo", "read", "search", new JSONObject(), new ResponseListener() {
 };
 ```
 
-> Result: a Kuzzle Response Object
+> Callback response:
 
 ```json
 { "error": null,
@@ -976,15 +1080,17 @@ This is a low-level method, exposed to allow advanced SDK users to bypass high-l
 Check the Kuzzle documentation available <a href=https://github.com/kuzzleio/kuzzle/tree/master/docs>here</a>
 </aside>
 
-Base method used to send queries to Kuzzle
+Base method used to send queries to Kuzzle, following the [Kuzzle API Documentation](http://kuzzleio.github.io/kuzzle-api-documentation)
 
-#### query(queryArgs, query, [options])
+#### query(queryArgs, query, [options], [callback])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
-| ``queryArgs`` | JSON Object | Query base arguments |
-| ``query`` | JSON Object | Query to execute |
-| ``options`` | JSON Object | Optional parameters |
+| ``queryArgs`` | JSON object | Query base arguments |
+| ``query`` | JSON object | Query to execute |
+| ``options`` | JSON object | Optional parameters |
+| ``callback`` | function | Optional callback |
+
 
 Expected `queryArgs` content:
 
@@ -1000,10 +1106,16 @@ Available `options`:
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
-| ``metadata`` | JSON Object | Additional information passed to notifications to other users | ``null`` |
+| ``metadata`` | JSON object | Additional information passed to notifications to other users | ``null`` |
 | ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
 
+#### Return value
 
+Returns the `Kuzzle` object to allow chaining.
+
+#### Callback response
+
+Resolves to a `JSON object` containing the raw Kuzzle response.
 
 ## removeAllListeners
 
@@ -1064,15 +1176,22 @@ kuzzle.replayQueue();
 
 Replays the requests queued during offline mode. Works only if the SDK is not in a ``disconnected`` state, and if the ``autoReplay`` option is set to ``false``.
 
+#### Return value
+
+Returns the `Kuzzle` object to allow chaining.
+
 ## setDefaultIndex
 
-``js
+```js
 kuzzle.setDefaultIndex('index');
-``
-
-> Returns the kuzzle object
+```
 
 Set the default data index. Has the same effect than the `defaultIndex` constructor option.
+
+#### Return value
+
+Returns the `Kuzzle` object to allow chaining.
+
 
 ## setHeaders
 
@@ -1087,8 +1206,6 @@ headers.put("someContent", "someValue");
 kuzzle.setHeaders(headers, true);
 ```
 
-> Returns itself
-
 This is a helper function returning itself, allowing to easily chain calls.
 
 #### setHeaders(content)
@@ -1102,6 +1219,11 @@ This is a helper function returning itself, allowing to easily chain calls.
 
 **Note:** by default, the ``replace`` argument is set to ``false``
 
+#### Return value
+
+Returns the `Kuzzle` object to allow chaining.
+
+
 ## startQueuing
 
 ```js
@@ -1113,6 +1235,10 @@ kuzzle.startQueuing();
 ```
 
 Starts the requests queuing. Works only during offline mode, and if the ``autoQueue`` option is set to ``false``.
+
+#### Return value
+
+Returns the `Kuzzle` object to allow chaining.
 
 
 ## stopQueuing
@@ -1126,3 +1252,7 @@ kuzzle.stopQueuing();
 ```
 
 Stops the requests queuing. Works only during offline mode, and if the ``autoQueue`` option is set to ``false``.
+
+#### Return value
+
+Returns the `Kuzzle` object to allow chaining.
