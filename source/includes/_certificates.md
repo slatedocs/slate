@@ -37,8 +37,6 @@ Returns a [Certificate Model object](#certificate)
 
 ## Get a Specific Certificate
 
-Retrieve a specific certificate.
-
 ```ruby
 require 'mifiel'
 
@@ -54,6 +52,8 @@ curl "https://www.mfiel.com.mx/api/v1/keys/07320f00-f504-47e0-8ff6-78378d2faca4"
   -H "Authorization: APIAuth your-hmac-auth-header"
 ```
 
+Retrieve a specific certificate.
+
 ### HTTP Request
 
 `GET https://www.mifiel.com/api/v1/keys/:id`
@@ -63,8 +63,6 @@ curl "https://www.mfiel.com.mx/api/v1/keys/07320f00-f504-47e0-8ff6-78378d2faca4"
 Returns a [Certificate Model object](#certificate)
 
 ## Get All Certificates
-
-Retrieve all certificates in your account.
 
 ```ruby
 require 'mifiel'
@@ -77,6 +75,8 @@ curl "https://www.mifiel.com/api/v1/keys"
   -H "Authorization: APIAuth your-hmac-auth-header"
 ```
 
+Retrieve all certificates in your account.
+
 ### HTTP Request
 
 `GET https://www.mifiel.com/api/v1/keys`
@@ -86,8 +86,6 @@ curl "https://www.mifiel.com/api/v1/keys"
 Returns an Array of [Certificate Model object](#certificate)
 
 ## Delete a Certificate
-
-Deletes a certificate in your account.
 
 ```ruby
 require 'mifiel'
@@ -99,6 +97,8 @@ Mifiel::Certificate.delete('07320f00-f504-47e0-8ff6-78378d2faca4')
 curl -X DELETE "https://www.mifiel.com/api/v1/keys/07320f00-f504-47e0-8ff6-78378d2faca4"
   -H "Authorization: APIAuth your-hmac-auth-header"
 ```
+
+Deletes a certificate in your account.
 
 ### HTTP Request
 

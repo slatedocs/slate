@@ -2,10 +2,6 @@
 
 ## Create a Document
 
-Create a document to be signed by passing a File or a Hash of the file.
-
-Either the _"File"_ or _"Hash"_ must be passed.
-
 ```ruby
 require 'mifiel'
 
@@ -24,6 +20,10 @@ curl -X POST https://www.mifiel.com/api/v1/documents \
   -F "signatories[0][email]=signer@email.com" \
   -H "Authorization: APIAuth your-hmac-auth-header"
 ```
+
+Create a document to be signed by passing a File or a Hash of the file.
+
+Either the _"File"_ or _"Hash"_ must be passed.
 
 ### HTTP Request
 
@@ -44,8 +44,6 @@ Returns a [Document Model object](#document)
 
 ## Get a Specific Document
 
-Retrieve a specific document.
-
 ```ruby
 require 'mifiel'
 
@@ -53,6 +51,7 @@ document = Mifiel::Document.find('29f3cb01-744d-4eae-8718-213aec8a1678')
 document.original_hash
 document.file
 document.file_signed
+document.widget_id
 # ...
 ```
 
@@ -60,6 +59,8 @@ document.file_signed
 curl "https://www.mfiel.com.mx/api/v1/documents/29f3cb01-744d-4eae-8718-213aec8a1678"
   -H "Authorization: APIAuth your-hmac-auth-header"
 ```
+
+Retrieve a specific document.
 
 ### HTTP Request
 
@@ -70,8 +71,6 @@ curl "https://www.mfiel.com.mx/api/v1/documents/29f3cb01-744d-4eae-8718-213aec8a
 Returns a [Document Model object](#document)
 
 ## Get All Documents
-
-Retrieve all documents in your account.
 
 ```ruby
 require 'mifiel'
@@ -84,6 +83,8 @@ curl "https://www.mifiel.com/api/v1/documents"
   -H "Authorization: APIAuth your-hmac-auth-header"
 ```
 
+Retrieve all documents in your account.
+
 ### HTTP Request
 
 `GET https://www.mifiel.com/api/v1/documents`
@@ -93,8 +94,6 @@ curl "https://www.mifiel.com/api/v1/documents"
 Returns an Array of [Document Model object](#document)
 
 ## Delete a Document
-
-Deletes a document in your account.
 
 ```ruby
 require 'mifiel'
@@ -106,6 +105,8 @@ Mifiel::Document.delete('29f3cb01-744d-4eae-8718-213aec8a1678')
 curl -X DELETE "https://www.mifiel.com/api/v1/documents/29f3cb01-744d-4eae-8718-213aec8a1678"
   -H "Authorization: APIAuth your-hmac-auth-header"
 ```
+
+Deletes a document in your account.
 
 ### HTTP Request
 
@@ -129,9 +130,15 @@ certificate = File.read('FIEL_AAA010101AAA.cer')
 document.sign(certificate: certificate)
 ```
 
+Sign a document.
+
 ### HTTP Request
 
 `POST https://www.mifiel.com/api/v1/documents/:id/sign`
+
+<aside class="info">
+  The documents get signed client side. The private key and password never reach our server.
+</aside>
 
 ### Parameters
 
@@ -142,6 +149,10 @@ Field       | Type |  Description
 key         | String | __Optional__ The ID of the key used to sign the document
 certificate | String | __Optional__ The signing certificate
 signature   | String | The signature (generated using the key and the hash of the document)
+
+### Response
+
+Returns a [Document Model object](#document)
 
 ## Request signature
 
@@ -159,6 +170,19 @@ document.request_signature(email, cc: cc)
 curl -X POST "https://www.mifiel.com/api/v1/documents/29f3cb01-744d-4eae-8718-213aec8a1678/request_signature" \
   -H "Authorization: APIAuth your-hmac-auth-header"
 ```
+
+> Which will respond with:
+
+```json
+  {
+    "status": "success",
+    "message": "Correo enviado",
+    "data": {
+      "document": {
+        "id": "29f3cb01-744d-4eae-8718-213aec8a1678"        
+      }
+    }
+  }
 ```
 
 ### HTTP Request
