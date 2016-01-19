@@ -701,6 +701,7 @@ kuzzle.getStatistics(new ResponseListener() {
 > When providing a timestamp, retrieves all frames recorded after that timestamp:
 
 ```js
+// Date can be either in ISO format or a timestamp (utc, in milliseconds)
 var ts = Date.parse('2015-10-26T12:19:10.213Z');
 
 // Using callbacks (NodeJS or Web Browser)
@@ -717,6 +718,7 @@ kuzzle
 ```
 
 ```java
+// Date can be either in ISO format or a timestamp (utc, in milliseconds)
 kuzzle.getStatistics("2015-11-15T13:36:45.558Z", new ResponseListener() {
   @Override
   public void onSuccess(JSONObject object) {
@@ -965,12 +967,12 @@ Resolves to the `Kuzzle` object itself once the logout process is complete, eith
 ```js
 // Using callbacks (NodeJS or Web Browser)
 kuzzle.now(function (err, res) {
-  // 'res' contains the Kuzzle timestamp
+  // 'res' contains the Kuzzle timestamp (utc, in milliseconds)
 });
 
 // Using promises (NodeJS only)
 kuzzle.nowPromise().then(res => {
-  // 'res' contains the Kuzzle timestamp
+  // 'res' contains the Kuzzle timestamp (utc, in milliseconds)
 });
 ```
 
@@ -978,7 +980,7 @@ kuzzle.nowPromise().then(res => {
 kuzzle.now(new ResponseListener() {
   @Override
   public void onSuccess(JSONObject object) {
-    // 'object' contains the Kuzzle timestamp
+    // 'object' contains the Kuzzle timestamp (utc, in milliseconds)
   }
 
   @Override
