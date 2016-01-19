@@ -14,6 +14,73 @@ Once you have subscribed, depending on the subscription configuration you provid
 
 You may subscribe multiple times to the same room, with identical or different subscription parameters, and with different callbacks. This allow dispatching notifications across the right parts of your application, instead of having to maintain an all-purpose notification consumer (but you can do that, too).
 
+## Notifications
+
+> Document notification example:
+
+```json
+{
+  "status": 200,
+  "error": null,
+  "requestId": "bc41ced6-38fc-42b9-8fd5-22ae0774aac2",
+  "controller": "name of the controller that generated the notification",
+  "action": "name of the action that generated the notification",
+  "collection": "collection name",
+  "index": "index name",
+  "metadata": {},
+  "state": "done",
+  "scope": "in",
+  "result": {
+    "_source": {
+      "message content": "this is an example"
+    }
+  }
+}
+```
+
+> User notification example:
+
+```json
+{
+  "error": null,
+  "status": 200,
+  "roomId": "ID of the room concerned by this notification",
+  "requestId": "5897cd2f-a8a2-40b2-aa43-b31898172008",
+  "controller": "subscribe",
+  "action": "on",
+  "protocol": "protocol used by the notificating user",
+  "timestamp": 1453193069592,
+  "metadata": {
+    "optional": "user informations"
+  },
+  "result": {
+    "roomId": "ID of the room concerned by this notification",
+    "count": 42
+  }
+}
+```
+
+To subscribe, you must provide a callback that will be called each time a new notification is received.
+
+On the right panel you can see a document and a user notification examples.
+
+#### Document notification rundown
+
+| Notification field | Type |Description       | Possible values |
+|--------------------|------|------------------|-----------------|
+| `result._source` | JSON object | Content of the document or realtime message that generated the notification | |
+| `scope` | string | Indicates if the document enters or exits the subscription scope | `in`, `out` |
+| `state` | string | Tells if the document is about to be changed, or if the change is effective | `pending`, `done` |
+
+
+#### User notification rundown
+
+| Notification field | Type |Description       | Possible values |
+|--------------------|------|------------------|-----------------|
+| `action` | string | Indicates if the user enters or leaves the susbcribed room | `on`, `off` |
+| `metadata` | JSON object | If provided during subscription, contains application specific informations | |
+| `result.count` | integer | Updated number of users subscribing to this room | |
+
 ## Constructors
 
 ```js
@@ -107,7 +174,7 @@ room.count(new ResponseListener() {
 });
 ```
 
-> Return the number of subscribers on that room
+> Callback response
 
 ```json
 1
@@ -115,18 +182,20 @@ room.count(new ResponseListener() {
 
 Return the number of subscribers on that room
 
-## list
+#### count(callback)
 
-<aside class="warning">
-To be implemented
-</aside>
+| Arguments | Type | Description |
+|---------------|---------|----------------------------------------|
+| ``callback`` | function | Callback handling the response |
 
-Returns a list of objects detailing other subscriptions on the same room.
+#### Return value
 
-These objects contain:
+Returns this `KuzzleRoom` object to allow chaining.
 
-* the subscription metadata
-* the subscription timestamp
+#### Callback response
+
+Resolves to a `integer` containing the number of users subscribing to this room.
+
 
 ## renew
 
@@ -169,6 +238,11 @@ Unsubscribes first if this KuzzleRoom was already listening to events.
 | ``filters`` | JSON Object | Filters in [Kuzzle DSL](https://github.com/kuzzleio/kuzzle/blob/master/docs/filters.md) format |
 | ``callback`` | function | Function called each time a notification is received |
 
+#### Return value
+
+Returns this `KuzzleRoom` object to allow chaining.
+
+
 ## setHeaders
 
 ```js
@@ -196,6 +270,10 @@ This is a helper function returning itself, allowing to easily chain calls.
 
 **Note:** by default, the ``replace`` argument is set to ``false``
 
+#### Return value
+
+Returns this `KuzzleRoom` object to allow chaining.
+
 ## unsubscribe
 
 ```js
@@ -207,3 +285,7 @@ room.unsubscribe();
 ```
 
 Cancels the current subscription.
+
+#### Return value
+
+Returns this `KuzzleRoom` object to allow chaining.
