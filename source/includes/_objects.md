@@ -24,7 +24,7 @@
     "email": "signer1@email.com",
     "signed": true,
     "signed_at": "2016-01-19T16:34:37.887Z",
-    "certificate_id": "20001000000200001410",
+    "certificate_number": "20001000000200001410",
     "tax_id": "AAA010101AAA",
     "signature": "77cd5156779c..4e276ef1056c1de11b7f70bed28",
     "user": {
@@ -96,9 +96,9 @@ expired         | Boolean | true` if the Certificate is expired
 Field           | Type |  Description
 --------------- | ---- | -----------
 id              | String | The ID of the Certificate
-email           | String | 
-signed          | String | 
-signed_at       | String | 
-certificate_id  | String | 
-tax_id          | String | 
-signature       | String | 
+email           | String | Email of the signer
+signed          | Boolean | `true` if signed
+signed_at       | Date   | The date of the signature
+certificate_number | String | The certificate number that the CA assign
+tax_id          | String | The RFC of the signaer
+signature       | String | Signature in hexadecimal
