@@ -491,6 +491,40 @@ GET /api/users/{user_id}
 }
 ```
 
+<p>GET /api/users/{user_id}/cas_activities</p>
+Retrieves CAS Activities for the specific user.
+
+> Retrieves CAS Activities for the specific user.
+
+```
+GET /api/users/{user_id}/cas_activities
+```
+
+``` json
+[
+    {
+        "cas_activity": {
+            "cas_project": true,
+            "type": "Creativity, Action",
+            "name": "Pretty Little Liars Club",
+            "start_date": "2015-09-12",
+            "end_date": "2015-09-12",
+            "description": "Watch one episode of PLL a week."
+        }
+    },
+    {
+        "cas_activity": {
+            "cas_project": false,
+            "type": "None",
+            "name": "Running with the wolves ",
+            "start_date": "2015-09-27",
+            "end_date": "2016-10-27",
+            "description": "Run as fast as a wolf can run"
+        }
+    }
+]
+```
+
 GET /api/users/?type={ Student | Parent | Teacher(Advisor)}
 Retrieves a set of users with a specific type.
 
