@@ -50,7 +50,7 @@ certificate.tax_id
 ```
 
 ```shell
-curl "http://www.mfiel.com.mx/api/v1/keys/07320f00-f504-47e0-8ff6-78378d2faca4"
+curl "https://www.mfiel.com.mx/api/v1/keys/07320f00-f504-47e0-8ff6-78378d2faca4"
   -H "Authorization: APIAuth your-hmac-auth-header"
 ```
 

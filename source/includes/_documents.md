@@ -21,7 +21,8 @@ document = Mifiel::Document.create(file_contents, signers)
 curl -X POST https://www.mifiel.com/api/v1/documents \
   -F "file=@my-file.pdf" \
   -F "signatories[0][name]=Signer 1" \
-  -F "signatories[0][email]=signer@email.com"
+  -F "signatories[0][email]=signer@email.com" \
+  -H "Authorization: APIAuth your-hmac-auth-header"
 ```
 
 ### HTTP Request
@@ -56,7 +57,7 @@ document.file_signed
 ```
 
 ```shell
-curl "http://www.mfiel.com.mx/api/v1/documents/29f3cb01-744d-4eae-8718-213aec8a1678"
+curl "https://www.mfiel.com.mx/api/v1/documents/29f3cb01-744d-4eae-8718-213aec8a1678"
   -H "Authorization: APIAuth your-hmac-auth-header"
 ```
 
@@ -155,7 +156,9 @@ document.request_signature(email, cc: cc)
 
 
 ```shell
-curl -X POST "https://www.mifiel.com/api/v1/documents/29f3cb01-744d-4eae-8718-213aec8a1678"
+curl -X POST "https://www.mifiel.com/api/v1/documents/29f3cb01-744d-4eae-8718-213aec8a1678/request_signature" \
+  -H "Authorization: APIAuth your-hmac-auth-header"
+```
 ```
 
 ### HTTP Request
