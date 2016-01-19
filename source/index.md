@@ -10,6 +10,7 @@ includes:
   - objects
   - documents
   - certificates
+  - widget
 
 toc_footers:
   - <a href='https://www.mifiel.com'>www.mifiel.com</a>
