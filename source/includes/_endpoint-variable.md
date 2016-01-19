@@ -407,7 +407,7 @@ The basic counts are included:
 
 And the typical "frequencies" member is expanded into a custom "categories" member:
 
- * categories: An array of row objects. Each row represents a distinct category (whether valid or missing), and includes its id the "_id" member (note the leading underscore), and its name as the "name" member. The "missing" member is true or false depending on whether the category is marked missing or not. The number of entries which possess that value is included as the "count" member.
+ * categories: An array of row objects. Each row represents a distinct category (whether valid or missing), and includes its id the `_id` member (note the leading underscore), and its name as the "name" member. The "missing" member is true or false depending on whether the category is marked missing or not. The number of entries which possess that value is included as the "count" member.
 
 #### text
 
@@ -424,25 +424,6 @@ In addition:
 
  * max_chars: The number of characters of the longest value in the data.
 
-### Summary view model
-
-`/datasets/{id}/variables/{id}/card_view/{?filter}`
-
-A GET on this resource returns the information needed to render a "variable card" in the Crunch UI. It includes the same members as variables/{id}/ with the following alterations:
-
-A "summary" member is added to the body, with the same output as `variable/{id}/summary/`.
-
-For categorical and multiple response variables, body.summary.categories is removed, and body.categories is instead munged to include new members in each category object:
-
- * count: taken from summary.categories.
- * max_count: the largest "count" member from all categories.
- * total_count: the sum of the "count" members from all categories.
- * percent: (100 * count) / total_count, or {"?": -1} if no percent could be obtained.
-
-A "weight" member is added to the body if the Variable is being used as a weight variable for the Dataset.
-
-The "urls" member is reduced to just a "variable_url" member, which points back at the transactional view of the variable and "dataset_url" which points back to the dataset.
-
 #### Univariate frequencies
 
 `/datasets/{id}/variables/{id}/frequencies/{?filter,exclude_exclusion_filter}`
@@ -450,7 +431,7 @@ The "urls" member is reduced to just a "variable_url" member, which points back 
 An array of row objects, giving the count of distinct values. The exact members vary by type:
 
  * numeric: Each row represents a distinct valid value, and includes it as the "value" member. The number of entries which possess that value is included as the "count" member.
- * categorical: Each row represents a distinct category (whether valid or missing), and includes its id the "_id" member (note the leading underscore), and its name as the "name" member. The "missing" member is true or false depending on whether the category is marked missing or not. The number of entries which possess that value is included as the "count" member.
+ * categorical: Each row represents a distinct category (whether valid or missing), and includes its id the `_id` member (note the leading underscore), and its name as the "name" member. The "missing" member is true or false depending on whether the category is marked missing or not. The number of entries which possess that value is included as the "count" member.
  * text: Each row represents a distinct valid value, and includes it as the "value" member. The number of entries which possess that value is included as the "count" member. The length of the array is limited to 10 entries; if more than 10 distinct values are present in the data, an 11th row is added with a "value" member of "(Others)", summing their counts.
 
 ### Transforming
