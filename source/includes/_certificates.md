@@ -103,3 +103,46 @@ curl -X DELETE "https://www.mifiel.com/api/v1/keys/07320f00-f504-47e0-8ff6-78378
 ### HTTP Request
 
 `DELETE https://www.mifiel.com/api/v1/keys/:id`
+
+## SAT Root Certificates
+
+```ruby
+require 'mifiel'
+
+sat_certificates = Mifiel::Certificate.sat
+```
+
+```shell
+curl "https://www.mifiel.com/api/v1/keys/sat"
+```
+
+> Example JSON response
+
+```json
+[
+  {
+    "cer_hex": "505003081ac310b3...009060355040613024d583",
+    "expires_at": "2017-06-10T19:41:06.000Z",
+    "expired": false
+  },
+  {
+    "cer_hex": "302d060355040a0...653572766963696f20646520",
+    "expires_at": "2018-06-10T09:11:26.000Z",
+    "expired": false
+  }
+]
+```
+
+Lists all public SAT Certificates used to generate FIELs
+
+### HTTP Request
+
+`GET https://www.mifiel.com/api/v1/keys/:id`
+
+### Response parameters
+
+Field           | Type  |  Description
+--------------- | ----  | -----------
+cer_hex         | HEX   | SAT Root Certificate in hex form
+expires_at      | Date  | Expiration date of the certificate
+expired         | Boolean | `true` if expires_at is less than today
