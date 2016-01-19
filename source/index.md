@@ -13,7 +13,7 @@ includes:
   - widget
 
 toc_footers:
-  - <a href='https://www.mifiel.com'>www.mifiel.com</a>
+  - <a href='https://www.mifiel.com'>Mifiel Website</a>
   - <a href='https://github.com/Mifiel/api-doc'>See an error? Improve this doc</a>
 
 search: true
