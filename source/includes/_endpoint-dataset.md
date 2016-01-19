@@ -373,11 +373,11 @@ If a `filter` is included, the "filtered" counts will be with respect to that ex
 
 `/datasets/{id}/exclusion/`
 
-Exclusion filters allow you to drop rows of data without permanently deleting them. 
+Exclusion filters allow you to drop rows of data without permanently deleting them.
 
 GET on this resource returns a Shoji Entity with a filter "expression" attribute in its body. Rows that match the filter expression will be excluded from all views of the data.
 
-PATCH the "expression" attribute to modify.
+PATCH the "expression" attribute to modify. An empty "expression" object, like `{"body": {"expression": {}}}`, is equivalent to "no exclusion", i.e. no rows are dropped.
 
 ##### Stream
 
