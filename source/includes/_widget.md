@@ -31,6 +31,24 @@ Field     | Type    | Default |  Description
 --------- | ------- | ------- | ------------
 widgetId  | String  |         | Widget ID. You can get it with `document.widget_id` in Ruby
 appendTo  | String  | body    | ID of the element in the page
-width     | String  | 100%    | __Optional__ With of the widget
-height    | String  | 1100    | __Optional__ Height of the widget
+width     | String  | 100%    | __Optional__ With of the widget __[px or %]__
+height    | String  | 1100    | __Optional__ Height of the widget __[px]__
 
+### Succesful sign event
+
+> Listen the success event:
+
+```html
+<script type="text/javascript">
+window.addEventListener('message', function (e) {
+  console.log(e);
+  var data = e.data
+      document = data.document,
+      signature = data.signature;
+  // document.original_hash
+  // document.file_signed
+}, false);
+</script>
+```
+
+After the user succesfully signs the document we send a [postMessage](https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage).
