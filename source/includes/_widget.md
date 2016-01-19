@@ -1,11 +1,5 @@
 # Widget
 
-You can use the widget to allow your users to sign documents without the need to have an account in [mifiel.com](https://www.mifiel.com)
-
-To begin you have to copy and paste our snippet code (_in the right_) in the page that you want to display the widget in.
-
-You can also find the snippet code in [https://www.mifiel.com/sign-snippet-v1.0.0.min.js](https://www.mifiel.com/sign-snippet-v1.0.0.min.js)
-
 > Copy this code and paste it at the end of the `<body>`.
 
 ```html
@@ -24,6 +18,12 @@ You can also find the snippet code in [https://www.mifiel.com/sign-snippet-v1.0.
   });
 </script>
 ```
+
+You can use the widget to allow your users to sign documents without the need to have an account in [mifiel.com](https://www.mifiel.com)
+
+To begin you have to copy and paste our snippet code (_in the right_) in the page that you want to display the widget in.
+
+You can also find the snippet code in [https://www.mifiel.com/sign-snippet-v1.0.0.min.js](https://www.mifiel.com/sign-snippet-v1.0.0.min.js)
 
 ### Options
 
