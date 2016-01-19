@@ -6,37 +6,34 @@
 {
   "id": "29f3cb01-744d-4eae-8718-213aec8a1678",
   "original_hash": "e1a580c27d22b432a8c6f4c57aec89dca46bb89b492d3bc537bf90282a6889da",
-  "signed_hash": null,
-  "blockchainized": false,
-  "btc_tx": null,
-  "btc_tx_link": null,
   "file_file_name": "test-pdf.pdf",
-  "name": null,
   "signed_by_all": true,
   "signed": true,
   "signed_at": "2016-01-19T16:34:37.921Z",
   "status": [1, "Firmado"],
   "owner": {
-    "email": "signer@email.com",
+    "email": "signer1@email.com",
     "name": "Signer 1"
   },
-  "already_signed": [{
-    "email": "signer@email.com",
-    "name": "Signer 1"
-  }],
-  "has_not_signed": [],
-  "file": "/api/v1/documents/72b41ab9-3a11-458a-9cfa-03c8d8756986/file",
-  "file_download": "/api/v1/documents/72b41ab9-3a11-458a-9cfa-03c8d8756986/file?download=true",
-  "file_signed": "/api/v1/documents/72b41ab9-3a11-458a-9cfa-03c8d8756986/file_signed",
-  "file_signed_download": "/api/v1/documents/72b41ab9-3a11-458a-9cfa-03c8d8756986/file_signed?download=true",
-  "file_zipped": "/api/v1/documents/72b41ab9-3a11-458a-9cfa-03c8d8756986/zip",
+  "file": "/api/v1/documents/6e0143b0-084b-4b61-800d-486b111b0695/file",
+  "file_download": "/api/v1/documents/6e0143b0-084b-4b61-800d-486b111b0695/file?download=true",
+  "file_signed": "/api/v1/documents/6e0143b0-084b-4b61-800d-486b111b0695/file_signed",
+  "file_signed_download": "/api/v1/documents/6e0143b0-084b-4b61-800d-486b111b0695/file_signed?download=true",
+  "file_zipped": "/api/v1/documents/6e0143b0-084b-4b61-800d-486b111b0695/zip",
   "signatures": [{
-    "email": "signer@email.com",
+    "email": "signer1@email.com",
     "signed": true,
     "signed_at": "2016-01-19T16:34:37.887Z",
-    "tax_id": "AAA010101AAA"
+    "certificate_id": "20001000000200001410",
+    "tax_id": "AAA010101AAA",
+    "signature": "77cd5156779c..4e276ef1056c1de11b7f70bed28",
+    "user": {
+      "email": "signer1@email.com",
+      "name": "Signer 1"
+    }
   }]
 }
+
 ```
 
 Field           | Type |  Description
@@ -44,16 +41,16 @@ Field           | Type |  Description
 id              | String | 
 original_hash   | String | Hash of the original (unsigned) document
 file_file_name  | String | Name of the uploaded file
-name            | String | 
 signed_by_all   | Boolean | `true` if all signers have signed the document
 signed_at       | Date | Timestamp of date signed (when all signatures have been collected)
 already_signed  | String[] | People that have signed
 has_not_signed  | String[] | People that have not signed
 status          | Array | [code, code_message] `0: not signed, 1: signed`
 owner           | Object | The owner of the document. The user who created the document.
-file            | String | URL where the original document can be downloaded
-file_signed     | String | URL where the signed file can be downloaded
-signatures      | Object[] | Signatures on a signed document
+file            | String | Path where the original document can be downloaded
+file_signed     | String | Path where the signed file can be downloaded
+file_zipped     | String | Path where the file and signed file in a zip file can be downloaded 
+signatures      | Object[] | Array of [Signature Model object](#signature)
 
 ## Certificate
 
