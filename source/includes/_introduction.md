@@ -1,18 +1,76 @@
 # Introduction
 
+Welcome to Mifiel API.
+
+### Overview
+
+Mifiel provides a simple ad robust REST-ful API to integrate document signatures in your existing applications and services.
+
+The API enables document and certificate managment for your account.
+
+### Before you start
+
 To start using the API you will need an APP_ID and a APP_SECRET which will be provided upon request (contact us at hola@mifiel.com).
 
 You will first need to create an account in [mifiel.com](https://www.mifiel.com) since the APP_ID and APP_SECRET will be linked to your account. 
 
 We have language bindings in Shell and Ruby! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
 
-## API Versions
+### API Versions
 
 All API calls are versioned, and the current Mifiel API is v1. We will never introduce any breaking changes within any version, but we may add new, non-breaking features from time to time.
+
+## Error Handling
+
+All errors follow the [JSend](http://labs.omniti.com/labs/jsend) specification. Included in the body if any error response (_e.g. non-200 status code_) will be an error object in the form:
+
+### When a client sends an unspected request
+
+> Example JSON __fail__ response:
+
+```json
+  {
+    "status": "fail",
+    "errors": [
+      "Document#29f3cb01-744d-4eae-8718-213aec8a1678 not found"
+    ]
+  }
+```
+
+Field   | Type    |  Description
+------- | ------- | ------------
+status  | String  | `fail`
+errors  | Array   | Array of error messages
+
+### For server errors
+
+> Example JSON __error__ response:
+
+```json
+  {
+    "status": "error",
+    "message": "500: Internal Server Error" 
+  }
+```
+
+Field   | Type    |  Description
+------- | ------- | ------------
+status  | String  | `error`
+message | String  | A descriptive message
 
 ## Mifiel supported SDKs
 
 We currently suppport only Ruby but we're working to add more languages.
+
+### Ruby
+
+```ruby
+# Configure Mifiel gem
+Mifiel.config do |config|
+  config.app_id = '<APP_ID>'
+  config.app_secret = '<APP_SECRET>'
+end
+```
 
 You can find the repo in [github.com/Mifiel/ruby-api-client](https://github.com/Mifiel/ruby-api-client)
 
@@ -28,14 +86,6 @@ Or install it yourself as:
 
 `$ gem install mifiel`
 
-After installing the gem, you will have to configure it:
-
-```ruby
-Mifiel.config do |config|
-  config.app_id = '<APP_ID>'
-  config.app_secret = '<APP_SECRET>'
-end
-```
 
 ## Authentication
 
@@ -53,7 +103,7 @@ SHA1 HMAC, using the APP_SECRET key.
 
 `Authorization: APIAuth APP-ID:signature-from-step-2`
 
-If you are using Ruby, we recommend that you use the [api-auth](https://github.com/mgomes/api_auth/) gem which supports many popular HTTP clients. In this example we are using the [RestClient](https://github.com/rest-client/rest-client) gem.
+### Ruby Example
 
 ```ruby
 app_id = 'your app id'
@@ -65,3 +115,8 @@ rest_request = RestClient::Request.new(
 response = ApiAuth.sign!(rest_request, app_id, app_secret).execute
 json_response = JSON.load(response)
 ```
+
+If you are using Ruby, we recommend using our [official gem](https://github.com/Mifiel/ruby-api-client). 
+
+If you want to do it yourself, you can use the [api-auth](https://github.com/mgomes/api_auth/) gem which supports many popular HTTP clients. In this example we are using the [RestClient](https://github.com/rest-client/rest-client) gem. 
+
