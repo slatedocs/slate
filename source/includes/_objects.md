@@ -72,7 +72,7 @@ id              | String | The ID of the Certificate
 type_of         | String | Type of certificate used: `FIEL` or `CSD`
 owner           | String | Name of the owner as defined in the certificate
 tax_id          | String | RFC or identifier of owner as defined in the certificate
-cer_hex         | String | Certificate in Hexadecimal
+cer_hex         | String | Certificate in hexadecimal
 expires_at      | Date | Expiration date of the Certificate
 expired         | Boolean | true` if the Certificate is expired
 
