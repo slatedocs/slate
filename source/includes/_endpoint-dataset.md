@@ -302,25 +302,109 @@ modified via PATCH here are not modified, the request will succeed.
 
 With sufficient authorization, a successful DELETE request removes the dataset from the Crunch system and responds with 204 status.
 
-### Summary
+#### Views
 
-`/datasets/{id}/summary/{?filter}`
+##### Applied filters
 
-Returns a Shoji View with summary information about this dataset containing
- its number of rows (weighted and unweighted) as well as the number of
- variables and columns.
+##### Cube
+
+`/datasets/{id}/cube/?q`
+
+See [Multidimensional Analysis](#multidimensional-analysis).
+
+##### Export
+
+`/datasets/{id}/export/`
+
+GET returns a Shoji View of available dataset export formats.
 
 ```json
 {
-    "weighted": {
-        "filtered": 80,
-        "total": 100
-    },
-    "unweighted": {
-        "filtered": 80,
-        "total": 100
-    },
-    "variables": 20,
-    "columns": 25
+	"element": "shoji:view",
+	"self": "https://beta.crunch.io/api/datasets/223fd4/export/",
+	"views": {
+		"spss": "https://beta.crunch.io/api/datasets/223fd4/export/spss/"
+	}
 }
 ```
+
+##### Summary
+
+`/datasets/{id}/summary/{?filter}`
+
+###### Query Parameters
+
+Parameter | Description
+--------- | -----------
+filter | A Crunch filter expression
+
+GET returns a Shoji View with summary information about this dataset containing
+ its number of rows (weighted and unweighted, with and without your applied filters), as well as the number of variables and columns. The column count will differ from the variable count when derived and array variables are present--these variable types don't necessarily have their own columns of data behind them. The column count is useful for estimating load time and file size when exporting.
+
+If a `filter` is included, the "filtered" counts will be with respect to that expression. If omitted, your applied filters will be used.
+
+```json
+{
+	"element": "shoji:view",
+	"self": "https://beta.crunch.io/api/datasets/223fd4/summary/",
+	"value": {
+		"unweighted": {
+			"filtered": 2000,
+			"total": 2000
+		},
+        "weighted": {
+            "filtered": 2000.0,
+            "total": 2000.0
+        },
+		"variables": 529,
+		"columns": 530
+	}
+}
+```
+
+
+#### Fragments
+
+##### Table
+
+##### State
+
+##### Exclusion
+
+`/datasets/{id}/exclusion/`
+
+Exclusion filters allow you to drop rows of data without permanently deleting them. 
+
+GET on this resource returns a Shoji Entity with a filter "expression" attribute in its body. Rows that match the filter expression will be excluded from all views of the data.
+
+PATCH the "expression" attribute to modify.
+
+##### Stream
+
+##### Main deck
+
+#### Catalogs
+
+##### Batches
+
+##### Filters
+
+##### Variables
+
+##### Actions
+
+##### Savepoints
+
+##### Weight variables
+
+##### Joins
+
+##### Multitables
+
+##### Comparisons
+
+##### Forks
+
+##### Decks
+
+##### Permissions
