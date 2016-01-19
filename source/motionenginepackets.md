@@ -212,7 +212,7 @@ In the response mode, Neblina will first send an acknowledge packet to the host 
 ##### Byte#10: spm (Cadence)
 ##### Byte#11: walking direction angle value LSB
 ##### Byte#12: walking direction angle value MSB
-Note that the angle format includes one fractional decimal digit and it is compatible with the Euler angle representations described in the motion engine documentation. The whole response packet structure including header is shown below:
+Note that the angle format is a 16-bit signed integer value within the range of [-1800,1800], which represents the heading angle multiplied by 10, i.e., including one decimal fractional digit. For instance, the value of 1723 represents 172.3 degrees. The whole response packet structure including header is shown below:
 
 | Byte 0 | Byte 1 | Byte 2 | Byte 3 |Byte 4-7 |Byte 8-9  |Byte 10|  Byte 11-12   |Bytes 13-19|
 |:------:|:------:|:------:|:------:|:-------:|:--------:|:-----:|:-------------:|:---------:|
