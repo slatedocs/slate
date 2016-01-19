@@ -913,14 +913,16 @@ kuzzle.loginPromise("local", {username: "username", password: "password"}, "1h")
 
 Log a user according to the strategy and credentials.
 
-#### login(strategy, credentials, expiration, [callback])
+#### login(strategy, credentials, [expiresIn], [callback])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
 | ``strategy`` | string | Authentication strategy (local, facebook, github, ...) |
 | ``credentials`` | JSON object | Login credentials, depending on the strategy |
-| ``expiration`` | string | Login expiration time, following this [time conversion library](https://www.npmjs.com/package/ms) |
+| ``expiresIn`` | string | Login expiration time, following this [time conversion library](https://www.npmjs.com/package/ms) |
 | ``callback`` | function | Optional callback handling the response |
+
+**Note:** If the ``expiresIn`` argument is not set, the default token expiration value will be taken from the Kuzzle server configuration.
 
 #### Return value
 
