@@ -76,3 +76,29 @@ cer_hex         | String | Certificate in Hexadecimal
 expires_at      | Date | Expiration date of the Certificate
 expired         | Boolean | true` if the Certificate is expired
 
+## Signature
+
+```json
+{
+  "email": "signer1@email.com",
+  "signed": true,
+  "signed_at": "2016-01-19T16:34:37.887Z",
+  "certificate_id": "20001000000200001410",
+  "tax_id": "AAA010101AAA",
+  "signature": "77cd5156779c..4e276ef1056c1de11b7f70bed28",
+  "user": {
+    "email": "signer1@email.com",
+    "name": "Signer 1"
+  }
+}
+```
+
+Field           | Type |  Description
+--------------- | ---- | -----------
+id              | String | The ID of the Certificate
+email           | String | 
+signed          | String | 
+signed_at       | String | 
+certificate_id  | String | 
+tax_id          | String | 
+signature       | String | 
