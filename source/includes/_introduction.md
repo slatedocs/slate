@@ -20,44 +20,6 @@ We have language bindings in Shell and Ruby! You can view code examples in the d
 
 All API calls are versioned, and the current Mifiel API is v1. We will never introduce any breaking changes within any version, but we may add new, non-breaking features from time to time.
 
-## Error Handling
-
-All errors follow the [JSend](http://labs.omniti.com/labs/jsend) specification. Included in the body if any error response (_e.g. non-200 status code_) will be an error object in the form:
-
-### When a client sends an unspected request
-
-> Example JSON __fail__ response:
-
-```json
-  {
-    "status": "fail",
-    "errors": [
-      "Document#29f3cb01-744d-4eae-8718-213aec8a1678 not found"
-    ]
-  }
-```
-
-Field   | Type    |  Description
-------- | ------- | ------------
-status  | String  | `fail`
-errors  | Array   | Array of error messages
-
-### For server errors
-
-> Example JSON __error__ response:
-
-```json
-  {
-    "status": "error",
-    "message": "500: Internal Server Error" 
-  }
-```
-
-Field   | Type    |  Description
-------- | ------- | ------------
-status  | String  | `error`
-message | String  | A descriptive message
-
 ## Mifiel supported SDKs
 
 We currently suppport only Ruby but we're working to add more languages.
@@ -119,4 +81,3 @@ json_response = JSON.load(response)
 If you are using Ruby, we recommend using our [official gem](https://github.com/Mifiel/ruby-api-client). 
 
 If you want to do it yourself, you can use the [api-auth](https://github.com/mgomes/api_auth/) gem which supports many popular HTTP clients. In this example we are using the [RestClient](https://github.com/rest-client/rest-client) gem. 
-
