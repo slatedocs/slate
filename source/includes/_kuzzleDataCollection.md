@@ -386,7 +386,7 @@ var dataMapping = kuzzle
   .apply();
 ```
 
-Creates a new ``KuzzleDataMapping` object, using its constructor.  
+Creates a new `KuzzleDataMapping` object, using its constructor.  
 
 #### dataMappingFactory([mapping])
 
@@ -590,7 +590,7 @@ var document = kuzzle
   .save();
 ```
 
-Creates a new ``KuzzleDocument` object, using its constructor.
+Creates a new `KuzzleDocument` object, using its constructor.
 
 #### documentFactory([id], [content])
 
@@ -951,7 +951,7 @@ var room = kuzzle
   });
 ```
 
-Creates a new ``KuzzleRoom` object, using its constructor.  
+Creates a new `KuzzleRoom` object, using its constructor.  
 
 #### roomFactory([options])
 
