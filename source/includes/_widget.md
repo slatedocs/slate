@@ -1,6 +1,6 @@
-# Widget
+# Embedded Signing (Widget)
 
-> Copy this code and paste it at the end of the `<body>`.
+> Copy this code and paste it just before the </body> tag.
 
 ```html
 <script type="text/javascript">
@@ -8,7 +8,7 @@
 </script>
 ```
 
-> Then, append the widget to the page with:
+> Then insert the widget in the desired view (page) by including the following snippet:
 
 ```html
 <script type="text/javascript">
@@ -19,11 +19,11 @@
 </script>
 ```
 
-You can use the widget to allow your users to sign documents without the need to have an account in [mifiel.com](https://www.mifiel.com)
+The widget is an embedded signing tool that we have created to allow your users to sign documents on your site in an iFrame. You can embed this tool to allow signing within the flow of your site without the need for the user to have an account in [mifiel.com](https://www.mifiel.com)
 
-To begin you have to copy and paste our snippet code (_in the right_) in the page that you want to display the widget in.
+To begin, you have to copy and paste our code snippet (_shown to your right_) into the code of the page where the signing flow will take place.
 
-You can also find the snippet code in [https://www.mifiel.com/sign-snippet-v1.0.0.min.js](https://www.mifiel.com/sign-snippet-v1.0.0.min.js)
+You can also find the code snippet [here](https://www.mifiel.com/sign-snippet-v1.0.0.min.js).
 
 ### Options
 
@@ -31,12 +31,12 @@ Field     | Type    | Default |  Description
 --------- | ------- | ------- | ------------
 widgetId  | String  |         | Widget ID. You can get it with `document.widget_id` in Ruby
 appendTo  | String  | body    | ID of the element in the page
-width     | String  | 100%    | __Optional__ With of the widget __[px or %]__
+width     | String  | 100%    | __Optional__ Width of the widget __[px or %]__
 height    | String  | 1100    | __Optional__ Height of the widget __[px]__
 
-### Succesful sign event
+### Event: Document signed successfully
 
-> Listen the success event:
+> Listen for the Success event:
 
 ```html
 <script type="text/javascript">
@@ -51,4 +51,4 @@ window.addEventListener('message', function (e) {
 </script>
 ```
 
-After the user succesfully signs the document we send a [postMessage](https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage).
+After the user succesfully signs the document we will send back a [postMessage](https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage).

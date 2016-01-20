@@ -15,7 +15,7 @@ curl -X POST https://www.mifiel.com/api/v1/keys \
   -H "Authorization: APIAuth your-hmac-auth-header"
 ```
 
-Create a certificate in your account.
+Creates a certificate of a signer in your account.
 
 ### HTTP Request
 
@@ -25,15 +25,15 @@ Create a certificate in your account.
 
 Field | Type |  Description
 ----- | ---- | ------------
-file  | File | `.cer` File of your FIEL 
+file  | String | `.cer` File of your FIEL
 
 <aside class="info">
-  You have to send us just the public certificate. We will never store the private key in our servers.
+  You only have to send the public certificate of the signer. We will never store the private key in our servers.
 </aside>
 
 ### Response
 
-Returns a [Certificate Model object](#certificate)
+Returns a [Certificate Model](#certificate)
 
 ## Get a Specific Certificate
 
@@ -52,7 +52,7 @@ curl "https://www.mfiel.com.mx/api/v1/keys/07320f00-f504-47e0-8ff6-78378d2faca4"
   -H "Authorization: APIAuth your-hmac-auth-header"
 ```
 
-Retrieve a specific certificate.
+Allows you to retrieve a specific certificate.
 
 ### HTTP Request
 
@@ -60,7 +60,7 @@ Retrieve a specific certificate.
 
 ### Response
 
-Returns a [Certificate Model object](#certificate)
+Returns a [Certificate Model](#certificate)
 
 ## Get All Certificates
 
@@ -75,7 +75,7 @@ curl "https://www.mifiel.com/api/v1/keys"
   -H "Authorization: APIAuth your-hmac-auth-header"
 ```
 
-Retrieve all certificates in your account.
+Allows you to retrieve ALL certificates in your account.
 
 ### HTTP Request
 
@@ -83,7 +83,7 @@ Retrieve all certificates in your account.
 
 ### Response
 
-Returns an Array of [Certificate Model object](#certificate)
+Returns an Array of a [Certificate Model](#certificate)
 
 ## Delete a Certificate
 
@@ -98,7 +98,7 @@ curl -X DELETE "https://www.mifiel.com/api/v1/keys/07320f00-f504-47e0-8ff6-78378
   -H "Authorization: APIAuth your-hmac-auth-header"
 ```
 
-Deletes a certificate in your account.
+Allows you to delete a specific certificate in your account.
 
 ### HTTP Request
 
@@ -116,7 +116,7 @@ sat_certificates = Mifiel::Certificate.sat
 curl "https://www.mifiel.com/api/v1/keys/sat"
 ```
 
-> Example JSON response
+> Example JSON response:
 
 ```json
 [
@@ -133,7 +133,7 @@ curl "https://www.mifiel.com/api/v1/keys/sat"
 ]
 ```
 
-Lists all public SAT Certificates used to generate FIELs
+Lists the public SAT Certificates used to generate all FIELs
 
 ### HTTP Request
 
@@ -145,4 +145,4 @@ Field           | Type  |  Description
 --------------- | ----  | -----------
 cer_hex         | HEX   | SAT Root Certificate in hex form
 expires_at      | Date  | Expiration date of the certificate
-expired         | Boolean | `true` if expires_at is less than today
+expired         | Boolean | `true` if expires_at is prior to today

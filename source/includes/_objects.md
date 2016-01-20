@@ -2,6 +2,8 @@
 
 ## Document
 
+Contains information about the PDF file being signed
+
 ```json
 {
   "id": "29f3cb01-744d-4eae-8718-213aec8a1678",
@@ -13,7 +15,7 @@
   "status": [1, "Firmado"],
   "owner": {
     "email": "signer1@email.com",
-    "name": "Signer 1"
+    "name": "Jorge Morales"
   },
   "file": "/api/v1/documents/6e0143b0-084b-4b61-800d-486b111b0695/file",
   "file_download": "/api/v1/documents/6e0143b0-084b-4b61-800d-486b111b0695/file?download=true",
@@ -29,7 +31,7 @@
     "signature": "77cd5156779c..4e276ef1056c1de11b7f70bed28",
     "user": {
       "email": "signer1@email.com",
-      "name": "Signer 1"
+      "name": "Jorge Morales"
     }
   }]
 }
@@ -50,17 +52,19 @@ owner           | Object | The owner of the document. The user who created the d
 file            | String | Path where the original document can be downloaded
 file_signed     | String | Path where the signed file can be downloaded
 file_zipped     | String | Path where the file and signed file in a zip file can be downloaded 
-signatures      | Object[] | Array of [Signature Model object](#signature)
+signatures      | Object[] | Array of a [Signature Model](#signature)
 
 ## Certificate
+
+Contains information about the signer's advanced electronic signature (either FIEL or CSD) being used to sign
 
 ```json
 {
   "id": "07320f00-f504-47e0-8ff6-78378d2faca4",
   "type_of": "FIEL",
   "cer_hex": "308204cf30...1303030303030323",
-  "owner": "ACCEM SERVICIOS EMPRESARIALES SC",
-  "tax_id": "AAA010101AAA",
+  "owner": "JORGE MORALES MENDEZ",
+  "tax_id": "MOMJ811012643",
   "expires_at": "2017-04-28T19:43:23.000Z",
   "expired": false
 }
@@ -69,14 +73,16 @@ signatures      | Object[] | Array of [Signature Model object](#signature)
 Field           | Type |  Description
 --------------- | ---- | -----------
 id              | String | The ID of the Certificate
-type_of         | String | Type of certificate used: `FIEL` or `CSD`
+type_of         | String | Type of certificate used (e.g. `FIEL`)
 owner           | String | Name of the owner as defined in the certificate
 tax_id          | String | RFC or identifier of owner as defined in the certificate
 cer_hex         | String | Certificate in hexadecimal
 expires_at      | Date | Expiration date of the Certificate
-expired         | Boolean | true` if the Certificate is expired
+expired         | Boolean | `true` if the Certificate is expired
 
 ## Signature
+
+Contains information regarding the signers that have successfully signed the document
 
 ```json
 {
@@ -98,7 +104,7 @@ Field           | Type |  Description
 id              | String | The ID of the Certificate
 email           | String | Email of the signer
 signed          | Boolean | `true` if signed
-signed_at       | Date   | The date of the signature
-certificate_number | String | The certificate number that the CA assign
-tax_id          | String | The RFC of the signaer
-signature       | String | Signature in hexadecimal
+signed_at       | Date   | Timestamp of the date signed
+certificate_number | String | Certificate number assigned by the certificate authority (e.g. SAT)
+tax_id          | String | RFC of the signer
+signature       | String | Electronic signature on the document (in hexadecimal)

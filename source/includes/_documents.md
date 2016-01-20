@@ -21,9 +21,11 @@ curl -X POST https://www.mifiel.com/api/v1/documents \
   -H "Authorization: APIAuth your-hmac-auth-header"
 ```
 
-Create a document to be signed by passing a File or a Hash of the file.
+Create a document to be signed by passing either a File (in PDF) or a Hash of the file.
+_Note: Either the "File" or "Hash" must be passed._
 
-Either the _"File"_ or _"Hash"_ must be passed.
+If you are using our [embedded signing widget](#widget), we suggest that you pass a File so that it can be displayed to the end user (signer) within the signing flow.
+
 
 ### HTTP Request
 
@@ -33,14 +35,14 @@ Either the _"File"_ or _"Hash"_ must be passed.
 
 Field                 | Type |  Description
 --------------------- | ---- | -----------
-file         | File | __Optional__ File to be signed (The hash will be automatically extracted from the file and signed)
+file         | String | __Optional__ File to be signed (The hash will be automatically extracted from the file and signed)
 hash         | String | __Optional__ Hash of the original, unsigned document (The hash will be signed)
-signatories  | Array | A list containing the name and email of each signer
+signatories  | Array | A list containing the name and email of each signer (the email is __required__ to send a copy of the signed document to the signer)
 callback_url | String | __Optional__ A Callback URL to post when the document gets signed
 
 ### Response
 
-Returns a [Document Model object](#document)
+Returns a [Document Model](#document)
 
 ## Get a Specific Document
 
@@ -60,7 +62,7 @@ curl "https://www.mfiel.com.mx/api/v1/documents/29f3cb01-744d-4eae-8718-213aec8a
   -H "Authorization: APIAuth your-hmac-auth-header"
 ```
 
-Retrieve a specific document.
+Allows you to retrieve a specific document.
 
 ### HTTP Request
 
@@ -68,7 +70,7 @@ Retrieve a specific document.
 
 ### Response
 
-Returns a [Document Model object](#document)
+Returns a [Document Model](#document)
 
 ## Get All Documents
 
@@ -83,7 +85,7 @@ curl "https://www.mifiel.com/api/v1/documents"
   -H "Authorization: APIAuth your-hmac-auth-header"
 ```
 
-Retrieve all documents in your account.
+Allows you to retrieve all documents in your account.
 
 ### HTTP Request
 
@@ -91,7 +93,7 @@ Retrieve all documents in your account.
 
 ### Response
 
-Returns an Array of [Document Model object](#document)
+Returns an Array of [Document Model](#document)
 
 ## Delete a Document
 
@@ -106,7 +108,7 @@ curl -X DELETE "https://www.mifiel.com/api/v1/documents/29f3cb01-744d-4eae-8718-
   -H "Authorization: APIAuth your-hmac-auth-header"
 ```
 
-Deletes a document in your account.
+Allows you to delete a specific document in your account.
 
 ### HTTP Request
 
@@ -130,38 +132,40 @@ certificate = File.read('FIEL_AAA010101AAA.cer')
 document.sign(certificate: certificate)
 ```
 
-Sign a document.
+Allows the specified document to be signed.
 
 ### HTTP Request
 
 `POST https://www.mifiel.com/api/v1/documents/:id/sign`
 
 <aside class="info">
-  The documents get signed client side. The private key and password never reach our server.
+  The documents get signed client-side. For security purposes, the private key and password of the signer never reach our server.
 </aside>
 
 ### Parameters
 
-Either `key` or `certificate` must be provided.
+Either the `certificate_id` or `certificate` must be provided.
 
-Field       | Type |  Description
------------ | ---- | -----------
-key         | String | __Optional__ The ID of the key used to sign the document
-certificate | String | __Optional__ The signing certificate
-signature   | String | The signature (generated using the key and the hash of the document)
+Field          | Type   | Description
+-------------- | ------ | -----------
+certificate_id | String | __Optional__ The ID of the certificate that corresponds to the key being used to sign 
+certificate    | String | __Optional__ The certificate (.cer file) corresponding to the key being used to sign
+signature      | String | The signature (generated using the key and the hash of the document)
 
 ### Response
 
-Returns a [Document Model object](#document)
+Returns a [Document Model](#document)
 
 ## Request signature
+
+Sends a request for the document to be signed (to be used when the person interacting with your webpage is not the actual signer, e.g. signer's lawyer or assistant)
 
 ```ruby
 require 'mifiel'
 
 document = Mifiel::Document.find('29f3cb01-744d-4eae-8718-213aec8a1678')
 email = 'signer@email.com'
-cc = ['my@email.com', 'other@email.com']
+cc = ['signer@email.com', 'viewer@email.com']
 document.request_signature(email, cc: cc)
 ```
 
@@ -171,7 +175,7 @@ curl -X POST "https://www.mifiel.com/api/v1/documents/29f3cb01-744d-4eae-8718-21
   -H "Authorization: APIAuth your-hmac-auth-header"
 ```
 
-> Which will respond with:
+> Response from Mifiel:
 
 ```json
   {
@@ -193,5 +197,5 @@ curl -X POST "https://www.mifiel.com/api/v1/documents/29f3cb01-744d-4eae-8718-21
 
 Field     | Type |  Description
 --------- | ---- | -----------
-email     | String | Email of the person you want to sgn
-cc        | String | Your email or any email that want to get a copy of the document when signed
+email     | String | Email of the signer
+cc        | String | Email of any non-signing viewers that should receive a copy of the signed document
