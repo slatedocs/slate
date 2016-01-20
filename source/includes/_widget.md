@@ -1,11 +1,5 @@
 # Widget
 
-You can use the widget to allow your users to sign documents without the need to have an account in [mifiel.com](https://www.mifiel.com)
-
-To begin you have to copy and paste our snippet code (_in the right_) in the page that you want to display the widget in.
-
-You can also find the snippet code in [https://www.mifiel.com/sign-snippet-v1.0.0.min.js](https://www.mifiel.com/sign-snippet-v1.0.0.min.js)
-
 > Copy this code and paste it at the end of the `<body>`.
 
 ```html
@@ -25,12 +19,36 @@ You can also find the snippet code in [https://www.mifiel.com/sign-snippet-v1.0.
 </script>
 ```
 
+You can use the widget to allow your users to sign documents without the need to have an account in [mifiel.com](https://www.mifiel.com)
+
+To begin you have to copy and paste our snippet code (_in the right_) in the page that you want to display the widget in.
+
+You can also find the snippet code in [https://www.mifiel.com/sign-snippet-v1.0.0.min.js](https://www.mifiel.com/sign-snippet-v1.0.0.min.js)
+
 ### Options
 
 Field     | Type    | Default |  Description
 --------- | ------- | ------- | ------------
 widgetId  | String  |         | Widget ID. You can get it with `document.widget_id` in Ruby
 appendTo  | String  | body    | ID of the element in the page
-width     | String  | 100%    | __Optional__ With of the widget
-height    | String  | 1100    | __Optional__ Height of the widget
+width     | String  | 100%    | __Optional__ With of the widget __[px or %]__
+height    | String  | 1100    | __Optional__ Height of the widget __[px]__
 
+### Succesful sign event
+
+> Listen the success event:
+
+```html
+<script type="text/javascript">
+window.addEventListener('message', function (e) {
+  console.log(e);
+  var data = e.data
+      document = data.document,
+      signature = data.signature;
+  // document.original_hash
+  // document.file_signed
+}, false);
+</script>
+```
+
+After the user succesfully signs the document we send a [postMessage](https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage).
