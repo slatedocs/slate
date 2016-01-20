@@ -70,7 +70,7 @@ bundle list scout_apm
         <span class="step">6</span>
       </td>
       <td>
-        <a name="step6"></a>Are you sure the application has processed any requests?
+        <p><a name="step6"></a>Are you sure the application has processed any requests?</p>
 <pre>
 tail -n1000 log/production.log | grep "Processing"
 </pre>
@@ -79,6 +79,15 @@ tail -n1000 log/production.log | grep "Processing"
     <tr>
       <td>
         <span class="step">7</span>
+      </td>
+      <td>
+        <p>Are your controllers inheriting from <code>ActionController::Metal</code> instead of <code>ActionController::Base</code>?</p>
+        <p><a href="#actioncontroller-metal">Add instrumentation</a> to your <code>ActionController::Metal</code> controllers.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <span class="step">8</span>
       </td>
       <td>
         <p>
