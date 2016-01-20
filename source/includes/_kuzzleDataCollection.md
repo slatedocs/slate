@@ -377,6 +377,27 @@ Returns the `KuzzleDataCollection` object to allow chaining.
 
 Resolves to a `KuzzleDocument` object containing the newly created document.
 
+## dataMappingFactory
+
+```js
+var dataMapping = kuzzle
+  .dataCollectionFactory('index', 'collection')
+  .dataMappingFactory({someField: {type: 'string', index: 'analyzed'}}})
+  .apply();
+```
+
+Creates a new ``KuzzleDataMapping` object, using its constructor.  
+
+#### dataMappingFactory([mapping])
+
+| Arguments | Type | Description |
+|---------------|---------|----------------------------------------|
+| ``mapping`` | JSON Object | Optional mapping |
+
+#### Return value
+
+Returns the newly created `KuzzleDataMapping` object.
+
 ## delete
 
 ```js
@@ -559,6 +580,28 @@ Returns the `KuzzleDataCollection` object to allow chaining.
 #### Callback response
 
 Resolves to an `array` containing the deleted document IDs.
+
+## documentFactory
+
+```js
+var document = kuzzle
+  .dataCollectionFactory('index', 'collection')
+  .documentFactory('id', {some: 'content'})
+  .save();
+```
+
+Creates a new ``KuzzleDocument` object, using its constructor.
+
+#### documentFactory([id], [content])
+
+| Arguments | Type | Description |
+|-----------|------|-------------|
+| ``id`` | string | Optional document unique ID |
+| ``content`` | JSON object | Optional document content |
+
+#### Return value
+
+Returns the newly created `KuzzleDocument` object.
 
 ## fetchDocument
 
@@ -896,6 +939,29 @@ Returns the `KuzzleDataCollection` object to allow chaining.
 #### Callback response
 
 Resolves to an updated `KuzzleDocument` object.
+
+## roomFactory
+
+```js
+var room = kuzzle
+  .dataCollectionFactory('index', 'collection')
+  .roomFactory()
+  .renew({terms: {field: ['some', 'new', 'filter']}}, function (err, res) {
+    // handle notifications
+  });
+```
+
+Creates a new ``KuzzleRoom` object, using its constructor.  
+
+#### roomFactory([options])
+
+| Arguments | Type | Description |
+|---------------|---------|----------------------------------------|
+| ``options`` | object | Subscription configuration |
+
+#### Return value
+
+Returns the newly created `KuzzleRoom` object.
 
 ## setHeaders
 
