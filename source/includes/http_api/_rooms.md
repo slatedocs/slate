@@ -28,7 +28,7 @@ Domain rooms are like any other rooms except that they are linked to exactly one
 ### Retrieve room details
 Get a single room object that your organization has access to, by its ID. This may be a shared room.
 
-`GET https://service.giosg.com/api/v5/rooms/<room_id>`
+`GET https://service.giosg.com/api/v5/orgs/<organization_id>/rooms/<room_id>`
 
 This endpoint accepts the following GET parameters.
 
@@ -41,7 +41,7 @@ If you try to get a room that has been deleted, the endpoint results in 404 resp
 ### Get a collection of rooms
 Return a [paginated collection][] of all the [room][] resources you have access to, including any shared rooms:
 
-`GET https://service.giosg.com/api/v5/rooms`
+`GET https://service.giosg.com/api/v5/orgs/<organization_id>/rooms`
 
 Parameter | Type | Default | Description
 ----------|------|---------|------------
@@ -53,14 +53,14 @@ Parameter | Type | Default | Description
 ### Creating a room
 Create a new custom room or a domain room by making a `POST` request, providing the [room object][room] as a payload. By providing the `domain` attribute with non-null value will create a new domain room.
 
-`POST https://service.giosg.com/api/v5/rooms`
+`POST https://service.giosg.com/api/v5/orgs/<organization_id>/rooms`
 
 ### Update a room
 You may update the editable attributes of your own room by making either a `PATCH` (update a subset of attributes) or `POST` request (update all the attributes).
 
-`PUT https://service.giosg.com/api/v5/rooms/<room_id>`
+`PUT https://service.giosg.com/api/v5/orgs/<organization_id>/rooms/<room_id>`
 
-`PATCH https://service.giosg.com/api/v5/rooms/<room_id>`
+`PATCH https://service.giosg.com/api/v5/orgs/<organization_id>/rooms/<room_id>`
 
 ### Delete a room
 
@@ -70,4 +70,4 @@ Deleting a room will immediately unshare it from your partners! Even though your
 
 You may delete one of your own rooms by making a `DELETE` request.
 
-`DELETE https://service.giosg.com/api/v5/rooms/<room_id>`
+`DELETE https://service.giosg.com/api/v5/orgs/<organization_id>/rooms/<room_id>`
