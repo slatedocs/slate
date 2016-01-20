@@ -39,7 +39,7 @@ When basket is integrated using method that involves some work from site develop
 _giosg(function () {
   // On page: http://myshop.com/products/bunnies/
   // Add one product to cart and submit data to server
-  var productList = [{
+  var products = [{
     name: 'Fluffy Bunny',
     price: '20.50',
     quantity: 1
