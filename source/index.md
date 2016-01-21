@@ -7,11 +7,11 @@ language_tabs:
 
 includes:
   - introduction
-  - errors
   - objects
   - documents
   - certificates
   - widget
+  - errors
 
 toc_footers:
   - <a href='https://www.mifiel.com'>Go to Mifiel.com</a>
