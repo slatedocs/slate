@@ -147,7 +147,7 @@ html, body {
 
 
   .tocify-item>a, .toc-footer li {
-    padding: 8px $nav-padding 8px $nav-padding;
+    padding: 5px $nav-padding 5px $nav-padding;
     display: block;
     overflow-x: hidden;
     white-space: nowrap;
@@ -551,7 +551,7 @@ html, body {
     clear:right;
 
     box-sizing: border-box;
-    @include text-shadow(0px 0px 0px #fff);
+    @include text-shadow(0px 0px 0px #666);
 
     @extend %right-col;
 
@@ -573,7 +573,7 @@ html, body {
       background-color: $code-annotation-bg;
       border-radius: 5px;
       padding: $code-annotation-padding;
-      color: #555;
+      color: #ddd;
       border-top: 0px solid #000;
       border-bottom: 0px solid #404040;
       text-shadow: none;
