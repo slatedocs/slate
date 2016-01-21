@@ -73,7 +73,7 @@ Contains information regarding the advanced electronic signatures (e.g. FIEL) us
 Field           | Type |  Description
 --------------- | ---- | -----------
 id              | String | The ID of the Certificate
-type_of         | String | Type of certificate used (e.g. `FIEL`)
+type_of         | String | Type of certificate used (e.g. FIEL)
 owner           | String | Name of the owner as defined in the certificate
 tax_id          | String | RFC (tax ID) or other identifier of owner as defined in the certificate
 cer_hex         | String | Certificate in hexadecimal
