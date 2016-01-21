@@ -6,16 +6,16 @@ Mifiel API uses the following error codes:
 
 Error Code      | Meaning
 --------------- | -------
-400 | Bad Request -- Your request sucks
-401 | Unauthorized -- Your authorization header is wrong
+400 | Bad Request -- Your request had an error. (more info in the `errors` response param)
+401 | Unauthorized -- Your authorization header is wrong.
 402 | Payment Required -- Your request needs a paid plan or your paid plan has expired.
-404 | Not Found -- The specified object could not be found
-405 | Method Not Allowed -- You tried to access an invalid method
-406 | Not Acceptable -- You requested a format isn't supported
-410 | Gone -- The kitten requested has been removed from our servers
+404 | Not Found -- The specified object could not be found.
+405 | Method Not Allowed -- You tried to access an invalid method.
+406 | Not Acceptable -- You requested a format that isn't supported.
+410 | Gone -- The requested object has been removed from our servers.
 422 | Unprocessable Entity -- Something happend when we tried to save your request.
 429 | Too Many Requests -- You're requesting too many kittens! Slow down!
-500 | Internal Server Error -- We had a problem with our server. Try again later.
+500 | Internal Server Error -- We had a problem in our servers. Try again later.
 503 | Service Unavailable -- We're temporarially offline for maintanance. Please try again later.
 
 ## Error Handling
