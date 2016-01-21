@@ -281,14 +281,20 @@ This commands resets the timestamp value to zero. The command is useful for the 
 |       0x41       |      0x10     | CRC  |0x10 (ResetTimeStamp)| Reserved |
 
 #### FingerGesture Command (0x11)
-In the command mode, this packet enables/disables the streaming of the finger gesture patterns, when Neblina is attached to a finger. Currently, the only patterns that are being detected are the Swipe Left and Swipe Right. Byte#8 will be a Boolean value representing the enable/disable command. The whole command packet has the following structure: 
+In the command mode, this packet enables/disables the streaming of the finger gesture patterns, when Neblina is attached to a finger. Currently, the only patterns that are being detected are the Swipe Left, Swipe Right, Swipe Up, and Swipe Down. Byte#8 will be a Boolean value representing the enable/disable command. The whole command packet has the following structure: 
 
 | Byte 0 (subsystem) | Byte 1 (length) | Byte 2 (CRC) |  Byte 3 (command)  |Byte 4-7|    Byte 8    |Bytes 9-19|
 |:------------------:|:---------------:|:------------:|:------------------:|:------:|:------------:|---------:|
 |        0x41        |       0x10      |      CRC     |0x11 (FingerGesture)|Reserved|Enable/Disable| Reserved |
 
-In the response mode, Neblina will first send an acknowledge packet to the host to confirm the successful receipt of the command. Next, only when a new finger gesture pattern has been detected, and if the streaming is enabled, a response packet will be prepared with the pattern information and will be sent to the host. The response packet includes the timestamp (Byte#4-7), as well as the pattern information (Byte#8), where Swipe Left is 0, and Swipe Right is 1. The whole response packet is as follows:
+In the response mode, Neblina will first send an acknowledge packet to the host to confirm the successful receipt of the command. Next, only when a new finger gesture pattern has been detected, and if the streaming is enabled, a response packet will be prepared with the pattern information and will be sent to the host. The response packet includes the timestamp (Byte#4-7), as well as the pattern information (Byte#8), where 
+
+```c
+Byte#8: Swipe Direction (left: 0, right: 1, up: 2, down: 3). 
+```
+
+The whole response packet is as follows:
 
 | Byte 0 (subsystem) | Byte 1 (length) | Byte 2 (CRC) |  Byte 3 (command) |Byte 4-7 |      Byte 8      | Bytes 9-19 |
 |:------------------:|:---------------:|:------------:|:-----------------:|:-------:|:----------------:|:----------:|
-|        0x01        |       0x10      |      CRC     |        0x11       |TimeStamp| Swipe Left/Right |  Reserved  |
+|        0x01        |       0x10      |      CRC     |        0x11       |TimeStamp| Swipe Direction  |  Reserved  |
