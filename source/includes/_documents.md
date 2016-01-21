@@ -36,7 +36,7 @@ Field                 | Type |  Description
 --------------------- | ---- | -----------
 file         | String | __Optional__ File to be signed (The hash will be automatically extracted from the file and signed)
 hash         | String | __Optional__ Hash of the original, unsigned document (The hash will be signed)
-signatories  | Array | A list containing the name and email of each signer (the email is __required__ when using embedded signing)
+signatories  | Array | A list containing the __name__, __tax_id__ (RFC) and __email__ of each __signer__
 callback_url | String | __Optional__ A Callback URL to post when the document gets signed
 
 <aside class="info">
