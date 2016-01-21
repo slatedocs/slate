@@ -21,6 +21,7 @@ Regarding the motion engine subsystem a number of commands exist, which are list
 #define SetAccRange 0x0E //sets the accelerometer full-scale range
 #define DisableAllStreaming 0x0F //disables all the streaming options in the motion engine
 #define ResetTimeStamp  0x10 //resets the timestamp value to 0
+#define FingerGesture   0x11 //detects finger swipe patterns, when Neblina is attached to a finger
 ```
 Note that the above commands are placed within the header section of the packet in Byte#3.
 
@@ -240,7 +241,7 @@ In the command mode, the packet enables/disables the streaming of sitting/standi
 |:------------------:|:---------------:|:------------:|:--------------------:|:------:|:--------------:|------------|
 |        0x41        |       0x10      |      CRC     |0x0C (SittingStanding)|Reserved| Enable/Disable |  Reserved  |
 
-IIn the response mode, Neblina will first send an acknowledge packet to the host to confirm the successful receipt of the command. Next, the main response packet will be prepared, where the data section first includes 4 bytes for the timestamp (Byte#4-7), which is then followed by a single byte (Byte#8) indicating whether the person has just stood up (Byte#8 = 0x01), or has just sat down (Byte#8 = 0x00). If the person remains standing/sitting, no response packet will be sent to the host.  Next, we have 4 bytes (Byte#9-12), a 32-bit unsigned integer value packed in little endian format (LSB first), representing the amount of time in seconds the person has been sitting so far (SitTime). The next 4 bytes (Byte#13-16) construct another 32-bit unsigned integer in little endian format, which represents the amount of time in seconds the person has been standing up so far (StandTime). 
+In the response mode, Neblina will first send an acknowledge packet to the host to confirm the successful receipt of the command. Next, the main response packet will be prepared, where the data section first includes 4 bytes for the timestamp (Byte#4-7), which is then followed by a single byte (Byte#8) indicating whether the person has just stood up (Byte#8 = 0x01), or has just sat down (Byte#8 = 0x00). If the person remains standing/sitting, no response packet will be sent to the host.  Next, we have 4 bytes (Byte#9-12), a 32-bit unsigned integer value packed in little endian format (LSB first), representing the amount of time in seconds the person has been sitting so far (SitTime). The next 4 bytes (Byte#13-16) construct another 32-bit unsigned integer in little endian format, which represents the amount of time in seconds the person has been standing up so far (StandTime). 
 Note that if the host disables the streaming of sitting/standing mode, the SitTime and StandTime will be both reset to zero. The last 3 bytes of the packet (Byte#17-19) are reserved. The whole response packet structure including header is shown below:
 
 |Byte 0 |Byte 1|Byte 2|Byte 3|Byte 4-7 | Byte 8  |Byte 9-12|Byte 13-16|Bytes 17-19|
@@ -278,3 +279,16 @@ This commands resets the timestamp value to zero. The command is useful for the 
 |Byte 0 (subsystem)|Byte 1 (length)|Byte 2|   Byte 3 (command)  |Byte 4-19 |
 |:----------------:|:-------------:|:----:|:-------------------:|:--------:|
 |       0x41       |      0x10     | CRC  |0x10 (ResetTimeStamp)| Reserved |
+
+#### FingerGesture Command (0x11)
+In the command mode, this packet enables/disables the streaming of the finger gesture patterns, when Neblina is attached to a finger. Currently, the only patterns that are being detected are the Swipe Left and Swipe Right. Byte#8 will be a Boolean value representing the enable/disable command. The whole command packet has the following structure: 
+
+| Byte 0 (subsystem) | Byte 1 (length) | Byte 2 (CRC) |  Byte 3 (command)  |Byte 4-7|    Byte 8    |Bytes 9-19|
+|:------------------:|:---------------:|:------------:|:------------------:|:------:|:------------:|---------:|
+|        0x41        |       0x10      |      CRC     |0x11 (FingerGesture)|Reserved|Enable/Disable| Reserved |
+
+In the response mode, Neblina will first send an acknowledge packet to the host to confirm the successful receipt of the command. Next, only when a new finger gesture pattern has been detected, and if the streaming is enabled, a response packet will be prepared with the pattern information and will be sent to the host. The response packet includes the timestamp (Byte#4-7), as well as the pattern information (Byte#8), where Swipe Left is 0, and Swipe Right is 1. The whole response packet is as follows:
+
+| Byte 0 (subsystem) | Byte 1 (length) | Byte 2 (CRC) |  Byte 3 (command) |Byte 4-7 |      Byte 8      | Bytes 9-19 |
+|:------------------:|:---------------:|:------------:|:-----------------:|:-------:|-----------------:|:----------:|
+|        0x01        |       0x10      |      CRC     |        0x11       |TimeStamp| Swipe Left/Right |  Reserved  |
