@@ -225,19 +225,6 @@ Scout can measure the time it takes a request to reach your Rails app from farth
 
 To see this metric within Scout, you need to configure your upstream software, adding an HTTP header that our agent reads. This is typically a one-line change.
 
-## ActionController::Metal
-
-Scout instruments controllers that inherit from `ActionController::Base` automatically, but not those that inherit from `ActionController::Metal` (including `ActionController::API`). We instrument `ActionController::Base` as this allows us to instrument the full request cycle (which includes before/after filters). If we just instrumented `ActionController::Metal`, we'd miss this instrumentation.
-
-However, adding instrumentation to controllers that inherit from `ActionController::Metal` is simple. Just include our instrumentation library in the controller:
-
-```ruby
-class FastController < ActionController::Metal
-  include ScoutApm::Instruments::ActionControllerRails3Rails4Instruments
-```
-
-This won't interfer with our regular instrumentation. Your controller-action metrics will appear under the endpoints area of Scout, just like any other controller-action.
-
 ### HTTP Header
 
 The Scout agent depends on an HTTP request header set by an upstream load balancer (ex: HAProxy) or web server (ex: Apache, Ngnix). 
@@ -291,6 +278,19 @@ Older Passsenger versions:
 ````
 passenger_set_cgi_param X_REQUEST_START "t=${msec}";
 ````
+
+## ActionController::Metal
+
+Scout instruments controllers that inherit from `ActionController::Base` automatically, but not those that inherit from `ActionController::Metal` (including `ActionController::API`). We instrument `ActionController::Base` as this allows us to instrument the full request cycle (which includes before/after filters). If we just instrumented `ActionController::Metal`, we'd miss this instrumentation.
+
+However, adding instrumentation to controllers that inherit from `ActionController::Metal` is simple. Just include our instrumentation library in the controller:
+
+```ruby
+class FastController < ActionController::Metal
+  include ScoutApm::Instruments::ActionControllerRails3Rails4Instruments
+```
+
+This won't interfer with our regular instrumentation. Your controller-action metrics will appear under the endpoints area of Scout, just like any other controller-action.
 
 ## Docker <img src="images/docker.png" style="float:right;width: 150px" />
 
