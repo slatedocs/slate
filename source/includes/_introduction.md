@@ -23,7 +23,7 @@ All errors follow the [JSend](http://labs.omniti.com/labs/jsend) specification. 
 
 ### When a client sends an unexpected request:
 
-> Example of a JSON __fail__ response:
+> JSON Example __fail__ response:
 
 ```json
   {
@@ -41,7 +41,7 @@ errors  | Array   | Array of error messages
 
 ### For server errors:
 
-> Example of a JSON __error__ response:
+> JSON Example __error__ response:
 
 ```json
   {

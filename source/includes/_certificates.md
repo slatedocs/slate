@@ -118,7 +118,7 @@ sat_certificates = Mifiel::Certificate.sat
 curl "https://www.mifiel.com/api/v1/keys/sat"
 ```
 
-> Example of a JSON response:
+> JSON Example response:
 
 ```json
 [
