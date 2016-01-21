@@ -2,6 +2,10 @@
 
 Mifiel data is structured around 3 main types of objects: Document, Certificate and Signature. You’ll find these objects in the format described below.
 
+<aside class="info">
+  The <b>Date</b> type is always in <b>Coordinated Universal Time (UTC)</b>.
+</aside>
+
 ## Document
 
 Contains information about the PDF file being signed
