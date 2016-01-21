@@ -7,9 +7,9 @@ Through Mifiel's API, you can easily manage documents and certificates within yo
 
 ### Getting started
 
-To start using the API you will first need an APP_ID and a APP_SECRET which will be provided upon request (please contact us at [hola@mifiel.com](mailto:hola@mifiel.com)).
+To start using the API you will first need an _APP_ID_ and a _APP_SECRET_ which will be provided upon request (please contact us at [hola@mifiel.com](mailto:hola@mifiel.com)).
 
-You will first need to create an account at [mifiel.com](https://www.mifiel.com) since the APP_ID and APP_SECRET will be linked to your account. 
+You will first need to create an account at [mifiel.com](https://www.mifiel.com) since the _APP_ID_ and _APP_SECRET_ will be linked to your account. 
 
 We have language bindings in Shell and Ruby! You can view code examples on the right (switch between different programming languages using the tabs on top).
 
@@ -94,15 +94,15 @@ content-type, content-MD5, request URI and the timestamp. You can replace conten
 `canonical_string = 'http method,content-type,content-MD5,request URI,timestamp'`
 
 2. This string is then used to create the signature, which is a Base64 encoded
-SHA1 HMAC, using the APP_SECRET key.
+SHA1 HMAC, using the __APP_SECRET__ key.
 
 3. This signature is then added as the `Authorization` HTTP header in the following form:
 
 `Authorization: APIAuth APP-ID:signature-from-step-2`
 
 ```ruby
-app_id = 'your app id'
-app_secret = 'your app secret'
+app_id = '<APP_ID>'
+app_secret = '<APP_SECRET>'
 rest_request = RestClient::Request.new(
   url: 'https://www.mifiel.com/api/v1/documents',
   method: :get,

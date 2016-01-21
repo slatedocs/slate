@@ -22,7 +22,6 @@ curl -X POST https://www.mifiel.com/api/v1/documents \
 ```
 
 Create a document to be signed by passing either a PDF file or the Hash of the file.
-(_Note: Either the "File" or "Hash" must be passed._)
 
 If you are using our [embedded signing widget](#widget), we suggest that you pass a __File__ so that it can be displayed to the end user (signer) within the signing flow on your webpage. Also when using the widget you must pass the __email of the signer__ (name is optional) so that we can send them a copy of the signed document when the signing process is complete.
 
@@ -39,6 +38,13 @@ file         | String | __Optional__ File to be signed (The hash will be automat
 hash         | String | __Optional__ Hash of the original, unsigned document (The hash will be signed)
 signatories  | Array | A list containing the name and email of each signer (the email is __required__ when using embedded signing)
 callback_url | String | __Optional__ A Callback URL to post when the document gets signed
+
+<aside class="info">
+  <ul style="margin: 0; padding: 0">
+    <li>Either the <b>file</b> or <b>hash</b> must be passed.</li>
+    <li>The <b>email</b> in the <b>signatories</b> param is <b>required</b> when using embedded signing.</li>
+  </ul>
+</aside>
 
 ### Response
 
@@ -134,23 +140,23 @@ document.sign(certificate: certificate)
 
 Allows the specified document to be signed.
 
+The documents get signed client-side. For security purposes, the private key and password of the signer never reach our server.
+
 ### HTTP Request
 
 `POST https://www.mifiel.com/api/v1/documents/:id/sign`
 
-<aside class="info">
-  The documents get signed client-side. For security purposes, the private key and password of the signer never reach our server.
-</aside>
-
 ### Parameters
-
-Either the `certificate_id` or `certificate` must be provided.
 
 Field          | Type   | Description
 -------------- | ------ | -----------
 certificate_id | String | __Optional__ The ID of the certificate that corresponds to the private key being used to sign 
 certificate    | String | __Optional__ The certificate (.cer file) corresponding to the private key being used to sign
 signature      | String | The electronic signature on the successfully-signed document
+
+<aside class="info">
+  Either the <b>certificate_id</b> or <b>certificate</b> must be provided.
+</aside>
 
 ### Response
 
