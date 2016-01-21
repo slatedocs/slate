@@ -21,10 +21,10 @@ curl -X POST https://www.mifiel.com/api/v1/documents \
   -H "Authorization: APIAuth your-hmac-auth-header"
 ```
 
-Create a document to be signed by passing either a File (in PDF) or a Hash of the file.
-_Note: Either the "File" or "Hash" must be passed._
+Create a document to be signed by passing either a PDF file or the Hash of the file.
+(_Note: Either the "File" or "Hash" must be passed._)
 
-If you are using our [embedded signing widget](#widget), we suggest that you pass a File so that it can be displayed to the end user (signer) within the signing flow.
+If you are using our [embedded signing widget](#widget), we suggest that you pass a __File__ so that it can be displayed to the end user (signer) within the signing flow on your webpage. Also when using the widget you must pass the __email of the signer__ (name is optional) so that we can send them a copy of the signed document when the signing process is complete.
 
 
 ### HTTP Request
@@ -37,7 +37,7 @@ Field                 | Type |  Description
 --------------------- | ---- | -----------
 file         | String | __Optional__ File to be signed (The hash will be automatically extracted from the file and signed)
 hash         | String | __Optional__ Hash of the original, unsigned document (The hash will be signed)
-signatories  | Array | A list containing the name and email of each signer (the email is __required__ to send a copy of the signed document to the signer)
+signatories  | Array | A list containing the name and email of each signer (the email is __required__ when using embedded signing)
 callback_url | String | __Optional__ A Callback URL to post when the document gets signed
 
 ### Response
@@ -70,7 +70,7 @@ Allows you to retrieve a specific document.
 
 ### Response
 
-Returns a [Document Model](#document)
+Returns a [Document Models](#document)
 
 ## Get All Documents
 
@@ -148,9 +148,9 @@ Either the `certificate_id` or `certificate` must be provided.
 
 Field          | Type   | Description
 -------------- | ------ | -----------
-certificate_id | String | __Optional__ The ID of the certificate that corresponds to the key being used to sign 
-certificate    | String | __Optional__ The certificate (.cer file) corresponding to the key being used to sign
-signature      | String | The signature (generated using the key and the hash of the document)
+certificate_id | String | __Optional__ The ID of the certificate that corresponds to the private key being used to sign 
+certificate    | String | __Optional__ The certificate (.cer file) corresponding to the private key being used to sign
+signature      | String | The electronic signature on the successfully-signed document
 
 ### Response
 
@@ -158,7 +158,7 @@ Returns a [Document Model](#document)
 
 ## Request signature
 
-Sends a request for the document to be signed (to be used when the person interacting with your webpage is not the actual signer, e.g. signer's lawyer or assistant)
+Sends an email request for the document to be signed.
 
 ```ruby
 require 'mifiel'

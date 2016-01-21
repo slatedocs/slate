@@ -1,6 +1,8 @@
-# Embedded Signing (Widget)
+# Embedded Signing
 
-> Copy this code and paste it just before the </body> tag.
+## Widget
+
+> Copy this code and paste it just before the `</body>` tag.
 
 ```html
 <script type="text/javascript">
@@ -19,7 +21,9 @@
 </script>
 ```
 
-The widget is an embedded signing tool that we have created to allow your users to sign documents on your site in an iFrame. You can embed this tool to allow signing within the flow of your site without the need for the user to have an account in [mifiel.com](https://www.mifiel.com)
+The widget is an embedded signing tool that we have created to allow your users to sign documents in an iFrame within your page. By embedding this tool, your users can sign seamlessly without having to leave the flow of your website.
+
+_Note: The signers do not have to have an account in [mifiel.com](https://www.mifiel.com)_
 
 To begin, you have to copy and paste our code snippet (_shown to your right_) into the code of the page where the signing flow will take place.
 
@@ -52,3 +56,17 @@ window.addEventListener('message', function (e) {
 ```
 
 After the user succesfully signs the document we will send back a [postMessage](https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage).
+
+## Embedded Signing Flow
+
+Following is a more detailed explanation of the steps involved in requesting and executing signatures within the embedded signing widget.
+
+1. First, you must pass the __PDF file__ that is being signed (converted into a String), along with the following __parameters__: Webhook, email of each signer, and name of each signer (optional).
+
+2. Mifiel will return a __document ID__, which you will then need to pass to the widget (running on your website's front-end).
+
+3. The signature process then takes place within your website. The signer will be able to preview the document, select the files of their FIEL, and enter the password of their FIEL to sign (during this process Mifiel will be verifying that the FIEL is valid and not expired). 
+
+4. If successful, the signer will be presented with a page explaining that the signing was successful and that they will receive an email with the signed document. We will also display a confirmation button (e.g. 'Proceed to next step') which will return the user to the flow of your website.
+
+5. Mifiel will then post the following information to the webhook specified by you (in Step 1): electronic signature of the document, timestamp of signature, the signature page, and information regarding the public certificate(s) used to sign the document.

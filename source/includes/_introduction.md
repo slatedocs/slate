@@ -2,7 +2,7 @@
 
 Welcome to the Mifiel API! We at Mifiel provide a simple and robust RESTful API enabling any service or company operating in Mexico to integrate electronic signatures (using the FIEL) into their workflow.
 
-Through Mifiel's API, you can easily manage documents and certificates within you or your company's account.
+Through Mifiel's API, you can easily manage documents and certificates within your Mifiel account.
 
 
 ### Getting started
@@ -23,7 +23,7 @@ All errors follow the [JSend](http://labs.omniti.com/labs/jsend) specification. 
 
 ### When a client sends an unexpected request:
 
-> Example JSON __fail__ response:
+> Example of a JSON __fail__ response:
 
 ```json
   {
@@ -41,7 +41,7 @@ errors  | Array   | Array of error messages
 
 ### For server errors:
 
-> Example JSON __error__ response:
+> Example of a JSON __error__ response:
 
 ```json
   {
@@ -86,7 +86,7 @@ Or install it yourself as:
 
 ## Authentication
 
-Mifiel uses SHA1 HMAC encryption to authenticate API calls. Each request has to be authenticated by following these steps:
+Mifiel uses __SHA1 HMAC encryption__ to authenticate API calls. Each request has to be authenticated by following these steps:
 
 1. A canonical string is first created using your HTTP headers containing the
 content-type, content-MD5, request URI and the timestamp. You can replace content-type and content-MD5 with a blank string if needed. The timestamp must be a valid HTTP date. The canonical string is computed as follows:

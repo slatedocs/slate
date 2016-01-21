@@ -1,5 +1,7 @@
 # Certificates
 
+At the moment we only support signing with the FIEL (the most frequently used advanced electronic signature in Mexico). We will  soon be adding support for additional types of electronic signatures and will update the documentation as we do so.
+
 ## Create a Certificate
 
 ```ruby
@@ -15,7 +17,7 @@ curl -X POST https://www.mifiel.com/api/v1/keys \
   -H "Authorization: APIAuth your-hmac-auth-header"
 ```
 
-Creates a certificate of a signer in your account.
+Uploads the certificate of a signer in your account.
 
 ### HTTP Request
 
@@ -116,7 +118,7 @@ sat_certificates = Mifiel::Certificate.sat
 curl "https://www.mifiel.com/api/v1/keys/sat"
 ```
 
-> Example JSON response:
+> Example of a JSON response:
 
 ```json
 [
@@ -133,7 +135,7 @@ curl "https://www.mifiel.com/api/v1/keys/sat"
 ]
 ```
 
-Lists the public SAT Certificates used to generate all FIELs
+Lists all of the public SAT Certificates used to generate all FIELs
 
 ### HTTP Request
 

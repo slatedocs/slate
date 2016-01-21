@@ -56,7 +56,7 @@ signatures      | Object[] | Array of a [Signature Model](#signature)
 
 ## Certificate
 
-Contains information about the signer's advanced electronic signature (either FIEL or CSD) being used to sign
+Contains information regarding the advanced electronic signatures (e.g. FIEL) used to sign the document
 
 ```json
 {
@@ -75,7 +75,7 @@ Field           | Type |  Description
 id              | String | The ID of the Certificate
 type_of         | String | Type of certificate used (e.g. `FIEL`)
 owner           | String | Name of the owner as defined in the certificate
-tax_id          | String | RFC or identifier of owner as defined in the certificate
+tax_id          | String | RFC (tax ID) or other identifier of owner as defined in the certificate
 cer_hex         | String | Certificate in hexadecimal
 expires_at      | Date | Expiration date of the Certificate
 expired         | Boolean | `true` if the Certificate is expired
@@ -101,7 +101,7 @@ Contains information regarding the signers that have successfully signed the doc
 
 Field           | Type |  Description
 --------------- | ---- | -----------
-id              | String | The ID of the Certificate
+id              | String | The ID of the Certificate used to sign
 email           | String | Email of the signer
 signed          | Boolean | `true` if signed
 signed_at       | Date   | Timestamp of the date signed
