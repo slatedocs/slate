@@ -17,44 +17,6 @@ We have language bindings in Shell and Ruby! You can view code examples on the r
 
 All API calls are versioned, and the current Mifiel API is v1.0. We will never introduce any breaking changes within any version, but may add new, non-breaking features and enhancements from time to time.
 
-## Error Handling
-
-All errors follow the [JSend](http://labs.omniti.com/labs/jsend) specification. Following are examples of error objects found in the body of error responses (_e.g. non-200 status code_).
-
-### When a client sends an unexpected request:
-
-> JSON Example __fail__ response:
-
-```json
-  {
-    "status": "fail",
-    "errors": [
-      "Document#29f3cb01-744d-4eae-8718-213aec8a1678 not found"
-    ]
-  }
-```
-
-Field   | Type    |  Description
-------- | ------- | ------------
-status  | String  | `fail`
-errors  | Array   | Array of error messages
-
-### For server errors:
-
-> JSON Example __error__ response:
-
-```json
-  {
-    "status": "error",
-    "message": "500: Internal Server Error" 
-  }
-```
-
-Field   | Type    |  Description
-------- | ------- | ------------
-status  | String  | `error`
-message | String  | A descriptive message
-
 ## Mifiel-supported SDKs
 
 We currently suppport only Ruby but are working on adding more languages.

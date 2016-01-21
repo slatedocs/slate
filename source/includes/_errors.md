@@ -20,11 +20,11 @@ Error Code      | Meaning
 
 ## Error Handling
 
-All errors follow the [JSend](http://labs.omniti.com/labs/jsend) specification. Included in the body if any error response (_e.g. non-200 status code_) will be an error object in the form:
+All errors follow the [JSend](http://labs.omniti.com/labs/jsend) specification. Following are examples of error objects found in the body of error responses (_e.g. non-200 status code_).
 
-### When a client sends an unspected request
+### When a client sends an unexpected request:
 
-> Example JSON __fail__ response:
+> JSON Example __fail__ response:
 
 ```json
   {
@@ -40,9 +40,9 @@ Field   | Type    |  Description
 status  | String  | `fail`
 errors  | Array   | Array of error messages
 
-### For server errors
+### For server errors:
 
-> Example JSON __error__ response:
+> JSON Example __error__ response:
 
 ```json
   {
