@@ -94,6 +94,14 @@ You may also update the whole user resource with a `PUT` request. In this case, 
 You are allowed to update your own details. You may only change other users' details if you have management rights for the organization. Otherwise this endpoint will result in a 403 response.
 </aside>
 
+### Channels
+
+Changes to users will be broadcasted to following [channels][]:
+
+Channels    | Description
+------------|---------------
+`api/v5/orgs/<organization_id>/users` | Changes to any user in the organization
+`api/v5/orgs/<organization_id>/users/<user_id>` | Changes to a single user in the organization
 
 ## User clients
 
@@ -243,7 +251,7 @@ When using `PUT` you need to provide an object as a request payload that contain
 
 ### Channels
 
-Changes to organizations will be broadcast to following [channels][]:
+Changes to organizations will be broadcasted to following [channels][]:
 
 Channels    | Description
 ------------|---------------
