@@ -7,14 +7,16 @@ language_tabs:
 
 includes:
   - introduction
+  - errors
   - objects
   - documents
   - certificates
   - widget
 
 toc_footers:
-  - <a href='https://www.mifiel.com'>Mifiel Website</a>
-  - <a href='https://github.com/Mifiel/api-doc'>See an error? Improve this doc</a>
+  - <a href='https://www.mifiel.com'>Go to Mifiel.com</a>
+  - <a href='mailto:hola@mifiel.com'>Questions? Contact us</a>
+  - <a href='https://github.com/Mifiel/api-doc'>Improve this doc</a>
 
 search: true
 ---

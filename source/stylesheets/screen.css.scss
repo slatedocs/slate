@@ -43,7 +43,7 @@ html, body {
 
 #toc > ul > li > a > span {
   float: right;
-  background-color: #2484FF;
+  background-color: #ffffff;
   border-radius: 40px;
   width: 20px;
 }
@@ -84,6 +84,7 @@ html, body {
   // This is the logo at the top of the ToC
   &>img {
     display: block;
+    margin: 30px auto;
   }
 
   &>.search {
@@ -96,7 +97,7 @@ html, body {
       padding: 6px 0 6px 20px;
       box-sizing: border-box;
       margin: $nav-v-padding $nav-padding;
-      width: $nav-width - 30;
+      width: $nav-width - 45;
       outline: none;
       color: $nav-text;
       border-radius: 0; /* ios has a default border radius */
@@ -129,8 +130,6 @@ html, body {
       margin-bottom: 1em;
     }
 
-    @include embossed-bg;
-
     li {
       margin: 1em $nav-padding;
       line-height: 1;
@@ -148,7 +147,7 @@ html, body {
 
 
   .tocify-item>a, .toc-footer li {
-    padding: 0 $nav-padding 0 $nav-padding;
+    padding: 5px $nav-padding 5px $nav-padding;
     display: block;
     overflow-x: hidden;
     white-space: nowrap;
@@ -177,6 +176,7 @@ html, body {
     box-shadow: 0px 1px 0px $nav-active-shadow;
     background-color: $nav-active-bg;
     color: $nav-active-text;
+    font-weight: 700;
   }
 
   // Subheaders are the submenus that slide open
@@ -191,7 +191,7 @@ html, body {
     }
 
     // for embossed look:
-    @include embossed-bg;
+
     &>li:last-child {
       box-shadow: none; // otherwise it'll overflow out of the subheader
     }
@@ -354,16 +354,21 @@ html, body {
     clear:both;
   }
 
+  a {
+    color: #37BC9B;
+    text-decoration: none;
+  }
+
   h1 {
     @extend %header-font;
-    font-size: 30px;
-    padding-top: 0.5em;
+    font-size: 28px;
+    padding-top: 1em;
     padding-bottom: 0.5em;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 0px solid #ccc;
     margin-bottom: $h1-margin-bottom;
     margin-top: 2em;
-    border-top: 1px solid #ddd;
-    background-image: linear-gradient(to bottom, #fff, #f9f9f9);
+    border-top: 0px solid #ddd;
+    background-image: none;
   }
 
   h1:first-child, div:first-child + h1 {
@@ -374,12 +379,21 @@ html, body {
   h2 {
     @extend %header-font;
     font-size: 20px;
-    margin-top: 4em;
+    margin-top: 3em;
     margin-bottom: 0;
     border-top: 1px solid #ccc;
-    padding-top: 1.2em;
+    padding-top: 2em;
     padding-bottom: 1.2em;
     background-image: linear-gradient(to bottom, rgba(#fff, 0.4), rgba(#fff, 0));
+  }
+
+  h3 {
+    color: #667;
+    letter-spacing: 1px;
+    font-size: 14px;
+    text-transform: uppercase;
+    margin-top: 3em;
+    margin-bottom: 1em;
   }
 
   // h2s right after h1s should bump right up
@@ -389,7 +403,7 @@ html, body {
     border-top: none;
   }
 
-  h3, h4, h5, h6 {
+  h4, h5, h6 {
     @extend %header-font;
     font-size: 15px;
     margin-top: 2.5em;
@@ -417,12 +431,14 @@ html, body {
 
     th {
       padding: 5px 10px;
+      padding-left: 0px;
       border-bottom: 1px solid #ccc;
       vertical-align: bottom;
     }
 
     td {
-      padding: 10px;
+      padding: 10px 25px;
+      padding-left: 0px;
     }
 
     tr:last-child {
@@ -456,8 +472,8 @@ html, body {
   }
 
   code {
-    background-color: rgba(0,0,0,0.05);
-    padding: 3px;
+    background-color: #EBF3F1;
+    padding: 5px 8px;
     border-radius: 3px;
     @extend %break-words;
     @extend %code-font;
@@ -476,6 +492,7 @@ html, body {
     margin-bottom: 1.5em;
     background: $aside-notice-bg;
     line-height: 1.6;
+    color: #fff;
 
     &.warning {
       background-color: $aside-warning-bg;
@@ -526,7 +543,7 @@ html, body {
     background-color: $code-bg;
     color: #fff;
 
-    padding: 2em $main-padding;
+    padding: 1.5em $main-padding;
     margin: 0;
     width: $examples-width;
 
@@ -534,16 +551,16 @@ html, body {
     clear:right;
 
     box-sizing: border-box;
-    @include text-shadow(0px 1px 2px rgba(0,0,0,0.4));
+    @include text-shadow(0px 0px 0px #666);
 
     @extend %right-col;
 
     &>p { margin: 0; }
 
     a {
-      color: #fff;
+      color: #28a5d4;
       text-decoration: none;
-      border-bottom: dashed 1px #ccc;
+      border-bottom: solid 1px #ccc;
     }
   }
 
@@ -556,9 +573,10 @@ html, body {
       background-color: $code-annotation-bg;
       border-radius: 5px;
       padding: $code-annotation-padding;
-      color: #ccc;
-      border-top: 1px solid #000;
-      border-bottom: 1px solid #404040;
+      color: #ddd;
+      border-top: 0px solid #000;
+      border-bottom: 0px solid #404040;
+      text-shadow: none;
     }
   }
 }
