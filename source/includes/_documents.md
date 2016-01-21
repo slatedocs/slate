@@ -18,7 +18,7 @@ curl -X POST https://www.mifiel.com/api/v1/documents \
   -F "file=@my-file.pdf" \
   -F "signatories[0][name]=Signer 1" \
   -F "signatories[0][email]=signer@email.com" \
-  -H "Authorization: APIAuth your-hmac-auth-header"
+  -H "Authorization: APIAuth APP-ID:hmac-signature"
 ```
 
 Create a document to be signed by passing either a PDF file or the Hash of the file.
@@ -65,7 +65,7 @@ document.widget_id
 
 ```shell
 curl "https://www.mfiel.com.mx/api/v1/documents/29f3cb01-744d-4eae-8718-213aec8a1678"
-  -H "Authorization: APIAuth your-hmac-auth-header"
+  -H "Authorization: APIAuth APP-ID:hmac-signature"
 ```
 
 Allows you to retrieve a specific document.
@@ -88,7 +88,7 @@ documents = Mifiel::Document.all
 
 ```shell
 curl "https://www.mifiel.com/api/v1/documents"
-  -H "Authorization: APIAuth your-hmac-auth-header"
+  -H "Authorization: APIAuth APP-ID:hmac-signature"
 ```
 
 Allows you to retrieve all documents in your account.
@@ -111,7 +111,7 @@ Mifiel::Document.delete('29f3cb01-744d-4eae-8718-213aec8a1678')
 
 ```shell
 curl -X DELETE "https://www.mifiel.com/api/v1/documents/29f3cb01-744d-4eae-8718-213aec8a1678"
-  -H "Authorization: APIAuth your-hmac-auth-header"
+  -H "Authorization: APIAuth APP-ID:hmac-signature"
 ```
 
 Allows you to delete a specific document in your account.
@@ -178,7 +178,7 @@ document.request_signature(email, cc: cc)
 
 ```shell
 curl -X POST "https://www.mifiel.com/api/v1/documents/29f3cb01-744d-4eae-8718-213aec8a1678/request_signature" \
-  -H "Authorization: APIAuth your-hmac-auth-header"
+  -H "Authorization: APIAuth APP-ID:hmac-signature"
 ```
 
 > Response from Mifiel:

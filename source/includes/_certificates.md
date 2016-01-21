@@ -14,7 +14,7 @@ certificate = Mifiel::Certificate.create(file_contents)
 ```shell
 curl -X POST https://www.mifiel.com/api/v1/keys \
   -F "file=@my-certificate.cer" \
-  -H "Authorization: APIAuth your-hmac-auth-header"
+  -H "Authorization: APIAuth APP-ID:hmac-signature"
 ```
 
 Uploads the certificate of a signer in your account.
@@ -51,7 +51,7 @@ certificate.tax_id
 
 ```shell
 curl "https://www.mfiel.com.mx/api/v1/keys/07320f00-f504-47e0-8ff6-78378d2faca4"
-  -H "Authorization: APIAuth your-hmac-auth-header"
+  -H "Authorization: APIAuth APP-ID:hmac-signature"
 ```
 
 Allows you to retrieve a specific certificate.
@@ -74,7 +74,7 @@ certificates = Mifiel::Certificate.all
 
 ```shell
 curl "https://www.mifiel.com/api/v1/keys"
-  -H "Authorization: APIAuth your-hmac-auth-header"
+  -H "Authorization: APIAuth APP-ID:hmac-signature"
 ```
 
 Allows you to retrieve ALL certificates in your account.
@@ -97,7 +97,7 @@ Mifiel::Certificate.delete('07320f00-f504-47e0-8ff6-78378d2faca4')
 
 ```shell
 curl -X DELETE "https://www.mifiel.com/api/v1/keys/07320f00-f504-47e0-8ff6-78378d2faca4"
-  -H "Authorization: APIAuth your-hmac-auth-header"
+  -H "Authorization: APIAuth APP-ID:hmac-signature"
 ```
 
 Allows you to delete a specific certificate in your account.

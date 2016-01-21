@@ -7,6 +7,7 @@ language_tabs:
 
 includes:
   - introduction
+  - errors
   - objects
   - documents
   - certificates
