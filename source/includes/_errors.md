@@ -1,20 +1,57 @@
 # Errors
 
-<aside class="notice">This error section is stored in a separate file in `includes/_errors.md`. Slate allows you to optionally separate out your docs into many files...just save them to the `includes` folder and add them to the top of your `index.md`'s frontmatter. Files are included in the order listed.</aside>
+## Error codes
 
-The Kittn API uses the following error codes:
+Mifiel API uses the following error codes:
 
-
-Error Code | Meaning
----------- | -------
-400 | Bad Request -- Your request sucks
-401 | Unauthorized -- Your API key is wrong
-403 | Forbidden -- The kitten requested is hidden for administrators only
-404 | Not Found -- The specified kitten could not be found
-405 | Method Not Allowed -- You tried to access a kitten with an invalid method
-406 | Not Acceptable -- You requested a format that isn't json
-410 | Gone -- The kitten requested has been removed from our servers
-418 | I'm a teapot
+Error Code      | Meaning
+--------------- | -------
+400 | Bad Request -- Your request had an error. (more info in the `errors` response param)
+401 | Unauthorized -- Your authorization header is wrong.
+402 | Payment Required -- Your request needs a paid plan or your paid plan has expired.
+404 | Not Found -- The specified object could not be found.
+405 | Method Not Allowed -- You tried to access an invalid method.
+406 | Not Acceptable -- You requested a format that isn't supported.
+410 | Gone -- The requested object has been removed from our servers.
+422 | Unprocessable Entity -- Something happend when we tried to save your request.
 429 | Too Many Requests -- You're requesting too many kittens! Slow down!
-500 | Internal Server Error -- We had a problem with our server. Try again later.
+500 | Internal Server Error -- We had a problem in our servers. Try again later.
 503 | Service Unavailable -- We're temporarially offline for maintanance. Please try again later.
+
+## Error Handling
+
+All errors follow the [JSend](http://labs.omniti.com/labs/jsend) specification. Following are examples of error objects found in the body of error responses (_e.g. non-200 status code_).
+
+### When a client sends an unexpected request:
+
+> JSON Example __fail__ response:
+
+```json
+  {
+    "status": "fail",
+    "errors": [
+      "Document#29f3cb01-744d-4eae-8718-213aec8a1678 not found"
+    ]
+  }
+```
+
+Field   | Type    |  Description
+------- | ------- | ------------
+status  | String  | `fail`
+errors  | Array   | Array of error messages
+
+### For server errors:
+
+> JSON Example __error__ response:
+
+```json
+  {
+    "status": "error",
+    "message": "500: Internal Server Error" 
+  }
+```
+
+Field   | Type    |  Description
+------- | ------- | ------------
+status  | String  | `error`
+message | String  | A descriptive message

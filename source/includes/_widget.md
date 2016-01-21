@@ -1,12 +1,8 @@
-# Widget
+# Embedded Signing
 
-You can use the widget to allow your users to sign documents without the need to have an account in [mifiel.com](https://www.mifiel.com)
+## Widget
 
-To begin you have to copy and paste our snippet code (_in the right_) in the page that you want to display the widget in.
-
-You can also find the snippet code in [https://www.mifiel.com/sign-snippet-v1.0.0.min.js](https://www.mifiel.com/sign-snippet-v1.0.0.min.js)
-
-> Copy this code and paste it at the end of the `<body>`.
+> Copy this code and paste it just before the `</body>` tag.
 
 ```html
 <script type="text/javascript">
@@ -14,7 +10,7 @@ You can also find the snippet code in [https://www.mifiel.com/sign-snippet-v1.0.
 </script>
 ```
 
-> Then, append the widget to the page with:
+> Then insert the widget in the desired view (page) by including the following snippet:
 
 ```html
 <script type="text/javascript">
@@ -25,12 +21,52 @@ You can also find the snippet code in [https://www.mifiel.com/sign-snippet-v1.0.
 </script>
 ```
 
+The widget is an embedded signing tool that we have created to allow your users to sign documents in an iFrame within your page. By embedding this tool, your users can sign seamlessly without having to leave the flow of your website.
+
+_Note: The signers do not have to have an account in [mifiel.com](https://www.mifiel.com)_
+
+To begin, you have to copy and paste our code snippet (_shown to your right_) into the code of the page where the signing flow will take place.
+
+You can also find the code snippet [here](https://www.mifiel.com/sign-snippet-v1.0.0.min.js).
+
 ### Options
 
 Field     | Type    | Default |  Description
 --------- | ------- | ------- | ------------
 widgetId  | String  |         | Widget ID. You can get it with `document.widget_id` in Ruby
 appendTo  | String  | body    | ID of the element in the page
-width     | String  | 100%    | __Optional__ With of the widget
-height    | String  | 1100    | __Optional__ Height of the widget
+width     | String  | 100%    | __Optional__ Width of the widget __[px or %]__
+height    | String  | 1100    | __Optional__ Height of the widget __[px]__
 
+### Event: Document signed successfully
+
+> Listen for the Success event:
+
+```html
+<script type="text/javascript">
+window.addEventListener('message', function (e) {
+  console.log(e);
+  var data = e.data
+      document = data.document,
+      signature = data.signature;
+  // document.original_hash
+  // document.file_signed
+}, false);
+</script>
+```
+
+After the user succesfully signs the document we will send back a [postMessage](https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage).
+
+## Embedded Signing Flow
+
+Following is a more detailed explanation of the steps involved in requesting and executing signatures within the embedded signing widget.
+
+1. First, you must pass the __PDF file__ that is being signed (converted into a String), along with the following __parameters__: Webhook, email of each signer, and name of each signer (optional).
+
+2. Mifiel will return a __document ID__, which you will then need to pass to the widget (running on your website's front-end).
+
+3. The signature process then takes place within your website. The signer will be able to preview the document, select the files of their FIEL, and enter the password of their FIEL to sign (during this process Mifiel will be verifying that the FIEL is valid and not expired). 
+
+4. If successful, the signer will be presented with a page explaining that the signing was successful and that they will receive an email with the signed document. We will also display a confirmation button (e.g. 'Proceed to next step') which will return the user to the flow of your website.
+
+5. Mifiel will then post the following information to the webhook specified by you (in Step 1): electronic signature of the document, timestamp of signature, the signature page, and information regarding the public certificate(s) used to sign the document.
