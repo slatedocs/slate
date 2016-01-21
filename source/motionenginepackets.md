@@ -290,7 +290,7 @@ In the command mode, this packet enables/disables the streaming of the finger ge
 In the response mode, Neblina will first send an acknowledge packet to the host to confirm the successful receipt of the command. Next, only when a new finger gesture pattern has been detected, and if the streaming is enabled, a response packet will be prepared with the pattern information and will be sent to the host. The response packet includes the timestamp (Byte#4-7), as well as the pattern information (Byte#8), where 
 
 ```c
-Byte#8: Swipe Direction (left: 0, right: 1, up: 2, down: 3). 
+Byte#8: Swipe Direction (left: 0, right: 1, up: 2, down: 3, flip left: 4, flip right: 5). 
 ```
 
 The whole response packet is as follows:
