@@ -6,7 +6,7 @@
 
 `POST /waybills/issue`
 
-<h3 id="requerimiento-nota-credito">Requerimiento</h3>
+<h3 id="requerimiento-guia-remision">Requerimiento</h3>
 
 > #### Requerimiento de ejemplo
 
@@ -234,12 +234,12 @@ namespace DatilClient {
 }
 ```
 
-Para la emisión de una nota de crédito se debe enviar la información completa del
+Para la emisión de una guía de remisión se debe enviar la información completa del
 comprobante en el cuerpo del requerimiento en formato JSON.
 
 Parámetro | Tipo | Descripción
 --------- | ------- | -----------
-secuencial | string | Número de secuencia de la nota de crédito. __Requerido__
+secuencial | string | Número de secuencia de la guía de remisión. __Requerido__
 emisor | [emisor](#emisor) | Información completa del emisor. __Requerido__
 fecha_inicio_transporte | string | Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6).
 fecha_fin_transporte | string | Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6).
@@ -257,90 +257,74 @@ informacion_adicional | objeto | Información adicional adjunta al comprobante e
 
 ```json
 {
-  "id": "abcdef09876123cea56784f01",
+  "id": "abcfde09817263847cdaef8493018fef",
+  "clave_acceso":"2802201501091000000000120010010000100451993736618",
   "ambiente":1,
   "tipo_emision":1,
-  "secuencial":148,
-  "fecha_emision":"2015-02-28T11:28:56.782Z",
-  "clave_acceso": "2802201501091000000000120010010000100451993736618",
+  "secuencial":50,
+  "fecha_inicio_transporte":"2015-02-28T11:28:56.782Z",
+  "fecha_fin_transporte":"2015-02-28T11:28:56.782Z",
   "emisor":{
-    "ruc": "0910000000001",
-    "obligado_contabilidad": true,
-    "contribuyente_especial": "12345",
-    "nombre_comercial": "XYZ Corp",
-    "razon_social": "XYZ Corporación S.A.",
-    "direccion": "Av. Primera 234 y calle 5ta",
-    "establecimiento": {
-      "punto_emision": "002",
-      "codigo": "001",
-      "direccion": "Av. Primera 234 y calle 5ta"
+    "ruc":"0910000000001",
+    "obligado_contabilidad":true,
+    "contribuyente_especial":"12345",
+    "nombre_comercial":"XYZ Corp",
+    "razon_social":"XYZ Corporación S.A.",
+    "direccion":"Av. Primera 234 y calle 5ta",
+    "establecimiento":{
+      "punto_emision":"002",
+      "codigo":"001",
+      "direccion":"Av. Primera 234 y calle 5ta"
     }
   },
-  "moneda": "USD",
-  "informacion_adicional": {
-    "Tiempo de entrega": "5 días"
+  "informacion_adicional":{
+    "Tiempo de entrega":"5 días"
   },
-  "totales": {
-    "total_sin_impuestos": 4359.54,
-    "impuestos": [
-      {
-        "base_imponible": 0.0,
-        "valor": 0.0,
-        "codigo": "2",
-        "codigo_porcentaje": "0"
-      },
-      {
-        "base_imponible": 4359.54,
-        "valor": 523.14,
-        "codigo": "2",
-        "codigo_porcentaje": "2"
-      }
-    ],
-    "importe_total": 4882.68,
-    "propina": 0.0,
-    "descuento": 0.0
+  "transportista":{
+    "email":"juan.perez@xyz.com",
+    "identificacion":"0987654321",
+    "tipo_identificacion":"05",
+    "razon_social":"Juan Pérez",
+    "direccion":"Calle única Numero 987",
+    "telefono":"04 6029400",
+    "placa":"GSM-0123"
   },
-  "comprador": {
-    "email": "juan.perez@xyz.com",
-    "identificacion": "0987654321",
-    "tipo_identificacion": "05",
-    "razon_social": "Juan Pérez",
-    "direccion": "Calle única Numero 987",
-    "telefono": "046029400"
-  },
-  "items":[
-    {
-      "cantidad": 622.0,
-      "codigo_principal": "ZNC",
-      "codigo_auxiliar": "050",
-      "precio_unitario": 7.01,
-      "descripcion": "Zanahoria granel  50 Kg.",
-      "precio_total_sin_impuestos": 4360.22,
-      "impuestos":[
-        {
-          "base_imponible": 4359.54,
-          "valor": 523.14,
-          "tarifa": 12.0,
-          "codigo": "2",
-          "codigo_porcentaje": "2"
-        }
-      ],
+  "destinatarios": [{
+    "identificacion":"0987654321",
+    "tipo_identificacion":"05",
+    "razon_social":"Juan Pérez",
+    "direccion":"Calle única Numero 987",
+    "email":"juan.perez@xyz.com",
+    "telefono":"046029400",
+    "fecha_emision_documento_sustento": "2015-02-27T11:28:56.782Z",
+    "numero_documento_sustento": "001-001-000000008",
+    "numero_autorizacion_documento_sustento": "0123456789",
+    "motivo_traslado": "Venta",
+    "tipo_documento_sustento": "01",
+    "ruta": "GYE - UIO",
+    "documento_aduanero_unico": "",
+    "codigo_establecimiento_destino": "001",
+    "items": [{
+      "cantidad": 1.0,
+      "codigo_principal": "SPS",
+      "codigo_auxiliar": "001",
+      "descripcion": "Playstation 4",
       "detalles_adicionales": {
-        "Peso": "5000.0000"
-      },
-      "descuento": 0.0
-    }
-  ]
+        "numero": "DFGDG2342-2",
+        "serie": "1-2014-2"
+      }
+    }]
+  }]
 }
 ```
 
-Retorna un objeto tipo **[nota de crédito](#requerimiento-nota-credito)** que incluye un nuevo parámetro `id`,
-el cual identifica de manera única a la nota de crédito. El campo `clave_acceso` 
+Retorna un objeto tipo **[guía de remisión](#requerimiento-guia-remision)** que incluye un nuevo parámetro `id`,
+el cual identifica de manera única a la guía de remisión. El campo `clave_acceso` 
 generado también se incluirá como parte de la respuesta.
 
-## Consulta de una nota de crédito
+## Consulta de una guía de remisión
 
-Consulta una nota de crédito para obtener toda la información del comprobante, incluyendo
+Consulta una guía de remisión para obtener toda la información del comprobante, incluyendo
 el estado del mismo.
 El parámetro `estado` de la respuesta obtenida al invocar esta operación, indica 
 el estado actual del comprobante.
@@ -350,7 +334,7 @@ se debe examinar los parámetros `envio_sri` y `autorizacion_sri` de la respuest
 
 ### Operación
 
-`GET /waybills/<invoice-id>`
+`GET /waybills/<receipt-id>`
 
 ### Requerimiento
 
@@ -395,7 +379,7 @@ namespace DatilClient {
 }
 ```
 
-Reemplaza en la ruta `<invoice-ID>` por el `id` de la nota de crédito que necesitas consultar.
+Reemplaza en la ruta `<receipt-id>` por el `id` de la guía de remisión que necesitas consultar.
 
 ### Respuesta
 
@@ -502,7 +486,7 @@ Reemplaza en la ruta `<invoice-ID>` por el `id` de la nota de crédito que neces
 
 Parámetro | Tipo | Descripción
 --------- | ------- | -----------
-secuencial | string | Número de secuencia de la nota de crédito.
+secuencial | string | Número de secuencia de la guía de remisión.
 estado | string | Posibles valores: `AUTORIZADO`, `NO AUTORIZADO`, `ENVIADO`, `DEVUELTO`, `RECIBIDO`
 fecha_emision | string | Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf.
 clave_acceso | string | La clave de acceso representa un identificador único del comprobante. Si esta información no es provista, Dátil la generará.<br>¿Cómo [generar](#clave-de-acceso) la clave de acceso?
@@ -514,5 +498,5 @@ ambiente | integer | Pruebas: `1`.<br>Producción `2`.<br>
 totales | objeto tipo [totales](#totales) | Listado de totales. 
 comprador | objeto [comprador](#comprador) | Información del comprador. 
 tipo_emision | integer | Emisión normal: `1`.<br>Emisión por indisponibilidad: `2`<br>
-items | listado de objetos tipo [item](#item-de-factura) | Items incluídos en la nota de crédito.
+items | listado de objetos tipo [item](#item-de-factura) | Items incluídos en la guía de remisión.
 version | string | Versión de la especificación, opciones válidas: `1.0.0`, `1.1.0`
