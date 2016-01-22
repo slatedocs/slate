@@ -1,25 +1,26 @@
-# Notas de Crédito
+# Guías de Remisión
 
-## Emisión de una nota de crédito
+## Emisión de una guía de remisión
 
 ### Operación
 
-`POST /credit-notes/issue`
+`POST /waybills/issue`
 
 <h3 id="requerimiento-nota-credito">Requerimiento</h3>
 
 > #### Requerimiento de ejemplo
 
 ```shell
-curl -v https://link.datil.co/credit-notes/issue \
+curl -v https://link.datil.co/waybills/issue \
 -H "Content-Type: application/json" \
 -H "X-Key: <API-key>" \
 -H "X-Password: <clave-certificado-firma>" \
 -d '{
   "ambiente":1,
   "tipo_emision":1,
-  "secuencial":148,
-  "fecha_emision":"2015-02-28T11:28:56.782Z",
+  "secuencial":50,
+  "fecha_inicio_transporte":"2015-02-28T11:28:56.782Z",
+  "fecha_fin_transporte":"2015-02-28T11:28:56.782Z",
   "emisor":{
     "ruc":"0910000000001",
     "obligado_contabilidad":true,
@@ -33,75 +34,56 @@ curl -v https://link.datil.co/credit-notes/issue \
       "direccion":"Av. Primera 234 y calle 5ta"
     }
   },
-  "moneda":"USD",
   "informacion_adicional":{
     "Tiempo de entrega":"5 días"
   },
-  "totales":{
-    "total_sin_impuestos":4359.54,
-    "impuestos":[
-      {
-        "base_imponible":0.0,
-        "valor":0.0,
-        "codigo":"2",
-        "codigo_porcentaje":"0"
-      },
-      {
-        "base_imponible":4359.54,
-        "valor":523.14,
-        "codigo":"2",
-        "codigo_porcentaje":"2"
-      }
-    ],
-    "total":4882.68,
-    "descuento":0.0
-  },
-  "fecha_emision_documento_modificado": "2015-02-27T11:28:56.782Z",
-  "numero_documento_modificado": "001-002-000058473",
-  "tipo_documento_modificado": "01",
-  "motivo": "Devolución de produtos",
-  "comprador":{
+  "transportista":{
     "email":"juan.perez@xyz.com",
     "identificacion":"0987654321",
     "tipo_identificacion":"05",
     "razon_social":"Juan Pérez",
     "direccion":"Calle única Numero 987",
-    "telefono":"046029400"
+    "telefono":"04 6029400",
+    "placa":"GSM-0123"
   },
-  "items":[
-    {
-      "cantidad":622.0,
-      "codigo_principal": "ZNC",
-      "codigo_auxiliar": "050",
-      "precio_unitario": 7.01,
-      "descripcion": "Zanahoria granel  50 Kg.",
-      "precio_total_sin_impuestos": 4360.22,
-      "impuestos": [
-        {
-          "base_imponible":4359.54,
-          "valor":523.14,
-          "tarifa":12.0,
-          "codigo":"2",
-          "codigo_porcentaje":"2"
-        }
-      ],
+  "destinatarios": [{
+    "identificacion":"0987654321",
+    "tipo_identificacion":"05",
+    "razon_social":"Juan Pérez",
+    "direccion":"Calle única Numero 987",
+    "email":"juan.perez@xyz.com",
+    "telefono":"046029400",
+    "fecha_emision_documento_sustento": "2015-02-27T11:28:56.782Z",
+    "numero_documento_sustento": "001-001-000000008",
+    "numero_autorizacion_documento_sustento": "0123456789",
+    "motivo_traslado": "Venta",
+    "tipo_documento_sustento": "01",
+    "ruta": "GYE - UIO",
+    "documento_aduanero_unico": "",
+    "codigo_establecimiento_destino": "001",
+    "items": [{
+      "cantidad": 1.0,
+      "codigo_principal": "SPS",
+      "codigo_auxiliar": "001",
+      "descripcion": "Playstation 4",
       "detalles_adicionales": {
-        "Peso":"5000.0000"
-      },
-      "descuento": 0.0
-    }
-  ]
+        "numero": "DFGDG2342-2",
+        "serie": "1-2014-2"
+      }
+    }]
+  }]
 }'
 ```
 
 ```python
 import requests, json
 
-nota_credito = {
+guia_remision = {
   "ambiente":1,
   "tipo_emision":1,
-  "secuencial":148,
-  "fecha_emision":"2015-02-28T11:28:56.782Z",
+  "secuencial":50,
+  "fecha_inicio_transporte":"2015-02-28T11:28:56.782Z",
+  "fecha_fin_transporte":"2015-02-28T11:28:56.782Z",
   "emisor":{
     "ruc":"0910000000001",
     "obligado_contabilidad":true,
@@ -115,74 +97,53 @@ nota_credito = {
       "direccion":"Av. Primera 234 y calle 5ta"
     }
   },
-  "moneda":"USD",
   "informacion_adicional":{
     "Tiempo de entrega":"5 días"
   },
-  "totales":{
-    "total_sin_impuestos":4359.54,
-    "impuestos":[
-      {
-        "base_imponible":0.0,
-        "valor":0.0,
-        "codigo":"2",
-        "codigo_porcentaje":"0"
-      },
-      {
-        "base_imponible":4359.54,
-        "valor":523.14,
-        "codigo":"2",
-        "codigo_porcentaje":"2"
-      }
-    ],
-    "importe_total":4882.68,
-    "propina":0.0,
-    "descuento":0.0
-  },
-  "fecha_emision_documento_modificado": "2015-02-27T11:28:56.782Z",
-  "numero_documento_modificado": "001-002-000058473",
-  "tipo_documento_modificado": "01",
-  "motivo": "Devolución de produtos",
-  "comprador":{
+  "transportista":{
     "email":"juan.perez@xyz.com",
     "identificacion":"0987654321",
     "tipo_identificacion":"05",
     "razon_social":"Juan Pérez",
     "direccion":"Calle única Numero 987",
-    "telefono":"046029400"
+    "telefono":"04 6029400",
+    "placa":"GSM-0123"
   },
-  "items":[
-    {
-      "cantidad":622.0,
-      "codigo_principal":"ZNC",
-      "codigo_auxiliar": "050",
-      "precio_unitario": 7.01,
-      "descripcion": "Zanahoria granel  50 Kg.",
-      "precio_total_sin_impuestos": 4360.22,
-      "impuestos": [
-        {
-          "base_imponible":4359.54,
-          "valor":523.14,
-          "tarifa":12.0,
-          "codigo":"2",
-          "codigo_porcentaje":"2"
-        }
-      ],
+  "destinatarios": [{
+    "identificacion":"0987654321",
+    "tipo_identificacion":"05",
+    "razon_social":"Juan Pérez",
+    "direccion":"Calle única Numero 987",
+    "email":"juan.perez@xyz.com",
+    "telefono":"046029400",
+    "fecha_emision_documento_sustento": "2015-02-27T11:28:56.782Z",
+    "numero_documento_sustento": "001-001-000000008",
+    "numero_autorizacion_documento_sustento": "0123456789",
+    "motivo_traslado": "Venta",
+    "tipo_documento_sustento": "01",
+    "ruta": "GYE - UIO",
+    "documento_aduanero_unico": "",
+    "codigo_establecimiento_destino": "001",
+    "items": [{
+      "cantidad": 1.0,
+      "codigo_principal": "SPS",
+      "codigo_auxiliar": "001",
+      "descripcion": "Playstation 4",
       "detalles_adicionales": {
-        "Peso":"5000.0000"
-      },
-      "descuento": 0.0
-    }
-  ]
+        "numero": "DFGDG2342-2",
+        "serie": "1-2014-2"
+      }
+    }]
+  }]
 }
 cabeceras = {
     'x-key': '<clave-del-api>',
     'x-password': '<clave-certificado-firma>',
     'content-type': 'application/json'}
 respuesta = requests.post(
-    "https://link.datil.co/credit-notes/issue",
+    "https://link.datil.co/waybills/issue",
     headers = cabeceras,
-    data = json.dumps(nota_credito))
+    data = json.dumps(guia_remision))
 ```
 
 ```c#
@@ -201,15 +162,16 @@ namespace DatilClient {
       // copia y pega y presiona enter: Install-Package RestSharp
 
       var client = new RestClient("https://link.datil.co/");
-      var request = new RestRequest("credit-notes/issue", Method.POST);
+      var request = new RestRequest("waybills/issue", Method.POST);
       request.AddHeader("X-Key", "<clave-del-api>");
       request.AddHeader("X-Password", "<clave-certificado-firma>");
 
       request.AddBody(@"{
         ""ambiente"":1,
         ""tipo_emision"":1,
-        ""secuencial"":148,
-        ""fecha_emision"":""2015-02-28T11:28:56.782Z"",
+        ""secuencial"":50,
+        ""fecha_inicio_transporte"":""2015-02-28T11:28:56.782Z"",
+        ""fecha_fin_transporte"":""2015-02-28T11:28:56.782Z"",
         ""emisor"":{
           ""ruc"":""0910000000001"",
           ""obligado_contabilidad"":true,
@@ -223,61 +185,44 @@ namespace DatilClient {
             ""direccion"":""Av. Primera 234 y calle 5ta""
           }
         },
-        ""moneda"":""USD"",
         ""informacion_adicional"":{
           ""Tiempo de entrega"":""5 días""
         },
-        ""totales"":{
-          ""total_sin_impuestos"":4359.54,
-          ""impuestos"":[
-            {
-              ""base_imponible"":0.0,
-              ""valor"":0.0,
-              ""codigo"":""2"",
-              ""codigo_porcentaje"":""0""
-            },
-            {
-              ""base_imponible"":4359.54,
-              ""valor"":523.14,
-              ""codigo"":""2"",
-              ""codigo_porcentaje"":""2""
-            }
-          ],
-          ""total"":4882.68,
-          ""propina"":0.0,
-          ""descuento"":0.0
-        },
-        ""comprador"":{
+        ""transportista"":{
           ""email"":""juan.perez@xyz.com"",
           ""identificacion"":""0987654321"",
           ""tipo_identificacion"":""05"",
           ""razon_social"":""Juan Pérez"",
           ""direccion"":""Calle única Numero 987"",
-          ""telefono"":""046029400""
+          ""telefono"":""04 6029400"",
+          ""placa"":""GSM-0123""
         },
-        ""items"":[
-          {
-            ""cantidad"":622.0,
-            ""codigo_principal"":""ZNC""
-            ""codigo_auxiliar"": ""050"",
-            ""precio_unitario"": 7.01,
-            ""descripcion"": ""Zanahoria granel  50 Kg."",
-            ""precio_total_sin_impuestos"": 4360.22,
-            ""impuestos"": [
-              {
-                ""base_imponible"":4359.54,
-                ""valor"":523.14,
-                ""tarifa"":12.0,
-                ""codigo"":""2"",
-                ""codigo_porcentaje"":""2""
-              }
-            ],
+        ""destinatarios"": [{
+          ""identificacion"":""0987654321"",
+          ""tipo_identificacion"":""05"",
+          ""razon_social"":""Juan Pérez"",
+          ""direccion"":""Calle única Numero 987"",
+          ""email"":""juan.perez@xyz.com"",
+          ""telefono"":""046029400"",
+          ""fecha_emision_documento_sustento"": ""2015-02-27T11:28:56.782Z"",
+          ""numero_documento_sustento"": ""001-001-000000008"",
+          ""numero_autorizacion_documento_sustento"": ""0123456789"",
+          ""motivo_traslado"": ""Venta"",
+          ""tipo_documento_sustento"": ""01"",
+          ""ruta"": ""GYE - UIO"",
+          ""documento_aduanero_unico"": """",
+          ""codigo_establecimiento_destino"": ""001"",
+          ""items"": [{
+            ""cantidad"": 1.0,
+            ""codigo_principal"": ""SPS"",
+            ""codigo_auxiliar"": ""001"",
+            ""descripcion"": ""Playstation 4"",
             ""detalles_adicionales"": {
-              ""Peso"":""5000.0000""
-            },
-            ""descuento"": 0.0
-          }
-        ]
+              ""numero"": ""DFGDG2342-2"",
+              ""serie"": ""1-2014-2""
+            }
+          }]
+        }]
       }");
 
       IRestResponse response = client.Execute(request);
@@ -296,23 +241,15 @@ Parámetro | Tipo | Descripción
 --------- | ------- | -----------
 secuencial | string | Número de secuencia de la nota de crédito. __Requerido__
 emisor | [emisor](#emisor) | Información completa del emisor. __Requerido__
-moneda | string | Código [ISO](https://en.wikipedia.org/wiki/ISO_4217) de la moneda. __Requerido__
-fecha_emision | string | Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6).
+fecha_inicio_transporte | string | Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6).
+fecha_fin_transporte | string | Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6).
 ambiente | integer | Pruebas: `1`.<br>Producción `2`.<br>__Requerido__
-totales | objeto tipo [totales](#totales) | Listado de totales. __Requerido__
-fecha_emision_documento_modificado | string | Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6). __Requerido__
-numero_documento_modificado | string | Número completo del documento que se está afectando. Normalmente facturas. Ejm: 001-002-010023098 __Requerido__
-tipo_documento_modificado | string | Códigos de [tipos de documentos](#tipos-de-documentos). __Requerido__
-motivo | string | Motivo de la operación. Ejm: Devolución de producto. __Requerido__
 tipo_emision | integer | Emisión normal: `1`.<br>Emisión por indisponibilidad: `2`<br>__Requerido__
-items | listado de objetos tipo [item](#item-de-factura) | Items incluídos en la nota de crédito. __Requerido__
+destinatarios | listado de objetos tipo [destinatario](#destinatario) | Descripción de destinatarios y la mercadería transportada. __Requerido__
 version | string | Versión del formato de comprobantes electrónicos de SRI. Si no se especifica, se utilizará la última revisión del formato implementada,
 clave_acceso | string | La clave de acceso representa un identificador único del comprobante. Si esta información no es provista, Dátil la generará.<br>¿Cómo [generar](#clave-de-acceso) la clave de acceso?
-informacion_adicional | objeto | Información adicional adjunta al comprobante en forma de diccionario. Ejemplo:<br>` {"plan": "Inicial", "vigencia": "1 mes"}`
+informacion_adicional | objeto | Información adicional adjunta al comprobante en forma de diccionario. Ejemplo:<br>` {"email": "juan@empresa.com", "Carga asegurada por": "Securitas"}`
 
-<!--aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside-->
 
 ### Respuesta
 
@@ -413,14 +350,14 @@ se debe examinar los parámetros `envio_sri` y `autorizacion_sri` de la respuest
 
 ### Operación
 
-`GET /credit-notes/<invoice-id>`
+`GET /waybills/<invoice-id>`
 
 ### Requerimiento
 
 > #### Requerimiento de ejemplo
 
 ```shell
-curl -v https://link.datil.co/credit-notes/<id-notacredito> \
+curl -v https://link.datil.co/waybills/<id-notacredito> \
 -H "Content-Type: application/json" \
 -H "X-Key: <clave-del-api>" \
 -H "X-Password: <clave-certificado-firma>" \
@@ -430,7 +367,7 @@ curl -v https://link.datil.co/credit-notes/<id-notacredito> \
 import requests
 cabeceras = {'x-key': '<clave-del-api>'}
 respuesta = requests.get(
-    'https://link.datil.co/credit-notes/<id-notacredito>',
+    'https://link.datil.co/waybills/<id-notacredito>',
     headers = cabeceras)
 ```
 

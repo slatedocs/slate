@@ -566,7 +566,7 @@ emisor | objeto tipo [emisor](#emisor) | Información completa del emisor.
 moneda | string | Código [ISO](https://en.wikipedia.org/wiki/ISO_4217) de la moneda. 
 ambiente | integer | Pruebas: `1`.<br>Producción `2`.<br>
 totales | objeto tipo [totales](#totales) | Listado de totales. 
-comprador | objeto [comprador](#comprador) | Información del comprador. 
+comprador | objeto [persona](#persona) | Información del comprador.
 tipo_emision | integer | Emisión normal: `1`.<br>Emisión por indisponibilidad: `2`<br>
 items | listado de objetos tipo [item](#item-de-factura) | Items incluídos en la factura. 
 version | string | Versión de la especificación, opciones válidas: `1.0.0`, `1.1.0`

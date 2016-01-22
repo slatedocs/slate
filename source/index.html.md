@@ -13,6 +13,8 @@ toc_footers:
 includes:
   - invoices
   - credit-notes
+  - retentions
+  - waybills
   - common
   - errores
   - webhooks
