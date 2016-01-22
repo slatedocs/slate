@@ -297,6 +297,7 @@ Swipe Up    = 0x02
 Swipe Down  = 0x03
 Flip Left   = 0x04
 Flip Right  = 0x05
+Double Tap  = 0x06
 ```
 
 The whole response packet is as follows:
