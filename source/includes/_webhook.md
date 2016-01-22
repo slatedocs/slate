@@ -1,45 +1,31 @@
-# Webhooks
-
-## Lista de Todos os Webhooks
+# Webhook
 
 ```shell
+Webhook
 
-Listar Webhooks
-
-DEFINIÇÃO
-
-  GET https://app.cobrato.com/api/v1/webhooks
-
-EXEMPLO DE REQUISIÇÃO
-
-  $ curl -i -u $API_TOKEN:X
-    -H 'User-Agent: My App 1.0' \
-    -H 'Accept: application/json' \
-    -H 'Content-type: application/json' \
-    -X GET https://app.cobrato.com/api/v1/webhooks
-
-EXEMPLO DE ESTADO DA RESPOSTA
-
-    200 OK
-
-EXEMPLO DE CORPO DA RESPOSTA
+EXEMPLO
 
   {
-    "webhooks":
-      [
-        {
-          //informações webhook 1
-        },
-        {
-          //informações webhook 2
-        },
-        ...
-      ]
+    "id": 1,
+    "url": "http://www.seusitema.com/cobrato",
+    "description": "teste",
+    "_links": [
+      {"rel":"self","method":"GET","href":"https://app.cobrato.com/api/v1/webhooks/1"},
+      {"rel":"update","method":"PUT","href":"https://app.cobrato.com/api/v1/webhooks/1"},
+      {"rel":"destroy","method":"DELETE","href":"https://app.cobrato.com/api/v1/webhooks/1"}
+    ]
   }
+
 ```
-<aside class="notice">
-Retorna uma lista em JSON contendo todos os webhooks pertencentes a sua Conta de Serviço.
-</aside>
+
+É possível ter indeterminados webhooks, que enviarão requisições para uma determinada URL quando certas ações ocorrem no Cobrato ([Payloads](#payloads)).
+
+**Parâmetros**
+
+| Campo       | Tipo   | Comentário                                                                                          |
+|-------------|--------|-----------------------------------------------------------------------------------------------------|
+| url         | string | **(requerido)** URL na qual serão feitas as requisições GET e POST, esperando HTTP 200 como retorno |
+| description | string | (opcional) descrição opcional do Webhook                                                            |
 
 ## Informações do Webhook
 
@@ -52,7 +38,7 @@ DEFINIÇÃO
 
 EXEMPLO DE REQUISIÇÃO
 
-  $ curl -i -u $API_TOKEN:X
+  $ curl -i -u $API_TOKEN:X \
     -H 'User-Agent: My App 1.0' \
     -H 'Accept: application/json' \
     -H 'Content-type: application/json' \
@@ -69,16 +55,57 @@ EXEMPLO DE CORPO DA RESPOSTA
     "url": "http://www.seusitema.com/cobrato",
     "description": "teste",
     "_links": [
-      {"rel":"self","method":"GET","href":"http://localhost:3000/api/v1/webhooks/1"},
-      {"rel":"update","method":"PUT","href":"http://localhost:3000/api/v1/webhooks/1"},
-      {"rel":"destroy","method":"DELETE","href":"http://localhost:3000/api/v1/webhooks/1"}
+      {"rel":"self","method":"GET","href":"https://app.cobrato.com/api/v1/webhooks/1"},
+      {"rel":"update","method":"PUT","href":"https://app.cobrato.com/api/v1/webhooks/1"},
+      {"rel":"destroy","method":"DELETE","href":"https://app.cobrato.com/api/v1/webhooks/1"}
     ]
   }
 
 ```
 
-
 Retorna as informações detalhadas do webhook em formato JSON.
+
+## Lista de Todos os Webhooks
+
+```shell
+
+Listar Webhooks
+
+DEFINIÇÃO
+
+  GET https://app.cobrato.com/api/v1/webhooks
+
+EXEMPLO DE REQUISIÇÃO
+
+  $ curl -i -u $API_TOKEN:X \
+    -H 'User-Agent: My App 1.0' \
+    -H 'Accept: application/json' \
+    -H 'Content-type: application/json' \
+    -X GET https://app.cobrato.com/api/v1/webhooks
+
+EXEMPLO DE ESTADO DA RESPOSTA
+
+    200 OK
+
+EXEMPLO DE CORPO DA RESPOSTA
+
+  {
+    "webhooks":
+      [
+        {
+          // informações webhook 1
+        },
+        {
+          // informações webhook 2
+        },
+        ...
+      ]
+  }
+```
+
+Retorna uma lista em JSON contendo todos os webhooks pertencentes a sua Conta de Serviço.
+
+## Criação de Webhook
 
 ```shell
 Criar Webhook
@@ -89,12 +116,12 @@ DEFINIÇÃO
 
 EXEMPLO DE REQUISIÇÃO
 
-  $ curl -i -u $API_TOKEN:X
+  $ curl -i -u $API_TOKEN:X \
     -H 'User-Agent: My App 1.0' \
     -H 'Accept: application/json' \
     -H 'Content-type: application/json' \
-    -X POST https://app.cobrato.com/api/v1/webhooks
-    -D '{
+    -X POST https://app.cobrato.com/api/v1/webhooks \
+    -d '{
         "url": "http://www.seusitema.com/cobrato",
         "description": "Webhook teste"
       }'
@@ -113,24 +140,21 @@ EXEMPLO DE CORPO DA RESPOSTA COM INSUCESSO
     "errors": {
       "url": [
         "não é válida",
-        "não pode ficar em branco",
-        "não é válido"
+        "não pode ficar em branco"
       ]
     }
   }
 
 ```
 
-##Criação de Webhook
-
 Cria um novo webhook, retornando as informações do mesmo caso haja sucesso. Para realizar o cadastro é necessária que a URL informa aceite as requisições POST e GET, respondendo sempre com HTTP 200. Afim de verificação da URL, o Cobrato fará requisições testes a mesma
 
-Parâmetros
+**Parâmetros**
 
-Campo                    | Tipo            | Comentário                                             |
-|-------------------------|-----------------|--------------------------------------------------------|
-| url | string | requirido URL na qual serão feitas as requisições GET e POST, esperando HTTP 200 como retorno |
-| description | string | Descrição opcional do Webhook |
+| Campo       | Tipo   | Comentário                                                                                          |
+|-------------|--------|-----------------------------------------------------------------------------------------------------|
+| url         | string | **(requerido)** URL na qual serão feitas as requisições GET e POST, esperando HTTP 200 como retorno |
+| description | string | (opcional) descrição opcional do Webhook                                                            |
 
 
 ## Atualização de Webhook
@@ -145,21 +169,20 @@ DEFINIÇÃO
 
 EXEMPLO DE REQUISIÇÃO
 
-  $ curl -i -u $API_TOKEN:X
+  $ curl -i -u $API_TOKEN:X \
     -H 'User-Agent: My App 1.0' \
     -H 'Accept: application/json' \
     -H 'Content-type: application/json' \
-    -X PATCH https://app.cobrato.com/api/v1/webhooks/:webhook_id
-    -D '{
-        "city": "Farroupilha",
-        "state": "RS"
+    -X PATCH https://app.cobrato.com/api/v1/webhooks/:webhook_id \
+    -d '{
+        "descripction": "Webhook teste"
       }'
 
 EXEMPLO DE ESTADO DA RESPOSTA COM SUCESSO
 
     200 OK
 
-EXEMPLO DE ESTADO DA RESPOSTA COM CEDENTE INEXISTENTE
+EXEMPLO DE ESTADO DA RESPOSTA COM BENEFICIÁRIO INEXISTENTE
 
     404 Not Found
 
@@ -171,11 +194,11 @@ EXEMPLO DE ESTADO DA RESPOSTA COM INSUCESSO
 
 Atualiza a descrição do webhook. Não é possível alterar a URL de um Webhook. A requisição não diferencia a utilização dos verbos PUT e PATCH.
 
-Parâmetros
+**Parâmetros**
 
-Campo                    | Tipo            | Comentário                                             |
-|-------------------------|-----------------|--------------------------------------------------------|
-description |  string | Descrição opcional do Webhook |
+| Campo       | Tipo   | Comentário                               |
+|-------------|--------|------------------------------------------|
+| description | string | (opcional) descrição opcional do Webhook |
 
 ## Exclusão de Webhook
 
@@ -188,7 +211,7 @@ DEFINIÇÃO
 
 EXEMPLO DE REQUISIÇÃO
 
-  $ curl -i -u $API_TOKEN:X
+  $ curl -i -u $API_TOKEN:X \
     -H 'User-Agent: My App 1.0' \
     -H 'Accept: application/json' \
     -H 'Content-type: application/json' \
@@ -203,25 +226,5 @@ EXEMPLO DE ESTADO DA RESPOSTA COM WEBHOOK INEXISTENTE
     404 Not Found
 
 ```
+
 Exclui determinado webhook. A exclusão é irreversível.
-
-
-## Payloads
-
-Exemplos de requisições enviadas pelo webhook do Cobrato.
-
-As ações notificadas são:
-
-| Objeto         | Evento             | Descrição                                      |
-|----------------|--------------------|------------------------------------------------|
-| charge         | created            | quando a cobrança é criada                     |
-| charge         | received           | quando a cobrança é recebida                   |
-| charge         | undone_receivement | quando a cobrança tem seu recebimento desfeito |
-| charge         | updated            | quando a cobrança é atualizada                 |
-| charge         | destroyed          | quando a cobrança é excluída                   |
-| charge         | received           | quando a cobrança é recebida                   |
-| charge_account | created            | quando a conta de cobrança é criada            |
-| charge_account | updated            | quando a conta de cobrança é atualizada        |
-| charge_account | destroyed          | quando a conta de cobrança é excluída          |
-
-

@@ -1,6 +1,7 @@
-# Cedente
+# Beneficiário
+
 ```shell
-Cedente
+Beneficiário
 
 EXEMPLO
 
@@ -25,74 +26,37 @@ EXEMPLO
   }
 ```
 
-<aside class="notice">
-É possível ter indeterminados cedentes, e a eles que pertencem as contas bancárias, contas de cobrança, e as próprias cobranças do sistema. Podem ser tanto pessoas físicas como pessoas jurídicas.
-</aside>
-Parâmetros
+É possível ter indeterminados beneficiários, e a eles que pertencem as contas bancárias, contas de cobrança, e as próprias cobranças do sistema. Podem ser tanto pessoas físicas como pessoas jurídicas.
 
+**Parâmetros**
 
-|Campo                    | Tipo            | Comentário                                             |
-|-------------------------|-----------------|--------------------------------------------------------|
-|id                       | integer         |                                                        |
-|national_identifier_type | string          | tipo de identificação nacional, cpf ou cnpj            |
-|national_identifier      | string          | código do cnpj ou cpf, de acordo com o campo anterior  |
-|name                     | string          |                                                        |
-|city                     | string          | nome da cidade na qual o cedente reside                |
-|state                    | string          | uf do estado aonde o cedente reside                    |
-|neighbourhood            | string          |                                                        |
-|street                   | string          |                                                        |
-|number                   | string          |                                                        |
-|zipcode                  | string          |                                                        |
-|complement               | string          |                                                        |
-|_links                   | array of object | links do cedente                                       |
+| Campo                    | Tipo            | Comentário                                                           |
+|--------------------------|-----------------|----------------------------------------------------------------------|
+| id                       | integer         |                                                                      |
+| national_identifier_type | string          | tipo de identificação nacional ('cpf' ou 'cnpj')                     |
+| national_identifier      | string          | número válido de cnpj ou cpf, de acordo com o campo anterior         |
+| name                     | string          | nome completo do beneficiário                                        |
+| city                     | string          | nome da cidade do domicílio do beneficiário                          |
+| state                    | string          | uf do estado do domicílio do beneficiário (duas letras, p. ex. 'RJ') |
+| neighbourhood            | string          | bairro do domicílio do beneficiário                                  |
+| street                   | string          | rua do domicílio do beneficiário                                     |
+| number                   | string          | número da rua do domicílio do beneficiário                           |
+| zipcode                  | string          | cep do domicílio do beneficiário                                     |
+| complement               | string          | complemento para o endereço de domicilio do beneficiário             |
+| _links                   | array of object | links do beneficiário                                                |
 
-## Lista de Todos os Cedentes
-
-Retorna uma lista em JSON contendo todos os cedentes pertencentes a sua Conta de Serviço.
+## Informações do Beneficiário
 
 ```shell
-DEFINIÇÃO
+Mostrar Beneficiário
 
-  GET https://app.cobrato.com/api/v1/payees
-
-EXEMPLO DE REQUISIÇÃO
-
-  $ curl -i -u $API_TOKEN:X
-    -H 'User-Agent: My App 1.0' \
-    -H 'Accept: application/json' \
-    -H 'Content-type: application/json' \
-    -X GET https://app.cobrato.com/api/v1/payees
-
-EXEMPLO DE ESTADO DA RESPOSTA
-
-    200 OK
-
-EXEMPLO DE CORPO DA RESPOSTA
-
-  {
-    "payees":
-      [
-        {
-          //informações cedente 1
-        },
-        {
-          //informações cedente 2
-        },
-        ...
-      ]
-  }
-```
-
-
-## Informações do Cedente
-```shell
 DEFINIÇÃO
 
   GET https://app.cobrato.com/api/v1/payees/:payee_id
 
 EXEMPLO DE REQUISIÇÃO
 
-  $ curl -i -u $API_TOKEN:X
+  $ curl -i -u $API_TOKEN:X \
     -H 'User-Agent: My App 1.0' \
     -H 'Accept: application/json' \
     -H 'Content-type: application/json' \
@@ -124,22 +88,65 @@ EXEMPLO DE CORPO DA RESPOSTA
       ]
   }
 ```
-Retorna as informações detalhadas do cedente informado em JSON.
 
-## Criação de Cedente
+Retorna as informações detalhadas do beneficiário informado em JSON.
+
+## Lista de Todos os Beneficiários
+
 ```shell
+Listar Beneficiários
+
+DEFINIÇÃO
+
+  GET https://app.cobrato.com/api/v1/payees
+
+EXEMPLO DE REQUISIÇÃO
+
+  $ curl -i -u $API_TOKEN:X \
+    -H 'User-Agent: My App 1.0' \
+    -H 'Accept: application/json' \
+    -H 'Content-type: application/json' \
+    -X GET https://app.cobrato.com/api/v1/payees
+
+EXEMPLO DE ESTADO DA RESPOSTA
+
+    200 OK
+
+EXEMPLO DE CORPO DA RESPOSTA
+
+  {
+    "payees":
+      [
+        {
+          // informações beneficiário 1
+        },
+        {
+          // informações beneficiário 2
+        },
+        ...
+      ]
+  }
+```
+
+Retorna uma lista em JSON contendo todos os beneficiários pertencentes a sua Conta de Serviço.
+
+## Criação de Beneficiário
+
+```shell
+Criar Beneficiário
+
 DEFINIÇÃO
 
   POST https://app.cobrato.com/api/v1/payees
 
 EXEMPLO DE REQUISIÇÃO
 
-  $ curl -i -u $API_TOKEN:X
+  $ curl -i -u $API_TOKEN:X \
     -H 'User-Agent: My App 1.0' \
     -H 'Accept: application/json' \
     -H 'Content-type: application/json' \
-    -X POST https://app.cobrato.com/api/v1/payees
-    -D '{
+    -X POST https://app.cobrato.com/api/v1/payees \
+    -d '{
         "name": "João Silva",
         "city": "Caxias do Sul",
         "national_identifier_type": "cpf",
@@ -176,26 +183,28 @@ EXEMPLO DE CORPO DA RESPOSTA COM INSUCESSO
 
 ```
 
-Cria um novo cedente, retornando as informações do mesmo caso haja sucesso. Se houverem erros eles serão informados no corpo da resposta.
+Cria um novo beneficiário, retornando as informações do mesmo caso haja sucesso. Se houverem erros eles serão informados no corpo da resposta.
 
-Parâmetros
+**Parâmetros**
 
-|Campo                    | Tipo            | Comentário                                                               |
-|-------------------------|-----------------|--------------------------------------------------------------------------|
-|national_identifier_type | string          | requirido tipo de identificação nacional, deve ser cpf ou cnpj           |
-|national_identifier      | string          | requirido  código válido de cnpj ou cpf, de acordo com o campo anterior  |
-|name                     | string          | requirido  nome completo do cedente                                      |
-|city                     | string          | requirido  nome da cidade na qual o cedente reside                       |
-|state                    | string          | requirido uf do estado aonde o cedente reside                            |
-|neighbourhood            | string          | requirido                                                                |
-|street                   | string          | requirido                                                                |
-|number                   | string          | requirido                                                                |
-|zipcode                  | string          | requirido                                                                |
-|complement               | string          |                                                                          |
+| Campo                    | Tipo   | Comentário                                                                           |
+|--------------------------|--------|--------------------------------------------------------------------------------------|
+| national_identifier_type | string | **(requerido)** tipo de identificação nacional ('cpf' ou 'cnpj')                     |
+| national_identifier      | string | **(requerido)** número válido de cnpj ou cpf, de acordo com o campo anterior         |
+| name                     | string | **(requerido)** nome completo do beneficiário                                        |
+| city                     | string | **(requerido)** nome da cidade do domicílio do beneficiário                          |
+| state                    | string | **(requerido)** uf do estado do domicílio do beneficiário (duas letras, p. ex. 'RJ') |
+| neighbourhood            | string | **(requerido)** bairro do domicílio do beneficiário                                  |
+| street                   | string | **(requerido)** rua do domicílio do beneficiário                                     |
+| number                   | string | **(requerido)** número da rua do domicílio do beneficiário                           |
+| zipcode                  | string | **(requerido)** cep do domicílio do beneficiário                                     |
+| complement               | string | (opcional)  complemento para o endereço de domicilio do beneficiário                 |
 
+## Atualização de Beneficiário
 
-## Atualização de Cedente
 ```shell
+Atualizar Beneficiário
+
 DEFINIÇÃO
 
   PUT https://app.cobrato.com/api/v1/payees/:payee_id
@@ -203,12 +212,12 @@ DEFINIÇÃO
 
 EXEMPLO DE REQUISIÇÃO
 
-  $ curl -i -u $API_TOKEN:X
+  $ curl -i -u $API_TOKEN:X \
     -H 'User-Agent: My App 1.0' \
     -H 'Accept: application/json' \
     -H 'Content-type: application/json' \
-    -X PATCH https://app.cobrato.com/api/v1/payees/:payee_id
-    -D '{
+    -X PATCH https://app.cobrato.com/api/v1/payees/:payee_id \
+    -d '{
         "city": "Farroupilha",
         "state": "RS"
       }'
@@ -217,7 +226,7 @@ EXEMPLO DE ESTADO DA RESPOSTA COM SUCESSO
 
     200 OK
 
-EXEMPLO DE ESTADO DA RESPOSTA COM CEDENTE INEXISTENTE
+EXEMPLO DE ESTADO DA RESPOSTA COM BENEFICIÁRIO INEXISTENTE
 
     404 Not Found
 
@@ -235,32 +244,35 @@ EXEMPLO DE CORPO DA RESPOSTA COM INSUCESSO
 
 ```
 
-Atualiza o cedente determinado, retornando as informações do mesmo caso haja sucesso. Se houverem erros eles serão informados no corpo da resposta. A requisição não diferencia a utilização dos verbos PUT e PATCH.
+Atualiza o beneficiário determinado, retornando as informações do mesmo caso haja sucesso. Se houverem erros eles serão informados no corpo da resposta. A requisição não diferencia a utilização dos verbos PUT e PATCH.
 
-Parâmetros
+**Parâmetros**
 
-|Campo                     | Tipo   | Comentário                                                   |
-|--------------------------|--------|--------------------------------------------------------------|
-| national_identifier_type | string | tipo de identificação nacional, deve ser cpf ou cnpj         |
-| national_identifier      | string | código válido de cnpj ou cpf, de acordo com o campo anterior |
-| name                     | string | nome completo do cedente                                     |
-| city                     | string | nome da cidade na qual o cedente reside                      |
-| state                    | string | uf do estado aonde o cedente reside                          |
-| neighbourhood            | string |                                                              |
-| street                   | string |                                                              |
-| number                   | string |                                                              |
-| zipcode                  | string |                                                              |
-| complement               | string |                                                              |
+| Campo                    | Tipo   | Comentário                                                                           |
+|--------------------------|--------|--------------------------------------------------------------------------------------|
+| national_identifier_type | string | **(requerido)** tipo de identificação nacional ('cpf' ou 'cnpj')                     |
+| national_identifier      | string | **(requerido)** número válido de cnpj ou cpf, de acordo com o campo anterior         |
+| name                     | string | **(requerido)** nome completo do beneficiário                                        |
+| city                     | string | **(requerido)** nome da cidade do domicílio do beneficiário                          |
+| state                    | string | **(requerido)** uf do estado do domicílio do beneficiário (duas letras, p. ex. 'RJ') |
+| neighbourhood            | string | **(requerido)** bairro do domicílio do beneficiário                                  |
+| street                   | string | **(requerido)** rua do domicílio do beneficiário                                     |
+| number                   | string | **(requerido)** número da rua do domicílio do beneficiário                           |
+| zipcode                  | string | **(requerido)** cep do domicílio do beneficiário                                     |
+| complement               | string | (opcional)  complemento para o endereço de domicilio do beneficiário                 |
 
-## Exclusão de Cedente
+## Exclusão de Beneficiário
+
 ```shell
+Excluir Beneficiário
+
 DEFINIÇÃO
 
   DELETE https://app.cobrato.com/api/v1/payees/:payee_id
 
 EXEMPLO DE REQUISIÇÃO
 
-  $ curl -i -u $API_TOKEN:X
+  $ curl -i -u $API_TOKEN:X \
     -H 'User-Agent: My App 1.0' \
     -H 'Accept: application/json' \
     -H 'Content-type: application/json' \
@@ -270,9 +282,10 @@ EXEMPLO DE ESTADO DA RESPOSTA COM SUCESSO
 
     204 No Content
 
-EXEMPLO DE ESTADO DA RESPOSTA COM CEDENTE INEXISTENTE
+EXEMPLO DE ESTADO DA RESPOSTA COM BENEFICIÁRIO INEXISTENTE
 
     404 Not Found
 ```
-Exclui determinado cedente e junto a ele todas suas contas de cobrança, contas bancárias e as cobranças. As mudanças são irreversíveis.
+
+Exclui determinado beneficiário e junto a ele todas suas contas de cobrança, contas bancárias e as cobranças. As mudanças são irreversíveis.
 
