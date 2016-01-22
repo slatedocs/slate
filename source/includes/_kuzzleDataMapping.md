@@ -67,9 +67,9 @@ dataMapping.applyPromise(function (error, result) {
 ```
 
 ```java
-dataMapping.apply(new ResponseListener() {
+dataMapping.apply(new ResponseListener<KuzzleDataMapping>() {
    @Override
-   public void onSuccess(JSONObject object) {
+   public void onSuccess(KuzzleDataMapping object) {
      // called once the mapping action has been completed
    }
 
@@ -118,9 +118,9 @@ dataMapping.refreshPromise().then(result => {
 ```
 
 ```java
-dataMapping.refresh(new ResponseListener() {
+dataMapping.refresh(new ResponseListener<KuzzleDataMapping>() {
    @Override
-   public void onSuccess(JSONObject object) {
+   public void onSuccess(KuzzleDataMapping object) {
      // called once the mapping has been retrieved from Kuzzle
    }
 

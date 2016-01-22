@@ -29,9 +29,9 @@ options.setDefaultIndex("some index");
 options.setAutoReconnect(true);
 options.setHeaders(headers);
 
-Kuzzle kuzzle = new Kuzzle("http://localhost:7512", options, new ResponseListener() {
+Kuzzle kuzzle = new Kuzzle("http://localhost:7512", options, new KuzzleResponseListener<Void>() {
  @Override
- public void onSuccess(JSONObject object) {
+ public void onSuccess(Void object) {
    // invoked once connected, object contains the kuzzle instance
  }
 
@@ -168,16 +168,11 @@ Here is the list of these special events:
 ```
 
 ```java
-  String listenerId = kuzzle.addListener(EventType.CONNECTED, new ResponseListener() {
-  @Override
-  public void onSuccess(JSONObject object) {
-    // Actions to perform when receiving a 'subscribed' global event
-  }
-
-  @Override
-  public void onError(JSONObject error) {
-    // Handle error
-  }
+  String listenerId = kuzzle.addListener(EventType.CONNECTED, new IKuzzleEventListener() {
+    @Override
+    public void trigger(Object... args) {
+      // Actions to perform when receiving a 'subscribed' global event
+    }
 });
 ```
 
@@ -308,9 +303,9 @@ kuzzle
 ```
 
 ```java
-kuzzle.getAllStatistics(new ResponseListener() {
+kuzzle.getAllStatistics(new KuzzleResponseListener<JSONArray>() {
   @Override
-  public void onSuccess(JSONObject object) {
+  public void onSuccess(JSONArray object) {
     // loop through all returned frames
   }
 
@@ -379,6 +374,20 @@ kuzzle.getServerInfoPromise()
   .then(infos => {
   // ...  
   });
+```
+
+```java
+kuzzle.getServerInfo(new KuzzleResponseListener<JSONObject>() {
+  @Override
+  public void onSuccess(JSONObject result) {
+    // Handle success
+  }
+
+  @Override
+  public void onError(JSONObject error) {
+    // Handle error
+  }
+});
 ```
 
 > Callback response example:
@@ -675,7 +684,7 @@ kuzzle
 ```
 
 ```java
-kuzzle.getStatistics(new ResponseListener() {
+kuzzle.getStatistics(new KuzzleResponseListener<JSONObject>() {
   @Override
   public void onSuccess(JSONObject object) {
     // ...
@@ -719,9 +728,9 @@ kuzzle
 
 ```java
 // Date can be either in ISO format or a timestamp (utc, in milliseconds)
-kuzzle.getStatistics("2015-11-15T13:36:45.558Z", new ResponseListener() {
+kuzzle.getStatistics("2015-11-15T13:36:45.558Z", new KuzzleResponseListener<JSONArray>() {
   @Override
-  public void onSuccess(JSONObject object) {
+  public void onSuccess(JSONArray results) {
     // ...
   }
 
@@ -798,9 +807,9 @@ kuzzle
 ```
 
 ```java
-kuzzle.listCollections("index", new ResponseListener() {
+kuzzle.listCollections("index", new KuzzleResponseListener<JSONArray>() {
   @Override
-  public void onSuccess(JSONObject object) {
+  public void onSuccess(JSONArray object) {
     // ...
   }
 
@@ -864,6 +873,20 @@ kuzzle
   });
 ```
 
+```java
+kuzzle.listIndexes(new KuzzleResponseListener<String[]>() {
+  @Override
+  public void onSuccess(String[] result) {
+    // ...
+  }
+
+  @Override
+  public void onError(JSONObject error) {
+    // Handle error
+  }
+}
+```
+
 > Callback response:
 
 ```json
@@ -910,6 +933,20 @@ kuzzle.loginPromise("local", {username: "username", password: "password"}, "1h")
   });
 ```
 
+```java
+kuzzle.login("local", "username", "password", 30000, new KuzzleResponseListener<Void>() {
+  @Override
+  public void onSuccess(Void result) {
+    // ...
+  }
+
+  @Override
+  public void onError() {
+    // Handle error
+  }
+});
+```
+
 
 Log a user according to the strategy and credentials.
 
@@ -948,6 +985,20 @@ kuzzle.logoutPromise()
   });
 ```
 
+```java
+kuzzle.logout(new KuzzleResponseListener<Void>() {
+  @Override
+  public void onSuccess(Void result) {
+    // ...
+  }
+
+  @Override
+  public void onError() {
+    // Handle error
+  }
+});
+```
+
 Logout the user.
 
 #### logout([callback])
@@ -979,9 +1030,9 @@ kuzzle.nowPromise().then(res => {
 ```
 
 ```java
-kuzzle.now(new ResponseListener() {
+kuzzle.now(new KuzzleResponseListener<Date>() {
   @Override
-  public void onSuccess(JSONObject object) {
+  public void onSuccess(Date object) {
     // 'object' contains the Kuzzle timestamp (utc, in milliseconds)
   }
 
@@ -1043,7 +1094,7 @@ kuzzle
 QueryArgs args = new QueryArgs();
 args.controller = "read";
 args.action = "search";
-kuzzle.query(args, new JSONObject(), new ResponseListener() {
+kuzzle.query(args, new JSONObject(), new KuzzleResponseListener() {
   @Override
   public void onSuccess(JSONObject object) {
 
