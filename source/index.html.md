@@ -15,6 +15,7 @@ includes:
   - credit-notes
   - retentions
   - waybills
+  - debit-notes
   - common
   - errores
   - webhooks
