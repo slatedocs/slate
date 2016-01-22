@@ -1027,20 +1027,23 @@ Returns a `integer` containing the current Kuzzle time, encoded as an UTC Epoch 
 
 ```js
 // Using callbacks (NodeJS or Web Browser)
-kuzzle.query('foo', 'read', 'search', {}, function (err, res) {
+kuzzle.query({controller: 'read', action: 'search'}, {match: { message: 'this is a test' }}, function (err, res) {
   // ...
 });
 
 // Using promises (NodeJS only)
 kuzzle
-  .queryPromise('foo', 'read', 'search', {})
+  .queryPromise({controller: 'read', action: 'search'}, {match: { message: 'this is a test' }})
   .then(result => {
 
   });
 ```
 
 ```java
-kuzzle.query("foo", "read", "search", new JSONObject(), new ResponseListener() {
+QueryArgs args = new QueryArgs();
+args.controller = "read";
+args.action = "search";
+kuzzle.query(args, new JSONObject(), new ResponseListener() {
   @Override
   public void onSuccess(JSONObject object) {
 
