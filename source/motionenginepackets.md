@@ -281,7 +281,7 @@ This commands resets the timestamp value to zero. The command is useful for the 
 |       0x41       |      0x10     | CRC  |0x10 (ResetTimeStamp)| Reserved |
 
 #### FingerGesture Command (0x11)
-In the command mode, this packet enables/disables the streaming of the finger gesture patterns, when Neblina is attached to a finger. Currently, the patterns that are being detected are the Swipe Left, Swipe Right, Swipe Up, Swipe Down, Flip Right (clock-wise), and Flip Left (counter clock-wise). Byte#8 will be a Boolean value representing the enable/disable command. The whole command packet has the following structure: 
+In the command mode, this packet enables/disables the streaming of the finger gesture patterns, when Neblina is attached to a finger. Currently, the patterns that are being detected are the Swipe Left, Swipe Right, Swipe Up, Swipe Down, Flip Right (clock-wise), Flip Left (counter clock-wise), and Double Tap. Byte#8 will be a Boolean value representing the enable/disable command. The whole command packet has the following structure: 
 
 | Byte 0 (subsystem) | Byte 1 (length) | Byte 2 (CRC) |  Byte 3 (command)  |Byte 4-7|    Byte 8    |Bytes 9-19|
 |:------------------:|:---------------:|:------------:|:------------------:|:------:|:------------:|---------:|
