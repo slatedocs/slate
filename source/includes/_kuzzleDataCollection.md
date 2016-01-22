@@ -109,10 +109,13 @@ terms2.put("terms", type);
 and.put(terms).put(terms2);
 filter.put("and", and);
 userFilter.put("filter", filter);
-dataCollection.advancedSearch(userFilter, new ResponseListener() {
+dataCollection.advancedSearch(userFilter, new ResponseListener<KuzzleDocumentList>() {
   @Override
-  public void onSuccess(JSONObject object) {
-    // Handle success
+  public void onSuccess(KuzzleDocumentList result) {
+    for (KuzzleDocument doc : result.getDocuments()) {
+      // Get documents
+    }
+    doc.getTotal(); // return total of documents returned
   }
 
   @Override
@@ -185,9 +188,9 @@ kuzzle
 
 ```java
 JSONObject filters = new JSONObject();
-dataCollection.count(filters, new ResponseListener() {
+dataCollection.count(filters, new ResponseListener<Integer>() {
   @Override
-  public void onSuccess(JSONObject object) {
+  public void onSuccess(Integer object) {
     // Handle success
   }
 
@@ -253,7 +256,7 @@ kuzzle
 ```
 
 ```java
-dataCollection.create(new ResponseListener() {
+dataCollection.create(new ResponseListener<JSONObject>() {
   @Override
   public void onSuccess(JSONObject object) {
     // callback called once the create operation has completed
@@ -333,9 +336,9 @@ kuzzle
 KuzzleDocument myDocument = new KuzzleDocument(collection);
 myDocument.setContent("title", "foo");
 myDocument.setContent("content", "bar");
-dataCollection.createDocument(myDocument, new ResponseListener() {
+dataCollection.createDocument(myDocument, new ResponseListener<KuzzleDocument>() {
   @Override
-  public void onSuccess(JSONObject object) {
+  public void onSuccess(KuzzleDocument object) {
     // callback called once the create action has been completed
     // => the result is a KuzzleDocument object
   }
@@ -386,6 +389,12 @@ var dataMapping = kuzzle
   .apply();
 ```
 
+```java
+KuzzleDataMapping dataMapping = kuzzle.dataCollectionFactory("index", "collection")
+  .dataMappingFactory(new JSONObject().put("someFiled", new JSONObject().put("type", "string").put("index", "analyzed"))
+  .apply();
+```
+
 Creates a new `KuzzleDataMapping` object, using its constructor.  
 
 #### dataMappingFactory([mapping])
@@ -420,9 +429,9 @@ kuzzle
 ```
 
 ```java
-dataCollection.delete(new ResponseListener() {
+dataCollection.delete(new ResponseListener<String>() {
   @Override
-  public void onSuccess(JSONObject object) {
+  public void onSuccess(String object) {
     // callback called once the delete operation has completed
     // => the result is a JSON object containing the raw Kuzzle response
   }
@@ -511,9 +520,9 @@ kuzzle
 
 ```java
 // Deleting one document
-dataCollection.deleteDocument("document unique ID", new ResponseListener() {
+dataCollection.deleteDocument("document unique ID", new ResponseListener<String>() {
   @Override
-  public void onSuccess(JSONObject object) {
+  public void onSuccess(String object) {
     // callback called once the delete action has been completed
   }
 
@@ -528,9 +537,9 @@ JSONObject termFilter = new JSONObject();
 JSONObject title = new JSONObject();
 title.put("title", "foo");
 termFilter.put("term", title);
-dataCollection.deleteDocument(termFilter, new ResponseListener() {
+dataCollection.deleteDocument(termFilter, new ResponseListener<String>() {
   @Override
-  public void onSuccess(JSONObject object) {
+  public void onSuccess(String object) {
     // callback called once the delete with query has been completed
   }
 
@@ -590,6 +599,12 @@ var document = kuzzle
   .save();
 ```
 
+```java
+KuzzleDocument document = kuzzle.dataCollectionFactory("index", "collection")
+  .documentFactory("id", new JSONObject().put("some", "content")
+  .save();
+```
+
 Creates a new `KuzzleDocument` object, using its constructor.
 
 #### documentFactory([id], [content])
@@ -624,10 +639,10 @@ kuzzle
 
 ```java
 KuzzleDocument myDoc;
-dataCollection.fetchDocument("documentId", new ResponseListener() {
+dataCollection.fetchDocument("documentId", new ResponseListener<KuzzleDocument>() {
   @Override
-  public void onSuccess(JSONObject object) {
-    myDoc = new KuzzleDocument(dataCollection, object);
+  public void onSuccess(KuzzleDocument object) {
+    // result is a KuzzleDocument object
   }
 
   @Override
@@ -685,9 +700,9 @@ kuzzle
 ```
 
 ```java
-dataCollection.fetchAllDocuments(new ResponseListener() {
+dataCollection.fetchAllDocuments(new ResponseListener<KuzzleDocumentList>() {
   @Override
-  public void onSuccess(JSONObject object) {
+  public void onSuccess(KuzzleDocumentList object) {
     // result is an object containing the total number of documents
     // and an array of KuzzleDocument objects
   }
@@ -755,9 +770,9 @@ kuzzle
 ```
 
 ```java
-dataCollection.getMapping(new ResponseListener() {
+dataCollection.getMapping(new ResponseListener<KuzzleDataMapping>() {
   @Override
-  public void onSuccess(JSONObject object) {
+  public void onSuccess(KuzzleDataMapping object) {
     // result is a KuzzleDataMapping object
   }
 
@@ -851,9 +866,9 @@ kuzzle
 ```
 
 ```java
-dataCollection.putMapping(myKuzzleDataMapping, new ResponseListener() {
+dataCollection.putMapping(myKuzzleDataMapping, new ResponseListener<KuzzleDataMapping>() {
   @Override
-  public void onSuccess(JSONObject object) {
+  public void onSuccess(KuzzleDataMapping object) {
     // result is a KuzzleDataMapping object
   }
 
@@ -951,6 +966,22 @@ var room = kuzzle
   });
 ```
 
+```java
+KuzzleRoom room = kuzzle.dataCollectionFactory("index", "collection")
+  .roomFactory()
+  .renew(new JSONObject().put(new JSONObject().put("terms", new JSONObject("field").put(new JSONArray().put("some").put("filter"), new KuzzleResponseListener<KuzzleNotificationResponse>() {
+    @Override
+      public void onSuccess(KuzzleNotificationResponse object) {
+        // handle notifications
+      }
+
+      @Override
+      public void onError(JSONObject error) {
+        // Handle notifications error
+      }
+  });
+```
+
 Creates a new `KuzzleRoom` object, using its constructor.  
 
 #### roomFactory([options])
@@ -1018,9 +1049,9 @@ JSONObject term = new JSONObject();
 JSONObject title = new JSONObject();
 title.put("title", "foo");
 term.put("term", title);
-dataCollection.subscribe(term, new ResponseListener() {
+dataCollection.subscribe(term, new ResponseListener<KuzzleNotificationResponse>() {
   @Override
-  public void onSuccess(JSONObject object) {
+  public void onSuccess(KuzzleNotificationResponse object) {
     // called each time a new notification on this filter is received
   }
 
@@ -1071,7 +1102,7 @@ kuzzle
 ```
 
 ```java
-dataCollection.truncate(new ResponseListener() {
+dataCollection.truncate(new ResponseListener<JSONObject>() {
   @Override
   public void onSuccess(JSONObject object) {
     // callback called once the truncate operation has completed
@@ -1151,11 +1182,10 @@ KuzzleDocument doc = new KuzzleDocument(collection);
 doc.setContent("bar", "foo");
 doc.save();
 doc.setContent("foo", "bar");
-dataCollection.updateDocument("documentId", doc, new ResponseListener() {
+dataCollection.updateDocument("documentId", doc, new ResponseListener<KuzzleDocument>() {
   @Override
-  public void onSuccess(JSONObject object) {
-    // callback called once the truncate operation has completed
-    // => the result is a JSON object containing the raw Kuzzle response
+  public void onSuccess(KuzzleDocument result) {
+    // result is a KuzzleDocument object
   }
 
   @Override

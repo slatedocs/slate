@@ -81,9 +81,9 @@ document.deletePromise().then(result => {
 ```
 
 ```java
-document.delete(new ResponseListener() {
+document.delete(new ResponseListener<KuzzleDocument>() {
     @Override
-    public void onSuccess(JSONObject object) {
+    public void onSuccess(KuzzleDocument object) {
       // called once the delete action has been completed
     }
 
@@ -164,9 +164,9 @@ document.refreshPromise().then(result => {
 ```
 
 ```java
-document.refresh(new ResponseListener() {
+document.refresh(new ResponseListener<KuzzleDocument>() {
     @Override
-    public void onSuccess(JSONObject object) {
+    public void onSuccess(KuzzleDocument object) {
       // called once the refresh action has been completed
     }
 
@@ -217,9 +217,9 @@ document.savePromise().then(result => {
 ```
 
 ```java
-document.save(new ResponseListener() {
+document.save(new ResponseListener<KuzzleDocument>() {
     @Override
-    public void onSuccess(JSONObject object) {
+    public void onSuccess(KuzzleDocument object) {
       // called once the save action has been completed
     }
 
@@ -341,9 +341,9 @@ var room = document.subscribe(
 ```
 
 ```java
-KuzzleRoom room = document.subscribe(new ResponseListener() {
+KuzzleRoom room = document.subscribe(new ResponseListener<KuzzleNotificationResponse>() {
     @Override
-    public void onSuccess(JSONObject object) {
+    public void onSuccess(KuzzleNotificationResponse object) {
       // called each time a change occurs on this document
     }
 

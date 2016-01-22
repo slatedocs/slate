@@ -161,9 +161,9 @@ room.countPromise().then(result => {
 ```
 
 ```java
-room.count(new ResponseListener() {
+room.count(new ResponseListener<Integer>() {
  @Override
- public void onSuccess(JSONObject object) throws Exception {
+ public void onSuccess(Integer result) throws Exception {
    //  ...
  }
 
@@ -212,9 +212,9 @@ JSONArray field = new JSONArray();
 field.put("some").put("new").put("filter");
 terms.put("field", field);
 filters.put("terms", terms);
-room.renew(terms, new ResponseListener() {
+room.renew(terms, new ResponseListener<KuzzleNotificationResponse>() {
  @Override
- public void onSuccess(JSONObject object) throws Exception {
+ public void onSuccess(KuzzleNotificationResponse result) throws Exception {
    // called each time a change is detected on documents matching this filter
  }
 
