@@ -37,7 +37,7 @@ curl -v https://link.datil.co/retentions/issue \
   "informacion_adicional":{
     "Envíada al correo electónico":"contabilidad@xyz.com"
   },
-  "impuestos":[
+  "items":[
     {
       "base_imponible": 4226.4,
       "codigo": 1,
@@ -85,7 +85,7 @@ retencion = {
   "informacion_adicional":{
     "Envíada al correo electónico":"contabilidad@xyz.com"
   },
-  "impuestos":[
+  "items":[
     {
       "base_imponible": 4226.4,
       "codigo": 1,
@@ -158,7 +158,7 @@ namespace DatilClient {
         ""informacion_adicional"":{
           ""Envíada al correo electónico"":""contabilidad@xyz.com""
         },
-        ""impuestos"":[
+        ""items"":[
           {
             ""base_imponible"": 4226.4,
             ""codigo"": 1,
@@ -238,20 +238,18 @@ Remember — a happy kitten is an authenticated kitten!
   "informacion_adicional":{
     "Envíada al correo electónico":"contabilidad@xyz.com"
   },
-  "impuestos":{
-    "impuestos":[
-      {
-        "base_imponible": 4226.4,
-        "codigo": 1,
-        "codigo_porcentaje": "312",
-        "fecha_emision_documento_sustento": "2015-12-04T00:00:00-05:19",
-        "numero_documento_sustento": "011-007-000000251",
-        "porcentaje": 1.0,
-        "tipo_documento_sustento": "01",
-        "valor_retenido": 42.26
-      }
-    ]
-  },
+  "items":[
+    {
+      "base_imponible": 4226.4,
+      "codigo": 1,
+      "codigo_porcentaje": "312",
+      "fecha_emision_documento_sustento": "2015-12-04T00:00:00-05:19",
+      "numero_documento_sustento": "011-007-000000251",
+      "porcentaje": 1.0,
+      "tipo_documento_sustento": "01",
+      "valor_retenido": 42.26
+    }
+  ],
   "sujeto":{
     "email":"contabilidad@email.com",
     "identificacion":"0987654321",
@@ -351,7 +349,7 @@ Reemplaza en la ruta `<receipt-id>` por el `id` de la nota de crédito que neces
         }
     },
     "estado": "AUTORIZADO",
-    "impuestos":[
+    "items":[
       {
         "base_imponible": 4226.4,
         "codigo": 1,
@@ -411,7 +409,7 @@ envio_sri | objeto tipo [envio sri](#envío-sri) | Información luego de enviar 
 autorizacion | objeto tipo [autorizacion sri](#autorización-sri) | Información de la autorización.org/html/rfc3339#section-5.6).
 emisor | objeto tipo [emisor](#emisor) | Información completa del emisor. 
 ambiente | integer | Pruebas: `1`.<br>Producción `2`.<br>
-impuestos | vector de objetos tipo [impuesto](#impuesto-retenido) | Listado de impuestos retenidos. __Requerido__
+items | vector de objetos tipo [impuesto](#impuesto-retenido) | Listado de impuestos retenidos. __Requerido__
 sujeto | objeto [persona](#persona) | Información del sujeto al que se le retiene. 
 tipo_emision | integer | Emisión normal: `1`.<br>Emisión por indisponibilidad: `2`<br>
 version | string | Versión de la especificación, opciones válidas: `1.0.0`, `1.1.0`
