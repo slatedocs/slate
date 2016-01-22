@@ -55,16 +55,18 @@ codigo | string | Código numérico de 3 caracteres que representa al establecim
 direccion | string | Dirección registrada en el SRI. Máximo 300 caracteres
 punto_emision | string | Código numérico de 3 caracteres que representa al punto de emisión, o punto de venta. Ejemplo: `001`
 
-## Comprador
+## Persona
 
-Datos de un comprador.
+Datos de una persona. Utilizado como __comprador__ en facturas y notas de crédito, como __sujeto__ en retenciones
 
 Parámetro | Tipo | Descripción
 --------- | ---- |-----------
-razon_social | string | Razón social del comprador. Máximo 300 caracteres.
-identificacion | string | De 5 a 20 caracteres.
-tipo_identificacion | string | Ver [tabla](#tipo-de-identificación) de tipos de identificación
-email | string | Correo electrónico del cliente.
+razon_social | string | Razón social. Máximo 300 caracteres. __Requerido__
+identificacion | string | De 5 a 20 caracteres. __Requerido__
+tipo_identificacion | string | Ver [tabla](#tipo-de-identificación) de tipos de identificación __Requerido__
+email | string | Correo electrónico. Máximo 300 caracteres. __Requerido__
+telefono | string | Teléfono.
+direccion | string | Dirección
 
 ## Tipo de identificación
 
@@ -79,7 +81,7 @@ PLACA                       | `09`
 
 ## Totales
 
-Totales de la factura.
+Totales de facturas y notas de crédito.
 
 Parámetro           | Tipo                    | Descripción
 ------------------- | ----------------------- |-----------
@@ -90,6 +92,7 @@ propina             | float | Propina total, llamado también servicio. __Requer
 importe_total       | float | Total incluyendo impuestos. __Requerido__
 impuestos           | listado de objetos [total impuesto](#impuesto-total) | Listado de impuesto totalizados. __Requerido__
 
+
 ### Impuesto total
 
 Parámetro | Tipo | Descripción
@@ -98,6 +101,62 @@ codigo | string | Código del [tipo de impuesto](#tipos-de-impuesto)
 codigo_porcentaje | string | Código del porcentaje.
 base_imponible | float | Base imponible.
 valor | float | Valor del total.
+
+
+### Impuesto item
+
+Parámetro | Tipo | Descripción
+--------- | ---- |-----------
+codigo | string | Código del [tipo de impuesto](#tipos-de-impuesto)
+codigo_porcentaje | string | Código del porcentaje.
+base_imponible | float | Base imponible.
+valor | float | Valor del total.
+tarifa | float | Porcentaje actual del impuesto expresado por un número entre 0.0 y 100.0
+
+
+## Impuesto Retenido
+
+Parámetro                        | Tipo   | Descripción
+-------------------------------- | ------ |------------
+base_imponible                   | float  | Base imponible, máximo 2 cifras decimales. __Requerido__
+codigo                           | string | Código de [tipo de impuesto](#tipos-de-impuesto-para-la-retención). __Requerido__
+codigo_porcentaje                | string | [Código del porcentaje](#retención-iva) a aplicar dentro del tipo de impuesto __Requerido__
+porcentaje                       | float  | Porcentaje establecido para el impuesto
+valor_retenido                   | float  | Valor retenido, multiplicación de la base imponible por el porcentaje de retención, máximo 2 cifras decimales. __Requerido__
+fecha_emision_documento_sustento | string | Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6). __Requerido__
+numero_documento_sustento        | string | Número completo del documento sobre el que se aplica la retención. Ejm: 001-002-592738007
+
+
+## Destinatario
+
+Parámetro | Tipo | Descripción
+--------- | ------- | -----------------
+razon_social | string | Razón social del comprador. Máximo 300 caracteres. __Requerido__
+identificacion | string | De 5 a 20 caracteres. __Requerido__
+tipo_identificacion | string | Ver [tabla](#tipo-de-identificación) de tipos de identificación __Requerido__
+email | string | Correo electrónico del destinatario.
+telefono | string | Teléfono.
+direccion | string | Dirección
+ruta | string | Ruta de transporte. Máximo 300 caracteres.
+documento_aduanero_unico | string | Máximo 20 caracteres.
+fecha_emision_documento_sustento | string | Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6). __Requerido__
+numero_documento_sustento | string | Número completo del documento que detalla la mercadería a transportar. Normalmente facturas. Ejm: 001-002-010023098 __Requerido__
+tipo_documento_sustento | string | Ver códigos de [tipos de documentos](#tipos-de-documentos). __Requerido__
+motivo_traslado | string | Motivo del traslado. Ejm: Entrega de mercadería. __Requerido__
+numero_autorizacion_documento_sustento | string | Autorización del documento de sustento.
+items | arreglo de objetos tipo [item destinatario](#item-destinatario) | Items transportados
+
+### Item destinatario
+
+Parámetro | Tipo | Descripción
+--------- | ---- |-----------
+descripcion | string | Descripción del ítem. __Requerido__
+codigo_principal | string | Código alfanumérico de uso del comercio. Máximo 25 caracteres.
+codigo_auxiliar | string | Código alfanumérico de uso del comercio. Máximo 25 caracteres.
+cantidad | float | Cantidad de items. __Requerido__
+detalles_adicionales | object | Diccionario de datos de carácter adicional. Ejemplo:<br><code>{"marca": "Ferrari", "chasis": "UANEI832-NAU101"}</code>
+
+
 
 ## Envío SRI
 
@@ -108,6 +167,7 @@ Parámetro           | Tipo                    | Descripción
 mensajes | listado de objeto [mensaje SRI](#mensajes-de-respuesta-sri) | Listado de mensajes.
 estado   | string | Posibles valores: `RECIBIDA`, `DEVUELTA`
 fecha    | string | Fecha en la que se realizó el envío en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6).
+
 
 ## Autorización SRI
 
@@ -145,16 +205,6 @@ precio_total_sin_impuestos | float | Precio antes de los impuestos. Se obtiene m
 impuestos | listado de objetos tipo [impuesto item](#impuesto-item) | Impuestos grabados sobre el producto. __Requerido__
 detalles_adicionales | object | Diccionario de datos de carácter adicional. Ejemplo:<br><code>{"marca": "Ferrari", "chasis": "UANEI832-NAU101"}</code>
 
-### Impuesto item
-
-Parámetro | Tipo | Descripción
---------- | ---- |-----------
-codigo | string | Código del [tipo de impuesto](#tipos-de-impuesto)
-codigo_porcentaje | string | Código del porcentaje.
-base_imponible | float | Base imponible.
-valor | float | Valor del total.
-tarifa | float | Porcentaje actual del impuesto expresado por un número entre 0.0 y 100.0
-
 # Catálogo
 
 ## Tipos de impuesto
@@ -165,4 +215,49 @@ IVA      | 2
 ICE      | 3
 IRBPNR   | 5
 
+## Tipos de impuesto para la retención
 
+Impuesto | Código
+-------- | ------
+RENTA    | 1
+IVA      | 2
+ISD      | 6
+
+## Retención de IVA
+
+Porcentaje IVA | Código
+-------------- | ------
+10%            | 9
+20%            | 10
+30%            | 1
+70%            | 2
+100%           | 3
+
+__Retención en cero__
+
+Porcentaje IVA | Código
+-------------- | ------
+0%             | 7
+
+__No procede retención__
+
+Porcentaje IVA | Código
+-------------- | ------
+0%             | 8
+
+## Retención ISD
+
+Porcentaje IVA | Código
+-------------- | ------
+5%             | 4580
+
+
+## Tipos de documentos
+
+Documento                | Código
+------------------------ | ------
+Factura                  | 01
+Nota de Crédito          | 04
+Nota de Débito           | 05
+Guía de Remisión         | 06
+Comprobante de Retención | 07
