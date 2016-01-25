@@ -44,7 +44,7 @@ Tailored instructions are provided within our user interface. General instructio
 gem 'scout_apm'
 </pre>
 
-					<p><strong>Shell:</strong></p>
+<p><strong>Shell:</strong></p>
 
 <pre>
 bundle install
@@ -61,6 +61,14 @@ bundle install
      </tr>
  	</tbody>
  </table>
+
+## Updating to the Newest Version
+
+1. Update your Gemfile: `gem 'scout_apm', '~> 1.2', '>= 1.2.10'`
+2. Run `bundle install`
+3. Re-deploy your application
+
+The gem version history is [available here](https://github.com/scoutapp/scout_apm_ruby/blob/master/CHANGELOG.markdown).  
 
 ## Configuration Options
 
