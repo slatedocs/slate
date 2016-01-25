@@ -7,8 +7,9 @@ At the moment we only support signing with the FIEL (the most frequently used ad
 ```ruby
 require 'mifiel'
 
-file_contents = File.read('my-certificate.cer')
-certificate = Mifiel::Certificate.create(file_contents)
+certificate = Mifiel::Certificate.create(
+  file: 'path/to/my-certificate.cer'
+)
 ```
 
 ```shell

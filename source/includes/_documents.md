@@ -5,12 +5,13 @@
 ```ruby
 require 'mifiel'
 
-file_contents = File.read('my-file.pdf')
-signers = [
-  { name: 'Signer 1', email: 'signer1@email.com' },
-  { name: 'Signer 2', email: 'signer2@email.com' }
-]
-document = Mifiel::Document.create(file_contents, signers)
+document = Mifiel::Document.create(
+  file: 'path/to/my-file.pdf',
+  signatories: [
+    { name: 'Signer 1', email: 'signer1@email.com', tax_id: 'AAA010101AAA' },
+    { name: 'Signer 2', email: 'signer2@email.com', tax_id: 'AAA010102AAA' }
+  ]
+)
 ```
 
 ```shell
