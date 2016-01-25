@@ -75,6 +75,10 @@ var accounts = sdk.GetAccounts();
         "acct_type": "SDA",
         "ext_type": "SDA",
         "group": "Cash"
+      },
+      "other_balances" : {
+        "balance_type": "current",
+        "balance" : "300.54"
       }
     }
   ]
