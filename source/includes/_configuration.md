@@ -64,7 +64,7 @@ bundle install
 
 ## Updating to the Newest Version
 
-1. Update your Gemfile: `gem 'scout_apm', '~> 1.2', '>= 1.2.10'`
+1. Update your Gemfile: `gem 'scout_apm', '~> 1.2', '>= 1.2.11'`
 2. Run `bundle install`
 3. Re-deploy your application
 
