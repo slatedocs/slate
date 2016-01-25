@@ -15,6 +15,7 @@ Attribute         | Type       | Description
 `room_id`         | [ID][]     | ID of the room from which this room visitor resource was requested
 `is_online`       | boolean    | Whether or not the visitor is currently online in the room
 `session_id`      | string     | Identifier for the latest session for the visitor in this room
+`priority`        | integer     | Current priority of the visitor
 `visit_count`     | integer    | During how many distinct sessions the visitor has been active on this room.
 `device_type`     | string     | Either `desktop`, `mobile` or `tablet`
 `device_screen_width`  | integer | The width resolution of the visitor's screen
