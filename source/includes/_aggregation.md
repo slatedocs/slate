@@ -304,7 +304,7 @@ The `ce_login_parameters` are necessary to actually add the FI. Each parameter m
 ## Validate FI login credentials
 
 ```shell
-curl -X "GET" "http://partner.url/api/v2/:user_id:/ce_fis" -u ":geezeo-api-key::" -d ":payload:"
+curl -X "POST" "http://partner.url/api/v2/:user_id:/ce_fis" -u ":geezeo-api-key::" -d ":payload:"
 ```
 
 ```ruby
