@@ -21,7 +21,7 @@ EXEMPLO
 ```
 
 <aside class="notice">
-Os Arquivos CNAB de Remessa são arquivos enviados para o banco com o objetivo de dar entrada em novos títulos, podendo ser gerado a partir de uma ou mais cobranças.
+Os Arquivos CNAB de Remessa são arquivos enviados para o banco com o objetivo de registrar novos títulos, podendo ser gerado a partir de uma ou mais Cobranças. Se forem enviadas Cobranças de Contas de Cobranças diferentes, será gerado um CNAB de remessa para cada Conta de Cobrança.
 </aside>
 
 **Parâmetros**
@@ -136,7 +136,7 @@ EXEMPLO DE REQUISIÇÃO
 
 EXEMPLO DE ESTADO DA RESPOSTA COM SUCESSO
 
-    202 Accepted
+    201 Criated
 
 EXEMPLO DE ESTADO DA RESPOSTA COM INSUCESSO
 
@@ -152,15 +152,15 @@ EXEMPLO DE CORPO DA RESPOSTA COM INSUCESSO
 
 ```
 
-Cria um novo Arquivo CNAB de Remessa, retornando as informações do mesmo caso haja sucesso. Se houverem erros, eles serão informados no corpo da resposta.
+Cria novo(s) Arquivo(s) CNAB de Remessa, retornando as informações do mesmo caso haja sucesso. Se houverem erros, eles serão informados no corpo da resposta. Pode ser gerado a partir de uma ou mais Cobranças. Se forem enviadas Cobranças de Contas de Cobranças diferentes, será gerado um CNAB de remessa para cada Conta de Cobrança.
 
 Os Arquivos CNAB de Remessa podem ser criados a partir de uma ou mais cobraças que ainda não possuem boleto ou outro arquivo de remessa associado.
 
 **Parâmetros**
 
-| Campo      | Tipo              | Comentário                                                                         |
-|------------|-------------------|------------------------------------------------------------------------------------|
-| charge_ids | array of integers | Lista com os ids das cobranças que devem ser associadas ao Arquivo CNAB de Remessa |
+| Campo      | Tipo              | Comentário                                                                                         |
+|------------|-------------------|----------------------------------------------------------------------------------------------------|
+| charge_ids | array of integers | **(requerido)** Lista com os ids das cobranças que devem ser associadas ao Arquivo CNAB de Remessa |
 
 ## Exclusão de CNAB de Remessa
 
@@ -183,7 +183,7 @@ EXEMPLO DE ESTADO DA RESPOSTA COM SUCESSO
 
     204 No Content
 
-EXEMPLO DE ESTADO DA RESPOSTA COM CONTA BANCÁRIA INEXISTENTE
+EXEMPLO DE ESTADO DA RESPOSTA COM CNAB DE REMESSA INEXISTENTE
 
     404 Not Found
 
@@ -212,7 +212,7 @@ EXEMPLO DE ESTADO DA RESPOSTA COM SUCESSO
 
     200 OK
 
-EXEMPLO DE ESTADO DA RESPOSTA COM COBRANÇA INEXISTENTE
+EXEMPLO DE ESTADO DA RESPOSTA COM CNAB DE REMESSA INEXISTENTE
 
     404 Not Found
 
