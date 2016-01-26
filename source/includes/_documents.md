@@ -7,7 +7,6 @@ require 'mifiel'
 
 document = Mifiel::Document.create(
   file: 'path/to/my-file.pdf',
-  original_hash: 'a341aa7f349e39a...67f59bd9cbcf0d',
   signatories: [
     { 
       name: 'Signer 1', 
@@ -21,6 +20,14 @@ document = Mifiel::Document.create(
     }
   ],
   callback_url: 'https://www.example.com/webhook/url'
+)
+
+# OR
+file_contents = File.read('path/to/my-file.pdf')
+original_hash = Digest::SHA256.hexdigest(file_contents)
+document = Mifiel::Document.create(
+  original_hash: original_hash,
+  signatories: [ ... ]
 )
 ```
 
