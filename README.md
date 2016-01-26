@@ -1,3 +1,3 @@
 # Mifiel API Documentation
 
-[www.mifiel.com/api-docs/](https://www.mifiel.com/api-docs/)
+[docs.mifiel.com](http://docs.mifiel.com)

@@ -7,10 +7,12 @@ require 'mifiel'
 
 document = Mifiel::Document.create(
   file: 'path/to/my-file.pdf',
+  original_hash: 'a341aa7f349e39a...67f59bd9cbcf0d',
   signatories: [
     { name: 'Signer 1', email: 'signer1@email.com', tax_id: 'AAA010101AAA' },
     { name: 'Signer 2', email: 'signer2@email.com', tax_id: 'AAA010102AAA' }
-  ]
+  ],
+  callback_url: 'https://www.example.com/webhook/url'
 )
 ```
 
@@ -19,6 +21,7 @@ curl -X POST https://www.mifiel.com/api/v1/documents \
   -F "file=@my-file.pdf" \
   -F "signatories[0][name]=Signer 1" \
   -F "signatories[0][email]=signer@email.com" \
+  -F "callback_url=https://www.example.com/webhook/url" \
   -H "Authorization: APIAuth APP-ID:hmac-signature"
 ```
 
@@ -36,7 +39,7 @@ If you are using our [embedded signing widget](#widget), we suggest that you pas
 Field                 | Type |  Description
 --------------------- | ---- | -----------
 file         | String | __Optional__ File to be signed (The hash will be automatically extracted from the file and signed)
-hash         | String | __Optional__ Hash of the original, unsigned document (The hash will be signed)
+original_hash | String | __Optional__ _SHA256 encoded_ Hash of the original, unsigned document (The hash will be signed)
 signatories  | Array | A list containing the __name__, __tax_id__ (RFC) and __email__ of each __signer__
 callback_url | String | __Optional__ A Callback URL to post when the document gets signed
 
