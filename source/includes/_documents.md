@@ -9,8 +9,16 @@ document = Mifiel::Document.create(
   file: 'path/to/my-file.pdf',
   original_hash: 'a341aa7f349e39a...67f59bd9cbcf0d',
   signatories: [
-    { name: 'Signer 1', email: 'signer1@email.com', tax_id: 'AAA010101AAA' },
-    { name: 'Signer 2', email: 'signer2@email.com', tax_id: 'AAA010102AAA' }
+    { 
+      name: 'Signer 1', 
+      email: 'signer1@email.com', 
+      tax_id: 'AAA010101AAA' 
+    }, 
+    { 
+      name: 'Signer 2', 
+      email: 'signer2@email.com', 
+      tax_id: 'AAA010102AAA' 
+    }
   ],
   callback_url: 'https://www.example.com/webhook/url'
 )
