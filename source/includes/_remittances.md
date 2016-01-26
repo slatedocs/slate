@@ -1,4 +1,4 @@
-# Arquivos CNAB de Remessa
+# CNAB de Remessa
 
 ```shell
 CNAB de Remessa
@@ -20,8 +20,10 @@ EXEMPLO
   }
 ```
 
-<aside class="notice">
 Os Arquivos CNAB de Remessa são arquivos enviados para o banco com o objetivo de registrar novos títulos, podendo ser gerado a partir de uma ou mais Cobranças. Se forem enviadas Cobranças de Contas de Cobranças diferentes, será gerado um CNAB de remessa para cada Conta de Cobrança.
+
+<aside class="warning">
+A utilização desta API não é autorizada a contas com o plano <strong>Gratuito</strong>, resultando na resposta com o estado <strong>403 Forbidden</strong>!
 </aside>
 
 **Parâmetros**
