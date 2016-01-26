@@ -23,12 +23,12 @@ Contains information about the PDF file being signed
     "email": "signer1@email.com",
     "name": "Jorge Morales"
   },
-  "file": "/api/v1/documents/6e0143b0-084b-4b61-800d-486b111b0695/file",
-  "file_download": "/api/v1/documents/6e0143b0-084b-4b61-800d-486b111b0695/file?download=true",
-  "file_signed": "/api/v1/documents/6e0143b0-084b-4b61-800d-486b111b0695/file_signed",
-  "file_signed_download": "/api/v1/documents/6e0143b0-084b-4b61-800d-486b111b0695/file_signed?download=true",
-  "file_zipped": "/api/v1/documents/6e0143b0-084b-4b61-800d-486b111b0695/zip",
   "callback_url": "https://www.example.com/webhook/url",
+  "file": "/api/v1/documents/.../file",
+  "file_download": "/api/v1/documents/.../file?download=true",
+  "file_signed": "/api/v1/documents/.../file_signed",
+  "file_signed_download": "/api/v1/documents/.../file_signed?download=true",
+  "file_zipped": "/api/v1/documents/.../zip",
   "signatures": [{
     "email": "signer1@email.com",
     "signed": true,
