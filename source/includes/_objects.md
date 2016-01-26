@@ -13,7 +13,7 @@ Contains information about the PDF file being signed
 ```json
 {
   "id": "29f3cb01-744d-4eae-8718-213aec8a1678",
-  "original_hash": "e1a580c27d22b432a8c6f4c57aec89dca46bb89b492d3bc537bf90282a6889da",
+  "original_hash": "e1a580c27d22b4...c537bf90282a6889da",
   "file_file_name": "test-pdf.pdf",
   "signed_by_all": true,
   "signed": true,
@@ -28,6 +28,7 @@ Contains information about the PDF file being signed
   "file_signed": "/api/v1/documents/6e0143b0-084b-4b61-800d-486b111b0695/file_signed",
   "file_signed_download": "/api/v1/documents/6e0143b0-084b-4b61-800d-486b111b0695/file_signed?download=true",
   "file_zipped": "/api/v1/documents/6e0143b0-084b-4b61-800d-486b111b0695/zip",
+  "callback_url": "https://www.example.com/webhook/url",
   "signatures": [{
     "email": "signer1@email.com",
     "signed": true,
@@ -55,6 +56,7 @@ already_signed  | String[] | People that have signed
 has_not_signed  | String[] | People that have not signed
 status          | Array | [code, code_message] `0: not signed, 1: signed`
 owner           | Object | The owner of the document. The user who created the document.
+callback_url    | String | The callback URL to be `POST`ed when everybody signs
 file            | String | Path where the original document can be downloaded
 file_signed     | String | Path where the signed file can be downloaded
 file_zipped     | String | Path where the file and signed file in a zip file can be downloaded 
