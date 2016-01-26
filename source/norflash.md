@@ -6,6 +6,8 @@ The NOR flash recorder exists only on the ProMotion board and it uses subsystem 
 #define FlashEraseAll 0x01 //erasing the on-chip recorder
 #define FlashRecordStartStop 0x02 //start/stop a recording session
 #define FlashPlaybackStartStop 0x03 //start/stop playing back from the recorder
+#define FlashGetNbSessions		0x04 //a command to get the total #of sessions in the NOR flash, i.e., n
+#define FlashGetSessionInfo	0x05 //get the session length of a session ID. IDs start from 0 to n-1
 ```
 
 Note that the above commands are placed within the header section of the packet in Byte#3.
@@ -66,3 +68,33 @@ If the whole playback procedure is successful, whenever we reach the end of the 
 | Byte 0 | Byte 1 (length) |Byte 2|  Byte 3 (command)  |Byte 4-7|      Byte 8      | Bytes 9-19 |
 |:------:|:---------------:|:----:|:------------------:|:------:|:----------------:|:----------:|
 |  0x0B  |       0x10      | CRC  |0x03 (FlashPlayback)|Reserved|0 (session closed)|  Reserved  |
+
+#### FlashGetNbSessions Command (0x04)
+In the command mode, the packet asks Neblina about how many recorded sessions exist in the NOR flash. The command packet has no data section:
+
+| Byte 0 (subsystem) | Byte 1 (length) | Byte 2 (CRC) |     Byte 3 (command)    |Byte 4-19|
+|:------------------:|:---------------:|:------------:|:-----------------------:|:-------:|
+|        0x4B        |       0x10      |      CRC     |0x04 (FlashGetNbSessions)|Reserved |
+
+In response, Neblina will first send an acknowledge packet to indicate the receipt of the command. Next, a packet is sent to return the total number of sessions that exist in the NOR flash recorder. The total number of sessions is returned as a 16-bit unsigned integer value within Byte 8-9, where Byte 4-7 as well as Byte 10-19 are all reserved:
+
+| Byte 0 | Byte 1 (length) |Byte 2|     Byte 3 (command)    |Byte 4-7| Byte 8-9  |Bytes 10-19|
+|:------:|:---------------:|:----:|:-----------------------:|:------:|:---------:|:---------:|
+|  0x0B  |       0x10      | CRC  |0x04 (FlashGetNbSessions)|Reserved|Nb Sessions| Reserved  |
+
+#### FlashGetSessionInfo Command (0x05)
+In the command mode, the packet asks Neblina about the length of a Session ID recorded in the NOR flash. The Session ID is a 16-bit unsigned integer number that is stored within Byte 8-9. Session IDs vary from 0 to n-1, where n is the total number of sessions recorded in the NOR flash. The rest of the bytes are reserved. The whole command packet is as follows:
+
+| Byte 0 (subsystem) | Byte 1 (length) | Byte 2 (CRC) |     Byte 3 (command)     |Byte 4-7| Byte 8-9 |Byte 10-19|
+|:------------------:|:---------------:|:------------:|:------------------------:|:------:|:--------:|:--------:|
+|        0x4B        |       0x10      |      CRC     |0x05 (FlashGetSessionInfo)|Reserved|Session ID| Reserved |
+
+In response, Neblina will first send an acknowledge packet to indicate the receipt of the command. Next, a packet is sent to return the session lengh in number of bytes as a 32-bit unsigned integer value. The session length is stored within Byte 4-7, while Byte 8-9 will include the session ID. The rest of the bytes are reserved. Note that if the session ID is invalid, the length is returned as 0xFFFFFFFF. The whole response packet is as follows:
+
+| Byte 0 (subsystem) | Byte 1 (length) | Byte 2 (CRC) |     Byte 3 (command)     |   Byte 4-7   | Byte 8-9 |Byte 10-19|
+|:------------------:|:---------------:|:------------:|:------------------------:|:------------:|:--------:|:--------:|
+|        0x0B        |       0x10      |      CRC     |0x05 (FlashGetSessionInfo)|Session Length|Session ID| Reserved |
+
+
+
+
