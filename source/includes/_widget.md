@@ -46,11 +46,13 @@ height    | String  | 1100    | __Optional__ Height of the widget __[px]__
 <script type="text/javascript">
 window.addEventListener('message', function (e) {
   console.log(e);
-  var data = e.data
-      document = data.document,
-      signature = data.signature;
-  // document.original_hash
-  // document.file_signed
+  if (e.isTrusted && e.origin === 'https://www.mifiel.com'){
+    var data = e.data,
+        document = data.document,
+        signature = data.signature;
+    // document.original_hash;
+    // document.file_signed;
+  }
 }, false);
 </script>
 ```
