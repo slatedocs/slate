@@ -461,7 +461,7 @@ providing the `details` parameter.
 
 
 
-## MFA
+## Multi-Factor Authentication
 
 
 > GET /api/v2/ce_fis/?query=CashEdge+Test+Bank+%28Agg%29+-+Retail+2FA
@@ -673,7 +673,7 @@ accounts can be viewed by checking `pending_accounts`.
 
 `DELETE /api/v2/users/:user_id:/pending_accounts/:panding_account_id:`
 
-## Change CE FI Login API
+## Update credentials for an FI
 
 This is for changing the login credentials for the FI account used by the
 aggregator. This can also be used to respond to new MFA challenges issued by
