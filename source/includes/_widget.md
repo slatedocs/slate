@@ -61,12 +61,12 @@ After the user succesfully signs the document we will send back a [postMessage](
 
 Following is a more detailed explanation of the steps involved in requesting and executing signatures within the embedded signing widget.
 
-1. First, you must pass the __PDF file__ that is being signed (converted into a String), along with the following __parameters__: Webhook, email of each signer, and name of each signer (optional).
+1. The first step is to create a Document in your backend with the _API_ID_ and _APP_SECRET_. You must pass the __PDF file__ that is being signed (or a SHA256 encoded hash of the PDF), along with the following __parameters__: webhook (callback_url) and the email and name (optional) of each signer.
 
-2. Mifiel will return a __document ID__, which you will then need to pass to the widget (running on your website's front-end).
+2. Mifiel will return a __Widget ID__ in the response, which you will then need to pass to the widget (running on your website's front-end).
 
 3. The signature process then takes place within your website. The signer will be able to preview the document, select the files of their FIEL, and enter the password of their FIEL to sign (during this process Mifiel will be verifying that the FIEL is valid and not expired). 
 
 4. If successful, the signer will be presented with a page explaining that the signing was successful and that they will receive an email with the signed document. We will also display a confirmation button (e.g. 'Proceed to next step') which will return the user to the flow of your website.
 
-5. Mifiel will then post the following information to the webhook specified by you (in Step 1): electronic signature of the document, timestamp of signature, the signature page, and information regarding the public certificate(s) used to sign the document.
+5. Mifiel will then `POST` the document information to the webhook specified by you (in Step 1): electronic signature of the document, timestamp of signature, the signature page, and information regarding the public certificate(s) used to sign the document.
