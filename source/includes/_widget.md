@@ -16,7 +16,8 @@
 <script type="text/javascript">
   window.mifiel.widget({
     widgetId: 'c8aa73d1-db06-4d18-9f56-196b00f6eb69',
-    appendTo: 'id-of-the-element-to-append'
+    appendTo: 'id-of-the-element-to-append',
+    successBtnText: 'Proceed to next step'
   });
 </script>
 ```
@@ -35,6 +36,8 @@ Field     | Type    | Default |  Description
 --------- | ------- | ------- | ------------
 widgetId  | String  |         | Widget ID. You can get it with `document.widget_id` in Ruby
 appendTo  | String  | body    | ID of the element in the page
+successBtnText | String | 'OK' | Text of the button at the end of the signing flow. When the user click
+color     | String  | 37BC9B  | __Optional__ Custom Hex RGB color of the widget layout
 width     | String  | 100%    | __Optional__ Width of the widget __[px or %]__
 height    | String  | 1100    | __Optional__ Height of the widget __[px]__
 
