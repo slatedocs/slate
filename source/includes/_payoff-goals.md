@@ -196,7 +196,7 @@ var payoffGoalsResponse = sdk.GetPayoffGoal(payoffGoalId);
       "image_url": "https://example.com/images/car.jpg",
       "state": "active",
       "status": "risk",
-      "initial_value": "10.00",
+      "initial_value": "10000.00",
       "current_value": "200.00",
       "target_value": "0.00",
       "monthly_contribution": "50.00",
@@ -215,6 +215,9 @@ var payoffGoalsResponse = sdk.GetPayoffGoal(payoffGoalId);
 ```
 
 Return a payoff goal for the given user.
+
+The initial_value field represents the total amount to pay off for this goal.
+
 
 `GET /api/v2/users/:user_id:/payoff_goals/:payoff_goals_id:`
 
