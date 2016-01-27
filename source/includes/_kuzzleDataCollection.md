@@ -846,64 +846,6 @@ Available options:
 
 Returns the `KuzzleDataCollection` object to allow chaining.
 
-## putMapping
-
-```js
-// Using callbacks (NodeJS or Web Browser)
-kuzzle
-  .dataCollectionFactory('index', 'collection')
-  .putMapping({foo: {type: 'string', store: true}, bar: {type: 'date'}}, function (error, result) {
-    // result is a KuzzleDataMapping object
-  });
-
-// Using promises (NodeJS)
-kuzzle
-  .dataCollectionFactory('index', 'collection')
-  .putMappingPromise({foo: {type: 'string', store: true}, bar: {type: 'date'}})
-  .then(result => {
-    // result is a KuzzleDataMapping object
-  });
-```
-
-```java
-dataCollection.putMapping(myKuzzleDataMapping, new ResponseListener<KuzzleDataMapping>() {
-  @Override
-  public void onSuccess(KuzzleDataMapping object) {
-    // result is a KuzzleDataMapping object
-  }
-
-  @Override
-  public void onError(JSONObject error) {
-    // Handle error
-  }
-});
-```
-
-Applies a new mapping to the data collection.  
-Note that you cannot delete an existing mapping, you can only add or update one.
-
-#### putMapping(mapping, [options], [callback])
-
-| Arguments | Type | Description |
-|---------------|---------|----------------------------------------|
-| ``mapping`` | JSON Object | Mapping to apply |
-| ``options`` | JSON Object | Optional parameters |
-| ``callback`` | function | Optional callback |
-
-Available options:
-
-| Option | Type | Description | Default |
-|---------------|---------|----------------------------------------|---------|
-| ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
-
-#### Return value
-
-Returns the `KuzzleDataCollection` object to allow chaining.
-
-#### Callback response
-
-Resolves to an up-to-date `KuzzleDataMapping` object.
-
 ## replaceDocument
 
 ```js
