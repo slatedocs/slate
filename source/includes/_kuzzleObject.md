@@ -155,6 +155,7 @@ Here is the list of these special events:
 | ``connected`` | Fired when the SDK has successfully connected to Kuzzle |
 | ``disconnected`` | Fired when the current session has been unexpectedly disconnected |
 | ``error`` | Fired when the SDK has failed to connect to Kuzzle. Does not trigger offline mode. |
+| ``jwtTokenExpired`` | Fired when Kuzzle rejected a request because the authentication token expired.<br>Provides the request and its associated callback to the listener |
 | ``reconnected`` | Fired when the current session has reconnected to Kuzzle after a disconnection, and only if ``autoReconnect`` is set to ``true`` |
 
 **Note:** listeners are called in the order of their insertion.
