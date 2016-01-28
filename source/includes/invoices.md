@@ -294,7 +294,7 @@ fecha_emision | string | Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria,
 guia_remision | string | Número de guía de remisión asociada a esta factura en formato 001-002-000000003 ([0-9]{3}-[0-9]{3}-[0-9]{9})
 ambiente | integer | Pruebas: `1`.<br>Producción `2`.<br>__Requerido__
 totales | objeto tipo [totales](#totales) | Listado de totales. __Requerido__
-comprador | objeto tipo [comprador](#comprador) | Información del comprador. __Requerido__
+comprador | objeto tipo [persona](#persona) | Información del comprador. __Requerido__
 tipo_emision | integer | Emisión normal: `1`.<br>Emisión por indisponibilidad: `2`<br>__Requerido__
 items | listado de objetos tipo [item](#item-de-factura) | Items incluídos en la factura. __Requerido__
 version | string | Versión del formato de comprobantes electrónicos de SRI. Si no se especifica, se utilizará la última revisión del formato implementada,

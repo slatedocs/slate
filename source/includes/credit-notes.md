@@ -299,6 +299,7 @@ emisor | [emisor](#emisor) | Información completa del emisor. __Requerido__
 moneda | string | Código [ISO](https://en.wikipedia.org/wiki/ISO_4217) de la moneda. __Requerido__
 fecha_emision | string | Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6).
 ambiente | integer | Pruebas: `1`.<br>Producción `2`.<br>__Requerido__
+comprador | objeto tipo [persona](#persona) | Información del comprador.
 totales | objeto tipo [totales](#totales) | Listado de totales. __Requerido__
 fecha_emision_documento_modificado | string | Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6). __Requerido__
 numero_documento_modificado | string | Número completo del documento que se está afectando. Normalmente facturas. Ejm: 001-002-010023098 __Requerido__
@@ -575,7 +576,7 @@ emisor | objeto tipo [emisor](#emisor) | Información completa del emisor.
 moneda | string | Código [ISO](https://en.wikipedia.org/wiki/ISO_4217) de la moneda. 
 ambiente | integer | Pruebas: `1`.<br>Producción `2`.<br>
 totales | objeto tipo [totales](#totales) | Listado de totales. 
-comprador | objeto [comprador](#comprador) | Información del comprador. 
+comprador | objeto tipo [persona](#persona) | Información del comprador.
 tipo_emision | integer | Emisión normal: `1`.<br>Emisión por indisponibilidad: `2`<br>
 items | listado de objetos tipo [item](#item-de-factura) | Items incluídos en la nota de crédito.
 version | string | Versión de la especificación, opciones válidas: `1.0.0`, `1.1.0`
