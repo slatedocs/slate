@@ -367,7 +367,7 @@ Reemplaza en la ruta `<receipt-id>` por el `id` de la nota de crédito que neces
             "destinatarios": "juanantonioplaza@datilmedia.com"
         }
     ],
-    "informacion_adicional": [],
+    "informacion_adicional": {},
     "ambiente": "1",
     "sujeto": {
         "razon_social": "Carlos L. Plaza",
