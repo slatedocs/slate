@@ -21,6 +21,7 @@ curl -v https://link.datil.co/waybills/issue \
   "secuencial":50,
   "fecha_inicio_transporte":"2015-02-28T11:28:56.782Z",
   "fecha_fin_transporte":"2015-02-28T11:28:56.782Z",
+  "direccion_partida": "Victor Emilio Estrada",
   "emisor":{
     "ruc":"0910000000001",
     "obligado_contabilidad":true,
@@ -84,6 +85,7 @@ guia_remision = {
   "secuencial":50,
   "fecha_inicio_transporte":"2015-02-28T11:28:56.782Z",
   "fecha_fin_transporte":"2015-02-28T11:28:56.782Z",
+  "direccion_partida": "Victor Emilio Estrada",
   "emisor":{
     "ruc":"0910000000001",
     "obligado_contabilidad":true,
@@ -172,6 +174,7 @@ namespace DatilClient {
         ""secuencial"":50,
         ""fecha_inicio_transporte"":""2015-02-28T11:28:56.782Z"",
         ""fecha_fin_transporte"":""2015-02-28T11:28:56.782Z"",
+        ""direccion_partida"": ""Victor Emilio Estrada"",
         ""emisor"":{
           ""ruc"":""0910000000001"",
           ""obligado_contabilidad"":true,
@@ -243,6 +246,8 @@ secuencial | string | Número de secuencia de la guía de remisión. __Requerido
 emisor | [emisor](#emisor) | Información completa del emisor. __Requerido__
 fecha_inicio_transporte | string | Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6).
 fecha_fin_transporte | string | Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6).
+direccion_partida | string | Dirección de partida
+transportista | objeto tipo [Persona](#persona) | Información de la persona que transporta la carga
 ambiente | integer | Pruebas: `1`.<br>Producción `2`.<br>__Requerido__
 tipo_emision | integer | Emisión normal: `1`.<br>Emisión por indisponibilidad: `2`<br>__Requerido__
 destinatarios | listado de objetos tipo [destinatario](#destinatario) | Descripción de destinatarios y la mercadería transportada. __Requerido__
