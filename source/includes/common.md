@@ -68,6 +68,21 @@ email | string | Correo electrónico. Máximo 300 caracteres. __Requerido__
 telefono | string | Teléfono.
 direccion | string | Dirección
 
+## Transportista
+
+Datos de un transportista.
+
+Parámetro | Tipo | Descripción
+--------- | ---- |-----------
+razon_social | string | Razón social. Máximo 300 caracteres. __Requerido__
+identificacion | string | De 5 a 20 caracteres. __Requerido__
+tipo_identificacion | string | Ver [tabla](#tipo-de-identificación) de tipos de identificación __Requerido__
+email | string | Correo electrónico. Máximo 300 caracteres. __Requerido__
+telefono | string | Teléfono.
+direccion | string | Dirección
+placa | string | Placa del vehículo
+
+
 ## Tipo de identificación
 
 Tipo de identificación      | Código
