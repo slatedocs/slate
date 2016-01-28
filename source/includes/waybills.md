@@ -491,17 +491,17 @@ Reemplaza en la ruta `<receipt-id>` por el `id` de la guía de remisión que nec
 
 Parámetro | Tipo | Descripción
 --------- | ------- | -----------
-secuencial | string | Número de secuencia de la guía de remisión.
-estado | string | Posibles valores: `AUTORIZADO`, `NO AUTORIZADO`, `ENVIADO`, `DEVUELTO`, `RECIBIDO`
-fecha_emision | string | Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf.
+secuencial | string | Número de secuencia de la guía de remisión. __Requerido__
+emisor | [emisor](#emisor) | Información completa del emisor. __Requerido__
+fecha_inicio_transporte | string | Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6).
+fecha_fin_transporte | string | Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6).
+direccion_partida | string | Dirección de partida
+transportista | objeto tipo [Transportista](#transportista) | Información de la persona que transporta la carga
+ambiente | integer | Pruebas: `1`.<br>Producción `2`.<br>__Requerido__
+tipo_emision | integer | Emisión normal: `1`.<br>Emisión por indisponibilidad: `2`<br>__Requerido__
+destinatarios | listado de objetos tipo [destinatario](#destinatario) | Descripción de destinatarios y la mercadería transportada. __Requerido__
+version | string | Versión del formato de comprobantes electrónicos de SRI. Si no se especifica, se utilizará la última revisión del formato implementada,
 clave_acceso | string | La clave de acceso representa un identificador único del comprobante. Si esta información no es provista, Dátil la generará.<br>¿Cómo [generar](#clave-de-acceso) la clave de acceso?
 envio_sri | objeto tipo [envio sri](#envío-sri) | Información luego de enviar el comprobante.
-autorizacion | objeto tipo [autorizacion sri](#autorización-sri) | Información de la autorización.org/html/rfc3339#section-5.6).
-emisor | objeto tipo [emisor](#emisor) | Información completa del emisor. 
-moneda | string | Código [ISO](https://en.wikipedia.org/wiki/ISO_4217) de la moneda. 
-ambiente | integer | Pruebas: `1`.<br>Producción `2`.<br>
-totales | objeto tipo [totales](#totales) | Listado de totales. 
-comprador | objeto [comprador](#comprador) | Información del comprador. 
-tipo_emision | integer | Emisión normal: `1`.<br>Emisión por indisponibilidad: `2`<br>
-items | listado de objetos tipo [item](#item-de-factura) | Items incluídos en la guía de remisión.
-version | string | Versión de la especificación, opciones válidas: `1.0.0`, `1.1.0`
+autorizacion | objeto tipo [autorizacion sri](#autorización-sri) | Información de la autorización.org/html/rfc3339#section-5.6)
+informacion_adicional | objeto | Información adicional adjunta al comprobante en forma de diccionario. Ejemplo:<br>` {"email": "juan@empresa.com", "Carga asegurada por": "Securitas"}`
