@@ -1,188 +1,123 @@
 # Adafruit FONA MiniGSM
 
-In this tutorial we’ll explain how to send analog values to Ubidots using the FONA module.
+Adafruit FONA MiniGSM is "an all-in-one cellular phone module that lets you add voice, text, SMS and data to your project in an adorable little package".
 
 ## Introduction
 
-Adafruit FONA MiniGSM is "an all-in-one cellular phone module that lets you add voice, text, SMS and data to your project in an adorable little package".
+Here you will learn how to send a simple value to the Ubidots API and how to get the last value of one variable of your Ubidots account,using an Adafruit FONA device and Ubidots library.
 
 ## Components
 
+* [Arduino uno](http://arduino.cc/en/Main/ArduinoBoardUno)
+  ![Ups!](../images/devices/arduino-uno.png)
+
 * [FONA](http://www.adafruit.com/product/1963):
 	![Ups!](../images/devices/fona.png)
-    
-* A micro-controller board to manage the FONA through an UART interface. We’ll use an Arduino in this case. You can also find a [basic ArduinoFONA tutorial in Adafruit's website](http://www.adafruit.com/product/1963). The pin connection for an Arduino would look like this:
 
-	  * Vio       --> 5V (or 3V, with a 3V logic Arduino)
-	  * GND       --> GND
-    * KEY       --> GND 
-	  * FONA_RX   --> Pin 2
-	  * FONA_TX   --> Pin 3
-	  * FONA_RST  --> Pin 4
-	  
- 
-## Preparing your Ubidots Account
+* Arduino IDE 1.6.0 or higher:
+    * [Windows](https://www.arduino.cc/download_handler.php?f=/arduino-1.6.7-windows.exe)
+    * [Mac](https://www.arduino.cc/download_handler.php?f=/arduino-1.6.7-macosx.zip)
+    * [Linux 32 Bits](https://www.arduino.cc/download_handler.php?f=/arduino-1.6.7-linux32.tar.xz)
+    * [Linux 64 Bits](https://www.arduino.cc/download_handler.php?f=/arduino-1.6.7-linux64.tar.xz)
 
-Create a Data source called "FONA" and then a variable called "My Variable":
+* [Ubidots Arduino FONA library](https://github.com/ubidots/ubidots-arduino-gprs/archive/1.0.0.zip)
 
-1. [As a logged in user](http://app.ubidots.com/accounts/signin/) navigate to the "Sources" tab.
-	![Ups!](../images/devices/sources.png)
+* [Adafruit_FONA library](https://github.com/adafruit/Adafruit_FONA_Library/archive/1.3.0.zip) 
     
-2. Create a data source called "My Variable" by clicking on the orange button located in the upper right corner of the screen:
-	![Ups!](../images/devices/new-source.png)
-    
-3. Click on the created Data Source and then on "Add New Variable":
-	![Ups!](../images/devices/fona_newvar.png)
-    
-4. Repeat this process for every variable you wish to create. Take note of every variable's ID; we'll need it later to include in our code:
-	![Ups!](../images/devices/fona-id.png)
-    
-5. Create a token under "My Profile" tab. We'll need it later for our code:
-	![Ups!](../images/devices/electricimp_token.png)
-    
-## Coding
+## First steps
 
-To be able to compile this code, you'll need the FONA library for Arduino. [You can find it in Adafruit's website](https://learn.adafruit.com/adafruit-fona-mini-gsm-gprs-cellular-phone-module/arduino-test#download-adafruit-fona).
+First of all you will need to set up Ubidots_FONA and Adafruit_FONA library into Arduino IDE, for this please go to Arduino IDE click on Sketch -> Include Library -> Add .ZIP Library. Now go where you saved Ubidots_FONA and Adafruit_FONA library and select everyone.
+
+Now wire ever pin like this:
+
+    * Vio –> 5V (or 3V, if your Arduino has 3V logic)
+    * GND –> GND
+    * FONA_RX –> Pin 2
+    * FONA_TX –> Pin 3
+    * FONA_RST –> Pin 4
+    * FONA_KEY –> Pin 7
+    * FONA_PS –> Pin 8
 
 **NOTE**: Because the FONA Library is a work in progress from Adafruit, we can't guarantee that this code will always work. We'll do our best to keep it up to date following Adafruit's updates.
 
-This example updates 4 variables in Ubidots, but you can easily adapt it to fit your project's variables.
+## Examples with FONA
+
+When you have done with the first steps go to Sketch -> examples -> Ubidots_FONA and you will see two examples:
+
+### Ubidots save value
+
+This example is to save a variable value to the Ubidots API. The code inside the library is like this:
 
 ```c++
-/*
-
-  Sample code to send data from an Arduino to four Ubidots variables using the Adafruit's FONA
-
-  Components:
-  * Arduino Uno
-  * Adafruit FONA
-
-  Created 15 Jan 2015
-  This code is based on the Adafruit FONAtest Example
-  and was modified and perfeccioned by Mateo Velez - Metavix for Ubidots.
-
-  This code is in the public domain.
-
-  */
+#include <Ubidots_FONA.h>
 
 
-#include <SoftwareSerial.h>
-#include "Adafruit_FONA.h"
-#include <stdlib.h>
+#include <SoftwareSerial.h> 
+#include <Adafruit_FONA.h>
 
 
-// Pin connections:
-#define FONA_RX 2
-#define FONA_TX 3
-#define FONA_RST 4
-// Ubidots token and variables
-#define TOKEN  "CCN8FrVulRYGulPTkbaiR9Myx8qN2o"
-#define id1  "569801a77625423a8d09dc3f"
-#define id2  "568d8a0a76254218b18479ec"
-#define APN "web.colombiamovil.com.co"
+#define APN  ""  // The APN of your operator
+#define USER ""  // if your apn doesnt have username just leave it ""
+#define PASS ""  // if your apn doesnt have password just leave it ""
+#define TOKEN "Your_token_here"  // Replace it with your Ubidots token
+#define ID "Your_id_here" // Replace it with your Ubidots' variable ID
 
-
-// or comment this out & use a hardware serial port like Serial1 (see below)
-SoftwareSerial fonaSS = SoftwareSerial(FONA_TX, FONA_RX);
-Adafruit_FONA fona = Adafruit_FONA(FONA_RST);
-
-void setup() {
-  //For FONA MODULE
-  Serial.begin(115200);
-  fonaSS.begin(4800);
-  delay(2000);
+Ubidots client(TOKEN);  
   
+void setup() {
+  Serial.begin(115200);
+  delay(2000);
+  client.gprsNetwork(F(APN),F(USER),F(PASS));
 }
 
 void loop() {
-  flushSerial();
-  checkFona();
-  gprsOnFona();
-  save_value(344.32,id1);
-  float n = get_value(id2);
-  Serial.println(n);
-  delay(600);
-
-}
-void save_value(float value, char* myid){
-  uint16_t statuscode;
-  int16_t length;
-  char* url = (char *) malloc(sizeof(char) * 400);
-  char* data = (char *) malloc(sizeof(char) * 50);
-  char* val = (char *) malloc(sizeof(char) * 8);
-  String(value).toCharArray(val,9);
-  sprintf(url,"things.ubidots.com/api/v1.6/variables/%s/values?token=%s", myid, TOKEN);
-  sprintf(data,"{\"value\":%s}", val);  
-  Serial.print(F("http://"));
-  Serial.println(url);
-  Serial.println(data);
-  Serial.println(F("****"));
-  while (!fona.HTTP_POST_start(url, F("application/json"), (uint8_t *) data, strlen(data), &statuscode, (uint16_t *)&length)) {
-    Serial.println("Failed!");
-  }
-  free(url);
-  free(data);
-  free(val);
-  Serial.println(F("\n****"));
-  fona.HTTP_POST_end();
-  flushSerial();
-}
-float get_value(char* myid){
-  uint16_t statuscode;
-  int16_t length;
-  float num;
-  char* url = (char *) malloc(sizeof(char) * 400);
-  int i = 0;
-  sprintf(url,"things.ubidots.com/api/v1.6/variables/%s/values?token=%s&page_size=1", myid, TOKEN);
-  Serial.print(F("http://"));
-  Serial.println(url);
-  Serial.println(F("****"));
-  while (!fona.HTTP_GET_start(url, &statuscode, (uint16_t *)&length)) {
-    Serial.println("Failed!");
-  }
-  while(length>0){
-    while(fonaSS.available()){
-    url[i] = fonaSS.read();
-    i++;
-    length=length-1;
-    }
-    delay(10);
-  }
-  char* pch = strstr(url,"\"value\":");
-  String raw(pch);
-  int bodyPosinit =9+ raw.indexOf("\"value\":");
-  int bodyPosend = raw.indexOf(", \"timestamp\"");
-  raw.substring(bodyPosinit,bodyPosend).toCharArray(url, 10);
-  num = atof(url);
-  free(url);
-  fona.HTTP_GET_end();
-  flushSerial();
-  return num;  
-}
-void flushSerial() {
-    while (Serial.available())
-    Serial.read();
-}
-void checkFona(){
-  // See if the FONA is responding
-  if (! fona.begin(fonaSS)) {           // can also try fona.begin(Serial1)
-    Serial.println(F("Couldn't find FONA"));
-    while (1);
-  }
-  Serial.println(F("FONA is OK"));
-  //configure a GPRS APN
-  fona.setGPRSNetworkSettings(F(APN), F(""), F(""));
-}
-void gprsOnFona(){
-  while(!fona.enableGPRS(true));
-  Serial.println(F("Turn on"));
+  float value = analogRead(A0);  // Reading analog pin A0
+  client.flushSerial();
+  client.checkFona();
+  client.gprsOnFona();
+  client.saveValue(ID, value);  
+  delay(1000); 
 }
 ```
 
 
-## Wrapping it up
+### Ubidots get value
 
-In this guide we learned how to read analog inputs from the Arduino UNO and send these values through the FONA to Ubidots. After getting familiar with it, you can modify your hardware setup to send readings from any other type of sensors attached to it.
+This example is to get the last value of a variable from your Ubidots account. The code inside the library is like this:
+
+```c++
+#include <Ubidots_FONA.h>
+#include <SoftwareSerial.h> 
+#include <Adafruit_FONA.h>
+
+#define APN  ""  // The APN of your operator
+#define USER ""  // if your apn doesnt have username just leave it ""
+#define PASS ""  // if your apn doesnt have password just leave it ""
+#define TOKEN "Your_token_here"  // Replace it with your Ubidots token
+#define ID "Your_id_here" // Replace it with your Ubidots' variable ID
+
+Ubidots client(TOKEN);  
+  
+void setup() {
+  Serial.begin(115200);
+  delay(2000);
+  client.gprsNetwork(F(APN),F(USER),F(PASS));
+}
+
+void loop() {
+  client.flushSerial();
+  client.checkFona();
+  client.gprsOnFona();
+  float value = client.getValue(ID);  
+  delay(1000); 
+  Serial.println(value);
+}
+
+```
+
+## Conclusion
+
+With Ubidots_FONA library you could send a value from Arduino UNO to Ubidots API and you could get the last value of one of your variables of your Ubidots account.
 
 ## More projects...
 

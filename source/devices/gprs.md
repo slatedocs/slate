@@ -4,7 +4,7 @@ The GPRS Shield is compatible with all boards which have the same form factor (a
 
 ## Introduction
 
-Here you will learn how to send a simple or multiple values to the Ubidots API  and how to get the last value of one variable of your Ubidots account,using an Arduino GPRS shield and Ubidots library.
+Here you will learn how to send a simple or multiple values to the Ubidots API and how to get the last value of one variable of your Ubidots account,using an Arduino GPRS shield and Ubidots library.
 
 ## Components
 
@@ -21,6 +21,8 @@ Here you will learn how to send a simple or multiple values to the Ubidots API  
     * [Linux 64 Bits](https://www.arduino.cc/download_handler.php?f=/arduino-1.6.7-linux64.tar.xz)
 
 * [Ubidots Arduino GPRS library](https://github.com/ubidots/ubidots-arduino-gprs/archive/1.0.0.zip)
+
+* An active SIM card with a data plan 
 
 ## First steps
 
