@@ -68,9 +68,6 @@ Available options:
 | ``metadata`` | JSON object | Common metadata, will be sent to all future requests | |
 | ``replayInterval`` | integer | Delay between each replayed requests, in milliseconds | ``10`` |
 | ``reconnectionDelay`` | integer | number of milliseconds between reconnection attempts | ``1000`` |
-| ``loginStrategy`` | string | The username |
-| ``loginCredentials`` | JSON object | The username |
-| ``loginExpiresIn`` | string | The username | ``1h``
 
 **Notes:** the ``offlineMode`` option only accept the ``manual`` and ``auto`` values
 
@@ -106,7 +103,6 @@ If the `connect` option is set to `manual`, the callback will be called after th
 * if ``queueTTL`` is set to ``0``, requests are kept indefinitely
 * The offline buffer acts like a FIFO queue, meaning that if the ``queueMaxSize`` limit is reached, older requests are deleted and new requests are queued
 * if ``queueMaxSize`` is set to ``0``, an unlimited number of requests is kept until the buffer is flushed
-* if ``loginStrategy`` and ``loginCredentials`` are set then a login will be triggered once the connection is established.
 
 ## Offline mode
 
