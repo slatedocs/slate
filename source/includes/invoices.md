@@ -293,7 +293,7 @@ moneda | string | Código [ISO](https://en.wikipedia.org/wiki/ISO_4217) de la mo
 fecha_emision | string | Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6).
 guia_remision | string | Número de guía de remisión asociada a esta factura en formato 001-002-000000003 ([0-9]{3}-[0-9]{3}-[0-9]{9})
 ambiente | integer | Pruebas: `1`.<br>Producción `2`.<br>__Requerido__
-totales | objeto tipo [totales](#totales) | Listado de totales. __Requerido__
+totales | objeto tipo [totales](#totales-factura) | Listado de totales. __Requerido__
 comprador | objeto tipo [persona](#persona) | Información del comprador. __Requerido__
 tipo_emision | integer | Emisión normal: `1`.<br>Emisión por indisponibilidad: `2`<br>__Requerido__
 items | listado de objetos tipo [item](#item-de-factura) | Items incluídos en la factura. __Requerido__
@@ -301,6 +301,18 @@ version | string | Versión del formato de comprobantes electrónicos de SRI. Si
 clave_acceso | string | La clave de acceso representa un identificador único del comprobante. Si esta información no es provista, Dátil la generará.<br>¿Cómo [generar](#clave-de-acceso) la clave de acceso?
 informacion_adicional | objeto | Información adicional adjunta al comprobante en forma de diccionario. Ejemplo:<br>` {"plan": "Inicial", "vigencia": "1 mes"}`
 retenciones | Listado de objetos de tipo [retencion](#retencion-de-factura) | Retenciones incluídas en la factura. Caso específico de Retenciones en la Comercializadores / Distribuidores de derivados del Petróleo y Retención presuntiva de IVA a los Editores, Distribuidores y Voceadores que participan en la comercialización de periódicos y/o revistas.
+
+
+<h4 id="totales-factura">Totales</h4>
+
+Parámetro           | Tipo                    | Descripción
+------------------- | ----------------------- |-----------
+total_sin_impuestos | float | Total antes de los impuestos. __Requerido__
+descuento_adicional | float | Descuento aplicado al subtotal de la factura.
+descuento           | float | Suma de los descuentos de cada ítem y del descuento adicional. __Requerido__
+propina             | float | Propina total, llamado también servicio. __Requerido__
+importe_total       | float | Total incluyendo impuestos. __Requerido__
+impuestos           | listado de objetos [total impuesto](#total-impuesto) | Listado de impuesto totalizados. __Requerido__
 
 <!--aside class="success">
 Remember — a happy kitten is an authenticated kitten!
