@@ -205,6 +205,18 @@ version | string | Versión del formato de comprobantes electrónicos de SRI. Si
 clave_acceso | string | La clave de acceso representa un identificador único del comprobante. Si esta información no es provista, Dátil la generará.<br>¿Cómo [generar](#clave-de-acceso) la clave de acceso?
 informacion_adicional | objeto | Información adicional adjunta al comprobante en forma de diccionario. Ejemplo:<br>` {"Email": "contabilidad@empresa.com"}`
 
+#### Impuesto Retenido
+
+Parámetro                        | Tipo   | Descripción
+-------------------------------- | ------ |------------
+base_imponible                   | float  | Base imponible, máximo 2 cifras decimales. __Requerido__
+codigo                           | string | Código de [tipo de impuesto](#tipos-de-impuesto-para-la-retención). __Requerido__
+codigo_porcentaje                | string | [Código del porcentaje](#retención-iva) a aplicar dentro del tipo de impuesto __Requerido__
+porcentaje                       | float  | Porcentaje establecido para el impuesto
+valor_retenido                   | float  | Valor retenido, multiplicación de la base imponible por el porcentaje de retención, máximo 2 cifras decimales. __Requerido__
+fecha_emision_documento_sustento | string | Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6). __Requerido__
+numero_documento_sustento        | string | Número completo del documento sobre el que se aplica la retención. Ejm: 001-002-592738007
+
 <!--aside class="success">
 Remember — a happy kitten is an authenticated kitten!
 </aside-->

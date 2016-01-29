@@ -245,7 +245,7 @@ secuencial | string | Número de secuencia de la nota de débito. __Requerido__
 emisor | [emisor](#emisor) | Información completa del emisor. __Requerido__
 fecha_emision | string | Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6).
 ambiente | integer | Pruebas: `1`.<br>Producción `2`.<br>__Requerido__
-totales | objeto tipo [totales](#totales) | Listado de totales. __Requerido__
+totales | objeto tipo [totales](#totales-nota-debito) | Listado de totales. __Requerido__
 fecha_emision_documento_modificado | string | Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6). __Requerido__
 numero_documento_modificado | string | Número completo del documento que se está afectando. Normalmente facturas. Ejm: 001-002-010023098 __Requerido__
 tipo_documento_modificado | string | Códigos de [tipos de documentos](#tipos-de-documentos). __Requerido__
@@ -254,6 +254,14 @@ tipo_emision | integer | Emisión normal: `1`.<br>Emisión por indisponibilidad:
 version | string | Versión del formato de comprobantes electrónicos de SRI. Si no se especifica, se utilizará la última revisión del formato implementada,
 clave_acceso | string | La clave de acceso representa un identificador único del comprobante. Si esta información no es provista, Dátil la generará.<br>¿Cómo [generar](#clave-de-acceso) la clave de acceso?
 informacion_adicional | objeto | Información adicional adjunta al comprobante en forma de diccionario. Ejemplo:<br>` {"plan": "Inicial", "vigencia": "1 mes"}`
+
+<h4 id="totales-nota-debito">Totales</h4>
+
+Parámetro           | Tipo                    | Descripción
+------------------- | ----------------------- |-----------
+total_sin_impuestos | float | Total antes de los impuestos. __Requerido__
+importe_total       | float | Total incluyendo impuestos. __Requerido__
+impuestos           | listado de objetos [total impuesto](#total-impuesto) | Listado de impuesto totalizados. __Requerido__
 
 <!--aside class="success">
 Remember — a happy kitten is an authenticated kitten!
@@ -519,7 +527,7 @@ autorizacion | objeto tipo [autorizacion sri](#autorización-sri) | Información
 emisor | objeto tipo [emisor](#emisor) | Información completa del emisor. 
 moneda | string | Código [ISO](https://en.wikipedia.org/wiki/ISO_4217) de la moneda. 
 ambiente | integer | Pruebas: `1`.<br>Producción `2`.<br>
-totales | objeto tipo [totales](#totales) | Listado de totales. 
+totales | objeto tipo [totales](#totales-notas-de-débito) | Listado de totales. 
 comprador | objeto [comprador](#comprador) | Información del comprador. 
 tipo_emision | integer | Emisión normal: `1`.<br>Emisión por indisponibilidad: `2`<br>
 items | listado de objetos tipo [item](#item-de-factura) | Items incluídos en la nota de débito.

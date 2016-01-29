@@ -68,20 +68,6 @@ email | string | Correo electrónico. Máximo 300 caracteres. __Requerido__
 telefono | string | Teléfono.
 direccion | string | Dirección
 
-## Transportista
-
-Datos de un transportista.
-
-Parámetro | Tipo | Descripción
---------- | ---- |-----------
-razon_social | string | Razón social. Máximo 300 caracteres. __Requerido__
-identificacion | string | De 5 a 20 caracteres. __Requerido__
-tipo_identificacion | string | Ver [tabla](#tipo-de-identificación) de tipos de identificación __Requerido__
-email | string | Correo electrónico. Máximo 300 caracteres. __Requerido__
-telefono | string | Teléfono.
-direccion | string | Dirección
-placa | string | Placa del vehículo
-
 
 ## Tipo de identificación
 
@@ -94,21 +80,8 @@ VENTA A CONSUMIDOR FINAL*   | `07`
 IDENTIFICACION DELEXTERIOR* | `08`
 PLACA                       | `09`
 
-## Totales
 
-Totales de facturas y notas de crédito.
-
-Parámetro           | Tipo                    | Descripción
-------------------- | ----------------------- |-----------
-total_sin_impuestos | float | Total antes de los impuestos. __Requerido__
-descuento_adicional | float | Descuento aplicado al subtotal de la factura.
-descuento           | float | Suma de los descuentos de cada ítem y del descuento adicional. __Requerido__
-propina             | float | Propina total, llamado también servicio. __Requerido__
-importe_total       | float | Total incluyendo impuestos. __Requerido__
-impuestos           | listado de objetos [total impuesto](#impuesto-total) | Listado de impuesto totalizados. __Requerido__
-
-
-### Impuesto total
+## Total Impuesto
 
 Parámetro | Tipo | Descripción
 --------- | ---- |-----------
@@ -118,7 +91,7 @@ base_imponible | float | Base imponible.
 valor | float | Valor del total.
 
 
-### Impuesto item
+## Impuesto Item
 
 Parámetro | Tipo | Descripción
 --------- | ---- |-----------
@@ -127,50 +100,6 @@ codigo_porcentaje | string | Código del porcentaje.
 base_imponible | float | Base imponible.
 valor | float | Valor del total.
 tarifa | float | Porcentaje actual del impuesto expresado por un número entre 0.0 y 100.0
-
-
-## Impuesto Retenido
-
-Parámetro                        | Tipo   | Descripción
--------------------------------- | ------ |------------
-base_imponible                   | float  | Base imponible, máximo 2 cifras decimales. __Requerido__
-codigo                           | string | Código de [tipo de impuesto](#tipos-de-impuesto-para-la-retención). __Requerido__
-codigo_porcentaje                | string | [Código del porcentaje](#retención-iva) a aplicar dentro del tipo de impuesto __Requerido__
-porcentaje                       | float  | Porcentaje establecido para el impuesto
-valor_retenido                   | float  | Valor retenido, multiplicación de la base imponible por el porcentaje de retención, máximo 2 cifras decimales. __Requerido__
-fecha_emision_documento_sustento | string | Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6). __Requerido__
-numero_documento_sustento        | string | Número completo del documento sobre el que se aplica la retención. Ejm: 001-002-592738007
-
-
-## Destinatario
-
-Parámetro | Tipo | Descripción
---------- | ------- | -----------------
-razon_social | string | Razón social del comprador. Máximo 300 caracteres. __Requerido__
-identificacion | string | De 5 a 20 caracteres. __Requerido__
-tipo_identificacion | string | Ver [tabla](#tipo-de-identificación) de tipos de identificación __Requerido__
-email | string | Correo electrónico del destinatario.
-telefono | string | Teléfono.
-direccion | string | Dirección
-ruta | string | Ruta de transporte. Máximo 300 caracteres.
-documento_aduanero_unico | string | Máximo 20 caracteres.
-fecha_emision_documento_sustento | string | Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6). __Requerido__
-numero_documento_sustento | string | Número completo del documento que detalla la mercadería a transportar. Normalmente facturas. Ejm: 001-002-010023098 __Requerido__
-tipo_documento_sustento | string | Ver códigos de [tipos de documentos](#tipos-de-documentos). __Requerido__
-motivo_traslado | string | Motivo del traslado. Ejm: Entrega de mercadería. __Requerido__
-numero_autorizacion_documento_sustento | string | Autorización del documento de sustento.
-items | arreglo de objetos tipo [item destinatario](#item-destinatario) | Items transportados
-
-### Item destinatario
-
-Parámetro | Tipo | Descripción
---------- | ---- |-----------
-descripcion | string | Descripción del ítem. __Requerido__
-codigo_principal | string | Código alfanumérico de uso del comercio. Máximo 25 caracteres.
-codigo_auxiliar | string | Código alfanumérico de uso del comercio. Máximo 25 caracteres.
-cantidad | float | Cantidad de items. __Requerido__
-detalles_adicionales | object | Diccionario de datos de carácter adicional. Ejemplo:<br><code>{"marca": "Ferrari", "chasis": "UANEI832-NAU101"}</code>
-
 
 
 ## Envío SRI
