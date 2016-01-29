@@ -44,10 +44,10 @@ This example is to save a variable value to the Ubidots API. The code inside the
 //GPRS Shield is connected to the Software UART 
 
 #define APN "Your_apn_of_your_SIM_here" 
-#define USER "Your_username_here"  // if your apn doesnt have username just put ""
-#define PASS "Your_password_here"  // if your apn doesnt have password just put ""
-#define TOKEN "Your_token_here"  // Remplace it with your token
-#define ID "Your_id_here" // Remplace it with your variable ID
+#define USER "Your_username_here"  // If your apn doesnt have username just put ""
+#define PASS "Your_password_here"  // If your apn doesnt have password just put ""
+#define TOKEN "Your_token_here"  // Replace it with your Ubidots token
+#define ID "Your_id_here" // Replace it with your Ubidots' variable ID
 Ubidots client(TOKEN);
 
 void setup() {
@@ -59,7 +59,7 @@ void setup() {
 void loop() {
   float value = analogRead(A0);  // Reading analog pin A0
   client.saveValue(value,ID);  
-  delay(600);  // 600 milliseconds 
+  delay(1000);
 }
 ```
 
@@ -78,10 +78,10 @@ This example is to get the last value of a variable from your Ubidots account. T
 //GPRS Shield is connected to the Software UART 
 
 #define APN "Your_apn_of_your_SIM_here" 
-#define USER "Your_username_here"  // if your apn doesnt have username just put ""
-#define PASS "Your_password_here"  // if your apn doesnt have password just put ""
-#define TOKEN "Your_token_here"  // Remplace it with your token
-#define ID "Your_id_here" // Remplace it with your variable ID
+#define USER "Your_username_here"  // If your apn doesnt have username just put ""
+#define PASS "Your_password_here"  // If your apn doesnt have password just put ""
+#define TOKEN "Your_token_here"  // Replace it with your Ubidots token
+#define ID "Your_id_here" // Replace it with your Ubidots' variable ID
 
 Ubidots client(TOKEN);  
   
@@ -94,7 +94,7 @@ void setup() {
 void loop() {
   float value = client.getValue(ID);
   Serial.println(value);
-  delay(600);  // 600 milliseconds 
+  delay(1000);
   Serial.println(value);
 }
 
@@ -112,11 +112,11 @@ This example is to send multiple variables to Ubidots API, max quantity of varia
 //at 19200 bps 8-N-1
 //Computer is connected to Hardware UART
 //GPRS Shield is connected to the Software UART 
-
 #define APN "Your_apn_of_your_SIM_here" 
-#define USER "Your_username_here"  // if your apn doesnt have username just put ""
-#define PASS "Your_password_here"  // if your apn doesnt have password just put ""
-#define TOKEN "Your_token_here"  // Remplace it with your token
+#define USER "Your_username_here"  // If your apn doesnt have username just put ""
+#define PASS "Your_password_here"  // If your apn doesnt have password just put ""
+#define TOKEN "Your_token_here"  // Replace it with your Ubidots token
+#define ID "Your_id_here" // Replace it with your Ubidots' variable ID
 // You can send 1 to 10 variable at the same time
 #define ID1 "Your_id_here" // Remplace it with your variable ID
 #define ID2 "Your_id_here" // Remplace it with your variable ID
@@ -140,17 +140,17 @@ void loop() {
   float value_4 = analogRead(A3);
   float value_5 = analogRead(A4);
   float value_6 = analogRead(A5);
-  // To send a value with a context is like: (ID,value,"NAME_CONTEXT:VALUE_CONTEXT","NAME_CONTEXT_2:VALUE_CONTEXT_2")
+  // To send a value with a context is like: (ID,value,"NAME_CONTEXT:VALUE_CONTEXT","")
   // If you don't want to send any context only put "" like this (ID,value,"","")
-  // Example:
-  // client.add(ID1, value_1, "Color:Red", "Sensor:Temp");
+  // Example with context:
+  // client.add(ID1, value_1, "Lat:9.786589", "Long:1.8688797");
 
-  client.add(ID1,value_1, "name_context_1:value_context_1", "name_context_2:value_context_2"); 
-  client.add(ID2,value_2, "name_context_1:value_context_1", "name_context_2:value_context_2");
-  client.add(ID3,value_3, "name_context_1:value_context_1", "name_context_2:value_context_2");
-  client.add(ID4,value_4, "name_context_1:value_context_1", "name_context_2:value_context_2");
-  client.add(ID5,value_5, "name_context_1:value_context_1", "name_context_2:value_context_2");
-  client.add(ID6,value_6, "name_context_1:value_context_1", "name_context_2:value_context_2");
+  client.add(ID1, value_1, "Lat:9.786589", "Long:1.8688797");
+  client.add(ID2,value_2, "", "");
+  client.add(ID3,value_3, "", "");
+  client.add(ID4,value_4, "", "");
+  client.add(ID5,value_5, "", "");
+  client.add(ID6,value_6, "", "");
   client.sendAll();
 }
 ```
@@ -161,7 +161,6 @@ void loop() {
 With Ubidots_Arduino_GPRS library you could send from one to ten variables to the Ubidots API and you could get the last value of one of your variables of your Ubidots account.
 
 ## Similar projects...
-
 
 Check out other cool projects using Ubidots:
 
