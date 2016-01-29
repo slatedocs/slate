@@ -165,7 +165,7 @@ EXEMPLO DE REQUISIÇÃO
           "charge_account_id": 1,
           "cnabs": {
             "content":      "MDJSRVRPUk5PMDFDT0JSQU5DQSAgICAgICAzMTMwMDAyMjY5OTAgICA...",
-            "content_type": "plain/text"
+            "content_type": "text/plain"
             "filename":     "example.RET"
           }
         }'
