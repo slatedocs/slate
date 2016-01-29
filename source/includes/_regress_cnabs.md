@@ -196,7 +196,7 @@ Cria um CNAB de retorno inicia o processamento do arquivo.
 | Campo             | Tipo   | Comentário                                                                                                                       |
 |-------------------|--------|----------------------------------------------------------------------------------------------------------------------------------|
 | charge_account_id | string | **(requerido)** identificador da conta de cobrança em que o CNAB pertence                                                        |
-| cnabs             | string | **(requerido)** dados do arquivo CNAB de retorno. O "content" deve ser uma string com o conteúdo do arquivo codificado em Base64 |
+| cnabs             | object | **(requerido)** dados do arquivo CNAB de retorno. O "content" deve ser uma string com o conteúdo do arquivo codificado em Base64 |
 
 ## Exclusão de CNAB de retorno
 
