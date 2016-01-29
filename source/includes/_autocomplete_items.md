@@ -79,6 +79,7 @@ keywords | No | An array of keywords for this item.  Keywords are useful if you 
 url | No | A URL to directly send the user after selecting the item
 image_url | No | A URL that points to an image you'd like displayed next to some item (only applicable when url is supplied)
 description | No | A description for some item (only applicable when url is supplied)
+id | No | An arbitrary ID you would like associated with this item.  You can use this field to store your own IDs of the items to more easily access them in other API calls.
 
 ## Remove an Item
 
@@ -148,6 +149,7 @@ Parameter | Required? | Description
 --------- | ----------- | ----------
 item_name | Yes | The name of the item, as it will appear in the autocomplete suggestions
 autocomplete_section | Yes | Your autocomplete suggestions can have multiple sections like "Products" and "Search Suggestions".  This indicates which section this item is for.  See [your dashboard](/dashboard) for the section names to use.
+id | No | An arbitrary ID you optionally specified when adding the item.  If passed in, you don't need to pass in item_name.
 
 ## Modify an Item
 
@@ -247,3 +249,4 @@ keywords | No | An array of keywords for this item.  Keywords are useful if you 
 url | No | A URL to directly send the user after selecting the item
 image_url | No | A URL that points to an image you'd like displayed next to some item (only applicable when url is supplied)
 description | No | A description for some item (only applicable	when url is supplied)
+id | No | An arbitrary ID you optionally specified when adding the item.  If passed in, you don't need to pass in item_name.
