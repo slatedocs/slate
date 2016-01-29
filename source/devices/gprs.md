@@ -1,195 +1,170 @@
 # Arduino-GPRS
 
-Ubidots-Arduino-GPRS provides an example of sending data to Ubidots from the Arduino GPRS shield, which uses the SIM900 modem from SimCom.
-
 The GPRS Shield is compatible with all boards which have the same form factor (and pinout) as a standard Arduino Board. The GPRS Shield is configured and controlled via its UART using simple AT commands. Based on the SIM900 module from SIMCOM, the GPRS Shield is like a cell phone. Besides the communications features, the GPRS Shield has 12 GPIOs, 2 PWMs and an ADC.
 
-## What you'll need:
+## Introduction
+
+Here you will learn how to send a simple or multiple values to the Ubidots API  and how to get the last value of one variable of your Ubidots account,using an Arduino GPRS shield and Ubidots library.
+
+## Components
 
 * [Arduino uno](http://arduino.cc/en/Main/ArduinoBoardUno)
   ![Ups!](../images/devices/arduino-uno.png)
-  
+
 * [A GPRS shield SIM900](http://www.seeedstudio.com/depot/GPRS-Shield-V20-p-1379.html)
   ![Ups!](../images/devices/gprs.jpg)
-  
-## Preparing your Ubidots Account
 
-In your Ubidots account, create a Data source called "Arduino GPRS" and then a variable called "My Variable":
+* Arduino IDE 1.6.0 or higher:
+    * [Windows](https://www.arduino.cc/download_handler.php?f=/arduino-1.6.7-windows.exe)
+    * [Mac](https://www.arduino.cc/download_handler.php?f=/arduino-1.6.7-macosx.zip)
+    * [Linux 32 Bits](https://www.arduino.cc/download_handler.php?f=/arduino-1.6.7-linux32.tar.xz)
+    * [Linux 64 Bits](https://www.arduino.cc/download_handler.php?f=/arduino-1.6.7-linux64.tar.xz)
 
-1. [As a logged in user](http://app.ubidots.com/accounts/signin/) navigate to the "Sources" tab.
-  ![Ups!](../images/devices/sources.png)
-  
-2. Create a data source called "Arduino GPRS" by clicking on the orange button located in the upper right corner of the screen:
-  ![Ups!](../images/devices/new-source.png)
-   
-3. Click on the created Data Source and then on "Add New Variable":
-  ![Ups!](../images/devices/gprs_newvar.png)
-    
-4. Take note of the variable's ID to which you want to send data. We'll need it later to include in our code:
-  ![Ups!](../images/devices/gprs-id.png)
-    
-5. Create a token under "My Profile" tab. We'll need it later for our code:
-  ![Ups!](../images/devices/electricimp_token.png)
-    
-## Send data to Ubidots
+* [Ubidots Arduino GPRS library](https://github.com/ubidots/ubidots-arduino-gprs/archive/1.0.0.zip)
 
-Here's a quick example of how to post an analogue value to Ubidots. Please note that we use pins 7 and 8 for serial communication between the MCU and the GPRS module:
+## First steps
 
-![Ups!](../images/devices/arduino-gprs-pins.png)
-    
-After making sure you've set the right jumpers, flash this code using the Arduino IDE. Please remember to set the right token and variable IDs according to your Ubidots account:
+First of all you will need to set up the Ubidots_Arduino_GPRS library into Arduino IDE, for this please go to Arduino IDE click on Sketch -> Include Library -> Add .ZIP Library. Now go where you saved Ubidots_Arduino_GPRS library and select it.
+
+## Examples with Arduino GPRS shield
+
+When you have done with the first steps go to Sketch -> examples -> Ubidots_Arduino_GPRS and you will see three examples:
+
+### Ubidots save value
+
+This example is to save a variable value to the Ubidots API. The code inside the library is like this:
 
 ```c++
+#include <Ubidots_Arduino_GPRS.h>
+#include <SoftwareSerial.h> 
+//Serial Relay - Arduino will patch a 
+//serial link between the computer and the GPRS Shield
+//at 19200 bps 8-N-1
+//Computer is connected to Hardware UART
+//GPRS Shield is connected to the Software UART 
 
-        /*
-         Basic sketch for GPRS shield sim900
-         
-         This is a basic example to post a value on Ubidots with a simple
-         function "save_value".
-         
-         You'll need:
-         * An Arduino Uno
-         * A GPRS shield
-         
-         created 20 Aug. 2014
-         by Mateo Velez - Metavix - for Ubidots Inc.
-         
-         This example code is in the public domain.
- 
-        */
- 
-        //--------------------------------------------------------------
-        //------------------------------Libraries-----------------------
-        //--------------------------------------------------------------
-        #include <SoftwareSerial.h>
-        #include <String.h> 
-        SoftwareSerial mySerial(7, 8);                                                      //your pins to serial communication
-        int value; 
-        //-------------------------------------------------------------
-        //---------------------Ubidots Configuration-------------------
-        //-------------------------------------------------------------
-        String token = "YOUR-TOKEN";                                                        //your token to post values
-        String idvariable = "YOUR-VARIABLE-ID";                                             //ID of your variable
-        void setup()
-        {
-          
-          mySerial.begin(19200);                                                            //the GPRS baud rate   
-          Serial.begin(19200);                                                              //the serial communication baud rate   
-          delay(10000);
-        }
-         
-        void loop()
-        {
-            int value = analogRead(A0);                                                     //read pin A0 from your arduino
-            save_value(String(value));                                                      //call the save_value function
-            if (mySerial.available())
-            Serial.write(mySerial.read());
-        }
-        //this function is to send the sensor data to Ubidots, you should see the new value in Ubidots after executing this function
-        void save_value(String value)
-        {
-          int num;
-          String le;
-          String var;
-          var = "{\"value\":"+ value + "}";
-          num = var.length();
-          le = String(num);  
-          for(int i = 0;i<7;i++)
-          {
-            mySerial.println("AT+CGATT?");                                                   //this is made repeatedly because it is unstable
-            delay(2000);
-            ShowSerialData();
-          } 
-          mySerial.println("AT+CSTT=\"web.vmc.net.co\"");                                    //replace with your providers' APN
-          delay(1000); 
-          ShowSerialData(); 
-          mySerial.println("AT+CIICR");                                                      //bring up wireless connection
-          delay(3000); 
-          ShowSerialData(); 
-          mySerial.println("AT+CIFSR");                                                      //get local IP adress
-          delay(2000); 
-          ShowSerialData(); 
-          mySerial.println("AT+CIPSPRT=0");
-          delay(3000); 
-          ShowSerialData(); 
-          mySerial.println("AT+CIPSTART=\"tcp\",\"things.ubidots.com\",\"80\"");             //start up the connection
-          delay(3000); 
-          ShowSerialData(); 
-          mySerial.println("AT+CIPSEND");                                                    //begin send data to remote server
-          delay(3000);
-          ShowSerialData();
-          mySerial.print("POST /api/v1.6/variables/"+idvariable);
-          delay(100);
-          ShowSerialData();
-          mySerial.println("/values HTTP/1.1");
-          delay(100);
-          ShowSerialData();
-          mySerial.println("Content-Type: application/json");
-          delay(100);
-          ShowSerialData();
-          mySerial.println("Content-Length: "+le);
-          delay(100);
-          ShowSerialData();
-          mySerial.print("X-Auth-Token: ");
-          delay(100);
-          ShowSerialData();
-          mySerial.println(token);
-          delay(100);
-          ShowSerialData();
-          mySerial.println("Host: things.ubidots.com");
-          delay(100);
-          ShowSerialData();
-          mySerial.println();
-          delay(100);
-          ShowSerialData();
-          mySerial.println(var);
-          delay(100);
-          ShowSerialData();
-          mySerial.println();
-          delay(100);
-          ShowSerialData();
-          mySerial.println((char)26);
-          delay(7000);
-          mySerial.println(); 
-          ShowSerialData(); 
-          mySerial.println("AT+CIPCLOSE");                                                //close the communication
-          delay(1000);
-          ShowSerialData();
-        }
+#define APN "Your_apn_of_your_SIM_here" 
+#define USER "Your_username_here"  // if your apn doesnt have username just put ""
+#define PASS "Your_password_here"  // if your apn doesnt have password just put ""
+#define TOKEN "Your_token_here"  // Remplace it with your token
+#define ID "Your_id_here" // Remplace it with your variable ID
+Ubidots client(TOKEN);
 
-        void ShowSerialData()
-        {
-          while(mySerial.available()!=0)  
-          Serial.write(mySerial.read());   
-        }
+void setup() {
+  Serial.begin(19200);             // the Serial port of Arduino baud rate.  
+  client.powerUpOrDown();
+  client.setApn(APN,USER,PASS);
+}
+
+void loop() {
+  float value = analogRead(A0);  // Reading analog pin A0
+  client.saveValue(value,ID);  
+  delay(600);  // 600 milliseconds 
+}
 ```
 
-## Explanation of the functions 
 
-### save_value()
+### Ubidots get value
 
-```c+++
+This example is to get the last value of a variable from your Ubidots account. The code inside the library is like this:
 
-    boolean = ubiclient.save_value(value)
+```c++
+#include <Ubidots_Arduino_GPRS.h>
+#include <SoftwareSerial.h> 
+//Serial Relay - Arduino will patch a 
+//serial link between the computer and the GPRS Shield
+//at 19200 bps 8-N-1
+//Computer is connected to Hardware UART
+//GPRS Shield is connected to the Software UART 
+
+#define APN "Your_apn_of_your_SIM_here" 
+#define USER "Your_username_here"  // if your apn doesnt have username just put ""
+#define PASS "Your_password_here"  // if your apn doesnt have password just put ""
+#define TOKEN "Your_token_here"  // Remplace it with your token
+#define ID "Your_id_here" // Remplace it with your variable ID
+
+Ubidots client(TOKEN);  
+  
+void setup() {
+  Serial.begin(19200);             // the Serial port of Arduino baud rate.  
+  client.powerUpOrDown();
+  client.setApn(APN,USER,PASS);
+}
+
+void loop() {
+  float value = client.getValue(ID);
+  Serial.println(value);
+  delay(600);  // 600 milliseconds 
+  Serial.println(value);
+}
+
 ```
 
-|Type|Argument|Description|
-|:----:|:----:|:----:|
-|String|value|The value you wish to send to Ubidots|
+### Ubidots save multiple variables 
 
-Saves a value to Ubidots. Returns true upon success. Returns false upon error.
- 
+This example is to send multiple variables to Ubidots API, max quantity of variable is ten, in addition you could send two context inside each variable to the Ubidots API. The code inside the library is like this:
 
-## Wrapping it up
+```c++
+#include <Ubidots_Arduino_GPRS.h>
+#include <SoftwareSerial.h> 
+//Serial Relay - Arduino will patch a 
+//serial link between the computer and the GPRS Shield
+//at 19200 bps 8-N-1
+//Computer is connected to Hardware UART
+//GPRS Shield is connected to the Software UART 
 
-In this guide we learned how to read an analog input from the GPRS SIM 900 and send this value to Ubidots. After getting familiar with it, you can modify your hardware setup to send readings from any other type of sensors attached to it.
+#define APN "Your_apn_of_your_SIM_here" 
+#define USER "Your_username_here"  // if your apn doesnt have username just put ""
+#define PASS "Your_password_here"  // if your apn doesnt have password just put ""
+#define TOKEN "Your_token_here"  // Remplace it with your token
+// You can send 1 to 10 variable at the same time
+#define ID1 "Your_id_here" // Remplace it with your variable ID
+#define ID2 "Your_id_here" // Remplace it with your variable ID
+#define ID3 "Your_id_here" // Remplace it with your variable ID
+#define ID4 "Your_id_here" // Remplace it with your variable ID
+#define ID5 "Your_id_here" // Remplace it with your variable ID
+#define ID6 "Your_id_here" // Remplace it with your variable ID
+
+Ubidots client(TOKEN);  
+  
+void setup() {
+  Serial.begin(19200);             // the Serial port of Arduino baud rate.  
+  client.powerUpOrDown();
+  client.setApn(APN,USER,PASS);
+}
+
+void loop() {
+  float value_1 = analogRead(A0);
+  float value_2 = analogRead(A1);
+  float value_3 = analogRead(A2);
+  float value_4 = analogRead(A3);
+  float value_5 = analogRead(A4);
+  float value_6 = analogRead(A5);
+  // To send a value with a context is like: (ID,value,"NAME_CONTEXT:VALUE_CONTEXT","NAME_CONTEXT_2:VALUE_CONTEXT_2")
+  // If you don't want to send any context only put "" like this (ID,value,"","")
+  // Example:
+  // client.add(ID1, value_1, "Color:Red", "Sensor:Temp");
+
+  client.add(ID1,value_1, "name_context_1:value_context_1", "name_context_2:value_context_2"); 
+  client.add(ID2,value_2, "name_context_1:value_context_1", "name_context_2:value_context_2");
+  client.add(ID3,value_3, "name_context_1:value_context_1", "name_context_2:value_context_2");
+  client.add(ID4,value_4, "name_context_1:value_context_1", "name_context_2:value_context_2");
+  client.add(ID5,value_5, "name_context_1:value_context_1", "name_context_2:value_context_2");
+  client.add(ID6,value_6, "name_context_1:value_context_1", "name_context_2:value_context_2");
+  client.sendAll();
+}
+```
 
 
-## More projects...
+## Conclusion
+
+With Ubidots_Arduino_GPRS library you could send from one to ten variables to the Ubidots API and you could get the last value of one of your variables of your Ubidots account.
+
+## Similar projects...
 
 
 Check out other cool projects using Ubidots:
- 
+
 * :ref:`devices/fona`
 * :ref:`devices/arduino-wiznet`
 * :ref:`devices/dragino`
