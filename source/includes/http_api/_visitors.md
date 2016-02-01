@@ -13,7 +13,7 @@ Attribute         | Type       | Description
 :-----------------|:-----------|:-----------------
 `id`              | string     | Unique identifier for the visitor. This is the same for the same visitor regardless of the room from which the visitor was requested.
 `room_id`         | [ID][]     | ID of the room from which this room visitor resource was requested
-`is_online`       | boolean    | Whether or not the visitor is currently online in the room
+`is_present`       | boolean    | Whether or not the visitor is currently present in the room
 `session_id`      | string     | Identifier for the latest session for the visitor in this room
 `priority`        | integer     | Current priority of the visitor
 `visit_count`     | integer    | During how many distinct sessions the visitor has been active on this room.
