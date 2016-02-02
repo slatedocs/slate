@@ -83,4 +83,4 @@ Curious about what a company that lives-and-breathes monitoring (us!) uses to mo
 
 ### Talk to us about your monitoring stack
 
-Don't hesitate to [email us](mailto:apm.support@scoutapp.com) if you need to talk through your monitoring stack. Monitoring is something we know and love.
+Don't hesitate to [email us](mailto:support@scoutapp.com) if you need to talk through your monitoring stack. Monitoring is something we know and love.

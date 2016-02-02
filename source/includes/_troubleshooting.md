@@ -124,4 +124,4 @@ We're transparent about our uptime and service issues. If you appear to be exper
 
 ## Contacting Support
 
-Don't hesitate to contact us at [apm.support@scoutapp.com](mailto:support@scoutapp.com) any issues. We typically respond in a couple of hours during the business day.
+Don't hesitate to contact us at [support@scoutapp.com](mailto:support@scoutapp.com) any issues. We typically respond in a couple of hours during the business day.
