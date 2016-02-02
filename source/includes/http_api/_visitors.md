@@ -18,11 +18,11 @@ Attribute         | Type       | Description
 `priority`        | integer     | Current priority of the visitor
 `visit_count`     | integer    | During how many distinct sessions the visitor has been active on this room.
 `device_type`     | string     | Either `desktop`, `mobile` or `tablet`
-`device_screen_width`  | integer | The width resolution of the visitor's screen
-`device_screen_height` | integer | The height resolution of the visitor's screen
+`device_screen_width`  | integer | The width resolution of the visitor's screen in pixels
+`device_screen_height` | integer | The height resolution of the visitor's screen in pixels
 `browser_name`    | string     | Name of the browser which the visitor is currently using, without any version number.
 `browser_version` | string     | Version of the browser which the visitor is currently using.
-`os_name`         | string     | Name of the operating system which the visitor is using
+`os_name`         | string     | Name of the operating system which the visitor is using, without any version number.
 `os_version`      | string     | Version of the operating system which the visitor is using
 `user_agent`      | string     | User-Agent header of the visitor browser
 `ip_address`      | string     | IP address of the visitor (IPv4)
@@ -38,9 +38,9 @@ Attribute         | Type       | Description
 `original_referrer_hostname` | string | Hostname from which the visitor originally entered the room
 `original_referrer_medium` | string | Either `internal`, `search`, `email`, `social`, or `website`
 `original_referrer_source` | string | The name of the original referrer source
-`current_page_url` | string | URL of the web page at which the visitor is currently, at this room.
-`current_page_canonical_url` | string | Canonical URL of the web page at which the visitor is currently, at this room. Same than `current_page_url` if no canonical URL is available.
-`current_page_title` | string | Title of the web page at which the visitor is currently, at this room.
+`latest_page_url` | string | URL of the web page at which the visitor is currently, at this room.
+`latest_page_canonical_url` | string | Canonical URL of the web page at which the visitor is currently, at this room. Same than `latest_page_url` if no canonical URL is available.
+`latest_page_title` | string | Title of the web page at which the visitor is currently, at this room.
 `shopping_cart_currency` | string     | The currency of the visitor's shopping cart in the room, if the visitor has any, otherwise `null`. Currency is a upper-case [ISO 4217 currency code](http://www.xe.com/iso4217.php), e.g. `EUR`.
 `shopping_cart_total_value` | string  | The total value of the visitor's shopping cart in the room, if the visitor has any. Value `null` means the shopping cart is not defined. The value is presented as a decimal string, e.g. `59.00` in the currency defined by `shopping_cart_currency`.
 `shopping_cart_total_subscription_value` | string  | The total monthly subscription value of the visitor's shopping cart in the room, if the visitor has any. Value `null` means the shopping cart is not defined. The value is presented as a decimal string, e.g. `59.00` in the currency defined by `shopping_cart_currency` and <strong>per month</strong>.
