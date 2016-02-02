@@ -315,7 +315,7 @@ class FastController < ActionController::Metal
   include ScoutApm::Instruments::ActionControllerRails3Rails4Instruments
 ```
 
-This won't interfer with our regular instrumentation. Your controller-action metrics will appear under the endpoints area of Scout, just like any other controller-action.
+This won't interfere with our regular instrumentation. Your controller-action metrics will appear under the endpoints area of Scout, just like any other controller-action.
 
 ## Docker <img src="images/docker.png" style="float:right;width: 150px" />
 
