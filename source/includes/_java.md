@@ -25,7 +25,8 @@ wget https://www.dropbox.com/s/s1d6f2ydfes8fkj/scout_apm_java_20160202.jar?dl=1 
 Installation depends on your app server:
 
 ### Tomcat
-Extend `catalina.sh` startup script with the following `JAVA_OPTS`
+Extend `catalina.sh` startup script with the following `JAVA_OPTS`:
+
 ```bash
 export JAVA_OPTS="$JAVA_OPTS -javaagent:/full/path/to/scout-java-agent/scout-apm.jar"
 ```
