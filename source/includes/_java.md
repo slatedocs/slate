@@ -13,11 +13,11 @@ Scout APM has preliminary Java support for the following frameworks:
 
 ## Downloading the JAR
 
-The most recent Scout Java APM release is [available for download here](https://www.dropbox.com/s/s1d6f2ydfes8fkj/scout_apm_java_20160202.jar?dl=1) (direct download link, ~17MB).
+The most recent Scout Java APM release is [available for download here](https://www.dropbox.com/s/bzmvmq2ck8jtzhj/scout-apm.jar?dl=1) (direct download link, ~17MB).
 
   
 ```terminal  
-wget https://www.dropbox.com/s/s1d6f2ydfes8fkj/scout_apm_java_20160202.jar?dl=1  -Oscout-apm.jar
+wget https://www.dropbox.com/s/bzmvmq2ck8jtzhj/scout-apm.jar?dl=1 -Oscout-apm.jar
 ```
 
 ## Adding the JAR to your application
