@@ -20,6 +20,7 @@ API Errors
 Error Code | Meaning
 ---------- | -------
 65 | Whisper Post Failed: could not post message to whisper
+97 | Database Delete Failed
 98 | Database Write Failed
 99 | Database Read Failed
 400 | Invalid Contract Parameter: cannot send parameter to contract
