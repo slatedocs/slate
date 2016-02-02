@@ -6,8 +6,6 @@
 <?php
 $url = 'https://www.google.com/search?' . http_build_query([
     'q'    => sprintf('"%s" "%s" %s', 'Hub Plumbing & Mechanical Inc', 'New York', '212-482-8500'),
-    'rlst' => 'fn',
-    'gbv'  => 2,
 ]);
 ```
 
@@ -15,8 +13,6 @@ $url = 'https://www.google.com/search?' . http_build_query([
 <?php
 $url = 'https://www.google.com/search?' . http_build_query([
     'q'   => sprintf('"%s" "%s"', 'Pizza Hut', '67337'),
-    'rlst' => 'fn',
-    'gbv' => 2,
 ]);    
 ```
 
@@ -24,13 +20,13 @@ Google recently simplified their Google+ profile pages and removed much of the u
 
 ### Business names (in quotes) + zip code (in quotes) and phone number (without quotes)
 
-`https://www.google.com/search?q="Hub+Plumbing+%26+Mechanical+Inc"+"New+York"+212-482-8500&rlst=fn&gbv=2`
+`https://www.google.com/search?q="Hub+Plumbing+%26+Mechanical+Inc"+"New+York"+212-482-8500`
 
 ### Business name (in quotes) + zipcode (in quotes)
 
-`https://www.google.com/search?q="Pizza+Hut"+"67337"&gbv=2&rlst=fn`
+`https://www.google.com/search?q="Pizza+Hut"+"67337"`
 
-Please make sure you include &gbv=2&rlst=fn in whichever format you use. One format may work better than another for a specific business so we recommend testing both approaches to find the optimal profile URL. The code snippets on the right give examples of how to generate each type of URL.
+One format may work better than another for a specific business so we recommend testing both approaches to find the optimal profile URL. The code snippets on the right give examples of how to generate each type of URL.
 
 ## Supported Local Directories
 
