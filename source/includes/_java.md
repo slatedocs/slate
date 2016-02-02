@@ -16,7 +16,7 @@ Scout APM has preliminary Java support for the following frameworks:
 The most recent Scout Java APM release is [available for download here](https://www.dropbox.com/s/s1d6f2ydfes8fkj/scout_apm_java_20160202.jar?dl=1) (direct download link, ~17MB).
 
   
-```bash  
+```terminal  
 wget https://www.dropbox.com/s/s1d6f2ydfes8fkj/scout_apm_java_20160202.jar?dl=1  -Oscout-apm.jar
 ```
 
@@ -27,7 +27,7 @@ Installation depends on your app server:
 ### Tomcat
 Extend `catalina.sh` startup script with the following `JAVA_OPTS`:
 
-```bash
+```terminal
 export JAVA_OPTS="$JAVA_OPTS -javaagent:/full/path/to/scout-java-agent/scout-apm.jar"
 ```
 
@@ -35,7 +35,7 @@ export JAVA_OPTS="$JAVA_OPTS -javaagent:/full/path/to/scout-java-agent/scout-apm
 
 For environments using embedded containers (Spark, Vert.x, Spring Boot, Grails), just add the `-javaagent:` argument to your `java` invocation: 
  
-```bash
+```terminal
 java -jar ... -javaagent:/full/path/to/scout-java-agent/scout-apm.jar 
 ```
 
