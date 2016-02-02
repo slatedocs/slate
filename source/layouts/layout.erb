@@ -112,4 +112,12 @@ under the License.
       </div>
     </div>
   </body>
+  <script>
+    $.ajax({
+      url: "http://apm.scoutapp.com/latest_gem_version",
+      dataType: "jsonp"
+    }).success(function(response){
+      $("#latest-gem-version").html(response.version)
+    });
+  </script>
 </html>

@@ -33,42 +33,59 @@ Tailored instructions are provided within our user interface. General instructio
 
 <table class="help install">
   <tbody>
-		<tr>
+	  <tr>
       <td>
         <span class="step">1</span>
       </td>
       <td>
-				<p>Your Gemfile:</p>
-
+			  <p>Your Gemfile:</p>
 <pre>
 gem 'scout_apm'
 </pre>
 
-<p><strong>Shell:</strong></p>
+        <p><strong>Shell:</strong></p>
 
 <pre>
 bundle install
 </pre>
       </td>
-     </tr>
-     <tr>
+    </tr>
+    <tr>
      	<td><span class="step">2</span></td>
      	<td><p>Download your customized config file, placing it at <code>config/scout_apm.yml</code>.</p></td>
-     </tr>
-          <tr>
+    </tr>
+    <tr>
      	<td><span class="step">3</span></td>
      	<td><p>Deploy.</p></td>
-     </tr>
+    </tr>
  	</tbody>
- </table>
+</table>
+
 
 ## Updating to the Newest Version
 
-1. Update your Gemfile: `gem 'scout_apm', '~> 1.2', '>= 1.2.11'`
-2. Run `bundle install`
-3. Re-deploy your application
+<table class="help install">
+  <tbody>
+    <tr>
+      <td>
+        <span class="step">1</span>
+      </td>
+      <td>
+        <p>Update your Gemfile: <code>gem 'scout_apm', '~><span id="latest-gem-version">SEE CHANGELOG</span>'</code> </p>
+      </td>
+    </tr>
+    <tr>
+      <td><span class="step">2</span></td>
+      <td><p>run <code> bundle install</code></p></td>
+    </tr>
+      <tr>
+      <td><span class="step">3</span></td>
+      <td><p>Re-deploy your application.</p></td>
+    </tr>
+  </tbody>
+</table>
 
-The gem version history is [available here](https://github.com/scoutapp/scout_apm_ruby/blob/master/CHANGELOG.markdown).  
+The gem version changelog is [available here](https://github.com/scoutapp/scout_apm_ruby/blob/master/CHANGELOG.markdown).  
 
 ## Configuration Options
 
