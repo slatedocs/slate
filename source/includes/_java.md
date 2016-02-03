@@ -41,7 +41,7 @@ export JAVA_OPTS="$JAVA_OPTS -javaagent:/full/path/to/scout-apm/scout-apm.jar"
 For environments using embedded containers, just add the following `-javaagent:` argument to your `java` invocation: 
  
 ```terminal 
-java -jar -javaagent:/full/path/to/scout-apm/scout-apm.jar ... <app-name>.jar
+java -javaagent:/full/path/to/scout-apm/scout-apm.jar ... -jar <app-name>.jar
 ```
 
 ### Configuration
