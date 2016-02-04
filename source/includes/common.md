@@ -211,10 +211,10 @@ Caso específico de Retenciones en la Comercializadores / Distribuidores de deri
 
 Parámetro | Tipo | Descripción
 --------- | ---- |-----------
-codigo | string | Código del [tipo de impuesto para la retención en la factura](#tipos-de-impuesto-para-la-retención-en-la-factura) __Requerido__
-codigo_porcentaje | string | Código del [porcentaje del impuesto](#retención-de-iva-presuntivo-y-renta)
-tarifa | float | Porcentaje actual del impuesto. Máximo 3 enteros y 2 decimales.
-valor | float | Valor del impuesto. Máximo 12 enteros y 2 decimales.
+codigo | string | Código del [tipo de impuesto para la retención en la factura](#tipos-de-impuesto-para-la-retención-en-la-factura).  __Requerido__
+codigo_porcentaje | string | Código del [porcentaje del impuesto](#retención-de-iva-presuntivo-y-renta). __Requerido__
+tarifa | float | Porcentaje actual del impuesto. Máximo 3 enteros y 2 decimales.  __Requerido__
+valor | float | Valor del impuesto. Máximo 12 enteros y 2 decimales.  __Requerido__
 
 # Catálogo
 
