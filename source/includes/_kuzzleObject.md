@@ -186,8 +186,6 @@ The ID returned by this function is required if you want to remove this listener
 | ``event`` | string | One of the event described in the ``Event Handling`` section of this documentation |
 | ``listener`` | function | The function to call each time one of the registered event is fired |
 
-**Note:** Currently, the ``subscription`` object only contains the room ID, the subscription ID of the user from whom the event originate, and the current user count on this room
-
 #### Return value
 
 Returns a `string` containing an unique listener ID.
@@ -996,7 +994,7 @@ kuzzle.logout(new KuzzleResponseListener<Void>() {
 });
 ```
 
-Logout the user.
+Logs the user out.
 
 #### logout([callback])
 
@@ -1192,9 +1190,7 @@ kuzzle.removeAllListeners();
 
 Removes all listeners, either from a specific event or from all events
 
-#### removeAllListeners()
-
-#### removeAllListeners(event)
+#### removeAllListeners([event])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
