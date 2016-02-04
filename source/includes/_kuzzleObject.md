@@ -186,8 +186,6 @@ The ID returned by this function is required if you want to remove this listener
 | ``event`` | string | One of the event described in the ``Event Handling`` section of this documentation |
 | ``listener`` | function | The function to call each time one of the registered event is fired |
 
-**Note:** Currently, the ``subscription`` object only contains the room ID, the subscription ID of the user from whom the event originate, and the current user count on this room
-
 #### Return value
 
 Returns a `string` containing an unique listener ID.
@@ -996,7 +994,7 @@ kuzzle.logout(new KuzzleResponseListener<Void>() {
 });
 ```
 
-Logout the user.
+Logs the user out.
 
 #### logout([callback])
 
@@ -1011,7 +1009,6 @@ Returns the `Kuzzle` object to allow chaining.
 #### Callback response
 
 Resolves to the `Kuzzle` object itself once the logout process is complete, either successfully or not.  
-
 
 ## checkToken
 
@@ -1030,6 +1027,25 @@ kuzzle.checkTokenPromise(token)
 
 ```java
 // Not implemented yet
+```
+
+> Callback response:
+
+```json
+{
+  "action": "checkToken",
+  "controller": "auth",
+  "error": null,
+  "metadata": {},
+  "requestId": "f2480825-d613-4629-aaee-918f417c03f2",
+  "result": {
+    "expiresAt": 1454588077399,
+    "valid": true
+  },
+  "scope": null,
+  "state": "done",
+  "status": 200
+}
 ```
 
 Checks the validity of a JSON Web Token.
@@ -1052,6 +1068,64 @@ attribute. If `valid` is `true`, the response contains an `expiresAt` attribute
 containing the expiration date and time (as Epoch time). Otherwise, the response
 contains a `state` string containing the reason why the token is invalid.
 
+## whoAmI
+
+```js
+// Using callbacks (NodeJS or Web Browser)
+kuzzle.whoAmI(function (err, res) {
+  // ...
+});
+
+// Using promises (NodeJS only)
+kuzzle.whoAmIPromise()
+  .then(res => {
+    // ...
+  });
+```
+
+```java
+// Not implemented yet
+```
+
+> Callback response:
+
+```json
+{
+  "action": "getCurrentUser",
+  "controller": "auth",
+  "error": null,
+  "metadata": {},
+  "requestId": "551be8c0-3663-4741-9711-250e704f6a56",
+  "result": {
+    "_id": "test",
+    "_source": {
+      "password": "8c4a804f73b8969c4526c82b28b72b036220e447",
+      "profile": {
+        "_id": "admin",
+        "roles": []
+      }
+    }
+  },
+  "scope": null,
+  "state": "done",
+  "status": 200
+}
+```
+Retrieves current user object.
+
+#### whoAmI(callback)
+
+| Arguments | Type | Description |
+|---------------|---------|----------------------------------------|
+| ``callback`` | function | Callback handling the response |
+
+#### Return value
+
+Returns the `Kuzzle` object to allow chaining.
+
+#### Callback response
+
+Signature `error, response`. The response contains the hydrated user object.
 
 ## now
 
@@ -1233,9 +1307,7 @@ kuzzle.removeAllListeners();
 
 Removes all listeners, either from a specific event or from all events
 
-#### removeAllListeners()
-
-#### removeAllListeners(event)
+#### removeAllListeners([event])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
