@@ -1012,6 +1012,47 @@ Returns the `Kuzzle` object to allow chaining.
 
 Resolves to the `Kuzzle` object itself once the logout process is complete, either successfully or not.  
 
+
+## checkToken
+
+```js
+// Using callbacks (NodeJS or Web Browser)
+kuzzle.checkToken(token, function (err, res) {
+  // ...
+});
+
+// Using promises (NodeJS only)
+kuzzle.checkTokenPromise(token)
+  .then(res => {
+    // ...
+  });
+```
+
+```java
+// Not implemented yet
+```
+
+Checks the validity of a JSON Web Token.
+
+#### checkToken(token, callback)
+
+| Arguments | Type | Description |
+|---------------|---------|----------------------------------------|
+| ``token``    | string   | The token to check |
+| ``callback`` | function | Callback handling the response |
+
+#### Return value
+
+Returns the `Kuzzle` object to allow chaining.
+
+#### Callback response
+
+Signature `error, response`. The response object contains a boolean `valid`
+attribute. If `valid` is `true`, the response contains an `expiresAt` attribute
+containing the expiration date and time (as Epoch time). Otherwise, the response
+contains a `state` string containing the reason why the token is invalid.
+
+
 ## now
 
 ```js
