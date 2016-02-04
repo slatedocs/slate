@@ -1012,6 +1012,123 @@ Returns the `Kuzzle` object to allow chaining.
 
 Resolves to the `Kuzzle` object itself once the logout process is complete, either successfully or not.  
 
+## checkToken
+
+```js
+// Using callbacks (NodeJS or Web Browser)
+kuzzle.checkToken(token, function (err, res) {
+  // ...
+});
+
+// Using promises (NodeJS only)
+kuzzle.checkTokenPromise(token)
+  .then(res => {
+    // ...
+  });
+```
+
+```java
+// Not implemented yet
+```
+
+> Callback response:
+
+```json
+{
+  action: "checkToken",
+  controller: "auth"
+  error: null,
+  metadata: {},
+  requestId: "f2480825-d613-4629-aaee-918f417c03f2",
+  result: {
+    expiresAt: 1454588077399,
+    valid: true
+  },
+  scope: null,
+  state: "done",
+  status: 200
+}
+```
+
+Checks the validity of a JSON Web Token.
+
+#### checkToken(token, callback)
+
+| Arguments | Type | Description |
+|---------------|---------|----------------------------------------|
+| ``token``    | string   | The token to check |
+| ``callback`` | function | Callback handling the response |
+
+#### Return value
+
+Returns the `Kuzzle` object to allow chaining.
+
+#### Callback response
+
+Signature `error, response`. The response object contains a boolean `valid`
+attribute. If `valid` is `true`, the response contains an `expiresAt` attribute
+containing the expiration date and time (as Epoch time). Otherwise, the response
+contains a `state` string containing the reason why the token is invalid.
+
+## whoAmI
+
+```js
+// Using callbacks (NodeJS or Web Browser)
+kuzzle.whoAmI(function (err, res) {
+  // ...
+});
+
+// Using promises (NodeJS only)
+kuzzle.whoAmIPromise()
+  .then(res => {
+    // ...
+  });
+```
+
+```java
+// Not implemented yet
+```
+
+> Callback response:
+
+```json
+{
+  action: "getCurrentUser"
+  controller: "auth",
+  error: null,
+  metadata: {},
+  requestId: "551be8c0-3663-4741-9711-250e704f6a56",
+  result: {
+    _id: "test",
+    _source: {
+      password: "8c4a804f73b8969c4526c82b28b72b036220e447",
+      profile: {
+        _id: "admin",
+        roles: [...] // The roles associated to the profile
+      }
+    }
+  },
+  scope: null,
+  state: "done",
+  status: 200,
+}
+```
+Retrieves current user object.
+
+#### whoAmI(callback)
+
+| Arguments | Type | Description |
+|---------------|---------|----------------------------------------|
+| ``callback`` | function | Callback handling the response |
+
+#### Return value
+
+Returns the `Kuzzle` object to allow chaining.
+
+#### Callback response
+
+Signature `error, response`. The response contains the hydrated user object.
+
 ## now
 
 ```js
