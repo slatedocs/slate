@@ -6,13 +6,13 @@ Os tipos de cobrança implementados pelo Cobrato.
 
 **bank_billets (Boletos bancários)**
 
-| Campo           | Tipo    | Comentário                                                   |
-|-----------------|---------|--------------------------------------------------------------|
-| bank_code       | string  | código do banco                                              |
-| bank_name       | string  | nome do banco                                                |
-| portfolio_codes | array   | lista de códigos de portfólio do banco                       |
-| regress         | boolean | indica se para este banco é aceito ou não arquivo de retorno |
-| remittance      | boolean | indica se para este banco é aceito ou não arquivo de remessa |
+| Campo           | Tipo   | Comentário                                                       |
+|-----------------|--------|------------------------------------------------------------------|
+| bank_code       | string | código do banco                                                  |
+| bank_name       | string | nome do banco                                                    |
+| portfolio_codes | array  | lista de códigos de portfólio do banco                           |
+| regress         | array  | indica quais layouts CNAB de retorno são suportados para o banco |
+| remittance      | array  | indica quais layouts CNAB de remessa são suportados para o banco |
 
 
 ## Lista de Todos os Tipos de Cobrança
@@ -45,8 +45,8 @@ EXEMPLO DE CORPO DA RESPOSTA
           "bank_code": "001",
           "bank_name": "BancoDoBrasil",
           "portfolio_codes": [ "11", "12", "16", "17", "18", "31", "51" ],
-          "regress": true,
-          "remittance": false
+          "regress": [240],
+          "remittance": []
         },
         {
           // informações de outro banco
