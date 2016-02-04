@@ -103,7 +103,6 @@ Each batch has a "conflicts" member. Its value is an object that describes the c
     },
     "conflicts": [{
         "message": "<string>",
-        "resolution": "<optional string>",
     }]
 }
 ```
@@ -112,7 +111,7 @@ Each element will contain four members: `metadata` which will hold information o
 
 The `conflicts` member will contain an array with a list of individual conflicts that indicate what situations were found during batch preparation. This array will be empty if there were no conflicts.
 
-Each of these conflicts can be either resolved or not, this is determined by the presence of the "resolution" key. Those conflicts without it are unresolved and until all those have a resolution, the batch in general will remain in status `conflict`.
+Until conflicts are resolved by outside involvement (ie, modifying the source dataset) the batch in general will remain in status `conflict`.
 
 #### Table
 
