@@ -10,7 +10,7 @@ language_tabs:
   - shell
 
 toc_footers:
-
+  - <a href='#'>Generate API Key</a>
 
 
 search: false

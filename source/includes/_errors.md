@@ -4,9 +4,9 @@ Recruiterbox API uses standard HTTP response codes to indicate success or failur
 
 HTTP Code | Meaning
 ---------- | -------
-200 | OK - Request was successful 
+200 | OK - Request was successful
 201 | Created - The resource was created successfully.
-204 | No Content - In case of DELETE request, resource was deleted 
+204 | No Content - In case of DELETE request, resource was deleted
 400 | Bad Request -- Often missing a required parameter or specifying a wrong parameter
 401 | Unauthorized -- Your API key is wrong
 403 | Forbidden -- The resource requested is hidden for administrators only
