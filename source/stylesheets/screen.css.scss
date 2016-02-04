@@ -45,6 +45,13 @@ html, body {
   border-radius: 40px;
   width: 20px;
 }
+  
+@mixin calc($property, $expression) {
+  #{$property}: -moz-calc(#{$expression});
+  #{$property}: -webkit-calc(#{$expression});
+  #{$property}: -o-calc(#{$expression});
+  #{$property}: calc(#{$expression});
+}
 
 @mixin embossed-bg {
   background:
@@ -408,6 +415,10 @@ html, body {
   table {
     margin-bottom: 1em;
     overflow: auto;
+    display: table;
+    margin-left: 28px;
+    @include calc(width, '50% - 56px');
+    
     th,td {
       text-align: left;
       vertical-align: top;
@@ -422,10 +433,6 @@ html, body {
 
     td {
       padding: 10px;
-    }
-    
-    tr td:last-of-type {
-      width: 100%;
     }
 
     tr:last-child {
