@@ -22,7 +22,7 @@ Regarding the motion engine subsystem a number of commands exist, which are list
 #define DisableAllStreaming 0x0F //disables all the streaming options in the motion engine
 #define ResetTimeStamp  0x10 //resets the timestamp value to 0
 #define FingerGesture   0x11 //detects finger swipe patterns, when Neblina is attached to a finger
-#define RotationInfo    0x12 //streaming device rotation information: number of rotations, and round per minute (rpm) speed
+#define RotationInfo    0x12 //streaming device rotation information: number of rotations, and speed in rpm
 ```
 Note that the above commands are placed within the header section of the packet in Byte#3.
 
