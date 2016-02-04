@@ -82,11 +82,8 @@ html, body {
   // This is the logo at the top of the ToC
   &>img {
     display: block;
-<<<<<<< HEAD
     margin: 0 auto;
-=======
     max-width: 100%;
->>>>>>> refs/remotes/upstream/master
   }
 
   &>.search {
@@ -629,3 +626,4 @@ html, body {
   %right-col + %left-col {
     margin-top: $main-padding;
   }
+}
