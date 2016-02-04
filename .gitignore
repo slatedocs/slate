@@ -21,4 +21,7 @@ build/
 .yardoc
 _yardoc
 doc/
+<<<<<<< HEAD
+.idea/.ruby-version
+.ruby-version
 .idea/

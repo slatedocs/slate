@@ -82,6 +82,7 @@ html, body {
   // This is the logo at the top of the ToC
   &>img {
     display: block;
+    margin: 0 auto;
     max-width: 100%;
   }
 
@@ -422,6 +423,15 @@ html, body {
 
     td {
       padding: 10px;
+
+      p {
+        margin: 0;
+        line-height: 1.0;
+      }
+    }
+
+    tr strong{
+      display: block;
     }
 
     tr:last-child {
@@ -562,6 +572,12 @@ html, body {
   }
 }
 
+.index {
+  h1 {
+    width: 100%;
+  }
+}
+
 ////////////////////////////////////////////////////////////////////////////////
 // RESPONSIVE DESIGN
 ////////////////////////////////////////////////////////////////////////////////
@@ -616,12 +632,4 @@ html, body {
   %right-col + %left-col {
     margin-top: $main-padding;
   }
-}
-
-.highlight .c, .highlight .cm, .highlight .c1, .highlight .cs {
-  color: #909090;
-}
-
-.highlight, .highlight .w {
-  background-color: $code-bg;
 }
