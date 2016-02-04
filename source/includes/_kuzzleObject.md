@@ -967,7 +967,7 @@ Returns the `Kuzzle` object to allow chaining.
 #### Callback response
 
 Resolves to the `Kuzzle` object itself once the login process is complete, either successfully or not.  
-The `Kuzzle` object will have the property `jwtToken` filled if login success.
+The `Kuzzle` object will have the property `jwtToken` filled if logging in succeeds.
 If no callback is provided and if the login attempt fails, an error is thrown.
 
 ## logout
@@ -1007,7 +1007,7 @@ Logout the user.
 |---------------|---------|----------------------------------------|
 | ``callback`` | function | Optional callback handling the response |
 
-The logout method will revoke availability of `jwtToken`
+This method empties the `jwtToken` property
 
 #### Return value
 
@@ -1016,7 +1016,7 @@ Returns the `Kuzzle` object to allow chaining.
 #### Callback response
 
 Resolves to the `Kuzzle` object itself once the logout process is complete, either successfully or not.  
-The `Kuzzle` object will unset the property `jwtToken` if logout success.
+The `Kuzzle` object will unset the property `jwtToken` if the user is successfully logged out.
 
 
 ## setJwtToken
@@ -1050,12 +1050,12 @@ var jwtToken = kuzzle.getJwtToken();
 ```
 
 ```java
-String jwtToken = kuzzle.setJwtToken("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWV9.TJVA95OrM7E2cBab30RMHrHDcEfxjoYZgeFONFh7HgQ");
+String jwtToken = kuzzle.getJwtToken();
 ```
 
 Get internal jwtToken used to request kuzzle.
 
-#### setJwtToken(jwtToken)
+#### getJwtToken()
 
 #### Return value
 
