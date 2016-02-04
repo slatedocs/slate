@@ -205,6 +205,17 @@ precio_total_sin_impuestos | float | Precio antes de los impuestos. Se obtiene m
 impuestos | listado de objetos tipo [impuesto item](#impuesto-item) | Impuestos grabados sobre el producto. __Requerido__
 detalles_adicionales | object | Diccionario de datos de carácter adicional. Ejemplo:<br><code>{"marca": "Ferrari", "chasis": "UANEI832-NAU101"}</code>
 
+<h2 id="retencion-de-factura">Retención en factura </h2>
+
+Caso específico de Retenciones en la Comercializadores / Distribuidores de derivados del Petróleo y Retención presuntiva de IVA a los Editores, Distribuidores y Voceadores que participan en la comercialización de periódicos y/o revistas.
+
+Parámetro | Tipo | Descripción
+--------- | ---- |-----------
+codigo | string | Código del [tipo de impuesto para la retención en la factura](#tipos-de-impuesto-para-la-retención-en-la-factura) __Requerido__
+codigo_porcentaje | string | Código del [porcentaje del impuesto](#retención-de-iva-presuntivo-y-renta)
+tarifa | float | Porcentaje actual del impuesto. Máximo 3 enteros y 2 decimales.
+valor | float | Valor del impuesto. Máximo 12 enteros y 2 decimales.
+
 # Catálogo
 
 ## Tipos de impuesto
@@ -222,6 +233,18 @@ Impuesto | Código
 RENTA    | 1
 IVA      | 2
 ISD      | 6
+
+## Tipos de impuesto para la retención en la factura
+
+Caso específico de Retenciones en la Comercializadores / Distribuidores de derivados del
+Petróleo y Retención presuntiva de IVA a los Editores, Distribuidores y Voceadores que
+participan en la comercialización de periódicos y/o revistas.
+
+Impuesto                  | Código
+------------------------- | ------
+IVA PRESUNTIVO Y RENTA    | 4
+
+
 
 ## Retención de IVA
 
@@ -250,6 +273,29 @@ Porcentaje IVA | Código
 Porcentaje IVA | Código
 -------------- | ------
 5%             | 4580
+
+
+## Retención de IVA Presuntivo y Renta
+
+Caso específico de Retenciones en la Comercializadores / Distribuidores de derivados del
+Petróleo y Retención presuntiva de IVA a los Editores, Distribuidores y Voceadores que
+participan en la comercialización de periódicos y/o revistas.
+
+__Retención IVA__
+
+Porcentaje IVA presuntivo                               | Código
+--------------------------------------------------------| ------
+100%                                                    | 3
+12%  (Editores a Margen de Comercialización Voceadores) | 4
+100% (Venta periódicos y/o Revistas a Distribuidores)   | 5
+100% (Venta periódicos y/o Revistas a Voceadores)       | 6
+
+__Retención Renta__
+
+Porcentaje Renta | Código
+---------------- | ------
+0.2%             | 327
+0.3%             | 328
 
 
 ## Tipos de documentos
