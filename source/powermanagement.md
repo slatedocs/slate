@@ -33,7 +33,7 @@ temperature = round(x*100)
 ```
 where x is the actual temperature in Celsius degrees. Hence, we have:
 
-Byte#8: temperature, Least Significant Byte (LSB)
-Byte#9: temperature, Most Significant Byte (MSB)
+##### Byte#8: temperature, Least Significant Byte (LSB)
+##### Byte#9: temperature, Most Significant Byte (MSB)
 
 All other bytes are reserved in the data section.
