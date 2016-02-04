@@ -1031,6 +1031,25 @@ kuzzle.checkTokenPromise(token)
 // Not implemented yet
 ```
 
+> Callback response:
+
+```json
+{
+  action: "checkToken",
+  controller: "auth"
+  error: null,
+  metadata: {},
+  requestId: "f2480825-d613-4629-aaee-918f417c03f2",
+  result: {
+    expiresAt: 1454588077399,
+    valid: true
+  },
+  scope: null,
+  state: "done",
+  status: 200
+}
+```
+
 Checks the validity of a JSON Web Token.
 
 #### checkToken(token, callback)
@@ -1070,6 +1089,30 @@ kuzzle.whoAmIPromise()
 // Not implemented yet
 ```
 
+> Callback response:
+
+```json
+{
+  action: "getCurrentUser"
+  controller: "auth",
+  error: null,
+  metadata: {},
+  requestId: "551be8c0-3663-4741-9711-250e704f6a56",
+  result: {
+    _id: "test",
+    _source: {
+      password: "8c4a804f73b8969c4526c82b28b72b036220e447",
+      profile: {
+        _id: "admin",
+        roles: [...] // The roles associated to the profile
+      }
+    }
+  },
+  scope: null,
+  state: "done",
+  status: 200,
+}
+```
 Retrieves current user object.
 
 #### whoAmI(callback)
