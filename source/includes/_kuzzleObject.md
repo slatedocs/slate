@@ -73,7 +73,7 @@ Available options:
 
 #### Callback response
 
-If the connection succeeds, resolves to the `Kuzzle` object itself.    
+If the connection succeeds, resolves to the `Kuzzle` object itself.
 If the `connect` option is set to `manual`, the callback will be called after the `connect` method is resolved.
 
 ## Properties
@@ -942,7 +942,6 @@ kuzzle.login("local", "username", "password", 30000, new KuzzleResponseListener<
 });
 ```
 
-
 Log a user according to the strategy and credentials.
 
 #### login(strategy, credentials, [expiresIn], [callback])
@@ -956,6 +955,9 @@ Log a user according to the strategy and credentials.
 
 **Note:** If the ``expiresIn`` argument is not set, the default token expiration value will be taken from the Kuzzle server configuration.
 
+By default, kuzzle embed the plugin [kuzzle-plugin-auth-passport-local](https://github.com/kuzzleio/kuzzle-plugin-auth-passport-local) which provide `local` stored password authentication strategy.
+This strategy require `username` and `password` as `credentials`
+
 #### Return value
 
 Returns the `Kuzzle` object to allow chaining.
@@ -963,6 +965,7 @@ Returns the `Kuzzle` object to allow chaining.
 #### Callback response
 
 Resolves to the `Kuzzle` object itself once the login process is complete, either successfully or not.  
+The `Kuzzle` object will have the property `jwtToken` filled if logging in succeeds.
 If no callback is provided and if the login attempt fails, an error is thrown.
 
 ## logout
@@ -1002,6 +1005,8 @@ Logs the user out.
 |---------------|---------|----------------------------------------|
 | ``callback`` | function | Optional callback handling the response |
 
+This method empties the `jwtToken` property
+
 #### Return value
 
 Returns the `Kuzzle` object to allow chaining.
@@ -1009,6 +1014,51 @@ Returns the `Kuzzle` object to allow chaining.
 #### Callback response
 
 Resolves to the `Kuzzle` object itself once the logout process is complete, either successfully or not.  
+The `Kuzzle` object will unset the property `jwtToken` if the user is successfully logged out.
+
+
+## setJwtToken
+
+```js
+kuzzle.setJwtToken("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWV9.TJVA95OrM7E2cBab30RMHrHDcEfxjoYZgeFONFh7HgQ");
+```
+
+```java
+kuzzle.setJwtToken("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWV9.TJVA95OrM7E2cBab30RMHrHDcEfxjoYZgeFONFh7HgQ");
+```
+
+Set internal jwtToken which will be used to request kuzzle.
+Used to restore previous kuzzle logged connection.
+
+#### setJwtToken(jwtToken)
+
+| Arguments | Type | Description |
+|---------------|---------|----------------------------------------|
+| ``jwtToken`` | string | Previously generated JSON Web Token |
+
+#### Return value
+
+Returns the `Kuzzle` object to allow chaining.
+
+
+## getJwtToken
+
+```js
+var jwtToken = kuzzle.getJwtToken();
+```
+
+```java
+String jwtToken = kuzzle.getJwtToken();
+```
+
+Get internal jwtToken used to request kuzzle.
+
+#### getJwtToken()
+
+#### Return value
+
+Returns the `jwtToken` property to export previous kuzzle logged connection.
+
 
 ## checkToken
 
