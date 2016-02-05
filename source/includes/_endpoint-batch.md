@@ -73,7 +73,7 @@ A GET on this resource returns a Shoji Entity describing the batch, and a link t
     "conflicts": {},
     "source_children": {},
     "target_children": {},
-    
+
     "source_columns": 3500,
     "source_rows": 235490,
     "target_columns": 3499,
@@ -87,7 +87,7 @@ A GET on this resource returns a Shoji Entity describing the batch, and a link t
 
 #### The conflicts object
 
-Each batch has a "conflicts" member. Its value is an object that describes the conflicts found on each variable. It consists on an object keyed by variable ID. The value for each of these variables is as follows:
+Each batch has a "conflicts" member describing any unresolvable differences found between variables in the two datasets. On a successful append, this object will be empty; if the batch status is "conflict", the object will contain conflict information keyed by id of the variable in the target dataset. The conflict data for each variable follows this shape:
 
 ```json
 {
@@ -103,16 +103,13 @@ Each batch has a "conflicts" member. Its value is an object that describes the c
     },
     "conflicts": [{
         "message": "<string>",
-        "resolution": "<optional string>",
     }]
 }
 ```
 
-Each element will contain four members: `metadata` which will hold information of the variable on the target dataset (unless it is a variable that only exists on the source dataset), `source_id` and `source_metadata`, which describe the corresponding variable in the source frame (if any), and a `conflicts` member.
+Each conflict has four attributes: `metadata` about the variable on the target dataset (unless it is a variable that only exists on the source dataset), `source_id` and `source_metadata`, which describe the corresponding variable in the source frame (if any), and a `conflicts` member. The `conflicts` member contains an array with a list of individual conflicts that indicate what situations were found during batch preparation. 
 
-The `conflicts` member will contain an array with a list of individual conflicts that indicate what situations were found during batch preparation. This array will be empty if there were no conflicts.
-
-Each of these conflicts can be either resolved or not, this is determined by the presence of the "resolution" key. Those conflicts without it are unresolved and until all those have a resolution, the batch in general will remain in status `conflict`.
+If there are conflicts in your batch, address the conflicting issues in your datasets, DELETE the batch entity from the failed append attempt, and POST a new one.
 
 #### Table
 
