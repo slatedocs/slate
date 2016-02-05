@@ -31,18 +31,15 @@ GET the new Batch:
     --------
     200 OK
     Content-Type: application/shoji
-    
+
     {
         "element": "shoji:entity",
-        ...
         "body": {
-            ...,
             "conflicts": {
               "cdbd11/": {
-                "metadata": {...}
+                "metadata": {}
                 "conflicts": [{
-                  "message": "Categories do not match",
-                  "resolution": "Union of categories will be used."
+                  "message": "Types do not match and cannot be converted",
                 }]
               }
             }
@@ -50,9 +47,9 @@ GET the new Batch:
     }
 ```
 
-If any variable conflicts, it will possess one or more "conflicts" members. For example, if the new variable "cdbd11" had extra categories or was missing some categories compared to the existing variable "cdbd11", the Batch resource would contain the above message and resolution. Variables which have no conflicts will still report their metadata but have `"conflicts": []`.
+If any variable conflicts, it will possess one or more "conflicts" members. For example, if the new variable "cdbd11" had a different type that could not be converted compared to the existing variable "cdbd11", the Batch resource would contain the above message.  Only unresolvable conflicts will be shown; if a variable is not reported in the conflicts object, it appended cleanly.
 
-The Crunch system will have done its best to resolve such conflicts for you. When it cannot, each Conflict object will likely only contain a "message" member. If it has resolved the conflict, it will add a "resolution" member.
+See [Batches](#batches) for more details on batch entities and conflicts.
 
 ### Streaming rows
 
