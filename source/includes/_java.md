@@ -30,10 +30,26 @@ Installation depends on your app server:
 
 ### Tomcat
 
-Extend `catalina.sh` startup script with the following `JAVA_OPTS`:
+Add the following to your `setenv.sh` file (and ensure `setenv.sh` is included from `catalina.sh`):
 
 ```terminal
 export JAVA_OPTS="$JAVA_OPTS -javaagent:/full/path/to/scout-apm/scout-apm.jar"
+```
+
+* Of course, you can include the `export JAVA_OPTS` directly in your `catalina.sh`, but it's recommended to keep your additions in a separate file.  
+* If you're using Windows, edit the settings in the Service Helper instead.
+
+## Karaf:
+
+Karaf also has a `setenv.[sh|bat]` file -- see Tomcat instructions above.
+
+If you run Karaf as a service, youll need to alter `karaf-wrapper.conf` and add lines like:
+   
+```terminal   
+# Scout app monitoring
+wrapper.java.additional.16=-DAPP_ENV=staging
+wrapper.java.additional.17=-javaagent:d:/path/to/scout-apm.jar
+# (16 and 17 are "the next free" numbers in the config file)
 ```
 
 ### Embedded Containers
