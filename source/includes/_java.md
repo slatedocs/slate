@@ -39,7 +39,7 @@ export JAVA_OPTS="$JAVA_OPTS -javaagent:/full/path/to/scout-apm/scout-apm.jar"
 * Of course, you can include the `export JAVA_OPTS` directly in your `catalina.sh`, but it's recommended to keep your additions in a separate file.  
 * If you're using Windows, edit the settings in the Service Helper instead.
 
-## Karaf:
+### Karaf
 
 Karaf also has a `setenv.[sh|bat]` file -- see Tomcat instructions above.
 
