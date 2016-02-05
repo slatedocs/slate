@@ -18,7 +18,7 @@ For example: `9ae65e7d-56c5-11e5-af8d-6c4008c08dfe`
 
 ```json
 {
-  "next": "https://service.giosg.com/api/v5/examples?page=2",
+  "next": "https://service.giosg.com/api/v5/examples?cursor=da965a3ea0164c8ab8baef1d4654e2d3",
   "previous": null,
   "results": [
     {"name": "Example Resource 1"},
