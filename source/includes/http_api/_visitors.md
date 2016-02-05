@@ -31,11 +31,11 @@ Attribute         | Type       | Description
 `geo_country_code`| string     | The best guess about the country where the visitor is currently located. This is usually resolved from their IP address. This is a upper-case, two-letter ISO 3166-1 country code
 `geo_country`     | string     | The country as in `country_code`, but represented as the name of the country.
 `referrer_url`    | string     | The full URL from which the visitor entered the room during this session
-`referrer_hostname` | string   | Hostname from which the visitor entered the room during this session
+`referrer_url_hostname` | string   | Hostname from which the visitor entered the room during this session
 `referrer_medium`   | string   | Either `internal`, `search`, `email`, `social`, or `website`
 `referrer_source`   | string   | The name of the referrer source
 `original_referrer_url` | string | The full URL from which the visitor originally entered the room
-`original_referrer_hostname` | string | Hostname from which the visitor originally entered the room
+`original_referrer_url_hostname` | string | Hostname from which the visitor originally entered the room
 `original_referrer_medium` | string | Either `internal`, `search`, `email`, `social`, or `website`
 `original_referrer_source` | string | The name of the original referrer source
 `latest_page_url` | string | URL of the web page at which the visitor is currently, at this room.
