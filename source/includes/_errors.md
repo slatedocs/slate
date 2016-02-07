@@ -49,6 +49,7 @@ Error Code | Meaning
 599 | RPC Timeout: timed out while waiting for Ethereum network response
 650 | Loopback Not Found: loopback interface required for synchronous local commands
 651 | Ethereum Not Found: no active Ethereum node(s) found
+700 | Root Not Found: no LS-LMSR objectve function solution found
 
 Contract Errors
 ---------------
