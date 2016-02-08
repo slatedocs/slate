@@ -38,7 +38,7 @@ Any changes to chats are notified to the following [channels][]:
 
 Channel | Description
 --------|------------
-`/api/v5/client/visitors/<visitor_id>/chats` | For each visitor of the chat
+`/api/v5/public/visitors/<visitor_id>/chats` | For each visitor of the chat
 `/api/v5/orgs/<organization_id>/users/<user_id>/chats` | For each user [member of the chat][chat membership]
 `/api/v5/orgs/<organization_id>/rooms/<room_id>/chats` | For the chat parent room chat collection and each organization having access to that room
 
@@ -152,8 +152,8 @@ Changes to chat memberships are notified to the following [channels][]:
 
 Channels    | Description
 ------------|---------------
-`/api/v5/client/visitors/<visitor_id>/chats/<chat_id>/memberships` | For each visitor of the chat
-`/api/v5/client/visitors/<visitor_id>/chats_memberships` | For the chat member, if a visitor
+`/api/v5/public/visitors/<visitor_id>/chats/<chat_id>/memberships` | For each visitor of the chat
+`/api/v5/public/visitors/<visitor_id>/chats_memberships` | For the chat member, if a visitor
 `/api/v5/orgs/<organization_id>/users/<user_id>/chats/<chat_id>/memberships` | For each user member of the chat
 `/api/v5/orgs/<organization_id>/rooms/<room_id>/chats/<chat_id>/memberships` | For the related room and each organization having access to that room
 `/api/v5/orgs/<organization_id>/users/<user_id>/chat_memberships` | For the chat member, if a user
@@ -318,7 +318,7 @@ Any changes to chat messages are notified to the following [channels][]:
 
 Channel | Description
 --------|------------
-`/api/v5/client/visitors/<visitor_id>/chats/<chat_id>/messages` | For each visitor of the chat
+`/api/v5/public/visitors/<visitor_id>/chats/<chat_id>/messages` | For each visitor of the chat
 `/api/v5/orgs/<organization_id>/users/<user_id>/chats/<chat_id>/messages` | For each member and currently present user of the chat
 `/api/v5/orgs/<organization_id>/rooms/<room_id>/chats/<chat_id>/messages` | For the chat parent room chat collection and each organization having access to that room
 

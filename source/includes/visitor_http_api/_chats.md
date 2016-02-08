@@ -30,7 +30,7 @@ Any changes to chats are notified to the following [channels][]:
 
 Channel | Description
 --------|------------
-`/api/v5/client/visitors/<visitor_id>/chats` | For each visitor of the chat
+`/api/v5/public/visitors/<visitor_id>/chats` | For each visitor of the chat
 `/api/v5/orgs/<organization_id>/users/<user_id>/chats` | For each user [member of the chat][chat membership]
 `/api/v5/orgs/<organization_id>/rooms/<room_id>/chats` | For the chat parent room chat collection and each organization having access to that room
 
@@ -38,11 +38,11 @@ Channel | Description
 
 You can get a list of all chats of the visitor.
 
-    GET https://service.giosg.com/api/v5/client/visitors/3803737880ec4dedb7eee63a860bfff2/chats
+    GET https://service.giosg.com/api/v5/public/visitors/3803737880ec4dedb7eee63a860bfff2/chats
 
 ```json
 {
-  "next": "https://service.giosg.com/api/v5/client/visitors/3803737880ec4dedb7eee63a860bfff2/chats?cursor=48d7ca8d5a394ff99a32720ccf7893bd",
+  "next": "https://service.giosg.com/api/v5/public/visitors/3803737880ec4dedb7eee63a860bfff2/chats?cursor=48d7ca8d5a394ff99a32720ccf7893bd",
   "previous": null,
   "results": [
     {
@@ -67,7 +67,7 @@ You can get a list of all chats of the visitor.
 }
 ```
 
-`GET /api/v5/client/visitors/<visitor_id>/chats`
+`GET /api/v5/public/visitors/<visitor_id>/chats`
 
 This API endpoint returns a [paginated collection][]. They are sorted by the creation time of the chats, in ascending order.
 
@@ -75,7 +75,7 @@ This API endpoint returns a [paginated collection][]. They are sorted by the cre
 
 Start a new chat with a visitor in the given room.
 
-`POST /api/v5/client/visitors/<visitor_id>/rooms/<room_id>/chats`
+`POST /api/v5/public/visitors/<visitor_id>/rooms/<room_id>/chats`
 
 The visitor will automatically be added as member of the chat by creating a [chat membership][] resource.
 
@@ -110,8 +110,8 @@ Changes to chat memberships are notified to the following [channels][]:
 
 Channels    | Description
 ------------|---------------
-`/api/v5/client/visitors/<visitor_id>/chats/<chat_id>/memberships` | For each visitor of the chat
-`/api/v5/client/visitors/<visitor_id>/chats_memberships` | For the chat member, if a visitor
+`/api/v5/public/visitors/<visitor_id>/chats/<chat_id>/memberships` | For each visitor of the chat
+`/api/v5/public/visitors/<visitor_id>/chats_memberships` | For the chat member, if a visitor
 `/api/v5/orgs/<organization_id>/users/<user_id>/chats/<chat_id>/memberships` | For each user membership of the chat
 `/api/v5/orgs/<organization_id>/rooms/<room_id>/chats/<chat_id>/memberships` | For the related room and each organization having access to that room
 `/api/v5/orgs/<organization_id>/users/<user_id>/chat_memberships` | For the chat member, if a user
@@ -127,11 +127,11 @@ In addition, chat members affect the following attributes of a [chat][], notifyi
 
 ### List chat memberships
 
-    GET https://service.giosg.com/api/v5/client/visitors/3b90ef7c93484af4965a79ace7bc9a62/chats/58f5055c-56e0-11e5-9354-6c4008c08dfe/memberships
+    GET https://service.giosg.com/api/v5/public/visitors/3b90ef7c93484af4965a79ace7bc9a62/chats/58f5055c-56e0-11e5-9354-6c4008c08dfe/memberships
 
 ```json
 {
-  "next": "https://service.giosg.com/api/v5/client/visitors/3b90ef7c93484af4965a79ace7bc9a62/chats/58f5055c-56e0-11e5-9354-6c4008c08dfe/memberships?cursor=45d9e7358e1249c491b4fa0212310f55",
+  "next": "https://service.giosg.com/api/v5/public/visitors/3b90ef7c93484af4965a79ace7bc9a62/chats/58f5055c-56e0-11e5-9354-6c4008c08dfe/memberships?cursor=45d9e7358e1249c491b4fa0212310f55",
   "previous": null,
   "results": [
     {
@@ -167,7 +167,7 @@ In addition, chat members affect the following attributes of a [chat][], notifyi
 
 You may get a [paginated collection][] of all memberships of a chat.
 
-`GET /api/v5/client/visitors/<visitor_id>/chats/<chat_id>/memberships`
+`GET /api/v5/public/visitors/<visitor_id>/chats/<chat_id>/memberships`
 
 Returns 404 if the chat is not one of the visitor's chats.
 
@@ -175,14 +175,14 @@ Returns 404 if the chat is not one of the visitor's chats.
 
 As an alternative to list a visitor's _chats_, you can also list a visitor's *chat memberships* as a [paginated collection][]. This includes each chat membership object that represents the visitor in each of his chats.
 
-`GET /api/v5/client/visitors/<visitor_id>/chat_memberships`
+`GET /api/v5/public/visitors/<visitor_id>/chat_memberships`
 
 
 ### Change visitor chat status
 
 > Example request for making the visitor typing at the chat
 
-    PUT /api/v5/client/visitors/5cd16aaf35d6488094a5f160afa29767/chat_memberships/e9f4c403-0d0f-4bb8-9883-8f2eb5c9079b
+    PUT /api/v5/public/visitors/5cd16aaf35d6488094a5f160afa29767/chat_memberships/e9f4c403-0d0f-4bb8-9883-8f2eb5c9079b
 
 > Example request payload
 
@@ -197,7 +197,7 @@ The participation status should be refreshed when the visitor opens or closes a 
 
 You can change the chat status of the visitor:
 
-`PUT /api/v5/client/visitors/<visitor_id>/chat_memberships/<chat_id>`
+`PUT /api/v5/public/visitors/<visitor_id>/chat_memberships/<chat_id>`
 
 
 ## Chat messages
@@ -219,7 +219,7 @@ Any changes to chat messages are notified to the following [channels][]:
 
 Channel | Description
 --------|------------
-`/api/v5/client/visitors/<visitor_id>/chats/<chat_id>/messages` | For each visitor of the chat
+`/api/v5/public/visitors/<visitor_id>/chats/<chat_id>/messages` | For each visitor of the chat
 `/api/v5/orgs/<organization_id>/users/<user_id>/chats/<chat_id>/messages` | For each member and currently present user of the chat
 `/api/v5/orgs/<organization_id>/rooms/<room_id>/chats/<chat_id>/messages` | For the chat parent room chat collection and each organization having access to that room
 
@@ -236,11 +236,11 @@ In addition, sending chat messages affect the following attributes of a [chat me
 
 ### List chat messages
 
-    GET https://service.giosg.com/api/v5/client/visitors/f7a5a3b83d2e40dfb0dedd6c0e284214/chats/450fc49e-277e-4dd6-af0f-6e9dcb885b09/messages
+    GET https://service.giosg.com/api/v5/public/visitors/f7a5a3b83d2e40dfb0dedd6c0e284214/chats/450fc49e-277e-4dd6-af0f-6e9dcb885b09/messages
 
 ```json
 {
-  "next": "https://service.giosg.com/api/v5/client/visitors/f7a5a3b83d2e40dfb0dedd6c0e284214/chats/450fc49e-277e-4dd6-af0f-6e9dcb885b09/messages?cursor=171cfd0d7ce542be86221f01d2823cb1",
+  "next": "https://service.giosg.com/api/v5/public/visitors/f7a5a3b83d2e40dfb0dedd6c0e284214/chats/450fc49e-277e-4dd6-af0f-6e9dcb885b09/messages?cursor=171cfd0d7ce542be86221f01d2823cb1",
   "previous": null,
   "results": [
     {
@@ -284,11 +284,11 @@ In addition, sending chat messages affect the following attributes of a [chat me
 
 Get the collection of all chat messages in the given chat.
 
-`GET /api/v5/client/visitors/<visitor_id>/chats/<chat_id>/messages`
+`GET /api/v5/public/visitors/<visitor_id>/chats/<chat_id>/messages`
 
 ### Send a chat message
 
-    POST https://service.giosg.com/api/v5/client/visitors/be82243cf82540c49a629543022a3de2/chats/4a591004-4c18-4260-bbb4-fc9f9f9a048d/messages
+    POST https://service.giosg.com/api/v5/public/visitors/be82243cf82540c49a629543022a3de2/chats/4a591004-4c18-4260-bbb4-fc9f9f9a048d/messages
 
 > Example request payload
 
@@ -300,7 +300,7 @@ Get the collection of all chat messages in the given chat.
 
 Send a new chat message with type `msg` to a chat.
 
-`POST /api/v5/client/visitors/<visitor_id>/chats/<chat_id>/messages`
+`POST /api/v5/public/visitors/<visitor_id>/chats/<chat_id>/messages`
 
 Returns 404 if the chat is not one of the visitor's chats.
 

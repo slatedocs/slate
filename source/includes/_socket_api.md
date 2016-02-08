@@ -47,7 +47,7 @@ Subscribing the channels is done in the following way:
 
 **Step 2**: The client sends a `sub` message with an arbitrary but unique query ID for a channel they want to subscribe.
 
-The `<channel_id>` must be the ID of the channel being subscribed. The channel ID matches the URL path of the API endpoint where the resource or resource collection would be retrieved. For example: `/api/v5/client/visitors/e725acaa886f414986257bfe98d4db1c/chats` or `/api/v5/orgs/dc5e32c1-54d2-4010-8c04-8b66e565698e/rooms/3f7f6058-af90-4499-b769-9bb348af5736`.
+The `<channel_id>` must be the ID of the channel being subscribed. The channel ID matches the URL path of the API endpoint where the resource or resource collection would be retrieved. For example: `/api/v5/public/visitors/e725acaa886f414986257bfe98d4db1c/chats` or `/api/v5/orgs/dc5e32c1-54d2-4010-8c04-8b66e565698e/rooms/3f7f6058-af90-4499-b769-9bb348af5736`.
 
 The `<permission_token>` must be the JWT permission token string. If the token is valid and it grants the permission to the requested channel, then the subscription will be accepted.
 

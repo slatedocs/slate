@@ -35,11 +35,11 @@ giosg.api.rooms.streamRoom(roomId).subscribe(observer);
 
 Endpoint/channel:
 
-`/api/v5/client/rooms/<room_id>`
+`/api/v5/public/rooms/<room_id>`
 
 Permission to get a status for any known room:
 
-`/api/v5/client/rooms/*`
+`/api/v5/public/rooms/*`
 
 ### Collection of joined rooms
 
@@ -105,11 +105,11 @@ Streams snapshots of operators that are currently online in the room. The stream
 
 Endpoint/channel:
 
-`/api/v5/client/rooms/<room_id>/online_operators`
+`/api/v5/public/rooms/<room_id>/online_operators`
 
 Permission to get online operators for any known room:
 
-`/api/v5/client/rooms/*/online_operators`
+`/api/v5/public/rooms/*/online_operators`
 
 ### Visitor's state
 
@@ -130,11 +130,11 @@ giosg.api.visitor.streamMyself().subscribe(observer);
 
 Endpoint/channel:
 
-`/api/v5/client/visitors/<visitor_id>`
+`/api/v5/public/visitors/<visitor_id>`
 
 Permission to get the state for one specific visitor:
 
-`/api/v5/client/visitors/133f73c7-08d3-4c01-86e8-aa8603e7bf37`
+`/api/v5/public/visitors/133f73c7-08d3-4c01-86e8-aa8603e7bf37`
 
 ## Chats
 
@@ -168,11 +168,11 @@ giosg.api.visitor.streamOwnChatsForRoom(roomId).subscribe(observer);
 
 Endpoint/channel:
 
-`/api/v5/client/visitors/<visitor_id>/rooms/<room_id>/chats`
+`/api/v5/public/visitors/<visitor_id>/rooms/<room_id>/chats`
 
 Permission to list chats for any known room for one specific visitor:
 
-`/api/v5/client/visitors/133f73c7-08d3-4c01-86e8-aa8603e7bf37/rooms/*/chats`
+`/api/v5/public/visitors/133f73c7-08d3-4c01-86e8-aa8603e7bf37/rooms/*/chats`
 
 ### Single chat
 
@@ -195,11 +195,11 @@ giosg.api.chat.streamChat(chatId).subscribe(observer);
 
 Endpoint/channel:
 
-`/api/v5/client/visitors/<visitor_id>/chats/<chat_id>`
+`/api/v5/public/visitors/<visitor_id>/chats/<chat_id>`
 
 Permission to get the state of a any known chat for one specific visitor:
 
-`/api/v5/client/visitors/133f73c7-08d3-4c01-86e8-aa8603e7bf37/chats/*`
+`/api/v5/public/visitors/133f73c7-08d3-4c01-86e8-aa8603e7bf37/chats/*`
 
 ### Chat participants
 
@@ -236,11 +236,11 @@ Type `1` means visitor and `2` means operator.
 
 Endpoint/channel:
 
-`/api/v5/client/visitors/<visitor_id>/chats/<chat_id>/participants`
+`/api/v5/public/visitors/<visitor_id>/chats/<chat_id>/participants`
 
 Permission to get chat participants of a any known chat for one specific visitor:
 
-`/api/v5/client/visitors/133f73c7-08d3-4c01-86e8-aa8603e7bf37/chats/*/participants`
+`/api/v5/public/visitors/133f73c7-08d3-4c01-86e8-aa8603e7bf37/chats/*/participants`
 
 ### Chat logs
 
@@ -280,8 +280,8 @@ Only if the chat has a large amount of logs, then this only contains the latest 
 
 Endpoint/channel:
 
-`/api/v5/client/visitors/133f73c7-08d3-4c01-86e8-aa8603e7bf37/chats/<chat_id>/logs`
+`/api/v5/public/visitors/133f73c7-08d3-4c01-86e8-aa8603e7bf37/chats/<chat_id>/logs`
 
 Permission to get chat logs of a any known chat for one specific visitor:
 
-`/api/v5/client/visitors/133f73c7-08d3-4c01-86e8-aa8603e7bf37/chats/*/logs`
+`/api/v5/public/visitors/133f73c7-08d3-4c01-86e8-aa8603e7bf37/chats/*/logs`

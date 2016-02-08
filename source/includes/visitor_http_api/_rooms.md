@@ -15,7 +15,7 @@ Attribute | Type | Description
 ### Retrieve room details
 Get a single room object by its ID. This may be a shared room.
 
-`GET https://service.giosg.com/api/v5/client/rooms/<room_id>`
+`GET https://service.giosg.com/api/v5/public/rooms/<room_id>`
 
 
 ### Channels
@@ -24,7 +24,7 @@ Any changes to rooms are notified to the following [channels][]:
 
 Channel | Description
 --------|------------
-`/api/v5/client/rooms/<room_id>` | Visitors will receive updates any rooms they subscribe to through this channel
+`/api/v5/public/rooms/<room_id>` | Visitors will receive updates any rooms they subscribe to through this channel
 
 ## Online users in a Room
 
@@ -38,7 +38,7 @@ Attribute | Type | Description
 
 ### Retrieve a list of online users in a room
 
-`GET https://service.giosg.com/api/v5/client/rooms/<room_id>/online_users`
+`GET https://service.giosg.com/api/v5/public/rooms/<room_id>/online_users`
 
 ### Channels
 
@@ -46,4 +46,4 @@ Any changes to rooms are notified to the following [channels][]:
 
 Channel | Description
 --------|------------
-`/api/v5/client/rooms/<room_id>/online_users` | Changes to online user collection in a single room will be broadcasted to this channel
+`/api/v5/public/rooms/<room_id>/online_users` | Changes to online user collection in a single room will be broadcasted to this channel
