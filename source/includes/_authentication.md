@@ -46,6 +46,6 @@ Bingo API uses [OAuth 2](https://tools.ietf.org/html/rfc6749) to authenticate an
 
 Bingo API leverages two type of OAuth 2 grant_type : `client_credentials` and `password` grant. You will use `client_credentials` grant to register a new **merchant** or **customer**. If you want to access resources belong to either **merchant** or **customer**, you will use `password` grant.
 
-<aside class="notice">
+<aside class="warning">
 We will only put a note on resources that you must provide acces_token obtained using <code>client_credentials</code> because they are fewer. Otherwise, the resource must be accessed using <code>password</code> grant access_token.
 </aside>
