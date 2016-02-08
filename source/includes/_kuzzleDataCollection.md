@@ -144,7 +144,7 @@ Executes an advanced search on the data collection.
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
-| ``filters`` | JSON object | Filters in [ElasticSearch Query DSL](https://www.elastic.co/guide/en/elasticsearch/reference/1.3/query-dsl.html) format |
+| ``filters`` | JSON object | Filters in [ElasticSearch Query DSL](https://www.elastic.co/guide/en/elasticsearch/reference/1.7/query-dsl.html) format |
 | ``options`` | JSON object | Optional parameters |
 | ``callback`` | function | Callback handling the response |
 
@@ -215,7 +215,7 @@ Returns the number of documents matching the provided set of filters.
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
-| ``filters`` | JSON Object | Filters in [ElasticSearch Query DSL](https://www.elastic.co/guide/en/elasticsearch/reference/1.3/query-dsl.html) format |
+| ``filters`` | JSON Object | Filters in [ElasticSearch Query DSL](https://www.elastic.co/guide/en/elasticsearch/reference/1.7/query-dsl.html) format |
 | ``options`` | JSON Object | Optional parameters |
 | ``callback`` | function | Callback handling the response |
 
@@ -569,7 +569,7 @@ Delete either a stored document, or all stored documents matching search filters
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
 | ``documentId`` | string | Unique document identifier |
-| ``filters`` | JSON object | Filters in [ElasticSearch Query DSL](https://www.elastic.co/guide/en/elasticsearch/reference/1.3/query-dsl.html) format |
+| ``filters`` | JSON object | Filters in [ElasticSearch Query DSL](https://www.elastic.co/guide/en/elasticsearch/reference/1.7/query-dsl.html) format |
 | ``options`` | JSON object | Optional parameters |
 | ``callback`` | function | Optional callback |
 

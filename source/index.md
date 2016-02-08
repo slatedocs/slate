@@ -15,6 +15,10 @@ includes:
   - kuzzleDocument
   - kuzzleRoom
   - kuzzleDataMapping
+  - security/kuzzleSecurity
+  - security/kuzzleRole
+  - security/kuzzleProfile
+  - security/kuzzleUser
 
 search: true
 ---
