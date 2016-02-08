@@ -73,7 +73,7 @@ Available options:
 
 #### Callback response
 
-If the connection succeeds, resolves to the `Kuzzle` object itself.    
+If the connection succeeds, resolves to the `Kuzzle` object itself.
 If the `connect` option is set to `manual`, the callback will be called after the `connect` method is resolved.
 
 ## Properties
@@ -126,6 +126,11 @@ The queue itself can be configured using the ``queueTTL`` and ``queueMaxSize`` o
 
 Once a ``reconnected`` event is fired, you may replay the content of the queue with the ``replayQueue`` method. Or you can let the SDK replay it automatically by setting the ``autoReplay`` option to ``true``.  
 Requests are emitted with the ``replayInterval`` delay between each one of them, and requests submitted while replaying the queue are delayed until the queue is empty, to ensure all requests are played in the right order.
+
+<aside class="warning">
+Setting <code>autoReplay</code> to <code>true</code> when using JWT Tokens should generally be avoided.<br/>
+When leaving offline-mode, the SDK will automatically check the JWT Token and, if it has expired, the token will be removed and a <code>jwtTokenExpired</code> event will be fired. If <code>autoReplay</code> is set, then all pending requests will be automatically played as an anonymous user.
+</aside>
 
 You can also control what request can be queued. By default, all requests are queued, but you may decide to filter some of these requests with the ``queueFilter`` property.  
 Additionally, all methods accept a ``queuable`` option. If set to ``false``, the request will be discarded if the SDK is disconnected, and it will be played immediately with no queuing otherwise. This option bypasses the ``queueFilter`` property.
@@ -186,11 +191,67 @@ The ID returned by this function is required if you want to remove this listener
 | ``event`` | string | One of the event described in the ``Event Handling`` section of this documentation |
 | ``listener`` | function | The function to call each time one of the registered event is fired |
 
-**Note:** Currently, the ``subscription`` object only contains the room ID, the subscription ID of the user from whom the event originate, and the current user count on this room
-
 #### Return value
 
 Returns a `string` containing an unique listener ID.
+
+## checkToken
+
+```js
+// Using callbacks (NodeJS or Web Browser)
+kuzzle.checkToken(token, function (err, res) {
+  // ...
+});
+
+// Using promises (NodeJS only)
+kuzzle.checkTokenPromise(token)
+  .then(res => {
+    // ...
+  });
+```
+
+```java
+// Not implemented yet
+```
+
+> Callback response:
+
+```json
+{
+  "action": "checkToken",
+  "controller": "auth",
+  "error": null,
+  "metadata": {},
+  "requestId": "f2480825-d613-4629-aaee-918f417c03f2",
+  "result": {
+    "expiresAt": 1454588077399,
+    "valid": true
+  },
+  "scope": null,
+  "state": "done",
+  "status": 200
+}
+```
+
+Checks the validity of a JSON Web Token.
+
+#### checkToken(token, callback)
+
+| Arguments | Type | Description |
+|---------------|---------|----------------------------------------|
+| ``token``    | string   | The token to check |
+| ``callback`` | function | Callback handling the response |
+
+#### Return value
+
+Returns the `Kuzzle` object to allow chaining.
+
+#### Callback response
+
+Signature `error, response`. The response object contains a boolean `valid`
+attribute. If `valid` is `true`, the response contains an `expiresAt` attribute
+containing the expiration date and time (as Epoch time). Otherwise, the response
+contains a `state` string containing the reason why the token is invalid.
 
 ## connect
 
@@ -357,6 +418,24 @@ Returns the `Kuzzle` object to allow chaining.
 #### Callback response
 
 The response is an array of JSON objects, each one of them being a statistic frame.
+
+## getJwtToken
+
+```js
+var jwtToken = kuzzle.getJwtToken();
+```
+
+```java
+String jwtToken = kuzzle.getJwtToken();
+```
+
+Get internal jwtToken used to request kuzzle.
+
+#### getJwtToken()
+
+#### Return value
+
+Returns the `jwtToken` property to export previous kuzzle logged connection.
 
 ## getServerInfo
 
@@ -944,7 +1023,6 @@ kuzzle.login("local", "username", "password", 30000, new KuzzleResponseListener<
 });
 ```
 
-
 Log a user according to the strategy and credentials.
 
 #### login(strategy, credentials, [expiresIn], [callback])
@@ -958,6 +1036,9 @@ Log a user according to the strategy and credentials.
 
 **Note:** If the ``expiresIn`` argument is not set, the default token expiration value will be taken from the Kuzzle server configuration.
 
+By default, kuzzle embed the plugin [kuzzle-plugin-auth-passport-local](https://github.com/kuzzleio/kuzzle-plugin-auth-passport-local) which provide `local` stored password authentication strategy.
+This strategy require `username` and `password` as `credentials`
+
 #### Return value
 
 Returns the `Kuzzle` object to allow chaining.
@@ -965,6 +1046,7 @@ Returns the `Kuzzle` object to allow chaining.
 #### Callback response
 
 Resolves to the `Kuzzle` object itself once the login process is complete, either successfully or not.  
+The `Kuzzle` object will have the property `jwtToken` filled if logging in succeeds.
 If no callback is provided and if the login attempt fails, an error is thrown.
 
 ## logout
@@ -996,13 +1078,15 @@ kuzzle.logout(new KuzzleResponseListener<Void>() {
 });
 ```
 
-Logout the user.
+Logs the user out.
 
 #### logout([callback])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
 | ``callback`` | function | Optional callback handling the response |
+
+This method empties the `jwtToken` property
 
 #### Return value
 
@@ -1011,6 +1095,7 @@ Returns the `Kuzzle` object to allow chaining.
 #### Callback response
 
 Resolves to the `Kuzzle` object itself once the logout process is complete, either successfully or not.  
+The `Kuzzle` object will unset the property `jwtToken` if the user is successfully logged out.
 
 ## now
 
@@ -1192,9 +1277,7 @@ kuzzle.removeAllListeners();
 
 Removes all listeners, either from a specific event or from all events
 
-#### removeAllListeners()
-
-#### removeAllListeners(event)
+#### removeAllListeners([event])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
@@ -1278,6 +1361,29 @@ This is a helper function returning itself, allowing to easily chain calls.
 
 Returns the `Kuzzle` object to allow chaining.
 
+## setJwtToken
+
+```js
+kuzzle.setJwtToken("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWV9.TJVA95OrM7E2cBab30RMHrHDcEfxjoYZgeFONFh7HgQ");
+```
+
+```java
+kuzzle.setJwtToken("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWV9.TJVA95OrM7E2cBab30RMHrHDcEfxjoYZgeFONFh7HgQ");
+```
+
+Set internal jwtToken which will be used to request kuzzle.
+Used to restore previous kuzzle logged connection.
+
+#### setJwtToken(jwtToken)
+
+| Arguments | Type | Description |
+|---------------|---------|----------------------------------------|
+| ``jwtToken`` | string | Previously generated JSON Web Token |
+
+#### Return value
+
+Returns the `Kuzzle` object to allow chaining.
+
 
 ## startQueuing
 
@@ -1311,3 +1417,62 @@ Stops the requests queuing. Works only during offline mode, and if the ``autoQue
 #### Return value
 
 Returns the `Kuzzle` object to allow chaining.
+
+## whoAmI
+
+```js
+// Using callbacks (NodeJS or Web Browser)
+kuzzle.whoAmI(function (err, res) {
+  // ...
+});
+
+// Using promises (NodeJS only)
+kuzzle.whoAmIPromise()
+  .then(res => {
+    // ...
+  });
+```
+
+```java
+// Not implemented yet
+```
+
+> Callback response:
+
+```json
+{
+  "action": "getCurrentUser",
+  "controller": "auth",
+  "error": null,
+  "metadata": {},
+  "requestId": "551be8c0-3663-4741-9711-250e704f6a56",
+  "result": {
+    "_id": "test",
+    "_source": {
+      "password": "8c4a804f73b8969c4526c82b28b72b036220e447",
+      "profile": {
+        "_id": "admin",
+        "roles": []
+      }
+    }
+  },
+  "scope": null,
+  "state": "done",
+  "status": 200
+}
+```
+Retrieves current user object.
+
+#### whoAmI(callback)
+
+| Arguments | Type | Description |
+|---------------|---------|----------------------------------------|
+| ``callback`` | function | Callback handling the response |
+
+#### Return value
+
+Returns the `Kuzzle` object to allow chaining.
+
+#### Callback response
+
+Signature `error, response`. The response contains the hydrated user object.

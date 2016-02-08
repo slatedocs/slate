@@ -177,14 +177,14 @@ document.refresh(new ResponseListener<KuzzleDocument>() {
 });
 ```
 
-Replaces the current content with the last version of this document stored in Kuzzle.
+Creates a new `KuzzleDocument` object with the last version of this document stored in Kuzzle.
 
-#### refresh([options], [callback])
+#### refresh([options], callback)
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
 | ``options`` | JSON Object | Optional parameters |
-| ``callback`` | function | Optional callback |
+| ``callback`` | function | Callback |
 
 
 Available options:
@@ -193,13 +193,10 @@ Available options:
 |---------------|---------|----------------------------------------|---------|
 | ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
 
-#### Return value
-
-Returns this `KuzzleDocument` object to allow chaining.
 
 #### Callback response
 
-Resolves to this `KuzzleDocument` object once the document has been refreshed.
+Resolves to a new `KuzzleDocument` object containing the last document version.
 
 
 ## save
