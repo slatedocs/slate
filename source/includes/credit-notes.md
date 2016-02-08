@@ -53,8 +53,7 @@ curl -v https://link.datil.co/credit-notes/issue \
         "codigo_porcentaje":"2"
       }
     ],
-    "total":4882.68,
-    "descuento":0.0
+    "importe_total":4882.68
   },
   "fecha_emision_documento_modificado": "2015-02-27T11:28:56.782Z",
   "numero_documento_modificado": "001-002-000058473",
@@ -135,9 +134,7 @@ nota_credito = {
         "codigo_porcentaje":"2"
       }
     ],
-    "importe_total":4882.68,
-    "propina":0.0,
-    "descuento":0.0
+    "importe_total":4882.68
   },
   "fecha_emision_documento_modificado": "2015-02-27T11:28:56.782Z",
   "numero_documento_modificado": "001-002-000058473",
@@ -243,9 +240,7 @@ namespace DatilClient {
               ""codigo_porcentaje"":""2""
             }
           ],
-          ""total"":4882.68,
-          ""propina"":0.0,
-          ""descuento"":0.0
+          ""importe_total"":4882.68
         },
         ""comprador"":{
           ""email"":""juan.perez@xyz.com"",
@@ -368,9 +363,7 @@ Remember — a happy kitten is an authenticated kitten!
         "codigo_porcentaje": "2"
       }
     ],
-    "importe_total": 4882.68,
-    "propina": 0.0,
-    "descuento": 0.0
+    "importe_total": 4882.68
   },
   "comprador": {
     "email": "juan.perez@xyz.com",
@@ -506,8 +499,6 @@ Reemplaza en la ruta `<invoice-ID>` por el `id` de la nota de crédito que neces
     "ambiente": "1",
     "totales": {
         "total_sin_impuestos": "150.00",
-        "descuento": "0.00",
-        "propina": "0.00",
         "impuestos": [
             {
                 "codigo": 2,
