@@ -11,7 +11,13 @@ Scout is engineered to monitor the performance of your mission-critical producti
 
 ## Performance Overhead
 
-Our agent is designed to run in production environments. We've benchmarked the response time overhead at roughly 3%. Generally, overhead increases as the number of methods are instrumented.
+Our agent is designed to run in production environments and is extensively benchmarked to ensure it performs on high-traffic applications. 
+
+Our most recent benchmarks (_lower is better_):
+
+![overhead](overhead.png)
+
+We've [open-sourced our benchmarks](http://blog.scoutapp.com/articles/2016/02/07/overhead-benchmarks-new-relic-vs-scout) so you can test on our own. If your results differ, [reach out to us at support@scoutapp.com](mailto:support@scoutapp.com).
 
 ## Security
 
