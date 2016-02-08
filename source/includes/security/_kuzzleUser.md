@@ -159,6 +159,26 @@ Replace the content of KuzzleUser
 Returns the `KuzzleUser` object.
 
 
+## serialize
+
+```js
+var user = kuzzle.security.getUser('myuser');
+
+var userContent = user.serialize();
+```
+
+```java
+```
+
+Serialize this object into a JSON object
+
+#### serialize()
+
+#### Return value
+
+Returns the content of `KuzzleUser` as JSON object.
+
+
 ## setProfile
 
 ```js
@@ -183,23 +203,3 @@ Replace the profile associated to the user
 #### Return value
 
 Returns the `KuzzleRole` object.
-
-
-## toJSON
-
-```js
-var user = kuzzle.security.getUser('myuser');
-
-var userContent = user.toJSON();
-```
-
-```java
-```
-
-Serialize this object into a JSON object
-
-#### toJSON()
-
-#### Return value
-
-Returns the content of `KuzzleUser` as JSON object.

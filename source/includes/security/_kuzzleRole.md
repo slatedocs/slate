@@ -94,6 +94,26 @@ Create or replace the role in kuzzle
 Resolves to a `KuzzleRole` object.
 
 
+## serialize
+
+```js
+var role = kuzzle.security.getRole('myrole');
+
+var roleDefinition = role.serialize();
+```
+
+```java
+```
+
+Serialize this object into a JSON object
+
+#### serialize()
+
+#### Return value
+
+Returns the content of `KuzzleRole` as JSON object.
+
+
 ## setContent
 
 ```js
@@ -119,23 +139,3 @@ Replace the content of KuzzleRole
 #### Return value
 
 Returns the `KuzzleRole` object.
-
-
-## toJSON
-
-```js
-var role = kuzzle.security.getRole('myrole');
-
-var roleDefinition = role.toJSON();
-```
-
-```java
-```
-
-Serialize this object into a JSON object
-
-#### toJSON()
-
-#### Return value
-
-Returns the content of `KuzzleRole` as JSON object.
