@@ -11,7 +11,7 @@ toc_footers:
 includes:
   - introduction
   - api/authentication
-  - api/error
+  - api/errors
 
 search: true
 ---
