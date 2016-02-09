@@ -658,7 +658,7 @@ Executes a search on users according to a filter
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
-| ``filters`` | JSON Object | Filters in [ElasticSearch Query DSL](https://www.elastic.co/guide/en/elasticsearch/reference/1.7/query-dsl.html) format |
+| ``filters`` | JSON Object | Filters in [Kuzzle DSL](https://github.com/kuzzleio/kuzzle/blob/master/docs/filters.md) format |
 | ``hydrate`` | boolean | (Optional) if hydrate is `true`, users will have a list of profiles object with hydrated roles instead of just a list of profiles id |
 | ``callback`` | function | Callback handling the response |
 
