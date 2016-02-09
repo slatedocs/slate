@@ -1,6 +1,6 @@
 # ~ KuzzleRole
 
-KuzzleRole is the object representation of a set of right policy
+KuzzleRole is the object representation of a set of right policies
 
 
 ## Constructors
@@ -53,6 +53,43 @@ Instantiate a new KuzzleRole object.
 Returns the `KuzzleRole` object.
 
 
+## delete
+
+```js
+var role = kuzzle.security.getRole('myrole');
+
+// Using callbacks (NodeJS or Web Browser)
+role
+  .delete(function(error, result) {
+    // result is the id of deleted role
+  });
+
+// Using promises (NodeJS)
+role
+  .deletePromise()
+  .then((result) => {
+    // result is the id of deleted role
+  });
+```
+
+```java
+```
+
+Delete the role in Kuzzle
+
+#### delete()
+
+#### delete([callback])
+
+| Arguments | Type | Description |
+|---------------|---------|----------------------------------------|
+| ``callback`` | function | (Optional) Callback handling the response |
+
+#### Callback response
+
+Resolves the id of deleted role.
+
+
 ## save
 
 ```js
@@ -60,7 +97,7 @@ var roleDefinition = {
   // define role definition
 };
 
-var role = kuzzle.security.roleFactory('myrole', roleDefinition)
+var role = kuzzle.security.roleFactory('myrole', roleDefinition);
 
 // Using callbacks (NodeJS or Web Browser)
 role
@@ -92,26 +129,6 @@ Create or replace the role in kuzzle
 #### Callback response
 
 Resolves to a `KuzzleRole` object.
-
-
-## serialize
-
-```js
-var role = kuzzle.security.getRole('myrole');
-
-var roleDefinition = role.serialize();
-```
-
-```java
-```
-
-Serialize this object into a JSON object
-
-#### serialize()
-
-#### Return value
-
-Returns the content of `KuzzleRole` as JSON object.
 
 
 ## setContent

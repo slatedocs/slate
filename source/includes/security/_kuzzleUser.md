@@ -25,7 +25,7 @@ var userContent = {
   lastname: 'Doe'
 };
 
-var user = kuzzle.security.userFactory('myuser', userContent)
+var user = kuzzle.security.userFactory('myuser', userContent);
 ```
 
 ```java
@@ -48,6 +48,43 @@ Instantiate a new KuzzleUser object.
 Returns the `KuzzleUser` object.
 
 
+## delete
+
+```js
+var user = kuzzle.security.getUser('myuser');
+
+// Using callbacks (NodeJS or Web Browser)
+user
+  .delete(function(error, result) {
+    // result is the id of deleted user
+  });
+
+// Using promises (NodeJS)
+user
+  .deletePromise()
+  .then((result) => {
+    // result is the id of deleted user
+  });
+```
+
+```java
+```
+
+Delete the user in Kuzzle
+
+#### delete()
+
+#### delete([callback])
+
+| Arguments | Type | Description |
+|---------------|---------|----------------------------------------|
+| ``callback`` | function | (Optional) Callback handling the response |
+
+#### Callback response
+
+Resolves the id of deleted user.
+
+
 ## hydrate
 
 ```js
@@ -55,7 +92,7 @@ var userContent = {
   profile: ['myprofile']
 };
 
-var user = kuzzle.security.userFactory('myuser', userContent)
+var user = kuzzle.security.userFactory('myuser', userContent);
 
 // Using callbacks (NodeJS or Web Browser)
 user
@@ -80,6 +117,10 @@ user
 
 Hydrate KuzzleUser with associated KuzzleProfile
 
+<aside class="warning">
+Hydrating this object can rise an error if the associated profile is not created in Kuzzle
+</aside>
+
 #### hydrate(callback)
 
 | Arguments | Type | Description |
@@ -98,7 +139,7 @@ var userContent = {
   // define users properties
 };
 
-var user = kuzzle.security.userFactory('myuser', userContent)
+var user = kuzzle.security.userFactory('myuser', userContent);
 
 // Using callbacks (NodeJS or Web Browser)
 user
@@ -118,6 +159,10 @@ user
 ```
 
 Create or replace the user in kuzzle
+
+<aside class="warning">
+Saving this object can rise an error if the associated profile is not created in Kuzzle
+</aside>
 
 #### save()
 
@@ -159,26 +204,6 @@ Replace the content of KuzzleUser
 Returns the `KuzzleUser` object.
 
 
-## serialize
-
-```js
-var user = kuzzle.security.getUser('myuser');
-
-var userContent = user.serialize();
-```
-
-```java
-```
-
-Serialize this object into a JSON object
-
-#### serialize()
-
-#### Return value
-
-Returns the content of `KuzzleUser` as JSON object.
-
-
 ## setProfile
 
 ```js
@@ -191,6 +216,10 @@ user.setProfile(profile);
 // Or by passing it's id
 user.setProfile('myprofile');
 ```
+
+<aside class="notice">
+If you are trying to bind a profile which have not be saved before, an error will rise if you try to save or hydrate this object.
+</aside>
 
 Replace the profile associated to the user
 

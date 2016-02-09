@@ -16,7 +16,7 @@ var profileDefinition = {
   ]
 };
 
-var role = kuzzle.security.profileFactory('myprofile', profileDefinition)
+var role = kuzzle.security.profileFactory('myprofile', profileDefinition);
 ```
 
 ```java
@@ -42,17 +42,21 @@ Returns the `KuzzleRole` object.
 ## addRole
 
 ```js
-var role = kuzzle.security.getRole('myrole')
-var profile = kuzzle.security.getProfile('myprofile')
+var role = kuzzle.security.getRole('myrole');
+var profile = kuzzle.security.getProfile('myprofile');
 
-// Can add a role with directly give a KuzzleRole object
+// Passing a KuzzleRole object
 profile.addRole(role);
 
 // Or by passing it's id
 profile.addRole('myrole');
 ```
 
-Add a role in the roles' profile list
+Adds a role to the profile.
+
+<aside class="notice">
+If you are trying to bind roles which have not be saved before, an error will if you try to save or hydrate this object.
+</aside>
 
 #### addRole(id)
 
@@ -68,6 +72,43 @@ Add a role in the roles' profile list
 Returns the `KuzzleRole` object.
 
 
+## delete
+
+```js
+var profile = kuzzle.security.getProfile('myprofile');
+
+// Using callbacks (NodeJS or Web Browser)
+profile
+  .delete(function(error, result) {
+    // result is the id of deleted profile
+  });
+
+// Using promises (NodeJS)
+profile
+  .deletePromise()
+  .then((result) => {
+    // result is the id of deleted profile
+  });
+```
+
+```java
+```
+
+Delete the profile in Kuzzle
+
+#### delete()
+
+#### delete([callback])
+
+| Arguments | Type | Description |
+|---------------|---------|----------------------------------------|
+| ``callback`` | function | (Optional) Callback handling the response |
+
+#### Callback response
+
+Resolves the id of deleted profile.
+
+
 ## hydrate
 
 ```js
@@ -77,7 +118,7 @@ var profileDefinition = {
   ]
 };
 
-var profile = kuzzle.security.profileFactory('myprofile', profileDefinition)
+var profile = kuzzle.security.profileFactory('myprofile', profileDefinition);
 
 // Using callbacks (NodeJS or Web Browser)
 profile
@@ -100,6 +141,10 @@ profile
 
 Hydrate KuzzleProfile with associated KuzzleRole
 
+<aside class="warning">
+Hydrating this object can rise an error if one of the associated roles are not created in Kuzzle
+</aside>
+
 #### hydrate(callback)
 
 | Arguments | Type | Description |
@@ -120,7 +165,7 @@ var profileDefinition = {
   ]
 };
 
-var profile = kuzzle.security.profileFactory('myprofile', profileDefinition)
+var profile = kuzzle.security.profileFactory('myprofile', profileDefinition);
 
 // Using callbacks (NodeJS or Web Browser)
 profile
@@ -139,7 +184,11 @@ profile
 ```java
 ```
 
-Create or replace the profile in kuzzle
+Creates or replaces the profile in Kuzzle
+
+<aside class="warning">
+Saving this object can rise an error if one of the associated roles are not created in Kuzzle
+</aside>
 
 #### save()
 
@@ -152,26 +201,6 @@ Create or replace the profile in kuzzle
 #### Callback response
 
 Resolves to a `KuzzleRole` object.
-
-
-## serialize
-
-```js
-var role = kuzzle.security.getRole('myrole');
-
-var roleDefinition = role.serialize();
-```
-
-```java
-```
-
-Serialize this object into a JSON object
-
-#### serialize()
-
-#### Return value
-
-Returns the content of `KuzzleRole` as JSON object.
 
 
 ## setContent
@@ -206,14 +235,19 @@ Returns the `KuzzleRole` object.
 ## setRoles
 
 ```js
-var role = kuzzle.security.getRole('myrole')
-var profile = kuzzle.security.getProfile('myprofile')
+var role = kuzzle.security.getRole('myrole');
+var profile = kuzzle.security.getProfile('myprofile');
 
-// Replace the associated roles with new set, which can be either strings, KuzzleRole or both
+// Replaces the profile roles set with the given entry.
+// The entry can be an array of KuzzleRole objects, an array of role ids or a mix of the two.
 profile.setRoles([role, 'default']);
 ```
 
 Replace the roles associated to the profile
+
+<aside class="notice">
+If you are trying to bind roles which have not be saved before, an error will rise if you try to save or hydrate this object.
+</aside>
 
 #### setRoles(roles)
 

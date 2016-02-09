@@ -48,6 +48,11 @@ kuzzle
 
 Create a new profile in Kuzzle.
 
+<aside class="notice">
+There is a small delay between profile creation and their creation in our advanced search layer, usually a couple of seconds.
+That means that a profile that was just been created will not be returned by <code>searchProfiles</code> function
+</aside>
+
 #### createProfile(id, content, callback)
 
 #### createProfile(id, content, [options], callback)
@@ -73,24 +78,24 @@ Resolves to a `KuzzleProfile` object.
 
 ```js
 var roleDefinition = {
-    indexes: {
-      "_canCreate": true,
-      "*": {
-        collections: {
-          "_canCreate": true,
-          "*": {
-            controllers: {
-              "*": {
-                actions: {
-                  "*": true
-                }
+  indexes: {
+    "_canCreate": true,
+    "*": {
+      collections: {
+        "_canCreate": true,
+        "*": {
+          controllers: {
+            "*": {
+              actions: {
+                "*": true
               }
             }
           }
         }
       }
     }
-  };
+  }
+};
 
 // You can chose to replace the given role if already exists
 var options {
@@ -117,6 +122,11 @@ kuzzle
 ```
 
 Create a new role in Kuzzle.
+
+<aside class="notice">
+There is a small delay between role creation and their creation in our advanced search layer, usually a couple of seconds.
+That means that a role that was just been created will not be returned by <code>searchRole</code> function
+</aside>
 
 #### createRole(id, content, callback)
 
@@ -168,7 +178,7 @@ kuzzle
   .security
   .createUser('myuser', userContent, options, function(error, response) {
     // result is a KuzzleUser object
-  })
+  });
 
 // Using promises (NodeJS)
 kuzzle
@@ -176,13 +186,18 @@ kuzzle
   .createUserPromise('myuser', userContent, options)
   .then((response) => {
     // result is a KuzzleUser object
-  })
+  });
 ```
 
 ```java
 ```
 
 Create a new user in Kuzzle.
+
+<aside class="notice">
+There is a small delay between user creation and their creation in our advanced search layer, usually a couple of seconds.
+That means that a user that was just been created will not be returned by <code>searchUsers</code> function
+</aside>
 
 #### createUser(id, content, callback)
 
@@ -233,7 +248,7 @@ Delete profile.
 
 <aside class="notice">
 There is a small delay between profile deletion and their deletion in our advanced search layer, usually a couple of seconds.
-That means that a profile that was just been delete will be returned by this function
+That means that a profile that was just been delete will be returned by <code>searchProfiles</code> function
 </aside>
 
 #### deleteProfile(id)
@@ -275,7 +290,7 @@ Delete role.
 
 <aside class="notice">
 There is a small delay between role deletion and their deletion in our advanced search layer, usually a couple of seconds.
-That means that a role that was just been delete will be returned by this function
+That means that a role that was just been delete will be returned by <code>searchRoles</code> function
 </aside>
 
 #### deleteRole(id)
@@ -318,7 +333,7 @@ Delete user.
 
 <aside class="notice">
 There is a small delay between user deletion and their deletion in our advanced search layer, usually a couple of seconds.
-That means that a user that was just been delete will be returned by this function
+That means that a user that was just been delete will be returned by <code>searchUsers</code> function
 </aside>
 
 #### deleteUser(id)
@@ -452,7 +467,7 @@ var profileDefinition = {
   ]
 };
 
-var role = kuzzle.security.profileFactory('myprofile', profileDefinition)
+var role = kuzzle.security.profileFactory('myprofile', profileDefinition);
 ```
 
 ```java
@@ -530,19 +545,30 @@ var filters = {
 kuzzle
   .security
   .searchProfiles(filters, true, function(error, result) {
-    // result is an array of KuzzleProfile object
-  })
+    // result is a JSON Object
+  });
 
 // Using promises (NodeJS)
 kuzzle
   .security
   .searchProfilesPromise(filters, true)
   .then((result) => {
-    // result is an array of KuzzleProfile object
-  })
+    // result is a JSON Object
+  });
 ```
 
 ```java
+```
+
+> Callback response:
+
+```js
+{
+  total: 124,
+  documents: [
+    // array of KuzzleProfile
+  ]
+}
 ```
 
 Executes a search on profiles according to a filter
@@ -564,11 +590,11 @@ Available filters:
 |---------------|---------|----------------------------------------|---------|
 | ``roles`` | array | Contains an array `roles` with a list of role id | ``undefined`` |
 | ``from`` | number | Starting offset | ``0`` |
-| ``to`` | number |  Number of hits to return | ``10`` |
+| ``to`` | number |  Number of hits to return | ``20`` |
 
 #### Callback response
 
-Resolves to an array of `KuzzleProfile` object.
+Resolves to a JSON Object
 
 
 ## searchUsers
@@ -598,19 +624,30 @@ var filter = {
 kuzzle
   .security
   .searchUsers(filters, true, function(error, result) {
-    // result is an array of KuzzleUser object
-  })
+    // result is a JSON Object
+  });
 
 // Using promises (NodeJS)
 kuzzle
   .security
   .searchUsersPromise(filters, true)
   .then((result) => {
-    // result is an array of KuzzleUser object
-  })
+    // result is a JSON Object
+  });
 ```
 
 ```java
+```
+
+> Callback response:
+
+```js
+{
+  total: 124,
+  documents: [
+    // array of KuzzleUser
+  ]
+}
 ```
 
 Executes a search on users according to a filter
@@ -627,7 +664,7 @@ Executes a search on users according to a filter
 
 #### Callback response
 
-Resolves to an array of `KuzzleUser` object.
+Resolves to a JSON Object
 
 
 ## searchRoles
@@ -645,7 +682,7 @@ var filters = {
 kuzzle
   .security
   .searchRoles(filters, function(error, result) {
-    // result is an array of KuzzleRole object
+    // result is a JSON Object
   });
 
 // Using promises (NodeJS)
@@ -653,11 +690,22 @@ kuzzle
   .security
   .searchRolesPromise(filters)
   .then((result) => {
-    // result is an array of KuzzleRole object
+    // result is a JSON Object
   });
 ```
 
 ```java
+```
+
+> Callback response:
+
+```js
+{
+  total: 124,
+  documents: [
+    // array of KuzzleRole
+  ]
+}
 ```
 
 Executes a search on roles according to a filter
@@ -675,11 +723,11 @@ Available filters:
 |---------------|---------|----------------------------------------|---------|
 | ``indexes`` | array | List of indexes id related to the searched role | ``undefined`` |
 | ``from`` | number | Starting offset | ``0`` |
-| ``to`` | number |  Number of hits to return | ``10`` |
+| ``to`` | number |  Number of hits to return | ``20`` |
 
 #### Callback response
 
-Resolves to an array of `KuzzleRole` object.
+Resolves to a JSON Object
 
 
 ## userFactory
@@ -699,7 +747,7 @@ var userContent = {
   lastname: 'Doe'
 };
 
-var user = kuzzle.security.userFactory('myuser', userContent)
+var user = kuzzle.security.userFactory('myuser', userContent);
 ```
 
 ```java
