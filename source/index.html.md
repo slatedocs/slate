@@ -100,24 +100,23 @@ CURL is a command line utility available for many Operating Systems that enables
 
 ```shell
 > curl https://myilo/rest/v1 -i --insecure -L
-```
-
-> -i returns HTTP response headers
->
+> 
+> -i returns HTTP response headers\
+> 
 > --insecure bypasses TLS/SSL certification verification
->
+> 
 > -L follows redirects.
 > 
 > The above command returns JSON structured like this:
+```
 
+```json
 
-    ```json
-    
-    {"@odata.context":"/redfish/v1/$metadata#ServiceRoot","@odata.id":"/redfish/v1/","@odata.type":"#ServiceRoot.1.0.0.ServiceRoot", "Id":"v1","Name":"HP RESTful Root
-    Service","Oem":{},"ServiceVersion":"0.9.5","Time":"2014-08-05T13:12:02Z","Type":"ServiceRoot.1.0.0",
-    "UUID":"627490fe-bded-5d10-8176-0af0927c690e","links":{"AccountService":{"href":"/rest/v1/AccountService"},"Chassis":{"href":"/rest/v1/Chassis"}, "EventService":{"href":"/rest/v1/EventService"},"JSONSchema":{"href":"/rest/v1/Schemas"},"Managers":{"href":"/rest/v1/Managers"},  "Registries":{"href":"/rest/v1/Registries"},"Schemas":{"href":"/rest/v1/Schemas"},"SessionService":{"href":"/rest/v1/SessionService"}, "Sessions":{"href":"/rest/v1/SessionService/Sessions"},"Systems":{"href":"/rest/v1/Systems"},"self":{"href":"/rest/v1"}}}
-    
-    ```
+{"@odata.context":"/redfish/v1/$metadata#ServiceRoot","@odata.id":"/redfish/v1/","@odata.type":"#ServiceRoot.1.0.0.ServiceRoot", "Id":"v1","Name":"HP RESTful Root
+Service","Oem":{},"ServiceVersion":"0.9.5","Time":"2014-08-05T13:12:02Z","Type":"ServiceRoot.1.0.0",
+"UUID":"627490fe-bded-5d10-8176-0af0927c690e","links":{"AccountService":{"href":"/rest/v1/AccountService"},"Chassis":{"href":"/rest/v1/Chassis"}, "EventService":{"href":"/rest/v1/EventService"},"JSONSchema":{"href":"/rest/v1/Schemas"},"Managers":{"href":"/rest/v1/Managers"},  "Registries":{"href":"/rest/v1/Registries"},"Schemas":{"href":"/rest/v1/Schemas"},"SessionService":{"href":"/rest/v1/SessionService"}, "Sessions":{"href":"/rest/v1/SessionService/Sessions"},"Systems":{"href":"/rest/v1/Systems"},"self":{"href":"/rest/v1"}}}
+
+```
 
 # Example Root JSON Object
 
