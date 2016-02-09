@@ -95,8 +95,6 @@ $reference->setKey(\Productsup\Platform\Site\Reference::REFERENCE_SITE);
 $reference->setValue(123); // site id
 $productData->setReference($reference);
 
-$productData->setReference($reference);
-
 $query = new \Productsup\Query();
 $query->fields = array(
     'id',
