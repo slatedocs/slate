@@ -58,7 +58,7 @@ HPE OneView, OpenStack, and many other server management APIs are now REST APIs.
 
 The RESTful API has the additional advantage of consistency across all present and projected server architectures. The same data model works for traditional rack-mount servers, blades, as well as newer types of systems like Moonshot. This advantage comes because the data model is designed to self-describe the service’s capabilities to the client and has room for flexibility designed in from the start
 
-# HTTP Resource Operations
+### HTTP Resource Operations
 
 Operation | HTTP Command | Description
 -------------- | -------------- | --------------
@@ -67,7 +67,7 @@ Read | GET resource URI | Returns the requested resource representation.
 Update | PATCH or PUT resource URI (payload = update data) | Updates an existing resource. You can only PATCH properties that are marked readonly = false in the schema.
 Delete | DELETE resource URI | Deletes the specified resource.
 
-# HTTP Status Return Codes
+### HTTP Status Return Codes
 
 Return Status | Description
 -------------- | -------------- | --------------
@@ -86,7 +86,7 @@ The RESTful API for iLO is available on ProLiant Gen9 servers running iLO 4 2.00
 
 To access the RESTful API, you need an HTTPS-capable client, such as a web browser with  the Postman REST Client plugin extension or CURL (a popular command line HTTP utility).
 
-# RESTful Interface Tool and Python Examples
+## RESTful Interface Tool and Python Examples
 
 Although not a requirement, you can use the RESTful Interface Tool with the RESTful API. This command line tool provides a level of abstraction and convenience above direct access to the RESTful API. For details see: [http://www.hpe.com/info/restfulapi](http://www.hpe.com/info/restfulapi).
 
@@ -119,6 +119,7 @@ CURL is a command line utility available for many Operating Systems that enables
 >* -L follows HTTP redirect.
 >
 >The above command returns JSON like this:
+
 ```json
 {
 	"@odata.type": "#ServiceRoot.v1_0_0.ServiceRoot",
@@ -264,9 +265,9 @@ The collection of Chassis is documented to be /rest/v1/Managers.
 
 If you perform a GET on any other resource other than the root /rest/v1 resource, you receive an HTTP 401 (Forbidden) error indicating that you don’t have the authentication needed to access the resource.
 
-```shell
-The following shows the error displayed on GET /rest/v1/Systems when no authentication is attempted:
-```
+
+> The following shows the error displayed on GET /rest/v1/Systems when no authentication is attempted:
+
 ```json
     {
         "@odata.type": "#ExtendedInfo.ExtendedInfo",
@@ -292,8 +293,6 @@ The following shows the error displayed on GET /rest/v1/Systems when no authenti
 
 The RESTful API allows you to use HTTP Basic Authentication using a valid user name and password.
 
-```shell
-
 > curl https://myilo/rest/v1/Systems -i --insecure -u username:password -L
 
     HTTP/1.1 200 OK Allow: GET, HEAD
@@ -302,10 +301,28 @@ The RESTful API allows you to use HTTP Basic Authentication using a valid user n
     Link: </rest/v1/SchemaStore/en/ComputerSystemCollection.json>; rel=describedby Server: HP-iLO-Server/1.30
     X-Frame-Options: sameorigin
     X_HP-CHRP-Service-Version: 1.0.3
-```
+
 ```json    
-    {"@odata.context":"/redfish/v1/$metadata#Systems","@odata.id":"/redfish/v1/Systems/"
-    ,"@odata.type":"#ComputerSystemCollection.ComputerSystemCollection","Description":"Computer Systems view", "MemberType":"ComputerSystem.1","Members":[{"@odata.id":"/redfish/v1/Systems/1/"}],"Members@odata.count":1, "Name":"Computer Systems","Total":1,"Type":"Collection.1.0.0","links":{"Member":[{"href":"/rest/v1/Syst ems/1"}],"self":"/rest/v1/Systems"}}
+    {
+    	"@odata.context": "/redfish/v1/$metadata#Systems",
+    	"@odata.id": "/redfish/v1/Systems/",
+    	"@odata.type": "#ComputerSystemCollection.ComputerSystemCollection",
+    	"Description": "Computer Systems view",
+    	"MemberType": "ComputerSystem.1",
+    	"Members": [{
+    		"@odata.id": "/redfish/v1/Systems/1/"
+    	}],
+    	"Members@odata.count": 1,
+    	"Name": "Computer Systems",
+    	"Total": 1,
+    	"Type": "Collection.1.0.0",
+    	"links": {
+    		"Member": [{
+    			"href": "/rest/v1/Syst ems/1"
+    		}],
+    		"self": "/rest/v1/Systems"
+    	}
+    }
 
 ```
 
@@ -313,9 +330,8 @@ The RESTful API allows you to use HTTP Basic Authentication using a valid user n
 
 For more complex multi-resource operations, you should log in and establish a session. To log in, iLO has a session manager object at the documented URI /rest/v1/Sessions. To create a session we need to POST a JSON object to the Session manager:
 
-```shell
-POST /rest/v1/Sessions with the required HTTP headers and a body containing:
-```
+> POST /rest/v1/Sessions with the required HTTP headers and a body containing:
+
 ```json
     {
     	"UserName": "<your username>", 
