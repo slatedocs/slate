@@ -99,7 +99,7 @@ It is best to perform this initial GET with a tool like the CURL or the Postman 
 CURL is a command line utility available for many Operating Systems that enables easy access to the RESTful API. CURL is available at http://curl.haxx.se/. Note that all the CURL examples will use a flag –insecure. This causes CURL to bypass validation of the HTTPS certificate. In real use iLO should be configured to use a user-supplied certificate and this option is not necessary. Notice also that we use the –L option to force CURL to follow HTTP redirect responses. If iLO changes URI locations for various items, it can indicate to the client where the new location is and automatically follow the new link.
 
 ```shell
-curl https://myilo/rest/v1 -i --insecure -L
+> curl https://myilo/rest/v1 -i --insecure -L
 * -i returns HTTP response headers 
 * --insecure bypasses TLS/SSL certification verification
 * -L follows HTTP redirect.
@@ -251,10 +251,10 @@ The collection of Chassis is documented to be /rest/v1/Managers.
 
 If you perform a GET on any other resource other than the root /rest/v1 resource, you receive an HTTP 401 (Forbidden) error indicating that you don’t have the authentication needed to access the resource.
 
-```json
-
+```shell
 The following shows the error displayed on GET /rest/v1/Systems when no authentication is attempted:
-
+```
+```json
     {
         "@odata.type": "#ExtendedInfo.ExtendedInfo",
 	    "Messages": [
@@ -283,16 +283,14 @@ The RESTful API allows you to use HTTP Basic Authentication using a valid user n
 
 > curl https://myilo/rest/v1/Systems -i --insecure -u username:password -L
 
-```
-```json
-
     HTTP/1.1 200 OK Allow: GET, HEAD
     Cache-Control: no-cache Content-length: 437
     Content-type: application/json Date: Tue, 05 Aug 2014 14:39:56 GMT ETag: W/"9349EA93"
     Link: </rest/v1/SchemaStore/en/ComputerSystemCollection.json>; rel=describedby Server: HP-iLO-Server/1.30
     X-Frame-Options: sameorigin
     X_HP-CHRP-Service-Version: 1.0.3
-    
+```
+```json    
     {"@odata.context":"/redfish/v1/$metadata#Systems","@odata.id":"/redfish/v1/Systems/"
     ,"@odata.type":"#ComputerSystemCollection.ComputerSystemCollection","Description":"Computer Systems view", "MemberType":"ComputerSystem.1","Members":[{"@odata.id":"/redfish/v1/Systems/1/"}],"Members@odata.count":1, "Name":"Computer Systems","Total":1,"Type":"Collection.1.0.0","links":{"Member":[{"href":"/rest/v1/Syst ems/1"}],"self":"/rest/v1/Systems"}}
 
@@ -302,16 +300,16 @@ The RESTful API allows you to use HTTP Basic Authentication using a valid user n
 
 For more complex multi-resource operations, you should log in and establish a session. To log in, iLO has a session manager object at the documented URI /rest/v1/Sessions. To create a session we need to POST a JSON object to the Session manager:
 
+```shell
+POST /rest/v1/Sessions with the required HTTP headers and a body containing:
+```
 ```json
- 
-POST /rest/v1/Sessions with the required HTTP headers and a body containing
-
     {
     	"UserName": "<your username>", 
     	"Password": "<your password>"
     }
-
-    
+```
+```shell  
 IMPORTANT:	You must include the HTTP header Content-Type: application/json
 for all RESTful API operations that include a request body in JSON format.
 ```
