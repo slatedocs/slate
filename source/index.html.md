@@ -98,15 +98,26 @@ It is best to perform this initial GET with a tool like the CURL or the Postman 
 
 CURL is a command line utility available for many Operating Systems that enables easy access to the RESTful API. CURL is available at http://curl.haxx.se/. Note that all the CURL examples will use a flag –insecure. This causes CURL to bypass validation of the HTTPS certificate. In real use iLO should be configured to use a user-supplied certificate and this option is not necessary. Notice also that we use the –L option to force CURL to follow HTTP redirect responses. If iLO changes URI locations for various items, it can indicate to the client where the new location is and automatically follow the new link.
 
+```shell
 > curl https://myilo/rest/v1 -i --insecure -L
+```
 
--i returns HTTP response headers
---insecure bypasses TLS/SSL certification verification
--L follows redirects
+> -i returns HTTP response headers
+>
+> --insecure bypasses TLS/SSL certification verification
+>
+> -L follows redirects.
+> 
+> The above command returns JSON structured like this:
 
+
+    ```json
+    
     {"@odata.context":"/redfish/v1/$metadata#ServiceRoot","@odata.id":"/redfish/v1/","@odata.type":"#ServiceRoot.1.0.0.ServiceRoot", "Id":"v1","Name":"HP RESTful Root
     Service","Oem":{},"ServiceVersion":"0.9.5","Time":"2014-08-05T13:12:02Z","Type":"ServiceRoot.1.0.0",
     "UUID":"627490fe-bded-5d10-8176-0af0927c690e","links":{"AccountService":{"href":"/rest/v1/AccountService"},"Chassis":{"href":"/rest/v1/Chassis"}, "EventService":{"href":"/rest/v1/EventService"},"JSONSchema":{"href":"/rest/v1/Schemas"},"Managers":{"href":"/rest/v1/Managers"},  "Registries":{"href":"/rest/v1/Registries"},"Schemas":{"href":"/rest/v1/Schemas"},"SessionService":{"href":"/rest/v1/SessionService"}, "Sessions":{"href":"/rest/v1/SessionService/Sessions"},"Systems":{"href":"/rest/v1/Systems"},"self":{"href":"/rest/v1"}}}
+    
+    ```
 
 # Example Root JSON Object
 
