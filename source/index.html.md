@@ -100,11 +100,11 @@ CURL is a command line utility available for many Operating Systems that enables
 
 ```shell
 curl https://myilo/rest/v1 -i --insecure -L
--i returns HTTP response headers 
---insecure bypasses TLS/SSL certification verification
--L follows redirects.
+* -i returns HTTP response headers 
+* --insecure bypasses TLS/SSL certification verification
+* -L follows HTTP redirect.
 
-The above command returns JSON structured like this:
+The above command returns JSON like this:
 ```
 ```json
 {
@@ -187,110 +187,6 @@ The above command returns JSON structured like this:
 }
 ```
 
-# Example Root JSON Object
-
-{
-
-    "@odata.type": "#ServiceRoot.1.0.0.ServiceRoot", 
-    "SessionService": {
-        "@odata.id": "/redfish/v1/SessionService/"
-    }, 
-    "Managers": {
-        "@odata.id": "/redfish/v1/Managers/"
-    }, 
-    "JsonSchemas": {
-        "@odata.id": "/redfish/v1/Schemas/"
-    }, 
-    "Links": {
-        "Sessions": {
-            "@odata.id": "/redfish/v1/SessionService/Sessions/"
-        }
-    }, 
-    "AccountService": {
-        "@odata.id": "/redfish/v1/AccountService/"
-    }, 
-    "RedfishVersion": "1.0.0", 
-    "@odata.id": "/redfish/v1/", 
-    "@odata.context": "/redfish/v1/$metadata#ServiceRoot", 
-    "UUID": "184a7542-fff1-5e2f-bc3d-5df40e7a4646", 
-    "Chassis": {
-        "@odata.id": "/redfish/v1/Chassis/"
-    }, 
-    "EventService": {
-        "@odata.id": "/redfish/v1/EventService/"
-    }, 
-    "Oem": {
-        "Hp": {
-            "@odata.type": "#HpiLOServiceExt.1.0.0.HpiLOServiceExt", 
-            "Manager": [
-                {
-                    "ManagerFirmwareVersion": "2.50", 
-                    "Blade": {
-                        "BayNumber": "Bay 3"
-                    }, 
-                    "ManagerType": "iLO 4", 
-                    "IPManager": {
-                        "ManagerUrl": {
-                            "xref": "https://16.85.178.23"
-                        }, 
-                        "Name": "Management Console Information", 
-                        "ManagerType": "OneView", 
-                        "OvManagesiLOIP": false, 
-                        "ManagerProductName": "HP OneView", 
-                        "FirmwareManaged": false, 
-                        "SppVersion": null, 
-                        "StorageManaged": false, 
-                        "iLOManaged": true, 
-                        "Type": "HPQ_iLOManagerDescriptor/1.1.0", 
-                        "BiosManaged": false
-                    }, 
-                    "HostName": "ILOHD53NP0108", 
-                    "FQDN": "ILOHD53NP0108.americas.hpqcorp.net", 
-                    "DefaultLanguage": "en", 
-                    "Languages": [
-                        {
-                            "Version": "2.50.15", 
-                            "Language": "en", 
-                            "TranslationName": "English"
-                        }
-                    ], 
-                    "ManagerFirmwareVersionPass": "15"
-                }
-            ], 
-            "Links": {
-                "ResourceDirectory": {
-                    "@odata.id": "/redfish/v1/ResourceDirectory/"
-                }
-            }, 
-            "Sessions": {
-                "LocalLoginEnabled": true, 
-                "LoginFailureDelay": 0, 
-                "LDAPAuthLicenced": true, 
-                "KerberosEnabled": false, 
-                "ServerName": "WIN-MKNP1GNHVSN", 
-                "SecurityOverride": true, 
-                "CertCommonName": "ILOHD53NP0108.americas.hpqcorp.net", 
-                "LoginHint": {
-                    "HintPOSTData": {
-                        "UserName": "username", 
-                        "Password": "password"
-                    }, 
-                    "Hint": "POST to /Sessions to login using the following JSON object:"
-                }, 
-                "LDAPEnabled": false
-            }
-        }
-    }, 
-    "Registries": {
-        "@odata.id": "/redfish/v1/Registries/"
-    }, 
-    "Systems": {
-        "@odata.id": "/redfish/v1/Systems/"
-    }, 
-    "Id": "v1", 
-    "Name": "HP RESTful Root Service"
-}
-
 In JSON, there is no strong ordering of property names, so iLO may return JSON properties in any order. Likewise, iLO cannot assume the order of properties in any submitted JSON. This is why the best scripting data structure for a RESTful client is a dictionary: a simple set of unordered key/value pairs. This lack of ordering is also the reason you see embedded structure within objects (objects within objects). This allows us to keep related data together that is more logically organized, aesthetically pleasing to view, and helps avoid property name conflicts or ridiculously long property names. It also allows us to use identical blocks of JSON in many places in the data model, like status.
 
 ## Resource type and version
@@ -355,6 +251,8 @@ The collection of Chassis is documented to be /rest/v1/Managers.
 
 If you perform a GET on any other resource other than the root /rest/v1 resource, you receive an HTTP 401 (Forbidden) error indicating that you don’t have the authentication needed to access the resource.
 
+```json
+
 The following shows the error displayed on GET /rest/v1/Systems when no authentication is attempted:
 
     {
@@ -375,13 +273,18 @@ The following shows the error displayed on GET /rest/v1/Systems when no authenti
 	    "message": "A general error has occurred. See ExtendedInfo for more information."
 	    }
     }
+```
 
 ## Basic Authentication
 
 The RESTful API allows you to use HTTP Basic Authentication using a valid user name and password.
 
+```shell
+
 > curl https://myilo/rest/v1/Systems -i --insecure -u username:password -L
 
+```
+```json
 
     HTTP/1.1 200 OK Allow: GET, HEAD
     Cache-Control: no-cache Content-length: 437
@@ -393,9 +296,13 @@ The RESTful API allows you to use HTTP Basic Authentication using a valid user n
     {"@odata.context":"/redfish/v1/$metadata#Systems","@odata.id":"/redfish/v1/Systems/"
     ,"@odata.type":"#ComputerSystemCollection.ComputerSystemCollection","Description":"Computer Systems view", "MemberType":"ComputerSystem.1","Members":[{"@odata.id":"/redfish/v1/Systems/1/"}],"Members@odata.count":1, "Name":"Computer Systems","Total":1,"Type":"Collection.1.0.0","links":{"Member":[{"href":"/rest/v1/Syst ems/1"}],"self":"/rest/v1/Systems"}}
 
+```
+
 ## Creating and Using Sessions
 
 For more complex multi-resource operations, you should log in and establish a session. To log in, iLO has a session manager object at the documented URI /rest/v1/Sessions. To create a session we need to POST a JSON object to the Session manager:
+
+```json
  
 POST /rest/v1/Sessions with the required HTTP headers and a body containing
 
@@ -403,9 +310,11 @@ POST /rest/v1/Sessions with the required HTTP headers and a body containing
     	"UserName": "<your username>", 
     	"Password": "<your password>"
     }
+
     
 IMPORTANT:	You must include the HTTP header Content-Type: application/json
 for all RESTful API operations that include a request body in JSON format.
+```
 
 If the session is created successfully, you receive an HTTP 201 (Created) response from iLO. There will also be two additional HTTP headers.
 
