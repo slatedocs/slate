@@ -13,7 +13,7 @@ includes:
   - resourcedefns
   - msgreghdr
   - msgregs
-  - evthdr
+  - evtshdr
   - events
 
 search: true
