@@ -10,6 +10,7 @@ toc_footers:
 
 includes:
   - errors
+  - msgregs
 
 search: true
 ---
