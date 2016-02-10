@@ -1,7 +1,19 @@
 # KuzzleSecurity
 
-In Kuzzle, you can manage either roles, profiles and user to restrict access
+The KuzzleSecurity component lets you handle the permissions in Kuzzle.
 
+Kuzzle defines the permissions by attaching a `profile` to each `user`.
+
+A `profile` is defined as a set of `roles`.  
+Each `role` defines some permissions on Kuzzle's `indexes`, `collections`, `controllers` and `actions`.
+
+Within a profile, the `role` permissions are cumulative. If one of the profile `role` allows to execute the action, all the users attached to this `profile` will be allowed to execute the action.
+
+Within a `role`, the permissions can be defined and overriden. The precedence order is defined as `the most specific rule` overrides `the less specific rule`.
+
+<!--
+  @todo: once the documentation on the security is ready, add a link to it here
+-->
 
 ## Constructors
 

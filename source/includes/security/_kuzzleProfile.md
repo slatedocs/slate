@@ -1,6 +1,6 @@
 # ~ KuzzleProfile
 
-KuzzleProfile is the object representation of a profile, which is an set of one or many KuzzleRole
+KuzzleProfile is the object representation of a profile, which is a set of one or many KuzzleRole objects.
 
 
 ## Constructors
@@ -22,7 +22,7 @@ var role = kuzzle.security.profileFactory('myprofile', profileDefinition);
 ```java
 ```
 
-Instantiate a new KuzzleProfile object.
+Instantiates a new ̀`KuzzleProfile` object.
 
 #### KuzzleProfile(KuzzleSecurity, id, content)
 
@@ -36,7 +36,7 @@ Instantiate a new KuzzleProfile object.
 
 #### Return value
 
-Returns the `KuzzleRole` object.
+Returns to the `KuzzleRole` object.
 
 
 ## addRole
@@ -48,14 +48,14 @@ var profile = kuzzle.security.getProfile('myprofile');
 // Passing a KuzzleRole object
 profile.addRole(role);
 
-// Or by passing it's id
+// Or by passing its id
 profile.addRole('myrole');
 ```
 
 Adds a role to the profile.
 
 <aside class="notice">
-If you are trying to bind roles which have not be saved before, an error will if you try to save or hydrate this object.
+If you are trying to bind roles which have not be saved before, an error will be thrown if you try to save or hydrate this object.
 </aside>
 
 #### addRole(id)
@@ -94,7 +94,7 @@ profile
 ```java
 ```
 
-Delete the profile in Kuzzle
+Deletes the profile from Kuzzle's database layer.
 
 #### delete()
 
@@ -106,7 +106,7 @@ Delete the profile in Kuzzle
 
 #### Callback response
 
-Resolves the id of deleted profile.
+Resolves to the id of deleted profile.
 
 
 ## hydrate
@@ -139,10 +139,11 @@ profile
 ```java
 ```
 
-Hydrate KuzzleProfile with associated KuzzleRole
+Hydrates the KuzzleProfile object with its associated KuzzleRole.  
+Hydrating the object transforms the `roles` property from an array of role ids to an array of KuzzleRole objects.
 
 <aside class="warning">
-Hydrating this object can rise an error if one of the associated roles are not created in Kuzzle
+Hydrating the object will rise an error if the roles are not previously created in Kuzzle.
 </aside>
 
 #### hydrate(callback)
@@ -184,10 +185,10 @@ profile
 ```java
 ```
 
-Creates or replaces the profile in Kuzzle
+Creates or replaces the profile in Kuzzle.
 
 <aside class="warning">
-Saving this object can rise an error if one of the associated roles are not created in Kuzzle
+Saving the object will rise an error if the roles are not previously created in Kuzzle.
 </aside>
 
 #### save()
@@ -219,7 +220,7 @@ profile = profile.setContent(profileDefinition);
 ```java
 ```
 
-Replace the content of KuzzleRole
+Replaces the content of the `KuzzleRole` object.
 
 #### setContent(data)
 
@@ -243,10 +244,10 @@ var profile = kuzzle.security.getProfile('myprofile');
 profile.setRoles([role, 'default']);
 ```
 
-Replace the roles associated to the profile
+Replaces the roles associated to the profile.
 
 <aside class="notice">
-If you are trying to bind roles which have not be saved before, an error will rise if you try to save or hydrate this object.
+If you are trying to bind roles which have not been previously saved, an error will rise if you try to save or hydrate this object.
 </aside>
 
 #### setRoles(roles)

@@ -1,6 +1,6 @@
 # ~ KuzzleRole
 
-KuzzleRole is the object representation of a set of right policies
+KuzzleRole is the object representation of a set of right policies.
 
 
 ## Constructors
@@ -36,7 +36,7 @@ var role = kuzzle.security.roleFactory('myrole', roleDefinition);
 ```java
 ```
 
-Instantiate a new KuzzleRole object.
+Instantiates a new `KuzzleRole` object.
 
 #### KuzzleRole(KuzzleSecurity, id, content)
 
@@ -75,7 +75,7 @@ role
 ```java
 ```
 
-Delete the role in Kuzzle
+Deletes the role from Kuzzle's database layer.
 
 #### delete()
 
@@ -87,7 +87,7 @@ Delete the role in Kuzzle
 
 #### Callback response
 
-Resolves the id of deleted role.
+Resolves to the id of the deleted role.
 
 
 ## save
@@ -116,7 +116,7 @@ role
 ```java
 ```
 
-Create or replace the role in kuzzle
+Creates or replaces the role in Kuzzle's database layer.
 
 #### save()
 
@@ -145,7 +145,7 @@ role = role.setContent(roleDefinition);
 ```java
 ```
 
-Replace the content of KuzzleRole
+Replaces the content of the `KuzzleRole` object.
 
 #### setContent(data)
 
