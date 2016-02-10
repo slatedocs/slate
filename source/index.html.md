@@ -21,7 +21,8 @@ search: true
 
 # Introduction
 
-The RESTful API for iLO 4 and Moonshot iLO Chassis Management Module is a programming interface enabling state-of-the-art server management. This document contains helpful information about how to interact with the RESTful API. The RESTful API uses the basic HTTP operations (GET, PUT, POST, DELETE, and PATCH) to submit or return a JSON formatted resource to or from a URI on iLO 4 or Moonshot iLO Chassis Management Module.
+The RESTful API for iLO 4 is a programming interface enabling state-of-the-art server management. This document contains helpful information about how to interact with the RESTful API. The RESTful API uses the basic HTTP operations (GET, PUT, POST, DELETE, and PATCH) to submit or return a JSON formatted resource to or from a URI on iLO 4.
+
 With modern scripting languages, you can easily write simple REST clients for RESTful APIs. Most languages, like Python, can transform JSON into internal-data structures, like dictionaries, allowing for easy access to data. This enables you to write custom code directly to the RESTful API, instead of using intermediate tools such as HPE’s HPQLOCFG or CONREP.
 
 This document has been updated with examples from iLO 4 version 2.30 firmware.
@@ -55,7 +56,7 @@ Representational State Transfer (REST) is a web service that uses basic CRUD (Cr
 
 ## Key benefits of the RESTful API
 
-The RESTful API is becoming the main management interface for iLO 4 and Moonshot iLO Chassis Management Module-based Hewlett Packard Enterprise servers. Its feature set will become larger than the existing iLO XML API (RIBCL) and IPMI interfaces. Using the RESTful API, you can take full inventory of the server, control power and reset, configure BIOS and iLO settings, fetch event logs, as well as many other functions.
+The RESTful API is becoming the main management interface for iLO 4 Hewlett Packard Enterprise servers. Its feature set will become larger than the existing iLO XML API (RIBCL) and IPMI interfaces. Using the RESTful API, you can take full inventory of the server, control power and reset, configure BIOS and iLO settings, fetch event logs, as well as many other functions.
 
 The RESTful API follows the trend of the Internet in moving to a common pattern for new software interfaces. Many web services in a variety of industries use REST APIs because they are easy to implement, easy to consume, and offer scalability advantages over previous technologies.
 
@@ -67,13 +68,13 @@ The RESTful API has the additional advantage of consistency across all present a
 
 ## Tips for Using the RESTful API
 
-The RESTful API for iLO is available on ProLiant Gen9 servers running iLO 4 2.00 or later with the iLO Standard license, although some features in the data might not be available without an Advanced license. The RESTful API for Moonshot iLO Chassis Management Module is available on Moonshot servers running iLO Chassis Manager 1.30 or later and does not require a license.
+The RESTful API for iLO is available on ProLiant Gen9 servers running iLO 4 2.00 or later with the iLO Standard license, although some features in the data might not be available without an Advanced license..
 
-To access the RESTful API, you need an HTTPS-capable client, such as a web browser with  the Postman REST Client plugin extension or CURL (a popular command line HTTP utility).
+To access the RESTful API, you need an HTTPS-capable client, such as a web browser with  the Postman REST Client plugin extension or cURL (a popular command line HTTP utility).
 
 ## RESTful Interface Tool and Python Examples
 
-Although not a requirement, you can use the RESTful Interface Tool with the RESTful API. This command line tool provides a level of abstraction and convenience above direct access to the RESTful API. For details see: [http://www.hpe.com/info/restfulapi](http://www.hpe.com/info/restfulapi).
+Although not a requirement, you can use the **RESTful Interface Tool** with the RESTful API. This command line tool provides a level of abstraction and convenience above direct access to the RESTful API. For details see: [http://www.hpe.com/info/restfulapi](http://www.hpe.com/info/restfulapi).
 
 Also, Hewlett Packard Enterprise published example Python code that implements a number of common operations in a RESTful API client. This code can be downloaded at [https://github.com/HewlettPackard/python-proliant-sdk](https://github.com/HewlettPackard/python-proliant-sdk). In some cases the examples in this document may refer to examples in the Python code with this notation:
 
@@ -81,23 +82,18 @@ Also, Hewlett Packard Enterprise published example Python code that implements a
 
 If you prefer not to implement a client in Python, this serves as a good pseudocode implementing the logic required to perform an operation.
 
-## Example REST API operation
+## Example REST API operation with cURL
 
 Let’s perform our first GET operation using the RESTful API. We will do an HTTP GET on the iLO HTTPS port, typically port 443 (although it could be different if you have previously configured iLO to use another port). Your client should be prepared to handle the HTTPS certificate challenge. The interface is not available over open HTTP (port 80), so you must use HTTPS.
 
-Our GET operation will be against a resource at /rest/v1 (without a trailing slash):
-
-* **Correct**: GET https://myilo/rest/v1
-* **Incorrect**: GET https://myilo/rest/v1/
+Our GET operation will be against a resource at `/redfish/v1/` (with a trailing slash):
 
 It is best to perform this initial GET with a tool like the CURL or the Postman REST Client mentioned above. Later you will want to do this with your own scripting code, but for now it’s useful to see the HTTP header information exchanged using a browser.
-
-## CURL Example
 
 CURL is a command line utility available for many Operating Systems that enables easy access to the RESTful API. CURL is available at [http://curl.haxx.se/](http://curl.haxx.se/). Note that all the CURL examples will use a flag –insecure. This causes CURL to bypass validation of the HTTPS certificate. In real use iLO should be configured to use a user-supplied certificate and this option is not necessary. Notice also that we use the –L option to force CURL to follow HTTP redirect responses. If iLO changes URI locations for various items, it can indicate to the client where the new location is and automatically follow the new link.
 
 ```shell
-> curl https://myilo/rest/v1 -i --insecure -L
+> curl https://{iLO}/redfish/v1/ -i --insecure -L
 ```
 >* -i returns HTTP response headers 
 >* --insecure bypasses TLS/SSL certification verification
@@ -216,7 +212,7 @@ NOTE:	If an error occurs, indicated by a return code 4xx or 5xx, an ExtendedErro
 
 Unlike some simple REST service, this API is designed to be implemented on many different models of servers and other IT infrastructure devices for years to come.  These devices may be quite different from one another.  For this reason, the API does not specify the URIs to various resources. Do not assume the BIOS version information is always at a particular URI.
 
-This is more complex for the client, but is necessary to make sure the data model can change to accommodate various future server architectures without requiring specification changes. As an example, if the BIOS version is at /rest/v1/Systems/1, and a client assumed it is always there, the client would then break when the interface is implemented on a different type of architecture with many compute nodes, each with its own BIOS version. 
+This is more complex for the client, but is necessary to make sure the data model can change to accommodate various future server architectures without requiring specification changes. As an example, if the BIOS version is at `/redfish/v1/systems/1/`, and a client assumed it is always there, the client would then break when the interface is implemented on a different type of architecture with many compute nodes, each with its own BIOS version. 
 
 <aside class="warning">
 A select few URIs are documented to be stable starting points. Your client code should not assume anything about the URIs that you find in the data model. You must treat them as opaque strings or your client will not interoperate with other implementations of the RESTful API.  
@@ -360,7 +356,7 @@ You can then GET the manager, PATCH values, or perform Actions.
 If you perform an HTTP operation on any other resource other than the root `/redfish/v1/` resource, you will receive an `HTTP 401 (Forbidden)` error indicating that you don’t have the authentication needed to access the resource.
 
 
-> The following shows the error displayed on GET /rest/v1/Systems when no authentication is attempted:
+> The following shows the error displayed on `GET /redfish/v1/systems/` when no authentication is attempted:
 
 ```
 401 Forbidden
@@ -392,7 +388,7 @@ If you perform an HTTP operation on any other resource other than the root `/red
 The RESTful API allows you to use HTTP Basic Authentication using a valid iLO user name and password.
 
 ```shell
-> curl https://myilo/rest/v1/Systems -i --insecure -u username:password -L
+> curl https://{iLO}/redfish/v1/systems/ -i --insecure -u username:password -L
 ```
 ```
 HTTP/1.1 200 OK Allow: GET, HEAD
@@ -416,9 +412,9 @@ Link: </rest/v1/SchemaStore/en/ComputerSystemCollection.json>; rel=describedby S
     	"Type": "Collection.1.0.0",
     	"links": {
     		"Member": [{
-    			"href": "/rest/v1/Syst ems/1"
+    			"href": "/rest/v1/systems/1"
     		}],
-    		"self": "/rest/v1/Systems"
+    		"self": "/rest/v1/systems"
     	}
     }
 
@@ -426,7 +422,7 @@ Link: </rest/v1/SchemaStore/en/ComputerSystemCollection.json>; rel=describedby S
 
 ## Creating and Using Sessions
 
-For more complex multi-resource operations, you should log in and establish a session. To log in, iLO has a session manager object at the documented URI `/rest/v1/sessions`. To create a session POST a JSON object to the Session manager:
+For more complex multi-resource operations, you should log in and establish a session. To log in, iLO has a session manager object at the documented URI `/redfish/v1/sessions/`. To create a session POST a JSON object to the Session manager:
 
 > To create a session perform an HTTP POST /redfish/v1/sessions/ with the required HTTP headers and a JSON body containing:
 
@@ -498,6 +494,8 @@ If you cannot preserve the session URI on login, you may iterate the Sessions co
 
 # Example Use Cases
 
+TODO - fill in this section
+
 ## Get Compute Node Details
 
 ## Changing BIOS Settings
@@ -522,8 +520,10 @@ Example reset all BIOS and boot order settings to factory defaults
 
 ## Mount iLO Virtual Media
 
-
 # Handling Error Responses
+
+TODO - fill in this section
+
 ## HTTP Errors
 ## ExtendedInfo
 ## Message Registries
@@ -531,126 +531,122 @@ Example reset all BIOS and boot order settings to factory defaults
 
 # Subscribing to REST Events
 
+TODO - fill in this section
+
 # Using the HPE RESTful Interface Tool
+
+TODO - fill in this section
 
 #Troubleshooting
 
-## Resetting the RESTful API
+## Resetting the RESTful API with a REST client
+
+**Symptom**
+
+ProLiant Gen9 servers could possibly experience a RESTful API error during system boot that results in inability to configure the BIOS settings using the RESTful API. In addition, the following persistent error message might display during system boot (POST) and is logged to the Integrated Management Log:
+
+    335 RESTful API Error- RESTful API PUT request failed (HTTP: Status Code = 404)
+
+With iLO firmware v2.20 or later, you can reset the REST API. You do this through the RESTful API using any 3rd party REST web client, the **RESTful Interface Tool**, or from the HPE Embedded UEFI shell restclient command.
+
+**Action**
+
+1.	Execute a POST operation to the resource at URI `<ilo-ip>/rest/v1/managers/1` with the following JSON in the request body.
+
+    {"Action":"ClearRestApiState", "Target":"/Oem/Hp"}
+
+
+2.	Restart the server.
+
 
 ### Resetting with the RESTful Interface Tool
 
+**Symptom**
+
+ProLiant Gen9 servers could possibly experience a RESTful API error during system boot that results in inability to configure the BIOS settings using the RESTful API. In addition, the following persistent error message might display during system boot (POST) and is logged to the Integrated Management Log:
+
+    335 RESTful API Error- RESTful API PUT request failed (HTTP: Status Code = 404)
+
+With iLO firmware v2.20 or later, you can reset the REST API. You do this through the RESTful API using any 3rd party REST web client, the RESTful Interface Tool, or from the HPE Embedded UEFI shell restclient command.
+
+**Action**
+
+1.	Download and install the **RESTful interface Tool**. For more information on using this tool, refer to [http://www.hpe.com/info/resttool](http://www.hpe.com/info/resttool).
+2.	Copy and paste the following JSON into a text file and save it as
+hprest_tool_clear_api.json.
+
+    {
+    	"path": "/rest/v1/managers/1",
+    	"body": {
+    		"Action": "ClearRestApiState",
+    		"Target": "/Oem/Hp"
+    	}
+    }
+
+3.	Start the hprest tool.
+
+    hprest
+
+4.	Log in to iLO.
+
+    hprest> login <ilo-ip>
+
+5.	Run the following command, pointing to the hprest_tool_clear_api.json file.
+
+    hprest> rawpost hprest_tool_clear_api.json
+
+6.	Restart the server.
+
+
 ### Resetting with the UEFI Shell
+
+**Symptom**
+
+ProLiant Gen9 servers could possibly experience a RESTful API error during system boot that results in inability to configure the BIOS settings using the RESTful API. In addition, the following persistent error message might display during system boot (POST) and is logged to the Integrated Management Log:
+
+335 RESTful API Error- RESTful API PUT request failed (HTTP: Status Code = 404)
+
+With iLO firmware v2.20 or later, you can reset the REST API. You do this through the RESTful API using any 3rd party REST web client, the **RESTful Interface Tool**, or from the HPE Embedded UEFI shell restclient command.
+
+**Action**
+
+1.	Enter the Embedded UEFI Shell. For more information, refer to the UEFI Shell User Guide
+at [http://www.hpe.com/servers/proliant/uefi](http://www.hpe.com/servers/proliant/uefi).
+2.	Copy and paste the following JSON into an ASCII text file save it as clear_api.json on FAT formatted USB media.
+
+
+    {
+    "Action":"ClearRestApiState", "Target":"/Oem/Hp"
+    }
+    
+
+3.	Attach the USB media to the server.
+4.	Turn on the server and boot to the Embedded UEFI Shell.
+5.	At the UEFI shell prompt, use the partitions command to find the file system that corresponds to the USB media. For example, FS0, FS1, and so on.
+6.	To switch to the file system, type the file system name (for example, shell>FS0: ).
+7.	Execute the following command:
+
+    Fs0:> restclient –m POST –uri “/rest/v1/managers/1” –i clear_api.json
+
+8.	Restart the server.
+
 
 ### Resetting with the iLO SSH CLI
 
+**Symptom**
 
-# Kittens
+ProLiant Gen9 servers could possibly experience a RESTful API error during system boot that results in inability to configure the BIOS settings using the RESTful API. In addition, the following persistent error message might display during system boot (POST) and is logged to the Integrated Management Log:
+    
+    335 RESTful API Error- RESTful API PUT request failed (HTTP: Status Code = 404)
 
-## Get All Kittens
+With iLO firmware v2.20 or later, you can reset the REST API. You do this through the RESTful API using any 3rd party REST web client, the **RESTful Interface Tool**, or from the HPE Embedded UEFI shell restclient command.
 
-```ruby
-require 'kittn'
+**Action**
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
+1.	Open an SSH connection with iLO, log in using an account with administrator privileges. For more information, see the HPE iLO 4 Scripting and Command Line Guide at [http:// www.hpe.com/info/iLO](http:// www.hpe.com/info/iLO).
+2.	At the CLI prompt, execute the command `oemhp_clearRESTAPIstate`. Note that this command might take a few seconds to complete.
+3.	Restart the server.
 
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
-
-```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
-```
-
-> The above command returns JSON structured like this:
-
-```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
-```
-
-This endpoint retrieves all kittens.
-
-### HTTP Request
-
-`GET http://example.com/api/kittens`
-
-### Query Parameters
-
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
-}
-```
-
-This endpoint retrieves a specific kitten.
-
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
-
-### HTTP Request
-
-`GET http://example.com/kittens/<ID>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
 
 # Client Best Practices
 
@@ -661,7 +657,7 @@ The RESTful API is a hypermedia API by design. This is to avoid building in rest
 
 The client should not interact with a URI as if it will remain static. Only specific top-level URIs (any URI in this sample code) can be assumed as static.
 
-All URIs, with the exception of known top-level URIs, must be discovered dynamically by following the href links in the data model. Clients should not make assumptions about the URIs for the resource members of a collection. For instance, the URI of a collection member will NOT always be /rest/v1/.../collection/1, or 2. On Moonshot a System collection member might be /rest/v1/Systems/C1N1.
+All URIs, with the exception of known top-level URIs, must be discovered dynamically by following the href links in the data model. Clients should not make assumptions about the URIs for the resource members of a collection. For instance, the URI of a collection member will NOT always be `/rest/v1/.../collection/1`, or 2. On Moonshot a System collection member might be `/rest/v1/systems/c1n1`.
 
 ## Traversing the data model
 
@@ -679,7 +675,7 @@ When POSTing to create a resource (e.g. create an account or session), a success
 
 All clients must correctly handle HTTP redirect (e.g. 308, 301, and so on.) iLO 4 will use redirection as a way to alias portions of the data model and to migrate the data model to the Redfish specified URIs (for example, /redfish/…).
 
-# Other Resources
+# Other Web Resources
 
 * Redfish 1.0 DMTF standard at [http:// www.dmtf.org/standards/redfish](http:// www.dmtf.org/standards/redfish)
 
@@ -689,28 +685,5 @@ All clients must correctly handle HTTP redirect (e.g. 308, 301, and so on.) iLO 
 
 # Reference
 
-<aside class="notice">This error section is stored in a separate file in `includes/_errors.md`. Slate allows you to optionally separate out your docs into many files...just save them to the `includes` folder and add them to the top of your `index.md`'s frontmatter. Files are included in the order listed.</aside>
-
-The REST API uses the following error codes:
-
-
-Error Code | Meaning
----------- | -------
-400 | Bad Request -- Your request sucks
-401 | Unauthorized -- Your API key is wrong
-403 | Forbidden -- The kitten requested is hidden for administrators only
-404 | Not Found -- The specified kitten could not be found
-405 | Method Not Allowed -- You tried to access a kitten with an invalid method
-406 | Not Acceptable -- You requested a format that isn't json
-410 | Gone -- The kitten requested has been removed from our servers
-418 | I'm a teapot
-429 | Too Many Requests -- You're requesting too many kittens! Slow down!
-500 | Internal Server Error -- We had a problem with our server. Try again later.
-503 | Service Unavailable -- We're temporarily offline for maintenance. Please try again later.
-
-
-
-
-
-
+The API conforms to the Redfish standard.  For more details see [http:// www.dmtf.org/standards/redfish](http:// www.dmtf.org/standards/redfish)
 
