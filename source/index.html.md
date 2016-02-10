@@ -21,7 +21,7 @@ With modern scripting languages, you can easily write simple REST clients for RE
 
 This document has been updated with examples from iLO 4 version 2.30 firmware.
  
-### Redfish 1.0 Conformance
+## Redfish 1.0 Conformance
 
 The RESTful API was first released with iLO 4 2.00 on HPE Gen9 servers. The RESTful API also functioned as the starting point for the new Redfish 1.0 DMTF standard at [http:// www.dmtf.org/standards/redfish](http:// www.dmtf.org/standards/redfish)
 
@@ -41,14 +41,14 @@ iLO 4 2.30 achieves Redfish 1.0 conformance and backward compatibility by:
 1. Returning both compatibility and Redfish properties by default.
 1. Returning only Redfish conformant properties (with Hewlett Packard Enterprise extensions) if the Redfish-required OData header is included in the request (OData-Version: 4.0).
 
-### REST APIs Architected using HATEOS
+## REST APIs Architected using HATEOS
 
 Representational State Transfer (REST) is a web service that uses basic CRUD (Create, Read, Update, Delete, and Patch) operations performed on resources using HTTP commands such as POST, GET, PUT, PATCH, and DELETE. The RESTful API is designed using a REST architecture called HATEOS (Hypermedia as the Engine of Application State). This architecture allows the client to interact with iLO through a simple fixed URL (rest/v1) and several other top-level URIs documented in the iLO Data Model. The rest of the data model is discoverable by following clearly identified “links” in the data. This has the advantage that the client does not need to know a set of fixed URLs. When you create a script to automate tasks using the RESTful API, you only need to hardcode this simple URL and design the script to discover the REST API URLs that are needed to complete a task. To learn more about REST and HATEOAS concepts, see:
 
 * [http://en.wikipedia.org/wiki/Representational_state_transfer](http://en.wikipedia.org/wiki/Representational_state_transfer)
 * [http://en.wikipedia.org/wiki/HATEOAS](http://en.wikipedia.org/wiki/HATEOAS)
 
-### Key benefits of the RESTful API
+## Key benefits of the RESTful API
 
 The RESTful API is becoming the main management interface for iLO 4 and Moonshot iLO Chassis Management Module-based Hewlett Packard Enterprise servers. Its feature set will become larger than the existing iLO XML API (RIBCL) and IPMI interfaces. Using the RESTful API, you can take full inventory of the server, control power and reset, configure BIOS and iLO settings, fetch event logs, as well as many other functions.
 
@@ -58,29 +58,9 @@ HPE OneView, OpenStack, and many other server management APIs are now REST APIs.
 
 The RESTful API has the additional advantage of consistency across all present and projected server architectures. The same data model works for traditional rack-mount servers, blades, as well as newer types of systems like Moonshot. This advantage comes because the data model is designed to self-describe the service’s capabilities to the client and has room for flexibility designed in from the start
 
-### HTTP Resource Operations
+# Getting Started
 
-Operation | HTTP Command | Description
--------------- | -------------- | --------------
-Create | POST resource URI (payload = resource data) | Creates a new resource or invokes a custom action. A synchronous POST returns the newly created resource.
-Read | GET resource URI | Returns the requested resource representation.
-Update | PATCH or PUT resource URI (payload = update data) | Updates an existing resource. You can only PATCH properties that are marked readonly = false in the schema.
-Delete | DELETE resource URI | Deletes the specified resource.
-
-### HTTP Status Return Codes
-
-Return Status | Description
--------------- | -------------- | --------------
-2xx | Successful operation.
-308 | The resource has moved
-4xx | Client-side error with message returned
-5xx | iLO error with error message returned
-
-<aside class="notice">
-NOTE:	If an error occurs, indicated by a return code 4xx or 5xx, an ExtendedError or ExtendedInfo JSON response is returned. The expected resource is not returned.
-</aside>
-
-# Tips for Using the RESTful API
+## Tips for Using the RESTful API
 
 The RESTful API for iLO is available on ProLiant Gen9 servers running iLO 4 2.00 or later with the iLO Standard license, although some features in the data might not be available without an Advanced license. The RESTful API for Moonshot iLO Chassis Management Module is available on Moonshot servers running iLO Chassis Manager 1.30 or later and does not require a license.
 
@@ -96,7 +76,7 @@ Also, Hewlett Packard Enterprise published example Python code that implements a
 
 If you prefer not to implement a client in Python, this serves as a good pseudocode implementing the logic required to perform an operation.
 
-# Example REST API operation
+## Example REST API operation
 
 Let’s perform our first GET operation using the RESTful API. We will do an HTTP GET on the iLO HTTPS port, typically port 443 (although it could be different if you have previously configured iLO to use another port). Your client should be prepared to handle the HTTPS certificate challenge. The interface is not available over open HTTP (port 80), so you must use HTTPS.
 
@@ -202,6 +182,29 @@ CURL is a command line utility available for many Operating Systems that enables
 ```
 
 In JSON, there is no strong ordering of property names, so iLO may return JSON properties in any order. Likewise, iLO cannot assume the order of properties in any submitted JSON. This is why the best scripting data structure for a RESTful client is a dictionary: a simple set of unordered key/value pairs. This lack of ordering is also the reason you see embedded structure within objects (objects within objects). This allows us to keep related data together that is more logically organized, aesthetically pleasing to view, and helps avoid property name conflicts or ridiculously long property names. It also allows us to use identical blocks of JSON in many places in the data model, like status.
+
+
+## HTTP Resource Operations
+
+Operation | HTTP Command | Description
+-------------- | -------------- | --------------
+Create | POST resource URI (payload = resource data) | Creates a new resource or invokes a custom action. A synchronous POST returns the newly created resource.
+Read | GET resource URI | Returns the requested resource representation.
+Update | PATCH or PUT resource URI (payload = update data) | Updates an existing resource. You can only PATCH properties that are marked readonly = false in the schema.
+Delete | DELETE resource URI | Deletes the specified resource.
+
+## HTTP Status Return Codes
+
+Return Status | Description
+-------------- | -------------- | --------------
+2xx | Successful operation.
+308 | The resource has moved
+4xx | Client-side error with message returned
+5xx | iLO error with error message returned
+
+<aside class="notice">
+NOTE:	If an error occurs, indicated by a return code 4xx or 5xx, an ExtendedError or ExtendedInfo JSON response is returned. The expected resource is not returned.
+</aside>
 
 
 # Navigating the Data Model
@@ -313,38 +316,38 @@ Many operations will require you to locate the resource you wish to use.  Most o
 ```
 
 
-### Find a Compute Node
+## Find a Compute Node
 
 A Compute node represents a logical computer system with attributes such as processors, memory, BIOS, power state, firmware version, etc.  To find a compute node `GET /redfish/v1/systems` and iterate the "Members" array in the returned JSON.  Each member has a link to a compute node.
 
-Find a compute node by [Iterating Collections][iterating the systems collection] at `/redfish/v1/systems/`.
+Find a compute node by iterating the systems collection at `/redfish/v1/systems/`.
 
 You can then GET the compute node, PATCH values, or perform Actions.
 
     GET https://{host}/redfish/v1/systems/{item}
 
-### Find a Chassis
+## Find a Chassis
 
 A Chassis represents a physical or virtual container of compute resources with attrbutes such as FRU information, power supplies, temperature, etc.  To find a chassis `GET /redfish/v1/chassis` and iterate the "Members" array in the returned JSON.  Each member has a link to a chassis.
 
-Find a chassis by [iterating the chassis collection][# Navigating the Data Model] at `/redfish/v1/chassis/`.
+Find a chassis by iterating the chassis collection at `/redfish/v1/chassis/`.
 
 You can then GET the chassis, PATCH values, or perform Actions.
 
     GET https://{host}/redfish/v1/chassis/{item}
 
-### Find the iLO 4 Management Processor
+## Find the iLO 4 Management Processor
 
 A Manager represents a management processor (or "BMC") that manages chassis and compute resources.  For HPE Servers, the manager is iLO 4.  Managers contain attributes such as networking state and configuration, management services, security configuration, etc.  To find a manager `GET /redfish/v1/managers` and iterate the "Members" array in the returned JSON.  Each member has a link to a chassis.
 
-Find a manager by [iterating the manager collection][# Navigating the Data Model] at `/redfish/v1/managers/`.
+Find a manager by iterating the manager collection at `/redfish/v1/managers/`.
 
 You can then GET the manager, PATCH values, or perform Actions.
 
     GET https://{host}/redfish/v1/manager/{item}
 
 
-# Authentication
+# Authentication and Sessions
 
 If you perform a GET on any other resource other than the root /rest/v1 resource, you receive an HTTP 401 (Forbidden) error indicating that you don’t have the authentication needed to access the resource.
 
@@ -433,6 +436,58 @@ If the session is created successfully, you receive an HTTP 201 (Created) respon
 * **X-Auth-Token**	Your session token (string).	This is a unique string for your login session. It must be included as a header in all subsequent HTTP operations in the session.
 
 * **Location**	The URI of the newly created session resource.	iLO allocates a new session resource describing your session. This is the URI that you must DELETE against in order to log out. If you lose this location URI, you can find it by crawling the HREF links in the Sessions collection. Store this URI to facilitate logging out.
+
+> Successful login response from iLO:
+> 
+> Headers:
+> Cache-Control → no-cache
+> Connection → keep-alive
+> Content-length → 239
+> Content-type → application/json; charset=utf-8
+> Date → Sat, 08 Apr 2034 19:13:41 GMT
+> ETag → W/"78E0DBAE"
+> Link → </redfish/v1/SessionService/Sessions/mikeg78e2e7e55d2f1a9f/>; rel=self
+> Location → https://16.85.178.74/redfish/v1/SessionService/Sessions/mikeg78e2e7e55d2f1a9f/
+> Server → HPE-iLO-Server/1.30
+> X-Auth-Token → c9b3b084490d5b690a7091da2bf4a906
+> X-Frame-Options → sameorigin
+> X_HP-CHRP-Service-Version → 1.0.3
+
+```json
+{
+  "Messages": [
+    {
+      "MessageID": "Base.0.10.Created"
+    }
+  ],
+  "Type": "ExtendedError.1.0.0",
+  "error": {
+    "@Message.ExtendedInfo": [
+      {
+        "MessageID": "Base.0.10.Created"
+      }
+    ],
+    "code": "iLO.0.10.ExtendedInfo",
+    "message": "See @Message.ExtendedInfo for more information."
+  }
+}
+```
+
+<aside class="warning">
+It is good practice to save the Location URI of the newly created session.  This is your unique session information and is need to log out later.
+</aside>
+
+## Using a Session
+
+To use a session, simply include the `X-Auth-Token` header supplied by the login response in all REST requests.
+
+## Log Out of a Session
+
+iLO supports a limited number of simultaneous sessions.  If you do not log out of a session it will expire automatically after a time of inactivity.  However, it is good practice to log out when finished with a session.
+
+To log out perform an `HTTP DELETE` to the URI that was returned in the "Location" header when you created the session.
+
+If you cannot preserve the session URI on login, you may iterate the Sessions collection at redfish/v1/sessions/.  Be sure to include the X-Auth-Token header.  For each session look for a JSON property called "MySession" that is true. You may then DELETE that URI.
 
 
 
