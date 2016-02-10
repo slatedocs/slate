@@ -146,7 +146,7 @@ Content-Type: application/json
   "product_id" : "47"
 }
 ```
-Bizongo uses the auth-token to allow access to the create product API. This api requests product  is present in search.
+Bizongo uses the auth-token to allow access to the create product API. This api requests product details and on successfully creating the product returns product_id.
 
 Bizongo expects the header `Authorization` to be present in the following 'format'
 
