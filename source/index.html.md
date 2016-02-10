@@ -240,6 +240,8 @@ Many operations will require you to locate the resource you wish to use.  Most o
 }
 ```
 
+> Example of a collection iterator
+
 ```python
 
 	# this is a general purpose utilty generator that returns collection members
@@ -315,7 +317,7 @@ Many operations will require you to locate the resource you wish to use.  Most o
 
 A Compute node represents a logical computer system with attributes such as processors, memory, BIOS, power state, firmware version, etc.  To find a compute node `GET /redfish/v1/systems` and iterate the "Members" array in the returned JSON.  Each member has a link to a compute node.
 
-Find a compute node by iterating the systems collection at `/redfish/v1/systems/` (see [Iterating Collections](### Iterating Collections)).
+Find a compute node by [iterating the systems collection](# Navigating the Data Model) at `/redfish/v1/systems/`.
 
 You can then GET the compute node, PATCH values, or perform Actions.
 > GET https://{host}/redfish/v1/systems/{item}
@@ -324,7 +326,7 @@ You can then GET the compute node, PATCH values, or perform Actions.
 
 A Chassis represents a physical or virtual container of compute resources with attrbutes such as FRU information, power supplies, temperature, etc.  To find a chassis `GET /redfish/v1/chassis` and iterate the "Members" array in the returned JSON.  Each member has a link to a chassis.
 
-Find a chassis by iterating the chassis collection at `/redfish/v1/chassis/` (see [Iterating Collections](### Iterating Collections)).
+Find a chassis by [iterating the chassis collection](# Navigating the Data Model) at `/redfish/v1/chassis/`.
 
 You can then GET the chassis, PATCH values, or perform Actions.
 > GET https://{host}/redfish/v1/chassis/{item}
@@ -333,7 +335,7 @@ You can then GET the chassis, PATCH values, or perform Actions.
 
 A Manager represents a management processor (or "BMC") that manages chassis and compute resources.  For HPE Servers, the manager is iLO 4.  Managers contain attributes such as networking state and configuration, management services, security configuration, etc.  To find a manager `GET /redfish/v1/managers` and iterate the "Members" array in the returned JSON.  Each member has a link to a chassis.
 
-Find a manager by iterating the manager collection at `/redfish/v1/managers/` (see [Iterating Collections](### Iterating Collections)).
+Find a manager by [iterating the manager collection](# Navigating the Data Model) at `/redfish/v1/managers/`.
 
 You can then GET the manager, PATCH values, or perform Actions.
 > GET https://{host}/redfish/v1/manager/{item}
