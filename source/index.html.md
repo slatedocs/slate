@@ -3,6 +3,7 @@ title: API Reference
 
 language_tabs:
   - shell: cURL
+  - python
 
 toc_footers:
   - <a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a>
@@ -202,16 +203,6 @@ CURL is a command line utility available for many Operating Systems that enables
 
 In JSON, there is no strong ordering of property names, so iLO may return JSON properties in any order. Likewise, iLO cannot assume the order of properties in any submitted JSON. This is why the best scripting data structure for a RESTful client is a dictionary: a simple set of unordered key/value pairs. This lack of ordering is also the reason you see embedded structure within objects (objects within objects). This allows us to keep related data together that is more logically organized, aesthetically pleasing to view, and helps avoid property name conflicts or ridiculously long property names. It also allows us to use identical blocks of JSON in many places in the data model, like status.
 
-## Resource type and version
-Notice that the JSON response has a property named Type with a value of “ServiceRoot.1.0.0”. Type is very important in the RESTful API. It is the key to understanding what all of the other properties in the object mean. Resources that have the same type follow the same schema definition (meaning that like-named properties mean the same thing.)
-
-Type includes a name (“ServiceRoot”) as well as version information (“1.0.0”). Version information is formatted as major.minor.errata. Future iLO firmware releases will certainly expand the data included in its various resources, so as a client, you should be prepared to see different versions of a Type. Anything but a major version is backward compatible, so a new property added to an object might result in minor Type increments (for example, Chassis.1.0.0 becomes Chassis.1.1.0). Moving to a major version change (for example, Chassis.2.0.0) is a breaking change without any guarantee of backward compatibility.
-
-The initial releases of the RESTful API contained many resources of type version 0.9.5 where major version is 0. However, as of iLO 4 2.30 many types are transitioning to version 1.0.0. We have maintained backward compatibility with previous versions of iLO 4, so this type changes from 0 to 1 do not indicate breaking changes in this case but a maturing of the RESTful API data model.
-
-## Links between resources
-
-Finally, let’s take a look at the links property. In the RESTful API, the navigation of the data is included in the data itself, not in the spec, and can therefore adapt as needed to different servers over time without the specification changes. This is called a hypermedia API where the navigation  is built into the data (like web pages). The links property contains the pointers to other related resources. Inside the links objects are various defined relationship types, like Systems, Managers, Chassis, or Sessions. Each of these contain a property called href that is the URI of the related resource. A relationship type (for example, Systems) distinguishes the various links by what they navigate to. For instance, Systems navigates to a collection of ComputerSystem resources.
 
 # Navigating the Data Model
 
@@ -220,16 +211,21 @@ Unlike some simple REST service, this API is designed to be implemented on many 
 This is more complex for the client, but is necessary to make sure the data model can change to accommodate various future server architectures without requiring specification changes. As an example, if the BIOS version is at /rest/v1/Systems/1, and a client assumed it is always there, the client would then break when the interface is implemented on a different type of architecture with many compute nodes, each with its own BIOS version. 
 
 <aside class="warning">
-A select few URIs are documented to be stable starting points. Your client code should not assume anything about the URIs that you find in the data model. You must treat them as opaque strings or your client will not interoperate with other implementations of the RESTful API.
+A select few URIs are documented to be stable starting points. Your client code should not assume anything about the URIs that you find in the data model. You must treat them as opaque strings or your client will not interoperate with other implementations of the RESTful API.  The supported stable URIs are:
+
+* /redfish/v1/
+* /redfish/v1/systems/
+* /redfish/v1/chassis/
+* /redfish/v1/managers/
+
 </aside>
 
-## Common Use Cases
-
-### Iterating Collections
+## Iterating Collections
 
 Many operations will require you to locate the resource you wish to use.  Most of these resources are members of "collections" (arrays of similar items).  The method to find collections members is consistent for compute nodes, chassis, management processors, and many other resources in the data model.
 
 > GET https://{iLO}/redfish/v1/systems/
+
 ```json
 {
     "@odata.id": "/redfish/v1/systems/",
@@ -243,6 +239,7 @@ Many operations will require you to locate the resource you wish to use.  Most o
     ]
 }
 ```
+
 ```python
 
 	# this is a general purpose utilty generator that returns collection members
