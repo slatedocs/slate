@@ -214,20 +214,23 @@ Unlike some simple REST service, this API is designed to be implemented on many 
 This is more complex for the client, but is necessary to make sure the data model can change to accommodate various future server architectures without requiring specification changes. As an example, if the BIOS version is at /rest/v1/Systems/1, and a client assumed it is always there, the client would then break when the interface is implemented on a different type of architecture with many compute nodes, each with its own BIOS version. 
 
 <aside class="warning">
-A select few URIs are documented to be stable starting points. Your client code should not assume anything about the URIs that you find in the data model. You must treat them as opaque strings or your client will not interoperate with other implementations of the RESTful API.  The supported stable URIs are:
+A select few URIs are documented to be stable starting points. Your client code should not assume anything about the URIs that you find in the data model. You must treat them as opaque strings or your client will not interoperate with other implementations of the RESTful API.  
+</aside>
+
+The supported stable URIs are those referenced directly in this API reference and include:
 
 * /redfish/v1/
 * /redfish/v1/systems/
 * /redfish/v1/chassis/
 * /redfish/v1/managers/
+* /redfish/v1/sessions/
 
-</aside>
 
 ## Iterating Collections
 
 Many operations will require you to locate the resource you wish to use.  Most of these resources are members of "collections" (arrays of similar items).  The method to find collections members is consistent for compute nodes, chassis, management processors, and many other resources in the data model.
 
-> GET https://{iLO}/redfish/v1/systems/
+> GET https://{iLO}/redfish/v1/systems/ showing a collection response (JSON)
 
 ```json
 {
@@ -324,7 +327,7 @@ Find a compute node by iterating the systems collection at `/redfish/v1/systems/
 
 You can then GET the compute node, PATCH values, or perform Actions.
 
-    GET https://{host}/redfish/v1/systems/{item}
+>    GET https://{host}/redfish/v1/systems/{item}
 
 ## Find a Chassis
 
@@ -334,7 +337,7 @@ Find a chassis by iterating the chassis collection at `/redfish/v1/chassis/`.
 
 You can then GET the chassis, PATCH values, or perform Actions.
 
-    GET https://{host}/redfish/v1/chassis/{item}
+>    GET https://{host}/redfish/v1/chassis/{item}
 
 ## Find the iLO 4 Management Processor
 
@@ -344,15 +347,17 @@ Find a manager by iterating the manager collection at `/redfish/v1/managers/`.
 
 You can then GET the manager, PATCH values, or perform Actions.
 
-    GET https://{host}/redfish/v1/manager/{item}
+>    GET https://{host}/redfish/v1/manager/{item}
 
 
 # Authentication and Sessions
 
-If you perform a GET on any other resource other than the root /rest/v1 resource, you receive an HTTP 401 (Forbidden) error indicating that you don’t have the authentication needed to access the resource.
+If you perform an HTTP operation on any other resource other than the root `/redfish/v1/` resource, you will receive an `HTTP 401 (Forbidden)` error indicating that you don’t have the authentication needed to access the resource.
 
 
 > The following shows the error displayed on GET /rest/v1/Systems when no authentication is attempted:
+>
+> 401 Forbidden
 
 ```json
     {
@@ -377,17 +382,23 @@ If you perform a GET on any other resource other than the root /rest/v1 resource
 
 ## Basic Authentication
 
-The RESTful API allows you to use HTTP Basic Authentication using a valid user name and password.
+The RESTful API allows you to use HTTP Basic Authentication using a valid iLO user name and password.
 
 ```shell
 > curl https://myilo/rest/v1/Systems -i --insecure -u username:password -L
-```
+
 
 >HTTP/1.1 200 OK Allow: GET, HEAD
+>
 >Cache-Control: no-cache Content-length: 437
+>
 >Content-type: application/json Date: Tue, 05 Aug 2014 14:39:56 GMT ETag: W/"9349EA93"
->Link: </rest/v1/SchemaStore/en/ComputerSystemCollection.json>; rel=describedby Server: HP->iLO-Server/1.30
+>
+>Link: </rest/v1/SchemaStore/en/ComputerSystemCollection.json>; rel=describedby Server: HP->
+>iLO-Server/1.30
+>
 >X-Frame-Options: sameorigin
+>
 >X_HP-CHRP-Service-Version: 1.0.3
 
 ```json    
@@ -413,12 +424,13 @@ The RESTful API allows you to use HTTP Basic Authentication using a valid user n
     }
 
 ```
+```
 
 ## Creating and Using Sessions
 
-For more complex multi-resource operations, you should log in and establish a session. To log in, iLO has a session manager object at the documented URI /rest/v1/Sessions. To create a session we need to POST a JSON object to the Session manager:
+For more complex multi-resource operations, you should log in and establish a session. To log in, iLO has a session manager object at the documented URI `/rest/v1/sessions`. To create a session POST a JSON object to the Session manager:
 
-> To create a session perform an HTTP POST /rest/v1/Sessions with the required HTTP headers and a JSON body containing:
+> To create a session perform an HTTP POST /redfish/v1/sessions/ with the required HTTP headers and a JSON body containing:
 
 ```json
     {
@@ -427,11 +439,11 @@ For more complex multi-resource operations, you should log in and establish a se
     }
 ```
 <aside class="notice">
-IMPORTANT:	You must include the HTTP header Content-Type: application/json
+You must include the HTTP header `Content-Type: application/json`
 for all RESTful API operations that include a request body in JSON format.
 </aside>
 
-If the session is created successfully, you receive an HTTP 201 (Created) response from iLO. There will also be two additional HTTP headers.
+If the session is created successfully, you receive an HTTP 201 (Created) response from iLO. There will also be two important HTTP response headers.
 
 * **X-Auth-Token**	Your session token (string).	This is a unique string for your login session. It must be included as a header in all subsequent HTTP operations in the session.
 
@@ -439,19 +451,16 @@ If the session is created successfully, you receive an HTTP 201 (Created) respon
 
 > Successful login response from iLO:
 > 
-> Headers:
-> Cache-Control → no-cache
-> Connection → keep-alive
-> Content-length → 239
+> Key Headers:
+> 
 > Content-type → application/json; charset=utf-8
-> Date → Sat, 08 Apr 2034 19:13:41 GMT
-> ETag → W/"78E0DBAE"
-> Link → </redfish/v1/SessionService/Sessions/mikeg78e2e7e55d2f1a9f/>; rel=self
-> Location → https://16.85.178.74/redfish/v1/SessionService/Sessions/mikeg78e2e7e55d2f1a9f/
-> Server → HPE-iLO-Server/1.30
+> 
+> Link → </redfish/v1/SessionService/Sessions/{item}/>; rel=self
+> 
+> Location → https://{iLO}/redfish/v1/SessionService/Sessions/{item}/
+> 
 > X-Auth-Token → c9b3b084490d5b690a7091da2bf4a906
-> X-Frame-Options → sameorigin
-> X_HP-CHRP-Service-Version → 1.0.3
+> 
 
 ```json
 {
@@ -487,41 +496,10 @@ iLO supports a limited number of simultaneous sessions.  If you do not log out o
 
 To log out perform an `HTTP DELETE` to the URI that was returned in the "Location" header when you created the session.
 
-If you cannot preserve the session URI on login, you may iterate the Sessions collection at redfish/v1/sessions/.  Be sure to include the X-Auth-Token header.  For each session look for a JSON property called "MySession" that is true. You may then DELETE that URI.
+If you cannot preserve the session URI on login, you may iterate the Sessions collection at `/redfish/v1/sessions/`.  Be sure to include the `X-Auth-Token header`.  For each session look for a JSON property called `"MySession"` that is true. You may then DELETE that URI.
 
 
 
-> To authorize, use this code:
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-```
-
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
-```
-
-> Make sure to replace `meowmeowmeow` with your API key.
-
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
-
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
-
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
 
 # Kittens
 
