@@ -356,8 +356,10 @@ If you perform an HTTP operation on any other resource other than the root `/red
 
 
 > The following shows the error displayed on GET /rest/v1/Systems when no authentication is attempted:
->
-> 401 Forbidden
+
+```
+401 Forbidden
+```
 
 ```json
     {
@@ -386,21 +388,13 @@ The RESTful API allows you to use HTTP Basic Authentication using a valid iLO us
 
 ```shell
 > curl https://myilo/rest/v1/Systems -i --insecure -u username:password -L
-
-
->HTTP/1.1 200 OK Allow: GET, HEAD
->
->Cache-Control: no-cache Content-length: 437
->
->Content-type: application/json Date: Tue, 05 Aug 2014 14:39:56 GMT ETag: W/"9349EA93"
->
->Link: </rest/v1/SchemaStore/en/ComputerSystemCollection.json>; rel=describedby Server: HP->
->iLO-Server/1.30
->
->X-Frame-Options: sameorigin
->
->X_HP-CHRP-Service-Version: 1.0.3
-
+```
+```
+HTTP/1.1 200 OK Allow: GET, HEAD
+Cache-Control: no-cache Content-length: 437
+Content-type: application/json Date: Tue, 05 Aug 2014 14:39:56 GMT ETag: W/"9349EA93"
+Link: </rest/v1/SchemaStore/en/ComputerSystemCollection.json>; rel=describedby Server: HP->
+```
 ```json    
     {
     	"@odata.context": "/redfish/v1/$metadata#Systems",
@@ -423,7 +417,6 @@ The RESTful API allows you to use HTTP Basic Authentication using a valid iLO us
     	}
     }
 
-```
 ```
 
 ## Creating and Using Sessions
@@ -450,17 +443,13 @@ If the session is created successfully, you receive an HTTP 201 (Created) respon
 * **Location**	The URI of the newly created session resource.	iLO allocates a new session resource describing your session. This is the URI that you must DELETE against in order to log out. If you lose this location URI, you can find it by crawling the HREF links in the Sessions collection. Store this URI to facilitate logging out.
 
 > Successful login response from iLO:
-> 
-> Key Headers:
-> 
-> Content-type → application/json; charset=utf-8
-> 
-> Link → </redfish/v1/SessionService/Sessions/{item}/>; rel=self
-> 
-> Location → https://{iLO}/redfish/v1/SessionService/Sessions/{item}/
-> 
-> X-Auth-Token → c9b3b084490d5b690a7091da2bf4a906
-> 
+
+```
+Content-type → application/json; charset=utf-8
+Link → </redfish/v1/SessionService/Sessions/{item}/>; rel=self
+Location → https://{iLO}/redfish/v1/SessionService/Sessions/{item}/
+X-Auth-Token → c9b3b084490d5b690a7091da2bf4a906
+``` 
 
 ```json
 {
@@ -496,8 +485,11 @@ iLO supports a limited number of simultaneous sessions.  If you do not log out o
 
 To log out perform an `HTTP DELETE` to the URI that was returned in the "Location" header when you created the session.
 
-If you cannot preserve the session URI on login, you may iterate the Sessions collection at `/redfish/v1/sessions/`.  Be sure to include the `X-Auth-Token header`.  For each session look for a JSON property called `"MySession"` that is true. You may then DELETE that URI.
+> DELETE https://{host}/redfish/v1/sessions/{item}
 
+<aside class="notice">
+If you cannot preserve the session URI on login, you may iterate the Sessions collection at `/redfish/v1/sessions/`.  Be sure to include the `X-Auth-Token header`.  For each session look for a JSON property called `"MySession"` that is true. You may then DELETE that URI.
+</aside>
 
 
 
