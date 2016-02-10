@@ -46,6 +46,14 @@ A count of frames successfully transmitted by the physical adapter.
 
 Indicates the health state of this resource without considering its dependent resources.
 
+Defined values:
+
+* `OK`
+
+* `Warning`
+
+* `Critical`
+
 #### PhysicalPorts[]/Oem/Hp/GoodReceives (read only integer)
 
 A count of frames successfully received by the physical adapter.
@@ -54,6 +62,14 @@ A count of frames successfully received by the physical adapter.
 
 Indicates the overall health state of this resource and its dependent resources.
 
+Defined values:
+
+* `OK`
+
+* `Warning`
+
+* `Critical`
+
 #### PhysicalPorts[]/SpeedMbps (read only integer)
 
 An estimate of the interface's current bandwidth in Megabits per second.  For interfaces which do not vary in bandwidth or for those where no accurate estimation can be made, this object should contain the nominal bandwidth.
@@ -61,6 +77,14 @@ An estimate of the interface's current bandwidth in Megabits per second.  For in
 #### Status/HealthRollUp (read only enumeration)
 
 Indicates the overall health state of this resource and its dependent resources.
+
+Defined values:
+
+* `OK`
+
+* `Warning`
+
+* `Critical`
 
 #### PhysicalPorts[]/UEFIDevicePath (read only string)
 
@@ -78,6 +102,14 @@ If a port is configured for NIC teaming, the name of the configured link between
 
 Indicates the health state of this resource without considering its dependent resources.
 
+Defined values:
+
+* `OK`
+
+* `Warning`
+
+* `Critical`
+
 #### Firmware/definitions/FWVersion/VersionString (read only string)
 
 This string represents the version of the firmware image.
@@ -85,6 +117,20 @@ This string represents the version of the firmware image.
 #### Status/State (read only enumeration)
 
 Indicates the known state of this resource (for example, if the resource is enabled). Enabled indicates that the resource is available. Disabled indicates that the resource has been made unavailable intentionally, but it can be enabled. Offline indicates that the resource is unavailable intentionally and requires action to be made available. InTest indicates that the component is undergoing testing. Starting indicates that the resource is on its way to becoming available. Absent indicates that the resource is physically unavailable.
+
+Defined values:
+
+* `Enabled`
+
+* `Disabled`
+
+* `Offline`
+
+* `InTest`
+
+* `Starting`
+
+* `Absent`
 
 #### Firmware/Current/VersionString (read only string)
 
@@ -105,6 +151,20 @@ Full-duplex data transmission means that data can be transmitted in both directi
 #### PhysicalPorts[]/Status/State (read only enumeration)
 
 Indicates the known state of this resource (for example, if the resource is enabled). Enabled indicates that the resource is available. Disabled indicates that the resource has been made unavailable intentionally, but it can be enabled. Offline indicates that the resource is unavailable intentionally and requires action to be made available. InTest indicates that the component is undergoing testing. Starting indicates that the resource is on its way to becoming available. Absent indicates that the resource is physically unavailable.
+
+Defined values:
+
+* `Enabled`
+
+* `Disabled`
+
+* `Offline`
+
+* `InTest`
+
+* `Starting`
+
+* `Absent`
 
 #### PhysicalPorts[]/Oem/Hp/BadReceives (read only integer)
 
@@ -171,9 +231,31 @@ The firmware version of the Power Monitor boot loader.
 
 Indicates the overall health state of this resource and its dependent resources.
 
+Defined values:
+
+* `OK`
+
+* `Warning`
+
+* `Critical`
+
 #### Status/State (read only enumeration)
 
 Indicates the known state of this resource (for example, if the resource is enabled). Enabled indicates that the resource is available. Disabled indicates that the resource has been made unavailable intentionally, but it can be enabled. Offline indicates that the resource is unavailable intentionally and requires action to be made available. InTest indicates that the component is undergoing testing. Starting indicates that the resource is on its way to becoming available. Absent indicates that the resource is physically unavailable.
+
+Defined values:
+
+* `Enabled`
+
+* `Disabled`
+
+* `Offline`
+
+* `InTest`
+
+* `Starting`
+
+* `Absent`
 
 #### Model (read only string)
 
@@ -186,6 +268,14 @@ The chassis rack tag version.
 #### Status/Health (read only enumeration)
 
 Indicates the health state of this resource without considering its dependent resources.
+
+Defined values:
+
+* `OK`
+
+* `Warning`
+
+* `Critical`
 
 #### Oem/Hp/Firmware/PlatformDefinitionTable/Current/VersionString (read only string)
 
@@ -211,6 +301,38 @@ The chassis UUID provided by SMBIOS.
 
 This property indicates the physical form factor type of this resource.
 
+Defined values:
+
+* `Rack`
+
+* `Blade`
+
+* `Enclosure`
+
+* `StandAlone`
+
+* `RackMount`
+
+* `Card`
+
+* `Cartridge`
+
+* `Row`
+
+* `Pod`
+
+* `Expansion`
+
+* `Sidecar`
+
+* `Zone`
+
+* `Sled`
+
+* `Shelf`
+
+* `Other`
+
 #### Oem/Hp/Location/LocationInRack/RackUHeight (read only integer)
 
 The chassis rack U height.
@@ -224,6 +346,16 @@ The chassis rack part number.
 The chassis indicator LED that is used to identify the chassis. The user can manipulate this LED.
 
 `PATCH {"IndicatorLED": "Lit"}`
+
+Defined values:
+
+* `Unknown`
+
+* `Lit`
+
+* `Blinking`
+
+* `Off`
 
 #### SKU (read only string)
 
@@ -409,6 +541,20 @@ The PowerAutoOn policy delay that can also be found in the HpBios::PowerOnDelay 
 
 `PATCH {"Oem": {"Hp": {"PowerOnDelay": "45Sec"}}}`
 
+Defined values:
+
+* `Minimum`
+
+* `15Sec`
+
+* `30Sec`
+
+* `45Sec`
+
+* `60Sec`
+
+* `RandomUpTo120Sec`
+
 #### Oem/Hp/Bios/Bootblock/BuildNumber (read only integer)
 
 The build number of the firmware.
@@ -441,6 +587,20 @@ The family of the firmware.
 
 The current state of system POST.
 
+Defined values:
+
+* `Unknown`
+
+* `Reset`
+
+* `PowerOff`
+
+* `InPost`
+
+* `InPostDiscoveryComplete`
+
+* `FinishedPost`
+
 #### Oem/Hp/ServerSignature (read only integer)
 
  The CRC32 of:  All Device Signatures combined together, Blade Slot Location in Enclosure, Enclosure UUID, and OneView Domain IP Address
@@ -448,6 +608,20 @@ The current state of system POST.
 #### Processors/Status/State (read only enumeration)
 
 Indicates the known state of this resource (for example, if the resource is enabled). Enabled indicates that the resource is available. Disabled indicates that the resource has been made unavailable intentionally, but it can be enabled. Offline indicates that the resource is unavailable intentionally and requires action to be made available. InTest indicates that the component is undergoing testing. Starting indicates that the resource is on its way to becoming available. Absent indicates that the resource is physically unavailable.
+
+Defined values:
+
+* `Enabled`
+
+* `Disabled`
+
+* `Offline`
+
+* `InTest`
+
+* `Starting`
+
+* `Absent`
 
 #### Oem/Hp/VirtualUUID (read only string)
 
@@ -485,6 +659,14 @@ Supported on UEFI based systems only. The manner in which the system will operat
 
 `PATCH {"Oem": {"Hp": {"PostMode": "PostToShutdown"}}}`
 
+Defined values:
+
+* `Normal`
+
+* `PostToShutdown`
+
+* `PostToReboot`
+
 #### Oem/Hp/Bios/Current/Date (read only string)
 
 The build date of the firmware.
@@ -497,11 +679,43 @@ The total amount of memory (GB) in the system.
 
 Indicates the overall health state of this resource and its dependent resources.
 
+Defined values:
+
+* `OK`
+
+* `Warning`
+
+* `Critical`
+
 #### Boot/BootSourceOverrideTarget (PATCHable enumeration)
 
 The current boot source to be used at next boot instead of the normal boot device, if BootSourceOverrideEnabled is not Disabled.
 
 `PATCH {"Boot": {"BootSourceOverrideTarget": "Hdd"}}`
+
+Defined values:
+
+* `None`
+
+* `Pxe`
+
+* `Floppy`
+
+* `Cd`
+
+* `Usb`
+
+* `Hdd`
+
+* `BiosSetup`
+
+* `Utilities`
+
+* `Diags`
+
+* `UefiShell`
+
+* `UefiTarget`
 
 #### Oem/Hp/Bios/Backup/BuildNumberString (read only string)
 
@@ -525,9 +739,27 @@ The string version of the build number of the firmware.
 
 Indicates the overall health state of this resource and its dependent resources.
 
+Defined values:
+
+* `OK`
+
+* `Warning`
+
+* `Critical`
+
 #### Oem/Hp/PowerRegulatorMode (read only enumeration)
 
 HP Power Regulator mode.
+
+Defined values:
+
+* `OSControl`
+
+* `Dynamic`
+
+* `Max`
+
+* `Min`
 
 #### Oem/Hp/Bios/Current/MinorVersion (read only integer)
 
@@ -550,6 +782,14 @@ Model of battery.
 #### Memory/Status/Health (read only enumeration)
 
 Indicates the health state of this resource without considering its dependent resources.
+
+Defined values:
+
+* `OK`
+
+* `Warning`
+
+* `Critical`
 
 #### Oem/Hp/PowerAllocationLimit (read only integer)
 
@@ -583,6 +823,14 @@ The build date of the firmware.
 
 Indicates the health state of this resource without considering its dependent resources.
 
+Defined values:
+
+* `OK`
+
+* `Warning`
+
+* `Critical`
+
 #### BIOSPOSTCode (read only integer)
 
 The BIOS Power on Self Test code from the last system boot.
@@ -611,9 +859,35 @@ The manufacturer or OEM of this system.
 
 Indicates the known state of this resource (for example, if the resource is enabled). Enabled indicates that the resource is available. Disabled indicates that the resource has been made unavailable intentionally, but it can be enabled. Offline indicates that the resource is unavailable intentionally and requires action to be made available. InTest indicates that the component is undergoing testing. Starting indicates that the resource is on its way to becoming available. Absent indicates that the resource is physically unavailable.
 
+Defined values:
+
+* `Enabled`
+
+* `Disabled`
+
+* `Offline`
+
+* `InTest`
+
+* `Starting`
+
+* `Absent`
+
 #### SystemType (read only enumeration)
 
 The type of computer system that this resource represents.
+
+Defined values:
+
+* `Physical`
+
+* `Virtual`
+
+* `OS`
+
+* `PhysicallyPartitioned`
+
+* `VirtuallyPartitioned`
 
 #### Oem/Hp/Bios/Current/VersionString (read only string)
 
@@ -643,6 +917,20 @@ True if the firmware is a debug build; False if it is not.
 
 Indicates the known state of this resource (for example, if the resource is enabled). Enabled indicates that the resource is available. Disabled indicates that the resource has been made unavailable intentionally, but it can be enabled. Offline indicates that the resource is unavailable intentionally and requires action to be made available. InTest indicates that the component is undergoing testing. Starting indicates that the resource is on its way to becoming available. Absent indicates that the resource is physically unavailable.
 
+Defined values:
+
+* `Enabled`
+
+* `Disabled`
+
+* `Offline`
+
+* `InTest`
+
+* `Starting`
+
+* `Absent`
+
 #### Oem/Hp/Bios/Current/Time (read only string)
 
 The build time of the firmware.
@@ -651,6 +939,16 @@ The build time of the firmware.
 
 The current power state of the system.
 
+Defined values:
+
+* `On`
+
+* `Off`
+
+* `Unknown`
+
+* `Reset`
+
 #### Oem/Hp/Battery[]/MaxCapWatts (read only integer)
 
 Maximum Capacity of battery in watts.
@@ -658,6 +956,16 @@ Maximum Capacity of battery in watts.
 #### Oem/Hp/VirtualProfile (read only enumeration)
 
 The current state of the systems virtual profile.  This profile is the one that, when the server is rebooted, will set the  Virtual properties.  Intent is to use this state to determine whether the server needs to be rebooted so these values are set.  Additional informaiton about the profile will be considered later.
+
+Defined values:
+
+* `Active`
+
+* `Busy`
+
+* `Inactive`
+
+* `Unknown`
 
 #### Oem/Hp/Bios/Current/BuildNumber (read only integer)
 
@@ -668,6 +976,16 @@ The build number of the firmware.
 The state of the indicator LED.
 
 `PATCH {"IndicatorLED": "Lit"}`
+
+Defined values:
+
+* `Unknown`
+
+* `Lit`
+
+* `Blinking`
+
+* `Off`
 
 #### Oem/Hp/Battery[]/Index (read only integer)
 
@@ -685,11 +1003,29 @@ The major version of the firmware.
 
 This property indicates the TPM or TM status.
 
+Defined values:
+
+* `NotPresent`
+
+* `PresentEnabled`
+
+* `PresentDisabled`
+
+* `Unknown`
+
 #### Oem/Hp/PowerAutoOn (PATCHable enumeration)
 
 Auto Power-On mode defines what occurs when the AC power is applied to the system.
 
 `PATCH {"Oem": {"Hp": {"PowerAutoOn": "PowerOn"}}}`
+
+Defined values:
+
+* `RemainOff`
+
+* `PowerOn`
+
+* `Restore`
 
 #### SKU (read only string)
 
@@ -698,6 +1034,14 @@ SKU for this system.
 #### Processors/Status/HealthRollUp (read only enumeration)
 
 Indicates the overall health state of this resource and its dependent resources.
+
+Defined values:
+
+* `OK`
+
+* `Warning`
+
+* `Critical`
 
 #### SerialNumber (read only string)
 
@@ -716,6 +1060,14 @@ Supported on UEFI based systems only. The number of seconds to delay before fina
 #### Processors/Status/Health (read only enumeration)
 
 Indicates the health state of this resource without considering its dependent resources.
+
+Defined values:
+
+* `OK`
+
+* `Warning`
+
+* `Critical`
 
 #### Oem/Hp/Battery[]/Condition (read only string)
 
@@ -737,6 +1089,14 @@ BootSourceOverrideTarget must be specified before BootSourceOverrideEnabled can 
 
 `PATCH {"Boot": {"BootSourceOverrideEnabled": "Once"}}`
 
+Defined values:
+
+* `Disabled`
+
+* `Once`
+
+* `Continuous`
+
 #### Oem/Hp/Bios/UefiClass (read only integer)
 
 The UEFI BIOS Class value defined in the UEFI specification.
@@ -751,6 +1111,10 @@ The schema definition of a simple Ethernet NIC resource.
 #### LinkTechnology (read only enumeration)
 
 The link technology, such as Ethernet, for this NIC.
+
+Defined values:
+
+* `Ethernet`
 
 #### FactoryMacAddress (read only string)
 
@@ -777,6 +1141,10 @@ The autosense speed/duplex enabled or disabled. Autosense can only be disabled i
 #### SettingsResult/Operation (read only enumeration)
 
 Details about the results of applying the settings.
+
+Defined values:
+
+* `SettingsApply`
 
 #### Oem/Hp/IPv6/StaticRoutes[]/PrefixLength (PATCHable integer)
 
@@ -826,6 +1194,12 @@ The IPv6 static default gateway entry.
 
 The state of the currently displayed configuration settings.
 
+Defined values:
+
+* `Current`
+
+* `SomePendingReset`
+
 #### IPv6StaticAddresses[]/PrefixLength (PATCHable integer)
 
 The Prefix Length of this IPv6 address.
@@ -853,6 +1227,16 @@ Determines whether to use DHCPv4-supplied WINS servers. Can only be enabled when
 #### IPv6Addresses[]/AddressState (read only enumeration)
 
 The current state of this address as defined in RFC 4862.
+
+Defined values:
+
+* `Preferred`
+
+* `Deprecated`
+
+* `Tentative`
+
+* `Failed`
 
 #### SettingsResult/Messages[]/Resolution (read only string)
 
@@ -885,6 +1269,14 @@ Indicates whether or not this NIC can support the IPv6 protocol.
 #### Status/HealthRollUp (read only enumeration)
 
 Indicates the overall health state of this resource and its dependent resources.
+
+Defined values:
+
+* `OK`
+
+* `Warning`
+
+* `Critical`
 
 #### IPv6Addresses[]/Address (read only string)
 
@@ -926,6 +1318,14 @@ The complete, fully qualified domain name obtained by DNS for this NIC.
 
 Indicates the health state of this resource without considering its dependent resources.
 
+Defined values:
+
+* `OK`
+
+* `Warning`
+
+* `Critical`
+
 #### Oem/Hp/IPv6/StaticRoutes[]/Gateway (PATCHable string)
 
 The IPv6 static route gateway.
@@ -935,6 +1335,14 @@ The IPv6 static route gateway.
 #### IPv6Addresses[]/AddressOrigin (read only enumeration)
 
 How the address was determined.
+
+Defined values:
+
+* `DHCP`
+
+* `Static`
+
+* `SLAAC`
 
 #### VLANId (read only integer)
 
@@ -969,6 +1377,20 @@ Determines whether this NIC is enabled or disabled. Enabling one NIC will disabl
 #### Status/State (read only enumeration)
 
 Indicates the known state of this resource (for example, if the resource is enabled). Enabled indicates that the resource is available. Disabled indicates that the resource has been made unavailable intentionally, but it can be enabled. Offline indicates that the resource is unavailable intentionally and requires action to be made available. InTest indicates that the component is undergoing testing. Starting indicates that the resource is on its way to becoming available. Absent indicates that the resource is physically unavailable.
+
+Defined values:
+
+* `Enabled`
+
+* `Disabled`
+
+* `Offline`
+
+* `InTest`
+
+* `Starting`
+
+* `Absent`
 
 #### Oem/Hp/DHCPv6/StatelessModeEnabled (PATCHable boolean)
 
@@ -1058,6 +1480,12 @@ The link speed of the Ethernet interface. If Autosense is enabled, this property
 
 How the address was determined.
 
+Defined values:
+
+* `DHCP`
+
+* `Static`
+
 #### Oem/Hp/DHCPv6/UseNTPServers (PATCHable boolean)
 
 Determines whether to use DHCPv6-supplied NTP servers. Can only be enabled when DHCPv6 Stateless mode is also enabled; otherwise, this property will be set to false and will be read-only.
@@ -1068,6 +1496,16 @@ Determines whether to use DHCPv6-supplied NTP servers. Can only be enabled when 
 
 Status of this static route entry.
 
+Defined values:
+
+* `Unknown`
+
+* `Pending`
+
+* `Active`
+
+* `Failed`
+
 #### IPv6AddressPolicyTable[]/Precedence (PATCHable integer)
 
 The precedence value for this table entry as defined in RFC3484 section 2.1.
@@ -1077,6 +1515,14 @@ The precedence value for this table entry as defined in RFC3484 section 2.1.
 #### SettingsResult/Messages[]/Severity (read only enumeration)
 
 This is the severity of the errors.
+
+Defined values:
+
+* `OK`
+
+* `Warning`
+
+* `Critical`
 
 #### IPv4Addresses[]/Address (PATCHable string)
 
@@ -1118,6 +1564,12 @@ Selects the system NIC that is to be shared with this management processor.
 
 `PATCH {"Oem": {"Hp": {"SharedNetworkPortOptions": {"NIC": "FlexibleLOM"}}}}`
 
+Defined values:
+
+* `LOM`
+
+* `FlexibleLOM`
+
 #### Oem/Hp/VLANEnabled (PATCHable boolean)
 
 Determines whether VLAN is enabled. Only applies to Shared Network Port.
@@ -1153,6 +1605,14 @@ This is the number of attempts an event posting is retried before the subscripti
 
 Indicates the overall health state of this resource and its dependent resources.
 
+Defined values:
+
+* `OK`
+
+* `Warning`
+
+* `Critical`
+
 #### Oem/Hp/RequestedMaxEventsToQueueDefault (read only integer)
 
 This represents the default number of events the service should queue.
@@ -1173,17 +1633,55 @@ This represents the number of seconds between retry attempts for sending any giv
 
 The default time unit used to measure the subscription time of this listener destination.  This is the units for TTLCount and is used to express the subscription lifetime of the listener destination.
 
+Defined values:
+
+* `seconds`
+
+* `minutes`
+
+* `days`
+
 #### Status/Health (read only enumeration)
 
 Indicates the health state of this resource without considering its dependent resources.
+
+Defined values:
+
+* `OK`
+
+* `Warning`
+
+* `Critical`
 
 #### Status/State (read only enumeration)
 
 Indicates the known state of this resource (for example, if the resource is enabled). Enabled indicates that the resource is available. Disabled indicates that the resource has been made unavailable intentionally, but it can be enabled. Offline indicates that the resource is unavailable intentionally and requires action to be made available. InTest indicates that the component is undergoing testing. Starting indicates that the resource is on its way to becoming available. Absent indicates that the resource is physically unavailable.
 
+Defined values:
+
+* `Enabled`
+
+* `Disabled`
+
+* `Offline`
+
+* `InTest`
+
+* `Starting`
+
+* `Absent`
+
 #### SubscriptionRemovalAction (read only enumeration)
 
 This property indicates what the service will do to an event subscription after the number of delivery retry attempts has been exhausted.
+
+Defined values:
+
+* `Remove`
+
+* `Disable`
+
+* `Ignore`
 
 ### ExtendedError
 This is the schema definition for the Extended Error. Extended errors can be included in the body of REST API operation responses. They augment the HTTP error codes with more meaningful information about why the error occurred.
@@ -1201,6 +1699,14 @@ The key for this message that can be used to look up the message in a message re
 #### Messages[]/Severity (read only enumeration)
 
 The severity of the errors.
+
+Defined values:
+
+* `OK`
+
+* `Warning`
+
+* `Critical`
 
 #### Messages[]/Resolution (read only string)
 
@@ -1260,6 +1766,16 @@ Average power over the sample time.
 #### PowerDetail[]/PrMode (read only enumeration)
 
 Power regulator mode, which can be OS Control, Static High, Static Low or Dynamic.
+
+Defined values:
+
+* `dyn`
+
+* `min`
+
+* `max`
+
+* `osc`
 
 #### PowerDetail[]/Time (read only string)
 
@@ -1337,9 +1853,21 @@ This object represents the type property. It represents the schema used for the 
 
 This is the severity of the errors.
 
+Defined values:
+
+* `OK`
+
+* `Warning`
+
+* `Critical`
+
 #### SettingsResult/definitions/SettingsResult/Operation (read only enumeration)
 
 Details about the results of applying the settings.
+
+Defined values:
+
+* `SettingsApply`
 
 ### HpBiosMapping
 **Instances**:  
@@ -1505,9 +2033,25 @@ The total width, in bits, of this memory device, including any check or error-co
 
 Indicates whether or not HP SmartMemory is present.
 
+Defined values:
+
+* `HPSmartMemory`
+
+* `HPStandard`
+
+* `Unknown`
+
 #### Status/HealthRollUp (read only enumeration)
 
 Indicates the overall health state of this resource and its dependent resources.
+
+Defined values:
+
+* `OK`
+
+* `Warning`
+
+* `Critical`
 
 #### MaximumFrequencyMHz (read only integer)
 
@@ -1517,9 +2061,37 @@ Identifies the maximum, capable speed of the device in megahertz (MHz). If the v
 
 Indicates the health state of this resource without considering its dependent resources.
 
+Defined values:
+
+* `OK`
+
+* `Warning`
+
+* `Critical`
+
 #### DIMMTechnology (read only enumeration)
 
 The memory module technology type.
+
+Defined values:
+
+* `BurstEDO`
+
+* `FastPage`
+
+* `Synchronous`
+
+* `EDO`
+
+* `LRDIMM`
+
+* `RDRAM`
+
+* `RDIMM`
+
+* `UDIMM`
+
+* `Unknown`
 
 #### PartNumber (read only string)
 
@@ -1537,6 +2109,18 @@ The serial number for this memory device.
 
 The error correction used for this DIMM. If the value is null, the error correction is unknown.
 
+Defined values:
+
+* `None`
+
+* `Parity`
+
+* `SingleBitECC`
+
+* `MultiBitECC`
+
+* `CRC`
+
 #### AssetTag (read only string)
 
 The asset tag for this memory device.
@@ -1545,6 +2129,26 @@ The asset tag for this memory device.
 
 The type of memory DIMM used in this system.
 
+Defined values:
+
+* `DDR`
+
+* `DDR2`
+
+* `DDR3`
+
+* `DDR4`
+
+* `FBD2`
+
+* `LPDD3`
+
+* `LPDDR`
+
+* `LPDDR2`
+
+* `LPDDR4`
+
 #### Rank (read only integer)
 
 Specifies the DIMM rank. A value of null indicates the rank is unknown.
@@ -1552,6 +2156,20 @@ Specifies the DIMM rank. A value of null indicates the rank is unknown.
 #### Status/State (read only enumeration)
 
 Indicates the known state of this resource (for example, if the resource is enabled). Enabled indicates that the resource is available. Disabled indicates that the resource has been made unavailable intentionally, but it can be enabled. Offline indicates that the resource is unavailable intentionally and requires action to be made available. InTest indicates that the component is undergoing testing. Starting indicates that the resource is on its way to becoming available. Absent indicates that the resource is physically unavailable.
+
+Defined values:
+
+* `Enabled`
+
+* `Disabled`
+
+* `Offline`
+
+* `InTest`
+
+* `Starting`
+
+* `Absent`
 
 #### DataWidth (read only integer)
 
@@ -1660,9 +2278,21 @@ The iSCSI node target name of the desired boot device. The value must be a strin
 
 This is the severity of the errors.
 
+Defined values:
+
+* `OK`
+
+* `Warning`
+
+* `Critical`
+
 #### SettingsResult/definitions/SettingsResult/Operation (read only enumeration)
 
 Details about the results of applying the settings.
+
+Defined values:
+
+* `SettingsApply`
 
 #### DesiredBootDevices[]/Wwn (PATCHable string)
 
@@ -1695,9 +2325,25 @@ Specifies whether the slot supports hot-plug devices.
 
 PCI slot length
 
+Defined values:
+
+* `Short`
+
+* `Long`
+
+* `Other`
+
 #### Technology (read only enumeration)
 
 PCI technology
+
+Defined values:
+
+* `PCIExpressGen3`
+
+* `PCIExpressGen2`
+
+* `PCIExpress`
 
 #### Status/EnabledState (read only string)
 
@@ -1707,6 +2353,32 @@ Specifies whether the slot is enabled or disabled.
 
 Bandwidth capacity of the slot, measured by the number of PCI Express Lanes present. Also known as the slot width.
 
+Defined values:
+
+* `8 bit`
+
+* `16 bit`
+
+* `32 bit`
+
+* `64 bit`
+
+* `128 bit`
+
+* `x1`
+
+* `x2`
+
+* `x4`
+
+* `x8`
+
+* `x16`
+
+* `x32`
+
+* `Other`
+
 ### HpServerPciDevice
 **Instances**:  
 
@@ -1715,6 +2387,40 @@ Bandwidth capacity of the slot, measured by the number of PCI Express Lanes pres
 #### DeviceType (read only enumeration)
 
 Device type value.
+
+Defined values:
+
+* `Flexible LOM`
+
+* `Embedded LOM`
+
+* `NIC`
+
+* `HDD Not attached to a SA Controller`
+
+* `HDD Attached to a SA Controller`
+
+* `Other PCI Device`
+
+* `Unknown`
+
+* `Other`
+
+* `Video`
+
+* `SCSI Controller`
+
+* `Ethernet`
+
+* `Token Ring`
+
+* `Sound`
+
+* `PATA Controller`
+
+* `SATA Controller`
+
+* `SAS Controller`
 
 #### StructuredName (read only string)
 
@@ -1795,13 +2501,43 @@ HpSmartStorage
 
 Indicates the overall health state of this resource and its dependent resources.
 
+Defined values:
+
+* `OK`
+
+* `Warning`
+
+* `Critical`
+
 #### Status/Health (read only enumeration)
 
 Indicates the health state of this resource without considering its dependent resources.
 
+Defined values:
+
+* `OK`
+
+* `Warning`
+
+* `Critical`
+
 #### Status/State (read only enumeration)
 
 Indicates the known state of this resource (for example, if the resource is enabled). Enabled indicates that the resource is available. Disabled indicates that the resource has been made unavailable intentionally, but it can be enabled. Offline indicates that the resource is unavailable intentionally and requires action to be made available. InTest indicates that the component is undergoing testing. Starting indicates that the resource is on its way to becoming available. Absent indicates that the resource is physically unavailable.
+
+Defined values:
+
+* `Enabled`
+
+* `Disabled`
+
+* `Offline`
+
+* `InTest`
+
+* `Starting`
+
+* `Absent`
 
 ### HpSmartStorageArrayController
 HpSmartStorageArrayController
@@ -1850,6 +2586,12 @@ The number of arrays configured on this controller
 
 The operating mode the controller will be functioning in (RAID versus HBA) after a reboot
 
+Defined values:
+
+* `RAID`
+
+* `HBA`
+
 #### SparePhysicalDriveCount (read only integer)
 
 he number of physical drives assigned as spare drives attached to this controller
@@ -1886,13 +2628,33 @@ This string represents the version of the firmware image.
 
 Enables the controller to attempt to improve performance on RAID 5/50/6(ADG)/60 logical drives when one or more physical drives in the logical drive are failed
 
+Defined values:
+
+* `Enabled`
+
+* `Disabled`
+
 #### CurrentOperatingMode (read only enumeration)
 
 The current operating mode of the controller.
 
+Defined values:
+
+* `RAID`
+
+* `HBA`
+
 #### Status/HealthRollUp (read only enumeration)
 
 Indicates the overall health state of this resource and its dependent resources.
+
+Defined values:
+
+* `OK`
+
+* `Warning`
+
+* `Critical`
 
 #### EncryptionPhysicalDriveCount (read only integer)
 
@@ -1918,6 +2680,12 @@ The model number for the controller
 
 Enables or disables the write cache of the physical drives attached to the controller
 
+Defined values:
+
+* `Enabled`
+
+* `Disabled`
+
 #### BootVolumeSecondary (read only string)
 
 The secondary boot volume of this controller
@@ -1934,21 +2702,75 @@ True if the encryption password recovery question and answer have been set, fals
 
 The current power mode of the controller
 
+Defined values:
+
+* `Invalid`
+
+* `Low`
+
+* `LowAutomated`
+
+* `Performant`
+
 #### ElevatorSort (read only enumeration)
 
 Enables the controller to sort requests to a physical drive
+
+Defined values:
+
+* `Enabled`
+
+* `Disabled`
 
 #### QueueDepth (read only enumeration)
 
 This sets the maximum number of requests the controller will submit to a drive at any given time
 
+Defined values:
+
+* `2`
+
+* `4`
+
+* `8`
+
+* `16`
+
+* `32`
+
+* `Automatic`
+
 #### PowerModeAfterReboot (read only enumeration)
 
 The power mode of the controller after a reboot
 
+Defined values:
+
+* `Invalid`
+
+* `Low`
+
+* `LowAutomated`
+
+* `Performant`
+
 #### FlexibleLatencySchedulerSetting (read only enumeration)
 
 This allows the controller to process certain high-latency requests after a delay that may time out when elevator sorting
+
+Defined values:
+
+* `Default`
+
+* `Low250`
+
+* `Middle100`
+
+* `Middle50`
+
+* `Aggressive30`
+
+* `Aggressive10`
 
 #### CurrentParallelSurfaceScanCount (read only integer)
 
@@ -1958,6 +2780,16 @@ Number of disks the controller is scanning in parallel
 
 The current status of the backup power source (battery, capacitor, megacell etc.)
 
+Defined values:
+
+* `Present`
+
+* `NotPresent`
+
+* `PresentAndCharged`
+
+* `PresentAndCharging`
+
 #### SoftwareRaidHbaFirmwareRev (read only string)
 
 The firmware version of the underlying HBA that is being used by the software RAID stack
@@ -1966,17 +2798,51 @@ The firmware version of the underlying HBA that is being used by the software RA
 
 Format for Location Identifier
 
+Defined values:
+
+* `PCISlot`
+
 #### AdapterType (read only enumeration)
 
 Type of Smart controller
+
+Defined values:
+
+* `SmartArray`
+
+* `SmartHBA`
+
+* `DynamicSmartArray`
 
 #### Status/Health (read only enumeration)
 
 Indicates the health state of this resource without considering its dependent resources.
 
+Defined values:
+
+* `OK`
+
+* `Warning`
+
+* `Critical`
+
 #### Status/State (read only enumeration)
 
 Indicates the known state of this resource (for example, if the resource is enabled). Enabled indicates that the resource is available. Disabled indicates that the resource has been made unavailable intentionally, but it can be enabled. Offline indicates that the resource is unavailable intentionally and requires action to be made available. InTest indicates that the component is undergoing testing. Starting indicates that the resource is on its way to becoming available. Absent indicates that the resource is physically unavailable.
+
+Defined values:
+
+* `Enabled`
+
+* `Disabled`
+
+* `Offline`
+
+* `InTest`
+
+* `Starting`
+
+* `Absent`
 
 #### EncryptionFwLocked (read only boolean)
 
@@ -1989,6 +2855,12 @@ The number of logical drives configured on this controller
 #### PredictiveSpareRebuild (read only enumeration)
 
 Enables or disables predictive spare rebuild mode
+
+Defined values:
+
+* `Enabled`
+
+* `Disabled`
 
 #### Location (read only string)
 
@@ -2014,6 +2886,22 @@ The serial number for this controller
 
 The level of priority that rebuilds have over handling current operating system requests
 
+Defined values:
+
+* `High`
+
+* `Medium`
+
+* `Low`
+
+* `RapidHigh`
+
+* `RapidMediumHigh`
+
+* `RapidMedium`
+
+* `RapidLow`
+
 #### FirmwareVersion/Current/VersionString (read only string)
 
 This string represents the version of the firmware image.
@@ -2026,9 +2914,25 @@ True if the controller has one or more volumes that are locked, false otherwise
 
 True if a reboot is required to change the active power mode on the controller, false otherwise
 
+Defined values:
+
+* `NotRequired`
+
+* `RequiredNoReason`
+
+* `RequiredPowerSavings`
+
+* `RequiredPerformance`
+
 #### InconsistencyRepairPolicy (read only enumeration)
 
 Enables the controller to update data on RAID 6(ADG) and 60 volumes based on parity information when an inconsistency is discovered during surface scan
+
+Defined values:
+
+* `Enabled`
+
+* `Disabled`
 
 #### HardwareRevision (read only string)
 
@@ -2058,6 +2962,18 @@ The number of cache logical drives configured on this controller
 
 Priority that the controller takes to find and correct disk surface errors
 
+Defined values:
+
+* `Disabled`
+
+* `High`
+
+* `Medium`
+
+* `Low`
+
+* `Idle`
+
 #### EncryptionMixedVolumesEnabled (read only boolean)
 
 True if the controller will allow plaintext and encrypted volumes to exist simultaneously, false otherwise
@@ -2065,6 +2981,14 @@ True if the controller will allow plaintext and encrypted volumes to exist simul
 #### ExpandPriority (read only enumeration)
 
 The level of priority that transformations have over handling current operating system requests
+
+Defined values:
+
+* `High`
+
+* `Medium`
+
+* `Low`
 
 ### HpSmartStorageDiskDrive
 HpSmartStorageDiskDrive
@@ -2076,6 +3000,12 @@ HpSmartStorageDiskDrive
 #### MediaType (read only enumeration)
 
 Type of disk
+
+Defined values:
+
+* `HDD`
+
+* `SSD`
 
 #### FirmwareVersion/definitions/FWVersion/VersionString (read only string)
 
@@ -2105,9 +3035,25 @@ The number of ports on the drive. Typically 1 (single-domain) or 2 (dual-domain)
 
 Indicates the overall health state of this resource and its dependent resources.
 
+Defined values:
+
+* `OK`
+
+* `Warning`
+
+* `Critical`
+
 #### Status/Health (read only enumeration)
 
 Indicates the health state of this resource without considering its dependent resources.
+
+Defined values:
+
+* `OK`
+
+* `Warning`
+
+* `Critical`
 
 #### InterfaceSpeedGbps (read only integer)
 
@@ -2149,9 +3095,25 @@ The serial number of the drive
 
 Authentication status of the drive carrier
 
+Defined values:
+
+* `OK`
+
+* `Fail`
+
+* `NoCommunication`
+
+* `NotApplicable`
+
 #### SpareRebuildMode (read only enumeration)
 
 Method to used activate this drive when another drive fails, this is only applicable if the drive is configured as a spare drive
+
+Defined values:
+
+* `Dedicated`
+
+* `Roaming`
 
 #### EraseCompletionPercentage (read only integer)
 
@@ -2165,6 +3127,20 @@ Drive model number
 
 Indicates the known state of this resource (for example, if the resource is enabled). Enabled indicates that the resource is available. Disabled indicates that the resource has been made unavailable intentionally, but it can be enabled. Offline indicates that the resource is unavailable intentionally and requires action to be made available. InTest indicates that the component is undergoing testing. Starting indicates that the resource is on its way to becoming available. Absent indicates that the resource is physically unavailable.
 
+Defined values:
+
+* `Enabled`
+
+* `Disabled`
+
+* `Offline`
+
+* `InTest`
+
+* `Starting`
+
+* `Absent`
+
 #### TransferSpeedGbps (read only integer)
 
 Effective transfer speed to the device taking into account hardware acceleration such as edge-buffering
@@ -2177,6 +3153,14 @@ The number of lifetime hours that the drive has been powered on
 
 Format for the location property
 
+Defined values:
+
+* `ControllerPort:Box:Bay`
+
+* `SwitchPort:Box:Bay`
+
+* `SwitchPort:SwitchBay:Bay`
+
 #### FirmwareVersion/Current/VersionString (read only string)
 
 This string represents the version of the firmware image.
@@ -2184,6 +3168,16 @@ This string represents the version of the firmware image.
 #### InterfaceType (read only enumeration)
 
 The connection interface of the drive
+
+Defined values:
+
+* `SAS`
+
+* `SATA`
+
+* `NVME`
+
+* `Unknown`
 
 #### EncryptedDrive (read only boolean)
 
@@ -2220,6 +3214,26 @@ The percent complete for any transformations the logical drive may be undergoing
 
 The current RAID level configured on the logical drive
 
+Defined values:
+
+* `0`
+
+* `1`
+
+* `1ADM`
+
+* `10`
+
+* `10ADM`
+
+* `5`
+
+* `50`
+
+* `6`
+
+* `60`
+
 #### StripeSizeBytes (read only integer)
 
 The stripe size of the logical drive in bytes
@@ -2248,6 +3262,28 @@ The access ID of the logical drive given by the OS
 
 The state of the SmartCache cache. This is valid if this drive either is a cache drive, or has a cache drive attached to it
 
+Defined values:
+
+* `Good`
+
+* `Limited`
+
+* `DDRUnsafe`
+
+* `CacheLUNOffline`
+
+* `PrimaryLUNOffline`
+
+* `Destroyed`
+
+* `Flushing`
+
+* `Configuring`
+
+* `PairFailAtPowerup`
+
+* `Unknown`
+
 #### PartitionInformation (read only string)
 
 OS partition information for the drive
@@ -2260,9 +3296,29 @@ Parity initialization complete percentage for a parity based logical drive (e.g.
 
 Indicates the overall health state of this resource and its dependent resources.
 
+Defined values:
+
+* `OK`
+
+* `Warning`
+
+* `Critical`
+
 #### LogicalDriveType (read only enumeration)
 
 How the logical drive is being used
+
+Defined values:
+
+* `Data`
+
+* `Cache`
+
+* `SplitMirrorSetPrimary`
+
+* `SplitMirrorSetBackup`
+
+* `SplitMirrorSetBackupOrphan`
 
 #### RebuildCompletionPercentage (read only integer)
 
@@ -2280,9 +3336,23 @@ An identifier (typically SCSI Inquiry based such as Inquiry VPD Page 0x83 NAA 64
 
 Indicates the health state of this resource without considering its dependent resources.
 
+Defined values:
+
+* `OK`
+
+* `Warning`
+
+* `Critical`
+
 #### ParityInitializationType (read only enumeration)
 
 When creating a logical drive with a RAID level that requires parity, parity blocks can be initialized with two different methods
+
+Defined values:
+
+* `Default`
+
+* `Rapid`
 
 #### DriveGeometrySectors (read only string)
 
@@ -2308,9 +3378,35 @@ Total usable capacity available on this logical drive in MiB units
 
 Indicates the known state of this resource (for example, if the resource is enabled). Enabled indicates that the resource is available. Disabled indicates that the resource has been made unavailable intentionally, but it can be enabled. Offline indicates that the resource is unavailable intentionally and requires action to be made available. InTest indicates that the component is undergoing testing. Starting indicates that the resource is on its way to becoming available. Absent indicates that the resource is physically unavailable.
 
+Defined values:
+
+* `Enabled`
+
+* `Disabled`
+
+* `Offline`
+
+* `InTest`
+
+* `Starting`
+
+* `Absent`
+
 #### LogicalDriveEncryptionDataKeysVolatileStatus (read only enumeration)
 
 The status of the encryption volatile keys
+
+Defined values:
+
+* `NoOp`
+
+* `BackupInProgress`
+
+* `BackupAndSetInProgress`
+
+* `RestoreInProgress`
+
+* `DeleteInProgress`
 
 ### HpSmartStorageStorageEnclosure
 HpSmartStorageStorageEnclosure
@@ -2335,9 +3431,25 @@ Number of drive bays supported within the storage enclosure
 
 Indicates the overall health state of this resource and its dependent resources.
 
+Defined values:
+
+* `OK`
+
+* `Warning`
+
+* `Critical`
+
 #### Status/Health (read only enumeration)
 
 Indicates the health state of this resource without considering its dependent resources.
+
+Defined values:
+
+* `OK`
+
+* `Warning`
+
+* `Critical`
 
 #### PartNumber (read only string)
 
@@ -2354,6 +3466,14 @@ The manufacturer of the storage enclosure
 #### LocationFormat (read only enumeration)
 
 Format for Location Identifier
+
+Defined values:
+
+* `Controller:Box`
+
+* `SwitchPort:Box`
+
+* `SwitchPort:SwitchBay`
 
 #### SerialNumber (read only string)
 
@@ -2374,6 +3494,20 @@ Unique ID for the storage enclosure
 #### Status/State (read only enumeration)
 
 Indicates the known state of this resource (for example, if the resource is enabled). Enabled indicates that the resource is available. Disabled indicates that the resource has been made unavailable intentionally, but it can be enabled. Offline indicates that the resource is unavailable intentionally and requires action to be made available. InTest indicates that the component is undergoing testing. Starting indicates that the resource is on its way to becoming available. Absent indicates that the resource is physically unavailable.
+
+Defined values:
+
+* `Enabled`
+
+* `Disabled`
+
+* `Offline`
+
+* `InTest`
+
+* `Starting`
+
+* `Absent`
 
 #### Location (read only string)
 
@@ -2441,6 +3575,12 @@ The time zone index.
 
 The state of the currently displayed configuration settings.
 
+Defined values:
+
+* `Current`
+
+* `SomePendingReset`
+
 #### TimeZone/Index (PATCHable integer)
 
 The index of the current time zone. To set a new time zone, specify a different time zone index. This property can be set only when DHCPv4 or DHCPv6 supplied time settings are disabled. Since the time zone list might vary from one firmware version to another (which often leads to differences in time zone indices), setting the time zone by name is recommended over setting by index, for better compatibility.
@@ -2482,6 +3622,20 @@ The date and time used by management processor.
 
 Indicates the known state of this resource (for example, if the resource is enabled). Enabled indicates that the resource is available. Disabled indicates that the resource has been made unavailable intentionally, but it can be enabled. Offline indicates that the resource is unavailable intentionally and requires action to be made available. InTest indicates that the component is undergoing testing. Starting indicates that the resource is on its way to becoming available. Absent indicates that the resource is physically unavailable.
 
+Defined values:
+
+* `Enabled`
+
+* `Disabled`
+
+* `Offline`
+
+* `InTest`
+
+* `Starting`
+
+* `Absent`
+
 #### SDCard/WriteCount (read only integer)
 
 The number of writes on the SD card. Rendered only if this is an HP-certified SD card. 
@@ -2489,6 +3643,14 @@ The number of writes on the SD card. Rendered only if this is an HP-certified SD
 #### SDCard/Status/HealthRollUp (read only enumeration)
 
 Indicates the overall health state of this resource and its dependent resources.
+
+Defined values:
+
+* `OK`
+
+* `Warning`
+
+* `Critical`
 
 #### SDCard/SizeString (read only string)
 
@@ -2498,13 +3660,43 @@ The size of the SD card present in the server, in a readable format.
 
 Indicates the known state of this resource (for example, if the resource is enabled). Enabled indicates that the resource is available. Disabled indicates that the resource has been made unavailable intentionally, but it can be enabled. Offline indicates that the resource is unavailable intentionally and requires action to be made available. InTest indicates that the component is undergoing testing. Starting indicates that the resource is on its way to becoming available. Absent indicates that the resource is physically unavailable.
 
+Defined values:
+
+* `Enabled`
+
+* `Disabled`
+
+* `Offline`
+
+* `InTest`
+
+* `Starting`
+
+* `Absent`
+
 #### Controller/Status/Health (read only enumeration)
 
 Indicates the health state of this resource without considering its dependent resources.
 
+Defined values:
+
+* `OK`
+
+* `Warning`
+
+* `Critical`
+
 #### Controller/Status/HealthRollUp (read only enumeration)
 
 Indicates the overall health state of this resource and its dependent resources.
+
+Defined values:
+
+* `OK`
+
+* `Warning`
+
+* `Critical`
 
 #### SDCard/HpCertified (read only boolean)
 
@@ -2513,6 +3705,14 @@ True if this is an HP-certified SD card.
 #### SDCard/Status/Health (read only enumeration)
 
 Indicates the health state of this resource without considering its dependent resources.
+
+Defined values:
+
+* `OK`
+
+* `Warning`
+
+* `Critical`
 
 #### Controller/Firmware/Current/VersionString (read only string)
 
@@ -2640,6 +3840,30 @@ The copyright date of the firmware image.
 
 Firmware flash image type.
 
+Defined values:
+
+* `NO_DEVICE`
+
+* `ILO_DEVICE`
+
+* `ILO_DEVICE_FIRMWARE`
+
+* `ILO_DEVICE_LANGPK`
+
+* `ILO_DEVICE_DEBUGGER`
+
+* `BIOS_DEVICE`
+
+* `SCD_DEVICE`
+
+* `CPLD_DEVICE`
+
+* `CARB_DEVICE`
+
+* `PM_DEVICE`
+
+* `UNKNOWN`
+
 #### links/UpdateUri/extref (read only string)
 
 The URI of an external resource.
@@ -2648,9 +3872,33 @@ The URI of an external resource.
 
 Other flags.
 
+Defined values:
+
+* `NONE`
+
+* `RESET_ILO`
+
+* `REQUEST_SYSTEM_COLD_BOOT`
+
+* `REQUEST_SYSTEM_WARM_BOOT`
+
+* `DEFERRED_AUX_PWR_CYCLE`
+
 #### State (read only enumeration)
 
 Current state of the firmware flash.
+
+Defined values:
+
+* `IDLE`
+
+* `UPLOADING`
+
+* `PROGRESSING`
+
+* `COMPLETED`
+
+* `ERROR`
 
 ### HpiLOLicense
 **Instances**:  
@@ -2672,6 +3920,22 @@ The expiration information of the installed management processor license.
 #### LicenseType (read only enumeration)
 
 The type of license installed on this management processor.
+
+Defined values:
+
+* `Unlicensed`
+
+* `Evaluation`
+
+* `Perpetual`
+
+* `Subscription`
+
+* `Internal`
+
+* `Duration`
+
+* `Expired`
 
 ### HpiLOResourceDirectory
 **Instances**:  
@@ -2727,6 +3991,16 @@ Represents the SSO Trust Mode.
 
 `PATCH {"SSOsettings": {"SSOTrustMode": "TrustbyName"}}`
 
+Defined values:
+
+* `TrustNone`
+
+* `TrustAll`
+
+* `TrustbyName`
+
+* `TrustbyCert`
+
 #### SSOsettings/UserPrivilege/RemoteConsolePriv (PATCHable boolean)
 
 Remote Console Privileges.
@@ -2750,6 +4024,14 @@ iLO Configuration Privileges.
 `PATCH {"SSOsettings": {"OperatorPrivilege": {"iLOConfigPriv": true}}}`
 
 #### ManagerTrustedCertificates[]/Status (read only enumeration)
+
+Defined values:
+
+* `OK`
+
+* `Degraded`
+
+* `Failed`
 
 #### ManagerTrustedCertificates[]/SerialNumber (read only integer)
 
@@ -2854,13 +4136,35 @@ Human readable descriptive name for this iSCSI boot attempt configuration
 
 The iSCSI IP Address type. If set to Auto, IPv4 will be attempted first, followed by IPv6.
 
+Defined values:
+
+* `IPv4`
+
+* `IPv6`
+
+* `Auto`
+
 #### iSCSIBootSources[]/iSCSIBootEnable (PATCHable enumeration)
 
 Enables or Disables iSCSI Boot for a selected iSCSI boot attempt.
 
+Defined values:
+
+* `Disabled`
+
+* `Enabled`
+
+* `EnabledMpio`
+
 #### iSCSIBootSources[]/iSCSIChapType (PATCHable enumeration)
 
 The CHAP authentication type. This is applicable only when the Authentication Method is set to CHAP.
+
+Defined values:
+
+* `OneWay`
+
+* `Mutual`
 
 #### iSCSIBootSources[]/iSCSIBootAttemptInstance (PATCHable integer)
 
@@ -2873,6 +4177,10 @@ The iSCSI Target TCP Port number, if not obtained from DHCP.
 #### SettingsResult/definitions/SettingsResult/Operation (read only enumeration)
 
 Details about the results of applying the settings.
+
+Defined values:
+
+* `SettingsApply`
 
 #### iSCSIBootSources[]/iSCSIInitiatorIpAddress (PATCHable string)
 
@@ -2893,6 +4201,14 @@ The password needed for reverse CHAP authentication (from the target to the init
 #### SettingsResult/definitions/SettingsResult/Messages[]/Severity (read only enumeration)
 
 This is the severity of the errors.
+
+Defined values:
+
+* `OK`
+
+* `Warning`
+
+* `Critical`
 
 #### iSCSIBootSources[]/iSCSIInitiatorGateway (PATCHable string)
 
@@ -2946,6 +4262,12 @@ If enabled, the iSCSI target information are configured from DHCP. Otherwise, th
 
 The iSCSI connection authentication method.
 
+Defined values:
+
+* `None`
+
+* `CHAP`
+
 #### iSCSIBootSources[]/iSCSIChapSecret (PATCHable string)
 
 The password needed for CHAP authentication. This is applicable only when the Authentication Method is set to CHAP, and the CHAP Type is set to Mutual.
@@ -2985,6 +4307,12 @@ The IML event class.
 
 The format of an OEM record.
 
+Defined values:
+
+* `Hp-IML`
+
+* `Hp-iLOEventLog`
+
 #### Number (read only integer)
 
 The number of duplicate log entries, with the possible exception of timestamps, that are not in the collection.
@@ -3011,9 +4339,21 @@ The repaired status of the IML event.
 
 The log entry type.
 
+Defined values:
+
+* `Oem`
+
 #### Severity (read only enumeration)
 
 The log entry severity.
+
+Defined values:
+
+* `OK`
+
+* `Warning`
+
+* `Critical`
 
 ### LogService
 **Instances**:  
@@ -3025,6 +4365,14 @@ The log entry severity.
 #### OverWritePolicy (read only enumeration)
 
 When the log is full, the overwrite policy is enforced.
+
+Defined values:
+
+* `Unknown`
+
+* `WrapsWhenFull`
+
+* `NeverOverwrites`
 
 #### MaxNumberOfRecords (read only integer)
 
@@ -3043,9 +4391,31 @@ Status of serial command line interface.
 
 `PATCH {"Oem": {"Hp": {"SerialCLIStatus": "EnabledNoAuth"}}}`
 
+Defined values:
+
+* `Disabled`
+
+* `EnabledNoAuth`
+
+* `EnabledAuthReq`
+
 #### Redundancy/Status/State (read only enumeration)
 
 Indicates the known state of this resource (for example, if the resource is enabled). Enabled indicates that the resource is available. Disabled indicates that the resource has been made unavailable intentionally, but it can be enabled. Offline indicates that the resource is unavailable intentionally and requires action to be made available. InTest indicates that the component is undergoing testing. Starting indicates that the resource is on its way to becoming available. Absent indicates that the resource is physically unavailable.
+
+Defined values:
+
+* `Enabled`
+
+* `Disabled`
+
+* `Offline`
+
+* `InTest`
+
+* `Starting`
+
+* `Absent`
 
 #### Oem/Hp/Firmware/Backup/BuildNumber (read only integer)
 
@@ -3099,6 +4469,58 @@ Describes the type of license installed on management processor.
 
 iLO Self Test Name.
 
+Defined values:
+
+* `CryptographicHardware`
+
+* `Memory`
+
+* `WebServerCryptography`
+
+* `MiscCryptography`
+
+* `UART`
+
+* `NVRAMInterface`
+
+* `NVRAMData`
+
+* `NIC`
+
+* `EmbeddedFlash/SDCard`
+
+* `StaticRAM`
+
+* `EEPROM`
+
+* `I2C`
+
+* `BootBlock`
+
+* `ThreadInit`
+
+* `Infrastructure`
+
+* `HostRom`
+
+* `SupportedHost`
+
+* `EEPROMContent`
+
+* `PowerManagementController`
+
+* `CPLDPAL0`
+
+* `CPLDPAL1`
+
+* `CPLDPAL2`
+
+* `CPLDPAL3`
+
+* `CPLDPAL4`
+
+* `CPLDPAL5`
+
 #### Oem/Hp/Firmware/definitions/HpFWVersion/BuildNumber (read only integer)
 
 The build number of the firmware.
@@ -3121,6 +4543,14 @@ Determines whether a user-credential prompt is displayed when a user accesses th
 
 Indicates the overall health state of this resource and its dependent resources.
 
+Defined values:
+
+* `OK`
+
+* `Warning`
+
+* `Critical`
+
 #### Oem/Hp/links/VSPLogLocation/extref (read only string)
 
 The URI of an external resource.
@@ -3137,6 +4567,20 @@ The major version of the firmware.
 
 Indicates the known state of this resource (for example, if the resource is enabled). Enabled indicates that the resource is available. Disabled indicates that the resource has been made unavailable intentionally, but it can be enabled. Offline indicates that the resource is unavailable intentionally and requires action to be made available. InTest indicates that the component is undergoing testing. Starting indicates that the resource is on its way to becoming available. Absent indicates that the resource is physically unavailable.
 
+Defined values:
+
+* `Enabled`
+
+* `Disabled`
+
+* `Offline`
+
+* `InTest`
+
+* `Starting`
+
+* `Absent`
+
 #### Model (read only string)
 
 Model name of the manager.
@@ -3149,11 +4593,25 @@ The build time of the firmware.
 
 This property is the manager type for this resource.
 
+Defined values:
+
+* `ManagementController`
+
+* `EnclosureManager`
+
+* `BMC`
+
 #### Oem/Hp/FederationConfig/MulticastDiscovery (PATCHable enumeration)
 
 Enables or Disables Multicast Discovery for the local iLO system.
 
 `PATCH {"Oem": {"Hp": {"FederationConfig": {"MulticastDiscovery": "Disabled"}}}}`
+
+Defined values:
+
+* `Enabled`
+
+* `Disabled`
 
 #### Oem/Hp/License/LicenseKey (read only string)
 
@@ -3179,9 +4637,27 @@ The build time of the firmware.
 
 Status of the Self Test.
 
+Defined values:
+
+* `NA`
+
+* `OK`
+
+* `Informational`
+
+* `Degraded`
+
 #### Status/Health (read only enumeration)
 
 Indicates the health state of this resource without considering its dependent resources.
+
+Defined values:
+
+* `OK`
+
+* `Warning`
+
+* `Critical`
 
 #### Oem/Hp/Firmware/definitions/HpFWVersion/DebugBuild (read only boolean)
 
@@ -3247,6 +4723,12 @@ Enables or Disables iLO Federation features for the local iLO system.
 
 `PATCH {"Oem": {"Hp": {"FederationConfig": {"iLOFederationManagement": "Disabled"}}}}`
 
+Defined values:
+
+* `Enabled`
+
+* `Disabled`
+
 #### Oem/Hp/Firmware/Pending/Date (read only string)
 
 The build date of the firmware.
@@ -3281,15 +4763,39 @@ This string represents the version of the firmware image.
 
 Indicates the health state of this resource without considering its dependent resources.
 
+Defined values:
+
+* `OK`
+
+* `Warning`
+
+* `Critical`
+
 #### Oem/Hp/FederationConfig/IPv6MulticastScope (PATCHable enumeration)
 
 The IPv6 network scope of multicast announcements.
 
 `PATCH {"Oem": {"Hp": {"FederationConfig": {"IPv6MulticastScope": "Site"}}}}`
 
+Defined values:
+
+* `Link`
+
+* `Site`
+
+* `Organization`
+
 #### Redundancy/Status/HealthRollUp (read only enumeration)
 
 Indicates the overall health state of this resource and its dependent resources.
+
+Defined values:
+
+* `OK`
+
+* `Warning`
+
+* `Critical`
 
 #### Oem/Hp/Firmware/Current/Family (read only string)
 
@@ -3340,6 +4846,18 @@ The string version of the build number of the firmware.
 #### Redundancy/Mode (read only enumeration)
 
 This is the redundancy mode of the group.  Failover indicates a master/subordinate type arrangement where status indicates the role of this manager.  N+1 indicates an arrangement where the redundancy set needs MaxNumSupported-1 number of resources in order to be redundant.  Load Balanced indicates all members are active. However, their functionality is not independent of each other. Their functioning is determined by some sort of load balancing algorithm and sparing is implied (i.e. each member can be a spare for the others).  Sparing indicates that all members are active and are aware of each other. However, their functionality is independent until failover. Each member can be a spare for the other(s).  Limited Sparing indicates that all members are active, and they may or may not be aware of each and they are not spares for each other.
+
+Defined values:
+
+* `Failover`
+
+* `N+1`
+
+* `LoadBalanced`
+
+* `Sparing`
+
+* `LimitedSparing`
 
 #### Oem/Hp/Firmware/Pending/VersionString (read only string)
 
@@ -3491,6 +5009,12 @@ The SSH port number.  NOTE: When this field is modified, the Manager will reset 
 
 State of the currently displayed configuration settings.
 
+Defined values:
+
+* `Current`
+
+* `SomePendingReset`
+
 #### IPMI/Enabled (PATCHable boolean)
 
 Indicates whether IPMI over LAN is enabled for the manager.
@@ -3536,6 +5060,14 @@ The IP address, FQDN, IPv6 name, or short name of the server running the Syslog 
 #### Status/HealthRollUp (read only enumeration)
 
 Indicates the overall health state of this resource and its dependent resources.
+
+Defined values:
+
+* `OK`
+
+* `Warning`
+
+* `Critical`
 
 #### Oem/Hp/AlertMailSMTPServer (PATCHable string)
 
@@ -3591,6 +5123,14 @@ Indicates whether HTTPS/SSL is enabled or disabled.
 
 Indicates the health state of this resource without considering its dependent resources.
 
+Defined values:
+
+* `OK`
+
+* `Warning`
+
+* `Critical`
+
 #### HostName (PATCHable string)
 
 The host name of the manager that is obtained by DNS and does not include any domain information.
@@ -3607,6 +5147,20 @@ The SNMP port number.
 
 Indicates the known state of this resource (for example, if the resource is enabled). Enabled indicates that the resource is available. Disabled indicates that the resource has been made unavailable intentionally, but it can be enabled. Offline indicates that the resource is unavailable intentionally and requires action to be made available. InTest indicates that the component is undergoing testing. Starting indicates that the resource is on its way to becoming available. Absent indicates that the resource is physically unavailable.
 
+Defined values:
+
+* `Enabled`
+
+* `Disabled`
+
+* `Offline`
+
+* `InTest`
+
+* `Starting`
+
+* `Absent`
+
 #### Oem/Hp/RemoteSyslogEnabled (PATCHable boolean)
 
 Indicates whether Remote Syslog is enabled. When enabled, management processor sends notification messages to the specified Syslog server. This can be enabled only when the property RemoteSyslogServer is set or not empty.
@@ -3618,6 +5172,14 @@ Indicates whether Remote Syslog is enabled. When enabled, management processor s
 The scope for IPv6 Notify messages for SSDP.
 
 `PATCH {"SSDP": {"NotifyIPv6Scope": "Site"}}`
+
+Defined values:
+
+* `Link`
+
+* `Site`
+
+* `Organization`
 
 #### SSDP/NotifyTTL (PATCHable integer)
 
@@ -3702,6 +5264,14 @@ If true, this power supply is mismatched with others in the system.
 
 Indicates the overall health state of this resource and its dependent resources.
 
+Defined values:
+
+* `OK`
+
+* `Warning`
+
+* `Critical`
+
 #### PowerCapacityWatts (read only integer)
 
 The total power (Watts) available to the chassis from all power supplies (adjusting for redundancy settings).
@@ -3738,6 +5308,14 @@ CorrelatableID for this power supply.
 
 Indicates the overall health state of this resource and its dependent resources.
 
+Defined values:
+
+* `OK`
+
+* `Warning`
+
+* `Critical`
+
 #### PowerLimit/CorrelatableID (read only string)
 
 The value of this property shall represent a reference to the resource that is being limited.
@@ -3758,15 +5336,71 @@ The interval between power metric evaluation in minutes.
 
 The power supply type: AC, DC, or Unknown.
 
+Defined values:
+
+* `Unknown`
+
+* `AC`
+
+* `DC`
+
 #### PowerSupplies[]/Oem/Hp/PowerSupplyStatus/State (read only enumeration)
 
 Indicates the known state of the resource.
+
+Defined values:
+
+* `Unknown`
+
+* `Ok`
+
+* `Degraded`
+
+* `Failed`
+
+* `OverVoltage`
+
+* `OverCurrent`
+
+* `OverTemperature`
+
+* `ACPowerLost`
+
+* `FanFailure`
+
+* `WarningHighInputVoltage`
+
+* `WarningLowInputVoltage`
+
+* `WarningHighOutputVoltage`
+
+* `WarningLowOutputVoltage`
+
+* `WarningInletTemperature`
+
+* `WarningInternalTemperature`
+
+* `WarningHighAuxiliaryVoltage`
+
+* `WarningLowAuxiliaryVoltage`
+
+* `PowerSupplyMismatch`
 
 #### PowerLimit/LimitException (PATCHable enumeration)
 
 Action that is taken if the power cannot be maintained below the LimitInWatts.
 
 `PATCH {"PowerLimit": {"LimitException": "LogEventOnly"}}`
+
+Defined values:
+
+* `NoAction`
+
+* `HardPowerOff`
+
+* `LogEventOnly`
+
+* `Oem`
 
 #### PowerLimit/LimitInWatts (PATCHable integer)
 
@@ -3788,13 +5422,43 @@ Trigger determines whether alerts are based on peak power consumption, average p
 
 `PATCH {"Oem": {"Hp": {"SNMPPowerThresholdAlert": {"Trigger": "AveragePowerConsumption"}}}}`
 
+Defined values:
+
+* `Disabled`
+
+* `AveragePowerConsumption`
+
+* `PeakPowerConsumption`
+
 #### Status/Health (read only enumeration)
 
 Indicates the health state of this resource without considering its dependent resources.
 
+Defined values:
+
+* `OK`
+
+* `Warning`
+
+* `Critical`
+
 #### PowerSupplies[]/LineInputVoltageType (read only enumeration)
 
 Line voltage type: ACLowLine, ACMidLine, ACHighLine, DCNeg48V, DC420V, or Unknown.
+
+Defined values:
+
+* `Unknown`
+
+* `ACLowLine`
+
+* `ACMidLine`
+
+* `ACHighLine`
+
+* `DCNeg48V`
+
+* `HighVoltageDC`
 
 #### PowerSupplies[]/Oem/Hp/iPDUCapable (read only boolean)
 
@@ -3808,6 +5472,20 @@ The power supply serial number.
 
 Indicates the known state of this resource (for example, if the resource is enabled). Enabled indicates that the resource is available. Disabled indicates that the resource has been made unavailable intentionally, but it can be enabled. Offline indicates that the resource is unavailable intentionally and requires action to be made available. InTest indicates that the component is undergoing testing. Starting indicates that the resource is on its way to becoming available. Absent indicates that the resource is physically unavailable.
 
+Defined values:
+
+* `Enabled`
+
+* `Disabled`
+
+* `Offline`
+
+* `InTest`
+
+* `Starting`
+
+* `Absent`
+
 #### PowerSupplies[]/Oem/Hp/MaxPowerOutputWatts (read only integer)
 
 The latest observed maximum output power being drawn by the power supply (Watts). This is usually updated every 10 seconds but the period can vary in some circumstances.
@@ -3819,6 +5497,14 @@ The power supply part number.
 #### PowerSupplies[]/Status/Health (read only enumeration)
 
 Indicates the health state of this resource without considering its dependent resources.
+
+Defined values:
+
+* `OK`
+
+* `Warning`
+
+* `Critical`
 
 #### PowerSupplies[]/PowerCapacityWatts (read only integer)
 
@@ -3838,6 +5524,20 @@ Potential power (Watts) that the chassis is requesting that might be higher than
 
 Indicates the known state of this resource (for example, if the resource is enabled). Enabled indicates that the resource is available. Disabled indicates that the resource has been made unavailable intentionally, but it can be enabled. Offline indicates that the resource is unavailable intentionally and requires action to be made available. InTest indicates that the component is undergoing testing. Starting indicates that the resource is on its way to becoming available. Absent indicates that the resource is physically unavailable.
 
+Defined values:
+
+* `Enabled`
+
+* `Disabled`
+
+* `Offline`
+
+* `InTest`
+
+* `Starting`
+
+* `Absent`
+
 #### PowerSupplies[]/LastPowerOutputWatts (read only integer)
 
 The average power (Watts) consumed.
@@ -3855,6 +5555,44 @@ The maximum power consumed during the interval specified by 'IntervalInMin'.
 #### PowerSupplies[]/Oem/Hp/iPDU/iPDUStatus/State (read only enumeration)
 
 Indicates the known state of the resource.
+
+Defined values:
+
+* `Unknown`
+
+* `Ok`
+
+* `Degraded`
+
+* `Failed`
+
+* `OverVoltage`
+
+* `OverCurrent`
+
+* `OverTemperature`
+
+* `ACPowerLost`
+
+* `FanFailure`
+
+* `WarningHighInputVoltage`
+
+* `WarningLowInputVoltage`
+
+* `WarningHighOutputVoltage`
+
+* `WarningLowOutputVoltage`
+
+* `WarningInletTemperature`
+
+* `WarningInternalTemperature`
+
+* `WarningHighAuxiliaryVoltage`
+
+* `WarningLowAuxiliaryVoltage`
+
+* `PowerSupplyMismatch`
 
 #### PowerSupplies[]/Oem/Hp/BayNumber (read only integer)
 
@@ -3910,6 +5648,12 @@ The major and minor management processor version numbers.
 #### ServiceVersion (read only enumeration)
 
 The web service version. This is different from the version of the data model.
+
+Defined values:
+
+* `0.9.5`
+
+* `0.91.0`
 
 #### Oem/Hp/Sessions/LoginHint/Hint (read only string)
 
@@ -4002,6 +5746,24 @@ This privilege enables a user to power-cycle or reset the host system. These act
 
 User type
 
+Defined values:
+
+* `Local`
+
+* `Directory`
+
+* `Single Sign On`
+
+* `Kerberos`
+
+* `Trusted Key`
+
+* `Security Override`
+
+* `System`
+
+* `Federation`
+
 #### Oem/Hp/UserExpires (read only string)
 
 User session expire time
@@ -4029,6 +5791,24 @@ This privilege enables a user to add, edit, and delete local management processo
 #### Oem/Hp/UserTag (read only enumeration)
 
 Session source
+
+Defined values:
+
+* `Web UI`
+
+* `RBSU`
+
+* `Remote Console`
+
+* `SSH`
+
+* `IPMI/RMCP`
+
+* `SM-CLP`
+
+* `RIBCL`
+
+* `Unknown`
 
 #### Oem/Hp/UserDistinguishedName (read only string)
 
@@ -4087,9 +5867,23 @@ Agentless Management Mode (default): Use SNMP agents running on the management p
 
 `PATCH {"Mode": "Passthru"}`
 
+Defined values:
+
+* `Agentless`
+
+* `Passthru`
+
 #### Status/HealthRollUp (read only enumeration)
 
 Indicates the overall health state of this resource and its dependent resources.
+
+Defined values:
+
+* `OK`
+
+* `Warning`
+
+* `Critical`
 
 #### SNMPv1Traps (PATCHable boolean)
 
@@ -4100,6 +5894,14 @@ When enabled, SNMPv1 traps are sent to the remote management systems configured 
 #### Status/Health (read only enumeration)
 
 Indicates the health state of this resource without considering its dependent resources.
+
+Defined values:
+
+* `OK`
+
+* `Warning`
+
+* `Critical`
 
 #### Role (PATCHable string)
 
@@ -4113,11 +5915,23 @@ Sets the encryption algorithm to use for encoding the privacy passphrase. A port
 
 `PATCH {"Users": [{"PrivacyProtocol": "AES"}|null, ...]}`
 
+Defined values:
+
+* `DES`
+
+* `AES`
+
 #### TrapSourceHostname (PATCHable enumeration)
 
 Determines the host name that is used in the SNMP-defined sysName variable when the management processor generates SNMP traps.
 
 `PATCH {"TrapSourceHostname": "System"}`
+
+Defined values:
+
+* `Manager`
+
+* `System`
 
 #### Users[]/AuthPassphrase (PATCHable string)
 
@@ -4135,6 +5949,20 @@ If set to true, the Cold Start Trap will be enabled. The Cold Start Trap is broa
 
 Indicates the known state of this resource (for example, if the resource is enabled). Enabled indicates that the resource is available. Disabled indicates that the resource has been made unavailable intentionally, but it can be enabled. Offline indicates that the resource is unavailable intentionally and requires action to be made available. InTest indicates that the component is undergoing testing. Starting indicates that the resource is on its way to becoming available. Absent indicates that the resource is physically unavailable.
 
+Defined values:
+
+* `Enabled`
+
+* `Disabled`
+
+* `Offline`
+
+* `InTest`
+
+* `Starting`
+
+* `Absent`
+
 #### SNMPv3EngineID (PATCHable string)
 
 The SNMPv3 Engine ID is the unique identifier of an SNMP engine that belongs to an SNMP agent entity. This value must be a hexadecimal string with an even number of 6 to 32 characters, excluding the first two characters, 0x (for example, 0x01020304abcdef).
@@ -4146,6 +5974,12 @@ The SNMPv3 Engine ID is the unique identifier of an SNMP engine that belongs to 
 Sets the message digest algorithm to use for encoding the authorization passphrase. The message digest is calculated over an appropriate portion of an SNMP message, and is included as part of the message sent to the recipient. Select MD5 (Message Digest) or SHA (Secure Hash Algorithm).
 
 `PATCH {"Users": [{"AuthProtocol": "SHA"}|null, ...]}`
+
+Defined values:
+
+* `MD5`
+
+* `SHA`
 
 #### Oem/Hp/SNMPForwardInsightManagerAgentAlerts (PATCHable boolean)
 
@@ -4202,6 +6036,20 @@ Above normal range and is fatal.
 
 Indicates the known state of this resource (for example, if the resource is enabled). Enabled indicates that the resource is available. Disabled indicates that the resource has been made unavailable intentionally, but it can be enabled. Offline indicates that the resource is unavailable intentionally and requires action to be made available. InTest indicates that the component is undergoing testing. Starting indicates that the resource is on its way to becoming available. Absent indicates that the resource is physically unavailable.
 
+Defined values:
+
+* `Enabled`
+
+* `Disabled`
+
+* `Offline`
+
+* `InTest`
+
+* `Starting`
+
+* `Absent`
+
 #### Temperatures[]/Oem/Hp/LocationYmm (read only integer)
 
 The location of the sensor, in millimeters, along the Y axis from the logical reference point.
@@ -4218,17 +6066,73 @@ Below normal range and is fatal.
 
 Indicates the overall health state of this resource and its dependent resources.
 
+Defined values:
+
+* `OK`
+
+* `Warning`
+
+* `Critical`
+
 #### Fans[]/Units (read only enumeration)
 
 Units for the CurrentReading.
+
+Defined values:
+
+* `RPM`
+
+* `Percent`
 
 #### Fans[]/Status/Health (read only enumeration)
 
 Indicates the health state of this resource without considering its dependent resources.
 
+Defined values:
+
+* `OK`
+
+* `Warning`
+
+* `Critical`
+
 #### Temperatures[]/Context (read only enumeration)
 
 The area or device to which this temperature measurement applies.
+
+Defined values:
+
+* `System`
+
+* `System Board`
+
+* `I/O Board`
+
+* `CPU`
+
+* `Memory`
+
+* `Storage`
+
+* `Removable Media`
+
+* `Power Supply`
+
+* `Ambient`
+
+* `Chassis`
+
+* `Bridge Board`
+
+* `Exhaust`
+
+* `Processor Bay`
+
+* `IO Bay`
+
+* `Blade Slot`
+
+* `Virtual`
 
 #### Fans[]/LowerThresholdCritical (read only integer)
 
@@ -4237,6 +6141,14 @@ Below normal range but not yet fatal.
 #### Temperatures[]/Status/Health (read only enumeration)
 
 Indicates the health state of this resource without considering its dependent resources.
+
+Defined values:
+
+* `OK`
+
+* `Warning`
+
+* `Critical`
 
 #### Temperatures[]/Oem/Hp/LocationXmm (read only integer)
 
@@ -4250,6 +6162,12 @@ Above normal range and is fatal.
 
 The temperature sensor's units.
 
+Defined values:
+
+* `Celsius`
+
+* `Fahrenheit`
+
 #### Fans[]/LowerThresholdFatal (read only integer)
 
 Below normal range and is fatal.
@@ -4257,6 +6175,14 @@ Below normal range and is fatal.
 #### Status/Health (read only enumeration)
 
 Indicates the health state of this resource without considering its dependent resources.
+
+Defined values:
+
+* `OK`
+
+* `Warning`
+
+* `Critical`
 
 #### Fans[]/UpperThresholdNonCritical (read only integer)
 
@@ -4274,13 +6200,49 @@ Below normal range.
 
 Indicates the overall health state of this resource and its dependent resources.
 
+Defined values:
+
+* `OK`
+
+* `Warning`
+
+* `Critical`
+
 #### Fans[]/Status/State (read only enumeration)
 
 Indicates the known state of this resource (for example, if the resource is enabled). Enabled indicates that the resource is available. Disabled indicates that the resource has been made unavailable intentionally, but it can be enabled. Offline indicates that the resource is unavailable intentionally and requires action to be made available. InTest indicates that the component is undergoing testing. Starting indicates that the resource is on its way to becoming available. Absent indicates that the resource is physically unavailable.
 
+Defined values:
+
+* `Enabled`
+
+* `Disabled`
+
+* `Offline`
+
+* `InTest`
+
+* `Starting`
+
+* `Absent`
+
 #### Status/State (read only enumeration)
 
 Indicates the known state of this resource (for example, if the resource is enabled). Enabled indicates that the resource is available. Disabled indicates that the resource has been made unavailable intentionally, but it can be enabled. Offline indicates that the resource is unavailable intentionally and requires action to be made available. InTest indicates that the component is undergoing testing. Starting indicates that the resource is on its way to becoming available. Absent indicates that the resource is physically unavailable.
+
+Defined values:
+
+* `Enabled`
+
+* `Disabled`
+
+* `Offline`
+
+* `InTest`
+
+* `Starting`
+
+* `Absent`
 
 #### Temperatures[]/Number (read only integer)
 
@@ -4293,6 +6255,40 @@ Minimum value for CurrentReading.
 #### Fans[]/Oem/Hp/Location (read only enumeration)
 
 Indicates the component (i.e. CPU, Memory, and Storage) that the fan is being used to cool.
+
+Defined values:
+
+* `System`
+
+* `System Board`
+
+* `I/O Board`
+
+* `CPU`
+
+* `Memory`
+
+* `Storage`
+
+* `Removable Media`
+
+* `Power Supply`
+
+* `Ambient`
+
+* `Chassis`
+
+* `Bridge Board`
+
+* `Exhaust`
+
+* `Processor Bay`
+
+* `IO Bay`
+
+* `Blade Slot`
+
+* `Virtual`
 
 #### Fans[]/LowerThresholdNonCritical (read only integer)
 
@@ -4318,6 +6314,14 @@ The CorrelatableID for this temperature sensor.
 
 Indicates the overall health state of this resource and its dependent resources.
 
+Defined values:
+
+* `OK`
+
+* `Warning`
+
+* `Critical`
+
 #### Temperatures[]/UpperThresholdCritical (read only integer)
 
 Above normal range but not yet fatal.
@@ -4325,6 +6329,40 @@ Above normal range but not yet fatal.
 #### Fans[]/Context (read only enumeration)
 
 The area or device to which this temperature measurement applies.
+
+Defined values:
+
+* `System`
+
+* `System Board`
+
+* `I/O Board`
+
+* `CPU`
+
+* `Memory`
+
+* `Storage`
+
+* `Removable Media`
+
+* `Power Supply`
+
+* `Ambient`
+
+* `Chassis`
+
+* `Bridge Board`
+
+* `Exhaust`
+
+* `Processor Bay`
+
+* `IO Bay`
+
+* `Blade Slot`
+
+* `Virtual`
 
 #### Temperatures[]/UpperThresholdNonCritical (read only integer)
 
@@ -4352,6 +6390,14 @@ Indicates whether the virtual media is mounted on the server.
 #### ConnectedVia (read only enumeration)
 
 Specifies how the virtual media is connected to the server.
+
+Defined values:
+
+* `NotConnected`
+
+* `URI`
+
+* `Applet`
 
 #### Image (PATCHable string)
 
