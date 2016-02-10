@@ -11,6 +11,7 @@ includes:
   - introduction
   - api/authentication
   - api/errors
+  - api/products
 
 search: true
 ---

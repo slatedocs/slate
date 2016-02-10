@@ -31,3 +31,58 @@ dropdown_specifications | Specifications of the product represented as dropdown-
 other_specifications | Specification added by the user or admin and is not predefined
 sellable | Deciding factor for whether the product is bulk or sellable
 category_id |  Category id for the product category
+
+## Auto-Populated New Product
+
+> To get predefined specifications for a product use this code:
+
+```http
+GET /api/products/new?category_id=$['Product_Category_id']&product_name=$['Your_Product_name'] HTTP/1.1
+Host: bizongo.in
+Content-Type: application/json
+Authorization: Token token=User Auth Token
+```
+> Variables `Product_Category_id` and `Your_Product_name` contains values for category id and name of the product. This is success response returned for a sample product searched in `Crates` category with auto-populated values.
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+{
+  "keyword": {
+    "values": "Multi Purpose Crates, Fruit & Vegetable Crates",
+    "options": "Multi Purpose Crates, Dairy Crates, Fruit & Vegetable Crates, Dairy Crates",
+  },
+  "specifications": {
+    "text_fields_specifications": {
+      "Capacity": {
+        "optional": false
+        "value": "10"
+      },
+    },
+    "checkable_specifications": {
+      "Color": {
+        "options": "Blue, Bronze, Brown"
+        "values": "Blue, Brown"
+        "optional": true
+      },
+      "Material": {
+        "options": "Wood, Steel, Stainless Steel, Paper"
+        "optional": true
+      }
+    },
+    "dropdown_specifications": {
+      "Original": {
+        "options": "yes, no"
+        "value": "yes"
+        "optional": true
+      }
+    }
+  }
+}
+```
+
+Bizongo uses the auth-token to allow access to the new product API and sends back an response which tells us about the specification for the product to be added. This api also returns auto-populated values of product if product is present in search. These specifications have already been defined by the admin they are either optional or required based on `optional` parameter.
+
+Bizongo expects the header `Authorization` to be present in the following 'format'
+
+`Authorization: Token token=User Auth Token`
