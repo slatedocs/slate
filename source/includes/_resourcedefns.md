@@ -5,13 +5,17 @@ This is the schema definition for the Account service. It represents the propert
 
 * `https://{iLO}/redfish/v1/accountservice`
 
-#### Oem/Hp/AuthFailureLoggingThreshold (integer)
+#### Oem/Hp/AuthFailureLoggingThreshold (PATCHable integer)
 
 This property enables you to view and configure logging criteria for failed authentications. A failed login log entry is recorded after the configured number of attempts. 0 = feature disabled; 1-3 and 5 are allowable values.
 
-#### Oem/Hp/MinPasswordLength (integer)
+`PATCH {"Oem": {"Hp": {"AuthFailureLoggingThreshold": <integer-value>}}}`
+
+#### Oem/Hp/MinPasswordLength (PATCHable integer)
 
 This property specifies the minimum number of characters allowed when a user password is set or changed. It must be a value from 0 to 39.
+
+`PATCH {"Oem": {"Hp": {"MinPasswordLength": <integer-value>}}}`
 
 ### BaseNetworkAdapter
 **Instances**:  
@@ -153,9 +157,11 @@ The chassis version.
 
 The chassis rack UUID.
 
-#### AssetTag (string)
+#### AssetTag (PATCHable string)
 
 The chassis user-assigned asset tag.
+
+`PATCH {"AssetTag": "<string-value>"}`
 
 #### Oem/Hp/Firmware/PowerManagementControllerBootloader/Current/VersionString (read only string)
 
@@ -213,9 +219,11 @@ The chassis rack U height.
 
 The chassis rack part number.
 
-#### IndicatorLED (enumeration)
+#### IndicatorLED (PATCHable enumeration)
 
 The chassis indicator LED that is used to identify the chassis. The user can manipulate this LED.
+
+`PATCH {"IndicatorLED": "Lit"}`
 
 #### SKU (read only string)
 
@@ -395,9 +403,11 @@ The schema definition of a computer system and its properties. A computer system
 
 The manufacturer's system part number.
 
-#### Oem/Hp/PowerOnDelay (enumeration)
+#### Oem/Hp/PowerOnDelay (PATCHable enumeration)
 
 The PowerAutoOn policy delay that can also be found in the HpBios::PowerOnDelay object.
+
+`PATCH {"Oem": {"Hp": {"PowerOnDelay": "45Sec"}}}`
 
 #### Oem/Hp/Bios/Bootblock/BuildNumber (read only integer)
 
@@ -463,13 +473,17 @@ Serial Number of battery.
 
 The build date of the firmware.
 
-#### Boot/UefiTargetBootSourceOverride (string)
+#### Boot/UefiTargetBootSourceOverride (PATCHable string)
 
 The UEFI device path of the device to boot from when BootSourceOverrideTarget is UefiTarget.
 
-#### Oem/Hp/PostMode (enumeration)
+`PATCH {"Boot": {"UefiTargetBootSourceOverride": "<string-value>"}}`
+
+#### Oem/Hp/PostMode (PATCHable enumeration)
 
 Supported on UEFI based systems only. The manner in which the system will operate durring and at completion of POST.
+
+`PATCH {"Oem": {"Hp": {"PostMode": "PostToShutdown"}}}`
 
 #### Oem/Hp/Bios/Current/Date (read only string)
 
@@ -483,17 +497,21 @@ The total amount of memory (GB) in the system.
 
 Indicates the overall health state of this resource and its dependent resources.
 
-#### Boot/BootSourceOverrideTarget (enumeration)
+#### Boot/BootSourceOverrideTarget (PATCHable enumeration)
 
 The current boot source to be used at next boot instead of the normal boot device, if BootSourceOverrideEnabled is not Disabled.
+
+`PATCH {"Boot": {"BootSourceOverrideTarget": "Hdd"}}`
 
 #### Oem/Hp/Bios/Backup/BuildNumberString (read only string)
 
 The string version of the build number of the firmware.
 
-#### AssetTag (string)
+#### AssetTag (PATCHable string)
 
 A user-definable tag that is used to track this system for inventory or other client purposes.
+
+`PATCH {"AssetTag": "<string-value>"}`
 
 #### Oem/Hp/Bios/Bootblock/BuildNumberString (read only string)
 
@@ -645,9 +663,11 @@ The current state of the systems virtual profile.  This profile is the one that,
 
 The build number of the firmware.
 
-#### IndicatorLED (enumeration)
+#### IndicatorLED (PATCHable enumeration)
 
 The state of the indicator LED.
+
+`PATCH {"IndicatorLED": "Lit"}`
 
 #### Oem/Hp/Battery[]/Index (read only integer)
 
@@ -665,9 +685,11 @@ The major version of the firmware.
 
 This property indicates the TPM or TM status.
 
-#### Oem/Hp/PowerAutoOn (enumeration)
+#### Oem/Hp/PowerAutoOn (PATCHable enumeration)
 
 Auto Power-On mode defines what occurs when the AC power is applied to the system.
+
+`PATCH {"Oem": {"Hp": {"PowerAutoOn": "PowerOn"}}}`
 
 #### SKU (read only string)
 
@@ -685,9 +707,11 @@ The system serial number.
 
 The number of processors in the system.
 
-#### Oem/Hp/EndOfPostDelaySeconds (integer)
+#### Oem/Hp/EndOfPostDelaySeconds (PATCHable integer)
 
 Supported on UEFI based systems only. The number of seconds to delay before finalizing POST with the Mode action (e.g. delay before shutdown).
+
+`PATCH {"Oem": {"Hp": {"EndOfPostDelaySeconds": <integer-value>}}}`
 
 #### Processors/Status/Health (read only enumeration)
 
@@ -707,9 +731,11 @@ True if the firmware is a debug build; False if it is not.
 
 #### HostCorrelation/HostFQDN (read only string)
 
-#### Boot/BootSourceOverrideEnabled (enumeration)
+#### Boot/BootSourceOverrideEnabled (PATCHable enumeration)
 
 BootSourceOverrideTarget must be specified before BootSourceOverrideEnabled can be used.
+
+`PATCH {"Boot": {"BootSourceOverrideEnabled": "Once"}}`
 
 #### Oem/Hp/Bios/UefiClass (read only integer)
 
@@ -730,29 +756,39 @@ The link technology, such as Ethernet, for this NIC.
 
 The MAC address assigned to the NIC at the factory.
 
-#### Oem/Hp/DHCPv4/Enabled (boolean)
+#### Oem/Hp/DHCPv4/Enabled (PATCHable boolean)
 
 Determines whether DHCPv4 is enabled.
 
-#### Oem/Hp/VLANId (integer)
+`PATCH {"Oem": {"Hp": {"DHCPv4": {"Enabled": true}}}}`
+
+#### Oem/Hp/VLANId (PATCHable integer)
 
 The VLAN ID/tag. Only applies to Shared Network Port.
 
-#### Autosense (boolean)
+`PATCH {"Oem": {"Hp": {"VLANId": <integer-value>}}}`
+
+#### Autosense (PATCHable boolean)
 
 The autosense speed/duplex enabled or disabled. Autosense can only be disabled if the SpeedMbps and FullDuplex values are specified. Autosense is only applicable and modifiable for a dedicated network port and cannot be modified for blade servers.
+
+`PATCH {"Autosense": true}`
 
 #### SettingsResult/Operation (read only enumeration)
 
 Details about the results of applying the settings.
 
-#### Oem/Hp/IPv6/StaticRoutes[]/PrefixLength (integer)
+#### Oem/Hp/IPv6/StaticRoutes[]/PrefixLength (PATCHable integer)
 
 The prefix length of the IPv6 static route destination address.
 
-#### MacAddress (string)
+`PATCH {"Oem": {"Hp": {"IPv6": {"StaticRoutes": [{"PrefixLength": <integer-value>}|null, ...]}}}}`
+
+#### MacAddress (PATCHable string)
 
 The effective current MAC address. If the assignable MAC address is not supported, this is a read-only alias of FactoryMacAddress.
+
+`PATCH {"MacAddress": "<string-value>"}`
 
 #### MaxIPv6StaticAddresses (read only integer)
 
@@ -762,41 +798,57 @@ The maximum number of IPv6 static addresses that can be configured on this inter
 
 Time at which the settings were applied.
 
-#### Oem/Hp/SharedNetworkPortOptions/Port (integer)
+#### Oem/Hp/SharedNetworkPortOptions/Port (PATCHable integer)
 
 The network adapter port number that is used for sharing. This feature is only applicable on systems and network adapters that support it.
 
-#### Oem/Hp/DHCPv6/UseRapidCommit (boolean)
+`PATCH {"Oem": {"Hp": {"SharedNetworkPortOptions": {"Port": <integer-value>}}}}`
+
+#### Oem/Hp/DHCPv6/UseRapidCommit (PATCHable boolean)
 
 Determines whether to use DHCPv6 rapid commit mode. Can only be enabled when DHCPv6 Stateful mode is also enabled; otherwise, this property will be set to false and will be read-only. Do not enable in networks where more than one DHCPv6 server is configured to provide address assignments.
 
-#### Oem/Hp/IPv6/StaticRoutes[]/Destination (string)
+`PATCH {"Oem": {"Hp": {"DHCPv6": {"UseRapidCommit": true}}}}`
+
+#### Oem/Hp/IPv6/StaticRoutes[]/Destination (PATCHable string)
 
 The IPv6 static route destination address.
 
-#### Oem/Hp/IPv6/StaticDefaultGateway (string)
+`PATCH {"Oem": {"Hp": {"IPv6": {"StaticRoutes": [{"Destination": "<string-value>"}|null, ...]}}}}`
+
+#### Oem/Hp/IPv6/StaticDefaultGateway (PATCHable string)
 
 The IPv6 static default gateway entry.
+
+`PATCH {"Oem": {"Hp": {"IPv6": {"StaticDefaultGateway": "<string-value>"}}}}`
 
 #### Oem/Hp/ConfigurationSettings (read only enumeration)
 
 The state of the currently displayed configuration settings.
 
-#### IPv6StaticAddresses[]/PrefixLength (integer)
+#### IPv6StaticAddresses[]/PrefixLength (PATCHable integer)
 
 The Prefix Length of this IPv6 address.
 
-#### FrameSize (integer)
+`PATCH {"IPv6StaticAddresses": [{"PrefixLength": <integer-value>}|null, ...]}`
+
+#### FrameSize (PATCHable integer)
 
 The MAC frame size (bytes).
 
-#### Oem/Hp/PingGatewayOnStartup (boolean)
+`PATCH {"FrameSize": <integer-value>}`
+
+#### Oem/Hp/PingGatewayOnStartup (PATCHable boolean)
 
 Determines whether to ping the IPv4 gateway on startup.
 
-#### Oem/Hp/DHCPv4/UseWINSServers (boolean)
+`PATCH {"Oem": {"Hp": {"PingGatewayOnStartup": true}}}`
+
+#### Oem/Hp/DHCPv4/UseWINSServers (PATCHable boolean)
 
 Determines whether to use DHCPv4-supplied WINS servers. Can only be enabled when DHCPv4 is also enabled; otherwise, this property will be set to false and will be read-only.
+
+`PATCH {"Oem": {"Hp": {"DHCPv4": {"UseWINSServers": true}}}}`
 
 #### IPv6Addresses[]/AddressState (read only enumeration)
 
@@ -810,17 +862,21 @@ Instructions for resolving the issue that caused the error.
 
 Indicates whether this system supports LOM. Only applies to Shared Network Port.
 
-#### FullDuplex (boolean)
+#### FullDuplex (PATCHable boolean)
 
 The connection duplex status. If Autosense is enabled, this property cannot be modified. Autosense is only applicable and modifiable for a dedicated network port and cannot be modified for blade servers.
+
+`PATCH {"FullDuplex": true}`
 
 #### IPv6Addresses[]/PrefixLength (read only integer)
 
 The IPv6 Address Prefix Length.
 
-#### Oem/Hp/DHCPv4/UseNTPServers (boolean)
+#### Oem/Hp/DHCPv4/UseNTPServers (PATCHable boolean)
 
 Determines whether to use DHCPv4-supplied NTP servers. Can only be enabled when DHCPv4 is also enabled; otherwise, this property will be set to false and will be read-only.
+
+`PATCH {"Oem": {"Hp": {"DHCPv4": {"UseNTPServers": true}}}}`
 
 #### Oem/Hp/NICSupportsIPv6 (read only boolean)
 
@@ -838,21 +894,29 @@ The IPv6 Address.
 
 Indicates whether this system supports FlexibleLOM. Only applies to Shared Network Port.
 
-#### Oem/Hp/IPv6/DDNSRegistration (boolean)
+#### Oem/Hp/IPv6/DDNSRegistration (PATCHable boolean)
 
 Determines whether IPv6 DDNS registration is enabled.
 
-#### Oem/Hp/IPv4/DDNSRegistration (boolean)
+`PATCH {"Oem": {"Hp": {"IPv6": {"DDNSRegistration": true}}}}`
+
+#### Oem/Hp/IPv4/DDNSRegistration (PATCHable boolean)
 
 Determines whether DDNS registration is enabled.
 
-#### IPv6AddressPolicyTable[]/Label (integer)
+`PATCH {"Oem": {"Hp": {"IPv4": {"DDNSRegistration": true}}}}`
+
+#### IPv6AddressPolicyTable[]/Label (PATCHable integer)
 
 The label value for this table entry, as defined in RFC3484 section 2.1.
 
-#### Oem/Hp/DHCPv6/UseDNSServers (boolean)
+`PATCH {"IPv6AddressPolicyTable": [{"Label": <integer-value>}|null, ...]}`
+
+#### Oem/Hp/DHCPv6/UseDNSServers (PATCHable boolean)
 
 Determines whether to use DHCPv6-supplied DNS servers. Can only be enabled when DHCPv6 Stateless mode is also enabled; otherwise, this property will be set to false and will be read-only.
+
+`PATCH {"Oem": {"Hp": {"DHCPv6": {"UseDNSServers": true}}}}`
 
 #### FQDN (read only string)
 
@@ -862,9 +926,11 @@ The complete, fully qualified domain name obtained by DNS for this NIC.
 
 Indicates the health state of this resource without considering its dependent resources.
 
-#### Oem/Hp/IPv6/StaticRoutes[]/Gateway (string)
+#### Oem/Hp/IPv6/StaticRoutes[]/Gateway (PATCHable string)
 
 The IPv6 static route gateway.
+
+`PATCH {"Oem": {"Hp": {"IPv6": {"StaticRoutes": [{"Gateway": "<string-value>"}|null, ...]}}}}`
 
 #### IPv6Addresses[]/AddressOrigin (read only enumeration)
 
@@ -874,13 +940,17 @@ How the address was determined.
 
 The VLAN identifier for this NIC. The VLANId is only present when the VLANEnable is used and when the NIC supports only a single VLAN.
 
-#### Oem/Hp/DHCPv4/UseGateway (boolean)
+#### Oem/Hp/DHCPv4/UseGateway (PATCHable boolean)
 
 Determines whether to use a DHCPv4-supplied gateway. Can only be enabled when DHCPv4 is also enabled; otherwise, this property will be set to false and will be read-only.
 
-#### Oem/Hp/DHCPv4/UseDNSServers (boolean)
+`PATCH {"Oem": {"Hp": {"DHCPv4": {"UseGateway": true}}}}`
+
+#### Oem/Hp/DHCPv4/UseDNSServers (PATCHable boolean)
 
 Determines whether to use DHCPv4-supplied DNS servers. Can only be enabled when DHCPv4 is also enabled; otherwise, this property will be set to false and will be read-only.
+
+`PATCH {"Oem": {"Hp": {"DHCPv4": {"UseDNSServers": true}}}}`
 
 #### IPv6DefaultGateway (read only string)
 
@@ -890,133 +960,179 @@ The IPv6 default gateway address that is currently in use on this interface.
 
 The DNS Host Name, without any domain information.
 
-#### Oem/Hp/NICEnabled (boolean)
+#### Oem/Hp/NICEnabled (PATCHable boolean)
 
 Determines whether this NIC is enabled or disabled. Enabling one NIC will disable the others. If no NIC is enabled, this management processor is not accessible over the network.
+
+`PATCH {"Oem": {"Hp": {"NICEnabled": true}}}`
 
 #### Status/State (read only enumeration)
 
 Indicates the known state of this resource (for example, if the resource is enabled). Enabled indicates that the resource is available. Disabled indicates that the resource has been made unavailable intentionally, but it can be enabled. Offline indicates that the resource is unavailable intentionally and requires action to be made available. InTest indicates that the component is undergoing testing. Starting indicates that the resource is on its way to becoming available. Absent indicates that the resource is physically unavailable.
 
-#### Oem/Hp/DHCPv6/StatelessModeEnabled (boolean)
+#### Oem/Hp/DHCPv6/StatelessModeEnabled (PATCHable boolean)
 
 Determines whether DHCPv6 Stateless mode is enabled.  Always enabled by default whenever DHCPv6 Stateful mode is also enabled.
+
+`PATCH {"Oem": {"Hp": {"DHCPv6": {"StatelessModeEnabled": true}}}}`
 
 #### SettingsResult/ETag (read only string)
 
 ETag of this resource after the settings have been applied.
 
-#### Oem/Hp/IPv6/SLAACEnabled (boolean)
+#### Oem/Hp/IPv6/SLAACEnabled (PATCHable boolean)
 
 Determines whether StateLess Address Auto-Configuration is enabled.
 
-#### IPv6StaticAddresses[]/Address (string)
+`PATCH {"Oem": {"Hp": {"IPv6": {"SLAACEnabled": true}}}}`
+
+#### IPv6StaticAddresses[]/Address (PATCHable string)
 
 A valid IPv6 address.
 
-#### Oem/Hp/DHCPv6/UseDomainName (boolean)
+`PATCH {"IPv6StaticAddresses": [{"Address": "<string-value>"}|null, ...]}`
+
+#### Oem/Hp/DHCPv6/UseDomainName (PATCHable boolean)
 
 Determines whether to use a DHCPv6-supplied domain name. Can only be enabled when DHCPv6 Stateless mode is also enabled; otherwise, this property will be set to false and will be read-only.
 
-#### Oem/Hp/IPv4/StaticRoutes[]/Destination (string)
+`PATCH {"Oem": {"Hp": {"DHCPv6": {"UseDomainName": true}}}}`
+
+#### Oem/Hp/IPv4/StaticRoutes[]/Destination (PATCHable string)
 
 An IPv4 static route subnet mask. Only writeable when use of DHCPv4-supplied static routes is disabled; otherwise this property is read-only indicating the value is provided by DHCPv4.
 
-#### Oem/Hp/HostName (string)
+`PATCH {"Oem": {"Hp": {"IPv4": {"StaticRoutes": [{"Destination": "<string-value>"}|null, ...]}}}}`
+
+#### Oem/Hp/HostName (PATCHable string)
 
 The management processor host name.
 
-#### IPv6AddressPolicyTable[]/Prefix (string)
+`PATCH {"Oem": {"Hp": {"HostName": "<string-value>"}}}`
+
+#### IPv6AddressPolicyTable[]/Prefix (PATCHable string)
 
 The IPv6 Address Prefix for this table entry as defined in RFC3484 section 2.1.
 
-#### Oem/Hp/IPv4/StaticRoutes[]/SubnetMask (string)
+`PATCH {"IPv6AddressPolicyTable": [{"Prefix": "<string-value>"}|null, ...]}`
+
+#### Oem/Hp/IPv4/StaticRoutes[]/SubnetMask (PATCHable string)
 
 An IPv4 static route gateway. Only writeable when use of DHCPv4-supplied static routes is disabled; otherwise this property is read-only indicating the value is provided by DHCPv4.
 
-#### Oem/Hp/DHCPv4/UseDomainName (boolean)
+`PATCH {"Oem": {"Hp": {"IPv4": {"StaticRoutes": [{"SubnetMask": "<string-value>"}|null, ...]}}}}`
+
+#### Oem/Hp/DHCPv4/UseDomainName (PATCHable boolean)
 
 Determines whether to use a DHCPv4-supplied domain name. Can only be enabled when DHCPv4 is also enabled; otherwis,e this property will be set to false and will be read-only.
+
+`PATCH {"Oem": {"Hp": {"DHCPv4": {"UseDomainName": true}}}}`
 
 #### UEFIDevicePath (read only string)
 
 The UEFI device path for this NIC.
 
-#### Oem/Hp/DHCPv4/UseStaticRoutes (boolean)
+#### Oem/Hp/DHCPv4/UseStaticRoutes (PATCHable boolean)
 
 Determines whether to use DHCPv4-supplied static routes. Can only be enabled when DHCPv4 is also enabled; otherwise, this property will be set to false and will be read-only.
+
+`PATCH {"Oem": {"Hp": {"DHCPv4": {"UseStaticRoutes": true}}}}`
 
 #### SettingsResult/Messages[]/MessageID (read only string)
 
 Key for this message, which is used to look up the message in a message registry. The key is in the format <registry>.<majorver>.<minorver>:<messagekey>.
 
-#### Oem/Hp/DomainName (string)
+#### Oem/Hp/DomainName (PATCHable string)
 
 Domain name of the network to which this management processor belongs. This property can only be modified when the management processor is not configured to use a DHCP supplied domain name; otherwise this property is read-only indicating the value is provided by DHCP.
 
-#### SpeedMbps (integer)
+`PATCH {"Oem": {"Hp": {"DomainName": "<string-value>"}}}`
+
+#### SpeedMbps (PATCHable integer)
 
 The link speed of the Ethernet interface. If Autosense is enabled, this property cannot be modified. This property can only be modified on a dedicated network port. It cannot be modified for blade servers.
+
+`PATCH {"SpeedMbps": <integer-value>}`
 
 #### IPv4Addresses[]/AddressOrigin (read only enumeration)
 
 How the address was determined.
 
-#### Oem/Hp/DHCPv6/UseNTPServers (boolean)
+#### Oem/Hp/DHCPv6/UseNTPServers (PATCHable boolean)
 
 Determines whether to use DHCPv6-supplied NTP servers. Can only be enabled when DHCPv6 Stateless mode is also enabled; otherwise, this property will be set to false and will be read-only.
+
+`PATCH {"Oem": {"Hp": {"DHCPv6": {"UseNTPServers": true}}}}`
 
 #### Oem/Hp/IPv6/StaticRoutes[]/Status (read only enumeration)
 
 Status of this static route entry.
 
-#### IPv6AddressPolicyTable[]/Precedence (integer)
+#### IPv6AddressPolicyTable[]/Precedence (PATCHable integer)
 
 The precedence value for this table entry as defined in RFC3484 section 2.1.
+
+`PATCH {"IPv6AddressPolicyTable": [{"Precedence": <integer-value>}|null, ...]}`
 
 #### SettingsResult/Messages[]/Severity (read only enumeration)
 
 This is the severity of the errors.
 
-#### IPv4Addresses[]/Address (string)
+#### IPv4Addresses[]/Address (PATCHable string)
 
 The IPv4 Address.
 
-#### IPv4Addresses[]/SubnetMask (string)
+`PATCH {"IPv4Addresses": [{"Address": "<string-value>"}|null, ...]}`
+
+#### IPv4Addresses[]/SubnetMask (PATCHable string)
 
 The IPv4 Subnet mask.
+
+`PATCH {"IPv4Addresses": [{"SubnetMask": "<string-value>"}|null, ...]}`
 
 #### VLANEnable (read only boolean)
 
 Indicates if VLANs are enabled. If this NIC supports more than one VLAN, this property will not be present and the client should look for VLANs collection in the link section of this resource.
 
-#### Oem/Hp/IPv4/WINSRegistration (boolean)
+#### Oem/Hp/IPv4/WINSRegistration (PATCHable boolean)
 
 Determines whether WINS registration is enabled.
 
-#### Oem/Hp/DHCPv6/StatefulModeEnabled (boolean)
+`PATCH {"Oem": {"Hp": {"IPv4": {"WINSRegistration": true}}}}`
+
+#### Oem/Hp/DHCPv6/StatefulModeEnabled (PATCHable boolean)
 
 Determines whether DHCPv6 Stateful mode is enabled.
 
-#### Oem/Hp/IPv4/StaticRoutes[]/Gateway (string)
+`PATCH {"Oem": {"Hp": {"DHCPv6": {"StatefulModeEnabled": true}}}}`
+
+#### Oem/Hp/IPv4/StaticRoutes[]/Gateway (PATCHable string)
 
 Currently configured WINS servers in order of descending preference. Static values when not configured to use DHCPv4-supplied WINS servers; otherwise this property is read-only indicating the values are provided by DHCPv4.
 
-#### Oem/Hp/SharedNetworkPortOptions/NIC (enumeration)
+`PATCH {"Oem": {"Hp": {"IPv4": {"StaticRoutes": [{"Gateway": "<string-value>"}|null, ...]}}}}`
+
+#### Oem/Hp/SharedNetworkPortOptions/NIC (PATCHable enumeration)
 
 Selects the system NIC that is to be shared with this management processor.
 
-#### Oem/Hp/VLANEnabled (boolean)
+`PATCH {"Oem": {"Hp": {"SharedNetworkPortOptions": {"NIC": "FlexibleLOM"}}}}`
+
+#### Oem/Hp/VLANEnabled (PATCHable boolean)
 
 Determines whether VLAN is enabled. Only applies to Shared Network Port.
+
+`PATCH {"Oem": {"Hp": {"VLANEnabled": true}}}`
 
 #### SettingsResult/Messages[]/Message (read only string)
 
 Human-readable message.
 
-#### IPv4Addresses[]/Gateway (string)
+#### IPv4Addresses[]/Gateway (PATCHable string)
 
 The IPv4 gateway for this address.
+
+`PATCH {"IPv4Addresses": [{"Gateway": "<string-value>"}|null, ...]}`
 
 ### EventService
 This is the schema definition for the Event Service.  It represents the properties for the service itself and has links to the actual list of subscriptions.
@@ -1257,61 +1373,79 @@ ESKM (Enterprise Security Key Manager) object enables user to connect to an oper
 
 * `https://{iLO}/redfish/v1/managers/{item}/securityservice/eskm`
 
-#### PrimaryKeyServerPort (integer)
+#### PrimaryKeyServerPort (PATCHable integer)
 
 Primary key server port number. Set to null to clear the value.
+
+`PATCH {"PrimaryKeyServerPort": <integer-value>}`
 
 #### ESKMEvents[]/Event (read only string)
 
 ESKM event description.
 
-#### KeyManagerConfig/AccountGroup (string)
+#### KeyManagerConfig/AccountGroup (PATCHable string)
 
 Account group on ESKM.
+
+`PATCH {"KeyManagerConfig": {"AccountGroup": "<string-value>"}}`
 
 #### KeyManagerConfig/ImportedCertificateIssuer (read only string)
 
 Imported certificate issuer.
 
-#### KeyServerRedundancyReq (boolean)
+#### KeyServerRedundancyReq (PATCHable boolean)
 
 If true encryption keys will be maintained on both the configured key servers. When this option is disabled, iLO will not verify that encryption keys are copied to both of the configured key servers.
+
+`PATCH {"KeyServerRedundancyReq": true}`
 
 #### KeyManagerConfig/AccountName (read only string)
 
 Account name on ESKM.
 
-#### KeyManagerConfig/LoginName (string)
+#### KeyManagerConfig/LoginName (PATCHable string)
 
 ESKM administrator account login name. This property always returns null on GET.
 
-#### SecondaryKeyServerPort (integer)
+`PATCH {"KeyManagerConfig": {"LoginName": "<string-value>"}}`
+
+#### SecondaryKeyServerPort (PATCHable integer)
 
 Secondary key server port number. Set to null to clear the value.
+
+`PATCH {"SecondaryKeyServerPort": <integer-value>}`
 
 #### KeyManagerConfig/ImportedCertificateSubject (read only string)
 
 Imported certificate subject.
 
-#### PrimaryKeyServerAddress (string)
+#### PrimaryKeyServerAddress (PATCHable string)
 
 Primary key server IP address or FQDN. Set to null to clear the value.
+
+`PATCH {"PrimaryKeyServerAddress": "<string-value>"}`
 
 #### ESKMEvents[]/Timestamp (read only string)
 
 Time of ESKM event.
 
-#### KeyManagerConfig/Password (string)
+#### KeyManagerConfig/Password (PATCHable string)
 
 ESKM administrator account password. This property always returns null on GET.
 
-#### SecondaryKeyServerAddress (string)
+`PATCH {"KeyManagerConfig": {"Password": "<string-value>"}}`
+
+#### SecondaryKeyServerAddress (PATCHable string)
 
 Secondary key server IP address or FQDN. Set to null to clear the value.
 
-#### KeyManagerConfig/ESKMLocalCACertificateName (string)
+`PATCH {"SecondaryKeyServerAddress": "<string-value>"}`
+
+#### KeyManagerConfig/ESKMLocalCACertificateName (PATCHable string)
 
 This is the name of Local CA (Certificate Authority) in ESKM that is used to sign the ESKM server certificate. iLO will retrieve this certificate from the ESKM server.
+
+`PATCH {"KeyManagerConfig": {"ESKMLocalCACertificateName": "<string-value>"}}`
 
 ### HpHttpsCert
 This is the schema definition for the X509 Certificate.
@@ -1432,21 +1566,27 @@ The size of the memory device in megabytes.
 
 * `https://{iLO}/redfish/v1/systems/{item}/secureboot`
 
-#### SecureBootEnable (boolean)
+#### SecureBootEnable (PATCHable boolean)
 
 Enable or disable UEFI Secure Boot (takes effect on next boot).
+
+`PATCH {"SecureBootEnable": true}`
 
 #### SecureBootCurrentState (read only boolean)
 
 Current enabled state of Secure Boot
 
-#### ResetAllKeys (boolean)
+#### ResetAllKeys (PATCHable boolean)
 
 If true, clear all Secure Boot keys on next boot.
 
-#### ResetToDefaultKeys (boolean)
+`PATCH {"ResetAllKeys": true}`
+
+#### ResetToDefaultKeys (PATCHable boolean)
 
 If true, reset to default Secure Boot keys on next boot.
+
+`PATCH {"ResetToDefaultKeys": true}`
 
 ### HpSecurityService
 **Instances**:  
@@ -1462,7 +1602,7 @@ The schema definition of the server UEFI Boot Order.
 
 * `https://{iLO}/redfish/v1/systems/{item}/bios/boot/settings`
 
-#### BootSources[]/BootString (string)
+#### BootSources[]/BootString (PATCHable string)
 
 User-readable string that describes the UEFI boot option.
 
@@ -1470,11 +1610,13 @@ User-readable string that describes the UEFI boot option.
 
 ETag of this resource after the settings have been applied.
 
-#### DesiredBootDevices[]/CorrelatableID (string)
+#### DesiredBootDevices[]/CorrelatableID (PATCHable string)
 
 Standardized text representation of the UEFI device path of the desired boot device, in UTF-8 format. For example 'PciRoot(0x0)/Pci(0x2,0x2)/Pci(0x0,0x0)'
 
-#### BootSources[]/CorrelatableID (string)
+`PATCH {"DesiredBootDevices": [{"CorrelatableID": "<string-value>"}|null, ...]}`
+
+#### BootSources[]/CorrelatableID (PATCHable string)
 
 Contains any CorrelatableIDs that represent this boot option. The correlatableID values can be JSON Pointers or UEFI identifiers.
 
@@ -1486,7 +1628,7 @@ Key for this message, which is used to look up the message in a message registry
 
 Human-readable message.
 
-#### BootSources[]/StructuredBootString (string)
+#### BootSources[]/StructuredBootString (PATCHable string)
 
 Uniquely identifies this boot option within the server.
 
@@ -1502,13 +1644,17 @@ Time at which the settings were applied.
 
 This object represents the type property. It represents the schema used for the resource and indicates the version of the schema in the format <schema>.<majorversion>.<minorversion>.<errataversion>.
 
-#### DesiredBootDevices[]/Lun (string)
+#### DesiredBootDevices[]/Lun (PATCHable string)
 
 The Logical Unit Number (LUN) of the desired boot device. This value must be a hexadecimal string with an even number of 2 to 16 characters, excluding the first two characters, 0x (for example, '0x01').
 
-#### DesiredBootDevices[]/iScsiTargetName (string)
+`PATCH {"DesiredBootDevices": [{"Lun": "<string-value>"}|null, ...]}`
+
+#### DesiredBootDevices[]/iScsiTargetName (PATCHable string)
 
 The iSCSI node target name of the desired boot device. The value must be a string based on IETF RFC 3270, and can be up to 244 characters in length (for example, 'iqn.1991-05.com.microsoft:iscsitarget-iscsidisk-target').
+
+`PATCH {"DesiredBootDevices": [{"iScsiTargetName": "<string-value>"}|null, ...]}`
 
 #### SettingsResult/definitions/SettingsResult/Messages[]/Severity (read only enumeration)
 
@@ -1518,11 +1664,13 @@ This is the severity of the errors.
 
 Details about the results of applying the settings.
 
-#### DesiredBootDevices[]/Wwn (string)
+#### DesiredBootDevices[]/Wwn (PATCHable string)
 
 The Fibre Channel World Wide Name (WWN) of the desired boot device. This value must be a hexadecimal string with an even number of 2 to 16 characters, excluding the first two characters, 0x (for example, '0x0001020304050607').
 
-#### BootSources[]/UEFIDevicePath (string)
+`PATCH {"DesiredBootDevices": [{"Wwn": "<string-value>"}|null, ...]}`
+
+#### BootSources[]/UEFIDevicePath (PATCHable string)
 
 Standardized text representation of the UEFI device path for this boot option, in UTF-8 format.
 
@@ -2256,9 +2404,11 @@ This query parameter may be added to the AHS location URI to insert the company 
 
 This query parameter may be added to the AHS location URI to insert the case number into the AHS log header. For example, http://iloname.example.net/ahsdata/HP_xxxxxxxxxx_20140821.ahs?downloadAll=1&&case_no=abc123.
 
-#### AHSEnabled (boolean)
+#### AHSEnabled (PATCHable boolean)
 
 Determines whether HP Active Health System logging is enabled or disabled.
+
+`PATCH {"AHSEnabled": true}`
 
 #### LocationParameters/from (read only string)
 
@@ -2291,9 +2441,11 @@ The time zone index.
 
 The state of the currently displayed configuration settings.
 
-#### TimeZone/Index (integer)
+#### TimeZone/Index (PATCHable integer)
 
 The index of the current time zone. To set a new time zone, specify a different time zone index. This property can be set only when DHCPv4 or DHCPv6 supplied time settings are disabled. Since the time zone list might vary from one firmware version to another (which often leads to differences in time zone indices), setting the time zone by name is recommended over setting by index, for better compatibility.
+
+`PATCH {"TimeZone": {"Index": <integer-value>}}`
 
 #### TimeZoneList[]/UtcOffset (read only string)
 
@@ -2303,9 +2455,11 @@ The UTC offset of the time zone, in the format {+/-}hh:mm
 
 The environment variable value.
 
-#### PropagateTimeToHost (boolean)
+#### PropagateTimeToHost (PATCHable boolean)
 
 Determines whether the server time is synchronized with the management processor time during the first POST after AC power is applied.
+
+`PATCH {"PropagateTimeToHost": true}`
 
 #### TimeZone/Value (read only string)
 
@@ -2390,33 +2544,47 @@ The configured power cap for all servers in a group. This value is 0 if the powe
 
 * `https://{iLO}/redfish/v1/managers/{item}/federationgroups/{item}`
 
-#### Privileges/RemoteConsolePriv (boolean)
+#### Privileges/RemoteConsolePriv (PATCHable boolean)
 
 Remote console privileges.
 
-#### Key (string)
+`PATCH {"Privileges": {"RemoteConsolePriv": true}}`
+
+#### Key (PATCHable string)
 
 The password used by the Federation Group.
 
-#### Privileges/UserConfigPriv (boolean)
+`PATCH {"Key": "<string-value>"}`
+
+#### Privileges/UserConfigPriv (PATCHable boolean)
 
 User configuration privileges.
 
-#### Privileges/LoginPriv (boolean)
+`PATCH {"Privileges": {"UserConfigPriv": true}}`
+
+#### Privileges/LoginPriv (PATCHable boolean)
 
 Login privileges.
 
-#### Privileges/VirtualMediaPriv (boolean)
+`PATCH {"Privileges": {"LoginPriv": true}}`
+
+#### Privileges/VirtualMediaPriv (PATCHable boolean)
 
 Virtual media privileges.
 
-#### Privileges/iLOConfigPriv (boolean)
+`PATCH {"Privileges": {"VirtualMediaPriv": true}}`
+
+#### Privileges/iLOConfigPriv (PATCHable boolean)
 
 The management processor configuration privileges.
 
-#### Privileges/VirtualPowerAndResetPriv (boolean)
+`PATCH {"Privileges": {"iLOConfigPriv": true}}`
+
+#### Privileges/VirtualPowerAndResetPriv (PATCHable boolean)
 
 Virtual power and reset privileges.
+
+`PATCH {"Privileges": {"VirtualPowerAndResetPriv": true}}`
 
 ### HpiLOFederationPeers
 **Instances**:  
@@ -2529,41 +2697,57 @@ This is the schema definition for the HP SSO Trusted Server.
 
 The Server name (or certificate subject).
 
-#### SSOsettings/UserPrivilege/iLOConfigPriv (boolean)
+#### SSOsettings/UserPrivilege/iLOConfigPriv (PATCHable boolean)
 
 iLO Configuration Privileges.
 
-#### SSOsettings/AdminPrivilege/RemoteConsolePriv (boolean)
+`PATCH {"SSOsettings": {"UserPrivilege": {"iLOConfigPriv": true}}}`
+
+#### SSOsettings/AdminPrivilege/RemoteConsolePriv (PATCHable boolean)
 
 Remote Console Privileges.
 
-#### SSOsettings/UserPrivilege/UserConfigPriv (boolean)
+`PATCH {"SSOsettings": {"AdminPrivilege": {"RemoteConsolePriv": true}}}`
+
+#### SSOsettings/UserPrivilege/UserConfigPriv (PATCHable boolean)
 
 User Configuration Privileges.
 
-#### SSOsettings/AdminPrivilege/iLOConfigPriv (boolean)
+`PATCH {"SSOsettings": {"UserPrivilege": {"UserConfigPriv": true}}}`
+
+#### SSOsettings/AdminPrivilege/iLOConfigPriv (PATCHable boolean)
 
 iLO Configuration Privileges.
 
-#### SSOsettings/SSOTrustMode (enumeration)
+`PATCH {"SSOsettings": {"AdminPrivilege": {"iLOConfigPriv": true}}}`
+
+#### SSOsettings/SSOTrustMode (PATCHable enumeration)
 
 Represents the SSO Trust Mode.
 
-#### SSOsettings/UserPrivilege/RemoteConsolePriv (boolean)
+`PATCH {"SSOsettings": {"SSOTrustMode": "TrustbyName"}}`
+
+#### SSOsettings/UserPrivilege/RemoteConsolePriv (PATCHable boolean)
 
 Remote Console Privileges.
 
-#### SSOsettings/UserPrivilege/PowerandResetPriv (boolean)
+`PATCH {"SSOsettings": {"UserPrivilege": {"RemoteConsolePriv": true}}}`
+
+#### SSOsettings/UserPrivilege/PowerandResetPriv (PATCHable boolean)
 
 Power and Reset Privileges.
+
+`PATCH {"SSOsettings": {"UserPrivilege": {"PowerandResetPriv": true}}}`
 
 #### ManagerTrustedCertificates[]/Certificate (read only string)
 
 Contains PEM formatted X509 certificate (Base64 encoded).
 
-#### SSOsettings/OperatorPrivilege/iLOConfigPriv (boolean)
+#### SSOsettings/OperatorPrivilege/iLOConfigPriv (PATCHable boolean)
 
 iLO Configuration Privileges.
+
+`PATCH {"SSOsettings": {"OperatorPrivilege": {"iLOConfigPriv": true}}}`
 
 #### ManagerTrustedCertificates[]/Status (read only enumeration)
 
@@ -2571,49 +2755,71 @@ iLO Configuration Privileges.
 
 Contains the Serial number for the SSO records.
 
-#### SSOsettings/OperatorPrivilege/PowerandResetPriv (boolean)
+#### SSOsettings/OperatorPrivilege/PowerandResetPriv (PATCHable boolean)
 
 Power and Reset Privileges.
 
-#### SSOsettings/OperatorPrivilege/UserConfigPriv (boolean)
+`PATCH {"SSOsettings": {"OperatorPrivilege": {"PowerandResetPriv": true}}}`
+
+#### SSOsettings/OperatorPrivilege/UserConfigPriv (PATCHable boolean)
 
 User Configuration Privileges.
 
-#### SSOsettings/AdminPrivilege/PowerandResetPriv (boolean)
+`PATCH {"SSOsettings": {"OperatorPrivilege": {"UserConfigPriv": true}}}`
+
+#### SSOsettings/AdminPrivilege/PowerandResetPriv (PATCHable boolean)
 
 Power and Reset Privileges.
 
-#### SSOsettings/UserPrivilege/VirtualMediaPriv (boolean)
+`PATCH {"SSOsettings": {"AdminPrivilege": {"PowerandResetPriv": true}}}`
+
+#### SSOsettings/UserPrivilege/VirtualMediaPriv (PATCHable boolean)
 
 Virtual Media Privileges.
 
-#### SSOsettings/AdminPrivilege/UserConfigPriv (boolean)
+`PATCH {"SSOsettings": {"UserPrivilege": {"VirtualMediaPriv": true}}}`
+
+#### SSOsettings/AdminPrivilege/UserConfigPriv (PATCHable boolean)
 
 User Configuration Privileges.
 
-#### SSOsettings/OperatorPrivilege/VirtualMediaPriv (boolean)
+`PATCH {"SSOsettings": {"AdminPrivilege": {"UserConfigPriv": true}}}`
+
+#### SSOsettings/OperatorPrivilege/VirtualMediaPriv (PATCHable boolean)
 
 Virtual Media Privileges.
 
-#### SSOsettings/AdminPrivilege/LoginPriv (boolean)
+`PATCH {"SSOsettings": {"OperatorPrivilege": {"VirtualMediaPriv": true}}}`
+
+#### SSOsettings/AdminPrivilege/LoginPriv (PATCHable boolean)
 
 Login Privileges.
 
-#### SSOsettings/AdminPrivilege/VirtualMediaPriv (boolean)
+`PATCH {"SSOsettings": {"AdminPrivilege": {"LoginPriv": true}}}`
+
+#### SSOsettings/AdminPrivilege/VirtualMediaPriv (PATCHable boolean)
 
 Power and Reset Privileges.
 
-#### SSOsettings/UserPrivilege/LoginPriv (boolean)
+`PATCH {"SSOsettings": {"AdminPrivilege": {"VirtualMediaPriv": true}}}`
+
+#### SSOsettings/UserPrivilege/LoginPriv (PATCHable boolean)
 
 Login Privileges.
 
-#### SSOsettings/OperatorPrivilege/RemoteConsolePriv (boolean)
+`PATCH {"SSOsettings": {"UserPrivilege": {"LoginPriv": true}}}`
+
+#### SSOsettings/OperatorPrivilege/RemoteConsolePriv (PATCHable boolean)
 
 Remote Console Privileges.
 
-#### SSOsettings/OperatorPrivilege/LoginPriv (boolean)
+`PATCH {"SSOsettings": {"OperatorPrivilege": {"RemoteConsolePriv": true}}}`
+
+#### SSOsettings/OperatorPrivilege/LoginPriv (PATCHable boolean)
 
 Login Privileges.
+
+`PATCH {"SSOsettings": {"OperatorPrivilege": {"LoginPriv": true}}}`
 
 ### HpiSCSISoftwareInitiator
 The schema definition of UEFI iSCSI Software Initiator boot configuration.
@@ -2628,7 +2834,7 @@ The schema definition of UEFI iSCSI Software Initiator boot configuration.
 
 ETag of this resource after the settings have been applied.
 
-#### iSCSIBootSources[]/iSCSIInitiatorNetmask (string)
+#### iSCSIBootSources[]/iSCSIInitiatorNetmask (PATCHable string)
 
 The subnet mask of the iSCSI Initiator, if not configured via DHCP. The address must be an IPv4.
 
@@ -2636,31 +2842,31 @@ The subnet mask of the iSCSI Initiator, if not configured via DHCP. The address 
 
 Instructions for resolving the issue that caused the error.
 
-#### iSCSIBootSources[]/iSCSIBootLUN (string)
+#### iSCSIBootSources[]/iSCSIBootLUN (PATCHable string)
 
 The iSCSI boot target Logical Unit Number (LUN), if not obtained from DHCP. This value must follow the SAM-2 spec. E.g. 0001-1234-5678-9ABC. If the digit number is less then 5 characters, a dash character is not required. E.g. 0001. If the lun number is 12345, input 1234-5
 
-#### iSCSIBootSources[]/iSCSIBootAttemptName (string)
+#### iSCSIBootSources[]/iSCSIBootAttemptName (PATCHable string)
 
 Human readable descriptive name for this iSCSI boot attempt configuration
 
-#### iSCSIBootSources[]/iSCSIIpAddressType (enumeration)
+#### iSCSIBootSources[]/iSCSIIpAddressType (PATCHable enumeration)
 
 The iSCSI IP Address type. If set to Auto, IPv4 will be attempted first, followed by IPv6.
 
-#### iSCSIBootSources[]/iSCSIBootEnable (enumeration)
+#### iSCSIBootSources[]/iSCSIBootEnable (PATCHable enumeration)
 
 Enables or Disables iSCSI Boot for a selected iSCSI boot attempt.
 
-#### iSCSIBootSources[]/iSCSIChapType (enumeration)
+#### iSCSIBootSources[]/iSCSIChapType (PATCHable enumeration)
 
 The CHAP authentication type. This is applicable only when the Authentication Method is set to CHAP.
 
-#### iSCSIBootSources[]/iSCSIBootAttemptInstance (integer)
+#### iSCSIBootSources[]/iSCSIBootAttemptInstance (PATCHable integer)
 
 Uniquely identifies this iSCSI boot attempt within iSCSIBootSources array.
 
-#### iSCSIBootSources[]/iSCSITargetTcpPort (integer)
+#### iSCSIBootSources[]/iSCSITargetTcpPort (PATCHable integer)
 
 The iSCSI Target TCP Port number, if not obtained from DHCP.
 
@@ -2668,19 +2874,19 @@ The iSCSI Target TCP Port number, if not obtained from DHCP.
 
 Details about the results of applying the settings.
 
-#### iSCSIBootSources[]/iSCSIInitiatorIpAddress (string)
+#### iSCSIBootSources[]/iSCSIInitiatorIpAddress (PATCHable string)
 
 The IP Address of the iSCSI Initiator, if not configured via DHCP. The address must be an IPv4 or IPv6 address, depending on the IP Address Type.
 
-#### iSCSIBootSources[]/iSCSIChapUsername (string)
+#### iSCSIBootSources[]/iSCSIChapUsername (PATCHable string)
 
 The password needed for CHAP authentication. This is applicable only when the Authentication Method is set to CHAP.
 
-#### iSCSIBootSources[]/iSCSITargetIpAddress (string)
+#### iSCSIBootSources[]/iSCSITargetIpAddress (PATCHable string)
 
 The IP Address of the iSCSI Target, if not obtained from DHCP. The address must be an IPv4 or IPv6 address, depending on the IP Address Type.
 
-#### iSCSIBootSources[]/iSCSIReverseChapSecret (string)
+#### iSCSIBootSources[]/iSCSIReverseChapSecret (PATCHable string)
 
 The password needed for reverse CHAP authentication (from the target to the initiator). This is applicable only when the Authentication Method is set to CHAP, and the CHAP Type is set to Mutual.
 
@@ -2688,11 +2894,11 @@ The password needed for reverse CHAP authentication (from the target to the init
 
 This is the severity of the errors.
 
-#### iSCSIBootSources[]/iSCSIInitiatorGateway (string)
+#### iSCSIBootSources[]/iSCSIInitiatorGateway (PATCHable string)
 
 The gateway address of the iSCSI Initiator, if not configured via DHCP. The address must be an IPv4 or IPv6 address, depending on the IP Address Type.
 
-#### iSCSIBootSources[]/iSCSINicSource (string)
+#### iSCSIBootSources[]/iSCSINicSource (PATCHable string)
 
 A BIOS Attribute that describes this selected NIC instance. This must match one of the possible values listed in the iSCSINicSources array.
 
@@ -2716,35 +2922,35 @@ Human-readable message.
 
 Standardized text representation of the UEFI device path for this boot option, in UTF-8 format.
 
-#### iSCSIBootSources[]/iSCSIConnectRetry (integer)
+#### iSCSIBootSources[]/iSCSIConnectRetry (PATCHable integer)
 
 The number of times to retry the iSCSI connection. Zero means no retries.
 
-#### iSCSIBootSources[]/iSCSITargetName (string)
+#### iSCSIBootSources[]/iSCSITargetName (PATCHable string)
 
 The worldwide unique iSCSI Qualified Name (IQN) of this iSCSI target. Only the IQN format is accepted. EUI format is not supported (for example, 'iqn.1991-05.com.microsoft:iscsitarget-iscsidisk-target').
 
-#### iSCSIBootSources[]/iSCSIReverseChapUsername (string)
+#### iSCSIBootSources[]/iSCSIReverseChapUsername (PATCHable string)
 
 User Name for reverse CHAP authentication (from the target to the initiator). This is applicable only when the Authentication Method is set to CHAP, and the CHAP Type is set to Mutual.
 
-#### iSCSIBootSources[]/iSCSIConnectTimeoutMS (integer)
+#### iSCSIBootSources[]/iSCSIConnectTimeoutMS (PATCHable integer)
 
 The iSCSI connection timeout value in milliseconds.
 
-#### iSCSIBootSources[]/iSCSITargetInfoViaDHCP (boolean)
+#### iSCSIBootSources[]/iSCSITargetInfoViaDHCP (PATCHable boolean)
 
 If enabled, the iSCSI target information are configured from DHCP. Otherwise, the iSCSI target information must be statically configured.
 
-#### iSCSIBootSources[]/iSCSIAuthenticationMethod (enumeration)
+#### iSCSIBootSources[]/iSCSIAuthenticationMethod (PATCHable enumeration)
 
 The iSCSI connection authentication method.
 
-#### iSCSIBootSources[]/iSCSIChapSecret (string)
+#### iSCSIBootSources[]/iSCSIChapSecret (PATCHable string)
 
 The password needed for CHAP authentication. This is applicable only when the Authentication Method is set to CHAP, and the CHAP Type is set to Mutual.
 
-#### iSCSIBootSources[]/iSCSIInitiatorInfoViaDHCP (boolean)
+#### iSCSIBootSources[]/iSCSIInitiatorInfoViaDHCP (PATCHable boolean)
 
 If enabled, the iSCSI Initiator information is configured from DHCP. Otherwise, the iSCSI initiator information must be statically configured.
 
@@ -2752,7 +2958,7 @@ If enabled, the iSCSI Initiator information is configured from DHCP. Otherwise, 
 
 This object represents the type property. It represents the schema used for the resource and indicates the version of the schema in the format <schema>.<majorversion>.<minorversion>.<errataversion>.
 
-#### iSCSIInitiatorName (string)
+#### iSCSIInitiatorName (PATCHable string)
 
 The worldwide unique iSCSI Qualified Name (IQN) of this iSCSI Initiator. Only IQN format is accepted. EUI format is not supported (for example, 'iqn.1986-03.com.hp:init.sn-123456').
 
@@ -2795,9 +3001,11 @@ The date and time of the latest log entry update, for example, 2014-04-15T00:38:
 
 The log entry details.
 
-#### Oem/Hp/Repaired (boolean)
+#### Oem/Hp/Repaired (PATCHable boolean)
 
 The repaired status of the IML event.
+
+`PATCH {"Oem": {"Hp": {"Repaired": true}}}`
 
 #### EntryType (read only enumeration)
 
@@ -2829,9 +3037,11 @@ This is the schema definition for a manager.  Examples of managers are BMCs, Enc
 
 * `https://{iLO}/redfish/v1/managers/{item}`
 
-#### Oem/Hp/SerialCLIStatus (enumeration)
+#### Oem/Hp/SerialCLIStatus (PATCHable enumeration)
 
 Status of serial command line interface.
+
+`PATCH {"Oem": {"Hp": {"SerialCLIStatus": "EnabledNoAuth"}}}`
 
 #### Redundancy/Status/State (read only enumeration)
 
@@ -2845,17 +3055,21 @@ The build number of the firmware.
 
 This is the maximum number of Serial Console sessions, regardless of protocol, that this manager supports.
 
-#### GraphicalConsole/Enabled (boolean)
+#### GraphicalConsole/Enabled (PATCHable boolean)
 
 Indicates if the Graphical Console service is enabled for this manager.
+
+`PATCH {"GraphicalConsole": {"Enabled": true}}`
 
 #### Oem/Hp/Firmware/Bootblock/Family (read only string)
 
 The family of the firmware.
 
-#### Oem/Hp/FederationConfig/MulticastTimeToLive (integer)
+#### Oem/Hp/FederationConfig/MulticastTimeToLive (PATCHable integer)
 
 The maximum number of switches a multicast announcement will traverse before being discarded.
+
+`PATCH {"Oem": {"Hp": {"FederationConfig": {"MulticastTimeToLive": <integer-value>}}}}`
 
 #### Oem/Hp/Firmware/Backup/Time (read only string)
 
@@ -2897,9 +3111,11 @@ The minimum number of members allowed in the redundancy group for the current re
 
 The version string of the firmware. This value might be null if VersionString is unavailable.
 
-#### Oem/Hp/RequiredLoginForiLORBSU (boolean)
+#### Oem/Hp/RequiredLoginForiLORBSU (PATCHable boolean)
 
 Determines whether a user-credential prompt is displayed when a user accesses the iLO RBSU or the iLO 4 Configuration Utility. The following settings are valid: Enabled-A login dialog box opens when a user accesses the iLO RBSU or the iLO 4 Configuration Utility. Disabled (default)-No login is required when a user accesses the iLO RBSU or the iLO 4 Configuration Utility.
+
+`PATCH {"Oem": {"Hp": {"RequiredLoginForiLORBSU": true}}}`
 
 #### Status/HealthRollUp (read only enumeration)
 
@@ -2933,9 +3149,11 @@ The build time of the firmware.
 
 This property is the manager type for this resource.
 
-#### Oem/Hp/FederationConfig/MulticastDiscovery (enumeration)
+#### Oem/Hp/FederationConfig/MulticastDiscovery (PATCHable enumeration)
 
 Enables or Disables Multicast Discovery for the local iLO system.
+
+`PATCH {"Oem": {"Hp": {"FederationConfig": {"MulticastDiscovery": "Disabled"}}}}`
 
 #### Oem/Hp/License/LicenseKey (read only string)
 
@@ -2977,9 +3195,11 @@ The string version of the build number of the firmware.
 
 The major version of the firmware.
 
-#### Oem/Hp/SerialCLISpeed (integer)
+#### Oem/Hp/SerialCLISpeed (PATCHable integer)
 
 Serial command line interface speed in bits/second.
+
+`PATCH {"Oem": {"Hp": {"SerialCLISpeed": <integer-value>}}}`
 
 #### Redundancy/MaxNumSupported (read only integer)
 
@@ -2989,17 +3209,21 @@ The maximum number of members allowed in the redundancy group, including this me
 
 The major version of the firmware.
 
-#### Oem/Hp/FederationConfig/MulticastAnnouncementInterval (integer)
+#### Oem/Hp/FederationConfig/MulticastAnnouncementInterval (PATCHable integer)
 
 The frequency in Seconds at which the iLO system announces itself on the network. A value of 0 disables multicast announcments.
+
+`PATCH {"Oem": {"Hp": {"FederationConfig": {"MulticastAnnouncementInterval": <integer-value>}}}}`
 
 #### Oem/Hp/Firmware/Current/BuildNumberString (read only string)
 
 The string version of the build number of the firmware.
 
-#### CommandShell/Enabled (boolean)
+#### CommandShell/Enabled (PATCHable boolean)
 
 Indicates if the Command Shell service is enabled for this manager.
+
+`PATCH {"CommandShell": {"Enabled": true}}`
 
 #### Oem/Hp/Firmware/Bootblock/VersionString (read only string)
 
@@ -3017,9 +3241,11 @@ The build number of the firmware.
 
 This string represents the version of the firmware image.
 
-#### Oem/Hp/FederationConfig/iLOFederationManagement (enumeration)
+#### Oem/Hp/FederationConfig/iLOFederationManagement (PATCHable enumeration)
 
 Enables or Disables iLO Federation features for the local iLO system.
+
+`PATCH {"Oem": {"Hp": {"FederationConfig": {"iLOFederationManagement": "Disabled"}}}}`
 
 #### Oem/Hp/Firmware/Pending/Date (read only string)
 
@@ -3029,9 +3255,11 @@ The build date of the firmware.
 
 The minor version of the firmware.
 
-#### SerialConsole/Enabled (boolean)
+#### SerialConsole/Enabled (PATCHable boolean)
 
 Indicates if the Serial Console service is enabled for this manager.
+
+`PATCH {"SerialConsole": {"Enabled": true}}`
 
 #### Oem/Hp/Firmware/Pending/Family (read only string)
 
@@ -3053,9 +3281,11 @@ This string represents the version of the firmware image.
 
 Indicates the health state of this resource without considering its dependent resources.
 
-#### Oem/Hp/FederationConfig/IPv6MulticastScope (enumeration)
+#### Oem/Hp/FederationConfig/IPv6MulticastScope (PATCHable enumeration)
 
 The IPv6 network scope of multicast announcements.
+
+`PATCH {"Oem": {"Hp": {"FederationConfig": {"IPv6MulticastScope": "Site"}}}}`
 
 #### Redundancy/Status/HealthRollUp (read only enumeration)
 
@@ -3097,9 +3327,11 @@ The build date of the firmware.
 
 The minor version of the firmware.
 
-#### Oem/Hp/VSPLogDownloadEnabled (boolean)
+#### Oem/Hp/VSPLogDownloadEnabled (PATCHable boolean)
 
 This property enables or disables download of Virtual Serial Port (VSP) log.
+
+`PATCH {"Oem": {"Hp": {"VSPLogDownloadEnabled": true}}}`
 
 #### Oem/Hp/Firmware/Bootblock/BuildNumberString (read only string)
 
@@ -3162,41 +3394,59 @@ The build number of the firmware.
 
 * `https://{iLO}/redfish/v1/accountservice/accounts/{item}`
 
-#### Oem/Hp/Privileges/VirtualPowerAndResetPriv (boolean)
+#### Oem/Hp/Privileges/VirtualPowerAndResetPriv (PATCHable boolean)
 
 This privilege enables a user to power-cycle or reset the host system. These activities interrupt system availability. A user with this privilege can diagnose the system by using the Generate NMI to System button.
 
-#### Oem/Hp/LoginName (string)
+`PATCH {"Oem": {"Hp": {"Privileges": {"VirtualPowerAndResetPriv": true}}}}`
+
+#### Oem/Hp/LoginName (PATCHable string)
 
 Descriptive login name that helps to easily identify the owner of each user name. The login name does not have to be the same as the user name and must use printable characters. The maximum length for a user name is 39 characters.
 
-#### Password (string)
+`PATCH {"Oem": {"Hp": {"LoginName": "<string-value>"}}}`
+
+#### Password (PATCHable string)
 
 The password used to log in to the management processor. The maximum length for a password is 39 characters. The minimum length for a password is specified in the MinPasswordLength property of the AccountService schema.
 
-#### Oem/Hp/Privileges/LoginPriv (boolean)
+`PATCH {"Password": "<string-value>"}`
+
+#### Oem/Hp/Privileges/LoginPriv (PATCHable boolean)
 
 This privilege enables a user to log in to management processor. All local accounts have the login privilege. This privilege is added automatically if it is not specified.
 
-#### UserName (string)
+`PATCH {"Oem": {"Hp": {"Privileges": {"LoginPriv": true}}}}`
+
+#### UserName (PATCHable string)
 
 The name used to log in to the management processor. The user name does not have to be the same as the login name. The maximum length for the user name is 39 characters. The user name must use printable characters.
 
-#### Oem/Hp/Privileges/UserConfigPriv (boolean)
+`PATCH {"UserName": "<string-value>"}`
+
+#### Oem/Hp/Privileges/UserConfigPriv (PATCHable boolean)
 
 This privilege enables a user to add, edit, and delete local management processor user accounts. A user with this privilege can change privileges for all users.
 
-#### Oem/Hp/Privileges/RemoteConsolePriv (boolean)
+`PATCH {"Oem": {"Hp": {"Privileges": {"UserConfigPriv": true}}}}`
+
+#### Oem/Hp/Privileges/RemoteConsolePriv (PATCHable boolean)
 
 This privilege enables a user to remotely access the host system Remote Console, including video, keyboard, and mouse control.
 
-#### Oem/Hp/Privileges/iLOConfigPriv (boolean)
+`PATCH {"Oem": {"Hp": {"Privileges": {"RemoteConsolePriv": true}}}}`
+
+#### Oem/Hp/Privileges/iLOConfigPriv (PATCHable boolean)
 
 This privilege enables a user to configure most management processor settings, including security settings, and to remotely update the management processor firmware. This privilege does not enable local user account administration.
 
-#### Oem/Hp/Privileges/VirtualMediaPriv (boolean)
+`PATCH {"Oem": {"Hp": {"Privileges": {"iLOConfigPriv": true}}}}`
+
+#### Oem/Hp/Privileges/VirtualMediaPriv (PATCHable boolean)
 
 This privilege enables a user to use the Virtual Media feature on the host system.
+
+`PATCH {"Oem": {"Hp": {"Privileges": {"VirtualMediaPriv": true}}}}`
 
 ### ManagerNetworkService
 This resource is used to obtain or modify the network services managed by this manager.
@@ -3205,69 +3455,93 @@ This resource is used to obtain or modify the network services managed by this m
 
 * `https://{iLO}/redfish/v1/managers/{item}/networkservice`
 
-#### Oem/Hp/HPSystemManagementHomepageAddress (string)
+#### Oem/Hp/HPSystemManagementHomepageAddress (PATCHable string)
 
 The IP address or FQDN of the HP System Management Homepage (HP SMH) server.
 
-#### SNMP/Enabled (boolean)
+`PATCH {"Oem": {"Hp": {"HPSystemManagementHomepageAddress": "<string-value>"}}}`
+
+#### SNMP/Enabled (PATCHable boolean)
 
 Indicates whether SNMP is enabled for the manager.
+
+`PATCH {"SNMP": {"Enabled": true}}`
 
 #### IPMI/Port (read only integer)
 
 The IPMI over LAN port number.
 
-#### SSH/Enabled (boolean)
+#### SSH/Enabled (PATCHable boolean)
 
 Indicates whether SSH is enabled for the manager.  NOTE: When this field is modified, the Manager will reset automatically.
+
+`PATCH {"SSH": {"Enabled": true}}`
 
 #### SSDP/Port (read only integer)
 
 The SSDP port number.
 
-#### SSH/Port (integer)
+#### SSH/Port (PATCHable integer)
 
 The SSH port number.  NOTE: When this field is modified, the Manager will reset automatically.
+
+`PATCH {"SSH": {"Port": <integer-value>}}`
 
 #### Oem/Hp/ConfigurationSettings (read only enumeration)
 
 State of the currently displayed configuration settings.
 
-#### IPMI/Enabled (boolean)
+#### IPMI/Enabled (PATCHable boolean)
 
 Indicates whether IPMI over LAN is enabled for the manager.
 
-#### Oem/Hp/EnforceAES3DESEncryption (boolean)
+`PATCH {"IPMI": {"Enabled": true}}`
+
+#### Oem/Hp/EnforceAES3DESEncryption (PATCHable boolean)
 
 Indicates whether AES/3DES encryption is enforced for the management processor.  When enabled, the management processor accepts only those connections that use AES or 3DES ciphers. The management processor will automatically reset when this field is modified.
 
-#### SessionTimeoutMinutes (integer)
+`PATCH {"Oem": {"Hp": {"EnforceAES3DESEncryption": true}}}`
+
+#### SessionTimeoutMinutes (PATCHable integer)
 
 The session timeout (minutes). A zero value indicates infinite timeout.
 
-#### Oem/Hp/FederationEnabled (boolean)
+`PATCH {"SessionTimeoutMinutes": <integer-value>}`
+
+#### Oem/Hp/FederationEnabled (PATCHable boolean)
 
 Indicates whether management processor federation management is enabled or disabled.
 
-#### Oem/Hp/AlertMailSenderDomain (string)
+`PATCH {"Oem": {"Hp": {"FederationEnabled": true}}}`
+
+#### Oem/Hp/AlertMailSenderDomain (PATCHable string)
 
 The domain name for the sender email address.
 
-#### SSDP/NotifyMulticastIntervalSeconds (integer)
+`PATCH {"Oem": {"Hp": {"AlertMailSenderDomain": "<string-value>"}}}`
+
+#### SSDP/NotifyMulticastIntervalSeconds (PATCHable integer)
 
 Indicates how often multicast is performed for SSDP.
 
-#### Oem/Hp/RemoteSyslogServer (string)
+`PATCH {"SSDP": {"NotifyMulticastIntervalSeconds": <integer-value>}}`
+
+#### Oem/Hp/RemoteSyslogServer (PATCHable string)
 
 The IP address, FQDN, IPv6 name, or short name of the server running the Syslog service.
+
+`PATCH {"Oem": {"Hp": {"RemoteSyslogServer": "<string-value>"}}}`
 
 #### Status/HealthRollUp (read only enumeration)
 
 Indicates the overall health state of this resource and its dependent resources.
 
-#### Oem/Hp/AlertMailSMTPServer (string)
+#### Oem/Hp/AlertMailSMTPServer (PATCHable string)
 
 The IP address or DNS name of the SMTP server or the Mail Submission Agent (MSA).
+
+`PATCH {"Oem": {"Hp": {"AlertMailSMTPServer": "<string-value>"}}}`
 
 #### HTTP/Enabled (read only boolean)
 
@@ -3277,17 +3551,23 @@ Indicates whether HTTP is enabled or disabled.
 
 Indicates whether management processor federation is supported.
 
-#### VirtualMedia/Port (integer)
+#### VirtualMedia/Port (PATCHable integer)
 
 The Virtual Media port number.
 
-#### Oem/Hp/AlertMailSMTPPort (integer)
+`PATCH {"VirtualMedia": {"Port": <integer-value>}}`
+
+#### Oem/Hp/AlertMailSMTPPort (PATCHable integer)
 
 The SMTP server port number.
 
-#### Oem/Hp/XMLResponseEnabled (boolean)
+`PATCH {"Oem": {"Hp": {"AlertMailSMTPPort": <integer-value>}}}`
+
+#### Oem/Hp/XMLResponseEnabled (PATCHable boolean)
 
 Determines whether management processor responds to anonymous XML discovery requests.
+
+`PATCH {"Oem": {"Hp": {"XMLResponseEnabled": true}}}`
 
 #### FQDN (read only string)
 
@@ -3297,9 +3577,11 @@ The fully-qualified domain name of the manager that is obtained by DNS and inclu
 
 Indicates whether KVM-IP is enabled for the manager.
 
-#### Oem/Hp/AlertMailEnabled (boolean)
+#### Oem/Hp/AlertMailEnabled (PATCHable boolean)
 
 Indicates whether AlertMail is enabled. This can be enabled only when the properties AlertMailEmail, AlertMailSenderDomain and AlertMailSMTPServer are set or not empty.
+
+`PATCH {"Oem": {"Hp": {"AlertMailEnabled": true}}}`
 
 #### HTTPS/Enabled (read only boolean)
 
@@ -3309,65 +3591,91 @@ Indicates whether HTTPS/SSL is enabled or disabled.
 
 Indicates the health state of this resource without considering its dependent resources.
 
-#### HostName (string)
+#### HostName (PATCHable string)
 
 The host name of the manager that is obtained by DNS and does not include any domain information.
 
-#### SNMP/Port (integer)
+`PATCH {"HostName": "<string-value>"}`
+
+#### SNMP/Port (PATCHable integer)
 
 The SNMP port number.
+
+`PATCH {"SNMP": {"Port": <integer-value>}}`
 
 #### Status/State (read only enumeration)
 
 Indicates the known state of this resource (for example, if the resource is enabled). Enabled indicates that the resource is available. Disabled indicates that the resource has been made unavailable intentionally, but it can be enabled. Offline indicates that the resource is unavailable intentionally and requires action to be made available. InTest indicates that the component is undergoing testing. Starting indicates that the resource is on its way to becoming available. Absent indicates that the resource is physically unavailable.
 
-#### Oem/Hp/RemoteSyslogEnabled (boolean)
+#### Oem/Hp/RemoteSyslogEnabled (PATCHable boolean)
 
 Indicates whether Remote Syslog is enabled. When enabled, management processor sends notification messages to the specified Syslog server. This can be enabled only when the property RemoteSyslogServer is set or not empty.
 
-#### SSDP/NotifyIPv6Scope (enumeration)
+`PATCH {"Oem": {"Hp": {"RemoteSyslogEnabled": true}}}`
+
+#### SSDP/NotifyIPv6Scope (PATCHable enumeration)
 
 The scope for IPv6 Notify messages for SSDP.
 
-#### SSDP/NotifyTTL (integer)
+`PATCH {"SSDP": {"NotifyIPv6Scope": "Site"}}`
+
+#### SSDP/NotifyTTL (PATCHable integer)
 
 The Time to Live (TTL) hop count for SSDP Notify messages.
 
-#### HTTP/Port (integer)
+`PATCH {"SSDP": {"NotifyTTL": <integer-value>}}`
+
+#### HTTP/Port (PATCHable integer)
 
 The HTTP port number.  NOTE: When this field is modified, the Manager will reset automatically.
 
-#### KVMIP/Port (integer)
+`PATCH {"HTTP": {"Port": <integer-value>}}`
+
+#### KVMIP/Port (PATCHable integer)
 
 The KVM-IP port number.
 
-#### SSDP/Enabled (boolean)
+`PATCH {"KVMIP": {"Port": <integer-value>}}`
+
+#### SSDP/Enabled (PATCHable boolean)
 
 Indicates whether SSDP is enabled for the manager.
 
-#### Oem/Hp/AlertMailEmail (string)
+`PATCH {"SSDP": {"Enabled": true}}`
+
+#### Oem/Hp/AlertMailEmail (PATCHable string)
 
 The destination email address for email alerts.
 
-#### Oem/Hp/SNMPTrapPort (integer)
+`PATCH {"Oem": {"Hp": {"AlertMailEmail": "<string-value>"}}}`
+
+#### Oem/Hp/SNMPTrapPort (PATCHable integer)
 
 The SNMP trap port number.
 
-#### HTTPS/Port (integer)
+`PATCH {"Oem": {"Hp": {"SNMPTrapPort": <integer-value>}}}`
+
+#### HTTPS/Port (PATCHable integer)
 
 The HTTPS/SSL port number.  NOTE: When this field is modified, the Manager will reset automatically.
+
+`PATCH {"HTTPS": {"Port": <integer-value>}}`
 
 #### VirtualMedia/Enabled (read only boolean)
 
 Indicates whether Virtual Media is enabled for the manager.
 
-#### Oem/Hp/SerialOverLanLogging (boolean)
+#### Oem/Hp/SerialOverLanLogging (PATCHable boolean)
 
 Indicates whether Serial Over LAN (SOL) or Virtual Serial Port (VSP) logging is enabled.
 
-#### Oem/Hp/RemoteSyslogPort (integer)
+`PATCH {"Oem": {"Hp": {"SerialOverLanLogging": true}}}`
+
+#### Oem/Hp/RemoteSyslogPort (PATCHable integer)
 
 The port number through which the Syslog server is listening.
+
+`PATCH {"Oem": {"Hp": {"RemoteSyslogPort": <integer-value>}}}`
 
 ### PowerMetrics
 **Instances**:  
@@ -3454,13 +3762,17 @@ The power supply type: AC, DC, or Unknown.
 
 Indicates the known state of the resource.
 
-#### PowerLimit/LimitException (enumeration)
+#### PowerLimit/LimitException (PATCHable enumeration)
 
 Action that is taken if the power cannot be maintained below the LimitInWatts.
 
-#### PowerLimit/LimitInWatts (integer)
+`PATCH {"PowerLimit": {"LimitException": "LogEventOnly"}}`
+
+#### PowerLimit/LimitInWatts (PATCHable integer)
 
 The Power (Watts) limit (also known as 'Power Cap'). Set to null to disable the power cap.
+
+`PATCH {"PowerLimit": {"LimitInWatts": <integer-value>}}`
 
 #### PowerSupplies[]/SparePartNumber (read only string)
 
@@ -3470,9 +3782,11 @@ The power supply spare part number.
 
 Amount of power (Watts) not already budgeted and therefore available for additional allocation. (PowerCapacity - PowerAllocated).  This indicates how much reserve power capacity is left.
 
-#### Oem/Hp/SNMPPowerThresholdAlert/Trigger (enumeration)
+#### Oem/Hp/SNMPPowerThresholdAlert/Trigger (PATCHable enumeration)
 
 Trigger determines whether alerts are based on peak power consumption, average power consumption, or if they are disabled. Trigger property can only be enabled if the ThresholdWatts and DurationInMin values are specified/configured.
+
+`PATCH {"Oem": {"Hp": {"SNMPPowerThresholdAlert": {"Trigger": "AveragePowerConsumption"}}}}`
 
 #### Status/Health (read only enumeration)
 
@@ -3510,9 +3824,11 @@ Indicates the health state of this resource without considering its dependent re
 
 The power capacity of the power supply, in Watts.
 
-#### Oem/Hp/SNMPPowerThresholdAlert/DurationInMin (integer)
+#### Oem/Hp/SNMPPowerThresholdAlert/DurationInMin (PATCHable integer)
 
 Sets the length of time, in minutes, that power consumption must remain above the warning threshold before an SNMP alert is triggered. The maximum duration is 240 minutes, and the duration must be a multiple of 5.
+
+`PATCH {"Oem": {"Hp": {"SNMPPowerThresholdAlert": {"DurationInMin": <integer-value>}}}}`
 
 #### PowerRequestedWatts (read only integer)
 
@@ -3526,9 +3842,11 @@ Indicates the known state of this resource (for example, if the resource is enab
 
 The average power (Watts) consumed.
 
-#### Oem/Hp/SNMPPowerThresholdAlert/ThresholdWatts (integer)
+#### Oem/Hp/SNMPPowerThresholdAlert/ThresholdWatts (PATCHable integer)
 
 Sets the power consumption threshold (watts). If power consumption exceeds this value for the specified time duration, an SNMP alert is triggered.
+
+`PATCH {"Oem": {"Hp": {"SNMPPowerThresholdAlert": {"ThresholdWatts": <integer-value>}}}}`
 
 #### PowerMetrics/MaxConsumedWatts (read only integer)
 
@@ -3745,81 +4063,113 @@ User session login time
 
 * `https://{iLO}/redfish/v1/managers/{item}/snmpservice`
 
-#### RoleDetail (string)
+#### RoleDetail (PATCHable string)
 
 The string of up to 512 characters that describes specific tasks that the server might perform.
 
-#### AlertsEnabled (boolean)
+`PATCH {"RoleDetail": "<string-value>"}`
+
+#### AlertsEnabled (PATCHable boolean)
 
 The alert conditions that the management processor detects independently of the host operating system can be sent to specified SNMP alert destinations, such as HP SIM.
 
-#### Users[]/SecurityName (string)
+`PATCH {"AlertsEnabled": true}`
+
+#### Users[]/SecurityName (PATCHable string)
 
 The user profile name. Enter an alphanumeric string of 1 to 32 characters.
 
-#### Mode (enumeration)
+`PATCH {"Users": [{"SecurityName": "<string-value>"}|null, ...]}`
+
+#### Mode (PATCHable enumeration)
 
 Agentless Management Mode (default): Use SNMP agents running on the management processor to manage the server. SNMP Pass-thru Mode: Use SNMP agents running on the host operating system to manage the server. This setting does not affect alerts.
+
+`PATCH {"Mode": "Passthru"}`
 
 #### Status/HealthRollUp (read only enumeration)
 
 Indicates the overall health state of this resource and its dependent resources.
 
-#### SNMPv1Traps (boolean)
+#### SNMPv1Traps (PATCHable boolean)
 
 When enabled, SNMPv1 traps are sent to the remote management systems configured in the SNMP Alert Destination(s) boxes.
+
+`PATCH {"SNMPv1Traps": true}`
 
 #### Status/Health (read only enumeration)
 
 Indicates the health state of this resource without considering its dependent resources.
 
-#### Role (string)
+#### Role (PATCHable string)
 
 The string of up to 64 characters that describes the server role or function.
 
-#### Users[]/PrivacyProtocol (enumeration)
+`PATCH {"Role": "<string-value>"}`
+
+#### Users[]/PrivacyProtocol (PATCHable enumeration)
 
 Sets the encryption algorithm to use for encoding the privacy passphrase. A portion of an SNMP message is encrypted before transmission. Select AES (Advanced Encryption Standard) or DES (Data Encryption Standard).
 
-#### TrapSourceHostname (enumeration)
+`PATCH {"Users": [{"PrivacyProtocol": "AES"}|null, ...]}`
+
+#### TrapSourceHostname (PATCHable enumeration)
 
 Determines the host name that is used in the SNMP-defined sysName variable when the management processor generates SNMP traps.
 
-#### Users[]/AuthPassphrase (string)
+`PATCH {"TrapSourceHostname": "System"}`
+
+#### Users[]/AuthPassphrase (PATCHable string)
 
 Sets the passphrase to use for sign operations. Enter a value of 8 to 49 characters.
 
-#### Oem/Hp/SNMPColdStartTrapBroadcast (boolean)
+`PATCH {"Users": [{"AuthPassphrase": "<string-value>"}|null, ...]}`
+
+#### Oem/Hp/SNMPColdStartTrapBroadcast (PATCHable boolean)
 
 If set to true, the Cold Start Trap will be enabled. The Cold Start Trap is broadcast to a subnet broadcast address if there are no trap destinations configured in the SNMP Alert Destination(s) boxes.
+
+`PATCH {"Oem": {"Hp": {"SNMPColdStartTrapBroadcast": true}}}`
 
 #### Status/State (read only enumeration)
 
 Indicates the known state of this resource (for example, if the resource is enabled). Enabled indicates that the resource is available. Disabled indicates that the resource has been made unavailable intentionally, but it can be enabled. Offline indicates that the resource is unavailable intentionally and requires action to be made available. InTest indicates that the component is undergoing testing. Starting indicates that the resource is on its way to becoming available. Absent indicates that the resource is physically unavailable.
 
-#### SNMPv3EngineID (string)
+#### SNMPv3EngineID (PATCHable string)
 
 The SNMPv3 Engine ID is the unique identifier of an SNMP engine that belongs to an SNMP agent entity. This value must be a hexadecimal string with an even number of 6 to 32 characters, excluding the first two characters, 0x (for example, 0x01020304abcdef).
 
-#### Users[]/AuthProtocol (enumeration)
+`PATCH {"SNMPv3EngineID": "<string-value>"}`
+
+#### Users[]/AuthProtocol (PATCHable enumeration)
 
 Sets the message digest algorithm to use for encoding the authorization passphrase. The message digest is calculated over an appropriate portion of an SNMP message, and is included as part of the message sent to the recipient. Select MD5 (Message Digest) or SHA (Secure Hash Algorithm).
 
-#### Oem/Hp/SNMPForwardInsightManagerAgentAlerts (boolean)
+`PATCH {"Users": [{"AuthProtocol": "SHA"}|null, ...]}`
+
+#### Oem/Hp/SNMPForwardInsightManagerAgentAlerts (PATCHable boolean)
 
 If set to true, the alert conditions detected by the host management agents are forwarded to SNMP alert destinations through the management processor. These alerts are generated by the Insight Management Agents, which are available for each supported operating system. Insight Management Agents must be installed on the host server to receive these alerts.
 
-#### Users[]/PrivacyPassphrase (string)
+`PATCH {"Oem": {"Hp": {"SNMPForwardInsightManagerAgentAlerts": true}}}`
+
+#### Users[]/PrivacyPassphrase (PATCHable string)
 
 Sets the passphrase to use for encrypt operations. Enter a value of 8 to 49 characters.
 
-#### Location (string)
+`PATCH {"Users": [{"PrivacyPassphrase": "<string-value>"}|null, ...]}`
+
+#### Location (PATCHable string)
 
 The string of up to 49 characters that specifies the physical location of the server.
 
-#### Contact (string)
+`PATCH {"Location": "<string-value>"}`
+
+#### Contact (PATCHable string)
 
 The string of up to 49 characters that specifies the system administrator or server owner. The string can include a name, email address, or phone number.
+
+`PATCH {"Contact": "<string-value>"}`
 
 ### ThermalMetrics
 The schema definition for the Thermal Metrics. It represents the properties for temperature and cooling.
@@ -4003,11 +4353,15 @@ Indicates whether the virtual media is mounted on the server.
 
 Specifies how the virtual media is connected to the server.
 
-#### Image (string)
+#### Image (PATCHable string)
 
 The valid URI indicating the image that is mounted on this server. A null value indicates that no image exists.
 
-#### Oem/Hp/BootOnNextServerReset (boolean)
+`PATCH {"Image": "<string-value>"}`
+
+#### Oem/Hp/BootOnNextServerReset (PATCHable boolean)
 
 If set to true, the server will boot to this image on the next server reboot. The image will be ejected automatically on the second server reboot so that the server does not boot to this image twice.
+
+`PATCH {"Oem": {"Hp": {"BootOnNextServerReset": true}}}`
 
