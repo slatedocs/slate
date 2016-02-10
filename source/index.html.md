@@ -472,7 +472,7 @@ X-Auth-Token → c9b3b084490d5b690a7091da2bf4a906
 ```
 
 <aside class="warning">
-It is good practice to save the Location URI of the newly created session.  This is your unique session information and is need to log out later.
+It is good practice to save the Location URI of the newly created session.  This is your unique session information and is needed to log out later.
 </aside>
 
 ## Using a Session
@@ -488,9 +488,55 @@ To log out perform an `HTTP DELETE` to the URI that was returned in the "Locatio
 > DELETE https://{host}/redfish/v1/sessions/{item}
 
 <aside class="notice">
-If you cannot preserve the session URI on login, you may iterate the Sessions collection at `/redfish/v1/sessions/`.  Be sure to include the `X-Auth-Token header`.  For each session look for a JSON property called `"MySession"` that is true. You may then DELETE that URI.
+If you cannot preserve the session URI on login, you may iterate the Sessions collection at /redfish/v1/sessions/.  Be sure to include the X-Auth-Token header.  For each session look for a JSON property called "MySession" that is true. You may then DELETE that URI.
 </aside>
 
+# Example Use Cases
+
+## Get Compute Node Details
+
+## Changing BIOS Settings
+Changing settings and understanding SettingsResults
+Reading BIOS Defaults example
+Updating the Administrator BIOS password example
+Enabling BIOS UEFI Secure Boot example
+Reverting BIOS UEFI settings to default example
+Example iSCSI Software Initiator configuration
+
+## Changing Boot Settings
+UEFI boot structured name string
+UEFI boot structured name string examples
+Change UEFI boot order example
+BIOS administrator password considerations
+Example reset all BIOS and boot order settings to factory defaults
+
+
+## Reset a Server
+
+## Apply an iLO License
+
+## Mount iLO Virtual Media
+
+
+# Handling Error Responses
+## HTTP Errors
+## ExtendedInfo
+## Message Registries
+## Parsing Responses
+
+# Subscribing to REST Events
+
+# Using the HPE RESTful Interface Tool
+
+#Troubleshooting
+
+## Resetting the RESTful API
+
+### Resetting with the RESTful Interface Tool
+
+### Resetting with the UEFI Shell
+
+### Resetting with the iLO SSH CLI
 
 
 # Kittens
@@ -601,7 +647,7 @@ Parameter | Description
 --------- | -----------
 ID | The ID of the kitten to retrieve
 
-# Best Practices for Writing a Client
+# Client Best Practices
 
 When developing a client for the RESTful API, be sure to not code based upon assumptions that are not guaranteed. The reason avoiding these assumptions is so important is that implementations may vary across systems and firmware versions, and we want your code to work consistently.
 
@@ -612,7 +658,7 @@ The client should not interact with a URI as if it will remain static. Only spec
 
 All URIs, with the exception of known top-level URIs, must be discovered dynamically by following the href links in the data model. Clients should not make assumptions about the URIs for the resource members of a collection. For instance, the URI of a collection member will NOT always be /rest/v1/.../collection/1, or 2. On Moonshot a System collection member might be /rest/v1/Systems/C1N1.
 
-## Traversing the data model to find URIs
+## Traversing the data model
 
 Although the resources in the data model are linked together, because of cross link references between resources, a client may not assume the resource model is a tree. It is a graph instead, so any crawl of the data model should keep track of visited resources to avoid an infinite traversal loop.
 
@@ -620,7 +666,7 @@ A reference to another resource is any property called href (@odata.id in Redfis
 
 An external reference to a resource outside the data model is referred to by a property called "extref". Any resource referred to by extref should not be assumed to follow the conventions of the API.
 
-## On HTTP POST to Create new Resources
+## HTTP POST to Create
 
 When POSTing to create a resource (e.g. create an account or session), a successful response includes a Location HTTP header indicating the resource URI of the newly created resource. The POST may also include a representation of the newly created object in a JSON response body but may not. Do not assume the response body, but test it. It may also be an ExtendedError object.
 
