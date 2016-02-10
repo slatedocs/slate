@@ -386,11 +386,12 @@ kuzzle
 
 Retrieves a single stored profile using its unique ID.
 
-#### getProfile(id, callback)
+#### getProfile(id, hydrate, callback)
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
 | ``id`` | string | Unique profile identifier |
+| ``hydrate`` | boolean | (option) If set to false, return the attribute roles as array of string instead of KuzzleRole (default true) |
 | ``callback`` | function | Callback handling the response |
 
 #### Callback response
@@ -463,6 +464,7 @@ Retrieves a single stored user using its unique ID.
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
 | ``id`` | string | Unique user identifier |
+| ``hydrate`` | boolean | (option) If set to false, return the attribute profile as string instead of KuzzleProfile (default true) |
 | ``callback`` | function | Callback handling the response |
 
 #### Callback response
