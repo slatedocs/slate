@@ -20,6 +20,7 @@ includes:
   - endpoint-intro
   - endpoint-public
   - endpoint-dataset
+  - endpoint-table
   - endpoint-variable
   - endpoint-filter
   - endpoint-analysis
