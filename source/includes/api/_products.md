@@ -102,11 +102,15 @@ Content-Type: application/json
     "created_at": "1/02/2016",
     "keyword": "Multi Purpose Crates, Fruit & Vegetable Crates",
     "specifications": {
-      "category_specifications": {
-        "Capacity": "10",
-        "Material": "Wood",
+      "text_fields_specifications": {
+        "Capacity": "10"
+      }
+      "checkable_specifications": {
         "Color": "Blue, Bronze"
-      },
+      }
+      "dropdown_specifications": {
+        "Material": "Wood"
+      }
       "other_specifications": {
         "Lid": "Completely Closed"
       }   
