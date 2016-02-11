@@ -345,7 +345,7 @@ Delete user.
 
 <aside class="notice">
 There is a small delay between user deletion and their deletion in our advanced search layer, usually a couple of seconds.
-That means that a user that was just been delete will be returned by <code>searchUsers</code> function
+That means that a user that has just been delete will be returned by <code>searchUsers</code> function
 </aside>
 
 #### deleteUser(id)
@@ -391,7 +391,7 @@ Retrieves a single stored profile using its unique ID.
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
 | ``id`` | string | Unique profile identifier |
-| ``hydrate`` | boolean | (option) If set to false, return the attribute roles as array of string instead of KuzzleRole (default true) |
+| ``hydrate`` | boolean | (option) If set to false, return the attribute roles as array of string instead of `KuzzleRole` (default true) |
 | ``callback`` | function | Callback handling the response |
 
 #### Callback response
@@ -530,7 +530,7 @@ var role = kuzzle.security.roleFactory('role', roleDefinition);
 ```java
 ```
 
-Instantiate a new KuzzleRole object.
+Instantiate a new `KuzzleRole` object.
 
 #### roleFactory(id, content)
 
@@ -594,7 +594,7 @@ Executes a search on profiles according to a filter
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
 | ``filters`` | JSON Object | List of filters to retrieves roles |
-| ``hydrate`` | boolean | (Optional) if hydrate is `true`, profiles will have a list of Role object instead of just a list of role id |
+| ``hydrate`` | boolean | (Optional) if hydrate is `true`, profiles will have a list of `KuzzleRole` object instead of just a list of role id |
 | ``callback`` | function | Callback handling the response |
 
 
@@ -673,7 +673,7 @@ Executes a search on users according to a filter
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
 | ``filters`` | JSON Object | Filters in [Kuzzle DSL](https://github.com/kuzzleio/kuzzle/blob/master/docs/filters.md) format |
-| ``hydrate`` | boolean | (Optional) if hydrate is `true`, users will have a list of profiles object with hydrated roles instead of just a list of profiles id |
+| ``hydrate`` | boolean | (Optional) if hydrate is `true`, users will have a list of `KuzzleProfile` object with hydrated `KuzzleRole` instead of just a list of profiles id |
 | ``callback`` | function | Callback handling the response |
 
 #### Callback response
