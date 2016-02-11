@@ -29,7 +29,7 @@ This document has been updated with examples from iLO 4 version 2.30 firmware.
  
 ## Redfish 1.0 Conformance
 
-The RESTful API was first released with iLO 4 2.00 on HPE Gen9 servers. The RESTful API also functioned as the starting point for the new Redfish 1.0 DMTF standard at [http:// www.dmtf.org/standards/redfish](http:// www.dmtf.org/standards/redfish)
+The RESTful API was first released with iLO 4 2.00 on HPE Gen9 servers. The RESTful API also functioned as the starting point for the new Redfish 1.0 DMTF standard at [http:// www.dmtf.org/standards/redfish](http://www.dmtf.org/standards/redfish)
 
 Since the introduction of the RESTful API, a number of changes were introduced into the Redfish standard by the DMTF SPMF members. At a high level, the changes include:
 
@@ -45,7 +45,9 @@ iLO 4 2.30 achieves Redfish 1.0 conformance and backward compatibility by:
 
 1. Mirroring the resource model at both /redfish/v1/ and /rest/v1.
 1. Returning both compatibility and Redfish properties by default.
-1. Returning only Redfish conformant properties (with Hewlett Packard Enterprise extensions) if the Redfish-required OData header is included in the request (OData-Version: 4.0).
+1. Returning only Redfish conformant properties (with Hewlett Packard Enterprise extensions) if the Redfish-required OData header is included in the request (`OData-Version: 4.0`).
+
+Full details on how Redfish 1.0 was implemented in iLO 4 2.30 and how it impacts clients written for previous versions is found here:  [http://www8.hp.com/h20195/V2/GetDocument.aspx?docname=4AA6-1727ENW&cc=us&lc=en](http://www8.hp.com/h20195/V2/GetDocument.aspx?docname=4AA6-1727ENW&cc=us&lc=en "Redfish Implementation on HP RESTful API for iLO 4 - Technical White Paper")
 
 ## REST APIs Architected using HATEOS
 
@@ -643,7 +645,7 @@ With iLO firmware v2.20 or later, you can reset the REST API. You do this throug
 
 **Action**
 
-1.	Open an SSH connection with iLO, log in using an account with administrator privileges. For more information, see the HPE iLO 4 Scripting and Command Line Guide at [http:// www.hpe.com/info/iLO](http:// www.hpe.com/info/iLO).
+1.	Open an SSH connection with iLO, log in using an account with administrator privileges. For more information, see the HPE iLO 4 Scripting and Command Line Guide at [http:// www.hpe.com/info/iLO](http://www.hpe.com/info/iLO).
 2.	At the CLI prompt, execute the command `oemhp_clearRESTAPIstate`. Note that this command might take a few seconds to complete.
 3.	Restart the server.
 
@@ -677,7 +679,7 @@ All clients must correctly handle HTTP redirect (e.g. 308, 301, and so on.) iLO 
 
 # Other Web Resources
 
-* Redfish 1.0 DMTF standard at [http:// www.dmtf.org/standards/redfish](http:// www.dmtf.org/standards/redfish)
+* Redfish 1.0 DMTF standard at [http://www.dmtf.org/standards/redfish](http:// www.dmtf.org/standards/redfish)
 
 * HPE RESTful API Home page: [http://www.hpe.com/info/restfulapi](http://www.hpe.com/info/restfulapi).
 
