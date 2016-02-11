@@ -9,7 +9,7 @@ created_at | The Date when product is created
 keywords | Product keywords defined during category creation
 detailed_description | Detailed Description about the product usually rendered as a paragraph
 logistic_details | Contains logistic details of the product
-delivery_charges | Delivery charges for the product (part of logistic_details)
+logistic_details[delivery_charges] | Delivery charges for the product (part of logistic_details)
 delivery_details | Delivery descriptions for the product (part of logistic_details)
 packaging_details | Packaging descriptions for the product (part of logistic_details)
 minimum_order_quantity | Minimum order that the seller or Bizongo can supply
@@ -40,7 +40,7 @@ category_id |  Category id for the product category
 GET /api/products/new?category_id=$['Product_Category_id']&product_name=$['Your_Product_name'] HTTP/1.1
 Host: bizongo.in
 Content-Type: application/json
-Authorization: Token token=User Auth Token
+Authorization: Token token="USER AUTH TOKEN"
 ```
 > Variables `Product_Category_id` and `Your_Product_name` contains values for category id and name of the product. `User Auth Token` is the auth token value returned to user on sign in. This is success response returned for a sample product searched in `Crates` category with auto-populated values.
 
@@ -94,11 +94,11 @@ Bizongo expects the header `Authorization` to be present in the following 'forma
 ```http
 POST  /api/products HTTP/1.1
 Host: bizongo.in
-Authorization: Token token=User Auth Token
+Authorization: Token token="USER AUTH TOKEN"
 Content-Type: application/json
 {
-  "product":{
-    "product_name": "300X400 Crates"
+  "product": {
+    "name": "300X400 Crates"
     "created_at": "1/02/2016",
     "keyword": "Multi Purpose Crates, Fruit & Vegetable Crates",
     "specifications": {
@@ -123,7 +123,7 @@ Content-Type: application/json
       "packaging_details": "Packaged in single day"
     },
     "sellable": false,
-    payment_details: {
+    "payment_details": {
       "cst_vat_enabled": true,
       "cst_vat_tax": "5",
       "excise_tax_enabled": "true",
@@ -132,15 +132,15 @@ Content-Type: application/json
     "detailed_description" : "Extremely sensitive",
     "product_images" : ["1", "2", "3"]
   },
-  category_id: "2",   
+  "category_id": "2",   
 }
 ```
 
-> `User Auth Token` is the auth token value returned to user on sign in. This is success response on creation of the product.
+> `USER AUTH TOKEN` is the auth token value returned to user on sign in. This is a success response on creation of the product.
 
 
 ```http
-HTTP/1.1 200 OK
+HTTP/1.1 201 CREATED
 Content-Type: application/json
 {
   "product_id" : "47"
