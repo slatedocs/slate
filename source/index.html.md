@@ -541,7 +541,7 @@ TODO - fill in this section
 
 #Troubleshooting
 
-## Resetting the RESTful API with a REST client
+## Resetting the RESTful API
 
 **Symptom**
 
@@ -551,7 +551,7 @@ ProLiant Gen9 servers could possibly experience a RESTful API error during syste
 
 With iLO firmware v2.20 or later, you can reset the REST API. You do this through the RESTful API using any 3rd party REST web client, the **RESTful Interface Tool**, or from the HPE Embedded UEFI shell restclient command.
 
-**Action**
+### With a REST client
 
 1.	Execute a POST operation to the resource at URI `<ilo-ip>/rest/v1/managers/1` with the following JSON in the request body.
 
@@ -561,17 +561,7 @@ With iLO firmware v2.20 or later, you can reset the REST API. You do this throug
 2.	Restart the server.
 
 
-### Resetting with the RESTful Interface Tool
-
-**Symptom**
-
-ProLiant Gen9 servers could possibly experience a RESTful API error during system boot that results in inability to configure the BIOS settings using the RESTful API. In addition, the following persistent error message might display during system boot (POST) and is logged to the Integrated Management Log:
-
-    335 RESTful API Error- RESTful API PUT request failed (HTTP: Status Code = 404)
-
-With iLO firmware v2.20 or later, you can reset the REST API. You do this through the RESTful API using any 3rd party REST web client, the RESTful Interface Tool, or from the HPE Embedded UEFI shell restclient command.
-
-**Action**
+### With the RESTful Interface Tool
 
 1.	Download and install the **RESTful interface Tool**. For more information on using this tool, refer to [http://www.hpe.com/info/resttool](http://www.hpe.com/info/resttool).
 2.	Copy and paste the following JSON into a text file and save it as
@@ -600,17 +590,7 @@ hprest_tool_clear_api.json.
 6.	Restart the server.
 
 
-### Resetting with the UEFI Shell
-
-**Symptom**
-
-ProLiant Gen9 servers could possibly experience a RESTful API error during system boot that results in inability to configure the BIOS settings using the RESTful API. In addition, the following persistent error message might display during system boot (POST) and is logged to the Integrated Management Log:
-
-335 RESTful API Error- RESTful API PUT request failed (HTTP: Status Code = 404)
-
-With iLO firmware v2.20 or later, you can reset the REST API. You do this through the RESTful API using any 3rd party REST web client, the **RESTful Interface Tool**, or from the HPE Embedded UEFI shell restclient command.
-
-**Action**
+### With the UEFI Shell
 
 1.	Enter the Embedded UEFI Shell. For more information, refer to the UEFI Shell User Guide
 at [http://www.hpe.com/servers/proliant/uefi](http://www.hpe.com/servers/proliant/uefi).
@@ -633,17 +613,7 @@ at [http://www.hpe.com/servers/proliant/uefi](http://www.hpe.com/servers/prolian
 8.	Restart the server.
 
 
-### Resetting with the iLO SSH CLI
-
-**Symptom**
-
-ProLiant Gen9 servers could possibly experience a RESTful API error during system boot that results in inability to configure the BIOS settings using the RESTful API. In addition, the following persistent error message might display during system boot (POST) and is logged to the Integrated Management Log:
-    
-    335 RESTful API Error- RESTful API PUT request failed (HTTP: Status Code = 404)
-
-With iLO firmware v2.20 or later, you can reset the REST API. You do this through the RESTful API using any 3rd party REST web client, the **RESTful Interface Tool**, or from the HPE Embedded UEFI shell restclient command.
-
-**Action**
+### With the iLO SSH CLI
 
 1.	Open an SSH connection with iLO, log in using an account with administrator privileges. For more information, see the HPE iLO 4 Scripting and Command Line Guide at [http:// www.hpe.com/info/iLO](http://www.hpe.com/info/iLO).
 2.	At the CLI prompt, execute the command `oemhp_clearRESTAPIstate`. Note that this command might take a few seconds to complete.
