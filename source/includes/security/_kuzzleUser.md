@@ -72,13 +72,18 @@ user
 
 Delete the user in Kuzzle
 
-#### delete()
-
-#### delete([callback])
+#### delete([options, callback])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
+| ``options`` | JSON Object | Optional parameters |
 | ``callback`` | function | (Optional) Callback handling the response |
+
+Available options:
+
+| Option | Type | Description | Default |
+|---------------|---------|----------------------------------------|---------|
+| ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
 
 #### Callback response
 
@@ -121,11 +126,18 @@ Hydrate KuzzleUser with associated KuzzleProfile
 Hydrating this object can rise an error if the associated profile is not created in Kuzzle
 </aside>
 
-#### hydrate(callback)
+#### hydrate([options], callback)
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
+| ``options`` | JSON Object | Optional parameters |
 | ``callback`` | function | Callback handling the response |
+
+Available options:
+
+| Option | Type | Description | Default |
+|---------------|---------|----------------------------------------|---------|
+| ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
 
 #### Callback response
 
@@ -164,13 +176,18 @@ Create or replace the user in kuzzle
 Saving this object can rise an error if the associated profile is not created in Kuzzle
 </aside>
 
-#### save()
-
-#### save([callback])
+#### save([options, callback])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
+| ``options`` | JSON Object | Optional parameters |
 | ``callback`` | function | (Optional) Callback handling the response |
+
+Available options:
+
+| Option | Type | Description | Default |
+|---------------|---------|----------------------------------------|---------|
+| ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
 
 #### Callback response
 

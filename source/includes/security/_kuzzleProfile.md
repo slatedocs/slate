@@ -96,13 +96,18 @@ profile
 
 Deletes the profile from Kuzzle's database layer.
 
-#### delete()
-
-#### delete([callback])
+#### delete([options, callback])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
+| ``options`` | JSON Object | Optional parameters |
 | ``callback`` | function | (Optional) Callback handling the response |
+
+Available options:
+
+| Option | Type | Description | Default |
+|---------------|---------|----------------------------------------|---------|
+| ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
 
 #### Callback response
 
@@ -146,11 +151,18 @@ Hydrating the object transforms the `roles` property from an array of role ids t
 Hydrating the object will rise an error if the roles are not previously created in Kuzzle.
 </aside>
 
-#### hydrate(callback)
+#### hydrate([options], callback)
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
+| ``options`` | JSON Object | Optional parameters |
 | ``callback`` | function | Callback handling the response |
+
+Available options:
+
+| Option | Type | Description | Default |
+|---------------|---------|----------------------------------------|---------|
+| ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
 
 #### Callback response
 
@@ -191,13 +203,18 @@ Creates or replaces the profile in Kuzzle.
 Saving the object will rise an error if the roles are not previously created in Kuzzle.
 </aside>
 
-#### save()
-
-#### save([callback])
+#### save([options, callback])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
-| ``callback`` | function | (Optional) Callback handling the response |
+| ``options`` | JSON Object | Optional parameters |
+| ``callback`` | function | Callback handling the response |
+
+Available options:
+
+| Option | Type | Description | Default |
+|---------------|---------|----------------------------------------|---------|
+| ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
 
 #### Callback response
 

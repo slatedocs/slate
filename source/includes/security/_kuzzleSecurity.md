@@ -28,64 +28,6 @@ var kuzzleSecurity = kuzzle.security;
 ```java
 ```
 
-
-## createProfile
-
-```js
-var roles = ['myrole', 'default'];
-
-// You can chose to replace the given profile if already exists
-var options {
-  replaceIfExist: true
-};
-
-// Using callbacks (NodeJS or Web Browser)
-kuzzle
-  .security
-  .createProfile('myprofile', roles, options, function(error, response) {
-    // result is a KuzzleProfile object
-  });
-
-// Using promises (NodeJS)
-kuzzle
-  .security
-  .createProfilePromise('myprofile', roles, options)
-  .then((response) => {
-    // result is a KuzzleProfile object
-  });
-```
-
-```java
-```
-
-Create a new profile in Kuzzle.
-
-<aside class="notice">
-There is a small delay between profile creation and their creation in our advanced search layer, usually a couple of seconds.
-That means that a profile that was just been created will not be returned by <code>searchProfiles</code> function
-</aside>
-
-#### createProfile(id, content, callback)
-
-#### createProfile(id, content, [options], callback)
-
-| Arguments | Type | Description |
-|---------------|---------|----------------------------------------|
-| ``id`` | string | Unique profile identifier |
-| ``content`` | JSON Object | A plain javascript object representing the profile |
-| ``options`` | string | (Optional) Optional arguments |
-| ``callback`` | function | Callback handling the response |
-
-Available options:
-
-| Filter | Type | Description | Default |
-|---------------|---------|----------------------------------------|---------|
-| ``replaceIfExist`` | boolean | If the same profile already exists: throw an error if sets to false. Replace the existing profile otherwise | ``false`` |
-
-#### Callback response
-
-Resolves to a `KuzzleProfile` object.
-
 ## createRole
 
 ```js
@@ -140,7 +82,6 @@ There is a small delay between role creation and their creation in our advanced 
 That means that a role that was just been created will not be returned by <code>searchRole</code> function
 </aside>
 
-#### createRole(id, content, callback)
 
 #### createRole(id, content, [options], callback)
 
@@ -156,10 +97,67 @@ Available options:
 | Filter | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
 | ``replaceIfExist`` | boolean | If the same role already exists: throw an error if sets to false. Replace the existing role otherwise | ``false`` |
+| ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
 
 #### Callback response
 
 Resolves to a `KuzzleRole` object.
+
+## createProfile
+
+```js
+var roles = ['myrole', 'default'];
+
+// You can chose to replace the given profile if already exists
+var options {
+  replaceIfExist: true
+};
+
+// Using callbacks (NodeJS or Web Browser)
+kuzzle
+  .security
+  .createProfile('myprofile', roles, options, function(error, response) {
+    // result is a KuzzleProfile object
+  });
+
+// Using promises (NodeJS)
+kuzzle
+  .security
+  .createProfilePromise('myprofile', roles, options)
+  .then((response) => {
+    // result is a KuzzleProfile object
+  });
+```
+
+```java
+```
+
+Create a new profile in Kuzzle.
+
+<aside class="notice">
+There is a small delay between profile creation and their creation in our advanced search layer, usually a couple of seconds.
+That means that a profile that was just been created will not be returned by <code>searchProfiles</code> function
+</aside>
+
+#### createProfile(id, content, [options], callback)
+
+| Arguments | Type | Description |
+|---------------|---------|----------------------------------------|
+| ``id`` | string | Unique profile identifier |
+| ``content`` | JSON Object | A plain javascript object representing the profile |
+| ``options`` | string | (Optional) Optional arguments |
+| ``callback`` | function | Callback handling the response |
+
+Available options:
+
+| Filter | Type | Description | Default |
+|---------------|---------|----------------------------------------|---------|
+| ``replaceIfExist`` | boolean | If the same profile already exists: throw an error if sets to false. Replace the existing profile otherwise | ``false`` |
+| ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
+
+#### Callback response
+
+Resolves to a `KuzzleProfile` object.
 
 
 ## createUser
@@ -211,9 +209,7 @@ There is a small delay between user creation and their creation in our advanced 
 That means that a user that was just been created will not be returned by <code>searchUsers</code> function
 </aside>
 
-#### createUser(id, content, callback)
-
-#### createUser(id, content, [options], callback)
+#### createUser(id, content, [options, callback])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
@@ -228,6 +224,7 @@ Available options:
 | Filter | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
 | ``replaceIfExist`` | boolean | If the same user already exists: throw an error if sets to false. Replace the existing user otherwise | ``false`` |
+| ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
 
 #### Callback response
 
@@ -263,14 +260,19 @@ There is a small delay between profile deletion and their deletion in our advanc
 That means that a profile that was just been delete will be returned by <code>searchProfiles</code> function
 </aside>
 
-#### deleteProfile(id)
-
-#### deleteProfile(id, [callback])
+#### deleteProfile(id, [options, callback])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
 | ``id`` | string | Unique profile identifier to delete |
+| ``options`` | JSON Object | Optional parameters |
 | ``callback`` | function | (Optional) Callback handling the response |
+
+Available options:
+
+| Option | Type | Description | Default |
+|---------------|---------|----------------------------------------|---------|
+| ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
 
 #### Callback response
 
@@ -305,14 +307,19 @@ There is a small delay between role deletion and their deletion in our advanced 
 That means that a role that was just been delete will be returned by <code>searchRoles</code> function
 </aside>
 
-#### deleteRole(id)
-
-#### deleteRole(id, [callback])
+#### deleteRole(id, [options, callback])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
 | ``id`` | string | Unique role identifier to delete |
+| ``options`` | JSON Object | Optional parameters |
 | ``callback`` | function | (Optional) Callback handling the response |
+
+Available options:
+
+| Option | Type | Description | Default |
+|---------------|---------|----------------------------------------|---------|
+| ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
 
 #### Callback response
 
@@ -348,18 +355,65 @@ There is a small delay between user deletion and their deletion in our advanced 
 That means that a user that has just been delete will be returned by <code>searchUsers</code> function
 </aside>
 
-#### deleteUser(id)
-
-#### deleteUser(id, [callback])
+#### deleteUser(id, [options, callback])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
 | ``id`` | string | Unique user identifier to delete |
+| ``options`` | JSON Object | Optional parameters |
 | ``callback`` | function | (Optional) Callback handling the response |
+
+Available options:
+
+| Option | Type | Description | Default |
+|---------------|---------|----------------------------------------|---------|
+| ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
 
 #### Callback response
 
 Resolves the user id which has been deleted.
+
+## getRole
+
+```js
+// Using callbacks (NodeJS or Web Browser)
+kuzzle
+  .security
+  .getRole('myrole', function(error, result) {
+    // result is a KuzzleRole object
+  });
+
+// Using promises (NodeJS)
+kuzzle
+  .security
+  .getRolePromise('myrole')
+  .then((result) => {
+    // result is a KuzzleRole object
+  });
+```
+
+```java
+```
+
+Retrieves a single stored role using its unique ID.
+
+#### getRole(id, [options], callback)
+
+| Arguments | Type | Description |
+|---------------|---------|----------------------------------------|
+| ``id`` | string | Unique role identifier |
+| ``options`` | JSON Object | Optional parameters |
+| ``callback`` | function | Callback handling the response |
+
+Available options:
+
+| Option | Type | Description | Default |
+|---------------|---------|----------------------------------------|---------|
+| ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
+
+#### Callback response
+
+Resolves to a `KuzzleRole` object.
 
 
 ## getProfile
@@ -386,53 +440,24 @@ kuzzle
 
 Retrieves a single stored profile using its unique ID.
 
-#### getProfile(id, hydrate, callback)
+#### getProfile(id, options, callback)
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
 | ``id`` | string | Unique profile identifier |
-| ``hydrate`` | boolean | (option) If set to false, return the attribute roles as array of string instead of `KuzzleRole` (default true) |
+| ``options`` | JSON Object | Optional parameters |
 | ``callback`` | function | Callback handling the response |
+
+Available options:
+
+| Option | Type | Description | Default |
+|---------------|---------|----------------------------------------|---------|
+| ``hydrate`` | boolean | (option) If set to false, return the attribute roles as array of string instead of `KuzzleRole` (default true) | ``true``
+| ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
 
 #### Callback response
 
 Resolves to a `KuzzleProfile` object.
-
-
-## getRole
-
-```js
-// Using callbacks (NodeJS or Web Browser)
-kuzzle
-  .security
-  .getRole('myrole', function(error, result) {
-    // result is a KuzzleRole object
-  });
-
-// Using promises (NodeJS)
-kuzzle
-  .security
-  .getRolePromise('myrole')
-  .then((result) => {
-    // result is a KuzzleRole object
-  });
-```
-
-```java
-```
-
-Retrieves a single stored role using its unique ID.
-
-#### getRole(id, callback)
-
-| Arguments | Type | Description |
-|---------------|---------|----------------------------------------|
-| ``id`` | string | Unique role identifier |
-| ``callback`` | function | Callback handling the response |
-
-#### Callback response
-
-Resolves to a `KuzzleRole` object.
 
 
 ## getUser
@@ -464,8 +489,15 @@ Retrieves a single stored user using its unique ID.
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
 | ``id`` | string | Unique user identifier |
-| ``hydrate`` | boolean | (option) If set to false, return the attribute profile as string instead of KuzzleProfile (default true) |
+| ``options`` | JSON Object | Optional parameters |
 | ``callback`` | function | Callback handling the response |
+
+Available options:
+
+| Option | Type | Description | Default |
+|---------------|---------|----------------------------------------|---------|
+| ``hydrate`` | boolean | (option) If set to false, return the attribute profile as string instead of `KuzzleProfile` (default true) | ``true``
+| ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
 
 #### Callback response
 
@@ -587,16 +619,20 @@ kuzzle
 
 Executes a search on profiles according to a filter
 
-#### searchProfiles(filters, callback)
-
-#### searchProfiles(filters, [hydrate], callback)
+#### searchProfiles(filters, [options], callback)
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
 | ``filters`` | JSON Object | List of filters to retrieves roles |
-| ``hydrate`` | boolean | (Optional) if hydrate is `true`, profiles will have a list of `KuzzleRole` object instead of just a list of role id |
+| ``options`` | JSON Object | Optional parameters |
 | ``callback`` | function | Callback handling the response |
 
+Available options:
+
+| Option | Type | Description | Default |
+|---------------|---------|----------------------------------------|---------|
+| ``hydrate`` | boolean | (Optional) if hydrate is `true`, return the attribute roles as array of string instead of `KuzzleRole` (default true) | ``true``
+| ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
 
 Available filters:
 
@@ -666,15 +702,20 @@ kuzzle
 
 Executes a search on users according to a filter
 
-#### searchUsers(filters, callback)
-
-#### searchUsers(filters, [hydrate], callback)
+#### searchUsers(filters, [options], callback)
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
 | ``filters`` | JSON Object | Filters in [Kuzzle DSL](https://github.com/kuzzleio/kuzzle/blob/master/docs/filters.md) format |
-| ``hydrate`` | boolean | (Optional) if hydrate is `true`, users will have a list of `KuzzleProfile` object with hydrated `KuzzleRole` instead of just a list of profiles id |
+| ``options`` | JSON Object | Optional parameters |
 | ``callback`` | function | Callback handling the response |
+
+Available options:
+
+| Option | Type | Description | Default |
+|---------------|---------|----------------------------------------|---------|
+| ``hydrate`` | boolean | (option) If set to false, return the attribute profile as string instead of `KuzzleProfile` (default true) | ``true``
+| ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
 
 #### Callback response
 
@@ -724,12 +765,19 @@ kuzzle
 
 Executes a search on roles according to a filter
 
-#### searchRoles(filters, callback)
+#### searchRoles(filters, [options], callback)
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
 | ``filters`` | JSON Object | List of filters to retrieves roles |
+| ``options`` | JSON Object | Optional parameters |
 | ``callback`` | function | Callback handling the response |
+
+Available options:
+
+| Option | Type | Description | Default |
+|---------------|---------|----------------------------------------|---------|
+| ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
 
 Available filters:
 

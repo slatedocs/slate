@@ -77,13 +77,18 @@ role
 
 Deletes the role from Kuzzle's database layer.
 
-#### delete()
-
-#### delete([callback])
+#### delete([options, callback])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
+| ``options`` | JSON Object | Optional parameters |
 | ``callback`` | function | (Optional) Callback handling the response |
+
+Available options:
+
+| Option | Type | Description | Default |
+|---------------|---------|----------------------------------------|---------|
+| ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
 
 #### Callback response
 
@@ -118,13 +123,19 @@ role
 
 Creates or replaces the role in Kuzzle's database layer.
 
-#### save()
 
-#### save([callback])
+#### save([options, callback])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
+| ``options`` | JSON Object | Optional parameters |
 | ``callback`` | function | (Optional) Callback handling the response |
+
+Available options:
+
+| Option | Type | Description | Default |
+|---------------|---------|----------------------------------------|---------|
+| ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
 
 #### Callback response
 
