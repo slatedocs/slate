@@ -19,8 +19,8 @@ supply_ability_units | Units for Maximum order
 quoted_price | Product Quoted price for a specific unit
 quoted_price_units | Unit for product quoted price
 payment_details | Details about payment
-cst_vat_enabled | Check whether CST/VAT is enabled or not (part of payment_details)
-cst_vat_tax | CST/VAT tax value (part of payment_details)
+cst_enabled | Check whether CST/VAT is enabled or not (part of payment_details)
+cst_tax | CST/VAT tax value (part of payment_details)
 excise_tax_enabled | Check whether excise is enabled or not (part of payment_details)
 excise_tax | Excise tax value (part of payment_details)
 specifications | Specifications for the product
@@ -32,7 +32,7 @@ other_specifications | Specification added by the user or admin and is not prede
 sellable | Deciding factor for whether the product is bulk or sellable
 category_id |  Category id for the product category
 
-## Auto-Populated New Product
+## New Product
 
 > To get predefined specifications for a product use this code:
 
@@ -104,13 +104,13 @@ Content-Type: application/json
     "specifications": {
       "text_fields_specifications": {
         "Capacity": "10"
-      }
+      },
       "checkable_specifications": {
         "Color": "Blue, Bronze"
-      }
+      },
       "dropdown_specifications": {
         "Material": "Wood"
-      }
+      },
       "other_specifications": {
         "Lid": "Completely Closed"
       }   
@@ -128,9 +128,9 @@ Content-Type: application/json
     },
     "sellable": false,
     "payment_details": {
-      "cst_vat_enabled": true,
-      "cst_vat_tax": "5",
-      "excise_tax_enabled": "true",
+      "cst_enabled": true,
+      "cst_tax": "5",
+      "excise_enabled": "true",
       "excise_tax": "10"
     },  
     "detailed_description" : "Extremely sensitive",
