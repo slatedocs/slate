@@ -25,7 +25,7 @@ excise_tax_enabled | Check whether excise is enabled or not (part of payment_det
 excise_tax | Excise tax value (part of payment_details)
 specifications | Specifications for the product
 brand_name | Brand Name for the product
-text_field_specifications | Specifications of the product represented as text-boxes
+text_fields_specifications | Specifications of the product represented as text-boxes
 checkable_specifications | Specifications of the product represented as multiple check-fields
 dropdown_specifications | Specifications of the product represented as dropdown-box
 other_specifications | Specification added by the user or admin and is not predefined
@@ -53,7 +53,7 @@ Content-Type: application/json
     "options": "Multi Purpose Crates, Dairy Crates, Fruit & Vegetable Crates, Dairy Crates"
   },
   "specifications": {
-    "text_field_specifications": {
+    "text_fields_specifications": {
       "Capacity": {
         "optional": false,
         "value": "10"
@@ -102,30 +102,15 @@ Content-Type: application/json
     "created_at": "1/02/2016",
     "keyword": "Multi Purpose Crates, Fruit & Vegetable Crates",
     "specifications": {
-      "text_field_specifications": {
-        "Capacity": {
-          "optional": false,
-          "value": "20"
-        }
+      "text_fields_specifications": {
+        "Capacity": "10"
       },
       "checkable_specifications": {
-        "Color": {
-          "options": "Blue, Bronze, Brown",
-          "values": "Blue, Brown",
-          "optional": true
-        },
-        "Material": {
-          "options": "Wood, Steel, Stainless Steel, Paper",
-          "optional": true
-        }
-      }
+        "Color": "Blue, Bronze"
+      },
       "dropdown_specifications": {
-        "Original": {
-          "options": "yes, no",
-          "value": "yes",
-          "optional": true
-        }
-      }
+        "Material": "Wood"
+      },
       "other_specifications": {
         "Lid": "Completely Closed"
       }   
@@ -174,7 +159,7 @@ Bizongo expects the header `Authorization` to be present in the following 'forma
 ## Edit a product
 
 ```http
-GET /api/products/$['product_id']/edit HTTP/1.1
+GET /api/products/$['product_id'] HTTP/1.1
 Host: bizongo.in
 Authorization: Token token="USER AUTH TOKEN"
 ```
@@ -187,18 +172,14 @@ Content-Type: application/json
   "created_at": "1/02/2016",
   "keyword": "Multi Purpose Crates, Fruit & Vegetable Crates",
   "specifications": {
-    "text_field_specifications": {
+    "text_fields_specifications": {
       "Capacity": "10"
     },
     "checkable_specifications": {
       "Color": "Blue, Bronze"
     },
     "dropdown_specifications": {
-      "Original": {
-        "options": "yes, no",
-        "value": "yes",
-        "optional": true
-      }
+      "Material": "Wood"
     },
     "other_specifications": {
       "Lid": "Completely Closed"
@@ -256,8 +237,50 @@ Content-Type: application/json
 POST /api/products/$['product_id'] HTTP/1.1
 Host: bizongo.in
 Authorization: Token token="USER AUTH TOKEN"
+Content-Type: application/json
+{
+  "name": "300X400 Crates"
+  "created_at": "1/02/2016",
+  "keyword": "Multi Purpose Crates, Dairy Crates",
+  "specifications": {
+    "text_fields_specifications": {
+      "Capacity": "30"
+    },
+    "checkable_specifications": {
+      "Color": "Blue, Yellow"
+    },
+    "dropdown_specifications": {
+      "Material": "Plastic"
+    },
+    "other_specifications": {
+      "Lid": "Completely Closed"
+    }   
+  },
+  "brand_name": "Aristo",
+  "minimum_order_quantity": "100",
+  "minimum_order_units": "Pieces",
+  "supply_ability_quantity": "10000",
+  "supply_ability_units": "Pieces",
+  "quoted_price": "1000",
+  "quoted_price_units": "Piece",
+  "logistic_details": {
+    "delivery_details": "Delivered all over India",
+    "packaging_details": "Packaged in single day"
+  },
+  "sellable": false,
+  "payment_details": {
+    "cst_enabled": true,
+    "cst_tax": "5",
+    "excise_enabled": "true",
+    "excise_tax": "10"
+  },  
+  "detailed_description" : "Extremely sensitive",
+  "product_images" : ["1", "2", "3"]
+}
 ```
 
 ```http
-
+HTTP/1.1 204 OK
+Host: bizongo.in
+Authorization: Token token="USER AUTH TOKEN"
 ```
