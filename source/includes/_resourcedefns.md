@@ -1,52 +1,68 @@
 ### AccountService
 This is the schema definition for the Account service. It represents the properties for this service and has links to the list of accounts.
 
-**Instances**:  
+**Resource Instances of this Type**:  
 
 * `https://{iLO}/redfish/v1/accountservice`
 
-#### Oem/Hp/AuthFailureLoggingThreshold (PATCHable integer)
+### AuthFailureLoggingThreshold
+
+**JSONPath**: /Oem/Hp/AuthFailureLoggingThreshold (PATCHable integer)
 
 This property enables you to view and configure logging criteria for failed authentications. A failed login log entry is recorded after the configured number of attempts. 0 = feature disabled; 1-3 and 5 are allowable values.
 
 > example PATCH: {"Oem": {"Hp": {"AuthFailureLoggingThreshold": &lt;integer-value&gt;}}}
 
-#### Oem/Hp/MinPasswordLength (PATCHable integer)
+### MinPasswordLength
+
+**JSONPath**: /Oem/Hp/MinPasswordLength (PATCHable integer)
 
 This property specifies the minimum number of characters allowed when a user password is set or changed. It must be a value from 0 to 39.
 
 > example PATCH: {"Oem": {"Hp": {"MinPasswordLength": &lt;integer-value&gt;}}}
 
 ### BaseNetworkAdapter
-**Instances**:  
+**Resource Instances of this Type**:  
 
 * `https://{iLO}/redfish/v1/systems/{item}/networkadapters/{item}`
 
-#### StructuredName (read only string)
+### StructuredName
+
+**JSONPath**: /StructuredName (read only string)
 
 PCI device structured name in UTF-8 format (e.g. 'NIC.LOM.1.1' - see PCIDevices in /rest/v1/Systems/x/PCIDevices - this comes from SMBIOS
 
-#### PhysicalPorts[]/MacAddress (read only string)
+### PhysicalPorts[].MacAddress
+
+**JSONPath**: /PhysicalPorts[]/MacAddress (read only string)
 
 The port MAC address.
 
-#### PartNumber (read only string)
+### PartNumber
+
+**JSONPath**: /PartNumber (read only string)
 
 The device part number.
 
-#### PhysicalPorts[]/Oem/Hp/StructuredName (read only string)
+### PhysicalPorts[].Oem.Hp.StructuredName
+
+**JSONPath**: /PhysicalPorts[]/Oem/Hp/StructuredName (read only string)
 
 PCI device structured name in UTF-8 format (e.g. 'NIC.LOM.1.1' - see PCIDevices in /rest/v1/Systems/x/PCIDevices - this comes from SMBIOS
 
-#### PhysicalPorts[]/Oem/Hp/GoodTransmits (read only integer)
+### PhysicalPorts[].Oem.Hp.GoodTransmits
+
+**JSONPath**: /PhysicalPorts[]/Oem/Hp/GoodTransmits (read only integer)
 
 A count of frames successfully transmitted by the physical adapter.
 
-#### PhysicalPorts[]/Status/Health (read only enumeration)
+### PhysicalPorts[].Status.Health
+
+**JSONPath**: /PhysicalPorts[]/Status/Health (read only enumeration)
 
 Indicates the health state of this resource without considering its dependent resources.
 
-Defined values:
+**Defined values**:
 
 * `OK`
 
@@ -54,15 +70,19 @@ Defined values:
 
 * `Critical`
 
-#### PhysicalPorts[]/Oem/Hp/GoodReceives (read only integer)
+### PhysicalPorts[].Oem.Hp.GoodReceives
+
+**JSONPath**: /PhysicalPorts[]/Oem/Hp/GoodReceives (read only integer)
 
 A count of frames successfully received by the physical adapter.
 
-#### PhysicalPorts[]/Status/HealthRollUp (read only enumeration)
+### PhysicalPorts[].Status.HealthRollUp
+
+**JSONPath**: /PhysicalPorts[]/Status/HealthRollUp (read only enumeration)
 
 Indicates the overall health state of this resource and its dependent resources.
 
-Defined values:
+**Defined values**:
 
 * `OK`
 
@@ -70,15 +90,19 @@ Defined values:
 
 * `Critical`
 
-#### PhysicalPorts[]/SpeedMbps (read only integer)
+### PhysicalPorts[].SpeedMbps
+
+**JSONPath**: /PhysicalPorts[]/SpeedMbps (read only integer)
 
 An estimate of the interface's current bandwidth in Megabits per second.  For interfaces which do not vary in bandwidth or for those where no accurate estimation can be made, this object should contain the nominal bandwidth.
 
-#### Status/HealthRollUp (read only enumeration)
+### Status.HealthRollUp
+
+**JSONPath**: /Status/HealthRollUp (read only enumeration)
 
 Indicates the overall health state of this resource and its dependent resources.
 
-Defined values:
+**Defined values**:
 
 * `OK`
 
@@ -86,23 +110,31 @@ Defined values:
 
 * `Critical`
 
-#### PhysicalPorts[]/UEFIDevicePath (read only string)
+### PhysicalPorts[].UEFIDevicePath
+
+**JSONPath**: /PhysicalPorts[]/UEFIDevicePath (read only string)
 
 UEFIDevice Path for correlation purposes
 
-#### PhysicalPorts[]/Oem/Hp/BadTransmits (read only integer)
+### PhysicalPorts[].Oem.Hp.BadTransmits
+
+**JSONPath**: /PhysicalPorts[]/Oem/Hp/BadTransmits (read only integer)
 
 A count of frames that were not transmitted by the adapter because of an error.  This counter is the sum of MIB items cpqNicIfPhysAdapterDeferredTransmissions, cpqNicIfPhysAdapterLateCollisions, cpqNicIfPhysAdapterExcessiveCollisions, cpqNicIfPhysAdapterCarrierSenseErrors, and cpqNicIfPhysAdapterInternalMacTransmitErrors. If this counter increments frequently, check the more detailed error statistics and take appropriate action.
 
-#### PhysicalPorts[]/Oem/Hp/Team (read only string)
+### PhysicalPorts[].Oem.Hp.Team
+
+**JSONPath**: /PhysicalPorts[]/Oem/Hp/Team (read only string)
 
 If a port is configured for NIC teaming, the name of the configured link between the physical ports that form a logical network adapter. This value is displayed for system NICs only (embedded and stand-up).
 
-#### Status/Health (read only enumeration)
+### Status.Health
+
+**JSONPath**: /Status/Health (read only enumeration)
 
 Indicates the health state of this resource without considering its dependent resources.
 
-Defined values:
+**Defined values**:
 
 * `OK`
 
@@ -110,15 +142,19 @@ Defined values:
 
 * `Critical`
 
-#### Firmware/definitions/FWVersion/VersionString (read only string)
+### Firmware.definitions.FWVersion.VersionString
+
+**JSONPath**: /Firmware/definitions/FWVersion/VersionString (read only string)
 
 This string represents the version of the firmware image.
 
-#### Status/State (read only enumeration)
+### Status.State
+
+**JSONPath**: /Status/State (read only enumeration)
 
 Indicates the known state of this resource (for example, if the resource is enabled). Enabled indicates that the resource is available. Disabled indicates that the resource has been made unavailable intentionally, but it can be enabled. Offline indicates that the resource is unavailable intentionally and requires action to be made available. InTest indicates that the component is undergoing testing. Starting indicates that the resource is on its way to becoming available. Absent indicates that the resource is physically unavailable.
 
-Defined values:
+**Defined values**:
 
 * `Enabled`
 
@@ -132,27 +168,37 @@ Defined values:
 
 * `Absent`
 
-#### Firmware/Current/VersionString (read only string)
+### Firmware.Current.VersionString
+
+**JSONPath**: /Firmware/Current/VersionString (read only string)
 
 This string represents the version of the firmware image.
 
-#### PhysicalPorts[]/IPv6Addresses[]/Address (read only string)
+### PhysicalPorts[].IPv6Addresses[].Address
+
+**JSONPath**: /PhysicalPorts[]/IPv6Addresses[]/Address (read only string)
 
 This is the IPv6 Address.
 
-#### UEFIDevicePath (read only string)
+### UEFIDevicePath
+
+**JSONPath**: /UEFIDevicePath (read only string)
 
 UEFIDevice Path for correlation purposes
 
-#### PhysicalPorts[]/FullDuplex (read only boolean)
+### PhysicalPorts[].FullDuplex
+
+**JSONPath**: /PhysicalPorts[]/FullDuplex (read only boolean)
 
 Full-duplex data transmission means that data can be transmitted in both directions on a signal carrier at the same time.
 
-#### PhysicalPorts[]/Status/State (read only enumeration)
+### PhysicalPorts[].Status.State
+
+**JSONPath**: /PhysicalPorts[]/Status/State (read only enumeration)
 
 Indicates the known state of this resource (for example, if the resource is enabled). Enabled indicates that the resource is available. Disabled indicates that the resource has been made unavailable intentionally, but it can be enabled. Offline indicates that the resource is unavailable intentionally and requires action to be made available. InTest indicates that the component is undergoing testing. Starting indicates that the resource is on its way to becoming available. Absent indicates that the resource is physically unavailable.
 
-Defined values:
+**Defined values**:
 
 * `Enabled`
 
@@ -166,72 +212,100 @@ Defined values:
 
 * `Absent`
 
-#### PhysicalPorts[]/Oem/Hp/BadReceives (read only integer)
+### PhysicalPorts[].Oem.Hp.BadReceives
+
+**JSONPath**: /PhysicalPorts[]/Oem/Hp/BadReceives (read only integer)
 
 A count of frames that were received by the adapter but which had an error.  This counter is the sum of mib items cpqNicIfPhysAdapterAlignmentErrors, cpqNicIfPhysAdapterFCSErrors, cpqNicIfPhysAdapterFrameTooLongs, and cpqNicIfPhysAdapterInternalMacReceiveErrors. If this counter increments frequently, check the more detailed error statistics and take appropriate action.
 
-#### PhysicalPorts[]/IPv4Addresses[]/Address (read only string)
+### PhysicalPorts[].IPv4Addresses[].Address
+
+**JSONPath**: /PhysicalPorts[]/IPv4Addresses[]/Address (read only string)
 
 This is the IPv4 Address.
 
 ### Chassis
 The schema definition for the Chassis resource represents the properties for physical components for any system. This object represents racks, rack mount servers, blades, standalone, modular systems, enclosures, and all other containers. The non-CPU/device-centric parts of the schema are accessed either directly or indirectly through this resource.
 
-**Instances**:  
+**Resource Instances of this Type**:  
 
 * `https://{iLO}/redfish/v1/chassis/{item}`
 
-#### Oem/Hp/Location/LocationInRack/UPosition (read only integer)
+### Location.LocationInRack.UPosition
+
+**JSONPath**: /Oem/Hp/Location/LocationInRack/UPosition (read only integer)
 
 The chassis U position in the rack.
 
-#### Oem/Hp/Location/GeographicLocation/RackName (read only string)
+### Location.GeographicLocation.RackName
+
+**JSONPath**: /Oem/Hp/Location/GeographicLocation/RackName (read only string)
 
 The name of the chassis enclosure.
 
-#### Oem/Hp/Firmware/SASProgrammableLogicDevice/Current/VersionString (read only string)
+### Firmware.SASProgrammableLogicDevice.Current.VersionString
+
+**JSONPath**: /Oem/Hp/Firmware/SASProgrammableLogicDevice/Current/VersionString (read only string)
 
 The firmware version of the SAS controller.
 
-#### PartNumber (read only string)
+### PartNumber
+
+**JSONPath**: /PartNumber (read only string)
 
 The chassis part number.
 
-#### Manufacturer (read only string)
+### Manufacturer
+
+**JSONPath**: /Manufacturer (read only string)
 
 The chassis manufacturer.
 
-#### Oem/Hp/Location/LocationInRack/RackLdsProductDescription (read only string)
+### Location.LocationInRack.RackLdsProductDescription
+
+**JSONPath**: /Oem/Hp/Location/LocationInRack/RackLdsProductDescription (read only string)
 
  The chassis rack product description.
 
-#### Oem/Hp/Firmware/SPSFirmwareVersionData/Current/VersionString (read only string)
+### Firmware.SPSFirmwareVersionData.Current.VersionString
+
+**JSONPath**: /Oem/Hp/Firmware/SPSFirmwareVersionData/Current/VersionString (read only string)
 
 The SPS FW Version number, aka ME FW Version, AAAA.BBBB.CCCC.DDDD.E
 
-#### Version (read only string)
+### Version
+
+**JSONPath**: /Version (read only string)
 
 The chassis version.
 
-#### Oem/Hp/Location/LocationInRack/RackUUID (read only string)
+### Location.LocationInRack.RackUUID
+
+**JSONPath**: /Oem/Hp/Location/LocationInRack/RackUUID (read only string)
 
 The chassis rack UUID.
 
-#### AssetTag (PATCHable string)
+### AssetTag
+
+**JSONPath**: /AssetTag (PATCHable string)
 
 The chassis user-assigned asset tag.
 
 > example PATCH: {"AssetTag": "&lt;string-value&gt;"}
 
-#### Oem/Hp/Firmware/PowerManagementControllerBootloader/Current/VersionString (read only string)
+### Firmware.PowerManagementControllerBootloader.Current.VersionString
+
+**JSONPath**: /Oem/Hp/Firmware/PowerManagementControllerBootloader/Current/VersionString (read only string)
 
 The firmware version of the Power Monitor boot loader.
 
-#### Status/HealthRollUp (read only enumeration)
+### Status.HealthRollUp
+
+**JSONPath**: /Status/HealthRollUp (read only enumeration)
 
 Indicates the overall health state of this resource and its dependent resources.
 
-Defined values:
+**Defined values**:
 
 * `OK`
 
@@ -239,11 +313,13 @@ Defined values:
 
 * `Critical`
 
-#### Status/State (read only enumeration)
+### Status.State
+
+**JSONPath**: /Status/State (read only enumeration)
 
 Indicates the known state of this resource (for example, if the resource is enabled). Enabled indicates that the resource is available. Disabled indicates that the resource has been made unavailable intentionally, but it can be enabled. Offline indicates that the resource is unavailable intentionally and requires action to be made available. InTest indicates that the component is undergoing testing. Starting indicates that the resource is on its way to becoming available. Absent indicates that the resource is physically unavailable.
 
-Defined values:
+**Defined values**:
 
 * `Enabled`
 
@@ -257,19 +333,25 @@ Defined values:
 
 * `Absent`
 
-#### Model (read only string)
+### Model
+
+**JSONPath**: /Model (read only string)
 
 The chassis model number.
 
-#### Oem/Hp/Location/LocationInRack/TagVersion (read only integer)
+### Location.LocationInRack.TagVersion
+
+**JSONPath**: /Oem/Hp/Location/LocationInRack/TagVersion (read only integer)
 
 The chassis rack tag version.
 
-#### Status/Health (read only enumeration)
+### Status.Health
+
+**JSONPath**: /Status/Health (read only enumeration)
 
 Indicates the health state of this resource without considering its dependent resources.
 
-Defined values:
+**Defined values**:
 
 * `OK`
 
@@ -277,31 +359,43 @@ Defined values:
 
 * `Critical`
 
-#### Oem/Hp/Firmware/PlatformDefinitionTable/Current/VersionString (read only string)
+### Firmware.PlatformDefinitionTable.Current.VersionString
+
+**JSONPath**: /Oem/Hp/Firmware/PlatformDefinitionTable/Current/VersionString (read only string)
 
 The version of the Intelligent Platform Abstraction Data.
 
-#### Oem/Hp/Images/Front/extref (read only string)
+### Images.Front.extref
+
+**JSONPath**: /Oem/Hp/Images/Front/extref (read only string)
 
 The URI of an external resource.
 
-#### Oem/Hp/Firmware/PowerManagementControllerBootloader/Current/Family (read only string)
+### Firmware.PowerManagementControllerBootloader.Current.Family
+
+**JSONPath**: /Oem/Hp/Firmware/PowerManagementControllerBootloader/Current/Family (read only string)
 
 The family type of the Power Monitor hardware.
 
-#### Oem/Hp/BayNumber (read only integer)
+### BayNumber
+
+**JSONPath**: /Oem/Hp/BayNumber (read only integer)
 
 The position of the chassis inside an enclosure.
 
-#### Oem/Hp/Location/LocationOfChassis/UUID (read only string)
+### Location.LocationOfChassis.UUID
+
+**JSONPath**: /Oem/Hp/Location/LocationOfChassis/UUID (read only string)
 
 The chassis UUID provided by SMBIOS.
 
-#### ChassisType (read only enumeration)
+### ChassisType
+
+**JSONPath**: /ChassisType (read only enumeration)
 
 This property indicates the physical form factor type of this resource.
 
-Defined values:
+**Defined values**:
 
 * `Rack`
 
@@ -333,21 +427,27 @@ Defined values:
 
 * `Other`
 
-#### Oem/Hp/Location/LocationInRack/RackUHeight (read only integer)
+### Location.LocationInRack.RackUHeight
+
+**JSONPath**: /Oem/Hp/Location/LocationInRack/RackUHeight (read only integer)
 
 The chassis rack U height.
 
-#### Oem/Hp/Location/LocationInRack/RackLdsPartNumber (read only string)
+### Location.LocationInRack.RackLdsPartNumber
+
+**JSONPath**: /Oem/Hp/Location/LocationInRack/RackLdsPartNumber (read only string)
 
 The chassis rack part number.
 
-#### IndicatorLED (PATCHable enumeration)
+### IndicatorLED
+
+**JSONPath**: /IndicatorLED (PATCHable enumeration)
 
 The chassis indicator LED that is used to identify the chassis. The user can manipulate this LED.
 
 > example PATCH: {"IndicatorLED": "Lit"}
 
-Defined values:
+**Defined values**:
 
 * `Unknown`
 
@@ -357,40 +457,56 @@ Defined values:
 
 * `Off`
 
-#### SKU (read only string)
+### SKU
+
+**JSONPath**: /SKU (read only string)
 
 The chassis SKU.
 
-#### Oem/Hp/PowerAlertMode/Activated (read only boolean)
+### PowerAlertMode.Activated
+
+**JSONPath**: /Oem/Hp/PowerAlertMode/Activated (read only boolean)
 
 The power alert mode activation state.
 
-#### Oem/Hp/Firmware/SystemProgrammableLogicDevice/Current/VersionString (read only string)
+### Firmware.SystemProgrammableLogicDevice.Current.VersionString
+
+**JSONPath**: /Oem/Hp/Firmware/SystemProgrammableLogicDevice/Current/VersionString (read only string)
 
 The firmware version of the CPLD.
 
-#### SerialNumber (read only string)
+### SerialNumber
+
+**JSONPath**: /SerialNumber (read only string)
 
 The chassis serial number.
 
-#### Oem/Hp/Location/LocationInRack/ULocation (read only string)
+### Location.LocationInRack.ULocation
+
+**JSONPath**: /Oem/Hp/Location/LocationInRack/ULocation (read only string)
 
 The chassis rack U location.
 
-#### Oem/Hp/Images/Model/extref (read only string)
+### Images.Model.extref
+
+**JSONPath**: /Oem/Hp/Images/Model/extref (read only string)
 
 The URI of an external resource.
 
-#### Oem/Hp/Firmware/PowerManagementController/Current/VersionString (read only string)
+### Firmware.PowerManagementController.Current.VersionString
+
+**JSONPath**: /Oem/Hp/Firmware/PowerManagementController/Current/VersionString (read only string)
 
 The firmware version of the Power Monitor.
 
-#### Oem/Hp/PowerAlertMode/AlertPowerWatts (read only integer)
+### PowerAlertMode.AlertPowerWatts
+
+**JSONPath**: /Oem/Hp/PowerAlertMode/AlertPowerWatts (read only integer)
 
 The power consumption of the system when operating in alert mode.
 
 ### Collection
-**Instances**:  
+**Resource Instances of this Type**:  
 
 * `https://{iLO}/redfish/v1/systems`
 
@@ -444,104 +560,148 @@ The power consumption of the system when operating in alert mode.
 
 * `https://{iLO}/redfish/v1/systems/{item}/networkadapters`
 
-#### links/FirstPage/1/count (read only integer)
+### links.FirstPage.1.count
+
+**JSONPath**: /links/FirstPage/1/count (read only integer)
 
 The number of resources represented on the referenced page.
 
-#### links/Member[]/frag (read only string)
+### links.Member[].frag
+
+**JSONPath**: /links/Member[]/frag (read only string)
 
 A JSON path fragment to a member of the items array.
 
-#### links/PrevPage/1/count (read only integer)
+### links.PrevPage.1.count
+
+**JSONPath**: /links/PrevPage/1/count (read only integer)
 
 The number of resources represented on the referenced page.
 
-#### Total (read only integer)
+### Total
+
+**JSONPath**: /Total (read only integer)
 
 The total number of collection members.
 
-#### links/LastPage/0/page (read only integer)
+### links.LastPage.0.page
+
+**JSONPath**: /links/LastPage/0/page (read only integer)
 
 The number of the last page.
 
-#### links/FirstPage/0/page (read only integer)
+### links.FirstPage.0.page
+
+**JSONPath**: /links/FirstPage/0/page (read only integer)
 
 The number of the first page.
 
-#### links/FirstPage/1/start (read only integer)
+### links.FirstPage.1.start
+
+**JSONPath**: /links/FirstPage/1/start (read only integer)
 
 The start item index of the first page.
 
-#### links/NextPage/0/page (read only integer)
+### links.NextPage.0.page
+
+**JSONPath**: /links/NextPage/0/page (read only integer)
 
 The number of the next page.
 
-#### links/LastPage/1/start (read only integer)
+### links.LastPage.1.start
+
+**JSONPath**: /links/LastPage/1/start (read only integer)
 
 The start item index of the last page.
 
-#### links/PrevPage/0/page (read only integer)
+### links.PrevPage.0.page
+
+**JSONPath**: /links/PrevPage/0/page (read only integer)
 
 The number of the previous page.
 
-#### links/PrevPage/0/count (read only integer)
+### links.PrevPage.0.count
+
+**JSONPath**: /links/PrevPage/0/count (read only integer)
 
 The number of resources represented on the referenced page.
 
-#### links/LastPage/1/count (read only integer)
+### links.LastPage.1.count
+
+**JSONPath**: /links/LastPage/1/count (read only integer)
 
 The number of resources represented on the referenced page.
 
-#### links/NextPage/1/start (read only integer)
+### links.NextPage.1.start
+
+**JSONPath**: /links/NextPage/1/start (read only integer)
 
 The start value can be used in a query on the URI to get the next page.
 
-#### links/Member[]/id (read only string)
+### links.Member[].id
+
+**JSONPath**: /links/Member[]/id (read only string)
 
 The identifier value of the linked resource.
 
-#### links/LastPage/0/count (read only integer)
+### links.LastPage.0.count
+
+**JSONPath**: /links/LastPage/0/count (read only integer)
 
 The number of resources represented on the referenced page.
 
-#### links/NextPage/1/count (read only integer)
+### links.NextPage.1.count
+
+**JSONPath**: /links/NextPage/1/count (read only integer)
 
 The number of items on the next page.
 
-#### links/PrevPage/1/start (read only integer)
+### links.PrevPage.1.start
+
+**JSONPath**: /links/PrevPage/1/start (read only integer)
 
 The start item index of the previous page.
 
-#### links/NextPage/0/count (read only integer)
+### links.NextPage.0.count
+
+**JSONPath**: /links/NextPage/0/count (read only integer)
 
 The number of resources represented on the referenced page.
 
-#### links/FirstPage/0/count (read only integer)
+### links.FirstPage.0.count
+
+**JSONPath**: /links/FirstPage/0/count (read only integer)
 
 The number of resources represented on the referenced page.
 
-#### MemberType (read only string)
+### MemberType
+
+**JSONPath**: /MemberType (read only string)
 
 This property has the type of members in this collection.  All of the members of a collection have the same value for their Type property, thus they are all the same kind of resource.
 
 ### ComputerSystem
 The schema definition of a computer system and its properties. A computer system represents a physical or virtual machine and the local resources, such as memory, CPU, and other devices that can be accessed from that machine.
 
-**Instances**:  
+**Resource Instances of this Type**:  
 
 * `https://{iLO}/redfish/v1/systems/{item}`
 
-#### PartNumber (read only string)
+### PartNumber
+
+**JSONPath**: /PartNumber (read only string)
 
 The manufacturer's system part number.
 
-#### Oem/Hp/PowerOnDelay (PATCHable enumeration)
+### PowerOnDelay
+
+**JSONPath**: /Oem/Hp/PowerOnDelay (PATCHable enumeration)
 
 The PowerAutoOn policy delay that can also be found in the HpBios::PowerOnDelay object.
 
 > example PATCH: {"Oem": {"Hp": {"PowerOnDelay": "45Sec"}}}
 
-Defined values:
+**Defined values**:
 
 * `Minimum`
 
@@ -555,39 +715,55 @@ Defined values:
 
 * `RandomUpTo120Sec`
 
-#### Oem/Hp/Bios/Bootblock/BuildNumber (read only integer)
+### Bios.Bootblock.BuildNumber
+
+**JSONPath**: /Oem/Hp/Bios/Bootblock/BuildNumber (read only integer)
 
 The build number of the firmware.
 
-#### Oem/Hp/IntelligentProvisioningLocation (read only string)
+### IntelligentProvisioningLocation
+
+**JSONPath**: /Oem/Hp/IntelligentProvisioningLocation (read only string)
 
  Location string of Intelligent Provisioning in Firmware Version Table.
 
-#### Processors/ProcessorFamily (read only string)
+### Processors.ProcessorFamily
+
+**JSONPath**: /Processors/ProcessorFamily (read only string)
 
 The processor family for the processors in the system.
 
-#### Oem/Hp/Bios/Backup/BuildNumber (read only integer)
+### Bios.Backup.BuildNumber
+
+**JSONPath**: /Oem/Hp/Bios/Backup/BuildNumber (read only integer)
 
 The build number of the firmware.
 
-#### Oem/Hp/Bios/Backup/Time (read only string)
+### Bios.Backup.Time
+
+**JSONPath**: /Oem/Hp/Bios/Backup/Time (read only string)
 
 The build time of the firmware.
 
-#### Oem/Hp/Battery[]/ErrorCode (read only integer)
+### Battery[].ErrorCode
+
+**JSONPath**: /Oem/Hp/Battery[]/ErrorCode (read only integer)
 
 Error Code of battery.
 
-#### Oem/Hp/Bios/Bootblock/Family (read only string)
+### Bios.Bootblock.Family
+
+**JSONPath**: /Oem/Hp/Bios/Bootblock/Family (read only string)
 
 The family of the firmware.
 
-#### Oem/Hp/PostState (read only enumeration)
+### PostState
+
+**JSONPath**: /Oem/Hp/PostState (read only enumeration)
 
 The current state of system POST.
 
-Defined values:
+**Defined values**:
 
 * `Unknown`
 
@@ -601,15 +777,19 @@ Defined values:
 
 * `FinishedPost`
 
-#### Oem/Hp/ServerSignature (read only integer)
+### ServerSignature
+
+**JSONPath**: /Oem/Hp/ServerSignature (read only integer)
 
  The CRC32 of:  All Device Signatures combined together, Blade Slot Location in Enclosure, Enclosure UUID, and OneView Domain IP Address
 
-#### Processors/Status/State (read only enumeration)
+### Processors.Status.State
+
+**JSONPath**: /Processors/Status/State (read only enumeration)
 
 Indicates the known state of this resource (for example, if the resource is enabled). Enabled indicates that the resource is available. Disabled indicates that the resource has been made unavailable intentionally, but it can be enabled. Offline indicates that the resource is unavailable intentionally and requires action to be made available. InTest indicates that the component is undergoing testing. Starting indicates that the resource is on its way to becoming available. Absent indicates that the resource is physically unavailable.
 
-Defined values:
+**Defined values**:
 
 * `Enabled`
 
@@ -623,43 +803,59 @@ Defined values:
 
 * `Absent`
 
-#### Oem/Hp/VirtualUUID (read only string)
+### VirtualUUID
+
+**JSONPath**: /Oem/Hp/VirtualUUID (read only string)
 
 Used in conjunction with the UUID (Logical) value.
 
-#### Oem/Hp/Bios/Backup/DebugBuild (read only boolean)
+### Bios.Backup.DebugBuild
+
+**JSONPath**: /Oem/Hp/Bios/Backup/DebugBuild (read only boolean)
 
 True if the firmware is a debug build; False if it is not.
 
-#### Version (read only string)
+### Version
+
+**JSONPath**: /Version (read only string)
 
 The manufacturer's system version.
 
-#### Oem/Hp/Bios/Bootblock/MajorVersion (read only integer)
+### Bios.Bootblock.MajorVersion
+
+**JSONPath**: /Oem/Hp/Bios/Bootblock/MajorVersion (read only integer)
 
 The major version of the firmware.
 
-#### Oem/Hp/Battery[]/SerialNumber (read only string)
+### Battery[].SerialNumber
+
+**JSONPath**: /Oem/Hp/Battery[]/SerialNumber (read only string)
 
 Serial Number of battery.
 
-#### Oem/Hp/Bios/Backup/Date (read only string)
+### Bios.Backup.Date
+
+**JSONPath**: /Oem/Hp/Bios/Backup/Date (read only string)
 
 The build date of the firmware.
 
-#### Boot/UefiTargetBootSourceOverride (PATCHable string)
+### Boot.UefiTargetBootSourceOverride
+
+**JSONPath**: /Boot/UefiTargetBootSourceOverride (PATCHable string)
 
 The UEFI device path of the device to boot from when BootSourceOverrideTarget is UefiTarget.
 
 > example PATCH: {"Boot": {"UefiTargetBootSourceOverride": "&lt;string-value&gt;"}}
 
-#### Oem/Hp/PostMode (PATCHable enumeration)
+### PostMode
+
+**JSONPath**: /Oem/Hp/PostMode (PATCHable enumeration)
 
 Supported on UEFI based systems only. The manner in which the system will operate durring and at completion of POST.
 
 > example PATCH: {"Oem": {"Hp": {"PostMode": "PostToShutdown"}}}
 
-Defined values:
+**Defined values**:
 
 * `Normal`
 
@@ -667,19 +863,25 @@ Defined values:
 
 * `PostToReboot`
 
-#### Oem/Hp/Bios/Current/Date (read only string)
+### Bios.Current.Date
+
+**JSONPath**: /Oem/Hp/Bios/Current/Date (read only string)
 
 The build date of the firmware.
 
-#### Memory/TotalSystemMemoryGB (read only integer)
+### Memory.TotalSystemMemoryGB
+
+**JSONPath**: /Memory/TotalSystemMemoryGB (read only integer)
 
 The total amount of memory (GB) in the system.
 
-#### Memory/Status/HealthRollUp (read only enumeration)
+### Memory.Status.HealthRollUp
+
+**JSONPath**: /Memory/Status/HealthRollUp (read only enumeration)
 
 Indicates the overall health state of this resource and its dependent resources.
 
-Defined values:
+**Defined values**:
 
 * `OK`
 
@@ -687,13 +889,15 @@ Defined values:
 
 * `Critical`
 
-#### Boot/BootSourceOverrideTarget (PATCHable enumeration)
+### Boot.BootSourceOverrideTarget
+
+**JSONPath**: /Boot/BootSourceOverrideTarget (PATCHable enumeration)
 
 The current boot source to be used at next boot instead of the normal boot device, if BootSourceOverrideEnabled is not Disabled.
 
 > example PATCH: {"Boot": {"BootSourceOverrideTarget": "Hdd"}}
 
-Defined values:
+**Defined values**:
 
 * `None`
 
@@ -717,29 +921,39 @@ Defined values:
 
 * `UefiTarget`
 
-#### Oem/Hp/Bios/Backup/BuildNumberString (read only string)
+### Bios.Backup.BuildNumberString
+
+**JSONPath**: /Oem/Hp/Bios/Backup/BuildNumberString (read only string)
 
 The string version of the build number of the firmware.
 
-#### AssetTag (PATCHable string)
+### AssetTag
+
+**JSONPath**: /AssetTag (PATCHable string)
 
 A user-definable tag that is used to track this system for inventory or other client purposes.
 
 > example PATCH: {"AssetTag": "&lt;string-value&gt;"}
 
-#### Oem/Hp/Bios/Bootblock/BuildNumberString (read only string)
+### Bios.Bootblock.BuildNumberString
+
+**JSONPath**: /Oem/Hp/Bios/Bootblock/BuildNumberString (read only string)
 
 The string version of the build number of the firmware.
 
-#### Oem/Hp/IntelligentProvisioningVersion (read only string)
+### IntelligentProvisioningVersion
+
+**JSONPath**: /Oem/Hp/IntelligentProvisioningVersion (read only string)
 
  Intelligent Provisioning Version.
 
-#### Status/HealthRollUp (read only enumeration)
+### Status.HealthRollUp
+
+**JSONPath**: /Status/HealthRollUp (read only enumeration)
 
 Indicates the overall health state of this resource and its dependent resources.
 
-Defined values:
+**Defined values**:
 
 * `OK`
 
@@ -747,11 +961,13 @@ Defined values:
 
 * `Critical`
 
-#### Oem/Hp/PowerRegulatorMode (read only enumeration)
+### PowerRegulatorMode
+
+**JSONPath**: /Oem/Hp/PowerRegulatorMode (read only enumeration)
 
 HP Power Regulator mode.
 
-Defined values:
+**Defined values**:
 
 * `OSControl`
 
@@ -761,29 +977,41 @@ Defined values:
 
 * `Min`
 
-#### Oem/Hp/Bios/Current/MinorVersion (read only integer)
+### Bios.Current.MinorVersion
+
+**JSONPath**: /Oem/Hp/Bios/Current/MinorVersion (read only integer)
 
 The minor version of the firmware.
 
-#### HostCorrelation/HostName (read only string)
+### HostCorrelation.HostName
 
-#### Oem/Hp/Bios/Bootblock/MinorVersion (read only integer)
+**JSONPath**: /HostCorrelation/HostName (read only string)
+
+### Bios.Bootblock.MinorVersion
+
+**JSONPath**: /Oem/Hp/Bios/Bootblock/MinorVersion (read only integer)
 
 The minor version of the firmware.
 
-#### Oem/Hp/Bios/Backup/Family (read only string)
+### Bios.Backup.Family
+
+**JSONPath**: /Oem/Hp/Bios/Backup/Family (read only string)
 
 The family of the firmware.
 
-#### Oem/Hp/Battery[]/Model (read only string)
+### Battery[].Model
+
+**JSONPath**: /Oem/Hp/Battery[]/Model (read only string)
 
 Model of battery.
 
-#### Memory/Status/Health (read only enumeration)
+### Memory.Status.Health
+
+**JSONPath**: /Memory/Status/Health (read only enumeration)
 
 Indicates the health state of this resource without considering its dependent resources.
 
-Defined values:
+**Defined values**:
 
 * `OK`
 
@@ -791,39 +1019,55 @@ Defined values:
 
 * `Critical`
 
-#### Oem/Hp/PowerAllocationLimit (read only integer)
+### PowerAllocationLimit
+
+**JSONPath**: /Oem/Hp/PowerAllocationLimit (read only integer)
 
 The total amount of power allocated to the system.
 
-#### Oem/Hp/Bios/Backup/VersionString (read only string)
+### Bios.Backup.VersionString
+
+**JSONPath**: /Oem/Hp/Bios/Backup/VersionString (read only string)
 
 The version string of the firmware. This value might be null if VersionString is unavailable.
 
-#### Oem/Hp/Bios/Current/MajorVersion (read only integer)
+### Bios.Current.MajorVersion
+
+**JSONPath**: /Oem/Hp/Bios/Current/MajorVersion (read only integer)
 
 The major version of the firmware.
 
-#### Model (read only string)
+### Model
+
+**JSONPath**: /Model (read only string)
 
 The model information that the manufacturer uses to refer to this system.
 
-#### Bios/Current/VersionString (read only string)
+### Bios.Current.VersionString
+
+**JSONPath**: /Bios/Current/VersionString (read only string)
 
 This string represents the version of the firmware image.
 
-#### Oem/Hp/Bios/Backup/MinorVersion (read only integer)
+### Bios.Backup.MinorVersion
+
+**JSONPath**: /Oem/Hp/Bios/Backup/MinorVersion (read only integer)
 
 The minor version of the firmware.
 
-#### Oem/Hp/Bios/Bootblock/Date (read only string)
+### Bios.Bootblock.Date
+
+**JSONPath**: /Oem/Hp/Bios/Bootblock/Date (read only string)
 
 The build date of the firmware.
 
-#### Status/Health (read only enumeration)
+### Status.Health
+
+**JSONPath**: /Status/Health (read only enumeration)
 
 Indicates the health state of this resource without considering its dependent resources.
 
-Defined values:
+**Defined values**:
 
 * `OK`
 
@@ -831,35 +1075,49 @@ Defined values:
 
 * `Critical`
 
-#### BIOSPOSTCode (read only integer)
+### BIOSPOSTCode
+
+**JSONPath**: /BIOSPOSTCode (read only integer)
 
 The BIOS Power on Self Test code from the last system boot.
 
-#### Oem/Hp/Bios/Bootblock/Time (read only string)
+### Bios.Bootblock.Time
+
+**JSONPath**: /Oem/Hp/Bios/Bootblock/Time (read only string)
 
 The build time of the firmware.
 
-#### Oem/Hp/Bios/Current/BuildNumberString (read only string)
+### Bios.Current.BuildNumberString
+
+**JSONPath**: /Oem/Hp/Bios/Current/BuildNumberString (read only string)
 
 The string version of the build number of the firmware.
 
-#### Oem/Hp/IntelligentProvisioningIndex (read only integer)
+### IntelligentProvisioningIndex
+
+**JSONPath**: /Oem/Hp/IntelligentProvisioningIndex (read only integer)
 
  Index in the Firmware Version Table for Intelligent Provisioning.
 
-#### Oem/Hp/Bios/Current/Family (read only string)
+### Bios.Current.Family
+
+**JSONPath**: /Oem/Hp/Bios/Current/Family (read only string)
 
 The family of the firmware.
 
-#### Manufacturer (read only string)
+### Manufacturer
+
+**JSONPath**: /Manufacturer (read only string)
 
 The manufacturer or OEM of this system.
 
-#### Status/State (read only enumeration)
+### Status.State
+
+**JSONPath**: /Status/State (read only enumeration)
 
 Indicates the known state of this resource (for example, if the resource is enabled). Enabled indicates that the resource is available. Disabled indicates that the resource has been made unavailable intentionally, but it can be enabled. Offline indicates that the resource is unavailable intentionally and requires action to be made available. InTest indicates that the component is undergoing testing. Starting indicates that the resource is on its way to becoming available. Absent indicates that the resource is physically unavailable.
 
-Defined values:
+**Defined values**:
 
 * `Enabled`
 
@@ -873,11 +1131,13 @@ Defined values:
 
 * `Absent`
 
-#### SystemType (read only enumeration)
+### SystemType
+
+**JSONPath**: /SystemType (read only enumeration)
 
 The type of computer system that this resource represents.
 
-Defined values:
+**Defined values**:
 
 * `Physical`
 
@@ -889,35 +1149,49 @@ Defined values:
 
 * `VirtuallyPartitioned`
 
-#### Oem/Hp/Bios/Current/VersionString (read only string)
+### Bios.Current.VersionString
+
+**JSONPath**: /Oem/Hp/Bios/Current/VersionString (read only string)
 
 The version string of the firmware. This value might be null if VersionString is unavailable.
 
-#### Oem/Hp/Battery[]/Present (read only string)
+### Battery[].Present
+
+**JSONPath**: /Oem/Hp/Battery[]/Present (read only string)
 
 Presence of battery.
 
-#### UUID (read only string)
+### UUID
+
+**JSONPath**: /UUID (read only string)
 
 The universal unique identifier for this system.
 
-#### VirtualSerialNumber (read only string)
+### VirtualSerialNumber
+
+**JSONPath**: /VirtualSerialNumber (read only string)
 
 The system virtual serial number.
 
-#### Oem/Hp/Battery[]/Spare (read only string)
+### Battery[].Spare
+
+**JSONPath**: /Oem/Hp/Battery[]/Spare (read only string)
 
 Spare of battery.
 
-#### Oem/Hp/Bios/Current/DebugBuild (read only boolean)
+### Bios.Current.DebugBuild
+
+**JSONPath**: /Oem/Hp/Bios/Current/DebugBuild (read only boolean)
 
 True if the firmware is a debug build; False if it is not.
 
-#### Memory/Status/State (read only enumeration)
+### Memory.Status.State
+
+**JSONPath**: /Memory/Status/State (read only enumeration)
 
 Indicates the known state of this resource (for example, if the resource is enabled). Enabled indicates that the resource is available. Disabled indicates that the resource has been made unavailable intentionally, but it can be enabled. Offline indicates that the resource is unavailable intentionally and requires action to be made available. InTest indicates that the component is undergoing testing. Starting indicates that the resource is on its way to becoming available. Absent indicates that the resource is physically unavailable.
 
-Defined values:
+**Defined values**:
 
 * `Enabled`
 
@@ -931,15 +1205,19 @@ Defined values:
 
 * `Absent`
 
-#### Oem/Hp/Bios/Current/Time (read only string)
+### Bios.Current.Time
+
+**JSONPath**: /Oem/Hp/Bios/Current/Time (read only string)
 
 The build time of the firmware.
 
-#### Power (read only enumeration)
+### Power
+
+**JSONPath**: /Power (read only enumeration)
 
 The current power state of the system.
 
-Defined values:
+**Defined values**:
 
 * `On`
 
@@ -949,15 +1227,19 @@ Defined values:
 
 * `Reset`
 
-#### Oem/Hp/Battery[]/MaxCapWatts (read only integer)
+### Battery[].MaxCapWatts
+
+**JSONPath**: /Oem/Hp/Battery[]/MaxCapWatts (read only integer)
 
 Maximum Capacity of battery in watts.
 
-#### Oem/Hp/VirtualProfile (read only enumeration)
+### VirtualProfile
+
+**JSONPath**: /Oem/Hp/VirtualProfile (read only enumeration)
 
 The current state of the systems virtual profile.  This profile is the one that, when the server is rebooted, will set the  Virtual properties.  Intent is to use this state to determine whether the server needs to be rebooted so these values are set.  Additional informaiton about the profile will be considered later.
 
-Defined values:
+**Defined values**:
 
 * `Active`
 
@@ -967,17 +1249,21 @@ Defined values:
 
 * `Unknown`
 
-#### Oem/Hp/Bios/Current/BuildNumber (read only integer)
+### Bios.Current.BuildNumber
+
+**JSONPath**: /Oem/Hp/Bios/Current/BuildNumber (read only integer)
 
 The build number of the firmware.
 
-#### IndicatorLED (PATCHable enumeration)
+### IndicatorLED
+
+**JSONPath**: /IndicatorLED (PATCHable enumeration)
 
 The state of the indicator LED.
 
 > example PATCH: {"IndicatorLED": "Lit"}
 
-Defined values:
+**Defined values**:
 
 * `Unknown`
 
@@ -987,23 +1273,31 @@ Defined values:
 
 * `Off`
 
-#### Oem/Hp/Battery[]/Index (read only integer)
+### Battery[].Index
+
+**JSONPath**: /Oem/Hp/Battery[]/Index (read only integer)
 
 Index of battery.
 
-#### Oem/Hp/Battery[]/FirmwareVersion (read only string)
+### Battery[].FirmwareVersion
+
+**JSONPath**: /Oem/Hp/Battery[]/FirmwareVersion (read only string)
 
 Firmware Version of battery.
 
-#### Oem/Hp/Bios/Backup/MajorVersion (read only integer)
+### Bios.Backup.MajorVersion
+
+**JSONPath**: /Oem/Hp/Bios/Backup/MajorVersion (read only integer)
 
 The major version of the firmware.
 
-#### Oem/Hp/TrustedModules[]/Status (read only enumeration)
+### TrustedModules[].Status
+
+**JSONPath**: /Oem/Hp/TrustedModules[]/Status (read only enumeration)
 
 This property indicates the TPM or TM status.
 
-Defined values:
+**Defined values**:
 
 * `NotPresent`
 
@@ -1013,13 +1307,15 @@ Defined values:
 
 * `Unknown`
 
-#### Oem/Hp/PowerAutoOn (PATCHable enumeration)
+### PowerAutoOn
+
+**JSONPath**: /Oem/Hp/PowerAutoOn (PATCHable enumeration)
 
 Auto Power-On mode defines what occurs when the AC power is applied to the system.
 
 > example PATCH: {"Oem": {"Hp": {"PowerAutoOn": "PowerOn"}}}
 
-Defined values:
+**Defined values**:
 
 * `RemainOff`
 
@@ -1027,15 +1323,19 @@ Defined values:
 
 * `Restore`
 
-#### SKU (read only string)
+### SKU
+
+**JSONPath**: /SKU (read only string)
 
 SKU for this system.
 
-#### Processors/Status/HealthRollUp (read only enumeration)
+### Processors.Status.HealthRollUp
+
+**JSONPath**: /Processors/Status/HealthRollUp (read only enumeration)
 
 Indicates the overall health state of this resource and its dependent resources.
 
-Defined values:
+**Defined values**:
 
 * `OK`
 
@@ -1043,25 +1343,33 @@ Defined values:
 
 * `Critical`
 
-#### SerialNumber (read only string)
+### SerialNumber
+
+**JSONPath**: /SerialNumber (read only string)
 
 The system serial number.
 
-#### Processors/Count (read only integer)
+### Processors.Count
+
+**JSONPath**: /Processors/Count (read only integer)
 
 The number of processors in the system.
 
-#### Oem/Hp/EndOfPostDelaySeconds (PATCHable integer)
+### EndOfPostDelaySeconds
+
+**JSONPath**: /Oem/Hp/EndOfPostDelaySeconds (PATCHable integer)
 
 Supported on UEFI based systems only. The number of seconds to delay before finalizing POST with the Mode action (e.g. delay before shutdown).
 
 > example PATCH: {"Oem": {"Hp": {"EndOfPostDelaySeconds": &lt;integer-value&gt;}}}
 
-#### Processors/Status/Health (read only enumeration)
+### Processors.Status.Health
+
+**JSONPath**: /Processors/Status/Health (read only enumeration)
 
 Indicates the health state of this resource without considering its dependent resources.
 
-Defined values:
+**Defined values**:
 
 * `OK`
 
@@ -1069,27 +1377,37 @@ Defined values:
 
 * `Critical`
 
-#### Oem/Hp/Battery[]/Condition (read only string)
+### Battery[].Condition
+
+**JSONPath**: /Oem/Hp/Battery[]/Condition (read only string)
 
 Condition of battery.
 
-#### Oem/Hp/Bios/Bootblock/VersionString (read only string)
+### Bios.Bootblock.VersionString
+
+**JSONPath**: /Oem/Hp/Bios/Bootblock/VersionString (read only string)
 
 The version string of the firmware. This value might be null if VersionString is unavailable.
 
-#### Oem/Hp/Bios/Bootblock/DebugBuild (read only boolean)
+### Bios.Bootblock.DebugBuild
+
+**JSONPath**: /Oem/Hp/Bios/Bootblock/DebugBuild (read only boolean)
 
 True if the firmware is a debug build; False if it is not.
 
-#### HostCorrelation/HostFQDN (read only string)
+### HostCorrelation.HostFQDN
 
-#### Boot/BootSourceOverrideEnabled (PATCHable enumeration)
+**JSONPath**: /HostCorrelation/HostFQDN (read only string)
+
+### Boot.BootSourceOverrideEnabled
+
+**JSONPath**: /Boot/BootSourceOverrideEnabled (PATCHable enumeration)
 
 BootSourceOverrideTarget must be specified before BootSourceOverrideEnabled can be used.
 
 > example PATCH: {"Boot": {"BootSourceOverrideEnabled": "Once"}}
 
-Defined values:
+**Defined values**:
 
 * `Disabled`
 
@@ -1097,138 +1415,180 @@ Defined values:
 
 * `Continuous`
 
-#### Oem/Hp/Bios/UefiClass (read only integer)
+### Bios.UefiClass
+
+**JSONPath**: /Oem/Hp/Bios/UefiClass (read only integer)
 
 The UEFI BIOS Class value defined in the UEFI specification.
 
 ### EthernetNetworkInterface
 The schema definition of a simple Ethernet NIC resource.
 
-**Instances**:  
+**Resource Instances of this Type**:  
 
 * `https://{iLO}/redfish/v1/managers/{item}/ethernetinterfaces/{item}`
 
-#### LinkTechnology (read only enumeration)
+### LinkTechnology
+
+**JSONPath**: /LinkTechnology (read only enumeration)
 
 The link technology, such as Ethernet, for this NIC.
 
-Defined values:
+**Defined values**:
 
 * `Ethernet`
 
-#### FactoryMacAddress (read only string)
+### FactoryMacAddress
+
+**JSONPath**: /FactoryMacAddress (read only string)
 
 The MAC address assigned to the NIC at the factory.
 
-#### Oem/Hp/DHCPv4/Enabled (PATCHable boolean)
+### DHCPv4.Enabled
+
+**JSONPath**: /Oem/Hp/DHCPv4/Enabled (PATCHable boolean)
 
 Determines whether DHCPv4 is enabled.
 
 > example PATCH: {"Oem": {"Hp": {"DHCPv4": {"Enabled": true}}}}
 
-#### Oem/Hp/VLANId (PATCHable integer)
+### VLANId
+
+**JSONPath**: /Oem/Hp/VLANId (PATCHable integer)
 
 The VLAN ID/tag. Only applies to Shared Network Port.
 
 > example PATCH: {"Oem": {"Hp": {"VLANId": &lt;integer-value&gt;}}}
 
-#### Autosense (PATCHable boolean)
+### Autosense
+
+**JSONPath**: /Autosense (PATCHable boolean)
 
 The autosense speed/duplex enabled or disabled. Autosense can only be disabled if the SpeedMbps and FullDuplex values are specified. Autosense is only applicable and modifiable for a dedicated network port and cannot be modified for blade servers.
 
 > example PATCH: {"Autosense": true}
 
-#### SettingsResult/Operation (read only enumeration)
+### SettingsResult.Operation
+
+**JSONPath**: /SettingsResult/Operation (read only enumeration)
 
 Details about the results of applying the settings.
 
-Defined values:
+**Defined values**:
 
 * `SettingsApply`
 
-#### Oem/Hp/IPv6/StaticRoutes[]/PrefixLength (PATCHable integer)
+### IPv6.StaticRoutes[].PrefixLength
+
+**JSONPath**: /Oem/Hp/IPv6/StaticRoutes[]/PrefixLength (PATCHable integer)
 
 The prefix length of the IPv6 static route destination address.
 
 > example PATCH: {"Oem": {"Hp": {"IPv6": {"StaticRoutes": [{"PrefixLength": &lt;integer-value&gt;}|null, ...]}}}}
 
-#### MacAddress (PATCHable string)
+### MacAddress
+
+**JSONPath**: /MacAddress (PATCHable string)
 
 The effective current MAC address. If the assignable MAC address is not supported, this is a read-only alias of FactoryMacAddress.
 
 > example PATCH: {"MacAddress": "&lt;string-value&gt;"}
 
-#### MaxIPv6StaticAddresses (read only integer)
+### MaxIPv6StaticAddresses
+
+**JSONPath**: /MaxIPv6StaticAddresses (read only integer)
 
 The maximum number of IPv6 static addresses that can be configured on this interface.
 
-#### SettingsResult/Time (read only string)
+### SettingsResult.Time
+
+**JSONPath**: /SettingsResult/Time (read only string)
 
 Time at which the settings were applied.
 
-#### Oem/Hp/SharedNetworkPortOptions/Port (PATCHable integer)
+### SharedNetworkPortOptions.Port
+
+**JSONPath**: /Oem/Hp/SharedNetworkPortOptions/Port (PATCHable integer)
 
 The network adapter port number that is used for sharing. This feature is only applicable on systems and network adapters that support it.
 
 > example PATCH: {"Oem": {"Hp": {"SharedNetworkPortOptions": {"Port": &lt;integer-value&gt;}}}}
 
-#### Oem/Hp/DHCPv6/UseRapidCommit (PATCHable boolean)
+### DHCPv6.UseRapidCommit
+
+**JSONPath**: /Oem/Hp/DHCPv6/UseRapidCommit (PATCHable boolean)
 
 Determines whether to use DHCPv6 rapid commit mode. Can only be enabled when DHCPv6 Stateful mode is also enabled; otherwise, this property will be set to false and will be read-only. Do not enable in networks where more than one DHCPv6 server is configured to provide address assignments.
 
 > example PATCH: {"Oem": {"Hp": {"DHCPv6": {"UseRapidCommit": true}}}}
 
-#### Oem/Hp/IPv6/StaticRoutes[]/Destination (PATCHable string)
+### IPv6.StaticRoutes[].Destination
+
+**JSONPath**: /Oem/Hp/IPv6/StaticRoutes[]/Destination (PATCHable string)
 
 The IPv6 static route destination address.
 
 > example PATCH: {"Oem": {"Hp": {"IPv6": {"StaticRoutes": [{"Destination": "&lt;string-value&gt;"}|null, ...]}}}}
 
-#### Oem/Hp/IPv6/StaticDefaultGateway (PATCHable string)
+### IPv6.StaticDefaultGateway
+
+**JSONPath**: /Oem/Hp/IPv6/StaticDefaultGateway (PATCHable string)
 
 The IPv6 static default gateway entry.
 
 > example PATCH: {"Oem": {"Hp": {"IPv6": {"StaticDefaultGateway": "&lt;string-value&gt;"}}}}
 
-#### Oem/Hp/ConfigurationSettings (read only enumeration)
+### ConfigurationSettings
+
+**JSONPath**: /Oem/Hp/ConfigurationSettings (read only enumeration)
 
 The state of the currently displayed configuration settings.
 
-Defined values:
+**Defined values**:
 
 * `Current`
 
 * `SomePendingReset`
 
-#### IPv6StaticAddresses[]/PrefixLength (PATCHable integer)
+### IPv6StaticAddresses[].PrefixLength
+
+**JSONPath**: /IPv6StaticAddresses[]/PrefixLength (PATCHable integer)
 
 The Prefix Length of this IPv6 address.
 
 > example PATCH: {"IPv6StaticAddresses": [{"PrefixLength": &lt;integer-value&gt;}|null, ...]}
 
-#### FrameSize (PATCHable integer)
+### FrameSize
+
+**JSONPath**: /FrameSize (PATCHable integer)
 
 The MAC frame size (bytes).
 
 > example PATCH: {"FrameSize": &lt;integer-value&gt;}
 
-#### Oem/Hp/PingGatewayOnStartup (PATCHable boolean)
+### PingGatewayOnStartup
+
+**JSONPath**: /Oem/Hp/PingGatewayOnStartup (PATCHable boolean)
 
 Determines whether to ping the IPv4 gateway on startup.
 
 > example PATCH: {"Oem": {"Hp": {"PingGatewayOnStartup": true}}}
 
-#### Oem/Hp/DHCPv4/UseWINSServers (PATCHable boolean)
+### DHCPv4.UseWINSServers
+
+**JSONPath**: /Oem/Hp/DHCPv4/UseWINSServers (PATCHable boolean)
 
 Determines whether to use DHCPv4-supplied WINS servers. Can only be enabled when DHCPv4 is also enabled; otherwise, this property will be set to false and will be read-only.
 
 > example PATCH: {"Oem": {"Hp": {"DHCPv4": {"UseWINSServers": true}}}}
 
-#### IPv6Addresses[]/AddressState (read only enumeration)
+### IPv6Addresses[].AddressState
+
+**JSONPath**: /IPv6Addresses[]/AddressState (read only enumeration)
 
 The current state of this address as defined in RFC 4862.
 
-Defined values:
+**Defined values**:
 
 * `Preferred`
 
@@ -1238,39 +1598,53 @@ Defined values:
 
 * `Failed`
 
-#### SettingsResult/Messages[]/Resolution (read only string)
+### SettingsResult.Messages[].Resolution
+
+**JSONPath**: /SettingsResult/Messages[]/Resolution (read only string)
 
 Instructions for resolving the issue that caused the error.
 
-#### Oem/Hp/SupportsLOM (read only boolean)
+### SupportsLOM
+
+**JSONPath**: /Oem/Hp/SupportsLOM (read only boolean)
 
 Indicates whether this system supports LOM. Only applies to Shared Network Port.
 
-#### FullDuplex (PATCHable boolean)
+### FullDuplex
+
+**JSONPath**: /FullDuplex (PATCHable boolean)
 
 The connection duplex status. If Autosense is enabled, this property cannot be modified. Autosense is only applicable and modifiable for a dedicated network port and cannot be modified for blade servers.
 
 > example PATCH: {"FullDuplex": true}
 
-#### IPv6Addresses[]/PrefixLength (read only integer)
+### IPv6Addresses[].PrefixLength
+
+**JSONPath**: /IPv6Addresses[]/PrefixLength (read only integer)
 
 The IPv6 Address Prefix Length.
 
-#### Oem/Hp/DHCPv4/UseNTPServers (PATCHable boolean)
+### DHCPv4.UseNTPServers
+
+**JSONPath**: /Oem/Hp/DHCPv4/UseNTPServers (PATCHable boolean)
 
 Determines whether to use DHCPv4-supplied NTP servers. Can only be enabled when DHCPv4 is also enabled; otherwise, this property will be set to false and will be read-only.
 
 > example PATCH: {"Oem": {"Hp": {"DHCPv4": {"UseNTPServers": true}}}}
 
-#### Oem/Hp/NICSupportsIPv6 (read only boolean)
+### NICSupportsIPv6
+
+**JSONPath**: /Oem/Hp/NICSupportsIPv6 (read only boolean)
 
 Indicates whether or not this NIC can support the IPv6 protocol.
 
-#### Status/HealthRollUp (read only enumeration)
+### Status.HealthRollUp
+
+**JSONPath**: /Status/HealthRollUp (read only enumeration)
 
 Indicates the overall health state of this resource and its dependent resources.
 
-Defined values:
+**Defined values**:
 
 * `OK`
 
@@ -1278,47 +1652,63 @@ Defined values:
 
 * `Critical`
 
-#### IPv6Addresses[]/Address (read only string)
+### IPv6Addresses[].Address
+
+**JSONPath**: /IPv6Addresses[]/Address (read only string)
 
 The IPv6 Address.
 
-#### Oem/Hp/SupportsFlexibleLOM (read only boolean)
+### SupportsFlexibleLOM
+
+**JSONPath**: /Oem/Hp/SupportsFlexibleLOM (read only boolean)
 
 Indicates whether this system supports FlexibleLOM. Only applies to Shared Network Port.
 
-#### Oem/Hp/IPv6/DDNSRegistration (PATCHable boolean)
+### IPv6.DDNSRegistration
+
+**JSONPath**: /Oem/Hp/IPv6/DDNSRegistration (PATCHable boolean)
 
 Determines whether IPv6 DDNS registration is enabled.
 
 > example PATCH: {"Oem": {"Hp": {"IPv6": {"DDNSRegistration": true}}}}
 
-#### Oem/Hp/IPv4/DDNSRegistration (PATCHable boolean)
+### IPv4.DDNSRegistration
+
+**JSONPath**: /Oem/Hp/IPv4/DDNSRegistration (PATCHable boolean)
 
 Determines whether DDNS registration is enabled.
 
 > example PATCH: {"Oem": {"Hp": {"IPv4": {"DDNSRegistration": true}}}}
 
-#### IPv6AddressPolicyTable[]/Label (PATCHable integer)
+### IPv6AddressPolicyTable[].Label
+
+**JSONPath**: /IPv6AddressPolicyTable[]/Label (PATCHable integer)
 
 The label value for this table entry, as defined in RFC3484 section 2.1.
 
 > example PATCH: {"IPv6AddressPolicyTable": [{"Label": &lt;integer-value&gt;}|null, ...]}
 
-#### Oem/Hp/DHCPv6/UseDNSServers (PATCHable boolean)
+### DHCPv6.UseDNSServers
+
+**JSONPath**: /Oem/Hp/DHCPv6/UseDNSServers (PATCHable boolean)
 
 Determines whether to use DHCPv6-supplied DNS servers. Can only be enabled when DHCPv6 Stateless mode is also enabled; otherwise, this property will be set to false and will be read-only.
 
 > example PATCH: {"Oem": {"Hp": {"DHCPv6": {"UseDNSServers": true}}}}
 
-#### FQDN (read only string)
+### FQDN
+
+**JSONPath**: /FQDN (read only string)
 
 The complete, fully qualified domain name obtained by DNS for this NIC.
 
-#### Status/Health (read only enumeration)
+### Status.Health
+
+**JSONPath**: /Status/Health (read only enumeration)
 
 Indicates the health state of this resource without considering its dependent resources.
 
-Defined values:
+**Defined values**:
 
 * `OK`
 
@@ -1326,17 +1716,21 @@ Defined values:
 
 * `Critical`
 
-#### Oem/Hp/IPv6/StaticRoutes[]/Gateway (PATCHable string)
+### IPv6.StaticRoutes[].Gateway
+
+**JSONPath**: /Oem/Hp/IPv6/StaticRoutes[]/Gateway (PATCHable string)
 
 The IPv6 static route gateway.
 
 > example PATCH: {"Oem": {"Hp": {"IPv6": {"StaticRoutes": [{"Gateway": "&lt;string-value&gt;"}|null, ...]}}}}
 
-#### IPv6Addresses[]/AddressOrigin (read only enumeration)
+### IPv6Addresses[].AddressOrigin
+
+**JSONPath**: /IPv6Addresses[]/AddressOrigin (read only enumeration)
 
 How the address was determined.
 
-Defined values:
+**Defined values**:
 
 * `DHCP`
 
@@ -1344,41 +1738,55 @@ Defined values:
 
 * `SLAAC`
 
-#### VLANId (read only integer)
+### VLANId
+
+**JSONPath**: /VLANId (read only integer)
 
 The VLAN identifier for this NIC. The VLANId is only present when the VLANEnable is used and when the NIC supports only a single VLAN.
 
-#### Oem/Hp/DHCPv4/UseGateway (PATCHable boolean)
+### DHCPv4.UseGateway
+
+**JSONPath**: /Oem/Hp/DHCPv4/UseGateway (PATCHable boolean)
 
 Determines whether to use a DHCPv4-supplied gateway. Can only be enabled when DHCPv4 is also enabled; otherwise, this property will be set to false and will be read-only.
 
 > example PATCH: {"Oem": {"Hp": {"DHCPv4": {"UseGateway": true}}}}
 
-#### Oem/Hp/DHCPv4/UseDNSServers (PATCHable boolean)
+### DHCPv4.UseDNSServers
+
+**JSONPath**: /Oem/Hp/DHCPv4/UseDNSServers (PATCHable boolean)
 
 Determines whether to use DHCPv4-supplied DNS servers. Can only be enabled when DHCPv4 is also enabled; otherwise, this property will be set to false and will be read-only.
 
 > example PATCH: {"Oem": {"Hp": {"DHCPv4": {"UseDNSServers": true}}}}
 
-#### IPv6DefaultGateway (read only string)
+### IPv6DefaultGateway
+
+**JSONPath**: /IPv6DefaultGateway (read only string)
 
 The IPv6 default gateway address that is currently in use on this interface.
 
-#### HostName (read only string)
+### HostName
+
+**JSONPath**: /HostName (read only string)
 
 The DNS Host Name, without any domain information.
 
-#### Oem/Hp/NICEnabled (PATCHable boolean)
+### NICEnabled
+
+**JSONPath**: /Oem/Hp/NICEnabled (PATCHable boolean)
 
 Determines whether this NIC is enabled or disabled. Enabling one NIC will disable the others. If no NIC is enabled, this management processor is not accessible over the network.
 
 > example PATCH: {"Oem": {"Hp": {"NICEnabled": true}}}
 
-#### Status/State (read only enumeration)
+### Status.State
+
+**JSONPath**: /Status/State (read only enumeration)
 
 Indicates the known state of this resource (for example, if the resource is enabled). Enabled indicates that the resource is available. Disabled indicates that the resource has been made unavailable intentionally, but it can be enabled. Offline indicates that the resource is unavailable intentionally and requires action to be made available. InTest indicates that the component is undergoing testing. Starting indicates that the resource is on its way to becoming available. Absent indicates that the resource is physically unavailable.
 
-Defined values:
+**Defined values**:
 
 * `Enabled`
 
@@ -1392,111 +1800,147 @@ Defined values:
 
 * `Absent`
 
-#### Oem/Hp/DHCPv6/StatelessModeEnabled (PATCHable boolean)
+### DHCPv6.StatelessModeEnabled
+
+**JSONPath**: /Oem/Hp/DHCPv6/StatelessModeEnabled (PATCHable boolean)
 
 Determines whether DHCPv6 Stateless mode is enabled.  Always enabled by default whenever DHCPv6 Stateful mode is also enabled.
 
 > example PATCH: {"Oem": {"Hp": {"DHCPv6": {"StatelessModeEnabled": true}}}}
 
-#### SettingsResult/ETag (read only string)
+### SettingsResult.ETag
+
+**JSONPath**: /SettingsResult/ETag (read only string)
 
 ETag of this resource after the settings have been applied.
 
-#### Oem/Hp/IPv6/SLAACEnabled (PATCHable boolean)
+### IPv6.SLAACEnabled
+
+**JSONPath**: /Oem/Hp/IPv6/SLAACEnabled (PATCHable boolean)
 
 Determines whether StateLess Address Auto-Configuration is enabled.
 
 > example PATCH: {"Oem": {"Hp": {"IPv6": {"SLAACEnabled": true}}}}
 
-#### IPv6StaticAddresses[]/Address (PATCHable string)
+### IPv6StaticAddresses[].Address
+
+**JSONPath**: /IPv6StaticAddresses[]/Address (PATCHable string)
 
 A valid IPv6 address.
 
 > example PATCH: {"IPv6StaticAddresses": [{"Address": "&lt;string-value&gt;"}|null, ...]}
 
-#### Oem/Hp/DHCPv6/UseDomainName (PATCHable boolean)
+### DHCPv6.UseDomainName
+
+**JSONPath**: /Oem/Hp/DHCPv6/UseDomainName (PATCHable boolean)
 
 Determines whether to use a DHCPv6-supplied domain name. Can only be enabled when DHCPv6 Stateless mode is also enabled; otherwise, this property will be set to false and will be read-only.
 
 > example PATCH: {"Oem": {"Hp": {"DHCPv6": {"UseDomainName": true}}}}
 
-#### Oem/Hp/IPv4/StaticRoutes[]/Destination (PATCHable string)
+### IPv4.StaticRoutes[].Destination
+
+**JSONPath**: /Oem/Hp/IPv4/StaticRoutes[]/Destination (PATCHable string)
 
 An IPv4 static route subnet mask. Only writeable when use of DHCPv4-supplied static routes is disabled; otherwise this property is read-only indicating the value is provided by DHCPv4.
 
 > example PATCH: {"Oem": {"Hp": {"IPv4": {"StaticRoutes": [{"Destination": "&lt;string-value&gt;"}|null, ...]}}}}
 
-#### Oem/Hp/HostName (PATCHable string)
+### HostName
+
+**JSONPath**: /Oem/Hp/HostName (PATCHable string)
 
 The management processor host name.
 
 > example PATCH: {"Oem": {"Hp": {"HostName": "&lt;string-value&gt;"}}}
 
-#### IPv6AddressPolicyTable[]/Prefix (PATCHable string)
+### IPv6AddressPolicyTable[].Prefix
+
+**JSONPath**: /IPv6AddressPolicyTable[]/Prefix (PATCHable string)
 
 The IPv6 Address Prefix for this table entry as defined in RFC3484 section 2.1.
 
 > example PATCH: {"IPv6AddressPolicyTable": [{"Prefix": "&lt;string-value&gt;"}|null, ...]}
 
-#### Oem/Hp/IPv4/StaticRoutes[]/SubnetMask (PATCHable string)
+### IPv4.StaticRoutes[].SubnetMask
+
+**JSONPath**: /Oem/Hp/IPv4/StaticRoutes[]/SubnetMask (PATCHable string)
 
 An IPv4 static route gateway. Only writeable when use of DHCPv4-supplied static routes is disabled; otherwise this property is read-only indicating the value is provided by DHCPv4.
 
 > example PATCH: {"Oem": {"Hp": {"IPv4": {"StaticRoutes": [{"SubnetMask": "&lt;string-value&gt;"}|null, ...]}}}}
 
-#### Oem/Hp/DHCPv4/UseDomainName (PATCHable boolean)
+### DHCPv4.UseDomainName
+
+**JSONPath**: /Oem/Hp/DHCPv4/UseDomainName (PATCHable boolean)
 
 Determines whether to use a DHCPv4-supplied domain name. Can only be enabled when DHCPv4 is also enabled; otherwis,e this property will be set to false and will be read-only.
 
 > example PATCH: {"Oem": {"Hp": {"DHCPv4": {"UseDomainName": true}}}}
 
-#### UEFIDevicePath (read only string)
+### UEFIDevicePath
+
+**JSONPath**: /UEFIDevicePath (read only string)
 
 The UEFI device path for this NIC.
 
-#### Oem/Hp/DHCPv4/UseStaticRoutes (PATCHable boolean)
+### DHCPv4.UseStaticRoutes
+
+**JSONPath**: /Oem/Hp/DHCPv4/UseStaticRoutes (PATCHable boolean)
 
 Determines whether to use DHCPv4-supplied static routes. Can only be enabled when DHCPv4 is also enabled; otherwise, this property will be set to false and will be read-only.
 
 > example PATCH: {"Oem": {"Hp": {"DHCPv4": {"UseStaticRoutes": true}}}}
 
-#### SettingsResult/Messages[]/MessageID (read only string)
+### SettingsResult.Messages[].MessageID
+
+**JSONPath**: /SettingsResult/Messages[]/MessageID (read only string)
 
 Key for this message, which is used to look up the message in a message registry. The key is in the format <registry>.<majorver>.<minorver>:<messagekey>.
 
-#### Oem/Hp/DomainName (PATCHable string)
+### DomainName
+
+**JSONPath**: /Oem/Hp/DomainName (PATCHable string)
 
 Domain name of the network to which this management processor belongs. This property can only be modified when the management processor is not configured to use a DHCP supplied domain name; otherwise this property is read-only indicating the value is provided by DHCP.
 
 > example PATCH: {"Oem": {"Hp": {"DomainName": "&lt;string-value&gt;"}}}
 
-#### SpeedMbps (PATCHable integer)
+### SpeedMbps
+
+**JSONPath**: /SpeedMbps (PATCHable integer)
 
 The link speed of the Ethernet interface. If Autosense is enabled, this property cannot be modified. This property can only be modified on a dedicated network port. It cannot be modified for blade servers.
 
 > example PATCH: {"SpeedMbps": &lt;integer-value&gt;}
 
-#### IPv4Addresses[]/AddressOrigin (read only enumeration)
+### IPv4Addresses[].AddressOrigin
+
+**JSONPath**: /IPv4Addresses[]/AddressOrigin (read only enumeration)
 
 How the address was determined.
 
-Defined values:
+**Defined values**:
 
 * `DHCP`
 
 * `Static`
 
-#### Oem/Hp/DHCPv6/UseNTPServers (PATCHable boolean)
+### DHCPv6.UseNTPServers
+
+**JSONPath**: /Oem/Hp/DHCPv6/UseNTPServers (PATCHable boolean)
 
 Determines whether to use DHCPv6-supplied NTP servers. Can only be enabled when DHCPv6 Stateless mode is also enabled; otherwise, this property will be set to false and will be read-only.
 
 > example PATCH: {"Oem": {"Hp": {"DHCPv6": {"UseNTPServers": true}}}}
 
-#### Oem/Hp/IPv6/StaticRoutes[]/Status (read only enumeration)
+### IPv6.StaticRoutes[].Status
+
+**JSONPath**: /Oem/Hp/IPv6/StaticRoutes[]/Status (read only enumeration)
 
 Status of this static route entry.
 
-Defined values:
+**Defined values**:
 
 * `Unknown`
 
@@ -1506,17 +1950,21 @@ Defined values:
 
 * `Failed`
 
-#### IPv6AddressPolicyTable[]/Precedence (PATCHable integer)
+### IPv6AddressPolicyTable[].Precedence
+
+**JSONPath**: /IPv6AddressPolicyTable[]/Precedence (PATCHable integer)
 
 The precedence value for this table entry as defined in RFC3484 section 2.1.
 
 > example PATCH: {"IPv6AddressPolicyTable": [{"Precedence": &lt;integer-value&gt;}|null, ...]}
 
-#### SettingsResult/Messages[]/Severity (read only enumeration)
+### SettingsResult.Messages[].Severity
+
+**JSONPath**: /SettingsResult/Messages[]/Severity (read only enumeration)
 
 This is the severity of the errors.
 
-Defined values:
+**Defined values**:
 
 * `OK`
 
@@ -1524,63 +1972,83 @@ Defined values:
 
 * `Critical`
 
-#### IPv4Addresses[]/Address (PATCHable string)
+### IPv4Addresses[].Address
+
+**JSONPath**: /IPv4Addresses[]/Address (PATCHable string)
 
 The IPv4 Address.
 
 > example PATCH: {"IPv4Addresses": [{"Address": "&lt;string-value&gt;"}|null, ...]}
 
-#### IPv4Addresses[]/SubnetMask (PATCHable string)
+### IPv4Addresses[].SubnetMask
+
+**JSONPath**: /IPv4Addresses[]/SubnetMask (PATCHable string)
 
 The IPv4 Subnet mask.
 
 > example PATCH: {"IPv4Addresses": [{"SubnetMask": "&lt;string-value&gt;"}|null, ...]}
 
-#### VLANEnable (read only boolean)
+### VLANEnable
+
+**JSONPath**: /VLANEnable (read only boolean)
 
 Indicates if VLANs are enabled. If this NIC supports more than one VLAN, this property will not be present and the client should look for VLANs collection in the link section of this resource.
 
-#### Oem/Hp/IPv4/WINSRegistration (PATCHable boolean)
+### IPv4.WINSRegistration
+
+**JSONPath**: /Oem/Hp/IPv4/WINSRegistration (PATCHable boolean)
 
 Determines whether WINS registration is enabled.
 
 > example PATCH: {"Oem": {"Hp": {"IPv4": {"WINSRegistration": true}}}}
 
-#### Oem/Hp/DHCPv6/StatefulModeEnabled (PATCHable boolean)
+### DHCPv6.StatefulModeEnabled
+
+**JSONPath**: /Oem/Hp/DHCPv6/StatefulModeEnabled (PATCHable boolean)
 
 Determines whether DHCPv6 Stateful mode is enabled.
 
 > example PATCH: {"Oem": {"Hp": {"DHCPv6": {"StatefulModeEnabled": true}}}}
 
-#### Oem/Hp/IPv4/StaticRoutes[]/Gateway (PATCHable string)
+### IPv4.StaticRoutes[].Gateway
+
+**JSONPath**: /Oem/Hp/IPv4/StaticRoutes[]/Gateway (PATCHable string)
 
 Currently configured WINS servers in order of descending preference. Static values when not configured to use DHCPv4-supplied WINS servers; otherwise this property is read-only indicating the values are provided by DHCPv4.
 
 > example PATCH: {"Oem": {"Hp": {"IPv4": {"StaticRoutes": [{"Gateway": "&lt;string-value&gt;"}|null, ...]}}}}
 
-#### Oem/Hp/SharedNetworkPortOptions/NIC (PATCHable enumeration)
+### SharedNetworkPortOptions.NIC
+
+**JSONPath**: /Oem/Hp/SharedNetworkPortOptions/NIC (PATCHable enumeration)
 
 Selects the system NIC that is to be shared with this management processor.
 
 > example PATCH: {"Oem": {"Hp": {"SharedNetworkPortOptions": {"NIC": "FlexibleLOM"}}}}
 
-Defined values:
+**Defined values**:
 
 * `LOM`
 
 * `FlexibleLOM`
 
-#### Oem/Hp/VLANEnabled (PATCHable boolean)
+### VLANEnabled
+
+**JSONPath**: /Oem/Hp/VLANEnabled (PATCHable boolean)
 
 Determines whether VLAN is enabled. Only applies to Shared Network Port.
 
 > example PATCH: {"Oem": {"Hp": {"VLANEnabled": true}}}
 
-#### SettingsResult/Messages[]/Message (read only string)
+### SettingsResult.Messages[].Message
+
+**JSONPath**: /SettingsResult/Messages[]/Message (read only string)
 
 Human-readable message.
 
-#### IPv4Addresses[]/Gateway (PATCHable string)
+### IPv4Addresses[].Gateway
+
+**JSONPath**: /IPv4Addresses[]/Gateway (PATCHable string)
 
 The IPv4 gateway for this address.
 
@@ -1589,23 +2057,29 @@ The IPv4 gateway for this address.
 ### EventService
 This is the schema definition for the Event Service.  It represents the properties for the service itself and has links to the actual list of subscriptions.
 
-**Instances**:  
+**Resource Instances of this Type**:  
 
 * `https://{iLO}/redfish/v1/eventservice`
 
-#### Oem/Hp/TTLCountDefault (read only integer)
+### TTLCountDefault
+
+**JSONPath**: /Oem/Hp/TTLCountDefault (read only integer)
 
 The default number of TTLUnits until this listener destination subscription expires.  It may be renewed prior to expire to reset the Time to Live counter.  The value 999999 is reserved to mean a perpetual subscription.
 
-#### DeliveryRetryAttempts (read only integer)
+### DeliveryRetryAttempts
+
+**JSONPath**: /DeliveryRetryAttempts (read only integer)
 
 This is the number of attempts an event posting is retried before the subscription is terminated.
 
-#### Status/HealthRollUp (read only enumeration)
+### Status.HealthRollUp
+
+**JSONPath**: /Status/HealthRollUp (read only enumeration)
 
 Indicates the overall health state of this resource and its dependent resources.
 
-Defined values:
+**Defined values**:
 
 * `OK`
 
@@ -1613,27 +2087,37 @@ Defined values:
 
 * `Critical`
 
-#### Oem/Hp/RequestedMaxEventsToQueueDefault (read only integer)
+### RequestedMaxEventsToQueueDefault
+
+**JSONPath**: /Oem/Hp/RequestedMaxEventsToQueueDefault (read only integer)
 
 This represents the default number of events the service should queue.
 
-#### SubscriptionRemovalTimeIntervalInMinutes (read only integer)
+### SubscriptionRemovalTimeIntervalInMinutes
+
+**JSONPath**: /SubscriptionRemovalTimeIntervalInMinutes (read only integer)
 
 This is the minimum amount of time after the failed events that the service will wait before doing the SubscriptionRemovalAction.
 
-#### Oem/Hp/RetireOldEventInMinutesDefault (read only integer)
+### RetireOldEventInMinutesDefault
+
+**JSONPath**: /Oem/Hp/RetireOldEventInMinutesDefault (read only integer)
 
 This represents the default number of minutes until an event is expired.
 
-#### DeliveryRetryIntervalInSeconds (read only integer)
+### DeliveryRetryIntervalInSeconds
+
+**JSONPath**: /DeliveryRetryIntervalInSeconds (read only integer)
 
 This represents the number of seconds between retry attempts for sending any given Event
 
-#### Oem/Hp/TTLUnitsDefault (read only enumeration)
+### TTLUnitsDefault
+
+**JSONPath**: /Oem/Hp/TTLUnitsDefault (read only enumeration)
 
 The default time unit used to measure the subscription time of this listener destination.  This is the units for TTLCount and is used to express the subscription lifetime of the listener destination.
 
-Defined values:
+**Defined values**:
 
 * `seconds`
 
@@ -1641,11 +2125,13 @@ Defined values:
 
 * `days`
 
-#### Status/Health (read only enumeration)
+### Status.Health
+
+**JSONPath**: /Status/Health (read only enumeration)
 
 Indicates the health state of this resource without considering its dependent resources.
 
-Defined values:
+**Defined values**:
 
 * `OK`
 
@@ -1653,11 +2139,13 @@ Defined values:
 
 * `Critical`
 
-#### Status/State (read only enumeration)
+### Status.State
+
+**JSONPath**: /Status/State (read only enumeration)
 
 Indicates the known state of this resource (for example, if the resource is enabled). Enabled indicates that the resource is available. Disabled indicates that the resource has been made unavailable intentionally, but it can be enabled. Offline indicates that the resource is unavailable intentionally and requires action to be made available. InTest indicates that the component is undergoing testing. Starting indicates that the resource is on its way to becoming available. Absent indicates that the resource is physically unavailable.
 
-Defined values:
+**Defined values**:
 
 * `Enabled`
 
@@ -1671,11 +2159,13 @@ Defined values:
 
 * `Absent`
 
-#### SubscriptionRemovalAction (read only enumeration)
+### SubscriptionRemovalAction
+
+**JSONPath**: /SubscriptionRemovalAction (read only enumeration)
 
 This property indicates what the service will do to an event subscription after the number of delivery retry attempts has been exhausted.
 
-Defined values:
+**Defined values**:
 
 * `Remove`
 
@@ -1686,21 +2176,27 @@ Defined values:
 ### ExtendedError
 This is the schema definition for the Extended Error. Extended errors can be included in the body of REST API operation responses. They augment the HTTP error codes with more meaningful information about why the error occurred.
 
-**Instances**:  
+**Resource Instances of this Type**:  
 
-#### Messages[]/Message (read only string)
+### Messages[].Message
+
+**JSONPath**: /Messages[]/Message (read only string)
 
 The human readable message, if provided.
 
-#### Messages[]/MessageID (read only string)
+### Messages[].MessageID
+
+**JSONPath**: /Messages[]/MessageID (read only string)
 
 The key for this message that can be used to look up the message in a message registry.
 
-#### Messages[]/Severity (read only enumeration)
+### Messages[].Severity
+
+**JSONPath**: /Messages[]/Severity (read only enumeration)
 
 The severity of the errors.
 
-Defined values:
+**Defined values**:
 
 * `OK`
 
@@ -1708,66 +2204,92 @@ Defined values:
 
 * `Critical`
 
-#### Messages[]/Resolution (read only string)
+### Messages[].Resolution
+
+**JSONPath**: /Messages[]/Resolution (read only string)
 
 Provides suggestions for how to resolve the situation that caused the error.
 
 ### HPPowerMeter
-**Instances**:  
+**Resource Instances of this Type**:  
 
 * `https://{iLO}/redfish/v1/chassis/{item}/power/fastpowermeter`
 
 * `https://{iLO}/redfish/v1/chassis/{item}/power/powermeter`
 
-#### PowerDetail[]/CpuCapLim (read only integer)
+### PowerDetail[].CpuCapLim
+
+**JSONPath**: /PowerDetail[]/CpuCapLim (read only integer)
 
 CPU cap limit for the power meter.
 
-#### PowerDetail[]/Cap (read only integer)
+### PowerDetail[].Cap
+
+**JSONPath**: /PowerDetail[]/Cap (read only integer)
 
 Overall power cap for the power meter.
 
-#### PowerDetail[]/Minimum (read only integer)
+### PowerDetail[].Minimum
+
+**JSONPath**: /PowerDetail[]/Minimum (read only integer)
 
 Minimum power over the sample time.
 
-#### Samples (read only integer)
+### Samples
+
+**JSONPath**: /Samples (read only integer)
 
 Number of samples in the array.
 
-#### PowerDetail[]/AmbTemp (read only integer)
+### PowerDetail[].AmbTemp
+
+**JSONPath**: /PowerDetail[]/AmbTemp (read only integer)
 
 Ambient temperature, in degrees Celsius.
 
-#### PowerDetail[]/PunCap (read only boolean)
+### PowerDetail[].PunCap
+
+**JSONPath**: /PowerDetail[]/PunCap (read only boolean)
 
 Punitive cap for the power meter.
 
-#### PowerDetail[]/CpuUtil (read only integer)
+### PowerDetail[].CpuUtil
+
+**JSONPath**: /PowerDetail[]/CpuUtil (read only integer)
 
 CPU power utilization.
 
-#### Maximum (read only integer)
+### Maximum
+
+**JSONPath**: /Maximum (read only integer)
 
 Maximum power across all samples, taken from the 24 hour history.
 
-#### Average (read only integer)
+### Average
+
+**JSONPath**: /Average (read only integer)
 
 Average power across all samples, over the last 24 hours.
 
-#### PowerDetail[]/CpuMax (read only integer)
+### PowerDetail[].CpuMax
+
+**JSONPath**: /PowerDetail[]/CpuMax (read only integer)
 
 CPU maximum power consumed by the power meter.
 
-#### PowerDetail[]/Average (read only integer)
+### PowerDetail[].Average
+
+**JSONPath**: /PowerDetail[]/Average (read only integer)
 
 Average power over the sample time.
 
-#### PowerDetail[]/PrMode (read only enumeration)
+### PowerDetail[].PrMode
+
+**JSONPath**: /PowerDetail[]/PrMode (read only enumeration)
 
 Power regulator mode, which can be OS Control, Static High, Static Low or Dynamic.
 
-Defined values:
+**Defined values**:
 
 * `dyn`
 
@@ -1777,32 +2299,44 @@ Defined values:
 
 * `osc`
 
-#### PowerDetail[]/Time (read only string)
+### PowerDetail[].Time
+
+**JSONPath**: /PowerDetail[]/Time (read only string)
 
 Time at which the power detail was captured.
 
-#### PowerDetail[]/CpuAvgFreq (read only integer)
+### PowerDetail[].CpuAvgFreq
+
+**JSONPath**: /PowerDetail[]/CpuAvgFreq (read only integer)
 
 CPU average frequency of the power supply.
 
-#### PowerDetail[]/UnachCap (read only boolean)
+### PowerDetail[].UnachCap
+
+**JSONPath**: /PowerDetail[]/UnachCap (read only boolean)
 
 Unachievable cap for the power meter.
 
-#### Minimum (read only integer)
+### Minimum
+
+**JSONPath**: /Minimum (read only integer)
 
 Minimum power across all samples, taken from the 24 hour history.
 
-#### PowerDetail[]/CpuPwrSavLim (read only integer)
+### PowerDetail[].CpuPwrSavLim
+
+**JSONPath**: /PowerDetail[]/CpuPwrSavLim (read only integer)
 
 CPU power-saving limit for the power meter.
 
-#### PowerDetail[]/Peak (read only integer)
+### PowerDetail[].Peak
+
+**JSONPath**: /PowerDetail[]/Peak (read only integer)
 
 Peak power over the sample time.
 
 ### HpBaseConfigs
-**Instances**:  
+**Resource Instances of this Type**:  
 
 * `https://{iLO}/redfish/v1/systems/{item}/bios/boot/baseconfigs`
 
@@ -1810,50 +2344,68 @@ Peak power over the sample time.
 
 * `https://{iLO}/redfish/v1/systems/{item}/bios/iscsi/baseconfigs`
 
-#### Capabilities/BaseConfig (read only boolean)
+### Capabilities.BaseConfig
+
+**JSONPath**: /Capabilities/BaseConfig (read only boolean)
 
 True if the provider supports PUT/PATCH of the named BaseConfig.
 
-#### Capabilities/BaseConfigs (read only boolean)
+### Capabilities.BaseConfigs
+
+**JSONPath**: /Capabilities/BaseConfigs (read only boolean)
 
 True if the provider supports PUT/PATCH of the named BaseConfigs.
 
 ### HpBios
-**Instances**:  
+**Resource Instances of this Type**:  
 
 * `https://{iLO}/redfish/v1/systems/{item}/bios/settings`
 
 * `https://{iLO}/redfish/v1/systems/{item}/bios`
 
-#### SettingsResult/definitions/SettingsResult/ETag (read only string)
+### SettingsResult.definitions.SettingsResult.ETag
+
+**JSONPath**: /SettingsResult/definitions/SettingsResult/ETag (read only string)
 
 ETag of this resource after the settings have been applied.
 
-#### SettingsResult/definitions/SettingsResult/Messages[]/Message (read only string)
+### SettingsResult.definitions.SettingsResult.Messages[].Message
+
+**JSONPath**: /SettingsResult/definitions/SettingsResult/Messages[]/Message (read only string)
 
 Human-readable message.
 
-#### SettingsResult/definitions/SettingsResult/Messages[]/Resolution (read only string)
+### SettingsResult.definitions.SettingsResult.Messages[].Resolution
+
+**JSONPath**: /SettingsResult/definitions/SettingsResult/Messages[]/Resolution (read only string)
 
 Instructions for resolving the issue that caused the error.
 
-#### SettingsResult/definitions/SettingsResult/Time (read only string)
+### SettingsResult.definitions.SettingsResult.Time
+
+**JSONPath**: /SettingsResult/definitions/SettingsResult/Time (read only string)
 
 Time at which the settings were applied.
 
-#### SettingsResult/definitions/SettingsResult/Messages[]/MessageID (read only string)
+### SettingsResult.definitions.SettingsResult.Messages[].MessageID
+
+**JSONPath**: /SettingsResult/definitions/SettingsResult/Messages[]/MessageID (read only string)
 
 Key for this message, which is used to look up the message in a message registry. The key is in the format <registry>.<majorver>.<minorver>:<messagekey>.
 
-#### AttributeRegistry (read only string)
+### AttributeRegistry
+
+**JSONPath**: /AttributeRegistry (read only string)
 
 This object represents the type property. It represents the schema used for the resource and indicates the version of the schema in the format <schema>.<majorversion>.<minorversion>.<errataversion>.
 
-#### SettingsResult/definitions/SettingsResult/Messages[]/Severity (read only enumeration)
+### SettingsResult.definitions.SettingsResult.Messages[].Severity
+
+**JSONPath**: /SettingsResult/definitions/SettingsResult/Messages[]/Severity (read only enumeration)
 
 This is the severity of the errors.
 
-Defined values:
+**Defined values**:
 
 * `OK`
 
@@ -1861,115 +2413,155 @@ Defined values:
 
 * `Critical`
 
-#### SettingsResult/definitions/SettingsResult/Operation (read only enumeration)
+### SettingsResult.definitions.SettingsResult.Operation
+
+**JSONPath**: /SettingsResult/definitions/SettingsResult/Operation (read only enumeration)
 
 Details about the results of applying the settings.
 
-Defined values:
+**Defined values**:
 
 * `SettingsApply`
 
 ### HpBiosMapping
-**Instances**:  
+**Resource Instances of this Type**:  
 
 * `https://{iLO}/redfish/v1/systems/{item}/bios/mappings`
 
-#### BiosPciSettingsMappings[]/CorrelatableID (read only string)
+### BiosPciSettingsMappings[].CorrelatableID
+
+**JSONPath**: /BiosPciSettingsMappings[]/CorrelatableID (read only string)
 
 Contains any CorrelatableIDs that represent this PCI device. The CorrelatableID values can be JSON Pointers or UEFI identifiers.
 
-#### BiosPciSettingsMappings[]/Instance (read only integer)
+### BiosPciSettingsMappings[].Instance
+
+**JSONPath**: /BiosPciSettingsMappings[]/Instance (read only integer)
 
 The instance number of the parent PCI device for this association set.
 
-#### BiosPciSettingsMappings[]/Subinstances[]/Subinstance (read only integer)
+### BiosPciSettingsMappings[].Subinstances[].Subinstance
+
+**JSONPath**: /BiosPciSettingsMappings[]/Subinstances[]/Subinstance (read only integer)
 
 The sub-instance number of the child PCI device for this association set.
 
-#### AttributeRegistry (read only string)
+### AttributeRegistry
+
+**JSONPath**: /AttributeRegistry (read only string)
 
 This object represents the type property. It represents the schema used for the resource and indicates the version of the schema in the format <schema>.<majorversion>.<minorversion>.<errataversion>.
 
-#### BiosPciSettingsMappings[]/Subinstances[]/CorrelatableID (read only string)
+### BiosPciSettingsMappings[].Subinstances[].CorrelatableID
+
+**JSONPath**: /BiosPciSettingsMappings[]/Subinstances[]/CorrelatableID (read only string)
 
 Contains any CorrelatableIDs that represent this PCI device. The CorrelatableID values can be JSON Pointers or UEFI identifiers.
 
 ### HpESKM
 ESKM (Enterprise Security Key Manager) object enables user to connect to an operational key manager, change redundancy settings, view the key manager connection settings, test the connection, and view key management events.
 
-**Instances**:  
+**Resource Instances of this Type**:  
 
 * `https://{iLO}/redfish/v1/managers/{item}/securityservice/eskm`
 
-#### PrimaryKeyServerPort (PATCHable integer)
+### PrimaryKeyServerPort
+
+**JSONPath**: /PrimaryKeyServerPort (PATCHable integer)
 
 Primary key server port number. Set to null to clear the value.
 
 > example PATCH: {"PrimaryKeyServerPort": &lt;integer-value&gt;}
 
-#### ESKMEvents[]/Event (read only string)
+### ESKMEvents[].Event
+
+**JSONPath**: /ESKMEvents[]/Event (read only string)
 
 ESKM event description.
 
-#### KeyManagerConfig/AccountGroup (PATCHable string)
+### KeyManagerConfig.AccountGroup
+
+**JSONPath**: /KeyManagerConfig/AccountGroup (PATCHable string)
 
 Account group on ESKM.
 
 > example PATCH: {"KeyManagerConfig": {"AccountGroup": "&lt;string-value&gt;"}}
 
-#### KeyManagerConfig/ImportedCertificateIssuer (read only string)
+### KeyManagerConfig.ImportedCertificateIssuer
+
+**JSONPath**: /KeyManagerConfig/ImportedCertificateIssuer (read only string)
 
 Imported certificate issuer.
 
-#### KeyServerRedundancyReq (PATCHable boolean)
+### KeyServerRedundancyReq
+
+**JSONPath**: /KeyServerRedundancyReq (PATCHable boolean)
 
 If true encryption keys will be maintained on both the configured key servers. When this option is disabled, iLO will not verify that encryption keys are copied to both of the configured key servers.
 
 > example PATCH: {"KeyServerRedundancyReq": true}
 
-#### KeyManagerConfig/AccountName (read only string)
+### KeyManagerConfig.AccountName
+
+**JSONPath**: /KeyManagerConfig/AccountName (read only string)
 
 Account name on ESKM.
 
-#### KeyManagerConfig/LoginName (PATCHable string)
+### KeyManagerConfig.LoginName
+
+**JSONPath**: /KeyManagerConfig/LoginName (PATCHable string)
 
 ESKM administrator account login name. This property always returns null on GET.
 
 > example PATCH: {"KeyManagerConfig": {"LoginName": "&lt;string-value&gt;"}}
 
-#### SecondaryKeyServerPort (PATCHable integer)
+### SecondaryKeyServerPort
+
+**JSONPath**: /SecondaryKeyServerPort (PATCHable integer)
 
 Secondary key server port number. Set to null to clear the value.
 
 > example PATCH: {"SecondaryKeyServerPort": &lt;integer-value&gt;}
 
-#### KeyManagerConfig/ImportedCertificateSubject (read only string)
+### KeyManagerConfig.ImportedCertificateSubject
+
+**JSONPath**: /KeyManagerConfig/ImportedCertificateSubject (read only string)
 
 Imported certificate subject.
 
-#### PrimaryKeyServerAddress (PATCHable string)
+### PrimaryKeyServerAddress
+
+**JSONPath**: /PrimaryKeyServerAddress (PATCHable string)
 
 Primary key server IP address or FQDN. Set to null to clear the value.
 
 > example PATCH: {"PrimaryKeyServerAddress": "&lt;string-value&gt;"}
 
-#### ESKMEvents[]/Timestamp (read only string)
+### ESKMEvents[].Timestamp
+
+**JSONPath**: /ESKMEvents[]/Timestamp (read only string)
 
 Time of ESKM event.
 
-#### KeyManagerConfig/Password (PATCHable string)
+### KeyManagerConfig.Password
+
+**JSONPath**: /KeyManagerConfig/Password (PATCHable string)
 
 ESKM administrator account password. This property always returns null on GET.
 
 > example PATCH: {"KeyManagerConfig": {"Password": "&lt;string-value&gt;"}}
 
-#### SecondaryKeyServerAddress (PATCHable string)
+### SecondaryKeyServerAddress
+
+**JSONPath**: /SecondaryKeyServerAddress (PATCHable string)
 
 Secondary key server IP address or FQDN. Set to null to clear the value.
 
 > example PATCH: {"SecondaryKeyServerAddress": "&lt;string-value&gt;"}
 
-#### KeyManagerConfig/ESKMLocalCACertificateName (PATCHable string)
+### KeyManagerConfig.ESKMLocalCACertificateName
+
+**JSONPath**: /KeyManagerConfig/ESKMLocalCACertificateName (PATCHable string)
 
 This is the name of Local CA (Certificate Authority) in ESKM that is used to sign the ESKM server certificate. iLO will retrieve this certificate from the ESKM server.
 
@@ -1978,62 +2570,84 @@ This is the name of Local CA (Certificate Authority) in ESKM that is used to sig
 ### HpHttpsCert
 This is the schema definition for the X509 Certificate.
 
-**Instances**:  
+**Resource Instances of this Type**:  
 
 * `https://{iLO}/redfish/v1/managers/{item}/securityservice/httpscert`
 
-#### X509CertificateInformation/ValidNotAfter (read only string)
+### X509CertificateInformation.ValidNotAfter
+
+**JSONPath**: /X509CertificateInformation/ValidNotAfter (read only string)
 
 The date on which the certificate validity period ends.
 
-#### CertificateSigningRequest (read only string)
+### CertificateSigningRequest
+
+**JSONPath**: /CertificateSigningRequest (read only string)
 
 GenerateCSR action, wait few minutes (upto 10), perform GET operation, fills CSR. Contains a public and private key pair.
 
-#### X509CertificateInformation/SerialNumber (read only string)
+### X509CertificateInformation.SerialNumber
+
+**JSONPath**: /X509CertificateInformation/SerialNumber (read only string)
 
 The serial number that the Certificate Authority assigned to the certificate.
 
-#### X509CertificateInformation/Subject (read only string)
+### X509CertificateInformation.Subject
+
+**JSONPath**: /X509CertificateInformation/Subject (read only string)
 
 The entity to which the certificate was issued.
 
-#### X509CertificateInformation/ValidNotBefore (read only string)
+### X509CertificateInformation.ValidNotBefore
+
+**JSONPath**: /X509CertificateInformation/ValidNotBefore (read only string)
 
 The date on which the certificate validity period begins.
 
-#### X509CertificateInformation/Issuer (read only string)
+### X509CertificateInformation.Issuer
+
+**JSONPath**: /X509CertificateInformation/Issuer (read only string)
 
 The Certificate Authority that issued the certificate.
 
 ### HpMemory
 The schema definition for the properties of Memory DIMMs.
 
-**Instances**:  
+**Resource Instances of this Type**:  
 
 * `https://{iLO}/redfish/v1/systems/{item}/memory/{item}`
 
-#### SocketLocator (read only string)
+### SocketLocator
+
+**JSONPath**: /SocketLocator (read only string)
 
 Identifies the physically labeled socket or board position, where the memory device is located.
 
-#### BankLocator (read only string)
+### BankLocator
+
+**JSONPath**: /BankLocator (read only string)
 
 Identifies the physically labeled bank, where the memory device is located.
 
-#### MinimumVoltageVoltsX10 (read only integer)
+### MinimumVoltageVoltsX10
+
+**JSONPath**: /MinimumVoltageVoltsX10 (read only integer)
 
 The minimum DIMM voltage multiplied by 10, for example, 1.2v = 12.
 
-#### TotalWidth (read only integer)
+### TotalWidth
+
+**JSONPath**: /TotalWidth (read only integer)
 
 The total width, in bits, of this memory device, including any check or error-correction bits. If there are no error-correction bits, this value should be equal to Data Width. If the width is unknown, the field is set to null.
 
-#### HPMemoryType (read only enumeration)
+### HPMemoryType
+
+**JSONPath**: /HPMemoryType (read only enumeration)
 
 Indicates whether or not HP SmartMemory is present.
 
-Defined values:
+**Defined values**:
 
 * `HPSmartMemory`
 
@@ -2041,11 +2655,13 @@ Defined values:
 
 * `Unknown`
 
-#### Status/HealthRollUp (read only enumeration)
+### Status.HealthRollUp
+
+**JSONPath**: /Status/HealthRollUp (read only enumeration)
 
 Indicates the overall health state of this resource and its dependent resources.
 
-Defined values:
+**Defined values**:
 
 * `OK`
 
@@ -2053,15 +2669,19 @@ Defined values:
 
 * `Critical`
 
-#### MaximumFrequencyMHz (read only integer)
+### MaximumFrequencyMHz
+
+**JSONPath**: /MaximumFrequencyMHz (read only integer)
 
 Identifies the maximum, capable speed of the device in megahertz (MHz). If the value is null, the speed is unknown.
 
-#### Status/Health (read only enumeration)
+### Status.Health
+
+**JSONPath**: /Status/Health (read only enumeration)
 
 Indicates the health state of this resource without considering its dependent resources.
 
-Defined values:
+**Defined values**:
 
 * `OK`
 
@@ -2069,11 +2689,13 @@ Defined values:
 
 * `Critical`
 
-#### DIMMTechnology (read only enumeration)
+### DIMMTechnology
+
+**JSONPath**: /DIMMTechnology (read only enumeration)
 
 The memory module technology type.
 
-Defined values:
+**Defined values**:
 
 * `BurstEDO`
 
@@ -2093,23 +2715,31 @@ Defined values:
 
 * `Unknown`
 
-#### PartNumber (read only string)
+### PartNumber
+
+**JSONPath**: /PartNumber (read only string)
 
 The part number for this memory device.
 
-#### Manufacturer (read only string)
+### Manufacturer
+
+**JSONPath**: /Manufacturer (read only string)
 
 Identifies the manufacturer of this memory device.
 
-#### SerialNumber (read only string)
+### SerialNumber
+
+**JSONPath**: /SerialNumber (read only string)
 
 The serial number for this memory device.
 
-#### ErrorCorrection (read only enumeration)
+### ErrorCorrection
+
+**JSONPath**: /ErrorCorrection (read only enumeration)
 
 The error correction used for this DIMM. If the value is null, the error correction is unknown.
 
-Defined values:
+**Defined values**:
 
 * `None`
 
@@ -2121,15 +2751,19 @@ Defined values:
 
 * `CRC`
 
-#### AssetTag (read only string)
+### AssetTag
+
+**JSONPath**: /AssetTag (read only string)
 
 The asset tag for this memory device.
 
-#### DIMMType (read only enumeration)
+### DIMMType
+
+**JSONPath**: /DIMMType (read only enumeration)
 
 The type of memory DIMM used in this system.
 
-Defined values:
+**Defined values**:
 
 * `DDR`
 
@@ -2149,15 +2783,19 @@ Defined values:
 
 * `LPDDR4`
 
-#### Rank (read only integer)
+### Rank
+
+**JSONPath**: /Rank (read only integer)
 
 Specifies the DIMM rank. A value of null indicates the rank is unknown.
 
-#### Status/State (read only enumeration)
+### Status.State
+
+**JSONPath**: /Status/State (read only enumeration)
 
 Indicates the known state of this resource (for example, if the resource is enabled). Enabled indicates that the resource is available. Disabled indicates that the resource has been made unavailable intentionally, but it can be enabled. Offline indicates that the resource is unavailable intentionally and requires action to be made available. InTest indicates that the component is undergoing testing. Starting indicates that the resource is on its way to becoming available. Absent indicates that the resource is physically unavailable.
 
-Defined values:
+**Defined values**:
 
 * `Enabled`
 
@@ -2171,114 +2809,152 @@ Defined values:
 
 * `Absent`
 
-#### DataWidth (read only integer)
+### DataWidth
+
+**JSONPath**: /DataWidth (read only integer)
 
 The data width, in bits, of this memory device. A Data Width value of 0 and a Total Width value of 8 indicates that the device is being used solely to provide 8 error-correction bits. If the width is unknown, the field is set to null.
 
-#### SizeMB (read only integer)
+### SizeMB
+
+**JSONPath**: /SizeMB (read only integer)
 
 The size of the memory device in megabytes.
 
 ### HpSecureBoot
-**Instances**:  
+**Resource Instances of this Type**:  
 
 * `https://{iLO}/redfish/v1/systems/{item}/secureboot`
 
-#### SecureBootEnable (PATCHable boolean)
+### SecureBootEnable
+
+**JSONPath**: /SecureBootEnable (PATCHable boolean)
 
 Enable or disable UEFI Secure Boot (takes effect on next boot).
 
 > example PATCH: {"SecureBootEnable": true}
 
-#### SecureBootCurrentState (read only boolean)
+### SecureBootCurrentState
+
+**JSONPath**: /SecureBootCurrentState (read only boolean)
 
 Current enabled state of Secure Boot
 
-#### ResetAllKeys (PATCHable boolean)
+### ResetAllKeys
+
+**JSONPath**: /ResetAllKeys (PATCHable boolean)
 
 If true, clear all Secure Boot keys on next boot.
 
 > example PATCH: {"ResetAllKeys": true}
 
-#### ResetToDefaultKeys (PATCHable boolean)
+### ResetToDefaultKeys
+
+**JSONPath**: /ResetToDefaultKeys (PATCHable boolean)
 
 If true, reset to default Secure Boot keys on next boot.
 
 > example PATCH: {"ResetToDefaultKeys": true}
 
 ### HpSecurityService
-**Instances**:  
+**Resource Instances of this Type**:  
 
 * `https://{iLO}/redfish/v1/managers/{item}/securityservice`
 
 ### HpServerBootSettings
 The schema definition of the server UEFI Boot Order.
 
-**Instances**:  
+**Resource Instances of this Type**:  
 
 * `https://{iLO}/redfish/v1/systems/{item}/bios/boot`
 
 * `https://{iLO}/redfish/v1/systems/{item}/bios/boot/settings`
 
-#### BootSources[]/BootString (PATCHable string)
+### BootSources[].BootString
+
+**JSONPath**: /BootSources[]/BootString (PATCHable string)
 
 User-readable string that describes the UEFI boot option.
 
-#### SettingsResult/definitions/SettingsResult/ETag (read only string)
+### SettingsResult.definitions.SettingsResult.ETag
+
+**JSONPath**: /SettingsResult/definitions/SettingsResult/ETag (read only string)
 
 ETag of this resource after the settings have been applied.
 
-#### DesiredBootDevices[]/CorrelatableID (PATCHable string)
+### DesiredBootDevices[].CorrelatableID
+
+**JSONPath**: /DesiredBootDevices[]/CorrelatableID (PATCHable string)
 
 Standardized text representation of the UEFI device path of the desired boot device, in UTF-8 format. For example 'PciRoot(0x0)/Pci(0x2,0x2)/Pci(0x0,0x0)'
 
 > example PATCH: {"DesiredBootDevices": [{"CorrelatableID": "&lt;string-value&gt;"}|null, ...]}
 
-#### BootSources[]/CorrelatableID (PATCHable string)
+### BootSources[].CorrelatableID
+
+**JSONPath**: /BootSources[]/CorrelatableID (PATCHable string)
 
 Contains any CorrelatableIDs that represent this boot option. The correlatableID values can be JSON Pointers or UEFI identifiers.
 
-#### SettingsResult/definitions/SettingsResult/Messages[]/MessageID (read only string)
+### SettingsResult.definitions.SettingsResult.Messages[].MessageID
+
+**JSONPath**: /SettingsResult/definitions/SettingsResult/Messages[]/MessageID (read only string)
 
 Key for this message, which is used to look up the message in a message registry. The key is in the format <registry>.<majorver>.<minorver>:<messagekey>.
 
-#### SettingsResult/definitions/SettingsResult/Messages[]/Message (read only string)
+### SettingsResult.definitions.SettingsResult.Messages[].Message
+
+**JSONPath**: /SettingsResult/definitions/SettingsResult/Messages[]/Message (read only string)
 
 Human-readable message.
 
-#### BootSources[]/StructuredBootString (PATCHable string)
+### BootSources[].StructuredBootString
+
+**JSONPath**: /BootSources[]/StructuredBootString (PATCHable string)
 
 Uniquely identifies this boot option within the server.
 
-#### SettingsResult/definitions/SettingsResult/Messages[]/Resolution (read only string)
+### SettingsResult.definitions.SettingsResult.Messages[].Resolution
+
+**JSONPath**: /SettingsResult/definitions/SettingsResult/Messages[]/Resolution (read only string)
 
 Instructions for resolving the issue that caused the error.
 
-#### SettingsResult/definitions/SettingsResult/Time (read only string)
+### SettingsResult.definitions.SettingsResult.Time
+
+**JSONPath**: /SettingsResult/definitions/SettingsResult/Time (read only string)
 
 Time at which the settings were applied.
 
-#### AttributeRegistry (read only string)
+### AttributeRegistry
+
+**JSONPath**: /AttributeRegistry (read only string)
 
 This object represents the type property. It represents the schema used for the resource and indicates the version of the schema in the format <schema>.<majorversion>.<minorversion>.<errataversion>.
 
-#### DesiredBootDevices[]/Lun (PATCHable string)
+### DesiredBootDevices[].Lun
+
+**JSONPath**: /DesiredBootDevices[]/Lun (PATCHable string)
 
 The Logical Unit Number (LUN) of the desired boot device. This value must be a hexadecimal string with an even number of 2 to 16 characters, excluding the first two characters, 0x (for example, '0x01').
 
 > example PATCH: {"DesiredBootDevices": [{"Lun": "&lt;string-value&gt;"}|null, ...]}
 
-#### DesiredBootDevices[]/iScsiTargetName (PATCHable string)
+### DesiredBootDevices[].iScsiTargetName
+
+**JSONPath**: /DesiredBootDevices[]/iScsiTargetName (PATCHable string)
 
 The iSCSI node target name of the desired boot device. The value must be a string based on IETF RFC 3270, and can be up to 244 characters in length (for example, 'iqn.1991-05.com.microsoft:iscsitarget-iscsidisk-target').
 
 > example PATCH: {"DesiredBootDevices": [{"iScsiTargetName": "&lt;string-value&gt;"}|null, ...]}
 
-#### SettingsResult/definitions/SettingsResult/Messages[]/Severity (read only enumeration)
+### SettingsResult.definitions.SettingsResult.Messages[].Severity
+
+**JSONPath**: /SettingsResult/definitions/SettingsResult/Messages[]/Severity (read only enumeration)
 
 This is the severity of the errors.
 
-Defined values:
+**Defined values**:
 
 * `OK`
 
@@ -2286,46 +2962,60 @@ Defined values:
 
 * `Critical`
 
-#### SettingsResult/definitions/SettingsResult/Operation (read only enumeration)
+### SettingsResult.definitions.SettingsResult.Operation
+
+**JSONPath**: /SettingsResult/definitions/SettingsResult/Operation (read only enumeration)
 
 Details about the results of applying the settings.
 
-Defined values:
+**Defined values**:
 
 * `SettingsApply`
 
-#### DesiredBootDevices[]/Wwn (PATCHable string)
+### DesiredBootDevices[].Wwn
+
+**JSONPath**: /DesiredBootDevices[]/Wwn (PATCHable string)
 
 The Fibre Channel World Wide Name (WWN) of the desired boot device. This value must be a hexadecimal string with an even number of 2 to 16 characters, excluding the first two characters, 0x (for example, '0x0001020304050607').
 
 > example PATCH: {"DesiredBootDevices": [{"Wwn": "&lt;string-value&gt;"}|null, ...]}
 
-#### BootSources[]/UEFIDevicePath (PATCHable string)
+### BootSources[].UEFIDevicePath
+
+**JSONPath**: /BootSources[]/UEFIDevicePath (PATCHable string)
 
 Standardized text representation of the UEFI device path for this boot option, in UTF-8 format.
 
 ### HpServerPCISlot
-**Instances**:  
+**Resource Instances of this Type**:  
 
 * `https://{iLO}/redfish/v1/systems/{item}/pcislots/{item}`
 
-#### Status/OperationalStatus[]/Status (read only string)
+### Status.OperationalStatus[].Status
+
+**JSONPath**: /Status/OperationalStatus[]/Status (read only string)
 
 Current usage status of the slot: InUse or Empty
 
-#### UEFIDevicePath (read only string)
+### UEFIDevicePath
+
+**JSONPath**: /UEFIDevicePath (read only string)
 
 Standardized text representation of the UEFI device path, in UTF-8 format
 
-#### SupportsHotPlug (read only boolean)
+### SupportsHotPlug
+
+**JSONPath**: /SupportsHotPlug (read only boolean)
 
 Specifies whether the slot supports hot-plug devices.
 
-#### Length (read only enumeration)
+### Length
+
+**JSONPath**: /Length (read only enumeration)
 
 PCI slot length
 
-Defined values:
+**Defined values**:
 
 * `Short`
 
@@ -2333,11 +3023,13 @@ Defined values:
 
 * `Other`
 
-#### Technology (read only enumeration)
+### Technology
+
+**JSONPath**: /Technology (read only enumeration)
 
 PCI technology
 
-Defined values:
+**Defined values**:
 
 * `PCIExpressGen3`
 
@@ -2345,15 +3037,19 @@ Defined values:
 
 * `PCIExpress`
 
-#### Status/EnabledState (read only string)
+### Status.EnabledState
+
+**JSONPath**: /Status/EnabledState (read only string)
 
 Specifies whether the slot is enabled or disabled.
 
-#### LinkLanes (read only enumeration)
+### LinkLanes
+
+**JSONPath**: /LinkLanes (read only enumeration)
 
 Bandwidth capacity of the slot, measured by the number of PCI Express Lanes present. Also known as the slot width.
 
-Defined values:
+**Defined values**:
 
 * `8 bit`
 
@@ -2380,15 +3076,17 @@ Defined values:
 * `Other`
 
 ### HpServerPciDevice
-**Instances**:  
+**Resource Instances of this Type**:  
 
 * `https://{iLO}/redfish/v1/systems/{item}/pcidevices/{item}`
 
-#### DeviceType (read only enumeration)
+### DeviceType
+
+**JSONPath**: /DeviceType (read only enumeration)
 
 Device type value.
 
-Defined values:
+**Defined values**:
 
 * `Flexible LOM`
 
@@ -2422,86 +3120,122 @@ Defined values:
 
 * `SAS Controller`
 
-#### StructuredName (read only string)
+### StructuredName
+
+**JSONPath**: /StructuredName (read only string)
 
 PCI device structured name in UTF-8 format.
 
-#### EnclosureNumber (read only integer)
+### EnclosureNumber
+
+**JSONPath**: /EnclosureNumber (read only integer)
 
 Enclosure number value.
 
-#### BayNumber (read only integer)
+### BayNumber
+
+**JSONPath**: /BayNumber (read only integer)
 
 Bay number value.
 
-#### SubclassCode (read only integer)
+### SubclassCode
+
+**JSONPath**: /SubclassCode (read only integer)
 
 PCI sub class code of the endpoint.
 
-#### BusNumber (read only integer)
+### BusNumber
+
+**JSONPath**: /BusNumber (read only integer)
 
 PCI device bus number value.
 
-#### DeviceSubInstance (read only integer)
+### DeviceSubInstance
+
+**JSONPath**: /DeviceSubInstance (read only integer)
 
 PCI device sub-instance value.
 
-#### SubsystemVendorID (read only integer)
+### SubsystemVendorID
+
+**JSONPath**: /SubsystemVendorID (read only integer)
 
 PCI subsystem vendor ID of the device.
 
-#### SubsystemDeviceID (read only integer)
+### SubsystemDeviceID
+
+**JSONPath**: /SubsystemDeviceID (read only integer)
 
 PCI subsystem device ID of the device.
 
-#### SegmentNumber (read only integer)
+### SegmentNumber
+
+**JSONPath**: /SegmentNumber (read only integer)
 
 PCI segment group number value.
 
-#### ClassCode (read only integer)
+### ClassCode
+
+**JSONPath**: /ClassCode (read only integer)
 
 PCI class code of the endpoint.
 
-#### FunctionNumber (read only integer)
+### FunctionNumber
+
+**JSONPath**: /FunctionNumber (read only integer)
 
 PCI device function number value.
 
-#### UEFIDevicePath (read only string)
+### UEFIDevicePath
+
+**JSONPath**: /UEFIDevicePath (read only string)
 
 Standardized text representation of the UEFI device path, in UTF-8 format.
 
-#### DeviceLocation (read only string)
+### DeviceLocation
+
+**JSONPath**: /DeviceLocation (read only string)
 
 PCI device location.
 
-#### DeviceInstance (read only integer)
+### DeviceInstance
+
+**JSONPath**: /DeviceInstance (read only integer)
 
 PCI device instance value.
 
-#### DeviceNumber (read only integer)
+### DeviceNumber
+
+**JSONPath**: /DeviceNumber (read only integer)
 
 PCI device number value.
 
-#### VendorID (read only integer)
+### VendorID
+
+**JSONPath**: /VendorID (read only integer)
 
 PCI vendor ID of the device.
 
-#### DeviceID (read only integer)
+### DeviceID
+
+**JSONPath**: /DeviceID (read only integer)
 
 PCI device ID of the device.
 
 ### HpSmartStorage
 HpSmartStorage
 
-**Instances**:  
+**Resource Instances of this Type**:  
 
 * `https://{iLO}/redfish/v1/systems/{item}/smartstorage`
 
-#### Status/HealthRollUp (read only enumeration)
+### Status.HealthRollUp
+
+**JSONPath**: /Status/HealthRollUp (read only enumeration)
 
 Indicates the overall health state of this resource and its dependent resources.
 
-Defined values:
+**Defined values**:
 
 * `OK`
 
@@ -2509,11 +3243,13 @@ Defined values:
 
 * `Critical`
 
-#### Status/Health (read only enumeration)
+### Status.Health
+
+**JSONPath**: /Status/Health (read only enumeration)
 
 Indicates the health state of this resource without considering its dependent resources.
 
-Defined values:
+**Defined values**:
 
 * `OK`
 
@@ -2521,11 +3257,13 @@ Defined values:
 
 * `Critical`
 
-#### Status/State (read only enumeration)
+### Status.State
+
+**JSONPath**: /Status/State (read only enumeration)
 
 Indicates the known state of this resource (for example, if the resource is enabled). Enabled indicates that the resource is available. Disabled indicates that the resource has been made unavailable intentionally, but it can be enabled. Offline indicates that the resource is unavailable intentionally and requires action to be made available. InTest indicates that the component is undergoing testing. Starting indicates that the resource is on its way to becoming available. Absent indicates that the resource is physically unavailable.
 
-Defined values:
+**Defined values**:
 
 * `Enabled`
 
@@ -2542,113 +3280,155 @@ Defined values:
 ### HpSmartStorageArrayController
 HpSmartStorageArrayController
 
-**Instances**:  
+**Resource Instances of this Type**:  
 
 * `https://{iLO}/redfish/v1/systems/{item}/smartstorage/arraycontrollers/{item}`
 
-#### PhysicalDriveCount (read only integer)
+### PhysicalDriveCount
+
+**JSONPath**: /PhysicalDriveCount (read only integer)
 
 The number of physical drives attached to this controller
 
-#### BootVolumePrimary (read only string)
+### BootVolumePrimary
+
+**JSONPath**: /BootVolumePrimary (read only string)
 
 The primary boot volume of this controller
 
-#### EncryptionHasLockedVolumesMissingBootPassword (read only boolean)
+### EncryptionHasLockedVolumesMissingBootPassword
+
+**JSONPath**: /EncryptionHasLockedVolumesMissingBootPassword (read only boolean)
 
 True if there are locked drives due to a missing boot password, false otherwise
 
-#### Manufacturer (read only string)
+### Manufacturer
+
+**JSONPath**: /Manufacturer (read only string)
 
 The manufacturer of the controller
 
-#### EncryptionStandaloneModeEnabled (read only boolean)
+### EncryptionStandaloneModeEnabled
+
+**JSONPath**: /EncryptionStandaloneModeEnabled (read only boolean)
 
 True if the controller manages encryption keys locally, false if a remote key manager is being used
 
-#### EncryptionCryptoOfficerPasswordSet (read only boolean)
+### EncryptionCryptoOfficerPasswordSet
+
+**JSONPath**: /EncryptionCryptoOfficerPasswordSet (read only boolean)
 
 True if a password has been set for the Encryption Crypto Officer, false otherwise
 
-#### PowerModeWarningTemperature (read only boolean)
+### PowerModeWarningTemperature
+
+**JSONPath**: /PowerModeWarningTemperature (read only boolean)
 
 True if the controller has crossed a critical temperature threshold and performance has been reduced to prevent damage to the controller, false otherwise
 
-#### SoftwareRaidHbaModeOptionRomRev (read only string)
+### SoftwareRaidHbaModeOptionRomRev
+
+**JSONPath**: /SoftwareRaidHbaModeOptionRomRev (read only string)
 
 The option ROM firmware version used to bootstrap the software RAID stack
 
-#### ArrayCount (read only integer)
+### ArrayCount
+
+**JSONPath**: /ArrayCount (read only integer)
 
 The number of arrays configured on this controller
 
-#### OperatingModeAfterReboot (read only enumeration)
+### OperatingModeAfterReboot
+
+**JSONPath**: /OperatingModeAfterReboot (read only enumeration)
 
 The operating mode the controller will be functioning in (RAID versus HBA) after a reboot
 
-Defined values:
+**Defined values**:
 
 * `RAID`
 
 * `HBA`
 
-#### SparePhysicalDriveCount (read only integer)
+### SparePhysicalDriveCount
+
+**JSONPath**: /SparePhysicalDriveCount (read only integer)
 
 he number of physical drives assigned as spare drives attached to this controller
 
-#### DataLogicalDriveCount (read only integer)
+### DataLogicalDriveCount
+
+**JSONPath**: /DataLogicalDriveCount (read only integer)
 
 The number of data logical drives configured on this controller
 
-#### EncryptionKekSet (read only boolean)
+### EncryptionKekSet
+
+**JSONPath**: /EncryptionKekSet (read only boolean)
 
 True if the Master Key has been set, false otherwise
 
-#### CacheArrayCount (read only integer)
+### CacheArrayCount
+
+**JSONPath**: /CacheArrayCount (read only integer)
 
 The number of cache arrays configured on this controller
 
-#### EncryptionUserPasswordSet (read only boolean)
+### EncryptionUserPasswordSet
+
+**JSONPath**: /EncryptionUserPasswordSet (read only boolean)
 
 True if a password has been set for the Encryption User, false otherwise.
 
-#### ParallelSurfaceScanSupported (read only boolean)
+### ParallelSurfaceScanSupported
+
+**JSONPath**: /ParallelSurfaceScanSupported (read only boolean)
 
 True if the controller supports scanning multiple disk surfaces
 
-#### EncryptionBootPasswordSet (read only boolean)
+### EncryptionBootPasswordSet
+
+**JSONPath**: /EncryptionBootPasswordSet (read only boolean)
 
 True if there is a boot password set, false otherwise
 
-#### FirmwareVersion/definitions/FWVersion/VersionString (read only string)
+### FirmwareVersion.definitions.FWVersion.VersionString
+
+**JSONPath**: /FirmwareVersion/definitions/FWVersion/VersionString (read only string)
 
 This string represents the version of the firmware image.
 
-#### DegradedPerformanceOptimization (read only enumeration)
+### DegradedPerformanceOptimization
+
+**JSONPath**: /DegradedPerformanceOptimization (read only enumeration)
 
 Enables the controller to attempt to improve performance on RAID 5/50/6(ADG)/60 logical drives when one or more physical drives in the logical drive are failed
 
-Defined values:
+**Defined values**:
 
 * `Enabled`
 
 * `Disabled`
 
-#### CurrentOperatingMode (read only enumeration)
+### CurrentOperatingMode
+
+**JSONPath**: /CurrentOperatingMode (read only enumeration)
 
 The current operating mode of the controller.
 
-Defined values:
+**Defined values**:
 
 * `RAID`
 
 * `HBA`
 
-#### Status/HealthRollUp (read only enumeration)
+### Status.HealthRollUp
+
+**JSONPath**: /Status/HealthRollUp (read only enumeration)
 
 Indicates the overall health state of this resource and its dependent resources.
 
-Defined values:
+**Defined values**:
 
 * `OK`
 
@@ -2656,53 +3436,73 @@ Defined values:
 
 * `Critical`
 
-#### EncryptionPhysicalDriveCount (read only integer)
+### EncryptionPhysicalDriveCount
+
+**JSONPath**: /EncryptionPhysicalDriveCount (read only integer)
 
 The number of encrypted physical drives attached to the controller
 
-#### EncryptionLocalKeyCacheEnabled (read only boolean)
+### EncryptionLocalKeyCacheEnabled
+
+**JSONPath**: /EncryptionLocalKeyCacheEnabled (read only boolean)
 
 True if the controller caches encryption keys locally when a remote key manager is being used, false otherwise
 
-#### PowerModeWarningChangedDrive (read only boolean)
+### PowerModeWarningChangedDrive
+
+**JSONPath**: /PowerModeWarningChangedDrive (read only boolean)
 
 True if the controller's drive configuration has changed while using configuration based power settings, false otherwise
 
-#### CacheMemorySizeMiB (read only integer)
+### CacheMemorySizeMiB
+
+**JSONPath**: /CacheMemorySizeMiB (read only integer)
 
 The total cache memory size for the controller in MiB
 
-#### Model (read only string)
+### Model
+
+**JSONPath**: /Model (read only string)
 
 The model number for the controller
 
-#### DriveWriteCache (read only enumeration)
+### DriveWriteCache
+
+**JSONPath**: /DriveWriteCache (read only enumeration)
 
 Enables or disables the write cache of the physical drives attached to the controller
 
-Defined values:
+**Defined values**:
 
 * `Enabled`
 
 * `Disabled`
 
-#### BootVolumeSecondary (read only string)
+### BootVolumeSecondary
+
+**JSONPath**: /BootVolumeSecondary (read only string)
 
 The secondary boot volume of this controller
 
-#### EncryptionEnabled (read only boolean)
+### EncryptionEnabled
+
+**JSONPath**: /EncryptionEnabled (read only boolean)
 
 True if encryption is currently enabled for this controller, false otherwise
 
-#### EncryptionRecoveryParamsSet (read only boolean)
+### EncryptionRecoveryParamsSet
+
+**JSONPath**: /EncryptionRecoveryParamsSet (read only boolean)
 
 True if the encryption password recovery question and answer have been set, false otherwise
 
-#### PowerModeConfigured (read only enumeration)
+### PowerModeConfigured
+
+**JSONPath**: /PowerModeConfigured (read only enumeration)
 
 The current power mode of the controller
 
-Defined values:
+**Defined values**:
 
 * `Invalid`
 
@@ -2712,21 +3512,25 @@ Defined values:
 
 * `Performant`
 
-#### ElevatorSort (read only enumeration)
+### ElevatorSort
+
+**JSONPath**: /ElevatorSort (read only enumeration)
 
 Enables the controller to sort requests to a physical drive
 
-Defined values:
+**Defined values**:
 
 * `Enabled`
 
 * `Disabled`
 
-#### QueueDepth (read only enumeration)
+### QueueDepth
+
+**JSONPath**: /QueueDepth (read only enumeration)
 
 This sets the maximum number of requests the controller will submit to a drive at any given time
 
-Defined values:
+**Defined values**:
 
 * `2`
 
@@ -2740,11 +3544,13 @@ Defined values:
 
 * `Automatic`
 
-#### PowerModeAfterReboot (read only enumeration)
+### PowerModeAfterReboot
+
+**JSONPath**: /PowerModeAfterReboot (read only enumeration)
 
 The power mode of the controller after a reboot
 
-Defined values:
+**Defined values**:
 
 * `Invalid`
 
@@ -2754,11 +3560,13 @@ Defined values:
 
 * `Performant`
 
-#### FlexibleLatencySchedulerSetting (read only enumeration)
+### FlexibleLatencySchedulerSetting
+
+**JSONPath**: /FlexibleLatencySchedulerSetting (read only enumeration)
 
 This allows the controller to process certain high-latency requests after a delay that may time out when elevator sorting
 
-Defined values:
+**Defined values**:
 
 * `Default`
 
@@ -2772,15 +3580,19 @@ Defined values:
 
 * `Aggressive10`
 
-#### CurrentParallelSurfaceScanCount (read only integer)
+### CurrentParallelSurfaceScanCount
+
+**JSONPath**: /CurrentParallelSurfaceScanCount (read only integer)
 
 Number of disks the controller is scanning in parallel
 
-#### BackupPowerSourceStatus (read only enumeration)
+### BackupPowerSourceStatus
+
+**JSONPath**: /BackupPowerSourceStatus (read only enumeration)
 
 The current status of the backup power source (battery, capacitor, megacell etc.)
 
-Defined values:
+**Defined values**:
 
 * `Present`
 
@@ -2790,23 +3602,29 @@ Defined values:
 
 * `PresentAndCharging`
 
-#### SoftwareRaidHbaFirmwareRev (read only string)
+### SoftwareRaidHbaFirmwareRev
+
+**JSONPath**: /SoftwareRaidHbaFirmwareRev (read only string)
 
 The firmware version of the underlying HBA that is being used by the software RAID stack
 
-#### LocationFormat (read only enumeration)
+### LocationFormat
+
+**JSONPath**: /LocationFormat (read only enumeration)
 
 Format for Location Identifier
 
-Defined values:
+**Defined values**:
 
 * `PCISlot`
 
-#### AdapterType (read only enumeration)
+### AdapterType
+
+**JSONPath**: /AdapterType (read only enumeration)
 
 Type of Smart controller
 
-Defined values:
+**Defined values**:
 
 * `SmartArray`
 
@@ -2814,11 +3632,13 @@ Defined values:
 
 * `DynamicSmartArray`
 
-#### Status/Health (read only enumeration)
+### Status.Health
+
+**JSONPath**: /Status/Health (read only enumeration)
 
 Indicates the health state of this resource without considering its dependent resources.
 
-Defined values:
+**Defined values**:
 
 * `OK`
 
@@ -2826,11 +3646,13 @@ Defined values:
 
 * `Critical`
 
-#### Status/State (read only enumeration)
+### Status.State
+
+**JSONPath**: /Status/State (read only enumeration)
 
 Indicates the known state of this resource (for example, if the resource is enabled). Enabled indicates that the resource is available. Disabled indicates that the resource has been made unavailable intentionally, but it can be enabled. Offline indicates that the resource is unavailable intentionally and requires action to be made available. InTest indicates that the component is undergoing testing. Starting indicates that the resource is on its way to becoming available. Absent indicates that the resource is physically unavailable.
 
-Defined values:
+**Defined values**:
 
 * `Enabled`
 
@@ -2844,49 +3666,67 @@ Defined values:
 
 * `Absent`
 
-#### EncryptionFwLocked (read only boolean)
+### EncryptionFwLocked
+
+**JSONPath**: /EncryptionFwLocked (read only boolean)
 
 True if the controller firmware has been locked, preventing firmware updates, false otherwise
 
-#### LogicalDriveCount (read only integer)
+### LogicalDriveCount
+
+**JSONPath**: /LogicalDriveCount (read only integer)
 
 The number of logical drives configured on this controller
 
-#### PredictiveSpareRebuild (read only enumeration)
+### PredictiveSpareRebuild
+
+**JSONPath**: /PredictiveSpareRebuild (read only enumeration)
 
 Enables or disables predictive spare rebuild mode
 
-Defined values:
+**Defined values**:
 
 * `Enabled`
 
 * `Disabled`
 
-#### Location (read only string)
+### Location
+
+**JSONPath**: /Location (read only string)
 
 Location identifier
 
-#### IsBootController (read only boolean)
+### IsBootController
+
+**JSONPath**: /IsBootController (read only boolean)
 
 True if this controller is the OS boot controller, false otherwise
 
-#### UnassignedPhysicalDriveCount (read only integer)
+### UnassignedPhysicalDriveCount
+
+**JSONPath**: /UnassignedPhysicalDriveCount (read only integer)
 
 The number of unassigned physical drives attached to this controller
 
-#### MaxParallelSurfaceScanCount (read only integer)
+### MaxParallelSurfaceScanCount
+
+**JSONPath**: /MaxParallelSurfaceScanCount (read only integer)
 
 Maximum number of disks that the controller supports scanning in parallel
 
-#### SerialNumber (read only string)
+### SerialNumber
+
+**JSONPath**: /SerialNumber (read only string)
 
 The serial number for this controller
 
-#### RebuildPriority (read only enumeration)
+### RebuildPriority
+
+**JSONPath**: /RebuildPriority (read only enumeration)
 
 The level of priority that rebuilds have over handling current operating system requests
 
-Defined values:
+**Defined values**:
 
 * `High`
 
@@ -2902,19 +3742,25 @@ Defined values:
 
 * `RapidLow`
 
-#### FirmwareVersion/Current/VersionString (read only string)
+### FirmwareVersion.Current.VersionString
+
+**JSONPath**: /FirmwareVersion/Current/VersionString (read only string)
 
 This string represents the version of the firmware image.
 
-#### EncryptionHasLockedVolumes (read only boolean)
+### EncryptionHasLockedVolumes
+
+**JSONPath**: /EncryptionHasLockedVolumes (read only boolean)
 
 True if the controller has one or more volumes that are locked, false otherwise
 
-#### PowerModeWarningReboot (read only enumeration)
+### PowerModeWarningReboot
+
+**JSONPath**: /PowerModeWarningReboot (read only enumeration)
 
 True if a reboot is required to change the active power mode on the controller, false otherwise
 
-Defined values:
+**Defined values**:
 
 * `NotRequired`
 
@@ -2924,45 +3770,61 @@ Defined values:
 
 * `RequiredPerformance`
 
-#### InconsistencyRepairPolicy (read only enumeration)
+### InconsistencyRepairPolicy
+
+**JSONPath**: /InconsistencyRepairPolicy (read only enumeration)
 
 Enables the controller to update data on RAID 6(ADG) and 60 volumes based on parity information when an inconsistency is discovered during surface scan
 
-Defined values:
+**Defined values**:
 
 * `Enabled`
 
 * `Disabled`
 
-#### HardwareRevision (read only string)
+### HardwareRevision
+
+**JSONPath**: /HardwareRevision (read only string)
 
 The hardware revision of the controller
 
-#### PowerModeWarningChangedMode (read only boolean)
+### PowerModeWarningChangedMode
+
+**JSONPath**: /PowerModeWarningChangedMode (read only boolean)
 
 True if the controller has a new power mode configured, false otherwise
 
-#### EncryptionHasSuspendedVolumes (read only boolean)
+### EncryptionHasSuspendedVolumes
+
+**JSONPath**: /EncryptionHasSuspendedVolumes (read only boolean)
 
 True if the controller password has been temporarily suspended, false otherwise
 
-#### CachePhysicalDriveCount (read only integer)
+### CachePhysicalDriveCount
+
+**JSONPath**: /CachePhysicalDriveCount (read only integer)
 
 The number of physical drives assigned as cache drives attached to this controller
 
-#### DataPhysicalDriveCount (read only integer)
+### DataPhysicalDriveCount
+
+**JSONPath**: /DataPhysicalDriveCount (read only integer)
 
 The number of physical drives assigned as data drives attached to this controller
 
-#### CacheLogicalDriveCount (read only integer)
+### CacheLogicalDriveCount
+
+**JSONPath**: /CacheLogicalDriveCount (read only integer)
 
 The number of cache logical drives configured on this controller
 
-#### SurfaceScanAnalysisPriority (read only enumeration)
+### SurfaceScanAnalysisPriority
+
+**JSONPath**: /SurfaceScanAnalysisPriority (read only enumeration)
 
 Priority that the controller takes to find and correct disk surface errors
 
-Defined values:
+**Defined values**:
 
 * `Disabled`
 
@@ -2974,15 +3836,19 @@ Defined values:
 
 * `Idle`
 
-#### EncryptionMixedVolumesEnabled (read only boolean)
+### EncryptionMixedVolumesEnabled
+
+**JSONPath**: /EncryptionMixedVolumesEnabled (read only boolean)
 
 True if the controller will allow plaintext and encrypted volumes to exist simultaneously, false otherwise
 
-#### ExpandPriority (read only enumeration)
+### ExpandPriority
+
+**JSONPath**: /ExpandPriority (read only enumeration)
 
 The level of priority that transformations have over handling current operating system requests
 
-Defined values:
+**Defined values**:
 
 * `High`
 
@@ -2993,49 +3859,65 @@ Defined values:
 ### HpSmartStorageDiskDrive
 HpSmartStorageDiskDrive
 
-**Instances**:  
+**Resource Instances of this Type**:  
 
 * `https://{iLO}/redfish/v1/systems/{item}/smartstorage/arraycontrollers/{item}/diskdrives/{item}`
 
-#### MediaType (read only enumeration)
+### MediaType
+
+**JSONPath**: /MediaType (read only enumeration)
 
 Type of disk
 
-Defined values:
+**Defined values**:
 
 * `HDD`
 
 * `SSD`
 
-#### FirmwareVersion/definitions/FWVersion/VersionString (read only string)
+### FirmwareVersion.definitions.FWVersion.VersionString
+
+**JSONPath**: /FirmwareVersion/definitions/FWVersion/VersionString (read only string)
 
 This string represents the version of the firmware image.
 
-#### CapacityMiB (read only integer)
+### CapacityMiB
+
+**JSONPath**: /CapacityMiB (read only integer)
 
 Total capacity of the drive in MiB
 
-#### PhyCount (read only integer)
+### PhyCount
+
+**JSONPath**: /PhyCount (read only integer)
 
 The number of phys the drive has
 
-#### CurrentTemperatureCelsius (read only integer)
+### CurrentTemperatureCelsius
+
+**JSONPath**: /CurrentTemperatureCelsius (read only integer)
 
 The current temperature of the drive
 
-#### SSDEnduranceUtilizationPercentage (read only integer)
+### SSDEnduranceUtilizationPercentage
+
+**JSONPath**: /SSDEnduranceUtilizationPercentage (read only integer)
 
 This is the percentage of the drive that has been worn out and can no longer be used. When this values reaches 100%, the drive has 0% usage remaining and is completely  worn out
 
-#### PortCount (read only integer)
+### PortCount
+
+**JSONPath**: /PortCount (read only integer)
 
 The number of ports on the drive. Typically 1 (single-domain) or 2 (dual-domain)
 
-#### Status/HealthRollUp (read only enumeration)
+### Status.HealthRollUp
+
+**JSONPath**: /Status/HealthRollUp (read only enumeration)
 
 Indicates the overall health state of this resource and its dependent resources.
 
-Defined values:
+**Defined values**:
 
 * `OK`
 
@@ -3043,11 +3925,13 @@ Defined values:
 
 * `Critical`
 
-#### Status/Health (read only enumeration)
+### Status.Health
+
+**JSONPath**: /Status/Health (read only enumeration)
 
 Indicates the health state of this resource without considering its dependent resources.
 
-Defined values:
+**Defined values**:
 
 * `OK`
 
@@ -3055,47 +3939,67 @@ Defined values:
 
 * `Critical`
 
-#### InterfaceSpeedGbps (read only integer)
+### InterfaceSpeedGbps
+
+**JSONPath**: /InterfaceSpeedGbps (read only integer)
 
 Native interface speed for the device
 
-#### BlockSizeBytes (read only integer)
+### BlockSizeBytes
+
+**JSONPath**: /BlockSizeBytes (read only integer)
 
 Block size of the drive in bytes. This is the block size presented by the drive to clients such as the array controller or operating system.
 
-#### ErasePattern (read only string)
+### ErasePattern
+
+**JSONPath**: /ErasePattern (read only string)
 
 The pattern used for erasing the disk drive
 
-#### WWID (read only string)
+### WWID
+
+**JSONPath**: /WWID (read only string)
 
 Unique identifier for the device
 
-#### NativeBlockSizeBytes (read only integer)
+### NativeBlockSizeBytes
+
+**JSONPath**: /NativeBlockSizeBytes (read only integer)
 
 Native block size of the drive in bytes. This is the underlying sector size used by the physical drive to store data. For example, an advanced format drive that uses 4K sector sizes to store data will return 4K as the NativeBlockSizeBytes but may return 512 for the BlockSizeBytes when running in 512e (emulation) mode for backward compatibility
 
-#### MaximumTemperatureCelsius (read only integer)
+### MaximumTemperatureCelsius
+
+**JSONPath**: /MaximumTemperatureCelsius (read only integer)
 
 The maximum recommended temperature for the drive
 
-#### Manufacturer (read only string)
+### Manufacturer
+
+**JSONPath**: /Manufacturer (read only string)
 
 Manufacturer of the disk drive
 
-#### RotationalSpeedRpm (read only integer)
+### RotationalSpeedRpm
+
+**JSONPath**: /RotationalSpeedRpm (read only integer)
 
 The rotational speed of the drive, only applicable on HDDs
 
-#### SerialNumber (read only string)
+### SerialNumber
+
+**JSONPath**: /SerialNumber (read only string)
 
 The serial number of the drive
 
-#### CarrierAuthenticationStatus (read only enumeration)
+### CarrierAuthenticationStatus
+
+**JSONPath**: /CarrierAuthenticationStatus (read only enumeration)
 
 Authentication status of the drive carrier
 
-Defined values:
+**Defined values**:
 
 * `OK`
 
@@ -3105,29 +4009,37 @@ Defined values:
 
 * `NotApplicable`
 
-#### SpareRebuildMode (read only enumeration)
+### SpareRebuildMode
+
+**JSONPath**: /SpareRebuildMode (read only enumeration)
 
 Method to used activate this drive when another drive fails, this is only applicable if the drive is configured as a spare drive
 
-Defined values:
+**Defined values**:
 
 * `Dedicated`
 
 * `Roaming`
 
-#### EraseCompletionPercentage (read only integer)
+### EraseCompletionPercentage
+
+**JSONPath**: /EraseCompletionPercentage (read only integer)
 
 The percent complete for an erase operation currently occurring on the disk drive
 
-#### Model (read only string)
+### Model
+
+**JSONPath**: /Model (read only string)
 
 Drive model number
 
-#### Status/State (read only enumeration)
+### Status.State
+
+**JSONPath**: /Status/State (read only enumeration)
 
 Indicates the known state of this resource (for example, if the resource is enabled). Enabled indicates that the resource is available. Disabled indicates that the resource has been made unavailable intentionally, but it can be enabled. Offline indicates that the resource is unavailable intentionally and requires action to be made available. InTest indicates that the component is undergoing testing. Starting indicates that the resource is on its way to becoming available. Absent indicates that the resource is physically unavailable.
 
-Defined values:
+**Defined values**:
 
 * `Enabled`
 
@@ -3141,19 +4053,25 @@ Defined values:
 
 * `Absent`
 
-#### TransferSpeedGbps (read only integer)
+### TransferSpeedGbps
+
+**JSONPath**: /TransferSpeedGbps (read only integer)
 
 Effective transfer speed to the device taking into account hardware acceleration such as edge-buffering
 
-#### PowerOnHours (read only integer)
+### PowerOnHours
+
+**JSONPath**: /PowerOnHours (read only integer)
 
 The number of lifetime hours that the drive has been powered on
 
-#### LocationFormat (read only enumeration)
+### LocationFormat
+
+**JSONPath**: /LocationFormat (read only enumeration)
 
 Format for the location property
 
-Defined values:
+**Defined values**:
 
 * `ControllerPort:Box:Bay`
 
@@ -3161,15 +4079,19 @@ Defined values:
 
 * `SwitchPort:SwitchBay:Bay`
 
-#### FirmwareVersion/Current/VersionString (read only string)
+### FirmwareVersion.Current.VersionString
+
+**JSONPath**: /FirmwareVersion/Current/VersionString (read only string)
 
 This string represents the version of the firmware image.
 
-#### InterfaceType (read only enumeration)
+### InterfaceType
+
+**JSONPath**: /InterfaceType (read only enumeration)
 
 The connection interface of the drive
 
-Defined values:
+**Defined values**:
 
 * `SAS`
 
@@ -3179,42 +4101,56 @@ Defined values:
 
 * `Unknown`
 
-#### EncryptedDrive (read only boolean)
+### EncryptedDrive
+
+**JSONPath**: /EncryptedDrive (read only boolean)
 
 True if encryption is currently enabled on this disk drive, false otherwise
 
-#### Location (read only string)
+### Location
+
+**JSONPath**: /Location (read only string)
 
 The location of the drive
 
-#### MinimumGoodFirmwareVersion (read only string)
+### MinimumGoodFirmwareVersion
+
+**JSONPath**: /MinimumGoodFirmwareVersion (read only string)
 
 The minimum recommended firmware revision for the drive
 
-#### CarrierApplicationVersion (read only string)
+### CarrierApplicationVersion
+
+**JSONPath**: /CarrierApplicationVersion (read only string)
 
 Carrier PIC firmware version currently running
 
 ### HpSmartStorageLogicalDrive
 HpSmartStorageLogicalDrive
 
-**Instances**:  
+**Resource Instances of this Type**:  
 
 * `https://{iLO}/redfish/v1/systems/{item}/smartstorage/arraycontrollers/{item}/logicaldrives/{item}`
 
-#### LogicalDriveEncryption (read only boolean)
+### LogicalDriveEncryption
+
+**JSONPath**: /LogicalDriveEncryption (read only boolean)
 
 True if encryption is currently enabled on this logical drive, false otherwise
 
-#### TransformationCompletionPercentage (read only integer)
+### TransformationCompletionPercentage
+
+**JSONPath**: /TransformationCompletionPercentage (read only integer)
 
 The percent complete for any transformations the logical drive may be undergoing such as RAID migration, stripesize migration, capacity expansion etc.
 
-#### Raid (read only enumeration)
+### Raid
+
+**JSONPath**: /Raid (read only enumeration)
 
 The current RAID level configured on the logical drive
 
-Defined values:
+**Defined values**:
 
 * `0`
 
@@ -3234,35 +4170,49 @@ Defined values:
 
 * `60`
 
-#### StripeSizeBytes (read only integer)
+### StripeSizeBytes
+
+**JSONPath**: /StripeSizeBytes (read only integer)
 
 The stripe size of the logical drive in bytes
 
-#### StripSizeBytes (read only integer)
+### StripSizeBytes
+
+**JSONPath**: /StripSizeBytes (read only integer)
 
 The strip size of the logical drive in bytes
 
-#### DriveGeometryCylinders (read only string)
+### DriveGeometryCylinders
+
+**JSONPath**: /DriveGeometryCylinders (read only string)
 
 The number of cylinders on the drive
 
-#### LogicalDriveEncryptionDataKeysVolatileBackup (read only boolean)
+### LogicalDriveEncryptionDataKeysVolatileBackup
+
+**JSONPath**: /LogicalDriveEncryptionDataKeysVolatileBackup (read only boolean)
 
 True if volatile keys are backed up to a remote key manager, false if volatile keys are not backed up
 
-#### DriveGeometryHeads (read only string)
+### DriveGeometryHeads
+
+**JSONPath**: /DriveGeometryHeads (read only string)
 
 The number of heads on the drive
 
-#### DriveAccessName (read only string)
+### DriveAccessName
+
+**JSONPath**: /DriveAccessName (read only string)
 
 The access ID of the logical drive given by the OS
 
-#### SmartCacheState (read only enumeration)
+### SmartCacheState
+
+**JSONPath**: /SmartCacheState (read only enumeration)
 
 The state of the SmartCache cache. This is valid if this drive either is a cache drive, or has a cache drive attached to it
 
-Defined values:
+**Defined values**:
 
 * `Good`
 
@@ -3284,19 +4234,25 @@ Defined values:
 
 * `Unknown`
 
-#### PartitionInformation (read only string)
+### PartitionInformation
+
+**JSONPath**: /PartitionInformation (read only string)
 
 OS partition information for the drive
 
-#### ParityInitializationCompletionPercentage (read only integer)
+### ParityInitializationCompletionPercentage
+
+**JSONPath**: /ParityInitializationCompletionPercentage (read only integer)
 
 Parity initialization complete percentage for a parity based logical drive (e.g. RAID 5)
 
-#### Status/HealthRollUp (read only enumeration)
+### Status.HealthRollUp
+
+**JSONPath**: /Status/HealthRollUp (read only enumeration)
 
 Indicates the overall health state of this resource and its dependent resources.
 
-Defined values:
+**Defined values**:
 
 * `OK`
 
@@ -3304,11 +4260,13 @@ Defined values:
 
 * `Critical`
 
-#### LogicalDriveType (read only enumeration)
+### LogicalDriveType
+
+**JSONPath**: /LogicalDriveType (read only enumeration)
 
 How the logical drive is being used
 
-Defined values:
+**Defined values**:
 
 * `Data`
 
@@ -3320,23 +4278,31 @@ Defined values:
 
 * `SplitMirrorSetBackupOrphan`
 
-#### RebuildCompletionPercentage (read only integer)
+### RebuildCompletionPercentage
+
+**JSONPath**: /RebuildCompletionPercentage (read only integer)
 
 The percent complete for a rebuild operation currently occurring on the logical drive
 
-#### LogicalDriveEncryptionDataKeysVolatile (read only boolean)
+### LogicalDriveEncryptionDataKeysVolatile
+
+**JSONPath**: /LogicalDriveEncryptionDataKeysVolatile (read only boolean)
 
 True if volatile keys are enabled for encryption, false otherwise
 
-#### VolumeUniqueIdentifier (read only string)
+### VolumeUniqueIdentifier
+
+**JSONPath**: /VolumeUniqueIdentifier (read only string)
 
 An identifier (typically SCSI Inquiry based such as Inquiry VPD Page 0x83 NAA 64 identifier) used to uniquely identify this volume.
 
-#### Status/Health (read only enumeration)
+### Status.Health
+
+**JSONPath**: /Status/Health (read only enumeration)
 
 Indicates the health state of this resource without considering its dependent resources.
 
-Defined values:
+**Defined values**:
 
 * `OK`
 
@@ -3344,41 +4310,55 @@ Defined values:
 
 * `Critical`
 
-#### ParityInitializationType (read only enumeration)
+### ParityInitializationType
+
+**JSONPath**: /ParityInitializationType (read only enumeration)
 
 When creating a logical drive with a RAID level that requires parity, parity blocks can be initialized with two different methods
 
-Defined values:
+**Defined values**:
 
 * `Default`
 
 * `Rapid`
 
-#### DriveGeometrySectors (read only string)
+### DriveGeometrySectors
+
+**JSONPath**: /DriveGeometrySectors (read only string)
 
 The number of sectors on the drive
 
-#### BlockSizeBytes (read only integer)
+### BlockSizeBytes
+
+**JSONPath**: /BlockSizeBytes (read only integer)
 
 The block size of the disk drive in bytes
 
-#### LogicalDriveName (read only string)
+### LogicalDriveName
+
+**JSONPath**: /LogicalDriveName (read only string)
 
 Label given to the logical drive
 
-#### LogicalDriveNumber (read only integer)
+### LogicalDriveNumber
+
+**JSONPath**: /LogicalDriveNumber (read only integer)
 
 logical drive number
 
-#### CapacityMiB (read only integer)
+### CapacityMiB
+
+**JSONPath**: /CapacityMiB (read only integer)
 
 Total usable capacity available on this logical drive in MiB units
 
-#### Status/State (read only enumeration)
+### Status.State
+
+**JSONPath**: /Status/State (read only enumeration)
 
 Indicates the known state of this resource (for example, if the resource is enabled). Enabled indicates that the resource is available. Disabled indicates that the resource has been made unavailable intentionally, but it can be enabled. Offline indicates that the resource is unavailable intentionally and requires action to be made available. InTest indicates that the component is undergoing testing. Starting indicates that the resource is on its way to becoming available. Absent indicates that the resource is physically unavailable.
 
-Defined values:
+**Defined values**:
 
 * `Enabled`
 
@@ -3392,11 +4372,13 @@ Defined values:
 
 * `Absent`
 
-#### LogicalDriveEncryptionDataKeysVolatileStatus (read only enumeration)
+### LogicalDriveEncryptionDataKeysVolatileStatus
+
+**JSONPath**: /LogicalDriveEncryptionDataKeysVolatileStatus (read only enumeration)
 
 The status of the encryption volatile keys
 
-Defined values:
+**Defined values**:
 
 * `NoOp`
 
@@ -3411,27 +4393,35 @@ Defined values:
 ### HpSmartStorageStorageEnclosure
 HpSmartStorageStorageEnclosure
 
-**Instances**:  
+**Resource Instances of this Type**:  
 
 * `https://{iLO}/redfish/v1/systems/{item}/smartstorage/arraycontrollers/{item}/storageenclosures/{item}`
 
-#### FirmwareVersion/definitions/FWVersion/VersionString (read only string)
+### FirmwareVersion.definitions.FWVersion.VersionString
+
+**JSONPath**: /FirmwareVersion/definitions/FWVersion/VersionString (read only string)
 
 This string represents the version of the firmware image.
 
-#### SubEnclosureLocation (read only string)
+### SubEnclosureLocation
+
+**JSONPath**: /SubEnclosureLocation (read only string)
 
 Location within the chassis if this storage enclosure is part of a larger chassis hosting multiple storage enclosures
 
-#### DriveBayCount (read only integer)
+### DriveBayCount
+
+**JSONPath**: /DriveBayCount (read only integer)
 
 Number of drive bays supported within the storage enclosure
 
-#### Status/HealthRollUp (read only enumeration)
+### Status.HealthRollUp
+
+**JSONPath**: /Status/HealthRollUp (read only enumeration)
 
 Indicates the overall health state of this resource and its dependent resources.
 
-Defined values:
+**Defined values**:
 
 * `OK`
 
@@ -3439,11 +4429,13 @@ Defined values:
 
 * `Critical`
 
-#### Status/Health (read only enumeration)
+### Status.Health
+
+**JSONPath**: /Status/Health (read only enumeration)
 
 Indicates the health state of this resource without considering its dependent resources.
 
-Defined values:
+**Defined values**:
 
 * `OK`
 
@@ -3451,23 +4443,31 @@ Defined values:
 
 * `Critical`
 
-#### PartNumber (read only string)
+### PartNumber
+
+**JSONPath**: /PartNumber (read only string)
 
 Part number of this storage enclosure
 
-#### SKU (read only string)
+### SKU
+
+**JSONPath**: /SKU (read only string)
 
 SKU for the storage enclosure
 
-#### Manufacturer (read only string)
+### Manufacturer
+
+**JSONPath**: /Manufacturer (read only string)
 
 The manufacturer of the storage enclosure
 
-#### LocationFormat (read only enumeration)
+### LocationFormat
+
+**JSONPath**: /LocationFormat (read only enumeration)
 
 Format for Location Identifier
 
-Defined values:
+**Defined values**:
 
 * `Controller:Box`
 
@@ -3475,27 +4475,37 @@ Defined values:
 
 * `SwitchPort:SwitchBay`
 
-#### SerialNumber (read only string)
+### SerialNumber
+
+**JSONPath**: /SerialNumber (read only string)
 
 The serial number for this storage enclosure
 
-#### FirmwareVersion/Current/VersionString (read only string)
+### FirmwareVersion.Current.VersionString
+
+**JSONPath**: /FirmwareVersion/Current/VersionString (read only string)
 
 This string represents the version of the firmware image.
 
-#### Model (read only string)
+### Model
+
+**JSONPath**: /Model (read only string)
 
 The model string for the storage enclosure
 
-#### EnclosureLogicalID (read only string)
+### EnclosureLogicalID
+
+**JSONPath**: /EnclosureLogicalID (read only string)
 
 Unique ID for the storage enclosure
 
-#### Status/State (read only enumeration)
+### Status.State
+
+**JSONPath**: /Status/State (read only enumeration)
 
 Indicates the known state of this resource (for example, if the resource is enabled). Enabled indicates that the resource is available. Disabled indicates that the resource has been made unavailable intentionally, but it can be enabled. Offline indicates that the resource is unavailable intentionally and requires action to be made available. InTest indicates that the component is undergoing testing. Starting indicates that the resource is on its way to becoming available. Absent indicates that the resource is physically unavailable.
 
-Defined values:
+**Defined values**:
 
 * `Enabled`
 
@@ -3509,120 +4519,162 @@ Defined values:
 
 * `Absent`
 
-#### Location (read only string)
+### Location
+
+**JSONPath**: /Location (read only string)
 
 Location identifier
 
 ### HpiLOActiveHealthSystem
-**Instances**:  
+**Resource Instances of this Type**:  
 
 * `https://{iLO}/redfish/v1/managers/{item}/activehealthsystem`
 
-#### LocationParameters/contact_name (read only string)
+### LocationParameters.contact_name
+
+**JSONPath**: /LocationParameters/contact_name (read only string)
 
 This query parameter may be added to the AHS location URI to insert the contact name into the AHS log header. For example, http://iloname.example.net/ahsdata/HP_xxxxxxxxxx_20140821.ahs?downloadAll=1&&contact_name=JohnDoe.
 
-#### LocationParameters/downloadAll (read only string)
+### LocationParameters.downloadAll
+
+**JSONPath**: /LocationParameters/downloadAll (read only string)
 
 This query parameter should be used to download entire AHS log. For example, http://iloname.example.net/ahsdata/HP_xxxxxxxxxx_20140821.ahs?downloadAll=1.
 
-#### links/AHSLocation/extref (read only string)
+### links.AHSLocation.extref
+
+**JSONPath**: /links/AHSLocation/extref (read only string)
 
 The URI of an external resource.
 
-#### LocationParameters/co_name (read only string)
+### LocationParameters.co_name
+
+**JSONPath**: /LocationParameters/co_name (read only string)
 
 This query parameter may be added to the AHS location URI to insert the company name into the AHS log header. For example, http://iloname.example.net/ahsdata/HP_xxxxxxxxxx_20140821.ahs?downloadAll=1&&co_name=myCompany.
 
-#### LocationParameters/case_no (read only string)
+### LocationParameters.case_no
+
+**JSONPath**: /LocationParameters/case_no (read only string)
 
 This query parameter may be added to the AHS location URI to insert the case number into the AHS log header. For example, http://iloname.example.net/ahsdata/HP_xxxxxxxxxx_20140821.ahs?downloadAll=1&&case_no=abc123.
 
-#### AHSEnabled (PATCHable boolean)
+### AHSEnabled
+
+**JSONPath**: /AHSEnabled (PATCHable boolean)
 
 Determines whether HP Active Health System logging is enabled or disabled.
 
 > example PATCH: {"AHSEnabled": true}
 
-#### LocationParameters/from (read only string)
+### LocationParameters.from
+
+**JSONPath**: /LocationParameters/from (read only string)
 
 This query parameter may be added with the 'to' query parameter to the AHS location URI to limit the range of data returned. The default range is the last seven days of the log and the format is (yyyy-mm-dd). 'downloadAll' parameter should not be used with this query parameter. For example, http://iloname.example.net/ahsdata/HP_xxxxxxxxxx_20140821.ahs?from=2014-03-01&&to=2014-03-30.
 
-#### LocationParameters/email (read only string)
+### LocationParameters.email
+
+**JSONPath**: /LocationParameters/email (read only string)
 
 This query parameter may be added to the AHS location URI to insert the contacts email address into the AHS log header. For example, http://iloname.example.net/ahsdata/HP_xxxxxxxxxx_20140821.ahs?downloadAll=1&&email=abc@xyz.com.
 
-#### LocationParameters/to (read only string)
+### LocationParameters.to
+
+**JSONPath**: /LocationParameters/to (read only string)
 
 This query parameter may be added with the 'from' query parameter to the AHS location URI to limit the range of data returned. The default range is the last seven days of the log and the format is (yyyy-mm-dd). 'downloadAll' parameter should not be used with this query parameter. For example, http://iloname.example.net/ahsdata/HP_xxxxxxxxxx_20140821.ahs?from=2014-03-01&&to=2014-03-30.
 
-#### LocationParameters/phone (read only string)
+### LocationParameters.phone
+
+**JSONPath**: /LocationParameters/phone (read only string)
 
 This query parameter may be added to the AHS location URI to insert the contacts phone number into the AHS log header. For example, http://iloname.example.net/ahsdata/HP_xxxxxxxxxx_20140821.ahs?downloadAll=1&&contact_name=JohnDoe&&phone=555-555-5555.
 
 ### HpiLODateTime
 The management processor date and time.
 
-**Instances**:  
+**Resource Instances of this Type**:  
 
 * `https://{iLO}/redfish/v1/managers/{item}/datetime`
 
-#### TimeZoneList[]/Index (read only integer)
+### TimeZoneList[].Index
+
+**JSONPath**: /TimeZoneList[]/Index (read only integer)
 
 The time zone index.
 
-#### ConfigurationSettings (read only enumeration)
+### ConfigurationSettings
+
+**JSONPath**: /ConfigurationSettings (read only enumeration)
 
 The state of the currently displayed configuration settings.
 
-Defined values:
+**Defined values**:
 
 * `Current`
 
 * `SomePendingReset`
 
-#### TimeZone/Index (PATCHable integer)
+### TimeZone.Index
+
+**JSONPath**: /TimeZone/Index (PATCHable integer)
 
 The index of the current time zone. To set a new time zone, specify a different time zone index. This property can be set only when DHCPv4 or DHCPv6 supplied time settings are disabled. Since the time zone list might vary from one firmware version to another (which often leads to differences in time zone indices), setting the time zone by name is recommended over setting by index, for better compatibility.
 
 > example PATCH: {"TimeZone": {"Index": &lt;integer-value&gt;}}
 
-#### TimeZoneList[]/UtcOffset (read only string)
+### TimeZoneList[].UtcOffset
+
+**JSONPath**: /TimeZoneList[]/UtcOffset (read only string)
 
 The UTC offset of the time zone, in the format {+/-}hh:mm
 
-#### TimeZoneList[]/Value (read only string)
+### TimeZoneList[].Value
+
+**JSONPath**: /TimeZoneList[]/Value (read only string)
 
 The environment variable value.
 
-#### PropagateTimeToHost (PATCHable boolean)
+### PropagateTimeToHost
+
+**JSONPath**: /PropagateTimeToHost (PATCHable boolean)
 
 Determines whether the server time is synchronized with the management processor time during the first POST after AC power is applied.
 
 > example PATCH: {"PropagateTimeToHost": true}
 
-#### TimeZone/Value (read only string)
+### TimeZone.Value
+
+**JSONPath**: /TimeZone/Value (read only string)
 
 The environment variable value.
 
-#### TimeZone/UtcOffset (read only string)
+### TimeZone.UtcOffset
+
+**JSONPath**: /TimeZone/UtcOffset (read only string)
 
 The UTC offset of the current time zone, in the format {+/-}hh:mm
 
-#### DateTime (read only string)
+### DateTime
+
+**JSONPath**: /DateTime (read only string)
 
 The date and time used by management processor.
 
 ### HpiLOEmbeddedMedia
-**Instances**:  
+**Resource Instances of this Type**:  
 
 * `https://{iLO}/redfish/v1/managers/{item}/embeddedmedia`
 
-#### SDCard/Status/State (read only enumeration)
+### SDCard.Status.State
+
+**JSONPath**: /SDCard/Status/State (read only enumeration)
 
 Indicates the known state of this resource (for example, if the resource is enabled). Enabled indicates that the resource is available. Disabled indicates that the resource has been made unavailable intentionally, but it can be enabled. Offline indicates that the resource is unavailable intentionally and requires action to be made available. InTest indicates that the component is undergoing testing. Starting indicates that the resource is on its way to becoming available. Absent indicates that the resource is physically unavailable.
 
-Defined values:
+**Defined values**:
 
 * `Enabled`
 
@@ -3636,15 +4688,19 @@ Defined values:
 
 * `Absent`
 
-#### SDCard/WriteCount (read only integer)
+### SDCard.WriteCount
+
+**JSONPath**: /SDCard/WriteCount (read only integer)
 
 The number of writes on the SD card. Rendered only if this is an HP-certified SD card. 
 
-#### SDCard/Status/HealthRollUp (read only enumeration)
+### SDCard.Status.HealthRollUp
+
+**JSONPath**: /SDCard/Status/HealthRollUp (read only enumeration)
 
 Indicates the overall health state of this resource and its dependent resources.
 
-Defined values:
+**Defined values**:
 
 * `OK`
 
@@ -3652,15 +4708,19 @@ Defined values:
 
 * `Critical`
 
-#### SDCard/SizeString (read only string)
+### SDCard.SizeString
+
+**JSONPath**: /SDCard/SizeString (read only string)
 
 The size of the SD card present in the server, in a readable format.
 
-#### Controller/Status/State (read only enumeration)
+### Controller.Status.State
+
+**JSONPath**: /Controller/Status/State (read only enumeration)
 
 Indicates the known state of this resource (for example, if the resource is enabled). Enabled indicates that the resource is available. Disabled indicates that the resource has been made unavailable intentionally, but it can be enabled. Offline indicates that the resource is unavailable intentionally and requires action to be made available. InTest indicates that the component is undergoing testing. Starting indicates that the resource is on its way to becoming available. Absent indicates that the resource is physically unavailable.
 
-Defined values:
+**Defined values**:
 
 * `Enabled`
 
@@ -3674,11 +4734,13 @@ Defined values:
 
 * `Absent`
 
-#### Controller/Status/Health (read only enumeration)
+### Controller.Status.Health
+
+**JSONPath**: /Controller/Status/Health (read only enumeration)
 
 Indicates the health state of this resource without considering its dependent resources.
 
-Defined values:
+**Defined values**:
 
 * `OK`
 
@@ -3686,11 +4748,13 @@ Defined values:
 
 * `Critical`
 
-#### Controller/Status/HealthRollUp (read only enumeration)
+### Controller.Status.HealthRollUp
+
+**JSONPath**: /Controller/Status/HealthRollUp (read only enumeration)
 
 Indicates the overall health state of this resource and its dependent resources.
 
-Defined values:
+**Defined values**:
 
 * `OK`
 
@@ -3698,15 +4762,19 @@ Defined values:
 
 * `Critical`
 
-#### SDCard/HpCertified (read only boolean)
+### SDCard.HpCertified
+
+**JSONPath**: /SDCard/HpCertified (read only boolean)
 
 True if this is an HP-certified SD card.
 
-#### SDCard/Status/Health (read only enumeration)
+### SDCard.Status.Health
+
+**JSONPath**: /SDCard/Status/Health (read only enumeration)
 
 Indicates the health state of this resource without considering its dependent resources.
 
-Defined values:
+**Defined values**:
 
 * `OK`
 
@@ -3714,133 +4782,179 @@ Defined values:
 
 * `Critical`
 
-#### Controller/Firmware/Current/VersionString (read only string)
+### Controller.Firmware.Current.VersionString
+
+**JSONPath**: /Controller/Firmware/Current/VersionString (read only string)
 
 The current version of the embedded media controller.
 
-#### SDCard/LBACount (read only integer)
+### SDCard.LBACount
+
+**JSONPath**: /SDCard/LBACount (read only integer)
 
 The LBA count.
 
 ### HpiLOFederatedGroupCapping
-**Instances**:  
+**Resource Instances of this Type**:  
 
 * `https://{iLO}/redfish/v1/chassis/{item}/power/federatedgroupcapping`
 
-#### Throttle (read only string)
+### Throttle
+
+**JSONPath**: /Throttle (read only string)
 
 High, Med, or Low based on the percentage of power usage.
 
-#### CapacityWatts (read only integer)
+### CapacityWatts
+
+**JSONPath**: /CapacityWatts (read only integer)
 
 The total power supply capacity for all servers in a group.
 
-#### CapWatts (read only integer)
+### CapWatts
+
+**JSONPath**: /CapWatts (read only integer)
 
 The configured power cap for all servers in a group. This value is 0 if the power cap is not configured.
 
 ### HpiLOFederationGroup
-**Instances**:  
+**Resource Instances of this Type**:  
 
 * `https://{iLO}/redfish/v1/managers/{item}/federationgroups/{item}`
 
-#### Privileges/RemoteConsolePriv (PATCHable boolean)
+### Privileges.RemoteConsolePriv
+
+**JSONPath**: /Privileges/RemoteConsolePriv (PATCHable boolean)
 
 Remote console privileges.
 
 > example PATCH: {"Privileges": {"RemoteConsolePriv": true}}
 
-#### Key (PATCHable string)
+### Key
+
+**JSONPath**: /Key (PATCHable string)
 
 The password used by the Federation Group.
 
 > example PATCH: {"Key": "&lt;string-value&gt;"}
 
-#### Privileges/UserConfigPriv (PATCHable boolean)
+### Privileges.UserConfigPriv
+
+**JSONPath**: /Privileges/UserConfigPriv (PATCHable boolean)
 
 User configuration privileges.
 
 > example PATCH: {"Privileges": {"UserConfigPriv": true}}
 
-#### Privileges/LoginPriv (PATCHable boolean)
+### Privileges.LoginPriv
+
+**JSONPath**: /Privileges/LoginPriv (PATCHable boolean)
 
 Login privileges.
 
 > example PATCH: {"Privileges": {"LoginPriv": true}}
 
-#### Privileges/VirtualMediaPriv (PATCHable boolean)
+### Privileges.VirtualMediaPriv
+
+**JSONPath**: /Privileges/VirtualMediaPriv (PATCHable boolean)
 
 Virtual media privileges.
 
 > example PATCH: {"Privileges": {"VirtualMediaPriv": true}}
 
-#### Privileges/iLOConfigPriv (PATCHable boolean)
+### Privileges.iLOConfigPriv
+
+**JSONPath**: /Privileges/iLOConfigPriv (PATCHable boolean)
 
 The management processor configuration privileges.
 
 > example PATCH: {"Privileges": {"iLOConfigPriv": true}}
 
-#### Privileges/VirtualPowerAndResetPriv (PATCHable boolean)
+### Privileges.VirtualPowerAndResetPriv
+
+**JSONPath**: /Privileges/VirtualPowerAndResetPriv (PATCHable boolean)
 
 Virtual power and reset privileges.
 
 > example PATCH: {"Privileges": {"VirtualPowerAndResetPriv": true}}
 
 ### HpiLOFederationPeers
-**Instances**:  
+**Resource Instances of this Type**:  
 
 * `https://{iLO}/redfish/v1/managers/{item}/federationpeers/{item}`
 
-#### Peers[]/URL (read only string)
+### Peers[].URL
+
+**JSONPath**: /Peers[]/URL (read only string)
 
 URL of the federation peer.
 
-#### Peers[]/UUID (read only string)
+### Peers[].UUID
+
+**JSONPath**: /Peers[]/UUID (read only string)
 
 UUID peers that are part of the federation group.
 
-#### Peers[]/Time (read only string)
+### Peers[].Time
+
+**JSONPath**: /Peers[]/Time (read only string)
 
 Time when the federation peer was added.
 
-#### Peers[]/ManagerIPAddress (read only string)
+### Peers[].ManagerIPAddress
+
+**JSONPath**: /Peers[]/ManagerIPAddress (read only string)
 
 Manager IP address of the federation peer.
 
-#### Peers[]/HttpErrorCode (read only integer)
+### Peers[].HttpErrorCode
+
+**JSONPath**: /Peers[]/HttpErrorCode (read only integer)
 
 Error code for success or failure.
 
 ### HpiLOFirmwareUpdate
-**Instances**:  
+**Resource Instances of this Type**:  
 
 * `https://{iLO}/redfish/v1/managers/{item}/updateservice`
 
-#### ImageSizeInBytes (read only integer)
+### ImageSizeInBytes
+
+**JSONPath**: /ImageSizeInBytes (read only integer)
 
 The size of the firmware image (including any signatures) in bytes.
 
-#### ProgressPercent (read only integer)
+### ProgressPercent
+
+**JSONPath**: /ProgressPercent (read only integer)
 
 Firmware flash progress.
 
-#### Bootleg (read only string)
+### Bootleg
+
+**JSONPath**: /Bootleg (read only string)
 
 Supplied bootleg text, if any, otherwise blank.
 
-#### Details (read only string)
+### Details
+
+**JSONPath**: /Details (read only string)
 
 Details about the current firmware flash status.
 
-#### Copyright (read only string)
+### Copyright
+
+**JSONPath**: /Copyright (read only string)
 
 The copyright date of the firmware image.
 
-#### ImageType (read only enumeration)
+### ImageType
+
+**JSONPath**: /ImageType (read only enumeration)
 
 Firmware flash image type.
 
-Defined values:
+**Defined values**:
 
 * `NO_DEVICE`
 
@@ -3864,15 +4978,19 @@ Defined values:
 
 * `UNKNOWN`
 
-#### links/UpdateUri/extref (read only string)
+### links.UpdateUri.extref
+
+**JSONPath**: /links/UpdateUri/extref (read only string)
 
 The URI of an external resource.
 
-#### Flags (read only enumeration)
+### Flags
+
+**JSONPath**: /Flags (read only enumeration)
 
 Other flags.
 
-Defined values:
+**Defined values**:
 
 * `NONE`
 
@@ -3884,11 +5002,13 @@ Defined values:
 
 * `DEFERRED_AUX_PWR_CYCLE`
 
-#### State (read only enumeration)
+### State
+
+**JSONPath**: /State (read only enumeration)
 
 Current state of the firmware flash.
 
-Defined values:
+**Defined values**:
 
 * `IDLE`
 
@@ -3901,27 +5021,35 @@ Defined values:
 * `ERROR`
 
 ### HpiLOLicense
-**Instances**:  
+**Resource Instances of this Type**:  
 
 * `https://{iLO}/redfish/v1/managers/{item}/licenseservice/{item}`
 
-#### License (read only string)
+### License
+
+**JSONPath**: /License (read only string)
 
 The name of the license installed on this management processor.
 
-#### LicenseKey (read only string)
+### LicenseKey
+
+**JSONPath**: /LicenseKey (read only string)
 
 The license key installed on this management processor. License keys are 25 characters in length and contain both letters and numbers.
 
-#### LicenseExpire (read only string)
+### LicenseExpire
+
+**JSONPath**: /LicenseExpire (read only string)
 
 The expiration information of the installed management processor license.
 
-#### LicenseType (read only enumeration)
+### LicenseType
+
+**JSONPath**: /LicenseType (read only enumeration)
 
 The type of license installed on this management processor.
 
-Defined values:
+**Defined values**:
 
 * `Unlicensed`
 
@@ -3938,60 +5066,76 @@ Defined values:
 * `Expired`
 
 ### HpiLOResourceDirectory
-**Instances**:  
+**Resource Instances of this Type**:  
 
 * `https://{iLO}/redfish/v1/resourcedirectory`
 
-#### Instances[]/ETag (read only string)
+### Instances[].ETag
+
+**JSONPath**: /Instances[]/ETag (read only string)
 
 This is the last known etag of the resource. The property is omitted if not known.
 
-#### Instances[]/MemberType (read only string)
+### Instances[].MemberType
+
+**JSONPath**: /Instances[]/MemberType (read only string)
 
 This property has the type of members for collection resources.
 
 ### HpiLOSSO
 This is the schema definition for the HP SSO Trusted Server.
 
-**Instances**:  
+**Resource Instances of this Type**:  
 
 * `https://{iLO}/redfish/v1/managers/{item}/securityservice/sso`
 
-#### ManagerTrustedCertificates[]/ServerName (read only string)
+### ManagerTrustedCertificates[].ServerName
+
+**JSONPath**: /ManagerTrustedCertificates[]/ServerName (read only string)
 
 The Server name (or certificate subject).
 
-#### SSOsettings/UserPrivilege/iLOConfigPriv (PATCHable boolean)
+### SSOsettings.UserPrivilege.iLOConfigPriv
+
+**JSONPath**: /SSOsettings/UserPrivilege/iLOConfigPriv (PATCHable boolean)
 
 iLO Configuration Privileges.
 
 > example PATCH: {"SSOsettings": {"UserPrivilege": {"iLOConfigPriv": true}}}
 
-#### SSOsettings/AdminPrivilege/RemoteConsolePriv (PATCHable boolean)
+### SSOsettings.AdminPrivilege.RemoteConsolePriv
+
+**JSONPath**: /SSOsettings/AdminPrivilege/RemoteConsolePriv (PATCHable boolean)
 
 Remote Console Privileges.
 
 > example PATCH: {"SSOsettings": {"AdminPrivilege": {"RemoteConsolePriv": true}}}
 
-#### SSOsettings/UserPrivilege/UserConfigPriv (PATCHable boolean)
+### SSOsettings.UserPrivilege.UserConfigPriv
+
+**JSONPath**: /SSOsettings/UserPrivilege/UserConfigPriv (PATCHable boolean)
 
 User Configuration Privileges.
 
 > example PATCH: {"SSOsettings": {"UserPrivilege": {"UserConfigPriv": true}}}
 
-#### SSOsettings/AdminPrivilege/iLOConfigPriv (PATCHable boolean)
+### SSOsettings.AdminPrivilege.iLOConfigPriv
+
+**JSONPath**: /SSOsettings/AdminPrivilege/iLOConfigPriv (PATCHable boolean)
 
 iLO Configuration Privileges.
 
 > example PATCH: {"SSOsettings": {"AdminPrivilege": {"iLOConfigPriv": true}}}
 
-#### SSOsettings/SSOTrustMode (PATCHable enumeration)
+### SSOsettings.SSOTrustMode
+
+**JSONPath**: /SSOsettings/SSOTrustMode (PATCHable enumeration)
 
 Represents the SSO Trust Mode.
 
 > example PATCH: {"SSOsettings": {"SSOTrustMode": "TrustbyName"}}
 
-Defined values:
+**Defined values**:
 
 * `TrustNone`
 
@@ -4001,31 +5145,41 @@ Defined values:
 
 * `TrustbyCert`
 
-#### SSOsettings/UserPrivilege/RemoteConsolePriv (PATCHable boolean)
+### SSOsettings.UserPrivilege.RemoteConsolePriv
+
+**JSONPath**: /SSOsettings/UserPrivilege/RemoteConsolePriv (PATCHable boolean)
 
 Remote Console Privileges.
 
 > example PATCH: {"SSOsettings": {"UserPrivilege": {"RemoteConsolePriv": true}}}
 
-#### SSOsettings/UserPrivilege/PowerandResetPriv (PATCHable boolean)
+### SSOsettings.UserPrivilege.PowerandResetPriv
+
+**JSONPath**: /SSOsettings/UserPrivilege/PowerandResetPriv (PATCHable boolean)
 
 Power and Reset Privileges.
 
 > example PATCH: {"SSOsettings": {"UserPrivilege": {"PowerandResetPriv": true}}}
 
-#### ManagerTrustedCertificates[]/Certificate (read only string)
+### ManagerTrustedCertificates[].Certificate
+
+**JSONPath**: /ManagerTrustedCertificates[]/Certificate (read only string)
 
 Contains PEM formatted X509 certificate (Base64 encoded).
 
-#### SSOsettings/OperatorPrivilege/iLOConfigPriv (PATCHable boolean)
+### SSOsettings.OperatorPrivilege.iLOConfigPriv
+
+**JSONPath**: /SSOsettings/OperatorPrivilege/iLOConfigPriv (PATCHable boolean)
 
 iLO Configuration Privileges.
 
 > example PATCH: {"SSOsettings": {"OperatorPrivilege": {"iLOConfigPriv": true}}}
 
-#### ManagerTrustedCertificates[]/Status (read only enumeration)
+### ManagerTrustedCertificates[].Status
 
-Defined values:
+**JSONPath**: /ManagerTrustedCertificates[]/Status (read only enumeration)
+
+**Defined values**:
 
 * `OK`
 
@@ -4033,71 +5187,95 @@ Defined values:
 
 * `Failed`
 
-#### ManagerTrustedCertificates[]/SerialNumber (read only integer)
+### ManagerTrustedCertificates[].SerialNumber
+
+**JSONPath**: /ManagerTrustedCertificates[]/SerialNumber (read only integer)
 
 Contains the Serial number for the SSO records.
 
-#### SSOsettings/OperatorPrivilege/PowerandResetPriv (PATCHable boolean)
+### SSOsettings.OperatorPrivilege.PowerandResetPriv
+
+**JSONPath**: /SSOsettings/OperatorPrivilege/PowerandResetPriv (PATCHable boolean)
 
 Power and Reset Privileges.
 
 > example PATCH: {"SSOsettings": {"OperatorPrivilege": {"PowerandResetPriv": true}}}
 
-#### SSOsettings/OperatorPrivilege/UserConfigPriv (PATCHable boolean)
+### SSOsettings.OperatorPrivilege.UserConfigPriv
+
+**JSONPath**: /SSOsettings/OperatorPrivilege/UserConfigPriv (PATCHable boolean)
 
 User Configuration Privileges.
 
 > example PATCH: {"SSOsettings": {"OperatorPrivilege": {"UserConfigPriv": true}}}
 
-#### SSOsettings/AdminPrivilege/PowerandResetPriv (PATCHable boolean)
+### SSOsettings.AdminPrivilege.PowerandResetPriv
+
+**JSONPath**: /SSOsettings/AdminPrivilege/PowerandResetPriv (PATCHable boolean)
 
 Power and Reset Privileges.
 
 > example PATCH: {"SSOsettings": {"AdminPrivilege": {"PowerandResetPriv": true}}}
 
-#### SSOsettings/UserPrivilege/VirtualMediaPriv (PATCHable boolean)
+### SSOsettings.UserPrivilege.VirtualMediaPriv
+
+**JSONPath**: /SSOsettings/UserPrivilege/VirtualMediaPriv (PATCHable boolean)
 
 Virtual Media Privileges.
 
 > example PATCH: {"SSOsettings": {"UserPrivilege": {"VirtualMediaPriv": true}}}
 
-#### SSOsettings/AdminPrivilege/UserConfigPriv (PATCHable boolean)
+### SSOsettings.AdminPrivilege.UserConfigPriv
+
+**JSONPath**: /SSOsettings/AdminPrivilege/UserConfigPriv (PATCHable boolean)
 
 User Configuration Privileges.
 
 > example PATCH: {"SSOsettings": {"AdminPrivilege": {"UserConfigPriv": true}}}
 
-#### SSOsettings/OperatorPrivilege/VirtualMediaPriv (PATCHable boolean)
+### SSOsettings.OperatorPrivilege.VirtualMediaPriv
+
+**JSONPath**: /SSOsettings/OperatorPrivilege/VirtualMediaPriv (PATCHable boolean)
 
 Virtual Media Privileges.
 
 > example PATCH: {"SSOsettings": {"OperatorPrivilege": {"VirtualMediaPriv": true}}}
 
-#### SSOsettings/AdminPrivilege/LoginPriv (PATCHable boolean)
+### SSOsettings.AdminPrivilege.LoginPriv
+
+**JSONPath**: /SSOsettings/AdminPrivilege/LoginPriv (PATCHable boolean)
 
 Login Privileges.
 
 > example PATCH: {"SSOsettings": {"AdminPrivilege": {"LoginPriv": true}}}
 
-#### SSOsettings/AdminPrivilege/VirtualMediaPriv (PATCHable boolean)
+### SSOsettings.AdminPrivilege.VirtualMediaPriv
+
+**JSONPath**: /SSOsettings/AdminPrivilege/VirtualMediaPriv (PATCHable boolean)
 
 Power and Reset Privileges.
 
 > example PATCH: {"SSOsettings": {"AdminPrivilege": {"VirtualMediaPriv": true}}}
 
-#### SSOsettings/UserPrivilege/LoginPriv (PATCHable boolean)
+### SSOsettings.UserPrivilege.LoginPriv
+
+**JSONPath**: /SSOsettings/UserPrivilege/LoginPriv (PATCHable boolean)
 
 Login Privileges.
 
 > example PATCH: {"SSOsettings": {"UserPrivilege": {"LoginPriv": true}}}
 
-#### SSOsettings/OperatorPrivilege/RemoteConsolePriv (PATCHable boolean)
+### SSOsettings.OperatorPrivilege.RemoteConsolePriv
+
+**JSONPath**: /SSOsettings/OperatorPrivilege/RemoteConsolePriv (PATCHable boolean)
 
 Remote Console Privileges.
 
 > example PATCH: {"SSOsettings": {"OperatorPrivilege": {"RemoteConsolePriv": true}}}
 
-#### SSOsettings/OperatorPrivilege/LoginPriv (PATCHable boolean)
+### SSOsettings.OperatorPrivilege.LoginPriv
+
+**JSONPath**: /SSOsettings/OperatorPrivilege/LoginPriv (PATCHable boolean)
 
 Login Privileges.
 
@@ -4106,37 +5284,49 @@ Login Privileges.
 ### HpiSCSISoftwareInitiator
 The schema definition of UEFI iSCSI Software Initiator boot configuration.
 
-**Instances**:  
+**Resource Instances of this Type**:  
 
 * `https://{iLO}/redfish/v1/systems/{item}/bios/iscsi`
 
 * `https://{iLO}/redfish/v1/systems/{item}/bios/iscsi/settings`
 
-#### SettingsResult/definitions/SettingsResult/ETag (read only string)
+### SettingsResult.definitions.SettingsResult.ETag
+
+**JSONPath**: /SettingsResult/definitions/SettingsResult/ETag (read only string)
 
 ETag of this resource after the settings have been applied.
 
-#### iSCSIBootSources[]/iSCSIInitiatorNetmask (PATCHable string)
+### iSCSIBootSources[].iSCSIInitiatorNetmask
+
+**JSONPath**: /iSCSIBootSources[]/iSCSIInitiatorNetmask (PATCHable string)
 
 The subnet mask of the iSCSI Initiator, if not configured via DHCP. The address must be an IPv4.
 
-#### SettingsResult/definitions/SettingsResult/Messages[]/Resolution (read only string)
+### SettingsResult.definitions.SettingsResult.Messages[].Resolution
+
+**JSONPath**: /SettingsResult/definitions/SettingsResult/Messages[]/Resolution (read only string)
 
 Instructions for resolving the issue that caused the error.
 
-#### iSCSIBootSources[]/iSCSIBootLUN (PATCHable string)
+### iSCSIBootSources[].iSCSIBootLUN
+
+**JSONPath**: /iSCSIBootSources[]/iSCSIBootLUN (PATCHable string)
 
 The iSCSI boot target Logical Unit Number (LUN), if not obtained from DHCP. This value must follow the SAM-2 spec. E.g. 0001-1234-5678-9ABC. If the digit number is less then 5 characters, a dash character is not required. E.g. 0001. If the lun number is 12345, input 1234-5
 
-#### iSCSIBootSources[]/iSCSIBootAttemptName (PATCHable string)
+### iSCSIBootSources[].iSCSIBootAttemptName
+
+**JSONPath**: /iSCSIBootSources[]/iSCSIBootAttemptName (PATCHable string)
 
 Human readable descriptive name for this iSCSI boot attempt configuration
 
-#### iSCSIBootSources[]/iSCSIIpAddressType (PATCHable enumeration)
+### iSCSIBootSources[].iSCSIIpAddressType
+
+**JSONPath**: /iSCSIBootSources[]/iSCSIIpAddressType (PATCHable enumeration)
 
 The iSCSI IP Address type. If set to Auto, IPv4 will be attempted first, followed by IPv6.
 
-Defined values:
+**Defined values**:
 
 * `IPv4`
 
@@ -4144,11 +5334,13 @@ Defined values:
 
 * `Auto`
 
-#### iSCSIBootSources[]/iSCSIBootEnable (PATCHable enumeration)
+### iSCSIBootSources[].iSCSIBootEnable
+
+**JSONPath**: /iSCSIBootSources[]/iSCSIBootEnable (PATCHable enumeration)
 
 Enables or Disables iSCSI Boot for a selected iSCSI boot attempt.
 
-Defined values:
+**Defined values**:
 
 * `Disabled`
 
@@ -4156,53 +5348,71 @@ Defined values:
 
 * `EnabledMpio`
 
-#### iSCSIBootSources[]/iSCSIChapType (PATCHable enumeration)
+### iSCSIBootSources[].iSCSIChapType
+
+**JSONPath**: /iSCSIBootSources[]/iSCSIChapType (PATCHable enumeration)
 
 The CHAP authentication type. This is applicable only when the Authentication Method is set to CHAP.
 
-Defined values:
+**Defined values**:
 
 * `OneWay`
 
 * `Mutual`
 
-#### iSCSIBootSources[]/iSCSIBootAttemptInstance (PATCHable integer)
+### iSCSIBootSources[].iSCSIBootAttemptInstance
+
+**JSONPath**: /iSCSIBootSources[]/iSCSIBootAttemptInstance (PATCHable integer)
 
 Uniquely identifies this iSCSI boot attempt within iSCSIBootSources array.
 
-#### iSCSIBootSources[]/iSCSITargetTcpPort (PATCHable integer)
+### iSCSIBootSources[].iSCSITargetTcpPort
+
+**JSONPath**: /iSCSIBootSources[]/iSCSITargetTcpPort (PATCHable integer)
 
 The iSCSI Target TCP Port number, if not obtained from DHCP.
 
-#### SettingsResult/definitions/SettingsResult/Operation (read only enumeration)
+### SettingsResult.definitions.SettingsResult.Operation
+
+**JSONPath**: /SettingsResult/definitions/SettingsResult/Operation (read only enumeration)
 
 Details about the results of applying the settings.
 
-Defined values:
+**Defined values**:
 
 * `SettingsApply`
 
-#### iSCSIBootSources[]/iSCSIInitiatorIpAddress (PATCHable string)
+### iSCSIBootSources[].iSCSIInitiatorIpAddress
+
+**JSONPath**: /iSCSIBootSources[]/iSCSIInitiatorIpAddress (PATCHable string)
 
 The IP Address of the iSCSI Initiator, if not configured via DHCP. The address must be an IPv4 or IPv6 address, depending on the IP Address Type.
 
-#### iSCSIBootSources[]/iSCSIChapUsername (PATCHable string)
+### iSCSIBootSources[].iSCSIChapUsername
+
+**JSONPath**: /iSCSIBootSources[]/iSCSIChapUsername (PATCHable string)
 
 The password needed for CHAP authentication. This is applicable only when the Authentication Method is set to CHAP.
 
-#### iSCSIBootSources[]/iSCSITargetIpAddress (PATCHable string)
+### iSCSIBootSources[].iSCSITargetIpAddress
+
+**JSONPath**: /iSCSIBootSources[]/iSCSITargetIpAddress (PATCHable string)
 
 The IP Address of the iSCSI Target, if not obtained from DHCP. The address must be an IPv4 or IPv6 address, depending on the IP Address Type.
 
-#### iSCSIBootSources[]/iSCSIReverseChapSecret (PATCHable string)
+### iSCSIBootSources[].iSCSIReverseChapSecret
+
+**JSONPath**: /iSCSIBootSources[]/iSCSIReverseChapSecret (PATCHable string)
 
 The password needed for reverse CHAP authentication (from the target to the initiator). This is applicable only when the Authentication Method is set to CHAP, and the CHAP Type is set to Mutual.
 
-#### SettingsResult/definitions/SettingsResult/Messages[]/Severity (read only enumeration)
+### SettingsResult.definitions.SettingsResult.Messages[].Severity
+
+**JSONPath**: /SettingsResult/definitions/SettingsResult/Messages[]/Severity (read only enumeration)
 
 This is the severity of the errors.
 
-Defined values:
+**Defined values**:
 
 * `OK`
 
@@ -4210,144 +5420,200 @@ Defined values:
 
 * `Critical`
 
-#### iSCSIBootSources[]/iSCSIInitiatorGateway (PATCHable string)
+### iSCSIBootSources[].iSCSIInitiatorGateway
+
+**JSONPath**: /iSCSIBootSources[]/iSCSIInitiatorGateway (PATCHable string)
 
 The gateway address of the iSCSI Initiator, if not configured via DHCP. The address must be an IPv4 or IPv6 address, depending on the IP Address Type.
 
-#### iSCSIBootSources[]/iSCSINicSource (PATCHable string)
+### iSCSIBootSources[].iSCSINicSource
+
+**JSONPath**: /iSCSIBootSources[]/iSCSINicSource (PATCHable string)
 
 A BIOS Attribute that describes this selected NIC instance. This must match one of the possible values listed in the iSCSINicSources array.
 
-#### SettingsResult/definitions/SettingsResult/Time (read only string)
+### SettingsResult.definitions.SettingsResult.Time
+
+**JSONPath**: /SettingsResult/definitions/SettingsResult/Time (read only string)
 
 Time at which the settings were applied.
 
-#### iSCSIBootSources[]/StructuredBootString (read only string)
+### iSCSIBootSources[].StructuredBootString
+
+**JSONPath**: /iSCSIBootSources[]/StructuredBootString (read only string)
 
 Identifies this iSCSI UEFI boot option within the server.
 
-#### SettingsResult/definitions/SettingsResult/Messages[]/MessageID (read only string)
+### SettingsResult.definitions.SettingsResult.Messages[].MessageID
+
+**JSONPath**: /SettingsResult/definitions/SettingsResult/Messages[]/MessageID (read only string)
 
 Key for this message, which is used to look up the message in a message registry. The key is in the format <registry>.<majorver>.<minorver>:<messagekey>.
 
-#### SettingsResult/definitions/SettingsResult/Messages[]/Message (read only string)
+### SettingsResult.definitions.SettingsResult.Messages[].Message
+
+**JSONPath**: /SettingsResult/definitions/SettingsResult/Messages[]/Message (read only string)
 
 Human-readable message.
 
-#### iSCSIBootSources[]/UEFIDevicePath (read only string)
+### iSCSIBootSources[].UEFIDevicePath
+
+**JSONPath**: /iSCSIBootSources[]/UEFIDevicePath (read only string)
 
 Standardized text representation of the UEFI device path for this boot option, in UTF-8 format.
 
-#### iSCSIBootSources[]/iSCSIConnectRetry (PATCHable integer)
+### iSCSIBootSources[].iSCSIConnectRetry
+
+**JSONPath**: /iSCSIBootSources[]/iSCSIConnectRetry (PATCHable integer)
 
 The number of times to retry the iSCSI connection. Zero means no retries.
 
-#### iSCSIBootSources[]/iSCSITargetName (PATCHable string)
+### iSCSIBootSources[].iSCSITargetName
+
+**JSONPath**: /iSCSIBootSources[]/iSCSITargetName (PATCHable string)
 
 The worldwide unique iSCSI Qualified Name (IQN) of this iSCSI target. Only the IQN format is accepted. EUI format is not supported (for example, 'iqn.1991-05.com.microsoft:iscsitarget-iscsidisk-target').
 
-#### iSCSIBootSources[]/iSCSIReverseChapUsername (PATCHable string)
+### iSCSIBootSources[].iSCSIReverseChapUsername
+
+**JSONPath**: /iSCSIBootSources[]/iSCSIReverseChapUsername (PATCHable string)
 
 User Name for reverse CHAP authentication (from the target to the initiator). This is applicable only when the Authentication Method is set to CHAP, and the CHAP Type is set to Mutual.
 
-#### iSCSIBootSources[]/iSCSIConnectTimeoutMS (PATCHable integer)
+### iSCSIBootSources[].iSCSIConnectTimeoutMS
+
+**JSONPath**: /iSCSIBootSources[]/iSCSIConnectTimeoutMS (PATCHable integer)
 
 The iSCSI connection timeout value in milliseconds.
 
-#### iSCSIBootSources[]/iSCSITargetInfoViaDHCP (PATCHable boolean)
+### iSCSIBootSources[].iSCSITargetInfoViaDHCP
+
+**JSONPath**: /iSCSIBootSources[]/iSCSITargetInfoViaDHCP (PATCHable boolean)
 
 If enabled, the iSCSI target information are configured from DHCP. Otherwise, the iSCSI target information must be statically configured.
 
-#### iSCSIBootSources[]/iSCSIAuthenticationMethod (PATCHable enumeration)
+### iSCSIBootSources[].iSCSIAuthenticationMethod
+
+**JSONPath**: /iSCSIBootSources[]/iSCSIAuthenticationMethod (PATCHable enumeration)
 
 The iSCSI connection authentication method.
 
-Defined values:
+**Defined values**:
 
 * `None`
 
 * `CHAP`
 
-#### iSCSIBootSources[]/iSCSIChapSecret (PATCHable string)
+### iSCSIBootSources[].iSCSIChapSecret
+
+**JSONPath**: /iSCSIBootSources[]/iSCSIChapSecret (PATCHable string)
 
 The password needed for CHAP authentication. This is applicable only when the Authentication Method is set to CHAP, and the CHAP Type is set to Mutual.
 
-#### iSCSIBootSources[]/iSCSIInitiatorInfoViaDHCP (PATCHable boolean)
+### iSCSIBootSources[].iSCSIInitiatorInfoViaDHCP
+
+**JSONPath**: /iSCSIBootSources[]/iSCSIInitiatorInfoViaDHCP (PATCHable boolean)
 
 If enabled, the iSCSI Initiator information is configured from DHCP. Otherwise, the iSCSI initiator information must be statically configured.
 
-#### AttributeRegistry (read only string)
+### AttributeRegistry
+
+**JSONPath**: /AttributeRegistry (read only string)
 
 This object represents the type property. It represents the schema used for the resource and indicates the version of the schema in the format <schema>.<majorversion>.<minorversion>.<errataversion>.
 
-#### iSCSIInitiatorName (PATCHable string)
+### iSCSIInitiatorName
+
+**JSONPath**: /iSCSIInitiatorName (PATCHable string)
 
 The worldwide unique iSCSI Qualified Name (IQN) of this iSCSI Initiator. Only IQN format is accepted. EUI format is not supported (for example, 'iqn.1986-03.com.hp:init.sn-123456').
 
 ### LogEntry
-**Instances**:  
+**Resource Instances of this Type**:  
 
 * `https://{iLO}/redfish/v1/systems/{item}/logservices/iml/entries/{item}`
 
 * `https://{iLO}/redfish/v1/managers/{item}/logservices/iel/entries/{item}`
 
-#### Created (read only string)
+### Created
+
+**JSONPath**: /Created (read only string)
 
 The date and time when the log entry was created, for example, 2014-04-15T00:38:00Z.
 
-#### Oem/Hp/Code (read only integer)
+### Code
+
+**JSONPath**: /Oem/Hp/Code (read only integer)
 
 The IML event code.
 
-#### Oem/Hp/Class (read only integer)
+### Class
+
+**JSONPath**: /Oem/Hp/Class (read only integer)
 
 The IML event class.
 
-#### OemRecordFormat (read only enumeration)
+### OemRecordFormat
+
+**JSONPath**: /OemRecordFormat (read only enumeration)
 
 The format of an OEM record.
 
-Defined values:
+**Defined values**:
 
 * `Hp-IML`
 
 * `Hp-iLOEventLog`
 
-#### Number (read only integer)
+### Number
+
+**JSONPath**: /Number (read only integer)
 
 The number of duplicate log entries, with the possible exception of timestamps, that are not in the collection.
 
-#### RecordId (read only integer)
+### RecordId
+
+**JSONPath**: /RecordId (read only integer)
 
 The log entry ID.
 
-#### Oem/Hp/Updated (read only string)
+### Updated
+
+**JSONPath**: /Oem/Hp/Updated (read only string)
 
 The date and time of the latest log entry update, for example, 2014-04-15T00:38:00Z.
 
-#### Message (read only string)
+### Message
+
+**JSONPath**: /Message (read only string)
 
 The log entry details.
 
-#### Oem/Hp/Repaired (PATCHable boolean)
+### Repaired
+
+**JSONPath**: /Oem/Hp/Repaired (PATCHable boolean)
 
 The repaired status of the IML event.
 
 > example PATCH: {"Oem": {"Hp": {"Repaired": true}}}
 
-#### EntryType (read only enumeration)
+### EntryType
+
+**JSONPath**: /EntryType (read only enumeration)
 
 The log entry type.
 
-Defined values:
+**Defined values**:
 
 * `Oem`
 
-#### Severity (read only enumeration)
+### Severity
+
+**JSONPath**: /Severity (read only enumeration)
 
 The log entry severity.
 
-Defined values:
+**Defined values**:
 
 * `OK`
 
@@ -4356,17 +5622,19 @@ Defined values:
 * `Critical`
 
 ### LogService
-**Instances**:  
+**Resource Instances of this Type**:  
 
 * `https://{iLO}/redfish/v1/systems/{item}/logservices/iml`
 
 * `https://{iLO}/redfish/v1/managers/{item}/logservices/iel`
 
-#### OverWritePolicy (read only enumeration)
+### OverWritePolicy
+
+**JSONPath**: /OverWritePolicy (read only enumeration)
 
 When the log is full, the overwrite policy is enforced.
 
-Defined values:
+**Defined values**:
 
 * `Unknown`
 
@@ -4374,24 +5642,28 @@ Defined values:
 
 * `NeverOverwrites`
 
-#### MaxNumberOfRecords (read only integer)
+### MaxNumberOfRecords
+
+**JSONPath**: /MaxNumberOfRecords (read only integer)
 
 The maximum number of log entries.
 
 ### Manager
 This is the schema definition for a manager.  Examples of managers are BMCs, Enclosure Managers, Management Controllers and other subsystems assigned manageability functions.
 
-**Instances**:  
+**Resource Instances of this Type**:  
 
 * `https://{iLO}/redfish/v1/managers/{item}`
 
-#### Oem/Hp/SerialCLIStatus (PATCHable enumeration)
+### SerialCLIStatus
+
+**JSONPath**: /Oem/Hp/SerialCLIStatus (PATCHable enumeration)
 
 Status of serial command line interface.
 
 > example PATCH: {"Oem": {"Hp": {"SerialCLIStatus": "EnabledNoAuth"}}}
 
-Defined values:
+**Defined values**:
 
 * `Disabled`
 
@@ -4399,11 +5671,13 @@ Defined values:
 
 * `EnabledAuthReq`
 
-#### Redundancy/Status/State (read only enumeration)
+### Redundancy.Status.State
+
+**JSONPath**: /Redundancy/Status/State (read only enumeration)
 
 Indicates the known state of this resource (for example, if the resource is enabled). Enabled indicates that the resource is available. Disabled indicates that the resource has been made unavailable intentionally, but it can be enabled. Offline indicates that the resource is unavailable intentionally and requires action to be made available. InTest indicates that the component is undergoing testing. Starting indicates that the resource is on its way to becoming available. Absent indicates that the resource is physically unavailable.
 
-Defined values:
+**Defined values**:
 
 * `Enabled`
 
@@ -4417,59 +5691,83 @@ Defined values:
 
 * `Absent`
 
-#### Oem/Hp/Firmware/Backup/BuildNumber (read only integer)
+### Firmware.Backup.BuildNumber
+
+**JSONPath**: /Oem/Hp/Firmware/Backup/BuildNumber (read only integer)
 
 The build number of the firmware.
 
-#### SerialConsole/MaxConcurrentSessions (read only integer)
+### SerialConsole.MaxConcurrentSessions
+
+**JSONPath**: /SerialConsole/MaxConcurrentSessions (read only integer)
 
 This is the maximum number of Serial Console sessions, regardless of protocol, that this manager supports.
 
-#### GraphicalConsole/Enabled (PATCHable boolean)
+### GraphicalConsole.Enabled
+
+**JSONPath**: /GraphicalConsole/Enabled (PATCHable boolean)
 
 Indicates if the Graphical Console service is enabled for this manager.
 
 > example PATCH: {"GraphicalConsole": {"Enabled": true}}
 
-#### Oem/Hp/Firmware/Bootblock/Family (read only string)
+### Firmware.Bootblock.Family
+
+**JSONPath**: /Oem/Hp/Firmware/Bootblock/Family (read only string)
 
 The family of the firmware.
 
-#### Oem/Hp/FederationConfig/MulticastTimeToLive (PATCHable integer)
+### FederationConfig.MulticastTimeToLive
+
+**JSONPath**: /Oem/Hp/FederationConfig/MulticastTimeToLive (PATCHable integer)
 
 The maximum number of switches a multicast announcement will traverse before being discarded.
 
 > example PATCH: {"Oem": {"Hp": {"FederationConfig": {"MulticastTimeToLive": &lt;integer-value&gt;}}}}
 
-#### Oem/Hp/Firmware/Backup/Time (read only string)
+### Firmware.Backup.Time
+
+**JSONPath**: /Oem/Hp/Firmware/Backup/Time (read only string)
 
 The build time of the firmware.
 
-#### Oem/Hp/Firmware/Current/BuildNumber (read only integer)
+### Firmware.Current.BuildNumber
+
+**JSONPath**: /Oem/Hp/Firmware/Current/BuildNumber (read only integer)
 
 The build number of the firmware.
 
-#### GraphicalConsole/MaxConcurrentSessions (read only integer)
+### GraphicalConsole.MaxConcurrentSessions
+
+**JSONPath**: /GraphicalConsole/MaxConcurrentSessions (read only integer)
 
 Indicates the maximum number of Graphical Console sessions, regardless of protocol, this manager supports.
 
-#### Oem/Hp/Firmware/Bootblock/DebugBuild (read only boolean)
+### Firmware.Bootblock.DebugBuild
+
+**JSONPath**: /Oem/Hp/Firmware/Bootblock/DebugBuild (read only boolean)
 
 True if the firmware is a debug build; False if it is not.
 
-#### Oem/Hp/Firmware/Current/MinorVersion (read only integer)
+### Firmware.Current.MinorVersion
+
+**JSONPath**: /Oem/Hp/Firmware/Current/MinorVersion (read only integer)
 
 The minor version of the firmware.
 
-#### Oem/Hp/License/LicenseString (read only string)
+### License.LicenseString
+
+**JSONPath**: /Oem/Hp/License/LicenseString (read only string)
 
 Describes the type of license installed on management processor.
 
-#### Oem/Hp/iLOSelfTestResults[]/SelfTestName (read only enumeration)
+### iLOSelfTestResults[].SelfTestName
+
+**JSONPath**: /Oem/Hp/iLOSelfTestResults[]/SelfTestName (read only enumeration)
 
 iLO Self Test Name.
 
-Defined values:
+**Defined values**:
 
 * `CryptographicHardware`
 
@@ -4521,29 +5819,39 @@ Defined values:
 
 * `CPLDPAL5`
 
-#### Oem/Hp/Firmware/definitions/HpFWVersion/BuildNumber (read only integer)
+### Firmware.definitions.HpFWVersion.BuildNumber
+
+**JSONPath**: /Oem/Hp/Firmware/definitions/HpFWVersion/BuildNumber (read only integer)
 
 The build number of the firmware.
 
-#### Redundancy/MinNumNeeded (read only integer)
+### Redundancy.MinNumNeeded
+
+**JSONPath**: /Redundancy/MinNumNeeded (read only integer)
 
 The minimum number of members allowed in the redundancy group for the current redundancy mode to still be fault tolerant.
 
-#### Oem/Hp/Firmware/Current/VersionString (read only string)
+### Firmware.Current.VersionString
+
+**JSONPath**: /Oem/Hp/Firmware/Current/VersionString (read only string)
 
 The version string of the firmware. This value might be null if VersionString is unavailable.
 
-#### Oem/Hp/RequiredLoginForiLORBSU (PATCHable boolean)
+### RequiredLoginForiLORBSU
+
+**JSONPath**: /Oem/Hp/RequiredLoginForiLORBSU (PATCHable boolean)
 
 Determines whether a user-credential prompt is displayed when a user accesses the iLO RBSU or the iLO 4 Configuration Utility. The following settings are valid: Enabled-A login dialog box opens when a user accesses the iLO RBSU or the iLO 4 Configuration Utility. Disabled (default)-No login is required when a user accesses the iLO RBSU or the iLO 4 Configuration Utility.
 
 > example PATCH: {"Oem": {"Hp": {"RequiredLoginForiLORBSU": true}}}
 
-#### Status/HealthRollUp (read only enumeration)
+### Status.HealthRollUp
+
+**JSONPath**: /Status/HealthRollUp (read only enumeration)
 
 Indicates the overall health state of this resource and its dependent resources.
 
-Defined values:
+**Defined values**:
 
 * `OK`
 
@@ -4551,23 +5859,31 @@ Defined values:
 
 * `Critical`
 
-#### Oem/Hp/links/VSPLogLocation/extref (read only string)
+### links.VSPLogLocation.extref
+
+**JSONPath**: /Oem/Hp/links/VSPLogLocation/extref (read only string)
 
 The URI of an external resource.
 
-#### Oem/Hp/links/FederationDispatch/extref (read only string)
+### links.FederationDispatch.extref
+
+**JSONPath**: /Oem/Hp/links/FederationDispatch/extref (read only string)
 
 The URI of an external resource.
 
-#### Oem/Hp/Firmware/Pending/MajorVersion (read only integer)
+### Firmware.Pending.MajorVersion
+
+**JSONPath**: /Oem/Hp/Firmware/Pending/MajorVersion (read only integer)
 
 The major version of the firmware.
 
-#### Status/State (read only enumeration)
+### Status.State
+
+**JSONPath**: /Status/State (read only enumeration)
 
 Indicates the known state of this resource (for example, if the resource is enabled). Enabled indicates that the resource is available. Disabled indicates that the resource has been made unavailable intentionally, but it can be enabled. Offline indicates that the resource is unavailable intentionally and requires action to be made available. InTest indicates that the component is undergoing testing. Starting indicates that the resource is on its way to becoming available. Absent indicates that the resource is physically unavailable.
 
-Defined values:
+**Defined values**:
 
 * `Enabled`
 
@@ -4581,19 +5897,25 @@ Defined values:
 
 * `Absent`
 
-#### Model (read only string)
+### Model
+
+**JSONPath**: /Model (read only string)
 
 Model name of the manager.
 
-#### Oem/Hp/Firmware/Current/Time (read only string)
+### Firmware.Current.Time
+
+**JSONPath**: /Oem/Hp/Firmware/Current/Time (read only string)
 
 The build time of the firmware.
 
-#### ManagerType (read only enumeration)
+### ManagerType
+
+**JSONPath**: /ManagerType (read only enumeration)
 
 This property is the manager type for this resource.
 
-Defined values:
+**Defined values**:
 
 * `ManagementController`
 
@@ -4601,43 +5923,57 @@ Defined values:
 
 * `BMC`
 
-#### Oem/Hp/FederationConfig/MulticastDiscovery (PATCHable enumeration)
+### FederationConfig.MulticastDiscovery
+
+**JSONPath**: /Oem/Hp/FederationConfig/MulticastDiscovery (PATCHable enumeration)
 
 Enables or Disables Multicast Discovery for the local iLO system.
 
 > example PATCH: {"Oem": {"Hp": {"FederationConfig": {"MulticastDiscovery": "Disabled"}}}}
 
-Defined values:
+**Defined values**:
 
 * `Enabled`
 
 * `Disabled`
 
-#### Oem/Hp/License/LicenseKey (read only string)
+### License.LicenseKey
+
+**JSONPath**: /Oem/Hp/License/LicenseKey (read only string)
 
 The installed license key.
 
-#### CommandShell/MaxConcurrentSessions (read only integer)
+### CommandShell.MaxConcurrentSessions
+
+**JSONPath**: /CommandShell/MaxConcurrentSessions (read only integer)
 
 This is the maximum number of Command Shell sessions, regardless of protocol, that this manager supports.
 
-#### Oem/Hp/iLOSelfTestResults[]/Notes (read only string)
+### iLOSelfTestResults[].Notes
+
+**JSONPath**: /Oem/Hp/iLOSelfTestResults[]/Notes (read only string)
 
 Additional Information (if any) about the Self Test.
 
-#### Oem/Hp/License/LicenseType (read only string)
+### License.LicenseType
+
+**JSONPath**: /Oem/Hp/License/LicenseType (read only string)
 
 Indicates whether the license is Perpetual or Evaluation.
 
-#### Oem/Hp/Firmware/definitions/HpFWVersion/Time (read only string)
+### Firmware.definitions.HpFWVersion.Time
+
+**JSONPath**: /Oem/Hp/Firmware/definitions/HpFWVersion/Time (read only string)
 
 The build time of the firmware.
 
-#### Oem/Hp/iLOSelfTestResults[]/Status (read only enumeration)
+### iLOSelfTestResults[].Status
+
+**JSONPath**: /Oem/Hp/iLOSelfTestResults[]/Status (read only enumeration)
 
 Status of the Self Test.
 
-Defined values:
+**Defined values**:
 
 * `NA`
 
@@ -4647,11 +5983,13 @@ Defined values:
 
 * `Degraded`
 
-#### Status/Health (read only enumeration)
+### Status.Health
+
+**JSONPath**: /Status/Health (read only enumeration)
 
 Indicates the health state of this resource without considering its dependent resources.
 
-Defined values:
+**Defined values**:
 
 * `OK`
 
@@ -4659,111 +5997,155 @@ Defined values:
 
 * `Critical`
 
-#### Oem/Hp/Firmware/definitions/HpFWVersion/DebugBuild (read only boolean)
+### Firmware.definitions.HpFWVersion.DebugBuild
+
+**JSONPath**: /Oem/Hp/Firmware/definitions/HpFWVersion/DebugBuild (read only boolean)
 
 True if the firmware is a debug build; False if it is not.
 
-#### Oem/Hp/Firmware/Pending/BuildNumberString (read only string)
+### Firmware.Pending.BuildNumberString
+
+**JSONPath**: /Oem/Hp/Firmware/Pending/BuildNumberString (read only string)
 
 The string version of the build number of the firmware.
 
-#### Oem/Hp/Firmware/Backup/MajorVersion (read only integer)
+### Firmware.Backup.MajorVersion
+
+**JSONPath**: /Oem/Hp/Firmware/Backup/MajorVersion (read only integer)
 
 The major version of the firmware.
 
-#### Oem/Hp/SerialCLISpeed (PATCHable integer)
+### SerialCLISpeed
+
+**JSONPath**: /Oem/Hp/SerialCLISpeed (PATCHable integer)
 
 Serial command line interface speed in bits/second.
 
 > example PATCH: {"Oem": {"Hp": {"SerialCLISpeed": &lt;integer-value&gt;}}}
 
-#### Redundancy/MaxNumSupported (read only integer)
+### Redundancy.MaxNumSupported
+
+**JSONPath**: /Redundancy/MaxNumSupported (read only integer)
 
 The maximum number of members allowed in the redundancy group, including this member.
 
-#### Oem/Hp/Firmware/Bootblock/MajorVersion (read only integer)
+### Firmware.Bootblock.MajorVersion
+
+**JSONPath**: /Oem/Hp/Firmware/Bootblock/MajorVersion (read only integer)
 
 The major version of the firmware.
 
-#### Oem/Hp/FederationConfig/MulticastAnnouncementInterval (PATCHable integer)
+### FederationConfig.MulticastAnnouncementInterval
+
+**JSONPath**: /Oem/Hp/FederationConfig/MulticastAnnouncementInterval (PATCHable integer)
 
 The frequency in Seconds at which the iLO system announces itself on the network. A value of 0 disables multicast announcments.
 
 > example PATCH: {"Oem": {"Hp": {"FederationConfig": {"MulticastAnnouncementInterval": &lt;integer-value&gt;}}}}
 
-#### Oem/Hp/Firmware/Current/BuildNumberString (read only string)
+### Firmware.Current.BuildNumberString
+
+**JSONPath**: /Oem/Hp/Firmware/Current/BuildNumberString (read only string)
 
 The string version of the build number of the firmware.
 
-#### CommandShell/Enabled (PATCHable boolean)
+### CommandShell.Enabled
+
+**JSONPath**: /CommandShell/Enabled (PATCHable boolean)
 
 Indicates if the Command Shell service is enabled for this manager.
 
 > example PATCH: {"CommandShell": {"Enabled": true}}
 
-#### Oem/Hp/Firmware/Bootblock/VersionString (read only string)
+### Firmware.Bootblock.VersionString
+
+**JSONPath**: /Oem/Hp/Firmware/Bootblock/VersionString (read only string)
 
 The version string of the firmware. This value might be null if VersionString is unavailable.
 
-#### Oem/Hp/Firmware/Backup/VersionString (read only string)
+### Firmware.Backup.VersionString
+
+**JSONPath**: /Oem/Hp/Firmware/Backup/VersionString (read only string)
 
 The version string of the firmware. This value might be null if VersionString is unavailable.
 
-#### Oem/Hp/Firmware/Pending/BuildNumber (read only integer)
+### Firmware.Pending.BuildNumber
+
+**JSONPath**: /Oem/Hp/Firmware/Pending/BuildNumber (read only integer)
 
 The build number of the firmware.
 
-#### Firmware/definitions/FWVersion/VersionString (read only string)
+### Firmware.definitions.FWVersion.VersionString
+
+**JSONPath**: /Firmware/definitions/FWVersion/VersionString (read only string)
 
 This string represents the version of the firmware image.
 
-#### Oem/Hp/FederationConfig/iLOFederationManagement (PATCHable enumeration)
+### FederationConfig.iLOFederationManagement
+
+**JSONPath**: /Oem/Hp/FederationConfig/iLOFederationManagement (PATCHable enumeration)
 
 Enables or Disables iLO Federation features for the local iLO system.
 
 > example PATCH: {"Oem": {"Hp": {"FederationConfig": {"iLOFederationManagement": "Disabled"}}}}
 
-Defined values:
+**Defined values**:
 
 * `Enabled`
 
 * `Disabled`
 
-#### Oem/Hp/Firmware/Pending/Date (read only string)
+### Firmware.Pending.Date
+
+**JSONPath**: /Oem/Hp/Firmware/Pending/Date (read only string)
 
 The build date of the firmware.
 
-#### Oem/Hp/Firmware/Pending/MinorVersion (read only integer)
+### Firmware.Pending.MinorVersion
+
+**JSONPath**: /Oem/Hp/Firmware/Pending/MinorVersion (read only integer)
 
 The minor version of the firmware.
 
-#### SerialConsole/Enabled (PATCHable boolean)
+### SerialConsole.Enabled
+
+**JSONPath**: /SerialConsole/Enabled (PATCHable boolean)
 
 Indicates if the Serial Console service is enabled for this manager.
 
 > example PATCH: {"SerialConsole": {"Enabled": true}}
 
-#### Oem/Hp/Firmware/Pending/Family (read only string)
+### Firmware.Pending.Family
+
+**JSONPath**: /Oem/Hp/Firmware/Pending/Family (read only string)
 
 The family of the firmware.
 
-#### Oem/Hp/Firmware/Backup/MinorVersion (read only integer)
+### Firmware.Backup.MinorVersion
+
+**JSONPath**: /Oem/Hp/Firmware/Backup/MinorVersion (read only integer)
 
 The minor version of the firmware.
 
-#### Oem/Hp/Firmware/definitions/HpFWVersion/VersionString (read only string)
+### Firmware.definitions.HpFWVersion.VersionString
+
+**JSONPath**: /Oem/Hp/Firmware/definitions/HpFWVersion/VersionString (read only string)
 
 The version string of the firmware. This value might be null if VersionString is unavailable.
 
-#### Firmware/Current/VersionString (read only string)
+### Firmware.Current.VersionString
+
+**JSONPath**: /Firmware/Current/VersionString (read only string)
 
 This string represents the version of the firmware image.
 
-#### Redundancy/Status/Health (read only enumeration)
+### Redundancy.Status.Health
+
+**JSONPath**: /Redundancy/Status/Health (read only enumeration)
 
 Indicates the health state of this resource without considering its dependent resources.
 
-Defined values:
+**Defined values**:
 
 * `OK`
 
@@ -4771,13 +6153,15 @@ Defined values:
 
 * `Critical`
 
-#### Oem/Hp/FederationConfig/IPv6MulticastScope (PATCHable enumeration)
+### FederationConfig.IPv6MulticastScope
+
+**JSONPath**: /Oem/Hp/FederationConfig/IPv6MulticastScope (PATCHable enumeration)
 
 The IPv6 network scope of multicast announcements.
 
 > example PATCH: {"Oem": {"Hp": {"FederationConfig": {"IPv6MulticastScope": "Site"}}}}
 
-Defined values:
+**Defined values**:
 
 * `Link`
 
@@ -4785,11 +6169,13 @@ Defined values:
 
 * `Organization`
 
-#### Redundancy/Status/HealthRollUp (read only enumeration)
+### Redundancy.Status.HealthRollUp
+
+**JSONPath**: /Redundancy/Status/HealthRollUp (read only enumeration)
 
 Indicates the overall health state of this resource and its dependent resources.
 
-Defined values:
+**Defined values**:
 
 * `OK`
 
@@ -4797,57 +6183,81 @@ Defined values:
 
 * `Critical`
 
-#### Oem/Hp/Firmware/Current/Family (read only string)
+### Firmware.Current.Family
+
+**JSONPath**: /Oem/Hp/Firmware/Current/Family (read only string)
 
 The family of the firmware.
 
-#### UUID (read only string)
+### UUID
+
+**JSONPath**: /UUID (read only string)
 
 This is a universally unique identifier that software (for example, HP SIM) uses to uniquely identify this manager. The UUID is assigned when the system is manufactured.
 
-#### Oem/Hp/Firmware/definitions/HpFWVersion/MinorVersion (read only integer)
+### Firmware.definitions.HpFWVersion.MinorVersion
+
+**JSONPath**: /Oem/Hp/Firmware/definitions/HpFWVersion/MinorVersion (read only integer)
 
 The minor version of the firmware.
 
-#### Oem/Hp/Firmware/Backup/BuildNumberString (read only string)
+### Firmware.Backup.BuildNumberString
+
+**JSONPath**: /Oem/Hp/Firmware/Backup/BuildNumberString (read only string)
 
 The string version of the build number of the firmware.
 
-#### Oem/Hp/Firmware/Current/DebugBuild (read only boolean)
+### Firmware.Current.DebugBuild
+
+**JSONPath**: /Oem/Hp/Firmware/Current/DebugBuild (read only boolean)
 
 True if the firmware is a debug build; False if it is not.
 
-#### Oem/Hp/Firmware/Pending/DebugBuild (read only boolean)
+### Firmware.Pending.DebugBuild
+
+**JSONPath**: /Oem/Hp/Firmware/Pending/DebugBuild (read only boolean)
 
 True if the firmware is a debug build; False if it is not.
 
-#### Oem/Hp/Firmware/definitions/HpFWVersion/MajorVersion (read only integer)
+### Firmware.definitions.HpFWVersion.MajorVersion
+
+**JSONPath**: /Oem/Hp/Firmware/definitions/HpFWVersion/MajorVersion (read only integer)
 
 The major version of the firmware.
 
-#### Oem/Hp/Firmware/definitions/HpFWVersion/Date (read only string)
+### Firmware.definitions.HpFWVersion.Date
+
+**JSONPath**: /Oem/Hp/Firmware/definitions/HpFWVersion/Date (read only string)
 
 The build date of the firmware.
 
-#### Oem/Hp/Firmware/Bootblock/MinorVersion (read only integer)
+### Firmware.Bootblock.MinorVersion
+
+**JSONPath**: /Oem/Hp/Firmware/Bootblock/MinorVersion (read only integer)
 
 The minor version of the firmware.
 
-#### Oem/Hp/VSPLogDownloadEnabled (PATCHable boolean)
+### VSPLogDownloadEnabled
+
+**JSONPath**: /Oem/Hp/VSPLogDownloadEnabled (PATCHable boolean)
 
 This property enables or disables download of Virtual Serial Port (VSP) log.
 
 > example PATCH: {"Oem": {"Hp": {"VSPLogDownloadEnabled": true}}}
 
-#### Oem/Hp/Firmware/Bootblock/BuildNumberString (read only string)
+### Firmware.Bootblock.BuildNumberString
+
+**JSONPath**: /Oem/Hp/Firmware/Bootblock/BuildNumberString (read only string)
 
 The string version of the build number of the firmware.
 
-#### Redundancy/Mode (read only enumeration)
+### Redundancy.Mode
+
+**JSONPath**: /Redundancy/Mode (read only enumeration)
 
 This is the redundancy mode of the group.  Failover indicates a master/subordinate type arrangement where status indicates the role of this manager.  N+1 indicates an arrangement where the redundancy set needs MaxNumSupported-1 number of resources in order to be redundant.  Load Balanced indicates all members are active. However, their functionality is not independent of each other. Their functioning is determined by some sort of load balancing algorithm and sparing is implied (i.e. each member can be a spare for the others).  Sparing indicates that all members are active and are aware of each other. However, their functionality is independent until failover. Each member can be a spare for the other(s).  Limited Sparing indicates that all members are active, and they may or may not be aware of each and they are not spares for each other.
 
-Defined values:
+**Defined values**:
 
 * `Failover`
 
@@ -4859,108 +6269,150 @@ Defined values:
 
 * `LimitedSparing`
 
-#### Oem/Hp/Firmware/Pending/VersionString (read only string)
+### Firmware.Pending.VersionString
+
+**JSONPath**: /Oem/Hp/Firmware/Pending/VersionString (read only string)
 
 The version string of the firmware. This value might be null if VersionString is unavailable.
 
-#### Oem/Hp/Firmware/Bootblock/Time (read only string)
+### Firmware.Bootblock.Time
+
+**JSONPath**: /Oem/Hp/Firmware/Bootblock/Time (read only string)
 
 The build time of the firmware.
 
-#### Oem/Hp/Firmware/Current/Date (read only string)
+### Firmware.Current.Date
+
+**JSONPath**: /Oem/Hp/Firmware/Current/Date (read only string)
 
 The build date of the firmware.
 
-#### Oem/Hp/Firmware/Backup/Family (read only string)
+### Firmware.Backup.Family
+
+**JSONPath**: /Oem/Hp/Firmware/Backup/Family (read only string)
 
 The family of the firmware.
 
-#### Oem/Hp/Firmware/definitions/HpFWVersion/Family (read only string)
+### Firmware.definitions.HpFWVersion.Family
+
+**JSONPath**: /Oem/Hp/Firmware/definitions/HpFWVersion/Family (read only string)
 
 The family of the firmware.
 
-#### Oem/Hp/Firmware/Backup/DebugBuild (read only boolean)
+### Firmware.Backup.DebugBuild
+
+**JSONPath**: /Oem/Hp/Firmware/Backup/DebugBuild (read only boolean)
 
 True if the firmware is a debug build; False if it is not.
 
-#### Oem/Hp/Firmware/Backup/Date (read only string)
+### Firmware.Backup.Date
+
+**JSONPath**: /Oem/Hp/Firmware/Backup/Date (read only string)
 
 The build date of the firmware.
 
-#### Oem/Hp/Firmware/Current/MajorVersion (read only integer)
+### Firmware.Current.MajorVersion
+
+**JSONPath**: /Oem/Hp/Firmware/Current/MajorVersion (read only integer)
 
 The major version of the firmware.
 
-#### Oem/Hp/Firmware/Pending/Time (read only string)
+### Firmware.Pending.Time
+
+**JSONPath**: /Oem/Hp/Firmware/Pending/Time (read only string)
 
 The build time of the firmware.
 
-#### Oem/Hp/Firmware/definitions/HpFWVersion/BuildNumberString (read only string)
+### Firmware.definitions.HpFWVersion.BuildNumberString
+
+**JSONPath**: /Oem/Hp/Firmware/definitions/HpFWVersion/BuildNumberString (read only string)
 
 The string version of the build number of the firmware.
 
-#### Oem/Hp/Firmware/Bootblock/Date (read only string)
+### Firmware.Bootblock.Date
+
+**JSONPath**: /Oem/Hp/Firmware/Bootblock/Date (read only string)
 
 The build date of the firmware.
 
-#### Oem/Hp/Firmware/Bootblock/BuildNumber (read only integer)
+### Firmware.Bootblock.BuildNumber
+
+**JSONPath**: /Oem/Hp/Firmware/Bootblock/BuildNumber (read only integer)
 
 The build number of the firmware.
 
 ### ManagerAccount
-**Instances**:  
+**Resource Instances of this Type**:  
 
 * `https://{iLO}/redfish/v1/accountservice/accounts/{item}`
 
-#### Oem/Hp/Privileges/VirtualPowerAndResetPriv (PATCHable boolean)
+### Privileges.VirtualPowerAndResetPriv
+
+**JSONPath**: /Oem/Hp/Privileges/VirtualPowerAndResetPriv (PATCHable boolean)
 
 This privilege enables a user to power-cycle or reset the host system. These activities interrupt system availability. A user with this privilege can diagnose the system by using the Generate NMI to System button.
 
 > example PATCH: {"Oem": {"Hp": {"Privileges": {"VirtualPowerAndResetPriv": true}}}}
 
-#### Oem/Hp/LoginName (PATCHable string)
+### LoginName
+
+**JSONPath**: /Oem/Hp/LoginName (PATCHable string)
 
 Descriptive login name that helps to easily identify the owner of each user name. The login name does not have to be the same as the user name and must use printable characters. The maximum length for a user name is 39 characters.
 
 > example PATCH: {"Oem": {"Hp": {"LoginName": "&lt;string-value&gt;"}}}
 
-#### Password (PATCHable string)
+### Password
+
+**JSONPath**: /Password (PATCHable string)
 
 The password used to log in to the management processor. The maximum length for a password is 39 characters. The minimum length for a password is specified in the MinPasswordLength property of the AccountService schema.
 
 > example PATCH: {"Password": "&lt;string-value&gt;"}
 
-#### Oem/Hp/Privileges/LoginPriv (PATCHable boolean)
+### Privileges.LoginPriv
+
+**JSONPath**: /Oem/Hp/Privileges/LoginPriv (PATCHable boolean)
 
 This privilege enables a user to log in to management processor. All local accounts have the login privilege. This privilege is added automatically if it is not specified.
 
 > example PATCH: {"Oem": {"Hp": {"Privileges": {"LoginPriv": true}}}}
 
-#### UserName (PATCHable string)
+### UserName
+
+**JSONPath**: /UserName (PATCHable string)
 
 The name used to log in to the management processor. The user name does not have to be the same as the login name. The maximum length for the user name is 39 characters. The user name must use printable characters.
 
 > example PATCH: {"UserName": "&lt;string-value&gt;"}
 
-#### Oem/Hp/Privileges/UserConfigPriv (PATCHable boolean)
+### Privileges.UserConfigPriv
+
+**JSONPath**: /Oem/Hp/Privileges/UserConfigPriv (PATCHable boolean)
 
 This privilege enables a user to add, edit, and delete local management processor user accounts. A user with this privilege can change privileges for all users.
 
 > example PATCH: {"Oem": {"Hp": {"Privileges": {"UserConfigPriv": true}}}}
 
-#### Oem/Hp/Privileges/RemoteConsolePriv (PATCHable boolean)
+### Privileges.RemoteConsolePriv
+
+**JSONPath**: /Oem/Hp/Privileges/RemoteConsolePriv (PATCHable boolean)
 
 This privilege enables a user to remotely access the host system Remote Console, including video, keyboard, and mouse control.
 
 > example PATCH: {"Oem": {"Hp": {"Privileges": {"RemoteConsolePriv": true}}}}
 
-#### Oem/Hp/Privileges/iLOConfigPriv (PATCHable boolean)
+### Privileges.iLOConfigPriv
+
+**JSONPath**: /Oem/Hp/Privileges/iLOConfigPriv (PATCHable boolean)
 
 This privilege enables a user to configure most management processor settings, including security settings, and to remotely update the management processor firmware. This privilege does not enable local user account administration.
 
 > example PATCH: {"Oem": {"Hp": {"Privileges": {"iLOConfigPriv": true}}}}
 
-#### Oem/Hp/Privileges/VirtualMediaPriv (PATCHable boolean)
+### Privileges.VirtualMediaPriv
+
+**JSONPath**: /Oem/Hp/Privileges/VirtualMediaPriv (PATCHable boolean)
 
 This privilege enables a user to use the Virtual Media feature on the host system.
 
@@ -4969,99 +6421,129 @@ This privilege enables a user to use the Virtual Media feature on the host syste
 ### ManagerNetworkService
 This resource is used to obtain or modify the network services managed by this manager.
 
-**Instances**:  
+**Resource Instances of this Type**:  
 
 * `https://{iLO}/redfish/v1/managers/{item}/networkservice`
 
-#### Oem/Hp/HPSystemManagementHomepageAddress (PATCHable string)
+### HPSystemManagementHomepageAddress
+
+**JSONPath**: /Oem/Hp/HPSystemManagementHomepageAddress (PATCHable string)
 
 The IP address or FQDN of the HP System Management Homepage (HP SMH) server.
 
 > example PATCH: {"Oem": {"Hp": {"HPSystemManagementHomepageAddress": "&lt;string-value&gt;"}}}
 
-#### SNMP/Enabled (PATCHable boolean)
+### SNMP.Enabled
+
+**JSONPath**: /SNMP/Enabled (PATCHable boolean)
 
 Indicates whether SNMP is enabled for the manager.
 
 > example PATCH: {"SNMP": {"Enabled": true}}
 
-#### IPMI/Port (read only integer)
+### IPMI.Port
+
+**JSONPath**: /IPMI/Port (read only integer)
 
 The IPMI over LAN port number.
 
-#### SSH/Enabled (PATCHable boolean)
+### SSH.Enabled
+
+**JSONPath**: /SSH/Enabled (PATCHable boolean)
 
 Indicates whether SSH is enabled for the manager.  NOTE: When this field is modified, the Manager will reset automatically.
 
 > example PATCH: {"SSH": {"Enabled": true}}
 
-#### SSDP/Port (read only integer)
+### SSDP.Port
+
+**JSONPath**: /SSDP/Port (read only integer)
 
 The SSDP port number.
 
-#### SSH/Port (PATCHable integer)
+### SSH.Port
+
+**JSONPath**: /SSH/Port (PATCHable integer)
 
 The SSH port number.  NOTE: When this field is modified, the Manager will reset automatically.
 
 > example PATCH: {"SSH": {"Port": &lt;integer-value&gt;}}
 
-#### Oem/Hp/ConfigurationSettings (read only enumeration)
+### ConfigurationSettings
+
+**JSONPath**: /Oem/Hp/ConfigurationSettings (read only enumeration)
 
 State of the currently displayed configuration settings.
 
-Defined values:
+**Defined values**:
 
 * `Current`
 
 * `SomePendingReset`
 
-#### IPMI/Enabled (PATCHable boolean)
+### IPMI.Enabled
+
+**JSONPath**: /IPMI/Enabled (PATCHable boolean)
 
 Indicates whether IPMI over LAN is enabled for the manager.
 
 > example PATCH: {"IPMI": {"Enabled": true}}
 
-#### Oem/Hp/EnforceAES3DESEncryption (PATCHable boolean)
+### EnforceAES3DESEncryption
+
+**JSONPath**: /Oem/Hp/EnforceAES3DESEncryption (PATCHable boolean)
 
 Indicates whether AES/3DES encryption is enforced for the management processor.  When enabled, the management processor accepts only those connections that use AES or 3DES ciphers. The management processor will automatically reset when this field is modified.
 
 > example PATCH: {"Oem": {"Hp": {"EnforceAES3DESEncryption": true}}}
 
-#### SessionTimeoutMinutes (PATCHable integer)
+### SessionTimeoutMinutes
+
+**JSONPath**: /SessionTimeoutMinutes (PATCHable integer)
 
 The session timeout (minutes). A zero value indicates infinite timeout.
 
 > example PATCH: {"SessionTimeoutMinutes": &lt;integer-value&gt;}
 
-#### Oem/Hp/FederationEnabled (PATCHable boolean)
+### FederationEnabled
+
+**JSONPath**: /Oem/Hp/FederationEnabled (PATCHable boolean)
 
 Indicates whether management processor federation management is enabled or disabled.
 
 > example PATCH: {"Oem": {"Hp": {"FederationEnabled": true}}}
 
-#### Oem/Hp/AlertMailSenderDomain (PATCHable string)
+### AlertMailSenderDomain
+
+**JSONPath**: /Oem/Hp/AlertMailSenderDomain (PATCHable string)
 
 The domain name for the sender email address.
 
 > example PATCH: {"Oem": {"Hp": {"AlertMailSenderDomain": "&lt;string-value&gt;"}}}
 
-#### SSDP/NotifyMulticastIntervalSeconds (PATCHable integer)
+### SSDP.NotifyMulticastIntervalSeconds
+
+**JSONPath**: /SSDP/NotifyMulticastIntervalSeconds (PATCHable integer)
 
 Indicates how often multicast is performed for SSDP.
 
 > example PATCH: {"SSDP": {"NotifyMulticastIntervalSeconds": &lt;integer-value&gt;}}
 
-#### Oem/Hp/RemoteSyslogServer (PATCHable string)
+### RemoteSyslogServer
+
+**JSONPath**: /Oem/Hp/RemoteSyslogServer (PATCHable string)
 
 The IP address, FQDN, IPv6 name, or short name of the server running the Syslog service.
 
 > example PATCH: {"Oem": {"Hp": {"RemoteSyslogServer": "&lt;string-value&gt;"}}}
 
-#### Status/HealthRollUp (read only enumeration)
+### Status.HealthRollUp
+
+**JSONPath**: /Status/HealthRollUp (read only enumeration)
 
 Indicates the overall health state of this resource and its dependent resources.
 
-Defined values:
+**Defined values**:
 
 * `OK`
 
@@ -5069,61 +6551,83 @@ Defined values:
 
 * `Critical`
 
-#### Oem/Hp/AlertMailSMTPServer (PATCHable string)
+### AlertMailSMTPServer
+
+**JSONPath**: /Oem/Hp/AlertMailSMTPServer (PATCHable string)
 
 The IP address or DNS name of the SMTP server or the Mail Submission Agent (MSA).
 
 > example PATCH: {"Oem": {"Hp": {"AlertMailSMTPServer": "&lt;string-value&gt;"}}}
 
-#### HTTP/Enabled (read only boolean)
+### HTTP.Enabled
+
+**JSONPath**: /HTTP/Enabled (read only boolean)
 
 Indicates whether HTTP is enabled or disabled.
 
-#### Oem/Hp/FederationSupported (read only boolean)
+### FederationSupported
+
+**JSONPath**: /Oem/Hp/FederationSupported (read only boolean)
 
 Indicates whether management processor federation is supported.
 
-#### VirtualMedia/Port (PATCHable integer)
+### VirtualMedia.Port
+
+**JSONPath**: /VirtualMedia/Port (PATCHable integer)
 
 The Virtual Media port number.
 
 > example PATCH: {"VirtualMedia": {"Port": &lt;integer-value&gt;}}
 
-#### Oem/Hp/AlertMailSMTPPort (PATCHable integer)
+### AlertMailSMTPPort
+
+**JSONPath**: /Oem/Hp/AlertMailSMTPPort (PATCHable integer)
 
 The SMTP server port number.
 
 > example PATCH: {"Oem": {"Hp": {"AlertMailSMTPPort": &lt;integer-value&gt;}}}
 
-#### Oem/Hp/XMLResponseEnabled (PATCHable boolean)
+### XMLResponseEnabled
+
+**JSONPath**: /Oem/Hp/XMLResponseEnabled (PATCHable boolean)
 
 Determines whether management processor responds to anonymous XML discovery requests.
 
 > example PATCH: {"Oem": {"Hp": {"XMLResponseEnabled": true}}}
 
-#### FQDN (read only string)
+### FQDN
+
+**JSONPath**: /FQDN (read only string)
 
 The fully-qualified domain name of the manager that is obtained by DNS and includes the host name and top-level domain name.
 
-#### KVMIP/Enabled (read only boolean)
+### KVMIP.Enabled
+
+**JSONPath**: /KVMIP/Enabled (read only boolean)
 
 Indicates whether KVM-IP is enabled for the manager.
 
-#### Oem/Hp/AlertMailEnabled (PATCHable boolean)
+### AlertMailEnabled
+
+**JSONPath**: /Oem/Hp/AlertMailEnabled (PATCHable boolean)
 
 Indicates whether AlertMail is enabled. This can be enabled only when the properties AlertMailEmail, AlertMailSenderDomain and AlertMailSMTPServer are set or not empty.
 
 > example PATCH: {"Oem": {"Hp": {"AlertMailEnabled": true}}}
 
-#### HTTPS/Enabled (read only boolean)
+### HTTPS.Enabled
+
+**JSONPath**: /HTTPS/Enabled (read only boolean)
 
 Indicates whether HTTPS/SSL is enabled or disabled.
 
-#### Status/Health (read only enumeration)
+### Status.Health
+
+**JSONPath**: /Status/Health (read only enumeration)
 
 Indicates the health state of this resource without considering its dependent resources.
 
-Defined values:
+**Defined values**:
 
 * `OK`
 
@@ -5131,23 +6635,29 @@ Defined values:
 
 * `Critical`
 
-#### HostName (PATCHable string)
+### HostName
+
+**JSONPath**: /HostName (PATCHable string)
 
 The host name of the manager that is obtained by DNS and does not include any domain information.
 
 > example PATCH: {"HostName": "&lt;string-value&gt;"}
 
-#### SNMP/Port (PATCHable integer)
+### SNMP.Port
+
+**JSONPath**: /SNMP/Port (PATCHable integer)
 
 The SNMP port number.
 
 > example PATCH: {"SNMP": {"Port": &lt;integer-value&gt;}}
 
-#### Status/State (read only enumeration)
+### Status.State
+
+**JSONPath**: /Status/State (read only enumeration)
 
 Indicates the known state of this resource (for example, if the resource is enabled). Enabled indicates that the resource is available. Disabled indicates that the resource has been made unavailable intentionally, but it can be enabled. Offline indicates that the resource is unavailable intentionally and requires action to be made available. InTest indicates that the component is undergoing testing. Starting indicates that the resource is on its way to becoming available. Absent indicates that the resource is physically unavailable.
 
-Defined values:
+**Defined values**:
 
 * `Enabled`
 
@@ -5161,19 +6671,23 @@ Defined values:
 
 * `Absent`
 
-#### Oem/Hp/RemoteSyslogEnabled (PATCHable boolean)
+### RemoteSyslogEnabled
+
+**JSONPath**: /Oem/Hp/RemoteSyslogEnabled (PATCHable boolean)
 
 Indicates whether Remote Syslog is enabled. When enabled, management processor sends notification messages to the specified Syslog server. This can be enabled only when the property RemoteSyslogServer is set or not empty.
 
 > example PATCH: {"Oem": {"Hp": {"RemoteSyslogEnabled": true}}}
 
-#### SSDP/NotifyIPv6Scope (PATCHable enumeration)
+### SSDP.NotifyIPv6Scope
+
+**JSONPath**: /SSDP/NotifyIPv6Scope (PATCHable enumeration)
 
 The scope for IPv6 Notify messages for SSDP.
 
 > example PATCH: {"SSDP": {"NotifyIPv6Scope": "Site"}}
 
-Defined values:
+**Defined values**:
 
 * `Link`
 
@@ -5181,90 +6695,120 @@ Defined values:
 
 * `Organization`
 
-#### SSDP/NotifyTTL (PATCHable integer)
+### SSDP.NotifyTTL
+
+**JSONPath**: /SSDP/NotifyTTL (PATCHable integer)
 
 The Time to Live (TTL) hop count for SSDP Notify messages.
 
 > example PATCH: {"SSDP": {"NotifyTTL": &lt;integer-value&gt;}}
 
-#### HTTP/Port (PATCHable integer)
+### HTTP.Port
+
+**JSONPath**: /HTTP/Port (PATCHable integer)
 
 The HTTP port number.  NOTE: When this field is modified, the Manager will reset automatically.
 
 > example PATCH: {"HTTP": {"Port": &lt;integer-value&gt;}}
 
-#### KVMIP/Port (PATCHable integer)
+### KVMIP.Port
+
+**JSONPath**: /KVMIP/Port (PATCHable integer)
 
 The KVM-IP port number.
 
 > example PATCH: {"KVMIP": {"Port": &lt;integer-value&gt;}}
 
-#### SSDP/Enabled (PATCHable boolean)
+### SSDP.Enabled
+
+**JSONPath**: /SSDP/Enabled (PATCHable boolean)
 
 Indicates whether SSDP is enabled for the manager.
 
 > example PATCH: {"SSDP": {"Enabled": true}}
 
-#### Oem/Hp/AlertMailEmail (PATCHable string)
+### AlertMailEmail
+
+**JSONPath**: /Oem/Hp/AlertMailEmail (PATCHable string)
 
 The destination email address for email alerts.
 
 > example PATCH: {"Oem": {"Hp": {"AlertMailEmail": "&lt;string-value&gt;"}}}
 
-#### Oem/Hp/SNMPTrapPort (PATCHable integer)
+### SNMPTrapPort
+
+**JSONPath**: /Oem/Hp/SNMPTrapPort (PATCHable integer)
 
 The SNMP trap port number.
 
 > example PATCH: {"Oem": {"Hp": {"SNMPTrapPort": &lt;integer-value&gt;}}}
 
-#### HTTPS/Port (PATCHable integer)
+### HTTPS.Port
+
+**JSONPath**: /HTTPS/Port (PATCHable integer)
 
 The HTTPS/SSL port number.  NOTE: When this field is modified, the Manager will reset automatically.
 
 > example PATCH: {"HTTPS": {"Port": &lt;integer-value&gt;}}
 
-#### VirtualMedia/Enabled (read only boolean)
+### VirtualMedia.Enabled
+
+**JSONPath**: /VirtualMedia/Enabled (read only boolean)
 
 Indicates whether Virtual Media is enabled for the manager.
 
-#### Oem/Hp/SerialOverLanLogging (PATCHable boolean)
+### SerialOverLanLogging
+
+**JSONPath**: /Oem/Hp/SerialOverLanLogging (PATCHable boolean)
 
 Indicates whether Serial Over LAN (SOL) or Virtual Serial Port (VSP) logging is enabled.
 
 > example PATCH: {"Oem": {"Hp": {"SerialOverLanLogging": true}}}
 
-#### Oem/Hp/RemoteSyslogPort (PATCHable integer)
+### RemoteSyslogPort
+
+**JSONPath**: /Oem/Hp/RemoteSyslogPort (PATCHable integer)
 
 The port number through which the Syslog server is listening.
 
 > example PATCH: {"Oem": {"Hp": {"RemoteSyslogPort": &lt;integer-value&gt;}}}
 
 ### PowerMetrics
-**Instances**:  
+**Resource Instances of this Type**:  
 
 * `https://{iLO}/redfish/v1/chassis/{item}/power`
 
-#### PowerLimit/CorrectionInMs (read only integer)
+### PowerLimit.CorrectionInMs
+
+**JSONPath**: /PowerLimit/CorrectionInMs (read only integer)
 
 Time in milliseconds that it takes for the limiting process to react and correct the power consumption below the limit.
 
-#### PowerSupplies[]/Oem/Hp/iPDU/MacAddress (read only string)
+### PowerSupplies[].Oem.Hp.iPDU.MacAddress
+
+**JSONPath**: /PowerSupplies[]/Oem/Hp/iPDU/MacAddress (read only string)
 
 The Ethernet MAC address of the iPDU connected to this power supply.
 
-#### PowerSupplies[]/Oem/Hp/iPDU/SerialNumber (read only string)
+### PowerSupplies[].Oem.Hp.iPDU.SerialNumber
+
+**JSONPath**: /PowerSupplies[]/Oem/Hp/iPDU/SerialNumber (read only string)
 
 The serial number of the iPDU connected to this power supply.
 
-#### PowerSupplies[]/Oem/Hp/Mismatched (read only boolean)
+### PowerSupplies[].Oem.Hp.Mismatched
+
+**JSONPath**: /PowerSupplies[]/Oem/Hp/Mismatched (read only boolean)
 
 If true, this power supply is mismatched with others in the system.
 
-#### PowerSupplies[]/Status/HealthRollUp (read only enumeration)
+### PowerSupplies[].Status.HealthRollUp
+
+**JSONPath**: /PowerSupplies[]/Status/HealthRollUp (read only enumeration)
 
 Indicates the overall health state of this resource and its dependent resources.
 
-Defined values:
+**Defined values**:
 
 * `OK`
 
@@ -5272,43 +6816,61 @@ Defined values:
 
 * `Critical`
 
-#### PowerCapacityWatts (read only integer)
+### PowerCapacityWatts
+
+**JSONPath**: /PowerCapacityWatts (read only integer)
 
 The total power (Watts) available to the chassis from all power supplies (adjusting for redundancy settings).
 
-#### PowerConsumedWatts (read only integer)
+### PowerConsumedWatts
+
+**JSONPath**: /PowerConsumedWatts (read only integer)
 
 The latest observed power (Watts) being drawn by this chassis. The update interval may vary depending upon implementation but is usually measured in seconds.
 
-#### PowerAllocatedWatts (read only integer)
+### PowerAllocatedWatts
+
+**JSONPath**: /PowerAllocatedWatts (read only integer)
 
 The total power (Watts) allocated to the chassis.
 
-#### PowerSupplies[]/Oem/Hp/iPDU/IPAddress (read only string)
+### PowerSupplies[].Oem.Hp.iPDU.IPAddress
+
+**JSONPath**: /PowerSupplies[]/Oem/Hp/iPDU/IPAddress (read only string)
 
 The IP address of the iPDU connected to this power supply.
 
-#### PowerSupplies[]/FirmwareVersion (read only string)
+### PowerSupplies[].FirmwareVersion
+
+**JSONPath**: /PowerSupplies[]/FirmwareVersion (read only string)
 
 The power supply firmware version.
 
-#### PowerSupplies[]/Oem/Hp/iPDU/Model (read only string)
+### PowerSupplies[].Oem.Hp.iPDU.Model
+
+**JSONPath**: /PowerSupplies[]/Oem/Hp/iPDU/Model (read only string)
 
 The model number of the iPDU connected to this power supply.
 
-#### PowerMetrics/AverageConsumedWatts (read only integer)
+### PowerMetrics.AverageConsumedWatts
+
+**JSONPath**: /PowerMetrics/AverageConsumedWatts (read only integer)
 
 The average power consumed during the interval specified by 'IntervalInMin'.
 
-#### PowerSupplies[]/CorrelatableID (read only string)
+### PowerSupplies[].CorrelatableID
+
+**JSONPath**: /PowerSupplies[]/CorrelatableID (read only string)
 
 CorrelatableID for this power supply.
 
-#### Status/HealthRollUp (read only enumeration)
+### Status.HealthRollUp
+
+**JSONPath**: /Status/HealthRollUp (read only enumeration)
 
 Indicates the overall health state of this resource and its dependent resources.
 
-Defined values:
+**Defined values**:
 
 * `OK`
 
@@ -5316,27 +6878,37 @@ Defined values:
 
 * `Critical`
 
-#### PowerLimit/CorrelatableID (read only string)
+### PowerLimit.CorrelatableID
+
+**JSONPath**: /PowerLimit/CorrelatableID (read only string)
 
 The value of this property shall represent a reference to the resource that is being limited.
 
-#### PowerSupplies[]/Model (read only string)
+### PowerSupplies[].Model
+
+**JSONPath**: /PowerSupplies[]/Model (read only string)
 
 The power supply model name.
 
-#### PowerMetrics/MinConsumedWatts (read only integer)
+### PowerMetrics.MinConsumedWatts
+
+**JSONPath**: /PowerMetrics/MinConsumedWatts (read only integer)
 
 The minimum power consumed during the interval specified by 'IntervalInMin'.
 
-#### PowerMetrics/IntervalInMin (read only integer)
+### PowerMetrics.IntervalInMin
+
+**JSONPath**: /PowerMetrics/IntervalInMin (read only integer)
 
 The interval between power metric evaluation in minutes.
 
-#### PowerSupplies[]/PowerSupplyType (read only enumeration)
+### PowerSupplies[].PowerSupplyType
+
+**JSONPath**: /PowerSupplies[]/PowerSupplyType (read only enumeration)
 
 The power supply type: AC, DC, or Unknown.
 
-Defined values:
+**Defined values**:
 
 * `Unknown`
 
@@ -5344,11 +6916,13 @@ Defined values:
 
 * `DC`
 
-#### PowerSupplies[]/Oem/Hp/PowerSupplyStatus/State (read only enumeration)
+### PowerSupplies[].Oem.Hp.PowerSupplyStatus.State
+
+**JSONPath**: /PowerSupplies[]/Oem/Hp/PowerSupplyStatus/State (read only enumeration)
 
 Indicates the known state of the resource.
 
-Defined values:
+**Defined values**:
 
 * `Unknown`
 
@@ -5386,13 +6960,15 @@ Defined values:
 
 * `PowerSupplyMismatch`
 
-#### PowerLimit/LimitException (PATCHable enumeration)
+### PowerLimit.LimitException
+
+**JSONPath**: /PowerLimit/LimitException (PATCHable enumeration)
 
 Action that is taken if the power cannot be maintained below the LimitInWatts.
 
 > example PATCH: {"PowerLimit": {"LimitException": "LogEventOnly"}}
 
-Defined values:
+**Defined values**:
 
 * `NoAction`
 
@@ -5402,27 +6978,35 @@ Defined values:
 
 * `Oem`
 
-#### PowerLimit/LimitInWatts (PATCHable integer)
+### PowerLimit.LimitInWatts
+
+**JSONPath**: /PowerLimit/LimitInWatts (PATCHable integer)
 
 The Power (Watts) limit (also known as 'Power Cap'). Set to null to disable the power cap.
 
 > example PATCH: {"PowerLimit": {"LimitInWatts": &lt;integer-value&gt;}}
 
-#### PowerSupplies[]/SparePartNumber (read only string)
+### PowerSupplies[].SparePartNumber
+
+**JSONPath**: /PowerSupplies[]/SparePartNumber (read only string)
 
 The power supply spare part number.
 
-#### PowerAvailableWatts (read only integer)
+### PowerAvailableWatts
+
+**JSONPath**: /PowerAvailableWatts (read only integer)
 
 Amount of power (Watts) not already budgeted and therefore available for additional allocation. (PowerCapacity - PowerAllocated).  This indicates how much reserve power capacity is left.
 
-#### Oem/Hp/SNMPPowerThresholdAlert/Trigger (PATCHable enumeration)
+### SNMPPowerThresholdAlert.Trigger
+
+**JSONPath**: /Oem/Hp/SNMPPowerThresholdAlert/Trigger (PATCHable enumeration)
 
 Trigger determines whether alerts are based on peak power consumption, average power consumption, or if they are disabled. Trigger property can only be enabled if the ThresholdWatts and DurationInMin values are specified/configured.
 
 > example PATCH: {"Oem": {"Hp": {"SNMPPowerThresholdAlert": {"Trigger": "AveragePowerConsumption"}}}}
 
-Defined values:
+**Defined values**:
 
 * `Disabled`
 
@@ -5430,11 +7014,13 @@ Defined values:
 
 * `PeakPowerConsumption`
 
-#### Status/Health (read only enumeration)
+### Status.Health
+
+**JSONPath**: /Status/Health (read only enumeration)
 
 Indicates the health state of this resource without considering its dependent resources.
 
-Defined values:
+**Defined values**:
 
 * `OK`
 
@@ -5442,11 +7028,13 @@ Defined values:
 
 * `Critical`
 
-#### PowerSupplies[]/LineInputVoltageType (read only enumeration)
+### PowerSupplies[].LineInputVoltageType
+
+**JSONPath**: /PowerSupplies[]/LineInputVoltageType (read only enumeration)
 
 Line voltage type: ACLowLine, ACMidLine, ACHighLine, DCNeg48V, DC420V, or Unknown.
 
-Defined values:
+**Defined values**:
 
 * `Unknown`
 
@@ -5460,19 +7048,25 @@ Defined values:
 
 * `HighVoltageDC`
 
-#### PowerSupplies[]/Oem/Hp/iPDUCapable (read only boolean)
+### PowerSupplies[].Oem.Hp.iPDUCapable
+
+**JSONPath**: /PowerSupplies[]/Oem/Hp/iPDUCapable (read only boolean)
 
 If true, this power supply is capable of being connected to an iPDUs.
 
-#### PowerSupplies[]/SerialNumber (read only string)
+### PowerSupplies[].SerialNumber
+
+**JSONPath**: /PowerSupplies[]/SerialNumber (read only string)
 
 The power supply serial number.
 
-#### Status/State (read only enumeration)
+### Status.State
+
+**JSONPath**: /Status/State (read only enumeration)
 
 Indicates the known state of this resource (for example, if the resource is enabled). Enabled indicates that the resource is available. Disabled indicates that the resource has been made unavailable intentionally, but it can be enabled. Offline indicates that the resource is unavailable intentionally and requires action to be made available. InTest indicates that the component is undergoing testing. Starting indicates that the resource is on its way to becoming available. Absent indicates that the resource is physically unavailable.
 
-Defined values:
+**Defined values**:
 
 * `Enabled`
 
@@ -5486,19 +7080,25 @@ Defined values:
 
 * `Absent`
 
-#### PowerSupplies[]/Oem/Hp/MaxPowerOutputWatts (read only integer)
+### PowerSupplies[].Oem.Hp.MaxPowerOutputWatts
+
+**JSONPath**: /PowerSupplies[]/Oem/Hp/MaxPowerOutputWatts (read only integer)
 
 The latest observed maximum output power being drawn by the power supply (Watts). This is usually updated every 10 seconds but the period can vary in some circumstances.
 
-#### PowerSupplies[]/PartNumber (read only string)
+### PowerSupplies[].PartNumber
+
+**JSONPath**: /PowerSupplies[]/PartNumber (read only string)
 
 The power supply part number.
 
-#### PowerSupplies[]/Status/Health (read only enumeration)
+### PowerSupplies[].Status.Health
+
+**JSONPath**: /PowerSupplies[]/Status/Health (read only enumeration)
 
 Indicates the health state of this resource without considering its dependent resources.
 
-Defined values:
+**Defined values**:
 
 * `OK`
 
@@ -5506,25 +7106,33 @@ Defined values:
 
 * `Critical`
 
-#### PowerSupplies[]/PowerCapacityWatts (read only integer)
+### PowerSupplies[].PowerCapacityWatts
+
+**JSONPath**: /PowerSupplies[]/PowerCapacityWatts (read only integer)
 
 The power capacity of the power supply, in Watts.
 
-#### Oem/Hp/SNMPPowerThresholdAlert/DurationInMin (PATCHable integer)
+### SNMPPowerThresholdAlert.DurationInMin
+
+**JSONPath**: /Oem/Hp/SNMPPowerThresholdAlert/DurationInMin (PATCHable integer)
 
 Sets the length of time, in minutes, that power consumption must remain above the warning threshold before an SNMP alert is triggered. The maximum duration is 240 minutes, and the duration must be a multiple of 5.
 
 > example PATCH: {"Oem": {"Hp": {"SNMPPowerThresholdAlert": {"DurationInMin": &lt;integer-value&gt;}}}}
 
-#### PowerRequestedWatts (read only integer)
+### PowerRequestedWatts
+
+**JSONPath**: /PowerRequestedWatts (read only integer)
 
 Potential power (Watts) that the chassis is requesting that might be higher than the current level being consumed. This is because the requested power includes budget that the chassis has reserved for future use.
 
-#### PowerSupplies[]/Status/State (read only enumeration)
+### PowerSupplies[].Status.State
+
+**JSONPath**: /PowerSupplies[]/Status/State (read only enumeration)
 
 Indicates the known state of this resource (for example, if the resource is enabled). Enabled indicates that the resource is available. Disabled indicates that the resource has been made unavailable intentionally, but it can be enabled. Offline indicates that the resource is unavailable intentionally and requires action to be made available. InTest indicates that the component is undergoing testing. Starting indicates that the resource is on its way to becoming available. Absent indicates that the resource is physically unavailable.
 
-Defined values:
+**Defined values**:
 
 * `Enabled`
 
@@ -5538,25 +7146,33 @@ Defined values:
 
 * `Absent`
 
-#### PowerSupplies[]/LastPowerOutputWatts (read only integer)
+### PowerSupplies[].LastPowerOutputWatts
+
+**JSONPath**: /PowerSupplies[]/LastPowerOutputWatts (read only integer)
 
 The average power (Watts) consumed.
 
-#### Oem/Hp/SNMPPowerThresholdAlert/ThresholdWatts (PATCHable integer)
+### SNMPPowerThresholdAlert.ThresholdWatts
+
+**JSONPath**: /Oem/Hp/SNMPPowerThresholdAlert/ThresholdWatts (PATCHable integer)
 
 Sets the power consumption threshold (watts). If power consumption exceeds this value for the specified time duration, an SNMP alert is triggered.
 
 > example PATCH: {"Oem": {"Hp": {"SNMPPowerThresholdAlert": {"ThresholdWatts": &lt;integer-value&gt;}}}}
 
-#### PowerMetrics/MaxConsumedWatts (read only integer)
+### PowerMetrics.MaxConsumedWatts
+
+**JSONPath**: /PowerMetrics/MaxConsumedWatts (read only integer)
 
 The maximum power consumed during the interval specified by 'IntervalInMin'.
 
-#### PowerSupplies[]/Oem/Hp/iPDU/iPDUStatus/State (read only enumeration)
+### PowerSupplies[].Oem.Hp.iPDU.iPDUStatus.State
+
+**JSONPath**: /PowerSupplies[]/Oem/Hp/iPDU/iPDUStatus/State (read only enumeration)
 
 Indicates the known state of the resource.
 
-Defined values:
+**Defined values**:
 
 * `Unknown`
 
@@ -5594,159 +7210,227 @@ Defined values:
 
 * `PowerSupplyMismatch`
 
-#### PowerSupplies[]/Oem/Hp/BayNumber (read only integer)
+### PowerSupplies[].Oem.Hp.BayNumber
+
+**JSONPath**: /PowerSupplies[]/Oem/Hp/BayNumber (read only integer)
 
 The power supply bay number.
 
-#### PowerSupplies[]/Oem/Hp/AveragePowerOutputWatts (read only integer)
+### PowerSupplies[].Oem.Hp.AveragePowerOutputWatts
+
+**JSONPath**: /PowerSupplies[]/Oem/Hp/AveragePowerOutputWatts (read only integer)
 
 The latest observed average power being drawn by the power supply (Watts). This is usually updated every 10 seconds but the period can vary in some circumstances.
 
-#### PowerSupplies[]/Oem/Hp/HotplugCapable (read only boolean)
+### PowerSupplies[].Oem.Hp.HotplugCapable
+
+**JSONPath**: /PowerSupplies[]/Oem/Hp/HotplugCapable (read only boolean)
 
 If true, this power supply (and power supply bay) is capable of being hot-plugged.
 
-#### PowerSupplies[]/LineInputVoltage (read only integer)
+### PowerSupplies[].LineInputVoltage
+
+**JSONPath**: /PowerSupplies[]/LineInputVoltage (read only integer)
 
 Line input voltage at which the power supply is operating at this moment (in Volts).
 
 ### ServiceRoot
 This object represents the HP RESTful API root service.
 
-**Instances**:  
+**Resource Instances of this Type**:  
 
 * `https://{iLO}/redfish/v1`
 
-#### Oem/Hp/Sessions/LoginHint/HintPOSTData/UserName (read only string)
+### Sessions.LoginHint.HintPOSTData.UserName
+
+**JSONPath**: /Oem/Hp/Sessions/LoginHint/HintPOSTData/UserName (read only string)
 
 The user name for logging in to the management processor.
 
-#### Time (read only string)
+### Time
+
+**JSONPath**: /Time (read only string)
 
 The current web service time.
 
-#### Oem/Hp/Manager[]/HostName (read only string)
+### Manager[].HostName
+
+**JSONPath**: /Oem/Hp/Manager[]/HostName (read only string)
 
 The name of management processor.
 
-#### Oem/Hp/Sessions/KerberosEnabled (read only boolean)
+### Sessions.KerberosEnabled
+
+**JSONPath**: /Oem/Hp/Sessions/KerberosEnabled (read only boolean)
 
 Specifies whether Kerberos login is enabled.
 
-#### Oem/Hp/Manager[]/FQDN (read only string)
+### Manager[].FQDN
+
+**JSONPath**: /Oem/Hp/Manager[]/FQDN (read only string)
 
 Fully qualified domain name of the management processor.
 
-#### Oem/Hp/Sessions/CertCommonName (read only string)
+### Sessions.CertCommonName
+
+**JSONPath**: /Oem/Hp/Sessions/CertCommonName (read only string)
 
 The name of the management processor as it appears in the digital certificate when a secure web GUI session is established to the management processor.
 
-#### Oem/Hp/Manager[]/ManagerFirmwareVersion (read only string)
+### Manager[].ManagerFirmwareVersion
+
+**JSONPath**: /Oem/Hp/Manager[]/ManagerFirmwareVersion (read only string)
 
 The major and minor management processor version numbers.
 
-#### ServiceVersion (read only enumeration)
+### ServiceVersion
+
+**JSONPath**: /ServiceVersion (read only enumeration)
 
 The web service version. This is different from the version of the data model.
 
-Defined values:
+**Defined values**:
 
 * `0.9.5`
 
 * `0.91.0`
 
-#### Oem/Hp/Sessions/LoginHint/Hint (read only string)
+### Sessions.LoginHint.Hint
+
+**JSONPath**: /Oem/Hp/Sessions/LoginHint/Hint (read only string)
 
 The information on how to log in to the management processor.
 
-#### Oem/Hp/Manager[]/ManagerType (read only string)
+### Manager[].ManagerType
+
+**JSONPath**: /Oem/Hp/Manager[]/ManagerType (read only string)
 
 The type of the service manager.
 
-#### Oem/Hp/Manager[]/Blade/RackName (read only string)
+### Manager[].Blade.RackName
+
+**JSONPath**: /Oem/Hp/Manager[]/Blade/RackName (read only string)
 
 Specifies the name of the rack in which the enclosure is present.
 
-#### Oem/Hp/Manager[]/Blade/EnclosureName (read only string)
+### Manager[].Blade.EnclosureName
+
+**JSONPath**: /Oem/Hp/Manager[]/Blade/EnclosureName (read only string)
 
 Specifies the name of the enclosure in which the blade is present.
 
-#### Oem/Hp/Manager[]/IPManager (read only object)
+### Manager[].IPManager
 
-#### Oem/Hp/Manager[]/Languages[]/Version (read only string)
+**JSONPath**: /Oem/Hp/Manager[]/IPManager (read only object)
+
+### Manager[].Languages[].Version
+
+**JSONPath**: /Oem/Hp/Manager[]/Languages[]/Version (read only string)
 
 Specifies the version of the management processor in the respective language.
 
-#### Oem/Hp/Sessions/LoginFailureDelay (read only integer)
+### Sessions.LoginFailureDelay
+
+**JSONPath**: /Oem/Hp/Sessions/LoginFailureDelay (read only integer)
 
 The delay (seconds) when a management processor login attempt has failed.
 
-#### Oem/Hp/Sessions/LDAPAuthLicenced (read only boolean)
+### Sessions.LDAPAuthLicenced
+
+**JSONPath**: /Oem/Hp/Sessions/LDAPAuthLicenced (read only boolean)
 
 Specifies whether a valid license is installed for LDAP use.
 
-#### Oem/Hp/Sessions/LocalLoginEnabled (read only boolean)
+### Sessions.LocalLoginEnabled
+
+**JSONPath**: /Oem/Hp/Sessions/LocalLoginEnabled (read only boolean)
 
 Specifies whether local users can log in.
 
-#### Oem/Hp/Manager[]/Languages[]/Language (read only string)
+### Manager[].Languages[].Language
+
+**JSONPath**: /Oem/Hp/Manager[]/Languages[]/Language (read only string)
 
 Specifies one of the languages supported by the management processor.
 
-#### Oem/Hp/Sessions/SecurityOverride (read only boolean)
+### Sessions.SecurityOverride
+
+**JSONPath**: /Oem/Hp/Sessions/SecurityOverride (read only boolean)
 
 Specifies whether the security override switch is enabled.
 
-#### Oem/Hp/Sessions/LDAPEnabled (read only boolean)
+### Sessions.LDAPEnabled
+
+**JSONPath**: /Oem/Hp/Sessions/LDAPEnabled (read only boolean)
 
 Specifies whether LDAP login is enabled.
 
-#### Oem/Hp/Sessions/LoginHint/HintPOSTData/Password (read only string)
+### Sessions.LoginHint.HintPOSTData.Password
+
+**JSONPath**: /Oem/Hp/Sessions/LoginHint/HintPOSTData/Password (read only string)
 
 The password for logging in to the management processor.
 
-#### UUID (read only string)
+### UUID
+
+**JSONPath**: /UUID (read only string)
 
 Unique identifier for a service instance.  This value should be an exact match of the UUID value returned in a 200OK from an SSDP M-SEARCH request during discovery.
 
-#### Oem/Hp/Sessions/ServerName (read only string)
+### Sessions.ServerName
+
+**JSONPath**: /Oem/Hp/Sessions/ServerName (read only string)
 
 The name of the server that this management processor is managing.
 
-#### Oem/Hp/Manager[]/Languages[]/TranslationName (read only string)
+### Manager[].Languages[].TranslationName
+
+**JSONPath**: /Oem/Hp/Manager[]/Languages[]/TranslationName (read only string)
 
 Specifies one of the languages supported by the management processor.
 
-#### Oem/Hp/Manager[]/Blade/BayNumber (read only string)
+### Manager[].Blade.BayNumber
+
+**JSONPath**: /Oem/Hp/Manager[]/Blade/BayNumber (read only string)
 
 Specifies the location of the blade in the enclosure.
 
-#### Oem/Hp/Sessions/SecurityMessage (read only string)
+### Sessions.SecurityMessage
+
+**JSONPath**: /Oem/Hp/Sessions/SecurityMessage (read only string)
 
 The login security banner message that is displayed on the management processor Login page.
 
-#### Oem/Hp/Manager[]/DefaultLanguage (read only string)
+### Manager[].DefaultLanguage
+
+**JSONPath**: /Oem/Hp/Manager[]/DefaultLanguage (read only string)
 
 Default language used for the Web interface.
 
-#### Oem/Hp/Manager[]/ManagerFirmwareVersionPass (read only string)
+### Manager[].ManagerFirmwareVersionPass
+
+**JSONPath**: /Oem/Hp/Manager[]/ManagerFirmwareVersionPass (read only string)
 
 The build or pass number of the management processor version.
 
 ### Session
-**Instances**:  
+**Resource Instances of this Type**:  
 
 * `https://{iLO}/redfish/v1/sessionservice/sessions/{item}`
 
-#### Oem/Hp/Privileges/VirtualPowerAndResetPriv (read only boolean)
+### Privileges.VirtualPowerAndResetPriv
+
+**JSONPath**: /Oem/Hp/Privileges/VirtualPowerAndResetPriv (read only boolean)
 
 This privilege enables a user to power-cycle or reset the host system. These activities interrupt system availability. A user with this privilege can diagnose the system by using the Generate NMI to System button.
 
-#### Oem/Hp/UserType (read only enumeration)
+### UserType
+
+**JSONPath**: /Oem/Hp/UserType (read only enumeration)
 
 User type
 
-Defined values:
+**Defined values**:
 
 * `Local`
 
@@ -5764,35 +7448,49 @@ Defined values:
 
 * `Federation`
 
-#### Oem/Hp/UserExpires (read only string)
+### UserExpires
+
+**JSONPath**: /Oem/Hp/UserExpires (read only string)
 
 User session expire time
 
-#### Oem/Hp/UserAccount (read only string)
+### UserAccount
+
+**JSONPath**: /Oem/Hp/UserAccount (read only string)
 
 Login details of the user
 
-#### Oem/Hp/Privileges/LoginPriv (read only boolean)
+### Privileges.LoginPriv
+
+**JSONPath**: /Oem/Hp/Privileges/LoginPriv (read only boolean)
 
 This privilege enables a user to log in to the management processor. All local accounts have the login privilege. This privilege is added automatically if it is not specified.
 
-#### Oem/Hp/UserIP (read only string)
+### UserIP
+
+**JSONPath**: /Oem/Hp/UserIP (read only string)
 
 IP address of the user
 
-#### UserName (read only string)
+### UserName
+
+**JSONPath**: /UserName (read only string)
 
 Name to use to log in to the management processor.
 
-#### Oem/Hp/Privileges/UserConfigPriv (read only boolean)
+### Privileges.UserConfigPriv
+
+**JSONPath**: /Oem/Hp/Privileges/UserConfigPriv (read only boolean)
 
 This privilege enables a user to add, edit, and delete local management processor user accounts. A user with this privilege can change privileges for all users.
 
-#### Oem/Hp/UserTag (read only enumeration)
+### UserTag
+
+**JSONPath**: /Oem/Hp/UserTag (read only enumeration)
 
 Session source
 
-Defined values:
+**Defined values**:
 
 * `Web UI`
 
@@ -5810,74 +7508,98 @@ Defined values:
 
 * `Unknown`
 
-#### Oem/Hp/UserDistinguishedName (read only string)
+### UserDistinguishedName
+
+**JSONPath**: /Oem/Hp/UserDistinguishedName (read only string)
 
 LDAP user is identified by its distinguished name (DN).
 
-#### Oem/Hp/Privileges/RemoteConsolePriv (read only boolean)
+### Privileges.RemoteConsolePriv
+
+**JSONPath**: /Oem/Hp/Privileges/RemoteConsolePriv (read only boolean)
 
 This privilege enables a user to remotely access the host system Remote Console, including video, keyboard, and mouse control.
 
-#### Oem/Hp/Privileges/iLOConfigPriv (read only boolean)
+### Privileges.iLOConfigPriv
+
+**JSONPath**: /Oem/Hp/Privileges/iLOConfigPriv (read only boolean)
 
 This privilege enables a user to configure most management processor settings, including security settings, and to remotely update the management processor firmware. This privilege does not enable local user account administration.
 
-#### Oem/Hp/Privileges/VirtualMediaPriv (read only boolean)
+### Privileges.VirtualMediaPriv
+
+**JSONPath**: /Oem/Hp/Privileges/VirtualMediaPriv (read only boolean)
 
 This privilege enables a user to use the Virtual Media feature on the host system.
 
-#### Oem/Hp/MySession (read only boolean)
+### MySession
+
+**JSONPath**: /Oem/Hp/MySession (read only boolean)
 
 Indicates whether this is a session I own.
 
-#### Oem/Hp/AccessTime (read only string)
+### AccessTime
+
+**JSONPath**: /Oem/Hp/AccessTime (read only string)
 
 User session last-access time
 
-#### Oem/Hp/LoginTime (read only string)
+### LoginTime
+
+**JSONPath**: /Oem/Hp/LoginTime (read only string)
 
 User session login time
 
 ### SnmpService
-**Instances**:  
+**Resource Instances of this Type**:  
 
 * `https://{iLO}/redfish/v1/managers/{item}/snmpservice`
 
-#### RoleDetail (PATCHable string)
+### RoleDetail
+
+**JSONPath**: /RoleDetail (PATCHable string)
 
 The string of up to 512 characters that describes specific tasks that the server might perform.
 
 > example PATCH: {"RoleDetail": "&lt;string-value&gt;"}
 
-#### AlertsEnabled (PATCHable boolean)
+### AlertsEnabled
+
+**JSONPath**: /AlertsEnabled (PATCHable boolean)
 
 The alert conditions that the management processor detects independently of the host operating system can be sent to specified SNMP alert destinations, such as HP SIM.
 
 > example PATCH: {"AlertsEnabled": true}
 
-#### Users[]/SecurityName (PATCHable string)
+### Users[].SecurityName
+
+**JSONPath**: /Users[]/SecurityName (PATCHable string)
 
 The user profile name. Enter an alphanumeric string of 1 to 32 characters.
 
 > example PATCH: {"Users": [{"SecurityName": "&lt;string-value&gt;"}|null, ...]}
 
-#### Mode (PATCHable enumeration)
+### Mode
+
+**JSONPath**: /Mode (PATCHable enumeration)
 
 Agentless Management Mode (default): Use SNMP agents running on the management processor to manage the server. SNMP Pass-thru Mode: Use SNMP agents running on the host operating system to manage the server. This setting does not affect alerts.
 
 > example PATCH: {"Mode": "Passthru"}
 
-Defined values:
+**Defined values**:
 
 * `Agentless`
 
 * `Passthru`
 
-#### Status/HealthRollUp (read only enumeration)
+### Status.HealthRollUp
+
+**JSONPath**: /Status/HealthRollUp (read only enumeration)
 
 Indicates the overall health state of this resource and its dependent resources.
 
-Defined values:
+**Defined values**:
 
 * `OK`
 
@@ -5885,17 +7607,21 @@ Defined values:
 
 * `Critical`
 
-#### SNMPv1Traps (PATCHable boolean)
+### SNMPv1Traps
+
+**JSONPath**: /SNMPv1Traps (PATCHable boolean)
 
 When enabled, SNMPv1 traps are sent to the remote management systems configured in the SNMP Alert Destination(s) boxes.
 
 > example PATCH: {"SNMPv1Traps": true}
 
-#### Status/Health (read only enumeration)
+### Status.Health
+
+**JSONPath**: /Status/Health (read only enumeration)
 
 Indicates the health state of this resource without considering its dependent resources.
 
-Defined values:
+**Defined values**:
 
 * `OK`
 
@@ -5903,53 +7629,65 @@ Defined values:
 
 * `Critical`
 
-#### Role (PATCHable string)
+### Role
+
+**JSONPath**: /Role (PATCHable string)
 
 The string of up to 64 characters that describes the server role or function.
 
 > example PATCH: {"Role": "&lt;string-value&gt;"}
 
-#### Users[]/PrivacyProtocol (PATCHable enumeration)
+### Users[].PrivacyProtocol
+
+**JSONPath**: /Users[]/PrivacyProtocol (PATCHable enumeration)
 
 Sets the encryption algorithm to use for encoding the privacy passphrase. A portion of an SNMP message is encrypted before transmission. Select AES (Advanced Encryption Standard) or DES (Data Encryption Standard).
 
 > example PATCH: {"Users": [{"PrivacyProtocol": "AES"}|null, ...]}
 
-Defined values:
+**Defined values**:
 
 * `DES`
 
 * `AES`
 
-#### TrapSourceHostname (PATCHable enumeration)
+### TrapSourceHostname
+
+**JSONPath**: /TrapSourceHostname (PATCHable enumeration)
 
 Determines the host name that is used in the SNMP-defined sysName variable when the management processor generates SNMP traps.
 
 > example PATCH: {"TrapSourceHostname": "System"}
 
-Defined values:
+**Defined values**:
 
 * `Manager`
 
 * `System`
 
-#### Users[]/AuthPassphrase (PATCHable string)
+### Users[].AuthPassphrase
+
+**JSONPath**: /Users[]/AuthPassphrase (PATCHable string)
 
 Sets the passphrase to use for sign operations. Enter a value of 8 to 49 characters.
 
 > example PATCH: {"Users": [{"AuthPassphrase": "&lt;string-value&gt;"}|null, ...]}
 
-#### Oem/Hp/SNMPColdStartTrapBroadcast (PATCHable boolean)
+### SNMPColdStartTrapBroadcast
+
+**JSONPath**: /Oem/Hp/SNMPColdStartTrapBroadcast (PATCHable boolean)
 
 If set to true, the Cold Start Trap will be enabled. The Cold Start Trap is broadcast to a subnet broadcast address if there are no trap destinations configured in the SNMP Alert Destination(s) boxes.
 
 > example PATCH: {"Oem": {"Hp": {"SNMPColdStartTrapBroadcast": true}}}
 
-#### Status/State (read only enumeration)
+### Status.State
+
+**JSONPath**: /Status/State (read only enumeration)
 
 Indicates the known state of this resource (for example, if the resource is enabled). Enabled indicates that the resource is available. Disabled indicates that the resource has been made unavailable intentionally, but it can be enabled. Offline indicates that the resource is unavailable intentionally and requires action to be made available. InTest indicates that the component is undergoing testing. Starting indicates that the resource is on its way to becoming available. Absent indicates that the resource is physically unavailable.
 
-Defined values:
+**Defined values**:
 
 * `Enabled`
 
@@ -5963,43 +7701,55 @@ Defined values:
 
 * `Absent`
 
-#### SNMPv3EngineID (PATCHable string)
+### SNMPv3EngineID
+
+**JSONPath**: /SNMPv3EngineID (PATCHable string)
 
 The SNMPv3 Engine ID is the unique identifier of an SNMP engine that belongs to an SNMP agent entity. This value must be a hexadecimal string with an even number of 6 to 32 characters, excluding the first two characters, 0x (for example, 0x01020304abcdef).
 
 > example PATCH: {"SNMPv3EngineID": "&lt;string-value&gt;"}
 
-#### Users[]/AuthProtocol (PATCHable enumeration)
+### Users[].AuthProtocol
+
+**JSONPath**: /Users[]/AuthProtocol (PATCHable enumeration)
 
 Sets the message digest algorithm to use for encoding the authorization passphrase. The message digest is calculated over an appropriate portion of an SNMP message, and is included as part of the message sent to the recipient. Select MD5 (Message Digest) or SHA (Secure Hash Algorithm).
 
 > example PATCH: {"Users": [{"AuthProtocol": "SHA"}|null, ...]}
 
-Defined values:
+**Defined values**:
 
 * `MD5`
 
 * `SHA`
 
-#### Oem/Hp/SNMPForwardInsightManagerAgentAlerts (PATCHable boolean)
+### SNMPForwardInsightManagerAgentAlerts
+
+**JSONPath**: /Oem/Hp/SNMPForwardInsightManagerAgentAlerts (PATCHable boolean)
 
 If set to true, the alert conditions detected by the host management agents are forwarded to SNMP alert destinations through the management processor. These alerts are generated by the Insight Management Agents, which are available for each supported operating system. Insight Management Agents must be installed on the host server to receive these alerts.
 
 > example PATCH: {"Oem": {"Hp": {"SNMPForwardInsightManagerAgentAlerts": true}}}
 
-#### Users[]/PrivacyPassphrase (PATCHable string)
+### Users[].PrivacyPassphrase
+
+**JSONPath**: /Users[]/PrivacyPassphrase (PATCHable string)
 
 Sets the passphrase to use for encrypt operations. Enter a value of 8 to 49 characters.
 
 > example PATCH: {"Users": [{"PrivacyPassphrase": "&lt;string-value&gt;"}|null, ...]}
 
-#### Location (PATCHable string)
+### Location
+
+**JSONPath**: /Location (PATCHable string)
 
 The string of up to 49 characters that specifies the physical location of the server.
 
 > example PATCH: {"Location": "&lt;string-value&gt;"}
 
-#### Contact (PATCHable string)
+### Contact
+
+**JSONPath**: /Contact (PATCHable string)
 
 The string of up to 49 characters that specifies the system administrator or server owner. The string can include a name, email address, or phone number.
 
@@ -6008,35 +7758,47 @@ The string of up to 49 characters that specifies the system administrator or ser
 ### ThermalMetrics
 The schema definition for the Thermal Metrics. It represents the properties for temperature and cooling.
 
-**Instances**:  
+**Resource Instances of this Type**:  
 
 * `https://{iLO}/redfish/v1/chassis/{item}/thermal`
 
-#### Temperatures[]/MaximumValue (read only integer)
+### Temperatures[].MaximumValue
+
+**JSONPath**: /Temperatures[]/MaximumValue (read only integer)
 
 Maximum value for CurrentReading.
 
-#### Fans[]/CorrelatableID (read only string)
+### Fans[].CorrelatableID
+
+**JSONPath**: /Fans[]/CorrelatableID (read only string)
 
 The CorrelatableID for this fan.
 
-#### Temperatures[]/MinimumValue (read only integer)
+### Temperatures[].MinimumValue
+
+**JSONPath**: /Temperatures[]/MinimumValue (read only integer)
 
 Minimum value for CurrentReading.
 
-#### Fans[]/UpperThresholdCritical (read only integer)
+### Fans[].UpperThresholdCritical
+
+**JSONPath**: /Fans[]/UpperThresholdCritical (read only integer)
 
 Above normal range but not yet fatal.
 
-#### Temperatures[]/UpperThresholdFatal (read only integer)
+### Temperatures[].UpperThresholdFatal
+
+**JSONPath**: /Temperatures[]/UpperThresholdFatal (read only integer)
 
 Above normal range and is fatal.
 
-#### Temperatures[]/Status/State (read only enumeration)
+### Temperatures[].Status.State
+
+**JSONPath**: /Temperatures[]/Status/State (read only enumeration)
 
 Indicates the known state of this resource (for example, if the resource is enabled). Enabled indicates that the resource is available. Disabled indicates that the resource has been made unavailable intentionally, but it can be enabled. Offline indicates that the resource is unavailable intentionally and requires action to be made available. InTest indicates that the component is undergoing testing. Starting indicates that the resource is on its way to becoming available. Absent indicates that the resource is physically unavailable.
 
-Defined values:
+**Defined values**:
 
 * `Enabled`
 
@@ -6050,23 +7812,31 @@ Defined values:
 
 * `Absent`
 
-#### Temperatures[]/Oem/Hp/LocationYmm (read only integer)
+### Temperatures[].Oem.Hp.LocationYmm
+
+**JSONPath**: /Temperatures[]/Oem/Hp/LocationYmm (read only integer)
 
 The location of the sensor, in millimeters, along the Y axis from the logical reference point.
 
-#### Fans[]/MaximumValue (read only integer)
+### Fans[].MaximumValue
+
+**JSONPath**: /Fans[]/MaximumValue (read only integer)
 
 Maximum value for CurrentReading.
 
-#### Temperatures[]/LowerThresholdFatal (read only integer)
+### Temperatures[].LowerThresholdFatal
+
+**JSONPath**: /Temperatures[]/LowerThresholdFatal (read only integer)
 
 Below normal range and is fatal.
 
-#### Status/HealthRollUp (read only enumeration)
+### Status.HealthRollUp
+
+**JSONPath**: /Status/HealthRollUp (read only enumeration)
 
 Indicates the overall health state of this resource and its dependent resources.
 
-Defined values:
+**Defined values**:
 
 * `OK`
 
@@ -6074,21 +7844,25 @@ Defined values:
 
 * `Critical`
 
-#### Fans[]/Units (read only enumeration)
+### Fans[].Units
+
+**JSONPath**: /Fans[]/Units (read only enumeration)
 
 Units for the CurrentReading.
 
-Defined values:
+**Defined values**:
 
 * `RPM`
 
 * `Percent`
 
-#### Fans[]/Status/Health (read only enumeration)
+### Fans[].Status.Health
+
+**JSONPath**: /Fans[]/Status/Health (read only enumeration)
 
 Indicates the health state of this resource without considering its dependent resources.
 
-Defined values:
+**Defined values**:
 
 * `OK`
 
@@ -6096,11 +7870,13 @@ Defined values:
 
 * `Critical`
 
-#### Temperatures[]/Context (read only enumeration)
+### Temperatures[].Context
+
+**JSONPath**: /Temperatures[]/Context (read only enumeration)
 
 The area or device to which this temperature measurement applies.
 
-Defined values:
+**Defined values**:
 
 * `System`
 
@@ -6134,15 +7910,19 @@ Defined values:
 
 * `Virtual`
 
-#### Fans[]/LowerThresholdCritical (read only integer)
+### Fans[].LowerThresholdCritical
+
+**JSONPath**: /Fans[]/LowerThresholdCritical (read only integer)
 
 Below normal range but not yet fatal.
 
-#### Temperatures[]/Status/Health (read only enumeration)
+### Temperatures[].Status.Health
+
+**JSONPath**: /Temperatures[]/Status/Health (read only enumeration)
 
 Indicates the health state of this resource without considering its dependent resources.
 
-Defined values:
+**Defined values**:
 
 * `OK`
 
@@ -6150,33 +7930,43 @@ Defined values:
 
 * `Critical`
 
-#### Temperatures[]/Oem/Hp/LocationXmm (read only integer)
+### Temperatures[].Oem.Hp.LocationXmm
+
+**JSONPath**: /Temperatures[]/Oem/Hp/LocationXmm (read only integer)
 
 The location of the sensor, in millimeters, along the X axis from the logical reference point.
 
-#### Fans[]/UpperThresholdFatal (read only integer)
+### Fans[].UpperThresholdFatal
+
+**JSONPath**: /Fans[]/UpperThresholdFatal (read only integer)
 
 Above normal range and is fatal.
 
-#### Temperatures[]/Units (read only enumeration)
+### Temperatures[].Units
+
+**JSONPath**: /Temperatures[]/Units (read only enumeration)
 
 The temperature sensor's units.
 
-Defined values:
+**Defined values**:
 
 * `Celsius`
 
 * `Fahrenheit`
 
-#### Fans[]/LowerThresholdFatal (read only integer)
+### Fans[].LowerThresholdFatal
+
+**JSONPath**: /Fans[]/LowerThresholdFatal (read only integer)
 
 Below normal range and is fatal.
 
-#### Status/Health (read only enumeration)
+### Status.Health
+
+**JSONPath**: /Status/Health (read only enumeration)
 
 Indicates the health state of this resource without considering its dependent resources.
 
-Defined values:
+**Defined values**:
 
 * `OK`
 
@@ -6184,23 +7974,31 @@ Defined values:
 
 * `Critical`
 
-#### Fans[]/UpperThresholdNonCritical (read only integer)
+### Fans[].UpperThresholdNonCritical
+
+**JSONPath**: /Fans[]/UpperThresholdNonCritical (read only integer)
 
 Above normal range.
 
-#### Fans[]/FanName (read only string)
+### Fans[].FanName
+
+**JSONPath**: /Fans[]/FanName (read only string)
 
 The name of the fan sensor.
 
-#### Temperatures[]/LowerThresholdNonCritical (read only integer)
+### Temperatures[].LowerThresholdNonCritical
+
+**JSONPath**: /Temperatures[]/LowerThresholdNonCritical (read only integer)
 
 Below normal range.
 
-#### Fans[]/Status/HealthRollUp (read only enumeration)
+### Fans[].Status.HealthRollUp
+
+**JSONPath**: /Fans[]/Status/HealthRollUp (read only enumeration)
 
 Indicates the overall health state of this resource and its dependent resources.
 
-Defined values:
+**Defined values**:
 
 * `OK`
 
@@ -6208,11 +8006,13 @@ Defined values:
 
 * `Critical`
 
-#### Fans[]/Status/State (read only enumeration)
+### Fans[].Status.State
+
+**JSONPath**: /Fans[]/Status/State (read only enumeration)
 
 Indicates the known state of this resource (for example, if the resource is enabled). Enabled indicates that the resource is available. Disabled indicates that the resource has been made unavailable intentionally, but it can be enabled. Offline indicates that the resource is unavailable intentionally and requires action to be made available. InTest indicates that the component is undergoing testing. Starting indicates that the resource is on its way to becoming available. Absent indicates that the resource is physically unavailable.
 
-Defined values:
+**Defined values**:
 
 * `Enabled`
 
@@ -6226,11 +8026,13 @@ Defined values:
 
 * `Absent`
 
-#### Status/State (read only enumeration)
+### Status.State
+
+**JSONPath**: /Status/State (read only enumeration)
 
 Indicates the known state of this resource (for example, if the resource is enabled). Enabled indicates that the resource is available. Disabled indicates that the resource has been made unavailable intentionally, but it can be enabled. Offline indicates that the resource is unavailable intentionally and requires action to be made available. InTest indicates that the component is undergoing testing. Starting indicates that the resource is on its way to becoming available. Absent indicates that the resource is physically unavailable.
 
-Defined values:
+**Defined values**:
 
 * `Enabled`
 
@@ -6244,19 +8046,25 @@ Defined values:
 
 * `Absent`
 
-#### Temperatures[]/Number (read only integer)
+### Temperatures[].Number
+
+**JSONPath**: /Temperatures[]/Number (read only integer)
 
 A numerical identifier to represent the temperature sensor.
 
-#### Fans[]/MinimumValue (read only integer)
+### Fans[].MinimumValue
+
+**JSONPath**: /Fans[]/MinimumValue (read only integer)
 
 Minimum value for CurrentReading.
 
-#### Fans[]/Oem/Hp/Location (read only enumeration)
+### Fans[].Oem.Hp.Location
+
+**JSONPath**: /Fans[]/Oem/Hp/Location (read only enumeration)
 
 Indicates the component (i.e. CPU, Memory, and Storage) that the fan is being used to cool.
 
-Defined values:
+**Defined values**:
 
 * `System`
 
@@ -6290,31 +8098,43 @@ Defined values:
 
 * `Virtual`
 
-#### Fans[]/LowerThresholdNonCritical (read only integer)
+### Fans[].LowerThresholdNonCritical
+
+**JSONPath**: /Fans[]/LowerThresholdNonCritical (read only integer)
 
 Below normal range.
 
-#### Temperatures[]/CurrentReading (read only integer)
+### Temperatures[].CurrentReading
+
+**JSONPath**: /Temperatures[]/CurrentReading (read only integer)
 
 The current reading of the temperature sensor.
 
-#### Temperatures[]/LowerThresholdCritical (read only integer)
+### Temperatures[].LowerThresholdCritical
+
+**JSONPath**: /Temperatures[]/LowerThresholdCritical (read only integer)
 
 Below normal range but not yet fatal.
 
-#### Fans[]/CurrentReading (read only integer)
+### Fans[].CurrentReading
+
+**JSONPath**: /Fans[]/CurrentReading (read only integer)
 
 The current speed of the fan.
 
-#### Temperatures[]/CorrelatableID (read only string)
+### Temperatures[].CorrelatableID
+
+**JSONPath**: /Temperatures[]/CorrelatableID (read only string)
 
 The CorrelatableID for this temperature sensor.
 
-#### Temperatures[]/Status/HealthRollUp (read only enumeration)
+### Temperatures[].Status.HealthRollUp
+
+**JSONPath**: /Temperatures[]/Status/HealthRollUp (read only enumeration)
 
 Indicates the overall health state of this resource and its dependent resources.
 
-Defined values:
+**Defined values**:
 
 * `OK`
 
@@ -6322,15 +8142,19 @@ Defined values:
 
 * `Critical`
 
-#### Temperatures[]/UpperThresholdCritical (read only integer)
+### Temperatures[].UpperThresholdCritical
+
+**JSONPath**: /Temperatures[]/UpperThresholdCritical (read only integer)
 
 Above normal range but not yet fatal.
 
-#### Fans[]/Context (read only enumeration)
+### Fans[].Context
+
+**JSONPath**: /Fans[]/Context (read only enumeration)
 
 The area or device to which this temperature measurement applies.
 
-Defined values:
+**Defined values**:
 
 * `System`
 
@@ -6364,34 +8188,44 @@ Defined values:
 
 * `Virtual`
 
-#### Temperatures[]/UpperThresholdNonCritical (read only integer)
+### Temperatures[].UpperThresholdNonCritical
+
+**JSONPath**: /Temperatures[]/UpperThresholdNonCritical (read only integer)
 
 The noncritical temperature threshold.
 
 ### VirtualMedia
 This is the schema definition for the Virtual Media service.
 
-**Instances**:  
+**Resource Instances of this Type**:  
 
 * `https://{iLO}/redfish/v1/managers/{item}/virtualmedia/{item}`
 
-#### ImageName (read only string)
+### ImageName
+
+**JSONPath**: /ImageName (read only string)
 
 The name of the image that is mounted on this server. This is usually provided when a URL image is mounted through scripted virtual media.
 
-#### WriteProtected (read only boolean)
+### WriteProtected
+
+**JSONPath**: /WriteProtected (read only boolean)
 
 Indicates whether the virtual media is protected against write operations.
 
-#### Inserted (read only boolean)
+### Inserted
+
+**JSONPath**: /Inserted (read only boolean)
 
 Indicates whether the virtual media is mounted on the server.
 
-#### ConnectedVia (read only enumeration)
+### ConnectedVia
+
+**JSONPath**: /ConnectedVia (read only enumeration)
 
 Specifies how the virtual media is connected to the server.
 
-Defined values:
+**Defined values**:
 
 * `NotConnected`
 
@@ -6399,13 +8233,17 @@ Defined values:
 
 * `Applet`
 
-#### Image (PATCHable string)
+### Image
+
+**JSONPath**: /Image (PATCHable string)
 
 The valid URI indicating the image that is mounted on this server. A null value indicates that no image exists.
 
 > example PATCH: {"Image": "&lt;string-value&gt;"}
 
-#### Oem/Hp/BootOnNextServerReset (PATCHable boolean)
+### BootOnNextServerReset
+
+**JSONPath**: /Oem/Hp/BootOnNextServerReset (PATCHable boolean)
 
 If set to true, the server will boot to this image on the next server reboot. The image will be ejected automatically on the second server reboot so that the server does not boot to this image twice.
 
