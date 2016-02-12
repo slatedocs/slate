@@ -53,7 +53,7 @@ Content-Type: application/json
     "options": "Multi Purpose Crates, Dairy Crates, Fruit & Vegetable Crates, Dairy Crates"
   },
   "specifications": {
-    "text_fields_specifications": {
+    "text_field_specifications": {
       "Capacity": {
         "optional": false,
         "value": "10"
@@ -102,7 +102,7 @@ Content-Type: application/json
     "created_at": "1/02/2016",
     "keyword": "Multi Purpose Crates, Fruit & Vegetable Crates",
     "specifications": {
-      "text_fields_specifications": {
+      "text_field_specifications": {
         "Capacity": {
           "optional": false,
           "value": "20"
@@ -187,7 +187,7 @@ Content-Type: application/json
   "created_at": "1/02/2016",
   "keyword": "Multi Purpose Crates, Fruit & Vegetable Crates",
   "specifications": {
-    "text_fields_specifications": {
+    "text_field_specifications": {
       "Capacity": "10"
     },
     "checkable_specifications": {
