@@ -25,7 +25,7 @@ excise_tax_enabled | Check whether excise is enabled or not (part of payment_det
 excise_tax | Excise tax value (part of payment_details)
 specifications | Specifications for the product
 brand_name | Brand Name for the product
-text_fields_specifications | Specifications of the product represented as text-boxes
+text_field_specifications | Specifications of the product represented as text-boxes
 checkable_specifications | Specifications of the product represented as multiple check-fields
 dropdown_specifications | Specifications of the product represented as dropdown-box
 other_specifications | Specification added by the user or admin and is not predefined
@@ -103,14 +103,29 @@ Content-Type: application/json
     "keyword": "Multi Purpose Crates, Fruit & Vegetable Crates",
     "specifications": {
       "text_fields_specifications": {
-        "Capacity": "10"
+        "Capacity": {
+          "optional": false,
+          "value": "20"
+        }
       },
       "checkable_specifications": {
-        "Color": "Blue, Bronze"
-      },
+        "Color": {
+          "options": "Blue, Bronze, Brown",
+          "values": "Blue, Brown",
+          "optional": true
+        },
+        "Material": {
+          "options": "Wood, Steel, Stainless Steel, Paper",
+          "optional": true
+        }
+      }
       "dropdown_specifications": {
-        "Material": "Wood"
-      },
+        "Original": {
+          "options": "yes, no",
+          "value": "yes",
+          "optional": true
+        }
+      }
       "other_specifications": {
         "Lid": "Completely Closed"
       }   
@@ -155,3 +170,94 @@ Bizongo uses the auth-token to allow access to the create product API. This api 
 Bizongo expects the header `Authorization` to be present in the following 'format'
 
 `Authorization: Token token=User Auth Token`
+
+## Edit a product
+
+```http
+GET /api/products/$['product_id'] HTTP/1.1
+Host: bizongo.in
+Authorization: Token token="USER AUTH TOKEN"
+```
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+{
+  "name": "300X400 Crates"
+  "created_at": "1/02/2016",
+  "keyword": "Multi Purpose Crates, Fruit & Vegetable Crates",
+  "specifications": {
+    "text_fields_specifications": {
+      "Capacity": "10"
+    },
+    "checkable_specifications": {
+      "Color": "Blue, Bronze"
+    },
+    "dropdown_specifications": {
+      "Original": {
+        "options": "yes, no",
+        "value": "yes",
+        "optional": true
+      }
+    },
+    "other_specifications": {
+      "Lid": "Completely Closed"
+    }   
+  },
+  "brand_name": "Aristo",
+  "minimum_order_quantity": "100",
+  "minimum_order_units": "Pieces",
+  "supply_ability_quantity": "10000",
+  "supply_ability_units": "Pieces",
+  "quoted_price": "1000",
+  "quoted_price_units": "Piece",
+  "logistic_details": {
+    "delivery_details": "Delivered all over India",
+    "packaging_details": "Packaged in single day"
+  },
+  "sellable": false,
+  "payment_details": {
+    "cst_enabled": true,
+    "cst_tax": "5",
+    "excise_enabled": "true",
+    "excise_tax": "10"
+  },  
+  "detailed_description" : "Extremely sensitive",
+  "primary_image": {
+  "id": "10",  
+  "original": "https://bizongo-staging-2.s3.amazonaws.com/uploads/picture/image/333/11022016063647.jpeg",
+  "thumb_36": "https://bizongo-staging-2.s3.amazonaws.com/uploads/picture/image/333/thumb_36_11022016063647.jpeg",
+  "thumb_64": "https://bizongo-staging-2.s3.amazonaws.com/uploads/picture/image/333/thumb_64_11022016063647.jpeg",
+  "thumb_128": "https://bizongo-staging-2.s3.amazonaws.com/uploads/picture/image/333/thumb_128_11022016063647.jpeg",
+  "normal_128": "https://bizongo-staging-2.s3.amazonaws.com/uploads/picture/image/333/normal_128_11022016063647.jpeg"
+  },
+  "images": [{
+    "id": "10",
+    "original": "https://bizongo-staging-2.s3.amazonaws.com/uploads/company/avatar/6/UK_Creative_462809583.jpg"
+    "thumb_36": "https://bizongo-staging-2.s3.amazonaws.com/uploads/picture/image/333/thumb_36_11022016063647.jpeg",
+    "thumb_64": "https://bizongo-staging-2.s3.amazonaws.com/uploads/picture/image/333/thumb_64_11022016063647.jpeg",
+    "thumb_128": "https://bizongo-staging-2.s3.amazonaws.com/uploads/picture/image/333/thumb_128_11022016063647.jpeg",  
+    "normal_128": "https://bizongo-staging-2.s3.amazonaws.com/uploads/picture/image/333/normal_128_11022016063647.jpeg"
+  },
+  {
+    "id": "11",
+    "original": "https://bizongo-staging-2.s3.amazonaws.com/uploads/picture/image/335/11022016063658.jpeg",
+    "thumb_36": "https://bizongo-staging-2.s3.amazonaws.com/uploads/picture/image/335/thumb_36_11022016063658.jpeg",
+    "thumb_64": "https://bizongo-staging-2.s3.amazonaws.com/uploads/picture/image/335/thumb_64_11022016063658.jpeg",
+    "thumb_128": "https://bizongo-staging-2.s3.amazonaws.com/uploads/picture/image/335/thumb_128_11022016063658.jpeg",
+    "normal_128": "https://bizongo-staging-2.s3.amazonaws.com/uploads/picture/image/335/normal_128_11022016063658.jpeg"
+  }]
+}  
+```
+
+## Update a Product
+
+```http
+POST /api/products/$['product_id'] HTTP/1.1
+Host: bizongo.in
+Authorization: Token token="USER AUTH TOKEN"
+```
+
+```http
+
+```
