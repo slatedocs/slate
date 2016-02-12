@@ -1,9 +1,11 @@
 ## AccountService
 This is the schema definition for the Account service. It represents the properties for this service and has links to the list of accounts.
 
-**Resource Instances of this Type**:  
+**Properties**
 
-* `https://{iLO}/redfish/v1/accountservice`
+> **Resource Instances of this Type**:  
+
+> * `https://{iLO}/redfish/v1/accountservice`
 
 ### AuthFailureLoggingThreshold
 
@@ -22,9 +24,11 @@ This property specifies the minimum number of characters allowed when a user pas
 > example PATCH: {"Oem": {"Hp": {"MinPasswordLength": &lt;integer-value&gt;}}}
 
 ## BaseNetworkAdapter
-**Resource Instances of this Type**:  
+**Properties**
 
-* `https://{iLO}/redfish/v1/systems/{item}/networkadapters/{item}`
+> **Resource Instances of this Type**:  
+
+> * `https://{iLO}/redfish/v1/systems/{item}/networkadapters/{item}`
 
 ### StructuredName
 
@@ -227,9 +231,11 @@ This is the IPv4 Address.
 ## Chassis
 The schema definition for the Chassis resource represents the properties for physical components for any system. This object represents racks, rack mount servers, blades, standalone, modular systems, enclosures, and all other containers. The non-CPU/device-centric parts of the schema are accessed either directly or indirectly through this resource.
 
-**Resource Instances of this Type**:  
+**Properties**
 
-* `https://{iLO}/redfish/v1/chassis/{item}`
+> **Resource Instances of this Type**:  
+
+> * `https://{iLO}/redfish/v1/chassis/{item}`
 
 ### Location.LocationInRack.UPosition
 
@@ -506,59 +512,61 @@ The firmware version of the Power Monitor.
 The power consumption of the system when operating in alert mode.
 
 ## Collection
-**Resource Instances of this Type**:  
+**Properties**
 
-* `https://{iLO}/redfish/v1/systems`
+> **Resource Instances of this Type**:  
 
-* `https://{iLO}/redfish/v1/systems/{item}/smartstorage/arraycontrollers`
+> * `https://{iLO}/redfish/v1/systems`
 
-* `https://{iLO}/redfish/v1/systems/{item}/logservices/iml/entries`
+> * `https://{iLO}/redfish/v1/systems/{item}/smartstorage/arraycontrollers`
 
-* `https://{iLO}/redfish/v1/registries`
+> * `https://{iLO}/redfish/v1/systems/{item}/logservices/iml/entries`
 
-* `https://{iLO}/redfish/v1/managers/{item}/virtualmedia`
+> * `https://{iLO}/redfish/v1/registries`
 
-* `https://{iLO}/redfish/v1/systems/{item}/smartstorage/hostbusadapters`
+> * `https://{iLO}/redfish/v1/managers/{item}/virtualmedia`
 
-* `https://{iLO}/redfish/v1/managers/{item}/logservices`
+> * `https://{iLO}/redfish/v1/systems/{item}/smartstorage/hostbusadapters`
 
-* `https://{iLO}/redfish/v1/managers`
+> * `https://{iLO}/redfish/v1/managers/{item}/logservices`
 
-* `https://{iLO}/redfish/v1/managers/{item}/licenseservice`
+> * `https://{iLO}/redfish/v1/managers`
 
-* `https://{iLO}/redfish/v1/systems/{item}/smartstorage/arraycontrollers/{item}/diskdrives`
+> * `https://{iLO}/redfish/v1/managers/{item}/licenseservice`
 
-* `https://{iLO}/redfish/v1/managers/{item}/ethernetinterfaces`
+> * `https://{iLO}/redfish/v1/systems/{item}/smartstorage/arraycontrollers/{item}/diskdrives`
 
-* `https://{iLO}/redfish/v1/systems/{item}/smartstorage/arraycontrollers/{item}/logicaldrives`
+> * `https://{iLO}/redfish/v1/managers/{item}/ethernetinterfaces`
 
-* `https://{iLO}/redfish/v1/eventservice/eventsubscriptions`
+> * `https://{iLO}/redfish/v1/systems/{item}/smartstorage/arraycontrollers/{item}/logicaldrives`
 
-* `https://{iLO}/redfish/v1/managers/{item}/logservices/iel/entries`
+> * `https://{iLO}/redfish/v1/eventservice/eventsubscriptions`
 
-* `https://{iLO}/redfish/v1/managers/{item}/federationgroups`
+> * `https://{iLO}/redfish/v1/managers/{item}/logservices/iel/entries`
 
-* `https://{iLO}/redfish/v1/schemas`
+> * `https://{iLO}/redfish/v1/managers/{item}/federationgroups`
 
-* `https://{iLO}/redfish/v1/systems/{item}/smartstorage/arraycontrollers/{item}/storageenclosures`
+> * `https://{iLO}/redfish/v1/schemas`
 
-* `https://{iLO}/redfish/v1/systems/{item}/pcidevices`
+> * `https://{iLO}/redfish/v1/systems/{item}/smartstorage/arraycontrollers/{item}/storageenclosures`
 
-* `https://{iLO}/redfish/v1/accountservice/accounts`
+> * `https://{iLO}/redfish/v1/systems/{item}/pcidevices`
 
-* `https://{iLO}/redfish/v1/systems/{item}/pcislots`
+> * `https://{iLO}/redfish/v1/accountservice/accounts`
 
-* `https://{iLO}/redfish/v1/chassis`
+> * `https://{iLO}/redfish/v1/systems/{item}/pcislots`
 
-* `https://{iLO}/redfish/v1/managers/{item}/federationpeers`
+> * `https://{iLO}/redfish/v1/chassis`
 
-* `https://{iLO}/redfish/v1/systems/{item}/logservices`
+> * `https://{iLO}/redfish/v1/managers/{item}/federationpeers`
 
-* `https://{iLO}/redfish/v1/systems/{item}/memory`
+> * `https://{iLO}/redfish/v1/systems/{item}/logservices`
 
-* `https://{iLO}/redfish/v1/sessionservice/sessions`
+> * `https://{iLO}/redfish/v1/systems/{item}/memory`
 
-* `https://{iLO}/redfish/v1/systems/{item}/networkadapters`
+> * `https://{iLO}/redfish/v1/sessionservice/sessions`
+
+> * `https://{iLO}/redfish/v1/systems/{item}/networkadapters`
 
 ### links.FirstPage.1.count
 
@@ -683,9 +691,11 @@ This property has the type of members in this collection.  All of the members of
 ## ComputerSystem
 The schema definition of a computer system and its properties. A computer system represents a physical or virtual machine and the local resources, such as memory, CPU, and other devices that can be accessed from that machine.
 
-**Resource Instances of this Type**:  
+**Properties**
 
-* `https://{iLO}/redfish/v1/systems/{item}`
+> **Resource Instances of this Type**:  
+
+> * `https://{iLO}/redfish/v1/systems/{item}`
 
 ### PartNumber
 
@@ -1424,9 +1434,11 @@ The UEFI BIOS Class value defined in the UEFI specification.
 ## EthernetNetworkInterface
 The schema definition of a simple Ethernet NIC resource.
 
-**Resource Instances of this Type**:  
+**Properties**
 
-* `https://{iLO}/redfish/v1/managers/{item}/ethernetinterfaces/{item}`
+> **Resource Instances of this Type**:  
+
+> * `https://{iLO}/redfish/v1/managers/{item}/ethernetinterfaces/{item}`
 
 ### LinkTechnology
 
@@ -2057,9 +2069,11 @@ The IPv4 gateway for this address.
 ## EventService
 This is the schema definition for the Event Service.  It represents the properties for the service itself and has links to the actual list of subscriptions.
 
-**Resource Instances of this Type**:  
+**Properties**
 
-* `https://{iLO}/redfish/v1/eventservice`
+> **Resource Instances of this Type**:  
+
+> * `https://{iLO}/redfish/v1/eventservice`
 
 ### TTLCountDefault
 
@@ -2176,7 +2190,9 @@ This property indicates what the service will do to an event subscription after 
 ## ExtendedError
 This is the schema definition for the Extended Error. Extended errors can be included in the body of REST API operation responses. They augment the HTTP error codes with more meaningful information about why the error occurred.
 
-**Resource Instances of this Type**:  
+**Properties**
+
+> **Resource Instances of this Type**:  
 
 ### Messages[array-item].Message
 
@@ -2211,11 +2227,13 @@ The severity of the errors.
 Provides suggestions for how to resolve the situation that caused the error.
 
 ## HPPowerMeter
-**Resource Instances of this Type**:  
+**Properties**
 
-* `https://{iLO}/redfish/v1/chassis/{item}/power/fastpowermeter`
+> **Resource Instances of this Type**:  
 
-* `https://{iLO}/redfish/v1/chassis/{item}/power/powermeter`
+> * `https://{iLO}/redfish/v1/chassis/{item}/power/fastpowermeter`
+
+> * `https://{iLO}/redfish/v1/chassis/{item}/power/powermeter`
 
 ### PowerDetail[array-item].CpuCapLim
 
@@ -2336,13 +2354,15 @@ CPU power-saving limit for the power meter.
 Peak power over the sample time.
 
 ## HpBaseConfigs
-**Resource Instances of this Type**:  
+**Properties**
 
-* `https://{iLO}/redfish/v1/systems/{item}/bios/boot/baseconfigs`
+> **Resource Instances of this Type**:  
 
-* `https://{iLO}/redfish/v1/systems/{item}/bios/baseconfigs`
+> * `https://{iLO}/redfish/v1/systems/{item}/bios/boot/baseconfigs`
 
-* `https://{iLO}/redfish/v1/systems/{item}/bios/iscsi/baseconfigs`
+> * `https://{iLO}/redfish/v1/systems/{item}/bios/baseconfigs`
+
+> * `https://{iLO}/redfish/v1/systems/{item}/bios/iscsi/baseconfigs`
 
 ### Capabilities.BaseConfig
 
@@ -2357,11 +2377,13 @@ True if the provider supports PUT/PATCH of the named BaseConfig.
 True if the provider supports PUT/PATCH of the named BaseConfigs.
 
 ## HpBios
-**Resource Instances of this Type**:  
+**Properties**
 
-* `https://{iLO}/redfish/v1/systems/{item}/bios/settings`
+> **Resource Instances of this Type**:  
 
-* `https://{iLO}/redfish/v1/systems/{item}/bios`
+> * `https://{iLO}/redfish/v1/systems/{item}/bios/settings`
+
+> * `https://{iLO}/redfish/v1/systems/{item}/bios`
 
 ### SettingsResult.definitions.SettingsResult.ETag
 
@@ -2424,9 +2446,11 @@ Details about the results of applying the settings.
 * `SettingsApply`
 
 ## HpBiosMapping
-**Resource Instances of this Type**:  
+**Properties**
 
-* `https://{iLO}/redfish/v1/systems/{item}/bios/mappings`
+> **Resource Instances of this Type**:  
+
+> * `https://{iLO}/redfish/v1/systems/{item}/bios/mappings`
 
 ### BiosPciSettingsMappings[array-item].CorrelatableID
 
@@ -2461,9 +2485,11 @@ Contains any CorrelatableIDs that represent this PCI device. The CorrelatableID 
 ## HpESKM
 ESKM (Enterprise Security Key Manager) object enables user to connect to an operational key manager, change redundancy settings, view the key manager connection settings, test the connection, and view key management events.
 
-**Resource Instances of this Type**:  
+**Properties**
 
-* `https://{iLO}/redfish/v1/managers/{item}/securityservice/eskm`
+> **Resource Instances of this Type**:  
+
+> * `https://{iLO}/redfish/v1/managers/{item}/securityservice/eskm`
 
 ### PrimaryKeyServerPort
 
@@ -2570,9 +2596,11 @@ This is the name of Local CA (Certificate Authority) in ESKM that is used to sig
 ## HpHttpsCert
 This is the schema definition for the X509 Certificate.
 
-**Resource Instances of this Type**:  
+**Properties**
 
-* `https://{iLO}/redfish/v1/managers/{item}/securityservice/httpscert`
+> **Resource Instances of this Type**:  
+
+> * `https://{iLO}/redfish/v1/managers/{item}/securityservice/httpscert`
 
 ### X509CertificateInformation.ValidNotAfter
 
@@ -2613,9 +2641,11 @@ The Certificate Authority that issued the certificate.
 ## HpMemory
 The schema definition for the properties of Memory DIMMs.
 
-**Resource Instances of this Type**:  
+**Properties**
 
-* `https://{iLO}/redfish/v1/systems/{item}/memory/{item}`
+> **Resource Instances of this Type**:  
+
+> * `https://{iLO}/redfish/v1/systems/{item}/memory/{item}`
 
 ### SocketLocator
 
@@ -2822,9 +2852,11 @@ The data width, in bits, of this memory device. A Data Width value of 0 and a To
 The size of the memory device in megabytes.
 
 ## HpSecureBoot
-**Resource Instances of this Type**:  
+**Properties**
 
-* `https://{iLO}/redfish/v1/systems/{item}/secureboot`
+> **Resource Instances of this Type**:  
+
+> * `https://{iLO}/redfish/v1/systems/{item}/secureboot`
 
 ### SecureBootEnable
 
@@ -2857,18 +2889,22 @@ If true, reset to default Secure Boot keys on next boot.
 > example PATCH: {"ResetToDefaultKeys": true}
 
 ## HpSecurityService
-**Resource Instances of this Type**:  
+**Properties**
 
-* `https://{iLO}/redfish/v1/managers/{item}/securityservice`
+> **Resource Instances of this Type**:  
+
+> * `https://{iLO}/redfish/v1/managers/{item}/securityservice`
 
 ## HpServerBootSettings
 The schema definition of the server UEFI Boot Order.
 
-**Resource Instances of this Type**:  
+**Properties**
 
-* `https://{iLO}/redfish/v1/systems/{item}/bios/boot`
+> **Resource Instances of this Type**:  
 
-* `https://{iLO}/redfish/v1/systems/{item}/bios/boot/settings`
+> * `https://{iLO}/redfish/v1/systems/{item}/bios/boot`
+
+> * `https://{iLO}/redfish/v1/systems/{item}/bios/boot/settings`
 
 ### BootSources[array-item].BootString
 
@@ -2987,9 +3023,11 @@ The Fibre Channel World Wide Name (WWN) of the desired boot device. This value m
 Standardized text representation of the UEFI device path for this boot option, in UTF-8 format.
 
 ## HpServerPCISlot
-**Resource Instances of this Type**:  
+**Properties**
 
-* `https://{iLO}/redfish/v1/systems/{item}/pcislots/{item}`
+> **Resource Instances of this Type**:  
+
+> * `https://{iLO}/redfish/v1/systems/{item}/pcislots/{item}`
 
 ### Status.OperationalStatus[array-item].Status
 
@@ -3076,9 +3114,11 @@ Bandwidth capacity of the slot, measured by the number of PCI Express Lanes pres
 * `Other`
 
 ## HpServerPciDevice
-**Resource Instances of this Type**:  
+**Properties**
 
-* `https://{iLO}/redfish/v1/systems/{item}/pcidevices/{item}`
+> **Resource Instances of this Type**:  
+
+> * `https://{iLO}/redfish/v1/systems/{item}/pcidevices/{item}`
 
 ### DeviceType
 
@@ -3225,9 +3265,11 @@ PCI device ID of the device.
 ## HpSmartStorage
 HpSmartStorage
 
-**Resource Instances of this Type**:  
+**Properties**
 
-* `https://{iLO}/redfish/v1/systems/{item}/smartstorage`
+> **Resource Instances of this Type**:  
+
+> * `https://{iLO}/redfish/v1/systems/{item}/smartstorage`
 
 ### Status.HealthRollUp
 
@@ -3280,9 +3322,11 @@ Indicates the known state of this resource (for example, if the resource is enab
 ## HpSmartStorageArrayController
 HpSmartStorageArrayController
 
-**Resource Instances of this Type**:  
+**Properties**
 
-* `https://{iLO}/redfish/v1/systems/{item}/smartstorage/arraycontrollers/{item}`
+> **Resource Instances of this Type**:  
+
+> * `https://{iLO}/redfish/v1/systems/{item}/smartstorage/arraycontrollers/{item}`
 
 ### PhysicalDriveCount
 
@@ -3859,9 +3903,11 @@ The level of priority that transformations have over handling current operating 
 ## HpSmartStorageDiskDrive
 HpSmartStorageDiskDrive
 
-**Resource Instances of this Type**:  
+**Properties**
 
-* `https://{iLO}/redfish/v1/systems/{item}/smartstorage/arraycontrollers/{item}/diskdrives/{item}`
+> **Resource Instances of this Type**:  
+
+> * `https://{iLO}/redfish/v1/systems/{item}/smartstorage/arraycontrollers/{item}/diskdrives/{item}`
 
 ### MediaType
 
@@ -4128,9 +4174,11 @@ Carrier PIC firmware version currently running
 ## HpSmartStorageLogicalDrive
 HpSmartStorageLogicalDrive
 
-**Resource Instances of this Type**:  
+**Properties**
 
-* `https://{iLO}/redfish/v1/systems/{item}/smartstorage/arraycontrollers/{item}/logicaldrives/{item}`
+> **Resource Instances of this Type**:  
+
+> * `https://{iLO}/redfish/v1/systems/{item}/smartstorage/arraycontrollers/{item}/logicaldrives/{item}`
 
 ### LogicalDriveEncryption
 
@@ -4393,9 +4441,11 @@ The status of the encryption volatile keys
 ## HpSmartStorageStorageEnclosure
 HpSmartStorageStorageEnclosure
 
-**Resource Instances of this Type**:  
+**Properties**
 
-* `https://{iLO}/redfish/v1/systems/{item}/smartstorage/arraycontrollers/{item}/storageenclosures/{item}`
+> **Resource Instances of this Type**:  
+
+> * `https://{iLO}/redfish/v1/systems/{item}/smartstorage/arraycontrollers/{item}/storageenclosures/{item}`
 
 ### FirmwareVersion.definitions.FWVersion.VersionString
 
@@ -4526,9 +4576,11 @@ Indicates the known state of this resource (for example, if the resource is enab
 Location identifier
 
 ## HpiLOActiveHealthSystem
-**Resource Instances of this Type**:  
+**Properties**
 
-* `https://{iLO}/redfish/v1/managers/{item}/activehealthsystem`
+> **Resource Instances of this Type**:  
+
+> * `https://{iLO}/redfish/v1/managers/{item}/activehealthsystem`
 
 ### LocationParameters.contact_name
 
@@ -4595,9 +4647,11 @@ This query parameter may be added to the AHS location URI to insert the contacts
 ## HpiLODateTime
 The management processor date and time.
 
-**Resource Instances of this Type**:  
+**Properties**
 
-* `https://{iLO}/redfish/v1/managers/{item}/datetime`
+> **Resource Instances of this Type**:  
+
+> * `https://{iLO}/redfish/v1/managers/{item}/datetime`
 
 ### TimeZoneList[array-item].Index
 
@@ -4664,9 +4718,11 @@ The UTC offset of the current time zone, in the format {+/-}hh:mm
 The date and time used by management processor.
 
 ## HpiLOEmbeddedMedia
-**Resource Instances of this Type**:  
+**Properties**
 
-* `https://{iLO}/redfish/v1/managers/{item}/embeddedmedia`
+> **Resource Instances of this Type**:  
+
+> * `https://{iLO}/redfish/v1/managers/{item}/embeddedmedia`
 
 ### SDCard.Status.State
 
@@ -4795,9 +4851,11 @@ The current version of the embedded media controller.
 The LBA count.
 
 ## HpiLOFederatedGroupCapping
-**Resource Instances of this Type**:  
+**Properties**
 
-* `https://{iLO}/redfish/v1/chassis/{item}/power/federatedgroupcapping`
+> **Resource Instances of this Type**:  
+
+> * `https://{iLO}/redfish/v1/chassis/{item}/power/federatedgroupcapping`
 
 ### Throttle
 
@@ -4818,9 +4876,11 @@ The total power supply capacity for all servers in a group.
 The configured power cap for all servers in a group. This value is 0 if the power cap is not configured.
 
 ## HpiLOFederationGroup
-**Resource Instances of this Type**:  
+**Properties**
 
-* `https://{iLO}/redfish/v1/managers/{item}/federationgroups/{item}`
+> **Resource Instances of this Type**:  
+
+> * `https://{iLO}/redfish/v1/managers/{item}/federationgroups/{item}`
 
 ### Privileges.RemoteConsolePriv
 
@@ -4879,9 +4939,11 @@ Virtual power and reset privileges.
 > example PATCH: {"Privileges": {"VirtualPowerAndResetPriv": true}}
 
 ## HpiLOFederationPeers
-**Resource Instances of this Type**:  
+**Properties**
 
-* `https://{iLO}/redfish/v1/managers/{item}/federationpeers/{item}`
+> **Resource Instances of this Type**:  
+
+> * `https://{iLO}/redfish/v1/managers/{item}/federationpeers/{item}`
 
 ### Peers[array-item].URL
 
@@ -4914,9 +4976,11 @@ Manager IP address of the federation peer.
 Error code for success or failure.
 
 ## HpiLOFirmwareUpdate
-**Resource Instances of this Type**:  
+**Properties**
 
-* `https://{iLO}/redfish/v1/managers/{item}/updateservice`
+> **Resource Instances of this Type**:  
+
+> * `https://{iLO}/redfish/v1/managers/{item}/updateservice`
 
 ### ImageSizeInBytes
 
@@ -5021,9 +5085,11 @@ Current state of the firmware flash.
 * `ERROR`
 
 ## HpiLOLicense
-**Resource Instances of this Type**:  
+**Properties**
 
-* `https://{iLO}/redfish/v1/managers/{item}/licenseservice/{item}`
+> **Resource Instances of this Type**:  
+
+> * `https://{iLO}/redfish/v1/managers/{item}/licenseservice/{item}`
 
 ### License
 
@@ -5066,9 +5132,11 @@ The type of license installed on this management processor.
 * `Expired`
 
 ## HpiLOResourceDirectory
-**Resource Instances of this Type**:  
+**Properties**
 
-* `https://{iLO}/redfish/v1/resourcedirectory`
+> **Resource Instances of this Type**:  
+
+> * `https://{iLO}/redfish/v1/resourcedirectory`
 
 ### Instances[array-item].ETag
 
@@ -5085,9 +5153,11 @@ This property has the type of members for collection resources.
 ## HpiLOSSO
 This is the schema definition for the HP SSO Trusted Server.
 
-**Resource Instances of this Type**:  
+**Properties**
 
-* `https://{iLO}/redfish/v1/managers/{item}/securityservice/sso`
+> **Resource Instances of this Type**:  
+
+> * `https://{iLO}/redfish/v1/managers/{item}/securityservice/sso`
 
 ### ManagerTrustedCertificates[array-item].ServerName
 
@@ -5284,11 +5354,13 @@ Login Privileges.
 ## HpiSCSISoftwareInitiator
 The schema definition of UEFI iSCSI Software Initiator boot configuration.
 
-**Resource Instances of this Type**:  
+**Properties**
 
-* `https://{iLO}/redfish/v1/systems/{item}/bios/iscsi`
+> **Resource Instances of this Type**:  
 
-* `https://{iLO}/redfish/v1/systems/{item}/bios/iscsi/settings`
+> * `https://{iLO}/redfish/v1/systems/{item}/bios/iscsi`
+
+> * `https://{iLO}/redfish/v1/systems/{item}/bios/iscsi/settings`
 
 ### SettingsResult.definitions.SettingsResult.ETag
 
@@ -5529,11 +5601,13 @@ This object represents the type property. It represents the schema used for the 
 The worldwide unique iSCSI Qualified Name (IQN) of this iSCSI Initiator. Only IQN format is accepted. EUI format is not supported (for example, 'iqn.1986-03.com.hp:init.sn-123456').
 
 ## LogEntry
-**Resource Instances of this Type**:  
+**Properties**
 
-* `https://{iLO}/redfish/v1/systems/{item}/logservices/iml/entries/{item}`
+> **Resource Instances of this Type**:  
 
-* `https://{iLO}/redfish/v1/managers/{item}/logservices/iel/entries/{item}`
+> * `https://{iLO}/redfish/v1/systems/{item}/logservices/iml/entries/{item}`
+
+> * `https://{iLO}/redfish/v1/managers/{item}/logservices/iel/entries/{item}`
 
 ### Created
 
@@ -5622,11 +5696,13 @@ The log entry severity.
 * `Critical`
 
 ## LogService
-**Resource Instances of this Type**:  
+**Properties**
 
-* `https://{iLO}/redfish/v1/systems/{item}/logservices/iml`
+> **Resource Instances of this Type**:  
 
-* `https://{iLO}/redfish/v1/managers/{item}/logservices/iel`
+> * `https://{iLO}/redfish/v1/systems/{item}/logservices/iml`
+
+> * `https://{iLO}/redfish/v1/managers/{item}/logservices/iel`
 
 ### OverWritePolicy
 
@@ -5651,9 +5727,11 @@ The maximum number of log entries.
 ## Manager
 This is the schema definition for a manager.  Examples of managers are BMCs, Enclosure Managers, Management Controllers and other subsystems assigned manageability functions.
 
-**Resource Instances of this Type**:  
+**Properties**
 
-* `https://{iLO}/redfish/v1/managers/{item}`
+> **Resource Instances of this Type**:  
+
+> * `https://{iLO}/redfish/v1/managers/{item}`
 
 ### SerialCLIStatus
 
@@ -6342,9 +6420,11 @@ The build date of the firmware.
 The build number of the firmware.
 
 ## ManagerAccount
-**Resource Instances of this Type**:  
+**Properties**
 
-* `https://{iLO}/redfish/v1/accountservice/accounts/{item}`
+> **Resource Instances of this Type**:  
+
+> * `https://{iLO}/redfish/v1/accountservice/accounts/{item}`
 
 ### Privileges.VirtualPowerAndResetPriv
 
@@ -6421,9 +6501,11 @@ This privilege enables a user to use the Virtual Media feature on the host syste
 ## ManagerNetworkService
 This resource is used to obtain or modify the network services managed by this manager.
 
-**Resource Instances of this Type**:  
+**Properties**
 
-* `https://{iLO}/redfish/v1/managers/{item}/networkservice`
+> **Resource Instances of this Type**:  
+
+> * `https://{iLO}/redfish/v1/managers/{item}/networkservice`
 
 ### HPSystemManagementHomepageAddress
 
@@ -6774,9 +6856,11 @@ The port number through which the Syslog server is listening.
 > example PATCH: {"Oem": {"Hp": {"RemoteSyslogPort": &lt;integer-value&gt;}}}
 
 ## PowerMetrics
-**Resource Instances of this Type**:  
+**Properties**
 
-* `https://{iLO}/redfish/v1/chassis/{item}/power`
+> **Resource Instances of this Type**:  
+
+> * `https://{iLO}/redfish/v1/chassis/{item}/power`
 
 ### PowerLimit.CorrectionInMs
 
@@ -7237,9 +7321,11 @@ Line input voltage at which the power supply is operating at this moment (in Vol
 ## ServiceRoot
 This object represents the HP RESTful API root service.
 
-**Resource Instances of this Type**:  
+**Properties**
 
-* `https://{iLO}/redfish/v1`
+> **Resource Instances of this Type**:  
+
+> * `https://{iLO}/redfish/v1`
 
 ### Sessions.LoginHint.HintPOSTData.UserName
 
@@ -7414,9 +7500,11 @@ Default language used for the Web interface.
 The build or pass number of the management processor version.
 
 ## Session
-**Resource Instances of this Type**:  
+**Properties**
 
-* `https://{iLO}/redfish/v1/sessionservice/sessions/{item}`
+> **Resource Instances of this Type**:  
+
+> * `https://{iLO}/redfish/v1/sessionservice/sessions/{item}`
 
 ### Privileges.VirtualPowerAndResetPriv
 
@@ -7551,9 +7639,11 @@ User session last-access time
 User session login time
 
 ## SnmpService
-**Resource Instances of this Type**:  
+**Properties**
 
-* `https://{iLO}/redfish/v1/managers/{item}/snmpservice`
+> **Resource Instances of this Type**:  
+
+> * `https://{iLO}/redfish/v1/managers/{item}/snmpservice`
 
 ### RoleDetail
 
@@ -7758,9 +7848,11 @@ The string of up to 49 characters that specifies the system administrator or ser
 ## ThermalMetrics
 The schema definition for the Thermal Metrics. It represents the properties for temperature and cooling.
 
-**Resource Instances of this Type**:  
+**Properties**
 
-* `https://{iLO}/redfish/v1/chassis/{item}/thermal`
+> **Resource Instances of this Type**:  
+
+> * `https://{iLO}/redfish/v1/chassis/{item}/thermal`
 
 ### Temperatures[array-item].MaximumValue
 
@@ -8197,9 +8289,11 @@ The noncritical temperature threshold.
 ## VirtualMedia
 This is the schema definition for the Virtual Media service.
 
-**Resource Instances of this Type**:  
+**Properties**
 
-* `https://{iLO}/redfish/v1/managers/{item}/virtualmedia/{item}`
+> **Resource Instances of this Type**:  
+
+> * `https://{iLO}/redfish/v1/managers/{item}/virtualmedia/{item}`
 
 ### ImageName
 
