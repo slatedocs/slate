@@ -501,6 +501,8 @@ TODO - fill in this section
 ## Get Compute Node Details
 
 ## Changing BIOS Settings
+TODO:
+
 Changing settings and understanding SettingsResults
 Reading BIOS Defaults example
 Updating the Administrator BIOS password example
@@ -509,6 +511,8 @@ Reverting BIOS UEFI settings to default example
 Example iSCSI Software Initiator configuration
 
 ## Changing Boot Settings
+TODO:
+
 UEFI boot structured name string
 UEFI boot structured name string examples
 Change UEFI boot order example
@@ -521,6 +525,10 @@ Example reset all BIOS and boot order settings to factory defaults
 ## Apply an iLO License
 
 ## Mount iLO Virtual Media
+
+## Configure iSCSI Boot
+
+TODO:  Add Samer's example of iSCSI configuration
 
 # Handling Error Responses
 
