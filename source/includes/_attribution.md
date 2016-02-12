@@ -161,7 +161,8 @@ curl 'https://live.chartboost.com/api/v1/install.json' \
 }
 ```
 
-This endpoint will receive both attributed app installs as well as app opens/sessions from an install attribution platform. Installs will be processed, stored, and used in reporting.
+This endpoint will receive both attributed app installs as well as app opens/sessions from an install attribution platform. Installs will be processed, stored, and used in reporting.  (This service is only available for install attribution platforms. If you are representing an install attribution platform, please <a href="mailto:support.integrations@chartboost.com">contact our Chartboost Partner Integrations Team</a> for a platform-specific API token and platform-specific secret to authenticate with this service.)
+
 
 ### HTTP Request
 
@@ -172,8 +173,6 @@ This endpoint's response will always be an HTTP 200 status code. Check the "stat
 </aside>
 
 ### Authentication
-
-(This service is only available for install attribution platforms. If you are representing an install attribution platform, please <a href="mailto:support.integrations@chartboost.com">contact our Chartboost Partner Integrations Team</a> for a platform-specific API token and platform-specific secret to authenticate with this service.)
 
 To authenticate with this endpoint, you must generate a unique signature to be included as a header on each request. A string with the following template must be made. The signature is then created by taking the SHA-256 hash of the string. Note that anything contained within double curly brackets is a macro that is meant to be filled in by your server.
 
