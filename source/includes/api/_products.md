@@ -174,7 +174,7 @@ Bizongo expects the header `Authorization` to be present in the following 'forma
 ## Edit a product
 
 ```http
-GET /api/products/$['product_id'] HTTP/1.1
+GET /api/products/$['product_id']/edit HTTP/1.1
 Host: bizongo.in
 Authorization: Token token="USER AUTH TOKEN"
 ```
