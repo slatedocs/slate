@@ -32,6 +32,322 @@ other_specifications | Specification added by the user or admin and is not prede
 sellable | Deciding factor for whether the product is bulk or sellable
 category_id |  Category id for the product category
 
+## Get Product
+
+```http
+HTTPS/1.1 200 OK
+Content-Type: application/json
+{
+    "id": "5652",
+    "slug": "disposable-plastic-container-round-black-500-ml-damati",
+    "name": "Disposable Plastic Container Round Black 500 ml | Damati",
+    "url": "http://localhost:3000/products/disposable-plastic-container-round-black-500-ml-damati",
+    "last_ordered_on": 1455177085,
+    "primary_image": {
+        "original": "https://bizongo-production.s3.amazonaws.com/uploads/picture/image/13699/1.png",
+        "thumb_36": "https://bizongo-production.s3.amazonaws.com/uploads/picture/image/13699/thumb_36_1.png",
+        "thumb_64": "https://bizongo-production.s3.amazonaws.com/uploads/picture/image/13699/thumb_64_1.png",
+        "thumb_128": "https://bizongo-production.s3.amazonaws.com/uploads/picture/image/13699/thumb_128_1.png",
+        "normal_128": "https://bizongo-production.s3.amazonaws.com/uploads/picture/image/13699/normal_128_1.png"
+    },
+    "images": [
+        {
+            "original": "https://bizongo-production.s3.amazonaws.com/uploads/picture/image/13699/1.png",
+            "thumb_36": "https://bizongo-production.s3.amazonaws.com/uploads/picture/image/13699/thumb_36_1.png",
+            "thumb_64": "https://bizongo-production.s3.amazonaws.com/uploads/picture/image/13699/thumb_64_1.png",
+            "thumb_128": "https://bizongo-production.s3.amazonaws.com/uploads/picture/image/13699/thumb_128_1.png",
+            "normal_128": "https://bizongo-production.s3.amazonaws.com/uploads/picture/image/13699/normal_128_1.png"
+        },
+        {
+            "original": "https://bizongo-production.s3.amazonaws.com/uploads/picture/image/13698/1.jpg",
+            "thumb_36": "https://bizongo-production.s3.amazonaws.com/uploads/picture/image/13698/thumb_36_1.jpg",
+            "thumb_64": "https://bizongo-production.s3.amazonaws.com/uploads/picture/image/13698/thumb_64_1.jpg",
+            "thumb_128": "https://bizongo-production.s3.amazonaws.com/uploads/picture/image/13698/thumb_128_1.jpg",
+            "normal_128": "https://bizongo-production.s3.amazonaws.com/uploads/picture/image/13698/normal_128_1.jpg"
+        }
+    ],
+    "discount": "20",
+    "sellable": true,
+    "created_at": 1441961472,
+    "status": "APPROVED",
+    "remarks": "",
+    "minimum_order_quantity": "500",
+    "minimum_order_units": "Pieces",
+    "supply_ability_quantity": "no limit",
+    "supply_ability_units": "No unit",
+    "payment_terms": "NEFT/RTGS",
+    "company_name": "Justice League",
+    "quoted_price": "On request",
+    "quoted_price_units": "No unit",
+    "product_specifications": {
+        "brand_name": "Damati",
+        "tags": "Plastic Containers",
+        "category_specifications": [
+            [
+                "Usage",
+                "Used for packing food"
+            ],
+            [
+                "Color",
+                "Black"
+            ],
+            [
+                "Model No.",
+                "DP-CC-16 oz "
+            ],
+            [
+                "Volume",
+                "500ml"
+            ],
+            [
+                "Material",
+                "PP"
+            ]
+        ],
+        "other_specifications": [
+            [
+                "Shape ",
+                "Round"
+            ]
+        ],
+        "search_tags": "Food Container, Damati Container"
+    },
+    "specifications": {
+        "brand_name": "Damati",
+        "tags": "Plastic Containers",
+        "category_specifications": [
+            [
+                "Usage",
+                "Used for packing food"
+            ],
+            [
+                "Color",
+                "Black"
+            ],
+            [
+                "Model No.",
+                "DP-CC-16 oz "
+            ],
+            [
+                "Volume",
+                "500ml"
+            ],
+            [
+                "Material",
+                "PP"
+            ]
+        ],
+        "other_specifications": [
+            [
+                "Shape ",
+                "Round"
+            ]
+        ],
+        "search_tags": "Food Container, Damati Container"
+    },
+    "logistic_details": {
+        "delivery_details": "Goods will be dispatched in 3-4 days",
+        "packaging_details": "500 Pieces Per Carton",
+        "distribution_centers": []
+    },
+    "detailed_description": "<p class=\"line\" id=\"line-1\">Our motto at <b>Damati</b> is to produce optimal quality through ethical business practices and sound values. With a highly skilled team on board and using only the latest in technology, we constantly strive to achieve excellence.</p><p class=\"line\" id=\"line-15\">We believe that the consumer is king and lay emphasis on catering to every need our clients have – a strategic shift from the product centric approach the company initially employed. Keeping that in mind, our new range of <i>Disposable Plastic, Paper and Multipurpose Packaging</i> products are designed to deliver superlative results to our distributors and consumers.</p>",
+    "supplier": {
+        "name": "Justice League",
+        "business_type": "Manufacturer",
+        "verified": true,
+        "location": "Gotham City, Daman & Diu, US",
+        "address": "Wayne Enterprises Tower",
+        "pincode": "160022",
+        "avatar": {
+            "original": "https://bizongo-production.s3.amazonaws.com/uploads/company/avatar/1547/Justice_League_Logo.png",
+            "thumb_250": "https://bizongo-production.s3.amazonaws.com/uploads/company/avatar/1547/profile_250_Justice_League_Logo.png"
+        }
+    },
+    "added_by": {
+        "id": "189",
+        "name": "Raman ",
+        "email": "connect@athenasuperpack.com"
+    },
+    "sample": {
+        "id": 8048,
+        "selling_price": 1,
+        "tax": 5,
+        "selling_price_with_tax": 1,
+        "selling_price_per_unit": 1,
+        "active": true,
+        "sample": true,
+        "actual_price_with_tax": 0,
+        "seller_price_with_tax": 0,
+        "actual_price": 0,
+        "seller_price": 0,
+        "actual_price_per_unit": 0,
+        "seller_price_per_unit": 0,
+        "per_unit": true,
+        "stock": 999,
+        "payable_to_seller": 0,
+        "minimum_quantity": 1,
+        "maximum_quantity": 100,
+        "sku": [
+            {
+                "id": 14103,
+                "name": "Volume",
+                "value": "500",
+                "unit": "ml"
+            },
+            {
+                "id": 14104,
+                "name": "Pack",
+                "value": "1",
+                "unit": "Piece"
+            }
+        ],
+        "unit": "Piece"
+    },
+    "child_products": [
+        {
+            "id": 5762,
+            "selling_price": 2500,
+            "tax": 5,
+            "selling_price_with_tax": 2625,
+            "selling_price_per_unit": 5,
+            "active": true,
+            "sample": false,
+            "actual_price_with_tax": 3281,
+            "seller_price_with_tax": 2625,
+            "actual_price": 3125,
+            "seller_price": 2500,
+            "actual_price_per_unit": 6.25,
+            "seller_price_per_unit": 5,
+            "per_unit": true,
+            "stock": 90,
+            "payable_to_seller": 2415,
+            "minimum_quantity": 1,
+            "maximum_quantity": 100,
+            "sku": [
+                {
+                    "id": 10162,
+                    "name": "Volume",
+                    "value": "500",
+                    "unit": "ml"
+                },
+                {
+                    "id": 10161,
+                    "name": "Pack",
+                    "value": "500",
+                    "unit": "Pieces"
+                }
+            ],
+            "unit": "Piece"
+        },
+        {
+            "id": 7597,
+            "selling_price": 7200,
+            "tax": 5,
+            "selling_price_with_tax": 7560,
+            "selling_price_per_unit": 4.8,
+            "active": true,
+            "sample": false,
+            "actual_price_with_tax": 9450,
+            "seller_price_with_tax": 7560,
+            "actual_price": 9000,
+            "seller_price": 7200,
+            "actual_price_per_unit": 6,
+            "seller_price_per_unit": 4.8,
+            "per_unit": true,
+            "stock": 1000,
+            "payable_to_seller": 7245,
+            "minimum_quantity": 1,
+            "maximum_quantity": 1000,
+            "sku": [
+                {
+                    "id": 13190,
+                    "name": "Volume",
+                    "value": "500",
+                    "unit": "ml"
+                },
+                {
+                    "id": 13191,
+                    "name": "Pack",
+                    "value": "1500",
+                    "unit": "Pieces"
+                }
+            ],
+            "unit": "Piece"
+        },
+        {
+            "id": 7989,
+            "selling_price": 1250,
+            "tax": 5,
+            "selling_price_with_tax": 1313,
+            "selling_price_per_unit": 5,
+            "active": true,
+            "sample": false,
+            "actual_price_with_tax": 1641,
+            "seller_price_with_tax": 1313,
+            "actual_price": 1562.5,
+            "seller_price": 1250,
+            "actual_price_per_unit": 6.25,
+            "seller_price_per_unit": 5,
+            "per_unit": true,
+            "stock": 89,
+            "payable_to_seller": 1208,
+            "minimum_quantity": 1,
+            "maximum_quantity": 100,
+            "sku": [
+                {
+                    "id": 13996,
+                    "name": "Volume",
+                    "value": "500",
+                    "unit": "ml"
+                },
+                {
+                    "id": 13997,
+                    "name": "Pack",
+                    "value": "250",
+                    "unit": "Pieces"
+                }
+            ],
+            "unit": "Piece"
+        },
+        {
+            "id": 8048,
+            "selling_price": 1,
+            "tax": 5,
+            "selling_price_with_tax": 1,
+            "selling_price_per_unit": 1,
+            "active": true,
+            "sample": true,
+            "actual_price_with_tax": 0,
+            "seller_price_with_tax": 0,
+            "actual_price": 0,
+            "seller_price": 0,
+            "actual_price_per_unit": 0,
+            "seller_price_per_unit": 0,
+            "per_unit": true,
+            "stock": 999,
+            "payable_to_seller": 0,
+            "minimum_quantity": 1,
+            "maximum_quantity": 100,
+            "sku": [
+                {
+                    "id": 14103,
+                    "name": "Volume",
+                    "value": "500",
+                    "unit": "ml"
+                },
+                {
+                    "id": 14104,
+                    "name": "Pack",
+                    "value": "1",
+                    "unit": "Piece"
+                }
+            ],
+            "unit": "Piece"
+        }
+    ]
+}
+```
+
 ## New Product
 
 > To get predefined specifications for a product use this code:
