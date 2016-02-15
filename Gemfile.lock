@@ -95,6 +95,7 @@ GEM
       tilt (~> 1.4.1)
     padrino-support (0.13.1)
       activesupport (>= 3.1)
+    puma (2.16.0)
     rack (1.6.4)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -127,6 +128,7 @@ DEPENDENCIES
   middleman-gh-pages (~> 0.0.3)
   middleman-sprockets (~> 4.0.0.rc)
   middleman-syntax (~> 2.1.0)
+  puma
   redcarpet (~> 3.3.2)
   rouge (~> 1.10.1)
 
