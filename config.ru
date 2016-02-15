@@ -1,5 +1,8 @@
 require 'rack'
 require 'rack/contrib/try_static'
+require 'rack/wwwhisper'
+
+use Rack::WWWhisper
 
 # Serve files from the build directory
 use Rack::TryStatic,

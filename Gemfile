@@ -12,3 +12,6 @@ gem 'redcarpet', '~> 3.3.2'
 # Heroku
 gem 'puma'
 gem 'rack-contrib'
+
+# wwwhisper
+gem 'rack-wwwhisper', '~> 1.0'
