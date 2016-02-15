@@ -22,11 +22,11 @@ includes:
   - metadata
   - changelog
   - methods
+  - methods/accounts
   - methods/collections
   - methods/collection_requests
   - methods/contacts
   - methods/payments
-  - methods/accounts
   - methods/webhooks
 
 search: true
