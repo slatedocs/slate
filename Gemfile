@@ -8,3 +8,6 @@ gem 'middleman-autoprefixer', '~> 2.7.0'
 gem "middleman-sprockets", "~> 4.0.0.rc"
 gem 'rouge', '~> 1.10.1'
 gem 'redcarpet', '~> 3.3.2'
+
+# Deploy
+gem 'middleman-deploy', '~> 1.0'
