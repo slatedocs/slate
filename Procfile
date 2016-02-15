@@ -1,1 +1,1 @@
-web: middleman deploy
+web: bundle exec middleman build --clean
