@@ -115,6 +115,26 @@ Content-Type: application/json
     "specifications": {
         "brand_name": "Damati",
         "tags": "Plastic Containers",
+        "text_fields_specifications": {
+          "Usage": {
+            "optional": false,
+            "value": "10"
+          }
+        },
+        "checkable_specifications": {
+          "Color": {
+            "options": "Blue, Bronze, Brown, Black",
+            "values": "Black",
+            "optional": true
+          },
+          "Material": {
+            "options": "Wood, Steel, Stainless Steel, Paper",
+            "optional": true
+          }
+        }
+        "other_specifications": {
+          "Lid": "Completely Closed"
+        }
         "category_specifications": [
             [
                 "Usage",
@@ -348,7 +368,7 @@ Content-Type: application/json
 }
 ```
 
-## New Product
+## Find Product
 
 > To get predefined specifications for a product use this code:
 
@@ -446,7 +466,7 @@ Content-Type: application/json
     "payment_details": {
       "cst_enabled": true,
       "cst_tax": "5",
-      "excise_enabled": "true",
+      "excise_enabled": true,
       "excise_tax": "10"
     },  
     "detailed_description" : "Extremely sensitive",
@@ -472,7 +492,7 @@ Bizongo expects the header `Authorization` to be present in the following 'forma
 
 `Authorization: Token token=User Auth Token`
 
-## Edit a product
+##  a product
 
 ```http
 GET /api/products/$['product_id'] HTTP/1.1
@@ -550,7 +570,7 @@ Content-Type: application/json
 ## Update a Product
 
 ```http
-POST /api/products/$['product_id'] HTTP/1.1
+PUT /api/products/$['product_id'] HTTP/1.1
 Host: bizongo.in
 Authorization: Token token="USER AUTH TOKEN"
 Content-Type: application/json
@@ -596,7 +616,7 @@ Content-Type: application/json
 ```
 
 ```http
-HTTP/1.1 204 OK
+HTTP/1.1 200 OK
 Host: bizongo.in
 Authorization: Token token="USER AUTH TOKEN"
 ```
