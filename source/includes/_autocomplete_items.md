@@ -81,6 +81,66 @@ image_url | No | A URL that points to an image you'd like displayed next to some
 description | No | A description for some item (only applicable when url is supplied)
 id | No | An arbitrary ID you would like associated with this item.  You can use this field to store your own IDs of the items to more easily access them in other API calls.
 
+## Batch Add Items
+
+```shell
+curl -X POST -H "Content-Type: application/json" \
+  -d '{"items": [ {"item_name": "power drill"}, {"item_name": "hammer"} ],\
+    "autocomplete_section":"Search Suggestions"}' \
+  -u"[your token]:" "https://ac.cnstrc.com/v1/batch_items?autocomplete_key=[your autocomplete key]"
+```
+
+```javascript
+constructorio.add_batch(
+  {
+    items: [
+      { item_name: "power drill" },
+      { item_name: "hammer" }
+    ],
+    autocomplete_section: "Search Suggestions"
+  },
+  function(error, response) {
+    if (error) {
+      console.log(error);
+    }
+  }
+);
+```
+
+```ruby
+response = constructorio.add_batch(
+  {
+    items: [
+      { item_name: "power drill" },
+      { item_name: "hammer" }
+    ],
+    autocomplete_section: "Search Suggestions"
+  }
+);
+```
+
+```perl
+my $response = $constructorio->add_batch(
+  items => [ { item_name => "power drill" }, { item_name => "hammer" } ],
+  autocomplete_section => "Search Suggestions"
+);
+```
+
+> The above command returns a 204 Success response on success.
+
+To add multiple items to your autocomplete index as a batch, use the `POST /batch_items` call. The `items` parameter is required and is an array of item hashes with the same attributes as defined in the `Add an Item` resource.  Because your autocomplete can have multiple sections, like categories, search suggestions, and direct links to products, you must specify which section you are adding an item to. You can do this with the `autocomplete_section` parameter.
+
+### HTTP Request
+
+`POST https://ac.cnstrc.com/v1/batch_items?autocomplete_key=[your autocomplete key]`
+
+### JSON Parameters
+
+Parameter | Required? | Description
+--------- | ------- | -----------
+items | Yes | An array of item hashes with the same attributes as defined in the `Add an Item` resource
+autocomplete_section | Yes | Your autocomplete suggestions can have multiple sections like "Products" and "Search Suggestions".  This indicates which section this item is for.  See [your dashboard](/dashboard) for the section names to use.
+
 ## Remove an Item
 
 ```shell
