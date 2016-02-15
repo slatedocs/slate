@@ -11,7 +11,7 @@ The accounts api endpoint is https://app.beyonic.com/api/accounts
 Field | Type | Description
 ----- | -----| ----
 id | long integer | Unique object identifier
-organization | long integer | The ID of the organization that the contact belongs to. (This is usually your organization ID)
+organization | long integer | The ID of the organization that the account belongs to. (This is usually your organization ID)
 balance | float | The current account balance
 currency | string | The account's currency code. i.e KES, UGX
 status | string | The account's status. One of: active or inactive
@@ -32,7 +32,7 @@ curl https://app.beyonic.com/api/accounts -H "Authorization: Token ab594c1498661
 require 'beyonic'
 Beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
-contact = Beyonic::Account.list
+accounts = Beyonic::Account.list
 ```
 
 ```php
@@ -40,7 +40,7 @@ contact = Beyonic::Account.list
 require_once('./lib/Beyonic.php');
 Beyonic::setApiKey("ab594c14986612f6167a975e1c369e71edab6900");
 
-$contact = Beyonic_Account::getAll();
+$accounts = Beyonic_Account::getAll();
 ?>
 ```
 
@@ -48,7 +48,7 @@ $contact = Beyonic_Account::getAll();
 import beyonic
 beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
-contact = beyonic.Account.list()
+accounts = beyonic.Account.list()
 
 ```
 
@@ -57,7 +57,7 @@ contact = beyonic.Account.list()
 ```json
 {
     "count": 2,
-    "next": "https://app.beyonic.com/api/contacts?offset=10",
+    "next": "https://app.beyonic.com/api/accounts?offset=10",
     "previous": null,
     "results": [
         {
@@ -100,8 +100,8 @@ curl https://app.beyonic.com/api/accounts?currency=KES -H "Authorization: Token 
 require 'beyonic'
 Beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
-contact = Beyonic::Account.list(
-  currenncy: "KES"
+accounts = Beyonic::Account.list(
+  currency: "KES"
 )
 ```
 
@@ -110,7 +110,7 @@ contact = Beyonic::Account.list(
 require_once('./lib/Beyonic.php');
 Beyonic::setApiKey("ab594c14986612f6167a975e1c369e71edab6900");
 
-$contact = Beyonic_Account::getAll(array(
+$accounts = Beyonic_Account::getAll(array(
   "currency" => "KES"
 ));
 ?>
@@ -120,7 +120,7 @@ $contact = Beyonic_Account::getAll(array(
 import beyonic
 beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
-contact = beyonic.Account.list(currency='KES')
+accounts = beyonic.Account.list(currency='KES')
 
 ```
 
