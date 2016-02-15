@@ -31,6 +31,7 @@ GEM
     fastimage (1.8.1)
       addressable (~> 2.3, >= 2.3.5)
     ffi (1.9.10)
+    git-version-bump (0.15.1)
     haml (4.0.7)
       tilt
     hamster (2.0.0)
@@ -97,6 +98,9 @@ GEM
       activesupport (>= 3.1)
     puma (2.16.0)
     rack (1.6.4)
+    rack-contrib (1.4.0)
+      git-version-bump (~> 0.15)
+      rack (~> 1.4)
     rack-test (0.6.3)
       rack (>= 1.0)
     rake (10.4.2)
@@ -129,6 +133,7 @@ DEPENDENCIES
   middleman-sprockets (~> 4.0.0.rc)
   middleman-syntax (~> 2.1.0)
   puma
+  rack-contrib
   redcarpet (~> 3.3.2)
   rouge (~> 1.10.1)
 
