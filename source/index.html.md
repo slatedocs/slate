@@ -198,34 +198,20 @@ Event can be public or private.
   If event is public, everyone can participate to your event.
 </aside>
 
+<aside class="warning">
+  Documentation is not complete, wait until update before using this.
+</aside>
+
 ## Create events (Private)
 
 `POST /event/new`
 
-Param         | Required  | Default | Type
---------------|-----------|---------|-----
-id            | YES       | HASH    | String
-name          | YES       | NULL    | String
-date          | YES       | Current | Date
-time          | YES       | Current | Time
-private       | YES       | true    | Bool
-latitude      | YES       | NULL    | Double
-longtitude    | YES       | NULL    | Double
-deslatitude   | NO        | NULL    | Double
-deslongtitude | NO        | NULL    | Double
-
-> Eror JSON:
-
-```json
-{
-  "error": {
-    "code": 303,
-    "message": "Missing parameters"
-  }
-}
+```http
+POST /event/new HTTP/1.1
+User-Agent: MyClient/1.0.0
+Host: api.runnity.com
+Content-Type: application/json
 ```
-
-> Valid JSON:
 
 ```json
 {
@@ -236,51 +222,50 @@ deslongtitude | NO        | NULL    | Double
 }
 ```
 
-## Get events (Private)[GET]
+### PARAMETERS
 
-`http://api.runnity.com/event/list?param=...[&param=...]`
+Parameters        | Required  | Type    | Description
+------------------|-----------|---------|-------------
+name              | YES       | String  |
+date              | YES       | Date    |
+time              | YES       | Time    |
+private           | YES       | Bool    |
+src_latitude      | YES       | Double  |
+src_longtitude    | YES       | Double  |
+dest_latitude     | NO        | Double  |
+dest_longtitude   | NO        | Double  |
 
-Param         | Required  | Default | Type
---------------|-----------|---------|-----
-id            | YES       | HASH    | String
-name          | NO        | NULL    | String
-date          | NO        | Current | Date
-time          | NO        | Current | Time
-private       | NO        | true    | Bool
-latitude      | NO        | NULL    | Double
-longtitude    | NO        | NULL    | Double
-deslatitude   | NO        | NULL    | Double
-deslongtitude | NO        | NULL    | Double
+## Get events (Private)
 
-> Error JSON:
+`GET /event/list`
 
-```json
-{
-  "error": {
-    "code": 404,
-    "message": "Events not found"
-  }
-}
+```http
+POST /event/list HTTP/1.1
+User-Agent: MyClient/1.0.0
+Host: api.runnity.com
+Content-Type: application/json
 ```
-
-> Valid JSON:
 
 ```json
 {
     "comeUp": [{
-        "_id": <Int>, // Event Id
-        "private": <Bool>, // Event display
-        "name": <String>, // Event name
-        "date": <Date>, // Event date
-        "hour": <Time>, // Event time
-        "latitude": <Double>, // Latitude of start position
-        "longtitude": <Double>, // Longtitude of start position
-        "participants": [<String>] // List of participants ({Array.<String>}, may be {Array.<Object>})
+        "id": 1,
+        "private": false,
+        "name": "name",
+        "date": "2015-10-24",
+        "time": "18:00",
+        "latitude": 43.14352,
+        "longtitude": 3.34142,
+        "participants": [
+          "Jean-Paul",
+          "Jason",
+          "Christophe"
+        ], // List of participants ({Array.<String>}, may be {Array.<Object>})
         "status": <String>, // passed, current or come up
-        "isCreator": <Boolean>, // true yes, false no
+        "isCreator": ""
     }],
     "passed": [{
-        "_id": <Int>, // Event Id
+        "id": 1, // Event Id
         "private": <Bool>, // Event display
         "name": <String>, // Event name
         "date": <Date>, // Event date
@@ -305,3 +290,20 @@ deslongtitude | NO        | NULL    | Double
     }]
 }
 ```
+
+Parameters        | Required  | Type    | Description
+------------------|-----------|---------|----------
+id                | YES       | String  | Event id
+name              | NO        | String  | Event name
+date              | NO        | Date    | Event date
+time              | NO        | Time    | Event time
+private           | NO        | Bool    | Event visibilty
+src_latitude      | NO        | Double  | Event position
+src_longtitude    | NO        | Double  | Event position
+dest_latitude     | NO        | Double  | Event end position 
+dest_longtitude   | NO        | Double  | Event end position
+
+<aside class="warning">
+  Documentation is not complete, wait until update before using this.
+  Someone need to correct this...
+</aside>
