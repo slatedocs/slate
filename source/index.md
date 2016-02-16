@@ -2,8 +2,9 @@
 title: Mifiel API Documentation
 
 language_tabs:
-  - shell
-  - ruby
+  - shell: cURL
+  - php: PHP
+  - ruby: Ruby
 
 includes:
   - introduction
