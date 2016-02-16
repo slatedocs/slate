@@ -145,7 +145,7 @@ Content-Type: application/json
 
 Parameters      | Required  | Type     | Description
 ----------------|-----------|----------|-------------
-started_at      | YES       | Datetime | Exact date run creation 
+started_at      | YES       | Datetime | Exact date run creation
 src_latitude    | YES       | Double   | User current latitude
 src_longitude   | YES       | Double   | User current longitude
 dest_latitude   | NO        | Double   | User destination
@@ -186,7 +186,7 @@ id              | YES       | Integer  | Run to update
 latitude        | YES       | Double   | Current position
 longtitude      | YES       | Double   | Current position
 speed           | NO        | Short    | Current speed
-updated_at      | YES       | Datetime | Datetime of the recorded update 
+updated_at      | YES       | Datetime | Datetime of the recorded update
 
 # Events
 
@@ -237,7 +237,7 @@ dest_longtitude   | NO        | Double  |
 
 ## Get events (Private)
 
-`GET /event/list`
+`GET /event/:id`
 
 ```http
 POST /event/list HTTP/1.1
@@ -294,14 +294,6 @@ Content-Type: application/json
 Parameters        | Required  | Type    | Description
 ------------------|-----------|---------|----------
 id                | YES       | String  | Event id
-name              | NO        | String  | Event name
-date              | NO        | Date    | Event date
-time              | NO        | Time    | Event time
-private           | NO        | Bool    | Event visibilty
-src_latitude      | NO        | Double  | Event position
-src_longtitude    | NO        | Double  | Event position
-dest_latitude     | NO        | Double  | Event end position 
-dest_longtitude   | NO        | Double  | Event end position
 
 <aside class="warning">
   Documentation is not complete, wait until update before using this.
