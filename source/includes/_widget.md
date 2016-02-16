@@ -2,7 +2,7 @@
 
 ## Widget
 
-> Copy this code and paste it just before the `</body>` tag.
+> Copy this code and paste it just before the <b>&lt;/body&gt;</b> tag.
 
 ```html
 <script type="text/javascript">

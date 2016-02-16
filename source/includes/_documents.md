@@ -2,6 +2,8 @@
 
 ## Create a Document
 
+> Send only **original_hash** if you dont want us to have the document.
+
 ```ruby
 require 'mifiel'
 
@@ -40,6 +42,32 @@ curl -X POST https://www.mifiel.com/api/v1/documents \
   -H "Authorization: APIAuth APP-ID:hmac-signature"
 ```
 
+```php
+<?php
+require 'vendor/autoload.php';
+use Mifiel\Document;
+
+$document = new Document([
+  'file' => 'path/to/my-file.pdf',
+  // OR
+  'original_hash' => hash('sha256', file_get_contents('path/to/my-file.pdf')),
+  'signatories' => [
+    { 
+      'name' => 'Signer 1', 
+      'email' => 'signer1@email.com', 
+      'tax_id' =>  'AAA010101AAA' 
+    },
+    { 
+      'name' => 'Signer 2', 
+      'email' => 'signer2@email.com', 
+      'tax_id' =>  'AAA010102AAA'
+     }
+  ]
+])
+$document->save();
+?>
+```
+
 Create a document to be signed by passing either a PDF file or the Hash of the file.
 
 If you are using our [embedded signing widget](#widget), we suggest that you pass a __File__ so that it can be displayed to the end user (signer) within the signing flow on your webpage. Also when using the widget you must pass the __email of the signer__ (name is optional) so that we can send them a copy of the signed document when the signing process is complete.
@@ -60,7 +88,7 @@ callback_url | String | __Optional__ A Callback URL to post when the document ge
 
 <aside class="info">
   <ul style="margin: 0; padding: 0">
-    <li>Either the <b>file</b> or <b>hash</b> must be passed.</li>
+    <li>Either the <b>file</b> or <b>original_hash</b> must be passed.</li>
     <li>The <b>email</b> in the <b>signatories</b> param is <b>required</b> when using embedded signing.</li>
   </ul>
 </aside>
@@ -87,6 +115,19 @@ curl "https://www.mfiel.com.mx/api/v1/documents/29f3cb01-744d-4eae-8718-213aec8a
   -H "Authorization: APIAuth APP-ID:hmac-signature"
 ```
 
+```php
+<?php
+require 'vendor/autoload.php';
+use Mifiel\Document;
+
+$document = Document::find('29f3cb01-744d-4eae-8718-213aec8a1678');
+$document->original_hash;
+$document->file;
+$document->file_signed;
+# ...
+?>
+```
+
 Allows you to retrieve a specific document.
 
 ### HTTP Request
@@ -110,6 +151,15 @@ curl "https://www.mifiel.com/api/v1/documents"
   -H "Authorization: APIAuth APP-ID:hmac-signature"
 ```
 
+```php
+<?php
+require 'vendor/autoload.php';
+use Mifiel\Document;
+
+$documents = Document::all();
+?>
+```
+
 Allows you to retrieve all documents in your account.
 
 ### HTTP Request
@@ -131,6 +181,15 @@ Mifiel::Document.delete('29f3cb01-744d-4eae-8718-213aec8a1678')
 ```shell
 curl -X DELETE "https://www.mifiel.com/api/v1/documents/29f3cb01-744d-4eae-8718-213aec8a1678"
   -H "Authorization: APIAuth APP-ID:hmac-signature"
+```
+
+```php
+<?php
+require 'vendor/autoload.php';
+use Mifiel\Document;
+
+Document::delete('29f3cb01-744d-4eae-8718-213aec8a1678');
+?>
 ```
 
 Allows you to delete a specific document in your account.

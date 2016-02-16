@@ -4,7 +4,6 @@ Welcome to the Mifiel API! We at Mifiel provide a simple and robust RESTful API 
 
 Through Mifiel's API, you can easily manage documents and certificates within your Mifiel account.
 
-
 ### Getting started
 
 To start using the API you will first need an _APP_ID_ and a _APP_SECRET_ which will be provided upon request (please contact us at [hola@mifiel.com](mailto:hola@mifiel.com)).
@@ -31,8 +30,6 @@ Mifiel.config do |config|
 end
 ```
 
-You can find the repo at [github.com/Mifiel/ruby-api-client](https://github.com/Mifiel/ruby-api-client)
-
 Add this line to your application's Gemfile:
 
 `gem 'mifiel'`
@@ -44,6 +41,8 @@ Then execute:
 Or install it yourself as:
 
 `$ gem install mifiel`
+
+You can find the repo at [github.com/Mifiel/ruby-api-client](https://github.com/Mifiel/ruby-api-client).
 
 ### PHP
 
@@ -68,7 +67,7 @@ To install the most recent version, run the following command.
 
 Now your composer.json has been updated automatically and you're able to require the just created *vendor/autoload.php* file to PSR-4 autoload the library.
 
-You can find the repo at [github.com/Mifiel/ruby-api-client](https://github.com/Mifiel/php-api-client)
+You can find the repo at [github.com/Mifiel/ruby-api-client](https://github.com/Mifiel/php-api-client).
 
 ## Authentication
 
