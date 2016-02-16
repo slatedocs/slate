@@ -18,6 +18,18 @@ curl -X POST https://www.mifiel.com/api/v1/keys \
   -H "Authorization: APIAuth APP-ID:hmac-signature"
 ```
 
+```php
+<?php
+require 'vendor/autoload.php';
+use Mifiel\Certificate;
+
+$certificate = new Certificate([
+  'file' => 'path/to/my-certificate.cer'
+])
+$certificate->save();
+?>
+```
+
 Uploads the certificate of a signer in your account.
 
 ### HTTP Request
@@ -55,6 +67,19 @@ curl "https://www.mfiel.com.mx/api/v1/keys/07320f00-f504-47e0-8ff6-78378d2faca4"
   -H "Authorization: APIAuth APP-ID:hmac-signature"
 ```
 
+```php
+<?php
+require 'vendor/autoload.php';
+use Mifiel\Certificate;
+
+$certificate = Certificate::find('07320f00-f504-47e0-8ff6-78378d2faca4');
+$certificate->cer_hex;
+$certificate->type_of;
+$certificate->owner;
+# ...
+?>
+```
+
 Allows you to retrieve a specific certificate.
 
 ### HTTP Request
@@ -76,6 +101,15 @@ certificates = Mifiel::Certificate.all
 ```shell
 curl "https://www.mifiel.com/api/v1/keys"
   -H "Authorization: APIAuth APP-ID:hmac-signature"
+```
+
+```php
+<?php
+require 'vendor/autoload.php';
+use Mifiel\Certificate;
+
+$certificates = Certificate::all();
+?>
 ```
 
 Allows you to retrieve ALL certificates in your account.
@@ -101,6 +135,15 @@ curl -X DELETE "https://www.mifiel.com/api/v1/keys/07320f00-f504-47e0-8ff6-78378
   -H "Authorization: APIAuth APP-ID:hmac-signature"
 ```
 
+```php
+<?php
+require 'vendor/autoload.php';
+use Mifiel\Certificate;
+
+Certificate::delete('id');
+?>
+```
+
 Allows you to delete a specific certificate in your account.
 
 ### HTTP Request
@@ -118,6 +161,16 @@ sat_certificates = Mifiel::Certificate.sat
 ```shell
 curl "https://www.mifiel.com/api/v1/keys/sat"
 ```
+
+```php
+<?php
+require 'vendor/autoload.php';
+use Mifiel\Certificate;
+
+$sat_certificates = Certificate::sat();
+?>
+```
+
 
 > JSON Example response:
 

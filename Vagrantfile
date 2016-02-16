@@ -1,29 +1,39 @@
-# -*- mode: ruby -*-
-# vi: set ft=ruby :
-
-# Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
-VAGRANTFILE_API_VERSION = '2'
-
-Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-  # Every Vagrant virtual environment requires a box to build off of.
-  config.vm.box = 'disusered/volabit'
-
-  # Open ports:
-  # 4567  - Middleman
+Vagrant.configure(2) do |config|
+  config.vm.box = "ubuntu/trusty64"
   config.vm.network :forwarded_port, guest: 4567, host: 4567
 
-  # NFS
-  config.vm.network 'private_network', ip: '192.168.50.4'
-  config.vm.synced_folder '.', '/vagrant', type: 'nfs'
+  config.vm.provision "bootstrap",
+    type: "shell",
+    inline: <<-SHELL
+      sudo apt-get update
+      sudo apt-get install -yq ruby2.0 ruby2.0-dev pkg-config build-essential nodejs git libxml2-dev libxslt-dev
+      sudo apt-get autoremove -yq
+      gem2.0 install --no-ri --no-rdoc bundler
+    SHELL
 
-  # Provider-specific configuration so you can fine-tune various
-  # backing providers for Vagrant. These expose provider-specific options.
-  config.vm.provider 'virtualbox' do |vb|
-    vb.customize ['modifyvm', :id, '--memory', '2048']
-  end
+  # add the local user git config to the vm
+  config.vm.provision "file", source: "~/.gitconfig", destination: ".gitconfig"
 
-  # Provision application
-  config.vm.provision 'shell',
-                      privileged: false,
-                      path: '/usr/bin/vagrant'
+  config.vm.provision "install",
+    type: "shell",
+    privileged: false,
+    inline: <<-SHELL
+      echo "=============================================="
+      echo "Installing app dependencies"
+      cd /vagrant
+      bundle config build.nokogiri --use-system-libraries
+      bundle install
+    SHELL
+
+  config.vm.provision "run",
+    type: "shell",
+    privileged: false,
+    run: "always",
+    inline: <<-SHELL
+      echo "=============================================="
+      echo "Starting up middleman at http://localhost:4567"
+      echo "If it does not come up, check the ~/middleman.log file for any error messages"
+      cd /vagrant
+      bundle exec middleman server --force-polling -l 1 &> ~/middleman.log &
+    SHELL
 end
