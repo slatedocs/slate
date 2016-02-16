@@ -1,14 +1,8 @@
 ---
-title: API Reference
+title: Runnity Documentations Reference
 
 language_tabs:
-  - shell
-  - ruby
-  - python
-
-toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a>
+  - http
 
 includes:
   - errors
@@ -18,151 +12,290 @@ search: true
 
 # Introduction
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+Welcome to the Runnity documentation! You can use our API to access Runnity API endpoints, which can get information on various runs, events etc. in our database.
 
-We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
-
-This example API documentation page was created with [Slate](https://github.com/tripit/slate). Feel free to edit it and use it as a base for your own API's documentation.
+In the left side, you have URL description. And in the right side, you have the resppnse.
 
 # Authentication
 
-> To authorize, use this code:
+## Login to API (Private)
 
-```ruby
-require 'kittn'
+`POST /login`
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
+```http
+POST /login HTTP/1.1
+User-Agent: MyClient/1.0.0
+Host: api.runnity.com
+Content-Type: application/json
 ```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-```
-
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
-```
-
-> Make sure to replace `meowmeowmeow` with your API key.
-
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
-
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
-
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
-
-# Kittens
-
-## Get All Kittens
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
-
-```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
-```
-
-> The above command returns JSON structured like this:
-
-```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
-```
-
-This endpoint retrieves all kittens.
-
-### HTTP Request
-
-`GET http://example.com/api/kittens`
-
-### Query Parameters
-
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
-```
-
-> The above command returns JSON structured like this:
-
 ```json
 {
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
+  "user": "username",
+  "password": "password"
 }
 ```
 
-This endpoint retrieves a specific kitten.
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+```
+```json
+{
+  "userLevel": "user",
+  "token": "HEjeFWfowifwhi3852nkdshit3"
+}
+```
 
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
+```http
+HTTP/1.1 402 KO
+Content-Type: application/json
+```
+```json
+{
+  "error": {
+      "code": "402",
+      "message": "Invalid username or password"
+  }
+}
+```
 
-### HTTP Request
+### PARAMETERS
 
-`GET http://example.com/kittens/<ID>`
+Parameters    | Required  | Type   | Description
+--------------|-----------|--------|-------------
+user          | YES       | String | User login
+password      | YES       | String | User password
 
-### URL Parameters
+### ATTRIBUTES
 
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
+Attribute     | Type   | Description
+--------------|--------|--------------
+userLevel     | String | User level access rights
+token         | String | User's token
 
+The possibilities for `userLevel` for now are:
+
+* admin
+* user
+
+## Logout (Private)
+
+`GET /logout`
+
+Destroy token session. No JSON returned
+
+## Login URL - Third party apps (Private)
+
+`GET login/<token>`
+
+```json
+{
+  "error": {
+    "code": 401,
+    "message": "Invalid token"
+  }
+}
+```
+
+```json
+{
+  "userLevel": "admin"
+}
+```
+
+This URL required a token that user has to ask before. We avoid to ask for username and password directly in URL, because they can be interpreted by hackers.
+
+<aside class="warning">
+  Do not user yet, this need to be improved.
+</aside>
+
+# Runs
+
+## Create a new run (Private)[POST]
+
+`POST /run/new`
+
+```http
+POST /run/new HTTP/1.1
+User-Agent: MyClient/1.0.0
+Host: api.runnity.com
+Content-Type: application/json
+```
+```json
+{
+  "started_at": "2016-02-15",
+  "src_latitude": 45.754189,
+  "src_longitude": 4.840339,
+  "dest_latitude": 45.754189,
+  "dest_longitude": 4.840339
+}
+```
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+```
+```json
+{
+  "id": 1
+}
+```
+
+### PARAMETERS
+
+Parameters      | Required  | Type     | Description
+----------------|-----------|----------|-------------
+started_at      | YES       | Datetime | Exact date run creation
+src_latitude    | YES       | Double   | User current latitude
+src_longitude   | YES       | Double   | User current longitude
+dest_latitude   | NO        | Double   | User destination
+dest_longitude  | NO        | Double   | User destination
+
+### ATTRIBUTES
+
+Attibutes     | Type     | Description
+--------------|----------|----------------
+id            | String   | New run id
+
+You don't have to specify a start point.
+
+## Update a run (Private)
+
+`PUT /run/update`
+
+```http
+PUT /run/update HTTP/1.1
+User-Agent: MyClient/1.0.0
+Host: api.runnity.com
+Content-Type: application/json
+```
+```json
+{
+  "id": "2016-02-15",
+  "latitude": 45.754189,
+  "longitude": 4.840339,
+  "speed": 10
+}
+```
+
+### PARAMETERS
+
+Parameters      | Required  | Type     | Description
+----------------|-----------|----------|-------------
+id              | YES       | Integer  | Run to update
+latitude        | YES       | Double   | Current position
+longtitude      | YES       | Double   | Current position
+speed           | NO        | Short    | Current speed
+updated_at      | YES       | Datetime | Datetime of the recorded update
+
+# Events
+
+You can create a run event. With this option, you have to choose a date that event will start
+, a location, you can or not specify a destination location. And of course, you can invite your friends into this run.
+Event can be public or private.
+
+<aside class="notice">
+  If event is public, everyone can participate to your event.
+</aside>
+
+<aside class="warning">
+  Documentation is not complete, wait until update before using this.
+</aside>
+
+## Create events (Private)
+
+`POST /event/new`
+
+```http
+POST /event/new HTTP/1.1
+User-Agent: MyClient/1.0.0
+Host: api.runnity.com
+Content-Type: application/json
+```
+
+```json
+{
+  "success": {
+    "code": 202,
+    "message": "Event created"
+  }
+}
+```
+
+### PARAMETERS
+
+Parameters        | Required  | Type    | Description
+------------------|-----------|---------|-------------
+name              | YES       | String  |
+date              | YES       | Date    |
+time              | YES       | Time    |
+private           | YES       | Bool    |
+src_latitude      | YES       | Double  |
+src_longtitude    | YES       | Double  |
+dest_latitude     | NO        | Double  |
+dest_longtitude   | NO        | Double  |
+
+## Get events (Private)
+
+`GET /event/:id`
+
+```http
+POST /event/list HTTP/1.1
+User-Agent: MyClient/1.0.0
+Host: api.runnity.com
+Content-Type: application/json
+```
+
+```json
+{
+    "comeUp": [{
+        "id": 1,
+        "private": false,
+        "name": "name",
+        "date": "2015-10-24",
+        "time": "18:00",
+        "latitude": 43.14352,
+        "longtitude": 3.34142,
+        "participants": [
+          "Jean-Paul",
+          "Jason",
+          "Christophe"
+        ], // List of participants ({Array.<String>}, may be {Array.<Object>})
+        "status": <String>, // passed, current or come up
+        "isCreator": ""
+    }],
+    "passed": [{
+        "id": 1, // Event Id
+        "private": <Bool>, // Event display
+        "name": <String>, // Event name
+        "date": <Date>, // Event date
+        "hour": <Time>, // Event time
+        "latitude": <Double>, // Latitude of start position
+        "longtitude": <Double>, // Longtitude of start position
+        "participants": [<String>] // List of participants ({Array.<String>}, may be {Array.<Object>})
+        "status": <String>, // passed, current or come up
+        "isCreator": <Boolean>, // true yes, false no
+    }],
+    "current": [{
+        "_id": <Int>, // Event Id
+        "private": <Bool>, // Event display
+        "name": <String>, // Event name
+        "date": <Date>, // Event date
+        "hour": <Time>, // Event time
+        "latitude": <Double>, // Latitude of start position
+        "longtitude": <Double>, // Longtitude of start position
+        "participants": [<String>] // List of participants ({Array.<String>}, may be {Array.<Object>})
+        "status": <String>, // passed, current or come up
+        "isCreator": <Boolean>, // true yes, false no
+    }]
+}
+```
+
+Parameters        | Required  | Type    | Description
+------------------|-----------|---------|----------
+id                | YES       | String  | Event id
+
+<aside class="warning">
+  Documentation is not complete, wait until update before using this.
+  Someone need to correct this...
+</aside>

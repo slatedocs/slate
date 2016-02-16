@@ -31,6 +31,7 @@ GEM
     fastimage (1.8.1)
       addressable (~> 2.3, >= 2.3.5)
     ffi (1.9.10)
+    git-version-bump (0.15.1)
     haml (4.0.7)
       tilt
     hamster (2.0.0)
@@ -87,6 +88,7 @@ GEM
     mime-types-data (3.2015.1120)
     mini_portile2 (2.0.0)
     minitest (5.8.4)
+    net-http-persistent (2.9.4)
     nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
     padrino-helpers (0.13.1)
@@ -95,9 +97,17 @@ GEM
       tilt (~> 1.4.1)
     padrino-support (0.13.1)
       activesupport (>= 3.1)
+    puma (2.16.0)
     rack (1.6.4)
+    rack-contrib (1.4.0)
+      git-version-bump (~> 0.15)
+      rack (~> 1.4)
     rack-test (0.6.3)
       rack (>= 1.0)
+    rack-wwwhisper (1.1.9)
+      addressable (~> 2.0)
+      net-http-persistent
+      rack (~> 1.0)
     rake (10.4.2)
     rb-fsevent (0.9.7)
     rb-inotify (0.9.5)
@@ -127,8 +137,11 @@ DEPENDENCIES
   middleman-gh-pages (~> 0.0.3)
   middleman-sprockets (~> 4.0.0.rc)
   middleman-syntax (~> 2.1.0)
+  puma
+  rack-contrib
+  rack-wwwhisper (~> 1.0)
   redcarpet (~> 3.3.2)
   rouge (~> 1.10.1)
 
 BUNDLED WITH
-   1.10.6
+   1.11.2
