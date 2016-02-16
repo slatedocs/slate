@@ -19,7 +19,7 @@ All API calls are versioned, and the current Mifiel API is v1.0. We will never i
 
 ## Mifiel-supported SDKs
 
-We currently suppport only Ruby but are working on adding more languages.
+We currently suppport only Ruby and PHP but are working on adding more languages.
 
 ### Ruby
 
@@ -45,6 +45,30 @@ Or install it yourself as:
 
 `$ gem install mifiel`
 
+### PHP
+
+```php
+<?php
+// include composer autoload
+require 'vendor/autoload.php';
+
+// import Mifiel Client Class
+use Mifiel\ApiClient as Mifiel;
+
+// Configure Mifiel Library
+Mifiel::setTokens('APP_ID', 'APP_SECRET');
+?>
+```
+
+The best way to install Mifiel is quickly and easily with [Composer](https://getcomposer.org).
+
+To install the most recent version, run the following command.
+
+`php composer.phar require mifiel/api-client` 
+
+Now your composer.json has been updated automatically and you're able to require the just created *vendor/autoload.php* file to PSR-4 autoload the library.
+
+You can find the repo at [github.com/Mifiel/ruby-api-client](https://github.com/Mifiel/php-api-client)
 
 ## Authentication
 
