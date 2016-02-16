@@ -299,3 +299,71 @@ id                | YES       | String  | Event id
   Documentation is not complete, wait until update before using this.
   Someone need to correct this...
 </aside>
+
+# Models
+
+## User Model
+
+`User model`
+
+```javascript
+  exports.example = function(req, res) {
+
+  var User = require('path_to_model');
+
+  var user = new User({
+      firstname = ...;
+      lastname = ...;
+      ...;
+  });
+
+  user.save(function(err) {
+    if (err) return next(err);
+    res.send(error_msg);
+  });
+  res.send(success_msg);
+  };
+```
+
+### PARAMETERS
+
+Parameters      | Required  | Type     | Description
+----------------|-----------|----------|-------------
+create_at       | YES       | Datetime | Register date
+logged_at       | YES       | Datetime | Last connexion date
+enable          | YES       | boolean  | account activation & ban
+email           | YES       | String   | User mail
+phone           | NO        | String   | User phone
+ranking         | NO        | String   | User ranking "beginner, intermediaire, confirm or professional"
+firstname       | NO        | String   | User firstname
+lastname        | NO        | String   | User lastname
+birthday        | NO        | String   | User birthday
+address         | NO        | String   | User adress
+city            | NO        | String   | User city
+postal_code     | NO        | String   | User postal code
+token           | YES       | String   | User token
+role            | YES       | String   | role "user"
+
+## Pro Model
+
+`Pro model`
+
+### PARAMETERS
+Parameters      | Required  | Type     | Description
+----------------|-----------|----------|-------------
+create_at       | YES       | Datetime | Register date
+logged_at       | YES       | Datetime | Last connexion date
+enable          | YES       | boolean  | account activation & ban
+email           | YES       | String   | Pro mail
+phone           | NO        | String   | Pro phone
+society         | YES       | String   | Society name
+address         | NO        | String   | Pro adress
+city            | NO        | String   | Pro city
+postal_code     | NO        | String   | Pro postal code
+token           | YES       | String   | Pro token
+role            | YES       | String   | role "pro"
+
+
+<aside class="notice">
+    Token generator : sha512(logged_at + firstname + id)
+</aside>
