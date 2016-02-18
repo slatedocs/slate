@@ -313,6 +313,11 @@ Indicates that the correct value type was supplied for the action parameter, but
 **Format**:      "The value %1 for the property %2 is not in the list of valid values."
 **Severity**:    Warning
 **Resolution**:  Choose a value from the enumeration list and resubmit the request if the operation failed.
+### MessageId: iLO.{version}.AlertMailFeatureDisabled
+AlertMail feature is disabled.
+**Format**:      "AlertMail feature is disabled."
+**Severity**:    Warning
+**Resolution**:  Enable AlertMail feature to send test alert message.
 ### MessageId: iLO.{version}.ArrayPropertyOutOfBound
 The number of items in the array exceeds the maximum number supported.
 **Format**:      "An array %1 was supplied with %2 items that exceeds the maximum supported count of %3."
@@ -373,6 +378,31 @@ The event subscription was removed successfully.
 **Format**:      "The event subscription was removed successfully."
 **Severity**:    OK
 **Resolution**:  None.
+### MessageId: iLO.{version}.ExtendedInfo
+Indicates that extended information is available.
+**Format**:      "See @Message.ExtendedInfo for more information."
+**Severity**:    OK
+**Resolution**:  See @Message.ExtendedInfo for more information.
+### MessageId: iLO.{version}.FWFlashSuccessTPMOverrideEnabled
+A Trusted Module is  detected in this system. If you have not performed the proper OS encryption procedures, you will lose access to your data if recovery key is not available. Recommended procedure is to suspend encryption software prior to System ROM or Option ROM firmware flash. TPMOverrideFlag is enabled and firmware flash initiated.
+**Format**:      "CAUTION: A Trusted Module is detected in this system. Updating the System ROM or Option Card Firmware may have impact to measurements stored in the TM and may have impact to security functionality on the platform which depends on these measurements."
+**Severity**:    OK
+**Resolution**:  None.
+### MessageId: iLO.{version}.FWFlashSuccessTrustedModuleOverrideEnabled
+A Trusted Module (type unspecified) is installed in the system and TPMOverrideFlag is enabled. Firmware flash initiated.
+**Format**:      "CAUTION: A Trusted Module (type unspecified) has been detected in this system. If you have not performed the proper OS encryption procedures, you will lose access to your data if recovery key is not available. Recommended procedure for Microsoft Windows(R) BitLocker(TM) is to "suspend" BitLocker prior to System ROM or Option ROM firmware flash."
+**Severity**:    OK
+**Resolution**:  None.
+### MessageId: iLO.{version}.FWFlashTPMOverrideFlagRequired
+A Trusted Module is  detected in this system. Failure to perform proper OS encryption procedures will result in loss of access to your data if recovery key is not available. Recommended procedure is to suspend encryption software prior to System ROM or Option ROM firmware flash. If you do not have your recovery key or have not suspended encryption software, cancel this firmware upload. Failure to follow these instructions will result in loss of access to your data. To continue with firmware flash TPMOverrideFlag is required.
+**Format**:      "CAUTION: A Trusted Module is detected in this system. Updating the System ROM or Option Card Firmware may have impact to measurements stored in the TM and may have impact to security functionality on the platform which depends on these measurements."
+**Severity**:    Warning
+**Resolution**:  Please set the TPMOverrideFlag to true and try again.
+### MessageId: iLO.{version}.FWFlashTrustedModuleOverrideFlagRequired
+A Trusted Module (type unspecified) is installed in the system, TPMOverrideFlag is required for firmware flash to proceed.
+**Format**:      "CAUTION: A Trusted Module (type unspecified) has been detected in this system. Failure to perform proper OS encryption procedures will result in loss of access to your data if recovery key is not available. Recommended procedure for Microsoft Windows(R) BitLocker(TM) is to "suspend" BitLocker prior to System ROM or Option ROM firmware flash. If you do not have your recovery key or have not suspended BitLocker, exit this flash: Failure to follow these instructions will result in loss of access to your data."
+**Severity**:    Warning
+**Resolution**:  Please set the TPMOverrideFlag to true and try again.
 ### MessageId: iLO.{version}.FirmwareFlashAlreadyInProgress
 A firmware upgrade operation is already in progress.
 **Format**:      "A firmware flash operation is already in progress."
@@ -393,6 +423,11 @@ The specified IPv6 configuration caused an error.
 **Format**:      "The specified IPv6 configuration was in error due to %1."
 **Severity**:    Warning
 **Resolution**:  Resolve the indicated error in the configuration data.
+### MessageId: iLO.{version}.ImportCertSuccessfuliLOResetinProgress
+Import Certificate was successful hence iLO needs to be reset. So automatic iLO reset is performed to enable the new certificate.
+**Format**:      "Import Certificate was successful. iLO reset in progress to enable the new certificate."
+**Severity**:    Warning
+**Resolution**:  None.
 ### MessageId: iLO.{version}.ImportCertificateFailed
 Failed importing Certificate.
 **Format**:      "Failed importing the X509 Certificate."
@@ -443,6 +478,11 @@ The license key is not valid.
 **Format**:      "The license key is not valid."
 **Severity**:    Warning
 **Resolution**:  Retry the operation using a valid license key.
+### MessageId: iLO.{version}.InvalidOperationForAutoPowerOnState
+The operation was not successful because the current auto power on mode specifies power is to remain off.
+**Format**:      "The auto power on delay cannot be set because power is configured to remain off."
+**Severity**:    Warning
+**Resolution**:  Verify that the system auto power on mode is set to turn power on or follow the previous power setting.
 ### MessageId: iLO.{version}.InvalidOperationForSystemState
 The operation was not successful due to the current power state (for example, attempting to turn the power off when it is already off).
 **Format**:      "The operation was not successful due to the current power state."
@@ -493,6 +533,16 @@ Membist variables are not supported on the system.
 **Format**:      "Membist variables are not supported on the system."
 **Severity**:    Warning
 **Resolution**:  None.
+### MessageId: iLO.{version}.NoEventSubscriptions
+There are no event subscriptions registerd.
+**Format**:      "The opeartion can not be completed because there are no event subscribers."
+**Severity**:    Warning
+**Resolution**:  
+### MessageId: iLO.{version}.NoPowerMetering
+No support for power metering available on platform.
+**Format**:      "No support for power metering available on platform."
+**Severity**:    OK
+**Resolution**:  Enable Power Metering on platform if supported.
 ### MessageId: iLO.{version}.NoSNMPAlertDestinationsConfigured
 No SNMP alert destinations are configured.
 **Format**:      "No SNMP alert destinations are configured."
@@ -503,6 +553,11 @@ No power history samples are available.
 **Format**:      "No power history samples are available."
 **Severity**:    OK
 **Resolution**:  To accumulate power history samples, power on the server, and then wait at least 5 minutes.
+### MessageId: iLO.{version}.NoScriptedVirtualMediaConnectionAvailable
+No scripted virtual media connections exist to perform the operation.
+**Format**:      "No scripted virtual media connections exist to perform the operation."
+**Severity**:    Warning
+**Resolution**:  Create or open a scripted virtual media connection, and then retry the operation.
 ### MessageId: iLO.{version}.NoSpaceforDNSName
 No space to store DNS name.
 **Format**:      "No space to store DNS name."
@@ -533,11 +588,21 @@ The value for the property is not a valid subnet mask.
 **Format**:      "The value %1 is not a valid subnet mask for %2"
 **Severity**:    Warning
 **Resolution**:  Use a valid subnet mask.
+### MessageId: iLO.{version}.OperationWillCompleteAfterSystemPOST
+The value for the property will be applied after System BIOS POST completes.
+**Format**:      "The value for property %1 will be changed after the System BIOS completes POST."
+**Severity**:    Information
+**Resolution**:  Wait to see the change in value until after the System BIOS completes POST.
 ### MessageId: iLO.{version}.PowerCapOACntrld
 The enclosure Onboard Administrator is currently managing the power cap.
 **Format**:      "The enclosure Onboard Administrator is currently managing the power cap."
 **Severity**:    Warning
 **Resolution**:  Use Onboard Administrator to Manage the PowerCap
+### MessageId: iLO.{version}.PowerCapROMCntrld
+The System ROM is currently managing the power cap.
+**Format**:      "The System ROM is currently managing the power cap."
+**Severity**:    Warning
+**Resolution**:  Enable HP RESTful API management of the power cap in System ROM
 ### MessageId: iLO.{version}.PowerValueBadParam
 The power cap value is not valid.
 **Format**:      "The power cap value is not valid."
@@ -668,6 +733,11 @@ The SNMP Test Alert did not send successfully.
 **Format**:      "The SNMP Test Alert did not send successfully."
 **Severity**:    Warning
 **Resolution**:  Verify the test alert content and retry.
+### MessageId: iLO.{version}.SNTPConfigurationManagedByDHCPAndIsReadOnly
+SNTP configuration is currently managed by DHCP and is therefore read-only.
+**Format**:      "%1 cannot be changed while DHCP is configured to provide SNTP settings."
+**Severity**:    Warning
+**Resolution**:  Disable SNTP configuration options in both DHCPv4 and DHCPv6 (see /Managers/n/NICs), and then reconfigure SNTP as desired with static settings.
 ### MessageId: iLO.{version}.SSOCertficateEmpty
 SSO Certificate is Empty.
 **Format**:      "Empty SSO Certificate."
@@ -758,213 +828,8 @@ Duplicate SNMPv3 User.
 **Format**:      "The username %1 already exists in the list"
 **Severity**:    Warning
 **Resolution**:  Enter a different name and try again.
-### MessageId: iLOEvents.{version}.CorrectableOrUncorrectableMemoryErrors
-Correctable or uncorrectable Memory Errors Detected. Correctable errors have been corrected, but the memory module should be replaced. Value 0 for CPU means memory is not Processor based.
-**Format**:      "Correctable or uncorrectable Memory Errors Detected for the memory module in slot %1, cpu %2, riser %3, socket %4."
+### MessageId: iLO.{version}.iLOResetAndSystemRebootRequired
+Indicates that one or more properties were correctly changed, but will not take effect until device is reset and system is rebooted.
+**Format**:      "One or more properties were changed and will not take effect until the device is reset and system is rebooted"
 **Severity**:    Warning
-**Resolution**:  Replace the failing memory module.
-### MessageId: iLOEvents.{version}.DeviceDiscoveryStatus
-The server device discovery status has changed.
-**Format**:      "Discovery status is now vAux: %1, vMain: %2, AMS: %3, Smart Array Storage: %4"
-**Severity**:    OK
-**Resolution**:  None.
-### MessageId: iLOEvents.{version}.FanDegraded
-The fault tolerant fan condition has been set to degraded for the specified chassis and fan.
-**Format**:      "Fan %2 in chassis %1 is now in a degraded state."
-**Severity**:    Critical
-**Resolution**:  Replace the failing fan.
-### MessageId: iLOEvents.{version}.FanFailed
-The fault tolerant fan condition has been set to failed for the specified chassis and fan.
-**Format**:      "Fan %1 in chassis %2 is now in a failed state"
-**Severity**:    Critical
-**Resolution**:  Replace the failed fan.
-### MessageId: iLOEvents.{version}.FanInserted
-A fault tolerant fan has been inserted into the specified chassis and fan location.
-**Format**:      "The fan %1 has been inserted in chassis %2."
-**Severity**:    OK
-**Resolution**:  None.
-### MessageId: iLOEvents.{version}.FanRedundancyLost
-The fault tolerant fans have lost redundancy for the specified chassis.
-**Format**:      "The fans are no longer redundant in chassis %1."
-**Severity**:    Warning
-**Resolution**:  Check the system fans for a failure.
-### MessageId: iLOEvents.{version}.FanRedundancyRestored
-The fault tolerant fans have returned to a redundant state for the specified chassis.
-**Format**:      "The fans are now redundant in chassis %1."
-**Severity**:    OK
-**Resolution**:  None.
-### MessageId: iLOEvents.{version}.FanRemoved
-A fault tolerant fan has been removed from the specified chassis and fan location.
-**Format**:      "Fan %1 has been removed from chassis %2."
-**Severity**:    Warning
-**Resolution**:  None.
-### MessageId: iLOEvents.{version}.FirmwareFlashStatusChanged
-The firmware flash status has changed
-**Format**:      "The firmware flash status is now %1"
-**Severity**:    OK
-**Resolution**:  None.
-### MessageId: iLOEvents.{version}.ILOToInsightRemoteSupportCommunicationFailure
-iLO to Insight Remote Support or Insight Online communication failed.
-**Format**:      " iLO to Insight Remote Support or Insight Online communication failure."
-**Severity**:    Warning
-**Resolution**:  Please check the connectivity to Insight Remote Support or Insight Online Host.
-### MessageId: iLOEvents.{version}.IndicatorLEDStateChanged
-The state of the indicator LED has changed
-**Format**:      "The state of the indicator LED is now %1"
-**Severity**:    OK
-**Resolution**:  None.
-### MessageId: iLOEvents.{version}.MirroredMemoryEngaged
-Advanced Memory Protection Mirrored Memory Engaged. The Advanced Memory Protection subsystem has detected a memory fault. Mirrored Memory has been activated. 
-**Format**:      "The Advanced Memory Protection subsystem has engaged the online spare memory."
-**Severity**:    Warning
-**Resolution**:  Replace the faulty memory.
-### MessageId: iLOEvents.{version}.POSTErrorsOccurred
-One or more POST errors occurred. Power On Self-Test (POST) errors occur during the server restart process. Details of the POST error messages can be found in Integrated Management Log 
-**Format**:      "Power on self-test errors occurred during server restart."
-**Severity**:    Warning
-**Resolution**:  Refer to the Integrated Management Log for details on the Power on self-test error.
-### MessageId: iLOEvents.{version}.PowerRedundancyLost
-The fault tolerant power supplies have lost redundancy for the specified chassis.
-**Format**:      "The power supplies are no longer redundant in chassis %1."
-**Severity**:    Warning
-**Resolution**:  Check the system power supplies for a failure.
-### MessageId: iLOEvents.{version}.PowerRedundancyRestored
-The fault tolerant power supplies have returned to a redundant state for the specified chassis.
-**Format**:      "The power supplies are now redundant in chassis %1."
-**Severity**:    OK
-**Resolution**:  None.
-### MessageId: iLOEvents.{version}.PowerSupplyACPowerLoss
-Power supply AC power loss for the specified chassis and bay location.
-**Format**:      "Power supply AC power loss detected in %1, bay %2, model %4, serial number %5, firmware %6."
-**Severity**:    Critical
-**Resolution**:  Check the power source for the specified power supply.
-### MessageId: iLOEvents.{version}.PowerSupplyDegraded
-The fault tolerant power supply condition has been set to degraded for the specified chassis and bay location.
-**Format**:      "The power supply is degraded in chassis %1, bay %2,  model %4, serial number %5, firmware %6."
-**Severity**:    Critical
-**Resolution**:  Replace the failing power supply.
-### MessageId: iLOEvents.{version}.PowerSupplyFailed
-The fault tolerant power supply condition has been set to failed for the specified chassis and bay location.
-**Format**:      "The power supply has failed in chassis %1, bay %2,  model %4, serial number %5, firmware %6."
-**Severity**:    Critical
-**Resolution**:  Replace the failed power supply.
-### MessageId: iLOEvents.{version}.PowerSupplyInserted
-A fault tolerant power supply has been inserted into the specified chassis and bay location.
-**Format**:      "A power supply has been inserted in chassis %1, bay %2."
-**Severity**:    OK
-**Resolution**:  None.
-### MessageId: iLOEvents.{version}.PowerSupplyOK
-The fault tolerant power supply condition has been set back to the OK state for the specified chassis and bay location.
-**Format**:      "The power supply is ok in chassis %1, bay %2, model %3, serial number %4, firmware %5."
-**Severity**:    OK
-**Resolution**:  None.
-### MessageId: iLOEvents.{version}.PowerSupplyRemoved
-A fault tolerant power supply has been removed from the specified chassis and bay location.
-**Format**:      "A power supply has been removed from chassis %1, bay %2."
-**Severity**:    Warning
-**Resolution**:  None.
-### MessageId: iLOEvents.{version}.ResourceAdded
-Resource added.
-**Format**:      "Resource added."
-**Severity**:    OK
-**Resolution**:  None.
-### MessageId: iLOEvents.{version}.ResourceRemoved
-Resource removed.
-**Format**:      "Resource removed."
-**Severity**:    OK
-**Resolution**:  None.
-### MessageId: iLOEvents.{version}.ResourceStatusChanged
-Resource status changed.
-**Format**:      "Resource status changed."
-**Severity**:    OK
-**Resolution**:  None.
-### MessageId: iLOEvents.{version}.ResourceUpdated
-Resource updated.
-**Format**:      "Resource updated."
-**Severity**:    OK
-**Resolution**:  None.
-### MessageId: iLOEvents.{version}.SNMPAuthenticationFailure
-An unauthorized user attempted to access the iLO via SNMP
-**Format**:      "SNMP authentication Failure."
-**Severity**:    OK
-**Resolution**:  None.
-### MessageId: iLOEvents.{version}.SecurityOverrideDisengaged
-Security override disengaged. iLO firmware has detected the security override jumper has been toggled to the disengaged position.
-**Format**:      "iLO firmware has detected the security override jumper has been disengaged."
-**Severity**:    OK
-**Resolution**:  None.
-### MessageId: iLOEvents.{version}.SecurityOverrideEngaged
-Security override engaged. iLO firmware has detected the security override jumper has been toggled to the engaged position.
-**Format**:      "iLO firmware has detected the security override jumper has been engaged."
-**Severity**:    OK
-**Resolution**:  None.
-### MessageId: iLOEvents.{version}.ServerHardwareSignatureChanged
-The server hardware signature has changed. This can be caused by addition or removal of Mezziane cards or relocation of the server.
-**Format**:      "The server hardware signature is now %1"
-**Severity**:    OK
-**Resolution**:  None.
-### MessageId: iLOEvents.{version}.ServerOperational
-The server is operational again. The server has previously been shutdown due to a thermal anomaly on the server and has just become operational again.
-**Format**:      "Server is operational again after thermal shutdown."
-**Severity**:    Warning
-**Resolution**:  None.
-### MessageId: iLOEvents.{version}.ServerPostComplete
-The server has reached Power On Self Test complete.
-**Format**:      "The server has reached Power On Self Test complete"
-**Severity**:    OK
-**Resolution**:  None.
-### MessageId: iLOEvents.{version}.ServerPowerOnFailure
-A request was made to power on the server, however the server could not be powered on due to a failure condition.
-**Format**:      "The server could not be powered on."
-**Severity**:    Critical
-**Resolution**:  None.
-### MessageId: iLOEvents.{version}.ServerPoweredOff
-The server has been powered off.
-**Format**:      "The server has been powered off."
-**Severity**:    OK
-**Resolution**:  None.
-### MessageId: iLOEvents.{version}.ServerPoweredOn
-The server has been powered on.
-**Format**:      "The server has been powered on."
-**Severity**:    OK
-**Resolution**:  None.
-### MessageId: iLOEvents.{version}.ServerResetDetected
-Server Reset Detected. iLO firmware has detected a server reset.
-**Format**:      "Server reset detected."
-**Severity**:    Critical
-**Resolution**:  None.
-### MessageId: iLOEvents.{version}.SystemBatteryFailed
-The system battery condition has been set to failed for the specified chassis and index location.
-**Format**:      "The battery has failed in chassis %1, index %2, status %3, model %4, serial number %5, spare part number %6."
-**Severity**:    Warning
-**Resolution**:  Replace the failed battery.
-### MessageId: iLOEvents.{version}.SystemBatteryRemoved
-The system battery condition has removed for the specified chassis and index location.
-**Format**:      "The Battery has been removed in chassis %1, index %2."
-**Severity**:    Warning
-**Resolution**:  None.
-### MessageId: iLOEvents.{version}.ThermalStatusDegradedSysContinue
-The temperature status has been set to degraded in the specified chassis and location. The server's temperature is outside of the normal operating range.
-**Format**:      "Temperature out of range in chassis %1, location %2.The server will continue."
-**Severity**:    Critical
-**Resolution**:  Check the system for hardware failures and verify the environment is properly cooled.
-### MessageId: iLOEvents.{version}.ThermalStatusDegradedSysShutdown
-The temperature status has been set to degraded in the specified chassis and location. The server's temperature is outside of the normal operating range.
-**Format**:      "Temperature out of range on chassis %1, location %2. The server will be shutdown."
-**Severity**:    Critical
-**Resolution**:  Check the system for hardware failures and verify the environment is properly cooled.
-### MessageId: iLOEvents.{version}.ThermalStatusOK
-The temperature status has been set to ok in the specified chassis and location. The server's temperature has returned to the normal operating range.
-**Format**:      "Temperature normal in chassis %1, location %2."
-**Severity**:    OK
-**Resolution**:  None.
-### MessageId: iLOEvents.{version}.UnauthorizedLoginAttempts
-iLO firmware has detected multiple unauthorized login attempts.
-**Format**:      "iLO firmware has detected more than %1 unauthorized login attempts."
-**Severity**:    OK
-**Resolution**:  Check the iLO log for more information on the login failure.
-### MessageId: iLOEvents.{version}.iLOReset
-iLO reset pending
-**Format**:      "iLO reset pending"
-**Severity**:    OK
-**Resolution**:  None.
+**Resolution**:  Reset iLO and reboot the server.

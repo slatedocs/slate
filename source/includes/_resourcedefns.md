@@ -607,189 +607,6 @@ This indicates the known state of the resource, such as if it is enabled.
 
 The chassis version.
 
-## Collection
-**Properties**
-
-> **Resource Instances of this Type**:  
-
-> * `https://{iLO}/redfish/v1/systems`
-
-> * `https://{iLO}/redfish/v1/systems/{item}/smartstorage/arraycontrollers`
-
-> * `https://{iLO}/redfish/v1/systems/{item}/logservices/iml/entries`
-
-> * `https://{iLO}/redfish/v1/registries`
-
-> * `https://{iLO}/redfish/v1/managers/{item}/virtualmedia`
-
-> * `https://{iLO}/redfish/v1/systems/{item}/smartstorage/hostbusadapters`
-
-> * `https://{iLO}/redfish/v1/managers/{item}/logservices`
-
-> * `https://{iLO}/redfish/v1/managers`
-
-> * `https://{iLO}/redfish/v1/managers/{item}/licenseservice`
-
-> * `https://{iLO}/redfish/v1/systems/{item}/smartstorage/arraycontrollers/{item}/diskdrives`
-
-> * `https://{iLO}/redfish/v1/managers/{item}/ethernetinterfaces`
-
-> * `https://{iLO}/redfish/v1/systems/{item}/smartstorage/arraycontrollers/{item}/logicaldrives`
-
-> * `https://{iLO}/redfish/v1/eventservice/eventsubscriptions`
-
-> * `https://{iLO}/redfish/v1/managers/{item}/logservices/iel/entries`
-
-> * `https://{iLO}/redfish/v1/managers/{item}/federationgroups`
-
-> * `https://{iLO}/redfish/v1/schemas`
-
-> * `https://{iLO}/redfish/v1/systems/{item}/smartstorage/arraycontrollers/{item}/storageenclosures`
-
-> * `https://{iLO}/redfish/v1/systems/{item}/pcidevices`
-
-> * `https://{iLO}/redfish/v1/accountservice/accounts`
-
-> * `https://{iLO}/redfish/v1/systems/{item}/pcislots`
-
-> * `https://{iLO}/redfish/v1/chassis`
-
-> * `https://{iLO}/redfish/v1/managers/{item}/federationpeers`
-
-> * `https://{iLO}/redfish/v1/systems/{item}/logservices`
-
-> * `https://{iLO}/redfish/v1/systems/{item}/memory`
-
-> * `https://{iLO}/redfish/v1/sessionservice/sessions`
-
-> * `https://{iLO}/redfish/v1/systems/{item}/networkadapters`
-
-### MemberType
-
-**JSONPath**: `/MemberType` (read only string)
-
-This property has the type of members in this collection.  All of the members of a collection have the same value for their Type property, thus they are all the same kind of resource.
-
-### Members@odata.count
-
-**JSONPath**: `/Members@odata.count` (read only integer)
-
-The total number of collection members.
-
-### Total
-
-**JSONPath**: `/Total` (read only integer)
-
-The total number of collection members.
-
-### links.FirstPage.0.count
-
-**JSONPath**: `/links/FirstPage/0/count` (read only integer)
-
-The number of resources represented on the referenced page.
-
-### links.FirstPage.0.page
-
-**JSONPath**: `/links/FirstPage/0/page` (read only integer)
-
-The number of the first page.
-
-### links.FirstPage.1.count
-
-**JSONPath**: `/links/FirstPage/1/count` (read only integer)
-
-The number of resources represented on the referenced page.
-
-### links.FirstPage.1.start
-
-**JSONPath**: `/links/FirstPage/1/start` (read only integer)
-
-The start item index of the first page.
-
-### links.LastPage.0.count
-
-**JSONPath**: `/links/LastPage/0/count` (read only integer)
-
-The number of resources represented on the referenced page.
-
-### links.LastPage.0.page
-
-**JSONPath**: `/links/LastPage/0/page` (read only integer)
-
-The number of the last page.
-
-### links.LastPage.1.count
-
-**JSONPath**: `/links/LastPage/1/count` (read only integer)
-
-The number of resources represented on the referenced page.
-
-### links.LastPage.1.start
-
-**JSONPath**: `/links/LastPage/1/start` (read only integer)
-
-The start item index of the last page.
-
-### links.Member[array-item].frag
-
-**JSONPath**: `/links/Member/(array index)/frag` (read only string)
-
-A JSON path fragment to a member of the items array.
-
-### links.Member[array-item].id
-
-**JSONPath**: `/links/Member/(array index)/id` (read only string)
-
-The identifier value of the linked resource.
-
-### links.NextPage.0.count
-
-**JSONPath**: `/links/NextPage/0/count` (read only integer)
-
-The number of resources represented on the referenced page.
-
-### links.NextPage.0.page
-
-**JSONPath**: `/links/NextPage/0/page` (read only integer)
-
-The number of the next page.
-
-### links.NextPage.1.count
-
-**JSONPath**: `/links/NextPage/1/count` (read only integer)
-
-The number of items on the next page.
-
-### links.NextPage.1.start
-
-**JSONPath**: `/links/NextPage/1/start` (read only integer)
-
-The start value can be used in a query on the URI to get the next page.
-
-### links.PrevPage.0.count
-
-**JSONPath**: `/links/PrevPage/0/count` (read only integer)
-
-The number of resources represented on the referenced page.
-
-### links.PrevPage.0.page
-
-**JSONPath**: `/links/PrevPage/0/page` (read only integer)
-
-The number of the previous page.
-
-### links.PrevPage.1.count
-
-**JSONPath**: `/links/PrevPage/1/count` (read only integer)
-
-The number of resources represented on the referenced page.
-
-### links.PrevPage.1.start
-
-**JSONPath**: `/links/PrevPage/1/start` (read only integer)
-
-The start item index of the previous page.
-
 ## ComputerSystem
 The schema definition of a computer system and its properties. A computer system represents a physical or virtual machine and the local resources, such as memory, CPU, and other devices that can be accessed from that machine.
 
@@ -2171,7 +1988,7 @@ The manufacturer's system version.
 
 The system virtual serial number.
 
-## EthernetNetworkInterface
+## EthernetInterface
 The schema definition of a simple Ethernet NIC resource.
 
 **Properties**
@@ -2179,6 +1996,14 @@ The schema definition of a simple Ethernet NIC resource.
 > **Resource Instances of this Type**:  
 
 > * `https://{iLO}/redfish/v1/managers/{item}/ethernetinterfaces/{item}`
+
+### AutoNeg
+
+**JSONPath**: `/AutoNeg` (PATCHable boolean)
+
+This indicates if the speed and duplex is automatically configured by the NIC.
+
+> example PATCH: {"AutoNeg": true}
 
 ### Autosense
 
@@ -2238,6 +2063,8 @@ How the address was determined.
 
 **Defined values**:
 
+* `null`:  the value is temporarily unavailable
+
 * `DHCP`
 
 * `Static`
@@ -2296,6 +2123,8 @@ How the address was determined.
 
 **Defined values**:
 
+* `null`:  the value is temporarily unavailable
+
 * `DHCP`
 
 * `Static`
@@ -2309,6 +2138,8 @@ How the address was determined.
 The current state of this address as defined in RFC 4862.
 
 **Defined values**:
+
+* `null`:  the value is temporarily unavailable
 
 * `Preferred`
 
@@ -2354,7 +2185,17 @@ The link technology, such as Ethernet, for this NIC.
 
 **Defined values**:
 
+* `null`:  the value is temporarily unavailable
+
 * `Ethernet`
+
+### MACAddress
+
+**JSONPath**: `/MACAddress` (PATCHable string)
+
+The effective current MAC address. If the assignable MAC address is not supported, this is a read-only alias of FactoryMacAddress.
+
+> example PATCH: {"MACAddress": "&lt;string-value&gt;"}
 
 ### MacAddress
 
@@ -2678,49 +2519,23 @@ The VLAN ID/tag. Only applies to Shared Network Port.
 
 > example PATCH: {"Oem": {"Hp": {"VLANId": &lt;integer-value&gt;}}}
 
+### PermanentMACAddress
+
+**JSONPath**: `/PermanentMACAddress` (read only string)
+
+This is the MAC address assigned to this NIC at the factory.
+
 ### SettingsResult.ETag
 
 **JSONPath**: `/SettingsResult/ETag` (read only string)
 
-ETag of this resource after the settings have been applied.
-
-### SettingsResult.Messages[array-item].Message
-
-**JSONPath**: `/SettingsResult/Messages/(array index)/Message` (read only string)
-
-Human-readable message.
-
-### SettingsResult.Messages[array-item].MessageID
-
-**JSONPath**: `/SettingsResult/Messages/(array index)/MessageID` (read only string)
-
-Key for this message, which is used to look up the message in a message registry. The key is in the format <registry>.<majorver>.<minorver>:<messagekey>.
-
-### SettingsResult.Messages[array-item].Resolution
-
-**JSONPath**: `/SettingsResult/Messages/(array index)/Resolution` (read only string)
-
-Instructions for resolving the issue that caused the error.
-
-### SettingsResult.Messages[array-item].Severity
-
-**JSONPath**: `/SettingsResult/Messages/(array index)/Severity` (read only enumeration)
-
-This is the severity of the errors.
-
-**Defined values**:
-
-* `OK`
-
-* `Warning`
-
-* `Critical`
+The ETag of the resource to which the settings were applied, after the application.
 
 ### SettingsResult.Operation
 
 **JSONPath**: `/SettingsResult/Operation` (read only enumeration)
 
-Details about the results of applying the settings.
+Last operation detail.
 
 **Defined values**:
 
@@ -2730,13 +2545,13 @@ Details about the results of applying the settings.
 
 **JSONPath**: `/SettingsResult/Time` (read only string)
 
-Time at which the settings were applied.
+Indicates the time the settings were applied.
 
 ### SpeedMbps
 
 **JSONPath**: `/SpeedMbps` (PATCHable integer)
 
-The link speed of the Ethernet interface. If Autosense is enabled, this property cannot be modified. This property can only be modified on a dedicated network port. It cannot be modified for blade servers.
+The link speed of the Ethernet interface in megabits per second. If Autosense is enabled, this property cannot be modified. This property can only be modified on a dedicated network port. It cannot be modified for blade servers.
 
 > example PATCH: {"SpeedMbps": &lt;integer-value&gt;}
 
@@ -2744,9 +2559,11 @@ The link speed of the Ethernet interface. If Autosense is enabled, this property
 
 **JSONPath**: `/Status/Health` (read only enumeration)
 
-Indicates the health state of this resource without considering its dependent resources.
+This represents the health state of this resource in the absence of its dependent resources.
 
 **Defined values**:
+
+* `null`:  the value is temporarily unavailable
 
 * `OK`
 
@@ -2758,9 +2575,27 @@ Indicates the health state of this resource without considering its dependent re
 
 **JSONPath**: `/Status/HealthRollUp` (read only enumeration)
 
-Indicates the overall health state of this resource and its dependent resources.
+This represents the overall health state from the view of this resource.
 
 **Defined values**:
+
+* `null`:  the value is temporarily unavailable
+
+* `OK`
+
+* `Warning`
+
+* `Critical`
+
+### Status.HealthRollup
+
+**JSONPath**: `/Status/HealthRollup` (read only enumeration)
+
+This represents the overall health state from the view of this resource.
+
+**Defined values**:
+
+* `null`:  the value is temporarily unavailable
 
 * `OK`
 
@@ -2772,9 +2607,11 @@ Indicates the overall health state of this resource and its dependent resources.
 
 **JSONPath**: `/Status/State` (read only enumeration)
 
-Indicates the known state of this resource (for example, if the resource is enabled). Enabled indicates that the resource is available. Disabled indicates that the resource has been made unavailable intentionally, but it can be enabled. Offline indicates that the resource is unavailable intentionally and requires action to be made available. InTest indicates that the component is undergoing testing. Starting indicates that the resource is on its way to becoming available. Absent indicates that the resource is physically unavailable.
+This indicates the known state of the resource, such as if it is enabled.
 
 **Defined values**:
+
+* `null`:  the value is temporarily unavailable
 
 * `Enabled`
 
@@ -2954,101 +2791,6 @@ This property indicates what the service will do to an event subscription after 
 **JSONPath**: `/SubscriptionRemovalTimeIntervalInMinutes` (read only integer)
 
 This is the minimum amount of time after the failed events that the service will wait before doing the SubscriptionRemovalAction.
-
-## ExtendedInfo
-This is the schema definition for the Extended Error.  Extended errors can be returned in the body of operation responses.  They augment the HTTP error codes with more meaningful information about why the error occurred.
-
-**Properties**
-
-> **Resource Instances of this Type**:  
-
-### Messages[array-item].Message
-
-**JSONPath**: `/Messages/(array index)/Message` (read only string)
-
-The human readable message, if provided.
-
-### Messages[array-item].MessageID
-
-**JSONPath**: `/Messages/(array index)/MessageID` (read only string)
-
-The key for this message that can be used to look up the message in a message registry.
-
-### Messages[array-item].MessageId
-
-**JSONPath**: `/Messages/(array index)/MessageId` (read only string)
-
-The key for this message that can be used to look up the message in a message registry.
-
-### Messages[array-item].Resolution
-
-**JSONPath**: `/Messages/(array index)/Resolution` (read only string)
-
-Provides suggestions for how to resolve the situation that caused the error.
-
-### Messages[array-item].Severity
-
-**JSONPath**: `/Messages/(array index)/Severity` (read only enumeration)
-
-The severity of the errors.
-
-**Defined values**:
-
-* `OK`
-
-* `Warning`
-
-* `Critical`
-
-### error.@Message.ExtendedInfo[array-item].Message
-
-**JSONPath**: `/error/@Message.ExtendedInfo/(array index)/Message` (read only string)
-
-The human readable message, if provided.
-
-### error.@Message.ExtendedInfo[array-item].MessageID
-
-**JSONPath**: `/error/@Message.ExtendedInfo/(array index)/MessageID` (read only string)
-
-The key for this message that can be used to look up the message in a message registry.
-
-### error.@Message.ExtendedInfo[array-item].MessageId
-
-**JSONPath**: `/error/@Message.ExtendedInfo/(array index)/MessageId` (read only string)
-
-The key for this message that can be used to look up the message in a message registry.
-
-### error.@Message.ExtendedInfo[array-item].Resolution
-
-**JSONPath**: `/error/@Message.ExtendedInfo/(array index)/Resolution` (read only string)
-
-Provides suggestions for how to resolve the situation that caused the error.
-
-### error.@Message.ExtendedInfo[array-item].Severity
-
-**JSONPath**: `/error/@Message.ExtendedInfo/(array index)/Severity` (read only enumeration)
-
-The severity of the errors.
-
-**Defined values**:
-
-* `OK`
-
-* `Warning`
-
-* `Critical`
-
-### error.code
-
-**JSONPath**: `/error/code` (read only string)
-
-This is the key for this message which can be used to look up the message in a message registry.
-
-### error.message
-
-**JSONPath**: `/error/message` (read only string)
-
-This is the human readable message, if provided.
 
 ## FwSwVersionInventory
 **Properties**
@@ -3249,29 +2991,6 @@ Unachievable cap for the power meter.
 **JSONPath**: `/Samples` (read only integer)
 
 Number of samples in the array.
-
-## HpBaseConfigs
-**Properties**
-
-> **Resource Instances of this Type**:  
-
-> * `https://{iLO}/redfish/v1/systems/{item}/bios/boot/baseconfigs`
-
-> * `https://{iLO}/redfish/v1/systems/{item}/bios/baseconfigs`
-
-> * `https://{iLO}/redfish/v1/systems/{item}/bios/iscsi/baseconfigs`
-
-### Capabilities.BaseConfig
-
-**JSONPath**: `/Capabilities/BaseConfig` (read only boolean)
-
-True if the provider supports PUT/PATCH of the named BaseConfig.
-
-### Capabilities.BaseConfigs
-
-**JSONPath**: `/Capabilities/BaseConfigs` (read only boolean)
-
-True if the provider supports PUT/PATCH of the named BaseConfigs.
 
 ## HpBaseConfigs
 **Properties**
@@ -4401,70 +4120,6 @@ Use this option to configure how the System ROM reports the size of a NUMA node 
 
 * `Flat`:  Flat
 
-### NvDimmNBackupPowerPolicy
-
-**JSONPath**: `/NvDimmNBackupPowerPolicy` (PATCHable enumeration)
-
-This option controls whether the system will wait during system boot for batteries to charge if sufficient battery backup power for the installed NVDIMMs of type NVDIMM-N is not available. If this option is configured for 'Continue Boot without Backup Power', the server will boot even if sufficient battery backup power is not installed. In this case, if sufficient battery backup power is not enabled, the installed NVDIMMs of type NVDIMM-N will NOT be used by the operating system as persistent storage or as system memory.
-
-**Defined values**:
-
-* `WaitForBackupPower`:  Wait for Backup Power on Boot
-
-* `BootWithoutBackupPower`:  Continue Boot without Backup Power
-
-### NvDimmNMemFunctionality
-
-**JSONPath**: `/NvDimmNMemFunctionality` (PATCHable enumeration)
-
-This option controls whether NVDIMM-N functionality (including backing up the contents of the memory to flash on power down/reset) is enabled. If this option is configured for Disabled, then the NVDIMMs of type NVDIMM-N in the system will NOT be used by the operating system as persistent storage and will NOT be used by the operating system as system memory.
-
-**Defined values**:
-
-* `Enabled`:  Enabled
-
-* `Disabled`:  Disabled
-
-### NvDimmNMemInterleaving
-
-**JSONPath**: `/NvDimmNMemInterleaving` (PATCHable enumeration)
-
-This option controls whether the NVDIMMs of type NVDIMM-N installed on a particular processor will be interleaved with each other in the memory map. This option does NOT impact the interleaving of standard DIMMs, and interleaving is never enabled across NVDIMMs of type NVDIMM-N and standard DIMMs. NVDIMMs of type NVDIMM-N installed on different processors are never interleaved together. If this setting is changed, then all installed NVDIMMs of type NVDIMM-N must be sanitized.
-
-**Defined values**:
-
-* `Enabled`:  Enabled
-
-* `Disabled`:  Disabled
-
-### NvDimmNSanitizePolicy
-
-**JSONPath**: `/NvDimmNSanitizePolicy` (PATCHable enumeration)
-
-This option is used to Sanitize/Erase all user data and error status data saved in the selected NVDIMMs of type NVDIMM-N. Selected NVDIMMs of type NVDIMM-N will be sanitized/erased on the next reboot of the system. This process is required BEFORE the NVDIMM-N Memory Interleaving option can be modified. An NVDIMM-N must be sanitized/erased when it is initially installed in the system or installed in a different DIMM slot on the system. In addition, an NVDIMM-N can be recovered to normal operation if it has received an Uncorrectable Memory Error, a Backup Error, a Restore Error, or an Arming Error (if the NVDIMM hardware is functional). Note that the largest group of NVDIMMs of type NVDIMM-N selected will be sanitized/erased. For instance, if 'Sanitize/Erase all NVDIMM-N on Processor 1' is Enabled and 'Sanitize/Erase Processor 1 DIMM 8' is Disabled, all NVDIMMs of type NVDIMM-N on Processor 1 will be sanitized/erased including Processor 1 DIMM 8. There are 3 policies which control the action of the system after NVDIMMs of type NVDIMM-N are sanitized/erased. The options are to power off the system after sanitizing/erasing NVDIMMs, to allow the system to boot to the operating system after sanitizing/erasing NVDIMMs, or to boot to the System Utilities after sanitizing/erasing NVDIMMs.
-
-**Defined values**:
-
-* `Disabled`:  Disabled
-
-* `SanitizeAndRebootSystem`:  Sanitize/Erase and Boot to Operating System
-
-* `SanitizeAndShutdownSystem`:  Sanitize/Erase and Power System Off
-
-* `SanitizeAndBootToFirmwareUI`:  Sanitize/Erase and Boot to System Utilities
-
-### NvDimmScanMem
-
-**JSONPath**: `/NvDimmScanMem` (PATCHable enumeration)
-
-After NVDIMM memory is restored from flash, scan all NVDIMM memory to find any uncorrectable errors. If found, reboot and map out the NVDIMM to avoid exposing the operating system to uncorrectable errors that will crash the system. If disabled, the operating system is exposed to any uncorrectable errors. It will take several seconds per NVDIMM. 
-
-**Defined values**:
-
-* `Enabled`:  Enabled
-
-* `Disabled`:  Disabled
-
 ### OldAdminPassword
 
 **JSONPath**: `/OldAdminPassword` (PATCHable password)
@@ -4851,7 +4506,7 @@ Use this option to configure how the system handles redundant power supply confi
 
 **JSONPath**: `/RemovableFlashBootSeq` (PATCHable enumeration)
 
-Use this option to select which USB or SD Card devices you want to search for first when enumerating boot devices. You can select whether the system boots to external USB drive keys, internal USB drive keys, or the internal SD card slot. This option does not override the device boot order in the Standard Boot Order (IPL) option. You can only configure this option when Boot Mode is set to Legacy BIOS.
+Use this option to select which USB or SD Card devices you want to search for first when enumerating boot devices. You can select whether the systemboots to external USB drive keys, internal USB drive keys, or the internal SD card slot. This option does not override the device boot order in the Standard Boot Order (IPL) option. You can only configure this option when Boot Mode is set to Legacy BIOS.
 
 **Defined values**:
 
@@ -4896,330 +4551,6 @@ Use this option to revert the server to a previous BIOS ROM image. The backup im
 * `CurrentRom`:  Use Current ROM
 
 * `BackupRom`:  Switch to Backup ROM
-
-### SanitizeAllNvDimmN
-
-**JSONPath**: `/SanitizeAllNvDimmN` (PATCHable enumeration)
-
-When Enabled, all user data in ALL NVDIMMs of type NVDIMM-N in the system will be erased on the next reboot.
-
-**Defined values**:
-
-* `Enabled`:  Enabled
-
-* `Disabled`:  Disabled
-
-### SanitizeProc1Dimm1
-
-**JSONPath**: `/SanitizeProc1Dimm1` (PATCHable enumeration)
-
-When Enabled, all user data in the selected NVDIMM-N will be erased on the next reboot.
-
-**Defined values**:
-
-* `Enabled`:  Enabled
-
-* `Disabled`:  Disabled
-
-### SanitizeProc1Dimm10
-
-**JSONPath**: `/SanitizeProc1Dimm10` (PATCHable enumeration)
-
-When Enabled, all user data in the selected NVDIMM-N will be erased on the next reboot.
-
-**Defined values**:
-
-* `Enabled`:  Enabled
-
-* `Disabled`:  Disabled
-
-### SanitizeProc1Dimm11
-
-**JSONPath**: `/SanitizeProc1Dimm11` (PATCHable enumeration)
-
-When Enabled, all user data in the selected NVDIMM-N will be erased on the next reboot.
-
-**Defined values**:
-
-* `Enabled`:  Enabled
-
-* `Disabled`:  Disabled
-
-### SanitizeProc1Dimm12
-
-**JSONPath**: `/SanitizeProc1Dimm12` (PATCHable enumeration)
-
-When Enabled, all user data in the selected NVDIMM-N will be erased on the next reboot.
-
-**Defined values**:
-
-* `Enabled`:  Enabled
-
-* `Disabled`:  Disabled
-
-### SanitizeProc1Dimm2
-
-**JSONPath**: `/SanitizeProc1Dimm2` (PATCHable enumeration)
-
-When Enabled, all user data in the selected NVDIMM-N will be erased on the next reboot.
-
-**Defined values**:
-
-* `Enabled`:  Enabled
-
-* `Disabled`:  Disabled
-
-### SanitizeProc1Dimm3
-
-**JSONPath**: `/SanitizeProc1Dimm3` (PATCHable enumeration)
-
-When Enabled, all user data in the selected NVDIMM-N will be erased on the next reboot.
-
-**Defined values**:
-
-* `Enabled`:  Enabled
-
-* `Disabled`:  Disabled
-
-### SanitizeProc1Dimm4
-
-**JSONPath**: `/SanitizeProc1Dimm4` (PATCHable enumeration)
-
-When Enabled, all user data in the selected NVDIMM-N will be erased on the next reboot.
-
-**Defined values**:
-
-* `Enabled`:  Enabled
-
-* `Disabled`:  Disabled
-
-### SanitizeProc1Dimm5
-
-**JSONPath**: `/SanitizeProc1Dimm5` (PATCHable enumeration)
-
-When Enabled, all user data in the selected NVDIMM-N will be erased on the next reboot.
-
-**Defined values**:
-
-* `Enabled`:  Enabled
-
-* `Disabled`:  Disabled
-
-### SanitizeProc1Dimm6
-
-**JSONPath**: `/SanitizeProc1Dimm6` (PATCHable enumeration)
-
-When Enabled, all user data in the selected NVDIMM-N will be erased on the next reboot.
-
-**Defined values**:
-
-* `Enabled`:  Enabled
-
-* `Disabled`:  Disabled
-
-### SanitizeProc1Dimm7
-
-**JSONPath**: `/SanitizeProc1Dimm7` (PATCHable enumeration)
-
-When Enabled, all user data in the selected NVDIMM-N will be erased on the next reboot.
-
-**Defined values**:
-
-* `Enabled`:  Enabled
-
-* `Disabled`:  Disabled
-
-### SanitizeProc1Dimm8
-
-**JSONPath**: `/SanitizeProc1Dimm8` (PATCHable enumeration)
-
-When Enabled, all user data in the selected NVDIMM-N will be erased on the next reboot.
-
-**Defined values**:
-
-* `Enabled`:  Enabled
-
-* `Disabled`:  Disabled
-
-### SanitizeProc1Dimm9
-
-**JSONPath**: `/SanitizeProc1Dimm9` (PATCHable enumeration)
-
-When Enabled, all user data in the selected NVDIMM-N will be erased on the next reboot.
-
-**Defined values**:
-
-* `Enabled`:  Enabled
-
-* `Disabled`:  Disabled
-
-### SanitizeProc1NvDimmN
-
-**JSONPath**: `/SanitizeProc1NvDimmN` (PATCHable enumeration)
-
-When Enabled, all user data in ALL NVDIMMs of type NVDIMM-N installed on the selected processor will be erased on the next reboot.
-
-**Defined values**:
-
-* `Enabled`:  Enabled
-
-* `Disabled`:  Disabled
-
-### SanitizeProc2Dimm1
-
-**JSONPath**: `/SanitizeProc2Dimm1` (PATCHable enumeration)
-
-When Enabled, all user data in the selected NVDIMM-N will be erased on the next reboot.
-
-**Defined values**:
-
-* `Enabled`:  Enabled
-
-* `Disabled`:  Disabled
-
-### SanitizeProc2Dimm10
-
-**JSONPath**: `/SanitizeProc2Dimm10` (PATCHable enumeration)
-
-When Enabled, all user data in the selected NVDIMM-N will be erased on the next reboot.
-
-**Defined values**:
-
-* `Enabled`:  Enabled
-
-* `Disabled`:  Disabled
-
-### SanitizeProc2Dimm11
-
-**JSONPath**: `/SanitizeProc2Dimm11` (PATCHable enumeration)
-
-When Enabled, all user data in the selected NVDIMM-N will be erased on the next reboot.
-
-**Defined values**:
-
-* `Enabled`:  Enabled
-
-* `Disabled`:  Disabled
-
-### SanitizeProc2Dimm12
-
-**JSONPath**: `/SanitizeProc2Dimm12` (PATCHable enumeration)
-
-When Enabled, all user data in the selected NVDIMM-N will be erased on the next reboot.
-
-**Defined values**:
-
-* `Enabled`:  Enabled
-
-* `Disabled`:  Disabled
-
-### SanitizeProc2Dimm2
-
-**JSONPath**: `/SanitizeProc2Dimm2` (PATCHable enumeration)
-
-When Enabled, all user data in the selected NVDIMM-N will be erased on the next reboot.
-
-**Defined values**:
-
-* `Enabled`:  Enabled
-
-* `Disabled`:  Disabled
-
-### SanitizeProc2Dimm3
-
-**JSONPath**: `/SanitizeProc2Dimm3` (PATCHable enumeration)
-
-When Enabled, all user data in the selected NVDIMM-N will be erased on the next reboot.
-
-**Defined values**:
-
-* `Enabled`:  Enabled
-
-* `Disabled`:  Disabled
-
-### SanitizeProc2Dimm4
-
-**JSONPath**: `/SanitizeProc2Dimm4` (PATCHable enumeration)
-
-When Enabled, all user data in the selected NVDIMM-N will be erased on the next reboot.
-
-**Defined values**:
-
-* `Enabled`:  Enabled
-
-* `Disabled`:  Disabled
-
-### SanitizeProc2Dimm5
-
-**JSONPath**: `/SanitizeProc2Dimm5` (PATCHable enumeration)
-
-When Enabled, all user data in the selected NVDIMM-N will be erased on the next reboot.
-
-**Defined values**:
-
-* `Enabled`:  Enabled
-
-* `Disabled`:  Disabled
-
-### SanitizeProc2Dimm6
-
-**JSONPath**: `/SanitizeProc2Dimm6` (PATCHable enumeration)
-
-When Enabled, all user data in the selected NVDIMM-N will be erased on the next reboot.
-
-**Defined values**:
-
-* `Enabled`:  Enabled
-
-* `Disabled`:  Disabled
-
-### SanitizeProc2Dimm7
-
-**JSONPath**: `/SanitizeProc2Dimm7` (PATCHable enumeration)
-
-When Enabled, all user data in the selected NVDIMM-N will be erased on the next reboot.
-
-**Defined values**:
-
-* `Enabled`:  Enabled
-
-* `Disabled`:  Disabled
-
-### SanitizeProc2Dimm8
-
-**JSONPath**: `/SanitizeProc2Dimm8` (PATCHable enumeration)
-
-When Enabled, all user data in the selected NVDIMM-N will be erased on the next reboot.
-
-**Defined values**:
-
-* `Enabled`:  Enabled
-
-* `Disabled`:  Disabled
-
-### SanitizeProc2Dimm9
-
-**JSONPath**: `/SanitizeProc2Dimm9` (PATCHable enumeration)
-
-When Enabled, all user data in the selected NVDIMM-N will be erased on the next reboot.
-
-**Defined values**:
-
-* `Enabled`:  Enabled
-
-* `Disabled`:  Disabled
-
-### SanitizeProc2NvDimmN
-
-**JSONPath**: `/SanitizeProc2NvDimmN` (PATCHable enumeration)
-
-When Enabled, all user data in ALL NVDIMMs of type NVDIMM-N installed on the selected processor will be erased on the next reboot.
-
-**Defined values**:
-
-* `Enabled`:  Enabled
-
-* `Disabled`:  Disabled
 
 ### SataSecureErase
 
@@ -6337,7 +5668,7 @@ When modifying these settings, changes to the UEFI Boot Order are not reflected 
 
 **JSONPath**: `/UefiShellBootOrder` (PATCHable enumeration)
 
-When enabled, this option adds the Embedded UEFI Shell as an entry in the UEFI Boot Order list. This option is only available when the Boot Mode is configured as UEFI and the Embedded UEFI Shell is enabled.
+When enabled, this option adds the Embedded UEFI Shell as an entry in the UEFI Boot Order list. This option is only available when the Boot Mode is configured as UEFI, and the Embedded UEFI Shell is enabled.
 
 **Defined values**:
 
@@ -10989,7 +10320,7 @@ The name used to log in to the management processor. The user name does not have
 
 > example PATCH: {"UserName": "&lt;string-value&gt;"}
 
-## ManagerNetworkService
+## ManagerNetworkProtocol
 This resource is used to obtain or modify the network services managed by this manager.
 
 **Properties**
@@ -11018,6 +10349,12 @@ The HTTP port number.  NOTE: When this field is modified, the Manager will reset
 
 > example PATCH: {"HTTP": {"Port": &lt;integer-value&gt;}}
 
+### HTTP.ProtocolEnabled
+
+**JSONPath**: `/HTTP/ProtocolEnabled` (read only boolean)
+
+Indicates whether HTTP is enabled or disabled.
+
 ### HTTPS.Enabled
 
 **JSONPath**: `/HTTPS/Enabled` (read only boolean)
@@ -11031,6 +10368,12 @@ Indicates whether HTTPS/SSL is enabled or disabled.
 The HTTPS/SSL port number.  NOTE: When this field is modified, the Manager will reset automatically.
 
 > example PATCH: {"HTTPS": {"Port": &lt;integer-value&gt;}}
+
+### HTTPS.ProtocolEnabled
+
+**JSONPath**: `/HTTPS/ProtocolEnabled` (read only boolean)
+
+Indicates whether HTTPS/SSL is enabled or disabled.
 
 ### HostName
 
@@ -11054,6 +10397,14 @@ Indicates whether IPMI over LAN is enabled for the manager.
 
 The IPMI over LAN port number.
 
+### IPMI.ProtocolEnabled
+
+**JSONPath**: `/IPMI/ProtocolEnabled` (PATCHable boolean)
+
+Indicates whether IPMI over LAN is enabled for the manager.
+
+> example PATCH: {"IPMI": {"ProtocolEnabled": true}}
+
 ### KVMIP.Enabled
 
 **JSONPath**: `/KVMIP/Enabled` (read only boolean)
@@ -11067,6 +10418,12 @@ Indicates whether KVM-IP is enabled for the manager.
 The KVM-IP port number.
 
 > example PATCH: {"KVMIP": {"Port": &lt;integer-value&gt;}}
+
+### KVMIP.ProtocolEnabled
+
+**JSONPath**: `/KVMIP/ProtocolEnabled` (read only boolean)
+
+Indicates whether KVM-IP is enabled for the manager.
 
 ### AlertMailEmail
 
@@ -11214,6 +10571,14 @@ The SNMP port number.
 
 > example PATCH: {"SNMP": {"Port": &lt;integer-value&gt;}}
 
+### SNMP.ProtocolEnabled
+
+**JSONPath**: `/SNMP/ProtocolEnabled` (PATCHable boolean)
+
+Indicates whether SNMP is enabled for the manager.
+
+> example PATCH: {"SNMP": {"ProtocolEnabled": true}}
+
 ### SSDP.Enabled
 
 **JSONPath**: `/SSDP/Enabled` (PATCHable boolean)
@@ -11231,6 +10596,8 @@ The scope for IPv6 Notify messages for SSDP.
 > example PATCH: {"SSDP": {"NotifyIPv6Scope": "Site"}}
 
 **Defined values**:
+
+* `null`:  the value is temporarily unavailable
 
 * `Link`
 
@@ -11260,6 +10627,14 @@ The Time to Live (TTL) hop count for SSDP Notify messages.
 
 The SSDP port number.
 
+### SSDP.ProtocolEnabled
+
+**JSONPath**: `/SSDP/ProtocolEnabled` (PATCHable boolean)
+
+Indicates whether SSDP is enabled for the manager.
+
+> example PATCH: {"SSDP": {"ProtocolEnabled": true}}
+
 ### SSH.Enabled
 
 **JSONPath**: `/SSH/Enabled` (PATCHable boolean)
@@ -11276,6 +10651,14 @@ The SSH port number.  NOTE: When this field is modified, the Manager will reset 
 
 > example PATCH: {"SSH": {"Port": &lt;integer-value&gt;}}
 
+### SSH.ProtocolEnabled
+
+**JSONPath**: `/SSH/ProtocolEnabled` (PATCHable boolean)
+
+Indicates whether SSH is enabled for the manager.  NOTE: When this field is modified, the Manager will reset automatically.
+
+> example PATCH: {"SSH": {"ProtocolEnabled": true}}
+
 ### SessionTimeoutMinutes
 
 **JSONPath**: `/SessionTimeoutMinutes` (PATCHable integer)
@@ -11288,9 +10671,11 @@ The session timeout (minutes). A zero value indicates infinite timeout.
 
 **JSONPath**: `/Status/Health` (read only enumeration)
 
-Indicates the health state of this resource without considering its dependent resources.
+This represents the health state of this resource in the absence of its dependent resources.
 
 **Defined values**:
+
+* `null`:  the value is temporarily unavailable
 
 * `OK`
 
@@ -11302,9 +10687,27 @@ Indicates the health state of this resource without considering its dependent re
 
 **JSONPath**: `/Status/HealthRollUp` (read only enumeration)
 
-Indicates the overall health state of this resource and its dependent resources.
+This represents the overall health state from the view of this resource.
 
 **Defined values**:
+
+* `null`:  the value is temporarily unavailable
+
+* `OK`
+
+* `Warning`
+
+* `Critical`
+
+### Status.HealthRollup
+
+**JSONPath**: `/Status/HealthRollup` (read only enumeration)
+
+This represents the overall health state from the view of this resource.
+
+**Defined values**:
+
+* `null`:  the value is temporarily unavailable
 
 * `OK`
 
@@ -11316,9 +10719,11 @@ Indicates the overall health state of this resource and its dependent resources.
 
 **JSONPath**: `/Status/State` (read only enumeration)
 
-Indicates the known state of this resource (for example, if the resource is enabled). Enabled indicates that the resource is available. Disabled indicates that the resource has been made unavailable intentionally, but it can be enabled. Offline indicates that the resource is unavailable intentionally and requires action to be made available. InTest indicates that the component is undergoing testing. Starting indicates that the resource is on its way to becoming available. Absent indicates that the resource is physically unavailable.
+This indicates the known state of the resource, such as if it is enabled.
 
 **Defined values**:
+
+* `null`:  the value is temporarily unavailable
 
 * `Enabled`
 
@@ -11346,7 +10751,15 @@ The Virtual Media port number.
 
 > example PATCH: {"VirtualMedia": {"Port": &lt;integer-value&gt;}}
 
-## PowerMetrics
+### VirtualMedia.ProtocolEnabled
+
+**JSONPath**: `/VirtualMedia/ProtocolEnabled` (read only boolean)
+
+Indicates whether Virtual Media is enabled for the manager.
+
+## Power
+This is the schema definition for the Power Metrics.  It represents the properties for Power Consumption and Power Limiting.
+
 **Properties**
 
 > **Resource Instances of this Type**:  
@@ -11409,6 +10822,168 @@ The total power (Watts) available to the chassis from all power supplies (adjust
 
 The latest observed power (Watts) being drawn by this chassis. The update interval may vary depending upon implementation but is usually measured in seconds.
 
+### PowerControl[array-item].MemberId
+
+**JSONPath**: `/PowerControl/(array index)/MemberId` (PATCHable string)
+
+This is the identifier for the member within the collection.
+
+### PowerControl[array-item].PowerAllocatedWatts
+
+**JSONPath**: `/PowerControl/(array index)/PowerAllocatedWatts` (read only integer)
+
+The total amount of power that has been allocated (or budegeted)to  chassis resources.
+
+### PowerControl[array-item].PowerAvailableWatts
+
+**JSONPath**: `/PowerControl/(array index)/PowerAvailableWatts` (read only integer)
+
+The amount of power not already budgeted and therefore available for additional allocation. (powerCapacity - powerAllocated).  This indicates how much reserve power capacity is left.
+
+### PowerControl[array-item].PowerCapacityWatts
+
+**JSONPath**: `/PowerControl/(array index)/PowerCapacityWatts` (read only integer)
+
+The total amount of power available to the chassis for allocation. This may the power supply capacity, or power budget assigned to the chassis from an up-stream chassis.
+
+### PowerControl[array-item].PowerConsumedWatts
+
+**JSONPath**: `/PowerControl/(array index)/PowerConsumedWatts` (read only integer)
+
+The actual power being consumed by the chassis.
+
+### PowerControl[array-item].PowerLimit.CorrectionInMs
+
+**JSONPath**: `/PowerControl/(array index)/PowerLimit/CorrectionInMs` (read only integer)
+
+The time required for the limiting process to reduce power consumption to below the limit.
+
+### PowerControl[array-item].PowerLimit.LimitException
+
+**JSONPath**: `/PowerControl/(array index)/PowerLimit/LimitException` (PATCHable enumeration)
+
+The action that is taken if the power cannot be maintained below the LimitInWatts.
+
+> example PATCH: {"PowerControl": [{"PowerLimit": {"LimitException": "LogEventOnly"}}|null, ...]}
+
+**Defined values**:
+
+* `NoAction`
+
+* `HardPowerOff`
+
+* `LogEventOnly`
+
+* `Oem`
+
+### PowerControl[array-item].PowerLimit.LimitInWatts
+
+**JSONPath**: `/PowerControl/(array index)/PowerLimit/LimitInWatts` (PATCHable integer)
+
+The Power limit in watts. Set to null to disable power capping.
+
+> example PATCH: {"PowerControl": [{"PowerLimit": {"LimitInWatts": &lt;integer-value&gt;}}|null, ...]}
+
+### PowerControl[array-item].PowerMetrics.AverageConsumedWatts
+
+**JSONPath**: `/PowerControl/(array index)/PowerMetrics/AverageConsumedWatts` (read only integer)
+
+The average power level over the measurement window (the last IntervalInMin minutes).
+
+### PowerControl[array-item].PowerMetrics.IntervalInMin
+
+**JSONPath**: `/PowerControl/(array index)/PowerMetrics/IntervalInMin` (read only integer)
+
+The time interval (or window) in which the PowerMetrics are measured over.
+
+### PowerControl[array-item].PowerMetrics.MaxConsumedWatts
+
+**JSONPath**: `/PowerControl/(array index)/PowerMetrics/MaxConsumedWatts` (read only integer)
+
+The highest power consumption level that has occured over the measurement window (the last IntervalInMin minutes).
+
+### PowerControl[array-item].PowerMetrics.MinConsumedWatts
+
+**JSONPath**: `/PowerControl/(array index)/PowerMetrics/MinConsumedWatts` (read only integer)
+
+The lowest power consumption level over the measurement window (the last IntervalInMin minutes).
+
+### PowerControl[array-item].PowerRequestedWatts
+
+**JSONPath**: `/PowerControl/(array index)/PowerRequestedWatts` (read only integer)
+
+The potential power that the chassis resources are requesting which may be higher than the current level being consumed since requested power includes budget that the chassis resource wants for future use.
+
+### PowerControl[array-item].Status.Health
+
+**JSONPath**: `/PowerControl/(array index)/Status/Health` (read only enumeration)
+
+This represents the health state of this resource in the absence of its dependent resources.
+
+**Defined values**:
+
+* `null`:  the value is temporarily unavailable
+
+* `OK`
+
+* `Warning`
+
+* `Critical`
+
+### PowerControl[array-item].Status.HealthRollUp
+
+**JSONPath**: `/PowerControl/(array index)/Status/HealthRollUp` (read only enumeration)
+
+This represents the overall health state from the view of this resource.
+
+**Defined values**:
+
+* `null`:  the value is temporarily unavailable
+
+* `OK`
+
+* `Warning`
+
+* `Critical`
+
+### PowerControl[array-item].Status.HealthRollup
+
+**JSONPath**: `/PowerControl/(array index)/Status/HealthRollup` (read only enumeration)
+
+This represents the overall health state from the view of this resource.
+
+**Defined values**:
+
+* `null`:  the value is temporarily unavailable
+
+* `OK`
+
+* `Warning`
+
+* `Critical`
+
+### PowerControl[array-item].Status.State
+
+**JSONPath**: `/PowerControl/(array index)/Status/State` (read only enumeration)
+
+This indicates the known state of the resource, such as if it is enabled.
+
+**Defined values**:
+
+* `null`:  the value is temporarily unavailable
+
+* `Enabled`
+
+* `Disabled`
+
+* `Offline`
+
+* `InTest`
+
+* `Starting`
+
+* `Absent`
+
 ### PowerLimit.CorrectionInMs
 
 **JSONPath**: `/PowerLimit/CorrectionInMs` (read only integer)
@@ -11427,9 +11002,11 @@ The value of this property shall represent a reference to the resource that is b
 
 Action that is taken if the power cannot be maintained below the LimitInWatts.
 
-> example PATCH: {"PowerLimit": {"LimitException": "LogEventOnly"}}
+> example PATCH: {"PowerLimit": {"LimitException": "HardPowerOff"}}
 
 **Defined values**:
+
+* `null`:  the value is temporarily unavailable
 
 * `NoAction`
 
@@ -11487,27 +11064,29 @@ CorrelatableID for this power supply.
 
 **JSONPath**: `/PowerSupplies/(array index)/FirmwareVersion` (read only string)
 
-The power supply firmware version.
+The firmware version for this Power Supply
 
 ### PowerSupplies[array-item].LastPowerOutputWatts
 
 **JSONPath**: `/PowerSupplies/(array index)/LastPowerOutputWatts` (read only integer)
 
-The average power (Watts) consumed.
+The average power output of this Power Supply
 
 ### PowerSupplies[array-item].LineInputVoltage
 
 **JSONPath**: `/PowerSupplies/(array index)/LineInputVoltage` (read only integer)
 
-Line input voltage at which the power supply is operating at this moment (in Volts).
+The line input voltage at which the Power Supply is operating
 
 ### PowerSupplies[array-item].LineInputVoltageType
 
 **JSONPath**: `/PowerSupplies/(array index)/LineInputVoltageType` (read only enumeration)
 
-Line voltage type: ACLowLine, ACMidLine, ACHighLine, DCNeg48V, DC420V, or Unknown.
+The line voltage type supported as an input to this Power Supply
 
 **Defined values**:
+
+* `null`:  the value is temporarily unavailable
 
 * `Unknown`
 
@@ -11521,11 +11100,17 @@ Line voltage type: ACLowLine, ACMidLine, ACHighLine, DCNeg48V, DC420V, or Unknow
 
 * `HighVoltageDC`
 
+### PowerSupplies[array-item].MemberId
+
+**JSONPath**: `/PowerSupplies/(array index)/MemberId` (PATCHable string)
+
+This is the identifier for the member within the collection.
+
 ### PowerSupplies[array-item].Model
 
 **JSONPath**: `/PowerSupplies/(array index)/Model` (read only string)
 
-The power supply model name.
+The model number for this Power Supply
 
 ### PowerSupplies[array-item].Oem.Hp.AveragePowerOutputWatts
 
@@ -11679,21 +11264,23 @@ If true, this power supply is capable of being connected to an iPDUs.
 
 **JSONPath**: `/PowerSupplies/(array index)/PartNumber` (read only string)
 
-The power supply part number.
+The part number for this Power Supply
 
 ### PowerSupplies[array-item].PowerCapacityWatts
 
 **JSONPath**: `/PowerSupplies/(array index)/PowerCapacityWatts` (read only integer)
 
-The power capacity of the power supply, in Watts.
+The maximum capacity of this Power Supply
 
 ### PowerSupplies[array-item].PowerSupplyType
 
 **JSONPath**: `/PowerSupplies/(array index)/PowerSupplyType` (read only enumeration)
 
-The power supply type: AC, DC, or Unknown.
+The Power Supply type (AC or DC)
 
 **Defined values**:
+
+* `null`:  the value is temporarily unavailable
 
 * `Unknown`
 
@@ -11701,25 +11288,135 @@ The power supply type: AC, DC, or Unknown.
 
 * `DC`
 
+### PowerSupplies[array-item].Redundancy[array-item].MaxNumSupported
+
+**JSONPath**: `/PowerSupplies/(array index)/Redundancy/(array index)/MaxNumSupported` (read only integer)
+
+This is the maximum number of members allowable for this particular managers redundancy, including this manager.
+
+### PowerSupplies[array-item].Redundancy[array-item].MemberId
+
+**JSONPath**: `/PowerSupplies/(array index)/Redundancy/(array index)/MemberId` (PATCHable string)
+
+This is the identifier for the member within the collection.
+
+### PowerSupplies[array-item].Redundancy[array-item].MinNumNeeded
+
+**JSONPath**: `/PowerSupplies/(array index)/Redundancy/(array index)/MinNumNeeded` (read only integer)
+
+This is the minumum number of managers needed for this manager to be redundant.
+
+### PowerSupplies[array-item].Redundancy[array-item].Mode
+
+**JSONPath**: `/PowerSupplies/(array index)/Redundancy/(array index)/Mode` (read only enumeration)
+
+This is the redundancy mode of the group.
+
+**Defined values**:
+
+* `null`:  the value is temporarily unavailable
+
+* `Failover`
+
+* `N+1`
+
+* `LoadBalanced`
+
+* `Sparing`
+
+* `LimitedSparing`
+
+### PowerSupplies[array-item].Redundancy[array-item].Status.Health
+
+**JSONPath**: `/PowerSupplies/(array index)/Redundancy/(array index)/Status/Health` (read only enumeration)
+
+This represents the health state of this resource in the absence of its dependent resources.
+
+**Defined values**:
+
+* `null`:  the value is temporarily unavailable
+
+* `OK`
+
+* `Warning`
+
+* `Critical`
+
+### PowerSupplies[array-item].Redundancy[array-item].Status.HealthRollUp
+
+**JSONPath**: `/PowerSupplies/(array index)/Redundancy/(array index)/Status/HealthRollUp` (read only enumeration)
+
+This represents the overall health state from the view of this resource.
+
+**Defined values**:
+
+* `null`:  the value is temporarily unavailable
+
+* `OK`
+
+* `Warning`
+
+* `Critical`
+
+### PowerSupplies[array-item].Redundancy[array-item].Status.HealthRollup
+
+**JSONPath**: `/PowerSupplies/(array index)/Redundancy/(array index)/Status/HealthRollup` (read only enumeration)
+
+This represents the overall health state from the view of this resource.
+
+**Defined values**:
+
+* `null`:  the value is temporarily unavailable
+
+* `OK`
+
+* `Warning`
+
+* `Critical`
+
+### PowerSupplies[array-item].Redundancy[array-item].Status.State
+
+**JSONPath**: `/PowerSupplies/(array index)/Redundancy/(array index)/Status/State` (read only enumeration)
+
+This indicates the known state of the resource, such as if it is enabled.
+
+**Defined values**:
+
+* `null`:  the value is temporarily unavailable
+
+* `Enabled`
+
+* `Disabled`
+
+* `Offline`
+
+* `InTest`
+
+* `Starting`
+
+* `Absent`
+
 ### PowerSupplies[array-item].SerialNumber
 
 **JSONPath**: `/PowerSupplies/(array index)/SerialNumber` (read only string)
 
-The power supply serial number.
+The serial number for this Power Supply
 
 ### PowerSupplies[array-item].SparePartNumber
 
 **JSONPath**: `/PowerSupplies/(array index)/SparePartNumber` (read only string)
 
-The power supply spare part number.
+The spare part number for this Power Supply
 
 ### PowerSupplies[array-item].Status.Health
 
 **JSONPath**: `/PowerSupplies/(array index)/Status/Health` (read only enumeration)
 
-Indicates the health state of this resource without considering its dependent resources.
+This represents the health state of this resource in the absence of its dependent resources.
 
 **Defined values**:
+
+* `null`:  the value is temporarily unavailable
 
 * `OK`
 
@@ -11731,9 +11428,27 @@ Indicates the health state of this resource without considering its dependent re
 
 **JSONPath**: `/PowerSupplies/(array index)/Status/HealthRollUp` (read only enumeration)
 
-Indicates the overall health state of this resource and its dependent resources.
+This represents the overall health state from the view of this resource.
 
 **Defined values**:
+
+* `null`:  the value is temporarily unavailable
+
+* `OK`
+
+* `Warning`
+
+* `Critical`
+
+### PowerSupplies[array-item].Status.HealthRollup
+
+**JSONPath**: `/PowerSupplies/(array index)/Status/HealthRollup` (read only enumeration)
+
+This represents the overall health state from the view of this resource.
+
+**Defined values**:
+
+* `null`:  the value is temporarily unavailable
 
 * `OK`
 
@@ -11745,9 +11460,119 @@ Indicates the overall health state of this resource and its dependent resources.
 
 **JSONPath**: `/PowerSupplies/(array index)/Status/State` (read only enumeration)
 
-Indicates the known state of this resource (for example, if the resource is enabled). Enabled indicates that the resource is available. Disabled indicates that the resource has been made unavailable intentionally, but it can be enabled. Offline indicates that the resource is unavailable intentionally and requires action to be made available. InTest indicates that the component is undergoing testing. Starting indicates that the resource is on its way to becoming available. Absent indicates that the resource is physically unavailable.
+This indicates the known state of the resource, such as if it is enabled.
 
 **Defined values**:
+
+* `null`:  the value is temporarily unavailable
+
+* `Enabled`
+
+* `Disabled`
+
+* `Offline`
+
+* `InTest`
+
+* `Starting`
+
+* `Absent`
+
+### Redundancy[array-item].MaxNumSupported
+
+**JSONPath**: `/Redundancy/(array index)/MaxNumSupported` (read only integer)
+
+This is the maximum number of members allowable for this particular managers redundancy, including this manager.
+
+### Redundancy[array-item].MemberId
+
+**JSONPath**: `/Redundancy/(array index)/MemberId` (PATCHable string)
+
+This is the identifier for the member within the collection.
+
+### Redundancy[array-item].MinNumNeeded
+
+**JSONPath**: `/Redundancy/(array index)/MinNumNeeded` (read only integer)
+
+This is the minumum number of managers needed for this manager to be redundant.
+
+### Redundancy[array-item].Mode
+
+**JSONPath**: `/Redundancy/(array index)/Mode` (read only enumeration)
+
+This is the redundancy mode of the group.
+
+**Defined values**:
+
+* `null`:  the value is temporarily unavailable
+
+* `Failover`
+
+* `N+1`
+
+* `LoadBalanced`
+
+* `Sparing`
+
+* `LimitedSparing`
+
+### Redundancy[array-item].Status.Health
+
+**JSONPath**: `/Redundancy/(array index)/Status/Health` (read only enumeration)
+
+This represents the health state of this resource in the absence of its dependent resources.
+
+**Defined values**:
+
+* `null`:  the value is temporarily unavailable
+
+* `OK`
+
+* `Warning`
+
+* `Critical`
+
+### Redundancy[array-item].Status.HealthRollUp
+
+**JSONPath**: `/Redundancy/(array index)/Status/HealthRollUp` (read only enumeration)
+
+This represents the overall health state from the view of this resource.
+
+**Defined values**:
+
+* `null`:  the value is temporarily unavailable
+
+* `OK`
+
+* `Warning`
+
+* `Critical`
+
+### Redundancy[array-item].Status.HealthRollup
+
+**JSONPath**: `/Redundancy/(array index)/Status/HealthRollup` (read only enumeration)
+
+This represents the overall health state from the view of this resource.
+
+**Defined values**:
+
+* `null`:  the value is temporarily unavailable
+
+* `OK`
+
+* `Warning`
+
+* `Critical`
+
+### Redundancy[array-item].Status.State
+
+**JSONPath**: `/Redundancy/(array index)/Status/State` (read only enumeration)
+
+This indicates the known state of the resource, such as if it is enabled.
+
+**Defined values**:
+
+* `null`:  the value is temporarily unavailable
 
 * `Enabled`
 
@@ -11765,9 +11590,11 @@ Indicates the known state of this resource (for example, if the resource is enab
 
 **JSONPath**: `/Status/Health` (read only enumeration)
 
-Indicates the health state of this resource without considering its dependent resources.
+This represents the health state of this resource in the absence of its dependent resources.
 
 **Defined values**:
+
+* `null`:  the value is temporarily unavailable
 
 * `OK`
 
@@ -11779,9 +11606,27 @@ Indicates the health state of this resource without considering its dependent re
 
 **JSONPath**: `/Status/HealthRollUp` (read only enumeration)
 
-Indicates the overall health state of this resource and its dependent resources.
+This represents the overall health state from the view of this resource.
 
 **Defined values**:
+
+* `null`:  the value is temporarily unavailable
+
+* `OK`
+
+* `Warning`
+
+* `Critical`
+
+### Status.HealthRollup
+
+**JSONPath**: `/Status/HealthRollup` (read only enumeration)
+
+This represents the overall health state from the view of this resource.
+
+**Defined values**:
+
+* `null`:  the value is temporarily unavailable
 
 * `OK`
 
@@ -11793,9 +11638,11 @@ Indicates the overall health state of this resource and its dependent resources.
 
 **JSONPath**: `/Status/State` (read only enumeration)
 
-Indicates the known state of this resource (for example, if the resource is enabled). Enabled indicates that the resource is available. Disabled indicates that the resource has been made unavailable intentionally, but it can be enabled. Offline indicates that the resource is unavailable intentionally and requires action to be made available. InTest indicates that the component is undergoing testing. Starting indicates that the resource is on its way to becoming available. Absent indicates that the resource is physically unavailable.
+This indicates the known state of the resource, such as if it is enabled.
 
 **Defined values**:
+
+* `null`:  the value is temporarily unavailable
 
 * `Enabled`
 
@@ -12451,7 +12298,7 @@ The user profile name. Enter an alphanumeric string of 1 to 32 characters.
 
 > example PATCH: {"Users": [{"SecurityName": "&lt;string-value&gt;"}|null, ...]}
 
-## ThermalMetrics
+## Thermal
 The schema definition for the Thermal Metrics. It represents the properties for temperature and cooling.
 
 **Properties**
@@ -12588,13 +12435,67 @@ Indicates the component (i.e. CPU, Memory, and Storage) that the fan is being us
 
 * `Virtual`
 
+### Fans[array-item].PhysicalContext
+
+**JSONPath**: `/Fans/(array index)/PhysicalContext` (PATCHable enumeration)
+
+**Defined values**:
+
+* `Room`
+
+* `Intake`
+
+* `Exhaust`
+
+* `Front`
+
+* `Back`
+
+* `Upper`
+
+* `Lower`
+
+* `CPU`
+
+* `GPU`
+
+* `Backplane`
+
+* `SystemBoard`
+
+* `PowerSupply`
+
+* `VoltageRegulator`
+
+* `StorageDevice`
+
+* `NetworkingDevice`
+
+* `ComputeBay`
+
+* `StorageBay`
+
+* `NetworkBay`
+
+* `ExpansionBay`
+
+* `PowerSupplyBay`
+
+### Fans[array-item].ReadingRPM
+
+**JSONPath**: `/Fans/(array index)/ReadingRPM` (read only integer)
+
+The current speed of the fan.
+
 ### Fans[array-item].Status.Health
 
 **JSONPath**: `/Fans/(array index)/Status/Health` (read only enumeration)
 
-Indicates the health state of this resource without considering its dependent resources.
+This represents the health state of this resource in the absence of its dependent resources.
 
 **Defined values**:
+
+* `null`:  the value is temporarily unavailable
 
 * `OK`
 
@@ -12606,9 +12507,27 @@ Indicates the health state of this resource without considering its dependent re
 
 **JSONPath**: `/Fans/(array index)/Status/HealthRollUp` (read only enumeration)
 
-Indicates the overall health state of this resource and its dependent resources.
+This represents the overall health state from the view of this resource.
 
 **Defined values**:
+
+* `null`:  the value is temporarily unavailable
+
+* `OK`
+
+* `Warning`
+
+* `Critical`
+
+### Fans[array-item].Status.HealthRollup
+
+**JSONPath**: `/Fans/(array index)/Status/HealthRollup` (read only enumeration)
+
+This represents the overall health state from the view of this resource.
+
+**Defined values**:
+
+* `null`:  the value is temporarily unavailable
 
 * `OK`
 
@@ -12620,9 +12539,11 @@ Indicates the overall health state of this resource and its dependent resources.
 
 **JSONPath**: `/Fans/(array index)/Status/State` (read only enumeration)
 
-Indicates the known state of this resource (for example, if the resource is enabled). Enabled indicates that the resource is available. Disabled indicates that the resource has been made unavailable intentionally, but it can be enabled. Offline indicates that the resource is unavailable intentionally and requires action to be made available. InTest indicates that the component is undergoing testing. Starting indicates that the resource is on its way to becoming available. Absent indicates that the resource is physically unavailable.
+This indicates the known state of the resource, such as if it is enabled.
 
 **Defined values**:
+
+* `null`:  the value is temporarily unavailable
 
 * `Enabled`
 
@@ -12643,6 +12564,8 @@ Indicates the known state of this resource (for example, if the resource is enab
 Units for the CurrentReading.
 
 **Defined values**:
+
+* `null`:  the value is temporarily unavailable
 
 * `RPM`
 
@@ -12670,9 +12593,11 @@ Above normal range.
 
 **JSONPath**: `/Status/Health` (read only enumeration)
 
-Indicates the health state of this resource without considering its dependent resources.
+This represents the health state of this resource in the absence of its dependent resources.
 
 **Defined values**:
+
+* `null`:  the value is temporarily unavailable
 
 * `OK`
 
@@ -12684,9 +12609,27 @@ Indicates the health state of this resource without considering its dependent re
 
 **JSONPath**: `/Status/HealthRollUp` (read only enumeration)
 
-Indicates the overall health state of this resource and its dependent resources.
+This represents the overall health state from the view of this resource.
 
 **Defined values**:
+
+* `null`:  the value is temporarily unavailable
+
+* `OK`
+
+* `Warning`
+
+* `Critical`
+
+### Status.HealthRollup
+
+**JSONPath**: `/Status/HealthRollup` (read only enumeration)
+
+This represents the overall health state from the view of this resource.
+
+**Defined values**:
+
+* `null`:  the value is temporarily unavailable
 
 * `OK`
 
@@ -12698,9 +12641,11 @@ Indicates the overall health state of this resource and its dependent resources.
 
 **JSONPath**: `/Status/State` (read only enumeration)
 
-Indicates the known state of this resource (for example, if the resource is enabled). Enabled indicates that the resource is available. Disabled indicates that the resource has been made unavailable intentionally, but it can be enabled. Offline indicates that the resource is unavailable intentionally and requires action to be made available. InTest indicates that the component is undergoing testing. Starting indicates that the resource is on its way to becoming available. Absent indicates that the resource is physically unavailable.
+This indicates the known state of the resource, such as if it is enabled.
 
 **Defined values**:
+
+* `null`:  the value is temporarily unavailable
 
 * `Enabled`
 
@@ -12820,13 +12765,67 @@ The location of the sensor, in millimeters, along the Y axis from the logical re
 
 The location of the sensor, in millimeters, along the Z axis from the logical reference point.
 
+### Temperatures[array-item].PhysicalContext
+
+**JSONPath**: `/Temperatures/(array index)/PhysicalContext` (PATCHable enumeration)
+
+**Defined values**:
+
+* `Room`
+
+* `Intake`
+
+* `Exhaust`
+
+* `Front`
+
+* `Back`
+
+* `Upper`
+
+* `Lower`
+
+* `CPU`
+
+* `GPU`
+
+* `Backplane`
+
+* `SystemBoard`
+
+* `PowerSupply`
+
+* `VoltageRegulator`
+
+* `StorageDevice`
+
+* `NetworkingDevice`
+
+* `ComputeBay`
+
+* `StorageBay`
+
+* `NetworkBay`
+
+* `ExpansionBay`
+
+* `PowerSupplyBay`
+
+### Temperatures[array-item].ReadingCelsius
+
+**JSONPath**: `/Temperatures/(array index)/ReadingCelsius` (read only integer)
+
+The current reading of the temperature sensor.
+
 ### Temperatures[array-item].Status.Health
 
 **JSONPath**: `/Temperatures/(array index)/Status/Health` (read only enumeration)
 
-Indicates the health state of this resource without considering its dependent resources.
+This represents the health state of this resource in the absence of its dependent resources.
 
 **Defined values**:
+
+* `null`:  the value is temporarily unavailable
 
 * `OK`
 
@@ -12838,9 +12837,27 @@ Indicates the health state of this resource without considering its dependent re
 
 **JSONPath**: `/Temperatures/(array index)/Status/HealthRollUp` (read only enumeration)
 
-Indicates the overall health state of this resource and its dependent resources.
+This represents the overall health state from the view of this resource.
 
 **Defined values**:
+
+* `null`:  the value is temporarily unavailable
+
+* `OK`
+
+* `Warning`
+
+* `Critical`
+
+### Temperatures[array-item].Status.HealthRollup
+
+**JSONPath**: `/Temperatures/(array index)/Status/HealthRollup` (read only enumeration)
+
+This represents the overall health state from the view of this resource.
+
+**Defined values**:
+
+* `null`:  the value is temporarily unavailable
 
 * `OK`
 
@@ -12852,9 +12869,11 @@ Indicates the overall health state of this resource and its dependent resources.
 
 **JSONPath**: `/Temperatures/(array index)/Status/State` (read only enumeration)
 
-Indicates the known state of this resource (for example, if the resource is enabled). Enabled indicates that the resource is available. Disabled indicates that the resource has been made unavailable intentionally, but it can be enabled. Offline indicates that the resource is unavailable intentionally and requires action to be made available. InTest indicates that the component is undergoing testing. Starting indicates that the resource is on its way to becoming available. Absent indicates that the resource is physically unavailable.
+This indicates the known state of the resource, such as if it is enabled.
 
 **Defined values**:
+
+* `null`:  the value is temporarily unavailable
 
 * `Enabled`
 
@@ -12875,6 +12894,8 @@ Indicates the known state of this resource (for example, if the resource is enab
 The temperature sensor's units.
 
 **Defined values**:
+
+* `null`:  the value is temporarily unavailable
 
 * `Celsius`
 
