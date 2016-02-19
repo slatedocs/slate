@@ -6420,6 +6420,9 @@ Enable or disable UEFI Secure Boot (takes effect on next boot).
 > example PATCH: {"SecureBootEnable": true}
 
 ## HpSecurityService
+
+TODO - what's up with this?
+
 **Properties**
 
 > **Resource Instances of this Type**:  
@@ -6554,6 +6557,9 @@ Details about the results of applying the settings.
 Time at which the settings were applied.
 
 ## HpServerPCISlot
+
+This describes a PCI slot on a server.
+
 **Properties**
 
 > **Resource Instances of this Type**:  
@@ -6645,6 +6651,9 @@ PCI technology
 Standardized text representation of the UEFI device path, in UTF-8 format
 
 ## HpServerPciDevice
+
+This describes a logical PCI Device on a server.  This does not necessarily correspond to a specific FRU because a FRU or card might contain mutiple logical PCI devices.
+
 **Properties**
 
 > **Resource Instances of this Type**:  
@@ -6794,7 +6803,8 @@ Standardized text representation of the UEFI device path, in UTF-8 format.
 PCI vendor ID of the device.
 
 ## HpSmartStorage
-HpSmartStorage
+
+This is the HPE Smart Storage subsystem for a server.
 
 **Properties**
 
@@ -6873,7 +6883,8 @@ This indicates the known state of the resource, such as if it is enabled.
 * `Absent`
 
 ## HpSmartStorageArrayController
-HpSmartStorageArrayController
+
+This is a Smart Storage array controller for a server.
 
 **Properties**
 
@@ -7482,7 +7493,8 @@ Priority that the controller takes to find and correct disk surface errors
 The number of unassigned physical drives attached to this controller
 
 ## HpSmartStorageDiskDrive
-HpSmartStorageDiskDrive
+
+This represents a disk drive managed by Smart Storage.
 
 **Properties**
 
@@ -7795,7 +7807,8 @@ Effective transfer speed to the device taking into account hardware acceleration
 Unique identifier for the device
 
 ## HpSmartStorageLogicalDrive
-HpSmartStorageLogicalDrive
+
+This represents a logical drive managed by Smart Storage.  It may consist of one or more physical drives.
 
 **Properties**
 
@@ -8096,7 +8109,8 @@ The percent complete for any transformations the logical drive may be undergoing
 An identifier (typically SCSI Inquiry based such as Inquiry VPD Page 0x83 NAA 64 identifier) used to uniquely identify this volume.
 
 ## HpSmartStorageStorageEnclosure
-HpSmartStorageStorageEnclosure
+
+This represents an enclosure for physical disk drives which may be internal or external to the server.
 
 **Properties**
 
@@ -8610,6 +8624,9 @@ This indicates the known state of the resource, such as if it is enabled.
 The number of writes on the SD card. Rendered only if this is an HP-certified SD card. 
 
 ## HpiLOFederatedGroupCapping
+
+This resource manages the system's participating in iLO Federation group power capping.
+
 **Properties**
 
 > **Resource Instances of this Type**:  
@@ -8635,6 +8652,9 @@ The total power supply capacity for all servers in a group.
 High, Med, or Low based on the percentage of power usage.
 
 ## HpiLOFederationGroup
+
+This manages iLO's participation in Federation groups.
+
 **Properties**
 
 > **Resource Instances of this Type**:  
@@ -8698,6 +8718,9 @@ The management processor configuration privileges.
 > example PATCH: {"Privileges": {"iLOConfigPriv": true}}
 
 ## HpiLOFederationPeers
+
+This is a view of iLO's Federation peers based upon its current group membership.
+
 **Properties**
 
 > **Resource Instances of this Type**:  
@@ -8831,6 +8854,10 @@ The type of license installed on this management processor.
 * `Expired`
 
 ## HpiLOResourceDirectory
+
+This is a directory of important resources in the REST API.  It exists as a performance enhancer for clients that know exactly what kind of resources they are looking for.  It does this by flattening the data model and reducing the required number of HTTP GET operations needed to access a resource deep in the model.
+
+
 **Properties**
 
 > **Resource Instances of this Type**:  
@@ -9415,6 +9442,9 @@ The log entry severity.
 * `Critical`
 
 ## LogService
+
+This is the log service for Integrated Management Log and iLO 4 Event Log.
+
 **Properties**
 
 > **Resource Instances of this Type**:  
@@ -9444,7 +9474,8 @@ When the log is full, the overwrite policy is enforced.
 * `NeverOverwrites`
 
 ## Manager
-This is the schema definition for a manager.  Examples of managers are BMCs, Enclosure Managers, Management Controllers and other subsystems assigned manageability functions.
+
+This represents iLO 4 in the HPE server.
 
 **Properties**
 
@@ -11897,6 +11928,9 @@ The current web service time.
 Unique identifier for a service instance.  This value should be an exact match of the UUID value returned in a 200OK from an SSDP M-SEARCH request during discovery.
 
 ## Session
+
+This represents a single logged in session.  See Authentication and Sessions for more detail.
+
 **Properties**
 
 > **Resource Instances of this Type**:  
@@ -12130,6 +12164,9 @@ This indicates the known state of the resource, such as if it is enabled.
 * `Absent`
 
 ## SnmpService
+
+This represents iLO 4's SNMP configuration and status
+
 **Properties**
 
 > **Resource Instances of this Type**:  
@@ -12980,7 +13017,12 @@ Above normal range and is fatal.
 The noncritical temperature threshold.
 
 ## VirtualMedia
-This is the schema definition for the Virtual Media service.
+
+This is iLO 4's Virtual Media service.  It enables clients to mount or unmount virtual media images.
+
+<aside class="notice">
+You must install a license with the Virtual Media feature (e.g. the iLO Advanced License) to mount virtual media images.
+</aside>
 
 **Properties**
 
