@@ -55,6 +55,9 @@ This property specifies the minimum number of characters allowed when a user pas
 > example PATCH: {"Oem": {"Hp": {"MinPasswordLength": &lt;integer-value&gt;}}}
 
 ## BaseNetworkAdapter
+
+This represents a network adapter consisting of one or more physical ports.
+
 **Properties**
 
 > **Resource Instances of this Type**:  
@@ -312,22 +315,35 @@ Chassis resource(s) represent the properties for physical components for a syste
 
 > * `https://{iLO}/redfish/v1/chassis/{item}`
 
-### AssetTag
-
 Some properties in Chassis are only represented on blade servers:
+
 * `Oem/Hp/PowerAlertMode/Activated`
+
 * `Oem/Hp/PowerAlertMode/AlertPowerWatts`
+
 * `Oem/Hp/BayNumber`
+
 * `Oem/Hp/BaysConsumedHeight`
+
 * `Oem/Hp/BaysConsumedWidth`
+
 * `Oem/Hp/Location/GeographicLocation/RackName`
+
 * `Oem/Hp/Location/LocationInRack/RackLdsPartNumber`
+
 * `Oem/Hp/Location/LocationInRack/RackLdsProductDescription`
+
 * `Oem/Hp/Location/LocationInRack/RackUHeight`
+
 * `Oem/Hp/Location/LocationInRack/RackUUID`
+
 * `Oem/Hp/Location/LocationInRack/TagVersion`
+
 * `Oem/Hp/Location/LocationInRack/ULocation`
+
 * `Oem/Hp/Location/LocationInRack/UPosition`
+
+### AssetTag
 
 **JSONPath**: `/AssetTag` (PATCHable string)
 
@@ -2821,7 +2837,7 @@ The FwSwVersionInventory resource publishes an inventory of current firmware ver
 * `SystemRomActive` - The currently active BIOS image
 * `SystemRomBackup` - The backup BIOS image
 * `SystemBMC` - The iLO 4 firmware version
-* `&lt;PCI-ID&gt;` - PCI Devices are represented by PCI vendor/device/sub-vendor/sub-device ID (e.g. &quot;14e416a2103c22fa&quot; for the HPE FlexFabric 10Gb 2-port 536FLB Adapter)
+* `(PCI-ID)` - PCI Devices are represented by PCI vendor/device/sub-vendor/sub-device ID (e.g. `14e416a2103c22fa` for the HPE FlexFabric 10Gb 2-port 536FLB Adapter)
 
 The `Name` property contains the user-readable firmware item name.
 
@@ -8283,6 +8299,9 @@ This indicates the known state of the resource, such as if it is enabled.
 Location within the chassis if this storage enclosure is part of a larger chassis hosting multiple storage enclosures
 
 ## HpiLOActiveHealthSystem
+
+This resource enables access to Active Health System data.
+
 **Properties**
 
 > **Resource Instances of this Type**:  
@@ -8304,19 +8323,20 @@ When this property is enabled by PATCHing the value to true, iLO 4 will respond 
 ### Links.AHSLocation.extref and links.AHSLocation.extref
 
 **JSONPath**: `/Links/AHSLocation/extref` (read only string) with the Redfish OData-Version header
+
 **JSONPath**: `/links/AHSLocation/extref` (read only string) without the Redfish OData-Version header
 
 This is the URI of the Active Health System binary download.  This URI is not fixed and must be read from this property.  Perform a GET to this URI with the following query parameters to define the download time range and embed customer case information:
 
-* from:  the starting date of the download range (in YYYY-MM-DD format)
-* to:    the ending date of the download range (in YYYY-MM-DD format)
-* case_no:  case identification string
-* co_name:  company or organization name
-* contact:  contact name
-* email:  contact email address
-* phone:  contact phone number
+* `from`:  the starting date of the download range (in YYYY-MM-DD format)
+* `to`:    the ending date of the download range (in YYYY-MM-DD format)
+* `case_no`:  case identification string
+* `co_name`:  company or organization name
+* `contact`:  contact name
+* `email`:  contact email address
+* `phone`:  contact phone number
 
-> e.g. GET /ahsdata/HP_8CW4340017_20340417.ahs?from=2016-02-16&&to=2016-02-19&&case_no=90125&&co_name=HPE&&contact_name=John Smith&&email=dummy-email-address@hpe.com&&phone=555-555-5555
+> e.g. `GET /ahsdata/HP_8CW4340017_20340417.ahs?from=2016-02-16&&to=2016-02-19&&case_no=90125&&co_name=HPE&&contact_name=John Smith&&email=dummy-email-address@hpe.com&&phone=555-555-5555`
 
 If successful, the response of the GET is a binary download which can be saved to a file.
 
@@ -8410,6 +8430,9 @@ The UTC offset of the time zone, in the format {+/-}hh:mm
 The environment variable value.
 
 ## HpiLOEmbeddedMedia
+
+This represent's the state of iLO's managed media including the internal SD-Card on Gen8 and Gen9 ProLiant servers.
+
 **Properties**
 
 > **Resource Instances of this Type**:  
@@ -8732,6 +8755,7 @@ Several of the properties in this resource represent the details of the last fir
 ### Links.UpdateUri.extref and links.UpdateUri.extref
 
 **JSONPath**: `/Links/UpdateUri/extref` (read only string) with the Redfish OData-Version header
+
 **JSONPath**: `/links/UpdateUri/extref` (read only string) without the Redfish OData-Version header
 
 This property indicates the URI location a client my upload a firmware image directly to iLO 4.
@@ -8750,9 +8774,10 @@ This property indicates the URI location a client my upload a firmware image dir
 
 This indicates the current iLO license status.
 
-You may install an iLO license by POSTing a JSON object containing {"LicenseKey": "key-string"} to the license service collection.  PATCHing an existing LicenseKey property does not alter the license.
+You may install an iLO license by POSTing a JSON object containing `{"LicenseKey": "key-string"}` to the license service collection.  PATCHing an existing LicenseKey property does not alter the license.
 
 > e.g. POST https://{iLO}/redfish/v1/managers/{item}/licenseservice/
+
 ```json
 {
 	"LicenseKey": "key-string"
@@ -10006,6 +10031,7 @@ Status of the Self Test.
 ### Links.FederationDispatch.extref and links.FederationDispatch.extref
 
 **JSONPath**: `/Oem/Hp/Links/FederationDispatch/extref` (read only URI reference) with the Redfish OData-Version header
+
 **JSONPath**: `/Oem/Hp/links/FederationDispatch/extref` (read only URI reference) without the Redfish OData-Version header
 
 Federation commands are dispatched to the URI described by this property.
@@ -10013,6 +10039,7 @@ Federation commands are dispatched to the URI described by this property.
 ### Links.VSPLogLocation.extref and links.VSPLogLocation.extref
 
 **JSONPath**: `/Oem/Hp/Links/VSPLogLocation/extref` (read only string) with the Redfish OData-Version header
+
 **JSONPath**: `/Oem/Hp/links/VSPLogLocation/extref` (read only string) without the Redfish OData-Version header
 
 TODO:  describe this better
@@ -12009,7 +12036,8 @@ User type
 Name to use to log in to the management processor.
 
 ## SessionService
-This is the schema definition for the Session Service.  It represents the properties for the service itself and has links to the actual list of sessions.
+
+This represents the REST API's session manager, enabling clients to create new sessions or end sessions.  See the section "Authentication and Sessions" for details on how to manage sessions.
 
 **Properties**
 
