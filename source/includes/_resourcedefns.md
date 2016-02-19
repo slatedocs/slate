@@ -1,3 +1,5 @@
+TODO:  ALL ACTIONS ARE MISSING!!!
+
 ## AccountService
 This is the schema definition for the Account service. It represents the properties for this service and has links to the list of accounts.
 
@@ -6,6 +8,19 @@ This is the schema definition for the Account service. It represents the propert
 > **Resource Instances of this Type**:  
 
 > * `https://{iLO}/redfish/v1/accountservice`
+
+### Managing User Accounts with the Accounts Collection
+
+**JSONPath**: `/Accounts/@odata.id`
+
+The destination of this link is a collection of user accounts (see ManagerAccount).
+
+* You may create a new user account by POSTing a new account description the the Accounts collection.  See ManagerAccount for details.
+> e.g. `POST https://{iLO}/redfish/v1/accountservice/accounts/ with new account description`
+* You may modify an existing user by PATCHing properties to the user account resource.  See ManagerAccount for details.
+> e.g. `PATCH https://{iLO}/redfish/v1/accountservice/accounts/{item} with different properties`
+* You may remove a user account by DELETEing the resources representing the user
+> e.g. `DELETE https://{iLO}/redfish/v1/accountservice/accounts/{item}`
 
 ### AuthFailureDelayTimeSeconds
 
@@ -289,7 +304,7 @@ PCI device structured name in UTF-8 format (e.g. 'NIC.LOM.1.1' - see PCIDevices 
 UEFIDevice Path for correlation purposes
 
 ## Chassis
-The schema definition for the Chassis resource represents the properties for physical components for any system. This object represents racks, rack mount servers, blades, standalone, modular systems, enclosures, and all other containers. The non-CPU/device-centric parts of the schema are accessed either directly or indirectly through this resource.
+Chassis resource(s) represent the properties for physical components for a system. This object represents racks, rack mount servers, blades, standalone, modular systems, enclosures, and all other containers. The non-CPU/device-centric parts of the schema are accessed either directly or indirectly through this resource.
 
 **Properties**
 
@@ -298,6 +313,21 @@ The schema definition for the Chassis resource represents the properties for phy
 > * `https://{iLO}/redfish/v1/chassis/{item}`
 
 ### AssetTag
+
+Some properties in Chassis are only represented on blade servers:
+* `Oem/Hp/PowerAlertMode/Activated`
+* `Oem/Hp/PowerAlertMode/AlertPowerWatts`
+* `Oem/Hp/BayNumber`
+* `Oem/Hp/BaysConsumedHeight`
+* `Oem/Hp/BaysConsumedWidth`
+* `Oem/Hp/Location/GeographicLocation/RackName`
+* `Oem/Hp/Location/LocationInRack/RackLdsPartNumber`
+* `Oem/Hp/Location/LocationInRack/RackLdsProductDescription`
+* `Oem/Hp/Location/LocationInRack/RackUHeight`
+* `Oem/Hp/Location/LocationInRack/RackUUID`
+* `Oem/Hp/Location/LocationInRack/TagVersion`
+* `Oem/Hp/Location/LocationInRack/ULocation`
+* `Oem/Hp/Location/LocationInRack/UPosition`
 
 **JSONPath**: `/AssetTag` (PATCHable string)
 
@@ -434,18 +464,6 @@ The SPS FW Version number, aka ME FW Version, AAAA.BBBB.CCCC.DDDD.E
 **JSONPath**: `/Oem/Hp/Firmware/SystemProgrammableLogicDevice/Current/VersionString` (read only string)
 
 The firmware version of the CPLD.
-
-### Images.Front.extref
-
-**JSONPath**: `/Oem/Hp/Images/Front/extref` (read only string)
-
-The URI of an external resource.
-
-### Images.Model.extref
-
-**JSONPath**: `/Oem/Hp/Images/Model/extref` (read only string)
-
-The URI of an external resource.
 
 ### Location.GeographicLocation.RackName
 
@@ -2189,21 +2207,25 @@ The link technology, such as Ethernet, for this NIC.
 
 * `Ethernet`
 
-### MACAddress
+### MACAddress (Redfish-conformant MAC Address)
 
-**JSONPath**: `/MACAddress` (PATCHable string)
+**JSONPath**: `/MACAddress` (read only string)
 
-The effective current MAC address. If the assignable MAC address is not supported, this is a read-only alias of FactoryMacAddress.
+The effective current MAC address. If the assignable MAC address is not supported, this is a read-only alias of FactoryMacAddress.  This replaces `MacAddress` which was used prior to the release of the Redfish 1.0 specification.)
 
 > example PATCH: {"MACAddress": "&lt;string-value&gt;"}
 
-### MacAddress
+### MacAddress  (pre-Redfish conformant MAC Address)
 
-**JSONPath**: `/MacAddress` (PATCHable string)
+**JSONPath**: `/MacAddress` (read only string)
 
-The effective current MAC address. If the assignable MAC address is not supported, this is a read-only alias of FactoryMacAddress.
+The effective current MAC address. If the assignable MAC address is not supported, this is a read-only alias of FactoryMacAddress.  MacAddress was added to iLO 4 prior to the release of the Redfish 1.0 specification and is replaced by `MACAddress`.
 
 > example PATCH: {"MacAddress": "&lt;string-value&gt;"}
+
+<aside class="warning">
+PowerShell treats JSON as case insensitive and cannot parse both MACAddress and MacAddress.  See the API Errata section for details and for workaround options.
+</aside>
 
 ### MaxIPv6StaticAddresses
 
@@ -2793,6 +2815,16 @@ This property indicates what the service will do to an event subscription after 
 This is the minimum amount of time after the failed events that the service will wait before doing the SubscriptionRemovalAction.
 
 ## FwSwVersionInventory
+
+The FwSwVersionInventory resource publishes an inventory of current firmware versions on a specific ComputerSystem.&nbsp; The list of firmware items will vary by server model and configuration, but some common items include:
+
+* `SystemRomActive` - The currently active BIOS image
+* `SystemRomBackup` - The backup BIOS image
+* `SystemBMC` - The iLO 4 firmware version
+* `&lt;PCI-ID&gt;` - PCI Devices are represented by PCI vendor/device/sub-vendor/sub-device ID (e.g. &quot;14e416a2103c22fa&quot; for the HPE FlexFabric 10Gb 2-port 536FLB Adapter)
+
+The `Name` property contains the user-readable firmware item name.
+
 **Properties**
 
 > **Resource Instances of this Type**:  
@@ -3016,13 +3048,26 @@ True if the provider supports PUT/PATCH of the named BaseConfig.
 True if the provider supports PUT/PATCH of the named BaseConfigs.
 
 ## HpBios
+
+BIOS configuration settings vary with the server model and firmware version. The per-server settings are described with HpBios Attributes.  A GET of the BIOS settings will include a combination of properties from "HpBios" and "HpBios Attributes".
+
+The BIOS settings are in two resources.  One is the current settings and are read only.  The second is the pending settings are are modifiable with PUT or PATCH.  The pending settings are evaluated and applied upon system restart when UEFI POST runs.  At this time the current settings are updated to reflect the changed configuration.  The results of the last settings application are in the `SettingsResults` sub-object of the current settings.
+
+### Resetting BIOS Setting to Default
+
+For the modifiyable settings resource, you may PATCH or PUT the property "BaseConfig" with the value "default" to cause the BIOS to revert to default settings on the next reboot. The BIOS will revert to default settings and override them with any other properties specified in the request payload.
+
+> e.g. Reset BIOS settings to defaults
+> PUT {"BaseConfig": "default", "Slot3NicBoot7": "PxeBoot"}
+> To cause the BIOS to revert to defaults and also set Slot 3 NIC to boot to PXE.
+			
 **Properties**
 
 > **Resource Instances of this Type**:  
 
-> * `https://{iLO}/redfish/v1/systems/{item}/bios/settings`
+> * `https://{iLO}/redfish/v1/systems/{item}/bios/settings` (PATCHable Pending settings)
 
-> * `https://{iLO}/redfish/v1/systems/{item}/bios`
+> * `https://{iLO}/redfish/v1/systems/{item}/bios` (read only current settings)
 
 ### AttributeRegistry
 
@@ -3354,7 +3399,7 @@ When enabled, this option enables obtaining the pre-boot network IPv4 configurat
 Use this option to configure when the System ROM executes power calibration during the boot process. In Auto mode, calibration is run the first time the server is booted and is then only run again when the server's hardware configuration or configuration settings change. When disabled, the calibration does not run and Dynamic Power Capping is not supported. When enabled, the calibration is run on every boot.
 
 **Defined values**:
-
+Seri
 * `Auto`:  Auto
 
 * `Enabled`:  Enabled
@@ -8248,66 +8293,51 @@ Location within the chassis if this storage enclosure is part of a larger chassi
 
 **JSONPath**: `/AHSEnabled` (PATCHable boolean)
 
-Determines whether HP Active Health System logging is enabled or disabled.
+Determines whether HP Active Health System logging is enabled or disabled.  
+
+<aside class="warning">
+When this property is enabled by PATCHing the value to true, iLO 4 will respond with "ResetRequired" and iLO 4 must be reset for the setting to take effect.  PATCHing the value to false does not require an iLO 4 reset.
+</aside>
 
 > example PATCH: {"AHSEnabled": true}
 
-### LocationParameters.case_no
+### Links.AHSLocation.extref and links.AHSLocation.extref
 
-**JSONPath**: `/LocationParameters/case_no` (read only string)
+**JSONPath**: `/Links/AHSLocation/extref` (read only string) with the Redfish OData-Version header
+**JSONPath**: `/links/AHSLocation/extref` (read only string) without the Redfish OData-Version header
 
-This query parameter may be added to the AHS location URI to insert the case number into the AHS log header. For example, http://iloname.example.net/ahsdata/HP_xxxxxxxxxx_20140821.ahs?downloadAll=1&&case_no=abc123.
+This is the URI of the Active Health System binary download.  This URI is not fixed and must be read from this property.  Perform a GET to this URI with the following query parameters to define the download time range and embed customer case information:
 
-### LocationParameters.co_name
+* from:  the starting date of the download range (in YYYY-MM-DD format)
+* to:    the ending date of the download range (in YYYY-MM-DD format)
+* case_no:  case identification string
+* co_name:  company or organization name
+* contact:  contact name
+* email:  contact email address
+* phone:  contact phone number
 
-**JSONPath**: `/LocationParameters/co_name` (read only string)
+> e.g. GET /ahsdata/HP_8CW4340017_20340417.ahs?from=2016-02-16&&to=2016-02-19&&case_no=90125&&co_name=HPE&&contact_name=John Smith&&email=dummy-email-address@hpe.com&&phone=555-555-5555
 
-This query parameter may be added to the AHS location URI to insert the company name into the AHS log header. For example, http://iloname.example.net/ahsdata/HP_xxxxxxxxxx_20140821.ahs?downloadAll=1&&co_name=myCompany.
+If successful, the response of the GET is a binary download which can be saved to a file.
 
-### LocationParameters.contact_name
+**Actions**
 
-**JSONPath**: `/LocationParameters/contact_name` (read only string)
+### ClearLog
 
-This query parameter may be added to the AHS location URI to insert the contact name into the AHS log header. For example, http://iloname.example.net/ahsdata/HP_xxxxxxxxxx_20140821.ahs?downloadAll=1&&contact_name=JohnDoe.
+**JSONPath**: `/Actions/#HpiLOActiveHealthSystem.ClearLog`
 
-### LocationParameters.downloadAll
+Clears the Active Health System Log.
 
-**JSONPath**: `/LocationParameters/downloadAll` (read only string)
-
-This query parameter should be used to download entire AHS log. For example, http://iloname.example.net/ahsdata/HP_xxxxxxxxxx_20140821.ahs?downloadAll=1.
-
-### LocationParameters.email
-
-**JSONPath**: `/LocationParameters/email` (read only string)
-
-This query parameter may be added to the AHS location URI to insert the contacts email address into the AHS log header. For example, http://iloname.example.net/ahsdata/HP_xxxxxxxxxx_20140821.ahs?downloadAll=1&&email=abc@xyz.com.
-
-### LocationParameters.from
-
-**JSONPath**: `/LocationParameters/from` (read only string)
-
-This query parameter may be added with the 'to' query parameter to the AHS location URI to limit the range of data returned. The default range is the last seven days of the log and the format is (yyyy-mm-dd). 'downloadAll' parameter should not be used with this query parameter. For example, http://iloname.example.net/ahsdata/HP_xxxxxxxxxx_20140821.ahs?from=2014-03-01&&to=2014-03-30.
-
-### LocationParameters.phone
-
-**JSONPath**: `/LocationParameters/phone` (read only string)
-
-This query parameter may be added to the AHS location URI to insert the contacts phone number into the AHS log header. For example, http://iloname.example.net/ahsdata/HP_xxxxxxxxxx_20140821.ahs?downloadAll=1&&contact_name=JohnDoe&&phone=555-555-5555.
-
-### LocationParameters.to
-
-**JSONPath**: `/LocationParameters/to` (read only string)
-
-This query parameter may be added with the 'from' query parameter to the AHS location URI to limit the range of data returned. The default range is the last seven days of the log and the format is (yyyy-mm-dd). 'downloadAll' parameter should not be used with this query parameter. For example, http://iloname.example.net/ahsdata/HP_xxxxxxxxxx_20140821.ahs?from=2014-03-01&&to=2014-03-30.
-
-### links.AHSLocation.extref
-
-**JSONPath**: `/links/AHSLocation/extref` (read only string)
-
-The URI of an external resource.
+<aside class="warning">
+When this action is invoked, iLO 4 will respond with "ResetRequired" and iLO 4 must be reset for the setting to take effect.
+</aside>
 
 ## HpiLODateTime
 The management processor date and time.
+
+<aside class="warning">
+iLO 4 will respond with "ResetRequired" for some data-time and SNTP configuration changes, and iLO 4 must be reset for the settings to take effect.  Specifically, changing the SNTP servers and the time zone will cause iLO 4 to indicate a reset is required.
+</aside>
 
 **Properties**
 
@@ -8682,115 +8712,53 @@ URL of the federation peer.
 UUID peers that are part of the federation group.
 
 ## HpiLOFirmwareUpdate
+
+This is the iLO 4 firmware update service which enables a client to update supported system firmware.
+
+Several of the properties in this resource represent the details of the last firmware update operation, including:
+* Copyright message
+* Details
+* Post-update flags
+* Image type (recognized by iLO 4)
+* ProgressPercent - updated during flashing
+* Flash engine state
+
 **Properties**
 
 > **Resource Instances of this Type**:  
 
 > * `https://{iLO}/redfish/v1/managers/{item}/updateservice`
 
-### Bootleg
+### Links.UpdateUri.extref and links.UpdateUri.extref
 
-**JSONPath**: `/Bootleg` (read only string)
+**JSONPath**: `/Links/UpdateUri/extref` (read only string) with the Redfish OData-Version header
+**JSONPath**: `/links/UpdateUri/extref` (read only string) without the Redfish OData-Version header
 
-Supplied bootleg text, if any, otherwise blank.
+This property indicates the URI location a client my upload a firmware image directly to iLO 4.
 
-### Copyright
+> TODO:  example
 
-**JSONPath**: `/Copyright` (read only string)
+**Actions**
 
-The copyright date of the firmware image.
+### InstallFromURI
 
-### Details
+**JSONPath**: `Actions/#HpiLOFirmwareUpdate.InstallFromURI'
 
-**JSONPath**: `/Details` (read only string)
-
-Details about the current firmware flash status.
-
-### Flags
-
-**JSONPath**: `/Flags` (read only enumeration)
-
-Other flags.
-
-**Defined values**:
-
-* `NONE`
-
-* `RESET_ILO`
-
-* `REQUEST_SYSTEM_COLD_BOOT`
-
-* `REQUEST_SYSTEM_WARM_BOOT`
-
-* `DEFERRED_AUX_PWR_CYCLE`
-
-### ImageSizeInBytes
-
-**JSONPath**: `/ImageSizeInBytes` (read only integer)
-
-The size of the firmware image (including any signatures) in bytes.
-
-### ImageType
-
-**JSONPath**: `/ImageType` (read only enumeration)
-
-Firmware flash image type.
-
-**Defined values**:
-
-* `NO_DEVICE`
-
-* `ILO_DEVICE`
-
-* `ILO_DEVICE_FIRMWARE`
-
-* `ILO_DEVICE_LANGPK`
-
-* `ILO_DEVICE_DEBUGGER`
-
-* `BIOS_DEVICE`
-
-* `SCD_DEVICE`
-
-* `CPLD_DEVICE`
-
-* `CARB_DEVICE`
-
-* `PM_DEVICE`
-
-* `UNKNOWN`
-
-### ProgressPercent
-
-**JSONPath**: `/ProgressPercent` (read only integer)
-
-Firmware flash progress.
-
-### State
-
-**JSONPath**: `/State` (read only enumeration)
-
-Current state of the firmware flash.
-
-**Defined values**:
-
-* `IDLE`
-
-* `UPLOADING`
-
-* `PROGRESSING`
-
-* `COMPLETED`
-
-* `ERROR`
-
-### links.UpdateUri.extref
-
-**JSONPath**: `/links/UpdateUri/extref` (read only string)
-
-The URI of an external resource.
+> TODO:  example
 
 ## HpiLOLicense
+
+This indicates the current iLO license status.
+
+You may install an iLO license by POSTing a JSON object containing {"LicenseKey": "key-string"} to the license service collection.  PATCHing an existing LicenseKey property does not alter the license.
+
+> e.g. POST https://{iLO}/redfish/v1/managers/{item}/licenseservice/
+```json
+{
+	"LicenseKey": "key-string"
+}
+```
+
 **Properties**
 
 > **Resource Instances of this Type**:  
@@ -9309,6 +9277,18 @@ The iSCSI Target TCP Port number, if not obtained from DHCP.
 The worldwide unique iSCSI Qualified Name (IQN) of this iSCSI Initiator. Only IQN format is accepted. EUI format is not supported (for example, 'iqn.1986-03.com.hp:init.sn-123456').
 
 ## LogEntry
+
+Resources of type "LogEntry" are members of a log entry parent collection.  For the Integrated Management Log (IML) a client may create a Maintenance Note log entry by performing a POST of a JSON object to the parent log entry collection with the following format:   {"EntryCode": "Maintenance", "Message":"text message here"}
+
+> e.g. Create a Maintenance Note.  POST
+```json
+{
+	"EntryCode": "Maintenance",
+	"Message": "text message here"
+}
+```
+
+
 **Properties**
 
 > **Resource Instances of this Type**:  
@@ -10023,17 +10003,19 @@ Status of the Self Test.
 
 * `Degraded`
 
-### links.FederationDispatch.extref
+### Links.FederationDispatch.extref and links.FederationDispatch.extref
 
-**JSONPath**: `/Oem/Hp/links/FederationDispatch/extref` (read only string)
+**JSONPath**: `/Oem/Hp/Links/FederationDispatch/extref` (read only URI reference) with the Redfish OData-Version header
+**JSONPath**: `/Oem/Hp/links/FederationDispatch/extref` (read only URI reference) without the Redfish OData-Version header
 
-The URI of an external resource.
+Federation commands are dispatched to the URI described by this property.
 
-### links.VSPLogLocation.extref
+### Links.VSPLogLocation.extref and links.VSPLogLocation.extref
 
-**JSONPath**: `/Oem/Hp/links/VSPLogLocation/extref` (read only string)
+**JSONPath**: `/Oem/Hp/Links/VSPLogLocation/extref` (read only string) with the Redfish OData-Version header
+**JSONPath**: `/Oem/Hp/links/VSPLogLocation/extref` (read only string) without the Redfish OData-Version header
 
-The URI of an external resource.
+TODO:  describe this better
 
 ### Redundancy.MaxNumSupported
 
@@ -10242,6 +10224,33 @@ This indicates the known state of the resource, such as if it is enabled.
 This is a universally unique identifier that software (for example, HP SIM) uses to uniquely identify this manager. The UUID is assigned when the system is manufactured.
 
 ## ManagerAccount
+
+This represents a user account on the REST API service.
+
+You may create an iLO account by building a request JSON object and POSTing to the Accounts collection pointed to by the AccountService.
+
+> POST to https://redfish/v1/accountservice/accounts/
+
+```json
+{
+	"UserName": "the name used to log into the API",
+	"Password": "newpassword",
+	"Oem": {
+		"Hp": {
+			"Privileges": {
+				"RemoteConsolePriv": true,
+				"VirtualMediaPriv": true,
+				"UserConfigPriv": true,
+				"iLOConfigPriv": true,
+				"VirtualPowerAndResetPriv": true
+			},
+			"LoginName": "the friendly user name"
+		}
+	}
+}
+```
+
+
 **Properties**
 
 > **Resource Instances of this Type**:  
@@ -10322,6 +10331,29 @@ The name used to log in to the management processor. The user name does not have
 
 ## ManagerNetworkProtocol
 This resource is used to obtain or modify the network services managed by this manager.
+
+PATCHing the following properties will not take effect until iLO 4 is reset.
+* `HTTP/Port`
+* `HTTPS/Port`
+* `SSH/Enabled`
+* `SSH/Port`
+
+<aside class="notice">
+Client software should PATCH these properties together in one PATCH operation at a time where an iLO reset is best accomodated.
+</aside>
+
+iLO 4 responds with "ResetRequired" when the following properties are PATCHed:
+
+* `VirtualMedia/Port`
+* `KVMIP/Port`
+* `SNMP/Enabled`
+* `SNMP/Port`
+* `Oem/Hp/SNMPTrapPort`
+* `HostName`
+
+<aside class="notice">
+Client software must reset iLO 4 for these changes to take effect.
+</aside>
 
 **Properties**
 
