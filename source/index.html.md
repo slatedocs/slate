@@ -11,7 +11,7 @@ toc_footers:
 includes:
   - introduction
   - authentication
-  - kittens
+  - insights
   - errors
 
 search: true
