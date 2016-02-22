@@ -52,12 +52,12 @@ my $constructorio = new WebService::ConstructorIO->new(
 
 ```java
 import com.cnstrc.client.ConstructorIO;
-ConstructorIO constructorClient = new ConstructorIO("[your API token]", "[your autocomplete key"], true, null);
+ConstructorIO constructorClient = new ConstructorIO("[your API token]", "[your autocomplete key]", true, null);
 ```
 
 ```csharp
 using ConstructorIOClient;
-ConstructorIO constructorClient = new ConstructorIO("[your API token]", "[your autocomplete key"]);
+ConstructorIO constructorClient = new ConstructorIO("[your API token]", "[your autocomplete key]");
 ```
 
 > Make sure to replace `[your API token]` with your API token from [your dashboard](/dashboard).
