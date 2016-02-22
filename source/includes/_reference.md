@@ -42,6 +42,14 @@ All that said, we suggest the following:
 * [Contact Github](https://github.com/contact) about allowing read-only access. This will ensure it stays top-of-mind.
 * This is optional and you are able to view backtrace information w/o the integration. It's likely possible to even write a UserScript to open the code locally in your editor or on Github.
 
+#### Workaround for read-only Github Access
+
+With a few extra steps, you can grant Scout read-only access. Here's how:
+
+* Create a team in your Github organization with read-only access to the respective application repositories.
+* Create a new Github user and make them a member of that team.
+* Authenticate with this user.
+
 ## Billing
 
 ### Free Trial
