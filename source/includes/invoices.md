@@ -197,8 +197,10 @@ namespace DatilClient {
       var request = new RestRequest("invoices/issue", Method.POST);
       request.AddHeader("X-Key", "<clave-del-api>");
       request.AddHeader("X-Password", "<clave-certificado-firma>");
+      request.AddHeader("Content-Type", "application/json");
+      request.RequestFormat = DataFormat.Json;
 
-      request.AddBody(@"{
+      var body = (@"{
         ""ambiente"":1,
         ""tipo_emision"":1,
         ""secuencial"":148,
@@ -251,7 +253,7 @@ namespace DatilClient {
         ""items"":[
           {
             ""cantidad"":622.0,
-            ""codigo_principal"":""ZNC""
+            ""codigo_principal"":""ZNC"",
             ""codigo_auxiliar"": ""050"",
             ""precio_unitario"": 7.01,
             ""descripcion"": ""Zanahoria granel  50 Kg."",
@@ -272,7 +274,7 @@ namespace DatilClient {
           }
         ]
       }");
-
+      request.AddParameter("application/json", body, ParameterType.RequestBody);
       IRestResponse response = client.Execute(request);
 
       Console.WriteLine(response.Content);
