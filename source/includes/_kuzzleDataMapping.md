@@ -67,7 +67,7 @@ dataMapping.applyPromise(function (error, result) {
 ```
 
 ```java
-dataMapping.apply(new ResponseListener<KuzzleDataMapping>() {
+dataMapping.apply(new KuzzleResponseListener<KuzzleDataMapping>() {
    @Override
    public void onSuccess(KuzzleDataMapping object) {
      // called once the mapping action has been completed
@@ -118,7 +118,7 @@ dataMapping.refreshPromise().then(result => {
 ```
 
 ```java
-dataMapping.refresh(new ResponseListener<KuzzleDataMapping>() {
+dataMapping.refresh(new KuzzleResponseListener<KuzzleDataMapping>() {
    @Override
    public void onSuccess(KuzzleDataMapping object) {
      // called once the mapping has been retrieved from Kuzzle
@@ -131,11 +131,7 @@ dataMapping.refresh(new ResponseListener<KuzzleDataMapping>() {
 });
 ```
 
-<aside class="warning">
-Calling this function will discard any uncommited changes. You can commit changes by calling the <code>apply</code> function
-</aside>
-
-Replaces the current content with the mapping stored in Kuzzle
+Instanciates a new KuzzleDataMapping object with an up-to-date content.
 
 #### refresh([options], callback)
 
@@ -150,9 +146,6 @@ Available options:
 |---------------|---------|----------------------------------------|---------|
 | ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
 
-#### Return value
-
-Returns this `KuzzleDataMapping` object to allow chaining.
 
 #### Callback response
 
@@ -169,6 +162,7 @@ JSONObject mapping = new JSONObject();
 mapping.put("type", "string");
 mapping.put("index", "analyzed");
 mapping.put("null_value", "");
+
 dataMapping.set("field", mapping);
 ```
 
