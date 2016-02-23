@@ -1005,6 +1005,10 @@ The response is an `array` of index names.
 
 ## login
 
+<aside class="note">
+This method is non-queuable, meaning that during offline mode, it will be discarded and the callback will be called with an error.
+</aside>
+
 ```js
 // Using callbacks (NodeJS or Web Browser)
 kuzzle.login("local", {username: "username", password: "password"}, "1h", function (err, res) {
@@ -1059,6 +1063,10 @@ The `Kuzzle` object will have the property `jwtToken` filled if logging in succe
 If no callback is provided and if the login attempt fails, an error is thrown.
 
 ## logout
+
+<aside class="note">
+This method is non-queuable, meaning that during offline mode, it will be discarded and the callback will be called with an error.
+</aside>
 
 ```js
 // Using callbacks (NodeJS or Web Browser)
@@ -1448,7 +1456,7 @@ kuzzle.whoAmI(new KuzzleResponseListener<KuzzleUser>() {
 
   @Override
   public void onError(JSONObject error) {
-    
+
   }
 });
 ```

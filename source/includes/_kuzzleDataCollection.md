@@ -66,6 +66,7 @@ var filter = {
     ]
   }
 };
+
 kuzzle
   .dataCollectionFactory('index', 'collection')
   .advancedSearch(filter, function (err, res) {
@@ -86,43 +87,55 @@ kuzzle
 ```
 
 ```java
-JSONObject filter = new JSONObject();
-JSONArray and = new JSONArray();
-JSONArray types = new JSONArray();
-JSONArray status = new JSONArray();
-JSONObject statu = new JSONObject();
-JSONObject terms = new JSONObject();
-JSONObject terms2 = new JSONObject();
-JSONObject type = new JSONObject();
-types.put("cab");
-status.put("idle").put("hired").put("riding");
-if (userController.getUser().getType() == UserType.CAB) {
-  types.put("customer");
-  status.put("wantToHire");
-} else {
-  status.put("toHire");
-}
-type.put("type", types);
-statu.put("status", status);
-terms.put("terms", statu);
-terms2.put("terms", type);
-and.put(terms).put(terms2);
-filter.put("and", and);
-userFilter.put("filter", filter);
-dataCollection.advancedSearch(userFilter, new ResponseListener<KuzzleDocumentList>() {
-  @Override
-  public void onSuccess(KuzzleDocumentList result) {
-    for (KuzzleDocument doc : result.getDocuments()) {
-      // Get documents
-    }
-    doc.getTotal(); // return total of documents returned
-  }
+JSONObject filter = new JSONObject()
+  .put("and", new JSONArray()
+    .put(
+      new JSONObject().put("terms",
+        new JSONObject().put("status",
+          new JSONArray()
+            .put("idle")
+            .put("wantToHire")
+            .put("toHire")
+            .put("riding")
+        )
+      )
+    )
+    .put(
+      new JSONObject().put("terms",
+        new JSONObject()
+          .put("type", new JSONArray().put("cab"))
+      )
+    )
+    .put(
+      new JSONObject().put("geo_distance",
+        new JSONObject()
+          .put("distance", "10km")
+          .put("pos",
+            new JSONObject()
+              .put("lat", "48.8566140")
+              .put("lon", "2.352222")
+          )
+      )
+    )
+  );
 
-  @Override
-  public void onError(JSONObject error) {
-    // Handle error
-  }
-});
+kuzzle
+  .dataCollectionFactory("index", "collection")
+  .advancedSearch(userFilter, new KuzzleResponseListener<KuzzleDocumentList>() {
+    @Override
+    public void onSuccess(KuzzleDocumentList result) {
+      for (KuzzleDocument doc : result.getDocuments()) {
+        // Get documents
+      }
+
+      result.getTotal(); // return total of documents returned
+    }
+
+    @Override
+    public void onError(JSONObject error) {
+      // Handle error
+    }
+  });
 ```
 
 > Callback response:
@@ -188,17 +201,20 @@ kuzzle
 
 ```java
 JSONObject filters = new JSONObject();
-dataCollection.count(filters, new ResponseListener<Integer>() {
-  @Override
-  public void onSuccess(Integer object) {
-    // Handle success
-  }
 
-  @Override
-  public void onError(JSONObject error) {
-    // Handle error
-  }
-});
+kuzzle
+  .dataCollectionFactory("index", "collection")
+  .count(filters, new KuzzleResponseListener<Integer>() {
+    @Override
+    public void onSuccess(Integer object) {
+      // Handle success
+    }
+
+    @Override
+    public void onError(JSONObject error) {
+      // Handle error
+    }
+  });
 ```
 
 > Callback response:
@@ -256,18 +272,20 @@ kuzzle
 ```
 
 ```java
-dataCollection.create(new ResponseListener<JSONObject>() {
-  @Override
-  public void onSuccess(JSONObject object) {
-    // callback called once the create operation has completed
-    // => the result is a JSON object containing the raw Kuzzle response
-  }
+kuzzle
+  .dataCollectionFactory("index", "collection")
+  .create(new KuzzleResponseListener<JSONObject>() {
+    @Override
+    public void onSuccess(JSONObject object) {
+      // callback called once the create operation has completed
+      // => the result is a JSON object containing the raw Kuzzle response
+    }
 
-  @Override
-  public void onError(JSONObject error) {
-    // Handle error
-  }
-});
+    @Override
+    public void onError(JSONObject error) {
+      // Handle error
+    }
+  });
 ```
 
 > Callback response:
@@ -336,18 +354,21 @@ kuzzle
 KuzzleDocument myDocument = new KuzzleDocument(collection);
 myDocument.setContent("title", "foo");
 myDocument.setContent("content", "bar");
-dataCollection.createDocument(myDocument, new ResponseListener<KuzzleDocument>() {
-  @Override
-  public void onSuccess(KuzzleDocument object) {
-    // callback called once the create action has been completed
-    // => the result is a KuzzleDocument object
-  }
 
-  @Override
-  public void onError(JSONObject error) {
-    // Handle error
-  }
-});
+kuzzle
+  .dataCollectionFactory("index", "collection")
+  .createDocument(myDocument, new KuzzleResponseListener<KuzzleDocument>() {
+    @Override
+    public void onSuccess(KuzzleDocument object) {
+      // callback called once the create action has been completed
+      // => the result is a KuzzleDocument object
+    }
+
+    @Override
+    public void onError(JSONObject error) {
+      // Handle error
+    }
+  });
 ```
 
 Create a new document in Kuzzle.
@@ -390,7 +411,8 @@ var dataMapping = kuzzle
 ```
 
 ```java
-KuzzleDataMapping dataMapping = kuzzle.dataCollectionFactory("index", "collection")
+KuzzleDataMapping dataMapping = kuzzle
+  .dataCollectionFactory("index", "collection")
   .dataMappingFactory(new JSONObject().put("someFiled", new JSONObject().put("type", "string").put("index", "analyzed"))
   .apply();
 ```
@@ -429,18 +451,20 @@ kuzzle
 ```
 
 ```java
-dataCollection.delete(new ResponseListener<String>() {
-  @Override
-  public void onSuccess(String object) {
-    // callback called once the delete operation has completed
-    // => the result is a JSON object containing the raw Kuzzle response
-  }
+kuzzle
+  .dataCollectionFactory("index", "collection")
+  .delete(new KuzzleResponseListener<JSONObject>() {
+    @Override
+    public void onSuccess(String object) {
+      // callback called once the delete operation has completed
+      // => the result is a JSON object containing the raw Kuzzle response
+    }
 
-  @Override
-  public void onError(JSONObject error) {
-    // Handle error
-  }
-});
+    @Override
+    public void onError(JSONObject error) {
+      // Handle error
+    }
+  });
 ```
 
 > Callback response:
@@ -482,7 +506,7 @@ Returns the `KuzzleDataCollection` object to allow chaining.
 
 #### Callback response
 
-Resolves to a `JSON object` containing the raw Kuzzle response.
+Resolves to a JSON object containing the raw Kuzzle response.
 
 ## deleteDocument
 
@@ -520,34 +544,39 @@ kuzzle
 
 ```java
 // Deleting one document
-dataCollection.deleteDocument("document unique ID", new ResponseListener<String>() {
-  @Override
-  public void onSuccess(String object) {
-    // callback called once the delete action has been completed
-  }
+kuzzle
+  .dataCollectionFactory("index", "collection")
+  .deleteDocument("document unique ID", new KuzzleResponseListener<String>() {
+    @Override
+    public void onSuccess(String object) {
+      // The resulting string contains the deleted document ID
+    }
 
-  @Override
-  public void onError(JSONObject error) {
-    // Handle error
-  }
-});
+    @Override
+    public void onError(JSONObject error) {
+      // Handle error
+    }
+  });
 
 // Deleting multiple documents
-JSONObject termFilter = new JSONObject();
-JSONObject title = new JSONObject();
-title.put("title", "foo");
-termFilter.put("term", title);
-dataCollection.deleteDocument(termFilter, new ResponseListener<String>() {
-  @Override
-  public void onSuccess(String object) {
-    // callback called once the delete with query has been completed
-  }
+JSONObject termFilter = new JSONObject()
+  .put("term",
+    new JSONObject().put("title", "foo")
+  );
 
-  @Override
-  public void onError(JSONObject error) {
-    // Handle error
-  }
-});
+kuzzle
+  .dataCollectionFactory("index", "collection")
+  .deleteDocument(termFilter, new KuzzleResponseListener<String[]>() {
+    @Override
+    public void onSuccess(String[] object) {
+      // The resulting object contains the list of deleted document IDs
+    }
+
+    @Override
+    public void onError(JSONObject error) {
+      // Handle error
+    }
+  });
 ```
 
 > Callback response:
@@ -600,8 +629,9 @@ var document = kuzzle
 ```
 
 ```java
-KuzzleDocument document = kuzzle.dataCollectionFactory("index", "collection")
-  .documentFactory("id", new JSONObject().put("some", "content")
+KuzzleDocument document = kuzzle
+  .dataCollectionFactory("index", "collection")
+  .documentFactory("id", new JSONObject().put("some", "content"))
   .save();
 ```
 
@@ -638,18 +668,19 @@ kuzzle
 ```
 
 ```java
-KuzzleDocument myDoc;
-dataCollection.fetchDocument("documentId", new ResponseListener<KuzzleDocument>() {
-  @Override
-  public void onSuccess(KuzzleDocument object) {
-    // result is a KuzzleDocument object
-  }
+kuzzle
+  .dataCollectionFactory("index", "collection")
+  .fetchDocument("documentId", new KuzzleResponseListener<KuzzleDocument>() {
+    @Override
+    public void onSuccess(KuzzleDocument object) {
+      // result is a KuzzleDocument object
+    }
 
-  @Override
-  public void onError(JSONObject error) {
-    // Handle error
-  }
-});
+    @Override
+    public void onError(JSONObject error) {
+      // Handle error
+    }
+  });
 ```
 
 Retrieves a single stored document using its unique document ID.
@@ -700,18 +731,25 @@ kuzzle
 ```
 
 ```java
-dataCollection.fetchAllDocuments(new ResponseListener<KuzzleDocumentList>() {
-  @Override
-  public void onSuccess(KuzzleDocumentList object) {
-    // result is an object containing the total number of documents
-    // and an array of KuzzleDocument objects
-  }
+kuzzle
+  .dataCollectionFactory("index", "collection")
+  .fetchAllDocuments(new KuzzleResponseListener<KuzzleDocumentList>() {
+    @Override
+    public void onSuccess(KuzzleDocumentList object) {
+      // result is an object containing the total number of documents
+      // and an array of KuzzleDocument objects
+      for (KuzzleDocument doc : result.getDocuments()) {
+        // Get documents
+      }
 
-  @Override
-  public void onError(JSONObject error) {
-    // Handle error
-  }
-});
+      result.getTotal(); // return total of documents returned
+    }
+
+    @Override
+    public void onError(JSONObject error) {
+      // Handle error
+    }
+  });
 ```
 
 > Callback response:
@@ -744,7 +782,7 @@ Returns the `KuzzleDataCollection` object to allow chaining.
 
 #### Callback response
 
-Resolves to a `JSON object` containing:
+Resolves to an object containing:
 
 - the total number of retrieved documents
 - a `array` of `KuzzleDocument` objects
@@ -770,17 +808,19 @@ kuzzle
 ```
 
 ```java
-dataCollection.getMapping(new ResponseListener<KuzzleDataMapping>() {
-  @Override
-  public void onSuccess(KuzzleDataMapping object) {
-    // result is a KuzzleDataMapping object
-  }
+kuzzle
+  .dataCollectionFactory("index", "collection")
+  .getMapping(new KuzzleResponseListener<KuzzleDataMapping>() {
+    @Override
+    public void onSuccess(KuzzleDataMapping object) {
+      // result is a KuzzleDataMapping object
+    }
 
-  @Override
-  public void onError(JSONObject error) {
-    // Handle error
-  }
-});
+    @Override
+    public void onError(JSONObject error) {
+      // Handle error
+    }
+  });
 ```
 
 
@@ -817,10 +857,13 @@ kuzzle
 ```
 
 ```java
-KuzzleDocument myDocument = new KuzzleDocument(dataCollection);
-myDocument.setContent("title", "foo");
-myDocument.setContent("content", "bar");
-dataCollection.publish(myDocument);
+JSONObject message = new JSONObject().put("some", "content");
+JSONObject metadata = new JSONObject().put("metadata", "are volatile information");
+KuzzleOptions opts = new KuzzleOptions().setMetadata(metadata);
+
+kuzzle
+  .dataCollectionFactory("index", "collection")
+  .publish(message, opts);
 ```
 
 Publish a realtime message
@@ -866,9 +909,21 @@ kuzzle
 ```
 
 ```java
-KuzzleDocument doc = new KuzzleDocument(collection);
-doc.setContent("foo", "bar");
-dataCollection.replaceDocument("42", doc);
+JSONObject newContent = new JSONObject("new", "document content");
+
+kuzzle
+  .dataCollectionFactory("index", "collection")
+  .replaceDocument("documentId", newContent, new KuzzleResponseListener<KuzzleDocument>() {
+    @Override
+    public void onSuccess(KuzzleDocument document) {
+
+    }
+
+    @Override
+    public void onError(JSONObject error) {
+
+    }
+  });
 ```
 
 Replace an existing document with a new one.
@@ -909,9 +964,18 @@ var room = kuzzle
 ```
 
 ```java
+JSONObject filters = new JSONObject()
+  .put("terms",
+    new JSONObject("field")
+      .put(new JSONArray()
+        .put("some")
+        .put("filter")
+      )
+  );    
+
 KuzzleRoom room = kuzzle.dataCollectionFactory("index", "collection")
   .roomFactory()
-  .renew(new JSONObject().put(new JSONObject().put("terms", new JSONObject("field").put(new JSONArray().put("some").put("filter"), new KuzzleResponseListener<KuzzleNotificationResponse>() {
+  .renew(filters, new KuzzleResponseListener<KuzzleNotificationResponse>() {
     @Override
       public void onSuccess(KuzzleNotificationResponse object) {
         // handle notifications
@@ -948,14 +1012,19 @@ kuzzle
 ```
 
 ```java
-JSONObject content = new JSONObject();
-content.put("someContent", "someValue");
-JSONObject meta = new JSONObject();
-JSONArray metaValue = new JSONArray();
-metaValue.put("with").put("some").put("value");
-meta.put("someMetaData", metaValue);
-content.put("metadata", meta);
-dataCollection.setHeaders(content, true);
+JSONObject headers = new JSONObject()
+  .put("someContent", "someValue")
+  .put("metadata", new JSONObject()
+    .put("someMetaData", new JSONArray()
+      .put("with")
+      .put("some")
+      .put("values")
+    )
+  );
+
+kuzzle
+  .dataCollectionFactory("index", "collection")
+  .setHeaders(content, true);
 ```
 
 This is a helper function returning itself, allowing to easily set headers while chaining calls.
@@ -985,21 +1054,51 @@ var room =
 ```
 
 ```java
-JSONObject term = new JSONObject();
-JSONObject title = new JSONObject();
-title.put("title", "foo");
-term.put("term", title);
-dataCollection.subscribe(term, new ResponseListener<KuzzleNotificationResponse>() {
-  @Override
-  public void onSuccess(KuzzleNotificationResponse object) {
-    // called each time a new notification on this filter is received
-  }
+JSONObject filter = new JSONObject()
+  .put("and", new JSONArray()
+    .put(
+      new JSONObject().put("terms",
+        new JSONObject().put("status",
+          new JSONArray()
+            .put("idle")
+            .put("wantToHire")
+            .put("toHire")
+            .put("riding")
+        )
+      )
+    )
+    .put(
+      new JSONObject().put("terms",
+        new JSONObject()
+          .put("type", new JSONArray().put("cab"))
+      )
+    )
+    .put(
+      new JSONObject().put("geo_distance",
+        new JSONObject()
+          .put("distance", "10km")
+          .put("pos",
+            new JSONObject()
+              .put("lat", "48.8566140")
+              .put("lon", "2.352222")
+          )
+      )
+    )
+  );
 
-  @Override
-  public void onError(JSONObject error) {
-    // Handle error
-  }
-});
+kuzzle
+  .dataCollectionFactory("index", "collection")
+  .subscribe(filter, new KuzzleResponseListener<KuzzleNotificationResponse>() {
+    @Override
+    public void onSuccess(KuzzleNotificationResponse object) {
+      // called each time a new notification on this filter is received
+    }
+
+    @Override
+    public void onError(JSONObject error) {
+      // Handle error
+    }
+  });
 ```
 
 Subscribes to this data collection with a set of filters.
@@ -1042,18 +1141,20 @@ kuzzle
 ```
 
 ```java
-dataCollection.truncate(new ResponseListener<JSONObject>() {
-  @Override
-  public void onSuccess(JSONObject object) {
-    // callback called once the truncate operation has completed
-    // => the result is a JSON object containing the raw Kuzzle response
-  }
+kuzzle
+  .dataCollectionFactory("index", "collection")
+  .truncate(new KuzzleResponseListener<JSONObject>() {
+    @Override
+    public void onSuccess(JSONObject object) {
+      // callback called once the truncate operation has completed
+      // => the result is a JSON object containing the raw Kuzzle response
+    }
 
-  @Override
-  public void onError(JSONObject error) {
-    // Handle error
-  }
-});
+    @Override
+    public void onError(JSONObject error) {
+      // Handle error
+    }
+  });
 ```
 
 > Callback response:
@@ -1118,21 +1219,21 @@ kuzzle
 ```
 
 ```java
-KuzzleDocument doc = new KuzzleDocument(collection);
-doc.setContent("bar", "foo");
-doc.save();
-doc.setContent("foo", "bar");
-dataCollection.updateDocument("documentId", doc, new ResponseListener<KuzzleDocument>() {
-  @Override
-  public void onSuccess(KuzzleDocument result) {
-    // result is a KuzzleDocument object
-  }
+JSONObject newTitle = new JSONObject().put("title", "a shiny new title");
 
-  @Override
-  public void onError(JSONObject error) {
-    // Handle error
-  }
-});
+kuzzle
+  .dataCollectionFactory("index", "collection")
+  .updateDocument("documentId", newTitle, new KuzzleResponseListener<KuzzleDocument>() {
+    @Override
+    public void onSuccess(KuzzleDocument result) {
+      // result is an updated KuzzleDocument object
+    }
+
+    @Override
+    public void onError(JSONObject error) {
+      // Handle error
+    }
+  });
 ```
 
 Update parts of a document, by replacing some fields or adding new ones.  
