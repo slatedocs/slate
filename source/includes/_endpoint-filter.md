@@ -77,10 +77,10 @@ A Shoji order containing the filters applied by the current user.
 ### Filtering endpoints
 
 Some endpoints will support filtering, they will accept a `filter` GET parameter
-that should be a JSON encoded object that can contain either the URL of a filter
-(available through the Filters catalog) or a filter expression.
+that can be a JSON encoded object that can contain either the URL of a filter
+(available through the Filters catalog) or a filter expression or a filter URL.
 
-To filter using a filter URL, pass the following JSON object as the `filter`
+To filter using a filter URL using JSON pass in an object as the `filter`
 parameter:
 
 ```json
@@ -92,6 +92,20 @@ parameter:
 ```http
 GET /datasets/id/summary/?filter=%7B%22filter%22%3A%22http%3A%2F%2Fbeta.crunch.io%2Fapi%2Fdatasets%2Fac64ef%2Ffilters%2F28ef72%2F%22%7D HTTP/1.1
 ```
+
+It is also possible to send straight filter URLs without a JSON wrapping:
+
+
+```http
+GET /datasets/id/summary/?filter=http%3A%2F%2Fbeta.crunch.io%2Fapi%2Fdatasets%2Fac64ef%2Ffilters%2F28ef72%2F HTTP/1.1
+```
+
+Or multiple filters that will be ANDed together
+
+```http
+GET /datasets/id/summary/?filter=http%3A%2F%2Fbeta.crunch.io%2Fapi%2Fdatasets%2Fac64ef%2Ffilters%2F28ef72%2F&filter=http%3A%2F%2Fbeta.crunch.io%2Fapi%2Fdatasets%2Fac64ef%2Ffilters%2F28ef72%2F HTTP/1.1
+```
+
 
 To filter using a filter expression, pass a Crunch filter expression as the
 `filter` parameter, like:
@@ -106,7 +120,31 @@ To filter using a filter expression, pass a Crunch filter expression as the
     }
 ```
 
-
 ```http
 GET /datasets/id/summary/?filter=%7B%22function%22%3A%22%3D%3D%22%2C%22args%22%3A%5B%7B%22variable%22%3A%22http%3A%2F%2Fbeta.crunch.io%2Fapi%2Fdatasets%2Fac64ef%2Fvariables%2Faae3c2%2F%22%7D%2C%7B%22value%22%3A1%7D%5D%7D HTTP/1.1
+```
+
+Filter expressions can be combined with filter URLs to make reference to other filters, like so:
+
+
+```json
+    {
+        "function": "and",
+        "args": [
+            {
+                "filter": "http://beta.crunch.io/api/datasets/ac64ef/filters/28ef72/"
+            },
+           {
+                "function": "==",
+                "args": [
+                    {"variable": "http://beta.crunch.io/api/datasets/ac64ef/variables/aae3c2/"},
+                    {"value": 1}
+                ]
+            }
+        ]
+    }    
+```
+
+```http
+GET /datasets/id/summary/?filter=%7B%22function%22%3A+%22and%22%2C+%22args%22%3A+%5B%7B%22filter%22%3A+%22http%3A%2F%2Fbeta.crunch.io%2Fapi%2Fdatasets%2Fac64ef%2Ffilters%2F28ef72%2F%22%7D%2C+%7B%22function%22%3A+%22%3D%3D%22%2C+%22args%22%3A+%5B%7B%22variable%22%3A+%22http%3A%2F%2Fbeta.crunch.io%2Fapi%2Fdatasets%2Fac64ef%2Fvariables%2Faae3c2%2F%22%7D%2C+%7B%22value%22%3A+1%7D%5D%7D%5D%7D HTTP/1.1
 ```
