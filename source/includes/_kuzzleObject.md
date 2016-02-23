@@ -840,13 +840,11 @@ kuzzle.getStatistics("2015-11-15T13:36:45.558Z", new KuzzleResponseListener<JSON
 Kuzzle monitors active connections, and ongoing/completed/failed requests.  
 This method allows getting either the last statistics frame, or a set of frames starting from a provided timestamp.
 
-#### getStatistics([options], callback)
-
-#### getStatistics(timestamp, [options], callback)
+#### getStatistics([timestamp], [options], callback)
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
-| ``timestamp`` | Epoch time | Starting time from which the frames are to be retrieved |
+| ``timestamp`` | Epoch time | Optional starting time from which the frames are to be retrieved |
 | ``options`` | JSON object | Optional parameters |
 | ``callback`` | function | Callback handling the response |
 
@@ -1346,9 +1344,7 @@ kuzzle.setHeaders(headers, true);
 
 This is a helper function returning itself, allowing to easily chain calls.
 
-#### setHeaders(content)
-
-#### setHeaders(content, replace)
+#### setHeaders(content, [replace])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|

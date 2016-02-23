@@ -228,9 +228,7 @@ room.renew(terms, new ResponseListener<KuzzleNotificationResponse>() {
 Renew the subscription. Force a resubscription using the same filters if no new ones are provided.
 Unsubscribes first if this KuzzleRoom was already listening to events.
 
-#### renew(callback)
-
-#### renew(filters, callback)
+#### renew([filters], callback)
 
 
 | Arguments | Type | Description |
@@ -259,9 +257,7 @@ room.setHeaders(headers, true);
 
 This is a helper function returning itself, allowing to easily chain calls.
 
-#### setHeaders(content)
-
-#### setHeaders(content, replace)
+#### setHeaders(content, [replace])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
