@@ -21,13 +21,11 @@ var kuzzle = new Kuzzle('http://localhost:7512', function (err, res) {
 ```
 
 ```java
-JSONObject headers = new JSONObject();
-headers.put("someheader", "value");
-
 KuzzleOptions options = new KuzzleOptions();
-options.setDefaultIndex("some index");
-options.setAutoReconnect(true);
-options.setHeaders(headers);
+
+options.setDefaultIndex("some index")
+  .setAutoReconnect(true),
+  .setHeaders(new JSONObject().put("someheader", "value"));
 
 Kuzzle kuzzle = new Kuzzle("http://localhost:7512", options, new KuzzleResponseListener<Void>() {
  @Override
@@ -170,11 +168,11 @@ Here is the list of these special events:
 ```
 
 ```java
-  String listenerId = kuzzle.addListener(EventType.CONNECTED, new IKuzzleEventListener() {
-    @Override
-    public void trigger(Object... args) {
-      // Actions to perform when receiving a 'subscribed' global event
-    }
+String listenerId = kuzzle.addListener(KuzzleEvent.connected, new IKuzzleEventListener() {
+  @Override
+  public void trigger(Object... args) {
+    // Actions to perform when receiving a 'subscribed' global event
+  }
 });
 ```
 
@@ -211,25 +209,34 @@ kuzzle.checkTokenPromise(token)
 ```
 
 ```java
-// Not implemented yet
+kuzzle.checkToken("some jwt token", new KuzzleResponseListener<KuzzleTokenValidity>() {
+  @Override
+  public void onSuccess(KuzzleTokenValidity tokenInfo) {
+    if (tokenInfo.isValid()) {
+      // tokenInfo.getExpiresAt() returns the expiration timestamp
+    }
+    else {
+      // tokenInfo.getState() returns the invalidity reason
+    }
+  }
+});
 ```
 
-> Callback response:
+> Callback response if the token is valid:
 
 ```json
 {
-  "action": "checkToken",
-  "controller": "auth",
-  "error": null,
-  "metadata": {},
-  "requestId": "f2480825-d613-4629-aaee-918f417c03f2",
-  "result": {
-    "expiresAt": 1454588077399,
-    "valid": true
-  },
-  "scope": null,
-  "state": "done",
-  "status": 200
+  "expiresAt": 1454588077399,
+  "valid": true
+}
+```
+
+> Callback response if the token is invalid:
+
+```json
+{
+  "valid": false,
+  "state": "<invalidity reason>"
 }
 ```
 
@@ -237,10 +244,16 @@ Checks the validity of a JSON Web Token.
 
 #### checkToken(token, callback)
 
+<aside class="note">
+This method is non-queuable, meaning that during offline mode, it will be discarded and the callback will be called with an error.
+</aside>
+
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
 | ``token``    | string   | The token to check |
 | ``callback`` | function | Callback handling the response |
+
+**Note:** this method sends an unauthenticated API call to Kuzzle, meaning it ignores the JWT Token property, even if it has been set.
 
 #### Return value
 
@@ -248,10 +261,8 @@ Returns the `Kuzzle` object to allow chaining.
 
 #### Callback response
 
-Signature `error, response`. The response object contains a boolean `valid`
-attribute. If `valid` is `true`, the response contains an `expiresAt` attribute
-containing the expiration date and time (as Epoch time). Otherwise, the response
-contains a `state` string containing the reason why the token is invalid.
+A JSON object with a `valid` boolean property.  
+If the token is valid, a `expiresAt` property is set with the expiration timestamp. If not, a `state` property is set explaining why the token is invalid.
 
 ## connect
 
@@ -290,7 +301,7 @@ If a callback has been provided to the `Kuzzle` constructor, it will be called w
 KuzzleDataCollection collection = kuzzle.dataCollectionFactory("index", "collection");
 
 // or using a default index:
-kuzzle.setDefaultIndex('index');
+kuzzle.setDefaultIndex("index");
 KuzzleDataCollection collection = kuzzle.dataCollectionFactory("collection");
 ```
 
@@ -770,7 +781,7 @@ kuzzle.getStatistics(new KuzzleResponseListener<JSONObject>() {
   public void onError(JSONObject error) {
     // Handle error
   }
-};
+});
 ```
 
 > Callback response:
@@ -881,9 +892,9 @@ kuzzle
 ```
 
 ```java
-kuzzle.listCollections("index", new KuzzleResponseListener<JSONArray>() {
+kuzzle.listCollections("index", new KuzzleResponseListener<JSONObject>() {
   @Override
-  public void onSuccess(JSONArray object) {
+  public void onSuccess(JSONObject object) {
     // ...
   }
 
@@ -891,7 +902,7 @@ kuzzle.listCollections("index", new KuzzleResponseListener<JSONArray>() {
   public void onError(JSONObject error) {
     // Handle error
   }
-};
+});
 ```
 
 > Callback response:
@@ -958,7 +969,7 @@ kuzzle.listIndexes(new KuzzleResponseListener<String[]>() {
   public void onError(JSONObject error) {
     // Handle error
   }
-}
+});
 ```
 
 > Callback response:
@@ -1120,7 +1131,7 @@ kuzzle.now(new KuzzleResponseListener<Date>() {
   public void onError(JSONObject error) {
     // Handle error
   }
-};
+});
 ```
 
 > Callback response:
@@ -1174,7 +1185,7 @@ kuzzle
 QueryArgs args = new QueryArgs();
 args.controller = "read";
 args.action = "search";
-kuzzle.query(args, new JSONObject(), new KuzzleResponseListener() {
+kuzzle.query(args, new JSONObject(), new OnQueryDoneListener() {
   @Override
   public void onSuccess(JSONObject object) {
 
@@ -1184,7 +1195,7 @@ kuzzle.query(args, new JSONObject(), new KuzzleResponseListener() {
   public void onError(JSONObject error) {
     // Handle error
   }
-};
+});
 ```
 
 > Callback response:
@@ -1267,7 +1278,7 @@ kuzzle.removeAllListeners();
 
 ```java
 // Removes all listeners on the "unsubscribed" global event
-kuzzle.removeAllListeners(EventType.DISCONNECTED);
+kuzzle.removeAllListeners(KuzzleEvent.disconnected);
 
 // Removes all listeners on all global events
 kuzzle.removeAllListeners();
@@ -1288,7 +1299,7 @@ kuzzle.removeListener('disconnected', listenerId);
 ```
 
 ```java
-kuzzle.removeListener(EventType.DISCONNECTED, "listenerId");
+kuzzle.removeListener(KuzzleEvent.disconnected, "listenerId");
 ```
 
 Removes a listener from an event.
@@ -1336,8 +1347,7 @@ kuzzle.setHeaders({someContent: 'someValue'}, true);
 ```
 
 ```java
-JSONObject headers = new JSONObject();
-headers.put("someContent", "someValue");
+JSONObject headers = new JSONObject().put("someContent", "someValue");
 
 kuzzle.setHeaders(headers, true);
 ```
@@ -1360,11 +1370,11 @@ Returns the `Kuzzle` object to allow chaining.
 ## setJwtToken
 
 ```js
-kuzzle.setJwtToken("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWV9.TJVA95OrM7E2cBab30RMHrHDcEfxjoYZgeFONFh7HgQ");
+kuzzle.setJwtToken('some jwt token');
 ```
 
 ```java
-kuzzle.setJwtToken("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWV9.TJVA95OrM7E2cBab30RMHrHDcEfxjoYZgeFONFh7HgQ");
+kuzzle.setJwtToken("some jwt token");
 ```
 
 Set internal jwtToken which will be used to request kuzzle.
@@ -1418,45 +1428,31 @@ Returns the `Kuzzle` object to allow chaining.
 
 ```js
 // Using callbacks (NodeJS or Web Browser)
-kuzzle.whoAmI(function (err, res) {
-  // ...
+kuzzle.whoAmI(function (err, result) {
+  // "result" is a KuzzleUser object
 });
 
 // Using promises (NodeJS only)
 kuzzle.whoAmIPromise()
   .then(res => {
-    // ...
+    // "res" is a KuzzleUser object
   });
 ```
 
 ```java
-// Not implemented yet
+kuzzle.whoAmI(new KuzzleResponseListener<KuzzleUser>() {
+  @Override
+  public void onSuccess(KuzzleUser myself) {
+
+  }
+
+  @Override
+  public void onError(JSONObject error) {
+    
+  }
+});
 ```
 
-> Callback response:
-
-```json
-{
-  "action": "getCurrentUser",
-  "controller": "auth",
-  "error": null,
-  "metadata": {},
-  "requestId": "551be8c0-3663-4741-9711-250e704f6a56",
-  "result": {
-    "_id": "test",
-    "_source": {
-      "password": "8c4a804f73b8969c4526c82b28b72b036220e447",
-      "profile": {
-        "_id": "admin",
-        "roles": []
-      }
-    }
-  },
-  "scope": null,
-  "state": "done",
-  "status": 200
-}
-```
 Retrieves current user object.
 
 #### whoAmI(callback)
@@ -1471,4 +1467,4 @@ Returns the `Kuzzle` object to allow chaining.
 
 #### Callback response
 
-Signature `error, response`. The response contains the hydrated user object.
+An instanciated `KuzzleUser` object.
