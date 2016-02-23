@@ -12,6 +12,7 @@ includes:
   - introduction
   - authentication
   - insights
+  - miscellaneous
   - errors
 
 search: true

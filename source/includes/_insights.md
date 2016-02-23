@@ -1,21 +1,13 @@
 # Job Insights
 
-## Introdution
-
-What is this api for?
-
 ## Get Job Report
 
 ```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
 ```
 
 ```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
+curl "https://api.careerbuilder.com/consumer/job-insights/J12345678987654321"
+  -H "Authorization: Bearer YOUR_HAPPY_TOKEN"
 ```
 
 > The above command returns JSON structured like this:
@@ -39,19 +31,14 @@ curl "http://example.com/api/kittens"
 ]
 ```
 
-This endpoint retrieves all kittens.
+This enpoint will retrieve a summary report of all the applicants to a given job.
 
 ### HTTP Request
 
-`GET http://example.com/api/kittens`
+`GET https://api.careerbuilder.com/consumer/job-insights/{job-id}`
 
 ### Query Parameters
 
 Parameter | Default | Description
 --------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
+{job-id} | none | You must supply a job id in the url
