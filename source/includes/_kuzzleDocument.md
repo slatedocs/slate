@@ -308,9 +308,7 @@ document.setHeaders(headers, true);
 
 This is a helper function returning itself, allowing to easily chain calls.
 
-#### setHeaders(content)
-
-#### setHeaders(content, replace)
+#### setHeaders(content, [replace])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
@@ -354,14 +352,12 @@ KuzzleRoom room = document.subscribe(new ResponseListener<KuzzleNotificationResp
 Listens to changes occuring on this document.  
 Throws an error if this document has not yet been created in Kuzzle.
 
-#### subscribe(options, cb)
-
-#### subscribe(cb)
+#### subscribe([options], callback)
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
 | ``options`` | object | Subscription configuration. Passed to the KuzzleRoom constructor. |
-| ``cb`` | function | Callback that will be called each time a change has been detected on this document |
+| ``callback`` | function | Callback that will be called each time a change has been detected on this document |
 
 #### Return value
 

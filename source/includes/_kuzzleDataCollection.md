@@ -960,9 +960,7 @@ dataCollection.setHeaders(content, true);
 
 This is a helper function returning itself, allowing to easily set headers while chaining calls.
 
-#### setHeaders(content)
-
-#### setHeaders(content, replace)
+#### setHeaders(content, [replace])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|

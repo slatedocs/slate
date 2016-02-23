@@ -137,12 +137,12 @@ Calling this function will discard any uncommited changes. You can commit change
 
 Replaces the current content with the mapping stored in Kuzzle
 
-#### refresh([options], [callback])
+#### refresh([options], callback)
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
 | ``options`` | JSON Object | Optional parameters |
-| ``callback`` | function | Optional callback |
+| ``callback`` | function | Callback |
 
 Available options:
 
@@ -201,9 +201,7 @@ dataMapping.setHeaders(headers, true);
 
 This is a helper function returning itself, allowing to easily chain calls.
 
-#### setHeaders(content)
-
-#### setHeaders(content, replace)
+#### setHeaders(content, [replace])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
