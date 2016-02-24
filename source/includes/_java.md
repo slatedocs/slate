@@ -82,6 +82,18 @@ If you're deploying Scout APM for the first time, we recommend starting on a sta
 * (A) Set an environment variable on your server: `export APP_ENV=staging`
 * (B) OR use a system property (`-DAPP_ENV=staging`) when executing the Java call or JAVA_OPTS: `java -jar -DAPP_ENV=staging -javaagent:/full/path/to/scout-apm/scout-apm.jar`  
 
+## Java Agent Change Log
+
+```
+# 0.0.6
+* Add JAX-RS plugin
+
+# 0.0.5
+* Jedis (sendCommand) support
+* Jedis (sendCommand) support
+* Temporary remove background jobs from aggregration (wait for endpoint feature)
+```
+
 ## Questions / Getting Help
 
 Java Application monitoring is in beta. [Email us](mailto:support@scoutapp.com) with any questions about your framework and environment, or for help getting started.
