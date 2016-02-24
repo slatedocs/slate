@@ -34,6 +34,8 @@ var role = kuzzle.security.roleFactory('myrole', roleDefinition);
 ```
 
 ```java
+JSONObject content = new JSONObject();
+KuzzleRole role = new KuzzleRole(kuzzle.security, "role ID", content);
 ```
 
 Instantiates a new `KuzzleRole` object.
@@ -52,6 +54,9 @@ Instantiates a new `KuzzleRole` object.
 
 Returns the `KuzzleRole` object.
 
+## Properties
+
+There are no exposed properties for this object.
 
 ## delete
 
@@ -73,11 +78,24 @@ role
 ```
 
 ```java
+KuzzleRole role = kuzzle.security.getRole("roleID");
+
+role.delete(new KuzzleResponseListener<String>() {
+  @Override
+  public void onSuccess(String deletedId) {
+
+  }
+
+  @Override
+  public void onError(JSONObject error) {
+
+  }
+});
 ```
 
 Deletes the role from Kuzzle's database layer.
 
-#### delete([options, callback])
+#### delete([options], [callback])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
@@ -119,12 +137,27 @@ role
 ```
 
 ```java
+KuzzleRole role = kuzzle.security.getRole("roleID");
+
+// update the role definition
+
+role.save(new KuzzleResponseListener<KuzzleRole> {
+  @Override
+  public void onSuccess(KuzzleRole savedRole) {
+
+  }
+
+  @Override
+  public void onError(JSONObject error) {
+
+  }
+});
 ```
 
 Creates or replaces the role in Kuzzle's database layer.
 
 
-#### save([options, callback])
+#### save([options], [callback])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
@@ -144,6 +177,10 @@ Resolves to a `KuzzleRole` object.
 
 ## setContent
 
+<aside class="note">
+Updating a role content will have no impact until the <code>save</code> method is called
+</aside>
+
 ```js
 var role = kuzzle.security.getRole('myrole');
 var roleDefinition = {
@@ -154,6 +191,28 @@ role = role.setContent(roleDefinition);
 ```
 
 ```java
+KuzzleRole role = kuzzle.security.getRole("roleID");
+
+JSONObject roleDefinition = new JSONObject()
+  .put("indexes", new JSONObject()
+    .put("_canCreate", true)
+    .put("*", new JSONObject()
+      .put("collection", new JSONObject()
+        .put("_canCreate", true)
+        .put("*", new JSONObject()
+          .put("controllers", new JSONObject()
+            .put("*", new JSONObject()
+              .put("actions", new JSONObject()
+                .put("*", true)
+              )
+            )
+          )
+        )
+      )
+    )
+  );
+
+role.setContent(roleDefinition);
 ```
 
 Replaces the content of the `KuzzleRole` object.
