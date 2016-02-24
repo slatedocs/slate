@@ -206,6 +206,64 @@ Available options:
 
 Resolves to an hydrated `KuzzleUser` object.
 
+## update
+
+```js
+var updateContent = {
+  firstname: 'My Name Is',
+  lastname: 'Jonas'
+};
+
+// Using callbacks (NodeJS or Web Browser)
+user.update(updateContent, function(err, updatedUser) {
+  // the updatedUser variable is the updated KuzzleUser object
+})
+
+// Using promises (NodeJS)
+role
+  .updatePromise(updateContent)
+  .then(updatedUser => {
+    // the updatedUser variable is the updated KuzzleUser object
+  });
+```
+
+```java
+JSONObject updateContent = new JSONObject()
+  .put("firstname", "My Name Is")
+  .put("lastname", "Jonas");
+
+user.update(new KuzzleResponseListener<KuzzleUser>() {
+  @Override
+  public void onSuccess(KuzzleUser updatedUser) {
+
+  }
+
+  @Override
+  public void onError(JSONObject error) {
+
+  }
+});
+```
+
+Performs a partial content update on this object.
+
+#### update([options], [callback])
+
+| Arguments | Type | Description |
+|---------------|---------|----------------------------------------|
+| ``options`` | JSON Object | Optional parameters |
+| ``callback`` | function | Optional callback handling the response |
+
+Available options:
+
+| Option | Type | Description | Default |
+|---------------|---------|----------------------------------------|---------|
+| ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
+
+
+#### Callback response
+
+Resolves to the updated version of this object
 
 ## save
 

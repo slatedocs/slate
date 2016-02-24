@@ -234,6 +234,64 @@ Available options:
 Resolves to a `KuzzleProfile` object.
 
 
+## update
+
+```js
+var updateContent = {
+  profile: 'new profile'
+};
+
+// Using callbacks (NodeJS or Web Browser)
+profile.update(updateContent, function(err, updatedProfile) {
+  // the updatedProfile variable is the updated KuzzleProfile object
+})
+
+// Using promises (NodeJS)
+role
+  .updatePromise(updateContent)
+  .then(updatedProfile => {
+    // the updatedProfile variable is the updated KuzzleProfile object
+  });
+```
+
+```java
+JSONObject updateContent = new JSONObject()
+  .put("profile", "new profile");
+
+user.update(new KuzzleResponseListener<KuzzleProfile>() {
+  @Override
+  public void onSuccess(KuzzleProfile updatedProfile) {
+
+  }
+
+  @Override
+  public void onError(JSONObject error) {
+
+  }
+});
+```
+
+Performs a partial content update on this object.
+
+#### update([options], [callback])
+
+| Arguments | Type | Description |
+|---------------|---------|----------------------------------------|
+| ``options`` | JSON Object | Optional parameters |
+| ``callback`` | function | Optional callback handling the response |
+
+Available options:
+
+| Option | Type | Description | Default |
+|---------------|---------|----------------------------------------|---------|
+| ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
+
+
+#### Callback response
+
+Resolves to the updated version of this object
+
+
 ## save
 
 ```js

@@ -1078,6 +1078,204 @@ Available filters:
 
 Resolves to a JSON Object
 
+## updateProfile
+
+```js
+var newContent = { roles: ['other', 'roles']}
+
+// Using callbacks (NodeJS or Web Browser)
+kuzzle
+  .security
+  .updateProfile("profile ID", newContent, function (err, updatedProfile) {
+
+  });
+
+// Using promises (NodeJS)
+kuzzle
+  .security
+  .updateProfilePromise("profile ID", newContent)
+  .then(updatedProfile => {
+
+  });
+```
+
+```java
+JSONObject newContent = new JSONObject()
+  .put("roles", new JSONArray()
+    .put("other")
+    .put("roles")
+  );
+
+kuzzle
+  .security
+  .updateProfile("profile ID", newContent, new KuzzleResponseListener<KuzzleProfile>() {
+    @Override
+    public void onSuccess(KuzzleProfile profile) {
+
+    }
+
+    @Override
+    public void onError(JSONObject error) {
+
+    }
+  });
+```
+
+
+Performs a partial update on an existing profile.
+
+| Arguments | Type | Description |
+|---------------|---------|----------------------------------------|
+| ``id`` | string | Unique role identifier |
+| ``content`` | JSON Object | A plain javascript object representing the profile |
+| ``options`` | string | (Optional) Optional arguments |
+| ``callback`` | function | Callback handling the response |
+
+Available options:
+
+| Filter | Type | Description | Default |
+|---------------|---------|----------------------------------------|---------|
+| ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
+
+#### Callback response
+
+Resolves to the updated profile ID
+
+## updateRole
+
+```js
+var newContent = {
+  indexes: {
+    'some index': {
+      '_canCreate': false
+    }
+  }
+};
+
+// Using callbacks (NodeJS or Web Browser)
+kuzzle
+  .security
+  .updateRole("role ID", newContent, function (err, updatedRole) {
+
+  });
+
+// Using promises (NodeJS)
+kuzzle
+  .security
+  .updateRolePromise("profile ID", newContent)
+  .then(updatedRole => {
+
+  });
+```
+
+```java
+JSONObject newContent = new JSONObject()
+  .put("indexes", new JSONObject()
+    .put("some index", new JSONObject()
+      .put("_canCreate", false)
+    )
+  );
+
+kuzzle
+  .security
+  .updateRole("Role ID", newContent, new KuzzleResponseListener<KuzzleRole>() {
+    @Override
+    public void onSuccess(KuzzleRole role) {
+
+    }
+
+    @Override
+    public void onError(JSONObject error) {
+
+    }
+  });
+```
+
+
+Performs a partial update on an existing profile.
+
+| Arguments | Type | Description |
+|---------------|---------|----------------------------------------|
+| ``id`` | string | Unique role identifier |
+| ``content`` | JSON Object | A plain javascript object representing the role |
+| ``options`` | string | (Optional) Optional arguments |
+| ``callback`` | function | Callback handling the response |
+
+Available options:
+
+| Filter | Type | Description | Default |
+|---------------|---------|----------------------------------------|---------|
+| ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
+
+#### Callback response
+
+Resolves to the updated role ID
+
+
+## updateUser
+
+```js
+var newContent = {
+  firstname: 'My Name Is',
+  lastname: 'Jonas'
+};
+
+
+// Using callbacks (NodeJS or Web Browser)
+kuzzle
+  .security
+  .updateUser("User ID", newContent, function (err, updatedUser) {
+
+  });
+
+// Using promises (NodeJS)
+kuzzle
+  .security
+  .updateUserPromise("User ID", newContent)
+  .then(updatedUser => {
+
+  });
+```
+
+```java
+JSONObject newContent = new JSONObject()
+  .put("firstname", "My Name Is")
+  .put("lastname", "Jonas");
+
+kuzzle
+  .security
+  .updateUser("User ID", newContent, new KuzzleResponseListener<KuzzleUser>() {
+    @Override
+    public void onSuccess(KuzzleUser user) {
+
+    }
+
+    @Override
+    public void onError(JSONObject error) {
+
+    }
+  });
+```
+
+
+Performs a partial update on an existing profile.
+
+| Arguments | Type | Description |
+|---------------|---------|----------------------------------------|
+| ``id`` | string | Unique role identifier |
+| ``content`` | JSON Object | A plain javascript object representing the role |
+| ``options`` | string | (Optional) Optional arguments |
+| ``callback`` | function | Callback handling the response |
+
+Available options:
+
+| Filter | Type | Description | Default |
+|---------------|---------|----------------------------------------|---------|
+| ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
+
+#### Callback response
+
+Resolves to the updated user ID
 
 ## userFactory
 

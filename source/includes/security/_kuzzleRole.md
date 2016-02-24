@@ -109,6 +109,70 @@ Available options:
 
 Resolves to the id of the deleted role.
 
+## update
+
+```js
+var updateContent = {
+  indexes: {
+    'some index': {
+      '_canCreate': false
+    }
+  }
+};
+
+// Using callbacks (NodeJS or Web Browser)
+role.update(updateContent, function(err, updatedRole) {
+  // the updatedRole variable is the updated KuzzleRole object
+})
+
+// Using promises (NodeJS)
+role
+  .updatePromise(updateContent)
+  .then(updatedRole => {
+    // the updatedRole variable is the updated KuzzleRole object
+  });
+```
+
+```java
+JSONObject updateContent = new JSONObject()
+  .put("indexes", new JSONObject()
+    .put("some index", new JSONObject()
+      .put("_canCreate", false)
+    )
+  );
+
+role.update(new KuzzleResponseListener<KuzzleRole>() {
+  @Override
+  public void onSuccess(KuzzleRole updatedRole) {
+
+  }
+
+  @Override
+  public void onError(JSONObject error) {
+
+  }
+});
+```
+
+Performs a partial content update on this object.
+
+#### update([options], [callback])
+
+| Arguments | Type | Description |
+|---------------|---------|----------------------------------------|
+| ``options`` | JSON Object | Optional parameters |
+| ``callback`` | function | Optional callback handling the response |
+
+Available options:
+
+| Option | Type | Description | Default |
+|---------------|---------|----------------------------------------|---------|
+| ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
+
+
+#### Callback response
+
+Resolves to the updated version of this object
 
 ## save
 
