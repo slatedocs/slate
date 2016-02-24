@@ -20,9 +20,16 @@ var role = kuzzle.security.profileFactory('myprofile', profileDefinition);
 ```
 
 ```java
+JSONObject roles = new JSONObject()
+  .put("roles", new JSONArray()
+    .put("some role")
+    .put("some othe role")
+  );
+
+KuzzleProfile profile = new KuzzleProfile(kuzzle.security, "profileId", roles);
 ```
 
-Instantiates a new ̀`KuzzleProfile` object.
+Instantiates a new `KuzzleProfile` object.
 
 #### KuzzleProfile(KuzzleSecurity, id, content)
 
@@ -36,26 +43,34 @@ Instantiates a new ̀`KuzzleProfile` object.
 
 #### Return value
 
-Returns to the `KuzzleRole` object.
+Returns to the `KuzzleProfile` object.
+
+## Properties
+
+There are no exposed properties for this object.
 
 
 ## addRole
 
 ```js
-var role = kuzzle.security.getRole('myrole');
-var profile = kuzzle.security.getProfile('myprofile');
-
 // Passing a KuzzleRole object
-profile.addRole(role);
+profile.addRole(kuzzle.security.roleFactory("some role ID", {}));
 
 // Or by passing its id
 profile.addRole('myrole');
 ```
 
+```java
+profile.addRole("a role ID");
+
+// you may also add a KuzzleRole object directly
+profile.addRole(kuzzle.security.getRole("another role ID"));
+```
+
 Adds a role to the profile.
 
-<aside class="notice">
-If you are trying to bind roles which have not be saved before, an error will be thrown if you try to save or hydrate this object.
+<aside class="note">
+Updating a profile will have no impact until the <code>save</code> method is called
 </aside>
 
 #### addRole(id)
@@ -69,14 +84,12 @@ If you are trying to bind roles which have not be saved before, an error will be
 
 #### Return value
 
-Returns the `KuzzleRole` object.
+Returns the `KuzzleProfile` object to allow chaining calls.
 
 
 ## delete
 
 ```js
-var profile = kuzzle.security.getProfile('myprofile');
-
 // Using callbacks (NodeJS or Web Browser)
 profile
   .delete(function(error, result) {
@@ -92,9 +105,21 @@ profile
 ```
 
 ```java
+profile
+  .delete(new KuzzleResponseListener<String>() {
+    @Override
+    public void onSuccess(String deleteId) {
+
+    }
+
+    @Override
+    public void onError(JSONObject error) {
+
+    }
+  });
 ```
 
-Deletes the profile from Kuzzle's database layer.
+Deletes this profile from Kuzzle.
 
 #### delete([options, callback])
 
@@ -127,28 +152,47 @@ var profile = kuzzle.security.profileFactory('myprofile', profileDefinition);
 
 // Using callbacks (NodeJS or Web Browser)
 profile
-  .hydrate(function(error, result) {
-    // result is a KuzzleProfile object
+  .hydrate(function(error, hydratedProfile) {
+    // the result is a KuzzleProfile object
     // with hydrated roles as KuzzleRole
   });
 
 // Using promises (NodeJS)
 profile
   .hydratePromise()
-  .then((result) => {
-    // result is a KuzzleProfile object
+  .then(hydratedProfile => {
+    // the result is a KuzzleProfile object
     // with hydrated roles as KuzzleRole
   });
 ```
 
 ```java
+JSONObject roles = new JSONObject()
+  .put("roles", new JSONArray()
+    .put("myrole")
+    .put("default")
+  );
+
+KuzzleProfile profile = kuzzle.security.profileFactory("myprofile", roles);
+
+profile.hydrate(new KuzzleResponseListener<KuzzleProfile>() {
+  @Override
+  public void onSuccess(KuzzleProfile hydratedProfile) {
+    // the HydratedProfile now contains role definitions for each bound roles
+  }
+
+  @Override
+  public void onError(JSONObject error) {
+
+  }
+});
 ```
 
 Hydrates the KuzzleProfile object with its associated KuzzleRole.  
 Hydrating the object transforms the `roles` property from an array of role ids to an array of KuzzleRole objects.
 
 <aside class="warning">
-Hydrating the object will rise an error if the roles are not previously created in Kuzzle.
+Hydrating the object will rise an error if the bound roles have not yet been created in Kuzzle.
 </aside>
 
 #### hydrate([options], callback)
@@ -195,15 +239,33 @@ profile
 ```
 
 ```java
+JSONObject roles = new JSONObject()
+  .put("roles", new JSONArray()
+    .put("myrole")
+    .put("default")
+  );
+
+KuzzleProfile profile = kuzzle.security.profileFactory("myprofile", roles);
+
+profile.save(new KuzzleResponseListener<KuzzleProfile>() {
+  @Override
+  public void onSuccess(KuzzleProfile savedProfile) {
+
+  }
+
+  @Overrid public void onError(JSONObject error) {
+
+  }
+});
 ```
 
 Creates or replaces the profile in Kuzzle.
 
 <aside class="warning">
-Saving the object will rise an error if the roles are not previously created in Kuzzle.
+Saving the object will rise an error if the bound roles have not been previously created in Kuzzle.
 </aside>
 
-#### save([options, callback])
+#### save([options], [callback])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
@@ -218,10 +280,14 @@ Available options:
 
 #### Callback response
 
-Resolves to a `KuzzleRole` object.
+Resolves to a `KuzzleProfile` object.
 
 
 ## setContent
+
+<aside class="note">
+Updating a profile will have no impact until the <code>save</code> method is called
+</aside>
 
 ```js
 var profile = kuzzle.security.getProfile('myprofile');
@@ -235,9 +301,19 @@ profile = profile.setContent(profileDefinition);
 ```
 
 ```java
+JSONObject newRolesList = new JSONObject()
+  .put("roles", new JSONArray()
+    .put("a role ID")
+    .put("another role ID")
+    .put("this profile")
+    .put("has too many")
+    .put("roles in it")
+  );
+
+profile.setContent(newRolesList);
 ```
 
-Replaces the content of the `KuzzleRole` object.
+Replaces the content of the `KuzzleProfile` object.
 
 #### setContent(data)
 
@@ -247,25 +323,38 @@ Replaces the content of the `KuzzleRole` object.
 
 #### Return value
 
-Returns the `KuzzleRole` object.
+Returns the `KuzzleProfile` object.
 
 
 ## setRoles
 
+<aside class="note">
+Updating a profile will have no impact until the <code>save</code> method is called
+</aside>
+
 ```js
-var role = kuzzle.security.getRole('myrole');
-var profile = kuzzle.security.getProfile('myprofile');
+KuzzleRole role = kuzzle.security.roleFactory("roleId", {});
 
 // Replaces the profile roles set with the given entry.
 // The entry can be an array of KuzzleRole objects, an array of role ids or a mix of the two.
 profile.setRoles([role, 'default']);
 ```
 
+```java
+KuzzleRole
+  role1 = kuzzle.security.roleFactory("role1 ID", new JSONObject()),
+  role2 = kuzzle.security.roleFactory("role2 ID", new JSONObject()),
+  role3 = kuzzle.security.roleFactory("role3 ID", new JSONObject());
+
+// Binding role objects to a profile
+profile.setRoles({role1, role2, role3});
+
+// Binding role IDs to a profile
+profile.setRoles({"role1 ID", "role2 ID", "role3 ID"});
+```
+
 Replaces the roles associated to the profile.
 
-<aside class="notice">
-If you are trying to bind roles which have not been previously saved, an error will rise if you try to save or hydrate this object.
-</aside>
 
 #### setRoles(roles)
 
@@ -275,4 +364,4 @@ If you are trying to bind roles which have not been previously saved, an error w
 
 #### Return value
 
-Returns the `KuzzleRole` object.
+Returns the `KuzzleProfile` object.

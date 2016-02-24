@@ -61,25 +61,19 @@ There are no exposed properties for this object.
 ## delete
 
 ```js
-var role = kuzzle.security.getRole('myrole');
-
 // Using callbacks (NodeJS or Web Browser)
-role
-  .delete(function(error, result) {
-    // result is the id of deleted role
-  });
+role.delete(function(error, deletedId) {
+  // ...
+});
 
 // Using promises (NodeJS)
-role
-  .deletePromise()
-  .then((result) => {
-    // result is the id of deleted role
+role.deletePromise()
+  .then(deletedId => {
+    // ...
   });
 ```
 
 ```java
-KuzzleRole role = kuzzle.security.getRole("roleID");
-
 role.delete(new KuzzleResponseListener<String>() {
   @Override
   public void onSuccess(String deletedId) {
@@ -116,12 +110,6 @@ Resolves to the id of the deleted role.
 ## save
 
 ```js
-var roleDefinition = {
-  // define role definition
-};
-
-var role = kuzzle.security.roleFactory('myrole', roleDefinition);
-
 // Using callbacks (NodeJS or Web Browser)
 role
   .save(function(error, result) {
@@ -137,10 +125,6 @@ role
 ```
 
 ```java
-KuzzleRole role = kuzzle.security.getRole("roleID");
-
-// update the role definition
-
 role.save(new KuzzleResponseListener<KuzzleRole> {
   @Override
   public void onSuccess(KuzzleRole savedRole) {
@@ -182,17 +166,10 @@ Updating a role content will have no impact until the <code>save</code> method i
 </aside>
 
 ```js
-var role = kuzzle.security.getRole('myrole');
-var roleDefinition = {
-  // define new role definition
-};
-
 role = role.setContent(roleDefinition);
 ```
 
 ```java
-KuzzleRole role = kuzzle.security.getRole("roleID");
-
 JSONObject roleDefinition = new JSONObject()
   .put("indexes", new JSONObject()
     .put("_canCreate", true)
