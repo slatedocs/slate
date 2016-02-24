@@ -56,7 +56,10 @@ Returns the `KuzzleRole` object.
 
 ## Properties
 
-There are no exposed properties for this object.
+| Property name | Type | Description | get/set |
+|--------------|--------|-----------------------------------|---------|
+| `content` | JSON object | Raw role content | get |
+| `id` | string | Unique profile identifier | get |
 
 ## delete
 

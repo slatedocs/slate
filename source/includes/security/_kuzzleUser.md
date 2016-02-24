@@ -2,8 +2,6 @@
 
 KuzzleUser is the object representation of an user, which is associated to a KuzzleProfile
 
-
-
 ## Constructors
 
 ```js
@@ -11,29 +9,41 @@ KuzzleUser is the object representation of an user, which is associated to a Kuz
  Constructors are not exposed in the JS/Node SDK.
  KuzzleUser objects are returned by KuzzleSecurity.userFactory method:
  */
-var userContent = {
-  // Profile field is mandatory to bind user to an existing profile
-  // defaults profiles are 'anonymous', 'default' and 'admin'
-  profile: 'admin',
+ var userContent = {
+   // A "profile" field is required to bind a user to an existing profile
+   profile: 'admin',
 
-  // To allow user to login with plugin 'kuzzle-plugin-auth-passport-local'
-  // users must have a 'password' field, which will be hashed by the plugin
-  password: 'secretPassword',
+   // The "local" authentication strategy requires a password
+   password: 'secretPassword',
 
-  // You can also set custom fields to your user
-  firstname: 'John',
-  lastname: 'Doe'
-};
+   // You can also set custom fields to your user
+   firstname: 'John',
+   lastname: 'Doe'
+ };
 
 var user = kuzzle.security.userFactory('myuser', userContent);
 ```
 
 ```java
+JSONObject userContent = new JSONObject()
+  // A "profile" field is required to bind a user to an existing profile
+  .put("profile", "admin")
+  // The "local" authentication strategy requires a password
+  .put("password", "secret password")
+  // You can also set custom fields to your user
+  .put("firstname", "John")
+  .put("lastname", "Doe");
+
+// Using the KuzzleSecurity factory:
+KuzzleUser user = kuzzle.security.userFactory("user ID", userContent);
+
+// Or directly with the constructor:
+KuzzleUser user = new KuzzleUser(kuzzle.security, "user ID", userContent);
 ```
 
 Instantiate a new KuzzleUser object.
 
-#### KuzzleRole(KuzzleSecurity, id, content)
+#### KuzzleUser(KuzzleSecurity, id, content)
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
@@ -47,12 +57,16 @@ Instantiate a new KuzzleUser object.
 
 Returns the `KuzzleUser` object.
 
+## Properties
+
+| Property name | Type | Description | get/set |
+|--------------|--------|-----------------------------------|---------|
+| `content` | JSON object | Raw user content | get |
+| `id` | string | Unique profile identifier | get |
 
 ## delete
 
 ```js
-var user = kuzzle.security.getUser('myuser');
-
 // Using callbacks (NodeJS or Web Browser)
 user
   .delete(function(error, result) {
@@ -68,9 +82,19 @@ user
 ```
 
 ```java
+user.delete(new KuzzleResponseListener<String>() {
+  @Override
+  public void onSuccess(String deletedId) {
+
+  }
+
+  @Override public void onError(JSONObject error) {
+
+  }
+});
 ```
 
-Delete the user in Kuzzle
+Deletes the user in Kuzzle
 
 #### delete([options, callback])
 
@@ -87,8 +111,28 @@ Available options:
 
 #### Callback response
 
-Resolves the id of deleted user.
+Resolves to a `String` containing the deleted user ID
 
+## getProfiles
+
+```js
+for (profile of user.getProfiles()) {
+  // profile can either be a profile ID if the object has not been hydrated,
+  // or a KuzzleProfile object otherwise
+}
+```
+
+```java
+for(KuzzleProfile profile : user.getProfiles()) {
+  // if this object has not been hydrated, the profile object has no content
+}
+```
+
+Returns this user associated profiles.
+
+#### Return value
+
+Returns an array of associated profiles
 
 ## hydrate
 
@@ -118,9 +162,28 @@ user
 ```
 
 ```java
+JSONObject userContent = new JSONObject()
+  .put("profile", new JSONArray()
+    .put("myprofile")
+  );
+
+KuzzleUser = kuzzle.security.userFactory("myuser", userContent);
+
+user.hydrate(new KuzzleResponseListener<KuzzleUser>() {
+  @Override
+  public void onSuccess(KuzzleUser user) {
+
+  }
+
+  @Override
+  public void onError(JSONObject error) {
+
+  }
+});
 ```
 
-Hydrate KuzzleUser with associated KuzzleProfile
+Hydrates this KuzzleUser object with its associated KuzzleProfile object
+Hydrating the object transforms the internal profile ID with an instanciated KuzzleProfile object
 
 <aside class="warning">
 Hydrating this object can rise an error if the associated profile is not created in Kuzzle
@@ -141,18 +204,12 @@ Available options:
 
 #### Callback response
 
-Resolves to a `KuzzleUser` object.
+Resolves to an hydrated `KuzzleUser` object.
 
 
 ## save
 
 ```js
-var userContent = {
-  // define users properties
-};
-
-var user = kuzzle.security.userFactory('myuser', userContent);
-
 // Using callbacks (NodeJS or Web Browser)
 user
   .save(function(error, result) {
@@ -168,6 +225,17 @@ user
 ```
 
 ```java
+user.save(new KuzzleResponseListener<KuzzleUser>() {
+  @Override
+  public void onSuccess(KuzzleUser user) {
+
+  }
+
+  @Override
+  public void onError(JSONObject error) {
+
+  }
+});
 ```
 
 Create or replace the user in kuzzle
@@ -206,9 +274,19 @@ user = user.setContent(userContent);
 ```
 
 ```java
+JSONObject newContent = new JSONObject()
+  .put("profile", new JSONArray()
+    .put("another profile id")
+  );
+
+user.setContent(newContent);
 ```
 
-Replace the content of KuzzleUser
+<aside class="note">
+Updating an user will have no impact until the <code>save</code> method is called
+</aside>
+
+Replaces the content of KuzzleUser
 
 #### setContent(data)
 
@@ -224,19 +302,32 @@ Returns the `KuzzleUser` object.
 ## setProfile
 
 ```js
-var profile = kuzzle.security.getProfile('myprofile');
-var user = kuzzle.security.getUser('myuser');
+var profile = kuzzle.security.profileFactory('myprofile', { roles: ["role ID"]});
 
-// Can set the profile directly with a KuzzleRole object
+// Can set the profile directly with a KuzzleProfile object
 user.setProfile(profile);
 
 // Or by passing it's id
 user.setProfile('myprofile');
 ```
 
-<aside class="notice">
-If you are trying to bind a profile which have not be saved before, an error will rise if you try to save or hydrate this object.
+```java
+JSONObject newProfile = new JSONObject()
+  .put("profile", new JSONArray()
+    .put("another profile id")
+  );
+
+// Updating the profile with a KuzzleProfile object
+user.setProfile(newProfile);
+
+// Updating the profile with a profile ID
+user.setProfile("new profile ID");
+```
+
+<aside class="note">
+Updating an user will have no impact until the <code>save</code> method is called
 </aside>
+
 
 Replace the profile associated to the user
 

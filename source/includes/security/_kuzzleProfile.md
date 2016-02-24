@@ -47,8 +47,10 @@ Returns to the `KuzzleProfile` object.
 
 ## Properties
 
-There are no exposed properties for this object.
-
+| Property name | Type | Description | get/set |
+|--------------|--------|-----------------------------------|---------|
+| `content` | JSON object | Raw profile content | get |
+| `id` | string | Unique profile identifier | get |
 
 ## addRole
 
@@ -138,6 +140,25 @@ Available options:
 
 Resolves to the id of deleted profile.
 
+## getRoles
+
+```js
+for (role of profile.getRoles()) {
+  // role can be either a string (the role ID) or a full KuzzleRole object
+}
+```
+
+```java
+for(KuzzleRole role : profile.getRoles()) {
+  // the role object can have no content, if the profile has not been hydrated
+}
+```
+
+Returns this profile associated roles.
+
+#### Return value
+
+An array of associated roles
 
 ## hydrate
 
