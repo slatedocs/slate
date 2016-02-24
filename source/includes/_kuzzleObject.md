@@ -1335,6 +1335,10 @@ Replays the requests queued during offline mode. Works only if the SDK is not in
 
 Returns the `Kuzzle` object to allow chaining.
 
+## security
+
+A static `KuzzleSecurity` instance
+
 ## setDefaultIndex
 
 ```js

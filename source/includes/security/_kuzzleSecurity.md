@@ -26,7 +26,24 @@ var kuzzleSecurity = kuzzle.security;
 ```
 
 ```java
+// using the static instance
+KuzzleSecurity security = kuzzle.security;
+
+// or instanciating a new KuzzleSecurity object
+KuzzleSecurity security = new KuzzleSecurity(kuzzle);
 ```
+
+#### KuzzleSecurity(Kuzzle)
+
+| Arguments | Type | Description |
+|---------------|---------|----------------------------------------|
+| `Kuzzle` | object | An instanciated `Kuzzle` object |
+
+
+## Properties
+
+There are no exposed properties for this object.
+
 
 ## createRole
 
@@ -73,6 +90,40 @@ kuzzle
 ```
 
 ```java
+JSONObject roleDefinition = new JSONObject()
+  .put("indexes", new JSONObject()
+    .put("_canCreate", true)
+    .put("*", new JSONObject()
+      .put("collection", new JSONObject()
+        .put("_canCreate", true)
+        .put("*", new JSONObject()
+          .put("controllers", new JSONObject()
+            .put("*", new JSONObject()
+              .put("actions", new JSONObject()
+                .put("*", true)
+              )
+            )
+          )
+        )
+      )
+    )
+  );
+
+KuzzleOptions opts = new KuzzleOptions().setReplaceIfExist(true);
+
+kuzzle
+  .security
+  .createRole("myrole", roleDefinition, opts, new KuzzleResponseListener<KuzzleRole>() {
+    @Override
+    public void onSuccess(KuzzleRole role) {
+      // the result is an instanciated KuzzleRole object
+    }
+
+    @Override
+    public void onError(JSONObject error) {
+
+    }
+  })
 ```
 
 Create a new role in Kuzzle.
@@ -130,6 +181,25 @@ kuzzle
 ```
 
 ```java
+JSONObject roles = new JSONArray()
+  .put("myrole")
+  .put("default");
+
+KuzzleOptions opts = new KuzzleOptions().setReplaceIfExist(true);
+
+kuzzle
+  .security
+  .createProfile("myprofile", roles, opts, new KuzzleResponseListener<KuzzleProfile>() {
+    @Override
+    public void onSuccess(KuzzleProfile profile) {
+
+    }
+
+    @Override
+    public void onError(JSONObject error) {
+
+    }
+  });
 ```
 
 Create a new profile in Kuzzle.
@@ -164,12 +234,10 @@ Resolves to a `KuzzleProfile` object.
 
 ```js
 var userContent = {
-  // Profile field is mandatory to bind user to an existing profile
-  // defaults profiles are 'anonymous', 'default' and 'admin'
+  // A "profile" field is required to bind a user to an existing profile
   profile: 'admin',
 
-  // To allow user to login with plugin 'kuzzle-plugin-auth-passport-local'
-  // users must have a 'password' field, which will be hashed by the plugin
+  // The "local" authentication strategy requires a password
   password: 'secretPassword',
 
   // You can also set custom fields to your user
@@ -200,6 +268,30 @@ kuzzle
 ```
 
 ```java
+JSONObject newUser = new JSONObject()
+  // A "profile" field is required to bind a user to an existing profile
+  .put("profile", "admin")
+  // The "local" authentication strategy requires a password
+  .put("password", "secret password")
+  // You can also set custom fields to your user
+  .put("firstname", "John")
+  .put("lastname", "Doe");
+
+KuzzleOptions opts = new KuzzleOptions().setReplaceIfExist(true);
+
+kuzzle
+  .security
+  .createUser("myNewUser", newUser, opts, new KuzzleResponseListener<KuzzleUser>() {
+    @Override
+    public void onSuccess(KuzzleUser user) {
+
+    }
+
+    @Override
+    public void onError(JSONObject error) {
+
+    }
+  });
 ```
 
 Create a new user in Kuzzle.
@@ -251,6 +343,19 @@ kuzzle
 ```
 
 ```java
+kuzzle
+  .security
+  .deleteProfile("myprofile", new KuzzleResponseListener<String>() {
+    @Override
+    public void onSuccess(String profileName) {
+
+    }
+
+    @Override
+    public void onError(JSONObject error) {
+
+    }
+  });
 ```
 
 Delete profile.
@@ -260,7 +365,7 @@ There is a small delay between profile deletion and their deletion in our advanc
 That means that a profile that was just been delete will be returned by <code>searchProfiles</code> function
 </aside>
 
-#### deleteProfile(id, [options, callback])
+#### deleteProfile(id, [options], [callback])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
@@ -298,6 +403,19 @@ kuzzle
 ```
 
 ```java
+kuzzle
+  .security
+  .deleteRole("myrole", new KuzzleResponseListener<String>() {
+    @Override
+    public void onSuccess(String roleName) {
+
+    }
+
+    @Override
+    public void onError(JSONObject error) {
+
+    }
+  });
 ```
 
 Delete role.
@@ -307,7 +425,7 @@ There is a small delay between role deletion and their deletion in our advanced 
 That means that a role that was just been delete will be returned by <code>searchRoles</code> function
 </aside>
 
-#### deleteRole(id, [options, callback])
+#### deleteRole(id, [options], [callback])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
@@ -346,6 +464,19 @@ kuzzle
 ```
 
 ```java
+kuzzle
+  .security
+  .deleteUser("myuser", new KuzzleResponseListener<String>() {
+    @Override
+    public void onSuccess(String userName) {
+
+    }
+
+    @Override
+    public void onError(JSONObject error) {
+
+    }
+  });
 ```
 
 Delete user.
@@ -355,7 +486,7 @@ There is a small delay between user deletion and their deletion in our advanced 
 That means that a user that has just been delete will be returned by <code>searchUsers</code> function
 </aside>
 
-#### deleteUser(id, [options, callback])
+#### deleteUser(id, [options], [callback])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
@@ -393,6 +524,21 @@ kuzzle
 ```
 
 ```java
+KuzzleOptions opts = new KuzzleOptions().setHydrate(true);
+
+kuzzle
+  .security
+  .getRole("myrole", opts, new KuzzleResponseListener<KuzzleRole>() {
+    @Override
+    public void onSuccess(KuzzleRole role) {
+
+    }
+
+    @Override
+    public void onError(JSONObject error) {
+
+    }
+  });
 ```
 
 Retrieves a single stored role using its unique ID.
@@ -436,11 +582,26 @@ kuzzle
 ```
 
 ```java
+KuzzleOptions opts = new KuzzleOptions().setHydrate(true);
+
+kuzzle
+  .security
+  .getProfile("myprofile", opts, new KuzzleResponseListener<KuzzleProfile>() {
+    @Override
+    public void onSuccess(KuzzleProfile profile) {
+
+    }
+
+    @Override
+    public void onError(JSONObject error) {
+
+    }
+  });
 ```
 
 Retrieves a single stored profile using its unique ID.
 
-#### getProfile(id, options, callback)
+#### getProfile(id, [options], callback)
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
@@ -480,11 +641,26 @@ kuzzle
 ```
 
 ```java
+KuzzleOptions opts = new KuzzleOptions().setHydrate(true);
+
+kuzzle
+  .security
+  .getUser("myuser", opts, new KuzzleResponseListener<KuzzleUser>() {
+    @Override
+    public void onSuccess(KuzzleUser user) {
+
+    }
+
+    @Override
+    public void onError(JSONObject error) {
+
+    }
+  });
 ```
 
 Retrieves a single stored user using its unique ID.
 
-#### getUser(id, callback)
+#### getUser(id, [options], callback)
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
@@ -513,10 +689,12 @@ var profileDefinition = {
   ]
 };
 
-var role = kuzzle.security.profileFactory('myprofile', profileDefinition);
+var profile = kuzzle.security.profileFactory('myprofile', profileDefinition);
 ```
 
 ```java
+JSONArray profileDefinition = new JSONArray().put("myrole").put("default");
+KuzzleProfile profile = kuzzle.security.profileFactory("myprofile", profileDefinition);
 ```
 
 Instantiate a new KuzzleProfile object.
@@ -560,6 +738,26 @@ var role = kuzzle.security.roleFactory('role', roleDefinition);
 ```
 
 ```java
+JSONObject roleDefinition = new JSONObject()
+  .put("indexes", new JSONObject()
+    .put("_canCreate", true)
+    .put("*", new JSONObject()
+      .put("collection", new JSONObject()
+        .put("_canCreate", true)
+        .put("*", new JSONObject()
+          .put("controllers", new JSONObject()
+            .put("*", new JSONObject()
+              .put("actions", new JSONObject()
+                .put("*", true)
+              )
+            )
+          )
+        )
+      )
+    )
+  );
+
+KuzzleRole role = kuzzle.security.roleFactory("myrole", roleDefinition);
 ```
 
 Instantiate a new `KuzzleRole` object.
@@ -590,28 +788,57 @@ var filters = {
 // Using callbacks (NodeJS or Web Browser)
 kuzzle
   .security
-  .searchProfiles(filters, true, function(error, result) {
+  .searchProfiles(filters, {hydrate: true}, function(error, result) {
     // result is a JSON Object
   });
 
 // Using promises (NodeJS)
 kuzzle
   .security
-  .searchProfilesPromise(filters, true)
+  .searchProfilesPromise(filters, {hydrate: true})
   .then((result) => {
     // result is a JSON Object
   });
 ```
 
 ```java
+JSONObject filters = new JSONObject()
+  // filter can contains a "roles" array with a list of role IDs
+  .put("roles", new JSONArray().put("myrole", "admin"))
+  // search results can be paginated
+  .put("from", 0)
+  .put("size", 10);
+
+KuzzleOptions opts = new KuzzleOptions().setHydrate(false);
+
+kuzzle
+  .security
+  .searchProfiles(filters, opts, new KuzzleResponseListener<KuzzleSecurityDocumentList>() {
+    @Override
+    public void onSuccess(KuzzleSecurityDocumentList profiles) {
+      // Contains a profiles list
+      for(KuzzleProfile profile : profiles.getDocuments()) {
+
+      }
+
+      // And the total number of profiles, regardless of pagination
+      profiles.getTotal();
+    }
+
+    @Override
+    public void onError(JSONObject error) {
+
+    }
+  });
+
 ```
 
 > Callback response:
 
-```js
+```json
 {
-  total: 124,
-  documents: [
+  "total": 124,
+  "documents": [
     // array of KuzzleProfile
   ]
 }
@@ -673,20 +900,57 @@ var filter = {
 // Using callbacks (NodeJS or Web Browser)
 kuzzle
   .security
-  .searchUsers(filters, true, function(error, result) {
+  .searchUsers(filters, {hydrate: true}, function(error, result) {
     // result is a JSON Object
   });
 
 // Using promises (NodeJS)
 kuzzle
   .security
-  .searchUsersPromise(filters, true)
+  .searchUsersPromise(filters, {hydrate: true})
   .then((result) => {
     // result is a JSON Object
   });
 ```
 
 ```java
+JSONObject filter = new JSONObject()
+  .put("filter", new JSONObject()
+    .put("and", new JSONArray()
+      .put("terms", new JSONObject()
+        .put("profile", new JSONArray().put("anonymous").put("default"))
+      )
+      .put("geo_distance", new JSONObject()
+        .put("distance", "10km")
+        .put("pos", new JSONObject()
+          .put("lat", "48.8566140")
+          .put("lon", "2.352222")
+        )
+      )
+    )    
+  );
+
+KuzzleOptions opts = new KuzzleOptions().setHydrate(false);
+
+kuzzle
+  .security
+  .searchUsers(filters, opts, new KuzzleResponseListener<KuzzleSecurityDocumentList>() {
+    @Override
+    public void onSuccess(KuzzleSecurityDocumentList users) {
+      // users.getDocuments() returns an users list
+      for(KuzzleUser user : users.getDocuments()) {
+
+      }
+
+      // users.getTotal() returns the number of matched users, regardless of pagination
+      users.getTotal();
+    }
+
+    @Override
+    public void onError(JSONObject error) {
+
+    }
+  });
 ```
 
 > Callback response:
@@ -750,6 +1014,29 @@ kuzzle
 ```
 
 ```java
+JSONObject filter = new JSONObject()
+  .put("indexes", new JSONArray()
+    .put("index")
+    .put("index2")
+  )
+  .put("from", 0)
+  .put("size", 10);
+
+
+kuzzle
+  .security
+  .searchRoles(filter, new KuzzleResponseListener<KuzzleSecurityDocumentList>() {
+    @Override
+    public void onSuccess(KuzzleSecurityDocumentList roles) {
+      // roles.getDocuments() returns a roles list
+      for(KuzzleRole role : roles.getDocuments()) {
+
+      }
+
+      // roles.getTotal() returns the number of matched roles, regardless of pagination
+      roles.getTotal();
+    }
+  });
 ```
 
 > Callback response:
@@ -796,12 +1083,10 @@ Resolves to a JSON Object
 
 ```js
 var userContent = {
-  // Profile field is mandatory to bind user to an existing profile
-  // defaults profiles are 'anonymous', 'default' and 'admin'
-  profile: 'admin',
+  // A "profile" field is required to bind a user to an existing profile
+  profile: 'some profile',
 
-  // To allow user to login with plugin 'kuzzle-plugin-auth-passport-local'
-  // users must have a 'password' field, which will be hashed by the plugin
+  // The "local" authentication strategy requires a password
   password: 'secretPassword',
 
   // You can also set custom fields to your user
@@ -813,6 +1098,16 @@ var user = kuzzle.security.userFactory('myuser', userContent);
 ```
 
 ```java
+JSONObject userContent = new JSONObject()
+    // A "profile" field is required to bind a user to an existing profile
+    .put("profile", "some profile")
+    // The "local" authentication strategy requires a password
+    .put("password", "a password")
+    // You can also set custom fields to your user
+    .put("firstname", "John")
+    .put("lastname", "Doe");
+
+KuzzleUser user = kuzzle.security.userFactory("userId", userContent);  
 ```
 
 Instantiate a new KuzzleUser object.
