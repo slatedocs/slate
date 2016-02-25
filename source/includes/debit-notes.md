@@ -6,7 +6,7 @@
 
 `POST /debit-notes/issue`
 
-<h3 id="requerimiento-nota-credito">Requerimiento</h3>
+<h3 id="requerimiento-nota-debito">Requerimiento</h3>
 
 > #### Requerimiento de ejemplo
 
@@ -100,7 +100,8 @@ nota_debito = {
         "base_imponible":4359.54,
         "valor":523.14,
         "codigo":"2",
-        "codigo_porcentaje":"2"
+        "codigo_porcentaje":"2",
+        "tarifa": 12.0
       }
     ],
     "importe_total":4882.68
@@ -182,7 +183,8 @@ namespace DatilClient {
               ""base_imponible"":0.0,
               ""valor"":0.0,
               ""codigo"":""2"",
-              ""codigo_porcentaje"":""0""
+              ""codigo_porcentaje"":""0"",
+              ""tarifa"": 12.0
             },
             {
               ""base_imponible"":4359.54,
@@ -262,7 +264,17 @@ Parámetro           | Tipo                    | Descripción
 ------------------- | ----------------------- |-----------
 total_sin_impuestos | float | Total antes de los impuestos. __Requerido__
 importe_total       | float | Total incluyendo impuestos. __Requerido__
-impuestos           | listado de objetos [total impuesto](#total-impuesto) | Listado de impuesto totalizados. __Requerido__
+impuestos           | listado de objetos [impuesto](#impuesto-nota-debito) | Impuestos aplicados al total de cargos. __Requerido__
+
+<h4 id="impuesto-nota-debito">Impuesto</h4>
+
+Parámetro | Tipo | Descripción
+--------- | ---- |-----------
+codigo | string | Código del [tipo de impuesto](#tipos-de-impuesto)
+codigo_porcentaje | string | Código del porcentaje.
+base_imponible | float | Base imponible.
+valor | float | Valor del total.
+tarifa | float | Porcentaje actual del impuesto expresado por un número entre 0.0 y 100.0
 
 <!--aside class="success">
 Remember — a happy kitten is an authenticated kitten!
@@ -304,13 +316,15 @@ Remember — a happy kitten is an authenticated kitten!
         "base_imponible": 0.0,
         "valor": 0.0,
         "codigo": "2",
-        "codigo_porcentaje": "0"
+        "codigo_porcentaje": "0",
+        "tarifa": 0.0
       },
       {
         "base_imponible": 4359.54,
         "valor": 523.14,
         "codigo": "2",
-        "codigo_porcentaje": "2"
+        "codigo_porcentaje": "2",
+        "tarifa": 12.0
       }
     ],
     "importe_total": 4882.68,
