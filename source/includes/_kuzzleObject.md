@@ -1047,10 +1047,14 @@ kuzzle.login("local", credentials, 30000, new KuzzleResponseListener<JSONObject>
 
 Log a user according to a strategy and credentials.
 
-If the Kuzzle response contains a JWT Token, the SDK token will be set and the `loginAttempt` event is fired immediately.  
+If the Kuzzle response contains a JWT Token, the SDK token will be set and the `loginAttempt` event is fired immediately with the following object:  
+`{ success: true }`  
 This is the case, for instance, with the `local` authentication strategy.
 
-If there is no token, then it means that the chosen strategy is a two-steps authentication method, like OAUTH. In that case, the `loginAttempt` event is **not** fired. To complete the login attempt, the `setJwtToken` method must be called either with a token or with an appropriate Kuzzle response.
+If the request succeeds but there is no token, then it means that the chosen strategy is a two-steps authentication method, like OAUTH. In that case, the `loginAttempt` event is **not** fired. To complete the login attempt, the `setJwtToken` method must be called either with a token or with an appropriate Kuzzle response.
+
+If the login attempt fails, the `loginAttempt` event is fired with the following response:  
+`{ success: false, error: 'error message' }`
 
 #### login(strategy, credentials, [expiresIn], [callback])
 
@@ -1424,8 +1428,8 @@ Sets the internal JWT token which will be used to request kuzzle.
 If the provided token is correct, a `loginAttempt` event is fired with the following object:  
 `{ success: true }`
 
-If not, the `loginAttempt` event is fired with response:  
-`{ success: false, error: 'invalidity reason' }`
+If not, the `loginAttempt` event is fired with the following response:  
+`{ success: false, error: 'error message' }`
 
 #### setJwtToken(jwtToken)
 
