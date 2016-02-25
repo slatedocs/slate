@@ -155,6 +155,7 @@ Here is the list of these special events:
 | ``disconnected`` | Fired when the current session has been unexpectedly disconnected |
 | ``error`` | Fired when the SDK has failed to connect to Kuzzle. Does not trigger offline mode. |
 | ``jwtTokenExpired`` | Fired when Kuzzle rejected a request because the authentication token expired.<br>Provides the request and its associated callback to the listener |
+| ``loginAttempt`` | Fired when a login attempt completes, either with a success or a failure result.<br>Provides a JSON object with the login status to the listener (see the `login` method documentation)|
 | ``reconnected`` | Fired when the current session has reconnected to Kuzzle after a disconnection, and only if ``autoReconnect`` is set to ``true`` |
 
 **Note:** listeners are called in the order of their insertion.
@@ -1010,22 +1011,30 @@ This method is non-queuable, meaning that during offline mode, it will be discar
 </aside>
 
 ```js
+// Expiration time is expressed as a string following the
+// time conversion library: https://www.npmjs.com/package/ms
+ var expiresIn = "1h";
+
 // Using callbacks (NodeJS or Web Browser)
-kuzzle.login("local", {username: "username", password: "password"}, "1h", function (err, res) {
+kuzzle.login("local", {username: "username", password: "password"}, expiresIn, function (err, res) {
   // ...
 });
 
 // Using promises (NodeJS only)
-kuzzle.loginPromise("local", {username: "username", password: "password"}, "1h")
+kuzzle.loginPromise("local", {username: "username", password: "password"}, expiresIn)
   .then(res => {
     // ...
   });
 ```
 
 ```java
-kuzzle.login("local", "username", "password", 30000, new KuzzleResponseListener<Void>() {
+JSONObject credentials = new JSONObject()
+  .put("username", "John Doe")
+  .put("password", "my secret password");
+
+kuzzle.login("local", credentials, 30000, new KuzzleResponseListener<JSONObject>() {
   @Override
-  public void onSuccess(Void result) {
+  public void onSuccess(JSONObject result) {
     // ...
   }
 
@@ -1036,7 +1045,12 @@ kuzzle.login("local", "username", "password", 30000, new KuzzleResponseListener<
 });
 ```
 
-Log a user according to the strategy and credentials.
+Log a user according to a strategy and credentials.
+
+If the Kuzzle response contains a JWT Token, the SDK token will be set and the `loginAttempt` event is fired immediately.  
+This is the case if, for instance, with the `local` authentication strategy.
+
+If there is no token, then it means that the chosen strategy is a two-steps authentication method, like OAUTH. In that case, the `loginAttempt` event is **not** fired. To complete the login attempt, the `setJwtToken` method must be called either with a token or with an appropriate Kuzzle response.
 
 #### login(strategy, credentials, [expiresIn], [callback])
 
@@ -1044,7 +1058,7 @@ Log a user according to the strategy and credentials.
 |---------------|---------|----------------------------------------|
 | ``strategy`` | string | Authentication strategy (local, facebook, github, ...) |
 | ``credentials`` | JSON object | Login credentials, depending on the strategy |
-| ``expiresIn`` | string | Login expiration time, following this [time conversion library](https://www.npmjs.com/package/ms) |
+| ``expiresIn`` | \<varies\> | Login expiration time |
 | ``callback`` | function | Optional callback handling the response |
 
 **Note:** If the ``expiresIn`` argument is not set, the default token expiration value will be taken from the Kuzzle server configuration.
@@ -1382,21 +1396,47 @@ Returns the `Kuzzle` object to allow chaining.
 ## setJwtToken
 
 ```js
+// Directly with a JWT Token
 kuzzle.setJwtToken('some jwt token');
+
+/*
+ Or with a Kuzzle response.
+ For instance, the final OAUTH2 response is obtained with a redirection from Kuzzle,
+ and it can be provided to this method directly
+ */
+kuzzle.setJwtToken(authenticationResponse);
 ```
 
 ```java
+// Directly with a JWT Token
 kuzzle.setJwtToken("some jwt token");
+
+/*
+ Or with a Kuzzle response.
+ For instance, the final OAUTH2 response is obtained with a redirection from Kuzzle,
+ and it can be provided to this method directly.
+
+ Here, "authenticationResponse" is an instance of JSONObject
+ */
+kuzzle.setJwtToken(authenticationResponse)
 ```
 
-Set internal jwtToken which will be used to request kuzzle.
-Used to restore previous kuzzle logged connection.
+Sets the internal JWT token which will be used to request kuzzle.
+
+If the provided token is correct, a `loginAttempt` event is fired with the following object:  
+`{ success: true }`
+
+If not, the `loginAttempt` event is fired with response:  
+`{ success: false, error: 'invalidity reason' }`
 
 #### setJwtToken(jwtToken)
+
+#### setJwtToken(kuzzleResponse)
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
 | ``jwtToken`` | string | Previously generated JSON Web Token |
+| ``kuzzleResponse`` | JSON object | Final Kuzzle response from a 2-steps authentication process |
 
 #### Return value
 
