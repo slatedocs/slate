@@ -1192,7 +1192,7 @@ kuzzle
 ```
 
 
-Performs a partial update on an existing profile.
+Performs a partial update on an existing role.
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
@@ -1258,12 +1258,12 @@ kuzzle
 ```
 
 
-Performs a partial update on an existing profile.
+Performs a partial update on an existing user.
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
 | ``id`` | string | Unique role identifier |
-| ``content`` | JSON Object | A plain javascript object representing the role |
+| ``content`` | JSON Object | A plain javascript object representing the user |
 | ``options`` | string | (Optional) Optional arguments |
 | ``callback`` | function | Callback handling the response |
 
