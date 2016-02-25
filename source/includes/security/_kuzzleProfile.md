@@ -123,7 +123,7 @@ profile
 
 Deletes this profile from Kuzzle.
 
-#### delete([options, callback])
+#### delete([options], [callback])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|

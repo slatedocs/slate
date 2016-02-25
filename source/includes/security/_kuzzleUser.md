@@ -96,7 +96,7 @@ user.delete(new KuzzleResponseListener<String>() {
 
 Deletes the user in Kuzzle
 
-#### delete([options, callback])
+#### delete([options], [callback])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
@@ -302,7 +302,7 @@ Create or replace the user in kuzzle
 Saving this object can rise an error if the associated profile is not created in Kuzzle
 </aside>
 
-#### save([options, callback])
+#### save([options], [callback])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|

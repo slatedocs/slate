@@ -301,7 +301,7 @@ There is a small delay between user creation and their creation in our advanced 
 That means that a user that was just been created will not be returned by <code>searchUsers</code> function
 </aside>
 
-#### createUser(id, content, [options, callback])
+#### createUser(id, content, [options], [callback])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
