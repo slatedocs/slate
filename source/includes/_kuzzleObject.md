@@ -1072,9 +1072,7 @@ Returns the `Kuzzle` object to allow chaining.
 
 #### Callback response
 
-Resolves to the `Kuzzle` object itself once the login process is complete, either successfully or not.  
-The `Kuzzle` object will have the property `jwtToken` filled if logging in succeeds.
-If no callback is provided and if the login attempt fails, an error is thrown.
+Resolves to a JSON object containing the Kuzzle response.
 
 ## logout
 
