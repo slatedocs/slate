@@ -21,13 +21,11 @@ var kuzzle = new Kuzzle('http://localhost:7512', function (err, res) {
 ```
 
 ```java
-JSONObject headers = new JSONObject();
-headers.put("someheader", "value");
-
 KuzzleOptions options = new KuzzleOptions();
-options.setDefaultIndex("some index");
-options.setAutoReconnect(true);
-options.setHeaders(headers);
+
+options.setDefaultIndex("some index")
+  .setAutoReconnect(true),
+  .setHeaders(new JSONObject().put("someheader", "value"));
 
 Kuzzle kuzzle = new Kuzzle("http://localhost:7512", options, new KuzzleResponseListener<Void>() {
  @Override
@@ -157,6 +155,7 @@ Here is the list of these special events:
 | ``disconnected`` | Fired when the current session has been unexpectedly disconnected |
 | ``error`` | Fired when the SDK has failed to connect to Kuzzle. Does not trigger offline mode. |
 | ``jwtTokenExpired`` | Fired when Kuzzle rejected a request because the authentication token expired.<br>Provides the request and its associated callback to the listener |
+| ``loginAttempt`` | Fired when a login attempt completes, either with a success or a failure result.<br>Provides a JSON object with the login status to the listener (see the `login` method documentation)|
 | ``reconnected`` | Fired when the current session has reconnected to Kuzzle after a disconnection, and only if ``autoReconnect`` is set to ``true`` |
 
 **Note:** listeners are called in the order of their insertion.
@@ -170,11 +169,11 @@ Here is the list of these special events:
 ```
 
 ```java
-  String listenerId = kuzzle.addListener(EventType.CONNECTED, new IKuzzleEventListener() {
-    @Override
-    public void trigger(Object... args) {
-      // Actions to perform when receiving a 'subscribed' global event
-    }
+String listenerId = kuzzle.addListener(KuzzleEvent.connected, new IKuzzleEventListener() {
+  @Override
+  public void trigger(Object... args) {
+    // Actions to perform when receiving a 'subscribed' global event
+  }
 });
 ```
 
@@ -211,25 +210,34 @@ kuzzle.checkTokenPromise(token)
 ```
 
 ```java
-// Not implemented yet
+kuzzle.checkToken("some jwt token", new KuzzleResponseListener<KuzzleTokenValidity>() {
+  @Override
+  public void onSuccess(KuzzleTokenValidity tokenInfo) {
+    if (tokenInfo.isValid()) {
+      // tokenInfo.getExpiresAt() returns the expiration timestamp
+    }
+    else {
+      // tokenInfo.getState() returns the invalidity reason
+    }
+  }
+});
 ```
 
-> Callback response:
+> Callback response if the token is valid:
 
 ```json
 {
-  "action": "checkToken",
-  "controller": "auth",
-  "error": null,
-  "metadata": {},
-  "requestId": "f2480825-d613-4629-aaee-918f417c03f2",
-  "result": {
-    "expiresAt": 1454588077399,
-    "valid": true
-  },
-  "scope": null,
-  "state": "done",
-  "status": 200
+  "expiresAt": 1454588077399,
+  "valid": true
+}
+```
+
+> Callback response if the token is invalid:
+
+```json
+{
+  "valid": false,
+  "state": "<invalidity reason>"
 }
 ```
 
@@ -237,10 +245,16 @@ Checks the validity of a JSON Web Token.
 
 #### checkToken(token, callback)
 
+<aside class="note">
+This method is non-queuable, meaning that during offline mode, it will be discarded and the callback will be called with an error.
+</aside>
+
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
 | ``token``    | string   | The token to check |
 | ``callback`` | function | Callback handling the response |
+
+**Note:** this method sends an unauthenticated API call to Kuzzle, meaning it ignores the JWT Token property, even if it has been set.
 
 #### Return value
 
@@ -248,10 +262,8 @@ Returns the `Kuzzle` object to allow chaining.
 
 #### Callback response
 
-Signature `error, response`. The response object contains a boolean `valid`
-attribute. If `valid` is `true`, the response contains an `expiresAt` attribute
-containing the expiration date and time (as Epoch time). Otherwise, the response
-contains a `state` string containing the reason why the token is invalid.
+A JSON object with a `valid` boolean property.  
+If the token is valid, a `expiresAt` property is set with the expiration timestamp. If not, a `state` property is set explaining why the token is invalid.
 
 ## connect
 
@@ -290,7 +302,7 @@ If a callback has been provided to the `Kuzzle` constructor, it will be called w
 KuzzleDataCollection collection = kuzzle.dataCollectionFactory("index", "collection");
 
 // or using a default index:
-kuzzle.setDefaultIndex('index');
+kuzzle.setDefaultIndex("index");
 KuzzleDataCollection collection = kuzzle.dataCollectionFactory("collection");
 ```
 
@@ -770,7 +782,7 @@ kuzzle.getStatistics(new KuzzleResponseListener<JSONObject>() {
   public void onError(JSONObject error) {
     // Handle error
   }
-};
+});
 ```
 
 > Callback response:
@@ -840,13 +852,11 @@ kuzzle.getStatistics("2015-11-15T13:36:45.558Z", new KuzzleResponseListener<JSON
 Kuzzle monitors active connections, and ongoing/completed/failed requests.  
 This method allows getting either the last statistics frame, or a set of frames starting from a provided timestamp.
 
-#### getStatistics([options], callback)
-
-#### getStatistics(timestamp, [options], callback)
+#### getStatistics([timestamp], [options], callback)
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
-| ``timestamp`` | Epoch time | Starting time from which the frames are to be retrieved |
+| ``timestamp`` | Epoch time | Optional starting time from which the frames are to be retrieved |
 | ``options`` | JSON object | Optional parameters |
 | ``callback`` | function | Callback handling the response |
 
@@ -883,9 +893,9 @@ kuzzle
 ```
 
 ```java
-kuzzle.listCollections("index", new KuzzleResponseListener<JSONArray>() {
+kuzzle.listCollections("index", new KuzzleResponseListener<JSONObject>() {
   @Override
-  public void onSuccess(JSONArray object) {
+  public void onSuccess(JSONObject object) {
     // ...
   }
 
@@ -893,7 +903,7 @@ kuzzle.listCollections("index", new KuzzleResponseListener<JSONArray>() {
   public void onError(JSONObject error) {
     // Handle error
   }
-};
+});
 ```
 
 > Callback response:
@@ -960,7 +970,7 @@ kuzzle.listIndexes(new KuzzleResponseListener<String[]>() {
   public void onError(JSONObject error) {
     // Handle error
   }
-}
+});
 ```
 
 > Callback response:
@@ -996,23 +1006,35 @@ The response is an `array` of index names.
 
 ## login
 
+<aside class="note">
+This method is non-queuable, meaning that during offline mode, it will be discarded and the callback will be called with an error.
+</aside>
+
 ```js
+// Expiration time is expressed as a string following the
+// time conversion library: https://www.npmjs.com/package/ms
+ var expiresIn = "1h";
+
 // Using callbacks (NodeJS or Web Browser)
-kuzzle.login("local", {username: "username", password: "password"}, "1h", function (err, res) {
+kuzzle.login("local", {username: "username", password: "password"}, expiresIn, function (err, res) {
   // ...
 });
 
 // Using promises (NodeJS only)
-kuzzle.loginPromise("local", {username: "username", password: "password"}, "1h")
+kuzzle.loginPromise("local", {username: "username", password: "password"}, expiresIn)
   .then(res => {
     // ...
   });
 ```
 
 ```java
-kuzzle.login("local", "username", "password", 30000, new KuzzleResponseListener<Void>() {
+JSONObject credentials = new JSONObject()
+  .put("username", "John Doe")
+  .put("password", "my secret password");
+
+kuzzle.login("local", credentials, 30000, new KuzzleResponseListener<JSONObject>() {
   @Override
-  public void onSuccess(Void result) {
+  public void onSuccess(JSONObject result) {
     // ...
   }
 
@@ -1023,7 +1045,16 @@ kuzzle.login("local", "username", "password", 30000, new KuzzleResponseListener<
 });
 ```
 
-Log a user according to the strategy and credentials.
+Log a user according to a strategy and credentials.
+
+If the Kuzzle response contains a JWT Token, the SDK token is set and the `loginAttempt` event is fired immediately with the following object:  
+`{ success: true }`  
+This is the case, for instance, with the `local` authentication strategy.
+
+If the request succeeds but there is no token, then it means that the chosen strategy is a two-steps authentication method, like OAUTH. In that case, the `loginAttempt` event is **not** fired. To complete the login attempt, the `setJwtToken` method must be called either with a token or with an appropriate Kuzzle response.
+
+If the login attempt fails, the `loginAttempt` event is fired with the following response:  
+`{ success: false, error: 'error message' }`
 
 #### login(strategy, credentials, [expiresIn], [callback])
 
@@ -1031,7 +1062,7 @@ Log a user according to the strategy and credentials.
 |---------------|---------|----------------------------------------|
 | ``strategy`` | string | Authentication strategy (local, facebook, github, ...) |
 | ``credentials`` | JSON object | Login credentials, depending on the strategy |
-| ``expiresIn`` | string | Login expiration time, following this [time conversion library](https://www.npmjs.com/package/ms) |
+| ``expiresIn`` | \<varies\> | Login expiration time |
 | ``callback`` | function | Optional callback handling the response |
 
 **Note:** If the ``expiresIn`` argument is not set, the default token expiration value will be taken from the Kuzzle server configuration.
@@ -1045,11 +1076,13 @@ Returns the `Kuzzle` object to allow chaining.
 
 #### Callback response
 
-Resolves to the `Kuzzle` object itself once the login process is complete, either successfully or not.  
-The `Kuzzle` object will have the property `jwtToken` filled if logging in succeeds.
-If no callback is provided and if the login attempt fails, an error is thrown.
+Resolves to a JSON object containing the Kuzzle response.
 
 ## logout
+
+<aside class="note">
+This method is non-queuable, meaning that during offline mode, it will be discarded and the callback will be called with an error.
+</aside>
 
 ```js
 // Using callbacks (NodeJS or Web Browser)
@@ -1122,7 +1155,7 @@ kuzzle.now(new KuzzleResponseListener<Date>() {
   public void onError(JSONObject error) {
     // Handle error
   }
-};
+});
 ```
 
 > Callback response:
@@ -1176,7 +1209,7 @@ kuzzle
 QueryArgs args = new QueryArgs();
 args.controller = "read";
 args.action = "search";
-kuzzle.query(args, new JSONObject(), new KuzzleResponseListener() {
+kuzzle.query(args, new JSONObject(), new OnQueryDoneListener() {
   @Override
   public void onSuccess(JSONObject object) {
 
@@ -1186,7 +1219,7 @@ kuzzle.query(args, new JSONObject(), new KuzzleResponseListener() {
   public void onError(JSONObject error) {
     // Handle error
   }
-};
+});
 ```
 
 > Callback response:
@@ -1269,7 +1302,7 @@ kuzzle.removeAllListeners();
 
 ```java
 // Removes all listeners on the "unsubscribed" global event
-kuzzle.removeAllListeners(EventType.DISCONNECTED);
+kuzzle.removeAllListeners(KuzzleEvent.disconnected);
 
 // Removes all listeners on all global events
 kuzzle.removeAllListeners();
@@ -1290,7 +1323,7 @@ kuzzle.removeListener('disconnected', listenerId);
 ```
 
 ```java
-kuzzle.removeListener(EventType.DISCONNECTED, "listenerId");
+kuzzle.removeListener(KuzzleEvent.disconnected, "listenerId");
 ```
 
 Removes a listener from an event.
@@ -1318,6 +1351,10 @@ Replays the requests queued during offline mode. Works only if the SDK is not in
 
 Returns the `Kuzzle` object to allow chaining.
 
+## security
+
+A static `KuzzleSecurity` instance
+
 ## setDefaultIndex
 
 ```js
@@ -1338,17 +1375,14 @@ kuzzle.setHeaders({someContent: 'someValue'}, true);
 ```
 
 ```java
-JSONObject headers = new JSONObject();
-headers.put("someContent", "someValue");
+JSONObject headers = new JSONObject().put("someContent", "someValue");
 
 kuzzle.setHeaders(headers, true);
 ```
 
 This is a helper function returning itself, allowing to easily chain calls.
 
-#### setHeaders(content)
-
-#### setHeaders(content, replace)
+#### setHeaders(content, [replace])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
@@ -1364,21 +1398,47 @@ Returns the `Kuzzle` object to allow chaining.
 ## setJwtToken
 
 ```js
-kuzzle.setJwtToken("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWV9.TJVA95OrM7E2cBab30RMHrHDcEfxjoYZgeFONFh7HgQ");
+// Directly with a JWT Token
+kuzzle.setJwtToken('some jwt token');
+
+/*
+ Or with a Kuzzle response.
+ For instance, the final OAUTH2 response is obtained with a redirection from Kuzzle,
+ and it can be provided to this method directly
+ */
+kuzzle.setJwtToken(authenticationResponse);
 ```
 
 ```java
-kuzzle.setJwtToken("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWV9.TJVA95OrM7E2cBab30RMHrHDcEfxjoYZgeFONFh7HgQ");
+// Directly with a JWT Token
+kuzzle.setJwtToken("some jwt token");
+
+/*
+ Or with a Kuzzle response.
+ For instance, the final OAUTH2 response is obtained with a redirection from Kuzzle,
+ and it can be provided to this method directly.
+
+ Here, "authenticationResponse" is an instance of JSONObject
+ */
+kuzzle.setJwtToken(authenticationResponse)
 ```
 
-Set internal jwtToken which will be used to request kuzzle.
-Used to restore previous kuzzle logged connection.
+Sets the internal JWT token which will be used to request kuzzle.
+
+If the provided token is correct, a `loginAttempt` event is fired with the following object:  
+`{ success: true }`
+
+If not, the `loginAttempt` event is fired with the following response:  
+`{ success: false, error: 'error message' }`
 
 #### setJwtToken(jwtToken)
+
+#### setJwtToken(kuzzleResponse)
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
 | ``jwtToken`` | string | Previously generated JSON Web Token |
+| ``kuzzleResponse`` | JSON object | Final Kuzzle response from a 2-steps authentication process |
 
 #### Return value
 
@@ -1422,45 +1482,31 @@ Returns the `Kuzzle` object to allow chaining.
 
 ```js
 // Using callbacks (NodeJS or Web Browser)
-kuzzle.whoAmI(function (err, res) {
-  // ...
+kuzzle.whoAmI(function (err, result) {
+  // "result" is a KuzzleUser object
 });
 
 // Using promises (NodeJS only)
 kuzzle.whoAmIPromise()
   .then(res => {
-    // ...
+    // "res" is a KuzzleUser object
   });
 ```
 
 ```java
-// Not implemented yet
+kuzzle.whoAmI(new KuzzleResponseListener<KuzzleUser>() {
+  @Override
+  public void onSuccess(KuzzleUser myself) {
+
+  }
+
+  @Override
+  public void onError(JSONObject error) {
+
+  }
+});
 ```
 
-> Callback response:
-
-```json
-{
-  "action": "getCurrentUser",
-  "controller": "auth",
-  "error": null,
-  "metadata": {},
-  "requestId": "551be8c0-3663-4741-9711-250e704f6a56",
-  "result": {
-    "_id": "test",
-    "_source": {
-      "password": "8c4a804f73b8969c4526c82b28b72b036220e447",
-      "profile": {
-        "_id": "admin",
-        "roles": []
-      }
-    }
-  },
-  "scope": null,
-  "state": "done",
-  "status": 200
-}
-```
 Retrieves current user object.
 
 #### whoAmI(callback)
@@ -1475,4 +1521,4 @@ Returns the `Kuzzle` object to allow chaining.
 
 #### Callback response
 
-Signature `error, response`. The response contains the hydrated user object.
+An instanciated `KuzzleUser` object.

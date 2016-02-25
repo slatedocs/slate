@@ -34,13 +34,7 @@ KuzzleDocument document = new KuzzleDocument(collection, content);
 KuzzleDocument document = new KuzzleDocument(collection, "id", content);
 ```
 
-#### KuzzleDocument(KuzzleDataCollection)
-
-#### KuzzleDocument(KuzzleDataCollection, content)
-
-#### KuzzleDocument(KuzzleDataCollection, documentId)
-
-#### KuzzleDocument(KuzzleDataCollection, documentId, content)
+#### KuzzleDocument(KuzzleDataCollection, [documentId], [content])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
@@ -81,7 +75,7 @@ document.deletePromise().then(result => {
 ```
 
 ```java
-document.delete(new ResponseListener<KuzzleDocument>() {
+document.delete(new KuzzleResponseListener<KuzzleDocument>() {
     @Override
     public void onSuccess(KuzzleDocument object) {
       // called once the delete action has been completed
@@ -164,7 +158,7 @@ document.refreshPromise().then(result => {
 ```
 
 ```java
-document.refresh(new ResponseListener<KuzzleDocument>() {
+document.refresh(new KuzzleResponseListener<KuzzleDocument>() {
     @Override
     public void onSuccess(KuzzleDocument object) {
       // called once the refresh action has been completed
@@ -214,7 +208,7 @@ document.savePromise().then(result => {
 ```
 
 ```java
-document.save(new ResponseListener<KuzzleDocument>() {
+document.save(new KuzzleResponseListener<KuzzleDocument>() {
     @Override
     public void onSuccess(KuzzleDocument object) {
       // called once the save action has been completed
@@ -263,13 +257,9 @@ document.setContent({newContent: 'someValue'}, true);
 ```
 
 ```java
-JSONObject content = new JSONObject();
-content.put("content", "some content");
+JSONObject content = new JSONObject().put("content", "some content");
+
 document.setContent(content, true);
-
-document.setContent("content", "some content");
-
-document.setContent(content);
 ```
 
 <aside class="notice">
@@ -301,16 +291,14 @@ document.setHeaders({someContent: 'someValue'}, true);
 ```
 
 ```java
-JSONObject headers = new JSONObject();
-headers.put("someContent", "someValue");
+JSONObject headers = new JSONObject().put("someContent", "someValue");
+
 document.setHeaders(headers, true);
 ```
 
 This is a helper function returning itself, allowing to easily chain calls.
 
-#### setHeaders(content)
-
-#### setHeaders(content, replace)
+#### setHeaders(content, [replace])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
@@ -338,7 +326,7 @@ var room = document.subscribe(
 ```
 
 ```java
-KuzzleRoom room = document.subscribe(new ResponseListener<KuzzleNotificationResponse>() {
+KuzzleRoom room = document.subscribe(new KuzzleResponseListener<KuzzleNotificationResponse>() {
     @Override
     public void onSuccess(KuzzleNotificationResponse object) {
       // called each time a change occurs on this document
@@ -354,14 +342,12 @@ KuzzleRoom room = document.subscribe(new ResponseListener<KuzzleNotificationResp
 Listens to changes occuring on this document.  
 Throws an error if this document has not yet been created in Kuzzle.
 
-#### subscribe(options, cb)
-
-#### subscribe(cb)
+#### subscribe([options], callback)
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
 | ``options`` | object | Subscription configuration. Passed to the KuzzleRoom constructor. |
-| ``cb`` | function | Callback that will be called each time a change has been detected on this document |
+| ``callback`` | function | Callback that will be called each time a change has been detected on this document |
 
 #### Return value
 

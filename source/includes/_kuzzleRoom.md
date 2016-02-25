@@ -101,22 +101,18 @@ var room = kuzzle
 ```java
 KuzzleRoom room = new KuzzleRoom(dataCollection);
 
-KuzzleRoomOptions options = new KuzzleRoomOptions();
-options.setSubscribeToSelf(false);
+KuzzleRoomOptions options = new KuzzleRoomOptions().setSubscribeToSelf(false);
 KuzzleRoom room = new KuzzleRoom(dataCollection, options);
 ```
 
-
 Creates a KuzzleRoom object.
 
-#### KuzzleRoom(KuzzleDataCollection)
-
-#### KuzzleRoom(KuzzleDataCollection, options)
+#### KuzzleRoom(KuzzleDataCollection, [options])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
 | ``KuzzleDataCollection`` | object | an instantiated Kuzzle Data Collection object |
-| ``options`` | object | Subscription configuration |
+| ``options`` | object | Optional subscription configuration |
 
 Available options:
 
@@ -161,7 +157,7 @@ room.countPromise().then(result => {
 ```
 
 ```java
-room.count(new ResponseListener<Integer>() {
+room.count(new KuzzleResponseListener<Integer>() {
  @Override
  public void onSuccess(Integer result) throws Exception {
    //  ...
@@ -206,13 +202,39 @@ room.renew({terms: {field: ['some', 'new', 'filter']}}, function (err, res) {
 ```
 
 ```java
-JSONObject filters = new JSONObject();
-JSONObject terms = new JSONObject();
-JSONArray field = new JSONArray();
-field.put("some").put("new").put("filter");
-terms.put("field", field);
-filters.put("terms", terms);
-room.renew(terms, new ResponseListener<KuzzleNotificationResponse>() {
+JSONObject filter = new JSONObject()
+  .put("and", new JSONArray()
+    .put(
+      new JSONObject().put("terms",
+        new JSONObject().put("status",
+          new JSONArray()
+            .put("idle")
+            .put("wantToHire")
+            .put("toHire")
+            .put("riding")
+        )
+      )
+    )
+    .put(
+      new JSONObject().put("terms",
+        new JSONObject()
+          .put("type", new JSONArray().put("cab"))
+      )
+    )
+    .put(
+      new JSONObject().put("geo_distance",
+        new JSONObject()
+          .put("distance", "10km")
+          .put("pos",
+            new JSONObject()
+              .put("lat", "48.8566140")
+              .put("lon", "2.352222")
+          )
+      )
+    )
+  );
+
+room.renew(filters, new KuzzleResponseListener<KuzzleNotificationResponse>() {
  @Override
  public void onSuccess(KuzzleNotificationResponse result) throws Exception {
    // called each time a change is detected on documents matching this filter
@@ -228,9 +250,7 @@ room.renew(terms, new ResponseListener<KuzzleNotificationResponse>() {
 Renew the subscription. Force a resubscription using the same filters if no new ones are provided.
 Unsubscribes first if this KuzzleRoom was already listening to events.
 
-#### renew(callback)
-
-#### renew(filters, callback)
+#### renew([filters], callback)
 
 
 | Arguments | Type | Description |
@@ -259,9 +279,7 @@ room.setHeaders(headers, true);
 
 This is a helper function returning itself, allowing to easily chain calls.
 
-#### setHeaders(content)
-
-#### setHeaders(content, replace)
+#### setHeaders(content, [replace])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|

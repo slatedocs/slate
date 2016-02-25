@@ -67,7 +67,7 @@ dataMapping.applyPromise(function (error, result) {
 ```
 
 ```java
-dataMapping.apply(new ResponseListener<KuzzleDataMapping>() {
+dataMapping.apply(new KuzzleResponseListener<KuzzleDataMapping>() {
    @Override
    public void onSuccess(KuzzleDataMapping object) {
      // called once the mapping action has been completed
@@ -118,7 +118,7 @@ dataMapping.refreshPromise().then(result => {
 ```
 
 ```java
-dataMapping.refresh(new ResponseListener<KuzzleDataMapping>() {
+dataMapping.refresh(new KuzzleResponseListener<KuzzleDataMapping>() {
    @Override
    public void onSuccess(KuzzleDataMapping object) {
      // called once the mapping has been retrieved from Kuzzle
@@ -131,18 +131,14 @@ dataMapping.refresh(new ResponseListener<KuzzleDataMapping>() {
 });
 ```
 
-<aside class="warning">
-Calling this function will discard any uncommited changes. You can commit changes by calling the <code>apply</code> function
-</aside>
+Instanciates a new KuzzleDataMapping object with an up-to-date content.
 
-Replaces the current content with the mapping stored in Kuzzle
-
-#### refresh([options], [callback])
+#### refresh([options], callback)
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
 | ``options`` | JSON Object | Optional parameters |
-| ``callback`` | function | Optional callback |
+| ``callback`` | function | Callback |
 
 Available options:
 
@@ -150,9 +146,6 @@ Available options:
 |---------------|---------|----------------------------------------|---------|
 | ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
 
-#### Return value
-
-Returns this `KuzzleDataMapping` object to allow chaining.
 
 #### Callback response
 
@@ -169,6 +162,7 @@ JSONObject mapping = new JSONObject();
 mapping.put("type", "string");
 mapping.put("index", "analyzed");
 mapping.put("null_value", "");
+
 dataMapping.set("field", mapping);
 ```
 
@@ -181,7 +175,7 @@ Adds or updates a field mapping.
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
 | ``field`` | string | Name of the field from which the mapping is to be added or updated |
-| ``mapping`` | JSON Object | Mapping for this field, following the [Elasticsearch Mapping format](https://www.elastic.co/guide/en/elasticsearch/reference/1.3/mapping.html)
+| ``mapping`` | JSON Object | Mapping for this field, following the [Elasticsearch Mapping format](https://www.elastic.co/guide/en/elasticsearch/reference/1.7/mapping.html)
 
 #### Return value
 
@@ -201,9 +195,7 @@ dataMapping.setHeaders(headers, true);
 
 This is a helper function returning itself, allowing to easily chain calls.
 
-#### setHeaders(content)
-
-#### setHeaders(content, replace)
+#### setHeaders(content, [replace])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
