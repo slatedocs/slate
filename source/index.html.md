@@ -24,7 +24,7 @@ All request should include the header `Accept: application/vnd.quipu.v1+json`.
 
 ## Endpoints summary
 
-### Contacts
+### [Contacts](#contacts-section)
 
 * `GET    /contacts`  
 * `POST   /contacts`  
@@ -162,3 +162,28 @@ curl "http://getquipu.com/invoices" \
   -H "Accept: application/vnd.quipu.v1+json"
 ```
 
+# <a name="contacts-section"></a>Contacts
+
+## Listing contacts
+
+`GET /contacts`
+
+### Available filters
+
+### Sorting
+
+## Getting a contact
+
+`GET /contact/:contact_id`
+
+## Creating a contact
+
+`POST /contacts`
+
+## Updating a contact
+
+`PATCH /contacts/:id`
+
+## Deleting a contact
+
+`DELETE /contacts/:id`
