@@ -43,7 +43,8 @@ curl -v https://link.datil.co/debit-notes/issue \
         "base_imponible":4359.54,
         "valor":523.14,
         "codigo":"2",
-        "codigo_porcentaje":"2"
+        "codigo_porcentaje":"2",
+        "tarifa": 12.0
       }
     ],
     "importe_total":4882.68

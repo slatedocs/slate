@@ -269,6 +269,7 @@ ruta | string | Ruta de transporte. Máximo 300 caracteres.
 documento_aduanero_unico | string | Máximo 20 caracteres.
 fecha_emision_documento_sustento | string | Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6). __Requerido__
 numero_documento_sustento | string | Número completo del documento que detalla la mercadería a transportar. Normalmente facturas. Ejm: 001-002-010023098 __Requerido__
+codigo_establecimiento_destino | string | Número establecimiento que recibe la entrega. Ejm: 002 __Requerido__
 tipo_documento_sustento | string | Ver códigos de [tipos de documentos](#tipos-de-documentos). __Requerido__
 motivo_traslado | string | Motivo del traslado. Ejm: Entrega de mercadería. __Requerido__
 numero_autorizacion_documento_sustento | string | Autorización del documento de sustento.
