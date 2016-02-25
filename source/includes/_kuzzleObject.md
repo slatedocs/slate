@@ -1047,7 +1047,7 @@ kuzzle.login("local", credentials, 30000, new KuzzleResponseListener<JSONObject>
 
 Log a user according to a strategy and credentials.
 
-If the Kuzzle response contains a JWT Token, the SDK token will be set and the `loginAttempt` event is fired immediately with the following object:  
+If the Kuzzle response contains a JWT Token, the SDK token is set and the `loginAttempt` event is fired immediately with the following object:  
 `{ success: true }`  
 This is the case, for instance, with the `local` authentication strategy.
 
