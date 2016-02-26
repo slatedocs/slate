@@ -84,13 +84,17 @@ If you're deploying Scout APM for the first time, we recommend starting on a sta
 
 ## Java Agent Change Log
 
-#### 0.0.6
+#### 0.1.1
+* Better handling auxiliary threads
+* Better endpoint naming in Errors
+
+#### 0.1.0
 * Add JAX-RS plugin
 
 #### 0.0.5
 * Jedis (sendCommand) support
 * Jedis (sendCommand) support
-* Temporary remove background jobs from aggregration (wait for endpoint feature)
+* Temporary remove background jobs from aggregation (wait for endpoint feature)
 
 ## Questions / Getting Help
 
