@@ -50,6 +50,7 @@ Error Code | Meaning
 650 | Loopback Not Found: loopback interface required for synchronous local commands
 651 | Ethereum Not Found: no active Ethereum node(s) found
 700 | Root Not Found: no LS-LMSR objectve function solution found
+710 | Check Order Book Failed: could not check order book using current prices
 
 Contract Errors
 ---------------
