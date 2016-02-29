@@ -4,11 +4,9 @@ title: API Reference
 language_tabs:
   - shell
   - ruby
-  - python
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a>
+  - <a href='http://getquipu.com'>Quipu</a>
 
 includes:
   - errors
@@ -18,151 +16,174 @@ search: true
 
 # Introduction
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+## REST API Conventions
 
-We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+The Quipu API is based on ... <a href="http://jsonapi.org/">JSON API</a>
 
-This example API documentation page was created with [Slate](https://github.com/tripit/slate). Feel free to edit it and use it as a base for your own API's documentation.
+All request should include the header `Accept: application/vnd.quipu.v1+json`.
+
+## Endpoints summary
+
+### [Contacts](#contacts-section)
+
+* `GET    /contacts`  
+* `POST   /contacts`  
+* `GET    /contacts/:id`  
+* `PATCH  /contacts/:id`  
+* `DELETE /contacts/:id`
+
+
+### Invoices, tickets and paysheets
+
+
+* `GET /book_entries`
+
+### Invoices
+
+* `GET    /invoices`  
+* `POST   /invoices`  
+* `GET    /invoices/:id`  
+* `PATCH  /invoices/:id`  
+* `DELETE /invoices/:id`
+
+### Tickets
+
+* `GET    /tickets`  
+* `POST   /tickets`  
+* `GET    /tickets/:id`  
+* `PATCH  /tickets/:id`  
+* `DELETE /tickets/:id`
+
+### Paysheets
+
+* `GET    /paysheets`  
+* `POST   /paysheets`  
+* `GET    /paysheets/:id`  
+* `PATCH  /paysheets/:id`  
+* `DELETE /paysheets/:id`
+
+### Numbering series
+
+* `GET    /numbering_series`  
+* `POST   /numbering_series`  
+* `GET    /numbering_series/:id`  
+* `PATCH  /numbering_series/:id`  
+* `DELETE /numbering_series/:id`
+
+### Analytic categories
+
+* `GET    /analytic_categories`  
+* `POST   /analytic_categories`  
+* `GET    /analytic_categories/:id`  
+* `PATCH  /analytic_categories/:id`  
+* `DELETE /analytic_categories/:id`
+
+### Analytic subcategories
+
+* `GET    /analytic_subcategories`  
+* `POST   /analytic_subcategories`  
+* `GET    /analytic_subcategories/:id`  
+* `PATCH  /analytic_subcategories/:id`  
+* `DELETE /analytic_subcategories/:id`
+
+### Accounting categories
+
+* `GET    /accounting_categories`  
+* `GET    /accounting_categories/:id`  
+
+### Accounting subcategories
+
+* `GET    /accounting_subcategories`  
+* `POST   /accounting_subcategories`  
+* `GET    /accounting_subcategories/:id`  
+* `PATCH  /accounting_subcategories/:id`  
+* `DELETE /accounting_subcategories/:id`
 
 # Authentication
 
-> To authorize, use this code:
+We use OAuth2 to authorize the requests.
 
-```ruby
-require 'kittn'
+## Getting an access token
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-```
+> Example request
 
 ```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
+curl "http://getquipu.com/oauth/token" \
+  -H "Authorization: Basic MGE2NzJjZDY5YmFkYjE1NjM4MWUyOTdlZjJkZjk4ZmE1Mjg5ZDdkNTA4 ..." \
+  -H "Content-Type: application/x-www-form-urlencoded;charset=UTF-8" \
+  -d "grant_type=client_credentials"
 ```
-
-> Make sure to replace `meowmeowmeow` with your API key.
-
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
-
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
-
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
-
-# Kittens
-
-## Get All Kittens
 
 ```ruby
-require 'kittn'
+require 'oauth2'
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
+oauth_client = OAuth2::Client.new("<client_id>", "<client_secret>", site: 'https://getquipu.com')
+
+access_token = oauth_client.client_credentials.get_token
 ```
 
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
+> Example response
 
 ```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
-```
-
-> The above command returns JSON structured like this:
-
-```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
-```
-
-This endpoint retrieves all kittens.
-
-### HTTP Request
-
-`GET http://example.com/api/kittens`
-
-### Query Parameters
-
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
-```
-
-> The above command returns JSON structured like this:
-
-```json
 {
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
+  "token_type":    "bearer",
+  "created_at":    1456339025,
+  "access_token":  "7c74b8e69bdd19a90e1ffaf987ada2ca67b948b0bed7b2cf95ad58f5ecb14294",
+  "refresh_token": null,
+  "expires_at":    1456346225
 }
 ```
 
-This endpoint retrieves a specific kitten.
+```ruby
+{
+  token_type:    "bearer",
+  created_at:    1456339025,
+  access_token:  "7c74b8e69bdd19a90e1ffaf987ada2ca67b948b0bed7b2cf95ad58f5ecb14294",
+  refresh_token: nil,
+  expires_at:    1456346225
+}
+```
 
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
+To get an access token you will need the account's `app_id` and `app_secret` credentials.
 
-### HTTP Request
+<aside class="notice">
+  When a token expires you will need to request for a new one
+</aside>
 
-`GET http://example.com/kittens/<ID>`
+## Using the token in the requests
 
-### URL Parameters
+Blah blah blah
 
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
+> Example request
 
+```shell
+curl "http://getquipu.com/invoices" \
+  -H "Authorization: Bearer be32259bd1d0f4d3d02bcc0771b1b507e2b666ba9e9ba3d7c5639e853f722eb4" \
+  -H "Accept: application/vnd.quipu.v1+json"
+```
+
+# <a name="contacts-section"></a>Contacts
+
+## Listing contacts
+
+`GET /contacts`
+
+### Available filters
+
+### Sorting
+
+## Getting a contact
+
+`GET /contact/:contact_id`
+
+## Creating a contact
+
+`POST /contacts`
+
+## Updating a contact
+
+`PATCH /contacts/:id`
+
+## Deleting a contact
+
+`DELETE /contacts/:id`
