@@ -161,14 +161,14 @@ html, body {
     list-style: none;
     margin: 0;
     padding: 0;
-    line-height: 28px;
+    line-height: 36px;
   }
 
   li {
     color: $nav-text;
-    transition-property: background;
+    transition-property: all;
     transition-timing-function: linear;
-    transition-duration: 230ms;
+    transition-duration: 70ms;
   }
 
   // This is the currently selected ToC entry
@@ -217,6 +217,10 @@ html, body {
     }
   }
 
+}
+
+.main-logo {
+  padding: $nav-padding;
 }
 
 // button to show navigation on mobile devices
