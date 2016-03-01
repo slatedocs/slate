@@ -60,6 +60,53 @@ For environments using embedded containers, just add the following `-javaagent:`
 java -javaagent:/full/path/to/scout-apm/scout-apm.jar ... -jar <app-name>.jar
 ```
 
+### JBoss
+
+#### JBoss Domain mode
+
+For JBoss EAP 6.x and 7.0.x AS and above. The JVM properties for each server group are found in `domain/configuration/domain.xml`.
+
+The JVM properties for each server group needs to be modified to include the `-javagent` argument.
+
+```xml
+<servers>
+  <server name="server_01" group="group_01" auto-start="true">
+    <jvm name="default" debug-enabled="false">
+      <jvm-options>
+        <!-- add the following option value -->
+        <option value="-javaagent:/full/path/to/scout-apm/scout-apm.jar" />
+      </jvm-options>
+    </jvm>
+  </server>
+  ...
+```
+
+#### Standalone mode
+
+For JBoss 6.x EAP and 7.0.x AS on OSX or Unix, at the bottom of `bin/standalone.conf`, add this
+
+```terminal
+JAVA_OPTS="$JAVA_OPTS -javaagent:/full/path/to/scout-apm/scout-apm.jar"
+```
+
+For JBoss 6.x EAP and 7.0.x AS on Windows, at the bottom of `bin/standalone.bat`, add this
+
+```terminal
+set JAVA_OPTS="$JAVA_OPTS -javaagent:/full/path/to/scout-apm/scout-apm.jar"
+```
+
+For JBoss 6.x and below on OSX or Unix, at the bottom of `bin/run.conf`, add this:
+
+```terminal
+JAVA_OPTS="$JAVA_OPTS -javaagent:/full/path/to/scout-apm/scout-apm.jar"
+```
+
+For JBoss 6.x and below on Windows, at the bottom of `bin/run.bat`, add this
+
+```terminal
+set JAVA_OPTS="$JAVA_OPTS -javaagent:/full/path/to/scout-apm/scout-apm.jar"
+```
+
 ### Configuration
 
 The Scout Java agent looks for a `scout_apm.yml` configuration file in the same directory as `scout-apm.jar`.
