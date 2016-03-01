@@ -166,6 +166,67 @@ curl "http://getquipu.com/invoices" \
 
 ## Listing contacts
 
+> Example request
+
+```shell
+curl "http://getquipu.com/contacts" \
+  -H "Authorization: Bearer be32259bd1d0f4d3d02bcc0771b1b507e2b666ba9e9ba3d7c5639e853f722eb4" \
+  -H "Accept: application/vnd.quipu.v1+json"
+```
+
+> Example response
+
+```shell
+{
+  "data": [{
+    "id": "45923",
+    "type": "contacts",
+    "attributes": {
+      "name": "PEPEMOBILE S.L.",
+      "tax_id": "ESB85033470",
+      "phone": "999999999",
+      "email": "pepe@phone.com",
+      "address": "Paseo de la Castellana 8, 7-D",
+      "town": "Madrid",
+      "total_paid": "0",
+      "total_unpaid": "0",
+      "total_paid_incomes": ,
+      "total_unpaid_incomes": ,
+      "total_incomes": ,
+      "total_paid_expenses": ,
+      "total_unpaid_expenses": ,
+      "total_expenses": ,
+      "client_number": ,
+      "supplier_number": ,
+      "deletable: "
+    },
+    "relationships": {
+      "expense_category": {
+        "data": {
+          "id": "19"
+          "type": "accounting_categories",
+        }
+      },
+      "income_category": ""
+    }
+  }, {
+    "id": "45956",
+    "type": "contacts",
+    "attributes": {
+    },
+    "relationships": {
+    }
+  }, {
+
+    ...
+
+  }],
+  meta: {
+    "total_pages": 7
+  }
+}
+```
+
 `GET /contacts`
 
 ### Available filters
