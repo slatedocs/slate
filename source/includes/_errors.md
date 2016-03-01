@@ -107,7 +107,7 @@ If an Order ID or label url is incorrectly entered, a `404` error will be return
 ```json
   {
     "error":"precondition_failed",
-    "error_description":"The account associated with this API key has not accepted the dangerous goods terms. Please visit https://www.sendle.com/ to view and accept terms."
+    "error_description":"The account associated with this API key has not accepted the dangerous goods terms. Please visit your Account Settings in https://www.sendle.com/dashboard/ to view and accept these terms."
   }
 ```
 
