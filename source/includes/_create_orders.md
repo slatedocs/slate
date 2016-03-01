@@ -1,6 +1,7 @@
 # Creating Orders
+## `POST /api/orders`
 
-`POST /orders`
+> [ POST /api/orders ]
 
 To create an order, submit order data via POST command. The order will be rejected if the data fails validation and the API will respond with an error.
 

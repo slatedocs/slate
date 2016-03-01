@@ -1,4 +1,7 @@
 # Ping Server
+## `GET /api/ping`
+
+> [ GET /api/ping ]
 
 > All API interactions will require your Sendle ID and your API Key (Make sure to replace **sendleAPI** and **42RRTjYz5Z4hZrm8XY3t4Vxt** with your Sendle ID & API key.)
 

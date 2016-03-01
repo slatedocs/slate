@@ -1,4 +1,7 @@
 # View an Order
+## `GET /api/orders/{id}`
+
+> [ GET /api/orders/{id} ]
 
 ```shell
   curl "https://www.sendle.com/api/orders/f5233746-71d4-4b05-bf63-56f4abaed5f6"
@@ -70,9 +73,6 @@
     }
   } 
 ```
-
-
-`GET /api/orders/{id}`
 
 Viewing an order will give you all the details associated with an existing Sendle Booking. Important details in an order include:
 
