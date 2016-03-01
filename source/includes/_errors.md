@@ -100,6 +100,24 @@ Without a [credit card on file](#set-up-payments), booking orders will respond w
 
 If an Order ID or label url is incorrectly entered, a `404` error will be returned. Double-check the ID or url before continuing.
 
+## 412 Precondition Failed
+
+> 412 Response after POST valid order
+
+```json
+  {
+    "error":"precondition_failed",
+    "error_description":"The account associated with this API key has not accepted the dangerous goods terms. Please visit https://www.sendle.com/ to view and accept terms."
+  }
+```
+
+*Dangerous goods terms have not been accepted*
+
+Without accepting [dangerous goods terms](#set-up-account), booking orders will respond with a `412` error.
+
+**Non-booking queries will continue to work without accepting dangerous goods terms and will not receive an error.**
+
+
 
 ## 422 Unprocessable Entity
 > Request with unallowable errors:
