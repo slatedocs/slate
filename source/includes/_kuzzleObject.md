@@ -1056,12 +1056,12 @@ If the request succeeds but there is no token, then it means that the chosen str
 If the login attempt fails, the `loginAttempt` event is fired with the following response:  
 `{ success: false, error: 'error message' }`
 
-#### login(strategy, credentials, [expiresIn], [callback])
+#### login(strategy, [credentials], [expiresIn], [callback])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
 | ``strategy`` | string | Authentication strategy (local, facebook, github, ...) |
-| ``credentials`` | JSON object | Login credentials, depending on the strategy |
+| ``credentials`` | JSON object | Optional login credentials, depending on the strategy |
 | ``expiresIn`` | \<varies\> | Login expiration time |
 | ``callback`` | function | Optional callback handling the response |
 
