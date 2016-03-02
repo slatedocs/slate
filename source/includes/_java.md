@@ -131,6 +131,10 @@ If you're deploying Scout APM for the first time, we recommend starting on a sta
 
 ## Java Agent Change Log
 
+#### 0.1.2
+* Better handling slow transactions
+* Add node name
+
 #### 0.1.1
 * Better handling auxiliary threads
 * Better endpoint naming in Errors
