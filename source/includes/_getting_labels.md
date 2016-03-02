@@ -1,6 +1,7 @@
 # Getting Labels
+## `GET {label_url}`
 
-> [ GET /label_url ]
+> [ GET {label_url} ]
 
 ```shell
   curl "https://www.sendle.com/api/orders/f5233746-71d4-4b05-bf63-56f4abaed5f6/labels/a4.pdf"

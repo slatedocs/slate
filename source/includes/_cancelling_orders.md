@@ -1,6 +1,6 @@
 # Cancelling Orders
-
-> [ Delete /orders/{id} ]
+## `DELETE /api/orders/{id}`
+> [ DELETE /api/orders/{id} ]
 
 ```shell
   curl "https://www.sendle.com/api/orders/f5233746-71d4-4b05-bf63-56f4abaed5f6"
@@ -21,6 +21,7 @@
     "cancellation_message":"Cancelled by S6LRX64PV8MABbBbzu6DoBHD during picking up"
   }
 ```
+
 
 As long as an order has not been consigned with the courier, an order is cancellable. The value to review is:
 

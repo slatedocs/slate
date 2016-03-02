@@ -1,6 +1,7 @@
 # Getting Quotes
+## `GET /api/quote`
 
-`/api/quote`
+> [ GET /api/quote ]
 
 The quoting API does not require you to include your Sendle ID and API Key, but be sure to include all the relevant fields.
 
