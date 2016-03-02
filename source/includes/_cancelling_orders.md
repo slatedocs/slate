@@ -1,6 +1,6 @@
 # Cancelling Orders
-## `Delete /api/orders/{id}`
-> [ Delete /api/orders/{id} ]
+## `DELETE /api/orders/{id}`
+> [ DELETE /api/orders/{id} ]
 
 ```shell
   curl "https://www.sendle.com/api/orders/f5233746-71d4-4b05-bf63-56f4abaed5f6"

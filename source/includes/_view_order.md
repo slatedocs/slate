@@ -83,4 +83,4 @@ Viewing an order will give you all the details associated with an existing Sendl
 **order_url** | Specific url for order queries. After booking, this url becomes the point to check for updated information (state changes), labels and any other information related to the order.|
 **labels** | Covered in detail in the [label section](#getting-labels). This field returns `null` at the initial order booking. After the booking is processed, label details will be included here. |
 **scheduling** | Information regarding the order's pickup date and whether an order can be [cancelled](#cancelling-orders) |
- | Estimate Delivery range (minimum & Maximum). These dates can change depending on courier conditions.
+ | Estimate Delivery range (minimum & maximum). These dates can change depending on courier conditions.
