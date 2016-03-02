@@ -5,7 +5,7 @@
 > Example request
 
 ```shell
-curl "http://getquipu.com/contacts" \
+curl "https://getquipu.com/contacts" \
   -H "Authorization: Bearer be32259bd1d0f4d3d02bcc0771b1b507e2b666ba9e9ba3d7c5639e853f722eb4" \
   -H "Accept: application/vnd.quipu.v1+json"
 ```
@@ -110,7 +110,7 @@ You can request a specific page with a query param: `GET /contacts?page[number]=
 > Example request
 
 ```shell
-curl "http://getquipu.com/contacts/45923" \
+curl "https://getquipu.com/contacts/45923" \
   -H "Authorization: Bearer be32259bd1d0f4d3d02bcc0771b1b507e2b666ba9e9ba3d7c5639e853f722eb4" \
   -H "Accept: application/vnd.quipu.v1+json"
 ```
@@ -158,28 +158,29 @@ curl "http://getquipu.com/contacts/45923" \
 > Example request
 
 ```shell
-curl "http://getquipu.com/contacts" \
+curl "https://getquipu.com/contacts" \
   -H "Authorization: Bearer be32259bd1d0f4d3d02bcc0771b1b507e2b666ba9e9ba3d7c5639e853f722eb4" \
   -H "Accept: application/vnd.quipu.v1+json" \
-  -d '{ \
-        "data": { \
-          "type": "contacts", \
-          "attributes": { \
-            "name": "PEPEMOBILE S.L.", \
-            "tax_id": "ESB85033470", \
-            "phone": "999999999", \
-            "email": "pepe@phone.com", \
-            "address": "Paseo de la Castellana 8, 7-D", \
-            "town": "Madrid", \
-            "zip_code": "28046", \
-            "country_code": "es", \
-            "client_number": 6, \
-            "supplier_number": null, \
-            "is_supplier_of_direct_goods": false, \
-            "bank_account_number": "ES92 3821 0601 2314 3339 5656", \
-            "bank_account_swift_bic": "", \
-          } \
-        } \
+  -H "Content-Type: application/vnd.quipu.v1+json" \
+  -d '{
+        "data": {
+          "type": "contacts",
+          "attributes": {
+            "name": "PEPEMOBILE S.L.",
+            "tax_id": "ESB85033470",
+            "phone": "999999999",
+            "email": "pepe@phone.com",
+            "address": "Paseo de la Castellana 8, 7-D",
+            "town": "Madrid",
+            "zip_code": "28046",
+            "country_code": "es",
+            "client_number": 6,
+            "supplier_number": null,
+            "is_supplier_of_direct_goods": false,
+            "bank_account_number": "ES92 3821 0601 2314 3339 5656",
+            "bank_account_swift_bic": "",
+          }
+        }
       }'
 ```
 
@@ -243,8 +244,74 @@ curl "http://getquipu.com/contacts" \
 
 ## Updating a contact
 
-`PATCH /contacts/:id`
+```shell
+curl "https://getquipu.com/contacts/746868" \
+  -X PATCH
+  -H "Authorization: Bearer be32259bd1d0f4d3d02bcc0771b1b507e2b666ba9e9ba3d7c5639e853f722eb4" \
+  -H "Accept: application/vnd.quipu.v1+json" \
+  -H "Content-Type: application/vnd.quipu.v1+json" \
+  -d '{
+        "data": {
+          "type": "contacts",
+          "attributes": {
+            "name": "Another name",
+            "email": "another@name.com",
+            "bank_account_number": "ES92 3821 0601 2314 3339 5656",
+          }
+        }
+      }'
+```
+
+> Example response (status: 200)
+
+```shell
+{
+  "data": {
+    "id": "45923",
+    "type": "contacts",
+    "attributes": {
+      "name": "Another name",
+      "tax_id": "ESB85033470",
+      "phone": "999999999",
+      "email": "another@name.com",
+      "address": "Paseo de la Castellana 8, 7-D",
+      "town": "Madrid",
+      "zip_code": "28046",
+      "country_code": "es",
+      "total_paid_incomes": "13284.56",
+      "total_unpaid_incomes": "0.0",
+      "total_incomes": "13284.56",
+      "total_paid_expenses": "0.0",
+      "total_unpaid_expenses": 0.0,
+      "total_expenses": "0.0",
+      "client_number": "6",
+      "supplier_number": null,
+      "is_client": true,
+      "is_supplier": false,
+      "is_employee": false,
+      "is_supplier_of_direct_goods": false,
+      "bank_account_number": "ES92 3821 0601 2314 3339 5656",
+      "bank_account_swift_bic": "",
+      "deletable": false
+    }
+  }
+}
+```
+
+`(PATCH|PUT) /contacts/:id`
 
 ## Deleting a contact
 
+```shell
+curl "https://getquipu.com/contacs/45923" \
+  -X DELETE
+  -H "Authorization: Bearer be32259bd1d0f4d3d02bcc0771b1b507e2b666ba9e9ba3d7c5639e853f722eb4" \
+  -H "Accept: application/vnd.quipu.v1+json"
+```
+
 `DELETE /contacts/:id`
+
+The response status will be `204 - No Content` if the operation was
+successfull or `403 - Forbidden` if the contact could not be deleted (or authorization fails). A
+contact can not be deleted if there are invoices or paysheets associated
+with it.
