@@ -65,9 +65,9 @@ Note that if the command packet aims for opening the last recorded session by se
 
 If the whole playback procedure is successful, whenever we reach the end of the session, where there is no more data to be streamed to the host, Neblina will send a completion status packet to the host as follows:
 
-| Byte 0 | Byte 1 (length) |Byte 2|  Byte 3 (command)  |Byte 4-7|      Byte 8      | Bytes 9-19 |
-|:------:|:---------------:|:----:|:------------------:|:------:|:----------------:|:----------:|
-|  0x0B  |       0x10      | CRC  |0x03 (FlashPlayback)|Reserved|0 (session closed)|  Reserved  |
+| Byte 0 | Byte 1 (length) |Byte 2|  Byte 3 (command)  |Byte 4-7|      Byte 8      |Byte 9-10 |Bytes 11-19 |
+|:------:|:---------------:|:----:|:------------------:|:------:|:----------------:|:--------:|:----------:|
+|  0x0B  |       0x10      | CRC  |0x03 (FlashPlayback)|Reserved|0 (session closed)|Session ID|  Reserved  |
 
 #### FlashGetNbSessions Command (0x04)
 In the command mode, the packet asks Neblina about how many recorded sessions exist in the NOR flash. The command packet has no data section:
