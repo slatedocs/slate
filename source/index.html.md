@@ -16,11 +16,33 @@ search: true
 
 # Introduction
 
+Welcome ...
+
 ## REST API Conventions
 
 The Quipu API is based on ... <a href="http://jsonapi.org/">JSON API</a>
 
 All request should include the header `Accept: application/vnd.quipu.v1+json`.
+
+### Filtering
+
+When fetching collections of resources you can use `filter[filter_name]=filter_value` query params.
+
+The available filters are detailed in each section.
+
+Example:
+
+<code>GET /invoices?**filter[period]=1Q-2015&filter[kind]=income**</code>
+
+### Sorting
+
+When fetching collections of resources you can use `sort=-issued_at,total_amount`. Each sorting criteria separated with a comma.
+
+The `-` sign at the beggining of a sorting criteria means that the order for this criteria is descendant.
+
+Example:
+
+<code>GET /invoices?**sort=-issued_at,total_amount** # => order_by issued_at desc, total_amount asc;</code>
 
 ## Endpoints summary
 
@@ -34,7 +56,6 @@ All request should include the header `Accept: application/vnd.quipu.v1+json`.
 
 
 ### Invoices, tickets and paysheets
-
 
 * `GET /book_entries`
 
@@ -231,7 +252,20 @@ curl "http://getquipu.com/contacts" \
 
 ### Available filters
 
+Filter name | Description | Valid values | Example
+------------| ------------| ------------ | -------
+q | Search by name | Any | `/contacts?filter[q]=amazon`
+kind | Filter contacts by kind | `employee`, `supplier` and `client` | `contacts?filter[kind]=client`
+
 ### Sorting
+
+Criteria name | Description | Example
+------------- | ----------- | -------
+name | Sorts contacts by name | `/contacts?sort=name`
+total_paid_income | Sorts contacts by the amount of money they have paid to us | `/contacts?sort=-total_paid_income`
+total_unpaid_income | Sorts contacts by the amount of money they owe us | `/contacts?sort=total_unpaid_income`
+total_paid_expenses | Sorts contacts by the amount of money we have paid to them | `/contacts?sort=total_paid_expenses`
+total_unpaid_expenses | Sorts contacts by the amount of money we owe them | `/contacts?sort=total_unpaid_expenses`
 
 ## Getting a contact
 
