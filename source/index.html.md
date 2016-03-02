@@ -10,6 +10,7 @@ toc_footers:
 
 includes:
   - contacts
+  - invoices_tickets_and_paysheets
   - errors
 
 search: true
@@ -24,6 +25,8 @@ Welcome ...
 The Quipu API is based on ... <a href="http://jsonapi.org/">JSON API</a>
 
 All request should include the header `Accept: application/vnd.quipu.v1+json`.
+
+All POST, PUT and PATCH request must include the header `Content-Type: application/vnd.quipu.v1+json`, except when specifically indicated otherwise.
 
 ### Filtering
 
@@ -56,7 +59,7 @@ Example:
 * `DELETE /contacts/:id`
 
 
-### Invoices, tickets and paysheets
+### [Invoices, tickets and paysheets](#invoices-tickets-and-paysheets-section)
 
 * `GET /book_entries`
 
@@ -130,7 +133,7 @@ We use OAuth2 to authorize the requests.
 > Example request
 
 ```shell
-curl "http://getquipu.com/oauth/token" \
+curl "https://getquipu.com/oauth/token" \
   -H "Authorization: Basic MGE2NzJjZDY5YmFkYjE1NjM4MWUyOTdlZjJkZjk4ZmE1Mjg5ZDdkNTA4 ..." \
   -H "Content-Type: application/x-www-form-urlencoded;charset=UTF-8" \
   -d "grant_type=client_credentials"
@@ -179,7 +182,7 @@ Blah blah blah
 > Example request
 
 ```shell
-curl "http://getquipu.com/invoices" \
+curl "https://getquipu.com/invoices" \
   -H "Authorization: Bearer be32259bd1d0f4d3d02bcc0771b1b507e2b666ba9e9ba3d7c5639e853f722eb4" \
   -H "Accept: application/vnd.quipu.v1+json"
 ```
