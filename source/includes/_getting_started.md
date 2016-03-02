@@ -29,6 +29,18 @@ Once you have been granted API access, visit your API tab to get your `api key`.
   {"error":"payment_required","error_description":"The account associated with this API key has no method of payment. Please go to your Account Settings in your Sendle Dashboard and add a payment method."}  
 ```
 
-To use the Sendle API, during the beta period you need to be on a manually invoiced account. Sendle Support will
-organise this for you.
+To use the Sendle API, during the beta period you need to attach a credit card to your Sendle account for invoicing.
 
+## Set Up Account
+
+> Response Without Dangerous Goods Terms Accepted
+
+```json
+  {
+    "error":"precondition_failed",
+    "error_description":"The account associated with this API key has not accepted the dangerous goods terms. Please visit your Account Settings in https://www.sendle.com/dashboard/ to view and accept these terms."
+  }
+```
+
+To create orders with the Sendle API you must accept the dangerous goods
+terms in your `Account Settings`, under the `Pickup` tab.

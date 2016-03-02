@@ -15,7 +15,6 @@ To create an order, submit order data via POST command. The order will be reject
   -d '{
     "pickup_date": "2015-11-24",
     "description": "Kryptonite",
-    "confirmed_not_dangerous": true,
     "kilogram_weight": 1,
     "cubic_metre_volume": 0.01,
     "customer_reference": "SupBdayPressie",
@@ -72,7 +71,6 @@ Each collection within the example booking JSON is described in detail in the se
   {
     "pickup_date": "2015-11-24",
     "description": "Kryptonite",
-    "confirmed_not_dangerous": true,
     "kilogram_weight": 1,
     "cubic_metre_volume": 0.01,
     "customer_reference": "SupBdayPressie"
@@ -83,7 +81,6 @@ Each collection within the example booking JSON is described in detail in the se
 |-----------:|:-----------|
 **pickup_date** <div class="optional">"yyyy-mm-dd"</div>| Date must be at least one non-holiday, business day in the future.
 **description** <div class="optional">optional</div> | Description is used by the customer to track the parcel on Sendle Dashboard. It does not show up on a label.  It must be under 255 characters in length.
-**confirmed_not_dangerous** <div class="optional">boolean value</div> | Sendle will only make a booking if `confirmed_not_dangerous` is set to true.
 **kilogram_weight** | Must be a decimal value over zero and less than the category/max weight allowed (25kg max).
 **cubic_metre_volume** | Must be a decimal value above zero and less than one.  To get value, multiply *length* x *width* x *depth* of parcel in metres.
 **customer_reference** <div class="optional">optional</div> | Reference will appear on the label for parcel identification.  It must be under 255 characters in length.
@@ -196,7 +193,6 @@ Each collection within the example booking JSON is described in detail in the se
       "pickup_date":"2015-10-24"
     },
     "description":"Kryptonite",
-    "confirmed_not_dangerous":true,
     "kilogram_weight":"1.0",
     "cubic_metre_volume":"0.01",
     "customer_reference":"SupBdayPressie",
