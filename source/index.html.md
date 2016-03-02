@@ -6,18 +6,17 @@ language_tabs:
 
 toc_footers:
   - <a href='http://app.mux.io'>Sign Up for Mux</a>
-  - <a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a>
+  - Documentation Powered by <a href='https://github.com/tripit/slate'>Slate</a>
 
 search: true
 ---
 
-# Introduction
+# Integration: Video.js
 
-Something
+While Mux is still in development, only the Video.js player is supported. More players and platforms will be supported
+soon, including other desktop players, native SDKs for iOS and Android, and SDKs for OTT platforms.
 
-# Mux Integration
-
-## Video.js plugin
+## Include the plugin
 
 > Put this in the document &lt;head&gt;
 
@@ -32,15 +31,14 @@ Something
 > Put this lower in the page, after Video.js is loaded
 
 ```javascript
-<script src='//your.videojs.path/video.js'></script>
 <script src="//src.litix.io/videojs/1/videojs-mux.js"></script>
 ```
 
-Some text!
+Mux requires two embed codes, because something something. They go in two places blah blah.
 
-## Initialize
+## Initialize the plugin
 
-> Either do this
+> Either do this...
 
 ```javascript
 videojs('my-cool-player', { plugins: {
@@ -49,23 +47,25 @@ videojs('my-cool-player', { plugins: {
 });
 ```
 
-> Or this
+> ...or this...
 
 ```javascript
 <video id="my-cool-player" ... data-setup='{"plugins": {"mux": {}}}'>...</video>
 ```
 
-> Or this
+> ...or this.
 
 ```javascript
 var player = videojs('my-cool-player');
-// Just in case something went wrong getting the plugin, make sure it's there first.
+// Just in case something went wrong getting
+// the plugin, make sure it's there first.
 if (typeof player.mux !== 'undefined') {
   player.mux({});
 }
 ```
 
-More text!
+Initialize the plugin in your player settings when you normally initialize a Video.js plugin. This can be done in
+[multiple ways - is this like every plugin? - why would you choose one over another?]
 
 ## Changing the video
 
@@ -96,7 +96,7 @@ When setVideo is called it removes all previous video data and resets all metric
 
 # API Parameters
 
-## General Options
+## General
 
 ```javascript
 videojs('my-cool-player', {
@@ -108,13 +108,13 @@ videojs('my-cool-player', {
 });
 ```
 
-Option Name	| Description	| Default
+Name	| Description	| Default
 ----------- | ----------- | --------
 debug	| Put the plugin in debug mode to log operational details	| false
 heart_beat_interval	| How often to send heartbeats (in ms) | 10000
 check_buffering_interval | How often to check whether or not the player is buffering (in ms) | 100
 
-## Video Metadata Options
+## Video Metadata
 
 ```javascript
 videojs('my-cool-player', {
@@ -129,7 +129,7 @@ videojs('my-cool-player', {
 });
 ```
 
-Video data can be set to provide more information about the video that's being played. It can be set in the mux plugin options, or with the player.mux.setVideo() function after the plugin has been initialized.
+Video data can be set to provide more information about the video that's being played. It can be set in the Mux plugin options, or with the player.mux.setVideo() function after the plugin has been initialized.
 
 When you change the video title that a player is playing you will also need to use player.mux.setVideo() to update the video details. This does not include when you change to a different source (e.g. a different resolution) of the same title.
 
@@ -147,7 +147,7 @@ video_stream_type | "live" or "on-demand"
 video_producer | The producer of the video title
 video_encoding_variant | Which encoding profile is being used, when testing multiple.
 
-## Player Options
+## Player
 
 ```javascript
 videojs('my-cool-player', {
