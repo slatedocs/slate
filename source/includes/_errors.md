@@ -23,8 +23,8 @@ Error Code | Meaning
 ```shell
   curl -i "https://www.sendle.com/api/orders"
   -X POST
-  -u "sendleAPI:42RRTjYz5Z4hZrm8XY3t4Vxt"
-  -H "Content-Type: application/json" 
+  -u "sendleID:APIKey"
+  -H "Content-Type: application/json"
   -d ']'
 ```
 > 400 Response Header information:
@@ -124,7 +124,7 @@ Without accepting [dangerous goods terms](#set-up-account), booking orders will 
 
 ```shell
   curl "https://www.sendle.com/api/orders"
-  -u "sendleAPI:42RRTjYz5Z4hZrm8XY3t4Vxt"
+  -u "sendleID:APIKey"
   -H "Content-Type: application/json"
   -X POST
   -d '{
