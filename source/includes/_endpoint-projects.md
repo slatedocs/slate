@@ -173,7 +173,10 @@ GET /projects/abcd/datasets/ HTTP/1.1
 ```json
 {
   "element": "shoji:catalog",
-  "self": "http:\/\/local.crunch.io:8080\/api\/projects\/6c01ed7eb4c342608539627b5b09e2b0\/datasets\/",
+  "self": "http:\/\/local.crunch.io:8080\/api\/projects\/6c01\/datasets\/",
+  "orders": {
+    "order": "http://local.crunch.io:8080/api/projects/6c01/datasets/order/"
+  },
   "index": {
     "https://beta.crunch.io/api/datasets/cc9161/": {
         "owner_name": "James T. Kirk",
@@ -242,6 +245,9 @@ catalog.
 
 To remove datasets, include the dataset URL with `null` in the PATCHed catalog.
 
+Modifications to the datasets will be reflected in the project's related 
+dataset order. 
+
 You can perform multiple additions/removals in one request:
 
 
@@ -292,6 +298,66 @@ PUT to this endpoint to change a project's icon. The payload should have the
  form of a standard multipart/form-data upload. The file's contents will be 
  stored and made available under the project's url.
  
+Only the project's owner can change the project's icon.
+ 
 Valid image extensions: 'png', 'gif', 'jpg', 'jpeg' - Others will 400
 
+#### POST
+
+Same as PUT
+
+
+#### Datasets order
+
+Contains the `shoji:order` in which the datasets of this project are to be 
+ordered.
+
+This is endpoint available for all project members but can only be updated by 
+the project's owner.
+
+
+##### GET
+
+Will return the `shoji:order` response containing the datasets that belong
+to the project.
+
+```http
+GET /projects/6c01/datasets/order/ HTTP/1.1
+```
+
+```json
+{
+  "element": "shoji:order",
+  "self": "http:\/\/local.crunch.io:8080\/api\/projects\/6c01\/datasets\/order\/",
+  "graph": [
+    "https://beta.crunch.io/api/datasets/cc9161/",
+    "https://beta.crunch.io/api/datasets/a598c7/"
+  ]
+}
+```
+
+##### PUT
+
+Allow to make modifications to the `shoji:order` for the contained datasets.
+Only the project owner can make these changes.
+
+Trying to include an invalid dataset or an incomplete list will return a 
+400 response.
+
+```http
+PUT /projects/6c01/datasets/order/ HTTP/1.1
+```
+
+```json
+{
+  "element": "shoji:order",
+  "self": "http:\/\/local.crunch.io:8080\/api\/projects\/6c01\/datasets\/order\/",
+  "graph": [
+    "https://beta.crunch.io/api/datasets/cc9161/",
+    {
+      "group": "https://beta.crunch.io/api/datasets/a598c7/"
+    }
+  ]
+}
+```
 
