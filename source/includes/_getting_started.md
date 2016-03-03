@@ -13,7 +13,7 @@ Before anything else, you will need to have a [Sendle Account](https://www.sendl
 
 ![Account Settings](images/account_settings.png)
 
-With Access granted, visit `Account Settings`  in the drop down next to your Sendle ID_(top right)_ on your Sendle Dashboard.
+With Access granted, visit `Account Settings` by clicking the account's email in the top right corner and selecting `Account Settings` from the drop down.
 
 ![API Modal](images/api_modal.png)
 
