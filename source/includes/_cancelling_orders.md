@@ -7,6 +7,7 @@
   -X DELETE
   -u "sendleID:APIKey"
   -H "Content-Type: application/json"
+  -H "Accept: application/json"
 ```
 
 > 200 Response

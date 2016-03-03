@@ -8,6 +8,8 @@
 ```shell
   curl 'https://www.sendle.com/api/ping'
   -u sendleID:APIKey
+  -H "Content-Type: application/json"
+  -H "Accept: application/json"
 ```
 
 Sendle uses your **Sendle ID** together with your own **API Key** to grant access to the server. Together this allows you to access the API so that you may book and follow up with orders, as well as view past orders you have sent or received.

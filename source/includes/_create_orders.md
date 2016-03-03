@@ -13,6 +13,7 @@ To create an order, submit order data via POST command. The order will be reject
   -X POST
   -u "sendleID:APIKey"
   -H "Content-Type: application/json"
+  -H "Accept: application/json"
   -d '{
     "pickup_date": "2015-11-24",
     "description": "Kryptonite",
