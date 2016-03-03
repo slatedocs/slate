@@ -5,7 +5,7 @@
 
 ```shell
   curl "https://www.sendle.com/api/orders/f5233746-71d4-4b05-bf63-56f4abaed5f6/labels/a4.pdf"
-  -u "sendleAPI:42RRTjYz5Z4hZrm8XY3t4Vxt"
+  -u "sendleID:APIKey"
   -o "label.pdf"
 ```
 

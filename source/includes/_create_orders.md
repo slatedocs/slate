@@ -11,8 +11,9 @@ To create an order, submit order data via POST command. The order will be reject
 ```shell
   curl "https://www.sendle.com/api/orders"
   -X POST
-  -u "sendleAPI:42RRTjYz5Z4hZrm8XY3t4Vxt"
+  -u "sendleID:APIKey"
   -H "Content-Type: application/json"
+  -H "Accept: application/json"
   -d '{
     "pickup_date": "2015-11-24",
     "description": "Kryptonite",

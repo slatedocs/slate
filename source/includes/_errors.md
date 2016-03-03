@@ -14,36 +14,27 @@ Error Code | Meaning
 [402](#402-payment-required) | **Payment Required** -- The client does not yet have a payment-method set up on their account, and cannot create orders.
 [404](#404-not-found) | **Not Found** -- The requested resource/URI was not found.
 [422](#422-unprocessable-entity) | **Unprocessable Entity** -- The server was unable to complete the request due to the data itself. For example, validations within the data may fail, or an upstream request may not be able to be fulfilled with the data. This is different to `400 Bad Request` as `422 Unprocessable Entity` suggests that the request sent by the client was structurally valid, and the request was attempted.
-[500](#500-internal-server-error) | **Internal Server Error** -- An error occurred within the system itself. This may be a coding error that caused the system to fail. The development team will have been notified of this failure.
-[503](#503-internal-server-error) | **Service Unavailable** -- An error occurred within the system due to an upstream error or failure. For example, a courier API may be unavailable or failing to respond.  The development team will have been notified of this failure.
-
+500 | **Internal Error** -- An unhandled error has occured with the Sendle API. Contact <a href="mailto:support@sendle.com">support@sendle.com</a> if the problem persists.
+[503](#503-not-available) | **Not Available** -- The server is currently unavailable, due to maintenance or upgrades.
 
 ## 400 Bad request
 
 ```shell
   curl -i "https://www.sendle.com/api/orders"
   -X POST
-  -u "sendleAPI:42RRTjYz5Z4hZrm8XY3t4Vxt"
-  -H "Content-Type: application/json" 
+  -u "sendleID:APIKey"
+  -H "Content-Type: application/json"
   -d ']'
 ```
 > 400 Response Header information:
 
 ```
   HTTP/1.1 400 Bad Request
-  Server: Cowboy
-  Date: Mon, 19 Oct 2015 04:37:32 GMT
-  Connection: keep-alive
   Content-Type: text/html; charset=utf-8
-  X-Request-Id: ca3d8539-acfa-4f9a-b3d7-416f32f31393
-  X-Runtime: 0.032672
-  Vary: Accept-Encoding
-  Strict-Transport-Security: max-age=31536000
   Content-Length: 0
-  Via: 1.1 vegur
 ```
 
-*Invalid API request formatting*
+*Invalid request format*
 
 When an invalid request is sent to the API, there is no visible response. This will include mostly formatting errors.
 
@@ -124,7 +115,7 @@ Without accepting [dangerous goods terms](#set-up-account), booking orders will 
 
 ```shell
   curl "https://www.sendle.com/api/orders"
-  -u "sendleAPI:42RRTjYz5Z4hZrm8XY3t4Vxt"
+  -u "sendleID:APIKey"
   -H "Content-Type: application/json"
   -X POST
   -d '{
@@ -205,26 +196,14 @@ Without accepting [dangerous goods terms](#set-up-account), booking orders will 
     "error":"unprocessable_entity",
     "error_description":"The data you supplied is invalid. Error messages are in the messages section. Please fix those fields and try again."
 ```
+*Data format was correct but contained unprocessable information*
 
-*Data could not be processed, but API format is correct*
-
-`422` errors occur most commonly as users become more familiar with the API interface. These errors occur when the server receives your request, it is properly formatted, but the POST information can not be processed as is.
+`422` errors occur most commonly as users become more familiar with the API interface. These errors occur when the server receives your request, it is properly formatted, but the information can not be processed as is.
 
 Be sure to check the error messages as the server response will explain why the request could not be processed and often give suggestions.
 
+## 503 Not Available
 
-## 500 Internal Server Error
-
-```
-  500 Internal Server Error
-  If you are the administrator of this website, then please read this web application's log file and/or the web server's log file to find out what went wrong.
-```
-
-*Invalid Endpoint*
-
-As an example, sending a request to `https://sendle.com/api/` will yield a `500` error because the url endpoint is invalid. If you send requests at a valid endpoint like `https://sendle.com/api/quote/` and receive a `500` error there is a server-side problem, Sendle will address the problem as soon as possible.
-
-
-## 503 Internal Server Error
-
-An error occurred within the system due to an upstream error or failure. For example, a courier API may be unavailable or failing to respond. The development team will have been notified of this failure.
+From time to time we might require a short outage to carry out
+maintenance or upgrades. In most cases the API will return a HTTP 503
+error response.

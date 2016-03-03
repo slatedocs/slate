@@ -13,11 +13,15 @@ Before anything else, you will need to have a [Sendle Account](https://www.sendl
 
 ![Account Settings](images/account_settings.png)
 
-With Access granted, visit `Account Settings`  in the drop down next to your Sendle ID_(top right)_ on your Sendle Dashboard.
+With Access granted, visit `Account Settings` by clicking the account's email in the top right corner and selecting `Account Settings` from the drop down.
 
 ![API Modal](images/api_modal.png)
 
 Once you have been granted API access, visit your API tab to get your `api key`.
+
+Requests to the API require the use of HTTP Basic Authentication using
+your account's Sendle ID as the user name and your API key as the
+password.
 
 <aside class="warning">Consider your API Key as a password. Be sure to keep your API Key private!</aside>
 
