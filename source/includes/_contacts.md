@@ -1,5 +1,7 @@
 # <a name="contacts-section"></a>Contacts
 
+Endpoints to manage contacts
+
 ## Listing contacts
 
 > Example request
@@ -75,7 +77,11 @@ curl "https://getquipu.com/contacts" \
 
   }],
   meta: {
-    "total_pages": 7
+    pagination_info: {
+      "total_pages": 2
+      "current_page": 1
+      "total_results": 23
+    }
   }
 }
 ```

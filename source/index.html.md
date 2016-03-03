@@ -11,6 +11,7 @@ toc_footers:
 includes:
   - contacts
   - invoices_tickets_and_paysheets
+  - invoices
   - errors
 
 search: true
@@ -63,7 +64,7 @@ Example:
 
 * `GET /book_entries`
 
-### Invoices
+### [Invoices](#invoices-section)
 
 * `GET    /invoices`  
 * `POST   /invoices`  
