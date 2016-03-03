@@ -19,6 +19,10 @@ With Access granted, visit `Account Settings` by clicking the account's email in
 
 Once you have been granted API access, visit your API tab to get your `api key`.
 
+Requests to the API require the use of HTTP Basic Authentication using
+your account's Sendle ID as the user name and your API key as the
+password.
+
 <aside class="warning">Consider your API Key as a password. Be sure to keep your API Key private!</aside>
 
 ## Set Up Payments
