@@ -141,54 +141,53 @@ curl "https://getquipu.com/book_entries" \
   }, {
     "id": "2698918",
     "type": "tickets",
-      "attributes": {
-        "kind": "expenses",
-        "number": "8",
-        "issue_date": "2015-07-18",
-        "due_date": null,
-        "paid_at": "2015-10-04",
-        "payment_method": "",
-        "payment_status": "paid",
-        "validation_status": "verified",
-        "total_amount": "5.2",
-        "issuing_name": "Bar Paco",
-        "issuing_tax_id": null,
-        "issuing_address": null,
-        "issuing_phone": null,
-        "issuing_town": null,
-        "issuing_zip_code": null,
-        "issuing_country_code": null,
-        "recipient_name": "Paolo Conte",
-        "recipient_tax_id": "43467890F",
-        "recipient_address": "C/ Viladomat 39",
-        "recipient_phone": "123456789",
-        "recipient_town": "San Cucufate",
-        "recipient_zip_code": "09876",
-        "recipient_country_code": "es",
-        "tags": ""
-      },
-      "relationships": {
-        "accounting_category": {
-          "data": {
-            "type": "accounting_categories",
-            "id": "53"
-          }
-        },
-        "accounting_subcategory": {
-          "data": null
-        },
-        "numeration": {
-          "data": null
-        },
-        "analytic_category_options": {
-          "data": []
-        },
-        "items": {
-          "data": [{
-            "type": "book_entry_items",
-            "id": "2957853"
-          }]
+    "attributes": {
+      "kind": "expenses",
+      "number": "8",
+      "issue_date": "2015-07-18",
+      "due_date": null,
+      "paid_at": "2015-10-04",
+      "payment_method": "",
+      "payment_status": "paid",
+      "validation_status": "verified",
+      "total_amount": "5.2",
+      "issuing_name": "Bar Paco",
+      "issuing_tax_id": null,
+      "issuing_address": null,
+      "issuing_phone": null,
+      "issuing_town": null,
+      "issuing_zip_code": null,
+      "issuing_country_code": null,
+      "recipient_name": "Paolo Conte",
+      "recipient_tax_id": "43467890F",
+      "recipient_address": "C/ Viladomat 39",
+      "recipient_phone": "123456789",
+      "recipient_town": "San Cucufate",
+      "recipient_zip_code": "09876",
+      "recipient_country_code": "es",
+      "tags": ""
+    },
+    "relationships": {
+      "accounting_category": {
+        "data": {
+          "type": "accounting_categories",
+          "id": "53"
         }
+      },
+      "accounting_subcategory": {
+        "data": null
+      },
+      "numeration": {
+        "data": null
+      },
+      "analytic_category_options": {
+        "data": []
+      },
+      "items": {
+        "data": [{
+          "type": "book_entry_items",
+          "id": "2957853"
+        }]
       }
     }
   }, {
@@ -203,3 +202,15 @@ curl "https://getquipu.com/book_entries" \
 ```
 
 `GET /book_entries`
+
+### Available filters
+
+Filter name | Description | Valid values | Example
+------------| ------------| ------------ | -------
+type | Filters resources by kind | `invoices`, `tickets` or `paysheets` | `/book_entries?filter[type]=invoices`
+kind | Filter resources by kind | `expenses` or `income` | `/book_entries?filter[kind]=expenses`
+q | Search | Any | `/book_entries?filter[q]=android development`
+period | Filter resources by period | [month number,Q1,Q2,Q3,Q4]-year | `/book_entries?filter[period]=Q1-2015` =>  First quarter of 2015 <br> `/book_entries?filter[period]=2-2016` => February 2016 <br> `/book_entries?filter[period]=2015` => 2015
+payment_status | Filter resources by payment status | `paid`, `unpaid`, `due` or `pending` | `/book_entries?filter[payment_status]=due`
+
+### Sorting
