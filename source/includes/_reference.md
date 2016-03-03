@@ -27,6 +27,18 @@ We take the security of your code metrics extremely seriously. Keeping your data
 * Our UI is only served under SSL.
 * When additional data is collected for slow calls (ex: SQL queries), query parameters are sanitized before sending these to our servers.
 
+### Information sent to our servers
+
+The following data is sent to our servers from the agent:
+
+* Timing information collected from our instrumentation
+* Gems used by your application
+* Slow request transaction traces, which include:
+  * The URL, including query parameters, of the slow request. This can be modified to exclude query params via the <a href="#configuration-reference"><code>uri_reporting</code></a> configuration option.
+
+  * IP Address of the client initiating the request
+  * Sanitized SQL query statements
+
 ### Git Integration
 
 Scout only needs read-only access to your repository, but unfortunately, Github doesn't currently allow this - they only offer read-write permissions through their OAuth API.
