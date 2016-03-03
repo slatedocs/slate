@@ -14,10 +14,8 @@ Error Code | Meaning
 [402](#402-payment-required) | **Payment Required** -- The client does not yet have a payment-method set up on their account, and cannot create orders.
 [404](#404-not-found) | **Not Found** -- The requested resource/URI was not found.
 [422](#422-unprocessable-entity) | **Unprocessable Entity** -- The server was unable to complete the request due to the data itself. For example, validations within the data may fail, or an upstream request may not be able to be fulfilled with the data. This is different to `400 Bad Request` as `422 Unprocessable Entity` suggests that the request sent by the client was structurally valid, and the request was attempted.
-[500] **Internal Error** -- an unhandled error has occured with the
-Sendle API. Contact support@sendle.com if the problem persists.
-[503](#503-not-available) **Not Available** -- The server is currently
-unavailable, due to maintenance or upgrades.
+500 | **Internal Error** -- an unhandled error has occured with the Sendle API. Contact <a href="mailto:support@sendle.com">support@sendle.com</a> if the problem persists.
+[503](#503-not-available) | **Not Available** -- The server is currently unavailable, due to maintenance or upgrades.
 
 ## 400 Bad request
 
