@@ -335,3 +335,67 @@ curl "https://getquipu.com/invoices" \
 ```
 
 `GET /invoices/30822`
+
+## Creating an invoice
+
+> Example request
+
+```shell
+curl "https://getquipu.com/invoices" \
+  -H "Authorization: Bearer be32259bd1d0f4d3d02bcc0771b1b507e2b666ba9e9ba3d7c5639e853f722eb4" \
+  -H "Accept: application/vnd.quipu.v1+json" \
+  -H "Content-Type: application/vnd.quipu.v1+json" \
+  -d '{
+        "data": {
+          "type": "invoices",
+          "attributes": {
+            "number": null,
+            "issue_date": "12-03-2016",
+            "due_date": "12-5-2016",
+            "paid_at": null,
+            "payment_method": "bank_transfer",
+            "tags": "songo, timba"
+          },
+          "relationships": {
+            "contact": {
+              "data" {
+                id: 6347,
+                type: "contacts"
+              }
+            },
+            "accounting_category": {
+              "data": {
+                id: 123,
+                type: "accounting_categories"
+              }
+            },
+
+            ...
+
+            "items": {
+              "data": [{
+                "type": "book_entry_items",
+                "attributes": {
+                  "concept": "Tornillos"
+                  "unitary_amount": "0.50",
+                  "quantity": 30,
+                  "vat_percent": 21,
+                  "retention_percent": 0
+                }
+              }, {
+                "type": "book_entry_items",
+                "attributes": {
+                  "concept": "Tuercas"
+                  "unitary_amount": "0.35",
+                  "quantity": 30,
+                  "vat_percent": 21,
+                  "retention_percent": 0
+                }
+              }]
+            }
+          }
+        }
+      }'
+```
+
+`POST /invoices`
