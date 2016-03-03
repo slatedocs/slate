@@ -40,7 +40,7 @@ Example:
 
 ### Sorting
 
-When fetching collections of resources you can use `sort=-issued_at,total_amount`. Each sorting criteria separated with a comma.
+When fetching some collections of resources you can use `?sort=sort_criteria_1,sort_criteria_2,-sorting_criteria_3,...`, each sorting criteria separated with a comma.
 
 The `-` sign at the beggining of a sorting criteria means that the order for this criteria is descendant.
 

@@ -8,13 +8,13 @@ Only one available action. Get a list with different type of resources
 
 ```shell
 curl "https://getquipu.com/book_entries" \
-       -H "Authorization: Bearer be32259bd1d0f4d3d02bcc0771b1b507e2b666ba9e9ba3d7c5639e853f722eb4" \
-       -H "Accept: application/vnd.quipu.v1+json"
-       ```
+  -H "Authorization: Bearer be32259bd1d0f4d3d02bcc0771b1b507e2b666ba9e9ba3d7c5639e853f722eb4" \
+  -H "Accept: application/vnd.quipu.v1+json"
+```
 
-       > Example response
+> Example response
 
-       ```shell
+```shell
 {
   "data": [{
     "id": "2988939",
@@ -210,7 +210,14 @@ Filter name | Description | Valid values | Example
 type | Filters resources by kind | `invoices`, `tickets` or `paysheets` | `/book_entries?filter[type]=invoices`
 kind | Filter resources by kind | `expenses` or `income` | `/book_entries?filter[kind]=expenses`
 q | Search | Any | `/book_entries?filter[q]=android development`
-period | Filter resources by period | [month number,Q1,Q2,Q3,Q4]-year | `/book_entries?filter[period]=Q1-2015` =>  First quarter of 2015 <br> `/book_entries?filter[period]=2-2016` => February 2016 <br> `/book_entries?filter[period]=2015` => 2015
+period | Filter resources issued in the specified period | [month number,Q1,Q2,Q3,Q4]-year | `/book_entries?filter[period]=Q1-2015` =>  First quarter of 2015 <br> `/book_entries?filter[period]=2-2016` => February 2016 <br> `/book_entries?filter[period]=2015` => 2015
 payment_status | Filter resources by payment status | `paid`, `unpaid`, `due` or `pending` | `/book_entries?filter[payment_status]=due`
 
 ### Sorting
+
+Criteria name | Description | Example
+------------- | ----------- | -------
+number | Sorts resources by number | `/book_entries?sort=-number`
+issue_date | Sort resources by issue date | `book_entries?sort=-issue_date`
+counterpart_name | Sorts resources by the counterpart name (issuing_name or recipient_name depending on the kind) | `/book_entries?sort=counterpart_name`
+
