@@ -23,11 +23,13 @@ GET /projects/ HTTP/1.1
   "index": {
     "http:\/\/local.crunch.io:8080\/api\/projects\/4643\/": {
       "name": "Project 1",
-      "id": "4643"
+      "id": "4643",
+      "icon": ""
     },
     "http:\/\/local.crunch.io:8080\/api\/projects\/6c01\/": {
       "name": "Project 2",
-      "id": "6c01"
+      "id": "6c01",
+      "icon": ""
     }
   }
 }
@@ -68,8 +70,14 @@ GET /projects/abcd/ HTTP/1.1
     "datasets": "http:\/\/local.crunch.io:8080\/api\/projects\/6c01\/datasets\/",
     "members": "http:\/\/local.crunch.io:8080\/api\/projects\/6c01\/members\/"
   },
+  "views": {
+    "icon": "http:\/\/local.crunch.io:8080\/api\/projects\/6c01\/icon\/"
+  },
   "body": {
-    "name": "Project 2"
+    "name": "Project 2",
+    "description": "Long description text",
+    "icon": "",
+    "id": "",
   }
 }
 ```
@@ -251,3 +259,39 @@ PATCH /projects/abcd/members/ HTTP/1.1
   }
 }
 ```
+
+#### Icon
+
+The icon endpoint for a project is a ShojiView that allows to change the
+project's icon.
+
+##### GET
+
+On GET, it will return a `shoji:view` with its value containing a url to the
+icon file or empty string in case there isn't an icon for this project yet.
+
+By default all new projects have an empty icon URL.
+
+
+```http
+GET /projects/abcd/icon/ HTTP/1.1
+```
+
+
+```json
+{
+  "element": "shoji:view",
+  "self": "http:\/\/local.crunch.io:8080\/api\/projects\/6c01\/icon\/",
+  "value": ""
+}
+```
+
+##### PUT
+
+PUT to this endpoint to change a project's icon. The payload should have the
+ form of a standard multipart/form-data upload. The file's contents will be 
+ stored and made available under the project's url.
+ 
+Valid image extensions: 'png', 'gif', 'jpg', 'jpeg' - Others will 400
+
+
