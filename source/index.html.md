@@ -1,168 +1,116 @@
 ---
-title: API Reference
+title: Redii API Reference
 
 language_tabs:
-  - shell
-  - ruby
-  - python
+- shell
+- ruby
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a>
+- <a href='mailto:developers@redii.com?subject=New Developer Key'>Sign Up for a Developer Key</a>
+- <a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a>
 
 includes:
-  - errors
+- errors
 
 search: true
 ---
 
 # Introduction
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+Welcome to the Redii API! You can use our API to access Redii API endpoints, currently limited to a list of recent notifications for your Program.
 
 We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
 
-This example API documentation page was created with [Slate](https://github.com/tripit/slate). Feel free to edit it and use it as a base for your own API's documentation.
 
 # Authentication
 
 > To authorize, use this code:
 
 ```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
+uri = URI.parse("https://<your_program_subdomain>.redii.com/api/recognition/v1/moments")
+http = Net::HTTP.new(uri.host, uri.port)
+request = Net::HTTP::Get.new(uri.request_uri)
+request['authorization'] = "Token token=#{your_program_token}"
 ```
 
 ```shell
 # With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
+curl -IH "Authorization: Token token=your_program_token" \
+https://<your_program_subdomain>.redii.com/api/recognition/v1/moments
 ```
 
-> Make sure to replace `meowmeowmeow` with your API key.
+> Make sure to replace `your_program_token` and `your_program_subdomain` with your relevent key and subdomain.
 
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
+Redii uses API keys to allow access to the API. You can register a new API key by contacting us @ [developers@redii.com](mailto:developers@redii.com?subject=New Developer Key).
 
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
+Redii expects for the API key to be included in all API requests to the server in a header that looks like the following:
 
-`Authorization: meowmeowmeow`
+`Authorization: Token token=your_program_token`
 
 <aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
+  You must replace <code>your_program_token</code> with your Program API key.
 </aside>
 
-# Kittens
+# Recognition
 
-## Get All Kittens
+## Get All moments
 
 ```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
+uri = URI.parse("https://<your_program_subdomain>.redii.com/api/recognition/v1/moments?limit=2")
+http = Net::HTTP.new(uri.host, uri.port)
+request = Net::HTTP::Get.new(uri.request_uri)
+request['authorization'] = "Token token=#{your_program_token}"
 ```
 
 ```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
-```
-
-> The above command returns JSON structured like this:
-
-```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
-```
-
-This endpoint retrieves all kittens.
-
-### HTTP Request
-
-`GET http://example.com/api/kittens`
-
-### Query Parameters
-
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
+# With shell, you can just pass the correct header with each request
+curl -IH "Authorization: Token token=your_program_token" \
+https://<your_program_subdomain>.redii.com/api/recognition/v1/moments?limit=2
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
 {
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
+  "moment_nominations": [
+  {
+    "state": "approved",
+      "created_at": "2015-12-07T16:36:57.658+11:00",
+      "updated_at": "2015-12-07T16:36:57.696+11:00",
+      "approved_at": "2015-12-07T16:36:57.663+11:00",
+      "award_text": "Repellendus sed labore tempore incidunt facere sed ab iure qui eos alias.",
+      "manager_names": "Bruce Yost",
+      "user_names": "Wilmer Metz",
+      "by_user_id": 6,
+      "award_id": 4
+  },
+  {
+    "state": "approved",
+    "created_at": "2015-12-07T16:36:57.815+11:00",
+    "updated_at": "2015-12-07T16:36:57.829+11:00",
+    "approved_at": "2015-12-07T16:36:57.818+11:00",
+    "award_text": "Architecto quisquam laboriosam quae dolor libero iure.",
+    "manager_names": "",
+    "user_names": "Eldred Ullrich",
+    "by_user_id": 10,
+    "award_id": 3
+  }
+  ]
 }
 ```
 
-This endpoint retrieves a specific kitten.
-
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
+This endpoint retrieves (default of) the 10 most recent moments of recognition.
 
 ### HTTP Request
 
-`GET http://example.com/kittens/<ID>`
+`GET https://<your_program_subdomain>.redii.com/api/recognition/v1/moments`
 
-### URL Parameters
+### Query Parameters
 
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
+Parameter | Default | Description
+--------- | ------- | -----------
+limit | 10 | The number of results to return.
 
+<aside class="success">
+Remember — replace `your_program_subdomain` with your programs subdomain!
+</aside>
