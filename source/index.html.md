@@ -12,6 +12,7 @@ includes:
   - contacts
   - invoices_tickets_and_paysheets
   - invoices
+  - tickets
   - errors
 
 search: true

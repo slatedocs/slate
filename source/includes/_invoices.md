@@ -1,6 +1,52 @@
 #<a name="invoices-section"></a> Invoices
 
-Endpoints to manage invoices
+Endpoints to manage invoices.
+
+## Attributes
+
+Attr. name |  Constraints
+---------- |  -----------
+kind | REQUIRED <br> Accepted values: `income` or `expenses`
+number | For income invoices we recommend leave it blank, and Quipu will assign it.<br>For income invoices must be unique within a fiscal year.<br>For expense invoices must be unique within a fiscal year for the invoice supplier.
+issue_date | REQUIRED <br> Format: `YYYY-mm-dd`
+due_date | Format: `YYYY-mm-dd`
+paid_at  | Format: `YYYY-mm-dd`
+payment_method | Accepted valued: `cash`, `bank_transfer`, `bank_card`, `direct_debit`, `paypal`, `check`, `factoring`
+payment_status | READ ONLY
+total_amount   | READ ONLY
+total_amount | READ ONLY
+total_amount_without_taxes | READ ONLY
+vat_amount | READ ONLY
+retention_amount | READ ONLY
+issuing_name | READ ONLY, *
+issuing_tax_id | READ ONLY, *
+issuing_address | READ ONLY, *
+issuing_phone | READ ONLY, *
+issuing_town | READ ONLY, *
+issuing_zip_code | READ ONLY, *
+issuing_country_code | READ ONLY, *
+recipient_name | READ ONLY, *
+recipient_tax_id | READ ONLY, *
+recipient_address | READ ONLY, *
+recipient_phone | READ ONLY, *
+recipient_town | READ ONLY, *
+recipient_zip_code | READ ONLY, *
+recipient_country_code | READ ONLY, *
+last_sent_at | Format: a unix timestamp
+tags | Format: a list of strings separated by comma
+
+## Relationships
+
+Relationship name |  Constraints
+----------------- |  -----------
+contact | REQUIRED
+accounting_category |
+accounting_subcategory |
+numeration |
+analytic_category_options |
+items | Can be sideloaded in GET requests. <br> Must be included in the payload in POST/PATCH/PUT requests
+
+\* This fields will be populated and updated each time an invoice is saved from the information of the Quipu account owner and the contact associatied with the book entry.
 
 ## Listing invoices
 
@@ -45,7 +91,8 @@ curl "https://getquipu.com/invoices" \
       "recipient_town": "",
       "recipient_zip_code": "",
       "recipient_country_code": "es",
-      "tags": ""
+      "tags": "",
+      "last_sent_at": 1457364458
     },
     "relationships": {
       "accounting_category": {
@@ -108,7 +155,8 @@ curl "https://getquipu.com/invoices" \
       "recipient_town": "",
       "recipient_zip_code": "",
       "recipient_country_code": "es",
-      "tags": ""
+      "tags": "vip client, important",
+      "last_sent_at": 1457364458
     },
     "relationships": {
       "accounting_category": {
@@ -220,7 +268,8 @@ curl "https://getquipu.com/invoices" \
       "recipient_town": "",
       "recipient_zip_code": "",
       "recipient_country_code": "es",
-      "tags": ""
+      "tags": "",
+      "last_sent_at": 1457364458
     },
     "relationships": {
       "accounting_category": {
@@ -334,7 +383,7 @@ curl "https://getquipu.com/invoices" \
 }
 ```
 
-`GET /invoices/30822`
+`GET /invoices/:invoice_id`
 
 ## Creating an invoice
 
@@ -398,4 +447,52 @@ curl "https://getquipu.com/invoices" \
       }'
 ```
 
+> Example response
+
 `POST /invoices`
+
+### About items
+
+The way we send info about the items associated to a book entry is not compliant
+with the JSON API format. We do it this way because this resource (book entry items)
+are an essential part of a book entry, and to save some api calls. In brief,
+when sending data about the items we add the info in `relationships => items => data => attributes`,
+but in the responses we will find the details about items in the `includes` object.
+
+## Updating an invoice
+
+> Example request
+
+```shell
+curl "http://getquipu.dev:3000/invoices/2988939" \
+  -X PATCH \
+  -H "Authorization: Bearer 818abe1ea4a1813999a47105892d50f3781320c588fb8cd2927885963e621228" \
+  -H "Accept: application/vnd.quipu.v1+json" \
+  -H "Content-Type: application/vnd.quipu.v1+json" \
+  -d '{
+        "data": {
+          "type": "invoices",
+          "id": 2988939,
+          "attributes": {
+            "issue_date": "21-2-2016"
+          }
+        }
+      }'
+```
+
+`(PUT|PATCH) /invoices/`
+
+## Deleting an invoice
+
+> Example request
+
+```shell
+curl "https://getquipu.com/invoices/2988939" \
+  -X DELETE
+  -H "Authorization: Bearer be32259bd1d0f4d3d02bcc0771b1b507e2b666ba9e9ba3d7c5639e853f722eb4" \
+  -H "Accept: application/vnd.quipu.v1+json"
+```
+
+`DELETE /invoices/2988939`
+
+

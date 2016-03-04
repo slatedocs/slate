@@ -304,7 +304,7 @@ curl "https://getquipu.com/contacts/746868" \
 }
 ```
 
-`(PATCH|PUT) /contacts/:id`
+`(PATCH|PUT) /contacts/:contact_id`
 
 ## Deleting a contact
 
@@ -315,7 +315,7 @@ curl "https://getquipu.com/contacs/45923" \
   -H "Accept: application/vnd.quipu.v1+json"
 ```
 
-`DELETE /contacts/:id`
+`DELETE /contacts/:contact_id`
 
 The response status will be `204 - No Content` if the operation was
 successfull or `403 - Forbidden` if the contact could not be deleted (or authorization fails). A
