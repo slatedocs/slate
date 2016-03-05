@@ -1,0 +1,280 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "HpSmartStorageLogicalDrive.0.10.0",
+    "description": "HpSmartStorageLogicalDrive",
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+        "Oem": {
+            "$ref": "Oem.json#"
+        },
+        "Name": {
+            "$ref": "Name.json#"
+        },
+        "Modified": {
+            "$ref": "Modified.json#"
+        },
+        "Type": {
+            "$ref": "Type.json#"
+        },
+        "Description": {
+            "$ref": "Description.json#"
+        },
+        "LogicalDriveNumber": {
+            "type": "integer",
+            "description": "logical drive number",
+            "readonly": true,
+            "etag": true
+        },
+        "SmartCacheState": {
+            "type": "string",
+            "description": "The state of the SmartCache cache. This is valid if this drive either is a cache drive, or has a cache drive attached to it",
+            "readonly": true,
+            "enum": [
+                "Good",
+                "Limited",
+                "DDRUnsafe",
+                "CacheLUNOffline",
+                "PrimaryLUNOffline",
+                "Destroyed",
+                "Flushing",
+                "Configuring",
+                "PairFailAtPowerup",
+                "Unknown"
+            ],
+            "enumDescriptions": {
+                "Good": "The cache is functioning properly",
+                "Limited": "The cache is functioning in a degraded mode, and may not be functioning at maximum performance",
+                "DDRUnsafe": "The DDR is unsafe for the cache drive",
+                "CacheLUNOffline": "The cache drive is offline",
+                "PrimaryLUNOffline": "The primary logical drive that is being cached is offline",
+                "Destroyed": "The cache is destroyed and not functional",
+                "Flushing": "The cache drive is flushing",
+                "Configuring": "The caching pair is being configured",
+                "PairFailAtPowerup": "The primary and cache drive were unable to be paired at powerup",
+                "Unknown": "The state of the cache is unknown"
+            },
+            "etag": true
+        },
+        "Status": {
+            "$ref": "Status.json#"
+        },
+        "LogicalDriveEncryption": {
+            "type": "boolean",
+            "description": "True if encryption is currently enabled on this logical drive, false otherwise",
+            "readonly": true,
+            "etag": true
+        },
+        "LogicalDriveEncryptionDataKeysVolatile": {
+            "type": "boolean",
+            "description": "True if volatile keys are enabled for encryption, false otherwise",
+            "readonly": true,
+            "etag": true
+        },
+        "LogicalDriveEncryptionDataKeysVolatileBackup": {
+            "type": "boolean",
+            "description": "True if volatile keys are backed up to a remote key manager, false if volatile keys are not backed up",
+            "readonly": true,
+            "etag": true
+        },
+        "TransformationCompletionPercentage": {
+            "type": "integer",
+            "description": "The percent complete for any transformations the logical drive may be undergoing such as RAID migration, stripesize migration, capacity expansion etc.",
+            "readonly": true,
+            "etag": true
+        },
+        "RebuildCompletionPercentage": {
+            "type": "integer",
+            "description": "The percent complete for a rebuild operation currently occurring on the logical drive",
+            "readonly": true,
+            "etag": true
+        },
+        "ParityInitializationType": {
+            "type": "string",
+            "description": "When creating a logical drive with a RAID level that requires parity, parity blocks can be initialized with two different methods",
+            "readonly": true,
+            "enum": [
+                "Default",
+                "Rapid"
+            ],
+            "enumDescriptions": {
+                "Default": "Parity blocks are initialized in the background and the logical drive is available during this time",
+                "Rapid": "Both data and parity blocks are initialized in the foreground and the logical drive will not be available to the operating system until initialization completes"
+            },
+            "etag": true
+        },
+        "ParityInitializationCompletionPercentage": {
+            "type": "integer",
+            "description": "Parity initialization complete percentage for a parity based logical drive (e.g. RAID 5)",
+            "readonly": true,
+            "etag": true
+        },
+        "LogicalDriveEncryptionDataKeysVolatileStatus": {
+            "type": "string",
+            "description": "The status of the encryption volatile keys",
+            "readonly": true,
+            "enum": [
+                "NoOp",
+                "BackupInProgress",
+                "BackupAndSetInProgress",
+                "RestoreInProgress",
+                "DeleteInProgress"
+            ],
+            "enumDescriptions": {
+                "NoOp": "No operations are pending for the volatile keys",
+                "BackupInProgress": "The volatile keys are being backed up to a remote key manager",
+                "BackupAndSetInProgress": "The volatile keys are being set and being backed up to a remote key manager",
+                "RestoreInProgress": "The volatile keys are being restored from a remote key manager",
+                "DeleteInProgress": "The volatile keys are being removed"
+            },
+            "etag": true
+        },
+        "LogicalDriveType": {
+            "type": "string",
+            "description": "How the logical drive is being used",
+            "readonly": true,
+            "enum": [
+                "Data",
+                "Cache",
+                "SplitMirrorSetPrimary",
+                "SplitMirrorSetBackup",
+                "SplitMirrorSetBackupOrphan"
+            ],
+            "enumDescriptions": {
+                "Data": "The drive is being used as a storage drive",
+                "Cache": "The drive is being used as a cache drive for a different storage drive",
+                "SplitMirrorSetPrimary": "This drive is being used as the primary storage drive of a split mirror set after a Split Mirror Array has been performed",
+                "SplitMirrorSetBackup": "This drive is being used as the backup storage drive of a split mirror set after a Split Mirror Array has been performed",
+                "SplitMirrorSetBackupOrphan": "This drive was being used as the backup storage drive of a split mirror set that no longer exists"
+            },
+            "etag": true
+        },
+        "CapacityMiB": {
+            "type": "integer",
+            "description": "Total usable capacity available on this logical drive in MiB units",
+            "readonly": true,
+            "etag": true
+        },
+        "BlockSizeBytes": {
+            "type": "integer",
+            "description": "The block size of the disk drive in bytes",
+            "readonly": true,
+            "etag": true
+        },
+        "Raid": {
+            "type": "string",
+            "description": "The current RAID level configured on the logical drive",
+            "readonly": true,
+            "enum": [
+                "0",
+                "1",
+                "1ADM",
+                "10",
+                "10ADM",
+                "5",
+                "50",
+                "6",
+                "60"
+            ],
+            "enumDescriptions": {
+                "0": "There is no fault tolerance used on this logical drive",
+                "1": "Two sets of duplicate data is being stored on a pair of drives",
+                "1ADM": "Three sets of duplicate data is being stored on a trio of drives",
+                "10": "Data is duplicated and striped across pairs of disk drives",
+                "10ADM": "Data is duplicated and striped across trios of disk drives",
+                "5": "Fault tolerance is achieved by storing parity data across 3 or more disk drives",
+                "50": "Fault tolerance is achieved by storing parity data and striping the data across 6 or more disk drives",
+                "6": "Fault tolerance is achieved by storing multiple sets parity data across 4 or more disk drives",
+                "60": "Fault tolerance is achieved by storing multiple sets parity data and striping the data across 8 or more disk drives"
+            },
+            "etag": true
+        },
+        "DriveGeometryCylinders": {
+            "type": "string",
+            "description": "The number of cylinders on the drive",
+            "readonly": true,
+            "etag": true
+        },
+        "DriveGeometryHeads": {
+            "type": "string",
+            "description": "The number of heads on the drive",
+            "readonly": true,
+            "etag": true
+        },
+        "DriveGeometrySectors": {
+            "type": "string",
+            "description": "The number of sectors on the drive",
+            "readonly": true,
+            "etag": true
+        },
+        "StripSizeBytes": {
+            "type": "integer",
+            "description": "The strip size of the logical drive in bytes",
+            "readonly": true,
+            "etag": true
+        },
+        "StripeSizeBytes": {
+            "type": "integer",
+            "description": "The stripe size of the logical drive in bytes",
+            "readonly": true,
+            "etag": true
+        },
+        "VolumeUniqueIdentifier": {
+            "type": "string",
+            "description": "An identifier (typically SCSI Inquiry based such as Inquiry VPD Page 0x83 NAA 64 identifier) used to uniquely identify this volume.",
+            "readonly": true,
+            "etag": true
+        },
+        "DriveAccessName": {
+            "type": "string",
+            "description": "The access ID of the logical drive given by the OS",
+            "readonly": true,
+            "etag": true
+        },
+        "LogicalDriveName": {
+            "type": "string",
+            "description": "Label given to the logical drive",
+            "readonly": true,
+            "etag": true
+        },
+        "PartitionInformation": {
+            "type": "string",
+            "description": "OS partition information for the drive",
+            "readonly": true,
+            "etag": true
+        },
+        "links": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "DataDrives": {
+                    "$ref": "href.json#",
+                    "description": "link to collection of membertype HpSmartStorageDiskDrive. This represents the list of data drives configured as part of this logical drive.",
+                    "readonly": true
+                },
+                "StandbySpareDrives": {
+                    "$ref": "href.json#",
+                    "description": "link to collection of membertype HpSmartStorageDiskDrive.  This represents the list of drives configured as spare drives for this logical drive and are currently not active.",
+                    "readonly": true
+                },
+                "ActiveSpareDrives": {
+                    "$ref": "href.json#",
+                    "description": "link to collection of membertype HpSmartStorageDiskDrive.  This represents the list of drives configured as spare drives for this logical drive and are currently active.",
+                    "readonly": true
+                },
+                "TransientDataDrives": {
+                    "$ref": "href.json#",
+                    "description": "link to collection of membertype HpSmartStorageDiskDrive.  This represents the list of drives that are currently transitioning from a data drive to unconfigured or vice versa as part of logical drive transformation operation.",
+                    "readonly": true
+                },
+                "self": {
+                    "$ref": "href.json#",
+                    "description": "link to self",
+                    "readonly": true
+                }
+            },
+            "readonly": true,
+            "description": "The URIs to the resource related to HpSmartStorageLogicalDrive"
+        }
+    }
+}

@@ -1,0 +1,36 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "HpServerFan.0.9.5",
+    "type": "object",
+    "readonly": true,
+    "additionalProperties": false,
+    "properties": {
+        "Type": {
+            "$ref": "Type.json#"
+        },
+        "Location": {
+            "type": "string",
+            "enum": [
+                "System",
+                "System Board",
+                "I/O Board",
+                "CPU",
+                "Memory",
+                "Storage",
+                "Removable Media",
+                "Power Supply",
+                "Ambient",
+                "Chassis",
+                "Bridge Board",
+                "Exhaust",
+                "Processor Bay",
+                "IO Bay",
+                "Blade Slot",
+                "Virtual"
+            ],
+            "description": "Indicates the component (i.e. CPU, Memory, and Storage) that the fan is being used to cool.",
+            "readonly": true,
+            "etag": true
+        }
+    }
+}

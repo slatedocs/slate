@@ -1,0 +1,304 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "Collection.0.9.5",
+    "type": "object",
+    "readonly": true,
+    "additionalProperties": false,
+    "properties": {
+        "Oem": {
+            "$ref": "Oem.json#"
+        },
+        "Name": {
+            "$ref": "Name.json#"
+        },
+        "Modified": {
+            "$ref": "Modified.json#"
+        },
+        "Type": {
+            "$ref": "Type.json#"
+        },
+        "Description": {
+            "$ref": "Description.json#"
+        },
+        "MemberType": {
+            "type": "string",
+            "description": "This property has the type of members in this collection.  All of the members of a collection have the same value for their Type property, thus they are all the same kind of resource.",
+            "pattern": "^[A-Z][A-Za-z0-9]+\\.\\d+$",
+            "readonly": true,
+            "etag": true
+        },
+        "Total": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "The total number of collection members.",
+            "readonly": true,
+            "etag": true
+        },
+        "links": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "Member": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                            "id": {
+                                "type": "string",
+                                "description": "The identifier value of the linked resource.",
+                                "readonly": true
+                            },
+                            "href": {
+                                "type": "string",
+                                "description": "The URI of the resource.",
+                                "readonly": true
+                            },
+                            "frag": {
+                                "type": "string",
+                                "description": "A JSON path fragment to a member of the items array.",
+                                "readonly": true
+                            }
+                        }
+                    },
+                    "readonly": true,
+                    "description": "The collection member link information."
+                },
+                "Oem": {
+                    "$ref": "Oem.json#"
+                },
+                "NextPage": {
+                    "oneOf": [
+                        {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "page": {
+                                    "type": "integer",
+                                    "minimum": 0,
+                                    "description": "The number of the next page.",
+                                    "readonly": true,
+                                    "etag": true
+                                },
+                                "count": {
+                                    "type": "integer",
+                                    "minimum": 0,
+                                    "description": "The number of resources represented on the referenced page.",
+                                    "readonly": true,
+                                    "etag": true
+                                }
+                            },
+                            "description": "This object represents a page number and count.",
+                            "readonly": true
+                        },
+                        {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "start": {
+                                    "type": "integer",
+                                    "minimum": 0,
+                                    "description": "The start value can be used in a query on the URI to get the next page.",
+                                    "readonly": true,
+                                    "etag": true
+                                },
+                                "count": {
+                                    "type": "integer",
+                                    "minimum": 0,
+                                    "description": "The number of items on the next page.",
+                                    "readonly": true,
+                                    "etag": true
+                                }
+                            },
+                            "description": "This object represents the start item's index and count.",
+                            "readonly": true
+                        },
+                        {
+                            "additionalProperties": false,
+                            "$ref": "href.json#",
+                            "description": "This object contains a reference to a destination resource.",
+                            "readonly": true
+                        }
+                    ]
+                },
+                "PrevPage": {
+                    "oneOf": [
+                        {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "page": {
+                                    "type": "integer",
+                                    "minimum": 0,
+                                    "description": "The number of the previous page.",
+                                    "readonly": true,
+                                    "etag": true
+                                },
+                                "count": {
+                                    "type": "integer",
+                                    "minimum": 0,
+                                    "description": "The number of resources represented on the referenced page.",
+                                    "readonly": true,
+                                    "etag": true
+                                }
+                            },
+                            "description": "This object represents a page number and count.",
+                            "readonly": true
+                        },
+                        {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "start": {
+                                    "type": "integer",
+                                    "minimum": 0,
+                                    "description": "The start item index of the previous page.",
+                                    "readonly": true,
+                                    "etag": true
+                                },
+                                "count": {
+                                    "type": "integer",
+                                    "minimum": 0,
+                                    "description": "The number of resources represented on the referenced page.",
+                                    "readonly": true,
+                                    "etag": true
+                                }
+                            },
+                            "description": "This object represents the start items index and count.",
+                            "readonly": true
+                        },
+                        {
+                            "additionalProperties": false,
+                            "$ref": "href.json#",
+                            "description": "The reference to the destination page.",
+                            "readonly": true
+                        }
+                    ]
+                },
+                "FirstPage": {
+                    "oneOf": [
+                        {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "page": {
+                                    "type": "integer",
+                                    "minimum": 0,
+                                    "description": "The number of the first page.",
+                                    "readonly": true,
+                                    "etag": true
+                                },
+                                "count": {
+                                    "type": "integer",
+                                    "minimum": 0,
+                                    "description": "The number of resources represented on the referenced page.",
+                                    "readonly": true,
+                                    "etag": true
+                                }
+                            },
+                            "description": "This object represents a page number and count.",
+                            "readonly": true
+                        },
+                        {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "start": {
+                                    "type": "integer",
+                                    "minimum": 0,
+                                    "description": "The start item index of the first page.",
+                                    "readonly": true,
+                                    "etag": true
+                                },
+                                "count": {
+                                    "type": "integer",
+                                    "minimum": 0,
+                                    "description": "The number of resources represented on the referenced page.",
+                                    "readonly": true,
+                                    "etag": true
+                                }
+                            },
+                            "description": "This object represents the start item's index and count.",
+                            "readonly": true
+                        },
+                        {
+                            "additionalProperties": false,
+                            "$ref": "href.json#",
+                            "description": "The reference to the destination page.",
+                            "readonly": true
+                        }
+                    ]
+                },
+                "LastPage": {
+                    "oneOf": [
+                        {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "page": {
+                                    "type": "integer",
+                                    "minimum": 0,
+                                    "description": "The number of the last page.",
+                                    "readonly": true,
+                                    "etag": true
+                                },
+                                "count": {
+                                    "type": "integer",
+                                    "minimum": 0,
+                                    "description": "The number of resources represented on the referenced page.",
+                                    "readonly": true,
+                                    "etag": true
+                                }
+                            },
+                            "description": "This object represents a page number and count.",
+                            "readonly": true
+                        },
+                        {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "start": {
+                                    "type": "integer",
+                                    "minimum": 0,
+                                    "description": "The start item index of the last page.",
+                                    "readonly": true,
+                                    "etag": true
+                                },
+                                "count": {
+                                    "type": "integer",
+                                    "minimum": 0,
+                                    "description": "The number of resources represented on the referenced page.",
+                                    "readonly": true,
+                                    "etag": true
+                                }
+                            },
+                            "description": "This object represents the start items index and count.",
+                            "readonly": true
+                        },
+                        {
+                            "additionalProperties": false,
+                            "$ref": "href.json#",
+                            "description": "The reference to the destination page.",
+                            "readonly": true
+                        }
+                    ]
+                },
+                "self": {
+                    "$ref": "href.json#",
+                    "readonly": true,
+                    "description": "Link to self."
+                }
+            }
+        },
+        "Items": {
+            "type": "array",
+            "readonly": true,
+            "items": {
+                "type": "object",
+                "additionalProperties": true,
+                "properties": {}
+            },
+            "description": "The array of embedded objects of MemberType."
+        }
+    }
+}

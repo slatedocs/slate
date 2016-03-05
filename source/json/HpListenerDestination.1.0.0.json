@@ -1,0 +1,93 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "HpListenerDestination.1.0.0",
+    "type": "object",
+    "readonly": false,
+    "additionalProperties": false,
+    "description": "This resource shall be used to represent a destination for events that have been subscribed to by a client.",
+    "properties": {
+        "Type": {
+            "$ref": "Type.json#"
+        },
+        "AvailableActions": {
+            "type": "array",
+            "readonly": true,
+            "additionalItems": false,
+            "uniqueItems": true,
+            "items": {
+                "anyOf": [
+                    {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                            "Action": {
+                                "type": "string",
+                                "enum": [
+                                    "SendTestEvent"
+                                ],
+                                "description": "The SendTestEvent action causes a test event to be emitted.",
+                                "readonly": true
+                            },
+                            "Capabilities": {
+                                "type": "array",
+                                "readonly": true,
+                                "items": {
+                                    "type": "object",
+                                    "additionalProperties": true,
+                                    "properties": {
+                                        "PropertyName": {
+                                            "type": "string",
+                                            "enum": [
+                                                "EventType"
+                                            ],
+                                            "description": "This is the type of event to be emitted."
+                                        },
+                                        "AllowableValues": {
+                                            "type": "array",
+                                            "readonly": true,
+                                            "items": {
+                                                "type": "string",
+                                                "enum": [
+                                                    "Alert",
+                                                    "ResourceAdded",
+                                                    "ResourceRemoved",
+                                                    "ResourceUpdated",
+                                                    "StatusChange"
+                                                ]
+                                            }
+                                        }
+                                    }
+                                },
+                                "description": "This array item defines the allowable parameters supported for this custom action on this resource."
+                            }
+                        }
+                    }
+                ]
+            }
+        },
+        "DeliveryRetryAttempts": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "This is the number of attempts an event posting is retried before the subscription is terminated.",
+            "readonly": false
+        },
+        "DeliveryRetryIntervalInSeconds": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "This represents the number of seconds between retry attempts for sending any given Event",
+            "readonly": false
+        },
+        "RequestedMaxEventsToQueue": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "This represents the number of events the service should queue.",
+            "readonly": false
+        },
+        "RetireOldEventInMinutes": {
+            "type": "integer",
+            "minimum": 1,
+            "description": "This represents the number of minutes until an event is expired.",
+            "readonly": false
+        }
+    }
+}

@@ -1,0 +1,329 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "HpHttpsCert.0.9.5",
+    "type": "object",
+    "readonly": true,
+    "additionalProperties": false,
+    "description": "This is the schema definition for the X509 Certificate.",
+    "properties": {
+        "Type": {
+            "$ref": "Type.json#"
+        },
+        "X509CertificateInformation": {
+            "type": "object",
+            "description": "Contains the X509 Certificate Information.",
+            "readonly": true,
+            "etag": true,
+            "properties": {
+                "Subject": {
+                    "type": "string",
+                    "readonly": true,
+                    "additionalProperties": false,
+                    "description": "The entity to which the certificate was issued.",
+                    "etag": true
+                },
+                "Issuer": {
+                    "type": "string",
+                    "readonly": true,
+                    "additionalProperties": false,
+                    "description": "The Certificate Authority that issued the certificate.",
+                    "etag": true
+                },
+                "ValidNotBefore": {
+                    "type": "string",
+                    "format": "date-time",
+                    "readonly": true,
+                    "additionalProperties": false,
+                    "description": "The date on which the certificate validity period begins.",
+                    "etag": true
+                },
+                "ValidNotAfter": {
+                    "type": "string",
+                    "format": "date-time",
+                    "readonly": true,
+                    "additionalProperties": false,
+                    "description": "The date on which the certificate validity period ends.",
+                    "etag": true
+                },
+                "SerialNumber": {
+                    "type": "string",
+                    "readonly": true,
+                    "additionalProperties": false,
+                    "description": "The serial number that the Certificate Authority assigned to the certificate.",
+                    "etag": true
+                }
+            }
+        },
+        "CertificateSigningRequest": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "readonly": true,
+            "additionalProperties": false,
+            "description": "GenerateCSR action, wait few minutes (upto 10), perform GET operation, fills CSR. Contains a public and private key pair.",
+            "etag": true
+        },
+        "links": {
+            "type": "object",
+            "readonly": true,
+            "properties": {
+                "self": {
+                    "$ref": "href.json#",
+                    "description": "The URI of this X509 Certificate resource.",
+                    "readonly": true
+                }
+            },
+            "description": "The URIs for the resources related to the X509 Certificate resource.",
+            "additionalProperties": false
+        },
+        "AvailableActions": {
+            "type": "array",
+            "description": "The list of actions this service supports.",
+            "additionalItems": false,
+            "uniqueItems": true,
+            "items": {
+                "anyOf": [
+                    {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                            "Action": {
+                                "type": "string",
+                                "enum": [
+                                    "ImportCertificate"
+                                ],
+                                "enumDescriptions": {
+                                    "ImportCertificate": "Imports a Trusted Certificate and iLO is reset."
+                                },
+                                "readonly": true,
+                                "etag": true
+                            },
+                            "Capabilities": {
+                                "type": "array",
+                                "items": {
+                                    "type": "object",
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "PropertyName": {
+                                            "type": "string",
+                                            "enum": [
+                                                "Certificate"
+                                            ],
+                                            "description": "Contains PEM formatted X509 certificate (Base64 encoded).",
+                                            "readonly": true
+                                        }
+                                    }
+                                },
+                                "description": "This array item defines the allowable values supported for this custom action on this resource.",
+                                "readonly": true
+                            }
+                        }
+                    },
+                    {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                            "Action": {
+                                "type": "string",
+                                "enum": [
+                                    "GenerateCSR"
+                                ],
+                                "enumDescriptions": {
+                                    "GenerateCSR": "Generate Certificate Signing Request (CSR)."
+                                },
+                                "readonly": true,
+                                "etag": true
+                            },
+                            "Capabilities": {
+                                "type": "array",
+                                "items": {
+                                    "anyOf": [
+                                        {
+                                            "type": "object",
+                                            "additionalProperties": false,
+                                            "properties": {
+                                                "PropertyName": {
+                                                    "type": "string",
+                                                    "enum": [
+                                                        "Country"
+                                                    ],
+                                                    "enumDescriptions": {
+                                                        "Country": "The two-character country code where the company or organization that owns this Manager subsystem is located. Eg: US"
+                                                    },
+                                                    "readonly": true
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "type": "object",
+                                            "additionalProperties": false,
+                                            "properties": {
+                                                "PropertyName": {
+                                                    "type": "string",
+                                                    "enum": [
+                                                        "State"
+                                                    ],
+                                                    "enumDescriptions": {
+                                                        "State": "The state where the company or organization that owns this iLO subsystem is located."
+                                                    },
+                                                    "readonly": true
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "type": "object",
+                                            "additionalProperties": false,
+                                            "properties": {
+                                                "PropertyName": {
+                                                    "type": "string",
+                                                    "enum": [
+                                                        "City"
+                                                    ],
+                                                    "enumDescriptions": {
+                                                        "City": "The city or locality where the company or organization that owns this iLO subsystem is located."
+                                                    },
+                                                    "readonly": true
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "type": "object",
+                                            "additionalProperties": false,
+                                            "properties": {
+                                                "PropertyName": {
+                                                    "type": "string",
+                                                    "enum": [
+                                                        "OrgName"
+                                                    ],
+                                                    "enumDescriptions": {
+                                                        "OrgName": "The name of the company or organization that owns this iLO subsystem."
+                                                    },
+                                                    "readonly": true
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "type": "object",
+                                            "additionalProperties": false,
+                                            "properties": {
+                                                "PropertyName": {
+                                                    "type": "string",
+                                                    "enum": [
+                                                        "OrgUnit"
+                                                    ],
+                                                    "enumDescriptions": {
+                                                        "OrgUnit": "The unit within the company or organization that owns this iLO subsystem."
+                                                    },
+                                                    "readonly": true
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "type": "object",
+                                            "additionalProperties": false,
+                                            "properties": {
+                                                "PropertyName": {
+                                                    "type": "string",
+                                                    "enum": [
+                                                        "CommonName"
+                                                    ],
+                                                    "enumDescriptions": {
+                                                        "CommonName": "The FQDN of this iLO subsystem."
+                                                    },
+                                                    "readonly": true
+                                                }
+                                            }
+                                        }
+                                    ]
+                                },
+                                "description": "This array item defines the allowable values supported for this custom action on this resource.",
+                                "readonly": true
+                            }
+                        }
+                    }
+                ]
+            }
+        }
+    },
+    "actions": {
+        "description": "Generating CSR and Importing the HTTPS Certificate.",
+        "actions": {
+            "GenerateCSR": {
+                "type": "object",
+                "readonly": true,
+                "additionalProperties": false,
+                "properties": {
+                    "Action": {
+                        "type": "string",
+                        "enum": [
+                            "GenerateCSR"
+                        ]
+                    },
+                    "Country": {
+                        "type": "string",
+                        "readonly": false,
+                        "additionalProperties": false,
+                        "description": "The two-character country code where the company or organization that owns this Manager subsystem is located. Eg: US",
+                        "etag": true
+                    },
+                    "State": {
+                        "type": "string",
+                        "readonly": false,
+                        "additionalProperties": false,
+                        "description": "The state where the company or organization that owns this iLO subsystem is located.",
+                        "etag": true
+                    },
+                    "City": {
+                        "type": "string",
+                        "readonly": false,
+                        "additionalProperties": false,
+                        "description": "The city or locality where the company or organization that owns this iLO subsystem is located.",
+                        "etag": true
+                    },
+                    "OrgName": {
+                        "type": "string",
+                        "readonly": false,
+                        "additionalProperties": false,
+                        "description": "The name of the company or organization that owns this iLO subsystem.",
+                        "etag": true
+                    },
+                    "OrgUnit": {
+                        "type": "string",
+                        "readonly": false,
+                        "additionalProperties": false,
+                        "description": "The unit within the company or organization that owns this iLO subsystem.",
+                        "etag": true
+                    },
+                    "CommonName": {
+                        "type": "string",
+                        "readonly": false,
+                        "additionalProperties": false,
+                        "description": "The FQDN of this iLO subsystem.",
+                        "etag": true
+                    }
+                }
+            },
+            "ImportCertificate": {
+                "type": "object",
+                "additionalProperties": false,
+                "description": "Imports a Trusted Certificate and iLO is reset.",
+                "properties": {
+                    "Action": {
+                        "type": "string",
+                        "enum": [
+                            "ImportCertificate"
+                        ]
+                    },
+                    "Certificate": {
+                        "type": "string",
+                        "readonly": "false",
+                        "format": "text",
+                        "description": "Contains PEM formatted X509 certificate (Base64 encoded).",
+                        "etag": true
+                    }
+                }
+            }
+        }
+    }
+}

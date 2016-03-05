@@ -1,0 +1,8 @@
+{
+    "type": "string",
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "id": "http://jsonschema.net",
+    "description": "This object represents the Description property.",
+    "readonly": true,
+    "etag": true
+}

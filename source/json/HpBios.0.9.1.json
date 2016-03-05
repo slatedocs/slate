@@ -1,0 +1,95 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "HpBios.0.9.1",
+    "type": "object",
+    "readonly": false,
+    "additionalProperties": true,
+    "properties": {
+        "Oem": {
+            "$ref": "Oem.json#"
+        },
+        "Name": {
+            "$ref": "Name.json#"
+        },
+        "Modified": {
+            "$ref": "Modified.json#"
+        },
+        "Type": {
+            "$ref": "Type.json#"
+        },
+        "links": {
+            "type": "object",
+            "additionalProperties": true,
+            "properties": {
+                "self": {
+                    "$ref": "href.json#",
+                    "description": "Link to self."
+                }
+            }
+        },
+        "PowerRegulator": {
+            "type": "string",
+            "description": "HP Power Regulator mode.",
+            "enum": [
+                "DynamicPowerSavings",
+                "StaticLowPower",
+                "StaticHighPerf",
+                "OsControl"
+            ],
+            "readonly": false,
+            "etag": true
+        },
+        "AutoPowerOn": {
+            "type": "string",
+            "description": "This defines whether the system will automatically power on when power is applied.",
+            "enum": [
+                "AlwaysPowerOn",
+                "AlwaysPowerOff",
+                "RestoreLastState"
+            ],
+            "readonly": false,
+            "etag": true
+        },
+        "PowerOnDelay": {
+            "type": "string",
+            "description": "This defines how long the system waits to power on after AC power is applied.",
+            "enum": [
+                "None",
+                "Random",
+                "15Sec",
+                "30Sec",
+                "45Sec",
+                "60Sec"
+            ],
+            "readonly": false,
+            "etag": true
+        },
+        "TpmState": {
+            "type": "string",
+            "description": "This indicates the current TPM state.",
+            "enum": [
+                "NotPresent",
+                "PresentDisabled",
+                "PresentEnabled"
+            ],
+            "readonly": false,
+            "etag": true
+        },
+        "TpmOpromMeasuring": {
+            "type": "string",
+            "description": "This allows enabling/disabling of TPM Option ROM Measurement.",
+            "enum": [
+                "Disabled",
+                "Enabled"
+            ],
+            "readonly": false,
+            "etag": true
+        },
+        "SwapROM": {
+            "type": "boolean",
+            "description": "If true, ROM Selection will change from Current to Backup on next boot.",
+            "readonly": false,
+            "etag": true
+        }
+    }
+}

@@ -1,0 +1,121 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "VirtualMedia.0.10.0",
+    "type": "object",
+    "additionalProperties": false,
+    "description": "This is the schema definition for the Virtual Media service.",
+    "properties": {
+        "Oem": {
+            "type": "object",
+            "additionalProperties": true,
+            "properties": {
+                "Hp": {
+                    "$ref": "HpiLOVirtualMedia.json#"
+                }
+            }
+        },
+        "Name": {
+            "$ref": "Name.json#"
+        },
+        "Modified": {
+            "$ref": "Modified.json#"
+        },
+        "Type": {
+            "$ref": "Type.json#"
+        },
+        "Description": {
+            "$ref": "Description.json#"
+        },
+        "ImageName": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "description": "The name of the image that is mounted on this server. This is usually provided when a URL image is mounted through scripted virtual media.",
+            "readonly": true,
+            "etag": true
+        },
+        "Image": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "format": "uri",
+            "description": "The valid URI indicating the image that is mounted on this server. A null value indicates that no image exists.",
+            "readonly": false,
+            "etag": true
+        },
+        "MediaTypes": {
+            "type": "array",
+            "items": {
+                "type": "string",
+                "description": "The array of supported media types for this connection.",
+                "enum": [
+                    "CD",
+                    "Floppy",
+                    "USBStick",
+                    "DVD"
+                ],
+                "enumDescriptions": {
+                    "CD": "A CD-ROM format (ISO) image.",
+                    "Floppy": "A floppy disk image.",
+                    "USBStick": "An emulation of a USB storage device.",
+                    "DVD": "A DVD-ROM format image."
+                },
+                "readonly": true,
+                "etag": true
+            }
+        },
+        "ConnectedVia": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "description": "Specifies how the virtual media is connected to the server.",
+            "enum": [
+                "NotConnected",
+                "URI",
+                "Applet"
+            ],
+            "enumDescriptions": {
+                "NotConnected": "No current connection.",
+                "URI": "Connected to a URI location.",
+                "Applet": "Connected to a client application."
+            },
+            "readonly": true,
+            "etag": true
+        },
+        "Inserted": {
+            "type": [
+                "boolean",
+                "null"
+            ],
+            "description": "Indicates whether the virtual media is mounted on the server.",
+            "readonly": true,
+            "etag": true
+        },
+        "WriteProtected": {
+            "type": [
+                "boolean",
+                "null"
+            ],
+            "description": "Indicates whether the virtual media is protected against write operations.",
+            "readonly": true,
+            "etag": true
+        },
+        "links": {
+            "type": "object",
+            "readonly": true,
+            "properties": {
+                "self": {
+                    "$ref": "href.json#",
+                    "description": "The URI of this virtual media resource.",
+                    "readonly": true
+                }
+            },
+            "description": "The URIs for the resources related to the virtual media resource.",
+            "additionalProperties": false
+        }
+    },
+    "readonly": false
+}

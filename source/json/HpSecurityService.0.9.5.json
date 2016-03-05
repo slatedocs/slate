@@ -1,0 +1,40 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "HpSecurityService.0.9.5",
+    "type": "object",
+    "readonly": false,
+    "additionalProperties": false,
+    "properties": {
+        "Type": {
+            "$ref": "Type.json#"
+        },
+        "links": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "self": {
+                    "$ref": "href.json#",
+                    "description": "Link to self."
+                },
+                "ESKM": {
+                    "$ref": "href.json#",
+                    "description": "The value of this property shall be a reference to a resource of Type HpESKM.",
+                    "readonly": true,
+                    "etag": false
+                },
+                "HttpsCert": {
+                    "$ref": "href.json#",
+                    "description": "The value of this property shall be a reference to a resource of Type HpHttpsCert.",
+                    "readonly": true,
+                    "etag": false
+                },
+                "SSO": {
+                    "$ref": "href.json#",
+                    "description": "The value of this property shall be a reference to a resource of Type HpiLOSSO.",
+                    "readonly": true,
+                    "etag": false
+                }
+            }
+        }
+    }
+}

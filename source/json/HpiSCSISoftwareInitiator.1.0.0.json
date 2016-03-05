@@ -1,0 +1,231 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "HpiSCSISoftwareInitiator.1.0.0",
+    "type": "object",
+    "additionalProperties": false,
+    "description": "The schema definition of UEFI iSCSI Software Initiator boot configuration.",
+    "properties": {
+        "Oem": {
+            "$ref": "Oem.json#"
+        },
+        "Name": {
+            "$ref": "Name.json#"
+        },
+        "Modified": {
+            "$ref": "Modified.json#"
+        },
+        "Type": {
+            "$ref": "Type.json#"
+        },
+        "Description": {
+            "$ref": "Description.json#"
+        },
+        "links": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "Settings": {
+                    "$ref": "href.json#",
+                    "description": "Reference to a separate pending settings resource. Users can change the UEFI iSCSI Software Initiator boot configuration by modifying the pending settings resource."
+                },
+                "self": {
+                    "$ref": "href.json#",
+                    "description": "This is the URI of this resource.",
+                    "readonly": true
+                }
+            },
+            "readonly": true,
+            "description": "Links"
+        },
+        "SettingsResult": {
+            "$ref": "Settings.json#"
+        },
+        "iSCSIInitiatorName": {
+            "type": "string",
+            "description": "The worldwide unique iSCSI Qualified Name (IQN) of this iSCSI Initiator. Only IQN format is accepted. EUI format is not supported (for example 'iqn.1986-03.com.hp:init.sn-123456').",
+            "pattern": "^$|^(?:iqn\\.[0-9]{4}-[0-9]{2}(?:\\.[A-Za-z](?:[A-Za-z0-9\\-]*[A-Za-z0-9])?)+(?::.*)?)$",
+            "maxLength": 224
+        },
+        "iSCSIBootSources": {
+            "type": "array",
+            "additionalProperties": false,
+            "items": {
+                "type": "object",
+                "properties": {
+                    "StructuredBootString": {
+                        "type": "string",
+                        "pattern": "^[A-Za-z0-9]+[.][A-Za-z0-9]+[.]\\d+[.]\\d+([.][A-Za-z0-9]+)?$",
+                        "description": "Structured boot string that identifies this iSCSI UEFI boot option within the server.",
+                        "readonly": true
+                    },
+                    "UEFIDevicePath": {
+                        "type": "string",
+                        "description": "Standardized text representation of the UEFI device path for this boot option, in UTF-8 format.",
+                        "readonly": true
+                    },
+                    "iSCSIAttemptInstance": {
+                        "type": "integer",
+                        "description": "Numeric instance number that uniquely identifies this iSCSI boot attempt.",
+                        "minimum": 1,
+                        "maximum": 4
+                    },
+                    "iSCSIAttemptName": {
+                        "type": "string",
+                        "description": "Human readable descriptive name for this iSCSI boot attempt configuration",
+                        "maxLength": 96
+                    },
+                    "iSCSIBootEnable": {
+                        "type": "string",
+                        "description": "Enables or Disables iSCSI Boot for a selected iSCSI boot attempt.",
+                        "enum": [
+                            "Disabled",
+                            "Enabled",
+                            "EnabledMpio"
+                        ],
+                        "enumDescriptions": {
+                            "Disabled": "Booting from this iSCSI boot attempt is disabled.",
+                            "Enabled": "Booting from this iSCSI boot attempt is enabled.",
+                            "EnabledMpio": "Booting from this iSCSI boot attempt is enabled with MPIO (Multi Path I/O)."
+                        }
+                    },
+                    "iSCSIIpAddressType": {
+                        "type": "string",
+                        "description": "The iSCSI IP Address type. If set to Auto, IPv4 will be attempted first, followed by IPv6.",
+                        "enum": [
+                            "IPv4",
+                            "IPv6",
+                            "Auto"
+                        ],
+                        "enumDescriptions": {
+                            "IPv4": "The iSCSI IP address is configured in IPv4 format.",
+                            "IPv6": "The iSCSI IP address is configured in IPv6 format.",
+                            "Auto": "The iSCSI IP address is configured in IPv4, and if that fails, IPv6."
+                        }
+                    },
+                    "iSCSIConnectRetry": {
+                        "type": "integer",
+                        "description": "Number of times to retry the iSCSI connection. Zero means no retries.",
+                        "minimum": 0,
+                        "maximum": 16
+                    },
+                    "iSCSIConnectTimeout": {
+                        "type": "integer",
+                        "description": "The iSCSI connection timeout value in milliseconds.",
+                        "minimum": 100,
+                        "maximum": 20000
+                    },
+                    "iSCSIISID": {
+                        "type": "string",
+                        "description": "The iSCSI ISID in 6-byte OUI-format. Default value are derived from MAC address. Only last 3 bytes are configurable. For example, a default ISID of 0ABBCCDDEEFF can be changed to 0ABBCCF07901 by setting this property to 'F07901' or '0ABBCCF07901'.",
+                        "pattern": "@todo... empty string or only hex value"
+                    },
+                    "iSCSIInitiatorInfoViaDHCP": {
+                        "type": "boolean",
+                        "description": "If enabled, the iSCSI Initiator information are configured from DHCP. Otherwise, the iSCSI initiator information must be statically configured."
+                    },
+                    "iSCSIInitiatorIpAddress": {
+                        "type": "string",
+                        "description": "The IP Address of the iSCSI Initiator, if not configured via DHCP. The address needs to be an IPv4 or IPv6 address, depending on the IP Address Type.",
+                        "pattern": "@todo... IPv4 or IPv6 or empty string"
+                    },
+                    "iSCSIInitiatorNetmask": {
+                        "type": "string",
+                        "description": "The subnet mask of the iSCSI Initiator, if not configured via DHCP. The address needs to be an IPv4.",
+                        "pattern": "@todo... IPv4 or empty string"
+                    },
+                    "iSCSIInitiatorGateway": {
+                        "type": "string",
+                        "description": "The gateway address of the iSCSI Initiator, if not configured via DHCP. The address needs to be an IPv4 or IPv6 address, depending on the IP Address Type.",
+                        "pattern": "@todo... IPv4 or IPv6 or empty string"
+                    },
+                    "iSCSITargetInfoViaDHCP": {
+                        "type": "boolean",
+                        "description": "If enabled, the iSCSI target information are configured from DHCP. Otherwise, the iSCSI target information must be statically configured."
+                    },
+                    "iSCSITargetName": {
+                        "type": "string",
+                        "description": "The worldwide unique iSCSI Qualified Name (IQN) of this iSCSI target. Only IQN format is accepted. EUI format is not supported (for example 'iqn.1991-05.com.microsoft:iscsitarget-iscsidisk-target').",
+                        "pattern": "^$|^(?:iqn\\.[0-9]{4}-[0-9]{2}(?:\\.[A-Za-z](?:[A-Za-z0-9\\-]*[A-Za-z0-9])?)+(?::.*)?)$",
+                        "maxLength": 224
+                    },
+                    "iSCSITargetIpAddress": {
+                        "type": "string",
+                        "description": "The IP Address of the iSCSI Target, if not obtained from DHCP. The address needs to be an IPv4 or IPv6 address, depending on the IP Address Type.",
+                        "pattern": "@todo... IPv4 or IPv6 or empty string"
+                    },
+                    "iSCSITargetTcpPort": {
+                        "type": "integer",
+                        "description": "The iSCSI Target TCP Port number, if not obtained from DHCP.",
+                        "minimum": 0,
+                        "maximum": 65535
+                    },
+                    "iSCSIBootLUN": {
+                        "type": "string",
+                        "description": "The iSCSI boot target Logical Unit Number (LUN), if not obtainedf from DHCP. This value must be a hexadecimal string with an even number of 2 to 16 characters, excluding the first two characters, 0x (for example, '0x01').",
+                        "pattern": "^$|^0[xX][0-9A-Fa-f]{2,16}$"
+                    },
+                    "iSCSIAuthenticationMethod": {
+                        "type": "string",
+                        "description": "The iSCSI connection authentication method.",
+                        "enum": [
+                            "None",
+                            "CHAP"
+                        ],
+                        "enumDescriptions": {
+                            "None": "No iSCSI connection security.",
+                            "CHAP": "iSCSI connection is secured using Challenge Handshake Authentication Protocol (CHAP)."
+                        }
+                    },
+                    "iSCSIChapType": {
+                        "type": "string",
+                        "description": "The CHAP authentication type. This is applicable only when the Authentication Method is set to CHAP.",
+                        "enum": [
+                            "OneWay",
+                            "Mutual"
+                        ],
+                        "enumDescriptions": {
+                            "OneWay": "The target will authenticate the initiator. .",
+                            "Mutual": "both the initiator and target will authenticate each other."
+                        }
+                    },
+                    "iSCSIChapUsername": {
+                        "type": "string",
+                        "description": "The password needed for CHAP authentication. This is applicable only when the Authentication Method is set to CHAP.",
+                        "pattern": "@todo"
+                    },
+                    "iSCSIChapSecret": {
+                        "type": "string",
+                        "description": "The password needed for CHAP authentication. This is applicable only when the Authentication Method is set to CHAP, and the CHAP Type is set to Mutual.",
+                        "pattern": "@todo"
+                    },
+                    "iSCSIReverseChapUsername": {
+                        "type": "string",
+                        "description": "User Name for reverse CHAP authentication (from the target to the initiator). This is applicable only when the Authentication Method is set to CHAP, and the CHAP Type is set to Mutual.",
+                        "pattern": "@todo"
+                    },
+                    "iSCSIReverseChapSecret": {
+                        "type": "string",
+                        "description": "The password needed for reverse CHAP authentication (from the target to the initiator). This is applicable only when the Authentication Method is set to CHAP, and the CHAP Type is set to Mutual.",
+                        "pattern": "@todo"
+                    }
+                }
+            }
+        },
+        "required": [
+            "iSCSIAttemptInstance",
+            "iSCSIAttemptName",
+            "iSCSIBootEnable",
+            "iSCSIIpAddressType",
+            "iSCSIInitiatorInfoViaDHCP",
+            "iSCSITargetInfoViaDHCP",
+            "iSCSIAuthenticationMethod"
+        ],
+        "readonly": false,
+        "description": "Array of UEFI iSCSI boot sources available on this server. Each entry holds the configuration of an iSCSI boot attempt."
+    },
+    "required": [
+        "Name",
+        "Type",
+        "iSCSIInitiatorName"
+    ]
+}

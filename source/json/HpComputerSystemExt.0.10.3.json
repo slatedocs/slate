@@ -1,0 +1,566 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "HpComputerSystemExt.0.10.3",
+    "type": "object",
+    "readonly": false,
+    "additionalProperties": false,
+    "properties": {
+        "Type": {
+            "$ref": "Type.json#"
+        },
+        "PowerOnDelay": {
+            "type": "string",
+            "enum": [
+                "Minimum",
+                "15Sec",
+                "30Sec",
+                "45Sec",
+                "60Sec",
+                "RandomUpTo120Sec"
+            ],
+            "description": "The PowerAutoOn policy delay that can also be found in the HpBios::PowerOnDelay object.",
+            "readonly": false,
+            "etag": true
+        },
+        "links": {
+            "type": "object",
+            "additionalProperties": true,
+            "properties": {
+                "Bios": {
+                    "$ref": "href.json#",
+                    "description": "A reference to the BIOS information associated with this system.",
+                    "readonly": true
+                },
+                "Memory": {
+                    "$ref": "href.json#",
+                    "description": "A reference to the memory devices associated with this system.",
+                    "readonly": true
+                },
+                "NetworkAdapters": {
+                    "$ref": "href.json#",
+                    "description": "A reference to the storage devices associated with this system.",
+                    "readonly": true
+                },
+                "PCIDevices": {
+                    "$ref": "href.json#",
+                    "description": "A reference to the PCI devices associated with this system.",
+                    "readonly": true
+                },
+                "PCISlots": {
+                    "$ref": "href.json#",
+                    "description": "A reference to the PCI slots associated with this system.",
+                    "readonly": true
+                },
+                "Processor": {
+                    "$ref": "href.json#",
+                    "description": "A reference to the processors associated with this system.",
+                    "readonly": true
+                },
+                "SecureBoot": {
+                    "$ref": "href.json#",
+                    "description": "The reference for the SecureBoot resource associated with this system.",
+                    "readonly": true
+                },
+                "SmartStorage": {
+                    "$ref": "href.json#",
+                    "description": "A reference to the SmartStorage associated with this system.",
+                    "readonly": true
+                }
+            }
+        },
+        "VirtualUUID": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "description": "Used in conjunction with the UUID (Logical) value.",
+            "readonly": true,
+            "etag": true
+        },
+        "VirtualProfile": {
+            "type": "string",
+            "enum": [
+                "Active",
+                "Busy",
+                "Inactive",
+                "Unknown"
+            ],
+            "description": "The current state of the systems virtual profile.  This profile is the one that, when the server is rebooted, will set the  Virtual properties.  Intent is to use this state to determine whether the server needs to be rebooted so these values are set.  Additional informaiton about the profile will be considered later.",
+            "readonly": true,
+            "etag": true
+        },
+        "IntelligentProvisioningVersion": {
+            "type": "string",
+            "description": " Intelligent Provisioning Version.",
+            "readonly": true,
+            "etag": true
+        },
+        "IntelligentProvisioningIndex": {
+            "type": [
+                "integer",
+                "null"
+            ],
+            "description": " Index in the Firmware Version Table for Intelligent Provisioning.",
+            "readonly": true,
+            "etag": true
+        },
+        "IntelligentProvisioningLocation": {
+            "type": "string",
+            "description": " Location string of Intelligent Provisioning in Firmware Version Table.",
+            "readonly": true,
+            "etag": true
+        },
+        "ServerSignature": {
+            "type": [
+                "integer",
+                "null"
+            ],
+            "description": " The CRC32 of:  All Device Signatures combined together, Blade Slot Location in Enclosure, Enclosure UUID, and OneView Domain IP Address",
+            "readonly": true,
+            "etag": true
+        },
+        "PostState": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "description": "The current state of system POST.",
+            "enum": [
+                "Unknown",
+                "Reset",
+                "PowerOff",
+                "InPost",
+                "InPostDiscoveryComplete",
+                "FinishedPost"
+            ],
+            "enumDescriptions": {
+                "Unknown": "iLO was unable to determine the current server state.",
+                "Reset": "The server is currently in reset.",
+                "PowerOff": "The server power is off.",
+                "InPost": "The server is booting and has not reached discovery complete.",
+                "InPostDiscoveryComplete": "The server has reached discovery complete and is now waiting for the installed OS to be booted.  Discovery complete is the point at which it has been deemed safe to read and write the BIOS configuration information.",
+                "FinishedPost": "The server has booted the installed OS."
+            },
+            "readonly": true,
+            "etag": true
+        },
+        "PostMode": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "description": "Supported on UEFI based systems only. The manner in which the system will operate durring and at completion of POST.",
+            "enum": [
+                "Normal",
+                "PostToShutdown",
+                "PostToReboot"
+            ],
+            "enumDescriptions": {
+                "Normal": "Normal operations.",
+                "PostToShutdown": "Server boots until Discovery Completes, then shuts down.",
+                "PostToReboot": "Server boots until Discovery Completes, then reboots."
+            },
+            "readonly": false,
+            "etag": true
+        },
+        "EndOfPostDelaySeconds": {
+            "type": [
+                "integer",
+                "null"
+            ],
+            "description": "Supported on UEFI based systems only. The number of seconds to delay before finalizing POST with the Mode action (e.g. delay before shutdown).",
+            "readonly": false,
+            "etag": true
+        },
+        "PowerAutoOn": {
+            "type": "string",
+            "enum": [
+                "RemainOff",
+                "PowerOn",
+                "Restore"
+            ],
+            "description": "Auto Power-On mode defines what occurs when the AC power is applied to the system.",
+            "readonly": false,
+            "etag": true
+        },
+        "PowerAllocationLimit": {
+            "type": [
+                "integer",
+                "null"
+            ],
+            "minimum": 0,
+            "description": "The total amount of power allocated to the system.",
+            "readonly": true,
+            "etag": true
+        },
+        "PowerRegulatorMode": {
+            "type": "string",
+            "description": "HP Power Regulator mode.",
+            "enum": [
+                "OSControl",
+                "Dynamic",
+                "Max",
+                "Min"
+            ],
+            "readonly": true,
+            "etag": true
+        },
+        "PowerRegulatorModesSupported": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "readonly": true,
+            "description": "The power regulator modes supported by the system."
+        },
+        "Bios": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "UefiClass": {
+                    "type": "integer",
+                    "enum": [
+                        0,
+                        1,
+                        2,
+                        3
+                    ],
+                    "description": "The UEFI BIOS Class value defined in the UEFI specification.",
+                    "readonly": true,
+                    "etag": true
+                },
+                "Current": {
+                    "$ref": "HpFwRev.json#/definitions/HpFWVersion"
+                },
+                "Backup": {
+                    "$ref": "HpFwRev.json#/definitions/HpFWVersion"
+                },
+                "Bootblock": {
+                    "$ref": "HpFwRev.json#/definitions/HpFWVersion"
+                }
+            },
+            "readonly": true,
+            "description": "The information about the system BIOS."
+        },
+        "Battery": {
+            "type": "array",
+            "readonly": true,
+            "description": "This is the definition for HP Smart Storage Battery.",
+            "items": {
+                "type": "object",
+                "readonly": true,
+                "additionalProperties": false,
+                "properties": {
+                    "Index": {
+                        "type": "integer",
+                        "description": "Index of battery.",
+                        "readonly": true,
+                        "etag": true
+                    },
+                    "Present": {
+                        "type": "string",
+                        "description": "Presence of battery.",
+                        "readonly": true,
+                        "etag": true
+                    },
+                    "Condition": {
+                        "type": "string",
+                        "description": "Condition of battery.",
+                        "readonly": true,
+                        "etag": true
+                    },
+                    "ErrorCode": {
+                        "type": "integer",
+                        "description": "Error Code of battery.",
+                        "readonly": true,
+                        "etag": true
+                    },
+                    "Model": {
+                        "type": "string",
+                        "description": "Model of battery.",
+                        "readonly": true,
+                        "etag": true
+                    },
+                    "Spare": {
+                        "type": "string",
+                        "description": "Spare of battery.",
+                        "readonly": true,
+                        "etag": true
+                    },
+                    "SerialNumber": {
+                        "type": "string",
+                        "description": "Serial Number of battery.",
+                        "readonly": true,
+                        "etag": true
+                    },
+                    "MaxCapWatts": {
+                        "type": "integer",
+                        "description": "Maximum Capacity of battery in watts.",
+                        "readonly": true,
+                        "etag": true
+                    },
+                    "FirmwareVersion": {
+                        "type": "string",
+                        "description": "Firmware Version of battery.",
+                        "readonly": true,
+                        "etag": true
+                    }
+                },
+                "description": "HP Smart Storage Battery Information.",
+                "etag": true
+            }
+        },
+        "TrustedModules": {
+            "type": "array",
+            "readonly": true,
+            "items": {
+                "type": "object",
+                "description": "List of Trusted Modules (TPM or TM) installed in the system.",
+                "readonly": true,
+                "additionalProperties": false,
+                "properties": {
+                    "Status": {
+                        "type": "string",
+                        "enum": [
+                            "NotPresent",
+                            "PresentEnabled",
+                            "PresentDisabled",
+                            "Unknown"
+                        ],
+                        "description": "This property indicates the TPM or TM status.",
+                        "enumDescriptions": {
+                            "NotPresent": "TPM or TM is not present.",
+                            "PresentEnabled": "TPM or TM is present and enabled.",
+                            "PresentDisabled": "TPM or TM is present but disabled.",
+                            "Unknown": "TPM or TM status is unknown."
+                        },
+                        "readonly": true,
+                        "etag": true
+                    }
+                },
+                "etag": true
+            }
+        },
+        "AvailableActions": {
+            "type": "array",
+            "additionalItems": false,
+            "uniqueItems": true,
+            "items": {
+                "anyOf": [
+                    {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                            "Action": {
+                                "type": "string",
+                                "enum": [
+                                    "PowerButton"
+                                ],
+                                "description": "The Action to be performed.",
+                                "readonly": true,
+                                "etag": true
+                            },
+                            "Capabilities": {
+                                "type": "array",
+                                "readonly": true,
+                                "items": [
+                                    {
+                                        "type": "object",
+                                        "additionalProperties": false,
+                                        "properties": {
+                                            "PropertyName": {
+                                                "type": "string",
+                                                "enum": [
+                                                    "PushType"
+                                                ],
+                                                "description": "PushType identifies the type of Action to be performed.",
+                                                "readonly": true
+                                            },
+                                            "AllowableValues": {
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "string",
+                                                    "enum": [
+                                                        "Press",
+                                                        "PressAndHold"
+                                                    ]
+                                                },
+                                                "description": "The supported action for the PowerButton.",
+                                                "readonly": true
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "type": "object",
+                                        "readonly": true,
+                                        "additionalProperties": false,
+                                        "properties": {
+                                            "PropertyName": {
+                                                "type": "string",
+                                                "readonly": true,
+                                                "enum": [
+                                                    "Target"
+                                                ],
+                                                "description": "The Target the command should execute against"
+                                            },
+                                            "AllowableValues": {
+                                                "type": "array",
+                                                "readonly": true,
+                                                "items": {
+                                                    "type": "string",
+                                                    "enum": [
+                                                        "/Oem/Hp"
+                                                    ]
+                                                },
+                                                "description": "The supported values for Target parameters on this resource."
+                                            }
+                                        }
+                                    }
+                                ],
+                                "description": "The allowable values supported for this custom action on this resource."
+                            }
+                        },
+                        "description": "An available custom action on this resource.",
+                        "readonly": true
+                    },
+                    {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                            "Action": {
+                                "type": "string",
+                                "enum": [
+                                    "SystemReset"
+                                ],
+                                "description": "The Action to be performed.",
+                                "readonly": true,
+                                "etag": true
+                            },
+                            "Capabilities": {
+                                "type": "array",
+                                "items": [
+                                    {
+                                        "type": "object",
+                                        "additionalProperties": false,
+                                        "properties": {
+                                            "PropertyName": {
+                                                "type": "string",
+                                                "enum": [
+                                                    "ResetType"
+                                                ],
+                                                "description": "ResetType identifies the system reset to be performed.",
+                                                "readonly": true
+                                            },
+                                            "AllowableValues": {
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "string",
+                                                    "enum": [
+                                                        "ColdBoot"
+                                                    ]
+                                                },
+                                                "description": "The supported action for SystemReset.",
+                                                "readonly": true
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "type": "object",
+                                        "additionalProperties": false,
+                                        "properties": {
+                                            "PropertyName": {
+                                                "type": "string",
+                                                "enum": [
+                                                    "Target"
+                                                ],
+                                                "description": "The Target the command should execute against",
+                                                "readonly": true
+                                            },
+                                            "AllowableValues": {
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "string",
+                                                    "enum": [
+                                                        "/Oem/Hp"
+                                                    ]
+                                                },
+                                                "description": "The supported values for Target parameters on this resource.",
+                                                "readonly": true
+                                            }
+                                        }
+                                    }
+                                ],
+                                "description": "The allowable values supported for this custom action on this resource.",
+                                "readonly": true
+                            }
+                        },
+                        "description": "An available custom action on this resource.",
+                        "readonly": true
+                    }
+                ]
+            }
+        }
+    },
+    "actions": {
+        "description": "The allowed custom actions.",
+        "actions": {
+            "PowerButton": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                    "Action": {
+                        "type": "string",
+                        "enum": [
+                            "PowerButton"
+                        ],
+                        "description": "The Action to be performed."
+                    },
+                    "PushType": {
+                        "type": "string",
+                        "enum": [
+                            "Press",
+                            "PressAndHold"
+                        ],
+                        "readonly": true,
+                        "description": "PushType identifies the type of Action to be performed."
+                    },
+                    "Target": {
+                        "type": "string",
+                        "enum": [
+                            "/Oem/Hp"
+                        ],
+                        "readonly": true,
+                        "description": "The Target defines the PowerButton object as an OEM action."
+                    }
+                }
+            },
+            "SystemReset": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                    "Action": {
+                        "type": "string",
+                        "enum": [
+                            "SystemReset"
+                        ],
+                        "description": "The Action to be performed."
+                    },
+                    "ResetType": {
+                        "type": "string",
+                        "enum": [
+                            "ColdBoot"
+                        ],
+                        "description": "ResetType identifies the type of Action to be performed."
+                    },
+                    "Target": {
+                        "type": "string",
+                        "enum": [
+                            "/Oem/Hp"
+                        ],
+                        "description": "The Target defines the SystemReset object as an OEM action."
+                    }
+                }
+            }
+        }
+    }
+}

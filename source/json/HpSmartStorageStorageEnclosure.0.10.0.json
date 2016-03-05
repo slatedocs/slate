@@ -1,0 +1,122 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "HpSmartStorageStorageEnclosure.0.10.0",
+    "description": "HpSmartStorageStorageEnclosure",
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+        "Oem": {
+            "$ref": "Oem.json#"
+        },
+        "Name": {
+            "$ref": "Name.json#"
+        },
+        "Description": {
+            "$ref": "Description.json#"
+        },
+        "Modified": {
+            "$ref": "Modified.json#"
+        },
+        "Type": {
+            "$ref": "Type.json#"
+        },
+        "Manufacturer": {
+            "type": "string",
+            "description": "The manufacturer of the storage enclosure",
+            "readonly": true,
+            "etag": true
+        },
+        "Model": {
+            "type": "string",
+            "description": "The model string for the storage enclosure",
+            "readonly": true,
+            "etag": true
+        },
+        "SKU": {
+            "type": "string",
+            "description": "SKU for the storage enclosure",
+            "readonly": true,
+            "etag": true
+        },
+        "SerialNumber": {
+            "type": "string",
+            "description": "The serial number for this storage enclosure",
+            "readonly": true,
+            "etag": true
+        },
+        "FirmwareVersion": {
+            "$ref": "FwRev.json#",
+            "description": "The firmware version of this storage enclosure",
+            "readonly": true,
+            "etag": true
+        },
+        "PartNumber": {
+            "type": "string",
+            "description": "Part number of this storage enclosure",
+            "readonly": true,
+            "etag": true
+        },
+        "Status": {
+            "$ref": "Status.json#"
+        },
+        "Location": {
+            "type": "string",
+            "description": "Location identifier",
+            "readonly": true,
+            "etag": true
+        },
+        "LocationFormat": {
+            "type": "string",
+            "description": "Format for Location Identifier",
+            "readonly": true,
+            "etag": true,
+            "enum": [
+                "Controller:Box",
+                "SwitchPort:Box",
+                "SwitchPort:SwitchBay"
+            ],
+            "enumDescriptions": {
+                "Controller:Box": "This format typically used in controller context where the drive would be identified using the controller port and JBOD box number",
+                "SwitchPort:Box": "This format typically used in a SAS switch context where the drive would be identified using the switch port and JBOD box number",
+                "SwitchPort:SwitchBay": "This format typically used in a SAS switch context where the drive would be identified using the switch port and ICM bay number for the switch"
+            }
+        },
+        "SubEnclosureLocation": {
+            "type": "string",
+            "description": "Location within the chassis if this storage enclosure is part of a larger chassis hosting multiple storage enclosures",
+            "readonly": true,
+            "etag": true
+        },
+        "EnclosureLogicalID": {
+            "type": "string",
+            "description": "Unique ID for the storage enclosure",
+            "readonly": true,
+            "etag": true
+        },
+        "DriveBayCount": {
+            "type": "integer",
+            "description": "Number of drive bays supported within the storage enclosure",
+            "readonly": true,
+            "etag": true
+        },
+        "links": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "Drives": {
+                    "$ref": "href.json#",
+                    "description": "link to a collection of membertype HpSmartStorageDiskDrive",
+                    "readonly": true
+                },
+                "self": {
+                    "$ref": "href.json#",
+                    "description": "link to self",
+                    "readonly": true
+                }
+            },
+            "readonly": true,
+            "description": "The URIs to the resource related to HpSmartStorageStorageEnclosure"
+        }
+    },
+    "readonly": true
+}

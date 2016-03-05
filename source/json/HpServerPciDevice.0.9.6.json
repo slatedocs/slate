@@ -1,0 +1,173 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "HpServerPciDevice.0.9.6",
+    "type": "object",
+    "readonly": true,
+    "additionalProperties": false,
+    "properties": {
+        "Name": {
+            "$ref": "Name.json#",
+            "description": "User-friendly name of the PCI device, in UTF-8 format."
+        },
+        "Modified": {
+            "$ref": "Modified.json#"
+        },
+        "Type": {
+            "$ref": "Type.json#"
+        },
+        "StructuredName": {
+            "type": "string",
+            "description": "PCI device structured name in UTF-8 format.",
+            "readonly": true,
+            "etag": true
+        },
+        "BusNumber": {
+            "type": "integer",
+            "description": "PCI device bus number value.",
+            "readonly": true,
+            "etag": true
+        },
+        "DeviceNumber": {
+            "type": "integer",
+            "description": "PCI device number value.",
+            "readonly": true,
+            "etag": true
+        },
+        "FunctionNumber": {
+            "type": "integer",
+            "description": "PCI device function number value.",
+            "readonly": true,
+            "etag": true
+        },
+        "VendorID": {
+            "type": "integer",
+            "description": "PCI vendor ID of the device.",
+            "readonly": true,
+            "etag": true
+        },
+        "DeviceID": {
+            "type": "integer",
+            "description": "PCI device ID of the device.",
+            "readonly": true,
+            "etag": true
+        },
+        "SubsystemVendorID": {
+            "type": "integer",
+            "description": "PCI subsystem vendor ID of the device.",
+            "readonly": true,
+            "etag": true
+        },
+        "SubsystemDeviceID": {
+            "type": "integer",
+            "description": "PCI subsystem device ID of the device.",
+            "readonly": true,
+            "etag": true
+        },
+        "ClassCode": {
+            "type": "integer",
+            "description": "PCI class code of the endpoint.",
+            "readonly": true,
+            "etag": true
+        },
+        "SubclassCode": {
+            "type": "integer",
+            "description": "PCI sub class code of the endpoint.",
+            "readonly": true,
+            "etag": true
+        },
+        "DeviceType": {
+            "type": "string",
+            "description": "Device type value.",
+            "readonly": true,
+            "etag": true,
+            "enum": [
+                "Flexible LOM",
+                "Embedded LOM",
+                "NIC",
+                "HDD Not attached to a SA Controller",
+                "HDD Attached to a SA Controller",
+                "Other PCI Device",
+                "Unknown",
+                "Other",
+                "Video",
+                "SCSI Controller",
+                "Ethernet",
+                "Token Ring",
+                "Sound",
+                "PATA Controller",
+                "SATA Controller",
+                "SAS Controller"
+            ],
+            "enumDescriptions": {
+                "Flexible LOM": "Flexible Lan-On-Motherboard",
+                "Embedded LOM": "Embedded Lan-On-Motherboard",
+                "NIC": "Network Interface Controller",
+                "HDD Not attached to a SA Controller": "Hard Disk Drive",
+                "HDD Attached to a SA Controller": "Hard Disk Drive attached to an array controller",
+                "Other PCI Device": "Other PCI Device",
+                "Unknown": "Unknown PCI Device",
+                "Other": "Other PCI Device",
+                "Video": "Video Controller",
+                "SCSI Controller": "SCSI Controller",
+                "Ethernet": "Ethernet Controller",
+                "Token Ring": "Token Ring Controller",
+                "Sound": "Sound Controller",
+                "PATA Controller": "Parallel ATA Controller",
+                "SATA Controller": "Serial ATA Controller",
+                "SAS Controller": "Serial Attached SCSI Controller"
+            }
+        },
+        "UEFIDevicePath": {
+            "type": "string",
+            "description": "Standardized text representation of the UEFI device path, in UTF-8 format.",
+            "readonly": true,
+            "etag": true
+        },
+        "EnclosureNumber": {
+            "type": "integer",
+            "description": "Enclosure number value.",
+            "readonly": true,
+            "etag": true
+        },
+        "DeviceInstance": {
+            "type": "integer",
+            "description": "PCI device instance value.",
+            "readonly": true,
+            "etag": true
+        },
+        "DeviceSubInstance": {
+            "type": "integer",
+            "description": "PCI device sub-instance value.",
+            "readonly": true,
+            "etag": true
+        },
+        "BayNumber": {
+            "type": "integer",
+            "description": "Bay number value.",
+            "readonly": true,
+            "etag": true
+        },
+        "SegmentNumber": {
+            "type": "integer",
+            "description": "PCI segment group number value.",
+            "readonly": true,
+            "etag": true
+        },
+        "DeviceLocation": {
+            "type": "string",
+            "description": "PCI device location.",
+            "readonly": true,
+            "etag": true
+        },
+        "links": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "self": {
+                    "$ref": "href.json#",
+                    "description": "Link to self."
+                }
+            }
+        }
+    }
+}

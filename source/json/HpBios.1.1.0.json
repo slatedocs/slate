@@ -1,0 +1,68 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "HpBios.1.1.0",
+    "type": "object",
+    "additionalProperties": false,
+    "patternProperties": {
+        "^[A-Z][A-Za-z0-9]+$": {
+            "additionalProperties": true
+        }
+    },
+    "properties": {
+        "Oem": {
+            "$ref": "Oem.json#"
+        },
+        "Name": {
+            "$ref": "Name.json#"
+        },
+        "Modified": {
+            "$ref": "Modified.json#"
+        },
+        "Type": {
+            "$ref": "Type.json#"
+        },
+        "Description": {
+            "$ref": "Description.json#"
+        },
+        "AttributeRegistry": {
+            "$ref": "Type.json#",
+            "description": "Reference to the BIOS Attribute Registry that lists the metadata describing BIOS settings in this resource. BIOS settings might appear as additional properties in this resource, and can be looked up in the Attribute Registry by their names."
+        },
+        "links": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "BaseConfigs": {
+                    "$ref": "href.json#",
+                    "description": "Reference to BIOS Default Settings."
+                },
+                "Boot": {
+                    "$ref": "href.json#",
+                    "description": "Reference to UEFI BIOS Boot Order settings."
+                },
+                "Mappings": {
+                    "$ref": "href.json#",
+                    "description": "Reference to BIOS System mappings."
+                },
+                "Settings": {
+                    "$ref": "href.json#",
+                    "description": "Reference to separate pending settings resource. Users can change the BIOS settings by modifying the pending settings resource."
+                },
+                "self": {
+                    "$ref": "href.json#", 
+                    "description": "This is the URI of this resource.", 
+                    "readonly": true
+                }
+            },
+            "readonly": true,
+            "description": "Links"
+        },
+        "SettingsResult": {
+            "$ref": "Settings.json#"
+        }
+    },
+    "required": [
+        "Name",
+        "Type"
+    ]
+}

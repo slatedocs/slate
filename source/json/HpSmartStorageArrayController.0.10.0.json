@@ -1,0 +1,631 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "HpSmartStorageArrayController.0.10.0",
+    "description": "HpSmartStorageArrayController",
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+        "Oem": {
+            "$ref": "Oem.json#"
+        },
+        "Name": {
+            "$ref": "Name.json#"
+        },
+        "Modified": {
+            "$ref": "Modified.json#"
+        },
+        "Type": {
+            "$ref": "Type.json#"
+        },
+        "Description": {
+            "$ref": "Description.json#"
+        },
+        "AdapterType": {
+            "type": "string",
+            "description": "Type of Smart controller",
+            "readonly": true,
+            "enum": [
+                "SmartArray",
+                "SmartHBA",
+                "DynamicSmartArray"
+            ],
+            "enumDescriptions": {
+                "SmartArray": "A controller that supports all SmartArray features and configuration",
+                "SmartHBA": "A controller that functions natively as an HBA, but has a ValueRAID mode for basic RAID configuration",
+                "DynamicSmartArray": "A controller that allows software RAID configuration"
+            },
+            "etag": true
+        },
+        "CurrentOperatingMode": {
+            "type": "string",
+            "description": "The current operating mode of the controller.",
+            "readonly": true,
+            "enum": [
+                "RAID",
+                "HBA"
+            ],
+            "enumDescriptions": {
+                "RAID": "The controller is currently functioning in RAID mode",
+                "HBA": "The controller is currently functioning in HBA mode"
+            },
+            "etag": true
+        },
+        "OperatingModeAfterReboot": {
+            "type": "string",
+            "description": "The operating mode the controller will be functioning in (RAID versus HBA) after a reboot",
+            "readonly": true,
+            "enum": [
+                "RAID",
+                "HBA"
+            ],
+            "enumDescriptions": {
+                "RAID": "The controller will be functioning in RAID mode after rebooting",
+                "HBA": "The controller will be functioning in HBA mode after rebooting"
+            },
+            "etag": true
+        },
+        "Manufacturer": {
+            "type": "string",
+            "description": "The manufacturer of the controller",
+            "readonly": true,
+            "etag": true
+        },
+        "Model": {
+            "type": "string",
+            "description": "The model number for the controller",
+            "readonly": true,
+            "etag": true
+        },
+        "Location": {
+            "type": "string",
+            "description": "Location identifier",
+            "readonly": true,
+            "etag": true
+        },
+        "LocationFormat": {
+            "type": "string",
+            "description": "Format for Location Identifier",
+            "readonly": true,
+            "enum": [
+                "PCISlot"
+            ],
+            "enumDescriptions": {
+                "PCISlot": "The PCI slot the controller is located at. For embedded controllers, the slot is 0"
+            },
+            "etag": true
+        },
+        "HardwareRevision": {
+            "type": "string",
+            "description": "The hardware revision of the controller",
+            "readonly": true,
+            "etag": true
+        },
+        "SerialNumber": {
+            "type": "string",
+            "description": "The serial number for this controller",
+            "readonly": true,
+            "etag": true
+        },
+        "FirmwareVersion": {
+            "$ref": "FwRev.json#"
+        },
+        "SoftwareRaidHbaFirmwareRev": {
+            "type": "string",
+            "description": "The firmware version of the underlying HBA that is being used by the software RAID stack",
+            "readonly": true,
+            "etag": true
+        },
+        "SoftwareRaidHbaModeOptionRomRev": {
+            "type": "string",
+            "description": "The option ROM firmware version used to bootstrap the software RAID stack",
+            "readonly": true,
+            "etag": true
+        },
+        "CacheMemorySizeMiB": {
+            "type": "integer",
+            "description": "The total cache memory size for the controller in MiB",
+            "readonly": true,
+            "etag": true
+        },
+        "BackupPowerSourceStatus": {
+            "type": "string",
+            "description": "The current status of the backup power source (battery, capacitor, megacell etc.)",
+            "readonly": true,
+            "enum": [
+                "Present",
+                "NotPresent",
+                "PresentAndCharged",
+                "PresentAndCharging"
+            ],
+            "enumDescriptions": {
+                "Present": "The backup power source is present but charging information is unknown",
+                "NotPresent": "The backup power source is not present",
+                "PresentAndCharged": "The backup power source is present and fully charged",
+                "PresentAndCharging": "The backup power source is present and is currently charging"
+            },
+            "etag": true
+        },
+        "SupportedPowerModes": {
+            "type": "array",
+            "description": "A list of the power modes that are supported on this controller",
+            "readonly": true,
+            "items": {
+                "type": "string",
+                "enum": [
+                    "Low",
+                    "LowAutomated",
+                    "Performant"
+                ],
+                "enumDescriptions": {
+                    "Low": "The controller is currently operating in minimum power mode",
+                    "LowAutomated": "The controller is currently operating in a balanced power mode",
+                    "Performant": "The controller is currently operating in maximum performance power mode"
+                }
+            },
+            "etag": true
+        },
+        "PowerModeConfigured": {
+            "type": "string",
+            "description": "The current power mode of the controller",
+            "readonly": true,
+            "enum": [
+                "Invalid",
+                "Low",
+                "LowAutomated",
+                "Performant"
+            ],
+            "enumDescriptions": {
+                "Invalid": "The power mode can not be determined",
+                "Low": "The controller is currently operating in minimum power mode",
+                "LowAutomated": "The controller is currently operating in a balanced power mode",
+                "Performant": "The controller is currently operating in maximum performance power mode"
+            },
+            "etag": true
+        },
+        "PowerModeAfterReboot": {
+            "type": "string",
+            "description": "The power mode of the controller after a reboot",
+            "readonly": true,
+            "enum": [
+                "Invalid",
+                "Low",
+                "LowAutomated",
+                "Performant"
+            ],
+            "enumDescriptions": {
+                "Invalid": "The controller will be operating in an unknown power mode after a reboot",
+                "Low": "The controller will be operating in minimum power mode after a reboot",
+                "LowAutomated": "The controller will be operating in a balanced mode after a reboot",
+                "Performant": "The controller will be operating in maximum performance power mode after a reboot"
+            },
+            "etag": true
+        },
+        "PowerModeWarningTemperature": {
+            "type": "boolean",
+            "description": "True if the controller has crossed a critical temperature threshold and performance has been reduced to prevent damage to the controller, false otherwise",
+            "readonly": true,
+            "etag": true
+        },
+        "PowerModeWarningChangedMode": {
+            "type": "boolean",
+            "description": "True if the controller has a new power mode configured, false otherwise",
+            "readonly": true,
+            "etag": true
+        },
+        "PowerModeWarningChangedDrive": {
+            "type": "boolean",
+            "description": "True if the controller's drive configuration has changed while using configuration based power settings, false otherwise",
+            "readonly": true,
+            "etag": true
+        },
+        "PowerModeWarningReboot": {
+            "type": "string",
+            "description": "True if a reboot is required to change the active power mode on the controller, false otherwise",
+            "readonly": true,
+            "enum": [
+                "NotRequired",
+                "RequiredNoReason",
+                "RequiredPowerSavings",
+                "RequiredPerformance"
+            ],
+            "enumDescriptions": {
+                "NotRequired": "No reboot is required",
+                "RequiredNoReason": "A reboot is required for the configured power mode on the controller",
+                "RequiredPowerSavings": "Rebooting will enable additional power savings on the controller",
+                "RequiredPerformance": "Rebooting will enhance the performance of the controller"
+            },
+            "etag": true
+        },
+        "ExpandPriority": {
+            "type": "string",
+            "description": "The level of priority that transformations have over handling current operating system requests",
+            "readonly": true,
+            "enum": [
+                "High",
+                "Medium",
+                "Low"
+            ],
+            "enumDescriptions": {
+                "High": "Transformations will complete as fast as possible at the expense of normal I/O",
+                "Medium": "Transformations will perform with some impact on normal I/O",
+                "Low": "Transformations will perform only when normal I/O is not occurring and may take longer to complete"
+            },
+            "etag": true
+        },
+        "RebuildPriority": {
+            "type": "string",
+            "description": "The level of priority that rebuilds have over handling current operating system requests",
+            "readonly": true,
+            "enum": [
+                "High",
+                "Medium",
+                "Low",
+                "RapidHigh",
+                "RapidMediumHigh",
+                "RapidMedium",
+                "RapidLow"
+            ],
+            "enumDescriptions": {
+                "High": "Rebuilds will complete as fast as possible at the expense of normal I/O",
+                "Medium": "Rebuilds will perform with some impact on normal I/O",
+                "Low": "Rebuilds will perform only when normal I/O is not occurring and may take longer to complete",
+                "RapidHigh": "Rebuilds will complete as fast as possible at the expense of normal I/O",
+                "RapidMediumHigh": "Rebuilds will perform with an impact on normal I/O",
+                "RapidMedium": "Rebuilds will perform with some impact on normal I/O",
+                "RapidLow": "Rebuilds will perform only when normal I/O is not occurring and may take longer to complete"
+            },
+            "etag": true
+        },
+        "SurfaceScanAnalysisPriority": {
+            "type": "string",
+            "description": "Priority that the controller takes to find and correct disk surface errors",
+            "readonly": true,
+            "enum": [
+                "Disabled",
+                "High",
+                "Medium",
+                "Low",
+                "Idle"
+            ],
+            "enumDescriptions": {
+                "Disabled": "Surface scan is disabled and may lead to data loss",
+                "High": "Surface scan commands will be sent with the host I/O, resulting in faster scanning, but may inpact host I/O performance",
+                "Medium": "Surface scan commands have a medium priority, and will have some impact on host I/O performance",
+                "Low": "Surface scan commands have a low priority, and will have little impact on host I/O performance",
+                "Idle": "Surface scan commands will ony be issued when no host I/O is present after a delay"
+            },
+            "etag": true
+        },
+        "ParallelSurfaceScanSupported": {
+            "type": "boolean",
+            "description": "True if the controller supports scanning multiple disk surfaces",
+            "readonly": true,
+            "etag": true
+        },
+        "CurrentParallelSurfaceScanCount": {
+            "type": "integer",
+            "description": "Number of disks the controller is scanning in parallel",
+            "readonly": true,
+            "etag": true
+        },
+        "MaxParallelSurfaceScanCount": {
+            "type": "integer",
+            "description": "Maximum number of disks that the controller supports scanning in parallel",
+            "readonly": true,
+            "etag": true
+        },
+        "DriveWriteCache": {
+            "type": "string",
+            "description": "Enables or disables the write cache of the physical drives attached to the controller",
+            "readonly": true,
+            "enum": [
+                "Enabled",
+                "Disabled"
+            ],
+            "enumDescriptions": {
+                "Enabled": "The write cache of the physical drives attached to the controller are enabled",
+                "Disabled": "The write cache of the physical drives attached to the controller are enabled"
+            },
+            "etag": true
+        },
+        "PredictiveSpareRebuild": {
+            "type": "string",
+            "description": "Enables or disables predictive spare rebuild mode",
+            "readonly": true,
+            "enum": [
+                "Enabled",
+                "Disabled"
+            ],
+            "enumDescriptions": {
+                "Enabled": "Spare drives will replace physical drives that are predicted to fail preemptively",
+                "Disabled": "Spare drives will replace physical drives only when they fail"
+            },
+            "etag": true
+        },
+        "EncryptionEnabled": {
+            "type": "boolean",
+            "description": "True if encryption is currently enabled for this controller, false otherwise",
+            "readonly": true,
+            "etag": true
+        },
+        "EncryptionStandaloneModeEnabled": {
+            "type": "boolean",
+            "description": "True if the controller manages encryption keys locally, false if a remote key manager is being used",
+            "readonly": true,
+            "etag": true
+        },
+        "EncryptionLocalKeyCacheEnabled": {
+            "type": "boolean",
+            "description": "True if the controller caches encryption keys locally when a remote key manager is being used, false otherwise",
+            "readonly": true,
+            "etag": true
+        },
+        "EncryptionCryptoOfficerPasswordSet": {
+            "type": "boolean",
+            "description": "True if a password has been set for the Encryption Crypto Officer, false otherwise",
+            "readonly": true,
+            "etag": true
+        },
+        "EncryptionUserPasswordSet": {
+            "type": "boolean",
+            "description": "True if a password has been set for the Encryption User, false otherwise.",
+            "readonly": true,
+            "etag": true
+        },
+        "EncryptionFwLocked": {
+            "type": "boolean",
+            "description": "True if the controller firmware has been locked, preventing firmware updates, false otherwise",
+            "readonly": true,
+            "etag": true
+        },
+        "EncryptionRecoveryParamsSet": {
+            "type": "boolean",
+            "description": "True if the encryption password recovery question and answer have been set, false otherwise",
+            "readonly": true,
+            "etag": true
+        },
+        "EncryptionKekSet": {
+            "type": "boolean",
+            "description": "True if the Master Key has been set, false otherwise",
+            "readonly": true,
+            "etag": true
+        },
+        "EncryptionHasLockedVolumesMissingBootPassword": {
+            "type": "boolean",
+            "description": "True if there are locked drives due to a missing boot password, false otherwise",
+            "readonly": true,
+            "etag": true
+        },
+        "EncryptionMixedVolumesEnabled": {
+            "type": "boolean",
+            "description": "True if the controller will allow plaintext and encrypted volumes to exist simultaneously, false otherwise",
+            "readonly": true,
+            "etag": true
+        },
+        "EncryptionPhysicalDriveCount": {
+            "type": "integer",
+            "description": "The number of encrypted physical drives attached to the controller",
+            "readonly": true,
+            "etag": true
+        },
+        "EncryptionBootPasswordSet": {
+            "type": "boolean",
+            "description": "True if there is a boot password set, false otherwise",
+            "readonly": true,
+            "etag": true
+        },
+        "EncryptionHasLockedVolumes": {
+            "type": "boolean",
+            "description": "True if the controller has one or more volumes that are locked, false otherwise",
+            "readonly": true,
+            "etag": true
+        },
+        "EncryptionHasSuspendedVolumes": {
+            "type": "boolean",
+            "description": "True if the controller password has been temporarily suspended, false otherwise",
+            "readonly": true,
+            "etag": true
+        },
+        "DegradedPerformanceOptimization": {
+            "type": "string",
+            "description": "Enables the controller to attempt to improve performance on RAID 5/50/6(ADG)/60 logical drives when one or more physical drives in the logical drive are failed",
+            "readonly": true,
+            "enum": [
+                "Enabled",
+                "Disabled"
+            ],
+            "enumDescriptions": {
+                "Enabled": "The controller will attempt to improve performance by buffering physical drive requests",
+                "Disabled": "The controller will not buffer, which may result in reading from the same drive multiple times"
+            },
+            "etag": true
+        },
+        "ElevatorSort": {
+            "type": "string",
+            "description": "Enables the controller to sort requests to a physical drive",
+            "readonly": true,
+            "enum": [
+                "Enabled",
+                "Disabled"
+            ],
+            "enumDescriptions": {
+                "Enabled": "The controller will sort the requests to minimize the amount of seeking the drive must perform in order to reduce seek times",
+                "Disabled": "The controller will perform the requests as they are recieved in order to improve request throughput"
+            },
+            "etag": true
+        },
+        "InconsistencyRepairPolicy": {
+            "type": "string",
+            "description": "Enables the controller to update data on RAID 6(ADG) and 60 volumes based on parity information when an inconsistency is discovered during surface scan",
+            "readonly": true,
+            "enum": [
+                "Enabled",
+                "Disabled"
+            ],
+            "enumDescriptions": {
+                "Enabled": "The controller will update the data on the drives based on the parity information",
+                "Disabled": "The controller will only update the parity information and leave the data untouched"
+            },
+            "etag": true
+        },
+        "QueueDepth": {
+            "type": "string",
+            "description": "This sets the maximum number of requests the controller will submit to a drive at any given time",
+            "readonly": true,
+            "enum": [
+                "2",
+                "4",
+                "8",
+                "16",
+                "32",
+                "Automatic"
+            ],
+            "enumDescriptions": {
+                "2": "2 requests",
+                "4": "4 requests",
+                "8": "8 requests",
+                "16": "16 requests",
+                "32": "32 requests",
+                "Automatic": "Automatically determine the best queue depth for the controller"
+            },
+            "etag": true
+        },
+        "FlexibleLatencySchedulerSetting": {
+            "type": "string",
+            "description": "This allows the controller to process certain high-latency requests after a delay that may time out when elevator sorting",
+            "readonly": true,
+            "enum": [
+                "Default",
+                "Low250",
+                "Middle100",
+                "Middle50",
+                "Aggressive30",
+                "Aggressive10"
+            ],
+            "enumDescriptions": {
+                "Default": "The controller will rely only on elevator sorting",
+                "Low250": "The controller will apply a cutoff value of 250ms when suspending elevator sorting",
+                "Middle100": "The controller will apply a cutoff value of 100ms when suspending elevator sorting",
+                "Middle50": "The controller will apply a cutoff value of 50ms when suspending elevator sorting",
+                "Aggressive30": "The controller will apply a cutoff value of 30ms when suspending elevator sorting",
+                "Aggressive10": "The controller will apply a cutoff value of 10ms when suspending elevator sorting"
+            },
+            "etag": true
+        },
+        "ArrayCount": {
+            "type": "integer",
+            "description": "The number of arrays configured on this controller",
+            "readonly": true,
+            "etag": true
+        },
+        "CacheArrayCount": {
+            "type": "integer",
+            "description": "The number of cache arrays configured on this controller",
+            "readonly": true,
+            "etag": true
+        },
+        "LogicalDriveCount": {
+            "type": "integer",
+            "description": "The number of logical drives configured on this controller",
+            "readonly": true,
+            "etag": true
+        },
+        "DataLogicalDriveCount": {
+            "type": "integer",
+            "description": "The number of data logical drives configured on this controller",
+            "readonly": true,
+            "etag": true
+        },
+        "CacheLogicalDriveCount": {
+            "type": "integer",
+            "description": "The number of cache logical drives configured on this controller",
+            "readonly": true,
+            "etag": true
+        },
+        "PhysicalDriveCount": {
+            "type": "integer",
+            "description": "The number of physical drives attached to this controller",
+            "readonly": true,
+            "etag": true
+        },
+        "DataPhysicalDriveCount": {
+            "type": "integer",
+            "description": "The number of physical drives assigned as data drives attached to this controller",
+            "readonly": true,
+            "etag": true
+        },
+        "CachePhysicalDriveCount": {
+            "type": "integer",
+            "description": "The number of physical drives assigned as cache drives attached to this controller",
+            "readonly": true,
+            "etag": true
+        },
+        "SparePhysicalDriveCount": {
+            "type": "integer",
+            "description": "he number of physical drives assigned as spare drives attached to this controller",
+            "readonly": true,
+            "etag": true
+        },
+        "UnassignedPhysicalDriveCount": {
+            "type": "integer",
+            "description": "The number of unassigned physical drives attached to this controller",
+            "readonly": true,
+            "etag": true
+        },
+        "IsBootController": {
+            "type": "boolean",
+            "description": "True if this controller is the OS boot controller, false otherwise",
+            "readonly": true,
+            "etag": true
+        },
+        "BootVolumePrimary": {
+            "type": "string",
+            "description": "The primary boot volume of this controller",
+            "readonly": true,
+            "etag": true
+        },
+        "BootVolumeSecondary": {
+            "type": "string",
+            "description": "The secondary boot volume of this controller",
+            "readonly": true,
+            "etag": true
+        },
+        "Status": {
+            "$ref": "Status.json#"
+        },
+        "links": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "StorageEnclosures": {
+                    "$ref": "href.json#",
+                    "description": "link to collection of membertype HpSmartStorageStorageEnclosure",
+                    "readonly": true
+                },
+                "PhysicalDrives": {
+                    "$ref": "href.json#",
+                    "description": "link to collection of membertype HpSmartStorageDiskDrive. This constitutes inventory of all physical drives in the system",
+                    "readonly": true
+                },
+                "UnconfiguredDrives": {
+                    "$ref": "href.json#",
+                    "description": "link to collection of membertype HpSmartStorageDiskDrive. This constitutes inventory of all unconfigured physical drives (i.e. drives that haven't been configured as data or spare drives for a logical drive)",
+                    "readonly": true
+                },
+                "LogicalDrives": {
+                    "$ref": "href.json#",
+                    "description": "link to collection of membertype HpSmartStorageLogicalDrive",
+                    "readonly": true
+                },
+                "self": {
+                    "$ref": "href.json#",
+                    "description": "link to self",
+                    "readonly": true
+                }
+            },
+            "readonly": true,
+            "description": "The URIs to the resource related to HpSmartStorageSmartArray"
+        }
+    },
+    "readonly": true
+}

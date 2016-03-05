@@ -1,0 +1,27 @@
+{
+    "type": "object",
+    "readonly": true,
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "id": "http://jsonschema.net",
+    "description": "This object represents the extref property.",
+    "properties": {
+        "extref": {
+            "type": "string",
+            "format": "uri",
+            "description": "The URI of an external resource.",
+            "readonly": true,
+            "etag": true
+        },
+        "links": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "self": {
+                    "$ref": "href.json#",
+                    "readonly": true,
+                    "description": "link to self"
+                }
+            }
+        }
+    }
+}

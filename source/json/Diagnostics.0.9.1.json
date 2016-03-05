@@ -1,0 +1,468 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "Diagnostics.0.9.1",
+    "type": "object",
+    "additionalProperties": false,
+    "description": "This is the schema definition for the Diagnostics.",
+    "properties": {
+        "Name": {
+            "$ref": "Name.json#"
+        },
+        "Modified": {
+            "$ref": "Modified.json#"
+        },
+        "Type": {
+            "$ref": "Type.json#"
+        },
+        "Description": {
+            "$ref": "Description.json#"
+        },
+        "DiagnosticModeEnabled": {
+            "type": [
+                "boolean",
+                "null"
+            ],
+            "description": "Specifies whether the diagnostics mode is enabled or not.",
+            "readonly": false,
+            "etag": true
+        },
+        "ThresholdEnabled": {
+            "type": [
+                "boolean",
+                "null"
+            ],
+            "description": "Specifies whether diagnostic threshold is enabled or not.",
+            "readonly": false,
+            "etag": true
+        },
+        "MembistBytes": {
+            "type": "array",
+            "items": {
+                "type": [
+                    "integer",
+                    "null"
+                ],
+                "description": "Contains the MEMBIST values of NVRAM header.",
+                "readonly": false,
+                "etag": true
+            }
+        },
+        "SPD": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "description": "Shows the SPD bytes in the DIMM",
+                "additionalProperties": false,
+                "properties": {
+                    "CPU": {
+                        "type": "integer",
+                        "description": "The CPU number that is associated with the DIMM Slot.",
+                        "readonly": true,
+                        "etag": true
+                    },
+                    "DIMM": {
+                        "type": "integer",
+                        "description": "The DIMM slot number.",
+                        "readonly": true,
+                        "etag": true
+                    },
+                    "SPDBytes": {
+                        "type": "array",
+                        "items": {
+                            "type": "integer",
+                            "description": "The SPD Bytes in the DIMM",
+                            "readonly": true,
+                            "etag": true
+                        }
+                    }
+                },
+                "readonly": true,
+                "etag": true
+            }
+        },
+        "LoopbackTestDetails": {
+            "type": "object",
+            "description": "Display's the Loopback Test Statistics for the last run. The loopback test can be run for MAC or UART.",
+            "additionalProperties": false,
+            "properties": {
+                "IsRunning": {
+                    "type": [
+                        "boolean",
+                        "null"
+                    ],
+                    "description": "Specifies whether any loopback test is running or not.",
+                    "readonly": true,
+                    "etag": true
+                },
+                "PacketsSent": {
+                    "type": [
+                        "integer",
+                        "null"
+                    ],
+                    "description": "Specifies the number of packets sent.",
+                    "readonly": true,
+                    "etag": true
+                },
+                "PacketsReceived": {
+                    "type": [
+                        "integer",
+                        "null"
+                    ],
+                    "description": "Specifies the number of packets received.",
+                    "readonly": true,
+                    "etag": true
+                },
+                "BadPacketsReceived": {
+                    "type": [
+                        "integer",
+                        "null"
+                    ],
+                    "description": "Specifies the number of bad packets received.",
+                    "readonly": true,
+                    "etag": true
+                },
+                "PacketsDiscarded": {
+                    "type": [
+                        "integer",
+                        "null"
+                    ],
+                    "description": "Specifies the number of packets discarded.",
+                    "readonly": true,
+                    "etag": true
+                },
+                "LoopbackType": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "description": "The type of loopback test run.",
+                    "enum": [
+                        "MAC Loopback Test",
+                        "UART A Loopback Test"
+                    ],
+                    "readonly": true,
+                    "etag": true
+                },
+                "MaxPackets": {
+                    "type": [
+                        "integer",
+                        "null"
+                    ],
+                    "description": "Maximum packets sent. Zero means the test is running.",
+                    "readonly": true,
+                    "etag": true
+                },
+                "LastRun": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "description": "Shows the date and time when the last loop back test was run.",
+                    "format": "date-time",
+                    "readonly": true,
+                    "etag": true
+                }
+            },
+            "readonly": true,
+            "etag": true
+        },
+        "MemorySpareConfigurationStatus": {
+            "type": "object",
+            "description": "Display's the Advance Memory Protection configuration status, if enabled.",
+            "additionalProperties": false,
+            "properties": {
+                "OnlineSpareConfigurationStatus": {
+                    "type": "string",
+                    "enum": [
+                        "OK",
+                        "Error"
+                    ],
+                    "description": "Shows online spare configuration.",
+                    "readonly": true,
+                    "etag": true
+                },
+                "SingleCardMemoryMirroringConfigurationStatus": {
+                    "type": "string",
+                    "enum": [
+                        "OK",
+                        "Error"
+                    ],
+                    "description": "Shows single card memory mirroring configuration.",
+                    "readonly": true,
+                    "etag": true
+                },
+                "DualCardMemoryMirroringConfigurationStatus": {
+                    "type": "string",
+                    "enum": [
+                        "OK",
+                        "Error"
+                    ],
+                    "description": "Shows dual card memory mirroring configuration.",
+                    "readonly": true,
+                    "etag": true
+                }
+            },
+            "readonly": true,
+            "etag": true
+        },
+        "RunInsightDiagnosticsOnNextBoot": {
+            "type": [
+                "boolean",
+                "null"
+            ],
+            "description": "Run Insight Diagnostics on Next Boot. Used by SmartStart to automatically boot and run diagnostics.",
+            "readonly": false,
+            "etag": true
+        },
+        "DiagnosticsBootSourceOverride": {
+            "type": "string",
+            "enum": [
+                "DefaultBootMenu",
+                "SmartStart",
+                "SSSTK-SmartStart-LinuxPE",
+                "SSSTK-SmartStart-WindowsPE",
+                "HPSSA",
+                "HPSUM-AutomaticUpdate",
+                "InsightDiagnostics-Interactive-Linux",
+                "InsightDiagnostics-Automatic-Linux",
+                "SSSTK-SmartStart-WindowsPE-32bit",
+                "AHSLogReader",
+                "AltairAutomationEngine",
+                "AltairAutomationEngine-Win-x32",
+                "AltairAutomationEngine-Win-x64"
+            ],
+            "enumDescriptions": {
+                "DefaultBootMenu": "Display default boot menu.",
+                "SmartStart": "Boot into SmartStart.",
+                "SSSTK-SmartStart-LinuxPE": "Boot into SmartStart in SSSTK Linux PE mode, launch defined script or stop at bash.",
+                "SSSTK-SmartStart-WindowsPE": "Boot into SmartStart in SSSTK Windows PE mode, launch defined script or stop at bash.",
+                "HPSSA": "Boot into HPSSA, reboot after exit.",
+                "HPSUM-AutomaticUpdate": "Boot HPSUM in automatic update mode.",
+                "InsightDiagnostics-Interactive-Linux": "Launch Insight Diagnostics for Linux in interactive mode.",
+                "InsightDiagnostics-Automatic-Linux": "Launch Insight Diagnostics for Linux in automatic testing mode.",
+                "SSSTK-SmartStart-WindowsPE-32bit": "Boot into SmartStart in SSSTK Windows PE 32 bit mode.",
+                "AHSLogReader": "Black Box Log Reader",
+                "AltairAutomationEngine": "Launch Altair Automation Engine",
+                "AltairAutomationEngine-Win-x32": "Launch Automation Engine Windows x32 (Altair/SMP)",
+                "AltairAutomationEngine-Win-x64": "Launch Automation Engine Windows x64 (Altair/SMP)"
+            },
+            "description": "Specifies one time boot option for Intelligent Provisioning Diagnostics mode.",
+            "readonly": false,
+            "etag": true
+        },
+        "EmbeddedDiagnostics": {
+            "type": "object",
+            "additionalProperties": false,
+            "description": "Embedded (UEFI) Diagnostics.",
+            "properties": {
+                "IsEnabled": {
+                    "type": "boolean",
+                    "description": "Specifies whether Embedded (UEFI) Diagnostics is enabled or not.",
+                    "readonly": false,
+                    "etag": true
+                },
+                "Mode": {
+                    "type": "string",
+                    "enum": [
+                        "Auto",
+                        "TextConsole"
+                    ],
+                    "enumDescriptions": {
+                        "Auto": "Embedded diagnostics mode is set to Auto.",
+                        "TextConsole": "Embedded diagnostics mode is set to Text Console."
+                    },
+                    "description": "Specifies the embedded diagnostics mode.",
+                    "readonly": false,
+                    "etag": true
+                },
+                "Source": {
+                    "type": "string",
+                    "enum": [
+                        "Default",
+                        "NAND",
+                        "ROM"
+                    ],
+                    "enumDescriptions": {
+                        "Default": "Launch Embedded Diagnostics from NAND first; If fails, then launch from ROM",
+                        "NAND": "Launch Embedded Diagnostics from NAND Partition.",
+                        "ROM": "Launch Embedded Diagnostics from ROM."
+                    },
+                    "description": "Specifies the source from where the embedded diagnostics launches.",
+                    "readonly": false,
+                    "etag": true
+                },
+                "RunOnNextBoot": {
+                    "type": "boolean",
+                    "description": "Specifies whether Embedded (UEFI) Diagnostics is run next time when server boots.",
+                    "readonly": false,
+                    "etag": true
+                }
+            },
+            "readonly": false,
+            "etag": true
+        },
+        "IntelligentProvisioningFeatures": {
+            "type": "object",
+            "additionalProperties": false,
+            "description": "Features related to IP",
+            "properties": {
+                "IsEnabled": {
+                    "type": "boolean",
+                    "description": "Specifies whether Intelligent Provisioning is enabled or not",
+                    "readonly": false,
+                    "etag": true
+                },
+                "AHSDownloadEnabled": {
+                    "type": "boolean",
+                    "description": "Specifies whether AHS download is enabled or not.",
+                    "readonly": false,
+                    "etag": true
+                },
+                "HPSSAEnabled": {
+                    "type": "boolean",
+                    "description": "Specifies whether ACU/HPSSA is enabled or not.",
+                    "readonly": false,
+                    "etag": true
+                },
+                "QCEnabled": {
+                    "type": "boolean",
+                    "description": "Specifies whether QC is enabled or not.",
+                    "readonly": false,
+                    "etag": true
+                },
+                "IPPreferencesEnabled": {
+                    "type": "boolean",
+                    "description": "Specifies whether IP preferences is enabled or not.",
+                    "readonly": false,
+                    "etag": true
+                },
+                "FirmwareUpdateEnabled": {
+                    "type": "boolean",
+                    "description": "Specifies whether firmware update is enabled or not.",
+                    "readonly": false,
+                    "etag": true
+                },
+                "DiagnosticsEnabled": {
+                    "type": "boolean",
+                    "description": "Specifies whether Diagnostics is enabled or not.",
+                    "readonly": false,
+                    "etag": true
+                },
+                "iLOSettingsEnabled": {
+                    "type": "boolean",
+                    "description": "Specifies whether iLO settings is enabled or not.",
+                    "readonly": false,
+                    "etag": true
+                },
+                "RemoteSupportSettingsEnabled": {
+                    "type": "boolean",
+                    "description": "Specifies whether remote support settings is enabled or not.",
+                    "readonly": false,
+                    "etag": true
+                },
+                "EraseEnabled": {
+                    "type": "boolean",
+                    "description": "Specifies whether erase is enabled or not.",
+                    "readonly": false,
+                    "etag": true
+                }
+            },
+            "readonly": false,
+            "etag": true
+        },
+        "links": {
+            "type": "object",
+            "readonly": true,
+            "properties": {
+                "self": {
+                    "$ref": "href.json#",
+                    "description": "The URI of this Diags resource.",
+                    "readonly": true
+                }
+            },
+            "description": "The URIs for the resources related to the Diags resource.",
+            "additionalProperties": false
+        }
+    },
+    "readonly": false,
+    "actions": {
+        "description": "Various actions for Diags.",
+        "actions": {
+            "ClearDiagsMemoryError": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                    "Action": {
+                        "type": "string",
+                        "enum": [
+                            "ClearDiagsMemoryError"
+                        ],
+                        "description": "Clears diagnostic memory errors in ROM"
+                    }
+                }
+            },
+            "ClearSPDAddress": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                    "Action": {
+                        "type": "string",
+                        "enum": [
+                            "ClearSPDAddress"
+                        ],
+                        "description": "Clears the byte at the specified offset of an SPD module on a memory stick"
+                    },
+                    "CPU": {
+                        "type": "integer",
+                        "description": "The CPU number that is associated with the DIMM Slot."
+                    },
+                    "DIMM": {
+                        "type": "integer",
+                        "description": "The DIMM slot number."
+                    },
+                    "Offset": {
+                        "type": "string",
+                        "enum": [
+                            "DDR2_SINGLE_BIT_THRESHOLD_EXCEEDED",
+                            "DDR2_MULTI_BIT_STATUS_FLAG",
+                            "DDR2_SINGLE_BIT_STATUS_FLAG",
+                            "DDR2_SINGLE_BIT_THRESHOLD_COUNT",
+                            "DDR2_MULTI_BIT_COUNT",
+                            "DDR2_SINGLE_BIT_COUNT",
+                            "DDR3_CORRECTABLE_THRESHOLD_EXCEEDED_STATUS",
+                            "DDR3_MULTI_BIT_STATUS_FLAG",
+                            "DDR3_CORRECTABLE_THRESHOLD_COUNT",
+                            "DDR3_MULTI_BIT_COUNT"
+                        ],
+                        "description": "Byte offset to clear"
+                    }
+                }
+            },
+            "StartLoopbackTest": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                    "Action": {
+                        "type": "string",
+                        "enum": [
+                            "StartLoopbackTest"
+                        ],
+                        "description": "Starts the loopback tests."
+                    },
+                    "LoopbackType": {
+                        "type": "string",
+                        "enum": [
+                            "MAC Loopback Test",
+                            "UART A Loopback Test"
+                        ],
+                        "description": "The type of loopback test to be run."
+                    },
+                    "MaxPackets": {
+                        "type": "integer",
+                        "description": "Maximum packets to send. Zero means run until stopped."
+                    }
+                }
+            }
+        }
+    }
+}

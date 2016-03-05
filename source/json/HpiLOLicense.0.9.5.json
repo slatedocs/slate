@@ -1,0 +1,69 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "HpiLOLicense.0.9.5",
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+        "Oem": {
+            "$ref": "Oem.json#"
+        },
+        "Name": {
+            "$ref": "Name.json#"
+        },
+        "Modified": {
+            "$ref": "Modified.json#"
+        },
+        "Type": {
+            "$ref": "Type.json#"
+        },
+        "Description": {
+            "$ref": "Description.json#"
+        },
+        "License": {
+            "type": "string",
+            "description": "The name of the license installed on this management processor.",
+            "readonly": true,
+            "etag": true
+        },
+        "LicenseKey": {
+            "type": "string",
+            "description": "The license key installed on this management processor. License keys are 25 characters in length and contain both letters and numbers.",
+            "readonly": true,
+            "etag": true
+        },
+        "LicenseType": {
+            "type": "string",
+            "enum": [
+                "Unlicensed",
+                "Evaluation",
+                "Perpetual",
+                "Subscription",
+                "Internal",
+                "Duration",
+                "Expired"
+            ],
+            "description": "The type of license installed on this management processor.",
+            "readonly": true,
+            "etag": true
+        },
+        "LicenseExpire": {
+            "type": "string",
+            "description": "The expiration information of the installed management processor license.",
+            "readonly": true,
+            "etag": true
+        },
+        "links": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "self": {
+                    "$ref": "href.json#",
+                    "description": "Link to self.",
+                    "readonly": true
+                }
+            },
+            "description": "The links array contains links to resources related to this resource."
+        }
+    },
+    "readonly": false
+}

@@ -1,0 +1,216 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "HpiLOManagerNetworkService.0.10.0",
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+        "Type": {
+            "$ref": "Type.json#"
+        },
+        "ConfigurationSettings": {
+            "type": "string",
+            "enum": [
+                "Current",
+                "SomePendingReset"
+            ],
+            "description": "State of the currently displayed configuration settings.",
+            "readonly": true,
+            "etag": true
+        },
+        "links": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "EthernetNICs": {
+                    "$ref": "href.json#",
+                    "description": "The URIs of the Ethernet NICs.",
+                    "readonly": true
+                }
+            },
+            "description": "The resource URIs related to the Ethernet NIC URIs."
+        },
+        "FederationEnabled": {
+            "type": "boolean",
+            "description": "Indicates whether management processor federation management is enabled or disabled.",
+            "readonly": false,
+            "etag": true
+        },
+        "FederationSupported": {
+            "type": "boolean",
+            "description": "Indicates whether management processor federation is supported.",
+            "readonly": true,
+            "etag": true
+        },
+        "SNMPTrapPort": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 65535,
+            "description": "The SNMP trap port number.",
+            "readonly": false,
+            "etag": true
+        },
+        "AlertMailEnabled": {
+            "type": "boolean",
+            "description": "Indicates whether AlertMail is enabled. This can be enabled only when the properties AlertMailEmail, AlertMailSenderDomain and AlertMailSMTPServer are set or not empty.",
+            "readonly": false,
+            "etag": true
+        },
+        "AlertMailEmail": {
+            "type": "string",
+            "description": "The destination email address for email alerts.",
+            "readonly": false,
+            "etag": true
+        },
+        "AlertMailSenderDomain": {
+            "type": "string",
+            "description": "The domain name for the sender email address.",
+            "maxLength": 63,
+            "readonly": false,
+            "etag": true
+        },
+        "AlertMailSMTPServer": {
+            "type": "string",
+            "description": "The IP address or DNS name of the SMTP server or the Mail Submission Agent (MSA).",
+            "readonly": false,
+            "etag": true
+        },
+        "AlertMailSMTPPort": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 65535,
+            "default": 25,
+            "description": "The SMTP server port number.",
+            "readonly": false,
+            "etag": true
+        },
+        "RemoteSyslogEnabled": {
+            "type": "boolean",
+            "description": "Indicates whether Remote Syslog is enabled. When enabled, management processor sends notification messages to the specified Syslog server. This can be enabled only when the property RemoteSyslogServer is set or not empty.",
+            "readonly": false,
+            "etag": true
+        },
+        "RemoteSyslogPort": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 65535,
+            "default": 514,
+            "description": "The port number through which the Syslog server is listening.",
+            "readonly": false,
+            "etag": true
+        },
+        "RemoteSyslogServer": {
+            "type": "string",
+            "description": "The IP address, FQDN, IPv6 name, or short name of the server running the Syslog service.",
+            "readonly": false,
+            "etag": true
+        },
+        "HPSystemManagementHomepageAddress": {
+            "type": "string",
+            "description": "The IP address or FQDN of the HP System Management Homepage (HP SMH) server.",
+            "readonly": false,
+            "etag": true
+        },
+        "XMLResponseEnabled": {
+            "type": "boolean",
+            "description": "Determines whether management processor responds to anonymous XML discovery requests.",
+            "readonly": false,
+            "etag": true
+        },
+        "SerialOverLanLogging": {
+            "type": "boolean",
+            "description": "Indicates whether Serial Over LAN (SOL) or Virtual Serial Port (VSP) logging is enabled.",
+            "readonly": false,
+            "etag": true
+        },
+        "EnforceAES3DESEncryption": {
+            "type": "boolean",
+            "readonly": false,
+            "description": "Indicates whether AES/3DES encryption is enforced for the management processor.  When enabled, the management processor accepts only those connections that use AES or 3DES ciphers. The management processor will automatically reset when this field is modified.",
+            "etag": true
+        },
+        "AvailableActions": {
+            "type": "array",
+            "additionalItems": false,
+            "uniqueItems": true,
+            "items": {
+                "anyOf": [
+                    {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                            "Action": {
+                                "type": "string",
+                                "enum": [
+                                    "SendTestSyslog"
+                                ],
+                                "description": "Sends test syslog to configured Remote Syslog server.",
+                                "readonly": true,
+                                "etag": true
+                            },
+                            "Capabilities": {
+                                "type": "array",
+                                "readonly": true,
+                                "items": [
+                                    {
+                                        "type": "object",
+                                        "readonly": true,
+                                        "additionalProperties": false,
+                                        "properties": {
+                                            "PropertyName": {
+                                                "type": "string",
+                                                "readonly": true,
+                                                "enum": [
+                                                    "Target"
+                                                ],
+                                                "description": "The Target the command should execute against"
+                                            },
+                                            "AllowableValues": {
+                                                "type": "array",
+                                                "readonly": true,
+                                                "items": {
+                                                    "type": "string",
+                                                    "enum": [
+                                                        "/Oem/Hp"
+                                                    ]
+                                                },
+                                                "description": "The supported values for Target parameters on this resource."
+                                            }
+                                        }
+                                    }
+                                ],
+                                "description": "The allowable values supported for this custom action on this resource."
+                            }
+                        }
+                    }
+                ]
+            },
+            "description": "The list of actions this service supports."
+        }
+    },
+    "readonly": false,
+    "actions": {
+        "description": "These describe the POST custom actions defined for this type (although the implemented actions may be a subset of these).",
+        "actions": {
+            "SendTestSyslog": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                    "Action": {
+                        "type": "string",
+                        "enum": [
+                            "SendTestSyslog"
+                        ]
+                    },
+                    "Target": {
+                        "type": "string",
+                        "enum": [
+                            "/Oem/Hp"
+                        ],
+                        "readonly": true,
+                        "description": "The Target defines the PowerButton object as an OEM action."
+                    }
+                }
+            }
+        }
+    }
+}

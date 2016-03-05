@@ -1,0 +1,290 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "Manager.0.10.0",
+    "type": "object",
+    "readonly": true,
+    "additionalProperties": false,
+    "description": "This is the schema definition for a manager.  Examples of managers are BMCs, Enclosure Managers, Management Controllers and other subsystems assigned manageability functions.",
+    "properties": {
+        "Oem": {
+            "type": "object",
+            "additionalProperties": true,
+            "properties": {
+                "Hp": {
+                    "$ref": "HpiLO.json#"
+                }
+            }
+        },
+        "Name": {
+            "$ref": "Name.json#"
+        },
+        "Modified": {
+            "$ref": "Modified.json#"
+        },
+        "Type": {
+            "$ref": "Type.json#"
+        },
+        "ManagerType": {
+            "type": "string",
+            "description": "This property is the manager type for this resource.",
+            "enum": [
+                "ManagementController",
+                "EnclosureManager",
+                "BMC"
+            ],
+            "enumDescriptions": {
+                "ManagementController": "A controller used primarily to monitor or manage the operation of a device or system",
+                "EnclosureManager": "A controller which provides management functions for a chassis or group of devices or systems",
+                "BMC": "A controller which provides management functions for a single computer system"
+            },
+            "readonly": true,
+            "etag": true
+        },
+        "links": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "ManagerForServers": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "href.json#"
+                    },
+                    "description": "This property is an array of references to the servers that this manager controls.",
+                    "readonly": true,
+                    "etag": false
+                },
+                "ManagerForChassis": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "href.json#"
+                    },
+                    "description": "This property is an array of references to the chassis that this manager controls.",
+                    "readonly": true,
+                    "etag": false
+                },
+                "EthernetNICs": {
+                    "$ref": "href.json#",
+                    "description": "This is a reference to a collection of NICs that this manager uses for network communication.  It is here that clients will find NIC configuration options and settings.",
+                    "readonly": true,
+                    "etag": false
+                },
+                "NetworkService": {
+                    "$ref": "href.json#",
+                    "description": " This is a reference to the network services and their settings that the manager controls.  It is here that clients will find network configuration options as well as network services.",
+                    "readonly": true,
+                    "etag": false
+                },
+                "Logs": {
+                    "$ref": "href.json#",
+                    "description": "Reference to a resource of type Collection with a MemberType of Logs.",
+                    "readonly": true,
+                    "etag": false
+                },
+                "VirtualMedia": {
+                    "$ref": "href.json#",
+                    "description": "This is a reference to the virtual media services for this manager.",
+                    "readonly": true,
+                    "etag": false
+                },
+                "self": {
+                    "$ref": "href.json#",
+                    "description": "Link to self.",
+                    "readonly": true,
+                    "etag": false
+                }
+            },
+            "description": "The links array contains links to resources related to this resource."
+        },
+        "Description": {
+            "$ref": "Description.json#"
+        },
+        "UUID": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "description": "This is a universally unique identifier that software (for example, HP SIM) uses to uniquely identify this manager. The UUID is assigned when the system is manufactured.",
+            "readonly": true,
+            "etag": true
+        },
+        "Model": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "description": "Model name of the manager.",
+            "readonly": true,
+            "etag": true
+        },
+        "Status": {
+            "$ref": "Status.json#"
+        },
+        "Firmware": {
+            "$ref": "FwRev.json#"
+        },
+        "SerialConsole": {
+            "type": "object",
+            "description": "The value of this property shall contain the information about the Serial Console service of this manager.",
+            "additionalProperties": false,
+            "properties": {
+                "Enabled": {
+                    "type": "boolean",
+                    "description": "Indicates if the Serial Console service is enabled for this manager.",
+                    "readonly": false,
+                    "etag": true
+                },
+                "MaxConcurrentSessions": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "description": "This is the maximum number of Serial Console sessions, regardless of protocol, that this manager supports.",
+                    "readonly": true,
+                    "etag": true
+                },
+                "ConnectTypesSupported": {
+                    "type": "array",
+                    "description": "This object is used to enumerate the Serial Console connection types allowed by the implementation. ",
+                    "readonly": true,
+                    "items": {
+                        "type": "string",
+                        "enum": [
+                            "SSH",
+                            "Telnet",
+                            "IPMI",
+                            "Oem"
+                        ],
+                        "enumDescriptions": {
+                            "SSH": "The controller supports a Serial Console connection using the SSH protocol",
+                            "Telnet": "The controller supports a Serial Console connection using the Telnet protocol",
+                            "IPMI": "The controller supports a Serial Console connection using the IPMI Serial-over-LAN (SOL) protocol"
+                        },
+                        "etag": true
+                    }
+                }
+            }
+        },
+        "CommandShell": {
+            "type": "object",
+            "description": "The value of this property shall contain the information about the Command Shell service of this manager.",
+            "additionalProperties": false,
+            "properties": {
+                "Enabled": {
+                    "type": "boolean",
+                    "description": "Indicates if the Command Shell service is enabled for this manager.",
+                    "readonly": false,
+                    "etag": true
+                },
+                "MaxConcurrentSessions": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "description": "This is the maximum number of Command Shell sessions, regardless of protocol, that this manager supports.",
+                    "readonly": true,
+                    "etag": true
+                },
+                "ConnectTypesSupported": {
+                    "type": "array",
+                    "description": "This object is used to enumerate the Command Shell connection types allowed by the implementation. ",
+                    "readonly": true,
+                    "items": {
+                        "type": "string",
+                        "enum": [
+                            "SSH",
+                            "Telnet",
+                            "IPMI",
+                            "Oem"
+                        ],
+                        "enumDescriptions": {
+                            "SSH": "The controller supports a Command Shell connection using the SSH protocol",
+                            "Telnet": "The controller supports a Command Shell connection using the Telnet protocol",
+                            "IPMI": "The controller supports a Command Shell connection using the IPMI Serial-over-LAN (SOL) protocol",
+                            "Oem": "The controller supports a Command Shell connectino using an OEM-specific protocol"
+                        },
+                        "etag": true
+                    }
+                }
+            }
+        },
+        "GraphicalConsole": {
+            "type": "object",
+            "description": "The value of this property shall contain the information about the Graphical Console (KVM-IP) service of this manager.",
+            "additionalProperties": false,
+            "properties": {
+                "Enabled": {
+                    "type": "boolean",
+                    "description": "Indicates if the Graphical Console service is enabled for this manager.",
+                    "readonly": false,
+                    "etag": true
+                },
+                "MaxConcurrentSessions": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "description": "Indicates the maximum number of Graphical Console sessions, regardless of protocol, this manager supports.",
+                    "readonly": true,
+                    "etag": true
+                },
+                "ConnectTypesSupported": {
+                    "type": "array",
+                    "description": "This object is used to enumerate the Graphical Console connection types allowed by the implementation. ",
+                    "readonly": true,
+                    "items": {
+                        "type": "string",
+                        "enum": [
+                            "KVMIP",
+                            "Oem"
+                        ],
+                        "enumDescriptions": {
+                            "KVMIP": "The controller supports a Graphical Console connection using a KVM-IP (redirection of Keyboard, Video, Mouse over IP) protocol",
+                            "Oem": "The controller supports a Graphical Console connection using an OEM-specific protocol"
+                        },
+                        "etag": true
+                    }
+                }
+            }
+        },
+        "Redundancy": {
+            "$ref": "Redundancy.json#",
+            "description": "Details of redundancy for this manager. This is present only if it is applicable."
+        },
+        "AvailableActions": {
+            "type": "array",
+            "additionalItems": false,
+            "uniqueItems": true,
+            "items": {
+                "anyOf": [
+                    {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                            "Action": {
+                                "type": "string",
+                                "enum": [
+                                    "Reset"
+                                ],
+                                "description": "The reset action resets/reboots the manager.",
+                                "readonly": true
+                            }
+                        },
+                        "description": "This array item defines an available custom action on this resource.",
+                        "readonly": true
+                    }
+                ]
+            }
+        }
+    },
+    "actions": {
+        "description": "Resets the management processor firmware.",
+        "actions": {
+            "Reset": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                    "Action": {
+                        "type": "string",
+                        "enum": [
+                            "Reset"
+                        ]
+                    }
+                }
+            }
+        }
+    }
+}

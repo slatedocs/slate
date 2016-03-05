@@ -1,0 +1,57 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "HpSecureBoot.0.9.5",
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+        "Oem": {
+            "$ref": "Oem.json#"
+        },
+        "Name": {
+            "$ref": "Name.json#"
+        },
+        "Modified": {
+            "$ref": "Modified.json#"
+        },
+        "Type": {
+            "$ref": "Type.json#"
+        },
+        "SecureBootEnable": {
+            "type": "boolean",
+            "description": "Enable or disable UEFI Secure Boot (takes effect on next boot).",
+            "readonly": false,
+            "etag": true
+        },
+        "SecureBootCurrentState": {
+            "type": "boolean",
+            "description": "Current enabled state of Secure Boot",
+            "readonly": true,
+            "etag": true
+        },
+        "ResetToDefaultKeys": {
+            "type": "boolean",
+            "description": "If true, reset to default Secure Boot keys on next boot.",
+            "readonly": false,
+            "etag": true
+        },
+        "ResetAllKeys": {
+            "type": "boolean",
+            "description": "If true, clear all Secure Boot keys on next boot.",
+            "readonly": false,
+            "etag": true
+        },
+        "links": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "self": {
+                    "$ref": "href.json#",
+                    "description": "Link to self"
+                }
+            },
+            "readonly": true,
+            "description": "Links"
+        }
+    },
+    "readonly": false
+}

@@ -1,0 +1,44 @@
+{
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+        "State": {
+            "type": "string",
+            "enum": [
+                "Enabled",
+                "Disabled",
+                "Offline",
+                "InTest",
+                "Starting",
+                "Absent"
+            ],
+            "description": "Indicates the known state of this resource (for example, if the resource is enabled). Enabled indicates that the resource is available. Disabled indicates that the resource has been made unavailable intentionally, but it can be enabled. Offline indicates that the resource is unavailable intentionally and requires action to be made available. InTest indicates that the component is undergoing testing. Starting indicates that the resource is on its way to becoming available. Absent indicates that the resource is physically unavailable.",
+            "readonly": true
+        },
+        "HealthRollUp": {
+            "type": "string",
+            "enum": [
+                "OK",
+                "Warning",
+                "Critical"
+            ],
+            "description": "Indicates the overall health state of this resource and its dependent resources.",
+            "readonly": true
+        },
+        "Health": {
+            "type": "string",
+            "enum": [
+                "OK",
+                "Warning",
+                "Critical"
+            ],
+            "description": "Indicates the health state of this resource without considering its dependent resources.",
+            "readonly": true
+        },
+        "Oem": {
+            "$ref": "Oem.json#"
+        }
+    },
+    "readonly": true,
+    "description": "This object represents the standard status structure for resources."
+}

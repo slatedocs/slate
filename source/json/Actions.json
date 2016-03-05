@@ -1,0 +1,53 @@
+{
+    "type": "object",
+    "readonly": true,
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "id": "http://jsonschema.net",
+    "description": "This object represents the href, id, and frag properties.",
+    "definitions": {
+        "AvailableActions": {
+            "type": "array",
+            "readonly": true,
+            "additionalItems": true,
+            "uniqueItems": true,
+            "items": {
+                "type": "object",
+                "readonly": true,
+                "additionalProperties": false,
+                "properties": {
+                    "Action": {
+                        "type": "string",
+                        "description": "Defines the name of the custom action for which the following properties are supported on this resource.",
+                        "readonly": true
+                    },
+                    "Capabilities": {
+                        "type": "array",
+                        "readonly": true,
+                        "items": {
+                            "type": "object",
+                            "readonly": true,
+                            "additionalProperties": false,
+                            "properties": {
+                                "PropertyName": {
+                                    "type": "string",
+                                    "readonly": true,
+                                    "description": "Defines the property name for which the following allowable values apply."
+                                },
+                                "AllowableValues": {
+                                    "type": "array",
+                                    "readonly": true,
+                                    "items": {
+                                        "type": "string"
+                                    },
+                                    "description": "Defines the allowable values for this property on this resource."
+                                }
+                            }
+                        },
+                        "description": "This array item defines the allowable values supported for this custom action on this resource."
+                    }
+                },
+                "description": "This array item defines an available custom action on this resource."
+            }
+        }
+    }
+}

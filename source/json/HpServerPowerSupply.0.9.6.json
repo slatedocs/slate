@@ -1,0 +1,99 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "HpServerPowerSupply.0.9.6",
+    "type": "object",
+    "readonly": true,
+    "additionalProperties": false,
+    "properties": {
+        "Type": {
+            "$ref": "Type.json#"
+        },
+        "BayNumber": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "The power supply bay number.",
+            "readonly": true,
+            "etag": true
+        },
+        "Mismatched": {
+            "type": "boolean",
+            "description": "If true, this power supply is mismatched with others in the system.",
+            "readonly": true,
+            "etag": true
+        },
+        "iPDUCapable": {
+            "type": "boolean",
+            "description": "If true, this power supply is capable of being connected to an iPDUs.",
+            "readonly": true,
+            "etag": true
+        },
+        "HotplugCapable": {
+            "type": "boolean",
+            "description": "If true, this power supply (and power supply bay) is capable of being hot-plugged.",
+            "readonly": true,
+            "etag": true
+        },
+        "AveragePowerOutputWatts": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "The latest observed average power being drawn by the power supply (Watts). This is usually updated every 10 seconds but the period can vary in some circumstances.",
+            "readonly": true,
+            "etag": true
+        },
+        "MaxPowerOutputWatts": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "The latest observed maximum output power being drawn by the power supply (Watts). This is usually updated every 10 seconds but the period can vary in some circumstances.",
+            "readonly": true,
+            "etag": true
+        },
+        "PowerSupplyStatus": {
+            "$ref": "HpPowerSupplyStatus.json#"
+        },
+        "iPDU": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "Id": {
+                    "type": "string",
+                    "description": "The iPDU ID.",
+                    "readonly": true,
+                    "etag": true
+                },
+                "IPAddress": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "description": "The IP address of the iPDU connected to this power supply.",
+                    "readonly": true,
+                    "etag": true
+                },
+                "MacAddress": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "description": "The Ethernet MAC address of the iPDU connected to this power supply.",
+                    "readonly": true,
+                    "etag": true
+                },
+                "Model": {
+                    "type": "string",
+                    "description": "The model number of the iPDU connected to this power supply.",
+                    "readonly": true,
+                    "etag": true
+                },
+                "SerialNumber": {
+                    "type": "string",
+                    "description": "The serial number of the iPDU connected to this power supply.",
+                    "readonly": true,
+                    "etag": true
+                },
+                "iPDUStatus": {
+                    "$ref": "HpPowerSupplyStatus.json#"
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,552 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "ComputerSystem.0.9.7",
+    "type": "object",
+    "readonly": false,
+    "additionalProperties": false,
+    "description": "The schema definition of a computer system and its properties. A computer system represents a physical or virtual machine and the local resources, such as memory, CPU, and other devices that can be accessed from that machine.",
+    "properties": {
+        "Oem": {
+            "type": "object",
+            "readonly": false,
+            "additionalProperties": true,
+            "properties": {
+                "Hp": {
+                    "$ref": "HpComputerSystemExt.json#"
+                }
+            }
+        },
+        "Name": {
+            "$ref": "Name.json#"
+        },
+        "Modified": {
+            "$ref": "Modified.json#"
+        },
+        "Type": {
+            "$ref": "Type.json#"
+        },
+        "SystemType": {
+            "type": "string",
+            "description": "The type of computer system that this resource represents.",
+            "enum": [
+                "Physical",
+                "Virtual",
+                "OS",
+                "PhysicallyPartitioned",
+                "VirtuallyPartitioned"
+            ],
+            "enumDescriptions": {
+                "Physical": "A computer system.",
+                "Virtual": "A virtual machine instance running on this system.",
+                "OS": "An operating system instance.",
+                "PhysicalyPartitioned": "A hardware-based partition of a computer system.",
+                "VirtuallyPartitioned": "A computer system virtual or software-based partition."
+            },
+            "readonly": true,
+            "etag": true
+        },
+        "links": {
+            "type": "object",
+            "additionalProperties": true,
+            "properties": {
+                "Chassis": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "href.json#"
+                    },
+                    "description": "The physical container URI associated with this resource.",
+                    "readonly": true,
+                    "etag": false
+                },
+                "ManagedBy": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "href.json#"
+                    },
+                    "description": "The Manager URI for this resource.",
+                    "readonly": true,
+                    "etag": false
+                },
+                "Logs": {
+                    "$ref": "href.json#",
+                    "description": "The LogService collection URI for this resource.",
+                    "readonly": true,
+                    "etag": false
+                },
+                "LogService": {
+                    "$ref": "href.json#",
+                    "description": "The LogService collection URI for this resource.",
+                    "readonly": true,
+                    "etag": false
+                },
+                "self": {
+                    "$ref": "href.json#",
+                    "description": "The URI for this computer system resource.",
+                    "readonly": true,
+                    "etag": false
+                },
+                "Oem": {
+                    "$ref": "Oem.json#"
+                }
+            },
+            "readonly": true,
+            "description": "The links array contains the related resource URIs."
+        },
+        "AssetTag": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "description": "A user-definable tag that is used to track this system for inventory or other client purposes.",
+            "readonly": false,
+            "etag": true
+        },
+        "Manufacturer": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "description": "The manufacturer or OEM of this system.",
+            "readonly": true,
+            "etag": true
+        },
+        "Model": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "description": "The model information that the manufacturer uses to refer to this system.",
+            "readonly": true,
+            "etag": true
+        },
+        "SKU": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "description": "SKU for this system.",
+            "readonly": true,
+            "etag": true
+        },
+        "SerialNumber": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "description": "The system serial number.",
+            "readonly": true,
+            "etag": true
+        },
+        "Version": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "description": "The manufacturer's system version.",
+            "readonly": true,
+            "etag": true
+        },
+        "PartNumber": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "description": "The manufacturer's system part number.",
+            "readonly": true,
+            "etag": true
+        },
+        "Description": {
+            "$ref": "Description.json#"
+        },
+        "VirtualSerialNumber": {
+            "readonly": true,
+            "type": [
+                "string",
+                "null"
+            ],
+            "description": "The system virtual serial number.",
+            "etag": true
+        },
+        "UUID": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "description": "The universal unique identifier for this system.",
+            "readonly": true,
+            "etag": true
+        },
+        "HostCorrelation": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "IPAddress": {
+                    "type": "array",
+                    "items": {
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
+                    "readonly": true,
+                    "etag": true
+                },
+                "HostMACAddress": {
+                    "type": "array",
+                    "items": {
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
+                    "readonly": true,
+                    "etag": true
+                },
+                "HostName": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "readonly": true,
+                    "etag": true
+                },
+                "HostFQDN": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "readonly": true,
+                    "etag": true
+                }
+            },
+            "description": "This object contains operating environment reference information to correlate the system information with the host operating environment information to assist clients with correlating the two access points.",
+            "readonly": true
+        },
+        "Status": {
+            "$ref": "Status.json#"
+        },
+        "BIOSPOSTCode": {
+            "type": [
+                "integer",
+                "null"
+            ],
+            "description": "The BIOS Power on Self Test code from the last system boot.",
+            "readonly": true,
+            "etag": true
+        },
+        "IndicatorLED": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "description": "The state of the indicator LED.",
+            "enum": [
+                "Unknown",
+                "Lit",
+                "Blinking",
+                "Off"
+            ],
+            "enumDescriptions": {
+                "Unknown": "The state of the Indicator LED cannot be determined.",
+                "Lit": "The Indicator LED is lit.",
+                "Blinking": "The Indicator LED is blinking.",
+                "Off": "The Indicator LED is off."
+            },
+            "readonly": false,
+            "etag": true
+        },
+        "Power": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "description": "The current power state of the system.",
+            "enum": [
+                "On",
+                "Off",
+                "Unknown",
+                "Reset"
+            ],
+            "readonly": true,
+            "etag": true
+        },
+        "Boot": {
+            "type": "object",
+            "readonly": false,
+            "additionalProperties": false,
+            "properties": {
+                "BootSourceOverrideTarget": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "description": "The current boot source to be used at next boot instead of the normal boot device, if BootSourceOverrideEnabled is not Disabled.",
+                    "enum": [
+                        "None",
+                        "Pxe",
+                        "Floppy",
+                        "Cd",
+                        "Usb",
+                        "Hdd",
+                        "BiosSetup",
+                        "Utilities",
+                        "Diags",
+                        "UefiShell",
+                        "UefiTarget"
+                    ],
+                    "enumDescriptions": {
+                        "None": "Boot from the normal boot device.",
+                        "Pxe": "Boot from the Pre-Boot EXecution (PXE) environment.",
+                        "Floppy": "Boot from the floppy disk drive.",
+                        "Cd": "Boot from the CD/DVD disc.",
+                        "Usb": "Boot from a USB device as specified by the system BIOS.",
+                        "Hdd": "Boot from a hard drive.",
+                        "BiosSetup": "Boot to the BIOS Setup Utility.",
+                        "Utilities": "Boot the manufacturer's Utilities program(s).",
+                        "Diags": "Boot the manufacturer's Diagnostics program.",
+                        "UefiShell": "Boot to the UEFI Shell.",
+                        "UefiTarget": "Boot to the UEFI Device specified in the UefiTargetBootSourceOverride property."
+                    },
+                    "readonly": false,
+                    "etag": true
+                },
+                "BootSourceOverrideSupported": {
+                    "type": "array",
+                    "items": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "enum": [
+                            "None",
+                            "Pxe",
+                            "Floppy",
+                            "Cd",
+                            "Usb",
+                            "Hdd",
+                            "BiosSetup",
+                            "Utilities",
+                            "Diags",
+                            "UefiShell",
+                            "UefiTarget"
+                        ],
+                        "enumDescriptions": {
+                            "None": "This system does not support any Boot Source Override targets.",
+                            "Pxe": "This system supports PXE as a Boot Source Override target.",
+                            "Floppy": "This system supports a Floppy disk as a Boot Source Override target.",
+                            "Cd": "This system supports a CD/DVD disc as a Boot Source Override target.",
+                            "Usb": "This system supports a USB device as a Boot Source Override target.",
+                            "Hdd": "This system supports a hard disk as a Boot Source Override target.",
+                            "BiosSetup": "This system supports BIOS Setup as a Boot Source Override target.",
+                            "Utilities": "This system supports the manufacturer's Utilities program(s) as a Boot Source Override target.",
+                            "Diags": "This system supports the manufacturer's Diagnostics program as a Boot Source Override target.",
+                            "UefiShell": "This system supports the UEFI Shell as a Boot Source Override target.",
+                            "UefiTarget": "This system supports a UEFI Device, specified in the UefiTargetBootSourceOverride property, as a Boot Source Override target."
+                        }
+                    },
+                    "readonly": true,
+                    "etag": true
+                },
+                "BootSourceOverrideEnabled": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "enum": [
+                        "Disabled",
+                        "Once",
+                        "Continuous"
+                    ],
+                    "enumDescriptions": {
+                        "Disabled": "The system will boot as normal.",
+                        "Once": "On the next system boot cycle, the system will boot (one time) to the Boot Source Override Target.",
+                        "Continuous": "Supported on UEFI based systems only. The system will boot to the target specified in the BootSourceOverrideTarget until this property is set to Disabled."
+                    },
+                    "description": "BootSourceOverrideTarget must be specified before BootSourceOverrideEnabled can be used.",
+                    "readonly": false,
+                    "etag": true
+                },
+                "UefiTargetBootSourceOverrideSupported": {
+                    "type": "array",
+                    "readonly": true,
+                    "items": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "description": "An array of structured boot strings.",
+                        "readonly": true,
+                        "etag": true
+                    }
+                },
+                "UefiTargetBootSourceOverride": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "description": "The UEFI device path of the device to boot from when BootSourceOverrideTarget is UefiTarget.",
+                    "readonly": false,
+                    "etag": true
+                }
+            },
+            "description": "The boot information for the current resource."
+        },
+        "Bios": {
+            "type": "object",
+            "readonly": true,
+            "additionalProperties": false,
+            "properties": {
+                "Current": {
+                    "$ref": "FwRev.json#/definitions/FWVersion"
+                }
+            },
+            "description": "Information about the System BIOS. Ensure the system has completed post to see the updated FW Version."
+        },
+        "Processors": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "Count": {
+                    "type": [
+                        "integer",
+                        "null"
+                    ],
+                    "minimum": 0,
+                    "description": "The number of processors in the system.",
+                    "readonly": true,
+                    "etag": true
+                },
+                "ProcessorFamily": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "description": "The processor family for the processors in the system.",
+                    "readonly": true,
+                    "etag": true
+                },
+                "Status": {
+                    "readonly": true,
+                    "$ref": "Status.json#"
+                }
+            },
+            "description": "The central processors in the system.",
+            "readonly": true
+        },
+        "Memory": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "TotalSystemMemoryGB": {
+                    "type": [
+                        "integer",
+                        "null"
+                    ],
+                    "minimum": 0,
+                    "description": "The total amount of memory (GB) in the system.",
+                    "readonly": true,
+                    "etag": true
+                },
+                "Status": {
+                    "$ref": "Status.json#"
+                }
+            },
+            "description": "The central memory of the system.",
+            "readonly": true
+        },
+        "AvailableActions": {
+            "type": "array",
+            "readonly": true,
+            "additionalItems": false,
+            "uniqueItems": true,
+            "items": {
+                "anyOf": [
+                    {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                            "Action": {
+                                "type": "string",
+                                "enum": [
+                                    "Reset"
+                                ],
+                                "description": "This action resets the system.",
+                                "readonly": true
+                            },
+                            "Capabilities": {
+                                "type": "array",
+                                "items": {
+                                    "type": "object",
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "PropertyName": {
+                                            "type": "string",
+                                            "enum": [
+                                                "ResetType"
+                                            ],
+                                            "description": "The reset type to be performed.",
+                                            "readonly": true
+                                        },
+                                        "AllowableValues": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "string",
+                                                "enum": [
+                                                    "On",
+                                                    "ForceOff",
+                                                    "ForceRestart",
+                                                    "Nmi",
+                                                    "PushPowerButton"
+                                                ],
+                                                "enumDescriptions": {
+                                                    "On": "Turn the system on.",
+                                                    "ForceOff": "Perform an immediate (non-graceful) shutdown.",
+                                                    "ForceRestart": "Perform an immediate (non-graceful) shutdown, followed by a restart of the system",
+                                                    "Nmi": "Generate a Non-Maskable Interrupt to cause an immediate system halt.",
+                                                    "PushPowerButton": "Simulate the pressing of the physical power button on this system."
+                                                }
+                                            },
+                                            "description": "The supported values for this property on this resource.",
+                                            "readonly": true
+                                        }
+                                    }
+                                },
+                                "description": "The allowable values supported for this custom action on this resource.",
+                                "readonly": true
+                            }
+                        },
+                        "description": "An available custom action on this resource.",
+                        "readonly": true
+                    }
+                ]
+            }
+        }
+    },
+    "actions": {
+        "description": "The POST custom actions defined for this type (the implemented actions might be a subset of these).",
+        "actions": {
+            "Reset": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                    "Action": {
+                        "type": "string",
+                        "enum": [
+                            "Reset"
+                        ]
+                    },
+                    "ResetType": {
+                        "type": "string",
+                        "enum": [
+                            "On",
+                            "ForceOff",
+                            "ForceRestart",
+                            "Nmi",
+                            "PushPowerButton"
+                        ]
+                    }
+                }
+            }
+        }
+    }
+}
