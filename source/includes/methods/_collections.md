@@ -318,6 +318,8 @@ Note that when you include the claim parameter, you **must** also include the am
 
 Also note that the phonenumber will be matched in international format, starting with a '+' sign. Partial phone number matches will fail when you try to claim a transaction. If the '+' sign isn't included in your request, it will be appended before attempting to match your request.
 
+Lastly, if your search parameters match more than one collection, the claim will fail.
+
 Parameter | Type | Example | Notes
 ----------| ---- | ------- | -----
 claim | Boolean or String | True | Instruct system to search unmatched transctions and claim them for your organization.
