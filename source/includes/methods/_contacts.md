@@ -43,7 +43,7 @@ require 'beyonic'
 Beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
 payment = Beyonic::Contact.create(
-    phonenumber: "+256773712831",
+    phone_number: "+256773712831",
     first_name: "John",
     last_name: "Doe",
     email: "john.doe@beyonic.com",
@@ -57,7 +57,7 @@ require_once('./lib/Beyonic.php');
 Beyonic::setApiKey("ab594c14986612f6167a975e1c369e71edab6900");
 
 Beyonic_Contact::create(array(
-  "phonenumber" => "+256773712831",
+  "phone_number" => "+256773712831",
   "first_name" => "John",
   "last_name" => "Doe",
   "email" => "john.doe@beyonic.com",
@@ -72,7 +72,7 @@ beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
 kwargs = {'metadata.my_id': '123ASDAsd123'}
 
-beyonic.Contact.create(phonenumber='+256773712831',
+beyonic.Contact.create(phone_number='+256773712831',
                        first_name='John', 
                        last_name='Doe',
                        email='john.doe@beyonic.com',
@@ -104,7 +104,7 @@ To create a new contact, make a POST to the endpoint above, with the attributes 
 
 Parameter | Required | Type | Example | Notes
 --------- | -------- | ---- | ------- | -----
-phonenumber | Yes | String | +256773712831 | Must be in international format
+phone_number | Yes | String | +256773712831 | Must be in international format
 first_name | Yes | String | John | The contact's first name
 last_name | Yes | String | Doe | The contact's last name
 email | No | String | john.doe@beyonic.com | The contact's email address
