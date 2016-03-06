@@ -3,7 +3,7 @@
 > Example Request:
 
 ```shell
-curl http://app.beyonic.com/api -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900"
+curl https://app.beyonic.com/api -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900"
 ```
 
 ```ruby
