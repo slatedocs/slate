@@ -9,7 +9,7 @@
     "query_environment": {
         "filter": [
             {"filter": "<url>"},
-            {"function": "expression", "args": []}
+            {"function": "expression", "args": [], "name": "(Optional)"}
         ],
         "weight": "url"
     },
@@ -33,7 +33,7 @@
 }
 ```
 
-> Analysis queries are described in detail in the [feature guide](#multidimensional-analysis). [Filters](#filters) may contain a mix of stored filters or expressions.
+> Analysis queries are described in detail in the [feature guide](#multidimensional-analysis). [Filters](#filters) may contain a mix of stored filters or expressions. Expressions may contain an optional `name` which may be used to label results.
 
 
 An analysis -- a table or graph with some specific combination of variables defining measures, rows, columns, and tabs; settings such as percentage direction and decimal places -- can be saved to a _deck_ which can then be exported, or the analysis can be reloaded in whole in the application or even exported as a standalone embeddable result.
