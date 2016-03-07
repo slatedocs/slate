@@ -73,7 +73,7 @@ Example:
 * `PATCH  /invoices/:id`  
 * `DELETE /invoices/:id`
 
-### Tickets
+### [Tickets](#tickets-section)
 
 * `GET    /tickets`  
 * `POST   /tickets`  
