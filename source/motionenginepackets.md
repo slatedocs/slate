@@ -317,9 +317,11 @@ In the command mode, this packet enables/disables the streaming of the device's 
 In the response mode, Neblina will first send an acknowledge packet to the host to confirm the successful receipt of the command. Next, the main response packet will be prepared, where the data section first includes 4 bytes for the timestamp (Byte#4-7), which is then followed by 6 bytes (Byte#8-13) with the following subfields:
 
 ##### Byte#8-11: total number of rotations as a 32-bit unsigned integer
-##### Byte#12-13: rpm (rounds per minute) speed as a 16-bit unsigned integer
+##### Byte#12-13: rpm (rounds per minute) speed multiplied by 10, as a 16-bit unsigned integer
 
-Note that when we disable the rotation information streaming, the rotation count will be reset to zero. The whole response packet including header is shown below:
+For instance, if Byte#12-13 read rpm as the decimal value of 578, it means that the actual rpm is 57.8. This gives one fractional decimal digit precision in calculation of the rpm. 
+
+Note also that when we disable the rotation information streaming, the rotation count will be reset to zero. The whole response packet including header is shown below:
 
 | Byte 0 | Byte 1 | Byte 2 | Byte 3 |Byte 4-7 |  Byte 8-11   |Byte 12-13 |Bytes 14-19|
 |:------:|:------:|:------:|:------:|:-------:|:------------:|:---------:|:---------:|
