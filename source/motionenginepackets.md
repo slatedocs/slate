@@ -323,7 +323,7 @@ For instance, if Byte#12-13 read rpm as the decimal value of 578, it means that 
 
 Note also that when we disable the rotation information streaming, the rotation count will be reset to zero. The whole response packet including header is shown below:
 
-| Byte 0 | Byte 1 | Byte 2 | Byte 3 |Byte 4-7 |  Byte 8-11   |Byte 12-13 |Bytes 14-19|
-|:------:|:------:|:------:|:------:|:-------:|:------------:|:---------:|:---------:|
-|  0x01  |  0x10  |  CRC   |  0x12  |TimeStamp|rotation count|rpm (speed)| Reserved  |
+| Byte 0 | Byte 1 | Byte 2 | Byte 3 |Byte 4-7 |  Byte 8-11   |  Byte 12-13  |Bytes 14-19|
+|:------:|:------:|:------:|:------:|:-------:|:------------:|:------------:|:---------:|
+|  0x01  |  0x10  |  CRC   |  0x12  |TimeStamp|rotation count|rpm*10 (speed)| Reserved  |
 
