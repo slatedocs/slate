@@ -9,7 +9,7 @@ The main difference between invoices and tickets is that the latest don't have a
 Attr. name |  Constraints
 ---------- |  -----------
 kind | REQUIRED <br> Accepted values: `income` or `expenses`
-number | For income tickets we recommend leave it blank, and Quipu will assign it.<br>For income invoices must be unique within a fiscal year.
+number | For income tickets we recommend leave it blank, and Quipu will assign it.<br>For income tickets must be unique within a fiscal year.
 issue_date | REQUIRED <br> Format: `YYYY-mm-dd`
 paid_at  | Format: `YYYY-mm-dd`
 payment_method | Accepted valued: `cash`, `bank_transfer`, `bank_card`, `direct_debit`, `paypal`, `check`, `factoring`
@@ -44,7 +44,7 @@ Relationship name |  Constraints
 accounting_category |
 accounting_subcategory |
 numeration |
-analytic_category_options |
+analytic_subcategories |
 items | Can be sideloaded in GET requests. <br> Must be included in the payload in POST/PATCH/PUT requests
 
 ## Listing tickets
@@ -107,7 +107,7 @@ curl "https://getquipu.com/tickets" \
           "id": "6332"
         }
       },
-      "analytic_category_options": {
+      "analytic_subcategories": {
         "data":[]
       },
       "items": {
@@ -163,7 +163,7 @@ curl "https://getquipu.com/tickets" \
           "id": "6326"
         }
       },
-      "analytic_category_options": {
+      "analytic_subcategories": {
         "data": []
       },
       "items": {
@@ -266,7 +266,7 @@ curl "https://getquipu.com/tickets/ticket_id/2989809" \
           "id": "6332"
         }
       },
-      "analytic_category_options": {
+      "analytic_subcategories": {
         "data":[]
       },
       "items": {
@@ -346,7 +346,12 @@ curl "https://getquipu.com/tickets" \
 
 > Example request
 
+
 ```shell
+# This request will update the attributes of the item with id 23424141,
+# create a new item with concept "Tuercas",
+# and destroy other items associated to the ticket if any.
+
 curl "http://getquipu.dev:3000/tickets/2682381" \
   -X PATCH \
   -H "Authorization: Bearer 818abe1ea4a1813999a47105892d50f3781320c588fb8cd2927885963e621228" \
@@ -388,3 +393,16 @@ curl "http://getquipu.dev:3000/tickets/2682381" \
 ```
 
 `(PUT|PATCH) /tickets/:ticket_id`
+
+## Deleting a ticket
+
+> Example request
+
+```shell
+curl "https://getquipu.com/tickets/2988939" \
+  -X DELETE
+  -H "Authorization: Bearer be32259bd1d0f4d3d02bcc0771b1b507e2b666ba9e9ba3d7c5639e853f722eb4" \
+  -H "Accept: application/vnd.quipu.v1+json"
+```
+
+`DELETE /tickets/:ticket_id`

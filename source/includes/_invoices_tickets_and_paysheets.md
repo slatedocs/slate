@@ -64,7 +64,7 @@ curl "https://getquipu.com/book_entries" \
           "id": "6326"
         }
       },
-      "analytic_category_options": {
+      "analytic_subcategories": {
         "data":[]
       },
       "contact": {
@@ -127,7 +127,7 @@ curl "https://getquipu.com/book_entries" \
           "id": "6326"
         }
       },
-      "analytic_category_options": {
+      "analytic_subcategories": {
         "data": []
       },
       "contact": {
@@ -185,7 +185,7 @@ curl "https://getquipu.com/book_entries" \
       "numeration": {
         "data": null
       },
-      "analytic_category_options": {
+      "analytic_subcategories": {
         "data": []
       },
       "items": {

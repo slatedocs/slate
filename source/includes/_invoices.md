@@ -45,7 +45,7 @@ contact | REQUIRED
 accounting_category |
 accounting_subcategory |
 numeration |
-analytic_category_options |
+analytic_subcategories |
 items | Can be sideloaded in GET requests. <br> Must be included in the payload in POST/PATCH/PUT requests
 
 ## Listing invoices
@@ -110,7 +110,7 @@ curl "https://getquipu.com/invoices" \
           "id": "6326"
         }
       },
-      "analytic_category_options": {
+      "analytic_subcategories": {
         "data":[]
       },
       "contact": {
@@ -174,7 +174,7 @@ curl "https://getquipu.com/invoices" \
           "id": "6326"
         }
       },
-      "analytic_category_options": {
+      "analytic_subcategories": {
         "data": []
       },
       "contact": {
@@ -287,7 +287,7 @@ curl "https://getquipu.com/invoices/2988939" \
           "id": "6326"
         }
       },
-      "analytic_category_options": {
+      "analytic_subcategories": {
         "data":[]
       },
       "contact": {

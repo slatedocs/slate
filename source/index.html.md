@@ -13,6 +13,7 @@ includes:
   - invoices_tickets_and_paysheets
   - invoices
   - tickets
+  - paysheets
   - errors
 
 search: true
@@ -81,7 +82,7 @@ Example:
 * `PATCH  /tickets/:id`  
 * `DELETE /tickets/:id`
 
-### Paysheets
+### [Paysheets](#paysheets-section)
 
 * `GET    /paysheets`  
 * `POST   /paysheets`  
@@ -89,7 +90,7 @@ Example:
 * `PATCH  /paysheets/:id`  
 * `DELETE /paysheets/:id`
 
-### Numbering series
+### [Numbering series](#numbering-series-section)
 
 * `GET    /numbering_series`  
 * `POST   /numbering_series`  
@@ -97,7 +98,7 @@ Example:
 * `PATCH  /numbering_series/:id`  
 * `DELETE /numbering_series/:id`
 
-### Analytic categories
+### [Analytic categories](#analytic-categories-section)
 
 * `GET    /analytic_categories`  
 * `POST   /analytic_categories`  
@@ -105,7 +106,7 @@ Example:
 * `PATCH  /analytic_categories/:id`  
 * `DELETE /analytic_categories/:id`
 
-### Analytic subcategories
+### [Analytic subcategories](#analytic-subcategories-section)
 
 * `GET    /analytic_subcategories`  
 * `POST   /analytic_subcategories`  
@@ -113,12 +114,12 @@ Example:
 * `PATCH  /analytic_subcategories/:id`  
 * `DELETE /analytic_subcategories/:id`
 
-### Accounting categories
+### [Accounting categories](#accounting-categories-section)
 
 * `GET    /accounting_categories`  
 * `GET    /accounting_categories/:id`  
 
-### Accounting subcategories
+### [Accounting subcategories](#accounting-subcategories-section)
 
 * `GET    /accounting_subcategories`  
 * `POST   /accounting_subcategories`  
