@@ -2026,25 +2026,25 @@ The system virtual serial number.
 
 Parameters:
 
-* "ResetType" (string) with one of the following value(s):
+"**ResetType**" (string) with one of the following value(s):
 
-** On
-
-** ForceOff
-
-** ForceRestart
-
-** Nmi
-
-** PushPowerButton
-
+* On
+* ForceOff
+* ForceRestart
+* Nmi
+* PushPowerButton
 > Example:
 
-```
+```POST <uri>
+
+Content-Type: application/json
+
+OData-Version: 4.0 
+
+
 
 {
-    "Action": "Reset", 
-    "ResetType": "<string>"
+    "ResetType": "On"
 }
 
 ```
@@ -2055,22 +2055,22 @@ The Action to be performed.
 
 Parameters:
 
-* "PushType" (string) with one of the following value(s):
+"**PushType**" (string) with one of the following value(s):
 
-** Press
-
-** PressAndHold
-
-* "Target" (string) with the value **"/Oem/Hp"**
-
+* Press
+* PressAndHold
 > Example:
 
-```
+```POST <uri>
+
+Content-Type: application/json
+
+OData-Version: 4.0 
+
+
 
 {
-    "Action": "PowerButton", 
-    "PushType": "<string>", 
-    "Target": "/Oem/Hp"
+    "PushType": "Press"
 }
 
 ```
@@ -2081,18 +2081,20 @@ The Action to be performed.
 
 Parameters:
 
-* "ResetType" (string) with the value **"ColdBoot"**
-
-* "Target" (string) with the value **"/Oem/Hp"**
+"**ResetType**" (string) with the value **"ColdBoot"**
 
 > Example:
 
-```
+```POST <uri>
+
+Content-Type: application/json
+
+OData-Version: 4.0 
+
+
 
 {
-    "Action": "SystemReset", 
-    "ResetType": "ColdBoot", 
-    "Target": "/Oem/Hp"
+    "ResetType": "ColdBoot"
 }
 
 ```
@@ -2103,16 +2105,17 @@ The Action to be performed.
 
 Parameters:
 
-* "Target" (string) with the value **"/Oem/Hp"**
-
 > Example:
 
-```
+```POST <uri>
 
-{
-    "Action": "ServerSigRecompute", 
-    "Target": "/Oem/Hp"
-}
+Content-Type: application/json
+
+OData-Version: 4.0 
+
+
+
+{}
 
 ```
 

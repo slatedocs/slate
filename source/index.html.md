@@ -494,7 +494,7 @@ To log out perform an `HTTP DELETE` to the URI that was returned in the "Locatio
 If you cannot preserve the session URI on login, you may iterate the Sessions collection at /redfish/v1/sessions/.  Be sure to include the X-Auth-Token header.  For each session look for a JSON property called "MySession" that is true. You may then DELETE that URI.
 </aside>
 
-## Performing Actions on Resources
+# Performing Actions on Resources
 
 REST resources usually support HTTP GET to read the current state, and some support modification and removal with HTTP POST, PUT, PATCH, or DELETE.
 
@@ -505,17 +505,19 @@ In Redfish, the available actions that can be invoked are identified by a "targe
 > Example of the Reset Action on the computer system resource:
 
 ```json
-  "Actions": {
-    "#ComputerSystem.Reset": {
-      "ResetType@Redfish.AllowableValues": [
-        "On",
-        "ForceOff",
-        "ForceRestart",
-        "Nmi",
-        "PushPowerButton"
-      ],
-      "target": "/redfish/v1/Systems/1/Actions/ComputerSystem.Reset/"
-    }
+  {
+  	"Actions": {
+  		"#ComputerSystem.Reset": {
+  			"ResetType@Redfish.AllowableValues": [
+  				"On",
+  				"ForceOff",
+  				"ForceRestart",
+  				"Nmi",
+  				"PushPowerButton"
+  			],
+  			"target": "/redfish/v1/Systems/1/Actions/ComputerSystem.Reset/"
+  		}
+  	}
   }
 ```
 
@@ -532,9 +534,12 @@ OData-Version: 4.0
 ```
 
 <aside class="information">
-When writing new Redfish conformant REST client code, the above example is the recommended way to to invoke actions.
 
-For compatibility with the pre-Redfish iLO 4 REST API, the following form could also be used:
+When writing new Redfish REST client code, the example is the recommended way to to invoke actions.
+
+For compatibility with the pre-Redfish iLO 4 REST API, the older form specifying the "Action" as a property could also be used:
+
+</aside>
 
 ```
 POST /redfish/v1/Systems/1/
@@ -545,8 +550,26 @@ Content-Type: application/json
     "ResetType": "On"
 }
 ```
+## Actions on Embedded HPE-specific Extensions
 
-</aside>
+The embedded extensions may also have Actions not specified by the Redfish standard.  They are invoked in a similar way.  The POST URI may include indicate the HPE specific nature of the action.
+
+The older pre-Redfish form of the Action invokation requires you to specify `"Target": "/Oem/Hp"` as one of the properties in the body of the request.
+
+```
+POST /redfish/v1/Systems/1/
+Content-Type: application/json
+
+
+{
+    "Action": "PowerButton", 
+    "PushType": "PressAndHold", 
+    "Target": "/Oem/Hp"
+}
+
+```
+
+It is recommended that you use the Redfish version of the action invocation.
 
 # Example Use Cases
 
