@@ -43,7 +43,6 @@ var dataCollection = kuzzle.dataCollectionFactory('index', 'collection');
 
 ```js
 var filter = {
-  filter: {
     and: [
       {
         terms: {
@@ -64,7 +63,6 @@ var filter = {
         }
       }
     ]
-  }
 };
 
 kuzzle
