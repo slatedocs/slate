@@ -2034,7 +2034,7 @@ Parameters:
 * Nmi
 * PushPowerButton
 
-> Example:
+> "Reset" example:
 
 ```
 POST <target-uri>
@@ -2057,7 +2057,7 @@ Parameters:
 * Press
 * PressAndHold
 
-> Example:
+> "PowerButton" example:
 
 ```
 POST <target-uri>
@@ -2077,7 +2077,7 @@ Parameters:
 
 "**ResetType**" (string) with the value **"ColdBoot"**
 
-> Example:
+> "SystemReset" example:
 
 ```
 POST <target-uri>
@@ -2095,7 +2095,7 @@ The Action to be performed.
 
 Parameters:
 
-> Example:
+> "ServerSigRecompute" example:
 
 ```
 POST <target-uri>
@@ -2912,6 +2912,55 @@ This property indicates what the service will do to an event subscription after 
 **JSONPath**: `/SubscriptionRemovalTimeIntervalInMinutes` (read only integer)
 
 This is the minimum amount of time after the failed events that the service will wait before doing the SubscriptionRemovalAction.
+
+### POST Action "SubmitTestEvent"
+
+Parameters:
+
+"**EventType**" (string) with one of the following value(s):
+
+* StatusChange
+* ResourceUpdated
+* ResourceAdded
+* ResourceRemoved
+* Alert
+
+"**EventID**" (string) with the value **"<string>"**
+
+"**EventTimestamp**" (string) with the value **"<date-time>"**
+
+"**Severity**" (string) with one of the following value(s):
+
+* OK
+* Warning
+* Critical
+
+"**Message**" (string) with the value **"<string>"**
+
+"**MessageID**" (string) with the value **"<string>"**
+
+"**MessageArgs**" (string)
+
+"**OriginOfCondition**" (string) with the value **"<string>"**
+
+> "SubmitTestEvent" example:
+
+```
+POST <target-uri>
+Content-Type: application/json
+OData-Version: 4.0
+
+{
+    "EventType": "StatusChange", 
+    "EventID": "<string>", 
+    "EventTimestamp": "<date-time>", 
+    "Severity": "OK", 
+    "Message": "<string>", 
+    "MessageID": "<string>", 
+    "MessageArgs": "<string>", 
+    "OriginOfCondition": "<string>"
+}
+```
 
 ## FwSwVersionInventory
 
@@ -6133,6 +6182,34 @@ Secondary key server port number. Set to null to clear the value.
 
 > example PATCH: {"SecondaryKeyServerPort": &lt;integer-value&gt;}
 
+### POST Action "TestESKMConnections"
+
+Parameters:
+
+> "TestESKMConnections" example:
+
+```
+POST <target-uri>
+Content-Type: application/json
+OData-Version: 4.0
+
+{}
+```
+
+### POST Action "ClearESKMLog"
+
+Parameters:
+
+> "ClearESKMLog" example:
+
+```
+POST <target-uri>
+Content-Type: application/json
+OData-Version: 4.0
+
+{}
+```
+
 ## HpHttpsCert
 This is the schema definition for the X509 Certificate.
 
@@ -6177,6 +6254,57 @@ The date on which the certificate validity period ends.
 **JSONPath**: `/X509CertificateInformation/ValidNotBefore` (read only string)
 
 The date on which the certificate validity period begins.
+
+### POST Action "GenerateCSR"
+
+Parameters:
+
+"**Country**" (string) with the value **"<string>"**
+
+"**State**" (string) with the value **"<string>"**
+
+"**City**" (string) with the value **"<string>"**
+
+"**OrgName**" (string) with the value **"<string>"**
+
+"**OrgUnit**" (string) with the value **"<string>"**
+
+"**CommonName**" (string) with the value **"<string>"**
+
+> "GenerateCSR" example:
+
+```
+POST <target-uri>
+Content-Type: application/json
+OData-Version: 4.0
+
+{
+    "Country": "<string>", 
+    "State": "<string>", 
+    "City": "<string>", 
+    "OrgName": "<string>", 
+    "OrgUnit": "<string>", 
+    "CommonName": "<string>"
+}
+```
+
+### POST Action "ImportCertificate"
+
+Parameters:
+
+"**Certificate**" (string) with the value **"<text>"**
+
+> "ImportCertificate" example:
+
+```
+POST <target-uri>
+Content-Type: application/json
+OData-Version: 4.0
+
+{
+    "Certificate": "<text>"
+}
+```
 
 ## HpMemory
 The schema definition for the properties of Memory DIMMs.
@@ -8437,17 +8565,19 @@ This is the URI of the Active Health System binary download.  This URI is not fi
 
 If successful, the response of the GET is a binary download which can be saved to a file.
 
-**Actions**
+### POST Action "ClearLog"
 
-### ClearLog
+Parameters:
 
-**JSONPath**: `/Actions/#HpiLOActiveHealthSystem.ClearLog`
+> "ClearLog" example:
 
-Clears the Active Health System Log.
+```
+POST <target-uri>
+Content-Type: application/json
+OData-Version: 4.0
 
-<aside class="warning">
-When this action is invoked, iLO 4 will respond with "ResetRequired" and iLO 4 must be reset for the setting to take effect.
-</aside>
+{}
+```
 
 ## HpiLODateTime
 The management processor date and time.
@@ -8870,11 +9000,29 @@ This property indicates the URI location a client my upload a firmware image dir
 
 **Actions**
 
-### InstallFromURI
+### POST Action "InstallFromURI"
 
-**JSONPath**: `Actions/#HpiLOFirmwareUpdate.InstallFromURI'
+Parameters:
 
-> TODO:  example
+"**FirmwareURI**" (string) with the value **"<uri>"**
+
+"**TPMOverrideFlag**" (string) with one of the following value(s):
+
+* true
+* false
+
+> "InstallFromURI" example:
+
+```
+POST <target-uri>
+Content-Type: application/json
+OData-Version: 4.0
+
+{
+    "FirmwareURI": "<uri>", 
+    "TPMOverrideFlag": "true"
+}
+```
 
 ## HpiLOLicense
 
@@ -9161,6 +9309,80 @@ Virtual Media Privileges.
 iLO Configuration Privileges.
 
 > example PATCH: {"SSOsettings": {"UserPrivilege": {"iLOConfigPriv": true}}}
+
+### POST Action "ImportCertificate"
+
+Parameters:
+
+"**CertType**" (string) with one of the following value(s):
+
+* DirectImportCert
+* ImportCertUri
+
+"**CertInput**" (string) with the value **"<text>"**
+
+> "ImportCertificate" example:
+
+```
+POST <target-uri>
+Content-Type: application/json
+OData-Version: 4.0
+
+{
+    "CertType": "DirectImportCert", 
+    "CertInput": "<text>"
+}
+```
+
+### POST Action "ImportDNSName"
+
+Parameters:
+
+"**DNSName**" (string) with the value **"<string>"**
+
+> "ImportDNSName" example:
+
+```
+POST <target-uri>
+Content-Type: application/json
+OData-Version: 4.0
+
+{
+    "DNSName": "<string>"
+}
+```
+
+### POST Action "DeleteAllSSORecords"
+
+Parameters:
+
+> "DeleteAllSSORecords" example:
+
+```
+POST <target-uri>
+Content-Type: application/json
+OData-Version: 4.0
+
+{}
+```
+
+### POST Action "DeleteSSORecordbyNumber"
+
+Parameters:
+
+"**RecordNumber**" (string) with the value **"<integer>"**
+
+> "DeleteSSORecordbyNumber" example:
+
+```
+POST <target-uri>
+Content-Type: application/json
+OData-Version: 4.0
+
+{
+    "RecordNumber": "<integer>"
+}
+```
 
 ## HpiSCSISoftwareInitiator
 The schema definition of UEFI iSCSI Software Initiator boot configuration.
@@ -9555,6 +9777,20 @@ When the log is full, the overwrite policy is enforced.
 * `WrapsWhenFull`
 
 * `NeverOverwrites`
+
+### POST Action "ClearLog"
+
+Parameters:
+
+> "ClearLog" example:
+
+```
+POST <target-uri>
+Content-Type: application/json
+OData-Version: 4.0
+
+{}
+```
 
 ## Manager
 
@@ -10364,6 +10600,66 @@ This indicates the known state of the resource, such as if it is enabled.
 
 This is a universally unique identifier that software (for example, HP SIM) uses to uniquely identify this manager. The UUID is assigned when the system is manufactured.
 
+### POST Action "Reset"
+
+Parameters:
+
+> "Reset" example:
+
+```
+POST <target-uri>
+Content-Type: application/json
+OData-Version: 4.0
+
+{}
+```
+
+### POST Action "ClearRestApiState"
+
+Parameters:
+
+> "ClearRestApiState" example:
+
+```
+POST <target-uri>
+Content-Type: application/json
+OData-Version: 4.0
+
+{}
+```
+
+### POST Action "iLOFunctionality"
+
+Parameters:
+
+> "iLOFunctionality" example:
+
+```
+POST <target-uri>
+Content-Type: application/json
+OData-Version: 4.0
+
+{}
+```
+
+### POST Action "ResetToFactoryDefaults"
+
+Parameters:
+
+"**ResetType**" (string) with the value **"Default"**
+
+> "ResetToFactoryDefaults" example:
+
+```
+POST <target-uri>
+Content-Type: application/json
+OData-Version: 4.0
+
+{
+    "ResetType": "Default"
+}
+```
+
 ## ManagerAccount
 
 This represents a user account on the REST API service.
@@ -10929,6 +11225,36 @@ The Virtual Media port number.
 **JSONPath**: `/VirtualMedia/ProtocolEnabled` (read only boolean)
 
 Indicates whether Virtual Media is enabled for the manager.
+
+### POST Action "SendTestSyslog"
+
+Parameters:
+
+> "SendTestSyslog" example:
+
+```
+POST <target-uri>
+Content-Type: application/json
+OData-Version: 4.0
+
+{}
+```
+
+### POST Action "SendTestAlertMail"
+
+Sends test alert mail to configured AlertMail email address.
+
+Parameters:
+
+> "SendTestAlertMail" example:
+
+```
+POST <target-uri>
+Content-Type: application/json
+OData-Version: 4.0
+
+{}
+```
 
 ## Power
 This is the schema definition for the Power Metrics.  It represents the properties for Power Consumption and Power Limiting.
@@ -12478,6 +12804,20 @@ The user profile name. Enter an alphanumeric string of 1 to 32 characters.
 
 > example PATCH: {"Users": [{"SecurityName": "&lt;string-value&gt;"}|null, ...]}
 
+### POST Action "SendSNMPTestAlert"
+
+Parameters:
+
+> "SendSNMPTestAlert" example:
+
+```
+POST <target-uri>
+Content-Type: application/json
+OData-Version: 4.0
+
+{}
+```
+
 ## Thermal
 The schema definition for the Thermal Metrics. It represents the properties for temperature and cooling.
 
@@ -13162,4 +13502,49 @@ If set to true, the server will boot to this image on the next server reboot. Th
 **JSONPath**: `/WriteProtected` (read only boolean)
 
 Indicates whether the virtual media is protected against write operations.
+
+### POST Action "InsertVirtualMedia"
+
+Parameters:
+
+"**Image**" (string)
+
+"**Intent**" (string)
+
+"**Signature**" (string)
+
+> "InsertVirtualMedia" example:
+
+```
+POST <target-uri>
+Content-Type: application/json
+OData-Version: 4.0
+
+{
+    "Image": "<string>", 
+    "Intent": "<string>", 
+    "Signature": "<string>"
+}
+```
+
+### POST Action "EjectVirtualMedia"
+
+Parameters:
+
+"**Intent**" (string)
+
+"**Signature**" (string)
+
+> "EjectVirtualMedia" example:
+
+```
+POST <target-uri>
+Content-Type: application/json
+OData-Version: 4.0
+
+{
+    "Intent": "<string>", 
+    "Signature": "<string>"
+}
+```
 
