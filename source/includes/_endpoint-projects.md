@@ -91,6 +91,62 @@ ownership to the logged user.
 DELETE /projects/abcd/ HTTP/1.1
 ```
 
+#### Projects order
+
+Returns the `shoji:order` in which the projects should be displayed for
+ the user. This entity is independent for each user.
+ 
+As the user is added to more projects, these will be added at the end of the
+`shoji:order`.
+ 
+##### GET
+
+Will return a `shoji:order` containing a flat list of all the projects where
+the current user belongs to.
+
+
+```http
+GET /projects/order/ HTTP/1.1
+```
+
+```json
+{
+  "element": "shoji:order",
+  "self": "http:\/\/local.crunch.io:8080\/api\/projects\/order\/",
+  "graph": [
+    "https://beta.crunch.io/api/projects/cc9161/",
+    "https://beta.crunch.io/api/projects/a598c7/"
+  ]
+}
+```
+
+##### PUT
+
+In order to change the order of the projects, the client will need to PUT the
+full payload back to the server.
+
+The graph attribute should contain all projects included, else it will return
+a 400 response.
+
+After a successful PUT request, the server will reply with a 204 response.
+
+```http
+PUT /projects/order/ HTTP/1.1
+```
+
+```json
+{
+  "element": "shoji:order",
+  "self": "http:\/\/local.crunch.io:8080\/api\/projects\/order\/",
+  "graph": [
+    "https://beta.crunch.io/api/projects/cc9161/",
+    "https://beta.crunch.io/api/projects/a598c7/"
+  ]
+}
+```
+
+
+
 #### Members
 
 Use this endpoint to manage the users that have access to this project.
