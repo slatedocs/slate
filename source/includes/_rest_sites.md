@@ -57,18 +57,14 @@ For the `:site_id` you can use either the actual ID or the domain.
   "screenshot_url":null,
   "created_at":"2013-09-17T05:13:08Z",
   "updated_at":"2013-09-17T05:13:19Z",
-  "user_id":{"51f60d2d5803545326000005"}
+  "user_id":"51f60d2d5803545326000005"
 }
 ```
 
-> examples using the :site_id as a domain or an ID
+examples using the `:site_id` as a domain or an ID:
 
-``` http
-GET /sites/3970e0fe-8564-4903-9a55-c5f8de49fb8b HTTP/1.1
-```
-``` http
-GET /sites/www.example.com HTTP/1.1
-```
+- `GET /sites/3970e0fe-8564-4903-9a55-c5f8de49fb8b`
+- `GET /sites/www.example.com`
 
 ## Create Site
 

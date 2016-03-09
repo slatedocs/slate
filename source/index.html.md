@@ -29,6 +29,8 @@ includes:
   - rest
   - rest_sites
   - rest_deploys
+  - rest_submissions
+  - rest_forms
   - errors
 
 search: true
@@ -56,7 +58,9 @@ Anytime we do a push to Github or merge a pull request on that repo, Netlify wil
 <aside class="notice">
 All endpoints use HTTPS
 </aside>
-
+``` shell
+curl {:endpoint} -H "Authorization: Bearer {:access_token}"
+```
 Netlify uses OAuth2 for authentication. You'll need an application client key and a client secret before you can access the Netlify API. You can register a new application at [https://api.netlify.com/applications](https://app.netlify.com/applications).
 
 If you're making a public integration with Netlify for others to enjoy, you must use OAuth 2. This allows users to authorize your application to use Netlify on their behalf without having to copy/paste API tokens or touch sensitive login info.
