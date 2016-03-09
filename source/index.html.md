@@ -31,6 +31,7 @@ includes:
   - rest_deploys
   - rest_submissions
   - rest_forms
+  - rest_hooks
   - errors
 
 search: true
