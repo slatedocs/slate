@@ -1,5 +1,3 @@
-TODO:  ALL ACTIONS ARE MISSING!!!
-
 ## AccountService
 This is the schema definition for the Account service. It represents the properties for this service and has links to the list of accounts.
 
@@ -2024,6 +2022,8 @@ The system virtual serial number.
 
 ### POST Action "Reset"
 
+Resets the computer system using one of the methods below: 
+
 Parameters:
 
 "**ResetType**" (string) with one of the following value(s):
@@ -2034,7 +2034,7 @@ Parameters:
 * Nmi
 * PushPowerButton
 
-> "Reset" example:
+> example "Reset" action:
 
 ```
 POST <target-uri>
@@ -2048,7 +2048,7 @@ OData-Version: 4.0
 
 ### POST Action "PowerButton"
 
-The Action to be performed.
+Simulates pressing the power button. The PushType parameter simulates a quick button press or a press and hold operation. 
 
 Parameters:
 
@@ -2057,7 +2057,7 @@ Parameters:
 * Press
 * PressAndHold
 
-> "PowerButton" example:
+> example "PowerButton" action:
 
 ```
 POST <target-uri>
@@ -2071,13 +2071,13 @@ OData-Version: 4.0
 
 ### POST Action "SystemReset"
 
-The Action to be performed.
+Resets the computer system using a cold boot operation.
 
 Parameters:
 
 "**ResetType**" (string) with the value **"ColdBoot"**
 
-> "SystemReset" example:
+> example "SystemReset" action:
 
 ```
 POST <target-uri>
@@ -2087,22 +2087,6 @@ OData-Version: 4.0
 {
     "ResetType": "ColdBoot"
 }
-```
-
-### POST Action "ServerSigRecompute"
-
-The Action to be performed.
-
-Parameters:
-
-> "ServerSigRecompute" example:
-
-```
-POST <target-uri>
-Content-Type: application/json
-OData-Version: 4.0
-
-{}
 ```
 
 ## EthernetInterface
@@ -2915,6 +2899,8 @@ This is the minimum amount of time after the failed events that the service will
 
 ### POST Action "SubmitTestEvent"
 
+Causes iLO 4 to submit a test event to any subscribed event recievers. 
+
 Parameters:
 
 "**EventType**" (string) with one of the following value(s):
@@ -2925,9 +2911,9 @@ Parameters:
 * ResourceRemoved
 * Alert
 
-"**EventID**" (string) with the value **"<string>"**
+"**EventID**" (string)
 
-"**EventTimestamp**" (string) with the value **"<date-time>"**
+"**EventTimestamp**" (date-time) with the a **"<date-time>"** string
 
 "**Severity**" (string) with one of the following value(s):
 
@@ -2935,15 +2921,15 @@ Parameters:
 * Warning
 * Critical
 
-"**Message**" (string) with the value **"<string>"**
+"**Message**" (string)
 
-"**MessageID**" (string) with the value **"<string>"**
+"**MessageID**" (a message defined in a message registry)
 
-"**MessageArgs**" (string)
+"**MessageArgs**" (array of strings used to substitute into the MessageID tokens)
 
-"**OriginOfCondition**" (string) with the value **"<string>"**
+"**OriginOfCondition**" (string)
 
-> "SubmitTestEvent" example:
+> example "SubmitTestEvent" action:
 
 ```
 POST <target-uri>
@@ -6184,9 +6170,9 @@ Secondary key server port number. Set to null to clear the value.
 
 ### POST Action "TestESKMConnections"
 
-Parameters:
+Test ESKM connections.
 
-> "TestESKMConnections" example:
+> example "TestESKMConnections" action:
 
 ```
 POST <target-uri>
@@ -6198,9 +6184,9 @@ OData-Version: 4.0
 
 ### POST Action "ClearESKMLog"
 
-Parameters:
+Clears the ESKM log.
 
-> "ClearESKMLog" example:
+> example "ClearESKMLog" action:
 
 ```
 POST <target-uri>
@@ -6257,21 +6243,23 @@ The date on which the certificate validity period begins.
 
 ### POST Action "GenerateCSR"
 
+Causes iLO 4 to begin creation of a new certificate signing request. The action will return a GeneratingCertificate message while this process is underway. The process may take up to ten minutes. Upon completion, the new request is available upon GET to this same resource in the "CertificateSigningRequest" property. 
+
 Parameters:
 
-"**Country**" (string) with the value **"<string>"**
+"**Country**" (string)
 
-"**State**" (string) with the value **"<string>"**
+"**State**" (string)
 
-"**City**" (string) with the value **"<string>"**
+"**City**" (string)
 
-"**OrgName**" (string) with the value **"<string>"**
+"**OrgName**" (string)
 
-"**OrgUnit**" (string) with the value **"<string>"**
+"**OrgUnit**" (string)
 
-"**CommonName**" (string) with the value **"<string>"**
+"**CommonName**" (string)
 
-> "GenerateCSR" example:
+> example "GenerateCSR" action:
 
 ```
 POST <target-uri>
@@ -6290,11 +6278,13 @@ OData-Version: 4.0
 
 ### POST Action "ImportCertificate"
 
+Imports a Trusted Certificate and iLO is reset.
+
 Parameters:
 
-"**Certificate**" (string) with the value **"<text>"**
+"**Certificate**" (The certificate as a base-64 string)
 
-> "ImportCertificate" example:
+> example "ImportCertificate" action:
 
 ```
 POST <target-uri>
@@ -6302,7 +6292,7 @@ Content-Type: application/json
 OData-Version: 4.0
 
 {
-    "Certificate": "<text>"
+    "Certificate": "<base64>"
 }
 ```
 
@@ -8567,9 +8557,14 @@ If successful, the response of the GET is a binary download which can be saved t
 
 ### POST Action "ClearLog"
 
-Parameters:
+Clears the Active Health System Log.
 
-> "ClearLog" example:
+<aside class="warning">
+When this action is invoked, iLO 4 will respond with "ResetRequired" and iLO 4 must be reset for the setting to take effect.
+</aside>
+
+
+> example "ClearLog" action:
 
 ```
 POST <target-uri>
@@ -9002,16 +8997,18 @@ This property indicates the URI location a client my upload a firmware image dir
 
 ### POST Action "InstallFromURI"
 
+Causes iLO 4 to GET and flash the firmware image indicated by FirmwareURI. 
+
 Parameters:
 
 "**FirmwareURI**" (string) with the value **"<uri>"**
 
-"**TPMOverrideFlag**" (string) with one of the following value(s):
+"**TPMOverrideFlag**" (boolean) with one of the following value(s):
 
 * true
 * false
 
-> "InstallFromURI" example:
+> example "InstallFromURI" action:
 
 ```
 POST <target-uri>
@@ -9020,7 +9017,7 @@ OData-Version: 4.0
 
 {
     "FirmwareURI": "<uri>", 
-    "TPMOverrideFlag": "true"
+    "TPMOverrideFlag": true
 }
 ```
 
@@ -9312,6 +9309,8 @@ iLO Configuration Privileges.
 
 ### POST Action "ImportCertificate"
 
+Import the HPE Single Sign On Certificate.
+
 Parameters:
 
 "**CertType**" (string) with one of the following value(s):
@@ -9321,7 +9320,7 @@ Parameters:
 
 "**CertInput**" (string) with the value **"<text>"**
 
-> "ImportCertificate" example:
+> example "ImportCertificate" action:
 
 ```
 POST <target-uri>
@@ -9336,11 +9335,13 @@ OData-Version: 4.0
 
 ### POST Action "ImportDNSName"
 
+Add DNS Name to the record list.
+
 Parameters:
 
-"**DNSName**" (string) with the value **"<string>"**
+"**DNSName**" (string)
 
-> "ImportDNSName" example:
+> example "ImportDNSName" action:
 
 ```
 POST <target-uri>
@@ -9354,9 +9355,9 @@ OData-Version: 4.0
 
 ### POST Action "DeleteAllSSORecords"
 
-Parameters:
+Delete all the Single Sign On records.
 
-> "DeleteAllSSORecords" example:
+> example "DeleteAllSSORecords" action:
 
 ```
 POST <target-uri>
@@ -9368,11 +9369,13 @@ OData-Version: 4.0
 
 ### POST Action "DeleteSSORecordbyNumber"
 
+Delete Single Sign On record by record number.
+
 Parameters:
 
 "**RecordNumber**" (string) with the value **"<integer>"**
 
-> "DeleteSSORecordbyNumber" example:
+> example "DeleteSSORecordbyNumber" action:
 
 ```
 POST <target-uri>
@@ -9780,9 +9783,9 @@ When the log is full, the overwrite policy is enforced.
 
 ### POST Action "ClearLog"
 
-Parameters:
+Clears the Integrated Management Log or iLO Event Log depending upon the resource instance.
 
-> "ClearLog" example:
+> example "ClearLog" action:
 
 ```
 POST <target-uri>
@@ -10602,9 +10605,9 @@ This is a universally unique identifier that software (for example, HP SIM) uses
 
 ### POST Action "Reset"
 
-Parameters:
+Resets iLO 4. iLO 4 will be unresponsive during the reset process and the client should expect to wait for up to a minute for functionality to be restored. 
 
-> "Reset" example:
+> example "Reset" action:
 
 ```
 POST <target-uri>
@@ -10616,9 +10619,9 @@ OData-Version: 4.0
 
 ### POST Action "ClearRestApiState"
 
-Parameters:
+Clears the persistent state of the REST API. Some portions of the API may not be available until after the server reboots.
 
-> "ClearRestApiState" example:
+> example "ClearRestApiState" action:
 
 ```
 POST <target-uri>
@@ -10630,9 +10633,12 @@ OData-Version: 4.0
 
 ### POST Action "iLOFunctionality"
 
-Parameters:
+Specifies whether iLO functionality is available. The following settings are valid: Enabled (default)-The iLO network is available and communications with operating system drivers are active. Disabled-The iLO network and communications with operating system drivers are terminated when iLO Functionality is disabled. For ProLiant Gen8 servers only: To re-enable iLO functionality, disable iLO security with the system maintenance switch, and then use the iLO RBSU to set iLO Functionality to Enabled. For more information about using the system maintenance switch, see the Maintenance and Service Guide for your server model. For ProLiant Gen9 servers only: To re-enable iLO functionality, use the iLO 4 Configuration Utility (in the UEFI System Utilities) to set iLO Functionality to Enabled. For more information see the HP UEFI System Utilities User Guide. The action resets/reboots the manager. iLO functionality cannot be disabled on server blades.
 
-> "iLOFunctionality" example:
+The "iLOFunctionality" action disables iLO 4's accessibility via the network and resets iLO 4. This should be used with caution as it will render iLO unable to respond to further network operations (including REST operations) until iLO 4 is re-enabled using the RBSU menu.
+
+
+> example "iLOFunctionality" action:
 
 ```
 POST <target-uri>
@@ -10644,11 +10650,24 @@ OData-Version: 4.0
 
 ### POST Action "ResetToFactoryDefaults"
 
+Resets the iLO to Factory Defaults.
+
+ResetToFactoryDefaults performs the following:
+
+* Removes Language Packs
+* Erases all customized settings
+* Removes user accounts and restores iLO 4's default username and password
+* Removes all certificates and user licenses
+* Restores iLO 4 network settings to defaults
+* Clears event logs
+* Resets iLO 4 upon completion
+
+
 Parameters:
 
 "**ResetType**" (string) with the value **"Default"**
 
-> "ResetToFactoryDefaults" example:
+> example "ResetToFactoryDefaults" action:
 
 ```
 POST <target-uri>
@@ -11228,9 +11247,7 @@ Indicates whether Virtual Media is enabled for the manager.
 
 ### POST Action "SendTestSyslog"
 
-Parameters:
-
-> "SendTestSyslog" example:
+> example "SendTestSyslog" action:
 
 ```
 POST <target-uri>
@@ -11244,9 +11261,7 @@ OData-Version: 4.0
 
 Sends test alert mail to configured AlertMail email address.
 
-Parameters:
-
-> "SendTestAlertMail" example:
+> example "SendTestAlertMail" action:
 
 ```
 POST <target-uri>
@@ -12806,9 +12821,9 @@ The user profile name. Enter an alphanumeric string of 1 to 32 characters.
 
 ### POST Action "SendSNMPTestAlert"
 
-Parameters:
+Causes iLO 4 to send a test SNMP trap to registered trap destinations. 
 
-> "SendSNMPTestAlert" example:
+> example "SendSNMPTestAlert" action:
 
 ```
 POST <target-uri>
@@ -13505,15 +13520,13 @@ Indicates whether the virtual media is protected against write operations.
 
 ### POST Action "InsertVirtualMedia"
 
+Causes iLO 4 to mount a virtual media image from the specified URI.
+
 Parameters:
 
-"**Image**" (string)
+"**Image**" (uri)
 
-"**Intent**" (string)
-
-"**Signature**" (string)
-
-> "InsertVirtualMedia" example:
+> example "InsertVirtualMedia" action:
 
 ```
 POST <target-uri>
@@ -13521,30 +13534,21 @@ Content-Type: application/json
 OData-Version: 4.0
 
 {
-    "Image": "<string>", 
-    "Intent": "<string>", 
-    "Signature": "<string>"
+    "Image": "<uri-of-virtual-media-image>" 
 }
 ```
 
 ### POST Action "EjectVirtualMedia"
 
-Parameters:
+Causes iLO 4 to unmount a virtual media image.
 
-"**Intent**" (string)
-
-"**Signature**" (string)
-
-> "EjectVirtualMedia" example:
+> example "EjectVirtualMedia" action:
 
 ```
 POST <target-uri>
 Content-Type: application/json
 OData-Version: 4.0
 
-{
-    "Intent": "<string>", 
-    "Signature": "<string>"
-}
+{}
 ```
 
