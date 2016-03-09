@@ -216,7 +216,7 @@ curl "https://getquipu.com/book_entries" \
 
 Filter name | Description | Valid values | Example
 ------------| ------------| ------------ | -------
-type | Filters resources by kind | `invoices`, `tickets` or `paysheets` | `/book_entries?filter[type]=invoices`
+type | Filters resources by type | `invoices`, `tickets` or `paysheets` | `/book_entries?filter[type]=invoices`
 kind | Filter resources by kind | `expenses` or `income` | `/book_entries?filter[kind]=expenses`
 q | Search | Any | `/book_entries?filter[q]=android development`
 period | Filter resources issued in the specified period | year-[month number,Q1,Q2,Q3,Q4] | `/book_entries?filter[period]=2015-Q1` =>  First quarter of 2015 <br> `/book_entries?filter[period]=2016-2` => February 2016 <br> `/book_entries?filter[period]=2015` => 2015
