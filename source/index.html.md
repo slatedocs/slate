@@ -11,6 +11,21 @@ toc_footers:
   - <a href='https://api.netlify.com/applications'>Start a new application!</a>
 
 includes:
+  - cli
+  - continuous-deployment
+  - custom-domains
+  - ssl
+  - redirects
+  - headers-and-basic-auth
+  - form-handling
+  - password-protection
+  - webhooks
+  - inject-analytics-snippets
+  - versioning-and-rollbacks
+  - authentication-providers
+  - prerendering
+  - github-permissions
+  - api
   - rest
   - rest_sites
   - rest_deploys
