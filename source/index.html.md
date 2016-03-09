@@ -11,18 +11,16 @@ toc_footers:
   - <a href='https://api.netlify.com/applications'>Start a new application!</a>
 
 includes:
+  - auth
   - cli
   - continuous-deployment
   - custom-domains
   - ssl
   - redirects
-  - headers-and-basic-auth
   - form-handling
-  - password-protection
   - webhooks
   - inject-analytics-snippets
   - versioning-and-rollbacks
-  - authentication-providers
   - prerendering
   - github-permissions
   - api
@@ -54,16 +52,3 @@ This is all you need to deploy a static site folder, but Netlify can do much mor
 For a good example you can look at the [Netlify](http://netlify.com) main page. Feel free to check it out on [Github](https://github.com/netlify/netlify-home) and correct any typos you see.
 
 Anytime we do a push to Github or merge a pull request on that repo, Netlify will automatically do a clean build of the site with [Jekyll](http://jekyllrb.com/) and deploy to the global CDN.
-
-# Authentication
-<aside class="notice">
-All endpoints use HTTPS
-</aside>
-``` shell
-curl {:endpoint} -H "Authorization: Bearer {:access_token}"
-```
-Netlify uses OAuth2 for authentication. You'll need an application client key and a client secret before you can access the Netlify API. You can register a new application at [https://api.netlify.com/applications](https://app.netlify.com/applications).
-
-If you're making a public integration with Netlify for others to enjoy, you must use OAuth 2. This allows users to authorize your application to use Netlify on their behalf without having to copy/paste API tokens or touch sensitive login info.
-
-The Oauth2 end user authorization endpoint is
