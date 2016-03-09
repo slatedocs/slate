@@ -2037,9 +2037,9 @@ Parameters:
 > Example:
 
 ```
-POST <uri>
+POST <target-uri>
 Content-Type: application/json
-OData-Version: 4.0 
+OData-Version: 4.0
 
 {
     "ResetType": "On"
@@ -2056,20 +2056,17 @@ Parameters:
 
 * Press
 * PressAndHold
+
 > Example:
 
-```POST <uri>
-
+```
+POST <target-uri>
 Content-Type: application/json
-
-OData-Version: 4.0 
-
-
+OData-Version: 4.0
 
 {
     "PushType": "Press"
 }
-
 ```
 
 ### POST Action "SystemReset"
@@ -2082,18 +2079,14 @@ Parameters:
 
 > Example:
 
-```POST <uri>
-
+```
+POST <target-uri>
 Content-Type: application/json
-
-OData-Version: 4.0 
-
-
+OData-Version: 4.0
 
 {
     "ResetType": "ColdBoot"
 }
-
 ```
 
 ### POST Action "ServerSigRecompute"
@@ -2104,16 +2097,12 @@ Parameters:
 
 > Example:
 
-```POST <uri>
-
+```
+POST <target-uri>
 Content-Type: application/json
-
-OData-Version: 4.0 
-
-
+OData-Version: 4.0
 
 {}
-
 ```
 
 ## EthernetInterface
