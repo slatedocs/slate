@@ -12,6 +12,8 @@ toc_footers:
 
 includes:
   - rest
+  - rest_sites
+  - rest_deploys
   - errors
 
 search: true
