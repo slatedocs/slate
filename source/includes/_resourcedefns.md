@@ -2022,6 +2022,100 @@ The manufacturer's system version.
 
 The system virtual serial number.
 
+### POST Action "Reset"
+
+Parameters:
+
+* "ResetType" (string) with one of the following value(s):
+
+** On
+
+** ForceOff
+
+** ForceRestart
+
+** Nmi
+
+** PushPowerButton
+
+> Example:
+
+```
+
+{
+    "Action": "Reset", 
+    "ResetType": "<string>"
+}
+
+```
+
+### POST Action "PowerButton"
+
+The Action to be performed.
+
+Parameters:
+
+* "PushType" (string) with one of the following value(s):
+
+** Press
+
+** PressAndHold
+
+* "Target" (string) with the value **"/Oem/Hp"**
+
+> Example:
+
+```
+
+{
+    "Action": "PowerButton", 
+    "PushType": "<string>", 
+    "Target": "/Oem/Hp"
+}
+
+```
+
+### POST Action "SystemReset"
+
+The Action to be performed.
+
+Parameters:
+
+* "ResetType" (string) with the value **"ColdBoot"**
+
+* "Target" (string) with the value **"/Oem/Hp"**
+
+> Example:
+
+```
+
+{
+    "Action": "SystemReset", 
+    "ResetType": "ColdBoot", 
+    "Target": "/Oem/Hp"
+}
+
+```
+
+### POST Action "ServerSigRecompute"
+
+The Action to be performed.
+
+Parameters:
+
+* "Target" (string) with the value **"/Oem/Hp"**
+
+> Example:
+
+```
+
+{
+    "Action": "ServerSigRecompute", 
+    "Target": "/Oem/Hp"
+}
+
+```
+
 ## EthernetInterface
 The schema definition of a simple Ethernet NIC resource.
 

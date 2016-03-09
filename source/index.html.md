@@ -494,6 +494,60 @@ To log out perform an `HTTP DELETE` to the URI that was returned in the "Locatio
 If you cannot preserve the session URI on login, you may iterate the Sessions collection at /redfish/v1/sessions/.  Be sure to include the X-Auth-Token header.  For each session look for a JSON property called "MySession" that is true. You may then DELETE that URI.
 </aside>
 
+## Performing Actions on Resources
+
+REST resources usually support HTTP GET to read the current state, and some support modification and removal with HTTP POST, PUT, PATCH, or DELETE.
+
+There are some resources that support other types of operations not easily mapped to HTTP operations.  For this reason the Redfish specification defines "Actions".  Actions are HTTP POST operations with a specifically formatted JSON request including the operation to perform and any parameters.  For instance, it is not enough to simply tell a server to reset, but it is also necessary to specify the type of reset:  cold boot, warm boot, PCI reset, etc.  Actions are often used when the operation causes iLO 4 not just to update a value, but to change system state.
+
+In Redfish, the available actions that can be invoked are identified by a "target" property in the resource's "Actions" object definitions.  The parameters identify the supported values with the annotation @Redfish.AllowableValues.
+
+> Example of the Reset Action on the computer system resource:
+
+```json
+  "Actions": {
+    "#ComputerSystem.Reset": {
+      "ResetType@Redfish.AllowableValues": [
+        "On",
+        "ForceOff",
+        "ForceRestart",
+        "Nmi",
+        "PushPowerButton"
+      ],
+      "target": "/redfish/v1/Systems/1/Actions/ComputerSystem.Reset/"
+    }
+  }
+```
+
+> This action may be invoked by performing
+
+```
+POST /redfish/v1/Systems/1/Actions/ComputerSystem.Reset/
+Content-Type: application/json
+OData-Version: 4.0
+
+{
+    "ResetType": "On"
+}
+```
+
+<aside class="information">
+When writing new Redfish conformant REST client code, the above example is the recommended way to to invoke actions.
+
+For compatibility with the pre-Redfish iLO 4 REST API, the following form could also be used:
+
+```
+POST /redfish/v1/Systems/1/
+Content-Type: application/json
+
+{
+    "Action" "Reset",    
+    "ResetType": "On"
+}
+```
+
+</aside>
+
 # Example Use Cases
 
 TODO - fill in this section
