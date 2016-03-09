@@ -2037,19 +2037,13 @@ Parameters:
 > Example:
 
 ```
-
 POST <uri>
-
 Content-Type: application/json
-
 OData-Version: 4.0 
-
-
 
 {
     "ResetType": "On"
 }
-
 ```
 
 ### POST Action "PowerButton"
