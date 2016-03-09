@@ -12,11 +12,11 @@ issue_date | REQUIRED <br> Format: `YYYY-mm-dd`
 paid_at  | Format: `YYYY-mm-dd`
 payment_method | Accepted valued: `cash`, `bank_transfer`, `bank_card`, `direct_debit`, `paypal`, `check`, `factoring`
 payment_status | READ ONLY
-net_pay | 
+net_pay |
 gross_pay | READ ONLY
-employee_ss_amount | 
-employee_retention | 
-company_ss_amount| 
+employee_ss_amount |
+employee_retention |
+company_ss_amount|
 issuing_name | READ ONLY, *
 issuing_tax_id | READ ONLY, *
 issuing_address | READ ONLY, *
@@ -41,8 +41,7 @@ Relationship name |  Constraints
 ----------------- |  -----------
 contact | REQUIRED
 accounting_category | READ ONLY
-accounting_subcategory | 
-numeration |
+accounting_subcategory |
 analytic_subcategories |
 
 ## Listing paysheets

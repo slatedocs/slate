@@ -14,6 +14,11 @@ includes:
   - invoices
   - tickets
   - paysheets
+  - numbering_series
+  - analytic_categories
+  - analytic_subcategories
+  - accounting_categories
+  - accounting_subcategories
   - errors
 
 search: true

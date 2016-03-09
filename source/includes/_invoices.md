@@ -44,7 +44,7 @@ Relationship name |  Constraints
 contact | REQUIRED
 accounting_category |
 accounting_subcategory |
-numeration |
+numeration | Applicable only to invoices with `kind = income`
 analytic_subcategories |
 items | Can be sideloaded in GET requests. <br> Must be included in the payload in POST/PATCH/PUT requests
 
