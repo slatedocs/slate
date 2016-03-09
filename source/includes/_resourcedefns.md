@@ -2033,6 +2033,7 @@ Parameters:
 * ForceRestart
 * Nmi
 * PushPowerButton
+
 > Example:
 
 ```POST <uri>

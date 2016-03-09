@@ -494,7 +494,7 @@ To log out perform an `HTTP DELETE` to the URI that was returned in the "Locatio
 If you cannot preserve the session URI on login, you may iterate the Sessions collection at /redfish/v1/sessions/.  Be sure to include the X-Auth-Token header.  For each session look for a JSON property called "MySession" that is true. You may then DELETE that URI.
 </aside>
 
-# Performing Actions on Resources
+# Performing Actions
 
 REST resources usually support HTTP GET to read the current state, and some support modification and removal with HTTP POST, PUT, PATCH, or DELETE.
 
@@ -502,7 +502,7 @@ There are some resources that support other types of operations not easily mappe
 
 In Redfish, the available actions that can be invoked are identified by a "target" property in the resource's "Actions" object definitions.  The parameters identify the supported values with the annotation @Redfish.AllowableValues.
 
-> Example of the Reset Action on the computer system resource:
+> Example of a system resource advertising an available action:
 
 ```json
   {
@@ -521,7 +521,7 @@ In Redfish, the available actions that can be invoked are identified by a "targe
   }
 ```
 
-> This action may be invoked by performing
+> This action may be invoked by performing:
 
 ```
 POST /redfish/v1/Systems/1/Actions/ComputerSystem.Reset/
@@ -535,11 +535,13 @@ OData-Version: 4.0
 
 <aside class="information">
 
-When writing new Redfish REST client code, the example is the recommended way to to invoke actions.
+When writing new Redfish REST client code, the first example is the recommended way to invoke actions.
 
 For compatibility with the pre-Redfish iLO 4 REST API, the older form specifying the "Action" as a property could also be used:
 
 </aside>
+
+> alternative pre-Redfish action invocation:
 
 ```
 POST /redfish/v1/Systems/1/
@@ -550,7 +552,7 @@ Content-Type: application/json
     "ResetType": "On"
 }
 ```
-## Actions on Embedded HPE-specific Extensions
+## Actions on HPE-specific Extensions
 
 The embedded extensions may also have Actions not specified by the Redfish standard.  They are invoked in a similar way.  The POST URI may include indicate the HPE specific nature of the action.
 
