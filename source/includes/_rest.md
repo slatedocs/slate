@@ -56,3 +56,10 @@ The possible `rel` values are:
   Shows the URL of the last page of results.
 * `prev`
   Shows the URL of the immediate previous page of results.
+
+## Nested Endpoints
+Many of the endpoints are nestable. The governing principle is that once you have a id of a resource (e.g. site, deploy) you can directly access the resource.
+
+You can access the same resource through a chain of calls like this: `/sites/{:site_id}/deploys/{:deploy_id}`. It is also directly accessible via `/deploys/{:deploy_id}`.
+
+You can also use the path to a collection as a filter. All the forms available for a key are at `/forms`. Those can then be filtered down by to those of a single site through `/sites/{:site_id}/forms`.

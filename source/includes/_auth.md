@@ -1,4 +1,37 @@
-# Authentication Providers
+# Authentication
+
+<!-- TODO: Merge these to be nicer & remove redundancy -->
+<aside class="notice">
+All endpoints use HTTPS
+</aside>
+``` shell
+curl {:endpoint} -H "Authorization: Bearer {:access_token}"
+```
+Netlify uses OAuth2 for authentication. You'll need an application client key and a client secret before you can access the Netlify API. You can register a new application at [https://api.netlify.com/applications](https://app.netlify.com/applications).
+
+If you're making a public integration with Netlify for others to enjoy, you must use OAuth 2. This allows users to authorize your application to use Netlify on their behalf without having to copy/paste API tokens or touch sensitive login info.
+
+The Oauth2 end user authorization endpoint is
+
+## Password Protecting Sites
+
+If you're using netlify for staging sites or deploying mockups that you want to share with customers, netlify's built-in password protection can come in handy.
+
+Go to the settings screen for your site and click "Edit" next to the "Privacy" setting. Then enter your password of choice.
+
+If you need multiple passwords for a site, or need to protect just part of your site, you can setup Basic-Auth via netlify's [custom HTTP header](/docs/headers_and_basic_auth) support.
+
+## Authenticating with 3rd party providers
+
+If you're using netlify to host materials for your intranet, like sales manuals for your global sales team, private developer documentation, HR guides and similar sensitive material, you might want fine-grained access control based on 3rd party authentication providers like [Stormpath](https://stormpath.com) or your own authentication API.
+
+We can work with you to make this possible and integrated directly with our CDN servers, to let you control fine grained access controls for individual users with all the performance of a CDN hosted static website.
+
+Please [get in touch](/contact) for more information about authentication on enterprise plans.
+
+<!-- AUTH PROVIDERS -->
+
+## Authentication Providers
 
 One thing that can hold back single page apps with no backend is authentication.
 
@@ -93,3 +126,42 @@ The token variables here are the token and secret you get back from the call to 
 Right now Netlify only supports Github and BitBucket as authentication providers, but we're working on adding more.
 
 If you're building a single page app and need to speak with a specific API, let us know and we'll help you out.
+
+<!-- HEADERS AND BASIC AUTH -->
+## Headers & Basic Auth
+
+You can configure custom headers and basic auth for your Netlify site by adding a `_headers` file to the root of your site folder.
+
+## Custom headers
+
+The format is very simple:
+
+```
+## A path:
+/templates/*
+  # Headers for that path:
+  Cache-Control: max-age=3000
+```
+
+Paths can contain `*` or `:placeholders`. A `:placeholder` matches anything except `/` while a `*` matches anything.
+
+Here's an example of settings the `X-Frame-Options` and `X-XSS-Protection` headers for all pages on your site:
+
+```
+/*
+  X-Frame-Options: DENY
+  X-XSS-Protection: 1; mode=block
+```
+
+## Basic auth
+
+The headers file can also be used to set basic auth headers. It's a simple way to limit access to particular parts of your site.
+
+```
+/something/*
+  Basic-Auth: someuser:somepassword anotheruser:anotherpassword
+```
+
+This will trigger the built-in basic browser authentication for any URL under `/something`. There's two users defined here, one with the username "someuser" and password "somepassword", the other with "anotheruser" and "anotherpassword".
+
+Unlike other headers in the `_headers` file, the `Basic-Auth` header will obviously not be sent as a standard HTTP header but used to control the appropriate HTTP headers for basic authentication.
