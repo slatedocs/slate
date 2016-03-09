@@ -1,9 +1,6 @@
 ---
 title: Mux API Docs
 
-language_tabs:
-  - javascript
-
 toc_footers:
   - <a href='http://app.mux.io'>Sign Up for Mux</a>
   - Documentation Powered by <a href='https://github.com/tripit/slate'>Slate</a>
@@ -11,16 +8,13 @@ toc_footers:
 search: true
 ---
 
-# Integration: Video.js
+# Integration
 
-While Mux is still in development, only the Video.js player is supported. More players and platforms will be supported
-soon, including other desktop players, native SDKs for iOS and Android, and SDKs for OTT platforms.
+While Mux is still in development, only the Video.js player is supported. More players and platforms will be supported soon, including other desktop players, native SDKs for iOS and Android, and SDKs for OTT platforms.
 
-## Include the plugin
+## Core Mux embed
 
-> Put this in the document &lt;head&gt;
-
-```javascript
+```html
 <script>
   window.mux=window.mux||function(){(mux.q=mux.q||[]).push([arguments,1*new Date()]);};
   mux('set', 'property_key', 'EXAMPLE-PROPERTY-KEY');
@@ -28,17 +22,18 @@ soon, including other desktop players, native SDKs for iOS and Android, and SDKs
 </script>
 <script async src='//src.litix.io/core/1/mux.js'></script>
 ```
-> Put this lower in the page, after Video.js is loaded
 
-```javascript
+Put the core Mux embed code in the document &lt;head&gt;. This needs to be included at the top of the page in order to ensure that we can track page loads when the user navigates away quickly.
+
+## videojs-mux plugin
+
+> Include videojs-mux:
+
+```html
 <script src="//src.litix.io/videojs/1/videojs-mux.js"></script>
 ```
 
-Mux requires two embed codes, because something something. They go in two places blah blah.
-
-## Initialize the plugin
-
-> Either do this...
+> Initialize the plugin. Examples:
 
 ```javascript
 videojs('my-cool-player', { plugins: {
@@ -47,25 +42,27 @@ videojs('my-cool-player', { plugins: {
 });
 ```
 
-> ...or this...
-
 ```javascript
 <video id="my-cool-player" ... data-setup='{"plugins": {"mux": {}}}'>...</video>
 ```
 
-> ...or this.
-
 ```javascript
 var player = videojs('my-cool-player');
-// Just in case something went wrong getting
-// the plugin, make sure it's there first.
 if (typeof player.mux !== 'undefined') {
   player.mux({});
 }
 ```
 
-Initialize the plugin in your player settings when you normally initialize a Video.js plugin. This can be done in
-[multiple ways - is this like every plugin? - why would you choose one over another?]
+If you want to integrate Mux with a Video.js player, you will need to include the videojs-mux plugin. This has two steps.
+
+1. Include the videojs-mux. Put the following script tag in your page somewhere after you have already included Video.js itself:
+
+`<script src="//src.litix.io/videojs/1/videojs-mux.js"></script>`
+
+2. Initialize the plugin in your player settings when you normally initialize a Video.js plugin. This can be done in multiple ways.
+
+<aside class="notice">Make sure that the videojs-mux plugin is included *after* Video.js itself is loaded.</aside>
+
 
 ## Changing the video
 
@@ -88,11 +85,11 @@ When you change to a new video (in the same player) you need to update the video
 * The player advances to the next video in a playlist
 * The user selects a different video to play
 
-<aside class="notice">This does not include changing the source to a new resolution or rendition of the same video.</aside>
-
 It's best to do this immediately before telling the player which new source to play, so that no events are lost.
 
 When setVideo is called it removes all previous video data and resets all metrics for the video view.
+
+<aside class="notice">This does not include changing the source to a new resolution or rendition of the same video.</aside>
 
 # API Parameters
 
