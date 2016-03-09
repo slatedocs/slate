@@ -2022,7 +2022,7 @@ The system virtual serial number.
 
 ### POST Action "Reset"
 
-Resets the computer system using one of the methods below: 
+Resets the computer system using one of the ResetType methods.
 
 Parameters:
 
@@ -2911,9 +2911,9 @@ Parameters:
 * ResourceRemoved
 * Alert
 
-"**EventID**" (string)
+"**EventID**" (string) - TODO - what makes sense here?
 
-"**EventTimestamp**" (date-time) with the a **"<date-time>"** string
+"**EventTimestamp**" (date-time)
 
 "**Severity**" (string) with one of the following value(s):
 
@@ -2921,13 +2921,13 @@ Parameters:
 * Warning
 * Critical
 
-"**Message**" (string)
+"**Message**" (free form string)
 
 "**MessageID**" (a message defined in a message registry)
 
 "**MessageArgs**" (array of strings used to substitute into the MessageID tokens)
 
-"**OriginOfCondition**" (string)
+"**OriginOfCondition**" (the uri of the resource associated with this event) - TODO - what makes sense here?
 
 > example "SubmitTestEvent" action:
 
@@ -6170,7 +6170,7 @@ Secondary key server port number. Set to null to clear the value.
 
 ### POST Action "TestESKMConnections"
 
-Test ESKM connections.
+Test Enterprise Storage Key Manager connections.  TODO - need to describe this better -what's the outcome?
 
 > example "TestESKMConnections" action:
 
@@ -6184,7 +6184,7 @@ OData-Version: 4.0
 
 ### POST Action "ClearESKMLog"
 
-Clears the ESKM log.
+Clears the Enterprise Storage Key Manager log.
 
 > example "ClearESKMLog" action:
 
@@ -6278,11 +6278,11 @@ OData-Version: 4.0
 
 ### POST Action "ImportCertificate"
 
-Imports a Trusted Certificate and iLO is reset.
+Imports a Trusted Certificate and iLO 4 is reset.
 
 Parameters:
 
-"**Certificate**" (The certificate as a base-64 string)
+"**Certificate**" (The certificate as a base-64 string) - TODO correct?
 
 > example "ImportCertificate" action:
 
@@ -6292,7 +6292,7 @@ Content-Type: application/json
 OData-Version: 4.0
 
 {
-    "Certificate": "<base64>"
+    "Certificate": "<base-64 string>"
 }
 ```
 
@@ -9001,9 +9001,9 @@ Causes iLO 4 to GET and flash the firmware image indicated by FirmwareURI.
 
 Parameters:
 
-"**FirmwareURI**" (string) with the value **"<uri>"**
+"**FirmwareURI**" (uri) the URI of the firmware image
 
-"**TPMOverrideFlag**" (boolean) with one of the following value(s):
+"**TPMOverrideFlag**" (boolean) with one of the following value(s): - TODO (is this really a boolean?
 
 * true
 * false
@@ -9309,7 +9309,7 @@ iLO Configuration Privileges.
 
 ### POST Action "ImportCertificate"
 
-Import the HPE Single Sign On Certificate.
+Import an HPE Single Sign On Certificate.
 
 Parameters:
 
@@ -9318,7 +9318,7 @@ Parameters:
 * DirectImportCert
 * ImportCertUri
 
-"**CertInput**" (string) with the value **"<text>"**
+"**CertInput**" (The certificate as a base-64 string) - TODO correct?
 
 > example "ImportCertificate" action:
 
@@ -9329,7 +9329,7 @@ OData-Version: 4.0
 
 {
     "CertType": "DirectImportCert", 
-    "CertInput": "<text>"
+    "CertInput": "<base-64 string>"
 }
 ```
 
@@ -9373,7 +9373,7 @@ Delete Single Sign On record by record number.
 
 Parameters:
 
-"**RecordNumber**" (string) with the value **"<integer>"**
+"**RecordNumber**" (integer) - TODO - is this really an integer?
 
 > example "DeleteSSORecordbyNumber" action:
 
