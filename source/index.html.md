@@ -55,11 +55,11 @@ if (typeof player.mux !== 'undefined') {
 
 If you want to integrate Mux with a Video.js player, you will need to include the videojs-mux plugin. This has two steps.
 
-1. Include the videojs-mux. Put the following script tag in your page somewhere after you have already included Video.js itself:
+First, Include the videojs-mux. Put the following script tag in your page somewhere after you have already included Video.js itself:
 
 `<script src="//src.litix.io/videojs/1/videojs-mux.js"></script>`
 
-2. Initialize the plugin in your player settings when you normally initialize a Video.js plugin. This can be done in multiple ways.
+Second, Initialize the plugin in your player settings when you normally initialize a Video.js plugin. This can be done in multiple ways.
 
 <aside class="notice">Make sure that the videojs-mux plugin is included *after* Video.js itself is loaded.</aside>
 
