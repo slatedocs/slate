@@ -2036,7 +2036,9 @@ Parameters:
 
 > Example:
 
-```POST <uri>
+```
+
+POST <uri>
 
 Content-Type: application/json
 
