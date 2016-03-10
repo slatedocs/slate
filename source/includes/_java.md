@@ -131,6 +131,10 @@ If you're deploying Scout APM for the first time, we recommend starting on a sta
 
 ## Java Agent Change Log
 
+#### 0.2.0
+* Support for JAX-RS @Suspended asynchronous tracing
+* Support for the Grails framework
+
 #### 0.1.2
 * Better handling slow transactions
 * Add node name
