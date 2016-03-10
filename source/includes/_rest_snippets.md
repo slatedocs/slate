@@ -5,10 +5,15 @@ Snippets are code snippets that will be injected into every HTML page of the web
 
 ## Get All Snippets
 
-### HTTP Request
 Retrieves the current set of snippets for the given site
 
-`GET /api/v1/sites/{:site_id}/snippets`
+<aside class=notice>
+The <code>snippet_id</code> is not globally unique, it is unique per site.
+</aside>
+
+``` http
+GET /sites/{:site_id}/snippets HTTP/1.1
+```
 
 > Response:
 
@@ -17,14 +22,13 @@ Retrieves the current set of snippets for the given site
   {
     "id":0,
     "title":"Test",
-    "general":"\u003Cscript\u003Ealert(\"Hello\")\u003C/script\u003E",
+    "general":"<script>alert(\"Hello\")</script>",
     "general_position":"head",
     "goal":"",
     "goal_position":"footer"
   }
 ]
 ```
-<!-- TODO @matt this is a bit confusing, do I have it right? -->
 
 <aside class=notice>
 The text in the <code>general</code> or <code>goal</code> are taken and directly injected to the specified position.
@@ -37,16 +41,17 @@ The text in the <code>general</code> or <code>goal</code> are taken and directly
 
 ## Get a Snippet
 
-### HTTP Request
-`GET /api/v1/sites/{:site_id}/snippets/{:snippet_id}`
+``` http
+GET /sites/{:site_id}/snippets/{:snippet_id} HTTP/1.1
+```
 
-> Response:
+> Example Response:
 
 ```json
 {
   "id":0,
   "title":"Test",
-  "general":"\u003Cscript\u003Ealert(\"Hello\")\u003C/script\u003E",
+  "general":"<script>alert(\"Hello\")</script>",
   "general_position":"head",
   "goal":"",
   "goal_position":"footer"
@@ -57,8 +62,9 @@ The text in the <code>general</code> or <code>goal</code> are taken and directly
 
 ## Add a Snippet
 
-### HTTP Request
-`POST /api/v1/sites/{:site_id}/snippets`
+``` http
+POST /sites/{:site_id}/snippets HTTP/1.1
+```
 
 <!-- TODO example -->
 
@@ -66,10 +72,13 @@ The text in the <code>general</code> or <code>goal</code> are taken and directly
 
 Replaces the old snippet
 
-### HTTP Request
-`PUT /api/v1/sites/{:site_id}/snippets/{:snippet_id}`
+
+``` http
+PUT /sites/{:site_id}/snippets/{:snippet_id} HTTP/1.1
+```
 
 ## Delete Snippet
 
-### HTTP Request
-`DELETE /api/v1/sites/{site_id}/snippets/{snippet_id}`
+``` http
+DELETE /sites/{:site_id}/snippets/{:snippet_id} HTTP/1.1
+```

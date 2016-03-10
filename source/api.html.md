@@ -2,9 +2,7 @@
 title: API Reference
 
 language_tabs:
-  - json
   - http
-  - shell
 
 toc_footers:
   - <a href='https://app.netlify.com/applications'>Start a new application!</a>
@@ -50,8 +48,6 @@ If you need higher limits, please [contact us](TODO).
 Requests that return multiple items will be paginated to 100 items by default. You can specify further pages with a combination of the `page` and `per_page` query parameters. They are assumed to be consistent between calls, meaning
 `?page=3&per_page=10` would get you back entries from 30 - 39.
 
-<!-- @Matt is this right? ^^^ -->
-
 Parameter | Default | Description
 ----------|---------|------------
 per_page | 100 | the size of a page, assumed to be consistent between paged calls
@@ -84,6 +80,9 @@ The possible `rel` values are:
 ## Nested Endpoints
 Many of the endpoints are nestable. The governing principle is that once you have a id of a resource (e.g. site, deploy) you can directly access the resource.
 
-You can access the same resource through a chain of calls like this: `/sites/{:site_id}/deploys/{:deploy_id}`. It is also directly accessible via `/deploys/{:deploy_id}`.
+For instance, you can access the same resource by through either of these endpoints:
+
+- `/deploys/{:deploy_id}`
+- `/sites/{:site_id}/deploys/{:deploy_id}`
 
 You can also use the path to a collection as a filter. All the forms available for a key are at `/forms`. Those can then be filtered down by to those of a single site through `/sites/{:site_id}/forms`.

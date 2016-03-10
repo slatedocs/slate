@@ -10,8 +10,17 @@ Netlify is based on a concept of *atomic deploys*. This means you never work on 
 
 Returns a list of all the files in the *current* deploy
 
-### HTTP Request
-`GET /api/v1/sites/{:site_id}/files`
+To access the files for a given site, on the current deploy you'd use:
+
+`GET /sites/{:site_id}/files`
+
+To access the files of a specific deploy you'd use the `deploys` endpoints to select the deploy:
+
+`GET /deploys/{:deploy_id}/files`
+
+``` http
+GET /files HTTP/1.1
+```
 
 > Response:
 
@@ -26,13 +35,13 @@ Returns a list of all the files in the *current* deploy
 ]
 ```
 
-## Get A File
+## Get a File
 
-Returns the file in the current deploy
-<!-- TODO @matt: can we do access a file from any deploy through the API? -->
+Returns the file in the current deploy. You can access directly access a deploy as above.
 
-### HTTP Request
-`GET /api/v1/sites/{:site_id}/files/{:path-to-file}`
+``` http
+GET /sites/{:site_id}/files/{:path-to-file} HTTP/1.1
+```
 
 > Response:
 
@@ -45,8 +54,6 @@ Returns the file in the current deploy
   "size":27232
 }
 ```
-
-<!-- TODO add example here -->
 
 <aside class=notice>
 You can get the raw contents of the file by the header <code>Content-Type: "application/vnd.bitballoon.v1.raw"</code> on your HTTP request.

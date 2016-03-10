@@ -4,9 +4,14 @@ You can access all deploys for a specific site.
 
 ## Get All Deploys
 
-### HTTP Request
+<aside class=notice>
+These can also be filtered by site as well by accessing the deploys via:
+<code>/sites/{:site_id}/deploys</code>
+</aside>
 
-`GET /sites/{:site_id}/deploys`
+``` http
+GET /deploys HTTP/1.1
+```
 
 > Example Response
 
@@ -32,12 +37,12 @@ You can access all deploys for a specific site.
 ```
 
 ## Get a Deploy
-
-`GET /sites/{:site_id}/deploys/{:deploy_id}`
-
-or
-
-`GET /deploys/{:deploy_id}`
+``` http
+GET /sites/{:site_id}/deploys/{:deploy_id HTTP/1.1
+```
+``` http
+GET /deploys/{:deploy_id} HTTP/1.1
+```
 
 > Example Response
 
@@ -64,13 +69,13 @@ or
 
 Restore an old deploy and make it the live version of the site
 
-### HTTP Request
+``` http
+POST /sites/{:site_id}/deploys/{:deploy_id}/restore HTTP/1.1
+```
+``` http
+POST /deploys/{:deploy_id}/restore HTTP/1.1
+```
 
-`POST /sites/{:site_id}/deploys/{:deploy_id}/restore`
-
-or
-
-`POST /deploys/{:deploy_id}/restore`
 
 > Example Response
 
