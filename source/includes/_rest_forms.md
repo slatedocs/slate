@@ -1,7 +1,7 @@
 # Form Endpoints
 
 <aside class=notice>
-The <code>/api/v1/forms</code> endpoint allow you to access forms from your Netlify sites. You can scope forms to a specific site with <code>/sites/{site_id}/forms</code>.
+The <code>/api/v1/forms</code> endpoint allow you to access forms from your Netlify sites. You can scope forms to a specific site with <code>/sites/{:site_id}/forms</code>.
 </aside>
 
 Forms can be accessed directly through the `/forms` endpoints, or can be accesses through nested endpoints like `/sites/{:site_id}/forms`. These endpoints will filter the forms by the site preceding it.
