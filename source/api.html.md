@@ -7,7 +7,7 @@ language_tabs:
   - shell
 
 toc_footers:
-  - <a href='https://api.netlify.com/applications'>Start a new application!</a>
+  - <a href='https://app.netlify.com/applications'>Start a new application!</a>
 
 includes:
   - rest_sites
