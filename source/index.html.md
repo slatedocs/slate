@@ -13,6 +13,7 @@ includes:
   - gettingstarted
   - navigating
   - authentication
+  - performingaction
   - exampleuse
   - errorhandling
   - subscribing
