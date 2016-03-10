@@ -2,15 +2,17 @@
 
 Netlify can trigger webhooks to do thing such as send email notifications or send slack messages on certain events.
 
-The `/api/v1/hooks` endpoint lets you control the hooks for your site.
+The `/hooks` endpoint lets you control the hooks for your site.
 
 ## Get Hook Types
 List hook types that you can configure. These describe what types of hooks are available currently and the information needed to create one.
 
 ### HTTP Request
-`GET /api/v1/hooks/types`
+``` http
+GET /hooks/types HTTP/1.1
+```
 
-> Example JSON response:
+> Example response:
 
 ``` json
 [
@@ -45,11 +47,11 @@ This endpoint uses query parameters, not the url path
 </aside>
 <!-- TODO @matt could you site the spec on why? -->
 
-### HTTP Request
+``` http
+GET /hooks?site_id={:site_id} HTTP/1.1
+```
 
-`GET /api/v1/hooks?site_id={:site_id}`
-
-> Responds with JSON:
+> Response:
 
 ``` json
 [
@@ -67,9 +69,10 @@ This endpoint uses query parameters, not the url path
 
 ## Create a new Hook
 
-### HTTP Request
+``` http
+POST /hooks HTTP/1.1
+```
 
-`POST /api/v1/hooks`
 > Example request body for a specific form to create an email hook
 
 ``` json
@@ -89,11 +92,9 @@ All the fields but the `form_id` are required. The specifics of the `data` corre
 `form_id` is optional and links the hook to a specific form within your site. You can also use `form_name` with the value of the `name` attribute of the form of your site as an alternative to `form_id`.
 
 ## Delete a hook
-
-
-### HTTP Request
-
-`DELETE /api/v1/hooks/{:hook_id}`
+``` http
+DELETE /hooks/{:hook_id} HTTP/1.1
+```
 
 <aside class=notice>
 For outgoing webhooks, returning a `410 Gone` status code from the URL endpoint will trigger a deletion of the hook.
