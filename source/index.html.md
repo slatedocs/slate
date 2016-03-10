@@ -144,6 +144,7 @@ We use OAuth2 to authorize the requests.
 curl "https://getquipu.com/oauth/token" \
   -H "Authorization: Basic MGE2NzJjZDY5YmFkYjE1NjM4MWUyOTdlZjJkZjk4ZmE1Mjg5ZDdkNTA4 ..." \
   -H "Content-Type: application/x-www-form-urlencoded;charset=UTF-8" \
+  -d "scope=ecommerce"
   -d "grant_type=client_credentials"
 ```
 
@@ -152,7 +153,7 @@ require 'oauth2'
 
 oauth_client = OAuth2::Client.new("<client_id>", "<client_secret>", site: 'https://getquipu.com')
 
-access_token = oauth_client.client_credentials.get_token
+access_token = oauth_client.client_credentials.get_token(scope: "ecommerce")
 ```
 
 > Example response
