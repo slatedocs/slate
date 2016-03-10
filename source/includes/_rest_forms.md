@@ -24,7 +24,7 @@ curl http://app.netlify.com/api/v1/forms
 
 `GET /forms`
 
-> Responds with JSON:
+> Response:
 
 ```json
 [

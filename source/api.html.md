@@ -2,7 +2,7 @@
 title: API Reference
 
 language_tabs:
-  - html
+  - json
   - http
   - shell
 
@@ -15,6 +15,8 @@ includes:
   - rest_submissions
   - rest_forms
   - rest_hooks
+  - rest_files
+  - rest_snippets
 
 search: true
 ---

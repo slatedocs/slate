@@ -8,7 +8,7 @@ The submission endpoints are another commonly nested endpoint. They can be direc
 
 `GET /api/v1/submissions`
 
-> Responds with JSON:
+> Response:
 
 ```json
 [

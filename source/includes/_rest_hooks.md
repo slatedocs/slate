@@ -10,7 +10,7 @@ List hook types that you can configure. These describe what types of hooks are a
 ### HTTP Request
 `GET /api/v1/hooks/types`
 
-> Example JSON response:
+> Example response:
 
 ``` json
 [
@@ -49,7 +49,7 @@ This endpoint uses query parameters, not the url path
 
 `GET /api/v1/hooks?site_id={:site_id}`
 
-> Responds with JSON:
+> Response:
 
 ``` json
 [
@@ -70,6 +70,7 @@ This endpoint uses query parameters, not the url path
 ### HTTP Request
 
 `POST /api/v1/hooks`
+
 > Example request body for a specific form to create an email hook
 
 ``` json

@@ -10,7 +10,7 @@ curl https://app.netlify.com/v1/sites
 GET /sites HTTP/1.1
 ```
 
-> Responds with JSON:
+> Response:
 
 ``` json
 [
@@ -42,7 +42,7 @@ For the `:site_id` you can use either the actual ID or the domain.
 ### HTTP Request
 `GET https://api.netlify.com/sites/{:site_id}`
 
-> Responds with JSON:
+> Response:
 
 ``` json
 {
