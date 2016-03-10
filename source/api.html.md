@@ -22,7 +22,20 @@ search: true
 
 # REST Reference
 
-<aside class=notice>
+<aside class=warning>
+All endpoints are SSL only.
+</aside>
+All URLs start with `https://api.netlify.com/api/v1/`. The path is prefixed with the API version. If we change the API in backward-incompatible ways, we'll bump the version marker and maintain stable support for the old URLs.
+
+To make a request for all the sites you have access to, you'd append the sites' index path to the base url to form something like https://api.netlify.com/api/v1/sites. In curl, that looks like:
+
+``` shell
+curl -H 'User-Agent: MyApp (yourname@example.com)' \
+     -H 'Authorization: Bearer {:auth_token}'      \
+     https://api.netlify.com/api/v1/sites
+```
+
+<aside>
 On error the endpoint will send back an appropriate HTTP response and a useful JSON payload.
 </aside>
 
