@@ -17,6 +17,7 @@ includes:
   - rest_hooks
   - rest_files
   - rest_snippets
+  - rest_metadata
 
 search: true
 ---
