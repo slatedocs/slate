@@ -5,6 +5,7 @@ language_tabs:
   - html
   - http
   - shell
+  - js
 
 toc_footers:
   - <a href='https://api.netlify.com/applications'>Start a new application!</a>
