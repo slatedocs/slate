@@ -15,7 +15,7 @@ All URLs start with `https://api.netlify.com/api/v1/`. **SSL only**. The path is
 
 To make a request for all the sites you have access to, you'd append the sites' index path to the base url to form something like https://api.netlify.com/api/v1/sites. In curl, that looks like:
 
-```shell
+``` shell
 curl -H 'User-Agent: MyApp (yourname@example.com)' https://api.netlify.com/api/v1/sites?access_token=oauth2_access_token
 ```
 

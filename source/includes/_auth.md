@@ -59,7 +59,7 @@ Once you've configured an authentication provider you can use it to obtain an ac
 
 Here's a complete example of how to ask the user to authenticate with Github and then display the resulting access token:
 
-```html
+``` html
 <!doctype html>
 <html>
 <head>
@@ -110,7 +110,7 @@ When using netlify.authenticate with an OAuth1 API you get back an object with a
 
 A jQuery Ajax request to the BitBucket API to get a user's repositories would look like:
 
-```js
+``` js
 $.ajax({
   url: "/bitbucket/1.0/user/repositories",
   headers: {
