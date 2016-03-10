@@ -1,0 +1,66 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "HpBaseNetworkAdapterExt.0.9.6",
+    "type": "object",
+    "readonly": true,
+    "additionalProperties": false,
+    "properties": {
+        "Type": {
+            "$ref": "Type.json#"
+        },
+        "StructuredName": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "description": "PCI device structured name in UTF-8 format (e.g. 'NIC.LOM.1.1' - see PCIDevices in /rest/v1/Systems/x/PCIDevices - this comes from SMBIOS",
+            "readonly": true,
+            "etag": true
+        },
+        "Team": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "description": "If a port is configured for NIC teaming, the name of the configured link between the physical ports that form a logical network adapter. This value is displayed for system NICs only (embedded and stand-up).",
+            "readonly": true,
+            "etag": true
+        },
+        "GoodReceives": {
+            "type": [
+                "integer",
+                "null"
+            ],
+            "description": "A count of frames successfully received by the physical adapter.",
+            "readonly": true,
+            "etag": true
+        },
+        "BadTransmits": {
+            "type": [
+                "integer",
+                "null"
+            ],
+            "description": "A count of frames that were not transmitted by the adapter because of an error.  This counter is the sum of MIB items cpqNicIfPhysAdapterDeferredTransmissions, cpqNicIfPhysAdapterLateCollisions, cpqNicIfPhysAdapterExcessiveCollisions, cpqNicIfPhysAdapterCarrierSenseErrors, and cpqNicIfPhysAdapterInternalMacTransmitErrors. If this counter increments frequently, check the more detailed error statistics and take appropriate action.",
+            "readonly": true,
+            "etag": true
+        },
+        "GoodTransmits": {
+            "type": [
+                "integer",
+                "null"
+            ],
+            "description": "A count of frames successfully transmitted by the physical adapter.",
+            "readonly": true,
+            "etag": true
+        },
+        "BadReceives": {
+            "type": [
+                "integer",
+                "null"
+            ],
+            "description": "A count of frames that were received by the adapter but which had an error.  This counter is the sum of mib items cpqNicIfPhysAdapterAlignmentErrors, cpqNicIfPhysAdapterFCSErrors, cpqNicIfPhysAdapterFrameTooLongs, and cpqNicIfPhysAdapterInternalMacReceiveErrors. If this counter increments frequently, check the more detailed error statistics and take appropriate action.",
+            "readonly": true,
+            "etag": true
+        }
+    }
+}

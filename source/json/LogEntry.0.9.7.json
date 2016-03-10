@@ -1,0 +1,93 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "LogEntry.0.9.7",
+    "type": "object",
+    "readonly": true,
+    "additionalProperties": false,
+    "properties": {
+        "Oem": {
+            "type": "object",
+            "additionalProperties": true,
+            "properties": {
+                "Hp": {
+                    "$ref": "HpLogEntry.json#"
+                }
+            }
+        },
+        "Name": {
+            "$ref": "Name.json#"
+        },
+        "Modified": {
+            "$ref": "Modified.json#"
+        },
+        "Type": {
+            "$ref": "Type.json#"
+        },
+        "RecordId": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "The log entry ID.",
+            "readonly": true,
+            "etag": true
+        },
+        "Severity": {
+            "type": "string",
+            "enum": [
+                "OK",
+                "Warning",
+                "Critical"
+            ],
+            "description": "The log entry severity.",
+            "readonly": true,
+            "etag": true
+        },
+        "Created": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the log entry was created, for example, 2014-04-15T00:38:00Z.",
+            "readonly": true,
+            "etag": true
+        },
+        "EntryType": {
+            "type": "string",
+            "enum": [
+                "Oem"
+            ],
+            "description": "The log entry type.",
+            "readonly": true,
+            "etag": true
+        },
+        "OemRecordFormat": {
+            "type": "string",
+            "enum": [
+                "Hp-IML",
+                "Hp-iLOEventLog"
+            ],
+            "description": "The format of an OEM record.",
+            "readonly": true,
+            "etag": true
+        },
+        "Number": {
+            "type": "integer",
+            "description": "The number of duplicate log entries, with the possible exception of timestamps, that are not in the collection.",
+            "readonly": true,
+            "etag": true
+        },
+        "Message": {
+            "type": "string",
+            "description": "The log entry details.",
+            "readonly": true,
+            "etag": true
+        },
+        "links": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "self": {
+                    "$ref": "href.json#",
+                    "description": "The URI for this log entry resource."
+                }
+            }
+        }
+    }
+}

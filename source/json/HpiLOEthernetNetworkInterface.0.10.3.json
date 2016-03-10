@@ -1,0 +1,389 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "HpiLOEthernetNetworkInterface.0.10.3",
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+        "Type": {
+            "$ref": "Type.json#"
+        },
+        "links": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "DateTimeService": {
+                    "$ref": "href.json#",
+                    "description": "The URI for this date time service resource.",
+                    "readonly": true
+                }
+            },
+            "readonly": true,
+            "description": "The URIs for the resources related to the date time service resource."
+        },
+        "ConfigurationSettings": {
+            "type": "string",
+            "enum": [
+                "Current",
+                "SomePendingReset"
+            ],
+            "enumDescriptions": {
+                "Current": "All configuration settings for this NIC are currently in use.",
+                "SomePendingReset": "One or more configuration settings on this NIC are not yet in use.  They require a reset of this management processor in order to take effect."
+            },
+            "description": "The state of the currently displayed configuration settings.",
+            "readonly": true,
+            "etag": true
+        },
+        "NICEnabled": {
+            "type": "boolean",
+            "description": "Determines whether this NIC is enabled or disabled. Enabling one NIC will disable the others. If no NIC is enabled, this management processor is not accessible over the network.",
+            "readonly": false,
+            "etag": true
+        },
+        "NICSupportsIPv6": {
+            "type": "boolean",
+            "description": "Indicates whether or not this NIC can support the IPv6 protocol.",
+            "readonly": true
+        },
+        "SupportsLOM": {
+            "type": "boolean",
+            "description": "Indicates whether this system supports LOM. Only applies to Shared Network Port.",
+            "readonly": true,
+            "etag": true
+        },
+        "SupportsFlexibleLOM": {
+            "type": "boolean",
+            "description": "Indicates whether this system supports FlexibleLOM. Only applies to Shared Network Port.",
+            "readonly": true,
+            "etag": true
+        },
+        "SharedNetworkPortOptions": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "NIC": {
+                    "type": "string",
+                    "enum": [
+                        "LOM",
+                        "FlexibleLOM"
+                    ],
+                    "enumDescriptions": {
+                        "LOM": "The LOM NIC is configured to be shared.",
+                        "FlexibleLOM": "The FlexibleLOM NIC is configured to be shared."
+                    },
+                    "description": "Selects the system NIC that is to be shared with this management processor.",
+                    "readonly": false,
+                    "etag": true
+                },
+                "Port": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 2,
+                    "description": "The network adapter port number that is used for sharing. This feature is only applicable on systems and network adapters that support it.",
+                    "readonly": false,
+                    "etag": true
+                }
+            },
+            "readonly": true,
+            "description": "The shared network port options. Only applies to Shared Network Port."
+        },
+        "HostName": {
+            "type": "string",
+            "format": "hostname",
+            "maxLength": 49,
+            "description": "The management processor host name.",
+            "readonly": false,
+            "etag": true
+        },
+        "DomainName": {
+            "type": "string",
+            "maxLength": 64,
+            "description": "Domain name of the network to which this management processor belongs. This property can only be modified when the management processor is not configured to use a DHCP supplied domain name; otherwise this property is read-only indicating the value is provided by DHCP.",
+            "readonly": false,
+            "etag": true
+        },
+        "PingGatewayOnStartup": {
+            "type": "boolean",
+            "description": "Determines whether to ping the IPv4 gateway on startup.",
+            "readonly": false,
+            "etag": true
+        },
+        "VLANEnabled": {
+            "type": "boolean",
+            "description": "Determines whether VLAN is enabled. Only applies to Shared Network Port.",
+            "readonly": false,
+            "etag": true
+        },
+        "VLANId": {
+            "type": [
+                "integer",
+                "null"
+            ],
+            "minimum": 1,
+            "maximum": 4094,
+            "description": "The VLAN ID/tag. Only applies to Shared Network Port.",
+            "readonly": false,
+            "etag": true
+        },
+        "DHCPv4": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "Enabled": {
+                    "type": "boolean",
+                    "description": "Determines whether DHCPv4 is enabled.",
+                    "readonly": false,
+                    "etag": true
+                },
+                "UseGateway": {
+                    "type": "boolean",
+                    "description": "Determines whether to use a DHCPv4-supplied gateway. Can only be enabled when DHCPv4 is also enabled; otherwise, this property will be set to false and will be read-only.",
+                    "readonly": false,
+                    "etag": true
+                },
+                "UseStaticRoutes": {
+                    "type": "boolean",
+                    "description": "Determines whether to use DHCPv4-supplied static routes. Can only be enabled when DHCPv4 is also enabled; otherwise, this property will be set to false and will be read-only.",
+                    "readonly": false,
+                    "etag": true
+                },
+                "UseDomainName": {
+                    "type": "boolean",
+                    "description": "Determines whether to use a DHCPv4-supplied domain name. Can only be enabled when DHCPv4 is also enabled; otherwis,e this property will be set to false and will be read-only.",
+                    "readonly": false,
+                    "etag": true
+                },
+                "UseDNSServers": {
+                    "type": "boolean",
+                    "description": "Determines whether to use DHCPv4-supplied DNS servers. Can only be enabled when DHCPv4 is also enabled; otherwise, this property will be set to false and will be read-only.",
+                    "readonly": false,
+                    "etag": true
+                },
+                "UseNTPServers": {
+                    "type": "boolean",
+                    "description": "Determines whether to use DHCPv4-supplied NTP servers. Can only be enabled when DHCPv4 is also enabled; otherwise, this property will be set to false and will be read-only.",
+                    "readonly": false,
+                    "etag": true
+                },
+                "UseWINSServers": {
+                    "type": "boolean",
+                    "description": "Determines whether to use DHCPv4-supplied WINS servers. Can only be enabled when DHCPv4 is also enabled; otherwise, this property will be set to false and will be read-only.",
+                    "readonly": false,
+                    "etag": true
+                }
+            },
+            "readonly": false,
+            "description": "DHCPv4 options."
+        },
+        "IPv4": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "StaticRoutes": {
+                    "type": "array",
+                    "maxItems": 3,
+                    "items": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                            "Destination": {
+                                "type": "string",
+                                "format": "ipv4",
+                                "description": "An IPv4 static route subnet mask. Only writeable when use of DHCPv4-supplied static routes is disabled; otherwise this property is read-only indicating the value is provided by DHCPv4.",
+                                "readonly": false
+                            },
+                            "SubnetMask": {
+                                "type": "string",
+                                "format": "ipv4",
+                                "description": "An IPv4 static route gateway. Only writeable when use of DHCPv4-supplied static routes is disabled; otherwise this property is read-only indicating the value is provided by DHCPv4.",
+                                "readonly": false
+                            },
+                            "Gateway": {
+                                "type": "string",
+                                "format": "ipv4",
+                                "description": "Currently configured WINS servers in order of descending preference. Static values when not configured to use DHCPv4-supplied WINS servers; otherwise this property is read-only indicating the values are provided by DHCPv4.",
+                                "readonly": false
+                            }
+                        },
+                        "readonly": false
+                    },
+                    "etag": true,
+                    "readonly": false,
+                    "description": "The current configured IPv4 static routes."
+                },
+                "DDNSRegistration": {
+                    "type": "boolean",
+                    "description": "Determines whether DDNS registration is enabled.",
+                    "readonly": false,
+                    "etag": true
+                },
+                "DNSServers": {
+                    "type": "array",
+                    "readonly": false,
+                    "maxItems": 3,
+                    "items": {
+                        "type": "string",
+                        "format": "ipv4"
+                    },
+                    "etag": true,
+                    "description": "Currently configured IPv4 DNS servers in order of descending preference. Static values when not configured to use DHCPv4-supplied DNS servers; otherwise this property is read-only indicating the values are provided by DHCPv4."
+                },
+                "WINSRegistration": {
+                    "type": "boolean",
+                    "description": "Determines whether WINS registration is enabled.",
+                    "readonly": false,
+                    "etag": true
+                },
+                "WINSServers": {
+                    "type": "array",
+                    "maxItems": 2,
+                    "readonly": false,
+                    "items": {
+                        "type": "string",
+                        "format": "ipv4"
+                    },
+                    "etag": true,
+                    "description": "Currently configured WINS servers in order of descending preference. Static values when not configured to use DHCPv4-supplied WINS servers; otherwise this property is read-only indicating the values are provided by DHCPv4"
+                }
+            },
+            "readonly": false,
+            "description": "The Management Processor IPv4 Configuration Settings."
+        },
+        "DHCPv6": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "StatefulModeEnabled": {
+                    "type": "boolean",
+                    "description": "Determines whether DHCPv6 Stateful mode is enabled.",
+                    "readonly": false,
+                    "etag": true
+                },
+                "UseRapidCommit": {
+                    "type": "boolean",
+                    "description": "Determines whether to use DHCPv6 rapid commit mode. Can only be enabled when DHCPv6 Stateful mode is also enabled; otherwise, this property will be set to false and will be read-only. Do not enable in networks where more than one DHCPv6 server is configured to provide address assignments.",
+                    "readonly": false,
+                    "etag": true
+                },
+                "StatelessModeEnabled": {
+                    "type": "boolean",
+                    "description": "Determines whether DHCPv6 Stateless mode is enabled.  Always enabled by default whenever DHCPv6 Stateful mode is also enabled.",
+                    "readonly": false,
+                    "etag": true
+                },
+                "UseDomainName": {
+                    "type": "boolean",
+                    "description": "Determines whether to use a DHCPv6-supplied domain name. Can only be enabled when DHCPv6 Stateless mode is also enabled; otherwise, this property will be set to false and will be read-only.",
+                    "readonly": false,
+                    "etag": true
+                },
+                "UseDNSServers": {
+                    "type": "boolean",
+                    "description": "Determines whether to use DHCPv6-supplied DNS servers. Can only be enabled when DHCPv6 Stateless mode is also enabled; otherwise, this property will be set to false and will be read-only.",
+                    "readonly": false,
+                    "etag": true
+                },
+                "UseNTPServers": {
+                    "type": "boolean",
+                    "description": "Determines whether to use DHCPv6-supplied NTP servers. Can only be enabled when DHCPv6 Stateless mode is also enabled; otherwise, this property will be set to false and will be read-only.",
+                    "readonly": false,
+                    "etag": true
+                }
+            },
+            "readonly": false,
+            "description": "Management processor DHCPv6 Configuration Settings"
+        },
+        "IPv6": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "DDNSRegistration": {
+                    "type": "boolean",
+                    "description": "Determines whether IPv6 DDNS registration is enabled.",
+                    "readonly": false,
+                    "etag": true
+                },
+                "DNSServers": {
+                    "type": "array",
+                    "maxItems": 3,
+                    "items": {
+                        "type": "string",
+                        "format": "ipv6"
+                    },
+                    "etag": true,
+                    "description": "Currently configured IPv6 DNS servers in order of descending preference.  Static values when not configured to use DHCPv6-supplied DNS servers; otherwise this property is read-only indicating the values are provided by DHCPv6.",
+                    "readonly": false
+                },
+                "StaticDefaultGateway": {
+                    "type": "string",
+                    "format": "ipv6",
+                    "description": "The IPv6 static default gateway entry.",
+                    "readonly": false,
+                    "etag": true
+                },
+                "StaticRoutes": {
+                    "type": "array",
+                    "maxItems": 3,
+                    "items": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                            "Destination": {
+                                "type": "string",
+                                "format": "ipv6",
+                                "description": "The IPv6 static route destination address.",
+                                "readonly": false
+                            },
+                            "PrefixLength": {
+                                "type": [
+                                    "integer",
+                                    "null"
+                                ],
+                                "minimum": 1,
+                                "maximum": 128,
+                                "description": "The prefix length of the IPv6 static route destination address.",
+                                "readonly": false
+                            },
+                            "Gateway": {
+                                "type": "string",
+                                "format": "ipv6",
+                                "description": "The IPv6 static route gateway.",
+                                "readonly": false
+                            },
+                            "Status": {
+                                "type": "string",
+                                "enum": [
+                                    "Unknown",
+                                    "Pending",
+                                    "Active",
+                                    "Failed"
+                                ],
+                                "enumDescriptions": {
+                                    "Unknown": "The status of this static route entry in the route table is unknown.",
+                                    "Pending": "This static route entry has not yet been added to the route table.",
+                                    "Active": "This static route entry was successfully added to the route table.",
+                                    "Failed": "This static route entry could not be added to the route table."
+                                },
+                                "description": "Status of this static route entry.",
+                                "readonly": true
+                            }
+                        },
+                        "etag": true
+                    },
+                    "readonly": false,
+                    "description": "The management processor IPv6 static routes."
+                },
+                "SLAACEnabled": {
+                    "type": "boolean",
+                    "description": "Determines whether StateLess Address Auto-Configuration is enabled.",
+                    "readonly": false,
+                    "etag": true
+                }
+            },
+            "readonly": false,
+            "description": "The management processor IPv6 Network Configuration Settings."
+        }
+    },
+    "readonly": false,
+    "description": "The Management Processor General Network Settings."
+}

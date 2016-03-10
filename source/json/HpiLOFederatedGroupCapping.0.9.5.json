@@ -1,0 +1,88 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "HpiLOFederatedGroupCapping.0.9.5",
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+        "Oem": {
+            "$ref": "Oem.json#"
+        },
+        "Name": {
+            "$ref": "Name.json#"
+        },
+        "Modified": {
+            "$ref": "Modified.json#"
+        },
+        "Type": {
+            "$ref": "Type.json#"
+        },
+        "CapWatts": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "The configured power cap for all servers in a group. This value is 0 if the power cap is not configured.",
+            "readonly": true,
+            "etag": true
+        },
+        "CapacityWatts": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "The total power supply capacity for all servers in a group.",
+            "readonly": true,
+            "etag": true
+        },
+        "Throttle": {
+            "type": "string",
+            "description": "High, Med, or Low based on the percentage of power usage.",
+            "readonly": true,
+            "etag": true
+        },
+        "Groups": {
+            "type": "object",
+            "additionalProperties": false,
+            "patternProperties": {
+                "^.{1,31}$": {
+                    "type": "object",
+                    "properties": {
+                        "CapLimitPctTenths": {
+                            "type": [
+                                "null",
+                                "integer"
+                            ],
+                            "minimum": 0,
+                            "maximum": 1000,
+                            "description": "The power cap limit, in tenths of a percent.",
+                            "readonly": false,
+                            "etag": true
+                        },
+                        "CapLimitWatts": {
+                            "type": "integer",
+                            "description": "The power cap value, in watts.",
+                            "readonly": true,
+                            "etag": true
+                        },
+                        "AllocatedPowerWatts": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "description": "The allocated power, in watts.",
+                            "readonly": true,
+                            "etag": true
+                        }
+                    }
+                }
+            },
+            "readonly": false,
+            "description": "Group-level power caps."
+        },
+        "links": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "self": {
+                    "$ref": "href.json#",
+                    "description": "Link to self."
+                }
+            }
+        }
+    },
+    "readonly": false
+}

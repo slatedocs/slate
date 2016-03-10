@@ -1,0 +1,18 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "HpiLOVirtualMedia.0.9.5",
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+        "Type": {
+            "$ref": "Type.json#"
+        },
+        "BootOnNextServerReset": {
+            "type": "boolean",
+            "description": "If set to true, the server will boot to this image on the next server reboot. The image will be ejected automatically on the second server reboot so that the server does not boot to this image twice.",
+            "readonly": false,
+            "etag": true
+        }
+    },
+    "readonly": false
+}

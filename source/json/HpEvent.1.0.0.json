@@ -1,0 +1,48 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "HpEvent.1.0.0",
+    "type": "object",
+    "readonly": true,
+    "additionalProperties": false,
+    "description": "Each event in this array has a set of properties that describe the event.  Since this is an array, more than one event can be sent simultaneously.",
+    "properties": {
+        "Type": {
+            "$ref": "Type.json#"
+        },
+        "OriginalResourceEtag": {
+            "type": "string",
+            "description": "This indicates the ETag of the affected resource specified in OriginOfCondition.",
+            "readonly": true,
+            "displayname": "OriginalResourceEtag",
+            "etag": true
+        },
+        "Resource": {
+            "$ref": "href.json#",
+            "description": "This is a link of the resource that has changed (post-change).",
+            "readonly": true,
+            "displayname": "Related Resource"
+        },
+        "AdvancedDiagnostics": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "additionalProperties": true,
+                "description": "This is a an object that represenets Advanced Diagnostic information.  It is currently schemed to allow anything in the object.",
+                "readonly": true,
+                "displayname": "Advanced Diagnostics Information"
+            },
+            "readonly": true
+        },
+        "CorrelatedIndications": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "description": "A list of identifiers whose notifications are correlated with (related to) this one.",
+            "readonly": true,
+            "displayname": "Correlated Indications"
+        }
+    },
+    "private": false,
+    "displayname": "HpEvent.1.0.0"
+}

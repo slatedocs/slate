@@ -1,0 +1,257 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "HpSmartStorageDiskDrive.0.10.0",
+    "description": "HpSmartStorageDiskDrive",
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+        "Oem": {
+            "$ref": "Oem.json#"
+        },
+        "Name": {
+            "$ref": "Name.json#"
+        },
+        "Description": {
+            "$ref": "Description.json#"
+        },
+        "Modified": {
+            "$ref": "Modified.json#"
+        },
+        "Type": {
+            "$ref": "Type.json#"
+        },
+        "Manufacturer": {
+            "type": "string",
+            "description": "Manufacturer of the disk drive",
+            "readonly": true,
+            "etag": true
+        },
+        "MediaType": {
+            "type": "string",
+            "description": "Type of disk",
+            "readonly": true,
+            "enum": [
+                "HDD",
+                "SSD"
+            ],
+            "enumDescriptions": {
+                "HDD": "Spinning disk hard drive",
+                "SSD": "Solid state disk"
+            },
+            "etag": true
+        },
+        "Model": {
+            "type": "string",
+            "description": "Drive model number",
+            "readonly": true,
+            "etag": true
+        },
+        "Status": {
+            "$ref": "Status.json#"
+        },
+        "ErasePattern": {
+            "type": "string",
+            "description": "The pattern used for erasing the disk drive",
+            "readonly": true,
+            "etag": true
+        },
+        "EraseCompletionPercentage": {
+            "type": "integer",
+            "description": "The percent complete for an erase operation currently occurring on the disk drive",
+            "readonly": true,
+            "etag": true
+        },
+        "EncryptedDrive": {
+            "type": "boolean",
+            "description": "True if encryption is currently enabled on this disk drive, false otherwise",
+            "readonly": true,
+            "etag": true
+        },
+        "SpareRebuildMode": {
+            "type": "string",
+            "description": "Method to used activate this drive when another drive fails, this is only applicable if the drive is configured as a spare drive",
+            "readonly": true,
+            "enum": [
+                "Dedicated",
+                "Roaming"
+            ],
+            "enumDescriptions": {
+                "Dedicated": "This drive will take over a failed drive temporarily. When the failed drive is replaced, this will return to being a spare. This drive be shared between arrays.",
+                "Roaming": "This drive will permanently replace a failed drive. The failed drive will become a spare. This spare drive cannot be shared between arrays."
+            },
+            "etag": true
+        },
+        "CapacityMiB": {
+            "type": "integer",
+            "description": "Total capacity of the drive in MiB",
+            "readonly": true,
+            "etag": true
+        },
+        "BlockSizeBytes": {
+            "type": "integer",
+            "description": "Block size of the drive in bytes. This is the block size presented by the drive to clients such as the array controller or operating system.",
+            "readonly": true,
+            "etag": true
+        },
+        "NativeBlockSizeBytes": {
+            "type": "integer",
+            "description": "Native block size of the drive in bytes. This is the underlying sector size used by the physical drive to store data. For example, an advanced format drive that uses 4K sector sizes to store data will return 4K as the NativeBlockSizeBytes but may return 512 for the BlockSizeBytes when running in 512e (emulation) mode for backward compatibility",
+            "readonly": true,
+            "etag": true
+        },
+        "InterfaceType": {
+            "type": "string",
+            "description": "The connection interface of the drive",
+            "readonly": true,
+            "enum": [
+                "SAS",
+                "SATA",
+                "NVME",
+                "Unknown"
+            ],
+            "enumDescriptions": {
+                "SAS": "SAS",
+                "SATA": "SATA",
+                "NVME": "Non-volatile memory",
+                "Unknown": "Information is unavailable"
+            },
+            "etag": true
+        },
+        "SerialNumber": {
+            "type": "string",
+            "description": "The serial number of the drive",
+            "readonly": true,
+            "etag": true
+        },
+        "FirmwareVersion": {
+            "$ref": "FwRev.json#"
+        },
+        "MinimumGoodFirmwareVersion": {
+            "type": "string",
+            "description": "The minimum recommended firmware revision for the drive",
+            "readonly": true,
+            "etag": true
+        },
+        "CurrentTemperatureCelsius": {
+            "type": "integer",
+            "description": "The current temperature of the drive",
+            "readonly": true,
+            "etag": true
+        },
+        "MaximumTemperatureCelsius": {
+            "type": "integer",
+            "description": "The maximum recommended temperature for the drive",
+            "readonly": true,
+            "etag": true
+        },
+        "RotationalSpeedRpm": {
+            "type": "integer",
+            "description": "The rotational speed of the drive, only applicable on HDDs",
+            "readonly": true,
+            "etag": true
+        },
+        "PhyCount": {
+            "type": "integer",
+            "description": "The number of phys the drive has",
+            "readonly": true,
+            "etag": true
+        },
+        "InterfaceSpeedGbps": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Native interface speed for the device",
+            "readonly": true,
+            "etag": true
+        },
+        "TransferSpeedGbps": {
+            "type": "integer",
+            "description": "Effective transfer speed to the device taking into account hardware acceleration such as edge-buffering",
+            "readonly": true,
+            "etag": true
+        },
+        "PowerOnHours": {
+            "type": "integer",
+            "description": "The number of lifetime hours that the drive has been powered on",
+            "readonly": true,
+            "etag": true
+        },
+        "SSDEnduranceUtilizationPercentage": {
+            "type": "integer",
+            "description": "This is the percentage of the drive that has been worn out and can no longer be used. When this values reaches 100%, the drive has 0% usage remaining and is completely  worn out",
+            "readonly": true,
+            "etag": true
+        },
+        "CarrierAuthenticationStatus": {
+            "type": "string",
+            "description": "Authentication status of the drive carrier",
+            "readonly": true,
+            "etag": true,
+            "enum": [
+                "OK",
+                "Fail",
+                "NoCommunication",
+                "NotApplicable"
+            ],
+            "enumDescriptions": {
+                "OK": "Carrier authenticated as  geniuine HP product",
+                "Fail": "Carrier authentication failed",
+                "NoCommunication": "Communication could not be established with the carrier",
+                "NotApplicable": "Carrier does not support authentication"
+            }
+        },
+        "CarrierApplicationVersion": {
+            "type": "string",
+            "description": "Carrier PIC firmware version currently running",
+            "readonly": true
+        },
+        "WWID": {
+            "type": "string",
+            "description": "Unique identifier for the device",
+            "readonly": true,
+            "etag": true
+        },
+        "PortCount": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "The number of ports on the drive. Typically 1 (single-domain) or 2 (dual-domain)",
+            "readonly": true,
+            "etag": true
+        },
+        "Location": {
+            "type": "string",
+            "description": "The location of the drive",
+            "readonly": true,
+            "etag": true
+        },
+        "LocationFormat": {
+            "type": "string",
+            "description": "Format for the location property",
+            "readonly": true,
+            "etag": true,
+            "enum": [
+                "ControllerPort:Box:Bay",
+                "SwitchPort:Box:Bay",
+                "SwitchPort:SwitchBay:Bay"
+            ],
+            "enumDescriptions": {
+                "ControllerPort:Box:Bay": "This format typically used in controller context where the drive would be identified using the controller port, JBOD box number and drive bay",
+                "SwitchPort:Box:Bay": "This format typically used in a SAS switch context where the drive would be identified using the switch port, JBOD box number and drive bay",
+                "SwitchPort:SwitchBay:Bay": "This format typically used in a SAS switch context where the drive would be identified using the switch port, ICM bay number for the switch and drive bay"
+            }
+        },
+        "links": {
+            "type": "object",
+            "description": "The URIs to the resource related to HpSmartStorageDiskDrive",
+            "readonly": true,
+            "additionalProperties": false,
+            "properties": {
+                "self": {
+                    "$ref": "href.json#",
+                    "description": "Link to self.",
+                    "readonly": true
+                }
+            }
+        }
+    },
+    "readonly": true
+}

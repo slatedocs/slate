@@ -1,0 +1,8 @@
+{
+    "type": "string",
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "id": "http://jsonschema.net",
+    "description": "The name of the resource or array element.",
+    "readonly": true,
+    "etag": true
+}

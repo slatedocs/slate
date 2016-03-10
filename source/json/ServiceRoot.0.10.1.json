@@ -1,0 +1,114 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "ServiceRoot.0.10.1",
+    "type": "object",
+    "readonly": true,
+    "additionalProperties": false,
+    "description": "This object represents the HP RESTful API root service.",
+    "properties": {
+        "Oem": {
+            "type": "object",
+            "additionalProperties": true,
+            "properties": {
+                "Hp": {
+                    "$ref": "HpiLOServiceExt.json#"
+                }
+            }
+        },
+        "Name": {
+            "$ref": "Name.json#"
+        },
+        "Modified": {
+            "$ref": "Modified.json#"
+        },
+        "Type": {
+            "$ref": "Type.json#"
+        },
+        "Description": {
+            "$ref": "Description.json#"
+        },
+        "Time": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "description": "The current web service time.",
+            "pattern": "^([\\+-]?\\d{4}(?!\\d{2}\\b))((-?)((0[1-9]|1[0-2])(\\3([12]\\d|0[1-9]|3[01]))?|W([0-4]\\d|5[0-2])(-?[1-7])?|(00[1-9]|0[1-9]\\d|[12]\\d{2}|3([0-5]\\d|6[1-6])))([T\\s]((([01]\\d|2[0-3])((:?)[0-5]\\d)?|24\\:?00)([\\.,]\\d+(?!:))?)?(\\17[0-5]\\d([\\.,]\\d+)?)?([zZ]|([\\+-])([01]\\d|2[0-3]):?([0-5]\\d)?)?)?)?$",
+            "format": "date-time",
+            "readonly": true,
+            "etag": false
+        },
+        "ServiceVersion": {
+            "type": "string",
+            "enum": [
+                "0.9.5",
+                "0.91.0"
+            ],
+            "description": "The web service version. This is different from the version of the data model.",
+            "readonly": true,
+            "pattern": "^\\d+\\.\\d+\\.\\d+$",
+            "etag": true
+        },
+        "UUID": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "description": "Unique identifier for a service instance.  This value should be an exact match of the UUID value returned in a 200OK from an SSDP M-SEARCH request during discovery.",
+            "pattern": "([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})",
+            "readonly": true
+        },
+        "links": {
+            "type": "object",
+            "additionalProperties": false,
+            "readonly": true,
+            "properties": {
+                "Systems": {
+                    "$ref": "href.json#",
+                    "description": "The URI to this systems resource.",
+                    "readonly": true
+                },
+                "Chassis": {
+                    "$ref": "href.json#",
+                    "description": "The URI to this chassis resource.",
+                    "readonly": true
+                },
+                "Managers": {
+                    "$ref": "href.json#",
+                    "description": "The URI to this managers resource.",
+                    "readonly": true
+                },
+                "Sessions": {
+                    "$ref": "href.json#",
+                    "description": "The URI to this sessions resource.",
+                    "readonly": true
+                },
+                "AccountService": {
+                    "$ref": "href.json#",
+                    "description": "The URI to this account service resource.",
+                    "readonly": true
+                },
+                "EventService": {
+                    "$ref": "href.json#",
+                    "description": "The URI to the event service resource.",
+                    "readonly": true
+                },
+                "Registries": {
+                    "$ref": "href.json#",
+                    "description": "The URI to this registries resource.",
+                    "readonly": true
+                },
+                "Schemas": {
+                    "$ref": "href.json#",
+                    "description": "The URI to this schemas resource.",
+                    "readonly": true
+                },
+                "self": {
+                    "$ref": "href.json#",
+                    "description": "The link to this service root resource.",
+                    "readonly": true
+                }
+            }
+        }
+    }
+}

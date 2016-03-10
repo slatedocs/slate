@@ -1,0 +1,76 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "HpBaseConfigs.0.10.0",
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+        "Name": {
+            "$ref": "Name.json#"
+        },
+        "Modified": {
+            "$ref": "Modified.json#"
+        },
+        "Type": {
+            "$ref": "Type.json#"
+        },
+        "Capabilities": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "BaseConfig": {
+                    "type": "boolean",
+                    "description": "True if the provider supports PUT/PATCH of the named BaseConfig.",
+                    "readonly": true,
+                    "etag": true
+                },
+                "BaseConfigs": {
+                    "type": "boolean",
+                    "description": "True if the provider supports PUT/PATCH of the named BaseConfigs.",
+                    "readonly": true,
+                    "etag": true
+                }
+            },
+            "description": "Describes the ability of the provider to handle BaseConfigs.",
+            "readonly": true
+        },
+        "BaseConfigs": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                    "default": {
+                        "type": "object",
+                        "readonly": true,
+                        "additionalProperties": true,
+                        "etag": true
+                    }
+                },
+                "patternProperties": {
+                    "^[A-Za-z0-9\\.]+$": {
+                        "type": "object",
+                        "readonly": true,
+                        "additionalProperties": true,
+                        "etag": true
+                    }
+                },
+                "description": "The named BaseConfig sets. 'default' is required.",
+                "readonly": true,
+                "etag": true
+            },
+            "description": "The named BaseConfig sets. 'default' is required.",
+            "readonly": true
+        },
+        "links": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "self": {
+                    "$ref": "href.json#",
+                    "description": "This is the URI of this resource.",
+                    "readonly": true
+                }
+            }
+        }
+    }
+}

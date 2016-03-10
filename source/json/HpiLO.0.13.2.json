@@ -1,0 +1,376 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "HpiLO.0.13.2",
+    "type": "object",
+    "readonly": false,
+    "additionalProperties": false,
+    "properties": {
+        "Type": {
+            "$ref": "Type.json#"
+        },
+        "Firmware": {
+            "$ref": "HpFwRev.json#"
+        },
+        "License": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "LicenseString": {
+                    "type": "string",
+                    "description": "Describes the type of license installed on management processor.",
+                    "readonly": true,
+                    "etag": true
+                },
+                "LicenseKey": {
+                    "type": "string",
+                    "description": "The installed license key.",
+                    "readonly": true,
+                    "etag": true
+                },
+                "LicenseType": {
+                    "type": "string",
+                    "description": "Indicates whether the license is Perpetual or Evaluation.",
+                    "readonly": true,
+                    "etag": true
+                }
+            }
+        },
+        "FederationConfig": {
+            "type": "object",
+            "readonly": false,
+            "additionalProperties": false,
+            "properties": {
+                "iLOFederationManagement": {
+                    "type": "string",
+                    "readonly": false,
+                    "enum": [
+                        "Enabled",
+                        "Disabled"
+                    ],
+                    "description": "Enables or Disables iLO Federation features for the local iLO system.",
+                    "etag": true
+                },
+                "MulticastDiscovery": {
+                    "type": "string",
+                    "readonly": false,
+                    "enum": [
+                        "Enabled",
+                        "Disabled"
+                    ],
+                    "description": "Enables or Disables Multicast Discovery for the local iLO system.",
+                    "etag": true
+                },
+                "MulticastAnnouncementInterval": {
+                    "type": "integer",
+                    "readonly": false,
+                    "enum": [
+                        0,
+                        30,
+                        60,
+                        120,
+                        300,
+                        600,
+                        900,
+                        1800
+                    ],
+                    "description": "The frequency in Seconds at which the iLO system announces itself on the network. A value of 0 disables multicast announcments.",
+                    "minimum": 0,
+                    "maximum": 1800,
+                    "etag": true
+                },
+                "IPv6MulticastScope": {
+                    "type": [
+                        "string"
+                    ],
+                    "readonly": false,
+                    "enum": [
+                        "Link",
+                        "Site",
+                        "Organization"
+                    ],
+                    "description": "The IPv6 network scope of multicast announcements.",
+                    "etag": true
+                },
+                "MulticastTimeToLive": {
+                    "type": "integer",
+                    "readonly": false,
+                    "description": "The maximum number of switches a multicast announcement will traverse before being discarded.",
+                    "etag": true
+                }
+            }
+        },
+        "RequiredLoginForiLORBSU": {
+            "type": "boolean",
+            "readonly": false,
+            "description": "Determines whether a user-credential prompt is displayed when a user accesses the iLO RBSU or the iLO 4 Configuration Utility. The following settings are valid: Enabled-A login dialog box opens when a user accesses the iLO RBSU or the iLO 4 Configuration Utility. Disabled (default)-No login is required when a user accesses the iLO RBSU or the iLO 4 Configuration Utility.",
+            "etag": true
+        },
+        "SerialCLIStatus": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "description": "Status of serial command line interface.",
+            "readonly": false,
+            "etag": true,
+            "enum": [
+                "Disabled",
+                "EnabledNoAuth",
+                "EnabledAuthReq"
+            ],
+            "enumDescriptions": {
+                "Disabled": "Serial command line interface is disabled.",
+                "EnabledNoAuth": "Serial command line interface is enabled with no authentication required.",
+                "EnabledAuthReq": "Serial command line interface is enabled with authentication required."
+            }
+        },
+        "SerialCLISpeed": {
+            "type": "integer",
+            "description": "Serial command line interface speed in bits/second.",
+            "readonly": false,
+            "etag": true,
+            "enum": [
+                9600,
+                19200,
+                38400,
+                57600,
+                115200
+            ]
+        },
+        "VSPLogDownloadEnabled": {
+            "type": "boolean",
+            "description": "This property enables or disables download of Virtual Serial Port (VSP) log.",
+            "readonly": false,
+            "etag": true
+        },
+        "iLOSelfTestResults": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "SelfTestName": {
+                        "type": "string",
+                        "readonly": true,
+                        "description": "iLO Self Test Name.",
+                        "etag": true,
+                        "enum": [
+                            "CryptographicHardware",
+                            "Memory",
+                            "WebServerCryptography",
+                            "MiscCryptography",
+                            "UART",
+                            "NVRAMInterface",
+                            "NVRAMData",
+                            "NIC",
+                            "EmbeddedFlash/SDCard",
+                            "StaticRAM",
+                            "EEPROM",
+                            "I2C",
+                            "BootBlock",
+                            "ThreadInit",
+                            "Infrastructure",
+                            "HostRom",
+                            "SupportedHost",
+                            "EEPROMContent",
+                            "PowerManagementController",
+                            "CPLDPAL0",
+                            "CPLDPAL1",
+                            "CPLDPAL2",
+                            "CPLDPAL3",
+                            "CPLDPAL4",
+                            "CPLDPAL5"
+                        ],
+                        "enumDescriptions": {
+                            "CryptographicHardware": "CryptographicHardware self test result.",
+                            "Memory": "Memory self test result.",
+                            "WebServerCryptography": "WebServerCryptography self test result.",
+                            "MiscCryptography": "MiscCryptography self test result.",
+                            "UART": "UART self test result.",
+                            "NVRAMInterface": "NVRAMInterface self test result.",
+                            "NVRAMData": "NVRAMData self test result.",
+                            "NIC": "NIC self test result.",
+                            "EmbeddedFlashorSDCard": "EmbeddedFlash or SD Card self test result.",
+                            "StaticRAM": "StaticRAM self test result.",
+                            "EEPROM": "EEPROM self test result.",
+                            "I2C": "I2C self test result.",
+                            "BootBlock": "BootBlock self test result.",
+                            "ThreadInit": "ThreadInit self test result.",
+                            "Infrastructure": "Infrastructure self test result.",
+                            "HostROM": "HostROM self test result.",
+                            "SupportedHost": "Supported Host self test result.",
+                            "EEPROMContent": "EEPROMContent self test result.",
+                            "PowerManagementController": "Power Management Controller self test result.",
+                            "CPLDPAL0": "CPLD PAL0 self test result.",
+                            "CPLDPAL1": "CPLD PAL1 self test result.",
+                            "CPLDPAL2": "CPLD PAL2 self test result.",
+                            "CPLDPAL3": "CPLD PAL3 self test result.",
+                            "CPLDPAL4": "CPLD PAL4 self test result.",
+                            "CPLDPAL5": "CPLD PAL5 self test result."
+                        }
+                    },
+                    "Status": {
+                        "type": "string",
+                        "readonly": true,
+                        "description": "Status of the Self Test.",
+                        "enum": [
+                            "NA",
+                            "OK",
+                            "Informational",
+                            "Degraded"
+                        ],
+                        "enumDescriptions": {
+                            "NA": "Status Not Applicable.",
+                            "OK": "Status OK.",
+                            "Informational": "Informational.",
+                            "Degraded": "Status Degraded."
+                        },
+                        "etag": true
+                    },
+                    "Notes": {
+                        "type": "string",
+                        "readonly": true,
+                        "description": "Additional Information (if any) about the Self Test.",
+                        "etag": true
+                    }
+                }
+            },
+            "readonly": true,
+            "description": "iLO Self Test Results section displays the results of internal iLO diagnostics.",
+            "etag": true
+        },
+        "links": {
+            "type": "object",
+            "additionalProperties": true,
+            "properties": {
+                "LicenseService": {
+                    "$ref": "href.json#",
+                    "description": "The URI for this license service resource.",
+                    "readonly": true
+                },
+                "EmbeddedMediaService": {
+                    "$ref": "href.json#",
+                    "description": "The URI for this embedded media service resource.",
+                    "readonly": true
+                },
+                "FederationGroups": {
+                    "$ref": "href.json#",
+                    "description": "The URI for this federation groups resource.",
+                    "readonly": true
+                },
+                "FederationPeers": {
+                    "$ref": "href.json#",
+                    "description": "The URI for this federation peers resource.",
+                    "readonly": true
+                },
+                "FederationDispatch": {
+                    "$ref": "extref.json#",
+                    "description": "The URI for this federation dispatch resource.",
+                    "readonly": true
+                },
+                "DateTimeService": {
+                    "$ref": "href.json#",
+                    "description": "The URI for this date time service resource.",
+                    "readonly": true
+                },
+                "UpdateService": {
+                    "$ref": "href.json#",
+                    "description": "The URI for this update service resource.",
+                    "readonly": true
+                },
+                "ActiveHealthSystem": {
+                    "$ref": "href.json#",
+                    "description": "The URI for this active health system resource.",
+                    "readonly": true
+                },
+                "VSPLogLocation": {
+                    "$ref": "extref.json#",
+                    "description": "A link to virtual serial port log."
+                }
+            }
+        },
+        "AvailableActions": {
+            "type": "array",
+            "additionalItems": false,
+            "uniqueItems": true,
+            "items": {
+                "anyOf": [
+                    {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                            "Action": {
+                                "type": "string",
+                                "enum": [
+                                    "ClearRestApiState"
+                                ],
+                                "description": "The Action to be performed.",
+                                "readonly": true,
+                                "etag": true
+                            },
+                            "Capabilities": {
+                                "type": "array",
+                                "items": [
+                                    {
+                                        "type": "object",
+                                        "additionalProperties": false,
+                                        "properties": {
+                                            "PropertyName": {
+                                                "type": "string",
+                                                "enum": [
+                                                    "Target"
+                                                ],
+                                                "description": "The Target the command should execute against",
+                                                "readonly": true
+                                            },
+                                            "AllowableValues": {
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "string",
+                                                    "enum": [
+                                                        "/Oem/Hp"
+                                                    ]
+                                                },
+                                                "description": "The supported values for Target parameters on this resource.",
+                                                "readonly": true
+                                            }
+                                        }
+                                    }
+                                ],
+                                "description": "The allowable values supported for this custom action on this resource.",
+                                "readonly": true
+                            }
+                        },
+                        "description": "An available custom action on this resource.",
+                        "readonly": true
+                    }
+                ]
+            }
+        }
+    },
+    "actions": {
+        "description": "Various HP OEM-specific actions for Managers.",
+        "actions": {
+            "ClearRestApiState": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                    "Action": {
+                        "type": "string",
+                        "enum": [
+                            "ClearRestApiState"
+                        ]
+                    },
+                    "Target": {
+                        "type": "string",
+                        "enum": [
+                            "/Oem/Hp"
+                        ],
+                        "readonly": true,
+                        "description": "The Target defines an OEM action."
+                    }
+                },
+                "description": "Clears the persistent state of the REST API.  Some portions of the API may not be available until after the server reboots."
+            }
+        }
+    }
+}

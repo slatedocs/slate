@@ -1,0 +1,120 @@
+{
+    "type": "object",
+    "readonly": true,
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "id": "http://jsonschema.net",
+    "description": "This represents the properties used for Settings and SettingsResult.",
+    "definitions": {
+        "Settings": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "href": {
+                    "type": "string",
+                    "description": "Resource that the client might PUT/PATCH to in order to change this resource.",
+                    "readonly": true,
+                    "format": "uri",
+                    "etag": true
+                }
+            },
+            "readonly": true,
+            "description": "Link to use to PUT/PATCH settings for this resource."
+        },
+        "SettingsResult": {
+            "type": "object",
+            "readonly": true,
+            "additionalProperties": false,
+            "properties": {
+                "Operation": {
+                    "type": "string",
+                    "description": "Details about the results of applying the settings.",
+                    "readonly": true,
+                    "enum": [
+                        "SettingsApply"
+                    ],
+                    "etag": true
+                },
+                "Time": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "description": "Time at which the settings were applied.",
+                    "readonly": true,
+                    "pattern": "^([\\+-]?\\d{4}(?!\\d{2}\\b))((-?)((0[1-9]|1[0-2])(\\3([12]\\d|0[1-9]|3[01]))?|W([0-4]\\d|5[0-2])(-?[1-7])?|(00[1-9]|0[1-9]\\d|[12]\\d{2}|3([0-5]\\d|6[1-6])))([T\\s]((([01]\\d|2[0-3])((:?)[0-5]\\d)?|24\\:?00)([\\.,]\\d+(?!:))?)?(\\17[0-5]\\d([\\.,]\\d+)?)?([zZ]|([\\+-])([01]\\d|2[0-3]):?([0-5]\\d)?)?)?)?$",
+                    "format": "date-time",
+                    "etag": true
+                },
+                "ETag": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "etag": true,
+                    "readonly": true,
+                    "description": "ETag of this resource after the settings have been applied."
+                },
+                "Messages": {
+                    "type": "array",
+                    "readonly": true,
+                    "items": {
+                        "type": "object",
+                        "readonly": true,
+                        "additionalProperties": false,
+                        "properties": {
+                            "MessageID": {
+                                "type": "string",
+                                "description": "Key for this message, which is used to look up the message in a message registry. The key is in the format <registry>.<majorver>.<minorver>:<messagekey>.",
+                                "pattern": "^[A-Za-z0-9]+\\.\\d+\\.\\d+.[A-Za-z0-9.]+$",
+                                "readonly": true
+                            },
+                            "MessageArgs": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                },
+                                "readonly": true,
+                                "description": "Array of message arguments. Each argument is substituted into the corresponding spaces in the message when looked up in the message registry."
+                            },
+                            "Message": {
+                                "type": "string",
+                                "description": "Human-readable message.",
+                                "readonly": true
+                            },
+                            "PropertiesInError": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                },
+                                "readonly": true,
+                                "description": "Array of property names in the request body that caused the errors, if any."
+                            },
+                            "Severity": {
+                                "type": "string",
+                                "enum": [
+                                    "OK",
+                                    "Warning",
+                                    "Critical"
+                                ],
+                                "enumDescriptions": {
+                                    "OK": "Normal",
+                                    "Warning": "A condition exists that requires attention",
+                                    "Critical": "A critical condition exists that requires immediate attention"
+                                },
+                                "description": "This is the severity of the errors.",
+                                "readonly": true
+                            },
+                            "Resolution": {
+                                "type": "string",
+                                "description": "Instructions for resolving the issue that caused the error.",
+                                "readonly": true
+                            }
+                        }
+                    },
+                    "description": "Array of message entries."
+                }
+            },
+            "description": "Results of applying the settings."
+        }
+    }
+}

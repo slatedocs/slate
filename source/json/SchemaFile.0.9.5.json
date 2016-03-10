@@ -1,0 +1,76 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "SchemaFile.0.9.5",
+    "type": "object",
+    "readonly": true,
+    "additionalProperties": false,
+    "properties": {
+        "Oem": {
+            "$ref": "Oem.json#"
+        },
+        "Name": {
+            "$ref": "Name.json#"
+        },
+        "Modified": {
+            "$ref": "Modified.json#"
+        },
+        "Type": {
+            "$ref": "Type.json#"
+        },
+        "Description": {
+            "$ref": "Description.json#"
+        },
+        "Languages": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "description": "The RFC 5646 language code for this schema or registry item."
+        },
+        "Schema": {
+            "type": "string",
+            "description": "The typename this schema describes.",
+            "readonly": true,
+            "etag": true
+        },
+        "Location": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                    "Language": {
+                        "type": "string",
+                        "description": "The RFC 5646 language code for this schema or registry item.",
+                        "readonly": true,
+                        "etag": true
+                    },
+                    "Uri": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                            "extref": {
+                                "type": "string",
+                                "readonly": true
+                            }
+                        },
+                        "readonly": true,
+                        "description": "Link to locally available URI for schema."
+                    }
+                }
+            },
+            "readonly": true,
+            "description": "The RFC 5646 language code for this schema or registry item."
+        },
+        "links": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "self": {
+                    "$ref": "href.json#",
+                    "description": "Link to self."
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,62 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "HpiLOResourceDirectory.1.0.0",
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+        "Name": {
+            "$ref": "Name.json#"
+        },
+        "Modified": {
+            "$ref": "Modified.json#"
+        },
+        "Type": {
+            "$ref": "Type.json#"
+        },
+        "Instances": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                    "Type": {
+                        "type": "string",
+                        "pattern": "^[A-Z][A-Za-z0-9]+\\.\\d+\\.\\d+\\.\\d+$",
+                        "description": "This is the full version of the resource type.",
+                        "readonly": true,
+                        "etag": true
+                    },
+                    "MemberType": {
+                        "type": "string",
+                        "description": "This property has the type of members for collection resources.",
+                        "pattern": "^[A-Z][A-Za-z0-9]+\\.\\d+$",
+                        "readonly": true,
+                        "etag": true
+                    },
+                    "ETag": {
+                        "type": "string",
+                        "description": "This is the last known etag of the resource. The property is omitted if not known.",
+                        "readonly": true,
+                        "etag": true
+                    },
+                    "href": {
+                        "type": "string",
+                        "description": "The URI of the resource.",
+                        "readonly": true
+                    }
+                },
+                "description": "This is an array of instances of this major type."
+            }
+        },
+        "links": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "self": {
+                    "$ref": "href.json#",
+                    "description": "Link to self"
+                }
+            }
+        }
+    }
+}

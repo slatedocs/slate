@@ -1,0 +1,68 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "HpiLOFederationPeers.0.9.5",
+    "type": "object",
+    "readonly": true,
+    "additionalProperties": false,
+    "properties": {
+        "Type": {
+            "$ref": "Type.json#"
+        },
+        "Name": {
+            "$ref": "Name.json#"
+        },
+        "Peers": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                    "UUID": {
+                        "type": "string",
+                        "description": "UUID peers that are part of the federation group.",
+                        "readonly": true,
+                        "etag": true
+                    },
+                    "URL": {
+                        "type": "string",
+                        "description": "URL of the federation peer.",
+                        "readonly": true,
+                        "format": "url",
+                        "etag": true
+                    },
+                    "ManagerIPAddress": {
+                        "type": "string",
+                        "description": "Manager IP address of the federation peer.",
+                        "readonly": true,
+                        "etag": true
+                    },
+                    "Time": {
+                        "type": "string",
+                        "description": "Time when the federation peer was added.",
+                        "readonly": true,
+                        "format": "date-time",
+                        "etag": true
+                    },
+                    "HttpErrorCode": {
+                        "type": "integer",
+                        "description": "Error code for success or failure.",
+                        "readonly": true,
+                        "etag": true
+                    }
+                }
+            },
+            "readonly": true,
+            "description": "Provides details about the federation peers."
+        },
+        "links": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "self": {
+                    "$ref": "href.json#",
+                    "description": "Link to self."
+                }
+            }
+        }
+    }
+}
