@@ -1,4 +1,4 @@
-# Using a custom domain
+# Custom Domain
 
 You can easily use your own domain for a Netlify site.
 

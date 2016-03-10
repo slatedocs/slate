@@ -8,7 +8,7 @@ You can point the **action** attribute on the form to one of your html pages to 
 
 Here's an example:
 
-```html
+``` html
 <form name="contact" action="thank-you" netlify>
   <p>
     <label>Your Name:</label>
@@ -40,7 +40,6 @@ setup triggers that sends your form submissions to any of the 500+ applications 
 their catalog.
 
 Use this link to get access to the netlify Zapier app:
-ake
 [Netlify on Zapier](https://zapier.com/developer/invite/27442/6c1b6a3bbcf86c07c0a0f7dfe2d0327c/?utm_source=Netlify+and+BitBalloon&utm_campaign=7897bcd976-Netlify_Newsletter_8_Zapier&utm_medium=email&utm_term=0_200b533eb5-7897bcd976-)
 
 ## Spam Filtering
@@ -53,7 +52,7 @@ To take advantage of this, just add a `netlify-honeypot` attribute to your form 
 
 Here's a simple example:
 
-```html
+``` html
 <form name="contact" netlify netlify-honeypot="bot-field">
   <p><label>Email: <input name="email"></label></p>
   <p class="hidden"><label>Bot field: <input name="bot-field"></label></p>
@@ -72,7 +71,7 @@ Note that we add a hidden field to the form called **form-name** with the **name
 
 Here's a simple jQuery example:
 
-```js
+``` js
 $("#my-form").submit(function(e) {
   e.preventDefault();
 

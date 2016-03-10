@@ -15,7 +15,7 @@ npm install netlify-cli -g
 
 ## Manual Deploy
 
-```shell
+``` shell
 netlify deploy
 ```
 
@@ -29,14 +29,14 @@ The first time you deploy, a new site will be created and netlify will prompt fo
 
 You can specify an environment for any command with the -e flag. Each environment can have its own settings. This makes it very easy to setup different sites for staging and production.
 
-```shell
+``` shell
 netlify deploy -e production
 ```
 
 
 ## Continuous Deployment
 
-```shell
+``` shell
 netlify init
 ```
 
@@ -47,13 +47,13 @@ Netlify init will guide you through the process of configuring continuous deploy
 
 ## Names, Domains and Passwords
 
-```shell
+``` shell
 netlify update
 ```
 
 You can update attributes on your site through the cli. Currently the name of the site (<name>.netlify.com), the custom domain and the password of the site can be controlled in this way:
 
-```shell
+``` shell
 netlify update -n my-test-site -d www.example.com -p my-password
 ```
 

@@ -1,9 +1,4 @@
----
-"title": "Snippet Injection"
-"position": 65
----
-
-## Injecting Analytics Snippets
+# Injecting Analytics Snippets
 
 Often you want to inject JavaScript snippets into all pages of your site, either in the `<head>` or at the end of the `<body>` tag.
 
