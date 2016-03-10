@@ -1,11 +1,10 @@
 ---
-title: API Reference
+title: Documentation
 
 language_tabs:
   - html
   - http
   - shell
-  - go
 
 toc_footers:
   - <a href='https://api.netlify.com/applications'>Start a new application!</a>
