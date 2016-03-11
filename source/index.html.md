@@ -111,73 +111,83 @@ ID | The ID of the kitten to retrieve
 
 ## Edit a Specific Incident
 
-```ruby
-require 'kittn'
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-> The above command returns JSON structured like this:
-
+> Sending an HTTP Form-Data PUTS to this endpoint with all the required fields will return json as follows
 ```json
 {
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
+  "id":1,
+  "title":"Example",
+  "location":"South Hall",
+  "severity":1,
+  "incident_type":"Housing",
+  "comments":"Example comments",
+  "user":"Demo User",
+  "groups":"Students",
+  "status":0,
+  "reported_by":null,
+  "assigned_to":null,
+  "created_at":"2016-03-11T19:52:46.401Z",
+  "updated_at":"2016-03-11T19:52:46.401Z"
 }
-```
 
-This endpoint retrieves a specific kitten.
-
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
+This endpoint edits a specified incident.
 
 ### HTTP Request
 
-`GET http://example.com/kittens/<ID>`
+`GET http://incidentreport-120.herokuapp.com/incidents/{incident id}.json`
 
-### URL Parameters
+### Form Data
 
-Parameter | Description
+Key | Value
 --------- | -----------
-ID | The ID of the kitten to retrieve
+incident[title] | string
+incident[location] | string
+incident[comments] | text
+incident[severity] | integer between 1-4
+incident[incident_type] | string
+incident[groups] | string
+_method | 'patch'
 
 ## Create a New Incident
 
-```ruby
-require 'kittn'
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-> The above command returns JSON structured like this:
-
+> Sending an HTTP Form-Data POST to this endpoint with all the required fields will return json as follows
 ```json
 {
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
+  "id":1,
+  "title":"Example",
+  "location":"South Hall",
+  "severity":1,
+  "incident_type":"Housing",
+  "comments":"Example comments",
+  "user":"Demo User",
+  "groups":"Students",
+  "status":0,
+  "reported_by":null,
+  "assigned_to":null,
+  "created_at":"2016-03-11T19:52:46.401Z",
+  "updated_at":"2016-03-11T19:52:46.401Z"
 }
 ```
 
-This endpoint retrieves a specific kitten.
+This endpoint creates a new incident. 
 
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
 
 ### HTTP Request
 
-`GET http://example.com/kittens/<ID>`
+`GET http://incidentreport-120.herokuapp.com/incidents.json`
 
-### URL Parameters
+### Form Data
 
-Parameter | Description
+Key | Value
 --------- | -----------
-ID | The ID of the kitten to retrieve
+incident[title] | string
+incident[location] | string
+incident[comments] | text
+incident[severity] | integer between 1-4
+incident[incident_type] | string
+incident[groups] | string
+
 
 # Users
 
