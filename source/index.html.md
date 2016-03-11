@@ -16,7 +16,6 @@ includes:
   - paysheets
   - numbering_series
   - analytic_categories
-  - analytic_subcategories
   - accounting_categories
   - accounting_subcategories
   - errors
@@ -110,14 +109,6 @@ Example:
 * `GET    /analytic_categories/:id`  
 * `PATCH  /analytic_categories/:id`  
 * `DELETE /analytic_categories/:id`
-
-### [Analytic subcategories](#analytic-subcategories-section)
-
-* `GET    /analytic_subcategories`  
-* `POST   /analytic_subcategories`  
-* `GET    /analytic_subcategories/:id`  
-* `PATCH  /analytic_subcategories/:id`  
-* `DELETE /analytic_subcategories/:id`
 
 ### [Accounting categories](#accounting-categories-section)
 
