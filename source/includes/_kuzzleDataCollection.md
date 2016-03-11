@@ -527,14 +527,14 @@ kuzzle
 // Deleting multiple documents using callbacks (NodeJS or Web Browser)
 kuzzle
   .dataCollectionFactory('index', 'collection')
-  .deleteDocument({term: {title: 'foo'}}, function (err, res) {
+  .deleteDocument({filter: {term: {title: 'foo'}}}, function (err, res) {
     // callback called once the delete with query has been completed
   });
 
 // Deleting multiple documents using promises (NodeJS)
  kuzzle
  .dataCollectionFactory('index', 'collection')
- .deleteDocumentPromise({title: 'foo', content: 'bar'}, {updateIfExist: true})
+ .deleteDocumentPromise({filter: {title: 'foo', content: 'bar'}}, {updateIfExist: true})
  .then(res => {
    // promise resolved once the delete by query has been completed
  });
@@ -558,9 +558,10 @@ kuzzle
 
 // Deleting multiple documents
 JSONObject termFilter = new JSONObject()
+  .put("filter", new JSONObject()
   .put("term",
     new JSONObject().put("title", "foo")
-  );
+  ));
 
 kuzzle
   .dataCollectionFactory("index", "collection")
