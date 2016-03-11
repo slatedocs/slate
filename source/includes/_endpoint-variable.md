@@ -8,9 +8,13 @@ A Shoji Catalog of variables.
 
 #### GET catalog
 
-When authenticated and authorized to view the given dataset, GET returns 200 status with a Shoji Catalog of variables in the dataset. If authorization is lacking, response will instead be 404.
+When authenticated and authorized to view the given dataset, GET returns 200 
+status with a Shoji Catalog of variables in the dataset. If authorization is 
+lacking, response will instead be 404.
 
-Private variables are not included in the index of this catalog, although entities may be present at `variables/{id}/`. See Private Variables for an index of those.
+Private variables are not included in the index of this catalog, although 
+entities may be present at `variables/{id}/`. See Private Variables for an 
+index of those.
 
 Catalog tuples contain the following keys:
 
@@ -89,15 +93,35 @@ With both flags enabled, the variable catalog looks something like this:
 
 #### PATCH catalog
 
-Use PATCH to edit the "name", "description", "alias", or "discarded" state of one or more variables. A successful request returns a 204 response. The attributes changed will be seen by all users with access to this dataset; i.e., names, descriptions, aliases, and discarded state are not merely attributes of your view of the data but of the datasets themselves.
+Use PATCH to edit the "name", "description", "alias", or "discarded" state of 
+one or more variables. A successful request returns a 204 response. The 
+attributes changed will be seen by all users with access to this dataset; 
+i.e., names, descriptions, aliases, and discarded state are not merely 
+attributes of your view of the data but of the datasets themselves.
 
-Authorization is required: you must have "edit" privileges on the dataset being modified, as shown in the "permissions" object in the dataset's catalog tuple. If you try to PATCH and are not authorized, you will receive a 403 response and no changes will be made.
+Authorization is required: you must have "edit" privileges on the dataset being 
+modified, as shown in the "permissions" object in the dataset's catalog tuple. 
+If you try to PATCH and are not authorized, you will receive a 403 response and
+ no changes will be made.
 
-The tuple attributes other than "name", "description", "alias", and "discarded" cannot be modified here by PATCH. Attempting to modify other attributes, or including new attributes, will return a 400 response. Variable "type" can only be modified by the "cast" method, described below. The "subvariables" can be modified by PATCH on the variable entity. "subvariables_catalog" is a URL to a different variable catalog and is thus not editable, though you can navigate to its location and modify subvariable attributes there. A variable's "id" and its "derived" state are immutable.
+The tuple attributes other than "name", "description", "alias", and "discarded"
+ cannot be modified here by PATCH. Attempting to modify other attributes, or 
+ including new attributes, will return a 400 response. Variable "type" can only 
+ be modified by the "cast" method, described below. The "subvariables" can be 
+ modified by PATCH on the variable entity. "subvariables_catalog" is a URL to
+  a different variable catalog and is thus not editable, though you can navigate
+   to its location and modify subvariable attributes there. A variable's "id" 
+   and its "derived" state are immutable.
 
-When PATCHing, you may include only the keys in each tuple that are being modified, or you may send the complete tuple. As long as the keys that cannot be modified via PATCH here are not modified, the request will succeed.
+When PATCHing, you may include only the keys in each tuple that are being 
+modified, or you may send the complete tuple. As long as the keys that cannot 
+be modified via PATCH here are not modified, the request will succeed.
 
-Note that, because this catalog contains its entities (rather than collecting them), you cannot PATCH to add new variables, nor can you PATCH a null tuple to delete them. Attempting either will return a 400 response. Creating variables is allowed only by POST to the catalog, while deleting variables is accomplished via a DELETE on the variable entity.
+Note that, because this catalog contains its entities (rather than collecting 
+them), you cannot PATCH to add new variables, nor can you PATCH a null tuple to 
+delete them. Attempting either will return a 400 response. Creating variables is
+ allowed only by POST to the catalog, while deleting variables is accomplished 
+ via a DELETE on the variable entity.
 
 ```json
 {
@@ -110,7 +134,9 @@ Note that, because this catalog contains its entities (rather than collecting th
 }
 ```
 
-PATCHing this payload on the above catalog will return a 204 status. A subsequent GET of the catalog returns the following response; note the change in line 24.
+PATCHing this payload on the above catalog will return a 204 status. A 
+subsequent GET of the catalog returns the following response; note the change in 
+line 24.
 
 ```json
 {
@@ -173,21 +199,34 @@ A POST to this resource must be a Shoji Entity with the following "body" attribu
  * If type is "multiple_response", the definition may include **selected_categories**: an array of category names present in the subvariables. This will mark the specified category or categories as the "selected" response in the multiple response variable. If no "selected_categories" array is provided, the new variable will use any categories already flagged as "selected": true. If no such category exists, the response will return a 400 status.
  * If "type" is "datetime": **resolution**: a string, such as "Y", "M", "D", "h", "m", "s", "ms", that indicates the unit size of the datetime data.
 
-See Variable Definitions for more details and examples of valid attributes, and Feature Guide: Arrays for more information on the various cases for creating array variables.
+See Variable Definitions for more details and examples of valid attributes, and 
+Feature Guide: Arrays for more information on the various cases for creating 
+array variables.
 
-It is encouraged, but not required, to include an "alias" in the body. If omitted, one will be generated from the required "name".
+It is encouraged, but not required, to include an "alias" in the body. If 
+omitted, one will be generated from the required "name".
 
-You may also include "values", which will create the column of data corresponding to this variable definition. See [Importing Data: Column-by-column](#column-by-column) for details and examples.
+You may also include "values", which will create the column of data 
+corresponding to this variable definition. See [Importing Data: Column-by-column](#column-by-column) for details and examples.
 
-You may instead also include an "expr" to derive a variable as a function of other variables. In this case, "type" is not required because it depends on the output of the specified derivation function. For details and examples, see [Deriving Variables](#deriving-variables).
+You may instead also include an "expr" to derive a variable as a function of 
+other variables. In this case, "type" is not required because it depends on the 
+output of the specified derivation function. For details and examples, see 
+[Deriving Variables](#deriving-variables).
 
-A 201 indicates success and includes the URL of the newly-created variable in the Location header.
+A 201 indicates success and includes the URL of the newly-created variable in 
+the Location header.
 
 #### Private variables catalog
 
 `/datasets/{id}/variables/private/{?relative,nosubvars}`
 
-`GET` returns a Shoji Catalog of variables, as described above, containing those variables that are private to the authenticated user. You may `PATCH` this catalog to edit names, aliases, descriptions, etc. of the private variables. `POST`, however, is not supported at this endpoint. To create new private variables, `POST` to the main variables catalog with a `"private": true` body attribute.
+`GET` returns a Shoji Catalog of variables, as described above, containing those
+ variables that are private to the authenticated user. You may `PATCH` this 
+ catalog to edit names, aliases, descriptions, etc. of the private variables. 
+ `POST`, however, is not supported at this endpoint. To create new private 
+ variables, `POST` to the main variables catalog with a `"private": true` body 
+ attribute.
 
 ### Hierarchical Order
 
@@ -199,27 +238,37 @@ Returns a Shoji Order.
 
 #### PATCH
 
-Will expect a Shoji Order representation containing a replacement or new grouped entities. This allows one to create new groups on the fly or overwrite existing groups with new 'entities'.
+Will expect a Shoji Order representation containing a replacement or new grouped 
+entities. This allows one to create new groups on the fly or overwrite existing 
+groups with new 'entities'.
 
-The match happens by each group name and will overwrite the values of each group with the received one.
+The match happens by each group name and will overwrite the values of each group
+ with the received one.
 
-After PATCH any variable not present in the order will always be appended to the root of the graph.
+After PATCH any variable not present in the order will always be appended to the
+ root of the graph.
 
 #### PUT
 
-Receives a Shoji Order representation with a completely new graph. Any previously existing group will be eliminated and any new groups will be added. This will overwrite the complete set of current groups.
+Receives a Shoji Order representation with a completely new graph. Any 
+previously existing group will be eliminated and any new groups will be added.
+ This will overwrite the complete set of current groups.
 
-After PUT any variable not present on any of the groups will always be appended to the root of the graph.
+After PUT any variable not present on any of the groups will always be appended
+ to the root of the graph.
 
 ### Weights
 
 `/datasets/{id}/variables/weights/`
 
-GET a "groups" view with a single group named `weight_variables` that contains the urls of the variables that have been designated as possible weight variables.
+GET a "groups" view with a single group named `weight_variables` that contains 
+the urls of the variables that have been designated as possible weight variables.
 
-PATCH the `value` with a "groups" body. The URLs on the payload (that aren't weight variables already) will be appended to the existing list of weight variables.
+PATCH the `value` with a "groups" body. The URLs on the payload (that aren't 
+weight variables already) will be appended to the existing list of weight variables.
 
-PUT the `value` with a "groups" view. The value will overwrite the current weight variables with the incoming ones. Use this to delete weight variables.
+PUT the `value` with a "groups" view. The value will overwrite the current 
+weight variables with the incoming ones. Use this to delete weight variables.
 
 ```json
 {
@@ -231,14 +280,17 @@ PUT the `value` with a "groups" view. The value will overwrite the current weigh
 ```
 
 <aside class="warning">
-It is only possible to submit variables that belong to the main dataset. That is, variables from joined datasets cannot be set as weight.
+It is only possible to submit variables that belong to the main dataset. That 
+is, variables from joined datasets cannot be set as weight.
 </aside>
 
 ### Search
 
 `/datasets/{id}/variables/search/{?q}`
 
-On GET will return a Crunch Order with the variables matching the `q` token in the URL. The results will be under the "Search Results" group containing the urls for the matching variables.
+On GET will return a Crunch Order with the variables matching the `q` token in 
+the URL. The results will be under the "Search Results" group containing the 
+urls for the matching variables.
 
 ```json
 {
@@ -300,7 +352,8 @@ missing | boolean | If true, the given category is marked as "missing", and is o
 selected | boolean | For categories in multiple response variables, those with `"selected": true` which values correspond to the "response" being selected. If omitted, the category is treated as not selected. Multiple response variables must have at least one category marked as selected and may have more than one.
 
 <aside class="notice">
-For variables with categories, you can get the "missing reasons" from the category definitions. You don't need the "missing_reasons" body attribute.
+For variables with categories, you can get the "missing reasons" from the 
+category definitions. You don't need the "missing_reasons" body attribute.
 </aside>
 
 Format objects may contain:
@@ -321,9 +374,12 @@ include_noneoftheabove | boolean | For multiple response types only. If true, di
 
 #### PATCH
 
-PATCH variable entities to edit their metadata. Send a Shoji Entity with a "body" member containing the attributes to modify. Omitted body attributes will be unchanged.
+PATCH variable entities to edit their metadata. Send a Shoji Entity with a 
+"body" member containing the attributes to modify. Omitted body attributes will 
+be unchanged.
 
-Successful requests return 204 status. Among the actions achievable by PATCHing variable entities:
+Successful requests return 204 status. Among the actions achievable by PATCHing 
+variable entities:
 
 * Editing category attributes and adding categories. Include all categories.
 * Remove categories by sending all categories except for the ones you wish to remove. You can only remove categories that don't have any corresponding data values. Attempting to remove categories that have data associated will fail with a 400 response status.
@@ -342,7 +398,12 @@ Variable "id" and "dataset_id" are immutable.
 
 #### DELETE
 
-Calling DELETE on this resource will delete the variable. On success, `DELETE` returns 200 status with a Shoji View. When deleting array variables, this response value will contain the URLs of the (formerly sub-)variables, which are promoted to regular variables on `DELETE` of the array. That is, deleting an array "unbinds" the subvariables, and to delete the array fully, one must then make a `DELETE` request on each of the returned URLs.
+Calling DELETE on this resource will delete the variable. On success, `DELETE` 
+returns 200 status with a Shoji View. When deleting array variables, this 
+response value will contain the URLs of the (formerly sub-)variables, which are 
+promoted to regular variables on `DELETE` of the array. That is, deleting an 
+array "unbinds" the subvariables, and to delete the array fully, one must then 
+make a `DELETE` request on each of the returned URLs.
 
 For non-array variables, this View will be an empty array.
 
@@ -350,9 +411,13 @@ For non-array variables, this View will be an empty array.
 
 `/datasets/{id}/variables/{id}/summary/{?filter}`
 
-A collection of summary information describing the variable. A successful GET returns an object containing various scalars and tabular results in various formats. The set of included members varies by variable type. Exclusions, filters, and weights may all alter the output.
+A collection of summary information describing the variable. A successful GET 
+returns an object containing various scalars and tabular results in various 
+formats. The set of included members varies by variable type. Exclusions, 
+filters, and weights may all alter the output.
 
-For example, given a numeric variable with data [1, 2, 3, 4, 5, 4, {"?": -1}, 3, 5, {"?": -1}, 4, 3], a successful GET with no exclusions, filters, or weights returns:
+For example, given a numeric variable with data [1, 2, 3, 4, 5, 4, {"?": -1}, 3,
+ 5, {"?": -1}, 4, 3], a successful GET with no exclusions, filters, or weights returns:
 
 ```json
 {
@@ -500,26 +565,45 @@ Example:
 
 ##### GET
 
-This endpoint will return 404 for any variable that is not an array variable (Multiple response and Categorical variable).
+This endpoint will return 404 for any variable that is not an array variable 
+(Multiple response and Categorical variable).
 
-For array variables, this endpoint will return a Shoji Catalog containing a variables catalog with tuples for the subvariables. The tuples will have the same shape as the main variables catalog.
+For array variables, this endpoint will return a Shoji Catalog containing a 
+variables catalog with tuples for the subvariables. The tuples will have the 
+same shape as the main variables catalog.
 
 ##### PATCH
 
-On PATCH, this endpoint allows modification to the variables attributes exposed on the tuples (name, description, alias, discarded).
+On PATCH, this endpoint allows modification to the variables attributes exposed
+ on the tuples (name, description, alias, discarded).
 
-It is possible to add new subvariables to the array variable in question. To do so include the URL of another variable (currently existing on the dataset) on the payload with an empty tuple and such variable will be converted into a subvariable and added at the end.
+It is possible to add new subvariables to the array variable in question. To do 
+so include the URL of another variable (currently existing on the dataset) on 
+the payload with an empty tuple and such variable will be converted into a 
+subvariable and added at the end.
 
 #### Values
 
 `/datasets/{id}/variables/{id}/values/{?start,total,filter}`
 
-A GET on this set of resources will return a JSON array of values from the variable's data. Numeric variables will return numbers, text variables will return strings, and categorical variables will return category names for valid categories and {"?": code} missing markers for missing categories. The "start" and "total" parameters paginate the results. The "filter" is a Crunch filter expression.
+A GET on this set of resources will return a JSON array of values from the 
+variable's data. Numeric variables will return numbers, text variables will 
+return strings, and categorical variables will return category names for valid 
+categories and {"?": code} missing markers for missing categories. The "start" 
+and "total" parameters paginate the results. The "filter" is a Crunch filter 
+expression.
 
 ### Private Variables
 
 `/datasets/{id}/variables/private/`
 
-Private variables are variables that, instead of being shared with everyone, are viewable only by the user that created them. In Crunch, users with view-only permissions on a dataset can still make variables of their own–just as they can make private filters.
+Private variables are variables that, instead of being shared with everyone, 
+are viewable only by the user that created them. In Crunch, users with view-only
+ permissions on a dataset can still make variables of their own–just as they 
+ can make private filters.
 
-Private variables are not shown in the common variable catalog. Instead, they have their own Shoji Catalog of private variables belonging to the specified dataset for the authenticated user. Aside from this separate catalog, private variable entities and the catalog behave just as described above for public variables.
+Private variables are not shown in the common variable catalog. Instead, they 
+have their own Shoji Catalog of private variables belonging to the specified 
+dataset for the authenticated user. Aside from this separate catalog, private
+ variable entities and the catalog behave just as described above for public 
+ variables.
