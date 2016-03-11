@@ -1,0 +1,113 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "HpiLOActiveHealthSystem.0.9.6",
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+        "Name": {
+            "$ref": "Name.json#"
+        },
+        "Modified": {
+            "$ref": "Modified.json#"
+        },
+        "Type": {
+            "$ref": "Type.json#"
+        },
+        "AHSEnabled": {
+            "type": "boolean",
+            "description": "Determines whether HP Active Health System logging is enabled or disabled.",
+            "readonly": false,
+            "etag": true
+        },
+        "LocationParameters": {
+            "type": "object",
+            "description": "These properties are helper query parameters. All or some of these may be added to the AHS location URI.",
+            "additionalProperties": false,
+            "properties": {
+                "downloadAll": {
+                    "description": "This query parameter should be used to download entire AHS log. For example, http://iloname.example.net/ahsdata/HP_xxxxxxxxxx_20140821.ahs?downloadAll=1.",
+                    "etag": true,
+                    "readonly": true,
+                    "type": "string"
+                },
+                "from": {
+                    "description": "This query parameter may be added with the 'to' query parameter to the AHS location URI to limit the range of data returned. The default range is the last seven days of the log and the format is (yyyy-mm-dd). 'downloadAll' parameter should not be used with this query parameter. For example, http://iloname.example.net/ahsdata/HP_xxxxxxxxxx_20140821.ahs?from=2014-03-01&&to=2014-03-30.",
+                    "etag": true,
+                    "readonly": true,
+                    "type": "string"
+                },
+                "to": {
+                    "description": "This query parameter may be added with the 'from' query parameter to the AHS location URI to limit the range of data returned. The default range is the last seven days of the log and the format is (yyyy-mm-dd). 'downloadAll' parameter should not be used with this query parameter. For example, http://iloname.example.net/ahsdata/HP_xxxxxxxxxx_20140821.ahs?from=2014-03-01&&to=2014-03-30.",
+                    "etag": true,
+                    "readonly": true,
+                    "type": "string"
+                },
+                "case_no": {
+                    "description": "This query parameter may be added to the AHS location URI to insert the case number into the AHS log header. For example, http://iloname.example.net/ahsdata/HP_xxxxxxxxxx_20140821.ahs?downloadAll=1&&case_no=abc123.",
+                    "etag": true,
+                    "readonly": true,
+                    "type": "string"
+                },
+                "contact_name": {
+                    "description": "This query parameter may be added to the AHS location URI to insert the contact name into the AHS log header. For example, http://iloname.example.net/ahsdata/HP_xxxxxxxxxx_20140821.ahs?downloadAll=1&&contact_name=JohnDoe.",
+                    "etag": true,
+                    "readonly": true,
+                    "type": "string"
+                },
+                "phone": {
+                    "description": "This query parameter may be added to the AHS location URI to insert the contacts phone number into the AHS log header. For example, http://iloname.example.net/ahsdata/HP_xxxxxxxxxx_20140821.ahs?downloadAll=1&&contact_name=JohnDoe&&phone=555-555-5555.",
+                    "etag": true,
+                    "readonly": true,
+                    "type": "string"
+                },
+                "co_name": {
+                    "description": "This query parameter may be added to the AHS location URI to insert the company name into the AHS log header. For example, http://iloname.example.net/ahsdata/HP_xxxxxxxxxx_20140821.ahs?downloadAll=1&&co_name=myCompany.",
+                    "etag": true,
+                    "readonly": true,
+                    "type": "string"
+                },
+                "email": {
+                    "description": "This query parameter may be added to the AHS location URI to insert the contacts email address into the AHS log header. For example, http://iloname.example.net/ahsdata/HP_xxxxxxxxxx_20140821.ahs?downloadAll=1&&email=abc@xyz.com.",
+                    "etag": true,
+                    "readonly": true,
+                    "type": "string"
+                }
+            },
+            "readonly": false
+        },
+        "links": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "AHSLocation": {
+                    "$ref": "extref.json#",
+                    "description": "A link to HP Active Health System log. HP Active Health System records all configurations for the entire life of the server. This log may become very large and downloading the entire log may take an excessive amount of time. Normally only recent log entries(last 7 days) are necessary to help HP support personnel to troubleshoot health issues. Unless advised to download the entire log, consider downloading a range of days by using 'from' and 'to' query parameters."
+                },
+                "self": {
+                    "$ref": "href.json#",
+                    "description": "The URI for this active health system resource."
+                }
+            }
+        },
+        "AvailableActions": {
+            "$ref": "Actions.json#/definitions/AvailableActions"
+        }
+    },
+    "actions": {
+        "description": "Clear AHS data.",
+        "actions": {
+            "ClearLog": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                    "Action": {
+                        "type": "string",
+                        "enum": [
+                            "ClearLog"
+                        ]
+                    }
+                }
+            }
+        }
+    }
+}

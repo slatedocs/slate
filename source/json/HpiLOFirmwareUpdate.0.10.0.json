@@ -1,0 +1,182 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "HpiLOFirmwareUpdate.0.10.0",
+    "type": "object",
+    "readonly": true,
+    "additionalProperties": false,
+    "properties": {
+        "Name": {
+            "$ref": "Name.json#"
+        },
+        "Modified": {
+            "$ref": "Modified.json#"
+        },
+        "Type": {
+            "$ref": "Type.json#"
+        },
+        "Details": {
+            "type": "string",
+            "description": "Details about the current firmware flash status.",
+            "readonly": true,
+            "etag": true
+        },
+        "ImageType": {
+            "type": "string",
+            "enum": [
+                "NO_DEVICE",
+                "ILO_DEVICE",
+                "ILO_DEVICE_FIRMWARE",
+                "ILO_DEVICE_LANGPK",
+                "ILO_DEVICE_DEBUGGER",
+                "BIOS_DEVICE",
+                "SCD_DEVICE",
+                "CPLD_DEVICE",
+                "CARB_DEVICE",
+                "PM_DEVICE",
+                "UNKNOWN"
+            ],
+            "description": "Firmware flash image type.",
+            "readonly": true,
+            "etag": true
+        },
+        "ProgressPercent": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Firmware flash progress.",
+            "readonly": true,
+            "etag": true
+        },
+        "State": {
+            "type": "string",
+            "enum": [
+                "IDLE",
+                "UPLOADING",
+                "PROGRESSING",
+                "COMPLETED",
+                "ERROR"
+            ],
+            "description": "Current state of the firmware flash.",
+            "readonly": true,
+            "etag": true
+        },
+        "Flags": {
+            "type": "string",
+            "enum": [
+                "NONE",
+                "RESET_ILO",
+                "REQUEST_SYSTEM_COLD_BOOT",
+                "REQUEST_SYSTEM_WARM_BOOT",
+                "DEFERRED_AUX_PWR_CYCLE"
+            ],
+            "description": "Other flags.",
+            "readonly": true,
+            "etag": true
+        },
+        "Bootleg": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "readonly": true,
+            "description": "Supplied bootleg text, if any, otherwise blank.",
+            "etag": true
+        },
+        "Copyright": {
+            "type": "string",
+            "readonly": true,
+            "description": "The copyright date of the firmware image.",
+            "etag": true
+        },
+        "ImageSizeInBytes": {
+            "type": "integer",
+            "readonly": true,
+            "description": "The size of the firmware image (including any signatures) in bytes.",
+            "etag": true
+        },
+        "links": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "UpdateUri": {
+                    "$ref": "extref.json#",
+                    "description": "Link to UpdateUri."
+                },
+                "self": {
+                    "$ref": "href.json#",
+                    "description": "Link to self."
+                }
+            },
+            "description": "The links array contains links to resources related to this resource."
+        },
+        "AvailableActions": {
+            "type": "array",
+            "readonly": true,
+            "additionalItems": false,
+            "uniqueItems": true,
+            "items": {
+                "anyOf": [
+                    {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                            "Action": {
+                                "type": "string",
+                                "enum": [
+                                    "InstallFromURI"
+                                ],
+                                "description": "Action used to install firmware from a URI. Updating management processor firmware will cause the management processor to reboot. This will terminate any connections to the management processor including Remote Console and Virtual Media. Updating other types of firmware might not cause management processor to reboot, but might require a server reboot. The server will not reboot automatically.",
+                                "readonly": true,
+                                "etag": true
+                            },
+                            "Capabilities": {
+                                "type": "array",
+                                "items": {
+                                    "type": "object",
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "PropertyName": {
+                                            "type": "string",
+                                            "enum": [
+                                                "FirmwareURI"
+                                            ],
+                                            "description": "The URI used to retrieve the firmware.",
+                                            "readonly": true
+                                        }
+                                    }
+                                },
+                                "description": "This array item defines the allowable values supported for this custom action on this resource.",
+                                "readonly": true
+                            }
+                        },
+                        "description": "This array item defines an available custom action on this resource.",
+                        "readonly": true
+                    }
+                ]
+            }
+        }
+    },
+    "actions": {
+        "description": "POST custom actions defined for this type. (The implemented actions may be a subset of these.)",
+        "actions": {
+            "InstallFromURI": {
+                "properties": {
+                    "Action": {
+                        "type": "string",
+                        "readonly": true,
+                        "enum": [
+                            "InstallFromURI"
+                        ]
+                    },
+                    "FirmwareURI": {
+                        "type": "string",
+                        "readonly": true,
+                        "format": "uri"
+                    }
+                },
+                "type": "object",
+                "readonly": true,
+                "additionalProperties": false
+            }
+        }
+    }
+}

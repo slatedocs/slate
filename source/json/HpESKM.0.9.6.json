@@ -1,0 +1,231 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "HpESKM.0.9.6",
+    "type": "object",
+    "readonly": false,
+    "additionalProperties": false,
+    "description": "ESKM (Enterprise Security Key Manager) object enables user to connect to an operational key manager, change redundancy settings, view the key manager connection settings, test the connection, and view key management events.",
+    "properties": {
+        "Type": {
+            "$ref": "Type.json#"
+        },
+        "PrimaryKeyServerAddress": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "description": "Primary key server IP address or FQDN. Set to null to clear the value.",
+            "readonly": false,
+            "etag": true
+        },
+        "PrimaryKeyServerPort": {
+            "type": [
+                "integer",
+                "null"
+            ],
+            "description": "Primary key server port number. Set to null to clear the value.",
+            "readonly": false,
+            "etag": true
+        },
+        "SecondaryKeyServerAddress": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "description": "Secondary key server IP address or FQDN. Set to null to clear the value.",
+            "readonly": false,
+            "etag": true
+        },
+        "SecondaryKeyServerPort": {
+            "type": [
+                "integer",
+                "null"
+            ],
+            "description": "Secondary key server port number. Set to null to clear the value.",
+            "readonly": false,
+            "etag": true
+        },
+        "KeyServerRedundancyReq": {
+            "type": "boolean",
+            "description": "If true encryption keys will be maintained on both the configured key servers. When this option is disabled, iLO will not verify that encryption keys are copied to both of the configured key servers.",
+            "readonly": false,
+            "etag": true
+        },
+        "KeyManagerConfig": {
+            "type": "object",
+            "readonly": false,
+            "additionalProperties": false,
+            "properties": {
+                "AccountName": {
+                    "type": "string",
+                    "description": "Account name on ESKM.",
+                    "readonly": true,
+                    "etag": true
+                },
+                "AccountGroup": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "description": "Account group on ESKM.",
+                    "readonly": false,
+                    "etag": true
+                },
+                "ESKMLocalCACertificateName": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "description": "This is the name of Local CA (Certificate Authority) in ESKM that is used to sign the ESKM server certificate. iLO will retrieve this certificate from the ESKM server.",
+                    "readonly": false,
+                    "etag": true
+                },
+                "ImportedCertificateIssuer": {
+                    "type": "string",
+                    "description": "Imported certificate issuer.",
+                    "readonly": true,
+                    "etag": true
+                },
+                "ImportedCertificateSubject": {
+                    "type": "string",
+                    "description": "Imported certificate subject.",
+                    "readonly": true,
+                    "etag": true
+                },
+                "LoginName": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "description": "ESKM administrator account login name. This property always returns null on GET.",
+                    "readonly": false,
+                    "etag": true
+                },
+                "Password": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "description": "ESKM administrator account password. This property always returns null on GET.",
+                    "readonly": false,
+                    "etag": true
+                }
+            }
+        },
+        "ESKMEvents": {
+            "type": "array",
+            "readonly": true,
+            "items": {
+                "type": "object",
+                "description": "List of ESKM events (activity trace logs).",
+                "readonly": true,
+                "additionalProperties": false,
+                "properties": {
+                    "Timestamp": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "format": "date-time",
+                        "description": "Time of ESKM event.",
+                        "readonly": true
+                    },
+                    "Event": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "description": "ESKM event description.",
+                        "readonly": true
+                    }
+                },
+                "etag": true
+            }
+        },
+        "links": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "self": {
+                    "$ref": "href.json#",
+                    "description": "Link to self."
+                }
+            }
+        },
+        "AvailableActions": {
+            "type": "array",
+            "description": "The list of actions this service supports.",
+            "additionalItems": false,
+            "uniqueItems": true,
+            "items": {
+                "anyOf": [
+                    {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                            "Action": {
+                                "type": "string",
+                                "enum": [
+                                    "TestESKMConnections"
+                                ],
+                                "description": "Test ESKM connections.",
+                                "readonly": true,
+                                "etag": true
+                            }
+                        }
+                    },
+                    {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                            "Action": {
+                                "type": "string",
+                                "enum": [
+                                    "ClearESKMLog"
+                                ],
+                                "description": "Clear ESKM log.",
+                                "readonly": true,
+                                "etag": true
+                            }
+                        }
+                    }
+                ]
+            }
+        }
+    },
+    "actions": {
+        "description": "Custom ESKM actions.",
+        "actions": {
+            "TestESKMConnections": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                    "Action": {
+                        "type": "string",
+                        "enum": [
+                            "TestESKMConnections"
+                        ],
+                        "enumDescriptions": {
+                            "TestESKMConnections": "Test ESKM connections."
+                        }
+                    }
+                }
+            },
+            "ClearESKMLog": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                    "Action": {
+                        "type": "string",
+                        "enum": [
+                            "ClearESKMLog"
+                        ],
+                        "enumDescriptions": {
+                            "ClearESKMLog": "Clears ESKM log."
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,128 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "ListenerDestination.0.91.1",
+    "type": "object",
+    "readonly": false,
+    "additionalProperties": false,
+    "description": "This resource shall be used to represent a destination for events that have been subscribed to by a client.",
+    "properties": {
+        "Oem": {
+            "type": "object",
+            "additionalProperties": true,
+            "properties": {
+                "Hp": {
+                    "$ref": "HpListenerDestination.json#"
+                }
+            }
+        },
+        "Name": {
+            "$ref": "Name.json#"
+        },
+        "Modified": {
+            "$ref": "Modified.json#"
+        },
+        "Type": {
+            "$ref": "Type.json#"
+        },
+        "Description": {
+            "$ref": "Description.json#"
+        },
+        "Destination": {
+            "type": "string",
+            "format": "uri",
+            "description": "The URI of the destination listener service.",
+            "readonly": false,
+            "displayname": "Destination",
+            "etag": true
+        },
+        "HttpHeaders": {
+            "type": [
+                "object",
+                "null"
+            ],
+            "description": "This is for setting HTTP headers, such as authorization information.  This object will be null on a GET.",
+            "patternProperties": {
+                "^[^:\\s]+$": {
+                    "type": "string",
+                    "etag": true
+                }
+            },
+            "displayname": "HttpHeaders",
+            "readonly": false,
+            "etag": true
+        },
+        "EventTypes": {
+            "type": "array",
+            "items": {
+                "type": "string",
+                "enum": [
+                    "StatusChange",
+                    "ResourceUpdated",
+                    "ResourceAdded",
+                    "ResourceRemoved",
+                    "Alert"
+                ]
+            },
+            "description": "This property shall contain the types of Events that shall be sent to the desination.",
+            "enumDescriptions": {
+                "StatusChange": "The status of this resource has changed",
+                "ResourceUpdated": "The value of this resource has been updated",
+                "ResourceAdded": "A resource has been added",
+                "ResourceRemoved": "A resource has been removed",
+                "Alert": "A condition exists which requires attention"
+            },
+            "readonly": false,
+            "displayname": "EventTypes"
+        },
+        "TTLCount": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 999999,
+            "description": "The number of TTLUnits until this listener destination subscription expires.  It may be renewed prior to expire to reset the Time to Live counter.  The value 999999 is reserved to mean a perpetual subscription.",
+            "readonly": false,
+            "displayname": "TTLCount",
+            "etag": true
+        },
+        "TTLUnits": {
+            "type": "string",
+            "description": "The time unit used to measure the subscription time of this listener destination.  This is the units for TTLCount and is used to express the subscription lifetime of the listener destination.",
+            "enum": [
+                "seconds",
+                "minutes",
+                "days"
+            ],
+            "enumDescriptions": {
+                "seconds": "Time to Live (TTL) in Seconds",
+                "minutes": "Time to Live (TTL) in Minutes",
+                "days": "Time to Live (TTL) in Days"
+            },
+            "readonly": false,
+            "displayname": "TTLUnits",
+            "etag": true
+        },
+        "Context": {
+            "type": "string",
+            "description": "A client-supplied string that is stored with the listener destination subscription.",
+            "readonly": false,
+            "displayname": "Context",
+            "etag": true
+        },
+        "links": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "self": {
+                    "$ref": "href.json#",
+                    "description": "This property shall contain the href to this resource."
+                },
+                "Oem": {
+                    "$ref": "Oem.json#"
+                }
+            },
+            "description": "The links array contains the links to other resources that are related to this resource.",
+            "displayname": "links"
+        }
+    },
+    "private": false,
+    "displayname": "ListenerDestination.0.91.0"
+}

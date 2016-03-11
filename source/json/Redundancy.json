@@ -1,0 +1,62 @@
+{
+    "type": "object",
+    "readonly": true,
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "id": "http://jsonschema.net",
+    "description": "This is the redundancy definition used in other resource schemas.",
+    "additionalProperties": false,
+    "properties": {
+        "ActiveCorrelatableIDs": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "description": "Contains any CorrelatableIDs that represent components of this redundancy set.  The correlatableID values can be JSON Pointers or UEFI identifiers, for example."
+        },
+        "Name": {
+            "type": "string",
+            "readonly": true,
+            "etag": true
+        },
+        "Mode": {
+            "type": "string",
+            "description": "This is the redundancy mode of the group.  Failover indicates a master/subordinate type arrangement where status indicates the role of this manager.  N+1 indicates an arrangement where the redundancy set needs MaxNumSupported-1 number of resources in order to be redundant.  Load Balanced indicates all members are active. However, their functionality is not independent of each other. Their functioning is determined by some sort of load balancing algorithm and sparing is implied (i.e. each member can be a spare for the others).  Sparing indicates that all members are active and are aware of each other. However, their functionality is independent until failover. Each member can be a spare for the other(s).  Limited Sparing indicates that all members are active, and they may or may not be aware of each and they are not spares for each other.",
+            "readonly": true,
+            "enum": [
+                "Failover",
+                "N+1",
+                "LoadBalanced",
+                "Sparing",
+                "LimitedSparing"
+            ],
+            "etag": true
+        },
+        "Status": {
+            "$ref": "Status.json#"
+        },
+        "MaxNumSupported": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "The maximum number of members allowed in the redundancy group, including this member.",
+            "readonly": true,
+            "etag": true
+        },
+        "MinNumNeeded": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "The minimum number of members allowed in the redundancy group for the current redundancy mode to still be fault tolerant.",
+            "readonly": true,
+            "etag": true
+        },
+        "links": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "self": {
+                    "$ref": "href.json#",
+                    "description": "link to self"
+                }
+            }
+        }
+    }
+}

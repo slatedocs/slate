@@ -1,0 +1,421 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "EventService.0.91.0",
+    "type": "object",
+    "readonly": true,
+    "additionalProperties": false,
+    "description": "This is the schema definition for the Event Service.  It represents the properties for the service itself and has links to the actual list of subscriptions.",
+    "properties": {
+        "Oem": {
+            "type": "object",
+            "additionalProperties": true,
+            "properties": {
+                "Hp": {
+                    "$ref": "HpEventService.json#"
+                }
+            }
+        },
+        "Name": {
+            "$ref": "Name.json#"
+        },
+        "Modified": {
+            "$ref": "Modified.json#"
+        },
+        "Type": {
+            "$ref": "Type.json#"
+        },
+        "Description": {
+            "$ref": "Description.json#"
+        },
+        "links": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "Subscriptions": {
+                    "$ref": "href.json#",
+                    "description": "This is a reference to a collection of ListenerDestination resources.",
+                    "readonly": true
+                },
+                "Oem": {
+                    "$ref": "Oem.json#"
+                },
+                "self": {
+                    "$ref": "href.json#",
+                    "description": "This is the URI of this resource."
+                }
+            },
+            "description": "The object contains references to other resources.",
+            "displayname": "links"
+        },
+        "Status": {
+            "$ref": "Status.json#"
+        },
+        "DeliveryRetryAttempts": {
+            "type": "integer",
+            "description": "This is the number of attempts an event posting is retried before the subscription is terminated.",
+            "readonly": true,
+            "displayname": "DeliveryRetryAttempts",
+            "etag": true
+        },
+        "DeliveryRetryIntervalInSeconds": {
+            "type": "integer",
+            "description": "This represents the number of seconds between retry attempts for sending any given Event",
+            "readonly": true,
+            "displayname": "DeliveryRetryIntervalInSeconds",
+            "etag": true
+        },
+        "SubscriptionRemovalAction": {
+            "type": "string",
+            "description": "This property indicates what the service will do to an event subscription after the number of delivery retry attempts has been exhausted.",
+            "enum": [
+                "Remove",
+                "Disable",
+                "Ignore"
+            ],
+            "enumDescriptions": {
+                "Remove": "Remove the subscription",
+                "Disable": "Disable the subscription",
+                "Ignore": "Ignore the condition"
+            },
+            "readonly": true,
+            "displayname": "SubscriptionRemovalAction",
+            "etag": true
+        },
+        "SubscriptionRemovalTimeIntervalInMinutes": {
+            "type": "integer",
+            "description": "This is the minimum amount of time after the failed events that the service will wait before doing the SubscriptionRemovalAction.",
+            "readonly": true,
+            "displayname": "SubscriptionRemovalTimeIntervalInMinutes",
+            "etag": true
+        },
+        "EventTypesForSubscription": {
+            "type": "array",
+            "description": "This is the types of Events that can be subscribed to.",
+            "readonly": true,
+            "items": {
+                "type": "string",
+                "readonly": true,
+                "enum": [
+                    "StatusChange",
+                    "ResourceUpdated",
+                    "ResourceAdded",
+                    "ResourceRemoved",
+                    "Alert"
+                ],
+                "enumDescriptions": {
+                    "StatusChange": "The status of this resource has changed",
+                    "ResourceUpdated": "The value of this resource has been updated",
+                    "ResourceAdded": "A resource has been added",
+                    "ResourceRemoved": "A resource has been removed",
+                    "Alert": "A condition exists which requires attention"
+                }
+            },
+            "displayname": "EventTypesForSubscription"
+        },
+        "AvailableActions": {
+            "type": "array",
+            "readonly": true,
+            "additionalItems": false,
+            "uniqueItems": true,
+            "items": {
+                "anyOf": [
+                    {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                            "Action": {
+                                "type": "string",
+                                "enum": [
+                                    "SubmitTestEvent"
+                                ],
+                                "description": "The SubmitTestEvent action causes a test event to be added to the event service.  This message should then be sent to any appropriate ListenerDestination targets.",
+                                "readonly": true,
+                                "displayname": "Action",
+                                "enumDescriptions": {
+                                    "SubmitTestEvent": "Submit a test event"
+                                }
+                            },
+                            "Capabilities": {
+                                "type": "array",
+                                "items": {
+                                    "anyOf": [
+                                        {
+                                            "type": "object",
+                                            "additionalProperties": false,
+                                            "properties": {
+                                                "PropertyName": {
+                                                    "type": "string",
+                                                    "enum": [
+                                                        "EventType"
+                                                    ],
+                                                    "description": "This is the type of event to be added.",
+                                                    "readonly": true,
+                                                    "displayname": "PropertyName",
+                                                    "enumDescriptions": {
+                                                        "EventType": "The type of test event to submit"
+                                                    }
+                                                },
+                                                "AllowableValues": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string",
+                                                        "enum": [
+                                                            "StatusChange",
+                                                            "ResourceUpdated",
+                                                            "ResourceAdded",
+                                                            "ResourceRemoved",
+                                                            "Alert"
+                                                        ]
+                                                    },
+                                                    "enumDescriptions": {
+                                                        "StatusChange": "The status of this resource has changed",
+                                                        "ResourceUpdated": "The value of this resource has been updated",
+                                                        "ResourceAdded": "A resource has been added",
+                                                        "ResourceRemoved": "A resource has been removed",
+                                                        "Alert": "A condition exists which requires attention"
+                                                    },
+                                                    "description": "This array defines the supported values for this property on this resource.",
+                                                    "readonly": true,
+                                                    "displayname": "AllowableValues"
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "type": "object",
+                                            "additionalProperties": false,
+                                            "properties": {
+                                                "PropertyName": {
+                                                    "type": "string",
+                                                    "enum": [
+                                                        "EventID"
+                                                    ],
+                                                    "description": "This is the EventID of the event to be added.",
+                                                    "readonly": true,
+                                                    "displayname": "PropertyName",
+                                                    "enumDescriptions": {
+                                                        "EventID": "Event ID"
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "type": "object",
+                                            "additionalProperties": false,
+                                            "properties": {
+                                                "PropertyName": {
+                                                    "type": "string",
+                                                    "enum": [
+                                                        "EventTimestamp"
+                                                    ],
+                                                    "format": "date-time",
+                                                    "description": "This is the time stamp of event to be added.",
+                                                    "readonly": true,
+                                                    "displayname": "PropertyName",
+                                                    "enumDescriptions": {
+                                                        "EventTimestamp": "The time stamp of the test event"
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "type": "object",
+                                            "additionalProperties": false,
+                                            "properties": {
+                                                "PropertyName": {
+                                                    "type": "string",
+                                                    "enum": [
+                                                        "Severity"
+                                                    ],
+                                                    "description": "This is the Severity of event to be added.",
+                                                    "readonly": true,
+                                                    "displayname": "PropertyName",
+                                                    "enumDescriptions": {
+                                                        "Severity": "The severity of the test event"
+                                                    }
+                                                },
+                                                "AllowableValues": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string",
+                                                        "enum": [
+                                                            "OK",
+                                                            "Warning",
+                                                            "Critical"
+                                                        ]
+                                                    },
+                                                    "description": "This array defines the supported values for this property on this resource.",
+                                                    "readonly": true,
+                                                    "displayname": "AllowableValues"
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "type": "object",
+                                            "readonly": true,
+                                            "additionalProperties": false,
+                                            "properties": {
+                                                "PropertyName": {
+                                                    "type": "string",
+                                                    "enum": [
+                                                        "Message"
+                                                    ],
+                                                    "description": "This is the Message of the event to be added.",
+                                                    "readonly": true,
+                                                    "displayname": "PropertyName",
+                                                    "enumDescriptions": {
+                                                        "Message": "Message"
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "type": "object",
+                                            "readonly": true,
+                                            "additionalProperties": false,
+                                            "properties": {
+                                                "PropertyName": {
+                                                    "type": "string",
+                                                    "enum": [
+                                                        "MessageID"
+                                                    ],
+                                                    "description": "This is the MessageID of the event to be added.",
+                                                    "readonly": true,
+                                                    "displayname": "PropertyName",
+                                                    "enumDescriptions": {
+                                                        "MessageID": "Message ID"
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "type": "object",
+                                            "readonly": true,
+                                            "additionalProperties": false,
+                                            "properties": {
+                                                "PropertyName": {
+                                                    "type": "string",
+                                                    "enum": [
+                                                        "MessageArgs"
+                                                    ],
+                                                    "description": "These are the MessageArgs of the event to be added.",
+                                                    "readonly": true,
+                                                    "displayname": "PropertyName",
+                                                    "enumDescriptions": {
+                                                        "MessageArgs": "Message Arguments"
+                                                    }
+                                                },
+                                                "AllowableValues": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string"
+                                                    },
+                                                    "description": "This array defines the supported values for this property on this resource.",
+                                                    "readonly": true,
+                                                    "displayname": "AllowableValues"
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "type": "object",
+                                            "readonly": true,
+                                            "additionalProperties": false,
+                                            "properties": {
+                                                "PropertyName": {
+                                                    "type": "string",
+                                                    "enum": [
+                                                        "OriginOfCondition"
+                                                    ],
+                                                    "description": "This is the OriginOfCondition of the event to be added.",
+                                                    "readonly": true,
+                                                    "displayname": "PropertyName",
+                                                    "enumDescriptions": {
+                                                        "OriginOfCondition": "Origin of Condition"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    ]
+                                },
+                                "description": "This array item defines the allowable values supported for this custom action on this resource.",
+                                "readonly": true,
+                                "displayname": "Capabilities"
+                            }
+                        },
+                        "description": "This array item defines an available custom action on this resource.",
+                        "readonly": true,
+                        "displayname": "0"
+                    }
+                ]
+            }
+        }
+    },
+    "private": false,
+    "displayname": "EventService.0.91.0",
+    "actions": {
+        "description": "This describes the POST custom actions defined for this type (the implemented actions might be a subset of these).",
+        "actions": {
+            "SubmitTestEvent": {
+                "type": "object",
+                "readonly": true,
+                "additionalProperties": false,
+                "properties": {
+                    "Action": {
+                        "type": "string",
+                        "enum": [
+                            "SubmitTestEvent"
+                        ]
+                    },
+                    "EventType": {
+                        "type": "string",
+                        "readonly": true,
+                        "enum": [
+                            "StatusChange",
+                            "ResourceUpdated",
+                            "ResourceAdded",
+                            "ResourceRemoved",
+                            "Alert"
+                        ]
+                    },
+                    "EventID": {
+                        "type": "string",
+                        "readonly": true
+                    },
+                    "EventTimestamp": {
+                        "type": "string",
+                        "format": "date-time",
+                        "readonly": true
+                    },
+                    "Severity": {
+                        "type": "string",
+                        "readonly": true,
+                        "enum": [
+                            "OK",
+                            "Warning",
+                            "Critical"
+                        ]
+                    },
+                    "Message": {
+                        "type": "string",
+                        "readonly": true
+                    },
+                    "MessageID": {
+                        "type": "string",
+                        "readonly": true
+                    },
+                    "MessageArgs": {
+                        "type": "array",
+                        "readonly": true,
+                        "items": {
+                            "type": "string",
+                            "readonly": true
+                        }
+                    },
+                    "OriginOfCondition": {
+                        "type": "string",
+                        "readonly": true
+                    }
+                }
+            }
+        }
+    }
+}

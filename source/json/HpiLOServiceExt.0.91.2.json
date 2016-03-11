@@ -1,0 +1,318 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "HpiLOServiceExt.0.91.2",
+    "type": "object",
+    "readonly": true,
+    "additionalProperties": false,
+    "description": "This object represents the extended HP RESTful API root service.",
+    "properties": {
+        "Manager": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "readonly": true,
+                "properties": {
+                    "Blade": {
+                        "type": "object",
+                        "description": "Provides blade-related details if this is a blade server.",
+                        "readonly": true,
+                        "properties": {
+                            "BayNumber": {
+                                "type": "string",
+                                "description": "Specifies the location of the blade in the enclosure.",
+                                "etag": true,
+                                "readonly": true
+                            },
+                            "EnclosureName": {
+                                "type": "string",
+                                "description": "Specifies the name of the enclosure in which the blade is present.",
+                                "etag": true,
+                                "readonly": true
+                            },
+                            "RackName": {
+                                "type": "string",
+                                "description": "Specifies the name of the rack in which the enclosure is present.",
+                                "etag": true,
+                                "readonly": true
+                            },
+                            "links": {
+                                "type": "object",
+                                "additionalProperties": false,
+                                "readonly": true,
+                                "properties": {
+                                    "self": {
+                                        "$ref": "href.json#",
+                                        "description": "The URI for this management processor service ext resource.",
+                                        "readonly": true
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "DefaultLanguage": {
+                        "type": "string",
+                        "description": "Default language used for the Web interface.",
+                        "etag": true,
+                        "readonly": true
+                    },
+                    "FQDN": {
+                        "type": "string",
+                        "description": "Fully qualified domain name of the management processor.",
+                        "etag": true,
+                        "readonly": true
+                    },
+                    "HostName": {
+                        "type": "string",
+                        "description": "The name of management processor.",
+                        "etag": true,
+                        "readonly": true
+                    },
+                    "IPManager": {
+                        "type": [
+                            "object",
+                            "null"
+                        ],
+                        "additionalProperties": true,
+                        "patternProperties": {
+                            "^[^:\\s]+$": {
+                                "type": "string",
+                                "etag": true
+                            }
+                        },
+                        "displayname": "IPManager",
+                        "readonly": true,
+                        "etag": true
+                    },
+                    "Languages": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "readonly": true,
+                            "properties": {
+                                "Language": {
+                                    "type": "string",
+                                    "description": "Specifies one of the languages supported by the management processor.",
+                                    "etag": true,
+                                    "readonly": true
+                                },
+                                "TranslationName": {
+                                    "type": "string",
+                                    "description": "Specifies one of the languages supported by the management processor.",
+                                    "etag": true,
+                                    "readonly": true
+                                },
+                                "Version": {
+                                    "type": "string",
+                                    "description": "Specifies the version of the management processor in the respective language.",
+                                    "etag": true,
+                                    "readonly": true
+                                },
+                                "links": {
+                                    "type": "object",
+                                    "additionalProperties": false,
+                                    "readonly": true,
+                                    "properties": {
+                                        "self": {
+                                            "$ref": "href.json#",
+                                            "description": "The URI for this languages resource.",
+                                            "readonly": true
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "ManagerFirmwareVersion": {
+                        "type": "string",
+                        "description": "The major and minor management processor version numbers.",
+                        "etag": true,
+                        "readonly": true
+                    },
+                    "ManagerFirmwareVersionPass": {
+                        "type": "string",
+                        "description": "The build or pass number of the management processor version.",
+                        "etag": true,
+                        "readonly": true
+                    },
+                    "ManagerType": {
+                        "type": "string",
+                        "description": "The type of the service manager.",
+                        "etag": true,
+                        "readonly": true
+                    },
+                    "links": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "description": "The URIs for the resources related to management processor service extension.",
+                        "readonly": true,
+                        "properties": {
+                            "self": {
+                                "$ref": "href.json#",
+                                "description": "The URIs for the resources related to management processor service extension.",
+                                "readonly": true
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "Sessions": {
+            "type": "object",
+            "additionalProperties": false,
+            "readonly": true,
+            "properties": {
+                "CertCommonName": {
+                    "type": "string",
+                    "description": "The name of the management processor as it appears in the digital certificate when a secure web GUI session is established to the management processor.",
+                    "etag": true,
+                    "readonly": true
+                },
+                "KerberosEnabled": {
+                    "type": "boolean",
+                    "description": "Specifies whether Kerberos login is enabled.",
+                    "etag": true,
+                    "readonly": true
+                },
+                "LDAPAuthLicenced": {
+                    "type": "boolean",
+                    "description": "Specifies whether a valid license is installed for LDAP use.",
+                    "etag": true,
+                    "readonly": true
+                },
+                "LDAPEnabled": {
+                    "type": "boolean",
+                    "description": "Specifies whether LDAP login is enabled.",
+                    "etag": true,
+                    "readonly": true
+                },
+                "LocalLoginEnabled": {
+                    "type": "boolean",
+                    "description": "Specifies whether local users can log in.",
+                    "etag": true,
+                    "readonly": true
+                },
+                "LoginFailureDelay": {
+                    "type": "integer",
+                    "description": "The delay (seconds) when a management processor login attempt has failed.",
+                    "etag": true,
+                    "minimum": 0,
+                    "readonly": true
+                },
+                "LoginHint": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "readonly": true,
+                    "properties": {
+                        "Hint": {
+                            "type": "string",
+                            "description": "The information on how to log in to the management processor.",
+                            "etag": true,
+                            "readonly": true
+                        },
+                        "HintPOSTData": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "description": "The POST information on how to log in to the management processor.",
+                            "readonly": true,
+                            "properties": {
+                                "Password": {
+                                    "type": "string",
+                                    "description": "The password for logging in to the management processor.",
+                                    "etag": true,
+                                    "readonly": true
+                                },
+                                "UserName": {
+                                    "type": "string",
+                                    "description": "The user name for logging in to the management processor.",
+                                    "etag": true,
+                                    "readonly": true
+                                },
+                                "links": {
+                                    "type": "object",
+                                    "additionalProperties": false,
+                                    "readonly": true,
+                                    "properties": {
+                                        "self": {
+                                            "$ref": "href.json#",
+                                            "description": "The URI for this hint POST data resource.",
+                                            "readonly": true
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "links": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "readonly": true,
+                            "properties": {
+                                "self": {
+                                    "$ref": "href.json#",
+                                    "description": "The URI for this login hint resource.",
+                                    "readonly": true
+                                }
+                            }
+                        }
+                    }
+                },
+                "SecurityMessage": {
+                    "type": "string",
+                    "description": "The login security banner message that is displayed on the management processor Login page.",
+                    "etag": true,
+                    "readonly": true
+                },
+                "SecurityOverride": {
+                    "type": "boolean",
+                    "description": "Specifies whether the security override switch is enabled.",
+                    "etag": true,
+                    "readonly": true
+                },
+                "ServerName": {
+                    "type": "string",
+                    "description": "The name of the server that this management processor is managing.",
+                    "etag": true,
+                    "readonly": true
+                },
+                "links": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "readonly": true,
+                    "properties": {
+                        "self": {
+                            "$ref": "href.json#",
+                            "description": "The URI for this management processor service extension.",
+                            "readonly": true
+                        }
+                    }
+                }
+            }
+        },
+        "Type": {
+            "$ref": "Type.json#"
+        },
+        "links": {
+            "type": "object",
+            "additionalProperties": false,
+            "readonly": true,
+            "properties": {
+                "Providers": {
+                    "$ref": "href.json#",
+                    "description": "The URIs for provider resources.",
+                    "readonly": true
+                },
+                "ResourceDirectory": {
+                    "$ref": "href.json#",
+                    "description": "The URI for the  resource directory.",
+                    "readonly": true
+                },
+                "self": {
+                    "$ref": "href.json#",
+                    "description": "The URI for this provider resource.",
+                    "readonly": true
+                }
+            }
+        }
+    }
+}

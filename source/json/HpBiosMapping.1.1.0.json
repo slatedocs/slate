@@ -1,0 +1,101 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "HpBiosMapping.1.1.0",
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+        "Name": {
+            "$ref": "Name.json#"
+        },
+        "Modified": {
+            "$ref": "Modified.json#"
+        },
+        "Type": {
+            "$ref": "Type.json#"
+        },
+        "BiosPciSettingsMappings": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                    "CorrelatableID": {
+                        "description": "Contains any CorrelatableIDs that represent this PCI device. The CorrelatableID values can be JSON Pointers or UEFI identifiers, for example.",
+                        "readonly": true
+                    },
+                    "Instance": {
+                        "type": "integer",
+                        "description": "The instance number of the parent PCI device for this association set.",
+                        "readonly": true
+                    },
+                    "Associations": {
+                        "type": "array",
+                        "items": {
+                            "type": "string",
+                            "pattern": "^[A-Z][A-Za-z0-9]+$"
+                        },
+                        "description": "The BIOS settings associated with the parent PCI device. Users can modify these settings by looking them up in the HpBios pending settings resource.",
+                        "readonly": true
+                    },
+                    "Subinstances": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "CorrelatableID": {
+                                    "description": "Contains any CorrelatableIDs that represent this PCI device. The CorrelatableID values can be JSON Pointers or UEFI identifiers, for example.",
+                                    "readonly": true
+                                },
+                                "Subinstance": {
+                                    "type": "integer",
+                                    "description": "The sub-instance number of the child PCI device for this association set.",
+                                    "readonly": true
+                                },
+                                "Associations": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string",
+                                        "pattern": "^[A-Z][A-Za-z0-9]+$"
+                                    },
+                                    "description": "The BIOS settings associated with the child PCI device. Users can modify these settings by looking them up in the HpBios pending settings resource.",
+                                    "readonly": true
+                                }
+                            }
+                        },
+                        "description": "Sub-instances of child PCI devices and BIOS settings that are associated.",
+                        "readonly": true,
+                        "required": [
+                            "CorrelatableID",
+                            "Subinstance",
+                            "Associations"
+                        ]
+                    }
+                },
+                "required": [
+                    "CorrelatableID",
+                    "Instance",
+                    "Associations",
+                    "Subinstances"
+                ]
+            },
+            "description": "Mappings of BIOS settings to the corresponding PCI devices. This includes, for example, mappings of BIOS settings that enable or disable PCI devices or network boot.",
+            "readonly": true
+        },
+        "links": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "self": {
+                    "$ref": "href.json#",
+                    "description": "This is the URI of this resource.",
+                    "readonly": true
+                }
+            }
+        }
+    },
+    "required": [
+        "Name",
+        "Type"
+    ]
+}

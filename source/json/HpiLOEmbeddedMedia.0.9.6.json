@@ -1,0 +1,95 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "HpiLOEmbeddedMedia.0.9.6",
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+        "Name": {
+            "$ref": "Name.json#"
+        },
+        "Modified": {
+            "$ref": "Modified.json#"
+        },
+        "Type": {
+            "$ref": "Type.json#"
+        },
+        "Controller": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "Status": {
+                    "$ref": "Status.json#"
+                },
+                "Firmware": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "Current": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "VersionString": {
+                                    "type": "string",
+                                    "description": "The current version of the embedded media controller.",
+                                    "readonly": true,
+                                    "etag": true
+                                }
+                            },
+                            "readonly": true
+                        }
+                    },
+                    "readonly": true
+                }
+            },
+            "readonly": true
+        },
+        "SDCard": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "Status": {
+                    "$ref": "Status.json#"
+                },
+                "LBACount": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "description": "The LBA count.",
+                    "readonly": true,
+                    "etag": true
+                },
+                "SizeString": {
+                    "type": "string",
+                    "description": "The size of the SD card present in the server, in a readable format.",
+                    "readonly": true,
+                    "etag": true
+                },
+                "HpCertified": {
+                    "type": "boolean",
+                    "description": "True if this is an HP-certified SD card.",
+                    "readonly": true,
+                    "etag": true
+                },
+                "WriteCount": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "description": "The number of writes on the SD card. Rendered only if this is an HP-certified SD card. ",
+                    "readonly": true,
+                    "etag": true
+                }
+            },
+            "readonly": true
+        },
+        "links": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "self": {
+                    "$ref": "href.json#",
+                    "description": "The URI for this management processor embedded media resource.",
+                    "readonly": true
+                }
+            }
+        }
+    },
+    "readonly": true
+}

@@ -1,0 +1,84 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "HpiLOFederationGroup.0.9.5",
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+        "Name": {
+            "type": "string",
+            "description": "The name of the Federation Group.",
+            "readonly": false,
+            "etag": true
+        },
+        "Modified": {
+            "$ref": "Modified.json#"
+        },
+        "Type": {
+            "$ref": "Type.json#"
+        },
+        "Key": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "description": "The password used by the Federation Group.",
+            "readonly": false,
+            "etag": true
+        },
+        "Privileges": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "LoginPriv": {
+                    "type": "boolean",
+                    "description": "Login privileges.",
+                    "readonly": false,
+                    "etag": true
+                },
+                "iLOConfigPriv": {
+                    "type": "boolean",
+                    "description": "The management processor configuration privileges.",
+                    "readonly": false,
+                    "etag": true
+                },
+                "VirtualPowerAndResetPriv": {
+                    "type": "boolean",
+                    "description": "Virtual power and reset privileges.",
+                    "readonly": false,
+                    "etag": true
+                },
+                "UserConfigPriv": {
+                    "type": "boolean",
+                    "description": "User configuration privileges.",
+                    "readonly": false,
+                    "etag": true
+                },
+                "RemoteConsolePriv": {
+                    "type": "boolean",
+                    "description": "Remote console privileges.",
+                    "readonly": false,
+                    "etag": true
+                },
+                "VirtualMediaPriv": {
+                    "type": "boolean",
+                    "description": "Virtual media privileges.",
+                    "readonly": false,
+                    "etag": true
+                }
+            },
+            "readonly": false,
+            "description": "Represents the privileges for the group."
+        },
+        "links": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "self": {
+                    "$ref": "href.json#",
+                    "description": "Link to self."
+                }
+            }
+        }
+    },
+    "readonly": false
+}

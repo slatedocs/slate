@@ -1,0 +1,30 @@
+{
+    "type": "object",
+    "readonly": true,
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "description": "The schema definition for firmware versions.",
+    "additionalProperties": false,
+    "properties": {
+        "Current": {
+            "$ref": "#/definitions/FWVersion"
+        }
+    },
+    "definitions": {
+        "FWVersion": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "VersionString": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "description": "This string represents the version of the firmware image.",
+                    "readonly": true
+                }
+            },
+            "description": "This object contains information about the version of a firmware image.",
+            "readonly": true
+        }
+    }
+}

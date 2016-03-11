@@ -1,0 +1,37 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "HpLogEntry.0.9.7",
+    "type": "object",
+    "readonly": false,
+    "additionalProperties": false,
+    "properties": {
+        "Type": {
+            "$ref": "Type.json#"
+        },
+        "Updated": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time of the latest log entry update, for example, 2014-04-15T00:38:00Z.",
+            "readonly": true,
+            "etag": true
+        },
+        "Class": {
+            "type": "integer",
+            "description": "The IML event class.",
+            "readonly": true,
+            "etag": true
+        },
+        "Code": {
+            "type": "integer",
+            "description": "The IML event code.",
+            "readonly": true,
+            "etag": true
+        },
+        "Repaired": {
+            "type": "boolean",
+            "description": "The repaired status of the IML event.",
+            "readonly": false,
+            "etag": true
+        }
+    }
+}

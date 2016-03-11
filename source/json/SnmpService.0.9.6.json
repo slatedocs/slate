@@ -1,0 +1,219 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "SnmpService.0.9.6",
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+        "Oem": {
+            "type": "object",
+            "additionalProperties": true,
+            "properties": {
+                "Hp": {
+                    "$ref": "HpiLOSnmpService.json#"
+                }
+            }
+        },
+        "Name": {
+            "$ref": "Name.json#"
+        },
+        "Modified": {
+            "$ref": "Modified.json#"
+        },
+        "Type": {
+            "$ref": "Type.json#"
+        },
+        "Description": {
+            "$ref": "Description.json#"
+        },
+        "Status": {
+            "$ref": "Status.json#"
+        },
+        "Mode": {
+            "type": "string",
+            "enum": [
+                "Agentless",
+                "Passthru"
+            ],
+            "description": "Agentless Management Mode (default): Use SNMP agents running on the management processor to manage the server. SNMP Pass-thru Mode: Use SNMP agents running on the host operating system to manage the server. This setting does not affect alerts.",
+            "readonly": false,
+            "etag": true
+        },
+        "Location": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "description": "The string of up to 49 characters that specifies the physical location of the server.",
+            "readonly": false,
+            "etag": true
+        },
+        "Contact": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "description": "The string of up to 49 characters that specifies the system administrator or server owner. The string can include a name, email address, or phone number.",
+            "readonly": false,
+            "etag": true
+        },
+        "Role": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "description": "The string of up to 64 characters that describes the server role or function.",
+            "readonly": false,
+            "etag": true
+        },
+        "RoleDetail": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "description": "The string of up to 512 characters that describes specific tasks that the server might perform.",
+            "readonly": false,
+            "etag": true
+        },
+        "ReadCommunities": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "description": "The configured SNMP read-only community string (for example, public). User can configure up to 3 SNMP read-only communities.",
+            "readonly": false
+        },
+        "TrapCommunities": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "description": "The configured SNMP trap community string. User can configure up to 3 SNMP trap communities.",
+            "readonly": false
+        },
+        "AlertDestinations": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "description": "The IP addresses or FQDNs of up to 3 remote management systems that receive SNMP alerts from the management processor.",
+            "readonly": false
+        },
+        "TrapSourceHostname": {
+            "type": "string",
+            "enum": [
+                "Manager",
+                "System"
+            ],
+            "description": "Determines the host name that is used in the SNMP-defined sysName variable when the management processor generates SNMP traps.",
+            "readonly": false,
+            "etag": true
+        },
+        "AlertsEnabled": {
+            "type": "boolean",
+            "description": "The alert conditions that the management processor detects independently of the host operating system can be sent to specified SNMP alert destinations, such as HP SIM.",
+            "readonly": false,
+            "etag": true
+        },
+        "SNMPv1Traps": {
+            "type": "boolean",
+            "description": "When enabled, SNMPv1 traps are sent to the remote management systems configured in the SNMP Alert Destination(s) boxes.",
+            "readonly": false,
+            "etag": true
+        },
+        "SNMPv3EngineID": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "description": "The SNMPv3 Engine ID is the unique identifier of an SNMP engine that belongs to an SNMP agent entity. This value must be a hexadecimal string with an even number of 6 to 32 characters, excluding the first two characters, 0x (for example, 0x01020304abcdef).",
+            "readonly": false,
+            "etag": true
+        },
+        "Users": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                    "SecurityName": {
+                        "type": "string",
+                        "description": "The user profile name. Enter an alphanumeric string of 1 to 32 characters.",
+                        "readonly": false,
+                        "etag": true
+                    },
+                    "AuthProtocol": {
+                        "type": "string",
+                        "enum": [
+                            "MD5",
+                            "SHA"
+                        ],
+                        "description": "Sets the message digest algorithm to use for encoding the authorization passphrase. The message digest is calculated over an appropriate portion of an SNMP message, and is included as part of the message sent to the recipient. Select MD5 (Message Digest) or SHA (Secure Hash Algorithm).",
+                        "readonly": false,
+                        "etag": true
+                    },
+                    "AuthPassphrase": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "description": "Sets the passphrase to use for sign operations. Enter a value of 8 to 49 characters.",
+                        "readonly": false,
+                        "etag": true
+                    },
+                    "PrivacyProtocol": {
+                        "type": "string",
+                        "description": "Sets the encryption algorithm to use for encoding the privacy passphrase. A portion of an SNMP message is encrypted before transmission. Select AES (Advanced Encryption Standard) or DES (Data Encryption Standard).",
+                        "enum": [
+                            "DES",
+                            "AES"
+                        ],
+                        "readonly": false
+                    },
+                    "PrivacyPassphrase": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "description": "Sets the passphrase to use for encrypt operations. Enter a value of 8 to 49 characters.",
+                        "readonly": false,
+                        "etag": true
+                    }
+                },
+                "readonly": false
+            },
+            "readonly": false,
+            "description": "SNMPv3 supports the User-based Security Model (USM). With this model, security parameters are configured at both the agent level and the manager level. Messages exchanged between the agent and the manager are subject to a data integrity check and data origin authentication. Up to 3 user profiles are supported for setting SNMPv3 USM parameters."
+        },
+        "AvailableActions": {
+            "$ref": "Actions.json#/definitions/AvailableActions"
+        },
+        "links": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "self": {
+                    "$ref": "href.json#",
+                    "description": "The URI for this SNMP service resource."
+                }
+            }
+        }
+    },
+    "readonly": false,
+    "actions": {
+        "description": "Send SNMP test alert.",
+        "actions": {
+            "SendSNMPTestAlert": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                    "Action": {
+                        "type": "string",
+                        "enum": [
+                            "SendSNMPTestAlert"
+                        ]
+                    }
+                }
+            }
+        }
+    }
+}

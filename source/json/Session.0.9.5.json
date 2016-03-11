@@ -1,0 +1,46 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "Session.0.9.5",
+    "type": "object",
+    "readonly": true,
+    "additionalProperties": false,
+    "properties": {
+        "Oem": {
+            "type": "object",
+            "additionalProperties": true,
+            "properties": {
+                "Hp": {
+                    "$ref": "HpiLOSession.json#"
+                }
+            }
+        },
+        "Name": {
+            "$ref": "Name.json#"
+        },
+        "Modified": {
+            "$ref": "Modified.json#"
+        },
+        "Type": {
+            "$ref": "Type.json#"
+        },
+        "Description": {
+            "$ref": "Description.json#"
+        },
+        "UserName": {
+            "type": "string",
+            "description": "Name to use to log in to the management processor.",
+            "readonly": true,
+            "etag": true
+        },
+        "links": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "self": {
+                    "$ref": "href.json#",
+                    "description": "Link to self"
+                }
+            }
+        }
+    }
+}

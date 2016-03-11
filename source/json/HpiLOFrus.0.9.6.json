@@ -1,0 +1,108 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "HpiLOFrus.0.9.6",
+    "type": "object",
+    "readonly": true,
+    "additionalProperties": false,
+    "properties": {
+        "Name": {
+            "$ref": "Name.json#"
+        },
+        "Modified": {
+            "$ref": "Modified.json#"
+        },
+        "Type": {
+            "$ref": "Type.json#"
+        },
+        "Description": {
+            "$ref": "Description.json#"
+        },
+        "SerialNumber": {
+            "type": "string",
+            "description": "The system's serial number.",
+            "readonly": true,
+            "etag": true
+        },
+        "FRUType": {
+            "type": "string",
+            "enum": [
+                "Base",
+                "Mezzanine"
+            ],
+            "readonly": true,
+            "etag": true,
+            "description": "The type of FRU that is installed, i.e. Base or Mezzanine FRU."
+        },
+        "FRU": {
+            "type": "string",
+            "description": "The typename this FRU describes.",
+            "readonly": true,
+            "etag": true
+        },
+        "PhysicalSlot": {
+            "type": "integer",
+            "description": "The physical slot in which this FRU resides. 0 is for Base FRU, 1-N is for Mezzanine FRUs",
+            "readonly": true,
+            "etag": true
+        },
+        "Location": {
+            "type": "string",
+            "description": "The location where the FRU resides.",
+            "readonly": true,
+            "etag": true
+        },
+        "Seated": {
+            "type": "boolean",
+            "description": "Indicates if the Base FRU is properly seated in the slot.",
+            "readonly": true,
+            "etag": true
+        },
+        "UEFIDevicePaths": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "description": "The standardized text representation of the UEFI device path, in UTF-8 format.",
+            "readonly": true,
+            "etag": true
+        },
+        "UEFIDeviceName": {
+            "type": "string",
+            "description": "The Device Name in UTF-8 format.",
+            "readonly": true,
+            "etag": true
+        },
+        "Interlocked": {
+            "type": "boolean",
+            "description": "Indicates if a PCIe card is installed in slot.",
+            "readonly": true,
+            "etag": true
+        },
+        "FRULink": {
+            "type": "boolean",
+            "description": "The aggregation of the Link signals for all ports on the FRU card.",
+            "readonly": true,
+            "etag": true
+        },
+        "PGood": {
+            "type": "boolean",
+            "description": "The Power Good status.",
+            "readonly": true,
+            "etag": true
+        },
+        "links": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "Details": {
+                    "$ref": "href.json#",
+                    "description": "The locally available URI for FRU Details."
+                },
+                "self": {
+                    "$ref": "href.json#",
+                    "description": "The URI for this management processor FRUS resource."
+                }
+            }
+        }
+    }
+}

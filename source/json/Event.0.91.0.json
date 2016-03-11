@@ -1,0 +1,123 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "Event.0.91.0",
+    "type": "object",
+    "readonly": true,
+    "additionalProperties": false,
+    "description": "This is the schema definition for Events.  It represents the properties for the events themselves and not subscriptions or any other resource.",
+    "properties": {
+        "Name": {
+            "$ref": "Name.json#"
+        },
+        "Type": {
+            "$ref": "Type.json#"
+        },
+        "Events": {
+            "type": "array",
+            "readonly": true,
+            "items": {
+                "type": "object",
+                "readonly": true,
+                "properties": {
+                    "EventType": {
+                        "type": "string",
+                        "enum": [
+                            "StatusChange",
+                            "ResourceUpdated",
+                            "ResourceAdded",
+                            "ResourceRemoved",
+                            "Alert"
+                        ],
+                        "description": "This indicates the type of event sent, according to the definitions in the EventService.",
+                        "enumDescriptions": {
+                            "StatusChange": "The status of this resource has changed",
+                            "ResourceUpdated": "The value of this resource has been updated",
+                            "ResourceAdded": "A resource has been added",
+                            "ResourceRemoved": "A resource has been removed",
+                            "Alert": "A condition exists which requires attention"
+                        },
+                        "readonly": true,
+                        "displayname": "EventType"
+                    },
+                    "EventID": {
+                        "type": "string",
+                        "description": "This is a unique instance identifier of an event.",
+                        "readonly": true,
+                        "displayname": "EventID"
+                    },
+                    "EventTimestamp": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "This is time the event occurred.",
+                        "readonly": true,
+                        "displayname": "EventTimestamp"
+                    },
+                    "Severity": {
+                        "type": "string",
+                        "enum": [
+                            "OK",
+                            "Warning",
+                            "Critical"
+                        ],
+                        "enumDescriptions": {
+                            "OK": "Normal",
+                            "Warning": "A condition exists that requires attention",
+                            "Critical": "A critical condition exists that requires immediate attention"
+                        },
+                        "description": "This is the severity of the event.",
+                        "readonly": true,
+                        "displayname": "Severity"
+                    },
+                    "Message": {
+                        "type": "string",
+                        "description": "This is the human readable message, if provided.",
+                        "readonly": true,
+                        "displayname": "Message"
+                    },
+                    "MessageID": {
+                        "type": "string",
+                        "description": "This is the key for this message which can be used to look up the message in a message registry.",
+                        "pattern": "^[A-Za-z0-9]+\\.\\d+\\.\\d+.[A-Za-z0-9.]+$",
+                        "readonly": true,
+                        "displayname": "MessageID"
+                    },
+                    "MessageArgs": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "readonly": true,
+                        "description": "This array of message arguments are substituted for the arguments in the message when looked up in the message registry.",
+                        "displayname": "MessageArgs"
+                    },
+                    "OriginOfCondition": {
+                        "type": "string",
+                        "readonly": true,
+                        "description": "This indicates the resource that originated the condition that caused the event to be generated.",
+                        "displayname": "OriginOfCondition"
+                    },
+                    "Context": {
+                        "type": "string",
+                        "description": "A context can be supplied at subscription time.  This property is the context value supplied by the subscriber.",
+                        "readonly": true,
+                        "displayname": "Context"
+                    },
+                    "Oem": {
+                        "type": "object",
+                        "readonly": true,
+                        "additionalProperties": true,
+                        "properties": {
+                            "Hp": {
+                                "$ref": "HpEvent.json#"
+                            }
+                        }
+                    }
+                },
+                "description": "Each event in this array has a set of properties that describe the event.  Since this is an array, more than one event can be sent simultaneously.",
+                "displayname": "Events Item"
+            }
+        }
+    },
+    "private": false,
+    "displayname": "Event.0.91.0"
+}

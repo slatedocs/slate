@@ -1,0 +1,216 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "HpMemory.0.9.5",
+    "type": "object",
+    "additionalProperties": false,
+    "description": "The schema definition for the properties of Memory DIMMs.",
+    "properties": {
+        "Oem": {
+            "$ref": "Oem.json#"
+        },
+        "Name": {
+            "$ref": "Name.json#"
+        },
+        "Modified": {
+            "$ref": "Modified.json#"
+        },
+        "Type": {
+            "$ref": "Type.json#"
+        },
+        "SocketLocator": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "description": "Identifies the physically labeled socket or board position, where the memory device is located.",
+            "readonly": true,
+            "etag": true
+        },
+        "BankLocator": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "description": "Identifies the physically labeled bank, where the memory device is located.",
+            "readonly": true,
+            "etag": true
+        },
+        "Manufacturer": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "description": "Identifies the manufacturer of this memory device.",
+            "readonly": true,
+            "etag": true
+        },
+        "SerialNumber": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "description": "The serial number for this memory device.",
+            "readonly": true,
+            "etag": true
+        },
+        "AssetTag": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "description": "The asset tag for this memory device.",
+            "readonly": true,
+            "etag": true
+        },
+        "PartNumber": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "description": "The part number for this memory device.",
+            "readonly": true,
+            "etag": true
+        },
+        "MaximumFrequencyMHz": {
+            "type": [
+                "integer",
+                "null"
+            ],
+            "description": "Identifies the maximum, capable speed of the device in megahertz (MHz). If the value is null, the speed is unknown.",
+            "readonly": true,
+            "etag": true
+        },
+        "TotalWidth": {
+            "type": [
+                "integer",
+                "null"
+            ],
+            "description": "The total width, in bits, of this memory device, including any check or error-correction bits. If there are no error-correction bits, this value should be equal to Data Width. If the width is unknown, the field is set to null.",
+            "readonly": true,
+            "etag": true
+        },
+        "DataWidth": {
+            "type": [
+                "integer",
+                "null"
+            ],
+            "description": "The data width, in bits, of this memory device. A Data Width value of 0 and a Total Width value of 8 indicates that the device is being used solely to provide 8 error-correction bits. If the width is unknown, the field is set to null.",
+            "readonly": true,
+            "etag": true
+        },
+        "ErrorCorrection": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "enum": [
+                "None",
+                "Parity",
+                "SingleBitECC",
+                "MultiBitECC",
+                "CRC"
+            ],
+            "description": "The error correction used for this DIMM. If the value is null, the error correction is unknown.",
+            "readonly": true,
+            "etag": true
+        },
+        "SizeMB": {
+            "type": [
+                "integer",
+                "null"
+            ],
+            "description": "The size of the memory device in megabytes.",
+            "readonly": true,
+            "etag": true
+        },
+        "DIMMType": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "enum": [
+                "DDR",
+                "DDR2",
+                "DDR3",
+                "DDR4",
+                "FBD2",
+                "LPDD3",
+                "LPDDR",
+                "LPDDR2",
+                "LPDDR4"
+            ],
+            "description": "The type of memory DIMM used in this system.",
+            "readonly": true,
+            "etag": true
+        },
+        "HPMemoryType": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "enum": [
+                "HPSmartMemory",
+                "HPStandard",
+                "Unknown"
+            ],
+            "description": "Indicates whether or not HP SmartMemory is present.",
+            "readonly": true,
+            "etag": true
+        },
+        "DIMMTechnology": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "enum": [
+                "BurstEDO",
+                "FastPage",
+                "Synchronous",
+                "EDO",
+                "LRDIMM",
+                "RDRAM",
+                "RDIMM",
+                "UDIMM",
+                "Unknown"
+            ],
+            "description": "The memory module technology type.",
+            "readonly": true,
+            "etag": true
+        },
+        "Rank": {
+            "type": [
+                "integer",
+                "null"
+            ],
+            "description": "Specifies the DIMM rank. A value of null indicates the rank is unknown.",
+            "readonly": true,
+            "etag": true
+        },
+        "MinimumVoltageVoltsX10": {
+            "type": [
+                "integer",
+                "null"
+            ],
+            "minimum": 0,
+            "description": "The minimum DIMM voltage multiplied by 10, for example, 1.2v = 12.",
+            "readonly": true,
+            "displayname": "MinVoltageVoltsX10",
+            "etag": true
+        },
+        "Status": {
+            "$ref": "Status.json#"
+        },
+        "links": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "self": {
+                    "$ref": "href.json#",
+                    "description": "Link to self.",
+                    "readonly": true
+                }
+            },
+            "readonly": true
+        }
+    }
+}

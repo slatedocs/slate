@@ -1,0 +1,406 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "EthernetNetworkInterface.0.91.1",
+    "type": "object",
+    "readonly": false,
+    "additionalProperties": false,
+    "description": "The schema definition of a simple Ethernet NIC resource.",
+    "properties": {
+        "Oem": {
+            "type": "object",
+            "readonly": false,
+            "additionalProperties": true,
+            "properties": {
+                "Hp": {
+                    "$ref": "HpiLOEthernetNetworkInterface.json#"
+                }
+            }
+        },
+        "Name": {
+            "$ref": "Name.json#"
+        },
+        "Modified": {
+            "$ref": "Modified.json#"
+        },
+        "Type": {
+            "$ref": "Type.json#"
+        },
+        "Description": {
+            "$ref": "Description.json#"
+        },
+        "UEFIDevicePath": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "description": "The UEFI device path for this NIC.",
+            "readonly": true
+        },
+        "Status": {
+            "$ref": "Status.json#",
+            "description": "Status"
+        },
+        "FactoryMacAddress": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "pattern": "^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$",
+            "description": "The MAC address assigned to the NIC at the factory.",
+            "readonly": true
+        },
+        "MacAddress": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "pattern": "^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$",
+            "description": "The effective current MAC address. If the assignable MAC address is not supported, this is a read-only alias of FactoryMacAddress.",
+            "readonly": false
+        },
+        "LinkTechnology": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "enum": [
+                "Ethernet"
+            ],
+            "enumDescriptions": {
+                "Ethernet": "An Ethernet interface."
+            },
+            "description": "The link technology, such as Ethernet, for this NIC.",
+            "readonly": true
+        },
+        "SpeedMbps": {
+            "type": [
+                "integer",
+                "null"
+            ],
+            "description": "The link speed of the Ethernet interface. If Autosense is enabled, this property cannot be modified. This property can only be modified on a dedicated network port. It cannot be modified for blade servers.",
+            "readonly": false,
+            "etag": true
+        },
+        "Autosense": {
+            "type": [
+                "boolean",
+                "null"
+            ],
+            "description": "The autosense speed/duplex enabled or disabled. Autosense can only be disabled if the SpeedMbps and FullDuplex values are specified. Autosense is only applicable and modifiable for a dedicated network port and cannot be modified for blade servers.",
+            "readonly": false,
+            "etag": true
+        },
+        "FullDuplex": {
+            "type": [
+                "boolean",
+                "null"
+            ],
+            "description": "The connection duplex status. If Autosense is enabled, this property cannot be modified. Autosense is only applicable and modifiable for a dedicated network port and cannot be modified for blade servers.",
+            "readonly": false,
+            "etag": true
+        },
+        "FrameSize": {
+            "type": [
+                "integer",
+                "null"
+            ],
+            "minimum": 0,
+            "description": "The MAC frame size (bytes).",
+            "readonly": false
+        },
+        "VLANEnable": {
+            "type": [
+                "boolean",
+                "null"
+            ],
+            "description": "Indicates if VLANs are enabled. If this NIC supports more than one VLAN, this property will not be present and the client should look for VLANs collection in the link section of this resource.",
+            "readonly": true,
+            "etag": true
+        },
+        "VLANId": {
+            "type": [
+                "integer",
+                "null"
+            ],
+            "minimum": 0,
+            "maximum": 4095,
+            "description": "The VLAN identifier for this NIC. The VLANId is only present when the VLANEnable is used and when the NIC supports only a single VLAN.",
+            "readonly": true,
+            "etag": true
+        },
+        "IPv6AddressPolicyTable": {
+            "type": "array",
+            "readonly": true,
+            "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                    "Prefix": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "format": "ipv6",
+                        "description": "The IPv6 Address Prefix for this table entry as defined in RFC3484 section 2.1.",
+                        "readonly": false
+                    },
+                    "Precedence": {
+                        "type": [
+                            "integer",
+                            "null"
+                        ],
+                        "minimum": 1,
+                        "maximum": 100,
+                        "description": "The precedence value for this table entry as defined in RFC3484 section 2.1.",
+                        "readonly": false
+                    },
+                    "Label": {
+                        "type": [
+                            "integer",
+                            "null"
+                        ],
+                        "minimum": 0,
+                        "maximum": 100,
+                        "description": "The label value for this table entry, as defined in RFC3484 section 2.1.",
+                        "readonly": false
+                    }
+                },
+                "etag": true,
+                "readonly": false,
+                "description": "One entry in the Address Selection Policy Table, as defined in RFC3484 sectionn 2.1."
+            },
+            "description": "The RFC3484 Address Selection Policy Table."
+        },
+        "IPv4Addresses": {
+            "type": "array",
+            "readonly": true,
+            "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                    "Address": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "pattern": "^(?:[0-9]{1,3}\\.){3}[0-9]{1,3}$",
+                        "description": "The IPv4 Address.",
+                        "readonly": false
+                    },
+                    "SubnetMask": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "pattern": "^(?:[0-9]{1,3}\\.){3}[0-9]{1,3}$",
+                        "description": "The IPv4 Subnet mask.",
+                        "readonly": false
+                    },
+                    "AddressOrigin": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "description": "How the address was determined.",
+                        "enum": [
+                            "DHCP",
+                            "Static"
+                        ],
+                        "enumDescriptions": {
+                            "DHCP": "The address is provided by a DHCP service.",
+                            "Static": "A static address as configured by the user."
+                        },
+                        "readonly": true
+                    },
+                    "Gateway": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "description": "The IPv4 gateway for this address.",
+                        "readonly": false
+                    }
+                },
+                "etag": true
+            },
+            "description": "The IPv4 connection characteristics for this interface."
+        },
+        "IPv6Addresses": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "readonly": true,
+                "additionalProperties": false,
+                "properties": {
+                    "Address": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "description": "The IPv6 Address.",
+                        "readonly": true
+                    },
+                    "PrefixLength": {
+                        "type": [
+                            "integer",
+                            "null"
+                        ],
+                        "minimum": 1,
+                        "maximum": 128,
+                        "description": "The IPv6 Address Prefix Length.",
+                        "readonly": true
+                    },
+                    "AddressOrigin": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "description": "How the address was determined.",
+                        "enum": [
+                            "DHCP",
+                            "Static",
+                            "SLAAC"
+                        ],
+                        "enumDescriptions": {
+                            "DHCP": "The address is provided by a DHCP service.",
+                            "Static": "A static address as configured by the user.",
+                            "SLAAC": "The address is provided by a Stateless Address AutoConfiguration (SLAAC) service."
+                        },
+                        "readonly": true
+                    },
+                    "AddressState": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "enum": [
+                            "Preferred",
+                            "Deprecated",
+                            "Tentative",
+                            "Failed"
+                        ],
+                        "enumDescriptions": {
+                            "Preferred": "This address is currently within both its valid and preferred lifetimes as defined in RFC 4862.",
+                            "Deprecated": "This address is currently within its valid lifetime, but the address is now outside of its preferred lifetime as defined in RFC 4862.",
+                            "Tentative": "This address is currently undergoing Duplicate Address Detection testing as defined in RFC 4862 section 5.4.",
+                            "Failed": "This address has a problem with Duplicate Address Detection testing as defined in RFC 4862 section 5.4 and is not currently in use."
+                        },
+                        "description": "The current state of this address as defined in RFC 4862.",
+                        "readonly": true
+                    }
+                },
+                "etag": true,
+                "description": "All of the IPv6 characteristics for this interface."
+            },
+            "description": "The IPv6 connection characteristics for this interface.",
+            "readonly": true
+        },
+        "MaxIPv6StaticAddresses": {
+            "type": [
+                "integer",
+                "null"
+            ],
+            "description": "The maximum number of IPv6 static addresses that can be configured on this interface.",
+            "readonly": true
+        },
+        "IPv6StaticAddresses": {
+            "type": "array",
+            "readonly": true,
+            "items": {
+                "type": "object",
+                "readonly": false,
+                "additionalProperties": false,
+                "properties": {
+                    "Address": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "format": "ipv6",
+                        "description": "A valid IPv6 address.",
+                        "readonly": false
+                    },
+                    "PrefixLength": {
+                        "type": [
+                            "integer",
+                            "null"
+                        ],
+                        "minimum": 1,
+                        "maximum": 128,
+                        "description": "The Prefix Length of this IPv6 address.",
+                        "readonly": false
+                    }
+                },
+                "etag": true,
+                "description": "A single IPv6 static address to be assigned on this interface."
+            },
+            "description": "All of the IPv6 static addresses to be assigned on this interface."
+        },
+        "IPv6DefaultGateway": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "format": "ipv6",
+            "description": "The IPv6 default gateway address that is currently in use on this interface.",
+            "readonly": true,
+            "etag": true
+        },
+        "NameServers": {
+            "type": "array",
+            "description": "The DNS name servers to be used for retrieving the host name.",
+            "readonly": true,
+            "items": {
+                "type": [
+                    "string",
+                    "null"
+                ],
+                "readonly": true
+            },
+            "etag": true
+        },
+        "HostName": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "description": "The DNS Host Name, without any domain information.",
+            "readonly": true,
+            "etag": true
+        },
+        "FQDN": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "description": "The complete, fully qualified domain name obtained by DNS for this NIC.",
+            "readonly": true,
+            "etag": true
+        },
+        "links": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "NetworkServices": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "href.json#"
+                    },
+                    "description": "The URI for this Network Services resource. The settings that apply to more than one NIC are contained in the Network Services resource.",
+                    "readonly": true
+                },
+                "self": {
+                    "$ref": "href.json#",
+                    "readonly": true,
+                    "description": "The URI for this Ethernet Network Interface resource."
+                }
+            },
+            "readonly": true,
+            "description": "The links array contains links to resources related to this resource."
+        },
+        "SettingsResult": {
+            "$ref": "Settings.json#/definitions/SettingsResult",
+            "description": "If there is a link to Settings, this property has the results of the last application of those settings to this NIC."
+        }
+    }
+}

@@ -1,0 +1,147 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "HpiLODateTime.0.10.0",
+    "type": "object",
+    "readonly": false,
+    "additionalProperties": false,
+    "description": "The management processor date and time.",
+    "properties": {
+        "Name": {
+            "$ref": "Name.json#"
+        },
+        "Modified": {
+            "$ref": "Modified.json#"
+        },
+        "Type": {
+            "$ref": "Type.json#"
+        },
+        "Description": {
+            "$ref": "Description.json#"
+        },
+        "links": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "EthernetNICs": {
+                    "$ref": "href.json#",
+                    "description": "The URI for this Ethernet network interface resource."
+                },
+                "self": {
+                    "$ref": "href.json#"
+                }
+            },
+            "readonly": true,
+            "description": "THE URIs for the resources related to the Ethernet network interface resource."
+        },
+        "ConfigurationSettings": {
+            "type": "string",
+            "enum": [
+                "Current",
+                "SomePendingReset"
+            ],
+            "description": "The state of the currently displayed configuration settings.",
+            "readonly": true,
+            "etag": true
+        },
+        "DateTime": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time used by management processor.",
+            "readonly": true,
+            "etag": true
+        },
+        "NTPServers": {
+            "type": "array",
+            "items": {
+                "type": "string",
+                "description": "The current NTP server's IPv4 address, IPv6 address, or FQDN. The value either comes from DHCP or is static depending on the DHCP settings.",
+                "maxLength": 255
+            },
+            "description": "The NTP servers, in order of preference.",
+            "readonly": true,
+            "etag": true
+        },
+        "StaticNTPServers": {
+            "type": "array",
+            "items": {
+                "type": "string",
+                "description": "The static NTP server's IPv4 address, IPv6 address, or FQDN. To set this property, management processor must not be configured to use NTP servers provided by DHCPv4 or DHCPv6.",
+                "maxLength": 255
+            },
+            "description": "The static NTP servers, in order of preference.",
+            "readonly": false,
+            "etag": true
+        },
+        "TimeZone": {
+            "type": "object",
+            "readonly": false,
+            "additionalProperties": false,
+            "description": "The currently selected time zone.",
+            "properties": {
+                "Index": {
+                    "type": "number",
+                    "description": "The index of the current time zone. To set a new time zone, specify a different time zone index. This property can be set only when DHCPv4 or DHCPv6 supplied time settings are disabled. Since the time zone list might vary from one firmware version to another (which often leads to differences in time zone indices), setting the time zone by name is recommended over setting by index, for better compatibility.",
+                    "readonly": false
+                },
+                "Name": {
+                    "type": "string",
+                    "description": "The name of the current time zone. Patch this field to set the time zone by name - recommended over patching the index. When this field is specified in the patch, the Index field, if specified, will be ignored.",
+                    "readonly": false
+                },
+                "UtcOffset": {
+                    "type": "string",
+                    "pattern": "^(\\+|\\-)(((0[0-9]|1[0-7]):[0-5][0-9])|(18:00))$",
+                    "description": "The UTC offset of the current time zone, in the format {+/-}hh:mm",
+                    "readonly": true
+                },
+                "Value": {
+                    "type": "string",
+                    "description": "The environment variable value.",
+                    "readonly": true
+                }
+            },
+            "etag": true
+        },
+        "TimeZoneList": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "description": "The list of available time zones.",
+                "properties": {
+                    "Index": {
+                        "type": "number",
+                        "description": "The time zone index.",
+                        "readonly": true
+                    },
+                    "Name": {
+                        "type": "string",
+                        "description": "The time zone name.",
+                        "readonly": true
+                    },
+                    "UtcOffset": {
+                        "type": "string",
+                        "pattern": "^(\\+|\\-)(((0[0-9]|1[0-7]):[0-5][0-9])|(18:00))$",
+                        "description": "The UTC offset of the time zone, in the format {+/-}hh:mm",
+                        "readonly": true
+                    },
+                    "Value": {
+                        "type": "string",
+                        "description": "The environment variable value.",
+                        "readonly": true
+                    }
+                },
+                "readonly": true
+            },
+            "readonly": true,
+            "etag": true
+        },
+        "PropagateTimeToHost": {
+            "type": "boolean",
+            "description": "Determines whether the server time is synchronized with the management processor time during the first POST after AC power is applied.",
+            "default": true,
+            "readonly": false,
+            "etag": true
+        }
+    }
+}

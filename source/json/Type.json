@@ -1,0 +1,9 @@
+{
+    "type": "string",
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "id": "http://jsonschema.net",
+    "description": "This object represents the type property. It represents the schema used for the resource and indicates the version of the schema in the format <schema>.<majorversion>.<minorversion>.<errataversion>.",
+    "pattern": "^[A-Z][A-Za-z0-9]+\\.\\d+\\.\\d+\\.\\d+$",
+    "readonly": true,
+    "etag": true
+}

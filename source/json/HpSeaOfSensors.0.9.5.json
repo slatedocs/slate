@@ -1,0 +1,26 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "HpSeaOfSensors.0.9.5",
+    "type": "object",
+    "readonly": true,
+    "additionalProperties": false,
+    "properties": {
+        "Type": {
+            "$ref": "Type.json#"
+        },
+        "LocationXmm": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "The location of the sensor, in millimeters, along the X axis from the logical reference point.",
+            "readonly": true,
+            "etag": true
+        },
+        "LocationYmm": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "The location of the sensor, in millimeters, along the Y axis from the logical reference point.",
+            "readonly": true,
+            "etag": true
+        }
+    }
+}

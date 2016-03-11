@@ -1,0 +1,307 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "HpServerChassis.0.10.1",
+    "type": "object",
+    "readonly": true,
+    "additionalProperties": false,
+    "properties": {
+        "Type": {
+            "$ref": "Type.json#"
+        },
+        "links": {
+            "type": "object",
+            "additionalProperties": true,
+            "properties": {
+                "BaseFrus": {
+                    "$ref": "href.json#",
+                    "description": "The URI for this base FRUs resource.",
+                    "readonly": true
+                },
+                "MezzFrus": {
+                    "$ref": "href.json#",
+                    "description": "The URI for this mezzanine FRUs resource.",
+                    "readonly": true
+                }
+            }
+        },
+        "Firmware": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "PowerManagementController": {
+                    "type": "object",
+                    "readonly": true,
+                    "additionalProperties": false,
+                    "properties": {
+                        "Current": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "VersionString": {
+                                    "type": "string",
+                                    "description": "The firmware version of the Power Monitor.",
+                                    "readonly": true,
+                                    "etag": true
+                                }
+                            },
+                            "description": "The current firmware version.",
+                            "readonly": true
+                        }
+                    },
+                    "description": " The power monitor controller."
+                },
+                "PowerManagementControllerBootloader": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "Current": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "VersionString": {
+                                    "type": "string",
+                                    "description": "The firmware version of the Power Monitor boot loader.",
+                                    "readonly": true,
+                                    "etag": true
+                                },
+                                "Family": {
+                                    "type": "string",
+                                    "description": "The family type of the Power Monitor hardware.",
+                                    "readonly": true,
+                                    "etag": true
+                                }
+                            },
+                            "readonly": true,
+                            "description": "The Current firmware version."
+                        }
+                    },
+                    "readonly": true,
+                    "description": "The power monitor bootloader."
+                },
+                "SASProgrammableLogicDevice": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "Current": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "VersionString": {
+                                    "type": "string",
+                                    "description": "The firmware version of the SAS controller.",
+                                    "readonly": true,
+                                    "etag": true
+                                }
+                            },
+                            "readonly": true,
+                            "description": "The current firmware version."
+                        }
+                    },
+                    "readonly": true,
+                    "description": "Serial Attached SCSI (SAS) device."
+                },
+                "SystemProgrammableLogicDevice": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "Current": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "VersionString": {
+                                    "type": "string",
+                                    "description": "The firmware version of the CPLD.",
+                                    "readonly": true,
+                                    "etag": true
+                                }
+                            },
+                            "readonly": true,
+                            "description": "The current firmware version."
+                        }
+                    },
+                    "readonly": true,
+                    "description": "Complex programmable logic device (CPLD)."
+                },
+                "PlatformDefinitionTable": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "Current": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "VersionString": {
+                                    "type": "string",
+                                    "description": "The version of the Intelligent Platform Abstraction Data.",
+                                    "readonly": true,
+                                    "etag": true
+                                }
+                            },
+                            "readonly": true,
+                            "description": "The current firmware version."
+                        }
+                    },
+                    "readonly": true,
+                    "description": "The Intelligent Platform Abstraction Data."
+                },
+                "SPSFirmwareVersionData": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "Current": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "VersionString": {
+                                    "type": "string",
+                                    "description": "The SPS FW Version number, aka ME FW Version, AAAA.BBBB.CCCC.DDDD.E",
+                                    "readonly": true,
+                                    "etag": true
+                                }
+                            },
+                            "readonly": true,
+                            "description": "Management Engine Data"
+                        }
+                    },
+                    "readonly": true,
+                    "description": "Server Platform Services Data"
+                }
+            },
+            "readonly": true,
+            "description": "The firmware versions."
+        },
+        "BayNumber": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "The position of the chassis inside an enclosure.",
+            "readonly": true,
+            "etag": true
+        },
+        "Images": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "Front": {
+                    "$ref": "extref.json#",
+                    "description": "The URI for this front resource."
+                },
+                "Model": {
+                    "$ref": "extref.json#",
+                    "description": "The URI for this external model resource."
+                }
+            },
+            "readonly": true,
+            "description": "The URIs for chassis images."
+        },
+        "PowerAlertMode": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "Activated": {
+                    "type": "boolean",
+                    "description": "The power alert mode activation state.",
+                    "readonly": true,
+                    "etag": true
+                },
+                "AlertPowerWatts": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "description": "The power consumption of the system when operating in alert mode.",
+                    "readonly": true,
+                    "etag": true
+                }
+            },
+            "readonly": true,
+            "description": "The power alert mode settings."
+        },
+        "Location": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "LocationOfChassis": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "UUID": {
+                            "type": "string",
+                            "description": "The chassis UUID provided by SMBIOS.",
+                            "readonly": true,
+                            "etag": true
+                        }
+                    },
+                    "readonly": true,
+                    "description": "Chassis location."
+                },
+                "LocationInRack": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "TagVersion": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "description": "The chassis rack tag version.",
+                            "readonly": true,
+                            "etag": true
+                        },
+                        "RackLdsPartNumber": {
+                            "type": "string",
+                            "description": "The chassis rack part number.",
+                            "readonly": true,
+                            "etag": true
+                        },
+                        "RackUUID": {
+                            "type": "string",
+                            "description": "The chassis rack UUID.",
+                            "readonly": true,
+                            "etag": true
+                        },
+                        "RackLdsProductDescription": {
+                            "type": "string",
+                            "description": " The chassis rack product description.",
+                            "readonly": true,
+                            "etag": true
+                        },
+                        "RackUHeight": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "description": "The chassis rack U height.",
+                            "readonly": true,
+                            "etag": true
+                        },
+                        "UPosition": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "description": "The chassis U position in the rack.",
+                            "readonly": true,
+                            "etag": true
+                        },
+                        "ULocation": {
+                            "type": "string",
+                            "description": "The chassis rack U location.",
+                            "readonly": true,
+                            "etag": true
+                        }
+                    },
+                    "readonly": true,
+                    "description": "Chassis rack location."
+                },
+                "GeographicLocation": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "RackName": {
+                            "type": "string",
+                            "description": "The name of the chassis enclosure.",
+                            "readonly": true,
+                            "etag": true
+                        }
+                    },
+                    "readonly": true,
+                    "description": "Geographic location."
+                }
+            },
+            "readonly": true,
+            "description": "Locations."
+        }
+    }
+}

@@ -1,0 +1,67 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "HpPowerMetricsExt.0.9.7",
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+        "Type": {
+            "$ref": "Type.json#"
+        },
+        "links": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "FederatedGroupCapping": {
+                    "$ref": "href.json#",
+                    "description": "The URI for this management processor federation group power capping resource.",
+                    "readonly": true
+                },
+                "PowerMeter": {
+                    "$ref": "href.json#",
+                    "description": "The URI for this power meter resource.",
+                    "readonly": true
+                },
+                "FastPowerMeter": {
+                    "$ref": "href.json#",
+                    "description": "The URI for this fast power meter resource.",
+                    "readonly": true
+                }
+            },
+            "description": "Provides resource URIs under HP Power Metrics."
+        },
+        "SNMPPowerThresholdAlert": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "Trigger": {
+                    "type": "string",
+                    "enum": [
+                        "Disabled",
+                        "AveragePowerConsumption",
+                        "PeakPowerConsumption"
+                    ],
+                    "description": "Trigger determines whether alerts are based on peak power consumption, average power consumption, or if they are disabled. Trigger property can only be enabled if the ThresholdWatts and DurationInMin values are specified/configured.",
+                    "readonly": false,
+                    "etag": true
+                },
+                "ThresholdWatts": {
+                    "type": "integer",
+                    "description": "Sets the power consumption threshold (watts). If power consumption exceeds this value for the specified time duration, an SNMP alert is triggered.",
+                    "readonly": false,
+                    "etag": true
+                },
+                "DurationInMin": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 240,
+                    "description": "Sets the length of time, in minutes, that power consumption must remain above the warning threshold before an SNMP alert is triggered. The maximum duration is 240 minutes, and the duration must be a multiple of 5.",
+                    "readonly": false,
+                    "etag": true
+                }
+            },
+            "readonly": false,
+            "description": "The SNMP Alert on Breach of Power Threshold section enables the sending of an SNMP alert when power consumption exceeds a defined threshold."
+        }
+    },
+    "readonly": false
+}

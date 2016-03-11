@@ -1,0 +1,23 @@
+{
+    "type": "object",
+    "readonly": true,
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "id": "http://jsonschema.net",
+    "description": "This object represents the Oem property.",
+    "additionalProperties": false,
+    "patternProperties": {
+        "^[A-Za-z0-9]+$": {
+            "type": "object",
+            "description": "This is the manufacturer/provider-specific property used to divide the OEM object into sections.",
+            "additionalProperties": true,
+            "properties": {
+                "Type": {
+                    "type": "string",
+                    "pattern": "^[A-Z][A-Za-z0-9]+\\.\\d+\\.\\d+\\.\\d+$",
+                    "readonly": true,
+                    "etag": true
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,33 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "HpiLOAccountService.0.9.6",
+    "type": "object",
+    "readonly": false,
+    "additionalProperties": false,
+    "properties": {
+        "Type": {
+            "$ref": "Type.json#"
+        },
+        "AuthFailureLoggingThreshold": {
+            "type": "integer",
+            "enum": [
+                0,
+                1,
+                2,
+                3,
+                5
+            ],
+            "description": "This property enables you to view and configure logging criteria for failed authentications. A failed login log entry is recorded after the configured number of attempts. 0 = feature disabled; 1-3 and 5 are allowable values.",
+            "readonly": false,
+            "etag": true
+        },
+        "MinPasswordLength": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 39,
+            "description": "This property specifies the minimum number of characters allowed when a user password is set or changed. It must be a value from 0 to 39.",
+            "readonly": false,
+            "etag": true
+        }
+    }
+}

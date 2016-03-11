@@ -1,0 +1,366 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "ThermalMetrics.0.9.7",
+    "type": "object",
+    "readonly": true,
+    "additionalProperties": false,
+    "description": "The schema definition for the Thermal Metrics. It represents the properties for temperature and cooling.",
+    "properties": {
+        "Oem": {
+            "$ref": "Oem.json#"
+        },
+        "Name": {
+            "$ref": "Name.json#"
+        },
+        "Modified": {
+            "$ref": "Modified.json#"
+        },
+        "Type": {
+            "$ref": "Type.json#"
+        },
+        "Description": {
+            "$ref": "Description.json#"
+        },
+        "Status": {
+            "$ref": "Status.json#"
+        },
+        "Temperatures": {
+            "type": "array",
+            "description": "The details for the array of temperature sensors.",
+            "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                    "Name": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "description": "The temperature sensor name.",
+                        "readonly": true,
+                        "etag": true
+                    },
+                    "Number": {
+                        "type": [
+                            "integer",
+                            "null"
+                        ],
+                        "description": "A numerical identifier to represent the temperature sensor.",
+                        "readonly": true,
+                        "etag": true
+                    },
+                    "Status": {
+                        "$ref": "Status.json#"
+                    },
+                    "Units": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "enum": [
+                            "Celsius",
+                            "Fahrenheit"
+                        ],
+                        "description": "The temperature sensor's units.",
+                        "readonly": true,
+                        "etag": true
+                    },
+                    "CurrentReading": {
+                        "type": [
+                            "integer",
+                            "null"
+                        ],
+                        "description": "The current reading of the temperature sensor.",
+                        "etag": false,
+                        "readonly": true
+                    },
+                    "UpperThresholdNonCritical": {
+                        "type": [
+                            "integer",
+                            "null"
+                        ],
+                        "description": "The noncritical temperature threshold.",
+                        "readonly": true,
+                        "etag": true
+                    },
+                    "UpperThresholdCritical": {
+                        "type": [
+                            "integer",
+                            "null"
+                        ],
+                        "description": "Above normal range but not yet fatal.",
+                        "readonly": true,
+                        "etag": true
+                    },
+                    "UpperThresholdFatal": {
+                        "type": [
+                            "integer",
+                            "null"
+                        ],
+                        "description": "Above normal range and is fatal.",
+                        "readonly": true,
+                        "etag": true
+                    },
+                    "LowerThresholdNonCritical": {
+                        "type": [
+                            "integer",
+                            "null"
+                        ],
+                        "description": "Below normal range.",
+                        "readonly": true,
+                        "etag": true
+                    },
+                    "LowerThresholdCritical": {
+                        "type": [
+                            "integer",
+                            "null"
+                        ],
+                        "description": "Below normal range but not yet fatal.",
+                        "readonly": true,
+                        "etag": true
+                    },
+                    "LowerThresholdFatal": {
+                        "type": [
+                            "integer",
+                            "null"
+                        ],
+                        "description": "Below normal range and is fatal.",
+                        "readonly": true,
+                        "etag": true
+                    },
+                    "MinimumValue": {
+                        "type": [
+                            "integer",
+                            "null"
+                        ],
+                        "description": "Minimum value for CurrentReading.",
+                        "readonly": true,
+                        "etag": true
+                    },
+                    "MaximumValue": {
+                        "type": [
+                            "integer",
+                            "null"
+                        ],
+                        "description": "Maximum value for CurrentReading.",
+                        "readonly": true,
+                        "etag": true
+                    },
+                    "Context": {
+                        "type": "string",
+                        "description": "The area or device to which this temperature measurement applies.",
+                        "enum": [
+                            "System",
+                            "System Board",
+                            "I/O Board",
+                            "CPU",
+                            "Memory",
+                            "Storage",
+                            "Removable Media",
+                            "Power Supply",
+                            "Ambient",
+                            "Chassis",
+                            "Bridge Board",
+                            "Exhaust",
+                            "Processor Bay",
+                            "IO Bay",
+                            "Blade Slot",
+                            "Virtual"
+                        ],
+                        "readonly": true
+                    },
+                    "CorrelatableID": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "description": "The CorrelatableID for this temperature sensor.",
+                        "readonly": true,
+                        "etag": true
+                    },
+                    "Oem": {
+                        "type": "object",
+                        "additionalProperties": true,
+                        "properties": {
+                            "Hp": {
+                                "$ref": "HpSeaOfSensors.json#"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "Fans": {
+            "type": "array",
+            "readonly": true,
+            "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                    "FanName": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "description": "The name of the fan sensor.",
+                        "readonly": true,
+                        "etag": true
+                    },
+                    "Context": {
+                        "type": "string",
+                        "description": "The area or device to which this temperature measurement applies.",
+                        "enum": [
+                            "System",
+                            "System Board",
+                            "I/O Board",
+                            "CPU",
+                            "Memory",
+                            "Storage",
+                            "Removable Media",
+                            "Power Supply",
+                            "Ambient",
+                            "Chassis",
+                            "Bridge Board",
+                            "Exhaust",
+                            "Processor Bay",
+                            "IO Bay",
+                            "Blade Slot",
+                            "Virtual"
+                        ],
+                        "readonly": true
+                    },
+                    "CorrelatableID": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "description": "The CorrelatableID for this fan.",
+                        "readonly": true,
+                        "etag": true
+                    },
+                    "Status": {
+                        "$ref": "Status.json#"
+                    },
+                    "Units": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "enum": [
+                            "RPM",
+                            "Percent"
+                        ],
+                        "description": "Units for the CurrentReading.",
+                        "readonly": true,
+                        "etag": true
+                    },
+                    "CurrentReading": {
+                        "type": [
+                            "integer",
+                            "null"
+                        ],
+                        "minimum": 0,
+                        "description": "The current speed of the fan.",
+                        "etag": false,
+                        "readonly": true
+                    },
+                    "UpperThresholdNonCritical": {
+                        "type": [
+                            "integer",
+                            "null"
+                        ],
+                        "description": "Above normal range.",
+                        "readonly": true,
+                        "etag": true
+                    },
+                    "UpperThresholdCritical": {
+                        "type": [
+                            "integer",
+                            "null"
+                        ],
+                        "description": "Above normal range but not yet fatal.",
+                        "readonly": true,
+                        "etag": true
+                    },
+                    "UpperThresholdFatal": {
+                        "type": [
+                            "integer",
+                            "null"
+                        ],
+                        "description": "Above normal range and is fatal.",
+                        "readonly": true,
+                        "etag": true
+                    },
+                    "LowerThresholdNonCritical": {
+                        "type": [
+                            "integer",
+                            "null"
+                        ],
+                        "description": "Below normal range.",
+                        "readonly": true,
+                        "etag": true
+                    },
+                    "LowerThresholdCritical": {
+                        "type": [
+                            "integer",
+                            "null"
+                        ],
+                        "description": "Below normal range but not yet fatal.",
+                        "readonly": true,
+                        "etag": true
+                    },
+                    "LowerThresholdFatal": {
+                        "type": [
+                            "integer",
+                            "null"
+                        ],
+                        "description": "Below normal range and is fatal.",
+                        "readonly": true,
+                        "etag": true
+                    },
+                    "MinimumValue": {
+                        "type": [
+                            "integer",
+                            "null"
+                        ],
+                        "description": "Minimum value for CurrentReading.",
+                        "readonly": true,
+                        "etag": true
+                    },
+                    "MaximumValue": {
+                        "type": [
+                            "integer",
+                            "null"
+                        ],
+                        "description": "Maximum value for CurrentReading.",
+                        "readonly": true,
+                        "etag": true
+                    },
+                    "Oem": {
+                        "type": "object",
+                        "readonly": true,
+                        "additionalProperties": true,
+                        "properties": {
+                            "Hp": {
+                                "$ref": "HpServerFan.json#"
+                            }
+                        }
+                    }
+                }
+            },
+            "description": "The fan details."
+        },
+        "links": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "self": {
+                    "$ref": "href.json#",
+                    "description": "The URI for this thermal metrics resource.",
+                    "readonly": true
+                }
+            },
+            "readonly": true
+        }
+    }
+}
