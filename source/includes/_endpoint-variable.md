@@ -29,6 +29,9 @@ derived | boolean | Whether the variable is a function of another; default: fals
 type | string | The string type name, one of "numeric", "text", "categorical", "datetime", "categorical_array", or "multiple_response"
 subvariables | array of URLs | For arrays, array of (ordered) references to subvariables
 subvariables_catalog | URL | For arrays, link to a Shoji Catalog of subvariables
+resolution | string | Present in datetime variables. Current resolution of data
+rollup_resolution | string | Present in datetime variables. Resolution used for rolled up summaries
+geodata | URL | Present only in categoricals that have geodata associated. Points to the catalog of geodatums related to this variable.s
 
 
 
