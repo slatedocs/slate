@@ -44,7 +44,7 @@ Relationship name |  Constraints
 accounting_category |
 accounting_subcategory |
 numeration | Applicable only to tickets with `kind = income`
-analytic_subcategories |
+analytic_categories | Can not be a root analytic category
 items | Can be sideloaded in GET requests. <br> Must be included in the payload in POST/PATCH/PUT requests
 
 ## Listing tickets
@@ -107,7 +107,7 @@ curl "https://getquipu.com/tickets" \
           "id": "6332"
         }
       },
-      "analytic_subcategories": {
+      "analytic_categories": {
         "data":[]
       },
       "items": {
@@ -163,7 +163,7 @@ curl "https://getquipu.com/tickets" \
           "id": "6326"
         }
       },
-      "analytic_subcategories": {
+      "analytic_categories": {
         "data": []
       },
       "items": {
@@ -266,7 +266,7 @@ curl "https://getquipu.com/tickets/ticket_id/2989809" \
           "id": "6332"
         }
       },
-      "analytic_subcategories": {
+      "analytic_categories": {
         "data":[]
       },
       "items": {

@@ -42,7 +42,7 @@ Relationship name |  Constraints
 contact | REQUIRED
 accounting_category | READ ONLY
 accounting_subcategory |
-analytic_subcategories |
+analytic_categories | Can not be a root analytic category
 
 ## Listing paysheets
 
@@ -105,7 +105,7 @@ curl "https://getquipu.com/paysheets" \
           "id": "6332"
         }
       },
-      "analytic_subcategories": {
+      "analytic_categories": {
         "data":[]
       },
       "contact": {
@@ -162,7 +162,7 @@ curl "https://getquipu.com/paysheets" \
           "id": "6326"
         }
       },
-      "analytic_subcategories": {
+      "analytic_categories": {
         "data": []
       },
       "contact": {
@@ -250,7 +250,7 @@ curl "https://getquipu.com/paysheets/3007642" \
           "id": "6332"
         }
       },
-      "analytic_subcategories": {
+      "analytic_categories": {
         "data":[]
       },
       "contact": {
@@ -293,7 +293,7 @@ curl "https://getquipu.com/paysheets" \
                 type: "contacts"
               }
             },
-            "analytic_subcategories": {
+            "analytic_categories": {
               ...
             },
             "accounting_subcategories": {
