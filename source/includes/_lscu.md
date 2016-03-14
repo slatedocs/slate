@@ -70,7 +70,7 @@ api-key | <span class="label label-required">Required</span>
 sig | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
 expires | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
 report-name | <span class="label label-required">Required</span>
-client-id | Associate this report with a client in your account. This ID needs to correspond to a valid client in your account.
+location-id | Associate this report with a location in your account. This ID needs to correspond to a valid location in your account.
 white-label-profile-id | Assign a white label profile to this report. The ID needs to correspond to a valid white label profile in your account.
 business-names | <span class="label label-required">Required</span> Supply one or more busines names (max 5) as a JSON string. For example, ["Greens Restaurant","Greens"].
 website-address | <span class="label label-required">Required</span> The address for your business website.
@@ -162,7 +162,7 @@ sig | <span class="label label-required">Required</span> [See above for how to g
 expires | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
 report-id |
 report-name |
-client-id | Associate this report with a client in your account. This ID needs to correspond to a valid client in your account.
+location-id | Associate this report with a location in your account. This ID needs to correspond to a valid location in your account.
 white-label-profile-id | Assign a white label profile to this report. The ID needs to correspond to a valid white label profile in your account.
 business-names | Supply one or more busines names (max 5) as a JSON string. For example, ["Greens Restaurant","Greens"].
 website-address | The address for your business website.
@@ -198,7 +198,7 @@ local-directory-urls | <p>This parameter allows you update the profile URLs we h
   "report":  {
     "report_id": "860",
     "customer_id": "35",
-    "client_id": "0",
+    "location_id": "0",
     "company_name": null,
     "name": "McCormick & Schmick's",
     "white_label_profile_id": "59",
@@ -372,7 +372,7 @@ report-id | <span class="label label-required">Required</span> The unique ID for
      {
       "report_id": "839",
       "report_name": "Bodega Wine Bar",
-      "client_id": "14580",
+      "location_id": "14580",
       "date_added": "2014-01-16 12:50:46",
       "last_run_date": "2014-01-16 12:58:58",
       "last_message": "Report generated successfully",
@@ -381,7 +381,7 @@ report-id | <span class="label label-required">Required</span> The unique ID for
      {
       "report_id": "858",
       "report_name": "Bodega Wine Bar",
-      "client_id": "14580",
+      "location_id": "14580",
       "date_added": "2014-06-26 07:46:21",
       "last_run_date": "2014-07-28 16:11:14",
       "last_message": "Report generated successfully",
@@ -413,4 +413,4 @@ Parameter | Notes
 api-key | <span class="label label-required">Required</span>
 sig | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
 expires | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
-q | Supply an arbitrary search string. We search in client and report names for matches.
+q | Supply an arbitrary search string. We search in location and report names for matches.

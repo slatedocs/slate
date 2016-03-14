@@ -46,12 +46,12 @@ contact-email | 100 characters max
 contact-fax | 20 characters max
 number-of-employees | 10 characters max
 year-of-formation | 20 characters max
-extra-business-categories | 50 characters max
-working-hours | 
-payment-methods | 
-brief-description | 200 characters max
-full-description | 500 characters max
-services| Newline (\n) separated list of services
+extra-business-categories | Json encoded array.
+working-hours | Json encoded array. Available array keys: mon_start, mon_end, tue_start, tue_end, wed_start, wed_end, thu_start, thu_end, fri_start, fri_end, sat_start, sat_end, sun_start, sun_end 
+payment-methods | Json encoded array. Available values: cash, visa, mastercard, amex, cheque, invoice, insurance, atm, travelers, financing, paypal, discover
+short-description | 200 characters max
+long-description | 500 characters max
+services-of-products| Json encoded array
 
 ## Update Location
 
@@ -99,12 +99,12 @@ contact-email | 100 characters max
 contact-fax | 20 characters max
 number-of-employees | 10 characters max
 year-of-formation | 20 characters max
-extra-business-categories | 50 characters max
-working-hours | 
-payment-methods | 
-brief-description | 200 characters max
-full-description | 500 characters max
-services| Newline (\n) separated list of services
+extra-business-categories | Json encoded array.
+working-hours | Json encoded array. Available array keys: mon_start, mon_end, tue_start, tue_end, wed_start, wed_end, thu_start, thu_end, fri_start, fri_end, sat_start, sat_end, sun_start, sun_end 
+payment-methods | Json encoded array. Available values: cash, visa, mastercard, amex, cheque, invoice, insurance, atm, travelers, financing, paypal, discover
+short-description | 200 characters max
+long-description | 500 characters max
+services-of-products| Json encoded array
 
 ## Delete Location
 
@@ -143,34 +143,41 @@ location-id | <span class="label label-required">Required</span>
 {
    "success":true,
    "location":{
-        "location-name":"Location from API NEW (S)",
-        "client-id":8,
-        "location-url":"http:\/\/created.com",
-        "business-category-id":650,
-        "country":"USA",
-        "address1":"39000 Bob Hope",
-        "address2":"78",
-        "region":"California",
-        "town":"Sacramento",
-        "postcode":"91000",
-        "telephone":"80500 050 0505",
-        "location-reference":"get_reference_number",
-        "contact-first-name":"first name",
-        "contact-last-name":"last name",
-        "contact-telephone":"8818818181",
-        "contact-fax":"889499879879",
-        "contact-mobile":"80409890",
-        "num-of-employees":"0",
-        "year-of-formation":"1958",
-        "extra-business_categories":"",
-        "working-hours":[
-        ],
-        "payment-methods-accepted":[
-        ],
-        "short-desc":"",
-        "long-desc":"",
-        "services-or-products":[
-        ]
+            "location-name":"BrightLocal HQ",
+            "client-id":1,
+            "location-url":"https://www.brightlocal.com",
+            "business-category-id":650,
+            "country":"GBR",
+            "address1":"The Old Candlemakers",
+            "address2":"West St, Lewes",
+            "region":"East Sussex",
+            "town":"Lewes",
+            "postcode":"BN7 2NZ",
+            "telephone":"80500 050 0505",
+            "location-reference":"BL1",
+            "contact-first-name":"first name",
+            "contact-last-name":"last name",
+            "contact-telephone":"+44 1273 917 374",
+            "contact-fax":"",
+            "contact-mobile":"",
+            "num-of-employees":"50",
+            "year-of-formation":"2009",
+            "extra-business_categories":[
+            	"marketing"
+            ],
+            "working-hours":[
+            	"mon_start":"9 a.m.",
+            	"mon_end":"7 p.m.",
+            ],
+            "payment-methods-accepted":[
+                "visa",
+                "paypal"
+            ],
+            "short-desc":"",
+            "long-desc":"",
+            "services-or-products":[
+                "analytics"
+            ]
    }
 }
 ```
@@ -200,35 +207,11 @@ expires | <span class="label label-required">Required</span> [See above for how 
     "success": true,
     "locations":  [
         {
-            "location-name":"Location from API NEW (S)",
-            "client-id":8,
-            "location-url":"http:\/\/created.com",
-            "business-category-id":650,
-            "country":"USA",
-            "address1":"39000 Bob Hope",
-            "address2":"78",
-            "region":"California",
-            "town":"Sacramento",
-            "postcode":"91000",
-            "telephone":"80500 050 0505",
-            "location-reference":"get_reference_number",
-            "contact-first-name":"first name",
-            "contact-last-name":"last name",
-            "contact-telephone":"8818818181",
-            "contact-fax":"889499879879",
-            "contact-mobile":"80409890",
-            "num-of-employees":"0",
-            "year-of-formation":"1958",
-            "extra-business_categories":"",
-            "working-hours":[
-            ],
-            "payment-methods-accepted":[
-            ],
-            "short-desc":"",
-            "long-desc":"",
-            "services-or-products":[
-            ]
-        }
+			"location-id": 1,
+			"location-name":"BrightLocal HQ",
+			"client-id":1,
+			"location-reference":"BL1"
+	   }
     ]
 }
 ```
@@ -247,3 +230,4 @@ api-key | <span class="label label-required">Required</span>
 sig | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
 expires | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
 q | <span class="label label-required">Required</span>
+client-id | Client Id

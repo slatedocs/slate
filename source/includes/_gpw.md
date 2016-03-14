@@ -50,7 +50,7 @@ api-key | <span class="label label-required">Required</span>
 sig | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
 expires | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
 report_name | <span class="label label-required">Required</span>
-client_id | Associate this report with a client in your account. This ID needs to correspond to a valid client in your account.
+location_id | Associate this report with a location in your account. This ID needs to correspond to a valid location in your account.
 white_label_profile_id | Assign a white label profile to this report. The ID needs to correspond to a valid white label profile in your account.
 business_names | <span class="label label-required">Required</span> Supply one business name. For example, Greens Restaurant.
 schedule | <span class="label label-required">Required</span> One of Adhoc or Monthly
@@ -107,7 +107,7 @@ api-key | <span class="label label-required">Required</span>
 sig | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
 expires | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
 report_name |
-client_id | Associate this report with a client in your account. This ID needs to correspond to a valid client in your account.
+location_id | Associate this report with a location in your account. This ID needs to correspond to a valid location in your account.
 white_label_profile_id | Assign a white label profile to this report. The ID needs to correspond to a valid white label profile in your account.
 business_names |  Supply one business name. For example, Greens Restaurant.
 schedule |  One of Adhoc or Monthly
@@ -141,7 +141,7 @@ run | One of Yes or No. Runs the report after adding. Defaults to Yes.
           "report_id": "1",
           "report_name": "Report name",
           "customer_id": "1",
-          "client_id": "1000",
+          "location_id": "1000",
           "schedule": "Adhoc",
           "day_of_month": "0",
           "white_label_profile_id": "24",
@@ -268,7 +268,7 @@ expires | <span class="label label-required">Required</span> [See above for how 
 {
   "success": false,
   "errors":  {
-    "INVALID_CLIENT_ID": "Invalid client ID supplied"
+    "INVALID_LOCATION_ID": "Invalid location ID supplied"
   }
 }
 ```
@@ -286,7 +286,7 @@ Parameter | Notes
 api-key | <span class="label label-required">Required</span>
 sig | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
 expires | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
-client-id |
+location-id |
 
 
 ## Run Report
@@ -909,7 +909,7 @@ report-id | <span class="label label-required">Required</span> The unique ID for
 {
   "success": false,
   "errors":  {
-    "INVALID_CLIENT_ID": "Invalid client ID supplied"
+    "INVALID_LOCATION_ID": "Invalid location ID supplied"
   }
 }
 ```

@@ -32,7 +32,7 @@
     "start_year": "Please enter starting year",
     "working_hours": "Your must provide Working Hours for at least one day in the week",
     "campaign_status": "Invalid campaign status",
-    "client_id": "Client with  ID 0 not found or doesn't belong to this customer"
+    "location-id": "Location with ID 0 not found or doesn't belong to this customer"
   }
 }
 {
@@ -52,7 +52,7 @@ Parameter | Notes
 api-key	| <span class="label label-required">Required</span>	
 sig	| <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
 expires	| <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
-client_id |		
+location_id |		
 business_name | <span class="label label-required">Required</span>	
 campaign_name | <span class="label label-required">Required</span>	
 website_address	| <span class="label label-required">Required</span>	
@@ -221,7 +221,7 @@ citations | <span class="label label-required">Required</span> JSON Array. If au
         "results":  [
             {
                 "campaign_id": "4",
-                "client_id": "7459",
+                "location_id": "7459",
                 "campaign_name": "Test 1",
                 "date_purchased": "2012-06-11 00:00:00",
                 "date_completed": "2012-06-25 00:00:00",
@@ -263,7 +263,7 @@ Parameter | Notes
 api-key	| <span class="label label-required">Required</span>	
 sig	| <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
 expires	| <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
-client-id |
+location-id |
 
 ## Get Campaign
 
