@@ -19,7 +19,7 @@ If you're using netlify for staging sites or deploying mockups that you want to 
 
 Go to the settings screen for your site and click "Edit" next to the "Privacy" setting. Then enter your password of choice.
 
-If you need multiple passwords for a site, or need to protect just part of your site, you can setup Basic-Auth via netlify's [custom HTTP header](/docs/headers_and_basic_auth) support.
+If you need multiple passwords for a site, or need to protect just part of your site, you can setup Basic-Auth via netlify's [custom HTTP header](#headers_and_basic_auth) support.
 
 ## Authenticating with 3rd party providers
 
@@ -51,7 +51,7 @@ For Github, go to the [Applications](https://github.com/settings/applications) t
 
 Github will ask for an **Authorization callback URL**. Make sure to enter `https://api.netlify.com/auth/done`
 
-![Github OAuth Configuration](/img/docs/github-oauth-config.png)
+![Github OAuth Configuration](images/github-oauth-config.png)
 
 Then go to the **Access** tab for your Netlify site and configure the Github provider with your new **Client ID** and **Client Secret**.
 
@@ -98,7 +98,7 @@ Services that use OAuth2 are easy to consume directly from Javascript as long as
 
 OAuth1 is not as friendly to single page apps since it requires a server to sign each request to the API with a secret key, and some OAuth2 services don't support CORS request.
 
-In these cases you can use Netlify's [proxy feature](/docs/redirects#proxying). For example, to proxy requests to BitBucket's API, add this line to your **_redirects** file:
+In these cases you can use Netlify's [proxy feature](#redirects#proxying). For example, to proxy requests to BitBucket's API, add this line to your **_redirects** file:
 
     /bitbucket/* https://bitbucket.org/:splat 200
 

@@ -57,7 +57,7 @@ You can update attributes on your site through the cli. Currently the name of th
 netlify update -n my-test-site -d www.example.com -p my-password
 ```
 
-You'll need to configure the DNS settings for your [custom domain](/docs/custom_domains) separately from assigning the domain to your site.
+You'll need to configure the DNS settings for your [custom domain]#custom_domains) separately from assigning the domain to your site.
 
 
 

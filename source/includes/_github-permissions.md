@@ -14,7 +14,7 @@ When you start a new project with continuous deployment, we need to be able to b
 
 If you're still worried about granting access to sensitive repositories, GitHub lets you restrict application access for organizations.
 
-[![settings-third-party-restrict-confirm.png](/img/docs/settings-third-party-restrict-confirm.png)
+[![settings-third-party-restrict-confirm.png](images/settings-third-party-restrict-confirm.png)
 ](https://help.github.com/articles/about-third-party-application-restrictions/)
 
 Once these restrictions are in place, netlify will no longer have any kind of access to the repositories from this organization unless you explicitly whitelist our API application.

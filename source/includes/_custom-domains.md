@@ -154,4 +154,4 @@ We only redirect automatically between the root domain and www. Not any other su
 
 Depending on your plan, you can setup domain aliases for your domain, so the same site will be rendered on several different domains.
 
-You can use domain aliases together with [rewrite and redirect](/docs/redirects) to redirect or rewrite based on the current domain of the site.
+You can use domain aliases together with [rewrite and redirect](#redirects) to redirect or rewrite based on the current domain of the site.

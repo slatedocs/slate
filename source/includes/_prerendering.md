@@ -12,7 +12,7 @@ Note: Google recently marked their Standard for Ajax Crawling as deprecated. The
 
 Netlify comes with built-in prerendering on our larger plans. If you're on a plan that supports prerendering, enabling it is as simple as checking a box:
 
-![Enabling netlify's built-in prerendering](/img/docs/netlify-prerendering.png)
+![Enabling netlify's built-in prerendering](images/netlify-prerendering.png)
 
 Our built-in prerendering service will cache prerendered pages for 24 hours. Prerendered requests counts towards the proxy request count in your plans limits.
 
