@@ -52,9 +52,7 @@ augur.js includes a trustless account management system.  The purpose of the acc
 
 To use the account system, the user specifies a username and password.  Everything else is done automatically for the user.  The only requirement for the password is that it be at least 6 characters long.
 
-A private key (+ derived public key and address) is automatically generated for the user.  A secret key derived from the password using PBKDF2, along with a random 128-bit initialization vector, is used to encrypt the private key (using AES-256).  The username, encrypted private key, and initialization vector are stored with [Firebase](https://www.firebase.com/).
-
-<aside class="success">Our account system is <b>trustless</b> because only the user's encrypted key is stored.  The user's randomly-generated private key is encrypted using their password, then indexed by username and stored with Firebase.  The user's password is never stored (not even a hash of it), nor is their public key or their address.  Neither we nor Firebase have any access to the user's account.  We can't see your account balance, your transaction history, or anything else.</aside>
+A private key (+ derived public key and address) is automatically generated for the user.  A secret key derived from the password using PBKDF2, along with a random 128-bit initialization vector, is used to encrypt the private key (using AES-256).  The username, encrypted private key, and initialization vector are stored in the browser's `localStorage`.
 
 Transaction signing and serialization is entirely carried out in the browser using [ethereumjs-tx](https://github.com/ethereum/ethereumjs-tx) and the `eth_sendRawTransaction` RPC; the plaintext private key never touches our servers at any time.
 
