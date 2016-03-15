@@ -62,6 +62,8 @@ Jobs within a batch can also have one of 5 states:
 * Completed - processing completed successfully and job results are available
 * Authentication for this method is via API key only.
 
+Whilst you can technically add as many jobs as you want to a batch we recommend you submit jobs in batches of a few hundred at a time. This will allow you to start receiving results sooner.
+
 ### HTTP Request
 
 `POST https://tools.brightlocal.com/seo-tools/api/v4/batch`

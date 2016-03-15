@@ -14,7 +14,7 @@ echo urlencode($sig); // for get requests
 echo $sig;
 ```
 
-All methods require a valid trial or production API key. Methods which manipulate or retrieve data from your account additionally require a signature. You ideally need to generate this signature for each request and keep its expiry short. For testing purposes you can chose to create a signature that will be valid for up to 30 minutes.
+All methods require a valid trial or production API key. Methods which manipulate or retrieve data in your account additionally require a signature. You ideally need to generate this signature for each request and set a short expiry time. For testing purposes you can chose to create a signature that will be valid for up to 30 minutes.
 
 ## Authentication Errors
 
