@@ -2,13 +2,10 @@
 title: API Reference
 
 language_tabs:
-  - shell
   - ruby
-  - python
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a>
+  - <a href='https://incidentreport-120.herokuapp.com'>InstaPort Home</a>
 
 includes:
   - errors
@@ -18,67 +15,25 @@ search: true
 
 # Introduction
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+Welcome to the [InstaPort](https://incidentreport-120.herokuapp.com) API! You can use our API to access API endpoints, which can get information on incidents or users in our database.
 
-We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+We have language bindings in Ruby! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
 
-This example API documentation page was created with [Slate](https://github.com/tripit/slate). Feel free to edit it and use it as a base for your own API's documentation.
+This API documentation page was created with [Slate](https://github.com/tripit/slate).
 
 # Authentication
 
-> To authorize, use this code:
+Our current MVP allows full access to all of the end points and thus does not require any Authentication.  We will update this section of the documents once our authentication component is complete.
 
-```ruby
-require 'kittn'
+# Incidents
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-```
-
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
-```
-
-> Make sure to replace `meowmeowmeow` with your API key.
-
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
-
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
-
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
-
-# Kittens
-
-## Get All Kittens
+## Get All Incidents
 
 ```ruby
 require 'kittn'
 
 api = Kittn::APIClient.authorize!('meowmeowmeow')
 api.kittens.get
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
-
-```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
 ```
 
 > The above command returns JSON structured like this:
@@ -119,25 +74,13 @@ available | true | If set to false, the result will include kittens that have al
 Remember — a happy kitten is an authenticated kitten!
 </aside>
 
-## Get a Specific Kitten
+## Get a Specific Incident
 
 ```ruby
 require 'kittn'
 
 api = Kittn::APIClient.authorize!('meowmeowmeow')
 api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
 ```
 
 > The above command returns JSON structured like this:
@@ -166,3 +109,119 @@ Parameter | Description
 --------- | -----------
 ID | The ID of the kitten to retrieve
 
+## Edit a Specific Incident
+
+
+> Sending an HTTP Form-Data PUTS to this endpoint with all the required fields will return json as follows
+```json
+{
+  "id":1,
+  "title":"Example",
+  "location":"South Hall",
+  "severity":1,
+  "incident_type":"Housing",
+  "comments":"Example comments",
+  "user":"Demo User",
+  "groups":"Students",
+  "status":0,
+  "reported_by":null,
+  "assigned_to":null,
+  "created_at":"2016-03-11T19:52:46.401Z",
+  "updated_at":"2016-03-11T19:52:46.401Z"
+}
+
+This endpoint edits a specified incident.
+
+### HTTP Request
+
+`GET http://incidentreport-120.herokuapp.com/incidents/{incident id}.json`
+
+### Form Data
+
+Key | Value
+--------- | -----------
+incident[title] | string
+incident[location] | string
+incident[comments] | text
+incident[severity] | integer between 1-4
+incident[incident_type] | string
+incident[groups] | string
+_method | 'patch'
+
+## Create a New Incident
+
+
+> Sending an HTTP Form-Data POST to this endpoint with all the required fields will return json as follows
+```json
+{
+  "id":1,
+  "title":"Example",
+  "location":"South Hall",
+  "severity":1,
+  "incident_type":"Housing",
+  "comments":"Example comments",
+  "user":"Demo User",
+  "groups":"Students",
+  "status":0,
+  "reported_by":null,
+  "assigned_to":null,
+  "created_at":"2016-03-11T19:52:46.401Z",
+  "updated_at":"2016-03-11T19:52:46.401Z"
+}
+```
+
+This endpoint creates a new incident. 
+
+
+### HTTP Request
+
+`GET http://incidentreport-120.herokuapp.com/incidents.json`
+
+### Form Data
+
+Key | Value
+--------- | -----------
+incident[title] | string
+incident[location] | string
+incident[comments] | text
+incident[severity] | integer between 1-4
+incident[incident_type] | string
+incident[groups] | string
+
+
+# Users
+
+## Create a New User
+
+```ruby
+require 'kittn'
+
+api = Kittn::APIClient.authorize!('meowmeowmeow')
+api.kittens.get(2)
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "id": 2,
+  "name": "Max",
+  "breed": "unknown",
+  "fluffiness": 5,
+  "cuteness": 10
+}
+```
+
+This endpoint retrieves a specific kitten.
+
+<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
+
+### HTTP Request
+
+`GET http://example.com/kittens/<ID>`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+ID | The ID of the kitten to retrieve
