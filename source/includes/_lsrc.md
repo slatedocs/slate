@@ -386,6 +386,405 @@ campaign-id | <span class="label label-required">Required</span>
 campaign-history-id | If both campaign-history-id and previous-campaign-history-id are not specified then the latest report is returned.
 previous-campaign-history-id | If both campaign-history-id and previous-campaign-history-id are not specified then the latest report is returned.
 
-<aside class="notice">
-    This call returns extensive result information that is too detailed to show in this API documentation.
-</aside>
+> Success (200 OK)
+
+```json
+{
+  "response": {
+    "result": {
+      "campaign_details": {
+        "campaign_id": "9636",
+        "customer_id": "1",
+        "white_label_profile_id": "24",
+        "client_id": "0",
+        "name": "Alaska Bar Association",
+        "schedule": "Adhoc",
+        "day_of_week": "Monday",
+        "day_of_month": "18",
+        "search_terms": [
+          "Alaska Bar Association"
+        ],
+        "ppc_search_terms": "",
+        "lookup_ppc": "No",
+        "website_addresses": [
+          "https://www.alaskabar.org/"
+        ],
+        "country": "USA",
+        "google_location": "Alaska",
+        "bing_location": "",
+        "previous_bing_location": null,
+        "business_names": [
+          ""
+        ],
+        "postcode": "",
+        "telephone": "",
+        "search_engines": [
+          "google",
+          "google-local",
+          "yahoo",
+          "yahoo-local",
+          "bing",
+          "bing-local"
+        ],
+        "include_local_directory_results": "No",
+        "notify": "No",
+        "email_addresses": "test@testpub.com",
+        "created": "2016-01-18",
+        "last_processed": "2016-02-01",
+        "last_message": "",
+        "currently_running": "No",
+        "status": "Enabled",
+        "red_flag": "No",
+        "is_public": "Yes",
+        "public_key": "9199201efe2cf540638f19c23df864a01dc8199e",
+        "show_advanced_settings": "No",
+        "last_batch_id": "2444",
+        "tags": []
+      },
+      "urls": {
+        "interactive_url": "https://tools.brightlocal.com/seo-tools/admin/lsrc/reports/interactive/9636",
+        "pdf_url": "https://tools.brightlocal.com/seo-tools/admin/lsrc/reports/pdf/9636.pdf",
+        "csv_url": "https://tools.brightlocal.com/seo-tools/admin/lsrc/reports/csv/9636.csv",
+        "public_interactive_url": "http://www.local-marketing-reports.com/ranking-reports/9199201efe2cf540638f19c23df864a01dc8199e/9636",
+        "public_pdf_url": "http://www.local-marketing-reports.com/ranking-reports/9199201efe2cf540638f19c23df864a01dc8199e/9636.pdf",
+        "public_csv_url": "http://www.local-marketing-reports.com/ranking-reports/9199201efe2cf540638f19c23df864a01dc8199e/9636.csv"
+      },
+      "rankings": {
+        "keywords": [
+          "Alaska Bar Association"
+        ],
+        "keywords_num_rankings": {
+          "Alaska Bar Association": "2"
+        },
+        "search_engines": [
+          "google",
+          "google-places",
+          "yahoo",
+          "yahoo-local",
+          "bing",
+          "bing-local"
+        ],
+        "rankings": {
+          "Alaska Bar Association": {
+            "google": [
+              {
+                "id": "11764",
+                "url": "https://alaskabar.org/",
+                "orig_url": "https://www.alaskabar.org/",
+                "rank": "1",
+                "page": "1",
+                "type": "Organic",
+                "match": "website address",
+                "directory": null,
+                "date": "2016-02-01 19:00:24",
+                "hash": "32d3f35ad7633a34b2cf93dec7dfdd2455d25f84",
+                "search_url": "https://www.google.com/search?q=Alaska+Bar+Association&gl=us&gws_rd=cr&uule=w+CAIQICIGQWxhc2th&pws=0",
+                "search_engine": "google",
+                "last": "1"
+              }
+            ],
+            "google-places": [
+              {
+                "id": "11766",
+                "url": "http://alaskabar.org/",
+                "orig_url": "http://www.alaskabar.org/",
+                "rank": "1",
+                "page": "1",
+                "type": "Places",
+                "match": "website address",
+                "directory": null,
+                "date": "2016-02-01 19:00:24",
+                "hash": "e008f8d346b2b8f124702d64be0ec1131adba959",
+                "search_url": "https://www.google.com/search?tbm=lcl&q=Alaska+Bar+Association&gl=us&gws_rd=cr&uule=w+CAIQICIGQWxhc2th",
+                "search_engine": "google-places",
+                "last": "1"
+              }
+            ],
+            "yahoo": [
+              {
+                "id": "11767",
+                "url": "http://alaskabar.org/",
+                "orig_url": "http://www.alaskabar.org/",
+                "rank": "1",
+                "page": "1",
+                "type": "Organic",
+                "match": "website address",
+                "directory": null,
+                "date": "2016-02-01 19:00:24",
+                "hash": "b9ea2849328aa0794c79a60beb6cee38c2a51a67",
+                "search_url": "http://search.yahoo.com/search?p=Alaska+Bar+Association",
+                "search_engine": "yahoo",
+                "last": "1"
+              },
+              {
+                "id": "11768",
+                "url": "https://alaskabar.org/servlet/content/46.html",
+                "orig_url": "https://www.alaskabar.org/servlet/content/46.html",
+                "rank": "6",
+                "page": "1",
+                "type": "Organic",
+                "match": "website address",
+                "directory": null,
+                "date": "2016-02-01 19:00:24",
+                "hash": "e0610efd9a75c627c2f9a8bc1b86680d5064b71d",
+                "search_url": "http://search.yahoo.com/search?p=Alaska+Bar+Association",
+                "search_engine": "yahoo",
+                "last": "6"
+              }
+            ],
+            "yahoo-local": [
+              {
+                "id": "11769",
+                "url": "",
+                "orig_url": "",
+                "rank": "0",
+                "page": "0",
+                "type": "",
+                "match": "",
+                "directory": null,
+                "date": "2016-02-01 19:00:24",
+                "hash": null,
+                "search_url": "https://search.yahoo.com/local/?p=Alaska+Bar+Association",
+                "search_engine": "yahoo-local"
+              }
+            ],
+            "bing": [
+              {
+                "id": "11770",
+                "url": "http://alaskabar.org/",
+                "orig_url": "http://www.alaskabar.org/",
+                "rank": "1",
+                "page": "0",
+                "type": "Organic",
+                "match": "website address",
+                "directory": null,
+                "date": "2016-02-01 19:00:24",
+                "hash": "bbd31c444764b5dd44685b5eae35578bbef68166",
+                "search_url": "http://www.bing.com/search?q=Alaska+Bar+Association&mkt=en-us&count=50",
+                "search_engine": "bing",
+                "last": "1"
+              }
+            ],
+            "bing-local": [
+              {
+                "id": "11771",
+                "url": "",
+                "orig_url": "",
+                "rank": "0",
+                "page": "0",
+                "type": "",
+                "match": "",
+                "directory": null,
+                "date": "2016-02-01 19:00:24",
+                "hash": null,
+                "search_url": "http://www.bing.com/local/default.aspx?q=Alaska+Bar+Association&mkt=en-us&FORM=LLSV",
+                "search_engine": "bing-local"
+              }
+            ]
+          }
+        },
+        "hashes": {
+          "google": {
+            "Alaska Bar Association": [
+              "32d3f35ad7633a34b2cf93dec7dfdd2455d25f84"
+            ]
+          },
+          "google-places": {
+            "Alaska Bar Association": [
+              "e008f8d346b2b8f124702d64be0ec1131adba959"
+            ]
+          },
+          "yahoo": {
+            "Alaska Bar Association": [
+              "b9ea2849328aa0794c79a60beb6cee38c2a51a67",
+              "e0610efd9a75c627c2f9a8bc1b86680d5064b71d"
+            ]
+          },
+          "yahoo-local": {
+            "Alaska Bar Association": []
+          },
+          "bing": {
+            "Alaska Bar Association": [
+              "bbd31c444764b5dd44685b5eae35578bbef68166"
+            ]
+          },
+          "bing-local": {
+            "Alaska Bar Association": []
+          }
+        },
+        "byPosition": {
+          "Position 1": {
+            "Alaska Bar Association||google||Organic": {
+              "id": "11764",
+              "url": "https://alaskabar.org/",
+              "orig_url": "https://www.alaskabar.org/",
+              "rank": "1",
+              "page": "1",
+              "type": "Organic",
+              "match": "website address",
+              "directory": null,
+              "date": "2016-02-01 19:00:24",
+              "hash": "32d3f35ad7633a34b2cf93dec7dfdd2455d25f84",
+              "search_url": "https://www.google.com/search?q=Alaska+Bar+Association&gl=us&gws_rd=cr&uule=w+CAIQICIGQWxhc2th&pws=0",
+              "search_engine": "google"
+            },
+            "Alaska Bar Association||google-places||Places": {
+              "id": "11766",
+              "url": "http://alaskabar.org/",
+              "orig_url": "http://www.alaskabar.org/",
+              "rank": "1",
+              "page": "1",
+              "type": "Places",
+              "match": "website address",
+              "directory": null,
+              "date": "2016-02-01 19:00:24",
+              "hash": "e008f8d346b2b8f124702d64be0ec1131adba959",
+              "search_url": "https://www.google.com/search?tbm=lcl&q=Alaska+Bar+Association&gl=us&gws_rd=cr&uule=w+CAIQICIGQWxhc2th",
+              "search_engine": "google-places"
+            },
+            "Alaska Bar Association||yahoo||Organic": {
+              "id": "11767",
+              "url": "http://alaskabar.org/",
+              "orig_url": "http://www.alaskabar.org/",
+              "rank": "1",
+              "page": "1",
+              "type": "Organic",
+              "match": "website address",
+              "directory": null,
+              "date": "2016-02-01 19:00:24",
+              "hash": "b9ea2849328aa0794c79a60beb6cee38c2a51a67",
+              "search_url": "http://search.yahoo.com/search?p=Alaska+Bar+Association",
+              "search_engine": "yahoo"
+            },
+            "Alaska Bar Association||bing||Organic": {
+              "id": "11770",
+              "url": "http://alaskabar.org/",
+              "orig_url": "http://www.alaskabar.org/",
+              "rank": "1",
+              "page": "0",
+              "type": "Organic",
+              "match": "website address",
+              "directory": null,
+              "date": "2016-02-01 19:00:24",
+              "hash": "bbd31c444764b5dd44685b5eae35578bbef68166",
+              "search_url": "http://www.bing.com/search?q=Alaska+Bar+Association&mkt=en-us&count=50",
+              "search_engine": "bing"
+            }
+          },
+          "Positions 2-5": [],
+          "Positions 6-10": [],
+          "Positions 11-20": [],
+          "Positions 21-50": [],
+          "Positions 51+": {
+            "Alaska Bar Association||yahoo-local||": {
+              "id": "11769",
+              "url": "",
+              "orig_url": "",
+              "rank": "0",
+              "page": "0",
+              "type": "",
+              "match": "",
+              "directory": null,
+              "date": "2016-02-01 19:00:24",
+              "hash": null,
+              "search_url": "https://search.yahoo.com/local/?p=Alaska+Bar+Association",
+              "search_engine": "yahoo-local"
+            },
+            "Alaska Bar Association||bing-local||": {
+              "id": "11771",
+              "url": "",
+              "orig_url": "",
+              "rank": "0",
+              "page": "0",
+              "type": "",
+              "match": "",
+              "directory": null,
+              "date": "2016-02-01 19:00:24",
+              "hash": null,
+              "search_url": "http://www.bing.com/local/default.aspx?q=Alaska+Bar+Association&mkt=en-us&FORM=LLSV",
+              "search_engine": "bing-local"
+            }
+          }
+        },
+        "summary": {
+          "all_search_engines": {
+            "up": 0,
+            "down": 0,
+            "no_change": 6,
+            "gained_hashes": [],
+            "lost_hashes": []
+          },
+          "google": {
+            "up": 0,
+            "down": 0,
+            "no_change": 1,
+            "gained_hashes": [],
+            "lost_hashes": []
+          },
+          "google-places": {
+            "up": 0,
+            "down": 0,
+            "no_change": 1,
+            "gained_hashes": [],
+            "lost_hashes": []
+          },
+          "yahoo": {
+            "up": 0,
+            "down": 0,
+            "no_change": 2,
+            "gained_hashes": [],
+            "lost_hashes": []
+          },
+          "yahoo-local": {
+            "up": 0,
+            "down": 0,
+            "no_change": 0,
+            "gained_hashes": [],
+            "lost_hashes": []
+          },
+          "bing": {
+            "up": 0,
+            "down": 0,
+            "no_change": 1,
+            "gained_hashes": [],
+            "lost_hashes": []
+          },
+          "bing-local": {
+            "up": 0,
+            "down": 0,
+            "no_change": 0,
+            "gained_hashes": [],
+            "lost_hashes": []
+          }
+        }
+      },
+      "serp-screenshots": {
+        "google": {
+          "Alaska Bar Association": {
+            "1": {
+              "url": "https://brightlocal-serp-pages.s3.amazonaws.com/2016/02/01/18/a7cf190f51b2572fa166803bec9bb07920d3c678.png",
+              "expiry_date": "2016-03-17 19:00:24"
+            },
+            "2": {
+              "url": "https://brightlocal-serp-pages.s3.amazonaws.com/2016/02/01/18/e7cd9afb659ecd572c59f4556ae6f1bcf2cac665.png",
+              "expiry_date": "2016-03-17 19:00:24"
+            },
+            "3": {
+              "url": "https://brightlocal-serp-pages.s3.amazonaws.com/2016/02/01/18/593e4e97b9780de2e71e3581f1a47d784deb1c4c.png",
+              "expiry_date": "2016-03-17 19:00:24"
+            },
+            "4": {
+              "url": "https://brightlocal-serp-pages.s3.amazonaws.com/2016/02/01/18/6ddb19e8c10b899aeee8e4b11d5a8a6fa1129ebd.png",
+              "expiry_date": "2016-03-17 19:00:24"
+            },
+            "5": {
+              "url": "https://brightlocal-serp-pages.s3.amazonaws.com/2016/02/01/18/a404cc8a6c30f81a0744d6661f2004b7bcfa2a34.png",
+              "expiry_date": "2016-03-17 19:00:24"
+            }
+          }
+        }
+      }
+    }
+  }
+}
+```
