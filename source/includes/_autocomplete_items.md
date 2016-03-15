@@ -6,7 +6,7 @@ Suggestions that are shown in the autocomplete results are called `items`.  `ite
 
 ```shell
 curl -X POST -H "Content-Type: application/json" \
-  -d '{"item_name":"power drill","keywords":["battery-powered","drills","drywall"], \
+  -d '{"item_name":"power drill","keywords":["battery-powered","drills","drywall"],
   "suggested_score":36,"url":"http://www.mysite.com/power_drill","autocomplete_section":"Search Suggestions"}' \
   -u"[your token]:" "https://ac.cnstrc.com/v1/item?autocomplete_key=[your autocomplete key]"
 ```
@@ -85,7 +85,7 @@ id | No | An arbitrary ID you would like associated with this item.  You can use
 
 ```shell
 curl -X POST -H "Content-Type: application/json" \
-  -d '{"items": [ {"item_name": "power drill"}, {"item_name": "hammer"} ],\
+  -d '{"items": [ {"item_name": "power drill"}, {"item_name": "hammer"} ],
     "autocomplete_section":"Search Suggestions"}' \
   -u"[your token]:" "https://ac.cnstrc.com/v1/batch_items?autocomplete_key=[your autocomplete key]"
 ```
