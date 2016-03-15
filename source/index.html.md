@@ -39,7 +39,7 @@ search: true
 
 [Netlify](http://www.netlify.com) builds, deploys and hosts your front end.
 
-Deploying a new site with Netlify is so simple it fits in a tweet.
+Deploying a new site with Netlify is so simple it fits in a tweet. -->
 
 ``` shell
 npm install netlify-cli -g

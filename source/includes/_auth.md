@@ -11,7 +11,7 @@ Netlify uses OAuth2 for authentication. You'll need an application client key an
 
 If you're making a public integration with Netlify for others to enjoy, you must use OAuth 2. This allows users to authorize your application to use Netlify on their behalf without having to copy/paste API tokens or touch sensitive login info.
 
-The Oauth2 end user authorization endpoint is
+The Oauth2 end user authorization endpoint is -->
 
 ## Password Protecting Sites
 
@@ -57,7 +57,7 @@ Then go to the **Access** tab for your Netlify site and configure the Github pro
 
 Once you've configured an authentication provider you can use it to obtain an access token in your single page app.
 
-Here's a complete example of how to ask the user to authenticate with Github and then display the resulting access token:
+Here's a complete example of how to ask the user to authenticate with Github and then display the resulting access token -->
 
 ``` html
 <!doctype html>
@@ -98,9 +98,12 @@ Services that use OAuth2 are easy to consume directly from Javascript as long as
 
 OAuth1 is not as friendly to single page apps since it requires a server to sign each request to the API with a secret key, and some OAuth2 services don't support CORS request.
 
-In these cases you can use Netlify's [proxy feature](#redirects#proxying). For example, to proxy requests to BitBucket's API, add this line to your **_redirects** file:
+In these cases you can use Netlify's [proxy feature](#proxying). For example, to proxy requests to BitBucket's API, add this line to your **_redirects** file -->
 
-    /bitbucket/* https://bitbucket.org/:splat 200
+```
+/bitbucket/* https://bitbucket.org/:splat 200
+```
+
 
 Now you can send Ajax requests to BitBucket's API even though it doesn't support CORS requests by replacing **https://bitbucket.org** with **/bitbucket**.
 
@@ -108,7 +111,7 @@ BitBucket's API uses OAuth1, so normally just proxying requests wouldn't help mu
 
 When using netlify.authenticate with an OAuth1 API you get back an object with a **token** and a **secret** (this is not your API secret) and if you set these in an Authorization header, Netlify will automatically sign your API requests with your API secret.
 
-A jQuery Ajax request to the BitBucket API to get a user's repositories would look like:
+A jQuery Ajax request to the BitBucket API to get a user's repositories would look like -->
 
 ``` js
 $.ajax({
@@ -127,7 +130,7 @@ Right now Netlify only supports Github and BitBucket as authentication providers
 
 If you're building a single page app and need to speak with a specific API, let us know and we'll help you out.
 
-<!-- HEADERS AND BASIC AUTH -->
+<a id="headers_and_basic_auth"></a>
 ## Headers & Basic Auth
 
 You can configure custom headers and basic auth for your Netlify site by adding a `_headers` file to the root of your site folder.
@@ -145,7 +148,7 @@ The format is very simple:
 
 Paths can contain `*` or `:placeholders`. A `:placeholder` matches anything except `/` while a `*` matches anything.
 
-Here's an example of settings the `X-Frame-Options` and `X-XSS-Protection` headers for all pages on your site:
+Here's an example of settings the `X-Frame-Options` and `X-XSS-Protection` headers for all pages on your site -->
 
 ```
 /*
@@ -155,7 +158,7 @@ Here's an example of settings the `X-Frame-Options` and `X-XSS-Protection` heade
 
 ## Basic auth
 
-The headers file can also be used to set basic auth headers. It's a simple way to limit access to particular parts of your site.
+The headers file can also be used to set basic auth headers. It's a simple way to limit access to particular parts of your site. -->
 
 ```
 /something/*
