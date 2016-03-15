@@ -45,7 +45,7 @@ bing-location | Specify a location to perform search from. When set search keywo
 business-names | Newline (\n) separated list of business names
 postcode |	
 telephone |	
-search-engines | Comma separated list of search engines. Options are google, google-local, yahoo, yahoo-local, bing, bing-local. Defaults to all search engines.
+search-engines | Comma separated list of search engines. Options are google, google-mobile, google-local, yahoo, yahoo-local, bing, bing-local. Defaults to all search engines.
 include-local-directory-results	| Yes or No. Defaults to Yes.
 notify | Yes or No. Defaults to No.
 email-addresses	| Newline (\n) separated list of email addresses
@@ -98,7 +98,7 @@ bing-location | Specify a location to perform search from. When set search keywo
 business-names | Newline (\n) separated list of business names
 postcode |	
 telephone |	
-search-engines | Comma separated list of search engines. Options are google, google-local, yahoo, yahoo-local, bing, bing-local.
+search-engines | Comma separated list of search engines. Options are google, google-mobile, google-local, yahoo, yahoo-local, bing, bing-local.
 include-local-directory-results	| Yes or No
 notify | Yes or No
 email-addresses | Newline (\n) separated list of email addresses
