@@ -19,7 +19,7 @@ search: true
 
 Welcome to the Redii API! You can use our API to access Redii API endpoints, currently limited to a list of recent notifications for your Program.
 
-We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+We have language bindings in Shell and Ruby! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
 
 
 # Authentication
