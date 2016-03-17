@@ -4,9 +4,6 @@ The `tabbook` view of a multitable will generate an excel (.xlsx) workbook conta
 
 A request to `datasets/{id}/multitables/{id}/tabbook/' will generate a download location to which the exporter will write this file when it is done computing (it may take some time for large datasets). Clients should note the download url, monitor progress, and when complete, GET the download location. 
 
-
-### Catalog
-
 #### GET
 
 ```http

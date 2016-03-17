@@ -7,29 +7,20 @@ progress entity.  Optionally, the progress will provide a message regarding curr
 value which is a float encapsulated in a string for performance reasons.  You must be authenticated to utilize this resource.
 
 
-### Catalog
-
 #### GET
 
 ```http
 GET /progress/{id}/ HTTP/1.1
 ```
-```shell
-```
-```r
-```
-
-```python
-```
 
 ```json
 {
-    element: "shoji:view",
-    self: "https://api/progress/{id}/",
-    value: {
-        progress: "22.5",
-        message: "exported 2 variables",
-        dataset_id: "{id}"
+    "element": "shoji:view",
+    "self": "https://api/progress/{id}/",
+    "value": {
+        "progress": "22.5",
+        "message": "exported 2 variables",
+        "dataset_id": "{id}"
     }
 }
 ```
