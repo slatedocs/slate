@@ -24,6 +24,7 @@ includes:
   - endpoint-variable
   - endpoint-filter
   - endpoint-analysis
+  - endpoint-tabbook
   - endpoint-comparison
   - endpoint-version
   - endpoint-batch

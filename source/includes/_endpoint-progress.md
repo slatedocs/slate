@@ -12,7 +12,7 @@ value which is a float encapsulated in a string for performance reasons.  You mu
 #### GET
 
 ```http
-`GET /progress/<progress_id>` HTTP/1.1
+GET /progress/{id}/ HTTP/1.1
 ```
 ```shell
 ```
@@ -25,11 +25,11 @@ value which is a float encapsulated in a string for performance reasons.  You mu
 ```json
 {
     element: "shoji:view",
-    self: "http://local.crunch.io:8080/api/progress/68edc9a0f3c5486eb7021b34d52dd861/",
+    self: "https://api/progress/{id}/",
     value: {
         progress: "22.5",
         message: "exported 2 variables",
-        dataset_id: "1590fe25a8cc4987a3e59ed07391be33"
+        dataset_id: "{id}"
     }
 }
 ```
