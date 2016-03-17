@@ -25,6 +25,16 @@ password.
 
 <aside class="warning">Consider your API Key as a password. Be sure to keep your API Key private!</aside>
 
+## Sandbox Server
+
+Sendle provides access to a sandbox server at https://sandbox.sendle.com. Any orders
+created on the sandbox server will be created in the test mode, they will not result in
+actual consignments that can be used to send a parcel, nor will actual charges be
+created against your card.
+
+Contact <a href="mailto:support@sendle.com">support@sendle.com</a> for access to the
+sandbox server.
+
 ## Set Up Payments
 
 > Response Without Payment Details
@@ -48,3 +58,4 @@ To use the Sendle API, during the beta period you need to attach a credit card t
 
 To create orders with the Sendle API you must accept the dangerous goods
 terms in your `Account Settings`, under the `Pickup` tab.
+
