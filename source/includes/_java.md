@@ -131,6 +131,10 @@ If you're deploying Scout APM for the first time, we recommend starting on a sta
 
 ## Java Agent Change Log
 
+#### 0.2.1
+* Support for Spring @RestController
+* Disable static resources in endpoints
+
 #### 0.2.0
 * Support for JAX-RS @Suspended asynchronous tracing
 * Support for the Grails framework
