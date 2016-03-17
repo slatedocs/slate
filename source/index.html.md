@@ -10,7 +10,7 @@ search: true
 
 # Integration
 
-While Mux is still in development, only the Video.js player is supported. More players and platforms will be supported soon, including other desktop players, native SDKs for iOS and Android, and SDKs for OTT platforms.
+While Mux is still in development, only the Video.js player is supported. More players and platforms, including other desktop players, native SDKs for iOS and Android, and SDKs for OTT platforms are coming soon.
 
 ## Core Mux embed
 
@@ -27,29 +27,33 @@ Put the core Mux embed code in the document &lt;head&gt;. This needs to be inclu
 
 ## videojs-mux plugin
 
-> Include videojs-mux:
-
 ```html
+<!-- Include the videojs-mux plugin after Video.js. -->
+<script src="/path/to/video.js"></script>
 <script src="//src.litix.io/videojs/1/videojs-mux.js"></script>
 ```
 
-> Initialize the plugin. Examples:
-
 ```javascript
-videojs('my-cool-player', { plugins: {
+// If you already initialize a Video.js player via JavaScript, you
+// can include mux in the plugin object in settings.
+videojs('my-cool-player', {
+  plugins: {
     mux: {}
   }
 });
 ```
 
-```javascript
-<video id="my-cool-player" ... data-setup='{"plugins": {"mux": {}}}'>...</video>
+```html
+<!-- Using the data-setup attribute -->
+<video id="my-cool-player" data-setup='{"plugins": {"mux": {}}}'>...</video>
 ```
 
 ```javascript
+// You can also initialize the mux plugin separately. Here we check to make sure
+// the videojs-mux plugin has already been successfully loaded first.
 var player = videojs('my-cool-player');
 if (typeof player.mux !== 'undefined') {
-  player.mux({});
+  var mux = player.mux({});
 }
 ```
 
@@ -80,7 +84,7 @@ myPlayer.mux.setVideo({
 ////
 ```
 
-When you change to a new video (in the same player) you need to update the video data using the setVideo function. Some examples of when this happens are:
+When you change to a new video (in the same player) you need to update the video data using the `setVideo` function. Some examples of when this happens are:
 
 * The player advances to the next video in a playlist
 * The user selects a different video to play
@@ -126,9 +130,9 @@ videojs('my-cool-player', {
 });
 ```
 
-Video data can be set to provide more information about the video that's being played. It can be set in the Mux plugin options, or with the player.mux.setVideo() function after the plugin has been initialized.
+Video data can be set to provide more information about the video that's being played. It can be set in the Mux plugin options, or with the `player.mux.setVideo()` function after the plugin has been initialized.
 
-When you change the video title that a player is playing you will also need to use player.mux.setVideo() to update the video details. This does not include when you change to a different source (e.g. a different resolution) of the same title.
+When you change the video title that a player is playing you will also need to use `player.mux.setVideo()` to update the video details. This does not include when you change to a different source (e.g. a different resolution) of the same title.
 
 Name | Description
 ---- | -----------
