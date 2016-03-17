@@ -32,7 +32,7 @@
     "start_year": "Please enter starting year",
     "working_hours": "Your must provide Working Hours for at least one day in the week",
     "campaign_status": "Invalid campaign status",
-    "location-id": "Location with ID 0 not found or doesn't belong to this customer"
+    "location_id": "Location with ID 0 not found or doesn't belong to this customer"
   }
 }
 {

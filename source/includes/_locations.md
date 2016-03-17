@@ -216,7 +216,7 @@ expires | <span class="label label-required">Required</span> [See above for how 
 }
 ```
 
-Search for locaions matching a specified search string. The search uses a number of fields including location name, contact firstname, lastname and email address.
+Search for locations matching a specified search string. The search uses a number of fields including location name, contact firstname, lastname and email address.
 
 ### HTTP Request
 
