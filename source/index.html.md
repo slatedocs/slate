@@ -112,29 +112,40 @@ ID | The ID of the kitten to retrieve
 ## Edit a Specific Incident
 
 
-> Sending an HTTP Form-Data PUTS to this endpoint with all the required fields will return json as follows
+> Sending the following curl command:
+
+> curl -X PUT --data 
+'incident[title]=A
+&incident[location]=B
+&incident[comments]=C
+&incident[severity]=1
+&incident[incident_type]=D
+&incident[groups]=E' 
+http://www.incidentreport-120.herokuapp.com/incidents/{INCIDENT ID NUMBER}.json 
+
+> returns an object similar to the following JSON
+
 ```json
-{
-  "id":1,
-  "title":"Example",
-  "location":"South Hall",
-  "severity":1,
-  "incident_type":"Housing",
-  "comments":"Example comments",
-  "user":"Demo User",
-  "groups":"Students",
-  "status":0,
-  "reported_by":null,
-  "assigned_to":null,
-  "created_at":"2016-03-11T19:52:46.401Z",
-  "updated_at":"2016-03-11T19:52:46.401Z"
-}
+{"id":INCIDENT ID NUMBER,
+"title":"A",
+"location":"B",
+"severity":1,
+"incident_type":"D",
+"comments":"C",
+"user":"Demo User",
+"groups":"E",
+"status":0,
+"reported_by":null,
+"assigned_to":null,
+"created_at":"2016-03-17T20:35:00.068Z",
+"updated_at":"2016-03-17T20:35:00.068Z"}
+```
 
 This endpoint edits a specified incident.
 
 ### HTTP Request
 
-`GET http://incidentreport-120.herokuapp.com/incidents/{incident id}.json`
+`PUT http://incidentreport-120.herokuapp.com/incidents/{incident id}.json`
 
 ### Form Data
 
@@ -151,23 +162,33 @@ _method | 'patch'
 ## Create a New Incident
 
 
-> Sending an HTTP Form-Data POST to this endpoint with all the required fields will return json as follows
+> Sending the following curl command:
+
+> curl --data 
+'incident[title]=A
+&incident[location]=B
+&incident[comments]=C
+&incident[severity]=1
+&incident[incident_type]=D
+&incident[groups]=E' 
+http://www.incidentreport-120.herokuapp.com/incidents.json 
+
+> returns an object similar to the following JSON
+
 ```json
-{
-  "id":1,
-  "title":"Example",
-  "location":"South Hall",
-  "severity":1,
-  "incident_type":"Housing",
-  "comments":"Example comments",
-  "user":"Demo User",
-  "groups":"Students",
-  "status":0,
-  "reported_by":null,
-  "assigned_to":null,
-  "created_at":"2016-03-11T19:52:46.401Z",
-  "updated_at":"2016-03-11T19:52:46.401Z"
-}
+{"id":1,
+"title":"A",
+"location":"B",
+"severity":1,
+"incident_type":"D",
+"comments":"C",
+"user":"Demo User",
+"groups":"E",
+"status":0,
+"reported_by":null,
+"assigned_to":null,
+"created_at":"2016-03-17T20:35:00.068Z",
+"updated_at":"2016-03-17T20:35:00.068Z"}
 ```
 
 This endpoint creates a new incident. 
@@ -175,7 +196,7 @@ This endpoint creates a new incident.
 
 ### HTTP Request
 
-`GET http://incidentreport-120.herokuapp.com/incidents.json`
+`POST http://incidentreport-120.herokuapp.com/incidents.json`
 
 ### Form Data
 
