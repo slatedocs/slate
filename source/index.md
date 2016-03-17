@@ -30,6 +30,7 @@ includes:
   - endpoint-source
   - endpoint-join
   - endpoint-permission
+  - endpoint-progress
   - endpoint-user
   - endpoint-team
   - object-reference
