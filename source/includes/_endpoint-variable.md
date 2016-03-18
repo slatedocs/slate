@@ -334,6 +334,7 @@ description | string | Optional longer string
 id | string | Immutable internal identifier
 discarded | boolean | Whether the variable should be hidden from most views; default: false
 private | boolean | If true, the Variable is only visible to the owner and is only included in the private variables catalog, not the common catalog.
+owner | url | If the variable is private it will point to the url of its owner. Null for non private variables.
 derived | boolean | Whether the variable is a function of another; default: false
 type | string | The string type name
 categories | array | If "type" is "categorical", "multiple_response", or "categorical_array", an array of category definitions (see below). Other types have an empty array.
