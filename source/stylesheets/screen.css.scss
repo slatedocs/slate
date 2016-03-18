@@ -1,5 +1,7 @@
 @charset "utf-8";
 @import 'normalize';
+@import 'mux-colors';
+@import 'mux-code-highlight';
 @import 'variables';
 @import 'icon-font';
 
@@ -72,7 +74,7 @@ html, body {
 
   .nav-logo {
     width: 170px;
-    margin: 20px 30px;
+    margin: 20px 30px 10px;
   }
 
   // language selector for mobile devices
@@ -203,6 +205,9 @@ html, body {
   }
 
   .toc-footer {
+    position: fixed;
+    width: 230px;
+    bottom: 0;
     padding: 1em 0;
     margin-top: 1em;
     border-top: 1px dashed $nav-footer-border-color;
@@ -476,7 +481,7 @@ html, body {
   aside {
     padding-top: 1em;
     padding-bottom: 1em;
-    text-shadow: 0 1px 0 lighten($aside-notice-bg, 15%);
+    // text-shadow: 0 1px 0 lighten($aside-notice-bg, 15%);
     margin-top: 1.5em;
     margin-bottom: 1.5em;
     background: $aside-notice-bg;
@@ -484,12 +489,12 @@ html, body {
 
     &.warning {
       background-color: $aside-warning-bg;
-      text-shadow: 0 1px 0 lighten($aside-warning-bg, 15%);
+      // text-shadow: 0 1px 0 lighten($aside-warning-bg, 15%);
     }
 
     &.success {
       background-color: $aside-success-bg;
-      text-shadow: 0 1px 0 lighten($aside-success-bg, 15%);
+      // text-shadow: 0 1px 0 lighten($aside-success-bg, 15%);
     }
   }
 

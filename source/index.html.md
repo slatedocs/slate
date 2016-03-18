@@ -1,6 +1,10 @@
 ---
 title: Mux API Docs
 
+language_tabs:
+  - Video Element
+  - Video.js
+
 toc_footers:
   - <a href='http://app.mux.io'>Sign Up for Mux</a>
   - Documentation Powered by <a href='https://github.com/tripit/slate'>Slate</a>
@@ -10,7 +14,7 @@ search: true
 
 # Integration
 
-While Mux is still in development, only the Video.js player is supported. More players and platforms, including other desktop players, native SDKs for iOS and Android, and SDKs for OTT platforms are coming soon.
+<aside class="notice">While Mux is still in early development we support two browser-based video players: <strong>Video.js</strong> and the bare <strong>HTML5 video element</strong>. Select one from the language menu. More players and platforms, including other desktop players, native SDKs for iOS and Android, and SDKs for OTT platforms are coming soon.</aside>
 
 ## Core Mux embed
 
@@ -27,11 +31,15 @@ Put the core Mux embed code in the document &lt;head&gt;. This needs to be inclu
 
 ## videojs-mux plugin
 
+Some some
+
 ```html
 <!-- Include the videojs-mux plugin after Video.js. -->
 <script src="/path/to/video.js"></script>
 <script src="//src.litix.io/videojs/1/videojs-mux.js"></script>
 ```
+
+<div class="before-video-js"></div>
 
 ```javascript
 // If you already initialize a Video.js player via JavaScript, you
@@ -43,10 +51,14 @@ videojs('my-cool-player', {
 });
 ```
 
+<div class="before-video-js"></div>
+
 ```html
 <!-- Using the data-setup attribute -->
 <video id="my-cool-player" data-setup='{"plugins": {"mux": {}}}'>...</video>
 ```
+
+<div class="before-video-js"></div>
 
 ```javascript
 // You can also initialize the mux plugin separately. Here we check to make sure
@@ -69,6 +81,8 @@ Second, initialize the plugin in your player settings when you normally initiali
 
 
 ## Changing the video
+
+<div class="before-video-js"></div>
 
 ```javascript
 var myPlayer = videojs('my-cool-player');
@@ -99,6 +113,8 @@ When setVideo is called it removes all previous video data and resets all metric
 
 ## General
 
+<div class="before-video-js"></div>
+
 ```javascript
 videojs('my-cool-player', {
   plugins: {
@@ -116,6 +132,8 @@ heart_beat_interval	| How often to send heartbeats (in ms) | 10000
 check_buffering_interval | How often to check whether or not the player is buffering (in ms) | 100
 
 ## Video Metadata
+
+<div class="before-video-js"></div>
 
 ```javascript
 videojs('my-cool-player', {
@@ -149,6 +167,8 @@ video_producer | The producer of the video title
 video_encoding_variant | Which encoding profile is being used, when testing multiple.
 
 ## Player
+
+<div class="before-video-js"></div>
 
 ```javascript
 videojs('my-cool-player', {

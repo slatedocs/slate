@@ -50,9 +50,9 @@ under the License.
         <div class="lang-selector">
           <% language_tabs.each do |lang| %>
             <% if lang.is_a? Hash %>
-              <a href="#" data-language-name="<%= lang.keys.first %>"><%= lang.values.first %></a>
+              <a href="#" data-language-name="<%= lang.keys.first.gsub(/\.|\s/, '-').downcase %>"><%= lang.values.first %>bar</a>
             <% else %>
-              <a href="#" data-language-name="<%= lang %>"><%= lang %></a>
+              <a href="#" data-language-name="<%= lang.gsub(/\.|\s/, '-').downcase %>"><%= lang %>foo</a>
             <% end %>
           <% end %>
         </div>
@@ -86,9 +86,9 @@ under the License.
           <div class="lang-selector">
             <% language_tabs.each do |lang| %>
               <% if lang.is_a? Hash %>
-                <a href="#" data-language-name="<%= lang.keys.first %>"><%= lang.values.first %></a>
+                <a href="#" data-language-name="<%= lang.keys.first.gsub(/\.|\s/, '-').downcase %>"><%= lang.values.first %></a>
               <% else %>
-                <a href="#" data-language-name="<%= lang %>"><%= lang %></a>
+                <a href="#" data-language-name="<%= lang.gsub(/\.|\s/, '-').downcase %>"><%= lang %></a>
               <% end %>
             <% end %>
           </div>
