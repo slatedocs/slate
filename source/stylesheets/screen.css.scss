@@ -70,6 +70,11 @@ html, body {
   font-size: 13px;
   font-weight: bold;
 
+  .nav-logo {
+    width: 170px;
+    margin: 20px 30px;
+  }
+
   // language selector for mobile devices
   .lang-selector {
     display: none;
@@ -358,7 +363,7 @@ html, body {
     font-size: 30px;
     padding-top: 0.5em;
     padding-bottom: 0.5em;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid #BFC5CC;
     margin-bottom: $h1-margin-bottom;
     margin-top: 2em;
     border-top: 1px solid #ddd;
@@ -375,7 +380,7 @@ html, body {
     font-size: 20px;
     margin-top: 4em;
     margin-bottom: 0;
-    border-top: 1px solid #ccc;
+    border-top: 1px solid #BFC5CC;
     padding-top: 1.2em;
     padding-bottom: 1.2em;
     background-image: linear-gradient(to bottom, rgba(#fff, 0.4), rgba(#fff, 0));
@@ -416,7 +421,7 @@ html, body {
 
     th {
       padding: 5px 10px;
-      border-bottom: 1px solid #ccc;
+      border-bottom: 1px solid #BFC5CC;
       vertical-align: bottom;
     }
 
@@ -425,7 +430,7 @@ html, body {
     }
 
     tr:last-child {
-      border-bottom: 1px solid #ccc;
+      border-bottom: 1px solid #BFC5CC;
     }
 
     tr:nth-child(odd)>td {
@@ -542,7 +547,7 @@ html, body {
     a {
       color: #fff;
       text-decoration: none;
-      border-bottom: dashed 1px #ccc;
+      border-bottom: dashed 1px #BFC5CC;
     }
   }
 
@@ -555,7 +560,7 @@ html, body {
       background-color: $code-annotation-bg;
       border-radius: 5px;
       padding: $code-annotation-padding;
-      color: #ccc;
+      color: #BFC5CC;
       border-top: 1px solid #000;
       border-bottom: 1px solid #404040;
     }
