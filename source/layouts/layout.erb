@@ -20,6 +20,7 @@ under the License.
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="icon" href="images/favicon.ico">
     <title><%= current_page.data.title || "API Documentation" %></title>
 
     <style>
@@ -42,14 +43,16 @@ under the License.
       </span>
     </a>
     <div class="tocify-wrapper">
-      <%= image_tag "logo.png" %>
+      <img src="images/logo.png" alt="Mux Logo" class="nav-logo" />
+      <div style="color:#fff; text-align: center;">DOCUMENTATION</div>
+
       <% if language_tabs %>
         <div class="lang-selector">
           <% language_tabs.each do |lang| %>
             <% if lang.is_a? Hash %>
-              <a href="#" data-language-name="<%= lang.keys.first %>"><%= lang.values.first %></a>
+              <a href="#" data-language-name="<%= lang.keys.first.gsub(/\.|\s/, '-').downcase %>"><%= lang.values.first %>bar</a>
             <% else %>
-              <a href="#" data-language-name="<%= lang %>"><%= lang %></a>
+              <a href="#" data-language-name="<%= lang.gsub(/\.|\s/, '-').downcase %>"><%= lang %>foo</a>
             <% end %>
           <% end %>
         </div>
@@ -83,9 +86,9 @@ under the License.
           <div class="lang-selector">
             <% language_tabs.each do |lang| %>
               <% if lang.is_a? Hash %>
-                <a href="#" data-language-name="<%= lang.keys.first %>"><%= lang.values.first %></a>
+                <a href="#" data-language-name="<%= lang.keys.first.gsub(/\.|\s/, '-').downcase %>"><%= lang.values.first %></a>
               <% else %>
-                <a href="#" data-language-name="<%= lang %>"><%= lang %></a>
+                <a href="#" data-language-name="<%= lang.gsub(/\.|\s/, '-').downcase %>"><%= lang %></a>
               <% end %>
             <% end %>
           </div>

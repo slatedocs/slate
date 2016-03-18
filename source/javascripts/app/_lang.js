@@ -27,6 +27,13 @@ under the License.
     if (!language) return;
     if (language === "") return;
 
+    // Allow for normal words in language menu
+    language = language.replace(/\.|\s/, '-').toLowerCase();
+    console.log(language);
+
+    // Include javascript in langs so it gets hidden by default
+    languages.push('javascript');
+
     $(".lang-selector a").removeClass('active');
     $(".lang-selector a[data-language-name='" + language + "']").addClass('active');
     for (var i=0; i < languages.length; i++) {
@@ -35,6 +42,12 @@ under the License.
     }
     $(".highlight." + language).show();
     $(".lang-specific." + language).show();
+
+    // Allow for labeling the next code block by the menu title
+    // Anything with a dash (space or period in name) is a special case
+    if (language.indexOf('-')) {
+      $(".before-"+language+" + .highlight").show();
+    }
 
     global.toc.calculateHeights();
 
