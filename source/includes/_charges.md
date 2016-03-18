@@ -19,7 +19,6 @@ EXEMPLO
     "instructions":"Pagável em qualquer agência até data do vencimento.",
     "demonstrative":"Não receber após o vencimento.",
     "payer_emails":["myemail@gmail.com"],
-    "payer_info":"Empresa A - CNPJ X",
     "received":true,
     "received_amount":"10.07",
     "received_at":"2015-01-30",
@@ -69,7 +68,6 @@ As Cobranças, pertencem as suas contas de cobrança, sendo assim é necessário
 | instructions                   | string           | instruções de pagamento do boleto, por padrão "Pagável em qualquer agência até data do vencimento."                                                 |
 | demonstrative                  | string           | demonstrativo do Boleto, por padrão "Não receber após o vencimento."                                                                                |
 | payer_emails                   | array of strings | emails de quem irá pagar o boleto                                                                                                                   |
-| payer_info                     | string           | informações gerais de quem irá pagar a cobraça (p.ex. nome, documento, endereço)                                                                    |
 | received                       | boolean          | indica se a cobrança foi recebida                                                                                                                   |
 | received_amount                | decimal          | valor recebido                                                                                                                                      |
 | received_at                    | date             | dia em que a cobraça foi recebida                                                                                                                   |
@@ -126,7 +124,6 @@ EXEMPLO DE CORPO DA RESPOSTA
     "instructions":"Pagável em qualquer agência até data do vencimento.",
     "demonstrative":"Não receber após o vencimento.",
     "payer_emails":["myemail@gmail.com"],
-    "payer_info":"Empresa A - CNPJ X",
     "received":true,
     "received_amount":"10.07",
     "received_at":"2015-01-30",
@@ -277,7 +274,6 @@ Cria um nova cobrança, caso haja sucesso retornará as informações da mesma e
 | document_kind                  | string           | **(requerido)** espécie do documento, podendo ser DM (Duplicata Mercantil), DS (Duplicata de Serviço), NP (Nota Promissória) ou DV (Diversos)                  |
 | total_amount                   | decimal          | **(requerido)** valor total do boleto                                                                                                                          |
 | document_number                | string           | **(requerido)** número do documento, também chamado de "seu número", é o número utilizado e controlado pelo beneficiário para identificar o título de cobrança |
-| payer_info                     | string           | **(requerido)** nome, documento e endereço de quem irá pagar a cobraça (pode ser 3 linhas separadas por "\n")                                                  |
 | payer_emails                   | array of strings | (opcional) emails de quem irá pagar o boleto                                                                                                                   |
 | document_date                  | date             | (opcional) data de emissão do documento                                                                                                                        |
 | our_number                     | string           | (opcional) nosso número. Caso não informado, é atribuído automaticamente pelo sistema                                                                          |
@@ -364,7 +360,6 @@ Os campos 'received', 'received_at' e 'received_amount', não são alterados via
 | document_kind                  | string           | **(requerido)** espécie do documento, podendo ser DM (Duplicata Mercantil), DS (Duplicata de Serviço), NP (Nota Promissória) ou DV (Diversos)                  |
 | total_amount                   | decimal          | **(requerido)** valor total do boleto                                                                                                                          |
 | document_number                | string           | **(requerido)** número do documento, também chamado de "seu número", é o número utilizado e controlado pelo beneficiário para identificar o título de cobrança |
-| payer_info                     | string           | **(requerido)** nome, documento e endereço de quem irá pagar a cobraça (pode ser 3 linhas separadas por "\n")                                                  |
 | payer_emails                   | array of strings | (opcional) emails de quem irá pagar o boleto                                                                                                                   |
 | document_date                  | date             | (opcional) data de emissão do documento                                                                                                                        |
 | our_number                     | string           | (opcional) nosso número. Caso não informado, é atribuído automaticamente pelo sistema                                                                          |
