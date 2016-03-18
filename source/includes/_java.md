@@ -24,6 +24,21 @@ The most recent Scout Java APM release is [available for download here](https://
 wget https://www.dropbox.com/s/bzmvmq2ck8jtzhj/scout-apm.jar?dl=1 -Oscout-apm.jar
 ```
 
+## Retrieving the current version of the agent
+
+With the following command, you retrieve the current version of the agent.
+
+```terminal
+java -jar scout-apm.jar
+```
+
+For example:
+
+```terminal
+Scout Agent version 0.3.0
+See http://help.apm.scoutapp.com/#java-applications for more information
+```
+
 ## Adding the JAR to your Application
 
 Installation depends on your app server:
@@ -131,6 +146,9 @@ If you're deploying Scout APM for the first time, we recommend starting on a sta
 
 ## Java Agent Change Log
 
+#### 0.3.0
+* Support for Spring RestTemplate HTTP client
+
 #### 0.2.1
 * Support for Spring @RestController
 * Disable static resources in endpoints
@@ -151,7 +169,6 @@ If you're deploying Scout APM for the first time, we recommend starting on a sta
 * Add JAX-RS plugin
 
 #### 0.0.5
-* Jedis (sendCommand) support
 * Jedis (sendCommand) support
 * Temporary remove background jobs from aggregation (wait for endpoint feature)
 
