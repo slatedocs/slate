@@ -26,7 +26,7 @@ Parameter | Notes
 api-key | <span class="label label-required">Required</span>	
 sig | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
 expires | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
-client | You can specify client ID or unique reference to create report for a client
+location | You can specify location ID or unique reference to create report for a location
 report-name | <span class="label label-required">Required</span>	
 business-name | <span class="label label-required">Required</span>	
 business-location | <span class="label label-required">Required</span> Town or city name in which business is located.
@@ -72,7 +72,7 @@ Parameter | Notes
 api-key | <span class="label label-required">Required</span>	
 sig | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
 expires | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
-client | You can specify client ID or unique reference to create report for a client.
+location-id | You can specify location ID or unique reference to create report for a location.
 report-id | <span class="label label-required">Required</span>	
 report-name |	
 business-name |	

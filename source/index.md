@@ -21,6 +21,7 @@ includes:
     - reviews
     - offsite-seo
     - clients
+    - locations
     - lsrc
     - lscu
     - ct
