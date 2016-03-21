@@ -17,7 +17,7 @@ Adds a new client and associates it with your account.
 
 ### HTTP Request
 
-`PUT https://tools.brightlocal.com/seo-tools/api/v1/clients-and-locations/clients/`
+`POST https://tools.brightlocal.com/seo-tools/api/v1/clients-and-locations/clients/`
 
 ### Query Parameters
 
@@ -48,7 +48,7 @@ Update an existing client. Only supply values you want to update. The rest will 
 
 ### HTTP Request
 
-`POST https://tools.brightlocal.com/seo-tools/api/v1/clients-and-locations/clients/`
+`PUT https://tools.brightlocal.com/seo-tools/api/v1/clients-and-locations/clients/`
 
 ### Query Parameters
 
