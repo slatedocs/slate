@@ -135,14 +135,14 @@ To create a new payment, make a POST to the end point above, with the attributes
 * A contact is created for each new phone number you send payments to. This gives you the benefits of the pre-verification checks that are done prior to payment processing. 
 * If the contact isn't registered for mobile money, then the payment will not be sent.
 * **Important**: One of the pre-verification checks does a name match check to make sure that the contact name is right. This check can cause your payments to fail if the names that you are sending are not the same as the names in the telecom database. If you want to by-pass this check, go into your settings in your account and uncheck the checkbox that says "Name match affects payment".
-* **Important**: The account and currency parameters are both optional but at you must provide one of them. If you provide both them then the account's currency must match the currency parameter.
+* **Important**: The account and currency parameters are both optional but you must provide one of them. If you provide both them then the account's currency must match the currency parameter.
 
 Parameter | Required | Type | Example | Notes
 --------- | -------- | ---- | ------- | -----
 phonenumber | Yes | String | +256773712831 | Must be in international format
 amount | Yes | String, Integer or Decimal | 3000 | Do not include thousands separators
 currency | No | String | UGX | 3 letter ISO currency code. No currency conversion is done, so the currency must be valid for the selected phonenumber. You must have a funded Beyonic account in this currency. If your account for this currency has zero balance, your payment will fail. If you also provide an account parameter then the account's currency must match the currency parameter.
-account | No | Integer | 1 | The ID of the account from which you are making the payment. The account must be active and funded. If the account has zero balance, your payment will fail. This parameter is optional if a currency is provided.
+account | No | Integer | 1 | The ID of the account from which you are making the payment. The account must be active and funded. If the account has zero balance, your payment will fail. This parameter is optional if a currency is provided. If you have more than one account with the same currency, and you leave this parameter out, the earliest created account (oldest account) that is still active will be used.
 description | Yes | String | Per diem payment | This description will be sent to the recipient along with the payment, so it should be limited to about 140 characters.
 payment_type | No | String | money | Options: money (default), airtime - use "airtime" to send an airtime payment instead of a mobile money payment
 callback_url | No | String | https://my.website/payments/callback | See "Callback URLs" below for more info.
