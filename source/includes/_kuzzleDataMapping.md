@@ -61,7 +61,7 @@ dataMapping.apply(function (error, result) {
 });
 
 // Using promises (NodeJS)
-dataMapping.applyPromise(function (error, result) {
+dataMapping.applyPromise().then(function (error, result) {
   // resolved once the mapping action has been completed
 });
 ```
