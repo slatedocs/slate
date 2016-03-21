@@ -17,7 +17,7 @@ Adds a new location and associates it with your account.
 
 ### HTTP Request
 
-`PUT https://tools.brightlocal.com/seo-tools/api/v1/clients-and-locations/locations/`
+`POST https://tools.brightlocal.com/seo-tools/api/v1/clients-and-locations/locations/`
 
 ### Query Parameters
 
@@ -70,7 +70,7 @@ Update an existing location. Only supply values you want to update. The rest wil
 
 ### HTTP Request
 
-`POST https://tools.brightlocal.com/seo-tools/api/v1/clients-and-locations/locations/`
+`PUT https://tools.brightlocal.com/seo-tools/api/v1/clients-and-locations/locations/`
 
 ### Query Parameters
 
