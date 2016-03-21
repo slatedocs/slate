@@ -13,6 +13,17 @@ São as requisições enviadas pelo webhook do Cobrato para uma determinada URL 
 | charge_account | updated            | quando a conta de cobrança é atualizada        |
 | charge_account | destroyed          | quando a conta de cobrança é excluída          |
 
+Quando um destes eventos é disparado o webhook envia o payload para a URL passada em uma requisição HTTP do tipo POST com dois headers específicos:
+
+**X-Cobrato-RequestId**
+
+Este header é único para cada requisição e é usado para calcular o X-Cobrato-Signature.
+
+**X-Cobrato-Signature**
+
+Este header é a assinatura do webhook. É basado no segredo enviado na criação do webhook. Este valor pode ser resgatado com o HMAC hex digest do X-Cobrato-RequestId concatenado ao corpo do payload e utilizando o segredo passado como a chave.
+
+
 ## Cobrança criada
 
 ```shell

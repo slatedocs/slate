@@ -9,6 +9,7 @@ EXEMPLO
     "id": 1,
     "url": "http://www.seusitema.com/cobrato",
     "description": "teste",
+    "secret": "my-secret-token",
     "_links": [
       {"rel":"self","method":"GET","href":"https://app.cobrato.com/api/v1/webhooks/1"},
       {"rel":"update","method":"PUT","href":"https://app.cobrato.com/api/v1/webhooks/1"},
@@ -26,6 +27,7 @@ EXEMPLO
 |-------------|--------|-----------------------------------------------------------------------------------------------------|
 | url         | string | **(requerido)** URL na qual serão feitas as requisições GET e POST, esperando HTTP 200 como retorno |
 | description | string | (opcional) descrição opcional do Webhook                                                            |
+| secret      | string | **(requerido)** Segredo pra ser adicionado no header de todas as requisições                        |
 
 ## Informações do Webhook
 
@@ -54,6 +56,7 @@ EXEMPLO DE CORPO DA RESPOSTA
     "id": 1,
     "url": "http://www.seusitema.com/cobrato",
     "description": "teste",
+    "secret": "my-secret-token",
     "_links": [
       {"rel":"self","method":"GET","href":"https://app.cobrato.com/api/v1/webhooks/1"},
       {"rel":"update","method":"PUT","href":"https://app.cobrato.com/api/v1/webhooks/1"},
@@ -123,7 +126,8 @@ EXEMPLO DE REQUISIÇÃO
     -X POST https://app.cobrato.com/api/v1/webhooks \
     -d '{
         "url": "http://www.seusitema.com/cobrato",
-        "description": "Webhook teste"
+        "description": "Webhook teste",
+        "secret": "my-secret-token"
       }'
 
 EXEMPLO DE ESTADO DA RESPOSTA COM SUCESSO
@@ -175,7 +179,8 @@ EXEMPLO DE REQUISIÇÃO
     -H 'Content-type: application/json' \
     -X PATCH https://app.cobrato.com/api/v1/webhooks/:webhook_id \
     -d '{
-        "descripction": "Webhook teste"
+        "descripction": "Webhook teste",
+        "secret": "my-secret-token"
       }'
 
 EXEMPLO DE ESTADO DA RESPOSTA COM SUCESSO
@@ -196,9 +201,10 @@ Atualiza a descrição do webhook. Não é possível alterar a URL de um Webhook
 
 **Parâmetros**
 
-| Campo       | Tipo   | Comentário                               |
-|-------------|--------|------------------------------------------|
-| description | string | (opcional) descrição opcional do Webhook |
+| Campo       | Tipo   | Comentário                                       |
+|-------------|--------|--------------------------------------------------|
+| description | string | (opcional) descrição opcional do Webhook         |
+| secret      | string | (requerido) segredo à ser adicionado aos readers |
 
 ## Exclusão de Webhook
 
