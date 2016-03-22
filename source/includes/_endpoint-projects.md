@@ -237,6 +237,15 @@ PATCH /projects/abcd/members/ HTTP/1.1
 
 Will list all the datasets that have this project as their owner.
 
+##### Adding datasets to projects
+
+The way to add a dataset to a project is by changing the dataset's owner to the
+project you want.
+
+You must have edit and be current editor on any given dataset to change its
+owner and you must also have edit permissions on the target project.
+
+
 ##### GET
 
 Will show the list of all datasets where this project is their owner, the 
@@ -303,42 +312,6 @@ GET /projects/abcd/datasets/ HTTP/1.1
         "current_editor": null,
         "current_editor_name": null
     }
-  }
-}
-```
-
-##### PATCH
-
-Same as with members, this endpoint allows to add and remove datasets from the
-project.
-
-You can only add datasets that belong to you.
-
-When removing a dataset from a project, their ownership will change from the 
-project to you.
-
-To add datasets, include the dataset URL with an empty object in the PATCHed
-catalog.
-
-To remove datasets, include the dataset URL with `null` in the PATCHed catalog.
-
-Modifications to the datasets will be reflected in the project's related 
-dataset order. 
-
-You can perform multiple additions/removals in one request:
-
-
-```http
-PATCH /projects/abcd/members/ HTTP/1.1
-```
-
-```json
-{
-  "element": "shoji:catalog",
-  "self": "http:\/\/local.crunch.io:8080\/api\/projects\/6c01\/members\/",
-  "index": {
-    "https://beta.crunch.io/api/datasets/cc9161/": {},
-    "https://beta.crunch.io/api/datasets/a598c7/": null
   }
 }
 ```

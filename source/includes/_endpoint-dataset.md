@@ -167,15 +167,36 @@ crPATCH("https://beta.crunch.io/api/datasets/",
 
 `PATCH /datasets/`
 
-Use PATCH to edit the "name", "description", "start_date", "end_date", or "archived" state of one or more datasets. A successful request returns a 204 response. The attributes changed will be seen by all users with access to this dataset; i.e., names, descriptions, and archived state are not merely attributes of your view of the data but of the datasets themselves.
+Use PATCH to edit the "name", "description", "start_date", "end_date", or 
+"archived" state of one or more datasets. A successful request returns a 204 
+response. The attributes changed will be seen by all users with access to this 
+dataset; i.e., names, descriptions, and archived state are not merely attributes
+ of your view of the data but of the datasets themselves.
 
-Authorization is required: you must have "edit" privileges on the dataset(s) being modified, as shown in the "permissions" object in the catalog tuples. If you try to PATCH and are not authorized, you will receive a 403 response and no changes will be made.
+Authorization is required: you must have "edit" privileges on the dataset(s) 
+being modified, as shown in the "permissions" object in the catalog tuples. If 
+you try to PATCH and are not authorized, you will receive a 403 response and no 
+changes will be made.
 
-The tuple attributes other than "name", "description", and "archived" cannot be modified here by PATCH. Attempting to modify other attributes, or including new attributes, will return a 400 response. Changing permissions is accomplished by PATCH on the permissions catalog, and changing the owner is a PATCH on the dataset entity. The "owner_name" and "current_editor_name" attributes are modifiable, assuming authorization, by PATCH on the associated user entity. Dataset "size" is a cached property of the data, changing only if the number of rows or columns in the dataset change. Dataset "id" and "creation_time" are immutable.
+The tuple attributes other than "name", "description", and "archived" cannot be 
+modified here by PATCH. Attempting to modify other attributes, or including new 
+attributes, will return a 400 response. Changing permissions is accomplished by 
+PATCH on the permissions catalog, and changing the owner is a PATCH on the 
+dataset entity. The "owner_name" and "current_editor_name" attributes are 
+modifiable, assuming authorization, by PATCH on the associated user entity. 
+Dataset "size" is a cached property of the data, changing only if the number of 
+rows or columns in the dataset change. Dataset "id" and "creation_time" are 
+immutable.
 
-When PATCHing, you may include only the keys in each tuple that are being modified, or you may send the complete tuple. As long as the keys that cannot be modified via PATCH here are not modified, the request will succeed.
+When PATCHing, you may include only the keys in each tuple that are being 
+modified, or you may send the complete tuple. As long as the keys that cannot 
+be modified via PATCH here are not modified, the request will succeed.
 
-Note that, unlike other Shoji Catalog resources, you cannot PATCH to add new datasets, nor can you PATCH a null tuple to delete them. Attempting either will return a 400 response. Creating datasets is allowed only by POST to the catalog, while deleting datasets is accomplished via a DELETE on the dataset entity.
+Note that, unlike other Shoji Catalog resources, you cannot PATCH to add new 
+datasets, nor can you PATCH a null tuple to delete them. Attempting either will 
+return a 400 response. Creating datasets is allowed only by POST to the catalog,
+ while deleting datasets is accomplished via a DELETE on the dataset entity.
+
 
 #### POST
 ```http
@@ -294,6 +315,17 @@ Authorization is required: you must have "edit" privileges on this dataset.
 When PATCHing, you may include only the keys that are being
 modified, or you may send the complete entity. As long as the keys that cannot be
 modified via PATCH here are not modified, the request will succeed.
+
+##### Changing dataset ownership
+
+If you are the current editor of a dataset you can change its owner by PATCHing
+the `owner` attribute witht he URL of the new owner.
+
+Only Users, Teams or Projects can be set as owners of a dataset.
+
+* Users: New owner needs to be advanced users to be owner of a dataset.
+* Teams: Authenticated user needs to be a member of the team.
+* Projects: Authenticated user needs to have edit permissions on the project. 
 
 
 #### DELETE
