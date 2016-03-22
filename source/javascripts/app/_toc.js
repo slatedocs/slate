@@ -52,7 +52,6 @@
     });
 
     $('h4').each(function(key, node) {
-      console.log(node)
       $(node).html(
         '<span>' +
         $(node).text() +
@@ -61,7 +60,6 @@
     })
 
     $('h1, h2, h3, h5, h6').each(function(key, node) {
-      console.log('1',node)
       if (key !== 0) {
         $(node).replaceWith(
           '<div class="heading">' +
