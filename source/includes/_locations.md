@@ -27,7 +27,7 @@ api-key | <span class="label label-required">Required</span>
 sig | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
 expires | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
 name | <span class="label label-required">Required</span> 50 characters max.
-client-id | <span class="label label-required">Required</span>
+client-id | 
 url | <span class="label label-required">Required</span> 150 characters max
 business-category-id | <span class="label label-required">Required</span> See here for a full list of valid business codes.
 country | <span class="label label-required">Required</span> ISO 3 country code.
@@ -80,7 +80,7 @@ api-key | <span class="label label-required">Required</span>
 sig | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
 expires | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
 name | <span class="label label-required">Required</span> 50 characters max.
-client-id | <span class="label label-required">Required</span>
+client-id |
 url | <span class="label label-required">Required</span> 150 characters max
 business-category-id | <span class="label label-required">Required</span> See here for a full list of valid business codes.
 country | <span class="label label-required">Required</span> ISO 3 country code.
