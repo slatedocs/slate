@@ -45,8 +45,8 @@ icon | url | "" | Url for the icon file for the project. Empty string if not set
 
 #### POST
 
-New projects need a name (no uniqueness enforced) and will belong to the authenticated
-user, making it its initial member.
+New projects need a name (no uniqueness enforced) and will make the authenticated
+user its initial member and editor.
 
 ```http
 POST /projects/ HTTP/1.1
@@ -192,7 +192,11 @@ GET /projects/abcd/members/ HTTP/1.1
     },
     "http:\/\/local.crunch.io:8080\/api\/users\/00005\/": {
       "name": "William Riker",
-      "email": "firstofficer@crunch.io"
+      "email": "firstofficer@crunch.io",
+      "permissions": {
+        "edit: false,
+        "view": true
+      }
     }
   }
 }
@@ -201,8 +205,8 @@ GET /projects/abcd/members/ HTTP/1.1
 
 ##### PATCH
 
-Use this method to add or remove members from the project. Only the project owner
-has this capabilities, else you will get a 403 response.
+Use this method to add or remove members from the project. Only project editors 
+have this capabilities, else you will get a 403 response.
 
 To add a new user, PATCH a catalog keyed by the new user URL and an empty
 object for its value.
@@ -210,8 +214,8 @@ object for its value.
 To remove users, PATCH a catalog keyed by the user you want to remove and `null`
 for its value.
 
-Note that you cannot remove the project owner from the project, you will
-get a 409 response.
+Note that you cannot remove yourself from the project, you will
+get a 400 response.
 
 It is possible to perform many additions/removals in one request, the 
 following example adds users `/users/001/` and deletes users `/users/002/`
@@ -348,7 +352,7 @@ PUT to this endpoint to change a project's icon. The payload should have the
  form of a standard multipart/form-data upload. The file's contents will be 
  stored and made available under the project's url.
  
-Only the project's owner can change the project's icon.
+Only the project's editors can change the project's icon.
  
 Valid image extensions: 'png', 'gif', 'jpg', 'jpeg' - Others will 400
 
@@ -363,7 +367,7 @@ Contains the `shoji:order` in which the datasets of this project are to be
 ordered.
 
 This is endpoint available for all project members but can only be updated by 
-the project's owner.
+the project's editors.
 
 
 ##### GET
@@ -389,7 +393,7 @@ GET /projects/6c01/datasets/order/ HTTP/1.1
 ##### PUT
 
 Allow to make modifications to the `shoji:order` for the contained datasets.
-Only the project owner can make these changes.
+Only the project's editors can make these changes.
 
 Trying to include an invalid dataset or an incomplete list will return a 
 400 response.
