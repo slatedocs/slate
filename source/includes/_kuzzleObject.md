@@ -59,11 +59,11 @@ Available options:
 | ``autoResubscribe`` | boolean | Automatically renew all subscriptions on a ``reconnected`` event | ``true`` |
 | ``connect`` | string | Manually or automatically connect to the Kuzzle instance | ``auto`` |
 | ``defaultIndex`` | string | Set the default index to use | |
+| ``headers`` | JSON object | Common headers for all sent documents | |
+| ``metadata`` | JSON object | Common metadata, will be sent to all future requests | |
 | ``offlineMode`` | string | Offline mode configuration | ``manual`` |
 | ``queueTTL`` | integer | Time a queued request is kept during offline mode, in milliseconds | ``120000`` |
 | ``queueMaxSize`` | integer | Number of maximum requests kept during offline mode | ``500`` |
-| ``headers`` | JSON object | Common headers for all sent documents | |
-| ``metadata`` | JSON object | Common metadata, will be sent to all future requests | |
 | ``replayInterval`` | integer | Delay between each replayed requests, in milliseconds | ``10`` |
 | ``reconnectionDelay`` | integer | number of milliseconds between reconnection attempts | ``1000`` |
 
@@ -83,12 +83,13 @@ If the `connect` option is set to `manual`, the callback will be called after th
 | ``autoReplay`` | boolean | Automatically replay queued requests on a ``reconnected`` event | get/set |
 | ``autoResubscribe`` | boolean | Automatically renew all subscriptions on a ``reconnected`` event | get/set |
 | ``defaultIndex`` | string | Kuzzle's default index to use | get |
+| ``headers`` | JSON object | Common headers for all sent documents. | get/set |
+| ``metadata`` | JSON object | Common metadata, will be sent to all future requests | get/set |
 | ``offlineQueue`` | JSON object | Contains the queued requests during offline mode | get/set |
+| ``offlineQueueLoader`` | function | Called before dequeuing requests after exiting offline mode, to add items at the beginning of the offline queue | get/set |
 | ``queueFilter`` | function | Called during offline mode. Takes a request object as arguments and returns a boolean, indicating if a request can be queued | get/set |
 | ``queueMaxSize`` | integer | Number of maximum requests kept during offline mode | get/set |
 | ``queueTTL`` | integer | Time a queued request is kept during offline mode, in milliseconds | get/set |
-| ``headers`` | JSON object | Common headers for all sent documents. | get/set |
-| ``metadata`` | JSON object | Common metadata, will be sent to all future requests | get/set |
 | ``replayInterval`` | integer | Delay between each replayed requests | get/set |
 | ``reconnectionDelay`` | integer | number of milliseconds between reconnection attempts | get |
 
@@ -101,41 +102,80 @@ If the `connect` option is set to `manual`, the callback will be called after th
 * if ``queueTTL`` is set to ``0``, requests are kept indefinitely
 * The offline buffer acts like a FIFO queue, meaning that if the ``queueMaxSize`` limit is reached, older requests are deleted and new requests are queued
 * if ``queueMaxSize`` is set to ``0``, an unlimited number of requests is kept until the buffer is flushed
+* the ``offlineQueueLoader`` must be set with a function, taking no argument, and returning an array of objects containing a `query` member with a Kuzzle query to be replayed, and an optional `cb` member with the corresponding callback to invoke with the query result
 
 ## Offline mode
 
 Working with an unstable network connection implies to handle what an application should be doing while being offline.  
 Our goal is to provide our users with the right tools to handle such situations.
 
-There are two ways to handle a network disconnection:
+**There are two ways to handle a network disconnection**
 
 * Stop all further communication with Kuzzle and invalidate the current instance and all its children. The application will have to manually instantiate a new Kuzzle object once the network has recovered. To do so, simply pass the ``autoReconnect`` option to ``false`` when starting a new Kuzzle instance.
 * Reconnect automatically to Kuzzle when possible, and enter *offline mode*. This is the default behavior.
 
 Offline mode simply refers to the time between a ``disconnected`` and a ``reconnected`` event.
 
-During offline mode, the Kuzzle SDK handles subscriptions (``KuzzleRoom`` instances) and requests separately.
+**Handling subscriptions**
 
-All subscriptions are kept indefinitely, with no maximum subscriptions retained. By default, upon reconnection, all subscription are renewed. This behavior can be changed by setting the ``autoResubscribe`` to ``false``. In that case, each subscription must be renewed manually using the ``KuzzleRoom.renew`` method.
+During offline mode, all subscriptions are kept indefinitely, with no maximum subscriptions retained.
 
-Requests are handled differently. By default, there is no request queuing. Setting the ``autoQueue`` option to ``true`` activates automatic request queuing.  
-You may also control when to start and stop queuing manually, by using the ``startQueuing`` and ``stopQueuing`` methods.  
+By default, upon reconnection, all subscription are renewed. This behavior can be changed by setting the ``autoResubscribe`` to ``false``. In that case, each subscription must be renewed manually using the ``KuzzleRoom.renew`` method.
+
+**Queuing requests while offline**
+
+Requests can be queued while being offline, to be replayed once the network connection has been reestablished.  
+By default, there is no request queuing.
+
+You can:
+
+* Queue all requests automatically when going offline by setting the ``autoQueue`` option to ``true``
+* Start and stop queuing manually, by using the ``startQueuing`` and ``stopQueuing`` methods
+
 The queue itself can be configured using the ``queueTTL`` and ``queueMaxSize`` options.
 
-Once a ``reconnected`` event is fired, you may replay the content of the queue with the ``replayQueue`` method. Or you can let the SDK replay it automatically by setting the ``autoReplay`` option to ``true``.  
-Requests are emitted with the ``replayInterval`` delay between each one of them, and requests submitted while replaying the queue are delayed until the queue is empty, to ensure all requests are played in the right order.
+**Filter requests to be queued**
+
+After request queuing is activated, by default, all requests are queued.
+
+You can decide to filter some of these requests with the ``queueFilter`` property. This property must be set with a function taking the request to be queued as an argument, and it must return a boolean telling the Kuzzle SDK if the request can be queued or not.
+
+Additionally, almost all methods accept a ``queuable`` option. If set to ``false``, the request will be discarded if the SDK is disconnected, and it will be played immediately with no queuing otherwise. This option bypasses the ``queueFilter`` property.
+
+
+**Handling network reconnection**
+
+Once a ``reconnected`` event is fired, you may replay the content of the queue with the ``replayQueue`` method. Or you can let the SDK replay it automatically upon reconnection, by setting the ``autoReplay`` option to ``true``.  
+
+Requests are sent to Kuzzle with the ``replayInterval`` delay between each one of them.
+
+Requests submitted while replaying the queue are delayed until the queue is empty, to ensure all requests are played in the right order.
 
 <aside class="warning">
-Setting <code>autoReplay</code> to <code>true</code> when using JWT Tokens should generally be avoided.<br/>
-When leaving offline-mode, the SDK will automatically check the JWT Token and, if it has expired, the token will be removed and a <code>jwtTokenExpired</code> event will be fired. If <code>autoReplay</code> is set, then all pending requests will be automatically played as an anonymous user.
+Setting <code>autoReplay</code> to <code>true</code> when using user authentication should generally be avoided.<br/>
+When leaving offline-mode, the JWT Token validity is verified. If it has expired, the token will be removed and a <code>jwtTokenExpired</code> event will be fired.<br/>
+If <code>autoReplay</code> is set, then all pending requests will be automatically played as an anonymous user.
 </aside>
 
-You can also control what request can be queued. By default, all requests are queued, but you may decide to filter some of these requests with the ``queueFilter`` property.  
-Additionally, all methods accept a ``queuable`` option. If set to ``false``, the request will be discarded if the SDK is disconnected, and it will be played immediately with no queuing otherwise. This option bypasses the ``queueFilter`` property.
 
-If the provided methods don't give you enough control over the offline queue, you can access and edit the queue directly with the ``offlineQueue`` property.
+**Taking control of the offline queue**
 
-Finally, you may set the ``offlineMode`` option to ``auto``. This configures the offline mode behavior with the following options:
+You can be notified about what's going on about the offline queue, with the `offlineQueuePush` and the `offlineQueuePop` events.  
+
+The `offlineQueuePush` event is fired whenever a request is queued. It provides to its listeners an object containing a `query` property, describing the queued request, and an optional `cb` property containing the corresponding callback, if any.
+
+The `offlineQueuePop` event is fired whenever a request has been removed from the queue, either because the queue limits have been reached, or because the request has been replayed. It provides the removed request to its listeners.
+
+The `offlineQueueLoader` property allows loading requests to the queue, **before any previously queued request**. It is invoked every time the SDK starts dequeuing requests.  
+This property must be set with a function returning an array of objects with the following accessible properties: a `query` property, containing the request to be replayed, and an optional `cb` property pointing to the callback to invoke after the completion of the request.
+
+Finally, if the provided methods don't give you enough control over the offline queue, you can access and edit the queue directly with the ``offlineQueue`` property.
+
+
+
+**Automatic offline-mode**
+
+You can set the ``offlineMode`` option to ``auto``. This configures the offline mode behavior with the following options:
 
 * ``autoReconnect`` = ``true``
 * ``autoQueue`` = ``true``
@@ -154,8 +194,10 @@ Here is the list of these special events:
 | ``connected`` | Fired when the SDK has successfully connected to Kuzzle |
 | ``disconnected`` | Fired when the current session has been unexpectedly disconnected |
 | ``error`` | Fired when the SDK has failed to connect to Kuzzle. Does not trigger offline mode. |
-| ``jwtTokenExpired`` | Fired when Kuzzle rejected a request because the authentication token expired.<br>Provides the request and its associated callback to the listener |
-| ``loginAttempt`` | Fired when a login attempt completes, either with a success or a failure result.<br>Provides a JSON object with the login status to the listener (see the `login` method documentation)|
+| ``jwtTokenExpired`` | Fired when Kuzzle rejected a request because the authentication token expired.<br/>Provides the request and its associated callback to its listeners |
+| ``loginAttempt`` | Fired when a login attempt completes, either with a success or a failure result.<br/>Provides a JSON object with the login status to its listeners (see the `login` method documentation)|
+| ``offlineQueuePop`` | Fired whenever a request is removed from the offline queue. <br/>Provides the removed request to its listeners |
+| ``offlineQueuePush`` | Fired whenever a request is added to the offline queue.<br/>Provides to its listeners an object containing a `query` property, describing the queued request, and an optional `cb` property containing the corresponding callback |
 | ``reconnected`` | Fired when the current session has reconnected to Kuzzle after a disconnection, and only if ``autoReconnect`` is set to ``true`` |
 
 **Note:** listeners are called in the order of their insertion.
