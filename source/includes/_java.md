@@ -146,6 +146,10 @@ If you're deploying Scout APM for the first time, we recommend starting on a sta
 
 ## Java Agent Change Log
 
+#### 0.4.0
+* Add Thread statistics to Context in slow streams
+* Support for Apache HttpAsyncClient
+
 #### 0.3.0
 * Support for Spring RestTemplate HTTP client
 
