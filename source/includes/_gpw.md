@@ -55,7 +55,7 @@ white_label_profile_id | Assign a white label profile to this report. The ID nee
 business_names | <span class="label label-required">Required</span> Supply one business name. For example, Greens Restaurant.
 schedule | <span class="label label-required">Required</span> One of Adhoc or Monthly
 day_of_month | <span class="label label-required">Required</span> One of 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, -1 (last day of month).
-report_type | <span class="label label-required">Required</span> One of with or without. 'with' - the business has a Google+ profile. 'without' - Ignore this business, just display competitor information. Defaults to with.
+report_type | <span class="label label-required">Required</span> One of with or without. 'with' - the business has a Google Local profile. 'without' - Ignore this business, just display competitor information. Defaults to with.
 address1 | <span class="label label-required">Required</span> Optional for report_type=without
 address2 |
 profile_url |
@@ -106,13 +106,14 @@ Parameter | Notes
 api-key | <span class="label label-required">Required</span>
 sig | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
 expires | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
+report-ID | <span class="label label-required">Required</span>
 report_name |
 location_id | Associate this report with a location in your account. This ID needs to correspond to a valid location in your account.
 white_label_profile_id | Assign a white label profile to this report. The ID needs to correspond to a valid white label profile in your account.
 business_names |  Supply one business name. For example, Greens Restaurant.
 schedule |  One of Adhoc or Monthly
 day_of_month |  One of 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, -1 (last day of month).
-report_type | One of with or without. 'with' - the business has a Google+ profile. 'without' - Ignore this business, just display competitor information. Defaults to with.
+report_type | One of with or without. 'with' - the business has a Google Local profile. 'without' - Ignore this business, just display competitor information. Defaults to with.
 address1 |
 address2 |
 profile_url |
@@ -248,7 +249,7 @@ expires | <span class="label label-required">Required</span> [See above for how 
                 "report_name": "Test 1",
                 "schedule": "Weekly",
                 "is_running": "Yes",
-                "running_message": "Identifying your top Google+ Local competitors"
+                "running_message": "Identifying your top Google Local competitors"
             },
             {
                 "report_id": "50",
@@ -384,10 +385,8 @@ report-id | <span class="label label-required">Required</span> The unique ID for
         "top_10": [
           {
             "business_name": "Iron Galaxy Studios LLC",
-            "profile_url": "https://plus.google.com/106762967148362846974/about",
+            "profile_url": "https://www.google.co.uk/search?q=Iron+Galaxy+Studios+LLC&oq=Iron+Galaxy+Studios+LLC",
             "claimed": false,
-            "num_followers": 0,
-            "num_views": 0,
             "citations_count": 74,
             "domain_authority": "37/100",
             "backlinks": 1395,
@@ -400,10 +399,8 @@ report-id | <span class="label label-required">Required</span> The unique ID for
           },
           {
             "business_name": "Iron Financial Management Inc",
-            "profile_url": "https://plus.google.com/116182082718959195517/about",
+            "profile_url": "https://www.google.co.uk/search?newwindow=1&safe=active&q=Iron+Financial+Management+Inc",
             "claimed": false,
-            "num_followers": 0,
-            "num_views": 0,
             "citations_count": 118,
             "domain_authority": "22/100",
             "backlinks": 86,
@@ -416,10 +413,8 @@ report-id | <span class="label label-required">Required</span> The unique ID for
           },
           {
             "business_name": "Chicago Tube and Iron Company",
-            "profile_url": "https://plus.google.com/115679173636656864032/about",
+            "profile_url": "https://www.google.co.uk/search?newwindow=1&safe=active&q=Chicago+Tube+and+Iron+Company+Chicago",
             "claimed": false,
-            "num_followers": 0,
-            "num_views": 0,
             "citations_count": 106,
             "domain_authority": "30/100",
             "backlinks": 190,
@@ -435,10 +430,8 @@ report-id | <span class="label label-required">Required</span> The unique ID for
           },
           {
             "business_name": "Acorn Wire &amp; Iron Works LLC",
-            "profile_url": "https://plus.google.com/106228617083444002632/about",
+            "profile_url": "https://www.google.co.uk/search?newwindow=1&safe=active&gbv=2&q=Acorn+Wire+%26+Iron+Works+LLC%2C+chicago",
             "claimed": false,
-            "num_followers": 0,
-            "num_views": 0,
             "citations_count": 56,
             "domain_authority": "29/100",
             "backlinks": 80,
@@ -451,10 +444,8 @@ report-id | <span class="label label-required">Required</span> The unique ID for
           },
           {
             "business_name": "Iron &amp; Wire Custom Metal Studio LLC",
-            "profile_url": "https://plus.google.com/112699188083553695218/about",
+            "profile_url": "https://www.google.co.uk/search?newwindow=1&safe=active&gbv=2&q=Iron+%26+Wire+Custom+Metal+Studio+LLC%2C+chicago",
             "claimed": true,
-            "num_followers": 2,
-            "num_views": 21023,
             "citations_count": 25,
             "domain_authority": "18/100",
             "backlinks": 18,
@@ -469,10 +460,8 @@ report-id | <span class="label label-required">Required</span> The unique ID for
           },
           {
             "business_name": "Adams Street Iron Inc",
-            "profile_url": "https://plus.google.com/108717129803017731795/about",
+            "profile_url": "https://www.google.co.uk/search?newwindow=1&safe=active&biw=1277&bih=573&q=Adams+Street+Iron+Inc%2C+Chicago",
             "claimed": false,
-            "num_followers": 0,
-            "num_views": 0,
             "citations_count": 66,
             "domain_authority": "10/100",
             "backlinks": 7,
@@ -486,10 +475,8 @@ report-id | <span class="label label-required">Required</span> The unique ID for
           },
           {
             "business_name": "Iron Workers Union",
-            "profile_url": "https://plus.google.com/108612610808895922436/about",
+            "profile_url": "https://www.google.co.uk/search?newwindow=1&safe=active&gbv=2&q=Iron+Workers+Union%2C+chicago+60130",
             "claimed": false,
-            "num_followers": 0,
-            "num_views": 0,
             "citations_count": 39,
             "domain_authority": "48/100",
             "backlinks": 5037,
@@ -503,10 +490,8 @@ report-id | <span class="label label-required">Required</span> The unique ID for
           },
           {
             "business_name": "Shaw Environmental/Infrstrctr",
-            "profile_url": "https://plus.google.com/106703892745911911440/about",
+            "profile_url": "https://www.google.co.uk/search?newwindow=1&safe=active&gbv=2&q=Shaw+Environmental%2FInfrstrctr%2C+chicago",
             "claimed": false,
-            "num_followers": 0,
-            "num_views": 0,
             "citations_count": 52,
             "domain_authority": "60/100",
             "backlinks": 8884,
@@ -643,10 +628,8 @@ report-id | <span class="label label-required">Required</span> The unique ID for
         "top_10": [
           {
             "business_name": "Gold Eagle",
-            "profile_url": "https://plus.google.com/108823071668145410367/about",
+            "profile_url": "https://www.google.co.uk/search?newwindow=1&safe=active&site=&source=hp&q=gold+eagle+chicago",
             "claimed": true,
-            "num_followers": 0,
-            "num_views": 23656,
             "citations_count": 62,
             "domain_authority": "45/100",
             "backlinks": 9918,
@@ -659,10 +642,8 @@ report-id | <span class="label label-required">Required</span> The unique ID for
           },
           {
             "business_name": "Rickey Gold Associates",
-            "profile_url": "https://plus.google.com/112595303241640812004/about",
+            "profile_url": "https://www.google.co.uk/search?newwindow=1&safe=active&q=Rickey+Gold+Associates",
             "claimed": false,
-            "num_followers": 0,
-            "num_views": 0,
             "citations_count": 96,
             "domain_authority": "26/100",
             "backlinks": 57,
@@ -675,10 +656,8 @@ report-id | <span class="label label-required">Required</span> The unique ID for
           },
           {
             "business_name": "Bentley Gold Coast",
-            "profile_url": "https://plus.google.com/117553286714777820423/about",
+            "profile_url": "https://www.google.co.uk/search?newwindow=1&safe=active&q=Bentley+Gold+Coast%2C+Chicago&oq=Bentley+Gold+Coast%2C+Chicago",
             "claimed": false,
-            "num_followers": 0,
-            "num_views": 0,
             "citations_count": 89,
             "domain_authority": "32/100",
             "backlinks": 87,
@@ -691,10 +670,8 @@ report-id | <span class="label label-required">Required</span> The unique ID for
           },
           {
             "business_name": "Gold Coast Tickets",
-            "profile_url": "https://plus.google.com/101551987745165273616/about",
+            "profile_url": "https://www.google.co.uk/search?newwindow=1&safe=active&q=Gold+Coast+Tickets%2C+Chicago",
             "claimed": false,
-            "num_followers": 0,
-            "num_views": 0,
             "citations_count": 47,
             "domain_authority": "34/100",
             "backlinks": 1362,
@@ -707,10 +684,8 @@ report-id | <span class="label label-required">Required</span> The unique ID for
           },
           {
             "business_name": "Gold Canyon Candles",
-            "profile_url": "https://plus.google.com/117435376200648462394/about",
+            "profile_url": "https://www.google.co.uk/search?newwindow=1&safe=active&q=Gold+Canyon+Candles%2C+Schaumburg%2C+IL+60193",
             "claimed": true,
-            "num_followers": 0,
-            "num_views": 17900,
             "citations_count": 19,
             "domain_authority": "n/a",
             "backlinks": 0,
@@ -910,7 +885,7 @@ report-id | <span class="label label-required">Required</span> The unique ID for
   "success": false,
   "errors":  {
     "INVALID_LOCATION_ID": "Invalid location ID supplied"
-  }
+  } 
 }
 ```
 
