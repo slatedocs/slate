@@ -24,12 +24,14 @@ includes:
   - endpoint-variable
   - endpoint-filter
   - endpoint-analysis
+  - endpoint-tabbook
   - endpoint-comparison
   - endpoint-version
   - endpoint-batch
   - endpoint-source
   - endpoint-join
   - endpoint-permission
+  - endpoint-progress
   - endpoint-user
   - endpoint-team
   - endpoint-projects
