@@ -61,7 +61,7 @@ api-key | <span class="label label-required">Required</span>
 sig | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
 expires | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
 report-name | <span class="label label-required">Required</span>
-client-id | Associate this report with a client in your account. This ID needs to correspond to a valid client in your account.
+location-id | Associate this report with a location in your account. This ID needs to correspond to a valid location in your account.
 white-label-profile-id | Assign a white label profile to this report. The ID needs to correspond to a valid white label profile in your account.
 business-name | <span class="label label-required">Required</span>
 contact-telephone | <span class="label label-required">Required</span>
@@ -144,7 +144,7 @@ directories | <p>If you need to add or change a profile URL you can do so here.<
     "report": {
         "report_id": "270",
         "report_name": "Le Bernardin",
-        "client_id": "0",
+        "location_id": "0",
         "customer_id": "35",
         "business_name": "Le Bernardin",
         "contact_telephone": "+1 212-554-1515",
@@ -343,7 +343,7 @@ expires | <span class="label label-required">Required</span> [See above for how 
         {
             "report_id": "270",
             "report_name": "Le Bernardin",
-            "client_id": "0",
+            "location_id": "0",
             "created_at": "2015-01-06 11:43:57",
             "last_update": "2015-01-06 11:51:35",
             "is_running": false,
@@ -354,7 +354,7 @@ expires | <span class="label label-required">Required</span> [See above for how 
         {
             "report_id": "141",
             "report_name": "Zuni cafe #2",
-            "client_id": "0",
+            "location_id": "0",
             "created_at": "2013-12-10 15:24:53",
             "last_update": "2014-12-15 02:07:38",
             "is_running": false,
@@ -365,7 +365,7 @@ expires | <span class="label label-required">Required</span> [See above for how 
         {
             "report_id": "119",
             "report_name": "Zuni Cafe",
-            "client_id": "0",
+            "location_id": "0",
             "created_at": "2013-10-21 10:23:00",
             "last_update": "2014-12-15 02:06:54",
             "is_running": false,
@@ -376,7 +376,7 @@ expires | <span class="label label-required">Required</span> [See above for how 
         {
             "report_id": "144",
             "report_name": "Slade & Baker Vision Center",
-            "client_id": "0",
+            "location_id": "0",
             "created_at": "2013-12-16 15:17:10",
             "last_update": "2014-12-15 02:05:48",
             "is_running": false,
@@ -401,7 +401,7 @@ Parameter | Notes
 api-key | <span class="label label-required">Required</span>
 sig | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
 expires | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
-client-id | Filter the list of reports returned by client ID. This ID must correspond to a valid client in your account.
+location-id | Filter the list of reports returned by location ID. This ID must correspond to a valid location in your account.
 
 ## Report Search
 
@@ -416,7 +416,7 @@ client-id | Filter the list of reports returned by client ID. This ID must corre
         {
             "report_id": "270",
             "report_name": "Le Bernardin",
-            "client_id": "0",
+            "location_id": "0",
             "created_at": "2015-01-06 11:43:57",
             "last_update": "2015-01-06 11:51:35",
             "is_running": false,
