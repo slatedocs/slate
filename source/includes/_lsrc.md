@@ -145,6 +145,7 @@ campaign-id | <span class="label label-required">Required</span>
         "results":  [
             {
                 "campaign_id": "49",
+                "location_id": "0",
                 "name": "Test 1",
                 "schedule": "Weekly",
                 "day_of_week": "Thursday",
@@ -152,6 +153,7 @@ campaign-id | <span class="label label-required">Required</span>
             },
             {
                 "campaign_id": "50",
+                "location_id": "0",
                 "name": "Test 2",
                 "schedule": "Weekly",
                 "day_of_week": "Wednesday",
@@ -159,6 +161,7 @@ campaign-id | <span class="label label-required">Required</span>
             },
             {
                 "campaign_id": "52",
+                "location_id": "0",
                 "name": "Test 3",
                 "schedule": "Weekly",
                 "day_of_week": "Wednesday",
@@ -183,6 +186,60 @@ api-key | <span class="label label-required">Required</span>
 sig | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
 expires | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
 location-id |
+
+## Get All Reports
+
+<span class="label label-info">Account Method</span>
+
+> Success (200 OK)
+
+```json
+{
+    "response":  {
+        "results":  [
+            {
+                "campaign_id": "49",
+                "location_id": "0",
+                "name": "Test 1",
+                "schedule": "Weekly",
+                "day_of_week": "Thursday",
+                "day_of_month": "0"
+            },
+            {
+                "campaign_id": "50",
+                "location_id": "0",
+                "name": "Test 2",
+                "schedule": "Weekly",
+                "day_of_week": "Wednesday",
+                "day_of_month": null
+            },
+            {
+                "campaign_id": "52",
+                "location_id": "0",
+                "name": "Test 3",
+                "schedule": "Weekly",
+                "day_of_week": "Wednesday",
+                "day_of_month": null
+            }
+        ]    
+    }
+}
+```
+
+Returns basic details about all reports that match your search criteria.
+
+### HTTP Request
+
+`GET https://tools.brightlocal.com/seo-tools/api/v2/lsrc/search`
+
+### Query Parameters
+
+Parameter | Notes
+--------- | -----
+api-key | <span class="label label-required">Required</span>	
+sig | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
+expires | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
+q | Search string to match reports against. <span class="label label-required">Required</span>
 
 ## Get Report
 
