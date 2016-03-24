@@ -197,7 +197,7 @@ location-id |
             "campaign_id": "50",
             "customer_id": "35",
             "white_label_profile_id": "19",
-            "location-id": "19",
+            "location_id": "19",
             "name": "Test Pub",
             "schedule": "Weekly",
             "day_of_week": "Wednesday",
@@ -330,18 +330,21 @@ campaign-id | <span class="label label-required">Required</span>
             {
                 "campaign_history_id": "25554",
                 "campaign_id": "50",
+                "location_id": "5",
                 "history_type": "Scheduled",
                 "generation_date": "2013-07-18 13:42:32"
             },
             {
                 "campaign_history_id": "25499",
                 "campaign_id": "50",
+                "location_id": "5",
                 "history_type": "Scheduled",
                 "generation_date": "2013-07-18 11:29:50"
             },
             {
                 "campaign_history_id": "25439",
                 "campaign_id": "50",
+                "location_id": "5",
                 "history_type": "Scheduled",
                 "generation_date": "2013-07-18 11:17:48"
             }
@@ -396,7 +399,7 @@ previous-campaign-history-id | If both campaign-history-id and previous-campaign
         "campaign_id": "9636",
         "customer_id": "1",
         "white_label_profile_id": "24",
-        "client_id": "0",
+        "location_id": "0",
         "name": "Alaska Bar Association",
         "schedule": "Adhoc",
         "day_of_week": "Monday",
