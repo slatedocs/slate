@@ -164,3 +164,14 @@ The response packet will thus have the following structure:
 |Byte 0 (subsystem)|Byte 1 (length)|Byte 2 (CRC)|      Byte 3 (command)      |     Byte 4-18      |Byte 19 |
 |:----------------:|:-------------:|:----------:|:--------------------------:|:------------------:|:------:|
 |       0x00       |      0x10     |     CRC    |0x05 (Get Firmware Versions)|Neblina_FWVersions_t|Reserved|
+
+
+### Debug - Dump Data (0x06)
+```c 
+#define DEBUG_CMD_DUMP_DATA 0x06
+```
+This packet is always a response packet and is sent from Neblina to the host to display (print) some hex data. The packet length might vary from 4 to 20 bytes including the header section. The data section contains the dump data that is needed to be displayed by the host, which could be between 0 to 16 bytes. Byte 1 will determine the packet's data section (dump data) length. Here is the full resposne packet:
+
+|Byte 0 (subsystem)|Byte 1 (length)|Byte 2 (CRC)|Byte 3 (command)|  Byte 4-END  |
+|:----------------:|:-------------:|:----------:|:--------------:|:------------:|
+|       0x40       |     0-16      |     CRC    |   Debug Dump   |  Dump Data   |
