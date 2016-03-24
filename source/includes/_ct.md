@@ -26,7 +26,7 @@ Parameter | Notes
 api-key | <span class="label label-required">Required</span>	
 sig | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
 expires | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
-location | You can specify location ID or unique reference to create report for a location
+location-id | You can specify location ID or unique reference to create report for a location
 report-name | <span class="label label-required">Required</span>	
 business-name | <span class="label label-required">Required</span>	
 business-location | <span class="label label-required">Required</span> Town or city name in which business is located.
@@ -39,7 +39,6 @@ country | One of USA, GBR, CAN, AUS. Defaults to USA.
 phone | <span class="label label-required">Required</span>	
 website | <span class="label label-required">Required</span> Link to the website of your business.
 business-type | <span class="label label-required">Required</span>	
-location | <span class="label label-required">Required</span>	
 state-code | <span class="label label-required">Required</span> (USA only). 2-letter state code (USA only).
 monthly-run | One of 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31. Defaults to 0 (none).
 weekly-run | One of 1, 2, 3, 4, 5, 6, 7. Defaults to 0 (none).
@@ -106,7 +105,7 @@ is-public | Publish reports on a white label URL. Yes or No.
     "report": {
         "report_id": "255565",
         "customer_id": "88",
-        "client_id": "235285",
+        "location_id": "1",
         "weekly_run": "3",
         "monthly_run": "0",
         "report_name": "The View",
@@ -230,7 +229,7 @@ report-id | <span class="label label-required">Required</span>
             {
                 "report_id": "278",
                 "customer_id": "35",
-                "client_id": "0",
+                "location_id": "5",
                 "report_run_id": "2457",
                 "report_name": "Test 1",
                 "website_address": "http://www.test1.com",
@@ -275,7 +274,7 @@ report-id | <span class="label label-required">Required</span>
             {
                 "report_id": "660",
                 "customer_id": "35",
-                "client_id": "0",
+                "location_id": "0",
                 "report_run_id": "2756",
                 "report_name": "Test 2",
                 "website_address": "",
@@ -332,7 +331,7 @@ Parameter | Notes
 api-key | <span class="label label-required">Required</span>	
 sig | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
 expires | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
-client-id |
+location-id |
 
 ## Get Report Results
 

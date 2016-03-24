@@ -156,7 +156,7 @@ Search for clients matching a specified search string.
 
 ### HTTP Request
 
-`GET https://tools.brightlocal.com/seo-tools/api/v1/clients-and-locations/clients`
+`GET https://tools.brightlocal.com/seo-tools/api/v1/clients-and-locations/clients/search`
 
 ### Query Parameters
 

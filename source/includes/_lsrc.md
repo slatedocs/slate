@@ -145,6 +145,7 @@ campaign-id | <span class="label label-required">Required</span>
         "results":  [
             {
                 "campaign_id": "49",
+                "location_id": "0",
                 "name": "Test 1",
                 "schedule": "Weekly",
                 "day_of_week": "Thursday",
@@ -152,6 +153,7 @@ campaign-id | <span class="label label-required">Required</span>
             },
             {
                 "campaign_id": "50",
+                "location_id": "0",
                 "name": "Test 2",
                 "schedule": "Weekly",
                 "day_of_week": "Wednesday",
@@ -159,6 +161,7 @@ campaign-id | <span class="label label-required">Required</span>
             },
             {
                 "campaign_id": "52",
+                "location_id": "0",
                 "name": "Test 3",
                 "schedule": "Weekly",
                 "day_of_week": "Wednesday",
@@ -184,6 +187,60 @@ sig | <span class="label label-required">Required</span> [See above for how to g
 expires | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
 location-id |
 
+## Get All Reports
+
+<span class="label label-info">Account Method</span>
+
+> Success (200 OK)
+
+```json
+{
+    "response":  {
+        "results":  [
+            {
+                "campaign_id": "49",
+                "location_id": "0",
+                "name": "Test 1",
+                "schedule": "Weekly",
+                "day_of_week": "Thursday",
+                "day_of_month": "0"
+            },
+            {
+                "campaign_id": "50",
+                "location_id": "0",
+                "name": "Test 2",
+                "schedule": "Weekly",
+                "day_of_week": "Wednesday",
+                "day_of_month": null
+            },
+            {
+                "campaign_id": "52",
+                "location_id": "0",
+                "name": "Test 3",
+                "schedule": "Weekly",
+                "day_of_week": "Wednesday",
+                "day_of_month": null
+            }
+        ]    
+    }
+}
+```
+
+Returns basic details about all reports that match your search criteria.
+
+### HTTP Request
+
+`GET https://tools.brightlocal.com/seo-tools/api/v2/lsrc/search`
+
+### Query Parameters
+
+Parameter | Notes
+--------- | -----
+api-key | <span class="label label-required">Required</span>	
+sig | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
+expires | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
+q | Search string to match reports against. <span class="label label-required">Required</span>
+
 ## Get Report
 
 <span class="label label-info">Account Method</span>
@@ -197,7 +254,7 @@ location-id |
             "campaign_id": "50",
             "customer_id": "35",
             "white_label_profile_id": "19",
-            "location-id": "19",
+            "location_id": "19",
             "name": "Test Pub",
             "schedule": "Weekly",
             "day_of_week": "Wednesday",
@@ -330,18 +387,21 @@ campaign-id | <span class="label label-required">Required</span>
             {
                 "campaign_history_id": "25554",
                 "campaign_id": "50",
+                "location_id": "5",
                 "history_type": "Scheduled",
                 "generation_date": "2013-07-18 13:42:32"
             },
             {
                 "campaign_history_id": "25499",
                 "campaign_id": "50",
+                "location_id": "5",
                 "history_type": "Scheduled",
                 "generation_date": "2013-07-18 11:29:50"
             },
             {
                 "campaign_history_id": "25439",
                 "campaign_id": "50",
+                "location_id": "5",
                 "history_type": "Scheduled",
                 "generation_date": "2013-07-18 11:17:48"
             }
@@ -396,7 +456,7 @@ previous-campaign-history-id | If both campaign-history-id and previous-campaign
         "campaign_id": "9636",
         "customer_id": "1",
         "white_label_profile_id": "24",
-        "client_id": "0",
+        "location_id": "0",
         "name": "Alaska Bar Association",
         "schedule": "Adhoc",
         "day_of_week": "Monday",
