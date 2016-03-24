@@ -348,38 +348,22 @@ report-id | <span class="label label-required">Required</span> The unique ID for
 {
   "success": true,
   "results": {
-    "overview": {
-      "iron": {
-        "domain_authority": 30,
-        "citations_count": 99,
-        "backlinks": 557,
-        "num_reviews": 2,
-        "num_photos": 0,
-        "num_videos": 0,
-        "categories": [
-          "Hotel",
-          "General Contractor",
-          "Non-Profit Organization",
-          "Steel Fabricator",
-          "Metal Fabricator"
-        ]
-      },
-      "gold": {
-        "domain_authority": 34,
-        "citations_count": 82,
-        "backlinks": 3354,
-        "num_reviews": 19,
-        "num_photos": 2,
-        "num_videos": 0,
-        "categories": [
-          "Gift Basket Store",
-          "Hotel",
-          "Event Ticket Seller",
-          "Car Dealer",
-          "Marketing Consultant"
-        ]
-      }
-    },
+  	"summary_data": {
+      "address": "300 E Colorado Blvd, Pasadena, CA 91101, United States",
+      "website": "http://www.example.com",
+      "telephone": "+1 123-456-7890",
+      "opening_hours": [
+        "Wednesday 4PM–1AM",
+        "Thursday 4PM–1AM",
+        "Friday 4PM–1AM",
+        "Saturday 4PM–1AM",
+        "Sunday(Easter) 4PM–1AM Hours might differ",
+        "Monday 4PM–1AM",
+        "Tuesday 4PM–1AM"
+      ],
+      "review_star": 4,
+      "review_content": "The Hotel is very conveniently located and the room nice"
+     },          
     "keywords": {
       "iron": {
         "top_10": [
