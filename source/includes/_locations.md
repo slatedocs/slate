@@ -220,7 +220,7 @@ Search for locations matching a specified search string. The search uses a numbe
 
 ### HTTP Request
 
-`GET https://tools.brightlocal.com/seo-tools/api/v1/clients-and-locations/locations`
+`GET https://tools.brightlocal.com/seo-tools/api/v1/clients-and-locations/locations/search`
 
 ### Query Parameters
 
