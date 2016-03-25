@@ -6,8 +6,8 @@ title: ControlShift Labs API & Webhook Reference
 #  - ruby
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a>
+  - <a href="http://www.controlshiftlabs.com/">Sign Up for ControlShift Labs</a>
+  - <a href="https://github.com/tripit/slate">Documentation Powered by Slate</a>
 
 includes:
   - json_intro
@@ -26,7 +26,7 @@ search: true
 
 # Introduction
 
-Welcome to the ControlShift Labs JSON API and Webhook Endpoint documentation!  Our API and Webhooks are designed to allow software engineers to create rich integrations between ControlShift content and third-party services and websites.
+Welcome to the [ControlShift Labs](http://www.controlshiftlabs.com/) JSON API and Webhook Endpoint documentation!  Our API and Webhooks are designed to allow software engineers to create rich integrations between ControlShift content and third-party services and websites.
 
 
 
