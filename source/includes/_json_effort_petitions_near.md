@@ -114,9 +114,10 @@ This endpoints accepts a few nested attributes in a `location` object, as descri
 
 Parameter | Default | Description
 --------- | ------- | -----------
-location[query] | null | MARIO TODO
-location[latitude] | null | Float - a float representing the queried latitude
-location[longitude] | null | Float - a float representing the queried longitude
+effort slug | null | string - required - submitted as a part of the endpoint path, not as a separate URL parameter
+location[query] | null | string - optional - MARIO TODO
+location[latitude] | null | float - required - a float representing the queried latitude
+location[longitude] | null | float - required - a float representing the queried longitude
 
 ### Working Example
 

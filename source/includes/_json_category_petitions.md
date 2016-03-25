@@ -103,7 +103,8 @@ This retrieves a paginated list of petitions in a category.
 
 Parameter | Default | Description
 --------- | ------- | -----------
-page | 1 | The page number of results for the specified category. Minimum of 1.
+category slug | null | string - required - submitted as a part of the endpoint path, not as a separate URL parameter
+page | 1 | integer - optional - The page number of results for the specified category. Minimum of 1.
 
 ### Working Example
 

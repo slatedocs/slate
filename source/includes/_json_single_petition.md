@@ -56,7 +56,7 @@ This retrieves a single petition object.
 
 Parameter | Default | Description
 --------- | ------- | -----------
-slug | null | The petition's unique identification slug. If none is provided, you will get a 404 error.
+slug | null | string - required - The petition's unique identification slug. If none is provided, you will get a 404 error. Note: submitted as a part of the endpoint path, not as a separate URL parameter
 
 ### Working Example
 

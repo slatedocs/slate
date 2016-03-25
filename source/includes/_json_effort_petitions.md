@@ -151,6 +151,10 @@ This retrieves a list of petitions in an effort.
 
 `GET https://demo.controlshiftlabs.com/efforts/<effort slug>.json`
 
+Parameter | Default | Description
+--------- | ------- | -----------
+effort slug | null | string - required - submitted as a part of the endpoint path, not as a separate URL parameter
+
 ### Working Example
 
 A working example can be found on [jsbin](#not-implemented).
