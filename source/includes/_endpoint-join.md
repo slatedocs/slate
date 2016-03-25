@@ -22,7 +22,7 @@ A PATCH to this resource may add joins (by including new index members), alter e
 
 Variables in joined datasets may then be used in analyses as if they were part of the principal dataset, simply by using their URI in this join's variables catalog (see below). The joined dataset includes one row for each row in the principal dataset, by taking the key in the principal and looking up the corresponding key and row in the subordinate dataset. Rows in the principal which have no corresponding row in the subordinate are filled with the "No Data" missing value.
 
-In order to create or alter a new join, the logged user will need to have reading access to the right dataset otherwise the server will respond with a 400 error.
+In order to create or alter a new join, the authenticated user will need to have reading access to the right dataset otherwise the server will respond with a 400 error.
 
 The variable url sent for the left key must be a valid url for the current dataset. It is not allowed to use a different dataset as a left table.
 
