@@ -1,11 +1,6 @@
 ## Progress
 
-The progress api provides information about the current state of a given backend process in crunch.
-The api will never 404, so if you provide an invalid progress_id, it will return as if the process is completed (progress: "100").
-This has to do with the way stores persistence, when a process completes, it deletes the persistence for that particular
-progress entity.  Optionally, the progress will provide a message regarding current status.  There will be a progress
-value which is a float encapsulated in a string for performance reasons.  You must be authenticated to utilize this resource.
-
+Progress resources provide information about the current state of a long-running server process in Crunch. Some requests at certain endpoints may return 202 status and include a Location header pointing to a Progress resource, at which one can monitor the progress of the request that was accepted and not yet completed (i.e. 202 status).
 
 #### GET
 
@@ -16,7 +11,7 @@ GET /progress/{id}/ HTTP/1.1
 ```json
 {
     "element": "shoji:view",
-    "self": "https://api/progress/{id}/",
+    "self": "https:/beta.crunch.io/api/progress/{id}/",
     "value": {
         "progress": "22.5",
         "message": "exported 2 variables",
@@ -25,3 +20,8 @@ GET /progress/{id}/ HTTP/1.1
 }
 ```
 
+`GET` on a Progress view returns a Shoji View containing information about the status of the indicated process. The "progress" attribute contains a value between 0.0 and 100.0, stringified. If the `id` from the request URL does not exist, `GET` will nevertheless return 200 status and indicate `"progress": "100"`.
+
+Optionally, the View will provide a message regarding current status.
+
+You must be authenticated to `GET` this resource.
