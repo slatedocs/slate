@@ -1,10 +1,9 @@
 ---
-title: API Reference
+title: ControlShift Labs API & Webhook Reference
 
-language_tabs:
-  - shell
-  - ruby
-  - python
+#language_tabs:
+#  - js
+#  - ruby
 
 toc_footers:
   - <a href='#'>Sign Up for a Developer Key</a>
