@@ -73,7 +73,7 @@ while True:
     })
 ```
 
-The variable ids must correspond to existing variables in the dataset. The Python code shows how to efficiently map aliases to ids. The data must match the target variable types, so that we can process the row as quickly as possible. We want no casting or other guesswork slowing us down here. Among other things, this means that categorical values must be represented as Crunch's assigned category ids, not names or numeric values.
+Streamed values must be keyed either by id or by alias. The variable ids/aliases must correspond to existing variables in the dataset. The Python code shows how to efficiently map aliases to ids. The data must match the target variable types so that we can process the row as quickly as possible. We want no casting or other guesswork slowing us down here. Among other things, this means that categorical values must be represented as Crunch's assigned category ids, not names or numeric values.
 
 You may also send more than one row at a time if you prefer. For example, your data collection system may already post-process row data in, say, 5 minute increments. The more rows you can send together, the less overhead spent processing each one and the more you can send in a given time. Send multiple lines of line-delimited JSON, or if using pycrunch, a list of dicts rather than a single dict.
 
