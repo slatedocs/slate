@@ -23,75 +23,95 @@ under the License.
 
 // BACKGROUND COLORS
 ////////////////////
-$nav-bg: #393939;
-$examples-bg: #393939;
-$code-bg: #292929;
-$code-annotation-bg: #1c1c1c;
-$nav-subitem-bg: #262626;
-$nav-active-bg: #2467af;
-$lang-select-border: #000;
-$lang-select-bg: #222;
-$lang-select-active-bg: $examples-bg; // feel free to change this to blue or something
-$lang-select-pressed-bg: #111; // color of language tab bg when mouse is pressed
-$main-bg: #eaf2f6;
-$aside-notice-bg: #8fbcd4;
-$aside-warning-bg: #c97a7e;
-$aside-success-bg: #6ac174;
-$search-notice-bg: #c97a7e;
+$nav-bg: #393939 !default;
+$examples-bg: #393939 !default;
+$code-bg: #292929 !default;
+$code-annotation-bg: #1c1c1c !default;
+$nav-subitem-bg: #262626 !default;
+$nav-active-bg: #2467af !default;
+$lang-select-border: #000 !default;
+$lang-select-bg: #222 !default;
+$lang-select-active-bg: $examples-bg !default; // feel free to change this to blue or something
+$lang-select-pressed-bg: #111 !default; // color of language tab bg when mouse is pressed
+$main-bg: #eaf2f6 !default;
+$aside-notice-bg: #8fbcd4 !default;
+$aside-warning-bg: #c97a7e !default;
+$aside-success-bg: #6ac174 !default;
+$search-notice-bg: #c97a7e !default;
 
 
 // TEXT COLORS
 ////////////////////
-$main-text: #333; // main content text color
-$nav-text: #fff;
-$nav-active-text: #fff;
-$lang-select-text: #fff; // color of unselected language tab text
-$lang-select-active-text: #fff; // color of selected language tab text
-$lang-select-pressed-text: #fff; // color of language tab text when mouse is pressed
+$main-text: #333 !default; // main content text color
+$nav-text: #fff !default;
+$nav-active-text: #fff !default;
+$lang-select-text: #fff !default; // color of unselected language tab text
+$lang-select-active-text: #fff !default; // color of selected language tab text
+$lang-select-pressed-text: #fff !default; // color of language tab text when mouse is pressed
 
 
 // SIZES
 ////////////////////
-$nav-width: 230px; // width of the navbar
-$examples-width: 50%; // portion of the screen taken up by code examples
-$logo-margin: 20px; // margin between nav items and logo, ignored if search is active
-$main-padding: 28px; // padding to left and right of content & examples
-$nav-padding: 15px; // padding to left and right of navbar
-$nav-v-padding: 10px; // padding used vertically around search boxes and results
-$nav-indent: 10px; // extra padding for ToC subitems
-$code-annotation-padding: 13px; // padding inside code annotations
-$h1-margin-bottom: 21px; // padding under the largest header tags
-$tablet-width: 930px; // min width before reverting to tablet size
-$phone-width: $tablet-width - $nav-width; // min width before reverting to mobile size
+$nav-width: 230px !default; // width of the navbar
+$examples-width: 50% !default; // portion of the screen taken up by code examples
+$logo-margin: 20px !default; // margin between nav items and logo, ignored if search is active
+$main-padding: 28px !default; // padding to left and right of content & examples
+$nav-padding: 15px !default; // padding to left and right of navbar
+$nav-v-padding: 10px !default; // padding used vertically around search boxes and results
+$nav-indent: 10px !default; // extra padding for ToC subitems
+$code-annotation-padding: 13px !default; // padding inside code annotations
+$h1-margin-bottom: 21px !default; // padding under the largest header tags
+$tablet-width: 930px !default; // min width before reverting to tablet size
+$phone-width: $tablet-width - $nav-width !default; // min width before reverting to mobile size
 
 
 // FONTS
 ////////////////////
+$default-font-family: "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei","微软雅黑", STXihei, "华文细黑", sans-serif !default;
+$default-font-size: 13px !default;
+$default-font-weight: normal !default;
+$default-line-height: 1 !default;
+
+$header-font-family: $default-font-family !default;
+$header-font-size: $default-font-size !default;
+$header-font-weight: bold !default;
+$header-line-height: 1 !default;
+
+$code-font-family: Consolas, Menlo, Monaco, "Lucida Console", "Liberation Mono", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Courier New", monospace, serif !default;
+$code-font-size: 12px !default;
+$code-font-weight: $default-font-weight !default;
+$code-line-height: 1 !default;
+
 %default-font {
-  font-family: "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei","微软雅黑", STXihei, "华文细黑", sans-serif;
-  font-size: 13px;
+  font-family: $default-font-family;
+  font-size: $default-font-size;
+  font-weight: $default-font-weight;
+  line-height: $default-line-height;
 }
 
 %header-font {
-  @extend %default-font;
-  font-weight: bold;
+  font-family: $header-font-family;
+  font-size: $header-font-size;
+  font-weight: $header-font-weight;
+  line-height: $header-line-height;
 }
 
 %code-font {
-  font-family: Consolas, Menlo, Monaco, "Lucida Console", "Liberation Mono", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Courier New", monospace, serif;
-  font-size: 12px;
-  line-height: 1.5;
+  font-family: $code-font-family;
+  font-size: $code-font-size;
+  font-weight: $code-font-weight;
+  line-height: $code-line-height;
 }
 
 
 // OTHER
 ////////////////////
-$nav-active-shadow: #000;
-$nav-footer-border-color: #666;
-$nav-embossed-border-top: #000;
-$nav-embossed-border-bottom: #939393;
-$main-embossed-text-shadow: 0px 1px 0px #fff;
-$search-box-border-color: #666;
+$nav-active-shadow: #000 !default;
+$nav-footer-border-color: #666 !default;
+$nav-embossed-border-top: #000 !default;
+$nav-embossed-border-bottom: #939393 !default;
+$main-embossed-text-shadow: 0px 1px 0px #fff !default;
+$search-box-border-color: #666 !default;
 
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -99,7 +119,10 @@ $search-box-border-color: #666;
 ////////////////////////////////////////////////////////////////////////////////
 // These settings are probably best left alone.
 
+$break-word-break: break-all !default;
+$break-hyphens: auto !default;
+
 %break-words {
-    word-break: break-all;
-    hyphens: auto;
+    word-break: $break-word-break;
+    hyphens: $break-hyphens;
 }
