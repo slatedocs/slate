@@ -114,8 +114,23 @@ Resolves to the id of the deleted role.
 ```js
 var updateContent = {
   indexes: {
-    'some index': {
-      '_canCreate': false
+    "some index": {
+      _canCreate: false,
+      "*": {
+        collections: {
+          _canCreate: true,
+          "*": {
+            controllers: {
+              "*": {
+                actions: {
+                  "*": true
+                }
+              }
+            }
+          }
+        }
+      }
+
     }
   }
 };
@@ -136,8 +151,20 @@ role
 ```java
 JSONObject updateContent = new JSONObject()
   .put("indexes", new JSONObject()
-    .put("some index", new JSONObject()
-      .put("_canCreate", false)
+    .put("_canCreate", true)
+    .put("*", new JSONObject()
+      .put("collection", new JSONObject()
+        .put("_canCreate", true)
+        .put("*", new JSONObject()
+          .put("controllers", new JSONObject()
+            .put("*", new JSONObject()
+              .put("actions", new JSONObject()
+                .put("*", true)
+              )
+            )
+          )
+        )
+      )
     )
   );
 
@@ -154,7 +181,22 @@ role.update(new KuzzleResponseListener<KuzzleRole>() {
 });
 ```
 
-Performs a partial content update on this object.
+Updates the role object Kuzzle's database layer.
+
+<aside class="warning">
+  <p>
+    Unlike a regular document update, this method will replace the whole role definition under the indexes node by the <code>updateContent</code> parameter.<br>
+    In other words, you always need to provide the complete role definition in the <code>updateContent</code> object.
+  </p>
+  <p>
+    This method has the same effect as calling <a href="#setContent"><code>setContent</code></a> followed by the <a href="#save"><code>save</code></a> method.
+  </p>
+</aside>
+
+To get some more detailed information on the expected role definition, please refer to [Kuzzle's role reference definition documentation](https://github.com/kuzzleio/kuzzle/blob/master/docs/security/roles-reference.md).
+
+To get some more detailed information about Kuzzle's user management model, please refer to [Kuzzle's security documentation](https://github.com/kuzzleio/kuzzle/blob/master/docs/security/).
+
 
 #### update([options], [callback])
 

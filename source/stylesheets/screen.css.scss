@@ -528,8 +528,8 @@ html, body {
       //background-color: $aside-warning-bg;
       //@include text-shadow(0 1px 0 lighten($aside-warning-bg, 15%));
       background-color: #c97a7e;
-      text-shadow: 0 1px 0 #EE9999;
-      color: #000;
+      text-shadow: none;
+      color: #222;
     }
 
     &.success {
