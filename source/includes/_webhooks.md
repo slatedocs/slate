@@ -178,9 +178,8 @@ An event is updated
 
 
 ## flag.created
-> For example, a local chapter organiser flags a forum message.
 
-Here's what the payload looks like:
+> Here's what the payload looks like:
 
 ```json
 {
@@ -204,10 +203,11 @@ Here's what the payload looks like:
 }
 ```
 
-Someone flags a problem for admin attention
+Someone flags a problem for admin attention. For example, a local chapter organiser flags a forum message.
 
 
 ## local_chapter.last_organiser.deleted
+
 > Here's what the payload looks like:
 
 ```json
@@ -226,6 +226,7 @@ A local chapter's last organiser leaves the group
 
 
 ## local_chapter.organiser_request.created
+
 > Here's what the payload looks like:
 
 ```json
@@ -253,6 +254,7 @@ A user applies to be a local chapter organiser
 
 
 ## member.deleted.resources_transferred
+
 > Here's what the payload looks like:
 
 ```json
@@ -278,6 +280,7 @@ Resources previously owned by a deleted member have been transferred to another
 
 
 ## petition.flagged
+
 > Here's what the payload looks like:
 
 ```json
@@ -323,6 +326,7 @@ A petition is flagged for the first or fifth time
 
 
 ## petition.inappropriate.creator_message
+
 > Here's what the payload looks like:
 
 ```json
@@ -368,6 +372,7 @@ An inappropriate petition's creator writes a message to admins
 
 
 ## petition.launched
+
 > Here's what the payload looks like:
 
 ```json
@@ -413,6 +418,7 @@ A new petition is launched
 
 
 ## petition.launched.ham
+
 > Here's what the payload looks like:
 
 ```json
@@ -458,6 +464,7 @@ A petition passes the post-launch spam check
 
 
 ## petition.reactivated
+
 > Here's what the payload looks like:
 
 ```json
@@ -503,6 +510,7 @@ A hidden or ended petition is reactivated
 
 
 ## petition.updated
+
 > Here's what the payload looks like:
 
 ```json
@@ -548,6 +556,7 @@ A petition is updated
 
 
 ## petition.edited
+
 > Here's what the payload looks like:
 
 ```json
@@ -640,6 +649,7 @@ Member signs a petition
 
 
 ## unsubscribe.created
+
 > Here's what the payload looks like:
 
 ```json
@@ -660,6 +670,7 @@ Member unsubscribes
 
 
 ## locale.created
+
 > Here's what the payload looks like:
 
 ```json
@@ -680,6 +691,7 @@ New i18n instance created
 
 
 ## forum.message.requires_moderation
+
 > Here's what the payload looks like:
 
 ```json
@@ -702,7 +714,6 @@ New i18n instance created
   },
   "jid": "f848f4b38b9125f7089d59ad"
 }
-
 ```
 
 A new message requires moderation
@@ -729,6 +740,6 @@ The <strong>discussable.discussable_type</strong> field can take any of the foll
   <li><em>PetitionEvent</em></li>
 </ul>
 
-# Bulk Data Webhooks 
+# Bulk Data Webhooks
 
 We've included two special sorts of bulk data webhooks that are designed to help you keep an external reporting or analytics database server up to date with information from ControlShift's internal tables. The [data.full_table_exported](#data-full_table_exported) and [data.incremental_table_exported](#data-incremental_table_exported) webhooks can be consumed to keep an external database mirror containing ControlShift data up to date. This service was built in a database agnostic way, but it should be possible to build a ControlShift -> Amazon Redshift data pipeline using a technique like [this one](https://blogs.aws.amazon.com/bigdata/post/Tx24VJ6XF1JVJAA/A-Zero-Administration-Amazon-Redshift-Database-Loader).
