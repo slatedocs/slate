@@ -10,7 +10,6 @@ $(document).ready(function(){
     console.log(data);
   });
 });
-
 ```
 
 > The above code would display your returned featured petitions data in the console.  The JSON would be structured like this:

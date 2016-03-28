@@ -7,7 +7,7 @@ $(document).ready(function(){
     latitude = 38.88233400000001,
     longitude = -77.17109140000002;
   $.ajax({
-    url: 'https://demo.controlshiftlabs.com/efforts/'+effortSlug+'/near.json',
+    url: 'https://demo.controlshiftlabs.com/efforts/'+effortSlug+'/'+'near.json',
     dataType: 'jsonp',
     data: {
       'location[query]': formatted_address,
@@ -19,10 +19,8 @@ $(document).ready(function(){
     console.log(data);
   });
 });
-
-
-
 ```
+<!--slash in '/'+'near.json' above disappears if combined with near-->
 
 > The above code would return petitions data from the effort with the slug `forecast-the-facts`.  The JSON would be structured like this:
 

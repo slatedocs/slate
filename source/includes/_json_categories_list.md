@@ -10,7 +10,6 @@ $(document).ready(function(){
     console.log(data);
   });
 });
-
 ```
 
 > The above code would display a list of categories in the console.  The JSON would be structured like this:

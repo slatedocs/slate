@@ -10,7 +10,6 @@ $(document).ready(function(){
     console.log(data);
   });
 });
-
 ```
 
 > The above code would return petitions data from the category with the slug `mice`.  The JSON would be structured like this:

@@ -11,7 +11,6 @@ $(document).ready(function(){
     console.log(data);
   });
 });
-
 ```
 
 > The above code would return petitions data from the effort with the slug `forecast-the-facts`.  The JSON would be structured like this:

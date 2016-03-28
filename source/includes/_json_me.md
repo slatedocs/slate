@@ -10,7 +10,6 @@ $(document).ready(function(){
     console.log(data);
   });
 });
-
 ```
 
 > The above code would user details for a signed in user. The returned JSON would be structured like this:

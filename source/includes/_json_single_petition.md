@@ -11,7 +11,6 @@ $(document).ready(function(){
     console.log(data);
   });
 });
-
 ```
 
 > The above code would display your returned petition data in the console.  The JSON would be structured like this:
