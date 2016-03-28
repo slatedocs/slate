@@ -3,10 +3,15 @@ ControlShift Labs API Documentation
 
 The ControlShift Labs API documentation uses slate - a middleman static site template of sorts for API documentation.  This repo forks middleman's existing repo - the recommended means of getting started.
 
-A few things to note:
+A few things to note when making updates:
 
-* This branch is based on the tag v1.3.2
+* This branch is based on the v1.3.2 release (tag)
 * The only files you should need to edit are `index.html.md` and the `*.md` files in the includes folder.  One can safely ignore everything else.
+
+A few notes when editing/updating code examples:
+
+* Our audience includes very junior developers and even non-coders, attempting to pull content into their WISIWYG CRM pages.
+* All examples and JS should be exceedingly basic, with generally linear control flows, and extremly easy to follow.
 
 ## Extracting Webhook Documentation
 
