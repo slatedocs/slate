@@ -59,4 +59,44 @@ slug | null | string - required - The petition's unique identification slug. If 
 
 ### Working Example
 
-A working example can be found on [jsbin](#not-implemented).
+View and edit a working example on codepen.io:
+
+<div class="js-codepen-data hidden" data-title="ControlShift Labs: Single Petition Example">
+  <div class="codepen-html">
+    <div id="js-content-wrapper" class="hidden">
+      <h1 id="title"></h1>
+      <h3><span id="signature_count"></span> signatures</h3>
+      <p>Created by <span id="creator_name"></span></p>
+      <h2>What</h2>
+      <p id="what"></p>
+      <h2>Who</h2>
+      <p id="who"></p>
+      <h2>Why</h2>
+      <p id="why"></p>
+    </div>
+  </div>
+  <pre class="codepen-js">
+    $(document).ready(function(){
+      var petitionSlug = 'turn-back-human-trafficking-faith-leaders';
+      $.ajax({
+        url: 'https://demo.controlshiftlabs.com/petitions/'+petitionSlug+'.json',
+        dataType: 'jsonp',
+      })
+      .done(function(data) {
+        $('#title').html(data.title);
+        $('#signature_count').html(data.signature_count);
+        $('#creator_name').html(data.creator_name);
+        $('#what').html(data.what);
+        $('#who').html(data.who);
+        $('#why').html(data.why);
+        $('#js-content-wrapper').removeClass('hidden');
+      });
+    });
+  </pre>
+</div>
+
+<form action="https://codepen.io/pen/define" method="POST" target="_blank" class="hidden">
+  <input type="hidden" name="data" class="js-data" value="">
+  <input type="submit" value="Launch Example on CodePen">
+</form>
+

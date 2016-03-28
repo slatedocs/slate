@@ -107,4 +107,44 @@ page | 1 | integer - optional - The page number of results for the specified cat
 
 ### Working Example
 
-A working example can be found on [jsbin](#not-implemented).
+View and edit a working example on codepen.io:
+
+<div class="js-codepen-data hidden"  data-title="ControlShift Labs: List of Petitions in a Category Example">
+  <div class="codepen-html">
+    <h1>Petitions in category "<span id="name"></span>"</h1>
+    <div id="petitions">
+    </div>
+  </div>
+  <pre class="codepen-js">
+    $(document).ready(function(){
+      $.ajax({
+        url: 'https://demo.controlshiftlabs.com/categories/mice.json',
+        dataType: 'jsonp',
+      })
+      .done(function(data) {
+        // Populate global category data
+        $('#name').text(data.name);
+
+        // Populate petitions data
+        var $placeholder = $('#petitions');
+        $.each(data.results, function(index, petition){
+          output = '<h2><a href="'+petition.url+'">'+petition.title+'</a></h2>';
+          output += '<ul>';
+          output += '<li><strong>Image:</strong> '+petition.image_url+'</li>';
+          output += '<li><strong>Who:</strong> '+petition.who+'</li>';
+          output += '<li><strong>What:</strong> '+petition.what+'</li>';
+          output += '<li><strong>Why:</strong> '+petition.why+'</li>';
+          output += '<li><strong>Signatures:</strong> '+petition.signature_count+'</li>';
+          output += '<li><strong>URL:</strong> '+petition.url+'</li>';
+          output += '</ul><hr/>';
+          $placeholder.append(output);
+        });
+      });
+    });
+  </pre>
+</div>
+
+<form action="https://codepen.io/pen/define" method="POST" target="_blank" class="hidden">
+  <input type="hidden" name="data" class="js-data" value="">
+  <input type="submit" value="Launch Example on CodePen">
+</form>

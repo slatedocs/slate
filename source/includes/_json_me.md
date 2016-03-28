@@ -16,36 +16,36 @@ $(document).ready(function(){
 
 ```json
 {
-   "status":"authenticated",
-   "me":{
-      "first_name":"John",
-      "last_name":"Smith",
-      "email":"john@smith.com"
-   },
-   "petitions":[
-      {
-         "slug":"sample-campaign",
-         "title":"Sample Campaign",
-         "created_at":"2016-03-25T15:37:28.849-04:00",
-         "updated_at":"2016-03-25T15:37:35.304-04:00"
-      }
-   ],
-   "events":[
-      {
-         "slug":"sample-campaign",
-         "title":"Sample Campaign",
-         "created_at":"2016-03-25T15:37:28.849-04:00",
-         "updated_at":"2016-03-25T15:37:35.304-04:00"
-      }
-   ],
-   "chapters":[
-      {
-         "name":"Brooklyn bruisers",
-         "slug":"brooklyn-bruisers",
-         "created_at":"2015-05-14T15:53:03.901-04:00",
-         "updated_at":"2016-03-25T15:40:44.661-04:00"
-      }
-   ]
+  "status":"authenticated",
+  "me":{
+    "first_name":"John",
+    "last_name":"Smith",
+    "email":"john@smith.com"
+  },
+  "petitions":[
+    {
+       "slug":"sample-campaign",
+       "title":"Sample Campaign",
+       "created_at":"2016-03-25T15:37:28.849-04:00",
+       "updated_at":"2016-03-25T15:37:35.304-04:00"
+    }
+  ],
+  "events":[
+    {
+       "slug":"sample-campaign",
+       "title":"Sample Campaign",
+       "created_at":"2016-03-25T15:37:28.849-04:00",
+       "updated_at":"2016-03-25T15:37:35.304-04:00"
+    }
+  ],
+  "chapters":[
+    {
+       "name":"Brooklyn bruisers",
+       "slug":"brooklyn-bruisers",
+       "created_at":"2015-05-14T15:53:03.901-04:00",
+       "updated_at":"2016-03-25T15:40:44.661-04:00"
+    }
+  ]
 }
 ```
 
@@ -57,6 +57,23 @@ $(document).ready(function(){
   "message":"user is not signed in"
 }
 ```
+
+> Response for a hostname that is not whitelisted:
+
+```json
+{
+  "status":"error",
+  "errors":[
+    {
+      "field":"referer",
+      "messages":[
+        "host name not whitelisted"
+      ]
+    }
+  ]
+}
+```
+
 We provide a specialized jsonp endpoint to return information about the currently signed in user. Customers can use this endpoint to power features where information about the current user's petitions, sign in status, and other information about their account is displayed on external sites. Some examples of the sorts of functionality that this could be used to provide include:
 
 * Conditionally show either a login link for unauthenticated users or a link to the user's my account page in the header of external pages.
@@ -70,6 +87,77 @@ You must whitelist your hostname prior to using this end point. Read more below.
 ### HTTP Request
 
 `GET http://demo.controlshiftlabs.com/api/graph/me.json`
+
+### Working Example
+
+View and edit a working example on codepen.io.  Note: codepen.io is _whitelisted_ for the demo account.
+
+<div class="js-codepen-data hidden" data-title="ControlShift Labs: Logged in User Example">
+  <div class="codepen-html">
+    <h1>Logged in User</h1>
+    <p class="js-not-logged-in hidden">The user is not logged in.</p>
+    <ul class="js-logged-in hidden">
+      <li><strong>First Name:</strong> <span id="first_name"></span></li>
+      <li><strong>First Name:</strong> <span id="last_name"></span></li>
+      <li><strong>Email:</strong> <span id="email"></span></li>
+      <li><strong>Petitions:</strong> <ul id="petitions"></ul></li>
+      <li><strong>Events:</strong> <ul id="events"></ul></li>
+      <li><strong>Chapters:</strong> <ul id="chapters"></ul></li>
+    </ul>
+  </div>
+  <pre class="codepen-js">
+    $(document).ready(function(){
+      $.ajax({
+        url: 'https://demo.controlshiftlabs.com/api/graph/me.json',
+        dataType: 'jsonp',
+      })
+      .done(function(data) {
+        if(data.status == 'authenticated'){
+          // Populate data for logged in user
+          $('#first_name').html(data.me.first_name);
+          $('#last_name').html(data.me.last_name);
+          $('#email').html(data.me.email);
+
+          var $petitionsPlaceholder = $('#petitions');
+          $.each(data.petitions, function(index, petition){
+            $petitionsPlaceholder.append('<li>'+petition.title+'</li>');
+          });
+
+          var $eventsPlaceholder = $('#events');
+          $.each(data.events, function(index, event){
+            $eventsPlaceholder.append('<li>'+event.title+'</li>');
+          });
+
+          var $chaptersPlaceholder = $('#chapters');
+          $.each(data.chapters, function(index, chapter){
+            $chaptersPlaceholder.append('<li>'+chapter.name+'</li>');
+          });
+
+          $('.js-logged-in').removeClass('hidden');
+        }else if(data.status == 'not_authenticated'){
+          // Show "not logged in" for users who aren't logged in
+          $('.js-not-logged-in').removeClass('hidden');
+        }else if(data.status == 'error'){
+          // Show known error messages
+          $('body').append('<h2>Errors</h2><ul>')
+          $.each(data.errors, function(index, error){
+            $('body').append('<li><strong>'+error.field+'</strong> '+error.messages.join('; ')+'</li>')
+          });
+          $('body').append('</ul>')
+        }
+      });
+    })
+    .error(function(data){
+      $('body').append('<h2>Errors</h2><p>Unknown Error</p>');
+    });
+  </pre>
+</div>
+
+<form action="https://codepen.io/pen/define" method="POST" target="_blank" class="hidden">
+  <input type="hidden" name="data" class="js-data" value="">
+  <input type="submit" value="Launch Example on CodePen">
+</form>
+
 
 ### Whitelisting a Hostname
 
