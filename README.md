@@ -3,19 +3,28 @@ ControlShift Labs API Documentation
 
 The ControlShift Labs API documentation uses slate - a middleman static site template of sorts for API documentation.  This repo forks middleman's existing repo - the recommended means of getting started.
 
-A few things to note when making updates:
+## Making Updates
 
 * This branch is based on the v1.3.2 release (tag)
 * The only files you should need to edit are `index.html.md` and the `*.md` files in the includes folder.  One can safely ignore everything else.
 
-A few notes when editing/updating code examples:
+## Editing/updating code examples:
 
 * Our audience includes very junior developers and even non-coders, attempting to pull content into their WISIWYG CRM pages.
 * All examples and JS should be exceedingly basic, with generally linear control flows, and extremly easy to follow.
 
+## Editing "External Assets"
+
+Our codepen.io code examples are actually **generated/spawned on the fly** using codepen.io's [prefill API](https://blog.codepen.io/documentation/api/prefill/). Our "Launch Example" button links are actually form submit buttons sending post requests to the prefill endpoint.
+
+* All the JS and HTML is handled at the bottom of the json_*.md files. The most complete example of the options were utilizing is in the `_json_effort_petitions_near.md` file.
+* There is JS and some default options at the bottom of `layout.erb`.  This JS transforms the inline HTML content into the proper format for the API endpoint.
+
+This approach has two key benefits. First, there are no external dependencies/assets we need to maintain. It also puts in a position where we could let clients set their own domains or arrive at the documents with their domain in the URL, have our examples use this domain, and potential populate examples JSON payloads with the client's actual content.
+
 ## Extracting Webhook Documentation
 
-If necessary to do so again, this js creates required webhooks documentation assets from the webhooks admin page.  Some manual reformatting of the main output is required.
+If necessary to do so again, this js creates required webhooks documentation assets from the webhooks admin page. Some manual reformatting of the main output is required.
 
 ```js
 labels = []; $('.notification-event-types tr').not('.hideable-row').find('td:nth-child(2)').each(function(index,data){ labels.push($(data).text())});
