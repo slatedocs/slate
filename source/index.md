@@ -12,7 +12,7 @@ includes:
   - basic_information
   - payees
   - bank_accounts
-  - charge_accounts
+  - charge_configs
   - charges
   - remittances
   - regress_cnabs
