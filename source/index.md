@@ -6,6 +6,7 @@ language_tabs:
   - php: PHP
   - ruby: RUBY
   - python: PYTHON
+  - java: JAVA
 
 toc_footers:
   - <a href='http://support.beyonic.com'>Beyonic Support & User Guides</a>
