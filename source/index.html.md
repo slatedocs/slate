@@ -13,6 +13,7 @@ includes:
   - invoices_tickets_and_paysheets
   - invoices
   - tickets
+  - items
   - paysheets
   - numbering_series
   - analytic_categories
@@ -64,7 +65,6 @@ Example:
 * `GET    /contacts/:id`  
 * `PATCH  /contacts/:id`  
 * `DELETE /contacts/:id`
-
 
 ### [Invoices, tickets and paysheets](#invoices-tickets-and-paysheets-section)
 
