@@ -32,7 +32,9 @@ EXEMPLO
 
 ```
 
-As Configurações de Cobrança podem ser de tipos diferentes. Atualmente temos os tipos: Boleto (billet). Sendo assim, os parâmetros e algums comportamentos irão variar de acordo com o tipo.
+As Configurações de Cobrança podem ser de tipos diferentes. Sendo assim, os parâmetros e algums comportamentos irão variar de acordo com o tipo. Atualmente temos os tipos: 
+
+- Boleto (billet)
 
 **Parâmetros (Boleto)**
 

@@ -7,7 +7,8 @@ EXEMPLO
 
   {
     "id":1,
-    "charge_account_id": 1,
+    "type": "billet",
+    "charge_config_id": 1,
     "due_date":"2015-02-14",
     "document_kind":"DV",
     "document_date":null,
@@ -43,20 +44,23 @@ EXEMPLO
         {"rel":"destroy","method":"DELETE","href":"https://app.cobrato.com/api/v1/charges/1"},
         {"rel":"receive","method":"POST","href":"https://app.cobrato.com/api/v1/charges/1/receive"},
         {"rel":"deliver","method":"POST","href":"https://app.cobrato.com/api/v1/charges/1/deliver_billet"},
-        {"rel":"charge_account","method":"GET","href":"https://app.cobrato.com/api/v1/charge_accounts/1"},
+        {"rel":"charge_config","method":"GET","href":"https://app.cobrato.com/api/v1/charge_configs/1"},
         {"rel":"billet","method":"GET","href":"https://app.cobrato.com/api/v1/charges/1/billet"}
       ]
   }
 ```
 
-As Cobranças, pertencem as suas contas de cobrança, sendo assim é necessário que sempre haja ao menos uma conta de cobrança homologada para a criação de cobranças. Ao criar uma conta de cobrança é automaticamente gerada uma cobrança para homologar a conta.
+As Cobranças, pertencem as suas Configurações de Cobrança, sendo assim é necessário que sempre haja ao menos uma Configuração de Cobrança homologada para a criação de Cobranças. Ao criar uma Configuração de Cobrança é automaticamente gerada uma Cobrança para homologar a Configuração.
 
-**Parâmetros**
+O tipo da Cobrança depende da sua Configuração de Cobrança. Se a Configuração de Cobrança é do tipo Boleto (billet), a cobrança será deste mesmo tipo. Sendo assim, os parâmetros, validações e algums comportamentos irão variar de acordo com o tipo.
+
+**Parâmetros (Boleto)**
 
 | Campo                          | Tipo             | Comentário                                                                                                                                          |
 |--------------------------------|------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------|
 | id                             | integer          |                                                                                                                                                     |
-| charge_account_id              | integer          | identificador da conta de cobrança a qual esta cobraça pertece                                                                                      |
+| type                           | string           | indica o tipo da cobrança. Valores possíveis: (billet)                                                                                              |
+| charge_config_id               | integer          | identificador da configuração de cobrança a qual esta cobraça pertece                                                                               |
 | due_date                       | date             | data de vencimento da cobranca                                                                                                                      |
 | document_kind                  | string           | espécie do documento, podendo ser DM (Duplicata Mercantil), DS (Duplicata de Serviço), NP (Nota Promissória) ou DV (Diversos)                       |
 | document_date                  | date             | data de emissão do documento                                                                                                                        |
@@ -72,8 +76,8 @@ As Cobranças, pertencem as suas contas de cobrança, sendo assim é necessário
 | received_amount                | decimal          | valor recebido                                                                                                                                      |
 | received_at                    | date             | dia em que a cobraça foi recebida                                                                                                                   |
 | processing_date                | date             | data de geração do boleto                                                                                                                           |
-| for_homologation               | boolean          | indica se é uma cobrança gerada automaticamente pelo sistema para ser utilizada na homologação da conta de cobrança                                 |
-| registrable                    | boolean          | indica se a cobrança é registrável (do tipo que deve ser registrada no banco). Por padrão é o que está definido na Conta de Cobrança                |
+| for_homologation               | boolean          | indica se é uma cobrança gerada automaticamente pelo sistema para ser utilizada na homologação da Configuração de cobrança                          |
+| registrable                    | boolean          | indica se a cobrança é registrável (do tipo que deve ser registrada no banco). Por padrão é o que está definido na Configuração de Cobrança         |
 | payer_national_identifier_type | string           | tipo do documento do pagador (cpf ou cnpj)                                                                                                          |
 | payer_national_identifier      | string           | documento do pagador                                                                                                                                |
 | payer_name                     | string           | nome do pagador                                                                                                                                     |
@@ -108,11 +112,12 @@ EXEMPLO DE ESTADO DA RESPOSTA
 
     200 OK
 
-EXEMPLO DE CORPO DA RESPOSTA
+EXEMPLO DE CORPO DA RESPOSTA (BOLETO)
 
   {
     "id":1,
-    "charge_account_id": 1,
+    "type":"billet",
+    "charge_config_id": 1,
     "due_date":"2015-02-14",
     "document_kind":"DV",
     "document_date":null,
@@ -148,13 +153,13 @@ EXEMPLO DE CORPO DA RESPOSTA
         {"rel":"destroy","method":"DELETE","href":"https://app.cobrato.com/api/v1/charges/1"},
         {"rel":"receive","method":"POST","href":"https://app.cobrato.com/api/v1/charges/1/receive"},
         {"rel":"deliver","method":"POST","href":"https://app.cobrato.com/api/v1/charges/1/deliver_billet"},
-        {"rel":"charge_account","method":"GET","href":"https://app.cobrato.com/api/v1/charge_accounts/1"},
+        {"rel":"charge_config","method":"GET","href":"https://app.cobrato.com/api/v1/charge_configs/1"},
         {"rel":"billet","method":"GET","href":"https://app.cobrato.com/api/v1/charges/1/billet"}
       ]
   }
 ```
 
-Retorna as informações detalhadas da cobrança informada em JSON e também a referência a sua conta de cobrança.
+Retorna as informações detalhadas da cobrança informada em JSON e também a referência a sua configuração de cobrança.
 
 <aside class="notice">
   O conteúdo do nó "_links" irá variar de acordo com o status da cobrança. Além dos itens básicos mostrados no exemplo de resposta ao lado, se a cobraça tiver sido recebida, irá conter o seguinte link:
@@ -232,7 +237,7 @@ EXEMPLO DE REQUISIÇÃO
     -H 'Content-type: application/json' \
     -X POST https://app.cobrato.com/api/v1/charges \
     -d '{
-          "charge_account_id": 1,
+          "charge_config_id": 1,
           "due_date":"2015-02-14",
           "document_kind":"DV",
           "our_number":"12345678",
@@ -253,7 +258,7 @@ EXEMPLO DE CORPO DA RESPOSTA COM INSUCESSO
   {
     "errors":
       {
-        "charge_account_id":["não pode ficar em branco"],
+        "charge_config_id":["não pode ficar em branco"],
         "our_number":["não pode ficar em branco"],
         "total_amount":["não pode ficar em branco"],
         "document_kind":["não pode ficar em branco","não está incluído na lista"],
@@ -265,11 +270,11 @@ EXEMPLO DE CORPO DA RESPOSTA COM INSUCESSO
 
 Cria um nova cobrança, caso haja sucesso retornará as informações da mesma e será gerado seu boleto. Se houverem erros eles serão informados no corpo da resposta.
 
-**Parâmetros**
+**Parâmetros (Boleto)**
 
-|Campo                           | Tipo             | Comentário                                                                                                                                                     |
+| Campo                          | Tipo             | Comentário                                                                                                                                                     |
 |--------------------------------|------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| charge_account_id              | integer          | **(requerido)** código de identificação da conta bancária em que a conta de cobrança irá pertencer                                                             |
+| charge_config_id               | integer          | **(requerido)** código de identificação da configuração de cobrança da qual a cobrança irá pertencer                                                           |
 | due_date                       | date             | **(requerido)** data de vencimento da cobrança                                                                                                                 |
 | document_kind                  | string           | **(requerido)** espécie do documento, podendo ser DM (Duplicata Mercantil), DS (Duplicata de Serviço), NP (Nota Promissória) ou DV (Diversos)                  |
 | total_amount                   | decimal          | **(requerido)** valor total do boleto                                                                                                                          |
@@ -281,17 +286,17 @@ Cria um nova cobrança, caso haja sucesso retornará as informações da mesma e
 | custom_our_number              | boolean          | (opcional) indica se a cobrança utiliza um "nosso número" customizado. O valor padrão é false, mas caso definido true, o campo 'our_number' se torna requerido |
 | instructions                   | string           | (opcional) instruções de pagamento do boleto, por padrão "Pagável em qualquer agência até data do vencimento." (pode ser linhas separadas por "\n")            |
 | demonstrative                  | string           | (opcional) demonstrativo do Boleto, por padrão "Não receber após o vencimento." (pode ser linhas separadas por "\n")                                           |
-| registrable                    | boolean          | (opcional) indica se a cobrança é registrável (do tipo que deve ser registrada no banco). Por padrão é o que está definido na Conta de Cobrança                |
+| registrable                    | boolean          | (opcional) indica se a cobrança é registrável (do tipo que deve ser registrada no banco). Por padrão é o que está definido na Configuração de Cobrança         |
 | payer_national_identifier_type | string           | **(requerido)** tipo do documento do pagador (cpf ou cnpj)                                                                                                     |
 | payer_national_identifier      | string           | **(requerido)** documento do pagador                                                                                                                           |
 | payer_name                     | string           | **(requerido)** nome do pagador                                                                                                                                |
-| payer_number                   | string           | (opcional, requerido se registrable for `true`) número do endereço do pagador                                                                                   |
-| payer_complement               | string           | (opcional, requerido se registrable for `true`) complemento do endereço do pagador                                                                              |
-| payer_street                   | string           | (opcional, requerido se registrable for `true`) rua do endereço do pagador                                                                                      |
-| payer_neighbourhood            | string           | (opcional, requerido se registrable for `true`) bairro do endereço do pagador                                                                                   |
-| payer_zipcode                  | string           | (opcional, requerido se registrable for `true`) cep do endereço do pagador                                                                                      |
-| payer_city                     | string           | (opcional, requerido se registrable for `true`) cidade do endereço do pagador                                                                                   |
-| payer_state                    | string           | (opcional, requerido se registrable for `true`) sigla do estado do endereço do pagador ("RJ" por exemplo)                                                       |
+| payer_number                   | string           | (opcional, requerido se registrable for `true`) número do endereço do pagador                                                                                  |
+| payer_complement               | string           | (opcional, requerido se registrable for `true`) complemento do endereço do pagador                                                                             |
+| payer_street                   | string           | (opcional, requerido se registrable for `true`) rua do endereço do pagador                                                                                     |
+| payer_neighbourhood            | string           | (opcional, requerido se registrable for `true`) bairro do endereço do pagador                                                                                  |
+| payer_zipcode                  | string           | (opcional, requerido se registrable for `true`) cep do endereço do pagador                                                                                     |
+| payer_city                     | string           | (opcional, requerido se registrable for `true`) cidade do endereço do pagador                                                                                  |
+| payer_state                    | string           | (opcional, requerido se registrable for `true`) sigla do estado do endereço do pagador ("RJ" por exemplo)                                                      |
 
 ## Atualização de Cobrança
 
@@ -335,11 +340,6 @@ EXEMPLO DE CORPO DA RESPOSTA COM INSUCESSO
       {"document_kind":["não está incluído na lista"]}
   }
 
-Exclusão de Cobrança
-
-Exclui determinada cobrança. As mudanças são irreversíveis, e não será mais possível receber o boleto da cobrança excluída!
-
-
 ```
 
 Atualiza a cobrança determinada, caso haja sucesso retornará as informações da mesma e será gerado um novo boleto sobrescrevendo o anterior. Se houverem erros eles serão informados no corpo da resposta. A requisição não diferencia a utilização dos verbos PUT e PATCH.
@@ -352,9 +352,9 @@ Não é possível atualizar uma cobrança após seu recebimento, para isso é ne
 Os campos 'received', 'received_at' e 'received_amount', não são alterados via atualização de cobrança, apenas no recebimento ou desfazendo o recebimento da mesma.
 </aside>
 
-**Parâmetros**
+**Parâmetros (Boleto)**
 
-|Campo                           | Tipo             | Comentário                                                                                                                                                     |
+| Campo                          | Tipo             | Comentário                                                                                                                                                     |
 |--------------------------------|------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | due_date                       | date             | **(requerido)** data de vencimento da cobrança                                                                                                                 |
 | document_kind                  | string           | **(requerido)** espécie do documento, podendo ser DM (Duplicata Mercantil), DS (Duplicata de Serviço), NP (Nota Promissória) ou DV (Diversos)                  |
@@ -367,17 +367,19 @@ Os campos 'received', 'received_at' e 'received_amount', não são alterados via
 | custom_our_number              | boolean          | (opcional) indica se a cobrança utiliza um "nosso número" customizado. O valor padrão é false, mas caso definido true, o campo 'our_number' se torna requerido |
 | instructions                   | string           | (opcional) instruções de pagamento do boleto, por padrão "Pagável em qualquer agência até data do vencimento." (pode ser linhas separadas por "\n")            |
 | demonstrative                  | string           | (opcional) demonstrativo do Boleto, por padrão "Não receber após o vencimento." (pode ser linhas separadas por "\n")                                           |
-| registrable                    | boolean          | (opcional) indica se a cobrança é registrável (do tipo que deve ser registrada no banco). Por padrão é o que está definido na Conta de Cobrança                |
+| registrable                    | boolean          | (opcional) indica se a cobrança é registrável (do tipo que deve ser registrada no banco). Por padrão é o que está definido na Configuração de Cobrança         |
 | payer_national_identifier_type | string           | **(requerido)** tipo do documento do pagador (cpf ou cnpj)                                                                                                     |
 | payer_national_identifier      | string           | **(requerido)** documento do pagador                                                                                                                           |
 | payer_name                     | string           | **(requerido)** nome do pagador                                                                                                                                |
-| payer_number                   | string           | (opcional, requerido se registrable for `true`) número do endereço do pagador                                                                                   |
-| payer_complement               | string           | (opcional, requerido se registrable for `true`) complemento do endereço do pagador                                                                              |
-| payer_street                   | string           | (opcional, requerido se registrable for `true`) rua do endereço do pagador                                                                                      |
-| payer_neighbourhood            | string           | (opcional, requerido se registrable for `true`) bairro do endereço do pagador                                                                                   |
-| payer_zipcode                  | string           | (opcional, requerido se registrable for `true`) cep do endereço do pagador                                                                                      |
-| payer_city                     | string           | (opcional, requerido se registrable for `true`) cidade do endereço do pagador                                                                                   |
-| payer_state                    | string           | (opcional, requerido se registrable for `true`) sigla do estado do endereço do pagador ("RJ" por exemplo)                                                       |
+| payer_number                   | string           | (opcional, requerido se registrable for `true`) número do endereço do pagador                                                                                  |
+| payer_complement               | string           | (opcional, requerido se registrable for `true`) complemento do endereço do pagador                                                                             |
+| payer_street                   | string           | (opcional, requerido se registrable for `true`) rua do endereço do pagador                                                                                     |
+| payer_neighbourhood            | string           | (opcional, requerido se registrable for `true`) bairro do endereço do pagador                                                                                  |
+| payer_zipcode                  | string           | (opcional, requerido se registrable for `true`) cep do endereço do pagador                                                                                     |
+| payer_city                     | string           | (opcional, requerido se registrable for `true`) cidade do endereço do pagador                                                                                  |
+| payer_state                    | string           | (opcional, requerido se registrable for `true`) sigla do estado do endereço do pagador ("RJ" por exemplo)                                                      |
+
+
 ## Exclusão de Cobrança
 
 ```shell
@@ -407,10 +409,11 @@ EXEMPLO DE ESTADO DA RESPOSTA COM COBRANÇA INEXISTENTE
 
 Exclui determinada cobrança. As mudanças são irreversíveis, e não será mais possível receber o boleto da cobrança excluída!
 
-## Recebimento de Cobrança
+
+## Recebimento de Cobrança (Boleto)
 
 ```shell
-Receber Cobrança
+Receber Cobrança (Boleto)
 
 DEFINIÇÃO
 
@@ -432,7 +435,7 @@ EXEMPLO DE ESTADO DA RESPOSTA COM SUCESSO
 
     200 OK
 
-EXEMPLO DE ESTADO DA RESPOSTA COM CONTA DE COBRANÇA INEXISTENTE
+EXEMPLO DE ESTADO DA RESPOSTA COM COBRANÇA INEXISTENTE
 
     404 Not Found
 
@@ -450,19 +453,20 @@ EXEMPLO DE CORPO DA RESPOSTA COM INSUCESSO
   }
 ```
 
-Marca determinada cobrança como recebida, retornando JSON contendo as informações da cobrança em caso de sucesso ou os erros, caso haja algum.
+Marca determinada cobrança via Boleto como recebida, retornando JSON contendo as informações da cobrança em caso de sucesso ou os erros, caso haja algum.
 
-**Parâmetros**
+**Parâmetros (Boleto)**
 
 | Campo           | Tipo    | Comentário                                    |
 |-----------------|---------|-----------------------------------------------|
 | received_at     | date    | **(requerido)** data de pagamento da cobrança |
 | received_amount | decimal | **(requerido)** valor recebido da cobrança    |
 
-## Desfazer Recebimento de Cobrança
+
+## Desfazer Recebimento de Cobrança (Boleto)
 
 ```shell
-Desfazer Recebimento de Cobrança
+Desfazer Recebimento de Cobrança (Boleto)
 
 DEFINIÇÃO
 
@@ -480,7 +484,7 @@ EXEMPLO DE ESTADO DA RESPOSTA COM SUCESSO
 
     200 OK
 
-EXEMPLO DE ESTADO DA RESPOSTA COM CONTA DE COBRANÇA INEXISTENTE
+EXEMPLO DE ESTADO DA RESPOSTA COM COBRANÇA INEXISTENTE
 
     404 Not Found
 
@@ -499,7 +503,8 @@ EXEMPLO DE CORPO DA RESPOSTA COM INSUCESSO
   }
 ```
 
-Marca determinada cobrança como não recebida, retornando JSON contendo as informações da cobrança em caso de sucesso ou os erros, caso haja algum.
+Marca determinada cobrança via Boleto como não recebida, retornando JSON contendo as informações da cobrança em caso de sucesso ou os erros, caso haja algum.
+
 
 ## Boleto da Cobrança
 
@@ -533,11 +538,12 @@ EXEMPLO DE CORPO DA RESPOSTA COM SUCESSO
   }
 ```
 
-Mostra o link da url do boleto de determinada cobraça
+Mostra o link da url do boleto de determinada cobraça via Boleto
 
 <aside class="warning">
 As URLs disponibilizadas são válidas por apenas 60 minutos. Sendo assim, não armazene o retorno e sempre que for necessário realize uma nova chamada à API.
 </aside>
+
 
 ## Envio de Boleto da Cobrança
 
@@ -563,7 +569,7 @@ EXEMPLO DE ESTADO DA RESPOSTA COM SUCESSO
 
     200 OK
 
-EXEMPLO DE ESTADO DA RESPOSTA COM CONTA DE COBRANÇA INEXISTENTE
+EXEMPLO DE ESTADO DA RESPOSTA COM COBRANÇA INEXISTENTE
 
     404 Not Found
 
