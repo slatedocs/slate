@@ -158,7 +158,7 @@ curl "https://getquipu.com/accounting_subcategories/19482" \
 
 `(PUT|PATCH) /accounting_subcategories/:accounting_subcategory_id`
 
-## Deleting an accounting category
+## Deleting an accounting subcategory
 
 > Example request
 

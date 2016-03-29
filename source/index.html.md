@@ -1,5 +1,5 @@
 ---
-title: API Reference
+title: QUIPU API Reference
 
 language_tabs:
   - shell

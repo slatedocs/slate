@@ -221,6 +221,13 @@ html, body {
 
 .main-logo {
   padding: $nav-padding;
+
+  &:after {
+    content: "API v1 (Beta)";
+    color: $nav-text;
+    display: block;
+    text-align: center;
+  }
 }
 
 // button to show navigation on mobile devices
