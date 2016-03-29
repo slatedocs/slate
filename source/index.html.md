@@ -1,10 +1,9 @@
 ---
-title: API Reference
+title: CB Core Search API
 
 language_tabs:
-  - shell
-  - ruby
-  - python
+  - json: JSON
+  - csharp: C#
 
 toc_footers:
   - <a href='#'>Sign Up for a Developer Key</a>
@@ -18,151 +17,307 @@ search: true
 
 # Introduction
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+Welcome to the CB Core Search API documentation. This is the API used for generic adding, searching, and deleting of documents.
 
-We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
 
-This example API documentation page was created with [Slate](https://github.com/tripit/slate). Feel free to edit it and use it as a base for your own API's documentation.
+The first thing you will have to find out is the correct API endpoint to use.
+
+* **Matrix Production:** For projects targeting Matrix resources in production, use [https://searchapi.careerbuilder.com/searchapi/](https://searchapi.careerbuilder.com/searchapi/).
+* **Matrix Test:** For projects targeting Matrix resources in production, use [https://searchapitest.careerbuilder.com/searchapi/](https://searchapitest.careerbuilder.com/searchapi/).
 
 # Authentication
 
-> To authorize, use this code:
+The CB Core Search API uses either assigned developer keys or OAuth tokens depending on where your application lives and which resources you are targeting. For more information on how to generate OAuth tokens, visit [this link](http://somelink.com/oauthstuff). To request a developer key, visit [this link](http://developerkey.com/coresearch).
 
-```ruby
-require 'kittn'
+The API expects authorization credentials to be included in all API requests to the server in a header that looks like the following:
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-```
-
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
-```
-
-> Make sure to replace `meowmeowmeow` with your API key.
-
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
-
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
+`Developer_Key: RunMuhSearch!`
 
 <aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
+You must replace <code>RunMuhSearch!</code> with your personal API credentials.
 </aside>
 
-# Kittens
+# Entities
 
-## Get All Kittens
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
-
-```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
-```
-
-> The above command returns JSON structured like this:
+## Document
 
 ```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
+{
+  "documentid": "TJHKTOGBOJ",
+  "priority": 30,
+  "schema": {
+    "name": "SearchAPITest-Sportsball",
+    "pool": "general",
+    "languages": [
+      "Other"
+    ],
+    "fields": [
+      {
+        "name": "jerseynumber",
+        "type": "Integer",
+        "searchable": true,
+        "retrievable": true,
+        "sortable": true,
+        "normalizeLength": false
+      },
+      {
+        "name": "player-name",
+        "type": "String",
+        "searchable": true,
+        "retrievable": true,
+        "sortable": true,
+        "normalizeLength": false,
+        "semanticSearchFeatures": []
+      }
+    ],
+    "hash": "",
+    "semanticSearch": {
+      "dictionaries": []
+    }
   },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
+  "fields": [
+    {
+      "name": "jerseynumber",
+      "value": 49
+    },
+    {
+      "name": "player-name",
+      "value": "Scarlett Garcia"
+    }
+  ]
+}
+```
+This is the representation of a document in the search engine.
+
+### Attributes
+
+| Attribute  | Description                                                                                                                                                                                                                   |
+|------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| documentid | Unique identifier for this particular document. You will use this identifier when deleting documents. Typically, this matches the primary key used in your source database.                                                   |
+| priority   | Optional int for controlling indexing priority. Allows indexing triggered by customer actions to be prioritized over batch processes. Can be omitted, will default to 30.                                                     |
+| schema     | A schema object (described [here](#schema)) that defines the fields used within this document.                                                                                                                                           |
+| fields     | An array of name/value pairs that set a value for fields within the schema. You do not need to provide values for every field defined in the schema, omitted entries will simply not be indexed for that particular document. |
+
+## Schema
+
+```json
+{
+  "name": "SearchAPITest-Sportsball",
+  "pool": "general",
+  "languages": [
+    "Other"
+  ],
+  "fields": [
+    {
+      "name": "jerseynumber",
+      "type": "Integer",
+      "searchable": true,
+      "retrievable": true,
+      "sortable": true,
+      "normalizeLength": false
+    },
+    {
+      "name": "player-name",
+      "type": "String",
+      "searchable": true,
+      "retrievable": true,
+      "sortable": true,
+      "normalizeLength": false,
+      "semanticSearchFeatures": []
+    }
+  ],
+  "hash": "",
+  "semanticSearch": {
+    "dictionaries": []
   }
-]
+}
+```
+A schema defines the fields used within a document.
+
+### Attributes
+
+| Attribute      | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+|----------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| name           | The name of your schema is essentially just another field. You can perform query operations against it and retrieve it from Solr. You may have any number of schema names in the same index. The same schema name may be used to represent a multiple fields list configurations. There is no requirement or validation to ensure that a schema of a particular name has the same fields as it did the last time we saw it. This allows you to add, remove, and modify fields without having to change the name.                              |
+| pool           | This field allows documents and searches to be routed to the correct locations.                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| languages      | The search API provides language processing on the following languages; English, Chinese, French, German, Spanish, Dutch, Greek, Swedish, Norwegian, Italian, Finnish, Danish, Romanian, Polish, Japanese, Korean, Portuguese. If you wish for Solr to be able to recognize language specific rules and lemmatization then you will need to include the language(s) in this property. Only FreeTextFields will benefit from this feature.                                                                                                     |
+| fields         | Fields is an array of schema fields. Schema fields detail how data should be stored and how it will be queried.                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| hash           | Currently not implemented and can be left off of your request or left blank.                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| semanticSearch | Currently, the only SemanticSearch feature available through our API is the dictionary feature. Dictionaries are a straightforward means of enhancing queries by adding words to a query. For example, associating the shorthand "mgr" with "manager" would result in queries for "manager" turning into "manager OR mgr", thus boosting the quantity of results returned. If you wish to use this feature you will need to contact CoreSearchDevelopment in order to set up your own dictionary or get the names of dictionaries that exist. |
+
+## SchemaField
+```json
+{
+  "name": "player-name",
+  "type": "String",
+  "searchable": true,
+  "retrievable": true,
+  "sortable": true,
+  "normalizeLength": false,
+  "semanticSearchFeatures": []
+}
+```
+A SchemaField details how data should be stored and how it will be queried.
+
+### Attributes
+
+| Attribute | Supported Field Types | Description |
+|------------------------|-----------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| name | All | A unique identifier for the field |
+| type | All | The data type that field will be stored as. We currently support the following types: Boolean, datetime, delimitedtext, double, freetext, integer, latlon, point, spacial, and string. |
+| searchable | All | These fields will be part of the index and therefore can be searched against. |
+| retrievable | All | Fields that need to be returned in a search. |
+| sortable | All | Marks the field as able to be sorted on. |
+| normalizeLength | All | Fields with this value set to true will apply a larger score to documents that have less information in the field. For example, if a field contained a paragraph for some documents and an entire book for another, finding your search term in one of the documents with only a paragraph in the field would score higher than finding the term in an entire book. |
+| semanticSearchFeatures | StringField | A list of names of the semantic search features applicable to this field. |
+
+### SchemaField Types
+
+* Boolean
+* Custom
+* DateTime
+* DelimitedText
+* Double
+* FreeText
+* Integer
+* LatLon
+* Point
+* Spacial
+* String
+
+## Delete
+```json
+{
+  "documentid": "TJHKTOGBOJ",
+  "priority": 30,
+  "pool": "general"
+}
+```
+This describes the necessary information to delete a document from the search engine.
+
+### Attributes
+
+| Attribute | Description |
+|------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| documentid | The ID of the document you wish to delete |
+| priority | Optional int for controlling deleting priority. Allows deleting triggered by customer actions to be prioritized over batch processes. Can be omitted, will default to 30. |
+| pool | The pool in which the document to be deleted was indexed. |
+
+# Making Requests
+
+## Feed a Document
+
+```http
+PUT /putdocument HTTP/1.1
+Version: 2.0
+Developer_Key: RunMuhSearch!
+Content-Type: application/json
+
+{
+  "documentid": "TJHKTOGBOJ",
+  "priority": 30,
+  "schema": {
+    "name": "SearchAPITest-Sportsball",
+    "pool": "general",
+    "languages": [
+      "Other"
+    ],
+    "fields": [
+      {
+        "name": "jerseynumber",
+        "type": "Integer",
+        "searchable": true,
+        "retrievable": true,
+        "sortable": true,
+        "normalizeLength": false
+      },
+      {
+        "name": "player-name",
+        "type": "String",
+        "searchable": true,
+        "retrievable": true,
+        "sortable": true,
+        "normalizeLength": false,
+        "semanticSearchFeatures": []
+      }
+    ],
+    "hash": "",
+    "semanticSearch": {
+      "dictionaries": []
+    }
+  },
+  "fields": [
+    {
+      "name": "jerseynumber",
+      "value": 49
+    },
+    {
+      "name": "player-name",
+      "value": "Scarlett Garcia"
+    }
+  ]
+}
 ```
 
-This endpoint retrieves all kittens.
-
-### HTTP Request
-
-`GET http://example.com/api/kittens`
-
-### Query Parameters
-
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
-```
 
 > The above command returns JSON structured like this:
 
 ```json
 {
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
+  "Messages": [
+    "The request has sucessfully created a request downstream.",
+    "{\"location\":\"/pool/general/document/TJHKTOGBOJ/priority/Reflow\"}"
+  ]
 }
 ```
 
-This endpoint retrieves a specific kitten.
-
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
+This endpoint feeds a document to the search engine.
 
 ### HTTP Request
 
-`GET http://example.com/kittens/<ID>`
+`PUT /putdocument`
 
-### URL Parameters
+### Request Payload
 
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
+The document to feed to the search engine. See the entity [described here](#document).
 
+<aside class="success">
+Remember — allow 15 minutes for your document to make it to the engine before searching for it!
+</aside>
+
+## Delete a Document
+
+```http
+DELETE /deletedocument HTTP/1.1
+Version: 2.0
+Developer_Key: RunMuhSearch!
+Content-Type: application/
+
+{
+  "documentid": "TJHKTOGBOJ",
+  "priority": 30,
+  "pool": "general"
+}
+```
+
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "Messages": [
+    "The request has sucessfully created a request downstream.",
+    "{\"location\":\"/pool/general/document/TJHKTOGBOJ/priority/Reflow\"}"
+  ]
+}
+```
+
+This endpoint deletes a document from the search engine.
+
+### HTTP Request
+
+`DELETE /deletedocument`
+
+### Request Payload
+
+The delete to entity that describes what to remove from the search engine. See the entity [described here](#delete).
