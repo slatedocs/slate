@@ -1,6 +1,6 @@
 # Webhook Endpoints
 
-Webhooks can be used by software engineers to integrate ControlShift with third-party systems. They allow engineers to build software that is triggered by events that take place within ControlShift. Controlshift would execute HTTP calls when certain event happen (e.g. a petition is launched; a category is changed).
+Webhooks can be used by software engineers to integrate ControlShift with third-party systems. They allow engineers to build software that is triggered by events that take place within ControlShift. ControlShift would execute HTTP calls when certain event happen (e.g. a petition is launched; a category is changed).
 
 To begin using these new webhooks, go to the admin homepage and click "Settings" under "Manage." Then choose the "CRM Integration & Webhooks" tab and click "Configure Webhook Endpoints." To begin sending data, you'll need to add a "New Webhook Endpoint." Each Webhook Endpoint URL receives a full firehose of all hooks that occur within ControlShift.
 

@@ -161,17 +161,17 @@ View and edit a working example on codepen.io.  Note: codepen.io is _whitelisted
 
 ### Whitelisting a Hostname
 
-We authenticate requests to the current user endpoint by validating the hostname set in the http referer header against a whitelist. The whitelist is set of hostnames that scripts can be served from. If you request the endpoint from a script served from a non-whitelisted hostname you'll get an error message. This is necessary to prevent cross site scripting attacks that would allow someone to display logged in user information on unauthorized sites.
+We authenticate requests to the current user endpoint by validating the hostname set in the HTTP referrer header against a whitelist. The whitelist is set of hostnames that scripts can be served from. If you request the endpoint from a script served from a non-whitelisted hostname you'll get an error message. This is necessary to prevent cross site scripting attacks that would allow someone to display logged in user information on unauthorized sites.
 
 You can add hostnames to the whitelist through a self-serve interface in the "Settings" area of your instance. Settings > Add Hostname > enter a Hostname, and click save.
 
-The hostname must be a hostname string like "localhost" "www.google.com" or the like. Wildcards or full http urls are not supported.
+The hostname must be a hostname string like "localhost" "www.google.com" or the like. Wildcards or full HTTP URLs are not supported.
 
-When you access the graph api endpoint from a page served from a whitelisted hostname the browser will automatically set a referrer header on those requests. We use this referrer header to validate the server the script was served from against the whitelist. You can verify that a whitelisted hostname is working properly with the curl command line tool:
+When you access the graph API endpoint from a page served from a whitelisted hostname the browser will automatically set a referrer header on those requests. We use this referrer header to validate the server the script was served from against the whitelist. You can verify that a whitelisted hostname is working properly with the curl command line tool:
 
 `curl --referer http://localhost/ http://demo.controlshiftlabs.com/api/graph/me.json`
 
-The above should return a json blob indicating that the user is not signed in if localhost is whitelisted. Otherwise you'll get a not whitelisted error.
+The above should return a JSON blob indicating that the user is not signed in if localhost is whitelisted. Otherwise you'll get a not whitelisted error.
 
 For authenticated users we currently return their first and last names, email addresses, and lists of petitions they've created, events they've created and local groups they are a member of.
 

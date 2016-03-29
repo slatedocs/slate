@@ -13,7 +13,7 @@ $(document).ready(function(){
 });
 ```
 
-> The above code would display your returned petition data in the console.  The JSON would be structured like this:
+> The above code would display your returned petition data in the console.  The JSON response data would be structured like this:
 
 ```json
 {
