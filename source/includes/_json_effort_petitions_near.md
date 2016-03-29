@@ -100,7 +100,7 @@ $(document).ready(function(){
 
 Search for closest petition in an effort
 
-This JSON endpoint allows you to reproduce the "search for the nearest petition in an effort" interface. Use this endpoint to build a place for users to enter their location. Once they've searched for a location, we'll return the nearest petition. This endpoint can most easily be used with a google maps integration to help your users locate their addresses or other points of interest. For an example, click on the working example below.
+This JSON endpoint allows you to reproduce the "search for the nearest petition in an effort" interface. Use this endpoint to build a place for users to enter their location. Once they've searched for a location, we'll return the nearest petition. This endpoint can most easily be used with a [Google Maps](https://developers.google.com/places/web-service/autocomplete) integration to help your users locate their addresses or other points of interest. For an example, click on the working example below.
 
 ### HTTP Request
 
@@ -126,7 +126,10 @@ View and edit a working example on codepen.io:
   data-title="ControlShift Labs: List of Petitions in an Effort Example">
   <div class="codepen-html">
     <h1>Find the closest petitions to you</h1>
-    <form><input type="text" class="form-control" id="effort-lookup-input" placeholder="Enter your address or a nearby landmark"></form>
+    <form>
+      <input type="text" class="form-control" id="effort-lookup-input" placeholder="Enter your address or a nearby landmark">
+      <small>Note: The above text field is auto-completed using the Google Maps <a href="https://developers.google.com/places/web-service/autocomplete" target="_blank">Autocomplete API</a></small>
+    </form>
     <div id="petitions">
     </div>
   </div>
