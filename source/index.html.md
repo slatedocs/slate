@@ -37,9 +37,9 @@ The API expects authorization credentials to be included in all API requests to 
 You must replace <code>RunMuhSearch!</code> with your personal API credentials.
 </aside>
 
-# Entities
+# Making Requests
 
-## Document
+## Feeding a Document
 
 ```json
 {
@@ -89,6 +89,8 @@ You must replace <code>RunMuhSearch!</code> with your personal API credentials.
 ```
 
 ```csharp
+using CBSearch.CBSolr;
+using CBSearch.CBSolr.Endpoints;
 using CBSearch.CBSolr.DataTypes.Document;
 using CBSearch.CBSolr.DataTypes.Schema;
 
@@ -107,10 +109,36 @@ var document = new Document.DocumentBuilder(
     .AddField("jerseynumber", 49)
     .AddField("player-name", "Scarlett Garcia")
     .Build();
-```
-This is the representation of a document in the search engine.
 
-### Attributes
+var endpoint = EndpointFactory.GetEndPoint(SearchEndPoints.MatrixTest, "RunMuhSearch!");
+var resultContainer = SearchEngine.AddDocument(endpoint, document);
+```
+> The above command returns JSON structured like this:
+
+```json
+{
+  "Messages": [
+    "The request has sucessfully created a request downstream.",
+    "{\"location\":\"/pool/general/document/TJHKTOGBOJ/priority/Reflow\"}"
+  ]
+}
+```
+
+This endpoint feeds a document to the search engine.
+
+### HTTP Request
+
+`POST /putdocument`
+
+`Version: 2.0`
+
+`Developer_Key: RunMuhSearch!`
+
+`Content-Type: application/json`
+
+### Request Payload
+
+The document you wish to feed to the search engine.
 
 | Attribute  | Description                                                                                                                                                                                                                   |
 |------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -118,6 +146,66 @@ This is the representation of a document in the search engine.
 | priority   | Optional int for controlling indexing priority. Allows indexing triggered by customer actions to be prioritized over batch processes. Can be omitted, will default to 30.                                                     |
 | schema     | A schema object (described [here](#schema)) that defines the fields used within this document.                                                                                                                                           |
 | fields     | An array of name/value pairs that set a value for fields within the schema. You do not need to provide values for every field defined in the schema, omitted entries will simply not be indexed for that particular document. |
+
+<aside class="success">
+Remember — allow 15 minutes for your document to make it to the engine before searching for it!
+</aside>
+
+## Deleting a Document
+
+```json
+{
+  "documentid": "TJHKTOGBOJ",
+  "priority": 30,
+  "pool": "general"
+}
+```
+```csharp
+using CBSearch.CBSolr;
+using CBSearch.CBSolr.Endpoints;
+using CBSearch.CBSolr.DataTypes.Request;
+
+var delete = new DeleteDocument("TJHKTOGBOJ", "general");
+var endpoint = EndpointFactory.GetEndPoint(SearchEndPoints.MatrixTest, "RunMuhSearch!");
+
+var resultContainer = SearchEngine.DeleteDocument(endpoint, delete);
+```
+
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "Messages": [
+    "The request has sucessfully created a request downstream.",
+    "{\"location\":\"/pool/general/document/TJHKTOGBOJ/priority/Reflow\"}"
+  ]
+}
+```
+
+This endpoint deletes a document from the search engine.
+
+### HTTP Request
+
+`POST /deletedocument`
+
+`Version: 2.0`
+
+`Developer_Key: RunMuhSearch!`
+
+`Content-Type: application/json`
+
+### Request Payload
+
+This describes the necessary information to delete a document from the search engine.
+
+| Attribute | Description |
+|------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| documentid | The ID of the document you wish to delete |
+| priority | Optional int for controlling deleting priority. Allows deleting triggered by customer actions to be prioritized over batch processes. Can be omitted, will default to 30. |
+| pool | The pool in which the document to be deleted was indexed. |
+
+# Request Components
 
 ## Schema
 
@@ -228,182 +316,3 @@ A SchemaField details how data should be stored and how it will be queried.
 * Point
 * Spacial
 * String
-
-## Delete
-```json
-{
-  "documentid": "TJHKTOGBOJ",
-  "priority": 30,
-  "pool": "general"
-}
-```
-
-```csharp
-using CBSearch.CBSolr.DataTypes.Request;
-
-var delete = new DeleteDocument("TJHKTOGBOJ", "general");
-```
-This describes the necessary information to delete a document from the search engine.
-
-### Attributes
-
-| Attribute | Description |
-|------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| documentid | The ID of the document you wish to delete |
-| priority | Optional int for controlling deleting priority. Allows deleting triggered by customer actions to be prioritized over batch processes. Can be omitted, will default to 30. |
-| pool | The pool in which the document to be deleted was indexed. |
-
-# Making Requests
-
-## Feed a Document
-
-```json
-{
-  "documentid": "TJHKTOGBOJ",
-  "priority": 30,
-  "schema": {
-    "name": "SearchAPITest-Sportsball",
-    "pool": "general",
-    "languages": [
-      "Other"
-    ],
-    "fields": [
-      {
-        "name": "jerseynumber",
-        "type": "Integer",
-        "searchable": true,
-        "retrievable": true,
-        "sortable": true,
-        "normalizeLength": false
-      },
-      {
-        "name": "player-name",
-        "type": "String",
-        "searchable": true,
-        "retrievable": true,
-        "sortable": true,
-        "normalizeLength": false,
-        "semanticSearchFeatures": []
-      }
-    ],
-    "hash": "",
-    "semanticSearch": {
-      "dictionaries": []
-    }
-  },
-  "fields": [
-    {
-      "name": "jerseynumber",
-      "value": 49
-    },
-    {
-      "name": "player-name",
-      "value": "Scarlett Garcia"
-    }
-  ]
-}
-```
-
-```csharp
-using CBSearch.CBSolr;
-using CBSearch.CBSolr.Endpoints;
-using CBSearch.CBSolr.DataTypes.Document;
-using CBSearch.CBSolr.DataTypes.Schema;
-
-var document = new Document.DocumentBuilder(
-		new Schema.SchemaBuilder("SearchAPITest-Sportsball", "general")
-			.AddSchemaField(new IntegerField.IntegerFieldBuilder("jerseynumber")
-                .MakeSearchable()
-                .MakeRetrievable()
-                .Build())
-            .AddSchemaField(new StringField.StringFieldBuilder("player-name")
-                .MakeSearchable()
-                .MakeRetrievable()
-                .Build())
-            .Build(),
-        "TJHKTOGBOJ")
-    .AddField("jerseynumber", 49)
-    .AddField("player-name", "Scarlett Garcia")
-    .Build();
-
-var endpoint = EndpointFactory.GetEndPoint(SearchEndPoints.MatrixTest, "RunMuhSearch!");
-var resultContainer = SearchEngine.AddDocument(endpoint, document);
-```
-> The above command returns JSON structured like this:
-
-```json
-{
-  "Messages": [
-    "The request has sucessfully created a request downstream.",
-    "{\"location\":\"/pool/general/document/TJHKTOGBOJ/priority/Reflow\"}"
-  ]
-}
-```
-
-This endpoint feeds a document to the search engine.
-
-### HTTP Request
-
-`PUT /putdocument`
-
-`Version: 2.0`
-
-`Developer_Key: RunMuhSearch!`
-
-`Content-Type: application/json`
-
-### Request Payload
-
-The document to feed to the search engine. See the entity [described here](#document).
-
-<aside class="success">
-Remember — allow 15 minutes for your document to make it to the engine before searching for it!
-</aside>
-
-## Delete a Document
-
-```json
-{
-  "documentid": "TJHKTOGBOJ",
-  "priority": 30,
-  "pool": "general"
-}
-```
-```csharp
-using CBSearch.CBSolr;
-using CBSearch.CBSolr.Endpoints;
-using CBSearch.CBSolr.DataTypes.Request;
-
-var delete = new DeleteDocument("TJHKTOGBOJ", "general");
-var endpoint = EndpointFactory.GetEndPoint(SearchEndPoints.MatrixTest, "RunMuhSearch!");
-
-var resultContainer = SearchEngine.DeleteDocument(endpoint, delete);
-```
-
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "Messages": [
-    "The request has sucessfully created a request downstream.",
-    "{\"location\":\"/pool/general/document/TJHKTOGBOJ/priority/Reflow\"}"
-  ]
-}
-```
-
-This endpoint deletes a document from the search engine.
-
-### HTTP Request
-
-`DELETE /deletedocument`
-
-`Version: 2.0`
-
-`Developer_Key: RunMuhSearch!`
-
-`Content-Type: application/json`
-
-### Request Payload
-
-The delete to entity that describes what to remove from the search engine. See the entity [described here](#delete).
