@@ -46,10 +46,23 @@ Generated HTML markup for suggestions is displayed bellow. You may style the sug
 Some example styling:
 
 <code>
-.autocomplete-suggestions { border: 1px solid #999; background: #FFF; overflow: auto; }<br/>
-.autocomplete-suggestion { padding: 2px 5px; white-space: nowrap; overflow: hidden; }<br/>
-.autocomplete-selected { background: #F0F0F0; }<br/>
-.autocomplete-suggestions strong { font-weight: normal; color: #3399FF; }<br/>
+.autocomplete-suggestions {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;border: 1px solid #999;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;background: #FFF;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;overflow: auto;<br/>
+}<br/>
+.autocomplete-suggestion {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;padding: 2px 5px;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;white-space: nowrap;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;overflow: hidden;<br/>
+}<br/>
+.autocomplete-selected {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;background: #F0F0F0;<br/>
+}<br/>
+.autocomplete-suggestions strong {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;font-weight: normal;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;color: #3399FF; <br/>
+}
 </code>
 
 Our client is based on the excellent Devbridge autocomplete client, the full documentation for which can be found <a href="https://github.com/devbridge/jQuery-Autocomplete">here</a>.
