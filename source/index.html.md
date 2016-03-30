@@ -87,6 +87,27 @@ You must replace <code>RunMuhSearch!</code> with your personal API credentials.
   ]
 }
 ```
+
+```csharp
+using CBSearch.CBSolr.DataTypes.Document;
+using CBSearch.CBSolr.DataTypes.Schema;
+
+var document = new Document.DocumentBuilder(
+		new Schema.SchemaBuilder("SearchAPITest-Sportsball", "general")
+			.AddSchemaField(new IntegerField.IntegerFieldBuilder("jerseynumber")
+                .MakeSearchable()
+                .MakeRetrievable()
+                .Build())
+            .AddSchemaField(new StringField.StringFieldBuilder("player-name")
+                .MakeSearchable()
+                .MakeRetrievable()
+                .Build())
+            .Build(),
+        "TJHKTOGBOJ")
+    .AddField("jerseynumber", 49)
+    .AddField("player-name", "Scarlett Garcia")
+    .Build();
+```
 This is the representation of a document in the search engine.
 
 ### Attributes
@@ -132,6 +153,21 @@ This is the representation of a document in the search engine.
   }
 }
 ```
+
+```csharp
+using CBSearch.CBSolr.DataTypes.Schema;
+
+var schema = new Schema.SchemaBuilder("SearchAPITest-Sportsball", "general")
+		.AddSchemaField(new IntegerField.IntegerFieldBuilder("jerseynumber")
+            .MakeSearchable()
+            .MakeRetrievable()
+            .Build())
+        .AddSchemaField(new StringField.StringFieldBuilder("player-name")
+            .MakeSearchable()
+            .MakeRetrievable()
+            .Build())
+        .Build();
+```
 A schema defines the fields used within a document.
 
 ### Attributes
@@ -156,6 +192,14 @@ A schema defines the fields used within a document.
   "normalizeLength": false,
   "semanticSearchFeatures": []
 }
+```
+```csharp
+using CBSearch.CBSolr.DataTypes.Schema;
+
+var schemaField = new StringField.StringFieldBuilder("player-name")
+        .MakeSearchable()
+        .MakeRetrievable()
+        .Build());
 ```
 A SchemaField details how data should be stored and how it will be queried.
 
@@ -193,6 +237,12 @@ A SchemaField details how data should be stored and how it will be queried.
   "pool": "general"
 }
 ```
+
+```csharp
+using CBSearch.CBSolr.DataTypes.Request;
+
+var delete = new DeleteDocument("TJHKTOGBOJ", "general");
+```
 This describes the necessary information to delete a document from the search engine.
 
 ### Attributes
@@ -207,12 +257,7 @@ This describes the necessary information to delete a document from the search en
 
 ## Feed a Document
 
-```http
-PUT /putdocument HTTP/1.1
-Version: 2.0
-Developer_Key: RunMuhSearch!
-Content-Type: application/json
-
+```json
 {
   "documentid": "TJHKTOGBOJ",
   "priority": 30,
@@ -259,7 +304,31 @@ Content-Type: application/json
 }
 ```
 
+```csharp
+using CBSearch.CBSolr;
+using CBSearch.CBSolr.Endpoints;
+using CBSearch.CBSolr.DataTypes.Document;
+using CBSearch.CBSolr.DataTypes.Schema;
 
+var document = new Document.DocumentBuilder(
+		new Schema.SchemaBuilder("SearchAPITest-Sportsball", "general")
+			.AddSchemaField(new IntegerField.IntegerFieldBuilder("jerseynumber")
+                .MakeSearchable()
+                .MakeRetrievable()
+                .Build())
+            .AddSchemaField(new StringField.StringFieldBuilder("player-name")
+                .MakeSearchable()
+                .MakeRetrievable()
+                .Build())
+            .Build(),
+        "TJHKTOGBOJ")
+    .AddField("jerseynumber", 49)
+    .AddField("player-name", "Scarlett Garcia")
+    .Build();
+
+var endpoint = EndpointFactory.GetEndPoint(SearchEndPoints.MatrixTest, "RunMuhSearch!");
+var resultContainer = SearchEngine.AddDocument(endpoint, document);
+```
 > The above command returns JSON structured like this:
 
 ```json
@@ -277,6 +346,12 @@ This endpoint feeds a document to the search engine.
 
 `PUT /putdocument`
 
+`Version: 2.0`
+
+`Developer_Key: RunMuhSearch!`
+
+`Content-Type: application/json`
+
 ### Request Payload
 
 The document to feed to the search engine. See the entity [described here](#document).
@@ -287,17 +362,22 @@ Remember — allow 15 minutes for your document to make it to the engine before 
 
 ## Delete a Document
 
-```http
-DELETE /deletedocument HTTP/1.1
-Version: 2.0
-Developer_Key: RunMuhSearch!
-Content-Type: application/
-
+```json
 {
   "documentid": "TJHKTOGBOJ",
   "priority": 30,
   "pool": "general"
 }
+```
+```csharp
+using CBSearch.CBSolr;
+using CBSearch.CBSolr.Endpoints;
+using CBSearch.CBSolr.DataTypes.Request;
+
+var delete = new DeleteDocument("TJHKTOGBOJ", "general");
+var endpoint = EndpointFactory.GetEndPoint(SearchEndPoints.MatrixTest, "RunMuhSearch!");
+
+var resultContainer = SearchEngine.DeleteDocument(endpoint, delete);
 ```
 
 
@@ -317,6 +397,12 @@ This endpoint deletes a document from the search engine.
 ### HTTP Request
 
 `DELETE /deletedocument`
+
+`Version: 2.0`
+
+`Developer_Key: RunMuhSearch!`
+
+`Content-Type: application/json`
 
 ### Request Payload
 
