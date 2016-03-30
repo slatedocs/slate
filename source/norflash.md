@@ -3,7 +3,7 @@
 The NOR flash recorder exists only on the ProMotion board and it uses subsystem ID 0x0B. Regarding this subsystem a number of commands exist, which are listed below:
 
 ```c 
-#define FlashEraseAll 0x01 //erasing the on-chip recorder
+#define FlashErase 0x01 //erasing the on-chip recorder
 #define FlashRecordStartStop 0x02 //start/stop a recording session
 #define FlashPlaybackStartStop 0x03 //start/stop playing back from the recorder
 #define FlashGetNbSessions		0x04 //a command to get the total #of sessions in the NOR flash, i.e., n
