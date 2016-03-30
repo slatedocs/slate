@@ -14,7 +14,7 @@ To install with jQuery, use this code:
 &lt;/script>
 </code>
 
-Here, `#query` is the DOM id of your search box, and your autocomplete key can be found on [your dashboard](/dashboard).
+Here, `#query` is the DOM id of your search box, and `your autocomplete key` can be found on [your dashboard](/dashboard).
 
 ## Installation with requirejs
 
@@ -29,7 +29,7 @@ If you're using requirejs, you can install our client with this code:
 &lt;/script>
 </code>
 
-Here, `#query` is the DOM id of your search box, and your autocomplete key can be found on [your dashboard](/dashboard).
+Here, `#query` is the DOM id of your search box, and `your autocomplete key` can be found on [your dashboard](/dashboard).
 
 ## Styling the autocomplete client
 
