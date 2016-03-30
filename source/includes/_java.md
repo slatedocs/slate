@@ -146,6 +146,9 @@ If you're deploying Scout APM for the first time, we recommend starting on a sta
 
 ## Java Agent Change Log
 
+#### 0.5.0
+* Support for the Playframework 1.x
+
 #### 0.4.0
 * Add Thread statistics to Context in slow streams
 * Support for Apache HttpAsyncClient
