@@ -28,7 +28,7 @@ You're going to need:
 ### Getting Set Up
 
  1. Clone *the API docs repository* to your hard drive with `git clone git@github.com:rubiconmd/api-documentation.git`
- 2. Make all the changes you want to do into the `/source` folder.
+ 2. Make all the changes you want to do into the `/source` folder. Specifically, `/source/index.html.md` and `/source/includes/_errors.md`
  3. When you are done, push the changes to Github.
  4. Add "gh-pages" as a local branch pointing to the remote.
  5. Publish your work with `rake publish`.
@@ -39,7 +39,7 @@ You can now see the docs at <http://rubiconmd.github.io/api-documentation/>.
 
 To preview your changes on a localhost prior to deployment, start the test server by `bundle exec middleman server` or `middleman server`
 
-Don't forget to `bundle install` if you just merged in new code from the upstream.
+Don't forget to `bundle install` or `bundle` if you just merged in new code from the upstream.
 
 You can now see the docs at http://localhost:4567. Whoa! That was fast!
 

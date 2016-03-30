@@ -5,12 +5,7 @@ language_tabs:
   - shell
 
 toc_footers:
-<<<<<<< HEAD:source/index.md
   - <a href='http://github.com/tripit/slate'>Documentation Powered by Slate</a>
-=======
-  - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a>
->>>>>>> upstream/master:source/index.html.md
 
 includes:
   - errors
@@ -24,14 +19,10 @@ search: true
 The requests presented on this API documentation are for our live **production environment**. For development and testing, it is recommended to use our **sandbox environment**.
 </aside>
 
-<<<<<<< HEAD:source/index.md
 Server |  URL
 --------- | -----------
-**Sandbox:** | `http://demo.rubiconmd.com`
+**Sandbox:** | `https://demo.rubiconmd.com`
 **Production:** | `https://www.rubiconmd.com`
-=======
-This example API documentation page was created with [Slate](https://github.com/tripit/slate). Feel free to edit it and use it as a base for your own API's documentation.
->>>>>>> upstream/master:source/index.html.md
 
 # Authentication
 
@@ -39,7 +30,7 @@ This example API documentation page was created with [Slate](https://github.com/
 
 ```shell
 # Just a standard HTTP Request
-  Note: Be sure to curl using http: protocol when connecting to the sandbox and https: when connecting to production. Our examples are for accessing the Production in this regard.
+  Note: Be sure to curl using https: when connecting.
 
 ## User authentication not required (app has standing permissions from user)
 curl -i https://rubiconmd.com/api/v1/oauth/token
@@ -157,11 +148,7 @@ curl -i https://rubiconmd.com/api/v1/provider_cases/10071849?access_token="AAAAA
 This endpoint will return the JSON data about a specific case.
 
 <aside class="notice">
-<<<<<<< HEAD:source/index.md
  Make sure to replace `CASE_ID` with the actual ID of the case you want to look up.
-=======
-You must replace <code>meowmeowmeow</code> with your personal API key.
->>>>>>> upstream/master:source/index.html.md
 </aside>
 
 
@@ -244,17 +231,9 @@ curl -i https://rubiconmd.com/api/v1/referrals?access_token="AAAAAA"
     "question": "Does this look deadly?"
   },
   {
-<<<<<<< HEAD:source/index.md
     "id": 22,
     "state": "need_pcp_reply",
     "question": "Is this Lupus?"
-=======
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
->>>>>>> upstream/master:source/index.html.md
   }
 ]
 ```
@@ -263,7 +242,6 @@ This endpoint retrieves all the case referrals for the authenticated user.
 
 ### HTTP Request
 
-<<<<<<< HEAD:source/index.md
 `GET https://rubiconmd.com/api/v1/referrals?access_token="AAAAAA"`
 
 ### Query Optional Parameters
@@ -276,9 +254,6 @@ limit | Retrieves the specific number of cases you pass it.
 **States:** assigned, accepted, declined, awaiting_review, need_specialist_reply, need_pcp_reply, closed
 
 **limit:** Integer number.
-=======
-`GET http://example.com/api/kittens`
->>>>>>> upstream/master:source/index.html.md
 
 
 ## Get a Specific Case Referral
@@ -540,7 +515,6 @@ The server will return an "unprocessable entity" HTTP response if the purpose do
 ##User Information
 
 ```shell
-<<<<<<< HEAD:source/index.md
 curl -i https://rubiconmd.com/api/v1/users/me?access_token="AAAAAA"
 ```
 > The above command returns JSON structured like this:
@@ -579,10 +553,6 @@ curl -i https://rubiconmd.com/api/v1/users/me?access_token="AAAAAA"
       }
    ]
 }
-=======
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
->>>>>>> upstream/master:source/index.html.md
 ```
 
 Want to get information about the user you just logged in? This is your endpoint.
@@ -602,18 +572,10 @@ curl -X POST
 
 ```json
 {
-<<<<<<< HEAD:source/index.md
    "first_name":"Franklin",
    "last_name":"McAwesome",
    "email":"awesome_specialist@rubiconmd.com",
    "role":"medical_doctor"
-=======
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
->>>>>>> upstream/master:source/index.html.md
 }
 ```
 
@@ -621,7 +583,6 @@ This allows you to create a new provider for your organization.
 
 ### HTTP Request
 
-<<<<<<< HEAD:source/index.md
 `POST https://rubiconmd.com/api/v1/users/ {"user": {"email": TEXT, "first_name": TEXT, "last_name": TEXT, "role": ROLE} }`
 
 ### URL Parameters
@@ -673,9 +634,7 @@ curl -i https://rubiconmd.com/api/v1/users/token?access_token="AAAAAA"
 ##Auto-login & Display case
 
 Pass users' username, user token, and case id parameters into the URL.
-=======
 <aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
->>>>>>> upstream/master:source/index.html.md
 
 ### HTTP Request
 
@@ -685,13 +644,9 @@ Pass users' username, user token, and case id parameters into the URL.
 
 Parameter |  Description
 --------- | -----------
-<<<<<<< HEAD:source/index.md
 email | The e-mail of the user you are logging in.
 user_token | Single-use user token.
 case_id | The ID of the case you want to see.
-=======
-ID | The ID of the kitten to retrieve
->>>>>>> upstream/master:source/index.html.md
 
 <aside class="notice">
 If you send the user to the iframe with an invalid token the user will be asked to login.  No errors will be raised.
