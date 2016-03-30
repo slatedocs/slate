@@ -8,9 +8,9 @@ To install with jQuery, use this code:
 
 <code>
 &lt;script type="text/javascript"><br/>
-$.getScript("//cnstrc.com/js/ac.js", function() {<br/>
-&nbsp;&nbsp;$('#query').constructorAutocomplete({ key: '[your autocomplete key]' });<br/>
-})<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;$.getScript("//cnstrc.com/js/ac.js", function() {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$('#query').constructorAutocomplete({ key: '[your autocomplete key]' });<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;})<br/>
 &lt;/script>
 </code>
 
@@ -22,10 +22,10 @@ If you're using requirejs, you can install our client with this code:
 
 <code>
 &lt;script type="text/javascript"><br/>
-require.config({paths: {constructorAutocomplete: '//cnstrc.com/js/ac'} });<br/>
-require(['jquery', 'constructorAutocomplete'], function($) {<br/>
-&nbsp;&nbsp;$('#query').constructorAutocomplete({ key: '[your autocomplete key]' });<br/>
-});<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;require.config({paths: {constructorAutocomplete: '//cnstrc.com/js/ac'} });<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;require(['jquery', 'constructorAutocomplete'], function($) {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$('#query').constructorAutocomplete({ key: '[your autocomplete key]' });<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;});<br/>
 &lt;/script>
 </code>
 
@@ -37,9 +37,9 @@ Generated HTML markup for suggestions is displayed bellow. You may style the sug
 
 <code>
 &lt;div class="autocomplete-suggestions"><br/>
-  &lt;div class="autocomplete-suggestion autocomplete-selected">...&lt;/div><br/>
-  &lt;div class="autocomplete-suggestion">...&lt;/div><br/>
-  &lt;div class="autocomplete-suggestion">...&lt;/div><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="autocomplete-suggestion autocomplete-selected">...&lt;/div><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="autocomplete-suggestion">...&lt;/div><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="autocomplete-suggestion">...&lt;/div><br/>
 &lt;/div><br/>
 </code>
 
