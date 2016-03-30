@@ -15,18 +15,18 @@ Note that the above commands are placed within the header section of the packet 
 ## Data Section
 The data section consists of 16 bytes. The first 4 bytes (Byte 4-7) and the last 9 bytes (Byte 11-19) are always reserved in the NOR flash subsystem. However, the other bytes might be used differently depending on the command field, which is explained next.
 
-#### FlashEraseAll Command/Response (0x01)
-In the command mode, the packet commands Neblina to do a full-erase for the on-chip NOR flash memory. This takes about 2 minutes to complete. Here is the command packet:
+#### FlashErase Command/Response (0x01)
+In the command mode, the packet commands Neblina to do a full-erase for the on-chip NOR flash memory. The command can be issued in two ways: Quick Erase, and Mass Erase. The Quick Erase scans the NOR flash and erases the non-empty parts, while the Mass Erase is performed over the whole flash. The Quick Erase could take between 1 second to 3 minutes depending on the amount of data that is present in the flash. The Mass Erase takes always around 3 minutes to complete. It is always recommended to issue a Quick Erase instead of Mass Erase for faster operation. Byte 8 will determine whether the erase mode is Quick Erase (0), or Mass Erase (1). Here is the command packet:
 
-| Byte 0 (subsystem) | Byte 1 (length) | Byte 2 (CRC) |  Byte 3 (command)  |Byte 4-19|
-|:------------------:|:---------------:|:------------:|:------------------:|:-------:|
-|        0x4B        |       0x10      |      CRC     |0x01 (FlashEraseAll)|Reserved |
+| Byte 0 (subsystem) | Byte 1 (length) | Byte 2 (CRC) |  Byte 3 (command)  |Byte 4-7|     Byte 8     |Byte 9-19|
+|:------------------:|:---------------:|:------------:|:------------------:|:------:|:--------------:|:-------:|
+|        0x4B        |       0x10      |      CRC     |0x01 (FlashEraseAll)|Reserved|Quick/Mass Erase|Reserved |
 
 In response, Neblina will first send an acknowledge packet to indicate the successful receipt of the command issued by the host. Next, when the erasing process completes, Neblina will send a "process completed" packet back to the host as follows:
 
-| Byte 0 (subsystem) | Byte 1 (length) | Byte 2 (CRC) |  Byte 3 (command)  | Bytes 4-19 |
-|:------------------:|:---------------:|:------------:|:------------------:|------------|
-|        0x0B        |       0x10      |      CRC     |0x01 (FlashEraseAll)|  Reserved  |
+| Byte 0 (subsystem) | Byte 1 (length) | Byte 2 (CRC) | Byte 3 (command)| Bytes 4-19 |
+|:------------------:|:---------------:|:------------:|:---------------:|------------|
+|        0x0B        |       0x10      |      CRC     |0x01 (FlashErase)|  Reserved  |
 
 
 #### FlashRecordStartStop Command/Response (0x02)
