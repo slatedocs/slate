@@ -65,6 +65,15 @@ Some example styling:
 }
 </code>
 
+## Advanced autocomplete options
+
+Option | Default | Description
+------------- | --- | ----------
+boostRecentSearches|true|Increase ranking of recent user searches.
+imageWidth|none|Specify the width of  images displayed in the suggestion list.
+maxResults|10|Specify the maximum number of suggestions returned.
+sectionOrder|order created|Set the order in which autocomplete sections appear in suggestion list. Array of autocomplete section names.
+
 Our client is based on the excellent Devbridge autocomplete client, the full documentation for which can be found <a href="https://github.com/devbridge/jQuery-Autocomplete">here</a>.
 
 
