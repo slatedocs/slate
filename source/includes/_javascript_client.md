@@ -1,6 +1,10 @@
 # Javascript Client
 
-The Constructor.io javascript client adds autocomplete to your site.  You can install it immediately and it will default to "listening mode" where it will start to learn from your users' behavior.  Then, you can upload a dataset via our website or API and start seeing autocomplete suggestions.
+The Constructor.io javascript client adds autocomplete to your site with two lines of code.
+
+You can install it immediately and it will default to "listening mode" where it will start to learn from your users' behavior.
+
+After you upload a dataset via our website or API, Constructor.io will start providing your users lightning-fast suggestions!
 
 ## Install using jQuery
 
