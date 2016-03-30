@@ -20,6 +20,9 @@ GET /projects/ HTTP/1.1
 {
   "element": "shoji:catalog",
   "self": "http:\/\/local.crunch.io:8080\/api\/projects\/",
+  "views": {
+    "generate_icon": "http:\/\/local.crunch.io:8080\/api\/projects/generate_icon\/"
+  },
   "index": {
     "http:\/\/local.crunch.io:8080\/api\/projects\/4643\/": {
       "name": "Project 1",
@@ -57,10 +60,48 @@ Payload example:
 ```json
 {
     "body": {
-        "name": "My new project"
+        "name": "My new project",
+        "icon_url": "http://...",
+        "user_icon": true,
     }
 }
 ```
+
+##### Creating a project with an icon
+
+By default a new project will be created without an icon. 
+
+To create one with a starting icon you can POST an `icon_url` attribute 
+indicating a url where to fetch that icon from (has to be a publicly accessible url).
+
+If the server cannot read that URL the request will return a 409 error.
+
+On success a copy of the file will be stored as the icon to be served.
+
+An additional `user_icon` boolean attribute is available to distinguish if this
+is an icon made available from the default icons the API provides or if the user
+provided something different. If ommited will be set to `false`.
+
+
+#### Default icon
+
+The API can provide default icons to be used in new projects. Performing a GET
+request will return a Shoji:view pointing to an random image file url that can
+ be used as a default icon. 
+ 
+ 
+```http
+GET /projects/generate_icon/ HTTP/1.1
+```
+
+```json
+{
+  "element": "shoji:view",
+  "self": "http:\/\/local.crunch.io:8080\/api\/projects\/6c01\/icon\/",
+  "value": "http://....png"
+}
+```
+
 
 ### Entity
 
