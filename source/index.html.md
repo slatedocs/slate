@@ -22,7 +22,7 @@ The requests presented on this API documentation are for our live **production e
 Server |  URL
 --------- | -----------
 **Sandbox:** | `https://demo.rubiconmd.com`
-**Production:** | `https://www.rubiconmd.com`
+**Production:** | `https://rubiconmd.com`
 
 # Authentication
 
