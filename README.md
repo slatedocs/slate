@@ -31,7 +31,7 @@ You're going to need:
  2. Make all the changes you want to do into the `/source` folder. Specifically, `/source/index.html.md` and `/source/includes/_errors.md`
  3. When you are done, push the changes to Github.
  4. Add "gh-pages" as a local branch pointing to the remote.
- 5. Publish your work with `rake publish`.
+ 5. Publish your work with `./deploy.sh`.
 
 You can now see the docs at <http://rubiconmd.github.io/api-documentation/>.
 
