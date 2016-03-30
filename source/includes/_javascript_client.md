@@ -33,7 +33,11 @@ Here, `#query` is the DOM id of your search box, and `your autocomplete key` can
 
 ## Style your autocomplete
 
-Generated HTML markup for suggestions is displayed bellow. You may style the suggestions in any way you'd like.
+You may style autocomplete suggestions in any way you'd like.
+
+### Autocomplete suggestion HTML
+
+Suggestions are returned with HTML markup as below:
 
 <code>
 &lt;div class="autocomplete-suggestions"><br/>
@@ -43,7 +47,7 @@ Generated HTML markup for suggestions is displayed bellow. You may style the sug
 &lt;/div><br/>
 </code>
 
-Some example styling:
+### Example Styling
 
 <code>
 .autocomplete-suggestions {<br/>
