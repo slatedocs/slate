@@ -113,16 +113,6 @@ var document = new Document.DocumentBuilder(
 var endpoint = EndpointFactory.GetEndPoint(SearchEndPoints.MatrixTest, "RunMuhSearch!");
 var resultContainer = SearchEngine.AddDocument(endpoint, document);
 ```
-> The above command returns JSON structured like this:
-
-```json
-{
-  "Messages": [
-    "The request has sucessfully created a request downstream.",
-    "{\"location\":\"/pool/general/document/TJHKTOGBOJ/priority/Reflow\"}"
-  ]
-}
-```
 
 This endpoint feeds a document to the search engine.
 
@@ -169,18 +159,6 @@ var delete = new DeleteDocument("TJHKTOGBOJ", "general");
 var endpoint = EndpointFactory.GetEndPoint(SearchEndPoints.MatrixTest, "RunMuhSearch!");
 
 var resultContainer = SearchEngine.DeleteDocument(endpoint, delete);
-```
-
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "Messages": [
-    "The request has sucessfully created a request downstream.",
-    "{\"location\":\"/pool/general/document/TJHKTOGBOJ/priority/Reflow\"}"
-  ]
-}
 ```
 
 This endpoint deletes a document from the search engine.
