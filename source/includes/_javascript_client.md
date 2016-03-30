@@ -2,7 +2,7 @@
 
 The Constructor.io javascript client adds autocomplete to your site.  You can install it immediately and it will default to "listening mode" where it will start to learn from your users' behavior.  Then, you can upload a dataset via our website or API and start seeing autocomplete suggestions.
 
-## Simple jQuery Installation
+## Install using jQuery
 
 To install with jQuery, use this code:
 
@@ -16,7 +16,7 @@ To install with jQuery, use this code:
 
 Here, `#query` is the DOM id of your search box, and `your autocomplete key` can be found on [your dashboard](/dashboard).
 
-## Installation with requirejs
+## Install using requirejs
 
 If you're using requirejs, you can install our client with this code:
 
@@ -31,7 +31,7 @@ If you're using requirejs, you can install our client with this code:
 
 Here, `#query` is the DOM id of your search box, and `your autocomplete key` can be found on [your dashboard](/dashboard).
 
-## Styling the autocomplete client
+## Style your autocomplete
 
 Generated HTML markup for suggestions is displayed bellow. You may style the suggestions in any way you'd like.
 
