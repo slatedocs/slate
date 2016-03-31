@@ -81,7 +81,7 @@ beyonic.Contact.create(phone_number='+256773712831',
 ```
 
 ```java
-package com.beyonic.examples
+package com.beyonic.examples.contacts
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -273,6 +273,53 @@ contact = beyonic.Contact.list()
 
 ```
 
+```java
+package com.beyonic.examples.contacts
+
+import java.io.*;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
+public class ListAllContacts{
+
+    private static final String API_ENDPOINT = "https://app.beyonic.com/api/contacts";
+    private static final String API_KEY = "ab594c14986612f6167a975e1c369e71edab6900";
+    private static final String CHARSET = "UTF-8";
+
+    public static void main(String[] args){
+        URL url = null;
+        try {
+            url = new URL(API_ENDPOINT);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+
+            conn.setRequestProperty("Content-Type", "application/json");
+            conn.setRequestProperty("Accept", "application/json");
+            conn.setRequestProperty("charset", CHARSET);
+            conn.setRequestProperty("Authorization", "Token " + API_KEY);
+
+            System.out.println(conn.getResponseCode() + " // " + conn.getResponseMessage());
+
+            try {
+                if (conn.getResponseCode() == 200) {
+                    InputStream inputStream = conn.getInputStream();
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+                    String response = reader.readLine();
+                    reader.close();
+
+                    System.out.println(response);
+                }
+            } finally {
+                conn.disconnect();
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+}
+```
+
 > Sample Response (JSON)
 
 ```json
@@ -351,6 +398,53 @@ beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
 contact = beyonic.Contact.list(first_name='luke')
 
+```
+
+```java
+package com.beyonic.examples.contact;
+
+import java.io.*;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
+public class FilterContacts{
+
+    private static final String API_ENDPOINT = "https://app.beyonic.com/api/contacts";
+    private static final String API_KEY = "ab594c14986612f6167a975e1c369e71edab6900";
+    private static final String CHARSET = "UTF-8";
+
+    public static void main(String[] args){
+        URL url = null;
+        try {
+            url = new URL(API_ENDPOINT + "?first_name=John");
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+
+            conn.setRequestProperty("Content-Type", "application/json");
+            conn.setRequestProperty("Accept", "application/json");
+            conn.setRequestProperty("charset", CHARSET);
+            conn.setRequestProperty("Authorization", "Token " + API_KEY);
+
+            System.out.println(conn.getResponseCode() + " // " + conn.getResponseMessage());
+
+            try {
+                if (conn.getResponseCode() == 200) {
+                    InputStream inputStream = conn.getInputStream();
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+                    String response = reader.readLine();
+                    reader.close();
+
+                    System.out.println(response);
+                }
+            } finally {
+                conn.disconnect();
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+}
 ```
 
 You can search or filter contacts on the following fields. Simply add them to your request as shown in the examples. You can combine multiple filters. Note that filters return exact matches only. (The phone_number field is treated differently - see below).
