@@ -149,13 +149,13 @@ public class CreateCollectionRequest {
     }
 
     private static JSONObject createCollectionRequestObject() throws JSONException {
-        JSONObject payment = new JSONObject();
-        payment.put("phonenumber", PHONE_NUMBER);
-        payment.put("amount", AMOUNT);
-        payment.put("currency", CURRENCY);
-        payment.put("description", DESCRIPTION);
-        payment.put("callback_url", CALLBACK_URL);
-        return payment;
+        JSONObject collectionRequest = new JSONObject();
+        collectionRequest.put("phonenumber", PHONE_NUMBER);
+        collectionRequest.put("amount", AMOUNT);
+        collectionRequest.put("currency", CURRENCY);
+        collectionRequest.put("description", DESCRIPTION);
+        collectionRequest.put("callback_url", CALLBACK_URL);
+        return collectionRequest;
     }
 }
 ```
