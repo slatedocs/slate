@@ -43,6 +43,7 @@ var dataCollection = kuzzle.dataCollectionFactory('index', 'collection');
 
 ```js
 var filter = {
+  filter: {
     and: [
       {
         terms: {
@@ -63,6 +64,7 @@ var filter = {
         }
       }
     ]
+  }
 };
 
 kuzzle
@@ -86,33 +88,35 @@ kuzzle
 
 ```java
 JSONObject filter = new JSONObject()
-  .put("and", new JSONArray()
-    .put(
-      new JSONObject().put("terms",
-        new JSONObject().put("status",
-          new JSONArray()
-            .put("idle")
-            .put("wantToHire")
-            .put("toHire")
-            .put("riding")
+  .put("filter", new JSONObject()
+    .put("and", new JSONArray()
+      .put(
+        new JSONObject().put("terms",
+          new JSONObject().put("status",
+            new JSONArray()
+              .put("idle")
+              .put("wantToHire")
+              .put("toHire")
+              .put("riding")
+          )
         )
       )
-    )
-    .put(
-      new JSONObject().put("terms",
-        new JSONObject()
-          .put("type", new JSONArray().put("cab"))
+      .put(
+        new JSONObject().put("terms",
+          new JSONObject()
+            .put("type", new JSONArray().put("cab"))
+        )
       )
-    )
-    .put(
-      new JSONObject().put("geo_distance",
-        new JSONObject()
-          .put("distance", "10km")
-          .put("pos",
-            new JSONObject()
-              .put("lat", "48.8566140")
-              .put("lon", "2.352222")
-          )
+      .put(
+        new JSONObject().put("geo_distance",
+          new JSONObject()
+            .put("distance", "10km")
+            .put("pos",
+              new JSONObject()
+                .put("lat", "48.8566140")
+                .put("lon", "2.352222")
+            )
+        )
       )
     )
   );
@@ -1049,6 +1053,9 @@ var room =
     .dataCollectionFactory('index', 'collection')
     .subscribe({term: {title: 'foo'}}, function (error, result) {
       // called each time a new notification on this filter is received
+
+      // check the KuzzleRoom/Notifications section of this documentation
+      // to get notification examples
     };
 ```
 
@@ -1091,6 +1098,9 @@ kuzzle
     @Override
     public void onSuccess(KuzzleNotificationResponse object) {
       // called each time a new notification on this filter is received
+
+      // check the KuzzleRoom/Notifications section of this documentation
+      // to get notification examples
     }
 
     @Override

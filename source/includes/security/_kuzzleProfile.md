@@ -23,7 +23,7 @@ var role = kuzzle.security.profileFactory('myprofile', profileDefinition);
 JSONObject roles = new JSONObject()
   .put("roles", new JSONArray()
     .put("some role")
-    .put("some othe role")
+    .put("some other role")
   );
 
 KuzzleProfile profile = new KuzzleProfile(kuzzle.security, "profileId", roles);
@@ -434,12 +434,14 @@ profile.setRoles({"role1 ID", "role2 ID", "role3 ID"});
 
 Replaces the roles associated to the profile.
 
+#### setRoles(roleNameArray)
 
-#### setRoles(roles)
+#### setRoles(kuzzleRoleArray)
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
-| ``roles`` | array | Array of string or KuzzleRole objects |
+| ``roleNameArray`` | array of strings | Names of the roles to add |
+| ``kuzzleRoleArray`` | array of `KuzzleRole` objects | `KuzzleRole` objects to add |
 
 #### Return value
 

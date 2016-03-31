@@ -84,6 +84,7 @@ If the `connect` option is set to `manual`, the callback will be called after th
 | ``autoResubscribe`` | boolean | Automatically renew all subscriptions on a ``reconnected`` event | get/set |
 | ``defaultIndex`` | string | Kuzzle's default index to use | get |
 | ``headers`` | JSON object | Common headers for all sent documents. | get/set |
+| ``jwtToken`` | string | Token used in requests for authentication. | get/set |
 | ``metadata`` | JSON object | Common metadata, will be sent to all future requests | get/set |
 | ``offlineQueue`` | JSON object | Contains the queued requests during offline mode | get/set |
 | ``offlineQueueLoader`` | function | Called before dequeuing requests after exiting offline mode, to add items at the beginning of the offline queue | get/set |
