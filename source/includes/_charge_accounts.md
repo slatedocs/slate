@@ -20,6 +20,7 @@ EXEMPLO
     "agreement_number": 4576361,
     "remittance_cnab_pattern": 400,
     "initial_remittance_number": 1,
+    "transmission_code": "987655",
     "_links":
       [
         {"rel":"self","method":"GET","href":"https://app.cobrato.com/api/v1/charge_accounts/1"},
@@ -51,6 +52,7 @@ As Contas de Cobranças, pertencem as suas contas bancárias, sendo assim é nec
 | agreement_number          | integer         | número do convênio com o banco (apenas para o Bradesco)                                                                           |
 | remittance_cnab_pattern   | integer         | padrão utilizado no arquivo CNAB de remessa                                                                                       |
 | initial_remittance_number | integer         | número inicial de remessa, ou seja, qual foi o último número sequencial de remessa enviado para o banco (apenas para o Bradesco)  |
+| transmission_code         | string          | código de transmissão (apenas para o Santander)                                                                                   |
 | _links                    | array of object | links da conta de cobrança e de sua conta bancária                                                                                |
 
 ## Informações da Conta de Cobrança
@@ -91,6 +93,7 @@ EXEMPLO DE CORPO DA RESPOSTA
     "agreement_number": 4576361,
     "remittance_cnab_pattern": 400,
     "initial_remittance_number": 1,
+    "transmission_code": "987655",
     "_links":
       [
         {"rel":"self","method":"GET","href":"https://app.cobrato.com/api/v1/charge_accounts/1"},
@@ -172,6 +175,7 @@ EXEMPLO DE REQUISIÇÃO
           "agreement_number": "4576361",
           "remittance_cnab_pattern": "400",
           "initial_remittance_number": "1"
+          "transmission_code": "987655"
         }'
 
 EXEMPLO DE ESTADO DA RESPOSTA COM SUCESSO
@@ -212,6 +216,7 @@ Cria um nova conta de cobrança, retornando as informações da mesma caso haja 
 | registered_charges        | boolean | (opcional) informa se a conta de cobrança utiliza boletos registrados ou não, sendo false por padrão                                                                |
 | agreement_number          | integer | (opcional, requerido apenas se registered_charges for `true`) número do convênio com o banco (apenas para o Bradesco)                                               |
 | remittance_cnab_pattern   | integer | (opcional, requerido apenas se registered_charges for `true`) padrão utilizado no arquivo CNAB de remessa. Os valores permitidos são 240 ou 400                     |
+| transmission_code         | string  | (opcional, requerido apenas se registered_charges for `true`) código de transmissão (apenas para o Santander)                                                       |
 | initial_remittance_number | integer | (opcional) número inicial de remessa, ou seja, qual foi o último número sequencial de remessa enviado para o banco (apenas para o Bradesco). Por padrão o valor é 1 |
 
 ## Atualização de Conta de Cobrança
@@ -278,6 +283,7 @@ Atualiza a conta de cobrança determinada, retornando as informações da mesma 
 | registered_charges        | boolean | (opcional) informa se a conta de cobrança utiliza boletos registrados ou não, sendo false por padrão                                                                |
 | agreement_number          | integer | (opcional, requerido apenas se registered_charges for `true`) número do convênio com o banco (apenas para o Bradesco)                                               |
 | remittance_cnab_pattern   | integer | (opcional, requerido apenas se registered_charges for `true`) padrão utilizado no arquivo CNAB de remessa. Os valores permitidos são 240 ou 400                     |
+| transmission_code         | string  | (opcional, requerido apenas se registered_charges for `true`) código de transmissão (apenas para o Santander)                                                       |
 | initial_remittance_number | integer | (opcional) número inicial de remessa, ou seja, qual foi o último número sequencial de remessa enviado para o banco (apenas para o Bradesco). Por padrão o valor é 1 |
 
 ## Exclusão de Conta de Cobrança
