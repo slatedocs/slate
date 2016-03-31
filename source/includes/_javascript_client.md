@@ -75,6 +75,16 @@ Suggestions are returned with HTML markup as below:
 
 ## Advanced autocomplete options
 
+We provide a number of options for advanced users. You can enable these options by adding the parameters to the hash that's passed into the `.constructorAutocomplete()` method, as below:
+
+<code>
+&lt;script type="text/javascript"><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;$.getScript("//cnstrc.com/js/ac.js", function() {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$('#query').constructorAutocomplete({ key: '[your autocomplete key]', maxResults: 4, imageWidth: "200px" });<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;})<br/>
+&lt;/script>
+</code>
+
 Option | Default | Description
 ------------- | --- | ----------
 boostRecentSearches|true|Increase ranking of recent user searches.
