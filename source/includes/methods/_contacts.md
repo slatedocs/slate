@@ -80,6 +80,80 @@ beyonic.Contact.create(phone_number='+256773712831',
                        )
 ```
 
+```java
+package com.beyonic.examples
+
+import org.json.JSONException;
+import org.json.JSONObject;
+import java.io.*;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import static org.junit.Assert.assertTrue;
+
+public class CreateContact{
+
+    private static final String API_ENDPOINT = "https://app.beyonic.com/api/contacts";
+    private static final String API_KEY = "ab594c14986612f6167a975e1c369e71edab6900";
+    private static final String CHARSET = "UTF-8";
+    private static final String FIRST_NAME = "John";
+    private static final String LAST_NAME = "Doe";
+    private static final String PHONE_NUMBER = "+256773712831";
+    private static final String EMAIL = "john.doe@beyonic.com";
+
+    public static void main(String[] args){
+        URL url = null;
+        try {
+            url = new URL(API_ENDPOINT);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+
+            conn.setRequestProperty("Content-Type", "application/json");
+            conn.setRequestProperty("Accept", "application/json");
+            conn.setRequestProperty("charset", CHARSET);
+            conn.setRequestProperty("Authorization", "Token " + API_KEY);
+            conn.setRequestMethod("POST");
+            conn.setDoOutput(true);
+            conn.setDoInput(true);
+
+            JSONObject contact = createContactObject();
+
+            BufferedWriter out = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream()));
+            out.write(contact.toString());
+            out.close();
+
+            System.out.println(conn.getResponseCode() + " // " + conn.getResponseMessage());
+
+            int beyID = 0;
+            try {
+                if (conn.getResponseCode() == 201) {
+                    InputStream inputStream = conn.getInputStream();
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+                    String response = reader.readLine();
+                    reader.close();
+
+                    JSONObject obj = new JSONObject(response);
+                    beyID = obj.getInt("id");
+                    System.out.println("ID of created Contact: " + beyID);
+                }
+            } finally {
+                conn.disconnect();
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static JSONObject createContactObject() throws JSONException {
+        JSONObject contact = new JSONObject();
+        contact.put("phone_number",PHONE_NUMBER);
+        contact.put("first_name",FIRST_NAME);
+        contact.put("last_name",LAST_NAME);
+        contact.put("email",EMAIL);
+        return contact;
+    }
+}
+```
+
 > Sample Response (JSON):
 
 ```json
