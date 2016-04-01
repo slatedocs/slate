@@ -21,6 +21,7 @@ EXEMPLO
     "agreement_number": 4576361,
     "remittance_cnab_pattern": 400,
     "initial_remittance_number": 1,
+    "transmission_code": "987655",
     "_links":
       [
         {"rel":"self","method":"GET","href":"https://app.cobrato.com/api/v1/charge_configs/1"},
@@ -32,7 +33,7 @@ EXEMPLO
 
 ```
 
-As Configurações de Cobrança podem ser de tipos diferentes. Sendo assim, os parâmetros e algums comportamentos irão variar de acordo com o tipo. Atualmente temos os tipos: 
+As Configurações de Cobrança podem ser de tipos diferentes. Sendo assim, os parâmetros e algums comportamentos irão variar de acordo com o tipo. Atualmente temos os tipos:
 
 - Boleto (billet)
 
@@ -58,6 +59,7 @@ As Configurações de Cobrança do tipo **Boleto** (billet), pertencem as suas c
 | agreement_number          | integer         | número do convênio com o banco (apenas para o Bradesco)                                                                           |
 | remittance_cnab_pattern   | integer         | padrão utilizado no arquivo CNAB de remessa                                                                                       |
 | initial_remittance_number | integer         | número inicial de remessa, ou seja, qual foi o último número sequencial de remessa enviado para o banco (apenas para o Bradesco)  |
+| transmission_code         | string          | código de transmissão (apenas para o Santander)                                                                                   |
 | _links                    | array of object | links da configuração de cobrança e de sua conta bancária                                                                         |
 
 ## Informações da Configuração de Cobrança
@@ -99,6 +101,7 @@ EXEMPLO DE CORPO DA RESPOSTA (BOLETO)
     "agreement_number": 4576361,
     "remittance_cnab_pattern": 400,
     "initial_remittance_number": 1,
+    "transmission_code": "987655",
     "_links":
       [
         {"rel":"self","method":"GET","href":"https://app.cobrato.com/api/v1/charge_configs/1"},
@@ -181,6 +184,7 @@ EXEMPLO DE REQUISIÇÃO
           "agreement_number": "4576361",
           "remittance_cnab_pattern": "400",
           "initial_remittance_number": "1"
+          "transmission_code": "987655"
         }'
 
 EXEMPLO DE ESTADO DA RESPOSTA COM SUCESSO
@@ -222,6 +226,7 @@ Cria uma nova Configuração de Cobrança, retornando as informações da mesma 
 | registered_charges        | boolean | (opcional) informa se a configuração de cobrança utiliza boletos registrados ou não, sendo false por padrão                                                         |
 | agreement_number          | integer | (opcional, requerido apenas se registered_charges for `true`) número do convênio com o banco (apenas para o Bradesco)                                               |
 | remittance_cnab_pattern   | integer | (opcional, requerido apenas se registered_charges for `true`) padrão utilizado no arquivo CNAB de remessa. Os valores permitidos são 240 ou 400                     |
+| transmission_code         | string  | (opcional, requerido apenas se registered_charges for `true`) código de transmissão (apenas para o Santander)                                                       |
 | initial_remittance_number | integer | (opcional) número inicial de remessa, ou seja, qual foi o último número sequencial de remessa enviado para o banco (apenas para o Bradesco). Por padrão o valor é 1 |
 
 ## Atualização de Configuração de Cobrança
@@ -288,6 +293,7 @@ Atualiza a Configuração de Cobrança determinada, retornando as informações 
 | registered_charges        | boolean | (opcional) informa se a configuração de cobrança utiliza boletos registrados ou não, sendo false por padrão                                                         |
 | agreement_number          | integer | (opcional, requerido apenas se registered_charges for `true`) número do convênio com o banco (apenas para o Bradesco)                                               |
 | remittance_cnab_pattern   | integer | (opcional, requerido apenas se registered_charges for `true`) padrão utilizado no arquivo CNAB de remessa. Os valores permitidos são 240 ou 400                     |
+| transmission_code         | string  | (opcional, requerido apenas se registered_charges for `true`) código de transmissão (apenas para o Santander)                                                       |
 | initial_remittance_number | integer | (opcional) número inicial de remessa, ou seja, qual foi o último número sequencial de remessa enviado para o banco (apenas para o Bradesco). Por padrão o valor é 1 |
 
 ## Exclusão de Configuração de Cobrança
