@@ -7,7 +7,7 @@ EXEMPLO
 
   {
     "id": 1,
-    "charge_account_id": 9,
+    "charge_config_id": 9,
     "status": "processed",
     "report": {
       "charges_not_found": 0,
@@ -20,11 +20,11 @@ EXEMPLO
         "_links": [{ "rel": "self", "method": "GET", "href": "https://app.cobrato.com/api/v1/charges/45" }]
       }]
     },
-    "_links": 
+    "_links":
       [
-        {"rel": "self", "method": "GET", "href": "https://app.cobrato.com/api/v1/regress_cnabs/1"}, 
-        {"rel": "destroy", "method": "DELETE", "href": "https://app.cobrato.com/api/v1/regress_cnabs/1"}, 
-        {"rel": "charge_account", "method": "GET", "href": "https://app.cobrato.com/api/v1/charge_accounts/1"}, 
+        {"rel": "self", "method": "GET", "href": "https://app.cobrato.com/api/v1/regress_cnabs/1"},
+        {"rel": "destroy", "method": "DELETE", "href": "https://app.cobrato.com/api/v1/regress_cnabs/1"},
+        {"rel": "charge_config", "method": "GET", "href": "https://app.cobrato.com/api/v1/charge_config/1"},
         {"rel": "file", "method": "GET", "href": "https://app.cobrato.com/api/v1/regress_cnabs/1/file"}
       ]
   }
@@ -38,13 +38,13 @@ A utilização desta API não é autorizada a contas com o plano <strong>Gratuit
 
 **Parâmetros**
 
-| Campo              | Tipo            | Comentário                                                                                                                              |
-|--------------------|-----------------|-----------------------------------------------------------------------------------------------------------------------------------------|
-| id                 | integer         | identificador do CNAB de retorno                                                                                                        |
-| charge_account_id  | string          | identificador da conta de cobrança no Cobrato                                                                                           |
-| status             | string          | situação do arquivo CNAB, podendo ser "processing" (processando), "processed" (processado) e "processing_error" (erro de processamento) |
-| report             | string          | relatório de processamento do arquivo CNAB, os parâmetros do relatório se encontram na tabela abaixo                                    |
-| _links             | array of object | links relacionado CNAB de retorno                                                                                                       |
+| Campo            | Tipo            | Comentário                                                                                                                              |
+|------------------|-----------------|-----------------------------------------------------------------------------------------------------------------------------------------|
+| id               | integer         | identificador do CNAB de retorno                                                                                                        |
+| charge_config_id | string          | identificador da configuração de cobrança no Cobrato                                                                                    |
+| status           | string          | situação do arquivo CNAB, podendo ser "processing" (processando), "processed" (processado) e "processing_error" (erro de processamento) |
+| report           | string          | relatório de processamento do arquivo CNAB, os parâmetros do relatório se encontram na tabela abaixo                                    |
+| _links           | array of object | links relacionado CNAB de retorno                                                                                                       |
 
 **Parâmetros do Relatório de Processamento**
 
@@ -71,7 +71,7 @@ EXEMPLO DE REQUISIÇÃO
     -H 'Content-type: application/json' \
     -X GET https://app.cobrato.com/api/v1/regress_cnabs/:id
 
-EXEMPLO DE ESTADO DA RESPOSTA 
+EXEMPLO DE ESTADO DA RESPOSTA
 
     200 OK
 
@@ -79,7 +79,7 @@ EXEMPLO DE CORPO DA RESPOSTA
 
   {
     "id": 1,
-    "charge_account_id": 9,
+    "charge_config_id": 9,
     "status": "processed",
     "report": {
       "charges_not_found": 0,
@@ -92,11 +92,11 @@ EXEMPLO DE CORPO DA RESPOSTA
         "_links": [{ "rel": "self", "method": "GET", "href": "https://app.cobrato.com/api/v1/charges/45" }]
       }]
     },
-    "_links": 
+    "_links":
       [
-        {"rel": "self", "method": "GET", "href": "https://app.cobrato.com/api/v1/regress_cnabs/1"}, 
-        {"rel": "destroy", "method": "DELETE", "href": "https://app.cobrato.com/api/v1/regress_cnabs/1"}, 
-        {"rel": "charge_account", "method": "GET", "href": "https://app.cobrato.com/api/v1/charge_accounts/1"}, 
+        {"rel": "self", "method": "GET", "href": "https://app.cobrato.com/api/v1/regress_cnabs/1"},
+        {"rel": "destroy", "method": "DELETE", "href": "https://app.cobrato.com/api/v1/regress_cnabs/1"},
+        {"rel": "charge_config", "method": "GET", "href": "https://app.cobrato.com/api/v1/charge_configs/1"},
         {"rel": "file", "method": "GET", "href": "https://app.cobrato.com/api/v1/regress_cnabs/1/file"}
       ]
   }
@@ -162,7 +162,7 @@ EXEMPLO DE REQUISIÇÃO
     -H 'Content-type: application/json' \
     -X POST https://app.cobrato.com/api/v1/regress_cnabs \
     -d '{
-          "charge_account_id": 1,
+          "charge_config_id": 1,
           "cnabs": {
             "content":      "MDJSRVRPUk5PMDFDT0JSQU5DQSAgICAgICAzMTMwMDAyMjY5OTAgICA...",
             "content_type": "text/plain"
@@ -182,7 +182,7 @@ EXEMPLO DE CORPO DA RESPOSTA COM INSUCESSO
 
   {
     "errors":{
-      "charge_account_id": ["não pode ficar em branco"],
+      "charge_config_id": ["não pode ficar em branco"],
       "cnabs": ["não pode ficar em branco"]
     }
   }
@@ -193,10 +193,10 @@ Cria um CNAB de retorno inicia o processamento do arquivo.
 
 **Parâmetros**
 
-| Campo             | Tipo   | Comentário                                                                                                                       |
-|-------------------|--------|----------------------------------------------------------------------------------------------------------------------------------|
-| charge_account_id | string | **(requerido)** identificador da conta de cobrança em que o CNAB pertence                                                        |
-| cnabs             | object | **(requerido)** dados do arquivo CNAB de retorno. O "content" deve ser uma string com o conteúdo do arquivo codificado em Base64 |
+| Campo            | Tipo   | Comentário                                                                                                                       |
+|------------------|--------|----------------------------------------------------------------------------------------------------------------------------------|
+| charge_config_id | string | **(requerido)** identificador da configuração de cobrança à qual o arquivo CNAB de retorno pertence                              |
+| cnabs            | object | **(requerido)** dados do arquivo CNAB de retorno. O "content" deve ser uma string com o conteúdo do arquivo codificado em Base64 |
 
 ## Exclusão de CNAB de retorno
 

@@ -7,13 +7,13 @@ EXEMPLO
 
   {
     "id": 1,
-    "charge_account_id": 1,
+    "charge_config_id": 1,
     "status": "processed",
-    "_links": 
+    "_links":
       [
-        {"rel": "self", "method": "GET", "href": "https://app.cobrato.com/api/v1/remittance_cnabs/1"}, 
-        {"rel": "destroy", "method": "DELETE", "href": "https://app.cobrato.com/api/v1/remittance_cnabs/1"}, 
-        {"rel": "charge_account", "method": "GET", "href": "https://app.cobrato.com/api/v1/charge_accounts/1"}, 
+        {"rel": "self", "method": "GET", "href": "https://app.cobrato.com/api/v1/remittance_cnabs/1"},
+        {"rel": "destroy", "method": "DELETE", "href": "https://app.cobrato.com/api/v1/remittance_cnabs/1"},
+        {"rel": "charge_config", "method": "GET", "href": "https://app.cobrato.com/api/v1/charge_configs/1"},
         {"rel": "file", "method": "GET", "href": "https://app.cobrato.com/api/v1/remittance_cnabs/1/file"},
         {"rel": "charges", "method": "GET", "href": "http://localhost:3000/api/v1/remittance_cnabs/1/charges"}
       ]
@@ -28,12 +28,12 @@ A utilização desta API não é autorizada a contas com o plano <strong>Gratuit
 
 **Parâmetros**
 
-| Campo              | Tipo            | Comentário                                                                                                                         |
-|--------------------|-----------------|------------------------------------------------------------------------------------------------------------------------------------|
-| id                 | integer         | identificador do CNAB de remessa                                                                                                   |
-| charge_account_id  | string          | identificador da conta de cobrança no Cobrato                                                                                      |
-| status             | string          | situação da remessa, podendo ser "processing" (processando), "processed" (processado) e "processing_error" (erro de processamento) |
-| _links             | array of object | links relacionado CNAB de remessa                                                                                                  |
+| Campo            | Tipo            | Comentário                                                                                                                         |
+|------------------|-----------------|------------------------------------------------------------------------------------------------------------------------------------|
+| id               | integer         | identificador do CNAB de remessa                                                                                                   |
+| charge_config_id | string          | identificador da configuração de cobrança no Cobrato                                                                               |
+| status           | string          | situação da remessa, podendo ser "processing" (processando), "processed" (processado) e "processing_error" (erro de processamento) |
+| _links           | array of object | links relacionado CNAB de remessa                                                                                                  |
 
 ## Informações do CNAB de Remessa
 
@@ -52,7 +52,7 @@ EXEMPLO DE REQUISIÇÃO
     -H 'Content-type: application/json' \
     -X GET https://app.cobrato.com/api/v1/remittance_cnabs/:id
 
-EXEMPLO DE ESTADO DA RESPOSTA 
+EXEMPLO DE ESTADO DA RESPOSTA
 
     200 OK
 
@@ -60,13 +60,13 @@ EXEMPLO DE CORPO DA RESPOSTA
 
   {
     "id": 1,
-    "charge_account_id": 1,
+    "charge_config_id": 1,
     "status": "processed",
-    "_links": 
+    "_links":
       [
-        {"rel": "self", "method": "GET", "href": "https://app.cobrato.com/api/v1/remittance_cnabs/1"}, 
-        {"rel": "destroy", "method": "DELETE", "href": "https://app.cobrato.com/api/v1/remittance_cnabs/1"}, 
-        {"rel": "charge_account", "method": "GET", "href": "https://app.cobrato.com/api/v1/charge_accounts/1"}, 
+        {"rel": "self", "method": "GET", "href": "https://app.cobrato.com/api/v1/remittance_cnabs/1"},
+        {"rel": "destroy", "method": "DELETE", "href": "https://app.cobrato.com/api/v1/remittance_cnabs/1"},
+        {"rel": "charge_config", "method": "GET", "href": "https://app.cobrato.com/api/v1/charge_configs/1"},
         {"rel": "file", "method": "GET", "href": "https://app.cobrato.com/api/v1/remittance_cnabs/1/file"},
         {"rel": "charges", "method": "GET", "href": "http://localhost:3000/api/v1/remittance_cnabs/1/charges"}
       ]
