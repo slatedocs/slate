@@ -258,7 +258,7 @@ role
 JSONObject updateContent = new JSONObject()
   .put("profile", "new profile");
 
-user.update(new KuzzleResponseListener<KuzzleProfile>() {
+user.update(updateContent, new KuzzleResponseListener<KuzzleProfile>() {
   @Override
   public void onSuccess(KuzzleProfile updatedProfile) {
 
@@ -273,10 +273,11 @@ user.update(new KuzzleResponseListener<KuzzleProfile>() {
 
 Performs a partial content update on this object.
 
-#### update([options], [callback])
+#### update(content, [options], [callback])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
+| ``content`` | JSON Object | Profile content |
 | ``options`` | JSON Object | Optional parameters |
 | ``callback`` | function | Optional callback handling the response |
 

@@ -232,7 +232,7 @@ JSONObject updateContent = new JSONObject()
   .put("firstname", "My Name Is")
   .put("lastname", "Jonas");
 
-user.update(new KuzzleResponseListener<KuzzleUser>() {
+user.update(updateContent, new KuzzleResponseListener<KuzzleUser>() {
   @Override
   public void onSuccess(KuzzleUser updatedUser) {
 
@@ -247,10 +247,11 @@ user.update(new KuzzleResponseListener<KuzzleUser>() {
 
 Performs a partial content update on this object.
 
-#### update([options], [callback])
+#### update(content, [options], [callback])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
+| ``content`` | JSON Object | User content |
 | ``options`` | JSON Object | Optional parameters |
 | ``callback`` | function | Optional callback handling the response |
 
