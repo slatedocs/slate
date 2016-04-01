@@ -17,7 +17,7 @@ search: true
 
 # Introduction
 
-Welcome to the CB Core Search API documentation. This is the API used for generic adding, searching, and deleting of documents.
+Welcome Joe! to the CB Core Search API documentation. This is the API used for generic adding, searching, and deleting of documents.
 
 
 The first thing you will have to find out is the correct API endpoint to use.
