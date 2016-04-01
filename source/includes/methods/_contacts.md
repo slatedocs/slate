@@ -189,14 +189,14 @@ metadata | No | JSON String | "{'my_id': '123ASDAsd123'}" | Custom attributes to
 > Sample Request:
 
 ```shell
-curl https://app.beyonic.com/api/contacts/23 -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900"
+curl https://app.beyonic.com/api/contacts/44702 -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900"
 ```
 
 ```ruby
 require 'beyonic'
 Beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
-contact = Beyonic::Contact.get(23)
+contact = Beyonic::Contact.get(44702)
 ```
 
 ```php
@@ -204,7 +204,7 @@ contact = Beyonic::Contact.get(23)
 require_once('./lib/Beyonic.php');
 Beyonic::setApiKey("ab594c14986612f6167a975e1c369e71edab6900");
 
-$contact = Beyonic_Contact::get(23);
+$contact = Beyonic_Contact::get(44702);
 ?>
 ```
 
@@ -212,7 +212,7 @@ $contact = Beyonic_Contact::get(23);
 import beyonic
 beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
-contact = beyonic.Contact.get(23)
+contact = beyonic.Contact.get(44702)
 
 ```
 
@@ -235,7 +235,7 @@ public class SingleContactExample {
     public static void main(String[] args){
         URL url = null;
         try {
-            url = new URL(API_ENDPOINT + "/1");
+            url = new URL(API_ENDPOINT + "/44702");
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 
             conn.setRequestProperty("Content-Type", "application/json");
@@ -270,19 +270,19 @@ public class SingleContactExample {
 
 ```json
 {
-    "id": 23,
-    "organization": "Beyonic",
-    "first_name": "Suzanne",
-    "last_name": "Kwagala",
-    "email": "suzanne@beyonic.com",
-    "phone_number": "+256784522611",
-    "type": "employee",
-    "status": "active",
-    "metadata": null,
-    "created": "2013-09-19T21:26:10Z",
-    "author": 1,
-    "modified": "2015-04-14T18:21:47Z",
-    "updated_by": 42
+    "id":44702,
+    "organization":4,
+    "first_name":"John",
+    "last_name":"Doe",
+    "email":null,
+    "phone_number":"+41421234567",
+    "type":"employee",
+    "status":"active",
+    "metadata":{},
+    "created":"2016-03-30T17:44:30Z",
+    "author":134,
+    "modified":"2016-03-30T17:45:22Z",
+    "updated_by":134
 }
 ```
 

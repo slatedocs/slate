@@ -245,14 +245,14 @@ Callback URLs are used to send notifications of changes in payment status. Not a
 > Sample Request:
 
 ```shell
-curl https://app.beyonic.com/api/payments/2314 -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900"
+curl https://app.beyonic.com/api/payments/22744 -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900"
 ```
 
 ```ruby
 require 'beyonic'
 Beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
-payment = Beyonic::Payment.get(2314)
+payment = Beyonic::Payment.get(22744)
 ```
 
 ```php
@@ -260,7 +260,7 @@ payment = Beyonic::Payment.get(2314)
 require_once('./lib/Beyonic.php');
 Beyonic::setApiKey("ab594c14986612f6167a975e1c369e71edab6900");
 
-$payment = Beyonic_Payment::get(2314);
+$payment = Beyonic_Payment::get(22744);
 ?>
 ```
 
@@ -268,7 +268,7 @@ $payment = Beyonic_Payment::get(2314);
 import beyonic
 beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
-payment = beyonic.Payment.get(2314)
+payment = beyonic.Payment.get(22744)
 
 ```
 
@@ -291,7 +291,7 @@ public class SinglePaymentExample {
     public static void main(String[] args){
         URL url = null;
         try {
-            url = new URL(API_ENDPOINT + "/1");
+            url = new URL(API_ENDPOINT + "/22744");
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 
             conn.setRequestProperty("Content-Type", "application/json");
@@ -326,14 +326,14 @@ public class SinglePaymentExample {
 
 ```json
 {
-    "id": 2314, 
-    "organization": 1, 
-    "amount": "30", 
+    "id": 22744,
+    "organization": 4,
+    "amount": "1200.0000",
     "currency": "UGX",
     "payment_type": "money",
     "metadata": {"id": 1234, "name": "Lucy"}, 
     "description": "Per diem payment", 
-    "phone_nos": ["+256772781923"], 
+    "phone_nos": ["+256773712831"],
     "state": "new", 
     "last_error": null,
     "rejected_reason": null,
@@ -341,12 +341,12 @@ public class SinglePaymentExample {
     "rejected_time": null,
     "cancelled_reason": null,
     "cancelled_by": null,
-    "cancelled_time": null, 
-    "created": "2014-11-22T20:57:04.017Z",
-    "author": 15,
-    "modified": "2014-11-22T20:57:04.018Z",
-    "updated_by": null,
-    "start_date": "2014-11-22T20:57:04.018Z"
+    "cancelled_time": null,
+    "created":"2016-03-31T08:08:01Z",
+    "author":134,
+    "modified":"2016-03-31T08:08:45Z",
+    "updated_by":134,
+    "start_date":"2016-03-31T08:08:01Z"
 }
 ```
 
