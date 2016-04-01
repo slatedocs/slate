@@ -90,7 +90,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import static org.junit.Assert.assertTrue;
 
-public class CreateContact{
+public class CreateContactExample {
 
     private static final String API_ENDPOINT = "https://app.beyonic.com/api/contacts";
     private static final String API_KEY = "ab594c14986612f6167a975e1c369e71edab6900";
@@ -226,7 +226,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 
-public class SingleContact {
+public class SingleContactExample {
 
     private static final String API_ENDPOINT = "https://app.beyonic.com/api/contacts";
     private static final String API_KEY = "ab594c14986612f6167a975e1c369e71edab6900";
@@ -331,7 +331,7 @@ import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class ListAllContacts{
+public class ListAllContactsExample{
 
     private static final String API_ENDPOINT = "https://app.beyonic.com/api/contacts";
     private static final String API_KEY = "ab594c14986612f6167a975e1c369e71edab6900";
@@ -458,7 +458,7 @@ import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class FilterContacts{
+public class FilterContactsExample{
 
     private static final String API_ENDPOINT = "https://app.beyonic.com/api/contacts";
     private static final String API_KEY = "ab594c14986612f6167a975e1c369e71edab6900";

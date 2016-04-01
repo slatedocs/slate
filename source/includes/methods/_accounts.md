@@ -61,7 +61,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class ListAllAccounts {
+public class ListAllAccountsExample {
 
     private static final String API_ENDPOINT = "https://app.beyonic.com/api/accounts";
     private static final String API_KEY = "ab594c14986612f6167a975e1c369e71edab6900";
@@ -182,7 +182,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class FilterAccounts {
+public class FilterAccountsExample {
 
     private static final String API_ENDPOINT = "https://app.beyonic.com/api/accounts";
     private static final String API_KEY = "ab594c14986612f6167a975e1c369e71edab6900";

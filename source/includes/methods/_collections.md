@@ -69,7 +69,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 
-public class SingleCollection {
+public class SingleCollectionExample {
 
     private static final String API_ENDPOINT = "https://app.beyonic.com/api/collections";
     private static final String API_KEY = "ab594c14986612f6167a975e1c369e71edab6900";
@@ -176,7 +176,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class ListAllCollections {
+public class ListAllCollectionsExample {
 
     private static final String API_ENDPOINT = "https://app.beyonic.com/api/collections";
     private static final String API_KEY = "ab594c14986612f6167a975e1c369e71edab6900";
@@ -324,7 +324,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class FilterCollections {
+public class FilterCollectionsExample {
 
     private static final String API_ENDPOINT = "https://app.beyonic.com/api/collections";
     private static final String API_KEY = "ab594c14986612f6167a975e1c369e71edab6900";
@@ -450,7 +450,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class ClaimUnmatchedCollection {
+public class ClaimUnmatchedCollectionExample {
 
     private static final String API_ENDPOINT = "https://app.beyonic.com/api/collections";
     private static final String API_KEY = "ab594c14986612f6167a975e1c369e71edab6900";
