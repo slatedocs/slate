@@ -35,6 +35,7 @@ response = constructor_instance.add(
 ```
 
 ```php
+<?php
 $response = $constructor->add(
   "power drill", // item name
   "Search Suggestions" // autocomplete section name
@@ -119,6 +120,23 @@ response = constructorio.add_batch(
 );
 ```
 
+```php
+<?php
+response = $constructor->addBatch(
+  array("power drill", "hammer"),
+  "Search Suggestions"
+);
+```
+
+```php
+<?php
+$toolBox = array(
+   array("item_name" => "power drill", "url" => "/products/power-drill", "image_url" => "/images/power-drill.jpg"),
+   array("item_name" => "hammer", "url" => "/products/hammer", "image_url" => "/images/hammer.jpg")
+);
+response = $constructor->addBatch($toolBox, "Products");
+```
+
 ```perl
 my $response = $constructorio->add_batch(
   items => [ { item_name => "power drill" }, { item_name => "hammer" } ],
@@ -126,7 +144,7 @@ my $response = $constructorio->add_batch(
 );
 ```
 
-> The above command returns a 204 Success response on success.
+> The above command(s) return a 204 Success response on success.
 
 To add multiple items to your autocomplete index as a batch, use the `POST /batch_items` call. The `items` parameter is required and is an array of item hashes with the same attributes as defined in the `Add an Item` resource.  Because your autocomplete can have multiple sections, like categories, search suggestions, and direct links to products, you must specify which section you are adding an item to. You can do this with the `autocomplete_section` parameter.
 
@@ -170,6 +188,7 @@ response = constructor_instance.remove(item_name="power drill", autocomplete_sec
 ```
 
 ```php
+<?php
 $response = $constructor->remove(
   "power drill", // item name
   "Search Suggestions" // autocomplete section name
@@ -254,6 +273,7 @@ response = constructor_instance.modify(
 ```
 
 ```php
+<?php
 $response = $constructor->modify(
   "power drill", // item name
   "super power drill", // new item name (this is required)

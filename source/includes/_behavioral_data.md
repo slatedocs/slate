@@ -30,6 +30,7 @@ response = constructor_instance.track_search(
 ```
 
 ```php
+<?php
 $response = $constructor->trackSearch(
   "xyz", // term name
   array("num_results" => 302) // array of properties of the search
@@ -98,6 +99,7 @@ response = constructor_instance.track_click_through(
 ```
 
 ```php
+<?php
 $response = $constructor.trackClickThrough(
   "xyz", // term name
   "Search Suggestions", // autocomplete section name
@@ -172,6 +174,7 @@ response = constructor_instance.track_conversion(
 ```
 
 ```php
+<?php
 $response = $constructor.trackConversion(
   "xyz", // term name
   "Search Suggestions", // autocomplete section name

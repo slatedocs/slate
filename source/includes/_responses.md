@@ -25,6 +25,7 @@ print response
 ```
 
 ```php
+<?php
 // responses are converted to arrays for your convenience
 $response = $constructor->verify();
 print_r($response);

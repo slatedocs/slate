@@ -36,6 +36,7 @@ constructor_instance = ConstructorIO(
 ```
 
 ```php
+<?php
 // if using Composer autoloading:
 // require_once "vendor/autoload.php";
 use ConstructorIO\ConstructorIO;
@@ -91,6 +92,7 @@ response = constructor_instance.verify()
 ```
 
 ```php
+<?php
 $response = $constructor->verify();
 ```
 
