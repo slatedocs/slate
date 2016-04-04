@@ -99,6 +99,80 @@ beyonic.Payment.create(phonenumber='+256773712831',
                        )
 ```
 
+```java
+package com.beyonic.examples.payments;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+import java.io.*;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
+public class CreatePayment {
+
+    private static final String API_ENDPOINT = "https://app.beyonic.com/api/payments";
+    private static final String API_KEY = "ab594c14986612f6167a975e1c369e71edab6900";
+    private static final String CHARSET = "UTF-8";
+    private static final String PHONE_NUMBER = "+256773712831";
+    private static final String CURRENCY = "UGX";
+    private static final String DESCRIPTION = "Per Diem";
+    private static final String AMOUNT = "1200";
+    private static final String CALLBACK_URL = "https://my.website/payments/callback";
+
+    public static void main(String[] args){
+        URL url = null;
+        try {
+            url = new URL(API_ENDPOINT);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+
+            conn.setRequestProperty("Content-Type", "application/json");
+            conn.setRequestProperty("Accept", "application/json");
+            conn.setRequestProperty("charset", CHARSET);
+            conn.setRequestProperty("Authorization", "Token " + API_KEY);
+            conn.setRequestMethod("POST");
+            conn.setDoOutput(true);
+            conn.setDoInput(true);
+
+            JSONObject paymentObject = createPaymentObject();
+
+            BufferedWriter out = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream()));
+            out.write(paymentObject.toString());
+            out.close();
+
+            System.out.println(conn.getResponseCode() + " // " + conn.getResponseMessage());
+
+            try {
+                if (conn.getResponseCode() == 201) {
+                    InputStream inputStream = conn.getInputStream();
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+                    String response = reader.readLine();
+                    reader.close();
+
+                    JSONObject obj = new JSONObject(response);
+                    int paymentID = obj.getInt("id");
+                    System.out.println("ID of created Payment: " + paymentID);
+                }
+            } finally {
+                conn.disconnect();
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static JSONObject createPaymentObject() throws JSONException {
+        JSONObject payment = new JSONObject();
+        payment.put("phonenumber", PHONE_NUMBER);
+        payment.put("amount", AMOUNT);
+        payment.put("currency", CURRENCY);
+        payment.put("description", DESCRIPTION);
+        payment.put("callback_url", CALLBACK_URL);
+        return payment;
+    }
+}
+```
+
 > Sample Response (JSON):
 
 ```json
@@ -178,14 +252,14 @@ Callback URLs are used to send notifications of changes in payment status. Not a
 > Sample Request:
 
 ```shell
-curl https://app.beyonic.com/api/payments/2314 -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900"
+curl https://app.beyonic.com/api/payments/22744 -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900"
 ```
 
 ```ruby
 require 'beyonic'
 Beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
-payment = Beyonic::Payment.get(2314)
+payment = Beyonic::Payment.get(22744)
 ```
 
 ```php
@@ -193,7 +267,7 @@ payment = Beyonic::Payment.get(2314)
 require_once('./lib/Beyonic.php');
 Beyonic::setApiKey("ab594c14986612f6167a975e1c369e71edab6900");
 
-$payment = Beyonic_Payment::get(2314);
+$payment = Beyonic_Payment::get(22744);
 ?>
 ```
 
@@ -201,23 +275,73 @@ $payment = Beyonic_Payment::get(2314);
 import beyonic
 beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
-payment = beyonic.Payment.get(2314)
+payment = beyonic.Payment.get(22744)
 
+```
+
+```java
+package com.beyonic.examples.payments;
+
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
+
+public class SinglePaymentExample {
+
+    private static final String API_ENDPOINT = "https://app.beyonic.com/api/payments";
+    private static final String API_KEY = "ab594c14986612f6167a975e1c369e71edab6900";
+    private static final String CHARSET = "UTF-8";
+
+    public static void main(String[] args){
+        URL url = null;
+        try {
+            url = new URL(API_ENDPOINT + "/22744");
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+
+            conn.setRequestProperty("Content-Type", "application/json");
+            conn.setRequestProperty("Accept", "application/json");
+            conn.setRequestProperty("charset", CHARSET);
+            conn.setRequestProperty("Authorization", "Token " + API_KEY);
+
+            System.out.println(conn.getResponseCode() + " // " + conn.getResponseMessage());
+
+            try {
+                if (conn.getResponseCode() == 200) {
+                    InputStream inputStream = conn.getInputStream();
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+                    String response = reader.readLine();
+                    reader.close();
+
+                    System.out.println(response);
+                }
+            } finally {
+                conn.disconnect();
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+}
 ```
 
 > Sample Response (JSON):
 
 ```json
 {
-    "id": 2314, 
-    "organization": 1, 
-    "amount": "30", 
+    "id": 22744,
+    "organization": 4,
+    "amount": "1200.0000",
     "currency": "UGX",
     "account": "1",
     "payment_type": "money",
     "metadata": {"id": 1234, "name": "Lucy"}, 
     "description": "Per diem payment", 
-    "phone_nos": ["+256772781923"], 
+    "phone_nos": ["+256773712831"],
     "state": "new", 
     "last_error": null,
     "rejected_reason": null,
@@ -225,12 +349,12 @@ payment = beyonic.Payment.get(2314)
     "rejected_time": null,
     "cancelled_reason": null,
     "cancelled_by": null,
-    "cancelled_time": null, 
-    "created": "2014-11-22T20:57:04.017Z",
-    "author": 15,
-    "modified": "2014-11-22T20:57:04.018Z",
-    "updated_by": null,
-    "start_date": "2014-11-22T20:57:04.018Z"
+    "cancelled_time": null,
+    "created":"2016-03-31T08:08:01Z",
+    "author":134,
+    "modified":"2016-03-31T08:08:45Z",
+    "updated_by":134,
+    "start_date":"2016-03-31T08:08:01Z"
 }
 ```
 
@@ -270,6 +394,55 @@ beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
 payments = beyonic.Payment.list()
 
+```
+
+```java
+package com.beyonic.examples.payments;
+
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
+public class ListAllPaymentsExample {
+
+    private static final String API_ENDPOINT = "https://app.beyonic.com/api/payments";
+    private static final String API_KEY = "ab594c14986612f6167a975e1c369e71edab6900";
+    private static final String CHARSET = "UTF-8";
+
+    public static void main(String[] args){
+        URL url = null;
+        try {
+            url = new URL(API_ENDPOINT);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+
+            conn.setRequestProperty("Content-Type", "application/json");
+            conn.setRequestProperty("Accept", "application/json");
+            conn.setRequestProperty("charset", CHARSET);
+            conn.setRequestProperty("Authorization", "Token " + API_KEY);
+
+            System.out.println(conn.getResponseCode() + " // " + conn.getResponseMessage());
+
+            try {
+                if (conn.getResponseCode() == 200) {
+                    InputStream inputStream = conn.getInputStream();
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+                    String response = reader.readLine();
+                    reader.close();
+
+                    System.out.println(response);
+                }
+            } finally {
+                conn.disconnect();
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+}
 ```
 
 > Sample Response (JSON)
@@ -371,6 +544,55 @@ beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
 payments = beyonic.Payment.list(amount=500)
 
+```
+
+```java
+package com.beyonic.examples.payments;
+
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
+public class FilterPaymentsExample {
+
+    private static final String API_ENDPOINT = "https://app.beyonic.com/api/payments";
+    private static final String API_KEY = "ab594c14986612f6167a975e1c369e71edab6900";
+    private static final String CHARSET = "UTF-8";
+
+    public static void main(String[] args){
+        URL url = null;
+        try {
+            url = new URL(API_ENDPOINT + "?amount=500");
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+
+            conn.setRequestProperty("Content-Type", "application/json");
+            conn.setRequestProperty("Accept", "application/json");
+            conn.setRequestProperty("charset", CHARSET);
+            conn.setRequestProperty("Authorization", "Token " + API_KEY);
+
+            System.out.println(conn.getResponseCode() + " // " + conn.getResponseMessage());
+
+            try {
+                if (conn.getResponseCode() == 200) {
+                    InputStream inputStream = conn.getInputStream();
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+                    String response = reader.readLine();
+                    reader.close();
+
+                    System.out.println(response);
+                }
+            } finally {
+                conn.disconnect();
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+}
 ```
 
 You can search or filter payments on the following fields. Simply add them to your request as shown in the examples. You can combine multiple filters. Note that filters return exact matches only.
