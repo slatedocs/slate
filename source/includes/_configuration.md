@@ -401,10 +401,14 @@ The following libraries are currently instrumented:
 * ActiveRecord
 * ActionView
 * ActionController
+* ElasticSearch
+* HTTPClient
+* InfluxDB
 * Mongoid
 * Net::HTTP
 * Moped
 * Middleware
+* Redis
 
 Additionally, [Scout can also instrument request queuing time](#request-queuing).
 
