@@ -244,6 +244,20 @@ The following configuration settings are available:
           No
         </td>
       </tr>
+      <tr>
+        <th>
+          disabled_instruments
+        </th>
+        <td>
+          An Array of instruments that Scout should not install. Each Array element should should be a string-ified, case-sensitive class name (ex: <code>['Elasticsearch','HttpClient']</code>). The default installed instruments can be viewed in the <a href="https://github.com/scoutapp/scout_apm_ruby/tree/master/lib/scout_apm/instruments" target="_blank">agent source</a>.
+        </td>
+        <td>
+          <code>[]</code>
+        </td>
+        <td>
+          No
+        </td>
+      </tr>
     </tbody>
   </table>
 
