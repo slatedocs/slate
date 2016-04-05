@@ -351,7 +351,7 @@ report-id | <span class="label label-required">Required</span> The unique ID for
   	"summary": {
       "business_name": "Iron Galaxy Studios LLC",
       "address": "300 E Colorado Blvd, Pasadena, CA 91101, United States",
-      "phone_number": "07765 223 761",
+      "telephone": "07765 223 761",
       "website_address": "http://www.example.com",
       "telephone": "+1 123-456-7890",
       "opening_hours": [
