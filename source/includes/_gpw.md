@@ -348,43 +348,41 @@ report-id | <span class="label label-required">Required</span> The unique ID for
 {
   "success": true,
   "results": {
-    "overview": {
-      "iron": {
-        "domain_authority": 30,
-        "citations_count": 99,
-        "backlinks": 557,
-        "num_reviews": 2,
-        "num_photos": 0,
-        "num_videos": 0,
-        "categories": [
-          "Hotel",
-          "General Contractor",
-          "Non-Profit Organization",
-          "Steel Fabricator",
-          "Metal Fabricator"
-        ]
-      },
-      "gold": {
-        "domain_authority": 34,
-        "citations_count": 82,
-        "backlinks": 3354,
-        "num_reviews": 19,
-        "num_photos": 2,
-        "num_videos": 0,
-        "categories": [
-          "Gift Basket Store",
-          "Hotel",
-          "Event Ticket Seller",
-          "Car Dealer",
-          "Marketing Consultant"
-        ]
-      }
-    },
+  	"summary": {
+      "business_name": "Iron Galaxy Studios LLC",
+      "address": "300 E Colorado Blvd, Pasadena, CA 91101, United States",
+      "telephone": "+1 123-456-7890",
+      "website_address": "http://www.example.com",
+      "opening_hours": [
+        "Wednesday 4PM–1AM",
+        "Thursday 4PM–1AM",
+        "Friday 4PM–1AM",
+        "Saturday 4PM–1AM",
+        "Sunday(Easter) 4PM–1AM Hours might differ",
+        "Monday 4PM–1AM",
+        "Tuesday 4PM–1AM"
+      ],
+      "profile_url": "https://www.google.co.uk/search?q=Iron+Galaxy+Studios+LLC&oq=Iron+Galaxy+Studios+LLC",
+      "claimed": false,
+      "citations_count": 74,
+      "domain_authority": 37.65,
+      "backlinks": 1395,
+      "num_reviews": 6,
+      "star_rating": 4,
+      "review_content": "The Hotel is very conveniently located and the room nice",
+      "num_photos": 0,
+      "categories": [
+                    "Financial Planner"
+                  ]
+     },          
     "keywords": {
       "iron": {
+        "client_rank": 1,
         "top_10": [
           {
             "business_name": "Iron Galaxy Studios LLC",
+            "rank": "A",
+            "client_business": true,
             "profile_url": "https://www.google.co.uk/search?q=Iron+Galaxy+Studios+LLC&oq=Iron+Galaxy+Studios+LLC",
             "claimed": false,
             "citations_count": 74,
@@ -399,6 +397,8 @@ report-id | <span class="label label-required">Required</span> The unique ID for
           },
           {
             "business_name": "Iron Financial Management Inc",
+            "rank": "B",
+            "client_business": false,
             "profile_url": "https://www.google.co.uk/search?newwindow=1&safe=active&q=Iron+Financial+Management+Inc",
             "claimed": false,
             "citations_count": 118,
@@ -413,6 +413,8 @@ report-id | <span class="label label-required">Required</span> The unique ID for
           },
           {
             "business_name": "Chicago Tube and Iron Company",
+            "rank": "C",
+            "client_business": false,            
             "profile_url": "https://www.google.co.uk/search?newwindow=1&safe=active&q=Chicago+Tube+and+Iron+Company+Chicago",
             "claimed": false,
             "citations_count": 106,
@@ -430,6 +432,8 @@ report-id | <span class="label label-required">Required</span> The unique ID for
           },
           {
             "business_name": "Acorn Wire &amp; Iron Works LLC",
+            "rank": "D",
+            "client_business": false,                   
             "profile_url": "https://www.google.co.uk/search?newwindow=1&safe=active&gbv=2&q=Acorn+Wire+%26+Iron+Works+LLC%2C+chicago",
             "claimed": false,
             "citations_count": 56,
@@ -444,6 +448,8 @@ report-id | <span class="label label-required">Required</span> The unique ID for
           },
           {
             "business_name": "Iron &amp; Wire Custom Metal Studio LLC",
+            "rank": "E",
+            "client_business": false,                   
             "profile_url": "https://www.google.co.uk/search?newwindow=1&safe=active&gbv=2&q=Iron+%26+Wire+Custom+Metal+Studio+LLC%2C+chicago",
             "claimed": true,
             "citations_count": 25,
@@ -460,6 +466,8 @@ report-id | <span class="label label-required">Required</span> The unique ID for
           },
           {
             "business_name": "Adams Street Iron Inc",
+            "rank": "F",
+            "client_business": false,                   
             "profile_url": "https://www.google.co.uk/search?newwindow=1&safe=active&biw=1277&bih=573&q=Adams+Street+Iron+Inc%2C+Chicago",
             "claimed": false,
             "citations_count": 66,
@@ -475,6 +483,8 @@ report-id | <span class="label label-required">Required</span> The unique ID for
           },
           {
             "business_name": "Iron Workers Union",
+            "rank": "G",
+            "client_business": false,                   
             "profile_url": "https://www.google.co.uk/search?newwindow=1&safe=active&gbv=2&q=Iron+Workers+Union%2C+chicago+60130",
             "claimed": false,
             "citations_count": 39,
@@ -490,6 +500,8 @@ report-id | <span class="label label-required">Required</span> The unique ID for
           },
           {
             "business_name": "Shaw Environmental/Infrstrctr",
+            "rank": "H",
+            "client_business": false,                   
             "profile_url": "https://www.google.co.uk/search?newwindow=1&safe=active&gbv=2&q=Shaw+Environmental%2FInfrstrctr%2C+chicago",
             "claimed": false,
             "citations_count": 52,
