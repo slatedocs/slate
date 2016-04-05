@@ -179,7 +179,7 @@ This packet is always a response packet and is sent from Neblina to the host to 
 
 ### Debug - Stream the BLE Received Signal Strength Indicator, RSSI (0x07)
 ```c 
-#define DEBUG_CMD_GET_RSSI 0x07
+#define DEBUG_CMD_STREAM_RSSI 0x07
 ```
 In the command mode, the packet enables/disables the streaming of the BLE signal strength, i.e., RSSI, in dB, if there is a BLE connection. Byte#8 will determine whether the RSSI information should be streamed or not. The command packet is given below:
 
