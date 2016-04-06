@@ -8861,7 +8861,11 @@ High, Med, or Low based on the percentage of power usage.
 
 ## HpiLOFederationGroup
 
-This manages iLO's participation in Federation groups.
+This manages iLO's participation in Federation groups.  To join a new or existing Federation group, POST the group details to the Federation Groups collection.  The group name, key and at least one privilege must be included in the POST body.
+
+> example POST `https://{iLO}/redfish/v1/managers/{item}/federationgroups/`
+> {"Name": "group name", "Key": "group passphrase", "Privileges": {"LoginPriv": true}}
+
 
 **Properties**
 
