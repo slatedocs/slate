@@ -1,9 +1,15 @@
 ## Datasets
-Datasets are the primary containers of statistical data in Crunch. Datasets contain a collection of [variables](#variables), with which analyses can be composed, saved, and exported. These analyses may include filters, which users can define and persist. Users can also share datasets with each other.
+Datasets are the primary containers of statistical data in Crunch. Datasets 
+contain a collection of [variables](#variables), with which analyses can be 
+composed, saved, and exported. These analyses may include filters, which users 
+can define and persist. Users can also share datasets with each other.
 
-Datasets are comprised of one or more batches of data uploaded to Crunch, and additional batches can be appended to datasets. Similarly, variables from other datasets can be joined onto a dataset.
+Datasets are comprised of one or more batches of data uploaded to Crunch, and 
+additional batches can be appended to datasets. Similarly, variables from other 
+datasets can be joined onto a dataset.
 
-As with other objects in Crunch, references to the set of dataset entities are exposed in a catalog. This catalog can be organized and ordered.
+As with other objects in Crunch, references to the set of dataset entities are 
+exposed in a catalog. This catalog can be organized and ordered.
 
 ### Catalog
 
@@ -90,7 +96,9 @@ crGET("https://beta.crunch.io/api/datasets/")
 
 `GET /datasets/`
 
-When authenticated, GET returns 200 status with a Shoji Catalog of datasets to which the authenticated user has access. Catalog tuples contain the following attributes:
+When authenticated, GET returns 200 status with a Shoji Catalog of datasets to 
+which the authenticated user has access. Catalog tuples contain the following 
+attributes:
 
 Name | Type | Default | Description
 ---- | ---- | ------- | -----------
@@ -109,7 +117,11 @@ current_editor | URL or null | | URL of the user entity that is currently editin
 current_editor_name | string or null | | That user's name, for display
 
 <aside class="notice">
-    A user may have access to a dataset because someone has shared it directly with him, or because someone has shared it with a team of which he is a member. If a user has access to a dataset from different sources, be it by multiple teams or by direct sharing, the final permissions they have on the dataset will be the maximum of all the permissions granted.
+    A user may have access to a dataset because someone has shared it directly 
+    with him, or because someone has shared it with a team of which he is a 
+    member. If a user has access to a dataset from different sources, be it by 
+    multiple teams or by direct sharing, the final permissions they have on the 
+    dataset will be the maximum of all the permissions granted.
 </aside>
 
 #### PATCH
@@ -242,9 +254,12 @@ ds <- newDataset(df, name="Trouble with Tribbles",
 
 `POST /datasets/`
 
-POST a JSON object to create a new Dataset; a 201 indicates success, and the returned Location header refers to the new Dataset resource.
+POST a JSON object to create a new Dataset; a 201 indicates success, and the 
+returned Location header refers to the new Dataset resource.
 
-The body must contain a "name", and additional parameters "description" and "archived" are allowed. You can also include a Crunch Table in a "table" key, as discussed in the Feature Guide. Sending any other attribute will return a 400 response.
+The body must contain a "name", and additional parameters "description" and 
+"archived" are allowed. You can also include a Crunch Table in a "table" key, 
+as discussed in the Feature Guide. Sending any other attribute will return a 400 response.
 
 ### Other catalogs
 
@@ -254,15 +269,19 @@ In addition to `/datasets/`, there are a few other catalogs of datasets in the A
 
 `/teams/{team_id}/datasets/`
 
-A Shoji Catalog of datasets that have been shared with this team. These datasets are not included in the primary dataset catalog. See [teams](#teams) for more.
+A Shoji Catalog of datasets that have been shared with this team. These datasets 
+are not included in the primary dataset catalog. See [teams](#teams) for more.
 
 #### Filter datasets by name
 
 `/datasets/by_name/{dataset_name}/`
 
-The `by_name` catalog returns (on GET) a Shoji Catalog that is a subset of `/datasets/` where the dataset name matches the "dataset_name" value. Matches are case sensitive.
+The `by_name` catalog returns (on GET) a Shoji Catalog that is a subset of 
+`/datasets/` where the dataset name matches the "dataset_name" value. Matches 
+are case sensitive.
 
-Verbs other than GET are not supported on this subcatalog. PATCH and POST at the primary dataset catalog.
+Verbs other than GET are not supported on this subcatalog. PATCH and POST at
+ the primary dataset catalog.
 
 ### Entity
 
@@ -300,7 +319,10 @@ weight | URL | null | Points to the current weight variable applied for the give
 
 `PATCH /datasets/{dataset_id}/`
 
-See above about PATCHing the dataset catalog for all attributes duplicated on the entity and the catalog. You may PATCH those attributes on the entity, but you are encouraged to PATCH the catalog instead. The two attributes appearing on the entity and not the catalog, "notes" and "weight", are modifiable by PATCH here.
+See above about PATCHing the dataset catalog for all attributes duplicated on 
+the entity and the catalog. You may PATCH those attributes on the entity, but you 
+are encouraged to PATCH the catalog instead. The two attributes appearing on the 
+entity and not the catalog, "notes" and "weight", are modifiable by PATCH here.
 
 A successful PATCH request returns a 204 response. The attributes changed will be seen
 by all users with access to this dataset; i.e., names, descriptions, and archived
@@ -309,7 +331,9 @@ state are not merely attributes of your view of the data but of the datasets the
 Authorization is required: you must have "edit" privileges on this dataset.
  If you try to PATCH and are not authorized, you will receive a 403 response
  and no changes will be made. If you have edit permissions but are not the
- current editor of this dataset, PATCH requests of anything other than "current_editor" will respond with 409 status. You will need first to PATCH to make yourself
+ current editor of this dataset, PATCH requests of anything other than 
+ "current_editor" will respond with 409 status. You will need first to PATCH to 
+ make yourself
   the current editor and then proceed to make the desired changes.
 
 When PATCHing, you may include only the keys that are being
@@ -332,7 +356,8 @@ Only Users, Teams or Projects can be set as owners of a dataset.
 
 `DELETE /datasets/{dataset_id}/`
 
-With sufficient authorization, a successful DELETE request removes the dataset from the Crunch system and responds with 204 status.
+With sufficient authorization, a successful DELETE request removes the dataset 
+from the Crunch system and responds with 204 status.
 
 #### Views
 
@@ -371,9 +396,15 @@ Parameter | Description
 filter | A Crunch filter expression
 
 GET returns a Shoji View with summary information about this dataset containing
- its number of rows (weighted and unweighted, with and without your applied filters), as well as the number of variables and columns. The column count will differ from the variable count when derived and array variables are present--these variable types don't necessarily have their own columns of data behind them. The column count is useful for estimating load time and file size when exporting.
+ its number of rows (weighted and unweighted, with and without your applied 
+ filters), as well as the number of variables and columns. The column count 
+ will differ from the variable count when derived and array variables are 
+ present--these variable types don't necessarily have their own columns of d
+ ata behind them. The column count is useful for estimating load time and 
+ file size when exporting.
 
-If a `filter` is included, the "filtered" counts will be with respect to that expression. If omitted, your applied filters will be used.
+If a `filter` is included, the "filtered" counts will be with respect to that 
+expression. If omitted, your applied filters will be used.
 
 ```json
 {
@@ -407,9 +438,12 @@ If a `filter` is included, the "filtered" counts will be with respect to that ex
 
 Exclusion filters allow you to drop rows of data without permanently deleting them.
 
-GET on this resource returns a Shoji Entity with a filter "expression" attribute in its body. Rows that match the filter expression will be excluded from all views of the data.
+GET on this resource returns a Shoji Entity with a filter "expression" attribute 
+in its body. Rows that match the filter expression will be excluded from all views of the data.
 
-PATCH the "expression" attribute to modify. An empty "expression" object, like `{"body": {"expression": {}}}`, is equivalent to "no exclusion", i.e. no rows are dropped.
+PATCH the "expression" attribute to modify. An empty "expression" object, like
+ `{"body": {"expression": {}}}`, is equivalent to "no exclusion", i.e. no rows 
+ are dropped.
 
 ##### Stream
 
