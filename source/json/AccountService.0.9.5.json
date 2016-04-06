@@ -1,0 +1,49 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "AccountService.0.9.5",
+    "type": "object",
+    "readonly": false,
+    "additionalProperties": false,
+    "description": "This is the schema definition for the Account service. It represents the properties for this service and has links to the list of accounts.",
+    "properties": {
+        "Oem": {
+            "type": "object",
+            "readonly": true,
+            "additionalProperties": true,
+            "properties": {
+                "Hp": {
+                    "$ref": "HpiLOAccountService.json#"
+                }
+            }
+        },
+        "Name": {
+            "$ref": "Name.json#"
+        },
+        "Modified": {
+            "$ref": "Modified.json#"
+        },
+        "Type": {
+            "$ref": "Type.json#"
+        },
+        "Description": {
+            "$ref": "Description.json#"
+        },
+        "links": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "Accounts": {
+                    "$ref": "href.json#",
+                    "description": "This property references a resource of type Collection with a MemberType of ManagerAccount.",
+                    "readonly": true
+                },
+                "self": {
+                    "$ref": "href.json#",
+                    "readonly": true,
+                    "description": "Link to self."
+                }
+            },
+            "description": "The links array contains links to resources related to this resource."
+        }
+    }
+}

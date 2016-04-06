@@ -1,0 +1,197 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "BaseNetworkAdapter.0.9.6",
+    "type": "object",
+    "readonly": true,
+    "additionalProperties": false,
+    "properties": {
+        "Name": {
+            "type": "string",
+            "description": "This is the schema definition for the System NIC. It represents the properties and has links associated with System NIC.",
+            "readonly": true,
+            "etag": true
+        },
+        "Type": {
+            "$ref": "Type.json#"
+        },
+        "Modified": {
+            "$ref": "Modified.json#"
+        },
+        "UEFIDevicePath": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "description": "UEFIDevice Path for correlation purposes",
+            "readonly": true,
+            "etag": true
+        },
+        "StructuredName": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "description": "PCI device structured name in UTF-8 format (e.g. 'NIC.LOM.1.1' - see PCIDevices in /rest/v1/Systems/x/PCIDevices - this comes from SMBIOS",
+            "readonly": true,
+            "etag": true
+        },
+        "Firmware": {
+            "$ref": "FwRev.json#"
+        },
+        "Status": {
+            "$ref": "Status.json#"
+        },
+        "PartNumber": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "description": "The device part number.",
+            "readonly": true,
+            "etag": true
+        },
+        "PhysicalPorts": {
+            "type": "array",
+            "maxItems": 8,
+            "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                    "Name": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "description": "The configured network port name.",
+                        "readonly": true,
+                        "etag": true
+                    },
+                    "FullDuplex": {
+                        "type": [
+                            "boolean",
+                            "null"
+                        ],
+                        "description": "Full-duplex data transmission means that data can be transmitted in both directions on a signal carrier at the same time.",
+                        "readonly": true,
+                        "etag": true
+                    },
+                    "SpeedMbps": {
+                        "type": [
+                            "integer",
+                            "null"
+                        ],
+                        "description": "An estimate of the interface's current bandwidth in Megabits per second.  For interfaces which do not vary in bandwidth or for those where no accurate estimation can be made, this object should contain the nominal bandwidth.",
+                        "readonly": true,
+                        "etag": true
+                    },
+                    "Status": {
+                        "$ref": "Status.json#"
+                    },
+                    "MacAddress": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "description": "The port MAC address.",
+                        "readonly": true,
+                        "etag": true
+                    },
+                    "IPv4Addresses": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "Address": {
+                                    "type": [
+                                        "string",
+                                        "null"
+                                    ],
+                                    "pattern": "^(?:[0-9]{1,3}\\.){3}[0-9]{1,3}$",
+                                    "description": "This is the IPv4 Address.",
+                                    "readonly": true,
+                                    "etag": true
+                                }
+                            },
+                            "description": "This object describes the IPv4 portions for this NIC.",
+                            "readonly": true,
+                            "etag": true
+                        },
+                        "description": "This array of objects is used to represent the IPv4 connection characteristics for this interface.",
+                        "readonly": true,
+                        "etag": true
+                    },
+                    "IPv6Addresses": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "Address": {
+                                    "type": [
+                                        "string",
+                                        "null"
+                                    ],
+                                    "format": "ipv6",
+                                    "description": "This is the IPv6 Address.",
+                                    "readonly": true,
+                                    "etag": true
+                                }
+                            },
+                            "description": "This object describes a single IPv6 address currently assigned on this interface.",
+                            "readonly": true,
+                            "etag": true
+                        },
+                        "description": "This array of objects enumerates all of the currently assigned IPv6 addresses on this interface.",
+                        "readonly": true,
+                        "etag": true
+                    },
+                    "UEFIDevicePath": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "description": "UEFIDevice Path for correlation purposes",
+                        "readonly": true,
+                        "etag": true
+                    },
+                    "Oem": {
+                        "type": "object",
+                        "additionalProperties": true,
+                        "properties": {
+                            "Hp": {
+                                "$ref": "HpBaseNetworkAdapterExt.json#"
+                            }
+                        }
+                    },
+                    "links": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                            "EthernetNetworkAdapter": {
+                                "$ref": "href.json#",
+                                "description": "link to an associated EthernetNetworkAdapter (future) - this is the representation of a NIC port.",
+                                "readonly": true
+                            }
+                        },
+                        "description": "The links array contains links to resources related to this resource."
+                    }
+                },
+                "etag": true,
+                "readonly": true,
+                "description": "Information about the integrated and add-in NICs in the server."
+            }
+        },
+        "links": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "self": {
+                    "$ref": "href.json#",
+                    "description": "Link to self."
+                }
+            },
+            "description": "The links array contains links to resources related to this resource."
+        }
+    }
+}

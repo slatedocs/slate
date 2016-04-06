@@ -1,0 +1,47 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "HpEventService.1.0.0",
+    "type": "object",
+    "readonly": true,
+    "additionalProperties": false,
+    "description": "This resource shall be used to represent a destination for events that have been subscribed to by a client.",
+    "properties": {
+        "Type": {
+            "$ref": "Type.json#"
+        },
+        "TTLCountDefault": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 999999,
+            "description": "The default number of TTLUnits until this listener destination subscription expires.  It may be renewed prior to expire to reset the Time to Live counter.  The value 999999 is reserved to mean a perpetual subscription.",
+            "readonly": true
+        },
+        "TTLUnitsDefault": {
+            "type": "string",
+            "description": "The default time unit used to measure the subscription time of this listener destination.  This is the units for TTLCount and is used to express the subscription lifetime of the listener destination.",
+            "enum": [
+                "seconds",
+                "minutes",
+                "days"
+            ],
+            "enumDescriptions": {
+                "seconds": "Time to Live (TTL) in Seconds",
+                "minutes": "Time to Live (TTL) in Minutes",
+                "days": "Time to Live (TTL) in Days"
+            },
+            "readonly": true
+        },
+        "RequestedMaxEventsToQueueDefault": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "This represents the default number of events the service should queue.",
+            "readonly": true
+        },
+        "RetireOldEventInMinutesDefault": {
+            "type": "integer",
+            "minimum": 1,
+            "description": "This represents the default number of minutes until an event is expired.",
+            "readonly": true
+        }
+    }
+}

@@ -1,0 +1,62 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "HpiLOAccount.0.9.7",
+    "type": "object",
+    "readonly": false,
+    "additionalProperties": false,
+    "properties": {
+        "Type": {
+            "$ref": "Type.json#"
+        },
+        "LoginName": {
+            "type": "string",
+            "description": "Descriptive login name that helps to easily identify the owner of each user name. The login name does not have to be the same as the user name and must use printable characters. The maximum length for a user name is 39 characters.",
+            "readonly": false,
+            "etag": true
+        },
+        "Privileges": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "LoginPriv": {
+                    "type": "boolean",
+                    "description": "This privilege enables a user to log in to management processor. All local accounts have the login privilege. This privilege is added automatically if it is not specified.",
+                    "readonly": false,
+                    "etag": true
+                },
+                "iLOConfigPriv": {
+                    "type": "boolean",
+                    "description": "This privilege enables a user to configure most management processor settings, including security settings, and to remotely update the management processor firmware. This privilege does not enable local user account administration.",
+                    "readonly": false,
+                    "etag": true
+                },
+                "VirtualPowerAndResetPriv": {
+                    "type": "boolean",
+                    "description": "This privilege enables a user to power-cycle or reset the host system. These activities interrupt system availability. A user with this privilege can diagnose the system by using the Generate NMI to System button.",
+                    "readonly": false,
+                    "etag": true
+                },
+                "UserConfigPriv": {
+                    "type": "boolean",
+                    "description": "This privilege enables a user to add, edit, and delete local management processor user accounts. A user with this privilege can change privileges for all users.",
+                    "readonly": false,
+                    "etag": true
+                },
+                "RemoteConsolePriv": {
+                    "type": "boolean",
+                    "description": "This privilege enables a user to remotely access the host system Remote Console, including video, keyboard, and mouse control.",
+                    "readonly": false,
+                    "etag": true
+                },
+                "VirtualMediaPriv": {
+                    "type": "boolean",
+                    "description": "This privilege enables a user to use the Virtual Media feature on the host system.",
+                    "readonly": false,
+                    "etag": true
+                }
+            },
+            "readonly": false,
+            "description": "This is a list of the account privileges available to the user."
+        }
+    }
+}

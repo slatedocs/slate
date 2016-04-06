@@ -1,0 +1,51 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "HpSmartStorageHostBusAdapter.0.10.0",
+    "description": "HpSmartStorageHostBusAdapter",
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+        "Oem": {
+            "$ref": "Oem.json#"
+        },
+        "Name": {
+            "$ref": "Name.json#"
+        },
+        "Modified": {
+            "$ref": "Modified.json#"
+        },
+        "Type": {
+            "$ref": "Type.json#"
+        },
+        "Description": {
+            "$ref": "Description.json#"
+        },
+        "Status": {
+            "$ref": "Status.json#"
+        },
+        "links": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "StorageEnclosures": {
+                    "$ref": "href.json#",
+                    "description": "link to collection of membertype HpSmartStorageStorageEnclosure",
+                    "readonly": true
+                },
+                "Drives": {
+                    "$ref": "href.json#",
+                    "description": "link to collection of membertype HpSmartStorageDiskDrive.",
+                    "readonly": true
+                },
+                "self": {
+                    "$ref": "href.json#",
+                    "description": "link to self",
+                    "readonly": true
+                }
+            },
+            "readonly": true,
+            "description": "The URIs to the resource related to HpSmartStorageHostBusAdapter"
+        }
+    },
+    "readonly": true
+}

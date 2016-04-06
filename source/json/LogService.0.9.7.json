@@ -1,0 +1,104 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "LogService.0.9.7",
+    "type": "object",
+    "readonly": true,
+    "additionalProperties": false,
+    "properties": {
+        "Oem": {
+            "$ref": "Oem.json#"
+        },
+        "Name": {
+            "$ref": "Name.json#"
+        },
+        "Modified": {
+            "$ref": "Modified.json#"
+        },
+        "Type": {
+            "$ref": "Type.json#"
+        },
+        "MaxNumberOfRecords": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "The maximum number of log entries.",
+            "readonly": true,
+            "etag": true
+        },
+        "OverWritePolicy": {
+            "type": "string",
+            "enum": [
+                "Unknown",
+                "WrapsWhenFull",
+                "NeverOverwrites"
+            ],
+            "description": "When the log is full, the overwrite policy is enforced.",
+            "enumDescriptions": {
+                "Unknown": "The overwrite policy is not known or is undefined.",
+                "WrapsWhenFull": "When the log is full, new entries will overwrite previous entries.",
+                "NeverOverwrites": "When the log is full, new entries are discarded."
+            },
+            "readonly": true,
+            "etag": true
+        },
+        "links": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "Entries": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "href.json#"
+                    },
+                    "description": "The URI to this log entries collection resource.",
+                    "readonly": true
+                },
+                "self": {
+                    "$ref": "href.json#",
+                    "description": "The URI for this log service resource."
+                }
+            }
+        },
+        "AvailableActions": {
+            "type": "array",
+            "additionalItems": false,
+            "uniqueItems": true,
+            "items": {
+                "anyOf": [
+                    {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                            "Action": {
+                                "type": "string",
+                                "enum": [
+                                    "ClearLog"
+                                ],
+                                "description": "Clears the log of all entries.",
+                                "readonly": true,
+                                "etag": true
+                            }
+                        }
+                    }
+                ]
+            },
+            "description": "The list of actions this service supports."
+        }
+    },
+    "actions": {
+        "description": "These describe the POST custom actions defined for this type (although the implemented actions may be a subset of these).",
+        "actions": {
+            "ClearLog": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                    "Action": {
+                        "type": "string",
+                        "enum": [
+                            "ClearLog"
+                        ]
+                    }
+                }
+            }
+        }
+    }
+}

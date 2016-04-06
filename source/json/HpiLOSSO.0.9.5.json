@@ -1,0 +1,512 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "HpiLOSSO.0.9.5",
+    "type": "object",
+    "readonly": false,
+    "additionalProperties": false,
+    "description": "This is the schema definition for the HP SSO Trusted Server.",
+    "properties": {
+        "Type": {
+            "$ref": "Type.json#"
+        },
+        "SSOsettings": {
+            "type": "object",
+            "description": "Describes the SSO Settings.",
+            "readonly": false,
+            "etag": true,
+            "properties": {
+                "SSOTrustMode": {
+                    "type": "string",
+                    "readonly": false,
+                    "additionalProperties": false,
+                    "description": "Represents the SSO Trust Mode.",
+                    "etag": true,
+                    "enum": [
+                        "TrustNone",
+                        "TrustAll",
+                        "TrustbyName",
+                        "TrustbyCert"
+                    ],
+                    "enumDescriptions": {
+                        "TrustNone": "Rejects all SSO connection request.",
+                        "TrustAll": "Accepts any SSO connection initiated from any HP SSO compliant application.",
+                        "TrustbyName": "Enables SSO connections from an HP SSO compliant application by matching a directly imported IP address or DNS name.",
+                        "TrustbyCert": "Enables SSO connections from an HP SSO compliant application by matching a certificate previously imported to iLO."
+                    }
+                },
+                "UserPrivilege": {
+                    "type": "object",
+                    "readonly": false,
+                    "additionalProperties": false,
+                    "description": "Represents the User Privileges.",
+                    "etag": true,
+                    "properties": {
+                        "LoginPriv": {
+                            "type": "boolean",
+                            "readonly": false,
+                            "description": "Login Privileges.",
+                            "etag": true
+                        },
+                        "RemoteConsolePriv": {
+                            "type": "boolean",
+                            "readonly": false,
+                            "description": "Remote Console Privileges.",
+                            "etag": true
+                        },
+                        "PowerandResetPriv": {
+                            "type": "boolean",
+                            "readonly": false,
+                            "description": "Power and Reset Privileges.",
+                            "etag": true
+                        },
+                        "VirtualMediaPriv": {
+                            "type": "boolean",
+                            "readonly": false,
+                            "description": "Virtual Media Privileges.",
+                            "etag": true
+                        },
+                        "iLOConfigPriv": {
+                            "type": "boolean",
+                            "readonly": false,
+                            "description": "iLO Configuration Privileges.",
+                            "etag": true
+                        },
+                        "UserConfigPriv": {
+                            "type": "boolean",
+                            "readonly": false,
+                            "description": "User Configuration Privileges.",
+                            "etag": true
+                        }
+                    }
+                },
+                "OperatorPrivilege": {
+                    "type": "object",
+                    "readonly": false,
+                    "additionalProperties": false,
+                    "description": "Represents the Operator Privileges.",
+                    "etag": true,
+                    "properties": {
+                        "LoginPriv": {
+                            "type": "boolean",
+                            "readonly": false,
+                            "description": "Login Privileges.",
+                            "etag": true
+                        },
+                        "RemoteConsolePriv": {
+                            "type": "boolean",
+                            "readonly": false,
+                            "description": "Remote Console Privileges.",
+                            "etag": true
+                        },
+                        "PowerandResetPriv": {
+                            "type": "boolean",
+                            "readonly": false,
+                            "description": "Power and Reset Privileges.",
+                            "etag": true
+                        },
+                        "VirtualMediaPriv": {
+                            "type": "boolean",
+                            "readonly": false,
+                            "description": "Virtual Media Privileges.",
+                            "etag": true
+                        },
+                        "iLOConfigPriv": {
+                            "type": "boolean",
+                            "readonly": false,
+                            "description": "iLO Configuration Privileges.",
+                            "etag": true
+                        },
+                        "UserConfigPriv": {
+                            "type": "boolean",
+                            "readonly": false,
+                            "description": "User Configuration Privileges.",
+                            "etag": true
+                        }
+                    }
+                },
+                "AdminPrivilege": {
+                    "type": "object",
+                    "readonly": false,
+                    "additionalProperties": false,
+                    "description": "Represents the Administrator Privileges.",
+                    "etag": true,
+                    "properties": {
+                        "LoginPriv": {
+                            "type": "boolean",
+                            "readonly": false,
+                            "description": "Login Privileges.",
+                            "etag": true
+                        },
+                        "RemoteConsolePriv": {
+                            "type": "boolean",
+                            "readonly": false,
+                            "description": "Remote Console Privileges.",
+                            "etag": true
+                        },
+                        "PowerandResetPriv": {
+                            "type": "boolean",
+                            "readonly": false,
+                            "description": "Power and Reset Privileges.",
+                            "etag": true
+                        },
+                        "VirtualMediaPriv": {
+                            "type": "boolean",
+                            "readonly": false,
+                            "description": "Power and Reset Privileges.",
+                            "etag": true
+                        },
+                        "iLOConfigPriv": {
+                            "type": "boolean",
+                            "readonly": false,
+                            "description": "iLO Configuration Privileges.",
+                            "etag": true
+                        },
+                        "UserConfigPriv": {
+                            "type": "boolean",
+                            "readonly": false,
+                            "description": "User Configuration Privileges.",
+                            "etag": true
+                        }
+                    }
+                }
+            }
+        },
+        "ManagerTrustedCertificates": {
+            "type": "array",
+            "readonly": true,
+            "description": "Contains the status of trusted certificates and records.",
+            "etag": true,
+            "items": {
+                "type": "object",
+                "properties": {
+                    "SerialNumber": {
+                        "type": "integer",
+                        "readonly": true,
+                        "description": "Contains the Serial number for the SSO records.",
+                        "etag": true
+                    },
+                    "Status": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "readonly": true,
+                        "enum": [
+                            "OK",
+                            "Degraded",
+                            "Failed"
+                        ],
+                        "enumDescriptions": {
+                            "OK": "The record is valid.",
+                            "Degraded": "There is a problem with trust settings or iLO license.",
+                            "Failed": "The record is not valid."
+                        },
+                        "etag": true
+                    },
+                    "Certificate": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "readonly": true,
+                        "description": "Contains PEM formatted X509 certificate (Base64 encoded).",
+                        "etag": true
+                    },
+                    "ServerName": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "readonly": true,
+                        "description": "The Server name (or certificate subject).",
+                        "etag": true
+                    }
+                }
+            }
+        },
+        "links": {
+            "type": "object",
+            "additionalProperties": false,
+            "description": "The URIs for the resources related to HP SSO trusted resource.",
+            "properties": {
+                "self": {
+                    "$ref": "href.json#",
+                    "description": "The URI of this HP SSO trusted resource.",
+                    "readonly": true
+                }
+            }
+        },
+        "AvailableActions": {
+            "type": "array",
+            "description": "The list of actions this service supports.",
+            "additionalItems": false,
+            "uniqueItems": true,
+            "items": {
+                "anyOf": [
+                    {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                            "Action": {
+                                "type": "string",
+                                "enum": [
+                                    "DeleteAllSSORecords"
+                                ],
+                                "enumDescriptions": {
+                                    "DeleteSSORecord": "Delete all the SSO records."
+                                },
+                                "readonly": true,
+                                "etag": true
+                            }
+                        }
+                    },
+                    {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                            "Action": {
+                                "type": "string",
+                                "enum": [
+                                    "DeleteSSORecordbyNumber"
+                                ],
+                                "enumDescriptions": {
+                                    "DeleteSSORecordbyNumber": "Delete SSO record by record number."
+                                },
+                                "readonly": true,
+                                "etag": true
+                            },
+                            "Capabilities": {
+                                "type": "array",
+                                "items": {
+                                    "type": "object",
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "PropertyName": {
+                                            "type": "string",
+                                            "enum": [
+                                                "RecordNumber"
+                                            ],
+                                            "description": "Record/Serial number of the SSO record to be deleted.",
+                                            "readonly": true
+                                        }
+                                    }
+                                },
+                                "description": "This array item defines the allowable values supported for this custom action on this resource.",
+                                "readonly": true
+                            }
+                        }
+                    },
+                    {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                            "Action": {
+                                "type": "string",
+                                "enum": [
+                                    "ImportDNSName"
+                                ],
+                                "enumDescriptions": {
+                                    "ImportDNSName": "Add DNS Name to the record list."
+                                },
+                                "readonly": true,
+                                "etag": true
+                            },
+                            "Capabilities": {
+                                "type": "array",
+                                "items": {
+                                    "type": "object",
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "PropertyName": {
+                                            "type": "string",
+                                            "enum": [
+                                                "DNSName"
+                                            ],
+                                            "description": "DNS Name of the HP SSO Trusted Server.",
+                                            "readonly": true
+                                        }
+                                    }
+                                },
+                                "description": "This array item defines the allowable values supported for this custom action on this resource.",
+                                "readonly": true
+                            }
+                        }
+                    },
+                    {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                            "Action": {
+                                "type": "string",
+                                "enum": [
+                                    "ImportCertificate"
+                                ],
+                                "enumDescriptions": {
+                                    "ImportCertificate": "Import the HP SSO Certificate."
+                                },
+                                "readonly": true,
+                                "etag": true
+                            },
+                            "Capabilities": {
+                                "type": "array",
+                                "items": {
+                                    "anyOf": [
+                                        {
+                                            "type": "object",
+                                            "additionalProperties": false,
+                                            "properties": {
+                                                "PropertyName": {
+                                                    "type": "string",
+                                                    "enum": [
+                                                        "CertInput"
+                                                    ],
+                                                    "enumDescriptions": {
+                                                        "CertInput": "PEM formatted X509 certificate (Base64 encoded)/DNS name or IP address to import the certificate."
+                                                    },
+                                                    "readonly": true
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "type": "object",
+                                            "additionalProperties": false,
+                                            "properties": {
+                                                "PropertyName": {
+                                                    "type": "string",
+                                                    "enum": [
+                                                        "CertType"
+                                                    ],
+                                                    "enumDescriptions": {
+                                                        "CertType": "Directly import certificate (DirectImportCert)/Import Certificate from HP SSO compliant application over the network (ImportCertUri)"
+                                                    },
+                                                    "readonly": true
+                                                },
+                                                "AllowableValues": {
+                                                    "type": "array",
+                                                    "description": "This array item defines the allowable value supported for CertType",
+                                                    "readonly": true,
+                                                    "items": {
+                                                        "type": "string",
+                                                        "enum": [
+                                                            "DirectImportCert",
+                                                            "ImportCertUri"
+                                                        ],
+                                                        "enumDescriptions": {
+                                                            "DirectImportCert": "iLO directly imports the Certificate.",
+                                                            "ImportCertUri": "iLO imports the certificate from the HP SSO compliant application over the network."
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    ]
+                                },
+                                "description": "This array item defines the allowable values supported for this custom action on this resource.",
+                                "readonly": true
+                            }
+                        }
+                    }
+                ]
+            }
+        }
+    },
+    "actions": {
+        "description": "Import the HP SSO Certificate or DNSName.",
+        "actions": {
+            "ImportCertificate": {
+                "type": "object",
+                "additionalProperties": false,
+                "readonly": true,
+                "properties": {
+                    "Action": {
+                        "type": "string",
+                        "enum": [
+                            "ImportCertificate"
+                        ],
+                        "enumDescriptions": {
+                            "ImportCertificate": "Import the HP SSO Certificate."
+                        }
+                    },
+                    "CertType": {
+                        "type": "string",
+                        "readonly": "false",
+                        "description": "PEM formatted X509 certificate (Base64 encoded)/DNS name or IP address to import the certificate.",
+                        "format": "text",
+                        "enum": [
+                            "DirectImportCert",
+                            "ImportCertUri"
+                        ],
+                        "enumDescriptions": {
+                            "DirectImportCert": "iLO directly imports the Certificate.",
+                            "ImportCertUri": "iLO imports the certificate from the HP SSO compliant application over the network."
+                        }
+                    },
+                    "CertInput": {
+                        "type": "string",
+                        "readonly": "false",
+                        "format": "text",
+                        "description": "PEM formatted X509 certificate (Base64 encoded)/DNS name or IP address to import the certificate."
+                    }
+                }
+            },
+            "ImportDNSName": {
+                "type": "object",
+                "additionalProperties": false,
+                "readonly": true,
+                "properties": {
+                    "Action": {
+                        "type": "string",
+                        "enum": [
+                            "ImportDNSName"
+                        ],
+                        "enumDescriptions": {
+                            "ImportDNSName": "Add DNS Name to the record list."
+                        }
+                    },
+                    "DNSName": {
+                        "type": "string",
+                        "readonly": "false",
+                        "description": "DNS Name of the HP SSO Trusted Server."
+                    }
+                }
+            },
+            "DeleteAllSSORecords": {
+                "type": "object",
+                "additionalProperties": false,
+                "readonly": true,
+                "properties": {
+                    "Action": {
+                        "type": "string",
+                        "enum": [
+                            "DeleteAllSSORecords"
+                        ],
+                        "enumDescriptions": {
+                            "DeleteSSORecord": "Delete all the SSO records."
+                        }
+                    }
+                }
+            },
+            "DeleteSSORecordbyNumber": {
+                "type": "object",
+                "additionalProperties": false,
+                "readonly": true,
+                "properties": {
+                    "Action": {
+                        "type": "string",
+                        "enum": [
+                            "DeleteSSORecordbyNumber"
+                        ],
+                        "enumDescriptions": {
+                            "DeleteSSORecordbyNumber": "Delete SSO record by record number."
+                        }
+                    },
+                    "RecordNumber": {
+                        "type": "integer",
+                        "readonly": "false",
+                        "description": "Record/Serial number of the SSO record to be deleted."
+                    }
+                }
+            }
+        }
+    }
+}

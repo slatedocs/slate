@@ -1,0 +1,353 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "PowerMetrics.0.10.1",
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+        "Oem": {
+            "type": "object",
+            "additionalProperties": true,
+            "properties": {
+                "Hp": {
+                    "$ref": "HpPowerMetricsExt.json#"
+                }
+            }
+        },
+        "Name": {
+            "$ref": "Name.json#"
+        },
+        "Modified": {
+            "$ref": "Modified.json#"
+        },
+        "Type": {
+            "$ref": "Type.json#"
+        },
+        "Description": {
+            "$ref": "Description.json#"
+        },
+        "Status": {
+            "$ref": "Status.json#"
+        },
+        "PowerConsumedWatts": {
+            "type": [
+                "integer",
+                "null"
+            ],
+            "minimum": 0,
+            "description": "The latest observed power (Watts) being drawn by this chassis. The update interval may vary depending upon implementation but is usually measured in seconds.",
+            "readonly": true,
+            "etag": true
+        },
+        "PowerRequestedWatts": {
+            "type": [
+                "integer",
+                "null"
+            ],
+            "minimum": 0,
+            "description": "Potential power (Watts) that the chassis is requesting that might be higher than the current level being consumed. This is because the requested power includes budget that the chassis has reserved for future use.",
+            "readonly": true,
+            "etag": true
+        },
+        "PowerAvailableWatts": {
+            "type": [
+                "integer",
+                "null"
+            ],
+            "minimum": 0,
+            "description": "Amount of power (Watts) not already budgeted and therefore available for additional allocation. (PowerCapacity - PowerAllocated).  This indicates how much reserve power capacity is left.",
+            "readonly": true,
+            "etag": true
+        },
+        "PowerAllocatedWatts": {
+            "type": [
+                "integer",
+                "null"
+            ],
+            "minimum": 0,
+            "description": "The total power (Watts) allocated to the chassis.",
+            "readonly": true,
+            "etag": true
+        },
+        "PowerCapacityWatts": {
+            "type": [
+                "integer",
+                "null"
+            ],
+            "minimum": 0,
+            "description": "The total power (Watts) available to the chassis from all power supplies (adjusting for redundancy settings).",
+            "readonly": true,
+            "etag": true
+        },
+        "PowerMetrics": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "IntervalInMin": {
+                    "type": [
+                        "integer",
+                        "null"
+                    ],
+                    "minimum": 0,
+                    "description": "The interval between power metric evaluation in minutes.",
+                    "readonly": true,
+                    "etag": true
+                },
+                "MinConsumedWatts": {
+                    "type": [
+                        "integer",
+                        "null"
+                    ],
+                    "minimum": 0,
+                    "description": "The minimum power consumed during the interval specified by 'IntervalInMin'.",
+                    "readonly": true,
+                    "etag": true
+                },
+                "MaxConsumedWatts": {
+                    "type": [
+                        "integer",
+                        "null"
+                    ],
+                    "minimum": 0,
+                    "description": "The maximum power consumed during the interval specified by 'IntervalInMin'.",
+                    "readonly": true,
+                    "etag": true
+                },
+                "AverageConsumedWatts": {
+                    "type": [
+                        "integer",
+                        "null"
+                    ],
+                    "minimum": 0,
+                    "description": "The average power consumed during the interval specified by 'IntervalInMin'.",
+                    "readonly": true,
+                    "etag": true
+                }
+            }
+        },
+        "PowerLimit": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "LimitInWatts": {
+                    "type": [
+                        "integer",
+                        "null"
+                    ],
+                    "minimum": 0,
+                    "description": "The Power (Watts) limit (also known as 'Power Cap'). Set to null to disable the power cap.",
+                    "readonly": false,
+                    "etag": true
+                },
+                "LimitException": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "description": "Action that is taken if the power cannot be maintained below the LimitInWatts.",
+                    "enum": [
+                        "NoAction",
+                        "HardPowerOff",
+                        "LogEventOnly",
+                        "Oem"
+                    ],
+                    "enumDescriptions": {
+                        "NoAction": "Take no action when the limit is exceeded.",
+                        "HardPowerOff": "Turn the power off immediately when the limit is exceeded.",
+                        "LogEventOnly": "Log an event when the limit is exceeded, but take no further action.",
+                        "Oem": "Oem specific action."
+                    },
+                    "readonly": false,
+                    "etag": true
+                },
+                "CorrectionInMs": {
+                    "type": [
+                        "integer",
+                        "null"
+                    ],
+                    "description": "Time in milliseconds that it takes for the limiting process to react and correct the power consumption below the limit.",
+                    "readonly": true,
+                    "etag": true
+                },
+                "CorrelatableID": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "description": "The value of this property shall represent a reference to the resource that is being limited.",
+                    "readonly": true,
+                    "etag": true
+                }
+            }
+        },
+        "PowerSupplies": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                    "Oem": {
+                        "type": "object",
+                        "additionalProperties": true,
+                        "properties": {
+                            "Hp": {
+                                "$ref": "HpServerPowerSupply.json#"
+                            }
+                        }
+                    },
+                    "Name": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "description": "The power supply name. This is typically derived from bay number.",
+                        "readonly": true,
+                        "etag": true
+                    },
+                    "CorrelatableID": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "description": "CorrelatableID for this power supply.",
+                        "readonly": true,
+                        "etag": true
+                    },
+                    "Status": {
+                        "$ref": "Status.json#"
+                    },
+                    "PowerSupplyType": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "enum": [
+                            "Unknown",
+                            "AC",
+                            "DC"
+                        ],
+                        "description": "The power supply type: AC, DC, or Unknown.",
+                        "readonly": true,
+                        "etag": true,
+                        "enumDescriptions": {
+                            "Unknown": "The power supply type cannot be determined.",
+                            "AC": "Alternating Current (AC) power supply.",
+                            "DC": "Direct Current (DC) power supply."
+                        }
+                    },
+                    "LineInputVoltageType": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "enum": [
+                            "Unknown",
+                            "ACLowLine",
+                            "ACMidLine",
+                            "ACHighLine",
+                            "DCNeg48V",
+                            "HighVoltageDC"
+                        ],
+                        "description": "Line voltage type: ACLowLine, ACMidLine, ACHighLine, DCNeg48V, DC420V, or Unknown.",
+                        "readonly": true,
+                        "etag": true,
+                        "enumDescriptions": {
+                            "Unknown": "The power supply line input voltage type cannot be determined.",
+                            "ACLowLine": "100-127V AC input.",
+                            "ACMidLine": "200-240V AC input.",
+                            "ACHighLine": "277V AC input.",
+                            "DCNeg48V": "-48V DC input.",
+                            "HighVoltageDC": "High Voltage DC input (380V)."
+                        }
+                    },
+                    "LineInputVoltage": {
+                        "type": [
+                            "integer",
+                            "null"
+                        ],
+                        "description": "Line input voltage at which the power supply is operating at this moment (in Volts).",
+                        "readonly": true,
+                        "etag": true
+                    },
+                    "PowerCapacityWatts": {
+                        "type": [
+                            "integer",
+                            "null"
+                        ],
+                        "minimum": 0,
+                        "description": "The power capacity of the power supply, in Watts.",
+                        "readonly": true,
+                        "etag": true
+                    },
+                    "LastPowerOutputWatts": {
+                        "type": [
+                            "integer",
+                            "null"
+                        ],
+                        "minimum": 0,
+                        "description": "The average power (Watts) consumed.",
+                        "readonly": true,
+                        "etag": true
+                    },
+                    "Model": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "description": "The power supply model name.",
+                        "readonly": true,
+                        "etag": true
+                    },
+                    "FirmwareVersion": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "description": "The power supply firmware version.",
+                        "readonly": true,
+                        "etag": true
+                    },
+                    "SerialNumber": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "description": "The power supply serial number.",
+                        "readonly": true,
+                        "etag": true
+                    },
+                    "PartNumber": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "description": "The power supply part number.",
+                        "readonly": true,
+                        "etag": true
+                    },
+                    "SparePartNumber": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "description": "The power supply spare part number.",
+                        "readonly": true,
+                        "etag": true
+                    }
+                }
+            },
+            "readonly": false,
+            "description": "Details of the power supplies in the system."
+        },
+        "links": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "self": {
+                    "$ref": "href.json#",
+                    "description": "The URI for this power metrics resource."
+                }
+            }
+        }
+    },
+    "readonly": false
+}

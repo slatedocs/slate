@@ -1,0 +1,222 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "Chassis.0.10.1",
+    "type": "object",
+    "readonly": false,
+    "description": "The schema definition for the Chassis resource represents the properties for physical components for any system. This object represents racks, rack mount servers, blades, standalone, modular systems, enclosures, and all other containers. The non-CPU/device-centric parts of the schema are accessed either directly or indirectly through this resource.",
+    "additionalProperties": false,
+    "properties": {
+        "Oem": {
+            "type": "object",
+            "readonly": true,
+            "additionalProperties": true,
+            "properties": {
+                "Hp": {
+                    "$ref": "HpServerChassis.json#"
+                }
+            }
+        },
+        "Name": {
+            "$ref": "Name.json#"
+        },
+        "Modified": {
+            "$ref": "Modified.json#"
+        },
+        "Type": {
+            "$ref": "Type.json#"
+        },
+        "Status": {
+            "$ref": "Status.json#"
+        },
+        "ChassisType": {
+            "type": "string",
+            "enum": [
+                "Rack",
+                "Blade",
+                "Enclosure",
+                "StandAlone",
+                "RackMount",
+                "Card",
+                "Cartridge",
+                "Row",
+                "Pod",
+                "Expansion",
+                "Sidecar",
+                "Zone",
+                "Sled",
+                "Shelf",
+                "Other"
+            ],
+            "description": "This property indicates the physical form factor type of this resource.",
+            "enumDescriptions": {
+                "Rack": "An equipment rack, typically a 19-inch wide freestanding unit.",
+                "Blade": "An enclosed or semi-enclosed, typically vertically-oriented, system chassis that must be plugged into a multi-system chassis to function normally.",
+                "Enclosure": "A generic term for a chassis that does not fit any other description.",
+                "StandAlone": "A single, free-standing system, commonly called a tower or desktop chassis.",
+                "RackMount": "A single system chassis designed specifically for mounting in an equipment rack.",
+                "Card": "A loose device or circuit board intended to be installed in a system or other enclosure.",
+                "Cartridge": "A small self-contained system intended to be plugged into a multi-system chassis.",
+                "Row": "A collection of equipment racks.",
+                "Pod": "A collection of equipment racks in a large, likely transportable, container.",
+                "Expansion": "A chassis that expands the capabilities or capacity of another chassis.",
+                "Sidecar": "A chassis that mechanically connects with another chassis to expand its capabilities or capacity.",
+                "Zone": "A logical division or portion of a physical chassis that contains multiple devices or systems that cannot be physically separated.",
+                "Sled": "TBD",
+                "Shelf": "An enclosed or semi-enclosed, typically horizontally-oriented, system chassis that must be plugged into a multi-system chassis to function normally.",
+                "Other": "A chassis that does not fit any of these definitions."
+            },
+            "readonly": true
+        },
+        "Description": {
+            "$ref": "Description.json#"
+        },
+        "Manufacturer": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "description": "The chassis manufacturer.",
+            "readonly": true,
+            "etag": true
+        },
+        "Model": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "description": "The chassis model number.",
+            "readonly": true,
+            "etag": true
+        },
+        "SKU": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "description": "The chassis SKU.",
+            "readonly": true,
+            "etag": true
+        },
+        "SerialNumber": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "description": "The chassis serial number.",
+            "readonly": true,
+            "etag": true
+        },
+        "Version": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "description": "The chassis version.",
+            "readonly": true,
+            "etag": true
+        },
+        "PartNumber": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "description": "The chassis part number.",
+            "readonly": true,
+            "etag": true
+        },
+        "AssetTag": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "description": "The chassis user-assigned asset tag.",
+            "readonly": false,
+            "etag": true
+        },
+        "IndicatorLED": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "description": "The chassis indicator LED that is used to identify the chassis. The user can manipulate this LED.",
+            "enum": [
+                "Unknown",
+                "Lit",
+                "Blinking",
+                "Off"
+            ],
+            "enumDescriptions": {
+                "Unknown": "The state of the Indicator LED cannot be determined.",
+                "Lit": "The Indicator LED is on.",
+                "Blinking": "The Indicator LED is blinking.",
+                "Off": "The Indicator LED is off."
+            },
+            "readonly": false,
+            "etag": true
+        },
+        "links": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "Oem": {
+                    "$ref": "Oem.json#"
+                },
+                "LogService": {
+                    "$ref": "href.json#",
+                    "description": "A reference to the logs for this chassis.",
+                    "readonly": true
+                },
+                "ComputerSystems": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "href.json#"
+                    },
+                    "description": "An array of references to the computer systems contained in this chassis. This will only reference ComputerSystems that are directly and wholly contained in this chassis.",
+                    "readonly": true
+                },
+                "ManagedBy": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "href.json#"
+                    },
+                    "description": "An array of references to the managers contained in this chassis.",
+                    "readonly": true
+                },
+                "ThermalMetrics": {
+                    "$ref": "href.json#",
+                    "description": "A reference to the thermal metrics (fans, cooling, sensors) for this chassis.",
+                    "readonly": true
+                },
+                "PowerMetrics": {
+                    "$ref": "href.json#",
+                    "description": "A reference to the thermal metrics (power supplies, power policies, sensors) for this chassis.",
+                    "readonly": true
+                },
+                "MiscMetrics": {
+                    "$ref": "href.json#",
+                    "description": "A reference to the various other metrics (presence, etc.) for this chassis.",
+                    "readonly": true
+                },
+                "ContainedBy": {
+                    "$ref": "href.json#",
+                    "description": "A reference to the chassis that contains this chassis.",
+                    "readonly": true
+                },
+                "Contains": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "href.json#"
+                    },
+                    "description": "An array of references to any other chassis contained in this chassis.",
+                    "readonly": true
+                },
+                "self": {
+                    "readonly": true,
+                    "$ref": "href.json#"
+                }
+            },
+            "readonly": true,
+            "description": "The links array contains links to related resources."
+        }
+    }
+}

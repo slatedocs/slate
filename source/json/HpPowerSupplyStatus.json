@@ -1,0 +1,34 @@
+{
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+        "State": {
+            "type": "string",
+            "enum": [
+                "Unknown",
+                "Ok",
+                "Degraded",
+                "Failed",
+                "OverVoltage",
+                "OverCurrent",
+                "OverTemperature",
+                "ACPowerLost",
+                "FanFailure",
+                "WarningHighInputVoltage",
+                "WarningLowInputVoltage",
+                "WarningHighOutputVoltage",
+                "WarningLowOutputVoltage",
+                "WarningInletTemperature",
+                "WarningInternalTemperature",
+                "WarningHighAuxiliaryVoltage",
+                "WarningLowAuxiliaryVoltage",
+                "PowerSupplyMismatch"
+            ],
+            "description": "Indicates the known state of the resource.",
+            "readonly": true,
+            "etag": true
+        }
+    },
+    "readonly": true,
+    "description": "This object represents the status of power the power supply."
+}

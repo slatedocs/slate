@@ -1,0 +1,98 @@
+{
+    "type": "object",
+    "readonly": true,
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "additionalProperties": false,
+    "properties": {
+        "Current": {
+            "$ref": "#/definitions/HpFWVersion"
+        },
+        "Pending": {
+            "$ref": "#/definitions/HpFWVersion"
+        },
+        "Backup": {
+            "$ref": "#/definitions/HpFWVersion"
+        },
+        "Bootblock": {
+            "$ref": "#/definitions/HpFWVersion"
+        },
+        "links": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "self": {
+                    "$ref": "href.json#",
+                    "description": "Link to self."
+                }
+            }
+        }
+    },
+    "definitions": {
+        "HpFWVersion": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "Date": {
+                    "type": "string",
+                    "description": "The build date of the firmware.",
+                    "readonly": true,
+                    "etag": true
+                },
+                "Time": {
+                    "type": "string",
+                    "description": "The build time of the firmware.",
+                    "readonly": true,
+                    "etag": true
+                },
+                "Family": {
+                    "type": "string",
+                    "description": "The family of the firmware.",
+                    "readonly": true,
+                    "etag": true
+                },
+                "MajorVersion": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "description": "The major version of the firmware.",
+                    "readonly": true,
+                    "etag": true
+                },
+                "MinorVersion": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "description": "The minor version of the firmware.",
+                    "readonly": true,
+                    "etag": true
+                },
+                "BuildNumber": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "description": "The build number of the firmware.",
+                    "readonly": true,
+                    "etag": true
+                },
+                "BuildNumberString": {
+                    "type": "string",
+                    "description": "The string version of the build number of the firmware.",
+                    "readonly": true,
+                    "etag": true
+                },
+                "VersionString": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "description": "The version string of the firmware. This value might be null if VersionString is unavailable.",
+                    "readonly": true,
+                    "etag": true
+                },
+                "DebugBuild": {
+                    "type": "boolean",
+                    "description": "True if the firmware is a debug build; False if it is not.",
+                    "readonly": true,
+                    "etag": true
+                }
+            }
+        }
+    }
+}

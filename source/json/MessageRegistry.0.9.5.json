@@ -1,0 +1,84 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "MessageRegistry.0.9.5",
+    "type": "object",
+    "readonly": true,
+    "additionalProperties": false,
+    "properties": {
+        "Oem": {
+            "$ref": "Oem.json#"
+        },
+        "Name": {
+            "$ref": "Name.json#"
+        },
+        "Modified": {
+            "$ref": "Modified.json#"
+        },
+        "Type": {
+            "$ref": "Type.json#"
+        },
+        "Language": {
+            "type": "string",
+            "readonly": true
+        },
+        "Description": {
+            "$ref": "Description.json#"
+        },
+        "RegistryPrefix": {
+            "type": "string",
+            "readonly": true
+        },
+        "Version": {
+            "type": "string",
+            "readonly": true
+        },
+        "OwningEntity": {
+            "type": "string",
+            "readonly": true
+        },
+        "Messages": {
+            "type": "object",
+            "additionalProperties": false,
+            "patternProperties": {
+                "[A-Za-z0-9]+": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "Description": {
+                            "type": "string",
+                            "readonly": true
+                        },
+                        "Message": {
+                            "type": "string",
+                            "readonly": true
+                        },
+                        "Severity": {
+                            "type": "string",
+                            "readonly": true
+                        },
+                        "NumberOfArgs": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "readonly": true
+                        },
+                        "ParamTypes": {
+                            "type": "array",
+                            "readonly": true,
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "String"
+                                ]
+                            }
+                        },
+                        "Resolution": {
+                            "type": "string",
+                            "description": "Instructions for resolving the problem represented by the Message.",
+                            "readonly": true
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

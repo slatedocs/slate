@@ -1,0 +1,50 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "HpSmartStorage.0.10.0",
+    "type": "object",
+    "description": "HpSmartStorage",
+    "additionalProperties": false,
+    "properties": {
+        "Oem": {
+            "$ref": "Oem.json#"
+        },
+        "Name": {
+            "$ref": "Name.json#"
+        },
+        "Modified": {
+            "$ref": "Modified.json#"
+        },
+        "Type": {
+            "$ref": "Type.json#"
+        },
+        "Description": {
+            "$ref": "Description.json#"
+        },
+        "Status": {
+            "$ref": "Status.json#"
+        },
+        "links": {
+            "type": "object",
+            "description": "The URIs to the resource related to HpSmartStorage",
+            "additionalProperties": false,
+            "readonly": true,
+            "properties": {
+                "ArrayControllers": {
+                    "$ref": "href.json#",
+                    "description": "link to collection of membertype HPSmartStorageArrayController. All Smart HBAs, Smart Arrays and Dynamic Smart Array fall into this category",
+                    "readonly": true
+                },
+                "HostBusAdapters": {
+                    "$ref": "href.json#",
+                    "description": "link to collection of membertype HPSmartStorageHostBusAdapter. Typically HBAs/ChipSets from other vendors that don't use the SmartArray brand",
+                    "readonly": true
+                },
+                "self": {
+                    "$ref": "href.json#",
+                    "description": "link to self",
+                    "readonly": true
+                }
+            }
+        }
+    }
+}

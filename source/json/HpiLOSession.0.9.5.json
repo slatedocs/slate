@@ -1,0 +1,133 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "HpiLOSession.0.9.5",
+    "type": "object",
+    "readonly": true,
+    "additionalProperties": false,
+    "properties": {
+        "Type": {
+            "$ref": "Type.json#"
+        },
+        "AccessTime": {
+            "type": "string",
+            "description": "User session last-access time",
+            "format": "date-time",
+            "readonly": true,
+            "etag": true
+        },
+        "LoginTime": {
+            "type": "string",
+            "description": "User session login time",
+            "format": "date-time",
+            "readonly": true,
+            "etag": true
+        },
+        "MySession": {
+            "type": "boolean",
+            "description": "Indicates whether this is a session I own.",
+            "readonly": true,
+            "etag": true
+        },
+        "Privileges": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "LoginPriv": {
+                    "type": "boolean",
+                    "description": "This privilege enables a user to log in to the management processor. All local accounts have the login privilege. This privilege is added automatically if it is not specified.",
+                    "readonly": true,
+                    "etag": true
+                },
+                "iLOConfigPriv": {
+                    "type": "boolean",
+                    "description": "This privilege enables a user to configure most management processor settings, including security settings, and to remotely update the management processor firmware. This privilege does not enable local user account administration.",
+                    "readonly": true,
+                    "etag": true
+                },
+                "VirtualPowerAndResetPriv": {
+                    "type": "boolean",
+                    "description": "This privilege enables a user to power-cycle or reset the host system. These activities interrupt system availability. A user with this privilege can diagnose the system by using the Generate NMI to System button.",
+                    "readonly": true,
+                    "etag": true
+                },
+                "UserConfigPriv": {
+                    "type": "boolean",
+                    "description": "This privilege enables a user to add, edit, and delete local management processor user accounts. A user with this privilege can change privileges for all users.",
+                    "readonly": true,
+                    "etag": true
+                },
+                "RemoteConsolePriv": {
+                    "type": "boolean",
+                    "description": "This privilege enables a user to remotely access the host system Remote Console, including video, keyboard, and mouse control.",
+                    "readonly": true,
+                    "etag": true
+                },
+                "VirtualMediaPriv": {
+                    "type": "boolean",
+                    "description": "This privilege enables a user to use the Virtual Media feature on the host system.",
+                    "readonly": true,
+                    "etag": true
+                }
+            },
+            "readonly": true,
+            "description": "Account privileges available for the user"
+        },
+        "UserAccount": {
+            "type": "string",
+            "description": "Login details of the user",
+            "readonly": true,
+            "etag": true
+        },
+        "UserDistinguishedName": {
+            "type": "string",
+            "description": "LDAP user is identified by its distinguished name (DN).",
+            "readonly": true,
+            "etag": true
+        },
+        "UserExpires": {
+            "type": "string",
+            "description": "User session expire time",
+            "format": "date-time",
+            "readonly": true,
+            "etag": true
+        },
+        "UserIP": {
+            "type": "string",
+            "description": "IP address of the user",
+            "readonly": true,
+            "etag": true
+        },
+        "UserTag": {
+            "type": "string",
+            "description": "Session source",
+            "enum": [
+                "Web UI",
+                "RBSU",
+                "Remote Console",
+                "SSH",
+                "IPMI/RMCP",
+                "SM-CLP",
+                "RIBCL",
+                "Unknown"
+            ],
+            "readonly": true,
+            "etag": true
+        },
+        "UserType": {
+            "type": "string",
+            "description": "User type",
+            "enum": [
+                "Local",
+                "Directory",
+                "Single Sign On",
+                "Kerberos",
+                "Trusted Key",
+                "Security Override",
+                "System",
+                "Federation"
+            ],
+            "readonly": true,
+            "etag": true
+        }
+    }
+}

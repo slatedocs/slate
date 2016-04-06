@@ -1,0 +1,172 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "HPPowerMeter.0.9.5",
+    "type": "object",
+    "readonly": true,
+    "additionalProperties": false,
+    "properties": {
+        "Oem": {
+            "$ref": "Oem.json#"
+        },
+        "Name": {
+            "$ref": "Name.json#"
+        },
+        "Modified": {
+            "$ref": "Modified.json#"
+        },
+        "Type": {
+            "$ref": "Type.json#"
+        },
+        "Samples": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Number of samples in the array.",
+            "readonly": true,
+            "etag": true
+        },
+        "Average": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Average power across all samples, over the last 24 hours.",
+            "readonly": true,
+            "etag": true
+        },
+        "Minimum": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Minimum power across all samples, taken from the 24 hour history.",
+            "readonly": true,
+            "etag": true
+        },
+        "Maximum": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Maximum power across all samples, taken from the 24 hour history.",
+            "readonly": true,
+            "etag": true
+        },
+        "PowerDetail": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "readonly": true,
+                "additionalProperties": false,
+                "properties": {
+                    "Time": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "Time at which the power detail was captured.",
+                        "readonly": true,
+                        "etag": true
+                    },
+                    "Peak": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "description": "Peak power over the sample time.",
+                        "readonly": true,
+                        "etag": true
+                    },
+                    "Minimum": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "description": "Minimum power over the sample time.",
+                        "readonly": true,
+                        "etag": true
+                    },
+                    "Average": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "description": "Average power over the sample time.",
+                        "readonly": true,
+                        "etag": true
+                    },
+                    "Cap": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "description": "Overall power cap for the power meter.",
+                        "readonly": true,
+                        "etag": true
+                    },
+                    "AmbTemp": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "description": "Ambient temperature, in degrees Celsius.",
+                        "readonly": true,
+                        "etag": true
+                    },
+                    "CpuAvgFreq": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "description": "CPU average frequency of the power supply.",
+                        "readonly": true,
+                        "etag": true
+                    },
+                    "CpuCapLim": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "description": "CPU cap limit for the power meter.",
+                        "readonly": true,
+                        "etag": true
+                    },
+                    "CpuMax": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "description": "CPU maximum power consumed by the power meter.",
+                        "readonly": true,
+                        "etag": true
+                    },
+                    "CpuPwrSavLim": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "description": "CPU power-saving limit for the power meter.",
+                        "readonly": true,
+                        "etag": true
+                    },
+                    "CpuUtil": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "description": "CPU power utilization.",
+                        "readonly": true,
+                        "etag": true
+                    },
+                    "PrMode": {
+                        "type": "string",
+                        "enum": [
+                            "dyn",
+                            "min",
+                            "max",
+                            "osc"
+                        ],
+                        "description": "Power regulator mode, which can be OS Control, Static High, Static Low or Dynamic.",
+                        "readonly": true,
+                        "etag": true
+                    },
+                    "PunCap": {
+                        "type": "boolean",
+                        "description": "Punitive cap for the power meter.",
+                        "readonly": true,
+                        "etag": true
+                    },
+                    "UnachCap": {
+                        "type": "boolean",
+                        "description": "Unachievable cap for the power meter.",
+                        "readonly": true,
+                        "etag": true
+                    }
+                }
+            },
+            "readonly": true,
+            "description": "Power detail of the power meter."
+        },
+        "links": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "self": {
+                    "$ref": "href.json#",
+                    "description": "Link to self."
+                }
+            }
+        }
+    }
+}

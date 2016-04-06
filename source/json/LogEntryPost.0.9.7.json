@@ -1,0 +1,24 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "LogEntryPost.0.9.7",
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+        "EntryCode": {
+            "type": "string",
+            "description": "The code of log entry to create.",
+            "enum": [
+                "Maintenance"
+            ],
+            "readonly": false,
+            "etag": true
+        },
+        "Message": {
+            "type": "string",
+            "description": "The message text to place in log entry.",
+            "readonly": false,
+            "etag": true
+        }
+    },
+    "readonly": false
+}

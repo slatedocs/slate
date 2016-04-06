@@ -1,0 +1,113 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "HpServerPCISlot.0.9.5",
+    "type": "object",
+    "readonly": true,
+    "additionalProperties": false,
+    "properties": {
+        "Name": {
+            "$ref": "Name.json#"
+        },
+        "Modified": {
+            "$ref": "Modified.json#"
+        },
+        "Type": {
+            "$ref": "Type.json#"
+        },
+        "Technology": {
+            "type": "string",
+            "enum": [
+                "PCIExpressGen3",
+                "PCIExpressGen2",
+                "PCIExpress"
+            ],
+            "description": "PCI technology",
+            "readonly": true,
+            "etag": true
+        },
+        "LinkLanes": {
+            "type": "string",
+            "enum": [
+                "8 bit",
+                "16 bit",
+                "32 bit",
+                "64 bit",
+                "128 bit",
+                "x1",
+                "x2",
+                "x4",
+                "x8",
+                "x16",
+                "x32",
+                "Other"
+            ],
+            "description": "Bandwidth capacity of the slot, measured by the number of PCI Express Lanes present. Also known as the slot width.",
+            "readonly": true,
+            "etag": true
+        },
+        "Length": {
+            "type": "string",
+            "enum": [
+                "Short",
+                "Long",
+                "Other"
+            ],
+            "description": "PCI slot length",
+            "readonly": true,
+            "etag": true
+        },
+        "SupportsHotPlug": {
+            "type": "boolean",
+            "description": "Specifies whether the slot supports hot-plug devices.",
+            "readonly": true,
+            "etag": true
+        },
+        "Status": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "EnabledState": {
+                    "type": "string",
+                    "description": "Specifies whether the slot is enabled or disabled.",
+                    "readonly": true,
+                    "etag": true
+                },
+                "OperationalStatus": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                            "Status": {
+                                "type": "string",
+                                "description": "Current usage status of the slot: InUse or Empty",
+                                "readonly": true,
+                                "etag": true
+                            }
+                        }
+                    },
+                    "readonly": true,
+                    "description": "Operational status"
+                }
+            },
+            "readonly": true,
+            "description": "Status"
+        },
+        "UEFIDevicePath": {
+            "type": "string",
+            "description": "Standardized text representation of the UEFI device path, in UTF-8 format",
+            "readonly": true,
+            "etag": true
+        },
+        "links": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "self": {
+                    "$ref": "href.json#",
+                    "description": "link to self"
+                }
+            }
+        }
+    }
+}

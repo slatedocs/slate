@@ -1,0 +1,128 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "HpServerBootSettings.1.1.0",
+    "type": "object",
+    "additionalProperties": false,
+    "description": "The schema definition of the server UEFI Boot Order.",
+    "properties": {
+        "Oem": {
+            "$ref": "Oem.json#"
+        },
+        "Name": {
+            "$ref": "Name.json#"
+        },
+        "Modified": {
+            "$ref": "Modified.json#"
+        },
+        "Type": {
+            "$ref": "Type.json#"
+        },
+        "Description": {
+            "$ref": "Description.json#"
+        },
+        "links": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "Settings": {
+                    "$ref": "href.json#",
+                    "description": "Reference to a separate pending settings resource. Users can change the UEFI Boot Order configuration by modifying the pending settings resource."
+                },
+                "self": {
+                    "$ref": "href.json#", 
+                    "description": "This is the URI of this resource.", 
+                    "readonly": true
+                }
+            },
+            "readonly": true,
+            "description": "Links"
+        },
+        "SettingsResult": {
+            "$ref": "Settings.json#"
+        },
+        "PersistentBootConfigOrder": {
+            "type": "array",
+            "items": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9]+[.][A-Za-z0-9]+[.]\\d+[.]\\d+([.][A-Za-z0-9]+)?$",
+                "description": "Structured boot string that references a corresponding entry in the BootSources array."
+            },
+            "readonly": false,
+            "description": "Ordered array of boot sources, representing the UEFI Boot Order list. Each entry in the array is a structured boot string that references a corresponding entry in the BootSources array."
+        },
+        "DesiredBootDevices": {
+            "type": "array",
+            "additionalProperties": false,
+            "items": {
+                "type": "object",
+                "properties": {
+                    "CorrelatableID": {
+                        "type": "string",
+                        "readonly": false,
+                        "description": "Standardized text representation of the UEFI device path of the desired boot device, in UTF-8 format. For example 'PciRoot(0x0)/Pci(0x2,0x2)/Pci(0x0,0x0)'"
+                    },
+                    "Lun": {
+                        "type": "string",
+                        "readonly": false,
+                        "pattern": "^$|^0[xX][0-9A-Fa-f]{2,16}$",
+                        "description": "The Logical Unit Number (LUN) of the desired boot device. This value must be a hexadecimal string with an even number of 2 to 16 characters, excluding the first two characters, 0x (for example, '0x01')."
+                    },
+                    "Wwn": {
+                        "type": "string",
+                        "readonly": false,
+                        "pattern": "^$|^0[xX][0-9A-Fa-f]{2,16}$",
+                        "description": "The Fibre Channel World Wide Name (WWN) of the desired boot device. This value must be a hexadecimal string with an even number of 2 to 16 characters, excluding the first two characters, 0x (for example, '0x0001020304050607')."
+                    },
+                    "iScsiTargetName": {
+                        "type": "string",
+                        "readonly": false,
+                        "pattern": "^$|^(?:iqn\\.[0-9]{4}-[0-9]{2}(?:\\.[A-Za-z](?:[A-Za-z0-9\\-]*[A-Za-z0-9])?)+(?::.*)?|eui\\.[0-9A-Fa-f]{16})$",
+                        "minlength": 0,
+                        "maxlength": 244,
+                        "description": "The iSCSI node target name of the desired boot device. The value must be a string based on IETF RFC 3270, and can be up to 244 characters in length (for example 'iqn.1991-05.com.microsoft:iscsitarget-iscsidisk-target')."
+                    }
+                }
+            },
+            "readonly": false,
+            "description": "Ordered array of the desired UEFI boot devices. Users can specify information about the desired UEFI boot devices, even if those devices have not been discovered by BIOS or listed in BootSources array."
+        },
+        "BootSources": {
+            "type": "array",
+            "additionalProperties": false,
+            "items": {
+                "type": "object",
+                "properties": {
+                    "BootString": {
+                        "type": "string",
+                        "description": "User-readable string that describes the UEFI boot option."
+                    },
+                    "CorrelatableID": {
+                        "type": "string",
+                        "description": "Contains any CorrelatableIDs that represent this boot option. The correlatableID values can be JSON Pointers or UEFI identifiers, for example."
+                    },
+                    "StructuredBootString": {
+                        "type": "string",
+                        "pattern": "^[A-Za-z0-9]+[.][A-Za-z0-9]+[.]\\d+[.]\\d+([.][A-Za-z0-9]+)?$",
+                        "description": "Structured boot string that uniquely identifies this boot option within the server."
+                    },
+                    "UEFIDevicePath": {
+                        "type": "string",
+                        "description": "Standardized text representation of the UEFI device path for this boot option, in UTF-8 format."
+                    }
+                }
+            },
+            "required": [
+                "BootString",
+                "CorrelatableID",
+                "StructuredBootString",
+                "UEFIDevicePath"
+            ],
+            "readonly": true,
+            "description": "Array of UEFI boot sources available on this server. Each entry is a UEFI boot option."
+        }
+    },
+    "required": [
+        "Name",
+        "Type"
+    ]
+}
