@@ -283,6 +283,52 @@ are case sensitive.
 Verbs other than GET are not supported on this subcatalog. PATCH and POST at
  the primary dataset catalog.
 
+### Dataset order
+
+The dataset order allows each user to organize the order in which their datasets
+are presented.
+
+This endpoint returns a `shoji:order`. Like all shoji orders, it may not contain
+all available datasets. The catalog should always be the authoritative source
+of available datasets. 
+
+Any dataset not present on the order graph should be considered to be at the
+bottom of the root list in arbitrary order.
+
+#### GET
+
+`GET /datasets/{dataset_id}/order/`
+
+```json
+
+{
+    "element": "shoji:order",
+    "self": "/datasets/{dataset_id}/order/",
+     "graph": [
+        "dataset_url",
+        {"group": [
+            "dataset_url"        
+        ]}
+     ]
+}
+```
+
+#### PUT
+
+Receives a complete `shoji:order` payload and replaces the existing graph
+with the new one.
+
+It cannot contain dataset references that are not in the dataset catalog, else
+the API will return a 400 response.
+
+Standard `shoji:order` graph validation will apply.
+
+#### PATCH
+
+Same semantics as PUT
+
+
+
 ### Entity
 
 #### GET
