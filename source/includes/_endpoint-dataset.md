@@ -38,7 +38,7 @@ crGET("https://beta.crunch.io/api/datasets/")
 {
     "element": "shoji:catalog",
     "self": "https://beta.crunch.io/api/datasets/",
-    "views": {
+    "orders": {
         "order": "https://beta.crunch.io/api/datasets/order/"
     },
     "index": {
