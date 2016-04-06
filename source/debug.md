@@ -189,6 +189,6 @@ In the command mode, the packet enables/disables the streaming of the BLE Receiv
 
 In the response mode, if there is a BLE connection between Neblina and the host, and if the RSSI streaming is ON, Neblina will send the RSSI value to the host every few seconds (between 2-5 seconds) utilizing a moving average filter. The response packet includes the Timestamp (Byte 4-7) as well as the RSSI value in dB as an 8-bit signed integer, which is represented by Byte 8. The full response packet is given below:
 
-|Byte 0 (subsystem)|Byte 1 (length)|Byte 2 (CRC)| Byte 3 (command) |Byte 4-7 |Byte 8|Byte 9-19|
-|:----------------:|:-------------:|:----------:|:----------------:|:-------:|:----:|:-------:|
-|       0x0        |      0x10     |     CRC    |0x07 (Stream RSSI)|Timestamp| RSSI |Reserved |
+|Byte 0 (subsystem)|Byte 1 (length)|Byte 2 (CRC)| Byte 3 (command) |Byte 4-7 | Byte 8 |Byte 9-19|
+|:----------------:|:-------------:|:----------:|:----------------:|:-------:|:------:|:-------:|
+|       0x0        |      0x10     |     CRC    |0x07 (Stream RSSI)|Timestamp|RSSI(dB)|Reserved |
