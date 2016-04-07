@@ -113,9 +113,10 @@ This endpoints accepts a few nested attributes in a `location` object, as descri
 Parameter | Default | Description
 --------- | ------- | -----------
 effort slug | null | string - required - submitted as a part of the endpoint path, not as a separate URL parameter
-location[query] | null | string - optional - MARIO TODO
 location[latitude] | null | float - required - a float representing the queried latitude
 location[longitude] | null | float - required - a float representing the queried longitude
+location[country] | null | string - optional - for efforts that use the "by country" search strategy, you can pass in the target country here.
+location[region] | null | string - optional - for efforts that use the "by state" search strategy, you can pass in the target state here.
 
 ### Working Example
 
@@ -154,7 +155,6 @@ View and edit a working example on codepen.io:
         url: 'https://demo.controlshiftlabs.com/efforts/forecast-the-facts/near.json',
         dataType: 'jsonp',
         data: {
-          'location[query]': place.formatted_address,
           'location[latitude]': place.geometry.location.lat(),
           'location[longitude]': place.geometry.location.lng()
         }
