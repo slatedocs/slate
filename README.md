@@ -1,19 +1,22 @@
 ControlShift Labs API Documentation
 ------------------------------------
 
-The ControlShift Labs API documentation uses slate - a middleman static site template of sorts for API documentation.  This repo forks middleman's existing repo - the recommended means of getting started.
+The ControlShift Labs API documentation uses Slate - a middleman static site template of sorts for API documentation.
 
-## Making Updates
+### Updating Content
 
 * This branch is based on the v1.3.2 release (tag)
-* The only files you should need to edit are `index.html.md` and the `*.md` files in the includes folder.  One can safely ignore everything else.
+* The only files you should need to edit:
+  * `/build/index.html.md`
+  * `/build/includes/*.md`
+* Webhooks documentation is auto-updated from https://demo.controlshiftlabs.com/api/webhooks.json at build. Just redeploy to update.
 
-## Editing/updating code examples:
+### Content Considerations:
 
 * Our audience includes very junior developers and even non-coders, attempting to pull content into their WISIWYG CRM pages.
 * All examples and JS should be exceedingly basic, with generally linear control flows, and extremly easy to follow.
 
-## Editing "External Assets"
+### Editing "External" Codepen.io Examples
 
 Our codepen.io code examples are actually **generated/spawned on the fly** using codepen.io's [prefill API](https://blog.codepen.io/documentation/api/prefill/). Our "Launch Example" button links are actually form submit buttons sending post requests to the prefill endpoint.
 
@@ -22,17 +25,11 @@ Our codepen.io code examples are actually **generated/spawned on the fly** using
 
 This approach has two key benefits. First, there are no external dependencies/assets we need to maintain. It also puts in a position where we could let clients set their own domains or arrive at the documents with their domain in the URL, have our examples use this domain, and potential populate examples JSON payloads with the client's actual content.
 
-## Extracting Webhook Documentation
+### Deploying to github pages
 
-If necessary to do so again, this js creates required webhooks documentation assets from the webhooks admin page. Some manual reformatting of the main output is required.
+You just need to run `./deploy.sh`, and that script will deploy to whatever git's origin is set-up as.
 
-```js
-labels = []; $('.notification-event-types tr').not('.hideable-row').find('td:nth-child(2)').each(function(index,data){ labels.push($(data).text())});
-desc = []; $('.notification-event-types tr').not('.hideable-row').find('td:last-child').each(function(index,data){ desc.push($(data).text())});
-payloads = [];$('.notification-event-types tr.hideable-row td:last-child div').each(function(index,data){ payloads.push( $(data).html())});
-output = '';$.each(labels, function(index, data){ output += "## "+data+"\n"+"> "+payloads[index]+"\n\n"+desc[index]+"\n\n" });output;
-summaryTable = '';$.each(labels, function(index, data){ summaryTable += '['+data+'](#'+data.replace(/\./g,'-')+')'+" | "+desc[index]+"\n" }); summaryTable;
-```
+-----
 
 
 Getting Started with Slate

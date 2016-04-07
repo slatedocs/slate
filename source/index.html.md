@@ -18,7 +18,7 @@ includes:
   - json_effort_petitions
   - json_effort_petitions_near
   - json_me
-  - webhooks
+  - webhooks.md.erb
   - errors
 
 search: true
@@ -31,3 +31,8 @@ Welcome to the [ControlShift Labs](http://www.controlshiftlabs.com/) JSON API an
 
 
 
+Type | Description
+---------- | -------
+<% data.webhooks.each do |webhook| %>
+[<%= webhook.webhook %>](#<%= webhook.webhook %>) | <%= webhook.description %>
+<% end %>
