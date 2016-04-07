@@ -146,6 +146,9 @@ If you're deploying Scout APM for the first time, we recommend starting on a sta
 
 ## Java Agent Change Log
 
+#### 0.5.1
+* Minor bugs fixed
+
 #### 0.5.0
 * Support for the Playframework 1.x
 
