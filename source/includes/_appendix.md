@@ -180,46 +180,47 @@ australiabusinesslisting|<span class="yes">Yes</span>||<span class="yes">Yes</sp
 australianguide|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 australianplanet|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 bloo|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
-brownbookaus|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
-businesscomau|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
+brownbookaus|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
+<s>businesscomau</s>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|No longer available
 cylex|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|Was previously referred to as cylexaus
-dlook|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
+dlook|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 <s>eatability</s>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|No longer available
 facebook|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 factual|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
-find-us-here|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
+find-us-here|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 foursquare|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
-fyple|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
+fyple|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 google|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 hotfrog|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|Was previously referred to as hotfrogaus
+linkedin|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 localbd|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 localbusinessguide|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
-localcomau|<span class="yes">Yes</span>||<span class="yes">Yes</span>||
-localsearch|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
+localcomau|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
+localsearch|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 localstore|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 manta|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|Currently causing issues in grabbing profile details
 nationaldirectory|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
-nearyouau|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
-pinkpages|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>||
-reverseaustralia|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>||
+<s>nearyouau</s>|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|No longer available
+pinkpages|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
+reverseaustralia|<span class="yes">Yes</span>||<span class="yes">Yes</span>||
 startlocal|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
-streetdirectory|<span class="yes">Yes</span>||<span class="yes">Yes</span>||
+streetdirectory|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 superpagesaus|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
-tripadvisor|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>||
+tripadvisor|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 truelocal|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 tupalo|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
-tuugo|<span class="yes">Yes</span>||<span class="yes">Yes</span>||
-vicdir|<span class="yes">Yes</span>||<span class="yes">Yes</span>||
+tuugo|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
+<s>vicdir</s>|<span class="yes">Yes</span>||<span class="yes">Yes</span>||No longer available
 whereis|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
-whitepagesaus|<span class="yes">Yes</span>||<span class="yes">Yes</span>||
-womo|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>||
+whitepagesaus|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
+womo|<span class="yes">Yes</span>||<span class="yes">Yes</span>||
 worldweb|<span class="yes">Yes</span>||<span class="yes">Yes</span>||
 wowcity|<span class="yes">Yes</span>||<span class="yes">Yes</span>||
 yalwa|<span class="yes">Yes</span>||<span class="yes">Yes</span>||
 yellowbook|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 yellowpagesaus|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 yelp|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|Was previously referred to as yelp-aus
-zomato|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
+zomato|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>||
 
 
 ### Canada (CAN)
