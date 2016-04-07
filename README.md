@@ -27,7 +27,10 @@ This approach has two key benefits. First, there are no external dependencies/as
 
 ### Deploying to github pages
 
-You just need to run `./deploy.sh`, and that script will deploy to whatever git's origin is set-up as.
+You just need to run `./deploy.sh`, and that script will deploy to whatever git's origin is set-up as. If you're not deploying master, you will need to specify the branch name. Example:
+
+    GIT_DEPLOY_BRANCH=mf-cs-documentation ./deploy.sh
+
 
 -----
 
