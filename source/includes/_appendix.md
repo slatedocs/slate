@@ -120,7 +120,7 @@ Identifier|NAP|Reviews|Find Profile URL|Website URL|Notes
 accessplace|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 bizwiki|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 brownbook|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
-businessclassified|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|No longer available
+<s>businessclassified</s>|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|No longer available
 businessmagnet|<span class="yes">Yes</span>||<span class="yes">Yes</span>||
 <s>bview</s>|<span class="yes">Yes</span>||<span class="yes">Yes</span>||No longer available
 cityvisitor|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
