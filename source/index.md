@@ -12,9 +12,9 @@ includes:
   - basic_information
   - payees
   - bank_accounts
-  - charge_accounts
+  - charge_configs
   - charges
-  - remittances
+  - remittance_cnabs
   - regress_cnabs
   - webhook
   - payloads
