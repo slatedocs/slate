@@ -693,7 +693,12 @@ var profile = kuzzle.security.profileFactory('myprofile', profileDefinition);
 ```
 
 ```java
-JSONArray profileDefinition = new JSONArray().put("myrole").put("default");
+JSONObject profileDefinition = new JSONObject()
+  .put("roles", new JSONArray()
+    .put("some role")
+    .put("some other role")
+  );
+
 KuzzleProfile profile = kuzzle.security.profileFactory("myprofile", profileDefinition);
 ```
 
@@ -1121,6 +1126,7 @@ kuzzle
   });
 ```
 
+#### updateProfile(id, content, [options], [callback])
 
 Performs a partial update on an existing profile.
 
@@ -1129,7 +1135,7 @@ Performs a partial update on an existing profile.
 | ``id`` | string | Unique role identifier |
 | ``content`` | JSON Object | A plain javascript object representing the profile |
 | ``options`` | string | (Optional) Optional arguments |
-| ``callback`` | function | Callback handling the response |
+| ``callback`` | function | (Optional) Callback handling the response |
 
 Available options:
 
@@ -1191,6 +1197,7 @@ kuzzle
   });
 ```
 
+#### updateRole(id, content, [options], [callback])
 
 Performs a partial update on an existing role.
 
@@ -1199,7 +1206,7 @@ Performs a partial update on an existing role.
 | ``id`` | string | Unique role identifier |
 | ``content`` | JSON Object | A plain javascript object representing the role |
 | ``options`` | string | (Optional) Optional arguments |
-| ``callback`` | function | Callback handling the response |
+| ``callback`` | function | (Optional) Callback handling the response |
 
 Available options:
 
@@ -1257,6 +1264,7 @@ kuzzle
   });
 ```
 
+#### updateUser(id, content, [options], [callback])
 
 Performs a partial update on an existing user.
 
@@ -1265,7 +1273,7 @@ Performs a partial update on an existing user.
 | ``id`` | string | Unique role identifier |
 | ``content`` | JSON Object | A plain javascript object representing the user |
 | ``options`` | string | (Optional) Optional arguments |
-| ``callback`` | function | Callback handling the response |
+| ``callback`` | function | (Optional) Callback handling the response |
 
 Available options:
 

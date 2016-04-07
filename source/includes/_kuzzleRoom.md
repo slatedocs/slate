@@ -198,6 +198,9 @@ Resolves to a `integer` containing the number of users subscribing to this room.
 ```js
 room.renew({terms: {field: ['some', 'new', 'filter']}}, function (err, res) {
   // called each time a change is detected on documents matching this filter
+
+  // check the KuzzleRoom/Notifications section of this documentation
+  // to get notification examples
 });
 ```
 
@@ -238,6 +241,9 @@ room.renew(filters, new KuzzleResponseListener<KuzzleNotificationResponse>() {
  @Override
  public void onSuccess(KuzzleNotificationResponse result) throws Exception {
    // called each time a change is detected on documents matching this filter
+
+   // check the KuzzleRoom/Notifications section of this documentation
+   // to get notification examples
  }
 
  @Override

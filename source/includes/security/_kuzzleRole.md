@@ -168,7 +168,7 @@ JSONObject updateContent = new JSONObject()
     )
   );
 
-role.update(new KuzzleResponseListener<KuzzleRole>() {
+role.update(updateContent, new KuzzleResponseListener<KuzzleRole>() {
   @Override
   public void onSuccess(KuzzleRole updatedRole) {
 
@@ -198,10 +198,11 @@ To get some more detailed information on the expected role definition, please re
 To get some more detailed information about Kuzzle's user management model, please refer to [Kuzzle's security documentation](https://github.com/kuzzleio/kuzzle/blob/master/docs/security/).
 
 
-#### update([options], [callback])
+#### update(content, [options], [callback])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
+| ``content`` | JSON Object | New role content |
 | ``options`` | JSON Object | Optional parameters |
 | ``callback`` | function | Optional callback handling the response |
 

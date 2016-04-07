@@ -232,7 +232,7 @@ JSONObject updateContent = new JSONObject()
   .put("firstname", "My Name Is")
   .put("lastname", "Jonas");
 
-user.update(new KuzzleResponseListener<KuzzleUser>() {
+user.update(updateContent, new KuzzleResponseListener<KuzzleUser>() {
   @Override
   public void onSuccess(KuzzleUser updatedUser) {
 
@@ -247,10 +247,11 @@ user.update(new KuzzleResponseListener<KuzzleUser>() {
 
 Performs a partial content update on this object.
 
-#### update([options], [callback])
+#### update(content, [options], [callback])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
+| ``content`` | JSON Object | User content |
 | ``options`` | JSON Object | Optional parameters |
 | ``callback`` | function | Optional callback handling the response |
 
@@ -389,12 +390,15 @@ Updating an user will have no impact until the <code>save</code> method is calle
 
 Replace the profile associated to the user
 
-#### setProfile(profile)
+#### setProfile(profileId)
+
+#### setProfile(kuzzleProfile)
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
-| ``profile`` | string OR KuzzleProfile  | Profile identifier or a KuzzleProfile instance |
+| ``profileId`` | string | Profile ID |
+| ``kuzzleProfile`` | KuzzleProfile | An instanciated KuzzleProfile object |
 
 #### Return value
 
-Returns the `KuzzleRole` object.
+Returns the `KuzzleUser` object.
