@@ -1,16 +1,27 @@
 @charset "utf-8";
 
-.content form{
-  margin-right: 60%;
-  padding:0 28px;
-  input[type=submit]{
-    border: none;
-    padding: 10px 37px 10px 13px;
-    background: #d4d4d4 url("http://s.cdpn.io/3/cp-arrow-right.svg") calc(100% - 8px) 50% no-repeat;
-    border-radius: 3px;
-    background-size: 20px;
-    border: 1px solid #bfbfbf;
-    font-weight: 700;
+
+.content{
+
+  form{
+    margin-right: 60%;
+    padding:0 28px;
+    input[type=submit]{
+      border: none;
+      padding: 10px 37px 10px 13px;
+      background: #d4d4d4 url("http://s.cdpn.io/3/cp-arrow-right.svg") calc(100% - 8px) 50% no-repeat;
+      border-radius: 3px;
+      background-size: 20px;
+      border: 1px solid #bfbfbf;
+      font-weight: 700;
+    }
+  }
+
+  blockquote+pre, pre+blockquote{
+    padding-top:0em;
+  }
+  pre{
+    overflow-x:hidden;
   }
 }
 
