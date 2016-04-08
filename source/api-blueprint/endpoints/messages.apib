@@ -19,12 +19,12 @@ Fetches the information of a message.
 + Response 200 (application/json)
     + Attributes (Message)
 
-### Send a message [POST /inboxes/{inbox_id}/messages]
+### Send a message [POST /channels/{channel_id}/messages]
 
-Sends a new message from an inbox. It will create a new conversation, if you want to reply to an existing conversation, refer to [Send a reply](#reference/conversations/conversation-resource/send-a-reply).
+Sends a new message from a channel. It will create a new conversation.
 
 + Parameters
-    + inbox_id (string, required) - Id or address of the inbox from which to send the message
+    + channel_id (string, required) - Id or address of the channel from which to send the message
 
 + Request (application/json)
     <!-- include(../includes/request_header.apib) -->
@@ -32,15 +32,45 @@ Sends a new message from an inbox. It will create a new conversation, if you wan
 
 <!-- include(../includes/accepted_response.apib) -->
 
-### Receive an incoming message [POST /inboxes/{inbox_id}/incoming_messages]
+### Send a reply [POST /conversations/{conversation_id}/messages]
 
-Simulate the reception of an incoming message. This endpoint can be used with [custom inboxes](#reference/custom-inboxes) **ONLY**.
+Replies to a conversation by sending a message and appending it to the conversation.
 
 + Parameters
-    + inbox_id (string, required) - Id or address of the requested inbox
+    + conversation_id (string, required) - Id of the conversation
 
 + Request (application/json)
     <!-- include(../includes/request_header.apib) -->
-    + Attributes (Incoming message)
+    + Attributes (Outbound reply)
+
+<!-- include(../includes/accepted_response.apib) -->
+
+### Import a message [POST /inboxes/{inbox_id}/import]
+
+Adds a new message into an inbox.
+
+<aside class="info">
+Imported messages and conversations will <strong>NOT</strong> be linked to any channels until a reply is sent. When replying to a conversation with no channels, you <strong>MUST</strong> choose from which channel to send the message.
+</aside>
+
++ Parameters
+    + inbox_id (string, required) - Id of the requested inbox
+
++ Request (application/json)
+    <!-- include(../includes/request_header.apib) -->
+    + Attributes (Message to import)
+
+<!-- include(../includes/accepted_response.apib) -->
+
+### Receive a custom message [POST /channels/{channel_id}/incoming_messages]
+
+Simulate the reception of an incoming message. This endpoint is available for [custom channels](#custom-channels) **ONLY**.
+
++ Parameters
+    + channel_id (string, required) - Id of the requested custom channel
+
++ Request (application/json)
+    <!-- include(../includes/request_header.apib) -->
+    + Attributes (Custom message)
 
 <!-- include(../includes/accepted_response.apib) -->

@@ -1,0 +1,40 @@
+## Channel
+
+<!-- include(../includes/links_attribute.apib) -->
+    + self: `https://api2.frontapp.com/channels/cha_55c8c149` (string, required) - URL of the inbox.
+    + related (object, required)
+        + inbox: `https://api2.frontapp.com/channels/cha_55c8c149/inbox` (string, required) - URL of the inbox to which the channel is sending messages.
++ id: `cha_55c8c149` (string, required) - Unique identifier for the channel.
++ address: `team@planet-express.con` (string, required) - Address receiving the messages.
++ type (enum[string], required) - Type of the channel.
+    + Members
+        + `email`
+        + `sms`
+        + `twitter`
+        + `facebook`
+        + `smooch`
+        + `intercom`
+        + `truly`
+        + `custom`
++ send_as: `team@planet-express.com` (string, optional) - Address which appears as the sender for messages sent from Front.
++ settings (object, required)
+
+## Channel settings
+
++ settings (object, required)
+  + webhook_url: `http://example.com` (string, optional) - `custom` type only. URL to which will be sent the replies of a custom message.
+
+## Channel to create
+
++ type (enum[string], required) - Type of the channel.
+    + Members
+        + `custom`
++ Include Channel settings
+
+## Channel created
+
++ id: `cha_55c8c149` (string, required) - Unique identifier for the channel.
++ Include Channel to create
++ address: `dw0a0b7aeg36cb56` - Address receiving the messages.
++ sendAs: `dw0a0b7aeg36cb56` - Address which appears as the sender for messages sent from Front.
++ Include Channel settings

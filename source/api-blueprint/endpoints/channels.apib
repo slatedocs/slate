@@ -1,0 +1,90 @@
+## Channels [/channels/{channel_id}]
+
+A channel is a resource which can send and receive messages.
+
+Here is the list of existing channel types:
+
+| Type        | Description                                                                                |
+|-------------|--------------------------------------------------------------------------------------------|
+| `smtp`      | For emails managed via SMTP.                                                               |
+| `imap`      | For emails managed via IMAP.                                                               |
+| `sms`       | Linked to a Twilio account.                                                                |
+| `twitter`   | Linked to a Twitter account.                                                               |
+| `facebook`  | Linked to a Facebook page.                                                                 |
+| `smooch`    | Linked to a Smooch account.                                                                |
+| `intercom`  | Linked to an Intercom account.                                                             |
+| `truly`     | Linked to a truly account.                                                                 |
+| `custom`    | For messages sent and received only through the API (cf [Custom inboxes](#custom-inboxes)).|
+
++ Parameters
+    + channel_id (string, required) - Id of the requested channel
+
++ Attributes (Channel)
+
+### List channels [GET /channels]
+
+Lists all the shared channels available in your company.
+
++ Request
+    <!-- include(../includes/request_header.apib) -->
+
++ Response 200 (application/json)
+    + Attributes
+        <!-- include(../includes/links_attribute.apib) -->
+            + self: `https://api2.frontapp.com/channels` (string, required)
+        + _results (array[Channel], required) - List of channels
+
+### Get a channel [GET]
+
+Fetches the information of a channel. See [resource aliases](#resource-aliases) to fetch by address.
+
++ Request
+    <!-- include(../includes/request_header.apib) -->
+
++ Response 200 (application/json)
+    + Attributes (Channel)
+
+### Update a channel settings [PATCH]
+
+Updates the settings of a channel.
+
+<aside class="info">
+As of today, you can only update the settings of a <a href="#custom-channels">custom channel</a> with the API.
+</aside>
+
++ Request (application/json)
+    <!-- include(../includes/request_header.apib) -->
+    + Attributes (Channel settings)
+
++ Response 204
+
+### Create a channel [POST /inboxes/{inbox_id}/channels]
+
+Creates a channel linked to the requested inbox.
+
+<aside class="info">
+As of today, you can only create a <a href="#custom-channels">custom channel</a> with the API.
+</aside>
+
++ Parameters
+    + inbox_id (string, required) - Id of the inbox into which the channel messages will go.
+
++ Request (application/json)
+    <!-- include(../includes/request_header.apib) -->
+    + Attributes (Channel to create)
+
++ Response 201 (application/json)
+    + Attributes (Channel created)
+
+### Get channel inbox [GET /channels/{channel_id}/inbox]
+
+Fetches the inbox to which the channel is linked to.
+
++ Parameters
+    + channel_id (string, required) - Id of the requested channel
+
++ Request
+    <!-- include(../includes/request_header.apib) -->
+
++ Response 200 (application/json)
+    + Attributes (Inbox)

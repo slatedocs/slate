@@ -1,8 +1,18 @@
+## Inbox to create
+
++ name: `Delivery support` (string, required) - Name of the inbox
++ teammate_ids (array[string], optional) - List of all the teammate ids who will have access to this inbox. If omitted, it will automatically select all the administrators in your company.
+
+## Created inbox
+
++ id: `inb_55c8c149` (string, required) - Unique identifier for the inbox
++ name: `Delivery support` (string, required) - Name of the inbox
+
 ## Inbox
 
 + id: `inb_55c8c149` (string, required) - Unique identifier for the inbox
-+ address: `team@planet-express.com` (string, required) - Address receiving the messages
-+ type (enum[string], required) - Type of the inbox
++ address: `team@planet-express.com` (string, required) - **DEPRECATED** Address receiving the messages
++ type (enum[string], required) - **DEPRECATED** Type of the inbox
     + Members
         + `email`
         + `sms`
@@ -13,9 +23,10 @@
         + `truly`
         + `custom`
 + name: `Team` (string, required) - Name of the inbox
-+ send_as: `team@planet-express.com` (string, optional) - Address which appears as the sender for messages sent from Front
++ send_as: `team@planet-express.com` (string, optional) - **DEPRECATED** Address which appears as the sender for messages sent from Front
 <!-- include(../includes/links_attribute.apib) -->
     + self: `https://api2.frontapp.com/inboxes/inb_55c8c149` (string, required) - URL of the inbox
     + related (object, required)
         + teammates: `https://api2.frontapp.com/inboxes/inb_55c8c149/teammates` (string, required) - URL of the list of teammates that can access the inbox
         + conversations: `https://api2.frontapp.com/inboxes/inb_55c8c149/conversations` (string, required) - URL of the list of conversations included in this inbox
+        + channels: `https://api2.frontapp.com/inboxes/inb_55c8c149/channels` (string, required) - URL of the list of channels sending messages to this inbox

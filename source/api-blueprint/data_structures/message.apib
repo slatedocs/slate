@@ -43,12 +43,12 @@
 ## Outbound reply
 
 + Include Outbound message
-+ `inbox_id`: `inb_55c8c149` (string, optional) - In case of a message received on multiple inboxes, you **MUST** choose which one is replying.
++ `channel_id`: `cha_55c8c149` (string, optional) - Channel through which to send the message. Defaults to the original conversation channel. For imported messages or messages received on multiple channels, you **MUST** specify a channel ID.
 + to (array[string], optional) - List of the recipient handles who will receive this message. By default it will use the recipients of the last received message.
 + cc (array[string], optional) - List of the recipient handles who will receive a copy of this message. By default it will use the cc'ed recipients of the last received message.
 + bcc (array[string], optional) - List of the recipient handles who will receive a blind copy of this message
 
-## Incoming message
+## Custom message
 
 + sender (object, required) - Data of the sender
     + contact_id (string, optional) - ID of the contact in Front corresponding to the sender
@@ -56,10 +56,26 @@
     + handle: `hermes_123` (string, required) - Handle of the sender. It can be any string used to uniquely identify the sender
 + subject: `Question` (string, optional) - Subject of the message
 + body: `Didn't we used to be a delivery company?` (string, required) - Body of the message
-+ body_format (enum[string], optional) - Format of the body (Defaults to `'markdown'`)
++ body_format (enum[string], optional) - Format of the body
     + Default: `markdown`
     + Members
         + `html`
         + `markdown`
 + metadata (object, optional) - Optional metadata about the message
-    + thread_ref (string, optional) - Custom reference which will be used to thread messages. If you ommit this field, we'll thread by sender handle instead
+    + thread_ref (string, optional) - Custom reference which will be used to thread messages. If you ommit this field, we'll thread by sender instead
+
+## Message to import
+
++ sender (Contact handle, required) - Sender of the message
+  + name (string, optional) - Name of the sender
++ subject: `100th-delivery party` (string, optional) - Subject of the message
++ body: `Why am I not invited?` (string, required) - Body of the message
++ body_format (enum[string], optional) - Format of the body
+    + Default: `markdown`
+    + Members
+        + `html`
+        + `markdown`
++ metadata (object, required)
+    + external_id (string, required) - Unique external identifier
+    + thread_ref (string, optional) - Custom reference which will be used to thread messages. If you ommit this field, we'll thread the messages by sender
+    + headers (object, optional) - Optional object for you to put message related information which will be kept in Front

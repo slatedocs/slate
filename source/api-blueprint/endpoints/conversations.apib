@@ -122,19 +122,6 @@ Lists all the messages sent or received in a conversation in reverse chronologic
             + self: `https://api2.frontapp.com/conversations/cnv_55c8c149/messages` (string, required)
         + _results (array[Message], required) - List of the conversation messages
 
-### Send a reply [POST /conversations/{conversation_id}/messages]
-
-Replies to a conversation by sending a message and appending it to the conversation.
-
-+ Parameters
-    + conversation_id (string, required) - Id of the conversation
-
-+ Request (application/json)
-    <!-- include(../includes/request_header.apib) -->
-    + Attributes (Outbound reply)
-
-<!-- include(../includes/accepted_response.apib) -->
-
 ## Comments [/conversations/{conversation_id}/comments]
 
 A comment is a private message written by a teammate visible only to the other teammates. It is never sent and cannot be shared outside of Front.

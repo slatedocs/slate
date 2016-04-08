@@ -340,7 +340,8 @@ curl --include \
         "self": "https://api2.frontapp.com/inboxes/inb_55c8c149",
         "related": {
           "teammates": "https://api2.frontapp.com/inboxes/inb_55c8c149/teammates",
-          "conversations": "https://api2.frontapp.com/inboxes/inb_55c8c149/conversations"
+          "conversations": "https://api2.frontapp.com/inboxes/inb_55c8c149/conversations",
+          "channels": "https://api2.frontapp.com/inboxes/inb_55c8c149/channels"
         }
       }
     }
@@ -366,33 +367,20 @@ teammate_id | string | Id or email of the teammate
 Name | Type | Description
 -----|------|------------
 id | string | Unique identifier for the inbox
-address | string | Address receiving the messages
-type | enum | Type of the inbox
+address | string | **DEPRECATED** Address receiving the messages
+type | enum | **DEPRECATED** Type of the inbox
 name | string | Name of the inbox
-send_as | string (optional) | Address which appears as the sender for messages sent from Front
+send_as | string (optional) | **DEPRECATED** Address which appears as the sender for messages sent from Front
 _links | object | See [Response body Structure - Links](#links)
 _links.self | string | URL of the inbox
 _links.related | object | 
 _links.related.teammates | string | URL of the list of teammates that can access the inbox
 _links.related.conversations | string | URL of the list of conversations included in this inbox
+_links.related.channels | string | URL of the list of channels sending messages to this inbox
 
-An inbox is a resource which can receive messages. It is usually tied to an address (email address, Twitter handle, phone number, ...) and can be of one of the following types:
+An inbox is a container of messages.
 
-* `email` configured via imap or smtp
-
-* `sms` linked to a Twilio account
-
-* `twitter` linked to a Twitter account
-
-* `facebook` linked to a Facebook account
-
-* `smooch` linked to a Smooch account
-
-* `intercom` linked to an Intercom account
-
-* `truly` linked to a Truly account
-
-* `custom` used only through the API (cf [Custom inboxes](#custom-inboxes))
+Messages are sent from and received by [channels](#channels) which then post the messages into the configured inbox.
 
 
 
@@ -427,20 +415,63 @@ curl --include \
         "self": "https://api2.frontapp.com/inboxes/inb_55c8c149",
         "related": {
           "teammates": "https://api2.frontapp.com/inboxes/inb_55c8c149/teammates",
-          "conversations": "https://api2.frontapp.com/inboxes/inb_55c8c149/conversations"
+          "conversations": "https://api2.frontapp.com/inboxes/inb_55c8c149/conversations",
+          "channels": "https://api2.frontapp.com/inboxes/inb_55c8c149/channels"
         }
       }
     }
   ]
 }
 ```
-Lists all the inboxes available in your company.
+Lists all the team inboxes in your company.
 
 
 
 ### HTTP Request
 
 `GET https://api2.frontapp.com/inboxes`
+## Create an inbox
+```shell
+
+curl --include \
+     --request POST \
+     --header "Content-Type: application/json" \
+     --header "Authorization: Bearer {your_token}" \
+     --header "Accept: application/json" \
+     --data-binary "{
+  \"name\": \"Delivery support\",
+  \"teammate_ids\": []
+}" \
+'https://api2.frontapp.com/inboxes'
+```
+
+```node
+
+```
+
+> Response **201**
+
+```json
+{
+  "id": "inb_55c8c149",
+  "name": "Delivery support"
+}
+```
+Creates a team inbox with no channel associated to it (see [Create a channel](#create-a-channel)).
+
+
+
+### HTTP Request
+
+`POST https://api2.frontapp.com/inboxes`
+### Body
+
+
+Name | Type | Description
+-----|------|------------
+name | string | Name of the inbox
+teammate_ids | array (optional) | List of all the teammate ids who will have access to this inbox. If omitted, it will automatically select all the administrators in your company.
+
 ## Get inbox
 ```shell
 
@@ -467,7 +498,8 @@ curl --include \
     "self": "https://api2.frontapp.com/inboxes/inb_55c8c149",
     "related": {
       "teammates": "https://api2.frontapp.com/inboxes/inb_55c8c149/teammates",
-      "conversations": "https://api2.frontapp.com/inboxes/inb_55c8c149/conversations"
+      "conversations": "https://api2.frontapp.com/inboxes/inb_55c8c149/conversations",
+      "channels": "https://api2.frontapp.com/inboxes/inb_55c8c149/channels"
     }
   }
 }
@@ -484,7 +516,59 @@ Fetches the information of an inbox. See [resource aliases](#resource-aliases) t
 
 Name | Type | Description
 -----|------|------------
-inbox_id | string | Id or address of the requested inbox
+inbox_id | string | Id of the requested inbox
+
+## List inbox channels
+```shell
+
+curl --include \
+     --header "Authorization: Bearer {your_token}" \
+     --header "Accept: application/json" \
+'https://api2.frontapp.com/inboxes/${INBOX_ID}/channels'
+```
+
+```node
+
+```
+
+> Response **200**
+
+```json
+{
+  "_pagination": {},
+  "_links": {
+    "self": "https://api2.frontapp.com/inboxes/inb_55c8c149/channels"
+  },
+  "_results": [
+    {
+      "_links": {
+        "self": "https://api2.frontapp.com/channels/cha_55c8c149",
+        "related": {
+          "inbox": "https://api2.frontapp.com/channels/cha_55c8c149/inbox"
+        }
+      },
+      "id": "cha_55c8c149",
+      "address": "team@planet-express.con",
+      "type": "email",
+      "send_as": "team@planet-express.com",
+      "settings": {}
+    }
+  ]
+}
+```
+Lists the channels linked to an inbox.
+
+
+
+### HTTP Request
+
+`GET https://api2.frontapp.com/inboxes/{inbox_id}/channels`
+### Parameters
+
+
+Name | Type | Description
+-----|------|------------
+inbox_id | string | Id of the requested inbox
 
 ## List inbox conversations
 ```shell
@@ -626,7 +710,7 @@ Lists the conversations which appear in an inbox.
 
 Name | Type | Description
 -----|------|------------
-inbox_id | string | Id or address of the requested inbox
+inbox_id | string | Id of the requested inbox
 q | object (optional) | Search query. See Search Parameters
 page | number (optional) | Number of the page requested
 
@@ -682,7 +766,282 @@ Lists the teammates who can access an inbox.
 
 Name | Type | Description
 -----|------|------------
-inbox_id | string | Id or address of the requested inbox
+inbox_id | string | Id of the requested inbox
+
+# Channels
+> 
+Name | Type | Description
+-----|------|------------
+_links | object | See [Response body Structure - Links](#links)
+_links.self | string | URL of the inbox.
+_links.related | object | 
+_links.related.inbox | string | URL of the inbox to which the channel is sending messages.
+id | string | Unique identifier for the channel.
+address | string | Address receiving the messages.
+type | enum | Type of the channel.
+send_as | string (optional) | Address which appears as the sender for messages sent from Front.
+settings | object | 
+
+A channel is a resource which can send and receive messages.
+
+Here is the list of existing channel types:
+
+| Type        | Description                                                                                |
+|-------------|--------------------------------------------------------------------------------------------|
+| `smtp`      | For emails managed via SMTP.                                                               |
+| `imap`      | For emails managed via IMAP.                                                               |
+| `sms`       | Linked to a Twilio account.                                                                |
+| `twitter`   | Linked to a Twitter account.                                                               |
+| `facebook`  | Linked to a Facebook page.                                                                 |
+| `smooch`    | Linked to a Smooch account.                                                                |
+| `intercom`  | Linked to an Intercom account.                                                             |
+| `truly`     | Linked to a truly account.                                                                 |
+| `custom`    | For messages sent and received only through the API (cf [Custom inboxes](#custom-inboxes)).|
+
+
+
+## List channels
+```shell
+
+curl --include \
+     --header "Authorization: Bearer {your_token}" \
+     --header "Accept: application/json" \
+'https://api2.frontapp.com/channels'
+```
+
+```node
+
+```
+
+> Response **200**
+
+```json
+{
+  "_links": {
+    "self": "https://api2.frontapp.com/channels"
+  },
+  "_results": [
+    {
+      "_links": {
+        "self": "https://api2.frontapp.com/channels/cha_55c8c149",
+        "related": {
+          "inbox": "https://api2.frontapp.com/channels/cha_55c8c149/inbox"
+        }
+      },
+      "id": "cha_55c8c149",
+      "address": "team@planet-express.con",
+      "type": "email",
+      "send_as": "team@planet-express.com",
+      "settings": {}
+    }
+  ]
+}
+```
+Lists all the shared channels available in your company.
+
+
+
+### HTTP Request
+
+`GET https://api2.frontapp.com/channels`
+## Get a channel
+```shell
+
+curl --include \
+     --header "Authorization: Bearer {your_token}" \
+     --header "Accept: application/json" \
+'https://api2.frontapp.com/channels/${CHANNEL_ID}'
+```
+
+```node
+
+```
+
+> Response **200**
+
+```json
+{
+  "_links": {
+    "self": "https://api2.frontapp.com/channels/cha_55c8c149",
+    "related": {
+      "inbox": "https://api2.frontapp.com/channels/cha_55c8c149/inbox"
+    }
+  },
+  "id": "cha_55c8c149",
+  "address": "team@planet-express.con",
+  "type": "email",
+  "send_as": "team@planet-express.com",
+  "settings": {}
+}
+```
+Fetches the information of a channel. See [resource aliases](#resource-aliases) to fetch by address.
+
+
+
+### HTTP Request
+
+`GET https://api2.frontapp.com/channels/{channel_id}`
+### Parameters
+
+
+Name | Type | Description
+-----|------|------------
+channel_id | string | Id of the requested channel
+
+## Update a channel settings
+```shell
+
+curl --include \
+     --request PATCH \
+     --header "Content-Type: application/json" \
+     --header "Authorization: Bearer {your_token}" \
+     --header "Accept: application/json" \
+     --data-binary "{
+  \"settings\": {
+    \"webhook_url\": \"http://example.com\"
+  }
+}" \
+'https://api2.frontapp.com/channels/${CHANNEL_ID}'
+```
+
+```node
+
+```
+
+> Response **204**
+
+Updates the settings of a channel.
+
+<aside class="info">
+As of today, you can only update the settings of a <a href="#custom-channels">custom channel</a> with the API.
+</aside>
+
+
+
+### HTTP Request
+
+`PATCH https://api2.frontapp.com/channels/{channel_id}`
+### Parameters
+
+
+Name | Type | Description
+-----|------|------------
+channel_id | string | Id of the requested channel
+
+### Body
+
+
+Name | Type | Description
+-----|------|------------
+settings | object | 
+settings.webhook_url | string (optional) | `custom` type only. URL to which will be sent the replies of a custom message.
+
+## Create a channel
+```shell
+
+curl --include \
+     --request POST \
+     --header "Content-Type: application/json" \
+     --header "Authorization: Bearer {your_token}" \
+     --header "Accept: application/json" \
+     --data-binary "{
+  \"type\": \"custom\",
+  \"settings\": {
+    \"webhook_url\": \"http://example.com\"
+  }
+}" \
+'https://api2.frontapp.com/inboxes/${INBOX_ID}/channels'
+```
+
+```node
+
+```
+
+> Response **201**
+
+```json
+{
+  "id": "cha_55c8c149",
+  "type": "custom",
+  "address": "dw0a0b7aeg36cb56",
+  "sendAs": "dw0a0b7aeg36cb56",
+  "settings": {
+    "webhook_url": "http://example.com"
+  }
+}
+```
+Creates a channel linked to the requested inbox.
+
+<aside class="info">
+As of today, you can only create a <a href="#custom-channels">custom channel</a> with the API.
+</aside>
+
+
+
+### HTTP Request
+
+`POST https://api2.frontapp.com/inboxes/{inbox_id}/channels`
+### Parameters
+
+
+Name | Type | Description
+-----|------|------------
+inbox_id | string | Id of the inbox into which the channel messages will go.
+
+### Body
+
+
+Name | Type | Description
+-----|------|------------
+type | enum | Type of the channel.
+settings | object | 
+settings.webhook_url | string (optional) | `custom` type only. URL to which will be sent the replies of a custom message.
+
+## Get channel inbox
+```shell
+
+curl --include \
+     --header "Authorization: Bearer {your_token}" \
+     --header "Accept: application/json" \
+'https://api2.frontapp.com/channels/${CHANNEL_ID}/inbox'
+```
+
+```node
+
+```
+
+> Response **200**
+
+```json
+{
+  "id": "inb_55c8c149",
+  "address": "team@planet-express.com",
+  "type": "email",
+  "name": "Team",
+  "send_as": "team@planet-express.com",
+  "_links": {
+    "self": "https://api2.frontapp.com/inboxes/inb_55c8c149",
+    "related": {
+      "teammates": "https://api2.frontapp.com/inboxes/inb_55c8c149/teammates",
+      "conversations": "https://api2.frontapp.com/inboxes/inb_55c8c149/conversations",
+      "channels": "https://api2.frontapp.com/inboxes/inb_55c8c149/channels"
+    }
+  }
+}
+```
+Fetches the inbox to which the channel is linked to.
+
+
+
+### HTTP Request
+
+`GET https://api2.frontapp.com/channels/{channel_id}/inbox`
+### Parameters
+
+
+Name | Type | Description
+-----|------|------------
+channel_id | string | Id of the requested channel
 
 # Conversations
 > 
@@ -1077,7 +1436,8 @@ curl --include \
         "self": "https://api2.frontapp.com/inboxes/inb_55c8c149",
         "related": {
           "teammates": "https://api2.frontapp.com/inboxes/inb_55c8c149/teammates",
-          "conversations": "https://api2.frontapp.com/inboxes/inb_55c8c149/conversations"
+          "conversations": "https://api2.frontapp.com/inboxes/inb_55c8c149/conversations",
+          "channels": "https://api2.frontapp.com/inboxes/inb_55c8c149/channels"
         }
       }
     }
@@ -1429,66 +1789,6 @@ Name | Type | Description
 -----|------|------------
 conversation_id | string | Id of the requested conversation
 page | number (optional) | Number of the page requested
-
-## Send a reply
-```shell
-
-curl --include \
-     --request POST \
-     --header "Content-Type: application/json" \
-     --header "Authorization: Bearer {your_token}" \
-     --header "Accept: application/json" \
-     --data-binary "{
-  \"author_id\": \"alt:email:leela@planet-exress.com\",
-  \"subject\": \"Good news everyone!\",
-  \"body\": \"Why is Zoidberg the only one still alone?\",
-  \"text\": \"Why is Zoidberg the only one still alone?\",
-  \"options\": {
-    \"archive\": true
-  },
-  \"inbox_id\": \"inb_55c8c149\",
-  \"to\": [],
-  \"cc\": [],
-  \"bcc\": []
-}" \
-'https://api2.frontapp.com/conversations/${CONVERSATION_ID}/messages'
-```
-
-```node
-
-```
-
-> Response **202**
-
-Replies to a conversation by sending a message and appending it to the conversation.
-
-
-
-### HTTP Request
-
-`POST https://api2.frontapp.com/conversations/{conversation_id}/messages`
-### Parameters
-
-
-Name | Type | Description
------|------|------------
-conversation_id | string | Id of the conversation
-
-### Body
-
-
-Name | Type | Description
------|------|------------
-author_id | string (optional) | ID or email of the teammate on behalf of whom the answer is sent
-subject | string (optional) | Subject of the message for email message
-body | string | Body of the message
-text | string (optional) | Text version of the body for messages with non-text body
-options | object (optional) | Sending options
-options.archive | boolean (optional) | Archive the conversation right when sending the reply (default: `true`)
-inbox_id | string (optional) | In case of a message received on multiple inboxes, you **MUST** choose which one is replying.
-to | array (optional) | List of the recipient handles who will receive this message. By default it will use the recipients of the last received message.
-cc | array (optional) | List of the recipient handles who will receive a copy of this message. By default it will use the cc'ed recipients of the last received message.
-bcc | array (optional) | List of the recipient handles who will receive a blind copy of this message
 
 # Comments
 > 
@@ -1891,7 +2191,7 @@ curl --include \
   \"cc\": [],
   \"bcc\": []
 }" \
-'https://api2.frontapp.com/inboxes/${INBOX_ID}/messages'
+'https://api2.frontapp.com/channels/${CHANNEL_ID}/messages'
 ```
 
 ```node
@@ -1900,19 +2200,19 @@ curl --include \
 
 > Response **202**
 
-Sends a new message from an inbox. It will create a new conversation, if you want to reply to an existing conversation, refer to [Send a reply](#reference/conversations/conversation-resource/send-a-reply).
+Sends a new message from a channel. It will create a new conversation.
 
 
 
 ### HTTP Request
 
-`POST https://api2.frontapp.com/inboxes/{inbox_id}/messages`
+`POST https://api2.frontapp.com/channels/{channel_id}/messages`
 ### Parameters
 
 
 Name | Type | Description
 -----|------|------------
-inbox_id | string | Id or address of the inbox from which to send the message
+channel_id | string | Id or address of the channel from which to send the message
 
 ### Body
 
@@ -1929,7 +2229,128 @@ to | array | List of the recipient handles who will receive this message
 cc | array (optional) | List of the recipient handles who will receive a copy of this message
 bcc | array (optional) | List of the recipient handles who will receive a blind copy of this message
 
-## Receive an incoming message
+## Send a reply
+```shell
+
+curl --include \
+     --request POST \
+     --header "Content-Type: application/json" \
+     --header "Authorization: Bearer {your_token}" \
+     --header "Accept: application/json" \
+     --data-binary "{
+  \"author_id\": \"alt:email:leela@planet-exress.com\",
+  \"subject\": \"Good news everyone!\",
+  \"body\": \"Why is Zoidberg the only one still alone?\",
+  \"text\": \"Why is Zoidberg the only one still alone?\",
+  \"options\": {
+    \"archive\": true
+  },
+  \"channel_id\": \"cha_55c8c149\",
+  \"to\": [],
+  \"cc\": [],
+  \"bcc\": []
+}" \
+'https://api2.frontapp.com/conversations/${CONVERSATION_ID}/messages'
+```
+
+```node
+
+```
+
+> Response **202**
+
+Replies to a conversation by sending a message and appending it to the conversation.
+
+
+
+### HTTP Request
+
+`POST https://api2.frontapp.com/conversations/{conversation_id}/messages`
+### Parameters
+
+
+Name | Type | Description
+-----|------|------------
+conversation_id | string | Id of the conversation
+
+### Body
+
+
+Name | Type | Description
+-----|------|------------
+author_id | string (optional) | ID or email of the teammate on behalf of whom the answer is sent
+subject | string (optional) | Subject of the message for email message
+body | string | Body of the message
+text | string (optional) | Text version of the body for messages with non-text body
+options | object (optional) | Sending options
+options.archive | boolean (optional) | Archive the conversation right when sending the reply (default: `true`)
+channel_id | string (optional) | Channel through which to send the message. Defaults to the original conversation channel. For imported messages or messages received on multiple channels, you **MUST** specify a channel ID.
+to | array (optional) | List of the recipient handles who will receive this message. By default it will use the recipients of the last received message.
+cc | array (optional) | List of the recipient handles who will receive a copy of this message. By default it will use the cc'ed recipients of the last received message.
+bcc | array (optional) | List of the recipient handles who will receive a blind copy of this message
+
+## Import a message
+```shell
+
+curl --include \
+     --request POST \
+     --header "Content-Type: application/json" \
+     --header "Authorization: Bearer {your_token}" \
+     --header "Accept: application/json" \
+     --data-binary "{
+  \"sender\": {
+    \"handle\": \"@calculon\",
+    \"source\": \"twitter\"
+  },
+  \"subject\": \"100th-delivery party\",
+  \"body\": \"Why am I not invited?\",
+  \"body_format\": \"html\",
+  \"metadata\": {
+    \"external_id\": \"\"
+  }
+}" \
+'https://api2.frontapp.com/inboxes/${INBOX_ID}/import'
+```
+
+```node
+
+```
+
+> Response **202**
+
+Adds a new message into an inbox.
+
+<aside class="info">
+Imported messages and conversations will <strong>NOT</strong> be linked to any channels until a reply is sent. When replying to a conversation with no channels, you <strong>MUST</strong> choose from which channel to send the message.
+</aside>
+
+
+
+### HTTP Request
+
+`POST https://api2.frontapp.com/inboxes/{inbox_id}/import`
+### Parameters
+
+
+Name | Type | Description
+-----|------|------------
+inbox_id | string | Id of the requested inbox
+
+### Body
+
+
+Name | Type | Description
+-----|------|------------
+sender | Contact handle | Sender of the message
+subject | string (optional) | Subject of the message
+body | string | Body of the message
+body_format | enum (optional) | Format of the body (default: `[object Object]`)
+metadata | object | 
+metadata.external_id | string | Unique external identifier
+metadata.thread_ref | string (optional) | Custom reference which will be used to thread messages. If you ommit this field, we'll thread the messages by sender
+metadata.headers | object (optional) | Optional object for you to put message related information which will be kept in Front
+
+## Receive a custom message
 ```shell
 
 curl --include \
@@ -1947,7 +2368,7 @@ curl --include \
   \"body_format\": \"html\",
   \"metadata\": {}
 }" \
-'https://api2.frontapp.com/inboxes/${INBOX_ID}/incoming_messages'
+'https://api2.frontapp.com/channels/${CHANNEL_ID}/incoming_messages'
 ```
 
 ```node
@@ -1956,19 +2377,19 @@ curl --include \
 
 > Response **202**
 
-Simulate the reception of an incoming message. This endpoint can be used with [custom inboxes](#reference/custom-inboxes) **ONLY**.
+Simulate the reception of an incoming message. This endpoint is available for [custom channels](#custom-channels) **ONLY**.
 
 
 
 ### HTTP Request
 
-`POST https://api2.frontapp.com/inboxes/{inbox_id}/incoming_messages`
+`POST https://api2.frontapp.com/channels/{channel_id}/incoming_messages`
 ### Parameters
 
 
 Name | Type | Description
 -----|------|------------
-inbox_id | string | Id or address of the requested inbox
+channel_id | string | Id of the requested custom channel
 
 ### Body
 
@@ -1981,9 +2402,9 @@ sender.name | string (optional) | Name of the sender
 sender.handle | string | Handle of the sender. It can be any string used to uniquely identify the sender
 subject | string (optional) | Subject of the message
 body | string | Body of the message
-body_format | enum (optional) | Format of the body (Defaults to `'markdown'`) (default: `[object Object]`)
+body_format | enum (optional) | Format of the body (default: `[object Object]`)
 metadata | object (optional) | Optional metadata about the message
-metadata.thread_ref | string (optional) | Custom reference which will be used to thread messages. If you ommit this field, we'll thread by sender handle instead
+metadata.thread_ref | string (optional) | Custom reference which will be used to thread messages. If you ommit this field, we'll thread by sender instead
 
 # Contacts
 > 

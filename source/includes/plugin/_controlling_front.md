@@ -94,7 +94,7 @@ You can add or remove tags from a conversation. For this, you will need the alia
 Front.moveToInbox('contact');
 ```
 
-You can move a conversation to an inbox. You can request a conversation to be moved to a shared inbox not accessible by the user, but they will get a confirmation dialog (as they will lose access to the conversation).
+You can move a conversation to an inbox. You can request a conversation to be moved to a team inbox not accessible by the user, but they will get a confirmation dialog (as they will lose access to the conversation).
 
 ## Search
 

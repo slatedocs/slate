@@ -10,7 +10,7 @@ language_tabs:
 
 includes:
   - endpoints
-  - custom_inboxes
+  - custom_channels
   - webhooks
 
 search: true
@@ -60,9 +60,9 @@ Retry-After: 20
 
 When the rate limit is exceeded, the server will respond with a [**429 Too Many Requests**](https://tools.ietf.org/html/rfc6585#section-4) HTTP code with the header `Retry-After` to tell you how many seconds you need to wait before you can retry the request.
 
-### Individual inboxes
+### Individual inboxes and channels
 
-Since individual inboxes are private, the API does not let you interact with them nor with their content.
+Since individual inboxes and channels are private, the API does not let you interact with them nor with their content.
 
 <aside class="info">The API can only access conversations that appear in at least one team inbox.</aside>
 
@@ -70,15 +70,15 @@ Since individual inboxes are private, the API does not let you interact with the
 
 You can refer to all the resources with their IDs. Alternatively, some resources can be accessed via a more human readable alias:
 
-* Teammates can be identified with their `email`.
-* Inboxes can be identified with their `address`.
-* Contacts can be identified with one of their `source` and `handle`.
+* [Teammates](#teammates) can be identified with their `email`.
+* [Channels](#channels) can be identified with their `address`.
+* [Contacts](#contacts) can be identified with one of their `source` and `handle`.
 
 If you want to use an alternative alias, you **MUST** prefix it with `alt:` and the name of the value used to identify the resource.
 Examples:
 
 * `alt:email:leela@planet-express.com` for the teammate with the email address *leela@planet-express.com*.
-* `alt:address:@FrontApp` for the inbox with the address *@FrontApp*.
+* `alt:address:@FrontApp` for the channel with the address *@FrontApp*.
 * `alt:twitter:@leela` for the contact having the twitter handle *@leela*.
 * `alt:phone:+12345678900` for the contact having the phone number *+12345678900*.
 

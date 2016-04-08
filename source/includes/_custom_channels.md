@@ -1,9 +1,9 @@
-# Custom inboxes
+# Custom channels
 
-A custom inbox let you control how messages are received and sent via HTTP calls.
-You can use custom inboxes to integrate Front with channels that are not officially supported.
+A custom channel lets you control how messages are received and sent via HTTP calls.
+You can use custom channels to integrate Front with platforms that are not officially supported.
 
-## Create a custom inbox
+## Create a custom channel
 
 * Go to Settings > Inboxes
 * Click on "Create an inbox" and choose the **Custom** type
@@ -12,7 +12,7 @@ You can use custom inboxes to integrate Front with channels that are not officia
 
 ## Receive messages
 
-See [Receive an incoming message](#receive-an-incoming-message) endpoint documentation.
+See [Receive a custom message](#receive-a-custom-message) endpoint documentation.
 
 ## Sending messages
 
