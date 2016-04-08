@@ -99,6 +99,18 @@ html, body {
       outline: none;
       color: $nav-text;
       border-radius: 0; /* ios has a default border radius */
+
+      &::-moz-placeholder {
+        color: rgba(white, .4);
+      }
+
+      &::-ms-input-placeholder {
+        color: rgba(white, .4);
+      }
+
+      &::-webkit-input-placeholder {
+        color: rgba(white, .4);
+      }
     }
 
     &:before {
@@ -543,6 +555,15 @@ html, body {
       color: #fff;
       text-decoration: none;
       border-bottom: dashed 1px #ccc;
+    }
+
+    table tbody {
+      color: $main-text;
+      text-shadow: none;
+
+      a {
+        color: inherit;
+      }
     }
   }
 

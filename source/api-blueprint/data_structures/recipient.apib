@@ -1,0 +1,11 @@
+## Recipient
+
++ handle: `calculon@momsbot.com` (string, required) - Handle used to contact the recipient (can be an email address, a twitter handle, ...)
++ role (enum[string], required) - Role of the recipient. Can be either "to", "cc" or "bcc"
+    + Members
+        + `to`
+        + `cc`
+        + `bcc`
+<!-- include(../includes/links_attribute.apib) -->
+    + related (object, required)
+        + contact: `https://api2.frontapp.com/contacts/ctc_55c8c149` (string, optional) - URL of the contact associated to the recipient.

@@ -23,17 +23,17 @@ under the License.
 
 // BACKGROUND COLORS
 ////////////////////
-$nav-bg: #393939;
+$nav-bg: #395B7A;
 $examples-bg: #393939;
 $code-bg: #292929;
 $code-annotation-bg: #1c1c1c;
-$nav-subitem-bg: #262626;
-$nav-active-bg: #2467af;
+$nav-subitem-bg: darken($nav-bg, 13);
+$nav-active-bg: rgba(0,0,0,.2);
 $lang-select-border: #000;
 $lang-select-bg: #222;
-$lang-select-active-bg: $examples-bg; // feel free to change this to blue or something
+$lang-select-active-bg: $examples-bg; // feel free to change this to or something
 $lang-select-pressed-bg: #111; // color of language tab bg when mouse is pressed
-$main-bg: #eaf2f6;
+$main-bg: #f2f4f5;
 $aside-notice-bg: #8fbcd4;
 $aside-warning-bg: #c97a7e;
 $aside-success-bg: #6ac174;
@@ -86,12 +86,12 @@ $phone-width: $tablet-width - $nav-width; // min width before reverting to mobil
 
 // OTHER
 ////////////////////
-$nav-active-shadow: #000;
-$nav-footer-border-color: #666;
-$nav-embossed-border-top: #000;
-$nav-embossed-border-bottom: #939393;
+$nav-active-shadow: rgba(255,255,255,.1);
+$nav-footer-border-color: rgba(255,255,255,0.5);
+$nav-embossed-border-top: darken($nav-subitem-bg, 20);
+$nav-embossed-border-bottom: darken($nav-subitem-bg, 10);
 $main-embossed-text-shadow: 0px 1px 0px #fff;
-$search-box-border-color: #666;
+$search-box-border-color: rgba(255,255,255,0.5);
 
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -102,4 +102,9 @@ $search-box-border-color: #666;
 %break-words {
     word-break: break-all;
     hyphens: auto;
+}
+
+
+.content a {
+  color: $nav-bg;
 }

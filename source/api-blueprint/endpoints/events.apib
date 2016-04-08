@@ -1,0 +1,102 @@
+## Events [/events/{event_id}]
+
+An event is created everytime something interesting is happenning in Front. You'll find in the table bellow the description of all the types of event that exist:
+
+| Type              | Description                                           |
+|-------------------|-------------------------------------------------------|
+| `assign`          | When a conversation is assigned to a teammate         |
+| `unassign`        | When the assignee of a conversation is removed        |
+| `archive`         | When a conversation is archived                       |
+| `reopen`          | When a conversation is unarchived                     |
+| `trash`           | When a conversation is deleted                        |
+| `restore`         | When a conversation is removed from trash             |
+| `comment`         | When a teammate comments on a conversation            |
+| `mention`         | When a teammate mention another teammate              |
+| `inbound`         | When an incoming message is received into an inbox    |
+| `outbound`        | When an outbound message is sent from an inbox        |
+| `move`            | When a conversation is moved to an inbox              |
+| `forward`         | When a message is forwarded                           |
+| `tag`             | When a conversation is tagged                         |
+| `untag`           | When a conversation is untagged                       |
+| `sending_error`   | When an inbox cannot send a message                   |
+| `reminder`        | When a conversation is unarchived by a reminder       |
+| `out_reply`       | When areply is sent                                   |
+
+> *Example:*
+> Event preview of a rule assigning a conversation to a teammate:
+
+```json
+{
+    "_links"      : { "self": "https://api2.frontapp.com/events/evt_55c8c149" },
+    "id"          : "evt_55c8c149",
+    "type"        : "assign",
+    "emitted_at"  : 1453770984.123,
+    "source"      : {
+        "_meta" : { "type": "rule" },
+        "_links": { "self": "https://api2.frontapp.com/rules/rul_55c8c149" },
+        "id"    : "rul_55c8c149"
+    },
+    "target"      : {
+        "_meta" : { "type": "teammate" },
+        "_links": { "self": "https://api2.frontapp.com/teammates/tea_55c8c149" },
+        "id"    : "tea_55c8c149"
+    },
+    "conversation": {
+        "_links": {
+            "self"   : "https://api2.frontapp.com/conversations/cnv_55c8c149",
+            "related": {
+                "events"   : "https://api2.frontapp.com/conversations/cnv_55c8c149/events",
+                "followers": "https://api2.frontapp.com/conversations/cnv_55c8c149/followers",
+                "messages" : "https://api2.frontapp.com/conversations/cnv_55c8c149/messages",
+                "comments" : "https://api2.frontapp.com/conversations/cnv_55c8c149/comments",
+                "inboxes"  : "https://api2.frontapp.com/conversations/cnv_55c8c149/inboxes"
+            }
+        },
+        "id"    : "cnv_55c8c149"
+    }
+}
+```
+
+When receiving an event from Front (either via a [webhook](#webhooks) or via a [custom inbox](#custom-inboxes) callback), you will receive the preview of the event.
+As the callback URL you provided is public, you should not blindly trust any incoming requests. This is why we're sending only a preview of the event.
+
+An event preview has the exact same structure as the full event except that its `source`, `target` and `conversation` only contain an ID, a link to the resource itself and a type.
+You can then either request the detailed event or each resources separately by following their respective `_links`.
+
++ Parameters
+    + event_id (string, required) - The ID of the requested event
+
++ Attributes (Event)
+
+### List events [GET /events{?q,page}]
+
+Lists all the detailed events which occured in the inboxes of your company ordered in reverse chronological order (newest first).
+
+<aside class="notice">
+  Depending on how active your inboxes are, the events can pile up rather quickly.
+  We recommend the use of `before` search parameter to ensure that the events in each page won't change over the time (see <a href="#search-criteria-for-events">Search criteria for events</a>).
+</aside>
+
++ Parameters
+    <!-- include(../includes/query_parameter.apib) -->
+    <!-- include(../includes/pagination_parameter.apib) -->
+
++ Request
+    <!-- include(../includes/request_header.apib) -->
+
++ Response 200 (application/json)
+    + Attributes
+        <!-- include(../includes/pagination_attribute.apib) -->
+        <!-- include(../includes/links_attribute.apib) -->
+            + self: `https://api2.frontapp.com/events` (string, required)
+        + _results (array[Event], required) - List of the events
+
+### Get event [GET]
+
+Fetches the full details of an event.
+
++ Request
+    <!-- include(../includes/request_header.apib) -->
+
++ Response 200 (application/json)
+    + Attributes (Event)

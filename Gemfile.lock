@@ -8,10 +8,12 @@ GEM
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
     addressable (2.4.0)
+    ansi (1.5.0)
     autoprefixer-rails (6.3.1)
       execjs
       json
     backports (3.6.7)
+    builder (3.2.2)
     capybara (2.5.0)
       mime-types (>= 1.16)
       nokogiri (>= 1.3.3)
@@ -27,21 +29,40 @@ GEM
     concurrent-ruby (0.9.2)
     contracts (0.12.0)
     erubis (2.7.0)
+    excon (0.48.0)
     execjs (2.6.0)
     fastimage (1.8.1)
       addressable (~> 2.3, >= 2.3.5)
     ffi (1.9.10)
+    fog-aws (0.9.1)
+      fog-core (~> 1.27)
+      fog-json (~> 1.0)
+      fog-xml (~> 0.1)
+      ipaddress (~> 0.8)
+    fog-core (1.36.0)
+      builder
+      excon (~> 0.45)
+      formatador (~> 0.2)
+    fog-json (1.0.2)
+      fog-core (~> 1.0)
+      multi_json (~> 1.10)
+    fog-xml (0.1.2)
+      fog-core
+      nokogiri (~> 1.5, >= 1.5.11)
+    formatador (0.2.5)
     haml (4.0.7)
       tilt
     hamster (2.0.0)
       concurrent-ruby (~> 0.8)
     hashie (3.4.3)
     i18n (0.7.0)
+    ipaddress (0.8.3)
     json (1.8.3)
     kramdown (1.9.0)
     listen (3.0.5)
       rb-fsevent (>= 0.9.3)
       rb-inotify (>= 0.9)
+    map (6.6.0)
     middleman (4.0.0)
       coffee-script (~> 2.2)
       compass-import-once (= 1.0.5)
@@ -76,6 +97,15 @@ GEM
       uglifier (~> 2.6)
     middleman-gh-pages (0.0.3)
       rake (> 0.9.3)
+    middleman-s3_sync (4.0.2)
+      ansi (~> 1.5.0)
+      fog-aws (>= 0.1.1)
+      map
+      middleman-cli
+      middleman-core (>= 4.0.0)
+      parallel
+      ruby-progressbar
+      unf
     middleman-sprockets (4.0.0.rc.1)
       middleman-core (>= 4.0.0.rc.1)
       sprockets (~> 3.0)
@@ -87,6 +117,7 @@ GEM
     mime-types-data (3.2015.1120)
     mini_portile2 (2.0.0)
     minitest (5.8.4)
+    multi_json (1.11.2)
     nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
     padrino-helpers (0.13.1)
@@ -95,6 +126,7 @@ GEM
       tilt (~> 1.4.1)
     padrino-support (0.13.1)
       activesupport (>= 3.1)
+    parallel (1.6.2)
     rack (1.6.4)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -104,6 +136,7 @@ GEM
       ffi (>= 0.5.0)
     redcarpet (3.3.4)
     rouge (1.10.1)
+    ruby-progressbar (1.7.5)
     sass (3.4.21)
     sprockets (3.4.1)
       rack (> 1, < 3)
@@ -115,6 +148,9 @@ GEM
     uglifier (2.7.2)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
+    unf (0.1.4)
+      unf_ext
+    unf_ext (0.0.7.2)
     xpath (2.0.0)
       nokogiri (~> 1.3)
 
@@ -125,10 +161,11 @@ DEPENDENCIES
   middleman (~> 4.0.0)
   middleman-autoprefixer (~> 2.7.0)
   middleman-gh-pages (~> 0.0.3)
+  middleman-s3_sync
   middleman-sprockets (~> 4.0.0.rc)
   middleman-syntax (~> 2.1.0)
   redcarpet (~> 3.3.2)
   rouge (~> 1.10.1)
 
 BUNDLED WITH
-   1.10.6
+   1.11.2

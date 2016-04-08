@@ -1,0 +1,151 @@
+## Contacts [/contacts/{contact_id}]
+
+A contact is a person/entity with whom you have communicated.
+
+A contact has several handles to send messages to it. A handle has a source to identify which inbox can send message to this contact:
+
+| Source    | Description      | Example of handle       |
+|-----------|------------------|-------------------------|
+| `email`   | An email address | `calculon@pmomsbot.com` |
+| `phone`   | A phone number   | `+123445678900 `        |
+| `twitter` | A twitter handle | `@calculon`             |
+
+Each pair handle/source is unique in your company. If you want to move an existing handle from one contact to an other, you need to delete it from the first one and add it to the other one.
+
++ Parameters
+    + contact_id (string, required) - Id or alias of the requested contact
+
++ Attributes (Contact)
+
+### List contacts [GET /contacts{?page}]
+
+List all the contacts in your company in alphabetical order.
+
++ Parameters
+    <!-- include(../includes/pagination_parameter.apib) -->
+
++ Request
+    <!-- include(../includes/request_header.apib) -->
+
++ Response 200 (application/json)
+    + Attributes
+        <!-- include(../includes/pagination_attribute.apib) -->
+        <!-- include(../includes/links_attribute.apib) -->
+            + self: `https://api2.frontapp.com/contacts` (string, required)
+        + _results (array[Contact], required) - List of the contacts in your company
+
+### Get contact [GET]
+
+Fetches the information of a contact. See [resource aliases](#resource-aliases) to fetch by handle.
+
++ Request
+    <!-- include(../includes/request_header.apib) -->
+
++ Response 200 (application/json)
+    + Attributes (Contact)
+
+### Update a contact [PATCH]
+
+Updates a contact information.
+
++ Request (application/json)
+    <!-- include(../includes/request_header.apib) -->
+    + Attributes (Contact to update, required)
+
++ Response 204 (application/json)
+
+### Create contact [POST /contacts]
+
+Creates a new contact.
+
++ Request (application/json)
+    <!-- include(../includes/request_header.apib) -->
+    + Attributes (Contact to create, required)
+
++ Response 201 (application/json)
+    + Attributes (Contact)
+
+### Delete contact [DELETE]
+
+Deletes a contact.
+
++ Request (application/json)
+    <!-- include(../includes/request_header.apib) -->
+
++ Response 204 (application/json)
+
+### List contact conversations [GET /contacts/{contact_id}/conversations{?q,page}]
+
+Lists all the conversations with a contact in reverse chronological order (newest first).
+
++ Parameters
+    <!-- include(../includes/query_parameter.apib) -->
+    <!-- include(../includes/pagination_parameter.apib) -->
+
++ Request
+    <!-- include(../includes/request_header.apib) -->
+
++ Response 200 (application/json)
+    + Attributes
+        <!-- include(../includes/pagination_attribute.apib) -->
+        <!-- include(../includes/links_attribute.apib) -->
+            + self: `https://api2.frontapp.com/contacts/ctc_55c8c149/conversations` (string, required)
+        + _results (array[Conversation], required) - List of the contact's conversations
+
+## Contact handles [/contacts/{contact_id}/handles]
+
++ Parameters
+    + contact_id (string, required) - Id or alias of the requested contact
+
++ Attributes (Contact handle)
+
+### Add contact handle [POST]
+
+Adds a new handle/source to a contact.
+
++ Request (application/json)
+    <!-- include(../includes/request_header.apib) -->
+    + Attributes (Contact handle)
+
++ Response 204
+
+### Delete contact handle [DELETE]
+
+Removes a handle/source from a contact.
+
++ Request (application/json)
+    <!-- include(../includes/request_header.apib) -->
+    + Attributes (Contact handle)
+
++ Response 204
+
+## Contact notes [/contacts/{contact_id}/notes]
+
++ Parameters
+    + contact_id (string, required) - Id or alias of the requested contact
+
++ Attributes (Contact note)
+
+### List contact notes [GET]
+
+Lists the notes added to a contact.
+
++ Request
+    <!-- include(../includes/request_header.apib) -->
+
++ Response 200 (application/json)
+    + Attributes
+        <!-- include(../includes/links_attribute.apib) -->
+            + self: `https://api2.frontapp.com/contacts/ctc_55c8c149/notes` (string, required)
+        + _results (array[Contact note], required) - List of the note for the requested contact
+
+### Add a note [POST]
+
+Adds a new note to a contact.
+
++ Request (application/json)
+    <!-- include(../includes/request_header.apib) -->
+    + Attributes (Contact note to create)
+
++ Response 201 (application/json)
+    + Attributes (Contact note)

@@ -1,0 +1,13 @@
+{
+  "name": "aglio-theme-front",
+  "version": "1.0.0",
+  "description": "Convert API blueprint file into Slate markdown",
+  "main": "main.js",
+  "scripts": {},
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "underscore": "^1.8.3"
+  },
+  "devDependencies": {}
+}

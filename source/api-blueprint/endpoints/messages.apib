@@ -1,0 +1,76 @@
+## Messages [/messages/{message_id}]
+
+A message is a resource which can be either received or sent via an inbox. Messages are grouped by conversations.
+
+A message can be either inbound (received) or outbound (sent). You can know if a message has been received or sent thanks to the boolean `is_inbound`.
+
++ Parameters
+    + message_id (string, required) - Id of the requested message
+
++ Attributes (Message)
+
+### Get  message [GET]
+
+Fetches the information of a message.
+
++ Request
+    <!-- include(../includes/request_header.apib) -->
+
++ Response 200 (application/json)
+    + Attributes (Message)
+
+### Send a message [POST /channels/{channel_id}/messages]
+
+Sends a new message from a channel. It will create a new conversation.
+
++ Parameters
+    + channel_id (string, required) - Id or address of the channel from which to send the message
+
++ Request (application/json)
+    <!-- include(../includes/request_header.apib) -->
+    + Attributes (Outbound new message)
+
+<!-- include(../includes/accepted_response.apib) -->
+
+### Send a reply [POST /conversations/{conversation_id}/messages]
+
+Replies to a conversation by sending a message and appending it to the conversation.
+
++ Parameters
+    + conversation_id (string, required) - Id of the conversation
+
++ Request (application/json)
+    <!-- include(../includes/request_header.apib) -->
+    + Attributes (Outbound reply)
+
+<!-- include(../includes/accepted_response.apib) -->
+
+### Import a message [POST /inboxes/{inbox_id}/import]
+
+Adds a new message into an inbox.
+
+<aside class="info">
+Imported messages and conversations will <strong>NOT</strong> be linked to any channels until a reply is sent. When replying to a conversation with no channels, you <strong>MUST</strong> choose from which channel to send the message.
+</aside>
+
++ Parameters
+    + inbox_id (string, required) - Id of the requested inbox
+
++ Request (application/json)
+    <!-- include(../includes/request_header.apib) -->
+    + Attributes (Message to import)
+
+<!-- include(../includes/accepted_response.apib) -->
+
+### Receive a custom message [POST /channels/{channel_id}/incoming_messages]
+
+Simulate the reception of an incoming message. This endpoint is available for [custom channels](#custom-channels) **ONLY**.
+
++ Parameters
+    + channel_id (string, required) - Id of the requested custom channel
+
++ Request (application/json)
+    <!-- include(../includes/request_header.apib) -->
+    + Attributes (Custom message)
+
+<!-- include(../includes/accepted_response.apib) -->

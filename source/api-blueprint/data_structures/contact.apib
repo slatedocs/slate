@@ -1,0 +1,50 @@
+## Contact
+
++ id: `ctc_55c8c149` (string, required) - Unique identifier of the contact
++ name: `Calculon` (string, required) - Contact name
++ description: `#vip #robot #RIP` (string, required) - Contact description
++ avatar_url: `http://example.com/calculon.jpg` (string, required) - URL of the contact's avatar
++ is_spammer: `true` (boolean, required) - Whether or not the contact is a spammer
++ links (array[string], required) - A set of URL associated to the contact
+    + `http://example.com`
++ handles (array[Contact handle], required) - List of the handles and sources with which the contact is reachable.
+<!-- include(../includes/links_attribute.apib) -->
+    + self: `https://api2.frontapp.com/contacts/ctc_55c8c149` (string, required) - URL of the contact
+    + related (object, required)
+        + notes: `https://api2.frontapp.com/contacts/ctc_55c8c149/notes` (string, required) - URL to list the notes associated to the contact
+        + conversations: `https://api2.frontapp.com/contacts/ctc_55c8c149/conversations` (string, required) - URL to list the URL associated to the contact
+
+## Contact to update
+
++ name: `Calculon` (string, optional) - Contact name
++ description: `#vip #robot #RIP` (string, optional) - Contact description
++ avatar_url: `http://example.com/calculon.jpg` (string, optional) - URL of the contact's avatar
++ is_spammer: `true` (boolean, optional) - Whether or not the contact is marked as a spammer
++ links (array[string], optional) - List of all the links of a contact
+    + `http://example.com`
+
+## Contact to create
+
++ Include Contact to update
+* handles (array[Contact handle], required) - List of the handles of a contact
+
+## Contact handle
+
++ handle: `@calculon` (string, required) - Handle used to reach the contact. Can be an email address, a twitter, handle, a phone number, ...
++ source (enum[string], required) - Can be 'twitter', 'email' or 'phone'.
+    + Members
+        + `twitter`
+        + `email`
+        + `phone`
+        + `facebook`
+
+## Contact note
+
++ author (Teammate, required) - Teammate who wrote the note
++ body: `Calculon is a celebrated actor` (string, required) - Content of the note
++ created_at: `1453770984.123` (number, required) - Date at which the note have been created
+
+## Contact note to create
+
++ author_id: `alt:email:leela@planet-express.com` (string, required) - ID or email of the teammate creating the comment
++ body: `Calculon is a celebrated actor` (string, required) - Content of the note

@@ -1,0 +1,52 @@
+## Event
+
++ id: `evt_55c8c149` (string, required) - Unique identifier of the event
++ type (enum[string], required) - Type of event
+    + Members
+        + `assign`
+        + `unassign`
+        + `archive`
+        + `reopen`
+        + `trash`
+        + `restore`
+        + `comment`
+        + `inbound`
+        + `outbound`
+        + `move`
+        + `forward`
+        + `tag`
+        + `untag`
+        + `sending_error`
++ emitted_at: `1453770984.123` (number, required) - Date at which the event has been emitted
++ source (object, required) - The event's source
+    <!-- include(../includes/meta_attribute.apib) -->
+        + type (enum[string], required)
+            + Members
+                + `rule`
+                + `teammate`
+                + `api`
+                + `imap`
+                + `reminder`
+                + `inboxes`
+    + data (enum, optional) - The resource which triggered the event
+        + (Rule) - Rule which triggered the event
+        + (Teammate) - Teammate which triggered the event
+        + (array[Inbox]) - List of the inboxes on which the event occured
++ target (object) - Partial representation (type & id) of the event's target
+    <!-- include(../includes/meta_attribute.apib) -->
+        + type (enum[string], required)
+            + Members
+                + `teammate`
+                + `inbox`
+                + `tag`
+                + `comment`
+                + `message`
+    + data (enum, optional) - The resource which received the event
+        + (Teammate) - Teammate targetted by the event
+        + (Inbox) - Inbox targetted by the event
+        + (Tag) - Tag targetted by the event
+        + (Comment) - Comment targetted by the event
+        + (Message) - Message targetted by the event
++ conversation (Conversation, required) - The conversation on which the event happened
+<!-- include(../includes/links_attribute.apib) -->
+    + self: `https://api2.frontapp.com/events/evt_55c8c149` (string, required) - URL of the event

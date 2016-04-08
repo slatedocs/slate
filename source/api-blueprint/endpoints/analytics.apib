@@ -1,0 +1,75 @@
+## Analytics [/analytics/{?inbox_ids,tag_ids,start,end,timezone,metrics}]
+
+To get statistics about activities happening in Front, you need to requests the correspondig metrics of the analytics.
+
+Each metrics can be either:
+
+* A scalar: this is a single value (a number, duration, percentage or string).
+* A table: this is a set of different values for a set of resources.
+* A time graph: this is a unique value decomposed in multiple values over the requested time range.
+
+**Scalar metrics available:**
+
+| Name                          | Type       | Description                                                      |
+|-------------------------------|------------|------------------------------------------------------------------|
+| `avg_conversations_per_day`   | Number     | Average number of conversations occuring per day                 |
+| `avg_first_response_time`     | Duration   | Average time for your teammates to send the first reply          |
+| `avg_replies_to_resolve`      | Number     | Average number of replies to resolve a conversation              |
+| `avg_resolution_time`         | Duration   | Average time for a conversation to be resolved                   |
+| `avg_response_time`           | Duration   | Average time for your teammate to reply to a message             |
+| `busiest_day`                 | String     | Name of the day where you receive the most messages              |
+| `busiest_time`                | String     | Hour of the day where you receive the most messages              |
+| `num_active_conversations`    | Number     | Number of conversation which received at least one message       |
+| `num_customers_helped`        | Number     | Number of unique customer with which your teammates interacted   |
+| `num_messages_received`       | Number     | Total number of messages received                                |
+| `num_new_conversations`       | Number     | Number of new conversations                                      |
+| `num_replies_sent`            | Number     | Number of replies sent                                           |
+| `pct_resolved_on_first_reply` | Percentage | Percentage of conversations resolved on the first reply          |
+
+**Table metrics available:**
+
+| Name                      | Resource type      | Values                                                                                                                                                                                                         |
+|---------------------------|--------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `customers_table`         | List of customers  | Number of messages, average first reply time, average response time and average resolution time                                                                                                                |
+| `first_response_histo`    | List of duration   | Percentage of first responses sent for each duration                                                                                                                                                           |
+| `resolution_histo`        | List of duration   | Percentage of resolved conversation for each duration                                                                                                                                                          |
+| `response_histo`          | List of duration   | Percentage of responses sent for each duration                                                                                                                                                                 |
+| `tags_table`              | List of tags       | Number of messages, average number of messages per conversation, number of archived conversations, number of open conversations, total number of conversations                                                 |
+| `team_table`              | List of teammates  | Number of conversation, average number of messages per conversation, average time to react to a conversation, number of messages, number of sent messages, number of replies sent, number of messages composed |
+| `top_conversations_table` | Top 3 teammates    | Number of conversations                                                                                                                                                                                        |
+| `top_reaction_time_table` | Top 3 teammates    | Time to react to a conversation                                                                                                                                                                                |
+| `top_replies_table`       | Top 3 teammates    | Number of replies sent                                                                                                                                                                                         |
+
+**Time graph metrics available:**
+
+| Name                      | Description                                                   |
+|---------------------------|---------------------------------------------------------------|
+| `customers_helped_graph`  | Number of unique customer which received at least one message |
+| `first_response_graph`    | Average time for your teammate to send the first reply        |
+| `messages_received_graph` | Number of messages received                                   |
+| `new_conversations_graph` | Number of new conversations                                   |
+| `replies_sent_graph`      | Number of replies sent                                        |
+| `resolution_graph`        | Average time to resolve a conversation                        |
+| `response_graph`          | Average time for your teammate to reply to a message          |
+
+Each metrics contains the value for the requested time period (in the field named `v`) as well as the value for the previous period (in the field named `p`).
+
+Depending on the date range you request the analytics, it can take some time to process it. This is why you might need to send multiple requests to get the results. To help you estimate the remaining time, the server response will contain a `progress` field containing a number ranging from 0 to 100 which isthe percentage of the analytics processed.
+
++ Parameters
+    + inbox_ids: `alt:address:team@planet-express.com` (array[string], optional) - List of inbox IDs to include in the generated analytics
+    + tag_ids (array[string], optional) - List of tag IDs to include in the generated analytics
+    + start: `1428889008` (number, required) - Timestamp from which the analytics will start
+    + end: `1428889003` (number, required) - Timestamp from which the analytics will end
+    + timezone: `America/New_York` (string, optional) - Name of the timezone to format the dates. If omitted, the export will use UTC.
+    + metrics: `avg_conversations_per_day, first_response_histo, first_response_graph` (array[string], required) - List of the metrics to include in the analytics
+
+### Get analytics [GET]
+
+Fetches the metrics correspondig to the parameters.
+
++ Request
+    <!-- include(../includes/request_header.apib) -->
+
++ Response 200 (application/json)
+    + Attributes (Analytics)

@@ -1,0 +1,65 @@
+## Analytics
+
++ status: `pending` (enum, required) - Status of the processing of the analytics.
+    + `pending`
+    + `done`
+    + `failed`
++ progress: `42` (number, required) - Number ranging from 0 to 100 corresponding to the percentage of the analytics processed.
++ metrics (array, required) - List of the metrics required.
+    + (Scalar metric)
+    + (Table metric)
+    + (Time graph metric)
+
+## Scalar metric
+
++ id: `avg_conversations_per_day` (string, required) - Id of the metric
++ metric_type: `scalar` (string, required) - Type of the metric
++ Include Metric value
+
+## Table metric
+
++ id: `first_response_histo` (string, required) - Id of the metric
++ metric_type: `table` (string, required) - Type of the metric
++ columns (array, required) - Columns of the table
+    + (object)
+        + id: `time` (string, required) - Id of the column
+        + label: `Time` (string, required) - Label of the column
+        + type (Metric type, required) - Type of the values in the column
+    + (object)
+        + id: `pct_replies` (string, required) - Id of the column
+        + label: `Replies %` (string, required) - Label of the column
+        + type (Metric type, required) - Type of the values in the column
++ rows (array, required) - Rows of the table
+    + (array)
+        + (Metric value)
+            + t: `str`
+            + v: `< 15mn`
+            + p: `< 15mn`
+        + (Metric value)
+            + t: `pct`
+            + v: `12`
+            + p: `50`
+
+## Time graph metric
+
++ id: `first_response_graph` (string, required) - Id of the metric
++ metric_type: `time_graph` (string, required) - Type of the metric
++ vals (array, required) - Values for each time intervals
+    + (Metric value)
+        + t: `dur`
+        + label: `January` (string, required) - Label of the time interval
+        + start: `1451785860` (number, required) - Start of the interval
+        + end: `1454464260` (number, required) - End of the interval
+
+## Metric type (enum)
+
++ `num` - For a numeric value
++ `dur` - For a duration value
++ `str` - For a string value
++ `pct` - For a percentage value
+
+## Metric value
+
++ t (Metric type, required) - Type of the value
++ v: `42` (number, required) - Value for the requested time period
++ p: `24` (number, required) - Value for the previous time period

@@ -22,3 +22,6 @@ build/
 _yardoc
 doc/
 .idea/
+node_modules
+
+.s3_sync

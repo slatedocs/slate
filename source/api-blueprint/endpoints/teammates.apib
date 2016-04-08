@@ -1,0 +1,78 @@
+## Teammates [/teammates/{teammate_id}]
+
+A teammate is a Front user, a member of your company.
+
+A teammate can be available or not (determined by the boolean `is_available`). When a conversation is assigned to an unavailable teammate, to avoid it to be hidden from the other teammates, it gets unassigned automatically.
+
++ Parameters
+    + teammate_id (string, required) - Id or email of the requested teammate
+
++ Attributes (Teammate)
+
+### List team [GET /teammates]
+
+Lists the teammates in your company.
+
++ Request
+    <!-- include(../includes/request_header.apib) -->
+
++ Response 200 (application/json)
+    + Attributes
+        <!-- include(../includes/links_attribute.apib) -->
+            + self: `https://api2.frontapp.com/teammates` (string, required)
+        + _results (array[Teammate], required) - List of all the teammates in your company
+
+### Get teammate [GET]
+
+Fetches the information of a teammate. See [resource aliases](#resource-aliases) to fetch by email.
+
++ Request
+    <!-- include(../includes/request_header.apib) -->
+
++ Response 200 (application/json)
+    + Attributes (Teammate, required)
+
+### Update teammate [PATCH]
+
+Updates the information of a teammate.
+
++ Request (application/json)
+    <!-- include(../includes/request_header.apib) -->
+    + Attributes (Teammate to update)
+
++ Response 204
+
+### List teammate conversations [GET /teammates/{teammate_id}/conversations{?q,page}]
+
+Lists the conversations assigned to a teammate in reverse chronological order (newest first).
+
++ Parameters
+    + teammate_id (string, required) - Id or email of the teammate
+    <!-- include(../includes/query_parameter.apib) -->
+    <!-- include(../includes/pagination_parameter.apib) -->
+
++ Request
+    <!-- include(../includes/request_header.apib) -->
+
++ Response 200 (application/json)
+    + Attributes
+        <!-- include(../includes/pagination_attribute.apib) -->
+        <!-- include(../includes/links_attribute.apib) -->
+            + self: `https://api2.frontapp.com/teammates/tea_55c8c149/conversations` (string, required)
+        + _results (array[Conversation], required) - List of the teammate's conversations
+
+### List teammate inboxes [GET /teammates/{teammate_id}/inboxes]
+
+Lists the inboxes a teammate has access to.
+
++ Parameters
+    + teammate_id (string, required) - Id or email of the teammate
+
++ Request
+    <!-- include(../includes/request_header.apib) -->
+
++ Response 200 (application/json)
+    + Attributes
+        <!-- include(../includes/links_attribute.apib) -->
+            + self: `https://api2.frontapp.com/teammates/tea_55c8c149/inboxes` (string, required)
+        + _results (array[Inbox], required) - List of the teammate's inboxes

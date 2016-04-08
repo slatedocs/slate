@@ -1,0 +1,61 @@
+## Tags [/tags/{tag_id}]
+
+A tag is a label that can be used to classify conversations.
+
++ Parameters
+    + tag_id (string, required) - ID of the requested tag
+
++ Attributes (Tag)
+
+### List tags [GET /tags]
+
+Lists all the tags available in your company.
+
++ Request
+    <!-- include(../includes/request_header.apib) -->
+
++ Response 200 (application/json)
+    + Attributes
+        <!-- include(../includes/links_attribute.apib) -->
+            + self: `https://api2.frontapp.com/tags` (string, required)
+        + _results (array[Tag], required) - List of the tags available in your company
+
+### Create tag [POST /tags]
+
+Creates a new tag.
+
++ Request (application/json)
+    <!-- include(../includes/request_header.apib) -->
+    + Attributes (Tag to create)
+
++ Response 201 (application/json)
+    + Attributes (Tag)
+
+### Get tag [GET]
+
+Fetches the information of a tag.
+
++ Request
+    <!-- include(../includes/request_header.apib) -->
+
++ Response 200 (application/json)
+    + Attributes (Tag)
+
+### List tag conversations [GET /tags/{tag_id}/conversations{?q,page}]
+
+Lists all the conversations tagged with a specific tag.
+
++ Parameters
+    + tag_id (string, required) - ID of the requested tag
+    <!-- include(../includes/query_parameter.apib) -->
+    <!-- include(../includes/pagination_parameter.apib) -->
+
++ Request
+    <!-- include(../includes/request_header.apib) -->
+
++ Response 200 (application/json)
+    + Attributes
+        <!-- include(../includes/pagination_attribute.apib) -->
+        <!-- include(../includes/links_attribute.apib) -->
+            + self: `https://api2.frontapp.com/tags/tag_55c8c149/conversations` (string, required)
+        + _results (array[Conversation], required) - List of the tag's conversations

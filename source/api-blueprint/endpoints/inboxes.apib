@@ -1,0 +1,93 @@
+## Inboxes [/inboxes/{inbox_id}]
+
+An inbox is a container of messages.
+
+Messages are sent from and received by [channels](#channels) which then post the messages into the configured inbox.
+
++ Parameters
+    + inbox_id (string, required) - Id of the requested inbox
+
++ Attributes (Inbox)
+
+### List inboxes [GET /inboxes]
+
+Lists all the team inboxes in your company.
+
++ Request
+    <!-- include(../includes/request_header.apib) -->
+
++ Response 200 (application/json)
+    + Attributes
+        <!-- include(../includes/links_attribute.apib) -->
+            + self: `https://api2.frontapp.com/inboxes` (string, required)
+        + _results (array[Inbox], required) - List of all your inboxes
+
+### Create an inbox [POST /inboxes]
+
+Creates a team inbox with no channel associated to it (see [Create a channel](#create-a-channel)).
+
++ Request (application/json)
+    <!-- include(../includes/request_header.apib) -->
+    + Attributes (Inbox to create)
+
++ Response 201 (application/json)
+    + Attributes (Created inbox)
+
+### Get inbox [GET]
+
+Fetches the information of an inbox. See [resource aliases](#resource-aliases) to fetch by address.
+
++ Request
+    <!-- include(../includes/request_header.apib) -->
+
++ Response 200 (application/json)
+    + Attributes (Inbox)
+
+### List inbox channels [GET /inboxes/{inbox_id}/channels]
+
+Lists the channels linked to an inbox.
+
++ Parameters
+    + inbox_id (string, required) - Id of the requested inbox
+
++ Request
+    <!-- include(../includes/request_header.apib) -->
+
++ Response 200 (application/json)
+    + Attributes
+        <!-- include(../includes/pagination_attribute.apib) -->
+        <!-- include(../includes/links_attribute.apib) -->
+            + self: `https://api2.frontapp.com/inboxes/inb_55c8c149/channels` (string, required)
+        + _results (array[Channel], required) - List of channels
+
+### List inbox conversations [GET /inboxes/{inbox_id}/conversations{?q,page}]
+
+Lists the conversations which appear in an inbox.
+
++ Parameters
+    + inbox_id (string, required) - Id of the requested inbox
+    <!-- include(../includes/query_parameter.apib) -->
+    <!-- include(../includes/pagination_parameter.apib) -->
+
++ Request
+    <!-- include(../includes/request_header.apib) -->
+
++ Response 200 (application/json)
+    + Attributes
+        <!-- include(../includes/pagination_attribute.apib) -->
+        <!-- include(../includes/links_attribute.apib) -->
+            + self: `https://api2.frontapp.com/inboxes/inb_55c8c149/conversations` (string, required)
+        + _results (array[Conversation], required) - List of the conversations
+
+### List inbox teammates [GET /inboxes/{inbox_id}/teammates]
+
+Lists the teammates who can access an inbox.
+
++ Request
+    <!-- include(../includes/request_header.apib) -->
+
++ Response 200 (application/json)
+    + Attributes
+        <!-- include(../includes/links_attribute.apib) -->
+            + self: `https://api2.frontapp.com/inboxes/inb_55c8c149/teammates` (string, required)
+        + _results (array[Teammate], required) - List of teammates

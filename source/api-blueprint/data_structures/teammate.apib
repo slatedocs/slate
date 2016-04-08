@@ -1,0 +1,22 @@
+## Teammate
+
++ id: `tea_55c8c149` (string, required) - Unique identifier of the teammate
++ email: `leela@planet-express.com` (string, required) - Email address of the teammate
++ username: `leela` (string, required) - Username of the teammate (used for "@" mentions)
++ first_name: `Leela` (string, required) - First name of the teammate
++ last_name: `Turanga` (string, required) - Last name of the teammate
++ is_admin: `true` (boolean, required) - Whether or not the teammate is an admin in your company
++ is_available: `true` (boolean, required) - Whether or not the teammate is available
+<!-- include(../includes/links_attribute.apib) -->
+    + self: `https://api2.frontapp.com/teammates/tea_55c8c149` (string, required) - URL of the teammate
+    + related (object, required)
+        + inboxes: `https://api2.frontapp.com/teammates/tea_55c8c149/inboxes` (string, required) - URL of the teammate's inboxes
+        + conversations: `https://api2.frontapp.com/teammates/tea_55c8c149/conversations` (string, required) - URL of the teammate's conversation
+
+## Teammate to update
+
++ username: `bender` (string, optional) - New username. It must be unique and can only contains lowercase letters, numbers and underscores.
++ first_name: `Bender` (string, optional) - New first name
++ last_name: `Rodriguez` (string, optional) - New last name
++ is_admin: `true` (boolean, optional) - New admin status
++ is_available: `false` (boolean, optional) - New availability status

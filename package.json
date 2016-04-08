@@ -1,0 +1,21 @@
+{
+  "name": "front-api",
+  "version": "1.0.0",
+  "description": "Front API documentation",
+  "main": "index.js",
+  "scripts": {
+    "dev": "npm uninstall aglio-theme-front && npm install aglio-theme-front && node_modules/aglio/bin/aglio.js -t front -i source/api-blueprint/apiary.apib -o -",
+    "build": "node_modules/aglio/bin/aglio.js -t front -i source/api-blueprint/apiary.apib -o source/includes/_endpoints.md",
+    "deploy": "bundle exec middleman s3_sync --build",
+    "serve": "bundle exec middleman server",
+    "build-blueprint": "node_modules/aglio/bin/aglio.js -i source/api-blueprint/apiary.apib --compile -o apiary.apib",
+    "serve-blueprint": "node_modules/aglio/bin/aglio.js -i source/api-blueprint/apiary.apib -s"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "aglio": "latest",
+    "aglio-theme-front": "file:./aglio-theme-front"
+  }
+}

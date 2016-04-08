@@ -1,0 +1,34 @@
+## Conversation
+
++ id: `cnv_55c8c149` (string, required) - Unique identifier of the conversation
++ subject: `You broke my heart, Hubert.` (string, required) - Subject of the conversation
++ status (enum[string], optional) - Status of the conversation
+    + Members
+        + `archived`
+        + `unassigned`
+        + `deleted`
+        + `assigned`
++ assignee (Teammate, optional) - Partial representation of the teammate assigned to the conversation
++ recipient (Recipient, required) - Main recipient of the conversation
++ tags (array[Tag], required) - List of the tags for this conversation
++ last_message (Message, required) - List of partial representation of the messages inside the conversation
+<!-- include(../includes/links_attribute.apib) -->
+    + self: `https://api2.frontapp.com/conversations/cnv_55c8c149` (string, required) - URL of the conversation
+    + related (object, required)
+        + events: `https://api2.frontapp.com/conversations/cnv_55c8c149/events` (string, required) - URL of the activities related to the conversation
+        + followers: `https://api2.frontapp.com/conversations/cnv_55c8c149/followers` (string, required) - URL of the teammates following the conversation
+        + messages: `https://api2.frontapp.com/conversations/cnv_55c8c149/messages` (string, required) - URL of the list of messages in the conversation
+        + comments: `https://api2.frontapp.com/conversations/cnv_55c8c149/comments` (string, required) - URL of the comments for the conversation
+        + inboxes: `https://api2.frontapp.com/conversations/cnv_55c8c149/inboxes` (string, required) - URL of the inboxes in which the conversation appears
+
+## Conversation to update
+
++ assignee_id: `alt:email:fry@planet-express.com` (string, optional) - ID or email of the teammate to assign the conversation to. Set it to null to unassign.
++ status (enum[string], optional) - New status of the conversation
+    + Members
+        + `archived`
+        + `open`
+        + `deleted`
+        + `spam`
++ tags (array[string], optional) - List of all the tag names replacing the old conversation tags
+    + `time travel`

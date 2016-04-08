@@ -1,0 +1,33 @@
+## Rules [/rules/{rule_id}]
+
+A rule is a set of conditions which will trigger automatic actions when they are met.
+
+Since the set of conditions and actions associated to a rule can be quite complicated, the API exposes a human readable version of those.
+
++ Parameters
+    + rule_id (string, required) - ID of the requested rule
+
++ Attributes (Rule)
+
+### List rules [GET /rules]
+
+Lists all the shared rules in your company. Individual rules are currently not accessible with the API.
+
++ Request
+    <!-- include(../includes/request_header.apib) -->
+
++ Response 200 (application/json)
+    + Attributes
+        <!-- include(../includes/links_attribute.apib) -->
+            + self: `https://api2.frontapp.com/rules` (string, required)
+        + _results (array[Rule], required) - List of the rules in your company
+
+### Get rule [GET]
+
+Fetches the definition of a rule.
+
++ Request
+    <!-- include(../includes/request_header.apib) -->
+
++ Response 200 (application/json)
+    + Attributes (Rule)

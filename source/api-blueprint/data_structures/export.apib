@@ -1,0 +1,24 @@
+## Export
+
++ id: `exp_55c8c149` (string, required) - Unique identifier for the export.
++ status: `running` (enum, required) - Status of the export.
+    + `pending`
+    + `done`
+    + `failed`
++ progress: `42` (number, required) - Number ranging from 0 to 100 corresponding to the percentage of the export processed.
++ url: `http://exports.frontapp.com/planet-express/export.csv` (string, optional) - URL of the generated export. Will be null until the status is "done".
++ filename: `export.csv` (string, optional) - Name of the file of the generated export. Will be null until the status is "done".
++ size: `1000` (number, required) - Size (in bytes) of the export file.
++ created_at: `1453770984.123` (number, required) - Date at which the export has been created.
++ query (Export to create, required) - Query data used to generate the export.
+<!-- include(../includes/links_attribute.apib) -->
+    + self: `https://api2.frontapp.com/exports/exp_55c8c149` (string, required) - URL of the export URL
+
+## Export to create
+
++ inbox_id: `alt:address:team@planet-express.com` (string, optional) - ID of the inbox to export the analytics for. If omitted, the export will contain all the inboxes.
++ teammate_id: `alt:email:fry@planet-express.com` (string, optional) - ID of the teammate to export the analytics for. If omitted, the export will contain all the teammates.
++ tag_id: `tag_55c8c149` (string, optional) - ID the tag to export the analytics for. If omitted, the export will contain all the tags.
++ start: `1428889003` (number, required) - Start time of the data to include in the export.
++ end: `1428889008` (number, required) - End time of the data to include in the export.
++ timezone: `America/New_York` (string, optional) - Name of the timezone to format the dates. If omitted, the export will use UTC.
