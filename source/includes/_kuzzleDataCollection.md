@@ -1056,7 +1056,7 @@ var room =
 
       // check the KuzzleRoom/Notifications section of this documentation
       // to get notification examples
-    };
+    });
 ```
 
 ```java
