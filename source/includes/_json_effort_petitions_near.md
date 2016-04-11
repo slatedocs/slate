@@ -115,7 +115,7 @@ Parameter | Default | Description
 effort slug | null | string - required - submitted as a part of the endpoint path, not as a separate URL parameter
 location[latitude] | null | float - required - a float representing the queried latitude
 location[longitude] | null | float - required - a float representing the queried longitude
-location[country] | null | string - optional - for efforts configured to use the "by country" search strategy, you can pass in the target country as a two letter (ISO 3166-1)[https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements] code.
+location[country] | null | string - optional - for efforts configured to use the "by country" search strategy, you can pass in the target country as a two letter [ISO 3166-1](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements) code.
 location[region] | null | string - optional - for efforts configured to use the "by state" search strategy, you can pass in the target state as a two letter state abbreviation.
 
 ### Working Example
