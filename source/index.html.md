@@ -27,12 +27,3 @@ search: true
 # Introduction
 
 Welcome to the [ControlShift Labs](http://www.controlshiftlabs.com/) JSON API and Webhook Endpoint documentation!  Our API and Webhooks are designed to allow software engineers to create rich integrations between ControlShift content and third-party services and websites.
-
-
-
-
-Type | Description
----------- | -------
-<% data.webhooks.each do |webhook| %>
-[<%= webhook.webhook %>](#<%= webhook.webhook %>) | <%= webhook.description %>
-<% end %>
