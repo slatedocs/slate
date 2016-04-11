@@ -40,11 +40,11 @@ While this documentation and the code examples were designed to eliminate ambigu
 
 ## Authentication
 
-Each service API currently has different methods of authentication. The documentation for the service will include specific instructions about how to authenticate. For all endpoints that require authentication, requests must be signed and the computed signature must be placed in the `X-Chartboost-Signature` header.
+All API endpoints require authentication. Requests must be signed and the computed signature must be placed in the `X-Chartboost-Signature` header.
 
-All API requests should be made via HTTPS.
+All API requests must be made via HTTPS.
 
-
+<!-- REMOVED PER SUPPINT-91
 ```php
 <?php
 // The php examples will use the requests library, found at:
@@ -75,7 +75,7 @@ requests.get(endpoint, headers=headers)
 ```shell
 curl 'https://live.chartboost.com/api/endpoint' \
   -H 'X-Chartboost-Signature: d41d8cd98f00b204e9800998ecf8427e'
-```
+``` -->
 
 <aside class="success">
 Remember &ndash; signature generation methods vary by endpoint!
