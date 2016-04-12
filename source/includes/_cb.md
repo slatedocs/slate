@@ -96,7 +96,7 @@ working_hours_sun_start	| <span class="label label-required">Required</span>
 special_offer |		
 special_offer_description |		
 special_offer_expiry_date |		
-payment_methods	| <p>String with '|' delimiter. E.g. cash|visa|mastercard|amex|cheque|atm|discover. Possible values - cash|visa|mastercard|amex|cheque|invoice|insurance|atm|travellers|financing|paypal|discover</p>
+payment_methods	| <p>String with '\|' delimiter. E.g. cash\|visa\|mastercard\|amex\|cheque\|atm\|discover. Possible values - cash\|visa\|mastercard\|amex\|cheque\|invoice\|insurance\|atm\|travellers\|financing\|paypal\|discover</p>
 receive-email-alerts | 		
 alert-email-addresses | 		
 old_business_name |		
