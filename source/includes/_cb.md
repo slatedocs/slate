@@ -154,7 +154,9 @@ http://tools.brightlocal.com/seo-tools/api/v2/cb/upload/5533/logo
             "notes": "Bingplaces will send you verification PIN at your registered postal address.",
             "no_update": "Y",
             "no_photos": "Y",
-            "quick_listing": "N"
+            "quick_listing": "N",
+            "secondary_campaign_id": "b",
+            "status": "To Do"
         }
     }
 }
@@ -205,7 +207,7 @@ api-key	| <span class="label label-required">Required</span>
 sig	| <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
 expires	| <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
 campaign_id	| <span class="label label-required">Required</span>	
-package_id | <span class="label label-required">Required</span> CB package id with number of ordered credits.
+package_id | <span class="label label-required">Required</span> CB package id corresponding to the number of ordered credits: 'cb10' for 10 citations, 'cb15' for 15, then 25, 30, 50, 75, 100 
 autoselect | String. Possible values 'N' or 'Y'. Default 'N'.
 citations | <span class="label label-required">Required</span> JSON Array. If autoselect is 'Y' parameter becomes non-required. List of sites you require listings for.
 
