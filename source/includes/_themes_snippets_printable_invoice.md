@@ -1,0 +1,44 @@
+# PrintableInvoice Snippet
+
+### Available Variables
+|||
+|---|---|
+| `%%GLOBAL_HeaderLogo%%` |
+| `%%GLOBAL_StoreName%%` |
+| `%%GLOBAL_InvoiceTitle%%` |
+| `%%GLOBAL_StoreAddressFormatted%%` |
+| `%%LNG_BillTo%%` |
+| `%%GLOBAL_BillingAddress%%` |
+| `%%LNG_Phone%%` |
+| `%%GLOBAL_BillingPhone%%` |
+| `%%GLOBAL_HideBillingEmail%%` |
+| `%%LNG_Email%%` |
+| `%%GLOBAL_BillingEmail%%` |
+| `%%GLOBAL_hideInvoiceShippingDetails%%` |
+| `%%LNG_ShipTo%%` |
+| `%%GLOBAL_ShippingAddress%%` |
+| `%%GLOBAL_ShippingPhone%%` |
+| `%%GLOBAL_HideShippingEmail%%` |
+| `%%GLOBAL_ShippingEmail%%` |
+| `%%LNG_Order%%` |
+| `%%GLOBAL_OrderId%%` |
+| `%%LNG_PaymentMethod%%` |
+| `%%GLOBAL_PaymentMethod%%` |
+| `%%LNG_DateOfOrder%%` |
+| `%%GLOBAL_OrderDate%%` |
+| `%%GLOBAL_hideInvoiceShippingDetails%%` |
+| `%%LNG_ShippingMethod%%` |
+| `%%GLOBAL_ShippingMethod%%` |
+| `%%LNG_OrderItems%%` |
+| `%%GLOBAL_hideAddressColumn%%` |
+| `%%LNG_ShippingAddress%%` |
+| `%%LNG_Quantity%%` |
+| `%%LNG_Code%%` |
+| `%%LNG_ProdName%%` |
+| `%%LNG_Price%%` |
+| `%%LNG_Total%%` |
+| `%%GLOBAL_ProductsTable%%` |
+| `%%GLOBAL_totals%%` |
+| `%%GLOBAL_HideComments%%` |
+| `%%LNG_Comments%%` |
+| `%%GLOBAL_Comments%%` |
