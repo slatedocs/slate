@@ -8,6 +8,44 @@ Interaction with the Crunch REST API is by variables and columns. When you add d
 
 The Crunch API consists of just a few primitive objects, arranged differently for each request and response. Learning the basic components will help you create the most complicated queries.
 
+## Response types
+
+### Shoji entity
+
+A Shoji entity is identified by the `element` key having value `shoji:entity`.
+Its principal attribute is the `body` key wich is an object containing the 
+attributes that describe such entity.
+
+### Shoji Catalog
+
+A catalog is identifidied by its `element` key having value `shoji:catalog` with
+its principal attribute being `index` that contains an object keyed by the URLs
+of the entities it contains and for each key an object (tuple) with attributes
+from the referenced entity.
+
+Shoji catalogs are **not** ordered. For its ordered representations they may
+provide an `orders` set of Shoji order resources.
+
+### Shoji view
+
+A Shoji view is identified by its `element` key having value `shoji:view` with
+its principal attribute being `value`. This can contain any arbitrary JSON
+object.
+
+### Shoji Order
+
+Shoji orders are identified by the `element` key having a value `shoji:order`. 
+Their principal attribute is the `graph` key which is an array containing the 
+order of present resources.
+
+A shoji order may be associated to a catalog. In such case it will contain a 
+subset or totality of the entities present in the catalog. The catalog remains 
+as the authoritative source of available entities.
+ 
+Any entity not present on the order but present in the catalog should be 
+considered to belong at the bottom of the root of the graph in an arbitrary 
+order.
+
 ## Statistical data
 
 ### Identifiers
