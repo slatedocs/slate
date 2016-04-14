@@ -1,4 +1,6 @@
-## A state or province, identifiable by an ISO 3166 subdivision code
+# State
+
+A state or province, identifiable by an ISO 3166 subdivision code
 
 |||
 |---|---|
@@ -8,7 +10,7 @@
 
 | Name | Type | Description |
 | --- | --- | --- |
-| `id` | `int` |
-| `state` | `string` | state name |
-| `state_abbreviation` | `string` | state abbreviation |
-| `country_id` | `int` |
+| id | int |
+| state | string | state name |
+| state_abbreviation | string | state abbreviation |
+| country_id | int |
