@@ -32,6 +32,7 @@ subvariables_catalog | URL | For arrays, link to a Shoji Catalog of subvariables
 resolution | string | Present in datetime variables. Current resolution of data
 rollup_resolution | string | Present in datetime variables. Resolution used for rolled up summaries
 geodata | URL | Present only in variables that have geodata associated. Points to the catalog of geodata related to this variable.
+uniform_basis | boolean | Whether each subvariable should be considered the same length as the total array. Only on `multiple_response`.
 
 
 
