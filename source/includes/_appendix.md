@@ -45,13 +45,13 @@ The following tables provide details of the local directories we support for loo
 Identifier|NAP|Reviews|Find Profile URL|Website URL|Notes
 ----------|---|-------|---|-----|-----
 2findlocal|<span class="yes">Yes</span>||<span class="yes">Yes</span>||
-<s>acxiom</s>|<span class="yes">Yes</span>||||No longer available
-<s>allpages</s>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|No longer available
+acxiom</s>|<span class="yes">Yes</span>||||No longer available
+allpages</s>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|No longer available
 angies|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 b2byellowpages|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 bbb|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 botw|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
-brownbook|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
+brownbook|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 businessnetpages|<span class="yes">Yes</span>||<span class="yes">Yes</span>||
 chamberofcommerce|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 citysearch|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>||
@@ -83,16 +83,16 @@ magicyellow|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span cla
 manta|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|Currently causing issues in grabbing profile details
 mapquest|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 merchantcircle|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
-<s>mojopages</s>|<span class="yes">Yes</span>||<span class="yes">Yes</span>||No longer available
+mojopages</s>|<span class="yes">Yes</span>||<span class="yes">Yes</span>||No longer available
 neustarlocaleze|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
-opentable|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
+opentable|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 powerprofiles|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 realself|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 salesspider|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 showmelocal|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 superpages|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
-<s>switchboard</s>|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|No longer available
-<s>theusaexplorer</s>|<span class="yes">Yes</span>||<span class="yes">Yes</span>||No longer available
+switchboard</s>|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|No longer available
+theusaexplorer</s>|<span class="yes">Yes</span>||<span class="yes">Yes</span>||No longer available
 tripadvisor|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>||
 tupalo|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 tuugo|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
@@ -109,6 +109,7 @@ yelp|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes"
 ziplocalonline|<span class="yes">Yes</span>||<span class="yes">Yes</span>||Was previously referred to as ziplocal
 zocdoc|<span class="yes">Yes</span>||<span class="yes">Yes</span>||
 zomato|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>||
+
 
 
 ### Great Britain (GBR)
