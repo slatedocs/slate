@@ -1,0 +1,384 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>BigCommerce Blueprint Themes</title>
+    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" /> 
+    <link href="../../stylesheets/screen.css" rel="stylesheet" media="screen" />
+    <link href="../../stylesheets/print.css" rel="stylesheet" media="print" />
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+      <script src="../../javascripts/all.js"></script>
+    <script>
+    //This is Google's default GA code
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-47823747-2', 'auto');
+    ga('send', 'pageview');
+    // Used for navlink tracking (https://github.com/tripit/slate/issues/209)
+    $(document).ready(function() {
+      $('.tocify-item a').on('click', function(){
+        ga('send', 'pageview', {'page': location.pathname + location.search  + location.hash});
+      });
+    });
+    </script>
+  </head>
+
+  <body class="themes themes_blueprint themes_blueprint_index">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="../../images/navbar.png" />
+      </span>
+    </a>
+
+<header role="banner">
+  <div class="topBar-container topBar-container--fixed">
+    <nav class="top-bar ng-isolate-scope" ng-transclude="" top-bar="" style="height: 81px;">
+      <ul class="title-area ng-scope">
+        <li class="name"><a href="/"><img src="../../images/BigCommerce_logo_white.svg" /></a></li>
+      </ul>
+      <section class="top-bar-section ng-scope">
+        <ul class="menuItems">
+          <li><a href="/api/v2" title="API">API</a></li>
+          <li><a href="/themes" title="Themes">Themes</a></li>
+          <li><a href="/changelog" title="Changelog">Changelog</a></li>
+          <li><a href="/support" title="Help and Support">Support</a></li>
+          <li class="hideOnTablet"><a href="/feedback" title="Send Feedback and Edits">Send Feedback/Edits</a></li>
+        </ul>
+      </section>
+      <div class="top-bar-actions ng-scope">
+        <div class="optional"><a href="https://login.bigcommerce.com/login">Log In</a></div>
+        <div class="optional">
+          <button class="button button--action button--small">Get Started</button>
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>
+
+    <div class="tocify-wrapper">
+        <div class="search">
+          <input type="text" class="search" id="input-search" placeholder="Search">
+        </div>
+        <ul class="search-results"></ul>
+      <div id="toc">
+      </div>
+        <ul class="toc-footer">
+            <li><a href="/">Home</a></li>
+            <li><a href='/api/v2/'>API</a></li>
+            <li><a href='/themes/'>Themes</a></li>
+            <li><a href='/themes/blueprint/'> &nbsp; Blueprint Themes</a></li>
+            <li><a href='https://stencil.bigcommerce.com/docs'> &nbsp;  Stencil Themes</a></li>
+            <li><a href='#'>Sign Up for a Developer Key</a></li>
+            <li><a href='http://github.com/tripit/slate'>Documentation by Slate</a></li>
+        </ul>
+    </div>
+    <div class="page-wrapper">
+      <div class="content">
+        <h1 id="blueprint-themes">Blueprint Themes</h1>
+
+<p>Getting Started with Blueprint</p>
+
+          <h1 id="themes">Themes</h1>
+
+<h2 id="design-and-develop-custom-storefront-themes">Design and develop custom storefront themes</h2>
+
+<p>To learn more about our new themes framework, <strong>Stencil</strong> – now available for Developer Early Access – please explore our <a href="https://stencil.bigcommerce.com/docs/">Stencil documentation</a>.</p>
+
+<p>For information about today’s Blueprint themes framework, please follow the navigation links within this portal.</p>
+
+<p>Themes allow you to customize the look and feel of Bigcommerce stores. The compelling store designs in the <a href="http://www.bigcommerce.com/showcase/">Bigcommerce Showcase</a> demonstrate the kinds of things that can be done.</p>
+
+<p>To ensure that your themes make the most of Bigcommerce’s extensive out-of-the-box features and capabilities, please be aware of all the <a href="https://www.bigcommerce.com/features/all/">supported features</a> that store owners manage and maintain through the Bigcommerce control panel.</p>
+
+<p>This is a reference for working with v.1 (Blueprint) themes. You can ask further questions and seek advice in the <a href="http://forum.bigcommerce.com/f4/">Design &amp; Customization Forum</a>. For professional assistance in customizing a theme, consider hiring a <a href="http://www.bigcommerce.com/experts/">Bigcommerce Expert</a>.</p>
+
+          <h1 id="anatomy-of-a-theme">Anatomy of a Theme</h1>
+
+<p>Themes are built using a powerful template system that enables designers and developers familiar with CSS and HTML to modify the presentation and structure of a Bigcommerce store.</p>
+
+<h2 id="directory-structure">Directory Structure</h2>
+
+<p>Theme files that apply to a store design are organized in several different directories, as follows:</p>
+
+<ul>
+<li>  <strong>Images</strong></li>
+<li>  <strong>Panels</strong></li>
+<li>  <strong>Snippets</strong></li>
+<li>  <strong>Styles</strong></li>
+</ul>
+
+<h2 id="images">Images</h2>
+
+<p>Theme specific static images (referenced from CSS, or in image tags).</p>
+
+<h2 id="layouts">Layouts</h2>
+
+<p>Layout templates provide the base HTML structure that wraps storefront page content. Each layout file corresponds to a specific page.</p>
+
+<p>For example, <code class="prettyprint">product.html</code> refers to the page that’s shown when a customer is viewing the details of a product.</p>
+
+<p>Most layout files contain nothing more than references to individual panels to be shown on a page. These panels are contained in div tags that generally define left, center, or right columns of the page.</p>
+
+<h2 id="panels">Panels</h2>
+
+<p>Panels provide reusable blocks or dynamic sections of content.</p>
+
+<p>For example, the <code class="prettyprint">SideCategoryList</code> panel builds a list of categories to be shown throughout the store.</p>
+
+<p>Panels are generally referenced directly from layout templates. They define which content should be shown on a particular page and handle the generation of that specific content.</p>
+
+<p>Some panels contain strictly static content (such as the store name) whilst others generate content dynamically. Dynamically generated panels cannot be created ad-hoc as they are linked to specific data and logic within the application.</p>
+
+<h2 id="snippets">Snippets</h2>
+
+<p>Snippets are templates containing a fragment of HTML that can be embedded multiple times in a page, either from direct references or from being part of a loop that iterates over the items in a list.</p>
+
+<p>For example, the <code class="prettyprint">HomeFeaturedProductsItem</code> snippet renders each individual product listed in the <code class="prettyprint">HomeFeaturedProducts</code> panel.</p>
+
+<h2 id="styles">Styles</h2>
+
+<p>Primary layout stylesheets for the Theme, with <code class="prettyprint">styles.css</code> being the core file.</p>
+
+          <h1 id="blueprint-and-developer-mode">Blueprint and Developer Mode</h1>
+
+<h2 id="blueprint-is-a-foundation-from-which-developers-can-easily-create-great-themes">Blueprint is a foundation from which developers can easily create great themes</h2>
+
+<p>When creating a new theme we suggest that you start from our base theme, Blueprint.</p>
+
+<p>Blueprint is a great starting point for theme development because it supports the most recent features of our platform. Blueprint includes responsive support out-of-the-box, so it works with lower resolutions like those on mobile devices. The visual design has been stripped back so you can create from a clean canvas.</p>
+
+<p><a href="https://blueprint-demo.mybigcommerce.com">View the demo</a></p>
+
+<h2 id="setting-up-your-environment">Setting up your environment</h2>
+
+<p>Follow these steps to start developing using the Blueprint theme:</p>
+
+<ol>
+<li> To enable the Blueprint theme on your store simply login to the control panel, and place &ldquo;<strong>/index.php?ToDo=viewTemplates&amp;dev=enable</strong>&rdquo; after &ldquo;/admin&rdquo;.
+(i.e. https://store-123abmy.mybigcommerce.com/admin/index.php?ToDo=viewTemplates&amp;dev=enable)</li>
+<li> Apply the Blueprint theme</li>
+<li> Connect to the site via <a href="https://support.bigcommerce.com/questions/1513/How+do+I+connect+to+WebDAV%3F">WebDAV</a>.</li>
+<li> Once connected via WebDav, navigate to the &ldquo;template&rdquo; folder where you will have access to all the files that make up a theme.</li>
+<li> To make a change to a file, just download the file, edit and then upload it after you have made the change.</li>
+<li> Everytime you make changes to any files you will need to upload them through WebDAV for the changes to be reflected on your site.</li>
+</ol>
+
+          <h1 id="style-editor">Style Editor</h1>
+
+<h2 id="introducing-style-editor">Introducing Style Editor</h2>
+
+<p>Style Editor allows users to customize the look and feel of their Bigcommerce store, without the need to know HTML/CSS. Using a simple WYSIWYG interface, users can edit colors and fonts, then see the changes simultaneously in a live preview.</p>
+
+<p>Style Editor uses LESS as a CSS preprocessor, allowing it to take advantage of variables and other functions to ensure design consistency.</p>
+
+<h2 id="what-is-less">What is LESS?</h2>
+
+<p>LESS is a CSS preprocessor that allows theme designers to use advanced functions and programming principles in their CSS. A javascript compiler runs over the LESS files and converts them into usable CSS that can be included in themes.</p>
+
+<p>For more information on examples, techniques, and how to install LESS, go to <a href="http://lesscss.org/">lesscss.org</a></p>
+
+<h2 id="integrating-a-theme-with-the-style-editor">Integrating a theme with the Style Editor</h2>
+
+<p>The Style Editor uses a specific group of files to build its User Interface, and to compile and generate the stylesheet. Bigcommerce’s developer theme, Blueprint, already contains these out of the box. The files are stored in the Styles/less directory.</p>
+
+<p>The files the Style Editor depends on are:</p>
+
+<ul>
+<li>  <code class="prettyprint">style-editor-variables.less</code></li>
+<li>  <code class="prettyprint">internal-variables.less</code></li>
+<li>  <code class="prettyprint">init.less</code></li>
+<li>  <code class="prettyprint">theme.less</code></li>
+</ul>
+
+<h3 id="style-editor-variables-less">style-editor-variables.less</h3>
+
+<p>Style Editor uses this file to generate its User Interface. Here, you can enter variables for colours, fonts and numbers that will help the merchant customize the design of the theme. You can separate these variables out into sections with headings to help categorise the variables in a logical manner. No actual CSS is written in this file.</p>
+
+<p>There are some syntax patterns involved that Style Editor will understand to help you customise the UI. Special syntax:</p>
+
+<p><code class="prettyprint">@color-your-text-here</code> — This is the naming convention for a color variable. The style editor will generate this as a color picker, with the value of the variable set as the color picker’s default hexadecimal color value.</p>
+
+<p>e.g.</p>
+
+<p><code class="prettyprint">
+@color-header-background: #FFFFFF;
+</code></p>
+
+<p>This will generate a color picker with the label “Header Background”, set to #FFFFFF (white) by default.</p>
+
+<p><code class="prettyprint">@font-your-text-here</code> — This is the naming convention for a font variable. The style editor will generate this as a dropdown, preloaded with your theme’s predefined fonts. The variable’s value will be preselected.</p>
+
+<p>e.g.</p>
+<pre class="highlight plaintext"><code>@font-page-text: "Open Sans",Helvetica,Arial,sans-serif;
+</code></pre>
+
+<p>This will generate a dropdown with the label “Page Text”, and with the “Open Sans” font preselected. The dropdown’s other options will be the predefined list of fonts you’ve provided.</p>
+
+<p><code class="prettyprint">@font-declaration</code> — This variable will store all the default fonts (and their fallbacks) for the style editor. It will use these fonts in the font dropdown mentioned in the above point.</p>
+
+<p>e.g.</p>
+<pre class="highlight plaintext"><code>@font-declaration: '{ "Lato":["Lato", "Arial", "sans-serif"], "Freckle Face":["Freckle Face", "cursive"]}';
+</code></pre>
+
+<p>This will populate all font dropdowns with the fonts “Lato” and “Freckle Face”, and if one of them is selected, the fonts for that variable will be set to the values in the corresponding array of fonts, e.g. “Lato” will set the fonts to “Lato”, Arial, sans-serif.</p>
+
+<p>To use these fonts in the Style Editor, they must be included in the style editor variables file through an import. For the above example, I’ve included the styles from google fonts like so:</p>
+<pre class="highlight plaintext"><code>@import url(//fonts.googleapis.com/css?family=Lato|Freckle+Face);
+</code></pre>
+
+<p><code class="prettyprint">@color-declaration</code> — This variable will store all the default colors for the style editor. It will list these colours in the color picker’s palette after all the color picker’s defaults.</p>
+
+<p>e.g.</p>
+<pre class="highlight plaintext"><code>@color-declaration: '["#FF7700, #9966CC" ]';
+</code></pre>
+
+<p>This will add a shade of orange and a shade of purple to the end of the list of colors selectable in the color picker.</p>
+
+<p><code class="prettyprint">//! @section: your text here</code> — You can group variables into sections with headings using this syntax to help your users read and understand your variables more easily.</p>
+
+<p>e.g.</p>
+
+<p><code class="prettyprint">//! @section: Header</code><br>
+<code class="prettyprint">@color-header-background: #FFF;</code><br>
+<code class="prettyprint">//! @endsection</code>  of</p>
+
+<p>This will create a section in the left navigation with the title “Header”, which will house the “Header Background” variable.</p>
+
+<p>More information on syntax, and examples, can be found in the comments of the style-editor-variables.less file found in Blueprint.</p>
+
+<h3 id="internal-variables-less">internal-variables.less</h3>
+
+<p>This file is for you to store the variables that you may need to use, but don’t want the Style editor to see. For example, you can use it to create a hierarchy within your LESS file, so that:</p>
+
+<ul>
+<li>  The user sets a value to @color-store-name;</li>
+<li>  in internal-variables.less, @main-accent: @color-store-name;</li>
+<li>  in init.less, we set a:hover {color: @main-accent};</li>
+</ul>
+
+<p>In this example, the link hover color will be set to whatever the store name color is. We can add as many selectors as we want to this css statement, depending on our design.</p>
+
+<p>This way, we can reuse the color that gets set to <code class="prettyprint">@color-store-name</code> as the color for elements that we may not want to be edited in the Style Editor, but will now carry on the colour of the store name to create consistency within your design.</p>
+
+<h3 id="init-less">init.less</h3>
+
+<p>This is where you initialize the use of the variables. This file contains all the CSS that will be compiled and generated into the theme.css file. For example, the @color-store-name can now be applied to the <code class="prettyprint">#HeaderLogo h1</code> element by saying:</p>
+<pre class="highlight plaintext"><code>#HeaderLogo h1 {
+color: @color-store-name
+}
+</code></pre>
+
+<h3 id="theme-less">theme.less</h3>
+
+<p>The file that ultimately gets compiled into theme.css. This just uses @import to include the other three LESS files for compilation. The Style Editor will read this file for instructions on how to compile your styles using LESS.</p>
+
+<p>Compiling your LESS files</p>
+
+<p>Once you have finished working on your .less files, <strong>don’t forget to compile them!</strong> If you are using command line, you should be doing something similar to:</p>
+<pre class="highlight plaintext"><code>lessc Styles/less/theme.less &gt; Styles/theme.css
+</code></pre>
+
+<p>This will use the theme.less file to generate the theme.css file into the <code class="prettyprint">Styles/</code> folder of your theme.</p>
+
+<p>If you find that you have to make a change to theme.css, please don&rsquo;t forget to replicate this change in theme.less (but more preferably in <code class="prettyprint">init.less</code>). Otherwise, every time you recompile the less files, this change will be overwritten.</p>
+
+<p>LESS offers a variety of compilation methods, including applications for both Windows and Mac that you can use if you prefer not to use the command prompt/terminal.</p>
+
+<h2 id="testing-style-editor-with-your-theme">Testing Style Editor with your theme</h2>
+
+<p>If you&rsquo;d like to add Style Editor support to your theme, you can enable the Style Editor on just your store. simply login to the control panel and place &ldquo;/index.php?ToDo=viewTemplates&amp;dev=enable&rdquo; after &ldquo;/admin&rdquo;.
+(i.e. https://store-123abmy.mybigcommerce.com/admin/index.php?ToDo=viewTemplates&amp;dev=enable)</p>
+
+<p>This will enable <a href="https://developer.bigcommerce.com/themes/blueprint">Developer Mode</a> for your store, which also enables Blueprint and other new features for theme developers. We recommend <a href="https://developer.bigcommerce.com/themes/blueprint">using Blueprint</a> to create new themes.</p>
+
+<h3 id="enabling-style-editor-in-the-theme-store">Enabling Style Editor in the Theme Store</h3>
+
+<p>Once you have fitted your theme, just let us know that it supports Style Editor when you submit it to the theme store.</p>
+
+          <h1 id="product-filtering-toolkit">Product Filtering Toolkit</h1>
+
+<p><strong>Before you attempt to add Product Filtering to your theme, please note that this is recommended for experienced theme developers.</strong> Other than knowledge in HTML and CSS, familiarizing yourself with how Bigcommerce themes are structured and operate will be essential in effectively implementing Product Filtering in your theme.</p>
+
+<p>We also recommend working on a temporary sandbox store. You can create a trial store and upload your theme customizations via WebDAV to replicate your theme.</p>
+
+<p>NOTE: Product Filtering is a Premium feature. If you would like it enabled to an active public store, you must upgrade to a Premium plan.</p>
+
+<h2 id="creating-a-new-theme-with-product-filtering">Creating a new theme with Product Filtering</h2>
+
+<p>Product Filtering is fully functional in the Blueprint theme. If you are creating a new theme, we recommend starting from the Blueprint theme. Once you’ve enabled Developer Mode, you’ll be able to access Blueprint and Product Filtering in your developer store.</p>
+
+<h2 id="enabling-product-filtering-for-your-customised-theme">Enabling Product Filtering for your customised theme</h2>
+
+<p>To enable Product Filtering, all you have to do is enable developer mode on your store. This will enable Product Filtering on your store by default, regardless of whether your theme supports it or not. Depending on the customisations you have to your theme, this could have unexpected results. <strong>We recommend using a sandbox store (not your main store) when applying these changes for the first time.</strong></p>
+
+<p>If you have a new store, Product Filtering may already work out of the box for your theme.</p>
+
+<h2 id="implementing-product-filtering-in-your-theme">Implementing Product Filtering in your theme</h2>
+
+<p>If you haven’t already, follow the steps above to have the Product Filtering feature enabled for your sandbox store. Once you’ve completed this and your store has the Product Filtering feature enabled, you’ll need to get the most up-to-date files from Blueprint and copy them into your own theme. The best way to do this is:</p>
+
+<ol>
+<li> Enable Dev Mode in your sandbox store if you haven’t already. This will enable the Blueprint theme and the Faceted Search feature for your theme.</li>
+<li> Select Blueprint as your store’s theme. Don’t forget to back up your theme customisations if you’re not starting from scratch.</li>
+<li> Download the Blueprint theme – don’t worry, you’ll only be needing certain files for faceted search.</li>
+<li> Reinstate your theme from the backups you downloaded in step 2.</li>
+<li> Upload the following files from Blueprint to your sandbox store:
+
+<ul>
+<li>  <strong>Panels/FacetedSearch.html</strong> – This panel contains the markup for your Faceted Search column. It calls all the panels for each of the searchable facets as well.</li>
+<li>  <strong>Panels/FacetedSearchProductGrid.html</strong> - This panel contains the markup for your list of product results your category lists are set to &ldquo;grid view&rdquo;.</li>
+<li>  <strong>Panels/FacetedSearchProductList.html</strong> - This panel contains the markup for your list of product results your category lists are set to &ldquo;list view&rdquo;.</li>
+<li>  <strong>Panels/FacetedSearchTemplateCategory.html</strong> – The panel that contains the markup for the Category facet.</li>
+<li>  <strong>Panels/FacetedSearchTemplateMultichoice.html</strong> – The panel that contains the markup for any facet containing multiple choice checkboxes</li>
+<li>  <strong>Panels/FacetedSearchTemplateRange.html</strong> – The panel that contains the markup for facets containing ranges.</li>
+<li>  <strong>Panels/FacetedSearchTemplateRating.html</strong> – The panel that contains the markup for the Rating facet.</li>
+<li>  <strong>Panels/FacetedSearchTemplateShowing.html</strong> – The panel that contains the markup for the list of currently selected filters.</li>
+<li>  <strong>Panels/FacetedSearchTemplateSingle.html</strong> – The panel that contains the markup for any facet containing single choice radio buttons</li>
+<li>  <strong>Panels/Pagination.html</strong> – The panel that contains the markup for your Pagination – note that this will not use any existing pagination panels your theme may have.</li>
+<li>  <strong>Styles/faceted-search.css</strong> (This will be included in FacetedSearch.html – you don’t have to add it to your HTMLHead.html file)</li>
+</ul></li>
+<li> Copy your brands.html page and name it brands_with_facets.html</li>
+<li> Copy your search.html page and name it search_with_facets.html</li>
+<li> Copy your category.html page and name it category_with_facets.html</li>
+<li> Include the required assets on your new facets pages. You can use the facets pages from Blueprint for reference (they’ll be named the same).
+
+<ul>
+<li>  %%Panel.FacetedSearch%% – This is the main Faceted Search panel, and will call the rest of the panels it needs accordingly (including js and css).</li>
+<li>  Add the <code class="prettyprint">js-faceted-search-column</code> class to the container of your Faceted Search panel.</li>
+<li>  If you have a responsive theme, you can add the Refine button to your page, which toggles the faceted search column on or off. This button only displays on mobile by default.
+<code class="prettyprint">&lt;button class=&quot;js-faceted-search-action btn&quot;&gt; %%LNG_FilterBy%% &lt;/button&gt;</code></li>
+</ul></li>
+<li> If the pages mentioned above don’t exist, you can copy the existing ones from Blueprint. Keep in mind that you’ll need to modify them to suit the structure of your theme.</li>
+</ol>
+
+<p>N.B. When you turn on “product filtering” on a store, it will automatically switch all Category Layout Files to your new category_with_facets.html page. To view product filtering on Category pages you must ensure that the “Category Layout File” is set to category_with_facets.html</p>
+
+<p><strong>Important note regarding Brand.html, Search.html and Category.html page templates:</strong> Do not modify the base templates of these pages to include Faceted Search. Faceted Search is a <strong>Premium Plan feature only</strong>. Clients who are not on a premium plan do not get Faceted Search, so if you include it on Category.html, Brand.html or Search.html, your theme will be useless to those clients.</p>
+
+<p>When Faceted Search is switched off, the following templates will be used:</p>
+
+<ul>
+<li>  category pages &gt; category.html</li>
+<li>  brand pages &gt; brands.html</li>
+<li>  search page &gt; search.html</li>
+</ul>
+
+<p>When switched on:</p>
+
+<ul>
+<li>  category pages &gt; category_with_facets.html</li>
+<li>  brand pages &gt; brands_with_facets.html</li>
+<li>  search page &gt; search_with_facets.html</li>
+</ul>
+
+<p><strong>Please note:</strong> You will not see the category filter on storefront category pages. This has been hidden for SEO reasons.</p>
+
+      </div>
+    </div>
+  </body>
+</html>
