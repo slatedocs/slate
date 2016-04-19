@@ -433,82 +433,11 @@ Returns the newly created `KuzzleDataMapping` object.
 
 ## delete
 
-```js
-// Using callbacks (NodeJS or Web Browser)
-kuzzle
-  .dataCollectionFactory('index', 'collection')
-  .delete(function (error, result) {
-    // callback called once the delete operation has completed
-    // => the result is a JSON object containing the raw Kuzzle response
-  });
-
-// Using promises (NodeJS only)
-kuzzle
- .dataCollectionFactory('index', 'collection')
- .deletePromise()
- .then(result => {
-   // promise resolved once the delete operation has completed
-   // => the result is a JSON object containing the raw Kuzzle response
- });
-```
-
-```java
-kuzzle
-  .dataCollectionFactory("index", "collection")
-  .delete(new KuzzleResponseListener<JSONObject>() {
-    @Override
-    public void onSuccess(String object) {
-      // callback called once the delete operation has completed
-      // => the result is a JSON object containing the raw Kuzzle response
-    }
-
-    @Override
-    public void onError(JSONObject error) {
-      // Handle error
-    }
-  });
-```
-
-> Callback response:
-
-```json
-{
-  "status": 200,
-  "error": null,
-  "requestId": "05e27297-082a-430c-bd20-a94850abdff7",
-  "controller": "admin",
-  "action": "deleteCollection",
-  "collection": "the deleted collection name",
-  "index": "index containing the collection",
-  "metadata": {},
-  "state": "done",
-  "scope": null,
-  "result": {}
-}
-```
-
-Delete this data collection and all documents in it.
-
-#### delete([options], [callback])
-
-| Arguments | Type | Description |
-|---------------|---------|----------------------------------------|
-| ``options`` | JSON Object | Optional parameters |
-| ``callback`` | function | Optional callback |
-
-Available options:
-
-| Option | Type | Description | Default |
-|---------------|---------|----------------------------------------|---------|
-| ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
-
-#### Return value
-
-Returns the `KuzzleDataCollection` object to allow chaining.
-
-#### Callback response
-
-Resolves to a JSON object containing the raw Kuzzle response.
+<aside class="warning">
+Since the 2.0 version, ElasticSearch <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/breaking_20_mapping_changes.html#_types_may_no_longer_be_deleted">removed the ability to delete a Type</a>, which is used internally by Kuzzle to store its collections.<br>
+<br>
+As such, it is not possible to delete a collection from Kuzzle either. You can still delete all the documents that belong to a collection but if you need to delete the collection mapping, you will need to use a new index.
+</aside>
 
 ## deleteDocument
 
