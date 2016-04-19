@@ -1,4 +1,6 @@
 # Aggregation
+Aggregation API docs are availale for existing integrations only. If you are revewing this documentation for a new implementation, please review [aggregation SDKs](#aggregation-sdks). 
+
 Geezeo uses CashEdge aggregation services to allow users to view their entire financial portfolio. Accounts are grouped in 4 categories: Cash, Credit Cards, Debts, and Investments. A user can edit each account listed under a category to change the exact account type, update their account credentials or view single account transactions.
 
 The Aggregation API is currently a synchronous API. Any calls that result in a
