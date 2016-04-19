@@ -1,8 +1,8 @@
-# DRAFT Java Aggregation SDK operations DRAFT
+# Java Aggregation SDK operations
 
 ## Installing the library
 
-TODO
+Currently the SDK is available via source distribution only. We will be packaging the SDK and releasing it into a Maven repository as well.
 
 ## Using the library
 
@@ -26,6 +26,8 @@ public class Main {
 Java SDK for the Geezeo API.
 
 The use of this package starts with an Sdk instance, which is created with the authentication information required by Geezeo’s web API.
+
+The package also comes with a build.sbt file. If you have scala and sbt installed, typing sbt console in the project folder will load a REPL with access to the SDK.
 
 
 | Argument | Description |

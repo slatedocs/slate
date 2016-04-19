@@ -1,4 +1,4 @@
-# DRAFT Push Data Source DRAFT
+# Push Data Source
 
 > Sample request
 
@@ -34,7 +34,8 @@
                 "posted_date": "2009-03-19T11:40:50-04:00",
                 "origination_date": "2009-03-19T15:31:36-04:00",
                 "amount": "112.03",
-                "memo": "DUNKINDONUTS*100094"
+                "memo": "DUNKINDONUTS*100094",
+                "mcc" : "5814"
               }
             ]
           }

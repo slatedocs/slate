@@ -1,4 +1,4 @@
-# DRAFT Python Aggregation SDK Types DRAFT
+# Python Aggregation SDK Types
 
 ## AuthPrompt
 | Property | Description |
