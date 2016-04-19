@@ -37,9 +37,7 @@ includes:
   - sdk-net
   - aggregation-sdks
   - sdk-python
-  - sdk-python-types
   - sdk-java
-  - sdk-java-types
 
 
 search: true
