@@ -31,8 +31,13 @@ includes:
   - tickets
   - transactions
   - users
+  - sdk-python
+  - sdk-python-types
+  - sdk-java
+  - sdk-java-types
+  - push-data-source
   - data-source
-  
+
 
 search: true
 ---
@@ -43,9 +48,9 @@ The Geezeo REST API provides a method of read and partial write access to a user
 
 # Platform SDKs
 
-Geezeo is creating platform specific SDK's to accelerate integrating our platform features into OLBs, mobile, support, or any other use case that you can envision. 
+Geezeo is creating platform specific SDK's to accelerate integrating our platform features into OLBs, mobile, support, or any other use case that you can envision.
 
-These SDKs will follow best practices for the specific platform, and should significantly lower the barrier of entry for any integration project. 
+These SDKs will follow best practices for the specific platform, and should significantly lower the barrier of entry for any integration project.
 
 # .net SDK
 
