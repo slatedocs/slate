@@ -14,9 +14,9 @@ Geezeo also provides a file transfer using the same XML spec. File transfers are
 
 ```xml
 <PartnerRequest
-    signature=”PartnerSignature” 
-    id=”2” 
-    sso_partner_id=”abc122”>
+    signature="PartnerSignature" 
+    id="2" 
+    sso_partner_id="abc122">
   <UserList>
     <Users>
       <User>
@@ -33,8 +33,8 @@ Geezeo also provides a file transfer using the same XML spec. File transfers are
 
 ```xml
 <PartnerResponse
-    signature=”PartnerSignature” 
-    request_id=”2”>
+    signature="PartnerSignature" 
+    request_id="2">
   <Users>
     <User>
       <Action>New</Action>
@@ -43,6 +43,7 @@ Geezeo also provides a file transfer using the same XML spec. File transfers are
       <LastName>LastName</LastName>
       <Email>flastname@geezeo.com</Email>
       <ZipCode>06000</ZipCode>
+      <UserExperience>pfm</UserExperience>
     </User>
   </Users>
 </PartnerResponse>
@@ -57,12 +58,13 @@ Tag | Type | Usage | Description |
 ----|------|-------|-------------|
 \<Users> | Container | Required |Contains all \<User> records in the set |
 \<User> | Container | Required | Contains data defining a single customer |
-\<Action> | [Enum](#ActionType)| Required | If this element is left out, Geezeo will attempt to update the record, or add it if it does not exist; specify “Delete” if the account is to be deleted |
+\<Action> | [Enum](#ActionType)| Required | If this element is left out, Geezeo will attempt to update the record, or add it if it does not exist; specify “Delete" if the account is to be deleted |
 \<PartnerCustomerId> | String (255) | Required; Unique | Unique alphanumeric ID; used to identify the customer and match accounts to it |
-\<FirstName> | String (255) | Required | Customer’s first name|
-\<LastName> |String (255) | Required | Customer’s last name |
-\<Email> | String (255) | Required | Customer’s email address; should be a properly formatted email address |
-\<ZipCode> | String (255) | Required\ |Customer’s zip code; should be a valid US postal code |
+\<FirstName> | String (255) | Required | Customer's first name|
+\<LastName> |String (255) | Required | Customer's last name |
+\<Email> | String (255) | Required | Customer's email address; should be a properly formatted email address |
+\<ZipCode> | String (255) | Required |Customer's zip code; should be a valid US postal code |
+\<UserExperience> | String (255) | Optional |Customer user experience (PFM or TruBiz) |
 
 
 ## Customer Account data format
@@ -71,9 +73,9 @@ Tag | Type | Usage | Description |
 
 ```xml
 <PartnerRequest
-    signature=”PartnerSignature” 
-    id=”2” 
-    sso_partner_id=”abc122”>
+    signature="PartnerSignature" 
+    id="2" 
+    sso_partner_id="abc122">
   <AccountList>
       <Accounts>
         <Account>
@@ -90,15 +92,15 @@ Tag | Type | Usage | Description |
 
 ```xml
 <PartnerResponse
-    signature=”PartnerSignature” 
-    request_id=”2”>
+    signature="PartnerSignature" 
+    request_id="2">
   <Accounts>
     <Account>
       <Action>NEW</Action>
       <PartnerCustomerId>12345</PartnerCustomerId>
       <AccountId>999</AccountId>
       <AccountFiName>JOHN Q PUBLIC</AccountFiName>
-      <AccountNickname>John’s Savings</AccountNickname>
+      <AccountNickname>John's Savings</AccountNickname>
       <AccountType>Savings</AccountType>
       <AccountBalances>
         <AccountBalance>
@@ -107,11 +109,12 @@ Tag | Type | Usage | Description |
           <CurrencyCode>USD</CurrencyCode>
         </AccountBalance>
       </AccountBalances>
+      <AccountExperience>pfm</AccountExperience>
     </Account>
   </Accounts>
 </PartnerResponse>
 ```
-Geezeo will request a list of accounts belonging to a user by sending an Account element containing only the user’s PartnerCustomerId. You may optionally respond with updated account information instead of all account information. We will create any accounts that do not exist in the Geezeo database, update any accounts that do exist, and mark as closed any accounts that are in the Geezeo database but not in the response.
+Geezeo will request a list of accounts belonging to a user by sending an Account element containing only the user's PartnerCustomerId. You may optionally respond with updated account information instead of all account information. We will create any accounts that do not exist in the Geezeo database, update any accounts that do exist, and mark as closed any accounts that are in the Geezeo database but not in the response.
 
 Validating a [Partner Signature Request](#PartnerSignatureRequest) and generating a [Partner Signature Response](#PartnerSignatureResponse).
 
@@ -119,7 +122,7 @@ Tag | Type | Usage | Description |
 ----|------|-------|-------------|
 \<Accounts> | Container | Required | Contains all \<Account> records in the set |
 \<Account> | Container | Required | Contains data defining a single account |
-\<Action> | [Enum](#ActionType) | Optional | If this element is left out, Geezeo will attempt to update the record, or add it if it does not exist; specify “Delete” if the account is to be deleted |
+\<Action> | [Enum](#ActionType) | Optional | If this element is left out, Geezeo will attempt to update the record, or add it if it does not exist; specify “Delete" if the account is to be deleted |
 \<PartnerCustomerId> | String (255) | Required | Matches the account with the proper customer |
 \<AccountId> | String (255) |Required; Unique| |Unique ID, may contain letters and numbers; used to identify the account and match transactions to it. Full credit card numbers must not be sent as the account ID. |
 \<AccountNumber> | String (255) | Optional | Further identifying information show to the user in certain circumstances to help identify the account to them. Full credit card numbers must not be supplied. |
@@ -128,6 +131,7 @@ Tag | Type | Usage | Description |
 \<AccountType> | [Enum](#AccountType) | Required | Account type from closed list
 \<AccountBalances> | Container | Required |Contains [\<AccountBalance>\(#AccountBalance) elements|
 \<Properties> | Container | Optional | Contains [\<Property>](#Properties) elements |
+\<AccountExperience> | String (255) | Optional | Account experience (PFM or Trubiz)
 
 <a name="AccountBalance"></a>
 
@@ -167,7 +171,7 @@ The properties container is used to define non-balance based information and sta
 | --- | ---- | ----- | ----------- |
 \<Property> | Container | Required | Contains property information|
 \<PropertyType> | [Element](#PropertyType)| Required | The type of property in the record|
-\<PropertyValue> | String (255) | Required | The property’s value |
+\<PropertyValue> | String (255) | Required | The property's value |
 
 ### <a name="PropertyType"></a> Property Types
 
@@ -175,7 +179,7 @@ The properties container is used to define non-balance based information and sta
 | --- | ---- | ----- | ----------- |
 PurchasesApr | Decimal | Optional | APR for Purchase with one decimal of precision; e.g. 24.5% would be 25.5, not .255|
 PaymentDueDate | DateTime | Optional | Due date for current pay period |
-InternalTransaction | String (255) | Optional | Add type to internal transaction with these possible options: “bill pay”, “transfer”; added for clarity to user |
+InternalTransaction | String (255) | Optional | Add type to internal transaction with these possible options: “bill pay", “transfer"; added for clarity to user |
 
 ## Customer Transaction data format
 
@@ -183,9 +187,9 @@ InternalTransaction | String (255) | Optional | Add type to internal transaction
 
 ```xml
 <PartnerRequest
-    signature=”PartnerSignature” 
-    id=”2” 
-    sso_partner_id=”abc122”>
+    signature="PartnerSignature" 
+    id="2" 
+    sso_partner_id="abc122">
  <TransactionList>
     <AccountId>12345</AccountId>
     <LastTransactionId>9876</LastTransactionId>
@@ -199,8 +203,8 @@ InternalTransaction | String (255) | Optional | Add type to internal transaction
 
 ```xml
 <PartnerResponse
-    signature=”PartnerSignature” 
-    request_id=”2”>
+    signature="PartnerSignature" 
+    request_id="2">
   <Transactions>
     <Transaction>
       <TransactionId>12345</TransactionId>
@@ -224,15 +228,15 @@ Tag | Type | Usage | Description |
 --- | ---- | ----- | ----------- |
 \<Transactions> | Container | Required | Contains all \<Transaction> records in the file |
 \<Transaction> | Container | Required | Contains data defining a single transaction |
-\<Action> | [Enum](#ActionType) | Required | If this element is left out, Geezeo will attempt to update the record, or add it if it does not exist; specify “Delete” if the transaction is to be deleted |
+\<Action> | [Enum](#ActionType) | Required | If this element is left out, Geezeo will attempt to update the record, or add it if it does not exist; specify “Delete" if the transaction is to be deleted |
 \<TransactionId> | String (255) | Required; Unique | Unique alphanumeric ID; used to identify the transaction. This must be unique within each account, and never change. |
 \<AccountId> | String(255) | Required | Used to match the transaction with its account |
-\<TransactionType> | Closed List | Required | “Debit” for a negative transaction, “Credit” for a positive transaction |
-\<PostedDate> | DateTime | Required | The time that the transaction posted to the user’s account |
+\<TransactionType> | Closed List | Required | “Debit" for a negative transaction, “Credit" for a positive transaction |
+\<PostedDate> | DateTime | Required | The time that the transaction posted to the user's account |
 \<OriginationDate> | DateTime | Optional | The time the transaction actually occurred |
 \<Amount> | Decimal | Required | The absolute value of the transaction; do not use a dash to indicate a negative number. Two decimal places are required, even if they amount is even (5.00). |
-\<Pending> | Closed List | Optional | If this is a pending transaction, pass “true”; otherwise do not include this field |
-\<Memo> | String (255) | Required | The transaction description. What is provided in this field should match what’s shown on the users statement, and/or in the FIs OLB |
+\<Pending> | Closed List | Optional | If this is a pending transaction, pass “true"; otherwise do not include this field |
+\<Memo> | String (255) | Required | The transaction description. What is provided in this field should match what's shown on the users statement, and/or in the FIs OLB |
 \<CheckNumber> | String (255) | Optional | If the transaction is a check, a check number may be included in this field. |
 
 
@@ -242,9 +246,9 @@ Tag | Type | Usage | Description |
 
 ```xml
 <PartnerRequest
-    signature=”PartnerSignature” 
-    id=”2” 
-    sso_partner_id=”abc122”>
+    signature="PartnerSignature" 
+    id="2" 
+    sso_partner_id="abc122">
     <!-- Payload -->
 </PartnerRequest>
 ```
@@ -256,7 +260,7 @@ Attribute | Type | Element | Description
 signature | String(128) | PartnerRequest, PartnerResponse | Contains authentication data
 id | Integer | PartnerRequest | An integer to identify the request. These request IDs will be unique per day, but no tracking or verification is necessary.
 sso_partner_id | String(128) | PartnerRequest | This value is identical to the partner_id value submitted in the SSO assertion. It can be used by Resellers that use a single end point for all related FIs as a differentiator, if the PartnerCustomerId values are not globally unique.
-request_id | Integer | PartnerResponse | The value of this attribute must be the value of the “id” attribute from the corresponding PartnerRequest.
+request_id | Integer | PartnerResponse | The value of this attribute must be the value of the “id" attribute from the corresponding PartnerRequest.
 
 ## Validating a Request Signature
 
@@ -266,7 +270,7 @@ request_id | Integer | PartnerResponse | The value of this attribute must be the
 2. Extract the inner portion of the XML request body
 3. Generate a signature for this portion of the body, using the steps outlined above 4. Ensure the signature generated matches the signature provided by the request
 
-In order for the partner to authenticate Geezeo’s requests, and for Geezeo to authenticate the partner’s responses, the partner will be issued an API key. This key will never be included in any request or response, rather it will be used as a “shared secret” to generate a signature for each request and response.
+In order for the partner to authenticate Geezeo's requests, and for Geezeo to authenticate the partner's responses, the partner will be issued an API key. This key will never be included in any request or response, rather it will be used as a “shared secret" to generate a signature for each request and response.
 
 The API key may also be used to identify the partner that the request is targeted at if necessary; for instance, if multiple partners are served through the same partner API.
 
@@ -279,8 +283,8 @@ Each request from Geezeo, as well as each response from the partner, will includ
 
 ```xml
 <PartnerResponse
-    signature=”PartnerSignature” 
-    request_id=”2”>
+    signature="PartnerSignature" 
+    request_id="2">
     <!-- Payload -->
 </PartnerResponse>
 
@@ -293,11 +297,11 @@ Attribute | Type | Element | Description
 signature | String(128) | PartnerRequest, PartnerResponse | Contains authentication data
 id | Integer | PartnerRequest | An integer to identify the request. These request IDs will be unique per day, but no tracking or verification is necessary.
 sso_partner_id | String(128) | PartnerRequest | This value is identical to the partner_id value submitted in the SSO assertion. It can be used by Resellers that use a single end point for all related FIs as a differentiator, if the PartnerCustomerId values are not globally unique.
-request_id | Integer | PartnerResponse | The value of this attribute must be the value of the “id” attribute from the corresponding PartnerRequest.
+request_id | Integer | PartnerResponse | The value of this attribute must be the value of the “id" attribute from the corresponding PartnerRequest.
 
 ## Generating a Response Signature
 
-In order for the partner to authenticate Geezeo’s requests, and for Geezeo to authenticate the partner’s responses, the partner will be issued an API key. This key will never be included in any request or response, rather it will be used as a “shared secret” to generate a signature for each request and response.
+In order for the partner to authenticate Geezeo's requests, and for Geezeo to authenticate the partner's responses, the partner will be issued an API key. This key will never be included in any request or response, rather it will be used as a “shared secret" to generate a signature for each request and response.
 
 The API key may also be used to identify the partner that the request is targeted at if necessary; for instance, if multiple partners are served through the same partner API.
 
@@ -310,9 +314,9 @@ Each request from Geezeo, as well as each response from the partner, will includ
 2. Remove any leading and trailing whitespace from each line, and then remove any newline
 characters.
 3. Generate a SHA512 hash of this body
-4. XOR this hash with the hexadecimal decoded version of the partner’s API key
+4. XOR this hash with the hexadecimal decoded version of the partner's API key
 5. Convert the result to hexadecimal (low nibble first)
-Once a signature has been generated, place it in the “signature” attribute of the top level XML element, which will be PartnerRequest or PartnerResponse.
+Once a signature has been generated, place it in the “signature" attribute of the top level XML element, which will be PartnerRequest or PartnerResponse.
 
 ## Signature Example
 
@@ -320,9 +324,9 @@ Once a signature has been generated, place it in the “signature” attribute o
 
 ```xml
 <PartnerRequest
-signature=”2385432dff1286f507acaec2485b14cdef92e669da759b2f30824eb
+signature="2385432dff1286f507acaec2485b14cdef92e669da759b2f30824eb
 844a6d6ad11d36968ce62d99556dda62449495189b5d688cc8d2c820288b34d8a7
-01af783” id=”1” sso_partner_id=”abc123”>
+01af783" id="1" sso_partner_id="abc123">
   <AccountList>
     <Accounts>
       <Account>
