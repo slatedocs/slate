@@ -204,7 +204,7 @@ To change a user's credentials a partner must first get an [AuthPrompt](#authpro
 | toJson | Create a stringified JSON representation. |
 | toJsonTree | Create a GSON-compatible JSON AST from this object. |
 
-# Exceptions
+## Exceptions
 
 ## aggregation.exceptions.MfaException
 | Operation | Description |
