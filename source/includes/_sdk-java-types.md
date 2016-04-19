@@ -1,4 +1,4 @@
-# DRAFT Java Aggregation SDK Types DRAFT
+# Java Aggregation SDK Types
 
 ## aggregation.dto.AuthPrompt
 | Method | Description |

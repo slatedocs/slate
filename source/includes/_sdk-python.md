@@ -1,4 +1,4 @@
-# DRAFT Python Aggregation SDK operations DRAFT
+# Python Aggregation SDK operations
 
 ## Installing the library
 
