@@ -7,13 +7,36 @@
   curl "https://www.sendle.com/api/orders/f5233746-71d4-4b05-bf63-56f4abaed5f6/labels/a4.pdf"
   -u "sendleID:APIKey"
   -o "label.pdf"
+  -L
 ```
 
-Using our [order](#creating-orders), we can download the label by using cURL set to save the target and follow redirects. 
+> label data within order response
 
-The label URL will redirect you to a private PDF, do not cache this redirect URL as the access permissions expire after a minute.
+```shell
+  "labels":[
+    {
+      "format":"pdf",
+      "size":"a4",
+      "url":"https://www.sendle.com/api/orders/f5233746-71d4-4b05-bf63-56f4abaed5f6/labels/a4.pdf"
+    },
+    {
+      "format":"pdf",
+      "size":"cropped",
+      "url":"https://www.sendle.com/api/orders/f5233746-71d4-4b05-bf63-56f4abaed5f6/labels/cropped.pdf"
+    }
+  ]
+```
 
-Always use the `label_url` exposed on the order and follow the redirect to the PDF. If you are using cURL you can use the `-O` *(Open)* option to save the label with the remote file name, or `-o <filename>` to specify a file name locally.
+Sendle currently has two labels to choose from:
+
+- A **cropped** label and
+- An **A4-sized** sheet with a single label.
+
+Both labels are formatted as PDFs. Labels are stored within the order object as an array *(see example on right).* Each label is an object with a `format`, `size`, and `url`.
+
+Using our [order](#creating-orders) response, we can download the label by using cURL and our preferred label's `url`. The label url will redirect you to a private PDF, do not cache this redirect URL as the access permissions expire after a minute.
+
+Because of the redirect, special handling is needed. Adding the `-L` flag will follow the redirect to the label from within Sendle. If you are using cURL you can add the `-O` *(Open)* option to save the label with the remote file name, or `-o <filename>` to specify a file name locally.
 
 This option is only valid once an order has been booked with a courier.
 
