@@ -430,9 +430,38 @@ GET returns a Shoji View of available dataset export formats.
 	"self": "https://beta.crunch.io/api/datasets/223fd4/export/",
 	"views": {
 		"spss": "https://beta.crunch.io/api/datasets/223fd4/export/spss/"
+		"csv": "https://beta.crunch.io/api/datasets/223fd4/export/csv/"
 	}
 }
 ```
+
+Accessing any of the export URLs will return a `shoji:view` with an attribute
+`url` pointing to the location of the exported file to be downloaded. 
+
+Following rules apply for all formats:
+
+* All exporting happens synchronously.
+* If the dataset does not have any columns, the server will return a 409 response
+* Hidden/discarded variables are not exported.
+* Onnly exclusion filter will be applied. 
+* User applied filters are not applied.
+* Personal(private) variables are not exported.
+ 
+
+###### SPSS
+
+Will contain all non personal variables in the same flat order as organized.
+Derived variables will be exported as normal variables and arrays as supported
+by SPSS.
+
+###### CSV
+
+Will only export base non personal variables in the same flat order as organized 
+in the API.
+
+Categorical variables will be exported with their name instead of their value.
+
+
 
 ##### Summary
 
