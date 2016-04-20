@@ -63,6 +63,7 @@ crGET("https://beta.crunch.io/api/datasets/")
             "start_date": "2286",
             "end_date": null,
             "creation_time": "1986-11-26T12:05:00",
+            "modification_time": "1986-11-26T12:05:00",
             "current_editor": "https://beta.crunch.io/api/users/ff9443/",
             "current_editor_name": "Leonard Nimoy"
         },
@@ -87,6 +88,7 @@ crGET("https://beta.crunch.io/api/datasets/")
             "start_date": "2285-10-03",
             "end_date": "2285-10-20",
             "creation_time": "1982-06-04T09:16:23.231045",
+            "modification_time": "1982-06-04T09:16:23.231045",
             "current_editor": null,
             "current_editor_name": null
         }
@@ -111,6 +113,7 @@ owner_id | URL |  | URL of the user entity of the dataset's owner
 owner_name | string | "" | That user's name, for display
 size | object | `{"rows": null, "columns": null}` | Dimensions of the dataset
 creation_time | ISO-8601 string |  | Datetime at which the dataset was created in Crunch
+modification_time | ISO-8601 string | | Datetime of the last modification for this dataset globally
 start_date | ISO-8601 string |  | Date/time for which the data in the dataset corresponds
 end_date | ISO-8601 string |  | End date/time of the dataset's data, defining a start_date:end_date range
 current_editor | URL or null | | URL of the user entity that is currently editing the dataset, or `null` if there is no current editor
@@ -197,8 +200,8 @@ PATCH on the permissions catalog, and changing the owner is a PATCH on the
 dataset entity. The "owner_name" and "current_editor_name" attributes are 
 modifiable, assuming authorization, by PATCH on the associated user entity. 
 Dataset "size" is a cached property of the data, changing only if the number of 
-rows or columns in the dataset change. Dataset "id" and "creation_time" are 
-immutable.
+rows or columns in the dataset change. Dataset "id", "modification_time" 
+and "creation_time" are immutable/system generated.
 
 When PATCHing, you may include only the keys in each tuple that are being 
 modified, or you may send the complete tuple. As long as the keys that cannot 

@@ -330,6 +330,7 @@ GET /projects/abcd/datasets/ HTTP/1.1
         "start_date": "2286",
         "end_date": null,
         "creation_time": "1986-11-26T12:05:00",
+        "modification_time": "1986-11-26T12:05:00",
         "current_editor": "https://beta.crunch.io/api/users/ff9443/",
         "current_editor_name": "Leonard Nimoy"
     },
@@ -354,6 +355,7 @@ GET /projects/abcd/datasets/ HTTP/1.1
         "start_date": "2285-10-03",
         "end_date": "2285-10-20",
         "creation_time": "1982-06-04T09:16:23.231045",
+        "modification_time": "1982-06-04T09:16:23.231045",
         "current_editor": null,
         "current_editor_name": null
     }
