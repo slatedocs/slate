@@ -19,7 +19,7 @@ includes:
   - json_effort_petitions_near
   - json_me
   - webhooks.md.erb
-  - errors
+  - bulk_data
 
 search: true
 ---
