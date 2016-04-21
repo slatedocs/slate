@@ -5,6 +5,7 @@ language_tabs:
   - shell
   - ruby
   - python
+  - javascript
 
 toc_footers:
   - <a href='#'>Sign Up for a Developer Key</a>
@@ -46,6 +47,12 @@ curl "api_endpoint_here"
   -H "Authorization: meowmeowmeow"
 ```
 
+```javascript
+const kittn = require('kittn');
+
+let api = kittn.authorize('meowmeowmeow');
+```
+
 > Make sure to replace `meowmeowmeow` with your API key.
 
 Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
@@ -79,6 +86,13 @@ api.kittens.get()
 ```shell
 curl "http://example.com/api/kittens"
   -H "Authorization: meowmeowmeow"
+```
+
+```javascript
+const kittn = require('kittn');
+
+let api = kittn.authorize('meowmeowmeow');
+let kittens = api.kittens.get();
 ```
 
 > The above command returns JSON structured like this:
@@ -138,6 +152,13 @@ api.kittens.get(2)
 ```shell
 curl "http://example.com/api/kittens/2"
   -H "Authorization: meowmeowmeow"
+```
+
+```javascript
+const kittn = require('kittn');
+
+let api = kittn.authorize('meowmeowmeow');
+let max = api.kittens.get(2);
 ```
 
 > The above command returns JSON structured like this:
