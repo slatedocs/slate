@@ -20,8 +20,19 @@
   blockquote+pre, pre+blockquote{
     padding-top:0em;
   }
+
   pre{
     overflow-x:hidden;
+  }
+
+  hr{
+    margin:2em 60% 0 0;
+    border-top:1px solid #ccc;
+    border-bottom:none;
+  }
+
+  h4{
+    font-size:12px;
   }
 }
 

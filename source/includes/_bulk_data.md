@@ -4,61 +4,103 @@ ControlShift's Bulk Data Webhooks make it easy to pull your data into external s
 
 ## Webhooks
 
-We've included two special sorts of bulk data webhooks that are designed to help you keep an external reporting or analytics database server up to date with information from ControlShift's internal tables. The [data.full_table_exported](#data-full_table_exported) and [data.incremental_table_exported](#data-incremental_table_exported) webhooks can be consumed to keep an external database mirror containing ControlShift data up to date. This service was built in a database agnostic way, but it should be possible to build a ControlShift -> Amazon Redshift data pipeline using a technique.
+We provides two special bulk data webhooks to help you keep an external reporting or analytics database server up to date with information from ControlShift's internal tables. The [data.full_table_exported](#data-full_table_exported) and [data.incremental_table_exported](#data-incremental_table_exported) webhooks can be consumed to keep an external database mirror containing ControlShift data up to date. This service was built in a database agnostic way, but it should be possible to build a ControlShift -> Amazon Redshift data pipeline using the following technique.
 
-## Redshift Pipeline Setup
+## ControlShift to Redshift Pipeline
 
-Setting up an Amazon Redshit integration should take a little less than two hours. We'll use a custom [AWS Lamda](http://docs.aws.amazon.com/lambda/latest/dg/welcome.html) to receive data from ControlShift's webhook and Amazon's [Lamda Redshift Loader](https://github.com/awslabs/aws-lambda-redshift-loader) to load our data into Redshift. The general setup will look like this.
+Setting up an Amazon Redshit integration should take a little less than two hours. We'll use a custom [AWS Lamda](http://docs.aws.amazon.com/lambda/latest/dg/welcome.html) to receive data from ControlShift's webhook and Amazon's [Lamda Redshift Loader](https://github.com/awslabs/aws-lambda-redshift-loader) to load our data into Redshift. For this example, we'll focus on the daily full_table dump, and truncating the previous days data. You could also add a second pipeline to add incremental data if you need more frequent updates.
 
-1. Receive a webrook to a custom .
+### Example Flow
 
+Pending...
+
+
+### Redshift Pipline Setup
 
 The core steps to get this up and running are:
 
-1. Setting up s3 buckets to retain file storage
-2. Setting up your redshift database and preloading a schema.
+1. Setting up S3 buckets to retain file storage
+2. Setting up your Redshift database cluster and preloading a schema.
 3. Setting up your custom lambda webhook receiver
 4. Setting up your aws-lambda-redshift-loader.
 5. Configure your bulk data webhook in the Control Shift settings console.
 
-**Note:** All resources should be set up in the same AWS region (ex: us-east-1) so they can access each other.
+**Note:** All resources should be set up in the same AWS region (ex: us-east-1) so they can access each other. "US Standard" and "us-east-1" are the same thing.
 
 **Before starting:** You'll need git, npm, and access to a PostgreSQL connection tool(Redshift is based on PostgreSQL). These instructions use `psql` on the command line.
+
+These instructions were prepared for aws-lambda-redshift-loader v2.4.0.
+
+---
 
 ### Setting Up S3 Buckets
 
 1. Login to you AWS console and create two s3 buckets for future use.
-  1. controlshift-data - will hold received csv files
-  2. controlshift-manifests = will hold resulting manifest files from your aws-lambda-redshift-loader
+  1. controlshift-receiver - will hold received csv files
+  2. controlshift-manifests - will hold resulting manifest files from your aws-lambda-redshift-loader
 2. That's it. You're done here.
 
-
+---
 
 ### Setting Up Custom Lambda Receiver
 
+> Lambda Receiver Code
+
+```js
+var https = require('https');
+var http = require('http');
+var url = require('url');
+var AWS = require('aws-sdk');
+
+var s3 = new AWS.S3();
+var targetBucket = 'controlshift-receiver'; // receiver bucket name
+
+exports.handler = function(event, context) {
+  var receivedJSON = JSON.stringify(event, null, 2);
+  console.log('Received event:', receivedJSON);
+  var downloadUrl = event.data.url;
+  var fileName = url.parse(downloadUrl).pathname.replace('/','')
+  https.get(downloadUrl, function(httpResponse) {
+    var upload_details = {Bucket: targetBucket, Key: fileName, Body: httpResponse};
+    s3.upload(upload_details, function(err, data) {
+      if (err){
+        console.log(err, err.stack); // an error occurred
+        context.fail(err);
+      }else{
+        console.log(data); // successful response
+        context.succeed({"status": "success", "payload": receivedJSON});
+      }
+    });
+  });
+};
+```
+
 From the Lambda management console, you'll need to do the following.
 
-#### Create the Lambda
+#### Create the Receiver Lambda
 
 1. Click to create a new Lambda function.
 2. Skip the existing blueprints (button towards  the bottom of page)
-3. Name your function something like "controlShiftReciever" and leave the runtime to node default.
-4. Copy and paste the lambda function from this gist into the inline code editor.
+3. Name your function something like "controlShiftWebhookReciever" and leave the runtime to node default.
+4. Copy and paste the "Lambda Receiver" function from the right into the inline lambda code editor.
 5. Leave the handler as the default.
-6. For role, select "s3 Execution role" under "create a new role". This will open a new window.
-7. In this new window "IAM Management Console", you just need to name your role something relevant, like "controlShiftReceriver_s3." Then click "Allow" in the far bottom left corner.
+6. For role, select "S3 Execution role". This will open a new window.
+7. In this new window, called "IAM Management Console", name your role something relevant, like "controlShiftReceriver_s3." Then click "Allow" in the far bottom left corner.
 8. Next is setting the memory size. You should be fine with 128MB, but you can always update the memory size later.
-9. Set the Timeout a little higher - 60 seconds should be fine.
+9. Set the Timeout a little higher - 30 seconds should be fine.
 10. Use "No VPC".
 
 #### Setup the API Endpoint
 
-Now that we have our Lambda basically setup, we need to be able to POST to it from your Control Shift instance.
+Now that we have our Lambda setup, we need to be able to POST to it from your Control Shift instance.
 
-1. Click on the "API Endpoints" tab and click to add a new endpoint.
-2. Select an API Gateway.
-3. Set the Method to POST and Security to Open.
-4. Click create. Done! (TODO: double check we don't need cors here. I cannot imagine how)
+1. If not already there, go back to the Receiver Lambda we just created.
+2. Click on the "API Endpoints" tab and click to add a new endpoint.
+3. Select an API Gateway.
+4. Set the Method to POST and Security to Open.
+5. Click create. Done! (TODO: double check we don't need cors here. I cannot imagine how)
+
+---
 
 ### Setting Up RedShift Database
 
@@ -66,30 +108,152 @@ Click on over to the Redshift service in the AWS console.
 
 #### Launch Your Cluster
 
-1. Click to create your cluster
-2. Setup a dbnames name, username and password. Click next.
-3. Use the defaults on the next screen, then the next screen.  Then Launch!
-4. Once the launch process finishes, you'll be provided with an endpoint address. Save that address somewhere.  Example: `clustername.xXxXxX00Xx.us-east-1.redshift.amazonaws.com`
+1. Click to create your cluster.
+2. Setup a identifier, database name, master user name and password as you desire and click next. Let's use these values for this example:
+  * Cluster: control-shift-cluster
+  * Database name: controlshiftdb
+  * Port: Leave the default
+  * Master Username: masteruser
+3. Use the defaults on the next two screens, "Node Configuration" and "Additional Configuration, just click next.
+4. Then Launch!
+5. Once the creation and launch process finishes, you can click to view your new cluster's properties, which will include an  endpoint address. Save that address somewhere. Example: `control-shift-cluster.xXxXxX00Xx.us-east-1.redshift.amazonaws.com`
 
-#### Prepare your Redshift Database
+#### Perpare Redshift Connection Security
+
+We need to whitelist our IP address for our default security group in order to connect to our Redshift DB.
+
+1. First, find your [IP address](http://whatismyipaddress.com/).
+2. Go to the AWS Console > VPC
+3. Click to "Security Groups" in the left hand menu.
+4. Click on the default Security Group, then "Inbound Rules" and click edit.
+5. Add a new rule for "All Traffic," and in the Source field put your CIDR. Your CIDR will almost always be your id address followed by `/32` or `/64` for ipv6.  Example: `123.123.123.123/32`. Save the new rule.
+
+**Note:** If you're having trouble getting your own IP/CIDR setup, try either looking up your subnet mask and using [this table](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#IPv4_CIDR_blocks) or just use the global 0.0.0.0/0 - opening your cluster to the public Internet. The latter isn't recommended. If you do have to do this, make sure you remove the rule when you're done with the next step.
+
+#### Prepare Redshift Schema
 
 We need to prep our tables data schema to receive our ConrtolShift Data.  We'll use `psql` for this.
 
 1. Install `psql` you don't have it already.
-2. Download the current schema for our petitions table as petitions.sql.
+2. Download the current schema for our petitions table as petitions.sql. (TODO: insert link)
 3. Finally, you'll need to load that schema into your table with the following command.
 
-```psql -h <endpoint> -U <database_user> -d <database_name> -p <cluster_port>
-```
+```psql -h <endpoint> -U <database_user> -d <database_name> -p <cluster_port>```
+
+**Note:** You should almost immediately get a request for your password. If you're connection is timing out before you enter your password, there is a authorization issue.  If you are timing out after connecting, you can extend your keep alive timeout with the following shell command.
+
+```sudo /sbin/sysctl -w net.ipv4.tcp_keepalive_time=200 net.ipv4.tcp_keepalive_intvl=200 net.ipv4.tcp_keepalive_probes=5```
+
+**Security Note:** In an optimal scenario, one would also use psql to connect to your Redshift instance to [create a user](http://docs.aws.amazon.com/redshift/latest/dg/r_CREATE_USER.html) for our aws-lambda-redshift-loader to use. We'll skip this step for now. You can find more details in the aws-lamda-redshift-loader [readme](https://github.com/awslabs/aws-lambda-redshift-loader#database-permissions).
+
+---
 
 ### Setting up aws-lambda-redshift-loader
 
-Our team went through the documentation for the aws-lambda-redshift-loader, and the current instructions should be pretty good.  A few gotchas to watch out for:
+#### Deploying the aws-lambda-redshift-loader Function
 
-* Click to create a new Lambda function.
+> AWS Lambda Execution Role
+
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "Stmt1424787824000",
+      "Effect": "Allow",
+      "Action": [
+        "dynamodb:DeleteItem",
+        "dynamodb:DescribeTable",
+        "dynamodb:GetItem",
+        "dynamodb:ListTables",
+        "dynamodb:PutItem",
+        "dynamodb:Query",
+        "dynamodb:Scan",
+        "dynamodb:UpdateItem",
+        "sns:GetEndpointAttributes",
+        "sns:GetSubscriptionAttributes",
+        "sns:GetTopicAttributes",
+        "sns:ListTopics",
+        "sns:Publish",
+        "sns:Subscribe",
+        "sns:Unsubscribe",
+        "s3:Get*",
+        "s3:Put*",
+        "s3:List*",
+        "kms:Decrypt",
+        "kms:DescribeKey",
+        "kms:GetKeyPolicy"
+      ],
+      "Resource": [
+        "*"
+      ]
+    }
+  ]
+}
+```
+
+1. Go to the AWS Lambda Console in the same region as your S3 bucket and Amazon Redshift cluster.
+2. Select Create a Lambda function and enter the name controlShiftRedshiftLoader (for example).
+3. Under Code entry type select 'Upload a zip file' and upload the [AWSLambdaRedshiftLoader-2.4.0.zip](https://github.com/awslabs/aws-lambda-redshift-loader/blob/master/dist/AWSLambdaRedshiftLoader-2.4.0.zip) from your local ```dist``` folder or [download it](https://github.com/awslabs/aws-lambda-redshift-loader/tree/master/dist).
+4. Use the default values for the handler, and in the Role drop-down, select "* Basic Execution Role." A IAM creation wizard will open in a new window.
+5. Follow the wizard, selecting to "Create a new IAM Role" and name it as you like.  Click to "View the Policy" and then click edit.
+6. Copy and paste the the AWS Lambda Execution Role permissions from the right here or from the official [readme](https://github.com/awslabs/aws-lambda-redshift-loader#getting-started---lambda-execution-role). 
+7. Navigate back to your Lambda setup tab and set the max timeout (5 minutes) for the function to accommodate long COPY times.
+8. Click next and then create your Lambda.
+
+#### Establishing an Event Source
+
+Once deployed, you need to add an event source:
+
+1. Select "Event Source" tab and click to "Add event source."
+2. The event source type should be set to S3.
+3. Select the S3 bucket you want to use for input data - controlshift-receiver.
+4. Select the 'Object Created (All)' notification type.
+
+#### Configuration Prep
+
+1. If you have already installed npm's `aws-sdk` with your credentials, great, but if not, you can always export your credentials as environment variables before running `setup node.js`.
+```export AWS_ACCESS_KEY_ID=XXXXXXXXX AWS_SECRET_ACCESS_KEY=XXXXXXXXXXX```
+2. You'll need to export your region as well `export AWS_REGION=us-east-1`.
+
+#### Running setup.js
+
+1. After setting up your environment, head to your local copy of aws-lambda-redshift-loader.
+2. run `node setup.js`
+3. The script will request various configuration options.  Some sensible responses for our use case are below. Empty responses were just skipped.
 
 
+|          |
+|----------|
+| Enter the Region for the Configuration > us-east-1 |
+| Enter the S3 Bucket & Prefix to watch for files > controlshift-receiver |
+| Enter a Filename Filter Regex > |
+| Enter the Cluster Endpoint > control-shift-cluster.xXxXxX00Xx.us-east-1.redshift.amazonaws.com |
+| Enter the Cluster Port > 5439 |
+| Does your cluster use SSL (Y/N)  > Y |
+| Enter the Database Name > controlshiftdb |
+| Enter the Table to be Loaded > facts |
+| Enter the comma-delimited column list (optional) > |
+| Should the Table be Truncated before Load? (Y/N) > Y # Don't truncate if this lambda will handle incremental builds. |
+| Enter the Database Username > masteruser # Or any user you created in psql |
+| Enter the Database Password > SuPeRs8CuR1tY # your password |
+| Enter the Data Format (CSV, JSON or AVRO) > CSV |
+| Enter the CSV Delimiter > , |
+| Enter the S3 Bucket for Redshift COPY Manifests > controlshift-manifests |
+| Enter the Prefix for Redshift COPY Manifests > manifests |
+| Enter the Prefix to use for Failed Load Manifest Storage > failed |
+| Enter the Access Key used by Redshift to get data from S3. If NULL then Lambda execution role credentials will be used >  |
+| Enter the Secret Key used by Redshift to get data from S3. If NULL then Lambda execution role credentials will be used > |
+| Enter the SNS Topic ARN for Successful Loads > |
+| Enter the SNS Topic ARN for Failed Loads > |
+| How many files should be buffered before loading? > 1 |
+| How old should we allow a Batch to be before loading (seconds)? > 120 |
+| Additional Copy Options to be added > |
+| If Encrypted Files are used, Enter the Symmetric Master Key Value > |
 
 
+---
 
+### Configure ControlShift's webhook
 
+Finally, you'll need to log into your admin panel.  Settings > CRM Integrations & Webhooks > Configure Webhook Endpoints.  Then add a bulk data webhook pointing at your Lambda endpoint.
