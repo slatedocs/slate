@@ -34,7 +34,7 @@ Sendle currently has two labels to choose from:
 - A **cropped** label and
 - An **A4-sized** sheet with a single label.
 
-Both labels are formatted as PDFs. Labels are stored within the order object as an array *(see example on right).* Each label is an object with a `format`, `size`, and `url`.
+Both labels are formatted as PDFs. Labels are stored within the order hash as an array *(see example on right).* Each label is a hash with a `format`, `size`, and `url`.
 
 Using our [order](#creating-orders) response, we can download the label by using cURL and our preferred label's `url`. The label url will redirect you to a private PDF, do not cache this redirect URL as the access permissions expire after 1 minute.
 
