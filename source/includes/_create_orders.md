@@ -151,7 +151,7 @@ Each collection within the example booking JSON is described in detail in the se
 |   |   |
 |--:|:--|
 **receiver** <div class="optional">object</div> | *A collection of parcel recipient details.*
-**instructions** <div class="optional">optional</div> | Short message used as delivery instructions for courier.  It must be under 255 chars, but is recommended to be under 40 chars due to label-size limitations.
+**instructions** | Short message used as delivery instructions for courier.  It must be under 255 chars, but is recommended to be under 40 chars due to label-size limitations.
 **contact** <div class="optional">object</div> | *A collection of receiver details.*
 **name** | It must be under 255 characters in length.
 **email** <div class="optional">optional</div> | Recipient email allows **Sendle** to send parcel updates to the recipient.
