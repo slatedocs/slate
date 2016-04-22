@@ -30,7 +30,7 @@ created | string | The date that the payment was created, in the UTC timezone. F
 author | long integer | The ID of the user who created the payment
 modified | string | The date that the payment was last modified, in the UTC timezone. Format: "YYYY-MM-DDTHH:MM:SSZ"
 updated_by | string | The ID of the user who last updated the payment
-                  
+
 ## Creating a new payment
 
 > Sample Request:
@@ -38,6 +38,8 @@ updated_by | string | The ID of the user who last updated the payment
 ```shell
 curl https://app.beyonic.com/api/payments -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900" \
 -d phonenumber=+256772781923 \
+-d first_name=Kennedy\
+-d last_name=Amani\
 -d currency=UGX \
 -d amount=30 \
 -d description="Per diem payment" \
@@ -51,6 +53,8 @@ Beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
 payment = Beyonic::Payment.create(
     phonenumber: "+256773712831",
+    first_name: "Kennedy",
+    last_name: "Amani",
     amount: "100.2",
     currency: "UGX",
     description: "Per diem payment",
@@ -68,12 +72,14 @@ Beyonic::setApiKey("ab594c14986612f6167a975e1c369e71edab6900");
 
 Beyonic_Payment::create(array(
   "phonenumber" => "+256773712831",
+  "first_name" => "Kennedy",
+  "last_name" => "Kennedy",
   "amount" => "100.2",
   "currency" => "UGX",
   "description" => "Per diem payment",
   "payment_type" => "money",
   "callback_url" => "https://my.website/payments/callback",
-  "metadata.id" => "1234", 
+  "metadata.id" => "1234",
   "name.name" => "Lucy"
 ));
 ?>
@@ -86,7 +92,9 @@ beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 kwargs = {'metadata.id': 1234, 'metadata.name': 'Lucy'}
 
 beyonic.Payment.create(phonenumber='+256773712831',
-                       amount='1200', 
+                       first_name='Kennedy',
+                       last_name='Amani',
+                       amount='1200',
                        currency='UGX',
                        description='Per diem',
                        callback_url='https://my.website/payments/callback',
@@ -98,22 +106,22 @@ beyonic.Payment.create(phonenumber='+256773712831',
 
 ```json
 {
-    "id": 3620, 
-    "organization": 1, 
-    "amount": "30", 
+    "id": 3620,
+    "organization": 1,
+    "amount": "30",
     "currency": "UGX",
     "payment_type": "money",
-    "metadata": {"id": 1234, "name": "Lucy"}, 
-    "description": "Per diem payment", 
-    "phone_nos": ["+256772781923"], 
-    "state": "new", 
+    "metadata": {"id": 1234, "name": "Lucy"},
+    "description": "Per diem payment",
+    "phone_nos": ["+256772781923"],
+    "state": "new",
     "last_error": null,
     "rejected_reason": null,
     "rejected_by": null,
     "rejected_time": null,
     "cancelled_reason": null,
     "cancelled_by": null,
-    "cancelled_time": null, 
+    "cancelled_time": null,
     "created": "2014-11-22T20:57:04.017Z",
     "author": 15,
     "modified": "2014-11-22T20:57:04.018Z",
@@ -122,11 +130,11 @@ beyonic.Payment.create(phonenumber='+256773712831',
 }
 ```
 
-To create a new payment, make a POST to the end point above, with the attributes below. 
+To create a new payment, make a POST to the end point above, with the attributes below.
 
-**Note**: 
+**Note**:
 
-* A contact is created for each new phone number you send payments to. This gives you the benefits of the pre-verification checks that are done prior to payment processing. 
+* A contact is created for each new phone number you send payments to. This gives you the benefits of the pre-verification checks that are done prior to payment processing.
 * If the contact isn't registered for mobile money, then the payment will not be sent.
 * **Important**: One of the pre-verification checks does a name match check to make sure that the contact name is right. This check can cause your payments to fail if the names that you are sending are not the same as the names in the telecom database. If you want to by-pass this check, go into your settings in your account and uncheck the checkbox that says "Name match affects payment".
 
@@ -202,22 +210,22 @@ payment = beyonic.Payment.get(2314)
 
 ```json
 {
-    "id": 2314, 
-    "organization": 1, 
-    "amount": "30", 
+    "id": 2314,
+    "organization": 1,
+    "amount": "30",
     "currency": "UGX",
     "payment_type": "money",
-    "metadata": {"id": 1234, "name": "Lucy"}, 
-    "description": "Per diem payment", 
-    "phone_nos": ["+256772781923"], 
-    "state": "new", 
+    "metadata": {"id": 1234, "name": "Lucy"},
+    "description": "Per diem payment",
+    "phone_nos": ["+256772781923"],
+    "state": "new",
     "last_error": null,
     "rejected_reason": null,
     "rejected_by": null,
     "rejected_time": null,
     "cancelled_reason": null,
     "cancelled_by": null,
-    "cancelled_time": null, 
+    "cancelled_time": null,
     "created": "2014-11-22T20:57:04.017Z",
     "author": 15,
     "modified": "2014-11-22T20:57:04.018Z",
