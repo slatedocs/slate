@@ -3,8 +3,6 @@ title: API Reference
 
 language_tabs:
   - shell
-  - ruby
-  - python
 
 toc_footers:
   - <a href='#'>Sign Up for a Developer Key</a>
@@ -18,11 +16,12 @@ search: true
 
 # Introduction
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+Welcome to the Optisom Sleep Health Platform API! As an Optisom Platform Level Partner, you can use our API endpoints to 
+obtain information on users, assessments, challenges, diary entries and other information related 
+to the your user's progress through the Optisom Sleep Health Program.
 
-We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
-
-This example API documentation page was created with [Slate](https://github.com/tripit/slate). Feel free to edit it and use it as a base for your own API's documentation.
+We have example code to query the API using Curl.  You can view code examples in the dark area to the right, 
+and you can switch the programming language of the examples with the tabs in the top right.
 
 # Authentication
 
@@ -46,17 +45,61 @@ curl "api_endpoint_here"
   -H "Authorization: meowmeowmeow"
 ```
 
-> Make sure to replace `meowmeowmeow` with your API key.
 
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
+As an Optisom Platform Partner, you should have been provided with an email login and a password to your Optisom Sleep Health API Service, 
+which we'll refer to as "the Service" going forward.
+If you do not have the email or password, please contact Partner Support at <partnersupport@optisom.com>.  
+This login information is used to retrieve information that populates the headers for subsequent API calls to the Service.
 
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
 
-`Authorization: meowmeowmeow`
+## Authentication Headers Format
+
+The authentication information should be included by the clinet in the headers of each request.  The headers follow the RFC 6750 Bearer
+Token format:
+
+```
+  Access-Token: Jap0KPYbYrdbs7fuPfcN2g
+  Token-Type: Bearer
+  Client: 3LNndC01Qcle0NTzSZMMDg
+  Expiry: 1462471387
+  Uid: partner_abc@optisom.com
+```
+
+
+## Creating an Authentication Token
+
+Using your email and password, you can create an authentication token by posting to the API sign_in endpoint.
+
+`https://partner_abc.optisom.com/api/v2/auth/sign_in`
 
 <aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
+The email, password and domain name should be replaced with the information provided to you by our partner support team.
 </aside>
+
+> Request for authentication token:
+
+```
+curl -i -X POST \
+  -H "Content-Type: application/json" \
+  -H "Accept: application/json" \
+  -d '{ "email": "partner_abc@optisom.com", "password": "supersecret" }' \
+  "https://partner_abc.optisom.com/api/v2/auth/sign_in"
+```
+
+> Abbreviated response:
+
+```
+> HTTP/1.1 200 OK
+> Access-Token: Jap0KPYbYrdbs7fuPfcN2g
+> Token-Type: Bearer
+> Client: 3LNndC01Qcle0NTzSZMMDg
+> Expiry: 1462471387
+> Uid: partner_abc@optisom.com
+> Content-Type: application/json; charset=utf-8
+> Date: Thu, 21 Apr 2016 18:03:07 GMT
+```
+
+
 
 # Kittens
 
