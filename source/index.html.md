@@ -158,7 +158,8 @@ This endpoint retrieves all the provider case for the authenticated user.
 Parameter |  Description
 --------- | -----------
 state | Only returns cases of the specified state. Possible options: assigned, accepted, declined, awaiting_review, need_specialist_reply, need_pcp_reply, closed
-limit | Retrieves the number of cases specified. (Must be an integer.)
+per_page | Number of records to display per_page. [Read more.](#paginators)
+page | Page to display. [Read more.](#paginators)
 
 ## Get a Specific Provider Case
 
@@ -291,12 +292,10 @@ This endpoint retrieves all the case referrals for the authenticated user.
 Parameter |  Description
 --------- | -----------
 state | Gets pending cases with a particular state.
-limit | Retrieves the specific number of cases you pass it.
+per_page | Number of records to display per_page. [Read more.](#paginators)
+page | Page to display. [Read more.](#paginators)
 
-**States:** assigned, accepted, declined, awaiting_review, need_specialist_reply, need_pcp_reply, closed
-
-**limit:** Integer number.
-
+**states:** assigned, accepted, declined, awaiting_review, need_specialist_reply, need_pcp_reply, closed
 
 ## Get a Specific Case Referral
 
@@ -635,6 +634,8 @@ email | The e-mail from the user you are creating.
 first_name | First name of the user.
 last_name | Last name of the user.
 role | User's role. Roles are limited to the following values: 'medical_doctor' , 'physician_assistant' , 'registered_nurse' , 'nurse_practitioner'
+per_page | Number of records to display per_page. [Read more.](#paginators)
+page | Page to display. [Read more.](#paginators)
 
 # iFrame
 
