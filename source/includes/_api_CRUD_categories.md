@@ -1,14 +1,3 @@
-# Categories
-
-Index of hierarchical categories used to organize and group products.
-
-|||
-|---|---|
-| **Manages** |
-| **OAuth Scopes** | `store_v2_products`
-||`store_v2_products_read_only`
-
-
 ## Operations
 
 *   [List Categories](#list-categories)

@@ -1,8 +1,12 @@
 # Categories
 
+Index of hierarchical categories used to organize and group products.
+
 |||
 |---|---|
-| Managed by | [Categories Resource](/api/stores/v2/categories)
+| **Manages** |
+| **OAuth Scopes** | `store_v2_products`
+||`store_v2_products_read_only`
 
 ## Cateogry Object - Properties
 

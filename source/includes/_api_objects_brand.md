@@ -1,8 +1,12 @@
 # Brands
 
+Brand facets for identifying and categorizing products according to their manufacturer or company metonym.
+
 |||
 |---|---|
-| Managed by | [Brands Resource](/api/stores/v2/brands)|
+| **Manages** |
+| OAuth Scopes | `store_v2_products`
+||`store_v2_products_read_only`
 
 ## Brand Object - Properties
 

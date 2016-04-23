@@ -1,14 +1,3 @@
-# Brands
-
-Brand facets for identifying and categorizing products according to their manufacturer or company metonym.
-
-|||
-|---|---|
-| **Manages** |
-| OAuth Scopes | `store_v2_products`
-||`store_v2_products_read_only`
-
-
 ## Operations
 
 *   [List Brands](#list-brands)
