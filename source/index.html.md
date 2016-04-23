@@ -78,6 +78,48 @@ For security, all access_tokens expire in two hours.
 
 `client_credentials`: This will return a token that can be used for making queries that do not require a user to be logged in. This includes OAuth2-type queries where the user authenticates on the RubiconMD site, then is redirected back to your site with a valid_access token for making API calls on the user's behalf.
 
+# Basics
+
+Here are some basic tools you can use with all API calls.
+
+## Limit
+
+<aside class="warning">
+  The limit parameter has been deprecated -- it was just too limit-ed. Please use `per_page`, instead.
+</aside>
+
+## Paginators
+
+```shell
+curl -i https://rubiconmd.com/api/v1/provider_cases?access_token="AAAAAA"&per_page=15&page=2
+```
+
+You can use the `per_page` and `page` parameters to paginate results. If neither parameter is provided, all records will be returned by default.
+
+<aside class="success">
+Using pagination greatly increases response times and is highly recommended.
+</aside>
+
+### per_page
+
+Returns the specified number of records per page.
+
+<aside class="notice">
+  For all endpoints, the default number of records `per_page` is 25. If a `per_page` parameter is passed without a `page` parameter, the server will return just the first page by default.
+</aside>
+
+### page
+
+Returns the specified page of records. If, for example, you only want to retrieve records 16-30, passing `?per_page=15&page=2` as parameters would give you just those records.
+
+### Header fields
+
+Using one or both of the pagination parameters will add some useful header fields to the server response, including:
+
+* `Total` - total number of records available
+* `Per-Page` - number of records being returned per page
+* `Link` - the API endpoints (as full URLs) to call for retrieving the next and previous pages of results
+
 # Provider Cases
 
 Provider Cases are created by a user that is seeking a specialist response to the case.
