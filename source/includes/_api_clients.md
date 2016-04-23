@@ -6,7 +6,7 @@ Bigcommerce provides and maintains the following full-featured SDKs in a variety
 
 |[PHP](https://github.com/bigcommerce/bigcommerce-api-php)|[Ruby](https://github.com/bigcommerce/bigcommerce-api-ruby)|
 |:----------|:-----------|
-|The official Bigcommerce PHP client, with minimal external dependencies. Uses Basic Authentication.|The official Bigcommerce Ruby client, available as a Gem. Uses either OAuth or Basic Authentication.
+|The official Bigcommerce PHP client, with minimal external dependencies. Uses Basic Authentication.|The official Bigcommerce Ruby client. Uses either OAuth or Basic Authentication.
 |[**Python**](https://github.com/bigcommerce/bigcommerce-api-python)|| 
 |The official Bigcommerce Python client, available as a PyPi package. Uses either OAuth or Basic Authentication.||
 
