@@ -818,10 +818,12 @@ img {
   display: none;
 }
 
-.changelog .content h1 {
+.changelog {
+  .content h1, h2 {
   display: none;
+  }
 }
 
-.changelog .content h2 {
-  display: none;
+table > th:nth-child(3) {
+  word-break: break-word;
 }
