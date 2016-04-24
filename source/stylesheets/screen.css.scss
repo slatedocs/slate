@@ -424,15 +424,6 @@ html, body {
     clear:both;
   }
 
-  h1 {
-    @extend %header-font;
-    font-size: 30px;
-    padding-top: 0.5em;
-    padding-bottom: 0.5em;
-    margin-bottom: $h1-margin-bottom;
-    margin-top: 2em;
-  }
-
   h1:first-child, div:first-child + h1 {
     border-top-width: 0;
     margin-top: 0;
@@ -441,10 +432,6 @@ html, body {
   h2 {
     @extend %header-font;
     font-size: 20px;
-    margin-top: 4em;
-    margin-bottom: 0;
-    padding-top: 1.2em;
-    padding-bottom: 1.2em;
   }
 
   // h2s right after h1s should bump right up
@@ -457,8 +444,6 @@ html, body {
   h3, h4, h5, h6 {
     @extend %header-font;
     font-size: 18px;
-    margin-top: 2.5em;
-    margin-bottom: 0.8em;
   }
 
   h4, h5, h6 {
