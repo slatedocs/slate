@@ -10,8 +10,8 @@ augur.connect();
 // Connect to a local Ethereum node with IPC support
 augur.connect(null, "/home/augur/.ethereum/geth.ipc");
 
-// Connect to one of Augur's public nodes (eth1.augur.net)
-augur.connect("https://eth1.augur.net");
+// Connect to Augur's public node (eth3.augur.net)
+augur.connect("https://eth3.augur.net");
 ```
 The Augur API is a set of JavaScript bindings for the methods encoded in Augur's [smart contracts](https://github.com/AugurProject/augur-core).  The API method name, as well as its parameters, are generally identical to those of the underlying smart contract method.
 
@@ -116,46 +116,6 @@ Retrieve a `marketInfo` object for all markets on the specified branch.  The `ma
 <aside class="notice">Each branch's market IDs are stored as an "array" on the <a href="https://github.com/AugurProject/augur-core/blob/master/src/data%20and%20api/branches.se">branches</a> contract, in the contract's <code>Branches[](markets[], numMarkets, ...)</code> data.  Markets are indexed in the order created; i.e., the first market created has index 0, the second 1, etc.  This ordering allows us to break up a large aggregate request like <code>getMarketsInfo</code> into manageable chunks.
 
 For example, suppose you were displaying markets on separate pages.  You might want to retrieve information about all markets, but, to keep your loading time reasonable, only get 5 markets per request.  To get the first 5 markets, you would set <code>offset</code> to 0 and <code>numMarketsToLoad</code> to 5: <code>augur.getMarketsInfo({offset: 0, numMarketsToLoad: 5}, cb)</code>.  To get the second 5, <code>offset</code> would be 5: <code>augur.getMarketsInfo({offset: 5, numMarketsToLoad: 5}, cb)</code>.  The third 5, <code>offset</code> would be 10: <code>augur.getMarketsInfo({offset: 10, numMarketsToLoad: 5}, cb)</code>, and so on.</aside>
-
-```javascript
-augur.getMostActive(branchId, function (mostActiveMarkets) { /* ... */ })
-// example output:
-mostActiveMarkets = {
-  nodeId: "MOST_ACTIVE",
-  nodeType: "MOST_ACTIVE",
-  name: "Most Active",
-  childNodes: [{
-    nodeId: "CONTRACT-0xcd220a762601e471f9efae4c911d0e7380927c571743e060843f105a4a1e96bc",
-    nodeType: "CONTRACT",
-    name: "Will it rain in New York City on November 12, 2016?",
-    childNodes: null,
-    id: "-0xcd220a762601e471f9efae4c911d0e7380927c571743e060843f105a4a1e96bc",
-    eventName: "Will it rain in New York City on November 12, 2016?",
-    imagePath: null,
-    displayOrder: 0,
-    tickSize: 0.1,
-    tickValue: 0.01,
-    lastTradePrice: -1.087238e-14,
-    lastTradePriceFormatted: "0.00",
-    lastTradeCostPerShare: -1.087238e-14,
-    lastTradeCostPerShareFormatted: "0.00 CASH",
-    sessionChangePrice: 0,
-    sessionChangePriceFormatted: "+0.0",
-    sessionChangeCostPerShare: 0,
-    sessionChangeCostPerShareFormatted: "0.00 CASH",
-    totalVolume: 18108.06,
-    bestBidPrice: -1.087238e-14,
-    bestAskPrice: -1.087238e-14,
-    leaf: true
-  }, {
-    /* ... */
-  }],
-  leaf: false
-}
-```
-### getMostActive(branchId, callback)
-
-Get and sort all markets by volume from the specified branch.  `branchId` is an optional parameter; if `branchId` is omitted, the default value of `1010101` will be used.  The `callback` function is required; `getMostActive` is asynchronous-only.
 
 ```javascript
 augur.getMarketsSummary(branchId, function (marketsSummary) { /* ... */ })
