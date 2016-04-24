@@ -633,6 +633,31 @@ html, body {
   }
 }
 
+body.twocolumn {
+  .content {
+    pre, blockquote {
+      width: auto;
+      float: none;
+      padding: 0.8em 18px;
+      margin-right: 28px;
+    }
+
+    pre {
+      margin-left: 28px;
+    }
+
+    code, pre {
+      font-size: 13px;
+      line-height: 1.6;
+      margin-bottom: 1.4em;
+    }
+
+    &>h1, &>h2, &>h3, &>h4, &>h5, &>h6, &>p, &>table, &>ul, &>ol, &>aside, &>dl {
+      margin-right: 0;
+    }
+  }
+}
+
 ////////////////////////////////////////////////////////////////////////////////
 // RESPONSIVE DESIGN
 ////////////////////////////////////////////////////////////////////////////////
