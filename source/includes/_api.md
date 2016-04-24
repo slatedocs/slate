@@ -117,24 +117,6 @@ Retrieve a `marketInfo` object for all markets on the specified branch.  The `ma
 
 For example, suppose you were displaying markets on separate pages.  You might want to retrieve information about all markets, but, to keep your loading time reasonable, only get 5 markets per request.  To get the first 5 markets, you would set <code>offset</code> to 0 and <code>numMarketsToLoad</code> to 5: <code>augur.getMarketsInfo({offset: 0, numMarketsToLoad: 5}, cb)</code>.  To get the second 5, <code>offset</code> would be 5: <code>augur.getMarketsInfo({offset: 5, numMarketsToLoad: 5}, cb)</code>.  The third 5, <code>offset</code> would be 10: <code>augur.getMarketsInfo({offset: 10, numMarketsToLoad: 5}, cb)</code>, and so on.</aside>
 
-```javascript
-augur.getMarketsSummary(branchId, function (marketsSummary) { /* ... */ })
-// example output:
-marketsSummary = [{
-  "id": "-0xa6f4865420b455a7a5117c73a89a70fb22a93c5c6567377074ac2a520f6189bf",
-  "name": "Will the Sun turn into a red giant and engulf the Earth by the end of 2015?",
-  "lastTradePrice": 0.0006151120558214465,
-  "lastTradePriceFormatted": "0.00",
-  "lastTradeCostPerShare": 0.0006151120558214465,
-  "lastTradeCostPerShareFormatted": "0.00 CASH"
-}, {
-  /* ... */
-}]
-```
-### getMarketsSummary(branchId, callback)
-
-Gets a few "vital statistics" for each market in `branchId`, suitable for an overview or summary display.
-
 Call API
 --------
 
