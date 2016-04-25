@@ -96,7 +96,6 @@ In many cases, Scout is able to replace New Relic as-is. However, there are case
   * Great UI
   * Context tracking (easy to see how an exception is impacting which users). We implemented a similar API for our slow request tracking.
 * __Alerting__ - while on our roadmap, we don't yet provide alerting within application monitoring. However, [Scout Server Monitoring](https://scoutapp.com/info/server_monitoring) has robust alerting functionality. With the [Scout StatsD Rack Gem](https://github.com/scoutapp/scout_statsd_rack) you can easily get alerted on jumps in error rates and response times.
-* __Background Job Monitoring__ - this is on our roadmap as well. [Scout Server Monitoring](https://scoutapp.com/info/server_monitoring) can be used to monitor queue depths, failure rates, etc for all of the common Ruby background job systems. Many background job systems also provide a web ui (for example, the [Sidekiq Web UI](https://github.com/mperham/sidekiq/wiki/Monitoring#web-ui)).
 * __Browser Monitoring (Real User Monitoring)__ - there are a number of dedicated tools for both Real User Monitoring (RUM) and synthetic monitoring. You can also continue to use New Relic for browser monitoring and use Scout for application monitoring.
 
 ### Our Monitoring Stack

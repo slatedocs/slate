@@ -13,16 +13,6 @@ Scout currently supports Ruby on Rails 2.2+ and Ruby 1.8.7+ and the following ap
 * Unicorn
 * WEBrick
 
-### Stack Profiling - Optional
-
-Stack Profiling requires Ruby 2.1+.
-
-You must explicitly add the stackprof gem to your Gemfile:
-
-```ruby
-gem 'stackprof', '~> 0.2.7'
-```
-
 ### Git Integration - Optional
 
 Viewing your application code within Scout requires that your source code is hosted at Github.com.
