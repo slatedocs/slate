@@ -29,8 +29,8 @@ collection | long integer or null | The ID of the collection that fulfilled the 
 success_message | string or null | The confirmation message delivered to the customer upon successful completion of this payment request
 instructions | string or null | Any custom instructions that were delivered to the customer
 send_instructions | boolean | Whether or not Beyonic will attempt to send instructions to the user
-                  
-                  
+
+
 ## Creating a new collection request
 
 > Sample Request:
@@ -60,7 +60,7 @@ payment = Beyonic::CollectionRequest.create(
 require_once('./lib/Beyonic.php');
 Beyonic::setApiKey("ab594c14986612f6167a975e1c369e71edab6900");
 
-Beyonic_CollectionRequest::create(array(
+Beyonic_Collection_Request::create(array(
   "phonenumber" => "+256773712831",
   "amount" => "100.2",
   "currency" => "UGX",
@@ -76,7 +76,7 @@ beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 kwargs = {'metadata.my_id': '123ASDAsd123'}
 
 beyonic.CollectionRequest.create(phonenumber='+256773712831',
-                       amount='1200', 
+                       amount='1200',
                        currency='UGX',
                        description='Per diem',
                        callback_url='https://my.website/payments/callback',
@@ -88,9 +88,9 @@ beyonic.CollectionRequest.create(phonenumber='+256773712831',
 
 ```json
 {
-    "id": 3620, 
-    "organization": 1, 
-    "amount": "30", 
+    "id": 3620,
+    "organization": 1,
+    "amount": "30",
     "currency": "UGX",
     "phone_number": "+256772781923",
     "created": "2014-11-22T20:57:04.017Z",
@@ -135,7 +135,7 @@ collection = Beyonic::CollectionRequest.get(23)
 require_once('./lib/Beyonic.php');
 Beyonic::setApiKey("ab594c14986612f6167a975e1c369e71edab6900");
 
-$collection = Beyonic_CollectionRequest::get(23);
+$collection = Beyonic_Collection_Request::get(23);
 ?>
 ```
 
@@ -151,9 +151,9 @@ collection = beyonic.CollectionTRequest.get(23)
 
 ```json
 {
-    "id": 230, 
-    "organization": 1, 
-    "amount": "30", 
+    "id": 230,
+    "organization": 1,
+    "amount": "30",
     "currency": "UGX",
     "phone_number": "+256772781923",
     "created": "2014-11-22T20:57:04.017Z",
@@ -189,7 +189,7 @@ collection = Beyonic::CollectionRequest.list
 require_once('./lib/Beyonic.php');
 Beyonic::setApiKey("ab594c14986612f6167a975e1c369e71edab6900");
 
-$collection = Beyonic_CollectionRequest::getAll();
+$collection = Beyonic_Collection_Request::getAll();
 ?>
 ```
 
@@ -274,7 +274,7 @@ collection = Beyonic::CollectionRequest.list(
 require_once('./lib/Beyonic.php');
 Beyonic::setApiKey("ab594c14986612f6167a975e1c369e71edab6900");
 
-$collection = Beyonic_CollectionRequest::getAll(array(
+$collection = Beyonic_Collection_Request::getAll(array(
   "remote_transaction_id" => "12345",
   "amount" => 500
 ));
@@ -293,6 +293,6 @@ You can search or filter collection requests on the following fields. Simply add
 
 * amount - the transaction amount
 * currency - the currency code
-* collection - the ID of the collection that fulfilled or matched this collection request 
+* collection - the ID of the collection that fulfilled or matched this collection request
 * phonenumber - the phonenumber that the collection request was intended for. Note that the phonenumber will be matched in international format, starting with a '+' sign. If the '+' sign isn't included in your request, it will be appended before attempting to match your request.
 * remote_transaction_id - the transation id or transaction reference of the collection on the mobile network operator's side
