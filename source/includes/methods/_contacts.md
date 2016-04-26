@@ -42,8 +42,8 @@ curl https://app.beyonic.com/api/contacts -H "Authorization: Token ab594c1498661
 require 'beyonic'
 Beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
-payment = Beyonic::Contact.create(
-    phonenumber: "+256773712831",
+contact = Beyonic::Contact.create(
+    phone_number: "+256773712831",
     first_name: "John",
     last_name: "Doe",
     email: "john.doe@beyonic.com",
