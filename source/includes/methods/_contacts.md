@@ -72,7 +72,7 @@ beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
 kwargs = {'metadata.my_id': '123ASDAsd123'}
 
-beyonic.Contact.create(phonenumber='+256773712831',
+beyonic.Contact.create(phone_number='+256773712831',
                        first_name='John',
                        last_name='Doe',
                        email='john.doe@beyonic.com',
