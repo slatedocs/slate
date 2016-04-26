@@ -47,7 +47,7 @@ curl https://app.beyonic.com/api/collectionrequests -H "Authorization: Token ab5
 require 'beyonic'
 Beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
-payment = Beyonic::CollectionRequest.create(
+collection = Beyonic::CollectionRequest.create(
     phonenumber: "+256773712831",
     amount: "100.2",
     currency: "UGX",
