@@ -3,7 +3,6 @@ title: QUIPU API Reference
 
 language_tabs:
   - shell
-  - ruby
 
 toc_footers:
   - <a href='http://getquipu.com'>Quipu</a>
