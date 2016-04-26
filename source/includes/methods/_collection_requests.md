@@ -143,7 +143,7 @@ $collection = Beyonic_Collection_Request::get(23);
 import beyonic
 beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
-collection = beyonic.CollectionTRequest.get(23)
+collection = beyonic.CollectionRequest.get(23)
 
 ```
 
