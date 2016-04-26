@@ -5,7 +5,7 @@ language_tabs:
   - shell
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
+  - Questions?  partnersupport@optisom.com
   - <a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a>
 
 includes:
@@ -24,27 +24,6 @@ We have example code to query the API using Curl.  You can view code examples in
 and you can switch the programming language of the examples with the tabs in the top right.
 
 # Authentication
-
-> To authorize, use this code:
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-```
-
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
-```
-
 
 As an Optisom Platform Partner, you should have been provided with an email login and a password to your Optisom Sleep Health API Service, 
 which we'll refer to as "the Service" going forward.
@@ -98,6 +77,46 @@ curl -i -X POST \
 > Content-Type: application/json; charset=utf-8
 > Date: Thu, 21 Apr 2016 18:03:07 GMT
 ```
+
+## Validating an Existing Authentication Token
+Previously issued tokens can be validated through the following request:
+
+```
+curl -X GET \
+  -H "Accept: application/json" \
+  -H "Content-Type: application/json" \
+  -H "Access-Token: gqhY7hJ2Nwkld0dSSkta0A" \
+  -H "Token-Type: Bearer" \
+  -H "Client: RKhX7t2HkzLeenVevc4mww" \
+  -H "Expiry: 1462471387" \
+  -H "Uid: partner_abc@optisom.com" \
+  "https://partner_abc.optisom.com/api/v2/auth/validate_token"
+```
+
+## Making an Authenticated Request
+To make an authenticated request, use the following format:
+
+<aside class="notice">
+The Access-Token, Client and Expiry should be replaced with the values from the response for an authenticated token request.
+</aside>
+
+
+```
+curl -X GET \
+  -H "Accept: application/json" \
+  -H "Content-Type: application/json" \
+  -H "Access-Token: gqhY7hJ2Nwkld0dSSkta0A" \
+  -H "Token-Type: Bearer" \
+  -H "Client: RKhX7t2HkzLeenVevc4mww" \
+  -H "Expiry: 1462471387" \
+  -H "Uid: partner_abc@optisom.com" \
+  "https://partner_abc.optisom.com/api/v2/users/1/screenings"
+```
+
+
+
+
+
 
 
 
