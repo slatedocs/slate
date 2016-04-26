@@ -425,18 +425,6 @@ html, body {
   }
 
   h1 {
-    @extend %header-font;
-    font-size: 30px;
-<<<<<<< HEAD
-    padding-top: 0.5em;
-    padding-bottom: 0.5em;
-    margin-bottom: $h1-margin-bottom;
-    margin-top: 1em;
-=======
->>>>>>> origin/master
-  }
-
-  h1 {
    @extend %header-font;
     font-size: 30px;
   }
