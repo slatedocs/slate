@@ -42,12 +42,14 @@ download_pdf_url | Url to download the pdf document for the invoice. Present onl
 
 Relationship name |  Constraints
 ----------------- |  -----------
-contact | REQUIRED
+contact | REQUIRED (except for amending invoices)
 accounting_category |
 accounting_subcategory |
 numeration | Applicable only to invoices with `kind = income`
 analytic_categories | Can not be a root analytic category
 items | Can be sideloaded in GET requests. <br> Must be included in the payload in POST/PATCH/PUT requests
+amended_invoice | The invoice amended by the current one.
+amending_invoice | An invoice that amends the current one (Read Only)
 
 ## Listing invoices
 
@@ -494,3 +496,64 @@ curl "https://getquipu.com/invoices/2988939" \
 ```
 
 `DELETE /invoices/:invoice_id`
+
+## Refunds and amending invoices
+
+An invoice can be totally or partially amended. The minimal amount of data needed to create an amending invoice is the relationship `amended_invoice`. With this data a complete refund of the original invoice will be created.
+
+You can also partially amend an invoice setting the items of the amending invoice manually.
+
+> Example request for a complete refund
+
+```shell
+curl "https://getquipu.com/invoices" \
+  -H "Authorization: Bearer be32259bd1d0f4d3d02bcc0771b1b507e2b666ba9e9ba3d7c5639e853f722eb4" \
+  -H "Accept: application/vnd.quipu.v1+json" \
+  -H "Content-Type: application/vnd.quipu.v1+json" \
+  -d '{
+        "data": {
+          "type": "invoices",
+          "relationships": {
+            "amended_invoice": {
+              "data": {
+                "id": 879495,
+                "type": "invoices"
+              }
+            }
+          }
+        }
+      }'
+```
+
+> Example of a partial refund
+
+```shell
+curl "https://getquipu.com/invoices" \
+  -H "Authorization: Bearer be32259bd1d0f4d3d02bcc0771b1b507e2b666ba9e9ba3d7c5639e853f722eb4" \
+  -H "Accept: application/vnd.quipu.v1+json" \
+  -H "Content-Type: application/vnd.quipu.v1+json" \
+  -d '{
+        "data": {
+          "type": "invoices",
+          "relationships": {
+            "amended_invoice": {
+              "data": {
+                "id": 879495,
+                "type": "invoices"
+              }
+            },
+            "items": {
+              "data": [{
+                "type": "book_entry_items",
+                "attributes": {
+                  "concept": "Partial refund for service delay",
+                  "quantity": 1,
+                  "unitary_amount": "-5.00",
+                  "vat_percent": 21
+                }
+              }]
+            }
+          }
+        }
+      }'
+```

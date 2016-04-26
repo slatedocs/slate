@@ -47,6 +47,8 @@ accounting_subcategory |
 numeration | Applicable only to tickets with `kind = income`
 analytic_categories | Can not be a root analytic category
 items | Can be sideloaded in GET requests. <br> Must be included in the payload in POST/PATCH/PUT requests
+amended_ticket | The ticket amended by the current one.
+amending_ticket | A ticket that amends the current one (Read Only)
 
 ## Listing tickets
 
@@ -407,3 +409,64 @@ curl "https://getquipu.com/tickets/2988939" \
 ```
 
 `DELETE /tickets/:ticket_id`
+
+## Refunds and amending tickets
+
+A ticket can be totally or partially amended. The minimal amount of data needed to create an amending ticket is the relationship `amended_ticket`. With this data a complete refund of the original ticket will be created.
+
+You can also partially amend a ticket setting the items of the amending ticket manually.
+
+> Example request for a complete refund
+
+```shell
+curl "https://getquipu.com/tickets" \
+  -H "Authorization: Bearer be32259bd1d0f4d3d02bcc0771b1b507e2b666ba9e9ba3d7c5639e853f722eb4" \
+  -H "Accept: application/vnd.quipu.v1+json" \
+  -H "Content-Type: application/vnd.quipu.v1+json" \
+  -d '{
+        "data": {
+          "type": "tickets",
+          "relationships": {
+            "amended_ticket": {
+              "data": {
+                "id": 879495,
+                "type": "tickets"
+              }
+            }
+          }
+        }
+      }'
+```
+
+> Example of a partial refund
+
+```shell
+curl "https://getquipu.com/tickets" \
+  -H "Authorization: Bearer be32259bd1d0f4d3d02bcc0771b1b507e2b666ba9e9ba3d7c5639e853f722eb4" \
+  -H "Accept: application/vnd.quipu.v1+json" \
+  -H "Content-Type: application/vnd.quipu.v1+json" \
+  -d '{
+        "data": {
+          "type": "tickets",
+          "relationships": {
+            "amended_ticket": {
+              "data": {
+                "id": 879495,
+                "type": "tickets"
+              }
+            },
+            "items": {
+              "data": [{
+                "type": "book_entry_items",
+                "attributes": {
+                  "concept": "Partial refund for service delay",
+                  "quantity": 1,
+                  "unitary_amount": "-5.00",
+                  "vat_percent": 21
+                }
+              }]
+            }
+          }
+        }
+      }'
+```
