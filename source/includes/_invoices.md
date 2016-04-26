@@ -410,14 +410,14 @@ curl "https://getquipu.com/invoices" \
           "relationships": {
             "contact": {
               "data" {
-                id: 6347,
-                type: "contacts"
+                "id": 6347,
+                "type": "contacts"
               }
             },
             "accounting_category": {
               "data": {
-                id: 123,
-                type: "accounting_categories"
+                "id": 123,
+                "type": "accounting_categories"
               }
             },
 
@@ -494,5 +494,3 @@ curl "https://getquipu.com/invoices/2988939" \
 ```
 
 `DELETE /invoices/:invoice_id`
-
-

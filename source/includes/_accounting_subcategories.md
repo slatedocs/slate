@@ -119,14 +119,14 @@ curl "https://getquipu.com/accounting_subcategories" \
         "data": {
           "type": "invoices",
           "attributes": {
-            prefix: 2,
-            name: "Vestuario"
+            "prefix": 2,
+            "name": "Vestuario"
           },
           "relationships": {
             "accounting_category": {
               "data" {
-                id: 43,
-                type: "accounting_categories"
+                "id": 43,
+                "type": "accounting_categories"
               }
             }
           }
@@ -150,7 +150,7 @@ curl "https://getquipu.com/accounting_subcategories/19482" \
         "data": {
           "type": "invoices",
           "attributes": {
-            name: "Transporte"
+            "name": "Transporte"
           }
         }
       }'

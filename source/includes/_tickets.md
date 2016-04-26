@@ -308,8 +308,8 @@ curl "https://getquipu.com/tickets" \
           "relationships": {
             "accounting_category": {
               "data": {
-                id: 123,
-                type: "accounting_categories"
+                "id": 123,
+                "type": "accounting_categories"
               }
             },
 

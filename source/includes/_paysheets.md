@@ -289,8 +289,8 @@ curl "https://getquipu.com/paysheets" \
           "relationships": {
             "contact": {
               "data" {
-                id: 6347,
-                type: "contacts"
+                "id": 6347,
+                "type": "contacts"
               }
             },
             "analytic_categories": {
