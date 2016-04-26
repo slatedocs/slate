@@ -41,22 +41,20 @@ tasks, points are awarded.  These points can be used to tie the user's progress 
 incentive rewards, or as a part of creating competition between users and teams.
 
 All attributes concerning the user, screening, challenges and more are accessible through 
-a standard webservice API calls which responds with JSON data structures. 
+standard webservice API calls which responds with JSON data structures. 
 
 As an Optisom Platform Partner, you should have been provided with an email login 
-and a password to your Optisom Sleep Health API Service, which we'll refer to as "the API Service" 
+and a password to your Optisom Sleep Health API Service, which we'll refer to as "the Optisom Service" 
 going forward.  If you do not have the email or password, please contact Partner Support 
-at <partnersupport@optisom.com>. This login information is used to retrieve information that 
-populates the headers for subsequent calls to the API Service.
+at <partnersupport@optisom.com>. This information is used to obtain authentication credentials for
+the Optisom Service.
 
 # Authentication
 
-
-
 ## Authentication Headers Format
 
-The authentication information should be included by the clinet in the headers of each request.  
-The headers follow the RFC 6750 Bearer Token format:
+Authentication information is required for every request.  This information should be placed
+in the headers of each request by the client.  The headers follow the RFC 6750 Bearer Token format:
 
 ```
   Access-Token: Jap0KPYbYrdbs7fuPfcN2g
@@ -140,14 +138,161 @@ curl -X GET \
 ```
 
 # Users
+Once you have successfully authenticated against the Service, you will need to create an account on the Optisom Service
+which you should associate to an account on your platform.  The Optisom Service requires an email address; if your 
+service also requires email address, this is the simplest way to associate the two accounts.  
+
+However, if your service does not use email address for user sign-in, a generic user identifier is also provided.
+In this case, you will have to create a dummy email address to satisfy the account validation mechanism
+on the Optisom Service.
+
+## Creating a User Account
+## Requesting a List of All Users
+## Requesting a Specific User Account by Email
+## Requesting a Specific User By User Identifier
 
 # Screening
-A screening consists of questions that can be grouped together.  
+After a user account has been created, the user is then required to take a screening to determine
+their current sleep health.  A screening consists of questions that can be grouped together.  
 These groupings are referred to as question_groups in the API.  
 
-After a user has been created
+## Creating a Screening for a User
+A screening can be created for a user with this request
 
-# Users
+`GET https://partner_abc.optisom.com/api/v2/users{user_id}/screenings
+
+The response will return the next question_qroup_id which can be used to request the next set of questions.
+
+```json
+{
+  "screening": "API::V2::Screening",
+  "meta": {
+    "completed": false,
+    "next_group_id": 0,
+    "progress": {
+      "percent_complete": 0
+    }
+  }
+}
+```
+
+## Showing a Question Group
+
+```json
+{
+  "question_group": {
+    "id": 1,
+    "header": "About You",
+    "description": "Let's start by gathering some basic information about you.",
+    "handle": "demographics",
+    "questions": [
+      {
+        "id": 1,
+        "prompt": "Gender",
+        "required": true,
+        "type": "select",
+        "subtype": "gender",
+        "position": 2,
+        "default_demo_answer": null,
+        "max_allowed_selections": 1,
+        "min_allowed_selections": 1,
+        "possible_answers": [
+          {
+            "value": "1",
+            "content": "Male",
+            "position": 1
+          },
+          {
+            "value": "2",
+            "content": "Female",
+            "position": 2
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "prompt": "Date of birth",
+        "required": true,
+        "type": "date",
+        "subtype": "dob",
+        "position": 3,
+        "default_demo_answer": null,
+        "max_allowed_value": "1997-11-08",
+        "min_allowed_value": "1915-11-08"
+      },
+      {
+        "id": 3,
+        "prompt": "Height",
+        "required": true,
+        "type": "integer",
+        "subtype": "height",
+        "position": 4,
+        "default_demo_answer": null,
+        "max_allowed_value": 95,
+        "min_allowed_value": 36,
+        "units": "inches"
+      }
+    ]
+  },
+  "meta": {
+    "progress": {
+      "percent_represented": 11
+    }
+  }
+}
+```
+
+`GET https://partner_abc.optisom.com/api/v2/users{user_id}/screenings/{screening_id}/groups/{id}`
+
+The response will return the questions that are contained in that question group, along with 
+metadata.
+
+
+### Question Group
+
+Attribute   |Type      |Description
+------------|----------|------------
+id          |integer   |ID for instance of object
+header      |string    |Title for Question Group
+description |string    |Description for Question Group
+handle      |string    |human readable identifier
+percent_represented|integer|Current percent complete to display to user
+
+### Question
+
+Attribute   |Type      |Description
+------------|----------|------------
+id          |integer   |ID for instance of object
+prompt      |string    |Text of question
+required    |boolean   |Must be answered or not
+type        |string    |Format of question
+max_allowed_selections|integer|Maximum number of answer values
+min_allowed_selections|integer|Minimum number of answer values
+units       |string|unit of measurement for question
+
+
+### Possible Answers
+
+Attribute   |Type      |Description
+------------|----------|------------
+value       |integer   |Numerical representation of answer choice
+content     |string    |Text representation of answer choice to be displayed
+position    |integer   |Order of answer choice with respect to other answer choices
+
+
+
+<aside class="notice">
+The "handle" attribute is used often in the Optisom Service as a unique, 
+immutable identifier for specific objects, such as question group.
+
+</aside>
+
+
+
+## Submitting Answers
+
+## Requesting Subsequent Question Groups
+
 
 # Devices
 
