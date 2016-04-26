@@ -430,7 +430,7 @@ html, body {
     padding-top: 0.5em;
     padding-bottom: 0.5em;
     margin-bottom: $h1-margin-bottom;
-    margin-top: 2em;
+    margin-top: 1em;
   }
 
   h1:first-child, div:first-child + h1 {
@@ -441,7 +441,7 @@ html, body {
   h2 {
     @extend %header-font;
     font-size: 20px;
-    margin-top: 4em;
+    margin-top: 1em;
     margin-bottom: 0;
     padding-top: 1.2em;
     padding-bottom: 1.2em;
@@ -824,6 +824,6 @@ img {
   }
 }
 
-table > th:nth-child(3) {
+table td:nth-child(3) {
   word-break: break-word;
 }

@@ -53,10 +53,11 @@ includes:
   - api_CRUD_orders
   - api_objects_tax_class
   - api_CRUD_tax_classes
+  - api_objects_shipping_method
+  - api_CRUD_shipping_methods
   - api_objects_gift_certificate
   - api_CRUD_gift_certificates
   - api_objects_store_information
-  - video_test
 
 search: true
 ---
