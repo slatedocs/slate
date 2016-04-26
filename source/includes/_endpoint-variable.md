@@ -2,7 +2,7 @@
 
 ### Catalog
 
-`/datasets/{id}/variables/{?relative,nosubvars}`
+`/datasets/{id}/variables/{?relative}`
 
 A Shoji Catalog of variables.
 
@@ -11,6 +11,10 @@ A Shoji Catalog of variables.
 When authenticated and authorized to view the given dataset, GET returns 200
 status with a Shoji Catalog of variables in the dataset. If authorization is
 lacking, response will instead be 404.
+
+Array subvariables are not included in the index of this catalog, although
+entities may be present at `variables/{id}/`. Their metadata are instead
+accessible in each array variable's "subvariables_catalog".
 
 Private variables are not included in the index of this catalog, although
 entities may be present at `variables/{id}/`. See Private Variables for an
@@ -41,9 +45,8 @@ The catalog has two optional query parameters:
 Name | Type | Description
 ---- | ---- | -----------
 relative | string | If "on", all URLs in the "index" will be relative to the catalog's "self"
-nosubvars | integer | If 1, array subvariables will not be included directly in the variables catalog. Their metadata are instead accessible in each array variable's "subvariables_catalog".
 
-With both flags enabled, the variable catalog looks something like this:
+With the relative flag enabled, the variable catalog looks something like this:
 
 ```json
 {
@@ -223,7 +226,7 @@ the Location header.
 
 #### Private variables catalog
 
-`/datasets/{id}/variables/private/{?relative,nosubvars}`
+`/datasets/{id}/variables/private/{?relative}`
 
 `GET` returns a Shoji Catalog of variables, as described above, containing those
  variables that are private to the authenticated user. You may `PATCH` this
@@ -574,8 +577,8 @@ This endpoint will return 404 for any variable that is not an array variable
 (Multiple response and Categorical variable).
 
 For array variables, this endpoint will return a Shoji Catalog containing a
-variables catalog with tuples for the subvariables. The tuples will have the
-same shape as the main variables catalog.
+tuples for the subvariables. The tuples will have the same shape as the main
+variables catalog.
 
 ##### PATCH
 
