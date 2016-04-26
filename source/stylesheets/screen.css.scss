@@ -427,25 +427,29 @@ html, body {
   h1 {
     @extend %header-font;
     font-size: 30px;
+<<<<<<< HEAD
     padding-top: 0.5em;
     padding-bottom: 0.5em;
     margin-bottom: $h1-margin-bottom;
     margin-top: 1em;
+=======
+>>>>>>> origin/master
   }
 
+  h1 {
+   @extend %header-font;
+    font-size: 30px;
+  }
+ 
   h1:first-child, div:first-child + h1 {
     border-top-width: 0;
     margin-top: 0;
   }
 
   h2 {
-    @extend %header-font;
-    font-size: 20px;
-    margin-top: 1em;
-    margin-bottom: 0;
-    padding-top: 1.2em;
-    padding-bottom: 1.2em;
-  }
+     @extend %header-font;
+     font-size: 20px;
+   }
 
   // h2s right after h1s should bump right up
   // against the h1s.
@@ -457,8 +461,6 @@ html, body {
   h3, h4, h5, h6 {
     @extend %header-font;
     font-size: 18px;
-    margin-top: 2.5em;
-    margin-bottom: 0.8em;
   }
 
   h4, h5, h6 {
@@ -633,6 +635,31 @@ html, body {
   }
 }
 
+body.twocolumn {
+  .content {
+    pre, blockquote {
+      width: auto;
+      float: none;
+      padding: 0.8em 18px;
+      margin-right: 28px;
+    }
+
+    pre {
+      margin-left: 28px;
+    }
+
+    code, pre {
+      font-size: 13px;
+      line-height: 1.6;
+      margin-bottom: 1.4em;
+    }
+
+    &>h1, &>h2, &>h3, &>h4, &>h5, &>h6, &>p, &>table, &>ul, &>ol, &>aside, &>dl {
+      margin-right: 0;
+    }
+  }
+}
+
 ////////////////////////////////////////////////////////////////////////////////
 // RESPONSIVE DESIGN
 ////////////////////////////////////////////////////////////////////////////////
@@ -704,27 +731,6 @@ html, body {
 
 iframe {
     padding-left: 2.5em;
-}
-
-
-.themes .dark-box { 
-    display:none 
-}
-
-.themes .content {
-    max-width: 80%;
-}
-
-.themes .content > h1,.themes .content > h2,.themes .content > h3,.themes .content > h4,.themes .content > h5, .themes .content > h6, .themes .content > p, .themes .content > table, .themes .content > ul, .themes .content > ol, .themes .content > aside, .themes .content > dl, .themes .content > code, .themes .content > pre, .themes .content pre > code, .themes .content > blockquote 
-{ margin-right: 0; }
-
-
-.themes .content > pre {
-    margin-left: 28px !important;
-    padding-right: 0 !important;
-    float: none;
-    max-width: 90%;
-    width: 100%; 
 }
 
 a {

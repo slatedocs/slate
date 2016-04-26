@@ -1,5 +1,6 @@
 ---
 title: Bigcommerce APIs
+layout: "twocolumn"
 
 language_tabs:
   - curl: Request 
