@@ -1231,7 +1231,7 @@ var newContent = {
 // Using callbacks (NodeJS or Web Browser)
 kuzzle
   .security
-  .updateUser("User ID", newContent, function (err, updatedUser) {
+  .updateUser("User ID", newContent, function (err, updatedUserId) {
 
   });
 
@@ -1239,7 +1239,7 @@ kuzzle
 kuzzle
   .security
   .updateUserPromise("User ID", newContent)
-  .then(updatedUser => {
+  .then(updatedUserId => {
 
   });
 ```

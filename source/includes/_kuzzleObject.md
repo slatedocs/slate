@@ -1410,6 +1410,68 @@ Set the default data index. Has the same effect than the `defaultIndex` construc
 
 Returns the `Kuzzle` object to allow chaining.
 
+## selfUpdate
+
+```js
+var newContent = {
+  firstname: 'My Name Is',
+  lastname: 'Jonas'
+};
+
+
+// Using callbacks (NodeJS or Web Browser)
+kuzzle
+  .selfUpdate(newContent, function (err, updatedUserId) {
+
+  });
+
+// Using promises (NodeJS)
+kuzzle
+  .selfUpdatePromise(newContent)
+  .then(updatedUserId => {
+
+  });
+```
+
+```java
+JSONObject newContent = new JSONObject()
+  .put("firstname", "My Name Is")
+  .put("lastname", "Jonas");
+
+kuzzle
+  .selfUpdate(newContent, new KuzzleResponseListener<KuzzleUser>() {
+    @Override
+    public void onSuccess(KuzzleUser user) {
+
+    }
+
+    @Override
+    public void onError(JSONObject error) {
+
+    }
+  });
+```
+
+#### selfUpdate(content, [options], [callback])
+
+Performs a partial update on the current user.
+
+| Arguments | Type | Description |
+|---------------|---------|----------------------------------------|
+| ``content`` | JSON Object | A plain javascript object representing the user |
+| ``options`` | string | (Optional) Optional arguments |
+| ``callback`` | function | (Optional) Callback handling the response |
+
+Available options:
+
+| Filter | Type | Description | Default |
+|---------------|---------|----------------------------------------|---------|
+| ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
+
+#### Callback response
+
+Resolves to the updated user ID
+
 
 ## setHeaders
 
