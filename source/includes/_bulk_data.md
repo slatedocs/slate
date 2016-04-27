@@ -132,12 +132,9 @@ We need to whitelist our IP address for our default security group in order to c
 4. Click on the default Security Group (it should say default in the "Group Name" column,
 5. Click on the "Inbound Rules" tab at the bottom and click edit.
 5. Click "Add Rule."
-7. Select "All Traffic" for "type" and for "source" enter 0.0.0.0/0.  Save the new rule.
-
-<!--
-We'd hate to leave this open, globally, but not sure how to setup permissions otherwise. Question is pending.  If we're unable to be more restrictive the directions above could be updated to go through the Console > VPC > Security rather than EC2.
-
 7. Select "All Traffic" for "type" and for "source" select "My IP." This should prefill your CIDR.  Save the new rule.
+8. Click "Add Rule" again.
+9. Select "Redshift" for "Type." Enter your cluster's port (typically 5439). Type "sg-" into the source field, and it should pull up your default security group.
 
 **Note:** If you're having trouble getting your own IP/CIDR setup, try either looking up your subnet mask and using [this table](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#IPv4_CIDR_blocks).  Your CIDR will almost always be your id address followed by `/32` or `/64` for ipv6.  Example: `123.123.123.123/32`. If all else fails, use the global 0.0.0.0/0 - opening your cluster to the public Internet. The latter isn't recommended. If you do have to do this, make sure you remove the rule when you're done.
  -->
@@ -185,12 +182,12 @@ We need to allow our user to access our aws-lambda-redshift-loader to access our
 
 ```json
 {
-  "Version": "2012-10-17",
-  "Statement": [
+  "Version":"2012-10-17",
+  "Statement":[
     {
-      "Sid": "Stmt1424787824000",
-      "Effect": "Allow",
-      "Action": [
+      "Sid":"Stmt1424787824000",
+      "Effect":"Allow",
+      "Action":[
         "dynamodb:DeleteItem",
         "dynamodb:DescribeTable",
         "dynamodb:GetItem",
@@ -213,9 +210,28 @@ We need to allow our user to access our aws-lambda-redshift-loader to access our
         "kms:DescribeKey",
         "kms:GetKeyPolicy"
       ],
-      "Resource": [
+      "Resource":[
         "*"
       ]
+    },
+    {
+      "Effect":"Allow",
+      "Action":[
+        "logs:CreateLogGroup",
+        "logs:CreateLogStream",
+        "logs:PutLogEvents"
+      ],
+      "Resource":"arn:aws:logs:*:*:*"
+    },
+    {
+      "Effect":"Allow",
+      "Action":[
+        "ec2:CreateNetworkInterface",
+        "ec2:DescribeNetworkInterfaces",
+        "ec2:DetachNetworkInterface",
+        "ec2:DeleteNetworkInterface"
+      ],
+      "Resource":"*"
     }
   ]
 }
@@ -227,8 +243,11 @@ We need to allow our user to access our aws-lambda-redshift-loader to access our
 4. Use the default values for the handler, and in the Role drop-down, select "* Basic Execution Role." A IAM creation wizard will open in a new window.
 5. Follow the wizard, selecting to "Create a new IAM Role" and name it as you like.  Click to "View the Policy" and then click edit.
 6. Copy and paste the the AWS Lambda Execution Role permissions from the example "AWS Lambda Execution Role" or from the official [readme](https://github.com/awslabs/aws-lambda-redshift-loader#getting-started---lambda-execution-role).
-7. Navigate back to your Lambda setup tab and set the max timeout (5 minutes) to accommodate potentially long COPY times.
-8. Click next and then create your Lambda.
+7. Then click "Add Policy." Select the `AmazonRedshiftFullAccess` role and add it, then add another role - `AmazonDMSRedshiftS3Role`.
+8. Navigate back to your Lambda setup tab and set the max timeout (5 minutes) to accommodate potentially long COPY times.
+9. From the VPC dropdown, select your default VPC.
+10. Leave the rest of the settings alone.
+11. Click next and then click to create your Lambda.
 
 #### Establishing an Event Source
 
