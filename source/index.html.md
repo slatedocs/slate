@@ -16,7 +16,7 @@ search: true
 # Introduction
 
 Welcome to the Optisom Sleep Health Platform API! As an Optisom Platform Level
-Partner, you can use our API endpoints to obtain information on users, assessments,
+Partner, you can use our API endpoints to obtain information on users, screenings, devices,
 challenges, diary entries and other information related to the your user's progress
 through the Optisom Sleep Health Platform.
 
@@ -159,7 +159,7 @@ These groupings are referred to as question_groups in the API.
 ## Creating a Screening for a User
 A screening can be created for a user with this request
 
-`GET https://partner_abc.optisom.com/api/v2/users{user_id}/screenings
+`GET https://partner_abc.optisom.com/api/v2/users{user_id}/screenings`
 
 The response will return the next question_qroup_id which can be used to request the next set of questions.
 
@@ -295,6 +295,52 @@ immutable identifier for specific objects, such as question group.
 
 
 # Devices
+
+Users with activity trackers such as a Fitbit or Jawbone can set up their devices to
+automatically record sleep diary entries for them.  A user may only have one authorized device
+of a given type at a time.
+
+## Authorize a Device
+
+To authorize a device
+
+`POST https://partner_abc.optisom.com/api/v2/devices/authorize`
+
+### Parameters
+
+Prameter     |Type      |Description
+-------------|----------|------------
+device_type  |string    |Type of device to authorize ('fitbit' or 'jawbone')
+redirect_url |stirng    |URL to redirect to after authorization finishes
+
+## Remove a Device
+
+To remove a previously authorize a device
+
+`POST https://partner_abc.optisom.com/api/v2/users/{user_id}/devices/destroy`
+
+### Parameters
+
+Prameter     |Type      |Description
+-------------|----------|------------
+user_id      |integer   |Id of the user owning the device to remove
+device_type  |string    |Type of device to authorize ('fitbit' or 'jawbone')
+
+
+## List Devices
+
+Get a list of authorized devices
+
+`GET https://partner_abc.optisom.com/api/v2/devices`
+
+### Parameters
+
+Prameter     |Type      |Description
+-------------|----------|------------
+user_id      |integer   |Id of the user owning the device(s)
+
+The response will return a list of authorized devices
+
 
 # Therapies
 
