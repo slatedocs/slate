@@ -1231,7 +1231,7 @@ var newContent = {
 // Using callbacks (NodeJS or Web Browser)
 kuzzle
   .security
-  .updateUser("User ID", newContent, function (err, updatedUserId) {
+  .updateUser("User ID", newContent, function (err, updatedUser) {
 
   });
 
@@ -1239,7 +1239,7 @@ kuzzle
 kuzzle
   .security
   .updateUserPromise("User ID", newContent)
-  .then(updatedUserId => {
+  .then(updatedUser => {
 
   });
 ```
@@ -1283,7 +1283,7 @@ Available options:
 
 #### Callback response
 
-Resolves to the updated user ID
+Resolves to the updated user's `KuzzleUser`.
 
 ## userFactory
 

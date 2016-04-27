@@ -1421,14 +1421,14 @@ var newContent = {
 
 // Using callbacks (NodeJS or Web Browser)
 kuzzle
-  .updateSelf(newContent, function (err, updatedUserId) {
+  .updateSelf(newContent, function (err, updatedUser) {
 
   });
 
 // Using promises (NodeJS)
 kuzzle
   .updateSelfPromise(newContent)
-  .then(updatedUserId => {
+  .then(updatedUser => {
 
   });
 ```
@@ -1439,9 +1439,9 @@ JSONObject newContent = new JSONObject()
   .put("lastname", "Jonas");
 
 kuzzle
-  .updateSelf(newContent, new KuzzleResponseListener<KuzzleUser>() {
+  .updateSelf(newContent, new KuzzleResponseListener<JSONObject>() {
     @Override
-    public void onSuccess(KuzzleUser user) {
+    public void onSuccess(JSONObject user) {
 
     }
 
@@ -1470,7 +1470,7 @@ Available options:
 
 #### Callback response
 
-Resolves to the updated user ID
+Resolves to the updated user plain object.
 
 
 ## setHeaders
