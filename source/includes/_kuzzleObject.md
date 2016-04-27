@@ -1410,7 +1410,7 @@ Set the default data index. Has the same effect than the `defaultIndex` construc
 
 Returns the `Kuzzle` object to allow chaining.
 
-## selfUpdate
+## updateSelf
 
 ```js
 var newContent = {
@@ -1421,13 +1421,13 @@ var newContent = {
 
 // Using callbacks (NodeJS or Web Browser)
 kuzzle
-  .selfUpdate(newContent, function (err, updatedUserId) {
+  .updateSelf(newContent, function (err, updatedUserId) {
 
   });
 
 // Using promises (NodeJS)
 kuzzle
-  .selfUpdatePromise(newContent)
+  .updateSelfPromise(newContent)
   .then(updatedUserId => {
 
   });
@@ -1439,7 +1439,7 @@ JSONObject newContent = new JSONObject()
   .put("lastname", "Jonas");
 
 kuzzle
-  .selfUpdate(newContent, new KuzzleResponseListener<KuzzleUser>() {
+  .updateSelf(newContent, new KuzzleResponseListener<KuzzleUser>() {
     @Override
     public void onSuccess(KuzzleUser user) {
 
@@ -1452,7 +1452,7 @@ kuzzle
   });
 ```
 
-#### selfUpdate(content, [options], [callback])
+#### updateSelf(content, [options], [callback])
 
 Performs a partial update on the current user.
 
