@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Public apps (also known as [Single-Click Apps](https://www.bigcommerce.com/single-click-apps/)) can be listed in the App Store for easy installation in all Bigcommerce stores. They use OAuth to obtain an access token and communicate with the central Bigcommerce API endpoint. Building a public app is the recommended approach in almost all cases. Before you start, we suggest reviewing the [App Store acceptance requirements](/api/approval-requirements). To start making API requests, you'll need a [**Client ID** and **Client Secret**](/api/registration), and an [OAuth token](/api/callback).
+Public apps (also known as [Single-Click Apps](https://www.bigcommerce.com/single-click-apps/)) can be listed in the App Store for easy installation in all Bigcommerce stores. They use OAuth2 to obtain an access token and communicate with the central Bigcommerce API endpoint. Building a public app is the recommended approach in almost all cases. Before you start, we suggest reviewing the [App Store acceptance requirements](/api/approval-requirements). To start making API requests, you'll need a [**Client ID** and **Client Secret**](/api/registration), and an [OAuth token](/api/callback).
 
 ## API Endpoint
 

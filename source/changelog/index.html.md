@@ -1,5 +1,5 @@
 ---
-title: BigCommerce API & Theme Framwork Changelog
+title: BigCommerce API &amp; Theme Framwork Changelog
 layout: "changelog"
 
 toc_footers:

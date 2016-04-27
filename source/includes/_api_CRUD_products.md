@@ -22,10 +22,6 @@ Catalog of saleable items in the store.
 
 Gets the collection of products. (Default sorting is by product id, from lowest to highest.)
 
-```curl
-
-```
-
 ```json
 [
   {
@@ -327,9 +323,6 @@ Parameters can be added to the URL query string to paginate the collection. The 
 
 Gets a product.
 
-```curl
-```
-
 ```json
 {
   "id": 32,
@@ -463,9 +456,6 @@ Gets a product.
 
 Gets a count of products.
 
-```curl
-
-```
 ```json
 {
   "count": 44
