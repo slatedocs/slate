@@ -15,37 +15,37 @@ search: true
 
 # Introduction
 
-Welcome to the Optisom Sleep Health Platform API! As an Optisom Platform Level 
+Welcome to the Optisom Sleep Health Platform API! As an Optisom Platform Level
 Partner, you can use our API endpoints to obtain information on users, assessments,
-challenges, diary entries and other information related to the your user's progress 
-through the Optisom Sleep Health Program.
+challenges, diary entries and other information related to the your user's progress
+through the Optisom Sleep Health Platform.
 
-We have example code to query the API using Curl.  You can view code examples in the dark 
+We have example code to query the API using Curl.  You can view code examples in the dark
 area.
 
 # Key Concepts
-The Optisom Sleep Health Platform encompasses several key concepts that are necessary to 
-understand how to use the system properly. 
-The easiest way to contextualize these concepts is to view them from the user's experience. This 
-experience is primarily made of two use cases; screening and taking sleep health 
-challenges.  
+The Optisom Sleep Health Platform encompasses several key concepts that are necessary to
+understand how to use the system properly.
+The easiest way to contextualize these concepts is to view them from the user's experience. This
+experience is primarily made of two use cases; screening and taking sleep health
+challenges.
 
 A screening consists of a series of questions that survey the user's sleep health.
-Based on the user's responses to these questions, a sleep health report is produced and a 
-set of sleep health modules are assigned to the user.  
+Based on the user's responses to these questions, a sleep health report is produced and a
+set of sleep health modules are assigned to the user.
 
 
-These modules contain tasks, in the form of challenge cards, 
+These modules contain tasks, in the form of challenge cards,
 that the user can undertake in order to improve their sleep health.  As a user completes
 tasks, points are awarded.  These points can be used to tie the user's progress to
 incentive rewards, or as a part of creating competition between users and teams.
 
-All attributes concerning the user, screening, challenges and more are accessible through 
-standard webservice API calls which responds with JSON data structures. 
+All attributes concerning the user, screening, challenges and more are accessible through
+standard webservice API calls which responds with JSON data structures.
 
-As an Optisom Platform Partner, you should have been provided with an email login 
-and a password to your Optisom Sleep Health API Service, which we'll refer to as "the Optisom Service" 
-going forward.  If you do not have the email or password, please contact Partner Support 
+As an Optisom Platform Partner, you should have been provided with an email login
+and a password to your Optisom Sleep Health API Service, which we'll refer to as "the Optisom Service"
+going forward.  If you do not have the email or password, please contact Partner Support
 at <partnersupport@optisom.com>. This information is used to obtain authentication credentials for
 the Optisom Service.
 
@@ -67,13 +67,13 @@ in the headers of each request by the client.  The headers follow the RFC 6750 B
 
 ## Creating an Authentication Token
 
-Using your email and password, you can create an authentication token by posting to the 
+Using your email and password, you can create an authentication token by posting to the
 API sign_in endpoint.
 
 `https://partner_abc.optisom.com/api/v2/auth/sign_in`
 
 <aside class="notice">
-The email, password and domain name should be replaced with the information provided 
+The email, password and domain name should be replaced with the information provided
 to you by our partner support team.
 </aside>
 
@@ -119,7 +119,7 @@ curl -X GET \
 To make an authenticated request, use the following format:
 
 <aside class="notice">
-The Access-Token, Client and Expiry should be replaced with the values from the response 
+The Access-Token, Client and Expiry should be replaced with the values from the response
 for an authenticated token request.
 
 </aside>
@@ -139,8 +139,8 @@ curl -X GET \
 
 # Users
 Once you have successfully authenticated against the Service, you will need to create an account on the Optisom Service
-which you should associate to an account on your platform.  The Optisom Service requires an email address; if your 
-service also requires email address, this is the simplest way to associate the two accounts.  
+which you should associate to an account on your platform.  The Optisom Service requires an email address; if your
+service also requires email address, this is the simplest way to associate the two accounts.
 
 However, if your service does not use email address for user sign-in, a generic user identifier is also provided.
 In this case, you will have to create a dummy email address to satisfy the account validation mechanism
@@ -153,8 +153,8 @@ on the Optisom Service.
 
 # Screening
 After a user account has been created, the user is then required to take a screening to determine
-their current sleep health.  A screening consists of questions that can be grouped together.  
-These groupings are referred to as question_groups in the API.  
+their current sleep health.  A screening consists of questions that can be grouped together.
+These groupings are referred to as question_groups in the API.
 
 ## Creating a Screening for a User
 A screening can be created for a user with this request
@@ -244,7 +244,7 @@ The response will return the next question_qroup_id which can be used to request
 
 `GET https://partner_abc.optisom.com/api/v2/users{user_id}/screenings/{screening_id}/groups/{id}`
 
-The response will return the questions that are contained in that question group, along with 
+The response will return the questions that are contained in that question group, along with
 metadata.
 
 
@@ -282,7 +282,7 @@ position    |integer   |Order of answer choice with respect to other answer choi
 
 
 <aside class="notice">
-The "handle" attribute is used often in the Optisom Service as a unique, 
+The "handle" attribute is used often in the Optisom Service as a unique,
 immutable identifier for specific objects, such as question group.
 
 </aside>
