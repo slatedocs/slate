@@ -1,3 +1,17 @@
+
+Optisom API Installation Instructions
+-------------------------------------
+**Installation Steps
+```shell
+bundle install
+bundle exec middleman server
+```
+
+That's it!  I've left the getting started instructions below as an FYI. 
+----------------
+
+
+
 <p align="center">
   <img src="https://raw.githubusercontent.com/lord/img/master/logo-slate.png" alt="Slate: API Documentation Generator" width="226">
   <br>
@@ -9,6 +23,9 @@
 <p align="center"><img src="https://dl.dropboxusercontent.com/u/95847291/github%20images/slate/slate_screenshot_new.png" width=700 alt="Screenshot of Example Documentation created with Slate"></p>
 
 <p align="center"><em>The example above was created with Slate. Check it out at <a href="https://tripit.github.io/slate">tripit.github.io/slate</a>.</em></p>
+
+
+
 
 Features
 ------------
