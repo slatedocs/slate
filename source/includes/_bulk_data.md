@@ -8,14 +8,14 @@ We provides two special bulk data webhooks to help you keep an external reportin
 
 ## ControlShift to Redshift Pipeline
 
-Setting up an Amazon Redshit integration should take a little less than two hours. We'll use a custom [AWS Lamda](http://docs.aws.amazon.com/lambda/latest/dg/welcome.html) to receive data from ControlShift's webhook and Amazon's [Lamda Redshift Loader](https://github.com/awslabs/aws-lambda-redshift-loader) to load our data into Redshift. For this example, we'll focus on the daily full_table dump, and truncating the previous days data. You could also add a second pipeline to add incremental data if you need more frequent updates.
+Setting up an Amazon Redshift integration should take one to two hours. We'll use a custom [AWS Lamda](http://docs.aws.amazon.com/lambda/latest/dg/welcome.html) to receive data from ControlShift's webhook and Amazon's [Lamda Redshift Loader](https://github.com/awslabs/aws-lambda-redshift-loader) to load our data into Redshift. For this example, we'll focus on the daily full_table dump, and truncating the previous days data. You could also add a second pipeline to add incremental data if you need more frequent updates.
 
 ### Example Flow
 
 Pending...
 
 
-### Redshift Pipline Setup
+### Redshift Pipeline Setup
 
 The core steps to get this up and running are:
 
@@ -48,7 +48,6 @@ These instructions were prepared for aws-lambda-redshift-loader v2.4.0.
 
 ```js
 var https = require('https');
-var http = require('http');
 var url = require('url');
 var AWS = require('aws-sdk');
 
@@ -58,20 +57,26 @@ var targetBucket = 'controlshift-receiver'; // receiver bucket name
 exports.handler = function(event, context) {
   var receivedJSON = JSON.stringify(event, null, 2);
   console.log('Received event:', receivedJSON);
-  var downloadUrl = event.data.url;
-  var fileName = url.parse(downloadUrl).pathname.replace('/','')
-  https.get(downloadUrl, function(httpResponse) {
-    var upload_details = {Bucket: targetBucket, Key: fileName, Body: httpResponse};
-    s3.upload(upload_details, function(err, data) {
-      if (err){
-        console.log(err, err.stack); // an error occurred
-        context.fail(err);
-      }else{
-        console.log(data); // successful response
-        context.succeed({"status": "success", "payload": receivedJSON});
-      }
+  if(event.type == 'data.full_table_exported'){
+    var downloadUrl = event.data.url;
+    var fileName = url.parse(downloadUrl).pathname.replace('/','')
+    https.get(downloadUrl, function(httpResponse) {
+      var upload_details = {Bucket: targetBucket, Key: fileName, Body: httpResponse};
+      s3.upload(upload_details, function(err, data) {
+        if (err){
+          // an error occurred
+          console.log(err, err.stack);
+          context.fail(err);
+        }else{
+          // successful response
+          console.log(httpResponse);
+          context.succeed({"status": "success", "payload": receivedJSON});
+        }
+      });
     });
-  });
+  }else{
+    context.succeed({"status": "skipped", "payload": receivedJSON});
+  }
 };
 ```
 
@@ -98,7 +103,7 @@ Now that we have our Lambda setup, we need to be able to POST to it from your Co
 2. Click on the "API Endpoints" tab and click to add a new endpoint.
 3. Select an API Gateway.
 4. Set the Method to POST and Security to Open.
-5. Click create. Done! (TODO: double check we don't need cors here. I cannot imagine how)
+5. Click create. Done!
 
 ---
 
@@ -118,33 +123,57 @@ Click on over to the Redshift service in the AWS console.
 4. Then Launch!
 5. Once the creation and launch process finishes, you can click to view your new cluster's properties, which will include an  endpoint address. Save that address somewhere. Example: `control-shift-cluster.xXxXxX00Xx.us-east-1.redshift.amazonaws.com`
 
-#### Perpare Redshift Connection Security
+#### Prepare Redshift Connection Security
 
-We need to whitelist our IP address for our default security group in order to connect to our Redshift DB.
+We need to whitelist our IP address for our default security group in order to connect to our Redshift DB. While we're managing our security through a VPC (Virtual Private Cloud), The best UI for our purposes is actually in the EC2 configuration console.
 
-1. First, find your [IP address](http://whatismyipaddress.com/).
-2. Go to the AWS Console > VPC
+2. Go to the AWS Console > EC2
 3. Click to "Security Groups" in the left hand menu.
-4. Click on the default Security Group, then "Inbound Rules" and click edit.
-5. Add a new rule for "All Traffic," and in the Source field put your CIDR. Your CIDR will almost always be your id address followed by `/32` or `/64` for ipv6.  Example: `123.123.123.123/32`. Save the new rule.
+4. Click on the default Security Group (it should say default in the "Group Name" column,
+5. Click on the "Inbound Rules" tab at the bottom and click edit.
+5. Click "Add Rule."
+7. Select "All Traffic" for "type" and for "source" enter 0.0.0.0/0.  Save the new rule.
 
-**Note:** If you're having trouble getting your own IP/CIDR setup, try either looking up your subnet mask and using [this table](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#IPv4_CIDR_blocks) or just use the global 0.0.0.0/0 - opening your cluster to the public Internet. The latter isn't recommended. If you do have to do this, make sure you remove the rule when you're done with the next step.
+<!--
+We'd hate to leave this open, globally, but not sure how to setup permissions otherwise. Question is pending.  If we're unable to be more restrictive the directions above could be updated to go through the Console > VPC > Security rather than EC2.
 
+7. Select "All Traffic" for "type" and for "source" select "My IP." This should prefill your CIDR.  Save the new rule.
+
+**Note:** If you're having trouble getting your own IP/CIDR setup, try either looking up your subnet mask and using [this table](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#IPv4_CIDR_blocks).  Your CIDR will almost always be your id address followed by `/32` or `/64` for ipv6.  Example: `123.123.123.123/32`. If all else fails, use the global 0.0.0.0/0 - opening your cluster to the public Internet. The latter isn't recommended. If you do have to do this, make sure you remove the rule when you're done.
+ -->
 #### Prepare Redshift Schema
 
 We need to prep our tables data schema to receive our ConrtolShift Data.  We'll use `psql` for this.
 
 1. Install `psql` you don't have it already.
-2. Download the current schema for our petitions table as petitions.sql. (TODO: insert link)
+2. Download the current schema for our petitions table as <a href="/data/petitions_schema.sql" target="_blank">petitions_schema.sql</a>.
 3. Finally, you'll need to load that schema into your table with the following command.
 
-```psql -h <endpoint> -U <database_user> -d <database_name> -p <cluster_port>```
+```psql -h <cluster_endpoint> -U <database_user> -d <database_name> -p <cluster_port> -f petitions_schema.sql```
 
-**Note:** You should almost immediately get a request for your password. If you're connection is timing out before you enter your password, there is a authorization issue.  If you are timing out after connecting, you can extend your keep alive timeout with the following shell command.
+**Note:** When connecting, you should almost immediately get a request for your password. If you're connection is timing out *before* you enter your password, there is a authorization issue.  If you are timing out *after* connecting, you can extend your keep alive timeout with the following shell command.
 
 ```sudo /sbin/sysctl -w net.ipv4.tcp_keepalive_time=200 net.ipv4.tcp_keepalive_intvl=200 net.ipv4.tcp_keepalive_probes=5```
 
-**Security Note:** In an optimal scenario, one would also use psql to connect to your Redshift instance to [create a user](http://docs.aws.amazon.com/redshift/latest/dg/r_CREATE_USER.html) for our aws-lambda-redshift-loader to use. We'll skip this step for now. You can find more details in the aws-lamda-redshift-loader [readme](https://github.com/awslabs/aws-lambda-redshift-loader#database-permissions).
+#### Creating a Database User & Granting Privileges
+
+> Creating a user and granting INSERT Privileges
+
+```sql
+CREATE USER redshift_user PASSWORD PlainTextPassword123;
+ALTER TABLE petitions OWNER TO redshift_user;
+GRANT INSERT ON petitions TO redshift_user;
+```
+
+We need to allow our user to access our aws-lambda-redshift-loader to access our Redshift database. Connect via psql and create your user and grant permissions. See code example.
+
+```psql -h <cluster_endpoint> -U <database_user> -d <database_name> -p <cluster_port>```
+
+**Security Notes:**
+
+* Typically, we'd like to limit the privileges we're granting our redshift_user to just INSERT and TRUNCATE. Unfortunately, Redshift doesn't allow us to specifically grant TRUNCATE permissions. Thus, our redshift_user must own the table.
+* In PostgreSQL, we wouldn't need to grant INSERT privileges to the owner, but Redshift seems to need this.
+* For Redshift cluster versions > 1.0.1046, you can store your password as a MD5 hash instead of cleartext. At the time of this writing, most clusters are on version 1.0.1044. See the md5 section of the [create user documentation](http://docs.aws.amazon.com/redshift/latest/dg/r_CREATE_USER.html).
 
 ---
 
@@ -197,8 +226,8 @@ We need to prep our tables data schema to receive our ConrtolShift Data.  We'll 
 3. Under Code entry type select 'Upload a zip file' and upload the [AWSLambdaRedshiftLoader-2.4.0.zip](https://github.com/awslabs/aws-lambda-redshift-loader/blob/master/dist/AWSLambdaRedshiftLoader-2.4.0.zip) from your local ```dist``` folder or [download it](https://github.com/awslabs/aws-lambda-redshift-loader/tree/master/dist).
 4. Use the default values for the handler, and in the Role drop-down, select "* Basic Execution Role." A IAM creation wizard will open in a new window.
 5. Follow the wizard, selecting to "Create a new IAM Role" and name it as you like.  Click to "View the Policy" and then click edit.
-6. Copy and paste the the AWS Lambda Execution Role permissions from the right here or from the official [readme](https://github.com/awslabs/aws-lambda-redshift-loader#getting-started---lambda-execution-role). 
-7. Navigate back to your Lambda setup tab and set the max timeout (5 minutes) for the function to accommodate long COPY times.
+6. Copy and paste the the AWS Lambda Execution Role permissions from the example "AWS Lambda Execution Role" or from the official [readme](https://github.com/awslabs/aws-lambda-redshift-loader#getting-started---lambda-execution-role).
+7. Navigate back to your Lambda setup tab and set the max timeout (5 minutes) to accommodate potentially long COPY times.
 8. Click next and then create your Lambda.
 
 #### Establishing an Event Source
@@ -222,7 +251,6 @@ Once deployed, you need to add an event source:
 2. run `node setup.js`
 3. The script will request various configuration options.  Some sensible responses for our use case are below. Empty responses were just skipped.
 
-
 |          |
 |----------|
 | Enter the Region for the Configuration > us-east-1 |
@@ -232,8 +260,8 @@ Once deployed, you need to add an event source:
 | Enter the Cluster Port > 5439 |
 | Does your cluster use SSL (Y/N)  > Y |
 | Enter the Database Name > controlshiftdb |
-| Enter the Table to be Loaded > facts |
-| Enter the comma-delimited column list (optional) > |
+| Enter the Table to be Loaded > petitions |
+| Enter the comma-delimited column list (optional) > (Copy and paste from our [petitions_headers.csv](/data/petitions_headers.csv)) |
 | Should the Table be Truncated before Load? (Y/N) > Y # Don't truncate if this lambda will handle incremental builds. |
 | Enter the Database Username > masteruser # Or any user you created in psql |
 | Enter the Database Password > SuPeRs8CuR1tY # your password |
@@ -242,8 +270,8 @@ Once deployed, you need to add an event source:
 | Enter the S3 Bucket for Redshift COPY Manifests > controlshift-manifests |
 | Enter the Prefix for Redshift COPY Manifests > manifests |
 | Enter the Prefix to use for Failed Load Manifest Storage > failed |
-| Enter the Access Key used by Redshift to get data from S3. If NULL then Lambda execution role credentials will be used >  |
-| Enter the Secret Key used by Redshift to get data from S3. If NULL then Lambda execution role credentials will be used > |
+| Enter the Access Key used by Redshift to get data from S3. If NULL then Lambda execution role credentials will be used > <aws key> |
+| Enter the Secret Key used by Redshift to get data from S3. If NULL then Lambda execution role credentials will be used > <aws key> |
 | Enter the SNS Topic ARN for Successful Loads > |
 | Enter the SNS Topic ARN for Failed Loads > |
 | How many files should be buffered before loading? > 1 |
@@ -251,9 +279,41 @@ Once deployed, you need to add an event source:
 | Additional Copy Options to be added > |
 | If Encrypted Files are used, Enter the Symmetric Master Key Value > |
 
-
 ---
 
 ### Configure ControlShift's webhook
 
 Finally, you'll need to log into your admin panel.  Settings > CRM Integrations & Webhooks > Configure Webhook Endpoints.  Then add a bulk data webhook pointing at your Lambda endpoint.
+
+### Troubleshooting Errors
+
+> Example LambdaRedshiftBatches error
+
+```json
+{
+  "control-shift-cluster.ckcgajpfnj82.us-east-1.redshift.amazonaws.com":{
+    "status":-1,
+    "error":{
+      "name":"error",
+      "length":143,
+      "severity":"FATAL",
+      "code":"28000",
+      "file":"/home/awsrsqa/padb/src/pg/src/backend/libpq/auth.c",
+      "line":"402",
+      "routine":"auth_failed"
+    }
+  }
+}
+```
+
+A few tips if things aren't working:
+
+* Most errors will probably occur when attempting to load data from Lambda into Redshift. The DynamoDB batch history captures errorMessages in the the `LambdaRedshiftBatches` table. Click on the `entries` field. You can also check AWS Cloudwatch > Logs and then click on the appropriate cloud stream.
+* Since Redshift is based on PostgreSQL 8.0.2, there is a healthy amount of overlapping error codes. You can [lookup errors codes here](http://www.postgresql.org/docs/8.0/static/errcodes-appendix.html). Example errors:
+  * `28000` - Unable to connect to the database. Is the username/password/database name entered correctly when running setup.js? Is the user granted proper permissions on your database?
+  * `42P01` - Redshift doesn't have the table you're trying to import data into. Did you import the schema as described above?
+  * `XX000` - This is an internal error. In our case, the most likely causes are either an invalid schema usually caused by an [unsupported data type](http://docs.aws.amazon.com/redshift/latest/dg/c_unsupported-postgresql-datatypes.html). Double check that your imported schema is correct. If you aren't using the provided schema double check that you're using the [supported types] and that your imported data matches those types.
+  * `42601` - Syntax error - This is most likely a typo when running setup.js. If you're entering your CSV columns during setup, be sure they match the schema you've loaded into the database. Make sure your CSV Delimiter is set correctly and your CSV is properly formated.
+  * `42501` - Insufficient permissions errors.
+* Be sure to check the logging messages you see in your Lambda logs.
+* Try manually uploading a petitions export to your `controlshift-receiver` S3 bucket, and check DynamoDB batch history for errors. You can fetch these exports from your ControlShift Labs instance, in Settings > Exports.
