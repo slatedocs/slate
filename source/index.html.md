@@ -138,14 +138,6 @@ curl "https://getquipu.com/oauth/token" \
   -d "grant_type=client_credentials"
 ```
 
-```ruby
-require 'oauth2'
-
-oauth_client = OAuth2::Client.new("<client_id>", "<client_secret>", site: 'https://getquipu.com')
-
-access_token = oauth_client.client_credentials.get_token(scope: "ecommerce")
-```
-
 > Example response
 
 ```shell
@@ -154,17 +146,7 @@ access_token = oauth_client.client_credentials.get_token(scope: "ecommerce")
   "created_at":    1456339025,
   "access_token":  "7c74b8e69bdd19a90e1ffaf987ada2ca67b948b0bed7b2cf95ad58f5ecb14294",
   "refresh_token": null,
-  "expires_at":    1456346225
-}
-```
-
-```ruby
-{
-  token_type:    "bearer",
-  created_at:    1456339025,
-  access_token:  "7c74b8e69bdd19a90e1ffaf987ada2ca67b948b0bed7b2cf95ad58f5ecb14294",
-  refresh_token: nil,
-  expires_at:    1456346225
+  "expires_in":    1456346225
 }
 ```
 

@@ -94,6 +94,7 @@ Filter name | Description | Valid values | Example
 ------------| ------------| ------------ | -------
 q | Search by name | Any | `/contacts?filter[q]=amazon`
 kind | Filter contacts by kind | `employee`, `supplier` and `client` | `contacts?filter[kind]=client`
+tax_id | Filter contacts by their tax id | | `contacts?filter[tax_id]=43456628J`
 
 ### Sorting
 
