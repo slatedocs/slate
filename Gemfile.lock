@@ -129,6 +129,3 @@ DEPENDENCIES
   middleman-syntax (~> 2.1.0)
   redcarpet (~> 3.3.2)
   rouge (~> 1.10.1)
-
-BUNDLED WITH
-   1.10.6
