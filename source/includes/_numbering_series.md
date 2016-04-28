@@ -51,6 +51,13 @@ curl "https://getquipu.com/numbering_series" \
 
 `GET /numbering_series`
 
+### Available filters
+
+Filter name | Description | Valid values | Example
+------------| ------------| ------------ | -------
+applicable_to | Filters by the kind of document the series is applicable to | `invoices`, `tickets`, `budgets` | `?filter[applicable_to]=invoices`
+amending | Filters the series by whether they are applicable to amending documents | `true`, `false` | `?filter[amending]=false`
+
 ## Getting a numbering serie
 
 > Example request
