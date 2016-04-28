@@ -23,6 +23,7 @@ Regarding the motion engine subsystem a number of commands exist, which are list
 #define ResetTimeStamp  0x10 //resets the timestamp value to 0
 #define FingerGesture   0x11 //detects finger swipe patterns, when Neblina is attached to a finger
 #define RotationInfo    0x12 //streaming device rotation information: number of rotations, and speed in rpm
+#define ExtrnHeadingCorrection 0x13 //external heading angle correction, e.g., from a camera, GPS, etc.
 ```
 Note that the above commands are placed within the header section of the packet in Byte#3.
 
@@ -208,17 +209,18 @@ In the command mode, the packet enables/disables the streaming of the Pedometer 
 |:------------------:|:---------------:|:------------:|:------------------:|:------:|:--------------:|------------|
 |        0x41        |       0x10      |      CRC     |  0x0A (Pedometer)  |Reserved| Enable/Disable |  Reserved  |
 
-In the response mode, Neblina will first send an acknowledge packet to the host to confirm the successful receipt of the command. Next, the main response packet will be prepared, where the data section first includes 4 bytes for the timestamp (Byte#4-7), which is then followed by 5 bytes (Byte#8-12) with the following subfields:
+In the response mode, Neblina will first send an acknowledge packet to the host to confirm the successful receipt of the command. Next, the main response packet will be prepared, where the data section first includes 4 bytes for the current timestamp (Byte#4-7), which is then followed by 9 bytes (Byte#8-16) with the following subfields:
 ##### Byte#8: step count, LSB
 ##### Byte#9: step count, MSB
 ##### Byte#10: spm (Cadence)
 ##### Byte#11: walking direction angle value LSB
 ##### Byte#12: walking direction angle value MSB
+##### Byte#13-16: Timestamp in microseconds associated with the toe-off moment in the current step cycle. 
 Note that the angle format is a 16-bit signed integer value within the range of [-1800,1800], which represents the heading angle multiplied by 10, i.e., including one decimal fractional digit. For instance, the value of 1723 represents 172.3 degrees. Furthermore, it is notable that when we disable the pedometer streaming, the step count value will be reset to zero. The whole response packet structure including header is shown below:
 
-| Byte 0 | Byte 1 | Byte 2 | Byte 3 |Byte 4-7 |Byte 8-9  |Byte 10|  Byte 11-12   |Bytes 13-19|
-|:------:|:------:|:------:|:------:|:-------:|:--------:|:-----:|:-------------:|:---------:|
-|  0x01  |  0x10  |  CRC   |  0x0A  |TimeStamp|step count|cadence|direction angle| Reserved  |
+| Byte 0 | Byte 1 | Byte 2 | Byte 3 |Byte 4-7 |Byte 8-9  |Byte 10|  Byte 11-12   |   Byte 13-16    |Bytes 17-19|
+|:------:|:------:|:------:|:------:|:-------:|:--------:|:-----:|:-------------:|:---------------:|:---------:|
+|  0x01  |  0x10  |  CRC   |  0x0A  |TimeStamp|step count|cadence|direction angle|Toe-off TimeStamp| Reserved  |
 
 #### MAG_Data Command/Response (0x0B)
 In the command mode, the packet enables/disables the streaming of the 3-axis magnetometer data along with the 3-axis accelerometer data. Byte#8 will be a Boolean value representing the Enable/Disable command. The overall command mode MAG_Data packet has the following structure:
