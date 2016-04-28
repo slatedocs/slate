@@ -59,7 +59,7 @@ O tipo da Cobrança depende da sua Configuração de Cobrança. Se a Configuraç
 | Campo                          | Tipo             | Comentário                                                                                                                                          |
 |--------------------------------|------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------|
 | id                             | integer          |                                                                                                                                                     |
-| type                           | string           | indica o tipo da cobrança. Valores possíveis: (billet)                                                                                              |
+| type                           | string           | indica o tipo da cobrança. Nesse caso, "billet"                                                                                                     |
 | charge_config_id               | integer          | identificador da configuração de cobrança a qual esta cobraça pertece                                                                               |
 | due_date                       | date             | data de vencimento da cobranca                                                                                                                      |
 | document_kind                  | string           | espécie do documento, podendo ser DM (Duplicata Mercantil), DS (Duplicata de Serviço), NP (Nota Promissória) ou DV (Diversos)                       |
@@ -90,6 +90,33 @@ O tipo da Cobrança depende da sua Configuração de Cobrança. Se a Configuraç
 | payer_state                    | string           | sigla do estado do endereço do pagador ("RJ" por exemplo)                                                                                           |
 | registration_status            | string           | status de registro em que a cobrança se encontra (without_remittance, remitted, registered, registered_with_error)                                  |
 | _links                         | array of object  | links relacionados à cobraça                                                                                                                        |
+
+**Parâmetros (Gateway de Pagamento)**
+
+| Campo                          | Tipo             | Comentário                                                                                                                                          |
+|--------------------------------|------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------|
+| id                             | integer          |                                                                                                                                                     |
+| type                           | string           | indica o tipo da cobrança. Nesse caso, "payment_gateway"                                                                                            |
+| charge_config_id               | integer          | identificador da configuração de cobrança a qual esta cobraça pertece                                                                               |
+| total_amount                   | decimal          | valor total do boleto                                                                                                                               |
+| payer_emails                   | array of strings | emails de quem irá pagar o boleto                                                                                                                   |
+<!-- | received                       | boolean          | indica se a cobrança foi recebida                                                                                                                   |
+| received_amount                | decimal          | valor recebido                                                                                                                                      |
+| received_at                    | date             | dia em que a cobraça foi recebida                                                                                                                   | -->
+| payer_national_identifier_type | string           | tipo do documento do pagador (cpf ou cnpj)                                                                                                          |
+| payer_national_identifier      | string           | documento do pagador                                                                                                                                |
+| payer_name                     | string           | nome do pagador                                                                                                                                     |
+| payer_number                   | string           | número do endereço do pagador                                                                                                                       |
+| payer_complement               | string           | complemento do endereço do pagador                                                                                                                  |
+| payer_street                   | string           | rua do endereço do pagador                                                                                                                          |
+| payer_neighbourhood            | string           | bairro do endereço do pagador                                                                                                                       |
+| payer_zipcode                  | string           | cep do endereço do pagador                                                                                                                          |
+| payer_city                     | string           | cidade do endereço do pagador                                                                                                                       |
+| payer_state                    | string           | sigla do estado do endereço do pagador ("RJ" por exemplo)                                                                                           |
+| payment_gateway_status         | string           | status da cobrança em relação ao gateway de pagamento ()                                                                                            |
+| credit_card_id                 | integer          | identificador do cartão de crédito utilizado na cobrança                                                                                            |
+| _links                         | array of object  | links relacionados à cobraça                                                                                                                        |
+
 
 ## Informações da Cobrança
 
@@ -297,6 +324,42 @@ Cria um nova cobrança, caso haja sucesso retornará as informações da mesma e
 | payer_zipcode                  | string           | (opcional, requerido se registrable for `true`) cep do endereço do pagador                                                                                     |
 | payer_city                     | string           | (opcional, requerido se registrable for `true`) cidade do endereço do pagador                                                                                  |
 | payer_state                    | string           | (opcional, requerido se registrable for `true`) sigla do estado do endereço do pagador ("RJ" por exemplo)                                                      |
+
+**Parâmetros (Gateway de Pagamento)**
+
+| Campo                          | Tipo             | Comentário                                                                                                                                          |
+|--------------------------------|------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------|
+| id                             | integer          |                                                                                                                                                     |
+| charge_config_id               | integer          | **(requerido)** código de identificação da configuração de cobrança da qual a cobrança irá pertencer                                                           |
+| total_amount                   | decimal          | valor total do boleto                                                                                                                               |
+| payer_emails                   | array of strings | emails de quem irá pagar o boleto                                                                                                                   |
+<!-- | received                       | boolean          | indica se a cobrança foi recebida                                                                                                                   |
+| received_amount                | decimal          | valor recebido                                                                                                                                      |
+| received_at                    | date             | dia em que a cobraça foi recebida                                                                                                                   | -->
+| payer_national_identifier_type | string           | tipo do documento do pagador (cpf ou cnpj)                                                                                                          |
+| payer_national_identifier      | string           | documento do pagador                                                                                                                                |
+| payer_name                     | string           | nome do pagador                                                                                                                                     |
+| payer_number                   | string           | número do endereço do pagador                                                                                                                       |
+| payer_complement               | string           | complemento do endereço do pagador                                                                                                                  |
+| payer_street                   | string           | rua do endereço do pagador                                                                                                                          |
+| payer_neighbourhood            | string           | bairro do endereço do pagador                                                                                                                       |
+| payer_zipcode                  | string           | cep do endereço do pagador                                                                                                                          |
+| payer_city                     | string           | cidade do endereço do pagador                                                                                                                       |
+| payer_state                    | string           | sigla do estado do endereço do pagador ("RJ" por exemplo)                                                                                           |
+| payment_gateway_status         | string           | status da cobrança em relação ao gateway de pagamento ()                                  |
+| credit_card_id | integer | identificador do cartão de crédito utilizado na cobrança |
+| credit_card_attributes |object | **()** |
+| credit_card_attributes.number         | string | número do cartão                                                              |
+| credit_card_attributes.cvv            | string | código de segurança                                                           |
+| credit_card_attributes.expiration     | string | expiração do cartão, no formato "mm/aa"                                       |
+| credit_card_attributes.holder_name    | string | nome do dono do cartão                                                        |
+| credit_card_attributes.brand          | string | bandeira do cartão (visa, mastercard, amex, elo, diners, discover, jcb, aura) |
+| credit_card_attributes.avs_address    | string | endereço de cobrança do cartão                                                |
+| credit_card_attributes.avs_number     | string | número do endereço de cobrança do cartão                                      |
+| credit_card_attributes.avs_complement | string | complemento endereço de cobrança do cartão                                    |
+| credit_card_attributes.avs_district   | string | bairro do endereço de cobrança do cartão                                      |
+| credit_card_attributes.avs_zipcode    | string | cep do endereço de cobrança do cartão                                         |
+
 
 ## Atualização de Cobrança
 
