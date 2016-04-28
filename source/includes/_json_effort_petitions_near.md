@@ -3,14 +3,12 @@
 ```js
 $(document).ready(function(){
   var effortSlug = 'forecast-the-facts',
-    formatted_address = '123 Main Street Fall Church, VA, USA',
     latitude = 38.88233400000001,
     longitude = -77.17109140000002;
   $.ajax({
     url: 'https://demo.controlshiftlabs.com/efforts/'+effortSlug+'/'+'near.json',
     dataType: 'jsonp',
     data: {
-      'location[query]': formatted_address,
       'location[latitude]': latitude,
       'location[longitude]': longitude
     }
