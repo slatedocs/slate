@@ -33,6 +33,10 @@ html, body {
   background-color: $main-bg;
   height: 100%;
   -webkit-text-size-adjust: none; /* Never autoresize text */
+  /* Next 2 lines added 4/27/16 to constrain code blocks' width: */
+  width: 90%;
+  min-width: 850px;
+
 }
 
 *,
@@ -644,6 +648,10 @@ body.twocolumn {
 
     &>h1, &>h2, &>h3, &>h4, &>h5, &>h6, &>p, &>table, &>ul, &>ol, &>aside, &>dl {
       margin-right: 0;
+      /* Next 2–3 lines added 4/27/16 to, constrain vertical and horizontal bloat: */
+      line-height: 125%;      
+      width: 80%;
+      min-width: 850px;
     }
   }
 }
@@ -821,3 +829,10 @@ img {
 table > th:nth-child(3) {
   word-break: break-word;
 }
+
+/* Added 4/27/16 to constrain body text's width: */
+.themes .content {
+    width: 80%;
+    min-width: 850px;
+}
+
