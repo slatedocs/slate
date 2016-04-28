@@ -27,7 +27,7 @@ The core steps to get this up and running are:
 
 **Note:** All resources should be set up in the same AWS region (ex: us-east-1) so they can access each other. "US Standard" and "us-east-1" are the same thing.
 
-**Before starting:** You'll need git, npm, and access to a PostgreSQL connection tool(Redshift is based on PostgreSQL). These instructions use `psql` on the command line.
+**Before starting:** You'll need git, npm, and access to a PostgreSQL connection tool (Redshift is based on PostgreSQL). These instructions use `psql` on the command line.
 
 These instructions were prepared for aws-lambda-redshift-loader v2.4.0.
 
@@ -91,7 +91,7 @@ From the Lambda management console, you'll need to do the following.
 5. Leave the handler as the default.
 6. For role, select "S3 Execution role". This will open a new window.
 7. In this new window, called "IAM Management Console", name your role something relevant, like "controlShiftReceriver_s3." Then click "Allow" in the far bottom left corner.
-8. Next is setting the memory size. You should be fine with 128MB, but you can always update the memory size later.
+8. Next is setting the memory size. You should be fine with 128MB, but if you have a large petitions DB, you will likely need more. You can always update the memory size later. Later, you can check the log stream in Cloudwatch monitoring to see how much memory was used.
 9. Set the Timeout a little higher - 30 seconds should be fine.
 10. Use "No VPC".
 
@@ -329,10 +329,10 @@ A few tips if things aren't working:
 
 * Most errors will probably occur when attempting to load data from Lambda into Redshift. The DynamoDB batch history captures errorMessages in the the `LambdaRedshiftBatches` table. Click on the `entries` field. You can also check AWS Cloudwatch > Logs and then click on the appropriate cloud stream.
 * Since Redshift is based on PostgreSQL 8.0.2, there is a healthy amount of overlapping error codes. You can [lookup errors codes here](http://www.postgresql.org/docs/8.0/static/errcodes-appendix.html). Example errors:
-  * `28000` - Unable to connect to the database. Is the username/password/database name entered correctly when running setup.js? Is the user granted proper permissions on your database?
+  * `28000` - Unable to connect to the database. Is the username/password/database name entered correctly when running setup.js? Is the user granted proper privileges on your database?
   * `42P01` - Redshift doesn't have the table you're trying to import data into. Did you import the schema as described above?
-  * `XX000` - This is an internal error. In our case, the most likely causes are either an invalid schema usually caused by an [unsupported data type](http://docs.aws.amazon.com/redshift/latest/dg/c_unsupported-postgresql-datatypes.html). Double check that your imported schema is correct. If you aren't using the provided schema double check that you're using the [supported types] and that your imported data matches those types.
+  * `XX000` - This is an internal error. In our case, the most likely causes are either an invalid schema usually caused by an [unsupported data type](http://docs.aws.amazon.com/redshift/latest/dg/c_unsupported-postgresql-datatypes.html). Double check that your imported schema is correct. If you aren't using the provided schema, double check that you're using the supported types and that your imported data matches those types.
   * `42601` - Syntax error - This is most likely a typo when running setup.js. If you're entering your CSV columns during setup, be sure they match the schema you've loaded into the database. Make sure your CSV Delimiter is set correctly and your CSV is properly formated.
-  * `42501` - Insufficient permissions errors.
-* Be sure to check the logging messages you see in your Lambda logs.
+  * `42501` - Insufficient privileges errors.  Did you GRANT your user all the privileges required?
+* Be sure to check the logging messages you see in your Lambda log streams under CloudWatch > logs.
 * Try manually uploading a petitions export to your `controlshift-receiver` S3 bucket, and check DynamoDB batch history for errors. You can fetch these exports from your ControlShift Labs instance, in Settings > Exports.
