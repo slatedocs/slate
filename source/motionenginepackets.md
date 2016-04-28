@@ -329,3 +329,11 @@ Note also that when we disable the rotation information streaming, the rotation 
 |:------:|:------:|:------:|:------:|:-------:|:------------:|:------------:|:---------:|
 |  0x01  |  0x10  |  CRC   |  0x12  |TimeStamp|rotation count|rpm*10 (speed)| Reserved  |
 
+#### ExtrnHeadingCorrection (0x13)
+This command lets the host provide an external source of information to Neblina to correct its heading angle. The heading angle is provided in degrees with one fractional decimal digit precision as a 16-bit signed integer value (Byte 8-9). The command also provides an average absolute error expected in the reference heading angle that is in degrees as well and has one fractional decimal digit precision (16-bit unsigned integer within Byte 10-11). The heading angle, which is a 16-bit signed integer value, lies within the range of [-1800,1800] representing the angle in degrees multiplied by 10, i.e., including one decimal fractional digit. For instance, the value of 1723 represents 172.3 degrees. The angle Error is a positive value (16-bit unsigned integer) and lies in the range of [0,1800] with the same precision. For instance, the Error value of 26 represents the error of 2.6 degrees. The overall command mode ExtrnHeadingCorrection packet has the following structure:
+
+| Byte 0 (subsystem) | Byte 1 (length) | Byte 2 (CRC) |       Byte 3 (command)      |Byte 4-7|  Byte 8-9   |Bytes 10-11|Byte 12-19|
+|:------------------:|:---------------:|:------------:|:---------------------------:|:------:|:-----------:|:---------:|:--------:|
+|        0x41        |       0x10      |      CRC     |0x13 (ExtrnHeadingCorrection)|Reserved|Heading Angle|   Error   | Reserved |
+
+The response is either an Ack or NAck packet depending on whether Neblina accepts the external heading or not. If Neblina is under a quick motion and change in the heading angle, while the external heading angle correction arrives, it will reject the correction and send a NAck packet back to the host. Otherwise, if will gradually and adaptively apply the correction to its current state depending on the Error (Byte 10-11) in the command as well as the error between the current estimate and the external angle. The correction will be very smooth and adaptive, avoiding any quick jumps in the heading angle state. 
