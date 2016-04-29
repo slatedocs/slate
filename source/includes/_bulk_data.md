@@ -1,14 +1,43 @@
 # Bulk Data
 
-ControlShift's Bulk Data Webhooks make it easy to pull your data into external services. \
+ControlShift's Bulk Data Webhooks make it easy to pull your data into external services.
 
 ## Webhooks
 
-We provides two special bulk data webhooks to help you keep an external reporting or analytics database server up to date with information from ControlShift's internal tables. The [data.full_table_exported](#data-full_table_exported) and [data.incremental_table_exported](#data-incremental_table_exported) webhooks can be consumed to keep an external database mirror containing ControlShift data up to date. This service was built in a database agnostic way, but it should be possible to build a ControlShift -> Amazon Redshift data pipeline using the following technique.
+We provides two special bulk data webhooks to help you keep an external reporting or analytics database server up to date with information from ControlShift's internal tables. The [data.full_table_exported](#data-full_table_exported) and [data.incremental_table_exported](#data-incremental_table_exported) webhooks can be consumed to keep an external database mirror containing ControlShift data up to date. This service was built in a database agnostic way, but it should be possible to build a ControlShift -> Amazon Redshift data pipeline using the [ControlShift to Redshift Pipeline](#controlshift-to-redshift-pipeline) technique outlines below.
+
+<aside class="notice">
+Bulk data webhooks are not automatically included when adding a new webhook endpoint. Please contact support to add these to your webhook feed. For testing, you can manually trigger these wehbooks by visiting <code>https://&lt;your controlshift instance&gt;/orgs/export</code> and clicking on "New Full Tables Data Export."
+</aside>
+
+## Bulk Data Data Schemas
+
+The bulk data webhooks include exports of the following tables.  You can use the links to download CSV headers or a psql schema for each table.
+
+* `attendees` - [csv headers](attendees_headers.csv)/[sql_schema](attendees_schema.sql)
+* `comments` - [csv headers](comments_headers.csv)/[sql_schema](comments_schema.sql)
+* `local_chapter_members` - [csv headers](local_chapter_members_headers.csv)/[sql_schema](local_chapter_members_schema.sql)
+* `locations` - [csv headers](locations_headers.csv)/[sql_schema](locations_schema.sql)
+* `petitions` - [csv headers](petitions_headers.csv)/[sql_schema](petitions_schema.sql)
+* `unsubscribes` - [csv headers](unsubscribes_headers.csv)/[sql_schema](unsubscribes_schema.sql)
+* `blast_emails` - [csv headers](blast_emails_headers.csv)/[sql_schema](blast_emails_schema.sql)
+* `events` - [csv headers](events_headers.csv)/[sql_schema](events_schema.sql)
+* `local_chapters` - [csv headers](local_chapters_headers.csv)/[sql_schema](local_chapters_schema.sql)
+* `members` - [csv headers](members_headers.csv)/[sql_schema](members_schema.sql)
+* `signatures` - [csv headers](signatures_headers.csv)/[sql_schema](signatures_schema.sql)
+* `users` - [csv headers](users_headers.csv)/[sql_schema](users_schema.sql)
+
+Additional files:
+
+* combined schema - [CS_combined_schema.sql](/data/combined_schema.sql)
+* zip of all schema files [CS_data_assets.zip](/data/CS_data_assets.zip)
+
 
 ## ControlShift to Redshift Pipeline
 
-Setting up an Amazon Redshift integration should take one to two hours. We'll use a custom [AWS Lamda](http://docs.aws.amazon.com/lambda/latest/dg/welcome.html) to receive data from ControlShift's webhook and Amazon's [Lamda Redshift Loader](https://github.com/awslabs/aws-lambda-redshift-loader) to load our data into Redshift. For this example, we'll focus on the daily full_table dump, and truncating the previous days data. You could also add a second pipeline to add incremental data if you need more frequent updates.
+Setting up an Amazon Redshift integration should take one to two hours. We'll use a custom [AWS Lamda](http://docs.aws.amazon.com/lambda/latest/dg/welcome.html) to receive data from ControlShift's webhook and Amazon's [Lamda Redshift Loader](https://github.com/awslabs/aws-lambda-redshift-loader) to load our data into Redshift. For this example, we'll focus on the daily full_table dump, and truncating the previous days data for petitions only. You could also add a second pipeline to add incremental data if you need more frequent updates.
+
+As of this writing, aws-lambda-redshift-loader v2.4.0 only supports a single configuration per Lambda.  This means you'll have a setup a separate Lambda for every table you want to capture. If you want to capture both nightly and incremental dumps, you'll also need to set up one nightly lambda and one incremental lambda per table you want to capture. It can be a little tedious, but remember, the first one is the hardest!
 
 ### Example Flow
 
