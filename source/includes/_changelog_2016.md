@@ -74,12 +74,12 @@ The new endpoint information is available [here][10].
 Two Customers endpoints, and two Customer Addresses endpoints, now provide support for read-only custom fields:
 
         Customers
-        	List Customers
-        	Get a Customer
+          List Customers
+          Get a Customer
 
         Customer Addresses
-        	List Customer Addresses
-        	Get a Customer Address
+          List Customer Addresses
+          Get a Customer Address
 
 You can access custom fields within the new   **`form_fields`**   element. For details and examples, please see our updated [Customers][11] and [Customer Addresses][11] reference pages.
 
@@ -140,32 +140,32 @@ in your applications:
 
 ```
   store/order/
-  	store/order/created
-  	store/order/updated
-  	store/order/archived
-  	store/order/statusUpdated
+    store/order/created
+    store/order/updated
+    store/order/archived
+    store/order/statusUpdated
   store/product/
-  	store/product/created
-  	store/product/updated
-  	store/product/deleted
-  	**store/product/inventory/updated
-  	store/product/inventory/order/updated
+    store/product/created
+    store/product/updated
+    store/product/deleted
+    store/product/inventory/updated
+    store/product/inventory/order/updated
   store/product/inventory/
-  	store/product/inventory/updated
-  	store/product/inventory/order/updated
+    store/product/inventory/updated
+    store/product/inventory/order/updated
   store/sku/
-  	store/sku/created
-  	store/sku/updated
-  	store/sku/deleted
-  	store/sku/inventory/updated
-  	store/sku/inventory/order/updated
+    store/sku/created
+    store/sku/updated
+    store/sku/deleted
+    store/sku/inventory/updated
+    store/sku/inventory/order/updated
   store/sku/inventory/
-  	store/sku/inventory/updated
-  	store/sku/inventory/order/updated**
+    store/sku/inventory/updated
+    store/sku/inventory/order/updated**
   store/customer/
-  	store/customer/created
-  	store/customer/updated
-  	store/customer/deleted
+    store/customer/created
+    store/customer/updated
+    store/customer/deleted
   store/app/uninstalled
 ```
 
