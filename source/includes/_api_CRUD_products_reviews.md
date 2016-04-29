@@ -20,9 +20,9 @@
 Gets the reviews associated with a product. (Default sorting is by review id, from lowest to highest.)
 
 *   [OAuth](#list-product-reviews-oauth)
->`GET /stores/{store_hash}/products/{id}/reviews`
+>`GET /stores/{store_hash}/v2/products/{id}/reviews`
 *   [Basic Auth](#list-product-reviews-basic)
->`GET /api/products/{id}/reviews`
+>`GET /api/v2/products/{id}/reviews`
 
 ### Pagination
 
