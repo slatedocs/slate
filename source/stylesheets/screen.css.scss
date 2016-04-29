@@ -429,19 +429,19 @@ html, body {
   }
 
   h1 {
-    @extend %header-font;
+   @extend %header-font;
     font-size: 30px;
   }
-
+ 
   h1:first-child, div:first-child + h1 {
     border-top-width: 0;
     margin-top: 0;
   }
 
   h2 {
-    @extend %header-font;
-    font-size: 20px;
-  }
+     @extend %header-font;
+     font-size: 20px;
+   }
 
   // h2s right after h1s should bump right up
   // against the h1s.
@@ -826,7 +826,7 @@ img {
   }
 }
 
-table > th:nth-child(3) {
+table td:nth-child(3) {
   word-break: break-word;
 }
 

@@ -29,7 +29,7 @@ However, as we make SKU-only properties available directly on SKUs, BigCommerce 
 
 ### SNI (Server Name Indication) required as of June 30, 2016
 
-As of June 30, 2016, all requests to the Bigcommerce API will be required to support [Server Name Indication][3] (SNI). After that date, requests will fail if they don't support SNI.
+As of June 30, 2016, all requests to the BigCommerce API will be required to support [Server Name Indication][3] (SNI). After that date, requests will fail if they don't support SNI.
 
 [3]: https://en.m.wikipedia.org/wiki/Server_Name_Indication
 
@@ -63,7 +63,7 @@ Developers can now install the Stencil themes framework without registering for 
 
 ### Gift Certificate API
 
-Bigcommerce has published a new API for managing gift certificates. The API allows your applications to manage gift certificates' amount/balance, purchaser, recipient, dates of purchase and expiration, and current status.
+BigCommerce has published a new API for managing gift certificates. The API allows your applications to manage gift certificates' amount/balance, purchaser, recipient, dates of purchase and expiration, and current status.
 
 The new endpoint information is available [here][10].
 
@@ -87,7 +87,7 @@ You can access custom fields within the new   **`form_fields`**   element. For d
 
 ### New Store Updated & Order Webhooks
 
-Bigcommerce has made available two new webhooks. We encourage you to use these webhooks, as appropriate, in your applications:
+BigCommerce has made available two new webhooks. We encourage you to use these webhooks, as appropriate, in your applications:
 
 * `store/order/message/created` reports [order messages][12] created by customers (via a customer account) or by merchants (via the control panel).
 * `store/information/updated` reports updates to a store's settings (domain, address, currency, tax inclusion, etc.).
@@ -112,7 +112,7 @@ We have also updated merchant-oriented documentation that covers [enabling facet
 
 ### Banners API
 
-Bigcommerce has published a new API for managing storefront banners. The API allows your applications to manage banners' display location, timing, and content.
+BigCommerce has published a new API for managing storefront banners. The API allows your applications to manage banners' display location, timing, and content.
 
 Information about this new endpoint is available [here][18].
 
@@ -122,7 +122,7 @@ Information about this new endpoint is available [here][18].
 
 ### New global product variables: SKU, Brand Name, Custom Fields
 
-Bigcommerce's Blueprint theme framework now provides three new global variables:
+BigCommerce's Blueprint theme framework now provides three new global variables:
 
 * `%%GLOBAL_ProductSku%%`
 * `%%GLOBAL_ProductBrandName%%`
@@ -134,7 +134,7 @@ These variables are available in all snippets where products are available. (In 
 
 ### New product and SKU webhooks added
 
-Bigcommerce has made available several new webhooks. In the list below, the new options are highlighted within the `store/product/`,   
+BigCommerce has made available several new webhooks. In the list below, the new options are highlighted within the `store/product/`,   
 `store/product/inventory/`, `store/sku/`, and `store/sku/inventory*` categories. We encourage you to use these webhooks, as appropriate,  
 in your applications:
 
@@ -175,7 +175,7 @@ We have updated the [webhooks reference page][20] to include these new webhooks.
 
 ### Status fields added to order/statusUpdated webhook
 
-On January 22nd, 2016, Bigcommerce will add status fields to the   `store/order/statusUpdated`   webhook event. These new fields will allow your applications to monitor order status more efficiently, with fewer API calls.
+On January 22nd, 2016, BigCommerce will add status fields to the   `store/order/statusUpdated`   webhook event. These new fields will allow your applications to monitor order status more efficiently, with fewer API calls.
 
 You are not required to incorporate these new fields, although we encourage you to take advantage of them. However, please use this advance notification to make sure that these new fields' presence will not disrupt your code.
 

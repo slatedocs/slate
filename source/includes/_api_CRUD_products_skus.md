@@ -31,17 +31,17 @@ Filter parameters can be added to the URL query string to select specific skus i
 
 | Parameter | Type | Example |
 | --- | --- | --- |
-| `min_id` | int | `/api/v2/products/{product_id}/skus?min_id={value}` |
-| `max_id` | int | `/api/v2/products/{product_id}/skus?max_id={value}` |
-| `sku` | string | `/api/v2/products/{product_id}/skus?sku={value}` |
-| `upc` | string | `/api/v2/products/{product_id}/skus?upc={value}` |
-| `inventory_level` | string | `/api/v2/products/{product_id}/skus?inventory_level={value}` |
-| `inventory_warning_level` | string | `/api/v2/products/{product_id}/skus?inventory_warning_level={value}` |
-| `bin_picking_number` | string | `/api/v2/products/{product_id}/skus?bin_picking_number={value}` |
-| `min_inventory_level` | int | `/api/v2/products/{product_id}/skus?min_inventory_level={value}` |
-| `max_inventory_level` | int | `/api/v2/products/{product_id}/skus?max_inventory_level={value}` |
-| `is_low_inventory` | boolean | `/api/v2/products/{product_id}/skus?is_low_inventory={value}` |
-| `product_hash` | int | `/api/v2/products/{product_id}/skus?product_hash={value}` |
+| min_id | int | /api/v2/products/{product_id}/skus?min_id={value} |
+| max_id | int | /api/v2/products/{product_id}/skus?max_id={value} |
+| sku | string | /api/v2/products/{product_id}/skus?sku={value} |
+| upc | string | /api/v2/products/{product_id}/skus?upc={value} |
+| inventory_level | string | /api/v2/products/{product_id}/skus?inventory_level={value} |
+| inventory_warning_level | string | /api/v2/products/{product_id}/skus?inventory_warning_level={value} |
+| bin_picking_number | string | /api/v2/products/{product_id}/skus?bin_picking_number={value} |
+| min_inventory_level | int | /api/v2/products/{product_id}/skus?min_inventory_level={value} |
+| max_inventory_level | int | /api/v2/products/{product_id}/skus?max_inventory_level={value} |
+| is_low_inventory | boolean | /api/v2/products/{product_id}/skus?is_low_inventory={value} |
+| product_hash | int | /api/v2/products/{product_id}/skus?product_hash={value} |
 
 ### Pagination
 
@@ -49,8 +49,8 @@ Parameters can be added to the URL query string to paginate the collection. The 
 
 | Parameter | Type | Example |
 | --- | --- | --- |
-| `Page` | int | `/api/v2/products/{product_id}/skus?page={number}` |
-| `Limit` | int | `/api/v2/products/{product_id}/skus?limit={count}` |
+| Page | int | /api/v2/products/{product_id}/skus?page={number} |
+| Limit | int | /api/v2/products/{product_id}/skus?limit={count} |
 
 ```json
 [
