@@ -304,7 +304,7 @@ of a given type at a time.
 
 To authorize a device
 
-`POST https://partner_abc.optisom.com/api/v2/users/{user_id}/authorize`
+`POST https://partner_abc.optisom.com/api/v2/users/{user_id}/devices/authorize`
 
 ### Parameters
 
