@@ -193,9 +193,44 @@ The order of the array defines the order of the categories, and thus the order i
 
 ##### subvariables
 
-Multiple Response and Categorical Array variables contain an array of subvariable references. In the HTTP API, these are presented as URLs. To create a variable of type "multiple_response" or "categorical_array", you must include a "subvariables" member with an array of variable references. These variables will become the subvariables in the new array variable.
+Multiple Response and Categorical Array variables contain an array of subvariable
+ references. In the HTTP API, these are presented as URLs. To create a variable 
+ of type "multiple_response" or "categorical_array", you must include a 
+ "subvariables" member with an array of subvariable references. These variables 
+ will become the subvariables in the new array variable.
 
-Like Categories, the array of subvariables within an array variable indicate the order in which they are presented; to reorder them, save a modified array of subvariable references.
+Like Categories, the array of subvariables within an array variable indicate
+ the order in which they are presented; to reorder them, save a modified array 
+ of subvariable references.
+
+The shape of each subvariable member must contain a name and optionally an alias.
+They will be created with the matching type according to the parent array.
+
+```json
+{
+    "type": "categorical_array",
+    "name": "Example array",
+    "categories": [
+        {
+            "name": "Category 1",
+            "numeric_value": 1,
+            "id": 1,
+            "missing": false
+        },
+        {
+            "name": "Category 2",
+            "numeric_value": 0,
+            "id": 2,
+            "missing": false
+        }
+    ],
+    "subvariables": [
+        {"name": "subvariable 1"}
+        {"name": "subvariable 2", "alias": "subvar2_alias"}
+        {"name": "subvariable 3"}
+    ]
+}
+```
 
 ##### resolution
 

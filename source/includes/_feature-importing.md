@@ -119,10 +119,22 @@ various types, as well as the example below.
 
 The "order" member is a Shoji Order object specifying the order, potentially 
 hierarchically nested, of the variables in the dataset. The example below 
-illustrates how this can be used. Shoji is JSON, which means the "metadata" 
+illustrates how this can be used. Shoji is JSON, which means the "metadata"
 object is explicitly unordered. If you wish the variables to have an order, 
 you must supply an order object rather than relying on any order of the 
 "metadata" object.
+ 
+##### Validation rules
+
+All variables mentioned in the metadata must contain a valid variable definition
+with a matching alias.
+
+Array variables definitions should contain valid subvariable members.
+
+Any attribute that contains a `null` value will be ignored and get the attribute's
+default value instead.
+
+An empty `order` for the dataset will be handled as if no order was passed in.
 
 #### 2. Add row data
 
