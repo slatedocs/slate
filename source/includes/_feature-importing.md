@@ -77,7 +77,10 @@ POST the URL of the just-created source entity (the Location in the 201 response
 
 ### Metadata document + CSV
 
-This approach may be most natural for importing data from databases that store data by rows. You can dump or export your database to Crunch's JSON metadata format, plus a CSV of data, and upload those to Crunch, without requiring much back-and-forth with the API.
+This approach may be most natural for importing data from databases that store 
+data by rows. You can dump or export your database to Crunch's JSON metadata 
+format, plus a CSV of data, and upload those to Crunch, without requiring much
+ back-and-forth with the API.
 
 #### 1. Create a Dataset entity with variable definitions
 
@@ -97,7 +100,7 @@ Content-Length: 974
                 "educ": {"name": "Education", "alias": "educ", "type": "categorical", "categories": [...], ...},
                 "color": {"name": "Favorite color", "alias": "color", "type": "text", ...}
             },
-            "order": [{"group": "my group", "entities": ["educ", ...]}, ...]
+            "order": ["educ", {'my group": "color"}]
         },
     }
 }
@@ -106,11 +109,20 @@ Content-Length: 974
 Location: /datasets/{dataset_id}/
 ```
 
-POST a Dataset Entity to the datasets catalog, and in the "body", include a Crunch Table object with variable definitions and order.
+POST a Dataset Entity to the datasets catalog, and in the "body", include a 
+Crunch Table object with variable definitions and order.
 
-The "metadata" member in the table is an object containing all variable definitions, keyed by variable alias. See the Object Reference: Variable Definitions discussion for specific requirements for defining variables of various types, as well as the example below.
+The "metadata" member in the table is an object containing all variable 
+definitions, keyed by variable alias. See the Object Reference: Variable 
+Definitions discussion for specific requirements for defining variables of 
+various types, as well as the example below.
 
-The "order" member is a Shoji Order object specifying the order, potentially hierarchically nested, of the variables in the dataset. The example below illustrates how this can be used. Shoji is JSON, which means the "metadata" object is explicitly unordered. If you wish the variables to have an order, you must supply an order object rather than relying on any order of the "metadata" object.
+The "order" member is a Shoji Order object specifying the order, potentially 
+hierarchically nested, of the variables in the dataset. The example below 
+illustrates how this can be used. Shoji is JSON, which means the "metadata" 
+object is explicitly unordered. If you wish the variables to have an order, 
+you must supply an order object rather than relying on any order of the 
+"metadata" object.
 
 #### 2. Add row data
 
