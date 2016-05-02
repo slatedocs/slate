@@ -14,18 +14,18 @@ Bulk data webhooks are not automatically included when adding a new webhook endp
 
 The bulk data webhooks include exports of the following tables.  You can use the links to download CSV headers or a psql schema for each table.
 
-* `attendees` - [csv headers](attendees_headers.csv)/[sql_schema](attendees_schema.sql)
-* `comments` - [csv headers](comments_headers.csv)/[sql_schema](comments_schema.sql)
-* `local_chapter_members` - [csv headers](local_chapter_members_headers.csv)/[sql_schema](local_chapter_members_schema.sql)
-* `locations` - [csv headers](locations_headers.csv)/[sql_schema](locations_schema.sql)
-* `petitions` - [csv headers](petitions_headers.csv)/[sql_schema](petitions_schema.sql)
-* `unsubscribes` - [csv headers](unsubscribes_headers.csv)/[sql_schema](unsubscribes_schema.sql)
-* `blast_emails` - [csv headers](blast_emails_headers.csv)/[sql_schema](blast_emails_schema.sql)
-* `events` - [csv headers](events_headers.csv)/[sql_schema](events_schema.sql)
-* `local_chapters` - [csv headers](local_chapters_headers.csv)/[sql_schema](local_chapters_schema.sql)
-* `members` - [csv headers](members_headers.csv)/[sql_schema](members_schema.sql)
-* `signatures` - [csv headers](signatures_headers.csv)/[sql_schema](signatures_schema.sql)
-* `users` - [csv headers](users_headers.csv)/[sql_schema](users_schema.sql)
+* `attendees` - [csv headers](/data/attendees_headers.csv)/[sql_schema](/data/attendees_schema.sql)
+* `comments` - [csv headers](/data/comments_headers.csv)/[sql_schema](/data/comments_schema.sql)
+* `local_chapter_members` - [csv headers](/data/local_chapter_members_headers.csv)/[sql_schema](/data/local_chapter_members_schema.sql)
+* `locations` - [csv headers](/data/locations_headers.csv)/[sql_schema](/data/locations_schema.sql)
+* `petitions` - [csv headers](/data/petitions_headers.csv)/[sql_schema](/data/petitions_schema.sql)
+* `unsubscribes` - [csv headers](/data/unsubscribes_headers.csv)/[sql_schema](/data/unsubscribes_schema.sql)
+* `blast_emails` - [csv headers](/data/blast_emails_headers.csv)/[sql_schema](/data/blast_emails_schema.sql)
+* `events` - [csv headers](/data/events_headers.csv)/[sql_schema](/data/events_schema.sql)
+* `local_chapters` - [csv headers](/data/local_chapters_headers.csv)/[sql_schema](/data/local_chapters_schema.sql)
+* `members` - [csv headers](/data/members_headers.csv)/[sql_schema](/data/members_schema.sql)
+* `signatures` - [csv headers](/data/signatures_headers.csv)/[sql_schema](/data/signatures_schema.sql)
+* `users` - [csv headers](/data/users_headers.csv)/[sql_schema](/data/users_schema.sql)
 
 Additional files:
 
