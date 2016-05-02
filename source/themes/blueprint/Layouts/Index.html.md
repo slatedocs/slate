@@ -67,6 +67,7 @@ includes:
 - themes_layouts_product_video
 - themes_layouts_product
 - themes_layouts_productimage
+- themes_layouts_product_comments
 - themes_layouts_search_tips
 - themes_layouts_search
 - themes_layouts_shippingaddressform

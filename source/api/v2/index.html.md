@@ -17,7 +17,8 @@ toc_footers:
 
 includes:
   - api_clients
-  - api_errors
+  - api_status_codes
+  - api_scopes
   - api_objects_product
   - api_CRUD_products
   - api_objects_product_option
@@ -27,7 +28,7 @@ includes:
   - api_objects_option_set
   - api_CRUD_option_sets
   - api_objects_option_set_option
-  - api_CRUD_options_sets_options
+  - api_CRUD_option_sets_options
   - api_objects_product_image
   - api_CRUD_products_images
   - api_objects_product_rule
