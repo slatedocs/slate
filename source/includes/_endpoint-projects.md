@@ -285,11 +285,20 @@ Will list all the datasets that have this project as their owner.
 ##### Adding datasets to projects
 
 The way to add a dataset to a project is by changing the dataset's owner to the
-project you want.
+id of the project you want to take ownership.
 
 You must have edit and be current editor on any given dataset to change its
 owner and you must also have edit permissions on the target project.
 
+##### PATCH
+
+```http
+PATCH /datasets/cc9161/ HTTP/1.1
+```
+
+```json
+{"owner":"https://local.crunch.io:8080/api/projects/abcd/"}
+```
 
 ##### GET
 
