@@ -41,7 +41,7 @@ As of this writing, aws-lambda-redshift-loader v2.4.0 only supports a single con
 
 ### Example Flow
 
-Pending...
+![ControlShift Redshift Flow Chart](/images/ControlShift_Redshift_flow_transparent.svg)
 
 
 ### Redshift Pipeline Setup

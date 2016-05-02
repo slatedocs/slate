@@ -10,6 +10,7 @@ The ControlShift Labs API documentation uses Slate - a middleman static site tem
   * `/build/index.html.md`
   * `/build/includes/*.md`
 * Webhooks documentation is auto-updated from https://demo.controlshiftlabs.com/api/webhooks.json at build. Just redeploy to update.
+* The source XML for the chart under BulkData is in /build/images. You can edit it by opening that file on [https://www.draw.io/](https://www.draw.io/).
 
 ### Content Considerations:
 
