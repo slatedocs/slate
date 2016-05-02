@@ -1,0 +1,123 @@
+---
+title: BigCommerce Blueprint Panels
+layout: "twocolumn"
+
+toc_footers:
+  - <a href="/">Home</a>
+  - <a href='/api/v2/'>API</a>
+  - <a href='/themes/'>Themes</a>
+  - <a href='/themes/blueprint/'> &nbsp; Blueprint Themes</a>
+  - <a href='https://stencil.bigcommerce.com/docs'> &nbsp;  Stencil Themes</a>
+  - <a href='#'>Sign Up for a Developer Key</a>
+  - <a href='http://github.com/tripit/slate'>Documentation by Slate</a>
+
+includes:
+- themes_panels_account_download_items_breadcrumb
+- themes_panels_account_download_items
+- themes_panels_account_inbox
+- themes_panels_account_new_return_breadcrumb
+- themes_panels_account_new_return_info
+- themes_panels_account_new_return_products
+- themes_panels_account_order_links
+- themes_panels_account_order_shipments
+- themes_panels_account_order_status
+- themes_panels_account_order
+- themes_panels_account_orders
+- themes_panels_account_recent_items
+- themes_panels_account_returns
+- themes_panels_active_kb_ars
+- themes_panels_add_shipping_address_java_script
+- themes_panels_brand_content
+- themes_panels_brand_product_listing
+- themes_panels_cart_content
+- themes_panels_cart_header
+- themes_panels_cart_status_message
+- themes_panels_category_content
+- themes_panels_category_product_listing
+- themes_panels_check_gift_certificate_balance
+- themes_panels_checkout_new_address_form
+- themes_panels_choose_checkout_provider_java_script
+- themes_panels_choose_shipping_address
+- themes_panels_compare_content
+- themes_panels_confirm_order
+- themes_panels_contact_form_java_script
+- themes_panels_create_account_form
+- themes_panels_create_account_java_script
+- themes_panels_edit_account_form
+- themes_panels_edit_account_java_script
+- themes_panels_footer
+- themes_panels_forgot_password_form
+- themes_panels_get_new_password_form
+- themes_panels_gift_certificate_balance_remaining
+- themes_panels_header_search
+- themes_panels_header
+- themes_panels_home_featured_products
+- themes_panels_home_new_products
+- themes_panels_home_recent_blogs
+- themes_panels_home_slide_show_java_script
+- themes_panels_html_head
+- themes_panels_ideal_payment_form
+- themes_panels_login_form
+- themes_panels_news_breadcrumb
+- themes_panels_news_comments
+- themes_panels_news_content
+- themes_panels_page_comments
+- themes_panels_page_content
+- themes_panels_pages_menu
+- themes_panels_product_breadcrumb
+- themes_panels_product_by_category
+- themes_panels_product_description
+- themes_panels_product_details
+- themes_panels_product_image_popup
+- themes_panels_product_other_details
+- themes_panels_product_reviews
+- themes_panels_product_tabs
+- themes_panels_product_videos
+- themes_panels_product_warranty
+- themes_panels_purchase_gift_certificate
+- themes_panels_quick_view_content
+- themes_panels_search_java_script
+- themes_panels_search_page_header
+- themes_panels_search_page_products
+- themes_panels_search_page
+- themes_panels_search_tab_contents
+- themes_panels_search_tab_products
+- themes_panels_share_product_by_id
+- themes_panels_share_product_choices
+- themes_panels_shipping_address_form
+- themes_panels_side_account_menu
+- themes_panels_side_account_store_credit
+- themes_panels_side_brand_tag_cloud
+- themes_panels_side_cart_contents
+- themes_panels_side_category_list
+- themes_panels_side_category_new_products
+- themes_panels_side_category_popular_products
+- themes_panels_side_category_shop_by_price
+- themes_panels_side_category_top_sellers
+- themes_panels_side_coupon_code_box
+- themes_panels_side_gift_certificate_code_box
+- themes_panels_side_live_chat_services
+- themes_panels_side_new_products
+- themes_panels_side_newsletter_box
+- themes_panels_side_popular_products
+- themes_panels_side_product_add_to_wish_list
+- themes_panels_side_product_also_bought
+- themes_panels_side_product_recently_viewed
+- themes_panels_side_product_related
+- themes_panels_side_shop_by_brand_full
+- themes_panels_side_shop_by_brand
+- themes_panels_side_top_sellers
+- themes_panels_similar_products_by_tag
+- themes_panels_sitemap_breadcrumb
+- themes_panels_suggestive_cart_content
+- themes_panels_syndicate
+- themes_panels_tag_products
+- themes_panels_top_menu
+- themes_panels_wish_list_add_form
+- themes_panels_wish_list_items
+- themes_panels_wish_lists
+
+search: true
+---
+
+# Blueprint Theme Panels
