@@ -15,6 +15,7 @@ includes:
   - kuzzleDocument
   - kuzzleRoom
   - kuzzleDataMapping
+  - kuzzleMemoryStorage
   - security/kuzzleSecurity
   - security/kuzzleRole
   - security/kuzzleProfile
