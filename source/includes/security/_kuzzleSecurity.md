@@ -1283,7 +1283,7 @@ Available options:
 
 #### Callback response
 
-Resolves to the updated user ID
+Resolves to the updated user's `KuzzleUser`.
 
 ## userFactory
 
