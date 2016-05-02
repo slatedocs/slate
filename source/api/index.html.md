@@ -18,7 +18,7 @@ toc_footers:
 
 includes:
   - api_clients
-  - api_errors
+  - api_status_codes
   - api_objects_product
   - api_CRUD_products
   - api_objects_product_image
