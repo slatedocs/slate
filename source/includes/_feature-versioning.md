@@ -55,7 +55,7 @@ ds.actions.post({
 ```
 
 ```http
-POST /api/datasets/{id}/actions/ HTTP/1.1
+POST /api/datasets/5de96a/actions/ HTTP/1.1
 Host: beta.crunch.io
 Content-Type: application/json
 Content-Length: 231
@@ -80,8 +80,8 @@ HTTP/1.1 202 Accepted
 ```json
 {
     "element": "shoji:view",
-    "self": "/api/datasets/{id}/actions/",
-    "value": "/api/progress/{id}/"
+    "self": "https://beta.crunch.io/api/datasets/5de96a/actions/",
+    "value": "https://beta.crunch.io/api/progress/912ab3/"
 }
 ```
 
