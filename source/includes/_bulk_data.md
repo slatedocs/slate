@@ -50,7 +50,7 @@ The core steps to get this up and running are:
 
 1. Setting up S3 buckets to retain file storage
 2. Setting up your custom lambda webhook receiver
-3. Setting up your Redshift database cluster and preloading a schema.
+3. Setting up your Redshift database cluster and pre-loading a schema.
 4. Setting up your `aws-lambda-redshift-loader` lambda.
 5. Configure your bulk data webhook in the Control Shift settings console.
 
@@ -93,7 +93,7 @@ function csvReceiver(downloadUrl, eventContext, webhookJSON){
     return path.substr(path.lastIndexOf('/')+1)
   }
 
-  // Remove Headers Utility
+  // Remove Headers
   var removeFirstLine = function(chunk){
     if(firstLineRemoved){
       csvData += chunk;
@@ -122,10 +122,8 @@ function csvReceiver(downloadUrl, eventContext, webhookJSON){
   }
 
   return {
-    processCsv:function(){
-      fileName= parseFileName(downloadUrl);
-      // this.context = context;
-
+    processCsv: function(){
+      fileName = parseFileName(downloadUrl);
       https.get(downloadUrl, function(httpResponse) {
         httpResponse.on('data', function(chunk) {
           removeFirstLine(chunk);
@@ -137,7 +135,6 @@ function csvReceiver(downloadUrl, eventContext, webhookJSON){
       });
     }
   }
-
 };
 
 // Lambda event Handler
@@ -164,7 +161,7 @@ From the Lambda management console, you'll need to do the following.
 5. Leave the handler as the default.
 6. For role, select "S3 Execution role". This will open a new window.
 7. In this new window, called "IAM Management Console", name your role something relevant, like "controlShiftReceriver_s3." Then click "Allow" in the far bottom left corner.
-8. Next is setting the memory size. You should be fine with 128MB, but if you have a large petitions DB, you will likely need more. You can always update the memory size later. Later, you can check the log stream in Cloudwatch monitoring to see how much memory was used.
+8. Next is setting the memory size. You should be fine with 128MB, but if you have a large petitions DB, you will likely need more. You can always update the memory size later. Later, you can check the log stream in CloudWatch monitoring to see how much memory was used.
 9. Set the Timeout a little higher - 30 seconds should be fine.
 10. Use "No VPC".
 
@@ -205,7 +202,7 @@ We need to whitelist our IP address for our default security group in order to c
 4. Click on the default Security Group (it should say default in the "Group Name" column,
 5. Click on the "Inbound Rules" tab at the bottom and click edit.
 5. Click "Add Rule."
-7. Select "All Traffic" for "type" and for "source" select "My IP." This should prefill your CIDR.  Save the new rule.
+7. Select "All Traffic" for "type" and for "source" select "My IP." This should pre-fill your CIDR.  Save the new rule.
 8. Click "Add Rule" again.
 9. Select "Redshift" for "Type." Enter your cluster's port (typically 5439). Type "sg-" into the source field, and it should pull up your default security group.
 
@@ -400,7 +397,7 @@ Finally, you'll need to log into your admin panel.  Settings > CRM Integrations 
 
 A few tips if things aren't working:
 
-* Most errors will probably occur when attempting to load data from Lambda into Redshift. The DynamoDB batch history captures errorMessages in the the `LambdaRedshiftBatches` table. Click on the `entries` field. You can also check AWS Cloudwatch > Logs and then click on the appropriate cloud stream.
+* Most errors will probably occur when attempting to load data from Lambda into Redshift. The DynamoDB batch history captures errorMessages in the the `LambdaRedshiftBatches` table. Click on the `entries` field. You can also check AWS CloudWatch > Logs and then click on the appropriate cloud stream.
 * Since Redshift is based on PostgreSQL 8.0.2, there is a healthy amount of overlapping error codes. You can [lookup errors codes here](http://www.postgresql.org/docs/8.0/static/errcodes-appendix.html). Example errors:
   * `28000` - Unable to connect to the database. Is the username/password/database name entered correctly when running setup.js? Is the user granted proper privileges on your database?
   * `42P01` - Redshift doesn't have the table you're trying to import data into. Did you import the schema as described above?
