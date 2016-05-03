@@ -55,7 +55,7 @@ ds.actions.post({
 ```
 
 ```http
-POST /api/datasets/{id}/actions/ HTTP/1.1
+POST /api/datasets/5de96a/actions/ HTTP/1.1
 Host: beta.crunch.io
 Content-Type: application/json
 Content-Length: 231
@@ -75,12 +75,30 @@ HTTP/1.1 204 No Content
 *or*
 
 HTTP/1.1 202 Accepted
-Location: https://beta.crunch.io/api/progress/{progress_id}/
 ```
 
-The POST to the actions catalog tells the original dataset to replay a set of actions; since we specify a "dataset" url, we are telling it to replay all actions from the forked dataset. Crunch keeps track of which actions are already common between the two datasets, and won't try to replay those. You can even make further changes to the forked dataset and merge again and again.
+```json
+{
+    "element": "shoji:view",
+    "self": "https://beta.crunch.io/api/datasets/5de96a/actions/",
+    "value": "https://beta.crunch.io/api/progress/912ab3/"
+}
+```
 
-Use the "autorollback" member to tell Crunch how to handle merge conflicts. If an action cannot be replayed on the original dataset (typically because it has had conflicting changes or has been rolled back), then if "autorollback" is true (the default), the original dataset will be reverted to the previous state before any of the new changes were applied. If "autorollback" is false, the dataset is left in the half-merged state, which allows you to investigate the problem, repair it if possible (in either dataset as needed), and then POST again to continue the merge.
+The POST to the actions catalog tells the original dataset to replay a set of 
+actions; since we specify a "dataset" url, we are telling it to replay all 
+actions from the forked dataset. Crunch keeps track of which actions are 
+already common between the two datasets, and won't try to replay those. You can 
+even make further changes to the forked dataset and merge again and again.
+
+Use the "autorollback" member to tell Crunch how to handle merge conflicts. If 
+an action cannot be replayed on the original dataset (typically because it has
+ had conflicting changes or has been rolled back), then if "autorollback" is 
+ true (the default), the original dataset will be reverted to the previous 
+ state before any of the new changes were applied. If "autorollback" is false, 
+ the dataset is left in the half-merged state, which allows you to investigate
+  the problem, repair it if possible (in either dataset as needed), and then 
+  POST again to continue the merge.
 
 Per-user settings (filters, decks and slides, variable permissions etc) are copied to the new dataset when you fork. However, changes to them are not merged back at this time. Please reach out to us as you experiment so we can fine-tune which details to fork and merge as we discover use cases.
 
