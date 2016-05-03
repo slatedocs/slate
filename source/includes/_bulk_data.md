@@ -49,9 +49,9 @@ As of this writing, aws-lambda-redshift-loader v2.4.0 only supports a single con
 The core steps to get this up and running are:
 
 1. Setting up S3 buckets to retain file storage
-2. Setting up your Redshift database cluster and preloading a schema.
-3. Setting up your custom lambda webhook receiver
-4. Setting up your aws-lambda-redshift-loader.
+2. Setting up your custom lambda webhook receiver
+3. Setting up your Redshift database cluster and preloading a schema.
+4. Setting up your `aws-lambda-redshift-loader` lambda.
 5. Configure your bulk data webhook in the Control Shift settings console.
 
 **Note:** All resources should be set up in the same AWS region (ex: us-east-1) so they can access each other. "US Standard" and "us-east-1" are the same thing.
@@ -80,29 +80,73 @@ var https = require('https');
 var url = require('url');
 var AWS = require('aws-sdk');
 
-var s3 = new AWS.S3();
-var targetBucket = 'controlshift-receiver'; // receiver bucket name
+function csvReceiver(downloadUrl, eventContext, webhookJSON){
+  var targetBucket = 'controlshift-receiver', // receiver bucket name
+    s3 = new AWS.S3(),
+    firstLineRemoved = false,
+    csvData = '',
+    context = eventContext,
+    receivedJSON = webhookJSON;
 
+  var parseFileName = function(url_string){
+    path = url.parse(url_string).pathname
+    return path.substr(path.lastIndexOf('/')+1)
+  }
+
+  // Remove Headers Utility
+  var removeFirstLine = function(chunk){
+    if(firstLineRemoved){
+      csvData += chunk;
+    }else{
+      var buffer = chunk.toString();
+      if (buffer.indexOf('\n') !== -1) {
+        csvData += chunk.slice(chunk.indexOf('\n') + 1);
+        firstLineRemoved = true;
+        buffer = null;
+      }
+    }
+  }
+
+  var uploadCsv = function(){
+    var upload_details = {Bucket: targetBucket, Key: fileName, Body: csvData};
+    s3.upload(upload_details, function(err, data) {
+      if (err){
+        // an error occurred
+        console.log(err, err.stack);
+        context.fail(err);
+      }else{
+        // successful response
+        context.succeed({"status": "success", "payload": receivedJSON});
+      }
+    });
+  }
+
+  return {
+    processCsv:function(){
+      fileName= parseFileName(downloadUrl);
+      // this.context = context;
+
+      https.get(downloadUrl, function(httpResponse) {
+        httpResponse.on('data', function(chunk) {
+          removeFirstLine(chunk);
+        });
+        httpResponse.on('end', function() {
+          console.log(httpResponse);
+          uploadCsv();
+        });
+      });
+    }
+  }
+
+};
+
+// Lambda event Handler
 exports.handler = function(event, context) {
   var receivedJSON = JSON.stringify(event, null, 2);
   console.log('Received event:', receivedJSON);
   if(event.type == 'data.full_table_exported'){
-    var downloadUrl = event.data.url;
-    var fileName = url.parse(downloadUrl).pathname.replace('/','')
-    https.get(downloadUrl, function(httpResponse) {
-      var upload_details = {Bucket: targetBucket, Key: fileName, Body: httpResponse};
-      s3.upload(upload_details, function(err, data) {
-        if (err){
-          // an error occurred
-          console.log(err, err.stack);
-          context.fail(err);
-        }else{
-          // successful response
-          console.log(httpResponse);
-          context.succeed({"status": "success", "payload": receivedJSON});
-        }
-      });
-    });
+    var receiver = new csvReceiver(event.data.url, context, receivedJSON);
+    receiver.processCsv();
   }else{
     context.succeed({"status": "skipped", "payload": receivedJSON});
   }
