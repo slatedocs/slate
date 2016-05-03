@@ -429,7 +429,7 @@ GET returns a Shoji View of available dataset export formats.
 	"element": "shoji:view",
 	"self": "https://beta.crunch.io/api/datasets/223fd4/export/",
 	"views": {
-		"spss": "https://beta.crunch.io/api/datasets/223fd4/export/spss/"
+		"spss": "https://beta.crunch.io/api/datasets/223fd4/export/spss/",
 		"csv": "https://beta.crunch.io/api/datasets/223fd4/export/csv/"
 	}
 }
