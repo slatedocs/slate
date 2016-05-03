@@ -211,6 +211,19 @@ Note that, unlike other Shoji Catalog resources, you cannot PATCH to add new
 datasets, nor can you PATCH a null tuple to delete them. Attempting either will 
 return a 400 response. Creating datasets is allowed only by POST to the catalog,
  while deleting datasets is accomplished via a DELETE on the dataset entity.
+ 
+##### Changing ownership
+
+Any changes to the ownership of a dataset need to be done by the current editor.
+
+Only the dataset owner can change the ownership to another user. This can be done
+by PATCH request with the new owners' email of API URL. The new owner must have
+advanced permissions on Crunch.
+
+Other editors of the dataset can change the ownership of a dataset only to a 
+Project as long as they andthe current owner of the dataset are both editors
+on such project.
+
 
 
 #### POST
