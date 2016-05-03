@@ -21,7 +21,7 @@ CREATE TABLE locations (
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     extras text,
-    point geometry(Point,4326),
+    point text,
     street_number character varying(200),
     venue character varying(255)
 );
