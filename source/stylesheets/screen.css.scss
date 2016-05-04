@@ -33,6 +33,16 @@ html, body {
   background-color: $main-bg;
   height: 100%;
   -webkit-text-size-adjust: none; /* Never autoresize text */
+  /* Next 2 lines added 4/27/16 to constrain code blocks' width: */
+  width: 90%;
+  min-width: 850px;
+
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: border-box
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -48,8 +58,8 @@ html, body {
 
 @mixin embossed-bg {
   background:
-    linear-gradient(to bottom, rgba(#000, 0.2), rgba(#000, 0) 8px),
-    linear-gradient(to top, rgba(#000, 0.2), rgba(#000, 0) 8px),
+    linear-gradient(to bottom, rgba(#34313F, 0.2), rgba(#34313F, 0) 8px),
+    linear-gradient(to top, rgba(#34313F, 0.2), rgba(#34313F, 0) 8px),
     linear-gradient(to bottom, rgba($nav-embossed-border-top, 1), rgba($nav-embossed-border-top, 0) 1.5px),
     linear-gradient(to top, rgba($nav-embossed-border-bottom, 1), rgba($nav-embossed-border-bottom, 0) 1.5px),
     $nav-subitem-bg;
@@ -62,13 +72,13 @@ html, body {
   overflow-x: hidden;
   position: fixed;
   z-index: 30;
-  top: 0;
+  top: 40px;
   left: 0;
   bottom: 0;
   width: $nav-width;
   background-color: $nav-bg;
-  font-size: 13px;
-  font-weight: bold;
+  font-size: 16px;
+  padding: 25px;
 
   // language selector for mobile devices
   .lang-selector {
@@ -82,22 +92,27 @@ html, body {
   // This is the logo at the top of the ToC
   &>img {
     display: block;
+
     max-width: 100%;
+
   }
 
   &>.search {
     position: relative;
+    margin-top: 25px;
+    margin-bottom: 25px;
 
     input {
       background: $nav-bg;
       border-width: 0 0 1px 0;
       border-color: $search-box-border-color;
-      padding: 6px 0 6px 20px;
+      padding: 7px 0 7px 20px;
       box-sizing: border-box;
       margin: $nav-v-padding $nav-padding;
-      width: $nav-width - 30;
+      width: $nav-width - 75;
       outline: none;
-      color: $nav-text;
+      color: $nav-active-text;
+      font-size: 14px;
       border-radius: 0; /* ios has a default border radius */
     }
 
@@ -105,7 +120,7 @@ html, body {
       position: absolute;
       top: 17px;
       left: $nav-padding;
-      color: $nav-text;
+      color: $nav-active-text;
       @extend %icon-search;
     }
   }
@@ -126,21 +141,26 @@ html, body {
     &.visible {
       height: 30%;
       margin-bottom: 1em;
+      border: 1px solid #34313f;
+      border-radius: 2px;
+      background-color: #34313f;
     }
 
-    @include embossed-bg;
-
     li {
-      margin: 1em $nav-padding;
+      margin: .5em $nav-padding;
       line-height: 1;
+      font-size: 14px;
+      color: $nav-active-text;
     }
 
     a {
-      color: $nav-text;
+      color: #fff;
       text-decoration: none;
+      font-size: 14px;
 
       &:hover {
-        text-decoration: underline;
+        text-decoration: none;
+        color: $lang-select-text;
       }
     }
   }
@@ -171,11 +191,25 @@ html, body {
     transition-duration: 230ms;
   }
 
+  a {
+    color: $nav-text;
+  }
+
+  ul.tocify-header {
+    a {
+      font-size: 14px;
+      font-weight: $tocify-focus-font-weight;
+      color: $nav-active-text;
+    }
+  }
+
   // This is the currently selected ToC entry
   .tocify-focus {
-    box-shadow: 0px 1px 0px $nav-active-shadow;
     background-color: $nav-active-bg;
-    color: $nav-active-text;
+
+    a {
+      color: $nav-active-text !important;
+    }
   }
 
   // Subheaders are the submenus that slide open
@@ -183,27 +217,59 @@ html, body {
   .tocify-subheader {
     display: none; // tocify will override this when needed
     background-color: $nav-subitem-bg;
-    font-weight: 500;
-    .tocify-item>a {
-      padding-left: $nav-padding + $nav-indent;
-      font-size: 12px;
+    font-weight: $tocify-font-weight;
+    text-indent: 15px;
+
+    .tocify-focus {
+      a {
+        background: url('../images/slash.svg') no-repeat;
+        background-position: 13px 8px;
+        background-size: 10px;
+      }
     }
 
-    // for embossed look:
-    @include embossed-bg;
+    .tocify-item>a {
+      color: $nav-text;
+      font-size: 13px;
+      font-weight: $tocify-font-weight;
+
+      // Nested for nested 3rd level, from: https://github.com/tripit/slate/wiki/Deeper-Nesting:
+      .tocify-subheader {
+        .tocify-item>a {
+          font-size: 13px;
+          font-weight: $tocify-font-weight;
+        }
+      }
+      // Nested for nested 4th level, from: https://github.com/tripit/slate/wiki/Deeper-Nesting:
+      .tocify-subheader {
+        .tocify-item>a {
+          font-size: 13px;
+          font-weight: $tocify-font-weight;
+        }
+      }
+    }
+
     &>li:last-child {
       box-shadow: none; // otherwise it'll overflow out of the subheader
     }
   }
 
+  .tocify-subheader .tocify-subheader {
+    text-indent: 30px;
+  }
+
+  .tocify-subheader .tocify-subheader .tocify-subheader {
+    text-indent: 45px;
+  }
+
   .toc-footer {
     padding: 1em 0;
     margin-top: 1em;
-    border-top: 1px dashed $nav-footer-border-color;
 
     li,a {
       color: $nav-text;
       text-decoration: none;
+      font-size: 13px;
     }
 
     a:hover {
@@ -211,7 +277,7 @@ html, body {
     }
 
     li {
-      font-size: 0.8em;
+      font-size: 1.0em;
       line-height: 1.7;
       text-decoration: none;
     }
@@ -236,9 +302,9 @@ html, body {
   top: 0;
   left: 0;
   z-index: 100;
-  color: #000;
+  color: #34313F;
   text-decoration: none;
-  font-weight: bold;
+  font-weight: bold;  /* Should probably change to SemiBold = 600 */
   opacity: 0.7;
   line-height: 16px;
   img {
@@ -280,34 +346,43 @@ html, body {
     bottom: 0;
   }
 
-  .lang-selector {
+.lang-selector {
     position: fixed;
     z-index: 50;
-    border-bottom: 5px solid $lang-select-active-bg;
+    padding: 0 2rem;
   }
 }
 
 .lang-selector {
   background-color: $lang-select-bg;
   width: 100%;
-  font-weight: bold;
+
   a {
     display: block;
     float:left;
     color: $lang-select-text;
     text-decoration: none;
     padding: 0 10px;
-    line-height: 30px;
+    line-height: 48px;
     outline: 0;
+    margin-right: .5rem;
 
-    &:active, &:focus {
-      background-color: $lang-select-pressed-bg;
-      color: $lang-select-pressed-text;
+    &:active, &:focus, &:hover {
+      background-color: $lang-select-active-bg;
+      color: $lang-select-text;
     }
 
     &.active {
       background-color: $lang-select-active-bg;
       color: $lang-select-active-text;
+      border-bottom: 2px solid $lang-select-active-text;
+    }
+  }
+
+  a.active {
+    &:active, &:focus {
+      background-color: $lang-select-pressed-bg;
+      color: $lang-select-pressed-text;
     }
   }
 
@@ -354,32 +429,19 @@ html, body {
   }
 
   h1 {
-    @extend %header-font;
+   @extend %header-font;
     font-size: 30px;
-    padding-top: 0.5em;
-    padding-bottom: 0.5em;
-    border-bottom: 1px solid #ccc;
-    margin-bottom: $h1-margin-bottom;
-    margin-top: 2em;
-    border-top: 1px solid #ddd;
-    background-image: linear-gradient(to bottom, #fff, #f9f9f9);
   }
-
+ 
   h1:first-child, div:first-child + h1 {
     border-top-width: 0;
     margin-top: 0;
   }
 
   h2 {
-    @extend %header-font;
-    font-size: 20px;
-    margin-top: 4em;
-    margin-bottom: 0;
-    border-top: 1px solid #ccc;
-    padding-top: 1.2em;
-    padding-bottom: 1.2em;
-    background-image: linear-gradient(to bottom, rgba(#fff, 0.4), rgba(#fff, 0));
-  }
+     @extend %header-font;
+     font-size: 20px;
+   }
 
   // h2s right after h1s should bump right up
   // against the h1s.
@@ -390,13 +452,11 @@ html, body {
 
   h3, h4, h5, h6 {
     @extend %header-font;
-    font-size: 15px;
-    margin-top: 2.5em;
-    margin-bottom: 0.8em;
+    font-size: 18px;
   }
 
   h4, h5, h6 {
-    font-size: 10px;
+    font-size: 16px;
   }
 
   hr {
@@ -448,6 +508,11 @@ html, body {
   p, li, dt, dd {
     line-height: 1.6;
     margin-top: 0;
+    font-size: .8rem;
+
+    a {
+      font-size: .8rem;
+    }
   }
 
   img {
@@ -523,7 +588,7 @@ html, body {
 .content {
   pre, blockquote {
     background-color: $code-bg;
-    color: #fff;
+    color: #F7F7F7;
 
     padding: 2em $main-padding;
     margin: 0;
@@ -540,7 +605,7 @@ html, body {
     &>p { margin: 0; }
 
     a {
-      color: #fff;
+      color: #F7F7F7;
       text-decoration: none;
       border-bottom: dashed 1px #ccc;
     }
@@ -556,8 +621,37 @@ html, body {
       border-radius: 5px;
       padding: $code-annotation-padding;
       color: #ccc;
-      border-top: 1px solid #000;
+      border-top: 1px solid #34313F;
       border-bottom: 1px solid #404040;
+    }
+  }
+}
+
+body.twocolumn {
+  .content {
+    pre, blockquote {
+      width: auto;
+      float: none;
+      padding: 0.8em 18px;
+      margin-right: 28px;
+    }
+
+    pre {
+      margin-left: 28px;
+    }
+
+    code, pre {
+      font-size: 13px;
+      line-height: 1.6;
+      margin-bottom: 1.4em;
+    }
+
+    &>h1, &>h2, &>h3, &>h4, &>h5, &>h6, &>p, &>table, &>ul, &>ol, &>aside, &>dl {
+      margin-right: 0;
+      /* Next 2–3 lines added 4/27/16 to, constrain vertical and horizontal bloat: */
+      line-height: 125%;      
+      width: 80%;
+      min-width: 850px;
     }
   }
 }
@@ -583,6 +677,7 @@ html, body {
 
   #nav-button {
     display: block;
+    z-index: 999;
   }
 
   .tocify-wrapper .tocify-item > a {
@@ -602,6 +697,18 @@ html, body {
 
   .tocify-wrapper .lang-selector {
     display: block;
+    margin-top: 40px;
+    background-color: transparent;
+
+    a.active {
+      background-color: transparent;
+      color: #4b71fc;
+      border-bottom: none;
+    }
+
+    a:hover {
+      background-color: transparent;
+    }
   }
 
   .page-wrapper .lang-selector {
@@ -618,10 +725,122 @@ html, body {
   }
 }
 
+iframe {
+    padding-left: 2.5em;
+}
+
+a {
+    background-color: transparent;
+}
+
+img {
+    border: 0;
+}
+
 .highlight .c, .highlight .cm, .highlight .c1, .highlight .cs {
   color: #909090;
 }
 
 .highlight, .highlight .w {
   background-color: $code-bg;
+}
+
+@import 'page';
+@import 'buttons';
+@import 'navbar';
+@import 'blocks';
+
+.topBar-container {
+  background-color: #4f75f8;
+
+  a {
+    color: #ffffff;
+
+    &:hover, &:focus {
+      color: #E5E5E5 !important;
+    }
+  }
+
+  .button--action {
+    background-color: #41539b;
+    border-color: #41539b;
+
+    &:hover, &:focus {
+      background-color: #3a426e;
+      border-color: #3a426e;
+    }
+  }
+}
+
+.top-bar-actions {
+  width: 30%;
+}
+
+.top-bar .name img, [top-bar] .name img {
+    width: 7.33333rem;
+    top: 2px;
+    position: relative;
+}
+
+.block-container {
+    padding-top: 0 !important;
+}
+
+.home-block {
+    background: url('/images/hero.svg') no-repeat 100%;
+    background-size: 575px;
+}
+
+@media (max-width: 768px) {
+    .top-bar .title-area, [top-bar] .title-area {
+        margin-left: 0;
+        padding: 0;
+        text-align: center;
+    }
+
+    .top-bar .name img, [top-bar] .name img {
+        display: inherit;
+        height: 52px;
+    }
+}
+
+@media (min-width: 769px) {
+.top-bar-section, [top-bar-section] {
+    width: 50%;
+  }
+}
+
+@media (max-width: 1023px) {
+.hideOnTablet {
+    display: none;
+  }
+}
+
+#tocify-header0 > li {
+  display: none;
+}
+
+.changelog {
+  .content h1, h2 {
+  display: none;
+  }
+}
+
+table td:nth-child(3) {
+  word-break: break-word;
+}
+
+.vtwo-links {
+  padding: 0 15px 0 15px;
+
+  #vtwo-link1, #vtwo-link2, #vtwo-link3 {
+    font-size: 14px;
+    color: #595864;
+  }
+}
+
+/* Added 4/27/16 to constrain body text's width: */
+.themes .content {
+    width: 80%;
+    min-width: 850px;
 }

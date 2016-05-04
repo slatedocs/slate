@@ -23,37 +23,37 @@ under the License.
 
 // BACKGROUND COLORS
 ////////////////////
-$nav-bg: #393939;
-$examples-bg: #393939;
-$code-bg: #292929;
-$code-annotation-bg: #1c1c1c;
-$nav-subitem-bg: #262626;
-$nav-active-bg: #2467af;
-$lang-select-border: #000;
-$lang-select-bg: #222;
-$lang-select-active-bg: $examples-bg; // feel free to change this to blue or something
-$lang-select-pressed-bg: #111; // color of language tab bg when mouse is pressed
-$main-bg: #eaf2f6;
-$aside-notice-bg: #8fbcd4;
-$aside-warning-bg: #c97a7e;
-$aside-success-bg: #6ac174;
+$nav-bg: #f6f7f9;
+$examples-bg: #34313f;
+$code-bg: #34313f;
+$code-annotation-bg: #2e2c38;
+$nav-subitem-bg: #f6f7f9;
+$nav-active-bg: #f6f7f9;
+$lang-select-border: #292732;
+$lang-select-bg: #292732;
+$lang-select-active-bg: $lang-select-bg; // feel free to change this to blue or something
+$lang-select-pressed-bg: $lang-select-bg; // color of language tab bg when mouse is pressed
+$main-bg: #ffffff;
+$aside-notice-bg: #e3f1fc;
+$aside-warning-bg: #fce0d8;
+$aside-success-bg: #e1f5e2;
 $search-notice-bg: #c97a7e;
 
 
 // TEXT COLORS
 ////////////////////
-$main-text: #333; // main content text color
-$nav-text: #fff;
-$nav-active-text: #fff;
-$lang-select-text: #fff; // color of unselected language tab text
-$lang-select-active-text: #fff; // color of selected language tab text
-$lang-select-pressed-text: #fff; // color of language tab text when mouse is pressed
+$main-text: #53525e; // main content text color
+$nav-text: #8e919c;
+$nav-active-text: #595864;
+$lang-select-text: #e3e3e4; // color of unselected language tab text
+$lang-select-active-text: #4b71fc; // color of selected language tab text
+$lang-select-pressed-text: #4b71fc; // color of language tab text when mouse is pressed
 
 
 // SIZES
 ////////////////////
-$nav-width: 230px; // width of the navbar
-$examples-width: 50%; // portion of the screen taken up by code examples
+$nav-width: 285px; // width of the navbar
+$examples-width: 40%; // portion of the screen taken up by code examples
 $logo-margin: 20px; // margin between nav items and logo, ignored if search is active
 $main-padding: 28px; // padding to left and right of content & examples
 $nav-padding: 15px; // padding to left and right of navbar
@@ -67,14 +67,15 @@ $phone-width: $tablet-width - $nav-width; // min width before reverting to mobil
 
 // FONTS
 ////////////////////
+
 %default-font {
-  font-family: "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei","微软雅黑", STXihei, "华文细黑", sans-serif;
-  font-size: 13px;
+  font-family: "Source Sans Pro", Roboto, Lato, "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei","微软雅黑", STXihei, "华文细黑", sans-serif;
+  font-size: 14px;
 }
 
 %header-font {
   @extend %default-font;
-  font-weight: bold;
+  font-weight: 600;  /* SemiBold to avoid bloat */
 }
 
 %code-font {
@@ -86,12 +87,15 @@ $phone-width: $tablet-width - $nav-width; // min width before reverting to mobil
 
 // OTHER
 ////////////////////
-$nav-active-shadow: #000;
-$nav-footer-border-color: #666;
-$nav-embossed-border-top: #000;
-$nav-embossed-border-bottom: #939393;
-$main-embossed-text-shadow: 0px 1px 0px #fff;
+$nav-active-shadow: none;
+$nav-footer-border-color: transparent;
+$nav-embossed-border-top: transparent;
+$nav-embossed-border-bottom: transparent;
+$main-embossed-text-shadow: none;
 $search-box-border-color: #666;
+
+$tocify-font-weight: 400;
+$tocify-focus-font-weight: 500;
 
 
 ////////////////////////////////////////////////////////////////////////////////

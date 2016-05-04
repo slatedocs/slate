@@ -1,11 +1,19 @@
 @font-face {
   font-family: 'slate';
-  src:font-url('slate.eot?-syv14m');
-  src:font-url('slate.eot?#iefix-syv14m') format('embedded-opentype'),
-    font-url('slate.woff2?-syv14m') format('woff2'),
-    font-url('slate.woff?-syv14m') format('woff'),
-    font-url('slate.ttf?-syv14m') format('truetype'),
-    font-url('slate.svg?-syv14m#slate') format('svg');
+  src:font-url('slate.eot');
+  src:font-url('slate.eot') format('embedded-opentype'),
+    font-url('slate.woff2') format('woff2'),
+    font-url('slate.woff') format('woff'),
+    font-url('slate.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Source Sans Pro';
+  src:font-url('SourceSansPro-Black.ttf');
+  src:font-url('SourceSansPro-Black.ttf') format('truetype'),
+    font-url('SourceSansPro-Black.woff') format('woff');
   font-weight: normal;
   font-style: normal;
 }
