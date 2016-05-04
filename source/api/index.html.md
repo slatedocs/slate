@@ -1,5 +1,5 @@
 ---
-title: Bigcommerce APIs
+title: BigCommerce API Documentation
 layout: "twocolumn"
 
 language_tabs:
@@ -19,16 +19,7 @@ toc_footers:
 includes:
   - api_clients
   - api_status_codes
-  - api_objects_product
-  - api_CRUD_products
-  - api_objects_product_image
-  - api_CRUD_products_images
-  - api_CRUD_categories
-  - api_CRUD_brands
-  - api_objects_order
-  - api_landing_orders
-  - api_objects_store_information
-  - video_test
+  - api_scopes
 
 search: true
 ---
