@@ -1,6 +1,6 @@
 ---
 title: BigCommerce API Documentation
-layout: "twocolumn"
+layout: "apitwocolumn"
 
 language_tabs:
   - curl: Request
@@ -16,55 +16,10 @@ toc_footers:
   - <a href='http://github.com/tripit/slate'>Documentation by Slate</a>
 
 includes:
-  - api_clients
-  - api_status_codes
-  - api_scopes
-  - api_objects_product
-  - api_CRUD_products
-  - api_objects_product_option
-  - api_CRUD_products_options
-  - api_objects_option_value
-  - api_CRUD_options_values
-  - api_objects_option_set
-  - api_CRUD_option_sets
-  - api_objects_option_set_option
-  - api_CRUD_option_sets_options
-  - api_objects_product_image
-  - api_CRUD_products_images
-  - api_objects_product_rule
-  - api_CRUD_products_rules
-  - api_objects_product_review
-  - api_CRUD_products_reviews
-  - api_objects_sku
-  - api_CRUD_products_skus
-  - api_objects_product_custom_field
-  - api_CRUD_products_custom_fields
-  - api_objects_product_configurable_field
-  - api_CRUD_products_configurable_fields
-  - api_objects_product_discount_rule
-  - api_CRUD_products_discount_rules
-  - api_objects_product_googleproductsearch
-  - api_CRUD_products_googleproductsearch
-  - api_objects_product_video
-  - api_CRUD_products_videos
   - api_objects_category
   - api_CRUD_categories
   - api_objects_brand
   - api_CRUD_brands
-  - api_objects_order
-  - api_CRUD_orders
-  - api_objects_order_status
-  - api_CRUD_orders_statuses
-  - api_objects_order_product
-  - api_CRUD_orders_products
-  - api_objects_order_shipment
-  - api_CRUD_orders_shipments
-  - api_objects_order_shipping_address
-  - api_CRUD_orders_shipping_addresses
-  - api_objects_order_coupon
-  - api_CRUD_orders_coupons
-  - api_objects_order_message
-  - api_CRUD_orders_messages
   - api_objects_country
   - api_CRUD_countries
   - api_objects_country_state
@@ -87,4 +42,10 @@ search: true
 ---
 
 # API v2 Documentation
+
+The Bigcommerce Stores API features a RESTful architecture, allowing you to code in the language of your choice. This API supports the JSON media type, and uses UTF-8 character encoding.
+
+All connections require authentication, and are secured by TLS encryption. As of June 30, 2016, all requests must support Server Name Indication (SNI).
+
+With clever use of this API, you can automate various commerce, business, and publishing tasks and integrate all kinds of apps with our platform.
 

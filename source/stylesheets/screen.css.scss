@@ -830,9 +830,20 @@ table td:nth-child(3) {
   word-break: break-word;
 }
 
+<<<<<<< HEAD
+.vtwo-links {
+  padding: 0 15px 0 15px;
+
+  #vtwo-link1, #vtwo-link2, #vtwo-link3 {
+    font-size: 14px;
+    color: #595864;
+  }
+}
+=======
 /* Added 4/27/16 to constrain body text's width: */
 .themes .content {
     width: 80%;
     min-width: 850px;
 }
 
+>>>>>>> master
