@@ -2,7 +2,11 @@
 
 ## Installing the library
 
-Currently the SDK is available via source distribution only. We will be packaging the SDK and releasing it into a Maven repository as well.
+The Geezeo SDK is available via 
+
+[Maven Central](https://jitpack.io/#geezeo/sdk-java/preview)
+or
+[Source code](https://github.com/geezeo/sdk-java)
 
 ## Using the library
 
