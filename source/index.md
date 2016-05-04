@@ -4,6 +4,8 @@ title: Kuzzle SDK Documentation
 language_tabs:
   - javascript: Javascript
   - java: Android
+  - objective_c: Objective C
+  - swift: Swift
 
 toc_footers:
   - <a href='http://github.com/kuzzleio/kuzzle'>Kuzzle on GitHub</a>

@@ -40,6 +40,41 @@ Kuzzle kuzzle = new Kuzzle("http://localhost:7512", options, new KuzzleResponseL
 });
 ```
 
+```objective_c
+// First program example
+
+#import <Foundation/Foundation.h>
+
+int main (int argc, const char * argv[])
+{
+        NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+        NSLog (@"Hello, World!");
+        [pool drain];
+        return 0;
+}
+```
+
+```swift
+@IBAction func sayHelloAction(sender : AnyObject) {
+
+    let name = nameTextField.text
+
+    if name.isEmpty {
+
+        let alert = UIAlertController(title: "Error", message: "Please enter a name",
+                preferredStyle: UIAlertControllerStyle.Alert)
+
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default,
+                handler: nil))
+
+        self.presentViewController(alert, animated: true, completion: nil)
+    } else {
+
+        helloLabel.text = "Hello \(name)!"
+    }
+}
+```
+
 #### Kuzzle(url, [options], [callback])
 
 
