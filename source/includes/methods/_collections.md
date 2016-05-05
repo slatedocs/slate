@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Collections are payments sent to you from mobile subscribers. See ['how collections work']](http://support.beyonic.com/how-collections-work/) for more information.
+Collections are payments sent to you from mobile subscribers. See ['how collections work'](http://support.beyonic.com/how-beyonic-makes-collections-easier/)for more information.
 
 When the user sends in a payment, it will create a collection object that you can access via the Collections API using the methods shown below.
 
@@ -237,7 +237,7 @@ You can search or filter collections on the following fields. Simply add them to
 
 * amount - the transaction amount
 * currency - the currency code
-* phonenumber - the phonenumber that the collection request was intended for. Note that the phonenumber will be matched in international format, starting with a '+' sign. If the '+' sign isn't included in your request, it will be appended before attempting to match your request. This is only true for phone number searches with collections, to make claiming of transactions easier. Other 
+* phonenumber - the phonenumber that the collection request was intended for. Note that the phonenumber will be matched in international format, starting with a '+' sign. If the '+' sign isn't included in your request, it will be appended before attempting to match your request. This is only true for phone number searches with collections, to make claiming of transactions easier. Other
 * reference - the reference code that the customer used when sending the collection
 * remote_transaction_id - the transation id or transaction reference of the collection on the mobile network operator's side
 * collection_request - the ID of the collection request that this collection was matched to
@@ -310,9 +310,9 @@ collection = beyonic.Collection.list(phonenumber='+256772712893',
 ]
 ```
 
-By default, when you search for a collection, only collections that have been successfully assigned to your organization are searched. 
+By default, when you search for a collection, only collections that have been successfully assigned to your organization are searched.
 
-You can add the "claim" parameter to instruct Beyonic to also search unmatched collections, and if any of the unmatched collections match your input, they will be assigned to your organization. 
+You can add the "claim" parameter to instruct Beyonic to also search unmatched collections, and if any of the unmatched collections match your input, they will be assigned to your organization.
 
 Note that when you include the claim parameter, you **must** also include the amount, remote_transaction_id and phonenumber parameters. Failure to do so will result in an error.
 
