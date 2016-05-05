@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Collections are payments sent to you from mobile subscribers. See ['how collections work'](http://support.beyonic.com/how-beyonic-makes-collections-easier/)for more information.
+Collections are payments sent to you from mobile subscribers. See ['how collections work'](http://support.beyonic.com/how-beyonic-makes-collections-easier/) for more information.
 
 When the user sends in a payment, it will create a collection object that you can access via the Collections API using the methods shown below.
 
