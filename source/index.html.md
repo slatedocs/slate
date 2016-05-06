@@ -18,9 +18,9 @@ search: true
 
 # Introduction
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+Welcome to the GoRaise API! You can use our API to get information on various retailers, rates and users in our database.
 
-We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+We have language bindings in Shell, PHP &amp; Javascript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
 
 This example API documentation page was created with [Slate](https://github.com/tripit/slate). Feel free to edit it and use it as a base for your own API's documentation.
 
@@ -28,141 +28,159 @@ This example API documentation page was created with [Slate](https://github.com/
 
 > To authorize, use this code:
 
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
+```php
+some code
 ```
 
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
+```js
+some code
 ```
 
 ```shell
 # With shell, you can just pass the correct header with each request
 curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
+  -H "Authorization: your_token"
 ```
 
-> Make sure to replace `meowmeowmeow` with your API key.
+> Make sure to replace `your_token` with your API key.
 
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
+GoRaise uses API keys to allow access to the API. You can request a new GoRaise API key by contacting [our API team](https://www.goraise.co.uk/contact).
 
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
+GoRaise expects for the API key to be included in all API requests to the server in a header that looks like the following:
 
 `Authorization: meowmeowmeow`
 
 <aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
+You must replace <code>your_token</code> with your personal API key.
 </aside>
 
-# Kittens
+# Retailers
 
-## Get All Kittens
+## Get All Retailers
 
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
+```php
+some code
 ```
 
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
+```js
+some code
 ```
 
 ```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
-```
-
-> The above command returns JSON structured like this:
-
-```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
-```
-
-This endpoint retrieves all kittens.
-
-### HTTP Request
-
-`GET http://example.com/api/kittens`
-
-### Query Parameters
-
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
+curl "https://api.goraise.co.uk/rest/retailers"
+  -H "Authorization: your_token"
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
 {
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
+  "status": 200,
+  "counts": {
+    "start": 0,
+    "limit": 100,
+    "total": 2703
+  },
+  "items": [
+    {
+      "id": "1166",
+      "name": "(IS) Interserver Webhosting and VPS",
+      "description": null,
+      "shortname": "isinterserverwebhostingandvps",
+      "logo": null,
+      "rate_highest_value": null,
+      "rate_highest_type": null,
+      "featured": "0",
+      "featured_order": "0",
+      "website_url": "http://www.interserver.net",
+      "domain_aliases": null,
+      "quality_score": null
+    },
+    {
+      "id": "1121",
+      "name": "(s) Strikingly",
+      "description": null,
+      "shortname": "sstrikingly",
+      "logo": null,
+      "rate_highest_value": "5",
+      "rate_highest_type": "percent",
+      "featured": "0",
+      "featured_order": "0",
+      "website_url": "https://www.strikingly.com/",
+      "domain_aliases": null,
+      "quality_score": null
+    }
+  ]
 }
 ```
 
-This endpoint retrieves a specific kitten.
-
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
+This endpoint retrieves all retailers.
 
 ### HTTP Request
 
-`GET http://example.com/kittens/<ID>`
+`GET https://api.goraise.co.uk/rest/retailers`
+
+### Query Parameters
+
+Parameter | Default | Description
+--------- | ------- | -----------
+start | 0 | The initial search offset of the results
+limit | 100 | How many results to pull back in one go. Can range from 1-200
+name | false | Filter retailers by their name. Omit this to bring back all retailers
+
+## Get a Specific Retailer
+
+```php
+some code
+```
+
+```js
+some code
+```
+
+```shell
+curl "https://api.goraise.co.uk/rest/retailers/1121"
+  -H "Authorization: your_token"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "status": 200,
+  "counts": {
+    "total": 1
+  },
+  "items": [
+    {
+      "id": "1121",
+      "name": "(s) Strikingly",
+      "description": null,
+      "shortname": "sstrikingly",
+      "logo": null,
+      "rate_highest_value": "5",
+      "rate_highest_type": "percent",
+      "featured": "0",
+      "featured_order": "0",
+      "website_url": "https://www.strikingly.com/",
+      "domain_aliases": null,
+      "quality_score": null
+    }
+  ]
+}
+```
+
+This endpoint retrieves a specific retailer.
+
+<aside class="warning">Make sure your retailer ID reference is an integer!</aside>
+
+### HTTP Request
+
+`GET https://api.goraise.co.uk/retailers/<ID>`
 
 ### URL Parameters
 
 Parameter | Description
 --------- | -----------
-ID | The ID of the kitten to retrieve
+ID | The ID of the retailer to retrieve
 
