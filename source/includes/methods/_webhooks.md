@@ -94,6 +94,34 @@ Parameter | Description
 hook | A JSON representation of a webhook object. See the see webhook section below.
 data | A JSON representation of the object that triggered the event. This is different for each event. See the 'Supported events' section above.
 
+## Tips for testing your notification URLs
+
+1. Https with invalid certificates
+
+Beyonic only supports notification urls that start with "https://", even when testing. So, you should set up URL to a dedicated page on your server with a server-side https certificate. 
+
+Beyonic will usually validate the https certificate, and if validation fails, the notification will not be sent to your URL. To skip validation while testing, add ?skip-cert-verify to your URL, for example: https://my.callback.url.com?skip-cert-verify.
+
+Note that skip-cert-verify only prevents certificate verification. It doesn't eliminate the "https://" requirement
+
+While you can use skip-cert-verify on your production URLs, we advise you to use valid server side certificates to maximize security on your production systems
+
+2. Setting up a temporary callback URL and verifying the format of the notifications
+
+If you are not able to set up a dedicated "https://" url while testing, we recommend using a service like [RequestBin](https://requestb.in/)
+
+RequestBin gives you a URL that will collect requests made to it and let you inspect them in a human-friendly way. Use RequestBin to inspect and debug the webhook notifications.
+
+Once you get a RequestBin URL, it uses http by default. Since Beyonic only supports https, remember to use "https://" and "skip-cert-verify"
+
+For example, if your RequestBin URL is 
+
+http://requestb.in/xzdqe313,
+
+Then use this for your callback URLs:
+
+https://requestb.in/xzdqe313?skip-cert-verify
+
 ## Creating a new webhook
 
 > Sample Request:
