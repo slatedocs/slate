@@ -285,6 +285,192 @@ You must replace <code>your_token</code> with your personal API key.
 </tr>
 </tbody></table>
 
+<h1 id="users">Users</h1>
+
+<h2 id="get-all-users">Get All Users</h2>
+<pre class="highlight shell"><code>curl <span class="s2">"https://api.goraise.co.uk/rest/users"</span>
+  -H <span class="s2">"Authorization: your_token"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"counts"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Gary"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gary@goraise.co.uk"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"date_joined"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1970-01-01 00:00:00"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tom"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tom@goraise.co.uk"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"date_joined"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1970-01-01 00:00:00"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>This endpoint retrieves all users.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://api.goraise.co.uk/rest/users</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>start</td>
+<td>0</td>
+<td>The initial search offset of the results</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>100</td>
+<td>How many results to pull back in one go. Can range from 1-200</td>
+</tr>
+</tbody></table>
+
+<h2 id="get-a-specific-user">Get a Specific User</h2>
+<pre class="highlight shell"><code>curl <span class="s2">"https://api.goraise.co.uk/rest/users/gary%40goraise.co.uk"</span>
+  -H <span class="s2">"Authorization: your_token"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"counts"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Gary"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gary@goraise.co.uk"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"date_joined"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1970-01-01 00:00:00"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>This endpoint retrieves a specific user.</p>
+
+<aside class="warning">A user&rsquo;s unique ID is their email address. Make sure you encode the *@* symbol as *%40*!</aside>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://api.goraise.co.uk/users/&lt;EMAIL&gt;</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>EMAIL</td>
+<td>The unique email address of the user (with an encoded <strong>@</strong> symbol as <strong>%40</strong>)</td>
+</tr>
+</tbody></table>
+
+<h2 id="create-a-new-user">Create a New User</h2>
+<pre class="highlight shell"><code>curl <span class="s2">"https://api.goraise.co.uk/rest/users"</span>
+  -H <span class="s2">"Authorization: your_token; Content-Type: application/json"</span>
+  -X POST
+  -d <span class="s1">'{"email":"joe@goraise.co.uk","password":"abcxyz", "first_name": "Joe", "last_name": "Bloggs"}'</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Joe"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bloggs"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"joe@goraise.co.uk"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"date_joined"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1970-01-01 00:00:00"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>This endpoint creates and returns a new user.</p>
+
+<aside class="warning">The only required fields for creating a new user are their email address and password.</aside>
+
+<aside class="info">If a user&rsquo;s email already exists, that user will be returned</aside>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">POST https://api.goraise.co.uk/users</code></p>
+
+<h3 id="required-parameters">Required Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>EMAIL</td>
+<td>The unique email address of the new user</td>
+</tr>
+<tr>
+<td>PASSWORD</td>
+<td>The password of the user. Must be 6 characters or more</td>
+</tr>
+</tbody></table>
+
+<h3 id="additional-optional-parameters">Additional Optional Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>FIRST_NAME</td>
+<td>The user&rsquo;s first name</td>
+</tr>
+<tr>
+<td>LAST_NAME</td>
+<td>The user&rsquo;s surname</td>
+</tr>
+<tr>
+<td>ADDRESS1</td>
+<td>The first line of the user&rsquo;s address</td>
+</tr>
+<tr>
+<td>POSTCODE</td>
+<td>The user&rsquo;s postal code</td>
+</tr>
+</tbody></table>
+
           <h1 id="errors">Errors</h1>
 
 <aside class="notice">All GoRaise API responses use industry standard HTTP response codes to match their response type.</aside>
