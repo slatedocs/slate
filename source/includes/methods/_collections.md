@@ -6,7 +6,8 @@ Collections are payments sent to you from mobile subscribers. See ['how collecti
 
 When the user sends in a payment, it will create a collection object that you can access via the Collections API using the methods shown below.
 
-The collections api endpoint is https://app.beyonic.com/api/collections
+The collections api endpoint is:
+  <aside class="notice">https://app.beyonic.com/api/collections</aside>
 
 ## The collection object
 

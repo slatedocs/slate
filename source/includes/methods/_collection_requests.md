@@ -8,7 +8,8 @@ Creating a collection request prior to receiving an expected collection greatly 
 
 Note: Currently, collection requests **do not** initiate any interaction with the subscriber. In the future, they will be used to "pull" payments from subscribers by sending payment instructions to the subscriber on supported networks.
 
-The collection requests api endpoint is https://app.beyonic.com/api/collectionrequests
+The collection requests api endpoint is:
+    <aside class="notice">https://app.beyonic.com/api/collectionrequests</aside>
 
 ## The collection request object
 

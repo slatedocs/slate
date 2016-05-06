@@ -4,7 +4,8 @@
 
 Contacts represent people whom you can send payments to, or receive payments from. The contacts api method allows you to add, retrieve, list and update contacts in your Beyonic account. Contacts are also added automatically whenever you send a payment to a new phone number.
 
-The contacts api endpoint is https://app.beyonic.com/api/contacts
+The contacts api endpoint is:
+    <aside class="notice">https://app.beyonic.com/api/contacts</aside>
 
 ## The contact object
 
