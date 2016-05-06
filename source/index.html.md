@@ -150,7 +150,7 @@ This endpoint retrieves a specific retailer.
 
 ### HTTP Request
 
-`GET https://api.goraise.co.uk/retailers/<ID>`
+`GET https://api.goraise.co.uk/rest/retailers/<ID>`
 
 ### URL Parameters
 
@@ -241,7 +241,7 @@ This endpoint retrieves a specific user.
 
 ### HTTP Request
 
-`GET https://api.goraise.co.uk/users/<EMAIL>`
+`GET https://api.goraise.co.uk/rest/users/<EMAIL>`
 
 ### URL Parameters
 
@@ -283,7 +283,7 @@ This endpoint creates and returns a new user.
 
 ### HTTP Request
 
-`POST https://api.goraise.co.uk/users`
+`POST https://api.goraise.co.uk/rest/users`
 
 ### Required Parameters
 
