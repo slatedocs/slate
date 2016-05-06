@@ -1,10 +1,8 @@
 ---
-title: API Reference
+title: GoRaise RESTful API Reference
 
 language_tabs:
   - shell
-  - ruby
-  - python
 
 toc_footers:
   - <a href='https://www.goraise.co.uk/contact'>Sign Up for a Developer Key</a>
@@ -20,21 +18,13 @@ search: true
 
 Welcome to the GoRaise API! You can use our API to get information on various retailers, rates and users in our database.
 
-We have language bindings in Shell, PHP &amp; Javascript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+We have language bindings in Shell, with PHP &amp; Javascript coming soon! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
 
 This example API documentation page was created with [Slate](https://github.com/garygarside/slate). Feel free to edit it and use it as a base for your own API's documentation.
 
 # Authentication
 
 > To authorize, use this code:
-
-```php
-some code
-```
-
-```js
-some code
-```
 
 ```shell
 # With shell, you can just pass the correct header with each request
@@ -57,14 +47,6 @@ You must replace <code>your_token</code> with your personal API key.
 # Retailers
 
 ## Get All Retailers
-
-```php
-some code
-```
-
-```js
-some code
-```
 
 ```shell
 curl "https://api.goraise.co.uk/rest/retailers"
@@ -129,14 +111,6 @@ limit | 100 | How many results to pull back in one go. Can range from 1-200
 name | false | Filter retailers by their name. Omit this to bring back all retailers
 
 ## Get a Specific Retailer
-
-```php
-some code
-```
-
-```js
-some code
-```
 
 ```shell
 curl "https://api.goraise.co.uk/rest/retailers/1121"

@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>API Reference</title>
+    <title>GoRaise RESTful API Reference</title>
 
     <style>
       .highlight table td { padding: 5px; }
@@ -91,7 +91,7 @@
       <script src="javascripts/all.js"></script>
   </head>
 
-  <body class="index" data-languages="[&quot;shell&quot;,&quot;ruby&quot;,&quot;python&quot;]">
+  <body class="index" data-languages="[&quot;shell&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -102,8 +102,6 @@
       <img src="images/logo.png" />
         <div class="lang-selector">
               <a href="#" data-language-name="shell">shell</a>
-              <a href="#" data-language-name="ruby">ruby</a>
-              <a href="#" data-language-name="python">python</a>
         </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
@@ -123,7 +121,7 @@
 
 <p>Welcome to the GoRaise API! You can use our API to get information on various retailers, rates and users in our database.</p>
 
-<p>We have language bindings in Shell, PHP &amp; Javascript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
+<p>We have language bindings in Shell, with PHP &amp; Javascript coming soon! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
 
 <p>This example API documentation page was created with <a href="https://github.com/garygarside/slate">Slate</a>. Feel free to edit it and use it as a base for your own API&rsquo;s documentation.</p>
 
@@ -132,10 +130,6 @@
 <blockquote>
 <p>To authorize, use this code:</p>
 </blockquote>
-<pre class="highlight php"><code>some code
-</code></pre>
-<pre class="highlight javascript"><code><span class="nx">some</span> <span class="nx">code</span>
-</code></pre>
 <pre class="highlight shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
 curl <span class="s2">"api_endpoint_here"</span>
   -H <span class="s2">"Authorization: your_token"</span>
@@ -158,10 +152,6 @@ You must replace <code>your_token</code> with your personal API key.
 <h1 id="retailers">Retailers</h1>
 
 <h2 id="get-all-retailers">Get All Retailers</h2>
-<pre class="highlight php"><code>some code
-</code></pre>
-<pre class="highlight javascript"><code><span class="nx">some</span> <span class="nx">code</span>
-</code></pre>
 <pre class="highlight shell"><code>curl <span class="s2">"https://api.goraise.co.uk/rest/retailers"</span>
   -H <span class="s2">"Authorization: your_token"</span>
 </code></pre>
@@ -242,10 +232,6 @@ You must replace <code>your_token</code> with your personal API key.
 </tbody></table>
 
 <h2 id="get-a-specific-retailer">Get a Specific Retailer</h2>
-<pre class="highlight php"><code>some code
-</code></pre>
-<pre class="highlight javascript"><code><span class="nx">some</span> <span class="nx">code</span>
-</code></pre>
 <pre class="highlight shell"><code>curl <span class="s2">"https://api.goraise.co.uk/rest/retailers/1121"</span>
   -H <span class="s2">"Authorization: your_token"</span>
 </code></pre>
@@ -361,8 +347,6 @@ You must replace <code>your_token</code> with your personal API key.
       <div class="dark-box">
           <div class="lang-selector">
                 <a href="#" data-language-name="shell">shell</a>
-                <a href="#" data-language-name="ruby">ruby</a>
-                <a href="#" data-language-name="python">python</a>
           </div>
       </div>
     </div>
