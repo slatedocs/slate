@@ -7,8 +7,8 @@ language_tabs:
   - python
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a>
+  - <a href='https://www.goraise.co.uk/contact'>Sign Up for a Developer Key</a>
+  - <a href='https://github.com/garygarside/slate'>Documentation Powered by Slate</a>
 
 includes:
   - errors
@@ -22,7 +22,7 @@ Welcome to the GoRaise API! You can use our API to get information on various re
 
 We have language bindings in Shell, PHP &amp; Javascript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
 
-This example API documentation page was created with [Slate](https://github.com/tripit/slate). Feel free to edit it and use it as a base for your own API's documentation.
+This example API documentation page was created with [Slate](https://github.com/garygarside/slate). Feel free to edit it and use it as a base for your own API's documentation.
 
 # Authentication
 
@@ -48,7 +48,7 @@ GoRaise uses API keys to allow access to the API. You can request a new GoRaise 
 
 GoRaise expects for the API key to be included in all API requests to the server in a header that looks like the following:
 
-`Authorization: meowmeowmeow`
+`Authorization: your_token`
 
 <aside class="notice">
 You must replace <code>your_token</code> with your personal API key.
