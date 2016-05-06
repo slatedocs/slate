@@ -311,7 +311,13 @@ location-id |
                 "link": "",
                 "notes": ""
                 }
-            ]
+            ],
+            "location_id": 1,
+            "urls": {
+                "interactive_url": "https:\/\/tools.brightlocal.com\/seo-tools\/admin\/cb\/campaign\/view\/5",
+                "pdf_url": "https:\/\/tools.brightlocal.com\/seo-tools\/admin\/cb\/campaign\/pdf\/5",
+                "csv_url": "https:\/\/tools.brightlocal.com\/seo-tools\/admin\/cb\/campaign\/csv\/5"
+            }
         }
     }
 }
