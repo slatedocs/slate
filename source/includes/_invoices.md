@@ -49,7 +49,7 @@ numeration | Applicable only to invoices with `kind = income`
 analytic_categories | Can not be a root analytic category
 items | Can be sideloaded in GET requests. <br> Must be included in the payload in POST/PATCH/PUT requests
 amended_invoice | The invoice amended by the current one.
-amending_invoice | An invoice that amends the current one (Read Only)
+amending_invoices | Invoices that amend the current one (Read Only)
 
 ## Listing invoices
 

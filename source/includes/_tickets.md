@@ -48,7 +48,7 @@ numeration | Applicable only to tickets with `kind = income`
 analytic_categories | Can not be a root analytic category
 items | Can be sideloaded in GET requests. <br> Must be included in the payload in POST/PATCH/PUT requests
 amended_ticket | The ticket amended by the current one.
-amending_ticket | A ticket that amends the current one (Read Only)
+amending_tickets | Ticket that amends the current one (Read Only)
 
 ## Listing tickets
 
