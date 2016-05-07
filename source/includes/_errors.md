@@ -44,8 +44,6 @@ Error Code | Meaning
 503 | Raw Transaction Error: error sending client-side transaction
 504 | RLP Encoding Error (geth error -32603)
 505 | No Market Info: could not retrieve market data
-506 | IPFS Add Failure: files could not be added to IPFS
-507 | IPFS Get Failure: could not retrieve file from IPFS
 599 | RPC Timeout: timed out while waiting for Ethereum network response
 650 | Loopback Not Found: loopback interface required for synchronous local commands
 651 | Ethereum Not Found: no active Ethereum node(s) found
@@ -57,10 +55,6 @@ Contract Errors
 
 Contract Method | Error | Meaning
 --------------- | ----- | -------
-buyShares | -1 | Invalid outcome or trading closed
-buyShares | -2 | Entered a negative number of shares
-buyShares | -3 | Not enough money
-buyShares | -4 | Bad nonce/hash
 checkReportValidity | -1 | Report isn't long enough
 checkReportValidity | -2 | Reporter doesn't exist, voting period is over, or voting period hasn't started yet
 closeMarket | -1 | Market has no cash
@@ -72,16 +66,6 @@ createMarket | -1 | Bad input or parent doesn't exist
 createMarket | -2 | Too many events
 createMarket | -3 | Too many outcomes
 createMarket | -4 | Not enough money or market already exists
-getSimulatedBuy | -2 | Cost updating error (did you enter a valid quantity?)
-getSimulatedSell | -2 | Cost updating error (did you enter a valid quantity?)
-report | 0 | Could not set reporter ballot
-report | -1 | Report length does not match the number of expiring events
-report | -2 | Voting period expired
-report | -3 | Incorrect hash
-sellShares | -1 | Invalid outcome or trading closed
-sellShares | -2 | Entered a negative number of shares
-sellShares | -3 | Not enough money
-sellShares | -4 | Bad nonce/hash
 sendReputation | 0 | Not enough Reputation
 sendReputation | -1 | Your Reputation account was just created! Earn some Reputation before you can send to others.
 sendReputation | -2 | Receiving address doesn't exist
