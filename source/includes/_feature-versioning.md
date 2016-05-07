@@ -10,7 +10,19 @@ The list of changes are available in the `dataset/{id}/actions/` catalog. GET it
 
 ### Savepoints
 
-You can snapshot the current state of the dataset at any time with a POST to `datasets/{id}/savepoints/`. This marks the current point in the actions history, allowing you to provide a description of your progress. You can then revert to any savepoint (throwing away any changes since that time) with a POST to `/datasets/{dataset_id}/savepoints/{version_id}/revert/`.
+You can snapshot the current state of the dataset at any time with a POST to 
+`datasets/{id}/savepoints/`. This marks the current point in the actions 
+history, allowing you to provide a description of your progress. 
+
+The 201 response will contain a Location header to the new version created.
+
+#### Reverting savepoints
+
+You can revert to any savepoint version (throwing away any changes since that 
+time) with a POST to `/datasets/{dataset_id}/savepoints/{version_id}/revert/`.
+
+It will return a 202 response with a Shoji:view containing a progress URL on 
+its value where the asynchronous job's status can be observed.
 
 ### Forking and Merging
 
