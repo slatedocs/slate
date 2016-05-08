@@ -4,7 +4,7 @@
 
 ### Monitoring
 
-Scout currently supports Ruby on Rails 2.2+ and Ruby 1.8.7+ and the following app servers:
+Scout currently supports Ruby on Rails 2.2+ and Ruby 1.8.7+ and the following app servers/background job frameworks:
 
 * Phusion Passenger
 * Puma
@@ -12,6 +12,7 @@ Scout currently supports Ruby on Rails 2.2+ and Ruby 1.8.7+ and the following ap
 * Thin
 * Unicorn
 * WEBrick
+* Sidekiq
 
 ### Git Integration - Optional
 
@@ -413,6 +414,7 @@ The following libraries are currently instrumented:
 * Moped
 * Middleware
 * Redis
+* Sidekiq
 
 Additionally, [Scout can also instrument request queuing time](#request-queuing).
 
