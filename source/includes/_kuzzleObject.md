@@ -474,6 +474,74 @@ Returns the `Kuzzle` object to allow chaining.
 
 The response is an array of JSON objects, each one of them being a statistic frame.
 
+## getAutoRefresh
+
+```js
+// Using callbacks (node.js or browser)
+kuzzle.getAutoRefresh('myIndex', function (err, autoRefresh) {
+  console.log(autoRefresh);     // true|false
+});
+
+// Using promises (node.js)
+kuzzle
+  .getAutoRefreshPromise('myIndex')
+  .then(autoRefresh => {
+    console.log(autoRefresh);   // true|false
+  });
+```
+
+```java
+kuzzle.getAutoRefresh("myIndex", new KuzzleResponseListener<Boolean>() {
+  @Override
+  public void onSuccess(Boolean autoRefresh) {
+    // autoRefresh var contains the autoRefresh status of myIndex.
+  }
+  
+  @Override
+  public void onError(JSONObject error) {
+    // Handle error
+  }
+}
+```
+
+The `autoRefresh` flag, when set to true, will make Kuzzle perform a 
+[`refresh`](https://www.elastic.co/guide/en/elasticsearch/guide/current/near-real-time.html#refresh-api) request 
+immediately after each write request, forcing the documents to be immediately visible to search.
+
+The `getAutoRefresh` function returns the current `autoRefresh` status for the given index.
+
+<aside class="left warning">
+    <p>
+        A refresh operation comes with some performance costs.
+    </p>
+    <p>
+        While forcing the autoRefresh can be convenient on a development or test environmnent, it is advised to avoid
+        using it on production or at least to carefully monitor its implications before using it.
+    </p>
+</aside>
+
+#### getAutoRefresh([index], [options], callback)
+
+| Arguments | Type | Description
+|-----------|------|------------
+| `index` | string | Optional index to query. If no set, defaults to [Kuzzle.defaultIndex](#properties)
+| `options` | JSON object | Optional parameters
+| `callback`| function | Callback handling the response
+
+Available options:
+
+| Option | Type | Description | Default
+|--------|------|-------------|---------
+| `queuable` | boolean | Mark this request as (not) queuable | `true`
+
+#### Return value
+
+Returns the `Kuzzle` object to allow chaining.
+
+#### Callback response
+
+The response is a boolean reflecting the index `autoRefresh`status.
+
 ## getJwtToken
 
 ```js
@@ -1300,7 +1368,7 @@ Base method used to send queries to Kuzzle, following the [Kuzzle API Documentat
 
 #### query(queryArgs, query, [options], [callback])
 
-| Arguments | Type | Description |
+| Argument | Type | Description |
 |---------------|---------|----------------------------------------|
 | ``queryArgs`` | JSON object | Query base arguments |
 | ``query`` | JSON object | Query to execute |
@@ -1332,6 +1400,56 @@ Returns the `Kuzzle` object to allow chaining.
 #### Callback response
 
 Resolves to a `JSON object` containing the raw Kuzzle response.
+
+
+## refreshIndex
+
+```js
+kuzzle.refreshIndex('myIndex');
+```
+
+```java
+kuzzle.refreshIndex("myIndex");
+```
+
+When writing or deleting documents in Kuzzle's database layer, the update needs to be indexed before being reflected
+in the search index.  
+By default, this operation can take up to 1 second.
+
+Given an index, the `refresh` action forces a [`refresh`](https://www.elastic.co/guide/en/elasticsearch/guide/current/near-real-time.html#refresh-api),
+ on it, making the documents visible to search immediately.
+
+<aside class="left warning">
+    A refresh operation comes with some performance costs.<br>
+    <br>
+    From <a href="https://www.elastic.co/guide/en/elasticsearch/guide/current/near-real-time.html#refresh-api">elasticsearch documentation</a>:
+    <div class="quote">
+    "While a refresh is much lighter than a commit, it still has a performance cost. A manual refresh can be useful when writing tests, but don’t do a manual refresh every time you index a document in production; it will hurt your performance. Instead, your application needs to be aware of the near real-time nature of Elasticsearch and make allowances for it."
+    </div>
+</aside>
+
+#### refreshIndex([index], [options], [callback])
+
+| Argument | Type | Description 
+|----------|------|-------------
+| `index` | string | _Optional_. The index to refresh. If not set, defaults to [kuzzle.defaultIndex](#properties).
+| `options` | JSON object | Optional parameters
+| `callback` | function | _Optional_. Callback handling the response.
+
+Available options:
+
+| Option | Type | Description | Default 
+|--------|------|-------------|---------
+| `queuable` | boolean | Mark this request as (not)queuable | `true`
+
+#### Return value
+
+Returns the `Kuzzle` object to allow chaining.
+
+#### Callback response
+
+The response is a JSON structure matching the response from Elasticsearch.
+
 
 ## removeAllListeners
 
@@ -1397,6 +1515,55 @@ Returns the `Kuzzle` object to allow chaining.
 ## security
 
 A static `KuzzleSecurity` instance
+
+## setAutoRefresh
+
+```js
+kuzzle.setAutoRefresh('myIndex', true);
+```
+
+```java
+kuzzle.setAutoRefresh("myIndex", true);
+```
+
+The `autoRefresh` flag, when set to true, will make Kuzzle perform a 
+[`refresh`](https://www.elastic.co/guide/en/elasticsearch/guide/current/near-real-time.html#refresh-api) request 
+immediately after each write request, forcing the documents to be immediately visible to search.
+
+Given an index, the `setAutoRefresh` function updates its `autoRefresh` status.
+
+<aside class="left warning">
+    <p>
+        A refresh operation comes with some performance costs.
+    </p>
+    <p>
+        While forcing the autoRefresh can be convenient on a development or test environmnent, it is advised to avoid
+        using it on production or at least to carefully monitor its implications before using it.
+    </p>
+</aside>
+
+#### setAutoRefresh([index], autoRefresh, [options], [callback])
+
+| Argument | Type | Description 
+|----------|------|-------------
+| `index` | string | _Optional_ The index to set the `autoRefresh` for. If not set, defaults to [kuzzle.defaultIndex](#properties).
+| `autoRefresh` | boolean | The value to set for the `autoRefresh` setting.
+| `options` | JSON object | Optional parameters
+| `callback` | function | _Optional_ Callback handling the response
+
+Available options:
+
+| Option | Type | Description | Default
+|--------|------|-------------|---------
+| `queuable` | boolean | Makr this request as (non)queuable | `true`
+
+#### Return value
+
+Returns the `Kuzzle` object to allow chaining.
+
+#### Callback response
+
+The response is a boolean reflecting the new `autoRefresh` status.
 
 ## setDefaultIndex
 
