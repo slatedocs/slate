@@ -235,7 +235,7 @@ GET /projects/abcd/members/ HTTP/1.1
       "name": "William Riker",
       "email": "firstofficer@crunch.io",
       "permissions": {
-        "edit: false,
+        "edit": false,
         "view": true
       }
     }
