@@ -102,7 +102,9 @@ The WebRTC APIs either have a callback or a Promise associated to them. Since `c
   }
 ```
 
-
+<aside class="success">
+Congratulations! You have now completed the basic integration steps, read more for advanced features!
+</aside>
 
 ## Step 5: (OPTIONAL) Conference Events
 
