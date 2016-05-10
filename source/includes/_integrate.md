@@ -1,4 +1,4 @@
-# Integrating with your Application
+# Integrating with your App
 
 ## Step 1: Include callstats.js 
 

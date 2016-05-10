@@ -11,11 +11,11 @@ includes:
   - api
   - callbacks
   - enums
-  - init
   - auth
   - integrate
-  - config
   - require
+  - init
+  - support
 
 search: true
 ---
