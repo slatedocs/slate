@@ -1,6 +1,7 @@
 ## Projects
 
-Projects are ....
+Projects represent groups of users that share a common set of datasets. Any user
+can belong to none or many projects.
 
 They live under /projects/ and will list the projects that the authenticated user
 is a member or owner of.
@@ -19,17 +20,17 @@ GET /projects/ HTTP/1.1
 ```json
 {
   "element": "shoji:catalog",
-  "self": "http:\/\/local.crunch.io:8080\/api\/projects\/",
+  "self": "http:\/\/beta.crunch.io\/api\/projects\/",
   "views": {
-    "generate_icon": "http:\/\/local.crunch.io:8080\/api\/projects/generate_icon\/"
+    "generate_icon": "http:\/\/beta.crunch.io\/api\/projects/generate_icon\/"
   },
   "index": {
-    "http:\/\/local.crunch.io:8080\/api\/projects\/4643\/": {
+    "http:\/\/beta.crunch.io\/api\/projects\/4643\/": {
       "name": "Project 1",
       "id": "4643",
       "icon": ""
     },
-    "http:\/\/local.crunch.io:8080\/api\/projects\/6c01\/": {
+    "http:\/\/beta.crunch.io\/api\/projects\/6c01\/": {
       "name": "Project 2",
       "id": "6c01",
       "icon": "",
@@ -61,7 +62,7 @@ Payload example:
 {
     "body": {
         "name": "My new project",
-        "icon_url": "http://...",
+        "icon_url": "http:\/\/cdn.sample.com\/project-icon.png"
     }
 }
 ```
@@ -73,9 +74,10 @@ indicating a url where to fetch that icon from (has to be a publicly accessible 
 
 If the server cannot read that URL the request will return a 409 error.
 
-If not provided the API will pick an available icon from the icons catalog.
-
 On success a copy of the file will be stored as the icon to be serve
+
+If the `icon_url` attribute is not provided the API will pick an available icon 
+from the icons catalog.
 
 #### Default icon
 
@@ -85,17 +87,18 @@ to pick.
  
  
 ```http
-GET /projects/icons/ HTTP/1.1
+GET /icons/ HTTP/1.1
 ```
 
 ```json
 {
   "element": "shoji:catalog",
-  "self": "http:\/\/local.crunch.io:8080\/api\/projects\/icons\/",
+  "self": "http:\/\/beta.crunch.io\/api\/icons\/",
   "index": {
-    "http://....png": {},
-    "http://....png": {},
-    "http://....png": {}
+    "http:\/\/beta.crunch.io\/api\/icons\/01\/": {},
+    "http:\/\/beta.crunch.io\/api\/icons\/02\/": {},
+    "http:\/\/beta.crunch.io\/api\/icons\/03\/": {},
+    "http:\/\/beta.crunch.io\/api\/icons\/04\/": {}
   }
 }
 ```
@@ -106,26 +109,26 @@ GET /projects/icons/ HTTP/1.1
 #### GET
 
 ```http
-GET /projects/abcd/ HTTP/1.1
+GET /projects/6c01/ HTTP/1.1
 ```
 
 ```json
 {
   "element": "shoji:entity",
-  "self": "http:\/\/local.crunch.io:8080\/api\/projects\/6c01\/",
+  "self": "http:\/\/beta.crunch.io\/api\/projects\/6c01\/",
   "catalogs": {
-    "datasets": "http:\/\/local.crunch.io:8080\/api\/projects\/6c01\/datasets\/",
-    "members": "http:\/\/local.crunch.io:8080\/api\/projects\/6c01\/members\/"
+    "datasets": "http:\/\/beta.crunch.io\/api\/projects\/6c01\/datasets\/",
+    "members": "http:\/\/beta.crunch.io\/api\/projects\/6c01\/members\/"
   },
   "views": {
-    "icon": "http:\/\/local.crunch.io:8080\/api\/projects\/6c01\/icon\/"
+    "icon": "http:\/\/beta.crunch.io\/api\/projects\/6c01\/icon\/"
   },
   "body": {
     "name": "Project 2",
     "description": "Long description text",
     "icon": "",
     "user_icon": false,
-    "id": "",
+    "id": ""
   }
 }
 ```
@@ -147,10 +150,10 @@ for this project.
 #### DELETE
 
 Deleting a project will *NOT* delete its datasets. It will change their 
-ownership to the authenticated user.
+ownership to the authenticated user. Only project editors can delete a project.
 
 ```http
-DELETE /projects/abcd/ HTTP/1.1
+DELETE /projects/6c01/ HTTP/1.1
 ```
 
 #### Projects order
@@ -174,7 +177,7 @@ GET /projects/order/ HTTP/1.1
 ```json
 {
   "element": "shoji:order",
-  "self": "http:\/\/local.crunch.io:8080\/api\/projects\/order\/",
+  "self": "http:\/\/beta.crunch.io\/api\/projects\/order\/",
   "graph": [
     "https://beta.crunch.io/api/projects/cc9161/",
     "https://beta.crunch.io/api/projects/a598c7/"
@@ -199,7 +202,7 @@ PUT /projects/order/ HTTP/1.1
 ```json
 {
   "element": "shoji:order",
-  "self": "http:\/\/local.crunch.io:8080\/api\/projects\/order\/",
+  "self": "http:\/\/beta.crunch.io\/api\/projects\/order\/",
   "graph": [
     "https://beta.crunch.io/api/projects/cc9161/",
     "https://beta.crunch.io/api/projects/a598c7/"
@@ -215,8 +218,8 @@ Use this endpoint to manage the users that have access to this project.
 
 ##### GET
 
-Returns a catalog with all users that have access to this project in the 
-following format:
+Returns a catalog with all users that have access to this project and their 
+project permissions in the following format:
 
 ```http
 GET /projects/abcd/members/ HTTP/1.1
@@ -225,13 +228,13 @@ GET /projects/abcd/members/ HTTP/1.1
 ```json
 {
   "element": "shoji:catalog",
-  "self": "http:\/\/local.crunch.io:8080\/api\/projects\/6c01\/members\/",
+  "self": "http:\/\/beta.crunch.io\/api\/projects\/6c01\/members\/",
   "index": {
-    "http:\/\/local.crunch.io:8080\/api\/users\/00002\/": {
+    "http:\/\/beta.crunch.io\/api\/users\/00002\/": {
       "name": "Jean-Luc Picard",
       "email": "captain@crunch.io"
     },
-    "http:\/\/local.crunch.io:8080\/api\/users\/00005\/": {
+    "http:\/\/beta.crunch.io\/api\/users\/00005\/": {
       "name": "William Riker",
       "email": "firstofficer@crunch.io",
       "permissions": {
@@ -243,6 +246,8 @@ GET /projects/abcd/members/ HTTP/1.1
 }
 ```
 
+All project members have read access to this resource.
+
 
 ##### PATCH
 
@@ -250,7 +255,8 @@ Use this method to add or remove members from the project. Only project editors
 have this capabilities, else you will get a 403 response.
 
 To add a new user, PATCH a catalog keyed by the new user URL and an empty
-object for its value.
+object for its value or a permissions tuple to set specific permissions 
+(only `edit` allowed at this point).
 
 To remove users, PATCH a catalog keyed by the user you want to remove and `null`
 for its value.
@@ -261,6 +267,15 @@ get a 400 response.
 It is possible to perform many additions/removals in one request, the 
 following example adds users `/users/001/` and deletes users `/users/002/`
 
+It is allowed to invite/add users to the project by email address. If the email
+is registered on the system the user will be invited to the project. If the email
+is not part of Crunch.io a new user invitation will be sent to that email with
+instructions to set up their account. They will be automatically part of this
+project only.
+
+Attempting to remove users also allows to do so by email. In the case that the
+email does not exist, the server will return a 400 response.
+
 
 ```http
 PATCH /projects/abcd/members/ HTTP/1.1
@@ -269,10 +284,16 @@ PATCH /projects/abcd/members/ HTTP/1.1
 ```json
 {
   "element": "shoji:catalog",
-  "self": "http:\/\/local.crunch.io:8080\/api\/projects\/6c01\/members\/",
+  "self": "http:\/\/beta.crunch.io\/api\/projects\/6c01\/members\/",
   "index": {
-    "http:\/\/local.crunch.io:8080\/api\/users\/001\/": {},
-    "http:\/\/local.crunch.io:8080\/api\/users\/002\/": null,
+    "http:\/\/beta.crunch.io\/api\/users\/001\/": {},
+    "http:\/\/beta.crunch.io\/api\/users\/002\/": {
+      "permissions": {
+        "edit": true
+      }
+    },
+    "http:\/\/beta.crunch.io\/api\/users\/003\/": null,
+    "user@email.com": {}
     "send_notification": true
   }
 }
@@ -302,14 +323,17 @@ id of the project you want to take ownership.
 You must have edit and be current editor on any given dataset to change its
 owner and you must also have edit permissions on the target project.
 
-##### PATCH
+##### PATCH to dataset entity
+
+Send a PATCH request to the dataset entity that you want to make part of the
+project.
 
 ```http
 PATCH /datasets/cc9161/ HTTP/1.1
 ```
 
 ```json
-{"owner":"https://local.crunch.io:8080/api/projects/abcd/"}
+{"owner":"https:\/\/beta.crunch.io\/api\/projects\/abcd\/"}
 ```
 
 ##### GET
@@ -319,15 +343,15 @@ shape of the dataset tuple will be the same as in other dataset catalogs.
 
 
 ```http
-GET /projects/abcd/datasets/ HTTP/1.1
+GET /projects/6c01/datasets/ HTTP/1.1
 ```
 
 ```json
 {
   "element": "shoji:catalog",
-  "self": "http:\/\/local.crunch.io:8080\/api\/projects\/6c01\/datasets\/",
+  "self": "http:\/\/beta.crunch.io\/api\/projects\/6c01\/datasets\/",
   "orders": {
-    "order": "http://local.crunch.io:8080/api/projects/6c01/datasets/order/"
+    "order": "http://beta.crunch.io/api/projects/6c01/datasets/order/"
   },
   "index": {
     "https://beta.crunch.io/api/datasets/cc9161/": {
@@ -398,14 +422,14 @@ By default all new projects have an empty icon URL.
 
 
 ```http
-GET /projects/abcd/icon/ HTTP/1.1
+GET /projects/6c01/icon/ HTTP/1.1
 ```
 
 
 ```json
 {
   "element": "shoji:view",
-  "self": "http:\/\/local.crunch.io:8080\/api\/projects\/6c01\/icon\/",
+  "self": "http:\/\/beta.crunch.io\/api\/projects\/6c01\/icon\/",
   "value": ""
 }
 ```
@@ -446,7 +470,7 @@ GET /projects/6c01/datasets/order/ HTTP/1.1
 ```json
 {
   "element": "shoji:order",
-  "self": "http:\/\/local.crunch.io:8080\/api\/projects\/6c01\/datasets\/order\/",
+  "self": "http:\/\/beta.crunch.io\/api\/projects\/6c01\/datasets\/order\/",
   "graph": [
     "https://beta.crunch.io/api/datasets/cc9161/",
     "https://beta.crunch.io/api/datasets/a598c7/"
@@ -469,7 +493,7 @@ PUT /projects/6c01/datasets/order/ HTTP/1.1
 ```json
 {
   "element": "shoji:order",
-  "self": "http:\/\/local.crunch.io:8080\/api\/projects\/6c01\/datasets\/order\/",
+  "self": "http:\/\/beta.crunch.io\/api\/projects\/6c01\/datasets\/order\/",
   "graph": [
     "https://beta.crunch.io/api/datasets/cc9161/",
     {
