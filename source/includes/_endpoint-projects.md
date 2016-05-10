@@ -272,10 +272,22 @@ PATCH /projects/abcd/members/ HTTP/1.1
   "self": "http:\/\/local.crunch.io:8080\/api\/projects\/6c01\/members\/",
   "index": {
     "http:\/\/local.crunch.io:8080\/api\/users\/001\/": {},
-    "http:\/\/local.crunch.io:8080\/api\/users\/002\/": null
+    "http:\/\/local.crunch.io:8080\/api\/users\/002\/": null,
+    "send_notification": true
   }
 }
 ```
+
+###### Sending notifications
+
+The users invited to a project can be both existing Crunch.io users or new
+users that don't have a user account associated with the email.
+
+If desired, the API can send automated email notifications to the involved users
+indicating that they now belong to the project.
+
+It is necessary to add the `send_notification` boolean key on the index PATCHed
+to command the API to send these emails. Else, no notification will be sent.
 
 
 #### Datasets
