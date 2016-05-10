@@ -1,0 +1,77 @@
+# API Enums
+
+## Enumeration of fabricUsage
+
+{% for item in site.data.js_fabric_usage_api %}
+- `{{item.usage}}`: {{item.desc}}
+{% endfor %}
+
+When using a single _PeerConnection_ between a pair of userIDs for sending and receiving audio and video, application MUST use `multiplex`.
+
+<!-- Currently monitoring DATA traffic is NOT SUPPORTED, because the browser does not yet implement any DataChannel statistics. -->
+
+---
+
+## Enumeration of fabricEvent
+
+Name  | Description
+---------  | -----------
+conferenceSetup | The conferenceID is set up successfully and the middlebox is ready to send and receive media.
+conferenceSetupFailed  | The conferenceID failed to set up communication between one or more endpoints.
+conferenceTerminated 	The conferenceID is destroyed and has no longer any participants.
+  
+- name: 
+  enum: CONFERENCE_TERMINATED
+  description: ""
+  
+- name: userJoined
+  enum: USER_JOINED
+  description: "The userID joined a particular conferenceID, and will begin sending and/or receiving media."
+  
+
+- name: userLeft
+  enum: USER_LEFT
+  description: "The userID left a particular conferenceID, and is no longer sending or receiving any media."
+
+- name: fabricHold
+  enum: FABRIC_HOLD
+  description: "The fabric (5-tuple connection identifier) is currently not sending and receiving any media, but the connection is still active."
+  internal: false
+
+- name: fabricResume
+  enum: FABRIC_RESUME
+  description: "The fabric is resuming communication, and the data can begin to flow between the 5-tuples between the userID and the conference server."
+
+- name: audioMute
+  enum: AUDIO_MUTE
+  description: "The fabric is currently not sending any Audio, but MAY be sending video."
+
+- name: audioUnmute
+  enum: AUDIO_UNMUTE
+  description: "The fabric is resuming Audio communication."
+
+- name: videoPause
+  enum: VIDEO_PAUSE
+  description: "The fabric is currently not sending any Video, but MAY be sending audio."
+
+- name: videoResume
+  enum: VIDEO_RESUME
+  description: "The fabric is resuming Video communication."
+  
+---
+
+## Enumeration of wrtcFuncNames
+
+{% for item in site.data.js_wrtcfname_api %}
+- `{{item.funcName}}`: {{item.desc}}
+{% endfor %}
+
+---
+
+
+
+## csError Types
+
+{% for item in site.data.js_err_enums %}
+- `{{item.name}}`: {{item.desc}}
+{% endfor %}
