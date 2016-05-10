@@ -293,7 +293,7 @@ PATCH /projects/abcd/members/ HTTP/1.1
       }
     },
     "http:\/\/beta.crunch.io\/api\/users\/003\/": null,
-    "user@email.com": {}
+    "user@email.com": {},
     "send_notification": true
   }
 }
