@@ -919,40 +919,6 @@ Exchange `value` units of Ether for an equivalent number of CASH tokens.  Return
 Exchange `value` CASH tokens for an equivalent number of Ether tokens.  The withdrawn CASH is sent to address `to`.  Returns 1 if successful, 0 otherwise.
 
 ```javascript
-// checkQuorum contract
-var branchId = augur.branches.dev;
-augur.checkQuorum({
-  branchId: branchId,
-  onSent: function (sentResponse) { /* ... */ },
-  onSuccess: function (successResponse) { /* ... */ },
-  onFailed: function (failedResponse) { /* ... */ }
-});
-// example outputs:
-sentResponse = {
-  txHash: '0x45bc69d4aaf9e9bc8d8524d6b4a33f3289d56d150ab4b58c3e85a480db851f47',
-  callReturn: '0'
-}
-successResponse = {
-  nonce: '0x4e3',
-  blockHash: '0x0211c8bd326e9e71bfadb19258ea787080626fe9940a4c197dea31edbe93c3c6',
-  blockNumber: '0x6a97',
-  transactionIndex: '0x0',
-  from: '0x05ae1d0ca6206c6168b42efcd1fbe0ed144e821b',
-  to: '0x8caf2c0ce7cdc2e81b58f74322cefdef440b3f8d',
-  value: '0x0',
-  gas: '0x2fd618',
-  gasPrice: '0xba43b7400',
-  input: '0x27138bfb00000000000000000000000000000000000000000000000000000000000f69b5',
-  callReturn: '0',
-  txHash: '0x45bc69d4aaf9e9bc8d8524d6b4a33f3289d56d150ab4b58c3e85a480db851f47'
-}
-```
-### [checkQuorum contract](https://github.com/AugurProject/augur-core/blob/forking/src/functions/checkQuorum.se)
-#### checkQuorum(branchId[, onSent, onSuccess, onFailed])
-
-Determines whether consensus is ready to run.  If there aren't enough events in a vote period, push the events to the current period and increment the vote period.  Verifies if there are sufficient future events at stake; the minimum threshold is presently set at 200.  If the number of future events is not above this minimum threshold, then the branch stalls.  Returns 1 if ready, 0 otherwise.
-
-```javascript
 // buy&sellShares contract
 var marketId = "-0xb196c4ce182399271e6ed434eb3f2210ae5e427c8ac0604c2cb2261694951d9";
 var outcome = 1;
