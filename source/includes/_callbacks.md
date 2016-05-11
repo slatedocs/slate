@@ -8,6 +8,10 @@ The `callstats.js` provides two callback functions:
 
 ## csStatsCallback
 
+The `initialize()` API authenticates the javascript WebRTC application with the callstats.io backend, and sets up a trusted relationship with it. The API is extended by adding a `csStatsCallback` parameter. The callback parameter is OPTIONAL.
+
+The `csStatsCallback()` will be called by the callstats.js for each peerconnection independently at regular intervals. By default the interval is set as 10 seconds to make sure we do not overwhelm the app with too many messages. For more inforamtion, please check out blog on [`csStatsCallback()`] (http://www.callstats.io/2015/08/24/statscallback-webrtc-media-quality-status/)
+
 ## csErrorCallback
 
 ```javascript
