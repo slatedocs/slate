@@ -94,33 +94,32 @@ O tipo da Cobrança depende da sua Configuração de Cobrança. Se a Configuraç
 
 **Parâmetros (Gateway de Pagamento)**
 
-| Campo                          | Tipo             | Comentário                                                                              |
-|--------------------------------|------------------|-----------------------------------------------------------------------------------------|
-| id                             | integer          |                                                                                         |
-| type                           | string           | indica o tipo da cobrança. Nesse caso, "payment_gateway"                                |
-| charge_config_id               | integer          | identificador da configuração de cobrança a qual esta cobraça pertece                   |
-| total_amount                   | decimal          | valor total do boleto                                                                   |
-| payer_emails                   | array of strings | emails de quem irá pagar o boleto                                                       |
-| payer_id                       | integer          | identificador do pagador                                                                |
-| payer_national_identifier_type | string           | tipo do documento do pagador (cpf ou cnpj)                                              |
-| payer_national_identifier      | string           | documento do pagador                                                                    |
-| payer_name                     | string           | nome do pagador                                                                         |
-| payer_number                   | string           | número do endereço do pagador                                                           |
-| payer_complement               | string           | complemento do endereço do pagador                                                      |
-| payer_street                   | string           | rua do endereço do pagador                                                              |
-| payer_neighbourhood            | string           | bairro do endereço do pagador                                                           |
-| payer_zipcode                  | string           | cep do endereço do pagador                                                              |
-| payer_city                     | string           | cidade do endereço do pagador                                                           |
-| payer_state                    | string           | sigla do estado do endereço do pagador ("RJ" por exemplo)                               |
-| credit_card_id                 | integer          | identificador do cartão de crédito utilizado na cobrança                                |
-| description                    | string           | descrição da cobrança                                                                   |
-| soft_descriptor                | string           | descritor que irá aparecer na fatura do cartão (no máximo 13 caracteres)                |
-| payment_method                 | string           | método de pagamento (1: pagamento à vista, 2: pagamento parcelado)                      |
-| installments                   | integer          | número de parcelas                                                                      |
-| generate_token                 | boolean          | indica se foi gerado token para utilização do cartão de crédito no pagamento recorrente |
-| payment_gateway_status         | string           | status da cobrança em relação ao gateway de pagamento (TODO)                            |
-| _links                         | array of object  | links relacionados à cobraça                                                            |
-
+| Campo                          | Tipo             | Comentário                                                                                                                                    |
+|--------------------------------|------------------|-----------------------------------------------------------------------------------------------------------------------------------------------|
+| id                             | integer          |                                                                                                                                               |
+| type                           | string           | indica o tipo da cobrança. Nesse caso, "payment_gateway"                                                                                      |
+| charge_config_id               | integer          | identificador da configuração de cobrança a qual esta cobraça pertece                                                                         |
+| total_amount                   | decimal          | valor total do boleto                                                                                                                         |
+| payer_emails                   | array of strings | emails de quem irá pagar o boleto                                                                                                             |
+| payer_id                       | integer          | identificador do pagador                                                                                                                      |
+| payer_national_identifier_type | string           | tipo do documento do pagador (cpf ou cnpj)                                                                                                    |
+| payer_national_identifier      | string           | documento do pagador                                                                                                                          |
+| payer_name                     | string           | nome do pagador                                                                                                                               |
+| payer_number                   | string           | número do endereço do pagador                                                                                                                 |
+| payer_complement               | string           | complemento do endereço do pagador                                                                                                            |
+| payer_street                   | string           | rua do endereço do pagador                                                                                                                    |
+| payer_neighbourhood            | string           | bairro do endereço do pagador                                                                                                                 |
+| payer_zipcode                  | string           | cep do endereço do pagador                                                                                                                    |
+| payer_city                     | string           | cidade do endereço do pagador                                                                                                                 |
+| payer_state                    | string           | sigla do estado do endereço do pagador ("RJ" por exemplo)                                                                                     |
+| credit_card_id                 | integer          | identificador do cartão de crédito utilizado na cobrança                                                                                      |
+| description                    | string           | descrição da cobrança                                                                                                                         |
+| soft_descriptor                | string           | descritor que irá aparecer na fatura do cartão (no máximo 13 caracteres)                                                                      |
+| payment_method                 | string           | método de pagamento (1: pagamento à vista, 2: pagamento parcelado)                                                                            |
+| installments                   | integer          | número de parcelas                                                                                                                            |
+| generate_token                 | boolean          | indica se foi gerado token para utilização do cartão de crédito no pagamento recorrente                                                       |
+| payment_gateway_status         | string           | status da cobrança em relação ao gateway de pagamento (pending, authorized, captured, canceled, authorize_error, capture_error, cancel_error) |
+| _links                         | array of object  | links relacionados à cobraça                                                                                                                  |
 
 ## Informações da Cobrança
 
