@@ -1016,7 +1016,18 @@ successResponse = {
   callReturn: '-0x5c354ef67fc3306a984bd1e8722fa3342b02fe6ba690b2d7aecc766c927891f',
   txHash: '0xbeacc3547fd07d7cd0bde16d404f3554eb4515561fb21bc6a5231459238085c0'
 }
+```
+### [buy&sellShares contract](https://github.com/AugurProject/augur-core/blob/forking/src/functions/buy%26sellShares.se)
+#### buy(amount, price, market, outcome[, onSent, onSuccess, onFailed])
 
+Buy `amount` shares of `outcome` in `market`.
+
+#### sell(amount, price, market, outcome[, onSent, onSuccess, onFailed])
+
+Sell `amount` shares of `outcome` in `market`.
+
+```javascript
+// trade contract
 augur.trade({
   max_value: 1,
   max_amount: 0,
@@ -1050,16 +1061,7 @@ successResponse = {
   txHash: '0x1437c2e44379169076db42d12fb4f0fab1d330f84ab152900a703ee13f814bf7'
 }
 ```
-
-### [buy&sellShares contract](https://github.com/AugurProject/augur-core/blob/forking/src/functions/buy%26sellShares.se)
-#### buy(amount, price, market, outcome[, onSent, onSuccess, onFailed])
-
-Buy `amount` shares of `outcome` in `market`.
-
-#### sell(amount, price, market, outcome[, onSent, onSuccess, onFailed])
-
-Sell `amount` shares of `outcome` in `market`.
-
+### [trade contract](https://github.com/AugurProject/augur-core/blob/forking/src/functions/trade.se)
 #### trade(max_value, max_amount, trade_ids[, onSent, onSuccess, onFailed])
 
 Matches an order or orders (specified using an array parameter `trade_ids`) already on the books. `max_value` is the maximum amount to spend to buy (including fees).  `max_amount` is the maximum number of shares to sell.
