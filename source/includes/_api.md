@@ -1016,6 +1016,39 @@ successResponse = {
   callReturn: '-0x5c354ef67fc3306a984bd1e8722fa3342b02fe6ba690b2d7aecc766c927891f',
   txHash: '0xbeacc3547fd07d7cd0bde16d404f3554eb4515561fb21bc6a5231459238085c0'
 }
+
+augur.trade({
+  max_value: 1,
+  max_amount: 0,
+  trade_ids: ["-0x22daf7fdff22ff716fd8108c011d1c0e69a7ab4a2b087f65dda2fc77ea044ba1"],
+  onTradeHash: function (tradeHash) { /* ... */ },
+  onCommitSent: function (sentResponse) { /* ... */ },
+  onCommitSuccess: function (successResponse) { /* ... */ },
+  onCommitFailed: function (failedResponse) { /* ... */ },
+  onNextBlock: function (blockNumber) { /* ... */ },
+  onTradeSent: function (sentResponse) { /* ... */ },
+  onTradeSuccess: function (successResponse) { /* ... */ },
+  onTradeFailed: function (failedResponse) { /* ... */ }
+});
+// example outputs:
+sentResponse = {
+  txHash: '0x1437c2e44379169076db42d12fb4f0fab1d330f84ab152900a703ee13f814bf7',
+  callReturn: '0'
+}
+successResponse = {
+  blockHash: '0x3f19ec7209de63043cf5031bb4a38df4bcf6e610f6874dfac87e7ad42e830708',
+  blockNumber: '0xe10e0',
+  from: '0x15f6400a88fb320822b689607d425272bea2175f',
+  gas: '0x2fd618',
+  gasPrice: '0x4a817c800',
+  input: '0xf5c3624f0000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000600000000000000000000000000000000000000000000000000000000000000001c630a59f0e14a6695e8078027b13184f00c79e72e606390eab9bd395bdfa1a83',
+  nonce: '0x10074f',
+  to: '0xb44cd937904ba0e309204ffc1413e094f2a84ee5',
+  transactionIndex: '0x0',
+  value: '0x0',
+  callReturn: '0',
+  txHash: '0x1437c2e44379169076db42d12fb4f0fab1d330f84ab152900a703ee13f814bf7'
+}
 ```
 
 ### [buy&sellShares contract](https://github.com/AugurProject/augur-core/blob/forking/src/functions/buy%26sellShares.se)
@@ -1026,6 +1059,10 @@ Buy `amount` shares of `outcome` in `market`.
 #### sell(amount, price, market, outcome[, onSent, onSuccess, onFailed])
 
 Sell `amount` shares of `outcome` in `market`.
+
+#### trade(max_value, max_amount, trade_ids[, onSent, onSuccess, onFailed])
+
+Matches an order or orders (specified using an array parameter `trade_ids`) already on the books. `max_value` is the maximum amount to spend to buy (including fees).  `max_amount` is the maximum number of shares to sell.
 
 ```javascript
 // completeSets contract

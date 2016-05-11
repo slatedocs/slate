@@ -19,7 +19,6 @@ API Errors
 
 Error Code | Meaning
 ---------- | -------
-65 | Whisper Post Failed: could not post message to whisper
 97 | Database Delete Failed
 98 | Database Write Failed
 99 | Database Read Failed
@@ -48,7 +47,6 @@ Error Code | Meaning
 650 | Loopback Not Found: loopback interface required for synchronous local commands
 651 | Ethereum Not Found: no active Ethereum node(s) found
 700 | Root Not Found: no LS-LMSR objectve function solution found
-710 | Check Order Book Failed: could not check order book using current prices
 
 Contract Errors
 ---------------
@@ -74,3 +72,14 @@ slashRep | -2 | Incorrect reporter ID
 submitReportHash | 0 | Could not set report hash
 submitReportHash | -1 | Reporter doesn't exist, voting period is over, or voting period hasn't started yet
 submitReportHash | -2 | Not in hash submitting timeframe
+buy | -1 | Amount/price bad or no market
+buy | -2 | Oracle-only branch
+buy | -4 | Not enough money or shares
+sell | -1 | amount/price bad or no market
+sell | -2 | oracle only branch
+sell | -4 | not enough money or shares
+trade | -1 | oracle only branch
+trade | -2 | bad trade hash
+trade | -3 | trader doesn't exist / own shares in this market
+trade | -4 | must buy at least .00000001 in value
+trade | 10 | insufficient balance
