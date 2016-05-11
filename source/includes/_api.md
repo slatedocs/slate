@@ -280,7 +280,7 @@ Gets the number of markets on the specified branch ID `branch`.
 
 Gets the minimum trading fee allowed on the specified branch ID `branch`.
 
-#### augur.getBranch(branchNumber[, callback])
+#### augur.getBranchByNum(branchNumber[, callback])
 
 Gets branch ID for the branch with index `branchNumber`.  (Branches are stored as an "array" on-contract; `branchNumber` is the index of the branch within this array.)
 
@@ -461,7 +461,7 @@ trade_ids = [
   '-0xec12b8e92e92b83534ba5948c0ea22752f6975e5eef96b46e4f6d558314347a7',
   '-0xef272ceaabdc90b0c99248caaf34198e2d88d973e30a485118ab30598a95097e',
   '-0x22daf7fdff22ff716fd8108c011d1c0e69a7ab4a2b087f65dda2fc77ea044ba1'
-  ]
+]
 
 var outcomeId = 5; // 8-outcome categorical market
 var amount = 4;
@@ -1270,9 +1270,10 @@ Creates an event on branch `branchId` with `description`, expiration block numbe
 augur.createMarket({
   branchId: augur.branches.dev,
   description: description,
-  alpha: "0.0079",
-  initialLiquidity: 10,
   tradingFee: "0.02",
+  makerFees: "0.5",
+  tags: ["example tag", "other example tag", "nonsense"],
+  extraInfo: "An even longer description / link to more info!",
   events: ["-0x90fb310e94df790eaab7266034ae3807b147696bcf57a72f71db338f86718875"],
   onSent: function (sentResponse) { /* ... */ },
   onSuccess: function (successResponse) { /* ... */ },
@@ -1299,9 +1300,9 @@ successResponse = {
 }
 ```
 ### [createMarket contract](https://github.com/AugurProject/augur-core/blob/forking/src/functions/createMarket.se)
-#### createMarket(branchId, description, alpha, initialLiquidity, tradingFee, events[, onSent, onSuccess, onFailed])
+#### createMarket(branchId, description, tradingFee, events, tags, makerFees, extraInfo, onSent, onSuccess, onFailed)
 
-Creates a market on branch `branchId` with `description`, LS-LMSR `alpha` value, initial investment of `initialLiquidity`, trading fee (as a proportion) of `tradingFee`, containing event IDs supplied in an array `events`.  Regular (non-combinatorial) markets always have a single event; combinatorial markets allow up to 3 events.
+Creates a market on branch `branchId` with `description`, trading fee (as a proportion) of `tradingFee`, maker fees (proportion of trading fees paid by the order creator, as opposed to the person matching the order) `makerFees`, topics/categories `tags`, and more detailed description and/or link to more info `extraInfo`, and containing event IDs supplied in an array `events`.  Regular (non-combinatorial) markets always have a single event; combinatorial markets allow up to 3 events.
 
 ```javascript
 // closeMarket contract
