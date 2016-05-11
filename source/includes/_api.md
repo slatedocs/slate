@@ -29,11 +29,11 @@ It provides developers a method to enable or disable certain features or functio
 
   Keys  |  Required | Description
 -----------  | -------- | ---------- 
-`disableBeforeUnloadHandler` | No | by default the valus is `false`, See more details on `fabricTerminated` [event](#step-5-optional-conference-events).
+`disableBeforeUnloadHandler` | No | by default the valus is `false`. 
 `applicationVersion` | No | String of maximum length **30 characters**. 
 
 <aside class="error">
-Setting `disableBeforeUnloadHandler` to `true` disengages callstats.js's `window.onbeforeunload` handler, and you will need to send the fabricTerminated event for each active peerconnection. 
+Setting `disableBeforeUnloadHandler` to `true` disengages callstats.js's `window.onbeforeunload` handler, and you will need to send the fabricTerminated event for each active peerconnection. See more details on `fabricTerminated` <a href=/#step-5-optional-conference-events> event </a>
 </aside>
 
 

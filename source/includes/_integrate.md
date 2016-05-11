@@ -19,6 +19,9 @@
 
 Add the `callstats.js` and related dependencies in the HEAD tag.
 
+<aside class="error">
+If you are using require.js, please refer to the following <a href="/#loading-with-requrie-js"> section </a>
+</aside>
 
 ## Step 2: Initialize()
 
