@@ -347,6 +347,8 @@ The server will replace the `${token}` part of the string with the generated
 token and will be included on the notification email as a link for the invited 
 user to configure their account in order to use the app.
 
+This behavior is the same as described for [inviting new users when sharing a dataset](#inviting-new-users)
+
 
 #### Datasets
 
