@@ -1,7 +1,5 @@
 # Loading with requrie.js
 
-The [require.js](http://www.requirejs.org/) helps load dependencies at the origin server. Below is an example snippet:
-
 > Script loading with require.js
 
 ```javascript
@@ -38,3 +36,10 @@ requirejs.config({
 require(['WebRTCApp']);
 
 ```
+
+
+The [require.js](http://www.requirejs.org/) helps load dependencies at the origin server. Below is an example snippet:
+
+
+
+

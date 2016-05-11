@@ -34,4 +34,6 @@ Like userIDs, [callstats.io]({{site.callstats.backend-url}}) treats `conferenceI
 
 The origin server MAY reuse the `userID` within the same conference call, i.e., two or more endpoints report using the same `userID` and `conferenceID`. while this is NOT RECOMMENDED, the [callstats.io]({{site.callstats.backend-url}})  will still attempt to distinguish these `userIDs` as distinct entities.
 
----
+<aside class="error">
+If the value of any developer generated String is empty, undefined, or null, the dashboard will show an empty string.
+</aside>
