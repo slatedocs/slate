@@ -20,17 +20,17 @@ GET /projects/ HTTP/1.1
 ```json
 {
   "element": "shoji:catalog",
-  "self": "http:\/\/beta.crunch.io\/api\/projects\/",
+  "self": "http://beta.crunch.io/api/projects/",
   "views": {
-    "generate_icon": "http:\/\/beta.crunch.io\/api\/projects/generate_icon\/"
+    "generate_icon": "http://beta.crunch.io/api/projects/generate_icon/"
   },
   "index": {
-    "http:\/\/beta.crunch.io\/api\/projects\/4643\/": {
+    "http://beta.crunch.io/api/projects/4643/": {
       "name": "Project 1",
       "id": "4643",
       "icon": ""
     },
-    "http:\/\/beta.crunch.io\/api\/projects\/6c01\/": {
+    "http://beta.crunch.io/api/projects/6c01/": {
       "name": "Project 2",
       "id": "6c01",
       "icon": "",
@@ -62,7 +62,7 @@ Payload example:
 {
     "body": {
         "name": "My new project",
-        "icon_url": "http:\/\/cdn.sample.com\/project-icon.png"
+        "icon_url": "http://cdn.sample.com/project-icon.png"
     }
 }
 ```
@@ -93,12 +93,12 @@ GET /icons/ HTTP/1.1
 ```json
 {
   "element": "shoji:catalog",
-  "self": "http:\/\/beta.crunch.io\/api\/icons\/",
+  "self": "http://beta.crunch.io/api/icons/",
   "index": {
-    "http:\/\/beta.crunch.io\/api\/icons\/01\/": {},
-    "http:\/\/beta.crunch.io\/api\/icons\/02\/": {},
-    "http:\/\/beta.crunch.io\/api\/icons\/03\/": {},
-    "http:\/\/beta.crunch.io\/api\/icons\/04\/": {}
+    "http://beta.crunch.io/api/icons/01/": {},
+    "http://beta.crunch.io/api/icons/02/": {},
+    "http://beta.crunch.io/api/icons/03/": {},
+    "http://beta.crunch.io/api/icons/04/": {}
   }
 }
 ```
@@ -115,13 +115,13 @@ GET /projects/6c01/ HTTP/1.1
 ```json
 {
   "element": "shoji:entity",
-  "self": "http:\/\/beta.crunch.io\/api\/projects\/6c01\/",
+  "self": "http://beta.crunch.io/api/projects/6c01/",
   "catalogs": {
-    "datasets": "http:\/\/beta.crunch.io\/api\/projects\/6c01\/datasets\/",
-    "members": "http:\/\/beta.crunch.io\/api\/projects\/6c01\/members\/"
+    "datasets": "http://beta.crunch.io/api/projects/6c01/datasets/",
+    "members": "http://beta.crunch.io/api/projects/6c01/members/"
   },
   "views": {
-    "icon": "http:\/\/beta.crunch.io\/api\/projects\/6c01\/icon\/"
+    "icon": "http://beta.crunch.io/api/projects/6c01/icon/"
   },
   "body": {
     "name": "Project 2",
@@ -177,7 +177,7 @@ GET /projects/order/ HTTP/1.1
 ```json
 {
   "element": "shoji:order",
-  "self": "http:\/\/beta.crunch.io\/api\/projects\/order\/",
+  "self": "http://beta.crunch.io/api/projects/order/",
   "graph": [
     "https://beta.crunch.io/api/projects/cc9161/",
     "https://beta.crunch.io/api/projects/a598c7/"
@@ -202,7 +202,7 @@ PUT /projects/order/ HTTP/1.1
 ```json
 {
   "element": "shoji:order",
-  "self": "http:\/\/beta.crunch.io\/api\/projects\/order\/",
+  "self": "http://beta.crunch.io/api/projects/order/",
   "graph": [
     "https://beta.crunch.io/api/projects/cc9161/",
     "https://beta.crunch.io/api/projects/a598c7/"
@@ -216,6 +216,26 @@ PUT /projects/order/ HTTP/1.1
 
 Use this endpoint to manage the users that have access to this project.
 
+##### Members permissions
+
+Members of a project can be wither viewers or editors. By default all members
+will be viewers and a selected group of them (at least one) will be editor.
+
+These permissions are available on the members catalog under the `permissions` 
+attribute on each member's tuple.
+
+The possible permissions are:
+
+ * edit
+ * view
+ 
+That can have boolean values. Those with `edit: true` are considered project 
+editors.
+
+Project editors have edit privileges on all datasets as well as permissions to
+make changes on the project itself such as changing its name, icon, members 
+management or change members' permissions.
+
 ##### GET
 
 Returns a catalog with all users that have access to this project and their 
@@ -228,13 +248,17 @@ GET /projects/abcd/members/ HTTP/1.1
 ```json
 {
   "element": "shoji:catalog",
-  "self": "http:\/\/beta.crunch.io\/api\/projects\/6c01\/members\/",
+  "self": "http://beta.crunch.io/api/projects/6c01/members/",
   "index": {
-    "http:\/\/beta.crunch.io\/api\/users\/00002\/": {
+    "http://beta.crunch.io/api/users/00002/": {
       "name": "Jean-Luc Picard",
-      "email": "captain@crunch.io"
+      "email": "captain@crunch.io",
+      "permissions": {
+        "edit": true,
+        "view": true
+      }
     },
-    "http:\/\/beta.crunch.io\/api\/users\/00005\/": {
+    "http://beta.crunch.io/api/users/00005/": {
       "name": "William Riker",
       "email": "firstofficer@crunch.io",
       "permissions": {
@@ -245,6 +269,10 @@ GET /projects/abcd/members/ HTTP/1.1
   }
 }
 ```
+
+The catalog will be indexed by each user's entity URL and its tuple will contain
+basic information (name and email) as well as the permissions each user has
+on the given project.
 
 All project members have read access to this resource.
 
@@ -284,17 +312,18 @@ PATCH /projects/abcd/members/ HTTP/1.1
 ```json
 {
   "element": "shoji:catalog",
-  "self": "http:\/\/beta.crunch.io\/api\/projects\/6c01\/members\/",
+  "self": "http://beta.crunch.io/api/projects/6c01/members/",
   "index": {
-    "http:\/\/beta.crunch.io\/api\/users\/001\/": {},
-    "http:\/\/beta.crunch.io\/api\/users\/002\/": {
+    "http://beta.crunch.io/api/users/001/": {},
+    "http://beta.crunch.io/api/users/002/": {
       "permissions": {
         "edit": true
       }
     },
-    "http:\/\/beta.crunch.io\/api\/users\/003\/": null,
+    "http://beta.crunch.io/api/users/003/": null,
     "user@email.com": {},
-    "send_notification": true
+    "send_notification": true,
+    "url_base": "https://beta.crunch.io/password/change/${token}/"
   }
 }
 ```
@@ -309,6 +338,14 @@ indicating that they now belong to the project.
 
 It is necessary to add the `send_notification` boolean key on the index PATCHed
 to command the API to send these emails. Else, no notification will be sent.
+
+When sending notifications, it is necessary for the client to include a 
+`url_base` key as well that includes a string template that should point to a
+client location where the password resetting should happen for brand new users.
+
+The server will replace the `${token}` part of the string with the generated
+token and will be included on the notification email as a link for the invited 
+user to configure their account in order to use the app.
 
 
 #### Datasets
@@ -333,7 +370,7 @@ PATCH /datasets/cc9161/ HTTP/1.1
 ```
 
 ```json
-{"owner":"https:\/\/beta.crunch.io\/api\/projects\/abcd\/"}
+{"owner":"https://beta.crunch.io/api/projects/abcd/"}
 ```
 
 ##### GET
@@ -349,7 +386,7 @@ GET /projects/6c01/datasets/ HTTP/1.1
 ```json
 {
   "element": "shoji:catalog",
-  "self": "http:\/\/beta.crunch.io\/api\/projects\/6c01\/datasets\/",
+  "self": "http://beta.crunch.io/api/projects/6c01/datasets/",
   "orders": {
     "order": "http://beta.crunch.io/api/projects/6c01/datasets/order/"
   },
@@ -429,7 +466,7 @@ GET /projects/6c01/icon/ HTTP/1.1
 ```json
 {
   "element": "shoji:view",
-  "self": "http:\/\/beta.crunch.io\/api\/projects\/6c01\/icon\/",
+  "self": "http://beta.crunch.io/api/projects/6c01/icon/",
   "value": ""
 }
 ```
@@ -470,7 +507,7 @@ GET /projects/6c01/datasets/order/ HTTP/1.1
 ```json
 {
   "element": "shoji:order",
-  "self": "http:\/\/beta.crunch.io\/api\/projects\/6c01\/datasets\/order\/",
+  "self": "http://beta.crunch.io/api/projects/6c01/datasets/order/",
   "graph": [
     "https://beta.crunch.io/api/datasets/cc9161/",
     "https://beta.crunch.io/api/datasets/a598c7/"
@@ -493,7 +530,7 @@ PUT /projects/6c01/datasets/order/ HTTP/1.1
 ```json
 {
   "element": "shoji:order",
-  "self": "http:\/\/beta.crunch.io\/api\/projects\/6c01\/datasets\/order\/",
+  "self": "http://beta.crunch.io/api/projects/6c01/datasets/order/",
   "graph": [
     "https://beta.crunch.io/api/datasets/cc9161/",
     {
