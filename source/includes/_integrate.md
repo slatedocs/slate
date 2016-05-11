@@ -111,6 +111,10 @@ Congratulations! You have now completed the basic integration steps, read more f
 
 ## Step 5: (OPTIONAL) Conference Events
 
+```javascript
+callStats.sendFabricEvent(pcObject, callStats.fabricEvent.fabricSetupFailed, conferenceID);
+```
+
 Send the appropriate `fabricEvent` via `sendFabricEvent()`.
 
 <!-- - send `fabricSetup` after [`onaddstream` event is fired by the WebRTC API](http://dev.w3.org/2011/webrtc/editor/webrtc.html)
