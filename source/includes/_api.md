@@ -10,8 +10,8 @@
 `AppID`  | Required | String | Application ID is obtained from callstats.io.
 `AppSecret`  | Required | String | Application secret is obtained from callstats.io.
 `localUserID`  | Required | String (256 bytes) | it is provided by the developer and MUST NOT be null or empty.
-`initCallback`  | Optional | callback | asynchronously reports failure or success of the protocol messages.
-`statsCallback`  | Optional | callback | asynchronously reports the conference statistics.  
+`csInitCallback`  | Optional | callback | asynchronously reports failure or success of the protocol messages.
+`csStatsCallback`  | Optional | callback | asynchronously reports the conference statistics.  
 `configParams`  | Optional | JSON| it is the set of parameters to enable/disable certain features in the library. 
 
 Section on [generating userID](#generating-userid-and-conferenceid) provides more guidelines on choosing a `localUserID`.
