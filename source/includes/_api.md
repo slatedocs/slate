@@ -25,59 +25,104 @@ To use the Augur API, augur.js can connect to an Ethereum node, which can be eit
 
 <aside class="notice"><code>augur.connect</code> also accepts a second argument specifying the path to geth's IPC (inter-process communication) file.  IPC creates a persistent connection using a Unix domain socket (or a named pipe on Windows).  It is significantly faster than HTTP RPC, but requires access to the filesystem, so it cannot be used from the browser.</aside>
 
+Trading
+-------
+
+Traders submit bids and asks.  Orders are executed if another trader will match/offer better terms.  Orders executed first come first served.  UI offers users the best prices first, in case another trader has already picked up those orders by broadcasting their transaction first (UI can also check this in the transaction pool).  The UI includes multiple backup/fallback orders in their transactions that the user would still be willing to trade (provided they're within her limit parameters).  Orders are never executed at worse prices than their limit prices (but can be better).  Orders can be partially filled.
+
+### How to trade
+
+- To go long, buy on exchange via bid or buy a complete set of all outcomes and sell everything else
+- To go short buy a whole set and sell the one you don't like (or call the `short_sell` function)
+- Spreads still stay tight due to super easy arbitrage from buy/sell complete sets
+- To sell shares held buy the other outcomes and turn in a complete set or sell directly via asks.  Whichever is cheaper should be done first.
+
+When someone enters an order in the UI the following happens:
+
+- Find all orders on the book that can fill that order, so price is <= if buying and >= if selling 
+- Call `trade(max_value, max_amount, trade_ids:arr)` which will return the amount of money that still isn't filled at the end of trading 
+- If it returns 0 for the max value and amounts the UI is done
+- If it returns a positive number, place a buy or sell order on the book for the amount it returns using `buy(amount, price, market_id, outcome)` or `sell(amount, price, market_id, outcome)`
+- This will then `log(type=log_add_tx, $market_id, msg.sender, $type, $price, $amount, $outcome, trade_id)` where type is either `BID` or `ASK`, rest is self explanatory
+- The UI calls `get_trade_ids(market_id)` to get a list of all open orders on the book 
+- Then to populate the order books for each outcome in the UI: `get_trade(id)`
+- If `> max` or `< min` don't show order
+
+Pending transactions and what orders have already been picked up in pending broadcasted transactions are shown in the book.  These orders are removed if the other side has already been taken in the transaction pool (those orders get executed first on Ethereum anyway based on time precedence and default gas price).  If not processed / taken up, those orders are placed back on the book.  If two orders at same price are placed on the book, the one placed first is executed first.
+
 Simplified API
 --------------
 ```javascript
 var branchId = 1010101;
-var marketId = "-0x5932c04cfb6df8275387fc5d15a9897d61a2ef598c7e60ae45829e9e1e3409e6";
+var marketId = "-0xb196c4ce182399271e6ed434eb3f2210ae5e427c8ac0604c2cb2261694951d9";
 
 augur.getMarketInfo(marketId, function (marketInfo) { /* ... */ })
 // example output:
 marketInfo = {
-  network: "7",
-  traderCount: 1,
-  alpha: "0.00790000000000000001",
-  traderIndex: 0,
-  numOutcomes: 2,
-  tradingPeriod: 338,
-  tradingFee: "0.01999999999999999998",
-  branchId: "0xf69b5",
-  numEvents: 1,
-  cumulativeScale: "1",
-  creationFee: "1000",
-  author: "0x1f068eba431ece4a3ce0bc9bf542d78641285e56",
-  endDate: 609491,
-  type: "binary",
-  participants: {
-    0xaff9cb4dcb19d13b84761c040c91d21dc6c991ec: 0
+  "network": "2",
+  "traderCount": 1,
+  "makerFees": "0.5",
+  "traderIndex": 0,
+  "numOutcomes": 4,
+  "tradingPeriod": 99010560000,
+  "tradingFee": "0.01999999999999999998",
+  "branchId": "0xf69b5",
+  "numEvents": 1,
+  "cumulativeScale": "18446744073709551616",
+  "creationBlock": 920838,
+  "volume": "43.05000000000000000017",
+  "creationFee": "8.99999999999999967469",
+  "author": "0x15f6400a88fb320822b689607d425272bea2175f",
+  "tags": ["politics", "US elections", "political parties"],
+  "type": "categorical",
+  "endDate": 1485158400000,
+  "participants": {
+    "0x15f6400a88fb320822b689607d425272bea2175f": 0
   },
-  winningOutcomes: ["0", "0", "0", "0", "0", "0", "0", "0"],
-  description: "Will \"Star Wars - The Force Awakens\" gross the highest domestic weekend box office in history (according to box office mojo) on its starting weekend?",
-  outcomes: [{
-    shares: {
-      0xaff9cb4dcb19d13b84761c040c91d21dc6c991ec: "30.20000000000000000004"
+  "winningOutcomes": ["0", "0", "0", "0", "0", "0", "0", "0"],
+  "description": "Which political party's candidate will win the 2016 U.S. Presidential Election? Choices: Democratic, Republican, Libertarian, other",
+  "outcomes": [
+    {
+      "shares": {
+        "0x15f6400a88fb320822b689607d425272bea2175f": "0"
+      },
+      "id": 1,
+      "outstandingShares": "1.25"
     },
-    id: 1,
-    outstandingShares: "978.45265164437841819801",
-    price: "0.88224176534189211081"
-  }, {
-    shares: {
-      0xaff9cb4dcb19d13b84761c040c91d21dc6c991ec: "0"
+    {
+      "shares": {
+        "0x15f6400a88fb320822b689607d425272bea2175f": "1.25"
+      },
+      "id": 2,
+      "outstandingShares": "1.25"
     },
-    id: 2,
-    outstandingShares: "948.25265164437841819797",
-    price: "0.12401983211394367306"
-  }],
-  events: [{
-    id: "-0x7096f49a6b3844af58d4ec2d7c2517b8ccdcc924fef4c97e23c55e82a7e36178",
-    endDate: 609491,
-    outcome: "0",
-    minValue: "0",
-    maxValue: "1",
-    numOutcomes: 2
-  }],
-  price: "0.12401983211394367306",
-  _id: "-0x5932c04cfb6df8275387fc5d15a9897d61a2ef598c7e60ae45829e9e1e3409e6"
+    {
+      "shares": {
+        "0x15f6400a88fb320822b689607d425272bea2175f": "1.25"
+      },
+      "id": 3,
+      "outstandingShares": "1.25"
+    },
+    {
+      "shares": {
+        "0x15f6400a88fb320822b689607d425272bea2175f": "1.25"
+      },
+      "id": 4,
+      "outstandingShares": "1.25"
+    }
+  ],
+  "events": [
+    {
+      "id": "-0xd91b9481ee9c2902198aa46c45d099afb7240f0d582ca06e646da628ec8618d8",
+      "endDate": 1485158400000,
+      "outcome": "0",
+      "minValue": "10",
+      "maxValue": "20",
+      "numOutcomes": 4,
+      "type": "categorical"
+    }
+  ],
+  "_id": "-0xb196c4ce182399271e6ed434eb3f2210ae5e427c8ac0604c2cb2261694951d9"
 }
 ```
 All of the methods in the Simplified API are getter methods that use an `eth_call` RPC request; for transactional requests (`eth_sendTransaction`), see the Full API section below.  This API is simplified in the sense that single requests to this API can be used to fetch a large amount of data, without the need for complicated RPC batch queries.
@@ -90,8 +135,7 @@ Reads all information about a market that is stored on-contract.  It also determ
 var options = {
   branch: 1010101,     // branch ID (default: 1010101)
   offset: 10,          // which markets to start  (default: 0)
-  numMarketsToLoad: 5, // numMarkets
-  combinatorial: true
+  numMarketsToLoad: 5  // numMarkets
 };
 augur.getMarketsInfo(options, function (marketsInfo) { /* ... */ })
 // example output:
@@ -113,7 +157,7 @@ marketsInfo = {
 
 Retrieve a `marketInfo` object for all markets on the specified branch.  The `marketInfo` objects (see above for example) are collected into a single object and indexed by `marketId`.  The `options` parameter is an object which specifies the branch ID (`branch`), and whether or not to send separate RPC requests for combinatorial event descriptions (`combinatorial`).  There are also two fields (`offset` and `numMarketsToLoad`) used to split up the `getMarketsInfo` query into multiple requests.  This is useful if the number of markets on the branch is too large for a single RPC request.
 
-<aside class="notice">Each branch's market IDs are stored as an "array" on the <a href="https://github.com/AugurProject/augur-core/blob/master/src/data%20and%20api/branches.se">branches</a> contract, in the contract's <code>Branches[](markets[], numMarkets, ...)</code> data.  Markets are indexed in the order created; i.e., the first market created has index 0, the second 1, etc.  This ordering allows us to break up a large aggregate request like <code>getMarketsInfo</code> into manageable chunks.
+<aside class="notice">Each branch's market IDs are stored as an "array" on the <a href="https://github.com/AugurProject/augur-core/blob/forking/src/data_api/branches.se">branches</a> contract, in the contract's <code>Branches[](markets[], numMarkets, ...)</code> data.  Markets are indexed in the order created; i.e., the first market created has index 0, the second 1, etc.  This ordering allows us to break up a large aggregate request like <code>getMarketsInfo</code> into manageable chunks.
 
 For example, suppose you were displaying markets on separate pages.  You might want to retrieve information about all markets, but, to keep your loading time reasonable, only get 5 markets per request.  To get the first 5 markets, you would set <code>offset</code> to 0 and <code>numMarketsToLoad</code> to 5: <code>augur.getMarketsInfo({offset: 0, numMarketsToLoad: 5}, cb)</code>.  To get the second 5, <code>offset</code> would be 5: <code>augur.getMarketsInfo({offset: 5, numMarketsToLoad: 5}, cb)</code>.  The third 5, <code>offset</code> would be 10: <code>augur.getMarketsInfo({offset: 10, numMarketsToLoad: 5}, cb)</code>, and so on.</aside>
 
@@ -129,7 +173,7 @@ augur.getCashBalance(address, function (cashBalance) { /* ... */ });
 // example output:
 cashBalance = "93016.83621687256922549981"
 ```
-### [cash contract](https://github.com/AugurProject/augur-core/blob/master/src/data%20and%20api/cash.se)
+### [cash contract](https://github.com/AugurProject/augur-core/blob/forking/src/data_api/cash.se)
 #### getCashBalance(address[, callback])
 
 Gets the play money (CASH) balance of the user account `address`.
@@ -149,7 +193,7 @@ augur.getDescription(marketId, function (description) { /* ... */ });
 // example output:
 description = "Will the Sun turn into a red giant and engulf the Earth by the end of 2016?"
 ```
-### [info contract](https://github.com/AugurProject/augur-core/blob/master/src/data%20and%20api/info.se)
+### [info contract](https://github.com/AugurProject/augur-core/blob/forking/src/data_api/info.se)
 #### getCreator(id[, callback])
 
 Gets the address of the account that created `id` (a market or event ID).
@@ -203,11 +247,11 @@ augur.getMinTradingFee(branchId, function (minTradingFee) { /* ... */ })
 // example output:
 minTradingFee = "0.0078125"
 
-augur.getBranch(0, function (branch) { /* ... */ })
+augur.getBranchByNum(0, function (branch) { /* ... */ })
 // example output:
 branch = "0xf69b5"
 ```
-### [branches contract](https://github.com/AugurProject/augur-core/blob/master/src/data%20and%20api/branches.se)
+### [branches contract](https://github.com/AugurProject/augur-core/blob/forking/src/data_api/branches.se)
 #### augur.getNumBranches([callback])
 
 Looks up the total number of branches that exist on the current network.
@@ -271,7 +315,7 @@ augur.getNumOutcomes(eventId, function (numOutcomes) { /* ... */ });
 // example output:
 numOutcomes = "2"
 ```
-### [events contract](https://github.com/AugurProject/augur-core/blob/master/src/data%20and%20api/events.se)
+### [events contract](https://github.com/AugurProject/augur-core/blob/forking/src/data_api/events.se)
 #### getEventInfo(eventId[, callback])
 
 Fetches an array of basic information about event `eventId`: branch ID, expiration block number, outcome (`"0"` if not yet resolved), minimum value, maximum value, and number of outcomes.
@@ -350,7 +394,7 @@ augur.getTotalReputation(branchId, reportPeriod, function (totalReputation) { /*
 totalReputation = "282"
 
 ```
-### [expiringEvents contract](https://github.com/AugurProject/augur-core/blob/master/src/data%20and%20api/expiringEvents.se)
+### [expiringEvents contract](https://github.com/AugurProject/augur-core/blob/forking/src/data_api/expiringEvents.se)
 #### getEvents(branch, reportPeriod[, callback])
 
 Fetches an array of event IDs that are scheduled to be reported on during `reportPeriod`.
@@ -384,21 +428,43 @@ The report hash submitted for `reportPeriod` by address `reporter`.
 Gets the total amount of Reputation issued on branch `branch` by `reportPeriod`.  (In the live release Reputation is neither created nor destroyed, so this will be a constant value of `11000000`.)
 
 ```javascript
+// trades contract
+var trade_id = "-0x22daf7fdff22ff716fd8108c011d1c0e69a7ab4a2b087f65dda2fc77ea044ba1";
+
+augur.get_trade(trade_id, function (trade) { /* ... */ });
+// example output:
+trade = {
+  id: '-0x22daf7fdff22ff716fd8108c011d1c0e69a7ab4a2b087f65dda2fc77ea044ba1',
+  type: 'sell',
+  market: '-0xb196c4ce182399271e6ed434eb3f2210ae5e427c8ac0604c2cb2261694951d9',
+  amount: '1',
+  price: '0.5',
+  owner: '0x15f6400a88fb320822b689607d425272bea2175f',
+  block: 920945,
+  refhash: '-0x6489ea153782b05c74a7ea4389036db78133e773c4ad895c0c7041d0b0d98fc4',
+  outcome: '1'
+}
+```
+### [trades contract](https://github.com/AugurProject/augur-core/blob/forking/src/data_api/trades.se)
+#### get_trade(trade_id[, callback])
+
+Gets the details of trade `trade_id`.  (To get the `trade_id`s for a given market, call `augur.get_trade_ids(market)`.)
+
+```javascript
 // markets contract
-var marketId = "0xacc29bf675e03383eaf9beebcc975cdcbefda75322640d67baf3b04d6af198a";
-var outcomeId = 5; // 9-outcome categorical market
+var marketId = "-0xb196c4ce182399271e6ed434eb3f2210ae5e427c8ac0604c2cb2261694951d9";
+
+augur.get_trade_ids(marketId, function(trade_ids) { /* ... */ });
+// example output:
+trade_ids = [
+  '-0xd2cbbef4aa237c97c7c412885b283a0fa517cc7a58f37e981f0cc2e01338bbbf',
+  '-0xec12b8e92e92b83534ba5948c0ea22752f6975e5eef96b46e4f6d558314347a7',
+  '-0xef272ceaabdc90b0c99248caaf34198e2d88d973e30a485118ab30598a95097e',
+  '-0x22daf7fdff22ff716fd8108c011d1c0e69a7ab4a2b087f65dda2fc77ea044ba1'
+  ]
+
+var outcomeId = 5; // 8-outcome categorical market
 var amount = 4;
-augur.getSimulatedBuy(marketId, outcomeId, amount, function (simulation) { /* ... */ });
-// example output:
-simulation = ["1.22497628703421360092", "0.5119122035959891813"] // [cost, price]
-
-augur.getSimulatedSell(marketId, outcomeId, amount, function (simulation) { /* ... */ });
-// example output:
-simulation = ["0.27632515684523433055", "0.03172161728914410592"] // [cost, price]
-
-augur.lsLmsr(marketId, function (cost) { /* ... */ });
-// example output:
-cost = "32.66160518907426017564"
 
 augur.getMarketEvents(marketId, function (marketEvents) { /* ... */ });
 // example output:
@@ -433,10 +499,6 @@ augur.getWinningOutcomes(marketId, function (winningOutcomes) { /* ... */ });
 // example output:
 winningOutcomes = ["0", "0", "0", "0", "0", "0", "0", "0", "0"]
 
-augur.price(marketId, outcomeId, function (price) { /* ... */ });
-// example output:
-price = "0.4882160701306164927"
-
 var address = "0x05ae1d0ca6206c6168b42efcd1fbe0ed144e821b";
 augur.getParticipantNumber(marketId, address, function (participantNumber) { /* ... */ });
 // example output:
@@ -445,10 +507,6 @@ participantNumber = "0"
 augur.getParticipantID(marketId, participantNumber, function (participantID) { /* ... */ });
 // example output:
 participantID = "0x05ae1d0ca6206c6168b42efcd1fbe0ed144e821b"
-
-augur.getAlpha(marketId, function (alpha) { /* ... */ });
-// example output:
-alpha = "0.00790000000000000001"
 
 augur.getCumScale(marketId, function (cumScale) { /* ... */ });
 // example output:
@@ -462,18 +520,10 @@ augur.getTradingFee(marketId, function (tradingFee) { /* ... */ });
 // example output:
 tradingFee = "0.00999999999999999999"
 ```
-### [markets contract](https://github.com/AugurProject/augur-core/blob/master/src/data%20and%20api/markets.se)
-#### getSimulatedBuy(market, outcome, amount[, callback])
+### [markets contract](https://github.com/AugurProject/augur-core/blob/forking/src/data_api/markets.se)
+#### get_trade_ids(market[, callback])
 
-Gets "simulated" results for the proposed buy from the automated market maker, without actually making the trade.  Returns an array with 2 elements: the cost of the trade, and the current LS-LMSR price.
-
-#### getSimulatedSell(market, outcome, amount[, callback])
-
-Gets "simulated" results for the proposed sale from the automated market maker, without actually making the trade.  Returns an array with 2 elements: the cost of the trade, and the current LS-LMSR price.
-
-#### lsLmsr(market[, callback])
-
-Gets the current value of the LS-LMSR's cost function for `market`.
+Gets an array of trade IDs.  Each trade ID represents a buy or sell order that is sitting on `market`'s order book (i.e., has not yet been matched).  To get detailed information about the trade, call `augur.get_trade(trade_id)`.
 
 #### getMarketEvents(market[, callback])
 
@@ -507,10 +557,6 @@ The total number of shares purchased (by all traders) of `outcome` in `market`.
 
 Gets an array of outcomes showing the winning/correct outcome, or an array of all zeros if `market` has not yet been resolved.
 
-#### price(market, outcome[, callback])
-
-The LS-LMSR's current instantaneous price for `outcome` in `market`.
-
 #### getParticipantNumber(market, address[, callback])
 
 Looks up the participant number for account `address`.
@@ -518,10 +564,6 @@ Looks up the participant number for account `address`.
 #### getParticipantID(market, participantNumber[, callback])
 
 Looks up the account address for `participantNumber`.
-
-#### getAlpha(market[, callback])
-
-Gets the value of the LS-LMSR parameter alpha for `market`.
 
 #### getCumScale(market[, callback])
 
@@ -570,7 +612,7 @@ hashReport(ballot, salt, function (reportHash) { /* ... */ });
 // example output:
 reportHash = "-0x4480ed40f94e2cb2ca244eb862df2d350300904a96039eb53cba0e34b8ace90a"
 ```
-### [reporting contract](https://github.com/AugurProject/augur-core/blob/master/src/data%20and%20api/reporting.se)
+### [reporting contract](https://github.com/AugurProject/augur-core/blob/forking/src/data_api/reporting.se)
 #### getRepBalance(branch, address[, callback])
 
 The Reputation balance on `branch` of account `address`.
@@ -595,21 +637,6 @@ Looks up a reporter's number (index) by address `repID`.
 
 The total amount of Reputation on `branch`.
 
-#### hashReport(ballot, salt[, callback])
-
-Calculates the SHA256 hash of `ballot` using `salt`.
-
-```javascript
-// buy&sellShares contract
-augur.getNonce(id, function (nonce) { /* ... */ });
-// example output:
-"0"
-```
-### [buy&sellShares contract](https://github.com/AugurProject/augur-core/blob/master/src/functions/buy%26sellShares.se)
-#### getNonce(id[, callback])
-
-Gets a trading nonce.
-
 ```javascript
 // makeReports contract
 var branchId = augur.branches.dev;
@@ -619,7 +646,7 @@ augur.checkReportValidity(branchId, report, reportPeriod, function (isValid) { /
 // example output:
 isValid = "1"
 ```
-### [makeReports contract](https://github.com/AugurProject/augur-core/blob/master/src/functions/makeReports.se)
+### [makeReports contract](https://github.com/AugurProject/augur-core/blob/forking/src/functions/makeReports.se)
 #### checkReportValidity(branch, report, reportPeriod[, callback])
 
 Validates `report` made on `branch` for `reportPeriod`.  A valid report is the correct length, is made before 2 reporting periods have elapsed, and is created by a valid reporting address.  Returns 1 if valid, -1 if invalid because the report is the wrong length (i.e., doesn't match the number of events being reported on), or -2 if invalid for another reason.
@@ -759,7 +786,7 @@ successResponse = {
   txHash: '0x7aeeacf586d3afa89dc7ca41a4df52307d1a91c33b8726552d3f84b041b5850e'
 }
 ```
-### [faucets contract](https://github.com/AugurProject/augur-core/blob/master/src/functions/faucets.se)
+### [faucets contract](https://github.com/AugurProject/augur-core/blob/forking/src/functions/faucets.se)
 #### reputationFaucet(branch[, onSent, onSuccess, onFailed])
 
 Sets the Reputation balance of the sending account to 47.  (Only available during testing, of course!)
@@ -874,7 +901,7 @@ successResponse = {
   txHash: '0x3f44c75513667dee7dcf0a5f08e7be32751fbc2c5c52a8a29018682941ee4895'
 }
 ```
-### [cash contract](https://github.com/AugurProject/augur-core/blob/master/src/data%20and%20api/cash.se)
+### [cash contract](https://github.com/AugurProject/augur-core/blob/forking/src/data_api/cash.se)
 #### sendCash(to, value[, onSent, onSuccess, onFailed])
 
 Sends `value` units of CASH to address `to`.  Returns the value sent if successful.
@@ -920,87 +947,155 @@ successResponse = {
   txHash: '0x45bc69d4aaf9e9bc8d8524d6b4a33f3289d56d150ab4b58c3e85a480db851f47'
 }
 ```
-### [checkQuorum contract](https://github.com/AugurProject/augur-core/blob/master/src/functions/checkQuorum.se)
+### [checkQuorum contract](https://github.com/AugurProject/augur-core/blob/forking/src/functions/checkQuorum.se)
 #### checkQuorum(branchId[, onSent, onSuccess, onFailed])
 
 Determines whether consensus is ready to run.  If there aren't enough events in a vote period, push the events to the current period and increment the vote period.  Verifies if there are sufficient future events at stake; the minimum threshold is presently set at 200.  If the number of future events is not above this minimum threshold, then the branch stalls.  Returns 1 if ready, 0 otherwise.
 
 ```javascript
 // buy&sellShares contract
-var branchId = augur.branches.dev;
-var marketId = "-0x130158e01e01cc67d3d8803f88493b8aadc6654be759fbf2d40105506b41daa3";
+var marketId = "-0xb196c4ce182399271e6ed434eb3f2210ae5e427c8ac0604c2cb2261694951d9";
 var outcome = 1;
 var amount = "0.1";
-augur.buyShares({
-  branchId: branchId,
-  marketId: marketId,
-  outcome: outcome,
+var price = "0.5";
+
+augur.sell({
   amount: amount,
-  nonce: null,
-  limit: null,
+  price: price,
+  market: marketId,
+  outcome: outcome,
   onSent: function (sentResponse) { /* ... */ },
   onSuccess: function (successResponse) { /* ... */ },
   onFailed: function (failedResponse) { /* ... */ }
 });
 // example outputs:
 sentResponse = {
-  txHash: '0x5b99e6d18716da6be2c9c50795d92c0b716eb0a0012dcf2e73f96b9c0ee1b2b2',
-  callReturn: '1.23722604990455573688'
+  txHash: '0x24fa2a803f42253bbaa900af9badd32d75a728299e66ce9a0dce6a2a264307ca',
+  callReturn: '-0xb33524aac9866c6cfb74305e92958b150e0a1c1849dbcf606f18d861c4362467'
 }
 successResponse = {
-  nonce: '0x4dc',
-  blockHash: '0xf32b439e5993add2af5133fad6c8b35c6552f16f4279ca7aeb3acc9def7c3c2d',
-  blockNumber: '0x6a2c',
-  transactionIndex: '0x0',
-  from: '0x05ae1d0ca6206c6168b42efcd1fbe0ed144e821b',
-  to: '0x2e5a882aa53805f1a9da3cf18f73673bca98fa0f',
-  value: '0x0',
+  blockHash: '0x0cde35b78f6102a59c07c0c4279166864e34518fd6672af988cd9224acdfc9c6',
+  blockNumber: '0xe0ddb',
+  from: '0x15f6400a88fb320822b689607d425272bea2175f',
   gas: '0x2fd618',
-  gasPrice: '0xba43b7400',
-  input: '0x7d9e764100000000000000000000000000000000000000000000000000000000000f69b50acc29bf675e03383eaf9beebcc975cdcbefda75322640d67baf3b04d6af198a0000000000000000000000000000000000000000000000000000000000000005000000000000000000000000000000000000000000000004333333333333333300000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000',
-  callReturn: '1.23722604990455573688',
-  txHash: '0x5b99e6d18716da6be2c9c50795d92c0b716eb0a0012dcf2e73f96b9c0ee1b2b2'
+  gasPrice: '0x4a817c800',
+  input: '0x24cd95b300000000000000000000000000000000000000000000000040000000000000000000000000000000000000000000000000000000000000008000000000000000f4e693b31e7dc66d8e1912bcb14c0ddef51a1bd83753f9fb3d34dd9e96b6ae270000000000000000000000000000000000000000000000000000000000000001',
+  nonce: '0x1006ff',
+  to: '0xa16ced61576483990d0d821a5fc344a3429ba755',
+  transactionIndex: '0x0',
+  value: '0x0',
+  callReturn: '-0xb33524aac9866c6cfb74305e92958b150e0a1c1849dbcf606f18d861c4362467',
+  txHash: '0x24fa2a803f42253bbaa900af9badd32d75a728299e66ce9a0dce6a2a264307ca'
 }
 
-augur.sellShares({
-  branchId: branchId,
-  marketId: marketId,
-  outcome: outcome,
+augur.buy({
   amount: amount,
-  nonce: null,
-  limit: null,
+  price: price,
+  market: marketId,
+  outcome: outcome,
   onSent: function (sentResponse) { /* ... */ },
   onSuccess: function (successResponse) { /* ... */ },
   onFailed: function (failedResponse) { /* ... */ }
 });
 // example outputs:
 sentResponse = {
-  txHash: '0x0c93b30f4e001b5aaf367470346874e15f4fb14acf024572a3aaac6515ab4adb',
-  callReturn: '0.07115672415962748134'
+  txHash: '0xbeacc3547fd07d7cd0bde16d404f3554eb4515561fb21bc6a5231459238085c0',
+  callReturn: '-0x5c354ef67fc3306a984bd1e8722fa3342b02fe6ba690b2d7aecc766c927891f'
 }
 successResponse = {
-  nonce: '0x4e2',
-  blockHash: '0xc9b8506031f455cf9de3145e637b9bae13a79d8ed5c6f4eed257d483b0b6cdbb',
-  blockNumber: '0x6a79',
-  transactionIndex: '0x0',
-  from: '0x05ae1d0ca6206c6168b42efcd1fbe0ed144e821b',
-  to: '0x2e5a882aa53805f1a9da3cf18f73673bca98fa0f',
-  value: '0x0',
+  blockHash: '0x7f940ad92362787b0f788c8c092e12791f8c588edc10de43091cf989bf5dd615',
+  blockNumber: '0xe0e4d',
+  from: '0x15f6400a88fb320822b689607d425272bea2175f',
   gas: '0x2fd618',
-  gasPrice: '0xba43b7400',
-  input: '0x314f177c00000000000000000000000000000000000000000000000000000000000f69b5ecfea71fe1fe33982c277fc077b6c47552399ab418a6040d2bfefaaf94be255d0000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000199999999999999a00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000',
-  callReturn: '0.07115672415962748134',
-  txHash: '0x0c93b30f4e001b5aaf367470346874e15f4fb14acf024572a3aaac6515ab4adb'
+  gasPrice: '0x4a817c800',
+  input: '0x3651cae40000000000000000000000000000000000000000000000004000000000000000000000000000000000000000000000000000000000000000851eb851eb851eb8f4e693b31e7dc66d8e1912bcb14c0ddef51a1bd83753f9fb3d34dd9e96b6ae270000000000000000000000000000000000000000000000000000000000000001',
+  nonce: '0x100701',
+  to: '0xa16ced61576483990d0d821a5fc344a3429ba755',
+  transactionIndex: '0x0',
+  value: '0x0',
+  callReturn: '-0x5c354ef67fc3306a984bd1e8722fa3342b02fe6ba690b2d7aecc766c927891f',
+  txHash: '0xbeacc3547fd07d7cd0bde16d404f3554eb4515561fb21bc6a5231459238085c0'
 }
 ```
-### [buy&sellShares contract](https://github.com/AugurProject/augur-core/blob/master/src/functions/buy%26sellShares.se)
-#### buyShares(branchId, marketId, outcome, amount[, nonce, limit, onSent, onSuccess, onFailed])
 
-Buy `amount` shares of `outcome` in `marketId` from the automated market maker.
+### [buy&sellShares contract](https://github.com/AugurProject/augur-core/blob/forking/src/functions/buy%26sellShares.se)
+#### buy(amount, price, market, outcome[, onSent, onSuccess, onFailed])
 
-#### sellShares(branchId, marketId, outcome, amount[, nonce, limit, onSent, onSuccess, onFailed])
+Buy `amount` shares of `outcome` in `market`.
 
-Sell `amount` shares of `outcome` in `marketId` from the automated market maker.
+#### sell(amount, price, market, outcome[, onSent, onSuccess, onFailed])
+
+Sell `amount` shares of `outcome` in `market`.
+
+```javascript
+// completeSets contract
+var marketId = "-0xb196c4ce182399271e6ed434eb3f2210ae5e427c8ac0604c2cb2261694951d9";
+var outcome = 1;
+var amount = "0.1";
+
+augur.buyCompleteSets({
+  marketId: marketId,
+  amount: amount,
+  onSent: function (sentResponse) { /* ... */ },
+  onSuccess: function (successResponse) { /* ... */ },
+  onFailed: function (failedResponse) { /* ... */ }
+});
+// example outputs:
+sentResponse = {
+  txHash: '0x536411add36fc39a8bb8cf310d4f26468f78fde7901721e0aea5b392f59661fe',
+  callReturn: '1'
+}
+successResponse = {
+  blockHash: '0x45498bd80813e9711b86f5ca8ff1ceec0a306a2e1f9d9e884094c78eb24c00bd',
+  blockNumber: '0xe0e60',
+  from: '0x15f6400a88fb320822b689607d425272bea2175f',
+  gas: '0x2fd618',
+  gasPrice: '0x4a817c800',
+  input: '0xbefa1c86f4e693b31e7dc66d8e1912bcb14c0ddef51a1bd83753f9fb3d34dd9e96b6ae27000000000000000000000000000000000000000000000000199999999999999a',
+  nonce: '0x100704',
+  to: '0x3eb691ebc786d06eb97954d84e6528f72c4be74a',
+  transactionIndex: '0x1',
+  value: '0x0',
+  callReturn: '1',
+  txHash: '0x536411add36fc39a8bb8cf310d4f26468f78fde7901721e0aea5b392f59661fe' 
+}
+
+augur.sellCompleteSets({
+  marketId: marketId,
+  amount: amount,
+  onSent: function (sentResponse) { /* ... */ },
+  onSuccess: function (successResponse) { /* ... */ },
+  onFailed: function (failedResponse) { /* ... */ }
+});
+// example outputs:
+sentResponse = {
+  txHash: '0x60ce607ee24c62a60c42837f2ee2a0833fff68c1be23a3805e0271763e04c1b3',
+  callReturn: '1'
+}
+successResponse = {
+  blockHash: '0x326d77dc3891132df8b74cfcf6f27f589e13557c2db40abeae17eae33f026a96',
+  blockNumber: '0xe0e63',
+  from: '0x15f6400a88fb320822b689607d425272bea2175f',
+  gas: '0x2fd618',
+  gasPrice: '0x4a817c800',
+  input: '0xe30d0ad7f4e693b31e7dc66d8e1912bcb14c0ddef51a1bd83753f9fb3d34dd9e96b6ae270000000000000000000000000000000000000000000000010000000000000000',
+  nonce: '0x100706',
+  to: '0x3eb691ebc786d06eb97954d84e6528f72c4be74a',
+  transactionIndex: '0x1',
+  value: '0x0',
+  callReturn: '1',
+  txHash: '0x60ce607ee24c62a60c42837f2ee2a0833fff68c1be23a3805e0271763e04c1b3'
+}
+```
+
+### [completeSets contract](https://github.com/AugurProject/augur-core/blob/forking/src/functions/completeSets.se)
+#### buyCompleteSets(marketId, amount[, limit, onSent, onSuccess, onFailed])
+
+Buy `amount` shares of all outcomes of `marketId` from the automated market maker.
+
+#### sellCompleteSets(marketId, amount[, limit, onSent, onSuccess, onFailed])
+
+Sell `amount` shares of all outcomes of `marketId` from the automated market maker.
 
 ```javascript
 // createBranch contract
@@ -1033,7 +1128,7 @@ successResponse = {
   txHash: '0x29b169c0bd087aefd2f2dcd7b54c6ac08a3d8d78c6030a18980d059650f39117'
 }
 ```
-### [createBranch contract](https://github.com/AugurProject/augur-core/blob/master/src/functions/createBranch.se)
+### [createBranch contract](https://github.com/AugurProject/augur-core/blob/forking/src/functions/createBranch.se)
 #### createSubbranch(description, periodLength, parent, tradingFee[, onSent, onSuccess, onFailed])
 
 Creates a new sub-branch of branch `parent`.  The description format is branchName:description.  `periodLength` is given in blocks.  Returns the new branch's ID if successful.  Otherwise, returns -1 if there is a bad input or the parent doesn't exist, -2 if there is insufficient funds to create the branch or if the branch already exists.
@@ -1068,7 +1163,7 @@ successResponse = {
   txHash: '0x1460b261654f24bf0bbb436f1766b68a94f476c57d4998e26da75114f56cc5a8'
 }
 ```
-### [sendReputation contract](https://github.com/AugurProject/augur-core/blob/master/src/functions/sendReputation.se)
+### [sendReputation contract](https://github.com/AugurProject/augur-core/blob/forking/src/functions/sendReputation.se)
 #### sendReputation(branchId, to, value[, onSent, onSuccess, onFailed])
 
 Sends `value` Reputation tokens on branch `branchId` to address `to`.  Returns the value sent if successful.
@@ -1117,7 +1212,7 @@ augur.slashRep({
 sentResponse = 
 
 ```
-### [makeReports contract](https://github.com/AugurProject/augur-core/blob/master/src/functions/makeReports.se)
+### [makeReports contract](https://github.com/AugurProject/augur-core/blob/forking/src/functions/makeReports.se)
 #### report(branchId, report, reportPeriod, salt[, onSent, onSuccess, onFailed])
 
 Submits an array of reports `report` for report period `reportPeriod` on branch `branchId`.
@@ -1165,7 +1260,7 @@ successResponse = {
   txHash: '0x5ed66d25e36b6b4cb6e15c97d6c85c43060af75cdbfed4d562426d24ed37fb05'
 }
 ```
-### [createEvent contract](https://github.com/AugurProject/augur-core/blob/master/src/functions/createEvent.se)
+### [createEvent contract](https://github.com/AugurProject/augur-core/blob/forking/src/functions/createEvent.se)
 #### createEvent(branchId, description, expirationBlock, minValue, maxValue, numOutcomes[, onSent, onSuccess, onFailed])
 
 Creates an event on branch `branchId` with `description`, expiration block number of `expirationBlock`, minimum value `minValue`, maximum value `maxValue`, and `numOutcomes` possible outcomes.
@@ -1203,7 +1298,7 @@ successResponse = {
   txHash: '0x643462835b9899318ead8f47a1c43232b04a1dfeda8fba213e8c3d8a0c4651e0'
 }
 ```
-### [createMarket contract](https://github.com/AugurProject/augur-core/blob/master/src/functions/createMarket.se)
+### [createMarket contract](https://github.com/AugurProject/augur-core/blob/forking/src/functions/createMarket.se)
 #### createMarket(branchId, description, alpha, initialLiquidity, tradingFee, events[, onSent, onSuccess, onFailed])
 
 Creates a market on branch `branchId` with `description`, LS-LMSR `alpha` value, initial investment of `initialLiquidity`, trading fee (as a proportion) of `tradingFee`, containing event IDs supplied in an array `events`.  Regular (non-combinatorial) markets always have a single event; combinatorial markets allow up to 3 events.
@@ -1238,7 +1333,7 @@ successResponse = {
   txHash: '0x2b48ff35e52c9963503d573c15b559c53e6b34e2ba8f1be3d4d63709239bd8f2'
 }
 ```
-### [closeMarket contract](https://github.com/AugurProject/augur-core/blob/master/src/functions/closeMarket.se)
+### [closeMarket contract](https://github.com/AugurProject/augur-core/blob/forking/src/functions/closeMarket.se)
 #### closeMarket(branchId, marketId[, onSent, onSuccess, onFailed])
 
 Closes market with ID `marketId` on branch `branchId`.
