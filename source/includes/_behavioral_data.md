@@ -214,6 +214,25 @@ Parameter | Required? | Description
 --------- | ----------- | ----------
 term | Yes | The search term the user entered in the search box
 autocomplete_section | Yes | Your autocomplete suggestions can have multiple sections like "Products" and "Search Suggestions".  This indicates which section this item is for.  See [your dashboard](/dashboard) for the section names to use.
-item | No | The autocomplete item that the user clicked on
+item | No | The item that the user purchased
 revenue | No | The purchase amount in cents (that is, the dollar amount * 100)
 
+### Via Javascript
+
+Conversions can also be tracked via Javascript, like so:
+
+<code>
+&lt;script type="text/javascript" src="//cnstrc.com/js/ac.js">&lt;/script>
+&lt;script&gt;<br/>
+window['constructorio'] = window['constructorio'] || [];<br/>
+window['constructorio'].push(["trackEvent", "purchase", {<br/>
+&nbsp;&nbsp;"autocomplete_key": "[your autocomplete key]",<br/>
+&nbsp;&nbsp;"revenue": [the purchase amount in cents],<br/>
+&nbsp;&nbsp;"term": "[the search term the user entered in the search box]",<br/>
+&nbsp;&nbsp;"item": "[the item that the user purchased]",<br/>
+&nbsp;&nbsp;"autocomplete_section": "[the autocomplete section]"<br/>
+}]);<br/>
+&lt;/script>
+</code>
+
+Note that if `term`, `item`, and `autocomplete_section` are ommitted, the Javascript client will populate them with its own tracking information.
