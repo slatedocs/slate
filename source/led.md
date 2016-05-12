@@ -57,22 +57,25 @@ This command is used to read the values of up to 8 LEDs at a time. You specify t
 
 ## Examples
 
-### Reading the value of 4 different LEDs.
+### Reading the LED values.
 
-Reading the values of LEDs #2, #3, #6, #8.
+Reading the values of LEDs
 
 **Command**:
 
-|0|1|2|3|4|5|6|7|8|
-|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
-|0x44|0x10|CRC|0x02|0x4|0x2|0x3|0x6|0x8|
+|0|1|2|3|4|
+|:-:|:-:|:-:|:-:|
+|0x44|0|CRC|0x02|
 
 **Response**:
 
 |0|1|2|3|4|5|6|7|8|
 |:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
-|0x44|0x10|CRC|0x02|0x4|0xA5|0xFF|0xFF|0x00|
+|0x44|8|CRC|0x02|4|122|255|255|0|0|0|0|
 
+Led0 & Led1 are dimmed
+Led2 & Led3 are full on
+Led4-Led7 are off
 
 ### Changing the luminosity values of 3 different LEDs. 
 
