@@ -50,7 +50,3 @@ Você deve sempre fornecer os seus valores de data e hora no mesmo formato ISO 8
 ## Formato numérico
 
 <aside class="notice">Todos os números são fornecidos tanto com números inteiros, ponto flutuante nativos para JSON.</aside>
-
-## Formato numérico
-
-<aside class="notice">Todos os números são fornecidos tanto com números inteiros, ponto flutuante nativos para JSON.</aside>
