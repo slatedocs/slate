@@ -152,12 +152,8 @@ sendInstall( function() {
 ```
 
 > Sample Response
-
 ```json
-{
-  "status": 200,
-  "message": "Attribution request received"
-}
+{"message":"Install request received!","status":200}
 ```
 
 This endpoint can receive attributed and non-attributed app installs, as well as app opens, from an install attribution platform. Installs will be processed, stored, and used in reporting. 
@@ -278,7 +274,6 @@ sendInstall( function() {
 );
 
 ```
-
 > Sample Response
 
 ```json
