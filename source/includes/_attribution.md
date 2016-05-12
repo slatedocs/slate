@@ -282,17 +282,14 @@ sendInstall( function() {
 > Sample Response
 
 ```json
-{
-  "status": 200,
-  "message": "Attribution request received"
-}
+{"message":"Install request received!","status":200}
 ```
 
 This endpoint can receive attributed and non-attributed app installs, as well as app opens, from an install attribution platform. Installs will be processed, stored, and used in reporting. 
 
 ### HTTP Request
 
-`POST https://live.chartboost.com/api/v1/install.json`
+`GET https://live.chartboost.com/api/v1/install.json`
 
 <aside class="notice">
 This endpoint's response will always return HTTP 200 status code. Check the "status" key on the JSON response for the real status code.
@@ -305,7 +302,7 @@ To authenticate with the API endpoint, you must generate a unique signature to b
 The Chartboost app signature is an identifier unique to each individual app in the Chartboost dashboard. Chartboost developers can find their game's app signature on the Chartboost dashboard's **App Settings** page:
 <img src="https://s3.amazonaws.com/chartboost/help_assets/partners-app-sig.jpg" />
 
-Computed signature: `"action:attribution\n{{CB_API_SECRET}}\n{{Chartboost app signature}}\n{{JSON body}}"`
+Computed signature: `"action:attribution\n{{CB_API_SECRET}}\n{{Chartboost app signature}}\n{{URI}}"`
 
 The resulting digest from the hash function should be sent in the `X-Chartboost-Signature` header in the request.  For an example of the signature hashing, refer to the code example on the right.
 
@@ -315,7 +312,6 @@ Each request must contain the following headers:
 
 Header                 | Value
 ----                   | -----
-Content-Type           | `application/json`
 X-Chartboost-Token     | `{{CB_API_TOKEN}}`
 X-Chartboost-Signature | `{{computed_signature}}`
 
@@ -338,3 +334,6 @@ timestamp     | false    | int    | UNIX timestamp in seconds
 <aside class="notice">
 * Google Advertising ID is *required* in every request unless the device only has Android ID available, in which case the single Android ID (uuid) parameter may be sent.  Both can be sent in a single request if available.
 </aside>
+
+### Example GET Request
+`GET https://live.chartboost.com/api/v1/install.json?app_id=538e68a3c2611441d13e3e15&ifa=60009b4c-0f16-4fbc-82ec-5475313af000&claim=1&attributed_to=Chartboost&is_organic=0`
