@@ -152,6 +152,7 @@ sendInstall( function() {
 ```
 
 > Sample Response
+
 ```json
 {"message":"Install request received!","status":200}
 ```
