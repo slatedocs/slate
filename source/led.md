@@ -63,7 +63,7 @@ Reading the values of LEDs
 
 **Command**:
 
-|0|1|2|3|4|
+|0|1|2|3|
 |:-:|:-:|:-:|:-:|
 |0x44|0|CRC|0x02|
 
