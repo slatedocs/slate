@@ -300,7 +300,7 @@ The Chartboost app signature is an identifier unique to each individual app in t
 
 Computed signature: `"action:attribution\n{{CB_API_SECRET}}\n{{Chartboost app signature}}\n{{URI}}"`
 
-The resulting digest from the hash function should be sent in the `X-Chartboost-Signature` header in the request.  For an example of the signature hashing, refer to the code example on the right.
+The resulting digest from the hash function should be sent in the `X-Chartboost-Signature` header in the request.  For an example of the signature hashing, refer to the code example on the right.  {{URI}} refers to everything past `https://fqdn`, e.g. `/api/v1/install.json?app_id=538e68a3c2611441d13e3e15&ifa=60009b4c-0f16-4fbc-82ec-5475313af000&claim=1&attributed_to=Chartboost&is_organic=0`
 
 ### Headers
 
