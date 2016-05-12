@@ -74,8 +74,11 @@ Reading the values of LEDs
 |0x44|8|CRC|0x02|4|122|255|255|0|0|0|0|
 
 Led0 & Led1 are dimmed
+
 Led2 & Led3 are full on
+
 Led4-Led7 are off
+
 
 ### Changing the luminosity values of 3 different LEDs. 
 
