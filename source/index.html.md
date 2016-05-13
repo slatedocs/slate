@@ -26,7 +26,7 @@ search: true
 # Introducción
 
 Integra tu aplicación con Facturación Electrónica. Este API de Dátil te permite
-emitir todos los tipos de comprobantes electrónicos: facturas, retenciones (próximamente), notas de crédito (próximamente), notas de débito (próximamente) y guías de remisión (próximamente).
+emitir todos los tipos de comprobantes electrónicos: facturas, retenciones, notas de crédito, notas de débito y guías de remisión.
 
 El API de Dátil está diseñado como un servicio web [REST](http://en.wikipedia.org/wiki/Representational_State_Transfer).
 De esta manera resulta sencillo conversar con nuestra interfaz utilizando cualquier
