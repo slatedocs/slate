@@ -135,7 +135,7 @@ function csvReceiver(downloadUrl, eventContext, webhookJSON){
       });
     }
   }
-};
+}
 
 // Lambda event Handler
 exports.handler = function(event, context) {
@@ -155,15 +155,17 @@ From the Lambda management console, you'll need to do the following.
 #### Create the Receiver Lambda
 
 1. Click to create a new Lambda function.
-2. Skip the existing blueprints (button towards  the bottom of page)
+2. Skip the existing blueprints (button towards the bottom of page)
 3. Name your function something like "controlShiftWebhookReciever" and leave the runtime to node default.
 4. Copy and paste the "Lambda Receiver" function from the right into the inline lambda code editor.
-5. Leave the handler as the default.
-6. For role, select "S3 Execution role". This will open a new window.
-7. In this new window, called "IAM Management Console", name your role something relevant, like "controlShiftReceriver_s3." Then click "Allow" in the far bottom left corner.
-8. Next is setting the memory size. You should be fine with 128MB, but if you have a large petitions DB, you will likely need more. You can always update the memory size later. Later, you can check the log stream in CloudWatch monitoring to see how much memory was used.
-9. Set the Timeout a little higher - 30 seconds should be fine.
-10. Use "No VPC".
+5. Update the `targetBucket` in the inline code editor (approximately line 6 after copying/pasting).
+6. Leave the handler as the default.
+7. For role, select "S3 Execution role". This will open a new window.
+8. In this new window, called "IAM Management Console", the IAM role field should say "Create a new role." Name this new role something relevant, like "controlShiftReceriver_s3." Then click "Allow" in the far bottom left corner, this returns you to the previous window.
+9. Next, set the memory size to 128MB. If you have a large petitions DB, you will likely need more. You can always update the memory size later and you can check the log stream in CloudWatch monitoring to see how much memory was used.
+10. Set the Timeout a little higher - 30 seconds should be fine.
+11. Use "No VPC".
+12. Click next, then on the next page just click "Create Function"!
 
 #### Setup the API Endpoint
 
@@ -195,19 +197,19 @@ Click on over to the Redshift service in the AWS console.
 
 #### Prepare Redshift Connection Security
 
-We need to whitelist our IP address for our default security group in order to connect to our Redshift DB. While we're managing our security through a VPC (Virtual Private Cloud), The best UI for our purposes is actually in the EC2 configuration console.
+We need to whitelist relevant IP addresses in our default security group. We'll need to add two rules. While we're managing our security through a VPC (Virtual Private Cloud), the best UI for our purposes is actually in the EC2 configuration console.
 
-2. Go to the AWS Console > EC2
-3. Click to "Security Groups" in the left hand menu.
-4. Click on the default Security Group (it should say default in the "Group Name" column,
-5. Click on the "Inbound Rules" tab at the bottom and click edit.
-5. Click "Add Rule."
-7. Select "All Traffic" for "type" and for "source" select "My IP." This should pre-fill your CIDR.  Save the new rule.
-8. Click "Add Rule" again.
-9. Select "Redshift" for "Type." Enter your cluster's port (typically 5439). Type "sg-" into the source field, and it should pull up your default security group.
+1. Go to the AWS Console > EC2
+2. Click to "Security Groups" in the left hand menu.
+3. Click on the default Security Group (it should say default in the "Group Name" column)
+4. Click on the "Inbound Rules" tab at the bottom and click "Edit."
+5. Click "Add Rule" to start adding our first rule.
+6. Select "All Traffic" for "type" and for "source" select "My IP." This should pre-fill your CIDR.  Save the new rule.
+7. Click "Add Rule" again.
+8. Select "Redshift" for "Type." Enter your cluster's port (typically 5439). Type "sg-" into the source field, and it should pull up your default security group.
 
-**Note:** If you're having trouble getting your own IP/CIDR setup, try either looking up your subnet mask and using [this table](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#IPv4_CIDR_blocks).  Your CIDR will almost always be your id address followed by `/32` or `/64` for ipv6.  Example: `123.123.123.123/32`. If all else fails, use the global 0.0.0.0/0 - opening your cluster to the public Internet. The latter isn't recommended. If you do have to do this, make sure you remove the rule when you're done.
- -->
+**Note:** If you're having trouble getting your own IP/CIDR setup, try either looking up your subnet mask and using [this table](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#IPv4_CIDR_blocks). Your CIDR will almost always be your id address followed by `/32` or `/64` for ipv6.  Example: `123.123.123.123/32`. If all else fails, use the "Anywhere" global option `0.0.0.0/0` - opening your cluster to the public Internet. The latter isn't recommended. If you do have to do this, make sure you remove the rule when you're done.
+
 #### Prepare Redshift Schema
 
 We need to prep our tables data schema to receive our ConrtolShift Data.  We'll use `psql` for this.
@@ -218,7 +220,7 @@ We need to prep our tables data schema to receive our ConrtolShift Data.  We'll 
 
 ```psql -h <cluster_endpoint> -U <database_user> -d <database_name> -p <cluster_port> -f petitions_schema.sql```
 
-**Note:** When connecting, you should almost immediately get a request for your password. If you're connection is timing out *before* you enter your password, there is a authorization issue.  If you are timing out *after* connecting, you can extend your keep alive timeout with the following shell command.
+**Note:** When connecting, you should almost immediately get a request for your password. If you're connection is timing out *before* you enter your password, there is an authorization issue. If you are timing out *after* connecting, you can extend your keep alive timeout with the following shell command.
 
 ```sudo /sbin/sysctl -w net.ipv4.tcp_keepalive_time=200 net.ipv4.tcp_keepalive_intvl=200 net.ipv4.tcp_keepalive_probes=5```
 
@@ -310,14 +312,15 @@ We need to allow our user to access our aws-lambda-redshift-loader to access our
 1. Go to the AWS Lambda Console in the same region as your S3 bucket and Amazon Redshift cluster.
 2. Select Create a Lambda function and enter the name controlShiftRedshiftLoader (for example).
 3. Under Code entry type select 'Upload a zip file' and upload the [AWSLambdaRedshiftLoader-2.4.0.zip](https://github.com/awslabs/aws-lambda-redshift-loader/blob/master/dist/AWSLambdaRedshiftLoader-2.4.0.zip) from your local ```dist``` folder or [download it](https://github.com/awslabs/aws-lambda-redshift-loader/tree/master/dist).
-4. Use the default values for the handler, and in the Role drop-down, select "* Basic Execution Role." A IAM creation wizard will open in a new window.
-5. Follow the wizard, selecting to "Create a new IAM Role" and name it as you like.  Click to "View the Policy" and then click edit.
-6. Copy and paste the the AWS Lambda Execution Role permissions from the example "AWS Lambda Execution Role" or from the official [readme](https://github.com/awslabs/aws-lambda-redshift-loader#getting-started---lambda-execution-role).
-7. Then click "Add Policy." Select the `AmazonRedshiftFullAccess` role and add it, then add another role - `AmazonDMSRedshiftS3Role`.
-8. Navigate back to your Lambda setup tab and set the max timeout (5 minutes) to accommodate potentially long COPY times.
-9. From the VPC dropdown, select your default VPC.
-10. Leave the rest of the settings alone.
-11. Click next and then click to create your Lambda.
+4. Set the Runtime to Node.js 0.10.
+5. Use the default values for the handler, and in the Role drop-down, select "* Basic Execution Role." A IAM creation wizard will open in a new window.
+6. Follow the wizard, selecting to "Create a new IAM Role" and name it as you like.  Click to "View the Policy" and then click edit.
+7. Copy and paste the the AWS Lambda Execution Role permissions from the example "AWS Lambda Execution Role" or from the official [readme](https://github.com/awslabs/aws-lambda-redshift-loader#getting-started---lambda-execution-role).
+8. Then click "Add Policy." Select the `AmazonRedshiftFullAccess` role and add it, then add another role - `AmazonDMSRedshiftS3Role`.
+9. Navigate back to your Lambda setup tab and set the max timeout (5 minutes) to accommodate potentially long COPY times.
+10. From the VPC dropdown, select your default VPC.
+11. Leave the rest of the settings alone.
+12. Click next and then click to create your Lambda.
 
 #### Establishing an Event Source
 
@@ -398,11 +401,12 @@ Finally, you'll need to log into your admin panel.  Settings > CRM Integrations 
 A few tips if things aren't working:
 
 * Most errors will probably occur when attempting to load data from Lambda into Redshift. The DynamoDB batch history captures errorMessages in the the `LambdaRedshiftBatches` table. Click on the `entries` field. You can also check AWS CloudWatch > Logs and then click on the appropriate cloud stream.
+* If you're DynamoDB batch history is empty, but your lambda is being invoked, and AWS CloudWatch logs show timeout errors, your Lambda probably cannot connect to your DynamoDB instance. Try moving your aws-lamda-loader out of the VPC group.
 * Since Redshift is based on PostgreSQL 8.0.2, there is a healthy amount of overlapping error codes. You can [lookup errors codes here](http://www.postgresql.org/docs/8.0/static/errcodes-appendix.html). Example errors:
   * `28000` - Unable to connect to the database. Is the username/password/database name entered correctly when running setup.js? Is the user granted proper privileges on your database?
   * `42P01` - Redshift doesn't have the table you're trying to import data into. Did you import the schema as described above?
   * `XX000` - This is an internal error. In our case, the most likely causes are either an invalid schema usually caused by an [unsupported data type](http://docs.aws.amazon.com/redshift/latest/dg/c_unsupported-postgresql-datatypes.html). Double check that your imported schema is correct. If you aren't using the provided schema, double check that you're using the supported types and that your imported data matches those types.
   * `42601` - Syntax error - This is most likely a typo when running setup.js. If you're entering your CSV columns during setup, be sure they match the schema you've loaded into the database. Make sure your CSV Delimiter is set correctly and your CSV is properly formated.
   * `42501` - Insufficient privileges errors.  Did you GRANT your user all the privileges required?
-* Be sure to check the logging messages you see in your Lambda log streams under CloudWatch > logs.
 * Try manually uploading a petitions export to your `controlshift-receiver` S3 bucket, and check DynamoDB batch history for errors. You can fetch these exports from your ControlShift Labs instance, in Settings > Exports.
+ * If you get an error message "Unknown Error during Customer Master Key describe" when running setup.js, you probably didn't `export`the environment params as described above.
