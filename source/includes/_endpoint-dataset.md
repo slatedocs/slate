@@ -538,7 +538,33 @@ PATCH the "expression" attribute to modify. An empty "expression" object, like
 
 ##### Stream
 
-##### Main deck
+##### Decks
+
+`/datasets/{id}/decks/`
+
+Decks allow you to store [saved analyses](#saving-analyses) as slides on them 
+for exporting or future reference.
+
+Decks are personal per dataset and each dataset gets one by default but it is 
+possible to create more as necessary by POSTing to the decks catalog. They
+only need a name.
+
+```json
+{
+    "element": "shojo:entity",
+    "self": "https://beta.crunch.io/api/datasets/223fd4/decks/",
+    "body": {
+        "name": "my new deck"
+    }
+}
+```
+
+###### Decks order
+
+`/datasets/{id}/decks/order/`
+
+The Deck order allows to the user to customize the order in which they will be
+displayed by an API client.
 
 #### Catalogs
 
