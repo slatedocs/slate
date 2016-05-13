@@ -566,6 +566,30 @@ only need a name.
 The Deck order allows to the user to customize the order in which they will be
 displayed by an API client.
 
+##### Preferences
+
+`/datasets/{id}/preferences/`
+
+The dataset preferences provide API clients with a key/value store for settings
+or customizations each would need for each user.
+
+By default all dataset preferences start out as an empty object where clients can
+PATCH the keys each deems necessary.
+
+```json
+{
+    "element": "shojo:entity",
+    "self": "https://beta.crunch.io/api/datasets/223fd4/preferences/",
+    "body": {}
+}
+```
+
+To delete keys from the preferences the value needs to be patched with `null`.
+
+There is no order associated with the saved preferences. Clients should assume 
+they are in arbitrary order.
+
+
 #### Catalogs
 
 ##### Batches
@@ -587,7 +611,5 @@ displayed by an API client.
 ##### Comparisons
 
 ##### Forks
-
-##### Decks
 
 ##### Permissions
