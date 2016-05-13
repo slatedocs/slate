@@ -119,6 +119,7 @@ O tipo da Cobrança depende da sua Configuração de Cobrança. Se a Configuraç
 | installments                   | integer          | número de parcelas                                                                                                                            |
 | generate_token                 | boolean          | indica se foi gerado token para utilização do cartão de crédito no pagamento recorrente                                                       |
 | payment_gateway_status         | string           | status da cobrança em relação ao gateway de pagamento (pending, authorized, captured, canceled, authorize_error, capture_error, cancel_error) |
+| payment_gateway_message        | string           | mensagem do gateway de pagamento relacionada ao seu status                                                                                    |
 | _links                         | array of object  | links relacionados à cobraça                                                                                                                  |
 
 ## Informações da Cobrança
