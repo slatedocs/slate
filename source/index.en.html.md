@@ -31,17 +31,17 @@ The API is designed around [REST](http://en.wikipedia.org/wiki/Representational_
 
 Each section of this documentation describes e-billing capabilities available as a resource that you can access via HTTP from any programming language.
 
-Issuing electronic documents is an asynchronous process. This means that although the API responds to your requests immediately, it will execute multiple steps in the background to have your document approved. This process may take up to 5 seconds. Once completed, you can query the status of the document or receive a notification with the result.
+Issuing electronic documents (e-documents) is an asynchronous process. This means that although the API responds to your requests immediately, it will execute multiple steps in the background to have your e-document authorized. This process may take up to 5 seconds. Once completed, you can query the status of the document or receive a notification with the result.
 
 ## Issuance process
 
-The process includes the following steps:
+The following steps are executed by Datil:
 
-1. __Creation__: The e-document is persisted for future use.
-2. __Signature__: Using a digital certificate, an electronic signature is applied to the e-document according to the cryptographic algorithm specified by each country tax regulations.
-3. __Sending__: The e-document is submitted to the country tax authority for authorization.
-4. __Authorization Query__: The tax authority service is queried for an authorization response.
-5. __Customer notification__: The recipient (customer or supplier) is notified about the new e-document issued. If the authorization fails, the merchant receives a notification detailing the errors. In this case, the receipient does not get notified.
+1. __Creation__: The e-document is persisted for future reference.
+2. __Signature__: Using the merchant digital certificate, the e-document is electronically signed in compliance with the [XAdES](https://www.w3.org/TR/XAdES/) standard and each tax authority data formats.
+3. __Sending__: The e-document is submitted to the tax authority web service for authorization.
+4. __Authorization Query__: Datil queries the tax authority web service for an authorization response.
+5. __Customer notification__: An email notification is sent to the e-document recipient. If the authorization fails, the issuer receives an email brief of the errors and the recipient is not notified.
 
 <aside class="notice">
 <strong>Remember:</strong> This whole process is executed in the background by Datil after each API request.
@@ -69,5 +69,3 @@ To issue or re-issue e-documents you need to send your digital certificate passw
 Include it in every issuance or re-issuance request:
 
 `X-Password: <digital-certificate-password>`
-
-Please, store these credentials in a safe place.

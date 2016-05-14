@@ -299,9 +299,9 @@ comprador | [persona](#persona) object | Information about the recipient. __Requ
 tipo_emision | integer | Issuance mode. Normal: `1`.<br>Contingency: `2`<br>__Required__
 items | list of [item](#item-de-factura) objects | Line items. __Required__
 version | string | Version of the country e-billing format. Defaults to the latest version.
-clave_acceso | string | The access code represents a unique identified for the document. Datil will generate an access code if you don't provide it.<br>¿How to [generate](#clave-de-acceso) an access code?
+clave_acceso | string | The access code represents a unique identified for the document. Datil will generate an access code if you don't provide it.<br>¿How to [generate](#access-code) an access code?
 informacion_adicional | object | Additional information about the invoice in dictionary form. Example:<br>` {"plan": "pro", "months": "1"}`
-retenciones | list of [retencion](#retencion-de-factura) objects | Withholdings to be included in the invoice. Specific case for traders or distributors of petroleum derivates and for presumptive VAT Retention for publishers, distributors and newsvendors involved in the marketing of newspapers and / or magazines.
+retenciones | list of [retencion](#invoice-withholdings) objects | Withholdings to be included in the invoice. Specific case for traders or distributors of petroleum derivates and for presumptive VAT Retention for publishers, distributors and newsvendors involved in the marketing of newspapers and / or magazines.
 
 
 <h4 id="totales-factura">Totals</h4>
