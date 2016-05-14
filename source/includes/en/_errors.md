@@ -1,14 +1,14 @@
-# Errores
+# Errors
 
-Listado de códigos de error y su significado.
+Our API will return this errors:
 
-Código | Significado
+Code | Description
 ---------- | -------
-400 | Bad Request -- La información provista está mal formada o incompleta.
-401 | Unauthorized -- Tu clave de API
-403 | Forbidden -- 
-404 | Not Found -- El recurso especificado no existe.
-405 | Method Not Allowed -- 
-406 | Not Acceptable -- 
-500 | Internal Server Error -- Error en el sistema.
-503 | Service Unavailable -- Servicio temporalmente fuera de línea. Intenta más tarde.
+400 | Bad Request -- The data provided is malformed or contains errors.
+401 | Unauthorized -- Your API key was no authorized.
+403 | Forbidden -- Your API key is not allowed to access this resource.
+404 | Not Found -- The resource does not exist.
+405 | Method Not Allowed --
+406 | Not Acceptable --
+500 | Internal Server Error -- Datil API system error.
+503 | Service Unavailable -- The service is temporarily unavailable, please try again later.
