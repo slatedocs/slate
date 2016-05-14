@@ -1,8 +1,7 @@
 # API Endpoint
 
 You access Beyonic’s API at the following endpoint:
-
-* https://app.beyonic.com/api
+    <aside class="notice">https://app.beyonic.com/api</aside>
 
 This endpoint uses your saved API version (see below). If you’d like to make sure that your application always accesses the same version, you can specify a specific version as shown in the versioning section.
 

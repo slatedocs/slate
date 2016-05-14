@@ -2,13 +2,14 @@
 
 ## Introduction
 
-Collection Requests are a way to notify us that you are expecting a a specific subscriber to send money to you.
+Collection Requests allow you to notify a customer to send funds to you. When you create a collection request, we send a notification to the customer, with insructions on how to fulfill the request. When they send the funds, a collection object shall be created, and matched with the collection request.
 
 Creating a collection request prior to receiving an expected collection greatly improves the user experience for your subscribers by automatically matching transactions to your organization, even if the subscriber misses out some information or gets some of the information wrong, for example if they forget to include a reference code. Payments matching the amount, number and currency in the collection requests will be correctly assigned to you.
 
-Note: Currently, collection requests **do not** initiate any interaction with the subscriber. In the future, they will be used to "pull" payments from subscribers by sending payment instructions to the subscriber on supported networks.
+On some supported networks, collection requests actually "pull" the funds from the recipient's mobile money wallet, and all they have to do is enter their PIN code to approve the transaction. This greatly improves the customer experience.
 
-The collection requests api endpoint is https://app.beyonic.com/api/collectionrequests
+The collection requests api endpoint is:
+    <aside class="notice">https://app.beyonic.com/api/collectionrequests</aside>
 
 ## The collection request object
 
@@ -29,8 +30,8 @@ collection | long integer or null | The ID of the collection that fulfilled the 
 success_message | string or null | The confirmation message delivered to the customer upon successful completion of this payment request
 instructions | string or null | Any custom instructions that were delivered to the customer
 send_instructions | boolean | Whether or not Beyonic will attempt to send instructions to the user
-                  
-                  
+
+
 ## Creating a new collection request
 
 > Sample Request:
@@ -47,7 +48,7 @@ curl https://app.beyonic.com/api/collectionrequests -H "Authorization: Token ab5
 require 'beyonic'
 Beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
-payment = Beyonic::CollectionRequest.create(
+collection = Beyonic::CollectionRequest.create(
     phonenumber: "+256773712831",
     amount: "100.2",
     currency: "UGX",
@@ -60,7 +61,7 @@ payment = Beyonic::CollectionRequest.create(
 require_once('./lib/Beyonic.php');
 Beyonic::setApiKey("ab594c14986612f6167a975e1c369e71edab6900");
 
-Beyonic_CollectionRequest::create(array(
+Beyonic_Collection_Request::create(array(
   "phonenumber" => "+256773712831",
   "amount" => "100.2",
   "currency" => "UGX",
@@ -76,7 +77,7 @@ beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 kwargs = {'metadata.my_id': '123ASDAsd123'}
 
 beyonic.CollectionRequest.create(phonenumber='+256773712831',
-                       amount='1200', 
+                       amount='1200',
                        currency='UGX',
                        description='Per diem',
                        callback_url='https://my.website/payments/callback',
@@ -164,9 +165,9 @@ public class CreateCollectionRequestExample {
 
 ```json
 {
-    "id": 3620, 
-    "organization": 1, 
-    "amount": "30", 
+    "id": 3620,
+    "organization": 1,
+    "amount": "30",
     "currency": "UGX",
     "phone_number": "+256772781923",
     "created": "2014-11-22T20:57:04.017Z",
@@ -211,7 +212,7 @@ collection = Beyonic::CollectionRequest.get(23)
 require_once('./lib/Beyonic.php');
 Beyonic::setApiKey("ab594c14986612f6167a975e1c369e71edab6900");
 
-$collection = Beyonic_CollectionRequest::get(23);
+$collection = Beyonic_Collection_Request::get(23);
 ?>
 ```
 
@@ -219,7 +220,7 @@ $collection = Beyonic_CollectionRequest::get(23);
 import beyonic
 beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
-collection = beyonic.CollectionTRequest.get(23)
+collection = beyonic.CollectionRequest.get(23)
 
 ```
 
@@ -277,9 +278,9 @@ public class SingleCollectionRequestExample {
 
 ```json
 {
-    "id": 230, 
-    "organization": 1, 
-    "amount": "30", 
+    "id": 230,
+    "organization": 1,
+    "amount": "30",
     "currency": "UGX",
     "phone_number": "+256772781923",
     "created": "2014-11-22T20:57:04.017Z",
@@ -315,7 +316,7 @@ collection = Beyonic::CollectionRequest.list
 require_once('./lib/Beyonic.php');
 Beyonic::setApiKey("ab594c14986612f6167a975e1c369e71edab6900");
 
-$collection = Beyonic_CollectionRequest::getAll();
+$collection = Beyonic_Collection_Request::getAll();
 ?>
 ```
 
@@ -449,7 +450,7 @@ collection = Beyonic::CollectionRequest.list(
 require_once('./lib/Beyonic.php');
 Beyonic::setApiKey("ab594c14986612f6167a975e1c369e71edab6900");
 
-$collection = Beyonic_CollectionRequest::getAll(array(
+$collection = Beyonic_Collection_Request::getAll(array(
   "remote_transaction_id" => "12345",
   "amount" => 500
 ));
@@ -517,6 +518,6 @@ You can search or filter collection requests on the following fields. Simply add
 
 * amount - the transaction amount
 * currency - the currency code
-* collection - the ID of the collection that fulfilled or matched this collection request 
+* collection - the ID of the collection that fulfilled or matched this collection request
 * phonenumber - the phonenumber that the collection request was intended for. Note that the phonenumber will be matched in international format, starting with a '+' sign. If the '+' sign isn't included in your request, it will be appended before attempting to match your request.
 * remote_transaction_id - the transation id or transaction reference of the collection on the mobile network operator's side

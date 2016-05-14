@@ -4,7 +4,8 @@
 
 Contacts represent people whom you can send payments to, or receive payments from. The contacts api method allows you to add, retrieve, list and update contacts in your Beyonic account. Contacts are also added automatically whenever you send a payment to a new phone number.
 
-The contacts api endpoint is https://app.beyonic.com/api/contacts
+The contacts api endpoint is:
+    <aside class="notice">https://app.beyonic.com/api/contacts</aside>
 
 ## The contact object
 
@@ -73,7 +74,7 @@ beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 kwargs = {'metadata.my_id': '123ASDAsd123'}
 
 beyonic.Contact.create(phone_number='+256773712831',
-                       first_name='John', 
+                       first_name='John',
                        last_name='Doe',
                        email='john.doe@beyonic.com',
                        **kwargs
@@ -413,7 +414,7 @@ public class ListAllContactsExample{
 }
 ```
 
-To retrieve a list of all contacts, make a GET request to the contact end point. This will return a list of contacts. 
+To retrieve a list of all contacts, make a GET request to the contact end point. This will return a list of contacts.
 
 ## Filtering contacts
 
@@ -502,6 +503,6 @@ You can search or filter contacts on the following fields. Simply add them to yo
 
 * first_name - the contact's first name
 * last_name - the contact's last name
-* email - the contact's email 
+* email - the contact's email
 * phone_number - the contact's phone number. Note that the phonenumber will be matched in international format, starting with a '+' sign. If the '+' sign isn't included in your request, it will be appended before attempting to match your request.
 

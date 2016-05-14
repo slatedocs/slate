@@ -9,11 +9,11 @@ You can be managed in two ways:
 * By logging into your account via the web browser
 * By using the Webhooks API
 
-*Required permisions*
+**Required permissions**
 
 To manage webhooks, either with the API or the web browser, you must have “Manage Users and Organization Settings” permissions for your organization
 
-*Managing Webhooks from the web browser*
+**Managing Webhooks from the web browser**
 
 To manage webhooks using the web browser:
 1. Log into your account.
@@ -21,11 +21,13 @@ To manage webhooks using the web browser:
 3. Click the Settings button (Cog wheel with an arrow pointing down)
 4. Click “Manage Webhooks” from the drop down menu that appears
 
-*Managing Webhooks from the API*
+**Managing Webhooks from the API**
 
 You can use the Webhooks API described below to update or delete your callback URLs programatically.
 
-The webhooks api endpoint is https://app.beyonic.com/api/webhooks
+The webhooks api endpoint is:
+
+    <aside class="notice">https://app.beyonic.com/api/webhooks</aside>
 
 ## The webhook object
 
@@ -93,6 +95,35 @@ Parameter | Description
 --------- | --------
 hook | A JSON representation of a webhook object. See the see webhook section below.
 data | A JSON representation of the object that triggered the event. This is different for each event. See the 'Supported events' section above.
+
+## Tips for testing callbacks
+
+**1. Https with invalid certificates**
+
+Beyonic only supports notification urls that start with "https://", even when testing. So, you should set up URL to a dedicated page on your server with a server-side https certificate. 
+
+Beyonic will usually validate the https certificate, and if validation fails, the notification will not be sent to your URL. To skip validation while testing, add ?skip-cert-verify to your URL, for example: 
+    <aside class="notice">https://my.callback.url.com?skip-cert-verify.</aside>
+
+Note that skip-cert-verify only prevents certificate verification. It doesn't eliminate the "https://" requirement
+
+While you can use skip-cert-verify on your production URLs, we advise you to use valid server side certificates to maximize security on your production systems
+
+**2. Setting up a temporary callback URL and verifying the format of the notifications**
+
+If you are not able to set up a dedicated "https://" url while testing, we recommend using a service like [RequestBin](https://requestb.in/).
+
+RequestBin gives you a URL that will collect requests made to it and let you inspect them in a human-friendly way. Use RequestBin to inspect and debug the webhook notifications.
+
+Once you get a RequestBin URL, it uses http by default. Since Beyonic only supports https, remember to use "https://" and "skip-cert-verify"
+
+For example, if your RequestBin URL is 
+
+    <aside class="notice">http://requestb.in/xzdqe313</aside>
+
+Then use this for your callback URLs:
+
+    <aside class="notice">https://requestb.in/xzdqe313?skip-cert-verify</aside>
 
 ## Creating a new webhook
 
