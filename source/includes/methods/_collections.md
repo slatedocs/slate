@@ -60,6 +60,56 @@ collection = beyonic.Collection.get(23)
 
 ```
 
+```java
+package com.beyonic.examples.collections;
+
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
+
+public class SingleCollectionExample {
+
+    private static final String API_ENDPOINT = "https://app.beyonic.com/api/collections";
+    private static final String API_KEY = "ab594c14986612f6167a975e1c369e71edab6900";
+    private static final String CHARSET = "UTF-8";
+
+    public static void main(String[] args){
+        URL url = null;
+        try {
+            url = new URL(API_ENDPOINT + "/1");
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+
+            conn.setRequestProperty("Content-Type", "application/json");
+            conn.setRequestProperty("Accept", "application/json");
+            conn.setRequestProperty("charset", CHARSET);
+            conn.setRequestProperty("Authorization", "Token " + API_KEY);
+
+            System.out.println(conn.getResponseCode() + " // " + conn.getResponseMessage());
+
+            try {
+                if (conn.getResponseCode() == 200) {
+                    InputStream inputStream = conn.getInputStream();
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+                    String response = reader.readLine();
+                    reader.close();
+
+                    System.out.println(response);
+                }
+            } finally {
+                conn.disconnect();
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+}
+```
+
 > Sample Response (JSON):
 
 ```json
@@ -116,6 +166,55 @@ beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
 collection = beyonic.Collection.list()
 
+```
+
+```java
+package com.beyonic.examples.collections;
+
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
+public class ListAllCollectionsExample {
+
+    private static final String API_ENDPOINT = "https://app.beyonic.com/api/collections";
+    private static final String API_KEY = "ab594c14986612f6167a975e1c369e71edab6900";
+    private static final String CHARSET = "UTF-8";
+
+    public static void main(String[] args){
+        URL url = null;
+        try {
+            url = new URL(API_ENDPOINT);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+
+            conn.setRequestProperty("Content-Type", "application/json");
+            conn.setRequestProperty("Accept", "application/json");
+            conn.setRequestProperty("charset", CHARSET);
+            conn.setRequestProperty("Authorization", "Token " + API_KEY);
+
+            System.out.println(conn.getResponseCode() + " // " + conn.getResponseMessage());
+
+            try {
+                if (conn.getResponseCode() == 200) {
+                    InputStream inputStream = conn.getInputStream();
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+                    String response = reader.readLine();
+                    reader.close();
+
+                    System.out.println(response);
+                }
+            } finally {
+                conn.disconnect();
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+}
 ```
 
 > Sample Response (JSON)
@@ -217,6 +316,55 @@ collection = beyonic.Collection.list(phonenumber='+256772712893',
 
 ```
 
+```java
+package com.beyonic.examples.collections;
+
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
+public class FilterCollectionsExample {
+
+    private static final String API_ENDPOINT = "https://app.beyonic.com/api/collections";
+    private static final String API_KEY = "ab594c14986612f6167a975e1c369e71edab6900";
+    private static final String CHARSET = "UTF-8";
+
+    public static void main(String[] args){
+        URL url = null;
+        try {
+            url = new URL(API_ENDPOINT + "?remote_transaction_id=SS12312");
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+
+            conn.setRequestProperty("Content-Type", "application/json");
+            conn.setRequestProperty("Accept", "application/json");
+            conn.setRequestProperty("charset", CHARSET);
+            conn.setRequestProperty("Authorization", "Token " + API_KEY);
+
+            System.out.println(conn.getResponseCode() + " // " + conn.getResponseMessage());
+
+            try {
+                if (conn.getResponseCode() == 200) {
+                    InputStream inputStream = conn.getInputStream();
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+                    String response = reader.readLine();
+                    reader.close();
+
+                    System.out.println(response);
+                }
+            } finally {
+                conn.disconnect();
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+}
+```
+
 > Sample Response (JSON)
 
 ```json
@@ -294,6 +442,55 @@ collection = beyonic.Collection.list(phonenumber='+256772712893',
 
 ```
 
+```java
+package com.beyonic.examples.collections;
+
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
+public class ClaimUnmatchedCollectionExample {
+
+    private static final String API_ENDPOINT = "https://app.beyonic.com/api/collections";
+    private static final String API_KEY = "ab594c14986612f6167a975e1c369e71edab6900";
+    private static final String CHARSET = "UTF-8";
+
+    public static void main(String[] args){
+        URL url = null;
+        try {
+            url = new URL(API_ENDPOINT + "?phonenumber=+256772712893&remote_transaction_id=SS12312&amount=200&claim=True");
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+
+            conn.setRequestProperty("Content-Type", "application/json");
+            conn.setRequestProperty("Accept", "application/json");
+            conn.setRequestProperty("charset", CHARSET);
+            conn.setRequestProperty("Authorization", "Token " + API_KEY);
+
+            System.out.println(conn.getResponseCode() + " // " + conn.getResponseMessage());
+
+            try {
+                if (conn.getResponseCode() == 200) {
+                    InputStream inputStream = conn.getInputStream();
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+                    String response = reader.readLine();
+                    reader.close();
+
+                    System.out.println(response);
+                }
+            } finally {
+                conn.disconnect();
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+}
+```
+
 > Sample Response (JSON)
 
 ```json
@@ -318,6 +515,8 @@ You can add the "claim" parameter to instruct Beyonic to also search unmatched c
 Note that when you include the claim parameter, you **must** also include the amount, remote_transaction_id and phonenumber parameters. Failure to do so will result in an error.
 
 Also note that the phonenumber will be matched in international format, starting with a '+' sign. Partial phone number matches will fail when you try to claim a transaction. If the '+' sign isn't included in your request, it will be appended before attempting to match your request.
+
+Lastly, if your search parameters match more than one collection, the claim will fail.
 
 Parameter | Type | Example | Notes
 ----------| ---- | ------- | -----

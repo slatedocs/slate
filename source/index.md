@@ -6,6 +6,7 @@ language_tabs:
   - php: PHP
   - ruby: RUBY
   - python: PYTHON
+  - java: JAVA
 
 toc_footers:
   - <a href='http://support.beyonic.com'>Beyonic Support & User Guides</a>
@@ -22,6 +23,7 @@ includes:
   - metadata
   - changelog
   - methods
+  - methods/accounts
   - methods/collections
   - methods/collection_requests
   - methods/contacts
@@ -34,7 +36,7 @@ search: true
 
 > Scroll down for examples.
 
-Welcome to Beyonic's API documentation. 
+Welcome to Beyonic's API documentation.
 
 The Beyonic API is [REST](http://en.wikipedia.org/wiki/Representational_state_transfer) based. We provide libraries for several languages, including PHP, Java, Ruby and Python. You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
 
