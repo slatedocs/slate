@@ -93,7 +93,7 @@ Once you know the custom field key, you can update it's value just like any othe
 
 ### API methods that support custom fields.
 
-Not all API methods support custom fields. Only API methods for  Currently, the following API methods support custom fields.
+Not all API methods support custom fields. Currently, the following API methods and their corresponding objects support custom fields.
 
 1. The payment API
 2. The contacts API
