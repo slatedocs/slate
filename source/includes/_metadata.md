@@ -74,3 +74,25 @@ Metadata has the following constraints:
 Metadata is added to the object a set of key-value pairs, where the key is in the format metadata.key_name, for example: metadata.id or metadata.name or metadata.date, and so on.
 
 See the examples for more information.
+
+## Custom Fields
+
+Custom Fields are similar to Metadata - they allow you to add custom data to some objects. There are a couple of differences between custom fields and other metadata:
+
+1. Custom fields are available through the web interface as well, while metadata fields are only available through the API
+2. Metadata keys and values can be created and edited through the API, while custom fields can only be created through the web interface (currently, you need to request addition of a custom field by [contacting us](http://beyonic.com/contact)). However, once custom fields have been created through the web interface, they can be updated or edited through the API as well.
+3. Metadata consists of string-based keys and string-based values. Custom field keys are strings (starting with "s_"), but the values may be of different types, including strings, numbers, boolean values or enum values (restricted to a predefined set of values)
+
+### Adding or updating custom field data
+
+All internal custom field labels or keys start with "s_". To see the available custom fields, and their actual key names, you can read or list the related object records, as detailed in the respective APIs. 
+
+For example, to see custom fields that have been added to your payment object, list your payments. You can identify the custom fields by their keys, which all start with "s_".
+
+Once you know the custom field key, you can update it's value just like any other metadata value.
+
+### Objects that support custom fields.
+
+Not all API methods support custom fields. Only API methods for  Currently, the following API methods support custom fields.
+1. The payment 
+2. The 
