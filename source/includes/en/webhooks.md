@@ -1,26 +1,22 @@
-# Notificaciones
+# Notifications
 
-Dátil emite notificaciones cada vez que un comprobante es emitido. Te podrás
-suscribir a estas notificaciones proveyendo una URL en donde recibir los datos
-del comprobante emitido.
+Datil can send you a HTTP notification each time an e-document is issued. You can subscribe to this notifications by providing the URL where you want to receive the e-document data.
 
-## Suscripción
+## Subscription
 
-Para suscribirte a las notificaciones envía un requerimiento a:
-
-### Operación
+### Operation
 
 `POST /webhooks`
 
-### Requerimiento
+### Request
 
-> #### Requerimiento de ejemplo
+> #### Example request
 
 ```shell
 curl -v https://link.datil.co/webhooks \
 -H "Content-Type: application/json" \
--H "X-Key: <clave-del-api>" \
--H "X-Password: <clave-certificado-firma>" \
+-H "X-Key: <your-api-key>" \
+-H "X-Password: <your-certificate-password>" \
 -d '{
   "event_name": "receipt-issued",
   "webhook_url": "http://www.b2b.com/ereceipts/receive"
@@ -29,7 +25,7 @@ curl -v https://link.datil.co/webhooks \
 
 ```python
 import requests
-cabeceras = {'x-key': '<clave-del-api>'}
+cabeceras = {'x-key': '<your-api-key>'}
 suscripcion = {
   "event_name": "receipt-issued",
   "webhook_url": "http://www.b2b.com/ereceipts/receive"}
@@ -51,14 +47,14 @@ namespace DatilClient {
   class InvoicingServiceClient {
     static void Main(string[] args) {
 
-      // Este ejemplo utiliza RestSharp 
+      // Este ejemplo utiliza RestSharp
       // Para instalar anda al menú: tools > Library Package Manager > Package Manager Console
       // copia y pega y presiona enter: Install-Package RestSharp
 
       var client = new RestClient("https://link.datil.co/");
       var idFactura = "<id-factura>";
       var request = new RestRequest("invoices/" + idFactura, Method.POST);
-      request.AddHeader("X-Key", "<clave-del-api>");
+      request.AddHeader("X-Key", "<your-api-key>");
       request.AddBody(@"{
         ""event_name"": "receipt-issued",
         ""webhook_url"": "http://www.b2b.com/ereceipts/receive"
@@ -72,34 +68,28 @@ namespace DatilClient {
 }
 ```
 
-Parámetro | Tipo | Descripción
+Parameter | Type | Description
 --------- | ------- | -----------
-event_name | string | Podrá ser `receipt-issued` o `issue-error`. __Requerido__
-webhook_url | string | Dirección donde se recibirá la información en formato JSON __Requerido__
+event_name | string | Valid values: `receipt-issued` o `issue-error`. __Requerido__
+webhook_url | string | Your URL where notifications will be sent.  __Requerido__
 
-El evento `receipt-issued` es emitido cuando el proceso de emisión termina
-correctamente. Los posibles estados de un comprobante al terminar de ser
-procesado correctamente pueden ser:
+The `receipt-issued` event is emitted when the issuance process finalizes successfully. These are the possible end states:
 
-* AUTORIZADO
-* NO AUTORIZADO
+* AUTORIZADO (authorized)
+* NO AUTORIZADO (not authorized)
 
-El evento `issue-error` es emitido cuando ocurre un error en uno de los pasos
-del proceso de emisión. Los posibles estados de un comprobante al terminar de ser
-procesado correctamente pueden ser:
+The `issue-error` event is emitted when an error occurs in any of the issuance steps. These are the possible end states:
 
-* CREADO (cuando no pudo ser firmado)
-* DEVUELTO
+* CREADO (created)
+* DEVUELTO (returned)
 
-## Eventos
+## Events
 
-Al ejecutarse un evento se enviará en un requerimiento tipo *POST*, la información completa del comprobante en
-conjunto con la autorización a la dirección registrada como `webhook_url` al
-momento de la suscripción.
+For each event, you will receive a *POST* request including the e-document in JSON format at the URL you registered `webhook_url`.
 
-### Autorizado
+### Authorized
 
-Un comprobante *Autorizado* contendrá información como el siguiente ejemplo: 
+An *Authorized* e-document has the following format:
 
 ```
 {
@@ -194,9 +184,10 @@ Un comprobante *Autorizado* contendrá información como el siguiente ejemplo:
 }
 ```
 
-### No Autorizado
+### Not authorized
 
-Un comprobante *No autorizado* contendrá información como el siguiente ejemplo: 
+A *Not authorized* e-document has the following format:
+
 
 ```
 {
@@ -294,9 +285,10 @@ Un comprobante *No autorizado* contendrá información como el siguiente ejemplo
 }
 ```
 
-### Devuelto
+### Returned
 
-Un comprobante *Devuelto* contendrá información como el siguiente ejemplo: 
+A *Returned* e-document has the following format:
+
 
 ```
 {
@@ -394,7 +386,7 @@ Un comprobante *Devuelto* contendrá información como el siguiente ejemplo:
 }
 ```
 
-### Error en firma
+### Signature error
 
 ```
 {
