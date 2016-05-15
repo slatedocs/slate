@@ -91,8 +91,9 @@ For example, to see custom fields that have been added to your payment object, l
 
 Once you know the custom field key, you can update it's value just like any other metadata value.
 
-### Objects that support custom fields.
+### API methods that support custom fields.
 
 Not all API methods support custom fields. Only API methods for  Currently, the following API methods support custom fields.
-1. The payment 
-2. The 
+
+1. The payment API
+2. The contacts API
