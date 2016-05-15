@@ -1,20 +1,20 @@
-# Comprobantes de Retención
+# Withholdings
 
-## Emisión de una retención
+## Issuing a withholding
 
-### Operación
+### Operation
 
 `POST /retentions/issue`
 
-<h3 id="requerimiento-retencion">Requerimiento</h3>
+### Requirement
 
-> #### Requerimiento de ejemplo
+> #### Example requirement
 
 ```shell
 curl -v https://link.datil.co/retentions/issue \
 -H "Content-Type: application/json" \
--H "X-Key: <API-key>" \
--H "X-Password: <clave-certificado-firma>" \
+-H "X-Key: <your-api-key>" \
+-H "X-Password: <your-certificate-password>" \
 -d '{
   "ambiente":1,
   "tipo_emision":1,
@@ -108,7 +108,7 @@ retencion = {
 }
 cabeceras = {
     'x-key': '<clave-del-api>',
-    'x-password': '<clave-certificado-firma>',
+    'x-password': '<your-certificate-password>',
     'content-type': 'application/json'}
 respuesta = requests.post(
     "https://link.datil.co/retentions/issue",
@@ -127,14 +127,14 @@ namespace DatilClient {
   class InvoicingServiceClient {
     static void Main(string[] args) {
 
-      // Este ejemplo utiliza RestSharp 
+      // Este ejemplo utiliza RestSharp
       // Para instalar anda al menú: tools > Library Package Manager > Package Manager Console
       // copia y pega y presiona enter: Install-Package RestSharp
 
       var client = new RestClient("https://link.datil.co/");
       var request = new RestRequest("invoices/issue", Method.POST);
       request.AddHeader("X-Key", "<clave-del-api>");
-      request.AddHeader("X-Password", "<clave-certificado-firma>");
+      request.AddHeader("X-Password", "<your-certificate-password>");
 
       request.AddBody(@"{
         ""ambiente"":1,
@@ -189,41 +189,36 @@ namespace DatilClient {
 }
 ```
 
-Para la emisión de una nota de crédito se debe enviar la información completa del
-comprobante en el cuerpo del requerimiento en formato JSON.
+A withholding requires the following information
 
-Parámetro | Tipo | Descripción
+Parameter | Type | Description
 --------- | ------- | -----------
-secuencial | string | Número de secuencia de la nota de crédito. __Requerido__
-emisor | [emisor](#emisor) | Información completa del emisor. __Requerido__
-fecha_emision | string | Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6).
-periodo_fiscal | string | Mes y año en el siguiente formato MM/AAAA. Ejm: 12/2015
-ambiente | integer | Pruebas: `1`.<br>Producción `2`.<br>__Requerido__
-impuestos | vector de objetos tipo [impuesto](#impuesto-retenido) | Listado de impuestos retenidos. __Requerido__
-tipo_emision | integer | Emisión normal: `1`.<br>Emisión por indisponibilidad: `2`<br>__Requerido__
-version | string | Versión del formato de comprobantes electrónicos de SRI. Si no se especifica, se utilizará la última revisión del formato implementada,
-clave_acceso | string | La clave de acceso representa un identificador único del comprobante. Si esta información no es provista, Dátil la generará.<br>¿Cómo [generar](#clave-de-acceso) la clave de acceso?
-informacion_adicional | objeto | Información adicional adjunta al comprobante en forma de diccionario. Ejemplo:<br>` {"Email": "contabilidad@empresa.com"}`
+secuencial | string | Withholding sequence number. __Required__
+emisor | [issuer](#issuer) | Information about the issuer.  __Required__
+fecha_emision | string | Issuance date in [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6) format (AAAA-MM-DDHourTimeZone).
+periodo_fiscal | string | Month and year in MM/YYYY fomat.
+ambiente | integer | Environment. Test: `1`.<br>Production `2`.<br>__Required__
+impuestos | list of [withholded-tax](#withholded-tax) objects | List of withholded tax line items. __Required__
+tipo_emision | integer | Issuance mode. Normal: `1`.<br>Contingency: `2`<br>__Required__
+version | string | Version of the country e-billing format. Defaults to the latest version.
+clave_acceso | string | The access code represents a unique identified for the document. Datil will generate an access code if you don't provide it.<br>¿How to [generate](#access-code) an access code?
+informacion_adicional | object | Additional information about the invoice in dictionary form. Example:<br>` {"plan": "pro", "months": "1"}`
 
-#### Impuesto Retenido
+#### Withholded tax
 
-Parámetro                        | Tipo   | Descripción
+Parameter                        | Type   | Description
 -------------------------------- | ------ |------------
-base_imponible                   | float  | Base imponible, máximo 2 cifras decimales. __Requerido__
-codigo                           | string | Código de [tipo de impuesto](#tipos-de-impuesto-para-la-retención). __Requerido__
-codigo_porcentaje                | string | [Código del porcentaje](#retención-iva) a aplicar dentro del tipo de impuesto __Requerido__
-porcentaje                       | float  | Porcentaje establecido para el impuesto
-valor_retenido                   | float  | Valor retenido, multiplicación de la base imponible por el porcentaje de retención, máximo 2 cifras decimales. __Requerido__
-fecha_emision_documento_sustento | string | Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6). __Requerido__
-numero_documento_sustento        | string | Número completo del documento sobre el que se aplica la retención. Ejm: 001-002-592738007
+base_imponible                   | float  | Taxable amount with up to 2 decimals. __Required__
+codigo                           | string | [withholding-tax-type](#withholding-tax-types) code. __Required__
+codigo_porcentaje                | string | Tax rate code. __Required__
+porcentaje                       | float  | Tax rate.
+valor_retenido                   | float  | Withholded tax amount, calculated from the product of `porcentaje` and `base_imponible`, with up to 2 decimals.  __Required__
+fecha_emision_documento_sustento | string | Issuance date in [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6) format (AAAA-MM-DDHourTimeZone). __Required__
+numero_documento_sustento        | string | Complete document number of the e-document being modified. Normally invoices. Example: 001-002-010023098 __Required__
 
-<!--aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside-->
+### Response
 
-### Respuesta
-
-> #### Respuesta de ejemplo
+> #### Example response
 
 ```json
 {
@@ -273,33 +268,27 @@ Remember — a happy kitten is an authenticated kitten!
 }
 ```
 
-Retorna un objeto tipo **[retención](#requerimiento-retencion)** que incluye un nuevo parámetro `id`,
-el cual identifica de manera única a la nota de crédito. El campo `clave_acceso` 
-generado también se incluirá como parte de la respuesta.
+Returns a **[withholding](#withholding-request)** object that includes an `id` parameter that uniquely identifies the withholding. A generated access code is included as `clave_acceso`.
 
-## Consulta de un Comprobante de Retención
+## Querying a withholding
 
-Consulta una nota de crédito para obtener toda la información del comprobante, incluyendo
-el estado del mismo.
-El parámetro `estado` de la respuesta obtenida al invocar esta operación, indica 
-el estado actual del comprobante.
+You can query the API for the status of a withholding and look for the `estado` parameter. This will tell you if the e-document is authorized or not.
 
-Si es necesario conocer en detalle, en que estado del [proceso de emisión](#proceso-de-emisión), 
-se debe examinar los parámetros `envio_sri` y `autorizacion_sri` de la respuesta.
+If you want to know the specific step the withholding is into the [issuance process](#issuance-process), look for value in `envio_sri` and `autorizacion_sri`.
 
-### Operación
+### Operation
 
 `GET /retentions/<receipt-id>`
 
-### Requerimiento
+### Request
 
-> #### Requerimiento de ejemplo
+> #### Example request
 
 ```shell
 curl -v https://link.datil.co/retentions/<id-retencion> \
 -H "Content-Type: application/json" \
 -H "X-Key: <clave-del-api>" \
--H "X-Password: <clave-certificado-firma>" \
+-H "X-Password: <your-certificate-password>" \
 ```
 
 ```python
@@ -334,11 +323,11 @@ namespace DatilClient {
 }
 ```
 
-Reemplaza en la ruta `<receipt-id>` por el `id` de la nota de crédito que necesitas consultar.
+Replace `<invoice-ID>` for the `id` of the withholding you want to query.
 
-### Respuesta
+### Response
 
-> #### Respuesta de ejemplo
+> #### Example response
 
 ```json
 {
@@ -411,17 +400,17 @@ Reemplaza en la ruta `<receipt-id>` por el `id` de la nota de crédito que neces
 }
 ```
 
-Parámetro | Tipo | Descripción
+Parameter | Type | Description
 --------- | ------- | -----------
-secuencial | string | Número de secuencia de la nota de crédito.
-estado | string | Posibles valores: `AUTORIZADO`, `NO AUTORIZADO`, `ENVIADO`, `DEVUELTO`, `RECIBIDO`
-fecha_emision | string | Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf.
-clave_acceso | string | La clave de acceso representa un identificador único del comprobante. Si esta información no es provista, Dátil la generará.<br>¿Cómo [generar](#clave-de-acceso) la clave de acceso?
-envio_sri | objeto tipo [envio sri](#envío-sri) | Información luego de enviar el comprobante.
-autorizacion | objeto tipo [autorizacion sri](#autorización-sri) | Información de la autorización.org/html/rfc3339#section-5.6).
-emisor | objeto tipo [emisor](#emisor) | Información completa del emisor. 
-ambiente | integer | Pruebas: `1`.<br>Producción `2`.<br>
-items | vector de objetos tipo [impuesto](#impuesto-retenido) | Listado de impuestos retenidos. __Requerido__
-sujeto | objeto [persona](#persona) | Información del sujeto al que se le retiene. 
-tipo_emision | integer | Emisión normal: `1`.<br>Emisión por indisponibilidad: `2`<br>
-version | string | Versión de la especificación, opciones válidas: `1.0.0`, `1.1.0`
+secuencial | string | Withholding sequence number.
+estado | string | Possible values: `AUTORIZADO` (authorized), `NO AUTORIZADO` (not authorized), `ENVIADO` (sent), `DEVUELTO` (rejected), `RECIBIDO` (received).
+fecha_emision | string | Issuance date in [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6) format (AAAA-MM-DDHourTimeZone).
+clave_acceso | string | The access code represents a unique identified for the document. Datil will generate an access code if you don't provide it.<br>¿How to [generate](#access-code) an access code?
+envio_sri | [sri-sending](#sri-sending) object | Information about the sending step.
+autorizacion | [sri-authorization](#sri-authorization) object | Information about the authorization step.
+emisor | [issuer](#issuer) | Information about the issuer.
+ambiente | integer | Environment: Test `1`.<br>Production `2`.<br>
+items | list of [withholded tax](#withholded-tax) objects | List of withholded taxes. __Required__
+sujeto | [recipient](#recipient) object | Information about the recipient.
+tipo_emision | integer | Issuance mode. Normal: `1`.<br>Contingency: `2`<br>
+version | string | Version of the country e-billing format. Valid values: `1.0.0`, `1.1.0`
