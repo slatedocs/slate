@@ -13,8 +13,8 @@
 ```shell
 curl -v https://link.datil.co/invoices/issue \
 -H "Content-Type: application/json" \
--H "X-Key: <API-key>" \
--H "X-Password: <clave-certificado-firma>" \
+-H "X-Key: <your-api-key>" \
+-H "X-Password: <your-certificate-password>" \
 -d '{
   "ambiente":1,
   "tipo_emision":1,
@@ -35,7 +35,7 @@ curl -v https://link.datil.co/invoices/issue \
   },
   "moneda":"USD",
   "informacion_adicional":{
-    "Tiempo de entrega":"5 días"
+"Tiempo de entrega":"5 días"
   },
   "totales":{
     "total_sin_impuestos":4359.54,
@@ -196,7 +196,7 @@ namespace DatilClient {
       var client = new RestClient("https://link.datil.co/");
       var request = new RestRequest("invoices/issue", Method.POST);
       request.AddHeader("X-Key", "<your-api-key>");
-      request.AddHeader("X-Password", "<clave-certificado-firma>");
+      request.AddHeader("X-Password", "<your-certificate-password>");
       request.AddHeader("Content-Type", "application/json");
       request.RequestFormat = DataFormat.Json;
 
@@ -289,22 +289,22 @@ An invoice requires the following information:
 Parameter | Type | Description
 --------- | ------- | -----------
 secuencial | string | Invoice sequence number.  __Required__
-emisor | [emisor](#emisor) | Information about the issuer. __Required__
+emisor | [issuer](#issuer) | Information about the issuer. __Required__
 moneda | string | [ISO](https://en.wikipedia.org/wiki/ISO_4217) code for the currency. __Required__
 fecha_emision | string | Issuance date in [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6) format (AAAA-MM-DDHourTimeZone).
 guia_remision | string | Waybill number associated with the invoice in the following format: 001-002-000000003 ([0-9]{3}-[0-9]{3}-[0-9]{9})
 ambiente | integer | Execution environment. Test: `1`.<br>Production `2`.<br>__Required__
-totales | [totales](#totales-factura) object | List of totals. __Required__
-comprador | [persona](#persona) object | Information about the recipient. __Required__
+totales | list of [invoice-total](#invoice-totals) objects | List of totals. __Required__
+comprador | [recipient](#recipient) object | Information about the recipient. __Required__
 tipo_emision | integer | Issuance mode. Normal: `1`.<br>Contingency: `2`<br>__Required__
-items | list of [item](#item-de-factura) objects | Line items. __Required__
+items | list of [line-item](#line-item) objects | Line items. __Required__
 version | string | Version of the country e-billing format. Defaults to the latest version.
 clave_acceso | string | The access code represents a unique identified for the document. Datil will generate an access code if you don't provide it.<br>¿How to [generate](#access-code) an access code?
 informacion_adicional | object | Additional information about the invoice in dictionary form. Example:<br>` {"plan": "pro", "months": "1"}`
-retenciones | list of [retencion](#invoice-withholdings) objects | Withholdings to be included in the invoice. Specific case for traders or distributors of petroleum derivates and for presumptive VAT Retention for publishers, distributors and newsvendors involved in the marketing of newspapers and / or magazines.
+retenciones | list of [invoice-withholding](#invoice-withholdings) objects | Withholdings to be included in the invoice. Specific case for traders or distributors of petroleum derivates and for presumptive VAT Retention for publishers, distributors and newsvendors involved in the marketing of newspapers and / or magazines.
 
 
-<h4 id="totales-factura">Totals</h4>
+#### Invoice totals
 
 Parameter           | Type                    | Description
 ------------------- | ----------------------- |-----------
@@ -313,7 +313,7 @@ descuento_adicional | float | Additional discount, applied to the invoice subtot
 descuento           | float | Sum of each line item discount and the additiona discount. __Required__
 propina             | float | Tip or gratuity. __Required__
 importe_total       | float | Total including taxes. __Required__
-impuestos           | list of [total impuesto](#total-impuesto) objects | List of aggregated taxes. __Required__
+impuestos           | list of [total-tax](#total-tax) objects | List of aggregated taxes. __Required__
 
 ### Response
 
@@ -404,7 +404,7 @@ Returns a **[factura](#requerimiento)** object that includes an `id` parameter t
 
 You can query the API for the status of an invoice and look for the `estado` parameter. This will tell you if the invoice is authorized or not.
 
-If you want to know the specific step the invoice is into the [issuance process](#proceso-de-emisión), look for value in `envio_sri` and `autorizacion_sri`.
+If you want to know the specific step the invoice is into the [issuance process](#issuance-process), look for value in `envio_sri` and `autorizacion_sri`.
 
 ### Operation
 
@@ -563,15 +563,15 @@ secuencial | string | Invoice sequence number.
 estado | string | Possible values: `AUTORIZADO`, `NO AUTORIZADO`, `ENVIADO`, `DEVUELTO`, `RECIBIDO`
 fecha_emision | string | Issuance date in [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6) format (AAAA-MM-DDHourTimeZone).
 clave_acceso | string | Access code.
-envio_sri | [envio sri](#envío-sri) object | Information about the sending step.
-autorizacion | [autorizacion sri](#autorización-sri) object | Information about the authorization step.
-emisor | [emisor](#emisor) object | Information about the issuer.
-moneda | string | [ISO](https://en.wikipedia.org/wiki/ISO*4217) of the currency.
+envio_sri | [sri-sending](#sri-sending) object | Information about the sending step.
+autorizacion | [sri-authorization](#sri-authorization) object | Information about the authorization step.
+emisor | [issuer](#issuer) object | Information about the issuer.
+moneda | string | [ISO](https://en.wikipedia.org/wiki/ISO*4217) code of the currency.
 ambiente | integer | Environment. Test: `1`.<br>Production `2`.<br>
-totales | [totales](#totales) object | List of totals.
-comprador | [persona](#persona) object | Information about the recipient.
+totales | list of [invoice-total](#invoice-totals) object | List of totals.
+comprador | [recipient](#recipient) object | Information about the recipient.
 tipo*emision | integer | Issuance mode. Normal: `1`.<br>Contingency: `2`<br>__Required__
-items | list of [item](#item-de-factura) objects | Line items.
+items | list of [line-item](#line-item) objects | Line items.
 version | string | Version of the country e-billing format. Valid values: `1.0.0`, `1.1.0`
 
 ## Re-issuing an invoice
@@ -588,7 +588,7 @@ Esta operación debe ser utilizada para corregir comprobantes `NO AUTORIZADO` or
 
 The `id` of the invoice to be re-issued must be included in the URL.
 
-The body must include the [factura](#requerimiento) object with the corrected parameters so it can be sent and authorized again.
+The body must include the [factura](#request) object with the corrected parameters so it can be sent and authorized again.
 
 ### Response
 
