@@ -76,7 +76,7 @@ PLACA                       | `09`
 
 Parameter | Type | Description
 --------- | ---- |-----------
-codigo | string | [Invoice type](#tax-types) code. __Required__
+codigo | string | [tax type](#invoice-tax-types) code. __Required__
 codigo_porcentaje | string | Invoice rate code.
 base_imponible | float | Taxable amount.
 valor | float | Total tax amount.
@@ -86,8 +86,8 @@ valor | float | Total tax amount.
 
 Parameter | Type | Description
 --------- | ---- |-----------
-codigo | string | [Tax type](#tax-types) code.
-codigo_porcentaje | string | Invoice rate code
+codigo | string | [Tax type](#invoice-tax-types) code.
+codigo_porcentaje | string | Invoice rate code.
 base_imponible | float | Taxable amount.
 valor | float | Total tax amount.
 tarifa | float | Tax rate expresed as a number between 0.0 y 100.0

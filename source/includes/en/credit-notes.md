@@ -291,11 +291,11 @@ Parameter | Type | Description
 secuencial | string | Credit note sequence number. __Required__
 emisor | [issuer](#issuer) | Information about the issuer.. __Required__
 moneda | string | [ISO](https://en.wikipedia.org/wiki/ISO_4217) currency code. __Required__
-fecha_emision | string | Issuance date in [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6) format (AAAA-MM-DDHourTimeZone).
+fecha_emision | string | Issuance date in [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6) format (YYYY-MM-DDHourTimeZone).
 ambiente | integer | Environment type. Test: `1`.<br>Production `2`.<br>__Required__
 comprador | [recipient](#recipient) object | Recipient information.
 totales | list of [credit note totals](#credit-note-totals) objects | List of totals. __Required__
-fecha_emision_documento_modificado | string | Issuance date of the modified document in [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6) format (AAAA-MM-DDHourTimeZone).. __Required__
+fecha_emision_documento_modificado | string | Issuance date of the modified document in [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6) format (YYYY-MM-DDHourTimeZone).. __Required__
 numero_documento_modificado | string | Complete document number of the e-document being modified. Normally invoices. Example: 001-002-010023098 __Required__
 tipo_documento_modificado | string | [Document type](#document-types) object. __Required__
 motivo | string | Reason for the credit note. Example: Product return. __Required__
@@ -311,7 +311,7 @@ Parameter           | Type                   | Description
 ------------------- | ----------------------- |-----------
 total_sin_impuestos | float | Total before taxes. __Required__
 importe_total       | float | Total including taxes. __Required__
-impuestos           | listado of [total impuesto](#total-impuesto) | Listado de impuesto totalizados. __Required__
+impuestos           | list of [tax-totals](#tax-totals) | Listado de impuesto totalizados. __Required__
 
 ### Response
 
@@ -394,13 +394,13 @@ impuestos           | listado of [total impuesto](#total-impuesto) | Listado de 
 }
 ```
 
-Returns a **[credit-note](#credit-note-request)** objectt hat includes an `id` parameter that uniquely identifies the invoice. A generated access code is included as `clave_acceso`.
+Returns a **[credit-note](#credit-note-request)** object that includes an `id` parameter that uniquely identifies the invoice. A generated access code is included as `clave_acceso`.
 
 ## Querying a credit note
 
 You can query the API for the status of a credit note and look for the `estado` parameter. This will tell you if the e-document is authorized or not.
 
-If you want to know the specific step the invoice is into the [issuance process](#issuance-process), look for value in `envio_sri` and `autorizacion_sri`.
+If you want to know the specific step the credit note is into the [issuance process](#issuance-process), look for value in `envio_sri` and `autorizacion_sri`.
 
 ### Operation
 
@@ -567,4 +567,4 @@ totales | list of [credit-note-total](#credit-note-totals) | List of credit note
 comprador | [recipient](#recipient) object | Information about the recipient.
 tipo_emision | integer | Issuance mode. Normal: `1`.<br>Contingency: `2`<br>
 items | list of [line-item](#line-item) objects | Line items.
-version | string | version | string | Version of the country e-billing format. Defaults to the latest version.
+version | string | Version of the country e-billing format. Valid values: `1.0.0`, `1.1.0`
