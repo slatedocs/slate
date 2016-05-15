@@ -6,7 +6,7 @@ In specific cases you may want to generate the access code yourself, here is how
 
 Field | Format | Length
 --------- | ---- |-----------
-Issuance date| ddmmaaaa| 8
+Issuance date| ddmmyyyy| 8
 Document type| Table 4| 2
 Tax identification (RUC)| 1234567890001| 13
 Environment type| Table 5| 1
