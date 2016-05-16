@@ -41,6 +41,36 @@ KuzzleUser user = kuzzle.security.userFactory("user ID", userContent);
 KuzzleUser user = new KuzzleUser(kuzzle.security, "user ID", userContent);
 ```
 
+```objective_c
+NSDictionary* userContent = @{
+                              @"profile": @"admin",
+                              @"password": @"secret password",
+                              @"firstname": @"John",
+                              @"lastname": @"Doe"
+                              };
+
+// Using the KuzzleSecurity factory:
+KuzzleUser* user = [kuzzle.security userFactoryWithId: @"userId" content: content];
+
+// Or directly with the constructor:
+KuzzleUser* user = [[KuzzleUser alloc] initWithSecurity: kuzzle.security id: @"userId" content: content];
+```
+
+```swift
+let userContent = [
+    "profile": "admin",
+    "password": "secret password",
+    "firstname": "John",
+    "lastname": "Doe"
+]
+
+// Using the KuzzleSecurity factory:
+let user = kuzzle.security.userFactory(id: "userId", content: content)
+
+// Or directly with the constructor:
+let user = KuzzleUser(security: kuzzle.security, id: "userId", content: content)
+```
+
 Instantiate a new KuzzleUser object.
 
 #### KuzzleUser(KuzzleSecurity, id, content)
@@ -94,6 +124,38 @@ user.delete(new KuzzleResponseListener<String>() {
 });
 ```
 
+```objective_c
+NSError* error = nil;
+[user deleteAndReturnError: &error callback:^(NSString * userId, NSError * error) {
+  if(error) {
+    // error occured
+  }
+  // everything went fine
+}];
+
+if(error) {
+  // NSError reprsentation for KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
+}
+```
+
+```swift
+do {
+  try user.delete(callback: { result in
+      switch result {
+        case let .onError(error):
+        // error occured during call, error is NSError
+        break
+        case let .onSuccess(success):
+        // everything went fine, success is string with id of deleted KuzzleUser
+        break
+      }
+  })
+} catch {
+  // KuzzleError.TokenEmpty, when token argument is empty string
+  // KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
+}
+```
+
 Deletes the user in Kuzzle
 
 #### delete([options], [callback])
@@ -125,6 +187,18 @@ for (profile of user.getProfiles()) {
 ```java
 for(KuzzleProfile profile : user.getProfiles()) {
   // if this object has not been hydrated, the profile object has no content
+}
+```
+
+```objective_c
+for (KuzzleProfile* profile in [user getProfiles]) {
+  // if this object has not been hydrated, the profile object has no content
+}
+```
+
+```swift
+for profile in user.getProfiles() {
+    // if this object has not been hydrated, the profile object has no content
 }
 ```
 
@@ -180,6 +254,50 @@ user.hydrate(new KuzzleResponseListener<KuzzleUser>() {
 
   }
 });
+```
+
+```objective_c
+NSDictionary* userContent = @{@"profile": @[
+                                  @"myprofile"
+                                  ]
+                              };
+
+KuzzleUser* user = [kuzzle.security userFactoryWithId: @"myuser" content: userContent];
+
+NSError* error = nil;
+[user hydrateAndReturnError: &error callback:^(KuzzleUser * hydratedUser, NSError * error) {
+  if(error) {
+    // error occured
+  }
+  // everything went fine
+}];
+
+if(error) {
+  // NSError reprsentation for KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
+}
+```
+
+```swift
+  let userContent = [
+      "profile": [
+        "myprofile"
+      ]
+  ]
+let user = KuzzleUser(security: kuzzle.security, id: "myuser", content: userContent)
+do {
+  try user.hydrate(callback: { result in
+      switch result {
+        case let .onError(error):
+        // error occured during call, error is NSError
+        break
+        case let .onSuccess(success):
+        // everything went fine, success is KuzzleUser object
+        break
+      }
+  })
+} catch {
+  // KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
+}
 ```
 
 Hydrates this KuzzleUser object with its associated KuzzleProfile object
@@ -245,6 +363,45 @@ user.update(updateContent, new KuzzleResponseListener<KuzzleUser>() {
 });
 ```
 
+```objective_c
+NSError* error = nil;
+NSDictionary* updatedContent = @{
+                                 @"firstname": @"My Name Is",
+                                 @"lastname": @"Jonas"
+                                 };
+[user updateWithContent: updatedContent error: &error callback:^(KuzzleUser * updatedUser, NSError * onError) {
+  if(error) {
+    // error occured
+  }
+  // everything went fine
+}];
+
+if(error) {
+  // NSError reprsentation for KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
+}
+```
+
+```swift
+let updatedContent = [
+    "firstname": "My Name Is",
+    "lastname": "Jonas"
+]
+do {
+    user.update(content: updatedContent, callback: {result in
+      switch result {
+        case let .onError(error):
+        // error occured during call, error is NSError
+        break
+        case let .onSuccess(success):
+        // everything went fine, success is KuzzleUser
+        break
+      }
+  })
+} catch {
+  // KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
+}
+```
+
 Performs a partial content update on this object.
 
 #### update(content, [options], [callback])
@@ -295,6 +452,37 @@ user.save(new KuzzleResponseListener<KuzzleUser>() {
 
   }
 });
+```
+
+```objective_c
+NSError* error = nil;
+[user saveAndReturnError: &error callback:^(KuzzleUser * savedUser, NSError * error) {
+  if(error) {
+    // error occured
+  }
+  // everything went fine
+}];
+
+if(error) {
+  // NSError reprsentation for KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
+}
+```
+
+```swift
+do {
+  try user.save(callback: { result in
+      switch result {
+        case let .onError(error):
+        // error occured during call, error is NSError
+        break
+        case let .onSuccess(success):
+        // everything went fine, success is KuzzleUser
+        break
+      }
+  })
+} catch {
+  // KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
+}
 ```
 
 Create or replace the user in kuzzle
@@ -381,6 +569,33 @@ user.setProfile(newProfile);
 
 // Updating the profile with a profile ID
 user.setProfile("new profile ID");
+```
+
+```objective_c
+// Updating the profile with a KuzzleProfile object
+NSDictionary* profileContent = @{
+                                 @"profile": @[
+                                         @"anotherProfileId"
+                                     ]
+                                 };
+KuzzleProfile* profile = [[KuzzleProfile alloc] initWithSecurity: kuzzle.security id: @"profileId" content: profileContent];
+[user setProfileWithProfile: profile];
+
+// Updating the profile with a profile ID
+[user setProfileWithId: @"profileId"];
+```
+
+```swift
+// Updating the profile with a KuzzleProfile object
+let profileContent = [
+    "profile": [
+        "anotherProfileId"
+    ]
+]
+user.setProfile(withProfile: KuzzleProfile(security: kuzzle.security, id: "profileId", content: profileContent)
+
+// Updating the profile with a profile ID
+user.setProfile(withId: "profileId")
 ```
 
 <aside class="note">
