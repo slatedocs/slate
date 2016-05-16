@@ -1,20 +1,20 @@
-# Guías de Remisión
+# Waybills
 
-## Emisión de una guía de remisión
+## Issuing a waybill
 
-### Operación
+### Operation
 
 `POST /waybills/issue`
 
-<h3 id="requerimiento-guia-remision">Requerimiento</h3>
+<h3 id="requerimiento-guia-remision">Request</h3>
 
-> #### Requerimiento de ejemplo
+> #### Example request
 
 ```shell
 curl -v https://link.datil.co/waybills/issue \
 -H "Content-Type: application/json" \
--H "X-Key: <API-key>" \
--H "X-Password: <clave-certificado-firma>" \
+-H "X-Key: <your-api-key>" \
+-H "X-Password: <your-certificate-password>" \
 -d '{
   "ambiente":1,
   "tipo_emision":1,
@@ -140,7 +140,7 @@ guia_remision = {
 }
 cabeceras = {
     'x-key': '<clave-del-api>',
-    'x-password': '<clave-certificado-firma>',
+    'x-password': '<your-certificate-password>',
     'content-type': 'application/json'}
 respuesta = requests.post(
     "https://link.datil.co/waybills/issue",
@@ -159,14 +159,14 @@ namespace DatilClient {
   class InvoicingServiceClient {
     static void Main(string[] args) {
 
-      // Este ejemplo utiliza RestSharp 
+      // Este ejemplo utiliza RestSharp
       // Para instalar anda al menú: tools > Library Package Manager > Package Manager Console
       // copia y pega y presiona enter: Install-Package RestSharp
 
       var client = new RestClient("https://link.datil.co/");
       var request = new RestRequest("waybills/issue", Method.POST);
       request.AddHeader("X-Key", "<clave-del-api>");
-      request.AddHeader("X-Password", "<clave-certificado-firma>");
+      request.AddHeader("X-Password", "<your-certificate-password>");
 
       request.AddBody(@"{
         ""ambiente"":1,
@@ -236,70 +236,68 @@ namespace DatilClient {
   }
 }
 ```
+A waybill requires the following information.
 
-Para la emisión de una guía de remisión se debe enviar la información completa del
-comprobante en el cuerpo del requerimiento en formato JSON.
-
-Parámetro | Tipo | Descripción
+Parameter | Type | Description
 --------- | ------- | -----------
-secuencial | string | Número de secuencia de la guía de remisión. __Requerido__
-emisor | [emisor](#emisor) | Información completa del emisor. __Requerido__
-fecha_inicio_transporte | string | Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6).
-fecha_fin_transporte | string | Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6).
-direccion_partida | string | Dirección de partida
-transportista | objeto tipo [transportista](#transportista) | Información de la persona que transporta la carga
-ambiente | integer | Pruebas: `1`.<br>Producción `2`.<br>__Requerido__
-tipo_emision | integer | Emisión normal: `1`.<br>Emisión por indisponibilidad: `2`<br>__Requerido__
-destinatarios | listado de objetos tipo [destinatario](#destinatario) | Descripción de destinatarios y la mercadería transportada. __Requerido__
-version | string | Versión del formato de comprobantes electrónicos de SRI. Si no se especifica, se utilizará la última revisión del formato implementada,
-clave_acceso | string | La clave de acceso representa un identificador único del comprobante. Si esta información no es provista, Dátil la generará.<br>¿Cómo [generar](#clave-de-acceso) la clave de acceso?
-informacion_adicional | objeto | Información adicional adjunta al comprobante en forma de diccionario. Ejemplo:<br>` {"email": "juan@empresa.com", "Carga asegurada por": "Securitas"}`
+secuencial | string | Waybill sequence number. __Required__
+emisor | [issuer](#issuer) | Information about the issuer. __Required__
+fecha_inicio_transporte | string | Start of service date in [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6) format (AAAA-MM-DDHourTimeZone).
+fecha_fin_transporte | string | End of service date in [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6) format (AAAA-MM-DDHourTimeZone).
+direccion_partida | string | Pickup address.
+transportista | [carrier](#carrier) object | Information about the carrier.
+ambiente | integer | Execution environment. Test: `1`.<br>Production `2`.<br>__Required__
+tipo_emision | integer | Issuance mode. Normal: `1`.<br>Contingency: `2`<br>__Required__
+destinatarios | list of [receiver](#receiver) object | Information about the receivers of the waybill. __Required__
+version | string | Version of the country e-billing format. Defaults to the latest version.
+clave_acceso | string | The access code represents a unique identified for the document. Datil will generate an access code if you don't provide it.<br>¿How to [generate](#access-code) an access code?
+informacion_adicional | object | Additional information about the invoice in dictionary form. Example:<br>` {"plan": "pro", "months": "1"}`
 
-#### Destinatario
+#### Receiver
 
-Parámetro | Tipo | Descripción
+Parameter | Type | Description
 --------- | ------- | -----------------
-razon_social | string | Razón social del comprador. Máximo 300 caracteres. __Requerido__
-identificacion | string | De 5 a 20 caracteres. __Requerido__
-tipo_identificacion | string | Ver [tabla](#tipo-de-identificación) de tipos de identificación __Requerido__
-email | string | Correo electrónico del destinatario.
-telefono | string | Teléfono.
-direccion | string | Dirección
-ruta | string | Ruta de transporte. Máximo 300 caracteres.
-documento_aduanero_unico | string | Máximo 20 caracteres.
-fecha_emision_documento_sustento | string | Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6). __Requerido__
-numero_documento_sustento | string | Número completo del documento que detalla la mercadería a transportar. Normalmente facturas. Ejm: 001-002-010023098 __Requerido__
-codigo_establecimiento_destino | string | Número establecimiento que recibe la entrega. Ejm: 002 __Requerido__
-tipo_documento_sustento | string | Ver códigos de [tipos de documentos](#tipos-de-documentos). __Requerido__
-motivo_traslado | string | Motivo del traslado. Ejm: Entrega de mercadería. __Requerido__
-numero_autorizacion_documento_sustento | string | Autorización del documento de sustento.
-items | arreglo de objetos tipo [item destinatario](#item-destinatario) | Items transportados
+razon_social | string | Legal name of the receiver. 300 characters limit. __Required__
+identificacion | string | Tax identification. From 5 to 20 characters. __Required__
+tipo_identificacion | string | [identification type](#identification-types) code. __Required__
+email | string | Email of the receiver.
+telefono | string | Telephone of the receiver.
+direccion | string | Address of the receiver.
+ruta | string | Transport route. 300 limit.
+documento_aduanero_unico | string | Unique customs identification. 20 character limit.
+fecha_emision_documento_sustento | string | Issuance date of the support e-document in [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6) format (AAAA-MM-DDHourTimeZone).. __Required__
+numero_documento_sustento | string | Complete number of the e-document that lists the transported goods. Normally invoices. Example: 001-002-010023098 __Required__
+codigo_establecimiento_destino | string | Location number receiving the goods.. Example: 002. __Required__
+tipo_documento_sustento | string | [support document type](#document-types). __Required__
+motivo_traslado | string | Reason for the transfer. Example: Order fulfillment. __Required__
+numero_autorizacion_documento_sustento | string | Authorization number of the support e-document.
+items | list of [transported good](#transported-good) objects | List of transported goods.
 
-#### Item destinatario
+#### Transported good
 
-Parámetro | Tipo | Descripción
+Parameter | Type | Description
 --------- | ---- |-----------
-descripcion | string | Descripción del ítem. __Requerido__
-codigo_principal | string | Código alfanumérico de uso del comercio. Máximo 25 caracteres.
-codigo_auxiliar | string | Código alfanumérico de uso del comercio. Máximo 25 caracteres.
-cantidad | float | Cantidad de items. __Requerido__
-detalles_adicionales | object | Diccionario de datos de carácter adicional. Ejemplo:<br><code>{"marca": "Ferrari", "chasis": "UANEI832-NAU101"}</code>
+descripcion | string | Item description. __Required__
+codigo_principal | string | Stock keeping unit code. 25 characters limit.
+codigo_auxiliar | string | Additional stock keeping unit code. 25 characters limit.
+cantidad | float | Quantity. __Required__
+detalles_adicionales | object | Additional product information the dictionary format. Example:<br><code>{"brand": "Ferrari", "chasis": "UANEI832-NAU101"}</code>. Limited to 3 key and value pairs.
 
-#### Transportista
+#### Carrier
 
-Parámetro | Tipo | Descripción
+Parameter | Type | Description
 --------- | ---- |-----------
-razon_social | string | Razón social. Máximo 300 caracteres. __Requerido__
-identificacion | string | De 5 a 20 caracteres. __Requerido__
-tipo_identificacion | string | Ver [tabla](#tipo-de-identificación) de tipos de identificación __Requerido__
-email | string | Correo electrónico. Máximo 300 caracteres. __Requerido__
-telefono | string | Teléfono.
-direccion | string | Dirección
-placa | string | Placa del vehículo
+razon_social | string | Legal name. 300 characters limit. __Required__
+identificacion | string | Tax identification. 5 to 20 characters. __Required__
+tipo_identificacion | string | [identification type](#identification-types). __Required__
+email | string | Email of the carrier. 300 characters limit. __Required__
+telefono | string | Telephone of the carrier.
+direccion | string | Address of the carrier.
+placa | string | Vehicle license plate.
 
-### Respuesta
+### Resonse
 
-> #### Respuesta de ejemplo
+> #### Example response
 
 ```json
 {
@@ -364,33 +362,27 @@ placa | string | Placa del vehículo
 }
 ```
 
-Retorna un objeto tipo **[guía de remisión](#requerimiento-guia-remision)** que incluye un nuevo parámetro `id`,
-el cual identifica de manera única a la guía de remisión. El campo `clave_acceso` 
-generado también se incluirá como parte de la respuesta.
+Returns a **[waybill](#requerimiento)** object that includes an `id` parameter that uniquely identifies the waybill. A generated access code is included as `clave_acceso`.
 
-## Consulta de una guía de remisión
+## Querying a waybill
 
-Consulta una guía de remisión para obtener toda la información del comprobante, incluyendo
-el estado del mismo.
-El parámetro `estado` de la respuesta obtenida al invocar esta operación, indica 
-el estado actual del comprobante.
+You can query the API for the status of a waybill and look for the `estado` parameter. This will tell you if the waybill is authorized or not.
 
-Si es necesario conocer en detalle, en que estado del [proceso de emisión](#proceso-de-emisión), 
-se debe examinar los parámetros `envio_sri` y `autorizacion_sri` de la respuesta.
+If you want to know the specific step the waybill is into the [issuance process](#issuance-process), look for value in `envio_sri` and `autorizacion_sri`.
 
-### Operación
+### Operation
 
 `GET /waybills/<receipt-id>`
 
-### Requerimiento
+### Request
 
-> #### Requerimiento de ejemplo
+> #### Example request
 
 ```shell
 curl -v https://link.datil.co/waybills/<id-notacredito> \
 -H "Content-Type: application/json" \
--H "X-Key: <clave-del-api>" \
--H "X-Password: <clave-certificado-firma>" \
+-H "X-Key: <your-api-key>" \
+-H "X-Password: <your-certificate-password>" \
 ```
 
 ```python
@@ -425,11 +417,12 @@ namespace DatilClient {
 }
 ```
 
-Reemplaza en la ruta `<receipt-id>` por el `id` de la guía de remisión que necesitas consultar.
+Replace `<receipt-id>` with the `id` of the waybill you to query.
 
-### Respuesta
 
-> #### Respuesta de ejemplo
+### Response
+
+> #### Example response
 
 ```json
 {
@@ -530,19 +523,19 @@ Reemplaza en la ruta `<receipt-id>` por el `id` de la guía de remisión que nec
 }
 ```
 
-Parámetro | Tipo | Descripción
+Parameter | Type | Description
 --------- | ------- | -----------
-secuencial | string | Número de secuencia de la guía de remisión. __Requerido__
-emisor | [emisor](#emisor) | Información completa del emisor. __Requerido__
-fecha_inicio_transporte | string | Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6).
-fecha_fin_transporte | string | Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6).
-direccion_partida | string | Dirección de partida
-transportista | objeto tipo [Transportista](#transportista) | Información de la persona que transporta la carga
-ambiente | integer | Pruebas: `1`.<br>Producción `2`.<br>__Requerido__
-tipo_emision | integer | Emisión normal: `1`.<br>Emisión por indisponibilidad: `2`<br>__Requerido__
-destinatarios | listado de objetos tipo [destinatario](#destinatario) | Descripción de destinatarios y la mercadería transportada. __Requerido__
-version | string | Versión del formato de comprobantes electrónicos de SRI. Si no se especifica, se utilizará la última revisión del formato implementada,
-clave_acceso | string | La clave de acceso representa un identificador único del comprobante. Si esta información no es provista, Dátil la generará.<br>¿Cómo [generar](#clave-de-acceso) la clave de acceso?
-envio_sri | objeto tipo [envio sri](#envío-sri) | Información luego de enviar el comprobante.
-autorizacion | objeto tipo [autorizacion sri](#autorización-sri) | Información de la autorización.org/html/rfc3339#section-5.6)
-informacion_adicional | objeto | Información adicional adjunta al comprobante en forma de diccionario. Ejemplo:<br>` {"email": "juan@empresa.com", "Carga asegurada por": "Securitas"}`
+secuencial | string | Waybill sequence number. __Required__
+emisor | [issuer](#issuer) | Information about the issuer. __Required__
+fecha_inicio_transporte | string | Start of service date in [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6) format (AAAA-MM-DDHourTimeZone).
+fecha_fin_transporte | string | End of service date in [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6) format (AAAA-MM-DDHourTimeZone).
+direccion_partida | string | Pickup address.
+transportista | [carrier](#carrier) object | Information about the carrier.
+ambiente | integer | Execution environment. Test: `1`.<br>Production `2`.<br>__Required__
+tipo_emision | integer | Issuance mode. Normal: `1`.<br>Contingency: `2`<br>__Required__
+destinatarios | list of [receiver](#receiver) object | Information about the receivers of the waybill. __Required__
+version | string | Version of the country e-billing format. Defaults to the latest version.
+envio_sri | [sri-sending](#sri-sending) object | Information about the sending step.
+autorizacion | [sri-authorization](#sri-authorization) object | Information about the authorization step.
+clave_acceso | string | The access code represents a unique identified for the document. Datil will generate an access code if you don't provide it.<br>¿How to [generate](#access-code) an access code?
+informacion_adicional | object | Additional information about the invoice in dictionary form. Example:<br>` {"plan": "pro", "months": "1"}`
