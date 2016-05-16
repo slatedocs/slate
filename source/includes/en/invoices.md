@@ -582,9 +582,7 @@ version | string | Version of the country e-billing format. Valid values: `1.0.0
 
 ### Request
 
-This operation must be used to correct invoices with authorization status
-
-This operation is used to correct e-documentos with status `NO AUTORIZADO` (not authorized) or `DEVUELTO` (returned). This means that the local tax authority did not authorize them and you should correct and try submitting them again.
+This operation is used to correct e-documents with status `NO AUTORIZADO` (not authorized) or `DEVUELTO` (returned). This means that the local tax authority did not authorize them and you should correct and try submitting them again.
 
 The `id` of the invoice to be re-issued must be included in the URL.
 
