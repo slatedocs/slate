@@ -230,7 +230,7 @@ Cria uma nova Configuração de Cobrança, retornando as informações da mesma 
 
 | Campo                     | Tipo    | Comentário                                                                                                                                                          |
 |---------------------------|---------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| type                      | string  | indica o tipo da configuração de cobrança. Neste caso deve ser informado "billet" ou deixado em branco, pois este é o valor padrão                                  |
+| type                      | string  | (opcional) indica o tipo da configuração de cobrança. Neste caso deve ser informado "billet" ou deixado em branco, pois este é o valor padrão                       |
 | bank_account_id           | integer | **(requerido)** código de identificação da conta bancária em que a configuração de cobrança irá pertencer                                                           |
 | portfolio_code            | string  | **(requerido)** código de portfólio, validação conforme o banco                                                                                                     |
 | agreement_code            | string  | **(requerido, com exceção do Itaú onde é preenchido automaticamente)** código de convênio ou do beneficiário, de acordo com o banco                                 |
