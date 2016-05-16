@@ -255,6 +255,14 @@ Cria uma nova Configuração de Cobrança, retornando as informações da mesma 
 | gateway_key  | string  | **(requerido)** chave de acesso atribuída pelo gateway de pagamento                                                                                   |
 | use_avs      | boolean | (opcional) define se será feita a solicitação e a confirmação do endereço de cobrança da fatura do cartão utilizado no pagamento (`false` por padrão) |
 
+<aside class="warning">
+  A configuração de Cobrança via Gateway de Pagamento <strong>precisa ser homologada antes de ser utilizada normalmente</strong>. Para isso, 
+  <a href="#cria-o-de-cobran-a">deve-se criar uma Cobrança</a> para esta configuração. Esta Cobrança será efetivada e automaticamente cancelada 
+  logo em seguida, apenas com o objetivo de verificar se de fato a configuração foi feita de forma correta. <strong>Até que uma Cobrança</strong> 
+  tenha fechado este ciclo com sucesso e a conta dada como homologada, todas as cobranças criadas para esta Configuração serão consideradas Cobranças para homologação, 
+  ou seja, serão feitas e em seguida automatimente canceladas.
+</aside>
+
 ## Atualização de Configuração de Cobrança
 
 ```shell
