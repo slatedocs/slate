@@ -576,7 +576,7 @@ version | string | Version of the country e-billing format. Valid values: `1.0.0
 
 ## Re-issuing an invoice
 
-### Operación
+### Operation
 
 `POST /invoices/:id/reissue`
 
@@ -584,7 +584,7 @@ version | string | Version of the country e-billing format. Valid values: `1.0.0
 
 This operation must be used to correct invoices with authorization status
 
-Esta operación debe ser utilizada para corregir comprobantes `NO AUTORIZADO` or `DEVUELTO`. This means that the local tax authority did not authorize them.
+This operation is used to correct e-documentos with status `NO AUTORIZADO` (not authorized) or `DEVUELTO` (returned). This means that the local tax authority did not authorize them and you should correct and try submitting them again.
 
 The `id` of the invoice to be re-issued must be included in the URL.
 
