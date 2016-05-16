@@ -1,168 +1,89 @@
 ---
-title: API Reference
+title: API Dátil
 
 language_tabs:
-  - shell
-  - ruby
-  - python
+  - shell: cURL
+  - python: Python
+  - csharp: C#
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a>
+  - <a href='#'>Para obtener mi clave del API</a>
+  - <a href='http://github.com/tripit/slate'>Documentación gracias a Slate</a>
 
 includes:
-  - errors
+  - invoices
+  - credit-notes
+  - retentions
+  - waybills
+  - debit-notes
+  - common
+  - errores
+  - webhooks
 
 search: true
 ---
 
-# Introduction
+# Introducción
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+Integra tu aplicación con Facturación Electrónica. Este API de Dátil te permite
+emitir todos los tipos de comprobantes electrónicos: facturas, retenciones, notas de crédito, notas de débito y guías de remisión.
 
-We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+El API de Dátil está diseñado como un servicio web [REST](http://en.wikipedia.org/wiki/Representational_State_Transfer).
+De esta manera resulta sencillo conversar con nuestra interfaz utilizando cualquier
+librería en cualquier lenguaje que provea un cliente HTTP, ya que utilizamos
+componentes del estándar como los verbos y los códigos de respuesta.
 
-This example API documentation page was created with [Slate](https://github.com/tripit/slate). Feel free to edit it and use it as a base for your own API's documentation.
+Todos las operaciones responden en formato [JSON](http://www.json.org/),
+incluso los errores.
 
-# Authentication
+Dátil se encarga de todo el proceso de emisión del comprobante. El proceso de
+emisión bajo condiciones normales, toma entre 3 a 5 segundos. Luego de ese período
+bastará con consultar el comprobante para conocer su estado.
 
-> To authorize, use this code:
+## Operaciones
 
-```ruby
-require 'kittn'
+Una operación REST está formada por la combinación de un verbo HTTP, la URL base
+del servicio y la ruta de la operación. Las cuales se encuentran descritas en cada
+sección donde se describe una función del API. Esta operación, por ejemplo, emite
+una factura:
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
+`POST https://link.datil.co/invoices/issue`
 
-```python
-import kittn
+La URI anterior en conjunto con la información en formato JSON como cuerpo del
+requerimiento y las cabeceras HTTP necesarias, conforman el requerimiento.
 
-api = kittn.authorize('meowmeowmeow')
-```
+## Proceso de emisión
 
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
-```
+Comprende las siguientes fases:
 
-> Make sure to replace `meowmeowmeow` with your API key.
-
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
-
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
+1. __Creación__: Se registra el comprobante para posterior referencia.
+2. __Firmado__: Utilizando el certificado de firma electrónica y un algoritmo de firma digital,
+el comprobante es firmado para que el SRI pueda verificar su legitimidad.
+3. __Envío SRI__: El comprobante es enviado al SRI para ser procesado.
+4. __Consulta de autorización SRI__: Luego de un período de espera, Dátil consulta la
+autorización del comprobante.
+5. __Envío por email__: Se envía el comprobante al correo del receptor del comprobante, si una dirección de correo electrónico válida fue provista al momento de emitir el comprobante.
 
 <aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
+<strong>Recuerda:</strong> Este proceso es administrado completamente por nosotros y para
+emitir un comprobante bastará enviarlo siguiendo la sección pertinente de esta
+documentación.
 </aside>
 
-# Kittens
+# Autenticación
 
-## Get All Kittens
+Para obtener la clave del API, inicia sesión con tu cuenta en
+[app.datil.co](https://app.datil.co), ve a la opción _Configuración_ la
+sección "API Key".
 
-```ruby
-require 'kittn'
+<img src="https://s3-us-west-2.amazonaws.com/static-files/datil-py-blurred-api-key.png">
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
+Dátil utiliza claves para autorizar el acceso al API. La clave debe estar
+incluída en todos los requerimientos en una cabecera:
 
-```python
-import kittn
+`X-Key: <clave-del-api>`
 
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
+Para emitir o re-emitir un comprobante se requiere también la clave del certificado
+de firma electrónica. Esta clave deberá ser provista en una cabecera:
 
-```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
-```
-
-> The above command returns JSON structured like this:
-
-```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
-```
-
-This endpoint retrieves all kittens.
-
-### HTTP Request
-
-`GET http://example.com/api/kittens`
-
-### Query Parameters
-
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
-}
-```
-
-This endpoint retrieves a specific kitten.
-
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
-
-### HTTP Request
-
-`GET http://example.com/kittens/<ID>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
-
+`X-Password: <clave-certificado-firma>`
