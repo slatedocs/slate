@@ -34,6 +34,33 @@ KuzzleDocument document = new KuzzleDocument(collection, content);
 KuzzleDocument document = new KuzzleDocument(collection, "id", content);
 ```
 
+```objective_c
+KuzzleDocument* document = [[KuzzleDocument alloc] initWithCollection: collection];
+
+KuzzleDocument* document = [[KuzzleDocument alloc] initWithCollection: collection documentId: @"documentId"];
+
+NSDictionary* content = @{
+                          @"content": @"some content"
+                          };
+
+KuzzleDocument* document = [[KuzzleDocument alloc] initWithCollection: collection content: content];
+
+KuzzleDocument* document = [[KuzzleDocument alloc] initWithCollection: collection documentId: @"documentId" content: content];
+```
+
+```swift
+let document = KuzzleDocument(collection: dataCollection)
+
+let document = KuzzleDocument(collection: dataCollection, documentId: "documentId")
+
+
+let content = ["content": "some content"]
+
+let document = KuzzleDocument(collection: dataCollection, content: content)
+
+let document = KuzzleDocument(collection: dataCollection, documentId: "documentId", content: content)
+```
+
 #### KuzzleDocument(KuzzleDataCollection, [documentId], [content])
 
 | Arguments | Type | Description |
@@ -88,6 +115,39 @@ document.delete(new KuzzleResponseListener<KuzzleDocument>() {
 });
 ```
 
+```objective_c
+NSError* error = nil;
+[document deleteAndReturnError: &error callback:^(KuzzleDocument * document, NSError * error) {
+  if(error) {
+    // error occured
+  }
+  // everything went fine
+}];
+
+if(error) {
+  // NSError reprsentation for KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
+}
+```
+
+```swift
+do {
+  try document.delete(callback: { result in
+      switch result {
+        case let .onError(error):
+        // error occured during call, error is NSError
+        break
+        case let .onSuccess(success):
+        // everything went fine, success is KuzzleDocument object
+        break
+      }
+  })
+} catch {
+  // KuzzleError.TokenEmpty, when token argument is empty string
+  // KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
+}
+
+```
+
 Deletes this document in Kuzzle.
 
 #### delete([options], [callback])
@@ -121,6 +181,31 @@ document.publish();
 
 ```java
 document.publish();
+```
+
+```objective_c
+NSError* error = nil;
+[document publishAndReturnError: &error];
+if(error) {
+  // NSError reprsentation for KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
+}
+```
+
+```swift
+do {
+  try document.publish(callback: { result in
+      switch result {
+        case let .onError(error):
+        // error occured during call, error is NSError
+        break
+        case let .onSuccess(success):
+        // everything went fine, success is KuzzleDocument object
+        break
+      }
+  })
+} catch {
+  // KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
+}
 ```
 
 Publishes the content of this document as a realtime message.
@@ -169,6 +254,37 @@ document.refresh(new KuzzleResponseListener<KuzzleDocument>() {
       // Handle error
     }
 });
+```
+
+```objective_c
+NSError* error = nil;
+[document refreshAndReturnError: &error callback: ^(KuzzleDocument * document, NSError * error) {
+  if(error) {
+    // error occured
+  }
+  // everything went fine
+}];
+
+if(error) {
+  // NSError reprsentation for KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
+}
+```
+
+```swift
+do {
+  try document.refresh(callback: { result in
+      switch result {
+        case let .onError(error):
+        // error occured during call, error is NSError
+        break
+        case let .onSuccess(success):
+        // everything went fine, success is KuzzleDocument object
+        break
+      }
+  })
+} catch {
+  // KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
+}
 ```
 
 Creates a new `KuzzleDocument` object with the last version of this document stored in Kuzzle.
@@ -221,6 +337,37 @@ document.save(new KuzzleResponseListener<KuzzleDocument>() {
 });
 ```
 
+```objective_c
+NSError* error = nil;
+[document saveAndReturnError: &error callback:^(KuzzleDocument * document, NSError * error) {
+  if(error) {
+    // error occured
+  }
+  // everything went fine
+}];
+
+if(error) {
+  // NSError reprsentation for KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
+}
+```
+
+```swift
+do {
+  try document.save(callback: { result in
+      switch result {
+        case let .onError(error):
+        // error occured during call, error is NSError
+        break
+        case let .onSuccess(success):
+        // everything went fine, success is KuzzleDocument object
+        break
+      }
+  })
+} catch {
+  // KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
+}
+```
+
 Saves this document into Kuzzle.
 
 If this is a new document, this function will create it in Kuzzle and the ``id`` property will be made available.  
@@ -262,6 +409,21 @@ JSONObject content = new JSONObject().put("content", "some content");
 document.setContent(content, true);
 ```
 
+```objective_c
+NSDictionary* content = @{
+  @"content": @"some content"
+};
+
+[document setContentWithData: content replace: YES];
+```
+
+```swift
+let content = [
+    "content": "some content"
+]
+document.setContent(data: content, replace: true)
+```
+
 <aside class="notice">
 Changes made by this function won't be applied until the <code>save</code> method is called
 </aside>
@@ -291,6 +453,34 @@ document.setHeaders({someContent: 'someValue'}, true);
 ```java
 JSONObject headers = new JSONObject().put("someContent", "someValue");
 
+document.setHeaders(headers, true);
+```
+
+```objective_c
+NSDictionary* headers = @{
+  @"someContent": @"someValue",
+  @"metadata": @{
+    @"someMetaData": @[
+      @"with",
+      @"some",
+      @"values"
+      ]
+    }
+  };
+[document setHeadersWithData: headers replace: YES];
+```
+
+```swift
+let headers = [
+  "someContent": "someValue",
+  "metadata": [
+    "someMetaData": [
+     "with",
+      "some",
+      "values"
+    ]
+  ]
+]
 document.setHeaders(headers, true);
 ```
 
@@ -337,7 +527,37 @@ KuzzleRoom room = document.subscribe(new KuzzleResponseListener<KuzzleNotificati
 });
 ```
 
-Listens to changes occuring on this document.  
+```objective_c
+NSError* error = nil;
+KuzzleRoom* room = [document subscribeAndReturnError: &error callback:^(KuzzleNotification * notification, NSError * error) {
+  if(error) {
+    // error occured
+  }
+  // everything went fine
+}];
+if(error) {
+  // NSError reprsentation for KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
+}
+```
+
+```swift
+do {
+  let room = try document.subscribe(callback: { result in
+      switch result {
+        case let .onError(error):
+        // error occured during call, error is NSError
+        break
+        case let .onSuccess(success):
+        // everything went fine, success is KuzzleNotification object
+        break
+      }
+  })
+} catch {
+  // KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
+}
+```
+
+Listens to changes occuring on this document.
 Throws an error if this document has not yet been created in Kuzzle.
 
 #### subscribe([options], callback)

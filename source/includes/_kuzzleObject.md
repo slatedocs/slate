@@ -373,7 +373,7 @@ NSError* error = nil;
     // error occured
   }
   // everything went fine
-}]
+}];
 if(error) {
   // NSError reprsentation for KuzzleError.TokenEmpty, when token argument is empty string
   // NSError reprsentation for KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
@@ -628,7 +628,7 @@ NSError* error = nil;
   // error occured
   }
   // everything went fine
-}]
+}];
 if(error) {
   // NSError reprsentation for KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
 }
@@ -753,7 +753,7 @@ kuzzle.getServerInfo(new KuzzleResponseListener<JSONObject>() {
 
 ```objective_c
 NSError* error = nil;
-[kuzzle getServerInfoAndReturnError: &error callback:^(NSDictionary<NSString *,id> serverInfo, NSError * error) {
+[kuzzle getServerInfoAndReturnError: &error callback:^(NSDictionary* serverInfo, NSError * error) {
   if(error) {
     // error occured
   }
@@ -1109,7 +1109,7 @@ do {
         // error occured during call, error is NSError
         break
         case let .onSuccess(success):
-        // everything went fine, success is <#SUCCESS_TYPE#>
+        // everything went fine, success is array
         break
       }
   })
@@ -1241,12 +1241,12 @@ kuzzle.listCollections("index", new KuzzleResponseListener<JSONObject>() {
 
 ```objective_c
 NSError* error = nil;
-kuzzle listCollectionsAndReturnError: &error callback:^(NSDictionary<NSString *,id> * collections, NSError * error) {
+[kuzzle listCollectionsAndReturnError: &error callback:^(NSDictionary * collections, NSError * error) {
   if(error) {
     // error occured
   }
   // everything went fine
-} error: &error];
+}];
 
 if(error) {
   // NSError reprsentation for KuzzleError.NoIndexSpecified, when defaultIndex and index passed in function are both nil
@@ -1444,7 +1444,7 @@ kuzzle.login("local", credentials, 30000, new KuzzleResponseListener<JSONObject>
 ```objective_c
 NSError* error = nil;
 NSDictionary* credentials = @{@"username": @"John Doe", @"password": @"my secret password"};
-[kuzzle loginWithStrategy: @"local" credentials: credentials error: &error callback:^(NSDictionary<NSString *,id> * result, NSError * error) {
+[kuzzle loginWithStrategy: @"local" credentials: credentials error: &error callback:^(NSDictionary* result, NSError * error) {
   if(error) {
     // error occured
   }
@@ -1717,7 +1717,7 @@ queryArgs.action = @"search";
 
 NSDictionary* query = @{@"": @""};
 
-[kuzzle queryWithQueryArgs: queryArgs query: query error: &error callback:^(NSDictionary<NSString *,id> * result, NSError * error) {
+[kuzzle queryWithQueryArgs: queryArgs query: query error: &error callback:^(NSDictionary * result, NSError * error) {
   if(error) {
     // error occured
   }
@@ -1971,7 +1971,7 @@ NSDictionary* content = @{
                           @"firstname": @"My Name Is",
                           @"lastname": @"Jonas"
                           };
-[kuzzle updateSelfWithContent: content error: &error callback:^(NSDictionary<NSString *,id> * result, NSError * error) {
+[kuzzle updateSelfWithContent: content error: &error callback:^(NSDictionary * result, NSError * error) {
   if(error) {
     // error occured
   }
@@ -1995,7 +1995,7 @@ if(error) {
         // error occured during call, error is NSError
         break
         case let .onSuccess(success):
-        // everything went fine, success is <#SUCCESS_TYPE#>
+        // everything went fine, success is dictionary
         break
       }
   })
