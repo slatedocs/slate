@@ -65,16 +65,17 @@ As Configurações de Cobrança do tipo **Boleto** (billet), pertencem as suas c
 
 **Parâmetros (Gateway de Pagamento)**
 
-| Campo        | Tipo            | Comentário                                                                                         |
-|--------------|-----------------|----------------------------------------------------------------------------------------------------|
-| id           | integer         |                                                                                                    |
-| type         | string          | indica o tipo da configuração de cobrança. Nese caso 'payment_gateway'                             |
-| name         | string          | nome que identifica esta configuração de cobrança                                                  |
-| status       | string          | 'ok' ou 'pending' para indicar se configuração de cobrança está ou não homologada, respectivamente |
-| gateway_name | string          | nome do gateway de pagamento (cielo)                                                               |
-| gateway_id   | string          | número de afiliação do contrato com o gateway de pagamento                                         |
-| gateway_key  | string          | chave de acesso atribuída pelo gateway de pagamento                                                |
-| _links       | array of object | links da configuração de cobrança e de sua conta bancária                                          |
+| Campo        | Tipo            | Comentário                                                                                                            |
+|--------------|-----------------|-----------------------------------------------------------------------------------------------------------------------|
+| id           | integer         |                                                                                                                       |
+| type         | string          | indica o tipo da configuração de cobrança. Nese caso 'payment_gateway'                                                |
+| name         | string          | nome que identifica esta configuração de cobrança                                                                     |
+| status       | string          | 'ok' ou 'pending' para indicar se configuração de cobrança está ou não homologada, respectivamente                    |
+| gateway_name | string          | nome do gateway de pagamento (cielo)                                                                                  |
+| gateway_id   | string          | número de afiliação do contrato com o gateway de pagamento                                                            |
+| gateway_key  | string          | chave de acesso atribuída pelo gateway de pagamento                                                                   |
+| use_avs      | boolean         | define se será feita a solicitação e a confirmação do endereço de cobrança da fatura do cartão utilizado no pagamento |
+| _links       | array of object | links da configuração de cobrança e de sua conta bancária                                                             |
 
 ## Informações da Configuração de Cobrança
 
@@ -245,13 +246,14 @@ Cria uma nova Configuração de Cobrança, retornando as informações da mesma 
 
 **Parâmetros (Gateway de Pagamento)**
 
-| Campo        | Tipo   | Comentário                                                                                                 |
-|--------------|--------|------------------------------------------------------------------------------------------------------------|
-| type         | string | **(requerido)** indica o tipo da configuração de cobrança. Neste caso deve ser informado "payment_gateway" |
-| name         | string | **(requerido)** nome que identifica esta configuração de cobrança                                          |
-| gateway_name | string | **(requerido)** nome do gateway de pagamento (cielo)                                                       |
-| gateway_id   | string | **(requerido)** número de afiliação do contrato com o gateway de pagamento                                 |
-| gateway_key  | string | **(requerido)** chave de acesso atribuída pelo gateway de pagamento                                        |
+| Campo        | Tipo    | Comentário                                                                                                                                            |
+|--------------|---------|-------------------------------------------------------------------------------------------------------------------------------------------------------|
+| type         | string  | **(requerido)** indica o tipo da configuração de cobrança. Neste caso deve ser informado "payment_gateway"                                            |
+| name         | string  | **(requerido)** nome que identifica esta configuração de cobrança                                                                                     |
+| gateway_name | string  | **(requerido)** nome do gateway de pagamento (cielo)                                                                                                  |
+| gateway_id   | string  | **(requerido)** número de afiliação do contrato com o gateway de pagamento                                                                            |
+| gateway_key  | string  | **(requerido)** chave de acesso atribuída pelo gateway de pagamento                                                                                   |
+| use_avs      | boolean | (opcional) define se será feita a solicitação e a confirmação do endereço de cobrança da fatura do cartão utilizado no pagamento (`false` por padrão) |
 
 ## Atualização de Configuração de Cobrança
 
@@ -322,12 +324,13 @@ Atualiza a Configuração de Cobrança determinada, retornando as informações 
 
 **Parâmetros (Gateway de Pagamento)**
 
-| Campo        | Tipo   | Comentário                                                                 |
-|--------------|--------|----------------------------------------------------------------------------|
-| name         | string | **(requerido)** nome que identifica esta configuração de cobrança          |
-| gateway_name | string | **(requerido)** nome do gateway de pagamento (cielo)                       |
-| gateway_id   | string | **(requerido)** número de afiliação do contrato com o gateway de pagamento |
-| gateway_key  | string | **(requerido)** chave de acesso atribuída pelo gateway de pagamento        |
+| Campo        | Tipo    | Comentário                                                                                                                                            |
+|--------------|---------|-------------------------------------------------------------------------------------------------------------------------------------------------------|
+| name         | string  | **(requerido)** nome que identifica esta configuração de cobrança                                                                                     |
+| gateway_name | string  | **(requerido)** nome do gateway de pagamento (cielo)                                                                                                  |
+| gateway_id   | string  | **(requerido)** número de afiliação do contrato com o gateway de pagamento                                                                            |
+| gateway_key  | string  | **(requerido)** chave de acesso atribuída pelo gateway de pagamento                                                                                   |
+| use_avs      | boolean | (opcional) define se será feita a solicitação e a confirmação do endereço de cobrança da fatura do cartão utilizado no pagamento (`false` por padrão) |
 
 ## Exclusão de Configuração de Cobrança
 
