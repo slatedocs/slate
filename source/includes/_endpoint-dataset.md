@@ -571,7 +571,7 @@ PATCH the "expression" attribute to modify. An empty "expression" object, like
 `/datasets/{id}/pk`
 
 Setting a primary key on a dataset causes updates (particularly streamed
-updates) to cause existing rows to be updated instead of new rows being
+updates) mentioning existing rows to be updated instead of new rows being
 inserted.
 
 GET on this resource returns a Shoji Entity with a "pk"" attribute in its body,
