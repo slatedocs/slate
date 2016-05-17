@@ -38,6 +38,62 @@ JSONObject content = new JSONObject();
 KuzzleRole role = new KuzzleRole(kuzzle.security, "role ID", content);
 ```
 
+```objective_c
+NSDictionary* roleContent = @{
+  @"indexes":@{
+    @"_canCreate": @true,
+    @"*": @{
+      @"collections": @{
+        @"_canCreate": @true,
+        @"*": @{
+          @"controllers": @{
+            @"*": @{
+              @"actions": @{
+                @"*": @true
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+};
+
+// Using the KuzzleSecurity factory:
+KuzzleRole* role = [kuzzle.security roleFactoryWithId: @"roleId" content: roleContent];
+
+// Or directly with the constructor:
+KuzzleRole* role = [[KuzzleRole alloc] initWithSecurity: kuzzle.security id: @"roleId" content: roleContent];
+```
+
+```swift
+let roleContent = [
+  "indexes":[
+    "_canCreate": true,
+    "*": [
+      "collections": [
+        "_canCreate": true,
+        "*": [
+          "controllers": [
+            "*": [
+              "actions": [
+                "*": true
+              ]
+            ]
+          ]
+        ]
+      ]
+    ]
+  ]
+]
+
+// Using the KuzzleSecurity factory:
+let role = kuzzle.security.roleFactory(id: "roleId", content: roleContent)
+
+// Or directly with the constructor:
+let role = KuzzleRole(security: kuzzle.security, id: "roleid", content: roleContent)
+```
+
 Instantiates a new `KuzzleRole` object.
 
 #### KuzzleRole(KuzzleSecurity, id, content)
@@ -88,6 +144,37 @@ role.delete(new KuzzleResponseListener<String>() {
 
   }
 });
+```
+
+```objective_c
+NSError* error = nil;
+[role deleteAndReturnError: &error callback:^(NSString * roleId, NSError * error) {
+  if(error) {
+    // error occured
+  }
+  // everything went fine
+}];
+
+if(error) {
+  // NSError reprsentation for KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
+}
+```
+
+```swift
+do {
+  try role.delete(callback: { result in
+      switch result {
+        case let .onError(error):
+        // error occured during call, error is NSError
+        break
+        case let .onSuccess(success):
+        // everything went fine, success is string with id of deleted KuzzleRole
+        break
+      }
+  })
+} catch {
+  // KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
+}
 ```
 
 Deletes the role from Kuzzle's database layer.
@@ -181,6 +268,75 @@ role.update(updateContent, new KuzzleResponseListener<KuzzleRole>() {
 });
 ```
 
+```objective_c
+NSError* error = nil;
+NSDictionary* updatedContent = @{
+  @"indexes": @{
+    @"_canCreate": @true,
+    @"*": @{
+      @"collection": @{
+        @"_canCreate": @true,
+          @"*": @{
+            @"controllers": @{
+              @"*": @{
+                @"actions": @{
+                  @"*": @true
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+};
+[role updateWithContent: updatedContent error: &error callback:^(KuzzleRole * updatedRole, NSError * onError) {
+  if(error) {
+    // error occured
+  }
+  // everything went fine
+}];
+
+if(error) {
+  // NSError reprsentation for KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
+}
+```
+
+```swift
+let updatedContent = [
+  "indexes":[
+    "_canCreate": true,
+    "*": [
+      "collections": [
+        "_canCreate": true,
+        "*": [
+          "controllers": [
+            "*": [
+              "actions": [
+                  "*": true
+              ]
+            ]
+          ]
+        ]
+      ]
+    ]
+  ]
+]
+do {
+    role.update(content: updatedContent, callback: {result in
+      switch result {
+        case let .onError(error):
+        // error occured during call, error is NSError
+        break
+        case let .onSuccess(success):
+        // everything went fine, success is KuzzleRole
+        break
+      }
+  })
+} catch {
+  // KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
+}
+```
+
 Updates the role object Kuzzle's database layer.
 
 <aside class="warning">
@@ -248,6 +404,37 @@ role.save(new KuzzleResponseListener<KuzzleRole> {
 });
 ```
 
+```objective_c
+NSError* error = nil;
+[role saveAndReturnError: &error callback:^(KuzzleRole * savedRole, NSError * error) {
+  if(error) {
+    // error occured
+  }
+  // everything went fine
+}];
+
+if(error) {
+  // NSError reprsentation for KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
+}
+```
+
+```swift
+do {
+  try role.save(callback: { result in
+      switch result {
+        case let .onError(error):
+        // error occured during call, error is NSError
+        break
+        case let .onSuccess(success):
+        // everything went fine, success is KuzzleRole
+        break
+      }
+  })
+} catch {
+  // KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
+}
+```
+
 Creates or replaces the role in Kuzzle's database layer.
 
 
@@ -300,6 +487,53 @@ JSONObject roleDefinition = new JSONObject()
   );
 
 role.setContent(roleDefinition);
+```
+
+```objective_c
+NSDictionary* newContent = @{
+  @"indexes": @{
+    @"_canCreate": @true,
+    @"*": @{
+      @"collection": @{
+        @"_canCreate": @true,
+          @"*": @{
+            @"controllers": @{
+              @"*": @{
+                @"actions": @{
+                  @"*": @true
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+};
+[role setContentWithData: newContent];
+```
+
+```swift
+let newContent = [
+  "indexes":[
+    "_canCreate": true,
+    "*": [
+      "collections": [
+        "_canCreate": true,
+        "*": [
+          "controllers": [
+            "*": [
+              "actions": [
+                  "*": true
+              ]
+            ]
+          ]
+        ]
+      ]
+    ]
+  ]
+]
+
+role.setContent(data: newContent)
 ```
 
 Replaces the content of the `KuzzleRole` object.

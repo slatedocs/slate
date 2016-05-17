@@ -29,6 +29,36 @@ JSONObject roles = new JSONObject()
 KuzzleProfile profile = new KuzzleProfile(kuzzle.security, "profileId", roles);
 ```
 
+```objective_c
+NSDictionary* profileContent = @{
+  @"roles":@[
+    @"someRole",
+    @"someOtherRole"
+  ]
+};
+
+// Using the KuzzleSecurity factory:
+KuzzleProfile* profile = [kuzzle.security profileFactoryWithId: @"profileId" content: profileContent];
+
+// Or directly with the constructor:
+KuzzleProfile* profile = [[KuzzleProfile alloc] initWithSecurity: kuzzle.security id: @"profileId" content: profileContent];
+```
+
+```swift
+let profileContent = [
+  "roles": [
+    "someRole",
+    "someOtherRole"
+  ]
+]
+
+// Using the KuzzleSecurity factory:
+let profile = kuzzle.security.profileFactory(id: "profileId", content: profileContent)
+
+// Or directly with the constructor:
+let profile = KuzzleProfile(security: kuzzle.security, id: "profileId", content: profileContent)
+```
+
 Instantiates a new `KuzzleProfile` object.
 
 #### KuzzleProfile(KuzzleSecurity, id, content)
@@ -67,6 +97,22 @@ profile.addRole("a role ID");
 
 // you may also add a KuzzleRole object directly
 profile.addRole(kuzzle.security.getRole("another role ID"));
+```
+
+```objective_c
+[profile addRoleWithId: @"roleId"];
+
+// you may also add a KuzzleRole object directly
+KuzzleRole* role = [[KuzzleRole alloc] initWithSecurity: kuzzle.security id: @"roleId" content: @{}];
+[profile addRoleWithRole: role];
+```
+
+```swift
+profile.addRole(id: "roleId")
+
+// you may also add a KuzzleRole object directly
+let role = KuzzleRole(security: kuzzle.security, id: "roleId", content: ["":""])
+profile.addRole(role: role)
 ```
 
 Adds a role to the profile.
@@ -121,6 +167,37 @@ profile
   });
 ```
 
+```objective_c
+NSError* error = nil;
+[profile deleteAndReturnError: &error callback:^(NSString * profileId, NSError * error) {
+  if(error) {
+    // error occured
+  }
+  // everything went fine
+}];
+
+if(error) {
+  // NSError reprsentation for KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
+}
+```
+
+```swift
+do {
+  try profile.delete(callback: { result in
+      switch result {
+        case let .onError(error):
+        // error occured during call, error is NSError
+        break
+        case let .onSuccess(success):
+        // everything went fine, success is string with id of deleted KuzzleProfile
+        break
+      }
+  })
+} catch {
+  // KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
+}
+```
+
 Deletes this profile from Kuzzle.
 
 #### delete([options], [callback])
@@ -150,6 +227,18 @@ for (role of profile.getRoles()) {
 
 ```java
 for(KuzzleRole role : profile.getRoles()) {
+  // the role object can have no content, if the profile has not been hydrated
+}
+```
+
+```objective_c
+for (KuzzleRole* role in [profile getRoles]) {
+  // the role object can have no content, if the profile has not been hydrated
+}
+```
+
+```swift
+for role in profile.getRoles() {
   // the role object can have no content, if the profile has not been hydrated
 }
 ```
@@ -209,7 +298,53 @@ profile.hydrate(new KuzzleResponseListener<KuzzleProfile>() {
 });
 ```
 
-Hydrates the KuzzleProfile object with its associated KuzzleRole.  
+```objective_c
+NSDictionary* roles = @{
+  @"roles": @[
+    @"myrole",
+    @"default"
+  ]
+};
+
+KuzzleProfile* profile = [kuzzle.security profileFactoryWithId: @"myprofile" content: roles];
+
+NSError* error = nil;
+[profile hydrateAndReturnError: &error callback:^(KuzzleProfile * hydratedProfile, NSError * error) {
+  if(error) {
+    // error occured
+  }
+  // everything went fine
+}];
+
+if(error) {
+  // NSError reprsentation for KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
+}
+```
+
+```swift
+let roles = [
+  "profile": [
+    "myprofile"
+  ]
+]
+let profile = kuzzle.security.profileFactory(id: "profileId", content: roles)
+do {
+  try profile.hydrate(callback: { result in
+      switch result {
+        case let .onError(error):
+        // error occured during call, error is NSError
+        break
+        case let .onSuccess(success):
+        // everything went fine, success is KuzzleProfile object
+        break
+      }
+  })
+} catch {
+  // KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
+}
+```
+
+Hydrates the KuzzleProfile object with its associated KuzzleRole.
 Hydrating the object transforms the `roles` property from an array of role ids to an array of KuzzleRole objects.
 
 <aside class="warning">
@@ -269,6 +404,43 @@ user.update(updateContent, new KuzzleResponseListener<KuzzleProfile>() {
 
   }
 });
+```
+
+```objective_c
+NSError* error = nil;
+NSDictionary* updatedContent = @{
+  @"profile": @"newProfile"
+};
+[profile updateWithContent: updatedContent error: &error callback:^(KuzzleProfile * updatedProfile, NSError * onError) {
+  if(error) {
+    // error occured
+  }
+  // everything went fine
+}];
+
+if(error) {
+  // NSError reprsentation for KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
+}
+```
+
+```swift
+let updatedContent = [
+    "profile": "newProfile"
+]
+do {
+    user.update(content: updatedContent, callback: {result in
+      switch result {
+        case let .onError(error):
+        // error occured during call, error is NSError
+        break
+        case let .onSuccess(success):
+        // everything went fine, success is KuzzleProfile
+        break
+      }
+  })
+} catch {
+  // KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
+}
 ```
 
 Performs a partial content update on this object.
@@ -339,6 +511,37 @@ profile.save(new KuzzleResponseListener<KuzzleProfile>() {
 });
 ```
 
+```objective_c
+NSError* error = nil;
+[profile saveAndReturnError: &error callback:^(KuzzleProfile * savedProfile, NSError * error) {
+  if(error) {
+    // error occured
+  }
+  // everything went fine
+}];
+
+if(error) {
+  // NSError reprsentation for KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
+}
+```
+
+```swift
+do {
+  try profile.save(callback: { result in
+      switch result {
+        case let .onError(error):
+        // error occured during call, error is NSError
+        break
+        case let .onSuccess(success):
+        // everything went fine, success is KuzzleProfile
+        break
+      }
+  })
+} catch {
+  // KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
+}
+```
+
 Creates or replaces the profile in Kuzzle.
 
 <aside class="warning">
@@ -393,6 +596,33 @@ JSONObject newRolesList = new JSONObject()
 profile.setContent(newRolesList);
 ```
 
+```objective_c
+NSDictionary* newContent = @{
+  @"roles": @[
+    @"aRoleId",
+    @"anotherRoleId",
+    @"thisProfile",
+    @"hasTooMany",
+    @"rolesInIt"
+  ]
+};
+[profile setContentWithData: newContent];
+```
+
+```swift
+let newContent = []
+  "roles": [
+    "aRoleId",
+    "anotherRoleId",
+    "thisProfile",
+    "hasTooMany",
+    "rolesInIt"
+  ]
+]
+
+profile.setContent(data: newContent)
+```
+
 Replaces the content of the `KuzzleProfile` object.
 
 #### setContent(data)
@@ -431,6 +661,30 @@ profile.setRoles({role1, role2, role3});
 
 // Binding role IDs to a profile
 profile.setRoles({"role1 ID", "role2 ID", "role3 ID"});
+```
+
+```objective_c
+KuzzleRole* role1 = [kuzzle.security roleFactoryWithId: @"role1Id" content: @{}];
+KuzzleRole* role2 = [kuzzle.security roleFactoryWithId: @"role2Id" content: @{}];
+KuzzleRole* role3 = [kuzzle.security roleFactoryWithId: @"role3Id" content: @{}];
+
+// Binding role objects to a profile
+[profile setRolesWithRoles: @[role1, role2, role3]];
+
+// Binding role IDs to a profile
+[profile setRolesWithRoleIds: @[@"role1Id", @"role2Id", @"role3Id"]];
+```
+
+```swift
+let role1 = kuzzle.security.roleFactory(id: "role1Id", content: ["":""])
+let role2 = kuzzle.security.roleFactory(id: "role2Id", content: ["":""])
+let role3 = kuzzle.security.roleFactory(id: "role3Id", content: ["":""])
+
+// Binding role objects to a profile
+profile.setRoles(withRoles: [role1, role2, role3])
+
+// Binding role IDs to a profile
+profile.setRoles(withRoleIds: ["role1Id", "role2Id", "role3Id"])
 ```
 
 Replaces the roles associated to the profile.

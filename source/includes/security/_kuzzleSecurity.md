@@ -33,6 +33,22 @@ KuzzleSecurity security = kuzzle.security;
 KuzzleSecurity security = new KuzzleSecurity(kuzzle);
 ```
 
+```objective_c
+// using the static instance
+KuzzleSecurity* security = kuzzle.security;
+
+// or instanciating a new KuzzleSecurity object
+KuzzleSecurity* security = [[KuzzleSecurity alloc] initWithKuzzle: kuzzle];
+```
+
+```swift
+// using the static instance
+let security = kuzzle.security
+
+// or instanciating a new KuzzleSecurity object
+let security = KuzzleSecurity(kuzzle: kuzzle)
+```
+
 #### KuzzleSecurity(Kuzzle)
 
 | Arguments | Type | Description |
@@ -126,6 +142,82 @@ kuzzle
   })
 ```
 
+```objective_c
+NSDictionary* roleDefinition = @{
+  @"indexes":@{
+    @"_canCreate": @true,
+    @"*": @{
+      @"collections": @{
+        @"_canCreate": @true,
+        @"*": @{
+          @"controllers": @{
+            @"*": @{
+              @"actions": @{
+                @"*": @true
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+};
+
+NSError* error = nil;
+KuzzleOptions* opts = [[KuzzleOptions alloc] init];
+opts.replaceIfExist = true;
+
+[kuzzle.security createRoleWithId: @"myRole" content: roleDefinition options:opts error: &error callback:^(KuzzleRole * createdRole, NSError * error) {
+  if(error) {
+    // error occured
+  }
+  // everything went fine
+}];
+
+if(error) {
+  // NSError reprsentation for KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
+}
+```
+
+```swift
+let roleDefinition = [
+  "indexes":[
+    "_canCreate": true,
+    "*": [
+      "collections": [
+        "_canCreate": true,
+        "*": [
+          "controllers": [
+            "*": [
+              "actions": [
+                "*": true
+              ]
+            ]
+          ]
+        ]
+      ]
+    ]
+  ]
+]
+
+do {
+  let opts = KuzzleOptions()
+  opts.setReplaceIfExist(true)
+  try kuzzle.security.createRole(id: "myRole", content: roleDefinition, options: opts, callback: { result in
+      switch result {
+        case let .onError(error):
+        // error occured during call, error is NSError
+        break
+        case let .onSuccess(success):
+        // everything went fine, success is KuzzleRole
+        break
+      }
+  })
+} catch {
+  // KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
+}
+```
+
 Create a new role in Kuzzle.
 
 <aside class="notice">
@@ -200,6 +292,52 @@ kuzzle
 
     }
   });
+```
+
+```objective_c
+NSArray* roles = @[
+  @"myrole",
+  @"default"
+];
+
+NSError* error = nil;
+KuzzleOptions* opts = [[KuzzleOptions alloc] init];
+opts.replaceIfExist = true;
+
+[kuzzle.security createProfileWithId: @"myprofile" content: roles options:opts error: &error callback:^(KuzzleProfile * createdProfile, NSError * error) {
+  if(error) {
+    // error occured
+  }
+  // everything went fine
+}];
+
+if(error) {
+  // NSError reprsentation for KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
+}
+```
+
+```swift
+let roles = [
+  "myrole",
+  "default"
+]
+
+do {
+  let opts = KuzzleOptions()
+  opts.setReplaceIfExist(true)
+  try kuzzle.security.createProfile(id: "myprofile", content: roles, options: opts, callback: { result in
+      switch result {
+        case let .onError(error):
+        // error occured during call, error is NSError
+        break
+        case let .onSuccess(success):
+        // everything went fine, success is KuzzleProfile
+        break
+      }
+  })
+} catch {
+  // KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
+}
 ```
 
 Create a new profile in Kuzzle.
@@ -294,6 +432,56 @@ kuzzle
   });
 ```
 
+```objective_c
+NSDictionary* newUser = @{
+  @"profile": @"admin",
+  @"password": @"secret password",
+  @"firstname": @"John",
+  @"lastname": @"Doe"
+};
+
+NSError* error = nil;
+KuzzleOptions* opts = [[KuzzleOptions alloc] init];
+opts.replaceIfExist = true;
+
+[kuzzle.security createUserWithId: @"myRole" content: newUser options:opts error: &error callback:^(KuzzleUser * createdUser, NSError * error) {
+  if(error) {
+    // error occured
+  }
+  // everything went fine
+}];
+
+if(error) {
+  // NSError reprsentation for KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
+}
+```
+
+```swift
+let newUser = [
+  "profile": "admin",
+  "password": "secret password",
+  "firstname": "John",
+  "lastname": "Doe"
+]
+
+do {
+  let opts = KuzzleOptions()
+  opts.setReplaceIfExist(true)
+  try kuzzle.security.createUser(id: "newUser", content: newUser, options: opts, callback: { result in
+      switch result {
+        case let .onError(error):
+        // error occured during call, error is NSError
+        break
+        case let .onSuccess(success):
+        // everything went fine, success is KuzzleRole
+        break
+      }
+  })
+} catch {
+  // KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
+}
+```
+
 Create a new user in Kuzzle.
 
 <aside class="notice">
@@ -358,6 +546,37 @@ kuzzle
   });
 ```
 
+```objective_c
+NSError* error = nil;
+[kuzzle.security deleteProfileWithId: @"myprofile" error:&error callback:^(NSString * deletedProfileId, NSError * error) {
+  if(error) {
+    // error occured
+  }
+  // everything went fine
+}];
+
+if(error) {
+  // NSError reprsentation for KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
+}
+```
+
+```swift
+do {
+  try kuzzle.security.deleteProfile(id: "myprofile", callback: {result in
+      switch result {
+        case let .onError(error):
+        // error occured during call, error is NSError
+        break
+        case let .onSuccess(success):
+        // everything went fine, success is string with id of deleted KuzzleProfile
+        break
+      }
+  })
+} catch {
+  // KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
+}
+```
+
 Delete profile.
 
 <aside class="notice">
@@ -416,6 +635,37 @@ kuzzle
 
     }
   });
+```
+
+```objective_c
+NSError* error = nil;
+[kuzzle.security deleteRoleWithId: @"myrole" error:&error callback:^(NSString * deletedRoleId, NSError * error) {
+  if(error) {
+    // error occured
+  }
+  // everything went fine
+}];
+
+if(error) {
+  // NSError reprsentation for KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
+}
+```
+
+```swift
+do {
+  try kuzzle.security.deleteRole(id: "myrole", callback: {result in
+      switch result {
+        case let .onError(error):
+        // error occured during call, error is NSError
+        break
+        case let .onSuccess(success):
+        // everything went fine, success is string with id of deleted KuzzleRole
+        break
+      }
+  })
+} catch {
+  // KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
+}
 ```
 
 Delete role.
@@ -477,6 +727,37 @@ kuzzle
 
     }
   });
+```
+
+```objective_c
+NSError* error = nil;
+[kuzzle.security deleteUserWithId: @"myuser" error:&error callback:^(NSString * deletedUserId, NSError * error) {
+  if(error) {
+    // error occured
+  }
+  // everything went fine
+}];
+
+if(error) {
+  // NSError reprsentation for KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
+}
+```
+
+```swift
+do {
+  try kuzzle.security.deleteUser(id: "myuser", callback: {result in
+      switch result {
+        case let .onError(error):
+        // error occured during call, error is NSError
+        break
+        case let .onSuccess(success):
+        // everything went fine, success is string with id of deleted KuzzleUser
+        break
+      }
+  })
+} catch {
+  // KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
+}
 ```
 
 Delete user.
@@ -541,6 +822,37 @@ kuzzle
   });
 ```
 
+```objective_c
+NSError* error = nil;
+[kuzzle.security getRoleWithId: @"myrole" error: &error callback:^(KuzzleRole * role, NSError * error) {
+  if(error) {
+    // error occured
+  }
+  // everything went fine
+}];
+
+if(error) {
+  // NSError reprsentation for KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
+}
+```
+
+```swift
+do {
+  try kuzzle.security.getRole(id: "myrole", callback: { result in
+      switch result {
+        case let .onError(error):
+        // error occured during call, error is NSError
+        break
+        case let .onSuccess(success):
+        // everything went fine, success is KuzzleRole
+        break
+      }
+  })
+} catch {
+  // KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
+}
+```
+
 Retrieves a single stored role using its unique ID.
 
 #### getRole(id, [options], callback)
@@ -597,6 +909,41 @@ kuzzle
 
     }
   });
+```
+
+```objective_c
+NSError* error = nil;
+KuzzleOptions* opts = [[KuzzleOptions alloc] init];
+opts.hydrate = true;
+[kuzzle.security getProfileWithId: @"myprofile" options: opts error: &error callback:^(KuzzleProfile * profile, NSError * error) {
+  if(error) {
+    // error occured
+  }
+  // everything went fine
+}];
+
+if(error) {
+  // NSError reprsentation for KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
+}
+```
+
+```swift
+do {
+  let opts = KuzzleOptions()
+  opts.setHydrate(true)
+  try kuzzle.security.getProfile(id: "myprofile", options: opts, callback: { result in
+      switch result {
+        case let .onError(error):
+        // error occured during call, error is NSError
+        break
+        case let .onSuccess(success):
+        // everything went fine, success is KuzzleProfile
+        break
+      }
+  })
+} catch {
+  // KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
+}
 ```
 
 Retrieves a single stored profile using its unique ID.
@@ -658,6 +1005,41 @@ kuzzle
   });
 ```
 
+```objective_c
+NSError* error = nil;
+KuzzleOptions* opts = [[KuzzleOptions alloc] init];
+opts.hydrate = true;
+[kuzzle.security getUserWithId: @"myuser" options: opts error: &error callback:^(KuzzleUser * user, NSError * error) {
+  if(error) {
+    // error occured
+  }
+  // everything went fine
+}];
+
+if(error) {
+  // NSError reprsentation for KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
+}
+```
+
+```swift
+do {
+  let opts = KuzzleOptions()
+  opts.setHydrate(true)
+  try kuzzle.security.getUser(id: "myuser", options: opts, callback: { result in
+      switch result {
+        case let .onError(error):
+        // error occured during call, error is NSError
+        break
+        case let .onSuccess(success):
+        // everything went fine, success is KuzzleUser
+        break
+      }
+  })
+} catch {
+  // KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
+}
+```
+
 Retrieves a single stored user using its unique ID.
 
 #### getUser(id, [options], callback)
@@ -700,6 +1082,28 @@ JSONObject profileDefinition = new JSONObject()
   );
 
 KuzzleProfile profile = kuzzle.security.profileFactory("myprofile", profileDefinition);
+```
+
+```objective_c
+NSDictionary* profileContent = @{
+  @"roles":@[
+    @"someRole",
+    @"someOtherRole"
+  ]
+};
+
+KuzzleProfile* profile = [kuzzle.security profileFactoryWithId: @"myprofile" content: profileContent];
+```
+
+```swift
+let profileContent = [
+  "roles": [
+    "someRole",
+    "someOtherRole"
+  ]
+]
+
+let profile = kuzzle.security.profileFactory(id: "myprofile", content: profileContent)
 ```
 
 Instantiate a new KuzzleProfile object.
@@ -763,6 +1167,54 @@ JSONObject roleDefinition = new JSONObject()
   );
 
 KuzzleRole role = kuzzle.security.roleFactory("myrole", roleDefinition);
+```
+
+```objective_c
+NSDictionary* roleContent = @{
+  @"indexes":@{
+    @"_canCreate": @true,
+    @"*": @{
+      @"collections": @{
+        @"_canCreate": @true,
+        @"*": @{
+          @"controllers": @{
+            @"*": @{
+              @"actions": @{
+                @"*": @true
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+};
+
+KuzzleRole* role = [kuzzle.security roleFactoryWithId: @"myrole" content: roleContent];
+```
+
+```swift
+let roleContent = [
+  "indexes":[
+    "_canCreate": true,
+    "*": [
+      "collections": [
+        "_canCreate": true,
+        "*": [
+          "controllers": [
+            "*": [
+              "actions": [
+                "*": true
+              ]
+            ]
+          ]
+        ]
+      ]
+    ]
+  ]
+]
+
+let role = kuzzle.security.roleFactory(id: "myrole", content: roleContent)
 ```
 
 Instantiate a new `KuzzleRole` object.
@@ -836,6 +1288,58 @@ kuzzle
     }
   });
 
+```
+
+```objective_c
+NSError* error = nil;
+KuzzleOptions* opts = [[KuzzleOptions alloc] init];
+opts.hydrate = YES;
+NSDictionary* filters = @{
+  @"roles": @[
+    @"myrole",
+    @"admin"
+  ],
+  @"from": @0,
+  @"size": @10
+};
+
+[kuzzle.security searchProfilesWithFilters: filters options: opts error: &error callback:^(NSArray<KuzzleProfile *> * profiles, NSError * error) {
+  if(error) {
+    // error occured
+  }
+  // everything went fine
+}];
+
+if(error) {
+  // NSError reprsentation for KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
+}
+```
+
+```swift
+do {
+  let opts = KuzzleOptions()
+  opts.setHydrate(false)
+  let filters = [
+      "roles": [
+          "myrole",
+          "admin"
+      ],
+      "from": 0,
+      "size": 1
+  ]
+  try kuzzle.security.searchProfiles(filters: filters, options: opts, callback: {result in
+    switch result {
+      case let .onError(error):
+      // error occured during call, error is NSError
+      break
+      case let .onSuccess(success):
+      // everything went fine, success is array with KuzzleProfile objects
+      break
+    }
+  })
+} catch {
+  // KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
+}
 ```
 
 > Callback response:
@@ -958,6 +1462,89 @@ kuzzle
   });
 ```
 
+```objective_c
+NSError* error = nil;
+KuzzleOptions* opts = [[KuzzleOptions alloc] init];
+opts.hydrate = NO;
+NSDictionary* filters = @{
+  @"filter": @{
+    @"and": @[
+      @{
+        @"terms": @{
+          @"profile": @[
+            @"anonymous",
+            @"default"
+          ]
+        }
+      },
+      @{
+        @"geo_distance": @{
+          @"distance": @"10km",
+            @"pos": @{
+             @"lat": @"54.4838902",
+             @"lon": @"17.01559"
+            }
+          }
+        }
+      ]
+    }
+};
+
+[kuzzle.security searchUsersWithFilters: filters options: opts error: &error callback:^(NSArray<KuzzleUser *> * users, NSError * error) {
+  if(error) {
+    // error occured
+  }
+  // everything went fine
+}];
+
+if(error) {
+  // NSError reprsentation for KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
+}
+```
+
+```swift
+do {
+  let opts = KuzzleOptions()
+  opts.setHydrate(false)
+  let filters = [
+    "filter": [
+      "and": [
+        [
+          "terms": [
+            "profile": [
+              "anonymous",
+              "default"
+            ]
+          ]
+        ],
+        [
+          "geo_distance": [
+            "distance": "10km",
+            "pos": [
+              "lat": "54.4838902",
+              "lon": "17.01559"
+            ]
+          ]
+        ]
+      ]
+    ]
+  ]
+
+  try kuzzle.security.searchUsers(filters: filters, options: opts, callback: {result in
+    switch result {
+      case let .onError(error):
+      // error occured during call, error is NSError
+      break
+      case let .onSuccess(success):
+      // everything went fine, success is array with KuzzleUser objects
+      break
+    }
+})
+} catch {
+  // KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
+}
+```
+
 > Callback response:
 
 ```js
@@ -1044,6 +1631,54 @@ kuzzle
   });
 ```
 
+```objective_c
+NSError* error = nil;
+NSDictionary* filters = @{
+  @"roles": @[
+    @"myrole",
+    @"admin"
+  ],
+  @"from": @0,
+  @"size": @10
+};
+
+[kuzzle.security searchRolesWithFilters: filters error: &error callback:^(NSArray<KuzzleRole *> * roles, NSError * error) {
+  if(error) {
+    // error occured
+  }
+  // everything went fine
+}];
+
+if(error) {
+  // NSError reprsentation for KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
+}
+```
+
+```swift
+do {
+  let filters = [
+      "roles": [
+          "myrole",
+          "admin"
+      ],
+      "from": 0,
+      "size": 1
+  ]
+  try kuzzle.security.searchRoles(filters: filters, allback: {result in
+    switch result {
+      case let .onError(error):
+      // error occured during call, error is NSError
+      break
+      case let .onSuccess(success):
+      // everything went fine, success is array with KuzzleRole objects
+      break
+    }
+})
+} catch {
+  // KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
+}
+```
+
 > Callback response:
 
 ```js
@@ -1126,6 +1761,50 @@ kuzzle
   });
 ```
 
+```objective_c
+NSDictionary* newContent = @{
+  @"roles": @[
+    @"other",
+    @"roles"
+  ]
+};
+
+NSError* error = nil;
+[kuzzle.security updateProfileWithId: @"profileId" content: newContent error: &error callback:^(NSString * updatedProfileId, NSError * error) {
+  if(error) {
+    // error occured
+  }
+  // everything went fine
+}];
+
+if(error) {
+  // NSError reprsentation for KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
+}
+```
+
+```swift
+do {
+  let newContent = [
+    "roles": [
+      "other",
+      "roles"
+    ]
+  ]
+  try kuzzle.security.updateProfile(id: "profileId", content: newContent, callback: { result in
+    switch result {
+      case let .onError(error):
+      // error occured during call, error is NSError
+      break
+      case let .onSuccess(success):
+      // everything went fine, success is string with id of updated KuzzleProfile
+      break
+    }
+  })
+} catch {
+  // KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
+}
+```
+
 #### updateProfile(id, content, [options], [callback])
 
 Performs a partial update on an existing profile.
@@ -1197,6 +1876,52 @@ kuzzle
   });
 ```
 
+```objective_c
+NSDictionary* newContent = @{
+  @"indexes": @{
+    @"someIndex": @{
+      @"_canCreate": @NO
+    }
+  }
+};
+
+NSError* error = nil;
+[kuzzle.security updateRoleWithId: @"roleId" content: newContent error: &error callback:^(NSString * updatedRoleId, NSError * error) {
+  if(error) {
+    // error occured
+  }
+  // everything went fine
+}];
+
+if(error) {
+  // NSError reprsentation for KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
+}
+```
+
+```swift
+do {
+  let newContent = [
+    "indexes": [
+      "someIndex": [
+        "_canCreate": false
+      ]
+    ]
+  ]
+  try kuzzle.security.updateRole(id: "roleId", content: newContent, callback: { result in
+    switch result {
+      case let .onError(error):
+      // error occured during call, error is NSError
+      break
+      case let .onSuccess(success):
+      // everything went fine, success is string with id of updated KuzzleRole
+      break
+    }
+  })
+} catch {
+  // KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
+}
+```
+
 #### updateRole(id, content, [options], [callback])
 
 Performs a partial update on an existing role.
@@ -1264,6 +1989,46 @@ kuzzle
   });
 ```
 
+```objective_c
+NSDictionary* newContent = @{
+  @"firstname": @"My Name Is",
+  @"lastname": @"Jonas"
+};
+
+NSError* error = nil;
+[kuzzle.security updateUserWithId: @"userId" content: newContent error: &error callback:^(NSString * updatedUserId, NSError * error) {
+  if(error) {
+    // error occured
+  }
+  // everything went fine
+}];
+
+if(error) {
+  // NSError reprsentation for KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
+}
+```
+
+```swift
+do {
+  let newContent = [
+    "firstname": "My Name Is",
+    "lastname": "Jonas"
+  ]
+  try kuzzle.security.updateUser(id: "userId", content: newContent, callback: { result in
+    switch result {
+      case let .onError(error):
+      // error occured during call, error is NSError
+      break
+      case let .onSuccess(success):
+      // everything went fine, success is string with id of updated KuzzleUser
+      break
+    }
+  })
+} catch {
+  // KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
+}
+```
+
 #### updateUser(id, content, [options], [callback])
 
 Performs a partial update on an existing user.
@@ -1314,6 +2079,28 @@ JSONObject userContent = new JSONObject()
     .put("lastname", "Doe");
 
 KuzzleUser user = kuzzle.security.userFactory("userId", userContent);  
+```
+
+```objective_c
+NSDictionary* userContent = @{
+                              @"profile": @"someProfile",
+                              @"password": @"a password",
+                              @"firstname": @"John",
+                              @"lastname": @"Doe"
+                              };
+
+KuzzleUser* user = [kuzzle.security userFactoryWithId: @"myuser" content: userContent];
+```
+
+```swift
+let userContent = [
+    "profile": "someProfile",
+    "password": "a password",
+    "firstname": "John",
+    "lastname": "Doe"
+]
+
+let user = kuzzle.security.userFactory(id: "myuser", content: userContent)
 ```
 
 Instantiate a new KuzzleUser object.

@@ -153,36 +153,38 @@ NSError* error = nil;
 KuzzleDataCollection* myCollection = [kuzzle dataCollectionFactoryWithIndex: @"index" collectionName: @"collection" error: &error];
 
 NSDictionary* termStatus = @{
-                             @"terms": @{
-                                     @"status": @[
-                                             @"idle", @"wantToHire", @"toHire", @"riding"
-                                             ],
-                                     }};
+  @"terms": @{
+    @"status": @[
+      @"idle", @"wantToHire", @"toHire", @"riding"
+    ],
+  }
+};
 
 NSDictionary* termType = @{
-                           @"terms": @{
-                                   @"type": @[@"cab"]
-                                   }
-                           };
+  @"terms": @{
+    @"type": @[@"cab"]
+  }
+};
 
 NSDictionary* geoDistance = @{
-                              @"geo_distance": @{
-                                      @"distance": @"10km",
-                                      @"pos": @{
-                                              @"lat": @"54.4838902",
-                                              @"lon": @"17.01559"
-                                              }
-                                      }
-                              };
+  @"geo_distance": @{
+    @"distance": @"10km",
+    @"pos": @{
+      @"lat": @"54.4838902",
+      @"lon": @"17.01559"
+    }
+  }
+};
 
 NSDictionary* filter = @{
-                         @"filter": @{
-                                 @"and": @[
-                                         termStatus,
-                                         termType,
-                                         geoDistance
-                                         ]
-                                 }};
+  @"filter": @{
+    @"and": @[
+     termStatus,
+     termType,
+     geoDistance
+    ]
+  }
+};
 
 [myCollection advancedSearchWithFilters: filter error: &error callback:^(KuzzleDocumentList* documentList, NSError* error) {
     if(error) {
@@ -198,36 +200,34 @@ if(error) {
 ```swift
   let myCollection = try! kuzzle.dataCollectionFactory(index: "index", collectionName: "collection")
   let termStatus = [
-      "terms": [
-          "status": ["idle", "wantToHire", "toHire", "riding"],
-      ]
+    "terms": [
+      "status": ["idle", "wantToHire", "toHire", "riding"],
+    ]
   ]
   let termType = [
-      "terms":[
-          "type": ["cab"]
-      ]
+    "terms":[
+      "type": ["cab"]
+    ]
   ]
 
   let geoDistance = [
-      "geo_distance": [
-          "distance": "10km",
-          "pos": [
-              "lat": "54.4838902",
-              "lon": "17.01559"
-          ]
-      ]
+    "geo_distance": [
+      "distance": "10km",
+      "pos": [
+        "lat": "54.4838902",
+        "lon": "17.01559"
+        ]
+    ]
   ]
 
   let filter = [
-      "filter": [
-          "and": [
-              [
-                  termStatus,
-                  termType,
-                  geoDistance
-              ]
-          ]
+    "filter": [
+      "and": [
+        termStatus,
+        termType,
+        geoDistance
       ]
+    ]
   ]
   do {
     try myCollection.advancedSearch(filters: filter, callback: { result in
@@ -1268,6 +1268,7 @@ if(!error) {
   [myCollection publishMessageWithContent: @{@"foo": @"bar", @"baz": @"qux"} options: options error: &error];
 } else {
   // NSError reprsentation for KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
+  // NSError representation for KuzzleError.ContentEmpty, when content of passed document is empty
 }
 ```
 
@@ -1277,7 +1278,8 @@ do {
   let options = KuzzleOptions()
   options.setMetadata(["metadata": "is volatile information"])
   try myCollection.publishMessage(content: ["foo": "bar", "baz": "qux"], options: options)
-} catch {T
+} catch {
+  // KuzzleError.ContentEmpty, when content of passed document is empty
   // KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
 }
 ```
@@ -1646,36 +1648,40 @@ NSError* error = nil;
 KuzzleDataCollection* myCollection = [kuzzle dataCollectionFactoryWithIndex: @"index" collectionName: @"collection" error: &error];
 
 NSDictionary* termStatus = @{
-                             @"terms": @{
-                                     @"status": @[
-                                             @"idle", @"wantToHire", @"toHire", @"riding"
-                                             ],
-                                     }};
+  @"terms": @{
+    @"status": @[
+      @"idle", @"wantToHire", @"toHire", @"riding"
+    ],
+  }
+};
 
 NSDictionary* termType = @{
-                           @"terms": @{
-                                   @"type": @[@"cab"]
-                                   }
-                           };
+  @"terms": @{
+    @"type": @[
+      @"cab"
+    ]
+  }
+};
 
 NSDictionary* geoDistance = @{
-                              @"geo_distance": @{
-                                      @"distance": @"10km",
-                                      @"pos": @{
-                                              @"lat": @"54.4838902",
-                                              @"lon": @"17.01559"
-                                              }
-                                      }
-                              };
+  @"geo_distance": @{
+    @"distance": @"10km",
+    @"pos": @{
+     @"lat": @"54.4838902",
+     @"lon": @"17.01559"
+    }
+  }
+};
 
 NSDictionary* filter = @{
-                         @"filter": @{
-                                 @"and": @[
-                                         termStatus,
-                                         termType,
-                                         geoDistance
-                                         ]
-                                 }};
+  @"filter": @{
+    @"and": @[
+      termStatus,
+      termType,
+      geoDistance
+    ]
+  }
+};
 
 if(!error) {
   [myCollection subscribeWithFilters: filter error: &error callback:^(KuzzleDocumentList* documentList, NSError* error) {
@@ -1692,36 +1698,34 @@ if(!error) {
 ```swift
   let myCollection = try! kuzzle.dataCollectionFactory(index: "index", collectionName: "collection")
   let termStatus = [
-      "terms": [
-          "status": ["idle", "wantToHire", "toHire", "riding"],
-      ]
+    "terms": [
+      "status": ["idle", "wantToHire", "toHire", "riding"],
+    ]
   ]
   let termType = [
-      "terms":[
-          "type": ["cab"]
-      ]
+    "terms":[
+      "type": ["cab"]
+    ]
   ]
 
   let geoDistance = [
-      "geo_distance": [
-          "distance": "10km",
-          "pos": [
-              "lat": "54.4838902",
-              "lon": "17.01559"
-          ]
+    "geo_distance": [
+      "distance": "10km",
+      "pos": [
+        "lat": "54.4838902",
+        "lon": "17.01559"
       ]
+    ]
   ]
 
   let filter = [
-      "filter": [
-          "and": [
-              [
-                  termStatus,
-                  termType,
-                  geoDistance
-              ]
-          ]
+    "filter": [
+      "and": [
+        termStatus,
+        termType,
+        geoDistance
       ]
+    ]
   ]
   do {
     try myCollection.subscribe(filters: filter, callback: { result in

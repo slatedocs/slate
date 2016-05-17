@@ -43,11 +43,11 @@ KuzzleUser user = new KuzzleUser(kuzzle.security, "user ID", userContent);
 
 ```objective_c
 NSDictionary* userContent = @{
-                              @"profile": @"admin",
-                              @"password": @"secret password",
-                              @"firstname": @"John",
-                              @"lastname": @"Doe"
-                              };
+  @"profile": @"admin",
+  @"password": @"secret password",
+  @"firstname": @"John",
+  @"lastname": @"Doe"
+};
 
 // Using the KuzzleSecurity factory:
 KuzzleUser* user = [kuzzle.security userFactoryWithId: @"userId" content: userContent];
@@ -58,10 +58,10 @@ KuzzleUser* user = [[KuzzleUser alloc] initWithSecurity: kuzzle.security id: @"u
 
 ```swift
 let userContent = [
-    "profile": "admin",
-    "password": "secret password",
-    "firstname": "John",
-    "lastname": "Doe"
+  "profile": "admin",
+  "password": "secret password",
+  "firstname": "John",
+  "lastname": "Doe"
 ]
 
 // Using the KuzzleSecurity factory:
@@ -277,12 +277,12 @@ if(error) {
 ```
 
 ```swift
-  let userContent = [
-      "profile": [
-        "myprofile"
-      ]
+let userContent = [
+  "profile": [
+    "myprofile"
   ]
-let user = KuzzleUser(security: kuzzle.security, id: "myuser", content: userContent)
+]
+let user = kuzzle.security.userFactory(id: "userId", content: userContent)
 do {
   try user.hydrate(callback: { result in
       switch result {
@@ -526,6 +526,25 @@ JSONObject newContent = new JSONObject()
   );
 
 user.setContent(newContent);
+```
+
+```objective_c
+NSDictionary* newContent = @{
+  @"profile": @[
+    @"anotherProfileId"
+  ]
+};
+[user setContentWithData: newContent];
+```
+
+```swift
+let newContent = [
+  "profile": [
+    "anotherProfileId"
+  ]
+]
+
+user.setContent(data: newContent)
 ```
 
 <aside class="note">

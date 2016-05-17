@@ -112,7 +112,8 @@ If you want to immediately access kuzzle after connection have a look at snippet
       }
     })
   } catch {
-      // error occured during initialization of object
+    // KuzzleError.InvalidUrl, when url was not valid (NSURL failed)
+    // KuzzleError.EmptyUrl, when passed url was empty
   }
 }
 ```

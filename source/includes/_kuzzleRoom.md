@@ -349,36 +349,35 @@ if(error) {
 
 ```swift
 let termStatus = [
-    "terms": [
-        "status": ["idle", "wantToHire", "toHire", "riding"],
-    ]
+  "terms": [
+    "status": ["idle", "wantToHire", "toHire", "riding"],
+  ]
 ]
+
 let termType = [
-    "terms":[
-        "type": ["cab"]
-    ]
+  "terms":[
+    "type": ["cab"]
+  ]
 ]
 
 let geoDistance = [
-    "geo_distance": [
-        "distance": "10km",
-        "pos": [
-            "lat": "54.4838902",
-            "lon": "17.01559"
-        ]
+  "geo_distance": [
+  "distance": "10km",
+  "pos": [
+    "lat": "54.4838902",
+    "lon": "17.01559"
     ]
+  ]
 ]
 
 let filter = [
-    "filter": [
-        "and": [
-            [
-                termStatus,
-                termType,
-                geoDistance
-            ]
-        ]
+  "filter": [
+    "and": [
+      termStatus,
+      termType,
+      geoDistance
     ]
+  ]
 ]
 
 do {
