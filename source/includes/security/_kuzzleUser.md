@@ -50,10 +50,10 @@ NSDictionary* userContent = @{
                               };
 
 // Using the KuzzleSecurity factory:
-KuzzleUser* user = [kuzzle.security userFactoryWithId: @"userId" content: content];
+KuzzleUser* user = [kuzzle.security userFactoryWithId: @"userId" content: userContent];
 
 // Or directly with the constructor:
-KuzzleUser* user = [[KuzzleUser alloc] initWithSecurity: kuzzle.security id: @"userId" content: content];
+KuzzleUser* user = [[KuzzleUser alloc] initWithSecurity: kuzzle.security id: @"userId" content: userContent];
 ```
 
 ```swift
@@ -65,10 +65,10 @@ let userContent = [
 ]
 
 // Using the KuzzleSecurity factory:
-let user = kuzzle.security.userFactory(id: "userId", content: content)
+let user = kuzzle.security.userFactory(id: "userId", content: userContent)
 
 // Or directly with the constructor:
-let user = KuzzleUser(security: kuzzle.security, id: "userId", content: content)
+let user = KuzzleUser(security: kuzzle.security, id: "userId", content: userContent)
 ```
 
 Instantiate a new KuzzleUser object.
@@ -151,7 +151,6 @@ do {
       }
   })
 } catch {
-  // KuzzleError.TokenEmpty, when token argument is empty string
   // KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
 }
 ```

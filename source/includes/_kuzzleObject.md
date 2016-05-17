@@ -1267,7 +1267,6 @@ do {
       }
   })
 } catch {
-  // KuzzleError.TokenEmpty, when token argument is empty string
   // KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
 }
 ```
