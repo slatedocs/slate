@@ -36,6 +36,7 @@ EXEMPLO
 As Configurações de Cobrança podem ser de tipos diferentes. Sendo assim, os parâmetros e algums comportamentos irão variar de acordo com o tipo. Atualmente temos os tipos:
 
 - Boleto (billet)
+- Gateway de pagamento (payment_gateway)
 
 **Parâmetros (Boleto)**
 
@@ -45,22 +46,36 @@ As Configurações de Cobrança do tipo **Boleto** (billet), pertencem as suas c
 | Campo                     | Tipo            | Comentário                                                                                                                        |
 |---------------------------|-----------------|-----------------------------------------------------------------------------------------------------------------------------------|
 | id                        | integer         |                                                                                                                                   |
-| type                      | string          | indica o tipo da configuração de cobrança. Valores possíveis: (billet)                                                            |
+| type                      | string          | indica o tipo da configuração de cobrança. Nesse caso 'billet'                                                                    |
+| name                      | string          | nome que identifica esta configuração de cobrança                                                                                 |
+| status                    | string          | 'ok' ou 'pending' para indicar se configuração de cobrança está ou não homologada, respectivamente                                |
 | bank_account_id           | integer         | identificador da conta bancária desta configuração de cobrança no Cobrato                                                         |
 | portfolio_code            | string          | código de portfólio                                                                                                               |
 | agreement_code            | string          | código de convênio ou do beneficiário, de acordo com o banco. No caso do Itaú deve ser igual ao campo 'account' da conta bancária |
 | agreement_code_digit      | string          | verificador do código de convênio, de acordo com o banco                                                                          |
-| name                      | string          | nome que identifica esta configuração de cobraça                                                                                  |
 | initial_number            | integer         | número inicial do nosso número, sendo atribuído automaticamente e sequencialmente as cobranças                                    |
 | current_number            | integer         | nosso número atribuído a última cobrança criada a partir desta configuração de cobrança                                           |
 | end_number                | integer         | número final do nosso número, sendo o último número a ser atribuído, após isso a sequência é reiniciada                           |
-| status                    | string          | 'ok' ou 'pending' para indicar se configuração de cobrança está ou não homologada, respectivamente                                |
 | registered_charges        | boolean         | informa se a configuração de cobrança utiliza boletos registrados ou não, sendo false por padrão                                  |
 | agreement_number          | integer         | número do convênio com o banco (apenas para o Bradesco)                                                                           |
 | remittance_cnab_pattern   | integer         | padrão utilizado no arquivo CNAB de remessa                                                                                       |
 | initial_remittance_number | integer         | número inicial de remessa, ou seja, qual foi o último número sequencial de remessa enviado para o banco (apenas para o Bradesco)  |
 | transmission_code         | string          | código de transmissão (apenas para o Santander)                                                                                   |
 | _links                    | array of object | links da configuração de cobrança e de sua conta bancária                                                                         |
+
+**Parâmetros (Gateway de Pagamento)**
+
+| Campo        | Tipo            | Comentário                                                                                                            |
+|--------------|-----------------|-----------------------------------------------------------------------------------------------------------------------|
+| id           | integer         |                                                                                                                       |
+| type         | string          | indica o tipo da configuração de cobrança. Nese caso 'payment_gateway'                                                |
+| name         | string          | nome que identifica esta configuração de cobrança                                                                     |
+| status       | string          | 'ok' ou 'pending' para indicar se configuração de cobrança está ou não homologada, respectivamente                    |
+| gateway_name | string          | nome do gateway de pagamento (cielo)                                                                                  |
+| gateway_id   | string          | número de afiliação do contrato com o gateway de pagamento                                                            |
+| gateway_key  | string          | chave de acesso atribuída pelo gateway de pagamento                                                                   |
+| use_avs      | boolean         | define se será feita a solicitação e a confirmação do endereço de cobrança da fatura do cartão utilizado no pagamento |
+| _links       | array of object | links da configuração de cobrança e de sua conta bancária                                                             |
 
 ## Informações da Configuração de Cobrança
 
@@ -215,12 +230,12 @@ Cria uma nova Configuração de Cobrança, retornando as informações da mesma 
 
 | Campo                     | Tipo    | Comentário                                                                                                                                                          |
 |---------------------------|---------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| type                      | string  | indica o tipo da configuração de cobrança. Neste caso deve ser informado "billet" ou deixado em branco, pois este é o valor padrão                                  |
+| type                      | string  | (opcional) indica o tipo da configuração de cobrança. Neste caso deve ser informado "billet" ou deixado em branco, pois este é o valor padrão                       |
 | bank_account_id           | integer | **(requerido)** código de identificação da conta bancária em que a configuração de cobrança irá pertencer                                                           |
 | portfolio_code            | string  | **(requerido)** código de portfólio, validação conforme o banco                                                                                                     |
 | agreement_code            | string  | **(requerido, com exceção do Itaú onde é preenchido automaticamente)** código de convênio ou do beneficiário, de acordo com o banco                                 |
 | agreement_code_digit      | string  | **(requerido, com exceção do HSBC e Itaú, sendo preenchido automaticamente para o último)** verificador do código de convênio, de acordo com o banco                |
-| name                      | string  | **(requerido)** nome que identifica esta configuração de cobraça                                                                                                    |
+| name                      | string  | **(requerido)** nome que identifica esta configuração de cobrança                                                                                                   |
 | initial_number            | integer | **(requerido)** número inicial do nosso número, sendo atribuído automaticamente e sequencialmente às cobranças                                                      |
 | end_number                | integer | (opcional) número final do nosso número, sendo o último número a ser atribuído, após isso a sequência é reiniciada                                                  |
 | registered_charges        | boolean | (opcional) informa se a configuração de cobrança utiliza boletos registrados ou não, sendo false por padrão                                                         |
@@ -228,6 +243,25 @@ Cria uma nova Configuração de Cobrança, retornando as informações da mesma 
 | remittance_cnab_pattern   | integer | (opcional, requerido apenas se registered_charges for `true`) padrão utilizado no arquivo CNAB de remessa. Os valores permitidos são 240 ou 400                     |
 | transmission_code         | string  | (opcional, requerido apenas se registered_charges for `true`) código de transmissão (apenas para o Santander)                                                       |
 | initial_remittance_number | integer | (opcional) número inicial de remessa, ou seja, qual foi o último número sequencial de remessa enviado para o banco (apenas para o Bradesco). Por padrão o valor é 1 |
+
+**Parâmetros (Gateway de Pagamento)**
+
+| Campo        | Tipo    | Comentário                                                                                                                                            |
+|--------------|---------|-------------------------------------------------------------------------------------------------------------------------------------------------------|
+| type         | string  | **(requerido)** indica o tipo da configuração de cobrança. Neste caso deve ser informado "payment_gateway"                                            |
+| name         | string  | **(requerido)** nome que identifica esta configuração de cobrança                                                                                     |
+| gateway_name | string  | **(requerido)** nome do gateway de pagamento (cielo)                                                                                                  |
+| gateway_id   | string  | **(requerido)** número de afiliação do contrato com o gateway de pagamento                                                                            |
+| gateway_key  | string  | **(requerido)** chave de acesso atribuída pelo gateway de pagamento                                                                                   |
+| use_avs      | boolean | (opcional) define se será feita a solicitação e a confirmação do endereço de cobrança da fatura do cartão utilizado no pagamento (`false` por padrão) |
+
+<aside class="warning">
+  A configuração de Cobrança via Gateway de Pagamento <strong>precisa ser homologada antes de ser utilizada normalmente</strong>. Para isso, 
+  <a href="#cria-o-de-cobran-a">deve-se criar uma Cobrança</a> para esta configuração. Esta Cobrança será efetivada e automaticamente cancelada 
+  logo em seguida, apenas com o objetivo de verificar se de fato a configuração foi feita de forma correta. <strong>Até que uma Cobrança</strong> 
+  tenha fechado este ciclo com sucesso e a conta dada como homologada, todas as cobranças criadas para esta Configuração serão consideradas Cobranças para homologação, 
+  ou seja, serão feitas e em seguida automatimente canceladas.
+</aside>
 
 ## Atualização de Configuração de Cobrança
 
@@ -287,7 +321,7 @@ Atualiza a Configuração de Cobrança determinada, retornando as informações 
 | portfolio_code            | string  | **(requerido)** código de portfólio, validação conforme o banco                                                                                                     |
 | agreement_code            | string  | **(requerido, com exceção do Itaú onde é preenchido automaticamente)** código de convênio ou do beneficiário, de acordo com o banco                                 |
 | agreement_code_digit      | string  | **(requerido, com exceção do HSBC e Itaú, sendo preenchido automaticamente para o último)** verificador do código de convênio, de acordo com o banco                |
-| name                      | string  | **(requerido)** nome que identifica esta configuração de cobraça                                                                                                    |
+| name                      | string  | **(requerido)** nome que identifica esta configuração de cobrança                                                                                                   |
 | initial_number            | integer | **(requerido)** número inicial do nosso número, sendo atribuído automaticamente e sequencialmente às cobranças                                                      |
 | end_number                | integer | (opcional) número final do nosso número, sendo o último número a ser atribuído, após isso a sequência é reiniciada                                                  |
 | registered_charges        | boolean | (opcional) informa se a configuração de cobrança utiliza boletos registrados ou não, sendo false por padrão                                                         |
@@ -295,6 +329,16 @@ Atualiza a Configuração de Cobrança determinada, retornando as informações 
 | remittance_cnab_pattern   | integer | (opcional, requerido apenas se registered_charges for `true`) padrão utilizado no arquivo CNAB de remessa. Os valores permitidos são 240 ou 400                     |
 | transmission_code         | string  | (opcional, requerido apenas se registered_charges for `true`) código de transmissão (apenas para o Santander)                                                       |
 | initial_remittance_number | integer | (opcional) número inicial de remessa, ou seja, qual foi o último número sequencial de remessa enviado para o banco (apenas para o Bradesco). Por padrão o valor é 1 |
+
+**Parâmetros (Gateway de Pagamento)**
+
+| Campo        | Tipo    | Comentário                                                                                                                                            |
+|--------------|---------|-------------------------------------------------------------------------------------------------------------------------------------------------------|
+| name         | string  | **(requerido)** nome que identifica esta configuração de cobrança                                                                                     |
+| gateway_name | string  | **(requerido)** nome do gateway de pagamento (cielo)                                                                                                  |
+| gateway_id   | string  | **(requerido)** número de afiliação do contrato com o gateway de pagamento                                                                            |
+| gateway_key  | string  | **(requerido)** chave de acesso atribuída pelo gateway de pagamento                                                                                   |
+| use_avs      | boolean | (opcional) define se será feita a solicitação e a confirmação do endereço de cobrança da fatura do cartão utilizado no pagamento (`false` por padrão) |
 
 ## Exclusão de Configuração de Cobrança
 
