@@ -1,14 +1,14 @@
 ## Datasets
-Datasets are the primary containers of statistical data in Crunch. Datasets 
-contain a collection of [variables](#variables), with which analyses can be 
-composed, saved, and exported. These analyses may include filters, which users 
+Datasets are the primary containers of statistical data in Crunch. Datasets
+contain a collection of [variables](#variables), with which analyses can be
+composed, saved, and exported. These analyses may include filters, which users
 can define and persist. Users can also share datasets with each other.
 
-Datasets are comprised of one or more batches of data uploaded to Crunch, and 
-additional batches can be appended to datasets. Similarly, variables from other 
+Datasets are comprised of one or more batches of data uploaded to Crunch, and
+additional batches can be appended to datasets. Similarly, variables from other
 datasets can be joined onto a dataset.
 
-As with other objects in Crunch, references to the set of dataset entities are 
+As with other objects in Crunch, references to the set of dataset entities are
 exposed in a catalog. This catalog can be organized and ordered.
 
 ### Catalog
@@ -98,8 +98,8 @@ crGET("https://beta.crunch.io/api/datasets/")
 
 `GET /datasets/`
 
-When authenticated, GET returns 200 status with a Shoji Catalog of datasets to 
-which the authenticated user has access. Catalog tuples contain the following 
+When authenticated, GET returns 200 status with a Shoji Catalog of datasets to
+which the authenticated user has access. Catalog tuples contain the following
 attributes:
 
 Name | Type | Default | Description
@@ -120,10 +120,10 @@ current_editor | URL or null | | URL of the user entity that is currently editin
 current_editor_name | string or null | | That user's name, for display
 
 <aside class="notice">
-    A user may have access to a dataset because someone has shared it directly 
-    with him, or because someone has shared it with a team of which he is a 
-    member. If a user has access to a dataset from different sources, be it by 
-    multiple teams or by direct sharing, the final permissions they have on the 
+    A user may have access to a dataset because someone has shared it directly
+    with him, or because someone has shared it with a team of which he is a
+    member. If a user has access to a dataset from different sources, be it by
+    multiple teams or by direct sharing, the final permissions they have on the
     dataset will be the maximum of all the permissions granted.
 </aside>
 
@@ -182,36 +182,36 @@ crPATCH("https://beta.crunch.io/api/datasets/",
 
 `PATCH /datasets/`
 
-Use PATCH to edit the "name", "description", "start_date", "end_date", or 
-"archived" state of one or more datasets. A successful request returns a 204 
-response. The attributes changed will be seen by all users with access to this 
+Use PATCH to edit the "name", "description", "start_date", "end_date", or
+"archived" state of one or more datasets. A successful request returns a 204
+response. The attributes changed will be seen by all users with access to this
 dataset; i.e., names, descriptions, and archived state are not merely attributes
  of your view of the data but of the datasets themselves.
 
-Authorization is required: you must have "edit" privileges on the dataset(s) 
-being modified, as shown in the "permissions" object in the catalog tuples. If 
-you try to PATCH and are not authorized, you will receive a 403 response and no 
+Authorization is required: you must have "edit" privileges on the dataset(s)
+being modified, as shown in the "permissions" object in the catalog tuples. If
+you try to PATCH and are not authorized, you will receive a 403 response and no
 changes will be made.
 
-The tuple attributes other than "name", "description", and "archived" cannot be 
-modified here by PATCH. Attempting to modify other attributes, or including new 
-attributes, will return a 400 response. Changing permissions is accomplished by 
-PATCH on the permissions catalog, and changing the owner is a PATCH on the 
-dataset entity. The "owner_name" and "current_editor_name" attributes are 
-modifiable, assuming authorization, by PATCH on the associated user entity. 
-Dataset "size" is a cached property of the data, changing only if the number of 
-rows or columns in the dataset change. Dataset "id", "modification_time" 
+The tuple attributes other than "name", "description", and "archived" cannot be
+modified here by PATCH. Attempting to modify other attributes, or including new
+attributes, will return a 400 response. Changing permissions is accomplished by
+PATCH on the permissions catalog, and changing the owner is a PATCH on the
+dataset entity. The "owner_name" and "current_editor_name" attributes are
+modifiable, assuming authorization, by PATCH on the associated user entity.
+Dataset "size" is a cached property of the data, changing only if the number of
+rows or columns in the dataset change. Dataset "id", "modification_time"
 and "creation_time" are immutable/system generated.
 
-When PATCHing, you may include only the keys in each tuple that are being 
-modified, or you may send the complete tuple. As long as the keys that cannot 
+When PATCHing, you may include only the keys in each tuple that are being
+modified, or you may send the complete tuple. As long as the keys that cannot
 be modified via PATCH here are not modified, the request will succeed.
 
-Note that, unlike other Shoji Catalog resources, you cannot PATCH to add new 
-datasets, nor can you PATCH a null tuple to delete them. Attempting either will 
+Note that, unlike other Shoji Catalog resources, you cannot PATCH to add new
+datasets, nor can you PATCH a null tuple to delete them. Attempting either will
 return a 400 response. Creating datasets is allowed only by POST to the catalog,
  while deleting datasets is accomplished via a DELETE on the dataset entity.
- 
+
 ##### Changing ownership
 
 Any changes to the ownership of a dataset need to be done by the current editor.
@@ -220,7 +220,7 @@ Only the dataset owner can change the ownership to another user. This can be don
 by PATCH request with the new owners' email of API URL. The new owner must have
 advanced permissions on Crunch.
 
-Other editors of the dataset can change the ownership of a dataset only to a 
+Other editors of the dataset can change the ownership of a dataset only to a
 Project as long as they andthe current owner of the dataset are both editors
 on such project.
 
@@ -270,11 +270,11 @@ ds <- newDataset(df, name="Trouble with Tribbles",
 
 `POST /datasets/`
 
-POST a JSON object to create a new Dataset; a 201 indicates success, and the 
+POST a JSON object to create a new Dataset; a 201 indicates success, and the
 returned Location header refers to the new Dataset resource.
 
-The body must contain a "name", and additional parameters "description" and 
-"archived" are allowed. You can also include a Crunch Table in a "table" key, 
+The body must contain a "name", and additional parameters "description" and
+"archived" are allowed. You can also include a Crunch Table in a "table" key,
 as discussed in the Feature Guide. Sending any other attribute will return a 400 response.
 
 ### Other catalogs
@@ -285,15 +285,15 @@ In addition to `/datasets/`, there are a few other catalogs of datasets in the A
 
 `/teams/{team_id}/datasets/`
 
-A Shoji Catalog of datasets that have been shared with this team. These datasets 
+A Shoji Catalog of datasets that have been shared with this team. These datasets
 are not included in the primary dataset catalog. See [teams](#teams) for more.
 
 #### Filter datasets by name
 
 `/datasets/by_name/{dataset_name}/`
 
-The `by_name` catalog returns (on GET) a Shoji Catalog that is a subset of 
-`/datasets/` where the dataset name matches the "dataset_name" value. Matches 
+The `by_name` catalog returns (on GET) a Shoji Catalog that is a subset of
+`/datasets/` where the dataset name matches the "dataset_name" value. Matches
 are case sensitive.
 
 Verbs other than GET are not supported on this subcatalog. PATCH and POST at
@@ -306,7 +306,7 @@ are presented.
 
 This endpoint returns a `shoji:order`. Like all shoji orders, it may not contain
 all available datasets. The catalog should always be the authoritative source
-of available datasets. 
+of available datasets.
 
 Any dataset not present on the order graph should be considered to be at the
 bottom of the root list in arbitrary order.
@@ -381,9 +381,9 @@ weight | URL | null | Points to the current weight variable applied for the give
 
 `PATCH /datasets/{dataset_id}/`
 
-See above about PATCHing the dataset catalog for all attributes duplicated on 
-the entity and the catalog. You may PATCH those attributes on the entity, but you 
-are encouraged to PATCH the catalog instead. The two attributes appearing on the 
+See above about PATCHing the dataset catalog for all attributes duplicated on
+the entity and the catalog. You may PATCH those attributes on the entity, but you
+are encouraged to PATCH the catalog instead. The two attributes appearing on the
 entity and not the catalog, "notes" and "weight", are modifiable by PATCH here.
 
 A successful PATCH request returns a 204 response. The attributes changed will be seen
@@ -393,8 +393,8 @@ state are not merely attributes of your view of the data but of the datasets the
 Authorization is required: you must have "edit" privileges on this dataset.
  If you try to PATCH and are not authorized, you will receive a 403 response
  and no changes will be made. If you have edit permissions but are not the
- current editor of this dataset, PATCH requests of anything other than 
- "current_editor" will respond with 409 status. You will need first to PATCH to 
+ current editor of this dataset, PATCH requests of anything other than
+ "current_editor" will respond with 409 status. You will need first to PATCH to
  make yourself
   the current editor and then proceed to make the desired changes.
 
@@ -411,14 +411,14 @@ Only Users, Teams or Projects can be set as owners of a dataset.
 
 * Users: New owner needs to be advanced users to be owner of a dataset.
 * Teams: Authenticated user needs to be a member of the team.
-* Projects: Authenticated user needs to have edit permissions on the project. 
+* Projects: Authenticated user needs to have edit permissions on the project.
 
 
 #### DELETE
 
 `DELETE /datasets/{dataset_id}/`
 
-With sufficient authorization, a successful DELETE request removes the dataset 
+With sufficient authorization, a successful DELETE request removes the dataset
 from the Crunch system and responds with 204 status.
 
 #### Views
@@ -449,17 +449,17 @@ GET returns a Shoji View of available dataset export formats.
 ```
 
 Accessing any of the export URLs will return a `shoji:view` with an attribute
-`url` pointing to the location of the exported file to be downloaded. 
+`url` pointing to the location of the exported file to be downloaded.
 
 Following rules apply for all formats:
 
 * All exporting happens synchronously.
 * If the dataset does not have any columns, the server will return a 409 response
 * Hidden/discarded variables are not exported.
-* Onnly exclusion filter will be applied. 
+* Onnly exclusion filter will be applied.
 * User applied filters are not applied.
 * Personal(private) variables are not exported.
- 
+
 
 ###### SPSS
 
@@ -469,7 +469,7 @@ by SPSS.
 
 ###### CSV
 
-Will only export base non personal variables in the same flat order as organized 
+Will only export base non personal variables in the same flat order as organized
 in the API.
 
 Categorical variables will be exported with their name instead of their value.
@@ -487,14 +487,14 @@ Parameter | Description
 filter | A Crunch filter expression
 
 GET returns a Shoji View with summary information about this dataset containing
- its number of rows (weighted and unweighted, with and without your applied 
- filters), as well as the number of variables and columns. The column count 
- will differ from the variable count when derived and array variables are 
+ its number of rows (weighted and unweighted, with and without your applied
+ filters), as well as the number of variables and columns. The column count
+ will differ from the variable count when derived and array variables are
  present--these variable types don't necessarily have their own columns of d
- ata behind them. The column count is useful for estimating load time and 
+ ata behind them. The column count is useful for estimating load time and
  file size when exporting.
 
-If a `filter` is included, the "filtered" counts will be with respect to that 
+If a `filter` is included, the "filtered" counts will be with respect to that
 expression. If omitted, your applied filters will be used.
 
 ```json
@@ -529,11 +529,11 @@ expression. If omitted, your applied filters will be used.
 
 Exclusion filters allow you to drop rows of data without permanently deleting them.
 
-GET on this resource returns a Shoji Entity with a filter "expression" attribute 
+GET on this resource returns a Shoji Entity with a filter "expression" attribute
 in its body. Rows that match the filter expression will be excluded from all views of the data.
 
 PATCH the "expression" attribute to modify. An empty "expression" object, like
- `{"body": {"expression": {}}}`, is equivalent to "no exclusion", i.e. no rows 
+ `{"body": {"expression": {}}}`, is equivalent to "no exclusion", i.e. no rows
  are dropped.
 
 ##### Stream
@@ -542,16 +542,45 @@ PATCH the "expression" attribute to modify. An empty "expression" object, like
 
 `/datasets/{id}/decks/`
 
-Decks allow you to store [saved analyses](#saving-analyses) as slides on them 
+Decks allow you to store [saved analyses](#saving-analyses) as slides on them
 for exporting or future reference.
 
-Decks are personal per dataset and each dataset gets one by default but it is 
+Decks are personal per dataset and each dataset gets one by default but it is
 possible to create more as necessary by POSTing to the decks catalog. They
 only need a name.
 
+###### GET
+
+A GET request on the catalog endpoint will return all the decks available for
+this dataset for the authenticated user.
+
 ```json
 {
-    "element": "shojo:entity",
+    "element": "shoji:catalog",
+    "self": "https://beta.crunch.io/api/datasets/223fd4/decks/",
+    "index": {
+        "https://beta.crunch.io/api/datasets/cc9161/decks/4fa25/": {
+          "name": "my new deck",
+          "creation_time": "1986-11-26T12:05:00",
+        },
+        "https://beta.crunch.io/api/datasets/cc9161/decks/2b53e/": {
+          "name": "Default deck",
+          "creation_time": "1987-10-15T11:45:00",
+        },
+    },
+    "order": "https://beta.crunch.io/api/datasets/223fd4/decks/order/"
+}
+
+```
+
+###### POST
+
+POST will create a new decks for this dataset. It only needs to have
+identifiable name.
+
+```json
+{
+    "element": "shoji:entity",
     "self": "https://beta.crunch.io/api/datasets/223fd4/decks/",
     "body": {
         "name": "my new deck"
@@ -559,12 +588,99 @@ only need a name.
 }
 ```
 
+```http
+HTTP/1.1 201 Created
+Location: https://beta.crunch.io/api/datasets/223fd4/decks/2b3c5e/
+
+```
+
+###### Deck entity
+
+`/datasets/{id}/decks/{id}/`
+
+####### GET
+
+You can GET on the deck entity to see all its attributes:
+
+```json
+{
+    "element": "shoji:entity",
+    "self": "https://beta.crunch.io/api/datasets/223fd4/decks/223fd4/",
+    "body": {
+        "name": "Presentation deck",
+        "id": "223fd4",
+        "creation_time": "1987-10-15T11:45:00",
+        "description": "Explanation about the deck"
+    }
+}
+```
+
+####### PATCH
+
+In order to change the name or description of a deck you can PATCH a shoji:entity to it. The server will return a 204 response.
+
+```json
+{
+    "element": "shoji:entity",
+    "self": "https://beta.crunch.io/api/datasets/223fd4/decks/223fd4/",
+    "body": {
+        "name": "Presentation deck",
+        "id": "223fd4",
+        "creation_time": "1987-10-15T11:45:00",
+        "description": "Explanation about the deck"
+    }
+}
+```
+```http
+HTTP/1.1 204 No Content
+```
+
+
 ###### Decks order
 
 `/datasets/{id}/decks/order/`
 
 The Deck order allows to the user to customize the order in which they will be
 displayed by an API client.
+
+The deck order will always contain all existing decks.
+
+####### GET
+
+Will return a (Shoji Order)[#shoji-order] payload.
+
+```json
+{
+  "element": "shoji:order",
+  "self": "https://beta.crunch.io/api/datasets/223fd4/decks/order/",
+  "graph": [
+    "https://beta.crunch.io/api/datasets/223fd4/decks/1/",
+    "https://beta.crunch.io/api/datasets/223fd4/decks/2/",
+    "https://beta.crunch.io/api/datasets/223fd4/decks/3/"
+  ]
+}
+
+```
+
+####### PATCH
+
+It is necessary to do a PATCH request to change the order of the decks. On success the server will return a 204 response.
+
+If the payload contains only a subset of the existing decks. The unmentioned decks will be always appended at the bottom of the top level graph in arbitrary order.
+
+```json
+{
+  "element": "shoji:order",
+  "self": "https://beta.crunch.io/api/datasets/223fd4/decks/order/",
+  "graph": [
+    "https://beta.crunch.io/api/datasets/223fd4/decks/1/",
+    "https://beta.crunch.io/api/datasets/223fd4/decks/3/"
+  ]
+}
+```
+
+Including invalid URLs or URLs to decks that are not present in the catalog will return a 400 response from the server.
+
 
 ##### Preferences
 
@@ -578,7 +694,7 @@ PATCH the keys each deems necessary.
 
 ```json
 {
-    "element": "shojo:entity",
+    "element": "shoji:entity",
     "self": "https://beta.crunch.io/api/datasets/223fd4/preferences/",
     "body": {}
 }
@@ -586,7 +702,7 @@ PATCH the keys each deems necessary.
 
 To delete keys from the preferences the value needs to be patched with `null`.
 
-There is no order associated with the saved preferences. Clients should assume 
+There is no order associated with the saved preferences. Clients should assume
 they are in arbitrary order.
 
 
