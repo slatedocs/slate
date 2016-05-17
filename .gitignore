@@ -14,11 +14,12 @@ tmp
 *.DS_STORE
 build/
 .cache
-.idea/
+.vagrant
+.sass-cache
 .ruby-version
-.envrc
 
 # YARD artifacts
 .yardoc
 _yardoc
 doc/
+.idea/
