@@ -565,3 +565,23 @@ PATCH the "expression" attribute to modify. An empty "expression" object, like
 ##### Decks
 
 ##### Permissions
+
+##### Primary key
+
+`/datasets/{id}/pk`
+
+Setting a primary key on a dataset causes updates (particularly streamed
+updates) to cause existing rows to be updated instead of new rows being
+inserted.
+
+GET on this resource returns a Shoji Entity with a "pk"" attribute in its body,
+which is a list. The "pk" attribute indicates the variable ids of the columns in
+the dataset which comprise the primary key.
+
+POST the "pk" attribute to modify the pk. The "pk" attribute should be a list
+containing zero or more variable ids or variable aliases.  Setting the pk to
+``[]`` is equivalent to deleting the pk for a dataset.  Note that as of
+this writing, the POSTed list may not contain more than one variable id/alias.
+
+DELETE the "pk" attribute to delete the primary key for this dataset.
+
