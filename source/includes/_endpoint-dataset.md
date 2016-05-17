@@ -58,7 +58,7 @@ crGET("https://beta.crunch.io/api/datasets/")
                 "rows": 1234,
                 "columns": 67
             },
-            "is_draft": false,
+            "is_published": true,
             "id": "cc9161",
             "owner_id": "https://beta.crunch.io/api/users/685722/",
             "start_date": "2286",
@@ -84,7 +84,7 @@ crGET("https://beta.crunch.io/api/datasets/")
                 "rows": null,
                 "columns": null
             },
-            "is_draft": false,
+            "is_published": true,
             "id": "a598c7",
             "owner_id": "https://beta.crunch.io/api/users/af432c/",
             "start_date": "2285-10-03",
@@ -120,7 +120,7 @@ start_date | ISO-8601 string |  | Date/time for which the data in the dataset co
 end_date | ISO-8601 string |  | End date/time of the dataset's data, defining a start_date:end_date range
 current_editor | URL or null | | URL of the user entity that is currently editing the dataset, or `null` if there is no current editor
 current_editor_name | string or null | | That user's name, for display
-is_draft | boolean | false | Indicates if the dataset is a draft or not
+is_published | boolean | true | Indicates if the dataset is published to viewers or not
 
 <aside class="notice">
     A user may have access to a dataset because someone has shared it directly 
@@ -132,11 +132,11 @@ is_draft | boolean | false | Indicates if the dataset is a draft or not
 
 #### Drafts
 
-A dataset marked as `is_draft: true` can only be accessed by dataset editors. 
+A dataset marked as `is_published: false` can only be accessed by dataset editors. 
 They will still be available on the catalog for all shared users but API clients
 should know to display these to the appropriate users.
 
-The draft flag of a dataset can be changed by editors from the catalog or 
+The `is_published` flag of a dataset can be changed by editors from the catalog or 
 directly on the dataset entity.
 
 #### PATCH
