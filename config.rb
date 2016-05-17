@@ -21,7 +21,7 @@ activate :syntax
 activate :autoprefixer do |config|
   config.browsers = ['last 2 version', 'Firefox ESR']
   config.cascade  = false
-  # config.inline   = true # FIXME commented to get titles with accented chars working
+  config.inline   = true
 end
 
 # Github pages require relative links
@@ -30,6 +30,8 @@ set :relative_links, true
 
 # Build Configuration
 configure :build do
+  # If you're having trouble with Middleman hanging, commenting
+  # out the following two lines has been known to help
   activate :minify_css
   activate :minify_javascript
   # activate :relative_assets
