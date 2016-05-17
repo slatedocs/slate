@@ -59,12 +59,10 @@ To change the permissions a user has, PATCH new dataset_permissions, like:
 {
     "https://beta.crunch.io/api/users/42/": {
         "dataset_permissions": {
-            "edit": bool,
-            "view": bool,
-            ...
+            "edit": false,
+            "view": true,
         }
     },
-    ...,
     "send_notification": true,
     "dataset_url": "https://beta.crunch.io/dataset/1"
  }
@@ -88,9 +86,8 @@ To add a user (i.e. share with them), there are two cases. First, if the user to
 {
     "/users/id/": {
         "dataset_permissions": {
-            "edit": bool,
-            "view": bool,
-            ...
+            "edit": false,
+            "view": true,
         },
         "profile": {
             "weight": null, 
@@ -98,7 +95,6 @@ To add a user (i.e. share with them), there are two cases. First, if the user to
 
         }
     },
-    ...
 }
 ```
 This payload may include a "profile" member, which are initial values with which to populate the sharee's user-dataset-profile. 
@@ -117,7 +113,6 @@ To revoke users' access to this dataset (aka "unshare" with them), PATCH a null 
 ```json
 {
     "/users/id/": null,
-    ...
 }
 ```
 
@@ -139,21 +134,17 @@ It is possible to share a dataset with people that are not users of Crunch yet. 
 {
     "somebody@email.com": {
         "dataset_permissions": {
-            "edit": bool,
-            "view": bool,
-            ...
+            "edit": false,
+            "view": true
         },
-        /*
         "profile": {
             "weight":, 
             "applied_filters": [],
-            ...
         }
-        */
     },
-    "send_notifications", true,
+    "send_notifications": true,
     "url_base": "https://beta.crunch.io/password/change/${token}/",
-    "dataset_url": "https://beta.crunch.io/dataset/1"
+    "dataset_url": "https://beta.crunch.io/dataset/1/"
 }
 ```
 
