@@ -153,7 +153,7 @@ For a dayticket there may be only one slot (the whole day).
 
 ### HTTP Request
 
-`GET https://smb-staging.gomus.de/api/v3/cash_point/capacities?quota_id=1&date=2017-03-02`
+`GET https://smb-staging.gomus.de/api/v3/shop/capacities?quota_id=1&date=2017-03-02`
 
 
 ### Query Parameters
