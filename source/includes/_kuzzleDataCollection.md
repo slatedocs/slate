@@ -150,7 +150,7 @@ kuzzle
 
 ```objective_c
 NSError* error = nil;
-KuzzleDataCollection* myCollection = [kuzzle dataCollectionFactoryWithIndex: @"index" collectionName: @"collection" error: &error];
+KuzzleDataCollection* myCollection = [kuzzle dataCollectionFactoryWithCollectionName: @"collection" index: @"index" error: &error];
 
 NSDictionary* termStatus = @{
   @"terms": @{
@@ -198,7 +198,7 @@ if(error) {
 ```
 
 ```swift
-  let myCollection = try! kuzzle.dataCollectionFactory(index: "index", collectionName: "collection")
+  let myCollection = try! kuzzle.dataCollectionFactory(collectionName: "collection", index: "index")
   let termStatus = [
     "terms": [
       "status": ["idle", "wantToHire", "toHire", "riding"],
@@ -341,7 +341,7 @@ if(error) {
 ```swift
 let filter = ["":""]
 do {
-  let myCollection = try kuzzle.dataCollectionFactory(index: "index", collectionName: "collection")
+  let myCollection = try kuzzle.dataCollectionFactory(collectionName: "collection", index: "index")
   try myCollection.count(filters: filter, callback: { result in
       switch result {
         case let .onError(error):
@@ -430,7 +430,7 @@ kuzzle
 
 ```objective_c
 NSError* error = nil;
-KuzzleDataCollection* myCollection = [kuzzle dataCollectionFactoryWithIndex: @"index" collectionName: @"collection" error: &error];
+KuzzleDataCollection* myCollection = [kuzzle dataCollectionFactoryWithCollectionName: @"collection" index: @"index" error: &error];
 
 if(!error) {
   [myCollection createAndReturnError: &error callback:^(NSDictionary * collections, NSError * error) {
@@ -449,7 +449,7 @@ if(!error) {
 ```
 
 ```swift
-let myCollection = try! kuzzle.dataCollectionFactory(index: "index", collectionName: "collection")
+let myCollection = try! kuzzle.dataCollectionFactory(collectionName: "collection", index: "index")
 
 do {
   try myCollection.create(callback: { result in
@@ -551,7 +551,7 @@ kuzzle
 ```
 
 ```objective_c
-KuzzleDataCollection* myCollection = [kuzzle dataCollectionFactoryWithIndex: @"index" collectionName: @"collection" error: &error];
+KuzzleDataCollection* myCollection = [kuzzle dataCollectionFactoryWithCollectionName: @"collection" index: @"index" error: &error];
 KuzzleOptions* options = [[KuzzleOptions alloc] init];
 options.updateIfExists = YES;
 
@@ -578,7 +578,7 @@ if(!error) {
 ```
 
 ```swift
-let myCollection = try! kuzzle.dataCollectionFactory(index: "index", collectionName: "collection")
+let myCollection = try! kuzzle.dataCollectionFactory(collectionName: "collection", index: "index")
 do {
   let options = KuzzleOptions()
   options.setUpdateIfExists(true)
@@ -650,7 +650,7 @@ KuzzleDataMapping dataMapping = kuzzle
 
 ```objective_c
 NSError* error = nil;
-KuzzleDataCollection* myCollection = [kuzzle dataCollectionFactoryWithIndex: @"index" collectionName: @"collection" error: &error];
+KuzzleDataCollection* myCollection = [kuzzle dataCollectionFactoryWithCollectionName: @"collection" index: @"index" error: &error];
 
 if(!error) {
   [[myCollection dataMappingFactoryWithMapping: @{@"someField": @{@"type": @"string", @"index": @"analyzed"}}] applyAndReturnError: &error];
@@ -664,7 +664,7 @@ if(!error) {
 ```
 
 ```swift
-let myCollection = try! kuzzle.dataCollectionFactory(index: "index", collectionName: "collection")
+let myCollection = try! kuzzle.dataCollectionFactory(collectionName: "collection", index: "index")
 myCollection.dataMappingFactory(withMapping: ["someField": ["type": "string", "index": "analyzed"]])
 ```
 
@@ -763,7 +763,7 @@ kuzzle
 ```objective_c
 // Deleting one document
 NSError* error = nil;
-KuzzleDataCollection* myCollection = [kuzzle dataCollectionFactoryWithIndex: @"index" collectionName: @"collection" error: &error];
+KuzzleDataCollection* myCollection = [kuzzle dataCollectionFactoryWithCollectionName: @"collection" index: @"index" error: &error];
 
 if(!error) {
   [myCollection deleteDocumentWithDocumentId: @"document unique ID" error: &error callback:^(NSArray * deletedItems, NSError * error) {
@@ -782,7 +782,7 @@ if(!error) {
 
 // Deleting multiple documents
 NSError* error = nil;
-KuzzleDataCollection* myCollection = [kuzzle dataCollectionFactoryWithIndex: @"index" collectionName: @"collection" error: &error];
+KuzzleDataCollection* myCollection = [kuzzle dataCollectionFactoryWithCollectionName: @"collection" index: @"index" error: &error];
 
 if(!error) {
   [myCollection deleteDocumentWithFilters: @{@"filter": @{@"term": @{@"title": @"foo"}} error: &error callback:^(NSArray * deletedItems, NSError * error) {
@@ -802,7 +802,7 @@ if(!error) {
 
 ```swift
 // Deleting one document
-let myCollection = try! kuzzle.dataCollectionFactory(index: "index", collectionName: "collection")
+let myCollection = try! kuzzle.dataCollectionFactory(collectionName: "collection", index: "index")
 do {
   try myCollection.deleteDocument(documentId: "document unique ID", callback: { result in
       switch result {
@@ -819,7 +819,7 @@ do {
 }
 
 // Deleting multiple documents
-let myCollection = try! kuzzle.dataCollectionFactory(index: "index", collectionName: "collection")
+let myCollection = try! kuzzle.dataCollectionFactory(collectionName: "collection", index: "index")
 do {
   try myCollection.deleteDocument(filters: ["filter": ["term": ["title": "foo"]]], callback: { result in
       switch result {
@@ -894,7 +894,7 @@ KuzzleDocument document = kuzzle
 
 ```objective_c
 NSError* error = nil;
-KuzzleDataCollection* myCollection = [kuzzle dataCollectionFactoryWithIndex: @"index" collectionName: @"collection" error: &error];
+KuzzleDataCollection* myCollection = [kuzzle dataCollectionFactoryWithCollectionName: @"collection" index: @"index" error: &error];
 
 if(!error) {
   KuzzleDocument* document = [myCollection documentFactoryWithId: @"id" content: @{@"some": @"content"}];
@@ -904,7 +904,7 @@ if(!error) {
 ```
 
 ```swift
-let myCollection = try! kuzzle.dataCollectionFactory(index: "index", collectionName: "collection")
+let myCollection = try! kuzzle.dataCollectionFactory(collectionName: "collection", index: "index")
 do {
   try myCollection.documentFactory(id: "id", content: ["some": "content"])
 } catch {
@@ -962,7 +962,7 @@ kuzzle
 
 ```objective_c
 NSError* error = nil;
-KuzzleDataCollection* myCollection = [kuzzle dataCollectionFactoryWithIndex: @"index" collectionName: @"collection" error: &error];
+KuzzleDataCollection* myCollection = [kuzzle dataCollectionFactoryWithCollectionName: @"collection" index: @"index" error: &error];
 
 if(!error) {
   [myCollection fetchDocumentWithDocumentId: "documentId" error: &error callback:^(KuzzleDocument * document, NSError * error) {
@@ -981,7 +981,7 @@ if(!error) {
 ```
 
 ```swift
-let myCollection = try! kuzzle.dataCollectionFactory(index: "index", collectionName: "collection")
+let myCollection = try! kuzzle.dataCollectionFactory(collectionName: "collection", index: "index")
 
 do {
   try myCollection.fetchDocument(documentId: "documentId", callback: { result in
@@ -1070,7 +1070,7 @@ kuzzle
 
 ```objective_c
 NSError* error = nil;
-KuzzleDataCollection* myCollection = [kuzzle dataCollectionFactoryWithIndex: @"index" collectionName: @"collection" error: &error];
+KuzzleDataCollection* myCollection = [kuzzle dataCollectionFactoryWithCollectionName: @"collection" index: @"index" error: &error];
 
 if(!error) {
   [myCollection fetchAllDocumentsAndReturnError: &error :^(KuzzleDocumentList * document:ist, NSError * error) {
@@ -1089,7 +1089,7 @@ if(!error) {
 ```
 
 ```swift
-let myCollection = try! kuzzle.dataCollectionFactory(index: "index", collectionName: "collection")
+let myCollection = try! kuzzle.dataCollectionFactory(collectionName: "collection", index: "index")
 
 do {
   try myCollection.fetchAllDocuments(callback: { result in
@@ -1180,7 +1180,7 @@ kuzzle
 
 ```objective_c
 NSError* error = nil;
-KuzzleDataCollection* myCollection = [kuzzle dataCollectionFactoryWithIndex: @"index" collectionName: @"collection" error: &error];
+KuzzleDataCollection* myCollection = [kuzzle dataCollectionFactoryWithCollectionName: @"collection" index: @"index" error: &error];
 
 if(!error) {
     [myCollection getMappingAndReturnError: &error callback:^(KuzzleDataMapping * mapping, NSError * error) {
@@ -1199,7 +1199,7 @@ if(!error) {
 ```
 
 ```swift
-let myCollection = try! kuzzle.dataCollectionFactory(index: "index", collectionName: "collection")
+let myCollection = try! kuzzle.dataCollectionFactory(collectionName: "collection", index: "index")
 do {
   try myCollection.getMapping(callback: { result in
       switch result {
@@ -1260,7 +1260,7 @@ kuzzle
 
 ```objective_c
 NSError* error = nil;
-KuzzleDataCollection* myCollection = [kuzzle dataCollectionFactoryWithIndex: @"index" collectionName: @"collection" error: &error];
+KuzzleDataCollection* myCollection = [kuzzle dataCollectionFactoryWithCollectionName: @"collection" index: @"index" error: &error];
 
 if(!error) {
   KuzzleOptions* options = [[KuzzleOptions alloc] init];
@@ -1273,7 +1273,7 @@ if(!error) {
 ```
 
 ```swift
-let myCollection = try! kuzzle.dataCollectionFactory(index: "index", collectionName: "collection")
+let myCollection = try! kuzzle.dataCollectionFactory(collectionName: "collection", index: "index")
 do {
   let options = KuzzleOptions()
   options.setMetadata(["metadata": "is volatile information"])
@@ -1346,7 +1346,7 @@ kuzzle
 
 ```objective_c
 NSError* error = nil;
-KuzzleDataCollection* myCollection = [kuzzle dataCollectionFactoryWithIndex: @"index" collectionName: @"collection" error: &error];
+KuzzleDataCollection* myCollection = [kuzzle dataCollectionFactoryWithCollectionName: @"collection" index: @"index" error: &error];
 
 if(!error) {
   [myCollection replaceDocumentWithDocumentId: @"documentId" content: @{@"new": @"document content"} error: &error callback: ^(KuzzleDocument * document, NSError * error) {
@@ -1365,7 +1365,7 @@ if(!error) {
 ```
 
 ```swift
-let myCollection = try! kuzzle.dataCollectionFactory(index: "index", collectionName: "collection")
+let myCollection = try! kuzzle.dataCollectionFactory(collectionName: "collection", index: "index")
 
 do {
   try myCollection.replaceDocument(documentId: "documentId", content: ["new": "document content"], callback: { result in
@@ -1448,7 +1448,7 @@ KuzzleRoom room = kuzzle.dataCollectionFactory("index", "collection")
 
 ```objective_c
 NSError* error = nil;
-KuzzleDataCollection* myCollection = [kuzzle dataCollectionFactoryWithIndex: @"index" collectionName: @"collection" error: &error];
+KuzzleDataCollection* myCollection = [kuzzle dataCollectionFactoryWithCollectionName: @"collection" index: @"index" error: &error];
 
 if(!error) {
   KuzzleRoom* room = [myCollection roomFactory];
@@ -1468,7 +1468,7 @@ if(!error) {
 ```
 
 ```swift
-let myCollection = try! kuzzle.dataCollectionFactory(index: "index", collectionName: "collection")
+let myCollection = try! kuzzle.dataCollectionFactory(collectionName: "collection", index: "index")
 let room = dataCollection.roomFactory()
 do {
   try room.renew(filters: ["terms": ["field": ["some", "new", "filter"]]], callback: { result in
@@ -1527,7 +1527,7 @@ kuzzle
 
 ```objective_c
 NSError* error = nil;
-KuzzleDataCollection* myCollection = [kuzzle dataCollectionFactoryWithIndex: @"index" collectionName: @"collection" error: &error];
+KuzzleDataCollection* myCollection = [kuzzle dataCollectionFactoryWithCollectionName: @"collection" index: @"index" error: &error];
 
 if(!error) {
   NSDictionary* headers = @{
@@ -1547,7 +1547,7 @@ if(!error) {
 ```
 
 ```swift
-let myCollection = try! kuzzle.dataCollectionFactory(index: "index", collectionName: "collection")
+let myCollection = try! kuzzle.dataCollectionFactory(collectionName: "collection", index: "index")
 
 let headers = [
   "someContent": "someValue",
@@ -1645,7 +1645,7 @@ kuzzle
 
 ```objective_c
 NSError* error = nil;
-KuzzleDataCollection* myCollection = [kuzzle dataCollectionFactoryWithIndex: @"index" collectionName: @"collection" error: &error];
+KuzzleDataCollection* myCollection = [kuzzle dataCollectionFactoryWithCollectionName: @"collection" index: @"index" error: &error];
 
 NSDictionary* termStatus = @{
   @"terms": @{
@@ -1696,7 +1696,7 @@ if(!error) {
 ```
 
 ```swift
-  let myCollection = try! kuzzle.dataCollectionFactory(index: "index", collectionName: "collection")
+  let myCollection = try! kuzzle.dataCollectionFactory(collectionName: "collection", index: "index")
   let termStatus = [
     "terms": [
       "status": ["idle", "wantToHire", "toHire", "riding"],
@@ -1801,7 +1801,7 @@ kuzzle
 
 ```objective_c
 NSError* error = nil;
-KuzzleDataCollection* myCollection = [kuzzle dataCollectionFactoryWithIndex: @"index" collectionName: @"collection" error: &error];
+KuzzleDataCollection* myCollection = [kuzzle dataCollectionFactoryWithCollectionName: @"collection" index: @"index" error: &error];
 
 if(!error) {
   [myCollection truncateAndReturnError: &error callback:^(NSDictionary * result, NSError * error) {
@@ -1820,7 +1820,7 @@ if(!error) {
 ```
 
 ```swift
-let myCollection = try! kuzzle.dataCollectionFactory(index: "index", collectionName: "collection")
+let myCollection = try! kuzzle.dataCollectionFactory(collectionName: "collection", index: "index")
 
 do {
   try myCollection.truncate(callback: { result in
@@ -1919,7 +1919,7 @@ kuzzle
 
 ```objective_c
 NSError* error = nil;
-KuzzleDataCollection* myCollection = [kuzzle dataCollectionFactoryWithIndex: @"index" collectionName: @"collection" error: &error];
+KuzzleDataCollection* myCollection = [kuzzle dataCollectionFactoryWithCollectionName: @"collection" index: @"index" error: &error];
 
 if(!error) {
   [myCollection updateDocumentWithDocumentId: @"documentId" content: @{@"title":@"a shiny new title"} error: &error callback:^(KuzzleDocument * document, NSError *  error) {
@@ -1938,7 +1938,7 @@ if(!error) {
 ```
 
 ```swift
-let myCollection = try! kuzzle.dataCollectionFactory(index: "index", collectionName: "collection")
+let myCollection = try! kuzzle.dataCollectionFactory(collectionName: "collection", index: "index")
 
 do {
   try myCollection.updateDocument(documentId: "documentId", content: ["title": "a shiny new title"], callback: { result in

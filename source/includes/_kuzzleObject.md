@@ -492,7 +492,7 @@ KuzzleDataCollection collection = kuzzle.dataCollectionFactory("collection");
 
 ```objective_c
 NSError* error = nil;
-KuzzleDataCollection* collection = [kuzzle dataCollectionFactoryWithIndex: @"index" collectionName: @"collection" error: &error];
+KuzzleDataCollection* collection = [kuzzle dataCollectionFactoryWithCollectionName: @"collection" index: @"index" error: &error];
 
 // or using a default index:
 NSError* error = nil;
@@ -505,7 +505,7 @@ KuzzleDataCollection* collection = [kuzzle dataCollectionFactoryWithCollection: 
 
 ```swift
 do {
-  try kuzzle.dataCollectionFactory(index: "index", collectionName: "collection")
+  try kuzzle.dataCollectionFactory(collectionName: "collection", index: "index")
 } catch {
   // KuzzleError.NoIndexSpecified, when defaultIndex and index passed in function are both nil
   // KuzzleError.IllegalState when state is .DISCONNECTED
