@@ -75,7 +75,6 @@ Companies Using Slate
 * [Dwolla](https://docs.dwolla.com/)
 * [Clearbit](https://clearbit.com/docs)
 * [Coinbase](https://developers.coinbase.com/api)
-* [Parrot Drones](http://developer.parrot.com/docs/bebop/)
 * [Fidor Bank](http://docs.fidor.de/)
 
 You can view more in [the list on the wiki](https://github.com/tripit/slate/wiki/Slate-in-the-Wild).
