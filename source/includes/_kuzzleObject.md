@@ -40,6 +40,84 @@ Kuzzle kuzzle = new Kuzzle("http://localhost:7512", options, new KuzzleResponseL
 });
 ```
 
+```objective_c
+NSError* error = nil;
+KuzzleOptions* opt = [[KuzzleOptions alloc] init];
+opt.defaultIndex = @"some index";
+opt.headers = @{
+     @"someheader": @"value"
+};
+Kuzzle* kuzzle = [[Kuzzle alloc] initWithUrl:@"http://localhost:7512" options: opt connectionCallback:^(id object, NSError * errorConnection) {
+  if(errorConnection) {
+    // error occured
+  }
+  // everything went fine
+} error: &error];
+
+if(error) {
+  // kuzzle was not initialized properly and error was thrown
+}
+
+NOTICE:
+If you want to immediately access kuzzle after connection have a look at snippet below
+
+@implementation YourClass {
+  Kuzzle* kuzzle;
+}
+
+-(yourReturnType)yourMethod {
+  NSError* error = nil;
+  KuzzleOptions* opt = [[KuzzleOptions alloc] init];
+  opt.defaultIndex = @"some index";
+  opt.headers = @{
+    @"someheader": @"value"
+  };
+  Kuzzle* kuzzle = [[Kuzzle alloc] initWithUrl:@"http://localhost:7512" options: opt connectionCallback:^(id object, NSError * errorConnection) {
+    if(errorConnection) {
+      // error occured
+    }
+    // everything went fine
+    __weak Kuzzle* weakKuzzle = kuzzle;
+
+    // example
+    NSError* internalError = nil;
+    [weakKuzzle getServerInfoAndReturnError: &internalError  callback:^(NSDictionary* dictionary, NSError* errorInternal) {
+      if(errorInternal) {
+          // error occured
+          return;
+      }
+      // everything went fine
+    }];
+
+  } error: &error];
+}
+```
+
+```swift
+  let options = KuzzleOptions()
+      options
+          .setDefaultIndex("some index")
+          .setHeaders([
+              "someheader": "value"
+          ])
+  do {
+    var kuzzle = try Kuzzle(url: "http://localhost:7512", options: options, connectionCallback: { result in
+      switch result {
+        case let .onError(error):
+        // error occured during connecting, error is NSError
+        break
+        case let .onSuccess(success):
+        // everything went fine, success is AnyObject
+        break
+      }
+    })
+  } catch {
+    // KuzzleError.InvalidUrl, when url was not valid (NSURL failed)
+    // KuzzleError.EmptyUrl, when passed url was empty
+  }
+}
+```
+
 #### Kuzzle(url, [options], [callback])
 
 
@@ -220,6 +298,29 @@ String listenerId = kuzzle.addListener(KuzzleEvent.connected, new IKuzzleEventLi
 });
 ```
 
+```objective_c
+NSError* error = nil;
+[kuzzle addListenerForEvent: KuzzleEventTypeCONNECTED error: &error callback:^(id result, NSError * error) {
+  if(error) {
+    // error occured
+  }
+  // everything went fine
+}];
+```
+
+```swift
+kuzzle.addListener(.CONNECTED, callback: { result in
+  switch result {
+    case let .onError(error):
+    // error occured during call, error is NSError
+    break
+    case let .onSuccess(success):
+    // everything went fine, success is AnyObject
+    break
+  }
+})
+```
+
 Adds a listener to a Kuzzle global event. When an event is fired, listeners are called in the order of their insertion.
 
 <aside class="notice">
@@ -264,6 +365,38 @@ kuzzle.checkToken("some jwt token", new KuzzleResponseListener<KuzzleTokenValidi
     }
   }
 });
+```
+
+```objective_c
+NSError* error = nil;
+[kuzzle checkTokenWithToken: @"some jwt token" error: &error callback:^(KuzzleTokenValidity * tokenValidity, NSError * error) {
+  if(error) {
+    // error occured
+  }
+  // everything went fine
+}];
+if(error) {
+  // NSError reprsentation for KuzzleError.TokenEmpty, when token argument is empty string
+  // NSError reprsentation for KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
+}
+```
+
+```swift
+do {
+  try checkToken(withToken: "some jwt token", callback: { result in
+      switch result {
+        case let .onError(error):
+        // error occured during connecting, error is NSError
+        break
+        case let .onSuccess(success):
+        // everything went fine, success is KuzzleTokenValidity
+        break
+      }
+  })
+} catch {
+  // KuzzleError.TokenEmpty, when token argument is empty string
+  // KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
+}
 ```
 
 > Callback response if the token is valid:
@@ -318,7 +451,15 @@ kuzzle.connect();
 kuzzle.connect();
 ```
 
-Connects to the Kuzzle instance using the URL provided to the constructor.  
+```objective_c
+[kuzzle connect];
+```
+
+```swift
+kuzzle.connect();
+```
+
+Connects to the Kuzzle instance using the URL provided to the constructor.
 Has no effect if ``connect`` is set to ``auto``, unless ``disconnect`` has been called first.
 
 #### Return value
@@ -349,6 +490,43 @@ kuzzle.setDefaultIndex("index");
 KuzzleDataCollection collection = kuzzle.dataCollectionFactory("collection");
 ```
 
+```objective_c
+NSError* error = nil;
+KuzzleDataCollection* collection = [kuzzle dataCollectionFactoryWithCollectionName: @"collection" index: @"index" error: &error];
+
+// or using a default index:
+NSError* error = nil;
+KuzzleOptions* opt = [[KuzzleOptions alloc] init];
+opt.defaultIndex = @"some index";
+Kuzzle* kuzzle = [[Kuzzle alloc] initWithUrl:@"http://localhost:7512" options: opt error: &error];
+
+KuzzleDataCollection* collection = [kuzzle dataCollectionFactoryWithCollection: @"" error: &error];
+```
+
+```swift
+do {
+  try kuzzle.dataCollectionFactory(collectionName: "collection", index: "index")
+} catch {
+  // KuzzleError.NoIndexSpecified, when defaultIndex and index passed in function are both nil
+  // KuzzleError.IllegalState when state is .DISCONNECTED
+}
+// or using a default index, simplified snippet:
+let options = KuzzleOptions()
+    options
+        .setDefaultIndex("some index")
+        .setHeaders([
+            "someheader": "value"
+        ])
+var kuzzle = try! Kuzzle(url: "http://localhost:7512", options: options)
+
+do {
+  try kuzzle.dataCollectionFactory(collectionName: "collection")
+} catch {
+  // KuzzleError.NoIndexSpecified, when defaultIndex and index passed in function are both nil
+  // KuzzleError.IllegalState when state is .DISCONNECTED
+}
+```
+
 Instantiates a new KuzzleDataCollection object.
 
 #### dataCollectionFactory([index], collection)
@@ -376,6 +554,13 @@ kuzzle.disconnect();
 kuzzle.disconnect();
 ```
 
+```objective_c
+[kuzzle disconnect];
+```
+
+```swift
+kuzzle.disconnect();
+```
 
 Closes the current connection.
 
@@ -387,6 +572,14 @@ kuzzle.flushQueue();
 
 ```java
 kuzzle.flushQueue();
+```
+
+```objective_c
+[kuzzle flushQueue];
+```
+
+```swift
+kuzzle.flushQueue()
 ```
 
 Empties the offline queue without replaying it.
@@ -427,6 +620,36 @@ kuzzle.getAllStatistics(new KuzzleResponseListener<JSONArray>() {
     // Handle error
   }
 };
+```
+
+```objective_c
+NSError* error = nil;
+[kuzzle getAllStatisticsAndReturnError: &error callback:^(NSArray * results, NSError * error) {
+  if(error) {
+  // error occured
+  }
+  // everything went fine
+}];
+if(error) {
+  // NSError reprsentation for KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
+}
+```
+
+```swift
+do {
+  try getAllStatistics(callback: { result in
+      switch result {
+        case let .onError(error):
+        // error occured during call, error is NSError
+        break
+        case let .onSuccess(success):
+        // everything went fine, success is Array with dictionaries
+        break
+      }
+  })
+} catch {
+  // KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
+}
 ```
 
 > Callback response example:
@@ -552,6 +775,14 @@ var jwtToken = kuzzle.getJwtToken();
 String jwtToken = kuzzle.getJwtToken();
 ```
 
+```objective_c
+NSString* token = [kuzzle getJwtToken];
+```
+
+```swift
+let token:String? = kuzzle.getJwtToken() // token can be nil!
+```
+
 Get internal jwtToken used to request kuzzle.
 
 #### getJwtToken()
@@ -587,6 +818,36 @@ kuzzle.getServerInfo(new KuzzleResponseListener<JSONObject>() {
     // Handle error
   }
 });
+```
+
+```objective_c
+NSError* error = nil;
+[kuzzle getServerInfoAndReturnError: &error callback:^(NSDictionary* serverInfo, NSError * error) {
+  if(error) {
+    // error occured
+  }
+  // everything went fine
+}];
+if(error) {
+  // NSError reprsentation for KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
+}
+```
+
+```swift
+do {
+  try kuzzle.getServerInfo(callback: { result in
+      switch result {
+        case let .onError(error):
+        // error occured during call, error is NSError
+        break
+        case let .onSuccess(success):
+        // everything went fine, success is Dictionary
+        break
+      }
+  })
+} catch {
+  // KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
+}
 ```
 
 > Callback response example:
@@ -896,6 +1157,36 @@ kuzzle.getStatistics(new KuzzleResponseListener<JSONObject>() {
 });
 ```
 
+```objective_c
+NSError* error = nil;
+[kuzzle getStatisticsAndReturnError: &error callback:^(NSArray * stats, NSError * error) {
+    if(error) {
+    // error occured
+  }
+  // everything went fine
+}]
+if(error) {
+  // NSError reprsentation for KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
+}
+```
+
+```swift
+do {
+  try kuzzle.getStatistics(callback: { result in
+      switch result {
+        case let .onError(error):
+        // error occured during call, error is NSError
+        break
+        case let .onSuccess(success):
+        // everything went fine, success is array
+        break
+      }
+  })
+} catch {
+  // KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
+}
+```
+
 > Callback response:
 
 ```json
@@ -1017,6 +1308,38 @@ kuzzle.listCollections("index", new KuzzleResponseListener<JSONObject>() {
 });
 ```
 
+```objective_c
+NSError* error = nil;
+[kuzzle listCollectionsAndReturnError: &error callback:^(NSDictionary * collections, NSError * error) {
+  if(error) {
+    // error occured
+  }
+  // everything went fine
+}];
+
+if(error) {
+  // NSError reprsentation for KuzzleError.NoIndexSpecified, when defaultIndex and index passed in function are both nil
+  // NSError reprsentation for KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
+}
+```
+
+```swift
+do {
+  try kuzzle.listCollections(index: "some index", callback: { result in
+      switch result {
+        case let .onError(error):
+        // error occured during call, error is NSError
+        break
+        case let .onSuccess(success):
+        // everything went fine, success is Dictionary
+        break
+      }
+  })
+} catch {
+  // KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
+}
+```
+
 > Callback response:
 
 ```json
@@ -1082,6 +1405,36 @@ kuzzle.listIndexes(new KuzzleResponseListener<String[]>() {
     // Handle error
   }
 });
+```
+
+```objective_c
+NSError* error = nil;
+[kuzzle listIndexesAndReturnError: &error callback:^(NSArray * array, NSError * error) {
+  if(error) {
+    // error occured
+  }
+  // everything went fine
+}];
+if(error) {
+  // NSError reprsentation for KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
+}
+```
+
+```swift
+do {
+  try kuzzle.listIndexes(callback: { result in
+      switch result {
+        case let .onError(error):
+        // error occured during call, error is NSError
+        break
+        case let .onSuccess(success):
+        // everything went fine, success is Array with indexes
+        break
+      }
+  })
+} catch {
+  // KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
+}
 ```
 
 > Callback response:
@@ -1156,6 +1509,39 @@ kuzzle.login("local", credentials, 30000, new KuzzleResponseListener<JSONObject>
 });
 ```
 
+```objective_c
+NSError* error = nil;
+NSDictionary* credentials = @{@"username": @"John Doe", @"password": @"my secret password"};
+[kuzzle loginWithStrategy: @"local" credentials: credentials error: &error callback:^(NSDictionary* result, NSError * error) {
+  if(error) {
+    // error occured
+  }
+  // everything went fine
+}];
+if(error) {
+  // NSError reprsentation for KuzzleError.StrategyEmpty when strategy passed to function was empty string
+  // NSError reprsentation for KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
+}
+```
+
+```swift
+do {
+  try try kuzzle.login(withStrategy: "local", credentials: credentials, callback: { result in
+      switch result {
+        case let .onError(error):
+        // error occured during call, error is NSError
+        break
+        case let .onSuccess(success):
+        // everything went fine, success is Dictionary
+        break
+      }
+  })
+} catch {
+  // KuzzleError.StrategyEmpty when strategy passed to function was empty string
+  // KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
+}
+```
+
 Log a user according to a strategy and credentials.
 
 If the Kuzzle response contains a JWT Token, the SDK token is set and the `loginAttempt` event is fired immediately with the following object:  
@@ -1222,6 +1608,36 @@ kuzzle.logout(new KuzzleResponseListener<Void>() {
 });
 ```
 
+```objective_c
+NSError* error = nil;
+[kuzzle logoutAndReturnError: &error callback:^(id result, NSError * error) {
+  if(error) {
+    // error occured
+  }
+  // everything went fine
+}];
+
+if(error) {
+  // NSError reprsentation for KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
+}
+```
+
+```swift
+kuzzle.logout(callback: { result in
+      switch result {
+        case let .onError(error):
+        // error occured during call, error is NSError
+        break
+        case let .onSuccess(success):
+        // everything went fine, success is AnyObject
+        break
+      }
+  })
+} catch {
+  // KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
+}
+```
+
 Logs the user out.
 
 #### logout([callback])
@@ -1267,6 +1683,35 @@ kuzzle.now(new KuzzleResponseListener<Date>() {
     // Handle error
   }
 });
+```
+
+```objective_c
+NSError* error = nil;
+[kuzzle nowAndReturnError: &error callback:^(NSDate * date, NSError * error) {
+    // error occured
+  }
+  // everything went fine
+}];
+if(error) {
+  // NSError reprsentation for KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
+}
+```
+
+```swift
+do {
+  try kuzzle.now(callback: { result in
+      switch result {
+        case let .onError(error):
+        // error occured during call, error is NSError
+        break
+        case let .onSuccess(success):
+        // everything went fine, success is NSDate
+        break
+      }
+  })
+} catch {
+  // KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
+}
 ```
 
 > Callback response:
@@ -1331,6 +1776,43 @@ kuzzle.query(args, new JSONObject(), new OnQueryDoneListener() {
     // Handle error
   }
 });
+```
+
+```objective_c
+QueryArgs* queryArgs = [[QueryArgs alloc] init];
+queryArgs.controller = @"read";
+queryArgs.action = @"search";
+
+NSDictionary* query = @{@"": @""};
+
+[kuzzle queryWithQueryArgs: queryArgs query: query error: &error callback:^(NSDictionary * result, NSError * error) {
+  if(error) {
+    // error occured
+  }
+  // everything went fine
+}];
+
+if(error) {
+  // NSError reprsentation for KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
+}
+```
+
+```swift
+let queryArgs = QueryArgs(controller: "read", action: "search")
+let query = ["": ""]
+try kuzzle.query(queryArgs: queryArgs, query: query, callback: { result in
+      switch result {
+        case let .onError(error):
+        // error occured during call, error is NSError
+        break
+        case let .onSuccess(success):
+        // everything went fine, success is Dictionary
+        break
+      }
+  })
+} catch {
+  // KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
+}
 ```
 
 > Callback response:
@@ -1469,6 +1951,22 @@ kuzzle.removeAllListeners(KuzzleEvent.disconnected);
 kuzzle.removeAllListeners();
 ```
 
+```objective_c
+// Removes all listeners on the "unsubscribed" global event
+[kuzzle removeAllListenersWithEvent: KuzzleEventTypeDISCONNECTED];
+
+// Removes all listeners on all global events
+[kuzzle removeAllListeners];
+```
+
+```swift
+// Removes all listeners on the "unsubscribed" global event
+kuzzle.removeAllListeners(event: .DISCONNECTED);
+
+// Removes all listeners on all global events
+kuzzle.removeAllListeners();
+```
+
 Removes all listeners, either from a specific event or from all events
 
 #### removeAllListeners([event])
@@ -1485,6 +1983,14 @@ kuzzle.removeListener('disconnected', listenerId);
 
 ```java
 kuzzle.removeListener(KuzzleEvent.disconnected, "listenerId");
+```
+
+```objective_c
+[kuzzle removeListenerWithEvent: KuzzleEventTypeDISCONNECTED listenerId: @"listenerId"];
+```
+
+```swift
+kuzzle.removeListener(event: .DISCONNECTED, listenerId: "listenerId")
 ```
 
 Removes a listener from an event.
@@ -1504,6 +2010,14 @@ kuzzle.replayQueue();
 
 ```java
 kuzzle.replayQueue();
+```
+
+```objective_c
+[kuzzle replayQueue];
+```
+
+```swift
+kuzzle.replayQueue()
 ```
 
 Replays the requests queued during offline mode. Works only if the SDK is not in a ``disconnected`` state, and if the ``autoReplay`` option is set to ``false``.
@@ -1619,6 +2133,45 @@ kuzzle
   });
 ```
 
+```objective_c
+NSDictionary* content = @{
+                          @"firstname": @"My Name Is",
+                          @"lastname": @"Jonas"
+                          };
+[kuzzle updateSelfWithContent: content error: &error callback:^(NSDictionary * result, NSError * error) {
+  if(error) {
+    // error occured
+  }
+  // everything went fine
+}];
+
+if(error) {
+  // NSError reprsentation for KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
+}
+```
+
+```swift
+  let content = [
+    "firstname": "My Name Is",
+    "lastname": "Jonas"
+  ]
+  do {
+  try kuzzle.updateSelf(content: content, callback: { result in
+      switch result {
+        case let .onError(error):
+        // error occured during call, error is NSError
+        break
+        case let .onSuccess(success):
+        // everything went fine, success is dictionary
+        break
+      }
+  })
+} catch {
+  // KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
+}
+
+```
+
 #### updateSelf(content, [options], [callback])
 
 Performs a partial update on the current user.
@@ -1650,6 +2203,22 @@ kuzzle.setHeaders({someContent: 'someValue'}, true);
 JSONObject headers = new JSONObject().put("someContent", "someValue");
 
 kuzzle.setHeaders(headers, true);
+```
+
+```objective_c
+NSDictionary* headers = @{@"someContent": @"someValue"};
+
+[kuzzle setHeadersWithData: headers replace: YES];
+// merge headers with already existing ones
+[kuzzle setHeadersWithData: headers];
+```
+
+```swift
+let headers = ["someContent": "someValue"]
+
+kuzzle.setHeaders(data: headers, replace: true)
+// merge headers with already existing ones
+kuzzle.setHeaders(data: headers);
 ```
 
 This is a helper function returning itself, allowing to easily chain calls.
@@ -1695,6 +2264,50 @@ kuzzle.setJwtToken("some jwt token");
 kuzzle.setJwtToken(authenticationResponse)
 ```
 
+```objective_c
+// Directly with a JWT Token
+NSError* error = nil;
+[kuzzle setJwtToken: @"some jwt token" error: &error];
+if(error) {
+  // NSError reprsentation for KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
+}
+
+/*
+ Or with a Kuzzle response.
+ For instance, the final OAUTH2 response is obtained with a redirection from Kuzzle,
+ and it can be provided to this method directly.
+
+ Here, "authenticationResponse" is an instance of NSDictionary returned by e.g.KuzzleWebView
+ */
+NSError* error = nil;
+[kuzzle setJwtTokenFromResponse: authenticationResponse error: &error];
+if(error) {
+  // NSError reprsentation for KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
+}
+```
+
+```swift
+// Directly with a JWT Token
+do {
+  try kuzzle.setJwtToken("some jwt token")
+} catch {
+  // KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
+}
+
+/*
+ Or with a Kuzzle response.
+ For instance, the final OAUTH2 response is obtained with a redirection from Kuzzle,
+ and it can be provided to this method directly.
+
+ Here, "authenticationResponse" is an instance of Dictionary returned by e.g.KuzzleWebView
+ */
+ do {
+  try kuzzle.setJwtToken(fromResponse: authenticationResponse)
+} catch {
+  // KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
+}
+```
+
 Sets the internal JWT token which will be used to request kuzzle.
 
 If the provided token is correct, a `loginAttempt` event is fired with the following object:  
@@ -1727,6 +2340,14 @@ kuzzle.startQueuing();
 kuzzle.startQueuing();
 ```
 
+```objective_c
+[kuzzle startQueuing];
+```
+
+```swift
+kuzzle.startQueuing()
+```
+
 Starts the requests queuing. Works only during offline mode, and if the ``autoQueue`` option is set to ``false``.
 
 #### Return value
@@ -1742,6 +2363,14 @@ kuzzle.stopQueuing();
 
 ```java
 kuzzle.stopQueuing();
+```
+
+```objective_c
+[kuzzle stopQueuing];
+```
+
+```swift
+kuzzle.stopQueuing()
 ```
 
 Stops the requests queuing. Works only during offline mode, and if the ``autoQueue`` option is set to ``false``.
@@ -1779,6 +2408,36 @@ kuzzle.whoAmI(new KuzzleResponseListener<KuzzleUser>() {
 });
 ```
 
+```objective_c
+NSError* error = nil;
+[kuzzle whoAmIAndReturnError: &error callback:^(KuzzleUser * user, NSError * error) {
+  if(error) {
+    // error occured
+  }
+  // everything went fine
+}];
+if(error) {
+  // NSError reprsentation for KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
+}
+```
+
+```swift
+do {
+  try kuzzle.whoAmI(callback: { result in
+      switch result {
+        case let .onError(error):
+        // error occured during call, error is NSError
+        break
+        case let .onSuccess(success):
+        // everything went fine, success is KuzzleUser
+        break
+      }
+  })
+} catch {
+  // KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
+}
+```
+
 Retrieves current user object.
 
 #### whoAmI(callback)
@@ -1794,3 +2453,4 @@ Returns the `Kuzzle` object to allow chaining.
 #### Callback response
 
 An instanciated `KuzzleUser` object.
+

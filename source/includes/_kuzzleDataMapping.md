@@ -35,6 +35,22 @@ mapping.put("foo", type);
 KuzzleDataMapping dataMapping = new KuzzleDataMapping(dataCollection, mapping);
 ```
 
+```objective_c
+KuzzleDataMapping* dataMapping = [[KuzzleDataMapping alloc] initWithCollection: myCollection];
+
+NSDictionary* mappping = @{
+                           @"foo": @{
+                                   @"type": @"string"
+                                   }
+                           };
+KuzzleDataMapping* dataMapping = [[KuzzleDataMapping alloc] initWithCollection: myCollection mapping: mappping];
+```
+
+```swift
+let dataMapping = KuzzleDataMapping(collection: dataCollection)
+
+let dataMapping = KuzzleDataMapping(collection: dataCollection!, mapping: ["foo": ["type": "string"]])
+```
 
 #### KuzzleDataMapping(KuzzleDataCollection, [mapping])
 
@@ -78,6 +94,33 @@ dataMapping.apply(new KuzzleResponseListener<KuzzleDataMapping>() {
      // Handle error
    }
 });
+```
+
+```objective_c
+NSError* error = nil;
+[dataMapping applyAndReturnError: &error callback:^(KuzzleDataMapping * mapping, NSError * error) {
+  if(error) {
+    // error occured
+  }
+  // everything went fine
+}];
+```
+
+```swift
+do {
+  try dataMapping.apply(callback: { result in
+      switch result {
+        case let .onError(error):
+        // error occured during call, error is NSError
+        break
+        case let .onSuccess(success):
+        // everything went fine, success is KuzzleDataMapping object
+        break
+      }
+  })
+} catch {
+  // KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
+}
 ```
 
 Applies the new mapping to the data collection.
@@ -131,6 +174,33 @@ dataMapping.refresh(new KuzzleResponseListener<KuzzleDataMapping>() {
 });
 ```
 
+```objective_c
+NSError* error = nil;
+[dataMapping refreshAndReturnError: &error callback:^(KuzzleDataMapping * mapping, NSError * error) {
+  if(error) {
+    // error occured
+  }
+  // everything went fine
+}];
+```
+
+```swift
+do {
+  try dataMapping.refresh(callback: { result in
+      switch result {
+        case let .onError(error):
+        // error occured during call, error is NSError
+        break
+        case let .onSuccess(success):
+        // everything went fine, success is KuzzleDataMapping object
+        break
+      }
+  })
+} catch {
+  // KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
+}
+```
+
 Instanciates a new KuzzleDataMapping object with an up-to-date content.
 
 #### refresh([options], callback)
@@ -166,6 +236,24 @@ mapping.put("null_value", "");
 dataMapping.set("field", mapping);
 ```
 
+```objective_c
+NSDictionary* fieldValue = @{
+                             @"type": @"string",
+                             @"index": @"analyzed",
+                             @"null_value": @"",
+                             };
+[dataMapping setWithField: @"field" value: fieldValue];
+```
+
+```swift
+let fieldValue = [
+    "type": "string",
+    "index": "analyzed",
+    "null_value": ""
+]
+dataMapping.set(field: "field", value: fieldValue)
+```
+
 <aside class="notice">Changes made by this function won't be applied until you call the <code>apply</code> method</aside>
 
 Adds or updates a field mapping.
@@ -190,6 +278,34 @@ dataMapping.setHeaders({someContent: 'someValue'}, true);
 ```java
 JSONObject headers = new JSONObject();
 headers.put("someContent", "someValue");
+dataMapping.setHeaders(headers, true);
+```
+
+```objective_c
+NSDictionary* headers = @{
+  @"someContent": @"someValue",
+  @"metadata": @{
+    @"someMetaData": @[
+      @"with",
+      @"some",
+      @"values"
+      ]
+    }
+  };
+[dataMapping setHeadersWithData: headers replace: YES];
+```
+
+```swift
+let headers = [
+  "someContent": "someValue",
+  "metadata": [
+    "someMetaData": [
+     "with",
+      "some",
+      "values"
+    ]
+  ]
+]
 dataMapping.setHeaders(headers, true);
 ```
 

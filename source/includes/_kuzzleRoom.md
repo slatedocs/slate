@@ -105,6 +105,22 @@ KuzzleRoomOptions options = new KuzzleRoomOptions().setSubscribeToSelf(false);
 KuzzleRoom room = new KuzzleRoom(dataCollection, options);
 ```
 
+```objective_c
+KuzzleRoom* room = [[KuzzleRoom alloc] initWithCollection: dataCollection];
+
+KuzzleRoomOptions* roomOptions = [[KuzzleRoomOptions alloc] init];
+roomOptions.subscribeToSelf = YES;
+KuzzleRoom* room = [[KuzzleRoom alloc] initWithCollection: dataCollection options: roomOptions];
+```
+
+```swift
+let room = KuzzleRoom(collection: dataCollection)
+
+let roomOptions = KuzzleRoomOptions()
+roomOptions.subscribeToSelf = true
+let room = KuzzleRoom(collection: dataCollection, options: roomOptions)
+```
+
 Creates a KuzzleRoom object.
 
 #### KuzzleRoom(KuzzleDataCollection, [options])
@@ -168,6 +184,37 @@ room.count(new KuzzleResponseListener<Integer>() {
    // Handle error
  }
 });
+```
+
+```objective_c
+NSError* error = nil;
+[room countAndReturnError: &error callback:^(NSNumber * amount, NSError * _Nullable error) {
+  if(error) {
+    // error occured
+  }
+  // everything went fine
+}];
+
+if(error) {
+  // NSError reprsentation for KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
+}
+```
+
+```swift
+do {
+  try room.count(callback: { result in
+      switch result {
+        case let .onError(error):
+        // error occured during call, error is NSError
+        break
+        case let .onSuccess(success):
+        // everything went fine, success is integer
+        break
+      }
+  })
+} catch {
+  // KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
+}
 ```
 
 > Callback response
@@ -253,6 +300,102 @@ room.renew(filters, new KuzzleResponseListener<KuzzleNotificationResponse>() {
 });
 ```
 
+```objective_c
+NSError* error = nil;
+
+NSDictionary* termStatus = @{
+                             @"terms": @{
+                                     @"status": @[
+                                             @"idle", @"wantToHire", @"toHire", @"riding"
+                                             ],
+                                     }};
+
+NSDictionary* termType = @{
+                           @"terms": @{
+                                   @"type": @[@"cab"]
+                                   }
+                           };
+
+NSDictionary* geoDistance = @{
+                              @"geo_distance": @{
+                                      @"distance": @"10km",
+                                      @"pos": @{
+                                              @"lat": @"54.4838902",
+                                              @"lon": @"17.01559"
+                                              }
+                                      }
+                              };
+
+NSDictionary* filter = @{
+                         @"filter": @{
+                                 @"and": @[
+                                         termStatus,
+                                         termType,
+                                         geoDistance
+                                         ]
+                                 }};
+
+[room renewWithFilters: filter error: &error callback:^(KuzzleNotification * notification, NSError * error) {
+  if(error) {
+    // error occured
+  }
+  // everything went fine
+}];
+
+if(error) {
+  // NSError reprsentation for KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
+}
+```
+
+```swift
+let termStatus = [
+  "terms": [
+    "status": ["idle", "wantToHire", "toHire", "riding"],
+  ]
+]
+
+let termType = [
+  "terms":[
+    "type": ["cab"]
+  ]
+]
+
+let geoDistance = [
+  "geo_distance": [
+  "distance": "10km",
+  "pos": [
+    "lat": "54.4838902",
+    "lon": "17.01559"
+    ]
+  ]
+]
+
+let filter = [
+  "filter": [
+    "and": [
+      termStatus,
+      termType,
+      geoDistance
+    ]
+  ]
+]
+
+do {
+  try room.renew(filters: filter, callback: {result in
+      switch result {
+        case let .onError(error):
+        // error occured during call, error is NSError
+        break
+        case let .onSuccess(success):
+        // everything went fine, success is KuzzleNotification
+        break
+      }
+  })
+} catch {
+  // KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
+}
+```
+
 Renew the subscription. Force a resubscription using the same filters if no new ones are provided.
 Unsubscribes first if this KuzzleRoom was already listening to events.
 
@@ -281,6 +424,34 @@ headers.put("someContent", "someValue");
 room.setHeaders(headers, true);
 ```
 
+```objective_c
+NSDictionary* headers = @{
+  @"someContent": @"someValue",
+  @"metadata": @{
+    @"someMetaData": @[
+      @"with",
+      @"some",
+      @"values"
+      ]
+    }
+  };
+[room setHeadersWithData: headers replace: YES];
+```
+
+```swift
+let headers = [
+  "someContent": "someValue",
+  "metadata": [
+    "someMetaData": [
+     "with",
+      "some",
+      "values"
+    ]
+  ]
+]
+room.setHeaders(headers, true);
+```
+
 > Returns itself
 
 This is a helper function returning itself, allowing to easily chain calls.
@@ -306,6 +477,14 @@ room.unsubscribe();
 
 ```java
 room.unsubscribe();
+```
+
+```objective_c
+[room.unsubscribe];
+```
+
+```swift
+room.unsubscribe()
 ```
 
 Cancels the current subscription.
