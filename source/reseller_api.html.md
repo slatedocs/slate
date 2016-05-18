@@ -102,7 +102,7 @@ Please pay special attention to the mentioned quota_ids. You will need these to 
 
 - by_exhibition_id (Integer), only return tickets for this exhibition
 
-- valid_at (Date), only return tickets that are valid on this date
+- valid_at (Date), default: today, only return tickets that are valid on this date
 
 
 
@@ -116,7 +116,7 @@ a single quota will reference many tickets.
 By querying that quota we know how many tickets can still be sold.
 
 <aside class="notice">
-When a ticket belongs to multiple quotas then all referenced quotas need to be queried. The ticket can only be sold when there is enough room in all quotas.
+When a ticket belongs to multiple quotas then all referenced quotas need to be queried. The ticket can only be sold when there is enough space in all quotas.
 </aside>
 
 ## Get Quota Capacities
