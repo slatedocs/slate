@@ -56,9 +56,14 @@ boolean success = constructorio.add("power drill", "Search Suggestions");
 ```
 
 ```csharp
-bool success = constructorio.Add("power drill", "Search Suggestions");
-// power drill is an item name
-// Search Suggestions is an autocomplete section name
+bool success = constructorio.Add(
+  "power drill",
+  "Search Suggestions",
+  dictionaryOfOtherParameters
+);
+// "power drill" is an item name
+// "Search Suggestions" is an autocomplete section name
+// dictionaryOfOtherParameters is an optional Dictionary<string, object> containing any other parameters
 ```
 
 > The above command returns a 204 Success response on success.
@@ -136,9 +141,14 @@ boolean success = constructorio.addOrUpdate("power drill", "Search Suggestions")
 ```
 
 ```csharp
-bool success = constructorio.AddOrUpdate("power drill", "Search Suggestions");
-// power drill is an item name
-// Search Suggestions is an autocomplete section name
+bool success = constructorio.AddOrUpdate(
+  "power drill",
+  "Search Suggestions",
+  dictionaryOfOtherParameters
+);
+// "power drill" is an item name
+// "Search Suggestions" is an autocomplete section name
+// dictionaryOfOtherParameters is an optional Dictionary<string, object> containing any other parameters
 ```
 
 
@@ -226,6 +236,15 @@ my $response = $constructorio->add_batch(
 );
 ```
 
+```csharp
+bool success = constructorio.AddBatch(
+  dictionaryOfItems,
+  "Search Suggestions"
+);
+// dictionaryOfItems is a Dictionary<string, object> containing a key of "items" with a value of a list containing Dictionary<string, object> objects for each item
+// "Search Suggestions" is an autocomplete section name
+```
+
 > The above command(s) return a 204 Success response on success.
 
 To add multiple items to your autocomplete index as a batch, use the `POST /batch_items` call. The `items` parameter is required and is an array of item hashes with the same attributes as defined in the `Add an Item` resource.  Because your autocomplete can have multiple sections, like categories, search suggestions, and direct links to products, you must specify which section you are adding an item to. You can do this with the `autocomplete_section` parameter.
@@ -300,6 +319,15 @@ my $response = $constructorio->add_or_update_batch(
 );
 ```
 
+```csharp
+bool success = constructorio.AddOrUpdateBatch(
+  dictionaryOfItems,
+  "Search Suggestions"
+);
+// dictionaryOfItems is a Dictionary<string, object> containing a key of "items" with a value of a list containing Dictionary<string, object> objects for each item
+// "Search Suggestions" is an autocomplete section name
+```
+
 > The above command(s) return a 204 Success response on success.
 
 A batch add or update allows you to add a group of items to your autocomplete without first checking to make sure no item in the batch already exists.
@@ -371,9 +399,12 @@ boolean success = constructorio.remove("power drill", "Search Suggestions");
 ```
 
 ```csharp
-bool success = constructorio.Remove("power drill", "Search Suggestions");
-// power drill is an item name
-// Search Suggestions is an autocomplete section name
+bool success = constructorio.Remove(
+  "power drill",
+  "Search Suggestions"
+);
+// "power drill" is an item name
+// "Search Suggestions" is an autocomplete section name
 ```
 
 > The above command returns a 204 Success response on success.
@@ -462,11 +493,16 @@ boolean success = constructorio.modify("power drill", "super power drill", "Sear
 ```
 
 ```csharp
-bool success = constructorio.Modify("power drill", "super power drill", "Search Suggestions", paramDict);
-// power drill is an item name
-// super power drill is the new item name
-// Search Suggestions is an autocomplete section name
-// paramDict is a Dictionary<string, object> you filled beforehand with the other properties you want to modify, it can be null
+bool success = constructorio.Modify(
+  "power drill",
+  "super power drill",
+  "Search Suggestions",
+  dictionaryOfOtherParameters
+);
+// "power drill" is an item name
+// "super power drill" is the new item name
+// "Search Suggestions" is an autocomplete section name
+// dictionaryOfOtherParameters is an optional Dictionary<string, object> containing any other parameters
 ```
 
 > The above command returns a 204 Success response on success.
