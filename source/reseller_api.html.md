@@ -56,7 +56,7 @@ First you will probably want to get all online sellable tickets.
 ## Get All Tickets
 
 ```shell
-curl "https://demo.gomus.de/api/v3/tickets"
+curl "https://smb-staging.gomus.de/api/v3/tickets"
   -H "Authorization: Bearer meowmeowmeow"
 ```
 
@@ -93,12 +93,16 @@ Please pay special attention to the mentioned quota_ids. You will need these to 
 
 ### HTTP Request
 
-`GET https://demo.gomus.de/api/v3/tickets`
+`GET https://smb-staging.gomus.de/api/v3/tickets`
 
 
 ### Query Parameters
 
-See API reference. TODO: link to v3.html (raml)
+- by_museum_id (Integer), only return ticktes for this museum
+
+- by_exhibition_id (Integer), only return tickets for this exhibition
+
+- valid_at (Date), only return tickets that are valid on this date
 
 
 
@@ -107,14 +111,15 @@ See API reference. TODO: link to v3.html (raml)
 The amount of tickets that can be sold are limited by quotas. In most cases a ticket will belong to a single quota and
 a single quota will reference many tickets.
 
+![](http://yuml.me/a43d856c)
+
 By querying that quota we know how many tickets can still be sold.
 
 ## Get Quota Capacities
 
-TODO: cash_point vs. shop
 
 ```shell
-curl "https://demo.gomus.de/api/v3/cash_point/capacities?quota_id=1&date=2017-03-02"
+curl "https://smb-staging.gomus.de/api/v3/shop/capacities?quota_id=1&date=2017-03-02"
   -H "Authorization: Bearer meowmeowmeow"
 ```
 
@@ -144,15 +149,15 @@ For a dayticket there may be only one slot (the whole day).
 
 ### HTTP Request
 
-`GET https://demo.gomus.de/api/v3/cash_point/capacities?quota_id=1&date=2017-03-02`
+`GET https://smb-staging.gomus.de/api/v3/cash_point/capacities?quota_id=1&date=2017-03-02`
 
 
 ### Query Parameters
 
-- quota_id
-- date
+- quota_id (Integer)
 
-Also see API reference. TODO: link to v3.html (raml)
+- date (Date)
+
 
 
 
@@ -189,10 +194,17 @@ The `orderable_attributes` contain specific attributes for the orderable, in thi
 
 ## Post Order
 
+You can make a legally binding sale by doing a HTTP POST request to the go~mus API.
+
+A final validation check will be made. Either all order items are bought or none.
+In case of errors you will get error messages back. In case of success you will get the barcodes.
+
+
+
 > Write definition of order into /tmp/orders.json before executing shell command.
 
 ```shell
-curl "https://demo.gomus.de/api/v3/cash_point/orders"
+curl "https://smb-staging.gomus.de/api/v3/cash_point/orders"
   -XPOST --data "@/tmp/orders.json"
   -H "Content-Type: application/json"
   -H "Authorization: Bearer meowmeowmeow"
@@ -243,4 +255,18 @@ curl "https://demo.gomus.de/api/v3/cash_point/orders"
 <aside class="success">
 Remember — a happy api user is an authenticated api user!
 </aside>
+
+
+## Barcodes
+
+Each ticket sale will a have one barcode per quantity. Each barcode can be validated and devalued separately.
+
+The barcodes are supposed to be printed on paper. One barcode per sheet.
+
+The barcodes need to be encoded as [CODE 39](https://en.wikipedia.org/wiki/Code_39), so that they can be scanned.
+Please pay special attention to the required quiet zone and minimal size requirements. You may find an example printout [here](/images/ticket-pdf-example.pdf).
+
+
+
+
 
