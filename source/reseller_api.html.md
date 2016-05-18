@@ -115,6 +115,10 @@ a single quota will reference many tickets.
 
 By querying that quota we know how many tickets can still be sold.
 
+<aside class="notice">
+When a ticket belongs to multiple quotas then all referenced quotas need to be queried. The ticket can only be sold when there is enough room in all quotas.
+</aside>
+
 ## Get Quota Capacities
 
 
@@ -171,13 +175,11 @@ In success case a JSON with the barcodes will be returned.
 
 ## Definition of Order
 
-An order is defined by it's attributes. First there is the `quantity` and the `orderable_type` ("TicketSale" for tickets).
-The `orderable_attributes` contain specific attributes for the orderable, in this case a ticket sale. Here we specified Ticket #4 at timeslot 2017-03-02 12:30.
-
-- start_at describes the time slot (for daytickets the time part will be 00:00).
+An order is defined by it's attributes.
 
 ```json
 {
+  "payment_mode_id": 6,
   "order_items_attributes": [
     {
       "quantity": 1,
@@ -190,6 +192,18 @@ The `orderable_attributes` contain specific attributes for the orderable, in thi
   ]
 }
 ```
+
+There are the `payment_mode_id` and the `order_items_attributes`, which in turn describe the individual order items.
+
+<aside class="notice">
+`payment_mode_id` needs to be `6` for correct collective billing.
+</aside>
+
+
+Regarding `order_items_attributes`, first there is the `quantity` and the `orderable_type` ("TicketSale" for tickets).
+The `orderable_attributes` contain specific attributes for the orderable, in this case a ticket sale. Here we specified Ticket #4 at timeslot 2017-03-02 12:30.
+
+- start_at describes the time slot (for daytickets the time part will be 00:00).
 
 
 ## Post Order
