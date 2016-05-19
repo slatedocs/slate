@@ -14,6 +14,7 @@ includes:
   - bank_accounts
   - charge_configs
   - charges
+  - credit_cards
   - remittance_cnabs
   - regress_cnabs
   - webhook
