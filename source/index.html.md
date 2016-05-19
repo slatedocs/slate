@@ -73,7 +73,8 @@ curl "https://rest.goraise.co.uk/retailers"
       "logo": null,
       "terms": null,
       "website_url": "www.guernseytravel.com",
-      "donation": null
+      "donation": null,
+      "shopping_url": "https://www.goraise.co.uk/go/guernseytravel?user_id="
     },
     {
       "id": 85,
@@ -82,7 +83,8 @@ curl "https://rest.goraise.co.uk/retailers"
       "logo": null,
       "terms": null,
       "website_url": "www.tickettree.com",
-      "donation": null
+      "donation": null,
+      "shopping_url": "https://www.goraise.co.uk/go/tickettreecom?user_id="
     }
   ]
 }
@@ -110,6 +112,7 @@ curl "https://rest.goraise.co.uk/retailers"
             <terms>Donations may only apply to the sale price and not include VAT, delivery and other such costs. Please do not use voucher codes from other websites as this may affect your donation.</terms>
             <website_url>www.yellowmoon.org.uk</website_url>
             <donation>1%</donation>
+            <shopping_url>https://www.goraise.co.uk/go/yellowmoon?user_id=</shopping_url>
         </datum>
         <datum>
             <id>109</id>
@@ -119,6 +122,7 @@ curl "https://rest.goraise.co.uk/retailers"
             <terms>Donations may only apply to the sale price and not include VAT, delivery and other such costs. Please do not use voucher codes from other websites as this may affect your donation.</terms>
             <website_url>www.zavvi.com</website_url>
             <donation>3%</donation>
+            <shopping_url>https://www.goraise.co.uk/go/zavvi?user_id=</shopping_url>
         </datum>
        </datum>
     </data>
@@ -156,7 +160,8 @@ curl "https://rest.goraise.co.uk/retailers/102"
   "logo": "/images/retailers/logos/yellowmoon.png",
   "terms": "Donations may only apply to the sale price and not include VAT, delivery and other such costs. Please do not use voucher codes from other websites as this may affect your donation.",
   "website_url": "www.yellowmoon.org.uk",
-  "donation": "1%"
+  "donation": "1%",
+  "shopping_url": "https://www.goraise.co.uk/go/yellowmoon?user_id="
 }
 ```
 
@@ -172,6 +177,7 @@ curl "https://rest.goraise.co.uk/retailers/102"
     <terms>Donations may only apply to the sale price and not include VAT, delivery and other such costs. Please do not use voucher codes from other websites as this may affect your donation.</terms>
     <website_url>www.yellowmoon.org.uk</website_url>
     <donation>1%</donation>
+    <shopping_url>https://www.goraise.co.uk/go/yellowmoon?user_id=</shopping_url>
 </xml>
 ```
 
