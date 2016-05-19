@@ -540,6 +540,85 @@ PATCH the "expression" attribute to modify. An empty "expression" object, like
 
 ##### Main deck
 
+#### Primary key
+
+`/datasets/{dataset_id}/pk/`
+
+Setting a primary key on a dataset causes updates (particularly streamed
+updates) mentioning existing rows to be updated instead of new rows being
+inserted.  A primary key can only be set on a column that has structured data,
+and must be set after that column has been added to the dataset.
+
+##### GET
+```http
+`GET /datasets/{dataset_id}/pk/ HTTP/1.1`
+```
+```shell
+```
+```r
+```
+```python
+```
+```json{
+{
+    "element": "shoji:entity",
+    "body": {
+        "pk": [0000001],
+    }
+}
+```
+
+`GET /datasets/{dataset_id}/pk/`
+
+GET on this resource returns a Shoji Entity.  It contains one body key: ``pk``,
+which will be a list. The "pk" member indicates the variable ids of the columns
+in the dataset which comprise the primary key.  If there is no primary key for
+this dataset, the ``pk`` value will be ``[]``.
+
+##### POST
+```http
+POST /api/datasets/ HTTP/1.1
+Host: beta.crunch.io
+Content-Type: application/json
+Content-Length: 15
+
+{"pk": ["000001"]}
+```
+```http
+HTTP/1.1 204 No Content
+```
+
+`POST /datasets/{dataset_id}/pk/`
+
+When POSTing, set the body to a JSON object containing the key "pk" to modify
+the pk. The "pk" key should be a list containing zero or more variable ids.
+The variable id must point to an existing column that is of a structured type,
+and which has no duplicate or missing values.  Setting the pk to ``[]`` is
+equivalent to deleting the pk for a dataset.  Note that as of this writing, the
+POSTed list may not contain more than one variable id/alias.
+
+###### DELETE
+```http
+`DELETE /datasets/{dataset_id}/pk HTTP/1.1`
+```
+```shell
+```
+```r
+```
+```python
+```
+
+`DELETE /datasets/{dataset_id}/pk/`
+
+DELETE the "pk" attribute to delete the primary key for this dataset.  Upon
+success, this method returns no body and a 204 response code.
+
+###### URL Parameters
+
+Parameter | Description
+--------- | -----------
+dataset_id | The id of the dataset
+
 #### Catalogs
 
 ##### Batches
@@ -565,23 +644,4 @@ PATCH the "expression" attribute to modify. An empty "expression" object, like
 ##### Decks
 
 ##### Permissions
-
-##### Primary key
-
-`/datasets/{id}/pk`
-
-Setting a primary key on a dataset causes updates (particularly streamed
-updates) mentioning existing rows to be updated instead of new rows being
-inserted.
-
-GET on this resource returns a Shoji Entity with a "pk"" attribute in its body,
-which is a list. The "pk" attribute indicates the variable ids of the columns in
-the dataset which comprise the primary key.
-
-POST the "pk" attribute to modify the pk. The "pk" attribute should be a list
-containing zero or more variable ids or variable aliases.  Setting the pk to
-``[]`` is equivalent to deleting the pk for a dataset.  Note that as of
-this writing, the POSTed list may not contain more than one variable id/alias.
-
-DELETE the "pk" attribute to delete the primary key for this dataset.
 
