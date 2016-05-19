@@ -5,7 +5,7 @@ language_tabs:
   - shell
 
 toc_footers:
-  - <a href='https://www.goraise.co.uk/contact'>Sign Up for a Developer Key</a>
+  - <a href='https://www.goraise.co.uk/contact'>Sign Up for a Developer API Key</a>
   - <a href='https://github.com/garygarside/slate'>Documentation Powered by Slate</a>
 
 includes:
@@ -29,19 +29,19 @@ This example API documentation page was created with [Slate](https://github.com/
 ```shell
 # With shell, you can just pass the correct header with each request
 curl "api_endpoint_here"
-  -H "Authorization: your_token"
+  -H "ApiKey: your_api_key"
 ```
 
-> Make sure to replace `your_token` with your API key.
+> Make sure to replace `your_api_key` with your API key.
 
 GoRaise uses API keys to allow access to the API. You can request a new GoRaise API key by contacting [our API team](https://www.goraise.co.uk/contact).
 
 GoRaise expects for the API key to be included in all API requests to the server in a header that looks like the following:
 
-`Authorization: your_token`
+`ApiKey: your_api_key`
 
 <aside class="notice">
-You must replace <code>your_token</code> with your personal API key.
+You must replace <code>your_api_key</code> with your personal API key.
 </aside>
 
 # Retailers
@@ -49,99 +49,130 @@ You must replace <code>your_token</code> with your personal API key.
 ## Get All Retailers
 
 ```shell
-curl "https://api.goraise.co.uk/rest/retailers"
-  -H "Authorization: your_token"
+curl "https://rest.goraise.co.uk/retailers"
+  -H "ApiKey: your_api_key"
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
 {
-  "status": 200,
-  "counts": {
-    "start": 0,
-    "limit": 100,
-    "total": 2703
-  },
-  "items": [
+  "total": 2703,
+  "per_page": 100,
+  "current_page": 1,
+  "last_page": 28,
+  "next_page_url": "https://rest.goraise.co.uk/retailers?page=2",
+  "prev_page_url": null,
+  "from": 1,
+  "to": 100,
+  "data": [
     {
-      "id": "1166",
-      "name": "(IS) Interserver Webhosting and VPS",
+      "id": 84,
+      "name": "Guernsey Travel",
       "description": null,
-      "shortname": "isinterserverwebhostingandvps",
       "logo": null,
-      "rate_highest_value": null,
-      "rate_highest_type": null,
-      "featured": "0",
-      "featured_order": "0",
-      "website_url": "http://www.interserver.net",
-      "domain_aliases": null,
-      "quality_score": null
+      "terms": null,
+      "website_url": "www.guernseytravel.com",
+      "donation": null
     },
     {
-      "id": "1121",
-      "name": "(s) Strikingly",
+      "id": 85,
+      "name": "Tickettree.com",
       "description": null,
-      "shortname": "sstrikingly",
       "logo": null,
-      "rate_highest_value": "5",
-      "rate_highest_type": "percent",
-      "featured": "0",
-      "featured_order": "0",
-      "website_url": "https://www.strikingly.com/",
-      "domain_aliases": null,
-      "quality_score": null
+      "terms": null,
+      "website_url": "www.tickettree.com",
+      "donation": null
     }
   ]
 }
+```
+
+> The above command returns XML structured like this:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<xml>
+    <total>2703</total>
+    <per_page>100</per_page>
+    <current_page>1</current_page>
+    <last_page>28</last_page>
+    <next_page_url>https://rest.goraise.co.uk/retailers?format=xml&amp;page=2</next_page_url>
+    <prev_page_url/>
+    <from>1</from>
+    <to>100</to>
+    <data>
+        <datum>
+            <id>102</id>
+            <name>Yellow Moon</name>
+            <description>The Yellow Moon website offers hundreds of great toys, educational games, craft and seasonal products for your family to create, learn and have fun. There's FREE UK mainland delivery on all orders over £50.</description>
+            <logo>/images/retailers/logos/yellowmoon.png</logo>
+            <terms>Donations may only apply to the sale price and not include VAT, delivery and other such costs. Please do not use voucher codes from other websites as this may affect your donation.</terms>
+            <website_url>www.yellowmoon.org.uk</website_url>
+            <donation>1%</donation>
+        </datum>
+        <datum>
+            <id>109</id>
+            <name>Zavvi</name>
+            <description>Enjoy a huge selection of entertainment including market leading prices on the latest release Games, accessories and console bundles. Not to mention a huge selection of music, film and more.</description>
+            <logo>/images/retailers/logos/zavvi.png</logo>
+            <terms>Donations may only apply to the sale price and not include VAT, delivery and other such costs. Please do not use voucher codes from other websites as this may affect your donation.</terms>
+            <website_url>www.zavvi.com</website_url>
+            <donation>3%</donation>
+        </datum>
+       </datum>
+    </data>
+</xml>
 ```
 
 This endpoint retrieves all retailers.
 
 ### HTTP Request
 
-`GET https://api.goraise.co.uk/rest/retailers`
+`GET https://rest.goraise.co.uk/retailers`
 
 ### Query Parameters
 
 Parameter | Default | Description
 --------- | ------- | -----------
-start | 0 | The initial search offset of the results
-limit | 100 | How many results to pull back in one go. Can range from 1-200
-name | false | Filter retailers by their name. Omit this to bring back all retailers
+per_page | 100 | How many results to pull back in one go. Can range from 10-250
+page | 1 | The paginated page of results you wish to view, as limited by the per_page variable
+order_by | id | How the results should be ordered
 
 ## Get a Specific Retailer
 
 ```shell
-curl "https://api.goraise.co.uk/rest/retailers/1121"
-  -H "Authorization: your_token"
+curl "https://rest.goraise.co.uk/retailers/102"
+  -H "ApiKey: your_api_key"
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
 {
-  "status": 200,
-  "counts": {
-    "total": 1
-  },
-  "items": [
-    {
-      "id": "1121",
-      "name": "(s) Strikingly",
-      "description": null,
-      "shortname": "sstrikingly",
-      "logo": null,
-      "rate_highest_value": "5",
-      "rate_highest_type": "percent",
-      "featured": "0",
-      "featured_order": "0",
-      "website_url": "https://www.strikingly.com/",
-      "domain_aliases": null,
-      "quality_score": null
-    }
-  ]
+  "id": 102,
+  "name": "Yellow Moon",
+  "description": "The Yellow Moon website offers hundreds of great toys, educational games, craft and seasonal products for your family to create, learn and have fun. There's FREE UK mainland delivery on all orders over £50.",
+  "logo": "/images/retailers/logos/yellowmoon.png",
+  "terms": "Donations may only apply to the sale price and not include VAT, delivery and other such costs. Please do not use voucher codes from other websites as this may affect your donation.",
+  "website_url": "www.yellowmoon.org.uk",
+  "donation": "1%"
 }
+```
+
+> The above command returns XML structured like this:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<xml>
+    <id>102</id>
+    <name>Yellow Moon</name>
+    <description>The Yellow Moon website offers hundreds of great toys, educational games, craft and seasonal products for your family to create, learn and have fun. There's FREE UK mainland delivery on all orders over £50.</description>
+    <logo>/images/retailers/logos/yellowmoon.png</logo>
+    <terms>Donations may only apply to the sale price and not include VAT, delivery and other such costs. Please do not use voucher codes from other websites as this may affect your donation.</terms>
+    <website_url>www.yellowmoon.org.uk</website_url>
+    <donation>1%</donation>
+</xml>
 ```
 
 This endpoint retrieves a specific retailer.
@@ -150,7 +181,7 @@ This endpoint retrieves a specific retailer.
 
 ### HTTP Request
 
-`GET https://api.goraise.co.uk/rest/retailers/<ID>`
+`GET https://rest.goraise.co.uk/retailers/<ID>`
 
 ### URL Parameters
 
@@ -164,126 +195,158 @@ ID | The ID of the retailer to retrieve
 ## Get All Users
 
 ```shell
-curl "https://api.goraise.co.uk/rest/users"
-  -H "Authorization: your_token"
+curl "https://rest.goraise.co.uk/users"
+  -H "ApiKey: your_api_key"
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
 {
-  "status": 200,
-  "counts": {
-    "total": 2
-  },
-  "items": [
+  "total": 1889,
+  "per_page": 100,
+  "current_page": 1,
+  "last_page": 19,
+  "next_page_url": "https://rest.goraise.co.uk/users?page=2",
+  "prev_page_url": null,
+  "from": 1,
+  "to": 100,
+  "data": [
     {
-      "id": "1",
+      "id": 1,
       "first_name": "Gary",
-      "last_name": "",
+      "last_name": "Garside",
       "email": "gary@goraise.co.uk",
-      "date_joined": "1970-01-01 00:00:00"
-    },
-    {
-      "id": "2",
-      "first_name": "Tom",
-      "last_name": "",
-      "email": "tom@goraise.co.uk",
-      "date_joined": "1970-01-01 00:00:00"
+      "address1": null,
+      "postcode": null
     }
   ]
 }
+```
+
+> The above command returns XML structured like this:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<xml>
+    <total>1889</total>
+    <per_page>100</per_page>
+    <current_page>1</current_page>
+    <last_page>19</last_page>
+    <next_page_url>https://rest.goraise.co.uk/users?format=xml&amp;page=2</next_page_url>
+    <prev_page_url/>
+    <from>1</from>
+    <to>100</to>
+    <data>
+        <datum>
+            <id>8</id>
+            <first_name>Gary</first_name>
+            <last_name>Garside</last_name>
+            <email>gary@goraise.co.uk</email>
+            <address1/>
+            <postcode/>
+        </datum>
+      </datum>
+    </data>
+</xml>
 ```
 
 This endpoint retrieves all users.
 
 ### HTTP Request
 
-`GET https://api.goraise.co.uk/rest/users`
+`GET https://rest.goraise.co.uk/users`
 
 ### Query Parameters
 
 Parameter | Default | Description
 --------- | ------- | -----------
-start | 0 | The initial search offset of the results
-limit | 100 | How many results to pull back in one go. Can range from 1-200
+per_page | 100 | How many results to pull back in one go. Can range from 10-250
+page | 1 | The paginated page of results you wish to view, as limited by the per_page variable
+order_by | id | How the results should be ordered
 
 ## Get a Specific User
 
 ```shell
-curl "https://api.goraise.co.uk/rest/users/gary%40goraise.co.uk"
-  -H "Authorization: your_token"
+curl "https://rest.goraise.co.uk/users/8"
+  -H "ApiKey: your_api_key"
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
 {
-  "status": 200,
-  "counts": {
-    "total": 1
-  },
-  "items": [
-    {
-      "id": "1",
-      "first_name": "Gary",
-      "last_name": "",
-      "email": "gary@goraise.co.uk",
-      "date_joined": "1970-01-01 00:00:00"
-    }
-  ]
+  "id": 8,
+  "first_name": "Gary",
+  "last_name": "Garside",
+  "email": "gary@goraise.co.uk",
+  "address1": null,
+  "postcode": null
 }
+```
+
+> The above command returns XML structured like this:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<xml>
+    <id>8</id>
+    <first_name>Gary</first_name>
+    <last_name>Garside</last_name>
+    <email>gary@goraise.co.uk</email>
+    <address1/>
+    <postcode/>
+</xml>
 ```
 
 This endpoint retrieves a specific user.
 
-<aside class="warning">A user's unique ID is their email address. Make sure you encode the *@* symbol as *%40*!</aside>
-
 ### HTTP Request
 
-`GET https://api.goraise.co.uk/rest/users/<EMAIL>`
+`GET https://rest.goraise.co.uk/users/<ID>`
 
 ### URL Parameters
 
 Parameter | Description
 --------- | -----------
-EMAIL | The unique email address of the user (with an encoded **@** symbol as **%40**)
+ID | The unique ID of the user
 
 ## Create a New User
 
 ```shell
-curl "https://api.goraise.co.uk/rest/users"
-  -H "Authorization: your_token; Content-Type: application/json"
+curl "https://rest.goraise.co.uk/users"
+  -H "ApiKey: your_api_key"
+  -H "Content-Type: application/x-www-form-urlencoded"
   -X POST
-  -d '{"email":"joe@goraise.co.uk","password":"abcxyz", "first_name": "Joe", "last_name": "Bloggs"}'
+  -d "email=gary@goraise.co.uk&password=abcxyz&first_name=Gary&last_name=Garside"
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
 {
-  "status": 200,
-  "items": [
-    {
-      "id": "3",
-      "first_name": "Joe",
-      "last_name": "Bloggs",
-      "email": "joe@goraise.co.uk",
-      "date_joined": "1970-01-01 00:00:00"
-    }
-  ]
+  "email": "gary@goraise.co.uk",
+  "id": 99
 }
+```
+
+> The above command returns XML structured like this:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<xml>
+    <email>gary@goraise.co.uk</email>
+    <id>99</id>
+</xml>
 ```
 
 This endpoint creates and returns a new user.
 
 <aside class="warning">The only required fields for creating a new user are their email address and password.</aside>
 
-<aside class="info">If a user's email already exists, that user will be returned</aside>
-
 ### HTTP Request
 
-`POST https://api.goraise.co.uk/rest/users`
+`POST https://rest.goraise.co.uk/users`
 
 ### Required Parameters
 
@@ -301,3 +364,1354 @@ LAST_NAME | The user's surname
 ADDRESS1 | The first line of the user's address
 POSTCODE | The user's postal code
 
+## Update a User
+
+```shell
+curl "https://rest.goraise.co.uk/users/99"
+  -H "ApiKey: your_api_key"
+  -H "Content-Type: application/x-www-form-urlencoded"
+  -X PUT
+  -d "first_name=Gary&last_name=Garside"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "id": 99,
+  "first_name": "Gary",
+  "last_name": "Garside",
+  "email": "gary@goraise.co.uk",
+  "address1": null,
+  "postcode": null
+}
+```
+
+> The above command returns XML structured like this:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<xml>
+    <id>99</id>
+    <first_name>Gary</first_name>
+    <last_name>Garside</last_name>
+    <email>gary@goraise.co.uk</email>
+    <address1/>
+    <postcode/>
+</xml>
+```
+
+This endpoint creates and returns a new user.
+
+### HTTP Request
+
+`PUT https://rest.goraise.co.uk/users/<ID>`
+
+### Required Parameters
+
+Parameter | Description
+--------- | -----------
+ID | The unique ID of the user
+
+### Updatable Attributes
+
+Parameter | Description
+--------- | -----------
+EMAIL | The user's email address. Must be a valid email
+PASSWORD | Must be 6 characters long
+FIRST_NAME | The user's first name
+LAST_NAME | The user's surname
+ADDRESS1 | The first line of the user's address
+POSTCODE | The user's postal code
+
+
+# Causes
+
+## Get All Causes
+
+```shell
+curl "https://rest.goraise.co.uk/causes"
+  -H "ApiKey: your_api_key"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "total": 427,
+  "per_page": 100,
+  "current_page": 1,
+  "last_page": 5,
+  "next_page_url": "https://rest.goraise.co.uk/causes?page=2",
+  "prev_page_url": null,
+  "from": 1,
+  "to": 100,
+  "data": [
+    {
+      "id": 51,
+      "name": "Gary's Soccer Club",
+      "description": "<p><b>Help us raise funds for the Gary's Soccer club, a Sunday league side trying to make enough funds to build the new club house</b></p>",
+      "address1": "",
+      "postcode": "",
+      "admins": [
+        {
+          "id": 38,
+          "first_name": "Gary",
+          "last_name": "Garside",
+          "email": "gary.garside@goraise.co.uk",
+          "address1": null,
+          "postcode": null
+        }
+      ],
+      "supporters": [
+        {
+          "id": 37,
+          "first_name": "Gary",
+          "last_name": "Garside",
+          "email": "gary@goraise.co.uk",
+          "address1": null,
+          "postcode": null
+        }
+      ]
+    }
+  ]
+}
+```
+
+> The above command returns XML structured like this:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<xml>
+    <total>427</total>
+    <per_page>100</per_page>
+    <current_page>1</current_page>
+    <last_page>5</last_page>
+    <next_page_url>https://rest.goraise.co.uk/causes?format=xml&amp;page=2</next_page_url>
+    <prev_page_url/>
+    <from>1</from>
+    <to>100</to>
+    <data>
+        <datum>
+            <id>51</id>
+            <name>Gary's Soccer Club</name>
+            <description>&lt;p&gt;&lt;b&gt;Help us raise funds for the Gary's Soccer club, a Sunday league side trying to make enough funds to build the new club house&lt;/b&gt;&lt;/p&gt;</description>
+            <address1/>
+            <postcode/>
+            <admins/>
+            <supporters>
+                <supporter>
+                    <id>37</id>
+                    <first_name>Gary</first_name>
+                    <last_name>Garside</last_name>
+                    <email>gary@goraise.co.uk</email>
+                    <address1/>
+                    <postcode/>
+                </supporter>
+                <supporter>
+                    <id>38</id>
+                    <first_name>Gary</first_name>
+                    <last_name>Garside</last_name>
+                    <email>gary.garside@goraise.co.uk</email>
+                    <address1/>
+                    <postcode/>
+                </supporter>
+            </supporters>
+        </datum>
+    </data>
+</xml>
+```
+
+This endpoint retrieves all causes.
+
+### HTTP Request
+
+`GET https://rest.goraise.co.uk/causes`
+
+### Query Parameters
+
+Parameter | Default | Description
+--------- | ------- | -----------
+per_page | 100 | How many results to pull back in one go. Can range from 10-250
+page | 1 | The paginated page of results you wish to view, as limited by the per_page variable
+order_by | id | How the results should be ordered
+
+## Get a Specific Cause
+
+```shell
+curl "https://rest.goraise.co.uk/causes/51"
+  -H "ApiKey: your_api_key"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "id": 51,
+  "name": "Gary's Soccer Club",
+  "description": "<p><b>Help us raise funds for the Gary's Soccer club, a Sunday league side trying to make enough funds to build the new club house</b></p>",
+  "address1": "",
+  "postcode": "",
+  "admins": [
+    {
+      "id": 38,
+      "first_name": "Gary",
+      "last_name": "Garside",
+      "email": "gary.garside@goraise.co.uk",
+      "address1": null,
+      "postcode": null
+    }
+  ],
+  "supporters": [
+    {
+      "id": 37,
+      "first_name": "Gary",
+      "last_name": "Garside",
+      "email": "gary@goraise.co.uk",
+      "address1": null,
+      "postcode": null
+    }
+  ]
+}
+```
+
+> The above command returns XML structured like this:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<xml>
+    <id>51</id>
+    <name>Gary's Soccer Club</name>
+    <description>&lt;p&gt;&lt;b&gt;Help us raise funds for the Gary's Soccer club, a Sunday league side trying to make enough funds to build the new club house&lt;/b&gt;&lt;/p&gt;</description>
+    <address1/>
+    <postcode/>
+    <admins/>
+    <supporters>
+        <supporter>
+            <id>37</id>
+            <first_name>Gary</first_name>
+            <last_name>Garside</last_name>
+            <email>gary@goraise.co.uk</email>
+            <address1/>
+            <postcode/>
+        </supporter>
+        <supporter>
+            <id>38</id>
+            <first_name>Gary</first_name>
+            <last_name>Garside</last_name>
+            <email>gary.garside@goraise.co.uk</email>
+            <address1/>
+            <postcode/>
+        </supporter>
+    </supporters>
+</xml>
+```
+
+This endpoint retrieves a specific cause.
+
+### HTTP Request
+
+`GET https://rest.goraise.co.uk/causes/<ID>`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+ID | The unique ID of the cause
+
+## Create a New Cause
+
+```shell
+curl "https://rest.goraise.co.uk/causes"
+  -H "ApiKey: your_api_key"
+  -H "Content-Type: application/x-www-form-urlencoded"
+  -X POST
+  -d "name=NSPCC&description=Some information about the NSPCC&charity_number=123457680"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "name": "NSPCC",
+  "description": "Some information about the NSPCC",
+  "charity_number": "123457680",
+  "id": 75919
+}
+```
+
+> The above command returns XML structured like this:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<xml>
+    <name>NSPCC</name>
+    <description>Some information about the NSPCC</description>
+    <charity_number>123457680</charity_number>
+    <id>75919</id>
+</xml>
+```
+
+This endpoint creates and returns a new cause.
+
+<aside class="warning">The only required fields for creating a new cause are their name.</aside>
+
+### HTTP Request
+
+`POST https://rest.goraise.co.uk/causes`
+
+### Required Parameters
+
+Parameter | Description
+--------- | -----------
+NAME | The name of the good cause
+
+### Additional Attributes
+
+Parameter | Description
+--------- | -----------
+DESCRIPTION | Detailed description about the cause
+ADDRESS1 | The first line of the cause's address
+POSTCODE | The cause's postal code
+CHARITY_NUMBER | The registered charity number of the cause, if applicable
+
+## Update a Cause
+
+```shell
+curl "https://rest.goraise.co.uk/causes/75919"
+  -H "ApiKey: your_api_key"
+  -H "Content-Type: application/x-www-form-urlencoded"
+  -X PUT
+  -d "name=NSPCB&description=Updating the NSPCB description"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "id": 75919,
+  "name": "NSPCB",
+  "description": "Updating the NSPCB description",
+  "charity_number": "123457680",
+  "address1": null,
+  "postcode": null
+}
+```
+
+> The above command returns XML structured like this:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<xml>
+    <id>75919</id>
+    <name>NSPCB</name>
+    <description>Updating the NSPCB description</description>
+    <charity_number>123457680</charity_number>
+    <address1/>
+    <postcode/>
+</xml>
+```
+
+This endpoint updates and returns a cause with a specific ID.
+
+### HTTP Request
+
+`PUT https://rest.goraise.co.uk/causes/<ID>`
+
+### Required Parameters
+
+Parameter | Description
+--------- | -----------
+ID | The unique ID of the cause
+
+### Updatable Attributes
+
+Parameter | Description
+--------- | -----------
+NAME | The name of the cause
+DESCRIPTION | Detailed description about the cause
+ADDRESS1 | The first line of the cause's address
+POSTCODE | The cause's postal code
+CHARITY_NUMBER | The registered charity number of the cause, if applicable
+
+
+# Companies
+
+## Get All Companies
+
+```shell
+curl "https://rest.goraise.co.uk/companies"
+  -H "ApiKey: your_api_key"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "total": 427,
+  "per_page": 100,
+  "current_page": 1,
+  "last_page": 5,
+  "next_page_url": "https://rest.goraise.co.uk/companies?page=2",
+  "prev_page_url": null,
+  "from": 1,
+  "to": 100,
+  "data": [
+    {
+      "id": 1,
+      "name": "GoRaise",
+      "description": "Raise money for a good cause every time you shop online",
+      "address1": "",
+      "postcode": "",
+      "admins": [
+        {
+          "id": 38,
+          "first_name": "Gary",
+          "last_name": "Garside",
+          "email": "gary.garside@goraise.co.uk",
+          "address1": null,
+          "postcode": null
+        }
+      ],
+      "supporters": [
+        {
+          "id": 37,
+          "first_name": "Gary",
+          "last_name": "Garside",
+          "email": "gary@goraise.co.uk",
+          "address1": null,
+          "postcode": null
+        }
+      ]
+    }
+  ]
+}
+```
+
+> The above command returns XML structured like this:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<xml>
+    <total>427</total>
+    <per_page>100</per_page>
+    <current_page>1</current_page>
+    <last_page>5</last_page>
+    <next_page_url>https://rest.goraise.co.uk/companies?format=xml&amp;page=2</next_page_url>
+    <prev_page_url/>
+    <from>1</from>
+    <to>100</to>
+    <data>
+        <datum>
+            <id>1</id>
+            <name>GoRaise</name>
+            <description>Raise money for a good cause every time you shop online</description>
+            <address1/>
+            <postcode/>
+            <admins/>
+            <supporters>
+                <supporter>
+                    <id>37</id>
+                    <first_name>Gary</first_name>
+                    <last_name>Garside</last_name>
+                    <email>gary@goraise.co.uk</email>
+                    <address1/>
+                    <postcode/>
+                </supporter>
+                <supporter>
+                    <id>38</id>
+                    <first_name>Gary</first_name>
+                    <last_name>Garside</last_name>
+                    <email>gary.garside@goraise.co.uk</email>
+                    <address1/>
+                    <postcode/>
+                </supporter>
+            </supporters>
+        </datum>
+    </data>
+</xml>
+```
+
+This endpoint retrieves all companies.
+
+### HTTP Request
+
+`GET https://rest.goraise.co.uk/companies`
+
+### Query Parameters
+
+Parameter | Default | Description
+--------- | ------- | -----------
+per_page | 100 | How many results to pull back in one go. Can range from 10-250
+page | 1 | The paginated page of results you wish to view, as limited by the per_page variable
+order_by | id | How the results should be ordered
+
+## Get a Specific Company
+
+```shell
+curl "https://rest.goraise.co.uk/companies/1"
+  -H "ApiKey: your_api_key"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "id": 1,
+  "name": "GoRaise",
+  "description": "Raise money for a good cause every time you shop online",
+  "address1": "",
+  "postcode": "",
+  "admins": [
+    {
+      "id": 38,
+      "first_name": "Gary",
+      "last_name": "Garside",
+      "email": "gary.garside@goraise.co.uk",
+      "address1": null,
+      "postcode": null
+    }
+  ],
+  "supporters": [
+    {
+      "id": 37,
+      "first_name": "Gary",
+      "last_name": "Garside",
+      "email": "gary@goraise.co.uk",
+      "address1": null,
+      "postcode": null
+    }
+  ]
+}
+```
+
+> The above command returns XML structured like this:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<xml>
+    <id>1</id>
+    <name>GoRaise</name>
+    <description>Raise money for a good cause every time you shop online</description>
+    <address1/>
+    <postcode/>
+    <admins/>
+    <supporters>
+        <supporter>
+            <id>37</id>
+            <first_name>Gary</first_name>
+            <last_name>Garside</last_name>
+            <email>gary@goraise.co.uk</email>
+            <address1/>
+            <postcode/>
+        </supporter>
+        <supporter>
+            <id>38</id>
+            <first_name>Gary</first_name>
+            <last_name>Garside</last_name>
+            <email>gary.garside@goraise.co.uk</email>
+            <address1/>
+            <postcode/>
+        </supporter>
+    </supporters>
+</xml>
+```
+
+This endpoint retrieves a specific company.
+
+### HTTP Request
+
+`GET https://rest.goraise.co.uk/companies/<ID>`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+ID | The unique ID of the company
+
+## Create a New Company
+
+```shell
+curl "https://rest.goraise.co.uk/companies"
+  -H "ApiKey: your_api_key"
+  -H "Content-Type: application/x-www-form-urlencoded"
+  -X POST
+  -d "name=NSPCC&description=Some information about the NSPCC&charity_number=123457680"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "name": "NSPCC",
+  "description": "Some information about the NSPCC",
+  "charity_number": "123457680",
+  "id": 75919
+}
+```
+
+> The above command returns XML structured like this:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<xml>
+    <name>NSPCC</name>
+    <description>Some information about the NSPCC</description>
+    <charity_number>123457680</charity_number>
+    <id>75919</id>
+</xml>
+```
+
+This endpoint creates and returns a new company.
+
+<aside class="warning">The only required fields for creating a new company are their name.</aside>
+
+### HTTP Request
+
+`POST https://rest.goraise.co.uk/companies`
+
+### Required Parameters
+
+Parameter | Description
+--------- | -----------
+NAME | The name of the good company
+
+### Additional Attributes
+
+Parameter | Description
+--------- | -----------
+DESCRIPTION | Detailed description about the company
+ADDRESS1 | The first line of the company's address
+POSTCODE | The company's postal code
+CHARITY_NUMBER | The registered charity number of the company, if applicable
+
+## Update a Company
+
+```shell
+curl "https://rest.goraise.co.uk/companies/1"
+  -H "ApiKey: your_api_key"
+  -H "Content-Type: application/x-www-form-urlencoded"
+  -X PUT
+  -d "name=GoRaise&description=Updating the GoRaise description"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "id": 1,
+  "name": "GoRaise",
+  "description": "Updating the GoRaise description",
+  "charity_number": "123457680",
+  "address1": null,
+  "postcode": null
+}
+```
+
+> The above command returns XML structured like this:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<xml>
+    <id>1</id>
+    <name>GoRaise</name>
+    <description>Updating the GoRaise description</description>
+    <charity_number>123457680</charity_number>
+    <address1/>
+    <postcode/>
+</xml>
+```
+
+This endpoint updates and returns a company with a specific ID.
+
+### HTTP Request
+
+`PUT https://rest.goraise.co.uk/companies/<ID>`
+
+### Required Parameters
+
+Parameter | Description
+--------- | -----------
+ID | The unique ID of the company
+
+### Updatable Attributes
+
+Parameter | Description
+--------- | -----------
+NAME | The name of the company
+DESCRIPTION | Detailed description about the company
+ADDRESS1 | The first line of the company's address
+POSTCODE | The company's postal code
+CHARITY_NUMBER | The registered charity number of the company, if applicable
+
+
+# Challengers
+
+## Get All Challengers
+
+```shell
+curl "https://rest.goraise.co.uk/challengers"
+  -H "ApiKey: your_api_key"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "total": 427,
+  "per_page": 100,
+  "current_page": 1,
+  "last_page": 5,
+  "next_page_url": "https://rest.goraise.co.uk/challengers?page=2",
+  "prev_page_url": null,
+  "from": 1,
+  "to": 100,
+  "data": [
+    {
+      "id": 1,
+      "name": "Gary's Everest Climb",
+      "description": "Raising money for NSPCC by climbing Mt. Everest!",
+      "address1": "",
+      "postcode": "",
+      "admins": [
+        {
+          "id": 38,
+          "first_name": "Gary",
+          "last_name": "Garside",
+          "email": "gary.garside@goraise.co.uk",
+          "address1": null,
+          "postcode": null
+        }
+      ],
+      "supporters": [
+        {
+          "id": 37,
+          "first_name": "Gary",
+          "last_name": "Garside",
+          "email": "gary@goraise.co.uk",
+          "address1": null,
+          "postcode": null
+        }
+      ]
+    }
+  ]
+}
+```
+
+> The above command returns XML structured like this:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<xml>
+    <total>427</total>
+    <per_page>100</per_page>
+    <current_page>1</current_page>
+    <last_page>5</last_page>
+    <next_page_url>https://rest.goraise.co.uk/challengers?format=xml&amp;page=2</next_page_url>
+    <prev_page_url/>
+    <from>1</from>
+    <to>100</to>
+    <data>
+        <datum>
+            <id>1</id>
+            <name>Gary's Everest Climb</name>
+            <description>Raising money for NSPCC by climbing Mt. Everest!</description>
+            <address1/>
+            <postcode/>
+            <admins/>
+            <supporters>
+                <supporter>
+                    <id>37</id>
+                    <first_name>Gary</first_name>
+                    <last_name>Garside</last_name>
+                    <email>gary@goraise.co.uk</email>
+                    <address1/>
+                    <postcode/>
+                </supporter>
+                <supporter>
+                    <id>38</id>
+                    <first_name>Gary</first_name>
+                    <last_name>Garside</last_name>
+                    <email>gary.garside@goraise.co.uk</email>
+                    <address1/>
+                    <postcode/>
+                </supporter>
+            </supporters>
+        </datum>
+    </data>
+</xml>
+```
+
+This endpoint retrieves all challengers.
+
+### HTTP Request
+
+`GET https://rest.goraise.co.uk/challengers`
+
+### Query Parameters
+
+Parameter | Default | Description
+--------- | ------- | -----------
+per_page | 100 | How many results to pull back in one go. Can range from 10-250
+page | 1 | The paginated page of results you wish to view, as limited by the per_page variable
+order_by | id | How the results should be ordered
+
+## Get a Specific Challenger
+
+```shell
+curl "https://rest.goraise.co.uk/challengers/1"
+  -H "ApiKey: your_api_key"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "id": 1,
+  "name": "Gary's Everest Climb",
+  "description": "Raising money for NSPCC by climbing Mt. Everest!",
+  "address1": "",
+  "postcode": "",
+  "admins": [
+    {
+      "id": 38,
+      "first_name": "Gary",
+      "last_name": "Garside",
+      "email": "gary.garside@goraise.co.uk",
+      "address1": null,
+      "postcode": null
+    }
+  ],
+  "supporters": [
+    {
+      "id": 37,
+      "first_name": "Gary",
+      "last_name": "Garside",
+      "email": "gary@goraise.co.uk",
+      "address1": null,
+      "postcode": null
+    }
+  ]
+}
+```
+
+> The above command returns XML structured like this:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<xml>
+    <id>1</id>
+    <name>Gary's Everest Climb</name>
+    <description>Raising money for NSPCC by climbing Mt. Everest!</description>
+    <address1/>
+    <postcode/>
+    <admins/>
+    <supporters>
+        <supporter>
+            <id>37</id>
+            <first_name>Gary</first_name>
+            <last_name>Garside</last_name>
+            <email>gary@goraise.co.uk</email>
+            <address1/>
+            <postcode/>
+        </supporter>
+        <supporter>
+            <id>38</id>
+            <first_name>Gary</first_name>
+            <last_name>Garside</last_name>
+            <email>gary.garside@goraise.co.uk</email>
+            <address1/>
+            <postcode/>
+        </supporter>
+    </supporters>
+</xml>
+```
+
+This endpoint retrieves a specific challenger.
+
+### HTTP Request
+
+`GET https://rest.goraise.co.uk/challengers/<ID>`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+ID | The unique ID of the challenger
+
+## Create a New Challenger
+
+```shell
+curl "https://rest.goraise.co.uk/challengers"
+  -H "ApiKey: your_api_key"
+  -H "Content-Type: application/x-www-form-urlencoded"
+  -X POST
+  -d "name=Everest Climb&description=Some information about the climb"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "name": "Everest Climb",
+  "description": "Some information about the climb",
+  "id": 75919
+}
+```
+
+> The above command returns XML structured like this:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<xml>
+    <name>Everest Climb</name>
+    <description>Some information about the climb</description>
+    <id>75919</id>
+</xml>
+```
+
+This endpoint creates and returns a new challenger.
+
+<aside class="warning">The only required fields for creating a new challenger are their name.</aside>
+
+### HTTP Request
+
+`POST https://rest.goraise.co.uk/challengers`
+
+### Required Parameters
+
+Parameter | Description
+--------- | -----------
+NAME | The name of the good challenger
+
+### Additional Attributes
+
+Parameter | Description
+--------- | -----------
+DESCRIPTION | Detailed description about the challenger
+ADDRESS1 | The first line of the challenger's address
+POSTCODE | The challenger's postal code
+CHARITY_NUMBER | The registered charity number of the challenger, if applicable
+
+## Update a Challenger
+
+```shell
+curl "https://rest.goraise.co.uk/challengers/75919"
+  -H "ApiKey: your_api_key"
+  -H "Content-Type: application/x-www-form-urlencoded"
+  -X PUT
+  -d "name=Climb&description=Updating the climb description"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "id": 75919,
+  "name": "Climb",
+  "description": "Updating the climb description",
+  "address1": null,
+  "postcode": null
+}
+```
+
+> The above command returns XML structured like this:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<xml>
+    <id>75919</id>
+    <name>Climb</name>
+    <description>Updating the climb description</description>
+    <address1/>
+    <postcode/>
+</xml>
+```
+
+This endpoint updates and returns a challenger with a specific ID.
+
+### HTTP Request
+
+`PUT https://rest.goraise.co.uk/challengers/<ID>`
+
+### Required Parameters
+
+Parameter | Description
+--------- | -----------
+ID | The unique ID of the challenger
+
+### Updatable Attributes
+
+Parameter | Description
+--------- | -----------
+NAME | The name of the challenger
+DESCRIPTION | Detailed description about the challenger
+ADDRESS1 | The first line of the challenger's address
+POSTCODE | The challenger's postal code
+CHARITY_NUMBER | The registered charity number of the challenger, if applicable
+
+
+# Clicks
+
+## Get All Clicks
+
+```shell
+curl "https://rest.goraise.co.uk/clicks"
+  -H "ApiKey: your_api_key"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "total": 6372,
+  "per_page": 100,
+  "current_page": 1,
+  "last_page": 64,
+  "next_page_url": "https://rest.goraise.co.uk/clicks?page=2",
+  "prev_page_url": null,
+  "from": 1,
+  "to": 100,
+  "data": [
+    {
+      "id": 1,
+      "timestamp": "2015-04-01 09:58:24",
+      "retailer": {
+        "id": 331,
+        "name": "O2 Mobile Broadband",
+        "description": null,
+        "logo": null,
+        "terms": null,
+        "website_url": "shop.o2.co.uk",
+        "donation": null
+      },
+      "user": {
+        "id": 1,
+        "first_name": "Gary",
+        "last_name": "Garside",
+        "email": "gary@goraise.co.uk",
+        "address1": "",
+        "postcode": ""
+      }
+    }
+  ]
+}
+```
+
+> The above command returns XML structured like this:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<xml>
+    <total>6372</total>
+    <per_page>100</per_page>
+    <current_page>1</current_page>
+    <last_page>64</last_page>
+    <next_page_url>https://rest.goraise.co.uk/clicks?format=xml&amp;page=2</next_page_url>
+    <prev_page_url/>
+    <from>1</from>
+    <to>100</to>
+    <data>
+      <datum>
+          <id>1</id>
+          <timestamp>2015-04-01 09:58:24</timestamp>
+          <retailer>
+              <id>331</id>
+              <name>O2 Mobile Broadband</name>
+              <description/>
+              <logo/>
+              <terms/>
+              <website_url>shop.o2.co.uk</website_url>
+              <donation/>
+          </retailer>
+          <user>
+              <id>1</id>
+              <first_name>Gary</first_name>
+              <last_name>Garside</last_name>
+              <email>gary@goraise.co.uk</email>
+              <address1/>
+              <postcode/>
+          </user>
+      </datum>
+    </data>
+</xml>
+```
+
+This endpoint retrieves all clicks.
+
+### HTTP Request
+
+`GET https://rest.goraise.co.uk/clicks`
+
+### Query Parameters
+
+Parameter | Default | Description
+--------- | ------- | -----------
+per_page | 100 | How many results to pull back in one go. Can range from 10-250
+page | 1 | The paginated page of results you wish to view, as limited by the per_page variable
+order_by | id | How the results should be ordered
+
+## Get a Specific Click
+
+```shell
+curl "https://rest.goraise.co.uk/clicks/1"
+  -H "ApiKey: your_api_key"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "id": 1,
+  "timestamp": "2015-04-01 09:58:24",
+  "retailer": {
+    "id": 331,
+    "name": "O2 Mobile Broadband",
+    "description": null,
+    "logo": null,
+    "terms": null,
+    "website_url": "shop.o2.co.uk",
+    "donation": null
+  },
+  "user": {
+    "id": 1,
+    "first_name": "Gary",
+    "last_name": "Garside",
+    "email": "gary@goraise.co.uk",
+    "address1": "",
+    "postcode": ""
+  }
+}
+```
+
+> The above command returns XML structured like this:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<xml>
+  <id>1</id>
+  <timestamp>2015-04-01 09:58:24</timestamp>
+  <retailer>
+      <id>331</id>
+      <name>O2 Mobile Broadband</name>
+      <description/>
+      <logo/>
+      <terms/>
+      <website_url>shop.o2.co.uk</website_url>
+      <donation/>
+  </retailer>
+  <user>
+      <id>1</id>
+      <first_name>Gary</first_name>
+      <last_name>Garside</last_name>
+      <email>gary@goraise.co.uk</email>
+      <address1/>
+      <postcode/>
+  </user>
+</xml>
+```
+
+This endpoint retrieves a specific click.
+
+### HTTP Request
+
+`GET https://rest.goraise.co.uk/clicks/<ID>`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+ID | The unique ID of the click
+
+
+# Transactions
+
+## Get All Transactions
+
+```shell
+curl "https://rest.goraise.co.uk/transactions"
+  -H "ApiKey: your_api_key"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "total": 1087,
+  "per_page": 100,
+  "current_page": 1,
+  "last_page": 11,
+  "next_page_url": "https://rest.goraise.co.uk/transactions?page=2",
+  "prev_page_url": null,
+  "from": 1,
+  "to": 100,
+  "data": [
+    {
+      "id": 2996,
+      "revenue": "9.99",
+      "donation": "0.30",
+      "retailer": {
+        "id": 109,
+        "name": "Zavvi",
+        "description": "Enjoy a huge selection of entertainment including market leading prices on the latest release Games, accessories and console bundles. Not to mention a huge selection of music, film and more.",
+        "logo": "/images/retailers/logos/zavvi.png",
+        "terms": "Donations may only apply to the sale price and not include VAT, delivery and other such costs. Please do not use voucher codes from other websites as this may affect your donation.",
+        "website_url": "www.zavvi.com",
+        "donation": "3%"
+      },
+      "click": {
+        "id": 17,
+        "timestamp": "2015-04-01 12:22:21",
+        "user": {
+          "id": 7,
+          "first_name": "Gary",
+          "last_name": "Garside",
+          "email": "gary@goraise.co.uk",
+          "address1": "",
+          "postcode": ""
+        }
+      }
+    }
+  ]
+}
+```
+
+> The above command returns XML structured like this:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<xml>
+  <total>1087</total>
+  <per_page>100</per_page>
+  <current_page>1</current_page>
+  <last_page>11</last_page>
+  <next_page_url>https://rest.goraise.co.uk/transactions?format=xml&amp;page=2</next_page_url>
+  <prev_page_url/>
+  <from>1</from>
+  <to>100</to>
+  <data>
+    <datum>
+        <id>2996</id>
+        <revenue>9.99</revenue>
+        <donation>0.30</donation>
+        <retailer>
+            <id>109</id>
+            <name>Zavvi</name>
+            <description>Enjoy a huge selection of entertainment including market leading prices on the latest release Games, accessories and console bundles. Not to mention a huge selection of music, film and more.</description>
+            <logo>/images/retailers/logos/zavvi.png</logo>
+            <terms>Donations may only apply to the sale price and not include VAT, delivery and other such costs. Please do not use voucher codes from other websites as this may affect your donation.</terms>
+            <website_url>www.zavvi.com</website_url>
+            <donation>3%</donation>
+        </retailer>
+        <click>
+            <id>17</id>
+            <timestamp>2015-04-01 12:22:21</timestamp>
+            <user>
+                <id>7</id>
+                <first_name>Gary</first_name>
+                <last_name>Garside</last_name>
+                <email>gary@goraise.co.uk</email>
+                <address1/>
+                <postcode/>
+            </user>
+        </click>
+    </datum>
+  </data>
+</xml>
+```
+
+This endpoint retrieves all transactions.
+
+### HTTP Request
+
+`GET https://rest.goraise.co.uk/transactions`
+
+### Query Parameters
+
+Parameter | Default | Description
+--------- | ------- | -----------
+per_page | 100 | How many results to pull back in one go. Can range from 10-250
+page | 1 | The paginated page of results you wish to view, as limited by the per_page variable
+order_by | id | How the results should be ordered
+
+## Get a Specific Transaction
+
+```shell
+curl "https://rest.goraise.co.uk/transactions/1"
+  -H "ApiKey: your_api_key"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "id": 2996,
+  "revenue": "9.99",
+  "donation": "0.30",
+  "retailer": {
+    "id": 109,
+    "name": "Zavvi",
+    "description": "Enjoy a huge selection of entertainment including market leading prices on the latest release Games, accessories and console bundles. Not to mention a huge selection of music, film and more.",
+    "logo": "/images/retailers/logos/zavvi.png",
+    "terms": "Donations may only apply to the sale price and not include VAT, delivery and other such costs. Please do not use voucher codes from other websites as this may affect your donation.",
+    "website_url": "www.zavvi.com",
+    "donation": "3%"
+  },
+  "click": {
+    "id": 17,
+    "timestamp": "2015-04-01 12:22:21",
+    "user": {
+      "id": 7,
+      "first_name": "Gary",
+      "last_name": "Garside",
+      "email": "gary@goraise.co.uk",
+      "address1": "",
+      "postcode": ""
+    }
+  }
+}
+```
+
+> The above command returns XML structured like this:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<xml>
+  <id>2996</id>
+  <revenue>9.99</revenue>
+  <donation>0.30</donation>
+  <retailer>
+      <id>109</id>
+      <name>Zavvi</name>
+      <description>Enjoy a huge selection of entertainment including market leading prices on the latest release Games, accessories and console bundles. Not to mention a huge selection of music, film and more.</description>
+      <logo>/images/retailers/logos/zavvi.png</logo>
+      <terms>Donations may only apply to the sale price and not include VAT, delivery and other such costs. Please do not use voucher codes from other websites as this may affect your donation.</terms>
+      <website_url>www.zavvi.com</website_url>
+      <donation>3%</donation>
+  </retailer>
+  <click>
+      <id>17</id>
+      <timestamp>2015-04-01 12:22:21</timestamp>
+      <user>
+          <id>7</id>
+          <first_name>Gary</first_name>
+          <last_name>Garside</last_name>
+          <email>gary@goraise.co.uk</email>
+          <address1/>
+          <postcode/>
+      </user>
+  </click>
+</xml>
+```
+
+This endpoint retrieves a specific transaction.
+
+### HTTP Request
+
+`GET https://rest.goraise.co.uk/transactions/<ID>`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+ID | The unique ID of the transaction
