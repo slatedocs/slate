@@ -564,6 +564,9 @@ GET /datasets/{dataset_id}/pk/ HTTP/1.1
 ```r
 ```
 ```python
+>>> # "ds" is dataset via pycrunch
+>>> ds.pk.body.pk
+['0000001']
 ```
 ```json{
 {
@@ -593,6 +596,10 @@ Content-Length: 15
 ```http
 HTTP/1.1 204 No Content
 ```
+```python
+>>> # "ds" is dataset via pycrunch
+>>> ds.pk.post({'pk':['age']})
+```
 
 `POST /datasets/{dataset_id}/pk/`
 
@@ -612,6 +619,8 @@ POSTed list may not contain more than one variable id/alias.
 ```r
 ```
 ```python
+>>> # "ds" is dataset via pycrunch
+>>> ds.pk.delete()
 ```
 
 `DELETE /datasets/{dataset_id}/pk/`
