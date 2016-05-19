@@ -110,7 +110,7 @@
       <div id="toc">
       </div>
         <ul class="toc-footer">
-            <li><a href='https://www.goraise.co.uk/contact'>Sign Up for a Developer Key</a></li>
+            <li><a href='https://www.goraise.co.uk/contact'>Sign Up for a Developer API Key</a></li>
             <li><a href='https://github.com/garygarside/slate'>Documentation Powered by Slate</a></li>
         </ul>
     </div>
@@ -132,78 +132,107 @@
 </blockquote>
 <pre class="highlight shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
 curl <span class="s2">"api_endpoint_here"</span>
-  -H <span class="s2">"Authorization: your_token"</span>
+  -H <span class="s2">"ApiKey: your_api_key"</span>
 </code></pre>
 
 <blockquote>
-<p>Make sure to replace <code class="prettyprint">your_token</code> with your API key.</p>
+<p>Make sure to replace <code class="prettyprint">your_api_key</code> with your API key.</p>
 </blockquote>
 
 <p>GoRaise uses API keys to allow access to the API. You can request a new GoRaise API key by contacting <a href="https://www.goraise.co.uk/contact">our API team</a>.</p>
 
 <p>GoRaise expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
 
-<p><code class="prettyprint">Authorization: your_token</code></p>
+<p><code class="prettyprint">ApiKey: your_api_key</code></p>
 
 <aside class="notice">
-You must replace <code>your_token</code> with your personal API key.
+You must replace <code>your_api_key</code> with your personal API key.
 </aside>
 
 <h1 id="retailers">Retailers</h1>
 
 <h2 id="get-all-retailers">Get All Retailers</h2>
-<pre class="highlight shell"><code>curl <span class="s2">"https://api.goraise.co.uk/rest/retailers"</span>
-  -H <span class="s2">"Authorization: your_token"</span>
+<pre class="highlight shell"><code>curl <span class="s2">"https://rest.goraise.co.uk/retailers"</span>
+  -H <span class="s2">"ApiKey: your_api_key"</span>
 </code></pre>
 
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"counts"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"start"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"limit"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">2703</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="nt">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+  </span><span class="nt">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">2703</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"per_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"current_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"last_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">28</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"next_page_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://rest.goraise.co.uk/retailers?page=2"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"prev_page_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"from"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"to"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1166"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"(IS) Interserver Webhosting and VPS"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">84</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Guernsey Travel"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"shortname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"isinterserverwebhostingandvps"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"logo"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"rate_highest_value"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"rate_highest_type"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"featured"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"featured_order"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"website_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.interserver.net"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"domain_aliases"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"quality_score"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+      </span><span class="nt">"terms"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"website_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"www.guernseytravel.com"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"donation"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1121"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"(s) Strikingly"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">85</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tickettree.com"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"shortname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sstrikingly"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"logo"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"rate_highest_value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"rate_highest_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"percent"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"featured"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"featured_order"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"website_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.strikingly.com/"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"domain_aliases"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"quality_score"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+      </span><span class="nt">"terms"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"website_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"www.tickettree.com"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"donation"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
+<blockquote>
+<p>The above command returns XML structured like this:</p>
+</blockquote>
+<pre class="highlight xml"><code><span class="cp">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
+<span class="nt">&lt;xml&gt;</span>
+    <span class="nt">&lt;total&gt;</span>2703<span class="nt">&lt;/total&gt;</span>
+    <span class="nt">&lt;per_page&gt;</span>100<span class="nt">&lt;/per_page&gt;</span>
+    <span class="nt">&lt;current_page&gt;</span>1<span class="nt">&lt;/current_page&gt;</span>
+    <span class="nt">&lt;last_page&gt;</span>28<span class="nt">&lt;/last_page&gt;</span>
+    <span class="nt">&lt;next_page_url&gt;</span>https://rest.goraise.co.uk/retailers?format=xml<span class="ni">&amp;amp;</span>page=2<span class="nt">&lt;/next_page_url&gt;</span>
+    <span class="nt">&lt;prev_page_url/&gt;</span>
+    <span class="nt">&lt;from&gt;</span>1<span class="nt">&lt;/from&gt;</span>
+    <span class="nt">&lt;to&gt;</span>100<span class="nt">&lt;/to&gt;</span>
+    <span class="nt">&lt;data&gt;</span>
+        <span class="nt">&lt;datum&gt;</span>
+            <span class="nt">&lt;id&gt;</span>102<span class="nt">&lt;/id&gt;</span>
+            <span class="nt">&lt;name&gt;</span>Yellow Moon<span class="nt">&lt;/name&gt;</span>
+            <span class="nt">&lt;description&gt;</span>The Yellow Moon website offers hundreds of great toys, educational games, craft and seasonal products for your family to create, learn and have fun. There's FREE UK mainland delivery on all orders over £50.<span class="nt">&lt;/description&gt;</span>
+            <span class="nt">&lt;logo&gt;</span>/images/retailers/logos/yellowmoon.png<span class="nt">&lt;/logo&gt;</span>
+            <span class="nt">&lt;terms&gt;</span>Donations may only apply to the sale price and not include VAT, delivery and other such costs. Please do not use voucher codes from other websites as this may affect your donation.<span class="nt">&lt;/terms&gt;</span>
+            <span class="nt">&lt;website_url&gt;</span>www.yellowmoon.org.uk<span class="nt">&lt;/website_url&gt;</span>
+            <span class="nt">&lt;donation&gt;</span>1%<span class="nt">&lt;/donation&gt;</span>
+        <span class="nt">&lt;/datum&gt;</span>
+        <span class="nt">&lt;datum&gt;</span>
+            <span class="nt">&lt;id&gt;</span>109<span class="nt">&lt;/id&gt;</span>
+            <span class="nt">&lt;name&gt;</span>Zavvi<span class="nt">&lt;/name&gt;</span>
+            <span class="nt">&lt;description&gt;</span>Enjoy a huge selection of entertainment including market leading prices on the latest release Games, accessories and console bundles. Not to mention a huge selection of music, film and more.<span class="nt">&lt;/description&gt;</span>
+            <span class="nt">&lt;logo&gt;</span>/images/retailers/logos/zavvi.png<span class="nt">&lt;/logo&gt;</span>
+            <span class="nt">&lt;terms&gt;</span>Donations may only apply to the sale price and not include VAT, delivery and other such costs. Please do not use voucher codes from other websites as this may affect your donation.<span class="nt">&lt;/terms&gt;</span>
+            <span class="nt">&lt;website_url&gt;</span>www.zavvi.com<span class="nt">&lt;/website_url&gt;</span>
+            <span class="nt">&lt;donation&gt;</span>3%<span class="nt">&lt;/donation&gt;</span>
+        <span class="nt">&lt;/datum&gt;</span>
+       <span class="nt">&lt;/datum&gt;</span>
+    <span class="nt">&lt;/data&gt;</span>
+<span class="nt">&lt;/xml&gt;</span>
+</code></pre>
+
 <p>This endpoint retrieves all retailers.</p>
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">GET https://api.goraise.co.uk/rest/retailers</code></p>
+<p><code class="prettyprint">GET https://rest.goraise.co.uk/retailers</code></p>
 
 <h3 id="query-parameters">Query Parameters</h3>
 
@@ -215,53 +244,55 @@ You must replace <code>your_token</code> with your personal API key.
 </tr>
 </thead><tbody>
 <tr>
-<td>start</td>
-<td>0</td>
-<td>The initial search offset of the results</td>
-</tr>
-<tr>
-<td>limit</td>
+<td>per_page</td>
 <td>100</td>
-<td>How many results to pull back in one go. Can range from 1-200</td>
+<td>How many results to pull back in one go. Can range from 10-250</td>
 </tr>
 <tr>
-<td>name</td>
-<td>false</td>
-<td>Filter retailers by their name. Omit this to bring back all retailers</td>
+<td>page</td>
+<td>1</td>
+<td>The paginated page of results you wish to view, as limited by the per_page variable</td>
+</tr>
+<tr>
+<td>order_by</td>
+<td>id</td>
+<td>How the results should be ordered</td>
 </tr>
 </tbody></table>
 
 <h2 id="get-a-specific-retailer">Get a Specific Retailer</h2>
-<pre class="highlight shell"><code>curl <span class="s2">"https://api.goraise.co.uk/rest/retailers/1121"</span>
-  -H <span class="s2">"Authorization: your_token"</span>
+<pre class="highlight shell"><code>curl <span class="s2">"https://rest.goraise.co.uk/retailers/102"</span>
+  -H <span class="s2">"ApiKey: your_api_key"</span>
 </code></pre>
 
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"counts"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="nt">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1121"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"(s) Strikingly"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"shortname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sstrikingly"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"logo"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"rate_highest_value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"rate_highest_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"percent"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"featured"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"featured_order"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"website_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.strikingly.com/"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"domain_aliases"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"quality_score"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">]</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">102</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Yellow Moon"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The Yellow Moon website offers hundreds of great toys, educational games, craft and seasonal products for your family to create, learn and have fun. There's FREE UK mainland delivery on all orders over £50."</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"logo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"images/retailers/logos/yellowmoon.png"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"terms"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Donations may only apply to the sale price and not include VAT, delivery and other such costs. Please do not use voucher codes from other websites as this may affect your donation."</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"website_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"www.yellowmoon.org.uk"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"donation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1%"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
+
+<blockquote>
+<p>The above command returns XML structured like this:</p>
+</blockquote>
+<pre class="highlight xml"><code><span class="cp">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
+<span class="nt">&lt;xml&gt;</span>
+    <span class="nt">&lt;id&gt;</span>102<span class="nt">&lt;/id&gt;</span>
+    <span class="nt">&lt;name&gt;</span>Yellow Moon<span class="nt">&lt;/name&gt;</span>
+    <span class="nt">&lt;description&gt;</span>The Yellow Moon website offers hundreds of great toys, educational games, craft and seasonal products for your family to create, learn and have fun. There's FREE UK mainland delivery on all orders over £50.<span class="nt">&lt;/description&gt;</span>
+    <span class="nt">&lt;logo&gt;</span>/images/retailers/logos/yellowmoon.png<span class="nt">&lt;/logo&gt;</span>
+    <span class="nt">&lt;terms&gt;</span>Donations may only apply to the sale price and not include VAT, delivery and other such costs. Please do not use voucher codes from other websites as this may affect your donation.<span class="nt">&lt;/terms&gt;</span>
+    <span class="nt">&lt;website_url&gt;</span>www.yellowmoon.org.uk<span class="nt">&lt;/website_url&gt;</span>
+    <span class="nt">&lt;donation&gt;</span>1%<span class="nt">&lt;/donation&gt;</span>
+<span class="nt">&lt;/xml&gt;</span>
+</code></pre>
 
 <p>This endpoint retrieves a specific retailer.</p>
 
@@ -269,7 +300,7 @@ You must replace <code>your_token</code> with your personal API key.
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">GET https://api.goraise.co.uk/rest/retailers/&lt;ID&gt;</code></p>
+<p><code class="prettyprint">GET https://rest.goraise.co.uk/retailers/&lt;ID&gt;</code></p>
 
 <h3 id="url-parameters">URL Parameters</h3>
 
@@ -288,42 +319,67 @@ You must replace <code>your_token</code> with your personal API key.
 <h1 id="users">Users</h1>
 
 <h2 id="get-all-users">Get All Users</h2>
-<pre class="highlight shell"><code>curl <span class="s2">"https://api.goraise.co.uk/rest/users"</span>
-  -H <span class="s2">"Authorization: your_token"</span>
+<pre class="highlight shell"><code>curl <span class="s2">"https://rest.goraise.co.uk/users"</span>
+  -H <span class="s2">"ApiKey: your_api_key"</span>
 </code></pre>
 
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"counts"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="nt">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+  </span><span class="nt">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">1889</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"per_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"current_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"last_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">19</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"next_page_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://rest.goraise.co.uk/users?page=2"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"prev_page_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"from"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"to"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
       </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Gary"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Garside"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gary@goraise.co.uk"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"date_joined"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1970-01-01 00:00:00"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tom"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tom@goraise.co.uk"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"date_joined"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1970-01-01 00:00:00"</span><span class="w">
+      </span><span class="nt">"address1"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"postcode"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
+<blockquote>
+<p>The above command returns XML structured like this:</p>
+</blockquote>
+<pre class="highlight xml"><code><span class="cp">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
+<span class="nt">&lt;xml&gt;</span>
+    <span class="nt">&lt;total&gt;</span>1889<span class="nt">&lt;/total&gt;</span>
+    <span class="nt">&lt;per_page&gt;</span>100<span class="nt">&lt;/per_page&gt;</span>
+    <span class="nt">&lt;current_page&gt;</span>1<span class="nt">&lt;/current_page&gt;</span>
+    <span class="nt">&lt;last_page&gt;</span>19<span class="nt">&lt;/last_page&gt;</span>
+    <span class="nt">&lt;next_page_url&gt;</span>https://rest.goraise.co.uk/users?format=xml<span class="ni">&amp;amp;</span>page=2<span class="nt">&lt;/next_page_url&gt;</span>
+    <span class="nt">&lt;prev_page_url/&gt;</span>
+    <span class="nt">&lt;from&gt;</span>1<span class="nt">&lt;/from&gt;</span>
+    <span class="nt">&lt;to&gt;</span>100<span class="nt">&lt;/to&gt;</span>
+    <span class="nt">&lt;data&gt;</span>
+        <span class="nt">&lt;datum&gt;</span>
+            <span class="nt">&lt;id&gt;</span>8<span class="nt">&lt;/id&gt;</span>
+            <span class="nt">&lt;first_name&gt;</span>Gary<span class="nt">&lt;/first_name&gt;</span>
+            <span class="nt">&lt;last_name&gt;</span>Garside<span class="nt">&lt;/last_name&gt;</span>
+            <span class="nt">&lt;email&gt;</span>gary@goraise.co.uk<span class="nt">&lt;/email&gt;</span>
+            <span class="nt">&lt;address1/&gt;</span>
+            <span class="nt">&lt;postcode/&gt;</span>
+        <span class="nt">&lt;/datum&gt;</span>
+      <span class="nt">&lt;/datum&gt;</span>
+    <span class="nt">&lt;/data&gt;</span>
+<span class="nt">&lt;/xml&gt;</span>
+</code></pre>
+
 <p>This endpoint retrieves all users.</p>
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">GET https://api.goraise.co.uk/rest/users</code></p>
+<p><code class="prettyprint">GET https://rest.goraise.co.uk/users</code></p>
 
 <h3 id="query-parameters">Query Parameters</h3>
 
@@ -335,49 +391,59 @@ You must replace <code>your_token</code> with your personal API key.
 </tr>
 </thead><tbody>
 <tr>
-<td>start</td>
-<td>0</td>
-<td>The initial search offset of the results</td>
+<td>per_page</td>
+<td>100</td>
+<td>How many results to pull back in one go. Can range from 10-250</td>
 </tr>
 <tr>
-<td>limit</td>
-<td>100</td>
-<td>How many results to pull back in one go. Can range from 1-200</td>
+<td>page</td>
+<td>1</td>
+<td>The paginated page of results you wish to view, as limited by the per_page variable</td>
+</tr>
+<tr>
+<td>order_by</td>
+<td>id</td>
+<td>How the results should be ordered</td>
 </tr>
 </tbody></table>
 
 <h2 id="get-a-specific-user">Get a Specific User</h2>
-<pre class="highlight shell"><code>curl <span class="s2">"https://api.goraise.co.uk/rest/users/gary%40goraise.co.uk"</span>
-  -H <span class="s2">"Authorization: your_token"</span>
+<pre class="highlight shell"><code>curl <span class="s2">"https://rest.goraise.co.uk/users/8"</span>
+  -H <span class="s2">"ApiKey: your_api_key"</span>
 </code></pre>
 
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"counts"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="nt">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Gary"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gary@goraise.co.uk"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"date_joined"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1970-01-01 00:00:00"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">]</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Gary"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Garside"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gary@goraise.co.uk"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"address1"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"postcode"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>This endpoint retrieves a specific user.</p>
+<blockquote>
+<p>The above command returns XML structured like this:</p>
+</blockquote>
+<pre class="highlight xml"><code><span class="cp">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
+<span class="nt">&lt;xml&gt;</span>
+    <span class="nt">&lt;id&gt;</span>8<span class="nt">&lt;/id&gt;</span>
+    <span class="nt">&lt;first_name&gt;</span>Gary<span class="nt">&lt;/first_name&gt;</span>
+    <span class="nt">&lt;last_name&gt;</span>Garside<span class="nt">&lt;/last_name&gt;</span>
+    <span class="nt">&lt;email&gt;</span>gary@goraise.co.uk<span class="nt">&lt;/email&gt;</span>
+    <span class="nt">&lt;address1/&gt;</span>
+    <span class="nt">&lt;postcode/&gt;</span>
+<span class="nt">&lt;/xml&gt;</span>
+</code></pre>
 
-<aside class="warning">A user&rsquo;s unique ID is their email address. Make sure you encode the *@* symbol as *%40*!</aside>
+<p>This endpoint retrieves a specific user.</p>
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">GET https://api.goraise.co.uk/rest/users/&lt;EMAIL&gt;</code></p>
+<p><code class="prettyprint">GET https://rest.goraise.co.uk/users/&lt;ID&gt;</code></p>
 
 <h3 id="url-parameters">URL Parameters</h3>
 
@@ -388,44 +454,45 @@ You must replace <code>your_token</code> with your personal API key.
 </tr>
 </thead><tbody>
 <tr>
-<td>EMAIL</td>
-<td>The unique email address of the user (with an encoded <strong>@</strong> symbol as <strong>%40</strong>)</td>
+<td>ID</td>
+<td>The unique ID of the user</td>
 </tr>
 </tbody></table>
 
 <h2 id="create-a-new-user">Create a New User</h2>
-<pre class="highlight shell"><code>curl <span class="s2">"https://api.goraise.co.uk/rest/users"</span>
-  -H <span class="s2">"Authorization: your_token; Content-Type: application/json"</span>
+<pre class="highlight shell"><code>curl <span class="s2">"https://rest.goraise.co.uk/users"</span>
+  -H <span class="s2">"ApiKey: your_api_key"</span>
+  -H <span class="s2">"Content-Type: application/x-www-form-urlencoded"</span>
   -X POST
-  -d <span class="s1">'{"email":"joe@goraise.co.uk","password":"abcxyz", "first_name": "Joe", "last_name": "Bloggs"}'</span>
+  -d <span class="s2">"email=gary@goraise.co.uk&amp;password=abcxyz&amp;first_name=Gary&amp;last_name=Garside"</span>
 </code></pre>
 
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Joe"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bloggs"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"joe@goraise.co.uk"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"date_joined"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1970-01-01 00:00:00"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">]</span><span class="w">
+  </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gary@goraise.co.uk"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">99</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
+
+<blockquote>
+<p>The above command returns XML structured like this:</p>
+</blockquote>
+<pre class="highlight xml"><code><span class="cp">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
+<span class="nt">&lt;xml&gt;</span>
+    <span class="nt">&lt;email&gt;</span>gary@goraise.co.uk<span class="nt">&lt;/email&gt;</span>
+    <span class="nt">&lt;id&gt;</span>99<span class="nt">&lt;/id&gt;</span>
+<span class="nt">&lt;/xml&gt;</span>
+</code></pre>
 
 <p>This endpoint creates and returns a new user.</p>
 
 <aside class="warning">The only required fields for creating a new user are their email address and password.</aside>
 
-<aside class="info">If a user&rsquo;s email already exists, that user will be returned</aside>
-
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">POST https://api.goraise.co.uk/rest/users</code></p>
+<p><code class="prettyprint">POST https://rest.goraise.co.uk/users</code></p>
 
 <h3 id="required-parameters">Required Parameters</h3>
 
@@ -468,6 +535,1639 @@ You must replace <code>your_token</code> with your personal API key.
 <tr>
 <td>POSTCODE</td>
 <td>The user&rsquo;s postal code</td>
+</tr>
+</tbody></table>
+
+<h2 id="update-a-user">Update a User</h2>
+<pre class="highlight shell"><code>curl <span class="s2">"https://rest.goraise.co.uk/users/99"</span>
+  -H <span class="s2">"ApiKey: your_api_key"</span>
+  -H <span class="s2">"Content-Type: application/x-www-form-urlencoded"</span>
+  -X PUT
+  -d <span class="s2">"first_name=Gary&amp;last_name=Garside"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">99</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Gary"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Garside"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gary@goraise.co.uk"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"address1"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"postcode"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>The above command returns XML structured like this:</p>
+</blockquote>
+<pre class="highlight xml"><code><span class="cp">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
+<span class="nt">&lt;xml&gt;</span>
+    <span class="nt">&lt;id&gt;</span>99<span class="nt">&lt;/id&gt;</span>
+    <span class="nt">&lt;first_name&gt;</span>Gary<span class="nt">&lt;/first_name&gt;</span>
+    <span class="nt">&lt;last_name&gt;</span>Garside<span class="nt">&lt;/last_name&gt;</span>
+    <span class="nt">&lt;email&gt;</span>gary@goraise.co.uk<span class="nt">&lt;/email&gt;</span>
+    <span class="nt">&lt;address1/&gt;</span>
+    <span class="nt">&lt;postcode/&gt;</span>
+<span class="nt">&lt;/xml&gt;</span>
+</code></pre>
+
+<p>This endpoint creates and returns a new user.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">PUT https://rest.goraise.co.uk/users/&lt;ID&gt;</code></p>
+
+<h3 id="required-parameters">Required Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ID</td>
+<td>The unique ID of the user</td>
+</tr>
+</tbody></table>
+
+<h3 id="updatable-attributes">Updatable Attributes</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>EMAIL</td>
+<td>The user&rsquo;s email address. Must be a valid email</td>
+</tr>
+<tr>
+<td>PASSWORD</td>
+<td>Must be 6 characters long</td>
+</tr>
+<tr>
+<td>FIRST_NAME</td>
+<td>The user&rsquo;s first name</td>
+</tr>
+<tr>
+<td>LAST_NAME</td>
+<td>The user&rsquo;s surname</td>
+</tr>
+<tr>
+<td>ADDRESS1</td>
+<td>The first line of the user&rsquo;s address</td>
+</tr>
+<tr>
+<td>POSTCODE</td>
+<td>The user&rsquo;s postal code</td>
+</tr>
+</tbody></table>
+
+<h1 id="causes">Causes</h1>
+
+<h2 id="get-all-causes">Get All Causes</h2>
+<pre class="highlight shell"><code>curl <span class="s2">"https://rest.goraise.co.uk/causes"</span>
+  -H <span class="s2">"ApiKey: your_api_key"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">427</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"per_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"current_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"last_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"next_page_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://rest.goraise.co.uk/causes?page=2"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"prev_page_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"from"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"to"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">51</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Gary's Soccer Club"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;p&gt;&lt;b&gt;Help us raise funds for the Gary's Soccer club, a Sunday league side trying to make enough funds to build the new club house&lt;/b&gt;&lt;/p&gt;"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"address1"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"postcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"admins"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">38</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Gary"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Garside"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gary.garside@goraise.co.uk"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"address1"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"postcode"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nt">"supporters"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">37</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Gary"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Garside"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gary@goraise.co.uk"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"address1"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"postcode"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>The above command returns XML structured like this:</p>
+</blockquote>
+<pre class="highlight xml"><code><span class="cp">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
+<span class="nt">&lt;xml&gt;</span>
+    <span class="nt">&lt;total&gt;</span>427<span class="nt">&lt;/total&gt;</span>
+    <span class="nt">&lt;per_page&gt;</span>100<span class="nt">&lt;/per_page&gt;</span>
+    <span class="nt">&lt;current_page&gt;</span>1<span class="nt">&lt;/current_page&gt;</span>
+    <span class="nt">&lt;last_page&gt;</span>5<span class="nt">&lt;/last_page&gt;</span>
+    <span class="nt">&lt;next_page_url&gt;</span>https://rest.goraise.co.uk/causes?format=xml<span class="ni">&amp;amp;</span>page=2<span class="nt">&lt;/next_page_url&gt;</span>
+    <span class="nt">&lt;prev_page_url/&gt;</span>
+    <span class="nt">&lt;from&gt;</span>1<span class="nt">&lt;/from&gt;</span>
+    <span class="nt">&lt;to&gt;</span>100<span class="nt">&lt;/to&gt;</span>
+    <span class="nt">&lt;data&gt;</span>
+        <span class="nt">&lt;datum&gt;</span>
+            <span class="nt">&lt;id&gt;</span>51<span class="nt">&lt;/id&gt;</span>
+            <span class="nt">&lt;name&gt;</span>Gary's Soccer Club<span class="nt">&lt;/name&gt;</span>
+            <span class="nt">&lt;description&gt;</span><span class="ni">&amp;lt;</span>p<span class="ni">&amp;gt;&amp;lt;</span>b<span class="ni">&amp;gt;</span>Help us raise funds for the Gary's Soccer club, a Sunday league side trying to make enough funds to build the new club house<span class="ni">&amp;lt;</span>/b<span class="ni">&amp;gt;&amp;lt;</span>/p<span class="ni">&amp;gt;</span><span class="nt">&lt;/description&gt;</span>
+            <span class="nt">&lt;address1/&gt;</span>
+            <span class="nt">&lt;postcode/&gt;</span>
+            <span class="nt">&lt;admins/&gt;</span>
+            <span class="nt">&lt;supporters&gt;</span>
+                <span class="nt">&lt;supporter&gt;</span>
+                    <span class="nt">&lt;id&gt;</span>37<span class="nt">&lt;/id&gt;</span>
+                    <span class="nt">&lt;first_name&gt;</span>Gary<span class="nt">&lt;/first_name&gt;</span>
+                    <span class="nt">&lt;last_name&gt;</span>Garside<span class="nt">&lt;/last_name&gt;</span>
+                    <span class="nt">&lt;email&gt;</span>gary@goraise.co.uk<span class="nt">&lt;/email&gt;</span>
+                    <span class="nt">&lt;address1/&gt;</span>
+                    <span class="nt">&lt;postcode/&gt;</span>
+                <span class="nt">&lt;/supporter&gt;</span>
+                <span class="nt">&lt;supporter&gt;</span>
+                    <span class="nt">&lt;id&gt;</span>38<span class="nt">&lt;/id&gt;</span>
+                    <span class="nt">&lt;first_name&gt;</span>Gary<span class="nt">&lt;/first_name&gt;</span>
+                    <span class="nt">&lt;last_name&gt;</span>Garside<span class="nt">&lt;/last_name&gt;</span>
+                    <span class="nt">&lt;email&gt;</span>gary.garside@goraise.co.uk<span class="nt">&lt;/email&gt;</span>
+                    <span class="nt">&lt;address1/&gt;</span>
+                    <span class="nt">&lt;postcode/&gt;</span>
+                <span class="nt">&lt;/supporter&gt;</span>
+            <span class="nt">&lt;/supporters&gt;</span>
+        <span class="nt">&lt;/datum&gt;</span>
+    <span class="nt">&lt;/data&gt;</span>
+<span class="nt">&lt;/xml&gt;</span>
+</code></pre>
+
+<p>This endpoint retrieves all causes.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://rest.goraise.co.uk/causes</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>per_page</td>
+<td>100</td>
+<td>How many results to pull back in one go. Can range from 10-250</td>
+</tr>
+<tr>
+<td>page</td>
+<td>1</td>
+<td>The paginated page of results you wish to view, as limited by the per_page variable</td>
+</tr>
+<tr>
+<td>order_by</td>
+<td>id</td>
+<td>How the results should be ordered</td>
+</tr>
+</tbody></table>
+
+<h2 id="get-a-specific-cause">Get a Specific Cause</h2>
+<pre class="highlight shell"><code>curl <span class="s2">"https://rest.goraise.co.uk/causes/51"</span>
+  -H <span class="s2">"ApiKey: your_api_key"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">51</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Gary's Soccer Club"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;p&gt;&lt;b&gt;Help us raise funds for the Gary's Soccer club, a Sunday league side trying to make enough funds to build the new club house&lt;/b&gt;&lt;/p&gt;"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"address1"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"postcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"admins"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">38</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Gary"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Garside"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gary.garside@goraise.co.uk"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"address1"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"postcode"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nt">"supporters"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">37</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Gary"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Garside"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gary@goraise.co.uk"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"address1"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"postcode"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>The above command returns XML structured like this:</p>
+</blockquote>
+<pre class="highlight xml"><code><span class="cp">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
+<span class="nt">&lt;xml&gt;</span>
+    <span class="nt">&lt;id&gt;</span>51<span class="nt">&lt;/id&gt;</span>
+    <span class="nt">&lt;name&gt;</span>Gary's Soccer Club<span class="nt">&lt;/name&gt;</span>
+    <span class="nt">&lt;description&gt;</span><span class="ni">&amp;lt;</span>p<span class="ni">&amp;gt;&amp;lt;</span>b<span class="ni">&amp;gt;</span>Help us raise funds for the Gary's Soccer club, a Sunday league side trying to make enough funds to build the new club house<span class="ni">&amp;lt;</span>/b<span class="ni">&amp;gt;&amp;lt;</span>/p<span class="ni">&amp;gt;</span><span class="nt">&lt;/description&gt;</span>
+    <span class="nt">&lt;address1/&gt;</span>
+    <span class="nt">&lt;postcode/&gt;</span>
+    <span class="nt">&lt;admins/&gt;</span>
+    <span class="nt">&lt;supporters&gt;</span>
+        <span class="nt">&lt;supporter&gt;</span>
+            <span class="nt">&lt;id&gt;</span>37<span class="nt">&lt;/id&gt;</span>
+            <span class="nt">&lt;first_name&gt;</span>Gary<span class="nt">&lt;/first_name&gt;</span>
+            <span class="nt">&lt;last_name&gt;</span>Garside<span class="nt">&lt;/last_name&gt;</span>
+            <span class="nt">&lt;email&gt;</span>gary@goraise.co.uk<span class="nt">&lt;/email&gt;</span>
+            <span class="nt">&lt;address1/&gt;</span>
+            <span class="nt">&lt;postcode/&gt;</span>
+        <span class="nt">&lt;/supporter&gt;</span>
+        <span class="nt">&lt;supporter&gt;</span>
+            <span class="nt">&lt;id&gt;</span>38<span class="nt">&lt;/id&gt;</span>
+            <span class="nt">&lt;first_name&gt;</span>Gary<span class="nt">&lt;/first_name&gt;</span>
+            <span class="nt">&lt;last_name&gt;</span>Garside<span class="nt">&lt;/last_name&gt;</span>
+            <span class="nt">&lt;email&gt;</span>gary.garside@goraise.co.uk<span class="nt">&lt;/email&gt;</span>
+            <span class="nt">&lt;address1/&gt;</span>
+            <span class="nt">&lt;postcode/&gt;</span>
+        <span class="nt">&lt;/supporter&gt;</span>
+    <span class="nt">&lt;/supporters&gt;</span>
+<span class="nt">&lt;/xml&gt;</span>
+</code></pre>
+
+<p>This endpoint retrieves a specific cause.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://rest.goraise.co.uk/causes/&lt;ID&gt;</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ID</td>
+<td>The unique ID of the cause</td>
+</tr>
+</tbody></table>
+
+<h2 id="create-a-new-cause">Create a New Cause</h2>
+<pre class="highlight shell"><code>curl <span class="s2">"https://rest.goraise.co.uk/causes"</span>
+  -H <span class="s2">"ApiKey: your_api_key"</span>
+  -H <span class="s2">"Content-Type: application/x-www-form-urlencoded"</span>
+  -X POST
+  -d <span class="s2">"name=NSPCC&amp;description=Some information about the NSPCC&amp;charity_number=123457680"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NSPCC"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Some information about the NSPCC"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"charity_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123457680"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">75919</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>The above command returns XML structured like this:</p>
+</blockquote>
+<pre class="highlight xml"><code><span class="cp">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
+<span class="nt">&lt;xml&gt;</span>
+    <span class="nt">&lt;name&gt;</span>NSPCC<span class="nt">&lt;/name&gt;</span>
+    <span class="nt">&lt;description&gt;</span>Some information about the NSPCC<span class="nt">&lt;/description&gt;</span>
+    <span class="nt">&lt;charity_number&gt;</span>123457680<span class="nt">&lt;/charity_number&gt;</span>
+    <span class="nt">&lt;id&gt;</span>75919<span class="nt">&lt;/id&gt;</span>
+<span class="nt">&lt;/xml&gt;</span>
+</code></pre>
+
+<p>This endpoint creates and returns a new cause.</p>
+
+<aside class="warning">The only required fields for creating a new cause are their name.</aside>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">POST https://rest.goraise.co.uk/causes</code></p>
+
+<h3 id="required-parameters">Required Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>NAME</td>
+<td>The name of the good cause</td>
+</tr>
+</tbody></table>
+
+<h3 id="additional-attributes">Additional Attributes</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>DESCRIPTION</td>
+<td>Detailed description about the cause</td>
+</tr>
+<tr>
+<td>ADDRESS1</td>
+<td>The first line of the cause&rsquo;s address</td>
+</tr>
+<tr>
+<td>POSTCODE</td>
+<td>The cause&rsquo;s postal code</td>
+</tr>
+<tr>
+<td>CHARITY_NUMBER</td>
+<td>The registered charity number of the cause, if applicable</td>
+</tr>
+</tbody></table>
+
+<h2 id="update-a-cause">Update a Cause</h2>
+<pre class="highlight shell"><code>curl <span class="s2">"https://rest.goraise.co.uk/causes/75919"</span>
+  -H <span class="s2">"ApiKey: your_api_key"</span>
+  -H <span class="s2">"Content-Type: application/x-www-form-urlencoded"</span>
+  -X PUT
+  -d <span class="s2">"name=NSPCB&amp;description=Updating the NSPCB description"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">75919</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NSPCB"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Updating the NSPCB description"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"charity_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123457680"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"address1"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"postcode"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>The above command returns XML structured like this:</p>
+</blockquote>
+<pre class="highlight xml"><code><span class="cp">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
+<span class="nt">&lt;xml&gt;</span>
+    <span class="nt">&lt;id&gt;</span>75919<span class="nt">&lt;/id&gt;</span>
+    <span class="nt">&lt;name&gt;</span>NSPCB<span class="nt">&lt;/name&gt;</span>
+    <span class="nt">&lt;description&gt;</span>Updating the NSPCB description<span class="nt">&lt;/description&gt;</span>
+    <span class="nt">&lt;charity_number&gt;</span>123457680<span class="nt">&lt;/charity_number&gt;</span>
+    <span class="nt">&lt;address1/&gt;</span>
+    <span class="nt">&lt;postcode/&gt;</span>
+<span class="nt">&lt;/xml&gt;</span>
+</code></pre>
+
+<p>This endpoint updates and returns a cause with a specific ID.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">PUT https://rest.goraise.co.uk/causes/&lt;ID&gt;</code></p>
+
+<h3 id="required-parameters">Required Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ID</td>
+<td>The unique ID of the cause</td>
+</tr>
+</tbody></table>
+
+<h3 id="updatable-attributes">Updatable Attributes</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>NAME</td>
+<td>The name of the cause</td>
+</tr>
+<tr>
+<td>DESCRIPTION</td>
+<td>Detailed description about the cause</td>
+</tr>
+<tr>
+<td>ADDRESS1</td>
+<td>The first line of the cause&rsquo;s address</td>
+</tr>
+<tr>
+<td>POSTCODE</td>
+<td>The cause&rsquo;s postal code</td>
+</tr>
+<tr>
+<td>CHARITY_NUMBER</td>
+<td>The registered charity number of the cause, if applicable</td>
+</tr>
+</tbody></table>
+
+<h1 id="companies">Companies</h1>
+
+<h2 id="get-all-companies">Get All Companies</h2>
+<pre class="highlight shell"><code>curl <span class="s2">"https://rest.goraise.co.uk/companies"</span>
+  -H <span class="s2">"ApiKey: your_api_key"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">427</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"per_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"current_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"last_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"next_page_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://rest.goraise.co.uk/companies?page=2"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"prev_page_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"from"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"to"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GoRaise"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Raise money for a good cause every time you shop online"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"address1"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"postcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"admins"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">38</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Gary"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Garside"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gary.garside@goraise.co.uk"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"address1"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"postcode"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nt">"supporters"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">37</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Gary"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Garside"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gary@goraise.co.uk"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"address1"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"postcode"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>The above command returns XML structured like this:</p>
+</blockquote>
+<pre class="highlight xml"><code><span class="cp">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
+<span class="nt">&lt;xml&gt;</span>
+    <span class="nt">&lt;total&gt;</span>427<span class="nt">&lt;/total&gt;</span>
+    <span class="nt">&lt;per_page&gt;</span>100<span class="nt">&lt;/per_page&gt;</span>
+    <span class="nt">&lt;current_page&gt;</span>1<span class="nt">&lt;/current_page&gt;</span>
+    <span class="nt">&lt;last_page&gt;</span>5<span class="nt">&lt;/last_page&gt;</span>
+    <span class="nt">&lt;next_page_url&gt;</span>https://rest.goraise.co.uk/companies?format=xml<span class="ni">&amp;amp;</span>page=2<span class="nt">&lt;/next_page_url&gt;</span>
+    <span class="nt">&lt;prev_page_url/&gt;</span>
+    <span class="nt">&lt;from&gt;</span>1<span class="nt">&lt;/from&gt;</span>
+    <span class="nt">&lt;to&gt;</span>100<span class="nt">&lt;/to&gt;</span>
+    <span class="nt">&lt;data&gt;</span>
+        <span class="nt">&lt;datum&gt;</span>
+            <span class="nt">&lt;id&gt;</span>1<span class="nt">&lt;/id&gt;</span>
+            <span class="nt">&lt;name&gt;</span>GoRaise<span class="nt">&lt;/name&gt;</span>
+            <span class="nt">&lt;description&gt;</span>Raise money for a good cause every time you shop online<span class="nt">&lt;/description&gt;</span>
+            <span class="nt">&lt;address1/&gt;</span>
+            <span class="nt">&lt;postcode/&gt;</span>
+            <span class="nt">&lt;admins/&gt;</span>
+            <span class="nt">&lt;supporters&gt;</span>
+                <span class="nt">&lt;supporter&gt;</span>
+                    <span class="nt">&lt;id&gt;</span>37<span class="nt">&lt;/id&gt;</span>
+                    <span class="nt">&lt;first_name&gt;</span>Gary<span class="nt">&lt;/first_name&gt;</span>
+                    <span class="nt">&lt;last_name&gt;</span>Garside<span class="nt">&lt;/last_name&gt;</span>
+                    <span class="nt">&lt;email&gt;</span>gary@goraise.co.uk<span class="nt">&lt;/email&gt;</span>
+                    <span class="nt">&lt;address1/&gt;</span>
+                    <span class="nt">&lt;postcode/&gt;</span>
+                <span class="nt">&lt;/supporter&gt;</span>
+                <span class="nt">&lt;supporter&gt;</span>
+                    <span class="nt">&lt;id&gt;</span>38<span class="nt">&lt;/id&gt;</span>
+                    <span class="nt">&lt;first_name&gt;</span>Gary<span class="nt">&lt;/first_name&gt;</span>
+                    <span class="nt">&lt;last_name&gt;</span>Garside<span class="nt">&lt;/last_name&gt;</span>
+                    <span class="nt">&lt;email&gt;</span>gary.garside@goraise.co.uk<span class="nt">&lt;/email&gt;</span>
+                    <span class="nt">&lt;address1/&gt;</span>
+                    <span class="nt">&lt;postcode/&gt;</span>
+                <span class="nt">&lt;/supporter&gt;</span>
+            <span class="nt">&lt;/supporters&gt;</span>
+        <span class="nt">&lt;/datum&gt;</span>
+    <span class="nt">&lt;/data&gt;</span>
+<span class="nt">&lt;/xml&gt;</span>
+</code></pre>
+
+<p>This endpoint retrieves all companies.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://rest.goraise.co.uk/companies</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>per_page</td>
+<td>100</td>
+<td>How many results to pull back in one go. Can range from 10-250</td>
+</tr>
+<tr>
+<td>page</td>
+<td>1</td>
+<td>The paginated page of results you wish to view, as limited by the per_page variable</td>
+</tr>
+<tr>
+<td>order_by</td>
+<td>id</td>
+<td>How the results should be ordered</td>
+</tr>
+</tbody></table>
+
+<h2 id="get-a-specific-company">Get a Specific Company</h2>
+<pre class="highlight shell"><code>curl <span class="s2">"https://rest.goraise.co.uk/companies/1"</span>
+  -H <span class="s2">"ApiKey: your_api_key"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GoRaise"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Raise money for a good cause every time you shop online"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"address1"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"postcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"admins"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">38</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Gary"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Garside"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gary.garside@goraise.co.uk"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"address1"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"postcode"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nt">"supporters"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">37</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Gary"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Garside"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gary@goraise.co.uk"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"address1"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"postcode"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>The above command returns XML structured like this:</p>
+</blockquote>
+<pre class="highlight xml"><code><span class="cp">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
+<span class="nt">&lt;xml&gt;</span>
+    <span class="nt">&lt;id&gt;</span>1<span class="nt">&lt;/id&gt;</span>
+    <span class="nt">&lt;name&gt;</span>GoRaise<span class="nt">&lt;/name&gt;</span>
+    <span class="nt">&lt;description&gt;</span>Raise money for a good cause every time you shop online<span class="nt">&lt;/description&gt;</span>
+    <span class="nt">&lt;address1/&gt;</span>
+    <span class="nt">&lt;postcode/&gt;</span>
+    <span class="nt">&lt;admins/&gt;</span>
+    <span class="nt">&lt;supporters&gt;</span>
+        <span class="nt">&lt;supporter&gt;</span>
+            <span class="nt">&lt;id&gt;</span>37<span class="nt">&lt;/id&gt;</span>
+            <span class="nt">&lt;first_name&gt;</span>Gary<span class="nt">&lt;/first_name&gt;</span>
+            <span class="nt">&lt;last_name&gt;</span>Garside<span class="nt">&lt;/last_name&gt;</span>
+            <span class="nt">&lt;email&gt;</span>gary@goraise.co.uk<span class="nt">&lt;/email&gt;</span>
+            <span class="nt">&lt;address1/&gt;</span>
+            <span class="nt">&lt;postcode/&gt;</span>
+        <span class="nt">&lt;/supporter&gt;</span>
+        <span class="nt">&lt;supporter&gt;</span>
+            <span class="nt">&lt;id&gt;</span>38<span class="nt">&lt;/id&gt;</span>
+            <span class="nt">&lt;first_name&gt;</span>Gary<span class="nt">&lt;/first_name&gt;</span>
+            <span class="nt">&lt;last_name&gt;</span>Garside<span class="nt">&lt;/last_name&gt;</span>
+            <span class="nt">&lt;email&gt;</span>gary.garside@goraise.co.uk<span class="nt">&lt;/email&gt;</span>
+            <span class="nt">&lt;address1/&gt;</span>
+            <span class="nt">&lt;postcode/&gt;</span>
+        <span class="nt">&lt;/supporter&gt;</span>
+    <span class="nt">&lt;/supporters&gt;</span>
+<span class="nt">&lt;/xml&gt;</span>
+</code></pre>
+
+<p>This endpoint retrieves a specific company.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://rest.goraise.co.uk/companies/&lt;ID&gt;</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ID</td>
+<td>The unique ID of the company</td>
+</tr>
+</tbody></table>
+
+<h2 id="create-a-new-company">Create a New Company</h2>
+<pre class="highlight shell"><code>curl <span class="s2">"https://rest.goraise.co.uk/companies"</span>
+  -H <span class="s2">"ApiKey: your_api_key"</span>
+  -H <span class="s2">"Content-Type: application/x-www-form-urlencoded"</span>
+  -X POST
+  -d <span class="s2">"name=NSPCC&amp;description=Some information about the NSPCC&amp;charity_number=123457680"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NSPCC"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Some information about the NSPCC"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"charity_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123457680"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">75919</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>The above command returns XML structured like this:</p>
+</blockquote>
+<pre class="highlight xml"><code><span class="cp">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
+<span class="nt">&lt;xml&gt;</span>
+    <span class="nt">&lt;name&gt;</span>NSPCC<span class="nt">&lt;/name&gt;</span>
+    <span class="nt">&lt;description&gt;</span>Some information about the NSPCC<span class="nt">&lt;/description&gt;</span>
+    <span class="nt">&lt;charity_number&gt;</span>123457680<span class="nt">&lt;/charity_number&gt;</span>
+    <span class="nt">&lt;id&gt;</span>75919<span class="nt">&lt;/id&gt;</span>
+<span class="nt">&lt;/xml&gt;</span>
+</code></pre>
+
+<p>This endpoint creates and returns a new company.</p>
+
+<aside class="warning">The only required fields for creating a new company are their name.</aside>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">POST https://rest.goraise.co.uk/companies</code></p>
+
+<h3 id="required-parameters">Required Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>NAME</td>
+<td>The name of the good company</td>
+</tr>
+</tbody></table>
+
+<h3 id="additional-attributes">Additional Attributes</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>DESCRIPTION</td>
+<td>Detailed description about the company</td>
+</tr>
+<tr>
+<td>ADDRESS1</td>
+<td>The first line of the company&rsquo;s address</td>
+</tr>
+<tr>
+<td>POSTCODE</td>
+<td>The company&rsquo;s postal code</td>
+</tr>
+<tr>
+<td>CHARITY_NUMBER</td>
+<td>The registered charity number of the company, if applicable</td>
+</tr>
+</tbody></table>
+
+<h2 id="update-a-company">Update a Company</h2>
+<pre class="highlight shell"><code>curl <span class="s2">"https://rest.goraise.co.uk/companies/1"</span>
+  -H <span class="s2">"ApiKey: your_api_key"</span>
+  -H <span class="s2">"Content-Type: application/x-www-form-urlencoded"</span>
+  -X PUT
+  -d <span class="s2">"name=GoRaise&amp;description=Updating the GoRaise description"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GoRaise"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Updating the GoRaise description"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"charity_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123457680"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"address1"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"postcode"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>The above command returns XML structured like this:</p>
+</blockquote>
+<pre class="highlight xml"><code><span class="cp">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
+<span class="nt">&lt;xml&gt;</span>
+    <span class="nt">&lt;id&gt;</span>1<span class="nt">&lt;/id&gt;</span>
+    <span class="nt">&lt;name&gt;</span>GoRaise<span class="nt">&lt;/name&gt;</span>
+    <span class="nt">&lt;description&gt;</span>Updating the GoRaise description<span class="nt">&lt;/description&gt;</span>
+    <span class="nt">&lt;charity_number&gt;</span>123457680<span class="nt">&lt;/charity_number&gt;</span>
+    <span class="nt">&lt;address1/&gt;</span>
+    <span class="nt">&lt;postcode/&gt;</span>
+<span class="nt">&lt;/xml&gt;</span>
+</code></pre>
+
+<p>This endpoint updates and returns a company with a specific ID.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">PUT https://rest.goraise.co.uk/companies/&lt;ID&gt;</code></p>
+
+<h3 id="required-parameters">Required Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ID</td>
+<td>The unique ID of the company</td>
+</tr>
+</tbody></table>
+
+<h3 id="updatable-attributes">Updatable Attributes</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>NAME</td>
+<td>The name of the company</td>
+</tr>
+<tr>
+<td>DESCRIPTION</td>
+<td>Detailed description about the company</td>
+</tr>
+<tr>
+<td>ADDRESS1</td>
+<td>The first line of the company&rsquo;s address</td>
+</tr>
+<tr>
+<td>POSTCODE</td>
+<td>The company&rsquo;s postal code</td>
+</tr>
+<tr>
+<td>CHARITY_NUMBER</td>
+<td>The registered charity number of the company, if applicable</td>
+</tr>
+</tbody></table>
+
+<h1 id="challengers">Challengers</h1>
+
+<h2 id="get-all-challengers">Get All Challengers</h2>
+<pre class="highlight shell"><code>curl <span class="s2">"https://rest.goraise.co.uk/challengers"</span>
+  -H <span class="s2">"ApiKey: your_api_key"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">427</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"per_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"current_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"last_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"next_page_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://rest.goraise.co.uk/challengers?page=2"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"prev_page_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"from"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"to"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Gary's Everest Climb"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Raising money for NSPCC by climbing Mt. Everest!"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"address1"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"postcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"admins"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">38</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Gary"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Garside"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gary.garside@goraise.co.uk"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"address1"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"postcode"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nt">"supporters"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">37</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Gary"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Garside"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gary@goraise.co.uk"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"address1"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"postcode"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>The above command returns XML structured like this:</p>
+</blockquote>
+<pre class="highlight xml"><code><span class="cp">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
+<span class="nt">&lt;xml&gt;</span>
+    <span class="nt">&lt;total&gt;</span>427<span class="nt">&lt;/total&gt;</span>
+    <span class="nt">&lt;per_page&gt;</span>100<span class="nt">&lt;/per_page&gt;</span>
+    <span class="nt">&lt;current_page&gt;</span>1<span class="nt">&lt;/current_page&gt;</span>
+    <span class="nt">&lt;last_page&gt;</span>5<span class="nt">&lt;/last_page&gt;</span>
+    <span class="nt">&lt;next_page_url&gt;</span>https://rest.goraise.co.uk/challengers?format=xml<span class="ni">&amp;amp;</span>page=2<span class="nt">&lt;/next_page_url&gt;</span>
+    <span class="nt">&lt;prev_page_url/&gt;</span>
+    <span class="nt">&lt;from&gt;</span>1<span class="nt">&lt;/from&gt;</span>
+    <span class="nt">&lt;to&gt;</span>100<span class="nt">&lt;/to&gt;</span>
+    <span class="nt">&lt;data&gt;</span>
+        <span class="nt">&lt;datum&gt;</span>
+            <span class="nt">&lt;id&gt;</span>1<span class="nt">&lt;/id&gt;</span>
+            <span class="nt">&lt;name&gt;</span>Gary's Everest Climb<span class="nt">&lt;/name&gt;</span>
+            <span class="nt">&lt;description&gt;</span>Raising money for NSPCC by climbing Mt. Everest!<span class="nt">&lt;/description&gt;</span>
+            <span class="nt">&lt;address1/&gt;</span>
+            <span class="nt">&lt;postcode/&gt;</span>
+            <span class="nt">&lt;admins/&gt;</span>
+            <span class="nt">&lt;supporters&gt;</span>
+                <span class="nt">&lt;supporter&gt;</span>
+                    <span class="nt">&lt;id&gt;</span>37<span class="nt">&lt;/id&gt;</span>
+                    <span class="nt">&lt;first_name&gt;</span>Gary<span class="nt">&lt;/first_name&gt;</span>
+                    <span class="nt">&lt;last_name&gt;</span>Garside<span class="nt">&lt;/last_name&gt;</span>
+                    <span class="nt">&lt;email&gt;</span>gary@goraise.co.uk<span class="nt">&lt;/email&gt;</span>
+                    <span class="nt">&lt;address1/&gt;</span>
+                    <span class="nt">&lt;postcode/&gt;</span>
+                <span class="nt">&lt;/supporter&gt;</span>
+                <span class="nt">&lt;supporter&gt;</span>
+                    <span class="nt">&lt;id&gt;</span>38<span class="nt">&lt;/id&gt;</span>
+                    <span class="nt">&lt;first_name&gt;</span>Gary<span class="nt">&lt;/first_name&gt;</span>
+                    <span class="nt">&lt;last_name&gt;</span>Garside<span class="nt">&lt;/last_name&gt;</span>
+                    <span class="nt">&lt;email&gt;</span>gary.garside@goraise.co.uk<span class="nt">&lt;/email&gt;</span>
+                    <span class="nt">&lt;address1/&gt;</span>
+                    <span class="nt">&lt;postcode/&gt;</span>
+                <span class="nt">&lt;/supporter&gt;</span>
+            <span class="nt">&lt;/supporters&gt;</span>
+        <span class="nt">&lt;/datum&gt;</span>
+    <span class="nt">&lt;/data&gt;</span>
+<span class="nt">&lt;/xml&gt;</span>
+</code></pre>
+
+<p>This endpoint retrieves all challengers.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://rest.goraise.co.uk/challengers</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>per_page</td>
+<td>100</td>
+<td>How many results to pull back in one go. Can range from 10-250</td>
+</tr>
+<tr>
+<td>page</td>
+<td>1</td>
+<td>The paginated page of results you wish to view, as limited by the per_page variable</td>
+</tr>
+<tr>
+<td>order_by</td>
+<td>id</td>
+<td>How the results should be ordered</td>
+</tr>
+</tbody></table>
+
+<h2 id="get-a-specific-challenger">Get a Specific Challenger</h2>
+<pre class="highlight shell"><code>curl <span class="s2">"https://rest.goraise.co.uk/challengers/1"</span>
+  -H <span class="s2">"ApiKey: your_api_key"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Gary's Everest Climb"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Raising money for NSPCC by climbing Mt. Everest!"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"address1"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"postcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"admins"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">38</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Gary"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Garside"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gary.garside@goraise.co.uk"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"address1"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"postcode"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nt">"supporters"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">37</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Gary"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Garside"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gary@goraise.co.uk"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"address1"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"postcode"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>The above command returns XML structured like this:</p>
+</blockquote>
+<pre class="highlight xml"><code><span class="cp">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
+<span class="nt">&lt;xml&gt;</span>
+    <span class="nt">&lt;id&gt;</span>1<span class="nt">&lt;/id&gt;</span>
+    <span class="nt">&lt;name&gt;</span>Gary's Everest Climb<span class="nt">&lt;/name&gt;</span>
+    <span class="nt">&lt;description&gt;</span>Raising money for NSPCC by climbing Mt. Everest!<span class="nt">&lt;/description&gt;</span>
+    <span class="nt">&lt;address1/&gt;</span>
+    <span class="nt">&lt;postcode/&gt;</span>
+    <span class="nt">&lt;admins/&gt;</span>
+    <span class="nt">&lt;supporters&gt;</span>
+        <span class="nt">&lt;supporter&gt;</span>
+            <span class="nt">&lt;id&gt;</span>37<span class="nt">&lt;/id&gt;</span>
+            <span class="nt">&lt;first_name&gt;</span>Gary<span class="nt">&lt;/first_name&gt;</span>
+            <span class="nt">&lt;last_name&gt;</span>Garside<span class="nt">&lt;/last_name&gt;</span>
+            <span class="nt">&lt;email&gt;</span>gary@goraise.co.uk<span class="nt">&lt;/email&gt;</span>
+            <span class="nt">&lt;address1/&gt;</span>
+            <span class="nt">&lt;postcode/&gt;</span>
+        <span class="nt">&lt;/supporter&gt;</span>
+        <span class="nt">&lt;supporter&gt;</span>
+            <span class="nt">&lt;id&gt;</span>38<span class="nt">&lt;/id&gt;</span>
+            <span class="nt">&lt;first_name&gt;</span>Gary<span class="nt">&lt;/first_name&gt;</span>
+            <span class="nt">&lt;last_name&gt;</span>Garside<span class="nt">&lt;/last_name&gt;</span>
+            <span class="nt">&lt;email&gt;</span>gary.garside@goraise.co.uk<span class="nt">&lt;/email&gt;</span>
+            <span class="nt">&lt;address1/&gt;</span>
+            <span class="nt">&lt;postcode/&gt;</span>
+        <span class="nt">&lt;/supporter&gt;</span>
+    <span class="nt">&lt;/supporters&gt;</span>
+<span class="nt">&lt;/xml&gt;</span>
+</code></pre>
+
+<p>This endpoint retrieves a specific challenger.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://rest.goraise.co.uk/challengers/&lt;ID&gt;</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ID</td>
+<td>The unique ID of the challenger</td>
+</tr>
+</tbody></table>
+
+<h2 id="create-a-new-challenger">Create a New Challenger</h2>
+<pre class="highlight shell"><code>curl <span class="s2">"https://rest.goraise.co.uk/challengers"</span>
+  -H <span class="s2">"ApiKey: your_api_key"</span>
+  -H <span class="s2">"Content-Type: application/x-www-form-urlencoded"</span>
+  -X POST
+  -d <span class="s2">"name=Everest Climb&amp;description=Some information about the climb"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Everest Climb"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Some information about the climb"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">75919</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>The above command returns XML structured like this:</p>
+</blockquote>
+<pre class="highlight xml"><code><span class="cp">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
+<span class="nt">&lt;xml&gt;</span>
+    <span class="nt">&lt;name&gt;</span>Everest Climb<span class="nt">&lt;/name&gt;</span>
+    <span class="nt">&lt;description&gt;</span>Some information about the climb<span class="nt">&lt;/description&gt;</span>
+    <span class="nt">&lt;id&gt;</span>75919<span class="nt">&lt;/id&gt;</span>
+<span class="nt">&lt;/xml&gt;</span>
+</code></pre>
+
+<p>This endpoint creates and returns a new challenger.</p>
+
+<aside class="warning">The only required fields for creating a new challenger are their name.</aside>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">POST https://rest.goraise.co.uk/challengers</code></p>
+
+<h3 id="required-parameters">Required Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>NAME</td>
+<td>The name of the good challenger</td>
+</tr>
+</tbody></table>
+
+<h3 id="additional-attributes">Additional Attributes</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>DESCRIPTION</td>
+<td>Detailed description about the challenger</td>
+</tr>
+<tr>
+<td>ADDRESS1</td>
+<td>The first line of the challenger&rsquo;s address</td>
+</tr>
+<tr>
+<td>POSTCODE</td>
+<td>The challenger&rsquo;s postal code</td>
+</tr>
+<tr>
+<td>CHARITY_NUMBER</td>
+<td>The registered charity number of the challenger, if applicable</td>
+</tr>
+</tbody></table>
+
+<h2 id="update-a-challenger">Update a Challenger</h2>
+<pre class="highlight shell"><code>curl <span class="s2">"https://rest.goraise.co.uk/challengers/75919"</span>
+  -H <span class="s2">"ApiKey: your_api_key"</span>
+  -H <span class="s2">"Content-Type: application/x-www-form-urlencoded"</span>
+  -X PUT
+  -d <span class="s2">"name=Climb&amp;description=Updating the climb description"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">75919</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Climb"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Updating the climb description"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"address1"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"postcode"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>The above command returns XML structured like this:</p>
+</blockquote>
+<pre class="highlight xml"><code><span class="cp">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
+<span class="nt">&lt;xml&gt;</span>
+    <span class="nt">&lt;id&gt;</span>75919<span class="nt">&lt;/id&gt;</span>
+    <span class="nt">&lt;name&gt;</span>Climb<span class="nt">&lt;/name&gt;</span>
+    <span class="nt">&lt;description&gt;</span>Updating the climb description<span class="nt">&lt;/description&gt;</span>
+    <span class="nt">&lt;address1/&gt;</span>
+    <span class="nt">&lt;postcode/&gt;</span>
+<span class="nt">&lt;/xml&gt;</span>
+</code></pre>
+
+<p>This endpoint updates and returns a challenger with a specific ID.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">PUT https://rest.goraise.co.uk/challengers/&lt;ID&gt;</code></p>
+
+<h3 id="required-parameters">Required Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ID</td>
+<td>The unique ID of the challenger</td>
+</tr>
+</tbody></table>
+
+<h3 id="updatable-attributes">Updatable Attributes</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>NAME</td>
+<td>The name of the challenger</td>
+</tr>
+<tr>
+<td>DESCRIPTION</td>
+<td>Detailed description about the challenger</td>
+</tr>
+<tr>
+<td>ADDRESS1</td>
+<td>The first line of the challenger&rsquo;s address</td>
+</tr>
+<tr>
+<td>POSTCODE</td>
+<td>The challenger&rsquo;s postal code</td>
+</tr>
+<tr>
+<td>CHARITY_NUMBER</td>
+<td>The registered charity number of the challenger, if applicable</td>
+</tr>
+</tbody></table>
+
+<h1 id="clicks">Clicks</h1>
+
+<h2 id="get-all-clicks">Get All Clicks</h2>
+<pre class="highlight shell"><code>curl <span class="s2">"https://rest.goraise.co.uk/clicks"</span>
+  -H <span class="s2">"ApiKey: your_api_key"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">6372</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"per_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"current_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"last_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">64</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"next_page_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://rest.goraise.co.uk/clicks?page=2"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"prev_page_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"from"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"to"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-04-01 09:58:24"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"retailer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">331</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"O2 Mobile Broadband"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"logo"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"terms"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"website_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"shop.o2.co.uk"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"donation"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Gary"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Garside"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gary@goraise.co.uk"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"address1"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"postcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>The above command returns XML structured like this:</p>
+</blockquote>
+<pre class="highlight xml"><code><span class="cp">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
+<span class="nt">&lt;xml&gt;</span>
+    <span class="nt">&lt;total&gt;</span>6372<span class="nt">&lt;/total&gt;</span>
+    <span class="nt">&lt;per_page&gt;</span>100<span class="nt">&lt;/per_page&gt;</span>
+    <span class="nt">&lt;current_page&gt;</span>1<span class="nt">&lt;/current_page&gt;</span>
+    <span class="nt">&lt;last_page&gt;</span>64<span class="nt">&lt;/last_page&gt;</span>
+    <span class="nt">&lt;next_page_url&gt;</span>https://rest.goraise.co.uk/clicks?format=xml<span class="ni">&amp;amp;</span>page=2<span class="nt">&lt;/next_page_url&gt;</span>
+    <span class="nt">&lt;prev_page_url/&gt;</span>
+    <span class="nt">&lt;from&gt;</span>1<span class="nt">&lt;/from&gt;</span>
+    <span class="nt">&lt;to&gt;</span>100<span class="nt">&lt;/to&gt;</span>
+    <span class="nt">&lt;data&gt;</span>
+      <span class="nt">&lt;datum&gt;</span>
+          <span class="nt">&lt;id&gt;</span>1<span class="nt">&lt;/id&gt;</span>
+          <span class="nt">&lt;timestamp&gt;</span>2015-04-01 09:58:24<span class="nt">&lt;/timestamp&gt;</span>
+          <span class="nt">&lt;retailer&gt;</span>
+              <span class="nt">&lt;id&gt;</span>331<span class="nt">&lt;/id&gt;</span>
+              <span class="nt">&lt;name&gt;</span>O2 Mobile Broadband<span class="nt">&lt;/name&gt;</span>
+              <span class="nt">&lt;description/&gt;</span>
+              <span class="nt">&lt;logo/&gt;</span>
+              <span class="nt">&lt;terms/&gt;</span>
+              <span class="nt">&lt;website_url&gt;</span>shop.o2.co.uk<span class="nt">&lt;/website_url&gt;</span>
+              <span class="nt">&lt;donation/&gt;</span>
+          <span class="nt">&lt;/retailer&gt;</span>
+          <span class="nt">&lt;user&gt;</span>
+              <span class="nt">&lt;id&gt;</span>1<span class="nt">&lt;/id&gt;</span>
+              <span class="nt">&lt;first_name&gt;</span>Gary<span class="nt">&lt;/first_name&gt;</span>
+              <span class="nt">&lt;last_name&gt;</span>Garside<span class="nt">&lt;/last_name&gt;</span>
+              <span class="nt">&lt;email&gt;</span>gary@goraise.co.uk<span class="nt">&lt;/email&gt;</span>
+              <span class="nt">&lt;address1/&gt;</span>
+              <span class="nt">&lt;postcode/&gt;</span>
+          <span class="nt">&lt;/user&gt;</span>
+      <span class="nt">&lt;/datum&gt;</span>
+    <span class="nt">&lt;/data&gt;</span>
+<span class="nt">&lt;/xml&gt;</span>
+</code></pre>
+
+<p>This endpoint retrieves all clicks.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://rest.goraise.co.uk/clicks</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>per_page</td>
+<td>100</td>
+<td>How many results to pull back in one go. Can range from 10-250</td>
+</tr>
+<tr>
+<td>page</td>
+<td>1</td>
+<td>The paginated page of results you wish to view, as limited by the per_page variable</td>
+</tr>
+<tr>
+<td>order_by</td>
+<td>id</td>
+<td>How the results should be ordered</td>
+</tr>
+</tbody></table>
+
+<h2 id="get-a-specific-click">Get a Specific Click</h2>
+<pre class="highlight shell"><code>curl <span class="s2">"https://rest.goraise.co.uk/clicks/1"</span>
+  -H <span class="s2">"ApiKey: your_api_key"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-04-01 09:58:24"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"retailer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">331</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"O2 Mobile Broadband"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"logo"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"terms"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"website_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"shop.o2.co.uk"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"donation"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Gary"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Garside"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gary@goraise.co.uk"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"address1"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"postcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>The above command returns XML structured like this:</p>
+</blockquote>
+<pre class="highlight xml"><code><span class="cp">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
+<span class="nt">&lt;xml&gt;</span>
+  <span class="nt">&lt;id&gt;</span>1<span class="nt">&lt;/id&gt;</span>
+  <span class="nt">&lt;timestamp&gt;</span>2015-04-01 09:58:24<span class="nt">&lt;/timestamp&gt;</span>
+  <span class="nt">&lt;retailer&gt;</span>
+      <span class="nt">&lt;id&gt;</span>331<span class="nt">&lt;/id&gt;</span>
+      <span class="nt">&lt;name&gt;</span>O2 Mobile Broadband<span class="nt">&lt;/name&gt;</span>
+      <span class="nt">&lt;description/&gt;</span>
+      <span class="nt">&lt;logo/&gt;</span>
+      <span class="nt">&lt;terms/&gt;</span>
+      <span class="nt">&lt;website_url&gt;</span>shop.o2.co.uk<span class="nt">&lt;/website_url&gt;</span>
+      <span class="nt">&lt;donation/&gt;</span>
+  <span class="nt">&lt;/retailer&gt;</span>
+  <span class="nt">&lt;user&gt;</span>
+      <span class="nt">&lt;id&gt;</span>1<span class="nt">&lt;/id&gt;</span>
+      <span class="nt">&lt;first_name&gt;</span>Gary<span class="nt">&lt;/first_name&gt;</span>
+      <span class="nt">&lt;last_name&gt;</span>Garside<span class="nt">&lt;/last_name&gt;</span>
+      <span class="nt">&lt;email&gt;</span>gary@goraise.co.uk<span class="nt">&lt;/email&gt;</span>
+      <span class="nt">&lt;address1/&gt;</span>
+      <span class="nt">&lt;postcode/&gt;</span>
+  <span class="nt">&lt;/user&gt;</span>
+<span class="nt">&lt;/xml&gt;</span>
+</code></pre>
+
+<p>This endpoint retrieves a specific click.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://rest.goraise.co.uk/clicks/&lt;ID&gt;</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ID</td>
+<td>The unique ID of the click</td>
+</tr>
+</tbody></table>
+
+<h1 id="transactions">Transactions</h1>
+
+<h2 id="get-all-transactions">Get All Transactions</h2>
+<pre class="highlight shell"><code>curl <span class="s2">"https://rest.goraise.co.uk/transactions"</span>
+  -H <span class="s2">"ApiKey: your_api_key"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">1087</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"per_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"current_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"last_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"next_page_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://rest.goraise.co.uk/transactions?page=2"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"prev_page_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"from"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"to"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2996</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"revenue"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9.99"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"donation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.30"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"retailer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">109</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Zavvi"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Enjoy a huge selection of entertainment including market leading prices on the latest release Games, accessories and console bundles. Not to mention a huge selection of music, film and more."</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"logo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"images/retailers/logos/zavvi.png"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"terms"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Donations may only apply to the sale price and not include VAT, delivery and other such costs. Please do not use voucher codes from other websites as this may affect your donation."</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"website_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"www.zavvi.com"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"donation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3%"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"click"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">17</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-04-01 12:22:21"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Gary"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Garside"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gary@goraise.co.uk"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"address1"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"postcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>The above command returns XML structured like this:</p>
+</blockquote>
+<pre class="highlight xml"><code><span class="cp">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
+<span class="nt">&lt;xml&gt;</span>
+  <span class="nt">&lt;total&gt;</span>1087<span class="nt">&lt;/total&gt;</span>
+  <span class="nt">&lt;per_page&gt;</span>100<span class="nt">&lt;/per_page&gt;</span>
+  <span class="nt">&lt;current_page&gt;</span>1<span class="nt">&lt;/current_page&gt;</span>
+  <span class="nt">&lt;last_page&gt;</span>11<span class="nt">&lt;/last_page&gt;</span>
+  <span class="nt">&lt;next_page_url&gt;</span>https://rest.goraise.co.uk/transactions?format=xml<span class="ni">&amp;amp;</span>page=2<span class="nt">&lt;/next_page_url&gt;</span>
+  <span class="nt">&lt;prev_page_url/&gt;</span>
+  <span class="nt">&lt;from&gt;</span>1<span class="nt">&lt;/from&gt;</span>
+  <span class="nt">&lt;to&gt;</span>100<span class="nt">&lt;/to&gt;</span>
+  <span class="nt">&lt;data&gt;</span>
+    <span class="nt">&lt;datum&gt;</span>
+        <span class="nt">&lt;id&gt;</span>2996<span class="nt">&lt;/id&gt;</span>
+        <span class="nt">&lt;revenue&gt;</span>9.99<span class="nt">&lt;/revenue&gt;</span>
+        <span class="nt">&lt;donation&gt;</span>0.30<span class="nt">&lt;/donation&gt;</span>
+        <span class="nt">&lt;retailer&gt;</span>
+            <span class="nt">&lt;id&gt;</span>109<span class="nt">&lt;/id&gt;</span>
+            <span class="nt">&lt;name&gt;</span>Zavvi<span class="nt">&lt;/name&gt;</span>
+            <span class="nt">&lt;description&gt;</span>Enjoy a huge selection of entertainment including market leading prices on the latest release Games, accessories and console bundles. Not to mention a huge selection of music, film and more.<span class="nt">&lt;/description&gt;</span>
+            <span class="nt">&lt;logo&gt;</span>/images/retailers/logos/zavvi.png<span class="nt">&lt;/logo&gt;</span>
+            <span class="nt">&lt;terms&gt;</span>Donations may only apply to the sale price and not include VAT, delivery and other such costs. Please do not use voucher codes from other websites as this may affect your donation.<span class="nt">&lt;/terms&gt;</span>
+            <span class="nt">&lt;website_url&gt;</span>www.zavvi.com<span class="nt">&lt;/website_url&gt;</span>
+            <span class="nt">&lt;donation&gt;</span>3%<span class="nt">&lt;/donation&gt;</span>
+        <span class="nt">&lt;/retailer&gt;</span>
+        <span class="nt">&lt;click&gt;</span>
+            <span class="nt">&lt;id&gt;</span>17<span class="nt">&lt;/id&gt;</span>
+            <span class="nt">&lt;timestamp&gt;</span>2015-04-01 12:22:21<span class="nt">&lt;/timestamp&gt;</span>
+            <span class="nt">&lt;user&gt;</span>
+                <span class="nt">&lt;id&gt;</span>7<span class="nt">&lt;/id&gt;</span>
+                <span class="nt">&lt;first_name&gt;</span>Gary<span class="nt">&lt;/first_name&gt;</span>
+                <span class="nt">&lt;last_name&gt;</span>Garside<span class="nt">&lt;/last_name&gt;</span>
+                <span class="nt">&lt;email&gt;</span>gary@goraise.co.uk<span class="nt">&lt;/email&gt;</span>
+                <span class="nt">&lt;address1/&gt;</span>
+                <span class="nt">&lt;postcode/&gt;</span>
+            <span class="nt">&lt;/user&gt;</span>
+        <span class="nt">&lt;/click&gt;</span>
+    <span class="nt">&lt;/datum&gt;</span>
+  <span class="nt">&lt;/data&gt;</span>
+<span class="nt">&lt;/xml&gt;</span>
+</code></pre>
+
+<p>This endpoint retrieves all transactions.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://rest.goraise.co.uk/transactions</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>per_page</td>
+<td>100</td>
+<td>How many results to pull back in one go. Can range from 10-250</td>
+</tr>
+<tr>
+<td>page</td>
+<td>1</td>
+<td>The paginated page of results you wish to view, as limited by the per_page variable</td>
+</tr>
+<tr>
+<td>order_by</td>
+<td>id</td>
+<td>How the results should be ordered</td>
+</tr>
+</tbody></table>
+
+<h2 id="get-a-specific-transaction">Get a Specific Transaction</h2>
+<pre class="highlight shell"><code>curl <span class="s2">"https://rest.goraise.co.uk/transactions/1"</span>
+  -H <span class="s2">"ApiKey: your_api_key"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2996</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"revenue"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9.99"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"donation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.30"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"retailer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">109</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Zavvi"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Enjoy a huge selection of entertainment including market leading prices on the latest release Games, accessories and console bundles. Not to mention a huge selection of music, film and more."</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"logo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"images/retailers/logos/zavvi.png"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"terms"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Donations may only apply to the sale price and not include VAT, delivery and other such costs. Please do not use voucher codes from other websites as this may affect your donation."</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"website_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"www.zavvi.com"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"donation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3%"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"click"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">17</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-04-01 12:22:21"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Gary"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Garside"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gary@goraise.co.uk"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"address1"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"postcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>The above command returns XML structured like this:</p>
+</blockquote>
+<pre class="highlight xml"><code><span class="cp">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
+<span class="nt">&lt;xml&gt;</span>
+  <span class="nt">&lt;id&gt;</span>2996<span class="nt">&lt;/id&gt;</span>
+  <span class="nt">&lt;revenue&gt;</span>9.99<span class="nt">&lt;/revenue&gt;</span>
+  <span class="nt">&lt;donation&gt;</span>0.30<span class="nt">&lt;/donation&gt;</span>
+  <span class="nt">&lt;retailer&gt;</span>
+      <span class="nt">&lt;id&gt;</span>109<span class="nt">&lt;/id&gt;</span>
+      <span class="nt">&lt;name&gt;</span>Zavvi<span class="nt">&lt;/name&gt;</span>
+      <span class="nt">&lt;description&gt;</span>Enjoy a huge selection of entertainment including market leading prices on the latest release Games, accessories and console bundles. Not to mention a huge selection of music, film and more.<span class="nt">&lt;/description&gt;</span>
+      <span class="nt">&lt;logo&gt;</span>/images/retailers/logos/zavvi.png<span class="nt">&lt;/logo&gt;</span>
+      <span class="nt">&lt;terms&gt;</span>Donations may only apply to the sale price and not include VAT, delivery and other such costs. Please do not use voucher codes from other websites as this may affect your donation.<span class="nt">&lt;/terms&gt;</span>
+      <span class="nt">&lt;website_url&gt;</span>www.zavvi.com<span class="nt">&lt;/website_url&gt;</span>
+      <span class="nt">&lt;donation&gt;</span>3%<span class="nt">&lt;/donation&gt;</span>
+  <span class="nt">&lt;/retailer&gt;</span>
+  <span class="nt">&lt;click&gt;</span>
+      <span class="nt">&lt;id&gt;</span>17<span class="nt">&lt;/id&gt;</span>
+      <span class="nt">&lt;timestamp&gt;</span>2015-04-01 12:22:21<span class="nt">&lt;/timestamp&gt;</span>
+      <span class="nt">&lt;user&gt;</span>
+          <span class="nt">&lt;id&gt;</span>7<span class="nt">&lt;/id&gt;</span>
+          <span class="nt">&lt;first_name&gt;</span>Gary<span class="nt">&lt;/first_name&gt;</span>
+          <span class="nt">&lt;last_name&gt;</span>Garside<span class="nt">&lt;/last_name&gt;</span>
+          <span class="nt">&lt;email&gt;</span>gary@goraise.co.uk<span class="nt">&lt;/email&gt;</span>
+          <span class="nt">&lt;address1/&gt;</span>
+          <span class="nt">&lt;postcode/&gt;</span>
+      <span class="nt">&lt;/user&gt;</span>
+  <span class="nt">&lt;/click&gt;</span>
+<span class="nt">&lt;/xml&gt;</span>
+</code></pre>
+
+<p>This endpoint retrieves a specific transaction.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://rest.goraise.co.uk/transactions/&lt;ID&gt;</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ID</td>
+<td>The unique ID of the transaction</td>
 </tr>
 </tbody></table>
 
