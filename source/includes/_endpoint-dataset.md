@@ -605,7 +605,7 @@ HTTP/1.1 204 No Content
 
 When POSTing, set the body to a JSON object containing the key "pk" to modify
 the pk. The "pk" key should be a list containing zero or more variable ids.
-The variable id must point to an existing column that is of a structured type,
+The variable id must point to an existing column that is of a text or numeric type,
 and which has no duplicate or missing values.  Setting the pk to ``[]`` is
 equivalent to deleting the pk for a dataset.  Note that as of this writing, the
 POSTed list may not contain more than one variable id/alias.
