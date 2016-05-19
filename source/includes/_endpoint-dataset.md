@@ -552,8 +552,8 @@ dataset_id | The id of the dataset
 
 Setting a primary key on a dataset causes updates (particularly streamed
 updates) mentioning existing rows to be updated instead of new rows being
-inserted.  A primary key can only be set on a column that has structured data,
-and must be set after that column has been added to the dataset.
+inserted.  A primary key can only be set on a variable that is type "numeric" or "text" and that has no duplicate or missing values,
+and it can only be set after that variable has been added to the dataset.
 
 ###### GET
 ```http
@@ -566,13 +566,13 @@ GET /datasets/{dataset_id}/pk/ HTTP/1.1
 ```python
 >>> # "ds" is dataset via pycrunch
 >>> ds.pk.body.pk
-['0000001']
+['https://beta.crunch.io/api/datasets/{dataset_id}/variables/000001/']
 ```
 ```json{
 {
     "element": "shoji:entity",
     "body": {
-        "pk": ["0000001"],
+        "pk": ["https://beta.crunch.io/api/datasets/{dataset_id}/variables/000001/"],
     }
 }
 ```
@@ -580,39 +580,49 @@ GET /datasets/{dataset_id}/pk/ HTTP/1.1
 `GET /datasets/{dataset_id}/pk/`
 
 GET on this resource returns a Shoji Entity.  It contains one body key: ``pk``,
-which will be a list. The "pk" member indicates the variable ids of the columns
+which is an array. The "pk" member indicates the URLs of the variables
 in the dataset which comprise the primary key.  If there is no primary key for
 this dataset, the ``pk`` value will be ``[]``.
 
 ###### POST
 ```http
-POST /api/datasets/ HTTP/1.1
+POST /api/datasets/{dataset_id}/pk/ HTTP/1.1
 Host: beta.crunch.io
 Content-Type: application/json
 Content-Length: 15
 
-{"pk": ["000001"]}
-```
-```http
-HTTP/1.1 204 No Content
+{"pk": ["https://beta.crunch.io/api/datasets/{dataset_id}/variables/000001/"]}
+
+--------
+204 No Content
 ```
 ```python
 >>> # "ds" is dataset via pycrunch
->>> ds.pk.post({'pk':['age']})
+>>> ds.pk.post({'pk':['https://beta.crunch.io/api/datasets/{dataset_id}/variables/000001/']})
+>>> ds.pk.body.pk
+['000001']
 ```
 
 `POST /datasets/{dataset_id}/pk/`
 
 When POSTing, set the body to a JSON object containing the key "pk" to modify
-the pk. The "pk" key should be a list containing zero or more variable ids.
-The variable id must point to an existing column that is of a text or numeric type,
-and which has no duplicate or missing values.  Setting the pk to ``[]`` is
-equivalent to deleting the pk for a dataset.  Note that as of this writing, the
-POSTed list may not contain more than one variable id/alias.
+the primary key. The "pk" key should be a list containing zero or more variable URLs.
+The variables referenced must be either text or numeric type
+and must have no duplicate or missing values.  Setting pk to ``[]`` is
+equivalent to deleting the primary key for a dataset.  
+
+<aside class="notice">
+    We currently support only a single primary key variable, so the POST payload
+    array should be of length zero or one.
+</aside>
+
 
 ###### DELETE
 ```http
-`DELETE /datasets/{dataset_id}/pk HTTP/1.1`
+DELETE /datasets/{dataset_id}/pk/ HTTP/1.1
+
+--------
+204 No Content
 ```
 ```shell
 ```
@@ -621,11 +631,13 @@ POSTed list may not contain more than one variable id/alias.
 ```python
 >>> # "ds" is dataset via pycrunch
 >>> ds.pk.delete()
+>>> ds.pk.body.pk
+[]
 ```
 
 `DELETE /datasets/{dataset_id}/pk/`
 
-DELETE the "pk" attribute to delete the primary key for this dataset.  Upon
+DELETE the "pk" resource to delete the primary key for this dataset.  Upon
 success, this method returns no body and a 204 response code.
 
 #### Catalogs
