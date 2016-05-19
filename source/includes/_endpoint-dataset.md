@@ -557,7 +557,19 @@ and it can only be set after that variable has been added to the dataset.
 
 ###### GET
 ```http
-GET /datasets/{dataset_id}/pk/ HTTP/1.1
+GET /api/datasets/{dataset_id}/pk/ HTTP/1.1
+Host: beta.crunch.io
+
+--------
+200 OK
+Content-Type:application/json;charset=utf-8
+
+{
+    "element": "shoji:entity",
+    "body": {
+        "pk": ["https://beta.crunch.io/api/datasets/{dataset_id}/variables/000001/"],
+    }
+}
 ```
 ```shell
 ```
@@ -567,14 +579,6 @@ GET /datasets/{dataset_id}/pk/ HTTP/1.1
 >>> # "ds" is dataset via pycrunch
 >>> ds.pk.body.pk
 ['https://beta.crunch.io/api/datasets/{dataset_id}/variables/000001/']
-```
-```json{
-{
-    "element": "shoji:entity",
-    "body": {
-        "pk": ["https://beta.crunch.io/api/datasets/{dataset_id}/variables/000001/"],
-    }
-}
 ```
 
 `GET /datasets/{dataset_id}/pk/`
@@ -619,7 +623,8 @@ equivalent to deleting the primary key for a dataset.
 
 ###### DELETE
 ```http
-DELETE /datasets/{dataset_id}/pk/ HTTP/1.1
+DELETE /api/datasets/{dataset_id}/pk/ HTTP/1.1
+Host: beta.crunch.io
 
 --------
 204 No Content
