@@ -2,16 +2,27 @@
 
 ## Introduction
 
-Webhooks or callback URLs allow you to define URLs on your server that notifications should be sent to. Notifications are sent for specific events, as defined in the “Supported Event” section below.
+Webhooks or callback URLs allow you to define URLs on your server that notifications should be sent to when specific events occur in your Beyonic account.
 
-You can be managed in two ways:
+The webhooks api endpoint is:
 
-* By logging into your account via the web browser
-* By using the Webhooks API
+    <aside class="notice">https://app.beyonic.com/api/webhooks</aside>
 
-**Required permissions**
+## Supported events
 
-To manage webhooks, either with the API or the web browser, you must have “Manage Users and Organization Settings” permissions for your organization
+The following events are supported
+
+Event | Description | Object returned in data
+--------- | -------- | ----------------------
+payment.status.changed | Triggered any time a payment changes status. | Payment object
+collection.received | Triggered any time a collection (an incoming payment) is received from a customer | Collection object
+
+## Managing Webhooks
+
+You can create and manage webhooks in two ways:
+
+* By logging into your Beyonic account via the web browser as described below
+* By using the Webhooks API described below
 
 **Managing Webhooks from the web browser**
 
@@ -25,29 +36,20 @@ To manage webhooks using the web browser:
 
 You can use the Webhooks API described below to update or delete your callback URLs programatically.
 
-The webhooks api endpoint is:
+**Required permissions**
 
-    <aside class="notice">https://app.beyonic.com/api/webhooks</aside>
+To manage webhooks, either with the API or the web browser, you must have “Manage Users and Organization Settings” permissions for your organization.
 
-## The webhook object
+## The Webhook object
 
 Field | Type | Description
 ----- | -----| ----
 id | long integer | Unique object identifier
 user | long integer | The ID of the user who created the webhook
-event | string | The webhook event. See supported events below
+event | string | The webhook event. See the supported events section
 created | string | The date that the webhook was created, in the UTC timezone. Format: "YYYY-MM-DDTHH:MM:SSZ"
 updated | string | The date that the webhook was last modified, in the UTC timezone. Format: "YYYY-MM-DDTHH:MM:SSZ"
 target | string | The URL that triggered events will be sent to
-
-## Supported events
-
-The following events are supported
-
-Event | Description | Object returned in data
---------- | -------- | ----------------------
-payment.status.changed | Triggered any time a payment changes status. | Payment object
-collection.received | Triggered any time a collection (an incoming payment) is received from a customer | Collection object
 
 ## Notification body format
 
