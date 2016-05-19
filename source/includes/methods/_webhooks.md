@@ -125,6 +125,18 @@ Then use this for your callback URLs:
 
     <aside class="notice">https://requestb.in/xzdqe313?skip-cert-verify</aside>
 
+**3. Logging all callback requests and responses**
+
+RequestBin will only show you the request format, but will not send the request to your final callback URL, and will not show you the response that Beyonic is receiving from your callback URL.
+
+A number of third party services can be used to provide request proxying and logging. For example, [Runscope](https://www.runscope.com/) provides full traffic inspection and debugging via its Gateway URLs service. This service will provide a custom URL for you, that will proxy the callbacks to your real callback URL, and log both the requests and responses. Runscope provides free plans as well as paid plans.
+
+Once you have your gateway URL from Runscope, use that as your callback URL in Beyonic.
+
+[See this article for more information.](https://www.runscope.com/docs/debugging)
+
+
+
 ## Creating a new webhook
 
 > Sample Request:
