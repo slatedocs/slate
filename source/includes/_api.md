@@ -54,78 +54,119 @@ Simplified API
 --------------
 ```javascript
 var branchId = 1010101;
-var marketId = "-0xb196c4ce182399271e6ed434eb3f2210ae5e427c8ac0604c2cb2261694951d9";
+var marketId = "0x45c545745a80121b14c879bf9542dd838559f7acc90f1e1774f4268c332a519";
+
+augur.getOrderBook(marketId, function (orderBook) { /* ... */ });
+// example output:
+{ sell: 
+   [ { id: '-0xc764b37f2eebb389040025b33668470bf017ce00e3d7c3725d2c33da04cc0bc5',
+       type: 'sell',
+       market: '0x45c545745a80121b14c879bf9542dd838559f7acc90f1e1774f4268c332a519',
+       amount: '0.25',
+       price: '0.51999999999999999998',
+       owner: '0x05ae1d0ca6206c6168b42efcd1fbe0ed144e821b',
+       block: 8457,
+       outcome: '1' },
+     { id: '-0x66f53e64d4547120bd1962168f4acedc58d93efb63e62ad675ef55d19743e66c',
+       type: 'sell',
+       market: '0x45c545745a80121b14c879bf9542dd838559f7acc90f1e1774f4268c332a519',
+       amount: '1',
+       price: '0.5',
+       owner: '0x05ae1d0ca6206c6168b42efcd1fbe0ed144e821b',
+       block: 8452,
+       outcome: '1' },
+     { id: '-0x6d354a545d040ee85ef3b59f96cf20227f7f9385c510c87a5b43970043e36ed5',
+       type: 'sell',
+       market: '0x45c545745a80121b14c879bf9542dd838559f7acc90f1e1774f4268c332a519',
+       amount: '0.25',
+       price: '0.51999999999999999998',
+       owner: '0x05ae1d0ca6206c6168b42efcd1fbe0ed144e821b',
+       block: 8379,
+       outcome: '1' },
+     { id: '-0x7f79fc1e36e703f9a0f7b8776d9a1899d6e9ce121f68b3bce7161b9f394b942e',
+       type: 'sell',
+       market: '0x45c545745a80121b14c879bf9542dd838559f7acc90f1e1774f4268c332a519',
+       amount: '1',
+       price: '0.5',
+       owner: '0x05ae1d0ca6206c6168b42efcd1fbe0ed144e821b',
+       block: 8375,
+       outcome: '1' } ],
+  buy: 
+   [ { id: '-0x753a368b0cd164302041448c61c57a868dccf8fceb538fb2e0a60356f793d720',
+       type: 'buy',
+       market: '0x45c545745a80121b14c879bf9542dd838559f7acc90f1e1774f4268c332a519',
+       amount: '0.25',
+       price: '0.51999999999999999998',
+       owner: '0x05ae1d0ca6206c6168b42efcd1fbe0ed144e821b',
+       block: 8448,
+       outcome: '1' },
+     { id: '-0x9bae4959ded1d5426da64870b39a1465a39491d47e5071c6e4889d739c994c0d',
+       type: 'buy',
+       market: '0x45c545745a80121b14c879bf9542dd838559f7acc90f1e1774f4268c332a519',
+       amount: '1',
+       price: '0.5',
+       owner: '0x05ae1d0ca6206c6168b42efcd1fbe0ed144e821b',
+       block: 8446,
+       outcome: '1' },
+     { id: '-0xadd0854ba0ebba7ac915929988cb01e7b2ca8b6cca9cf9f88b235d654ce6666c',
+       type: 'buy',
+       market: '0x45c545745a80121b14c879bf9542dd838559f7acc90f1e1774f4268c332a519',
+       amount: '0.25',
+       price: '0.51999999999999999998',
+       owner: '0x05ae1d0ca6206c6168b42efcd1fbe0ed144e821b',
+       block: 8391,
+       outcome: '1' },
+     { id: '-0x1116dd2bd3aa1db9d14591c42f8eaac9a6a57ea2aad5654c5ada3245f7a52a7b',
+       type: 'buy',
+       market: '0x45c545745a80121b14c879bf9542dd838559f7acc90f1e1774f4268c332a519',
+       amount: '1',
+       price: '0.5',
+       owner: '0x05ae1d0ca6206c6168b42efcd1fbe0ed144e821b',
+       block: 8389,
+       outcome: '1' } ] }
 
 augur.getMarketInfo(marketId, function (marketInfo) { /* ... */ })
 // example output:
-marketInfo = {
-  "network": "2",
-  "traderCount": 1,
-  "makerFees": "0.5",
-  "traderIndex": 0,
-  "numOutcomes": 4,
-  "tradingPeriod": 99010560000,
-  "tradingFee": "0.01999999999999999998",
-  "branchId": "0xf69b5",
-  "numEvents": 1,
-  "cumulativeScale": "18446744073709551616",
-  "creationBlock": 920838,
-  "volume": "43.05000000000000000017",
-  "creationFee": "8.99999999999999967469",
-  "author": "0x15f6400a88fb320822b689607d425272bea2175f",
-  "tags": ["politics", "US elections", "political parties"],
-  "type": "categorical",
-  "endDate": 1485158400000,
-  "participants": {
-    "0x15f6400a88fb320822b689607d425272bea2175f": 0
-  },
-  "winningOutcomes": ["0", "0", "0", "0", "0", "0", "0", "0"],
-  "description": "Which political party's candidate will win the 2016 U.S. Presidential Election? Choices: Democratic, Republican, Libertarian, other",
-  "outcomes": [
-    {
-      "shares": {
-        "0x15f6400a88fb320822b689607d425272bea2175f": "0"
-      },
-      "id": 1,
-      "outstandingShares": "1.25"
-    },
-    {
-      "shares": {
-        "0x15f6400a88fb320822b689607d425272bea2175f": "1.25"
-      },
-      "id": 2,
-      "outstandingShares": "1.25"
-    },
-    {
-      "shares": {
-        "0x15f6400a88fb320822b689607d425272bea2175f": "1.25"
-      },
-      "id": 3,
-      "outstandingShares": "1.25"
-    },
-    {
-      "shares": {
-        "0x15f6400a88fb320822b689607d425272bea2175f": "1.25"
-      },
-      "id": 4,
-      "outstandingShares": "1.25"
-    }
-  ],
-  "events": [
-    {
-      "id": "-0xd91b9481ee9c2902198aa46c45d099afb7240f0d582ca06e646da628ec8618d8",
-      "endDate": 1485158400000,
-      "outcome": "0",
-      "minValue": "10",
-      "maxValue": "20",
-      "numOutcomes": 4,
-      "type": "categorical"
-    }
-  ],
-  "_id": "-0xb196c4ce182399271e6ed434eb3f2210ae5e427c8ac0604c2cb2261694951d9"
-}
+{ network: '2',
+  traderCount: 2,
+  makerFees: '0.10000000000000000002',
+  traderIndex: 5e-20,
+  numOutcomes: 2,
+  tradingPeriod: 107304960000,
+  tradingFee: '0.03500000000000000002',
+  branchId: '0xf69b5',
+  numEvents: 1,
+  cumulativeScale: '14999',
+  creationTime: 1463784466,
+  volume: '1.25',
+  creationFee: '5.14285714285714266327',
+  author: '0x7c0d52faab596c08f484e3478aebc6205f3f5d8c',
+  tags: [ 'spaceflight', 'LEO', 'economics' ],
+  type: 'scalar',
+  endDate: 1609574400000,
+  winningOutcomes: [ '0', '0', '0', '0', '0', '0', '0', '0' ],
+  description: 'How much will it cost (in USD) to move a pound of inert cargo from Earth\'s surface to Low Earth Orbit by January 1, 2021?',
+  outcomes: 
+   [ { shares: {},
+       id: 1,
+       outstandingShares: '0.5',
+       price: '0.51999999999999999998' },
+     { shares: {}, id: 2, outstandingShares: '0.5', price: '0' } ],
+  events: 
+   [ { id: '-0x9d869b3088e7c963e21d295bec13b57342aa70510252fa97388ded77df03d483',
+       endDate: 1609574400000,
+       outcome: '0',
+       minValue: '1',
+       maxValue: '15000',
+       numOutcomes: 2,
+       type: 'scalar' } ],
+  _id: '0x45c545745a80121b14c879bf9542dd838559f7acc90f1e1774f4268c332a519' }
 ```
 All of the methods in the Simplified API are getter methods that use an `eth_call` RPC request; for transactional requests (`eth_sendTransaction`), see the Full API section below.  This API is simplified in the sense that single requests to this API can be used to fetch a large amount of data, without the need for complicated RPC batch queries.
+
+### getOrderBook(marketId[, callback])
+
+Retrieves the full order book for `marketId`.  The order book's format is an object with fields `buy` and `sell` containing arrays of buy and sell orders.  The structure of the orders is shown in the example code.
 
 ### getMarketInfo(marketId[, callback])
 
@@ -141,12 +182,12 @@ augur.getMarketsInfo(options, function (marketsInfo) { /* ... */ })
 // example output:
 marketsInfo = {
   "-0x5932c04cfb6df8275387fc5d15a9897d61a2ef598c7e60ae45829e9e1e3409e6": {
-    "network": "7",
+    "network": "2",
     "traderCount": 1,
     /* ... */
   },
   "-0x428531d38a8960123e16a2810591c36d523a5269081543f7ac5914408ae63183": {
-    "network": "7",
+    "network": "2",
     "traderCount": 4,
     /* ... */
   },
@@ -436,12 +477,11 @@ augur.get_trade(trade_id, function (trade) { /* ... */ });
 trade = {
   id: '-0x22daf7fdff22ff716fd8108c011d1c0e69a7ab4a2b087f65dda2fc77ea044ba1',
   type: 'sell',
-  market: '-0xb196c4ce182399271e6ed434eb3f2210ae5e427c8ac0604c2cb2261694951d9',
+  market: '0x45c545745a80121b14c879bf9542dd838559f7acc90f1e1774f4268c332a519',
   amount: '1',
   price: '0.5',
   owner: '0x15f6400a88fb320822b689607d425272bea2175f',
   block: 920945,
-  refhash: '-0x6489ea153782b05c74a7ea4389036db78133e773c4ad895c0c7041d0b0d98fc4',
   outcome: '1'
 }
 ```
@@ -452,7 +492,7 @@ Gets the details of trade `trade_id`.  (To get the `trade_id`s for a given marke
 
 ```javascript
 // markets contract
-var marketId = "-0xb196c4ce182399271e6ed434eb3f2210ae5e427c8ac0604c2cb2261694951d9";
+var marketId = "0x45c545745a80121b14c879bf9542dd838559f7acc90f1e1774f4268c332a519";
 
 augur.get_trade_ids(marketId, function(trade_ids) { /* ... */ });
 // example output:
