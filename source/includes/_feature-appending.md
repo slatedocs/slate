@@ -26,25 +26,25 @@ When you attach a Source to an existing Dataset, the system attempts to match up
 GET the new Batch:
 
 ```http
-    GET /api/datasets/{dataset_id}/batches/{batch_id}/ HTTP/1.1
-    ...
-    --------
-    200 OK
-    Content-Type: application/shoji
+GET /api/datasets/{dataset_id}/batches/{batch_id}/ HTTP/1.1
+...
+--------
+200 OK
+Content-Type: application/shoji
 
-    {
-        "element": "shoji:entity",
-        "body": {
-            "conflicts": {
-              "cdbd11/": {
-                "metadata": {}
-                "conflicts": [{
-                  "message": "Types do not match and cannot be converted",
-                }]
-              }
-            }
+{
+    "element": "shoji:entity",
+    "body": {
+        "conflicts": {
+          "cdbd11/": {
+            "metadata": {}
+            "conflicts": [{
+              "message": "Types do not match and cannot be converted",
+            }]
+          }
         }
     }
+}
 ```
 
 If any variable conflicts, it will possess one or more "conflicts" members. For example, if the new variable "cdbd11" had a different type that could not be converted compared to the existing variable "cdbd11", the Batch resource would contain the above message.  Only unresolvable conflicts will be shown; if a variable is not reported in the conflicts object, it appended cleanly.
