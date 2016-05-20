@@ -13,7 +13,7 @@ at the core of Neblina.
 
 ## Commands
 
-### Debug - Set Interface (0x01)
+### Debug - Set Interface (0x01) - ** This command is now obsolete **
 
 ```c 
 #define DEBUG_CMD_SET_INTERFACE 0x01
@@ -197,15 +197,15 @@ In the response mode, if there is a BLE connection between Neblina and the host,
 ```c
 #define DEBUG_CMD_GET_DATAPORT	0x08
 ```
-This command query the status of all the data streaming interface. These are interface port where the data are streaming out of the Neblina.    
+This command inquires the status of all the data streaming interfaces. These are the interface ports, where Neblina streams its data to.    
 
-In the command mode, this is a 4 bytes packet.  There is no parameter.  The data length byte is set to zero (Byte1).   
+In the command mode, this is a 4 bytes packet. There is no data section, and the data length byte is set to zero (Byte 1).   
 
 |Byte 0 (subsystem)|Byte 1 (length)|Byte 2 (CRC)| Byte 3 (command)     |
 |:----------------:|:-------------:|:----------:|:--------------------:|
 |       0x40       |      0x00     |     CRC    |0x08 (Get Port Status)|
 
-In the response mode, the length byte (Byte1) indicate the number of data ports available. The data section contains an array bytes representing the status of the data interface port where the index of the array is the port number.  A value 1 indicate that the port is opened for streaming. A value of 0, the port is closed.  There are 2 defined interfaces. The port 0 is the BLE (Bluetooth Smart) interface.  The port 1 is the UART interface.
+In the response mode, the length byte (Byte1) indicates the number of data ports available. The data section contains an array of bytes representing the status of the interface ports, where the index of the array is the port number.  The value of 1 indicates that the port is open for streaming. The value of 0 indicates that the port is closed. There are 2 defined interfaces. Port 0 is the BLE (Bluetooth Smart) interface, while Port 1 is the UART interface.
 
 |Byte 0 (subsystem)|Byte 1 (length)|Byte 2 (CRC)| Byte 3 (command)     |Byte 4     |Byte 5      |
 |:----------------:|:-------------:|:----------:|:--------------------:|:---------:|:----------:|
@@ -216,9 +216,9 @@ In the response mode, the length byte (Byte1) indicate the number of data ports 
 #define DEBUG_CMD_SET_DATAPORT	0x09
 ```
 
-This command opens or close the data streaming interface. It is the interface port where the data are streaming out of the Neblina.
+This command opens/closes the port of a data streaming interface.
 
-In the commande mode, the data section contains the port number (byte 4) and the port control byte (byte 5) for open or close.  The port nymber is indexed starting 0.  The port control byte, set 1 to open port and 0 to close port. 2 Ports are available.  Port 0 is the BLE (Bluetooth Smart).  Port 1 is the UART.
+In the commande mode, the data section contains the port number (byte 4) and the port control byte (byte 5) for open or close.  The port number is indexed starting from 0. The port control byte should be set to 1 to open the port or 0 to close it. Two Ports are available, where Port 0 is the BLE (Bluetooth Smart), and Port 1 is the UART.
 
 |Byte 0 (subsystem) |Byte 1 (length)|Byte 2 (CRC)| Byte 3 (command)     |Byte 4     |Byte 5               |
 |:-----------------:|:-------------:|:----------:|:--------------------:|:---------:|:-------------------:|
