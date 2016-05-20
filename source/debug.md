@@ -207,9 +207,9 @@ In the command mode, this is a 4 bytes packet.  There is no parameter.  The data
 
 In the response mode, the length byte (Byte1) indicate the number of data ports available. The data section contains an array bytes representing the status of the data interface port where the index of the array is the port number.  A value 1 indicate that the port is opened for streaming. A value of 0, the port is closed.  There are 2 defined interfaces. The port 0 is the BLE (Bluetooth Smart) interface.  The port 1 is the UART interface.
 
-|Byte 0 (subsystem)|Byte 1 (length)|Byte 2 (CRC)| Byte 3 (command)     |Byte 4     |Byte 5      | .... |
-|:----------------:|:-------------:|:----------:|:--------------------:|:---------:|:----------:|:----:|
-|       0x0        |  nb ports (2) |     CRC    |0x08 (Get Port Status)|port0 (BLE)|port1 (UART)| .... |
+|Byte 0 (subsystem)|Byte 1 (length)|Byte 2 (CRC)| Byte 3 (command)     |Byte 4     |Byte 5      |
+|:----------------:|:-------------:|:----------:|:--------------------:|:---------:|:----------:|
+|       0x0        |  nb ports (2) |     CRC    |0x08 (Get Port Status)|port0 (BLE)|port1 (UART)|
 
 ### Debug - Open/Close data port (0x09)
 ```c
@@ -220,9 +220,9 @@ This command opens or close the data streaming interface. It is the interface po
 
 In the commande mode, the data section contains the port number (byte 4) and the port control byte (byte 5) for open or close.  The port nymber is indexed starting 0.  The port control byte, set 1 to open port and 0 to close port. 2 Ports are available.  Port 0 is the BLE (Bluetooth Smart).  Port 1 is the UART.
 
-|Byte 0 (subsystem)|Byte 1 (length)|Byte 2 (CRC)| Byte 3 (command)     |Byte 4     |Byte 5               |
-|:----------------:|:-------------:|:----------:|:--------------------:|:---------:|:-------------------:|
-|       0x0        |  2            |     CRC    |0x09 (Open/Close port)| Port #    |Ctrl (1=Open/0=Close)|
+|Byte 0 (subsystem) |Byte 1 (length)|Byte 2 (CRC)| Byte 3 (command)     |Byte 4     |Byte 5               |
+|:-----------------:|:-------------:|:----------:|:--------------------:|:---------:|:-------------------:|
+|       0x40        |  2            |     CRC    |0x09 (Open/Close port)| Port #    |Ctrl (1=Open/0=Close)|
 
 
 
