@@ -868,10 +868,6 @@ Available options:
 | ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
 
 
-#### Return value
-
-Returns the `KuzzleDataCollection` object to allow chaining.
-
 #### Callback response
 
 Resolves to an `array` containing the deleted document IDs.

@@ -1824,7 +1824,7 @@ Available options:
 
 #### Callback response
 
-Resolves to the updated profile ID
+Resolves to an updated `KuzzleProfile` object
 
 ## updateRole
 
@@ -1941,7 +1941,7 @@ Available options:
 
 #### Callback response
 
-Resolves to the updated role ID
+Resolves to an updated `KuzzleRole` object
 
 
 ## updateUser
@@ -2048,7 +2048,7 @@ Available options:
 
 #### Callback response
 
-Resolves to the updated user's `KuzzleUser`.
+Resolves to an updated `KuzzleUser` object
 
 ## userFactory
 
