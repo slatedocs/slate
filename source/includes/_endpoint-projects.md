@@ -475,13 +475,22 @@ GET /projects/6c01/icon/ HTTP/1.1
 
 ##### PUT
 
-PUT to this endpoint to change a project's icon. The payload should have the
- form of a standard multipart/form-data upload. The file's contents will be 
- stored and made available under the project's url.
+PUT to this endpoint to change a project's icon.
+
+The request should have be a standard `multipart/form-data` file upload with
+ the file field named `icon`.
+The file's contents will be stored and made available under the project's url.
  
 Only the project's editors can change the project's icon.
  
 Valid image extensions: 'png', 'gif', 'jpg', 'jpeg' - Others will 400
+
+```http
+PUT /projects/6c01/icon/ HTTP/1.1
+Content-Disposition: form-data; name="icon"; filename="newicon.jpg"
+Content-Type: image/jpeg
+```
+
 
 #### POST
 

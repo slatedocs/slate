@@ -31,9 +31,7 @@ GET /api/datasets/{dataset_id}/batches/{batch_id}/ HTTP/1.1
 --------
 200 OK
 Content-Type: application/shoji
-```
 
-```json
 {
     "element": "shoji:entity",
     "body": {
@@ -50,10 +48,10 @@ Content-Type: application/shoji
 ```
 
 If any variable conflicts, it will possess one or more "conflicts" members. For
- example, if the new variable "cdbd11" had a different type that could not be
- converted compared to the existing variable "cdbd11", the Batch resource would
-  contain the above message.  Only unresolvable conflicts will be shown; if a
-  variable is not reported in the conflicts object, it appended cleanly.
+example, if the new variable "cdbd11" had a different type that could not be
+converted compared to the existing variable "cdbd11", the Batch resource would
+contain the above message.  Only unresolvable conflicts will be shown; if a
+variable is not reported in the conflicts object, it appended cleanly.
 
 See [Batches](#batches) for more details on batch entities and conflicts.
 
@@ -90,10 +88,10 @@ while True:
 Streamed values must be keyed either by id or by alias. The variable ids/aliases
 must correspond to existing variables in the dataset. The Python code shows how
 to efficiently map aliases to ids. The data must match the target variable types
- so that we can process the row as quickly as possible. We want no casting or
-  other guesswork slowing us down here. Among other things, this means that
-  categorical values must be represented as Crunch's assigned category ids, not
-  names or numeric values.
+so that we can process the row as quickly as possible. We want no casting or
+other guesswork slowing us down here. Among other things, this means that
+categorical values must be represented as Crunch's assigned category ids, not
+names or numeric values.
 
 You may also send more than one row at a time if you prefer. For example, your
 data collection system may already post-process row data in, say, 5 minute
@@ -111,11 +109,11 @@ send.
 The above added new rows to the Stream resource so that you can be confident
 that your data is completely safe with Crunch. To append those rows to the
 dataset requires another step. You could stream rows and then, once they are all
- assembled, append them all as a single Source to the dataset. However, if
- you're streaming rows at intervals it's likely you want to append them to the
- dataset at intervals, too. But doing so one row at a time is usually
- counter-productive; it slows the rate at which you can send rows, balloons
-  metadata, and interrupts users who are analyzing the data.
+assembled, append them all as a single Source to the dataset. However, if
+you're streaming rows at intervals it's likely you want to append them to the
+dataset at intervals, too. But doing so one row at a time is usually
+counter-productive; it slows the rate at which you can send rows, balloons
+metadata, and interrupts users who are analyzing the data.
 
 Instead, you control how often you want the streamed rows to be appended to the
 dataset. When you're ready, POST to `/datasets/{id}/batches/` and provide the
@@ -144,8 +142,8 @@ Batch. If `null`, the system will acquire all currently pending rows
 (any new rows which arrive during the formation of this Batch will be queued
 and not fetched). If an integer, the system will attempt to fetch that many
 rows from the stream, waiting up to 10 seconds for new ones if the number
- exceeds the number of pending rows. If there are no pending rows,
- `409 Conflict` is returned instead of 201/202 for the new Batch.
+exceeds the number of pending rows. If there are no pending rows,
+`409 Conflict` is returned instead of 201/202 for the new Batch.
 
 ##### Pending rows will be added automatically
 
