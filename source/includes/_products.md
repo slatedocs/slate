@@ -78,12 +78,12 @@ id | title | price | shipping
 124 | next title | 3.21 | 0.99
 
 ## Delete
-If you do "delta" or "incremental" uploads (see commit action) you may want to delete old products you already uploaded. To do so, just add the key ```pup:isDelete``` with value ```1``` and the id of the product:
+If you do "delta" or "incremental" uploads (see commit action) you may want to delete old products you already uploaded. To do so, just add the key ```pup:isdeleted``` with value ```1``` and the id of the product:
 
 ```shell
 curl -d '[{
     "id": 124,
-    "pup:isDelete": 1
+    "pup:isdeleted": 1
 }]'
 https://platform-api.productsup.io/platform/v1/sites/Identifier:123/products/md5string32chars/upload
 ```
@@ -101,7 +101,7 @@ $ProductService->delete(array(
 When you finished all uploads into one batch, you can tell the API that it is done and the "batch" can be started to be processed.
 
 Url in this case would be
- 
+
  `/platform/v1/sites/Identifier:123/products/md5string32chars/commit`
 
 > As body of the POST request you have to provide again a JSON, this time with only one parameter:

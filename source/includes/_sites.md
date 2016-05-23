@@ -114,7 +114,7 @@ To create a new site, you can use a POST request (or the insert method).
 
 ```php
 <?php
-$SitesService = new Productsup\Service\Sites($Client);
+$SitesService = new \Productsup\Service\Sites($Client);
 $project = new \Productsup\Platform\Project();
 $project->id = 321;
 $SitesService->setProject($project);
