@@ -28,8 +28,8 @@ Name  | Description
 `videoPause` | The fabric is currently not sending any Video, but MAY be sending audio.
 `videoResume` | The fabric is resuming Video communication.
 `fabricTerminated`  | The _PeerConnection_ is destroyed and is no longer sending or receiving any media.
-`screenSharingStart`  | The _PeerConnection_ started the screen sharing.
-`screenSharingStop`  | The _PeerConnection_ stopped the screen sharing.
+`screenShareStart`  | The _PeerConnection_ started the screen sharing.
+`screenShareStop`  | The _PeerConnection_ stopped the screen sharing.
 `dominantSpeaker`  | The userID reports that it is the dominant speaker and not the remote participants.
   
 
