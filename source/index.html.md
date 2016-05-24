@@ -5,7 +5,7 @@ language_tabs:
   - Javascript
 
 toc_footers:
-  - <a href='/'>Made by hand in Finland</a>
+  - <a href='https://www.callstats.io/'>Made by hand in Finland</a>
  
 includes:
   - api
