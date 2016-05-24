@@ -112,9 +112,9 @@ In any WebRTC endpoint, where multiple _PeerConnections_ are created between eac
   }
 ```
 
-Sometimes WebRTC endpoints fail to establish connectivity, this may occur when user-agents and/or bridges implement differing flavours of the Session Description Protocol (SDP) or may not support some features that others implement.
+Sometimes WebRTC endpoints fail to establish connectivity, this may occur when user-agents and/or bridges implement differing flavors of the Session Description Protocol (SDP) or may not support some features that others implement.
 
-The WebRTC APIs either have a callback or a Promise associated to them. Since `callstats.js ver. 3.2.x`, WebRTC applications can use `reportError()` to capture at which stage the negotiation fails and pass on the [DomError](http://www.w3.org/TR/dom/#interface-domerror) returned by the callback or Promise to callstats.io. The failure reason will appear both in the conference timeline and aggregate on the main dashboard. See Section enumerating [WebRTC functions](#enumeration-of-wrtcfuncnames) for details. The example below reports error when creating an SDP offer:
+The WebRTC APIs either have a callback or a Promise associated to them. Since `callstats.js ver. 3.2.x`, WebRTC applications can use `reportError()` to capture at which stage the negotiation fails and pass on the [DomError](http://www.w3.org/TR/dom/#interface-domerror) returned by the callback or Promise to callstats.io. The failure reason will appear both in the conference time-line and aggregate on the main dashboard. See Section enumerating [WebRTC functions](#enumeration-of-wrtcfuncnames) for details. The example below reports error when creating an SDP offer:
 
 
 <aside class="success">
@@ -127,7 +127,7 @@ Congratulations! You have now completed the basic integration steps, read more f
 callStats.sendFabricEvent(pcObject, callStats.fabricEvent.videoPause, conferenceID);
 ```
 
-During the conference, users might perform several actions impacting the measurements and conference analysis. The user might mute the audio or switch off the camera or do screen sharing during a conference. These events can direclty impact the measurement data (For example, you can see a significant drop in throughput when camera is switched off). For the list of all possible conferecne events, please refer [here](#enumeration-of-fabricevent)
+During the conference, users might perform several actions impacting the measurements and conference analysis. The user might mute the audio or switch off the camera or do screen sharing during a conference. These events can directly impact the measurement data (For example, you can see a significant drop in throughput when camera is switched off). For the list of all possible conference events, please refer [here](#enumeration-of-fabricevent)
 
 Send the appropriate `fabricEvent` via `sendFabricEvent()`.
 
