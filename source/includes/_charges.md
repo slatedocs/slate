@@ -447,11 +447,15 @@ EXEMPLO DE CORPO DA RESPOSTA COM INSUCESSO
 Atualiza a cobrança determinada, caso haja sucesso retornará as informações da mesma. Se houverem erros eles serão informados no corpo da resposta. A requisição não diferencia a utilização dos verbos PUT e PATCH.
 
 <aside class="warning">
-Para cobrançãs do tipo **Boleto** não é possível atualizar uma cobrança após seu recebimento, para isso é necessário desfazer o recebimento da mesma! Além disso, caso seja alterado com sucesso e será gerado um novo boleto sobrescrevendo o anterior.
+Para cobranças do tipo **Boleto** não é possível atualizar uma cobrança após seu recebimento, para isso é necessário desfazer o recebimento da mesma! Além disso, caso seja alterado com sucesso e será gerado um novo boleto sobrescrevendo o anterior.
 </aside>
 
 <aside class="notice">
-Para cobrançãs do tipo **Boleto** os campos 'received', 'received_at' e 'received_amount', não são alterados via atualização de cobrança, apenas no recebimento ou desfazendo o recebimento da mesma.
+Para cobranças do tipo **Boleto** os campos 'received', 'received_at' e 'received_amount', não são alterados via atualização de cobrança, apenas no recebimento ou desfazendo o recebimento da mesma.
+</aside>
+
+<aside class="notice">
+Para cobranças do tipo **Gateway de Pagamento**, a atualização só poderá ser feita caso exista erro após a criação.
 </aside>
 
 **Parâmetros**
@@ -493,6 +497,8 @@ Para cobrançãs do tipo **Boleto** os campos 'received', 'received_at' e 'recei
 | state                    | string | (opcional, requerido se registrable for `true`) sigla do estado do endereço do pagador ("RJ" por exemplo) |
 
 ### Gateway de Pagamento
+
+Ao verificar que uma cobrança está com erros após a criação é possível atualizar e re-submeter a cobrança com os dados corrigidos. Após a cobrança ser efetuada não será mais possível atualizar esta cobrança.
 
 **Parâmetros**
 
