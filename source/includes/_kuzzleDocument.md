@@ -163,13 +163,9 @@ Available options:
 | ``metadata`` | JSON Object | Additional information passed to notifications to other users | ``null`` |
 | ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
 
-#### Return value
-
-Returns this `KuzzleDocument` object to allow chaining.
-
 #### Callback response
 
-Resolves to this `KuzzleDocument` object once the document has been deleted in Kuzzle.
+Resolves to the deleted document ID
 
 
 ## publish
