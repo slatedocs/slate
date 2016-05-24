@@ -1,6 +1,11 @@
 # Integrating with your App
 
+
 ## Step 1: Include callstats.js 
+
+<aside class="error">
+You can track your integration progress from our <a href= "https://dashboard.callstats.io/apps/integration"> dashboard </a>.
+</aside>
 
 
 ```javascript
@@ -36,7 +41,7 @@ If you are using require.js, please refer to the following <a href="/#loading-wi
 
 After the user is authenticated with the origin server (or when the page loads), call `initialize()` with appropriate parameters (see [API section](#callstats-initialize)).  Check the callback for errors.  If the authentication succeeds, `callstats.js` will receive a valid authentication token to make subsequent API calls.
 
-For more information on callbacks, please refer to [csInitCallback](#csinitcallback) and [csStatsCallback](#csstatscallback)
+For more information on callbacks, please refer to [csInitCallback](#csinitcallback) and [csStatsCallback](#csstatscallback). Also have a look at [step 8](#step-8-optional-handling-stats-from-statscallback) for csStatsCallback data handling. 
 
 
 ## Step 3: addNewFabric()
@@ -116,11 +121,13 @@ The WebRTC APIs either have a callback or a Promise associated to them. Since `c
 Congratulations! You have now completed the basic integration steps, read more for advanced features!
 </aside>
 
-## Step 5: (OPTIONAL) Conference Events
+## Step 5: (OPTIONAL) sendFabricEvent()
 
 ```javascript
-callStats.sendFabricEvent(pcObject, callStats.fabricEvent.fabricSetupFailed, conferenceID);
+callStats.sendFabricEvent(pcObject, callStats.fabricEvent.videoPause, conferenceID);
 ```
+
+During the conference, users might perform several actions impacting the measurements and conference analysis. The user might mute the audio or switch off the camera or do screen sharing during a conference. These events can direclty impact the measurement data (For example, you can see a significant drop in throughput when camera is switched off). For the list of all possible conferecne events, please refer [here](#enumeration-of-fabricevent)
 
 Send the appropriate `fabricEvent` via `sendFabricEvent()`.
 
@@ -153,7 +160,6 @@ Send the appropriate `fabricEvent` via `sendFabricEvent()`.
   callstats.io will summarize
   and aggregate the summary statistics _30 seconds_ after the last measurement
   for a conference is received.
-
  
 
 ## Step 6: (OPTIONAL) associateMstWithUserID()
@@ -176,11 +182,10 @@ Send the appropriate `fabricEvent` via `sendFabricEvent()`.
 
 When interacting with the conference server, the developer is most likely going to use the name or identifier associated with the conference server as the `remoteUserID`. A typical conference bridge (for example, [Jitsi Videobridge](https://jitsi.org/Projects/JitsiVideobridge)) transmits [multiple media stream tracks within a peer connection](https://hacks.mozilla.org/2015/06/firefox-multistream-and-renegotiation-for-jitsi-videobridge/). In which case, using a remote participant’s userID is impractical as there maybe several participants.
 
-Since `callstats.js ver. 3.3.x`, we allow mapping [Synchronization Source Identifier (SSRC)](http://tools.ietf.org/html/rfc3550#section-5.1) for a mediastreamtrack to a userID (both local and remote). By default the local and remote _MediaStreamTracks_ are automatically mapped to the localUserID and remoteUserID. With `associateMstWithUserID()`, you can override the actual local and remote userIDs to the correct association. If the DOM ids of the video tags associated to each participant, callstat.js will calculate better quality scores for each participant. The code example shows how the API can be integrated:
+Since `callstats.js ver. 3.3.x`, we allow mapping [Synchronization Source Identifier (SSRC)](http://tools.ietf.org/html/rfc3550#section-5.1) for a mediastreamtrack to a userID (both local and remote). By default the local and remote _MediaStreamTracks_ are automatically mapped to the localUserID and remoteUserID. With `associateMstWithUserID()`, you can override the actual local and remote userIDs to the correct association. If the DOM identifiers of the video tags associated to each participant, callstats.js will calculate better quality scores for each participant. The code example shows how the API can be integrated:
  
 <img src="/images/2015-mst-association.gif" alt="Associationg userID with MST" width="700"/>
 
-Figure. Associating userID with MST.
 
 More discussion related to the motivation of `associateMstWithUserID()` is covered in the following [blog post](/2015/07/17/api-update-handling-multiple-media-stream-tracks-callstats/).
 
@@ -196,14 +201,11 @@ More discussion related to the motivation of `associateMstWithUserID()` is cover
   callStats.sendUserFeedback(conferenceID, feedback, pcCallback);
 ```
 
-The developers are expected  to design an appropriate UI to get user input (of quality) at the end of the call. Typically, services collect user feedback based on the Mean opinion Score (MoS). However, it is not neccessary to use all values of the  MoS scale, for example a service using only 2 point scale: it can associate 1 and 5 to bad and excellent, respectively and not use the values 2 to 4.
+The developers are expected to design an appropriate UI to get user input on quality at the end of the call. Typically, services collect user feedback based on the Mean Opinion Score (MOS). However, it is not neccessary to use all values of the  MOS scale, for example a service using only 2 point scale: it can associate 1 and 5 to bad and excellent, respectively and not use the values 2 to 4.
 
 
 ## Step 8: (OPTIONAL) Handling stats from statsCallback()
 
-The developers can handle the stats received from statsCallback function in way suitable to their application. It can be used for displaying bitrate or based on the conference quality indicators applications can change their settings etc. For more details check this [blog post](/2015/08/24/statscallback-webrtc-media-quality-status/).
+The developers can handle the stats received from statsCallback function in a way suitable to their application. It can be used for displaying bitrate or based on the conference quality indicators applications can change their settings etc. For more details check this [blog post](/2015/08/24/statscallback-webrtc-media-quality-status/).
 
-### Integration Progress
-
-After creating an AppID, the {{site.callstats.backend-url}}/newapp helps you integrate the `callstats.js` into your web application. It reports if any of the APIs have been invoked correctly.
 
