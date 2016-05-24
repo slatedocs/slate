@@ -50,11 +50,15 @@ EXEMPLO
   }
 ```
 
-As Cobranças, pertencem as suas Configurações de Cobrança, sendo assim é necessário que sempre haja ao menos uma Configuração de Cobrança homologada para a criação de Cobranças. No caso da da Configuração de Cobrança do tipo boleto, ao ser criada, é automaticamente gerada uma Cobrança para homologar a Configuração.
+As Cobranças, pertencem as suas Configurações de Cobrança, sendo assim é necessário que sempre haja ao menos uma Configuração de Cobrança homologada para a criação de Cobranças.
 
-O tipo da Cobrança depende da sua Configuração de Cobrança. Se a Configuração de Cobrança é do tipo Boleto (billet), a cobrança será deste mesmo tipo. Sendo assim, os parâmetros, validações e algums comportamentos irão variar de acordo com o tipo.
+Cada uma das cobranças criadas após a homologação serão do mesmo tipo da configuração. Desta forma qualquer Cobrança criada sob uma Configuração de Cobrança do tipo Boleto será uma cobrança do tipo Boleto. Por este motivo os parâmetros, validações e alguns comportamentos serão variáveis de acordo com o tipo de cobrança.
 
-**Parâmetros (Boleto)**
+### Boleto
+
+Neste caso a cobrança de homologação é automaticamente criada após a criação da Configuração de Cobrança. A Cobrança de homologação deve passar por todo o fluxo de cobrança do tipo boleto, ou seja, ser registrada no banco via arquivo de remessa (caso necessário), paga, o valor entrar na conta bancária e o arquivo de retorno enviado ao Cobrato.
+
+**Parâmetros**
 
 | Campo                          | Tipo             | Comentário                                                                                                                                          |
 |--------------------------------|------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -92,7 +96,15 @@ O tipo da Cobrança depende da sua Configuração de Cobrança. Se a Configuraç
 | registration_status            | string           | status de registro em que a cobrança se encontra (without_remittance, remitted, registered, registered_with_error)                                  |
 | _links                         | array of object  | links relacionados à cobraça                                                                                                                        |
 
-**Parâmetros (Gateway de Pagamento)**
+### Gateway de Pagamento
+
+A cobrança de homologação é capturada e, logo em seguida, automaticamente cancelada. Até que esse processo seja efetuado com sucesso, a Configuração de Cobrança não estará homologada e todas as Cobranças criadas com esta Configuração terão o comportamento de homologação.
+
+Em caso de falha, seja na captura ou no cancelamento, o motivo da fala será disponibilizado no atrributo payment_gateway_message de Charge.
+
+As Cobranças tem o comportamento assíncrono em relação à comunicação com o Gateway de Pagamento. Quando a cobrança é criada com sucesso (sem erros de validação) é enfileirado para de fato a comunicação com o gateway. Assim esse processo terminar, um payload de recebido ou de erro são enviados via webhook.
+
+**Parâmetros**
 
 | Campo                          | Tipo             | Comentário                                                                                                                                    |
 |--------------------------------|------------------|-----------------------------------------------------------------------------------------------------------------------------------------------|
@@ -345,7 +357,7 @@ Cria um nova cobrança, caso haja sucesso retornará as informações da mesma e
 | Campo                          | Tipo             | Comentário                                                                                                                                                              |
 |--------------------------------|------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | charge_config_id               | integer          | **(requerido)** código de identificação da configuração de cobrança da qual a cobrança irá pertencer                                                                    |
-| total_amount                   | decimal          | **(requerido)** valor total do boleto                                                                                                                                   |
+| total_amount                   | decimal          | **(requerido)** valor total da cobrança                                                                                                                                   |
 | payment_method                 | string           | **(requerido)** método de pagamento ("credit_card_in_cash" pagamento à vista, "credit_card_financed" pagamento parcelado)                                               |
 | description                    | string           | (opcional) descrição da cobrança                                                                                                                                        |
 | soft_descriptor                | string           | (opcional) descritor que irá aparecer na fatura do cartão (no máximo 13 caracteres)                                                                                     |
@@ -452,7 +464,7 @@ Para cobrançãs do tipo **Boleto** os campos 'received', 'received_at' e 'recei
 |--------------------------------|------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | due_date                       | date             | **(requerido)** data de vencimento da cobrança                                                                                                                          |
 | document_kind                  | string           | **(requerido)** espécie do documento, podendo ser DM (Duplicata Mercantil), DS (Duplicata de Serviço), NP (Nota Promissória) ou DV (Diversos)                           |
-| total_amount                   | decimal          | **(requerido)** valor total do boleto                                                                                                                                   |
+| total_amount                   | decimal          | **(requerido)** valor total da cobrança                                                                                                                                   |
 | document_number                | string           | **(requerido)** número do documento, também chamado de "seu número", é o número utilizado e controlado pelo beneficiário para identificar o título de cobrança          |
 | payer_emails                   | array of strings | (opcional) emails de quem irá pagar o boleto                                                                                                                            |
 | document_date                  | date             | (opcional) data de emissão do documento                                                                                                                                 |

@@ -38,10 +38,11 @@ As Configurações de Cobrança podem ser de tipos diferentes. Sendo assim, os p
 - Boleto (billet)
 - Gateway de pagamento (payment_gateway)
 
-**Parâmetros (Boleto)**
+### Boleto
 
 As Configurações de Cobrança do tipo **Boleto** (billet), pertencem as suas contas bancárias, sendo assim é necessário que sempre haja ao menos uma conta bancária para criação desse tipo configuração de cobrança, que também tem suas validações de acordo com o banco de sua conta bancária.
 
+**Parâmetros**
 
 | Campo                     | Tipo            | Comentário                                                                                                                        |
 |---------------------------|-----------------|-----------------------------------------------------------------------------------------------------------------------------------|
@@ -63,7 +64,10 @@ As Configurações de Cobrança do tipo **Boleto** (billet), pertencem as suas c
 | transmission_code         | string          | código de transmissão (apenas para o Santander)                                                                                   |
 | _links                    | array of object | links da configuração de cobrança e de sua conta bancária                                                                         |
 
-**Parâmetros (Gateway de Pagamento)**
+
+### Gateway de Pagamento
+
+**Parâmetros**
 
 | Campo        | Tipo            | Comentário                                                                                                            |
 |--------------|-----------------|-----------------------------------------------------------------------------------------------------------------------|
@@ -226,7 +230,9 @@ EXEMPLO DE CORPO DA RESPOSTA COM INSUCESSO
 
 Cria uma nova Configuração de Cobrança, retornando as informações da mesma em caso de sucesso. Se houverem erros eles serão informados no corpo da resposta.
 
-**Parâmetros (Boleto)**
+### Boleto
+
+**Parâmetros**
 
 | Campo                     | Tipo    | Comentário                                                                                                                                                          |
 |---------------------------|---------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -244,7 +250,9 @@ Cria uma nova Configuração de Cobrança, retornando as informações da mesma 
 | transmission_code         | string  | (opcional, requerido apenas se registered_charges for `true`) código de transmissão (apenas para o Santander)                                                       |
 | initial_remittance_number | integer | (opcional) número inicial de remessa, ou seja, qual foi o último número sequencial de remessa enviado para o banco (apenas para o Bradesco). Por padrão o valor é 1 |
 
-**Parâmetros (Gateway de Pagamento)**
+### Gateway de Pagamento
+
+**Parâmetros**
 
 | Campo        | Tipo    | Comentário                                                                                                                                            |
 |--------------|---------|-------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -314,7 +322,9 @@ EXEMPLO DE CORPO DA RESPOSTA COM INSUCESSO
 
 Atualiza a Configuração de Cobrança determinada, retornando as informações da mesma em caso de sucesso. Se houverem erros, eles serão informados no corpo da resposta. A requisição não diferencia a utilização dos verbos PUT e PATCH.
 
-**Parâmetros (Boleto)**
+### Boleto
+
+**Parâmetros**
 
 | Campo                     | Tipo    | Comentário                                                                                                                                                          |
 |---------------------------|---------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -330,7 +340,9 @@ Atualiza a Configuração de Cobrança determinada, retornando as informações 
 | transmission_code         | string  | (opcional, requerido apenas se registered_charges for `true`) código de transmissão (apenas para o Santander)                                                       |
 | initial_remittance_number | integer | (opcional) número inicial de remessa, ou seja, qual foi o último número sequencial de remessa enviado para o banco (apenas para o Bradesco). Por padrão o valor é 1 |
 
-**Parâmetros (Gateway de Pagamento)**
+### Gateway de Pagamento
+
+**Parâmetros**
 
 | Campo        | Tipo    | Comentário                                                                                                                                            |
 |--------------|---------|-------------------------------------------------------------------------------------------------------------------------------------------------------|
