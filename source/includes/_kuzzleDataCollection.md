@@ -1125,7 +1125,9 @@ Available options:
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
+| ``from`` | integer | Upper bounds for paginated results. | ``0`` |
 | ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
+| ``size`` | integer | Lower bounds for paginated results. | ``10`` |
 
 #### Return value
 
