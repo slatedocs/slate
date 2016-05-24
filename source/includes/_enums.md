@@ -20,7 +20,7 @@ When using a single _PeerConnection_ between a pair of userIDs for sending and r
 
 Name  | Description
 ---------  | -----------
-`fabricSetupFailed`  | The _PeerConnection_ failed to set up communication between the two endpoints.
+`fabricSetupFailed`  | (**Deprecated**) The _PeerConnection_ failed to set up communication between the two endpoints.
 `fabricHold` | The fabric is currently not sending and receiving any media, but the connection is still active.
 `fabricResume`  | The fabric is resuming communication wiht the remote endpoint.
 `audioMute` | The fabric is currently not sending any Audio, but MAY be sending video.
@@ -51,7 +51,7 @@ Function Name  | Description
 
 Function Name  | Description
 ---------  | -----------
-`httpError`  | HTTP error, the `csErrMsg` string is reported by [`jQuery.ajax()`](http://api.jquery.com/jQuery.ajax/).
+`httpError`  | HTTP error, the `csErrMsg` string is reported by the browser.
 `authError`  | Authentication failed, AppID or AppSecret is incorrect.
 `wsChannelFailure`  | Connection failed, could not connect to callstats.io over WebSockets.
 `csProtoError`  | The client library is sending malformed messages. 

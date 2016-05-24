@@ -1,7 +1,7 @@
 
 # Callbacks and Error Handling
 
-The `callstats.js` provides two callback functions:
+The WebRTC application can provide two callback functions for callstats.js:
 
 - csInitCallback
 - csStatsCallback
@@ -10,14 +10,14 @@ The `callstats.js` provides two callback functions:
 ## csInitCallback
 
 ```javascript
-function callback(csError, csErrMsg) {
+function csInitCallback(csError, csErrMsg) {
   console.log("Status: errCode= " + csError + " errMsg= " + csErrMsg ); }
 }
 ```
 
-To report different success and failure cases, they can occur during `initialize()` or sending measurements to [callstats.io]({{site.callstats.backend-url}}). The callback takes the form of:
+To report different success and failure cases, they can occur during `initialize()` or sending measurements to callstats.io. The callback takes the form of:
 
-csError and csErrMsg are of type _String_. `csErrMsg` is a descriptive error returned by [callstats.io]({{site.callstats.backend-url}}) or the jQuery library.
+csError and csErrMsg are of type _String_. `csErrMsg` is a descriptive error returned by callstats.io.
 
 ## csStatsCallback
 
@@ -44,12 +44,12 @@ var csStatsCallback = function (stats) {
 
 // initialize the callstats js API
 var callStats = new callstats();
-callStats.initialize(appId, appSecret, myUserId, csInitCallback, csStatsCallback);
+callStats.initialize(AppID, AppSecret, localUserId, csInitCallback, csStatsCallback);
 ```
 
 The `initialize()` API authenticates the javascript WebRTC application with the callstats.io backend, and sets up a trusted relationship with it. The API is extended by adding a `csStatsCallback` parameter. The callback parameter is OPTIONAL.
 
-The `csStatsCallback()` will be called by the callstats.js for each peerconnection independently at regular intervals. By default the interval is set as 10 seconds to make sure we do not overwhelm the app with too many messages. For more inforamtion, please check out blog on [`csStatsCallback()`] (http://www.callstats.io/2015/08/24/statscallback-webrtc-media-quality-status/)
+The `csStatsCallback()` will be called by the callstats.js for each PeerConnection independently at regular intervals. By default the interval is set as 10 seconds to make sure we do not overwhelm the app with too many messages. For more inforamtion, please check out blog on [`csStatsCallback()`] (http://www.callstats.io/2015/08/24/statscallback-webrtc-media-quality-status/)
 
 
 
