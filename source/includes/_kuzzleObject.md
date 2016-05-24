@@ -474,7 +474,7 @@ If a callback has been provided to the `Kuzzle` constructor, it will be called w
 ## dataCollectionFactory
 
 ```js
-  var collection = kuzzle.dataCollectionFactory('index', 'collection');
+  var collection = kuzzle.dataCollectionFactory('collection', 'index');
 
   // or using a default index:
   var
@@ -483,7 +483,7 @@ If a callback has been provided to the `Kuzzle` constructor, it will be called w
 ```
 
 ```java
-KuzzleDataCollection collection = kuzzle.dataCollectionFactory("index", "collection");
+KuzzleDataCollection collection = kuzzle.dataCollectionFactory("collection", "index");
 
 // or using a default index:
 kuzzle.setDefaultIndex("index");
@@ -529,12 +529,12 @@ do {
 
 Instantiates a new KuzzleDataCollection object.
 
-#### dataCollectionFactory([index], collection)
+#### dataCollectionFactory(collection, [index])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
-| ``index`` | string | The name of the index containing the data collection |
 | ``collection`` | string | The name of the data collection you want to manipulate |
+| ``index`` | string | The name of the index containing the data collection |
 
 If no ``index`` is provided, the factory will take the default index set in the main Kuzzle instance. If no default index has been set, an error is thrown.
 
@@ -719,7 +719,7 @@ kuzzle.getAutoRefresh("myIndex", new KuzzleResponseListener<Boolean>() {
   public void onSuccess(Boolean autoRefresh) {
     // autoRefresh var contains the autoRefresh status of myIndex.
   }
-  
+
   @Override
   public void onError(JSONObject error) {
     // Handle error
@@ -727,8 +727,8 @@ kuzzle.getAutoRefresh("myIndex", new KuzzleResponseListener<Boolean>() {
 }
 ```
 
-The `autoRefresh` flag, when set to true, will make Kuzzle perform a 
-[`refresh`](https://www.elastic.co/guide/en/elasticsearch/guide/current/near-real-time.html#refresh-api) request 
+The `autoRefresh` flag, when set to true, will make Kuzzle perform a
+[`refresh`](https://www.elastic.co/guide/en/elasticsearch/guide/current/near-real-time.html#refresh-api) request
 immediately after each write request, forcing the documents to be immediately visible to search.
 
 The `getAutoRefresh` function returns the current `autoRefresh` status for the given index.
@@ -1912,7 +1912,7 @@ Given an index, the `refresh` action forces a [`refresh`](https://www.elastic.co
 
 #### refreshIndex([index], [options], [callback])
 
-| Argument | Type | Description 
+| Argument | Type | Description
 |----------|------|-------------
 | `index` | string | _Optional_. The index to refresh. If not set, defaults to [kuzzle.defaultIndex](#properties).
 | `options` | JSON object | Optional parameters
@@ -1920,7 +1920,7 @@ Given an index, the `refresh` action forces a [`refresh`](https://www.elastic.co
 
 Available options:
 
-| Option | Type | Description | Default 
+| Option | Type | Description | Default
 |--------|------|-------------|---------
 | `queuable` | boolean | Mark this request as (not)queuable | `true`
 
@@ -2040,8 +2040,8 @@ kuzzle.setAutoRefresh('myIndex', true);
 kuzzle.setAutoRefresh("myIndex", true);
 ```
 
-The `autoRefresh` flag, when set to true, will make Kuzzle perform a 
-[`refresh`](https://www.elastic.co/guide/en/elasticsearch/guide/current/near-real-time.html#refresh-api) request 
+The `autoRefresh` flag, when set to true, will make Kuzzle perform a
+[`refresh`](https://www.elastic.co/guide/en/elasticsearch/guide/current/near-real-time.html#refresh-api) request
 immediately after each write request, forcing the documents to be immediately visible to search.
 
 Given an index, the `setAutoRefresh` function updates its `autoRefresh` status.
@@ -2058,7 +2058,7 @@ Given an index, the `setAutoRefresh` function updates its `autoRefresh` status.
 
 #### setAutoRefresh([index], autoRefresh, [options], [callback])
 
-| Argument | Type | Description 
+| Argument | Type | Description
 |----------|------|-------------
 | `index` | string | _Optional_ The index to set the `autoRefresh` for. If not set, defaults to [kuzzle.defaultIndex](#properties).
 | `autoRefresh` | boolean | The value to set for the `autoRefresh` setting.
@@ -2453,4 +2453,3 @@ Returns the `Kuzzle` object to allow chaining.
 #### Callback response
 
 An instanciated `KuzzleUser` object.
-
