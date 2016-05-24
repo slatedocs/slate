@@ -538,7 +538,173 @@ PATCH the "expression" attribute to modify. An empty "expression" object, like
 
 ##### Stream
 
-##### Main deck
+##### Decks
+
+`/datasets/{id}/decks/`
+
+Decks allow you to store [saved analyses](#saving-analyses) as slides on them
+for exporting or future reference.
+
+Decks are personal per dataset and each dataset gets one by default but it is
+possible to create more as necessary by POSTing to the decks catalog. They
+only need a name.
+
+###### GET
+
+A GET request on the catalog endpoint will return all the decks available for
+this dataset for the authenticated user.
+
+```json
+{
+    "element": "shoji:catalog",
+    "self": "https://beta.crunch.io/api/datasets/223fd4/decks/",
+    "index": {
+        "https://beta.crunch.io/api/datasets/cc9161/decks/4fa25/": {
+          "name": "my new deck",
+          "creation_time": "1986-11-26T12:05:00",
+        },
+        "https://beta.crunch.io/api/datasets/cc9161/decks/2b53e/": {
+          "name": "Default deck",
+          "creation_time": "1987-10-15T11:45:00",
+        },
+    },
+    "order": "https://beta.crunch.io/api/datasets/223fd4/decks/order/"
+}
+
+```
+
+###### POST
+
+POST will create a new decks for this dataset. It only needs to have
+identifiable name.
+
+```json
+{
+    "element": "shoji:entity",
+    "self": "https://beta.crunch.io/api/datasets/223fd4/decks/",
+    "body": {
+        "name": "my new deck"
+    }
+}
+```
+
+```http
+HTTP/1.1 201 Created
+Location: https://beta.crunch.io/api/datasets/223fd4/decks/2b3c5e/
+
+```
+
+###### Deck entity
+
+`/datasets/{id}/decks/{id}/`
+
+####### GET
+
+You can GET on the deck entity to see all its attributes:
+
+```json
+{
+    "element": "shoji:entity",
+    "self": "https://beta.crunch.io/api/datasets/223fd4/decks/223fd4/",
+    "body": {
+        "name": "Presentation deck",
+        "id": "223fd4",
+        "creation_time": "1987-10-15T11:45:00",
+        "description": "Explanation about the deck"
+    }
+}
+```
+
+####### PATCH
+
+In order to change the name or description of a deck you can PATCH a shoji:entity to it. The server will return a 204 response.
+
+```json
+{
+    "element": "shoji:entity",
+    "self": "https://beta.crunch.io/api/datasets/223fd4/decks/223fd4/",
+    "body": {
+        "name": "Presentation deck",
+        "id": "223fd4",
+        "creation_time": "1987-10-15T11:45:00",
+        "description": "Explanation about the deck"
+    }
+}
+```
+```http
+HTTP/1.1 204 No Content
+```
+
+
+###### Decks order
+
+`/datasets/{id}/decks/order/`
+
+The Deck order allows to the user to customize the order in which they will be
+displayed by an API client.
+
+The deck order will always contain all existing decks.
+
+####### GET
+
+Will return a (Shoji Order)[#shoji-order] payload.
+
+```json
+{
+  "element": "shoji:order",
+  "self": "https://beta.crunch.io/api/datasets/223fd4/decks/order/",
+  "graph": [
+    "https://beta.crunch.io/api/datasets/223fd4/decks/1/",
+    "https://beta.crunch.io/api/datasets/223fd4/decks/2/",
+    "https://beta.crunch.io/api/datasets/223fd4/decks/3/"
+  ]
+}
+
+```
+
+####### PATCH
+
+It is necessary to do a PATCH request to change the order of the decks. On success the server will return a 204 response.
+
+If the payload contains only a subset of the existing decks. The unmentioned decks will be always appended at the bottom of the top level graph in arbitrary order.
+
+```json
+{
+  "element": "shoji:order",
+  "self": "https://beta.crunch.io/api/datasets/223fd4/decks/order/",
+  "graph": [
+    "https://beta.crunch.io/api/datasets/223fd4/decks/1/",
+    "https://beta.crunch.io/api/datasets/223fd4/decks/3/"
+  ]
+}
+```
+
+Including invalid URLs or URLs to decks that are not present in the catalog will return a 400 response from the server.
+
+
+##### Preferences
+
+`/datasets/{id}/preferences/`
+
+The dataset preferences provide API clients with a key/value store for settings
+or customizations each would need for each user.
+
+By default all dataset preferences start out as an empty object where clients can
+PATCH the keys each deems necessary.
+
+```json
+{
+    "element": "shoji:entity",
+    "self": "https://beta.crunch.io/api/datasets/223fd4/preferences/",
+    "body": {}
+}
+```
+
+To delete keys from the preferences the value needs to be patched with `null`.
+
+There is no order associated with the saved preferences. Clients should assume
+they are in arbitrary order.
+
 
 ##### Primary key
 
@@ -666,7 +832,5 @@ success, this method returns no body and a 204 response code.
 ##### Comparisons
 
 ##### Forks
-
-##### Decks
 
 ##### Permissions
