@@ -2,9 +2,10 @@
 
 ## Autenticação
 
-Antes de acessar o Cobrato, você deve criar uma conta em: Cobrato. Se você já tiver uma, você precisa ter o seu API token, você pode conseguí-lo nas configurações de sua conta, o token é requerido em todas as requisições via API, o token é usado para identificá-lo.
 
-Autenticação na API do Cobrato é realizada utilizando HTTP Basic, Porem você não vai usar sua senha e login como de costume, você terá que usar o token da API como sendo seu login e a senha em branco, (se o seu cliente HTTP requer uma senha, você pode digitar X).
+Antes de acessar o Cobrato, você deverá criar uma conta e precisará do seu API token, que é requerido em todas as requisições via API e será o identificador de sua conta. Para conseguí-lo, vá em Gerenciamento > Configurações Gerais.
+
+A autenticação na API do Cobrato é realizada utilizando HTTP Basic. Você não usará sua senha e login como o de costume, em vez disso usará o API token como seu login e a senha pode ficar em branco ou, caso seu cliente HTTP peça uma senha, pode ser qualquer valor, a letra X por exemplo.
 
 
   ```shell
@@ -33,11 +34,11 @@ Autenticação na API do Cobrato é realizada utilizando HTTP Basic, Porem você
 
 ## Fuso horário
 
-Todos os dados recebidos e enviados através da API do Cobrato é baseado no fuso horário UTC. No entanto um usuário pode ter uma preferência por outro. Este fuso horário vai ser utilizado para apresentar a resposta, isso não afeta o resultado da resposta da API
+Todos os dados recebidos e enviados através da API do Cobrato são baseados no fuso horário UTC. Caso seja necessário utilizar outro fuso horário, este será utilizado somente na apresentação, o que não afeta o resultado da resposta da API.
 
 Formatos de data e hora
 
-Todas as datas e horas são formatadas de acordo com ISO 8601 padrão, e sempre vai ser dada no fuso horário.
+Todas as datas e horas são formatadas de acordo com ISO 8601 padrão, e sempre serão dadas no fuso horário.
 
 Você deve sempre fornecer os seus valores de data e hora no mesmo formato ISO 8601 e no fuso horário UTC.
 
@@ -49,8 +50,4 @@ Você deve sempre fornecer os seus valores de data e hora no mesmo formato ISO 8
 
 ## Formato numérico
 
-<aside class="notice">Todos os números são fornecidos tanto com números inteiros, ponto flutuante nativos para JSON.</aside>
-
-## Formato numérico
-
-<aside class="notice">Todos os números são fornecidos tanto com números inteiros, ponto flutuante nativos para JSON.</aside>
+<aside class="notice">Todos os números são fornecidos tanto com números inteiros, como ponto flutuante nativos para JSON.</aside>
