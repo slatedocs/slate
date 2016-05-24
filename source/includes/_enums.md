@@ -20,16 +20,16 @@ When using a single _PeerConnection_ between a pair of userIDs for sending and r
 
 Name  | Description
 ---------  | -----------
-`fabricSetupFailed`  | The _PeerConnection_ failed to set up communication between the two endpoints.
+`fabricSetupFailed`  | (**Deprecated**) The _PeerConnection_ failed to set up communication between the two endpoints.
 `fabricHold` | The fabric is currently not sending and receiving any media, but the connection is still active.
-`fabricResume`  | The fabric is resuming communication wiht the remote endpoint.
+`fabricResume`  | The fabric is resuming communication with the remote endpoint.
 `audioMute` | The fabric is currently not sending any Audio, but MAY be sending video.
 `audioUnmute` | The fabric is resuming Audio communication.
 `videoPause` | The fabric is currently not sending any Video, but MAY be sending audio.
 `videoResume` | The fabric is resuming Video communication.
 `fabricTerminated`  | The _PeerConnection_ is destroyed and is no longer sending or receiving any media.
-`screenSharingStart`  | The _PeerConnection_ started the screen sharing.
-`screenSharingStop`  | The _PeerConnection_ stopped the screen sharing.
+`screenShareStart`  | The _PeerConnection_ started the screen sharing.
+`screenShareStop`  | The _PeerConnection_ stopped the screen sharing.
 `dominantSpeaker`  | The userID reports that it is the dominant speaker and not the remote participants.
   
 
@@ -37,12 +37,12 @@ Name  | Description
 
 Function Name  | Description
 ---------  | -----------
-`getUserMedia`  | The failure occured in getUserMedia function (added in callstats.js version 3.4.x).
-`createOffer`  | The failure occured in createOffer function.
-`createAnswer`  | The failure occured in createAnswer function.
-`setLocalDescription`  | The failure occured in setLocalDescription function.
-`setRemoteDescription`  | The failure occured in setRemoteDescription function.
-`addIceCandidate`  | The failure occured in addIceCandidate function.
+`getUserMedia`  | The failure occurred in getUserMedia function (added in callstats.js version 3.4.x).
+`createOffer`  | The failure occurred in createOffer function.
+`createAnswer`  | The failure occurred in createAnswer function.
+`setLocalDescription`  | The failure occurred in setLocalDescription function.
+`setRemoteDescription`  | The failure occurred in setRemoteDescription function.
+`addIceCandidate`  | The failure occurred in addIceCandidate function.
 `iceConnectionFailure`  | Ice connection failure detected by the application.
 `signalingError`  | Signaling related errors in the application.
 
@@ -51,11 +51,11 @@ Function Name  | Description
 
 Function Name  | Description
 ---------  | -----------
-`httpError`  | HTTP error, the `csErrMsg` string is reported by [`jQuery.ajax()`](http://api.jquery.com/jQuery.ajax/).
+`httpError`  | HTTP error, the `csErrMsg` string is reported by the browser.
 `authError`  | Authentication failed, AppID or AppSecret is incorrect.
 `wsChannelFailure`  | Connection failed, could not connect to callstats.io over WebSockets.
 `csProtoError`  | The client library is sending malformed messages. 
-`success`  | The backend has accepted the request and the endpoint is authenticated, or capable of sending measurement data.
+`success`  | The back-end has accepted the request and the endpoint is authenticated, or capable of sending measurement data.
 `appConnectivityError`  | The connectivity checks for given _PeerConnection_ object failed, i.e., iceConnectionState is set to disconnected.
 
 - `csProtoError`: This may happen due to a change in the metrics or formatting of the current statistics API implemented by the browser.

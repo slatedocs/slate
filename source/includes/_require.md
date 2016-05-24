@@ -1,4 +1,4 @@
-# Loading with requrie.js
+# Loading with require.js
 
 > Script loading with require.js
 
@@ -11,7 +11,7 @@ requirejs.config({
   paths: {
     //jQuery usage is deprecated from the version 3.10.0 onwards
     callstats: "https://api.callstats.io/static/callstats.min",
-    socketio: "https://cdn.socket.io/socket.io-1.2.0",
+    socketio: "https://cdn.socket.io/socket.io-1.4.5",
     sha: "https://cdnjs.cloudflare.com/ajax/libs/jsSHA/1.5.0/sha"
   },
   // 2. define dependency shim; callstats depends on sha and socket.io
