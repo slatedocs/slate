@@ -83,10 +83,10 @@ EXEMPLO DE PAYLOAD
 
 Informações enviadas quando uma Cobrança é atualizada.
 
-## Cobrança Excluida
+## Cobrança Excluída
 
 ```shell
-Cobrança Excluida
+Cobrança Excluída
 
 EXEMPLO DE PAYLOAD
 
@@ -104,7 +104,7 @@ EXEMPLO DE PAYLOAD
 
 ```
 
-Informações enviadas quando uma Cobrança é excluida.
+Informações enviadas quando uma Cobrança é excluída.
 
 ## Cobrança Recebida
 
@@ -127,7 +127,10 @@ EXEMPLO DE PAYLOAD
 
 ```
 
-Informações enviadas quando uma Cobrança é recebida.
+Este payload é enviado para todos os tipos de Cobrança e indica que uma Cobrança foi recebida. De acordo com seu tipo uma cobrança é dita recebida quando:
+
+- Boleto: o usuário indica o recebimento de forma manual ou através de arquivo de retorno.
+- Gateway de pagamento: o gateway de pagamento informa o recebimento.
 
 ## Recebimento de Cobrança desfeito
 
@@ -150,7 +153,36 @@ EXEMPLO DE PAYLOAD
 
 ```
 
-Informações enviadas quando uma Cobrança tem seu recebimento desfeito.
+Este payload é enviado **apenas para cobranças do tipo boleto** e é disparado
+quando o recebimento da Cobrança de desfeito manualmente pelo usuário. Ele
+indica apenas que no Cobrato o recebimento da Cobrança foi desfeito, mas não tem
+qualquer relação com o estado do boleto no banco.
+
+## Cobrança Cancelada
+
+```shell
+Cobrança Cancelada
+
+EXEMPLO DE PAYLOAD
+
+  {
+    "created_at":"2015-05-21T16:13:33Z",
+    "event":"canceled",
+    "object_type":"charge",
+    "object_id":12,
+    "_links":[{
+      "rel":"self",
+      "method":"GET",
+      "url":"https://app.cobrato.com/api/v1/charges/12"
+    }]
+  }
+
+```
+
+Este payload é enviado **apenas para cobranças do tipo gateway de pagamento** e
+é disparado quando o gateway de pagamento informa sobre o cancelamento de uma
+Cobrança, que pode ter sido pedido pelo próprio usuário ou não. Ele indica que a
+Cobrança teve seu pagamento cancelado, ou seja, estornado.
 
 ## Conta de Cobrança criada
 
@@ -197,10 +229,10 @@ EXEMPLO DE PAYLOAD
 
 Informações enviadas quando uma Conta de Cobrança é atualizada.
 
-## Conta de Cobrança Excluida
+## Conta de Cobrança Excluída
 
 ```shell
-Conta de Cobrança Excluida
+Conta de Cobrança Excluída
 
 EXEMPLO DE PAYLOAD
 
@@ -218,4 +250,4 @@ EXEMPLO DE PAYLOAD
 
 ```
 
-Informações enviadas quando uma Conta de Cobrança é excluida.
+Informações enviadas quando uma Conta de Cobrança é excluída.
