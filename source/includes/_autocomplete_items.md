@@ -236,6 +236,14 @@ my $response = $constructorio->add_batch(
 );
 ```
 
+```java
+boolean success = constructorio.addBatch("Search Suggestions", "power drill", "hammer");
+
+// "Search Suggestions" is an autocomplete section name
+// power drill is an item name
+// hammer is an item name
+```
+
 ```csharp
 bool success = constructorio.AddBatch(
   dictionaryOfItems,
@@ -317,6 +325,13 @@ my $response = $constructorio->add_or_update_batch(
   items => [ { item_name => "power drill" }, { item_name => "hammer" } ],
   autocomplete_section => "Search Suggestions"
 );
+```
+
+```java
+boolean success = constructorio.addOrUpdateBatch("Search Suggestions", "power drill", "hammer");
+// power drill is an item name
+// hammer is an item name
+// Search Suggestions is an autocomplete section name
 ```
 
 ```csharp
