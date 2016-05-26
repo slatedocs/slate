@@ -238,7 +238,6 @@ my $response = $constructorio->add_batch(
 
 ```java
 boolean success = constructorio.addBatch("Search Suggestions", "power drill", "hammer");
-
 // "Search Suggestions" is an autocomplete section name
 // power drill is an item name
 // hammer is an item name
