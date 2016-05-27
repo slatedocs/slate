@@ -154,7 +154,7 @@ EXEMPLO DE PAYLOAD
 ```
 
 Este payload é enviado **apenas para cobranças do tipo boleto** e é disparado
-quando o recebimento da Cobrança de desfeito manualmente pelo usuário. Ele
+quando o recebimento da Cobrança é desfeito manualmente pelo usuário. Ele
 indica apenas que no Cobrato o recebimento da Cobrança foi desfeito, mas não tem
 qualquer relação com o estado do boleto no banco.
 
