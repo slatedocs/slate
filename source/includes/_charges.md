@@ -56,8 +56,6 @@ Cada uma das cobranças criadas após a homologação serão do mesmo tipo da co
 
 ### Boleto
 
-Neste caso a cobrança de homologação é automaticamente criada após a criação da Configuração de Cobrança. A Cobrança de homologação deve passar por todo o fluxo de cobrança do tipo boleto, ou seja, ser registrada no banco via arquivo de remessa (caso necessário), paga, o valor entrar na conta bancária e o arquivo de retorno enviado ao Cobrato.
-
 **Parâmetros**
 
 | Campo                          | Tipo             | Comentário                                                                                                                                          |
@@ -98,11 +96,7 @@ Neste caso a cobrança de homologação é automaticamente criada após a criaç
 
 ### Gateway de Pagamento
 
-A cobrança de homologação é capturada e, logo em seguida, automaticamente cancelada. Até que esse processo seja efetuado com sucesso, a Configuração de Cobrança não estará homologada e todas as Cobranças criadas com esta Configuração terão o comportamento de homologação.
-
-Em caso de falha, seja na captura ou no cancelamento, o motivo da fala será disponibilizado no atrributo payment_gateway_message de Charge.
-
-As Cobranças tem o comportamento assíncrono em relação à comunicação com o Gateway de Pagamento. Quando a cobrança é criada com sucesso (sem erros de validação) é enfileirado para de fato a comunicação com o gateway. Assim esse processo terminar, um payload de recebido ou de erro são enviados via webhook.
+As Cobranças tem o comportamento assíncrono em relação à comunicação com o Gateway de Pagamento. Ou seja, às ações que dependem de efetivação no Gateway de Pagamento não tem resposta na mesma requisição, são feitas em um processo separado e tem suas respostas dadas em payloads via webhook.
 
 **Parâmetros**
 
@@ -352,6 +346,10 @@ Cria um nova cobrança, caso haja sucesso retornará as informações da mesma e
 
 ### Gateway de Pagamento
 
+Após a cobrança ser criada com sucesso (sem erros de validação) é iniciado o processo assíncrono para a comunicação com o gateway. Assim que esse processo terminar, um payload de recebimento ou de erro é enviado via webhook.
+
+Em caso de falha da efetivação da cobrança no Gateway de Pagamento, o motivo da falha será disponibilizado no atributo 'payment_gateway_message'.
+
 **Parâmetros**
 
 | Campo                          | Tipo             | Comentário                                                                                                                                                              |
@@ -446,21 +444,15 @@ EXEMPLO DE CORPO DA RESPOSTA COM INSUCESSO
 
 Atualiza a cobrança determinada, caso haja sucesso retornará as informações da mesma. Se houverem erros eles serão informados no corpo da resposta. A requisição não diferencia a utilização dos verbos PUT e PATCH.
 
-<aside class="warning">
-Para cobranças do tipo **Boleto** não é possível atualizar uma cobrança após seu recebimento, para isso é necessário desfazer o recebimento da mesma! Além disso, caso seja alterado com sucesso e será gerado um novo boleto sobrescrevendo o anterior.
-</aside>
-
-<aside class="notice">
-Para cobranças do tipo **Boleto** os campos 'received', 'received_at' e 'received_amount', não são alterados via atualização de cobrança, apenas no recebimento ou desfazendo o recebimento da mesma.
-</aside>
-
-<aside class="notice">
-Para cobranças do tipo **Gateway de Pagamento**, a atualização só poderá ser feita caso exista erro após a criação.
-</aside>
-
-**Parâmetros**
-
 ### Boleto
+
+<aside class="warning">
+Para cobranças do tipo <strong>Boleto</strong> não é possível atualizar uma cobrança após seu recebimento, para isso é necessário desfazer o recebimento da mesma! Além disso, caso seja alterado com sucesso e será gerado um novo boleto sobrescrevendo o anterior.
+</aside>
+
+<aside class="notice">
+Para cobranças do tipo <strong>Boleto</strong> os campos 'received', 'received_at' e 'received_amount', não são alterados via atualização de cobrança, apenas no recebimento ou desfazendo o recebimento da mesma.
+</aside>
 
 **Parâmetros**
 
@@ -498,7 +490,11 @@ Para cobranças do tipo **Gateway de Pagamento**, a atualização só poderá se
 
 ### Gateway de Pagamento
 
-Ao verificar que uma cobrança está com erros após a criação é possível atualizar e re-submeter a cobrança com os dados corrigidos. Após a cobrança ser efetuada não será mais possível atualizar esta cobrança.
+<aside class="notice">
+Para cobranças do tipo <strong>Gateway de Pagamento</strong>, a atualização só é permitida caso o status no gateway de pagamento (atributo 'payment_gateway_status') seja de erro.
+</aside>
+
+Uma cobrança com o status de erro no gateway de pagamento pode ser editada com o objetivo de corrigir este error (descrito no atributo 'payment_gateway_message'). Sendo atualizada com sucesso, é feita uma re-tentativa de efetivação da cobrança no gateway de pagamento.
 
 **Parâmetros**
 

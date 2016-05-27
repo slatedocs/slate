@@ -38,9 +38,17 @@ As Configurações de Cobrança podem ser de tipos diferentes. Sendo assim, os p
 - Boleto (billet)
 - Gateway de pagamento (payment_gateway)
 
+<aside class="warning">
+  As Configurações de Cobrança <strong>precisam ser homologada antes de ser utilizada normalmente</strong>. Veja como homologar cada tipo de Configuração de Cobrança em suas informações específicas.
+</aside>
+
 ### Boleto
 
 As Configurações de Cobrança do tipo **Boleto** (billet), pertencem as suas contas bancárias, sendo assim é necessário que sempre haja ao menos uma conta bancária para criação desse tipo configuração de cobrança, que também tem suas validações de acordo com o banco de sua conta bancária.
+
+<aside class="info">
+  Quando uma Configuração de Cobrança do tipo Boleto é criada, é também criada, automaticamente, uma cobrança de homologação. Para a Configuração de Cobrança ser homologada, a Cobrança de homologação deve passar por todo o fluxo de cobrança do tipo boleto, ou seja, ser registrada no banco via arquivo de remessa (caso necessário), paga, o valor entrar na conta bancária e o arquivo de retorno ser enviado ao Cobrato.
+</aside>
 
 **Parâmetros**
 
@@ -66,6 +74,13 @@ As Configurações de Cobrança do tipo **Boleto** (billet), pertencem as suas c
 
 
 ### Gateway de Pagamento
+
+<aside class="info">
+  Para homologar a Configuração de Cobrança
+  <a href="#cria-o-de-cobran-a">deve-se criar uma Cobrança</a> para ela. Esta Cobrança será efetivada e automaticamente cancelada 
+  logo em seguida, apenas com o objetivo de verificar se de fato a configuração foi feita de forma correta. <strong>Até que uma Cobrança</strong> 
+  tenha fechado este ciclo com sucesso e a conta dada como homologada, todas as cobranças criadas para esta Configuração serão consideradas Cobranças para homologação, ou seja, serão feitas e em seguida automaticamente canceladas.
+</aside>
 
 **Parâmetros**
 
@@ -262,14 +277,6 @@ Cria uma nova Configuração de Cobrança, retornando as informações da mesma 
 | gateway_id   | string  | **(requerido)** número de afiliação do contrato com o gateway de pagamento                                                                            |
 | gateway_key  | string  | **(requerido)** chave de acesso atribuída pelo gateway de pagamento                                                                                   |
 | use_avs      | boolean | (opcional) define se será feita a solicitação e a confirmação do endereço de cobrança da fatura do cartão utilizado no pagamento (`false` por padrão) |
-
-<aside class="warning">
-  A configuração de Cobrança via Gateway de Pagamento <strong>precisa ser homologada antes de ser utilizada normalmente</strong>. Para isso, 
-  <a href="#cria-o-de-cobran-a">deve-se criar uma Cobrança</a> para esta configuração. Esta Cobrança será efetivada e automaticamente cancelada 
-  logo em seguida, apenas com o objetivo de verificar se de fato a configuração foi feita de forma correta. <strong>Até que uma Cobrança</strong> 
-  tenha fechado este ciclo com sucesso e a conta dada como homologada, todas as cobranças criadas para esta Configuração serão consideradas Cobranças para homologação, 
-  ou seja, serão feitas e em seguida automatimente canceladas.
-</aside>
 
 ## Atualização de Configuração de Cobrança
 
