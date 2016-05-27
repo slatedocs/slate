@@ -117,7 +117,7 @@ document.delete(new KuzzleResponseListener<KuzzleDocument>() {
 
 ```objective_c
 NSError* error = nil;
-[document deleteAndReturnError: &error callback:^(KuzzleDocument * document, NSError * error) {
+[document deleteAndReturnError: &error callback:^(NSString * deletedDocumentId, NSError * error) {
   if(error) {
     // error occured
   }
@@ -137,7 +137,7 @@ do {
         // error occured during call, error is NSError
         break
         case let .onSuccess(success):
-        // everything went fine, success is KuzzleDocument object
+        // everything went fine, success is string with id of deleted KuzzleDocument
         break
       }
   })
@@ -188,16 +188,7 @@ if(error) {
 
 ```swift
 do {
-  try document.publish(callback: { result in
-      switch result {
-        case let .onError(error):
-        // error occured during call, error is NSError
-        break
-        case let .onSuccess(success):
-        // everything went fine, success is KuzzleDocument object
-        break
-      }
-  })
+  try document.publish()
 } catch {
   // KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
 }
@@ -416,7 +407,7 @@ NSDictionary* content = @{
 let content = [
     "content": "some content"
 ]
-document.setContent(data: content, replace: true)
+document.setContent(content: content, replace: true)
 ```
 
 <aside class="notice">

@@ -620,7 +620,7 @@ let newContent = []
   ]
 ]
 
-profile.setContent(data: newContent)
+profile.setContent(content: newContent)
 ```
 
 Replaces the content of the `KuzzleProfile` object.

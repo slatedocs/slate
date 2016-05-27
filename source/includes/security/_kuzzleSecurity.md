@@ -1770,7 +1770,7 @@ NSDictionary* newContent = @{
 };
 
 NSError* error = nil;
-[kuzzle.security updateProfileWithId: @"profileId" content: newContent error: &error callback:^(NSString * updatedProfileId, NSError * error) {
+[kuzzle.security updateProfileWithId: @"profileId" content: newContent error: &error callback:^(KuzzleProfile * updatedProfile, NSError * error) {
   if(error) {
     // error occured
   }
@@ -1796,7 +1796,7 @@ do {
       // error occured during call, error is NSError
       break
       case let .onSuccess(success):
-      // everything went fine, success is string with id of updated KuzzleProfile
+      // everything went fine, success is updated KuzzleProfile object
       break
     }
   })
@@ -1886,7 +1886,7 @@ NSDictionary* newContent = @{
 };
 
 NSError* error = nil;
-[kuzzle.security updateRoleWithId: @"roleId" content: newContent error: &error callback:^(NSString * updatedRoleId, NSError * error) {
+[kuzzle.security updateRoleWithId: @"roleId" content: newContent error: &error callback:^(KuzzleRole * updatedRole, NSError * error) {
   if(error) {
     // error occured
   }
@@ -1913,7 +1913,7 @@ do {
       // error occured during call, error is NSError
       break
       case let .onSuccess(success):
-      // everything went fine, success is string with id of updated KuzzleRole
+      // everything went fine, success is updated KuzzleRole object
       break
     }
   })
@@ -1996,7 +1996,7 @@ NSDictionary* newContent = @{
 };
 
 NSError* error = nil;
-[kuzzle.security updateUserWithId: @"userId" content: newContent error: &error callback:^(NSString * updatedUserId, NSError * error) {
+[kuzzle.security updateUserWithId: @"userId" content: newContent error: &error callback:^(KuzzleUser * updatedUser, NSError * error) {
   if(error) {
     // error occured
   }
@@ -2020,7 +2020,7 @@ do {
       // error occured during call, error is NSError
       break
       case let .onSuccess(success):
-      // everything went fine, success is string with id of updated KuzzleUser
+      // everything went fine, success is updated KuzzleUser object
       break
     }
   })
