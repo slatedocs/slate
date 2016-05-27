@@ -10,7 +10,7 @@ HTMLs de Exemplos
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>Teste Integração HTML - Librepag</title>
+	<title>Teste Integração HTML - iPag</title>
 </head>
 
 	<body>
@@ -26,7 +26,7 @@ HTMLs de Exemplos
 						</tr>
 					</thead>
 					<tbody>
-						<tr><td>identificacao</td><td><input type='text' name='identificacao' value='SEU LOGIN NO LIBREPAG'/></td></tr>
+						<tr><td>identificacao</td><td><input type='text' name='identificacao' value='SEU LOGIN NO IPAG'/></td></tr>
 						<tr><td>metodo</td><td><input type='text' name='metodo' value='FORMA DE PAGAMENTO'/> </td></tr>
 						<tr><td>operacao</td><td><input type='text' name='operacao' value='TIPO DA OPERACAO'/> </td></tr>
 						<tr><td>pedido</td><td><input type='text' name='pedido' value='IDENDTIFICADOR DO PEDIDO OU TRANSACAO NO SEU SISTEMA'/> </td></tr>
@@ -46,7 +46,7 @@ HTMLs de Exemplos
 						<tr><td>estado</td><td><input type='text' name='estado' value='ESTADO DO CLIENTE'/> </td></tr>
 						<tr><td>pais</td><td><input type='text' name='pais' value='PAIS DO CLIENTE'/> </td></tr>
 						<tr><td>cep</td><td><input type='text' name='cep' value='CEP DO CLIENTE'/> </td></tr>
-						<tr><td>url_retorno</td><td><input type='text' name='url_retorno' value='WWW.SEUSITE.COM.BR/RETORNOLIBREPAG'/> </td></tr>
+						<tr><td>url_retorno</td><td><input type='text' name='url_retorno' value='WWW.SEUSITE.COM.BR/RETORNOIPAG'/> </td></tr>
 					</tbody>
 				</table>
 				<input type='submit' name='submit' alt='Pagar' border="0" value="Submeter Pagamento" /> <br/>
@@ -67,7 +67,7 @@ HTMLs de Exemplos
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>Teste Integração XML Captura - Librepag</title>
+	<title>Teste Integração XML Captura - iPag</title>
 </head>
 <body>
 	<div class="text">Complete os campos com os valores desejados para testar a captura:</div>
@@ -82,7 +82,7 @@ HTMLs de Exemplos
 						</tr>
 					</thead>
 					<tbody>
-						<tr><td>identificacao</td><td><input type='text' name='identificacao' value='SEU LOGIN NO LIBREPAG'/></td></tr>
+						<tr><td>identificacao</td><td><input type='text' name='identificacao' value='SEU LOGIN NO IPAG'/></td></tr>
 						<tr><td>transId</td><td><input type='text' name='transId' value='ID da Transação'/> </td></tr>
 						<tr><td>url_retorno</td><td><input type='text' name='url_retorno' value='XML'/> </td></tr>
 					</tbody>

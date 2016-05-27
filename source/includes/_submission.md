@@ -6,7 +6,7 @@ Para integrar sua Loja Virtual ou Site ao iPag, envie os seguintes parâmetros 
 
 ```php
 <?php
-//URL do librepag
+//URL do iPag
 $url = 'https://www.librepag.com.br/pagamento';
 
 //os dados abaixo são apenas de exemplo

@@ -8,12 +8,12 @@ Copie o conteúdo do arquivo Zip para o diretório onde o Prestashop está insta
 
  Vá em Módulos->Modules.
 
- Na seção Payment e Gateways, procure por Librepag e instale.
+ Na seção Payment e Gateways, procure por iPag e instale.
 
 2. Após a instalação, configure o módulo como demonstrado abaixo
  * Ativo: 1
- * Código Librepag: O seu número de afiliação junto a Librepag
- * Nome do método: Pagamento com Librepag
+ * Código iPag: O seu login junto a iPag
+ * Nome do método: Pagamento com iPag
  * Taxa de Juros (%): Taxa de juros mensal. Deixe 0 caso não queira cobrar juros
  * Número de parcelas sem juros: Número máximo de parcelas para as quais não se cobrará juros.
  * Valor mínimo de cada parcela: Valor mínimo de cada parcela

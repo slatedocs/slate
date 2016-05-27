@@ -5,7 +5,7 @@ Copie o conteúdo do arquivo Zip para o diretório onde o Opencart está instala
 ## Configuração no painel de administração do Opencart
 
 1. Entre na página de administração do Opencart.
-2. Vá em Extensões->Pagamentos e ative o módulo "Librepag - Cartão de Crédito"
+2. Vá em Extensões->Pagamentos e ative o módulo "iPag - Cartão de Crédito"
 3. Nas opções do módulo iPag, preencha os campos como demonstrado abaixo:
  * Status: Habilitado
  * Status de novos pedidos: Processando
