@@ -108,7 +108,7 @@ In any WebRTC endpoint, where multiple _PeerConnections_ are created between eac
   // let the "negotiationneeded" event trigger offer generation
   pcObject.onnegotiationneeded = function () {
     // create offer
-    pcObject.createOffer(localDescriptionCreated, createOfferError);
+    pcObject.createOffer(localDescriptionCreatedCallback, createOfferErrorCallback);
   }
 ```
 
