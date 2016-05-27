@@ -1,35 +1,40 @@
-<p align="center">
-  <img src="https://raw.githubusercontent.com/lord/img/master/logo-slate.png" alt="Slate: API Documentation Generator" width="226">
-  <br>
-  <a href="https://travis-ci.org/tripit/slate"><img src="https://travis-ci.org/tripit/slate.svg?branch=master" alt="Build Status"></a>
-</p>
+ControlShift Labs API Documentation
+------------------------------------
 
-<p align="center">Slate helps you create beautiful, intelligent, responsive API documentation.</p>
+The ControlShift Labs API documentation uses Slate - a middleman static site template of sorts for API documentation.
 
-<p align="center"><img src="https://dl.dropboxusercontent.com/u/95847291/github%20images/slate/slate_screenshot_new.png" width=700 alt="Screenshot of Example Documentation created with Slate"></p>
+### Updating Content
 
-<p align="center"><em>The example above was created with Slate. Check it out at <a href="https://tripit.github.io/slate">tripit.github.io/slate</a>.</em></p>
+* This branch is based on the v1.3.2 release (tag)
+* The only files you should need to edit:
+  * `/build/index.html.md`
+  * `/build/includes/*.md`
+* Webhooks documentation is auto-updated from https://demo.controlshiftlabs.com/api/webhooks.json at build. Just redeploy to update.
+* The source XML for the chart under BulkData is in /build/images. You can edit it by opening that file on [https://www.draw.io/](https://www.draw.io/).
 
-Features
-------------
+### Content Considerations:
 
-* **Clean, intuitive design** — With Slate, the description of your API is on the left side of your documentation, and all the code examples are on the right side. Inspired by [Stripe's](https://stripe.com/docs/api) and [Paypal's](https://developer.paypal.com/webapps/developer/docs/api/) API docs. Slate is responsive, so it looks great on tablets, phones, and even in print.
+* Our audience includes very junior developers and even non-coders, attempting to pull content into their WISIWYG CRM pages.
+* All examples and JS should be exceedingly basic, with generally linear control flows, and extremly easy to follow.
 
-* **Everything on a single page** — Gone are the days when your users had to search through a million pages to find what they wanted. Slate puts the entire documentation on a single page. We haven't sacrificed linkability, though. As you scroll, your browser's hash will update to the nearest header, so linking to a particular point in the documentation is still natural and easy.
+### Editing "External" Codepen.io Examples
 
-* **Slate is just Markdown** — When you write docs with Slate, you're just writing Markdown, which makes it simple to edit and understand. Everything is written in Markdown — even the code samples are just Markdown code blocks.
+Our codepen.io code examples are actually **generated/spawned on the fly** using codepen.io's [prefill API](https://blog.codepen.io/documentation/api/prefill/). Our "Launch Example" button links are actually form submit buttons sending post requests to the prefill endpoint.
 
-* **Write code samples in multiple languages** — If your API has bindings in multiple programming languages, you can easily put in tabs to switch between them. In your document, you'll distinguish different languages by specifying the language name at the top of each code block, just like with Github Flavored Markdown.
+* All the JS and HTML is handled at the bottom of the json_*.md files. The most complete example of the options were utilizing is in the `_json_effort_petitions_near.md` file.
+* There is JS and some default options at the bottom of `layout.erb`.  This JS transforms the inline HTML content into the proper format for the API endpoint.
 
-* **Out-of-the-box syntax highlighting** for [almost 60 languages](http://rouge.jayferd.us/demo), no configuration required.
+This approach has two key benefits. First, there are no external dependencies/assets we need to maintain. It also puts in a position where we could let clients set their own domains or arrive at the documents with their domain in the URL, have our examples use this domain, and potential populate examples JSON payloads with the client's actual content.
 
-* **Automatic, smoothly scrolling table of contents** on the far left of the page. As you scroll, it displays your current position in the document. It's fast, too. We're using Slate at TripIt to build documentation for our new API, where our table of contents has over 180 entries. We've made sure that the performance remains excellent, even for larger documents.
+### Deploying to github pages
 
-* **Let your users update your documentation for you** — By default, your Slate-generated documentation is hosted in a public Github repository. Not only does this mean you get free hosting for your docs with Github Pages, but it also makes it simple for other developers to make pull requests to your docs if they find typos or other problems. Of course, if you don't want to use GitHub, you're also welcome to host your docs elsewhere.
+You just need to run `./deploy.sh`, and that script will deploy to whatever git's origin is set-up as. If you're not deploying master, you will need to specify the branch name. Example:
 
-Getting started with Slate is super easy! Simply fork this repository and follow the instructions below. Or, if you'd like to check out what Slate is capable of, take a look at the [sample docs](http://tripit.github.io/slate).
+    GIT_DEPLOY_BRANCH=mf-cs-documentation ./deploy.sh
 
-<!--As an example, you can check out the [TripIt API docs](http://tripit.github.io/api), which we create with Slate. You can also view the source of the [markdown file used to generate it](http://github.com/tripit/api/blob/master/source/index.md).-->
+
+-----
+
 
 Getting Started with Slate
 ------------------------------

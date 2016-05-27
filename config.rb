@@ -28,6 +28,12 @@ end
 activate :relative_assets
 set :relative_links, true
 
+activate :data_source do |c|
+  c.files = {
+    "https://demo.controlshiftlabs.com/api/webhooks.json" => "webhooks"
+  }
+end
+
 # Build Configuration
 configure :build do
   # If you're having trouble with Middleman hanging, commenting

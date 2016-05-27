@@ -21,11 +21,13 @@ under the License.
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title><%= current_page.data.title || "API Documentation" %></title>
+    <link rel="Shortcut Icon" href="http://www.controlshiftlabs.com/wp-content/themes/controlshift/images/favicon.ico" type="image/x-icon" />
 
     <style>
       <%= Rouge::Themes::Base16::Monokai.render(:scope => '.highlight') %>
     </style>
     <%= stylesheet_link_tag :screen, media: :screen %>
+    <%= stylesheet_link_tag :controlshift, media: :screen %>
     <%= stylesheet_link_tag :print, media: :print %>
     <% if current_page.data.search %>
       <%= javascript_include_tag  "all" %>
@@ -42,7 +44,7 @@ under the License.
       </span>
     </a>
     <div class="tocify-wrapper">
-      <%= image_tag "logo.png" %>
+      <%= image_tag "logo.png", alt: 'ControlShift Labs' %>
       <% if language_tabs %>
         <div class="lang-selector">
           <% language_tabs.each do |lang| %>
@@ -92,5 +94,28 @@ under the License.
         <% end %>
       </div>
     </div>
+    <script>
+      $(document).ready(function(){
+        var defaultOptions = {
+          "title": "ControlShift Labs Example",
+          "editors": "101",
+          "html": "Oops.  There has been an error.",
+          "js": "",
+          "css_external": "https://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css",
+          "js_library": "jquery"
+        }
+
+        $.each($('.js-codepen-data'), function(index, codePenHTML){
+          $codePenDomObject = $(codePenHTML);
+          var dataOptions = jQuery.extend({}, defaultOptions);
+          dataOptions = jQuery.extend(dataOptions, $codePenDomObject.data());
+          dataOptions.html = '  <div class="container">';
+          dataOptions.html += $codePenDomObject.find('.codepen-html').html();
+          dataOptions.html += '</div>';
+          dataOptions.js = $codePenDomObject.find('.codepen-js').html();
+          $codePenDomObject.next().removeClass('hidden').find('.js-data').val(JSON.stringify(dataOptions));
+        });
+      });
+    </script>
   </body>
 </html>
