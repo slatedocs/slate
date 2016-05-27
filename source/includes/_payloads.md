@@ -184,6 +184,60 @@ Este payload é enviado **apenas para cobranças do tipo gateway de pagamento** 
 Cobrança, que pode ter sido pedido pelo próprio usuário ou não. Ele indica que a
 Cobrança teve seu pagamento cancelado, ou seja, estornado.
 
+## Erro no recebimento de uma cobrança
+
+```shell
+Erro no recebimento de uma cobrança
+
+EXEMPLO DE PAYLOAD
+
+  {
+    "created_at":"2015-05-21T16:13:33Z",
+    "event":"receivement_error",
+    "retryable":false,
+    "card_error":true,
+    "object_type":"charge",
+    "object_id":12,
+    "_links":[{
+      "rel":"self",
+      "method":"GET",
+      "url":"https://app.cobrato.com/api/v1/charges/12"
+    }]
+  }
+
+```
+
+Este payload é enviado **apenas para cobranças do tipo gateway de pagamento** e
+é disparado quando o gateway de pagamento informa sobre um erro na tentativa de
+recebimnto de uma Cobrança. O parâmetro _retryable_ indica se é passível ou não
+de retentativa. Já o parâmetro _card\_error_ indica se o erro foi oriundo de um
+problema no cartão ou não.
+
+## Erro no cancelamento de uma cobrança
+
+```shell
+Erro no cancelamento de uma cobrança
+
+EXEMPLO DE PAYLOAD
+
+  {
+    "created_at":"2015-05-21T16:13:33Z",
+    "event":"cancellation_error",
+    "object_type":"charge",
+    "object_id":12,
+    "_links":[{
+      "rel":"self",
+      "method":"GET",
+      "url":"https://app.cobrato.com/api/v1/charges/12"
+    }]
+  }
+
+```
+
+Este payload é enviado **apenas para cobranças do tipo gateway de pagamento** e
+é disparado quando o gateway de pagamento informa sobre um erro na tentativa de
+cancelamento de uma Cobrança.
+
 ## Conta de Cobrança criada
 
 ```shell
