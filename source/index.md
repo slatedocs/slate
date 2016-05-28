@@ -2,7 +2,7 @@
 title: Augur documentation
 
 language_tabs:
-  - javascript: JavaScript
+  - javascript: Code
 
 toc_footers:
   - <a href="http://augur.net">App</a>

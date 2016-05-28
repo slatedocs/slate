@@ -50,6 +50,60 @@ When someone enters an order in the UI the following happens:
 
 Pending transactions and what orders have already been picked up in pending broadcasted transactions are shown in the book.  These orders are removed if the other side has already been taken in the transaction pool (those orders get executed first on Ethereum anyway based on time precedence and default gas price).  If not processed / taken up, those orders are placed back on the book.  If two orders at same price are placed on the book, the one placed first is executed first.
 
+Initial market loading
+----------------------
+```python
+# Each market's ID is a hash of the following information:
+marketinfo = string(8*32 + len(description))
+marketinfo[0] = tradingPeriod
+marketinfo[1] = tradingFee
+marketinfo[2] = block.timestamp # market creation timestamp
+marketinfo[3] = tag1
+marketinfo[4] = tag2
+marketinfo[5] = tag3
+marketinfo[6] = expirationDate
+marketinfo[7] = len(description)
+mcopy(marketinfo + 8*32, description, chars=len(description))
+marketID = sha3(marketinfo, chars=len(marketinfo))
+
+# Then for the next market, do sha3 of its marketID plus the previous:
+# (marketID2 is the same calculation as above, for the second market)
+compositeMarketsHash = sha3(marketID + marketID2)
+
+# Then continue this process until you've included all markets in the
+# composite hash; for example, if there were 4 total markets:
+compositeMarketsHash = sha3(compositeMarketsHash + marketID3)
+compositeMarketsHash = sha3(compositeMarketsHash + marketID4)
+```
+
+<aside class="notice">Cache nodes regularly call <code>augur.getMarketsInfo({branch, offset, numMarketsToLoad, callback})</code>.  The first time <code>getMarketsInfo</code> is called, all markets should be loaded.  Subsequent <code>getMarketsInfo</code> calls should only load markets created since the previous call.
+
+If data is loaded from a cache node (rather than directly from the Ethereum blockchain), then its integrity should be verified to ensure the cache node has not tampered with the data.  Verification of a cache node's markets data can be done by calling <code>augur.getMarketsHash(branch)</code>, then checking that the `getMarketsHash` return value matches a hash locally calculated from a combined hash of each market's static data (see Serpent code sample).</aside>
+
+To load the basic market info for all markets, first call `augur.getMarketsInfo({branch, offset, numMarketsToLoad, callback})`.  You will likely need to chunk the results so that the request does not time out.  More detailed market info (including prices) for each market in each chunk (page) is then loaded using `augur.getMarketInfo(marketID)`.  `getMarketInfo` does not return the full order book; to get the order book for a market, call `augur.getOrderBook(marketID)`.
+
+Reporting outcomes
+------------------
+
+### Yes or no (binary)
+- no: `2**64`
+- yes: `2*2**64`
+- indeterminate: `3*2**63`
+- exactly in the middle but not indeterminate: `2**63 + 1`
+
+### Multiple choice (categorical)
+
+- min: `1`
+- max: `2**64`
+- indeterminate: `2**63`
+- exactly in the middle but not indeterminate: `2**63 + 1`
+
+### Numerical (scalar)
+- min: `1`
+- max: `2**64`
+- indeterminate: `2**63`
+- exactly in the middle but not indeterminate: `2**63 + 1`
+
 Simplified API
 --------------
 ```javascript
