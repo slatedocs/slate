@@ -81,7 +81,7 @@ If you want to immediately access kuzzle after connection have a look at snippet
 
     // example
     NSError* internalError = nil;
-    [weakKuzzle getServerInfoAndReturnError: &internalError  callback:^(NSDictionary* dictionary, NSError* errorInternal) {
+    [weakKuzzle getServerInfoAndReturnError: &internalError callback:^(NSDictionary* dictionary, NSError* errorInternal) {
       if(errorInternal) {
           // error occured
           return;
@@ -500,7 +500,7 @@ KuzzleOptions* opt = [[KuzzleOptions alloc] init];
 opt.defaultIndex = @"some index";
 Kuzzle* kuzzle = [[Kuzzle alloc] initWithUrl:@"http://localhost:7512" options: opt error: &error];
 
-KuzzleDataCollection* collection = [kuzzle dataCollectionFactoryWithCollection: @"" error: &error];
+KuzzleDataCollection* collection = [kuzzle dataCollectionFactoryWithCollectionName: @"" error: &error];
 ```
 
 ```swift
@@ -2085,6 +2085,14 @@ The response is a boolean reflecting the new `autoRefresh` status.
 kuzzle.setDefaultIndex('index');
 ```
 
+```objective_c
+[kuzzle setDefaultIndex: @"index"];
+```
+
+```swift
+kuzzle.setDefaultIndex("index");
+```
+
 Set the default data index. Has the same effect than the `defaultIndex` constructor option.
 
 #### Return value
@@ -2216,9 +2224,9 @@ NSDictionary* headers = @{@"someContent": @"someValue"};
 ```swift
 let headers = ["someContent": "someValue"]
 
-kuzzle.setHeaders(data: headers, replace: true)
+kuzzle.setHeaders(content: headers, replace: true)
 // merge headers with already existing ones
-kuzzle.setHeaders(data: headers);
+kuzzle.setHeaders(content: headers);
 ```
 
 This is a helper function returning itself, allowing to easily chain calls.

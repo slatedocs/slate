@@ -1069,7 +1069,7 @@ NSError* error = nil;
 KuzzleDataCollection* myCollection = [kuzzle dataCollectionFactoryWithCollectionName: @"collection" index: @"index" error: &error];
 
 if(!error) {
-  [myCollection fetchAllDocumentsAndReturnError: &error :^(KuzzleDocumentList * document:ist, NSError * error) {
+  [myCollection fetchAllDocumentsAndReturnError: &error callback:^(KuzzleDocumentList * documentList, NSError * error) {
     if(error) {
       // error occured
     }
@@ -1558,7 +1558,7 @@ let headers = [
   ]
 ]
 
-myCollection.setHeaders(data: headers, replace: true)
+myCollection.setHeaders(content: headers, replace: true)
 ```
 
 This is a helper function returning itself, allowing to easily set headers while chaining calls.

@@ -533,7 +533,7 @@ let newContent = [
   ]
 ]
 
-role.setContent(data: newContent)
+role.setContent(content: newContent)
 ```
 
 Replaces the content of the `KuzzleRole` object.

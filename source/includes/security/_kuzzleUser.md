@@ -544,7 +544,7 @@ let newContent = [
   ]
 ]
 
-user.setContent(data: newContent)
+user.setContent(content: newContent)
 ```
 
 <aside class="note">
