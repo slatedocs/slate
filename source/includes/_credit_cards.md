@@ -30,7 +30,7 @@ Os Cartões de Crédito pertencem ao Pagador utilizado no momento de sua criaç�
 
 | Campo          | Tipo            | Comentário                                                                    |
 |----------------|-----------------|-------------------------------------------------------------------------------|
-| number  | string          | últimos números do cartão                                                     |
+| number         | string          | números do cartão (incompleto, apenas para identificação)                     |
 | expiration     | string          | expiração do cartão, no formato "mm/aa"                                       |
 | holder_name    | string          | nome do dono do cartão                                                        |
 | brand          | string          | bandeira do cartão (visa, mastercard, amex, elo, diners, discover, jcb, aura) |
