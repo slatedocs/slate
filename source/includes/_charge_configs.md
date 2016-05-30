@@ -38,10 +38,19 @@ As Configurações de Cobrança podem ser de tipos diferentes. Sendo assim, os p
 - Boleto (billet)
 - Gateway de pagamento (payment_gateway)
 
-**Parâmetros (Boleto)**
+<aside class="warning">
+  As Configurações de Cobrança <strong>precisam ser homologada antes de ser utilizada normalmente</strong>. Veja como homologar cada tipo de Configuração de Cobrança em suas informações específicas.
+</aside>
+
+### Boleto
 
 As Configurações de Cobrança do tipo **Boleto** (billet), pertencem as suas contas bancárias, sendo assim é necessário que sempre haja ao menos uma conta bancária para criação desse tipo configuração de cobrança, que também tem suas validações de acordo com o banco de sua conta bancária.
 
+<aside class="info">
+  Quando uma Configuração de Cobrança do tipo Boleto é criada, é também criada, automaticamente, uma cobrança de homologação. Para a Configuração de Cobrança ser homologada, a Cobrança de homologação deve passar por todo o fluxo de cobrança do tipo boleto, ou seja, ser registrada no banco via arquivo de remessa (caso necessário), paga, o valor entrar na conta bancária e o arquivo de retorno ser enviado ao Cobrato.
+</aside>
+
+**Parâmetros**
 
 | Campo                     | Tipo            | Comentário                                                                                                                        |
 |---------------------------|-----------------|-----------------------------------------------------------------------------------------------------------------------------------|
@@ -63,7 +72,17 @@ As Configurações de Cobrança do tipo **Boleto** (billet), pertencem as suas c
 | transmission_code         | string          | código de transmissão (apenas para o Santander)                                                                                   |
 | _links                    | array of object | links da configuração de cobrança e de sua conta bancária                                                                         |
 
-**Parâmetros (Gateway de Pagamento)**
+
+### Gateway de Pagamento
+
+<aside class="info">
+  Para homologar a Configuração de Cobrança
+  <a href="#cria-o-de-cobran-a">deve-se criar uma Cobrança</a> para ela. Esta Cobrança será efetivada e automaticamente cancelada 
+  logo em seguida, apenas com o objetivo de verificar se de fato a configuração foi feita de forma correta. <strong>Até que uma Cobrança</strong> 
+  tenha fechado este ciclo com sucesso e a conta dada como homologada, todas as cobranças criadas para esta Configuração serão consideradas Cobranças para homologação, ou seja, serão feitas e em seguida automaticamente canceladas.
+</aside>
+
+**Parâmetros**
 
 | Campo        | Tipo            | Comentário                                                                                                            |
 |--------------|-----------------|-----------------------------------------------------------------------------------------------------------------------|
@@ -226,7 +245,9 @@ EXEMPLO DE CORPO DA RESPOSTA COM INSUCESSO
 
 Cria uma nova Configuração de Cobrança, retornando as informações da mesma em caso de sucesso. Se houverem erros eles serão informados no corpo da resposta.
 
-**Parâmetros (Boleto)**
+### Boleto
+
+**Parâmetros**
 
 | Campo                     | Tipo    | Comentário                                                                                                                                                          |
 |---------------------------|---------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -244,7 +265,9 @@ Cria uma nova Configuração de Cobrança, retornando as informações da mesma 
 | transmission_code         | string  | (opcional, requerido apenas se registered_charges for `true`) código de transmissão (apenas para o Santander)                                                       |
 | initial_remittance_number | integer | (opcional) número inicial de remessa, ou seja, qual foi o último número sequencial de remessa enviado para o banco (apenas para o Bradesco). Por padrão o valor é 1 |
 
-**Parâmetros (Gateway de Pagamento)**
+### Gateway de Pagamento
+
+**Parâmetros**
 
 | Campo        | Tipo    | Comentário                                                                                                                                            |
 |--------------|---------|-------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -254,14 +277,6 @@ Cria uma nova Configuração de Cobrança, retornando as informações da mesma 
 | gateway_id   | string  | **(requerido)** número de afiliação do contrato com o gateway de pagamento                                                                            |
 | gateway_key  | string  | **(requerido)** chave de acesso atribuída pelo gateway de pagamento                                                                                   |
 | use_avs      | boolean | (opcional) define se será feita a solicitação e a confirmação do endereço de cobrança da fatura do cartão utilizado no pagamento (`false` por padrão) |
-
-<aside class="warning">
-  A configuração de Cobrança via Gateway de Pagamento <strong>precisa ser homologada antes de ser utilizada normalmente</strong>. Para isso, 
-  <a href="#cria-o-de-cobran-a">deve-se criar uma Cobrança</a> para esta configuração. Esta Cobrança será efetivada e automaticamente cancelada 
-  logo em seguida, apenas com o objetivo de verificar se de fato a configuração foi feita de forma correta. <strong>Até que uma Cobrança</strong> 
-  tenha fechado este ciclo com sucesso e a conta dada como homologada, todas as cobranças criadas para esta Configuração serão consideradas Cobranças para homologação, 
-  ou seja, serão feitas e em seguida automatimente canceladas.
-</aside>
 
 ## Atualização de Configuração de Cobrança
 
@@ -314,7 +329,9 @@ EXEMPLO DE CORPO DA RESPOSTA COM INSUCESSO
 
 Atualiza a Configuração de Cobrança determinada, retornando as informações da mesma em caso de sucesso. Se houverem erros, eles serão informados no corpo da resposta. A requisição não diferencia a utilização dos verbos PUT e PATCH.
 
-**Parâmetros (Boleto)**
+### Boleto
+
+**Parâmetros**
 
 | Campo                     | Tipo    | Comentário                                                                                                                                                          |
 |---------------------------|---------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -330,7 +347,9 @@ Atualiza a Configuração de Cobrança determinada, retornando as informações 
 | transmission_code         | string  | (opcional, requerido apenas se registered_charges for `true`) código de transmissão (apenas para o Santander)                                                       |
 | initial_remittance_number | integer | (opcional) número inicial de remessa, ou seja, qual foi o último número sequencial de remessa enviado para o banco (apenas para o Bradesco). Por padrão o valor é 1 |
 
-**Parâmetros (Gateway de Pagamento)**
+### Gateway de Pagamento
+
+**Parâmetros**
 
 | Campo        | Tipo    | Comentário                                                                                                                                            |
 |--------------|---------|-------------------------------------------------------------------------------------------------------------------------------------------------------|

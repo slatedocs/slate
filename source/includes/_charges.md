@@ -50,11 +50,13 @@ EXEMPLO
   }
 ```
 
-As Cobranças, pertencem as suas Configurações de Cobrança, sendo assim é necessário que sempre haja ao menos uma Configuração de Cobrança homologada para a criação de Cobranças. No caso da da Configuração de Cobrança do tipo boleto, ao ser criada, é automaticamente gerada uma Cobrança para homologar a Configuração.
+As Cobranças, pertencem as suas Configurações de Cobrança, sendo assim é necessário que sempre haja ao menos uma Configuração de Cobrança homologada para a criação de Cobranças.
 
-O tipo da Cobrança depende da sua Configuração de Cobrança. Se a Configuração de Cobrança é do tipo Boleto (billet), a cobrança será deste mesmo tipo. Sendo assim, os parâmetros, validações e algums comportamentos irão variar de acordo com o tipo.
+Cada uma das cobranças criadas após a homologação serão do mesmo tipo da configuração. Desta forma qualquer Cobrança criada sob uma Configuração de Cobrança do tipo Boleto será uma cobrança do tipo Boleto. Por este motivo os parâmetros, validações e alguns comportamentos serão variáveis de acordo com o tipo de cobrança.
 
-**Parâmetros (Boleto)**
+### Boleto
+
+**Parâmetros**
 
 | Campo                          | Tipo             | Comentário                                                                                                                                          |
 |--------------------------------|------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -92,7 +94,11 @@ O tipo da Cobrança depende da sua Configuração de Cobrança. Se a Configuraç
 | registration_status            | string           | status de registro em que a cobrança se encontra (without_remittance, remitted, registered, registered_with_error)                                  |
 | _links                         | array of object  | links relacionados à cobraça                                                                                                                        |
 
-**Parâmetros (Gateway de Pagamento)**
+### Gateway de Pagamento
+
+As Cobranças tem o comportamento assíncrono em relação à comunicação com o Gateway de Pagamento. Ou seja, às ações que dependem de efetivação no Gateway de Pagamento não tem resposta na mesma requisição, são feitas em um processo separado e tem suas respostas dadas em payloads via webhook.
+
+**Parâmetros**
 
 | Campo                          | Tipo             | Comentário                                                                                                                                    |
 |--------------------------------|------------------|-----------------------------------------------------------------------------------------------------------------------------------------------|
@@ -340,12 +346,16 @@ Cria um nova cobrança, caso haja sucesso retornará as informações da mesma e
 
 ### Gateway de Pagamento
 
+Após a cobrança ser criada com sucesso (sem erros de validação) é iniciado o processo assíncrono para a comunicação com o gateway. Assim que esse processo terminar, um payload de recebimento ou de erro é enviado via webhook.
+
+Em caso de falha da efetivação da cobrança no Gateway de Pagamento, o motivo da falha será disponibilizado no atributo 'payment_gateway_message'.
+
 **Parâmetros**
 
 | Campo                          | Tipo             | Comentário                                                                                                                                                              |
 |--------------------------------|------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | charge_config_id               | integer          | **(requerido)** código de identificação da configuração de cobrança da qual a cobrança irá pertencer                                                                    |
-| total_amount                   | decimal          | **(requerido)** valor total do boleto                                                                                                                                   |
+| total_amount                   | decimal          | **(requerido)** valor total da cobrança                                                                                                                                   |
 | payment_method                 | string           | **(requerido)** método de pagamento ("credit_card_in_cash" pagamento à vista, "credit_card_financed" pagamento parcelado)                                               |
 | description                    | string           | (opcional) descrição da cobrança                                                                                                                                        |
 | soft_descriptor                | string           | (opcional) descritor que irá aparecer na fatura do cartão (no máximo 13 caracteres)                                                                                     |
@@ -434,17 +444,15 @@ EXEMPLO DE CORPO DA RESPOSTA COM INSUCESSO
 
 Atualiza a cobrança determinada, caso haja sucesso retornará as informações da mesma. Se houverem erros eles serão informados no corpo da resposta. A requisição não diferencia a utilização dos verbos PUT e PATCH.
 
+### Boleto
+
 <aside class="warning">
-Para cobrançãs do tipo **Boleto** não é possível atualizar uma cobrança após seu recebimento, para isso é necessário desfazer o recebimento da mesma! Além disso, caso seja alterado com sucesso e será gerado um novo boleto sobrescrevendo o anterior.
+Para cobranças do tipo <strong>Boleto</strong> não é possível atualizar uma cobrança após seu recebimento, para isso é necessário desfazer o recebimento da mesma! Além disso, caso seja alterado com sucesso e será gerado um novo boleto sobrescrevendo o anterior.
 </aside>
 
 <aside class="notice">
-Para cobrançãs do tipo **Boleto** os campos 'received', 'received_at' e 'received_amount', não são alterados via atualização de cobrança, apenas no recebimento ou desfazendo o recebimento da mesma.
+Para cobranças do tipo <strong>Boleto</strong> os campos 'received', 'received_at' e 'received_amount', não são alterados via atualização de cobrança, apenas no recebimento ou desfazendo o recebimento da mesma.
 </aside>
-
-**Parâmetros**
-
-### Boleto
 
 **Parâmetros**
 
@@ -452,7 +460,7 @@ Para cobrançãs do tipo **Boleto** os campos 'received', 'received_at' e 'recei
 |--------------------------------|------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | due_date                       | date             | **(requerido)** data de vencimento da cobrança                                                                                                                          |
 | document_kind                  | string           | **(requerido)** espécie do documento, podendo ser DM (Duplicata Mercantil), DS (Duplicata de Serviço), NP (Nota Promissória) ou DV (Diversos)                           |
-| total_amount                   | decimal          | **(requerido)** valor total do boleto                                                                                                                                   |
+| total_amount                   | decimal          | **(requerido)** valor total da cobrança                                                                                                                                   |
 | document_number                | string           | **(requerido)** número do documento, também chamado de "seu número", é o número utilizado e controlado pelo beneficiário para identificar o título de cobrança          |
 | payer_emails                   | array of strings | (opcional) emails de quem irá pagar o boleto                                                                                                                            |
 | document_date                  | date             | (opcional) data de emissão do documento                                                                                                                                 |
@@ -481,6 +489,12 @@ Para cobrançãs do tipo **Boleto** os campos 'received', 'received_at' e 'recei
 | state                    | string | (opcional, requerido se registrable for `true`) sigla do estado do endereço do pagador ("RJ" por exemplo) |
 
 ### Gateway de Pagamento
+
+<aside class="notice">
+Para cobranças do tipo <strong>Gateway de Pagamento</strong>, a atualização só é permitida caso o status no gateway de pagamento (atributo 'payment_gateway_status') seja de erro.
+</aside>
+
+Uma cobrança com o status de erro no gateway de pagamento pode ser editada com o objetivo de corrigir este error (descrito no atributo 'payment_gateway_message'). Sendo atualizada com sucesso, é feita uma re-tentativa de efetivação da cobrança no gateway de pagamento.
 
 **Parâmetros**
 
