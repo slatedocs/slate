@@ -7,7 +7,7 @@ EXEMPLO
 
   {
     "id": 8,
-    "final_numbers": "3005",
+    "number": "545301******6167",
     "holder_name": "John Doe",
     "unusable": false,
     "brand": "amex",
@@ -30,7 +30,7 @@ Os Cartões de Crédito pertencem ao Pagador utilizado no momento de sua criaç�
 
 | Campo          | Tipo            | Comentário                                                                    |
 |----------------|-----------------|-------------------------------------------------------------------------------|
-| final_numbers  | string          | últimos números do cartão                                                     |
+| number  | string          | últimos números do cartão                                                     |
 | expiration     | string          | expiração do cartão, no formato "mm/aa"                                       |
 | holder_name    | string          | nome do dono do cartão                                                        |
 | brand          | string          | bandeira do cartão (visa, mastercard, amex, elo, diners, discover, jcb, aura) |
@@ -68,7 +68,7 @@ EXEMPLO DE CORPO DA RESPOSTA
 
   {
     "id": 8,
-    "final_numbers": "3005",
+    "number": "545301******6167",
     "holder_name": "John Doe",
     "unusable": false,
     "brand": "amex",
