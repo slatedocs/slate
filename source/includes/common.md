@@ -86,7 +86,7 @@ PLACA                       | `09`
 Parámetro | Tipo | Descripción
 --------- | ---- |-----------
 codigo | string | Código del [tipo de impuesto](#tipos-de-impuesto)
-codigo_porcentaje | string | Código del porcentaje.
+codigo_porcentaje | string | Código del [porcentaje](#c-digo-de-porcentaje-de-iva).
 base_imponible | float | Base imponible.
 valor | float | Valor del total.
 
@@ -96,7 +96,7 @@ valor | float | Valor del total.
 Parámetro | Tipo | Descripción
 --------- | ---- |-----------
 codigo | string | Código del [tipo de impuesto](#tipos-de-impuesto)
-codigo_porcentaje | string | Código del porcentaje.
+codigo_porcentaje | string | Código del [porcentaje](#c-digo-de-porcentaje-de-iva).
 base_imponible | float | Base imponible.
 valor | float | Valor del total.
 tarifa | float | Porcentaje actual del impuesto expresado por un número entre 0.0 y 100.0
@@ -169,6 +169,16 @@ Impuesto | Código
 IVA      | 2
 ICE      | 3
 IRBPNR   | 5
+
+## Código de Porcentaje de IVA
+
+Porcentaje de IVA | Código | Tarifa
+-------- | ------ | ------
+0%     | 0 |  0
+12%      | 3 | 12
+14%   | 3 | 14
+No Objeto de Impuesto   | 6 | -
+Exento de IVA   | 7 | -
 
 ## Tipos de impuesto para la retención
 

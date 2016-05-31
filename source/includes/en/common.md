@@ -77,7 +77,7 @@ PLACA                       | `09`
 Parameter | Type | Description
 --------- | ---- |-----------
 codigo | string | [tax type](#invoice-tax-types) code. __Required__
-codigo_porcentaje | string | Invoice rate code.
+codigo_porcentaje | string | Invoice [rate code](#invoice-rate-code).
 base_imponible | float | Taxable amount.
 valor | float | Total tax amount.
 
@@ -87,7 +87,7 @@ valor | float | Total tax amount.
 Parameter | Type | Description
 --------- | ---- |-----------
 codigo | string | [Tax type](#invoice-tax-types) code.
-codigo_porcentaje | string | Invoice rate code.
+codigo_porcentaje | string | Invoice [rate code](#invoice-rate-code).
 base_imponible | float | Taxable amount.
 valor | float | Total tax amount.
 tarifa | float | Tax rate expresed as a number between 0.0 y 100.0
@@ -160,6 +160,16 @@ Tax | Code
 IVA      | 2
 ICE      | 3
 IRBPNR   | 5
+
+## Invoice rate code
+
+Percentage| Code | Rate
+-------- | ------ | ------
+0%     | 0 |  0
+12%      | 3 | 12
+14%   | 3 | 14
+Not subject to tax   | 6 | -
+Exempt from VAT  | 7 | -
 
 ## Withholding tax types
 
