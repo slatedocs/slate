@@ -166,7 +166,7 @@ IRBPNR   | 5
 Percentage| Code | Rate
 -------- | ------ | ------
 0%     | 0 |  0
-12%      | 3 | 12
+12%      | 2 | 12
 14%   | 3 | 14
 Not subject to tax   | 6 | -
 Exempt from VAT  | 7 | -

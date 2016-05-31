@@ -175,7 +175,7 @@ IRBPNR   | 5
 Porcentaje de IVA | Código | Tarifa
 -------- | ------ | ------
 0%     | 0 |  0
-12%      | 3 | 12
+12%      | 2 | 12
 14%   | 3 | 14
 No Objeto de Impuesto   | 6 | -
 Exento de IVA   | 7 | -
