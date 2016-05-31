@@ -230,23 +230,30 @@ Reads all information about a market that is stored on-contract.  It also determ
 var options = {
   branch: 1010101,     // branch ID (default: 1010101)
   offset: 10,          // which markets to start  (default: 0)
-  numMarketsToLoad: 5  // numMarkets
+  numMarketsToLoad: 2  // numMarkets
 };
 augur.getMarketsInfo(options, function (marketsInfo) { /* ... */ })
 // example output:
-marketsInfo = {
-  "-0x5932c04cfb6df8275387fc5d15a9897d61a2ef598c7e60ae45829e9e1e3409e6": {
-    "network": "2",
-    "traderCount": 1,
-    /* ... */
-  },
-  "-0x428531d38a8960123e16a2810591c36d523a5269081543f7ac5914408ae63183": {
-    "network": "2",
-    "traderCount": 4,
-    /* ... */
-  },
-  /* ... */
-}
+{ '0xf41e2f1827142a95cc14b5333f3d3493588342ef8bc9214e96e0c894dff27fc5': 
+   { _id: '0xf41e2f1827142a95cc14b5333f3d3493588342ef8bc9214e96e0c894dff27fc5',
+     sortOrder: 0,
+     tradingPeriod: 206104,
+     tradingFee: '0.01999999999999999998',
+     creationTime: 1464642365,
+     volume: '0',
+     tags: [ 'weather', 'temperature', 'climate change' ],
+     endDate: 1483948800,
+     description: 'Will the average temperature on Earth in 2016 be Higher, Lower, or Unchanged from the average temperature on Earth in 2015? Choices: Higher, Lower, Unchanged' },
+  '0x9b8e45cdf9d35ab66b939d5eb5b48bf10de3c39b7f6fa2d38fe518a869502e8': 
+   { _id: '0x9b8e45cdf9d35ab66b939d5eb5b48bf10de3c39b7f6fa2d38fe518a869502e8',
+     sortOrder: 1,
+     tradingPeriod: 206104,
+     tradingFee: '0.01999999999999999998',
+     creationTime: 1464642450,
+     volume: '0',
+     tags: [ 'quotes', '严肃', '蝙蝠侠' ],
+     endDate: 1483948800,
+     description: '为什么有这么严重吗？' } }
 ```
 ### getMarketsInfo(options[, callback])
 
