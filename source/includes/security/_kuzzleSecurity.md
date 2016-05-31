@@ -785,6 +785,136 @@ Available options:
 
 Resolves the user id which has been deleted.
 
+
+## getMyRights
+
+```js
+// Using callbacks (NodeJS or Web Browser)
+kuzzle
+  .security
+  .getMyRights(function(error, result) {
+    // result is a JSON object
+  });
+
+// Using promises (NodeJS)
+kuzzle
+  .security
+  .getMyRights()
+  .then((result) => {
+    // result is a JSON object
+  });
+```
+
+```java
+
+kuzzle
+  .security
+  .getMyRights(new KuzzleResponseListener<JSONObject>() {
+    @Override
+    public void onSuccess(JSONObject rights) {
+
+    }
+
+    @Override
+    public void onError(JSONObject error) {
+
+    }
+  });
+```
+
+```objective_c
+// Not implemented yet
+```
+
+```swift
+// Not implemented yet
+```
+
+Gets the rights array of the currently logged user.
+
+#### getMyRights([options], callback)
+
+| Arguments | Type | Description |
+|---------------|---------|----------------------------------------|
+| ``options`` | JSON Object | Optional parameters |
+| ``callback`` | function | Callback handling the response |
+
+Available options:
+
+| Option | Type | Description | Default |
+|---------------|---------|----------------------------------------|---------|
+| ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
+
+#### Callback response
+
+Resolves to a `JSON` object.
+
+
+## getUserRights
+
+```js
+// Using callbacks (NodeJS or Web Browser)
+kuzzle
+  .security
+  .getUserRights('id', function(error, result) {
+    // result is a JSON object
+  });
+
+// Using promises (NodeJS)
+kuzzle
+  .security
+  .getUserRights('id')
+  .then((result) => {
+    // result is a JSON object
+  });
+```
+
+```java
+
+kuzzle
+  .security
+  .getUserRights("id", new KuzzleResponseListener<JSONObject>() {
+    @Override
+    public void onSuccess(JSONObject rights) {
+
+    }
+
+    @Override
+    public void onError(JSONObject error) {
+
+    }
+  });
+```
+
+```objective_c
+// Not implemented yet
+```
+
+```swift
+// Not implemented yet
+```
+
+Gets the rights array of the currently logged user.
+
+#### getMyRights(id, [options], callback)
+
+| Arguments | Type | Description |
+|---------------|---------|----------------------------------------|
+| ``id`` | String | Id of the user |
+| ``options`` | JSON Object | Optional parameters |
+| ``callback`` | function | Callback handling the response |
+
+Available options:
+
+| Option | Type | Description | Default |
+|---------------|---------|----------------------------------------|---------|
+| ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
+
+#### Callback response
+
+Resolves to a `JSON` object.
+
+
 ## getRole
 
 ```js
@@ -1060,6 +1190,59 @@ Available options:
 #### Callback response
 
 Resolves to a `KuzzleUser` object.
+
+
+## isActionAllowed
+
+```js
+var rights = [
+    {
+      controller: 'read', action: 'get', index: '*', collection: '*',
+      value: 'allowed'
+    }
+];
+
+var allowed = kuzzle.security.isActionAllowed(rights, 'read', 'get', 'index1', 'collection1');
+```
+
+```java
+rights = new JSONArray()
+        .put(addProperties("read", "get", "*", "*", KuzzlePolicies.allowed.toString()));
+
+KuzzleRights rights = kuzzle.security.isActionAllowed(rights, "read", "get", "index1", "collection1");
+```
+
+```objective_c
+// Not implemented yet
+```
+
+```swift
+// Not implemented yet
+```
+
+Tells whether an action is allowed, denied or conditional based on the rights provided as the first argument.
+- `allowed` is returned when an action is authorized without condition
+- `conditional` is returned when the authorization depends on a closure
+- `denied` is returned when the action is forbidden
+An action is defined as a couple of action and controller (mandatory), plus an index and a collection(optional).
+
+<aside class="notice">
+You can get the rights from Kuzzle by using <a href="#getUserRights">`KuzzleSecurity.getUserRights`</a> and <a href="#getMyRights">`KuzzleSecurity.getMyRights`</a>.
+</aside>
+
+#### isActionAllowed(rights, controller, action, index, collection)
+
+| Arguments | Type | Description |
+|---------------|---------|----------------------------------------|
+| ``rights`` | JSON array | Rightl list |
+| ``controller`` | String | The controller |
+| ``action`` | String | The action |
+| ``index`` | String | The index |
+| ``collection`` | String | The collection |
+
+#### Return value
+
+Returns either `allowed`, `denied` or `conditional`.
 
 
 ## profileFactory
