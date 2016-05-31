@@ -1,0 +1,22 @@
+{
+  "folders":
+  [
+    {
+      "file_exclude_patterns":
+      [
+        "*.log",
+        ".DS_Store",
+        "*.orig",
+        "*.sublime-workspace"
+      ],
+      "folder_exclude_patterns":
+      [
+        "build"
+      ],
+      "follow_symlinks": true,
+      "path": ".",
+      "tab_size": 2,
+      "translate_tabs_to_spaces": false,
+    }
+  ]
+}
