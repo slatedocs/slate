@@ -348,26 +348,36 @@ Cria um nova cobrança, caso haja sucesso retornará as informações da mesma e
 
 Após a cobrança ser criada com sucesso (sem erros de validação) é iniciado o processo assíncrono para a comunicação com o gateway. Assim que esse processo terminar, um payload de recebimento ou de erro é enviado via webhook.
 
+<aside class="notice">
 Em caso de falha da efetivação da cobrança no Gateway de Pagamento, o motivo da falha será disponibilizado no atributo 'payment_gateway_message'.
+</aside>
+
+<aside class="notice">
+Se for utilizado um cartão já existente (enviando o parâmetro <code>credit_card_id</code>), este deve pertencer a mesma Configuração de Cobrança (parâmetro <code>charge_config_id</code>) utilizada.
+</aside>
 
 **Parâmetros**
 
-| Campo                          | Tipo             | Comentário                                                                                                                                                              |
-|--------------------------------|------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| charge_config_id               | integer          | **(requerido)** código de identificação da configuração de cobrança da qual a cobrança irá pertencer                                                                    |
-| total_amount                   | decimal          | **(requerido)** valor total da cobrança                                                                                                                                   |
-| payment_method                 | string           | **(requerido)** método de pagamento ("credit_card_in_cash" pagamento à vista, "credit_card_financed" pagamento parcelado)                                               |
-| description                    | string           | (opcional) descrição da cobrança                                                                                                                                        |
-| soft_descriptor                | string           | (opcional) descritor que irá aparecer na fatura do cartão (no máximo 13 caracteres)                                                                                     |
-| installments                   | integer          | (opcional) número de parcelas (1 por padrão)                                                                                                                            |
-| generate_token                 | boolean          | (opcional) indica se foi gerado token para utilização do cartão de crédito no pagamento recorrente (false por padrão)                                                   |
-| payer_emails                   | array of strings | (opcional) emails de quem irá a notificação de cobrança                                                                                                                 |
-| payer_id                       | integer          | **(requerido, se não enviar payer_attributes )** identificador do pagador (caso seja fornecido, o parâmetro payer_attributes será ignorado)                             |
-| payer_attributes*              | object           | **(requerido, se não enviar payer_id )** atributos para a criação de um novo pagador ou atualização de um pagador existente com o mesmo documento (national_identifier) |
-| credit_card_id                 | integer          | **(requerido, se não enviar credit_card_attributes )** identificador do cartão de crédito utilizado na cobrança                                                         |
-| credit_card_attributes*        | object           | **(requerido, se não enviar credit_card_id )**  atributos para a criação de um novo cartão de crédito que será ligado ao pagador                                        |
+| Campo                          | Tipo             | Comentário                                                                                                                                                                    |
+|--------------------------------|------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| charge_config_id               | integer          | **(requerido)** código de identificação da configuração de cobrança da qual a cobrança irá pertencer                                                                          |
+| total_amount                   | decimal          | **(requerido)** valor total da cobrança                                                                                                                                       |
+| payment_method                 | string           | **(requerido)** método de pagamento ("credit_card_in_cash" pagamento à vista, "credit_card_financed" pagamento parcelado)                                                     |
+| description                    | string           | (opcional) descrição da cobrança                                                                                                                                              |
+| soft_descriptor                | string           | (opcional) descritor que irá aparecer na fatura do cartão (no máximo 13 caracteres)                                                                                           |
+| installments                   | integer          | (opcional) número de parcelas (1 por padrão)                                                                                                                                  |
+| generate_token                 | boolean          | (opcional) indica se foi gerado token para utilização do cartão de crédito no pagamento recorrente (false por padrão)                                                         |
+| payer_emails                   | array of strings | (opcional) emails de quem irá a notificação de cobrança                                                                                                                       |
+| payer_id                       | integer          | **(requerido, se não enviar payer_attributes )** identificador do pagador (caso seja fornecido, o parâmetro payer_attributes será ignorado)                                   |
+| payer_attributes*              | object           | **(requerido, se não enviar payer_id )** atributos para a criação de um novo pagador ou atualização de um pagador existente com o mesmo documento (national_identifier)       |
+| credit_card_id                 | integer          | **(requerido, se não enviar credit_card_attributes )** identificador do cartão de crédito utilizado na cobrança, que deve pertencer ao mesmo payer e charge_config informados |
+| credit_card_attributes*        | object           | **(requerido, se não enviar credit_card_id )**  atributos para a criação de um novo cartão de crédito que será ligado ao pagador                                              |
 
 **payer_attributes**
+
+<aside class="notice">
+Caso exista um Pagador (Payer) com o mesmo <code>national_identifier</code>, não será criado um novo, mas sim atualizado o existente.
+</aside>
 
 | Campo                    | Tipo   | Comentário                                                           |
 |--------------------------|--------|----------------------------------------------------------------------|
