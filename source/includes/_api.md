@@ -227,6 +227,123 @@ Retrieves the full order book for `marketId`.  The order book's format is an obj
 Reads all information about a market that is stored on-contract.  It also determines the `type` of the market, which can be `binary` (two outcomes; i.e., Yes or No), `categorical` (more than two outcomes, i.e., Multiple Choice), `scalar` (answer can be any of a range of values; i.e., Numerical), or `combinatorial` (for combined wagers on multiple events).  If the market is a combinatorial market, `getMarketInfo` also makes separate RPC request for the individual event descriptions.
 
 ```javascript
+marketIDs = [
+  '0xf41e2f1827142a95cc14b5333f3d3493588342ef8bc9214e96e0c894dff27fc5',
+  '0x9b8e45cdf9d35ab66b939d5eb5b48bf10de3c39b7f6fa2d38fe518a869502e8'
+];
+augur.batchGetMarketInfo(marketIDs, function (info) { /* ... */ });
+// example output:
+info = {
+  "0xf41e2f1827142a95cc14b5333f3d3493588342ef8bc9214e96e0c894dff27fc5": {
+    "network": "2",
+    "traderCount": 0,
+    "makerFees": "0.5",
+    "traderIndex": 0,
+    "numOutcomes": 3,
+    "tradingPeriod": 206104,
+    "tradingFee": "0.01999999999999999998",
+    "branchId": "0xf69b5",
+    "numEvents": 1,
+    "cumulativeScale": "1",
+    "creationTime": 1464642365,
+    "volume": "0",
+    "creationFee": "8.99999999999999967469",
+    "author": "0x7c0d52faab596c08f484e3478aebc6205f3f5d8c",
+    "tags": ["weather", "temperature", "climate change"],
+    "type": "categorical",
+    "endDate": 1483948800,
+    "winningOutcomes": ["0", "0", "0", "0", "0", "0", "0", "0"],
+    "description": "Will the average temperature on Earth in 2016 be Higher, Lower, or Unchanged from the average temperature on Earth in 2015? Choices: Higher, Lower, Unchanged",
+    "outcomes": [
+      {
+        "shares": {},
+        "id": 1,
+        "outstandingShares": "0",
+        "price": "0"
+      },
+      {
+        "shares": {},
+        "id": 2,
+        "outstandingShares": "0",
+        "price": "0"
+      },
+      {
+        "shares": {},
+        "id": 3,
+        "outstandingShares": "0",
+        "price": "0"
+      }
+    ],
+    "events": [
+      {
+        "id": "0x808bd49d2a16214bed80a6249302b55a87282a7d6ecc74a0381b7453b1ed9101",
+        "endDate": 1483948800,
+        "outcome": "0",
+        "minValue": "1",
+        "maxValue": "2",
+        "numOutcomes": 3,
+        "type": "categorical"
+      }
+    ],
+    "_id": "0xf41e2f1827142a95cc14b5333f3d3493588342ef8bc9214e96e0c894dff27fc5",
+    "sortOrder": 0
+  },
+  "0x9b8e45cdf9d35ab66b939d5eb5b48bf10de3c39b7f6fa2d38fe518a869502e8": {
+    "network": "2",
+    "traderCount": 0,
+    "makerFees": "0.39999999999999999998",
+    "traderIndex": 0,
+    "numOutcomes": 3,
+    "tradingPeriod": 206104,
+    "tradingFee": "0.01999999999999999998",
+    "branchId": "0xf69b5",
+    "numEvents": 1,
+    "cumulativeScale": "1",
+    "creationTime": 1464642450,
+    "volume": "0",
+    "creationFee": "8.99999999999999967469",
+    "author": "0x7c0d52faab596c08f484e3478aebc6205f3f5d8c",
+    "tags": ["quotes", "严肃", "蝙蝠侠"],
+    "type": "categorical",
+    "endDate": 1483948800,
+    "winningOutcomes": ["0", "0", "0", "0", "0", "0", "0", "0"],
+    "description": "为什么有这么严重吗？",
+    "outcomes": [
+      {
+        "shares": {},
+        "id": 1,
+        "outstandingShares": "0",
+        "price": "0"
+      },
+      {
+        "shares": {},
+        "id": 2,
+        "outstandingShares": "0",
+        "price": "0"
+      },
+      {
+        "shares": {},
+        "id": 3,
+        "outstandingShares": "0",
+        "price": "0"
+      }
+    ],
+    "events": [
+      {
+        "id": "0xe2b0453641b305c4aa96b3bd473d93b0b5062a7c0fc62d6e158c133859fcdcb3",
+        "endDate": 1483948800,
+        "outcome": "0",
+        "minValue": "1",
+        "maxValue": "2",
+        "numOutcomes": 3,
+        "type": "categorical"
+      }
+    ],
+    "_id": "0x9b8e45cdf9d35ab66b939d5eb5b48bf10de3c39b7f6fa2d38fe518a869502e8",
+    "sortOrder": 1
+  }
+}
+
 var options = {
   branch: 1010101,     // branch ID (default: 1010101)
   offset: 10,          // which markets to start  (default: 0)
@@ -255,9 +372,13 @@ augur.getMarketsInfo(options, function (marketsInfo) { /* ... */ })
      endDate: 1483948800,
      description: '为什么有这么严重吗？' } }
 ```
+### batchGetMarketInfo(marketIDs[, callback])
+
+Retrieve a `marketInfo` object for the market IDs in array `marketIDs`.  The `marketInfo` objects (see above for example) are collected into a single object and indexed by market ID.
+
 ### getMarketsInfo(options[, callback])
 
-Retrieve a `marketInfo` object for all markets on the specified branch.  The `marketInfo` objects (see above for example) are collected into a single object and indexed by `marketId`.  The `options` parameter is an object which specifies the branch ID (`branch`), and whether or not to send separate RPC requests for combinatorial event descriptions (`combinatorial`).  There are also two fields (`offset` and `numMarketsToLoad`) used to split up the `getMarketsInfo` query into multiple requests.  This is useful if the number of markets on the branch is too large for a single RPC request.
+Gets basic info about markets the specified branch, and returns an object with market info indexed by market ID.  The `options` parameter is an object which specifies the branch ID (`branch`).  There are also two fields (`offset` and `numMarketsToLoad`) used to split up the `getMarketsInfo` query into multiple requests.  This is useful if the number of markets on the branch is too large for a single RPC request (which is typical).
 
 <aside class="notice">Each branch's market IDs are stored as an "array" on the <a href="https://github.com/AugurProject/augur-core/blob/forking/src/data_api/branches.se">branches</a> contract, in the contract's <code>Branches[](markets[], numMarkets, ...)</code> data.  Markets are indexed in the order created; i.e., the first market created has index 0, the second 1, etc.  This ordering allows us to break up a large aggregate request like <code>getMarketsInfo</code> into manageable chunks.
 
