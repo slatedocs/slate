@@ -62,6 +62,53 @@ The variables IDs must match those of the target dataset since their types will 
 }
 ```
 
+
+#### Checking if an append will cause problems
+
+`/datasets/{id}/batches/compare/`
+
+
+An append cannot proceed if there are any situations on the datasets involved
+that will cause ambiguous situations. If such datasets were to be appended
+the server will return a 409 response.
+
+It is possible to verify for this conditions before trying the append using
+the batches compare endpoint.
+
+```
+GET /datasets/4bc6af/batches/compare/?dataset=http://beta.crunch.io/api/datasets/3e2cfb/
+```
+
+The response will contain a conflicts key that can contain either `target`, 
+`interm` or `union` depending of the type and location of the problem. Always
+a 200 response with empty or any conflicts.
+
+```json
+
+{
+    "conflicts": {
+        "union": {...},
+        "target": {...},
+        "interm": {...},
+    }
+}
+
+```
+
+The possible keys in the conflicts and verifications made are:
+
+* Subvariables in multiple arrays
+* Subvariables without a parent array
+* Variables missing alias
+* Variables missing name
+* Variables with duplicate alias
+* Variables with duplicate name
+* Subvariable in different arrays per dataset
+
+For each of these, a list of variable IDs will be made available indicating the
+conflicting entities.
+
+
 ### Entity
 
 `/datasets/{id}/batches/{id}/`
