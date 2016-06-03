@@ -1532,6 +1532,44 @@ successResponse = {
 Creates a market on branch `branchId` with `description`, trading fee (as a proportion) of `tradingFee`, maker fees (proportion of trading fees paid by the order creator, as opposed to the person matching the order) `makerFees`, topics/categories `tags`, and more detailed description and/or link to more info `extraInfo`, and containing event IDs supplied in an array `events`.  Regular (non-combinatorial) markets always have a single event; combinatorial markets allow up to 3 events.
 
 ```javascript
+var marketID = "0xa290cd9d0c81f2af150a36725c986a3387dc6cef178c183e7237eeac4ea81ddc";
+var params = {
+    market: marketID,
+    liquidity: 100,
+    initialFairPrice: "0.4",
+    startingQuantity: 5,
+    bestStartingQuantity: 10,
+    priceWidth: "0.4",
+    priceDepth: "0.2"
+};
+augur.generateOrderBook(params, {
+  onBuyCompleteSets: function (res) { /* ... */ },
+  onSetupOutcome: function (outcome) { /* ... */ },
+  onSetupOrder: function (order) { /* ... */ },
+  onSuccess: function (orderBook) { /* ... */ },
+  onFailed: function (err) { /* ... */ }
+});
+
+params.isSimulation = true;
+augur.generateOrderBook(params, {
+  onSimulate: function (simulation) { /* ... */ }
+})
+// example:
+simulation = {
+  sharesOnBook: '20',
+  sharesToBuy: '85',
+  numBuyOrders: 2,
+  numSellOrders: 3,
+  numTransactions: 6
+}
+```
+#### generateOrderBook(params, callbacks)
+
+A convenience method for generating an initial order book for a newly created market.  `params` is an object containing the input parameters (see example code).  `liquidity` is the total amount of liquidity to add to the market.  `initialFairPrice` is the center of the bid-ask spread.  `startingQuantity` is the number of shares available at each price point.  `bestStartingQuantity` can optionally be specified separately, and is the number of shares available at the best price point (those closest to the spread).  `priceWidth` is the price difference between the best bid and best ask orders.  `priceDepth` is the difference between adjacent orders on the same side of the book.
+
+`augur.generateOrderBook` also accepts an optional parameter, `isSimulation`, which if set to `true`, returns information about what the method will do (see code example).  `sharesOnBook` is the number of shares that will go on the book (in sell orders), `sharesToBuy` is the total number of shares to buy (the initial liquidity minus the cash needed for buy orders), `numBuyOrders` is the number of buy orders that will be created, `numSellOrders` is the number of sell orders that will be created, and `numTransactions` is the total number of Ethereum transactions needed to set up the order book.
+
+```javascript
 // closeMarket contract
 var marketId = "-0x3bb8d91f2481d886fe94acd4d1ffe3339ec60524aeb55ceb5a6c6c8631a796c2";
 augur.closeMarket({
