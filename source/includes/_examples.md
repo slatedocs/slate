@@ -2,7 +2,7 @@
 
 HTMLs de Exemplos
 
-## Submissão de pagamento
+## Submeter pagamento
 
 ```html
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -49,7 +49,7 @@ HTMLs de Exemplos
 						<tr><td>url_retorno</td><td><input type='text' name='url_retorno' value='WWW.SEUSITE.COM.BR/RETORNOIPAG'/> </td></tr>
 					</tbody>
 				</table>
-				<input type='submit' name='submit' alt='Pagar' border="0" value="Submeter Pagamento" /> <br/>
+				<input type='submit' name='submit' alt='Submeter' border="0" value="Submeter Pagamento" /> <br/>
 			</form>
 	</body>
 </html>
@@ -59,7 +59,51 @@ HTMLs de Exemplos
     Lembre, isto é apenas um exemplo para fazer testes de submissão de pagamento.
 </aside>
 
-## Captura de Pagamento
+## Consultar Pagamento
+
+```html
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Teste Integração XML consulta - iPag</title>
+</head>
+<body>
+	<div class="text">Complete os campos com os valores desejados para testar a consulta:</div>
+    	<br/>
+
+			<form method='post' action='https://www.librepag.com.br/consulta'>
+				<table cellpadding="5" cellspacing="0" style="" class="comBorda">
+					<thead>
+						<tr>
+							<th width="50%">campo</th>
+							<th width="50%">valor</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr><td>identificacao</td><td><input type='text' name='identificacao' value='SEU LOGIN NO IPAG'/></td></tr>
+						<tr><td>transId</td><td><input type='text' name='transId' value='ID da Transação'/> </td></tr>
+						<tr><td>url_retorno</td><td><input type='text' name='url_retorno' value='XML'/> </td></tr>
+					</tbody>
+				</table>
+				<input type='submit' name='submit' alt='Consultar' border="0" value="Consultar Pagamento" /> <br/>
+			</form>
+</body>
+</html>
+```
+Parâmetro | size | type | Obrigatório | Descrição
+--------- | ----- | ----- | ----------- | ---------
+identificacao | 60 | string | obrigatório | Código de identificação do estabelecimento no iPag (login de acesso ao painel)
+transId | 255 | string | obrigatório | Código identificação da transação.
+url_retorno | 255 | string | obrigatório | Pode ser XML, ou uma Url da sua loja.
+
+<aside class="notice">
+    Lembre, isto é apenas um exemplo para fazer testes de consulta de pagamento.
+</aside>
+
+
+## Capturar Pagamento
 
 ```html
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -87,12 +131,60 @@ HTMLs de Exemplos
 						<tr><td>url_retorno</td><td><input type='text' name='url_retorno' value='XML'/> </td></tr>
 					</tbody>
 				</table>
-				<input type='submit' name='submit' alt='Pagar' border="0" value="Submeter Pagamento" /> <br/>
+				<input type='submit' name='submit' alt='Capturar' border="0" value="Capturar Pagamento" /> <br/>
 			</form>
 </body>
 </html>
 ```
+Parâmetro | size | type | Obrigatório | Descrição
+--------- | ----- | ----- | ----------- | ---------
+identificacao | 60 | string | obrigatório | Código de identificação do estabelecimento no iPag (login de acesso ao painel)
+transId | 255 | string | obrigatório | Código identificação da transação.
+url_retorno | 255 | string | obrigatório | Pode ser XML, ou uma Url da sua loja.
 
 <aside class="notice">
     Lembre, isto é apenas um exemplo para fazer testes de captura de pagamento.
+</aside>
+
+## Cancelar Pagamento
+
+```html
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Teste Integração XML Cancelar Pagamento - iPag</title>
+</head>
+<body>
+	<div class="text">Complete os campos com os valores desejados para testar o cancelamento:</div>
+    	<br/>
+
+			<form method='post' action='https://www.librepag.com.br/cancela'>
+				<table cellpadding="5" cellspacing="0" style="" class="comBorda">
+					<thead>
+						<tr>
+							<th width="50%">campo</th>
+							<th width="50%">valor</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr><td>identificacao</td><td><input type='text' name='identificacao' value='SEU LOGIN NO IPAG'/></td></tr>
+						<tr><td>transId</td><td><input type='text' name='transId' value='ID da Transação'/> </td></tr>
+						<tr><td>url_retorno</td><td><input type='text' name='url_retorno' value='XML'/> </td></tr>
+					</tbody>
+				</table>
+				<input type='submit' name='submit' alt='Cancelar' border="0" value="Cancelar Pagamento" /> <br/>
+			</form>
+</body>
+</html>
+```
+Parâmetro | size | type | Obrigatório | Descrição
+--------- | ----- | ----- | ----------- | ---------
+identificacao | 60 | string | obrigatório | Código de identificação do estabelecimento no iPag (login de acesso ao painel)
+transId | 255 | string | obrigatório | Código identificação da transação.
+url_retorno | 255 | string | obrigatório | Pode ser XML, ou uma Url da sua loja.
+
+<aside class="notice">
+    Lembre, isto é apenas um exemplo para fazer testes de cancelamento de pagamento.
 </aside>
