@@ -21,9 +21,6 @@ GET /projects/ HTTP/1.1
 {
   "element": "shoji:catalog",
   "self": "http://beta.crunch.io/api/projects/",
-  "views": {
-    "generate_icon": "http://beta.crunch.io/api/projects/generate_icon/"
-  },
   "index": {
     "http://beta.crunch.io/api/projects/4643/": {
       "name": "Project 1",
@@ -147,6 +144,16 @@ configured icon is. This url does not point to the `views.icon` Shoji view url.
 The `views.icon` Shoji view endpoint is used to PUT the icon as a file upload
 for this project.
 
+#### PATCH
+
+The attributes that are allowed to be edited for a projet are: 
+
+ * name
+ * description
+ * icon_url
+ 
+Only project editors can make these changes.
+
 #### DELETE
 
 Deleting a project will *NOT* delete its datasets. It will change their 
@@ -156,7 +163,7 @@ ownership to the authenticated user. Only project editors can delete a project.
 DELETE /projects/6c01/ HTTP/1.1
 ```
 
-#### Projects order
+### Projects order
 
 Returns the `shoji:order` in which the projects should be displayed for
  the user. This entity is independent for each user.
@@ -164,7 +171,7 @@ Returns the `shoji:order` in which the projects should be displayed for
 As the user is added to more projects, these will be added at the end of the
 `shoji:order`.
  
-##### GET
+#### GET
 
 Will return a `shoji:order` containing a flat list of all the projects where
 the current user belongs to.
@@ -185,7 +192,7 @@ GET /projects/order/ HTTP/1.1
 }
 ```
 
-##### PUT
+#### PUT
 
 In order to change the order of the projects, the client will need to PUT the
 full payload back to the server.
@@ -210,13 +217,11 @@ PUT /projects/order/ HTTP/1.1
 }
 ```
 
-
-
-#### Members
+### Members
 
 Use this endpoint to manage the users that have access to this project.
 
-##### Members permissions
+#### Members permissions
 
 Members of a project can be wither viewers or editors. By default all members
 will be viewers and a selected group of them (at least one) will be editor.
@@ -236,7 +241,7 @@ Project editors have edit privileges on all datasets as well as permissions to
 make changes on the project itself such as changing its name, icon, members 
 management or change members' permissions.
 
-##### GET
+#### GET
 
 Returns a catalog with all users that have access to this project and their 
 project permissions in the following format:
@@ -276,8 +281,7 @@ on the given project.
 
 All project members have read access to this resource.
 
-
-##### PATCH
+#### PATCH
 
 Use this method to add or remove members from the project. Only project editors 
 have this capabilities, else you will get a 403 response.
@@ -328,7 +332,7 @@ PATCH /projects/abcd/members/ HTTP/1.1
 }
 ```
 
-###### Sending notifications
+##### Sending notifications
 
 The users invited to a project can be both existing Crunch.io users or new
 users that don't have a user account associated with the email.
@@ -350,11 +354,11 @@ user to configure their account in order to use the app.
 This behavior is the same as described for [inviting new users when sharing a dataset](#inviting-new-users)
 
 
-#### Datasets
+### Datasets
 
 Will list all the datasets that have this project as their owner.
 
-##### Adding datasets to projects
+#### Adding datasets to projects
 
 The way to add a dataset to a project is by changing the dataset's owner to the
 id of the project you want to take ownership.
@@ -362,7 +366,7 @@ id of the project you want to take ownership.
 You must have edit and be current editor on any given dataset to change its
 owner and you must also have edit permissions on the target project.
 
-##### PATCH to dataset entity
+#### PATCH to dataset entity
 
 Send a PATCH request to the dataset entity that you want to make part of the
 project.
@@ -375,7 +379,7 @@ PATCH /datasets/cc9161/ HTTP/1.1
 {"owner":"https://beta.crunch.io/api/projects/abcd/"}
 ```
 
-##### GET
+#### GET
 
 Will show the list of all datasets where this project is their owner, the 
 shape of the dataset tuple will be the same as in other dataset catalogs.
@@ -447,12 +451,12 @@ GET /projects/6c01/datasets/ HTTP/1.1
 }
 ```
 
-#### Icon
+### Icon
 
 The icon endpoint for a project is a ShojiView that allows to change the
-project's icon.
+project's icon via file upload or URL.
 
-##### GET
+#### GET
 
 On GET, it will return a `shoji:view` with its value containing a url to the
 icon file or empty string in case there isn't an icon for this project yet.
@@ -473,17 +477,24 @@ GET /projects/6c01/icon/ HTTP/1.1
 }
 ```
 
-##### PUT
+#### PUT
 
 PUT to this endpoint to change a project's icon.
+
+There are two ways to change the icon, either via file upload or via icon URL.
+
+Only the project's editors can change the project's icon.
+ 
+Valid image extensions: 'png', 'gif', 'jpg', 'jpeg' - Others will 400
+
+##### File upload
 
 The request should have be a standard `multipart/form-data` file upload with
  the file field named `icon`.
 The file's contents will be stored and made available under the project's url.
- 
-Only the project's editors can change the project's icon.
- 
-Valid image extensions: 'png', 'gif', 'jpg', 'jpeg' - Others will 400
+The API will return a 201 response with the stored icon's URL on its Location 
+header.
+
 
 ```http
 PUT /projects/6c01/icon/ HTTP/1.1
@@ -491,13 +502,41 @@ Content-Disposition: form-data; name="icon"; filename="newicon.jpg"
 Content-Type: image/jpeg
 ```
 
+```http
+HTTP/1.1 201 Created
+Location: https://beta.crunch.io/api/datasets/223fd4/
+```
+
+##### Icon URL
+
+Expects a `Shoji:view` request with its value pointing to a publicly accessible
+image resource that will be used as the project's icon. This image will be
+copied to an API local location.
+
+```http
+PUT /projects/6c01/datasets/icon/ HTTP/1.1
+```
+
+```json
+{
+  "element": "shoji:view",
+  "self": "http://beta.crunch.io/api/projects/6c01/datasets/icon/",
+  "value": "http://public.domain.com/icon.png"
+}
+```
+
+
+```http
+HTTP/1.1 201 Created
+Location: https://beta.crunch.io/api/datasets/223fd4/
+```
 
 #### POST
 
 Same as PUT
 
 
-#### Datasets order
+### Datasets order
 
 Contains the `shoji:order` in which the datasets of this project are to be 
 ordered.
@@ -505,8 +544,7 @@ ordered.
 This is endpoint available for all project members but can only be updated by 
 the project's editors.
 
-
-##### GET
+#### GET
 
 Will return the `shoji:order` response containing the datasets that belong
 to the project.
@@ -526,7 +564,7 @@ GET /projects/6c01/datasets/order/ HTTP/1.1
 }
 ```
 
-##### PUT
+#### PUT
 
 Allow to make modifications to the `shoji:order` for the contained datasets.
 Only the project's editors can make these changes.
