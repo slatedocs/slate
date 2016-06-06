@@ -301,7 +301,7 @@ curl "https://getquipu.com/tickets" \
           "attributes": {
             "kind": "income",
             "number": null,
-            "recipient_name": "unknown"
+            "recipient_name": "unknown",
             "issue_date": "2016-03-08",
             "paid_at": "2016-03-08",
             "payment_method": "cash",
