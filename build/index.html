@@ -2177,6 +2177,1342 @@ You must replace <code>your_api_key</code> with your personal API key.
 </tr>
 </tbody></table>
 
+<h1 id="payments">Payments</h1>
+
+<h2 id="get-all-payments">Get All Payments</h2>
+<pre class="highlight shell"><code>curl <span class="s2">"https://rest.goraise.co.uk/payments"</span>
+  -H <span class="s2">"ApiKey: your_api_key"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="w">    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">37</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"groups_payment_details_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">474</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">47.19</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Created payment for Leicester Speedway Supporters Club"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-04-11 12:27:26"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-04-11 12:27:26"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"paid_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pending"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"transaction_groups"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5171</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"percentage"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.51</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"historical"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"transaction"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3758</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"revenue"</span><span class="p">:</span><span class="w"> </span><span class="s2">"102.00"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"donation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.51"</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>The above command returns XML structured like this:</p>
+</blockquote>
+<pre class="highlight xml"><code><span class="cp">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
+<span class="nt">&lt;xml&gt;</span>
+    <span class="nt">&lt;total&gt;</span>26<span class="nt">&lt;/total&gt;</span>
+    <span class="nt">&lt;per_page&gt;</span>100<span class="nt">&lt;/per_page&gt;</span>
+    <span class="nt">&lt;current_page&gt;</span>1<span class="nt">&lt;/current_page&gt;</span>
+    <span class="nt">&lt;last_page&gt;</span>1<span class="nt">&lt;/last_page&gt;</span>
+    <span class="nt">&lt;next_page_url/&gt;</span>
+    <span class="nt">&lt;prev_page_url/&gt;</span>
+    <span class="nt">&lt;from&gt;</span>1<span class="nt">&lt;/from&gt;</span>
+    <span class="nt">&lt;to&gt;</span>26<span class="nt">&lt;/to&gt;</span>
+    <span class="nt">&lt;data&gt;</span>
+        <span class="nt">&lt;datum&gt;</span>
+            <span class="nt">&lt;id&gt;</span>21<span class="nt">&lt;/id&gt;</span>
+            <span class="nt">&lt;groups_payment_details_id&gt;</span>112<span class="nt">&lt;/groups_payment_details_id&gt;</span>
+            <span class="nt">&lt;amount&gt;</span>366.64<span class="nt">&lt;/amount&gt;</span>
+            <span class="nt">&lt;notes&gt;</span>Created payment for Friends of Salusbury School<span class="nt">&lt;/notes&gt;</span>
+            <span class="nt">&lt;created_at&gt;</span>2016-01-22 10:34:07<span class="nt">&lt;/created_at&gt;</span>
+            <span class="nt">&lt;updated_at&gt;</span>2016-01-22 11:48:06<span class="nt">&lt;/updated_at&gt;</span>
+            <span class="nt">&lt;paid_at&gt;</span>2016-01-22 11:48:06<span class="nt">&lt;/paid_at&gt;</span>
+            <span class="nt">&lt;status&gt;</span>paid<span class="nt">&lt;/status&gt;</span>
+            <span class="nt">&lt;transaction_groups&gt;</span>
+                <span class="nt">&lt;transaction_group&gt;</span>
+                    <span class="nt">&lt;id&gt;</span>23<span class="nt">&lt;/id&gt;</span>
+                    <span class="nt">&lt;percentage&gt;</span>100<span class="nt">&lt;/percentage&gt;</span>
+                    <span class="nt">&lt;value&gt;</span>4.62<span class="nt">&lt;/value&gt;</span>
+                    <span class="nt">&lt;historical&gt;</span>0<span class="nt">&lt;/historical&gt;</span>
+                    <span class="nt">&lt;transaction&gt;</span>
+                        <span class="nt">&lt;id&gt;</span>3012<span class="nt">&lt;/id&gt;</span>
+                        <span class="nt">&lt;revenue&gt;</span>369.00<span class="nt">&lt;/revenue&gt;</span>
+                        <span class="nt">&lt;donation&gt;</span>4.62<span class="nt">&lt;/donation&gt;</span>
+                    <span class="nt">&lt;/transaction&gt;</span>
+                <span class="nt">&lt;/transaction_group&gt;</span>
+            <span class="nt">&lt;/transaction_groups&gt;</span>
+        <span class="nt">&lt;/datum&gt;</span>
+    <span class="nt">&lt;/data&gt;</span>
+<span class="nt">&lt;/xml&gt;</span>
+</code></pre>
+
+<p>This endpoint retrieves all payments.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://rest.goraise.co.uk/payments</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>per_page</td>
+<td>100</td>
+<td>How many results to pull back in one go. Can range from 10-250</td>
+</tr>
+<tr>
+<td>page</td>
+<td>1</td>
+<td>The paginated page of results you wish to view, as limited by the per_page variable</td>
+</tr>
+<tr>
+<td>order_by</td>
+<td>id</td>
+<td>How the results should be ordered</td>
+</tr>
+</tbody></table>
+
+<h2 id="get-a-specific-payment">Get a Specific Payment</h2>
+<pre class="highlight shell"><code>curl <span class="s2">"https://rest.goraise.co.uk/payments/1"</span>
+  -H <span class="s2">"ApiKey: your_api_key"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">37</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"groups_payment_details_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">474</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">47.19</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Created payment for Leicester Speedway Supporters Club"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-04-11 12:27:26"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-04-11 12:27:26"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"paid_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pending"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"transaction_groups"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5171</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"percentage"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.51</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"historical"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"transaction"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3758</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"revenue"</span><span class="p">:</span><span class="w"> </span><span class="s2">"102.00"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"donation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.51"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>The above command returns XML structured like this:</p>
+</blockquote>
+<pre class="highlight xml"><code><span class="cp">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
+<span class="nt">&lt;xml&gt;</span>
+    <span class="nt">&lt;id&gt;</span>21<span class="nt">&lt;/id&gt;</span>
+    <span class="nt">&lt;groups_payment_details_id&gt;</span>112<span class="nt">&lt;/groups_payment_details_id&gt;</span>
+    <span class="nt">&lt;amount&gt;</span>366.64<span class="nt">&lt;/amount&gt;</span>
+    <span class="nt">&lt;notes&gt;</span>Created payment for Friends of Salusbury School<span class="nt">&lt;/notes&gt;</span>
+    <span class="nt">&lt;created_at&gt;</span>2016-01-22 10:34:07<span class="nt">&lt;/created_at&gt;</span>
+    <span class="nt">&lt;updated_at&gt;</span>2016-01-22 11:48:06<span class="nt">&lt;/updated_at&gt;</span>
+    <span class="nt">&lt;paid_at&gt;</span>2016-01-22 11:48:06<span class="nt">&lt;/paid_at&gt;</span>
+    <span class="nt">&lt;status&gt;</span>paid<span class="nt">&lt;/status&gt;</span>
+    <span class="nt">&lt;transaction_groups&gt;</span>
+        <span class="nt">&lt;transaction_group&gt;</span>
+            <span class="nt">&lt;id&gt;</span>23<span class="nt">&lt;/id&gt;</span>
+            <span class="nt">&lt;percentage&gt;</span>100<span class="nt">&lt;/percentage&gt;</span>
+            <span class="nt">&lt;value&gt;</span>4.62<span class="nt">&lt;/value&gt;</span>
+            <span class="nt">&lt;historical&gt;</span>0<span class="nt">&lt;/historical&gt;</span>
+            <span class="nt">&lt;transaction&gt;</span>
+                <span class="nt">&lt;id&gt;</span>3012<span class="nt">&lt;/id&gt;</span>
+                <span class="nt">&lt;revenue&gt;</span>369.00<span class="nt">&lt;/revenue&gt;</span>
+                <span class="nt">&lt;donation&gt;</span>4.62<span class="nt">&lt;/donation&gt;</span>
+            <span class="nt">&lt;/transaction&gt;</span>
+        <span class="nt">&lt;/transaction_group&gt;</span>
+    <span class="nt">&lt;/transaction_groups&gt;</span>
+<span class="nt">&lt;/xml&gt;</span>
+</code></pre>
+
+<p>This endpoint retrieves a specific payment.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://rest.goraise.co.uk/payments/&lt;ID&gt;</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ID</td>
+<td>The unique ID of the payment</td>
+</tr>
+</tbody></table>
+
+<h1 id="cause-payment-details">Cause Payment Details</h1>
+
+<h2 id="get-all-cause-payment-details">Get All Cause Payment Details</h2>
+<pre class="highlight shell"><code>curl <span class="s2">"https://rest.goraise.co.uk/causes/75911/payment-details"</span>
+  -H <span class="s2">"ApiKey: your_api_key"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">131801</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cheque"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"active"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"groups_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">75911</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"minimum_payment"</span><span class="p">:</span><span class="w"> </span><span class="mi">22</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"paypal_email"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"bank_acc_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"bank_acc_number"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"bank_acc_sort"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"use_company_address"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"provider"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"payment_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"payment_url_protocol"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>The above command returns XML structured like this:</p>
+</blockquote>
+<pre class="highlight xml"><code><span class="cp">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
+<span class="nt">&lt;xml&gt;</span>
+    <span class="nt">&lt;item&gt;</span>
+        <span class="nt">&lt;id&gt;</span>131801<span class="nt">&lt;/id&gt;</span>
+        <span class="nt">&lt;type&gt;</span>cheque<span class="nt">&lt;/type&gt;</span>
+        <span class="nt">&lt;active&gt;</span>0<span class="nt">&lt;/active&gt;</span>
+        <span class="nt">&lt;groups_id&gt;</span>75911<span class="nt">&lt;/groups_id&gt;</span>
+        <span class="nt">&lt;minimum_payment&gt;</span>22<span class="nt">&lt;/minimum_payment&gt;</span>
+        <span class="nt">&lt;paypal_email/&gt;</span>
+        <span class="nt">&lt;bank_acc_name/&gt;</span>
+        <span class="nt">&lt;bank_acc_number/&gt;</span>
+        <span class="nt">&lt;bank_acc_sort/&gt;</span>
+        <span class="nt">&lt;use_company_address&gt;</span>1<span class="nt">&lt;/use_company_address&gt;</span>
+        <span class="nt">&lt;provider&gt;</span>test<span class="nt">&lt;/provider&gt;</span>
+        <span class="nt">&lt;payment_url/&gt;</span>
+        <span class="nt">&lt;payment_url_protocol/&gt;</span>
+    <span class="nt">&lt;/item&gt;</span>
+<span class="nt">&lt;/xml&gt;</span>
+</code></pre>
+
+<p>This endpoint retrieves a list all payment details for a cause.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://rest.goraise.co.uk/causes/&lt;CAUSE_ID&gt;/payment-details</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>CAUSE_ID</td>
+<td>The id of the cause.</td>
+</tr>
+</tbody></table>
+
+<h2 id="get-a-specific-payment-detail">Get a Specific Payment Detail</h2>
+<pre class="highlight shell"><code>curl <span class="s2">"https://rest.goraise.co.uk/causes/75911/payment-details/131801"</span>
+  -H <span class="s2">"ApiKey: your_api_key"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">131805</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"thirdparty"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"active"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"groups_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">75423</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"minimum_payment"</span><span class="p">:</span><span class="w"> </span><span class="mf">15.5</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"paypal_email"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"bank_acc_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"bank_acc_number"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"bank_acc_sort"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"use_company_address"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"provider"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"payment_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"payment_url_protocol"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>The above command returns XML structured like this:</p>
+</blockquote>
+<pre class="highlight xml"><code><span class="cp">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
+<span class="nt">&lt;xml&gt;</span>
+    <span class="nt">&lt;id&gt;</span>131805<span class="nt">&lt;/id&gt;</span>
+    <span class="nt">&lt;type&gt;</span>thirdparty<span class="nt">&lt;/type&gt;</span>
+    <span class="nt">&lt;active&gt;</span>1<span class="nt">&lt;/active&gt;</span>
+    <span class="nt">&lt;groups_id&gt;</span>75423<span class="nt">&lt;/groups_id&gt;</span>
+    <span class="nt">&lt;minimum_payment&gt;</span>15.5<span class="nt">&lt;/minimum_payment&gt;</span>
+    <span class="nt">&lt;paypal_email/&gt;</span>
+    <span class="nt">&lt;bank_acc_name/&gt;</span>
+    <span class="nt">&lt;bank_acc_number/&gt;</span>
+    <span class="nt">&lt;bank_acc_sort/&gt;</span>
+    <span class="nt">&lt;use_company_address&gt;</span>1<span class="nt">&lt;/use_company_address&gt;</span>
+    <span class="nt">&lt;provider/&gt;</span>
+    <span class="nt">&lt;payment_url/&gt;</span>
+    <span class="nt">&lt;payment_url_protocol/&gt;</span>
+<span class="nt">&lt;/xml&gt;</span>
+</code></pre>
+
+<p>This endpoint retrieves a specific set of payment details</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://rest.goraise.co.uk/causes/&lt;CAUSE_ID&gt;/payment-details/&lt;ID&gt;</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>CAUSE_ID</td>
+<td>The id of the cause.</td>
+</tr>
+<tr>
+<td>ID</td>
+<td>The unique ID of the payment details item.</td>
+</tr>
+</tbody></table>
+
+<h2 id="create-a-new-cause-payment-details-entry">Create a New Cause Payment Details Entry</h2>
+<pre class="highlight shell"><code>curl <span class="s2">"https://rest.goraise.co.uk/causes/75423/payment-details"</span>
+  -H <span class="s2">"ApiKey: your_api_key"</span>
+  -H <span class="s2">"Content-Type: application/x-www-form-urlencoded"</span>
+  -X POST
+  -d <span class="s2">"type=cheque&amp;minimium_payment=16.00"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cheque"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"minimum_payment"</span><span class="p">:</span><span class="w"> </span><span class="s2">"16.00"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"groups_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">75423</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">131806</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>The above command returns XML structured like this:</p>
+</blockquote>
+<pre class="highlight xml"><code><span class="cp">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
+<span class="nt">&lt;xml&gt;</span>
+    <span class="nt">&lt;type&gt;</span>cheque<span class="nt">&lt;/type&gt;</span>
+    <span class="nt">&lt;minimum_payment&gt;</span>16.00<span class="nt">&lt;/minimum_payment&gt;</span>
+    <span class="nt">&lt;groups_id&gt;</span>75423<span class="nt">&lt;/groups_id&gt;</span>
+    <span class="nt">&lt;id&gt;</span>131807<span class="nt">&lt;/id&gt;</span>
+<span class="nt">&lt;/xml&gt;</span>
+</code></pre>
+
+<p>This endpoint creates and returns a payment detail item for a specified cause.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">POST https://rest.goraise.co.uk/causes/&lt;CAUSE_ID&gt;/payment-details</code></p>
+
+<h3 id="url-structure">URL Structure</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>CAUSE_ID</td>
+<td>The id of the cause.</td>
+</tr>
+</tbody></table>
+
+<h3 id="required-parameters">Required Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>TYPE</td>
+<td>Type of payment, [cheque,bank_account,thirdparty]</td>
+</tr>
+<tr>
+<td>MINIMUM_PAYMENT</td>
+<td>The minimum payout threshold.</td>
+</tr>
+</tbody></table>
+
+<h3 id="additional-attributes">Additional Attributes</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>PAYPAL_EMAIL</td>
+<td>The email of the associated paypal account (if applicable).</td>
+</tr>
+<tr>
+<td>BANK_ACC_NAME</td>
+<td>The bank account name (if applicable).</td>
+</tr>
+<tr>
+<td>BANK_ACC_NUMBER</td>
+<td>The bank account number (if applicable).</td>
+</tr>
+<tr>
+<td>BANK_ACC_SORT</td>
+<td>The bank account sort code (if applicable).</td>
+</tr>
+<tr>
+<td>USE_COMPANY_ADDRESS</td>
+<td>Whether or not to use the company address for the payment detail.</td>
+</tr>
+<tr>
+<td>PROVIDER</td>
+<td>The provider name (if applicable).</td>
+</tr>
+<tr>
+<td>PAYMENT_URL</td>
+<td>The URL the payment method, minus the protocol. <em>e.g. www.justgiving.com/cancerresearchuk</em></td>
+</tr>
+<tr>
+<td>PAYMENT_URL_PROTOCOL</td>
+<td>The protocol of the URL, <em>e.g. https:// or http://</em></td>
+</tr>
+</tbody></table>
+
+<h2 id="update-a-cause-payment-detail">Update a Cause Payment Detail</h2>
+<pre class="highlight shell"><code>curl <span class="s2">"PUT https://rest.goraise.co.uk/causes/75911/payment-details/131801"</span>
+  -H <span class="s2">"ApiKey: your_api_key"</span>
+  -H <span class="s2">"Content-Type: application/x-www-form-urlencoded"</span>
+  -X PUT
+  -d <span class="s2">"type=cheque&amp;minimium_payment=16.00"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">131801</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cheque"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"active"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"groups_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">75911</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"minimum_payment"</span><span class="p">:</span><span class="w"> </span><span class="mi">22</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"paypal_email"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"bank_acc_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"bank_acc_number"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"bank_acc_sort"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"use_company_address"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"provider"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"payment_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"payment_url_protocol"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>The above command returns XML structured like this:</p>
+</blockquote>
+<pre class="highlight xml"><code><span class="cp">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
+<span class="nt">&lt;xml&gt;</span>
+    <span class="nt">&lt;item&gt;</span>
+        <span class="nt">&lt;id&gt;</span>131801<span class="nt">&lt;/id&gt;</span>
+        <span class="nt">&lt;type&gt;</span>cheque<span class="nt">&lt;/type&gt;</span>
+        <span class="nt">&lt;active&gt;</span>0<span class="nt">&lt;/active&gt;</span>
+        <span class="nt">&lt;groups_id&gt;</span>75911<span class="nt">&lt;/groups_id&gt;</span>
+        <span class="nt">&lt;minimum_payment&gt;</span>22<span class="nt">&lt;/minimum_payment&gt;</span>
+        <span class="nt">&lt;paypal_email/&gt;</span>
+        <span class="nt">&lt;bank_acc_name/&gt;</span>
+        <span class="nt">&lt;bank_acc_number/&gt;</span>
+        <span class="nt">&lt;bank_acc_sort/&gt;</span>
+        <span class="nt">&lt;use_company_address&gt;</span>1<span class="nt">&lt;/use_company_address&gt;</span>
+        <span class="nt">&lt;provider&gt;</span>test<span class="nt">&lt;/provider&gt;</span>
+        <span class="nt">&lt;payment_url/&gt;</span>
+        <span class="nt">&lt;payment_url_protocol/&gt;</span>
+    <span class="nt">&lt;/item&gt;</span>
+<span class="nt">&lt;/xml&gt;</span>
+</code></pre>
+
+<p>This endpoint updates and returns a cause payment detail with a specific ID.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">PUT https://rest.goraise.co.uk/causes/&lt;ID&gt;</code></p>
+
+<h3 id="url-structure">URL Structure</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>CAUSE_ID</td>
+<td>The id of the cause.</td>
+</tr>
+</tbody></table>
+
+<h3 id="required-parameters">Required Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>TYPE</td>
+<td>Type of payment, [cheque,bank_account,thirdparty]</td>
+</tr>
+<tr>
+<td>MINIMUM_PAYMENT</td>
+<td>The minimum payout threshold.</td>
+</tr>
+</tbody></table>
+
+<h3 id="additional-attributes">Additional Attributes</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>PAYPAL_EMAIL</td>
+<td>The email of the associated paypal account (if applicable).</td>
+</tr>
+<tr>
+<td>BANK_ACC_NAME</td>
+<td>The bank account name (if applicable).</td>
+</tr>
+<tr>
+<td>BANK_ACC_NUMBER</td>
+<td>The bank account number (if applicable).</td>
+</tr>
+<tr>
+<td>BANK_ACC_SORT</td>
+<td>The bank account sort code (if applicable).</td>
+</tr>
+<tr>
+<td>USE_COMPANY_ADDRESS</td>
+<td>Whether or not to use the company address for the payment detail.</td>
+</tr>
+<tr>
+<td>PROVIDER</td>
+<td>The provider name (if applicable).</td>
+</tr>
+<tr>
+<td>PAYMENT_URL</td>
+<td>The URL the payment method, minus the protocol. <em>e.g. www.justgiving.com/cancerresearchuk</em></td>
+</tr>
+<tr>
+<td>PAYMENT_URL_PROTOCOL</td>
+<td>The protocol of the URL, <em>e.g. https:// or http://</em></td>
+</tr>
+</tbody></table>
+
+<h1 id="company-payment-details">Company Payment Details</h1>
+
+<h2 id="get-all-company-payment-details">Get All Company Payment Details</h2>
+<pre class="highlight shell"><code>curl <span class="s2">"https://rest.goraise.co.uk/companies/75911/payment-details"</span>
+  -H <span class="s2">"ApiKey: your_api_key"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">131801</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cheque"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"active"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"groups_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">75911</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"minimum_payment"</span><span class="p">:</span><span class="w"> </span><span class="mi">22</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"paypal_email"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"bank_acc_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"bank_acc_number"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"bank_acc_sort"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"use_company_address"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"provider"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"payment_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"payment_url_protocol"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>The above command returns XML structured like this:</p>
+</blockquote>
+<pre class="highlight xml"><code><span class="cp">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
+<span class="nt">&lt;xml&gt;</span>
+    <span class="nt">&lt;item&gt;</span>
+        <span class="nt">&lt;id&gt;</span>131801<span class="nt">&lt;/id&gt;</span>
+        <span class="nt">&lt;type&gt;</span>cheque<span class="nt">&lt;/type&gt;</span>
+        <span class="nt">&lt;active&gt;</span>0<span class="nt">&lt;/active&gt;</span>
+        <span class="nt">&lt;groups_id&gt;</span>75911<span class="nt">&lt;/groups_id&gt;</span>
+        <span class="nt">&lt;minimum_payment&gt;</span>22<span class="nt">&lt;/minimum_payment&gt;</span>
+        <span class="nt">&lt;paypal_email/&gt;</span>
+        <span class="nt">&lt;bank_acc_name/&gt;</span>
+        <span class="nt">&lt;bank_acc_number/&gt;</span>
+        <span class="nt">&lt;bank_acc_sort/&gt;</span>
+        <span class="nt">&lt;use_company_address&gt;</span>1<span class="nt">&lt;/use_company_address&gt;</span>
+        <span class="nt">&lt;provider&gt;</span>test<span class="nt">&lt;/provider&gt;</span>
+        <span class="nt">&lt;payment_url/&gt;</span>
+        <span class="nt">&lt;payment_url_protocol/&gt;</span>
+    <span class="nt">&lt;/item&gt;</span>
+<span class="nt">&lt;/xml&gt;</span>
+</code></pre>
+
+<p>This endpoint retrieves a list all payment details for a company</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://rest.goraise.co.uk/companies/&lt;COMPANY_ID&gt;/payment-details</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>COMPANY_ID</td>
+<td>The id of the company</td>
+</tr>
+</tbody></table>
+
+<h2 id="get-a-specific-payment-detail">Get a Specific Payment Detail</h2>
+<pre class="highlight shell"><code>curl <span class="s2">"https://rest.goraise.co.uk/companies/75911/payment-details/131801"</span>
+  -H <span class="s2">"ApiKey: your_api_key"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">131805</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"thirdparty"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"active"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"groups_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">75423</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"minimum_payment"</span><span class="p">:</span><span class="w"> </span><span class="mf">15.5</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"paypal_email"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"bank_acc_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"bank_acc_number"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"bank_acc_sort"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"use_company_address"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"provider"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"payment_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"payment_url_protocol"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>The above command returns XML structured like this:</p>
+</blockquote>
+<pre class="highlight xml"><code><span class="cp">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
+<span class="nt">&lt;xml&gt;</span>
+    <span class="nt">&lt;id&gt;</span>131805<span class="nt">&lt;/id&gt;</span>
+    <span class="nt">&lt;type&gt;</span>thirdparty<span class="nt">&lt;/type&gt;</span>
+    <span class="nt">&lt;active&gt;</span>1<span class="nt">&lt;/active&gt;</span>
+    <span class="nt">&lt;groups_id&gt;</span>75423<span class="nt">&lt;/groups_id&gt;</span>
+    <span class="nt">&lt;minimum_payment&gt;</span>15.5<span class="nt">&lt;/minimum_payment&gt;</span>
+    <span class="nt">&lt;paypal_email/&gt;</span>
+    <span class="nt">&lt;bank_acc_name/&gt;</span>
+    <span class="nt">&lt;bank_acc_number/&gt;</span>
+    <span class="nt">&lt;bank_acc_sort/&gt;</span>
+    <span class="nt">&lt;use_company_address&gt;</span>1<span class="nt">&lt;/use_company_address&gt;</span>
+    <span class="nt">&lt;provider/&gt;</span>
+    <span class="nt">&lt;payment_url/&gt;</span>
+    <span class="nt">&lt;payment_url_protocol/&gt;</span>
+<span class="nt">&lt;/xml&gt;</span>
+</code></pre>
+
+<p>This endpoint retrieves a specific set of payment details</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://rest.goraise.co.uk/companies/&lt;COMPANY_ID&gt;/payment-details/&lt;ID&gt;</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>COMPANY_ID</td>
+<td>The id of the company</td>
+</tr>
+<tr>
+<td>ID</td>
+<td>The unique ID of the payment details item</td>
+</tr>
+</tbody></table>
+
+<h2 id="create-a-new-company-payment-details-entry">Create a New Company Payment Details Entry</h2>
+<pre class="highlight shell"><code>curl <span class="s2">"https://rest.goraise.co.uk/companies/75423/payment-details"</span>
+  -H <span class="s2">"ApiKey: your_api_key"</span>
+  -H <span class="s2">"Content-Type: application/x-www-form-urlencoded"</span>
+  -X POST
+  -d <span class="s2">"type=cheque&amp;minimium_payment=16.00"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cheque"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"minimum_payment"</span><span class="p">:</span><span class="w"> </span><span class="s2">"16.00"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"groups_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">75423</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">131806</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>The above command returns XML structured like this:</p>
+</blockquote>
+<pre class="highlight xml"><code><span class="cp">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
+<span class="nt">&lt;xml&gt;</span>
+    <span class="nt">&lt;type&gt;</span>cheque<span class="nt">&lt;/type&gt;</span>
+    <span class="nt">&lt;minimum_payment&gt;</span>16.00<span class="nt">&lt;/minimum_payment&gt;</span>
+    <span class="nt">&lt;groups_id&gt;</span>75423<span class="nt">&lt;/groups_id&gt;</span>
+    <span class="nt">&lt;id&gt;</span>131807<span class="nt">&lt;/id&gt;</span>
+<span class="nt">&lt;/xml&gt;</span>
+</code></pre>
+
+<p>This endpoint creates and returns a payment detail item for a specified company</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">POST https://rest.goraise.co.uk/companies/&lt;COMPANY_ID&gt;/payment-details</code></p>
+
+<h3 id="url-structure">URL Structure</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>COMPANY_ID</td>
+<td>The id of the company</td>
+</tr>
+</tbody></table>
+
+<h3 id="required-parameters">Required Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>TYPE</td>
+<td>Type of payment, [cheque,bank_account,thirdparty]</td>
+</tr>
+<tr>
+<td>MINIMUM_PAYMENT</td>
+<td>The minimum payout threshold.</td>
+</tr>
+</tbody></table>
+
+<h3 id="additional-attributes">Additional Attributes</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>PAYPAL_EMAIL</td>
+<td>The email of the associated paypal account (if applicable).</td>
+</tr>
+<tr>
+<td>BANK_ACC_NAME</td>
+<td>The bank account name (if applicable).</td>
+</tr>
+<tr>
+<td>BANK_ACC_NUMBER</td>
+<td>The bank account number (if applicable).</td>
+</tr>
+<tr>
+<td>BANK_ACC_SORT</td>
+<td>The bank account sort code (if applicable).</td>
+</tr>
+<tr>
+<td>USE_COMPANY_ADDRESS</td>
+<td>Whether or not to use the company address for the payment detail.</td>
+</tr>
+<tr>
+<td>PROVIDER</td>
+<td>The provider name (if applicable).</td>
+</tr>
+<tr>
+<td>PAYMENT_URL</td>
+<td>The URL the payment method, minus the protocol. <em>e.g. www.justgiving.com/cancerresearchuk</em></td>
+</tr>
+<tr>
+<td>PAYMENT_URL_PROTOCOL</td>
+<td>The protocol of the URL, <em>e.g. https:// or http://</em></td>
+</tr>
+</tbody></table>
+
+<h2 id="update-a-company-payment-detail">Update a Company Payment Detail</h2>
+<pre class="highlight shell"><code>curl <span class="s2">"PUT https://rest.goraise.co.uk/companies/75911/payment-details/131801"</span>
+  -H <span class="s2">"ApiKey: your_api_key"</span>
+  -H <span class="s2">"Content-Type: application/x-www-form-urlencoded"</span>
+  -X PUT
+  -d <span class="s2">"type=cheque&amp;minimium_payment=16.00"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">131801</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cheque"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"active"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"groups_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">75911</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"minimum_payment"</span><span class="p">:</span><span class="w"> </span><span class="mi">22</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"paypal_email"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"bank_acc_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"bank_acc_number"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"bank_acc_sort"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"use_company_address"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"provider"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"payment_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"payment_url_protocol"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>The above command returns XML structured like this:</p>
+</blockquote>
+<pre class="highlight xml"><code><span class="cp">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
+<span class="nt">&lt;xml&gt;</span>
+    <span class="nt">&lt;item&gt;</span>
+        <span class="nt">&lt;id&gt;</span>131801<span class="nt">&lt;/id&gt;</span>
+        <span class="nt">&lt;type&gt;</span>cheque<span class="nt">&lt;/type&gt;</span>
+        <span class="nt">&lt;active&gt;</span>0<span class="nt">&lt;/active&gt;</span>
+        <span class="nt">&lt;groups_id&gt;</span>75911<span class="nt">&lt;/groups_id&gt;</span>
+        <span class="nt">&lt;minimum_payment&gt;</span>22<span class="nt">&lt;/minimum_payment&gt;</span>
+        <span class="nt">&lt;paypal_email/&gt;</span>
+        <span class="nt">&lt;bank_acc_name/&gt;</span>
+        <span class="nt">&lt;bank_acc_number/&gt;</span>
+        <span class="nt">&lt;bank_acc_sort/&gt;</span>
+        <span class="nt">&lt;use_company_address&gt;</span>1<span class="nt">&lt;/use_company_address&gt;</span>
+        <span class="nt">&lt;provider&gt;</span>test<span class="nt">&lt;/provider&gt;</span>
+        <span class="nt">&lt;payment_url/&gt;</span>
+        <span class="nt">&lt;payment_url_protocol/&gt;</span>
+    <span class="nt">&lt;/item&gt;</span>
+<span class="nt">&lt;/xml&gt;</span>
+</code></pre>
+
+<p>This endpoint updates and returns a cause payment detail with a specific ID.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">PUT https://rest.goraise.co.uk/companies/&lt;ID&gt;</code></p>
+
+<h3 id="url-structure">URL Structure</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>COMPANY_ID</td>
+<td>The id of the company</td>
+</tr>
+</tbody></table>
+
+<h3 id="required-parameters">Required Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>TYPE</td>
+<td>Type of payment, [cheque,bank_account,thirdparty]</td>
+</tr>
+<tr>
+<td>MINIMUM_PAYMENT</td>
+<td>The minimum payout threshold.</td>
+</tr>
+</tbody></table>
+
+<h3 id="additional-attributes">Additional Attributes</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>PAYPAL_EMAIL</td>
+<td>The email of the associated paypal account (if applicable).</td>
+</tr>
+<tr>
+<td>BANK_ACC_NAME</td>
+<td>The bank account name (if applicable).</td>
+</tr>
+<tr>
+<td>BANK_ACC_NUMBER</td>
+<td>The bank account number (if applicable).</td>
+</tr>
+<tr>
+<td>BANK_ACC_SORT</td>
+<td>The bank account sort code (if applicable).</td>
+</tr>
+<tr>
+<td>USE_COMPANY_ADDRESS</td>
+<td>Whether or not to use the company address for the payment detail.</td>
+</tr>
+<tr>
+<td>PROVIDER</td>
+<td>The provider name (if applicable).</td>
+</tr>
+<tr>
+<td>PAYMENT_URL</td>
+<td>The URL the payment method, minus the protocol. <em>e.g. www.justgiving.com/cancerresearchuk</em></td>
+</tr>
+<tr>
+<td>PAYMENT_URL_PROTOCOL</td>
+<td>The protocol of the URL, <em>e.g. https:// or http://</em></td>
+</tr>
+</tbody></table>
+
+<h1 id="challenger-payment-details">Challenger Payment Details</h1>
+
+<h2 id="get-all-challenger-payment-details">Get All Challenger Payment Details</h2>
+<pre class="highlight shell"><code>curl <span class="s2">"https://rest.goraise.co.uk/challengers/75911/payment-details"</span>
+  -H <span class="s2">"ApiKey: your_api_key"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">131801</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cheque"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"active"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"groups_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">75911</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"minimum_payment"</span><span class="p">:</span><span class="w"> </span><span class="mi">22</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"paypal_email"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"bank_acc_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"bank_acc_number"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"bank_acc_sort"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"use_company_address"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"provider"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"payment_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"payment_url_protocol"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>The above command returns XML structured like this:</p>
+</blockquote>
+<pre class="highlight xml"><code><span class="cp">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
+<span class="nt">&lt;xml&gt;</span>
+    <span class="nt">&lt;item&gt;</span>
+        <span class="nt">&lt;id&gt;</span>131801<span class="nt">&lt;/id&gt;</span>
+        <span class="nt">&lt;type&gt;</span>cheque<span class="nt">&lt;/type&gt;</span>
+        <span class="nt">&lt;active&gt;</span>0<span class="nt">&lt;/active&gt;</span>
+        <span class="nt">&lt;groups_id&gt;</span>75911<span class="nt">&lt;/groups_id&gt;</span>
+        <span class="nt">&lt;minimum_payment&gt;</span>22<span class="nt">&lt;/minimum_payment&gt;</span>
+        <span class="nt">&lt;paypal_email/&gt;</span>
+        <span class="nt">&lt;bank_acc_name/&gt;</span>
+        <span class="nt">&lt;bank_acc_number/&gt;</span>
+        <span class="nt">&lt;bank_acc_sort/&gt;</span>
+        <span class="nt">&lt;use_company_address&gt;</span>1<span class="nt">&lt;/use_company_address&gt;</span>
+        <span class="nt">&lt;provider&gt;</span>test<span class="nt">&lt;/provider&gt;</span>
+        <span class="nt">&lt;payment_url/&gt;</span>
+        <span class="nt">&lt;payment_url_protocol/&gt;</span>
+    <span class="nt">&lt;/item&gt;</span>
+<span class="nt">&lt;/xml&gt;</span>
+</code></pre>
+
+<p>This endpoint retrieves a list all payment details for a challenger</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://rest.goraise.co.uk/challengers/&lt;CHALLENGER_ID&gt;/payment-details</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>CHALLENGER_ID</td>
+<td>The id of the challenger</td>
+</tr>
+</tbody></table>
+
+<h2 id="get-a-specific-payment-detail">Get a Specific Payment Detail</h2>
+<pre class="highlight shell"><code>curl <span class="s2">"https://rest.goraise.co.uk/challengers/75911/payment-details/131801"</span>
+  -H <span class="s2">"ApiKey: your_api_key"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">131805</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"thirdparty"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"active"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"groups_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">75423</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"minimum_payment"</span><span class="p">:</span><span class="w"> </span><span class="mf">15.5</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"paypal_email"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"bank_acc_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"bank_acc_number"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"bank_acc_sort"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"use_company_address"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"provider"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"payment_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"payment_url_protocol"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>The above command returns XML structured like this:</p>
+</blockquote>
+<pre class="highlight xml"><code><span class="cp">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
+<span class="nt">&lt;xml&gt;</span>
+    <span class="nt">&lt;id&gt;</span>131805<span class="nt">&lt;/id&gt;</span>
+    <span class="nt">&lt;type&gt;</span>thirdparty<span class="nt">&lt;/type&gt;</span>
+    <span class="nt">&lt;active&gt;</span>1<span class="nt">&lt;/active&gt;</span>
+    <span class="nt">&lt;groups_id&gt;</span>75423<span class="nt">&lt;/groups_id&gt;</span>
+    <span class="nt">&lt;minimum_payment&gt;</span>15.5<span class="nt">&lt;/minimum_payment&gt;</span>
+    <span class="nt">&lt;paypal_email/&gt;</span>
+    <span class="nt">&lt;bank_acc_name/&gt;</span>
+    <span class="nt">&lt;bank_acc_number/&gt;</span>
+    <span class="nt">&lt;bank_acc_sort/&gt;</span>
+    <span class="nt">&lt;use_company_address&gt;</span>1<span class="nt">&lt;/use_company_address&gt;</span>
+    <span class="nt">&lt;provider/&gt;</span>
+    <span class="nt">&lt;payment_url/&gt;</span>
+    <span class="nt">&lt;payment_url_protocol/&gt;</span>
+<span class="nt">&lt;/xml&gt;</span>
+</code></pre>
+
+<p>This endpoint retrieves a specific set of payment details</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://rest.goraise.co.uk/challengers/&lt;CHALLENGER_ID&gt;/payment-details/&lt;ID&gt;</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>CHALLENGER_ID</td>
+<td>The id of the challenger</td>
+</tr>
+<tr>
+<td>ID</td>
+<td>The unique ID of the payment details item</td>
+</tr>
+</tbody></table>
+
+<h2 id="create-a-new-challenger-payment-details-entry">Create a New Challenger Payment Details Entry</h2>
+<pre class="highlight shell"><code>curl <span class="s2">"https://rest.goraise.co.uk/challengers/75423/payment-details"</span>
+  -H <span class="s2">"ApiKey: your_api_key"</span>
+  -H <span class="s2">"Content-Type: application/x-www-form-urlencoded"</span>
+  -X POST
+  -d <span class="s2">"type=cheque&amp;minimium_payment=16.00"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cheque"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"minimum_payment"</span><span class="p">:</span><span class="w"> </span><span class="s2">"16.00"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"groups_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">75423</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">131806</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>The above command returns XML structured like this:</p>
+</blockquote>
+<pre class="highlight xml"><code><span class="cp">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
+<span class="nt">&lt;xml&gt;</span>
+    <span class="nt">&lt;type&gt;</span>cheque<span class="nt">&lt;/type&gt;</span>
+    <span class="nt">&lt;minimum_payment&gt;</span>16.00<span class="nt">&lt;/minimum_payment&gt;</span>
+    <span class="nt">&lt;groups_id&gt;</span>75423<span class="nt">&lt;/groups_id&gt;</span>
+    <span class="nt">&lt;id&gt;</span>131807<span class="nt">&lt;/id&gt;</span>
+<span class="nt">&lt;/xml&gt;</span>
+</code></pre>
+
+<p>This endpoint creates and returns a payment detail item for a specified challenger</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">POST https://rest.goraise.co.uk/challengers/&lt;CHALLENGER_ID&gt;/payment-details</code></p>
+
+<h3 id="url-structure">URL Structure</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>CHALLENGER_ID</td>
+<td>The id of the challenger</td>
+</tr>
+</tbody></table>
+
+<h3 id="required-parameters">Required Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>TYPE</td>
+<td>Type of payment, [cheque,bank_account,thirdparty]</td>
+</tr>
+<tr>
+<td>MINIMUM_PAYMENT</td>
+<td>The minimum payout threshold.</td>
+</tr>
+</tbody></table>
+
+<h3 id="additional-attributes">Additional Attributes</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>PAYPAL_EMAIL</td>
+<td>The email of the associated paypal account (if applicable).</td>
+</tr>
+<tr>
+<td>BANK_ACC_NAME</td>
+<td>The bank account name (if applicable).</td>
+</tr>
+<tr>
+<td>BANK_ACC_NUMBER</td>
+<td>The bank account number (if applicable).</td>
+</tr>
+<tr>
+<td>BANK_ACC_SORT</td>
+<td>The bank account sort code (if applicable).</td>
+</tr>
+<tr>
+<td>USE_COMPANY_ADDRESS</td>
+<td>Whether or not to use the company address for the payment detail.</td>
+</tr>
+<tr>
+<td>PROVIDER</td>
+<td>The provider name (if applicable).</td>
+</tr>
+<tr>
+<td>PAYMENT_URL</td>
+<td>The URL the payment method, minus the protocol. <em>e.g. www.justgiving.com/cancerresearchuk</em></td>
+</tr>
+<tr>
+<td>PAYMENT_URL_PROTOCOL</td>
+<td>The protocol of the URL, <em>e.g. https:// or http://</em></td>
+</tr>
+</tbody></table>
+
+<h2 id="update-a-challenger-payment-detail">Update a Challenger Payment Detail</h2>
+<pre class="highlight shell"><code>curl <span class="s2">"PUT https://rest.goraise.co.uk/challengers/75911/payment-details/131801"</span>
+  -H <span class="s2">"ApiKey: your_api_key"</span>
+  -H <span class="s2">"Content-Type: application/x-www-form-urlencoded"</span>
+  -X PUT
+  -d <span class="s2">"type=cheque&amp;minimium_payment=16.00"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">131801</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cheque"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"active"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"groups_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">75911</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"minimum_payment"</span><span class="p">:</span><span class="w"> </span><span class="mi">22</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"paypal_email"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"bank_acc_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"bank_acc_number"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"bank_acc_sort"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"use_company_address"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"provider"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"payment_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"payment_url_protocol"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>The above command returns XML structured like this:</p>
+</blockquote>
+<pre class="highlight xml"><code><span class="cp">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
+<span class="nt">&lt;xml&gt;</span>
+    <span class="nt">&lt;item&gt;</span>
+        <span class="nt">&lt;id&gt;</span>131801<span class="nt">&lt;/id&gt;</span>
+        <span class="nt">&lt;type&gt;</span>cheque<span class="nt">&lt;/type&gt;</span>
+        <span class="nt">&lt;active&gt;</span>0<span class="nt">&lt;/active&gt;</span>
+        <span class="nt">&lt;groups_id&gt;</span>75911<span class="nt">&lt;/groups_id&gt;</span>
+        <span class="nt">&lt;minimum_payment&gt;</span>22<span class="nt">&lt;/minimum_payment&gt;</span>
+        <span class="nt">&lt;paypal_email/&gt;</span>
+        <span class="nt">&lt;bank_acc_name/&gt;</span>
+        <span class="nt">&lt;bank_acc_number/&gt;</span>
+        <span class="nt">&lt;bank_acc_sort/&gt;</span>
+        <span class="nt">&lt;use_company_address&gt;</span>1<span class="nt">&lt;/use_company_address&gt;</span>
+        <span class="nt">&lt;provider&gt;</span>test<span class="nt">&lt;/provider&gt;</span>
+        <span class="nt">&lt;payment_url/&gt;</span>
+        <span class="nt">&lt;payment_url_protocol/&gt;</span>
+    <span class="nt">&lt;/item&gt;</span>
+<span class="nt">&lt;/xml&gt;</span>
+</code></pre>
+
+<p>This endpoint updates and returns a cause payment detail with a specific ID.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">PUT https://rest.goraise.co.uk/causes/&lt;ID&gt;</code></p>
+
+<h3 id="url-structure">URL Structure</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>CHALLENGER_ID</td>
+<td>The id of the challenger</td>
+</tr>
+</tbody></table>
+
+<h3 id="required-parameters">Required Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>TYPE</td>
+<td>Type of payment, [cheque,bank_account,thirdparty]</td>
+</tr>
+<tr>
+<td>MINIMUM_PAYMENT</td>
+<td>The minimum payout threshold</td>
+</tr>
+</tbody></table>
+
+<h3 id="additional-attributes">Additional Attributes</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>PAYPAL_EMAIL</td>
+<td>The email of the associated paypal account (if applicable).</td>
+</tr>
+<tr>
+<td>BANK_ACC_NAME</td>
+<td>The bank account name (if applicable).</td>
+</tr>
+<tr>
+<td>BANK_ACC_NUMBER</td>
+<td>The bank account number (if applicable).</td>
+</tr>
+<tr>
+<td>BANK_ACC_SORT</td>
+<td>The bank account sort code (if applicable).</td>
+</tr>
+<tr>
+<td>USE_COMPANY_ADDRESS</td>
+<td>Whether or not to use the company address for the payment detail.</td>
+</tr>
+<tr>
+<td>PROVIDER</td>
+<td>The provider name (if applicable).</td>
+</tr>
+<tr>
+<td>PAYMENT_URL</td>
+<td>The URL the payment method, minus the protocol. <em>e.g. www.justgiving.com/cancerresearchuk</em></td>
+</tr>
+<tr>
+<td>PAYMENT_URL_PROTOCOL</td>
+<td>The protocol of the URL, <em>e.g. https:// or http://</em></td>
+</tr>
+</tbody></table>
+
           <h1 id="errors">Errors</h1>
 
 <aside class="notice">All GoRaise API responses use industry standard HTTP response codes to match their response type.</aside>

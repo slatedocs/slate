@@ -1721,3 +1721,999 @@ This endpoint retrieves a specific transaction.
 Parameter | Description
 --------- | -----------
 ID | The unique ID of the transaction
+
+# Payments
+
+## Get All Payments
+
+```shell
+curl "https://rest.goraise.co.uk/payments"
+  -H "ApiKey: your_api_key"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+    {
+      "id": 37,
+      "groups_payment_details_id": 474,
+      "amount": 47.19,
+      "notes": "Created payment for Leicester Speedway Supporters Club",
+      "created_at": "2016-04-11 12:27:26",
+      "updated_at": "2016-04-11 12:27:26",
+      "paid_at": null,
+      "status": "pending",
+      "transaction_groups": [
+        {
+          "id": 5171,
+          "percentage": 100,
+          "value": 0.51,
+          "historical": 0,
+          "transaction": {
+            "id": 3758,
+            "revenue": "102.00",
+            "donation": "0.51"
+          }
+        },
+      ]
+    }
+```
+
+> The above command returns XML structured like this:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<xml>
+    <total>26</total>
+    <per_page>100</per_page>
+    <current_page>1</current_page>
+    <last_page>1</last_page>
+    <next_page_url/>
+    <prev_page_url/>
+    <from>1</from>
+    <to>26</to>
+    <data>
+        <datum>
+            <id>21</id>
+            <groups_payment_details_id>112</groups_payment_details_id>
+            <amount>366.64</amount>
+            <notes>Created payment for Friends of Salusbury School</notes>
+            <created_at>2016-01-22 10:34:07</created_at>
+            <updated_at>2016-01-22 11:48:06</updated_at>
+            <paid_at>2016-01-22 11:48:06</paid_at>
+            <status>paid</status>
+            <transaction_groups>
+                <transaction_group>
+                    <id>23</id>
+                    <percentage>100</percentage>
+                    <value>4.62</value>
+                    <historical>0</historical>
+                    <transaction>
+                        <id>3012</id>
+                        <revenue>369.00</revenue>
+                        <donation>4.62</donation>
+                    </transaction>
+                </transaction_group>
+            </transaction_groups>
+        </datum>
+    </data>
+</xml>
+```
+
+This endpoint retrieves all payments.
+
+### HTTP Request
+
+`GET https://rest.goraise.co.uk/payments`
+
+### Query Parameters
+
+Parameter | Default | Description
+--------- | ------- | -----------
+per_page | 100 | How many results to pull back in one go. Can range from 10-250
+page | 1 | The paginated page of results you wish to view, as limited by the per_page variable
+order_by | id | How the results should be ordered
+
+## Get a Specific Payment
+
+```shell
+curl "https://rest.goraise.co.uk/payments/1"
+  -H "ApiKey: your_api_key"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "id": 37,
+  "groups_payment_details_id": 474,
+  "amount": 47.19,
+  "notes": "Created payment for Leicester Speedway Supporters Club",
+  "created_at": "2016-04-11 12:27:26",
+  "updated_at": "2016-04-11 12:27:26",
+  "paid_at": null,
+  "status": "pending",
+  "transaction_groups": [
+    {
+      "id": 5171,
+      "percentage": 100,
+      "value": 0.51,
+      "historical": 0,
+      "transaction": {
+        "id": 3758,
+        "revenue": "102.00",
+        "donation": "0.51"
+      }
+    },
+  ]
+}
+```
+
+> The above command returns XML structured like this:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<xml>
+    <id>21</id>
+    <groups_payment_details_id>112</groups_payment_details_id>
+    <amount>366.64</amount>
+    <notes>Created payment for Friends of Salusbury School</notes>
+    <created_at>2016-01-22 10:34:07</created_at>
+    <updated_at>2016-01-22 11:48:06</updated_at>
+    <paid_at>2016-01-22 11:48:06</paid_at>
+    <status>paid</status>
+    <transaction_groups>
+        <transaction_group>
+            <id>23</id>
+            <percentage>100</percentage>
+            <value>4.62</value>
+            <historical>0</historical>
+            <transaction>
+                <id>3012</id>
+                <revenue>369.00</revenue>
+                <donation>4.62</donation>
+            </transaction>
+        </transaction_group>
+    </transaction_groups>
+</xml>
+```
+
+This endpoint retrieves a specific payment.
+
+### HTTP Request
+
+`GET https://rest.goraise.co.uk/payments/<ID>`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+ID | The unique ID of the payment
+
+
+# Cause Payment Details
+
+## Get All Cause Payment Details
+
+```shell
+curl "https://rest.goraise.co.uk/causes/75911/payment-details"
+  -H "ApiKey: your_api_key"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+ {
+    "id": 131801,
+    "type": "cheque",
+    "active": 0,
+    "groups_id": 75911,
+    "minimum_payment": 22,
+    "paypal_email": "",
+    "bank_acc_name": "",
+    "bank_acc_number": null,
+    "bank_acc_sort": "",
+    "use_company_address": 1,
+    "provider": "test",
+    "payment_url": null,
+    "payment_url_protocol": null
+  }
+```
+
+> The above command returns XML structured like this:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<xml>
+    <item>
+        <id>131801</id>
+        <type>cheque</type>
+        <active>0</active>
+        <groups_id>75911</groups_id>
+        <minimum_payment>22</minimum_payment>
+        <paypal_email/>
+        <bank_acc_name/>
+        <bank_acc_number/>
+        <bank_acc_sort/>
+        <use_company_address>1</use_company_address>
+        <provider>test</provider>
+        <payment_url/>
+        <payment_url_protocol/>
+    </item>
+</xml>
+```
+
+This endpoint retrieves a list all payment details for a cause.
+
+### HTTP Request
+
+`GET https://rest.goraise.co.uk/causes/<CAUSE_ID>/payment-details`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+CAUSE_ID | The id of the cause.
+
+## Get a Specific Payment Detail
+
+```shell
+curl "https://rest.goraise.co.uk/causes/75911/payment-details/131801"
+  -H "ApiKey: your_api_key"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "id": 131805,
+  "type": "thirdparty",
+  "active": 1,
+  "groups_id": 75423,
+  "minimum_payment": 15.5,
+  "paypal_email": "",
+  "bank_acc_name": "",
+  "bank_acc_number": null,
+  "bank_acc_sort": "",
+  "use_company_address": 1,
+  "provider": null,
+  "payment_url": null,
+  "payment_url_protocol": null
+}
+```
+
+> The above command returns XML structured like this:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<xml>
+    <id>131805</id>
+    <type>thirdparty</type>
+    <active>1</active>
+    <groups_id>75423</groups_id>
+    <minimum_payment>15.5</minimum_payment>
+    <paypal_email/>
+    <bank_acc_name/>
+    <bank_acc_number/>
+    <bank_acc_sort/>
+    <use_company_address>1</use_company_address>
+    <provider/>
+    <payment_url/>
+    <payment_url_protocol/>
+</xml>
+```
+
+This endpoint retrieves a specific set of payment details
+
+### HTTP Request
+
+`GET https://rest.goraise.co.uk/causes/<CAUSE_ID>/payment-details/<ID>`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+CAUSE_ID | The id of the cause.
+ID | The unique ID of the payment details item.
+
+## Create a New Cause Payment Details Entry
+
+```shell
+curl "https://rest.goraise.co.uk/causes/75423/payment-details"
+  -H "ApiKey: your_api_key"
+  -H "Content-Type: application/x-www-form-urlencoded"
+  -X POST
+  -d "type=cheque&minimium_payment=16.00"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "type": "cheque",
+  "minimum_payment": "16.00",
+  "groups_id": 75423,
+  "id": 131806
+}
+```
+
+> The above command returns XML structured like this:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<xml>
+    <type>cheque</type>
+    <minimum_payment>16.00</minimum_payment>
+    <groups_id>75423</groups_id>
+    <id>131807</id>
+</xml>
+```
+
+This endpoint creates and returns a payment detail item for a specified cause.
+
+### HTTP Request
+
+`POST https://rest.goraise.co.uk/causes/<CAUSE_ID>/payment-details`
+
+### URL Structure
+
+Parameter | Description
+--------- | -----------
+CAUSE_ID | The id of the cause.
+
+### Required Parameters
+
+Parameter | Description
+--------- | -----------
+TYPE | Type of payment, [cheque,bank_account,thirdparty]
+MINIMUM_PAYMENT | The minimum payout threshold.
+
+### Additional Attributes
+
+Parameter | Description
+--------- | -----------
+PAYPAL_EMAIL | The email of the associated paypal account (if applicable).
+BANK_ACC_NAME | The bank account name (if applicable).
+BANK_ACC_NUMBER | The bank account number (if applicable).
+BANK_ACC_SORT | The bank account sort code (if applicable).
+USE_COMPANY_ADDRESS | Whether or not to use the company address for the payment detail.
+PROVIDER | The provider name (if applicable).
+PAYMENT_URL | The URL the payment method, minus the protocol. *e.g. www.justgiving.com/cancerresearchuk*
+PAYMENT_URL_PROTOCOL | The protocol of the URL, *e.g. https:// or http://*
+
+## Update a Cause Payment Detail
+
+```shell
+curl "PUT https://rest.goraise.co.uk/causes/75911/payment-details/131801"
+  -H "ApiKey: your_api_key"
+  -H "Content-Type: application/x-www-form-urlencoded"
+  -X PUT
+  -d "type=cheque&minimium_payment=16.00"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "id": 131801,
+    "type": "cheque",
+    "active": 0,
+    "groups_id": 75911,
+    "minimum_payment": 22,
+    "paypal_email": "",
+    "bank_acc_name": "",
+    "bank_acc_number": null,
+    "bank_acc_sort": "",
+    "use_company_address": 1,
+    "provider": "test",
+    "payment_url": null,
+    "payment_url_protocol": null
+  }
+```
+
+> The above command returns XML structured like this:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<xml>
+    <item>
+        <id>131801</id>
+        <type>cheque</type>
+        <active>0</active>
+        <groups_id>75911</groups_id>
+        <minimum_payment>22</minimum_payment>
+        <paypal_email/>
+        <bank_acc_name/>
+        <bank_acc_number/>
+        <bank_acc_sort/>
+        <use_company_address>1</use_company_address>
+        <provider>test</provider>
+        <payment_url/>
+        <payment_url_protocol/>
+    </item>
+</xml>
+```
+
+This endpoint updates and returns a cause payment detail with a specific ID.
+
+### HTTP Request
+
+`PUT https://rest.goraise.co.uk/causes/<ID>`
+
+### URL Structure
+
+Parameter | Description
+--------- | -----------
+CAUSE_ID | The id of the cause.
+
+### Required Parameters
+
+Parameter | Description
+--------- | -----------
+TYPE | Type of payment, [cheque,bank_account,thirdparty]
+MINIMUM_PAYMENT | The minimum payout threshold.
+
+### Additional Attributes
+
+Parameter | Description
+--------- | -----------
+PAYPAL_EMAIL | The email of the associated paypal account (if applicable).
+BANK_ACC_NAME | The bank account name (if applicable).
+BANK_ACC_NUMBER | The bank account number (if applicable).
+BANK_ACC_SORT | The bank account sort code (if applicable).
+USE_COMPANY_ADDRESS | Whether or not to use the company address for the payment detail.
+PROVIDER | The provider name (if applicable).
+PAYMENT_URL | The URL the payment method, minus the protocol. *e.g. www.justgiving.com/cancerresearchuk*
+PAYMENT_URL_PROTOCOL | The protocol of the URL, *e.g. https:// or http://*
+
+# Company Payment Details
+
+## Get All Company Payment Details
+
+```shell
+curl "https://rest.goraise.co.uk/companies/75911/payment-details"
+  -H "ApiKey: your_api_key"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+ {
+    "id": 131801,
+    "type": "cheque",
+    "active": 0,
+    "groups_id": 75911,
+    "minimum_payment": 22,
+    "paypal_email": "",
+    "bank_acc_name": "",
+    "bank_acc_number": null,
+    "bank_acc_sort": "",
+    "use_company_address": 1,
+    "provider": "test",
+    "payment_url": null,
+    "payment_url_protocol": null
+  }
+```
+
+> The above command returns XML structured like this:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<xml>
+    <item>
+        <id>131801</id>
+        <type>cheque</type>
+        <active>0</active>
+        <groups_id>75911</groups_id>
+        <minimum_payment>22</minimum_payment>
+        <paypal_email/>
+        <bank_acc_name/>
+        <bank_acc_number/>
+        <bank_acc_sort/>
+        <use_company_address>1</use_company_address>
+        <provider>test</provider>
+        <payment_url/>
+        <payment_url_protocol/>
+    </item>
+</xml>
+```
+
+This endpoint retrieves a list all payment details for a company
+
+### HTTP Request
+
+`GET https://rest.goraise.co.uk/companies/<COMPANY_ID>/payment-details`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+COMPANY_ID | The id of the company
+
+## Get a Specific Payment Detail
+
+```shell
+curl "https://rest.goraise.co.uk/companies/75911/payment-details/131801"
+  -H "ApiKey: your_api_key"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "id": 131805,
+  "type": "thirdparty",
+  "active": 1,
+  "groups_id": 75423,
+  "minimum_payment": 15.5,
+  "paypal_email": "",
+  "bank_acc_name": "",
+  "bank_acc_number": null,
+  "bank_acc_sort": "",
+  "use_company_address": 1,
+  "provider": null,
+  "payment_url": null,
+  "payment_url_protocol": null
+}
+```
+
+> The above command returns XML structured like this:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<xml>
+    <id>131805</id>
+    <type>thirdparty</type>
+    <active>1</active>
+    <groups_id>75423</groups_id>
+    <minimum_payment>15.5</minimum_payment>
+    <paypal_email/>
+    <bank_acc_name/>
+    <bank_acc_number/>
+    <bank_acc_sort/>
+    <use_company_address>1</use_company_address>
+    <provider/>
+    <payment_url/>
+    <payment_url_protocol/>
+</xml>
+```
+
+This endpoint retrieves a specific set of payment details
+
+### HTTP Request
+
+`GET https://rest.goraise.co.uk/companies/<COMPANY_ID>/payment-details/<ID>`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+COMPANY_ID | The id of the company
+ID | The unique ID of the payment details item
+
+## Create a New Company Payment Details Entry
+
+```shell
+curl "https://rest.goraise.co.uk/companies/75423/payment-details"
+  -H "ApiKey: your_api_key"
+  -H "Content-Type: application/x-www-form-urlencoded"
+  -X POST
+  -d "type=cheque&minimium_payment=16.00"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "type": "cheque",
+  "minimum_payment": "16.00",
+  "groups_id": 75423,
+  "id": 131806
+}
+```
+
+> The above command returns XML structured like this:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<xml>
+    <type>cheque</type>
+    <minimum_payment>16.00</minimum_payment>
+    <groups_id>75423</groups_id>
+    <id>131807</id>
+</xml>
+```
+
+This endpoint creates and returns a payment detail item for a specified company
+
+### HTTP Request
+
+`POST https://rest.goraise.co.uk/companies/<COMPANY_ID>/payment-details`
+
+### URL Structure
+
+Parameter | Description
+--------- | -----------
+COMPANY_ID | The id of the company
+
+### Required Parameters
+
+Parameter | Description
+--------- | -----------
+TYPE | Type of payment, [cheque,bank_account,thirdparty]
+MINIMUM_PAYMENT | The minimum payout threshold.
+
+### Additional Attributes
+
+Parameter | Description
+--------- | -----------
+PAYPAL_EMAIL | The email of the associated paypal account (if applicable).
+BANK_ACC_NAME | The bank account name (if applicable).
+BANK_ACC_NUMBER | The bank account number (if applicable).
+BANK_ACC_SORT | The bank account sort code (if applicable).
+USE_COMPANY_ADDRESS | Whether or not to use the company address for the payment detail.
+PROVIDER | The provider name (if applicable).
+PAYMENT_URL | The URL the payment method, minus the protocol. *e.g. www.justgiving.com/cancerresearchuk*
+PAYMENT_URL_PROTOCOL | The protocol of the URL, *e.g. https:// or http://*
+
+## Update a Company Payment Detail
+
+```shell
+curl "PUT https://rest.goraise.co.uk/companies/75911/payment-details/131801"
+  -H "ApiKey: your_api_key"
+  -H "Content-Type: application/x-www-form-urlencoded"
+  -X PUT
+  -d "type=cheque&minimium_payment=16.00"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "id": 131801,
+    "type": "cheque",
+    "active": 0,
+    "groups_id": 75911,
+    "minimum_payment": 22,
+    "paypal_email": "",
+    "bank_acc_name": "",
+    "bank_acc_number": null,
+    "bank_acc_sort": "",
+    "use_company_address": 1,
+    "provider": "test",
+    "payment_url": null,
+    "payment_url_protocol": null
+  }
+```
+
+> The above command returns XML structured like this:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<xml>
+    <item>
+        <id>131801</id>
+        <type>cheque</type>
+        <active>0</active>
+        <groups_id>75911</groups_id>
+        <minimum_payment>22</minimum_payment>
+        <paypal_email/>
+        <bank_acc_name/>
+        <bank_acc_number/>
+        <bank_acc_sort/>
+        <use_company_address>1</use_company_address>
+        <provider>test</provider>
+        <payment_url/>
+        <payment_url_protocol/>
+    </item>
+</xml>
+```
+
+This endpoint updates and returns a cause payment detail with a specific ID.
+
+### HTTP Request
+
+`PUT https://rest.goraise.co.uk/companies/<ID>`
+
+### URL Structure
+
+Parameter | Description
+--------- | -----------
+COMPANY_ID | The id of the company
+
+### Required Parameters
+
+Parameter | Description
+--------- | -----------
+TYPE | Type of payment, [cheque,bank_account,thirdparty]
+MINIMUM_PAYMENT | The minimum payout threshold.
+
+### Additional Attributes
+
+Parameter | Description
+--------- | -----------
+PAYPAL_EMAIL | The email of the associated paypal account (if applicable).
+BANK_ACC_NAME | The bank account name (if applicable).
+BANK_ACC_NUMBER | The bank account number (if applicable).
+BANK_ACC_SORT | The bank account sort code (if applicable).
+USE_COMPANY_ADDRESS | Whether or not to use the company address for the payment detail.
+PROVIDER | The provider name (if applicable).
+PAYMENT_URL | The URL the payment method, minus the protocol. *e.g. www.justgiving.com/cancerresearchuk*
+PAYMENT_URL_PROTOCOL | The protocol of the URL, *e.g. https:// or http://*
+
+
+# Challenger Payment Details
+
+## Get All Challenger Payment Details
+
+```shell
+curl "https://rest.goraise.co.uk/challengers/75911/payment-details"
+  -H "ApiKey: your_api_key"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+ {
+    "id": 131801,
+    "type": "cheque",
+    "active": 0,
+    "groups_id": 75911,
+    "minimum_payment": 22,
+    "paypal_email": "",
+    "bank_acc_name": "",
+    "bank_acc_number": null,
+    "bank_acc_sort": "",
+    "use_company_address": 1,
+    "provider": "test",
+    "payment_url": null,
+    "payment_url_protocol": null
+  }
+```
+
+> The above command returns XML structured like this:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<xml>
+    <item>
+        <id>131801</id>
+        <type>cheque</type>
+        <active>0</active>
+        <groups_id>75911</groups_id>
+        <minimum_payment>22</minimum_payment>
+        <paypal_email/>
+        <bank_acc_name/>
+        <bank_acc_number/>
+        <bank_acc_sort/>
+        <use_company_address>1</use_company_address>
+        <provider>test</provider>
+        <payment_url/>
+        <payment_url_protocol/>
+    </item>
+</xml>
+```
+
+This endpoint retrieves a list all payment details for a challenger
+
+### HTTP Request
+
+`GET https://rest.goraise.co.uk/challengers/<CHALLENGER_ID>/payment-details`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+CHALLENGER_ID | The id of the challenger
+
+## Get a Specific Payment Detail
+
+```shell
+curl "https://rest.goraise.co.uk/challengers/75911/payment-details/131801"
+  -H "ApiKey: your_api_key"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "id": 131805,
+  "type": "thirdparty",
+  "active": 1,
+  "groups_id": 75423,
+  "minimum_payment": 15.5,
+  "paypal_email": "",
+  "bank_acc_name": "",
+  "bank_acc_number": null,
+  "bank_acc_sort": "",
+  "use_company_address": 1,
+  "provider": null,
+  "payment_url": null,
+  "payment_url_protocol": null
+}
+```
+
+> The above command returns XML structured like this:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<xml>
+    <id>131805</id>
+    <type>thirdparty</type>
+    <active>1</active>
+    <groups_id>75423</groups_id>
+    <minimum_payment>15.5</minimum_payment>
+    <paypal_email/>
+    <bank_acc_name/>
+    <bank_acc_number/>
+    <bank_acc_sort/>
+    <use_company_address>1</use_company_address>
+    <provider/>
+    <payment_url/>
+    <payment_url_protocol/>
+</xml>
+```
+
+This endpoint retrieves a specific set of payment details
+
+### HTTP Request
+
+`GET https://rest.goraise.co.uk/challengers/<CHALLENGER_ID>/payment-details/<ID>`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+CHALLENGER_ID | The id of the challenger
+ID | The unique ID of the payment details item
+
+## Create a New Challenger Payment Details Entry
+
+```shell
+curl "https://rest.goraise.co.uk/challengers/75423/payment-details"
+  -H "ApiKey: your_api_key"
+  -H "Content-Type: application/x-www-form-urlencoded"
+  -X POST
+  -d "type=cheque&minimium_payment=16.00"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "type": "cheque",
+  "minimum_payment": "16.00",
+  "groups_id": 75423,
+  "id": 131806
+}
+```
+
+> The above command returns XML structured like this:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<xml>
+    <type>cheque</type>
+    <minimum_payment>16.00</minimum_payment>
+    <groups_id>75423</groups_id>
+    <id>131807</id>
+</xml>
+```
+
+This endpoint creates and returns a payment detail item for a specified challenger
+
+### HTTP Request
+
+`POST https://rest.goraise.co.uk/challengers/<CHALLENGER_ID>/payment-details`
+
+### URL Structure
+
+Parameter | Description
+--------- | -----------
+CHALLENGER_ID | The id of the challenger
+
+### Required Parameters
+
+Parameter | Description
+--------- | -----------
+TYPE | Type of payment, [cheque,bank_account,thirdparty]
+MINIMUM_PAYMENT | The minimum payout threshold.
+
+### Additional Attributes
+
+Parameter | Description
+--------- | -----------
+PAYPAL_EMAIL | The email of the associated paypal account (if applicable).
+BANK_ACC_NAME | The bank account name (if applicable).
+BANK_ACC_NUMBER | The bank account number (if applicable).
+BANK_ACC_SORT | The bank account sort code (if applicable).
+USE_COMPANY_ADDRESS | Whether or not to use the company address for the payment detail.
+PROVIDER | The provider name (if applicable).
+PAYMENT_URL | The URL the payment method, minus the protocol. *e.g. www.justgiving.com/cancerresearchuk*
+PAYMENT_URL_PROTOCOL | The protocol of the URL, *e.g. https:// or http://*
+
+## Update a Challenger Payment Detail
+
+```shell
+curl "PUT https://rest.goraise.co.uk/challengers/75911/payment-details/131801"
+  -H "ApiKey: your_api_key"
+  -H "Content-Type: application/x-www-form-urlencoded"
+  -X PUT
+  -d "type=cheque&minimium_payment=16.00"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "id": 131801,
+    "type": "cheque",
+    "active": 0,
+    "groups_id": 75911,
+    "minimum_payment": 22,
+    "paypal_email": "",
+    "bank_acc_name": "",
+    "bank_acc_number": null,
+    "bank_acc_sort": "",
+    "use_company_address": 1,
+    "provider": "test",
+    "payment_url": null,
+    "payment_url_protocol": null
+  }
+```
+
+> The above command returns XML structured like this:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<xml>
+    <item>
+        <id>131801</id>
+        <type>cheque</type>
+        <active>0</active>
+        <groups_id>75911</groups_id>
+        <minimum_payment>22</minimum_payment>
+        <paypal_email/>
+        <bank_acc_name/>
+        <bank_acc_number/>
+        <bank_acc_sort/>
+        <use_company_address>1</use_company_address>
+        <provider>test</provider>
+        <payment_url/>
+        <payment_url_protocol/>
+    </item>
+</xml>
+```
+
+This endpoint updates and returns a cause payment detail with a specific ID.
+
+### HTTP Request
+
+`PUT https://rest.goraise.co.uk/causes/<ID>`
+
+### URL Structure
+
+Parameter | Description
+--------- | -----------
+CHALLENGER_ID | The id of the challenger
+
+### Required Parameters
+
+Parameter | Description
+--------- | -----------
+TYPE | Type of payment, [cheque,bank_account,thirdparty]
+MINIMUM_PAYMENT | The minimum payout threshold
+
+### Additional Attributes
+
+Parameter | Description
+--------- | -----------
+PAYPAL_EMAIL | The email of the associated paypal account (if applicable).
+BANK_ACC_NAME | The bank account name (if applicable).
+BANK_ACC_NUMBER | The bank account number (if applicable).
+BANK_ACC_SORT | The bank account sort code (if applicable).
+USE_COMPANY_ADDRESS | Whether or not to use the company address for the payment detail.
+PROVIDER | The provider name (if applicable).
+PAYMENT_URL | The URL the payment method, minus the protocol. *e.g. www.justgiving.com/cancerresearchuk*
+PAYMENT_URL_PROTOCOL | The protocol of the URL, *e.g. https:// or http://*
+
