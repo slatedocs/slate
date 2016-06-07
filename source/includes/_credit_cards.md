@@ -18,6 +18,7 @@ EXEMPLO
     "avs_district": "Centro",
     "avs_zipcode": "99000-750",
     "payer_id": 1,
+    "charge_config_id": 12,
     "_links": [
       { "rel": "self", "method": "GET", "href": "https://app.cobrato.com/api/v1/credit_cards/8" }
     ]
@@ -28,20 +29,21 @@ Os Cartões de Crédito pertencem ao Pagador utilizado no momento de sua criaç�
 
 **Parâmetros**
 
-| Campo          | Tipo            | Comentário                                                                    |
-|----------------|-----------------|-------------------------------------------------------------------------------|
-| number         | string          | números do cartão (incompleto, apenas para identificação)                     |
-| expiration     | string          | expiração do cartão, no formato "mm/aa"                                       |
-| holder_name    | string          | nome do dono do cartão                                                        |
-| brand          | string          | bandeira do cartão (visa, mastercard, amex, elo, diners, discover, jcb, aura) |
-| avs_address    | string          | endereço de cobrança do cartão                                                |
-| avs_number     | string          | número do endereço de cobrança do cartão                                      |
-| avs_complement | string          | complemento endereço de cobrança do cartão                                    |
-| avs_district   | string          | bairro do endereço de cobrança do cartão                                      |
-| avs_zipcode    | string          | cep do endereço de cobrança do cartão                                         |
-| unusable       | boolean         | indica se o se o cartão está inutilizado                                      |
-| payer_id       | integer         | identificador do Payer ao qual este cartão pertence                           |
-| _links         | array of object | links do beneficiário                                                         |
+| Campo            | Tipo            | Comentário                                                                    |
+|------------------|-----------------|-------------------------------------------------------------------------------|
+| number           | string          | números do cartão (incompleto, apenas para identificação)                     |
+| expiration       | string          | expiração do cartão, no formato "mm/aa"                                       |
+| holder_name      | string          | nome do dono do cartão                                                        |
+| brand            | string          | bandeira do cartão (visa, mastercard, amex, elo, diners, discover, jcb, aura) |
+| avs_address      | string          | endereço de cobrança do cartão                                                |
+| avs_number       | string          | número do endereço de cobrança do cartão                                      |
+| avs_complement   | string          | complemento endereço de cobrança do cartão                                    |
+| avs_district     | string          | bairro do endereço de cobrança do cartão                                      |
+| avs_zipcode      | string          | cep do endereço de cobrança do cartão                                         |
+| unusable         | boolean         | indica se o se o cartão está inutilizado                                      |
+| payer_id         | integer         | identificador do Payer ao qual este cartão pertence                           |
+| charge_config_id | integer         | identificador da ChargeConfig à qual este cartão pertence                     |
+| _links           | array of object | links do beneficiário                                                         |
 
 ## Informações do Cartão de Crédito
 
@@ -79,6 +81,7 @@ EXEMPLO DE CORPO DA RESPOSTA
     "avs_district": "Centro",
     "avs_zipcode": "99000-750",
     "payer_id": 1,
+    "charge_config_id": 12,
     "_links": [
       { "rel": "self", "method": "GET", "href": "https://app.cobrato.com/api/v1/credit_cards/8" }
     ]
