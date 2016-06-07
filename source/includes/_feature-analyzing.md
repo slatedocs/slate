@@ -68,6 +68,23 @@ When applied to the dimensions we defined above, this second example might fill 
  
 ...and produce a similar one for the "stddev" measure. You can think of multiple measures as producing "overlays" over the same dimensions. However, the actual output format (in JSON) is more compact in that the dimensions are not repeated; see Object Reference:Cube output for details.
 
+ZCL expressions are composable. If you need, for example, to find the mean of a categorical variable's "numeric_value" attributes, cast the variable to the "numeric" type class before including it as the cube argument:
+
+```json
+"measures": {
+    "mean": {
+        "function": "cube_mean",
+        "args": [{
+            "function": "cast",
+            "args": [
+                {"variable": "datasets/1/variables/3"},
+                {"class": "numeric"}
+            ]
+        }]
+    }
+}
+```
+
 ### Comparisons
 
 Occasionally, it is useful to compare analyses from different sources. A common example is to define "benchmarks" for a given analysis, so that you can quickly compare an analysis to an established target. These are, in effect, one analysis laid over another in such a way that at least one of their dimensions lines up (and typically, using the same measures). These are also therefore defined in terms of cubes: one set which defines the base analyses, and another which defines the overlay.
