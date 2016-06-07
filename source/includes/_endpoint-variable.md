@@ -488,10 +488,9 @@ The basic counts are included:
 
  * count: The number of entries in the variable.
  * valid_count: The number of entries in the variable which are not missing.
- * frequencies: An array of row objects. Each row represents a distinct valid value, and includes it as the "value" member. The number of entries which possess that value is included as the "count" member. The length of the array is limited to 10 entries; if more than 10 distinct values are present in the data, an 11th row is added with a "value" member of "(Others)", summing their counts.
  * missing_count: The number of entries in the variable which are missing.
- * missing_frequencies: An array of row objects. Each row represents a distinct missing reason, and includes the reason phrase as the "value" member. The number of entries which are missing for that reason is included as the "count" member.
  * nunique: The number of distinct values in the data.
+ * sample: A sample of 5 entries of the data.
 
 In addition:
 
