@@ -14,7 +14,7 @@ This function commands Neblina to either open a previously recorded session for 
 ### getSessionCount()
 This function asks Neblina about how many recorded sessions exist in the NOR flash. After getting a response, the total number of recorded sessions is returned.
 
-### getcSessionInfo()
+### getSessionInfo()
 This function asks Neblina about the length of a Session ID recorded in the NOR flash. The Session ID should be provided as an input argument for this function call. The function will then return the length of the session in terms of number of bytes and packets present in the session.
 
 
