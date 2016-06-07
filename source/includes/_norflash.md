@@ -1,4 +1,4 @@
-# NOR flash - Storage APIs
+# NOR Flash Storage APIs
 ################################
 The ProMotion board features an on-chip NOR flash recorder with 128 Mbits of memory. Here are the APIs associated with this subsystem.
 
