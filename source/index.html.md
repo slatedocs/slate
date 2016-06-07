@@ -1,5 +1,5 @@
 ---
-title: API Reference
+title: BBOXX API Reference
 
 language_tabs:
   - shell
