@@ -96,7 +96,7 @@ This endpoint retrieves all products.
 
 ### HTTP Request
 
-`GET http://example.com/v1/products`
+`GET http://smartapi.bboxx.co.uk/v1/products`
 
 
 ## Get a Specific Product
@@ -144,7 +144,7 @@ This endpoint retrieves a specific product, identified by its IMEI.
 
 ### HTTP Request
 
-`GET http://example.com/v1/products/<imei>`
+`GET http://smartapi.bboxx.co.uk/v1/products/<imei>`
 
 ### URL Parameters
 
