@@ -1,5 +1,5 @@
 ---
-title: BBOXX API Reference
+title: BBOXX Smart Solar API Reference
 
 language_tabs:
   - python
@@ -16,9 +16,9 @@ search: true
 
 # Introduction
 
-Welcome to the BBOXX SMART Solar API! 
+Welcome to the BBOXX SMART Solar API. 
 
-We have language bindings in Python and JavaScript. You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs at the top right.
+We have language bindings in Python and JavaScript. You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs at the top.
 
 
 # Products
