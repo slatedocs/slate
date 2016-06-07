@@ -62,7 +62,7 @@ Cada uma das cobranças criadas após a homologação serão do mesmo tipo da co
 |--------------------------------|------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------|
 | id                             | integer          |                                                                                                                                                     |
 | type                           | string           | indica o tipo da cobrança. Nesse caso, "billet"                                                                                                     |
-| charge_config_id               | integer          | identificador da configuração de cobrança a qual esta cobraça pertece                                                                               |
+| charge_config_id               | integer          | identificador da configuração de cobrança a qual esta cobrança pertence                                                                             |
 | due_date                       | date             | data de vencimento da cobranca                                                                                                                      |
 | document_kind                  | string           | espécie do documento, podendo ser DM (Duplicata Mercantil), DS (Duplicata de Serviço), NP (Nota Promissória) ou DV (Diversos)                       |
 | document_date                  | date             | data de emissão do documento                                                                                                                        |
@@ -76,7 +76,7 @@ Cada uma das cobranças criadas após a homologação serão do mesmo tipo da co
 | payer_emails                   | array of strings | emails de quem irá pagar o boleto                                                                                                                   |
 | received                       | boolean          | indica se a cobrança foi recebida                                                                                                                   |
 | received_amount                | decimal          | valor recebido                                                                                                                                      |
-| received_at                    | date             | dia em que a cobraça foi recebida                                                                                                                   |
+| received_at                    | date             | dia em que a cobrança foi recebida                                                                                                                  |
 | processing_date                | date             | data de geração do boleto                                                                                                                           |
 | for_homologation               | boolean          | indica se é uma cobrança gerada automaticamente pelo sistema para ser utilizada na homologação da Configuração de cobrança                          |
 | registrable                    | boolean          | indica se a cobrança é registrável (do tipo que deve ser registrada no banco). Por padrão é o que está definido na Configuração de Cobrança         |
@@ -92,7 +92,7 @@ Cada uma das cobranças criadas após a homologação serão do mesmo tipo da co
 | payer_city                     | string           | cidade do endereço do pagador                                                                                                                       |
 | payer_state                    | string           | sigla do estado do endereço do pagador ("RJ" por exemplo)                                                                                           |
 | registration_status            | string           | status de registro em que a cobrança se encontra (without_remittance, remitted, registered, registered_with_error)                                  |
-| _links                         | array of object  | links relacionados à cobraça                                                                                                                        |
+| _links                         | array of object  | links relacionados à cobrança                                                                                                                       |
 
 ### Gateway de Pagamento
 
@@ -104,7 +104,7 @@ As Cobranças tem o comportamento assíncrono em relação à comunicação com 
 |--------------------------------|------------------|-----------------------------------------------------------------------------------------------------------------------------------------------|
 | id                             | integer          |                                                                                                                                               |
 | type                           | string           | indica o tipo da cobrança. Nesse caso, "payment_gateway"                                                                                      |
-| charge_config_id               | integer          | identificador da configuração de cobrança a qual esta cobraça pertece                                                                         |
+| charge_config_id               | integer          | identificador da configuração de cobrança a qual esta cobrança pertece                                                                        |
 | total_amount                   | decimal          | valor total do boleto                                                                                                                         |
 | payer_emails                   | array of strings | emails de quem irá pagar o boleto                                                                                                             |
 | payer_id                       | integer          | identificador do pagador                                                                                                                      |
@@ -126,7 +126,7 @@ As Cobranças tem o comportamento assíncrono em relação à comunicação com 
 | generate_token                 | boolean          | indica se foi gerado token para utilização do cartão de crédito no pagamento recorrente                                                       |
 | payment_gateway_status         | string           | status da cobrança em relação ao gateway de pagamento (pending, authorized, captured, canceled, authorize_error, capture_error, cancel_error) |
 | payment_gateway_message        | string           | mensagem do gateway de pagamento relacionada ao seu status                                                                                    |
-| _links                         | array of object  | links relacionados à cobraça                                                                                                                  |
+| _links                         | array of object  | links relacionados à cobrança                                                                                                                 |
 
 ## Informações da Cobrança
 
@@ -199,7 +199,7 @@ EXEMPLO DE CORPO DA RESPOSTA (BOLETO)
 Retorna as informações detalhadas da cobrança informada em JSON e também a referência a sua configuração de cobrança.
 
 <aside class="notice">
-  O conteúdo do nó "_links" irá variar de acordo com o tipo e o status da cobrança. No caso da Cobrança do tipo boleto, além dos itens básicos mostrados no exemplo de resposta ao lado, se a cobraça tiver sido recebida, irá conter o seguinte link:
+  O conteúdo do nó "_links" irá variar de acordo com o tipo e o status da cobrança. No caso da Cobrança do tipo boleto, além dos itens básicos mostrados no exemplo de resposta ao lado, se a cobrança tiver sido recebida, irá conter o seguinte link:
 
   <br><br>
   <p>
@@ -553,6 +553,47 @@ Uma cobrança com o status de erro no gateway de pagamento pode ser editada com 
 | avs_zipcode    | string | (opcional) cep do endereço de cobrança do cartão                                              |
 
 
+## Re-tentativa de efetivar de Cobrança (Gateway de pagamento)
+
+```shell
+Re-tentativa de efetivação de Cobrança
+
+DEFINIÇÃO
+
+  PUT https://app.cobrato.com/api/v1/charges/:charge_id/retry
+  PATCH https://app.cobrato.com/api/v1/charges/:charge_id/retry
+
+EXEMPLO DE REQUISIÇÃO
+
+  $ curl -i -u $API_TOKEN:X \
+    -H 'User-Agent: My App 1.0' \
+    -H 'Accept: application/json' \
+    -H 'Content-type: application/json' \
+    -X PATCH https://app.cobrato.com/api/v1/charges/:charge_id/retry
+
+EXEMPLO DE ESTADO DA RESPOSTA COM SUCESSO
+
+    200 OK
+
+EXEMPLO DE ESTADO DA RESPOSTA COM INSUCESSO
+
+    422 Unprocessable Entity
+
+EXEMPLO DE CORPO DA RESPOSTA COM INSUCESSO
+
+  {
+    "errors":
+      {"message":["Esta Cobrança não suporta retentativa"]}
+  }
+
+EXEMPLO DE ESTADO DA RESPOSTA COM COBRANÇA INEXISTENTE
+
+    404 Not Found
+```
+
+Quando uma Cobrança do tipo Gateway de Pagamento tem um erro que não necessita correção (atualização) da mesma, é possível fazer uma re-tentativa de efetivação dessa Cobrança.
+
+
 ## Exclusão de Cobrança
 
 ```shell
@@ -711,7 +752,7 @@ EXEMPLO DE CORPO DA RESPOSTA COM SUCESSO
   }
 ```
 
-Mostra o link da url do boleto de determinada cobraça via Boleto
+Mostra o link da url do boleto de determinada cobrança via Boleto
 
 <aside class="warning">
 As URLs disponibilizadas são válidas por apenas 60 minutos. Sendo assim, não armazene o retorno e sempre que for necessário realize uma nova chamada à API.
