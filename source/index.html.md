@@ -2,12 +2,10 @@
 title: BBOXX API Reference
 
 language_tabs:
-  - shell
-  - ruby
   - python
+  - js
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
   - <a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a>
 
 includes:
@@ -18,151 +16,139 @@ search: true
 
 # Introduction
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+Welcome to the BBOXX SMART Solar API! 
 
-We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+We have language bindings in Python and JavaScript. You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs at the top right.
 
-This example API documentation page was created with [Slate](https://github.com/tripit/slate). Feel free to edit it and use it as a base for your own API's documentation.
 
-# Authentication
+# Products
 
-> To authorize, use this code:
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
+## Get All Products
 
 ```python
-import kittn
+import bboxx
 
-api = kittn.authorize('meowmeowmeow')
+api = bboxx.authorize('meowmeowmeow')
+api.products.get()
 ```
 
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
-```
 
-> Make sure to replace `meowmeowmeow` with your API key.
-
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
-
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
-
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
-
-# Kittens
-
-## Get All Kittens
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
-
-```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
-```
-
-> The above command returns JSON structured like this:
-
-```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
-```
-
-This endpoint retrieves all kittens.
-
-### HTTP Request
-
-`GET http://example.com/api/kittens`
-
-### Query Parameters
-
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
+```js
+api = BBOXX.authorize('meowmeowmeow')
+api.products.get()
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
 {
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
+  "num_results": 2,
+  "objects": [
+    {
+      "analysis_timestamp": "2015-09-01T16:33:26.156868",
+      "capacity_limit": "17",
+      "created_at": "2015-09-01T16:33:26.156868",
+      "created_by": "k.mcinnes@bboxx.co.uk",
+      "current_enable_flag": true,
+      "current_tamper_flag": false,
+      "desired_enable_flag": true,
+      "desired_tamper_flag": false,
+      "device_key": "0123456789abcdef01234567",
+      "hub_id": null,
+      "imsi": "000000000000002",
+      "latest_connection_id": 1843601,
+      "latest_connection_location_id": null,
+      "latest_state_id": 36599,
+      "modified_at": "2015-11-09T10:15:28.184766",
+      "product_imei": "000000000000000",
+      "product_type_id": 2,
+      "serial_number": "GatewayTestUnit",
+      "shop_id": null,
+      "software_lock": null
+    },
+    {
+      "analysis_timestamp": "2015-12-03T16:29:28.946628",
+      "capacity_limit": "17",
+      "created_at": "2015-12-03T16:29:28.946795",
+      "created_by": "c.proxy2@bboxx.co.uk",
+      "current_enable_flag": true,
+      "current_tamper_flag": false,
+      "desired_enable_flag": true,
+      "desired_tamper_flag": false,
+      "device_key": "aaaaaabbbbbbccccccdddddd",
+      "hub_id": null,
+      "imsi": "000000000000000",
+      "latest_connection_id": null,
+      "latest_connection_location_id": null,
+      "latest_state_id": 72778,
+      "modified_at": null,
+      "product_imei": "000000000000018",
+      "product_type_id": 3,
+      "serial_number": "abc",
+      "shop_id": null,
+      "software_lock": null
+    }
+  ]
 }
 ```
 
-This endpoint retrieves a specific kitten.
-
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
+This endpoint retrieves all products.
 
 ### HTTP Request
 
-`GET http://example.com/kittens/<ID>`
+`GET http://example.com/v1/products`
+
+
+## Get a Specific Product
+
+```python
+import bboxx
+
+api = bboxx.authorize('meowmeowmeow')
+api.products.get('000000000000018')
+```
+
+```js
+api = BBOXX.authorize('meowmeowmeow')
+api.products.get('000000000000018')
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "analysis_timestamp": "2015-12-03T16:29:28.946628",
+  "capacity_limit": "17",
+  "created_at": "2015-12-03T16:29:28.946795",
+  "created_by": "c.proxy2@bboxx.co.uk",
+  "current_enable_flag": true,
+  "current_tamper_flag": false,
+  "desired_enable_flag": true,
+  "desired_tamper_flag": false,
+  "device_key": "aaaaaabbbbbbccccccdddddd",
+  "hub_id": null,
+  "imsi": "000000000000000",
+  "latest_connection_id": null,
+  "latest_connection_location_id": null,
+  "latest_state_id": 72778,
+  "modified_at": null,
+  "product_imei": "000000000000018",
+  "product_type_id": 3,
+  "serial_number": "abc",
+  "shop_id": null,
+  "software_lock": null
+}
+```
+
+This endpoint retrieves a specific product, identified by its IMEI.
+
+### HTTP Request
+
+`GET http://example.com/v1/products/<imei>`
 
 ### URL Parameters
 
 Parameter | Description
 --------- | -----------
-ID | The ID of the kitten to retrieve
+imei | The IMEI of the product to retrieve
 
