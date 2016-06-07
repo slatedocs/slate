@@ -80,12 +80,12 @@ GET /datasets/4bc6af/batches/compare/?dataset=http://beta.crunch.io/api/datasets
 ```
 
 The response will contain a conflicts key that can contain either `current`, 
-`incoming` or `union` depending of the type and location of the problem. Always
-a 200 response with empty or any conflicts.
+`incoming` or `union` depending of the type and location of the problem. The response status
+will always be 200, with conflicts, described below, or an empty body.
 
  * `current` refers to issues find on the dataset where new data would be added
  * `incoming` has issues on the far dataset that contains the new data to add
- * `union` expresses problems on the combined variables(metadata) of the final dataset after append.`
+ * `union` expresses problems on the combined variables(metadata) of the final dataset after append.
 
 ```json
 
@@ -110,15 +110,16 @@ A successful response will not contain any of the keys returning an empty object
 The possible keys in the conflicts and verifications made are:
 
 * **Subvariables in multiple arrays**: Indicates a problem in the original data. A variable is used as a subvariable in one or more datasets.
-* **Subvariables without a parent array**: Will contain the IDs of variables that are marked as subvariables, but don't belong in any array.
-* **Variables missing alias**: All variables should have a valid alias string. This will indicate the IDs of those that don't.
-* **Variables missing name**:  All variables should have a valid name string. This will indicate the IDs of those that don't.
-* **Variables with duplicate alias**: In the event of two or more variables sharing an alias, they will be reported here.
+* **Subvariables without a parent array**: Will contain the IDs of variables that are marked as subvariables, but don’t belong in any array.
+* **Variables missing alias**: All variables should have a valid alias string. This will indicate the IDs of those that don’t.
+* **Variables missing name**:  All variables should have a valid name string. This will indicate the IDs of those that don’t.
+* **Variables with duplicate alias**: In the event of two or more variables sharing an alias, they will be reported here. When this occurs as a _union_ conflict, it is likely that names and aliases of a variable or subvariable in _current_ and _incoming_ are swapped (e.g., VariantOne:AliasOne, Variant1:Alias1 in current but VariantOne:Alias1, Variant1:AliasOne in incoming).
 * **Variables with duplicate name**: Variable names should be unique across non subvariables.
 * **Subvariable in different arrays per dataset**: If a subvariable is used for different arrays that are impossible to match, it will be reported here. User action will be needed to fix this.
 
 For each of these, a list of variable IDs will be made available indicating the
-conflicting entities.
+conflicting entities. _Union_ conflicting ids generally refer to variables in 
+the _current_ dataset and may be referenced by alias in _incoming_.
 
 
 ### Entity
