@@ -463,17 +463,6 @@ GET returns a Shoji View of available dataset export formats.
 Accessing any of the export URLs will return a `shoji:view` with an attribute
 `url` pointing to the location of the exported file to be downloaded.
 
-You may provide a filter of your own choosing by adding a zcl json string to the "filter" parameter
-The zcl is supplied in the same format as regular dataset filters.  Here is an example url with filter on a
-categorical variable: 
-
-`/datasets/{id}/export/?filter={"function": "==", "args": [{"variable": "000000"}, {"value": 1}]}`
-
-You can provide a selection of variables with the "where" parameter.  Here is how you would limit the export to
-a single variable:
-
-`/datasets/{id}/export/?where={"function": "identify", "args": [{"id": ["000000"]}]}`
-
 Following rules apply for all formats:
 
 * All exporting happens synchronously.
@@ -497,6 +486,16 @@ in the API.
 
 Categorical variables will be exported with their name instead of their value.
 
+You may provide a filter of your own choosing by adding a zcl json string to the "filter" parameter
+The zcl is supplied in the same format as regular dataset filters.  Here is an example url with filter on a
+categorical variable: 
+
+`/datasets/{id}/export/csv/?filter={"function": "==", "args": [{"variable": "000000"}, {"value": 1}]}`
+
+You can provide a selection of variables with the "where" parameter.  Here is how you would limit the export to
+a single variable:
+
+`/datasets/{id}/export/spss/?where={"function": "identify", "args": [{"id": ["000000"]}]}`
 
 
 ##### Summary
