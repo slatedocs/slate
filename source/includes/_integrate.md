@@ -1,7 +1,7 @@
 # Integrating with your App
 
 
-## Step 1: Include callstats.js 
+## Step 1: Include callstats.js
 
 <aside class="error">
 You can track your integration progress from our <a href= "https://dashboard.callstats.io/apps/integration"> dashboard </a>.
@@ -41,7 +41,7 @@ If you are using require.js, please refer to the following <a href="/#loading-wi
 
 After the user is authenticated with the origin server (or when the page loads), call `initialize()` with appropriate parameters (see [API section](#callstats-initialize)).  Check the callback for errors.  If the authentication succeeds, `callstats.js` will receive a valid authentication token to make subsequent API calls.
 
-For more information on callbacks, please refer to [csInitCallback](#csinitcallback) and [csStatsCallback](#csstatscallback). Also have a look at [step 8](#step-8-optional-handling-stats-from-statscallback) for csStatsCallback data handling. 
+For more information on callbacks, please refer to [csInitCallback](#csinitcallback) and [csStatsCallback](#csstatscallback). Also have a look at [step 8](#step-8-optional-handling-stats-from-statscallback) for csStatsCallback data handling.
 
 
 ## Step 3: addNewFabric()
@@ -66,9 +66,9 @@ For more information on callbacks, please refer to [csInitCallback](#csinitcallb
 
 ```
 
-When creating a _PeerConnection_, call `addNewFabric()` with appropriate parameters (see [API section](#callstats-addnewfabric)). It is important to make the request only after the _PeerConnection_ is created. The _PeerConnection_ object MUST NOT be "undefined" or NULL because `callstats.js` uses [`getStats()`](http://dev.w3.org/2011/webrtc/editor/webrtc.html#statistics-model) to query the metrics from the browser internals. The application SHOULD call `addNewFabric()` immediately after the _PeerConnection_ object is created. 
+When creating a _PeerConnection_, call `addNewFabric()` with appropriate parameters (see [API section](#callstats-addnewfabric)). It is important to make the request only after the _PeerConnection_ is created. The _PeerConnection_ object MUST NOT be "undefined" or NULL because `callstats.js` uses [`getStats()`](http://dev.w3.org/2011/webrtc/editor/webrtc.html#statistics-model) to query the metrics from the browser internals. The application SHOULD call `addNewFabric()` immediately after the _PeerConnection_ object is created.
 
-Time stamp of `addNewFabric()` is used as a reference point to calculate fabric failure delay or fabric setup delay: 
+Time stamp of `addNewFabric()` is used as a reference point to calculate fabric failure delay or fabric setup delay:
 
 <aside class="error">
 <ul>
@@ -125,6 +125,17 @@ Congratulations! You have now completed the basic integration steps, read more f
 
 ```javascript
 callStats.sendFabricEvent(pcObject, callStats.fabricEvent.videoPause, conferenceID);
+
+var devices = [];
+var device= {
+  "deviceId":"default","kind":"videoinput","label":"FaceTime HD Camera","groupId":"2004946474"
+}
+devices.push(device);
+var eventData = {
+  deviceList: devices // array of active device
+};
+
+callStats.sendFabricEvent(pcObject, callStats.fabricEvent.activeDeviceList, conferenceID, eventData);
 ```
 
 During the conference, users might perform several actions impacting the measurements and conference analysis. The user might mute the audio or switch off the camera or do screen sharing during a conference. These events can directly impact the measurement data (For example, you can see a significant drop in throughput when camera is switched off). For the list of all possible conference events, please refer [here](#enumeration-of-fabricevent)
@@ -137,7 +148,7 @@ Send the appropriate `fabricEvent` via `sendFabricEvent()`.
   callstats javascript begins performance monitoring and sending data to the
   [callstats.io]({{site.callstats.backend-url}}) backend. -->
 
-- `fabricSetup` and `fabricSetupFailed` has been **deprecated** in v2.1.0 and v3.10.0, 
+- `fabricSetup` and `fabricSetupFailed` has been **deprecated** in v2.1.0 and v3.10.0,
   respectively, these events are now generated automatically by the JS library.
 
 <!-- - send `fabricFailed` when a call fails to connect to the remote peer or
@@ -160,7 +171,7 @@ Send the appropriate `fabricEvent` via `sendFabricEvent()`.
   callstats.io will summarize
   and aggregate the summary statistics _30 seconds_ after the last measurement
   for a conference is received.
- 
+
 
 ## Step 6: (OPTIONAL) associateMstWithUserID()
 
@@ -183,7 +194,7 @@ Send the appropriate `fabricEvent` via `sendFabricEvent()`.
 When interacting with the conference server, the developer is most likely going to use the name or identifier associated with the conference server as the `remoteUserID`. A typical conference bridge (for example, [Jitsi Videobridge](https://jitsi.org/Projects/JitsiVideobridge)) transmits [multiple media stream tracks within a peer connection](https://hacks.mozilla.org/2015/06/firefox-multistream-and-renegotiation-for-jitsi-videobridge/). In which case, using a remote participant’s userID is impractical as there maybe several participants.
 
 Since `callstats.js ver. 3.3.x`, we allow mapping [Synchronization Source Identifier (SSRC)](http://tools.ietf.org/html/rfc3550#section-5.1) for a mediastreamtrack to a userID (both local and remote). By default the local and remote _MediaStreamTracks_ are automatically mapped to the localUserID and remoteUserID. With `associateMstWithUserID()`, you can override the actual local and remote userIDs to the correct association. If the DOM identifiers of the video tags associated to each participant, callstats.js will calculate better quality scores for each participant. The code example shows how the API can be integrated:
- 
+
 <img src="/images/2015-mst-association.gif" alt="Associationg userID with MST" width="700"/>
 
 

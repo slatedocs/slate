@@ -7,7 +7,7 @@ Usage       | Description
 `multiplex`  | Describes a _PeerConnection_ carrying multiple media streams on the same port.
 `audio`  | Describes an audio-only _PeerConnection_.
 `video`  | Describes a video-only _PeerConnection_.
-`screen`  | Describes a screen-sharing _PeerConnection_. 
+`screen`  | Describes a screen-sharing _PeerConnection_.
 `data`  | Describes a _PeerConnection_ with only DataChannels.
 `unbundled`  | Describes a _PeerConnection_ carrying media streams on different ports.
 
@@ -31,7 +31,8 @@ Name  | Description
 `screenShareStart`  | The _PeerConnection_ started the screen sharing.
 `screenShareStop`  | The _PeerConnection_ stopped the screen sharing.
 `dominantSpeaker`  | The userID reports that it is the dominant speaker and not the remote participants.
-  
+`activeDeviceList` | The userID reports the active devices used by him during the conference.
+
 
 ## Enumeration of wrtcFuncNames
 
@@ -45,6 +46,7 @@ Function Name  | Description
 `addIceCandidate`  | The failure occurred in addIceCandidate function.
 `iceConnectionFailure`  | Ice connection failure detected by the application.
 `signalingError`  | Signaling related errors in the application.
+`applicationError`  | Application related errors, this failure is not considered as failure, this can be used for submitting logs.
 
 
 ## csError Types
@@ -54,7 +56,7 @@ Function Name  | Description
 `httpError`  | HTTP error, the `csErrMsg` string is reported by the browser.
 `authError`  | Authentication failed, AppID or AppSecret is incorrect.
 `wsChannelFailure`  | Connection failed, could not connect to callstats.io over WebSockets.
-`csProtoError`  | The client library is sending malformed messages. 
+`csProtoError`  | The client library is sending malformed messages.
 `success`  | The back-end has accepted the request and the endpoint is authenticated, or capable of sending measurement data.
 `appConnectivityError`  | The connectivity checks for given _PeerConnection_ object failed, i.e., iceConnectionState is set to disconnected.
 
