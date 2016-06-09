@@ -6,12 +6,12 @@ language_tabs:
   - ruby
 
 toc_footers:
- 
+
 includes:
 
 search: true
 ---
-  
+
 <h1 id="managebac">
   ManageBac
   <img src="/images/logo-1.png" alt="" height="36">
@@ -63,7 +63,7 @@ If a request fails, the error can be returned as an HTTP status code from the ra
 
 This is the most common type of request to automate creation of new user accounts.​
 
-For example, when a new student applies to the school, they are admitted on [OpenApply](http://openapply.com/ "OpenApply") and marked as Enrolled. At that point, we must have a way to create their account on ManageBac. 
+For example, when a new student applies to the school, they are admitted on [OpenApply](http://openapply.com/ "OpenApply") and marked as Enrolled. At that point, we must have a way to create their account on ManageBac.
 
 > Below is the reference for the User Model process
 
@@ -104,6 +104,7 @@ For example, when a new student applies to the school, they are admitted on [Ope
     "work_city": "Alvin",
     "employer": "Eduvo inc.",
     "work_address": "Flover str",
+    "english_proficiency": "fluent",
     "language1": "English",
     "language2": "French",
     "language3": "German",
@@ -156,6 +157,7 @@ For example, when a new student applies to the school, they are admitted on [Ope
 |password|string| The user's account password|
 |year_label|string| The year the student is in|
 |national_id|string| The user's national id|
+|english_proficiency |string| The user's english proficiency (can be 'fluent' or 'partially_fluent'), required for DP student only|
 |language1 |string| The user's first language|
 |language2 |string| The user's second language|
 |language3 |string| The user's third language|
@@ -196,6 +198,7 @@ POST /api/users
                 10752669
             ],
             "language1": "English",
+            "english_proficiency": "fluent",
             "openapply_student_id": null,
             "first_name": "Chloe",
             "mobile_phone_number": "+852 9301 5831",
@@ -410,6 +413,7 @@ Retrieves all users with basic information. This includes User ID,  which can be
                 10752668,
                 10752669
             ],
+            "english_proficiency": "fluent",
             "language1": "English",
             "profile_photo": "https://managebac.com/uploads/.../photo.gif",
             "openapply_student_id": null,
@@ -466,6 +470,7 @@ GET /api/users/{user_id}
             10752668,
             10752669
         ],
+        "english_proficiency": "fluent",
         "language1": "English",
         "profile_photo": "https://managebac.com/uploads/.../photo.gif",
         "openapply_parent_id": null,
@@ -622,6 +627,7 @@ PUT /api/users/{user_id}
             10752668,
             10752669
         ],
+        "english_proficiency": "fluent",
         "language1": "English",
         "openapply_parent_id": null,
         "first_name": "Chloe",
@@ -813,7 +819,7 @@ GET /api/ib_groups
 GET /api/groups/{ib_group_id}/members
 ```
 
-``` 
+```
 {
     "members": [
         {
@@ -831,6 +837,7 @@ GET /api/groups/{ib_group_id}/members
                 10752668,
                 10752669
             ],
+            "english_proficiency": "fluent",
             "language1": "English",
             "profile_photo": "https://managebac.com/uploads/.../photo.gif",
             "first_name": "Chloe",
@@ -1432,6 +1439,7 @@ GET /api/groups/{class_id}/members
                 10752668,
                 10752669
             ],
+            "english_proficiency": "fluent",
             "language1": "English",
             "first_name": "Chloe",
             "mobile_phone_number": "+852 9301 5831",
@@ -1544,4 +1552,3 @@ HTTP/1.1 400 Bad Request
   "errors": "Student not found."
 }
 ```
-
