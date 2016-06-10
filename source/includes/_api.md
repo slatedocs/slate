@@ -1536,11 +1536,10 @@ var marketID = "0xa290cd9d0c81f2af150a36725c986a3387dc6cef178c183e7237eeac4ea81d
 var params = {
     market: marketID,
     liquidity: 100,
-    initialFairPrice: "0.4",
+    initialFairPrices: ["0.4", "0.5"],
     startingQuantity: 5,
     bestStartingQuantity: 10,
-    priceWidth: "0.4",
-    priceDepth: "0.2"
+    priceWidth: "0.4"
 };
 augur.generateOrderBook(params, {
   onBuyCompleteSets: function (res) { /* ... */ },
@@ -1556,8 +1555,7 @@ augur.generateOrderBook(params, {
 })
 // example:
 simulation = {
-  sharesOnBook: '20',
-  sharesToBuy: '85',
+  shares: '20',
   numBuyOrders: 2,
   numSellOrders: 3,
   numTransactions: 6
@@ -1565,9 +1563,32 @@ simulation = {
 ```
 #### generateOrderBook(params, callbacks)
 
-A convenience method for generating an initial order book for a newly created market.  `params` is an object containing the input parameters (see example code).  `liquidity` is the total amount of liquidity to add to the market.  `initialFairPrice` is the center of the bid-ask spread.  `startingQuantity` is the number of shares available at each price point.  `bestStartingQuantity` can optionally be specified separately, and is the number of shares available at the best price point (those closest to the spread).  `priceWidth` is the price difference between the best bid and best ask orders.  `priceDepth` is the difference between adjacent orders on the same side of the book.
+A convenience method for generating an initial order book for a newly created market.  `params` is an object containing the input parameters (see example code).  `liquidity` is the total amount of liquidity to add to the market.  `initialFairPrice` is the center of the bid-ask spread.  `startingQuantity` is the number of shares available at each price point.  `bestStartingQuantity` can optionally be specified separately, and is the number of shares available at the best price point (those closest to the spread).  `priceWidth` is the price difference between the best bid and best ask orders.
 
-`augur.generateOrderBook` also accepts an optional parameter, `isSimulation`, which if set to `true`, returns information about what the method will do (see code example).  `sharesOnBook` is the number of shares that will go on the book (in sell orders), `sharesToBuy` is the total number of shares to buy (the initial liquidity minus the cash needed for buy orders), `numBuyOrders` is the number of buy orders that will be created, `numSellOrders` is the number of sell orders that will be created, and `numTransactions` is the total number of Ethereum transactions needed to set up the order book.
+`augur.generateOrderBook` calculates the number of orders to create, as well as the spacing between orders, using the `augur.calculatePriceDepth` method, which accepts arguments `liquidity, startingQuantity, bestStartingQuantity, halfPriceWidth, minValue, maxValue` (all of the arguments are expected to be `BigNumber`s).  This calculation is done as follows.  Let \\(p_\mathrm{max}\\) and \\(p_\mathrm{min}\\) be the maximum and minimum allowed prices, \\(I\\) be the initial fair price for the outcome under consideration, \\(q\\) be the starting quantity (size of each order), \\(q_0\\) be the size of the best order, and \\(w\\) be the price width (the size of the bid-ask spread).  The liquidity available on the buy and sell order books is given by:
+
+<p>
+$$
+L_{\mathrm{buy}} = q_0 + \frac{q}{\delta} \left( p_\mathrm{min} + I - \frac{w}{2} \right)
+$$
+</p>
+<p>
+$$
+L_{\mathrm{sell}} = q_0 + \frac{q}{\delta} \left( p_\mathrm{max} - I - \frac{w}{2} \right)
+$$
+</p>
+
+where \\(\delta\\) is the "price depth", the distance between orders on the same side of the book.  The total liquidity \\(L = L_{\mathrm{buy}} + L_{\mathrm{sell}}\\) is an input parameter, so the only unknown is the price depth \\(\delta\\), which can now be calculated:
+
+<p>
+$$
+\delta = \frac{\left( p_\mathrm{min} + p_\mathrm{max} - w \right) q}{L - 2q_0}
+$$
+</p>
+
+The initial order book is now fully specified.
+
+`augur.generateOrderBook` also accepts an optional parameter, `isSimulation`, which if set to `true`, returns information about what the method will do (see code example).  `shares` is the number of complete sets of shares to purchased, `numBuyOrders` is the number of buy orders that will be created, `numSellOrders` is the number of sell orders that will be created, and `numTransactions` is the total number of Ethereum transactions needed to set up the order book.
 
 ```javascript
 // closeMarket contract
