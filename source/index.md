@@ -7,7 +7,7 @@ language_tabs:
 
 toc_footers:
   - <a href='#getting-api-access'>Sign Up for a Developer Key</a>
-  - <p>© 2015 NewsWhip Media Ltd.</p>
+  - <p>© 2016 NewsWhip Media Ltd.</p>
 
 includes:
   - errors
