@@ -381,6 +381,7 @@ video_only | false |   |
 default_field | Relevant fields | String | Field to be used when filtering by keywords (like `"Barack Obama"`) and no fields are used in the Query String.
 size |   | Integer | Max number of articles to be returned (includes relatedStories.)
 find_related | true | Boolean | Related stories will be collapsed when set.
+content_type | `stories` | String | Filters by one of the following types: `stories`, `fb_posts`.
 
 ### Available fields for filtering
 
