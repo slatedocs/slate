@@ -380,7 +380,7 @@ Retrieve a `marketInfo` object for the market IDs in array `marketIDs`.  The `ma
 
 Gets basic info about markets the specified branch, and returns an object with market info indexed by market ID.  The `options` parameter is an object which specifies the branch ID (`branch`).  There are also two fields (`offset` and `numMarketsToLoad`) used to split up the `getMarketsInfo` query into multiple requests.  This is useful if the number of markets on the branch is too large for a single RPC request (which is typical).
 
-<aside class="notice">Each branch's market IDs are stored as an "array" on the <a href="https://github.com/AugurProject/augur-core/blob/forking/src/data_api/branches.se">branches</a> contract, in the contract's <code>Branches[](markets[], numMarkets, ...)</code> data.  Markets are indexed in the order created; i.e., the first market created has index 0, the second 1, etc.  This ordering allows us to break up a large aggregate request like <code>getMarketsInfo</code> into manageable chunks.
+<aside class="notice">Each branch's market IDs are stored as an "array" on the <a href="https://github.com/AugurProject/augur-core/blob/master/src/data_api/branches.se">branches</a> contract, in the contract's <code>Branches[](markets[], numMarkets, ...)</code> data.  Markets are indexed in the order created; i.e., the first market created has index 0, the second 1, etc.  This ordering allows us to break up a large aggregate request like <code>getMarketsInfo</code> into manageable chunks.
 
 For example, suppose you were displaying markets on separate pages.  You might want to retrieve information about all markets, but, to keep your loading time reasonable, only get 5 markets per request.  To get the first 5 markets, you would set <code>offset</code> to 0 and <code>numMarketsToLoad</code> to 5: <code>augur.getMarketsInfo({offset: 0, numMarketsToLoad: 5}, cb)</code>.  To get the second 5, <code>offset</code> would be 5: <code>augur.getMarketsInfo({offset: 5, numMarketsToLoad: 5}, cb)</code>.  The third 5, <code>offset</code> would be 10: <code>augur.getMarketsInfo({offset: 10, numMarketsToLoad: 5}, cb)</code>, and so on.</aside>
 
@@ -396,7 +396,7 @@ augur.getCashBalance(address, function (cashBalance) { /* ... */ });
 // example output:
 cashBalance = "93016.83621687256922549981"
 ```
-### [cash contract](https://github.com/AugurProject/augur-core/blob/forking/src/data_api/cash.se)
+### [cash contract](https://github.com/AugurProject/augur-core/blob/master/src/data_api/cash.se)
 #### getCashBalance(address[, callback])
 
 Gets the play money (CASH) balance of the user account `address`.
@@ -416,7 +416,7 @@ augur.getDescription(marketId, function (description) { /* ... */ });
 // example output:
 description = "Will the Sun turn into a red giant and engulf the Earth by the end of 2016?"
 ```
-### [info contract](https://github.com/AugurProject/augur-core/blob/forking/src/data_api/info.se)
+### [info contract](https://github.com/AugurProject/augur-core/blob/master/src/data_api/info.se)
 #### getCreator(id[, callback])
 
 Gets the address of the account that created `id` (a market or event ID).
@@ -474,7 +474,7 @@ augur.getBranchByNum(0, function (branch) { /* ... */ })
 // example output:
 branch = "0xf69b5"
 ```
-### [branches contract](https://github.com/AugurProject/augur-core/blob/forking/src/data_api/branches.se)
+### [branches contract](https://github.com/AugurProject/augur-core/blob/master/src/data_api/branches.se)
 #### augur.getNumBranches([callback])
 
 Looks up the total number of branches that exist on the current network.
@@ -538,7 +538,7 @@ augur.getNumOutcomes(eventId, function (numOutcomes) { /* ... */ });
 // example output:
 numOutcomes = "2"
 ```
-### [events contract](https://github.com/AugurProject/augur-core/blob/forking/src/data_api/events.se)
+### [events contract](https://github.com/AugurProject/augur-core/blob/master/src/data_api/events.se)
 #### getEventInfo(eventId[, callback])
 
 Fetches an array of basic information about event `eventId`: branch ID, expiration block number, outcome (`"0"` if not yet resolved), minimum value, maximum value, and number of outcomes.
@@ -617,7 +617,7 @@ augur.getTotalReputation(branchId, reportPeriod, function (totalReputation) { /*
 totalReputation = "282"
 
 ```
-### [expiringEvents contract](https://github.com/AugurProject/augur-core/blob/forking/src/data_api/expiringEvents.se)
+### [expiringEvents contract](https://github.com/AugurProject/augur-core/blob/master/src/data_api/expiringEvents.se)
 #### getEvents(branch, reportPeriod[, callback])
 
 Fetches an array of event IDs that are scheduled to be reported on during `reportPeriod`.
@@ -667,7 +667,7 @@ trade = {
   outcome: '1'
 }
 ```
-### [trades contract](https://github.com/AugurProject/augur-core/blob/forking/src/data_api/trades.se)
+### [trades contract](https://github.com/AugurProject/augur-core/blob/master/src/data_api/trades.se)
 #### get_trade(trade_id[, callback])
 
 Gets the details of trade `trade_id`.  (To get the `trade_id`s for a given market, call `augur.get_trade_ids(market)`.)
@@ -742,7 +742,7 @@ augur.getTradingFee(marketId, function (tradingFee) { /* ... */ });
 // example output:
 tradingFee = "0.00999999999999999999"
 ```
-### [markets contract](https://github.com/AugurProject/augur-core/blob/forking/src/data_api/markets.se)
+### [markets contract](https://github.com/AugurProject/augur-core/blob/master/src/data_api/markets.se)
 #### get_trade_ids(market[, callback])
 
 Gets an array of trade IDs.  Each trade ID represents a buy or sell order that is sitting on `market`'s order book (i.e., has not yet been matched).  To get detailed information about the trade, call `augur.get_trade(trade_id)`.
@@ -834,7 +834,7 @@ hashReport(ballot, salt, function (reportHash) { /* ... */ });
 // example output:
 reportHash = "-0x4480ed40f94e2cb2ca244eb862df2d350300904a96039eb53cba0e34b8ace90a"
 ```
-### [reporting contract](https://github.com/AugurProject/augur-core/blob/forking/src/data_api/reporting.se)
+### [reporting contract](https://github.com/AugurProject/augur-core/blob/master/src/data_api/reporting.se)
 #### getRepBalance(branch, address[, callback])
 
 The Reputation balance on `branch` of account `address`.
@@ -868,7 +868,7 @@ augur.checkReportValidity(branchId, report, reportPeriod, function (isValid) { /
 // example output:
 isValid = "1"
 ```
-### [makeReports contract](https://github.com/AugurProject/augur-core/blob/forking/src/functions/makeReports.se)
+### [makeReports contract](https://github.com/AugurProject/augur-core/blob/master/src/functions/makeReports.se)
 #### checkReportValidity(branch, report, reportPeriod[, callback])
 
 Validates `report` made on `branch` for `reportPeriod`.  A valid report is the correct length, is made before 2 reporting periods have elapsed, and is created by a valid reporting address.  Returns 1 if valid, -1 if invalid because the report is the wrong length (i.e., doesn't match the number of events being reported on), or -2 if invalid for another reason.
@@ -1008,7 +1008,7 @@ successResponse = {
   txHash: '0x7aeeacf586d3afa89dc7ca41a4df52307d1a91c33b8726552d3f84b041b5850e'
 }
 ```
-### [faucets contract](https://github.com/AugurProject/augur-core/blob/forking/src/functions/faucets.se)
+### [faucets contract](https://github.com/AugurProject/augur-core/blob/master/src/functions/faucets.se)
 #### reputationFaucet(branch[, onSent, onSuccess, onFailed])
 
 Sets the Reputation balance of the sending account to 47.  (Only available during testing, of course!)
@@ -1123,7 +1123,7 @@ successResponse = {
   txHash: '0x3f44c75513667dee7dcf0a5f08e7be32751fbc2c5c52a8a29018682941ee4895'
 }
 ```
-### [cash contract](https://github.com/AugurProject/augur-core/blob/forking/src/data_api/cash.se)
+### [cash contract](https://github.com/AugurProject/augur-core/blob/master/src/data_api/cash.se)
 #### sendCash(to, value[, onSent, onSuccess, onFailed])
 
 Sends `value` units of CASH to address `to`.  Returns the value sent if successful.
@@ -1205,7 +1205,7 @@ successResponse = {
   txHash: '0xbeacc3547fd07d7cd0bde16d404f3554eb4515561fb21bc6a5231459238085c0'
 }
 ```
-### [buy&sellShares contract](https://github.com/AugurProject/augur-core/blob/forking/src/functions/buy%26sellShares.se)
+### [buy&sellShares contract](https://github.com/AugurProject/augur-core/blob/master/src/functions/buy%26sellShares.se)
 #### buy(amount, price, market, outcome[, onSent, onSuccess, onFailed])
 
 Buy `amount` shares of `outcome` in `market`.
@@ -1249,7 +1249,7 @@ successResponse = {
   txHash: '0x1437c2e44379169076db42d12fb4f0fab1d330f84ab152900a703ee13f814bf7'
 }
 ```
-### [trade contract](https://github.com/AugurProject/augur-core/blob/forking/src/functions/trade.se)
+### [trade contract](https://github.com/AugurProject/augur-core/blob/master/src/functions/trade.se)
 #### trade(max_value, max_amount, trade_ids[, onSent, onSuccess, onFailed])
 
 Matches an order or orders (specified using an array parameter `trade_ids`) already on the books. `max_value` is the maximum amount to spend to buy (including fees).  `max_amount` is the maximum number of shares to sell.
@@ -1315,7 +1315,7 @@ successResponse = {
 }
 ```
 
-### [completeSets contract](https://github.com/AugurProject/augur-core/blob/forking/src/functions/completeSets.se)
+### [completeSets contract](https://github.com/AugurProject/augur-core/blob/master/src/functions/completeSets.se)
 #### buyCompleteSets(marketId, amount[, limit, onSent, onSuccess, onFailed])
 
 Buy `amount` shares of all outcomes of `marketId` from the automated market maker.
@@ -1355,7 +1355,7 @@ successResponse = {
   txHash: '0x29b169c0bd087aefd2f2dcd7b54c6ac08a3d8d78c6030a18980d059650f39117'
 }
 ```
-### [createBranch contract](https://github.com/AugurProject/augur-core/blob/forking/src/functions/createBranch.se)
+### [createBranch contract](https://github.com/AugurProject/augur-core/blob/master/src/functions/createBranch.se)
 #### createSubbranch(description, periodLength, parent, tradingFee[, onSent, onSuccess, onFailed])
 
 Creates a new sub-branch of branch `parent`.  The description format is branchName:description.  `periodLength` is given in blocks.  Returns the new branch's ID if successful.  Otherwise, returns -1 if there is a bad input or the parent doesn't exist, -2 if there is insufficient funds to create the branch or if the branch already exists.
@@ -1390,7 +1390,7 @@ successResponse = {
   txHash: '0x1460b261654f24bf0bbb436f1766b68a94f476c57d4998e26da75114f56cc5a8'
 }
 ```
-### [sendReputation contract](https://github.com/AugurProject/augur-core/blob/forking/src/functions/sendReputation.se)
+### [sendReputation contract](https://github.com/AugurProject/augur-core/blob/master/src/functions/sendReputation.se)
 #### sendReputation(branchId, to, value[, onSent, onSuccess, onFailed])
 
 Sends `value` Reputation tokens on branch `branchId` to address `to`.  Returns the value sent if successful.
@@ -1439,7 +1439,7 @@ augur.slashRep({
 sentResponse = 
 
 ```
-### [makeReports contract](https://github.com/AugurProject/augur-core/blob/forking/src/functions/makeReports.se)
+### [makeReports contract](https://github.com/AugurProject/augur-core/blob/master/src/functions/makeReports.se)
 #### report(branchId, report, reportPeriod, salt[, onSent, onSuccess, onFailed])
 
 Submits an array of reports `report` for report period `reportPeriod` on branch `branchId`.
@@ -1487,7 +1487,7 @@ successResponse = {
   txHash: '0xc9b92f0224fee5f28c35f49c8b3015e5a09a4876ebb819c1abb5c08ba47c01c6'
 }
 ```
-### [createEvent contract](https://github.com/AugurProject/augur-core/blob/forking/src/functions/createEvent.se)
+### [createEvent contract](https://github.com/AugurProject/augur-core/blob/master/src/functions/createEvent.se)
 #### createEvent(branchId, description, expDate, minValue, maxValue, numOutcomes, resolution[, onSent, onSuccess, onFailed])
 
 Creates an event on branch `branchId` with `description`, expiration date (in epoch time) of `expDate`, minimum value `minValue`, maximum value `maxValue`, `numOutcomes` possible outcomes, and `resolution` source for resolution data (e.g., `resolution` might be set to `https://www.wunderground.com/history` for a weather-related event).
@@ -1526,7 +1526,7 @@ successResponse = {
   txHash: '0x643462835b9899318ead8f47a1c43232b04a1dfeda8fba213e8c3d8a0c4651e0'
 }
 ```
-### [createMarket contract](https://github.com/AugurProject/augur-core/blob/forking/src/functions/createMarket.se)
+### [createMarket contract](https://github.com/AugurProject/augur-core/blob/master/src/functions/createMarket.se)
 #### createMarket(branchId, description, tradingFee, events, tags, makerFees, extraInfo, onSent, onSuccess, onFailed)
 
 Creates a market on branch `branchId` with `description`, trading fee (as a proportion) of `tradingFee`, maker fees (proportion of trading fees paid by the order creator, as opposed to the person matching the order) `makerFees`, topics/categories `tags`, and more detailed description and/or link to more info `extraInfo`, and containing event IDs supplied in an array `events`.  Regular (non-combinatorial) markets always have a single event; combinatorial markets allow up to 3 events.
@@ -1620,7 +1620,7 @@ successResponse = {
   txHash: '0x2b48ff35e52c9963503d573c15b559c53e6b34e2ba8f1be3d4d63709239bd8f2'
 }
 ```
-### [closeMarket contract](https://github.com/AugurProject/augur-core/blob/forking/src/functions/closeMarket.se)
+### [closeMarket contract](https://github.com/AugurProject/augur-core/blob/master/src/functions/closeMarket.se)
 #### closeMarket(branchId, marketId[, onSent, onSuccess, onFailed])
 
 Closes market with ID `marketId` on branch `branchId`.
