@@ -18,7 +18,7 @@ Welcome to the Inpher API documentation! The Inpher SDK enables applications to 
 
 ### \_open
 ![alt text][open]
-[open]: https://dev.inpher.io/images/open.png "\_open"
+[open]: images/open.png "\_open"
 
 Our free, open SDK for developers to sandbox and build applications on top of existing search platforms and backend storage.  Includes:
 
@@ -33,7 +33,7 @@ Our free, open SDK for developers to sandbox and build applications on top of ex
 
 ### \_ultra
 ![alt text][ultra]
-[ultra]: https://dev.inpher.io/images/ultra.png "\_ultra"
+[ultra]: images/ultra.png "\_ultra"
 
 Our enterprise-grade SDK for encrypting, indexing and searching terabytes of data across thousands of distributed users. Get all of the components in the \_open toolkit plus everything your team needs to scale:
 
@@ -44,7 +44,7 @@ Our enterprise-grade SDK for encrypting, indexing and searching terabytes of dat
 
 # Environment Setup
 ![alt text][arch]
-[arch]: https://dev.inpher.io/images/arch.png "Hadoop"
+[arch]: images/arch.png "Hadoop"
 
 ### Application Layer End-to-End Encryption
 
@@ -106,7 +106,7 @@ Supported storage backend:
 * [HDFS](https://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-hdfs/HdfsUserGuide.html)
 
 ![alt text][hadoop]
-[hadoop]: https://dev.inpher.io/images/hadoop.png "Hadoop"
+[hadoop]: images/hadoop.png "Hadoop"
 
 HDFS is the primary distributed storage used by Hadoop applications. A HDFS cluster primarily consists of a NameNode that manages the file system metadata and DataNodes that store the actual data.
 
@@ -210,7 +210,7 @@ Supported search engines:
 * [Elasticsearch](https://www.elastic.co/products/elasticsearch)
 
 ![alt text][elastic]
-[elastic]: https://dev.inpher.io/images/elastic.png "Elastic"
+[elastic]: images/elastic.png "Elastic"
 
 The search backend is used by the Inpher SDK to achieve full-text search in document. You can either use a Docker container or deploy it on your existing Elasticsearch instance.
 
@@ -247,7 +247,7 @@ Supported message brokers:
 * [RabbitMQ](https://www.rabbitmq.com)
 
 ![alt text][rabbitmq]
-[rabbitmq]: https://dev.inpher.io/images/rabbitmq.png "RabbitMQ"
+[rabbitmq]: images/rabbitmq.png "RabbitMQ"
 
 RabbitMQ is an open source message broker software (sometimes called message-oriented middleware) that implements the Advanced Message Queuing Protocol (AMQP).
 
@@ -378,7 +378,7 @@ Once you have set your environment, you can start using the \_ultra SDK to devel
 ```
 
 ![alt text][maven]
-[maven]: https://dev.inpher.io/images/maven.png "Maven"
+[maven]: images/maven.png "Maven"
 
 [Apache Maven](https://maven.apache.org) is a software project management and comprehension tool. Based on the concept of a project object model (POM), Maven can manage a project's build, reporting and documentation from a central piece of information.
 
@@ -398,7 +398,7 @@ dependencies {
 }
 ```
 ![alt text][gradle]
-[gradle]: https://dev.inpher.io/images/gradle.png "Gradle"
+[gradle]:images/gradle.png "Gradle"
 
 [Gradle](http://gradle.org) is an open source build automation system that builds upon the concepts of Apache Ant and Apache Maven and introduces a Groovy-based domain-specific language (DSL) instead of the XML form used by Apache Maven of declaring the project configuration.
 
