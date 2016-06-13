@@ -279,13 +279,16 @@ There are 2 different endpoints:
 
 ## POST /v1/articles
 
-> Get the top trending content published by the NYTimes.com that talk about Barack Obama since a week ago
+> Get the top trending content published in United States or United Kingdom that talk about Rihanna not published in youtube.com since a week ago
 
 ``` shell
 curl -H "Content-Type: application/json" -X POST -d '{
-    "filters": [
-        "nytimes.com AND \"Barack Obama\""
-    ]
+    "filters": ["country_code:us OR country_code:gb and -publisher:youtube.com and headline:rihanna"],
+    "language": "en",
+    "video_only":false,
+    "sort_by": "nw_max_score",
+    "find_related": false,
+    "size": 1
 }' "https://api.newswhip.com/v1/articles?key=YOUR_API_KEY"
 ```
 
@@ -299,8 +302,13 @@ $response = $client->post('https://api.newswhip.com/v1/articles?key=YOUR_API_KEY
 	'headers' => ['Content-Type' => 'application/json'],
 	'body' => '{
 		"filters": [
-			"nytimes.com AND \"Barack Obama\""
-		]
+			"country_code:us OR country_code:gb and -publisher:youtube.com and headline:rihanna"
+		],
+    	"language": "en",
+    	"video_only":false,
+    	"sort_by": "nw_max_score",
+    	"find_related": false,
+    	"size": 1
 	}']);
 echo $response->getBody();
 ?> 
@@ -308,54 +316,64 @@ echo $response->getBody();
 
 ```json
 {
-    "articles": [
-        {
-            "link": "http://www.nytimes.com/politics/first-draft/2014/11/18/today-in-politics-40/",
-            "headline": "Today in Politics",
-            "excerpt": "In the Senate, an overhaul of domestic spying operations is on the line.",
-            "source": {
-                "publisher": "nytimes.com",
-                "link": "http://nytimes.com",
-				"country_code": "us"
-            },
-            "nw_score": 0,
-            "max_nw_score": 778.9965224360006,
-            "fb_data": {
-                "comment_count": 12,
-                "like_count": 3,
-                "share_count": 30,
-                "total_count_delta": 0,
-                "delta_period": 1170,
-                "delta_period_unit": "m"
-            },
-            "tw_data": {
-                "tw_count": 410,
-                "total_count_delta": 0,
-                "delta_period": 1170,
-                "delta_period_unit": "m"
-            },
-            "li_data": {
-                "li_count": 1,
-                "total_count_delta": 0,
-                "delta_period": 1170,
-                "delta_period_unit": "m"
-            },
-            "tw_creator": "null",
-            "uuid": "0a7a12d0-6f1b-11e4-a9b8-22000b210c3e",
-            "publication_timestamp": 1416312265853,
-            "image_link": "http://graphics8.nytimes.com/images/2014/11/18/us/politics/18firstdraft-snowden/18firstdraft-snowden-videoSixteenByNine600.jpg",
-            "relatedStories": [],
-            "topics": [
-                {
-                    "id": 20,
-                    "name": "Politics"
-                },
-                {
-                    "id": 2,
-                    "name": "News"
-                }
-            ]
-        }
+	"articles": [
+		{
+			"link":"http://www.tmz.com/2016/06/10/rihanna-beating-chris-brown/",
+			"headline":"Rihanna -- Chris Brown Callback ... 'He's Not Beating Me' (VIDEO)",
+			"excerpt":"Rihanna made a comment that was at the same time lighthearted and downright eerie, telling her bodyguard to cut a photog a break because \"He's not…",
+			"keywords":"Rihanna, Paparazzi Video, Paparazzi",
+			"source":{
+				"publisher":"tmz.com",
+				"link":"http://tmz.com",
+				"country":"United States",
+				"country_code":"us"
+			},
+			"nw_score":16.645060486839977,
+			"max_nw_score":675.0008858850385,
+			"fb_data":{
+				"comment_count":156,
+				"like_count":1129,
+				"share_count":77,
+				"total_count_delta":110,
+				"delta_period":232,
+				"delta_period_unit":"m"
+			},
+			"tw_data":{
+				"tw_count":420,
+				"total_count_delta":0,
+				"delta_period":232,
+				"delta_period_unit":"m"
+			},
+			"li_data":{
+				"li_count":1,
+				"total_count_delta":0,
+				"delta_period":232,
+				"delta_period_unit":"m"
+			},
+			"tw_creator":null,
+			"delta_time":232,
+			"recent_fb_counts":110,
+			"recent_tw_counts":0,
+			"uuid":"5b204900-2f15-11e6-9d57-8b1fd34d6bab",
+			"publication_timestamp":1465567904000,
+			"image_link":"http://ll-media.tmz.com/2016/06/10/061016-rihanna-akm-primary-1200x630.jpg",
+			"relatedStories":[],
+			"topics":[
+				{
+					"id":3,
+					"name":"Entertainment"
+				},
+				{
+					"id":699,
+					"name":"Celebrity"
+				},
+				{
+					"id":2,
+					"name":"News"
+				}
+			],
+			"has_video":true
+		}
     ]
 }
 ```
@@ -381,7 +399,7 @@ video_only | false |   |
 default_field | Relevant fields | String | Field to be used when filtering by keywords (like `"Barack Obama"`) and no fields are used in the Query String.
 size |   | Integer | Max number of articles to be returned (includes relatedStories.)
 find_related | true | Boolean | Related stories will be collapsed when set.
-content_type | `stories` | String | Filters by one of the following types: `stories`, `fb_posts`.
+content_type | stories | String | Filters by one of the following types: `stories`, `fb_posts`.
 
 ### Available fields for filtering
 
