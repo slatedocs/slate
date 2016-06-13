@@ -87,8 +87,6 @@ createMarket | -7 | event already expired
 createMarket | -8 | market already exists
 createMarket | -9 | would expire during non-reporting fork period
 penalizationCatchup | -2 | can only be called during the first half of the reporting period
-penalizeNotEnoughReports | -1 | already done
-penalizeNotEnoughReports | -2 | hasn't reported this period
 penalizeOnForkedEvent | -2 | already past first half of new period and needed to penalize before then
 penalizeOnForkedEvent | -4 | fork event isn't resolved yet
 penalizeOnForkedEvent | -5 | already done for all events in this period
