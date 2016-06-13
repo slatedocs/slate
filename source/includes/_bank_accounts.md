@@ -234,7 +234,7 @@ Atualiza a conta bancária determinada, retornando as informações da mesma cas
 
 Ao alterar campo 'bank_code', caso houvesse algum campo preenchido que de acordo com o novo banco deverá ficar em branco, o Cobrato fará automaticamente. Exemplo: ao alterar uma conta bancária ('bank_code') do Banco do Brasil (001) para o Bradesco (327), o campo 'agency_digit' receberá 'null' como novo valor.
 
-Alterações nos campos 'bank_code', 'agency', 'agency_digit', 'account' ou 'account_digit' colocará a conta de cobrança em homologação.
+Alterações nos campos 'bank_code', 'agency', 'agency_digit', 'account' ou 'account_digit' colocará a configuração de cobrança em homologação.
 
 **Parâmetros**
 
@@ -273,7 +273,7 @@ EXEMPLO DE ESTADO DA RESPOSTA COM CONTA BANCÁRIA INEXISTENTE
 
 ```
 
-Exclui determinada conta bancária e junto a ela todas suas contas de cobrança, e cobranças. As mudanças são irreversíveis.
+Exclui determinada conta bancária e junto a ela todas suas configurações de cobrança, e cobranças. As mudanças são irreversíveis.
 
 ## Carteiras disponíveis
 

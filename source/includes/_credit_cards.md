@@ -52,7 +52,7 @@ Mostrar Cartão de Crédito
 
 DEFINIÇÃO
 
-  GET https://app.cobrato.com/api/v1/credit_card/:credit_card_id
+  GET https://app.cobrato.com/api/v1/credit_cards/:credit_card_id
 
 EXEMPLO DE REQUISIÇÃO
 
@@ -60,7 +60,7 @@ EXEMPLO DE REQUISIÇÃO
     -H 'User-Agent: My App 1.0' \
     -H 'Accept: application/json' \
     -H 'Content-type: application/json' \
-    -X GET https://app.cobrato.com/api/v1/credit_card/:credit_card_id
+    -X GET https://app.cobrato.com/api/v1/credit_cards/:credit_card_id
 
 EXEMPLO DE ESTADO DA RESPOSTA
 

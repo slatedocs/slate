@@ -9,9 +9,9 @@ São as requisições enviadas pelo webhook do Cobrato para uma determinada URL 
 | charge         | destroyed          | quando a cobrança é excluída                   |
 | charge         | received           | quando a cobrança é recebida                   |
 | charge         | undone_receivement | quando a cobrança tem seu recebimento desfeito |
-| charge_account | created            | quando a conta de cobrança é criada            |
-| charge_account | updated            | quando a conta de cobrança é atualizada        |
-| charge_account | destroyed          | quando a conta de cobrança é excluída          |
+| charge_config  | created            | quando a configuração de cobrança é criada     |
+| charge_config  | updated            | quando a configuração de cobrança é atualizada |
+| charge_config  | destroyed          | quando a configuração de cobrança é excluída   |
 
 ### Assinatura do Payload
 
@@ -238,17 +238,17 @@ Este payload é enviado **apenas para cobranças do tipo gateway de pagamento** 
 é disparado quando o gateway de pagamento informa sobre um erro na tentativa de
 cancelamento de uma Cobrança.
 
-## Conta de Cobrança criada
+## Configuração de Cobrança criada
 
 ```shell
-Conta de Cobrança Criada
+Configuração de Cobrança Criada
 
 EXEMPLO DE PAYLOAD
 
   {
     "created_at":"2015-05-21T16:13:33Z",
     "event":"created",
-    "object_type":"charge_account",
+    "object_type":"charge_config",
     "object_id":7,
     "_links":[{
       "rel":"self",
@@ -259,49 +259,49 @@ EXEMPLO DE PAYLOAD
 
 ```
 
-Informações enviadas quando uma Conta de Cobrança é Criada.
+Informações enviadas quando uma Configuração de Cobrança é Criada.
 
-## Conta de Cobrança Atualizada
+## Configuração de Cobrança Atualizada
 
 ```shell
-Conta de Cobrança Atualizada
+Configuração de Cobrança Atualizada
 
 EXEMPLO DE PAYLOAD
 
   {
     "created_at":"2015-05-21T16:13:33Z",
     "event":"updated",
-    "object_type":"charge_account",
+    "object_type":"charge_config",
     "object_id":7,
     "_links":[{
       "rel":"self",
       "method":"GET",
-      "url":"https://app.cobrato.com/api/v1/charge_accounts/7"
+      "url":"https://app.cobrato.com/api/v1/charge_configs/7"
     }]
   }
 ```
 
-Informações enviadas quando uma Conta de Cobrança é atualizada.
+Informações enviadas quando uma Configuração de Cobrança é atualizada.
 
-## Conta de Cobrança Excluída
+## Configuração de Cobrança Excluída
 
 ```shell
-Conta de Cobrança Excluída
+Configuração de Cobrança Excluída
 
 EXEMPLO DE PAYLOAD
 
   {
     "created_at":"2015-05-21T16:13:33Z",
     "event":"destroyed",
-    "object_type":"charge_account",
+    "object_type":"charge_config",
     "object_id":7,
     "_links":[{
       "rel":"self",
       "method":"GET",
-      "url":"https://app.cobrato.com/api/v1/charge_accounts/7"
+      "url":"https://app.cobrato.com/api/v1/charge_configs/7"
     }]
   }
 
 ```
 
-Informações enviadas quando uma Conta de Cobrança é excluída.
+Informações enviadas quando uma Configuração de Cobrança é excluída.

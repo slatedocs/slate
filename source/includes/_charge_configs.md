@@ -77,8 +77,8 @@ As Configurações de Cobrança do tipo **Boleto** (billet), pertencem as suas c
 
 <aside class="info">
   Para homologar a Configuração de Cobrança
-  <a href="#cria-o-de-cobran-a">deve-se criar uma Cobrança</a> para ela. Esta Cobrança será efetivada e automaticamente cancelada 
-  logo em seguida, apenas com o objetivo de verificar se de fato a configuração foi feita de forma correta. <strong>Até que uma Cobrança</strong> 
+  <a href="#cria-o-de-cobran-a">deve-se criar uma Cobrança</a> para ela. Esta Cobrança será efetivada e automaticamente cancelada
+  logo em seguida, apenas com o objetivo de verificar se de fato a configuração foi feita de forma correta. <strong>Até que uma Cobrança</strong>
   tenha fechado este ciclo com sucesso e a conta dada como homologada, todas as cobranças criadas para esta Configuração serão consideradas Cobranças para homologação, ou seja, serão feitas e em seguida automaticamente canceladas.
 </aside>
 
@@ -173,7 +173,7 @@ EXEMPLO DE ESTADO DA RESPOSTA
 EXEMPLO DE CORPO DA RESPOSTA
 
   {
-    "charge_accounts":
+    "charge_configs":
       [
         {
           // informações configuração de cobrança 1
@@ -196,7 +196,7 @@ Criar Configuração de Cobrança
 
 DEFINIÇÃO
 
-  POST https://app.cobrato.com/api/v1/charge_accounts
+  POST https://app.cobrato.com/api/v1/charge_configs
 
 EXEMPLO DE REQUISIÇÃO
 
@@ -204,7 +204,7 @@ EXEMPLO DE REQUISIÇÃO
     -H 'User-Agent: My App 1.0' \
     -H 'Accept: application/json' \
     -H 'Content-type: application/json' \
-    -X POST https://app.cobrato.com/api/v1/charge_accounts \
+    -X POST https://app.cobrato.com/api/v1/charge_configs \
     -d '{
           "type": "billet",
           "bank_account_id": "1",

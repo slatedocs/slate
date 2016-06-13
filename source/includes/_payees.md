@@ -26,7 +26,7 @@ EXEMPLO
   }
 ```
 
-É possível ter indeterminados beneficiários, e a eles que pertencem as contas bancárias, contas de cobrança, e as próprias cobranças do sistema. Podem ser tanto pessoas físicas como pessoas jurídicas.
+É possível ter indeterminados beneficiários, e a eles que pertencem as contas bancárias, configurações de cobrança, e as próprias cobranças do sistema. Podem ser tanto pessoas físicas como pessoas jurídicas.
 
 **Parâmetros**
 
@@ -287,5 +287,5 @@ EXEMPLO DE ESTADO DA RESPOSTA COM BENEFICIÁRIO INEXISTENTE
     404 Not Found
 ```
 
-Exclui determinado beneficiário e junto a ele todas suas contas de cobrança, contas bancárias e as cobranças. As mudanças são irreversíveis.
+Exclui determinado beneficiário e junto a ele todas suas configurações de cobrança, contas bancárias e as cobranças. As mudanças são irreversíveis.
 
