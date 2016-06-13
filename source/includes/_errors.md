@@ -19,6 +19,8 @@ API Errors
 
 Error Code | Meaning
 ---------- | -------
+42 | Insufficient Liquidity: insufficient liquidity to generate order book
+43 | Initial Price Out-of-Bounds: one or more initial fair prices are out-of-bounds
 97 | Database Delete Failed
 98 | Database Write Failed
 99 | Database Read Failed
@@ -46,38 +48,92 @@ Error Code | Meaning
 599 | RPC Timeout: timed out while waiting for Ethereum network response
 650 | Loopback Not Found: loopback interface required for synchronous local commands
 651 | Ethereum Not Found: no active Ethereum node(s) found
-700 | Root Not Found: no LS-LMSR objectve function solution found
+710 | Check Order Book Failed: could not check order book using current prices
 
 Contract Errors
 ---------------
 
 Contract Method | Error | Meaning
 --------------- | ----- | -------
-checkReportValidity | -1 | Report isn't long enough
-checkReportValidity | -2 | Reporter doesn't exist, voting period is over, or voting period hasn't started yet
-closeMarket | -1 | Market has no cash
-closeMarket | -2 | 0 outcome
-closeMarket | -3 | Outcome indeterminable
-createEvent | 0 | Not enough money to pay fees or event already exists
-createEvent | -1 | We're either already past that date, branch doesn't exist, or description is bad
-createMarket | -1 | Bad input or parent doesn't exist
-createMarket | -2 | Too many events
-createMarket | -3 | Too many outcomes
-createMarket | -4 | Not enough money or market already exists
-sendReputation | 0 | Not enough Reputation
-sendReputation | -1 | Your Reputation account was just created! Earn some Reputation before you can send to others.
-sendReputation | -2 | Receiving address doesn't exist
-slashRep | 0 | Incorrect hash
-slashRep | -2 | Incorrect reporter ID
-submitReportHash | 0 | Could not set report hash
-submitReportHash | -1 | Reporter doesn't exist, voting period is over, or voting period hasn't started yet
-submitReportHash | -2 | Not in hash submitting timeframe
 buy | -1 | Amount/price bad or no market
 buy | -2 | Oracle-only branch
 buy | -4 | Not enough money or shares
+buyCompleteSets | 0 | market not found
+buyCompleteSets | -1 | oracle-only branch
+buyCompleteSets | -3 | not enough cash
+cashFaucet | -1 | Hey, you're not broke!
+claimProceeds | 0 | reporting not done
+claimProceeds | -1 | trader doesn't exist
+closeMarket | 0 | fail/trading not over yet/event not expired or closed already
+closeMarket | -1 | Market has no cash anyway / already closed
+closeMarket | -2 | 0 outcome / not reported on yet
+closeMarket | -3 | not final round 2 event
+closeMarket | -5 | Event forked and not final yet
+closeMarket | -6 | bonded pushed forward market not ready to be resolved
+closeMarket | -7 | event not reportable >.99
+closeMarket | -8 | market isn't in branch
+collectFees | -2 | needs to be second half of reporting period to claim rep (1st half is when redistribution is done)
+createEvent | -1 | we're either already past that date, branch doesn't exist, or description is bad
+createEvent | 0 | not enough money to pay fees or event already exists
+createEvent | -2 | max value < min value
+createEvent | -9 | would expire during non-reporting fork period
+createMarket | -1 | bad input or parent doesn't exist
+createMarket | -2 | too many events
+createMarket | -3 | too many outcomes
+createMarket | -4 | not enough money
+createMarket | -5 | fee too low
+createMarket | -6 | duplicate events
+createMarket | -7 | event already expired
+createMarket | -8 | market already exists
+createMarket | -9 | would expire during non-reporting fork period
+penalizationCatchup | -2 | can only be called during the first half of the reporting period
+penalizeNotEnoughReports | -1 | already done
+penalizeNotEnoughReports | -2 | hasn't reported this period
+penalizeOnForkedEvent | -2 | already past first half of new period and needed to penalize before then
+penalizeOnForkedEvent | -4 | fork event isn't resolved yet
+penalizeOnForkedEvent | -5 | already done for all events in this period
+penalizeRoundTwoWrong | 0 | event is a fork event
+penalizeRoundTwoWrong | -1 | need to penalize in round 2 penalize function
+penalizeRoundTwoWrong | -2 | already past first half of new period and needed to penalize before then
+penalizeRoundTwoWrong | -4 | in fork period only thing that rbcr is done on is the round 2 event in the original branch via round 2 penalize
+penalizeRoundTwoWrong | -5 | already done for all events in this period
+penalizeRoundTwoWrong | -6 | forked events should be penalized using the fork penalization function
+penalizeWrong | 0 | event is a fork event
+penalizeWrong | -1 | need to penalize in round 2 penalize function
+penalizeWrong | -2 | already past first half of new period and needed to penalize before then
+penalizeWrong | -4 | in fork period only thing that rbcr is done on is the round 2 event in the original branch via round 2 penalize
+penalizeWrong | -5 | already done for all events in this period
+penalizeWrong | -6 | forked events should be penalized using the fork penalization function
+penalizeWrong | -7 | no outcome
 sell | -1 | amount/price bad or no market
 sell | -2 | oracle only branch
 sell | -4 | not enough money or shares
+sellCompleteSets | -1 | oracle-only branch
+sellCompleteSets | -2 | not a participant in this market
+sellCompleteSets | -3 | not enough shares
+sendReputation | 0 | Not enough Reputation
+sendReputation | -1 | Your Reputation account was just created! Earn some Reputation before you can send to others.
+sendReputation | -2 | Receiving address doesn't exist
+short_sell | -1 | oracle only branch
+short_sell | -2 | bad trade hash
+short_sell | -3 | trader doesn't exist / own shares in this market
+short_sell | -4 | must buy at least .00000001 in value
+short_sell | 10 | insufficient balance
+slashRep | 0 | Not a valid claim
+slashRep | -2 | Reporter doesn't exist
+submitReportHash | 0 | not caught up on rep redistributions
+submitReportHash | -1 | invalid event
+submitReportHash | -2 | not in first half of period (commit phase)
+submitReport | 0 | reporter doesn't exist or has <1 rep
+submitReport | -1 | has already reported
+submitReport | -2 | not in second half of period [reveal part]
+submitReport | -3 | hash doesn't match
+submitReport | -4 | bad report
+submitReport | -5 | invalid event
+submitReport | -6 | already resolved
+submitReport | -7 | <48 hr left in period, too late to report, able to put up readj. bonds though",
+submitReport | -8 | fees couldn't be collected
+submitReport | -9 | need to pay not reporting bond
 trade | -1 | oracle only branch
 trade | -2 | bad trade hash
 trade | -3 | trader doesn't exist / own shares in this market
