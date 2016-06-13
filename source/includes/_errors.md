@@ -105,6 +105,12 @@ penalizeWrong | -4 | in fork period only thing that rbcr is done on is the round
 penalizeWrong | -5 | already done for all events in this period
 penalizeWrong | -6 | forked events should be penalized using the fork penalization function
 penalizeWrong | -7 | no outcome
+proveReporterDidntReportEnough | -1 | already done
+proveReporterDidntReportEnough | -2 | not in right part of period
+pushMarketForward | -1 | fork period cannot be the current or previous period
+pushMarketForward | -2 | market is already closed or pushed forward
+pushMarketForward | -3 | not enough cash to post early resolution bond
+pushMarketForward | -4 | early resolution already attempted or outcome already exists
 sell | -1 | amount/price bad or no market
 sell | -2 | oracle only branch
 sell | -4 | not enough money or shares
@@ -139,3 +145,5 @@ trade | -2 | bad trade hash
 trade | -3 | trader doesn't exist / own shares in this market
 trade | -4 | must buy at least .00000001 in value
 trade | 10 | insufficient balance
+updateTradingFee | -1 | invalid trading fee: either fee is below the minimum trading fee or you are trying to raise the trading fee (trading fees can be lowered, but not raised)
+updateTradingFee | -4 | sender's address does not match the market creator's address
