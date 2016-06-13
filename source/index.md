@@ -279,7 +279,7 @@ There are 2 different endpoints:
 
 ## POST /v1/articles
 
-> Get the top trending content published in United States or United Kingdom that talk about Rihanna not published in youtube.com since a week ago
+> Get the top trending stories published in United States or United Kingdom that talk about Rihanna not published in youtube.com since a week ago
 
 ``` shell
 curl -H "Content-Type: application/json" -X POST -d '{
@@ -373,6 +373,116 @@ echo $response->getBody();
 				}
 			],
 			"has_video":true
+		}
+    ]
+}
+```
+
+> Get the top trending Facebook posts published in United States or United Kingdom that talk about Rihanna not published in youtube.com since a week ago
+
+``` shell
+curl -H "Content-Type: application/json" -X POST -d '{
+    "filters": ["country_code:us OR country_code:gb and -publisher:youtube.com and headline:rihanna"],
+    "language": "en",
+    "video_only":false,
+    "sort_by": "nw_max_score",
+    "find_related": false,
+    "size": 1,
+    "content_type": "fb_posts"
+}' "https://api.newswhip.com/v1/articles?key=YOUR_API_KEY"
+```
+
+```php
+<?php 
+require 'vendor/autoload.php';
+use GuzzleHttp\Client;
+
+$client = new Client();
+$response = $client->post('https://api.newswhip.com/v1/articles?key=YOUR_API_KEY', [
+	'headers' => ['Content-Type' => 'application/json'],
+	'body' => '{
+		"filters": [
+			"country_code:us OR country_code:gb and -publisher:youtube.com and headline:rihanna"
+		],
+    	"language": "en",
+    	"video_only":false,
+    	"sort_by": "nw_max_score",
+    	"find_related": false,
+    	"size": 1,
+    	"content_type": "fb_posts"
+	}']);
+echo $response->getBody();
+?> 
+```
+
+```json
+{
+	"articles": [
+		{  
+			"link":"https://www.facebook.com/11592717710/posts/10153750450817711",
+			"headline":"Tupac Is ALIVE And Hanging Out With Rihanna In Cuba",
+			"excerpt":"They crazy, those pictures are just....",
+			"keywords":"",
+			"source":{  
+				"publisher":"historyin.pictures",
+				"link":"http://historyin.pictures",
+				"country":"United States",
+				"country_code":"us"
+			},
+			"nw_score":2949.087744686274,
+			"max_nw_score":2949.087744686274,
+			"fb_data":{  
+				"comment_count":82,
+				"like_count":666,
+				"share_count":40,
+				"total_count_delta":672,
+				"delta_period":7,
+				"delta_period_unit":"m",
+				"reactions":{  
+					"loves":4,
+					"wows":13,
+					"hahas":23,
+					"sads":0,
+					"angrys":1
+				}
+			},
+			"fb_post":{  
+				"post_type":"Link",
+				"page_name":"Tyga",
+				"category":"",
+				"external_link":"http://historyin.pictures/scp2/index.php?d=111&v=1465242659DGDragon"
+			},
+			"tw_data":{  
+				"tw_count":0,
+				"total_count_delta":0,
+				"delta_period":7,
+				"delta_period_unit":"m"
+			},
+			"li_data":{  
+				"li_count":0,
+				"total_count_delta":0,
+				"delta_period":7,
+				"delta_period_unit":"m"
+			},
+			"tw_creator":"",
+			"delta_time":7,
+			"recent_fb_counts":672,
+			"recent_tw_counts":0,
+			"uuid":"e936d801-2c20-11e6-a17e-a9e9806b7a62",
+			"publication_timestamp":1465243011000,
+			"image_link":"https://external.xx.fbcdn.net/safe_image.php?d=AQCGd51pYt96HDLT&url=http%3A%2F%2Fhistoryin.pictures%2Fscp2%2F111%2F1465242659DGDragon%2Fthumbnail_kWb4kEi1465242659DG.jpg",
+			"relatedStories":[],
+			"topics":[  
+				{  
+					"id":4,
+					"name":"Culture"
+				},
+				{  
+					"id":9,
+					"name":"Music"
+				}
+			],
+			"has_video":false
 		}
     ]
 }
