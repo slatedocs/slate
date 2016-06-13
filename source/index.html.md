@@ -40,7 +40,7 @@ Our enterprise-grade SDK for encrypting, indexing and searching terabytes of dat
 * Encrypted sharing groups
 * Implementation services and direct support from our technical team
 
-# Docker Sandbox in 5 Minutes
+# Docker Sandbox
 > Open your Docker quick start terminal and launch the following containers
 
 ```shell
