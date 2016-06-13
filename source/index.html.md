@@ -1,8 +1,6 @@
 ---
 title: Inpher API Reference
 
-language_tabs:
-
 toc_footers:
   - <a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a>
 
@@ -41,6 +39,50 @@ Our enterprise-grade SDK for encrypting, indexing and searching terabytes of dat
 * Multi-user support
 * Encrypted sharing groups
 * Implementation services and direct support from our technical team
+
+# Docker Sandbox in 5 Minutes
+> Open your Docker quick start terminal and launch the following containers
+
+```shell
+# Download and run the storage backend
+docker run --name hdfs -d -t sequenceiq/hadoop-docker
+
+# Download and run the search engine
+docker run --name elastic -td inpher/elastic-frequency:_ultra
+
+# Download and run the message broker
+docker run --name rabbitmq -td rabbitmq
+
+# Download and run the inpher samples
+docker run --name samples --link elastic:elastic --link hdfs:hdfs --link rabbitmq:rabbitmq -d -t inpher/samples:_ultra
+```
+
+> Log in to the samples container
+
+```shell
+docker exec -it samples /bin/bash
+```
+
+> Run the demo application
+
+```shell
+# CD to the home directory of the sample project
+$ cd /root/inpher-sdk/inphertutorial/
+
+# Launch the application
+$ java -cp 'target/classes:target/dependency/*' Samples
+```
+
+![alt text][docker]
+[docker]: images/docker.png "docker"
+
+The fastest way to play with the Inpher SDK is to set up a couple of containers and look at the sample code provided in the `inpher/samples` container. For this you need to have [Docker](http://docs.docker.com/) installed.
+
+The `Samples.java` file can be found here:
+
+`/root/inpher-sdk/inphertutorial/src/main/java/Samples.java`
+
+Feel free to install a command line text editor such as `vim` using `apt-get install` to view and edit the file.
 
 # Environment Setup
 ![alt text][arch]
@@ -316,7 +358,6 @@ will enable search only in data that is owned by the user. This means that if a 
 * `searchLevel=EVERYWHERE`
 
 allows users to search in all their data and in the data that is shared. This is the least efficient option.
-
 
 # Getting Started
 ## Prerequisites
