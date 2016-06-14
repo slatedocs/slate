@@ -41,8 +41,8 @@ Os Cartões de Crédito pertencem ao Pagador utilizado no momento de sua criaç�
 | avs_complement   | string          | complemento endereço de cobrança do cartão                                    |
 | avs_district     | string          | bairro do endereço de cobrança do cartão                                      |
 | avs_zipcode      | string          | cep do endereço de cobrança do cartão                                         |
-| unusable         | boolean         | indica se o cartão está inutilizavel                                          |
-| reusable         | boolean         | indica se o cartão poderá ser reutilizavel                                    |
+| unusable         | boolean         | indica se o cartão está inutilizável                                          |
+| reusable         | boolean         | indica se o cartão é reutilizável                                             |
 | payer_id         | integer         | identificador do Payer ao qual este cartão pertence                           |
 | charge_config_id | integer         | identificador da ChargeConfig à qual este cartão pertence                     |
 | _links           | array of object | links do beneficiário                                                         |
