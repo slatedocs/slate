@@ -17,6 +17,7 @@ EXEMPLO
     "avs_complement": "Apto 103",
     "avs_district": "Centro",
     "avs_zipcode": "99000-750",
+    "reusable": false,
     "payer_id": 1,
     "charge_config_id": 12,
     "_links": [
@@ -40,7 +41,8 @@ Os Cartões de Crédito pertencem ao Pagador utilizado no momento de sua criaç�
 | avs_complement   | string          | complemento endereço de cobrança do cartão                                    |
 | avs_district     | string          | bairro do endereço de cobrança do cartão                                      |
 | avs_zipcode      | string          | cep do endereço de cobrança do cartão                                         |
-| unusable         | boolean         | indica se o se o cartão está inutilizado                                      |
+| unusable         | boolean         | indica se o cartão está inutilizavel                                          |
+| reusable         | boolean         | indica se o cartão poderá ser reutilizavel                                    |
 | payer_id         | integer         | identificador do Payer ao qual este cartão pertence                           |
 | charge_config_id | integer         | identificador da ChargeConfig à qual este cartão pertence                     |
 | _links           | array of object | links do beneficiário                                                         |
@@ -80,6 +82,7 @@ EXEMPLO DE CORPO DA RESPOSTA
     "avs_complement": "Apto 103",
     "avs_district": "Centro",
     "avs_zipcode": "99000-750",
+    "reusable": false,
     "payer_id": 1,
     "charge_config_id": 12,
     "_links": [
