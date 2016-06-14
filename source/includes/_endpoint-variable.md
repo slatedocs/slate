@@ -54,6 +54,7 @@ With the relative flag enabled, the variable catalog looks something like this:
     "self": "https://beta.crunch.io/api/datasets/5ee0a0/variables/",
     "orders": {
         "hier": "https://beta.crunch.io/api/datasets/5330a0/variables/hier/",
+        "personal": "https://beta.crunch.io/api/datasets/5330a0/variables/personal/"
     },
     "views": {
         "weights": "https://beta.crunch.io/api/datasets/5ee0a0/variables/weights/",
@@ -239,6 +240,8 @@ the Location header.
 
 `/datasets/{id}/variables/hier/`
 
+Dataset global order containing references to all public variables.
+
 #### GET
 
 Returns a Shoji Order.
@@ -263,6 +266,32 @@ previously existing group will be eliminated and any new groups will be added.
 
 After PUT any variable not present on any of the groups will always be appended
  to the root of the graph.
+
+### Personal Variable Order
+
+`/datasets/{id}/variables/personal/`
+
+Unlike the hierarchical order, the personal variable order returns different
+content per user.
+Each user can add variable references to it including personal variables and 
+will not be shared with other users.
+
+The personal variable order defaults to an empty Shoji order until each user
+makes changes to it.
+
+#### GET
+
+Returns a Shoji Order for this user.
+
+#### PATCH
+
+Same as hierarchical order, receives a Shoji Order representation to overwrite
+the existing order. Personal variables are allowed here.
+
+#### PUT
+
+Behaves sames as PATCH.
+
 
 ### Weights
 
