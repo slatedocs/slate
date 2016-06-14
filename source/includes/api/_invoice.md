@@ -30,35 +30,31 @@ This method lets you create the invoice.
 
 
 Field Name|Type| Description
----------|-----------
-logo | `string` | Invoice logo link.
-to | `string` | Email where invoice will be send
-custnum | `string` | Customer number
-customer | `string` | Encoded data of customer
-invoiceNum | `string` | Invoice Number
-invoiceDate | `string` | Date invoice created
-invoiceDue | `string` | Due date of Invoice
-merchant[id] |`array`| Merchant ID
-merchant[name] |`array`| Merchant Name
-merchant[city] |`array`| Merchant City
-merchant[street] |`array`| Merchant Street
-merchant[CityStateZip] |`array`| Merchant (city,state,zip)
-merchant[contact] | `array` | Merchant's contact
-merchant[email] | `array` | Merchant's email
-lineitem#sku |`string` | Product item sku
-lineitem#productName |`string` | Product item name
-lineitem#unitCost |`string` | Item cost
-lineitem#unitQuantity |`string` | Item quantity
-lineitem#unitPrice | `string`| Total amount resulting from the cost & quantity
-subtotal | `string` | Resulting total of all the items
-credit | `string` | Customer credit	
-total | `string` | Invoice total amount
+---------|-----|------
+logo | string | Invoice logo link.
+to | string | Email where invoice will be send
+custnum | string | Customer number
+customer | string | Encoded data of customer
+invoiceNum | string | Invoice Number
+invoiceDate | string | Date invoice created
+invoiceDue | string | Due date of Invoice
+merchant[id] |array| Merchant ID
+merchant[name] |array| Merchant Name
+merchant[city] |array| Merchant City
+merchant[street] |array| Merchant Street
+merchant[CityStateZip] |array| Merchant (city,state,zip)
+merchant[contact] | array | Merchant's contact
+merchant[email] | array | Merchant's email
+lineitem#sku |string | Product item sku
+lineitem#productName |string | Product item name
+lineitem#unitCost |string | Item cost
+lineitem#unitQuantity |string | Item quantity
+lineitem#unitPrice | string| Total amount resulting from the cost & quantity
+subtotal | string | Resulting total of all the items
+credit | string | Customer credit	
+total | string | Invoice total amount
 
-
-> Notes:
-`#` - denotes a number in line items. 
-
-
+<aside class="notice"># = denotes a number in line items.</aside>
 
 
 ## View
