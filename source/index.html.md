@@ -15,6 +15,7 @@ includes:
   - api/check
   - api/fee
   - api/transaction
+  - api/invoice
   - errors
 
 search: true
