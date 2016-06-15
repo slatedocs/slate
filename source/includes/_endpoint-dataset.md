@@ -463,15 +463,14 @@ GET returns a Shoji View of available dataset export formats.
 A GET request on any of the export URLs will return 200 status with a `shoji:view`, containing an attribute
 `url` pointing to the location of the exported file to be downloaded; GET that URL to download the file. If the dataset does not have any columns of data, the GET on the export view URL will return a 409 response.
 
-You may provide a filter of your own choosing by adding a zcl json string to the "filter" parameter
-The zcl is supplied in the same format as regular dataset filters.  Here is an example url with filter on a
-categorical variable:
+To export a subset of the dataset, instead perform a POST request and include a JSON body with an optional "filter" expression for the rows and a "where" attribute to specify variables to include.
 
-Parameter | Description | Example
+Attribute | Description | Example
 --------- | ----------- | ------------------------------------
 filter | A Crunch filter expression defining a filter for the given export | `{"function": "==", "args": [{"variable": "000000"}, {"value": 1}]}`
 where  | A Crunch expression defining which variables to export | `{"function": "identify", "args": [{"id": ["000000"]}]}`
 
+See ["Expressions"](#expressions) for more on Crunch expressions.
 
 The following rules apply for all formats:
 
