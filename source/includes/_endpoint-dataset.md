@@ -132,11 +132,11 @@ is_published | boolean | true | Indicates if the dataset is published to viewers
 
 #### Drafts
 
-A dataset marked as `is_published: false` can only be accessed by dataset editors. 
+A dataset marked as `is_published: false` can only be accessed by dataset editors.
 They will still be available on the catalog for all shared users but API clients
 should know to display these to the appropriate users.
 
-The `is_published` flag of a dataset can be changed by editors from the catalog or 
+The `is_published` flag of a dataset can be changed by editors from the catalog or
 directly on the dataset entity.
 
 #### PATCH
@@ -460,32 +460,35 @@ GET returns a Shoji View of available dataset export formats.
 }
 ```
 
-Accessing any of the export URLs will return a `shoji:view` with an attribute
-`url` pointing to the location of the exported file to be downloaded.
+A GET request on any of the export URLs will return 200 status with a `shoji:view`, containing an attribute
+`url` pointing to the location of the exported file to be downloaded; GET that URL to download the file. If the dataset does not have any columns of data, the GET on the export view URL will return a 409 response.
 
-Following rules apply for all formats:
+To export a subset of the dataset, instead perform a POST request and include a JSON body with an optional "filter" expression for the rows and a "where" attribute to specify variables to include.
 
-* All exporting happens synchronously.
-* If the dataset does not have any columns, the server will return a 409 response
+Attribute | Description | Example
+--------- | ----------- | ------------------------------------
+filter | A Crunch filter expression defining a filter for the given export | `{"function": "==", "args": [{"variable": "000000"}, {"value": 1}]}`
+where  | A Crunch expression defining which variables to export | `{"function": "identify", "args": [{"id": ["000000"]}]}`
+
+See ["Expressions"](#expressions) for more on Crunch expressions.
+
+The following rules apply for all formats:
+
+* The dataset's exclusion filter will be applied; however, any of the user's personal "applied filters" are not, unless they are explicitly included in the request.
 * Hidden/discarded variables are not exported.
-* Onnly exclusion filter will be applied.
-* User applied filters are not applied.
-* Personal(private) variables are not exported.
+* Personal (private) variables are not exported.
+* Variables (columns) will be ordered in a flattened version of the dataset's hierarchical order.
+* Derived variables will be exported with their values, without their functional links.
 
+Some format-specific properties:
 
 ###### SPSS
 
-Will contain all non personal variables in the same flat order as organized.
-Derived variables will be exported as normal variables and arrays as supported
-by SPSS.
+Categorical-array and multiple-response variables will be exported as "mrsets", as supported by SPSS.
 
 ###### CSV
 
-Will only export base non personal variables in the same flat order as organized
-in the API.
-
-Categorical variables will be exported with their name instead of their value.
-
+Categorical variable values will be exported with as the category name, not the category id.
 
 
 ##### Summary
