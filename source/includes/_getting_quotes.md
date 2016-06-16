@@ -20,6 +20,23 @@ The quoting API does not require you to include your Sendle ID and API Key, but 
     {
       "quote":{
         "gross":{
+          "amount":14.75,
+          "currency":"AUD"
+        },
+        "net":{
+          "amount":13.41,
+          "currency":"AUD"
+        },
+        "tax":{
+          "amount":1.34,
+          "currency":"AUD"
+        }
+      },
+      "plan_name":"Easy"
+    },
+    {
+      "quote":{
+        "gross":{
           "amount":13.75,
           "currency":"AUD"
         },
@@ -37,19 +54,19 @@ The quoting API does not require you to include your Sendle ID and API Key, but 
     {
       "quote":{
         "gross":{
-          "amount":14.75,
+          "amount":13.74,
           "currency":"AUD"
         },
         "net":{
-          "amount":13.41,
+          "amount":12.49,
           "currency":"AUD"
         },
         "tax":{
-          "amount":1.34,
+          "amount":1.25,
           "currency":"AUD"
         }
       },
-      "plan_name":"Easy"
+      "plan_name":"Pro"
     }
   ]
 ```
