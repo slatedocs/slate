@@ -68,6 +68,44 @@ $document->save();
 ?>
 ```
 
+```python
+from mifiel import Document, Client
+client = Client(app_id='APP_ID', secret_key='APP_SECRET')
+
+signatories = [
+  { 
+    'name': 'Signer 1', 
+    'email': 'signer1@email.com', 
+    'tax_id': 'AAA010101AAA' 
+  },
+  { 
+    'name': 'Signer 2', 
+    'email': 
+    'signer2@email.com', 
+    'tax_id': 'AAA010102AAA'
+  }
+]
+# Providde the SHA256 hash of the file you want to sign.
+document = Document.create(
+  client=client, 
+  signatories=signatories, 
+  dhash='some-sha256-hash'
+)
+# Or just send the file and we'll take care of everything.
+# We will store the file for you. 
+document = Document.create(
+  client=client, 
+  signatories=signatories, 
+  file='test/fixtures/example.pdf'
+)
+
+document.id # -> '7500e528-ac6f-4ad3-9afd-74487c11576a'
+document.original_hash
+document.file
+document.file_signed
+# ...
+```
+
 Create a document to be signed by passing either a PDF file or the Hash of the file.
 
 If you are using our [embedded signing widget](#widget), we suggest that you pass a __File__ so that it can be displayed to the end user (signer) within the signing flow on your webpage. Also when using the widget you must pass the __email of the signer__ (name is optional) so that we can send them a copy of the signed document when the signing process is complete.
@@ -128,6 +166,17 @@ $document->file_signed;
 ?>
 ```
 
+```python
+from mifiel import Document, Client
+client = Client(app_id='APP_ID', secret_key='APP_SECRET')
+
+document = Document.find(client, 'id')
+document.original_hash
+document.file
+document.file_signed
+# ...
+```
+
 Allows you to retrieve a specific document.
 
 ### HTTP Request
@@ -158,6 +207,13 @@ use Mifiel\Document;
 
 $documents = Document::all();
 ?>
+```
+
+```python
+from mifiel import Document, Client
+client = Client(app_id='APP_ID', secret_key='APP_SECRET')
+
+documents = Document.all(client)
 ```
 
 Allows you to retrieve all documents in your account.
@@ -192,6 +248,13 @@ Document::delete('29f3cb01-744d-4eae-8718-213aec8a1678');
 ?>
 ```
 
+```python
+from mifiel import Document, Client
+client = Client(app_id='APP_ID', secret_key='APP_SECRET')
+
+Document.delete(client, '29f3cb01-744d-4eae-8718-213aec8a1678')
+```
+
 Allows you to delete a specific document in your account.
 
 ### HTTP Request
@@ -211,10 +274,19 @@ cc = ['signer@email.com', 'viewer@email.com']
 document.request_signature(email, cc: cc)
 ```
 
-
 ```shell
 curl -X POST "https://www.mifiel.com/api/v1/documents/29f3cb01-744d-4eae-8718-213aec8a1678/request_signature" \
   -H "Authorization: APIAuth APP-ID:hmac-signature"
+```
+
+```python
+from mifiel import Document, Client
+client = Client(app_id='APP_ID', secret_key='APP_SECRET')
+
+email = 'signer@email.com'
+cc = ['signer@email.com', 'viewer@email.com']
+document = Document.find(client, '29f3cb01-744d-4eae-8718-213aec8a1678')
+document.request_signature(email, cc=cc)
 ```
 
 > Response from Mifiel:
