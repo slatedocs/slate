@@ -16,6 +16,16 @@ We have language bindings in Shell and Ruby! You can view code examples on the r
 
 All API calls are versioned, and the current Mifiel API is v1.0. We will never introduce any breaking changes within any version, but may add new, non-breaking features and enhancements from time to time.
 
+### Sandbox enviroment
+
+Mifiel provides a sandbox environment where you can tests. Documents created in the sandbox mode are free of charge.
+
+For sandbox tests, just change the www.mifiel.com for sandbox.mifiel.com in every endpoint that you use.
+
+<aside class="warning">
+  Documents signed in the Sandobox environment are legally invalid and should not be used for legal purposes.
+</aside>
+
 ## Mifiel-supported SDKs
 
 We currently suppport **Ruby**, **PHP** and **Python** but are working on adding more languages.
