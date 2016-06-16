@@ -11,7 +11,8 @@
       ],
       "folder_exclude_patterns":
       [
-        "build"
+        "build",
+        "source/javascripts/lib"
       ],
       "follow_symlinks": true,
       "path": ".",
