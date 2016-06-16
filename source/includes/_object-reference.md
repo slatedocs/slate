@@ -368,12 +368,110 @@ Terms refer to functions (and operators) when they include a "function" member. 
 
 You may include a "references" member to provide a name, alias, description, etc to the output of the function.
 
-<!-- 
 ##### Supported functions
+Here is a list of all functions available for crunch expressions.  Note that these functions can be used in conjuction
+to compose an expression.
 
-LIST THEM -->
-<!-- typeof -->
+##### Binary functions
+   * `+` add
+   * `-` subtract
+   * `*` multiply
+   * `/` div divide
+   * `//` floor division
+   * `^` power
+   * `%` modulus
+   * `&` bitwise and
+   * `|` bitwise or
+   * `~` invert
 
+##### Builtin functions
+   
+   * `bin` Return column's values broken into equidistant bins.
+   * `bind` Return the given Frame materialized as an array.
+   * `case` Evaluate the given conditions in order, selecting the corresponding choice.
+   * `cast` Return a Column of column's values cast to the given type.
+   * `char_length` Return the length of each string (or missing reason) in the given column.
+   * `copy_variable` Returns a copy of the column with a copy of its metadata.
+   * `combine_categories` Return a column of categories combined according to the category_info.
+   * `combine_responses` Combine the given categorical variables into a new one.
+   * `current_batch` Return the batch_id of the current frame.
+   * `get` Return a subvariable from the given column.
+   * `lookup` Map each row of source through its keys index to a corresponding value.
+   * `missing` Return the given column as missing for the given reason.
+   * `normalize` Return a Column with the given values normalized so sum(c) == len(c).
+   * `row` Return a Numeric column with row indices.
+   * `selected_array` Return a bool Array from the given categorical, plus None/__none__/__any__ .
+   * `typeof` Return (a copy of) the Type of the given column.
+   * `unmissing` Return the given column with user missing replaced by valid values.
+
+##### Comparisons
+
+   * `==` equals
+   * `!=` not equals
+   * `=><=` between
+   * `between` between
+   * `<` less than
+   * `>` greater than
+   * `<=` less than or equal
+   * `>=` greater than or equal
+   * `in` in
+   * `all` all selected
+   * `any` any selected
+   * `contains` Return a mask where A is an element of array B, or a key of object B.
+   * `icontains` Case-insensitive version of 'contains'
+   * `~=` compare against regular expression (regex)
+   * `and` logical and
+   * `or` logical or
+   * `not` logical not
+   * `is_valid` Boolean array of rows which are valid for the given column
+   * `is_missing` Boolean array of rows which are missing for the given column
+   * `any_missing` Boolean array of rows where any of the subvariables are missing
+   * `all_valid` Boolean array of rows where all of the subvariables are valid
+   * `all_missing` Boolean array of rows where all of the subvariables are missing
+   * `is_none_of_the_above` is none of the above
+    
+##### Date Functions
+
+   * `default_rollup_resolution` default_rollup_resolution
+   * `datetime_to_numeric` Convert the given datetime column to numeric.
+   * `format_datetime` Convert datetime values to strings using the fmt as strftime mask.
+   * `numeric_to_datetime` Convert the given numeric column to datetime with the given resolution.
+   * `parse_datetime` Parse string to datetime using optional format string
+   * `rollup` Return column's values (which must be type datetime) into calendrical bins.
+
+<!-- #### Frame Functions -->
+
+##### Measures Functions
+
+   * `cube_count`
+   * `cube_distinct_count`
+   * `cube_max` A measure which returns the maximum value in a column.
+   * `cube_mean`
+   * `cube_min` A measure which returns the minimum value in a column.
+   * `cube_missing_frequencies` Return an object with parallel 'code' and 'count' arrays.
+   * `cube_quantile`
+   * `cube_stddev` A measure which returns the standard deviation value in a column.
+   * `cube_sum`
+   * `cube_valid_count`
+   * `cube_weighted_max`
+   * `cube_weighted_min`
+   * `top` Return the given (1D/1M) cube, filtered to its top N members.
+    
+##### Variables searching functions
+
+   * `identify` Return the set of variable ids which match the given criteria
+   * `search_variable` Boolean array of variable rows which match terms.
+
+##### Cube Functions
+
+   * `autocube` Return a cube crossing A by B (which may be None).
+   * `autofreq` Return a cube of frequencies for A.
+   * `cube` Return a Cube instance from the given arguments.
+   * `each` Yield one expression result per item in the given iterable.
+   * `multitable` Return cubes for each target variable crossed by None + each template variable.
+   * `transpose` Transpose the given cube, rearranging its (0-based) axes to the given order.
+   * `stack` Return a cube of 1 more dimension formed by stacking the given array.
+    
 #### Filter terms
 
 Terms that refer to filters entities by URL are shorthand for the boolean expression stored in the entity. So, `{"filter": "../filters/59fc4d/"}` yields the Crunch expression contained in the Filter entity's "expression" attribute. Filter terms can be combined together with other expressions as well. For example, `{"function": "and", "args": [{"filter": "../filters/59fc4d/"}, {"function": "==", "args": [{"variable": "../variables/X/"}, {"value": 13}]}]}` would "and" together the boolean expression in filter 59fc4d with the `X == 13` expression.
