@@ -5,6 +5,7 @@ language_tabs:
   - shell: cURL
   - php: PHP
   - ruby: Ruby
+  - python: Python
 
 includes:
   - introduction

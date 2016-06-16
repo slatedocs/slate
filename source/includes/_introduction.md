@@ -16,9 +16,19 @@ We have language bindings in Shell and Ruby! You can view code examples on the r
 
 All API calls are versioned, and the current Mifiel API is v1.0. We will never introduce any breaking changes within any version, but may add new, non-breaking features and enhancements from time to time.
 
+### Sandbox enviroment
+
+Mifiel provides a sandbox environment where you can tests. Documents created in the sandbox mode are free of charge.
+
+For sandbox tests, just change the www.mifiel.com for sandbox.mifiel.com in every endpoint that you use.
+
+<aside class="warning">
+  Documents signed in the Sandobox environment are legally invalid and should not be used for legal purposes.
+</aside>
+
 ## Mifiel-supported SDKs
 
-We currently suppport only Ruby and PHP but are working on adding more languages.
+We currently suppport **Ruby**, **PHP** and **Python** but are working on adding more languages.
 
 ### Ruby
 
@@ -68,6 +78,27 @@ To install the most recent version, run the following command.
 Now your composer.json has been updated automatically and you're able to require the just created *vendor/autoload.php* file to PSR-4 autoload the library.
 
 You can find the repo at [github.com/Mifiel/ruby-api-client](https://github.com/Mifiel/php-api-client).
+
+### Python
+
+```python
+# Import the Client 
+from mifiel import Client
+
+# Configure Mifiel Library, you will 
+# pass this to every call you make to our servers.
+client = Client(app_id='APP_ID', secret_key='APP_SECRET')
+# If you want to make tests without beeing charged
+# you can use our sandbox enviroment with:
+client.use_sandbox
+```
+
+The best way to install Mifiel lib is with [PIP](https://pypi.python.org/pypi).
+To install the most recent version please run the following command.
+
+`pip install mifiel`
+
+You can find the repo at [github.com/Mifiel/python-api-client](https://github.com/Mifiel/python-api-client/)
 
 ## Authentication
 
