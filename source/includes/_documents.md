@@ -198,48 +198,6 @@ Allows you to delete a specific document in your account.
 
 `DELETE https://www.mifiel.com/api/v1/documents/:id`
 
-## Sign a Document
-
-```ruby
-require 'mifiel'
-
-document = Mifiel::Document.find('29f3cb01-744d-4eae-8718-213aec8a1678')
-
-private_key = File.read('FIEL_AAA010101AAA.key')
-private_key_pass = '12345678a'
-certificate_id = '1d041a80-1d50-43ce-8534-64832de3be6b'
-
-document.build_signature(private_key, private_key_pass)
-document.sign(certificate_id: certificate_id)
-# Or
-certificate = File.read('FIEL_AAA010101AAA.cer')
-document.sign(certificate: certificate)
-```
-
-Allows the specified document to be signed.
-
-The documents get signed client-side. For security purposes, the private key and password of the signer never reach our server.
-
-### HTTP Request
-
-`POST https://www.mifiel.com/api/v1/documents/:id/sign`
-
-### Parameters
-
-Field          | Type   | Description
--------------- | ------ | -----------
-certificate_id | String | __Optional__ The ID of the certificate that corresponds to the private key being used to sign 
-certificate    | String | __Optional__ The certificate (.cer file) corresponding to the private key being used to sign
-signature      | String | The electronic signature on the successfully-signed document
-
-<aside class="info">
-  Either the <b>certificate_id</b> or <b>certificate</b> must be provided.
-</aside>
-
-### Response
-
-Returns a [Document Model](#document)
-
 ## Request signature
 
 Sends an email request for the document to be signed.
