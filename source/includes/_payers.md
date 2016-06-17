@@ -42,8 +42,8 @@ EXEMPLO
 | city                     | string          | nome da cidade do domicílio do pagador                          |
 | state                    | string          | uf do estado do domicílio do pagador (duas letras, p. ex. 'RJ') |
 | neighbourhood            | string          | bairro do domicílio do pagador                                  |
-| street                   | string          | rua do domicílio do pagador                                     |
-| number                   | string          | número da rua do domicílio do pagador                           |
+| street                   | string          | logradouro do pagador                                           |
+| number                   | string          | número da logradouro do pagador                                 |
 | zipcode                  | string          | cep do domicílio do pagador                                     |
 | complement               | string          | complemento para o endereço de domicilio do pagador             |
 | _links                   | array of object | links do pagador                                                |
@@ -191,8 +191,8 @@ Cria um novo pagador, retornando as informações do mesmo caso haja sucesso. Se
 | city                     | string | (opcional) nome da cidade do domicílio do pagador                            |
 | state                    | string | (opcional) uf do estado do domicílio do pagador (duas letras, p. ex. 'RJ')   |
 | neighbourhood            | string | (opcional) bairro do domicílio do pagador                                    |
-| street                   | string | (opcional) rua do domicílio do pagador                                       |
-| number                   | string | (opcional) número da rua do domicílio do pagador                             |
+| street                   | string | (opcional) logradouro do pagador                                             |
+| number                   | string | (opcional) número da logradouro do pagador                                   |
 | zipcode                  | string | (opcional) cep do domicílio do pagador                                       |
 | complement               | string | (opcional) complemento para o endereço de domicilio do pagador               |
 
@@ -252,7 +252,7 @@ Atualiza um determinado pagador, retornando as informações do mesmo caso haja 
 | city                     | string | (opcional) nome da cidade do domicílio do pagador                            |
 | state                    | string | (opcional) uf do estado do domicílio do pagador (duas letras, p. ex. 'RJ')   |
 | neighbourhood            | string | (opcional) bairro do domicílio do pagador                                    |
-| street                   | string | (opcional) rua do domicílio do pagador                                       |
-| number                   | string | (opcional) número da rua do domicílio do pagador                             |
+| street                   | string | (opcional) logradouro do pagador                                             |
+| number                   | string | (opcional) número da logradouro do pagador                                   |
 | zipcode                  | string | (opcional) cep do domicílio do pagador                                       |
 | complement               | string | (opcional) complemento para o endereço de domicilio do pagador               |
