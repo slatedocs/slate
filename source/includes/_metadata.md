@@ -4,12 +4,12 @@
 
 ```shell
 curl https://app.beyonic.com/api/payments -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900" \
--d phonenumber=+256772781923 \
+-d phonenumber=+256778122118 \
 -d currency=UGX \
 -d amount=30 \
 -d description="Per diem payment" \
 -d callback_url="https://my.website/payments/callback" \
--d metadata.id=1234 \ 
+-d metadata.id=1234 \
 -d metadata.name=Lucy \
 -d payment_type=money
 ```
@@ -19,7 +19,7 @@ require 'beyonic'
 Beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
 payment = Beyonic::Payment.create(
-    phonenumber: "+256773712831",
+    phonenumber: "+256778122118",
     amount: "100.2",
     currency: "UGX",
     description: "Per diem payment",
@@ -36,13 +36,13 @@ require_once('./lib/Beyonic.php');
 Beyonic::setApiKey("ab594c14986612f6167a975e1c369e71edab6900");
 
 Beyonic_Payment::create(array(
-  "phonenumber" => "+256773712831",
+  "phonenumber" => "+256778122118",
   "amount" => "100.2",
   "currency" => "UGX",
   "description" => "Per diem payment",
   "payment_type" => "money",
   "callback_url" => "https://my.website/payments/callback",
-  "metadata.id" => "1234", 
+  "metadata.id" => "1234",
   "metadata.name" => "Lucy"
 ));
 ?>
@@ -54,8 +54,8 @@ beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
 kwargs = {'metadata.id': 1234, 'metadata.name': 'Lucy'}
 
-beyonic.Payment.create(phonenumber='+256773712831',
-                       amount='1200', 
+beyonic.Payment.create(phonenumber='+256778122118',
+                       amount='1200',
                        currency='UGX',
                        description='Per diem',
                        callback_url='https://my.website/payments/callback',
@@ -67,7 +67,7 @@ Beyonic supports Metadata, which allows you to add custom key-value attributes w
 
 Metadata has the following constraints:
 
-* Metadata attributes must be key-value pairs. 
+* Metadata attributes must be key-value pairs.
 * Both the keys and values must be strings.
 * For each record, you can have up to 10 custom attributes.
 
@@ -85,7 +85,7 @@ Custom Fields are similar to Metadata - they allow you to add custom data to som
 
 ### Adding or updating custom field data
 
-All internal custom field labels or keys start with "s_". To see the available custom fields, and their actual key names, you can read or list the related object records, as detailed in the respective APIs. 
+All internal custom field labels or keys start with "s_". To see the available custom fields, and their actual key names, you can read or list the related object records, as detailed in the respective APIs.
 
 For example, to see custom fields that have been added to your payment object, list your payments. You can identify the custom fields by their keys, which all start with "s_".
 
