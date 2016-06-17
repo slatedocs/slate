@@ -701,7 +701,6 @@ Including invalid URLs or URLs to decks that are not present in the catalog will
 `/datasets/223fd4/decks/slides/`
 
 Each deck will contain a list of slides for each of its saved analyses.
-They are available on the decks catalog.
 
 
 ####### GET
