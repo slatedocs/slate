@@ -38,7 +38,7 @@ send_instructions | boolean | Whether or not Beyonic will attempt to send instru
 
 ```shell
 curl https://app.beyonic.com/api/collectionrequests -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900" \
--d phonenumber=+256772781923 \
+-d phonenumber=+256778122118 \
 -d currency=UGX \
 -d amount=3000 \
 -d metadata.my_id='123ASDAsd123'
@@ -49,7 +49,7 @@ require 'beyonic'
 Beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
 collection = Beyonic::CollectionRequest.create(
-    phonenumber: "+256773712831",
+    phonenumber: "+256778122118",
     amount: "100.2",
     currency: "UGX",
     'metadata.my_id': "123ASDAsd123"
@@ -62,7 +62,7 @@ require_once('./lib/Beyonic.php');
 Beyonic::setApiKey("ab594c14986612f6167a975e1c369e71edab6900");
 
 Beyonic_Collection_Request::create(array(
-  "phonenumber" => "+256773712831",
+  "phonenumber" => "+256778122118",
   "amount" => "100.2",
   "currency" => "UGX",
   "metadata.my_id" => "123ASDAsd123"
@@ -76,7 +76,7 @@ beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
 kwargs = {'metadata.my_id': '123ASDAsd123'}
 
-beyonic.CollectionRequest.create(phonenumber='+256773712831',
+beyonic.CollectionRequest.create(phonenumber='+256778122118',
                        amount='1200',
                        currency='UGX',
                        description='Per diem',
@@ -100,7 +100,7 @@ public class CreateCollectionRequestExample {
     private static final String API_ENDPOINT = "https://app.beyonic.com/api/collectionrequests";
     private static final String API_KEY = "ab594c14986612f6167a975e1c369e71edab6900";
     private static final String CHARSET = "UTF-8";
-    private static final String PHONE_NUMBER = "+256773712831";
+    private static final String PHONE_NUMBER = "+256778122118";
     private static final String CURRENCY = "UGX";
     private static final String DESCRIPTION = "Per Diem";
     private static final String AMOUNT = "1200";
@@ -169,7 +169,7 @@ public class CreateCollectionRequestExample {
     "organization": 1,
     "amount": "30",
     "currency": "UGX",
-    "phone_number": "+256772781923",
+    "phone_number": "+256778122118",
     "created": "2014-11-22T20:57:04.017Z",
     "author": 15,
     "modified": "2014-11-22T20:57:04.018Z",
@@ -181,7 +181,7 @@ To create a new collection request, make a POST to the endpoint above, with the 
 
 Parameter | Required | Type | Example | Notes
 --------- | -------- | ---- | ------- | -----
-phonenumber | Yes | String | +256773712831 | Must be in international format
+phonenumber | Yes | String | +256778122118 | Must be in international format
 first_name | No | String | Luke | Optional subscriber first name - if omitted, the first name will be set to 'Anonymous'
 last_name | No | String | Woods | Optional subscriber last name - if omitted, the last name will be set to 'Contact'
 amount | Yes | String, Integer or Decimal | 3000 | Do not include thousands separators
@@ -282,7 +282,7 @@ public class SingleCollectionRequestExample {
     "organization": 1,
     "amount": "30",
     "currency": "UGX",
-    "phone_number": "+256772781923",
+    "phone_number": "+256778122118",
     "created": "2014-11-22T20:57:04.017Z",
     "author": 15,
     "modified": "2014-11-22T20:57:04.018Z",
@@ -390,7 +390,7 @@ public class ListAllCollectionRequestsExample {
             "organization": "Beyonic",
             "amount": "3000.0000",
             "currency": "UGX",
-            "phonenumber": "+256772781923",
+            "phonenumber": "+256778122118",
             "metadata": null,
             "created": "2015-08-10T16:10:01Z",
             "author": 42,
@@ -402,7 +402,7 @@ public class ListAllCollectionRequestsExample {
             "organization": "Beyonic",
             "amount": "3000.0000",
             "currency": "UGX",
-            "phonenumber": "+256772781923",
+            "phonenumber": "+256778122118",
             "metadata": null,
             "created": "2015-08-10T16:10:01Z",
             "author": 42,
@@ -414,7 +414,7 @@ public class ListAllCollectionRequestsExample {
             "organization": "Beyonic",
             "amount": "3000.0000",
             "currency": "UGX",
-            "phonenumber": "+256772781923",
+            "phonenumber": "+256778122118",
             "metadata": null,
             "created": "2015-08-10T16:10:01Z",
             "author": 42,

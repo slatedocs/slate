@@ -39,7 +39,7 @@ updated_by | string | The ID of the user who last updated the payment
 
 ```shell
 curl https://app.beyonic.com/api/payments -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900" \
--d phonenumber=+256772781923 \
+-d phonenumber=+256778122118 \
 -d first_name=Kennedy\
 -d last_name=Amani\
 -d currency=UGX \
@@ -55,7 +55,7 @@ require 'beyonic'
 Beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
 payment = Beyonic::Payment.create(
-    phonenumber: "+256773712831",
+    phonenumber: "+256778122118",
     first_name: "Kennedy",
     last_name: "Amani",
     amount: "100.2",
@@ -75,7 +75,7 @@ require_once('./lib/Beyonic.php');
 Beyonic::setApiKey("ab594c14986612f6167a975e1c369e71edab6900");
 
 Beyonic_Payment::create(array(
-  "phonenumber" => "+256773712831",
+  "phonenumber" => "+256778122118",
   "first_name" => "Kennedy",
   "last_name" => "Kennedy",
   "amount" => "100.2",
@@ -96,7 +96,7 @@ beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
 kwargs = {'metadata.id': 1234, 'metadata.name': 'Lucy'}
 
-beyonic.Payment.create(phonenumber='+256773712831',
+beyonic.Payment.create(phonenumber='+256778122118',
                        first_name='Kennedy',
                        last_name='Amani',
                        amount='1200',
@@ -122,7 +122,7 @@ public class CreatePayment {
     private static final String API_ENDPOINT = "https://app.beyonic.com/api/payments";
     private static final String API_KEY = "ab594c14986612f6167a975e1c369e71edab6900";
     private static final String CHARSET = "UTF-8";
-    private static final String PHONE_NUMBER = "+256773712831";
+    private static final String PHONE_NUMBER = "+256778122118";
     private static final String CURRENCY = "UGX";
     private static final String DESCRIPTION = "Per Diem";
     private static final String AMOUNT = "1200";
@@ -194,7 +194,7 @@ public class CreatePayment {
     "payment_type": "money",
     "metadata": {"id": 1234, "name": "Lucy"},
     "description": "Per diem payment",
-    "phone_nos": ["+256772781923"],
+    "phone_nos": ["+256778122118"],
     "state": "new",
     "last_error": null,
     "rejected_reason": null,
@@ -222,7 +222,7 @@ To create a new payment, make a POST to the end point above, with the attributes
 
 Parameter | Required | Type | Example | Notes
 --------- | -------- | ---- | ------- | -----
-phonenumber | Yes | String | +256773712831 | Must be in international format
+phonenumber | Yes | String | +256778122118 | Must be in international format
 amount | Yes | String, Integer or Decimal | 3000 | Do not include thousands separators
 currency | No | String | UGX | 3 letter ISO currency code. No currency conversion is done, so the currency must be valid for the selected phonenumber. You must have a funded Beyonic account in this currency. If your account for this currency has zero balance, your payment will fail. If you also provide an account parameter then the account's currency must match the currency parameter.
 account | No | Integer | 1 | The ID of the account from which you are making the payment. The account must be active and funded. If the account has zero balance, your payment will fail. This parameter is optional if a currency is provided. If you have more than one account with the same currency, and you leave this parameter out, the earliest created account (oldest account) that is still active will be used.
@@ -350,7 +350,7 @@ public class SinglePaymentExample {
     "payment_type": "money",
     "metadata": {"id": 1234, "name": "Lucy"},
     "description": "Per diem payment",
-    "phone_nos": ["+256773712831"],
+    "phone_nos": ["+256778122118"],
     "state": "new",
     "last_error": null,
     "rejected_reason": null,
@@ -473,7 +473,7 @@ public class ListAllPaymentsExample {
             "metadata": null,
             "description": "Test",
             "phone_nos": [
-                "+256784522613"
+                "+256778122118"
             ],
             "state": "approved",
             "last_error": null,
@@ -499,7 +499,7 @@ public class ListAllPaymentsExample {
             "metadata": null,
             "description": "Test2",
             "phone_nos": [
-                "+256784522611"
+                "+256778122118"
             ],
             "state": "scheduled",
             "last_error": null,
