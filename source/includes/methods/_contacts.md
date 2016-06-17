@@ -44,7 +44,7 @@ require 'beyonic'
 Beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
 contact = Beyonic::Contact.create(
-    phone_number: "+256773712831",
+    phone_number: "+256778122118",
     first_name: "John",
     last_name: "Doe",
     email: "john.doe@beyonic.com",
@@ -58,7 +58,7 @@ require_once('./lib/Beyonic.php');
 Beyonic::setApiKey("ab594c14986612f6167a975e1c369e71edab6900");
 
 Beyonic_Contact::create(array(
-  "phone_number" => "+256773712831",
+  "phone_number" => "+256778122118",
   "first_name" => "John",
   "last_name" => "Doe",
   "email" => "john.doe@beyonic.com",
@@ -73,7 +73,7 @@ beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
 kwargs = {'metadata.my_id': '123ASDAsd123'}
 
-beyonic.Contact.create(phone_number='+256773712831',
+beyonic.Contact.create(phone_number='+256778122118',
                        first_name='John',
                        last_name='Doe',
                        email='john.doe@beyonic.com',
@@ -98,7 +98,7 @@ public class CreateContactExample {
     private static final String CHARSET = "UTF-8";
     private static final String FIRST_NAME = "John";
     private static final String LAST_NAME = "Doe";
-    private static final String PHONE_NUMBER = "+256773712831";
+    private static final String PHONE_NUMBER = "+256778122118";
     private static final String EMAIL = "john.doe@beyonic.com";
 
     public static void main(String[] args){
@@ -164,7 +164,7 @@ public class CreateContactExample {
     "first_name": "Suzanne",
     "last_name": "Kwagala",
     "email": "suzanne@beyonic.com",
-    "phone_number": "+256784522611",
+    "phone_number": "+256778122118",
     "type": "employee",
     "status": "active",
     "metadata": null,
@@ -179,7 +179,7 @@ To create a new contact, make a POST to the endpoint above, with the attributes 
 
 Parameter | Required | Type | Example | Notes
 --------- | -------- | ---- | ------- | -----
-phone_number | Yes | String | +256773712831 | Must be in international format
+phone_number | Yes | String | +256778122118 | Must be in international format
 first_name | Yes | String | John | The contact's first name
 last_name | Yes | String | Doe | The contact's last name
 email | No | String | john.doe@beyonic.com | The contact's email address
@@ -276,7 +276,7 @@ public class SingleContactExample {
     "first_name":"John",
     "last_name":"Doe",
     "email":null,
-    "phone_number":"+41421234567",
+    "phone_number":"+256778122118",
     "type":"employee",
     "status":"active",
     "metadata":{},
