@@ -20,6 +20,23 @@ The quoting API does not require you to include your Sendle ID and API Key, but 
     {
       "quote":{
         "gross":{
+          "amount":14.75,
+          "currency":"AUD"
+        },
+        "net":{
+          "amount":13.41,
+          "currency":"AUD"
+        },
+        "tax":{
+          "amount":1.34,
+          "currency":"AUD"
+        }
+      },
+      "plan_name":"Easy"
+    },
+    {
+      "quote":{
+        "gross":{
           "amount":13.75,
           "currency":"AUD"
         },
@@ -37,19 +54,19 @@ The quoting API does not require you to include your Sendle ID and API Key, but 
     {
       "quote":{
         "gross":{
-          "amount":14.75,
+          "amount":13.74,
           "currency":"AUD"
         },
         "net":{
-          "amount":13.41,
+          "amount":12.49,
           "currency":"AUD"
         },
         "tax":{
-          "amount":1.34,
+          "amount":1.25,
           "currency":"AUD"
         }
       },
-      "plan_name":"Standard"
+      "plan_name":"Pro"
     }
   ]
 ```
@@ -89,7 +106,7 @@ The `?` after the quote endpoint initiates the query. Be sure to separate terms 
 **delivery_postcode** | Four-digit post code for the delivery address.
 **kilogram_weight** | Must be a decimal-value above zero and below weight limits.  Max weight is 25 kilograms.
 **cubic_metre_volume** | Must be decimal-value above zero and less than one.  To determine this measurement multiply *length* x *width* x *depth* of the parcel **in metres**.
-**plan_name** | If specified, the API will respond with a quote for the given plan. Otherwise, the API will give quotes for all plans available.  Current available plans are **Standard** and **Premium**.
+**plan_name** | If specified, the API will respond with a quote for the given plan. Otherwise, the API will give quotes for all plans available.  Current available plans are **Easy**, **Premium**, and **Pro**.
 
 > Request with `plan_name`
 
