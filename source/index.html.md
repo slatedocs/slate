@@ -11,6 +11,7 @@ toc_footers:
 includes:
   - basic_information
   - payees
+  - payers
   - bank_accounts
   - charge_configs
   - charges

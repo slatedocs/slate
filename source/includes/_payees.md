@@ -39,8 +39,8 @@ EXEMPLO
 | city                     | string          | nome da cidade do domicílio do beneficiário                          |
 | state                    | string          | uf do estado do domicílio do beneficiário (duas letras, p. ex. 'RJ') |
 | neighbourhood            | string          | bairro do domicílio do beneficiário                                  |
-| street                   | string          | rua do domicílio do beneficiário                                     |
-| number                   | string          | número da rua do domicílio do beneficiário                           |
+| street                   | string          | logradouro do beneficiário                                           |
+| number                   | string          | número da logradouro do beneficiário                                 |
 | zipcode                  | string          | cep do domicílio do beneficiário                                     |
 | complement               | string          | complemento para o endereço de domicilio do beneficiário             |
 | _links                   | array of object | links do beneficiário                                                |
@@ -195,8 +195,8 @@ Cria um novo beneficiário, retornando as informações do mesmo caso haja suces
 | city                     | string | **(requerido)** nome da cidade do domicílio do beneficiário                          |
 | state                    | string | **(requerido)** uf do estado do domicílio do beneficiário (duas letras, p. ex. 'RJ') |
 | neighbourhood            | string | **(requerido)** bairro do domicílio do beneficiário                                  |
-| street                   | string | **(requerido)** rua do domicílio do beneficiário                                     |
-| number                   | string | **(requerido)** número da rua do domicílio do beneficiário                           |
+| street                   | string | **(requerido)** logradouro do beneficiário                                           |
+| number                   | string | **(requerido)** número da logradouro do beneficiário                                 |
 | zipcode                  | string | **(requerido)** cep do domicílio do beneficiário                                     |
 | complement               | string | (opcional)  complemento para o endereço de domicilio do beneficiário                 |
 
@@ -256,8 +256,8 @@ Atualiza o beneficiário determinado, retornando as informações do mesmo caso 
 | city                     | string | **(requerido)** nome da cidade do domicílio do beneficiário                          |
 | state                    | string | **(requerido)** uf do estado do domicílio do beneficiário (duas letras, p. ex. 'RJ') |
 | neighbourhood            | string | **(requerido)** bairro do domicílio do beneficiário                                  |
-| street                   | string | **(requerido)** rua do domicílio do beneficiário                                     |
-| number                   | string | **(requerido)** número da rua do domicílio do beneficiário                           |
+| street                   | string | **(requerido)** logradouro do beneficiário                                           |
+| number                   | string | **(requerido)** número da logradouro do beneficiário                                 |
 | zipcode                  | string | **(requerido)** cep do domicílio do beneficiário                                     |
 | complement               | string | (opcional)  complemento para o endereço de domicilio do beneficiário                 |
 
