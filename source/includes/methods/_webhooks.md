@@ -66,22 +66,22 @@ target | string | The URL that triggered events will be sent to
 			    "user": 42
 			},
 	"data": {
-				"id": 2314, 
-			    "organization": 1, 
-			    "amount": "30", 
+				"id": 2314,
+			    "organization": 1,
+			    "amount": "30",
 			    "currency": "UGX",
 			    "payment_type": "money",
-			    "metadata": {"id": 1234, "name": "Lucy"}, 
-			    "description": "Per diem payment", 
-			    "phone_nos": ["+256772781923"], 
-			    "state": "completed", 
+			    "metadata": {"id": 1234, "name": "Lucy"},
+			    "description": "Per diem payment",
+			    "phone_nos": ["+256778122118"],
+			    "state": "completed",
 			    "last_error": null,
 			    "rejected_reason": null,
 			    "rejected_by": null,
 			    "rejected_time": null,
 			    "cancelled_reason": null,
 			    "cancelled_by": null,
-			    "cancelled_time": null, 
+			    "cancelled_time": null,
 			    "created": "2014-11-22T20:57:04.017Z",
 			    "author": 15,
 			    "modified": "2014-11-22T20:57:04.018Z",
@@ -93,7 +93,7 @@ target | string | The URL that triggered events will be sent to
 
 When an event is triggered, a JSON post will be sent to the URL that subscribed to the webhook. The JSON post body will include the following information:
 
-Parameter | Description 
+Parameter | Description
 --------- | --------
 hook | A JSON representation of a webhook object. See the see webhook section below.
 data | A JSON representation of the object that triggered the event. This is different for each event. See the 'Supported events' section above.
@@ -102,9 +102,9 @@ data | A JSON representation of the object that triggered the event. This is dif
 
 **1. Https with invalid certificates**
 
-Beyonic only supports notification urls that start with "https://", even when testing. So, you should set up URL to a dedicated page on your server with a server-side https certificate. 
+Beyonic only supports notification urls that start with "https://", even when testing. So, you should set up URL to a dedicated page on your server with a server-side https certificate.
 
-Beyonic will usually validate the https certificate, and if validation fails, the notification will not be sent to your URL. To skip validation while testing, add ?skip-cert-verify to your URL, for example: 
+Beyonic will usually validate the https certificate, and if validation fails, the notification will not be sent to your URL. To skip validation while testing, add ?skip-cert-verify to your URL, for example:
     <aside class="notice">https://my.callback.url.com?skip-cert-verify.</aside>
 
 Note that skip-cert-verify only prevents certificate verification. It doesn't eliminate the "https://" requirement
@@ -119,7 +119,7 @@ RequestBin gives you a URL that will collect requests made to it and let you ins
 
 Once you get a RequestBin URL, it uses http by default. Since Beyonic only supports https, remember to use "https://" and "skip-cert-verify"
 
-For example, if your RequestBin URL is 
+For example, if your RequestBin URL is
 
     <aside class="notice">http://requestb.in/xzdqe313</aside>
 
@@ -502,7 +502,7 @@ public class ListAllWebhooksExample {
     ]
 }
 ```
-       
+
 To retrieve a list of all webhooks, make a GET request to the webhooks endpoint. This will return a list of webhooks objects.
 
 ## Updating a webhook
