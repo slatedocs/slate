@@ -119,7 +119,7 @@ public class SingleCollectionExample {
     "organization": 1,
     "amount": "20.0000",
     "currency": 1,
-    "phonenumber": "+2547227272723",
+    "phonenumber": "+256778122118",
     "payment_date": "2015-12-12T00:00:00Z",
     "reference": null,
     "status": "successful",
@@ -231,7 +231,7 @@ public class ListAllCollectionsExample {
             "organization": 1,
             "amount": "2000.0000",
             "currency": 2,
-            "phonenumber": "+256782466772",
+            "phonenumber": "+256778122118",
             "payment_date": "2015-07-14T09:57:44Z",
             "reference": "beyonic",
             "status": "successful",
@@ -261,7 +261,7 @@ public class ListAllCollectionsExample {
             "organization": 1,
             "amount": "500.0000",
             "currency": 2,
-            "phonenumber": "+256756145947",
+            "phonenumber": "+256778122118",
             "payment_date": "2015-06-25T08:16:26Z",
             "reference": "payment 10",
             "status": "successful",
@@ -281,7 +281,7 @@ To retrieve a list of all collections, make a GET request to the collections end
 > Sample Request:
 
 ```shell
-curl https://app.beyonic.com/api/collections?phonenumber=+256772712893&remote_transaction_id=SS12312 -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900"
+curl https://app.beyonic.com/api/collections?phonenumber=+256778122118&remote_transaction_id=SS12312 -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900"
 ```
 
 ```ruby
@@ -289,7 +289,7 @@ require 'beyonic'
 Beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
 collection = Beyonic::Collection.list(
-  phonenumber: "+256772712893",
+  phonenumber: "+256778122118",
   remote_transaction_id: "SS12312"
 )
 ```
@@ -300,7 +300,7 @@ require_once('./lib/Beyonic.php');
 Beyonic::setApiKey("ab594c14986612f6167a975e1c369e71edab6900");
 
 $collection = Beyonic_Collection::getAll(array(
-  "phonenumber" => "+256772712893",
+  "phonenumber" => "+256778122118",
   "remote_transaction_id" => "SS12312"
 ));
 ?>
@@ -310,7 +310,7 @@ $collection = Beyonic_Collection::getAll(array(
 import beyonic
 beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
-collection = beyonic.Collection.list(phonenumber='+256772712893',
+collection = beyonic.Collection.list(phonenumber='+256778122118',
                                      remote_transaction_id='SS12312')
 
 
@@ -401,7 +401,7 @@ Note that the response will be a list of collections, not a single collection.
 > Sample Request:
 
 ```shell
-curl https://app.beyonic.com/api/collections?phonenumber=+256772712893&remote_transaction_id=SS12312&claim=True&amount=200 -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900"
+curl https://app.beyonic.com/api/collections?phonenumber=+256778122118&remote_transaction_id=SS12312&claim=True&amount=200 -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900"
 ```
 
 ```ruby
@@ -409,7 +409,7 @@ require 'beyonic'
 Beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
 collection = Beyonic::Collection.list(
-  phonenumber: "+256772712893",
+  phonenumber: "+256778122118",
   remote_transaction_id: "SS12312",
   claim: true,
   amount: 200
@@ -422,7 +422,7 @@ require_once('./lib/Beyonic.php');
 Beyonic::setApiKey("ab594c14986612f6167a975e1c369e71edab6900");
 
 $collection = Beyonic_Collection::getAll(array(
-  "phonenumber" => "+256772712893",
+  "phonenumber" => "+256778122118",
   "remote_transaction_id" => "SS12312",
   "claim" => "True",
   "amount" => "200",
@@ -434,7 +434,7 @@ $collection = Beyonic_Collection::getAll(array(
 import beyonic
 beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
-collection = beyonic.Collection.list(phonenumber='+256772712893',
+collection = beyonic.Collection.list(phonenumber='+256778122118',
                                      remote_transaction_id='SS12312',
                                      claim=True,
                                      amount='200')
@@ -460,7 +460,7 @@ public class ClaimUnmatchedCollectionExample {
     public static void main(String[] args){
         URL url = null;
         try {
-            url = new URL(API_ENDPOINT + "?phonenumber=+256772712893&remote_transaction_id=SS12312&amount=200&claim=True");
+            url = new URL(API_ENDPOINT + "?phonenumber=+256778122118&remote_transaction_id=SS12312&amount=200&claim=True");
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 
             conn.setRequestProperty("Content-Type", "application/json");
