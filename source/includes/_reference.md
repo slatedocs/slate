@@ -33,7 +33,7 @@ The following data is sent to our servers from the agent:
 
 * Timing information collected from our instrumentation
 * Gems used by your application
-* Slow request transaction traces, which include:
+* Transaction traces, which include:
   * The URL, including query parameters, of the slow request. This can be modified to exclude query params via the <a href="#configuration-reference"><code>uri_reporting</code></a> configuration option.
 
   * IP Address of the client initiating the request

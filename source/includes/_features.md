@@ -4,41 +4,24 @@ Scout is Application Monitoring built for modern development teams. It's built t
 
 ## App Performance Overview
 
-The overview page provides an at-a-glance, auto-refreshing view of your app's performance and resource usage. You can compare metrics in the overview chart and see how your app's performance compares to different time periods.
+The overview page provides an at-a-glance, auto-refreshing view of your app's performance and resource usage (mean response time by category, 95th percentile response time, throughput, error rate, and more). You can quickly dive into endpoint activity via click-and-drag (or pinch-and-expand with a mobile device) on the overview chart.
 
-![overview](dash_annotated.png)
+![overview](app_show.gif)
 
-### Zooming into Slow Requests
+Additionally, you can compare metrics in the overview chart and see how your app's performance compares to different time periods.
 
-See a large spike in response time? Click-and-drag (or pinch-and-expand on an iPad) on the overview chart. You'll see the number of slow requests over the selected period. Click the link to view details on those requests.
+## Endpoint Details
 
-![overview drag](dash_drag_annotated.png)
+You can view metrics for specific controller-action and background job workers. There is a similar chart interaction to the App Performance Overview page, with one difference: your selection will render an updated list of transaction traces that correspond to the selected time period:
+![stream](endpoint_show.gif)
 
-## Slow Stream
+You can sort traces by response time, object allocations, date, and more.
 
-The Slow Stream gives direct access to slow web requests (>= 2 seconds).
+## Transaction Traces
 
-![stream](stream_annotated.png)
+Scout collects detailed transactions across your endpoints automatically. The transaction traces provide a number of visual queues to direct you to hotspots. Dig into bottlenecks - down to the line-of-code, author, commit date, and deploy time - from this view. 
 
-Requests are aggregrated by the endpoint name. Scout captures details on every slow request your app handles - it doesn't sample - to ensure you have the complete picture of what's slow.
-
-Click on an endpoint name to view details on slow requests for the respective endpoint.
-
-## Slow Request Details
-
-Dig into bottlenecks - down to the line-of-code, author, commit date, and deploy time - with the slow request detail view. 
-
-![stream show](stream_show_annotated.png)
-
-### Aggregrate Trace
-
-When clicking on an endpoint from the Slow Stream, you'll see an __aggregrate trace__ by default. This aggregrates slow request traces from multiple requests together so you can see common bottlenecks across requests.
-
-### Individual Slow Requests
-
-You can view details on individual slow requests vs. an aggregrate trace by selecting the request in the sidebar.
-
-![stream show request](stream_show_request.png)
+![transaction traces](transaction_traces.png)
 
 ### Call Breakdown
 
@@ -64,13 +47,9 @@ You'll see "CODE" buttons next to method calls that are >= 500 ms. If you've ena
 
 If you don't enable the Github integration, you'll see a backtrace.
 
-### Rate Limiting of Slow Requests
-
-Scout records details on every slow request but limits the collection of call breakdown metrics to ten slow requests per-server to prevent sending too much data to Scout.
-
 ## Git Integration
 
-If your code is hosted at Github, you can see the [relevant slow line-of-code within the Scout user interface](#code-backtraces) when viewing slow request details. Additionally, you'll also see the:
+If your code is hosted at Github, you can see the [relevant slow line-of-code within the Scout user interface](#code-backtraces) when viewing a transaction trace. Additionally, you'll also see the:
 
 * author
 * commit time
@@ -90,12 +69,7 @@ Context lets you see the forest from the trees. For example, you can add custom 
 
 Adding custom context is easy - [learn how](#adding-custom-context).
 
-When viewing slow request details from the Slow Stream, click the "Context" link:
-
-![context](stream_show_context_annotated.png)
-
-
-You'll see a histogram representation for each piece of context for the endpoint.
+When viewing a transaction trace, click the "Context" section to see the context Scout has collected.
 
 ## Endpoints Performance
 
@@ -105,12 +79,6 @@ The endpoints area within Scout provides a sortable view of your app's overall p
 
 ![endpoints overview](endpoints_annotated.png)
 
-### Endpoint Details
-
-View aggregated metrics across requests for a specific endpoint by clicking on the endpoint name from overview area. You can also drill into slow requests for this endpoint from this page.
-
-![endpoint details](endpoints_show_annotated.png)
-
 ## Time Comparisons
 
 You can easily compare the performance of your application between different time periods via the time selection on the top right corner of the UI.
@@ -119,5 +87,5 @@ You can easily compare the performance of your application between different tim
 
 ## Data Retention
 
-Scout stores 30 days of metrics and seven days of slow request details.
+Scout stores 30 days of metrics and seven days of transaction traces.
 

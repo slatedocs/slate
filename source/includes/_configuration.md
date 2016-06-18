@@ -225,7 +225,7 @@ The following configuration settings are available:
           uri_reporting
         </th>
         <td>
-          By default Scout reports the URL and query parameters of slow requests. To exclude query params, use
+          By default Scout reports the URL and query parameters with transaction traces. To exclude query params, use
           <code>path</code>.
         </td>
         <td>
