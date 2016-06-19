@@ -19,8 +19,10 @@ API Errors
 
 Error Code | Meaning
 ---------- | -------
+41 | Wrong Number of Outcomes: the number of initial fair prices does not match this market's number of outcomes
 42 | Insufficient Liquidity: insufficient liquidity to generate order book
 43 | Initial Price Out-of-Bounds: one or more initial fair prices are out-of-bounds
+44 | Price Width Out-of-Bounds: price width is too large for one or more initial fair prices
 97 | Database Delete Failed
 98 | Database Write Failed
 99 | Database Read Failed
