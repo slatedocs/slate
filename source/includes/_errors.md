@@ -28,6 +28,11 @@ We don't currently support JSONP.
 
 # Changelog
 
+### Version 1.0.5 (2016-20-06)
+
+- Added `content_type` field in POST /v1/articles
+- Updated examples of POST /v1/articles
+
 ### Version 1.0.4 (2015-12-03)
 
 - Fixed typo in GET /v1/search example
