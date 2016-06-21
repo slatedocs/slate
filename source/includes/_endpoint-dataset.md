@@ -696,6 +696,136 @@ If the payload contains only a subset of the existing decks. The unmentioned dec
 
 Including invalid URLs or URLs to decks that are not present in the catalog will return a 400 response from the server.
 
+###### Slides
+
+`/datasets/223fd4/decks/slides/`
+
+Each deck will contain a list of slides for each of its saved analyses.
+
+
+####### GET
+
+Returns a `shoji:catalog` with the slides for this deck.
+
+```json
+
+{
+    "element": "shoji:catalog",
+    "self": "/api/datasets/123/decks/123/slides/",
+    "orders": {
+        "flat": "/api/datasets/123/decks/123/slides/flat/"
+    },
+    "specification": "https://beta.crunch.io/api/specifications/slides/",
+    "description": "A catalog of the Slides in this Deck",
+    "index": {
+        "/api/datasets/123/decks/123/slides/123/": {
+            "analysis_url": "/api/datasets/123/decks/123/slides/123/analyses/123/",
+            "subtitle": "z",
+            "display": {
+                "value": "table"
+            },
+            "title": "slide 1"
+        },
+        "/api/datasets/123/decks/123/slides/456/": {
+            "analysis_url": "/api/datasets/123/decks/123/slides/456/",
+            "subtitle": "",
+            "display": {
+                "value": "table"
+            },
+            "title": "slide 2"
+        }
+    },
+    "template": "{\"query\": {\"measures\": \"Object with keyed measures functions\", \"dimensions\": \"Array of variable references\", \"weight\": \"Optional weight variable URL\"}, \"display_settings\": {}, \"query_environment\": {\"filter\": \"Array of filter urls\"}}"
+}
+
+```
+
+####### POST
+
+To create a new slide an analysis has to be posted to the catalog. The payload
+is described in the [saved analyses](#saving-analyses) section.
+
+
+###### Slide Entity
+
+`/datasets/223fd4/decks/slides/a126ce/`
+
+
+Each slide in the Slide Catalog contains reference to its analysis.
+
+####### GET
+
+```json
+{
+    "element": "shoji:entity",
+    "self": "/api/datasets/123/decks/123/slides/123/",
+    "catalogs": {
+        "analyses": "/api/datasets/123/decks/123/slides/123/analyses/"
+    },
+    "description": "Returns the detail information for a given slide",
+    "body": {
+        "deck_id": "123",
+        "subtitle": "z",
+        "title": "slide 1",
+        "analysis_url": "/api/datasets/123/decks/123/slides/123/analyses/123/",
+        "display": {
+            "value": "table"
+        },
+        "id": "123"
+    }
+}
+```
+
+####### DELETE
+
+Call DELETE on the Slide entity endpoint to delete this slide and its analyses.
+
+
+###### Slides Order
+
+`/datasets/223fd4/decks/slides/flat/`
+
+The owner of the deck can pick the order of the slides on it. Unlike other
+`shoji:order` resources, this order does not allow grouping or nesting so it 
+will always be a flat list of slide URLs.
+
+
+####### GET
+
+Will return the list of all the slides in the deck.
+
+```json
+{
+    "element": "shoji:order",
+    "self": "/api/datasets/123/decks/123/slides/flat/",
+    "description": "Order of the slides on this deck",
+    "graph": [
+        "/api/datasets/123/decks/123/slides/123/",
+        "/api/datasets/123/decks/123/slides/456/"
+    ]
+}
+```
+
+####### PATCH
+
+To make changes to the order, a client should PATCH the full `shoji:order` 
+resource to the endpoint with the new order on its `graph` attribute.
+
+Any slide not mentioned on the payload will be added at the end of the graph
+in arbitrary order.
+
+
+```json
+{
+    "element": "shoji:order",
+    "self": "/api/datasets/123/decks/123/slides/flat/",
+    "description": "Order of the slides on this deck",
+    "graph": [
+        "/api/datasets/123/decks/123/slides/123/",
+        "/api/datasets/123/decks/123/slides/456/"
+    ]
+}
+```
 
 ##### Preferences
 
