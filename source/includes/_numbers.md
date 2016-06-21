@@ -1,17 +1,13 @@
 Numbers
 =======
 
-There are four acceptable ways to pass numerical inputs to the Augur API:
+There are three acceptable ways to pass numerical inputs to the Augur API:
 
 - primitive JS numbers (e.g., `1010101`): ok for integers, but use strings for floating point numbers (see below)
 
 - stringified numbers (e.g., `"1010101"`)
 
 - hexadecimal strings (e.g., `"0xf69b5"`)
-
-- BigNumbers (e.g., `new BigNumber("1010101")`)
-
-Note that for primitive JS numbers, you will receive an error from the BigNumber library if your input contains more than 15 significant figures.
 
 Floating-point (decimal) values should be passed to augur.js as strings (e.g., instead of `0.07`, use `"0.07"`), for reasons described in [enormous detail](http://docs.oracle.com/cd/E19957-01/806-3568/ncg_goldberg.html) elsewhere.
 
