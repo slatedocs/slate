@@ -81,7 +81,7 @@ Each collection within the example booking JSON is described in detail in the se
 
 | Data Field | Attributes |
 |-----------:|:-----------|
-**pickup_date** <div class="optional">"yyyy-mm-dd"</div>| Date must be at least one non-holiday, business day in the future.
+**pickup_date** <div class="optional">"yyyy-mm-dd"</div>| If provided the date must be at least one non-holiday, business day in the future. If pickup date is omitted it will be set to the first available pickup date option and returned in the order payload on subsequent requests.
 **description** <div class="optional">optional</div> | Description is used by the customer to track the parcel on Sendle Dashboard. It does not show up on a label.  It must be under 255 characters in length.
 **kilogram_weight** | Must be a decimal value over zero and less than the category/max weight allowed (25kg max).
 **cubic_metre_volume** | Must be a decimal value above zero and less than one.  To get value, multiply *length* x *width* x *depth* of parcel in metres.
