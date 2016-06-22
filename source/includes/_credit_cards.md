@@ -9,7 +9,6 @@ EXEMPLO
     "id": 8,
     "number": "545301******6167",
     "holder_name": "John Doe",
-    "unusable": false,
     "brand": "amex",
     "expiration": "05/18",
     "avs_address": "Rua Julio de Castilhos",
@@ -41,8 +40,7 @@ Os Cartões de Crédito pertencem ao Pagador utilizado no momento de sua criaç�
 | avs_complement   | string          | complemento endereço de cobrança do cartão                                    |
 | avs_district     | string          | bairro do endereço de cobrança do cartão                                      |
 | avs_zipcode      | string          | cep do endereço de cobrança do cartão                                         |
-| unusable         | boolean         | indica se o cartão está inutilizável                                          |
-| reusable         | boolean         | indica se o cartão é reutilizável                                             |
+| reusable         | boolean         | indica se o cartão é pode ser reutilizado em novas cobranças                  |
 | payer_id         | integer         | identificador do Payer ao qual este cartão pertence                           |
 | charge_config_id | integer         | identificador da ChargeConfig à qual este cartão pertence                     |
 | _links           | array of object | links do beneficiário                                                         |
@@ -74,7 +72,6 @@ EXEMPLO DE CORPO DA RESPOSTA
     "id": 8,
     "number": "545301******6167",
     "holder_name": "John Doe",
-    "unusable": false,
     "brand": "amex",
     "expiration": "05/18",
     "avs_address": "Rua Julio de Castilhos",
