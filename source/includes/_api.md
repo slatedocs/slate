@@ -255,11 +255,12 @@ augur.getMarketInfo(marketId, function (marketInfo) { /* ... */ })
 // example output:
 { network: '2',
   traderCount: 2,
-  makerFees: '0.10000000000000000002',
   traderIndex: 5e-20,
   numOutcomes: 2,
   tradingPeriod: 107304960000,
-  tradingFee: '0.03500000000000000002',
+  makerFee: '0.01246155619866478799995356402249700352',
+  takerFee: '0.07910419330000878000004643597750299648',
+  tradingFee: '0.061043832999115712',
   branchId: '0xf69b5',
   numEvents: 1,
   cumulativeScale: '14999',
@@ -309,11 +310,12 @@ info = {
   "0xf41e2f1827142a95cc14b5333f3d3493588342ef8bc9214e96e0c894dff27fc5": {
     "network": "2",
     "traderCount": 0,
-    "makerFees": "0.5",
+    "makerFee": "0.01246155619866478799995356402249700352",
+    "takerFee": "0.07910419330000878000004643597750299648",
+    "tradingFee": "0.061043832999115712",
     "traderIndex": 0,
     "numOutcomes": 3,
     "tradingPeriod": 206104,
-    "tradingFee": "0.01999999999999999998",
     "branchId": "0xf69b5",
     "numEvents": 1,
     "cumulativeScale": "1",
@@ -363,11 +365,12 @@ info = {
   "0x9b8e45cdf9d35ab66b939d5eb5b48bf10de3c39b7f6fa2d38fe518a869502e8": {
     "network": "2",
     "traderCount": 0,
-    "makerFees": "0.39999999999999999998",
+    "makerFee": "0.01246155619866478799995356402249700352",
+    "takerFee": "0.07910419330000878000004643597750299648",
+    "tradingFee": "0.061043832999115712",
     "traderIndex": 0,
     "numOutcomes": 3,
     "tradingPeriod": 206104,
-    "tradingFee": "0.01999999999999999998",
     "branchId": "0xf69b5",
     "numEvents": 1,
     "cumulativeScale": "1",
@@ -1569,8 +1572,8 @@ Creates an event on branch `branchId` with `description`, expiration date (in ep
 augur.createMarket({
   branchId: augur.branches.dev,
   description: description,
-  tradingFee: "0.02",
-  makerFees: "0.5",
+  takerFee: "0.02",
+  makerFee: "0.01",
   tags: ["example tag", "other example tag", "nonsense"],
   extraInfo: "An even longer description / link to more info!",
   events: ["-0x90fb310e94df790eaab7266034ae3807b147696bcf57a72f71db338f86718875"],
@@ -1599,9 +1602,9 @@ successResponse = {
 }
 ```
 ### [createMarket contract](https://github.com/AugurProject/augur-core/blob/master/src/functions/createMarket.se)
-#### createMarket(branchId, description, tradingFee, events, tags, makerFees, extraInfo, onSent, onSuccess, onFailed)
+#### createMarket(branchId, description, takerFee, events, tags, makerFee, extraInfo, onSent, onSuccess, onFailed)
 
-Creates a market on branch `branchId` with `description`, trading fee (as a proportion) of `tradingFee`, maker fees (proportion of trading fees paid by the order creator, as opposed to the person matching the order) `makerFees`, topics/categories `tags`, and more detailed description and/or link to more info `extraInfo`, and containing event IDs supplied in an array `events`.  Regular (non-combinatorial) markets always have a single event; combinatorial markets allow up to 3 events.
+Creates a market on branch `branchId` with `description`, trading fees paid by the taker of a trade (as a proportion) `takerFee`, maker fees (fees paid by the order creator, as opposed to the person matching the order) `makerFee`, topics/categories `tags`, and more detailed description and/or link to more info `extraInfo`, and containing event IDs supplied in an array `events`.  Regular (non-combinatorial) markets always have a single event; combinatorial markets allow up to 3 events.
 
 ```javascript
 // closeMarket contract
