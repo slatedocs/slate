@@ -31,23 +31,7 @@ ds <- newDatasetFromFile("my.csv", name="my survey")
 # All three steps are handled within newDatasetFromFile
 ```
 
-POST a Dataset Entity to the datasets catalog. The available initial attributes
-to create a new dataset entity are (all optional):
-
-
-Name | Type | Description
----- | ---- | -----------
-name | string | Human-friendly string identifier.
-description | string | Optional longer string.
-archived | boolean | Whether the variable should be hidden from most views; default: false.
-owner | Url | Use to make the dataset be owned by a team providing a team url. if omitted will use the logged user as owner.   
-notes | sting | Blank if omitted. Optional notes for the dataset.
-start_date | date | ISO-8601 formatted date with day resolution.
-end_date | date | ISO-8601 formatted date with day resolution.
-is_published | boolean | If false only project editors will have access to this dataset .
-weight_variables | array | Contains aliases of weight variables to start this dataset with. Must be numeric type.
-
-
+POST a Dataset Entity to the datasets catalog. See the documentation for [POST /datasets/](#post) for details on valid attributes to include in the POST.
 
 #### 2. Upload the file
 
@@ -66,7 +50,7 @@ Content-Disposition: form-data; name="uploaded_file"; filename="my.csv"
 Location: /sources/{source_id}/
 ```
 
-POST the file to the sources catalog. 
+POST the file to the sources catalog.
 
 
 #### 3. Add the Source to the Dataset
@@ -85,14 +69,14 @@ Content-Type: application/json
 Location: /datasets/{dataset_id}/batches/{batch_id}/
 ```
 
-POST the URL of the just-created source entity (the Location in the 201 response from the previous step) to the batches catalog of the dataset entity created in step 1. 
+POST the URL of the just-created source entity (the Location in the 201 response from the previous step) to the batches catalog of the dataset entity created in step 1.
 
 <aside class="notice">If your file is large, you may wish to have this import job be completed asynchronously in order to avoid hitting a server timeout. To do so, include `"async": true` in the "body" key of the payload. This will change the response status from 201 to 202, and you'll need to poll the server to learn when the import job has been completed. See batches for details.</aside>
 
 ### Metadata document + CSV
 
-This approach may be most natural for importing data from databases that store 
-data by rows. You can dump or export your database to Crunch's JSON metadata 
+This approach may be most natural for importing data from databases that store
+data by rows. You can dump or export your database to Crunch's JSON metadata
 format, plus a CSV of data, and upload those to Crunch, without requiring much
  back-and-forth with the API.
 
@@ -123,21 +107,21 @@ Content-Length: 974
 Location: /datasets/{dataset_id}/
 ```
 
-POST a Dataset Entity to the datasets catalog, and in the "body", include a 
+POST a Dataset Entity to the datasets catalog, and in the "body", include a
 Crunch Table object with variable definitions and order.
 
-The "metadata" member in the table is an object containing all variable 
-definitions, keyed by variable alias. See the Object Reference: Variable 
-Definitions discussion for specific requirements for defining variables of 
+The "metadata" member in the table is an object containing all variable
+definitions, keyed by variable alias. See the Object Reference: Variable
+Definitions discussion for specific requirements for defining variables of
 various types, as well as the example below.
 
-The "order" member is a Shoji Order object specifying the order, potentially 
-hierarchically nested, of the variables in the dataset. The example below 
+The "order" member is a Shoji Order object specifying the order, potentially
+hierarchically nested, of the variables in the dataset. The example below
 illustrates how this can be used. Shoji is JSON, which means the "metadata"
-object is explicitly unordered. If you wish the variables to have an order, 
-you must supply an order object rather than relying on any order of the 
+object is explicitly unordered. If you wish the variables to have an order,
+you must supply an order object rather than relying on any order of the
 "metadata" object.
- 
+
 ##### Validation rules
 
 All variables mentioned in the metadata must contain a valid variable definition
@@ -224,9 +208,9 @@ Several things to note:
 
 * Everything–metadata, order, and data–is keyed by variable "alias", not "name", because Crunch believes that names are for people, not computers, to understand. Aliases must be unique across the whole dataset, while variable "names" must only be unique within their group or array variable.
 * For categorical variables, all values in the CSV correspond to category ids, not category names, and also not "numeric_values", which need not be unique or present for all categories in a variable.
-* The array variables defined in the metadata ("allpets" and "petloc") don't themselves have columns in the CSV, but all of their "subvariables" do, keyed by their aliases. 
+* The array variables defined in the metadata ("allpets" and "petloc") don't themselves have columns in the CSV, but all of their "subvariables" do, keyed by their aliases.
 * With the exception of those array variable definitions, all variables and subvariables defined in the metadata have columns in the CSV, and there are no columns in the CSV that are not defined in the metadata.
-* For internal variables, such as a case identifier in this example, that you don't want to be visible in the UI, you can add them as "hidden" from the beginning by including `"discarded": "true"` in their definition, as in the example of "caseid". 
+* For internal variables, such as a case identifier in this example, that you don't want to be visible in the UI, you can add them as "hidden" from the beginning by including `"discarded": "true"` in their definition, as in the example of "caseid".
 * Missing values
     * Variables with categories (categorical, multiple_response, categorical_array) have missing values defined as categories with `"missing": "true"`
     * Text, numeric, and datetime variables have missing variables defined as "missing_rules", which can be "value", "set", or "range". See, for example, "q3" and "ndogs".
@@ -306,7 +290,7 @@ Location: /datasets/{dataset_id}/variables/{variable_id}/
 ```
 
 ```r
-# Here's a similar example. R's factor type becomes "categorical". 
+# Here's a similar example. R's factor type becomes "categorical".
 gender.names <- c("Male", "Female", "Skipped")
 gen <- factor(gender.names[c(1, 3, 1, 2, 2, 1, 1, 1, 1, 2, 3, 1)],
     levels=gender.names)
@@ -314,6 +298,6 @@ gen <- factor(gender.names[c(1, 3, 1, 2, 2, 1, 1, 1, 1, 2, 3, 1)],
 ds$gender <- gen
 ```
 
-POST a Variable Entity to the newly created dataset's variables catalog, and include with that Entity definition a "values" key that contains the column of data. Do this for all columns in your dataset. 
+POST a Variable Entity to the newly created dataset's variables catalog, and include with that Entity definition a "values" key that contains the column of data. Do this for all columns in your dataset.
 
 <aside class="notice">Note that the lengths of the columns of data you include in the "values" key must be the same for all variables, though if you're importing from a normal, rectangular data store, this should already be the case.</aside>
