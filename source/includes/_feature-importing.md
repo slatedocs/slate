@@ -31,7 +31,21 @@ ds <- newDatasetFromFile("my.csv", name="my survey")
 # All three steps are handled within newDatasetFromFile
 ```
 
-POST a Dataset Entity to the datasets catalog.
+POST a Dataset Entity to the datasets catalog. The available initial attributes
+to create a new dataset entity are (all optional):
+
+
+Name | Type | Description
+---- | ---- | -----------
+name | string | Human-friendly string identifier.
+description | string | Optional longer string.
+archived | boolean | Whether the variable should be hidden from most views; default: false.
+owner | Url | The URL of the owner of the dataset, if omitted will use the logged user as owner. 
+notes | sting | Blank if omitted. Optional notes for the dataset .
+start_date | date | ISO-8601 formatted date with day resolution.
+end_date | date | ISO-8601 formatted date with day resolution.
+is_published | boolean | If false only project editors will have access to this dataset .
+weight_variables | array | Contains aliases of weight variables to start this dataset with. Must be numeric type.
 
 
 
