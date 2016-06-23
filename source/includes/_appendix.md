@@ -44,71 +44,95 @@ The following tables provide details of the local directories we support for loo
 
 Identifier|NAP|Reviews|Find Profile URL|Website URL|Notes
 ----------|---|-------|---|-----|-----
-2findlocal|<span class="yes">Yes</span>||<span class="yes">Yes</span>||
-<s>acxiom</s>|<span class="yes">Yes</span>||||No longer available
-<s>allpages</s>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|No longer available
-angies|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
-b2byellowpages|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
-bbb|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
-botw|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
-brownbook|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
-businessnetpages|<span class="yes">Yes</span>||<span class="yes">Yes</span>||
-chamberofcommerce|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
-citysearch|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>||
-citysquares|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
-cmac|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
-corporationwiki|<span class="yes">Yes</span>||<span class="yes">Yes</span>||
-cortera|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
-cylex|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
-dexknows|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
-doctoroogle|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
-expressupdate|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
-facebook|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
-factual|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
-favecentral|<span class="yes">Yes</span>||<span class="yes">Yes</span>||
-find-us-here|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
-foursquare|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
-google|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
-healthgrades|<span class="yes">Yes</span>||<span class="yes">Yes</span>||
-hotfrog|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
-ibegin|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
-insiderpages|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>||
-judysbook|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
-justdeal|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|Incorrectly named - corresponds to JustDial
-kudzu|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
-linkedin|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
-localcom|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
-localstack|<span class="yes">Yes</span>||<span class="yes">Yes</span>||
-magicyellow|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
-<s>manta</s>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|No longer available
-mapquest|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
-merchantcircle|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
-<s>mojopages</s>|<span class="yes">Yes</span>||<span class="yes">Yes</span>||No longer available
-neustarlocaleze|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
-opentable|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
-powerprofiles|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
-realself|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
-salesspider|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
-showmelocal|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
-superpages|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
-<s>switchboard</s>|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|No longer available
-<s>theusaexplorer</s>|<span class="yes">Yes</span>||<span class="yes">Yes</span>||No longer available
-tripadvisor|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>||
-tupalo|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
-tuugo|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
-whitepages|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
-worldweb|<span class="yes">Yes</span>||<span class="yes">Yes</span>||
-yahoo|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
-yalwa|<span class="yes">Yes</span>||<span class="yes">Yes</span>||
-yasabe|<span class="yes">Yes</span>||<span class="yes">Yes</span>||
-yellowbook|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
-yellowbot|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
-yellowpagecity|<span class="yes">Yes</span>||<span class="yes">Yes</span>||
-yellowpages|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
-yelp|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
-ziplocalonline|<span class="yes">Yes</span>||<span class="yes">Yes</span>||Was previously referred to as ziplocal
-zocdoc|<span class="yes">Yes</span>||<span class="yes">Yes</span>||
-zomato|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>||
+2findlocal|"<span class=""yes"">Yes</span>"||"<span class=""yes"">Yes</span>"||
+<s>acxiom</s>|"<span class=""yes"">Yes</span>"||||No longer available
+<s>allpages</s>|"<span class=""yes"">Yes</span>"|"<span class=""yes"">Yes</span>"|"<span class=""yes"">Yes</span>"|"<span class=""yes"">Yes</span>"|No longer available
+angies|"<span class=""yes"">Yes</span>"||"<span class=""yes"">Yes</span>"|"<span class=""yes"">Yes</span>"|
+b2byellowpages|"<span class=""yes"">Yes</span>"||"<span class=""yes"">Yes</span>"|"<span class=""yes"">Yes</span>"|
+bbb|"<span class=""yes"">Yes</span>"|"<span class=""yes"">Yes</span>"|"<span class=""yes"">Yes</span>"|"<span class=""yes"">Yes</span>"|
+botw|"<span class=""yes"">Yes</span>"|"<span class=""yes"">Yes</span>"|"<span class=""yes"">Yes</span>"|"<span class=""yes"">Yes</span>"|
+brownbook|"<span class=""yes"">Yes</span>"|"<span class=""yes"">Yes</span>"|"<span class=""yes"">Yes</span>"|"<span class=""yes"">Yes</span>"|
+businessnetpages|"<span class=""yes"">Yes</span>"||"<span class=""yes"">Yes</span>"||
+chamberofcommerce|"<span class=""yes"">Yes</span>"||"<span class=""yes"">Yes</span>"|"<span class=""yes"">Yes</span>"|
+citysearch|"<span class=""yes"">Yes</span>"|"<span class=""yes"">Yes</span>"|"<span class=""yes"">Yes</span>"||
+citysquares|"<span class=""yes"">Yes</span>"||"<span class=""yes"">Yes</span>"|"<span class=""yes"">Yes</span>"|
+cmac|"<span class=""yes"">Yes</span>"||"<span class=""yes"">Yes</span>"|"<span class=""yes"">Yes</span>"|
+corporationwiki|"<span class=""yes"">Yes</span>"||"<span class=""yes"">Yes</span>"||
+cortera|"<span class=""yes"">Yes</span>"||"<span class=""yes"">Yes</span>"|"<span class=""yes"">Yes</span>"|
+cylex|"<span class=""yes"">Yes</span>"|"<span class=""yes"">Yes</span>"|"<span class=""yes"">Yes</span>"|"<span class=""yes"">Yes</span>"|
+dexknows|"<span class=""yes"">Yes</span>"|"<span class=""yes"">Yes</span>"|"<span class=""yes"">Yes</span>"|"<span class=""yes"">Yes</span>"|
+doctoroogle|"<span class=""yes"">Yes</span>"||"<span class=""yes"">Yes</span>"|"<span class=""yes"">Yes</span>"|
+expressupdate|"<span class=""yes"">Yes</span>"||"<span class=""yes"">Yes</span>"|"<span class=""yes"">Yes</span>"|
+facebook|"<span class=""yes"">Yes</span>"|"<span class=""yes"">Yes</span>"|"<span class=""yes"">Yes</span>"|"<span class=""yes"">Yes</span>"|
+factual|"<span class=""yes"">Yes</span>"||"<span class=""yes"">Yes</span>"|"<span class=""yes"">Yes</span>"|
+favecentral|"<span class=""yes"">Yes</span>"||"<span class=""yes"">Yes</span>"||
+find-us-here|"<span class=""yes"">Yes</span>"||"<span class=""yes"">Yes</span>"|"<span class=""yes"">Yes</span>"|
+foursquare|"<span class=""yes"">Yes</span>"|"<span class=""yes"">Yes</span>"|"<span class=""yes"">Yes</span>"|"<span class=""yes"">Yes</span>"|
+google|"<span class=""yes"">Yes</span>"|"<span class=""yes"">Yes</span>"|"<span class=""yes"">Yes</span>"|"<span class=""yes"">Yes</span>"|
+healthgrades|"<span class=""yes"">Yes</span>"||"<span class=""yes"">Yes</span>"||
+hotfrog|"<span class=""yes"">Yes</span>"||"<span class=""yes"">Yes</span>"|"<span class=""yes"">Yes</span>"|
+ibegin|"<span class=""yes"">Yes</span>"||"<span class=""yes"">Yes</span>"|"<span class=""yes"">Yes</span>"|
+insiderpages|"<span class=""yes"">Yes</span>"|"<span class=""yes"">Yes</span>"|"<span class=""yes"">Yes</span>"||
+judysbook|"<span class=""yes"">Yes</span>"|"<span class=""yes"">Yes</span>"|"<span class=""yes"">Yes</span>"|"<span class=""yes"">Yes</span>"|
+justdeal|"<span class=""yes"">Yes</span>"||"<span class=""yes"">Yes</span>"|"<span class=""yes"">Yes</span>"|Incorrectly named - corresponds to JustDial
+kudzu|"<span class=""yes"">Yes</span>"|"<span class=""yes"">Yes</span>"|"<span class=""yes"">Yes</span>"|"<span class=""yes"">Yes</span>"|
+linkedin|"<span class=""yes"">Yes</span>"||"<span class=""yes"">Yes</span>"|"<span class=""yes"">Yes</span>"|
+localcom|"<span class=""yes"">Yes</span>"|"<span class=""yes"">Yes</span>"|"<span class=""yes"">Yes</span>"|"<span class=""yes"">Yes</span>"|
+localstack|"<span class=""yes"">Yes</span>"||"<span class=""yes"">Yes</span>"||
+magicyellow|"<span class=""yes"">Yes</span>"||"<span class=""yes"">Yes</span>"|"<span class=""yes"">Yes</span>"|
+<s>manta</s>|"<span class=""yes"">Yes</span>"|"<span class=""yes"">Yes</span>"|"<span class=""yes"">Yes</span>"|"<span class=""yes"">Yes</span>"|No longer available
+mapquest|"<span class=""yes"">Yes</span>"||"<span class=""yes"">Yes</span>"|"<span class=""yes"">Yes</span>"|
+merchantcircle|"<span class=""yes"">Yes</span>"|"<span class=""yes"">Yes</span>"|"<span class=""yes"">Yes</span>"|"<span class=""yes"">Yes</span>"|
+<s>mojopages</s>|"<span class=""yes"">Yes</span>"||"<span class=""yes"">Yes</span>"||No longer available
+neustarlocaleze|"<span class=""yes"">Yes</span>"||"<span class=""yes"">Yes</span>"|"<span class=""yes"">Yes</span>"|
+opentable|"<span class=""yes"">Yes</span>"|"<span class=""yes"">Yes</span>"|"<span class=""yes"">Yes</span>"|"<span class=""yes"">Yes</span>"|
+powerprofiles|"<span class=""yes"">Yes</span>"||"<span class=""yes"">Yes</span>"|"<span class=""yes"">Yes</span>"|
+realself|"<span class=""yes"">Yes</span>"||"<span class=""yes"">Yes</span>"|"<span class=""yes"">Yes</span>"|
+salesspider|"<span class=""yes"">Yes</span>"||"<span class=""yes"">Yes</span>"|"<span class=""yes"">Yes</span>"|
+showmelocal|"<span class=""yes"">Yes</span>"||"<span class=""yes"">Yes</span>"|"<span class=""yes"">Yes</span>"|
+superpages|"<span class=""yes"">Yes</span>"|"<span class=""yes"">Yes</span>"|"<span class=""yes"">Yes</span>"|"<span class=""yes"">Yes</span>"|
+<s>switchboard</s>|"<span class=""yes"">Yes</span>"||"<span class=""yes"">Yes</span>"|"<span class=""yes"">Yes</span>"|No longer available
+<s>theusaexplorer</s>|"<span class=""yes"">Yes</span>"||"<span class=""yes"">Yes</span>"||No longer available
+tripadvisor|"<span class=""yes"">Yes</span>"|"<span class=""yes"">Yes</span>"|"<span class=""yes"">Yes</span>"||
+tupalo|"<span class=""yes"">Yes</span>"||"<span class=""yes"">Yes</span>"|"<span class=""yes"">Yes</span>"|
+tuugo|"<span class=""yes"">Yes</span>"||"<span class=""yes"">Yes</span>"|"<span class=""yes"">Yes</span>"|
+whitepages|"<span class=""yes"">Yes</span>"||"<span class=""yes"">Yes</span>"|"<span class=""yes"">Yes</span>"|
+worldweb|"<span class=""yes"">Yes</span>"||"<span class=""yes"">Yes</span>"||
+yahoo|"<span class=""yes"">Yes</span>"|"<span class=""yes"">Yes</span>"|"<span class=""yes"">Yes</span>"|"<span class=""yes"">Yes</span>"|
+yalwa|"<span class=""yes"">Yes</span>"||"<span class=""yes"">Yes</span>"||
+yasabe|"<span class=""yes"">Yes</span>"||"<span class=""yes"">Yes</span>"||
+yellowbook|"<span class=""yes"">Yes</span>"||"<span class=""yes"">Yes</span>"|"<span class=""yes"">Yes</span>"|
+yellowbot|"<span class=""yes"">Yes</span>"|"<span class=""yes"">Yes</span>"|"<span class=""yes"">Yes</span>"|"<span class=""yes"">Yes</span>"|
+yellowpagecity|"<span class=""yes"">Yes</span>"||"<span class=""yes"">Yes</span>"||
+yellowpages|"<span class=""yes"">Yes</span>"|"<span class=""yes"">Yes</span>"|"<span class=""yes"">Yes</span>"|"<span class=""yes"">Yes</span>"|
+yelp|"<span class=""yes"">Yes</span>"|"<span class=""yes"">Yes</span>"|"<span class=""yes"">Yes</span>"|"<span class=""yes"">Yes</span>"|
+ziplocalonline|"<span class=""yes"">Yes</span>"||"<span class=""yes"">Yes</span>"||Was previously referred to as ziplocal
+zocdoc|"<span class=""yes"">Yes</span>"||"<span class=""yes"">Yes</span>"||
+zomato|"<span class=""yes"">Yes</span>"|"<span class=""yes"">Yes</span>"|"<span class=""yes"">Yes</span>"||
+411com|"<span class=""yes"">Yes</span>"||"<span class=""yes"">Yes</span>"|"<span class=""yes"">Yes</span>"|
+aboutus|"<span class=""yes"">Yes</span>"||"<span class=""yes"">Yes</span>"||
+agreatertown|"<span class=""yes"">Yes</span>"||"<span class=""yes"">Yes</span>"||
+bizdays|"<span class=""yes"">Yes</span>"||"<span class=""yes"">Yes</span>"||
+bizexposed|"<span class=""yes"">Yes</span>"||"<span class=""yes"">Yes</span>"|"<span class=""yes"">Yes</span>"|
+bizvotes|"<span class=""yes"">Yes</span>"||"<span class=""yes"">Yes</span>"||
+callupcontact|"<span class=""yes"">Yes</span>"||"<span class=""yes"">Yes</span>"|"<span class=""yes"">Yes</span>"|
+cbsyellowpages|"<span class=""yes"">Yes</span>"||"<span class=""yes"">Yes</span>"|"<span class=""yes"">Yes</span>"|
+checkmyreview|"<span class=""yes"">Yes</span>"||"<span class=""yes"">Yes</span>"|"<span class=""yes"">Yes</span>"|
+cityfos|"<span class=""yes"">Yes</span>"||"<span class=""yes"">Yes</span>"|"<span class=""yes"">Yes</span>"|
+wfaa|"<span class=""yes"">Yes</span>"||"<span class=""yes"">Yes</span>"|"<span class=""yes"">Yes</span>"|
+ebusinesspages|"<span class=""yes"">Yes</span>"||"<span class=""yes"">Yes</span>"|"<span class=""yes"">Yes</span>"|
+elocal|"<span class=""yes"">Yes</span>"||"<span class=""yes"">Yes</span>"|"<span class=""yes"">Yes</span>"|
+finduslocal|"<span class=""yes"">Yes</span>"||"<span class=""yes"">Yes</span>"|"<span class=""yes"">Yes</span>"|
+freebusinessdirectory|"<span class=""yes"">Yes</span>"||"<span class=""yes"">Yes</span>"|"<span class=""yes"">Yes</span>"|
+garagecommerce|"<span class=""yes"">Yes</span>"||"<span class=""yes"">Yes</span>"|"<span class=""yes"">Yes</span>"|
+linkbyme|"<span class=""yes"">Yes</span>"||"<span class=""yes"">Yes</span>"|"<span class=""yes"">Yes</span>"|
+linktownwhas11|"<span class=""yes"">Yes</span>"||"<span class=""yes"">Yes</span>"|"<span class=""yes"">Yes</span>"|
+mywebyellow|"<span class=""yes"">Yes</span>"||"<span class=""yes"">Yes</span>"|"<span class=""yes"">Yes</span>"|
+nexport|"<span class=""yes"">Yes</span>"||"<span class=""yes"">Yes</span>"|"<span class=""yes"">Yes</span>"|
+yellowee|"<span class=""yes"">Yes</span>"||"<span class=""yes"">Yes</span>"|"<span class=""yes"">Yes</span>"|
+enrollbusiness|"<span class=""yes"">Yes</span>"||"<span class=""yes"">Yes</span>"|"<span class=""yes"">Yes</span>"|
+misterwhat|"<span class=""yes"">Yes</span>"||"<span class=""yes"">Yes</span>"|"<span class=""yes"">Yes</span>"|
+ezlocal|"<span class=""yes"">Yes</span>"|"<span class=""yes"">Yes</span>"|"<span class=""yes"">Yes</span>"|"<span class=""yes"">Yes</span>"|
 
 
 
