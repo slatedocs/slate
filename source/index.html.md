@@ -3,9 +3,6 @@ title: API Reference
 
 language_tabs:
   - shell
-  - ruby
-  - python
-  - javascript
 
 toc_footers:
   - <a href='http://www.scaleapi.com/'>Request Access to the Scale Beta</a>
@@ -35,28 +32,10 @@ Currently our API is in Beta, so please [contact us](http://www.scaleapi.com) to
 
 > To authorize, use this code:
 
-```ruby
-require 'scale'
-
-api = Kittn::APIClient.authorize!('YOUR_API_KEY')
-```
-
-```python
-import scale
-
-api = scale.authorize('YOUR_API_KEY')
-```
-
 ```shell
 # With curl, you can just pass the correct header with each request
 curl "api_endpoint_here" \
   -u "YOUR_API_KEY:"
-```
-
-```javascript
-const scale = require('scale');
-
-let api = scale.authorize('YOUR_API_KEY');
 ```
 
 > Make sure to replace `YOUR_API_KEY` with your API key.
@@ -164,36 +143,15 @@ task | object | The full task object for reference and convenience.
 
 ## Create Categorization Task
 
-```ruby
-require 'scale'
-
-api = Scale::APIClient.authorize!('YOUR_API_KEY')
-api.tasks.createCategorization()
-```
-
-```python
-import scale
-
-api = scale.authorize('YOUR_API_KEY')
-api.tasks.createCategorization()
-```
-
 ```shell
 curl "https://api.scaleapi.com/api/task" \
-  -u YOUR_API_KEY:
+  -u YOUR_API_KEY: \
   -d callback_url="http://www.example.com/callback" \
   -d instruction="Is this company public or private?" \
   -d attachment_type=website \
   -d attachment="http://www.google.com/" \
   -d categories[]=public \
   -d categories[]=private
-```
-
-```javascript
-const scale = require('scale');
-
-let api = scale.authorize('YOUR_API_KEY');
-api.tasks.createCategorization();
 ```
 
 > The above command returns JSON structured like this:
@@ -243,30 +201,9 @@ categories | [string] | An array of strings for the categories which you'd like 
 
 ## Retrieve a Task
 
-```ruby
-require 'scale'
-
-api = Scale::APIClient.authorize!('YOUR_API_KEY')
-api.kittens.get('576ba74eec471ff9b01557c')
-```
-
-```python
-import scale
-
-api = scale.authorize('YOUR_API_KEY')
-api.tasks.get('576ba74eec471ff9b01557cc')
-```
-
 ```shell
 curl "https://api.scaleapi.com/v1/task/{task_id}" \
   -u YOUR_API_KEY:
-```
-
-```javascript
-const scale = require('scale');
-
-let api = scale.authorize('YOUR_API_KEY');
-let max = api.tasks.get('576ba74eec471ff9b01557cc');
 ```
 
 > The above command returns JSON structured like this:
@@ -313,30 +250,9 @@ Returns a task if a valid identifier was provided, and returns a 404 error other
 
 ## List All Tasks
 
-```ruby
-require 'scale'
-
-api = Scale::APIClient.authorize!('YOUR_API_KEY')
-api.tasks.list()
-```
-
-```python
-import scale
-
-api = scale.authorize('YOUR_API_KEY')
-api.tasks.list()
-```
-
 ```shell
 curl "https://api.scaleapi.com/v1/tasks" \
   -u YOUR_API_KEY:
-```
-
-```javascript
-const scale = require('scale');
-
-let api = scale.authorize('YOUR_API_KEY');
-let max = api.tasks.list();
 ```
 
 > The above command returns JSON structured like this:
