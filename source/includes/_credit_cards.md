@@ -221,3 +221,44 @@ na cobrança de homologação, e o motivo pode ser verificado no atributo
 | avs_district     | string  | (opcional) bairro do endereço de cobrança do cartão                                                                     |
 | avs_zipcode      | string  | (opcional) cep do endereço de cobrança do cartão                                                                        |
 | soft_descriptor  | string  | (opcional) descritor que irá aparecer na fatura do cartão referente à cobrança de homologação (no máximo 13 caracteres) |
+
+
+## Lista de Todas as cobranças feitas com o cartão de crédito
+
+```shell
+Listar as cobranças do cartão de crédito
+
+DEFINIÇÃO
+
+  GET https://app.cobrato.com/api/v1/credit_cards/:id/charges?page=:page&per_page=:per_page
+
+EXEMPLO DE REQUISIÇÃO
+
+  $ curl -i -u $API_TOKEN:X \
+    -H 'User-Agent: My App 1.0' \
+    -H 'Accept: application/json' \
+    -H 'Content-type: application/json' \
+    -X GET https://app.cobrato.com/api/v1/credit_cards/12/chrages?page=1&per_page=25
+
+EXEMPLO DE ESTADO DA RESPOSTA
+
+    200 OK
+
+EXEMPLO DE CORPO DA RESPOSTA
+
+  {
+    "charges":
+      [
+        {
+          // informações cobrança 1
+        },
+        {
+          // informações cobrança 2
+        },
+        ...
+      ]
+  }
+
+```
+
+Retorna uma lista paginada em JSON contendo todos as cobranças feitas com o cartão de crédito. Por ser uma lista paginada é obrigatório especificar a página através do parâmetro `page`. O parâmetro `per_page` é opcional, seu valor padrão é 25.
