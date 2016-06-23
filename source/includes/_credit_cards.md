@@ -95,6 +95,48 @@ EXEMPLO DE CORPO DA RESPOSTA
 Retorna as informações detalhadas do cartão de crédito informado em JSON.
 
 
+
+## Lista dos Cartões de crédito
+
+```shell
+Listar Cartões de Crédito
+
+DEFINIÇÃO
+
+  GET https://app.cobrato.com/api/v1/credit_cards
+
+EXEMPLO DE REQUISIÇÃO
+
+  $ curl -i -u $API_TOKEN:X \
+    -H 'User-Agent: My App 1.0' \
+    -H 'Accept: application/json' \
+    -H 'Content-type: application/json' \
+    -X GET https://app.cobrato.com/api/v1/credit_cards?charge_config_id=12&payer_id=1
+
+EXEMPLO DE ESTADO DA RESPOSTA
+
+    200 OK
+
+EXEMPLO DE CORPO DA RESPOSTA
+
+  {
+    "credit_cards":
+      [
+        {
+          // informações cartão de crédito 1
+        },
+        {
+          // informações cartão de crédito 2
+        },
+        ...
+      ]
+  }
+
+```
+
+Retorna uma lista em JSON contendo os cartões de crédito em que seus beneficiários pertencentem a sua Conta de Serviço. Pode ser filtrado por configuração de Cobrança e Pagador.
+
+
 ## Criação de Cartão de Crédito
 
 ```shell
