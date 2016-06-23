@@ -80,7 +80,7 @@ linkedin|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class=
 localcom|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 localstack|<span class="yes">Yes</span>||<span class="yes">Yes</span>||
 magicyellow|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
-manta|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|Currently causing issues in grabbing profile details
+<s>manta</s>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|No longer available
 mapquest|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 merchantcircle|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 <s>mojopages</s>|<span class="yes">Yes</span>||<span class="yes">Yes</span>||No longer available
@@ -139,7 +139,7 @@ independent|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span clas
 linkedin|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 localdatasearch|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 <s>localmole</s>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|No longer available
-manta|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|Currently causing issues in grabbing profile details
+<s>manta</s>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|No longer available
 misterwhat|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 mylocalservices|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 near|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
@@ -199,7 +199,7 @@ localbusinessguide|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<s
 localcomau|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 localsearch|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 localstore|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
-manta|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|Currently causing issues in grabbing profile details
+<s>manta</s>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|No longer available
 nationaldirectory|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 <s>nearyouau</s>|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|No longer available
 opentable|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
@@ -253,7 +253,7 @@ google|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="ye
 hotfrog|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|Was previously referred to as hotfrogcan
 ibegin|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 linkedin|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
-manta|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|Currently causing issues in grabbing profile details
+<s>manta</s>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|No longer available
 n49|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 <s>nearyouca</s>|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|No longer available
 opentable|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
