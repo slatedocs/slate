@@ -12,7 +12,8 @@ includes:
   - modules/authentication
   - api/payplan
   - api/customer
-  - api/check
+  - api/credits
+  - api/checks
   - api/fee
   - api/transaction
   - api/invoice

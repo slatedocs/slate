@@ -1,4 +1,4 @@
-# ACH/Checks
+# Checks
 
 ## View
 
@@ -120,7 +120,7 @@ This method lets you remove saved checks.
 
 ### HTTP Request
 
-`POST customers/<CUSTID>/checks/<METHODID>`
+`DELETE customers/<CUSTID>/checks/<METHODID>`
 
 ### URL Parameters
 
