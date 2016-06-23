@@ -29,21 +29,23 @@ Os Cartões de Crédito pertencem ao Pagador utilizado no momento de sua criaç�
 
 **Parâmetros**
 
-| Campo            | Tipo            | Comentário                                                                    |
-|------------------|-----------------|-------------------------------------------------------------------------------|
-| number           | string          | números do cartão (incompleto, apenas para identificação)                     |
-| expiration       | string          | expiração do cartão, no formato "mm/aa"                                       |
-| holder_name      | string          | nome do dono do cartão                                                        |
-| brand            | string          | bandeira do cartão (visa, mastercard, amex, elo, diners, discover, jcb, aura) |
-| avs_address      | string          | endereço de cobrança do cartão                                                |
-| avs_number       | string          | número do endereço de cobrança do cartão                                      |
-| avs_complement   | string          | complemento endereço de cobrança do cartão                                    |
-| avs_district     | string          | bairro do endereço de cobrança do cartão                                      |
-| avs_zipcode      | string          | cep do endereço de cobrança do cartão                                         |
-| reusable         | boolean         | indica se o cartão é pode ser reutilizado em novas cobranças                  |
-| payer_id         | integer         | identificador do Payer ao qual este cartão pertence                           |
-| charge_config_id | integer         | identificador da ChargeConfig à qual este cartão pertence                     |
-| _links           | array of object | links do beneficiário                                                         |
+| Campo                     | Tipo            | Comentário                                                                                                         |
+|---------------------------|-----------------|--------------------------------------------------------------------------------------------------------------------|
+| number                    | string          | números do cartão (incompleto, apenas para identificação)                                                          |
+| expiration                | string          | expiração do cartão, no formato "mm/aa"                                                                            |
+| holder_name               | string          | nome do dono do cartão                                                                                             |
+| brand                     | string          | bandeira do cartão (visa, mastercard, amex, elo, diners, discover, jcb, aura)                                      |
+| avs_address               | string          | endereço de cobrança do cartão                                                                                     |
+| avs_number                | string          | número do endereço de cobrança do cartão                                                                           |
+| avs_complement            | string          | complemento endereço de cobrança do cartão                                                                         |
+| avs_district              | string          | bairro do endereço de cobrança do cartão                                                                           |
+| avs_zipcode               | string          | cep do endereço de cobrança do cartão                                                                              |
+| reusable                  | boolean         | indica se o cartão é pode ser reutilizado em novas cobranças                                                       |
+| reusability_status        | string          | status da configuração para possibilitar o reuso o cartão em futuras cobranças (pending, ok, error)                |
+| reusability_error_message | string          | informa o motivo do erro na configuração de reuso, apenas quando o atributo reusability_status tem o valor "error" |
+| payer_id                  | integer         | identificador do Payer ao qual este cartão pertence                                                                |
+| charge_config_id          | integer         | identificador da ChargeConfig à qual este cartão pertence                                                          |
+| _links                    | array of object | links do beneficiário                                                                                              |
 
 ## Informações do Cartão de Crédito
 
@@ -80,6 +82,8 @@ EXEMPLO DE CORPO DA RESPOSTA
     "avs_district": "Centro",
     "avs_zipcode": "99000-750",
     "reusable": false,
+    "reusability_status": "error"
+    "reusability_error_message": "Código de segurança inválido"
     "payer_id": 1,
     "charge_config_id": 12,
     "_links": [
@@ -89,3 +93,89 @@ EXEMPLO DE CORPO DA RESPOSTA
 ```
 
 Retorna as informações detalhadas do cartão de crédito informado em JSON.
+
+
+## Criação de Cartão de Crédito
+
+```shell
+Criar Cartão de Crédito
+
+DEFINIÇÃO
+
+  POST https://app.cobrato.com/api/v1/payees
+
+EXEMPLO DE REQUISIÇÃO
+
+  $ curl -i -u $API_TOKEN:X \
+    -H 'User-Agent: My App 1.0' \
+    -H 'Accept: application/json' \
+    -H 'Content-type: application/json' \
+    -X POST https://app.cobrato.com/api/v1/payees \
+    -d '{
+        "number": "5453010000066167",
+        "holder_name": "John Doe",
+        "brand": "mastercard",
+        "expiration": "05/18",
+        "avs_address": "Rua Julio de Castilhos",
+        "avs_number": "100",
+        "avs_complement": "Apto 103",
+        "avs_district": "Centro",
+        "avs_zipcode": "99000-750",
+        "reusable": false,
+        "payer_id": 1,
+        "charge_config_id": 12.
+        "soft_descriptor": "CompanyName"
+      }'
+
+EXEMPLO DE ESTADO DA RESPOSTA COM SUCESSO
+
+    201 Created
+
+EXEMPLO DE ESTADO DA RESPOSTA COM INSUCESSO
+
+    422 Unprocessable Entity
+
+EXEMPLO DE CORPO DA RESPOSTA COM INSUCESSO
+
+  {
+    "errors":{
+      "number": ["não pode ficar em branco"],
+      "holder_name": ["não pode ficar em branco"]
+    }
+  }
+
+```
+
+Cria um novo Cartão de Crédito com o objetivo de utilizá-lo em futuras cobranças
+sem a necessidade de solicitar novamente ao usuário os dados do cartão. Para que
+o cartão seja homologado, é feita uma cobrança com o valor entre R$ 1,00 e R$
+2,00 que é automaticamente cancelada em seguida.
+
+Se houverem erros a criação o cartão, eles serão informados no corpo da resposta.
+
+Em caso de sucesso, as informações do cartão são retornadas. Contudo, o cartão
+ainda não estará apto para re-utilização em novas cobranças. Isto só ocorrerá
+quando a cobrança de homologação for concluída com sucesso. Esta informação pode
+ser obtida através do atributo `reusability_status`. Caso ele tenha o valor
+"pending", quer dizer que a cobrança ainda não foi feita. Caso tenha o valor
+"ok", o valor do atributo `reusable` será `true`, o que quer dizer que o cartão
+pode ser reutilizado. Caso tenha o valor "error", significa que ocorreu um erro
+na cobrança de homologação, e o motivo pode ser verificado no atributo
+`reusability_error_message`.
+
+**Parâmetros**
+
+| Campo            | Tipo    | Comentário                                                                                                              |
+|------------------|---------|-------------------------------------------------------------------------------------------------------------------------|
+| payer_id         | integer | **(requerido)** identificador do Payer ao qual este cartão pertence                                                     |
+| charge_config_id | integer | **(requerido)** identificador da ChargeConfig à qual este cartão pertence                                               |
+| number           | string  | **(requerido)** número do cartão                                                                                        |
+| expiration       | string  | **(requerido)** expiração do cartão, no formato "mm/aa"                                                                 |
+| holder_name      | string  | **(requerido)** nome do dono do cartão                                                                                  |
+| brand            | string  | **(requerido)** bandeira do cartão (visa, mastercard, amex, elo, diners, discover, jcb, aura)                           |
+| avs_address      | string  | (opcional) endereço de cobrança do cartão                                                                               |
+| avs_number       | string  | (opcional) número do endereço de cobrança do cartão                                                                     |
+| avs_complement   | string  | (opcional) complemento endereço de cobrança do cartão                                                                   |
+| avs_district     | string  | (opcional) bairro do endereço de cobrança do cartão                                                                     |
+| avs_zipcode      | string  | (opcional) cep do endereço de cobrança do cartão                                                                        |
+| soft_descriptor  | string  | (opcional) descritor que irá aparecer na fatura do cartão referente à cobrança de homologação (no máximo 13 caracteres) |
