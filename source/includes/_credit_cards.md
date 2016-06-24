@@ -16,7 +16,10 @@ EXEMPLO
     "avs_complement": "Apto 103",
     "avs_district": "Centro",
     "avs_zipcode": "99000-750",
+    "make_reusable": true,
     "reusable": false,
+    "reusability_status": "error",
+    "reusability_error_message": "Código de segurança inválido",
     "payer_id": 1,
     "charge_config_id": 12,
     "_links": [
@@ -29,23 +32,24 @@ Os Cartões de Crédito pertencem ao Pagador utilizado no momento de sua criaç�
 
 **Parâmetros**
 
-| Campo                     | Tipo            | Comentário                                                                                                         |
-|---------------------------|-----------------|--------------------------------------------------------------------------------------------------------------------|
-| number                    | string          | números do cartão (incompleto, apenas para identificação)                                                          |
-| expiration                | string          | expiração do cartão, no formato "mm/aa"                                                                            |
-| holder_name               | string          | nome do dono do cartão                                                                                             |
-| brand                     | string          | bandeira do cartão (visa, mastercard, amex, elo, diners, discover, jcb, aura)                                      |
-| avs_address               | string          | endereço de cobrança do cartão                                                                                     |
-| avs_number                | string          | número do endereço de cobrança do cartão                                                                           |
-| avs_complement            | string          | complemento endereço de cobrança do cartão                                                                         |
-| avs_district              | string          | bairro do endereço de cobrança do cartão                                                                           |
-| avs_zipcode               | string          | cep do endereço de cobrança do cartão                                                                              |
-| reusable                  | boolean         | indica se o cartão é pode ser reutilizado em novas cobranças                                                       |
-| reusability_status        | string          | status da configuração para possibilitar o reuso o cartão em futuras cobranças (pending, ok, error)                |
-| reusability_error_message | string          | informa o motivo do erro na configuração de reuso, apenas quando o atributo reusability_status tem o valor "error" |
-| payer_id                  | integer         | identificador do Payer ao qual este cartão pertence                                                                |
-| charge_config_id          | integer         | identificador da ChargeConfig à qual este cartão pertence                                                          |
-| _links                    | array of object | links do beneficiário                                                                                              |
+| Campo                     | Tipo            | Comentário                                                                                                                               |
+|---------------------------|-----------------|------------------------------------------------------------------------------------------------------------------------------------------|
+| number                    | string          | números do cartão (incompleto, apenas para identificação)                                                                                |
+| expiration                | string          | expiração do cartão, no formato "mm/aa"                                                                                                  |
+| holder_name               | string          | nome do dono do cartão                                                                                                                   |
+| brand                     | string          | bandeira do cartão (visa, mastercard, amex, elo, diners, discover, jcb, aura)                                                            |
+| avs_address               | string          | endereço de cobrança do cartão                                                                                                           |
+| avs_number                | string          | número do endereço de cobrança do cartão                                                                                                 |
+| avs_complement            | string          | complemento endereço de cobrança do cartão                                                                                               |
+| avs_district              | string          | bairro do endereço de cobrança do cartão                                                                                                 |
+| avs_zipcode               | string          | cep do endereço de cobrança do cartão                                                                                                    |
+| make_reusable             | boolean         | indica se o cartão foi criado com o objetivo de poder ser reutilizado em novas cobranças para o mesmo Pagador e Configuração de Cobrança |
+| reusable                  | boolean         | indica se o cartão é pode ser reutilizado em novas cobranças                                                                             |
+| reusability_status        | string          | status da configuração para possibilitar o reuso o cartão em futuras cobranças (pending, ok, error)                                      |
+| reusability_error_message | string          | informa o motivo do erro na configuração de reuso, apenas quando o atributo reusability_status tem o valor "error"                       |
+| payer_id                  | integer         | identificador do Payer ao qual este cartão pertence                                                                                      |
+| charge_config_id          | integer         | identificador da ChargeConfig à qual este cartão pertence                                                                                |
+| _links                    | array of object | links do beneficiário                                                                                                                    |
 
 ## Informações do Cartão de Crédito
 
@@ -82,8 +86,8 @@ EXEMPLO DE CORPO DA RESPOSTA
     "avs_district": "Centro",
     "avs_zipcode": "99000-750",
     "reusable": false,
-    "reusability_status": "error"
-    "reusability_error_message": "Código de segurança inválido"
+    "reusability_status": "error",
+    "reusability_error_message": "Código de segurança inválido",
     "payer_id": 1,
     "charge_config_id": 12,
     "_links": [
@@ -93,7 +97,6 @@ EXEMPLO DE CORPO DA RESPOSTA
 ```
 
 Retorna as informações detalhadas do cartão de crédito informado em JSON.
-
 
 
 ## Lista dos Cartões de crédito
@@ -111,7 +114,7 @@ EXEMPLO DE REQUISIÇÃO
     -H 'User-Agent: My App 1.0' \
     -H 'Accept: application/json' \
     -H 'Content-type: application/json' \
-    -X GET https://app.cobrato.com/api/v1/credit_cards?charge_config_id=12&payer_id=1
+    -X GET https://app.cobrato.com/api/v1/credit_cards?charge_config_id=12
 
 EXEMPLO DE ESTADO DA RESPOSTA
 
@@ -134,7 +137,7 @@ EXEMPLO DE CORPO DA RESPOSTA
 
 ```
 
-Retorna uma lista em JSON contendo os cartões de crédito em que seus beneficiários pertencentem a sua Conta de Serviço. Pode ser filtrado por configuração de Cobrança e Pagador.
+Retorna uma lista em JSON contendo os Cartões de Crédito pertencentes à sua Conta de Serviço. É possível filtrar a lista através dos parâmetros: `payer_id`, `charge_config_id`, `number`, `holder_name`, `brand`, `reusable`, `reusability_status`
 
 
 ## Criação de Cartão de Crédito
@@ -226,7 +229,7 @@ na cobrança de homologação, e o motivo pode ser verificado no atributo
 ## Lista de Todas as cobranças feitas com o cartão de crédito
 
 ```shell
-Listar as cobranças do cartão de crédito
+Listar as Cobranças realizadas com o Cartão de Crédito
 
 DEFINIÇÃO
 
@@ -261,4 +264,7 @@ EXEMPLO DE CORPO DA RESPOSTA
 
 ```
 
-Retorna uma lista paginada em JSON contendo todos as cobranças feitas com o cartão de crédito. Por ser uma lista paginada é obrigatório especificar a página através do parâmetro `page`. O parâmetro `per_page` é opcional, seu valor padrão é 25.
+Retorna uma lista paginada em JSON contendo todos as Cobranças realizadas com o
+Cartão de Crédito. A lista é pagina e pode-se utilizar os parâmetros `page`
+(valor padrão 1) e `per_page` (valor padrão 25) para controlar, respectivamente,
+a página e a quantidade de itens por página.
