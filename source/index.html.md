@@ -144,14 +144,14 @@ task | object | The full task object for reference and convenience.
 ## Create Categorization Task
 
 ```shell
-curl "https://api.scaleapi.com/api/task" \
+curl "https://api.scaleapi.com/v1/task/categorize" \
   -u YOUR_API_KEY: \
   -d callback_url="http://www.example.com/callback" \
   -d instruction="Is this company public or private?" \
   -d attachment_type=website \
   -d attachment="http://www.google.com/" \
-  -d categories[]=public \
-  -d categories[]=private
+  -d categories=public \
+  -d categories=private
 ```
 
 > The above command returns JSON structured like this:
