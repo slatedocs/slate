@@ -238,7 +238,6 @@ curl \
 
 The ApiKey is used to authenticate an external application.
 
-### Acquiring API keys
 
 There will be an API in the dashboard which will be used to retrieve the API key.
 

@@ -1,0 +1,9 @@
+# Ad Server
+
+## Introduction
+
+The Powerlinks Ad Server (PLA) brings the capability to deliver native adverts directly onto Publisher websites through a wide array of formats while linking seamlessly into other Powerlinks technologies such as the Exchange and DSP, indexer and optimisation toolkit, completing Powerlinks’ end to end suite of Advertising Technologies. The PLA version 3 will bring about a number of enhancements. Central to this is the direct integration into the Powerlinks Exchange which brings advanced targeting and optimisation. However the underlying changes to the framework on which PLA runs along with improvements in the efficiency of the design, build and testing of the application are what this document will cover in detail.
+
+## System Overview
+
+The PLA system has two distinct roles in the Ad Serving process, 1. Determine the best placements through which to display adverts on any given web page while implementing the various Powerlinks Ad Serving Formats, and 2. Allow for and perform the rendering of adverts of all supported templates through all popular display mechanisms e.g. iFrame and Google Page Tags (GPT). The process of determining the placement locations will be different per format and therefore the logic for each should be self-contained on both the server and client sides. The platform should be built accordingly to accommodate formats to act independently as well as the addition of new formats as and when required. The decisioning to determine which Adverts to be displayed will be achieved in the Powerlinks DSP and therefore the PLA must communicate with the Powerlinks Exchange through relevant version of the OpenRTB protocol, currently version 2.3.1. The PLA system must take incoming data and convert this into a valid OpenRTB Bid Request, converting the OpenRTB Bid Response into the correlating template output to be rendered.

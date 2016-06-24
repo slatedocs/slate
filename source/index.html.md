@@ -5,7 +5,7 @@ language_tabs:
   - Code Snippets
 
 toc_footers:
-  - <a href='http://www.powerlinks.com'>Contact Us</a>
+  - <a href='http://www.powerlinks.com'>Powerlinks Home</a>
 
 includes:
   - creativespecs
