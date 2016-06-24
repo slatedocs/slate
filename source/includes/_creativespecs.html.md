@@ -1,6 +1,6 @@
 # Creative Specs
 
-Pleas find specifications by creative type below.
+Please find specifications by creative type below.
 
 ## Search/Content
 <table>
