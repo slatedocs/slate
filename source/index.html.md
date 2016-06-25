@@ -85,7 +85,7 @@ Attribute | Type | Description
 task_id | string | The `task_id` is the unique identifier for the task.
 type | string | The type of the task. Currently, we support `categorization`.
 instruction | string | A plaintext string explaining the instructions for the task.
-params | object | An object with the parameters of the task based on the type. For `categorization`, this will include `attachment_type`, `attachment`, and `categories`.
+params | object | An object with the parameters of the task based on the type. For `categorization`, for example, this will include `attachment_type`, `attachment`, and `categories`.
 response | object | An object corresponding to the response once the task is completed. For `categorization`, it will have the attribute `category`, corresponding to the chosen category.
 callback_url | string | A string of the URL that should be POSTed once the task is completed for the response data. See the Callback section for more details.
 status | string | The status of the task, one of `pending`, `completed`, or `canceled`.
@@ -193,9 +193,104 @@ Parameter | Type | Description
 --------- | ---- | -------
 callback_url | string | The full url (including the scheme `http://` or `https://`) of the callback when the task is completed.
 instruction | string | The plaintext instruction of how to categorize the item.
-attachment_type | string | One of `text`, `image`, `video`, `audio`, or `website`. Describes what type of file the attachment is.
+attachment_type | string | One of `text`, `image`, `video`, `audio`, `website`, or `pdf`. Describes what type of file the attachment is.
 attachment | string | The attachment to be categorized. If `attachment_type` is `text`, then it should be plaintext. Otherwise, it should be a URL pointing to the attachment.
 categories | [string] | An array of strings for the categories which you'd like the object to be sorted between.
+
+### Response on Callback
+
+The `response` object will be of the form:
+
+`
+{
+  "category": "some_category"
+}`
+
+`category` will be one of the original categories.
+
+## Create Transcription Task
+
+```shell
+curl "https://api.scaleapi.com/v1/task/transcription" \
+  -u YOUR_API_KEY: \
+  -d callback_url="http://www.example.com/callback" \
+  -d instruction="Write down the normal fields. Then for each news item on the page, write down the information for the row." \
+  -d attachment_type=website \
+  -d attachment="http://www.reddit.com/" \
+  -d fields[title]="Title of Webpage" \
+  -d fields[top_result]="Title of the top result" \
+  -d row_fields[username]="Username of submitter" \
+  -d row_fields[comment_count]="Number of comments"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "created_at": "2016-06-25T02:18:04.248Z",
+  "callback_url": "http://www.example.com/test_callback",
+  "type": "transcription",
+  "status": "pending",
+  "instruction": "Write down the normal fields. Then for each news item on the page, write down the information for the row.",
+  "params": {
+    "row_fields": {
+      "username": "Username of submitter",
+      "comment_count": "Number of comments"
+    },
+    "fields": {
+      "title": "Title of Webpage",
+      "top_result": "Title of the top result"
+    },
+    "attachment": "http://www.reddit.com/",
+    "attachment_type": "website"
+  },
+  "task_id": "576de9dc1ea5f917d56fc2a0"
+}
+```
+
+This endpoint creates a `transcription` task. 
+
+This task involves a plaintext `instruction` about how to transcribe the attachment, an `attachment` of what you'd like to transcribe, an `attachment_type`, a dictionary `fields` which describes all the things you'd like transcribed, and an optional dictionary `row_fields` for items which need to be transcribed per row in the attachment.
+
+Both `field` and `row_fields` are dictionaries where the keys are the keys you'd like the results to be returned under, and values are the descriptions you'd like to show the human worker.
+
+If successful, Scale will immediately return the generated task object, of which you should at least store the `task_id`.
+
+The parameters `attachment_type`, `attachment`, `fields`, and `row_fields` will be stored in the `params` object of the constructed `task` object.
+
+### HTTP Request
+
+`POST https://api.scaleapi.com/v1/task/transcription`
+
+### Parameters
+
+Parameter | Type | Description
+--------- | ---- | -------
+callback_url | string | The full url (including the scheme `http://` or `https://`) of the callback when the task is completed.
+instruction | string | The plaintext instruction of how to transcribe the attachment.
+attachment_type | string | One of `text`, `image`, `video`, `audio`, `website`, or `pdf`. Describes what type of file the attachment is.
+attachment | string | The attachment to be categorized. If `attachment_type` is `text`, then it should be plaintext. Otherwise, it should be a URL pointing to the attachment.
+fields | dictionary | A dictionary corresponding to the fields to be transcribed. Keys are the keys you'd like the fields to be returned under, and values are descriptions to be shown to human workers.
+row_fields (optional) | dictionary | If your transcription requires a transcription of a variable number of row items, then this dictionary describes the fields for these rows. The format is the same as `fields`, 
+
+### Response on Callback
+
+The `response` object will be of the form:
+
+`
+{
+  "fields": {
+    ...
+  },
+  "rows": [{
+    ...
+  },
+  {
+    ...
+  }]
+}`
+
+`fields` will have keys corresponding to the keys you provided in the parameters, with values the transcribed value. `rows` will be an array of such dictionaries, with keys corresponding to the keys you provided in the parameters, and values corresponding to the transcribed value.
 
 # Task Endpoints
 
