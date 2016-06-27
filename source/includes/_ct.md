@@ -407,7 +407,7 @@ location-id |
                     "listing-type": "Free Listing",
                     "seomoz-lookup-complete": "Yes",
                     "business-name": "John's business",
-                    "address": Lungomare Zara, 1234 Giulianova,
+                    "address": "Lungomare Zara, 1234 Giulianova",
                     "postcode": "1234",
                     "telephone": "03 12345678"
                 }
