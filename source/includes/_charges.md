@@ -393,19 +393,19 @@ Caso exista um Pagador (Payer) com o mesmo <code>national_identifier</code>, nã
 
 **credit_card_attributes**
 
-| Campo          | Tipo    | Comentário                                                                                                                                                                                  |
-|----------------|---------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| number         | string  | **(requerido)** número do cartão                                                                                                                                                            |
-| cvv            | string  | **(requerido)** código de segurança                                                                                                                                                         |
-| expiration     | string  | **(requerido)** expiração do cartão, no formato "mm/aa"                                                                                                                                     |
-| holder_name    | string  | **(requerido)** nome do dono do cartão                                                                                                                                                      |
-| brand          | string  | **(requerido)** bandeira do cartão (visa, mastercard, amex, elo, diners, discover, jcb, aura)                                                                                               |
-| avs_address    | string  | (opcional) endereço de cobrança do cartão                                                                                                                                                   |
-| avs_number     | string  | (opcional) número do endereço de cobrança do cartão                                                                                                                                         |
-| avs_complement | string  | (opcional) complemento endereço de cobrança do cartão                                                                                                                                       |
-| avs_district   | string  | (opcional) bairro do endereço de cobrança do cartão                                                                                                                                         |
-| avs_zipcode    | string  | (opcional) cep do endereço de cobrança do cartão                                                                                                                                            |
-| make_reusable  | boolean | (opcional) indica se o cartão de crédito deve ser salvo de modo que possa ser re-utilizado futuramente em novas cobranças desde mesmo pagador e configuração de cobrança (false por padrão) |
+| Campo               | Tipo    | Comentário                                                                                                                                                                                  |
+|---------------------|---------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| number              | string  | **(requerido)** número do cartão                                                                                                                                                            |
+| cvv                 | string  | **(requerido)** código de segurança                                                                                                                                                         |
+| expiration          | string  | **(requerido)** expiração do cartão, no formato "mm/aa"                                                                                                                                     |
+| holder_name         | string  | **(requerido)** nome do dono do cartão                                                                                                                                                      |
+| brand               | string  | **(requerido)** bandeira do cartão (visa, mastercard, amex, elo, diners, discover, jcb, aura)                                                                                               |
+| avs_address         | string  | (opcional) endereço de cobrança do cartão                                                                                                                                                   |
+| avs_number          | string  | (opcional) número do endereço de cobrança do cartão                                                                                                                                         |
+| avs_complement      | string  | (opcional) complemento endereço de cobrança do cartão                                                                                                                                       |
+| avs_district        | string  | (opcional) bairro do endereço de cobrança do cartão                                                                                                                                         |
+| avs_zipcode         | string  | (opcional) cep do endereço de cobrança do cartão                                                                                                                                            |
+| created_as_reusable | boolean | (opcional) indica se o cartão de crédito deve ser salvo de modo que possa ser re-utilizado futuramente em novas cobranças desde mesmo pagador e configuração de cobrança (false por padrão) |
 
 
 ## Atualização de Cobrança
@@ -539,19 +539,19 @@ Uma cobrança com o status de erro no gateway de pagamento pode ser editada com 
 
 **credit_card_attributes**
 
-| Campo          | Tipo    | Comentário                                                                                                                                                                                  |
-|----------------|---------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| number         | string  | **(requerido)** número do cartão                                                                                                                                                            |
-| cvv            | string  | **(requerido)** código de segurança                                                                                                                                                         |
-| expiration     | string  | **(requerido)** expiração do cartão, no formato "mm/aa"                                                                                                                                     |
-| holder_name    | string  | **(requerido)** nome do dono do cartão                                                                                                                                                      |
-| brand          | string  | **(requerido)** bandeira do cartão (visa, mastercard, amex, elo, diners, discover, jcb, aura)                                                                                               |
-| avs_address    | string  | (opcional) endereço de cobrança do cartão                                                                                                                                                   |
-| avs_number     | string  | (opcional) número do endereço de cobrança do cartão                                                                                                                                         |
-| avs_complement | string  | (opcional) complemento endereço de cobrança do cartão                                                                                                                                       |
-| avs_district   | string  | (opcional) bairro do endereço de cobrança do cartão                                                                                                                                         |
-| avs_zipcode    | string  | (opcional) cep do endereço de cobrança do cartão                                                                                                                                            |
-| make_reusable  | boolean | (opcional) indica se o cartão de crédito deve ser salvo de modo que possa ser re-utilizado futuramente em novas cobranças desde mesmo pagador e configuração de cobrança (false por padrão) |
+| Campo               | Tipo    | Comentário                                                                                                                                                                                  |
+|---------------------|---------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| number              | string  | **(requerido)** número do cartão                                                                                                                                                            |
+| cvv                 | string  | **(requerido)** código de segurança                                                                                                                                                         |
+| expiration          | string  | **(requerido)** expiração do cartão, no formato "mm/aa"                                                                                                                                     |
+| holder_name         | string  | **(requerido)** nome do dono do cartão                                                                                                                                                      |
+| brand               | string  | **(requerido)** bandeira do cartão (visa, mastercard, amex, elo, diners, discover, jcb, aura)                                                                                               |
+| avs_address         | string  | (opcional) endereço de cobrança do cartão                                                                                                                                                   |
+| avs_number          | string  | (opcional) número do endereço de cobrança do cartão                                                                                                                                         |
+| avs_complement      | string  | (opcional) complemento endereço de cobrança do cartão                                                                                                                                       |
+| avs_district        | string  | (opcional) bairro do endereço de cobrança do cartão                                                                                                                                         |
+| avs_zipcode         | string  | (opcional) cep do endereço de cobrança do cartão                                                                                                                                            |
+| created_as_reusable | boolean | (opcional) indica se o cartão de crédito deve ser salvo de modo que possa ser re-utilizado futuramente em novas cobranças desde mesmo pagador e configuração de cobrança (false por padrão) |
 
 
 ## Re-tentativa de efetivar de Cobrança (Gateway de pagamento)

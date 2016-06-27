@@ -16,7 +16,6 @@ EXEMPLO
     "avs_complement": "Apto 103",
     "avs_district": "Centro",
     "avs_zipcode": "99000-750",
-    "make_reusable": true,
     "reusable": false,
     "reusability_status": "error",
     "reusability_error_message": "Código de segurança inválido",
@@ -43,7 +42,6 @@ Os Cartões de Crédito pertencem ao Pagador utilizado no momento de sua criaç�
 | avs_complement            | string          | complemento endereço de cobrança do cartão                                                                                               |
 | avs_district              | string          | bairro do endereço de cobrança do cartão                                                                                                 |
 | avs_zipcode               | string          | cep do endereço de cobrança do cartão                                                                                                    |
-| make_reusable             | boolean         | indica se o cartão foi criado com o objetivo de poder ser reutilizado em novas cobranças para o mesmo Pagador e Configuração de Cobrança |
 | reusable                  | boolean         | indica se o cartão é pode ser reutilizado em novas cobranças                                                                             |
 | reusability_status        | string          | status da configuração para possibilitar o reuso o cartão em futuras cobranças (pending, ok, error)                                      |
 | reusability_error_message | string          | informa o motivo do erro na configuração de reuso, apenas quando o atributo reusability_status tem o valor "error"                       |
