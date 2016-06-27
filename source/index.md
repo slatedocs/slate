@@ -5,9 +5,9 @@ language_tabs:
   - javascript: Code
 
 toc_footers:
-  - <a href="http://augur.net">App</a>
+  - <a href="https://augur.net">Augur</a>
+  - <a href="https://app.augur.net">App</a>
   - <a href="https://github.com/AugurProject">Github</a>
-  - <a href="http://augur.link/augur.pdf">Whitepaper</a>
   - <a href="https://twitter.com/AugurProject">Twitter</a>
 
 includes:
@@ -29,7 +29,7 @@ search: true
 Overview
 ========
 
-[Augur](http://augur.net) is a decentralized prediction market platform that runs on Ethereum.
+[Augur](https://augur.net) is a decentralized prediction market platform that runs on Ethereum.
 
 The stable Augur application is built and hosted at [augur.net](https://augur.net).  If you want to use or help test Augur, you do not need to download or install anything!  Just go to [augur.net](https://app.augur.net) and start using it.  (If you want to use our cutting-edge development client, this is maintained at [augur-dev.firebaseapp.com](https://augur-dev.firebaseapp.com) -- warning, we push changes to augur-dev pretty rapidly, so it can be a bit buggy!)
 
