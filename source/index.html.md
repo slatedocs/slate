@@ -359,10 +359,10 @@ The `response` object will be of the form:
 
 `
 {
-  "outcome": ...
+  "outcome": ...,
   "fields": {
     ...
-  },
+  }
 }`
 
 The outcome will be a string equal to one of `no_pickup` (meaning nobody picked up), `hung_up` (meaning the recipient hung up before the task could be completed), or `success` (the call succeeded). 
