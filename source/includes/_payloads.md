@@ -12,6 +12,8 @@ São as requisições enviadas pelo webhook do Cobrato para uma determinada URL 
 | charge_config  | created            | quando a configuração de cobrança é criada     |
 | charge_config  | updated            | quando a configuração de cobrança é atualizada |
 | charge_config  | destroyed          | quando a configuração de cobrança é excluída   |
+| credit_card    | created            | quando o cartão de crédito é criado            |
+| credit_card    | updated            | quando o cartão de crédito é atualizado        |
 
 ### Assinatura do Payload
 
@@ -305,3 +307,48 @@ EXEMPLO DE PAYLOAD
 ```
 
 Informações enviadas quando uma Configuração de Cobrança é excluída.
+
+## Cartão de crédito criado
+
+```shell
+Cartão de crédito Criado
+
+EXEMPLO DE PAYLOAD
+
+  {
+    "created_at":"2015-05-21T16:13:33Z",
+    "event":"created",
+    "object_type":"credit_card",
+    "object_id":23,
+    "_links":[{
+      "rel":"self",
+      "method":"GET",
+      "url":"https://app.cobrato.com/api/v1/credit_card/23"
+    }]
+  }
+
+```
+
+Informações enviadas quando um Cartão de crédito é criado.
+
+## Cartão de crédito Atualizado
+
+```shell
+Cartão de crédito Atualizado
+
+EXEMPLO DE PAYLOAD
+
+  {
+    "created_at":"2015-05-21T16:13:33Z",
+    "event":"updated",
+    "object_type":"credit_card",
+    "object_id":23,
+    "_links":[{
+      "rel":"self",
+      "method":"GET",
+      "url":"https://app.cobrato.com/api/v1/credit_card/23"
+    }]
+  }
+```
+
+Informações enviadas quando um Cartão de crédito é atualizado.
