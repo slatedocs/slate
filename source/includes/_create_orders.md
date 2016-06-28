@@ -189,6 +189,7 @@ Each collection within the example booking JSON is described in detail in the se
     "order_id":"f5233746-71d4-4b05-bf63-56f4abaed5f6",
     "state":"Payment",
     "order_url":"https://www.sendle.com/api/orders/f5233746-71d4-4b05-bf63-56f4abaed5f6",
+    "sendle_reference": "S3ND73",
     "labels":null,
     "scheduling":{
       "is_cancellable":true,
@@ -239,6 +240,6 @@ A successful response will be a full version of an **Order** object. Many of the
 **order_id** | The order's individual identification in Sendle's system. |
 **state** | Identifies the current state of the order. Visit [Check for Status Updates](#check-for-status-updates) for more information. |
 **order_url** | Specific url for order queries. After booking, this url becomes the point to check for updated information (state changes), labels and any other information related to the order. |
+**sendle_reference** | Reference ID for a Sendle Order. References begin with an "S" and are an alphanumeric string six or more characters in length. |
 **labels** | Covered in detail in the [label section](#getting-labels), however this field will return `null` at the initial order booking. After the booking is processed, label details will be included within the label object. |
 **scheduling** | Information regarding the order's pickup date and whether an order can be [cancelled](#cancelling-orders) |
-
