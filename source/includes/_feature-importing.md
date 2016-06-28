@@ -52,7 +52,7 @@ Content-Disposition: form-data; name="uploaded_file"; filename="my.csv"
 Location: /sources/{source_id}/
 ```
 
-POST the file to the sources catalog. 
+POST the file to the sources catalog.
 
 
 #### 3. Add the Source to the Dataset
@@ -67,18 +67,23 @@ Content-Type: application/json
     }
 }
 --------
-201 Created
+202 Continue
 Location: /datasets/{dataset_id}/batches/{batch_id}/
+...
+{
+    "element": "shoji:view",
+    "value": "/progress/{progress_id}/"
+}
 ```
 
-POST the URL of the just-created source entity (the Location in the 201 response from the previous step) to the batches catalog of the dataset entity created in step 1. 
+POST the URL of the just-created source entity (the Location in the 201 response from the previous step) to the batches catalog of the dataset entity created in step 1.
 
-<aside class="notice">If your file is large, you may wish to have this import job be completed asynchronously in order to avoid hitting a server timeout. To do so, include `"async": true` in the "body" key of the payload. This will change the response status from 201 to 202, and you'll need to poll the server to learn when the import job has been completed. See batches for details.</aside>
+The POST to the batches catalog will return 202 Continue status, and the response body contains a progress URL. Poll that URL to monitor the completion of the batch addition. See "[Progress](#progress)" for more. The 202 response will also contain a Location header with the URL of the newly created batch.
 
 ### Metadata document + CSV
 
-This approach may be most natural for importing data from databases that store 
-data by rows. You can dump or export your database to Crunch's JSON metadata 
+This approach may be most natural for importing data from databases that store
+data by rows. You can dump or export your database to Crunch's JSON metadata
 format, plus a CSV of data, and upload those to Crunch, without requiring much
  back-and-forth with the API.
 
@@ -109,21 +114,21 @@ Content-Length: 974
 Location: /datasets/{dataset_id}/
 ```
 
-POST a Dataset Entity to the datasets catalog, and in the "body", include a 
+POST a Dataset Entity to the datasets catalog, and in the "body", include a
 Crunch Table object with variable definitions and order.
 
-The "metadata" member in the table is an object containing all variable 
-definitions, keyed by variable alias. See the Object Reference: Variable 
-Definitions discussion for specific requirements for defining variables of 
+The "metadata" member in the table is an object containing all variable
+definitions, keyed by variable alias. See the Object Reference: Variable
+Definitions discussion for specific requirements for defining variables of
 various types, as well as the example below.
 
-The "order" member is a Shoji Order object specifying the order, potentially 
-hierarchically nested, of the variables in the dataset. The example below 
+The "order" member is a Shoji Order object specifying the order, potentially
+hierarchically nested, of the variables in the dataset. The example below
 illustrates how this can be used. Shoji is JSON, which means the "metadata"
-object is explicitly unordered. If you wish the variables to have an order, 
-you must supply an order object rather than relying on any order of the 
+object is explicitly unordered. If you wish the variables to have an order,
+you must supply an order object rather than relying on any order of the
 "metadata" object.
- 
+
 ##### Validation rules
 
 All variables mentioned in the metadata must contain a valid variable definition
@@ -151,8 +156,13 @@ Content-Disposition: form-data; name="file"; filename="thedata.csv"
 2,"yellow"
 ...
 --------
-201 Created
+202 Continue
 Location: /datasets/{dataset_id}/batches/{batch_id}/
+...
+{
+    "element": "shoji:view",
+    "value": "/progress/{progress_id}/"
+}
 ```
 
 > By S3 URL:
@@ -165,13 +175,17 @@ Content-Length: 341
 {
     "element": "shoji:entity",
     "body": {
-        "url": "s3://bucket_name/dir/subdir/?accessKey=ASILC6CBA&secretKey=KdJy7ZRK8fDIBQ&token=AQoDYXdzECAa%3D%3D",
-        "async": false
+        "url": "s3://bucket_name/dir/subdir/?accessKey=ASILC6CBA&secretKey=KdJy7ZRK8fDIBQ&token=AQoDYXdzECAa%3D%3D"
     }
 }
 --------
-201 Created
+202 Continue
 Location: /datasets/{dataset_id}/batches/{batch_id}/
+...
+{
+    "element": "shoji:view",
+    "value": "/progress/{progress_id}/"
+}
 ```
 
 POST a CSV file or URL to the new dataset's batches catalog. The CSV must include a header row of variable identifiers, which should be the aliases of the variables (and array subvariables) defined in step (1).
@@ -195,12 +209,12 @@ With non-strict imports:
 * The metadata may describe variables not contained in the CSV; these variables will be filled with missing values, rather than returning an error response
 * And more things to come
 
-In either case, a 201 response to the POST request indicates success. All rows added in a single request become part of a new Batch, whose URL is returned in the response Location. You may inspect the new rows in isolation by following its batch/ link.
-
 The CSV can be sent in one of two ways:
 
 1. Upload a file by POSTing a multipart form
-2. POST a Shoji entity with a "url" in the body, containing all necessary auth keys as query parameters. If the URL points to a single file, it should be a CSV or gzipped CSV, as described above. If the URL points to a directory, the contents will be assumed to be (potentially zipped) batches of a CSV and will be concatenated for appending. In the latter case, only the first CSV in the directory listing should contain a header row. For large import jobs, you may set the (optional) "async" body parameter to "true". In this case, the request will respond 202 Continue status, and work will proceed outside the request cycle. As described [above](#3.-add-the-source-to-the-dataset), poll the batch entity to learn when the import job has been completed or if an error occurred. See batches for details.
+2. POST a Shoji entity with a "url" in the body, containing all necessary auth keys as query parameters. If the URL points to a single file, it should be a CSV or gzipped CSV, as described above. If the URL points to a directory, the contents will be assumed to be (potentially zipped) batches of a CSV and will be concatenated for appending. In the latter case, only the first CSV in the directory listing should contain a header row.
+
+A 201 response to the POST request indicates success. All rows added in a single request become part of a new Batch, whose URL is returned in the response Location. You may inspect the new rows in isolation by following its batch/ link.
 
 #### Example
 
@@ -210,9 +224,9 @@ Several things to note:
 
 * Everything–metadata, order, and data–is keyed by variable "alias", not "name", because Crunch believes that names are for people, not computers, to understand. Aliases must be unique across the whole dataset, while variable "names" must only be unique within their group or array variable.
 * For categorical variables, all values in the CSV correspond to category ids, not category names, and also not "numeric_values", which need not be unique or present for all categories in a variable.
-* The array variables defined in the metadata ("allpets" and "petloc") don't themselves have columns in the CSV, but all of their "subvariables" do, keyed by their aliases. 
+* The array variables defined in the metadata ("allpets" and "petloc") don't themselves have columns in the CSV, but all of their "subvariables" do, keyed by their aliases.
 * With the exception of those array variable definitions, all variables and subvariables defined in the metadata have columns in the CSV, and there are no columns in the CSV that are not defined in the metadata.
-* For internal variables, such as a case identifier in this example, that you don't want to be visible in the UI, you can add them as "hidden" from the beginning by including `"discarded": "true"` in their definition, as in the example of "caseid". 
+* For internal variables, such as a case identifier in this example, that you don't want to be visible in the UI, you can add them as "hidden" from the beginning by including `"discarded": "true"` in their definition, as in the example of "caseid".
 * Missing values
     * Variables with categories (categorical, multiple_response, categorical_array) have missing values defined as categories with `"missing": "true"`
     * Text, numeric, and datetime variables have missing variables defined as "missing_rules", which can be "value", "set", or "range". See, for example, "q3" and "ndogs".
@@ -292,7 +306,7 @@ Location: /datasets/{dataset_id}/variables/{variable_id}/
 ```
 
 ```r
-# Here's a similar example. R's factor type becomes "categorical". 
+# Here's a similar example. R's factor type becomes "categorical".
 gender.names <- c("Male", "Female", "Skipped")
 gen <- factor(gender.names[c(1, 3, 1, 2, 2, 1, 1, 1, 1, 2, 3, 1)],
     levels=gender.names)
@@ -300,6 +314,6 @@ gen <- factor(gender.names[c(1, 3, 1, 2, 2, 1, 1, 1, 1, 2, 3, 1)],
 ds$gender <- gen
 ```
 
-POST a Variable Entity to the newly created dataset's variables catalog, and include with that Entity definition a "values" key that contains the column of data. Do this for all columns in your dataset. 
+POST a Variable Entity to the newly created dataset's variables catalog, and include with that Entity definition a "values" key that contains the column of data. Do this for all columns in your dataset.
 
 <aside class="notice">Note that the lengths of the columns of data you include in the "values" key must be the same for all variables, though if you're importing from a normal, rectangular data store, this should already be the case.</aside>
