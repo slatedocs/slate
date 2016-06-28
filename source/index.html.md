@@ -175,7 +175,7 @@ curl "https://api.scaleapi.com/v1/task/categorize" \
 }
 ```
 
-This endpoint creates a `categorization` task. 
+This endpoint creates a `categorization` task. In this task, one of our workers will view the attachment and choose a category for it according to the instruction. Example use cases are spam detection, copyright detection, product categorization, etc. 
 
 This task involves a plaintext `instruction` about how to make the categorization, an `attachment` of what you'd like to categorize, an `attachment_type`, and finally a list of categories.
 
@@ -248,7 +248,7 @@ curl "https://api.scaleapi.com/v1/task/transcription" \
 }
 ```
 
-This endpoint creates a `transcription` task. 
+This endpoint creates a `transcription` task. In this task, one of our workers will read an attachment and arbitrarily transcribe any information you'd like. Example use cases could be transcribing information from PDFs, manually scraping a web page for information, etc.
 
 This task involves a plaintext `instruction` about how to transcribe the attachment, an `attachment` of what you'd like to transcribe, an `attachment_type`, a dictionary `fields` which describes all the things you'd like transcribed, and an optional dictionary `row_fields` for items which need to be transcribed per row in the attachment.
 
@@ -269,7 +269,7 @@ Parameter | Type | Description
 callback_url | string | The full url (including the scheme `http://` or `https://`) of the callback when the task is completed.
 instruction | string | The plaintext instruction of how to transcribe the attachment.
 attachment_type | string | One of `text`, `image`, `video`, `audio`, `website`, or `pdf`. Describes what type of file the attachment is.
-attachment | string | The attachment to be categorized. If `attachment_type` is `text`, then it should be plaintext. Otherwise, it should be a URL pointing to the attachment.
+attachment | string | The attachment to be transcribed. If `attachment_type` is `text`, then it should be plaintext. Otherwise, it should be a URL pointing to the attachment.
 fields | dictionary | A dictionary corresponding to the fields to be transcribed. Keys are the keys you'd like the fields to be returned under, and values are descriptions to be shown to human workers.
 row_fields (optional) | dictionary | If your transcription requires a transcription of a variable number of row items, then this dictionary describes the fields for these rows. The format is the same as `fields`, 
 
@@ -291,6 +291,83 @@ The `response` object will be of the form:
 }`
 
 `fields` will have keys corresponding to the keys you provided in the parameters, with values the transcribed value. `rows` will be an array of such dictionaries, with keys corresponding to the keys you provided in the parameters, and values corresponding to the transcribed value.
+
+## Create Phone Call Task
+
+```shell
+curl "https://api.scaleapi.com/v1/task/phonecall" \
+  -u YOUR_API_KEY: \
+  -d callback_url="http://www.example.com/callback" \
+  -d instruction="Call this person and tell me his email address" \
+  -d phone_number=5055006865 \
+  -d entity_name="Alexandr Wang" \
+  -d fields[email]="Email Address"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "created_at": "2016-06-27T23:53:10.367Z",
+  "callback_url": "http://www.example.com/test_callback",
+  "type": "phonecall",
+  "status": "pending",
+  "instruction": "Call this man and tell me his email.",
+  "params": {
+    "fields": {
+      "email": "Email Address"
+    },
+    "entity_name": "Alexandr Wang",
+    "phone_number": "5055006865"
+  },
+  "task_id": "5771bc6631b72659f0d3692b"
+}
+```
+
+This endpoint creates a `phonecall` task. In this task, one of our workers will call the specified phone number and follow the instructions. Potential use cases could be making reservations or appointments, confirming reservations, asking for contact numbers or emails, etc.
+
+This task involves a plaintext `instruction` about how to transcribe the attachment, a `phone_number` for the phone number to call, and an `entity_name` which describes the phone number.
+
+The optional fields are `attachment_type` and `attachment` for an optional attachment, a plaintext string `script` for an optional script for the worker to follow, and `fields` for optional fields you'd like to be written down and returned to you.
+
+The optional `field` parameter is a dictionary where the keys are the keys you'd like the results to be returned under, and values are the descriptions you'd like to show the human worker.
+
+If successful, Scale will immediately return the generated task object, of which you should at least store the `task_id`.
+
+The parameters `phone_number`, `entity_name`, `script`, `attachment_type`, `attachment`, and `fields` will be stored in the `params` object of the constructed `task` object.
+
+### HTTP Request
+
+`POST https://api.scaleapi.com/v1/task/phonecall`
+
+### Parameters
+
+Parameter | Type | Description
+--------- | ---- | -------
+callback_url | string | The full url (including the scheme `http://` or `https://`) of the callback when the task is completed.
+instruction | string | The plaintext instruction of how to transcribe the attachment.
+phone_number | string | The phone number which will be called by our worker. Should include a country code (+1 for US numbers).
+script (optional) | string | An optional script to be shown the the worker as they make the phone call. You should use this if you've already optimized a script for phone calling.
+entity_name | name | The name of the entity which corresponds to the person or business of the phone number.
+attachment_type (optional) | string | One of `text`, `image`, `video`, `audio`, `website`, or `pdf`. Describes what type of file the attachment is.
+attachment (optional) | string | The optional attachment to be used for the phone call. If `attachment_type` is `text`, then it should be plaintext. Otherwise, it should be a URL pointing to the attachment.
+fields (optional) | dictionary | A dictionary corresponding to the fields to be recorded. Keys are the keys you'd like the fields to be returned under, and values are descriptions to be shown to human workers.
+
+### Response on Callback
+
+The `response` object will be of the form:
+
+`
+{
+  "outcome": ...
+  "fields": {
+    ...
+  },
+}`
+
+The outcome will be a string equal to one of `no_pickup` (meaning nobody picked up), `hung_up` (meaning the recipient hung up before the task could be completed), or `success` (the call succeeded). 
+
+If your original call provided `fields`, `fields` will have keys corresponding to the keys you provided in the parameters, with values the transcribed value.
 
 # Task Endpoints
 
