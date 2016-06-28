@@ -135,7 +135,13 @@ EXEMPLO DE CORPO DA RESPOSTA
 
 ```
 
-Retorna uma lista em JSON contendo os Cartões de Crédito pertencentes à sua Conta de Serviço. É possível filtrar a lista através dos parâmetros: `payer_id`, `charge_config_id`, `number`, `holder_name`, `brand`, `reusable`, `reusability_status`
+Retorna uma lista em JSON contendo os Cartões de Crédito pertencentes à sua Conta de Serviço.
+
+É possível filtrar a lista através dos parâmetros: `payer_id`, `charge_config_id`, `number`, `holder_name`, `brand`, `reusable`, `reusability_status`
+
+A lista é paginada e pode-se utilizar os parâmetros `page` (valor padrão 1) e
+`per_page` (valor padrão 25) para controlar, respectivamente, a página e a
+quantidade de itens por página.
 
 
 ## Criação de Cartão de Crédito
@@ -263,6 +269,10 @@ EXEMPLO DE CORPO DA RESPOSTA
 ```
 
 Retorna uma lista paginada em JSON contendo todos as Cobranças realizadas com o
-Cartão de Crédito. A lista é pagina e pode-se utilizar os parâmetros `page`
-(valor padrão 1) e `per_page` (valor padrão 25) para controlar, respectivamente,
-a página e a quantidade de itens por página.
+Cartão de Crédito.  
+
+É possível filtrar a lista através dos parâmetros: `total_amount`, `received`, `payment_gateway_status`
+
+A lista é paginada e pode-se utilizar os parâmetros `page` (valor padrão 1) e
+`per_page` (valor padrão 25) para controlar, respectivamente, a página e a
+quantidade de itens por página.
