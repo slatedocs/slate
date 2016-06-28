@@ -57,8 +57,8 @@ Contract Errors
 
 Contract Method | Error | Meaning
 --------------- | ----- | -------
-buy | 0 | Couldn't place buy order
-buy | -1 | Amount/price bad or no market
+buy | 0 | Market doesn't exist
+buy | -1 | Amount/price bad
 buy | -2 | Oracle-only branch
 buy | -4 | Not enough money or shares
 buy | 21 | Trade already exists
@@ -113,8 +113,8 @@ pushMarketForward | -1 | fork period cannot be the current or previous period
 pushMarketForward | -2 | market is already closed or pushed forward
 pushMarketForward | -3 | not enough cash to post early resolution bond
 pushMarketForward | -4 | early resolution already attempted or outcome already exists
-sell | 0 | Couldn't place sell order
-sell | -1 | Amount/price bad or no market
+sell | 0 | Market doesn't exist
+sell | -1 | Amount/price bad
 sell | -2 | Oracle-only branch
 sell | -3 | Bad outcome to trade
 sell | -4 | Not enough money or shares
