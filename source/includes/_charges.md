@@ -17,6 +17,9 @@ EXEMPLO
     "our_number":"0",
     "our_number_digit":null,
     "total_amount":"10.07",
+    "interest_amount_per_month": "1.02",
+    "mulct_type": "percentage",
+    "mulct_value": "10.12",
     "instructions":"Pagável em qualquer agência até data do vencimento.",
     "demonstrative":"Não receber após o vencimento.",
     "payer_emails":["myemail@gmail.com"],
@@ -71,6 +74,9 @@ Cada uma das cobranças criadas após a homologação serão do mesmo tipo da co
 | our_number_digit               | integer          | digito do verificador do nosso número                                                                                                               |
 | custom_our_number              | boolean          | indica se a cobrança utiliza um "nosso número" customizado. O valor padrão é false, mas caso definido true, o campo 'our_number' se torna requerido |
 | total_amount                   | decimal          | valor total do boleto                                                                                                                               |
+| interest_amount_per_month      | decimal          | porcentagem de juros mensal que deve ser aplicado em caso de atraso. No boleto será mostrado o valor diário de juros que será calculado             |
+| mulct_type                     | string           | indica o tipo de multa que deve ser aplicada em caso de atraso ("percentage" para porcentagem, "currency" para valor em reais)                      |
+| mulct_value                    | decimal          | valor da multa que deve ser aplicada em caso de atraso, com base em seu tipo                                                                        |
 | instructions                   | string           | instruções de pagamento do boleto, por padrão "Pagável em qualquer agência até data do vencimento."                                                 |
 | demonstrative                  | string           | demonstrativo do Boleto, por padrão "Não receber após o vencimento."                                                                                |
 | payer_emails                   | array of strings | emails de quem irá pagar o boleto                                                                                                                   |
@@ -163,6 +169,9 @@ EXEMPLO DE CORPO DA RESPOSTA (BOLETO)
     "our_number":"0",
     "our_number_digit":null,
     "total_amount":"10.07",
+    "interest_amount_per_month": "1.02",
+    "mulct_type": "percentage",
+    "mulct_value": "10.12",
     "instructions":"Pagável em qualquer agência até data do vencimento.",
     "demonstrative":"Não receber após o vencimento.",
     "payer_emails":["myemail@gmail.com"],
@@ -323,6 +332,9 @@ Cria um nova cobrança, caso haja sucesso retornará as informações da mesma e
 | our_number                     | string           | (opcional) nosso número. Caso não informado, é atribuído automaticamente pelo sistema                                                                                   |
 | our_number_digit               | integer          | (opcional) digito do verificador do nosso número                                                                                                                        |
 | custom_our_number              | boolean          | (opcional) indica se a cobrança utiliza um "nosso número" customizado. O valor padrão é false, mas caso definido true, o campo 'our_number' se torna requerido          |
+| interest_amount_per_month      | decimal          | (opcional) porcentagem de juros mensal que deve ser aplicado em caso de atraso. No boleto será mostrado o valor diário de juros que será calculado                      |
+| mulct_type                     | string           | (opcional) indica o tipo de multa que deve ser aplicada em caso de atraso ("percentage" para porcentagem, "currency" para valor em reais)                               |
+| mulct_value                    | decimal          | (opcional) valor da multa que deve ser aplicada em caso de atraso, com base em seu tipo                                                                                 |
 | instructions                   | string           | (opcional) instruções de pagamento do boleto, por padrão "Pagável em qualquer agência até data do vencimento." (pode ser linhas separadas por "\n")                     |
 | demonstrative                  | string           | (opcional) demonstrativo do Boleto, por padrão "Não receber após o vencimento." (pode ser linhas separadas por "\n")                                                    |
 | registrable                    | boolean          | (opcional) indica se a cobrança é registrável (do tipo que deve ser registrada no banco). Por padrão é o que está definido na Configuração de Cobrança                  |
@@ -470,13 +482,16 @@ Para cobranças do tipo <strong>Boleto</strong> os campos 'received', 'received_
 |--------------------------------|------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | due_date                       | date             | **(requerido)** data de vencimento da cobrança                                                                                                                          |
 | document_kind                  | string           | **(requerido)** espécie do documento, podendo ser DM (Duplicata Mercantil), DS (Duplicata de Serviço), NP (Nota Promissória) ou DV (Diversos)                           |
-| total_amount                   | decimal          | **(requerido)** valor total da cobrança                                                                                                                                   |
+| total_amount                   | decimal          | **(requerido)** valor total da cobrança                                                                                                                                 |
 | document_number                | string           | **(requerido)** número do documento, também chamado de "seu número", é o número utilizado e controlado pelo beneficiário para identificar o título de cobrança          |
 | payer_emails                   | array of strings | (opcional) emails de quem irá pagar o boleto                                                                                                                            |
 | document_date                  | date             | (opcional) data de emissão do documento                                                                                                                                 |
 | our_number                     | string           | (opcional) nosso número. Caso não informado, é atribuído automaticamente pelo sistema                                                                                   |
 | our_number_digit               | integer          | (opcional) digito do verificador do nosso número                                                                                                                        |
 | custom_our_number              | boolean          | (opcional) indica se a cobrança utiliza um "nosso número" customizado. O valor padrão é false, mas caso definido true, o campo 'our_number' se torna requerido          |
+| interest_amount_per_month      | decimal          | (opcional) porcentagem de juros mensal que deve ser aplicado em caso de atraso. No boleto será mostrado o valor diário de juros que será calculado                      |
+| mulct_type                     | string           | (opcional) indica o tipo de multa que deve ser aplicada em caso de atraso ("percentage" para porcentagem, "currency" para valor em reais)                               |
+| mulct_value                    | decimal          | (opcional) valor da multa que deve ser aplicada em caso de atraso, com base em seu tipo                                                                                 |
 | instructions                   | string           | (opcional) instruções de pagamento do boleto, por padrão "Pagável em qualquer agência até data do vencimento." (pode ser linhas separadas por "\n")                     |
 | demonstrative                  | string           | (opcional) demonstrativo do Boleto, por padrão "Não receber após o vencimento." (pode ser linhas separadas por "\n")                                                    |
 | registrable                    | boolean          | (opcional) indica se a cobrança é registrável (do tipo que deve ser registrada no banco). Por padrão é o que está definido na Configuração de Cobrança                  |
