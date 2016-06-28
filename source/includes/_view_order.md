@@ -84,7 +84,7 @@ Viewing an order will give you all the details associated with an existing Sendl
 **state** | Identifies the current state of the order. Visit [Check for Status Updates](#check-for-status-updates) for more information. |
 **order_url** | Specific url for order queries. After booking, this url becomes the point to check for updated information (state changes), labels and any other information related to the order.|
 **sendle_reference** | Reference ID for a Sendle Order. References begin with an "S" and are an alphanumeric string six or more characters in length. |
-**tracking_url** | The order's public tracking page. Tracking page updates as it progresses from sender to receiver. The url can be shared and viewed without a Sendle Account. |
+**tracking_url** | The order's public tracking page. Tracking page updates as the parcel progresses from sender to receiver. The url can be shared and viewed without a Sendle Account and contains no personal information about either party. |
 **labels** | Covered in detail in the [label section](#getting-labels). This field returns `null` at the initial order booking. After the booking is processed, label details will be included here. |
 **scheduling** | Information regarding the order's pickup date and whether an order can be [cancelled](#cancelling-orders) |
  | Estimate Delivery range (minimum & maximum). These dates can change depending on courier conditions.
