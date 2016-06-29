@@ -3,6 +3,7 @@ title: API Reference
 
 language_tabs:
   - shell
+  - python
 
 toc_footers:
   - <a href='http://www.scaleapi.com/'>Request Access to the Scale Beta</a>
@@ -36,6 +37,12 @@ Currently our API is in Beta, so please [contact us](http://www.scaleapi.com) to
 # With curl, you can just pass the correct header with each request
 curl "api_endpoint_here" \
   -u "YOUR_API_KEY:"
+```
+
+```python
+import requests
+
+requests.get('api_endpoint_here', auth=('YOUR_API_KEY', ''))
 ```
 
 > Make sure to replace `YOUR_API_KEY` with your API key.
@@ -131,7 +138,7 @@ On your tasks, you will be required to supply a `callback_url`, a fully qualifie
 
 You should respond to the POST request with a 200 status code. If we do not receive a 200 status code, we will retry one more time.
 
-If you're just starting out and want the easiest way to set up your own callback URL, we recommend using [ngrok](https://ngrok.com/) to expose a local server to the internet. Feel free to [contact us](mailto:alex@scaleapi.com) if you have any trouble.
+If you're just starting out and want the easiest way to set up your own callback URL, we recommend using [ngrok](https://ngrok.com/) to expose a local server to the internet. Feel free to [contact us](mailto:alex@scaleapig.com) if you have any trouble.
 
 ### POST Data
 
@@ -154,6 +161,23 @@ curl "https://api.scaleapi.com/v1/task/categorize" \
   -d attachment="http://www.google.com/" \
   -d categories=public \
   -d categories=private
+```
+
+```python
+import requests
+
+payload = {
+  'callback_url': 'http://www.example.com/callback',
+  'instruction': 'Is this company public or private?',
+  'attachment_type': 'website',
+  'attachment': 'http://www.google.com/',
+  'categories': ['public', 'private']
+}
+
+requests.post("https://api.scaleapi.com/v1/task/categorize", 
+  data=payload, 
+  auth=(YOUR_API_KEY, ''))
+
 ```
 
 > The above command returns JSON structured like this:
@@ -223,6 +247,34 @@ curl "https://api.scaleapi.com/v1/task/transcription" \
   -d fields[top_result]="Title of the top result" \
   -d row_fields[username]="Username of submitter" \
   -d row_fields[comment_count]="Number of comments"
+```
+
+```python
+import requests
+import json
+
+payload = {
+  'callback_url': 'http://www.example.com/callback',
+  'instruction': 'Write down the normal fields. Then for each news item on the page, write down the information for the row.',
+  'attachment_type': 'website',
+  'attachment': 'http://www.google.com/',
+  'fields': {
+    'title': 'Title of Webpage',
+    'top_result': 'Title of the top result'
+  },
+  'row_fields': {
+    'username': 'Username of submitter',
+    'comment_count': 'Number of comments'
+  }
+}
+
+headers = {"Content-Type": "application/json"}
+
+requests.post("https://api.scaleapi.com/v1/task/transcription", 
+  data=json.dumps(payload), 
+  headers=headers,
+  auth=(YOUR_API_KEY, ''))
+
 ```
 
 > The above command returns JSON structured like this:
@@ -305,6 +357,28 @@ curl "https://api.scaleapi.com/v1/task/phonecall" \
   -d entity_name="Alexandr Wang" \
   -d fields[email]="Email Address"
 ```
+```python
+import requests
+import json
+
+payload = {
+  'callback_url': 'http://www.example.com/callback',
+  'instruction': 'Call this person and tell me his email address',
+  'phone_number': '5055006865',
+  'entity_name': 'Alexandr Wang',
+  'fields': {
+    'email': 'Email Address',
+  }
+}
+
+headers = {"Content-Type": "application/json"}
+
+requests.post("https://api.scaleapi.com/v1/task/phonecall", 
+  data=json.dumps(payload), 
+  headers=headers,
+  auth=(YOUR_API_KEY, ''))
+
+```
 
 > The above command returns JSON structured like this:
 
@@ -380,6 +454,17 @@ curl "https://api.scaleapi.com/v1/task/{task_id}" \
   -u YOUR_API_KEY:
 ```
 
+```python
+import requests
+
+task_id = 'YOUR_TASK_ID'
+
+response = requests.get('https://api.scaleapi.com/v1/task/%s' % task_id, auth=('YOUR_API_KEY', ''))
+
+# Return dictionary can be accessible in this way
+response_dict = json.loads(response.content)
+```
+
 > The above command returns JSON structured like this:
 
 ```json
@@ -427,6 +512,16 @@ Returns a task if a valid identifier was provided, and returns a 404 error other
 ```shell
 curl "https://api.scaleapi.com/v1/tasks" \
   -u YOUR_API_KEY:
+```
+
+```python
+import requests
+import json
+
+response = requests.get('https://api.scaleapi.com/v1/tasks/', auth=('YOUR_API_KEY', ''))
+
+# Return dictionary can be accessible in this way
+response_dict = json.loads(response.content)
 ```
 
 > The above command returns JSON structured like this:
