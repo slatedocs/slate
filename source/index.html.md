@@ -10,8 +10,3 @@ includes:
 
 search: true
 ---
-
-# Introduction
-
-Something something Foxtrot Android SDK something something. [Foxtrot](https://foxtrot.io/)
-
