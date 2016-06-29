@@ -18,7 +18,7 @@ EXEMPLO
     "end_number": 1000,
     "status": "pending",
     "registered_charges": true,
-    "agreement_number": 4576361,
+    "remittance_agreement_code": 4576361,
     "remittance_cnab_pattern": 400,
     "initial_remittance_number": 1,
     "transmission_code": "987655",
@@ -66,7 +66,7 @@ As Configurações de Cobrança do tipo **Boleto** (billet), pertencem as suas c
 | next_number               | integer         | próximo nosso número a ser atribuído a uma cobrança criada a partir desta configuração de cobrança                                |
 | end_number                | integer         | número final do nosso número, sendo o último número a ser atribuído, após isso a sequência é reiniciada                           |
 | registered_charges        | boolean         | informa se a configuração de cobrança utiliza boletos registrados ou não, sendo false por padrão                                  |
-| agreement_number          | integer         | número do convênio com o banco (apenas para o Bradesco)                                                                           |
+| remittance_agreement_code | integer         | número do convênio com o banco (apenas para o Bradesco)                                                                           |
 | remittance_cnab_pattern   | integer         | padrão utilizado no arquivo CNAB de remessa                                                                                       |
 | initial_remittance_number | integer         | número inicial de remessa, ou seja, qual foi o último número sequencial de remessa enviado para o banco (apenas para o Bradesco)  |
 | transmission_code         | string          | código de transmissão (apenas para o Santander)                                                                                   |
@@ -132,7 +132,7 @@ EXEMPLO DE CORPO DA RESPOSTA (BOLETO)
     "end_number": 1000,
     "status": "pending",
     "registered_charges": true,
-    "agreement_number": 4576361,
+    "remittance_agreement_code": 4576361,
     "remittance_cnab_pattern": 400,
     "initial_remittance_number": 1,
     "transmission_code": "987655",
@@ -215,7 +215,7 @@ EXEMPLO DE REQUISIÇÃO
           "initial_number": "1",
           "end_number": "1000",
           "registered_charges": "true",
-          "agreement_number": "4576361",
+          "remittance_agreement_code": "4576361",
           "remittance_cnab_pattern": "400",
           "initial_remittance_number": "1"
           "transmission_code": "987655"
@@ -261,7 +261,7 @@ Cria uma nova Configuração de Cobrança, retornando as informações da mesma 
 | end_number                | integer | (opcional) número final do nosso número, sendo o último número a ser atribuído, após isso a sequência é reiniciada                                                                                              |
 | next_number               | integer | (opcional) próximo nosso número a ser atribuído a uma cobrança criada a partir desta configuração de cobrança (por padrão inicia com o valor de `initial_number` e é incrementado automatica e sequencialmente) |
 | registered_charges        | boolean | (opcional) informa se a configuração de cobrança utiliza boletos registrados ou não, sendo false por padrão                                                                                                     |
-| agreement_number          | integer | (opcional, requerido apenas se registered_charges for `true`) número do convênio com o banco (apenas para o Bradesco)                                                                                           |
+| remittance_agreement_code | integer | (opcional, requerido apenas se registered_charges for `true`) número do convênio com o banco (apenas para o Bradesco)                                                                                           |
 | remittance_cnab_pattern   | integer | (opcional, requerido apenas se registered_charges for `true`) padrão utilizado no arquivo CNAB de remessa. Os valores permitidos são 240 ou 400                                                                 |
 | transmission_code         | string  | (opcional, requerido apenas se registered_charges for `true`) código de transmissão (apenas para o Santander)                                                                                                   |
 | initial_remittance_number | integer | (opcional) número inicial de remessa, ou seja, qual foi o último número sequencial de remessa enviado para o banco (apenas para o Bradesco). Por padrão o valor é 1                                             |
@@ -344,7 +344,7 @@ Atualiza a Configuração de Cobrança determinada, retornando as informações 
 | end_number                | integer | (opcional) número final do nosso número, sendo o último número a ser atribuído, após isso a sequência é reiniciada                                                  |
 | next_number               | integer | (opcional) próximo nosso número a ser atribuído a uma cobrança criada a partir desta configuração de cobrança (é incrementado automatica e sequencialmente)         |
 | registered_charges        | boolean | (opcional) informa se a configuração de cobrança utiliza boletos registrados ou não, sendo false por padrão                                                         |
-| agreement_number          | integer | (opcional, requerido apenas se registered_charges for `true`) número do convênio com o banco (apenas para o Bradesco)                                               |
+| remittance_agreement_code | integer | (opcional, requerido apenas se registered_charges for `true`) número do convênio com o banco (apenas para o Bradesco)                                               |
 | remittance_cnab_pattern   | integer | (opcional, requerido apenas se registered_charges for `true`) padrão utilizado no arquivo CNAB de remessa. Os valores permitidos são 240 ou 400                     |
 | transmission_code         | string  | (opcional, requerido apenas se registered_charges for `true`) código de transmissão (apenas para o Santander)                                                       |
 | initial_remittance_number | integer | (opcional) número inicial de remessa, ou seja, qual foi o último número sequencial de remessa enviado para o banco (apenas para o Bradesco). Por padrão o valor é 1 |
