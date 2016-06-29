@@ -4,6 +4,7 @@ title: API Reference
 language_tabs:
   - shell
   - python
+  - javascript
 
 toc_footers:
   - <a href='http://www.scaleapi.com/'>Request Access to the Scale Beta</a>
@@ -43,6 +44,26 @@ curl "api_endpoint_here" \
 import requests
 
 requests.get('api_endpoint_here', auth=('YOUR_API_KEY', ''))
+```
+
+```javascript
+var request = require("request");
+var SCALE_API_KEY = 'YOUR_API_KEY';
+
+request.get('api_endpoint_here', {
+  'auth': {
+    'user': SCALE_API_KEY,
+    'pass': '',
+    'sendImmediately': true
+  }
+}, function(error, response, body) {
+  if (!error && response.statusCode == 200) {
+    console.log(body);
+  } else {
+    console.log(error);
+    console.log(response.statusCode);
+  }
+});
 ```
 
 > Make sure to replace `YOUR_API_KEY` with your API key.
@@ -128,6 +149,35 @@ requests.post("https://api.scaleapi.com/v1/task/categorize",
   data=payload, 
   auth=(YOUR_API_KEY, ''))
 
+```
+
+```javascript
+var request = require("request");
+var SCALE_API_KEY = 'YOUR_API_KEY';
+
+var payload = {
+  'callback_url': 'http://www.example.com/callback',
+  'instruction': 'Is this company public or private?',
+  'attachment_type': 'website',
+  'attachment': 'http://www.google.com/',
+  'categories': ['public', 'private']
+};
+
+request.post('https://api.scaleapi.com/v1/task/categorize', {
+  'auth': {
+    'user': SCALE_API_KEY,
+    'pass': '',
+    'sendImmediately': true
+  },
+  'form': payload
+}, function(error, response, body) {
+  if (!error && response.statusCode == 200) {
+    console.log(body);
+  } else {
+    console.log(error);
+    console.log(response.statusCode);
+  }
+});
 ```
 
 > The above command returns JSON structured like this:
@@ -225,6 +275,42 @@ requests.post("https://api.scaleapi.com/v1/task/transcription",
   headers=headers,
   auth=(YOUR_API_KEY, ''))
 
+```
+
+```javascript
+var request = require("request");
+var SCALE_API_KEY = 'YOUR_API_KEY';
+
+var payload = {
+  'callback_url': 'http://www.example.com/callback',
+  'instruction': 'Write down the normal fields. Then for each news item on the page, write down the information for the row.',
+  'attachment_type': 'website',
+  'attachment': 'http://www.google.com/',
+  'fields': {
+    'title': 'Title of Webpage',
+    'top_result': 'Title of the top result'
+  },
+  'row_fields': {
+    'username': 'Username of submitter',
+    'comment_count': 'Number of comments'
+  }
+};
+
+request.post('https://api.scaleapi.com/v1/task/transcription', {
+  'auth': {
+    'user': SCALE_API_KEY,
+    'pass': '',
+    'sendImmediately': true
+  },
+  'form': payload
+}, function(error, response, body) {
+  if (!error && response.statusCode == 200) {
+    console.log(body);
+  } else {
+    console.log(error);
+    console.log(response.statusCode);
+  }
+});
 ```
 
 > The above command returns JSON structured like this:
@@ -328,6 +414,37 @@ requests.post("https://api.scaleapi.com/v1/task/phonecall",
   headers=headers,
   auth=(YOUR_API_KEY, ''))
 
+```
+
+```javascript
+var request = require("request");
+var SCALE_API_KEY = 'YOUR_API_KEY';
+
+var payload = {
+  'callback_url': 'http://www.example.com/callback',
+  'instruction': 'Call this person and tell me his email address',
+  'phone_number': '5055006865',
+  'entity_name': 'Alexandr Wang',
+  'fields': {
+    'email': 'Email Address',
+  }
+};
+
+request.post('https://api.scaleapi.com/v1/task/phonecall', {
+  'auth': {
+    'user': SCALE_API_KEY,
+    'pass': '',
+    'sendImmediately': true
+  },
+  'form': payload
+}, function(error, response, body) {
+  if (!error && response.statusCode == 200) {
+    console.log(body);
+  } else {
+    console.log(error);
+    console.log(response.statusCode);
+  }
+});
 ```
 
 > The above command returns JSON structured like this:
@@ -465,6 +582,28 @@ response = requests.get('https://api.scaleapi.com/v1/task/%s' % task_id, auth=('
 response_dict = json.loads(response.content)
 ```
 
+```javascript
+var request = require("request");
+var SCALE_API_KEY = 'YOUR_API_KEY';
+
+var task_id = 'YOUR_TASK_ID';
+
+request.get('https://api.scaleapi.com/v1/task/' + task_id + '/', {
+  'auth': {
+    'user': SCALE_API_KEY,
+    'pass': '',
+    'sendImmediately': true
+  }
+}, function(error, response, body) {
+  if (!error && response.statusCode == 200) {
+    console.log(body);
+  } else {
+    console.log(error);
+    console.log(response.statusCode);
+  }
+});
+```
+
 > The above command returns JSON structured like this:
 
 ```json
@@ -522,6 +661,26 @@ response = requests.get('https://api.scaleapi.com/v1/tasks/', auth=('YOUR_API_KE
 
 # Return dictionary can be accessible in this way
 response_dict = json.loads(response.content)
+```
+
+```javascript
+var request = require("request");
+var SCALE_API_KEY = 'YOUR_API_KEY';
+
+request.get('https://api.scaleapi.com/v1/tasks/', {
+  'auth': {
+    'user': SCALE_API_KEY,
+    'pass': '',
+    'sendImmediately': true
+  }
+}, function(error, response, body) {
+  if (!error && response.statusCode == 200) {
+    console.log(body);
+  } else {
+    console.log(error);
+    console.log(response.statusCode);
+  }
+});
 ```
 
 > The above command returns JSON structured like this:
