@@ -285,9 +285,24 @@ ds <- newDataset(df, name="Trouble with Tribbles",
 POST a JSON object to create a new Dataset; a 201 indicates success, and the
 returned Location header refers to the new Dataset resource.
 
-The body must contain a "name", and additional parameters "description" and
-"archived" are allowed. You can also include a Crunch Table in a "table" key,
-as discussed in the Feature Guide. Sending any other attribute will return a 400 response.
+The body must contain a "name". You can also include a Crunch Table in a "table" key,
+as discussed in the [Feature Guide](#metadata-document-csv). The full set of possible attributes to include when POSTing to create a new dataset entity are:
+
+
+Name | Type | Description
+---- | ---- | -----------
+name | string | Human-friendly string identifier.
+description | string | Optional longer string.
+archived | boolean | Whether the variable should be hidden from most views; default: false.
+owner | URL | Provide a team URL to set the owner to that team. If omitted, the authenticated user will be the owner.   
+notes | sting | Blank if omitted. Optional notes for the dataset.
+start_date | date | ISO-8601 formatted date with day resolution.
+end_date | date | ISO-8601 formatted date with day resolution.
+is_published | boolean | If false, only project editors will have access to this dataset.
+weight_variables | array | Contains aliases of weight variables to start this dataset with. Variables must be numeric type.
+table | object | Metadata definition for the variables in the dataset.
+
+
 
 ### Other catalogs
 
@@ -299,6 +314,13 @@ In addition to `/datasets/`, there are a few other catalogs of datasets in the A
 
 A Shoji Catalog of datasets that have been shared with this team. These datasets
 are not included in the primary dataset catalog. See [teams](#teams) for more.
+
+#### Project datasets
+
+`/projects/{project_id}/datasets/`
+
+A Shoji Catalog of datasets that belong to this project. These datasets
+are not included in the primary dataset catalog. See [projects](#projects) for more.
 
 #### Filter datasets by name
 
@@ -826,7 +848,7 @@ Call DELETE on the Slide entity endpoint to delete this slide and its analyses.
 `/datasets/223fd4/decks/slides/flat/`
 
 The owner of the deck can pick the order of the slides on it. Unlike other
-`shoji:order` resources, this order does not allow grouping or nesting so it 
+`shoji:order` resources, this order does not allow grouping or nesting so it
 will always be a flat list of slide URLs.
 
 
@@ -848,7 +870,7 @@ Will return the list of all the slides in the deck.
 
 ####### PATCH
 
-To make changes to the order, a client should PATCH the full `shoji:order` 
+To make changes to the order, a client should PATCH the full `shoji:order`
 resource to the endpoint with the new order on its `graph` attribute.
 
 Any slide not mentioned on the payload will be added at the end of the graph
