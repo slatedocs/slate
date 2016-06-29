@@ -131,6 +131,8 @@ On your tasks, you will be required to supply a `callback_url`, a fully qualifie
 
 You should respond to the POST request with a 200 status code. If we do not receive a 200 status code, we will retry one more time.
 
+If you're just starting out and want the easiest way to set up your own callback URL, we recommend using [ngrok](https://ngrok.com/) to expose a local server to the internet. Feel free to [contact us](mailto:alex@scaleapi.com) if you have any trouble.
+
 ### POST Data
 
 Attribute | Type | Description
