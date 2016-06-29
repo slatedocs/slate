@@ -415,19 +415,19 @@ dataset Shoji entity.
 
 Catalog name | Resource
 ------------ | --------
-batches | Returns all the batches (succeeded and failed) used for this dataset
-joins | Contains the list of all the joinse available
-parent | Indicates the catalog where this dataset is found (projects or main dataset catalog)
+batches | Returns all the batches (successful and failed) used for this dataset
+joins | Contains the list of all the joins available
+parent | Indicates the catalog where this dataset is found (project or main dataset catalog)
 variables | Catalog of all public variables of this dataset
 actions | All actions executed for this dataset
 savepoints | Lists the created versions for this dataset
 weight_variables | Includes the available variables to be used as weight
-filters | Makes available the public and user created filters
-multitables | Similar to filters, displays all user created multitables
+filters | Makes available the public and user-created filters
+multitables | Similar to filters, displays all available multitables
 comparisons | Contains all user's created comparisons
 forks | Returns all the forks created from the dataset in question
 decks | The list of all decks on this dataset for the authenticated user
-permissions | Returns the list of all members with access to this dataset (users and teams)
+permissions | Returns the list of all users and teams with access to this dataset
 
 #### PATCH
 
