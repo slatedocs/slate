@@ -285,9 +285,24 @@ ds <- newDataset(df, name="Trouble with Tribbles",
 POST a JSON object to create a new Dataset; a 201 indicates success, and the
 returned Location header refers to the new Dataset resource.
 
-The body must contain a "name", and additional parameters "description" and
-"archived" are allowed. You can also include a Crunch Table in a "table" key,
-as discussed in the Feature Guide. Sending any other attribute will return a 400 response.
+The body must contain a "name". You can also include a Crunch Table in a "table" key,
+as discussed in the [Feature Guide](#metadata-document-csv). The full set of possible attributes to include when POSTing to create a new dataset entity are:
+
+
+Name | Type | Description
+---- | ---- | -----------
+name | string | Human-friendly string identifier.
+description | string | Optional longer string.
+archived | boolean | Whether the variable should be hidden from most views; default: false.
+owner | URL | Provide a team URL to set the owner to that team. If omitted, the authenticated user will be the owner.   
+notes | sting | Blank if omitted. Optional notes for the dataset.
+start_date | date | ISO-8601 formatted date with day resolution.
+end_date | date | ISO-8601 formatted date with day resolution.
+is_published | boolean | If false, only project editors will have access to this dataset.
+weight_variables | array | Contains aliases of weight variables to start this dataset with. Variables must be numeric type.
+table | object | Metadata definition for the variables in the dataset.
+
+
 
 ### Other catalogs
 
@@ -299,6 +314,13 @@ In addition to `/datasets/`, there are a few other catalogs of datasets in the A
 
 A Shoji Catalog of datasets that have been shared with this team. These datasets
 are not included in the primary dataset catalog. See [teams](#teams) for more.
+
+#### Project datasets
+
+`/projects/{project_id}/datasets/`
+
+A Shoji Catalog of datasets that belong to this project. These datasets
+are not included in the primary dataset catalog. See [projects](#projects) for more.
 
 #### Filter datasets by name
 
@@ -388,6 +410,46 @@ end_date | ISO-8601 string |  | End date/time of the dataset's data, defining a 
 current_editor | URL or null | | URL of the user entity that is currently editing the dataset, or `null` if there is no current editor
 current_editor_name | string or null | | That user's name, for display
 weight | URL | null | Points to the current weight variable applied for the given user
+
+##### Dataset catalogs
+
+A dataset contains a number of catalog resources that contain collections of 
+related objects. They are available under the `catalogs` attribute of the
+dataset Shoji entity.
+
+```json
+{
+  "batches": "http://beta.crunch.io/api/datasets/c5d751/batches/", 
+  "joins": "http://beta.crunch.io/api/datasets/c5d751/joins/", 
+  "parent": "http://beta.crunch.io/api/datasets/", 
+  "variables": "http://beta.crunch.io/api/datasets/c5d751/variables/", 
+  "actions": "http://beta.crunch.io/api/datasets/c5d751/actions/", 
+  "savepoints": "http://beta.crunch.io/api/datasets/c5d751/savepoints/", 
+  "weight_variables": "http://beta.crunch.io/api/datasets/c5d751/weight_variables/", 
+  "filters": "http://beta.crunch.io/api/datasets/c5d751/filters/", 
+  "multitables": "http://beta.crunch.io/api/datasets/c5d751/multitables/", 
+  "comparisons": "http://beta.crunch.io/api/datasets/c5d751/comparisons/", 
+  "forks": "http://beta.crunch.io/api/datasets/c5d751/forks/", 
+  "decks": "http://beta.crunch.io/api/datasets/c5d751/decks/", 
+  "permissions": "http://beta.crunch.io/api/datasets/c5d751/permissions/"
+}
+```
+
+Catalog name | Resource
+------------ | --------
+batches | Returns all the batches (successful and failed) used for this dataset
+joins | Contains the list of all the joins available
+parent | Indicates the catalog where this dataset is found (project or main dataset catalog)
+variables | Catalog of all public variables of this dataset
+actions | All actions executed for this dataset
+savepoints | Lists the created versions for this dataset
+weight_variables | Includes the available variables to be used as weight
+filters | Makes available the public and user-created filters
+multitables | Similar to filters, displays all available multitables
+comparisons | Contains all user's created comparisons
+forks | Returns all the forks created from the dataset in question
+decks | The list of all decks on this dataset for the authenticated user
+permissions | Returns the list of all users and teams with access to this dataset
 
 #### PATCH
 
@@ -786,7 +848,7 @@ Call DELETE on the Slide entity endpoint to delete this slide and its analyses.
 `/datasets/223fd4/decks/slides/flat/`
 
 The owner of the deck can pick the order of the slides on it. Unlike other
-`shoji:order` resources, this order does not allow grouping or nesting so it 
+`shoji:order` resources, this order does not allow grouping or nesting so it
 will always be a flat list of slide URLs.
 
 
@@ -808,7 +870,7 @@ Will return the list of all the slides in the deck.
 
 ####### PATCH
 
-To make changes to the order, a client should PATCH the full `shoji:order` 
+To make changes to the order, a client should PATCH the full `shoji:order`
 resource to the endpoint with the new order on its `graph` attribute.
 
 Any slide not mentioned on the payload will be added at the end of the graph

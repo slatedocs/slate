@@ -8,7 +8,7 @@ values. It provides granular control over the rows and columns for each dataset.
 #### GET
 
 When authenticated, GET returns a 200 status with a Shoji Table of the 
-dataset's data. It will expose all the variables that are visible by the logged
+dataset's data. It will expose all the variables that are visible by the authenticated
 user (Public + privates created by them) as well as the exclusion filter 
 applied (if any).
 
