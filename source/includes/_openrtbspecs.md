@@ -314,3 +314,40 @@ at | integer | none | Optional override of the overall auction type of the bid r
 wseat | string array | none | Whitelist of buyer seats allowed to bid on this deal. Seat IDs must be communicated between bidders and the exchange a priori. Omission implies no seat restrictions.
 wadomain | string array | none | Array of advertiser domains (e.g., advertiser.com) allowed to bid on this deal. Omission implies no advertiser restrictions.
 ext | object | none | Placeholder for exchange-specific extensions to OpenRTB
+
+## Tables 5.16 - 5.18
+
+These tables contain additional information about location and device type
+
+### Location Type
+
+Value | Description
+----- | ----------
+1 | GPS/Location Services
+2 | IP Address
+3 | User provided (e.g. registration data)
+
+### Device Type
+
+Value | Description | Notes 
+----- | ----------- | -----
+1 | Mobile/Tablet | Version 2.0
+2 | Personal Computer | Version 2.0
+3 | Connected TV | Version 2.0
+4 | Phone | New for Version 2.2
+5 | Tablet | New for Version 2.2
+6 | Connected Device | New for Version 2.2
+7 | Set Top Box | New for Version 2.2
+
+
+### Connection Type
+
+Value | Description 
+----- | ----------- 
+0 | Unknown
+1 | Ethernet
+2 | WIFI
+3 | Cellular Network – Unknown Generation
+4 | Cellular Network – 2G
+5 | Cellular Network – 3G
+6 | Cellular Network – 4G
