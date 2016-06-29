@@ -201,166 +201,116 @@ ext | object | none | Placeholder for exchange-specific extensions to OpenRTB.
 
 Field Name | Type | Default | Description
 ---------- | ---- | ------- | ----------- 
-id string Content producer or originator ID. Useful if content is
-syndicated and may be posted on a site using embed tags.
-name string Content producer or originator name (e.g., “Warner Bros”).
-cat string array Array of IAB content categories that describe the content
-producer. Refer to List 5.1.
-domain string Highest level domain of the content producer (e.g.,
-“producer.com”).
-ext object Placeholder for exchange-specific extensions to OpenRTB.
+id | string | none | Content producer or originator ID. Useful if content is syndicated and may be posted on a site using embed tags.
+name | string | none | Content producer or originator name (e.g., “Warner Bros”).
+cat | string array | none | Array of IAB content categories that describe the content producer.
+domain | string | none | Highest level domain of the content producer (e.g., “producer.com”).
+ext | object | none | Placeholder for exchange-specific extensions to OpenRTB.
 
 ### Device
 
 Field Name | Type | Default | Description
 ---------- | ---- | ------- | ----------- 
-ua string;
-recommended
-Browser user agent string.
-geo object;
-recommended
-Location of the device assumed to be the user’s current
-location defined by a Geo object (Section 3.2.12).
-dnt integer;
-recommended
-Standard “Do Not Track” flag as set in the header by the
-browser, where 0 = tracking is unrestricted, 1 = do not track.
-lmt integer;
-recommended
-“Limit Ad Tracking” signal commercially endorsed (e.g., iOS,
-Android), where 0 = tracking is unrestricted, 1 = tracking must
-be limited per commercial guidelines.
-ip string;
-recommended
-IPv4 address closest to device.
-ipv6 string IP address closest to device as IPv6.
-devicetype integer The general type of device. Refer to List 5.17.
-make string Device make (e.g., “Apple”).
-model string Device model (e.g., “iPhone”).
-os string Device operating system (e.g., “iOS”).
-osv string Device operating system version (e.g., “3.1.2”).
-hwv string Hardware version of the device (e.g., “5S” for iPhone 5S).
-h integer Physical height of the screen in pixels.
-w integer Physical width of the screen in pixels.
-ppi integer Screen size as pixels per linear inch.
-pxratio float The ratio of physical pixels to device independent pixels.
-js integer Support for JavaScript, where 0 = no, 1 = yes.
-flashver string Version of Flash supported by the browser.
-language string Browser language using ISO-639-1-alpha-2.
-carrier string Carrier or ISP (e.g., “VERIZON”). “WIFI” is often used in mobile
-to indicate high bandwidth (e.g., video friendly vs. cellular).
-connectiontype integer Network connection type. Refer to List 5.18.
-ifa string ID sanctioned for advertiser use in the clear (i.e., not hashed).
-didsha1 string Hardware device ID (e.g., IMEI); hashed via SHA1.
-didmd5 string Hardware device ID (e.g., IMEI); hashed via MD5.
-dpidsha1 string Platform device ID (e.g., Android ID); hashed via SHA1.
-dpidmd5 string Platform device ID (e.g., Android ID); hashed via MD5.
-macsha1 string MAC address of the device; hashed via SHA1.
-macmd5 string MAC address of the device; hashed via MD5.
-ext object Placeholder for exchange-specific extensions to OpenRTB
+ua | string | none | Browser user agent string.
+geo | object | none | Location of the device assumed to be the user’s current location defined by a Geo object.
+dnt | integer | none | Standard “Do Not Track” flag as set in the header by the browser, where 0 = tracking is unrestricted, 1 = do not track.
+lmt | integer | none |  “Limit Ad Tracking” signal commercially endorsed (e.g., iOS, Android), where 0 = tracking is unrestricted, 1 = tracking must be limited per commercial guidelines.
+ip | string | none | IPv4 address closest to device.
+ipv6 | string | none | IP address closest to device as IPv6.
+devicetype | integer | none | The general type of device. make string Device make (e.g., “Apple”).
+model | string | none | Device model (e.g., “iPhone”).
+os | string | none | Device operating system (e.g., “iOS”).
+osv | string | none | Device operating system version (e.g., “3.1.2”).
+hwv | string | none | Hardware version of the device (e.g., “5S” for iPhone 5S).
+h | integer | none | Physical height of the screen in pixels.
+w | integer | none | Physical width of the screen in pixels.
+ppi | integer | none | Screen size as pixels per linear inch.
+pxratio | float | none | The ratio of physical pixels to device independent pixels.
+js | integer | none | Support for JavaScript, where 0 = no, 1 = yes.
+flashver | string | none | Version of Flash supported by the browser.
+language | string | none | Browser language using ISO-639-1-alpha-2.
+carrier | string | noen | Carrier or ISP (e.g., “VERIZON”). “WIFI” is often used in mobile to indicate high bandwidth (e.g., video friendly vs. cellular).
+connectiontype | integer | none | Network connection type.
+ifa | string | none | ID sanctioned for advertiser use in the clear (i.e., not hashed).
+didsha1 | string | none | Hardware device ID (e.g., IMEI); hashed via SHA1.
+didmd5 | string | none | Hardware device ID (e.g., IMEI); hashed via MD5.
+dpidsha1 | string | none | Platform device ID (e.g., Android ID); hashed via SHA1.
+dpidmd5 | string | none | Platform device ID (e.g., Android ID); hashed via MD5.
+macsha1 | string | none | MAC address of the device; hashed via SHA1.
+macmd5 | string | none | MAC address of the device; hashed via MD5.
+ext | object | none | Placeholder for exchange-specific extensions to OpenRTB
 
 ### Geo
 
 Field Name | Type | Default | Description
 ---------- | ---- | ------- | ----------- 
-lat float Latitude from -90.0 to +90.0, where negative is south.
-lon float Longitude from -180.0 to +180.0, where negative is west.
-type integer Source of location data; recommended when passing
-lat/lon. Refer to List 5.16.
-country string Country code using ISO-3166-1-alpha-3.
-region string Region code using ISO-3166-2; 2-letter state code if USA.
-regionfips104 string Region of a country using FIPS 10-4 notation. While OpenRTB
-supports this attribute, it has been withdrawn by NIST in 2008.
-metro string Google metro code; similar to but not exactly Nielsen DMAs.
-See Appendix A for a link to the codes.
-city string City using United Nations Code for Trade & Transport
-Locations. See Appendix A for a link to the codes.
-zip string Zip or postal code.
-utcoffset integer Local time as the number +/- of minutes from UTC.
-ext object Placeholder for exchange-specific extensions to OpenRTB.
+lat | float | none | Latitude from -90.0 to +90.0, where negative is south.
+lon | float | none | Longitude from -180.0 to +180.0, where negative is west.
+type | integer | none | Source of location data; recommended when passing lat/lon.
+country | string | none | Country code using ISO-3166-1-alpha-3.
+region | string | none | Region code using ISO-3166-2; 2-letter state code if USA.
+regionfips104 | string | none | Region of a country using FIPS 10-4 notation. While OpenRTB supports this attribute, it has been withdrawn by NIST in 2008.
+metro | string | none | Google metro code; similar to but not exactly Nielsen DMAs.
+city | string | none | City using United Nations Code for Trade & Transport Locations.
+zip | string | none | Zip or postal code.
+utcoffset | integer | none | Local time as the number +/- of minutes from UTC.
+ext | object | none | Placeholder for exchange-specific extensions to OpenRTB.
 
 ### User
 
 Field Name | Type | Default | Description
 ---------- | ---- | ------- | ----------- 
-id string;
-recommended
-Exchange-specific ID for the user. At least one of id or
-buyeruid is recommended.
-buyeruid string;
-recommended
-Buyer-specific ID for the user as mapped by the exchange for
-the buyer. At least one of buyeruid or id is recommended.
-yob integer Year of birth as a 4-digit integer.
-gender string Gender, where “M” = male, “F” = female, “O” = known to be
-other (i.e., omitted is unknown).
-keywords string Comma separated list of keywords, interests, or intent.
-customdata string Optional feature to pass bidder data that was set in the
-exchange’s cookie. The string must be in base85 cookie safe
-characters and be in any format. Proper JSON encoding must
-be used to include “escaped” quotation marks.
-geo object Location of the user’s home base defined by a Geo object
-(Section 3.2.12). This is not necessarily their current location.
-data object array Additional user data. Each Data object (Section 3.2.14)
-represents a different data source.
-ext object Placeholder for exchange-specific extensions to OpenRTB.
+id | string | none | Exchange-specific ID for the user. At least one of id or buyeruid is recommended.
+buyeruid | string | none | Buyer-specific ID for the user as mapped by the exchange for the buyer. At least one of buyeruid or id is recommended.
+yob | integer | none | Year of birth as a 4-digit integer.
+gender | string | none | Gender, where “M” = male, “F” = female, “O” = known to be other (i.e., omitted is unknown).
+keywords | string | none | Comma separated list of keywords, interests, or intent.
+customdata | string | none | Optional feature to pass bidder data that was set in the exchange’s cookie. The string must be in base85 cookie safe characters and be in any format. Proper JSON encoding must be used to include “escaped” quotation marks.
+geo | object | none | Location of the user’s home base defined by a Geo object. This is not necessarily their current location.
+data | object array | none | Additional user data. Each Data object represents a different data source.
+ext | object | none | Placeholder for exchange-specific extensions to OpenRTB.
 
 ### Data
 
 Field Name | Type | Default | Description
 ---------- | ---- | ------- | ----------- 
-id string Exchange-specific ID for the data provider.
-name string Exchange-specific name for the data provider.
-segment object array Array of Segment (Section 3.2.15) objects that contain the
-actual data values.
-ext object Placeholder for exchange-specific extensions to OpenRTB.
+id | string | none | Exchange-specific ID for the data provider.
+name | string | none | Exchange-specific name for the data provider.
+segment | object array | none | Array of Segment objects that contain the actual data values.
+ext | object | none | Placeholder for exchange-specific extensions to OpenRTB.
 
 ### Segment
 
 Field Name | Type | Default | Description
 ---------- | ---- | ------- | ----------- 
-id string ID of the data segment specific to the data provider.
-name string Name of the data segment specific to the data provider.
-value string String representation of the data segment value.
-ext object Placeholder for exchange-specific extensions to OpenRTB.
+id | string | none | ID of the data segment specific to the data provider.
+name | string | none | Name of the data segment specific to the data provider.
+value | string | none | String representation of the data segment value.
+ext | object | none | Placeholder for exchange-specific extensions to OpenRTB.
 
 ### Regs
 
 Field Name | Type | Default | Description
 ---------- | ---- | ------- | ----------- 
-coppa integer Flag indicating if this request is subject to the COPPA
-regulations established by the USA FTC, where 0 = no, 1 = yes.
-ext object Placeholder for exchange-specific extensions to OpenRTB.
+coppa | integer | none | Flag indicating if this request is subject to the COPPA regulations established by the USA FTC, where 0 = no, 1 = yes.
+ext | object | none | Placeholder for exchange-specific extensions to OpenRTB.
 
 ### Pmp
 
 Field Name | Type | Default | Description
 ---------- | ---- | ------- | ----------- 
-private_auction integer Indicator of auction eligibility to seats named in the Direct
-Deals object, where 0 = all bids are accepted, 1 = bids are
-restricted to the deals specified and the terms thereof.
-deals object array Array of Deal (Section 3.2.18) objects that convey the specific
-deals applicable to this impression.
-ext object Placeholder for exchange-specific extensions to OpenRTB.
+private_auction | integer | none | Indicator of auction eligibility to seats named in the Direct Deals object, where 0 = all bids are accepted, 1 = bids are restricted to the deals specified and the terms thereof.
+deals | object array | none | Array of Deal objects that convey the specific deals applicable to this impression.
+ext | object | none | Placeholder for exchange-specific extensions to OpenRTB.
 
 ### Deal
 
 Field Name | Type | Default | Description
 ---------- | ---- | ------- | ----------- 
-id string; required A unique identifier for the direct deal.
-bidfloor float; default 0 Minimum bid for this impression expressed in CPM.
-bidfloorcur string;
-default ”USD”
-Currency specified using ISO-4217 alpha codes. This may be
-different from bid currency returned by bidder if this is
-allowed by the exchange.
-at integer Optional override of the overall auction type of the bid
-request, where 1 = First Price, 2 = Second Price Plus, 3 = the
-value passed in bidfloor is the agreed upon deal price.
-Additional auction types can be defined by the exchange.
-wseat string array Whitelist of buyer seats allowed to bid on this deal. Seat IDs
-must be communicated between bidders and the exchange a
-priori. Omission implies no seat restrictions.
-wadomain string array Array of advertiser domains (e.g., advertiser.com) allowed to
-bid on this deal. Omission implies no advertiser restrictions.
-ext object Placeholder for exchange-specific extensions to OpenRTB
+id | string | none | A unique identifier for the direct deal.
+bidfloor | float | 0 | Minimum bid for this impression expressed in CPM.
+bidfloorcur | string | USD| Currency specified using ISO-4217 alpha codes. This may be different from bid currency returned by bidder if this is allowed by the exchange.
+at | integer | none | Optional override of the overall auction type of the bid request, where 1 = First Price, 2 = Second Price Plus, 3 = the value passed in bidfloor is the agreed upon deal price. Additional auction types can be defined by the exchange.
+wseat | string array | none | Whitelist of buyer seats allowed to bid on this deal. Seat IDs must be communicated between bidders and the exchange a priori. Omission implies no seat restrictions.
+wadomain | string array | none | Array of advertiser domains (e.g., advertiser.com) allowed to bid on this deal. Omission implies no advertiser restrictions.
+ext | object | none | Placeholder for exchange-specific extensions to OpenRTB
