@@ -99,58 +99,8 @@ status | string | The status of the task, one of `pending`, `completed`, or `can
 created_at | timestamp | A string of the UTC timestamp of when the task was created.
 completed_at | timestamp | A string of the UTC timestamp of when the task was completed. This will only be filled in after it is completed.
 
-# Callbacks
 
-> The `callback_url` will be POSTed with `x-www-form-urlencoded` data of the following object form:
-
-```json
-{
-  "task": {
-    "completed_at": "2016-06-23T21:54:44.904Z",
-    "response": {
-      "category": "big",
-      "status_code": "200"
-    },
-    "created_at": "2016-06-23T20:08:31.573Z",
-    "callback_url": "http://www.example.com/test_callback",
-    "type": "categorization",
-    "status": "completed",
-    "instruction": "Is this object red or blue?",
-    "params": {
-      "attachment_type": "text",
-      "attachment": "tomato",
-      "categories": [
-        "big",
-        "small"
-      ]
-    },
-    "task_id": "576c41bf13e36b0600b02b34"
-  },
-  "response": {
-    "status_code": "200",
-    "category": "big"
-  },
-  "task_id": "576c41bf13e36b0600b02b34"
-}
-```
-
-On your tasks, you will be required to supply a `callback_url`, a fully qualified URL that we will POST with the results of the task when completed. The data will be `x-www-form-urlencoded`.
-
-You should respond to the POST request with a 200 status code. If we do not receive a 200 status code, we will retry one more time.
-
-If you're just starting out and want the easiest way to set up your own callback URL, we recommend using [ngrok](https://ngrok.com/) to expose a local server to the internet. Feel free to [contact us](mailto:alex@scaleapig.com) if you have any trouble.
-
-### POST Data
-
-Attribute | Type | Description
---------- | ------- | -----------
-task_id | string | The `task_id` is the unique identifier for the task.
-response | object | The response object of the completed request. For `categorization`, it will contain a `category` attribute of the assigned category.
-task | object | The full task object for reference and convenience.
-
-# Create Tasks
-
-## Create Categorization Task
+# Create Categorization Task
 
 ```shell
 curl "https://api.scaleapi.com/v1/task/categorize" \
@@ -234,7 +184,7 @@ The `response` object will be of the form:
 
 `category` will be one of the original categories.
 
-## Create Transcription Task
+# Create Transcription Task
 
 ```shell
 curl "https://api.scaleapi.com/v1/task/transcription" \
@@ -346,7 +296,7 @@ The `response` object will be of the form:
 
 `fields` will have keys corresponding to the keys you provided in the parameters, with values the transcribed value. `rows` will be an array of such dictionaries, with keys corresponding to the keys you provided in the parameters, and values corresponding to the transcribed value.
 
-## Create Phone Call Task
+# Create Phone Call Task
 
 ```shell
 curl "https://api.scaleapi.com/v1/task/phonecall" \
@@ -444,6 +394,56 @@ The `response` object will be of the form:
 The outcome will be a string equal to one of `no_pickup` (meaning nobody picked up), `hung_up` (meaning the recipient hung up before the task could be completed), or `success` (the call succeeded). 
 
 If your original call provided `fields`, `fields` will have keys corresponding to the keys you provided in the parameters, with values the transcribed value.
+
+# Callbacks
+
+> The `callback_url` will be POSTed with `x-www-form-urlencoded` data of the following object form:
+
+```json
+{
+  "task": {
+    "completed_at": "2016-06-23T21:54:44.904Z",
+    "response": {
+      "category": "big",
+      "status_code": "200"
+    },
+    "created_at": "2016-06-23T20:08:31.573Z",
+    "callback_url": "http://www.example.com/test_callback",
+    "type": "categorization",
+    "status": "completed",
+    "instruction": "Is this object red or blue?",
+    "params": {
+      "attachment_type": "text",
+      "attachment": "tomato",
+      "categories": [
+        "big",
+        "small"
+      ]
+    },
+    "task_id": "576c41bf13e36b0600b02b34"
+  },
+  "response": {
+    "status_code": "200",
+    "category": "big"
+  },
+  "task_id": "576c41bf13e36b0600b02b34"
+}
+```
+
+On your tasks, you will be required to supply a `callback_url`, a fully qualified URL that we will POST with the results of the task when completed. The data will be `x-www-form-urlencoded`.
+
+You should respond to the POST request with a 200 status code. If we do not receive a 200 status code, we will retry one more time.
+
+If you're just starting out and want the easiest way to set up your own callback URL, we recommend using [ngrok](https://ngrok.com/) to expose a local server to the internet. Feel free to [contact us](mailto:alex@scaleapig.com) if you have any trouble.
+
+### POST Data
+
+Attribute | Type | Description
+--------- | ------- | -----------
+task_id | string | The `task_id` is the unique identifier for the task.
+response | object | The response object of the completed request. For `categorization`, it will contain a `category` attribute of the assigned category.
+task | object | The full task object for reference and convenience.
+
 
 # Task Endpoints
 
