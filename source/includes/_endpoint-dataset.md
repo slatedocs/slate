@@ -531,6 +531,7 @@ Attribute | Description | Example
 --------- | ----------- | ------------------------------------
 filter | A Crunch filter expression defining a filter for the given export | `{"function": "==", "args": [{"variable": "000000"}, {"value": 1}]}`
 where  | A Crunch expression defining which variables to export | `{"function": "identify", "args": [{"id": ["000000"]}]}`
+use_category_ids | Instead of including category names in the results, just use the ids | 0 or 1
 
 See ["Expressions"](#expressions) for more on Crunch expressions.
 
