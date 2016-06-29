@@ -389,6 +389,46 @@ current_editor | URL or null | | URL of the user entity that is currently editin
 current_editor_name | string or null | | That user's name, for display
 weight | URL | null | Points to the current weight variable applied for the given user
 
+##### Dataset catalogs
+
+A dataset contains a number of catalog resources that contain collections of 
+related objects. They are available under the `catalogs` attribute of the
+dataset Shoji entity.
+
+```json
+{
+  "batches": "http://beta.crunch.io/api/datasets/c5d751/batches/", 
+  "joins": "http://beta.crunch.io/api/datasets/c5d751/joins/", 
+  "parent": "http://beta.crunch.io/api/datasets/", 
+  "variables": "http://beta.crunch.io/api/datasets/c5d751/variables/", 
+  "actions": "http://beta.crunch.io/api/datasets/c5d751/actions/", 
+  "savepoints": "http://beta.crunch.io/api/datasets/c5d751/savepoints/", 
+  "weight_variables": "http://beta.crunch.io/api/datasets/c5d751/weight_variables/", 
+  "filters": "http://beta.crunch.io/api/datasets/c5d751/filters/", 
+  "multitables": "http://beta.crunch.io/api/datasets/c5d751/multitables/", 
+  "comparisons": "http://beta.crunch.io/api/datasets/c5d751/comparisons/", 
+  "forks": "http://beta.crunch.io/api/datasets/c5d751/forks/", 
+  "decks": "http://beta.crunch.io/api/datasets/c5d751/decks/", 
+  "permissions": "http://beta.crunch.io/api/datasets/c5d751/permissions/"
+}
+```
+
+Catalog name | Resource
+------------ | --------
+batches | Returns all the batches (successful and failed) used for this dataset
+joins | Contains the list of all the joins available
+parent | Indicates the catalog where this dataset is found (project or main dataset catalog)
+variables | Catalog of all public variables of this dataset
+actions | All actions executed for this dataset
+savepoints | Lists the created versions for this dataset
+weight_variables | Includes the available variables to be used as weight
+filters | Makes available the public and user-created filters
+multitables | Similar to filters, displays all available multitables
+comparisons | Contains all user's created comparisons
+forks | Returns all the forks created from the dataset in question
+decks | The list of all decks on this dataset for the authenticated user
+permissions | Returns the list of all users and teams with access to this dataset
+
 #### PATCH
 
 `PATCH /datasets/{dataset_id}/`
