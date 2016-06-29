@@ -2,16 +2,15 @@
 
 ## Setting up the SDK
 
-Once you’ve brought the Foxtrot Android SDK into your project, the first thing you’ll want to do is set it up.
-You’ll need two things: a context (any context should be fine), and an API key that lets Foxtrot identify your organization.
-
-Don’t have an API key? get one [right here](http://foxtrot.io/gimme_an_api_key).
 
 ```java
-Context mContext = GIVE ME A CONTEXT;
+Context mContext = activity.getApplicationContext();
 String mApiKey = "YOUR_API_KEY";
 FoxtrotSDK.setup(mContext, mApiKey);
 ```
+
+Once you’ve brought the Foxtrot Android SDK into your project, the first thing you’ll want to do is set it up.
+You’ll need two things: a context (any context should be fine), and an API key that lets Foxtrot identify your organization.
 
 Great job, now you’ve set up the Foxtrot SDK singleton… give yourself a high five!
 From now on, when you call the FoxtrotSDK you’ll need to access the singleton by calling 
@@ -20,10 +19,8 @@ From now on, when you call the FoxtrotSDK you’ll need to access the singleton 
 FoxtrotSDK.getInstance().SOME_METHOD()
 ```
 
-## Registering an error listener
 
-Now that you’ve set foxtrot up, you’ll want to register an object that conforms to our ErrorStateListener interface so you know if anything goes wrong.
-Here’s how to create a simple listener:
+## Registering an error listener
 
 ```java
 public class YourErrorStateListener extends ErrorStateListener {
@@ -53,6 +50,8 @@ public class YourErrorStateListener extends ErrorStateListener {
   }
 }
 ```
+
+    Now that you’ve set foxtrot up, you’ll want to register an object that conforms to our ErrorStateListener interface so you know if anything goes wrong. Here’s how to create a simple listener:
 
 And once you’ve implemented your class, here’s how you register it to Foxtrot:
 
@@ -219,8 +218,8 @@ Here’s how to create and add one, using the Route we created previously:
 
 ```java
 DeliveryAttempt successfulAttempt = DeliveryAttempt.builder()
-                            .setStatus(DeliveryStatus.SUCCESSFUL)
-                            .setNotes("Delivered the cookies") // notes are optional
-                            .build();
+        .setStatus(DeliveryStatus.SUCCESSFUL)
+        .setNotes("Delivered the cookies") // notes are optional
+        .build();
 FoxtrotSDK.getInstance().addDeliveryAttempt("SOME_DELIVERY_ID", successfulAttempt);
 ```
