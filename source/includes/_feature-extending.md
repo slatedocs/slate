@@ -8,7 +8,7 @@ Content-Type: application/json
     "function": "select",
     "args": [
         {
-            "function": "alter",
+            "function": "adapt",
             "args": [
                 {
                     "dataset": "/datasets/{other_id}/",
