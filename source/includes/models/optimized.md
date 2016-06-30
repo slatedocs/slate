@@ -16,12 +16,12 @@ In addition to the original fields the models are based on, new fields are added
 
 ## OptimizedWarehouse
 
-| Field                     | Type                             | Required | Description
+| Field                     | Type                             | Nullable | Description
 |---------------------------|----------------------------------|----------|------------
-| id                        | String  	                       | true     | The id of the warehouse.
-| name                      | String                           | false    | The name of the warehouse.
-| address                   | String                           | false    | The address at the warehouse.
-| location                  | [Location](#location)            | true     | The geocode coordinate at this warehouse.
+| id                        | String  	                       | false    | The id of the warehouse.
+| name                      | String                           | true     | The name of the warehouse.
+| address                   | String                           | true     | The address at the warehouse.
+| location                  | [Location](#location)            | false    | The geocode coordinate at this warehouse.
 
 
 ## OptimizedWaypoint
