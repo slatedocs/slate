@@ -14,6 +14,16 @@ In addition to the original fields the models are based on, new fields are added
 | waypoints                 | List<[OptimizedWaypoint](#optimizedwaypoint)>  | false    | The list of waypoint objects. This list must not be empty.
 
 
+## OptimizedWarehouse
+
+| Field                     | Type                             | Required | Description
+|---------------------------|----------------------------------|----------|------------
+| id                        | Long  	                       | true     | The id of the warehouse.
+| name                      | String                           | false    | The name of the warehouse.
+| address                   | String                           | false    | The address at the warehouse.
+| location                  | [Location](#location)            | true     | The geocode coordinate at this warehouse.
+
+
 ## OptimizedWaypoint
 
 | Field                                | Type                                               | Nullable | Description
