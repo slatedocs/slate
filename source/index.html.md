@@ -594,8 +594,43 @@ To add a user to an existing sharing group, use the addUser method of
 SearchableFileSystem. 
 
 A `NonExistingGroupException` is thrown if the provided group name does not
-exist. A `ExistingMemberException` is thrown if the given user name is already a
+exist. A `ExistingMemberException` is thrown if the given username is already a
 member of the group. 
+
+## Revoke Member from Sharing Group
+> Revoking a single member from a sharing group
+
+```java
+// SearchableFileSystem sfs
+String groupName = "shareGroup";
+String userName = "userName";
+try{
+	sfs.revokeUser(groupName, userName);
+} catch(NonMemberException e){
+	System.out.println("The user is not a member of the sharing group.");
+}
+
+```
+
+It is also possible to revoke multiple members
+> Revoking multiple members from a sharing group
+
+```java
+// SearchableFileSystem sfs
+String groupName = "shareGroup";
+List<String> userNames = Arrays.asList("userName1", "userName2";
+try{
+	sfs.revokeUsers(groupName, userNames);
+} catch(NonMemberException e){
+	System.out.println("One of the revoked users is not a member of the sharing group.");
+}
+
+```
+A `NonExistingGroupException` is thrown if the provided group name does not
+exist. A `NonMemberException` is thrown if one of the provided usernames is not a member of the group. 
+
+Revocation changes all the cryptographic keys of the sharing group and
+reencrypts all the data stored in the sharing group.
 
 ## Secure Search
 > Secure search
