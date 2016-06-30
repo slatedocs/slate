@@ -76,7 +76,7 @@ public class YourLoginCallback extends LoginCallback {
     this.handler = handler;
   }
 
-  public LoginCallback create(Handler handler) {
+  public static LoginCallback create(Handler handler) {
     return new YourLoginCallback(handler);
   }
 
@@ -129,7 +129,7 @@ public class YourRouteStateListener extends RouteStateListener {
     this.handler = handler;
   }
 
-  public RouteStateListener create(Handler handler) {
+  public static RouteStateListener create(Handler handler) {
     return new YourRouteStateListener(handler);
   }
 
