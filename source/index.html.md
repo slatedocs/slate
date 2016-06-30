@@ -572,7 +572,7 @@ try {
 }
 ```
 
-To share a directory or a file that you own with the members in a sharing group, use the shareElement method of SearchableFileSystem.
+To share a directory or a file that you own with the members in a sharing group, use the `shareElement` method of `SearchableFileSystem`.
 
 A `PathNotFoundException` is thrown if the frontend path of the element to share does not exist. If the element is already shared with this share name and this sharing group, an `ElementAlreadySharedException` is thrown. If the caller does not own the file system element, a `PathNotOwnedByUserException` is thrown.
 
@@ -590,8 +590,8 @@ try{
 	System.out.println("The user is already in the sharing group.");
 }
 ```
-To add a user to an existing sharing group, use the addUser method of
-SearchableFileSystem. 
+To add a user to an existing sharing group, use the `addUser` method of
+`SearchableFileSystem`. 
 
 A `NonExistingGroupException` is thrown if the provided group name does not
 exist. A `ExistingMemberException` is thrown if the given username is already a
@@ -626,9 +626,9 @@ try{
 }
 
 ```
-To revoke (remove) a user from a sharing group, use the revokeUser method of
-SearchableFileSystem. To revoke multiple users from a sharing group, use the
-revokeUsers method of SearchableFileSystem.
+To revoke (remove) a user from a sharing group, use the `revokeUser` method of
+`SearchableFileSystem`. To revoke multiple users from a sharing group, use the
+`revokeUsers` method of `SearchableFileSystem`.
 
 A `NonExistingGroupException` is thrown if the provided group name does not
 exist. A `NonMemberException` is thrown if one of the provided usernames is not a member of the group. 
@@ -646,8 +646,8 @@ sharing group.
 String password = "password"; //The user's password
 sfs.refreshUserKeyring(password); 
 ```
-To refresh all the keys of one user, use the refreshUserKeyring method of
-SearchableFileSystem. 
+To refresh all the keys of one user, use the `refreshUserKeyring` method of
+`SearchableFileSystem`. 
 An `AuthenticationException` is thrown if the user's password is incorrect.
 
 > Refresh group keyring
@@ -657,8 +657,8 @@ An `AuthenticationException` is thrown if the user's password is incorrect.
 String groupName = "shareGroup"; //The user's password
 sfs.refreshGroupKeyring(groupName); 
 ```
-To refresh all the keys of a sharing group, use the refreshGroupKeyring method of
-SearchableFileSystem. 
+To refresh all the keys of a sharing group, use the `refreshGroupKeyring` method of
+`SearchableFileSystem`. 
 
 ## Secure Search
 > Secure search
@@ -675,3 +675,27 @@ SearchResponse response = sfs.search(keywords, page, numResults);
 To perform a secure keyword search on the content of the user, together with all the shared content from all sharing groups for which the user is a member, one calls the `search()` method of `SearchableFileSystem`
 
 The result of the secure search is an object of class `SearchResponse`. One can retrieve the frontend paths together with the ranking scores of the hits in the `SearchResponse`. The method `getAllRankedSearchResults()` returns a list of objects of class `RankedSearchResult` (simply a pair of a frontend path and a ranking score).  
+
+> Boolean queries
+
+It is also possible to do boolean search queries using the following keywords.
+The keyword `AND` means that two terms have to be in the results. For instance,
+the query `cat AND dog` will only return documents containing both the word cat
+and the word dog. 
+
+The keyword `OR` (which can also be replaced by a space) means that at least one
+of the two terms have to be in the results. For instance, the query `cat OR dog`
+will return documents containing only the word cat, documents containing only
+the word dog, and documents containing both documents. 
+
+Finally, the keyword `NOT` indicates keywords that should not appear in the
+results. For instance, the query `cat AND NOT dog` will return documents that
+contain the word cat but not the word dog. 
+
+```java
+int page = 0; // the first result to return
+int numResults = 100; // the maximal number of results to return
+SearchResponse response = sfs.search("lizard OR ( cat AND NOT dog )", page, numResults);
+```
+This example will all documents containing the word lizard and the documents
+containing the word cat but not the word dog. 
