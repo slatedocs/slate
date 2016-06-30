@@ -181,6 +181,17 @@ the root.
 The EFS allows to *create* a new directory, to *list* the elements in a
 directory, and to *copy*, *move* and *delete* elements.
 
+### Distributed Lock Managemenet
+
+HDFS as a storage backend also requires a Zookeeper backend to handle
+distributed lock manageement. Files and directories need to have exclusive lock
+on read and write to prevent corrupted data.
+
+> Download the Zookeeper docker container
+
+```shell
+docker run -td --name zookeeper -p 2181:2181 jplock/zookeeper
+```
 
 ## Search Engine
 > Download and run the Elasticsearch Docker container
