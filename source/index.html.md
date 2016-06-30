@@ -110,15 +110,15 @@ The task object represents a single task that you create with Scale and is compl
 
 Attribute | Type | Description
 --------- | ------- | -----------
-task_id | string | The `task_id` is the unique identifier for the task.
-type | string | The type of the task. Currently, we support `categorization`.
-instruction | string | A plaintext string explaining the instructions for the task.
-params | object | An object with the parameters of the task based on the type. For `categorization`, for example, this will include `attachment_type`, `attachment`, and `categories`.
-response | object | An object corresponding to the response once the task is completed. For `categorization`, it will have the attribute `category`, corresponding to the chosen category.
-callback_url | string | A string of the URL that should be POSTed once the task is completed for the response data. See the Callback section for more details.
-status | string | The status of the task, one of `pending`, `completed`, or `canceled`.
-created_at | timestamp | A string of the UTC timestamp of when the task was created.
-completed_at | timestamp | A string of the UTC timestamp of when the task was completed. This will only be filled in after it is completed.
+`task_id` | string | The `task_id` is the unique identifier for the task.
+`type` | string | The type of the task. Currently, we support `categorization`.
+`instruction` | string | A plaintext string explaining the instructions for the task.
+`params` | object | An object with the parameters of the task based on the type. For `categorization`, for example, this will include `attachment_type`, `attachment`, and `categories`.
+`response` | object | An object corresponding to the response once the task is completed. For `categorization`, it will have the attribute `category`, corresponding to the chosen category.
+`callback_url` | string | A string of the URL that should be POSTed once the task is completed for the response data. See the Callback section for more details.
+`status` | string | The status of the task, one of `pending`, `completed`, or `canceled`.
+`created_at` | timestamp | A string of the UTC timestamp of when the task was created.
+`completed_at` | timestamp | A string of the UTC timestamp of when the task was completed. This will only be filled in after it is completed.
 
 
 # Create Categorization Task
@@ -217,11 +217,11 @@ The parameters `attachment_type`, `attachment`, and `categories` will be stored 
 
 Parameter | Type | Description
 --------- | ---- | -------
-callback_url | string | The full url (including the scheme `http://` or `https://`) of the callback when the task is completed.
-instruction | string | The plaintext instruction of how to categorize the item.
-attachment_type | string | One of `text`, `image`, `video`, `audio`, `website`, or `pdf`. Describes what type of file the attachment is.
-attachment | string | The attachment to be categorized. If `attachment_type` is `text`, then it should be plaintext. Otherwise, it should be a URL pointing to the attachment.
-categories | [string] | An array of strings for the categories which you'd like the object to be sorted between.
+`callback_url` | string | The full url (including the scheme `http://` or `https://`) of the callback when the task is completed.
+`instruction` | string | The plaintext instruction of how to categorize the item.
+`attachment_type` | string | One of `text`, `image`, `video`, `audio`, `website`, or `pdf`. Describes what type of file the attachment is.
+`attachment` | string | The attachment to be categorized. If `attachment_type` is `text`, then it should be plaintext. Otherwise, it should be a URL pointing to the attachment.
+`categories` | [string] | An array of strings for the categories which you'd like the object to be sorted between.
 
 ### Response on Callback
 
@@ -356,12 +356,12 @@ The parameters `attachment_type`, `attachment`, `fields`, and `row_fields` will 
 
 Parameter | Type | Description
 --------- | ---- | -------
-callback_url | string | The full url (including the scheme `http://` or `https://`) of the callback when the task is completed.
-instruction | string | The plaintext instruction of how to transcribe the attachment.
-attachment_type | string | One of `text`, `image`, `video`, `audio`, `website`, or `pdf`. Describes what type of file the attachment is.
-attachment | string | The attachment to be transcribed. If `attachment_type` is `text`, then it should be plaintext. Otherwise, it should be a URL pointing to the attachment.
-fields | dictionary | A dictionary corresponding to the fields to be transcribed. Keys are the keys you'd like the fields to be returned under, and values are descriptions to be shown to human workers.
-row_fields (optional) | dictionary | If your transcription requires a transcription of a variable number of row items, then this dictionary describes the fields for these rows. The format is the same as `fields`, 
+`callback_url` | string | The full url (including the scheme `http://` or `https://`) of the callback when the task is completed.
+`instruction` | string | The plaintext instruction of how to transcribe the attachment.
+`attachment_type` | string | One of `text`, `image`, `video`, `audio`, `website`, or `pdf`. Describes what type of file the attachment is.
+`attachment` | string | The attachment to be transcribed. If `attachment_type` is `text`, then it should be plaintext. Otherwise, it should be a URL pointing to the attachment.
+`fields` | dictionary | A dictionary corresponding to the fields to be transcribed. Keys are the keys you'd like the fields to be returned under, and values are descriptions to be shown to human workers.
+`row_fields` (optional) | dictionary | If your transcription requires a transcription of a variable number of row items, then this dictionary describes the fields for these rows. The format is the same as `fields`, 
 
 ### Response on Callback
 
@@ -487,14 +487,14 @@ The parameters `phone_number`, `entity_name`, `script`, `attachment_type`, `atta
 
 Parameter | Type | Description
 --------- | ---- | -------
-callback_url | string | The full url (including the scheme `http://` or `https://`) of the callback when the task is completed.
-instruction | string | The plaintext instruction of how to transcribe the attachment.
-phone_number | string | The phone number which will be called by our worker. Should include a country code (+1 for US numbers).
-script (optional) | string | An optional script to be shown the the worker as they make the phone call. You should use this if you've already optimized a script for phone calling.
-entity_name | name | The name of the entity which corresponds to the person or business of the phone number.
-attachment_type (optional) | string | One of `text`, `image`, `video`, `audio`, `website`, or `pdf`. Describes what type of file the attachment is.
-attachment (optional) | string | The optional attachment to be used for the phone call. If `attachment_type` is `text`, then it should be plaintext. Otherwise, it should be a URL pointing to the attachment.
-fields (optional) | dictionary | A dictionary corresponding to the fields to be recorded. Keys are the keys you'd like the fields to be returned under, and values are descriptions to be shown to human workers.
+`callback_url` | string | The full url (including the scheme `http://` or `https://`) of the callback when the task is completed.
+`instruction` | string | The plaintext instruction of how to make the phone call.
+`phone_number` | string | The phone number which will be called by our worker. Should include a country code (+1 for US numbers).
+`script` (optional) | string | An optional script to be shown the the worker as they make the phone call. You should use this if you've already optimized a script for phone calling.
+`entity_name` | name | The name of the entity which corresponds to the person or business of the phone number.
+`attachment_type` (optional) | string | One of `text`, `image`, `video`, `audio`, `website`, or `pdf`. Describes what type of file the attachment is.
+`attachment` (optional) | string | The optional attachment to be used for the phone call. If `attachment_type` is `text`, then it should be plaintext. Otherwise, it should be a URL pointing to the attachment.
+`fields` (optional) | dictionary | A dictionary corresponding to the fields to be recorded. Keys are the keys you'd like the fields to be returned under, and values are descriptions to be shown to human workers.
 
 ### Response on Callback
 
@@ -509,6 +509,142 @@ The `response` object will be of the form:
 }`
 
 The outcome will be a string equal to one of `no_pickup` (meaning nobody picked up), `hung_up` (meaning the recipient hung up before the task could be completed), or `success` (the call succeeded). 
+
+If your original call provided `fields`, `fields` will have keys corresponding to the keys you provided in the parameters, with values the transcribed value.
+
+# Create Comparison Task
+
+```shell
+curl "https://api.scaleapi.com/v1/task/comparison" \
+  -u YOUR_API_KEY: \
+  -d callback_url="http://www.example.com/callback" \
+  -d instruction="Do the objects in these images have the same pattern?" \
+  -d attachment_type=image \
+  -d attachments="http://i.ebayimg.com/00/$T2eC16dHJGwFFZKjy5ZjBRfNyMC4Ig~~_32.JPG" \
+  -d attachments="http://images.wisegeek.com/checkered-tablecloth.jpg" \
+  -d choices="yes" \
+  -d choices="no" \
+```
+```python
+import requests
+import json
+
+payload = {
+  'callback_url': 'http://www.example.com/callback',
+  'instruction': 'Do the objects in these images have the same pattern?',
+  'attachment_type': 'image',
+  'attachments': [
+    'http://i.ebayimg.com/00/$T2eC16dHJGwFFZKjy5ZjBRfNyMC4Ig~~_32.JPG',
+    'http://images.wisegeek.com/checkered-tablecloth.jpg'
+  ],
+  'choices': ['yes', 'no']
+}
+
+headers = {"Content-Type": "application/json"}
+
+requests.post("https://api.scaleapi.com/v1/task/comparison", 
+  data=json.dumps(payload), 
+  headers=headers,
+  auth=(YOUR_API_KEY, ''))
+
+```
+
+```javascript
+var request = require("request");
+var SCALE_API_KEY = 'YOUR_API_KEY';
+
+var payload = {
+  'callback_url': 'http://www.example.com/callback',
+  'instruction': 'Do the objects in these images have the same pattern?',
+  'attachment_type': 'image',
+  'attachments': [
+    'http://i.ebayimg.com/00/$T2eC16dHJGwFFZKjy5ZjBRfNyMC4Ig~~_32.JPG',
+    'http://images.wisegeek.com/checkered-tablecloth.jpg'
+  ],
+  'choices': ['yes', 'no']
+};
+
+request.post('https://api.scaleapi.com/v1/task/comparison', {
+  'auth': {
+    'user': SCALE_API_KEY,
+    'pass': '',
+    'sendImmediately': true
+  },
+  'form': payload
+}, function(error, response, body) {
+  if (!error && response.statusCode == 200) {
+    console.log(body);
+  } else {
+    console.log(error);
+    console.log(response.statusCode);
+  }
+});
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "created_at": "2016-06-30T07:38:32.368Z",
+  "callback_url": "http://localhost:5000/internal/test_callback",
+  "type": "comparison",
+  "status": "pending",
+  "instruction": "Do the objects in these images have the same pattern?",
+  "params": {
+    "choices": [
+      "yes",
+      "no"
+    ],
+    "attachment_type": "image",
+    "attachments": [
+      "http://i.ebayimg.com/00/$T2eC16dHJGwFFZKjy5ZjBRfNyMC4Ig~~_32.JPG",
+      "http://images.wisegeek.com/checkered-tablecloth.jpg"
+    ]
+  },
+  "task_id": "5774cc78b02487c424f089dd"
+}
+```
+
+This endpoint creates a `comparison` task. In this task, one of our workers view the given attachments and do any comparison requested.
+
+This task involves a plaintext `instruction`, an array of `attachments`, and an `attachment_type`.
+
+At least of the `fields` or `choices` parameters must specified for the data to be returned. `choices` is an array of strings from which the user to choose, and `fields` is useful for free-text response. 
+
+`fields` is a dictionary where the keys are the keys you'd like the results to be returned under, and values are the descriptions you'd like to show the human worker.
+
+If successful, Scale will immediately return the generated task object, of which you should store the `task_id`.
+
+The parameters `attachment_type`, `attachments`, `choices`, and `fields` will be stored in the `params` object of the constructed `task` object.
+
+### HTTP Request
+
+`POST https://api.scaleapi.com/v1/task/comparison`
+
+### Parameters
+
+Parameter | Type | Description
+--------- | ---- | -------
+`callback_url` | string | The full url (including the scheme `http://` or `https://`) of the callback when the task is completed.
+`instruction` | string | The plaintext instruction of how to compare the attachments.
+`attachment_type` | string | One of `text`, `image`, `video`, `audio`, `website`, or `pdf`. Describes what type of file the attachments are.
+`attachments` | array | An array of attachments to compare. If `attachment_type` is `text`, then each attachment should be plaintext. Otherwise, they should be URLs pointing to the attachments.
+`fields` (optional) | dictionary | A dictionary corresponding to the fields to be recorded. Keys are the keys you'd like the fields to be returned under, and values are descriptions to be shown to human workers.
+`choices` (optional) | [string] | An array of strings for the choices to be given to the worker. One of `choices` or `fields` must be specified.
+
+### Response on Callback
+
+The `response` object will be of the form:
+
+`
+{
+  "choice": "some_choice",
+  "fields": {
+    ...
+  }
+}`
+
+If your original call provided `choices`, `choice` will be one of the original choices.
 
 If your original call provided `fields`, `fields` will have keys corresponding to the keys you provided in the parameters, with values the transcribed value.
 
@@ -557,9 +693,9 @@ If you're just starting out and want the easiest way to set up your own callback
 
 Attribute | Type | Description
 --------- | ------- | -----------
-task_id | string | The `task_id` is the unique identifier for the task.
-response | object | The response object of the completed request. For `categorization`, it will contain a `category` attribute of the assigned category.
-task | object | The full task object for reference and convenience.
+`task_id` | string | The `task_id` is the unique identifier for the task.
+`response` | object | The response object of the completed request. For `categorization`, it will contain a `category` attribute of the assigned category.
+`task` | object | The full task object for reference and convenience.
 
 
 # Task Endpoints
@@ -640,7 +776,7 @@ This endpoint retrieves a specific task.
 
 Parameter | Description
 --------- | -----------
-task_id | The task_id of the task to retrieve
+`task_id` | The task_id of the task to retrieve
 
 ### Returns
 
