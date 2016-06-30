@@ -56,7 +56,7 @@ public class YourErrorStateListener extends ErrorStateListener {
 And once you’ve implemented your class, here’s how you register it to Foxtrot:
 
 ```java
-Handler handler = new Handler(Looper.getMainLooper());;
+Handler handler = new Handler(Looper.getMainLooper());
 ErrorStateListener myErrorStateListener = YourErrorStateListener.create(handler);
 FoxtrotSDK.getInstance().registerErrorStateListener(myErrorStateListener);
 ```
