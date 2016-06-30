@@ -41,6 +41,7 @@ line_items | array | Array of objects.
 credit | string | Customer credit
 
 > Sample JSON structure like this:
+
 ```json
 {
   "number": "INV-0001",
