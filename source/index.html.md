@@ -626,11 +626,37 @@ try{
 }
 
 ```
+To revoke (remove) a user from a sharing group, use the revokeUser method of
+SearchableFileSystem. To revoke multiple users from a sharing group, use the
+revokeUsers method of SearchableFileSystem.
+
 A `NonExistingGroupException` is thrown if the provided group name does not
 exist. A `NonMemberException` is thrown if one of the provided usernames is not a member of the group. 
 
 Revocation changes all the cryptographic keys of the sharing group and
 reencrypts all the data stored in the sharing group.
+
+## Refresh Keyrings
+Sometimes it is requires to renew the cryptographic keys of a user or of a
+sharing group. 
+> Refresh user keyring
+```java
+// SearchableFileSystem sfs
+String password = "password"; //The user's password
+sfs.refreshUserKeyring(password); 
+```
+To refresh all the keys of one user, use the refreshUserKeyring method of
+SearchableFileSystem. 
+An `AuthenticationException` is thrown if the user's password is incorrect.
+
+> Refresh group keyring
+```java
+// SearchableFileSystem sfs
+String groupName = "shareGroup"; //The user's password
+sfs.refreshGroupKeyring(groupName); 
+```
+To refresh all the keys of a sharing group, use the refreshGroupKeyring method of
+SearchableFileSystem. 
 
 ## Secure Search
 > Secure search
