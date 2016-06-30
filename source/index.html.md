@@ -147,7 +147,7 @@ payload = {
 
 requests.post("https://api.scaleapi.com/v1/task/categorize", 
   data=payload, 
-  auth=(YOUR_API_KEY, ''))
+  auth=('YOUR_API_KEY', ''))
 
 ```
 
@@ -273,7 +273,7 @@ headers = {"Content-Type": "application/json"}
 requests.post("https://api.scaleapi.com/v1/task/transcription", 
   data=json.dumps(payload), 
   headers=headers,
-  auth=(YOUR_API_KEY, ''))
+  auth=('YOUR_API_KEY', ''))
 
 ```
 
@@ -412,7 +412,7 @@ headers = {"Content-Type": "application/json"}
 requests.post("https://api.scaleapi.com/v1/task/phonecall", 
   data=json.dumps(payload), 
   headers=headers,
-  auth=(YOUR_API_KEY, ''))
+  auth=('YOUR_API_KEY', ''))
 
 ```
 
@@ -545,7 +545,7 @@ headers = {"Content-Type": "application/json"}
 requests.post("https://api.scaleapi.com/v1/task/comparison", 
   data=json.dumps(payload), 
   headers=headers,
-  auth=(YOUR_API_KEY, ''))
+  auth=('YOUR_API_KEY', ''))
 
 ```
 
