@@ -21,7 +21,7 @@ From now on, when you call the FoxtrotSDK you’ll need to access the singleton 
 FoxtrotSDK.getInstance().SOME_METHOD()
 ```
 
-## Logging in
+## Logging In
 
 Once your driver has logged into your app using your existing login flow, you'll need to log them into Foxtrot as a [Driver](#driver).
 
@@ -90,7 +90,7 @@ public class SampleLoginActivity extends AppCompatActivity {
 }
 ```
 
-## Registering an Error istener
+## Registering an Error Listener
 
 Now that you’ve set Foxtrot up, you’ll want to register an object that conforms to our [ErrorStateListener](https://foxtrotsystems.github.io/android-sdk-javadoc/io/foxtrot/android/sdk/state/ErrorStateListener.html) interface so you know if anything goes wrong. Here’s how to create a simple listener:
 
@@ -269,12 +269,8 @@ FoxtrotSDK.getInstance().finishRoute("YOUR_ROUTE_ID");
 
 If your users run multiple routes throughout the day, it's possible to import more than one [Route](#route) into the Foxtrot SDK. We'll sort them based on the start time of each [Route](#route), treating whichever route starts earlier as the first one.
 
-In order to begin the second [Route](#route), you'll need to finish the first one by making the call to finishRoute. The first route will then be marked as 'finished', and you will begin receiving events for the second route.
-
-<<<<<<< Updated upstream
 <aside class="notice">
-In order to begin the next route, you'll need to finish the current one.
+In order to begin the second Route, you'll need to finish the first one by making the call to finishRoute. The first route will then be marked as 'finished', and you will begin receiving events for the second route.
 </aside>
-=======
-When all the routes that Foxtrot has have been finished, our [RouteStateListener](#routestatelistener) will call onAllRoutesFinished() and you'll have the opportunity to respond to that event.
->>>>>>> Stashed changes
+
+When all the routes that Foxtrot has have been finished, our [RouteStateListener](https://foxtrotsystems.github.io/android-sdk-javadoc/io/foxtrot/android/sdk/state/RouteStateListener.html) will call onAllRoutesFinished() and you'll have the opportunity to respond to that event.

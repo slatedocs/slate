@@ -8,7 +8,7 @@ The [Foxtrot](https://foxtrot.io/) Android SDK allows you to leverage Foxtrot's 
 1. The Foxtrot Android SDK is supported on Android API level 19 and above.
 2. You will need one or more Foxtrot API keys to identify your organization (one API key per distribution center).
 
-## Getting access
+## Getting Access
 
 The Foxtrot SDK is hosted on [Bintray](https://bintray.com). You will need to create a free Bintray account to access the SDK package. Once you have an account, reach out to us at [support@foxtrot.io](mailto:support@foxtrot.io) to grant you access to the SDK.
 
