@@ -640,6 +640,7 @@ reencrypts all the data stored in the sharing group.
 Sometimes it is requires to renew the cryptographic keys of a user or of a
 sharing group. 
 > Refresh user keyring
+
 ```java
 // SearchableFileSystem sfs
 String password = "password"; //The user's password
@@ -650,6 +651,7 @@ SearchableFileSystem.
 An `AuthenticationException` is thrown if the user's password is incorrect.
 
 > Refresh group keyring
+
 ```java
 // SearchableFileSystem sfs
 String groupName = "shareGroup"; //The user's password
