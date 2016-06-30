@@ -56,8 +56,8 @@ public class YourErrorStateListener extends ErrorStateListener {
 And once you’ve implemented your class, here’s how you register it to Foxtrot:
 
 ```java
-Handler someHandler = ...;
-ErrorStateListener myErrorStateListener = YourErrorStateListener.create(someHandler);
+Handler handler = new Handler(Looper.getMainLooper());;
+ErrorStateListener myErrorStateListener = YourErrorStateListener.create(handler);
 FoxtrotSDK.getInstance().registerErrorStateListener(myErrorStateListener);
 ```
 
@@ -153,7 +153,7 @@ public class YourRouteStateListener extends RouteStateListener {
 Now we take our RouteStateListener and register it to Foxtrot:
 
 ```java
-Handler anotherHandler = Handler();
+Handler anotherHandler = new Handler(Looper.getMainLooper);
 RouteStateListener myRouteStateListener = YourRouteStateListener.create(anotherHandler);
 FoxtrotSDK.getInstance().registerRouteStateListener(myRouteStateListener);
 ```
@@ -209,6 +209,7 @@ Great, we’ve got a route! What’s next?
 
 ## Making a Delivery attempt
 
+As a driver works on their route, they'll be attempting to make deliveries. 
 In order to finish the route, we need to make DeliveryAttempts. 
 A DeliveryAttempt belongs to a Delivery. 
 A DeliveryAttempt needs a DeliveryStatus, where the possible values are Success, Failure, and Reattempt.
