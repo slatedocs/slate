@@ -90,7 +90,7 @@ public class SampleLoginActivity extends AppCompatActivity {
 }
 ```
 
-## Registering an error listener
+## Registering an Error istener
 
 Now that you’ve set Foxtrot up, you’ll want to register an object that conforms to our [ErrorStateListener](https://foxtrotsystems.github.io/android-sdk-javadoc/io/foxtrot/android/sdk/state/ErrorStateListener.html) interface so you know if anything goes wrong. Here’s how to create a simple listener:
 
@@ -133,16 +133,15 @@ FoxtrotSDK.getInstance().registerErrorStateListener(myErrorStateListener);
 
 You can register as many error state listeners as you’d like and they’ll all receive the current state of the SDK whenever they’re registered. This makes it incredibly easy to simply and powerfully handle any issues that may arise while developing, or while your users are using your app.
 
-## Importing a route
+## Importing a Route
 
-Assuming you’ve had no problems so far, now you can import multiple [Route](#route) objects into Foxtrot. Foxtrot will cache these objects for you so you don't need to import them again after the app restarts.
+Assuming you’ve had no problems so far, now you can import one or more [Route](#route) objects into Foxtrot. Foxtrot will cache these objects for you so you don't need to import them again after the app restarts.
 
 <aside class="notice">
 We’ll sort routes based on their start times, treating whichever route starts earlier as the first one.
 </aside>
 
-
-Here is sample code to add a route:
+Here is some sample code to add a route:
 
 ```java
 Delivery delivery = Delivery.builder()
@@ -179,15 +178,13 @@ Route route = Route.builder()
                       .setWaypoints(routeWaypoints)
                       .build();
 
-// You can add multiple routes
-FoxtrotSDK.getInstance().addRoute(route);
 ```
 
-Now that we’ve created a Route object and registered a RouteStateListener we are ready to import!
-Here’s how:
+Now that we’ve created a Route, it can be imported like this:
 
 ```java
-FoxtrotSDK.getInstance().addRoute(theRoute);
+//You can add multiple routes too if that's what you need
+FoxtrotSDK.getInstance().addRoute(route);
 ```
 
 Now let’s register a [RouteStateListener](https://foxtrotsystems.github.io/android-sdk-javadoc/io/foxtrot/android/sdk/state/RouteStateListener.html) so we know when the route changes! This uses the same pattern as the LoginStateListener. Here’s how to implement one:
@@ -233,15 +230,15 @@ At this point, our RouteStateListener should get an onRouteChanged event with th
 
 Great, we’ve got a route! What’s next?
 
-## Making a Delivery attempt
+## Making a Delivery Attempt
 
-As a driver works on their route, they'll be attempting to make deliveries.
+As your user works on their route, they'll be attempting to make deliveries.
 In order to finish the route, we need to make DeliveryAttempts.
 A [DeliveryAttempt](#deliveryattempt) belongs to a [Delivery](#delivery).
 A DeliveryAttempt needs a [DeliveryStatus](#deliverystatus), where the possible values are Success, Failure, and Reattempt.
-    - it may also optionally contain notes if you’d like to include additional information.
+A DeliveryAttempt may also optionally contain notes if you’d like to include additional information.
 
-Here’s how to create and add one, using the Route we created previously:
+Here’s how to create and add a successful DeliveryAttempt, using the Route we created previously:
 
 ```java
 DeliveryAttempt successfulAttempt = DeliveryAttempt.builder()
@@ -253,7 +250,7 @@ FoxtrotSDK.getInstance().addDeliveryAttempt("SOME_DELIVERY_ID", successfulAttemp
 
 ##Undoing a Delivery Attempt
 
-If the driver makes a mistake, you might want to provide the ability to undo a [DeliveryAttempt](#deliveryattempt). If that's the case, here's how:
+If the user makes a mistake, you might want to provide the ability to undo a [DeliveryAttempt](#deliveryattempt). If that's the case, here's how:
 
 ```java
 FoxtrotSDK.getInstance().undoDeliveryAttempt("A_DELIVERY_ID");
@@ -263,16 +260,21 @@ This will automatically find the most recent [DeliveryAttempt](#deliveryattempt)
 
 ##Finishing a Route
 
-Once your driver has finished making attempts on all their [Waypoints](#waypoint), you may want to allow them to finish their route.
+Once your user has finished making attempts on all their [Waypoints](#waypoint), you may want to allow them to finish their route.
 Here's how:
 
 ```java
-FoxtrotSDK.getInstance().finishRoute("YOURE_ROUTE_ID");
+FoxtrotSDK.getInstance().finishRoute("YOUR_ROUTE_ID");
 ```
 
+If your users run multiple routes throughout the day, it's possible to import more than one [Route](#route) into the Foxtrot SDK. We'll sort them based on the start time of each [Route](#route), treating whichever route starts earlier as the first one.
 
-If your drivers run multiple routes throughout the day, it's possible to import more than one [Route](#route) into the Foxtrot SDK. We'll sort them based on the start time of each [Route](#route), treating whichever route starts earlier as the first one.
+In order to begin the second [Route](#route), you'll need to finish the first one by making the call to finishRoute. The first route will then be marked as 'finished', and you will begin receiving events for the second route.
 
+<<<<<<< Updated upstream
 <aside class="notice">
 In order to begin the next route, you'll need to finish the current one.
 </aside>
+=======
+When all the routes that Foxtrot has have been finished, our [RouteStateListener](#routestatelistener) will call onAllRoutesFinished() and you'll have the opportunity to respond to that event.
+>>>>>>> Stashed changes
