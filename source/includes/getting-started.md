@@ -92,7 +92,7 @@ public class SampleLoginActivity extends AppCompatActivity {
 
 ## Registering an error listener
 
-Now that you’ve set foxtrot up, you’ll want to register an object that conforms to our [ErrorStateListener](https://foxtrotsystems.github.io/android-sdk-javadoc/io/foxtrot/android/sdk/state/ErrorStateListener.html) interface so you know if anything goes wrong. Here’s how to create a simple listener:
+Now that you’ve set Foxtrot up, you’ll want to register an object that conforms to our [ErrorStateListener](https://foxtrotsystems.github.io/android-sdk-javadoc/io/foxtrot/android/sdk/state/ErrorStateListener.html) interface so you know if anything goes wrong. Here’s how to create a simple listener:
 
 ```java
 public class YourErrorStateListener extends ErrorStateListener {
@@ -135,7 +135,12 @@ You can register as many error state listeners as you’d like and they’ll all
 
 ## Importing a route
 
-Assuming you’ve had no problems so far, now you can import multiple [Route](#route) objects into Foxtrot. Foxtrot will cache these objects for you so you don't need to import them again after the app restarts
+Assuming you’ve had no problems so far, now you can import multiple [Route](#route) objects into Foxtrot. Foxtrot will cache these objects for you so you don't need to import them again after the app restarts.
+
+<aside class="notice">
+We’ll sort routes based on their start times, treating whichever route starts earlier as the first one.
+</aside>
+
 
 Here is sample code to add a route:
 
@@ -232,7 +237,7 @@ Great, we’ve got a route! What’s next?
 
 As a driver works on their route, they'll be attempting to make deliveries.
 In order to finish the route, we need to make DeliveryAttempts.
-A [DeliveryAttempt](#deliveryattempt) belongs to a Delivery.
+A [DeliveryAttempt](#deliveryattempt) belongs to a [Delivery](#delivery).
 A DeliveryAttempt needs a [DeliveryStatus](#deliverystatus), where the possible values are Success, Failure, and Reattempt.
     - it may also optionally contain notes if you’d like to include additional information.
 
@@ -268,4 +273,6 @@ FoxtrotSDK.getInstance().finishRoute("YOURE_ROUTE_ID");
 
 If your drivers run multiple routes throughout the day, it's possible to import more than one [Route](#route) into the Foxtrot SDK. We'll sort them based on the start time of each [Route](#route), treating whichever route starts earlier as the first one.
 
-In order to begin the second [Route](#route), you'll need to finish the first one. When your driver is ready, you can make this call to the SDK in order to finish a route:
+<aside class="notice">
+In order to begin the next route, you'll need to finish the current one.
+</aside>
